@@ -1,0 +1,362 @@
+{
+  "mode": "source",
+  "url": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=project_list&from_page=create",
+  "attempts": [
+    {
+      "target": "视频 node: 视频 1",
+      "pt": [
+        756,
+        475
+      ],
+      "blockedBy": 0,
+      "selected": [
+        "视频 node: 视频 1"
+      ]
+    }
+  ],
+  "before": {
+    "nodes": [
+      {
+        "aria": "视频 node: 视频 1",
+        "cls": "react-flow__node react-flow__node-video nopan selectable draggable",
+        "selected": false,
+        "rect": {
+          "x": 472,
+          "y": 315,
+          "w": 569,
+          "h": 320
+        }
+      }
+    ],
+    "btns": [],
+    "hot": [
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 443,
+          "y": 415,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "视频 node: 视频 1"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 1009,
+          "y": 415,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "视频 node: 视频 1"
+      }
+    ]
+  },
+  "after": {
+    "nodes": [
+      {
+        "aria": "视频 node: 视频 1",
+        "cls": "react-flow__node react-flow__node-video nopan selected selectable draggable",
+        "selected": true,
+        "rect": {
+          "x": 472,
+          "y": 315,
+          "w": 569,
+          "h": 320
+        }
+      }
+    ],
+    "btns": [
+      {
+        "aria": "Create connected node before 视频 1",
+        "tag": "button",
+        "rect": {
+          "x": 433,
+          "y": 457,
+          "w": 36,
+          "h": 36
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "1px solid rgba(0, 0, 0, 0)",
+          "borderRadius": "8px",
+          "opacity": "1",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "auto",
+          "position": "absolute",
+          "color": "rgb(255, 255, 255)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -18, -18)",
+          "overflow": "visible"
+        },
+        "parent": {
+          "tag": "div",
+          "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-receiving=tru",
+          "rect": {
+            "x": 472,
+            "y": 315,
+            "w": 569,
+            "h": 320
+          }
+        },
+        "inner": [
+          {
+            "tag": "span",
+            "cls": "contents",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "w": 0,
+              "h": 0
+            }
+          }
+        ]
+      },
+      {
+        "aria": "Create connected node after 视频 1",
+        "tag": "button",
+        "rect": {
+          "x": 1043,
+          "y": 457,
+          "w": 36,
+          "h": 36
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "1px solid rgba(0, 0, 0, 0)",
+          "borderRadius": "8px",
+          "opacity": "1",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "auto",
+          "position": "absolute",
+          "color": "rgb(255, 255, 255)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 18, -18)",
+          "overflow": "visible"
+        },
+        "parent": {
+          "tag": "div",
+          "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-receiving=tru",
+          "rect": {
+            "x": 472,
+            "y": 315,
+            "w": 569,
+            "h": 320
+          }
+        },
+        "inner": [
+          {
+            "tag": "span",
+            "cls": "contents",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "w": 0,
+              "h": 0
+            }
+          }
+        ]
+      }
+    ],
+    "hot": [
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 443,
+          "y": 415,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "1",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "视频 node: 视频 1"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 1009,
+          "y": 415,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "1",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "视频 node: 视频 1"
+      }
+    ]
+  },
+  "hoverScan": [
+    {
+      "node": "视频 node: 视频 1",
+      "pt": [
+        756,
+        475
+      ],
+      "buttons": []
+    }
+  ],
+  "hovers": [
+    {
+      "aria": "Create connected node before 视频 1",
+      "idle": {
+        "aria": "Create connected node before 视频 1",
+        "tag": "button",
+        "rect": {
+          "x": 433,
+          "y": 457,
+          "w": 36,
+          "h": 36
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "1px solid rgba(0, 0, 0, 0)",
+          "borderRadius": "8px",
+          "opacity": "1",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "auto",
+          "position": "absolute",
+          "color": "rgb(255, 255, 255)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -18, -18)",
+          "overflow": "visible"
+        },
+        "parent": {
+          "tag": "div",
+          "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-receiving=tru",
+          "rect": {
+            "x": 472,
+            "y": 315,
+            "w": 569,
+            "h": 320
+          }
+        },
+        "inner": [
+          {
+            "tag": "span",
+            "cls": "contents",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "w": 0,
+              "h": 0
+            }
+          }
+        ]
+      },
+      "hover": null
+    },
+    {
+      "aria": "Create connected node after 视频 1",
+      "idle": {
+        "aria": "Create connected node after 视频 1",
+        "tag": "button",
+        "rect": {
+          "x": 1043,
+          "y": 457,
+          "w": 36,
+          "h": 36
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "1px solid rgba(0, 0, 0, 0)",
+          "borderRadius": "8px",
+          "opacity": "1",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "auto",
+          "position": "absolute",
+          "color": "rgb(255, 255, 255)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 18, -18)",
+          "overflow": "visible"
+        },
+        "parent": {
+          "tag": "div",
+          "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-receiving=tru",
+          "rect": {
+            "x": 472,
+            "y": 315,
+            "w": 569,
+            "h": 320
+          }
+        },
+        "inner": [
+          {
+            "tag": "span",
+            "cls": "contents",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "w": 0,
+              "h": 0
+            }
+          }
+        ]
+      },
+      "hover": null
+    }
+  ]
+}

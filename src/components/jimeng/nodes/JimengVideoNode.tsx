@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Plus } from "lucide-react";
-import { Handle, Position, useReactFlow } from "@xyflow/react";
+import { useReactFlow } from "@xyflow/react";
 import type { NodeProps } from "@xyflow/react";
 
 import type { JimengVideoNodeData } from "@/types/jimeng";
 import { JimengNodeToolbar } from "@/components/jimeng/JimengNodeToolbar";
 import { JimengGenPanel } from "@/components/jimeng/JimengGenPanel";
 import { JimengInsertMenu } from "@/components/jimeng/JimengInsertMenu";
+import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
 import { JimengFramePicker } from "@/components/jimeng/JimengFramePicker";
 import { JimengRepaintPanel } from "@/components/jimeng/JimengRepaintPanel";
 import { JimengTrimPanel } from "@/components/jimeng/JimengTrimPanel";
@@ -30,14 +30,6 @@ import { useJimengStore } from "@/store/jimengStore";
  * Batch 74: 拆分为 JimengVideoTitleRow + JimengVideoMediaCard + 本编排器
  * (无行为变更)。
  */
-const HANDLE_BASE = {
-  width: 60,
-  height: 120,
-  background: "transparent",
-  border: "none",
-  borderRadius: 0,
-} as const;
-
 export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const d = data as JimengVideoNodeData;
   // 播放态由 data.playing 显式驱动 (mock 初始为暂停，与源站提取时一致)
@@ -63,9 +55,7 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
   const tasks = useJimengStore((s) => s.tasks);
   const startTask = useJimengStore((s) => s.startTask);
   const addNodeAt = useJimengStore((s) => s.addNodeAt);
-  const [insertMenu, setInsertMenu] = useState<
-    "left" | "right" | "title" | null
-  >(null);
+  const [insertMenu, setInsertMenu] = useState<"title" | null>(null);
 
   const [tagPickerOpen, setTagPickerOpen] = useState(false);
   const repaintMode = repaintNodeId === id;
@@ -241,61 +231,20 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         minimal={editMode}
       />
 
-      {/* 连接热区 (隐形) + "+" 圆钮 (hover/选中显示；点击弹「添加节点」菜单) */}
-      <Handle
-        type="target"
-        position={Position.Left}
-        className="!z-10"
-        style={{ ...HANDLE_BASE, left: -30, top: "50%", transform: "translateY(-50%)" }}
-      >
-        {/* 证据: 本地上传节点左侧无 "+" (SOURCE_FACT §5)，仅空节点两侧都有 */}
-        {d.source === "empty" ? (
-          <span
-            role="button"
-            aria-label="左侧添加节点"
-            className="absolute left-1/2 top-1/2 hidden size-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-[#0D0D0D] text-white group-hover:flex group-data-[jimeng-node-selected]:flex"
-            onClick={(e) => {
-              e.stopPropagation();
-              setInsertMenu((cur) => (cur === "left" ? null : "left"));
-            }}
-            onMouseDown={(e) => e.stopPropagation()}
-          >
-            <Plus size={16} />
-          </span>
-        ) : null}
-      </Handle>
-      <Handle
-        type="source"
-        position={Position.Right}
-        className="!z-10"
-        style={{ ...HANDLE_BASE, right: -30, top: "50%", transform: "translateY(-50%)" }}
-      >
-        <span
-          role="button"
-          aria-label="右侧添加节点"
-          className="absolute left-1/2 top-1/2 hidden size-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-[#0D0D0D] text-white group-hover:flex group-data-[jimeng-node-selected]:flex"
-          onClick={(e) => {
-            e.stopPropagation();
-            setInsertMenu((cur) => (cur === "right" ? null : "right"));
-          }}
-          onMouseDown={(e) => e.stopPropagation()}
-        >
-          <Plus size={16} />
-        </span>
-      </Handle>
-      {insertMenu ? (
-        <div
-          className="absolute z-[130]"
-          style={
-            insertMenu === "right"
-              ? { left: "100%", top: "50%", marginLeft: 22 }
-              : insertMenu === "left"
-                ? { right: "100%", top: "50%", marginRight: 22 }
-                : { left: "18%", top: 8 }
-          }
-        >
+      {/* 连接热区 (隐形 60×120) + 「Create connected node」+ 环钮
+          (Batch 804: 源站实名/两侧都有/仅选中挂载/贴缘外 3px) */}
+      <JimengConnectHandles
+        nodeId={id}
+        title={d.title}
+        size={{ width: d.width, height: d.height }}
+        selected={selected === true}
+      />
+      {/* 双击标题的「添加节点」菜单 (extended)；左右两侧的菜单已由
+          JimengConnectHandles 自行持有 (Batch 804) */}
+      {insertMenu === "title" ? (
+        <div className="absolute z-[130]" style={{ left: "18%", top: 8 }}>
           <JimengInsertMenu
-            extended={insertMenu === "title"}
+            extended
             onPick={(label) => {
               if (label === "视频") addVideoNodeAfter(id);
               if (label === "图片")

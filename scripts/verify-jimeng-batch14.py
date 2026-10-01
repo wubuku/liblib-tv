@@ -26,12 +26,15 @@ def node_count(page) -> int:
 
 def add_video_via_menu(page) -> None:
     node1 = page.locator(".react-flow__node-video").first
-    node1.hover(position={"x": 400, "y": 160})
+    # batch 804: + 钮仅在节点选中时挂载（源站实测：未选中时 DOM 里
+    # 根本不存在），所以先点一下节点选中，再取钮位。
+    node1.click(position={"x": 400, "y": 160})
     page.wait_for_timeout(400)
     plus = page.evaluate(
         """() => {
             const n = [...document.querySelectorAll('.react-flow__node-video')][0];
-            const el = n.querySelector('[aria-label="右侧添加节点"]');
+            const el = n.querySelector('button[aria-label^="Create connected node after"]');
+            if (!el) return null;
             const r = el.getBoundingClientRect();
             return {x: r.x + r.width/2, y: r.y + r.height/2};
         }"""

@@ -1,11 +1,14 @@
 """Jimeng clone batch 93 verifier — dock edge-visibility toggle.
 
 Contract (SOURCE_FACT batch 93, dock aria dump):
-- dock buttons = [选择工具][小地图][显示连线][缩放];
+- dock buttons = [选择工具][小地图][显示连线][Zoom options, N%];
+  （缩放钮的实名在 batch 796 按源站改成 `Zoom options, {n}%`，本断言随之
+    放宽成正则——百分比随视口变，写死 73% 会在任何非默认视口下假失败）
 - clicking 显示连线 hides all edge paths; clicking again restores them.
 """
 
 import os
+import re
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
@@ -33,7 +36,11 @@ def main() -> None:
             """() => [...document.querySelectorAll('.jimeng-bottom-dock button')]
                 .map(b => b.getAttribute('aria-label'))"""
         )
-        if labels != ["选择工具", "小地图", "显示连线", "缩放"]:
+        if (
+            len(labels) != 4
+            or labels[:3] != ["选择工具", "小地图", "显示连线"]
+            or not re.fullmatch(r"Zoom options, \d+%", labels[3] or "")
+        ):
             failures.append(f"dock buttons: {labels}")
 
         # need an edge: create one via capture-frame? simpler — use upload flow?

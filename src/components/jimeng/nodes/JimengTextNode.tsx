@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Handle, Position } from "@xyflow/react";
 import { NodeToolbar, Position as TBPosition } from "@xyflow/react";
 import {
   Bold,
@@ -20,6 +19,7 @@ import type { NodeProps } from "@xyflow/react";
 
 import type { JimengTextNodeData } from "@/types/jimeng";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
+import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
@@ -208,35 +208,11 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
         )}
       </div>
 
-      <Handle
-        type="target"
-        position={Position.Left}
-        className="!z-10"
-        style={{
-          width: 60,
-          height: 120,
-          background: "transparent",
-          border: "none",
-          borderRadius: 0,
-          left: -30,
-          top: "50%",
-          transform: "translateY(-50%)",
-        }}
-      />
-      <Handle
-        type="source"
-        position={Position.Right}
-        className="!z-10"
-        style={{
-          width: 60,
-          height: 120,
-          background: "transparent",
-          border: "none",
-          borderRadius: 0,
-          right: -30,
-          top: "50%",
-          transform: "translateY(-50%)",
-        }}
+      <JimengConnectHandles
+        nodeId={id}
+        title={d.title}
+        size={{ width: d.width, height: d.height }}
+        selected={selected === true}
       />
     </div>
   );

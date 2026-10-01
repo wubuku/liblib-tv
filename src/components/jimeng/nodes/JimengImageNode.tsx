@@ -1,6 +1,5 @@
 "use client";
 
-import { Handle, Position } from "@xyflow/react";
 import type { NodeProps } from "@xyflow/react";
 
 import type { JimengImageNodeData } from "@/types/jimeng";
@@ -8,6 +7,7 @@ import { FileBadgeIcon } from "@/components/jimeng/icons";
 import { JimengImageNodeToolbar } from "@/components/jimeng/JimengImageNodeToolbar";
 import { JimengImageGenPanel } from "@/components/jimeng/JimengImageGenPanel";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
+import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
@@ -84,35 +84,11 @@ export function JimengImageNode({ id, data, selected }: NodeProps) {
         ) : null}
       </div>
 
-      <Handle
-        type="target"
-        position={Position.Left}
-        className="!z-10"
-        style={{
-          width: 60,
-          height: 120,
-          background: "transparent",
-          border: "none",
-          borderRadius: 0,
-          left: -30,
-          top: "50%",
-          transform: "translateY(-50%)",
-        }}
-      />
-      <Handle
-        type="source"
-        position={Position.Right}
-        className="!z-10"
-        style={{
-          width: 60,
-          height: 120,
-          background: "transparent",
-          border: "none",
-          borderRadius: 0,
-          right: -30,
-          top: "50%",
-          transform: "translateY(-50%)",
-        }}
+      <JimengConnectHandles
+        nodeId={id}
+        title={d.title}
+        size={{ width: d.width, height: d.height }}
+        selected={selected === true}
       />
       </div>
     </>

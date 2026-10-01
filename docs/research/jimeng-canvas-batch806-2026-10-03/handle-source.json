@@ -1,0 +1,2468 @@
+{
+  "mode": "source",
+  "url": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=project_list&from_page=create",
+  "viewports": [
+    {
+      "node": "视频 1",
+      "handles": [
+        {
+          "tag": "div",
+          "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outline-none [&_.react-flow\\_\\_node-text:not(.selected):hover::before]:abs",
+          "aria": "Canvas",
+          "title": null,
+          "testid": "rf__wrapper",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1512,
+            "h": 950
+          },
+          "style": {
+            "backgroundColor": "rgb(13, 13, 13)",
+            "backgroundImage": "none",
+            "border": "0px solid rgb(229, 231, 235)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "zIndex": "0",
+            "position": "relative"
+          },
+          "pointerEvents": "auto",
+          "kids": [
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": "视频 node: 视频 1",
+              "rect": {
+                "x": 454,
+                "y": 285,
+                "w": 569,
+                "h": 320
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 454,
+                "y": 285,
+                "w": 569,
+                "h": 320
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 425,
+                "y": 385,
+                "w": 60,
+                "h": 120
+              },
+              "hasBg": false
+            }
+          ],
+          "node": "视频 1",
+          "nodeRect": {
+            "x": 0,
+            "y": 0,
+            "w": 1512,
+            "h": 950
+          },
+          "chain": [
+            {
+              "depth": 0,
+              "tag": "div",
+              "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outline-none [&_.react-flow\\_\\_node-text:not(.selected",
+              "aria": "Canvas",
+              "title": null,
+              "testid": "rf__wrapper",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgb(13, 13, 13)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "0",
+                "position": "relative"
+              },
+              "hasBg": true
+            },
+            {
+              "depth": 1,
+              "tag": "div",
+              "cls": "w-full h-full",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "static"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 2,
+              "tag": "div",
+              "cls": "relative h-full w-full",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "relative"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 3,
+              "tag": "section",
+              "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+              "aria": "Canvas editing area",
+              "title": null,
+              "testid": "canvas-main-region",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            }
+          ]
+        },
+        {
+          "tag": "button",
+          "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina-text-primary motion",
+          "aria": "Create connected node before 音频 4",
+          "title": null,
+          "testid": "flow-node-target-connection-menu-button",
+          "rect": {
+            "x": 698,
+            "y": 457,
+            "w": 36,
+            "h": 36
+          },
+          "style": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "backgroundImage": "none",
+            "border": "1px solid rgba(0, 0, 0, 0)",
+            "borderRadius": "8px",
+            "opacity": "1",
+            "zIndex": "auto",
+            "position": "absolute"
+          },
+          "pointerEvents": "none",
+          "kids": [],
+          "node": "音频 4",
+          "nodeRect": {
+            "x": 738,
+            "y": 315,
+            "w": 320,
+            "h": 320
+          },
+          "chain": [
+            {
+              "depth": 0,
+              "tag": "button",
+              "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina",
+              "aria": "Create connected node before 音频 4",
+              "title": null,
+              "testid": "flow-node-target-connection-menu-button",
+              "rect": {
+                "x": 698,
+                "y": 457,
+                "w": 36,
+                "h": 36
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "1px solid rgba(0, 0, 0, 0)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 1,
+              "tag": "div",
+              "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-rec",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "relative"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 2,
+              "tag": "div",
+              "cls": "react-flow__node react-flow__node-audio nopan selected selectable draggable",
+              "aria": "音频 node: 音频 4",
+              "title": null,
+              "testid": "rf__node-node_8k4cshz45q",
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "9",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 3,
+              "tag": "div",
+              "cls": "react-flow__nodes",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            }
+          ]
+        },
+        {
+          "tag": "button",
+          "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina-text-primary motion",
+          "aria": "Create connected node after 音频 4",
+          "title": null,
+          "testid": "flow-node-source-connection-menu-button",
+          "rect": {
+            "x": 1062,
+            "y": 457,
+            "w": 36,
+            "h": 36
+          },
+          "style": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "backgroundImage": "none",
+            "border": "1px solid rgba(0, 0, 0, 0)",
+            "borderRadius": "8px",
+            "opacity": "1",
+            "zIndex": "auto",
+            "position": "absolute"
+          },
+          "pointerEvents": "none",
+          "kids": [],
+          "node": "音频 4",
+          "nodeRect": {
+            "x": 738,
+            "y": 315,
+            "w": 320,
+            "h": 320
+          },
+          "chain": [
+            {
+              "depth": 0,
+              "tag": "button",
+              "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina",
+              "aria": "Create connected node after 音频 4",
+              "title": null,
+              "testid": "flow-node-source-connection-menu-button",
+              "rect": {
+                "x": 1062,
+                "y": 457,
+                "w": 36,
+                "h": 36
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "1px solid rgba(0, 0, 0, 0)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 1,
+              "tag": "div",
+              "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-rec",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "relative"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 2,
+              "tag": "div",
+              "cls": "react-flow__node react-flow__node-audio nopan selected selectable draggable",
+              "aria": "音频 node: 音频 4",
+              "title": null,
+              "testid": "rf__node-node_8k4cshz45q",
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "9",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 3,
+              "tag": "div",
+              "cls": "react-flow__nodes",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            }
+          ]
+        }
+      ],
+      "nodes": [
+        {
+          "label": "视频 1",
+          "selected": false,
+          "rect": {
+            "x": 454,
+            "y": 285,
+            "w": 569,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 1",
+          "selected": false,
+          "rect": {
+            "x": 578,
+            "y": 325,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 2",
+          "selected": false,
+          "rect": {
+            "x": 618,
+            "y": 305,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 3",
+          "selected": false,
+          "rect": {
+            "x": 658,
+            "y": 345,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 4",
+          "selected": true,
+          "rect": {
+            "x": 738,
+            "y": 315,
+            "w": 320,
+            "h": 320
+          }
+        }
+      ]
+    },
+    {
+      "node": "音频 1",
+      "handles": [
+        {
+          "tag": "div",
+          "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outline-none [&_.react-flow\\_\\_node-text:not(.selected):hover::before]:abs",
+          "aria": "Canvas",
+          "title": null,
+          "testid": "rf__wrapper",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1512,
+            "h": 950
+          },
+          "style": {
+            "backgroundColor": "rgb(13, 13, 13)",
+            "backgroundImage": "none",
+            "border": "0px solid rgb(229, 231, 235)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "zIndex": "0",
+            "position": "relative"
+          },
+          "pointerEvents": "auto",
+          "kids": [
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": "视频 node: 视频 1",
+              "rect": {
+                "x": 454,
+                "y": 285,
+                "w": 569,
+                "h": 320
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 454,
+                "y": 285,
+                "w": 569,
+                "h": 320
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 425,
+                "y": 385,
+                "w": 60,
+                "h": 120
+              },
+              "hasBg": false
+            }
+          ],
+          "node": "视频 1",
+          "nodeRect": {
+            "x": 0,
+            "y": 0,
+            "w": 1512,
+            "h": 950
+          },
+          "chain": [
+            {
+              "depth": 0,
+              "tag": "div",
+              "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outline-none [&_.react-flow\\_\\_node-text:not(.selected",
+              "aria": "Canvas",
+              "title": null,
+              "testid": "rf__wrapper",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgb(13, 13, 13)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "0",
+                "position": "relative"
+              },
+              "hasBg": true
+            },
+            {
+              "depth": 1,
+              "tag": "div",
+              "cls": "w-full h-full",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "static"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 2,
+              "tag": "div",
+              "cls": "relative h-full w-full",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "relative"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 3,
+              "tag": "section",
+              "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+              "aria": "Canvas editing area",
+              "title": null,
+              "testid": "canvas-main-region",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            }
+          ]
+        }
+      ],
+      "nodes": [
+        {
+          "label": "视频 1",
+          "selected": false,
+          "rect": {
+            "x": 454,
+            "y": 285,
+            "w": 569,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 1",
+          "selected": false,
+          "rect": {
+            "x": 578,
+            "y": 325,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 2",
+          "selected": false,
+          "rect": {
+            "x": 618,
+            "y": 305,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 3",
+          "selected": false,
+          "rect": {
+            "x": 658,
+            "y": 345,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 4",
+          "selected": false,
+          "rect": {
+            "x": 738,
+            "y": 315,
+            "w": 320,
+            "h": 320
+          }
+        }
+      ]
+    },
+    {
+      "node": "音频 2",
+      "handles": [
+        {
+          "tag": "div",
+          "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outline-none [&_.react-flow\\_\\_node-text:not(.selected):hover::before]:abs",
+          "aria": "Canvas",
+          "title": null,
+          "testid": "rf__wrapper",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1512,
+            "h": 950
+          },
+          "style": {
+            "backgroundColor": "rgb(13, 13, 13)",
+            "backgroundImage": "none",
+            "border": "0px solid rgb(229, 231, 235)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "zIndex": "0",
+            "position": "relative"
+          },
+          "pointerEvents": "auto",
+          "kids": [
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": "视频 node: 视频 1",
+              "rect": {
+                "x": 454,
+                "y": 285,
+                "w": 569,
+                "h": 320
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 454,
+                "y": 285,
+                "w": 569,
+                "h": 320
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 425,
+                "y": 385,
+                "w": 60,
+                "h": 120
+              },
+              "hasBg": false
+            }
+          ],
+          "node": "视频 1",
+          "nodeRect": {
+            "x": 0,
+            "y": 0,
+            "w": 1512,
+            "h": 950
+          },
+          "chain": [
+            {
+              "depth": 0,
+              "tag": "div",
+              "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outline-none [&_.react-flow\\_\\_node-text:not(.selected",
+              "aria": "Canvas",
+              "title": null,
+              "testid": "rf__wrapper",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgb(13, 13, 13)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "0",
+                "position": "relative"
+              },
+              "hasBg": true
+            },
+            {
+              "depth": 1,
+              "tag": "div",
+              "cls": "w-full h-full",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "static"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 2,
+              "tag": "div",
+              "cls": "relative h-full w-full",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "relative"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 3,
+              "tag": "section",
+              "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+              "aria": "Canvas editing area",
+              "title": null,
+              "testid": "canvas-main-region",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            }
+          ]
+        },
+        {
+          "tag": "button",
+          "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina-text-primary motion",
+          "aria": "Create connected node before 音频 4",
+          "title": null,
+          "testid": "flow-node-target-connection-menu-button",
+          "rect": {
+            "x": 698,
+            "y": 457,
+            "w": 36,
+            "h": 36
+          },
+          "style": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "backgroundImage": "none",
+            "border": "1px solid rgba(0, 0, 0, 0)",
+            "borderRadius": "8px",
+            "opacity": "1",
+            "zIndex": "auto",
+            "position": "absolute"
+          },
+          "pointerEvents": "none",
+          "kids": [],
+          "node": "音频 4",
+          "nodeRect": {
+            "x": 738,
+            "y": 315,
+            "w": 320,
+            "h": 320
+          },
+          "chain": [
+            {
+              "depth": 0,
+              "tag": "button",
+              "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina",
+              "aria": "Create connected node before 音频 4",
+              "title": null,
+              "testid": "flow-node-target-connection-menu-button",
+              "rect": {
+                "x": 698,
+                "y": 457,
+                "w": 36,
+                "h": 36
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "1px solid rgba(0, 0, 0, 0)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 1,
+              "tag": "div",
+              "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-rec",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "relative"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 2,
+              "tag": "div",
+              "cls": "react-flow__node react-flow__node-audio nopan selected selectable draggable",
+              "aria": "音频 node: 音频 4",
+              "title": null,
+              "testid": "rf__node-node_8k4cshz45q",
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "9",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 3,
+              "tag": "div",
+              "cls": "react-flow__nodes",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            }
+          ]
+        },
+        {
+          "tag": "button",
+          "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina-text-primary motion",
+          "aria": "Create connected node after 音频 4",
+          "title": null,
+          "testid": "flow-node-source-connection-menu-button",
+          "rect": {
+            "x": 1062,
+            "y": 457,
+            "w": 36,
+            "h": 36
+          },
+          "style": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "backgroundImage": "none",
+            "border": "1px solid rgba(0, 0, 0, 0)",
+            "borderRadius": "8px",
+            "opacity": "1",
+            "zIndex": "auto",
+            "position": "absolute"
+          },
+          "pointerEvents": "none",
+          "kids": [],
+          "node": "音频 4",
+          "nodeRect": {
+            "x": 738,
+            "y": 315,
+            "w": 320,
+            "h": 320
+          },
+          "chain": [
+            {
+              "depth": 0,
+              "tag": "button",
+              "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina",
+              "aria": "Create connected node after 音频 4",
+              "title": null,
+              "testid": "flow-node-source-connection-menu-button",
+              "rect": {
+                "x": 1062,
+                "y": 457,
+                "w": 36,
+                "h": 36
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "1px solid rgba(0, 0, 0, 0)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 1,
+              "tag": "div",
+              "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-rec",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "relative"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 2,
+              "tag": "div",
+              "cls": "react-flow__node react-flow__node-audio nopan selected selectable draggable",
+              "aria": "音频 node: 音频 4",
+              "title": null,
+              "testid": "rf__node-node_8k4cshz45q",
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "9",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 3,
+              "tag": "div",
+              "cls": "react-flow__nodes",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            }
+          ]
+        }
+      ],
+      "nodes": [
+        {
+          "label": "视频 1",
+          "selected": false,
+          "rect": {
+            "x": 454,
+            "y": 285,
+            "w": 569,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 1",
+          "selected": false,
+          "rect": {
+            "x": 578,
+            "y": 325,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 2",
+          "selected": false,
+          "rect": {
+            "x": 618,
+            "y": 305,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 3",
+          "selected": false,
+          "rect": {
+            "x": 658,
+            "y": 345,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 4",
+          "selected": true,
+          "rect": {
+            "x": 738,
+            "y": 315,
+            "w": 320,
+            "h": 320
+          }
+        }
+      ]
+    },
+    {
+      "node": "音频 3",
+      "handles": [
+        {
+          "tag": "div",
+          "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outline-none [&_.react-flow\\_\\_node-text:not(.selected):hover::before]:abs",
+          "aria": "Canvas",
+          "title": null,
+          "testid": "rf__wrapper",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1512,
+            "h": 950
+          },
+          "style": {
+            "backgroundColor": "rgb(13, 13, 13)",
+            "backgroundImage": "none",
+            "border": "0px solid rgb(229, 231, 235)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "zIndex": "0",
+            "position": "relative"
+          },
+          "pointerEvents": "auto",
+          "kids": [
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": "视频 node: 视频 1",
+              "rect": {
+                "x": 454,
+                "y": 285,
+                "w": 569,
+                "h": 320
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 454,
+                "y": 285,
+                "w": 569,
+                "h": 320
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 425,
+                "y": 385,
+                "w": 60,
+                "h": 120
+              },
+              "hasBg": false
+            }
+          ],
+          "node": "视频 1",
+          "nodeRect": {
+            "x": 0,
+            "y": 0,
+            "w": 1512,
+            "h": 950
+          },
+          "chain": [
+            {
+              "depth": 0,
+              "tag": "div",
+              "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outline-none [&_.react-flow\\_\\_node-text:not(.selected",
+              "aria": "Canvas",
+              "title": null,
+              "testid": "rf__wrapper",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgb(13, 13, 13)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "0",
+                "position": "relative"
+              },
+              "hasBg": true
+            },
+            {
+              "depth": 1,
+              "tag": "div",
+              "cls": "w-full h-full",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "static"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 2,
+              "tag": "div",
+              "cls": "relative h-full w-full",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "relative"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 3,
+              "tag": "section",
+              "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+              "aria": "Canvas editing area",
+              "title": null,
+              "testid": "canvas-main-region",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            }
+          ]
+        },
+        {
+          "tag": "button",
+          "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina-text-primary motion",
+          "aria": "Create connected node before 音频 4",
+          "title": null,
+          "testid": "flow-node-target-connection-menu-button",
+          "rect": {
+            "x": 698,
+            "y": 457,
+            "w": 36,
+            "h": 36
+          },
+          "style": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "backgroundImage": "none",
+            "border": "1px solid rgba(0, 0, 0, 0)",
+            "borderRadius": "8px",
+            "opacity": "1",
+            "zIndex": "auto",
+            "position": "absolute"
+          },
+          "pointerEvents": "none",
+          "kids": [],
+          "node": "音频 4",
+          "nodeRect": {
+            "x": 738,
+            "y": 315,
+            "w": 320,
+            "h": 320
+          },
+          "chain": [
+            {
+              "depth": 0,
+              "tag": "button",
+              "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina",
+              "aria": "Create connected node before 音频 4",
+              "title": null,
+              "testid": "flow-node-target-connection-menu-button",
+              "rect": {
+                "x": 698,
+                "y": 457,
+                "w": 36,
+                "h": 36
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "1px solid rgba(0, 0, 0, 0)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 1,
+              "tag": "div",
+              "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-rec",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "relative"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 2,
+              "tag": "div",
+              "cls": "react-flow__node react-flow__node-audio nopan selected selectable draggable",
+              "aria": "音频 node: 音频 4",
+              "title": null,
+              "testid": "rf__node-node_8k4cshz45q",
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "9",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 3,
+              "tag": "div",
+              "cls": "react-flow__nodes",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            }
+          ]
+        },
+        {
+          "tag": "button",
+          "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina-text-primary motion",
+          "aria": "Create connected node after 音频 4",
+          "title": null,
+          "testid": "flow-node-source-connection-menu-button",
+          "rect": {
+            "x": 1062,
+            "y": 457,
+            "w": 36,
+            "h": 36
+          },
+          "style": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "backgroundImage": "none",
+            "border": "1px solid rgba(0, 0, 0, 0)",
+            "borderRadius": "8px",
+            "opacity": "1",
+            "zIndex": "auto",
+            "position": "absolute"
+          },
+          "pointerEvents": "none",
+          "kids": [],
+          "node": "音频 4",
+          "nodeRect": {
+            "x": 738,
+            "y": 315,
+            "w": 320,
+            "h": 320
+          },
+          "chain": [
+            {
+              "depth": 0,
+              "tag": "button",
+              "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina",
+              "aria": "Create connected node after 音频 4",
+              "title": null,
+              "testid": "flow-node-source-connection-menu-button",
+              "rect": {
+                "x": 1062,
+                "y": 457,
+                "w": 36,
+                "h": 36
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "1px solid rgba(0, 0, 0, 0)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 1,
+              "tag": "div",
+              "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-rec",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "relative"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 2,
+              "tag": "div",
+              "cls": "react-flow__node react-flow__node-audio nopan selected selectable draggable",
+              "aria": "音频 node: 音频 4",
+              "title": null,
+              "testid": "rf__node-node_8k4cshz45q",
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "9",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 3,
+              "tag": "div",
+              "cls": "react-flow__nodes",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            }
+          ]
+        }
+      ],
+      "nodes": [
+        {
+          "label": "视频 1",
+          "selected": false,
+          "rect": {
+            "x": 454,
+            "y": 285,
+            "w": 569,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 1",
+          "selected": false,
+          "rect": {
+            "x": 578,
+            "y": 325,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 2",
+          "selected": false,
+          "rect": {
+            "x": 618,
+            "y": 305,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 3",
+          "selected": false,
+          "rect": {
+            "x": 658,
+            "y": 345,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 4",
+          "selected": true,
+          "rect": {
+            "x": 738,
+            "y": 315,
+            "w": 320,
+            "h": 320
+          }
+        }
+      ]
+    },
+    {
+      "node": "音频 4",
+      "handles": [
+        {
+          "tag": "div",
+          "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outline-none [&_.react-flow\\_\\_node-text:not(.selected):hover::before]:abs",
+          "aria": "Canvas",
+          "title": null,
+          "testid": "rf__wrapper",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1512,
+            "h": 950
+          },
+          "style": {
+            "backgroundColor": "rgb(13, 13, 13)",
+            "backgroundImage": "none",
+            "border": "0px solid rgb(229, 231, 235)",
+            "borderRadius": "0px",
+            "opacity": "1",
+            "zIndex": "0",
+            "position": "relative"
+          },
+          "pointerEvents": "auto",
+          "kids": [
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": "视频 node: 视频 1",
+              "rect": {
+                "x": 454,
+                "y": 285,
+                "w": 569,
+                "h": 320
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 454,
+                "y": 285,
+                "w": 569,
+                "h": 320
+              },
+              "hasBg": false
+            },
+            {
+              "tag": "div",
+              "aria": null,
+              "rect": {
+                "x": 425,
+                "y": 385,
+                "w": 60,
+                "h": 120
+              },
+              "hasBg": false
+            }
+          ],
+          "node": "视频 1",
+          "nodeRect": {
+            "x": 0,
+            "y": 0,
+            "w": 1512,
+            "h": 950
+          },
+          "chain": [
+            {
+              "depth": 0,
+              "tag": "div",
+              "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outline-none [&_.react-flow\\_\\_node-text:not(.selected",
+              "aria": "Canvas",
+              "title": null,
+              "testid": "rf__wrapper",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgb(13, 13, 13)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "0",
+                "position": "relative"
+              },
+              "hasBg": true
+            },
+            {
+              "depth": 1,
+              "tag": "div",
+              "cls": "w-full h-full",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "static"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 2,
+              "tag": "div",
+              "cls": "relative h-full w-full",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "relative"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 3,
+              "tag": "section",
+              "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+              "aria": "Canvas editing area",
+              "title": null,
+              "testid": "canvas-main-region",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            }
+          ]
+        },
+        {
+          "tag": "button",
+          "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina-text-primary motion",
+          "aria": "Create connected node before 音频 4",
+          "title": null,
+          "testid": "flow-node-target-connection-menu-button",
+          "rect": {
+            "x": 698,
+            "y": 457,
+            "w": 36,
+            "h": 36
+          },
+          "style": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "backgroundImage": "none",
+            "border": "1px solid rgba(0, 0, 0, 0)",
+            "borderRadius": "8px",
+            "opacity": "1",
+            "zIndex": "auto",
+            "position": "absolute"
+          },
+          "pointerEvents": "none",
+          "kids": [],
+          "node": "音频 4",
+          "nodeRect": {
+            "x": 738,
+            "y": 315,
+            "w": 320,
+            "h": 320
+          },
+          "chain": [
+            {
+              "depth": 0,
+              "tag": "button",
+              "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina",
+              "aria": "Create connected node before 音频 4",
+              "title": null,
+              "testid": "flow-node-target-connection-menu-button",
+              "rect": {
+                "x": 698,
+                "y": 457,
+                "w": 36,
+                "h": 36
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "1px solid rgba(0, 0, 0, 0)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 1,
+              "tag": "div",
+              "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-rec",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "relative"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 2,
+              "tag": "div",
+              "cls": "react-flow__node react-flow__node-audio nopan selected selectable draggable",
+              "aria": "音频 node: 音频 4",
+              "title": null,
+              "testid": "rf__node-node_8k4cshz45q",
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "9",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 3,
+              "tag": "div",
+              "cls": "react-flow__nodes",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            }
+          ]
+        },
+        {
+          "tag": "button",
+          "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina-text-primary motion",
+          "aria": "Create connected node after 音频 4",
+          "title": null,
+          "testid": "flow-node-source-connection-menu-button",
+          "rect": {
+            "x": 1062,
+            "y": 457,
+            "w": 36,
+            "h": 36
+          },
+          "style": {
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "backgroundImage": "none",
+            "border": "1px solid rgba(0, 0, 0, 0)",
+            "borderRadius": "8px",
+            "opacity": "1",
+            "zIndex": "auto",
+            "position": "absolute"
+          },
+          "pointerEvents": "none",
+          "kids": [],
+          "node": "音频 4",
+          "nodeRect": {
+            "x": 738,
+            "y": 315,
+            "w": 320,
+            "h": 320
+          },
+          "chain": [
+            {
+              "depth": 0,
+              "tag": "button",
+              "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transparent p-2 text-dreamina",
+              "aria": "Create connected node after 音频 4",
+              "title": null,
+              "testid": "flow-node-source-connection-menu-button",
+              "rect": {
+                "x": 1062,
+                "y": 457,
+                "w": 36,
+                "h": 36
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "1px solid rgba(0, 0, 0, 0)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 1,
+              "tag": "div",
+              "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-rec",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "8px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "relative"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 2,
+              "tag": "div",
+              "cls": "react-flow__node react-flow__node-audio nopan selected selectable draggable",
+              "aria": "音频 node: 音频 4",
+              "title": null,
+              "testid": "rf__node-node_8k4cshz45q",
+              "rect": {
+                "x": 738,
+                "y": 315,
+                "w": 320,
+                "h": 320
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "9",
+                "position": "absolute"
+              },
+              "hasBg": false
+            },
+            {
+              "depth": 3,
+              "tag": "div",
+              "cls": "react-flow__nodes",
+              "aria": null,
+              "title": null,
+              "testid": null,
+              "rect": {
+                "x": 98,
+                "y": 85,
+                "w": 1512,
+                "h": 950
+              },
+              "style": {
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "backgroundImage": "none",
+                "border": "0px solid rgb(229, 231, 235)",
+                "borderRadius": "0px",
+                "opacity": "1",
+                "zIndex": "auto",
+                "position": "absolute"
+              },
+              "hasBg": false
+            }
+          ]
+        }
+      ],
+      "nodes": [
+        {
+          "label": "视频 1",
+          "selected": false,
+          "rect": {
+            "x": 454,
+            "y": 285,
+            "w": 569,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 1",
+          "selected": false,
+          "rect": {
+            "x": 578,
+            "y": 325,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 2",
+          "selected": false,
+          "rect": {
+            "x": 618,
+            "y": 305,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 3",
+          "selected": false,
+          "rect": {
+            "x": 658,
+            "y": 345,
+            "w": 320,
+            "h": 320
+          }
+        },
+        {
+          "label": "音频 4",
+          "selected": true,
+          "rect": {
+            "x": 738,
+            "y": 315,
+            "w": 320,
+            "h": 320
+          }
+        }
+      ]
+    }
+  ],
+  "initial": {
+    "nodes": [
+      {
+        "label": "视频 1",
+        "selected": false,
+        "rect": {
+          "x": 454,
+          "y": 285,
+          "w": 569,
+          "h": 320
+        }
+      },
+      {
+        "label": "音频 1",
+        "selected": false,
+        "rect": {
+          "x": 578,
+          "y": 325,
+          "w": 320,
+          "h": 320
+        }
+      },
+      {
+        "label": "音频 2",
+        "selected": false,
+        "rect": {
+          "x": 618,
+          "y": 305,
+          "w": 320,
+          "h": 320
+        }
+      },
+      {
+        "label": "音频 3",
+        "selected": false,
+        "rect": {
+          "x": 658,
+          "y": 345,
+          "w": 320,
+          "h": 320
+        }
+      },
+      {
+        "label": "音频 4",
+        "selected": false,
+        "rect": {
+          "x": 738,
+          "y": 315,
+          "w": 320,
+          "h": 320
+        }
+      }
+    ]
+  },
+  "nViewports": 5
+}

@@ -33,25 +33,21 @@ def main() -> None:
 
         # ── + handle insert menu ──
         node1 = page.locator(".react-flow__node-video").first
-        node1.hover(position={"x": 400, "y": 160})
+        # batch 804: + 钮仅在节点选中时挂载（源站实测）
+        node1.click(position={"x": 400, "y": 160})
         page.wait_for_timeout(500)
         plus = page.evaluate(
             """() => {
                 const n = [...document.querySelectorAll('.react-flow__node-video')][0];
                 const nr = n.getBoundingClientRect();
-                const btn = n.querySelector('button[aria-label="右侧添加节点"], span[role="button"][aria-label="右侧添加节点"]');
-                if (!btn) {
-                    const any = [...n.querySelectorAll('[aria-label="右侧添加节点"]')][0];
-                    if (!any) return null;
-                    const r = any.getBoundingClientRect();
-                    return {x: r.x + r.width/2, y: r.y + r.height/2};
-                }
+                const btn = n.querySelector('button[aria-label^="Create connected node after"]');
+                if (!btn) return null;
                 const r = btn.getBoundingClientRect();
                 return {x: r.x + r.width/2, y: r.y + r.height/2};
             }"""
         )
         if not plus:
-            failures.append("right + circle not visible on hover")
+            failures.append("right + handle button absent on selected node")
         else:
             page.mouse.click(plus["x"], plus["y"])
             page.wait_for_timeout(700)

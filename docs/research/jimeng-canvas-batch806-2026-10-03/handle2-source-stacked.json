@@ -1,0 +1,1126 @@
+{
+  "mode": "source",
+  "url": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=project_list&from_page=create",
+  "attempts": [
+    {
+      "target": "视频 node: 视频 1",
+      "pt": [
+        500,
+        277
+      ],
+      "blockedBy": 0,
+      "selected": [
+        "视频 node: 视频 1"
+      ]
+    }
+  ],
+  "before": {
+    "nodes": [
+      {
+        "aria": "视频 node: 视频 1",
+        "cls": "react-flow__node react-flow__node-video nopan selectable draggable",
+        "selected": false,
+        "rect": {
+          "x": 454,
+          "y": 258,
+          "w": 569,
+          "h": 320
+        }
+      },
+      {
+        "aria": "音频 node: 音频 1",
+        "cls": "react-flow__node react-flow__node-audio nopan selectable draggable",
+        "selected": false,
+        "rect": {
+          "x": 578,
+          "y": 298,
+          "w": 320,
+          "h": 320
+        }
+      },
+      {
+        "aria": "音频 node: 音频 2",
+        "cls": "react-flow__node react-flow__node-audio nopan selectable draggable",
+        "selected": false,
+        "rect": {
+          "x": 618,
+          "y": 278,
+          "w": 320,
+          "h": 320
+        }
+      },
+      {
+        "aria": "音频 node: 音频 3",
+        "cls": "react-flow__node react-flow__node-audio nopan selectable draggable",
+        "selected": false,
+        "rect": {
+          "x": 658,
+          "y": 318,
+          "w": 320,
+          "h": 320
+        }
+      },
+      {
+        "aria": "音频 node: 音频 4",
+        "cls": "react-flow__node react-flow__node-audio nopan selectable draggable",
+        "selected": false,
+        "rect": {
+          "x": 738,
+          "y": 288,
+          "w": 320,
+          "h": 320
+        }
+      },
+      {
+        "aria": "音频 node: 音频 5",
+        "cls": "react-flow__node react-flow__node-audio nopan selectable draggable",
+        "selected": false,
+        "rect": {
+          "x": 596,
+          "y": 328,
+          "w": 320,
+          "h": 320
+        }
+      },
+      {
+        "aria": "音频 node: 音频 6",
+        "cls": "react-flow__node react-flow__node-audio nopan selectable draggable",
+        "selected": false,
+        "rect": {
+          "x": 636,
+          "y": 373,
+          "w": 320,
+          "h": 320
+        }
+      }
+    ],
+    "btns": [],
+    "hot": [
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 425,
+          "y": 358,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "视频 node: 视频 1"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 992,
+          "y": 358,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "视频 node: 视频 1"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 548,
+          "y": 398,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 1"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 868,
+          "y": 398,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 1"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 588,
+          "y": 378,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 2"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 908,
+          "y": 378,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 2"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 628,
+          "y": 418,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 3"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 948,
+          "y": 418,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 3"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 708,
+          "y": 388,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 4"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 1028,
+          "y": 388,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 4"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 566,
+          "y": 428,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 5"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 886,
+          "y": 428,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 5"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 606,
+          "y": 473,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 6"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 926,
+          "y": 473,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 6"
+      }
+    ]
+  },
+  "after": {
+    "nodes": [
+      {
+        "aria": "视频 node: 视频 1",
+        "cls": "react-flow__node react-flow__node-video nopan selected selectable draggable",
+        "selected": true,
+        "rect": {
+          "x": 454,
+          "y": 258,
+          "w": 569,
+          "h": 320
+        }
+      },
+      {
+        "aria": "音频 node: 音频 1",
+        "cls": "react-flow__node react-flow__node-audio nopan selectable draggable",
+        "selected": false,
+        "rect": {
+          "x": 578,
+          "y": 298,
+          "w": 320,
+          "h": 320
+        }
+      },
+      {
+        "aria": "音频 node: 音频 2",
+        "cls": "react-flow__node react-flow__node-audio nopan selectable draggable",
+        "selected": false,
+        "rect": {
+          "x": 618,
+          "y": 278,
+          "w": 320,
+          "h": 320
+        }
+      },
+      {
+        "aria": "音频 node: 音频 3",
+        "cls": "react-flow__node react-flow__node-audio nopan selectable draggable",
+        "selected": false,
+        "rect": {
+          "x": 658,
+          "y": 318,
+          "w": 320,
+          "h": 320
+        }
+      },
+      {
+        "aria": "音频 node: 音频 4",
+        "cls": "react-flow__node react-flow__node-audio nopan selectable draggable",
+        "selected": false,
+        "rect": {
+          "x": 738,
+          "y": 288,
+          "w": 320,
+          "h": 320
+        }
+      },
+      {
+        "aria": "音频 node: 音频 5",
+        "cls": "react-flow__node react-flow__node-audio nopan selectable draggable",
+        "selected": false,
+        "rect": {
+          "x": 596,
+          "y": 328,
+          "w": 320,
+          "h": 320
+        }
+      },
+      {
+        "aria": "音频 node: 音频 6",
+        "cls": "react-flow__node react-flow__node-audio nopan selectable draggable",
+        "selected": false,
+        "rect": {
+          "x": 636,
+          "y": 373,
+          "w": 320,
+          "h": 320
+        }
+      }
+    ],
+    "btns": [
+      {
+        "aria": "Create connected node before 视频 1",
+        "tag": "button",
+        "rect": {
+          "x": 415,
+          "y": 400,
+          "w": 36,
+          "h": 36
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "1px solid rgba(0, 0, 0, 0)",
+          "borderRadius": "8px",
+          "opacity": "1",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "auto",
+          "position": "absolute",
+          "color": "rgb(255, 255, 255)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -18, -18)",
+          "overflow": "visible"
+        },
+        "parent": {
+          "tag": "div",
+          "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-receiving=tru",
+          "rect": {
+            "x": 454,
+            "y": 258,
+            "w": 569,
+            "h": 320
+          }
+        },
+        "inner": [
+          {
+            "tag": "span",
+            "cls": "contents",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "w": 0,
+              "h": 0
+            }
+          }
+        ]
+      },
+      {
+        "aria": "Create connected node after 视频 1",
+        "tag": "button",
+        "rect": {
+          "x": 1026,
+          "y": 400,
+          "w": 36,
+          "h": 36
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "1px solid rgba(0, 0, 0, 0)",
+          "borderRadius": "8px",
+          "opacity": "1",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "auto",
+          "position": "absolute",
+          "color": "rgb(255, 255, 255)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 18, -18)",
+          "overflow": "visible"
+        },
+        "parent": {
+          "tag": "div",
+          "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-receiving=tru",
+          "rect": {
+            "x": 454,
+            "y": 258,
+            "w": 569,
+            "h": 320
+          }
+        },
+        "inner": [
+          {
+            "tag": "span",
+            "cls": "contents",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "w": 0,
+              "h": 0
+            }
+          }
+        ]
+      }
+    ],
+    "hot": [
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 425,
+          "y": 358,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "1",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "视频 node: 视频 1"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 992,
+          "y": 358,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "1",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "视频 node: 视频 1"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 548,
+          "y": 398,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 1"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 868,
+          "y": 398,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 1"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 588,
+          "y": 378,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 2"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 908,
+          "y": 378,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 2"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 628,
+          "y": 418,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 3"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 948,
+          "y": 418,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 3"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 708,
+          "y": 388,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 4"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 1028,
+          "y": 388,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 4"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 566,
+          "y": 428,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 5"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 886,
+          "y": 428,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 5"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 befo",
+        "rect": {
+          "x": 606,
+          "y": 473,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 6"
+      },
+      {
+        "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 bef",
+        "rect": {
+          "x": 926,
+          "y": 473,
+          "w": 60,
+          "h": 120
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "0px solid rgb(30, 30, 30)",
+          "borderRadius": "0px",
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "position": "absolute",
+          "color": "rgba(255, 255, 255, 0.5)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 30, -60)",
+          "overflow": "visible"
+        },
+        "node": "音频 node: 音频 6"
+      }
+    ]
+  },
+  "hoverScan": [
+    {
+      "node": "视频 node: 视频 1",
+      "pt": [
+        500,
+        277
+      ],
+      "buttons": []
+    },
+    {
+      "node": "音频 node: 音频 4",
+      "pt": [
+        1032,
+        307
+      ],
+      "buttons": []
+    },
+    {
+      "node": "音频 node: 音频 6",
+      "pt": [
+        796,
+        674
+      ],
+      "buttons": []
+    },
+    {
+      "node": "音频 node: 音频 1",
+      "pt": [
+        604,
+        317
+      ],
+      "buttons": []
+    },
+    {
+      "node": "音频 node: 音频 2",
+      "pt": [
+        644,
+        297
+      ],
+      "buttons": []
+    }
+  ],
+  "hovers": [
+    {
+      "aria": "Create connected node before 视频 1",
+      "idle": {
+        "aria": "Create connected node before 视频 1",
+        "tag": "button",
+        "rect": {
+          "x": 415,
+          "y": 400,
+          "w": 36,
+          "h": 36
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "1px solid rgba(0, 0, 0, 0)",
+          "borderRadius": "8px",
+          "opacity": "1",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "auto",
+          "position": "absolute",
+          "color": "rgb(255, 255, 255)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, -18, -18)",
+          "overflow": "visible"
+        },
+        "parent": {
+          "tag": "div",
+          "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-receiving=tru",
+          "rect": {
+            "x": 454,
+            "y": 258,
+            "w": 569,
+            "h": 320
+          }
+        },
+        "inner": [
+          {
+            "tag": "span",
+            "cls": "contents",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "w": 0,
+              "h": 0
+            }
+          }
+        ]
+      },
+      "hover": null
+    },
+    {
+      "aria": "Create connected node after 视频 1",
+      "idle": {
+        "aria": "Create connected node after 视频 1",
+        "tag": "button",
+        "rect": {
+          "x": 1026,
+          "y": 400,
+          "w": 36,
+          "h": 36
+        },
+        "style": {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "none",
+          "border": "1px solid rgba(0, 0, 0, 0)",
+          "borderRadius": "8px",
+          "opacity": "1",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "auto",
+          "position": "absolute",
+          "color": "rgb(255, 255, 255)",
+          "boxShadow": "none",
+          "transform": "matrix(1, 0, 0, 1, 18, -18)",
+          "overflow": "visible"
+        },
+        "parent": {
+          "tag": "div",
+          "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visible text-xs transition-colors data-[connection-receiving=tru",
+          "rect": {
+            "x": 454,
+            "y": 258,
+            "w": 569,
+            "h": 320
+          }
+        },
+        "inner": [
+          {
+            "tag": "span",
+            "cls": "contents",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "w": 0,
+              "h": 0
+            }
+          }
+        ]
+      },
+      "hover": null
+    }
+  ]
+}
