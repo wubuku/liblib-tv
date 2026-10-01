@@ -36,8 +36,8 @@ export function JimengDirectorNode({ id, data, selected }: NodeProps) {
       data-jimeng-node-selected={selected || undefined}
       data-testid="director-node"
     >
-      <div className="absolute inset-x-0 top-[-31px] z-10 flex h-8 items-start text-left">
-        <Box size={16} />
+      <div className="absolute inset-x-0 top-[-31px] z-10 flex h-8 items-start gap-1 text-left">
+        <Box size={16} className="mt-1 shrink-0" />
         <JimengNodeTitle id={id} title={d.title} />
       </div>
 

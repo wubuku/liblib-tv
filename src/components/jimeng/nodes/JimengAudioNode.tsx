@@ -40,8 +40,8 @@ export function JimengAudioNode({ id, data, selected }: NodeProps) {
           左簇 24 高、gap-1 → 文字起点 x=20（源站实测）。此前 bottom-full h-8
           + items-center + gap-1.5 把 22 高的文字放到 -27/x=22，低了 4px。 */}
       <div className="absolute inset-x-0 top-[-31px] z-10 flex h-8 items-start justify-between pr-px text-left">
-        <div className="flex h-6 min-w-0 items-center gap-1 text-white/70">
-          <FileBadgeIcon size={16} />
+        <div className="flex min-w-0 items-start gap-1 text-white/70">
+          <FileBadgeIcon size={16} className="mt-1 shrink-0" />
           <JimengNodeTitle id={id} title={d.title} />
         </div>
         <span className="relative">

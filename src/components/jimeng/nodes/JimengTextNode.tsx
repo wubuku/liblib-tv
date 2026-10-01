@@ -69,8 +69,8 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
       style={{ width: d.width, height: d.height }}
       data-jimeng-node-selected={selected || undefined}
     >
-      <div className="absolute inset-x-0 top-[-31px] z-10 flex h-8 items-start text-left">
-        <Type size={16} />
+      <div className="absolute inset-x-0 top-[-31px] z-10 flex h-8 items-start gap-1 text-left">
+        <Type size={16} className="mt-1 shrink-0" />
         <JimengNodeTitle id={id} title={d.title} />
       </div>
 

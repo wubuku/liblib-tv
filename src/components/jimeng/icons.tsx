@@ -47,10 +47,24 @@ export function VipDiamond({ size = 14 }: { size?: number }) {
   );
 }
 
-/** 节点标题左侧的文件占位小图标 */
-export function FileBadgeIcon({ size = 16 }: { size?: number }) {
+/**
+ * 节点标题左侧的文件占位小图标。
+ *
+ * Batch 813 SOURCE_FACT: 源站标题行里这个 svg 是 16×16 落在 **y=-27**，
+ * 而同行的文字顶在 -31 —— 即图标比文字低 4px、两者中心对齐（中心同为 -19）。
+ * 所以标题行左簇必须 `items-start`（顶对齐到行顶），图标自己再 `mt-1` 下移 4px；
+ * 若用 `items-center` 居中，图标会跑到 -23，差 4px。`className` 供调用方传 `mt-1`。
+ */
+export function FileBadgeIcon({ size = 16, className }: { size?: number; className?: string }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" aria-hidden>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden
+      className={className}
+    >
       <rect
         x="1.5"
         y="2.5"

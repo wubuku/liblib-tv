@@ -123,8 +123,15 @@ PROBE = """() => {
                    w: Math.round(b.width / z), h: Math.round(b.height / z),
                    pad: cs.padding, fs: cs.fontSize, lh: cs.lineHeight,
                    color: cs.color, txt: (t.textContent||'').trim().slice(0,16) };
-      const ic = t.previousElementSibling;
-      if (ic && ic.tagName.toLowerCase() === 'svg') {
+      // 图标：不能靠 title span 的 previousElementSibling ——
+      // batch 813 起选中态的 span 被包进 <button aria-label="Rename …">，
+      // previousElementSibling 就变成 null 了。改成从标题行左簇里找第一个 svg。
+      const rowEl0 = n.querySelector('div[class*="top-[-31px]"]');
+      const cluster0 = rowEl0
+        ? (rowEl0.querySelector('div[class*="items-start"]') || rowEl0)
+        : null;
+      const ic = cluster0 ? cluster0.querySelector('svg') : null;
+      if (ic) {
         const ib = ic.getBoundingClientRect();
         rec.icon = { x: Math.round((ib.left - r.left) / z), y: Math.round((ib.top - r.top) / z),
                      w: Math.round(ib.width / z), h: Math.round(ib.height / z) };

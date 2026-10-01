@@ -45,8 +45,8 @@ export function JimengVideoTitleRow({
         onDblClick();
       }}
     >
-      <div className="flex h-6 min-w-0 items-center gap-1 text-white/70">
-        <FileBadgeIcon size={16} />
+      <div className="flex min-w-0 items-start gap-1 text-white/70">
+        <FileBadgeIcon size={16} className="mt-1 shrink-0" />
         <JimengNodeTitle id={id} title={d.title} />
       </div>
       {d.hasMedia ? (
