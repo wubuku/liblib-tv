@@ -2819,3 +2819,46 @@ S3 找「编组」按钮返回 `null`，`throw` 中止。诊断 dump 显示**同
   ✅ 7/8 站点构建        dist 23 页 / 截图 98 / 示意图 4 / 36M
   ✅ 8/8 画布守卫+位置   焦点 ✅；6 nodes/0 edges/0 selected；积分 805；偏离/多余/缺失/标题 全部 0
 ```
+
+---
+
+## 批次 52（2026-10-01）：「禁用态」阳性对照 + 资产库 DOM 契约
+
+### 取证范围
+
+- **只读**：点开左栏「资产库」、切页签、读 DOM。
+- **未点击**：「确认」、任何素材卡片、任何生成/发送/计费按钮。
+- **画布变更**：**无**。收尾节点数、积分、位置与起点完全一致。
+
+### 关键读数
+
+| 项 | 读数 |
+|---|---|
+| 弹窗 | `canvas-asset-library-dialog`（`role=dialog`）**801×620@(240,50)**；`-surface` 同尺寸；`-operation-area` 801×104；`-viewport`（`tabpanel`）801×440@(240,154)；`-footer` 801×76@(240,594) |
+| 面板全文 | `Import assets / Choose assets from Dreamina… / 资产 主体 图片 视频 音频 文档 时间 筛选 / 暂无图片素材 / 已选择 0 个素材 / 确认 / 请先选择素材` |
+| 阳性对照 | 「确认」：`aria-disabled=true`、`data-disabled=true`、**无原生 `disabled`**、`cursor: not-allowed`、`color rgba(255,255,255,0.2)`、`bg rgba(255,255,255,0.16)`、**`opacity=1`**、80×36@(937,610) |
+| 同窗可用对照 | 页签/✕：`cursor: pointer`、无 `aria-disabled` / `data-disabled` |
+| 原因副文案 | 「请先选择素材」= `SPAN class="sr-only"`，**1×1@(263,628)**，祖先为 `-footer` → `-surface` → `-dialog` → `body`；**是「确认」的兄弟节点** |
+| 空态 | 图片/视频/音频/文档 = 「暂无 XX 素材」（4/4 平行）；**主体页**：第二级仅「全部」、空态「没有可用主体」、**无 `-viewport` 元素** |
+| 页签几何 | 第一级 资产/主体 `role=tab` 58×36@y74；✕ 36×36@(981,74)；第二级 图片/视频/音频/文档 `role=tab` 58×36@y118；**时间/筛选 普通 button 28×28**@(947,122)/(984,122) |
+
+### 本批自身的一次失败
+
+主体分支第一次跑崩：`canvas-asset-library-viewport` 在该分支**不存在**，
+`null.getBoundingClientRect()` 抛错。第二次改为先判断元素存在、并按行分组读页签，跑通。
+**教训：DOM 结构按分支不同，跨分支复用选择器前先确认元素存在。**
+
+### 证据边界
+
+- ⚠️ 资产库仍是空的，**「点选素材 → 确认」的插入动作依然无法验证**（四页均为空态）。
+- ⚠️ 「时间」按钮点了**没有**做记录（只量了几何与 role），其**实际行为未测**。
+- 本批**未新增截图**（资产库已有 `48-asset-library-empty.png` / `50-asset-library-filter.png`
+  覆盖同一界面）。
+
+### 产出
+
+- 订正 3 个手册页：`assets-and-upload.md`（空态全族 + 主体分支 + DOM 契约 + 禁用判据）、
+  `90-troubleshooting.md`（「附原因副文案」形态订正 + 禁用判据表）、
+  `SOURCE_OBSERVATIONS §3.70`
+- 新增长期脚本：`scripts/jimeng-b52-disabled-positive.mjs`
+  （资产库里的按钮状态测量函数可复用于任何界面）
