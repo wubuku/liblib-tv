@@ -821,3 +821,39 @@ screenshots:
     visible_text: 复制 ⌘ C / 复制副本 ⌘ D / 粘贴 ⌘ V / 下载 / 重做 ⌘ ⇧ Z / 撤销 ⌘ Z / 删除 ⌫ / 视频 1 / 100%
     alt: 节点右键菜单的重做可用态：菜单里「重做 ⌘⇧Z」一行被橙色高亮框标出，字色明亮且下方**没有**「无需重做操作」灰色小字，表示此时可重做；紧邻的「撤销 ⌘Z」则整体置灰并带「无需撤销操作」小字，表示撤销栈已空；「下载」同样置灰
     sha256: bcdf2fdf141ddd7f412dc031490023a3fb046b0fd8c5217509b2169839026e30
+
+  - file: screenshots/66-image-node-toolbar.png
+    task_id: use-node-toolbar
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T11:55:00+08:00
+    verified_locator: '本地上传 PNG 生成的图片节点（320×427，DOM class react-flow__node-image）选中后，其 data-testid=node-toolbar（959×40）内的全部按钮逐项扫描，十二项逐字与尺寸：智能改图 106×32 / 720 全景 107×32 / 扩图 62×32 / 智能超清 88×32 / 抠图 62×32 / 预设 78×32 / 多角度 75×32 / 智能打光 106×32 / 工具 78×32 / AI 助手 94×32 / 全屏 32×32 / 下载 32×32'
+    visible_text: 智能改图 / 720 全景 / 扩图 / 智能超清 / 抠图 / 预设 / 多角度 / 智能打光 / 工具 / AI 助手 / 全屏 / 下载 / 视频 1 / 100%
+    alt: 图片节点（一张小狗照片，标题为上传文件名）选中后上方浮出的图片加工工具条，被橙色高亮框整体标出：自左至右十二项为 智能改图、720 全景、扩图、智能超清、抠图、预设、多角度、智能打光、工具、AI 助手，全屏与下载两个图标按钮在竖分隔线右侧；其中 智能改图、720 全景、智能打光 三项带蓝色 VIP 菱标，预设/工具/AI 助手 带下拉箭头
+    sha256: b90d0921096e97653ed94ff2615e3e23fc3777587b333cbbe55934b147e81e39
+
+  - file: screenshots/67-image-node-context-menu.png
+    task_id: canvas-context
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T11:56:00+08:00
+    verified_locator: '在带内容的图片节点上右键弹出的 data-testid=canvas-context-menu，实测 200×372，九项各 192×36：复制 ⌘C / 复制副本 ⌘D / 复制为图片 ⌘⇧C / 粘贴 ⌘V / 保存到主体库 / 下载 / 重做 ⌘⇧Z（附「无需重做操作」，aria-disabled=true）/ 撤销 ⌘Z / 删除 ⌫'
+    visible_text: 复制 ⌘ C / 复制副本 ⌘ D / 复制为图片 ⌘ ⇧ C / 粘贴 ⌘ V / 保存到主体库 / 下载 / 重做 ⌘ ⇧ Z / 撤销 ⌘ Z / 删除 ⌫
+    alt: 带内容图片节点的右键菜单，实测 200×372 九项，依次为 复制 ⌘C、复制副本 ⌘D、复制为图片 ⌘⇧C、粘贴 ⌘V、保存到主体库、下载、重做 ⌘⇧Z（下方附灰色小字「无需重做操作」，整项置灰）、撤销 ⌘Z、删除 ⌫；与空视频节点的七项菜单相比，多出「复制为图片」与「保存到主体库」两项
+    sha256: de114c0e8fa751b103772496bde2f9a861640155e96a681666316dc47ec2c05e
+
+  - file: screenshots/68-image-to-video-reference-chip.png
+    task_id: connect-nodes
+    step: 4
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T12:02:00+08:00
+    verified_locator: '把图片节点的 source 手柄（react-flow__handle-right source）拖到空视频节点的 target 手柄（react-flow__handle-left target）建线后（状态行 2 nodes, 1 edge），选中目标视频节点，其生成面板 680×208 的首行为参考 chip，DOM 逐字「55dd39e3-5024-47ec-9971-4d35be848a65: Reference image ready」'
+    visible_text: Reference image ready / 使用 @ 快速调用参考内容 / 即梦 Seedance 2.0 VIP / 16:9 / 720P / 全能参考 / 4s / 56 / 100%
+    alt: 图片连到空视频节点后，选中目标视频节点展开的生成面板被橙色高亮框标出：面板左上角是参考 chip（小狗缩略图，旁边 ＋ 号），chip 文字显示参考文件已就绪；下方是提示词输入区，底部参数行为 即梦 Seedance 2.0 VIP、16:9、720P、全能参考、4s，右下角显示积分 56 与圆形发送箭头
+    sha256: a835bffbd7ac62b68d24f9ba1d5511175e23ff282225d60d7034166d06e37d93

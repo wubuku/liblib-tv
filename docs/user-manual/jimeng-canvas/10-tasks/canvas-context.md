@@ -160,6 +160,7 @@
 
 ## 步骤图
 
+![带内容图片节点的右键菜单，实测 200×372 九项，依次为 复制 ⌘C、复制副本 ⌘D、复制为图片 ⌘⇧C、粘贴 ⌘V、保存到主体库、下载、重做 ⌘⇧Z（下方附灰色小字「无需重做操作」，整项置灰）、撤销 ⌘Z、删除 ⌫；与空视频节点的七项菜单相比，多出「复制为图片」与「保存到主体库」两项](../screenshots/67-image-node-context-menu.png)
 ![生成历史下拉：全部/图片/视频/音频页签与暂无生成历史空态](../screenshots/20-canvas-context-generation-history.png)
 
 ![搜索浮层：搜索节点... 输入框、类型筛选计数、编号结果列表](../screenshots/21-canvas-context-search-overlay.png)
