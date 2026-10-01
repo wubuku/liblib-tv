@@ -84,6 +84,15 @@ RATING_OUT="$(python3 scripts/check-ratings.py . 2>&1)" || fail "评级一致性
 $RATING_OUT"
 echo "$RATING_OUT" | sed 's/^/  /'
 
+# 账本新鲜度：账本 screenshot_count 必须等于 manifest 实数。
+# 2026-10-01 M59 对账实测：review_note 里「截图 N 张」的数字长期无人回写，
+# 3 条写着数字的与实数不符（create-nodes 2→5、manage-assets 10→13、
+# use-agent 4→8）。散文里的数字抓不准（订正文字同时含历史值与正确值），
+# 故把数字固化成 screenshot_count 字段、由本脚本从 manifest 实测回填比对。
+INVFRESH_OUT="$(python3 scripts/check-inventory-freshness.py . 2>&1)" || fail "账本新鲜度校验未通过（账本截图数与 manifest 实数不符）：
+$INVFRESH_OUT"
+echo "$INVFRESH_OUT" | sed 's/^/  /'
+
 # 强断言校验：正文里出现「逐字 / 完全一致 / 一一对应」这类话的小节，
 # 必须在同一节里写明凭什么这么说（实测 / 复核 / 对拍 / 源码 / 抓取 / 逐条 / 回归）。
 # 2026-10-01 M44 实测：shortcuts-help 曾写「键位速查（与弹窗逐字一致）」，
@@ -102,7 +111,7 @@ RETRACT_OUT="$(python3 scripts/check-retractions.py . 2>&1)" || fail "订正回�
 $RETRACT_OUT"
 echo "$RETRACT_OUT" | sed 's/^/  /'
 
-# 门禁自检：注入 17 类故障，断言每道门禁**以正确的理由**失败。
+# 门禁自检：注入 18 类故障，断言每道门禁**以正确的理由**失败。
 # 2026-10-01 M41/M42 实测：锚点门禁在 236 个标题里错判 29 个却一直报「全部有效」，
 # 孤儿页与索引漏条两类问题两道门禁全都放行——门禁自己坏了不会喊疼。
 # 这里断言的是**错误内容**而不只是退出码：只看退出码会被「变异脚本写歪了」

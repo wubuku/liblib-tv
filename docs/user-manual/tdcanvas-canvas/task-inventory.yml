@@ -38,10 +38,11 @@ tasks:
       - '/canvas'
       - '/canvas/:id'
     status: verified
+    screenshot_count: 3
     manual_pages:
       - 00-quickstart.md
       - 10-tasks/create-canvas-project.md
-    review_note: 2026-09-27 运行时走查完成（清数据首启→新建→空画布→首页项目卡），截图 3 张入 manifest；Gate B 待全量回走。
+    review_note: 2026-09-27 运行时走查完成（清数据首启→新建→空画布→首页项目卡），截图 3 张入 manifest；Gate B 待全量回走。2026-10-01 M53 用**全新空白 profile** 照 00-quickstart.md 实走一遍 5 步：动作描述全部属实（新建自动命名「TDCanvas N」、中央提示「双击画布，自由创作」、空画布五芯片、双击弹 TEXTAREA 输入后落盘回读一致、节点右上角出现「生图」），但**步骤 2 的界面清单 3 处不准**：左栏首项可访问名是「添加节点」（纯图标无可见文字，非「新建」）、漏掉左栏第 8 项「清空画布」（破坏性操作）、「快捷键」在底部横栏最右而非左栏末尾。已把 01-create-canvas-project-empty-canvas.png 重做为「编号 + 两栏图例」版。
   - id: navigate-canvas
     title: 平移、缩放与小地图导航
     role: tdcanvas-creator
@@ -56,6 +57,7 @@ tasks:
     routes:
       - '/canvas/:id'
     status: verified
+    screenshot_count: 13
     review_note: 2026-09-27 滚轮缩放 54→85 鼠标锚、空白拖拽平移、小地图开合与点击导航全部运行时取证；重置视图双行为（有选中=聚焦/无选中=fit）已记录。并行会话遗留的同名 WIP 截图实为首页截图（文件名错置），未收编。
     manual_pages:
       - 10-tasks/navigate-canvas.md
@@ -73,9 +75,10 @@ tasks:
     routes:
       - '/canvas/:id'
     status: verified
+    screenshot_count: 5
     manual_pages:
       - 10-tasks/create-nodes.md
-    review_note: 2026-09-27 运行时走查完成（双击菜单逐字、文字/视频/音频/组四类空节点创建），截图 2 张入 manifest；Gate B 待全量回走。
+    review_note: 2026-09-27 运行时走查完成（双击菜单逐字、文字/视频/音频/组四类空节点创建），截图 2 张入 manifest；Gate B 待全量回走。2026-10-01 M59 对账补：另 3 张（00-quickstart-first-text-node / 30-concepts-add-node-menu / 30-concepts-two-text-nodes）分别由快速上手与概念页复用登记，本任务 manifest 实为 5 张；M53 走查确认空画布中央「双击画布，自由创作」与五芯片（文字/图片/视频/音频/上传素材）、左栏首项可访问名是「添加节点」（纯图标）。
   - id: upload-materials
     title: 上传本地图片、音频与视频素材
     role: tdcanvas-creator
@@ -92,6 +95,7 @@ tasks:
     routes:
       - '/canvas/:id'
     status: verified
+    screenshot_count: 3
     review_note: 2026-09-27 运行时走查完成（真实视频 809KB 与音频 1.1MB 注入成功，原生播放器节点 + toast 逐字；图片 3.9MB 同路径成功）；行为细节——有选中节点时上传仍新建节点而非替换。
     manual_pages:
       - 10-tasks/upload-materials.md
@@ -109,6 +113,7 @@ tasks:
     routes:
       - '/canvas/:id'
     status: verified
+    screenshot_count: 3
     manual_pages:
       - 10-tasks/edit-nodes.md
     review_note: 2026-09-27 运行时走查完成（双击标题重命名、双击编辑文字追加、删除→历史flyout撤销恢复、信息面板字段核实）；缩放手柄拖拽精度不足留待 Gate B 补验；发现多标签同项目编辑互相覆盖（已写入手册排障）。
@@ -128,6 +133,7 @@ tasks:
     routes:
       - '/canvas/:id'
     status: verified
+    screenshot_count: 5
     review_note: 2026-09-27 拖线到空白弹「利用画布节点生成」上下文菜单（按视频上游给出 文本/图片/视频生成+音频参考 四项）运行时取证；连线建立/删除/撤销此前已证。@mention chip 留 Gate B。
     manual_pages:
       - 10-tasks/connect-references.md
@@ -147,6 +153,7 @@ tasks:
     routes:
       - '/canvas/:id'
     status: verified
+    screenshot_count: 8
     review_note: 2026-09-27 描述型成稿（付费红线）：生成面板字段运行时取证（模式/输入/参数 1K/2K/模型 Seedream V5 Pro/参考素材区），状态机与停止≠取消来自源码+官方文档；运行点击未执行。
     manual_pages:
       - 10-tasks/generate-images.md
@@ -168,7 +175,8 @@ tasks:
     routes:
       - '/canvas/:id'
     status: verified
-    review_note: 2026-09-27 裁剪全流程回走（对话框字段逐字 → 拖拽调整 → 确认 → Cropped Image 子节点+连线）；切图/放大入口存在，全参数留 Gate B。
+    screenshot_count: 5
+    review_note: 2026-09-27 裁剪全流程回走（对话框字段逐字 → 拖拽调整 → 确认 → Cropped Image 子节点+连线）；切图/放大入口存在，全参数留 Gate B。2026-10-01 M48 补两条与本任务直接相关的结论：① 漏掉的「**多角度**」入口已定位——在工具条最右端 `…`（aria-label「配置快捷工具」）的**工具条自定义面板**里，工具条共 14 个可选项、**默认只勾 12 项**，「锁比例」与「多角度」默认未勾（勾选后 localStorage tdcanvas:image-quick-tools-v6 的 ids 出现 angle、工具条随即出现「生成角度」按钮）；对话框副标题自陈「左侧只预览方向，结果会基于原图重新生成」——真生成是拿原图重画，**付费操作按红线未点**。② 蒙版/局部重绘在本版本**未接线**（组件 431 行零 import、requestEdit 4 个调用点全传 undefined、工具条 14 项无蒙版），已写入正文整节（含 3 条替代路径）与排障。
     manual_pages:
       - 10-tasks/image-operations.md
   - id: organize-canvas
@@ -185,6 +193,7 @@ tasks:
     routes:
       - '/canvas/:id'
     status: verified
+    screenshot_count: 9
     review_note: 2026-09-27 组拖入（成员计数徽标）、外观面板四组设置运行时取证；对齐辅助线与网格吸附细节留 Gate B。
     manual_pages:
       - 10-tasks/organize-canvas.md
@@ -202,7 +211,8 @@ tasks:
     routes:
       - '/canvas/:id'
     status: verified
-    review_note: 2026-09-27 历史 flyout（撤销/重做/画布更改会自动保存）与刷新持久化多次实测；清空画布确认弹窗截图未捕获（静态描述），快捷键撤销在 IAB 自动化下不稳定（真人环境正常）。
+    screenshot_count: 2
+    review_note: 2026-09-27 历史 flyout（撤销/重做/画布更改会自动保存）与刷新持久化多次实测；清空画布确认弹窗截图未捕获（静态描述），快捷键撤销在 IAB 自动化下不稳定（真人环境正常）。2026-10-01 M52 订正补漏：本页原有「用首页的批量导出得到 zip……这比指望撤销更可靠」一句，与 M47 的导出硬伤同源，属**同一错误说法的第 2 处**（审计只点名了 3 个文件，此处是漏网）——M52 由此确立「改一处事实错误的风险不在于改错，而在于**漏改**」并新增 check-retractions.py 守住。2026-10-01 M53 补验：清空画布**确有**确认弹窗「清空画布？这会删除当前画布上的所有节点和连线。」，与本条"截图未捕获"的自述已由 M53 的 01 号图与正文覆盖。
     manual_pages:
       - 10-tasks/undo-persistence.md
   - id: project-management
@@ -219,7 +229,8 @@ tasks:
     routes:
       - '/canvas'
     status: verified
-    review_note: 2026-09-27 首页卡片悬停操作（下载/重命名/删除）与多选、封面预览运行时取证；导出 zip 与删除确认弹窗为静态取证。
+    screenshot_count: 5
+    review_note: 2026-09-27 首页卡片悬停操作（下载/重命名/删除）与多选、封面预览运行时取证；导出 zip 与删除确认弹窗为静态取证。2026-10-01 M47 **订正一处方向相反的 Major 硬伤**：手册曾 3 文件 4 处把「导出 zip」当成可恢复的备份（「可以整体拷到另一台机器导入」「导出是唯一能带走项目的方式」等）。三重取证坐实**导出的 projects.json 无法被本产品重新导入**——i18n 的 canvas.canvas.import/imported/importFailed 三条文案齐备但全仓 .tsx 引用数均为 0；运行时首页 input[type=file] 数量 0、整页无「导入」二字；反证实验把画布 zip 喂「导入资产」实测弹「导入失败，请选择有效的资产压缩包」。已重写本任务「导出项目」整节并在 20-reference/90-troubleshooting 同步订正。**导出是单向的（可带走、不可带回）**这一点必须写进账本，否则后续批次会再次写反。
     manual_pages:
       - 10-tasks/project-management.md
   - id: shortcuts-help
@@ -236,6 +247,7 @@ tasks:
     routes:
       - '/canvas/:id'
     status: verified
+    screenshot_count: 2
     review_note: 2026-09-27 快捷键弹窗打开并逐字核对本页速查表（与官方 canvas-shortcuts 文档一致）；截图入 manifest。
     manual_pages:
       - 10-tasks/shortcuts-help.md
@@ -253,7 +265,8 @@ tasks:
     routes:
       - '/assets'
     status: verified
-    review_note: 2026-09-30 M20 全链回走通过（Playwright 独立 profile，1280x720 zh-CN），9 张截图入 manifest；M21 补「导入资产」端到端回走——导出 我的资产.zip → 删除全部资产 → 导入该 zip，两个文本资产的标题/正文/标签/来源完整还原，计数回到 2 / 2，截图 +1（共 10 张）。视频资产无「编辑」按钮为源码 index.tsx:468-470 与运行时一致。
+    screenshot_count: 13
+    review_note: 2026-09-30 M20 全链回走通过（Playwright 独立 profile，1280x720 zh-CN），9 张截图入 manifest；M21 补「导入资产」端到端回走——导出 我的资产.zip → 删除全部资产 → 导入该 zip，两个文本资产的标题/正文/标签/来源完整还原，计数回到 2 / 2，截图 +1（共 10 张）。视频资产无「编辑」按钮为源码 index.tsx:468-470 与运行时一致。2026-10-01 M59 对账补：M48 起本任务 manifest 实为 13 张（较 M21 多 3 张搜索/批量/明暗态图），原「共 10 张」已过期；M47 独立复验资产往返为真（导出 564B zip → 删除全部资产 → 导入 → 探针文本原样回来）。
     manual_pages:
       - 10-tasks/manage-assets.md
   - id: use-prompt-library
@@ -272,6 +285,7 @@ tasks:
     routes:
       - '/prompts'
     status: verified
+    screenshot_count: 1
     review_note: 2026-09-30 M20 回走：当前版本提示词来源为空且无添加入口（四个路由全量标签扫描无「提示词来源/新增来源」），故按「如实记录限制」处理，不臆造操作步骤；有内容时的交互取自当前版本 i18n 与源码并明确标注。1 张截图入 manifest。
     manual_pages:
       - 10-tasks/use-prompt-library.md
@@ -292,6 +306,7 @@ tasks:
       - '/canvas'
       - '/'
     status: verified
-    review_note: 2026-10-01 M36 新增。覆盖范围到「面板正确显示未连接状态」为止；真正连上 Agent 后的对话与执行效果需本机跑起 canvas-agent，属未验证范围，手册不写未验证步骤。4 张截图入 manifest。
+    screenshot_count: 8
+    review_note: 2026-10-01 M36 新增。覆盖范围到「面板正确显示未连接状态」为止；真正连上 Agent 后的对话与执行效果需本机跑起 canvas-agent，属未验证范围，手册不写未验证步骤。4 张截图入 manifest。2026-10-01 M59 对账补：本任务 manifest 实为 8 张（原「4 张」已过期）——除 M36 当时登记的 4 张外，后续新增 20-agent-en（英文态取证图）与 status-dot（连接状态指示点）等；具体清单以 screenshots/manifest.yml 的 task_id=use-agent 为准。M50 在本任务下挖出一条**反向**结论：画布节点插件系统实现齐备（管理器弹窗 235 行、plugin-loader/runtime/registry 全在，i18n 连「插件代码会在当前页面内直接执行，可访问本地数据（包含 AI API Key）」的警告都有）但**整套不可达**——弹窗零 import、5 个插件函数调用点全在该弹窗内、运行时 tdcanvas:plugin_store 连存都没建过。已写入 20-reference 并在正文加「别把两种插件搞混」辨析（Agent 面板的 Skills ≠ 节点插件）。
     manual_pages:
       - 10-tasks/use-agent.md

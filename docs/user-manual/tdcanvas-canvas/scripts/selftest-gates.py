@@ -195,6 +195,20 @@ def mutate_rating_drift_inventory(root: Path) -> None:
     )
 
 
+def mutate_inventory_stale_count(root: Path) -> None:
+    """账本 screenshot_count 与 manifest 实数不符（M59 发现的真实形态）。
+
+    真实失修是 use-agent 账本记 4 张而 manifest 实为 8 张。这里复原同一形态：
+    只改账本字段，断言新鲜度门禁抓到。
+    """
+    path = root / "task-inventory.yml"
+    text = path.read_text(encoding="utf-8")
+    i = text.index("  - id: use-agent")
+    j = text.index("    screenshot_count: ", i)
+    k = text.index("\n", j)
+    path.write_text(text[:j] + "    screenshot_count: 4" + text[k:], encoding="utf-8")
+
+
 # ---------- 用例表：(名称, 变异, 期望由谁拦下, 期望出现的错误文字) ----------
 
 CASES: list[tuple[str, object, str, str]] = [
@@ -215,6 +229,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("已订正的错误说法复现", mutate_retracted_claim, "retractions", "订正过的错误说法重新出现"),
     ("产物里的死链", mutate_dead_dist_link, "distlinks", "指向不存在目标的链接"),
     ("任务评级三处不一致", mutate_rating_drift_inventory, "ratings", "评级漂移"),
+    ("账本截图数与 manifest 不符", mutate_inventory_stale_count, "invfresh", "manifest 实为"),
 ]
 
 
@@ -227,6 +242,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-structure.py"), str(root)]
     elif which == "ratings":
         cmd = [sys.executable, str(root / "scripts/check-ratings.py"), str(root)]
+    elif which == "invfresh":
+        cmd = [sys.executable, str(root / "scripts/check-inventory-freshness.py"), str(root)]
     elif which == "retractions":
         cmd = [sys.executable, str(root / "scripts/check-retractions.py"), str(root)]
     elif which == "distlinks":
