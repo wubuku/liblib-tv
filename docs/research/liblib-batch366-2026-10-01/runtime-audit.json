@@ -1,0 +1,74 @@
+{
+  "checks": [
+    {
+      "name": "editor:really-opens",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "row-menu:exists",
+      "ok": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "row-menu:visible",
+      "ok": true,
+      "detail": 1
+    },
+    {
+      "name": "row-menu:declared-inert",
+      "ok": true,
+      "detail": "true"
+    },
+    {
+      "name": "row-menu:has-explanatory-title",
+      "ok": true,
+      "detail": "行操作菜单暂不可用"
+    },
+    {
+      "name": "row-menu:no-hover-affordance",
+      "ok": true,
+      "detail": "default"
+    },
+    {
+      "name": "row-menu:no-hover-background-rule",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "row-menu:class-has-no-hover",
+      "ok": true,
+      "detail": "cursor-default rounded px-1.5 py-0.5 text-[#8c8c8c]"
+    },
+    {
+      "name": "row-menu:not-disabled",
+      "ok": true,
+      "detail": false
+    },
+    {
+      "name": "cells:still-editable",
+      "ok": true,
+      "detail": "cells=1"
+    },
+    {
+      "name": "cells:typing-works",
+      "ok": true,
+      "detail": "-> '冒烟'"
+    }
+  ],
+  "errors": {
+    "console": [],
+    "page": [],
+    "request": []
+  },
+  "rowMenu": {
+    "aria": "镜头1操作",
+    "title": "行操作菜单暂不可用",
+    "inert": "true",
+    "cursor": "default",
+    "disabled": false,
+    "text": "···",
+    "hoverBackground": null,
+    "ownClass": "cursor-default rounded px-1.5 py-0.5 text-[#8c8c8c]"
+  }
+}

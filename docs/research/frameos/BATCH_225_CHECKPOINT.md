@@ -1831,3 +1831,36 @@ batch124 隔离复跑直接绿(exit=0), 不是结构问题。
 监听挂在 document, 连菜单项自己的 onClick 也吃掉了。加 `insideMenu(event)`
 放行菜单内事件后 6/6 回归全过。**过滤器必须双向验证**: 既不能漏放菜单项
 (破 172/173), 也不能误放菜单外(退回本缺陷)。
+
+## Batch 366 — 分镜脚本编辑器的「···」行操作是死的
+
+覆盖普查的 PARTIAL 里 `StoryboardScriptEditor` 漏 `storyboard-row-menu`, 核实后
+发现它不是边缘标记: **无 onClick、无 disabled, 却带 `hover:bg-white/[0.06]`**。
+浏览器实测确认它真的渲染(x=1354, 25×28px, aria-label「镜头1操作」)。
+
+**判据的上界也是坏的(本批最值得记的)**: 普查报「该组件漏 1 个标记」, 我第一反应
+是「这组件按钮应该很少, 影响有限」—— 错了。`storyboard-row-menu` 是该组件里
+**唯一**带 data-* 标记的 button, 其余几十个按钮都没标记, 普查统计不到。
+> **标记覆盖率能回答「哪些没被验证」, 不能回答「标记少 = 控件少」。**
+> 之前只做过判据的**下界**自检(阳性/阴性), 这次发现上界同样坏: 标记稀少的组件
+> 实际控件可能很多, 普查会让人低估它。补法: 遇到标记少的组件顺手数真实控件数,
+> 对不上就是**可测性债务**, 该补标记。
+
+**别人的门禁里往往已写好正确路径**: 我第一次探测 `data-script-generator-attempt`
+count=0, 差点判「不可达」; 翻 batch531 发现它有 `add_script_generator(page)` 在
+主动新建节点。默认 fixture 没有剧本生成节点, 所以大多数门禁连编辑器都进不去。
+
+**修法同 358/359/360/364**: 去掉 hover + cursor:default + title + data-inert。
+
+**门禁 11 项, 其中两条判据是我自己写坏的**:
+1. `no-hover-affordance` 只查 cursor —— 而 cursor 本来就 default, **恒绿**,
+   抓不住「把 hover:bg-* 加回去」。补了直接遍历 styleSheets 找 `:hover`+`background`
+   规则, 以及断 class 串不含 `hover:` 两条。
+2. `cells:still-editable` 拿到 0 个 —— `data-storyboard-cell-input` **只在编辑态
+   出现**(`if (editing)`), 必须先点单元格。差点误判成「编辑器坏了」。
+变异测试(把 hover 加回去)→ exit=1 精确红在 `row-menu:class-has-no-hover`,
+**正是新补的那条抓到的**, 旧判据抓不到。
+
+**反向验证(不过度拦截)**: `cells:typing-works` 点开单元格填「冒烟」读回一致 ——
+证明 data-inert 没波及同一行的正常输入。与 365 的 `insideMenu` 同理:
+**过滤器必须双向验证**。回归 8/8 PASS(含 531~534 分镜编辑器线)。

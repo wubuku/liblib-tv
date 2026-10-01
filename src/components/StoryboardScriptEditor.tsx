@@ -211,7 +211,13 @@ export function StoryboardScriptEditor() {
                 待生成提示词
               </span>
               <span className="flex w-[5%] items-center justify-center border-l border-white/[0.06]">
-                <button type="button" data-storyboard-row-menu aria-label={`镜头${row.shot}操作`} className="rounded px-1.5 py-0.5 text-[#8c8c8c] hover:bg-white/[0.06]">···</button>
+                {/* Batch 366: 原来无 onClick 也无 disabled, 却带 hover:bg-white/[0.06]
+                    —— 每行最右端的「···」操作入口, 视觉上明确在邀请点击, 点了却
+                    什么都不发生。源站行操作菜单(复制/删除/重排)的具体项未采样
+                    (人机验证阻塞), 不擅自发明, 按 358/359/360/364 同策让 UI 停止
+                    撒谎: 去掉悬停骗人反馈 + cursor:default + title 说明 +
+                    data-inert 自证惰性。几何与文案不动。 */}
+                <button type="button" data-storyboard-row-menu data-inert="true" aria-label={`镜头${row.shot}操作`} title="行操作菜单暂不可用" className="cursor-default rounded px-1.5 py-0.5 text-[#8c8c8c]">···</button>
               </span>
             </div>
           ))}
