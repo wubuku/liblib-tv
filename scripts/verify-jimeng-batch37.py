@@ -73,8 +73,15 @@ def main() -> None:
             path=str(REFERENCE_DIR / "jimeng-clone-batch37-scrub-1680.png")
         )
 
-        # plain click still seeks (regression of batch 32): click 100% edge
-        point = bar_pos(page, 0.999)
+        # plain click still seeks (regression of batch 32): click near the end.
+        #
+        # 批次 800 更正：本断言原用 frac=0.999，那是进度条**右缘外 0.4px 的亚像素**
+        # 点位。在 xyflow 视口变换（scale≈0.729）下 elementFromPoint 会把它解析到
+        # 节点根 div（实测 onBar=False），pointerdown 根本到不了进度条，于是时间
+        # 停在上一步 drag-scrub 留下的 0:04 —— 看起来像"点击 seek 回归"。
+        # 逐点实测确认 seek 本身正常：0.5→0:03 / 0.9→0:05 / 0.98→0:05（均 onBar=True）。
+        # 故改用 0.98：既保持"点末端也能 seek"的契约，又不踩亚像素边界。
+        point = bar_pos(page, 0.98)
         page.mouse.click(point["x"], point["y"])
         page.wait_for_timeout(400)
         t_click = read_time(page)
