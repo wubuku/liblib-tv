@@ -151,7 +151,7 @@ screenshots:
     captured_at: 2026-09-23T23:42:51+08:00
     verified_locator: '.react-flow__node-group (aria: Group 编组 1, 5 members)'
     visible_text: 编组 1
-    alt: 编组后出现的「编组 1」组卡片：上方组工具条为 解除编组 / 布局 / 背景色 三项（2026-10-01 复核实测仅此三项，无「下载」），组卡片四角各有一个圆形控制点，成员节点整体被圈在组内
+    alt: 编组后出现的「编组 1」组卡片：上方组工具条自左至右为 解除编组 / 布局 / 背景色 / 下载 四项，组卡片四角各有一个圆形控制点，成员节点整体被圈在组内
     sha256: 1b0e3648e9aba919a3065c0ea989b93e3bad3fbaade66fdb02448c20e1794c24
   - file: screenshots/17-audio-node-voice-panel.png
     task_id: audio-node-voice
@@ -245,8 +245,8 @@ screenshots:
     captured_at: 2026-10-01T06:56:00+08:00
     verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.2/2.3/2.6/2.10/§3.35 当日实测事实绘制（各状态工具条逐字 + 视频/图片分属两套 + 多选 4 项/组 3 项三轮复测）'
     visible_text: 局部重拍 / 智能改图 / 背景色 / N 节点 / 解除编组
-    alt: 选中不同状态时上方浮动工具条的内容矩阵：视频（带媒体）、图片（带内容）、空节点、文本节点、主体节点（没有浮动工具条）、多个节点（框选，工具条共 4 项且没有 Add tags）、编组（组卡片，工具条共 3 项且没有下载）各自对应不同的工具条或生成面板。
-    sha256: 2225205396be5fc7142b977c6c340e3ede840a9d7cedd743419f640d029e828c
+    alt: 选中不同状态时上方浮动工具条的内容矩阵：视频（带媒体）、图片（带内容）、空节点、文本节点、主体节点（没有浮动工具条）、多个节点（框选，工具条共 4 项）、编组（组卡片，工具条共 4 项：解除编组/布局/背景色/下载）各自对应不同的工具条或生成面板。
+    sha256: 6b9f8a4948761cb06bfc41fc2b8567a27a7d2272cae9e73949d28c8c80c8d3a6
 
   - file: screenshots/diagrams/canvas-zones.svg
     task_id: create-first-node
@@ -269,8 +269,8 @@ screenshots:
     captured_at: 2026-10-01T07:08:00+08:00
     verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.10 当日实测事实绘制（框选→多选工具条→编组→组工具条→解除编组；背景色仅见于组工具条）'
     visible_text: 编组 / 解除编组 / 背景色 / 宫格布局 / 智能布局
-    alt: 从框选到编组的三种状态示意：①框选多个节点时是多选工具条（N 节点/编组/布局/下载，无背景色）；②点击编组后出现组卡片「编组 1」，工具条变为解除编组/布局/背景色；③解除编组后成员恢复独立并保持选中，回到①的状态。
-    sha256: 776f00a9ddd68cd5b2325b86f58ae57a05f72f5d222bf092a7306794f2202856
+    alt: 从框选到编组的三种状态示意：①框选多个节点时是多选工具条（N 节点/编组/布局/下载，无背景色）；②点击编组后出现组卡片「编组 1」，工具条变为解除编组/布局/背景色/下载；③解除编组后成员恢复独立并保持选中，回到①的状态。
+    sha256: 1ce71bf55b93d44bb95960cc81ae75170b50242141bbc95fff3a2989f85710ac
 
   - file: screenshots/subject-node.png
     task_id: subject-node
@@ -365,7 +365,7 @@ screenshots:
     captured_at: 2026-10-01T07:40:00+08:00
     verified_locator: '⌘G 编组后状态行 7 nodes, 0 edges, 1 selected，组卡片「编组 1」四角控制点'
     visible_text: 节点 7 已保存 / 编组 1 / 解除编组 布局∨ 背景色 ⤓ / 00:02 / 00:06
-    alt: 编组卡片「编组 1」：本图这一组上方的组工具条为 解除编组 / 布局 / 背景色 三项，组卡片四角各有一个圆形控制点，成员节点整体被圈在组内；顶栏节点计数为 7（组本身计入）
+    alt: 编组卡片「编组 1」：本图这一组上方的组工具条自左至右为 解除编组 / 布局 / 背景色 / 下载 四项，组卡片四角各有一个圆形控制点，成员节点整体被圈在组内；顶栏节点计数为 7（组本身计入）
     sha256: ec8c3847ed4e16600b78c04ff1b7ad79b8240ce1471c3b18870a2ecdcf911ff0
 
   - file: screenshots/28-timeline-clips.png
@@ -1195,3 +1195,15 @@ screenshots:
     visible_text: 从画布选择
     alt: 进入「从画布选择」拾取模式后，屏幕顶部居中出现的一条蓝色圆角状态条（被橙色高亮框标出）：左端是一个取景框图标，中间是深色底的逐字文案「从画布选择」，右端是一个 ✕ 取消按钮（单独被另一个橙色高亮框标出，aria 逐字「取消选择」）—— 这是这个全屏模式在视觉上唯一的提示，其余部分（1280×720 的全屏遮罩与画布框）是不可见的
     sha256: ea789554ece238b862607c68625aa4d7f980e0a11f32285471209249921b4b9e
+
+  - file: screenshots/98-group-toolbar-four-items.png
+    task_id: organize-group-layout
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T20:20:00+08:00
+    verified_locator: '受控条件：视口先平移到画布 (1700,400)，建 3 个文本节点（canvas 坐标 [1540,41.6]/[1580,81.6]/[1620,121.6]）→ 框选矩形 (491,332)-(783,624) 与他人 6 节点零相交、选中集合恰好等于这 3 个 → 点编组（真组数 0→1、节点总数 9→10）→ 点组标题「编组 1」选中组 → [data-testid=node-toolbar] 336×40，内层 selection-context-toolbar aria 逐字 Selection actions，四项逐字 解除编组 88×32 / 布局 78×32 / 背景色 75×32 / 下载 32×32，data-toolbar-value 逐字 ungroup/batch-organize/group-color/download'
+    visible_text: 解除编组
+    alt: 受控条件下（组内只有 3 个空文本节点、没有任何媒体节点）选中的「编组 1」组卡片：上方组工具条自左至右四项为 解除编组、布局∨、背景色、下载，组卡片四角各有一个圆形缩放把手，成员节点整体被圈在组内，顶栏节点计数为 10（他人 6 + 自建 3 + 组 1）、缩放 60%
+    sha256: 8e6ae6e34cbddafd4cc05f6054d8fa7680343ca71d8bb571dc4fbe11f7c709d0

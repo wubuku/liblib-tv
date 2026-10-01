@@ -52,7 +52,7 @@
   <!-- row 6: group -->
   <rect x="24" y="420" width="832" height="46" rx="5" fill="#1b1b1b"/>
   <text x="38" y="448" fill="#e0e0e0" font-size="12.5">编组（组卡片）</text>
-  <text x="250" y="448" fill="#c9c9c9" font-size="11.5">解除编组 ｜ 布局 ｜ 背景色；共 3 项，没有「下载」</text>
+  <text x="250" y="448" fill="#c9c9c9" font-size="11.5">解除编组 ｜ 布局 ｜ 背景色 ｜ 下载；共 4 项（与组内成分无关；0 成员空组只有 2 项）</text>
   <text x="690" y="448" fill="#7f7f7f" font-size="11">点空白即消失</text>
 
   <!-- footnote -->
