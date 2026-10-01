@@ -135,6 +135,16 @@ def mutate_index_drop_entry(root: Path) -> None:
     path.write_text(text[:a] + text[b + 1 :], encoding="utf-8")
 
 
+def mutate_bare_claim(root: Path) -> None:
+    path = root / "10-tasks/create-nodes.md"
+    text = path.read_text(encoding="utf-8")
+    text = text.replace(
+        "## 文本节点：先写内容",
+        "## 凭空多出来的一节\n\n这个节点的默认尺寸和所有官方文档完全一致，界面文案也逐字相同。\n\n## 文本节点：先写内容",
+    )
+    path.write_text(text, encoding="utf-8")
+
+
 def mutate_sidebar_rename(root: Path) -> None:
     path = root / ".vitepress/config.mjs"
     path.write_text(
@@ -161,6 +171,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("孤儿任务页（未登记账本）", mutate_orphan_page, "structure", "孤儿页"),
     ("任务索引漏一条", mutate_index_drop_entry, "structure", "索引缺少"),
     ("侧边栏条目被改名", mutate_sidebar_rename, "structure", "侧边栏缺少"),
+    ("小节里的裸强断言（无证据）", mutate_bare_claim, "claims", "裸断言"),
 ]
 
 
@@ -169,8 +180,10 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(GATE), str(root), "--phase", "final"]
     elif which == "anchor":
         cmd = [sys.executable, str(root / "scripts/check-anchors.py"), str(root)]
-    else:
+    elif which == "structure":
         cmd = [sys.executable, str(root / "scripts/check-structure.py"), str(root)]
+    else:
+        cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)
     return done.returncode, done.stdout + done.stderr
 
