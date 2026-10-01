@@ -77,6 +77,13 @@ export function FrameosToast() {
         return (
           <div
             key={t.id}
+            // Batch 345: 此前 toast 元素只有内联样式、没有任何标识, 导致
+            // **任何验证器都无法断言 toast 文案** —— 而 toast 文案正是
+            // 「UI 是否谎报成功」的唯一证据 (「已删除分组」「已撤销」这类)。
+            // 仓库里已有 data-frameos-context-menu / data-frameos-node-search-input
+            // 等同类约定, 这里补上一个。
+            data-frameos-toast=""
+            data-frameos-toast-variant={t.variant}
             style={{
               background: "rgba(20,20,20,0.95)",
               backdropFilter: "blur(8px)",

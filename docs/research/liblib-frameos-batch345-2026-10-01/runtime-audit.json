@@ -1,0 +1,103 @@
+{
+  "batch": 345,
+  "title": "FrameOS undo/redo no longer claims success when there is nothing to undo",
+  "defect": "The ⌘Z handler called undo() and then unconditionally showed a '已撤销' toast, but undo() returns early when past is empty -- so with an empty history the user was told the action had been undone while the canvas did not move. This is easy to hit: Batch 333 deliberately persists content but NOT history, so after every page refresh the undo stack is empty and the first ⌘Z always lies. A second defect made this untestable: the toast elements had only inline styles and no identifying attribute, so no verifier could ever assert the toast text -- which is the only evidence of whether the UI is lying.",
+  "fix": "undo()/redo() now return a boolean saying whether they actually ran, and the keyboard handler picks an honest message from it ('已撤销' vs '没有可撤销的操作'). Toast elements gained data-frameos-toast / data-frameos-toast-variant so their text is assertable, matching the data-frameos-* convention already used elsewhere in the codebase.",
+  "clone_decision": "This is clone-internal honesty, not a source-parity claim: showing '已撤销' for an action that did not happen is wrong regardless of what the source site does, and the source's behaviour with an empty history was NOT sampled (blocked by the human-verification gate, see SOURCE_ACCESS_BLOCKED_2026-10-01.md).",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "api:undo-returns-bool",
+        "api:redo-returns-bool",
+        "api:empty-stack-returns-false",
+        "undo:empty-not-claimed",
+        "undo:empty-says-honest",
+        "undo:empty-changed-nothing",
+        "toast:addressable-by-selector",
+        "toast:text-matches-dom",
+        "toast:variant-exposed",
+        "redo:empty-not-claimed",
+        "redo:empty-says-honest",
+        "undo:real-says-done",
+        "undo:real-actually-undid",
+        "undo:real-moved-to-future",
+        "undo:exhausted-says-honest",
+        "undo:exhausted-not-claimed",
+        "redo:real-says-done",
+        "redo:real-actually-redid",
+        "diagnostics:zero"
+      ],
+      "returns_on_empty": {
+        "undo": false,
+        "redo": false
+      },
+      "empty_undo": {
+        "toasts": [
+          "没有可撤销的操作"
+        ],
+        "state": {
+          "pastDepth": 0,
+          "futureDepth": 0,
+          "nodeCount": 7
+        }
+      },
+      "empty_redo": {
+        "toasts": [
+          "没有可撤销的操作",
+          "没有可重做的操作"
+        ]
+      },
+      "real_undo": {
+        "toasts": [
+          "已撤销"
+        ],
+        "state": {
+          "pastDepth": 0,
+          "futureDepth": 1,
+          "nodeCount": 7
+        },
+        "after_add": {
+          "pastDepth": 1,
+          "futureDepth": 0,
+          "nodeCount": 8
+        }
+      },
+      "exhausted": {
+        "toasts": [
+          "没有可撤销的操作"
+        ],
+        "state": {
+          "pastDepth": 0,
+          "futureDepth": 1,
+          "nodeCount": 7
+        }
+      },
+      "redo": {
+        "toasts": [
+          "已撤销",
+          "已重做"
+        ],
+        "state": {
+          "pastDepth": 1,
+          "futureDepth": 0,
+          "nodeCount": 8
+        },
+        "before": {
+          "pastDepth": 1,
+          "futureDepth": 0,
+          "nodeCount": 8
+        },
+        "mid": {
+          "pastDepth": 0,
+          "futureDepth": 1,
+          "nodeCount": 7
+        }
+      },
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

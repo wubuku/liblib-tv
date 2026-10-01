@@ -170,8 +170,8 @@ interface FrameosCanvasState {
   closeOrganizeMenu: () => void;
   setOrganizeMode: (mode: FrameosCanvasState["organizeMode"]) => void;
   setSelectedModel: (model: string) => void;
-  undo: () => void;
-  redo: () => void;
+  undo: () => boolean;
+  redo: () => boolean;
   toggleHelp: () => void;
   closeHelp: () => void;
   toggleDebugMode: () => void;
@@ -1130,14 +1130,16 @@ export const useFrameosStore = create<FrameosCanvasState>((rawSet, get) => {
 
   undo: () => {
     const { past, nodes, edges, groups, future, breadcrumb } = get();
-    if (past.length === 0) return;
+    // Batch 345: 返回**是否真的撤销了**（见 redo 的同名注释）。
+    if (past.length === 0) return false;
     const prev = past[past.length - 1];
     // Batch 331: 跨画布快照 —— 拒绝并丢弃整条异画布 past，
     // 否则会把上一张画布的 nodes/edges/groups 灌进当前画布。
+    // 注意: 这里**没有撤销任何东西**, 只是一个防御性拒绝, 返回 false。
     const here = currentCanvasKey(breadcrumb);
     if (prev.canvasKey && prev.canvasKey !== here) {
       set({ past: [], future: [] });
-      return;
+      return false;
     }
     set({
       past: past.slice(0, -1),
@@ -1153,16 +1155,19 @@ export const useFrameosStore = create<FrameosCanvasState>((rawSet, get) => {
       selectedNodeId: null,
       selectedGroupId: null,
     });
+    return true;
   },
   redo: () => {
     const { future, nodes, edges, groups, past, breadcrumb } = get();
-    if (future.length === 0) return;
+    // Batch 345: 返回**是否真的重做了**。此前是 void, 调用方无法区分
+    // 「重做了」与「future 为空所以什么都没做」, 于是无条件弹「已重做」。
+    if (future.length === 0) return false;
     const next = future[0];
     const here = currentCanvasKey(breadcrumb);
     // Batch 331: 同上，redo 侧同样按画布隔离
     if (next.canvasKey && next.canvasKey !== here) {
       set({ past: [], future: [] });
-      return;
+      return false;
     }
     set({
       past: [
@@ -1176,6 +1181,7 @@ export const useFrameosStore = create<FrameosCanvasState>((rawSet, get) => {
       selectedNodeId: null,
       selectedGroupId: null,
     });
+    return true;
   },
 
   toggleHelp: () => set((state) => ({ isHelpOpen: !state.isHelpOpen })),

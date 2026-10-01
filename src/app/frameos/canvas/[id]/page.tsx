@@ -273,15 +273,16 @@ function FrameosCanvasInner() {
       // Cmd/Ctrl + Z - 撤销
       if ((e.metaKey || e.ctrlKey) && e.key === "z" && !e.shiftKey) {
         e.preventDefault();
-        undo();
-        showToast("已撤销", "info");
+        // Batch 345: 此前无论有没有真的撤销都弹「已撤销」—— 栈为空时
+        // undo() 直接 return, 用户看到「已撤销」但画布纹丝不动。
+        // undo() 现返回布尔, 据此选择**诚实**的文案。
+        showToast(undo() ? "已撤销" : "没有可撤销的操作", "info");
         return;
       }
       // Cmd/Ctrl + Shift + Z - 重做
       if ((e.metaKey || e.ctrlKey) && (e.key === "Z" || (e.key === "z" && e.shiftKey))) {
         e.preventDefault();
-        redo();
-        showToast("已重做", "info");
+        showToast(redo() ? "已重做" : "没有可重做的操作", "info");
         return;
       }
 
