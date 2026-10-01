@@ -57,7 +57,7 @@
 | **导入资产** | ⚠️ 名不副实：**实际打开的是本地媒体文件选择器**（与 Dock「上传资产」是同一个函数 `handleUploadRequest`），**与「我的资产」无关**，不能用来恢复 `我的资产.zip` | 见下方说明 |
 | 撤销 / 重做 | 同 `Ctrl / Cmd + Z`、`Ctrl / Cmd + Shift + Z` | 无可撤销操作时为禁用态（灰） |
 
-> ⚠️ **「删除当前画布」是整个产品里最危险的一次点击**。它不像首页那样弹确认框——实测点击后画布被**立即删除并跳回首页**，`role=dialog` 数量为 0，没有任何提示。源码层面也能对上：画布内走 `project.tsx:1264` 的 `deleteCurrentProject`，直接调用 `deleteProjects()` 后跳转；而首页卡片删除走的是 `setDeleteIds` → `CanvasDeleteProjectsDialog` 确认弹窗。**同一个"删除画布"，两条路径行为不一致。**要删画布请回首页操作（见 [project-management.md](project-management.md#删除项目)）。
+> ⚠️ **「删除当前画布」是整个产品里最危险的一次点击**。它不像首页那样弹确认框——实测点击后画布被**立即删除并跳回首页**，`role=dialog` 数量为 0，没有任何提示。源码层面也能对上：画布内走 `project.tsx:1264` 的 `deleteCurrentProject`，直接调用 `deleteProjects()` 后跳转；而首页卡片删除走的是 `setDeleteIds` → `CanvasDeleteProjectsDialog` 确认弹窗。**同一个"删除画布"，两条路径行为不一致**。要删画布请回首页操作（见 [project-management.md](project-management.md#删除项目)）。
 
 > ⚠️ **「导入资产」这个标签是错的**。菜单里写「导入资产」，很容易让人以为它能导入 `我的资产.zip`——但源码里这一项绑定的是 `onImportImage={() => handleUploadRequest()}`，**和「上传资产」是同一个处理函数**，点开的是本地图片/视频/音频文件选择器。要真正导入 `我的资产.zip`，得回首页的「我的资产」页面点「导入资产」（见 [manage-assets.md](manage-assets.md)）。运行时实测也吻合：点击后 URL 不变、页面无任何「导入」相关文案，只是弹出了文件选择器。
 

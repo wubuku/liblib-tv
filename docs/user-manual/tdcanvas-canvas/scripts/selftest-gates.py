@@ -336,6 +336,24 @@ def mutate_orphan_screenshot(root: Path) -> None:
     inv.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def mutate_broken_emphasis(root: Path) -> None:
+    """`**` 紧邻标点导致加粗渲染失效，产物里留下字面量 `**`（M90 加）。
+
+    M90 全站扫产物才发现 7 处这类写法，源文件看上去完全正常，其余门禁全部报 ok。
+    注入的是真实命中的形态之一：`**` 后面紧跟全角引号 `「`，而 `**` 前面是实义字
+    "的"——既不是空白也不是标点，2b 豁免条款不成立，开定界符无法 left-flanking。
+
+    判据的精确性是这批的重点：**表格单元格里同样的写法必须放行**（单元格两侧有
+    空格，2b 成立），否则就是 146 条假阳性。
+    """
+
+    path = root / "10-tasks/edit-nodes.md"
+    text = path.read_text(encoding="utf-8")
+    anchor = "工具条是**选中单个节点**后才出现的"
+    injected = "自检注入：但它的**「读屏提示」**是「加入我的资产」。\n\n"
+    path.write_text(text.replace(anchor, injected + anchor, 1), encoding="utf-8")
+
+
 # ---------- 用例表：(名称, 变异, 期望由谁拦下, 期望出现的错误文字) ----------
 
 CASES: list[tuple[str, object, str, str]] = [
@@ -362,6 +380,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("代码块外的孤立表格行", mutate_table_outside_fence, "tables", "会渲染成普通段落"),
     ("单元格内竖线未转义（产物丢内容）", mutate_unescaped_pipe_in_code_span, "tables", "反引号（奇数）"),
     ("孤儿截图（登记了却没人引用）", mutate_orphan_screenshot, "structure", "孤儿截图"),
+    ("** 紧邻标点导致加粗失效", mutate_broken_emphasis, "emphasis", "left-flanking"),
 ]
 
 
@@ -380,6 +399,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-retractions.py"), str(root)]
     elif which == "tables":
         cmd = [sys.executable, str(root / "scripts/check-tables.py"), str(root)]
+    elif which == "emphasis":
+        cmd = [sys.executable, str(root / "scripts/check-emphasis.py"), str(root)]
     elif which == "distlinks":
         cmd = [sys.executable, str(root / "scripts/check-dist-links.py"), str(root)]
     else:
