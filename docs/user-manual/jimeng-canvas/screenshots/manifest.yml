@@ -1231,3 +1231,15 @@ screenshots:
     visible_text: 视频 1
     alt: 对照：选中的视频节点，「Rename 视频 1」按钮（橙色框）的底边**直接压在**卡片顶边（橙色横线）上，中间没有空隙
     sha256: 62586fc6e161d7c5ad90180e770acbfd2ac974e7bcdcba358dace43c90860012
+
+  - file: screenshots/101-timeline-source-menu-title.png
+    task_id: connect-nodes
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T23:05:00+08:00
+    verified_locator: '左栏新建**空**时间线节点 node_2nms3s9qgz（受控条件：60% 缩放）→ 细网格逐点试点选中（tl 只读不动）→ 枚举选中态 ⊕：before 可见@(251,344)、**after 不存在** → 点 before ⊕ → 菜单 [data-testid=canvas-context-menu] 200×316，七项各 [role=menuitem]，**标题逐字「添加上下文」**（其余六种源均为「添加节点」）→ 逐项读数：文本/图片/视频/时间线/主体/导演台 全部 aria-disabled=true + color rgba(255,255,255,0.2)，**只有音频** aria-disabled=false + rgb(255,255,255)。图片/视频 的原因逐字为「没有可用的就绪资源」（与从别的源出发时时间线报「素材信息仍在加载中」正好相反）'
+    visible_text: 添加上下文
+    alt: 从时间线节点出发弹出的菜单，标题逐字是「**添加上下文**」而不是其他六种源的「添加节点」（被橙色高亮框标出）；七项里只有「音频」是白色可点，文本／图片／视频／时间线／主体／导演台全是灰暗的禁用态；左上角能看到该节点只有一个 ⊕ 按钮；左下角缩放读数 60%
+    sha256: 14b5d4129a55c675a42670993c246ddf8b72f12022bf85dee33138d9d4444917
