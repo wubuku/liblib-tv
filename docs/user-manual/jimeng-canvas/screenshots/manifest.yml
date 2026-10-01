@@ -1087,3 +1087,39 @@ screenshots:
     visible_text: 2×2 / 3×3 / 4×4 / 5×5 / 自定义宫格
     alt: 「宫格切分」的第二层子菜单（2026-10-01 首次打开）：左侧是父菜单「编辑」下的 消除笔/裁剪/宫格切分/标注，其中「宫格切分」呈高亮态并带向右小箭头；右侧是被橙色高亮框标出的 176×228 子菜单，上面一排四个小按钮 2×2、3×3、4×4、5×5，下面是「自定义宫格」标题和一片 7 列 5 行的深色小方格
     sha256: e830992b36ec965230dffb090ee12d5049dacf044cd61fb8d3660f265cb13471
+
+  - file: screenshots/89-voice-filter-male.png
+    task_id: audio-node-voice
+    step: 6
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T16:15:00+08:00
+    verified_locator: '音频节点面板内点 button[aria-label^="性别: "]（153×28，aria-expanded false→true）打开 [role="listbox"][aria-label="性别 options"]（161×124），点其中的 role=option「男」（153×36）后，音色网格 [aria-label="全音色"]（648×216）内容整张换掉；筛选器 aria 变为「性别: 男」'
+    visible_text: 桃花庵主 / 猪猪侠 / 苏感低音 / 乌萨七 / 唐僧 / 厚实男声 / 派星星 / 萌娃百科 / 磁性男主播 / 小八酱 / 如来 / 天津小哥 / 沉稳解说Pro / 雄厚配音 / 猴哥 / 开朗学长 / 熊爸爸讲故事 / 皇上
+    alt: 按「性别 → 男」筛选后的音色网格（648×216，被橙色高亮框标出）：十八个音色逐字为 桃花庵主、猪猪侠、苏感低音、乌萨七、唐僧、厚实男声、派星星、萌娃百科、磁性男主播、小八酱、如来、天津小哥、沉稳解说Pro、雄厚配音、猴哥、开朗学长、熊爸爸讲故事、皇上 —— 与未筛选时的十八个几乎完全不同，说明筛选真的换掉了整张列表
+    sha256: ab9863ff06b194a7dda9886876a3bd0cdead3eb65a6847af7e89c8b9c83105f9
+
+  - file: screenshots/90-voice-list-scrolled.png
+    task_id: audio-node-voice
+    step: 7
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T16:16:00+08:00
+    verified_locator: '把筛选切回「全部 性别」后，将 [aria-label="全音色"]（class 含 overflow-y-auto，scrollHeight=1932 / clientHeight=216）的 scrollTop 设为 scrollHeight 滚到底，再对同一容器截图；此时 DOM 内的 Add 按钮去重后共 35 个（首屏 18 + 滚后 17）'
+    visible_text: 清亮男声Pro / 乖巧男孩 / 乖巧萌妹 / 爽朗学长 / 亲切伯伯 / 正直哥哥 / 动漫海绵 / 沉稳大叔 / 直爽女大 / 逗趣男声 / 慈祥爷爷 / 温柔叔叔 / 优柔公子 / 自信男声 / 灵动甜妹 / 奶萌少女 / 天真妹妹
+    alt: 「全部」视图把网格滚到最底后露出的另一批音色（仍被橙色高亮框标出同一个 648×216 网格）：清亮男声Pro、乖巧男孩、乖巧萌妹、爽朗学长、亲切伯伯、正直哥哥、动漫海绵、沉稳大叔、直爽女大、逗趣男声、慈祥爷爷、温柔叔叔、优柔公子、自信男声、灵动甜妹、奶萌少女、天真妹妹 —— 这十七个在首屏完全看不到，证明「18 个」只是一屏的渲染数、实际总数是 35
+    sha256: a03b3271e8f64d1174d114d40e5e16185509be1c6a8336a8ddd298c3c1c1fc51
+
+  - file: screenshots/91-voice-selected-hint.png
+    task_id: audio-node-voice
+    step: 8
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T16:19:00+08:00
+    verified_locator: '画布缩放到 60% 后选中音频节点 → 打开音色库 → 点 button[aria-label="Add 生动解说"]（173×40）→ 再点一次「音色库」按钮收起浮层（不用 Esc，Esc 会连整个面板一起关掉）→ 对 [data-testid="node-toolbar"] 中 width>1 的那一个（680×204 @283,460，断言完整落入视口）截图'
+    visible_text: 16s / 使用 / 快速调用参考音色，例如：海浪轰鸣，@父亲 强忍悲伤，低声说“灯塔熄灭了”，@女儿 满怀希望，坚定地回应“可它还在呼唤我”，随后空灵竖琴旋律渐起。/ 音频生成 / SeedAudio 1.0 / 全能配音 / 音色库 / 12 / 24
+    alt: 选用音色「生动解说」之后的面板（680×204，被橙色高亮框标出）：左上角多出一个带波形图标的 16s 时长 chip，右侧是 ⊕ 添加参考钮；说明文字整段换成了用法示例「使用 @ 快速调用参考音色，例如：海浪轰鸣，@父亲 强忍悲伤…随后空灵竖琴旋律渐起。」；底部参数行仍是 音频生成、SeedAudio 1.0、全能配音、音色库、@、✦ 12 与划线的 24；注意提示词框本身仍然是空的
+    sha256: 060f66a4449347e6c4a3f3150ac8aa68f38645b29a9f5638aa5ce96cd5b8d33b

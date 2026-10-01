@@ -1148,3 +1148,73 @@ imagepanel / imagepanel2 / endcheck）。
 
 **本批临时脚本（已清理）**：`scripts/jimeng-b31-*.mjs` 共 6 个
 （media-image / dropdowns / grid / incident / shots / reshoot）。
+
+---
+
+## 批次 32（2026-10-01）：音色库三条非扣费路径全部实测 —— 筛选 / 试听 / 选用
+
+### 本批关闭的手册条目（批次 29 明确标为「未验证」的三条）
+
+| 条目 | 原状态 | 本批结论 | 严重度 |
+|---|---|---|---|
+| **音色总数** | 「音色库共 **18** 个音色」 | **35** —— 网格 `[aria-label="全音色"]` **可滚动**（`scrollHeight 1932` / `clientHeight 216`），18 只是首屏；滚到底再数共 35 | **Major（数量错误）** |
+| **筛选后列表变化** | 「未验证」 | **确实生效**：`性别 → 男` 得 18 个、`→ 女` 得 18 个，与首屏 18 个几乎不重叠；筛选器 aria 就地改写为 `性别: 男` / `性别: 女` | Minor（补全） |
+| **试听 `Play`** | 「未验证」 | **可用**：aria 由 `Play 生动解说`（24×24）**就地翻成 `Pause 生动解说`**（0.9s 仍 Play、3.4s 已 Pause）；页面**无 `<audio>` 元素**；音色库不关闭；**不扣积分** | Minor（补全） |
+| **选用 `Add`** | 「未验证」；手册原以为「`Add` 只是加入提示词」 | 🔴 **结论相反**：`Add` **不写提示词**（编辑器仍是 `<p><br></p>`），而是把面板顶部说明换成逐字**用法示例**「使用 @ 快速调用参考音色，例如：…@父亲…@女儿…」并加一个 `16s` 时长 chip；**不扣积分** | **Major（机制理解错误）** |
+| 音色库结构 | 「浮层含 4 个筛选器 + 18 个音色」 | 筛选器（`y=435`）与网格（`y=475`）是**兄弟节点**，筛选器**不在** `[aria-label="全音色"]` 内 —— 按该选择器找筛选器会落空 | Minor（澄清） |
+| 音频面板 DOM | 未记 testid | 补 4 个：`node-toolbar-feature-host` / `audio-generation-form` / `generation-prompt-editor` / `generation-submit-icon` | Minor（补全） |
+
+### 新增的正文内容
+
+- `10-tasks/audio-node-voice.md`：新增「音色列表：三列网格、可滚动、实测共 35 个」
+  （含首屏 18 + 滚后 17 的完整逐字）、「筛选真的生效」（男/女各 18 逐字）、
+  「试听 `Play`」、「选用 `Add`」、「收起音色库的正确姿势」五节；
+  「已验证说明」里「仍未验证」的三条已划掉并换成批次 32 的结论。
+- `20-reference.md`：音色库速查表同步更新（35 个 + 筛选/试听/选用三条实测结论
+  + 4 个 testid + 「收起音色库不要按 Esc」）。
+- `SOURCE_OBSERVATIONS.md` §3.49：8 小节，含开工前那次 12 节点残留的处置全过程。
+- 新增长期脚本 **`scripts/jimeng-baseline-restore.mjs`**（归基线通用工具），
+  用法 `node scripts/jimeng-baseline-restore.mjs [要保留的节点名]`。
+
+### 开工前的又一次残留（与批次 30 同型）
+
+画布读数为 **12 个节点**且对角等距堆叠。先核实「只有我这一个 page target 连着 9444、
+`ps` 里没有第二个进程碰 jimeng.jianying.com」，再逐节点核内容确认**全部是空壳**
+（`0 ready` / `main missing` / `0 clips`，零用户内容），才动手删掉 11 个。
+**积分复核 805 未变。** 这次把清理逻辑固化成了长期脚本，不再每批重写。
+
+### 证据与截图
+
+- 新增 3 张截图（`89` 性别=男筛选结果、`90` 滚到底的另一批音色、
+  `91` 选用后的用法示例面板），均 1280×720@2x、zh-CN。
+- ⚠️ `91` **第一次没拍到**：100% 缩放下音频面板在 `@300,560`（底边 764 > 720），
+  且用 Esc 收音色库时**把整个面板一起关掉了**。改为**缩到 60%**（面板 `@283,460`，
+  底边 664）并**再点一次「音色库」按钮**收起浮层后才拍到。
+- 归基线：删掉音频节点，**积分复核 805 未变**，
+  状态行 `1 node, 0 edges, 0 selected. Editable. Room connected. 已保存.`
+
+### 证据边界
+
+- **全程未点击「生成」/「发送」**，未提交任何生成任务。
+- 三条路径（筛选 / 试听 / 选用）经前后积分读数核对，**均未扣费**。
+- 未验证（**扣费/生成边界**）：样音的**确切时长**、同时试听两个音色、
+  同时选用多个音色、手写 `@<音色名>` 能否被正确识别、
+  选用后**生成**的实际结果、有媒体音频节点的波形与播放控件。
+
+### 质量门（批次 32 收尾，结论只认当次命令输出）
+
+| 检查项 | 命令 | 退出码 | 当次实测结果 |
+|---|---|---|---|
+| 截图 alt 审计 | `node scripts/jimeng-alt-audit.mjs` | 0 | **95 张**逐字一致 / 0 不一致 / 0 未引用 / 0 措辞冲突 |
+| 交叉一致性 | `node scripts/jimeng-crosscheck.mjs` | 0 | 命中 51 处，均为已知历史结论行，无批次 32 新问题 |
+| gate-a | `audit_manual.py … --phase gate-a` | **0** | `OK (gate-a): 17 tasks, 28 Markdown files, 95 images` |
+| final | `audit_manual.py … --phase final` | **0** | `OK (final): 17 tasks, 28 Markdown files, 95 images` |
+| 死链（本手册范围） | 独立扫描（排除 node_modules/dist/site） | **0 命中** | 扫描 28 个 Markdown，**jimeng-canvas 死链数 = 0** |
+| 站点构建 | `build-site.sh` | **0** | dist 截图数 **91**、示意图 4、**0 warn** |
+
+**基线复核（批次 32 收尾）**：`1 node, 0 edges, 0 selected. Editable. Room connected.
+已保存.`，仅 `视频 1`、0 编组、无残留浮层、无高亮 overlay、**顶栏积分 805**。
+
+**本批临时脚本（已清理）**：`scripts/jimeng-b32-*.mjs` 共 9 个
+（filter / voice / libprobe / total-add / afteradd / shots / reshoot / reshoot2 / inspect / empty-check）。
+**长期保留**：`jimeng-baseline-restore.mjs`（归基线通用工具，本批新增）。
