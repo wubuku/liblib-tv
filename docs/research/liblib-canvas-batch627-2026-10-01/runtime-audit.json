@@ -1,0 +1,1060 @@
+{
+  "batch": 627,
+  "title": "the census classifies off-viewport controls instead of dropping them, and holds the desk's own controls to the same geometric boundary batch 626 held the overlays to",
+  "date": "2026-10-01",
+  "widths": [
+    360,
+    400,
+    427,
+    428,
+    429,
+    430,
+    431,
+    432,
+    433,
+    440,
+    477,
+    478,
+    479,
+    480,
+    481,
+    482,
+    483,
+    517,
+    518,
+    519,
+    520,
+    521,
+    522,
+    523,
+    560,
+    600,
+    617,
+    618,
+    619,
+    620,
+    621,
+    622,
+    623,
+    640,
+    677,
+    678,
+    679,
+    680,
+    681,
+    682,
+    683,
+    720,
+    760,
+    800,
+    840,
+    847,
+    848,
+    849,
+    850,
+    851,
+    852,
+    853,
+    880,
+    896,
+    897,
+    898,
+    899,
+    900,
+    901,
+    902,
+    920,
+    960,
+    1000,
+    1040,
+    1080,
+    1120,
+    1160,
+    1200,
+    1240,
+    1280,
+    1320,
+    1360,
+    1400,
+    1440,
+    1480,
+    1520,
+    1560,
+    1600,
+    1640,
+    1680,
+    1720,
+    1760,
+    1800,
+    1840,
+    1880,
+    1920
+  ],
+  "sweep": {
+    "360": {
+      "total": 123,
+      "offViewport": 85,
+      "unreachable": [],
+      "scrollable": 85,
+      "covered": [],
+      "legacyTotal": 38,
+      "legacyCovered": 0
+    },
+    "400": {
+      "total": 123,
+      "offViewport": 84,
+      "unreachable": [],
+      "scrollable": 84,
+      "covered": [],
+      "legacyTotal": 39,
+      "legacyCovered": 0
+    },
+    "427": {
+      "total": 123,
+      "offViewport": 83,
+      "unreachable": [],
+      "scrollable": 83,
+      "covered": [],
+      "legacyTotal": 40,
+      "legacyCovered": 0
+    },
+    "428": {
+      "total": 123,
+      "offViewport": 83,
+      "unreachable": [],
+      "scrollable": 83,
+      "covered": [],
+      "legacyTotal": 40,
+      "legacyCovered": 0
+    },
+    "429": {
+      "total": 123,
+      "offViewport": 83,
+      "unreachable": [],
+      "scrollable": 83,
+      "covered": [],
+      "legacyTotal": 40,
+      "legacyCovered": 0
+    },
+    "430": {
+      "total": 123,
+      "offViewport": 83,
+      "unreachable": [],
+      "scrollable": 83,
+      "covered": [],
+      "legacyTotal": 40,
+      "legacyCovered": 0
+    },
+    "431": {
+      "total": 123,
+      "offViewport": 83,
+      "unreachable": [],
+      "scrollable": 83,
+      "covered": [],
+      "legacyTotal": 40,
+      "legacyCovered": 0
+    },
+    "432": {
+      "total": 123,
+      "offViewport": 83,
+      "unreachable": [],
+      "scrollable": 83,
+      "covered": [],
+      "legacyTotal": 40,
+      "legacyCovered": 0
+    },
+    "433": {
+      "total": 123,
+      "offViewport": 83,
+      "unreachable": [],
+      "scrollable": 83,
+      "covered": [],
+      "legacyTotal": 40,
+      "legacyCovered": 0
+    },
+    "440": {
+      "total": 123,
+      "offViewport": 82,
+      "unreachable": [],
+      "scrollable": 82,
+      "covered": [],
+      "legacyTotal": 41,
+      "legacyCovered": 0
+    },
+    "477": {
+      "total": 123,
+      "offViewport": 81,
+      "unreachable": [],
+      "scrollable": 81,
+      "covered": [],
+      "legacyTotal": 42,
+      "legacyCovered": 0
+    },
+    "478": {
+      "total": 123,
+      "offViewport": 81,
+      "unreachable": [],
+      "scrollable": 81,
+      "covered": [],
+      "legacyTotal": 42,
+      "legacyCovered": 0
+    },
+    "479": {
+      "total": 123,
+      "offViewport": 81,
+      "unreachable": [],
+      "scrollable": 81,
+      "covered": [],
+      "legacyTotal": 42,
+      "legacyCovered": 0
+    },
+    "480": {
+      "total": 123,
+      "offViewport": 81,
+      "unreachable": [],
+      "scrollable": 81,
+      "covered": [],
+      "legacyTotal": 42,
+      "legacyCovered": 0
+    },
+    "481": {
+      "total": 123,
+      "offViewport": 81,
+      "unreachable": [],
+      "scrollable": 81,
+      "covered": [],
+      "legacyTotal": 42,
+      "legacyCovered": 0
+    },
+    "482": {
+      "total": 123,
+      "offViewport": 81,
+      "unreachable": [],
+      "scrollable": 81,
+      "covered": [],
+      "legacyTotal": 42,
+      "legacyCovered": 0
+    },
+    "483": {
+      "total": 123,
+      "offViewport": 81,
+      "unreachable": [],
+      "scrollable": 81,
+      "covered": [],
+      "legacyTotal": 42,
+      "legacyCovered": 0
+    },
+    "517": {
+      "total": 123,
+      "offViewport": 80,
+      "unreachable": [],
+      "scrollable": 80,
+      "covered": [],
+      "legacyTotal": 43,
+      "legacyCovered": 0
+    },
+    "518": {
+      "total": 123,
+      "offViewport": 80,
+      "unreachable": [],
+      "scrollable": 80,
+      "covered": [],
+      "legacyTotal": 43,
+      "legacyCovered": 0
+    },
+    "519": {
+      "total": 123,
+      "offViewport": 80,
+      "unreachable": [],
+      "scrollable": 80,
+      "covered": [],
+      "legacyTotal": 43,
+      "legacyCovered": 0
+    },
+    "520": {
+      "total": 123,
+      "offViewport": 80,
+      "unreachable": [],
+      "scrollable": 80,
+      "covered": [],
+      "legacyTotal": 43,
+      "legacyCovered": 0
+    },
+    "521": {
+      "total": 123,
+      "offViewport": 80,
+      "unreachable": [],
+      "scrollable": 80,
+      "covered": [],
+      "legacyTotal": 43,
+      "legacyCovered": 0
+    },
+    "522": {
+      "total": 123,
+      "offViewport": 80,
+      "unreachable": [],
+      "scrollable": 80,
+      "covered": [],
+      "legacyTotal": 43,
+      "legacyCovered": 0
+    },
+    "523": {
+      "total": 123,
+      "offViewport": 80,
+      "unreachable": [],
+      "scrollable": 80,
+      "covered": [],
+      "legacyTotal": 43,
+      "legacyCovered": 0
+    },
+    "560": {
+      "total": 123,
+      "offViewport": 78,
+      "unreachable": [],
+      "scrollable": 78,
+      "covered": [],
+      "legacyTotal": 45,
+      "legacyCovered": 0
+    },
+    "600": {
+      "total": 123,
+      "offViewport": 77,
+      "unreachable": [],
+      "scrollable": 77,
+      "covered": [],
+      "legacyTotal": 46,
+      "legacyCovered": 0
+    },
+    "617": {
+      "total": 123,
+      "offViewport": 76,
+      "unreachable": [],
+      "scrollable": 76,
+      "covered": [],
+      "legacyTotal": 47,
+      "legacyCovered": 0
+    },
+    "618": {
+      "total": 123,
+      "offViewport": 76,
+      "unreachable": [],
+      "scrollable": 76,
+      "covered": [],
+      "legacyTotal": 47,
+      "legacyCovered": 0
+    },
+    "619": {
+      "total": 123,
+      "offViewport": 76,
+      "unreachable": [],
+      "scrollable": 76,
+      "covered": [],
+      "legacyTotal": 47,
+      "legacyCovered": 0
+    },
+    "620": {
+      "total": 123,
+      "offViewport": 76,
+      "unreachable": [],
+      "scrollable": 76,
+      "covered": [],
+      "legacyTotal": 47,
+      "legacyCovered": 0
+    },
+    "621": {
+      "total": 123,
+      "offViewport": 76,
+      "unreachable": [],
+      "scrollable": 76,
+      "covered": [],
+      "legacyTotal": 47,
+      "legacyCovered": 0
+    },
+    "622": {
+      "total": 123,
+      "offViewport": 76,
+      "unreachable": [],
+      "scrollable": 76,
+      "covered": [],
+      "legacyTotal": 47,
+      "legacyCovered": 0
+    },
+    "623": {
+      "total": 123,
+      "offViewport": 76,
+      "unreachable": [],
+      "scrollable": 76,
+      "covered": [],
+      "legacyTotal": 47,
+      "legacyCovered": 0
+    },
+    "640": {
+      "total": 123,
+      "offViewport": 76,
+      "unreachable": [],
+      "scrollable": 76,
+      "covered": [],
+      "legacyTotal": 47,
+      "legacyCovered": 0
+    },
+    "677": {
+      "total": 123,
+      "offViewport": 74,
+      "unreachable": [],
+      "scrollable": 74,
+      "covered": [],
+      "legacyTotal": 49,
+      "legacyCovered": 0
+    },
+    "678": {
+      "total": 123,
+      "offViewport": 74,
+      "unreachable": [],
+      "scrollable": 74,
+      "covered": [],
+      "legacyTotal": 49,
+      "legacyCovered": 0
+    },
+    "679": {
+      "total": 123,
+      "offViewport": 74,
+      "unreachable": [],
+      "scrollable": 74,
+      "covered": [],
+      "legacyTotal": 49,
+      "legacyCovered": 0
+    },
+    "680": {
+      "total": 123,
+      "offViewport": 74,
+      "unreachable": [],
+      "scrollable": 74,
+      "covered": [],
+      "legacyTotal": 49,
+      "legacyCovered": 0
+    },
+    "681": {
+      "total": 123,
+      "offViewport": 74,
+      "unreachable": [],
+      "scrollable": 74,
+      "covered": [],
+      "legacyTotal": 49,
+      "legacyCovered": 0
+    },
+    "682": {
+      "total": 123,
+      "offViewport": 74,
+      "unreachable": [],
+      "scrollable": 74,
+      "covered": [],
+      "legacyTotal": 49,
+      "legacyCovered": 0
+    },
+    "683": {
+      "total": 123,
+      "offViewport": 74,
+      "unreachable": [],
+      "scrollable": 74,
+      "covered": [],
+      "legacyTotal": 49,
+      "legacyCovered": 0
+    },
+    "720": {
+      "total": 123,
+      "offViewport": 73,
+      "unreachable": [],
+      "scrollable": 73,
+      "covered": [],
+      "legacyTotal": 50,
+      "legacyCovered": 0
+    },
+    "760": {
+      "total": 123,
+      "offViewport": 73,
+      "unreachable": [],
+      "scrollable": 73,
+      "covered": [],
+      "legacyTotal": 50,
+      "legacyCovered": 0
+    },
+    "800": {
+      "total": 123,
+      "offViewport": 72,
+      "unreachable": [],
+      "scrollable": 72,
+      "covered": [],
+      "legacyTotal": 51,
+      "legacyCovered": 0
+    },
+    "840": {
+      "total": 123,
+      "offViewport": 72,
+      "unreachable": [],
+      "scrollable": 72,
+      "covered": [],
+      "legacyTotal": 51,
+      "legacyCovered": 0
+    },
+    "847": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "848": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "849": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "850": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "851": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "852": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "853": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "880": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "896": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "897": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "898": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "899": {
+      "total": 130,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "legacyTotal": 115,
+      "legacyCovered": 0
+    },
+    "900": {
+      "total": 130,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "legacyTotal": 115,
+      "legacyCovered": 0
+    },
+    "901": {
+      "total": 130,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "legacyTotal": 115,
+      "legacyCovered": 0
+    },
+    "902": {
+      "total": 130,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "legacyTotal": 115,
+      "legacyCovered": 0
+    },
+    "920": {
+      "total": 130,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "legacyTotal": 115,
+      "legacyCovered": 0
+    },
+    "960": {
+      "total": 130,
+      "offViewport": 14,
+      "unreachable": [],
+      "scrollable": 14,
+      "covered": [],
+      "legacyTotal": 116,
+      "legacyCovered": 0
+    },
+    "1000": {
+      "total": 130,
+      "offViewport": 14,
+      "unreachable": [],
+      "scrollable": 14,
+      "covered": [],
+      "legacyTotal": 116,
+      "legacyCovered": 0
+    },
+    "1040": {
+      "total": 130,
+      "offViewport": 13,
+      "unreachable": [],
+      "scrollable": 13,
+      "covered": [],
+      "legacyTotal": 117,
+      "legacyCovered": 0
+    },
+    "1080": {
+      "total": 130,
+      "offViewport": 13,
+      "unreachable": [],
+      "scrollable": 13,
+      "covered": [],
+      "legacyTotal": 117,
+      "legacyCovered": 0
+    },
+    "1120": {
+      "total": 130,
+      "offViewport": 13,
+      "unreachable": [],
+      "scrollable": 13,
+      "covered": [],
+      "legacyTotal": 117,
+      "legacyCovered": 0
+    },
+    "1160": {
+      "total": 130,
+      "offViewport": 12,
+      "unreachable": [],
+      "scrollable": 12,
+      "covered": [],
+      "legacyTotal": 118,
+      "legacyCovered": 0
+    },
+    "1200": {
+      "total": 130,
+      "offViewport": 12,
+      "unreachable": [],
+      "scrollable": 12,
+      "covered": [],
+      "legacyTotal": 118,
+      "legacyCovered": 0
+    },
+    "1240": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1280": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1320": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1360": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1400": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1440": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1480": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1520": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1560": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1600": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1640": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1680": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1720": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1760": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1800": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1840": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1880": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    },
+    "1920": {
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "scrollable": 10,
+      "covered": [],
+      "legacyTotal": 120,
+      "legacyCovered": 0
+    }
+  },
+  "freshLoadCrosscheck": {
+    "429": {
+      "total": 123,
+      "offViewport": 83,
+      "unreachable": [],
+      "scrollable": 83,
+      "covered": [],
+      "legacyTotal": 40,
+      "legacyCovered": 0
+    },
+    "430": {
+      "total": 123,
+      "offViewport": 83,
+      "unreachable": [],
+      "scrollable": 83,
+      "covered": [],
+      "legacyTotal": 40,
+      "legacyCovered": 0
+    },
+    "479": {
+      "total": 123,
+      "offViewport": 81,
+      "unreachable": [],
+      "scrollable": 81,
+      "covered": [],
+      "legacyTotal": 42,
+      "legacyCovered": 0
+    },
+    "480": {
+      "total": 123,
+      "offViewport": 81,
+      "unreachable": [],
+      "scrollable": 81,
+      "covered": [],
+      "legacyTotal": 42,
+      "legacyCovered": 0
+    },
+    "519": {
+      "total": 123,
+      "offViewport": 80,
+      "unreachable": [],
+      "scrollable": 80,
+      "covered": [],
+      "legacyTotal": 43,
+      "legacyCovered": 0
+    },
+    "520": {
+      "total": 123,
+      "offViewport": 80,
+      "unreachable": [],
+      "scrollable": 80,
+      "covered": [],
+      "legacyTotal": 43,
+      "legacyCovered": 0
+    },
+    "619": {
+      "total": 123,
+      "offViewport": 76,
+      "unreachable": [],
+      "scrollable": 76,
+      "covered": [],
+      "legacyTotal": 47,
+      "legacyCovered": 0
+    },
+    "620": {
+      "total": 123,
+      "offViewport": 76,
+      "unreachable": [],
+      "scrollable": 76,
+      "covered": [],
+      "legacyTotal": 47,
+      "legacyCovered": 0
+    },
+    "679": {
+      "total": 123,
+      "offViewport": 74,
+      "unreachable": [],
+      "scrollable": 74,
+      "covered": [],
+      "legacyTotal": 49,
+      "legacyCovered": 0
+    },
+    "680": {
+      "total": 123,
+      "offViewport": 74,
+      "unreachable": [],
+      "scrollable": 74,
+      "covered": [],
+      "legacyTotal": 49,
+      "legacyCovered": 0
+    },
+    "849": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "850": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "897": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "898": {
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "scrollable": 71,
+      "covered": [],
+      "legacyTotal": 52,
+      "legacyCovered": 0
+    },
+    "899": {
+      "total": 130,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "legacyTotal": 115,
+      "legacyCovered": 0
+    },
+    "900": {
+      "total": 130,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "legacyTotal": 115,
+      "legacyCovered": 0
+    },
+    "901": {
+      "total": 130,
+      "offViewport": 15,
+      "unreachable": [],
+      "scrollable": 15,
+      "covered": [],
+      "legacyTotal": 115,
+      "legacyCovered": 0
+    }
+  },
+  "checks": {
+    "the-sweep-covers-86-widths": {
+      "ok": true,
+      "detail": {
+        "dense": 49,
+        "coarse": 40
+      }
+    },
+    "no-width-has-an-off-viewport-unreachable-control": {
+      "ok": true,
+      "detail": {}
+    },
+    "every-width-actually-exercised-the-off-viewport-branch": {
+      "ok": true,
+      "detail": []
+    },
+    "the-new-classification-added-exactly-the-off-viewport-controls": {
+      "ok": true,
+      "detail": {}
+    },
+    "the-legacy-continue-was-blind-at-every-width": {
+      "ok": true,
+      "detail": []
+    },
+    "no-width-has-a-covered-control": {
+      "ok": true,
+      "detail": {}
+    },
+    "the-17-fresh-loads-agree-with-the-resized-page": {
+      "ok": true,
+      "detail": []
+    }
+  },
+  "ok": true,
+  "checkCount": 7,
+  "failures": []
+}

@@ -166,6 +166,23 @@ def run_state(browser: Any, v: Verifier, label: str, which: str,
                 detail=r["total"])
         v.check(f"{tag}:no-control-is-covered", not r["unexpected"],
                 detail=[(b["label"], b["hitLabel"], b["box"]) for b in r["unexpected"]])
+        # Batch 627: the census used to `continue` past any control whose centre
+        # was outside the viewport, so a popover hanging off the bottom of the
+        # screen was invisible to it rather than failing it.  That is how batch
+        # 626's two defects survived 619-625.  The geometric-boundary half is
+        # now enforced here, for the desk's own controls rather than 626's
+        # overlays.
+        v.check(f"{tag}:no-control-is-off-viewport-and-unreachable",
+                not r["offViewportUnreachable"],
+                detail=[(b["label"], b["box"], b["data"])
+                        for b in r["offViewportUnreachable"]])
+        # non-vacuity: the branch above has to have actually run.  A desk with
+        # no off-viewport control at all would make the check pass for the wrong
+        # reason, and that is exactly how a silent `continue` looks.
+        v.check(f"{tag}:the-off-viewport-branch-actually-ran",
+                len(r["offViewportItems"]) > 0,
+                detail=f"{len(r['offViewportItems'])} off-viewport, "
+                       f"{len(r['offViewportScrollable'])} scrollable")
         v.check(f"{tag}:the-only-possible-block-is-帮助",
                 all(b["label"] in KNOWN_BLOCKED for b in r["covered"]),
                 detail=[b["label"] for b in r["covered"]])

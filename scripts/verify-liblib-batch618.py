@@ -249,8 +249,20 @@ def run_mobile(browser: Any) -> dict[str, Any]:
             detail={"clipped": clipped_labels, "covered": still_buried})
     v.result["mobile:clipped"] = {"count": len(r["clipped"]),
                                   "labels": clipped_labels[:12]}
-    v.check("mobile:clipped-count-is-explained", len(r["clipped"]) <= 20,
-            detail=len(r["clipped"]))
+    # Batch 627 迁移（不是放宽阈值）。`clipped` 从此装了两类东西：
+    #   ① 窗口**内**、被自己面板的 overflow 滚下去的 —— 这正是 618 当初在数的，
+    #      少是好，所以阈值 20 继续按这一类算；
+    #   ② 中心**整个在窗口外**、只能靠横向滚窄屏工具条那 776px 才见得到的 ——
+    #      390 下有 84 枚。627 之前它们被普查的 `continue` 静默丢弃，所以从来
+    #      不进这个计数。
+    # 把 20 抬到 100 能让这一条变绿，但那等于放弃 618 真正想守的东西
+    # （「窄屏没有把一大堆控件藏到滚动区后面」），所以按原义取数、新类别单记。
+    in_window_clipped = [b for b in r["clipped"] if not b.get("offViewport")]
+    v.check("mobile:clipped-count-is-explained",
+            len(in_window_clipped) <= 20,
+            detail={"inWindowClipped": len(in_window_clipped),
+                    "offViewportScrollable": len(r["offViewportScrollable"]),
+                    "totalClipped": len(r["clipped"])})
 
     # the reserve contract
     tb = v.page.evaluate(TOOLBAR_JS)

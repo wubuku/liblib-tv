@@ -245,13 +245,24 @@ AUDIT_JS = """(overlays) => {
     // under whatever it dims, so it never enters the census
     if (isScrim(el)) { scrims.push({label: label(el), box: b}); continue; }
     const cx = b[0] + b[2] / 2, cy = b[1] + b[3] / 2;
-    if (cx < 0 || cy < 0 || cx > innerWidth || cy > innerHeight) continue;
-    const hit = document.elementFromPoint(cx, cy);
+    // Batch 627: a control whose centre sits outside the viewport used to be
+    // dropped right here with a bare `continue`, which is precisely why the
+    // census could not see batch 626's two popovers hanging off the bottom of
+    // the screen — they were not "covered", they were never enumerated. It
+    // also meant the census silently shrank its own denominator at narrow
+    // widths, where most of the toolbar legitimately sits outside the window.
+    // Classify instead, and let the existing `isClipped` decide the rest:
+    // inside a clipping ancestor means "scroll to reach it" (record, not a
+    // defect — that is batch 621's 776px narrow toolbar), while outside every
+    // clipping ancestor means genuinely unreachable, and that lands in
+    // `covered` like any other casualty.
+    const offViewport = cx < 0 || cy < 0 || cx > innerWidth || cy > innerHeight;
+    const hit = offViewport ? null : document.elementFromPoint(cx, cy);
     const own = !!(hit && (hit === el || el.contains(hit) || hit.contains(el)));
     const panel = own ? null : covering(el, hit);
     const clipped = !own && !panel && isClipped(el);
     items.push({label: label(el), tag: el.tagName.toLowerCase(),
-      box: b, z: s.zIndex, own, clipped,
+      box: b, z: s.zIndex, own, clipped, offViewport,
       panel: panel,
       hitLabel: hit ? label(hit) : null,
       hitTag: hit ? hit.tagName.toLowerCase() : null,
@@ -268,6 +279,14 @@ AUDIT_JS = """(overlays) => {
           // `covered` keeps its batch-617 meaning: a real defect.  Batch 619
           // narrowed it by moving "behind an open transient overlay" out.
           covered: failed.filter((i) => !i.clipped && !i.panel),
+          // Batch 627: the geometric-boundary half.  `covered` already counts an
+          // off-viewport control as a defect once `isClipped` says nothing can
+          // scroll it into view; these buckets make the split legible instead
+          // of leaving "it vanished" as the only record.
+          offViewportItems: items.filter((i) => i.offViewport),
+          offViewportUnreachable: failed.filter(
+            (i) => i.offViewport && !i.clipped && !i.panel),
+          offViewportScrollable: failed.filter((i) => i.offViewport && i.clipped),
           coveredByPanel,
           panelAttribution: Array.from(byPanel.entries()),
           clipped: failed.filter((i) => i.clipped),
