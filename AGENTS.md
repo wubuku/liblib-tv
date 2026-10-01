@@ -86,6 +86,51 @@ python3 scripts/verify-docs.py
 5. Run the relevant Playwright script and `npm run check`.
 6. For shared rules or skills, run the required sync script.
 
+### 6.1 Committing in this shared master workspace
+
+Several agents work in the same `master` working tree at the same time. Never
+discard anyone else's edits and never use `git stash` — it yanks their work out
+from under them.
+
+**Never use `git commit -- <pathspec>` to isolate your commit.** It does *not*
+commit the index; it commits the **current working-tree content** of those paths,
+so it silently sweeps in whatever uncommitted work a parallel agent has in them.
+This was actually done here once: a `git commit -- <paths>` intended to commit 10
+small files also swallowed a parallel agent's ~240 lines of unrelated in-flight
+work in two of them.
+
+Correct sequence:
+
+```bash
+git add -- <only your paths>          # stage exactly your own files
+git diff --cached --name-only         # verify the index, immediately before
+git diff --cached --numstat           # per-file line counts: a number far
+                                      # larger than your change means you
+                                      # staged someone else's work
+git commit                            # plain commit — commits the index
+```
+
+The `numstat` check is the one that catches it. A ring-shadow tweak should be
+`3 5`; if you see `193 12`, stop and re-stage.
+
+Recovery, if you already committed someone else's work and have **not** pushed:
+`git reset --mixed HEAD~1` (restores their edits to the working tree, unstaged),
+stage only your own hunks, then plain `git commit`. If you have already pushed,
+do not rewrite shared history — leave it and tell them.
+
+Other shared-workspace rules:
+
+- A batch/section number is not reserved by asking; two agents will pick the same
+  one. Put a topic suffix on any new verifier (`verify-jimeng-batchNNN-topic.py`)
+  and re-check for collisions at the moment you create the file.
+- Keep per-batch evidence in its own `docs/research/<topic>-batchNNN-<date>/`
+  directory so concurrent batches cannot collide.
+- The dev server on port 4317 is shared and gets restarted by other agents:
+  require **3 consecutive HTTP 200s** before trusting a run.
+- Cross-site geometry comparisons must normalize zoom first. Measure the
+  `.react-flow__viewport` transform and divide by it, or the default ~73% zoom
+  turns a 36px element into a phantom 26px "regression".
+
 ## 7. Documentation Maintenance
 
 - New formal docs belong in `docs/` and must be linked from `docs/index.md`.
