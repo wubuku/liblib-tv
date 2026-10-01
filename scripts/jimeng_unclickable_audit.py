@@ -1314,6 +1314,53 @@ def main() -> int:
     #    探针改用**矩形**当层身份（开前/开后差分拿矩形，单次打开内稳定）。
     #    `src_identified_by` 把这件事写明，不假装有锚点。
     SOURCE_BASELINE = {
+        # ══ 批 850：生成面板那 4 个下拉（源站**首次**取到样）══════════════
+        # 848 的范围限制写着「源站这 4 个下拉从未被鼠标打开过（只 dump 了
+        # 工具条按钮）」，849 把它们从 kb_not_sampled 里捞出来之后就必须来取样，
+        # 否则那 9 层永远只能记「没取过样」。
+        #
+        # 取样（探针 850，登录态，**视口 1512×1200**——见下面的范围说明）：
+        #   · 认层靠 `role`：这 4 层**都没有 testid**，`role` 是
+        #     `listbox` ×2 / `dialog` ×2，class `animate-none transition-none
+        #     absolute z-…`。847 定过「无 testid 用矩形认」，这里更进一步：
+        #     role 更稳，所以给层打了 `data-probe850` 临时标记。
+        #   · ① **四个全都开层即接管焦点**（焦点落在层内的 BUTTON 上；
+        #     「时长」那个落在 SPAN 滑块 thumb 上——**非可聚焦元素**）。
+        #   · ② **四个都不困 Tab**（第 1 / 3 / 1 / 2 次逃出，且**层都还在**）。
+        #     ⚠️ 这里必须区分「焦点逃出」与「层自己关了」：源站这些下拉会
+        #     **失焦即关**，不查层还在不在就会把后者写成前者。
+        #   · ③ 方向键 **没测到** —— 见 `arrows_move: None` 下面的说明。
+        #   · ④ **Esc 关闭层但焦点不回触发器**（落到节点本体 / `添加参考`），
+        #     与分享面板同病（源站 a11y 失手），**照抄，不修**。
+        #
+        # ⚠️ 视口 1512×1200 而非惯例的 1512×950：源站生成面板挂在节点**下方**
+        # 约 340px，950 高的视口里「选择模型」触发器落在 y≈987，**点不到**
+        # （`click` 10s 超时），另外三个触发器连 `count` 都是 0。抬视口只影响
+        # 几何，这四条键盘分档与视口无关；**本批的数字不进几何结论**。
+        "gen-model-listbox": {
+            "src_tid": "(无 testid)", "src_kind": "listbox",
+            "src_identified_by": "role=listbox + 矩形 400×384 @[783,752]（探针 850）",
+            "takes_focus_at_open": True, "traps_tab": False,
+            "arrows_move": None, "esc_returns_to_trigger": False,
+            "src": "jimeng_probe850_genpanel_kb.py（登录态，视口 1512×1200）"},
+        "gen-video-size-listbox": {
+            "src_tid": "(无 testid)", "src_kind": "dialog",
+            "src_identified_by": "role=dialog + 矩形 334×292 @[867,844]（探针 850）",
+            "takes_focus_at_open": True, "traps_tab": False,
+            "arrows_move": None, "esc_returns_to_trigger": False,
+            "src": "jimeng_probe850_genpanel_kb.py（登录态，视口 1512×1200）"},
+        "gen-mode-listbox": {
+            "src_tid": "(无 testid)", "src_kind": "listbox",
+            "src_identified_by": "role=listbox + 矩形 200×84 @[1041,1052]（探针 850）",
+            "takes_focus_at_open": True, "traps_tab": False,
+            "arrows_move": None, "esc_returns_to_trigger": False,
+            "src": "jimeng_probe850_genpanel_kb.py（登录态，视口 1512×1200）"},
+        "gen-duration-listbox": {
+            "src_tid": "(无 testid)", "src_kind": "dialog",
+            "src_identified_by": "role=dialog + 矩形 400×100 @[1006,1036]（探针 850）",
+            "takes_focus_at_open": True, "traps_tab": False,
+            "arrows_move": None, "esc_returns_to_trigger": False,
+            "src": "jimeng_probe850_genpanel_kb.py（登录态，视口 1512×1200）"},
         "jimeng-search-overlay": {
             "src_tid": "canvas-feature-panel", "src_kind": "dialog",
             "src_identified_by": "testid",
@@ -1405,6 +1452,20 @@ def main() -> int:
             "只有 视频 / 文本×3 / 时间线 / 导演台 六个（探针 848）。"
             "源站图片节点的工具条菜单无从取样。",
     }
+    # ⚠️ 音频生成面板那 5 个下拉：850 给**视频**生成面板的 4 个下拉取到了样
+    #    （接管焦点 / 不困 Tab / Esc 不归位），这 5 个是**同一类**层，但
+    #    **本批没有实测**。按 847 定下的规矩，「同类」**不等于**「同行为」——
+    #    拿视频那 4 个的分档去判音频这 5 个，就是 847 明令禁止的
+    #    「按推测判缺陷」。所以它们仍记 not_sampled，只是把「同类已取样」
+    #    这条**线索**写进 why，好让下一批知道从哪下手。
+    for _t in ("audio-music-model-listbox", "audio-music-duration-listbox",
+               "audio-voice-model-listbox", "audio-gen-mode-listbox",
+               "audio-all-voices-listbox"):
+        NOT_SAMPLED[_t] = (
+            "**没取过样**：源站这一层在探针 850 里没被打开过。**线索**：同属"
+            "生成面板的下拉，而视频那 4 个（探针 850）实测是「开层即接管焦点 / "
+            "不困 Tab / Esc 不归位」—— 但同类**不等于**同行为，847 明令不许"
+            "按推测判缺陷，所以本层仍不下结论。下一批直接照 850 的路子取。")
     kb_no_initial, kb_escaped, kb_arrow_dead = [], [], []
     kb_judged, kb_not_sampled = [], []
     for r in kb_rows:
@@ -1419,8 +1480,9 @@ def main() -> int:
         if not base:
             kb_not_sampled.append({
                 "state": r.get("state"), "layer": tid,
-                "why": "源站这一层**没取过样**（12 个浮层里源站只对照了 3 个，"
-                       "其中 1 个还是同类层）⇒ 源站行为未知，不许按推测判缺陷。"})
+                "why": "源站这一层**没取过样**（849 补覆盖面之后，探到的层里"
+                       "只有这 7+4 层在源站取过键盘行为）⇒ 源站行为未知，"
+                       "不许按推测判缺陷。"})
             continue
         kb_judged.append(tid)
         at_open = r.get("focus_at_open") or {}

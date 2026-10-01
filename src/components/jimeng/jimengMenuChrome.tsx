@@ -180,6 +180,40 @@ export interface MenuKeyboardOpts {
   returnFocusRef?: RefObject<HTMLElement | null>;
 }
 
+/**
+ * 层**挂载即接管焦点**（batch 850）。
+ *
+ * 源站实测（探针 850，登录态，视口 1512×1200）：生成面板那 4 个下拉
+ * —— `gen-model-listbox` / `gen-video-size-listbox` / `gen-mode-listbox` /
+ * `gen-duration-listbox` —— **开层全部立刻把焦点移进层里**（分别落在
+ * 第一个 option 的 BUTTON、`16:9`、唯一项、以及滑块 thumb）。焦点**留在触发器上**
+ * 是不符合源站的：键盘用户点开下拉之后按方向键/Enter，事件还挂在触发器上，
+ * 第一下键盘多半什么也没发生。
+ *
+ * 为什么不给 `useMenuKeyboard` 加个开关、而是单开一个 hook：这 4 个下拉
+ * **没有**用 `useMenuKeyboard`（它们是一次性的 `open === "…"` 条件渲染，
+ * 方向键那项源站**至今没取到样**，所以不接漫游 tabindex 那一套）。
+ * 给它们硬接整只 hook 会顺手引入一堆**没有源站依据**的行为。
+ *
+ * 依赖用 `[active]` 而不是 `[]`：层是条件渲染的，挂载那一刻 `active`
+ * 刚从 false 翻成 true，此时 `ref.current` 已经指向真实的层节点；用 `[]`
+ * 的话首次渲染时层还没挂载，focus 会落空。
+ */
+export function useTakeFocusAtOpen(
+  ref: RefObject<HTMLElement | null>,
+  active: boolean,
+  itemSelector = 'button:not([disabled]),[role="option"],[role="menuitem"],'
+    + '[tabindex]:not([tabindex="-1"]),input:not([disabled])',
+) {
+  useEffect(() => {
+    if (!active) return;
+    const el = ref.current?.querySelector<HTMLElement>(itemSelector);
+    /* 层里没有可聚焦项时**不动**焦点：留在触发器上好过把焦点丢给 body ——
+       后者会让键盘用户彻底不知道自己在哪。 */
+    if (el) el.focus();
+  }, [active, itemSelector, ref]);
+}
+
 export function useMenuKeyboard<T extends HTMLElement = HTMLDivElement>(
   opts: MenuKeyboardOpts = {},
 ) {

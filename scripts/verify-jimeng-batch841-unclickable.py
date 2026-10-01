@@ -68,6 +68,16 @@ def check(name: str, ok: bool, detail: str = "") -> None:
 def main() -> int:
     env = dict(os.environ)
     env["SNAP_OUT"] = str(OUT)
+    # ⚠️⚠️ 批 850 加：**先删掉上一次的输出**。
+    #    原来直接跑审计、然后 `if OUT.exists(): 读它`。可审计一旦中途崩
+    #    （dev server 正在重编译、页面 30s 没就绪……），OUT 就**留在原地**，
+    #    verifier 读到**上一轮的数据**却拿它当本轮结论继续判。
+    #    850 实测踩到：审计崩了，verifier 拿着旧 JSON 报
+    #    「源站基线表里 7 层」（实际已 11 层）+ 三条「打印行里根本没有这句」，
+    #    看着像新改动把判据搞坏了，其实是**读了旧数据**。
+    #    陈旧的数据比没有数据更坏：它看起来是结论。
+    if OUT.exists():
+        OUT.unlink()
     r = subprocess.run([sys.executable, str(AUDIT)], capture_output=True,
                        text=True, env=env, cwd=str(ROOT), timeout=600)
     out = (r.stdout or "") + (r.stderr or "")
@@ -77,6 +87,10 @@ def main() -> int:
             data = json.loads(OUT.read_text(encoding="utf-8"))
         except Exception as e:  # noqa: BLE001
             data = {"_parse_error": str(e)}
+    else:
+        print(f"!! 审计没写出 {OUT}（rc={r.returncode}）——"
+              f"**不许拿旧数据当本轮结果**。审计输出末尾：\n"
+              + "\n".join(out.splitlines()[-12:]))
     states = data.get("states", [])
     real = data.get("confirmed", [])
     by_modal = data.get("by_modal", [])
@@ -527,6 +541,87 @@ def main() -> int:
           "60 的余量太小会 flaky）",
           bool(_mt) and int(_mt.group(1)) >= 120,
           f"上限={_mt.group(1) if _mt else '?'}")
+
+    # ── J. 批 850：生成面板 4 个下拉的源站基线 ───────────────────────────
+    #    848 的范围限制是「源站这 4 个下拉从未被鼠标打开过」；849 把复刻侧
+    #    的键盘覆盖面补到 21 层之后，它们就成了 9 个 `kb_not_sampled` 里的
+    #    4 个。这一批去源站**打开**了它们并取到样，于是：
+    #      · 基线表 7 → 11 层
+    #      · 判据从「没测过」变成「确认缺陷」：复刻这 4 层**开层不接管焦点**
+    #      · 修完（`useTakeFocusAtOpen`）4 条清零
+    print("\n— J. 生成面板 4 个下拉：源站首次取到样 —")
+    GEN4 = ["gen-model-listbox", "gen-video-size-listbox",
+            "gen-mode-listbox", "gen-duration-listbox"]
+    check("J.1 基线表里**必须有**这 4 层（848 记的是「从未被打开过」）",
+          all(t in base for t in GEN4),
+          f"表里 {len(base)} 层；4 个 gen-* 在不在："
+          f"{[t for t in GEN4 if t in base]}")
+    check("J.2 每一项都写明**取样出处**与**层是怎么认出来的**"
+          "（这 4 层源站**没有 testid**，靠 role + 矩形）",
+          all(base.get(t, {}).get("src") and base.get(t, {}).get("src_identified_by")
+              and "无 testid" in base.get(t, {}).get("src_tid", "")
+              for t in GEN4),
+          "; ".join(f"{t}={base.get(t, {}).get('src_identified_by', '')[:30]}"
+                    for t in GEN4))
+    # ⚠️ 方向键这一项**没测到**（探针 850 在它上面栽了六次，见 README §68）。
+    #    `None` 是 falsy ⇒ 不产生 finding、也不当通过。这一条钉住「不许
+    #    偷偷把它填成 True/False」—— 填哪个都是编。
+    check("J.3 方向键一项是 `None`（**没测到**），不许被填成 True/False",
+          all(base.get(t, {}).get("arrows_move", "MISSING") is None
+              for t in GEN4),
+          f"{ {t: base.get(t, {}).get('arrows_move', 'MISSING') for t in GEN4} }")
+    # 源站这 4 层：接管焦点 / 不困 Tab / Esc 不归位（后两条照抄源站 a11y 失手）
+    check("J.4 源站这 4 层实测是「接管焦点 + 不困 Tab + Esc 不归位」",
+          all(base.get(t, {}).get("takes_focus_at_open") is True
+              and base.get(t, {}).get("traps_tab") is False
+              and base.get(t, {}).get("esc_returns_to_trigger") is False
+              for t in GEN4),
+          f"{ {t: (base.get(t, {}).get('takes_focus_at_open'), base.get(t, {}).get('traps_tab'), base.get(t, {}).get('esc_returns_to_trigger')) for t in GEN4} }")
+    # 音频那 5 层**不许**跟着升级：同属生成面板下拉，但本批没实测。
+    # 847 明令「按推测判缺陷」是禁止的 —— 「同类」不等于「同行为」。
+    AUD5 = ["audio-music-model-listbox", "audio-music-duration-listbox",
+            "audio-voice-model-listbox", "audio-gen-mode-listbox",
+            "audio-all-voices-listbox"]
+    ns_layers = {n.get("layer") for n in kb_ns}
+    check("J.5 音频那 5 层**仍留在** `kb_not_sampled`"
+          "（同属生成面板下拉，但本批**没有实测**；同类 ≠ 同行为）",
+          all(t not in base and t in ns_layers for t in AUD5),
+          f"在基线表里的：{[t for t in AUD5 if t in base]}；"
+          f"在 not_sampled 里的：{[t for t in AUD5 if t in ns_layers]}")
+    # 产品侧：修法必须是**共享**的一个 hook，且四个下拉都接上了
+    chrome = (ROOT / "src/components/jimeng/jimengMenuChrome.tsx")
+    genp = (ROOT / "src/components/jimeng/JimengGenPanel.tsx")
+    csrc = chrome.read_text(encoding="utf-8") if chrome.exists() else ""
+    gsrc = genp.read_text(encoding="utf-8") if genp.exists() else ""
+    check("J.6 修法收成**一个共享 hook** `useTakeFocusAtOpen`"
+          "（不是四处各写一遍 —— 814 的教训就是「同一套值散在 7 个文件里」）",
+          "export function useTakeFocusAtOpen" in csrc)
+    check("J.7 四个下拉**都**接上了那个 hook（一个漏接就是漏一半）",
+          all(f"useTakeFocusAtOpen({v}" in gsrc
+              for v in ("modelBoxRef", "ratioBoxRef", "modeBoxRef", "durBoxRef")),
+          f"接上 {sum(1 for v in ('modelBoxRef','ratioBoxRef','modeBoxRef','durBoxRef') if f'useTakeFocusAtOpen({v}' in gsrc)}/4")
+    check("J.8 四个层都挂了对应的 ref（hook 拿不到节点就等于没接）",
+          all(f"ref={{{v}}}" in gsrc
+              for v in ("modelBoxRef", "ratioBoxRef", "modeBoxRef", "durBoxRef")))
+    # 内联 JS 语法自检：850 里同一个错犯了三次，都是 JS 语法错当场崩
+    checker = ROOT / "scripts/jimeng_probe_js_syntax_check.py"
+    check("J.9 有**内联 JS 语法自检**脚本（JS 语法错 py_compile 抓不到，"
+          "却会让探针当场崩、把已量好的结果一起带走）",
+          checker.exists()
+          and "node" in checker.read_text(encoding="utf-8"),
+          f"{checker.name} 存在={checker.exists()}")
+    # 护栏不能太宽：850 第一版 `startswith("生成")` 把「生成模式」也拦了。
+    # ⚠️ 护栏在**探针**里（`asrc` 是审计的源码）—— 第一版查错了文件，
+    #    判据自己 FAIL 了一次。查判据所在的文件之前先确认它在哪。
+    probe = ROOT / "scripts/jimeng_probe850_genpanel_kb.py"
+    psrc = probe.read_text(encoding="utf-8") if probe.exists() else ""
+    check("J.10 付费护栏**按等值**拦，不按前缀（否则「生成模式」这种"
+          "**控件描述**会被当成付费按钮，「测不到」被印成「不许测」）",
+          re.search(r"BILLED_EXACT\s*=\s*\(", psrc) is not None
+          and re.search(r"if t in BILLED_EXACT or base in BILLED_EXACT", psrc)
+          is not None,
+          f"{probe.name}: BILLED_EXACT="
+          f"{'在' if 'BILLED_EXACT' in psrc else '不在'}")
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

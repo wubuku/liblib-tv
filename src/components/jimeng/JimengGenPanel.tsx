@@ -22,6 +22,7 @@ import { NodeToolbar, Position, useReactFlow } from "@xyflow/react";
 import { useJimengStore } from "@/store/jimengStore";
 import { VipDiamond } from "@/components/jimeng/icons";
 import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
+import { useTakeFocusAtOpen } from "@/components/jimeng/jimengMenuChrome";
 
 /**
  * 引用 chip (Batch 792 SOURCE_FACT 2026-09-27: 选中画布节点后插入
@@ -110,6 +111,20 @@ export function JimengGenPanel({
      被盖住的选项（批 832 的 verifier 就是在这一步点了 30s 超时的）。
      这不是脚手架问题，是真缺陷。现在收成**一个** state。 */
   const [open, setOpen] = useState<"model" | "ratio" | "ref" | "dur" | null>(null);
+
+  /* 批 850 SOURCE_FACT（探针 850，源站登录态实测，视口 1512×1200）：
+     这四个下拉**开层全部立刻把焦点移进层里**（模型落在第一个 option、
+     尺寸落在 `16:9`、模式落在唯一项、时长落在滑块 thumb）。焦点留在
+     触发器上时，键盘用户点开之后按的第一下键事件还挂在触发器上。
+     `useTakeFocusAtOpen` 的说明见 jimengMenuChrome.tsx。 */
+  const modelBoxRef = useRef<HTMLDivElement>(null);
+  const ratioBoxRef = useRef<HTMLDivElement>(null);
+  const modeBoxRef = useRef<HTMLDivElement>(null);
+  const durBoxRef = useRef<HTMLDivElement>(null);
+  useTakeFocusAtOpen(modelBoxRef, open === "model");
+  useTakeFocusAtOpen(ratioBoxRef, open === "ratio");
+  useTakeFocusAtOpen(modeBoxRef, open === "ref");
+  useTakeFocusAtOpen(durBoxRef, open === "dur");
   const model = useJimengStore((s) => s.genModel);
   const setGenModel = useJimengStore((s) => s.setGenModel);
   // Batch 42: 比例/分辨率/数量 + 参考模式 + 时长 (SOURCE_FACT batch 42 提取)
@@ -459,6 +474,7 @@ export function JimengGenPanel({
                     // （与它自己的 aria-haspopup 一致），名字沿用既有值。
                     // 记为 OPEN_QUESTION —— 等哪天能在源站造出可判定的样本再定。
                     // data-testid 为批 832 补的锚点，与本条无关。
+                    ref={modelBoxRef}
                     data-testid="gen-model-listbox"
                   >
                     {MODELS.map((m) => (
@@ -519,6 +535,7 @@ export function JimengGenPanel({
                     role="dialog"
                     aria-label="视频尺寸选项"
                     // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                    ref={ratioBoxRef}
                     data-testid="gen-video-size-listbox"
                   >
                     {[
@@ -582,6 +599,7 @@ export function JimengGenPanel({
                        擅自改进源站缺陷是本项目明令禁止的。 */
                     aria-label="Reference mode options"
                     // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                    ref={modeBoxRef}
                     data-testid="gen-mode-listbox"
                   >
                     {["首尾帧", "全能参考"].map((opt) => (
@@ -631,6 +649,7 @@ export function JimengGenPanel({
                     role="dialog"
                     aria-label="Duration options"
                     // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                    ref={durBoxRef}
                     data-testid="gen-duration-listbox"
                   >
                     {["4s", "8s", "12s"].map((opt) => (
