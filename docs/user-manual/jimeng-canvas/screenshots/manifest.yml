@@ -270,7 +270,7 @@ screenshots:
     verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.10 当日实测事实绘制（框选→多选工具条→编组→组工具条→解除编组；背景色仅见于组工具条）'
     visible_text: 编组 / 解除编组 / 背景色 / 宫格布局 / 智能布局
     alt: 从框选到编组的三种状态示意：①框选多个节点时是多选工具条（N 节点/编组/布局/下载，无背景色）；②点击编组后出现组卡片「编组 1」，工具条变为解除编组/布局/背景色；③解除编组后成员恢复独立并保持选中，回到①的状态。
-    sha256: 1d80c7353be891a3e912ef808b12a601b1ebecd90f95285588ae5ee18d8b14d1
+    sha256: 776f00a9ddd68cd5b2325b86f58ae57a05f72f5d222bf092a7306794f2202856
 
   - file: screenshots/subject-node.png
     task_id: subject-node
@@ -365,7 +365,7 @@ screenshots:
     captured_at: 2026-10-01T07:40:00+08:00
     verified_locator: '⌘G 编组后状态行 7 nodes, 0 edges, 1 selected，组卡片「编组 1」四角控制点'
     visible_text: 节点 7 已保存 / 编组 1 / 解除编组 布局∨ 背景色 ⤓ / 00:02 / 00:06
-    alt: 编组卡片「编组 1」：上方组工具条为 解除编组 / 布局 / 背景色 三项（2026-10-01 复核：组工具条没有「下载」），组卡片四角各有一个圆形控制点，成员节点整体被圈在组内；顶栏节点计数为 7（组本身计入）
+    alt: 编组卡片「编组 1」：本图这一组上方的组工具条为 解除编组 / 布局 / 背景色 三项，组卡片四角各有一个圆形控制点，成员节点整体被圈在组内；顶栏节点计数为 7（组本身计入）
     sha256: ec8c3847ed4e16600b78c04ff1b7ad79b8240ce1471c3b18870a2ecdcf911ff0
 
   - file: screenshots/28-timeline-clips.png
