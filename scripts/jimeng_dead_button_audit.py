@@ -40,6 +40,18 @@ KNOWN_BENIGN = {
     "topbar-left": "左簇容器",
     "topbar-right": "右簇容器",
     "canvas-fixed-toolbar": "工具栏容器",
+    # 批 821: 上面这份清单**漏登记**了本轮新扫到的 4 个浮层容器与 3 个非交互
+    # 文本/输入节点。此前它们只是被 real_dead 的 `tag in (button,a)` 兜住没
+    # 进缺陷结论，但仍会以 DEAD 打印出来 —— 于是"容器"和"死按钮"两种结论
+    # 在同一份输出里混着，读的人得自己再判一次。清单既然声称显式列出，就补齐。
+    "topbar-share-panel": "分享面板容器（role=dialog），点它自己的留白不反应是对的",
+    "topbar-more-menu": "更多菜单容器，真正的两项是里面的 button",
+    "jimeng-search-overlay": "搜索浮层容器，点留白不反应是对的",
+    "jimeng-search-input": "搜索输入框本身，点击不改变状态（输入才有）",
+    "search-empty": "空态文案 <p>，不是控件",
+    "topbar-saved-status": "「已保存」状态文本 <span>，不是控件",
+    "tool-rail-separator": "工具栏分隔线 div",
+    "node-title-text": "节点标题文本 span，点它只是选中节点，判定要看 .selected",
 }
 
 # 探针**无法验证**（不是"没反应"，是判据伸不到那里）。单列出来，
@@ -58,6 +70,14 @@ UNVERIFIABLE = {
     "与 AI 对话": "活的。单独跑 wait=300ms 时 data-testid 集合发生变化；"
                   "审计循环里报它是因为前一轮自己把 AI 抽屉打开了，"
                   "抽屉(x1268-1668)正好盖住按钮(x1549-1667)，后续点击打在抽屉上",
+    # 批 821: 一组切换项里**永远有一个已经是激活态**，点它正确地什么都不该变 ——
+    # 和上面的「选择工具」是同一类，不是指纹不够宽。生成历史进态时默认停在
+    # 「全部」，所以四枚 chip 里恰好它被判 DEAD，另外三枚（图片/视频/音频）
+    # 因为切得动、被新加的 btn class 指纹正确认成活的。
+    # 换句话说：这一条不是"漏网"，是**切换组的固有性质**。
+    "全部": "生成历史进态时默认选中「全部」，点它正确地不改变任何状态；"
+            "复核：verify-jimeng-batch821.py E.1/E.3 先切到「图片」再点回「全部」，"
+            "断言选中 class 真的转移（两向都验过）",
 }
 
 LIST_JS = """() => {
@@ -110,6 +130,18 @@ FINGERPRINT_JS = """() => {
       document.querySelectorAll('[role=dialog],[role=menu],[role=status],[role=tooltip],input,textarea')
     ).map(d => (d.getAttribute('data-testid') || d.getAttribute('aria-label') || d.tagName)
       + ':' + (d.innerText || d.value || '').slice(0, 24)).join('~'),
+    // 批 821: 连线数与小地图是否在场。此前两者都不在指纹里，于是
+    // 「小地图」「显示连线」这两个**确实接了**的开关被判 DEAD ——
+    // 「我没检测到」不等于「事实如此」。
+    edges: Array.from(document.querySelectorAll('.react-flow__edge')).length,
+    minimap: document.querySelectorAll('.react-flow__minimap').length,
+    // 批 821: 控件**自身**的选中态。有一类按钮点了只改自己的 class / 下划线
+    // （生成历史的全部/图片/视频/音频 chip、底dock 的工具切换…），
+    // 页面别处毫无变化，指纹就看不出。把每个 button 的 label→class 收进来，
+    // 这类"toggle 只改自己"就变成可观测的。
+    btn: Array.from(document.querySelectorAll('button'))
+      .map(b => ((b.getAttribute('aria-label') || b.innerText || '').trim().slice(0, 16))
+                + ':' + (b.className || '').slice(0, 70)).join('|'),
     // 挂载了什么：抽屉/小地图/面板都带 data-testid，统计它比逐个 selector 稳
     tids: Array.from(document.querySelectorAll('[data-testid]'))
       .map(e => e.getAttribute('data-testid')).sort().join(','),
@@ -134,12 +166,50 @@ STATES: list[tuple[str, object, set[str]]] = [
     ("account-menu",
      'page.locator(\'button[aria-label="用户菜单"]\').click(); page.wait_for_timeout(600)',
      {"canvas-user-menu-trigger"}),
+    # 批 821: 顶栏其余浮层。账号菜单那 4 个真死按钮被抓出来之后（批 820），
+    # 同一类问题必须问一遍：还有哪些顶栏浮层从来没进过普查。
+    # 实测几何：更多 200×84 / 搜索 242×95 / 生成历史 380×199 / 分享 400×251。
+    ("more-menu",
+     'page.locator(\'[aria-label="更多"]\').first.click(); page.wait_for_timeout(600)',
+     {"canvas-more-trigger"}),
+    ("search",
+     'page.locator(\'[aria-label="搜索"]\').first.click(); page.wait_for_timeout(600)',
+     {"canvas-panel-launcher"}),
+    ("history",
+     'page.locator(\'[aria-label="生成历史"]\').first.click(); page.wait_for_timeout(700)',
+     {"canvas-history-launcher"}),
+    ("share",
+     'page.locator(\'[aria-label="分享"]\').first.click(); page.wait_for_timeout(700)',
+     {"canvas-share-trigger"}),
 ]
 
 
 def enter_state(page, code) -> None:
     if code:
         exec(code, {"page": page})  # noqa: S102 - 普查脚本内部固定字面量，非外部输入
+
+
+def fingerprint(page) -> str:
+    """取一次指纹，**导航中重试**。
+
+    批 821: 上一批的普查跑了 20 分钟后整个崩在
+        before = page.evaluate(FINGERPRINT_JS)
+        Error: Execution context was destroyed, most likely because of a navigation
+    根因不是判据，是**防御不对称**：`after` 那次读取包了导航判断（判成
+    NAVIGATED 继续跑），`before` 那次没包。前一项的整页导航若还在途中，下一
+    项的 before 就正好落在上下文销毁的窗口里 —— 崩掉的是**工具**，不是被测
+    页面。一个跑了 20 分钟的体检不该因为一次导航全废，所以 before 也走同一条
+    恢复路径：等 load 落定后重取一次。
+    """
+    for attempt in range(3):
+        try:
+            return page.evaluate(FINGERPRINT_JS)
+        except Error as exc:
+            if "destroyed" not in str(exc) and "navigat" not in str(exc).lower():
+                raise
+            page.wait_for_load_state("domcontentloaded")
+            page.wait_for_timeout(800 if attempt == 0 else 1500)
+    return page.evaluate(FINGERPRINT_JS)
 
 
 def main() -> int:
@@ -164,7 +234,7 @@ def main() -> int:
           items = [i for i in page.evaluate(LIST_JS) if i["tid"] not in skip_tids]
           scanned += len(items)
           for it in items:
-            before = page.evaluate(FINGERPRINT_JS)
+            before = fingerprint(page)
             try:
                 page.mouse.click(it["x"], it["y"])
                 # 220ms 不够：AI 抽屉这类带挂载过渡的面层在 220ms 时还没进 DOM，
@@ -222,8 +292,18 @@ def main() -> int:
             page.wait_for_timeout(90)
             # 批 820: 非基础态必须**重新进入**该态 —— 上面的复位把菜单关掉了，
             # 不重进的话后续项拿着旧坐标去点画布空白，全被判成 DEAD。
+            # 批 821: 这里也要抗导航。上一项若是整页锚点，导航可能仍在途中，
+            # 裸 enter_state 会跟 before 一样崩在同一处。
             if state_name != "base":
-                enter_state(page, enter)
+                try:
+                    enter_state(page, enter)
+                except Error as exc3:
+                    if "destroyed" not in str(exc3) and "navigat" not in str(exc3).lower():
+                        raise
+                    page.wait_for_load_state("domcontentloaded")
+                    page.goto(URL, wait_until="domcontentloaded")
+                    page.wait_for_timeout(2500)
+                    enter_state(page, enter)
         ctx.close()
         browser.close()
 
@@ -236,22 +316,39 @@ def main() -> int:
         else:
             dead.append(h)
     # 容器/祖先类的其余命中：祖先已是可点元素时不单独算缺陷
-    real_dead = [h for h in dead if h["tag"] in ("button", "a")]
+    # 批 821: 这里原本**只看 tag 不看 verdict**，于是 verdict=NAVIGATED 的
+    # <a> 返回首页也被算进「真死按钮」—— 上一轮输出把两个整页锚点印成
+    # `DEAD <a> al='返回首页'`，标题还报「真死按钮 3」。真实死按钮是 0。
+    # 一次导航恰恰**就是**状态变化（本文件批 820 注释里就是这么写的），
+    # 把它记成缺陷，等于把判据的立论自己扔了。打印那一行同样把 verdict
+    # 写死成 "DEAD"，所以光看控制台会被误导 —— 结论与它打印的字不符。
+    navigated = [h for h in dead if h.get("verdict") == "NAVIGATED"]
+    real_dead = [
+        h for h in dead
+        if h.get("verdict") == "DEAD" and h["tag"] in ("button", "a")
+    ]
+    other = [
+        h for h in dead
+        if h not in real_dead and h not in navigated
+    ]
 
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump({"scanned": scanned, "hits": hits}, f, ensure_ascii=False, indent=1)
 
     print(f"可点元素 {scanned} 个；无响应 {len(hits)} 个"
           f"（良性容器 {len(benign)}，探针无法验证 {len(unverifiable)}，"
+          f"整页导航 {len(navigated)}，非控件容器 {len(other)}，"
           f"真死按钮 {len(real_dead)}）")
     for h in unverifiable:
         print(f"  ?? 探针无法验证 al={h['al']!r} — {UNVERIFIABLE.get(h['al']) or UNVERIFIABLE.get(h['text'])}")
     for h in real_dead:
         print(f"  DEAD  <{h['tag']}> al={h['al']!r} text={h['text']!r} "
-              f"tid={h['tid'] or '-'} @{h['x']},{h['y']}")
-    for h in dead:
-        if h not in real_dead:
-            print(f"  (容器/代理命中，不算缺陷) tid={h['tid'] or '-'} text={h['text']!r}")
+              f"tid={h['tid'] or '-'} @{h['x']},{h['y']} state={h['state']}")
+    for h in navigated:
+        print(f"  NAV   <{h['tag']}> al={h['al']!r} tid={h['tid'] or '-'} "
+              f"@{h['x']},{h['y']} state={h['state']} —— 整页导航，不是死按钮")
+    for h in other:
+        print(f"  (容器/代理命中，不算缺陷) tid={h['tid'] or '-'} text={h['text']!r} state={h['state']}")
     print(f"明细已写入 {OUT}")
     return 1 if real_dead else 0
 

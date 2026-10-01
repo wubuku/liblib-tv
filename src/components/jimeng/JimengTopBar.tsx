@@ -384,6 +384,11 @@ export function JimengTopBar() {
           <JimengSharePanel
             canvasUrl={CANVAS_URL}
             onClose={() => setShareOpen(false)}
+            onCreateTeam={() => {
+              // 批 821：接会员弹窗（源站此处是全屏团队会员购买抽屉）
+              setShareOpen(false);
+              setMemberOpen(true);
+            }}
             onCopy={copyProject}
           />
         ) : null}
