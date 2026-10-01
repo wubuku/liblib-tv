@@ -390,6 +390,27 @@ project-id 与画布上下文已回填至第 1 节。**改动正文不需要登�
   **未 reset / 未 rebase / 未改写他人提交**。共享工作区新纪律：`git add` 后立刻提交，
   提交一律用显式路径 `git commit -- <paths...>`。详见 `AUDIT.md` 同批记录。
 
+### 2026-10-01（批次 19：Esc 语义全表 + agent 抽屉覆盖画布）
+
+- **新发现（用户可感知，此前全手册 0 处提及）**：「与 AI 对话」抽屉**覆盖在画布之上**
+  （实测 `aside` **400×696 @ x=868**），落进该区域的节点**接收不到点击**。
+  决定性对照实验：**同一坐标 (957,218)、节点位置未变**，抽屉开 → 命中
+  `H2[canvas-agent-session-heading]`、选中数 **0**；点 **收起** 后同一坐标命中
+  `DIV.video-node-empty`、选中数 **1**。被盖住的节点仍可从左侧露出的 **111px** 点中，
+  所以容易被误判为「节点失灵」。
+  → `ai-agent-drawer.md` 新增小节 + `90-troubleshooting.md` 新增症状 + 截图 `60`/`61`。
+- **⌘/ 从声明升级为实测**：两按两态 `关闭 → 打开 → 关闭`，与快捷键面板一致。
+- **Esc 语义全表**（逐项实测，写入 `90-troubleshooting.md`）：单选 / 多选 / 选中编组 ✅、
+  节点右键菜单（200×292）✅、空白右键菜单（240×172）✅、**底部缩放菜单 ✅（新测，
+  `aria-expanded` true→false）**、搜索/生成历史/项目面板 ✅；**小地图 ❌ 是唯一例外**。
+- **方法论留痕**：测「点被盖住的点」时忘了先取消选中，`selected` 恒为 1 导致实验无效，
+  修正为「拖动后立刻 Esc 再测」；另记 `String.replace` 只替换第一处导致浏览器端
+  `ReferenceError` 的坑。两条都进 `SOURCE_OBSERVATIONS.md` §3.36。
+- **质量门（当次输出，全部 exit=0）**：alt 审计 **68/68** 逐字一致、0 措辞冲突；
+  crosscheck 命中均为预期；gate-a；final（17 tasks / 28 Markdown / **68 images**）；
+  verify-docs（1215 Markdown files / 5308 local targets）；build-site（23 页 /
+  **64 截图** / 4 示意图 / 无 warn）。
+
 ## 12. 手册网站构建（2026-09-24）
 
 按 skill §9（TDCanvas 实战沉淀模式）为手册构建 VitePress 静态站点：

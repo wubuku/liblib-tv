@@ -773,3 +773,27 @@ screenshots:
     visible_text: 视频 1 / 视频 1 (2) / 2 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存. / 100%
     alt: 按 ⌘D 复制副本后的画布：原节点「视频 1」在左、副本「视频 1 (2)」在正右方同一水平线上，两者尺寸相同；副本处于选中态（带选中描边与工具条），状态行显示 2 nodes, 0 edges, 1 selected
     sha256: 15128c962bbdbe612abb4e19907639251b00c5f341d37443f0b94c2eab3be15d
+
+  - file: screenshots/60-agent-sidecar-covers-canvas.png
+    task_id: ai-agent-drawer
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T11:05:00+08:00
+    verified_locator: '点 dock「与 AI 对话」打开抽屉后，把「视频 1」拖到右侧；抽屉实测 400×696 @ x=868，红色高亮框标出节点与抽屉覆盖区的交集。命中测试：抽屉打开时 elementFromPoint(957,218) 落在 H2[data-testid=canvas-agent-session-heading]，点击后选中数仍为 0'
+    visible_text: 测试项目 / 节点 1 / 已保存 / 视频 1 / 新会话 / 探索更多专业创作模式 / / 视频反解 / / 创作分镜 / / 全流程广告片导演 / / 剧本开发 / / 剧情短片 / 100%
+    alt: 「与 AI 对话」抽屉打开时覆盖画布右侧：宽 400 的抽屉从 x=868 起铺满右侧，把「视频 1」节点的右半整块盖住，红色高亮框标出被覆盖的区域，框内显示的是抽屉的「探索更多专业创作模式」标题与五个技能 chips，节点本身的视频占位图标完全看不到
+    sha256: 558de5bfe2bff2c364b728df6234dfeae48c501392bce239ca4e2a764d57127e
+
+  - file: screenshots/61-agent-sidecar-collapsed-canvas.png
+    task_id: ai-agent-drawer
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T11:06:00+08:00
+    verified_locator: '点抽屉头部 aria 逐字「收起」按钮关闭后，节点位置不变；同一坐标 elementFromPoint(957,218) 改落在 DIV.video-node-empty，点击后选中数 1'
+    visible_text: 测试项目 / 节点 1 / 已保存 / 视频 1 / 与 AI 对话 / 100%
+    alt: 抽屉收起后的同一画面：右侧遮挡消失，「视频 1」节点完整露出，绿色高亮框圈出的正是刚才被盖住的区域，现在能看到节点卡片深色底与中央的视频播放占位图标
+    sha256: 924ce9853d55c97b35dee028359f950dc5a816590dd589ce484b8f98ba1e7e00
