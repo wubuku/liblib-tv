@@ -1,0 +1,2155 @@
+{
+  "batch": 637,
+  "title": "the store/DOM divergence 636 found at one magic constant also covers the collapse toggle — where the store is ignored entirely and the gap is 58px, not 6px",
+  "date": "2026-10-01",
+  "widths": [
+    898,
+    899,
+    1440
+  ],
+  "windowHeights": [
+    328,
+    436,
+    560,
+    660,
+    900
+  ],
+  "storeHeights": [
+    88,
+    124,
+    182,
+    240,
+    420
+  ],
+  "cssOnlyHeights": {
+    "collapsed": {
+      "False": 88,
+      "True": 124
+    },
+    "atStoreDefault": {
+      "False": 182,
+      "True": 176
+    }
+  },
+  "cells": {
+    "main|w898/exp/wh=328": {
+      "width": 898,
+      "windowH": 328,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": true,
+      "timelineTop": 152,
+      "timelineH": 176,
+      "storeHeight": 182,
+      "divergence": 6,
+      "spill": 0,
+      "viewportH": 64,
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w898/exp/wh=436": {
+      "width": 898,
+      "windowH": 436,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": true,
+      "timelineTop": 260,
+      "timelineH": 176,
+      "storeHeight": 182,
+      "divergence": 6,
+      "spill": 0,
+      "viewportH": 172,
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w898/exp/wh=560": {
+      "width": 898,
+      "windowH": 560,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": true,
+      "timelineTop": 384,
+      "timelineH": 176,
+      "storeHeight": 182,
+      "divergence": 6,
+      "spill": 0,
+      "viewportH": 296,
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w898/exp/wh=660": {
+      "width": 898,
+      "windowH": 660,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": true,
+      "timelineTop": 484,
+      "timelineH": 176,
+      "storeHeight": 182,
+      "divergence": 6,
+      "spill": 0,
+      "viewportH": 396,
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w898/exp/wh=900": {
+      "width": 898,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": true,
+      "timelineTop": 724,
+      "timelineH": 176,
+      "storeHeight": 182,
+      "divergence": 6,
+      "spill": 0,
+      "viewportH": 636,
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w898/col/wh=328": {
+      "width": 898,
+      "windowH": 328,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": true,
+      "timelineTop": 204,
+      "timelineH": 124,
+      "storeHeight": 182,
+      "divergence": 58,
+      "spill": 0,
+      "viewportH": 116,
+      "total": 117,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w898/col/wh=436": {
+      "width": 898,
+      "windowH": 436,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": true,
+      "timelineTop": 312,
+      "timelineH": 124,
+      "storeHeight": 182,
+      "divergence": 58,
+      "spill": 0,
+      "viewportH": 224,
+      "total": 117,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w898/col/wh=560": {
+      "width": 898,
+      "windowH": 560,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": true,
+      "timelineTop": 436,
+      "timelineH": 124,
+      "storeHeight": 182,
+      "divergence": 58,
+      "spill": 0,
+      "viewportH": 348,
+      "total": 117,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w898/col/wh=660": {
+      "width": 898,
+      "windowH": 660,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": true,
+      "timelineTop": 536,
+      "timelineH": 124,
+      "storeHeight": 182,
+      "divergence": 58,
+      "spill": 0,
+      "viewportH": 448,
+      "total": 117,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w898/col/wh=900": {
+      "width": 898,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": true,
+      "timelineTop": 776,
+      "timelineH": 124,
+      "storeHeight": 182,
+      "divergence": 58,
+      "spill": 0,
+      "viewportH": 688,
+      "total": 117,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w898/exp/store=88": {
+      "width": 898,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 88,
+      "collapsedAttr": "false",
+      "heightAttr": "88",
+      "narrow": true,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 123,
+      "offViewport": 77,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w898/exp/store=124": {
+      "width": 898,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 124,
+      "collapsedAttr": "false",
+      "heightAttr": "124",
+      "narrow": true,
+      "timelineTop": 776,
+      "timelineH": 124,
+      "storeHeight": 124,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 688,
+      "total": 123,
+      "offViewport": 77,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w898/exp/store=182": {
+      "width": 898,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": true,
+      "timelineTop": 724,
+      "timelineH": 176,
+      "storeHeight": 182,
+      "divergence": 6,
+      "spill": 0,
+      "viewportH": 636,
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w898/exp/store=240": {
+      "width": 898,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 240,
+      "collapsedAttr": "false",
+      "heightAttr": "240",
+      "narrow": true,
+      "timelineTop": 660,
+      "timelineH": 240,
+      "storeHeight": 240,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 572,
+      "total": 123,
+      "offViewport": 64,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w898/exp/store=420": {
+      "width": 898,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 420,
+      "collapsedAttr": "false",
+      "heightAttr": "420",
+      "narrow": true,
+      "timelineTop": 480,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 392,
+      "total": 123,
+      "offViewport": 64,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w898/col/store=88": {
+      "width": 898,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 88,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": true,
+      "timelineTop": 776,
+      "timelineH": 124,
+      "storeHeight": 88,
+      "divergence": -36,
+      "spill": 0,
+      "viewportH": 688,
+      "total": 117,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w898/col/store=124": {
+      "width": 898,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 124,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": true,
+      "timelineTop": 776,
+      "timelineH": 124,
+      "storeHeight": 124,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 688,
+      "total": 117,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w898/col/store=182": {
+      "width": 898,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": true,
+      "timelineTop": 776,
+      "timelineH": 124,
+      "storeHeight": 182,
+      "divergence": 58,
+      "spill": 0,
+      "viewportH": 688,
+      "total": 117,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w898/col/store=240": {
+      "width": 898,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 240,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": true,
+      "timelineTop": 776,
+      "timelineH": 124,
+      "storeHeight": 240,
+      "divergence": 116,
+      "spill": 0,
+      "viewportH": 688,
+      "total": 117,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w898/col/store=420": {
+      "width": 898,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 420,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": true,
+      "timelineTop": 776,
+      "timelineH": 124,
+      "storeHeight": 420,
+      "divergence": 296,
+      "spill": 0,
+      "viewportH": 688,
+      "total": 117,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w899/exp/wh=328": {
+      "width": 899,
+      "windowH": 328,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": false,
+      "timelineTop": 146,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 58,
+      "total": 130,
+      "offViewport": 49,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "全景图",
+        "删除咖啡桌",
+        "删除当前选择",
+        "删除角色01 · 陈默",
+        "复制当前选择",
+        "添加机位",
+        "清除当前选择",
+        "选择画幅比例",
+        "锁定咖啡桌",
+        "锁定角色01 · 陈默",
+        "隐藏咖啡桌",
+        "隐藏角色01 · 陈默"
+      ],
+      "buriedCount": 13,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w899/exp/wh=436": {
+      "width": 899,
+      "windowH": 436,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": false,
+      "timelineTop": 254,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 166,
+      "total": 130,
+      "offViewport": 27,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 14,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w899/exp/wh=560": {
+      "width": 899,
+      "windowH": 560,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": false,
+      "timelineTop": 378,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 290,
+      "total": 130,
+      "offViewport": 17,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w899/exp/wh=660": {
+      "width": 899,
+      "windowH": 660,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": false,
+      "timelineTop": 478,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 390,
+      "total": 130,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w899/exp/wh=900": {
+      "width": 899,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": false,
+      "timelineTop": 718,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 630,
+      "total": 130,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w899/col/wh=328": {
+      "width": 899,
+      "windowH": 328,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 240,
+      "timelineH": 88,
+      "storeHeight": 182,
+      "divergence": 94,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 124,
+      "offViewport": 55,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除咖啡桌",
+        "选择画幅比例",
+        "锁定咖啡桌",
+        "隐藏咖啡桌"
+      ],
+      "buriedCount": 5,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w899/col/wh=436": {
+      "width": 899,
+      "windowH": 436,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 348,
+      "timelineH": 88,
+      "storeHeight": 182,
+      "divergence": 94,
+      "spill": 0,
+      "viewportH": 260,
+      "total": 124,
+      "offViewport": 31,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 7,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w899/col/wh=560": {
+      "width": 899,
+      "windowH": 560,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 472,
+      "timelineH": 88,
+      "storeHeight": 182,
+      "divergence": 94,
+      "spill": 0,
+      "viewportH": 384,
+      "total": 124,
+      "offViewport": 21,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w899/col/wh=660": {
+      "width": 899,
+      "windowH": 660,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 572,
+      "timelineH": 88,
+      "storeHeight": 182,
+      "divergence": 94,
+      "spill": 0,
+      "viewportH": 484,
+      "total": 124,
+      "offViewport": 19,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w899/col/wh=900": {
+      "width": 899,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 182,
+      "divergence": 94,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 124,
+      "offViewport": 19,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w899/exp/store=88": {
+      "width": 899,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 88,
+      "collapsedAttr": "false",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 130,
+      "offViewport": 25,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w899/exp/store=124": {
+      "width": 899,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 124,
+      "collapsedAttr": "false",
+      "heightAttr": "124",
+      "narrow": false,
+      "timelineTop": 776,
+      "timelineH": 124,
+      "storeHeight": 124,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 688,
+      "total": 130,
+      "offViewport": 18,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w899/exp/store=182": {
+      "width": 899,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": false,
+      "timelineTop": 718,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 630,
+      "total": 130,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w899/exp/store=240": {
+      "width": 899,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 240,
+      "collapsedAttr": "false",
+      "heightAttr": "240",
+      "narrow": false,
+      "timelineTop": 660,
+      "timelineH": 240,
+      "storeHeight": 240,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 572,
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w899/exp/store=420": {
+      "width": 899,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 420,
+      "collapsedAttr": "false",
+      "heightAttr": "420",
+      "narrow": false,
+      "timelineTop": 480,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 392,
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w899/col/store=88": {
+      "width": 899,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 88,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 124,
+      "offViewport": 19,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w899/col/store=124": {
+      "width": 899,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 124,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 124,
+      "divergence": 36,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 124,
+      "offViewport": 19,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w899/col/store=182": {
+      "width": 899,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 182,
+      "divergence": 94,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 124,
+      "offViewport": 19,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w899/col/store=240": {
+      "width": 899,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 240,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 240,
+      "divergence": 152,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 124,
+      "offViewport": 19,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w899/col/store=420": {
+      "width": 899,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 420,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 420,
+      "divergence": 332,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 124,
+      "offViewport": 19,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w1440/exp/wh=328": {
+      "width": 1440,
+      "windowH": 328,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": false,
+      "timelineTop": 146,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 58,
+      "total": 130,
+      "offViewport": 44,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "全景图",
+        "删除咖啡桌",
+        "删除当前选择",
+        "删除角色01 · 陈默",
+        "复制当前选择",
+        "添加机位",
+        "清除当前选择",
+        "选择画幅比例",
+        "锁定咖啡桌",
+        "锁定角色01 · 陈默",
+        "隐藏咖啡桌",
+        "隐藏角色01 · 陈默"
+      ],
+      "buriedCount": 13,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w1440/exp/wh=436": {
+      "width": 1440,
+      "windowH": 436,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": false,
+      "timelineTop": 254,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 166,
+      "total": 130,
+      "offViewport": 22,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 14,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w1440/exp/wh=560": {
+      "width": 1440,
+      "windowH": 560,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": false,
+      "timelineTop": 378,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 290,
+      "total": 130,
+      "offViewport": 12,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w1440/exp/wh=660": {
+      "width": 1440,
+      "windowH": 660,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": false,
+      "timelineTop": 478,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 390,
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w1440/exp/wh=900": {
+      "width": 1440,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": false,
+      "timelineTop": 718,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 630,
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w1440/col/wh=328": {
+      "width": 1440,
+      "windowH": 328,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 240,
+      "timelineH": 88,
+      "storeHeight": 182,
+      "divergence": 94,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 124,
+      "offViewport": 51,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除咖啡桌",
+        "选择画幅比例",
+        "锁定咖啡桌",
+        "隐藏咖啡桌"
+      ],
+      "buriedCount": 5,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w1440/col/wh=436": {
+      "width": 1440,
+      "windowH": 436,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 348,
+      "timelineH": 88,
+      "storeHeight": 182,
+      "divergence": 94,
+      "spill": 0,
+      "viewportH": 260,
+      "total": 124,
+      "offViewport": 27,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 7,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w1440/col/wh=560": {
+      "width": 1440,
+      "windowH": 560,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 472,
+      "timelineH": 88,
+      "storeHeight": 182,
+      "divergence": 94,
+      "spill": 0,
+      "viewportH": 384,
+      "total": 124,
+      "offViewport": 17,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w1440/col/wh=660": {
+      "width": 1440,
+      "windowH": 660,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 572,
+      "timelineH": 88,
+      "storeHeight": 182,
+      "divergence": 94,
+      "spill": 0,
+      "viewportH": 484,
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "main|w1440/col/wh=900": {
+      "width": 1440,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 182,
+      "divergence": 94,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w1440/exp/store=88": {
+      "width": 1440,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 88,
+      "collapsedAttr": "false",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 130,
+      "offViewport": 21,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w1440/exp/store=124": {
+      "width": 1440,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 124,
+      "collapsedAttr": "false",
+      "heightAttr": "124",
+      "narrow": false,
+      "timelineTop": 776,
+      "timelineH": 124,
+      "storeHeight": 124,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 688,
+      "total": 130,
+      "offViewport": 13,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w1440/exp/store=182": {
+      "width": 1440,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 182,
+      "collapsedAttr": "false",
+      "heightAttr": "182",
+      "narrow": false,
+      "timelineTop": 718,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 630,
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w1440/exp/store=240": {
+      "width": 1440,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 240,
+      "collapsedAttr": "false",
+      "heightAttr": "240",
+      "narrow": false,
+      "timelineTop": 660,
+      "timelineH": 240,
+      "storeHeight": 240,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 572,
+      "total": 130,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w1440/exp/store=420": {
+      "width": 1440,
+      "windowH": 900,
+      "collapsed": false,
+      "storeRequested": 420,
+      "collapsedAttr": "false",
+      "heightAttr": "420",
+      "narrow": false,
+      "timelineTop": 480,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 392,
+      "total": 130,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w1440/col/store=88": {
+      "width": 1440,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 88,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "divergence": 0,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w1440/col/store=124": {
+      "width": 1440,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 124,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 124,
+      "divergence": 36,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w1440/col/store=182": {
+      "width": 1440,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 182,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 182,
+      "divergence": 94,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w1440/col/store=240": {
+      "width": 1440,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 240,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 240,
+      "divergence": 152,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "sweep|w1440/col/store=420": {
+      "width": 1440,
+      "windowH": 900,
+      "collapsed": true,
+      "storeRequested": 420,
+      "collapsedAttr": "true",
+      "heightAttr": "88",
+      "narrow": false,
+      "timelineTop": 812,
+      "timelineH": 88,
+      "storeHeight": 420,
+      "divergence": 332,
+      "spill": 0,
+      "viewportH": 724,
+      "total": 124,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "帮助"
+      ],
+      "buriedCount": 1,
+      "buriedColumns": [
+        "rail"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    }
+  },
+  "checks": {
+    "the-grid-runs-60-cells": {
+      "ok": true,
+      "detail": 60
+    },
+    "the-collapse-toggle-is-reachable-and-flips-the-data-attribute": {
+      "ok": true,
+      "detail": {
+        "failedTransitions": []
+      }
+    },
+    "no-cell-has-an-off-viewport-unreachable-control": {
+      "ok": true,
+      "detail": {}
+    },
+    "no-cell-has-a-control-collapsed-to-nothing": {
+      "ok": true,
+      "detail": {}
+    },
+    "no-cell-has-an-unexplained-covered-control": {
+      "ok": true,
+      "detail": {}
+    },
+    "every-cell-actually-exercised-the-off-viewport-branch": {
+      "ok": true,
+      "detail": []
+    },
+    "every-buried-control-sits-below-the-timelines-top-edge": {
+      "ok": true,
+      "detail": {}
+    },
+    "the-timeline-never-spills-past-the-window-collapsed-or-not": {
+      "ok": true,
+      "detail": {}
+    },
+    "629s-closed-form-predicts-the-squeeze-in-every-cell": {
+      "ok": true,
+      "detail": {}
+    },
+    "a-collapsed-timeline-renders-88-on-desktop-and-124-in-the-narrow-family": {
+      "ok": true,
+      "detail": {
+        "expected": {
+          "narrow": 124,
+          "desktop": 88
+        },
+        "wrong": {},
+        "collapsedCells": 30
+      }
+    },
+    "every-store-value-renders-the-same-height-while-collapsed": {
+      "ok": true,
+      "detail": {
+        "storeHeightsSwept": [
+          88,
+          124,
+          182,
+          240,
+          420
+        ],
+        "heightsPerWidth": {
+          "898": [
+            124
+          ],
+          "899": [
+            88
+          ],
+          "1440": [
+            88
+          ]
+        }
+      }
+    },
+    "the-collapsed-divergence-is-store-minus-the-family-css-default-per-cell": {
+      "ok": true,
+      "detail": {
+        "cssCollapsed": {
+          "narrow": 124,
+          "desktop": 88
+        },
+        "gapsAtDefaultStore": {
+          "narrow": 58,
+          "desktop": 94
+        },
+        "sample": {
+          "sweep|w898/col/store=240": {
+            "store": 240,
+            "dom": 124,
+            "gap": 116
+          },
+          "sweep|w899/col/store=240": {
+            "store": 240,
+            "dom": 88,
+            "gap": 152
+          },
+          "sweep|w1440/col/store=240": {
+            "store": 240,
+            "dom": 88,
+            "gap": 152
+          }
+        }
+      }
+    },
+    "636s-6px-expanded-divergence-survives-this-batch": {
+      "ok": true,
+      "detail": {
+        "expandedAtStore182": {
+          "w898": 176,
+          "w899": 182,
+          "w1440": 182
+        },
+        "cssAtDefault": {
+          "narrow": 176,
+          "desktop": 182
+        },
+        "gaps": {
+          "w898": 6,
+          "w899": 0,
+          "w1440": 0
+        }
+      }
+    },
+    "the-collapsed-gap-is-ten-times-636s-narrow-gap": {
+      "ok": true,
+      "detail": {
+        "narrowCollapsedGap": 58,
+        "narrowExpandedGap": 6,
+        "desktopCollapsedGap": 94,
+        "ratio": 9.67
+      }
+    },
+    "collapsing-the-timeline-never-buries-more": {
+      "ok": true,
+      "detail": {
+        "violations": {},
+        "pairs": {
+          "w898/wh=328": [
+            0,
+            0
+          ],
+          "w898/wh=436": [
+            0,
+            0
+          ],
+          "w898/wh=560": [
+            0,
+            0
+          ],
+          "w898/wh=660": [
+            0,
+            0
+          ],
+          "w898/wh=900": [
+            0,
+            0
+          ],
+          "w899/wh=328": [
+            13,
+            5
+          ],
+          "w899/wh=436": [
+            14,
+            7
+          ],
+          "w899/wh=560": [
+            4,
+            1
+          ],
+          "w899/wh=660": [
+            1,
+            1
+          ],
+          "w899/wh=900": [
+            1,
+            1
+          ],
+          "w1440/wh=328": [
+            13,
+            5
+          ],
+          "w1440/wh=436": [
+            14,
+            7
+          ],
+          "w1440/wh=560": [
+            4,
+            1
+          ],
+          "w1440/wh=660": [
+            1,
+            1
+          ],
+          "w1440/wh=900": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    "the-collapse-state-actually-changes-the-burial-surface": {
+      "ok": true,
+      "detail": {
+        "cellsWhereItChanges": 6,
+        "of": 15,
+        "examples": {
+          "w899/wh=328": [
+            13,
+            5
+          ],
+          "w899/wh=436": [
+            14,
+            7
+          ],
+          "w899/wh=560": [
+            4,
+            1
+          ],
+          "w1440/wh=328": [
+            13,
+            5
+          ],
+          "w1440/wh=436": [
+            14,
+            7
+          ],
+          "w1440/wh=560": [
+            4,
+            1
+          ]
+        }
+      }
+    },
+    "635s-two-variable-law-survives-crossing-the-collapse-state": {
+      "ok": true,
+      "detail": {
+        "pairGroups": {
+          "narrow": 13,
+          "desktop": 13
+        },
+        "ragged": []
+      }
+    },
+    "the-narrow-family-still-buries-nothing-in-either-collapse-state": {
+      "ok": true,
+      "detail": {
+        "nonZeroCells": {},
+        "narrowCells": 20
+      }
+    },
+    "this-run-reproduces-636s-recorded-audit-on-every-shared-expanded-cell": {
+      "ok": true,
+      "detail": {
+        "disagreements": []
+      }
+    }
+  },
+  "ok": true,
+  "checkCount": 19,
+  "failures": [],
+  "totals": {
+    "unreachable": 0,
+    "zeroSize": 0,
+    "unexplained": 0,
+    "offViewport": 2209,
+    "collapsePairCounts": {
+      "w898/wh=328": {
+        "expanded": 0,
+        "collapsed": 0
+      },
+      "w898/wh=436": {
+        "expanded": 0,
+        "collapsed": 0
+      },
+      "w898/wh=560": {
+        "expanded": 0,
+        "collapsed": 0
+      },
+      "w898/wh=660": {
+        "expanded": 0,
+        "collapsed": 0
+      },
+      "w898/wh=900": {
+        "expanded": 0,
+        "collapsed": 0
+      },
+      "w899/wh=328": {
+        "expanded": 13,
+        "collapsed": 5
+      },
+      "w899/wh=436": {
+        "expanded": 14,
+        "collapsed": 7
+      },
+      "w899/wh=560": {
+        "expanded": 4,
+        "collapsed": 1
+      },
+      "w899/wh=660": {
+        "expanded": 1,
+        "collapsed": 1
+      },
+      "w899/wh=900": {
+        "expanded": 1,
+        "collapsed": 1
+      },
+      "w1440/wh=328": {
+        "expanded": 13,
+        "collapsed": 5
+      },
+      "w1440/wh=436": {
+        "expanded": 14,
+        "collapsed": 7
+      },
+      "w1440/wh=560": {
+        "expanded": 4,
+        "collapsed": 1
+      },
+      "w1440/wh=660": {
+        "expanded": 1,
+        "collapsed": 1
+      },
+      "w1440/wh=900": {
+        "expanded": 1,
+        "collapsed": 1
+      }
+    },
+    "collapsedHeightsPerWidth": {
+      "898": [
+        124
+      ],
+      "899": [
+        88
+      ],
+      "1440": [
+        88
+      ]
+    },
+    "divergences": {
+      "main|w898/exp/wh=328": 6,
+      "main|w898/exp/wh=436": 6,
+      "main|w898/exp/wh=560": 6,
+      "main|w898/exp/wh=660": 6,
+      "main|w898/exp/wh=900": 6,
+      "main|w898/col/wh=328": 58,
+      "main|w898/col/wh=436": 58,
+      "main|w898/col/wh=560": 58,
+      "main|w898/col/wh=660": 58,
+      "main|w898/col/wh=900": 58,
+      "sweep|w898/exp/store=182": 6,
+      "sweep|w898/col/store=88": -36,
+      "sweep|w898/col/store=182": 58,
+      "sweep|w898/col/store=240": 116,
+      "sweep|w898/col/store=420": 296,
+      "main|w899/col/wh=328": 94,
+      "main|w899/col/wh=436": 94,
+      "main|w899/col/wh=560": 94,
+      "main|w899/col/wh=660": 94,
+      "main|w899/col/wh=900": 94,
+      "sweep|w899/col/store=124": 36,
+      "sweep|w899/col/store=182": 94,
+      "sweep|w899/col/store=240": 152,
+      "sweep|w899/col/store=420": 332,
+      "main|w1440/col/wh=328": 94,
+      "main|w1440/col/wh=436": 94,
+      "main|w1440/col/wh=560": 94,
+      "main|w1440/col/wh=660": 94,
+      "main|w1440/col/wh=900": 94,
+      "sweep|w1440/col/store=124": 36,
+      "sweep|w1440/col/store=182": 94,
+      "sweep|w1440/col/store=240": 152,
+      "sweep|w1440/col/store=420": 332
+    }
+  }
+}
