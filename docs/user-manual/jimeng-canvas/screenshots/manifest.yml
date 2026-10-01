@@ -893,3 +893,27 @@ screenshots:
     visible_text: AI 助手 / 电影级镜头设计 / 提示词反推 / 来点灵感 / 100%
     alt: 图片节点工具条的「AI 助手」下拉展开，菜单被橙色高亮框标出：三项自上而下为 电影级镜头设计、提示词反推、来点灵感，每项左侧带图标；该菜单宽度只有 135，明显窄于「预设」与「工具」两个菜单
     sha256: 6ae7a9fa574bccc01799d7e80f4caa5e27860688577f5fbcf9cd055b74917a1a
+
+  - file: screenshots/74-zoom-input-typing.png
+    task_id: navigate-canvas
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T12:36:00+08:00
+    verified_locator: '点底部 dock 缩放按钮（48×28）后**同时**出现两样东西：200×292 缩放菜单七项，以及原地变成 input[type=text]（aria 逐字 Set zoom percentage，48×28，自动全选、已键入 65 尚未按 Enter）；截图中「缩放至选中项 ⇧ 2」为禁用灰字且下方带原因文案'
+    visible_text: 放大视图 / 缩小视图 / 适配画布 / 缩放至选中项 / 缩放至50% / 缩放至100% / 缩放至200% / 65 / 视频 1 / 与 AI 对话
+    alt: 点底部缩放按钮后菜单与输入框同时出现：缩放菜单七项展开在左下角，其中「缩放至选中项 ⇧ 2」灰字禁用并带原因提示；缩放读数变成被橙色高亮标出的输入框、已键入 65 未按回车，所以画面大小仍是 100%
+    sha256: 7a3cbc9fce88b894e053a76369ab32a83d99ee5d8db06f0a4966bd855e0081d8
+
+  - file: screenshots/73-minimap-pan-zoom.png
+    task_id: navigate-canvas
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T12:34:00+08:00
+    verified_locator: '在小地图面板（156×114 @16,554）内拖拽平移、再在其上滚轮缩放之后的状态：dock 缩放读数由 40% 变为 56%，视口已平移到 (923,600) 使节点完全离开视野，顶部因此浮出提示条（data-testid=back-to-content-overlay，232×44 @524,32）逐字「当前视窗没有内容 / 回到节点」'
+    visible_text: 当前视窗没有内容 / 回到节点 / 56% / 测试项目 / 节点 1 / 已保存 / 与 AI 对话
+    alt: 在小地图上拖拽平移并滚轮缩放之后：节点已被拖出视野、画面全空，左下角小地图里只有表示视口的小方块停在角落，缩放读数变为 56%，顶部浮出一条「当前视窗没有内容」提示和「回到节点」按钮（橙色高亮）
+    sha256: 8885f8364a66130aef2ca4fd0fe6e3c5183321368d1da2e960603b24ed2e2035

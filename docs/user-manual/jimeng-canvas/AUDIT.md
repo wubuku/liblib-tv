@@ -772,3 +772,37 @@
 | final | `audit_manual.py … --phase final` | **0** | `OK (final): 17 tasks, 28 Markdown files, 76 images` |
 | 死链 | `python3 scripts/verify-docs.py` | **0** | 见当次输出 |
 | 站点构建 | `build-site.sh` | **0** | 见当次输出，0 warn |
+
+## 2026-10-01 增量审计（批次 24：缩放输入框边界 + 小地图 pan/zoom）
+
+| 变更 | 级别 | 证据 | 处理 |
+|---|---|---|---|
+| **小地图的拖拽平移与滚轮缩放此前全手册 0 处记录** | Minor（覆盖缺口） | 面板 156×114 @(16,554)；面板内拖拽 → 视口 `(415,222)`→`(923,600)` 而 **缩放读数保持 40%**（纯平移）；面板上滚轮 → 缩放 `40%`→`56%` | `navigate-canvas.md` 小地图小节新增第 4 步 + 截图 `73` |
+| 🔴 **小地图滚轮缩放的是「画布本身」，不是小地图显示比例** | **Major（与直觉相反，易误操作）** | 面板上滚滚轮后，dock 缩放读数由 40% 变 56% | 正文加 ⚠️ 显式写明与「在小地图上缩放以看清全局」相反 |
+| 缩放输入框**只记了存在、未记任何边界** | Minor（覆盖缺口） | 自动全选并聚焦（`sel 0-3` / `0-2`）；**必须按 Enter** 才生效；键入 `5` → **钳到 `8%`** | 缩放小节第 4 步补齐「Enter 生效 / 下限 8% / 不按 Enter 不生效」 |
+| **缩放菜单与缩放输入框被当作两条独立路径** | Minor（事实错误 + 模型不准） | 点缩放按钮后，200×292 菜单七项与 `Set zoom percentage` 输入框**同时在场**；按 Enter **同时关闭两者**。二者是同一个按钮的两种形态 | 正文改为「同一按钮两种形态」，截图 `74` 同时呈现两者 |
+| 「由小地图处理还是 wheel 冒泡到画布」不可区分 | Minor（诚实边界） | 未在 `canvas-minimap-surface` 上装监听计数，无法归因 | 正文如实写明「本批无法区分，只记录可观察结果」，**不写因果** |
+| 截图 72 与 74 信息重叠 | Minor（资产卫生） | 72 是缩放 40% 的结果画面、无高亮框；74 已含输入框态 + 菜单七项 | **删除 72**，批次 24 只登记 `74`/`73` |
+
+## 批次 24 质量门复跑记录（2026-10-01 当次命令输出）
+
+| 检查项 | 命令 | 退出码 | 当次实测结果 |
+|---|---|---|---|
+| 截图 alt 审计 | `node scripts/jimeng-alt-audit.mjs` | 0 | **78 张**逐字一致 / 0 不一致 / 0 未引用 / 0 措辞冲突 |
+| 交叉一致性 | `node scripts/jimeng-crosscheck.mjs` | 0 | 命中均为预期 |
+| gate-a | `audit_manual.py … --phase gate-a` | **0** | `OK (gate-a): 17 tasks, 28 Markdown files, 78 images` |
+| final | `audit_manual.py … --phase final` | **0** | `OK (final): 17 tasks, 28 Markdown files, 78 images` |
+| 死链 | `python3 scripts/verify-docs.py` | **0** | 1223 Markdown / 5357 本地目标 / 0 预期缺失 |
+| 站点构建 | `build-site.sh` | **0** | dist 截图数 74、示意图 4、**0 warn** |
+
+**基线复核（批次 24 收尾，`baselineOk: true`）**：
+`1 node, 0 edges, 0 selected. Editable. Room connected. 已保存.`、
+仅 `视频 1`、0 编组、无可见工具条/右键菜单、可见 input 数 0、
+缩放 `Zoom options, 100%`、视口 `translate(76.3134px, 15.8862px) scale(1)`、
+dock `选择工具 / 小地图 / 显示连线 / Zoom options, 100%`、
+顶栏 `Canvas node summary: 节点 1` / `已保存`。
+⚠️ 复核脚本一度把 2 个常驻 `<aside>`（`canvas-feature-sidecar` 空 AI 抽屉外壳 +
+`canvas-fixed-toolbar-left-rail` 左侧工具栏）误判为「侧栏未关闭」——
+**正确口径是「打开的侧栏为 0」，不是「DOM 里没有 aside」**。
+
+**本批临时脚本（已清理）**：`scripts/_b24a.mjs` … `_b24e.mjs`
