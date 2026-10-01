@@ -852,3 +852,25 @@ screenshots:
     visible_text: 整组执行 更新工具箱 转分镜组 解组 图片节点 3 音频节点 2 文本节点 1 Group 1
     alt: 点完「创建」之后的画布：弹窗已经关掉，屏幕上没有任何成功提示。注意组操作条上那一项的文案已经从「添加到工具箱」变成了「更新工具箱」—— 组一旦被存进工具箱，按钮就变成更新
     sha256: cc23ae0cdb40814902bb1f46f487a2d14885bfac9faae8e26642d0bd436dea14
+  - file: screenshots/M-20-参数面板挂在节点下方.png
+    task_id: create-nodes
+    step: 22
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 建一个视频节点并展开参数面板，量节点本体框与参数面板卡片的相对位置
+    visible_text: 视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 角色库 运镜 描述你想要生成的画面内容，@引用素材 2.0 文生视频 16:9 · 720P · 5s · 1个 135
+    alt: 视频节点本体在上（尝试：5分钟超长视频 / 首尾帧生成视频 / 首帧生成视频），整块参数面板挂在它下面且中间有明显间隙：面板里有「+参考 标记 特效 角色库 运镜」一排按钮、描述输入框，底部一行是「2.0」「文生视频」「16:9 · 720P · 5s · 1个」「135」和提交箭头
+    sha256: 1ce5a754aac6c8101bf1497d9fb3c5d8119afd2816f9786fa591a7b2d3066df1
+  - file: screenshots/M-22-音频节点-完整面板.png
+    task_id: create-nodes
+    step: 23
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 只放一个音频节点，缩到能看全，量「节点本体」与「参数面板」两个框
+    visible_text: 音频节点 1 尝试： 音频生视频 参考 描述你想要的音频效果，可用 @ 引用音频 Seed Audio 1.0 中文 · 24k · wav 0/2000 1 高级设置 语速 声调 音量
+    alt: 音频节点本体在上（尝试：音频生视频），参数面板是下面另一张卡片：左上「+参考」、右上「⤢」展开图标，中间是描述输入框，底部一行是「Seed Audio 1.0」「中文 · 24k · wav」「0/2000」「1」和提交箭头
+    sha256: 7e89cf337a63d6eee143c3e53190d53d78f7e03a27336252b6220afbf814efa2
