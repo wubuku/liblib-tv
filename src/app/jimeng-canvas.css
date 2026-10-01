@@ -54,6 +54,24 @@
     rgba(0, 0, 0, 0.24) 0 1px 2px 0;
 }
 
+/* Batch 809 (SOURCE_FACT 2026-10-03 重测 @1512 视口):
+   源站的 chrome 药丸**分两种**，不是一种：
+
+     搜索/生成历史 pill @[1139] 68 宽  padding **3px**  border **1px**
+     分享          pill @[1215] 70 宽  padding  **4px**  border **1px**
+     更多          pill @[1293] 36 宽  padding **3px**  border **1px**
+     积分+用户菜单  pill @[1337] 163 宽 padding  **4px**  border **0**
+
+   前三枚的描边是真 `border: 1px solid rgba(255,255,255,0.04)` —— **占布局**；
+   积分药丸没有 border，它那圈 1px 是 inset shadow —— **不占布局**。
+   `.jimeng-chrome-pill` 默认走 inset shadow（对应积分药丸），
+   需要真 border 的三枚挂 `--bordered`：摘掉 inset 环、改用 1px 实边框。
+   不占布局 vs 占布局的差别就是右簇那 2px 漂移的来源。 */
+.jimeng-chrome-pill--bordered {
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: rgba(0, 0, 0, 0.24) 0 1px 2px 0;
+}
+
 /* ---- 底部导航 dock ----
    bg rgb(13,13,13) + 内描边 0.04 SOURCE_FACT */
 .jimeng-bottom-dock {

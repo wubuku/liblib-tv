@@ -32,12 +32,15 @@ import { useJimengStore } from "@/store/jimengStore";
  *   项目名标题         68×28 @[52,16]   13px/22px w500，radius 6/2/2/6
  *   项目箭头           20×28 @[120,16]  svg 16，radius 2/6/6/2（与标题拼成一体）
  *   节点摘要           28×28 @[156,16]  10px/18px white/60，距箭头 16px
- * 右簇（间距 16px）：
- *   搜索 28×28 r12 / 生成历史 28×28 r12（同药丸内 4px 缝）
- *   分享   60×28 @[1388,16] 16px/24 w500，padding 0 10px 0 8px
- *   更多   28×28 @[1465,16]
- *   积分   111×28 @[1509,16] 12px 品牌色数字 + 基础会员，border 1px transparent
- *   用户菜单 28×28 @[1636,16]
+ * 右簇（药丸间距 8px；@1512 视口实测，batch 809 重测）：
+ *   搜索/生成历史 pill @[1141] 68 宽  p3  border 1px  两钮内缝 4px
+ *   分享            pill @[1217] 70 宽  p4  border 1px  钮 60×28 p 0 10 0 8
+ *   更多            pill @[1295] 36 宽  p3  border 1px  钮 28×28
+ *   积分+用户菜单     pill @[1339] 161宽 p4  **border 0**（描边走 inset shadow）
+ *   用户菜单 钮 @[1468] 28×28 —— 右锚点，与源站同位
+ * 源站对应值 1139/1215/1293/1337，**三枚药丸宽度逐个精确一致**（68/70/36）；
+ * 残余整体 +2px 单一成因：积分数值是 mock，积分药丸比源站窄 2px（161 vs 163），
+ * 右对齐下把它左侧的一切右推 2px。详见台账 §19。
  *
  * 积分数值为 mock (CLONE_DECISION)：源站读数随账号/时间变化，源站样本为 805，
  * 复刻沿用既有 745 以与 JimengMemberModal 的「积分详情 745」保持一致。
@@ -277,7 +280,7 @@ export function JimengTopBar() {
       {/* ── 右簇：搜索/历史药丸 + 分享 + 更多 + 积分 + 用户菜单 ── */}
       {/* SOURCE_FACT (batch 795): 药丸之间 8px；按钮到按钮 = 8 + 4 + 4 = 16 */}
       <div className="pointer-events-auto flex h-10 shrink-0 items-center gap-2">
-        <div className="jimeng-chrome-pill flex h-9 items-center gap-1 p-1">
+        <div className="jimeng-chrome-pill jimeng-chrome-pill--bordered flex h-9 items-center gap-1 p-[3px]">
           <div className="relative">
             <button
               type="button"
@@ -319,7 +322,7 @@ export function JimengTopBar() {
 
         {/* SOURCE_FACT (batch 795 复查): 分享的 chrome 药丸是 70×36 @[1383,12]，
             60×28 的按钮内缩 4px 在其中 —— 药丸背景属于外层，不属于按钮本身。 */}
-        <div className="jimeng-chrome-pill flex h-9 shrink-0 items-center p-1">
+        <div className="jimeng-chrome-pill jimeng-chrome-pill--bordered flex h-9 shrink-0 items-center p-1">
         <button
           type="button"
           aria-label="分享"
@@ -352,7 +355,7 @@ export function JimengTopBar() {
           />
         ) : null}
 
-        <div className="jimeng-chrome-pill relative flex h-9 shrink-0 items-center p-1">
+        <div className="jimeng-chrome-pill jimeng-chrome-pill--bordered relative flex h-9 shrink-0 items-center p-[3px]">
           <button
             type="button"
             aria-label="更多"
