@@ -209,6 +209,42 @@ def mutate_inventory_stale_count(root: Path) -> None:
     path.write_text(text[:j] + "    screenshot_count: 4" + text[k:], encoding="utf-8")
 
 
+def mutate_table_split_by_quote(root: Path) -> None:
+    """表格被引用块劈开（M65 的真实事故形态）。
+
+    2026-10-01 实测：shortcuts-help.md 的「弹窗里的十三条」被一段多选提示的
+    引用块从第 8 行和第 9 行之间劈开，后 5 行失去表头与分隔行，渲染成一团
+    | … | 原始文本，而其余九道门禁全部放行。这里复原同一形态。
+    """
+
+    path = root / "10-tasks/shortcuts-help.md"
+    lines = path.read_text(encoding="utf-8").splitlines(keepends=True)
+    for i, line in enumerate(lines):
+        if line.startswith("| `Ctrl / Cmd` + `Y` | 重做 |"):
+            lines.insert(i + 1, "\n> 注入的提示块，把表格从中间劈开了。\n>\n")
+            break
+    path.write_text("".join(lines), encoding="utf-8")
+
+
+def mutate_table_rows_after_list(root: Path) -> None:
+    """表格行被追加到列表末尾，脱离任何表头（AUDIT.md 的真实事故形态）。
+
+    2026-10-01 实测：AUDIT.md 里 M44–M47 追加的 61 行覆盖记录被直接接在
+    一个列表项后面，既没有表头也没有 |---| 分隔行，整块渲染成原始管道文本。
+    这里只注入 3 行，形态与判据一致即可。
+    """
+
+    path = root / "AUDIT.md"
+    text = path.read_text(encoding="utf-8")
+    anchor = "- ComfyUI 本地环境全流程、Agent（Codex/Claude）连接全流程：超出画布手册范围。\n"
+    injected = (
+        "| Major(注入) | 无表头的表格行 | 无分隔行 | 应当被拦下 |\n"
+        "| Minor(注入) | 同样无表头 | 同样无分隔行 | 同样应当被拦下 |\n"
+        "| Minor(注入) | 第三行 | 第三行 | 第三行 |\n"
+    )
+    path.write_text(text.replace(anchor, anchor + injected, 1), encoding="utf-8")
+
+
 # ---------- 用例表：(名称, 变异, 期望由谁拦下, 期望出现的错误文字) ----------
 
 CASES: list[tuple[str, object, str, str]] = [
@@ -230,6 +266,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("产物里的死链", mutate_dead_dist_link, "distlinks", "指向不存在目标的链接"),
     ("任务评级三处不一致", mutate_rating_drift_inventory, "ratings", "评级漂移"),
     ("账本截图数与 manifest 不符", mutate_inventory_stale_count, "invfresh", "manifest 实为"),
+    ("表格被引用块劈开", mutate_table_split_by_quote, "tables", "会整体渲染成原始管道文本"),
+    ("表格行脱离表头接在列表后", mutate_table_rows_after_list, "tables", "会整体渲染成原始管道文本"),
 ]
 
 
@@ -246,6 +284,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-inventory-freshness.py"), str(root)]
     elif which == "retractions":
         cmd = [sys.executable, str(root / "scripts/check-retractions.py"), str(root)]
+    elif which == "tables":
+        cmd = [sys.executable, str(root / "scripts/check-tables.py"), str(root)]
     elif which == "distlinks":
         cmd = [sys.executable, str(root / "scripts/check-dist-links.py"), str(root)]
     else:

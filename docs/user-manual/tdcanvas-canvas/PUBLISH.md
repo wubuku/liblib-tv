@@ -98,9 +98,9 @@ npx vitepress build  # 产物 .vitepress/dist/
 - 内容审计：按 `AUDIT.md` 记录的 Gate B 方法在真实浏览器逐任务回走（标签逐字核对、提交类动作止于按钮态验证），结论与修复记录进 `AUDIT.md`。
 - 手册内容的事实源：真实运行界面。UI 标签变化后以浏览器 DOM 为准修正文档，不以记忆或旧文档为准。
 
-### 构建时的九道门禁
+### 构建时的十道门禁
 
-`./build-site.sh` 步骤 3 会依次跑前六道、自检再进入构建，步骤 6 回填统计并校验产物死链。**这些门禁源于实测暴露的真实缺陷，不是形式检查**：
+`./build-site.sh` 步骤 3 会依次跑前七道、自检再进入构建，步骤 6 回填统计并校验产物死链。**这些门禁源于实测暴露的真实缺陷，不是形式检查**：
 
 | 门禁 | 拦什么 | 由来 |
 |---|---|---|
@@ -111,7 +111,8 @@ npx vitepress build  # 产物 .vitepress/dist/
 | `check-inventory-freshness.py` | 账本 screenshot_count 与 manifest 实数不符 | M59 实测 3 条数字过期 |
 | `check-claims.py` | 无证据的强断言（「逐字一致」等） | M44 实测速查表与截图自相矛盾 |
 | `check-retractions.py` | 已订正的错误说法复现 | M47 漏改、M52 补门禁 |
-| `selftest-gates.py` | 上面几道门禁**本身**坏了（注入 18 类故障） | M41 门禁静默错判 |
+| `check-tables.py` | 表格被非表格行劈开、缺表头与分隔行 | M65 实测「十三条」后 5 行渲染成原始管道文本 |
+| `selftest-gates.py` | 上面几道门禁**本身**坏了（注入 20 类故障） | M41 门禁静默错判 |
 | `check-dist-links.py` | 产物里的死链 | M56 实测 README 链到未生成页面 |
 
 单跑任一道（都需带 `.` 参数）：
@@ -123,6 +124,7 @@ python3 scripts/check-ratings.py .        # 评级一致性
 python3 scripts/check-inventory-freshness.py .  # 账本新鲜度
 python3 scripts/check-claims.py .         # 强断言
 python3 scripts/check-retractions.py .    # 订正回归
+python3 scripts/check-tables.py .        # 表格语法
 python3 scripts/selftest-gates.py .       # 门禁自检
 python3 scripts/check-dist-links.py .     # 产物死链（须在构建后跑）
 ```

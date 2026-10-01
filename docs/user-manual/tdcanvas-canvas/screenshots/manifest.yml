@@ -504,6 +504,18 @@ screenshots:
     alt: 文本节点被选中后浮在节点上方的工具条，共八个按钮从左到右为信息、删除、存资产、编辑、编辑文字、生图、缩小、放大
     sha256: 4427ee79a2ea930c9e54de0ccf2d7ebacaf8b46f3767e0c2d1fcf151cac2db16
 
+  - file: screenshots/04-edit-nodes-multiselect-menu.png
+    task_id: edit-nodes
+    step: 画布上共 4 个节点（文本、图片，以及上一轮复制残留的「文本 Copy」「图片 Copy」）。先单击「文本」节点，再按住 Shift 单击「图片」节点形成 2 选，最后对「文本」节点左下侧右键打开菜单并整页截图
+    route: '/canvas/:id'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '多选态判据：4 个 .node-element 中，「文本」与「图片」两个带蓝色选中描边且四周各有 4 个圆形缩放手柄（共 8 个），「文本 Copy」「图片 Copy」两个无描边无手柄——即 2 选 2 未选。菜单：data-canvas-context-menu="node"，边界框 212x86，按钮逐条枚举仅「复制」「删除」两项，与单选态完全相同。两个被选中节点上方均无悬浮工具条（多选时工具条不挂载，源码 project.tsx:633-634）。拍摄前已确认页面无「文本生成面板」（内含「输入你希望模型回答的内容」、模型选择 Kimi k3、「流式输出 否 / 最大输…」、「开始生成，按实际结算」）与 Agent 面板遮挡。拍摄完成后已用 Delete 逐个删除两个 Copy 残留节点，画布复原为 2 个节点'
+    visible_text: '复制 删除'
+    alt: 四个节点中「文本」和「图片」两个同时带蓝色选中框，右上角另两个没有；文本节点上弹出的菜单只有复制、删除两项，节点上方的悬浮工具条整个不见了
+    sha256: 53a34bf9b396b080b326c42a794c4eef5ad4ef37ea1613a83337a809b7801145
+
   - file: screenshots/04-organize-canvas-group-empty.png
     task_id: organize-canvas
     step: 通过左侧 Dock「＋ 新建 → 组」创建的组，蓝色虚线框，右上角徽标为 0 个节点
