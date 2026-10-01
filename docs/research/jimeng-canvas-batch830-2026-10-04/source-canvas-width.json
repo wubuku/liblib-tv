@@ -1,0 +1,126 @@
+{
+ "err": null,
+ "canvas": {
+  "rel": [
+   73,
+   67,
+   1126,
+   139
+  ],
+  "cls": "octo-timeline-track-canvas relative flex flex-col min-w-full min-h-full gap-canvas-timeline-node-track-gap",
+  "minWidth": "calc(100% - 6px)",
+  "width": "1126px",
+  "maxWidth": "none",
+  "marginLeft": "6px",
+  "marginRight": "0px",
+  "boxSizing": "border-box",
+  "display": "flex",
+  "flex": "0 1 auto",
+  "flexBasis": "auto",
+  "flexShrink": "1",
+  "padding": "0px/0px",
+  "overflow": "visible",
+  "clientW": 1126,
+  "scrollW": 1126,
+  "offsetW": 1126
+ },
+ "viewport": {
+  "rel": [
+   67,
+   67,
+   1132,
+   139
+  ],
+  "cls": "relative self-start [flex:1_1_0] min-w-0 w-full h-full overflow-hidden",
+  "minWidth": "0px",
+  "width": "1132px",
+  "maxWidth": "none",
+  "marginLeft": "0px",
+  "marginRight": "0px",
+  "boxSizing": "border-box",
+  "display": "block",
+  "flex": "1 1 0%",
+  "flexBasis": "0%",
+  "flexShrink": "1",
+  "padding": "0px/0px",
+  "overflow": "hidden",
+  "clientW": 1132,
+  "scrollW": 1132,
+  "offsetW": 1132
+ },
+ "canvasKids": [
+  {
+   "rel": [
+    73,
+    67,
+    1126,
+    27
+   ],
+   "cls": "relative flex-none w-full h-canvas-timeline-node-ruler text-dreamina-text-disabled font-dreamina-number text-canvas-timeline-node-ruler font-dreamina-medium tabular-nums select-none",
+   "minWidth": "auto",
+   "width": "1126px",
+   "maxWidth": "none",
+   "marginLeft": "0px",
+   "marginRight": "0px",
+   "boxSizing": "border-box",
+   "display": "block",
+   "flex": "0 0 auto",
+   "flexBasis": "auto",
+   "flexShrink": "0",
+   "padding": "0px/0px",
+   "overflow": "visible",
+   "clientW": 1126,
+   "scrollW": 1126,
+   "offsetW": 1126
+  },
+  {
+   "rel": [
+    73,
+    100,
+    1126,
+    84
+   ],
+   "cls": "relative flex items-start min-w-0 overflow-visible [touch-action:pan-y] h-canvas-timeline-node-visual-clip",
+   "minWidth": "0px",
+   "width": "1126px",
+   "maxWidth": "none",
+   "marginLeft": "0px",
+   "marginRight": "0px",
+   "boxSizing": "border-box",
+   "display": "flex",
+   "flex": "0 1 auto",
+   "flexBasis": "auto",
+   "flexShrink": "1",
+   "padding": "0px/0px",
+   "overflow": "visible",
+   "clientW": 1126,
+   "scrollW": 1126,
+   "offsetW": 1126
+  }
+ ],
+ "drop": {
+  "rel": [
+   73,
+   100,
+   1126,
+   84
+  ],
+  "cls": "relative flex items-start min-w-0 overflow-visible [touch-action:pan-y] h-canvas-timeline-node-visual-clip",
+  "minWidth": "0px",
+  "width": "1126px",
+  "maxWidth": "none",
+  "marginLeft": "0px",
+  "marginRight": "0px",
+  "boxSizing": "border-box",
+  "display": "flex",
+  "flex": "0 1 auto",
+  "flexBasis": "auto",
+  "flexShrink": "1",
+  "padding": "0px/0px",
+  "overflow": "visible",
+  "clientW": 1126,
+  "scrollW": 1126,
+  "offsetW": 1126
+ },
+ "dropText": "添加素材到时间线"
+}

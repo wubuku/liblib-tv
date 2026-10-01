@@ -1,0 +1,42 @@
+{
+ "err": null,
+ "canvas": [
+  73,
+  67,
+  1126,
+  139
+ ],
+ "ruler": [
+  73,
+  67,
+  1126,
+  27
+ ],
+ "clipTrack": [
+  73,
+  100,
+  1126,
+  84
+ ],
+ "addClip": [
+  73,
+  100,
+  1126,
+  84
+ ],
+ "scroll": [
+  67,
+  67,
+  1132,
+  139
+ ],
+ "canvasMinWidth": "calc(100% - 6px)",
+ "canvasMarginLeft": "6px",
+ "canvasDisplay": "flex",
+ "canvasFlexDir": "column",
+ "canvasRowGap": "6px",
+ "scrollClientW": 1132,
+ "scrollScrollW": 1132,
+ "rulerBottom": 94,
+ "clipTop": 100
+}

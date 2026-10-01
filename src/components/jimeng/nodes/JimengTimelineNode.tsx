@@ -628,6 +628,31 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
             className="min-w-0 flex-1 overflow-x-auto [&::-webkit-scrollbar]:hidden"
             data-testid="timeline-track-scroll"
           >
+            {/* Batch 830：补上源站那枚 canvas 包装层（解 OPEN_QUESTION 829-a）。
+                批 820 的注释一直引用「内层 `timeline-track-canvas` 是 `min-w-full`」，
+                但**复刻里从来没有这个元素** —— 刻度尺与片段轨道是滚动容器的直接
+                孩子。本批按源站实测把它建出来，源站结构是：
+
+                  滚动容器 [67,67,1132,139]  overflow:hidden
+                    └ canvas [73,67,1126,139]  display:flex / flex-col
+                        margin-left: 6px      min-width: **calc(100% - 6px)**
+                        ├ 刻度尺   [73, 67,1126, 27]
+                        └ 片段行   [73,100,1126, 84]   ← 尺下方 6px 间隙
+
+                ⚠️ 829-a 记的那个「矛盾」（canvas 1126 但容器 1132，而它带
+                `min-w-full`）到此解开：**源站设计系统里 `min-w-full` 不是
+                `min-width:100%`，而是 `calc(100% - 6px)`**（实测
+                `getComputedStyle(canvas).minWidth === 'calc(100% - 6px)'`）。
+                那 6px 左边距正是在 min-width 里被**补偿**掉的 ——
+                6 + (100% − 6) = 100%，所以既不溢出也不留缝。
+                我当初以为矛盾，其实错在**假设了工具类的字面含义**。
+
+                刻度尺与片段行之间那 6px 来自 canvas 的 `gap`（flex-col + gap），
+                源站类名带 `gap-canvas-timeline-node-track-gap`。 */}
+            <div
+              className="ml-[6px] flex min-h-full min-w-[calc(100%-6px)] flex-col gap-[6px]"
+              data-testid="timeline-track-canvas"
+            >
             {/* 刻度尺：SOURCE_FACT 00:00→00:30，每 5s 一格
                 Batch 819 SOURCE_FACT（解 818-a）：刻度位置是**世界坐标定值**，
                 不是百分比。实测内嵌时间线节点 00:00→00:30 跨 963px
@@ -642,7 +667,9 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                 标签的字号定间距。**所以不能找一个"全局 px/s"照搬**，
                 只能按本表面的字号定 —— 这里的 32.1 就是 13.5px 字号对应值。*/}
             <div
-              className="relative h-[27px] min-w-full border-b border-white/[0.06]"
+              /* Batch 830：宽度职责上移到 canvas（`min-w-[calc(100%-6px)]`），
+                 这里改成 `w-full` 贴住 canvas，避免两层 min-width 叠加。 */
+              className="relative h-[27px] w-full border-b border-white/[0.06]"
               data-testid="timeline-ruler"
               aria-label="时间线刻度"
             >
@@ -665,9 +692,18 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
             {/* 轨道：片段 + 「+ 添加素材到时间线」
                 Batch 818 SOURCE_FACT：源站刻度尺 **27** 高、片段轨道 **84** 高
                 （ruler [73,67,1126,27] / clip-track [73,100,1126,84]）。
-                复刻此前 h-6(24) / h-[76px]。 */}
+                复刻此前 h-6(24) / h-[76px]。
+
+                Batch 830：去掉 `px-3 py-2`。源站片段行**零内边距**（实测
+                `padding: 0px/0px`），投放区就是这一行的**满宽** ——
+                源站新鲜读数投放区 `[73,100,**1126**,84]`，与片段行同宽同位。
+                （台账 §27.5 记的 1113 本次量不到了，记 829/830 两次新鲜读数
+                都是满宽 1126；差的 13 恰是当年那条同样错掉的「13px」。）
+                片段自身的 12px 左内缩（`left: 12 + …`）**保持不动** ——
+                源站片段矩形未取证（fixture 媒体长期不加载），改它等于拿猜的数
+                换掉另一个猜的数，见 OPEN_QUESTION 830-a。 */}
             <div
-              className="relative h-[84px] min-w-full px-3 py-2"
+              className="relative h-[84px] w-full"
               data-testid="timeline-clip-track"
             >
               {clips.map((c) => (
@@ -721,6 +757,7 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                   添加素材
                 </button>
               )}
+            </div>
             </div>
           </div>
         </div>

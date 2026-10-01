@@ -107,7 +107,12 @@ PROBE = r"""() => {
       if (!s) return null; const cs = getComputedStyle(s);
       return { overflowX: cs.overflowX, w: Math.round(s.getBoundingClientRect().width),
                scrollW: s.scrollWidth, clientW: s.clientWidth,
-               innerMinW: getComputedStyle(q('timeline-clip-track')).minWidth }; })(),
+               // 批 830：宽度职责上移到新补的 canvas（`min-w-[calc(100%-6px)]`，
+               // 对应源站 `octo-timeline-track-canvas` 的 min-width:calc(100% - 6px)）。
+               // 片段行自己改成 w-full 贴住 canvas，不再自带 min-width。
+               innerMinW: getComputedStyle(q('timeline-track-canvas')).minWidth,
+               canvasMinW: (() => { const c = q('timeline-track-canvas');
+                 return c ? getComputedStyle(c).minWidth : null; })() }; })(),
     // Batch 820：全屏编辑器资产栏（fixed 面板，不受画布缩放影响）
     fsAssets: (() => { const a = document.querySelector('[data-testid="timeline-fs-assets"]')
                        || node.querySelector('[data-testid="timeline-fs-assets"]');
@@ -338,9 +343,10 @@ def main() -> int:
                 # 空时间线时**不该**出现滚动余量（内层 min-w-full 贴住容器宽）
                 check("空态无多余滚动余量", sc["scrollW"] - sc["clientW"] <= 1,
                       f'scrollW={sc["scrollW"]} clientW={sc["clientW"]}')
-                check("内层轨道 min-width:100%（贴住容器，片段超窗才撑开）",
-                      sc["innerMinW"] in ("100%", "0px") and sc["innerMinW"] == "100%",
-                      f'min-width={sc["innerMinW"]}')
+                check("canvas min-width = calc(100% - 6px)（源站实测值：源站设计系统"
+                      "里 min-w-full 不是 min-width:100%，那 6px 左边距在 min-width "
+                      "里被补偿掉了，6 + (100%−6) = 100%）",
+                      sc["canvasMinW"] == "calc(100% - 6px)", f'min-width={sc["canvasMinW"]}')
 
             print("\n— 全屏编辑器（源站 @1512×950，fixed 面板不受缩放影响）—")
             pg.locator('[data-testid="timeline-fullscreen-trigger"]').first.click()
