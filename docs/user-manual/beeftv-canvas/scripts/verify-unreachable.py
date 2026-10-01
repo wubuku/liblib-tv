@@ -524,6 +524,45 @@ def p_asset_list_endpoint_uncalled(src):
 
 
 
+def p_test_voice_page_no_ui_entry(src):
+    """语音录制测试页挂在生产路由里，但界面上没有任何入口，只能手敲网址。
+
+    与 p_stay_acceptance_only 同族：都是「路由能进、界面进不去」，但成因不同——
+    `stay` 是一个查询参数，这个是**一整个测试页面**（源码注释自述「验证输入行内联波形录制和
+    STT 转写闭环」），却和正式页面一样注册进了生产路由。
+
+    判据要求三件事同时成立：
+      (a) router.tsx 确实注册了 /test-voice-recording；
+      (b) 页面文件存在且带测试页特征（源码注释里的「测试」字样）；
+      (c) **全 web/src 零处导航到它**——只允许 router.tsx 的 import 与页面自身，
+          侧栏、命令面板、快捷入口里都不能出现。少了 (c) 就只能证明「没在侧栏里」，
+          证明不了「界面上没有入口」。
+    """
+    router = git_show(src, "web/src/router.tsx")
+    page = git_show(src, "web/src/pages/test-voice-recording.tsx")
+    if not router or not page:
+        return None
+    if not re.search(r'path: "/test-voice-recording"', router):
+        return False
+    if "测试" not in page:
+        return False
+    r = subprocess.run(
+        ["git", "grep", "-n", "-E", r'"/test-voice-recording"', REF, "--", "web/src"],
+        cwd=src, capture_output=True, text=True)
+    for line in (r.stdout or "").split("\n"):
+        if not line.strip():
+            continue
+        m = re.match(rf"^{re.escape(REF)}:(.+?):(\d+):", line)
+        if not m:
+            continue
+        path = m.group(1)
+        if path in ("web/src/router.tsx", "web/src/pages/test-voice-recording.tsx"):
+            continue
+        return False
+    return True
+
+
+
 # 第 4 个字段 scan_key = (文件, setter 名)，表示该条**同时**能被方向二的
 # 全量 setter 扫描覆盖；为 None 表示**只有专属判据**（判据形态不同，
 # 例如「ref 零 click」或「路由先 Navigate」，setter 扫描天然照不到）。
@@ -561,6 +600,8 @@ REGISTRY = [
      p_asset_sync_gated_off, None),
     ("asset-list-endpoint-uncalled", "服务端素材列表接口实现完整但前端零处调用",
      p_asset_list_endpoint_uncalled, None),
+    ("test-voice-page-no-ui-entry", "语音录制测试页挂在生产路由但界面无入口",
+     p_test_voice_page_no_ui_entry, None),
 ]
 
 

@@ -687,3 +687,47 @@ screenshots:
     alt: '批量上传素材弹窗：上方三个下拉（业务分类 素材、自定义分类 未分类、公共标签 输入后回车），中间虚线拖放区「选择图片或视频」，底部取消与开始上传'
     sha256: 1305d5972baada7af186d5db343253b22808273dac52ced66ac6d909fbf0ed3a
 
+  - file: screenshots/61-create-video.png
+    task_id: create-workspace
+    step: '新建创作页视频模式：标题「和 BeefTV 一起创作」，顶部视频/图片/文本三个模式页签，中间大输入框与工具条（加号、麦克风、选择视频模型、16:9 · 720P、6s、发送），下方四张快捷入口卡片与精选灵感创意墙'
+    route: '/create'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '.creation-empty-suggest'
+    visible_text: '和 BeefTV 一起创作 / 视频 图片 文本 / 选择视频模型 / 16:9 · 720P / 6s / 生成第一个镜头 描述画面、镜头运动与光线 / 从参考图开始 上传风格图，生成同风格画面 / 续写故事 和 AI 讨论剧情、角色与对白 / 引用技能增强 @技能 调用分镜、配音等专业能力 / 精选灵感 Skill / 全部灵感 22 / 视频 7 / 图片 6 / 文本 9'
+    alt: '新建创作页视频模式：三个模式页签选中「视频」，输入框底边一排工具，下方四张快捷入口卡片和创意墙'
+    sha256: fd6a54e983b71d2f3ac397f1dd5845ac2a4d53961ac8cc2d34975380a0f1827d
+  - file: screenshots/62-create-video-settings.png
+    task_id: create-workspace
+    step: '视频模式的参数面板：画幅一栏六个方块（16:9、9:16、1:1、4:3、3:4、21:9，当前 16:9），清晰度一栏五项（480P、720P、1080P、2K、4K，当前 720P）'
+    route: '/create'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '.creation-control-popover-content'
+    visible_text: '画幅 16:9 / 16:9 9:16 1:1 4:3 3:4 21:9 / 清晰度 720P / 480P 720P 1080P 2K 4K'
+    alt: '视频模式参数面板：画幅六个方块与清晰度五档，当前选中 16:9 与 720P'
+    sha256: aecf0b36de37e26a50edf031c04365ac9c53b143d2bd67a5c0690d18424ff9cc
+  - file: screenshots/63-create-text.png
+    task_id: create-workspace
+    step: '新建创作页文本模式：顶部选中「文本」，工具条上是「选择文本模型」下拉加「流式」「思考」两个开关，没有参数下拉；下方四张快捷入口卡片与创意墙'
+    route: '/create'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '[aria-label="文本生成"]'
+    visible_text: '和 BeefTV 一起创作 / 视频 图片 文本 / 选择文本模型 / 流式 / 思考 / 生成第一个镜头 / 从参考图开始 / 续写故事 / 引用技能增强 / 精选灵感 Skill'
+    alt: '文本模式：没有参数面板，工具条上是模型下拉与流式、思考两个开关'
+    sha256: d2513033896a8747696e38e12fd81e5b84b2c75c25e06313387735afd4cd953a
+  - file: screenshots/64-create-inspiration.png
+    task_id: create-workspace
+    step: '滚动到创意墙：顶部悬浮「继续描述你的创作想法…」输入条与展开按钮，下面是带大图的创意卡片，逐条标注「原创提示词」或「开源改编 · CC0」，底部有「展开更多灵感」与「模板与封面来源」'
+    route: '/create'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '.creation-floating-prompt'
+    visible_text: '继续描述你的创作想法… / 使用这个创意 / 雨夜霓虹 · 电影感开场 / 原创提示词 · 视频 / 森林里的最后一封信 / 开源改编 · CC0 · 文本 / 展开更多灵感 / 模板与封面来源'
+    alt: '创意墙：卡片带大图并逐条标注原创提示词或开源改编 CC0，底部是展开更多灵感与模板来源'
+    sha256: 694d511c028ccf87ac8bb0d192117b1a63d23ed6eac1f7a2342f2f975eb6ed7d
