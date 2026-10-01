@@ -79,10 +79,11 @@ def graph_signature(page: Page):
 
 
 def open_annotate(page: Page):
-    trigger = page.locator('[data-testid="image-toolbar-annotate"]')
-    # force click: the toolbar re-renders with a scale transform (zoom
-    # projection) that can keep the button permanently "unstable"
-    trigger.click(force=True)
+    # Batch 363: 原注释说 force click 是为了对付工具栏的 scale transform 让按钮
+    # "permanently unstable" —— 但 `force=True` 只跳过 actionability 检查,
+    # **不跳过 viewport 检查**, 所以按钮一旦被画布边缘裁掉照样报
+    # `Element is outside of the viewport`(这正是全量基线里 batch53 的红)。
+    click_toolbar_button(page, '[data-testid="image-toolbar-annotate"]')
     page.locator("[data-image-annotate-toolbar]").wait_for(state="visible")
     page.locator("[data-image-annotate-canvas]").wait_for(state="visible")
     page.wait_for_timeout(180)
@@ -90,12 +91,18 @@ def open_annotate(page: Page):
 
 def click_toolbar_button(page: Page, selector: str):
     trigger = page.locator(selector)
-    trigger_box = box(trigger)
-    viewport_width = page.viewport_size["width"]
-    if trigger_box["x"] < 0 or trigger_box["x"] + trigger_box["width"] > viewport_width:
-        trigger.evaluate("(element) => element.click()")
-    else:
-        trigger.click()
+    # Batch 363: 这里原来先 `box(trigger)`, 用坐标判断元素是否越界, 越界才走
+    # JS click。问题有二:
+    #   ① `bounding_box()` 对**被裁剪/不可见**的元素可能返回 None → `box()` 的
+    #      assert 先炸, 走不到下面的兜底;
+    #   ② 即使拿到坐标, `trigger.click()` 在元素位于视口外时仍会报
+    #      `Element is outside of the viewport` —— 兜底只覆盖了「x 越界」,
+    #      没覆盖「y 越界」(工具栏在节点下方, 节点被裁到视口底边时 y 会越界,
+    #      而 x 仍在视口内)。
+    # 改成: 确认元素存在后**无条件**走 JS click —— 对 React 的 onClick 等价,
+    # 不受视口与稳定性检查影响, 事件照常冒泡到画布。
+    trigger.wait_for(state="attached")
+    trigger.evaluate("(element) => element.click()")
 
 
 def assert_annotate(page: Page, graph_before=None):

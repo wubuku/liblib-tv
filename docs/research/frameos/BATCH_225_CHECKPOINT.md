@@ -1742,3 +1742,38 @@ batch467 写死 `len(catalog) == 9` **且**集合用等号, 而 batch 505
 编译失败波及, 不等于「它本来是好的」。
 > **一次通过不足以定性**, 尤其当失败原因与环境相关 —— 得等环境稳定后
 > 再复跑一次才作数。
+
+## Batch 53 — 读代码两次下错结论, 实测第三次才对
+
+全量基线里 batch53 红, 报 `[data-testid="image-toolbar-annotate"]` 点击时
+`Element is outside of the viewport`。查下来是画布本体(非跨线), 属可修范围。
+
+**第一次归因(错)**: 看到 `page.tsx:1294` 有一句
+`if (!resolveLibTVBlockingForegroundSurface(uiState)) return;`, 与下方两处
+方向相反的 `if (resolve...) return`, 判定「守卫写反了, 无阻塞面时把所有快捷键
+都吞掉」。读起来非常有说服力。
+
+**实测推翻**: 在 1440×900 和 929×874 两个视口分别按 `Alt+Shift+F`,
+viewport 都**正常变化**(如 `translate(-583.8, 260.8) scale(0.526)` ->
+`translate(72.1, 49) scale(0.2838)`), 节点随之完全进入视口。
+1294 那句不是问题源 —— **我又一次凭读代码下了未经实测的结论。**
+
+**第二次归因(也错)**: 手工逐字复现 batch53 的序列(goto+400ms ->
+Alt+Shift+F -> 300ms -> click(force)), 全部通过, 工具栏按钮在视口内
+(520, 119)。差点判「环境偶发, 不修」。
+
+**真因**: 门禁内部**两套点击策略并存** ——
+- `open_annotate` 用 `trigger.click(force=True)`, 注释说为了对付工具栏的
+  scale transform 让按钮 "permanently unstable";
+- `click_toolbar_button` 用「先取坐标, 越界才走 JS click」的兜底。
+
+关键事实: **`force=True` 只跳过 actionability 检查, 不跳过 viewport 检查**。
+而且 `click_toolbar_button` 的兜底只判了 **x 越界**, 没判 **y 越界** ——
+工具栏在节点下方, 节点被裁到视口底边时 y 会越界而 x 仍在视口内, 于是走不到兜底。
+
+**改法**: `click_toolbar_button` 改成「确认元素存在后**无条件**走 JS click」
+(对 React onClick 等价, 不受视口与稳定性检查影响), `open_annotate` 改调它。
+**只改门禁的点击方式, 没碰产品代码** —— 它断的几何/交互断言全过, 判定能力完整保留。
+
+> 两次归因都「读起来很有说服力」, 三次才靠实测定案。读代码能缩小假设空间,
+> 但**缩小不等于排除**。尤其当假设能解释现象时, 更要警惕。
