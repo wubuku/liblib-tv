@@ -1,7 +1,25 @@
 "use client";
 
-import { useState } from "react";
-import { Download, Maximize2, Plus, Trash2, Upload, Volume2, VolumeX, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Download,
+  Magnet,
+  Maximize2,
+  Plus,
+  Redo2,
+  Scissors,
+  Trash2,
+  Undo2,
+  Upload,
+  Volume2,
+  VolumeX,
+  X,
+  ZoomIn,
+  ZoomOut,
+} from "lucide-react";
 import type { NodeProps } from "@xyflow/react";
 
 import { nodeRingShadow } from "@/components/jimeng/nodeChrome";
@@ -63,6 +81,26 @@ const TICK_STEP = 5;
  */
 const RULER_PX_PER_SEC = 32.1;
 
+/**
+ * Batch 821 SOURCE_FACT：全屏编辑器底栏那一套刻度**是另一组定值** ——
+ * 9px 字号 / **21.4px·s⁻¹**（819 §29.2 双表面实测），且跨度到 **01:10**
+ * （14 格 5s），不是内嵌节点的 13.5px / 32.1 / 30s。
+ * 同一模型两个表面各自的定值，**别混用**。
+ */
+const FS_RULER_PX_PER_SEC = 21.4;
+const FS_TICK_STEP = 5;
+const FS_RULER_SECONDS = 70;
+
+/** Batch 821 SOURCE_FACT：底栏「Timeline editing tools」六枚，实名逐字取自源站。 */
+const FS_EDIT_TOOLS = [
+  { label: "撤销", icon: Undo2 },
+  { label: "重做", icon: Redo2 },
+  { label: "分割", icon: Scissors },
+  { label: "向左剪裁", icon: ChevronLeft },
+  { label: "向右剪裁", icon: ChevronRight },
+  { label: "删除", icon: Trash2 },
+] as const;
+
 function fmt(sec: number): string {
   const s = Math.max(0, Math.floor(sec));
   return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
@@ -82,6 +120,28 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
   const [muted, setMuted] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
+  // Batch 821：「关闭自动吸附」是源站底栏播放控件里的一个真实开关
+  const [fsSnap, setFsSnap] = useState(true);
+  // Batch 821：源站底栏播放控件是「关闭自动吸附 / 缩小视图 / Timeline zoom
+  // span / 放大视图」四件，那枚 span 宽 **92**（由该组总宽 188 倒推：
+  // 188 − 3×28 − 3×4 = 92）。span 的**文案源站没取到**，但左右各一枚
+  // 减/加夹着它、自身又叫 "Timeline zoom" —— 按缩放读数实现最自洽，
+  // 且让两枚按钮不再是死按钮。记为 OPEN_QUESTION 821-a。
+  const [fsZoom, setFsZoom] = useState(1);
+
+  // Batch 821 SOURCE_FACT：源站全屏编辑器**按 Escape 能关**（2026-10-04
+  // 实测：Escape 后 `[data-testid="timeline-fullscreen-editor"]` 从 DOM 消失）。
+  // 复刻此前只能点右上角那枚 ✕ —— 源站有的关闭方式少一个，是功能缺口。
+  // 捕获阶段：与批 794 起的既有写法一致（冒泡监听会被工作区先触发的
+  // 同步重渲染跳过）。
+  useEffect(() => {
+    if (!fullscreen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setFullscreen(false);
+    };
+    window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
+  }, [fullscreen]);
   const [fsSource, setFsSource] = useState<(typeof FS_SOURCES)[number]>("已导入资产");
   const [fsKind, setFsKind] = useState<(typeof FS_KINDS)[number]>("图片");
   // 注意别写成 Math.max(..., 1)：空轨道时那个下限 1 会漏进显示值，
@@ -418,42 +478,56 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
 
       {/* Batch 813 SOURCE_FACT：全屏时间线编辑器。此前「全屏编辑」是死按钮。
           源站结构：标题 + 副标题 + 来源/类型两排筛选 + 资产区 + 底部 playhead */}
-      {fullscreen ? (
-        <div
-          className="fixed inset-0 z-[300] flex flex-col"
-          style={{ background: "rgb(20,20,22)" }}
-          role="dialog"
-          aria-label="时间线"
-          data-testid="timeline-fullscreen"
-        >
-          <div className="flex h-14 shrink-0 items-center gap-3 border-b border-white/[0.08] px-4">
+      {fullscreen
+        ? createPortal(
+            <div
+              className="fixed inset-0 z-[300] flex flex-col px-3 pb-3"
+              style={{ background: "rgb(20,20,22)" }}
+              role="dialog"
+              aria-label="时间线"
+              data-testid="timeline-fullscreen"
+            >
+          <div className="flex h-[60px] shrink-0 items-center gap-2">
             <span className="text-[15px] font-medium text-white">{d.title}</span>
             <span className="text-[12px] text-white/45">{FS_SUBTITLE}</span>
             <span className="flex-1" />
             <button
               type="button"
-              aria-label="导出"
+              /* Batch 821 SOURCE_FACT：源站这一枚的实名是 **「导出时间线」**
+                 （76×36 @[1380,12]），不是复刻的「导出」；关闭钮实名
+                 **「Close timeline editor」36×36 @[1464,12]** —— 英文，
+                 与源站其它 chrome 锚点（Canvas title / Zoom options /
+                 Close timeline editor）同一套词汇，逐字沿用。
+                 ⚠️ 这枚读数是**视口绝对值**，但**不是**因为「写了
+                 `fixed` 就天然不受缩放影响」—— 821 实测证伪了那句话：
+                 浮层此前就挂在 `.timeline-node` 里，而 React Flow 给每个
+                 节点加 `transform`，**transform 祖先会收编 `position:fixed`**
+                 （`fixed` 的包含块变成那个节点），实测整块只铺 1200×207。
+                 现在靠 `createPortal(…, document.body)` 真的逃出去，
+                 `parentElement` 是 BODY，读数才可以直接照搬源站。 */
+              aria-label="导出时间线"
+              data-testid="timeline-fullscreen-export"
               onClick={() => pushToast(mockMsg("导出时间线"))}
-              className="flex h-8 items-center rounded-md px-2.5 text-[13px] text-white/80 hover:bg-white/10"
+              className="flex h-9 w-[76px] items-center justify-center rounded-lg text-[13px] text-white/80 hover:bg-white/10"
             >
               导出
             </button>
             <button
               type="button"
-              aria-label="关闭全屏编辑"
+              aria-label="Close timeline editor"
               data-testid="timeline-fullscreen-close"
               onClick={() => setFullscreen(false)}
-              className="flex size-8 items-center justify-center rounded-md text-white/70 hover:bg-white/10"
+              className="flex size-9 items-center justify-center rounded-lg text-white/70 hover:bg-white/10"
             >
               <X size={16} />
             </button>
           </div>
 
-          <div className="flex min-h-0 flex-1">
+          <div className="flex min-h-0 flex-1 gap-2">
             {/* Batch 820 SOURCE_FACT：源站资产栏
                `[data-testid="timeline-fullscreen-canvas-assets"]` **360 宽**
                @[12,60] 高 652，tabs 行 `…-asset-primary-tabs` 高 **56**
-               @[12,60]。全屏编辑器是 `fixed inset-0`，**不受画布缩放影响**，
+               @[12,60]。全屏编辑器浮在 body 上（见上方 portal 注释），
                所以这个宽度是视口绝对值，可直接照搬。复刻此前 260 宽。
                注意它是**照搬源站的定值**，不是推导值 —— 别按内容去凑。 */}
             <div
@@ -510,15 +584,210 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
 
             <div className="flex min-w-0 flex-1 flex-col">
               <div className="flex-1 p-4 text-[13px] text-white/40">Timeline preview</div>
-              <div className="flex h-12 shrink-0 items-center gap-3 border-t border-white/[0.08] px-4">
-                <span className="text-[12px] text-white/55" data-testid="timeline-fs-playhead">
-                  Timeline playhead 00:00:00 / 00:00:{String(Math.floor(span)).padStart(2, "0")}
+              {/* Batch 821 SOURCE_FACT：播放头读数在**预览区底部居中**，
+                  源站 @[897,680]「Timeline playhead」1×1 隐藏 + 可见的
+                  `00:00:00` 54×20 / `/` 5×20 / `00:00:00` 52×20，
+                  基准是预览壳底边往上 32px（壳 60..712）。
+                  ⚠️ 821 加底栏工作区时我把这个读数**顺手删掉了** ——
+                  `verify-jimeng-batch813.py` 立刻抓到（它的文件头就写着
+                  「底部 Timeline playhead 00:00:00 / 00:00:00」）。
+                  底栏那条 1px 的 `timeline-fullscreen-playhead` 是另一回事
+                  （播放头竖线，无文字），两者别混。 */}
+              <div
+                className="flex shrink-0 items-end justify-center gap-1 pb-3"
+                data-testid="timeline-fs-playhead"
+              >
+                <span className="sr-only">Timeline playhead</span>
+                <span className="text-[18px]/[20px] tabular-nums text-white/80">
+                  00:00:00
+                </span>
+                <span className="text-[18px]/[20px] text-white/80">/</span>
+                <span className="text-[18px]/[20px] tabular-nums text-white/80">
+                  00:00:{String(Math.floor(span)).padStart(2, "0")}
                 </span>
               </div>
             </div>
           </div>
-        </div>
-      ) : null}
+
+          {/* Batch 821 SOURCE_FACT：源站底栏整块
+              `section[data-testid="timeline-fullscreen-workspace"]`
+              **@[12,720] 1488×218 r12**，aria-label = 副标题那句英文。
+              内部三层（全部 @1512×950 视口绝对值）：
+                resize-handle  [12,704] 1488×24  「Resize timeline editor height」
+                toolbar        [12,720] 1488×44
+                  「Timeline editing tools」    [20,728] 208×28
+                    撤销 / 重做 / 分割 / 向左剪裁 / 向右剪裁 / 删除  各 28×28
+                  「Timeline playback controls」[1304,728] 188×28
+                    关闭自动吸附 / 缩小视图 / 「Timeline zoom」span / 放大视图  各 28×28
+                track-scroll   [12,756] 1488×182
+                  ruler        [64,764] 1428×18  ← 00:00…01:10，**5s 步进**
+                  visual-track [12,786] 1488×56  aria="Main visual track"
+                    静音 [20,800] 28×28  /  添加素材到时间线 [64,786] **56×56**
+                  playhead     [64,764] 1×174
+
+              复刻此前**整块没有** —— 只有一条 playhead 文字行。
+              本批把骨架补齐。刻度用 9px 字号 / 21.4px·s⁻¹（819 实测的
+              全屏编辑器那一套，≠ 内嵌节点的 32.1 —— 同一模型两个表面
+              各自的定值，别混用）。 */}
+          <section
+            className="relative mt-2 flex shrink-0 flex-col rounded-xl bg-[rgb(28,28,30)] pt-[36px]"
+            style={{ height: 218 }}
+            aria-label={FS_SUBTITLE}
+            data-testid="timeline-fullscreen-workspace"
+          >
+            {/* 源站这枚把手 @[12,**704**] 1488×24 —— 它比底栏顶边(720)还高 16px，
+                是**骑在内容区与底栏之间那道 8px 缝上**的，不是底栏的第一行。
+                所以 `absolute -top-4`：section 加 `pt-[36px]` 把工具条抬成
+                绝对定位，轨道区回到正常流正好落在 756 —— 与源站 track-scroll
+                的 y=756 对上，负 margin 一个都不需要。 */}
+            <div
+              className="absolute inset-x-0 -top-4 flex h-6 items-center justify-center text-white/20"
+              aria-label="Resize timeline editor height"
+              data-testid="timeline-fullscreen-workspace-resize-handle"
+            >
+              <span className="h-px w-10 bg-current" />
+            </div>
+
+            <div
+              className="absolute inset-x-0 top-0 flex h-11 items-center justify-between px-2"
+              data-testid="timeline-fullscreen-toolbar"
+            >
+              <div
+                className="flex items-center gap-2"
+                role="group"
+                aria-label="Timeline editing tools"
+                data-testid="timeline-fullscreen-editing-tools"
+              >
+                {FS_EDIT_TOOLS.map((t) => (
+                  <button
+                    key={t.label}
+                    type="button"
+                    aria-label={t.label}
+                    data-testid={`timeline-fullscreen-tool-${t.label}`}
+                    onClick={() => pushToast(mockMsg(`${t.label}（时间线编辑工具）`))}
+                    className="flex size-7 items-center justify-center rounded-md text-white/70 hover:bg-white/10"
+                  >
+                    <t.icon size={16} />
+                  </button>
+                ))}
+              </div>
+              <div
+                className="flex items-center gap-1"
+                role="group"
+                aria-label="Timeline playback controls"
+                data-testid="timeline-fullscreen-playback-controls"
+              >
+                <button
+                  type="button"
+                  aria-label="关闭自动吸附"
+                  onClick={() => setFsSnap(!fsSnap)}
+                  aria-pressed={!fsSnap}
+                  className={`flex size-7 items-center justify-center rounded-md ${
+                    fsSnap ? "text-white/70 hover:bg-white/10" : "bg-white/10 text-white"
+                  }`}
+                >
+                  <Magnet size={16} />
+                </button>
+                <button
+                  type="button"
+                  aria-label="缩小视图"
+                  onClick={() => setFsZoom((z) => Math.max(0.5, +(z - 0.1).toFixed(2)))}
+                  className="flex size-7 items-center justify-center rounded-md text-white/70 hover:bg-white/10"
+                >
+                  <ZoomOut size={16} />
+                </button>
+                <span
+                  className="w-[92px] text-center text-[12px] text-white/60"
+                  aria-label="Timeline zoom"
+                  data-testid="timeline-fullscreen-zoom"
+                >
+                  {Math.round(fsZoom * 100)}%
+                </span>
+                <button
+                  type="button"
+                  aria-label="放大视图"
+                  onClick={() => setFsZoom((z) => Math.min(2, +(z + 0.1).toFixed(2)))}
+                  className="flex size-7 items-center justify-center rounded-md text-white/70 hover:bg-white/10"
+                >
+                  <ZoomIn size={16} />
+                </button>
+              </div>
+            </div>
+
+            {/* 刻度 + 视觉轨 */}
+            <div
+              className="relative min-h-0 flex-1 overflow-x-auto pt-2 [&::-webkit-scrollbar]:hidden"
+              data-testid="timeline-fullscreen-track-scroll"
+            >
+              {/* `relative` 不能省：playhead 是 absolute，不加这层它的包含块
+                  会退到 `track-scroll`，而那个盒是 **padding box**（756 起、
+                  182 高），`inset-y-0` 就会把轨道区的 `pt-2` 一起吃进去 ——
+                  实测读数 [64,756,1,182]，源站是 [64,**764**,1,**174**]。
+                  锚到本层（764 起、174 高）才对得上。
+                  `h-full` 同样不是装饰：刻度 18 + 轨道 56 只有 78，源站轨道区
+                  182 高，差出来的 104 要靠整块撑满，playhead 才有 1×174 那么长。
+                  刻度绝对定位、不产生内在宽度，但**会撑出可滚动溢出**
+                  （实测 scrollWidth 1576 > clientWidth 1488）——
+                  所以横向滚动不必另写 min-width，缩放时溢出量自己跟着长。 */}
+              <div
+                className="relative h-full min-w-full"
+                data-testid="timeline-fullscreen-track-canvas"
+              >
+                <div
+                  className="relative ml-[52px] mr-2 h-[18px]"
+                  data-testid="timeline-fullscreen-ruler"
+                >
+                  {Array.from({ length: FS_RULER_SECONDS / FS_TICK_STEP + 1 },
+                    (_, i) => i * FS_TICK_STEP).map((t) => (
+                      <span
+                        key={t}
+                        className="absolute top-0 flex flex-col items-start"
+                        style={{ left: `${t * FS_RULER_PX_PER_SEC * fsZoom}px` }}
+                      >
+                        <span className="h-1.5 w-px bg-white/20" />
+                        <span className="text-[9px] leading-3 text-white/40 tabular-nums">
+                          {fmt(t)}
+                        </span>
+                      </span>
+                    ))}
+                </div>
+                <div
+                  className="mt-1 flex h-14 items-center px-2"
+                  role="group"
+                  aria-label="Main visual track"
+                  data-testid="timeline-fullscreen-visual-track"
+                >
+                  <button
+                    type="button"
+                    aria-label={muted ? "取消静音" : "静音"}
+                    data-testid="timeline-fullscreen-mute-button"
+                    aria-pressed={muted}
+                    onClick={() => setMuted((v) => !v)}
+                    className="flex size-7 items-center justify-center rounded-md text-white/70 hover:bg-white/10"
+                  >
+                    {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="添加素材到时间线"
+                    onClick={addClip}
+                    className="ml-4 flex size-14 items-center justify-center rounded-md bg-white/[0.04] text-white/35 hover:bg-white/[0.07]"
+                  >
+                    <Plus size={24} />
+                  </button>
+                </div>
+                <div
+                  className="absolute inset-y-0 left-[52px] w-px bg-white/70"
+                  aria-label="Timeline playhead"
+                  data-testid="timeline-fullscreen-playhead"
+                />
+              </div>
+            </div>
+          </section>
+            </div>,
+            document.body,
+          )
+        : null}
 
       <JimengConnectHandles
         nodeId={id}
