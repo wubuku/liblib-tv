@@ -430,3 +430,33 @@ tasks:
       在此之前，手册只说明「找不到」，不写操作步骤。
     manual_pages:
       - 00-quickstart.md
+  - id: generate-audio
+    title: 发起音频生成：音色、格式、语速与声音指令
+    role: beeftv-creator
+    frequency: common
+    impact: medium
+    coverage: full
+    evidence:
+      - type: runtime
+        note: >-
+          v1.6.16 构建实测（2026-10-01，外部无头 Playwright）：添加节点菜单「创建节点」分区含
+          「音频」且无「正在开发」标；新建后节点底部出现「高级设置：Alloy · MP3 · 1x」胶囊；
+          点开面板实测音色 13 项（Alloy 选中）、格式 6 项（MP3 选中）、语速 4 预设 + 数值框、
+          声音指令占位「例如：自然、温暖、适合旁白。」。模型下拉实测为 Seed Audio 1.0。
+          截图 screenshots/51-audio-settings-panel.png。
+      - type: static
+        note: >-
+          三套模型档案（audioSpeechProfile）：OpenAI 兼容 13 音色/6 格式/语速 0.25–4 预设
+          0.75·1·1.25·1.5/有声音指令；minimax-speech 14 中文音色/5 格式/语速 0.5–2 预设
+          0.5·0.75·1·1.25·1.5·2/无声音指令；minimax-music 无音色无语速、锁 1。
+          Opus 仅 OpenAI 兼容档案（MiniMax 不声明该 content type，故不列）。
+          声调(−12~12)与音量(0~1)控件在源码中存在但三套档案 showPitch/showVolume 全为 false，
+          实测面板中确未出现——不可达 UI。
+    routes:
+      - '/canvas'
+    status: verified
+    review_note: >-
+      设置面板与创建流程为运行时实测；「生成」提交未执行（触发生成需付费，止于付费边界前一步），
+      故提交后的任务状态表现仅有源码证据。运行时同时印证了源码默认值 alloy/mp3/1x。
+    manual_pages:
+      - 10-tasks/generate-audio.md

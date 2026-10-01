@@ -49,6 +49,7 @@ export default defineConfig({
           { text: '提示词与 @mention', link: '/10-tasks/prompts-and-mentions' },
           { text: '发起图片生成', link: '/10-tasks/generate-images' },
           { text: '发起视频生成与素材限制', link: '/10-tasks/generate-video' },
+          { text: '发起音频生成：音色与语速', link: '/10-tasks/generate-audio' },
           { text: '媒体版本族与重试', link: '/10-tasks/media-versions' },
         ],
       },

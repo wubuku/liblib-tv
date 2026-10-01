@@ -576,3 +576,14 @@ screenshots:
     visible_text: '已选 2'
     alt: '批量连接模式：两个选中的音频节点向悬停的视频节点显示虚线规划连线'
     sha256: 37e2f1ef501204d3947097e7c00580348df3f9b2ac983834e670ed3a1aea0b91
+  - file: screenshots/51-audio-settings-panel.png
+    task_id: generate-audio
+    step: '在音频节点上点「高级设置」打开音频设置面板：音色 13 项、格式 6 项、语速 4 预设 + 数值直输、声音指令'
+    route: '/canvas/tPiyJSrJhwfoLvdDf_6qW'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '音频节点底部的「高级设置：Alloy · MP3 · 1x」胶囊'
+    visible_text: '音频设置 / Alloy / MP3 / 1x / 声音指令'
+    alt: '音频设置面板：音色 13 个选项（Alloy 已选中）、格式 6 个（MP3 已选中）、语速 0.75x–1.5x、声音指令输入框；面板中不出现声调与音量'
+    sha256: ca66389bc52a2333bd59efbe36db8dc00077235ac32a484e4afb5702a49638e7
