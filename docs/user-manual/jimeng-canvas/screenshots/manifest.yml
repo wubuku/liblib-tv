@@ -1063,3 +1063,27 @@ screenshots:
     visible_text: 复制 / ⌘ C / 复制副本 / ⌘ D / 粘贴 / ⌘ V / 保存到主体库 / 下载 / 请选择至少一个组、文本、图片或视频项 / 重做 / ⌘ ⇧ Z / 无需重做操作 / 撤销 / ⌘ Z / 删除 / ⌫
     alt: 主体节点的右键菜单（2026-10-01）：被高亮框标出的 200×332 菜单里，「保存到主体库」是白色可用项且没有右侧快捷键字样，「下载」和「重做」灰显；这一项是该节点类型独有的，空视频与图片节点都没有
     sha256: 08952db86e41f3afb958bc95ad126be11cefb767b2242800193d571bee62f527
+
+  - file: screenshots/87-media-image-toolbar.png
+    task_id: use-node-toolbar
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T15:52:00+08:00
+    verified_locator: '用已授权 PNG（55dd39e3-…png）经常驻 input[type=file] 投递给画布新建带媒体图片节点，选中后取 [data-testid="node-toolbar"] 中 **getBoundingClientRect().width > 1** 的那一个（页面上还有一个常驻的 0×0 同名容器），实测 959×40 @161,46，18 个 svg、12 个控件'
+    visible_text: 智能改图 / 720 全景 / 扩图 / 智能超清 / 抠图 / 预设 / 多角度 / 智能打光 / 工具 / AI 助手
+    alt: 2026-10-01 复拍的带媒体图片节点工具条：被橙色高亮框标出的 959×40 工具条，自左至右为 智能改图、720 全景、扩图、智能超清、抠图、预设、多角度、智能打光、工具、AI 助手，右端竖分隔线后是全屏与下载；注意只有 预设、工具、AI 助手 三项带向下箭头（∨），而 扩图、智能超清、抠图、多角度 四项后面没有箭头——它们是点下去直接执行的生成类动作
+    sha256: 370e1e2a32d909416ad9486e1c17c33d0bdda1833c2f52eb72696a4f8cda9756
+
+  - file: screenshots/88-image-grid-split-submenu.png
+    task_id: use-node-toolbar
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T15:50:00+08:00
+    verified_locator: '选中带媒体图片节点 → 点 [data-testid="node-toolbar"] 内文本逐字「工具」按钮（78×32，2 个 svg）打开 240×204 父菜单 → hover 再点击 role=menuitem 文本含「宫格切分」的那项（232×38，2 个 svg）→ 出现的第二层菜单 [role="menu"][aria-label="宫格切分"]，实测 176×228 @1029,224'
+    visible_text: 2×2 / 3×3 / 4×4 / 5×5 / 自定义宫格
+    alt: 「宫格切分」的第二层子菜单（2026-10-01 首次打开）：左侧是父菜单「编辑」下的 消除笔/裁剪/宫格切分/标注，其中「宫格切分」呈高亮态并带向右小箭头；右侧是被橙色高亮框标出的 176×228 子菜单，上面一排四个小按钮 2×2、3×3、4×4、5×5，下面是「自定义宫格」标题和一片 7 列 5 行的深色小方格
+    sha256: e830992b36ec965230dffb090ee12d5049dacf044cd61fb8d3660f265cb13471
