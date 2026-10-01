@@ -84,6 +84,33 @@ tasks:
     status: verified
     manual_pages:
       - 10-tasks/upload-materials.md
+  - id: manage-canvases
+    title: 画布库：搜索、文件夹、批量操作与导入导出
+    role: beeftv-creator
+    frequency: core
+    impact: high
+    coverage: full
+    evidence:
+      - type: runtime
+        note: >-
+          v1.6.14 运行时（1440x900，/canvas）：页头仅「搜索项目 / 回收站 / 新建文件夹」三个控件
+          （DOM 探针 select/[role=combobox] 计数 = 0，坐实无排序与筛选控件）；搜索去抖 250ms、
+          空态文案「没有匹配的项目 / 换一个名称或重置筛选条件。」；勾选后工具条「已选 N 个项目 / 导出 / 删除」
+          （源码里的「加入项目 / 移出项目」因 remoteMode 恒假未渲染）；新建文件夹即时生成「未命名文件夹」；
+          卡片菜单实测六项「打开 / 重命名 / 修改封面 / 创建副本 / 移动至文件夹 / 删除项目」，与 undo-history-versions.md 既有记录一致；
+          默认排序实测为「最近更新」（后建的排前面）。截图 52/53。
+      - type: static
+        note: >-
+          源码锚定未运行时取证的部分：ZIP 导出结构（projects.json + projects/<id>/files + /drawings）与
+          命名 `<品牌名>画布-<N>个画布.zip`；导入校验五条文案、媒体并发 4、进度「正在保存本地媒体」→「正在保存本地画布」；
+          blob: 地址丢弃、绘图引擎只认 excalidraw；封面 12MB + 长边 1280 + JPEG 0.84（画布封面存 localStorage、
+          文件夹封面存画布数据）；首屏 50 张 / 每次 +50 / 预加载 600px；URL 参数 stay/mode/history。
+    routes:
+      - '/canvas'
+      - '/project'
+    status: verified
+    manual_pages:
+      - 10-tasks/manage-canvases.md
   - id: connect-references
     title: 连线引用：拖线、吸附、快速创建与批量连线
     role: beeftv-creator

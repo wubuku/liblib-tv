@@ -587,3 +587,25 @@ screenshots:
     visible_text: '音频设置 / Alloy / MP3 / 1x / 声音指令'
     alt: '音频设置面板：音色 13 个选项（Alloy 已选中）、格式 6 个（MP3 已选中）、语速 0.75x–1.5x、声音指令输入框；面板中不出现声调与音量'
     sha256: ca66389bc52a2333bd59efbe36db8dc00077235ac32a484e4afb5702a49638e7
+  - file: screenshots/52-canvas-library-selection.png
+    task_id: manage-canvases
+    step: '在画布库勾选两张画布：网格上方浮出紫色工具条「已选 2 个项目」，右侧只有「导出」与「删除」两个按钮（源码里的「加入项目」「移出项目」恒不渲染）'
+    route: '/canvas'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '画布卡左上角 hover 出现的勾选框 .canvas-collection-select input[type=checkbox]'
+    visible_text: '已选 2 个项目 / 导出 / 删除 / 搜索项目 / 回收站 / 新建文件夹 / 全部项目'
+    alt: '画布库多选态：上方工具条显示已选 2 个项目，右侧仅有导出与删除两个按钮；网格内含短片项目文件夹与四张命名画布，页头只有搜索、回收站、新建文件夹三个控件，没有任何排序或筛选下拉'
+    sha256: 612dfd6e47888c702343bcd2690615ef3c64668c15a2f550d503f6bdc381fdb9
+  - file: screenshots/53-canvas-library.png
+    task_id: manage-canvases
+    step: '画布库「全部项目」页全景：左上面包屑「返回首页 / 全部项目」，右上三个控件「搜索项目 / 回收站 / 新建文件夹」，网格首格为「开始创作」卡片'
+    route: '/canvas'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '页头 .libtv-project-header'
+    visible_text: '全部项目 / 搜索项目 / 回收站 / 新建文件夹 / 开始创作 / 创建新的视频项目 / 短片项目 / 分镜草稿 / 角色设定 / 产品片头 / 空镜收集'
+    alt: '画布库全景：页头只有搜索项目、回收站、新建文件夹三个控件，网格含开始创作卡片、一个「短片项目」文件夹与四张命名画布，每张卡下方标注更新日期；整页没有排序或筛选控件'
+    sha256: 1e30a9296311f0f095369261526f7eca1bce7fdcccde88dd65e2275aabb9a73f

@@ -61,12 +61,20 @@
 | `/create` | 新建创作 |
 | `/projects`、`/project` | 画布工作区（两个路径指向同一页） |
 | `/projects/:projectId`、`/projects/:projectId/:view` | 项目画布与其子视图 |
-| `/canvas`、`/canvas/:id` | 画布页与指定画布 |
+| `/projects/:projectId/chapters/:chapterId` | 章节视图——**已注册但访问不到**（见下） |
+| `/projects/:projectId/workflow/:unitId/:stage` | 工作流单元 / 阶段——**已注册但访问不到**（见下） |
+| `/canvas`、`/canvas/:id` | 画布页与指定画布；**画布库列表页就是 `/canvas`** |
 | `/assets` | 资产页 |
 | `/settings`（`?section=channels`） | **模型配置 / 个人渠道**——配置模型服务与个人工作流 |
 | `/plugins`、`/plugins/eagle` | 插件中心与 Eagle 素材库（需开启 `pluginCenterEnabled` 特性） |
 
 **已退场、访问会被重定向回首页的路由**：`/tasks`（任务中心）、`/skills`、`/skill`、`/skills/reference`——都随旧 Agent / 任务中心一起下线。旧链接不会 404，会静默跳回 `/`，所以「点进去发现回到了首页」是预期行为，不是故障。
+
+::: warning 章节与工作流这两组路由进不去
+`/projects/:projectId/chapters/:chapterId` 与 `/projects/:projectId/workflow/:unitId/:stage` **在路由表里注册着**，但它们和 `/projects/:projectId` 走同一个入口组件，而该组件在当前构建下**无条件把地址改写成 `/canvas/:projectId`**（本地工作区模式恒开启）。所以你手动敲这两条 URL 会被弹回画布页，**不会 404、也看不到章节或工作流界面**。
+
+同理，「章节 / 故事大纲 / 分镜 / 角色卡」那套项目级功能在当前版本**没有可用的入口**，不只是路由别名的问题。画布库里能看到的只是画布与文件夹两层（见 [10-tasks/manage-canvases.md](10-tasks/manage-canvases.md)）。
+:::
 
 ::: tip `/settings` 里没有 Agent 记忆
 旧版说明「设置（含 Agent 记忆）」已不成立：设置页当前只有一个分区（`channels`），而整个分区还挂在 `customChannelsEnabled` 特性开关之后——开关关闭时分区列表为空，报错文案会变成「当前没有可用的系统模型，请联系管理员配置系统渠道」。Agent 记忆与技能相关说明见 [10-tasks/agent-memory-skills.md](10-tasks/agent-memory-skills.md)。

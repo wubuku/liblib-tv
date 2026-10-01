@@ -24,6 +24,10 @@
 | FOV 视口里能用，滑杆却拖不到 | 面板限制 15–90、视口渲染接受 10–120，**两套边界** | [director-basics.md](10-tasks/director-basics.md) |
 | 「俯拍」和「仰拍」容易选反 | 界面文字没问题，但其**内部标识与界面名相反**，以界面文字为准 | [director-basics.md](10-tasks/director-basics.md) |
 | 菜单叫「工作流」，节点却叫「生成配置」 | **是同一个东西**，只是标题不同 | [30-concepts.md](30-concepts.md) |
+| 画布库里找不到「按名称排序」「按项目筛选」 | 这两个控件**当前版本不存在**——排序恒为「最近更新」；筛选能力写了但没接界面 | [manage-canvases.md](10-tasks/manage-canvases.md) |
+| 画布库里找不到「导入」 | **当前版本没有导入入口**。整套导入代码都在，但打开文件选择框的那次点击没接到任何控件上 | [manage-canvases.md](10-tasks/manage-canvases.md) |
+| 画布库多选后没有「加入项目」「移出项目」 | 这两个按钮**只在云端项目模式渲染**，该模式恒不开启，不是被禁用 | [manage-canvases.md](10-tasks/manage-canvases.md) |
+| 敲 `/projects/xxx/chapters/yyy` 被弹回画布 | 章节/工作流路由**已注册但恒被改写**，是「进不去」不是「没有」 | [20-reference.md](20-reference.md) |
 | 开着两个标签，我改的东西不见了 | 改到**同一个字段**时先落盘的赢，后改的**静默让位且不提示**；改到不同角落则两边都保住 | [30-concepts.md](30-concepts.md) |
 
 ## 打开与加载

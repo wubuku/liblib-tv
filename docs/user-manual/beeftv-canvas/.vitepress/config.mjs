@@ -40,6 +40,7 @@ export default defineConfig({
           { text: '创建各类节点', link: '/10-tasks/create-nodes' },
           { text: '平移、缩放与小地图导航', link: '/10-tasks/navigate-canvas' },
           { text: '上传本地素材', link: '/10-tasks/upload-materials' },
+          { text: '画布库：搜索、文件夹与导入导出', link: '/10-tasks/manage-canvases' },
         ],
       },
       {
