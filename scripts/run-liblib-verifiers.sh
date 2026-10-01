@@ -195,6 +195,40 @@ echo "----"
 # 所以: 开工前记指纹, 收尾时核对, 被改过就**明确说这一轮结果不可信**。
 SELF_DIGEST="$(shasum "$ROOT/scripts/run-liblib-verifiers.sh" 2>/dev/null | awk '{print $1}')"
 
+# ---- 运行中: dev server 健康监测 (Batch 370) ----
+# 起因是两次实测, 都不是猜的:
+#
+# 1. batch 367 做变异测试时, 我改了源文件立刻跑门禁, 门禁崩在
+#    `Page.goto: net::ERR_CONNECTION_REFUSED` 上 —— exit 1, 但**一条断言都没跑到**。
+#    我当时判它「结果不作数」, 可整轮里其它门禁的失败也同样被归到了「代码问题上」,
+#    而我没有任何机制能看出区别。
+# 2. batch 370 我在运行中 `touch` 了一个源文件(只改 mtime, 不改内容)触发
+#    Next dev 重编译, 同一批 24 个门禁立刻大面积 `Page.wait_for_function` 超时。
+#
+# 关键点: **dev server 是共享可变资源**。Next dev 在源码变化后会重新编译,
+# 编译窗口里的请求会挂; 并行 session 同时改文件、或同时在跑另一套验证器,
+# 效果一样。而这些失败与「代码真的坏了」在汇总里长得**一模一样** —— 都是 FAIL。
+#
+# 所以这里起一个后台探针, 把运行期间的健康状况**记下来**, 收尾时如实交代:
+# 跑歪了就不是一份干净的代码判决。
+#
+# 探针必须极其便宜(2s 一次 curl, 3s 超时), 且**绝不影响退出码**:
+# 它的职责只是把「基础设施抖过」这件事从隐式变成显式。
+HEALTH_FILE="$LOG_DIR/dev-server-health.log"
+: > "$HEALTH_FILE"
+(
+  while :; do
+    if ! curl -fsS -o /dev/null --max-time 3 "$BASE_URL/" 2>/dev/null; then
+      echo "$(date +%H:%M:%S) unreachable" >> "$HEALTH_FILE"
+    fi
+    sleep 2
+  done
+) &
+HEALTH_PID=$!
+# 收尾时无论如何都要收掉它, 否则会变成游离后台进程一直 curl 下去。
+cleanup_health() { kill "$HEALTH_PID" 2>/dev/null || true; }
+trap cleanup_health EXIT INT TERM
+
 # ---- 并发执行 ----
 # 每个验证器一个独立 python 进程。xargs -P 按 JOBS 并行, 输出按顺序落文件。
 # 用 `|| true` 吞掉退出码: 真实成败由后面读文件统计, 这样 xargs 不会因任一
@@ -310,6 +344,27 @@ if [ "$SELF_CHANGED" -eq 1 ]; then
 fi
 
 echo "liblib verifiers: $pass passed, $fail failed (of $total, after $RETRIES retry)"
+
+# ---- 这一轮的基础设施状况(必须**在**报数旁边说, 不能只在心里知道) ----
+# 汇总数字和「这份数字能不能当代码判决」是两件事。
+# dev server 抖过 => 失败里混着基础设施噪声, 这时只报一个干净数字就是误导。
+cleanup_health
+health_bad=0
+if [ -f "$HEALTH_FILE" ]; then
+  # 不用 `grep -c ... || echo 0`: `grep -c` **无匹配时会打印 0 并且返回 1**,
+  # 于是 `|| echo 0` 会把结果拼成 "0\n0", 后面 `[ "$x" -gt 0 ]` 直接报
+  # `integer expression expected` —— 这是自检跑出来的第一处 bug。
+  # `grep | wc -l` 永远只吐一个数, 不会双吐。
+  health_bad=$(grep "unreachable" "$HEALTH_FILE" 2>/dev/null | wc -l | tr -d ' ')
+fi
+if [ "${health_bad:-0}" -gt 0 ] 2>/dev/null; then
+  echo "WARNING: dev server was UNREACHABLE $health_bad time(s) during this run."
+  echo "         Failures above may be infrastructure noise, not code regressions:"
+  echo "         Next dev recompiles on any source change (yours OR a parallel"
+  echo "         session's), and requests fail while it rebuilds."
+  echo "         Re-run the failed batches before treating them as regressions."
+  echo "         probe log: $HEALTH_FILE"
+fi
 if [ -n "$aged_list" ]; then
   echo "(AGED_GATE historical contracts above are declared, not regressions)"
 fi

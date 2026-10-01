@@ -1,0 +1,32 @@
+{
+  "failAfterRequests": 6,
+  "checks": [
+    {
+      "name": "health-monitor:warns-when-server-dies",
+      "ok": true,
+      "detail": "服务器中途 503, 汇总必须告警。命中=True"
+    },
+    {
+      "name": "health-monitor:warning-names-probe-log",
+      "ok": true,
+      "detail": "告警必须指出 probe log 位置, 否则无法复核: mpiles on any source change (yours OR a parallel\n         session's), and requests fail while it rebuilds.\n         Re-run the failed batches before treating them as regressions.\n         probe log: /var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.USrWvp/dev-server-health.log\nmavis-trash: moved to trash: '/var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.USrWvp'\n"
+    },
+    {
+      "name": "health-monitor:tally-still-printed",
+      "ok": true,
+      "detail": "即使抖了也仍要报数字 —— 只是必须同时声明不可信"
+    },
+    {
+      "name": "health-monitor:preflight-still-passes-first",
+      "ok": true,
+      "detail": "前置探活必须放过前几个 200(否则只验到 exit 2 那条老路径): running 2 verifier(s) with 1 job(s); logs -> /var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.USrWvp\n----\nPASS batch7\nPASS batch8\n----\nliblib verifiers: 2 passed, 0 failed (of 2, after 1 retry)\nWARNING: dev server was UNREACHABLE 36 time(s) during this run.\n         Failures above "
+    },
+    {
+      "name": "health-monitor:quiet-when-healthy",
+      "ok": true,
+      "detail": "服务器健康时不得告警(否则是噪声, 久了没人看): r(s) with 1 job(s); logs -> /var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.8Gip2W\n----\nPASS batch7\nPASS batch8\n----\nliblib verifiers: 2 passed, 0 failed (of 2, after 1 retry)\nmavis-trash: moved to trash: '/var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.8Gip2W'\n"
+    }
+  ],
+  "outputWhenServerDies": "running 2 verifier(s) with 1 job(s); logs -> /var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.USrWvp\n----\nPASS batch7\nPASS batch8\n----\nliblib verifiers: 2 passed, 0 failed (of 2, after 1 retry)\nWARNING: dev server was UNREACHABLE 36 time(s) during this run.\n         Failures above may be infrastructure noise, not code regressions:\n         Next dev recompiles on any source change (yours OR a parallel\n         session's), and requests fail while it rebuilds.\n         Re-run the failed batches before treating them as regressions.\n         probe log: /var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.USrWvp/dev-server-health.log\nmavis-trash: moved to trash: '/var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.USrWvp'\n",
+  "outputWhenHealthy": "running 2 verifier(s) with 1 job(s); logs -> /var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.8Gip2W\n----\nPASS batch7\nPASS batch8\n----\nliblib verifiers: 2 passed, 0 failed (of 2, after 1 retry)\nmavis-trash: moved to trash: '/var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.8Gip2W'\n"
+}
