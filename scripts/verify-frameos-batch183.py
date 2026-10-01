@@ -22,6 +22,8 @@ from typing import Any
 
 from playwright.sync_api import Page, sync_playwright
 
+from frameos_verify_common import goto_clean_canvas
+
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:4317")
@@ -117,10 +119,10 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.mouse.click(900, 300)  # 点遮罩关闭整理菜单
     page.wait_for_timeout(300)
 
-    # 5) 文本节点守卫 (最后执行; 刷新获得干净状态)
-    page.reload()
-    page.wait_for_load_state("domcontentloaded")
-    page.wait_for_timeout(2500)
+    # 5) 文本节点守卫 (最后执行; 需要干净状态)
+    # Batch 334: 自 Batch 333 起内容真的跨刷新持久化，**刷新不再等于干净起点**。
+    # 旧注释「刷新获得干净状态」已失效 → 改用 goto_clean_canvas 显式清空存储。
+    goto_clean_canvas(page, BASE_URL)
     page.locator(".react-flow__node-text").first.click(position={"x": 60, "y": 140})
     page.wait_for_timeout(300)
     check(

@@ -324,3 +324,59 @@ verifier batch332 **17/17 PASS**（含面包屑计数口径一致性）。
 **候选 Batch 333**：`canvasData` 只存内存，**刷新页面仍丢失全部编辑**。
 Batch 208 已覆盖画布内的刷新持久化，但跨画布编辑的刷新持久化尚无覆盖。
 需先确认源站刷新语义（不得凭空发明）；若补齐须标注 clone-only。
+
+## Batch 333（2026-10-01）：画布内容跨刷新持久化
+
+**本批有源站证据**（与 331/332 的 clone-only 不同）：手册 20-reference.md
+「刷新后内容保留；撤销/重做历史清空」；Batch 251 采样「刷新确认持久化」。
+克隆此前只把内容放内存，刷新即回 fixture → 编辑全部丢失，属**真实对齐缺口**。
+
+修复：localStorage 持久化（沿用 directorStore 的 SSR 安全 + try/catch 降级模式），
+写入用**单一 store 订阅**（不在 13 个写入点各加一行 —— 反用 Batch 329 的教训），
+**只持久化内容、不持久化 past/future**，与源站「内容保留、历史清空」一致。
+
+⚠️ **SSR hydration 坑**：第一版把持久化内容灌进 store 初值 → 控制台报
+hydration mismatch（服务端读不到 localStorage，客户端能读到，两边树不同）。
+改为初值一律用 fixture、持久化内容在**挂载后**由 `restorePersistedCanvas()`
+应用。**任何读浏览器存储的初始化都不能放进渲染路径。**
+
+🔴 **本批最重要的发现：Batch 208 的断言方向是反的。**
+它声称验证「刷新后内容保留」，断言却是
+`nodes_after == nodes_before`（上下文为删掉一个节点后刷新，节点数**回到删除前**）
+—— 把**内容丢失**当成了持久化的成功条件。克隆把内容放内存时它 PASS，
+一旦真持久化它反而 FAIL。已改为 `nodes_after == nodes_before - 1`。
+
+**教训：一个「通过」的绿色断言，可能正锁着一个缺陷。** Batch 208 五项全 PASS，
+却从未真正验证过持久化。
+
+verifier batch333 **19/19 PASS**（含损坏 localStorage、非法结构、清空回落、
+各画布独立、**hydration 不再复发**）。
+
+**候选 Batch 334**：审计其余「声称验证但断言方向可能相反」的验证器 ——
+grep 形如 `== nodes_before` / `== initial` 的断言，逐个核对该等于操作前还是操作后。
+
+## Batch 334（2026-10-01）：持久化落地后的验证器隔离修复
+
+Batch 333 让内容**真的**跨刷新持久化后，三个验证器的「刷新 = 干净起点」假设
+同时失效 —— batch327 刷新后节点重叠、click 被 intercept 而超时失败。
+内容不持久时「刷新」天然等于回到初值，很多验证器（注释里明写的）都悄悄依赖
+这一点；持久化变真后这些假设全部失效。
+
+新增共享助手 `goto_clean_canvas()`（放在既有共享模块 frameos_verify_common.py）：
+
+| 验证器 | 失效的假设 | 处理 |
+|---|---|---|
+| batch327 | reload 后回到初值再测键盘路径 | 改用 goto_clean_canvas |
+| batch208 | 同上（本批已修其断言方向） | 改用 goto_clean_canvas |
+| batch183 | 注释明写「刷新获得干净状态」 | 改用 goto_clean_canvas + 更新注释 |
+| batch333 | 自己是唯一写入方 | 结束时 clear() 并复验（+2 断言） |
+
+⚠️ **batch327 的失败不是 id 碰撞回归**。它是修 id 碰撞的验证器，一失败很容易
+误判成「修复坏了」。实际堆栈是 `Locator.click: Timeout 30000ms exceeded` +
+`subtree intercepts pointer events` —— 失败在**点击**这一步，不在任何 check 断言。
+> 教训：验证器失败先看**失败在哪一步**（断言 vs 交互超时），
+> 再判断是功能回归还是测试环境问题，两者修法完全不同。
+
+**候选 Batch 335**：Batch 333 提出的「断言方向可能相反」全仓审计 ——
+grep 形如 `== nodes_before` / `== initial` 的断言，逐个核对方向。
+batch208 已证明绿色断言可能锁着缺陷。

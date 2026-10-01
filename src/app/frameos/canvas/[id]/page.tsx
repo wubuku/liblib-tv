@@ -186,6 +186,13 @@ function FrameosCanvasInner() {
   const setPaneMenuAt = useFrameosStore((s) => s.setPaneMenuAt);
 
   // 双击空白处打开「选择节点类型」菜单 (Batch 168)
+  // Batch 333: 挂载后应用持久化内容。
+  // 必须在挂载后而非渲染期读取 localStorage —— 服务端渲染时读不到，
+  // 客户端 hydrate 时才读得到，两者树不一致会导致 hydration mismatch。
+  useEffect(() => {
+    useFrameosStore.getState().restorePersistedCanvas();
+  }, []);
+
   useEffect(() => {
     const paneEl = document.querySelector(".react-flow__pane") as HTMLElement | null;
     const onPaneDblClick = (e: MouseEvent) => {

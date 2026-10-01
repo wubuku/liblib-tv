@@ -1,0 +1,38 @@
+{
+  "batch": 333,
+  "title": "FrameOS canvas content persistence across reload (source-aligned)",
+  "source_evidence": "manual 20-reference.md '刷新后内容保留；撤销/重做历史清空'; Batch 251 sampling note '刷新确认持久化'. Batch 208's verifier only asserted node COUNT equality, which also holds when the graph resets to the fixture - so content persistence was never actually covered.",
+  "fix": "localStorage persistence following the existing directorStore pattern (SSR-safe, try/catch fallback), written from a single store subscription so no write site can be missed. Content (nodes/edges/groups) persists; past/future deliberately do not, matching the source's content-retained/history-cleared rule.",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "clean-start:fixture-loaded",
+        "setup:edge-added",
+        "setup:group-created",
+        "persist:added-survived",
+        "persist:delete-stayed",
+        "persist:move-preserved",
+        "persist:edge-survived",
+        "persist:group-survived",
+        "history:reset-after-reload",
+        "isolation:switched-to-b",
+        "isolation:b-has-no-a-nodes",
+        "isolation:a-unchanged-after-b-edit",
+        "isolation:a-has-no-b-node",
+        "isolation:b-edit-persisted-across-switch",
+        "corrupt:no-crash",
+        "corrupt:fixture-fallback",
+        "corrupt:array-ignored",
+        "cleanup:back-to-fixture",
+        "cleanup:storage-wiped",
+        "cleanup:no-groups-left",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

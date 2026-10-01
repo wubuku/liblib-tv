@@ -191,6 +191,8 @@ interface FrameosCanvasState {
     nodeIds: string[];
   }) => string;
   cancelGeneration: () => void;
+  // Batch 333: 挂载后应用持久化内容（避免 SSR hydration mismatch）
+  restorePersistedCanvas: () => void;
 }
 
 const initialNodes: FrameosNode[] = [
@@ -436,6 +438,66 @@ const MOCK_CANVASES: Record<string, { nodes: FrameosNode[]; edges: Edge[] }> = {
   },
 };
 
+// Batch 333: 画布内容跨刷新持久化。
+//
+// 依据（**有源站证据，非凭空发明**）：
+//   - 手册 20-reference.md「持久化与历史」：刷新后内容保留；撤销/重做历史清空；
+//   - Batch 251 采样记录「刷新确认持久化」—— 源站刷新后编辑仍在。
+// 此前克隆只把内容放在内存，刷新即回到 MOCK_CANVASES 初值；而 Batch 208 的
+// 验证器只断言**节点数**相等，恰好对「回到初值」也成立，从未真正覆盖内容持久。
+//
+// 实现沿用 directorStore 的既有 localStorage 模式（SSR 安全 + try/catch 降级）。
+// 只持久化内容（nodes/edges/groups），**不持久化 past/future** —— 与源站
+// 「内容保留、历史清空」一致。
+const FRAMEOS_CANVAS_STORAGE_KEY = "frameos.canvasData.v1";
+
+type PersistedCanvas = { nodes: FrameosNode[]; edges: Edge[]; groups?: FrameosGroup[] };
+
+function readPersistedCanvases(): Record<string, PersistedCanvas> {
+  if (typeof localStorage === "undefined") return {};
+  try {
+    const raw = localStorage.getItem(FRAMEOS_CANVAS_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed: unknown = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return {};
+    const out: Record<string, PersistedCanvas> = {};
+    for (const [k, v] of Object.entries(parsed as Record<string, unknown>)) {
+      if (!v || typeof v !== "object") continue;
+      const c = v as Partial<PersistedCanvas>;
+      if (!Array.isArray(c.nodes) || !Array.isArray(c.edges)) continue;
+      out[k] = { nodes: c.nodes, edges: c.edges, groups: Array.isArray(c.groups) ? c.groups : [] };
+    }
+    return out;
+  } catch {
+    return {};
+  }
+}
+
+function writePersistedCanvases(data: Record<string, PersistedCanvas>): void {
+  if (typeof localStorage === "undefined") return;
+  try {
+    localStorage.setItem(FRAMEOS_CANVAS_STORAGE_KEY, JSON.stringify(data));
+  } catch {
+    // 配额超限 / 隐私模式：静默降级为「仅内存」，不打断交互
+  }
+}
+
+// 已保存的画布覆盖 fixture（Batch 333）
+const PERSISTED_CANVASES = readPersistedCanvases();
+const INITIAL_CANVAS_DATA: Record<string, PersistedCanvas> =
+  Object.keys(PERSISTED_CANVASES).length > 0
+    ? { ...MOCK_CANVASES, ...PERSISTED_CANVASES }
+    : (MOCK_CANVASES as Record<string, PersistedCanvas>);
+
+
+// Batch 333: 启动时以**已保存**的「画布 1」内容为初值。
+//
+// ⚠️ 关键：**不能**在模块初始化时就把持久化内容灌进 store ——
+// 服务端渲染时 localStorage 不存在（SSR 拿不到），客户端 hydrate 时才有，
+// 两者渲染出**不同的树** → React hydration mismatch（控制台报 pageerror，
+// 且 React 会丢弃服务端 HTML 重新在客户端生成）。
+// 正确做法：store 初值一律用 fixture，持久化内容在**挂载后**由
+// `restorePersistedCanvas()` 应用（见文件末尾的 mount 订阅）。
 export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   breadcrumb: { project: "测试作品", scene: "测试项目", canvas: "画布 1" },
   nodes: initialNodes,
@@ -463,7 +525,7 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   croppingNodeId: null,
   past: [],
   future: [],
-  canvasData: MOCK_CANVASES,
+  canvasData: INITIAL_CANVAS_DATA,
   generations: [],
   currentGeneration: null,
 
@@ -1011,9 +1073,53 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     return id;
   },
   cancelGeneration: () => set({ currentGeneration: null }),
+
+  // Batch 333: 挂载后应用持久化内容（SSR 安全的关键 —— 见初值处注释）
+  restorePersistedCanvas: () => {
+    const persisted = readPersistedCanvases();
+    const key = currentCanvasKey(get().breadcrumb);
+    const saved = persisted[key];
+    set({
+      canvasData: { ...MOCK_CANVASES, ...persisted } as FrameosCanvasState["canvasData"],
+      // 无保存记录时保持 fixture 原样（不触发无谓的重渲染）
+      ...(saved
+        ? { nodes: saved.nodes, edges: saved.edges, groups: saved.groups ?? [] }
+        : {}),
+    });
+  },
 }));
 
 // 暴露到 window 用于 e2e 测试
 if (typeof window !== "undefined") {
   (window as unknown as { __frameos_store: typeof useFrameosStore }).__frameos_store = useFrameosStore;
+}
+
+// Batch 333: 内容变更即持久化。
+// 用订阅而不是在 13 个写入点各加一行 —— 漏一处就丢一次数据，
+// 这正是 Batch 329「13 处各自手写快照」的教训反过来用：
+// 集中到唯一出口，天然不会漏。
+//
+// 关键：nodes/edges/groups 的实时编辑**不会**改动 canvasData（它只在
+// setBreadcrumb 时更新），所以不能只监听 canvasData —— 必须把「当前画布的
+// 实时状态」一并写进当前 breadcrumb 对应的条目。
+// past/future 变更不写 —— 与源站「内容保留、历史清空」一致。
+if (typeof window !== "undefined") {
+  let lastNodes: FrameosNode[] | null = null;
+  let lastEdges: Edge[] | null = null;
+  let lastGroups: FrameosGroup[] | null = null;
+  let lastKey: string | null = null;
+  useFrameosStore.subscribe((state) => {
+    const key = currentCanvasKey(state.breadcrumb);
+    const contentChanged =
+      state.nodes !== lastNodes || state.edges !== lastEdges || state.groups !== lastGroups;
+    if (!contentChanged && key === lastKey) return;
+    lastNodes = state.nodes;
+    lastEdges = state.edges;
+    lastGroups = state.groups;
+    lastKey = key;
+    writePersistedCanvases({
+      ...(state.canvasData as Record<string, PersistedCanvas>),
+      [key]: { nodes: state.nodes, edges: state.edges, groups: state.groups },
+    });
+  });
 }

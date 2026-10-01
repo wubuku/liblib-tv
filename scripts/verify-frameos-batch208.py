@@ -18,6 +18,8 @@ from typing import Any
 
 from playwright.sync_api import Page, sync_playwright
 
+from frameos_verify_common import goto_clean_canvas
+
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:4317")
@@ -46,13 +48,14 @@ def attach_errors(page: Page) -> list[str]:
 def run_desktop(page: Page) -> dict[str, Any]:
     result: dict[str, Any] = {"viewport": "1440x900", "checks": []}
 
-    def check(name: str, ok: bool) -> None:
-        assert ok, f"batch208 check failed: {name}"
+    def check(name: str, ok: bool, detail: str = "") -> None:
+        assert ok, f"batch208 check failed: {name} {detail}".strip()
         result["checks"].append(name)
 
     errors = attach_errors(page)
-    page.goto(f"{BASE_URL}/frameos/canvas/demo", wait_until="domcontentloaded", timeout=90000)
-    page.wait_for_timeout(1200)
+    # Batch 334: 内容自 Batch 333 起真的持久化 → 必须从干净起点开始，
+    # 否则会读到上一个 verifier 留下的节点。
+    goto_clean_canvas(page, BASE_URL)
     nodes_before = page.locator(".react-flow__node").count()
     check("boot:nodes", nodes_before >= 3)
 
@@ -78,7 +81,16 @@ def run_desktop(page: Page) -> dict[str, Any]:
           return b ? b.disabled : null;
         })()"""
     )
-    check("reload:content-persisted", nodes_after == nodes_before)
+    # Batch 333 修正：本断言此前写作 nodes_after == nodes_before，即
+    # 「删除后刷新，节点数回到删除前」—— 那是**内容丢失**的表现，恰好与本脚本
+    # 声称要验证的「刷新后内容保留」相反。旧写法在克隆把内容放内存时通过，
+    # 是把缺陷当成了通过条件。
+    # 正确语义（源站：刷新后内容保留）：删除的那个节点刷新后**仍然不在**。
+    check(
+        "reload:content-persisted",
+        nodes_after == nodes_before - 1,
+        f"删除后刷新应仍缺 1 个节点；before={nodes_before} after={nodes_after}",
+    )
     check("reload:history-reset", undo_disabled is True)
 
     check("errors:empty", not errors)

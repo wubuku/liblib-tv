@@ -521,3 +521,75 @@ screenshots:
     visible_text: 文本 1 / 双击编辑文本 / 背景色 / 节点 2 已保存
     alt: 节点颜色标记色板：文本节点「文本 1」标题行右侧的标签图标旁已出现青、紫两个色点，色板浮层展开为一排 6 枚圆形——🚫 无标记，以及青、蓝、紫、橙、黄五色，其中已选中的青色与紫色各带一圈白色圆环；顶栏画布图标也同步显示青紫双色
     sha256: b7e403bdfe7cf2fc4b683dfa1172ff1003c1b1049b32766c0211bc9bbbe6fa45
+
+  - file: screenshots/39-text-inline-format.png
+    task_id: edit-text-node
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T09:05:00+08:00
+    verified_locator: '文本节点编辑态工具条 .react-flow__node-toolbar（316x40）与 .ProseMirror 编辑器；DOM 实测 <p><em><s><u>格式速查</u></s></em></p>'
+    visible_text: 正文 / 一级标题 / 二级标题 / 三级标题 / 格式速查 / 文本 2 / 文本 3
+    alt: 文本编辑态工具条与行内格式结果：文本节点「文本 3」进入编辑态，上方浮出 316×40 的工具条（依次为 T ˅ 样式、无序列表、有序列表、B 加粗、S 删除线、I 倾斜、U 下划线、全屏），其左上弹出的样式菜单列出「正文 / 一级标题 / 二级标题 / 三级标题」四项；节点正文中的「格式速查」四字同时带有加粗、倾斜、下划线、删除线四种行内效果，橙色高亮框为工具条与编辑区范围
+    sha256: 776e0dd2d7097ca058e53f3ad11cbf6c05250d3c766c9bb934a1e28d3e4dc539
+
+  - file: screenshots/40-text-style-menu.png
+    task_id: edit-text-node
+    step: 4
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T09:06:00+08:00
+    verified_locator: 'aria Text style 按钮展开的样式菜单，四项各 192x36，逐字为 正文 / 一级标题 / 二级标题 / 三级标题'
+    visible_text: 正文 / 一级标题 / 二级标题 / 三级标题 / 格式速查 / 文本 1 / 文本 2 / 文本 3
+    alt: Text style 样式菜单：点击工具条最左侧的「T ˅」按钮后向上弹出的四项列表，依次为「正文」「一级标题」「二级标题」「三级标题」，每项 192×36 且「正文」呈选中态高亮；菜单下方是完整的编辑态工具条（样式、两种列表、加粗、删除线、倾斜、下划线、全屏共八个按钮），橙色高亮框标出工具条范围
+    sha256: c506accb638058b4bdb943788069266a0cc929842c61cf38756c6afbbc4d61fa
+
+  - file: screenshots/41-node-background-palette.png
+    task_id: use-node-toolbar
+    step: 5
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T09:03:00+08:00
+    verified_locator: '选中态工具条「背景色」按钮展开的 214x40 色板浮层，六项 28x28，色块 computed backgroundColor 依次 rgb(61,61,61)/rgb(0,202,224)/rgb(109,124,255)/rgb(190,104,255)/rgb(255,146,48)/rgb(255,214,0)'
+    visible_text: 背景色 / 全屏 / 下载 / 无颜色 / 青绿色 / 靛蓝色 / 紫色 / 橙色 / 黄色
+    alt: 节点背景色色板：选中「文本 2」后工具条上的「背景色」按钮展开一条 214×40 的横向色板，六个 28×28 色块从左到右为「无颜色」（深灰 rgb(61,61,61)，带白色圆环表示当前选中）、「青绿色」rgb(0,202,224)、「靛蓝色」rgb(109,124,255)、「紫色」rgb(190,104,255)、「橙色」rgb(255,146,48)、「黄色」rgb(255,214,0)；色板正上方是含背景色、全屏、下载三项的选中态工具条
+    sha256: ec9844323f900e0cd13a2af77236a599970c6f7c91c68d061c8b17b6c630ecf4
+
+  - file: screenshots/42-node-background-applied.png
+    task_id: use-node-toolbar
+    step: 6
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T09:04:00+08:00
+    verified_locator: '在背景色色板中点击「青绿色」后，文本 2 卡片底色变为青绿，工具条背景色按钮图标同步变青绿'
+    visible_text: 背景色 / 全屏 / 下载 / 测试文本 abc / 文本 2 / 文本 3
+    alt: 背景色应用结果：文本节点「文本 2」在色板中选中「青绿色」后，整张卡片底色变为青绿色并保留白色选中描边，工具条上的「背景色」按钮图标也同步变为青绿实心方块；左侧「文本 3」仍为默认深灰，可对比两种状态
+    sha256: e324e0a5ec00073c7a18606720062f7c90d362b7435f4141fccd66d0f29d4c45
+
+  - file: screenshots/43-subject-rename-input.png
+    task_id: subject-node
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T09:12:00+08:00
+    verified_locator: '主体节点标题本体 aria「Edit 主体 1」点击后变为 36x21 的 input（placeholder「未命名主体」），输入「主角参考」后 Enter 提交，节点 aria 变为「主体 node: 主角参考」'
+    visible_text: 主角参考 / 这是主体描述的测试文字 / 导入主体 / 从画布选择 / 从资产库选择 / 本地添加 / 节点 5 / 已保存
+    alt: 主体节点改名：点击节点头部「主体 1」标题后该处变成带下划线的输入框（占位提示「未命名主体」），已输入「主角参考」；输入框左侧是 @ 主体图标、右侧是标签图标，下方一行灰色副标题为已填写的描述文字「这是主体描述的测试文字」，卡片主体是四个导入入口——导入主体、从画布选择、从资产库选择、本地添加；橙色高亮框为主体节点范围
+    sha256: b294e77fb88e93a38ac2594829cff828ea5eb9eea34375dac15a699cad102d24
+
+  - file: screenshots/44-subject-description.png
+    task_id: subject-node
+    step: 4
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T09:10:00+08:00
+    verified_locator: 'aria「Edit subject description」（185x14，占位「添加描述...」）点击后变为 textarea，输入文字后 Enter 与失焦两种方式均提交，节点头部结构变为「@ 主体 1 ✎」'
+    visible_text: 主体 1 / 这是主体描述的测试文字 / 格式速查 / 测试文本 abc / 节点 5 / 已保存
+    alt: 主体描述提交结果：主体节点「主体 1」填写描述后，卡片头部变为「@ 主体 1」加一个铅笔编辑图标的一行，描述文字「这是主体描述的测试文字」以灰色小字显示在其下方作为副标题，下方是空的主媒体槽（内含人物占位图标），卡片左右各有一个圆形加号用于新建连线节点；画面右侧文本节点「文本 2」为青绿色底，可与左侧默认深灰的「文本 3」对比
+    sha256: c7e49c7f4950fff8dd4b37bb674b2c481093102455ce503598c5c10fdc471747

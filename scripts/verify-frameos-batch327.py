@@ -28,6 +28,8 @@ from typing import Any
 
 from playwright.sync_api import Page, sync_playwright
 
+from frameos_verify_common import goto_clean_canvas
+
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = os.environ.get("LIBLIB_BASE_URL", "http://localhost:4317")
 AUDIT_PATH = (
@@ -116,9 +118,10 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("store:addnode-ids-unique", add["after"] - add["before"] == 2 and add["unique"] == add["total"])
 
     # ── 4 真实键盘路径：连按 ⌘D 三次，DOM 渲染数必须等于 store 节点数 ──
-    page.reload(wait_until="domcontentloaded", timeout=90000)
-    page.wait_for_selector(".react-flow__node", timeout=30000)
-    page.wait_for_timeout(1000)
+    # Batch 334: 自 Batch 333 起内容真的跨刷新持久化，上面 store 层测试造出的
+    # 副本会被 restore 回来并互相重叠 → click 被 intercept 而超时。
+    # 故此处必须回到**干净起点**再测键盘路径。
+    goto_clean_canvas(page, BASE_URL)
 
     page.locator(".react-flow__node").first.click()
     page.wait_for_timeout(400)
@@ -138,9 +141,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("kbd:cmd-d-ids-unique", store_unique == store_count)
 
     # ── 5 真实键盘路径：⌘C 后连按 ⌘V 两次，逐级撤销回到初始 ──
-    page.reload(wait_until="domcontentloaded", timeout=90000)
-    page.wait_for_selector(".react-flow__node", timeout=30000)
-    page.wait_for_timeout(1000)
+    goto_clean_canvas(page, BASE_URL)
 
     page.locator(".react-flow__node").first.click()
     page.wait_for_timeout(300)

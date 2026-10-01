@@ -91,3 +91,31 @@ def attach_errors(page: Page) -> list[str]:
     page.on("pageerror", lambda error: errors.append(f"pageerror:{error}"))
     page.on("dialog", lambda d: d.dismiss())
     return errors
+
+
+# Batch 334: 画布内容自 Batch 333 起**真的**跨刷新持久化（localStorage）。
+# 这对验证器有两重影响，必须显式处理，不能靠「刷新后回到初值」的旧假设：
+#   1. 测试隔离 —— 前一个 verifier 留下的节点会被下一个读到
+#      （曾导致 batch327 刷新后节点重叠、click 被 intercept 而超时失败）；
+#   2. 起点确定 —— 需要「干净起点」时必须显式清空存储。
+FRAMEOS_CANVAS_STORAGE_KEY = "frameos.canvasData.v1"
+FRAMEOS_DEMO_URL = "http://localhost:4317/frameos/canvas/demo"
+
+
+def goto_clean_canvas(page: Page, base_url: str | None = None) -> None:
+    """打开 demo 画布并**确保存储为空**，使每次验证都从 fixture 初值开始。
+
+    先 goto 一次拿到同源上下文，再清 localStorage，最后 reload 让应用以
+    干净状态启动（store 初值 = fixture）。
+    """
+    import os
+
+    url = f"{(base_url or os.environ.get('LIBLIB_BASE_URL', 'http://localhost:4317'))}/frameos/canvas/demo"
+    page.goto(url, wait_until="domcontentloaded", timeout=90000)
+    page.evaluate(
+        "([k]) => { try { localStorage.removeItem(k); } catch {} }",
+        [FRAMEOS_CANVAS_STORAGE_KEY],
+    )
+    page.reload(wait_until="domcontentloaded", timeout=90000)
+    page.wait_for_selector(".react-flow__node", timeout=30000)
+    page.wait_for_timeout(1000)
