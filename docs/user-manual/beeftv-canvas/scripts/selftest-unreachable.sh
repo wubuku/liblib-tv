@@ -79,6 +79,8 @@ run_case "6) 只读模式接上界面入口" web/src/pages/canvas/canvas-project
 run_case "7) 复制副本补上后端同步" web/src/pages/canvas/project.tsx "$HERE/selftest-fix-7-copy-sync.py" "await syncLocalCanvasProjectToBackend(id);" "canvas-copy-never-uploaded"
 run_case "8) stay=1 被提升为正式功能" web/src/pages/canvas/index.tsx "$HERE/selftest-fix-8-stay-comment.py" "便于用户先确认再建" "canvas-stay-acceptance-only"
 run_case "9) 方向三：新增一个未归类的零写出参数" web/src/pages/canvas/index.tsx "$HERE/selftest-fix-9-unmapped-param.py" "canvasSelftestUnmapped" "既不在豁免名单也不在缺陷登记里"
+run_case "10) 两处改名统一到同一字段" web/src/components/canvas/canvas-folder-card.tsx "$HERE/selftest-fix-10-two-names-merged.py" "updateProject(project.id, { canvasTitle: editingTitle })" "canvas-two-names"
+run_case "11) 顶栏改名补上后端同步" web/src/pages/canvas/project.tsx "$HERE/selftest-fix-11-rename-sync.py" "await syncLocalCanvasProjectToBackend(canvasId);" "canvas-rename-never-uploaded"
 
 echo "=== 基线：真实 origin/main 应当通过 ==="
 if python3 "$GATE" >/dev/null 2>&1; then echo "  ✓ origin/main 通过"; else echo "  ✗ origin/main 未通过"; FAIL=$((FAIL+1)); fi

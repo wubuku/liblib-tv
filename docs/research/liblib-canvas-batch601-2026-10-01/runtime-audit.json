@@ -1,0 +1,364 @@
+{
+  "viewport": "1920x1150",
+  "checks": [
+    {
+      "name": "layout:1-data-director-playback:x-width-gap",
+      "ok": true,
+      "detail": {
+        "x": 8,
+        "w": 26,
+        "h": 24,
+        "gap": null
+      }
+    },
+    {
+      "name": "layout:1-data-director-playback:radius",
+      "ok": true,
+      "detail": [
+        "6px",
+        "6px"
+      ]
+    },
+    {
+      "name": "layout:2-data-director-auto-keyframe:x-width-gap",
+      "ok": true,
+      "detail": {
+        "x": 34,
+        "w": 24,
+        "h": 24,
+        "gap": 0
+      }
+    },
+    {
+      "name": "layout:2-data-director-auto-keyframe:radius",
+      "ok": true,
+      "detail": [
+        "8px",
+        "8px"
+      ]
+    },
+    {
+      "name": "layout:3-data-director-loop:x-width-gap",
+      "ok": true,
+      "detail": {
+        "x": 58,
+        "w": 26,
+        "h": 24,
+        "gap": 0
+      }
+    },
+    {
+      "name": "layout:3-data-director-loop:radius",
+      "ok": true,
+      "detail": [
+        "6px",
+        "6px"
+      ]
+    },
+    {
+      "name": "layout:4-data-director-time-field='time:x-width-gap",
+      "ok": true,
+      "detail": {
+        "x": 88,
+        "w": 46,
+        "h": 24,
+        "gap": 4
+      }
+    },
+    {
+      "name": "layout:4-data-director-time-field='time:radius",
+      "ok": true,
+      "detail": [
+        "8px",
+        "0px"
+      ]
+    },
+    {
+      "name": "layout:5-data-director-time-field='duration:x-width-gap",
+      "ok": true,
+      "detail": {
+        "x": 135,
+        "w": 46,
+        "h": 24,
+        "gap": 1
+      }
+    },
+    {
+      "name": "layout:5-data-director-time-field='duration:radius",
+      "ok": true,
+      "detail": [
+        "0px",
+        "0px"
+      ]
+    },
+    {
+      "name": "layout:6-data-director-time-unit:x-width-gap",
+      "ok": true,
+      "detail": {
+        "x": 182,
+        "w": 33,
+        "h": 24,
+        "gap": 1
+      }
+    },
+    {
+      "name": "layout:6-data-director-time-unit:radius",
+      "ok": true,
+      "detail": [
+        "0px",
+        "8px"
+      ]
+    },
+    {
+      "name": "layout:7-data-director-add-track:x-width-gap",
+      "ok": true,
+      "detail": {
+        "x": 230,
+        "w": 82,
+        "h": 24,
+        "gap": 15
+      }
+    },
+    {
+      "name": "layout:7-data-director-add-track:radius",
+      "ok": true,
+      "detail": [
+        "8px",
+        "8px"
+      ]
+    },
+    {
+      "name": "readouts:white-10-12px-f7f7f7",
+      "ok": true,
+      "detail": [
+        [
+          "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "12px",
+          "rgb(247, 247, 247)"
+        ],
+        [
+          "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "12px",
+          "rgb(247, 247, 247)"
+        ],
+        [
+          "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "12px",
+          "rgb(247, 247, 247)"
+        ]
+      ]
+    },
+    {
+      "name": "readouts:joined-at-1px",
+      "ok": true,
+      "detail": [
+        4,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "add-track:15px-after-the-group",
+      "ok": true,
+      "detail": {
+        "before-group": 4,
+        "before-add-track": 15
+      }
+    },
+    {
+      "name": "unit:opens-in-ms",
+      "ok": true,
+      "detail": {
+        "text": "ms",
+        "aria": "切换时间单位为 s",
+        "head": "0",
+        "duration": "8000"
+      }
+    },
+    {
+      "name": "auto-keyframe:14px-icon",
+      "ok": true,
+      "detail": [
+        14,
+        14
+      ]
+    },
+    {
+      "name": "auto-keyframe:transparent-when-off",
+      "ok": true,
+      "detail": {
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455677 0.0000200868 / 0.8)",
+        "pressed": "false"
+      }
+    },
+    {
+      "name": "add-track:text-and-aria",
+      "ok": true,
+      "detail": {
+        "text": "新建轨道",
+        "aria": "选中角色、道具或分组后建立轨道",
+        "fontSize": "13px"
+      }
+    },
+    {
+      "name": "play:transparent-white-80",
+      "ok": true,
+      "detail": [
+        "rgba(0, 0, 0, 0)",
+        "oklab(0.999994 0.0000455677 0.0000200868 / 0.8)"
+      ]
+    },
+    {
+      "name": "loop:lit-white-10-when-on",
+      "ok": true,
+      "detail": [
+        "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "rgb(247, 247, 247)"
+      ]
+    },
+    {
+      "name": "no-console-errors",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "items": [
+    {
+      "sel": "[data-director-playback]",
+      "x": 8,
+      "w": 26,
+      "h": 24,
+      "gap": null,
+      "radiusLeft": "6px",
+      "radiusRight": "6px",
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "oklab(0.999994 0.0000455677 0.0000200868 / 0.8)",
+      "fontSize": "16px",
+      "text": "",
+      "value": "",
+      "aria": "播放",
+      "disabled": false,
+      "svgBox": [
+        14,
+        14
+      ]
+    },
+    {
+      "sel": "[data-director-auto-keyframe]",
+      "x": 34,
+      "w": 24,
+      "h": 24,
+      "gap": 0,
+      "radiusLeft": "8px",
+      "radiusRight": "8px",
+      "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "color": "rgb(255, 255, 255)",
+      "fontSize": "16px",
+      "text": "",
+      "value": "",
+      "aria": "自动帧",
+      "disabled": false,
+      "svgBox": [
+        14,
+        14
+      ]
+    },
+    {
+      "sel": "[data-director-loop]",
+      "x": 58,
+      "w": 26,
+      "h": 24,
+      "gap": 0,
+      "radiusLeft": "6px",
+      "radiusRight": "6px",
+      "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "color": "rgb(247, 247, 247)",
+      "fontSize": "12px",
+      "text": "",
+      "value": "",
+      "aria": "循环播放",
+      "disabled": false,
+      "svgBox": [
+        14,
+        14
+      ]
+    },
+    {
+      "sel": "[data-director-time-field='time']",
+      "x": 88,
+      "w": 46,
+      "h": 24,
+      "gap": 4,
+      "radiusLeft": "8px",
+      "radiusRight": "0px",
+      "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "color": "rgb(247, 247, 247)",
+      "fontSize": "12px",
+      "text": "",
+      "value": "0",
+      "aria": "播放头位置",
+      "disabled": false,
+      "svgBox": null
+    },
+    {
+      "sel": "[data-director-time-field='duration']",
+      "x": 135,
+      "w": 46,
+      "h": 24,
+      "gap": 1,
+      "radiusLeft": "0px",
+      "radiusRight": "0px",
+      "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "color": "rgb(247, 247, 247)",
+      "fontSize": "12px",
+      "text": "",
+      "value": "8000",
+      "aria": "总时长",
+      "disabled": false,
+      "svgBox": null
+    },
+    {
+      "sel": "[data-director-time-unit]",
+      "x": 182,
+      "w": 33,
+      "h": 24,
+      "gap": 1,
+      "radiusLeft": "0px",
+      "radiusRight": "8px",
+      "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "color": "rgb(247, 247, 247)",
+      "fontSize": "12px",
+      "text": "ms",
+      "value": "",
+      "aria": "切换时间单位为 s",
+      "disabled": false,
+      "svgBox": null
+    },
+    {
+      "sel": "[data-director-add-track]",
+      "x": 230,
+      "w": 82,
+      "h": 24,
+      "gap": 15,
+      "radiusLeft": "8px",
+      "radiusRight": "8px",
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgb(188, 188, 188)",
+      "fontSize": "13px",
+      "text": "新建轨道",
+      "value": "",
+      "aria": "选中角色、道具或分组后建立轨道",
+      "disabled": false,
+      "svgBox": [
+        12,
+        13
+      ]
+    }
+  ],
+  "autoKeyframeOff": {
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "oklab(0.999994 0.0000455677 0.0000200868 / 0.8)",
+    "pressed": "false"
+  }
+}

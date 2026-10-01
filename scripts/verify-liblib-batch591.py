@@ -20,6 +20,13 @@ Their values follow the unit toggle:
     s  mode ->  0.00 / 10.00     button text `s`   aria 切换时间单位为 ms
     ms mode ->  0    / 10000     button text `ms`  aria 切换时间单位为 s
 
+Batch 601 re-sampled the source toolbar and found it opens in **ms**: unit
+button text `ms`, aria `切换时间单位为 s`, 播放头位置 `0`, 总时长 `10000`
+(a 10s project). The `s` default this batch asserted was a clone choice with no
+source behind it, so the initial-state expectations moved to ms and the s-mode
+checks now toggle into s first. The toggle's flip behaviour, the joined-box
+geometry and the commit semantics are unchanged.
+
 自动帧 carries `aria-pressed="false"`; 新建轨道's accessible name is
 `选中角色、道具或分组后建立轨道` (a precondition hint, not 「新建轨道」).
 
@@ -72,7 +79,9 @@ SOURCE_PREFIX = [
     "循环播放",
     "播放头位置",
     "总时长",
-    "切换时间单位为 ms",
+    # Batch 601: the source toolbar opens in ms mode, so the toggle's
+    # accessible name is 切换时间单位为 s on first paint.
+    "切换时间单位为 s",
     "选中角色、道具或分组后建立轨道",
 ]
 
@@ -196,7 +205,12 @@ def run_desktop(page: Page) -> dict[str, Any]:
             float(field["borderWidth"].replace("px", "") or 0) == 0,
             detail=field["borderWidth"],
         )
-        check(f"fields:{aria}:unit-s", field["unit"] == "s", detail=field["unit"])
+        # Batch 601: the source's toolbar opens in **ms** mode — its unit button
+        # reads `ms`, its aria is 切换时间单位为 s, and its 总时长 box shows
+        # `10000` for a 10s project. The `s` default this batch originally
+        # asserted was a clone choice, not a source fact, so the initial-state
+        # assertions now expect ms and the s-mode checks toggle into s first.
+        check(f"fields:{aria}:unit-ms", field["unit"] == "ms", detail=field["unit"])
 
     head = page.locator("[data-director-time-field='time']")
     duration = page.locator("[data-director-time-field='duration']")
@@ -207,20 +221,10 @@ def run_desktop(page: Page) -> dict[str, Any]:
         "() => window.__director_store.getState().timeline.duration"
     )
     result["store_time_and_duration"] = [store_head, store_dur]
-    check("s-mode:head-two-decimals", head.input_value() == f"{store_head:.2f}",
-          detail=(head.input_value(), store_head))
-    check("s-mode:duration-two-decimals", duration.input_value() == f"{store_dur:.2f}",
-          detail=(duration.input_value(), store_dur))
-    check("s-mode:no-mm-ss", ":" not in head.input_value(), detail=head.input_value())
-
-    # 3) the unit toggle flips both readouts and its own label/aria
+    # Batch 601: the toolbar now opens in the source's ms mode.
     unit_btn = page.locator("[data-director-time-unit]")
-    check("unit:initial-aria", unit_btn.get_attribute("aria-label") == "切换时间单位为 ms")
-    check("unit:initial-text", unit_btn.inner_text().strip() == "s", detail=unit_btn.inner_text())
-    unit_btn.click()
-    page.wait_for_timeout(200)
-    check("unit:ms-text", unit_btn.inner_text().strip() == "ms", detail=unit_btn.inner_text())
-    check("unit:ms-aria", unit_btn.get_attribute("aria-label") == "切换时间单位为 s")
+    check("unit:initial-text", unit_btn.inner_text().strip() == "ms", detail=unit_btn.inner_text())
+    check("unit:initial-aria", unit_btn.get_attribute("aria-label") == "切换时间单位为 s")
     check(
         "ms-mode:head-integer-ms",
         head.input_value() == str(round(store_head * 1000)),
@@ -231,10 +235,19 @@ def run_desktop(page: Page) -> dict[str, Any]:
         duration.input_value() == str(round(store_dur * 1000)),
         detail=(duration.input_value(), store_dur),
     )
+    check("ms-mode:no-decimal-point", "." not in duration.input_value(),
+          detail=duration.input_value())
+
+    # toggle into s mode — everything below runs there, as it always has
     unit_btn.click()
     page.wait_for_timeout(200)
-    check("unit:back-to-s", unit_btn.inner_text().strip() == "s")
-    check("unit:back-to-two-decimals", head.input_value() == f"{store_head:.2f}")
+    check("unit:s-text", unit_btn.inner_text().strip() == "s", detail=unit_btn.inner_text())
+    check("unit:s-aria", unit_btn.get_attribute("aria-label") == "切换时间单位为 ms")
+    check("s-mode:head-two-decimals", head.input_value() == f"{store_head:.2f}",
+          detail=(head.input_value(), store_head))
+    check("s-mode:duration-two-decimals", duration.input_value() == f"{store_dur:.2f}",
+          detail=(duration.input_value(), store_dur))
+    check("s-mode:no-mm-ss", ":" not in head.input_value(), detail=head.input_value())
 
     # 4) editing 总时长 commits through the store
     duration.fill("12.5")
@@ -256,6 +269,19 @@ def run_desktop(page: Page) -> dict[str, Any]:
     )
     check("duration:rolls-back", duration.input_value() == "12.50",
           detail=duration.input_value())
+
+    # 3b) and the toggle round-trips back to the source's ms default
+    unit_btn.click()
+    page.wait_for_timeout(200)
+    check("unit:back-to-ms", unit_btn.inner_text().strip() == "ms",
+          detail=unit_btn.inner_text())
+    check("unit:back-to-aria-s", unit_btn.get_attribute("aria-label") == "切换时间单位为 s")
+    final_dur = page.evaluate(
+        "() => window.__director_store.getState().timeline.duration"
+    )
+    check("ms-mode:back-to-integer-ms",
+          duration.input_value() == str(round(final_dur * 1000)),
+          detail=(duration.input_value(), final_dur))
 
     # 5) 新建轨道 accessible name is the source string
     # the clone carries a second, clone-only `+ 轨道` add-track button further

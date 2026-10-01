@@ -642,3 +642,15 @@ screenshots:
     visible_text: '画布 / 画布 1 / 画布 1 副本 / 未命名项目 副本'
     alt: '画布切换面板展开后，画布 1 下方出现「画布 1 副本」一行，说明副本确实建出来了'
     sha256: 0f2e4f3eb263c635de41b4302225bb1107d3167389239ecfa073d2dc5066582a
+  - file: screenshots/57-canvas-two-names.png
+    task_id: manage-canvases
+    step: '在画布库把卡片改名为「库内改名D」后进入该画布：顶栏左侧显示新名，右侧画布切换器仍显示「画布 1」——两个名字并排出现，因为顶栏切换器读的是另一个字段（canvasTitle，为空时回落成「画布 N」）'
+    route: '/canvas/{id}'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '[aria-label="切换画布"]'
+    visible_text: '库内改名D / 画布 1 / 双击画布 · 自由生成节点 / 资产管理 / 100 %'
+    alt: '画布顶栏同时显示「库内改名D」和「画布 1」：前者是在画布库里改的标题，后者是画布切换器的名字，两者互不相通'
+    sha256: 4b24120306b452bec12c6b63c983842be256f57d2b0e5c19a1fa6e02b662343a
+

@@ -264,6 +264,71 @@ def p_stay_acceptance_only(src):
     return 'searchParams.get("stay")' in body and "验收脚本" in body
 
 
+def p_rename_two_names(src):
+    """一张画布两个名字：顶栏切换器读 canvasTitle，画布库卡片读 title，互不同步。
+
+    判据要求三处同时成立，缺一即上游已改：
+      (a) 顶栏把 projectCanvases 的 title 映射为 `canvasTitle?.trim() || 画布 N`；
+      (b) 画布库卡片的 aria-label / 标题用 `project.title`；
+      (c) 顶栏菜单的「重命名画布」写的是 `canvasTitle`，而库内行内重命名写 `title`
+          ——(c) 是关键：只有 (a)(b) 时可能只是两处显示不同源，若写入字段也分开，
+          就是「改了一处另一处不跟着变」的双向割裂。
+    """
+    proj = git_show(src, "web/src/pages/canvas/project.tsx")
+    bar = git_show(src, "web/src/pages/canvas/canvas-project-top-bar.tsx")
+    card = git_show(src, "web/src/components/canvas/canvas-folder-card.tsx")
+    if not proj or not bar or not card:
+        return None
+    # (a)
+    mapped = re.search(r"const canvasProjects = useMemo\(\s*\(\)\s*=>\s*workspaceCanvases\.map\(\(project, index\) => \(\{\s*"
+                        r"id: project\.id,\s*title: project\.canvasTitle\?\.trim\(\)", proj, re.S)
+    if not mapped:
+        return False
+    # (b) 库内卡片用 title
+    if not re.search(r"aria-label=\{`\$\{project\.title\} 画布操作`\}", card):
+        return False
+    # (c) 写入字段分开
+    m = re.search(r"const renameCanvasFromMenu = useCallback\(async.*?\n    \}, \[", proj, re.S)
+    if not m or "canvasTitle" not in m.group(0):
+        return False
+    m2 = re.search(r"const saveTitle = async \(\) => \{.*?\n    \};", card, re.S)
+    if not m2 or "renameProject(project.id" not in m2.group(0) or "canvasTitle" in m2.group(0):
+        return False
+    return "canvasLabel" in bar and "canvas.title" in bar
+
+
+def p_rename_not_synced(src):
+    """改名同样绕过了带后端同步的保存路径：两处改名都只有 flushCanvasStorePersistence。
+
+    与 p_copy_not_synced 同族但**不是同一条**：复制的问题是新项目没被上传，
+    改名的问题是**已有项目的元数据没被上传**，而对照组（createLocalCanvasProject）
+    在两处都带 syncLocalCanvasProjectToBackend。判据要求：
+      (a) 两处改名函数体内都没有 syncLocalCanvasProjectToBackend；
+      (b) 都有 flushCanvasStorePersistence（证明确实写了本地缓存，只差远端那一步）；
+      (c) 对照组 createLocalCanvasProject 仍然带同步。
+    """
+    proj = git_show(src, "web/src/pages/canvas/project.tsx")
+    card = git_show(src, "web/src/components/canvas/canvas-folder-card.tsx")
+    repo = git_show(src, "web/src/services/local-workspace-repository.ts")
+    if not proj or not card or not repo:
+        return None
+    m = re.search(r"const renameCanvasFromMenu = useCallback\(async.*?\n    \}, \[", proj, re.S)
+    if not m:
+        return False
+    body = m.group(0)
+    if "syncLocalCanvasProjectToBackend" in body:
+        return False
+    if "flushCanvasStorePersistence" not in body:
+        return False
+    m2 = re.search(r"const saveTitle = async \(\) => \{.*?\n    \};", card, re.S)
+    if not m2 or "syncLocalCanvasProjectToBackend" in m2.group(0):
+        return False
+    if "flushCanvasStorePersistence" not in m2.group(0):
+        return False
+    m3 = re.search(r"export async function createLocalCanvasProject.*?\n\}", repo, re.S)
+    return bool(m3) and "syncLocalCanvasProjectToBackend" in m3.group(0)
+
+
 # 第 4 个字段 scan_key = (文件, setter 名)，表示该条**同时**能被方向二的
 # 全量 setter 扫描覆盖；为 None 表示**只有专属判据**（判据形态不同，
 # 例如「ref 零 click」或「路由先 Navigate」，setter 扫描天然照不到）。
@@ -285,6 +350,10 @@ REGISTRY = [
     ("canvas-copy-never-uploaded", "顶栏/只读复制的副本只写本地、从不上传",
      p_copy_not_synced, None),
     ("canvas-stay-acceptance-only", "画布库 `?stay=1` 只为验收脚本存在", p_stay_acceptance_only, None),
+    ("canvas-two-names", "一张画布两个名字：顶栏与画布库互不同步",
+     p_rename_two_names, None),
+    ("canvas-rename-never-uploaded", "画布改名（两处）都只写本地、从不上传",
+     p_rename_not_synced, None),
 ]
 
 

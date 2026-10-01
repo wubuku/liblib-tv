@@ -58,3 +58,17 @@ BeefTV 工作区当前是 **detached HEAD `@852961a`（v1.6.14）**，而手册�
 | 两种写法的界面表现、编辑坞/空态消失 | **runtime** | v1.6.14 dev :3001，外部无头 Playwright 1440×900，截图 54/55 |
 | 库内「创建副本」后端列表新增 vs 顶栏「复制画布」写请求数 0 | **runtime** | 同上，截图 56；`?stay=1` 保留在库内以便连续观测 |
 
+## Batch 136 新增证据锚点（画布改名 / 两个名字）
+
+| 断言 | 证据 | 位置 |
+|---|---|---|
+| 顶栏切换器读 `canvasTitle`，为空回落「画布 N」 | static | `web/src/pages/canvas/project.tsx:290-295`（`canvasProjects` useMemo 映射） |
+| 顶栏标签消费该映射 | static | `web/src/pages/canvas/canvas-project-top-bar.tsx:105,270,294` |
+| 画布库卡片读 `title` | static | `web/src/components/canvas/canvas-folder-card.tsx:119,141` |
+| 顶栏改名写 `canvasTitle`，无后端同步 | static | `web/src/pages/canvas/project.tsx:725-729`（`renameCanvasFromMenu`） |
+| 库内改名写 `title`，无后端同步 | static | `web/src/components/canvas/canvas-folder-card.tsx:71-79`（`saveTitle`） |
+| 对照组确实带同步 | static | `web/src/services/local-workspace-repository.ts:91`（`createLocalCanvasProject`） |
+| 正常保存才带同步 | static | `web/src/pages/canvas/use-canvas-project-lifecycle.ts:367`、`:285`（500ms 防抖调度） |
+| 顶栏同时并存两个名字 | **runtime** | v1.6.14 dev :3001，外部无头 Playwright 1440×900，截图 57 |
+| 两种改名瞬间写请求 0；库内改名可被后续内容保存带上、顶栏改名带不上 | **runtime** | 同上，观测 `/api/canvas-projects` 的 PUT/POST/PATCH |
+

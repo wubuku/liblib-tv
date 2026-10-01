@@ -76,8 +76,12 @@ def run_desktop(page: Page) -> dict[str, Any]:
     duration_label = page.locator("[data-director-timeline-duration]")
     check("duration:label-visible", duration_label.is_visible())
 
-    # 输入 3.5 + Enter → seek
-    time_input.fill("3.5")
+    # 输入 3500 + Enter → seek to 3.5s
+    # Batch 601: the toolbar now opens in the source's **ms** unit, so the
+    # playhead box is read and written in integer milliseconds (3.5 is no
+    # longer a valid entry there — it would mean 3.5ms). The seek itself is
+    # unchanged, only the literal that expresses it.
+    time_input.fill("3500")
     time_input.press("Enter")
     page.wait_for_timeout(250)
     check(
@@ -88,8 +92,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
         == 3.5,
     )
 
-    # 超界钳制（20 > 10）
-    time_input.fill("20")
+    # 超界钳制（20000ms = 20s > 10s）
+    time_input.fill("20000")
     time_input.press("Enter")
     page.wait_for_timeout(250)
     current = page.evaluate(
@@ -98,7 +102,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("seek:clamped", 0 <= current <= 10)
 
     # 负值钳制
-    time_input.fill("-4")
+    time_input.fill("-4000")
     time_input.press("Enter")
     page.wait_for_timeout(250)
     check(

@@ -555,6 +555,54 @@ tasks:
     manual_pages:
       - 10-tasks/generate-audio.md
 
+  - id: canvas-rename-two-names
+    title: 画布改名（两个名字 + 不上传）
+    role: beeftv-creator
+    frequency: common
+    impact: high
+    coverage: full
+    routes:
+      - '/canvas'
+      - '/canvas/{id}'
+    evidence:
+      - type: runtime
+        note: >-
+          v1.6.14 dev(:3001) 实测（2026-10-01，外部无头 Playwright 1440×900）：
+          (1) 在画布库把卡片行内改名为「库内改名D」→ 画布库卡片显示新名，
+          但进入该画布后顶栏右侧画布切换器仍显示「画布 1」；**同一个顶栏上
+          「库内改名D」与「画布 1」并排出现**（截图 57）。
+          (2) 反向：顶栏菜单「重命名画布」改为「顶栏改名B」→ 顶栏立即显示新名，
+          画布库卡片仍为「未命名项目」。
+          (3) 写请求观测：两种改名在回车瞬间对 /api/canvas-projects 的
+          PUT/POST/PATCH **均为 0 次**；对照「新建画布」产生 1 次 PUT。
+          (4) 关键分野：库内改名后**任意一次内容编辑**（加一个节点）触发 PUT，
+          **后端 title 更新为新名**；顶栏改名后同样加节点触发 PUT，
+          **后端 title 与 canvasTitle 均不变**。
+      - type: static
+        note: >-
+          两个字段各管一块：project.tsx:290 的 canvasProjects 把
+          `title` 映射为 `project.canvasTitle?.trim() || \`画布 ${index+1}\``
+          （顶栏切换器读它，canvas-project-top-bar.tsx:105,270 取 canvasLabel）；
+          画布库卡片读 `project.title`（canvas-folder-card.tsx:119,141）。
+          写入也分开：顶栏 renameCanvasFromMenu（project.tsx:725-729）写
+          `canvasTitle`；库内 CanvasFolderCard.saveTitle（canvas-folder-card.tsx:71-79）
+          走 store 的 renameProject 写 `title`。
+          两处都只有 `flushCanvasStorePersistence()`（只写 IndexedDB），
+          均无 syncLocalCanvasProjectToBackend；对照组
+          createLocalCanvasProject（local-workspace-repository.ts:91）带同步。
+    status: verified
+    review_note: >-
+      账本单列一条（便于按缺陷回查），但**正文并入 manage-canvases、不新建任务页**：
+      改名的入口在画布库卡片菜单，不构成独立的用户任务。
+      四条断言均有运行时证据，其中「库内改名能借内容保存带上、顶栏改名带不上」
+      这一条是**实测分野**，不是源码推断——两处字段不同，后端只认 title。
+      判据由 verify-unreachable.py 的 canvas-two-names / canvas-rename-never-uploaded 盯住。
+    review_condition: >-
+      (a) project.tsx:290 的 canvasProjects 映射改回 project.title，或
+      (b) 两处改名函数出现 syncLocalCanvasProjectToBackend ——任一成立，手册相关表述即过期。
+    manual_pages:
+      - 10-tasks/manage-canvases.md
+
   - id: readonly-canvas
     title: 只读画布与画布副本
     role: beeftv-creator

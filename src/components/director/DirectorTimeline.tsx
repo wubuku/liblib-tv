@@ -21,6 +21,7 @@ import {
   RectangleHorizontal,
   Repeat2,
   Route,
+  Timer,
   Trash2,
   Waypoints,
   X,
@@ -93,6 +94,13 @@ const DIRECTOR_KEYFRAME_EDGE_COLOR = "#13879f";
 const DIRECTOR_KEYFRAME_FILL_COLOR = "#2f2f2f";
 // 11px 外接方 ÷ √2 = 7.78px，取 7.8px 让实测外接回到 11px。
 const DIRECTOR_KEYFRAME_BOX_PX = "7.8px";
+
+// Batch 601（源站 2026-10-01 实测，/tmp/src593/probe47 + 4x 截图）：源站打开
+// 导演台时时间单位是 **ms**——单位钮文字 `ms`、aria `切换时间单位为 s`，
+// 播放头位置读数 `0`、总时长读数 `10000`（该项目时长 10s × 1000）。
+// batch 591 把 clone 的默认单位定成 `s`，但那不是源站事实（源站两次观测都在
+// ms 态），本批按实测翻转。
+const DIRECTOR_DEFAULT_TIME_UNIT: DirectorTimeUnit = "ms";
 
 function directorTrackKeyframeState(
   track: DirectorTimelineTrack,
@@ -210,8 +218,14 @@ function TimelineTimeField({
       }}
       onBlur={() => setDraft(format(value))}
       className={cn(
-        "h-6 w-[46px] shrink-0 border-0 bg-[#222] px-1 text-center text-xs tabular-nums",
-        "text-[#c8c8c8] outline-none focus:bg-white/[0.08]",
+        // Batch 601（源站实测 class 逐字）：
+        // `h-6 border-0 bg-white/10 px-0 text-center text-[12px] tabular-nums
+        //  leading-none text-[#F7F7F7] outline-none transition-colors
+        //  placeholder:text-white/30 hover:bg-white/[0.16]
+        //  focus:bg-white/[0.18] focus:ring-1 focus:ring-[#5DDCFF]/70 w-[46px]`
+        "h-6 w-[46px] shrink-0 border-0 bg-white/10 px-0 text-center text-[12px] tabular-nums leading-none",
+        "text-[#F7F7F7] outline-none transition-colors placeholder:text-white/30",
+        "hover:bg-white/[0.16] focus:bg-white/[0.18] focus:ring-1 focus:ring-[#5DDCFF]/70",
         className,
       )}
     />
@@ -236,7 +250,9 @@ export function DirectorTimeline({
   const setTimelineDuration = useDirectorStore(
     (state) => state.setTimelineDuration,
   );
-  const [timeUnit, setTimeUnit] = useState<DirectorTimeUnit>("s");
+  const [timeUnit, setTimeUnit] = useState<DirectorTimeUnit>(
+    DIRECTOR_DEFAULT_TIME_UNIT,
+  );
   // Batch 591/592: 源站时间轴高 182px；「时间线最小化」把它收成 88px
   // ——工具栏整条保留，只有轨道区收起，按钮同时变成「展开时间线」。
   const [timelineCollapsed, setTimelineCollapsed] = useState(false);
@@ -703,10 +719,14 @@ export function DirectorTimeline({
       {/* Batch 593（源站 2026-10-01 实测）：工具条是 z-30 覆盖层，高 36px
           （`h-[36px]` + `px-2 py-1`），**没有**任何标题——之前 clone 自造的
           「动画时间轴」h2 已删除。左格 320px 放播放/自动帧/循环/读数/单位/
-          新建轨道，右格放标尺缩放与导出。 */}
+          新建轨道，右格放标尺缩放与导出。
+          Batch 601（源站实测 /tmp/src593/probe47）：左格前七项的**逐项间隙**
+          不是统一的 4px——播放/自动帧/循环三者 gap 0，之后 4px 跳到读数组，
+          读数组内 1px 连体，再 15px 才到「新建轨道」。宽度 26/24/26/46/46/33/82。
+          所以这里把 header 的 gap 归零，各段自己带边距。 */}
       <header
         data-director-timeline-controls
-        className="flex h-9 shrink-0 items-center gap-1 overflow-x-auto border-b border-white/[0.07] px-2 py-1 pr-[260px]"
+        className="flex h-9 shrink-0 items-center gap-0 overflow-x-auto border-b border-white/[0.07] px-2 py-1 pr-[260px]"
       >
         <button
           type="button"
@@ -715,7 +735,7 @@ export function DirectorTimeline({
           title={timeline.isPlaying ? "暂停" : "播放"}
           aria-pressed={timeline.isPlaying}
           onClick={() => setTimelinePlaying(!timeline.isPlaying)}
-          className="flex h-6 w-[26px] shrink-0 items-center justify-center rounded text-[#bcbcbc] hover:bg-white/[0.06] hover:text-white"
+          className="flex h-6 w-[26px] shrink-0 items-center justify-center rounded-md text-white/80 transition-colors hover:bg-white/10 hover:text-white"
         >
           {timeline.isPlaying ? <Pause size={14} /> : <Play size={14} />}
         </button>
@@ -733,16 +753,13 @@ export function DirectorTimeline({
           aria-pressed={timeline.autoKeyframe}
           onClick={toggleAutoKeyframe}
           className={cn(
-            "flex h-6 w-6 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-white",
-            timeline.autoKeyframe && "bg-white/[0.07] text-[#5ddcff]",
+            "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-white/80 transition-colors hover:bg-white/10 hover:text-white",
+            timeline.autoKeyframe && "bg-white/10 text-white",
           )}
         >
-          <span
-            className={cn(
-              "h-2 w-2 rounded-full border border-current",
-              timeline.autoKeyframe && "bg-current",
-            )}
-          />
+          {/* Batch 601（源站 4x 截图实测）：源站「自动帧」里是一个 14px
+              （`svg.h-3.5.w-3.5`）的**秒表**图标，不是圆点。 */}
+          <Timer size={14} />
         </button>
         <button
           type="button"
@@ -752,16 +769,23 @@ export function DirectorTimeline({
           aria-pressed={timeline.loop}
           onClick={toggleTimelineLoop}
           className={cn(
-            "flex h-6 w-[26px] shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-white",
-            timeline.loop && "bg-white/[0.07] text-[#5ddcff]",
+            "flex h-6 w-[26px] shrink-0 items-center justify-center rounded-md text-[12px] leading-none transition-colors",
+            timeline.loop
+              ? "bg-white/10 text-neutral-50"
+              : "text-white/80 hover:bg-white/10 hover:text-white",
           )}
         >
           <Repeat2 size={14} />
         </button>
         {/* Batch 591：源站两个读数是**连体**的可编辑文本框（各 46×24、
-            12px 居中，左框 radius 8px 0 0 8px、右框全 0）。值格式随单位
-            切换：s 模式两位小数（0.00 / 10.00），ms 模式整数毫秒
-            （0 / 10000）。aria 逐字为 播放头位置 / 总时长。 */}
+            12px 居中）。Batch 601 精测补齐：左框 radius 8px 0 0 8px、
+            **中框 radius 0**、单位钮 radius 0 8px 8px 0，三者 gap 1px；
+            底色是 `bg-white/10`（不是 clone 的 `#222`），内边距 0，
+            文字 12px `#F7F7F7`，带 hover `bg-white/[0.16]` 与
+            focus `bg-white/[0.18] + ring-1 ring-[#5DDCFF]/70`。
+            值随单位切换：ms 模式整数毫秒（0 / 10000，源站默认），
+            s 模式两位小数（0.00 / 10.00）。aria 逐字为 播放头位置 / 总时长。 */}
+        <div className="ml-1 flex shrink-0 items-center gap-px">
         <TimelineTimeField
           testId="time"
           ariaLabel="播放头位置"
@@ -775,7 +799,7 @@ export function DirectorTimeline({
         <TimelineTimeField
           testId="duration"
           ariaLabel="总时长"
-          className="rounded-r-lg"
+          className=""
           value={timeline.duration}
           unit={timeUnit}
           onCommit={setTimelineDuration}
@@ -786,16 +810,19 @@ export function DirectorTimeline({
           aria-label={timeUnit === "s" ? "切换时间单位为 ms" : "切换时间单位为 s"}
           title={timeUnit === "s" ? "切换时间单位为 ms" : "切换时间单位为 s"}
           onClick={() => setTimeUnit((unit) => (unit === "s" ? "ms" : "s"))}
-          className="flex h-6 w-8 shrink-0 items-center justify-center rounded text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white"
+          className="flex h-6 w-[33px] shrink-0 items-center justify-center rounded-r-lg bg-white/10 px-2 text-[12px] tabular-nums leading-none text-[#F7F7F7] transition-colors hover:bg-white/[0.16] hover:text-white"
         >
           {timeUnit}
         </button>
+        </div>
         <button
           type="button"
           data-director-add-track
           // Batch 591: 源站该按钮的可及名逐字是这句（描述「先选中再建立」
           // 的前置条件），不是「新建轨道」；clone 的 title 仍保留更完整的
           // 禁用提示（含 coachmark 指引），二者并存。
+          // Batch 601（源站实测）：按钮**显示文字**是「新建轨道」（82×24，
+          // 13px），可及名才是那句前置条件提示——两者并存，不是二选一。
           aria-label="选中角色、道具或分组后建立轨道"
           title={
             trackCreatable
@@ -805,8 +832,10 @@ export function DirectorTimeline({
           disabled={!trackCreatable}
           onClick={() => createTrackForSelectedObject()}
           className={cn(
-            "flex h-6 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#858585] hover:bg-white/[0.06] hover:text-white",
-            trackCreatable && "text-[#bcbcbc]",
+            "ml-[15px] flex h-6 w-[82px] shrink-0 items-center justify-center gap-1 rounded-lg px-2 text-[13px] leading-none transition-colors",
+            trackCreatable
+              ? "text-[#bcbcbc] hover:bg-white/[0.06] hover:text-white"
+              : "text-[#525252]",
           )}
         >
           <Plus size={13} />
