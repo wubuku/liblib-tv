@@ -9,6 +9,12 @@ interface MenuItem {
   danger?: boolean;
   separator?: boolean;
   disabled?: boolean;
+  /**
+   * Batch 357: 悬停说明。菜单项变惰性后 (不再有「点了有反应」的假象),
+   * 用户需要一个地方问「为什么点不动」—— 否则禁用态就成了无声的拒绝。
+   * 与 batch 355/356 给按钮加 title 是同一个理由。
+   */
+  title?: string;
   onClick?: () => void;
 }
 
@@ -95,6 +101,7 @@ export function FrameosContextMenu() {
               type="button"
               data-frameos-context-item={item.label}
               disabled={item.disabled}
+              title={item.title}
               onClick={() => {
                 if (item.disabled) return;
                 item.onClick?.();

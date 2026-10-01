@@ -260,10 +260,22 @@ export function FrameosGroupToolbar() {
           <button
             type="button"
             data-frameos-group-action="save-template"
+            // Batch 357: 此前 onClick 只弹「已存为模板 (mock)」绿色成功提示。
+            // 查了面板的另一头: FrameosTemplatePanel 的卡片来自**硬编码常量**
+            // TEMPLATE_CARDS (data-frameos-template-card 渲染的就是那张常量表),
+            // store 里根本没有 template 字段 —— 存进去的模板**永远不会**出现在
+            // 模板面板里, 面板也不会多出一张卡。
+            //
+            // 不接线的理由: 「模板」存的是整个画布、还是这一组、还是选中节点,
+            // 存哪些字段、叫什么名字, 源站一律未采样 —— 编造等于凭空造功能。
+            // 与「设置为资产图」取同一修法: **保持启用** (按钮存在与可点性属
+            // 源站事实, 没有证据说它是禁用的), 只把 toast 从 success 改成 warning
+            // —— 缺陷在谎称成功, 不在控件能不能点。
+            title="克隆侧尚未实现存为模板"
             style={btnStyle}
             onClick={(e) => {
               e.stopPropagation();
-              showToast("已存为模板 (mock)", "success");
+              showToast("存为模板暂不可用", "warning");
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = "rgba(255,255,255,0.08)";

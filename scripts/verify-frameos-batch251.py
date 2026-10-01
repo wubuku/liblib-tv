@@ -143,7 +143,28 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("port:right-edge-centered", port and port["verticallyCentered"] and port["rightOverlap"])
     page.locator("button[aria-label='批量连线']").click()
     page.wait_for_timeout(400)
-    check("port:click-mock-toast", page.get_by_text("批量连线 (mock)").count() > 0)
+    # Batch 357: 此前这一条断言的是 `page.get_by_text("批量连线 (mock)")` ——
+    # 断的是**mock 占位符本身**, 不是源站行为: 源站的点击效果从未采样, 所以这里
+    # 一直是个 mock。Batch 357 把这条谎报换成了 warning「批量连线暂不可用」。
+    #
+    # 与 batch170 对照（那一条本批也被我推翻过）: batch170 断的是
+    # BEHAVIORS.md:33 里**采样到的启用态**, 属源站事实, 所以该改的是我的代码;
+    # 这一条断的只是占位文案, 属该跟着修的断言。
+    #
+    # 不去钉死新的具体文案 —— 只钉两件真正要保的性质:
+    #   ① 点了有反馈（圆点没变成死的）;
+    #   ② 那条反馈**不是绿色成功**（不谎称已连线）。
+    toasts = page.locator("[data-frameos-toast]")
+    n_toasts = toasts.count()
+    check("port:click-gives-feedback", n_toasts > 0)
+    check(
+        "port:click-not-success-claim",
+        n_toasts > 0
+        and all(
+            toasts.nth(i).get_attribute("data-frameos-toast-variant") != "success"
+            for i in range(n_toasts)
+        ),
+    )
     page.wait_for_timeout(2600)
 
     # ── 3c. 组重命名 (Batch 262 源站采样: 双击标签 → 内联 input → Enter) ──

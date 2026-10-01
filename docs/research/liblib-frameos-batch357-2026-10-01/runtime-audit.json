@@ -1,0 +1,151 @@
+{
+  "batch": 357,
+  "defect": "第三类交互谎言: 有 handler、点了弹绿色「已xxx」成功提示、但底层状态一点没变。普查在 36 个 frameos 源文件里找到 6 条只弹 toast 的处理器, 人工核实 5 条为谎报(设置为资产图/复制分组/创建分组副本/批量连线/存为模板), 1 条(⌘S)为真——画布本就在自动持久化。",
+  "fix": "5 条谎报**保持启用**、只把 toast 从 success 改成 warning 并加 title 说明; ⌘S 保持原样。禁用方案被 batch170 打回——BEHAVIORS.md:33 的源站实测记着「设置为资产图」是启用的, 缺陷在谎称成功而不在控件能不能点。",
+  "role": "把「谎称成功」普查变成门禁, 并给上下文菜单加 title 支持",
+  "desktop": {
+    "viewport": "1440x900",
+    "checks": [
+      "census:scanned-enough",
+      "census:toast-sites-found",
+      "census:exactly-one-success-claim",
+      "census:remaining-is-benign",
+      "lie-removed:已设置为资产图",
+      "lie-removed:已复制分组",
+      "lie-removed:已创建分组副本",
+      "lie-removed:批量连线 (mock)",
+      "lie-removed:已存为模板",
+      "census:five-unavailable-toasts",
+      "census:unavailable-not-success",
+      "group-menu:复制:present",
+      "group-menu:复制:still-enabled",
+      "group-menu:复制:explains-why",
+      "group-menu:创建副本:present",
+      "group-menu:创建副本:still-enabled",
+      "group-menu:创建副本:explains-why",
+      "group-menu:复制:warns-not-claims-success",
+      "group-menu:复制:says-unavailable",
+      "group-menu:创建副本:warns-not-claims-success",
+      "group-menu:创建副本:says-unavailable",
+      "group-menu:删除:still-enabled",
+      "group-menu:删除:actually-ungroups",
+      "group-menu:删除:no-mock-toast",
+      "port:present",
+      "port:still-enabled",
+      "port:explains-why",
+      "port:warns-not-claims-success",
+      "port:says-unavailable",
+      "save-template:present",
+      "save-template:still-enabled",
+      "save-template:explains-why",
+      "save-template:warns-not-claims-success",
+      "save-template:says-unavailable",
+      "node-menu:设为资产图:present",
+      "node-menu:设为资产图:still-enabled",
+      "node-menu:设为资产图:explains-why",
+      "node-menu:设为资产图:warns-not-claims-success",
+      "node-menu:设为资产图:says-unavailable",
+      "diagnostics:zero"
+    ],
+    "census": {
+      "scanned": 36,
+      "handlers": 9,
+      "toastSites": 14,
+      "toastOnly": [
+        "已保存当前画布",
+        "项目资产在克隆侧尚未接入，设为资产图暂不可用",
+        "复制分组暂不可用",
+        "创建分组副本暂不可用",
+        "批量连线暂不可用",
+        "存为模板暂不可用"
+      ],
+      "successClaims": [
+        "已保存当前画布"
+      ]
+    },
+    "setup": {
+      "gid": "group-1790843823388-1",
+      "groupCount": 1
+    },
+    "group_menu": [
+      {
+        "label": "复制",
+        "disabled": false,
+        "title": "克隆侧尚未实现复制分组"
+      },
+      {
+        "label": "创建副本",
+        "disabled": false,
+        "title": "克隆侧尚未实现创建分组副本"
+      },
+      {
+        "label": "删除",
+        "disabled": false,
+        "title": ""
+      }
+    ],
+    "toasts": {
+      "复制": [
+        {
+          "variant": "warning",
+          "text": "复制分组暂不可用"
+        }
+      ],
+      "创建副本": [
+        {
+          "variant": "warning",
+          "text": "创建分组副本暂不可用"
+        }
+      ],
+      "批量连线": [
+        {
+          "variant": "warning",
+          "text": "批量连线暂不可用"
+        }
+      ],
+      "存为模板": [
+        {
+          "variant": "warning",
+          "text": "存为模板暂不可用"
+        }
+      ],
+      "设置为资产图": [
+        {
+          "variant": "warning",
+          "text": "项目资产在克隆侧尚未接入，设为资产图暂不可用"
+        }
+      ]
+    },
+    "node_menu": [
+      {
+        "label": "复制",
+        "disabled": false,
+        "title": ""
+      },
+      {
+        "label": "复制图片",
+        "disabled": false,
+        "title": ""
+      },
+      {
+        "label": "创建副本",
+        "disabled": false,
+        "title": ""
+      },
+      {
+        "label": "设置为资产图",
+        "disabled": false,
+        "title": "克隆侧尚未接入项目资产"
+      },
+      {
+        "label": "删除",
+        "disabled": false,
+        "title": ""
+      }
+    ],
+    "diagnostics": {
+      "console": 0,
+      "errors": []
+    }
+  }
+}

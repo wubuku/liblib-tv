@@ -118,12 +118,30 @@ function GroupDiv({ group, selected }: { group: FrameosGroup; selected: boolean 
             {
               label: "复制",
               shortcut: "⌘C",
-              onClick: () => showToast("已复制分组 (mock)", "success"),
+              // Batch 357: 此前 `onClick: () => showToast("已复制分组 (mock)", "success")`
+              // —— 绿色成功提示说「已复制分组」, 但 store 里没有复制分组的 action,
+              // 也没有剪贴板里的分组数据, 什么都没发生。
+              //
+              // 不接线的理由: 分组是**由存活成员算出来的盒子** (Batch 341 不变式
+              // 「分组盒 == 存活成员包围盒 + padding」)。「复制分组」若真做, 必须先
+              // 定死它复制的是盒子还是成员、成员副本归不归入新组、两个组引用同一批
+              // 成员算不算合法 —— 源站行为未采样 (人机验证阻塞), 这些全是编造。
+              // 同一条菜单里的「删除」能接, 是因为 ungroup 早就在 store 里。
+              //
+              // 与「设置为资产图」取同一修法: **保持启用** (菜单项的存在与可点性
+              // 属源站事实, 没有证据说它是禁用的), 只把 toast 从 success 改成
+              // warning —— 缺陷在谎称成功, 不在控件能不能点。
+              title: "克隆侧尚未实现复制分组",
+              onClick: () => showToast("复制分组暂不可用", "warning"),
             },
             {
               label: "创建副本",
               shortcut: "⌘D",
-              onClick: () => showToast("已创建分组副本 (mock)", "success"),
+              // Batch 357: 同上, 此前也是纯 toast 空转。节点级的「创建副本」是真的
+              // (page.tsx 调 duplicateNode, 见 Batch 170), 只有分组这一档是假的 ——
+              // 两者同名不同命, 更容易让人以为分组那档也能用。
+              title: "克隆侧尚未实现创建分组副本",
+              onClick: () => showToast("创建分组副本暂不可用", "warning"),
             },
             { separator: true, label: "" },
             {
@@ -247,9 +265,14 @@ function GroupDiv({ group, selected }: { group: FrameosGroup; selected: boolean 
             padding: 0,
           }}
           onPointerDown={(e) => e.stopPropagation()}
+          // Batch 357: 此前 onClick 只弹「批量连线 (mock)」绿色成功提示, 不连线。
+          // 它是**多步交互**的起点 (选起点 → 选终点 → 建边), 不是一条能就地补上的
+          // action, 而源站的连线流程未采样 —— 不发明。
+          // 保持启用 (圆点存在与可点性属源站事实), 只把 toast 改成 warning。
+          title="克隆侧尚未实现批量连线"
           onClick={(e) => {
             e.stopPropagation();
-            showToast("批量连线 (mock)", "success");
+            showToast("批量连线暂不可用", "warning");
           }}
         />
       )}
