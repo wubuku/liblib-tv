@@ -54,6 +54,16 @@ SCRIPTS = os.path.join(ROOT, "scripts")
 # 允许出现 origin/main 的例外文件：本闸自己、共享基线模块。
 SELF = {"verify-baseline.py", "baseline.py"}
 
+# **刻意查「上游顶端」而不是取证基线**的闸门，逐个登记并写清理由。
+# 纪律 104：抑制规则与匹配规则互为镜像——**每条例外都必须能被机器发现它已失效**。
+FLOATING_REF_EXEMPT = {
+    "verify-shot-version.py":
+        "它要核的是「这张截图对应的界面**在上游是否已被删掉**」——"
+        "截图常常拍于旧版，判据问的是「上游现在还有没有这个界面」，"
+        "**而不是**「手册的基线版本有没有」。拿基线核会把真失效误报成误登记"
+        "（Batch 177 上线首跑正是如此）。",
+}
+
 
 def strip_comments_and_docstrings(src):
     """引号感知地剥掉注释与 docstring，只留**会被执行的代码**。
@@ -171,7 +181,15 @@ def direction_three(version):
 
 
 def direction_four():
-    """没有任何闸门把 ref 写死成浮动的 origin/main。"""
+    """没有任何闸门把 ref 写死成浮动的 origin/main。
+
+    **例外必须显式登记，且每条都要写清为什么它查的就该是「上游现在」而不是「基线」**
+    （Batch 177 加的）：闸 16 要核「这张截图对应的界面在上游**是否已被删掉**」，
+    而取证基线是 v1.6.16——**在基线上那个文件当然还在**，拿基线核会把真失效
+    误报成误登记。**判据要核的问句不同，允许的 ref 就不同。**
+    例外不是「放宽判据」：它必须列在 `FLOATING_REF_EXEMPT` 里、写明理由，
+    且**删掉该条目就会报错**（否则「例外」会变成一扇长期敞开的门）。
+    """
     problems = []
     checked = 0
     for fn in sorted(os.listdir(SCRIPTS)):
@@ -185,6 +203,12 @@ def direction_four():
             continue
         code = strip_comments_and_docstrings(raw)
         checked += 1
+        if fn in FLOATING_REF_EXEMPT:
+            if "origin/main" not in code:
+                problems.append(
+                    f"方向四：{fn} 在 FLOATING_REF_EXEMPT 里登记为「允许查上游顶端」，"
+                    "但它代码里已经没有 origin/main 了——例外已失效，请删掉这条登记")
+            continue
         # **判据刻意检测字符串字面量**：ref 的值本来就写在引号里
         # （`REF = "origin/main"`），所以「排除引号」恰恰会漏掉唯一的真证据。
         # 剥注释与 docstring 之后仍能看到的 origin/main，一定是被代码引用的。

@@ -56,7 +56,8 @@ def write(p, text):
 
 def snapshot():
     """把会被注入的文件按内容存档，测试后原样还原。"""
-    names = [REFERENCE, README, "scripts/verify-feature-flags.py"]
+    names = [REFERENCE, README, "scripts/verify-feature-flags.py",
+             "scripts/verify-shot-version.py"]
     return {n: read(n) for n in names}
 
 
@@ -193,17 +194,37 @@ def m_baseline_module_exempt():
         restore(saved)
 
 
-# ── 用例 8：现状全绿，不误伤 ────────────────────────────────────────
+# ── 用例 8：真实现状全绿，不误伤 ────────────────────────────────────
 def m_clean_pass():
     check_baseline_anchor()
     rc, out = run_gate(ROOT)
     record("8 真实现状→不报", rc == 0, f"rc={rc}")
 
 
+# ── 用例 9：例外登记失效必须报错（Batch 177 加）────────────────────
+def m_exempt_became_stale():
+    """verify-shot-version.py 已登记为「允许查上游顶端」；
+    若它哪天改成用基线了，这条登记必须**报错**，否则例外会变成长期敞开的门。"""
+    check_baseline_anchor()
+    saved = snapshot()
+    try:
+        target = "scripts/verify-shot-version.py"
+        text = saved[target]
+        n = text.count("origin/main")
+        assert n > 0, "前提失配：verify-shot-version.py 里没有 origin/main，例外本就没生效"
+        write(target, text.replace("origin/main", "3a74793"))
+        assert "origin/main" not in read(target), "注入未生效：浮动 ref 还在"
+        rc, out = run_gate(ROOT)
+        record("9 例外登记已失效→必报", rc == 1 and "例外已失效" in out, f"rc={rc}")
+    finally:
+        restore(saved)
+
+
 def main():
     tests = [m_missing_baseline_section, m_missing_commit_field, m_commit_not_exist,
              m_readme_version_mismatch, m_gate_reverts_to_floating_ref,
-             m_comment_mention_not_flagged, m_baseline_module_exempt, m_clean_pass]
+             m_comment_mention_not_flagged, m_baseline_module_exempt, m_clean_pass,
+             m_exempt_became_stale]
     failed = 0
     for t in tests:
         try:
