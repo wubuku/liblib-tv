@@ -1,0 +1,33 @@
+[
+  {
+    "panel": "style-library",
+    "input": "input[aria-label='搜索风格名称、作者']",
+    "typed": "不存在的关键词zzz",
+    "count_before": 16,
+    "count_after": 0,
+    "filtered": true,
+    "empty_state_shown": 0
+  },
+  {
+    "panel": "effects-library",
+    "input": "input[aria-label='搜索特效名称、作者']",
+    "typed": "不存在的关键词zzz",
+    "count_before": 24,
+    "count_after": 0,
+    "filtered": true,
+    "empty_state_shown": 0
+  },
+  {
+    "panel": "history",
+    "error": "找不到输入框 input[aria-label='搜索画布节点']"
+  },
+  {
+    "panel": "workspace",
+    "input": "[data-workspace-name]",
+    "typed": "改名测试",
+    "count_before": null,
+    "count_after": null,
+    "filtered": true,
+    "empty_state_shown": 0
+  }
+]

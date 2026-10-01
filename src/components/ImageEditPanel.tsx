@@ -121,7 +121,10 @@ function StandardImageEditPanel({
         // Source-observed height is explicit per known node; variant is compatibility fallback only.
         style={{ height: resolvedPanelHeight }}
       >
-        <button type="button" className="pointer-events-auto absolute right-3 top-3 flex size-7 items-center justify-center rounded-lg text-[#8b8b8b] hover:bg-white/[0.07] hover:text-white" aria-label="展开编辑器">
+        {/* Batch 359: 普查发现图片编辑器里这些控件**完全没有 onClick、也没 disabled**, 却都带 hover 底色/变色 —— 看着能点, 点了毫无反应。整个面板只有「生成图片」和模型菜单是真接线的。源站点击效果未采样, 不发明; **文案与几何一律不动**(既有门禁 batch10 断的就是 54x26 / 32x32 与文案), 只去掉悬停骗人的反馈、cursor 改默认、加 title 说明, 并用 data-inert 标记(不用 aria-disabled —— Playwright 的 is_disabled() 把它算作禁用, 会撞上钉住启用态的门禁)。 */}
+        <button type="button" data-inert="true" title="展开编辑器在克隆侧尚未接入"
+          className="pointer-events-auto absolute right-3 top-3 flex size-7 cursor-default items-center justify-center rounded-lg text-[#6f6f6f]"
+          aria-label="展开编辑器">
           <Expand size={15} />
         </button>
 
@@ -131,7 +134,9 @@ function StandardImageEditPanel({
               key={label}
               type="button"
               data-image-editor-control={label}
-              className="pointer-events-auto flex h-[26px] w-[54px] items-center justify-center gap-1 rounded-full bg-white/[0.06] text-xs text-[#a5a5a5] hover:bg-white/10 hover:text-white"
+              data-inert="true"
+              title={`${label}在克隆侧尚未接入`}
+              className="pointer-events-auto flex h-[26px] w-[54px] cursor-default items-center justify-center gap-1 rounded-full bg-white/[0.06] text-xs text-[#6f6f6f]"
             >
               {label === "参考" ? <Images size={13} /> : label === "标记" ? <AtSign size={13} /> : <Box size={13} />}
               {label}
@@ -204,11 +209,13 @@ function StandardImageEditPanel({
             </button>
           </div>
           <span className="h-4 w-px bg-white/10" />
-          <button data-image-editor-settings type="button" className="pointer-events-auto flex h-8 items-center gap-1 rounded-md px-1.5 hover:bg-white/[0.06]">
+          <button data-image-editor-settings data-inert="true" type="button" title="生成参数在克隆侧尚未接入"
+            className="pointer-events-auto flex h-8 cursor-default items-center gap-1 rounded-md px-1.5">
             <RectangleHorizontal size={14} className="text-[#9a9a9a]" />
             <span>{generationSettings}</span><ChevronDown size={12} className="text-[#777]" />
           </button>
-          <button data-image-editor-footer-icon type="button" className="pointer-events-auto flex size-8 items-center justify-center rounded-md text-[#9a9a9a] hover:bg-white/[0.06]" title="高级设置" aria-label="高级设置"><SlidersHorizontal size={14} /></button>
+          <button data-image-editor-footer-icon data-inert="true" type="button" title="高级设置在克隆侧尚未接入"
+            className="pointer-events-auto flex size-8 cursor-default items-center justify-center rounded-md text-[#7a7a7a]" aria-label="高级设置"><SlidersHorizontal size={14} /></button>
           <span className="ml-auto" />
           {submitted && <span className="text-[#09caf5]">已创建本地生成任务</span>}
           {canSuggest && (
@@ -224,8 +231,10 @@ function StandardImageEditPanel({
               <Link2 size={15} />
             </button>
           )}
-          <button data-image-editor-footer-icon type="button" className="pointer-events-auto flex size-8 items-center justify-center rounded-md text-[#b5b5b5] hover:bg-white/[0.06]" title="翻译" aria-label="翻译"><Languages size={15} /></button>
-          <button data-image-editor-footer-icon type="button" className="pointer-events-auto flex size-8 items-center justify-center rounded-md text-[#777] hover:bg-white/[0.06]" title="撤销" aria-label="撤销"><Undo2 size={14} /></button>
+          <button data-image-editor-footer-icon data-inert="true" type="button" title="翻译在克隆侧尚未接入"
+            className="pointer-events-auto flex size-8 cursor-default items-center justify-center rounded-md text-[#7a7a7a]" aria-label="翻译"><Languages size={15} /></button>
+          <button data-image-editor-footer-icon data-inert="true" type="button" title="撤销在克隆侧尚未接入"
+            className="pointer-events-auto flex size-8 cursor-default items-center justify-center rounded-md text-[#777]" aria-label="撤销"><Undo2 size={14} /></button>
           <button data-image-editor-footer-icon type="button" onClick={() => setSubmitted(true)} disabled={!prompt.trim()} className="pointer-events-auto flex size-8 items-center justify-center rounded-full bg-white text-[#222] hover:bg-[#efefef] disabled:bg-white/[0.08] disabled:text-[#555]" aria-label="生成图片"><ArrowUp size={17} /></button>
         </footer>
       </section>
@@ -312,7 +321,8 @@ function PanoramaEditPanel({
             <RectangleHorizontal size={14} className="text-[#9a9a9a]" />
             <span>{generationSettings}</span><ChevronDown size={12} className="text-[#777]" />
           </button>
-          <button data-image-editor-footer-icon type="button" className="pointer-events-auto flex size-8 items-center justify-center rounded-md text-[#9a9a9a] hover:bg-white/[0.06]" title="高级设置" aria-label="高级设置"><SlidersHorizontal size={14} /></button>
+          <button data-image-editor-footer-icon data-inert="true" type="button" title="高级设置在克隆侧尚未接入"
+            className="pointer-events-auto flex size-8 cursor-default items-center justify-center rounded-md text-[#7a7a7a]" aria-label="高级设置"><SlidersHorizontal size={14} /></button>
           <span className="ml-auto" />
           {submitted && <span className="text-[#09caf5]">已创建本地全景任务</span>}
           <button

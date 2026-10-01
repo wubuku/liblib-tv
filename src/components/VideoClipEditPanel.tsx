@@ -88,7 +88,13 @@ export function VideoClipEditPanel({
             <ChevronDown size={12} className="text-[#777]" />
           </button>
           <span className="ml-auto" />
-          {status && (
+          {/* Batch 477 把 status 从 string 改成 { text, tone } 对象后, 这里的
+              `{status && ...}` 就**恒真**了 —— 对象永远 truthy, 于是即使
+              setStatus({ text: "", ... }) 把文案清空, 这行状态区仍然渲染,
+              在提示词下面**永久占一行空白**(`pb-2`)。
+              verify-liblib-batch25 的 `count() == 0` 断言就是这么红的(与本批改动无关:
+              引入于 612689b1 / batch 477)。判据应是「有没有文案」, 不是「对象存不存在」。*/}
+          {status.text && (
             <span
               data-video-clip-status
               data-status-tone={status.tone}

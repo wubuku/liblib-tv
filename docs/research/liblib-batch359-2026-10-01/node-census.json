@@ -1,0 +1,215 @@
+{
+  "__default__": {
+    "inputs": 1,
+    "controls": 36,
+    "silentDiscard": [],
+    "deadControls": []
+  },
+  "_nodeIds": [
+    "g-245IDFh8sB",
+    "g-EFbbHpwq5w",
+    "t-9j2MoccxBj",
+    "i-1FQ9tErTcC",
+    "i-lBzmo67AHv",
+    "i-dnwoZQ7jsG",
+    "i-vxeeCnxySa",
+    "b-bTLLuU4w5q",
+    "i-YDfWhFlthe",
+    "v-UGQZzZOpbv"
+  ],
+  "node:g-245IDFh8sB": {
+    "inputs": 1,
+    "controls": 36,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_ids": {
+      "testids": []
+    }
+  },
+  "node:g-EFbbHpwq5w": {
+    "inputs": 1,
+    "controls": 36,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_ids": {
+      "testids": []
+    }
+  },
+  "node:t-9j2MoccxBj": {
+    "inputs": 1,
+    "controls": 37,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_ids": {
+      "testids": []
+    }
+  },
+  "node:i-1FQ9tErTcC": {
+    "inputs": 2,
+    "controls": 58,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_ids": {
+      "testids": [
+        "image-editor-primary-tool-trigger",
+        "image-toolbar-angle",
+        "image-toolbar-annotate",
+        "image-toolbar-download",
+        "image-toolbar-grid-split",
+        "image-toolbar-interactive-edit",
+        "image-toolbar-layer-separation",
+        "image-toolbar-light",
+        "image-toolbar-nine-grid",
+        "image-toolbar-panorama-slash",
+        "image-toolbar-portrait-texture",
+        "image-toolbar-preview",
+        "image-toolbar-rotate"
+      ]
+    }
+  },
+  "node:i-1FQ9tErTcC:annotate": {
+    "inputs": 2,
+    "controls": 44,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_annotateOpened": true
+  },
+  "node:i-lBzmo67AHv": {
+    "inputs": 2,
+    "controls": 58,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_ids": {
+      "testids": [
+        "image-editor-primary-tool-trigger",
+        "image-toolbar-angle",
+        "image-toolbar-annotate",
+        "image-toolbar-download",
+        "image-toolbar-grid-split",
+        "image-toolbar-interactive-edit",
+        "image-toolbar-layer-separation",
+        "image-toolbar-light",
+        "image-toolbar-nine-grid",
+        "image-toolbar-panorama-slash",
+        "image-toolbar-portrait-texture",
+        "image-toolbar-preview",
+        "image-toolbar-rotate"
+      ]
+    }
+  },
+  "node:i-lBzmo67AHv:annotate": {
+    "inputs": 2,
+    "controls": 44,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_annotateOpened": true
+  },
+  "node:i-dnwoZQ7jsG": {
+    "inputs": 2,
+    "controls": 59,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_ids": {
+      "testids": [
+        "image-editor-primary-tool-trigger",
+        "image-toolbar-angle",
+        "image-toolbar-annotate",
+        "image-toolbar-download",
+        "image-toolbar-grid-split",
+        "image-toolbar-interactive-edit",
+        "image-toolbar-layer-separation",
+        "image-toolbar-light",
+        "image-toolbar-nine-grid",
+        "image-toolbar-panorama-slash",
+        "image-toolbar-portrait-texture",
+        "image-toolbar-preview",
+        "image-toolbar-rotate"
+      ]
+    }
+  },
+  "node:i-dnwoZQ7jsG:annotate": {
+    "inputs": 2,
+    "controls": 44,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_annotateOpened": true
+  },
+  "node:i-vxeeCnxySa": {
+    "inputs": 2,
+    "controls": 59,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_ids": {
+      "testids": [
+        "image-editor-primary-tool-trigger",
+        "image-toolbar-angle",
+        "image-toolbar-annotate",
+        "image-toolbar-download",
+        "image-toolbar-grid-split",
+        "image-toolbar-interactive-edit",
+        "image-toolbar-layer-separation",
+        "image-toolbar-light",
+        "image-toolbar-nine-grid",
+        "image-toolbar-panorama-slash",
+        "image-toolbar-portrait-texture",
+        "image-toolbar-preview",
+        "image-toolbar-rotate"
+      ]
+    }
+  },
+  "node:i-vxeeCnxySa:annotate": {
+    "inputs": 2,
+    "controls": 44,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_annotateOpened": true
+  },
+  "node:b-bTLLuU4w5q": {
+    "inputs": 1,
+    "controls": 36,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_ids": {
+      "testids": []
+    }
+  },
+  "node:i-YDfWhFlthe": {
+    "inputs": 2,
+    "controls": 59,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_ids": {
+      "testids": [
+        "image-editor-primary-tool-trigger",
+        "image-toolbar-angle",
+        "image-toolbar-annotate",
+        "image-toolbar-download",
+        "image-toolbar-grid-split",
+        "image-toolbar-interactive-edit",
+        "image-toolbar-layer-separation",
+        "image-toolbar-light",
+        "image-toolbar-nine-grid",
+        "image-toolbar-panorama-slash",
+        "image-toolbar-portrait-texture",
+        "image-toolbar-preview",
+        "image-toolbar-rotate"
+      ]
+    }
+  },
+  "node:i-YDfWhFlthe:annotate": {
+    "inputs": 2,
+    "controls": 44,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_annotateOpened": true
+  },
+  "node:v-UGQZzZOpbv": {
+    "inputs": 5,
+    "controls": 51,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_ids": {
+      "testids": []
+    }
+  }
+}

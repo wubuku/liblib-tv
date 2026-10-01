@@ -1,0 +1,496 @@
+{
+  "base": "http://localhost:4317",
+  "states": {
+    "__default__": {
+      "total": 1,
+      "distinctFromDefault": false,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        }
+      ]
+    },
+    "move": {
+      "total": 1,
+      "distinctFromDefault": false,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        }
+      ]
+    },
+    "toolbox": {
+      "total": 1,
+      "distinctFromDefault": false,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        }
+      ]
+    },
+    "material": {
+      "total": 1,
+      "distinctFromDefault": false,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        }
+      ]
+    },
+    "character": {
+      "total": 2,
+      "distinctFromDefault": false,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "placeholder": "",
+          "aria": "",
+          "value": "on",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": []
+        }
+      ]
+    },
+    "history": {
+      "total": 2,
+      "distinctFromDefault": true,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        },
+        {
+          "tag": "input",
+          "type": "range",
+          "placeholder": "",
+          "aria": "历史缩略图大小",
+          "value": "100",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": []
+        }
+      ]
+    },
+    "tutorial": {
+      "total": 1,
+      "distinctFromDefault": false,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        }
+      ]
+    },
+    "style-library": {
+      "total": 3,
+      "distinctFromDefault": true,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        },
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "搜索风格名称、作者",
+          "aria": "搜索风格名称、作者",
+          "value": "",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": []
+        },
+        {
+          "tag": "input",
+          "type": "checkbox",
+          "placeholder": "",
+          "aria": "",
+          "value": "on",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": []
+        }
+      ]
+    },
+    "effects-library": {
+      "total": 2,
+      "distinctFromDefault": true,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        },
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "搜索特效名称、作者",
+          "aria": "搜索特效名称、作者",
+          "value": "",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": []
+        }
+      ]
+    },
+    "asset": {
+      "total": 1,
+      "distinctFromDefault": false,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        }
+      ]
+    },
+    "shortcuts": {
+      "total": 1,
+      "distinctFromDefault": false,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        }
+      ]
+    },
+    "share": {
+      "total": 1,
+      "distinctFromDefault": false,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        }
+      ]
+    },
+    "agent": {
+      "total": 2,
+      "distinctFromDefault": true,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        },
+        {
+          "tag": "textarea",
+          "type": "",
+          "placeholder": "开始你的创作，或者 @ 引用工作流/节点/资源",
+          "aria": "",
+          "value": "",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": []
+        }
+      ]
+    },
+    "zoom_menu": {
+      "total": 1,
+      "distinctFromDefault": false,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        }
+      ]
+    },
+    "add_node": {
+      "total": 2,
+      "distinctFromDefault": true,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        },
+        {
+          "tag": "input",
+          "type": "file",
+          "placeholder": "",
+          "aria": "",
+          "value": "",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-add-resource-input=true"
+          ]
+        }
+      ]
+    },
+    "user_menu": {
+      "total": 1,
+      "distinctFromDefault": false,
+      "silent": [],
+      "items": [
+        {
+          "tag": "input",
+          "type": "",
+          "placeholder": "",
+          "aria": "工作区名称",
+          "value": "未命名工作区",
+          "disabled": false,
+          "readOnly": false,
+          "ariaDisabled": "",
+          "onChange": true,
+          "onInput": false,
+          "pointerEvents": "auto",
+          "opacity": "1",
+          "data": [
+            "data-workspace-name=true"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "batch": 359,
+  "defect": "无新缺陷。普查从画布外框扩到节点编辑面(15 个节点面)并新增「静默丢弃输入」一类, 16 个画布态 + 15 个节点面两类均为 0。",
+  "fix": "不适用(无缺陷可修)。本批产出是两个门禁, 以及两次**假零**的拦截: 画布未 hydration 导致普查测到 0 个节点却报「无问题」; 标注模式间歇性打不开却照样计入「干净」。",
+  "role": "把节点编辑面与输入控件纳入交互谎言门禁, 并给普查加防假零下界",
+  "desktop": {
+    "viewport": "1440x900",
+    "checks": [
+      "chrome:no-silent-discard:__default__",
+      "chrome:no-silent-discard:move",
+      "chrome:no-silent-discard:toolbox",
+      "chrome:no-silent-discard:material",
+      "chrome:no-silent-discard:character",
+      "chrome:no-silent-discard:history",
+      "chrome:no-silent-discard:tutorial",
+      "chrome:no-silent-discard:style-library",
+      "chrome:no-silent-discard:effects-library",
+      "chrome:no-silent-discard:asset",
+      "chrome:no-silent-discard:shortcuts",
+      "chrome:no-silent-discard:share",
+      "chrome:no-silent-discard:agent",
+      "chrome:no-silent-discard:zoom_menu",
+      "chrome:no-silent-discard:add_node",
+      "chrome:no-silent-discard:user_menu",
+      "canvas:has-nodes",
+      "node:g-245IDFh8sB:no-silent-discard",
+      "node:g-245IDFh8sB:no-dead-control",
+      "node:g-EFbbHpwq5w:no-silent-discard",
+      "node:g-EFbbHpwq5w:no-dead-control",
+      "node:t-9j2MoccxBj:no-silent-discard",
+      "node:t-9j2MoccxBj:no-dead-control",
+      "node:i-1FQ9tErTcC:no-silent-discard",
+      "node:i-1FQ9tErTcC:no-dead-control",
+      "node:i-1FQ9tErTcC:annotate:no-silent-discard",
+      "node:i-1FQ9tErTcC:annotate:no-dead-control",
+      "node:i-lBzmo67AHv:no-silent-discard",
+      "node:i-lBzmo67AHv:no-dead-control",
+      "node:i-lBzmo67AHv:annotate:no-silent-discard",
+      "node:i-lBzmo67AHv:annotate:no-dead-control",
+      "node:i-dnwoZQ7jsG:no-silent-discard",
+      "node:i-dnwoZQ7jsG:no-dead-control",
+      "node:i-dnwoZQ7jsG:annotate:no-silent-discard",
+      "node:i-dnwoZQ7jsG:annotate:no-dead-control",
+      "node:i-vxeeCnxySa:no-silent-discard",
+      "node:i-vxeeCnxySa:no-dead-control",
+      "node:i-vxeeCnxySa:annotate:no-silent-discard",
+      "node:i-vxeeCnxySa:annotate:no-dead-control",
+      "node:b-bTLLuU4w5q:no-silent-discard",
+      "node:b-bTLLuU4w5q:no-dead-control",
+      "node:i-YDfWhFlthe:no-silent-discard",
+      "node:i-YDfWhFlthe:no-dead-control",
+      "node:i-YDfWhFlthe:annotate:no-silent-discard",
+      "node:i-YDfWhFlthe:annotate:no-dead-control",
+      "node:v-UGQZzZOpbv:no-silent-discard",
+      "node:v-UGQZzZOpbv:no-dead-control",
+      "annotate:covered",
+      "coverage:surfaces",
+      "coverage:controls",
+      "coverage:inputs",
+      "diagnostics:zero"
+    ],
+    "chrome": {
+      "__default__": {
+        "inputs": 1,
+        "controls": 36
+      },
+      "move": {
+        "inputs": 1,
+        "controls": 38
+      },
+      "toolbox": {
+        "inputs": 1,
+        "controls": 64
+      },
+      "material": {
+        "inputs": 1,
+        "controls": 38
+      },
+      "character": {
+        "inputs": 2,
+        "controls": 66
+      },
+      "history": {
+        "inputs": 2,
+        "controls": 57
+      },
+      "tutorial": {
+        "inputs": 1,
+        "controls": 40
+      },
+      "style-library": {
+        "inputs": 3,
+        "controls": 67
+      },
+      "effects-library": {
+        "inputs": 2,
+        "controls": 65
+      },
+      "asset": {
+        "inputs": 1,
+        "controls": 56
+      },
+      "shortcuts": {
+        "inputs": 1,
+        "controls": 37
+      },
+      "share": {
+        "inputs": 1,
+        "controls": 38
+      },
+      "agent": {
+        "inputs": 2,
+        "controls": 53
+      },
+      "zoom_menu": {
+        "inputs": 1,
+        "controls": 42
+      },
+      "add_node": {
+        "inputs": 2,
+        "controls": 48
+      },
+      "user_menu": {
+        "inputs": 1,
+        "controls": 36
+      }
+    },
+    "nodeSurfaces": {
+      "count": 15,
+      "annotateOpened": 5,
+      "totalControls": 709,
+      "totalInputs": 29
+    },
+    "diagnostics": {
+      "console": 0,
+      "errors": []
+    }
+  }
+}
