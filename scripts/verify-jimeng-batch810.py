@@ -159,10 +159,19 @@ def main() -> None:
             check(f"菜单含「{src}」", n(f'[data-testid="agent-add-{src}"]') == 1)
         page.locator('[data-testid="agent-add-从画布添加"]').click()
         page.wait_for_timeout(400)
-        check("选来源后有反馈 toast",
-              "从画布添加" in " ".join(page.locator('[role="status"]').nth(i).inner_text()
-                                       for i in range(page.locator('[role="status"]').count())),
-              "no toast")
+        # batch 812 改过这条文案：原来只是把按钮名复述一遍（「从画布添加（mock）」，
+        # 零信息量），现在改成说明下一步（「请在画布中选择节点（mock）」）。
+        # 断言跟着改成查**语义**（说明该做什么），不查已经废弃的旧字符串 ——
+        # 否则一次文案改进就会把旧验证器打红，而它并没有测坏东西。
+        seen = ""
+        for _ in range(20):   # toast 短命，120ms 级采样
+            seen = " ".join(page.locator('[role="status"]').nth(i).inner_text()
+                            for i in range(page.locator('[role="status"]').count()))
+            if seen:
+                break
+            page.wait_for_timeout(120)
+        check("选来源后有反馈 toast（说明下一步该做什么）",
+              ("画布" in seen and ("选择" in seen or "选中" in seen)), repr(seen[:60]))
         check("选来源后菜单关闭", n('[data-testid="agent-add-panel"]') == 0)
 
         print("— 新建会话：回到空态 —")

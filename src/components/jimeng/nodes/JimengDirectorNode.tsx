@@ -7,6 +7,7 @@ import type { JimengDirectorNodeData } from "@/types/jimeng";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
 import { useJimengStore } from "@/store/jimengStore";
+import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
 
 /**
  * 导演台节点 (Batch 805 SOURCE_FACT @1680×826 实测 320×320)。
@@ -58,7 +59,7 @@ export function JimengDirectorNode({ id, data, selected }: NodeProps) {
           data-testid="director-enter"
           onClick={() => {
             updateNodeData(id, { entered: !entered });
-            pushToast(entered ? "已退出导演台（mock）" : "进入导演台（mock）");
+            pushToast(entered ? FEEDBACK.exitDirectorStage() : FEEDBACK.enterDirectorStage());
           }}
           className="flex h-8 items-center gap-1 rounded-lg bg-white/10 px-4 text-[13px] font-medium text-white hover:bg-white/20"
         >

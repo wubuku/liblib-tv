@@ -21,6 +21,7 @@ import { JimengSharePanel } from "@/components/jimeng/JimengSharePanel";
 import { JimengMemberModal } from "@/components/jimeng/JimengMemberModal";
 import { JimengShortcutsPanel } from "@/components/jimeng/JimengShortcutsPanel";
 import { useJimengStore } from "@/store/jimengStore";
+import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
 
 /**
  * 顶栏 — absolute left-3 top-[10px] h-10 z-30，两簇 justify-between、间距 24px。
@@ -203,9 +204,9 @@ export function JimengTopBar() {
               onClose={() => setProjectOpen(false)}
               onOpenProject={(name) => {
                 renameProject(name);
-                pushToast(`已切换到「${name}」（mock）`);
+                pushToast(FEEDBACK.switchProject(name));
               }}
-              onCreate={() => pushToast("新建画布项目（mock）")}
+              onCreate={() => pushToast(FEEDBACK.createCanvasProject())}
             />
           ) : null}
         </div>

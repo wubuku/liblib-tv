@@ -41,6 +41,7 @@ import { JimengSelectionOutline } from "@/components/jimeng/JimengSelectionOutli
 import { JimengGroupFrames } from "@/components/jimeng/JimengGroupFrames";
 import { JimengAssetsModal } from "@/components/jimeng/JimengAssetsModal";
 import { JimengOfflineDialog } from "@/components/jimeng/JimengOfflineDialog";
+import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
 
 /**
  * 即梦画布工作区编排。
@@ -229,8 +230,8 @@ function JimengFlow() {
       }
       if (action === "undo") undo();
       if (action === "redo") redo();
-      if (action === "save-to-library") pushToast("已保存到主体库（mock）");
-      if (action === "download") pushToast("视频下载已开始（mock）");
+      if (action === "save-to-library") pushToast(FEEDBACK.saveToSubjectLibrary());
+      if (action === "download") pushToast(FEEDBACK.downloadVideo());
     },
     [contextMenu, copyNode, copyNodes, duplicateNode, pasteNodes, removeNode, removeNodes, undo, redo, groupSelected, ungroupSelected, nodes, pushToast],
   );

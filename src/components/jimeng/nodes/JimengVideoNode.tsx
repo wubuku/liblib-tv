@@ -17,6 +17,7 @@ import { JimengVideoPreview } from "@/components/jimeng/JimengVideoPreview";
 import { JimengVideoTitleRow } from "@/components/jimeng/nodes/JimengVideoTitleRow";
 import { JimengVideoMediaCard } from "@/components/jimeng/nodes/JimengVideoMediaCard";
 import { useJimengStore } from "@/store/jimengStore";
+import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
 
 /**
  * 即梦视频节点 — 复刻重点 (本地上传视频)。
@@ -192,8 +193,8 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
             // 批 528 SOURCE_FACT (用户手册): 工具下拉编辑组付费项，执行行为
             // 未采样 (BLOCKED_BY_FIXTURE)——mock 任务与 智能超清/补帧 同族
             if (label === "深度动作捕捉") startTask(id, "motion-capture");
-            if (label === "下载") pushToast("视频下载已开始（mock）");
-            if (label === "保存到主体库") pushToast("已保存到主体库（mock）");
+            if (label === "下载") pushToast(FEEDBACK.downloadVideo());
+            if (label === "保存到主体库") pushToast(FEEDBACK.saveToSubjectLibrary());
             if (label === "全屏预览") openPreview(id);
             if (label === "截取帧:自定义") enterFramePicker(id, "custom");
             // Batch 62 (SOURCE_FACT): 源站 首帧/尾帧 直接产出图片节点

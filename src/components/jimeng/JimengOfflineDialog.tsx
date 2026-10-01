@@ -1,6 +1,7 @@
 "use client";
 
 import { useJimengStore } from "@/store/jimengStore";
+import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
 
 /**
  * 离线编辑冲突对话框 (Batch 82)。
@@ -18,7 +19,7 @@ export function JimengOfflineDialog({ onClose }: { onClose: () => void }) {
   const pushToast = useJimengStore((s) => s.pushToast);
 
   const act = (discard: boolean) => {
-    pushToast(discard ? "已丢弃离线修改（mock）" : "离线修改已同步（mock）");
+    pushToast(discard ? FEEDBACK.offlineDiscarded() : FEEDBACK.offlineSynced());
     onClose();
   };
 

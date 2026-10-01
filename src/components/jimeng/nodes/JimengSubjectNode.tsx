@@ -15,6 +15,7 @@ import type { JimengSubjectNodeData } from "@/types/jimeng";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
 import { useJimengStore } from "@/store/jimengStore";
+import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
 
 /**
  * 主体节点 (Batch 805 SOURCE_FACT @1680×826 实测 352×352)。
@@ -49,11 +50,13 @@ export function JimengSubjectNode({ id, data, selected }: NodeProps) {
     if (key === "import" || key === "local") {
       const name = `主体素材 ${imported.length + 1}`;
       updateNodeData(id, { imported: [...imported, name] });
-      pushToast(`已导入「${name}」（mock）`);
+      pushToast(FEEDBACK.importSubject(name));
       return;
     }
     // 画布/资产库选择在源站是带上下文的选择器；复刻给出明确反馈而不是静默
-    pushToast(`${label}：请先${key === "canvas" ? "选中一个画布节点" : "打开资产库"}（mock）`);
+    pushToast(
+        key === "canvas" ? FEEDBACK.needCanvasNodeFirst(label) : FEEDBACK.needAssetsFirst(label),
+      );
   };
 
   return (

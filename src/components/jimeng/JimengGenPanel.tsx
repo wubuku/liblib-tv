@@ -21,6 +21,7 @@ import { NodeToolbar, Position, useReactFlow } from "@xyflow/react";
 
 import { useJimengStore } from "@/store/jimengStore";
 import { VipDiamond } from "@/components/jimeng/icons";
+import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
 
 /**
  * 引用 chip (Batch 792 SOURCE_FACT 2026-09-27: 选中画布节点后插入
@@ -198,7 +199,7 @@ export function JimengGenPanel({
             e.preventDefault();
             if (!canSend) return;
             generateInto(nodeId, prompt);
-            pushToast("生成任务已提交（mock）");
+            pushToast(FEEDBACK.taskSubmitted("生成"));
             setPrompt("");
           }}
         >

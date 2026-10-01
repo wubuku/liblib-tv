@@ -7,6 +7,7 @@ import type { JimengTimelineNodeData } from "@/types/jimeng";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
 import { useJimengStore } from "@/store/jimengStore";
+import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
 
 /**
  * 时间线节点 (Batch 805 SOURCE_FACT @1680×826，登录态)。
@@ -52,7 +53,7 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
       length: 5,
     };
     updateNodeData(id, { clips: [...clips, clip], duration: clip.start + clip.length });
-    pushToast(`已添加「${clip.label}」到时间线`);
+    pushToast(FEEDBACK.addTimelineClip(clip.label));
   };
 
   const removeClip = (clipId: string) => {

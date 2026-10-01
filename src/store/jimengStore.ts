@@ -3,6 +3,7 @@
 import { create } from "zustand";
 import { applyEdgeChanges, applyNodeChanges } from "@xyflow/react";
 import type { Edge, EdgeChange, NodeChange } from "@xyflow/react";
+import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
 
 import type {
   JimengImageNodeData,
@@ -791,7 +792,9 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         { id, nodeId, kind },
       ],
       // mock 任务提交同步 toast 反馈 (Batch 11/40)
-      toast: `${kind === "upscale" ? "智能超清" : kind === "motion-capture" ? "深度动作捕捉" : "补帧"}任务已提交（mock），处理中…`,
+      toast: FEEDBACK.taskSubmitted(
+        kind === "upscale" ? "智能超清" : kind === "motion-capture" ? "深度动作捕捉" : "补帧",
+      ),
     }));
     // mock 生命周期 (Batch 53)：4s 后自动完成并清除任务
     window.setTimeout(() => {

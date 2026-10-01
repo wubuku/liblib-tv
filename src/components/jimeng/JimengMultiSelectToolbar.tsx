@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Download, Group, LayoutGrid, Sparkles } from "lucide-react";
 
 import { useJimengStore } from "@/store/jimengStore";
+import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
 
 /**
  * 多选组合工具条 (Batch 62/63)。
@@ -263,7 +264,7 @@ export function JimengMultiSelectToolbar() {
         aria-label="下载"
         title={saved ? undefined : "导出前请保存画布"}
         onClick={() => {
-          if (saved) useJimengStore.getState().pushToast("视频下载已开始（mock）");
+          if (saved) useJimengStore.getState().pushToast(FEEDBACK.downloadVideo());
         }}
         className={`jimeng-node-toolbar-item flex size-8 items-center justify-center ${
           saved ? "text-white" : "cursor-not-allowed text-white/20"

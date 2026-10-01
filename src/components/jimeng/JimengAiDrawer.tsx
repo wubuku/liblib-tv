@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { useJimengStore } from "@/store/jimengStore";
 import { useLayerFocus } from "@/hooks/useLayerFocus";
+import { FEEDBACK, sourcePickFeedback } from "@/components/jimeng/jimengFeedback";
 import {
   ArrowUp,
   AtSign,
@@ -139,7 +140,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
           aria-label="会话列表"
           data-testid="canvas-agent-session-menu-trigger"
           disabled={!hasSession}
-          onClick={() => pushToast(`会话列表：${messages.length} 条（mock）`)}
+          onClick={() => pushToast(FEEDBACK.sessionList(messages.length))}
           className="flex h-8 w-[58px] items-center gap-1 rounded-lg px-2 text-[14px] text-white/90 disabled:cursor-default disabled:text-white/45"
         >
           新会话
@@ -155,7 +156,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
               setTokens([]);
               setInput("");
               setAiDrawerDraft("");
-              pushToast("已新建会话（mock）");
+              pushToast(FEEDBACK.newSession());
             }}
             className="flex size-8 items-center justify-center rounded-md text-white/60 disabled:cursor-default"
           >
@@ -283,7 +284,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
             data-testid="agent-ref-confirm"
             onClick={() => {
               addSkill(`@${refKind}`);
-              pushToast(`已添加参考：${refKind}（mock）`);
+              pushToast(FEEDBACK.addReference(refKind));
             }}
             className="flex h-8 w-full items-center justify-center rounded-md bg-white/10 text-[13px] text-white hover:bg-white/20"
           >
@@ -307,7 +308,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
               data-testid={`agent-add-${src}`}
               onClick={() => {
                 closePanel();
-                pushToast(`${src}（mock）`);
+                pushToast(sourcePickFeedback(src));
               }}
               className="flex h-8 w-full items-center rounded-md px-2.5 text-left text-[13px] text-white/85 hover:bg-white/10"
             >

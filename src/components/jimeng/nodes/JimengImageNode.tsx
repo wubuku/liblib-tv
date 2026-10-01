@@ -9,6 +9,7 @@ import { JimengImageGenPanel } from "@/components/jimeng/JimengImageGenPanel";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
 import { useJimengStore } from "@/store/jimengStore";
+import { mockMsg } from "@/components/jimeng/jimengFeedback";
 
 /**
  * 图片节点 (Batch 17)。结构与视频节点同族 (SOURCE_FACT §5 的视频节点骨架)；
@@ -28,7 +29,7 @@ export function JimengImageNode({ id, data, selected }: NodeProps) {
       {d.poster ? (
         <JimengImageNodeToolbar
           visible={selected === true && soloSelected}
-          onAction={(label) => pushToast(`${label}（mock）`)}
+          onAction={(label) => pushToast(mockMsg(`${label}已执行`))}
         />
       ) : (
         <JimengImageGenPanel visible={selected === true && soloSelected} />
