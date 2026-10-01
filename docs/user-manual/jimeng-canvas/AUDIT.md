@@ -514,3 +514,46 @@
 | 顶栏 / 标记 | `测试项目`、`已保存`；**无 `objects` 标记** |
 | dock | `选择工具=false`（选择工具模式）、`小地图=false`、`显示连线=true`、`Zoom options, 100%` |
 | 清理路径 | **解除编组**（`selection-context-toolbar` 内）→ 删除 `视频 2`（断言 aria 精确匹配且非编组）→ ⌘0 → reload |
+
+## 2026-10-01 增量审计（批次 16：截图 alt 资产一致性）
+
+> 承接批次 15 的模式：改了事实结论后，**存量截图的 alt 会继续描述旧结论**。
+> 本批写 `scripts/jimeng-alt-audit.mjs` 逐张核对 66 条截图登记。
+
+| 变更 | 级别 | 证据 | 处理 |
+|---|---|---|---|
+| **28 张截图的正文 alt 与 manifest alt 逐字不一致** | **Major（资产漂移）** | 首跑统计：66 张中**仅 38 张一致**、**28 张不一致**。原因是 manifest 存的是**详细版** alt（含真实可见文案、尺寸、逐字引号），而正文引用处多被**简化**过 —— 两边各说各话 | **已统一**：以 manifest 详细版为准，把正文 13 个任务页共 **30 处** alt 全部替换为逐字一致。复跑 `66 张全部一致 / 0 不一致` |
+| `16-organize-group-group-card.png` 与 `27-group-keyboard.png` 的 alt 仍写「组工具条含 / 背景色 / **下载**」 | **Major（alt 描述过期结论）** | 批次 15 已复核实测**组工具条仅三项**（解除编组 88×32 / 布局 78×32 / 背景色 75×32），**无「下载」** | manifest 与正文 alt 均改为三项并注明「2026-10-01 复核：组工具条没有下载」 |
+| 截图 alt 是否被正文引用、是否与实测冲突，此前**无任何自动校验** | Minor（可维护性） | 本批前只有构建器校验「示意图」alt，现场截图的 alt 不在校验范围 | **固化为 `scripts/jimeng-alt-audit.mjs`**（长期资产）：① 正文/manifest alt 逐字比对；② 未被引用的截图；③ alt 措辞与当前实测结论的冲突扫描（组工具条下载 / Add tags 位置 / 不弹工具条 / `1 nodes` 复数） |
+
+### 为什么构建器没抓到这 28 处
+
+`build-site.sh` 的步骤 6 校验的是**「示意图 alt 与正文引用逐字一致」**，
+只覆盖 `screenshots/diagrams/*.svg`（4 张）。
+**62 张现场截图的 alt 不在该校验范围内** —— 这就是 28 处漂移能长期存在的原因。
+本批补上的 `jimeng-alt-audit.mjs` 覆盖全部 66 张，与构建器互补。
+
+## 批次 16 质量门复跑记录（2026-10-01 当次命令输出）
+
+| 检查项 | 命令 | 退出码 | 当次实测结果 |
+|---|---|---|---|
+| 截图 alt 审计 | `node scripts/jimeng-alt-audit.mjs` | 0 | **66 张逐字一致 / 0 不一致 / 0 未引用 / 0 措辞冲突** |
+| gate-a | `audit_manual.py … --phase gate-a` | **0** | 通过 |
+| final | `audit_manual.py … --phase final` | **0** | 通过 |
+| 死链 | `python3 scripts/verify-docs.py` | **0** | `1210 Markdown files, 5288 local targets, 0 expected-missing artifact link(s)` |
+| 站点构建 | `build-site.sh` | **0** | 23 页、62 张截图、4 张示意图、25M、**无 warn** |
+
+### 批次 16 收尾的基线复核
+
+本批为**纯文档批**，未操作浏览器。沿用批次 15 收尾已核实的基线：
+`1 node, 0 edges, 0 selected`、仅 `视频 node: 视频 1`、无标记、dock 为选择工具模式。
+
+### 本批新增的长期资产
+
+| 文件 | 作用 |
+|---|---|
+| `scripts/jimeng-alt-audit.mjs` | 66 张截图的 alt 三查：正文/manifest 逐字一致、未被引用、与实测结论冲突 |
+| `scripts/jimeng-crosscheck.mjs` | （批次 13 入库）12 类关键 token 的跨层级一致性扫描 |
+
+> 两条脚本与 `build-site.sh` 构成互补：构建器管**示意图 + 产物**，
+> 本仓脚本管**现场截图 alt + 跨层级结论**。建议后续每批收尾三条全跑。

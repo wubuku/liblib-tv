@@ -141,4 +141,4 @@
 
 ![文本节点右键菜单（复制⌘C/复制副本⌘D/粘贴⌘V/下载/重做(禁)/撤销⌘Z/删除⌫）](../screenshots/14-duplicate-delete-history-context-menu.png)
 
-![按 ⌘D 复制副本后：原节点「视频 1」在左、副本「视频 1 (2)」在正右方同一水平线，两者尺寸相同，副本处于选中态（状态行 2 nodes, 0 edges, 1 selected）](../screenshots/59-copy-duplicate.png)
+![按 ⌘D 复制副本后的画布：原节点「视频 1」在左、副本「视频 1 (2)」在正右方同一水平线上，两者尺寸相同；副本处于选中态（带选中描边与工具条），状态行显示 2 nodes, 0 edges, 1 selected](../screenshots/59-copy-duplicate.png)

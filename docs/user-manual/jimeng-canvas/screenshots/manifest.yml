@@ -173,7 +173,7 @@ screenshots:
     captured_at: 2026-09-23T23:42:51+08:00
     verified_locator: '.react-flow__node-group (aria: Group 编组 1, 5 members)'
     visible_text: 编组 1
-    alt: 编组后出现的「编组 1」组卡片，组工具条含 解除编组/布局/背景色/下载
+    alt: 编组后出现的「编组 1」组卡片：上方组工具条为 解除编组 / 布局 / 背景色 三项（2026-10-01 复核实测仅此三项，无「下载」），组卡片四角各有一个圆形控制点，成员节点整体被圈在组内
     sha256: 1b0e3648e9aba919a3065c0ea989b93e3bad3fbaade66fdb02448c20e1794c24
   - file: screenshots/17-audio-node-voice-panel.png
     task_id: audio-node-voice
@@ -387,7 +387,7 @@ screenshots:
     captured_at: 2026-10-01T07:40:00+08:00
     verified_locator: '⌘G 编组后状态行 7 nodes, 0 edges, 1 selected，组卡片「编组 1」四角控制点'
     visible_text: 节点 7 已保存 / 编组 1 / 解除编组 布局∨ 背景色 ⤓ / 00:02 / 00:06
-    alt: 编组卡片「编组 1」：上方工具条为 解除编组 / 布局∨ / 背景色 / 下载，组卡片四角各有一个圆形控制点，成员节点整体被圈在组内；顶栏节点计数为 7（组本身计入）
+    alt: 编组卡片「编组 1」：上方组工具条为 解除编组 / 布局 / 背景色 三项（2026-10-01 复核：组工具条没有「下载」），组卡片四角各有一个圆形控制点，成员节点整体被圈在组内；顶栏节点计数为 7（组本身计入）
     sha256: ec8c3847ed4e16600b78c04ff1b7ad79b8240ce1471c3b18870a2ecdcf911ff0
 
   - file: screenshots/28-timeline-clips.png

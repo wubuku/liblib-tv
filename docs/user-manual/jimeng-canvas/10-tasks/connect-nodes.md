@@ -108,6 +108,6 @@
 
 ## 步骤图
 
-![从「视频 1」右缘拖到「视频 2」左缘后生成的蓝色参考连线，edge aria 为 Reference connection from 视频 node: 视频 1 to 视频 node: 视频 2](../screenshots/49-connect-nodes-retested.png)
+![视频节点之间的参考连线：从左上「视频 1」节点的右缘拖出一条蓝色曲线，弯向右下「视频 2」节点的左缘，曲线中段略带弧度；两个节点各自左右边缘各有一个圆形加号连接点，右下角的「视频 2」节点标题行右侧还有标签图标；橙色高亮框标出两个节点与连线的整体范围](../screenshots/49-connect-nodes-retested.png)
 
-![旧版建线截图：参考连线已建立，状态行 1 edge](../screenshots/09-connect-nodes-edge-created.png)
+![从 sb_ 视频节点拖到「视频 1」左缘后生成的蓝色参考连线（状态行 1 edge）](../screenshots/09-connect-nodes-edge-created.png)
