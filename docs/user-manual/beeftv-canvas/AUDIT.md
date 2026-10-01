@@ -485,6 +485,7 @@
 | dist 截图数 46 ≠ 源 49 | 非缺陷（构建行为） | Vite 按内容哈希去重：`03-add-node-menu`≡`13-upload-entry`，`04-text-node`≡`11-connect-rails`≡`12-generate-entry`（sha256 逐一相同），故 49 个源文件只产出 46 个 asset |
 | 上述重复意味着三张「不同主题」截图实为同一张图（connect-references.md 连续两张同 alt 图、generate-images 的「生图入口」实为文本节点图） | Major（内容缺陷） | ✅ **Batch 86 已闭合**：`11-connect-rails` 重摄为真实的**批量连接**取证（新图 11/50），`12-generate-entry` 删除并让 generate-images 复用真实的 `04-text-node`；另发现 `03-add-node-menu`≡`13-upload-entry` 同样重复，一并合并为 `03` |
 | `17-light-mode.png` 在库内、manifest、账本引用三处均在，唯独发布页不再引用——图在库但读者看不到（Batch 89 重写时把引用**替换**掉而非补入） | **Important（已修）** | ✅ **Batch 94 已闭合**：浅色/深色两态对照补回 organize-canvas；`build-site.sh` 步骤 6 加装**截图四方对账闸**（库内/manifest/发布页引用/dist），反向验证以退出码 1 拦下有效 |
+| 滚轮缩放范围写「5%–200%」，源码 `MAX_ZOOM = 8` 实为 800% | Minor（数值） | ✅ **Batch 104 已闭合**：改为 5%–800% |
 | 插件页称「6 个内置插件都能启停、应用型只有 2 个」，实际官方应用型是 5 项且不含 media-conversion | Minor（分类错误） | ✅ **Batch 101 已闭合**：加「能否在插件页自主启停」列并改写为 5/6 的正确划分 |
 | 节点工具条 `more` 组整体无人渲染（无 `inGroup("more")`），`delete`/`saveAsset`/`uploadVideo` 不可达；`subtitles` 对视频节点不可达 | Minor（预期差，非缺陷） | ✅ **Batch 99 已闭合**：`generate-video.md` 补视频节点工具条权威清单与「找不到这些按钮是正常的」；`create-nodes.md` 澄清工具条本就没有删除按钮 |
 | organize-canvas 教用户从添加节点菜单创建「背板」，但菜单无此项（唯一注册 Frame 的是置灰的「逐帧拉片」，其 handler 也不创建 Frame） | **Major（已修）** | ✅ **Batch 98 已闭合**：改写为「只能建文件夹」，讲清 Frame+folder 元数据的实现关系与「6 款样式」归属；`create-nodes.md` 补 6 项显示条件 |
@@ -707,4 +708,34 @@
   - `/settings` 的 `channels` 分区挂在 `customChannelsEnabled` 之后，开关关闭时 `visibleConfigSections` 变**空数组**，报错文案变为「当前没有可用的系统模型，请联系管理员配置系统渠道」；
   - `/plugins` 与 `/plugins/eagle` 由 `<RequireFeature feature="pluginCenterEnabled">` 把守，关闭时打不开插件中心。
 - **`/skills*` 全部重定向到 `/`——Batch 96 的又一佐证**：上一批据 `agent_retired_test.go` 判定 `/agent/*` 未注册，本批在**路由表**这一独立证据面上看到 `/skills`、`/skill`、`/skills/reference` 三条技能路由同样退场。**两条互不依赖的证据指向同一结论，比单条更可靠。**
+- **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
+
+## 环境记录六十（Batch 104，2026-10-01，数值断言逐条核对）
+
+- **上游**：main 仍 `3a74793`/v1.6.16；无新提交。
+- **做法**：把已发布页里所有形如「数字 + 单位/量词」的断言抽出来（约 40 条），逐条定位源码常量或处理器核对。**目标不是找错，是先证明它们还对**——因为数字是最难肉眼看出过期的内容。
+- **核对结果：12 组重点数值，11 组正确，1 组错误。**
+
+| 断言 | 源码依据 | 结论 |
+|---|---|---|
+| 批量创作表 1280×560 | `constant/canvas.ts:33`、`canvas-batch-table.ts:18` | ✅ |
+| 参考列 ≤6 组 | `MAX_BATCH_REFERENCE_COLUMNS = 6` | ✅ |
+| 批量并发 10 | `use-canvas-batch-table.ts:28` 默认 `concurrency: 10`；`use-canvas-generation-batches.ts:78` 硬夹 `Math.min(10, …)`——**既是默认值也是上限** | ✅ |
+| 时间线 96 像素/秒 | `BASE_TIMELINE_PX_PER_SECOND = 96` | ✅ |
+| 时间线缩放 2%–400% | `MIN_TIMELINE_ZOOM = 0.02` / `MAX_TIMELINE_ZOOM = 4` | ✅ |
+| 连线吸附 56px | `CONNECTION_SNAP_RADIUS = 56` | ✅ |
+| pin 点按阈值 5px | `use-canvas-connection-controller.ts:799,818` 的 `Math.hypot(…) <= 5` | ✅ |
+| 缩放步进 ±10% | `ZOOM_STEP = 0.1` | ✅ |
+| 适应当前选择最大 125% | `use-canvas-viewport-controller.ts:95` 的 `focusNodesInView(nodes, 1.25)` | ✅ |
+| rig 判定 ≥8 根骨骼 | `director-viewport.tsx:1192` 的 `Object.keys(boneMap).length >= 8` | ✅ |
+| 姿势预设 20 钮 | `poseOptions` 恰 20 项（`DirectorPose` 类型有 21 个，`neutral` 不是按钮） | ✅ |
+| 回收站保留最近 200 条 | `use-canvas-history-store.ts:55` 的 `.slice(0, 200)` | ✅ |
+| 上传 ≤50MB 直传 / 分片 8MB | `CHUNK_UPLOAD_THRESHOLD = 50 << 20`；后端 `chunkUploadChunkSize = 8 << 20` | ✅ |
+| 媒体节点自适应 420×236 ~ 720×520 | `MEDIA_NODE_MIN_SIZE` / `VIDEO_NODE_MAX_SIZE` | ✅ |
+| **滚轮缩放范围 5%–200%** | **`MAX_ZOOM = 8`（即 800%），`clampedScale = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, …))`** | ❌ **已改为 5%–800%** |
+
+- **错误为什么没被发现**：200% 这个数**看起来完全合理**——它是常见设计上限，而 `QUICK_ZOOM_LEVELS = [0.5, 1, 8]` 里也没有直接出现 2。写手册时若凭「常见做法」而非源码，就会写成 200%。**这类错误最危险的地方在于：它不违反任何直觉，只有常量表能证伪。**
+- **顺带补明一处归属**：8MB 分片**不是前端常量**——`runChunkedUpload` 先 `POST /resources/uploads` 拿到 `{uploadId, chunkSize, chunkCount}`，再按返回的 `chunkSize` 切片。数值（8MB）来自后端。原文只说「按每片 8MB」，读起来像前端写死；已补明。
+- **一处差点误判**：`SNAP_THRESHOLD_PX = 8` 名字像连线吸附，查下去发现它在 `canvas-timeline-dialog.tsx`——是**时间线片段对齐**阈值，与连线无关。**常量名相同不等于同一件事，必须看它被谁引用。**
+- **方法论**：数值断言的核对效率高于文字断言——它们在源码里通常是**唯一的具名常量**（`MAX_BATCH_REFERENCE_COLUMNS`、`CONNECTION_SNAP_RADIUS`…），定位成本低、可证伪性强。建议把「抽数字 → 找具名常量」作为固定审计动作，它比通读文档更容易出成果。
 - **账本口径**：25 任务 / 32 md / 48 images / 21 verified / 4 excluded；适用版本 v1.6.16。
