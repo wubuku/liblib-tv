@@ -145,6 +145,14 @@ def mutate_bare_claim(root: Path) -> None:
     path.write_text(text, encoding="utf-8")
 
 
+def mutate_retracted_claim(root: Path) -> None:
+    """把一条已订正过的错误说法重新塞回正文（M52 漏改的真实形态）。"""
+    path = root / "10-tasks/undo-persistence.md"
+    text = path.read_text(encoding="utf-8")
+    text += "\n导出是唯一能带走项目的方式。\n"
+    path.write_text(text, encoding="utf-8")
+
+
 def mutate_sidebar_rename(root: Path) -> None:
     path = root / ".vitepress/config.mjs"
     path.write_text(
@@ -172,6 +180,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("任务索引漏一条", mutate_index_drop_entry, "structure", "索引缺少"),
     ("侧边栏条目被改名", mutate_sidebar_rename, "structure", "侧边栏缺少"),
     ("小节里的裸强断言（无证据）", mutate_bare_claim, "claims", "裸断言"),
+    ("已订正的错误说法复现", mutate_retracted_claim, "retractions", "订正过的错误说法重新出现"),
 ]
 
 
@@ -182,6 +191,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-anchors.py"), str(root)]
     elif which == "structure":
         cmd = [sys.executable, str(root / "scripts/check-structure.py"), str(root)]
+    elif which == "retractions":
+        cmd = [sys.executable, str(root / "scripts/check-retractions.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)

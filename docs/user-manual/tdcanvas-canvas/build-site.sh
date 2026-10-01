@@ -83,12 +83,20 @@ CLAIM_OUT="$(python3 scripts/check-claims.py . 2>&1)" || fail "强断言校验�
 $CLAIM_OUT"
 echo "$CLAIM_OUT" | sed 's/^/  /'
 
-# 门禁自检：注入 13 类故障，断言每道门禁**以正确的理由**失败。
+# 订正回归：M47 订正「导出 zip 可恢复画布」时只改了审计点名的 3 个文件，
+# 漏了 30-concepts 与 undo-persistence 里重复同样错误说法的地方——**改一处
+# 事实错误的风险不在于改错，而在于漏改**。这里把每次订正登记成撤回记录，
+# 确认那些错误原句没有重新长出来。
+RETRACT_OUT="$(python3 scripts/check-retractions.py . 2>&1)" || fail "订正回归校验未通过（已订正的错误说法又出现了）：
+$RETRACT_OUT"
+echo "$RETRACT_OUT" | sed 's/^/  /'
+
+# 门禁自检：注入 15 类故障，断言每道门禁**以正确的理由**失败。
 # 2026-10-01 M41/M42 实测：锚点门禁在 236 个标题里错判 29 个却一直报「全部有效」，
 # 孤儿页与索引漏条两类问题两道门禁全都放行——门禁自己坏了不会喊疼。
 # 这里断言的是**错误内容**而不只是退出码：只看退出码会被「变异脚本写歪了」
 # 和「以错误理由失败」两种假阳性骗过去（探针误删 .vitepress 那次就差点中招）。
-# 全量约 1.4 秒，成本可忽略，故每次构建都跑。
+# 全量约 3 秒（随机器有波动），成本可忽略，故每次构建都跑。
 SELFTEST_OUT="$(python3 scripts/selftest-gates.py . 2>&1)" || fail "门禁自检未通过（存在形同虚设的门禁）：
 $SELFTEST_OUT"
 echo "$SELFTEST_OUT" | grep -E '^\s*\[ ok \]|^---' | sed 's/^/  /'
