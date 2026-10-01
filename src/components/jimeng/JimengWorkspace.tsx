@@ -257,11 +257,23 @@ function JimengFlow() {
         // 快捷键面板证据: ⌘0 = 适配画布 (Batch 18)
         e.preventDefault();
         void fitView({ duration: 300 });
+      } else if (mod && e.key === "/") {
+        // 快捷键面板证据: ⌘/ = 打开/关闭 Agent (Batch 815)
+        // SOURCE_FACT: 源站实测 ⌘/ 首次按下新增 17 个 canvas-agent-* testid
+        // （含 canvas-agent-panel），再按一次**精确回到基线** testid 集合。
+        // 复刻此前只把 aiDrawerOpen/setAiDrawerOpen 列进依赖数组却没有分支
+        // （孤儿依赖），面板承诺的「打开/关闭 Agent ⌘ /」落空。
+        e.preventDefault();
+        setAiDrawerOpen(!aiDrawerOpen);
       } else if (!mod && e.key.toLowerCase() === "v" && !inField) {
         // 快捷键面板证据: V = 移动工具 (Batch 20)
+        // Batch 815: 源站按 V 的状态指纹（画布背景/光标/testid/transform）零变化，
+        // 源站自己测不到可见响应；复刻保留 Batch 20 的工具切换（CLONE_DECISION）。
         setToolActive(toolActive === "select" ? "move" : "select");
       } else if (!mod && e.key.toLowerCase() === "f" && !inField) {
-        // 快捷键面板证据: F = 全屏 (Batch 20, CLONE_DECISION 浏览器全屏)
+        // 快捷键面板证据: F = 预览视图 (Batch 20/815 订正文案，源站面板写的是
+        // 「预览视图」不是「全屏」)。CLONE_DECISION 浏览器全屏 (Batch 20)。
+        // Batch 815: 源站按 F 的状态指纹同样零变化，源站自己测不到可见响应。
         e.preventDefault();
         if (document.fullscreenElement) {
           void document.exitFullscreen();
@@ -545,8 +557,30 @@ function JimengFlow() {
           canUndo={past.length > 0}
           canRedo={future.length > 0}
           clipboard={clipboard !== null}
+          // Batch 814: 源站在空画布上仍把 复制/复制副本/删除 渲染为启用，但其
+          // 作用域无法安全实测（源站只剩 1 个节点且撤销无效，见台账 §16.6），
+          // 故按选中范围实现并据此置灰 —— 见菜单文件头 OPEN_QUESTION 814-b。
+          hasSelection={nodes.some((n) => n.selected)}
+          // 「下载」的禁用条件取自源站原因文案「没有可用的就绪资源」的字面意思
+          hasReadyResource={nodes.some(
+            (n) => (n.data as { hasMedia?: boolean }).hasMedia === true,
+          )}
           onClose={() => setPaneMenu(null)}
           onInsert={onPaneInsert}
+          onCopy={() => {
+            const ids = nodes.filter((n) => n.selected).map((n) => n.id);
+            if (ids.length > 0) copyNodes(ids);
+          }}
+          onDuplicate={() => {
+            const ids = nodes.filter((n) => n.selected).map((n) => n.id);
+            // 逐个复制副本；store 的 duplicateNode 只吃单个 id
+            ids.forEach((id) => duplicateNode(id));
+          }}
+          onDelete={() => {
+            nodes
+              .filter((n) => n.selected)
+              .forEach((n) => removeNode(n.id));
+          }}
           onPaste={pasteNodes}
           onUndo={undo}
           onRedo={redo}

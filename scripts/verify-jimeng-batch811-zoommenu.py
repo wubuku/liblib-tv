@@ -100,7 +100,7 @@ def color_eq(got: str, want: tuple[int, int, int, float], tol: int = 2) -> bool:
 WHITE_60 = (255, 255, 255, 0.60)
 WHITE_04 = (255, 255, 255, 0.04)
 WHITE_08 = (255, 255, 255, 0.08)
-WHITE_30 = (255, 255, 255, 0.30)
+WHITE_20 = (255, 255, 255, 0.20)
 WHITE = (255, 255, 255, 1.0)
 MENU_BG = (38, 38, 38, 1.0)
 
@@ -300,9 +300,14 @@ def main() -> None:
                 str(sorted({r["kbdRight"] for r in with_kbd})),
             )
             dis_rows = [r for r in rows if r["disabled"]]
+            # 订正（batch 814）：本文件此前断言禁用文案是 white/30，但那个值是从
+            # **复刻侧自己的代码**抄来的，从没在源站量过。batch 814 在源站右键菜单
+            # 上实测到禁用项（下载/重做/撤销）文案是 `rgba(255,255,255,0.2)`，
+            # 而两处菜单是同一套设计系统（200/pad 4/行高 36/gap 4/快捷键 white/60
+            # 全部同款），故以实测值 white/20 为准。
             check(
-                all(color_eq(r["label"], WHITE_30) for r in dis_rows),
-                "禁用项文案 white/30",
+                all(color_eq(r["label"], WHITE_20) for r in dis_rows),
+                "禁用项文案 white/20（源站右键菜单实测值；此前误用未实测的 0.3）",
                 str(sorted({r["label"] for r in dis_rows})),
             )
 

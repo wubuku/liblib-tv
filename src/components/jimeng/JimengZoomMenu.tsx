@@ -3,7 +3,16 @@
 import { Fragment, useEffect, useRef } from "react";
 import { useReactFlow } from "@xyflow/react";
 
+import {
+  MENU_PANEL_BG,
+  MENU_PANEL_CLASS,
+  MenuItem,
+  MenuSeparator,
+} from "@/components/jimeng/jimengMenuChrome";
 import { useJimengStore } from "@/store/jimengStore";
+
+/** 源站给「缩放至选中项」配的禁用提示文案（藏在 1×1 隐藏 span 里）。 */
+const DISABLED_TITLE = "请先选择至少一个画布元素";
 
 /**
  * 缩放百分比菜单 (Batch 7)。
@@ -72,23 +81,24 @@ export function JimengZoomMenu({ onClose }: { onClose: () => void }) {
     onClose();
   };
 
+  // MenuItem 只负责调 onSelect，关闭菜单由各行自己收尾（此前是按钮 onClick 里
+  // 统一 onClose，抽出 MenuItem 后必须显式带上，否则放大/缩小/适配画布点了不关）
   const rows: {
     label: string;
     shortcut?: string;
     disabled?: boolean;
-    title?: string;
     run: () => void;
   }[] = [
-    { label: "放大视图", shortcut: "⌘ +", run: () => void zoomIn({ duration: 200 }) },
-    { label: "缩小视图", shortcut: "⌘ -", run: () => void zoomOut({ duration: 200 }) },
-    { label: "适配画布", shortcut: "⇧ 1", run: () => void fitView({ duration: 300 }) },
+    { label: "放大视图", shortcut: "⌘ +", run: () => { void zoomIn({ duration: 200 }); onClose(); } },
+    { label: "缩小视图", shortcut: "⌘ -", run: () => { void zoomOut({ duration: 200 }); onClose(); } },
+    { label: "适配画布", shortcut: "⇧ 1", run: () => { void fitView({ duration: 300 }); onClose(); } },
     {
       label: "缩放至选中项",
       shortcut: "⇧ 2",
       disabled: !selectedNodeId,
-      title: "请先选择至少一个画布元素",
-      run: () => void fitView({ duration: 300, maxZoom: 1 }),
+      run: () => { void fitView({ duration: 300, maxZoom: 1 }); onClose(); },
     },
+    // setZoom 内部已收尾
     { label: "缩放至50%", run: () => setZoom(0.5) },
     { label: "缩放至100%", shortcut: "⌘ 1", run: () => setZoom(1) },
     { label: "缩放至200%", run: () => setZoom(2) },
@@ -101,45 +111,25 @@ export function JimengZoomMenu({ onClose }: { onClose: () => void }) {
     <div
       ref={ref}
       role="menu"
-      // padding 4px（此前 8px）、行高 36（此前 40）、**flex 列 + gap-1**（此前行间 0 间隙）。
-      // 竖向账：8(上下边距) + 7×36 + 4(分隔线) + 7×4(间隙) = 292 ✓（此前 225）
-      className="absolute bottom-[calc(100%+8px)] left-0 flex w-[200px] flex-col gap-1 rounded-xl p-1"
-      style={{ background: "rgb(38,38,38)" }}
+      // 外观收口到 jimengMenuChrome（batch 814）：与画布右键菜单同一套 ——
+      // 200 宽、padding 4、行高 36、行间隙 4。此前本文件自带一份，
+      // 右键菜单又自带一份，两份已经开始漂移（右键那份还是 192/p-2/行高 44）。
+      className={`absolute bottom-[calc(100%+8px)] left-0 ${MENU_PANEL_CLASS}`}
+      style={{ background: MENU_PANEL_BG }}
     >
       {rows.map((row, i) => (
+        // 必须是「分隔线 + 项」**并存**。曾写成 `has(i) ? <Separator/> : <MenuItem/>`
+        // 的二选一，结果第 5 项（缩放至50%）被分隔线顶掉，菜单只剩 6 项 ——
+        // 是 811 的验收脚本点不到「缩放至50%」才暴露的。
         <Fragment key={row.label}>
-          {dividerBefore.has(i) ? (
-            // 盒高 4px（h-1），1px 线在盒内垂直居中 → 落在盒顶 +2px，
-            // 与源站 `::before { top:2px }` 等价。左右 margin 12 → 宽 168。
-            <div role="separator" className="mx-3 flex h-1 items-center">
-              <div className="h-px w-full bg-white/[0.04]" />
-            </div>
-          ) : null}
-          <button
-            type="button"
-            role="menuitem"
+          {dividerBefore.has(i) ? <MenuSeparator /> : null}
+          <MenuItem
+            label={row.label}
+            shortcut={row.shortcut}
             disabled={row.disabled}
-            title={row.title}
-            onClick={() => {
-              if (row.disabled) return;
-              row.run();
-              onClose();
-            }}
-            // h-9 = 36px、px-3 = 12px、rounded-lg = 8px；
-            // 文案纯白、快捷键 13px white/60、hover white/8 —— 均按 batch 811 实测
-            className={`flex h-9 w-full shrink-0 items-center justify-between rounded-lg px-3 text-[13px] leading-5 ${
-              row.disabled
-                ? "cursor-default text-white/30"
-                : "text-white hover:bg-white/[0.08]"
-            }`}
-          >
-            {/*
-              文案与快捷键都各自是 span（源站 DOM 实测如此），且**快捷键 span 始终渲染**
-              —— 无快捷键时它是一个 0 宽的空 span，右缘仍停在 180。
-            */}
-            <span>{row.label}</span>
-            <span className="text-white/60">{row.shortcut ?? ""}</span>
-          </button>
+            disabledReason={row.disabled ? DISABLED_TITLE : undefined}
+            onSelect={row.run}
+          />
         </Fragment>
       ))}
     </div>

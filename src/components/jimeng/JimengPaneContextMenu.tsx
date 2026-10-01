@@ -15,15 +15,55 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
+import {
+  MENU_PANEL_BG,
+  MENU_PANEL_CLASS,
+  MenuItem,
+  MenuSeparator,
+} from "@/components/jimeng/jimengMenuChrome";
+
 /**
- * 画布空白右键菜单 (Batch 25)。
+ * 画布空白右键菜单。
  *
- * 证据 (SOURCE_FACT): 空白画布右键弹出菜单: 新建节点 > (子菜单)、
- * 粘贴 ⌘V、重做 ⌘⇧Z (无历史禁用)、撤销 ⌘Z；样式与节点右键菜单同族
- * (rgb(38,38,38) r12)。批 221 采样: 面板 232×164、行 36px、重做禁用行
- * 附「无需重做操作」；「新建节点」子菜单 10 项 (222-pane-menu.json):
- * 「添加节点」表头 (white/35) + 文本/图片/视频/音频/时间线/主体/导演台/
- * 从资产库添加/本地上传 (后 5 项为仅展示 mock，CLONE_DECISION)。
+ * ## SOURCE_FACT batch 814 (2026-10-03 @1512×950 登录态，逐元素实测)
+ *
+ * 源站是 **7 项 + 1 分隔线**，200×292、padding 4、圆角 12、bg rgb(38,38,38)、
+ * 行 192×36 @x=4（`padding 9px 12px`、圆角 8）、行间隙 4：
+ *
+ * ```
+ *   复制        ⌘ C        启用
+ *   复制副本    ⌘ D        启用
+ *   粘贴        ⌘ V        启用
+ *   ─────────── separator
+ *   下载                     禁用 · 原因「没有可用的就绪资源」
+ *   重做        ⌘ ⇧ Z      禁用 · 原因「无需重做操作」
+ *   撤销        ⌘ Z        禁用 · 原因「无需撤销操作」
+ *   删除        ⌫          启用
+ * ```
+ *
+ * `aria` = 文案本身；`title` = 启用时 `{文案} ({快捷键})`、禁用时**直接是禁用原因**；
+ * 禁用原因另有一个 1×1 绝对定位的隐藏 span，由 `aria-describedby` 指过去。
+ * 竖向账与缩放菜单同款：4 + 7×36 + 4 + 7×4 + 4 = 292 ✓
+ *
+ * 复刻此前只有 4 项（新建节点/粘贴/重做/撤销）、192 宽、padding 8、行高 44，
+ * 且把「无需重做操作」当**正文**内联渲染 —— 那会把快捷键顶偏并溢出，是布局 bug。
+ *
+ * ## 两处刻意的不一致（如实记账）
+ *
+ * 1. **保留「新建节点」子菜单**。源站右键菜单里没有这一项，但它是复刻侧
+ *    batch 25/221 建立的真插入通道（batch 808 把它接成了真交互），
+ *    删掉等于主动删功能。与 §21 的 `⌘0`、§23 的 `Rename` 同一判据：
+ *    多一个能用的入口，好过一个源站式死按钮。记为 OPEN_QUESTION 814-a。
+ *
+ * 2. **复制/复制副本/删除 按"选中范围"实现并据此禁用**。源站在**空画布**上
+ *    这三项仍渲染为启用（纯白），但**无法安全实测**它们的作用域：源站画布
+ *    只剩 1 个节点且 ⌘Z 无效、无撤销入口（§16.6 已记录），
+ *    点「复制副本」或「删除」会**不可逆**地改动它。故按画布类工具的
+ *    通行约定实现为选中范围，并据此置灰；不复制"亮着但什么都不做"。
+ *    记为 OPEN_QUESTION 814-b。
+ *
+ * 「下载」的禁用条件取自源站原因文案**「没有可用的就绪资源」**的字面意思：
+ * 画布上没有任何带媒体的节点时禁用。
  */
 const INSERT_ITEMS: {
   icon: LucideIcon;
@@ -52,8 +92,13 @@ export function JimengPaneContextMenu({
   canUndo,
   canRedo,
   clipboard,
+  hasSelection,
+  hasReadyResource,
   onClose,
   onInsert,
+  onCopy,
+  onDuplicate,
+  onDelete,
   onPaste,
   onUndo,
   onRedo,
@@ -62,8 +107,13 @@ export function JimengPaneContextMenu({
   canUndo: boolean;
   canRedo: boolean;
   clipboard: boolean;
+  hasSelection: boolean;
+  hasReadyResource: boolean;
   onClose: () => void;
   onInsert: (kind: "video" | "image" | "text" | "audio") => void;
+  onCopy: () => void;
+  onDuplicate: () => void;
+  onDelete: () => void;
   onPaste: () => void;
   onUndo: () => void;
   onRedo: () => void;
@@ -78,7 +128,7 @@ export function JimengPaneContextMenu({
     const onDown = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) onClose();
     };
-        // 捕获阶段（batch 794 实测踩坑）：JimengFlow 的全局 Escape 监听注册更早，
+    // 捕获阶段（batch 794 实测踩坑）：JimengFlow 的全局 Escape 监听注册更早，
     // 会先触发同步重渲染；重渲染使本 effect 清理并重新注册监听，
     // removeEventListener 会把该 listener 标记为 removed，浏览器在**同一次
     // 事件派发中**跳过它 → 冒泡监听收不到 Escape，浮层关不掉。
@@ -90,18 +140,21 @@ export function JimengPaneContextMenu({
     };
   }, [onClose]);
 
+  const run = (fn: () => void) => () => {
+    fn();
+    onClose();
+  };
+
   return (
     <div
       ref={ref}
       role="menu"
-      className="fixed z-[200] w-48 rounded-xl p-2"
-      style={{
-        left: state.x,
-        top: state.y,
-        background: "rgb(38,38,38)",
-      }}
+      // 200 宽 / padding 4 / 行间隙 4 —— 与缩放菜单同一套（batch 814 收口到
+      // jimengMenuChrome，此前这里是 w-48 p-2，行高 44）
+      className={`fixed z-[200] ${MENU_PANEL_CLASS}`}
+      style={{ left: state.x, top: state.y, background: MENU_PANEL_BG }}
     >
-      {/* 新建节点 (hover 展开子菜单) */}
+      {/* 新建节点 (hover 展开子菜单) —— 复刻侧独有，见文件头 OPEN_QUESTION 814-a */}
       <div
         className="relative"
         onMouseEnter={() => setSubmenuOpen(true)}
@@ -111,98 +164,86 @@ export function JimengPaneContextMenu({
             指针移上来子菜单已开，再点一下反而把它关掉。用户点「新建节点」
             看起来毫无反应。改成「只开不关」：关子菜单交给 onMouseLeave，
             与源站 hover 展开的行为一致。 */}
-        <button
-          type="button"
-          role="menuitem"
-          data-testid="pane-menu-insert"
-          onClick={() => setSubmenuOpen(true)}
-          className="flex h-9 w-full items-center justify-between rounded-lg px-2.5 text-[13px] text-white/85 hover:bg-white/10"
-        >
-          新建节点
-          <ChevronRight size={13} className="text-white/45" />
-        </button>
+        <MenuItem
+          label="新建节点"
+          testId="pane-menu-insert"
+          onSelect={() => setSubmenuOpen(true)}
+          submenuAffordance={<ChevronRight size={13} className="text-white/45" />}
+        />
         {submenuOpen ? (
           <div
-            className="absolute left-full top-0 ml-1 w-48 rounded-xl p-2"
-            style={{ background: "rgb(38,38,38)" }}
+            className="absolute left-full top-0 ml-1 flex w-[200px] flex-col gap-1 rounded-xl p-1"
+            style={{ background: MENU_PANEL_BG }}
             role="menu"
           >
             {/* 批 221 SOURCE_FACT: 子菜单以「添加节点」表头开始 */}
-            <p className="flex h-8 items-center px-2.5 text-[13px] text-white/35">
+            <p className="flex h-8 shrink-0 items-center px-3 text-[13px] text-white/35">
               添加节点
             </p>
             {INSERT_ITEMS.map(({ icon: Icon, label, kind }) => (
-              <button
+              <MenuItem
                 key={label}
-                type="button"
-                role="menuitem"
-                onClick={() => {
-                  if (!kind) {
-                    onClose();
-                    return;
-                  }
-                  onInsert(kind);
+                label={label}
+                testId={kind ? `pane-menu-insert-${kind}` : undefined}
+                icon={<Icon size={16} className="shrink-0 text-white/70" />}
+                onSelect={() => {
+                  if (kind) onInsert(kind);
                   onClose();
                 }}
-                className="flex h-9 w-full items-center gap-2.5 rounded-lg px-2.5 text-[13px] text-white/85 hover:bg-white/10"
-              >
-                <Icon size={16} className="shrink-0 text-white/70" />
-                {label}
-              </button>
+              />
             ))}
           </div>
         ) : null}
       </div>
 
-      <button
-        type="button"
-        role="menuitem"
+      {/* ↓ 源站 7 项，顺序与文案逐字对齐 */}
+      <MenuItem
+        label="复制"
+        shortcut="⌘ C"
+        disabled={!hasSelection}
+        onSelect={run(onCopy)}
+      />
+      <MenuItem
+        label="复制副本"
+        shortcut="⌘ D"
+        disabled={!hasSelection}
+        onSelect={run(onDuplicate)}
+      />
+      <MenuItem
+        label="粘贴"
+        shortcut="⌘ V"
         disabled={!clipboard}
-        onClick={() => {
-          onPaste();
-          onClose();
-        }}
-        className={`flex h-11 w-full items-center justify-between rounded-lg px-2.5 text-[13px] ${
-          clipboard ? "text-white/85 hover:bg-white/10" : "cursor-default text-white/30"
-        }`}
-      >
-        粘贴
-        <span className="text-[12px] text-white/45">⌘ V</span>
-      </button>
-      <div className="mx-2 my-1 h-px bg-white/[0.08]" />
-      <button
-        type="button"
-        role="menuitem"
+        onSelect={run(onPaste)}
+      />
+
+      <MenuSeparator />
+
+      <MenuItem
+        label="下载"
+        disabled={!hasReadyResource}
+        disabledReason="没有可用的就绪资源"
+        onSelect={onClose}
+      />
+      <MenuItem
+        label="重做"
+        shortcut="⌘ ⇧ Z"
         disabled={!canRedo}
-        onClick={() => {
-          onRedo();
-          onClose();
-        }}
-        className={`flex h-11 w-full items-center justify-between rounded-lg px-2.5 text-[13px] ${
-          canRedo ? "text-white/85 hover:bg-white/10" : "cursor-default text-white/30"
-        }`}
-      >
-        重做
-        <span className="text-[12px] text-white/45">
-          ⌘ ⇧ Z
-          {!canRedo ? <span className="ml-1 text-white/30">无需重做操作</span> : null}
-        </span>
-      </button>
-      <button
-        type="button"
-        role="menuitem"
+        disabledReason="无需重做操作"
+        onSelect={run(onRedo)}
+      />
+      <MenuItem
+        label="撤销"
+        shortcut="⌘ Z"
         disabled={!canUndo}
-        onClick={() => {
-          onUndo();
-          onClose();
-        }}
-        className={`flex h-11 w-full items-center justify-between rounded-lg px-2.5 text-[13px] ${
-          canUndo ? "text-white/85 hover:bg-white/10" : "cursor-default text-white/30"
-        }`}
-      >
-        撤销
-        <span className="text-[12px] text-white/45">⌘ Z</span>
-      </button>
+        disabledReason="无需撤销操作"
+        onSelect={run(onUndo)}
+      />
+      <MenuItem
+        label="删除"
+        shortcut="⌫"
+        disabled={!hasSelection}
+        onSelect={run(onDelete)}
+      />
     </div>
   );
 }
