@@ -66,7 +66,14 @@ MAJOR_COLOR = "rgb(135, 135, 135)"
 MINOR_COLOR = "rgb(104, 104, 104)"
 LABEL_COLOR = "rgb(157, 157, 157)"
 RULER_BG = "rgb(33, 33, 33)"
-LANE_BG = "rgb(42, 42, 42)"
+# Batch 595 originally read the lane fill as #2a2a2a. Batch 598 re-measured the
+# source lane canvas pixel by pixel (/tmp/src593/probe35–probe42) and that value
+# was the **gap** between lanes, not a lane fill: the canvas base is #212121,
+# an unselected track lane is transparent over it, a selected one is
+# #212121 + rgba(60,181,204,0.1) = #243032, and the object lane above it is
+# #212121 + rgba(60,181,204,0.25) = #28464c with a 1px #355359 top edge.
+# The point of the check is unchanged: lanes are flat, with no vertical grid.
+LANE_BG = "rgb(33, 33, 33)"
 
 
 def attach_errors(page: Page) -> list[str]:
@@ -216,10 +223,11 @@ def run_desktop(page: Page) -> dict[str, Any]:
     # 5) ruler background
     check("ruler:background-212121", ruler["background"] == RULER_BG, detail=ruler["background"])
 
-    # 6) keyframe lanes: #2a2a2a, no vertical grid lines
+    # 6) keyframe lanes: flat over the #212121 canvas base, no vertical grid
+    #    lines. Batch 598: an unselected track lane paints nothing of its own,
+    #    so the check moves to the canvas base it composites onto.
     lanes = page.evaluate(
         """() => {
-          // 选中轨道会叠一层 cyan tint，所以底色要从未选中的轨道上读。
           const all = [...document.querySelectorAll('[data-director-track-id]')];
           const plain = all.filter(
             (el) => el.getAttribute('data-director-track-selected') !== 'true');
@@ -228,19 +236,22 @@ def run_desktop(page: Page) -> dict[str, Any]:
               const b = s.getBoundingClientRect();
               return b.width <= 1.6 && b.height > 8;
             }).length;
+          const canvas = document.querySelector('[data-director-timeline-canvas]');
           return {
             count: all.length,
             plainCount: plain.length,
             backgrounds: [...new Set(plain.map((el) => getComputedStyle(el).backgroundColor))],
+            canvasBackground: getComputedStyle(canvas).backgroundColor,
             verticals: all.reduce((sum, el) => sum + verticals(el), 0),
           };
         }"""
     )
     result["lane"] = lanes
     check(
-        "lane:2a2a2a-no-grid",
+        "lane:212121-base-no-grid",
         lanes["plainCount"] >= 1
-        and lanes["backgrounds"] == [LANE_BG]
+        and lanes["backgrounds"] == ["rgba(0, 0, 0, 0)"]
+        and lanes["canvasBackground"] == LANE_BG
         and lanes["verticals"] == 0,
         detail=lanes,
     )

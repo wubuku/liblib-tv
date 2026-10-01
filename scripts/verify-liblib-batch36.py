@@ -445,7 +445,11 @@ def verify_static_contract():
     assert "data-director-timeline" in timeline_source
     assert "requestAnimationFrame" in timeline_source
     assert "data-director-keyframe-id" in timeline_source
-    assert "<DirectorTimeline />" in desk_source
+    # Batch 596 gave the call site a `trailing` slot (the source's 导出视频到画布
+    # button lives in the timeline strip's right cell, not the top bar), so the
+    # literal self-closing form is gone. Assert the mount itself instead.
+    assert "<DirectorTimeline" in desk_source
+    assert 'from "@/components/director/DirectorTimeline"' in desk_source
     assert "recordObjectKeyframe(selected.id)" in inspector_source
     assert "recordObjectKeyframe(object.id)" in viewport_source
 

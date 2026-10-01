@@ -63,6 +63,37 @@ const DIRECTOR_RULER_MINOR_PX = "3.5px";
 const DIRECTOR_RULER_MAJOR_COLOR = "#878787";
 const DIRECTOR_RULER_MINOR_COLOR = "#686868";
 
+// Batch 595 实测的刻度是**底对齐**在 36px 裁切窗口的底部往上 5px 处
+// （主刻度 y 22.5–31.0、次刻度 y 27.5–31.0，窗口底 36）——标尺区因此是
+// 36px 而不是 clone 原先的 28px，这也是车道与左列行能对齐的前提。
+const DIRECTOR_RULER_HEIGHT_PX = 36;
+const DIRECTOR_RULER_TICK_BOTTOM_PX = 5;
+
+// Batch 598（源站 2026-10-01 逐像素实测，/tmp/src593/probe35–probe42）：
+// 车道区是**一块自绘 canvas**（2124×115，父容器
+// `relative shrink-0 overflow-hidden rounded-r-md bg-black/15`），里面同时画
+// 标尺、车道色带、播放头和关键帧菱形，右列没有任何 DOM 覆盖层。clone 用 DOM
+// 复刻这层，实测值：
+//   车道格节奏  32px = 31px 色带 + 1px #212121 底边（色带 [37,67)、[68,99)，
+//               间隙 [67,68) 是 #212121）
+//   对象行车道  #28464c = #212121 叠 rgba(60,181,204,0.25)；顶边多一条 1px
+//               #355359 亮线；四角 4px 圆角（左右两端 3.5px 的渐变实测）
+//   轨道车道    #243032 = #212121 叠 rgba(60,181,204,0.1)
+//   播放头      2px 宽、#05a3c5，**只覆盖对象行车道**（不画进标尺、不画进轨道
+//               车道），无三角头、无辉光
+//   关键帧菱形  外接 11×11 的空心菱形 = 7.8px 见方旋转 45°、1px #13879f 描边、
+//               #2f2f2f 填充，垂直居中于所属车道
+// 与左列同一套 alpha 阶梯：对象行 0.25 / white-10，轨道行 0.1 / 透明。
+// 车道底色 #212121（不是 clone 原先的 #2a2a2a——batch 595 读到的是间隙色）。
+const DIRECTOR_LANE_BASE_COLOR = "#212121";
+const DIRECTOR_LANE_EDGE_COLOR = "#212121";
+const DIRECTOR_OBJECT_LANE_TOP_EDGE = "#355359";
+const DIRECTOR_PLAYHEAD_COLOR = "#05a3c5";
+const DIRECTOR_KEYFRAME_EDGE_COLOR = "#13879f";
+const DIRECTOR_KEYFRAME_FILL_COLOR = "#2f2f2f";
+// 11px 外接方 ÷ √2 = 7.78px，取 7.8px 让实测外接回到 11px。
+const DIRECTOR_KEYFRAME_BOX_PX = "7.8px";
+
 function directorTrackKeyframeState(
   track: DirectorTimelineTrack,
   currentTime: number,
@@ -445,6 +476,16 @@ export function DirectorTimeline({
     }
     return [...grouped.values()];
   }, [timeline.tracks, objects, groups]);
+
+  // Batch 598: 源站的播放头只画在**对象行车道**里，且该项目只有一个对象，
+  // 测不出多对象时它落在哪一条。clone 选「当前选中轨道所属对象」那条车道，
+  // 没有任何轨道被选中时退回第一个对象（clone-only 决策，见上方常量注释）。
+  const playheadGroupKey = useMemo(() => {
+    const owning = timelineTrackGroups.find((group) =>
+      group.tracks.some((track) => track.id === timeline.selectedTrackId),
+    );
+    return (owning ?? timelineTrackGroups[0])?.key ?? null;
+  }, [timelineTrackGroups, timeline.selectedTrackId]);
 
   useEffect(() => {
     if (pathMenuLeft === null) return;
@@ -1504,13 +1545,17 @@ export function DirectorTimeline({
             ref={timelineCanvasRef}
             data-director-timeline-canvas
             className="relative min-h-full min-w-full"
-            style={{ width: timelineWidth }}
+            style={{
+              width: timelineWidth,
+              background: DIRECTOR_LANE_BASE_COLOR,
+            }}
           >
             <div
               data-director-timeline-ruler
               data-director-timeline-tick-count={ticks.length}
               onPointerDown={beginScrub}
-              className="relative h-7 shrink-0 cursor-ew-resize bg-[#212121]"
+              style={{ height: DIRECTOR_RULER_HEIGHT_PX }}
+              className="relative shrink-0 cursor-ew-resize bg-[#212121]"
             >
               {ticks.map((tick, index) => {
                 const major = index % DIRECTOR_RULER_MAJOR_EVERY === 0;
@@ -1518,9 +1563,10 @@ export function DirectorTimeline({
                   <span key={tick}>
                     <span
                       data-director-ruler-tick={major ? "major" : "minor"}
-                      className="absolute bottom-0 w-px"
+                      className="absolute w-px"
                       style={{
                         left: `${(tick / timeline.duration) * 100}%`,
+                        bottom: `${DIRECTOR_RULER_TICK_BOTTOM_PX}px`,
                         height: major
                           ? DIRECTOR_RULER_MAJOR_PX
                           : DIRECTOR_RULER_MINOR_PX,
@@ -1542,72 +1588,131 @@ export function DirectorTimeline({
               })}
             </div>
 
-            {timeline.tracks.map((track) => (
-              <div
-                key={track.id}
-                data-director-track-id={track.id}
-                data-director-track-kind={track.kind}
-                data-director-track-object-id={track.objectId}
-                data-director-track-group-id={
-                  track.kind === "group" ? track.groupId : undefined
-                }
-                data-director-track-selected={
-                  track.id === timeline.selectedTrackId
-                }
-                onPointerDown={beginScrub}
-                // Batch 595（源站逐像素实测）：轨道道是**纯色** #2a2a2a，没有竖向
-                // 网格线也没有行间分隔线（扫描整条 canvas 的 34-130px 行带，
-                // 只找到播放头那一条）。clone 原先按「每秒一条 border-l」画网格，
-                // 在 0.1s 细分下会变成十倍密度——按源站去掉。
-                className={cn(
-                  "relative h-8 cursor-ew-resize bg-[#2a2a2a]",
-                  track.id === timeline.selectedTrackId &&
-                    "bg-[#09caf5]/[0.035]",
-                )}
-              >
-                {track.keyframes.map((keyframe) => {
-                  const selected =
-                    keyframe.id === timeline.selectedKeyframeId;
-                  return (
-                    <button
-                      key={keyframe.id}
-                      type="button"
-                      data-director-keyframe-id={keyframe.id}
-                      data-director-keyframe-time={keyframe.time}
-                      aria-label={`${track.label} ${formatTimelineTime(keyframe.time)} 关键帧`}
-                      title={`${formatTimelineTime(keyframe.time)} 关键帧`}
-                      onPointerDown={(event) => event.stopPropagation()}
-                      onClick={() => {
-                        // Batch 579: 源站实测（截图 63）——点击关键帧菱形
-                        // 同时选中并把播头 seek 到关键帧时间。
-                        selectTimelineKeyframe(track.id, keyframe.id);
-                        setTimelineTime(keyframe.time);
-                      }}
-                      className={cn(
-                        "absolute top-1/2 z-10 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rotate-45 border bg-[#7b858d]",
-                        selected
-                          ? "border-white bg-[#09caf5] shadow-[0_0_0_2px_rgba(9,202,245,0.2)]"
-                          : "border-[#b8c0c6] hover:bg-[#b9c2c8]",
-                      )}
-                      style={{
-                        left: `clamp(9px, ${
-                          (keyframe.time / timeline.duration) * 100
-                        }%, calc(100% - 9px))`,
-                      }}
-                    />
-                  );
-                })}
-              </div>
-            ))}
-
-            <div
-              data-director-playhead
-              data-director-playhead-time={timeline.currentTime.toFixed(3)}
-              className="pointer-events-none absolute bottom-0 top-0 z-20 w-px bg-[#09caf5] shadow-[0_0_6px_rgba(9,202,245,0.48)]"
-              style={{ left: `${playheadPosition}%` }}
-            >
-              <span className="absolute -left-1.5 top-0 h-0 w-0 border-l-[6px] border-r-[6px] border-t-[7px] border-l-transparent border-r-transparent border-t-[#09caf5]" />
-            </div>
+            {/* Batch 598（源站逐像素实测）：车道区与左列是**同一套两级行**——
+                每个对象一条对象行车道，其下挂该对象的轨道车道；对象行收起时
+                轨道车道整条消失（实测收起后 canvas 只剩一条 [37,67) 的色带）。
+                clone 原先直接 map timeline.tracks（一条 track 一条道、且不看
+                收起状态），导致车道比左列少一半行、整体错位 8px。对象行车道
+                用独立属性名 data-director-timeline-object-lane，**不占**
+                data-director-track-id，以免改动既有按轨道计数的合同。 */}
+            {timelineTrackGroups.map((group) => {
+              const groupCollapsed = collapsedObjects[group.key] === true;
+              const groupSelected = group.tracks.some(
+                (track) => track.id === timeline.selectedTrackId,
+              );
+              return (
+                <div key={`lane:${group.key}`} data-director-lane-group={group.key}>
+                  <div
+                    data-director-timeline-object-lane={group.objectId}
+                    data-director-timeline-object-lane-selected={
+                      groupSelected ? "true" : "false"
+                    }
+                    onPointerDown={beginScrub}
+                    // 实测：#212121 叠 rgba(60,181,204,0.25) = #28464c（选中），
+                    // 顶边一条 1px #355359 亮线，四角 4px 圆角；每格 32px =
+                    // 31px 色带 + 1px #212121 底边。
+                    className={cn(
+                      "relative h-8 cursor-ew-resize rounded-[4px] border-y",
+                      groupSelected
+                        ? "bg-[rgba(60,181,204,0.25)]"
+                        : "bg-white/10",
+                    )}
+                    style={{
+                      borderTopColor: DIRECTOR_OBJECT_LANE_TOP_EDGE,
+                      borderBottomColor: DIRECTOR_LANE_EDGE_COLOR,
+                    }}
+                  >
+                    {/* 实测播放头 2px 宽、#05a3c5、无三角头无辉光，且**只画在
+                        对象行车道里**（轨道车道那一条整段都是车道底色）。源站只
+                        有一个对象，测不出多个对象时播放头落在哪一条——clone 选
+                        「当前选中轨道所属对象」那条（clone-only 决策）。 */}
+                    {playheadGroupKey === group.key ? (
+                      <div
+                        data-director-playhead
+                        data-director-playhead-time={timeline.currentTime.toFixed(3)}
+                        className="pointer-events-none absolute bottom-0 top-0 z-20 w-[2px]"
+                        style={{
+                          left: `${playheadPosition}%`,
+                          background: DIRECTOR_PLAYHEAD_COLOR,
+                        }}
+                      />
+                    ) : null}
+                  </div>
+                  {groupCollapsed
+                    ? null
+                    : group.tracks.map((track) => (
+                        <div
+                          key={track.id}
+                          data-director-track-id={track.id}
+                          data-director-track-kind={track.kind}
+                          data-director-track-object-id={track.objectId}
+                          data-director-track-group-id={
+                            track.kind === "group" ? track.groupId : undefined
+                          }
+                          data-director-track-selected={
+                            track.id === timeline.selectedTrackId
+                          }
+                          onPointerDown={beginScrub}
+                          // Batch 595/598（源站逐像素实测）：轨道车道是**纯色**，
+                          // 没有竖向网格线也没有行内分隔线；底色 = #212121 叠
+                          // rgba(60,181,204,0.1) = #243032（选中），未选中透明
+                          // 落回 #212121。每格同样是 31px 色带 + 1px #212121 底边。
+                          className={cn(
+                            "relative h-8 cursor-ew-resize border-b",
+                            track.id === timeline.selectedTrackId &&
+                              "bg-[rgba(60,181,204,0.1)]",
+                          )}
+                          style={{ borderBottomColor: DIRECTOR_LANE_EDGE_COLOR }}
+                        >
+                          {track.keyframes.map((keyframe) => {
+                            const selected =
+                              keyframe.id === timeline.selectedKeyframeId;
+                            return (
+                              <button
+                                key={keyframe.id}
+                                type="button"
+                                data-director-keyframe-id={keyframe.id}
+                                data-director-keyframe-time={keyframe.time}
+                                aria-label={`${track.label} ${formatTimelineTime(keyframe.time)} 关键帧`}
+                                title={`${formatTimelineTime(keyframe.time)} 关键帧`}
+                                onPointerDown={(event) => event.stopPropagation()}
+                                onClick={() => {
+                                  // Batch 579: 源站实测（截图 63）——点击关键帧菱形
+                                  // 同时选中并把播头 seek 到关键帧时间。
+                                  selectTimelineKeyframe(track.id, keyframe.id);
+                                  setTimelineTime(keyframe.time);
+                                }}
+                                // 实测：外接 11×11 的**空心**菱形（7.8px 见方
+                                // 旋转 45°）、1px #13879f 描边、#2f2f2f 填充。
+                                // 选中的实心 #05a3c5 是 clone-only（源站只测到
+                                // 未选中态，再点一次可能删关键帧，没敢试）。
+                                className={cn(
+                                  "absolute top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rotate-45 border",
+                                  selected
+                                    ? "border-[#05a3c5] bg-[#05a3c5]"
+                                    : "border-[#13879f] bg-[#2f2f2f] hover:bg-[#3a3a3a]",
+                                )}
+                                style={{
+                                  width: DIRECTOR_KEYFRAME_BOX_PX,
+                                  height: DIRECTOR_KEYFRAME_BOX_PX,
+                                  borderColor: selected
+                                    ? DIRECTOR_PLAYHEAD_COLOR
+                                    : DIRECTOR_KEYFRAME_EDGE_COLOR,
+                                  background: selected
+                                    ? DIRECTOR_PLAYHEAD_COLOR
+                                    : DIRECTOR_KEYFRAME_FILL_COLOR,
+                                  left: `clamp(9px, ${
+                                    (keyframe.time / timeline.duration) * 100
+                                  }%, calc(100% - 9px))`,
+                                }}
+                              />
+                            );
+                          })}
+                        </div>
+                      ))}
+                </div>
+              );
+            })}
           </div>
         </div>
         ) : null}
