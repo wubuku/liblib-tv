@@ -43,10 +43,15 @@ const run = (label, cmd, args) => {
   record('1/8 截图 alt 审计', r.ok, (r.out.match(/截图总数.*|无冲突|无问题/g) || [r.out.trim().split('\n').pop()]).join(' / '));
 }
 // ---------- 2. 交叉一致性 ----------
+// ⚠️ 这是**扫读器**不是断言门：它列出「可疑命中 N 处」供人工判读，
+//    退出码恒为 0 ⇒ 无论命中多少，这道门都打 ✅。
+//    批次 58 把它写进记录行，是为了不让「✅」被误读成「没有可疑命中」——
+//    实际最近一次跑出的是 59 处。判读标准见 AUDIT.md「交叉一致性审计」。
 {
   const r = run('crosscheck', process.execPath, [join('scripts', 'jimeng-crosscheck.mjs')]);
   const m = r.out.match(/可疑命中 \d+ 处/);
-  record('2/8 交叉一致性', r.ok, m ? m[0] : r.out.trim().split('\n').pop());
+  record('2/8 交叉一致性（扫读器：✅ 只代表脚本跑通，不代表没有可疑命中）', r.ok,
+    (m ? m[0] + '（需人工判读）' : r.out.trim().split('\n').pop()));
 }
 // ---------- 3/4. gate-a 与 final ----------
 for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
