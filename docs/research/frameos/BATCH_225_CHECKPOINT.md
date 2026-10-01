@@ -1710,3 +1710,35 @@ batch352 有一条反向断言 `still-detects-real-dead-state`, 拿
 
 > 源站事实站在 320 与 x=14 这边(两处都有采样记录), 240 与 16 都没有 ——
 > 改的是过时断言, 不是源站行为。
+
+## Batch 467 断言漂移 —— 修它时发现一个更大的问题
+
+batch467 写死 `len(catalog) == 9` **且**集合用等号, 而 batch 505
+(VR-018 sweep closure)/ batch 510 (§13 FIX-LOCAL-COMMAND-FEEDBACK-01)
+**有意**新增 4 条反馈契约, 一落地就把它顶红。
+
+但普查发现的才是重点: **全项目只有 batch467 一个门禁读
+`__libtv_command_feedback_catalog`** —— 那 4 条新契约**自落地起就没有任何门禁
+在断**。断言不是「过时」这么简单, 而是**唯一防线已经过期两年**。
+
+改法: `len(catalog) >= 13` + `EXPECTED_SURFACE_IDS <= surface_ids`
+(可扩容, 少一条仍红), 13 条逐条列出并标注引入批次。顺带清掉三处 "nine surfaces"。
+
+**变异测试跑了两轮, 第一轮的教训才是重点**:
+- 用 `sed '92,97d'` 删条目, 把整个 catalog 数组结构破坏, catalog 变 `None`,
+  门禁报 `TypeError: object of type 'NoneType' has no len()`。
+  **exit=1, 但失败方式不对** —— 被副作用抓到的, 不是被断言抓到的。
+- 换成精确删除对象字面量, 门禁干净地红在 `assert len(catalog) >= 13`,
+  异常信息里 catalog 正好 12 条。
+
+> **变异测试要看它「怎么红的」, 不只看它红不红。** 被 TypeError 抓住的变异
+> 证明断言没被真正验证到 —— 那种绿是运气。
+
+## 一次翻案: batch601
+
+上一轮我判「被他人 WIP 的构建中间态打断, 非回归」并记录了 `exit=0`。
+本轮全量它又红, 隔离复跑**仍红**(`auto-keyframe:transparent-when-off`)。
+上一轮那次通过是真的, 但落在「他人正在保存文件的窗口」里, 属于恰好没被
+编译失败波及, 不等于「它本来是好的」。
+> **一次通过不足以定性**, 尤其当失败原因与环境相关 —— 得等环境稳定后
+> 再复跑一次才作数。
