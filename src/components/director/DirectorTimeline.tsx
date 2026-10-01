@@ -55,6 +55,14 @@ type DirectorTimeUnit = "s" | "ms";
 // 而非全局时间轴。
 const DIRECTOR_KEYFRAME_EPSILON = 1e-3;
 
+// Batch 595（源站 2026-10-01 逐像素实测，见 directorTrackKeyframeState 上方）：
+const DIRECTOR_RULER_TICK_SECONDS = 0.1;
+const DIRECTOR_RULER_MAJOR_EVERY = 10;
+const DIRECTOR_RULER_MAJOR_PX = "8.5px";
+const DIRECTOR_RULER_MINOR_PX = "3.5px";
+const DIRECTOR_RULER_MAJOR_COLOR = "#878787";
+const DIRECTOR_RULER_MINOR_COLOR = "#686868";
+
 function directorTrackKeyframeState(
   track: DirectorTimelineTrack,
   currentTime: number,
@@ -319,14 +327,20 @@ export function DirectorTimeline() {
     return () => window.cancelAnimationFrame(frame);
   }, [advanceTimeline, timeline.isPlaying]);
 
-  const ticks = useMemo(
-    () =>
-      Array.from(
-        { length: Math.floor(timeline.duration) + 1 },
-        (_, index) => index,
-      ),
-    [timeline.duration],
-  );
+  // Batch 595（源站 2026-10-01 逐像素实测标尺 canvas）：
+  // 细分**恒为 0.1s**，不随缩放改变——zoom 42 与 zoom 100 下都是 100 条刻度
+  // （总时长 10s），只是间距随 zoom 线性放大（实测主刻度间距 211px @42、
+  // 500px @100）。每第 10 条是主刻度（1s），带 `{n}s` 标签。
+  // 竖直方向（canvas 顶为 0，2x DPR 折算回 CSS）：
+  //   标签带  y 5.0 – 13.5，字色 #9d9d9d，字号约 12px（该带高 8.5px）
+  //   主刻度  y 22.5 – 31.0（高 8.5px），色 #878787
+  //   次刻度  y 27.5 – 31.0（高 3.5px），色 #686868
+  //   标尺底 #212121，刻度带下方是轨道道底 #2a2a2a
+  const ticks = useMemo(() => {
+    const step = DIRECTOR_RULER_TICK_SECONDS;
+    const count = Math.round(timeline.duration / step);
+    return Array.from({ length: count + 1 }, (_, index) => index * step);
+  }, [timeline.duration]);
   const selectedTrack =
     timeline.tracks.find((track) => track.id === timeline.selectedTrackId) ??
     null;
@@ -1440,20 +1454,38 @@ export function DirectorTimeline() {
           >
             <div
               data-director-timeline-ruler
+              data-director-timeline-tick-count={ticks.length}
               onPointerDown={beginScrub}
-              className="relative h-7 cursor-ew-resize border-b border-white/[0.06] bg-[#191919]"
+              className="relative h-7 shrink-0 cursor-ew-resize bg-[#212121]"
             >
-              {ticks.map((tick) => (
-                <span
-                  key={tick}
-                  className="absolute bottom-0 top-0 border-l border-white/[0.08]"
-                  style={{ left: `${(tick / timeline.duration) * 100}%` }}
-                >
-                  <span className="absolute left-1 top-1 text-[9px] tabular-nums text-[#5e5e5e]">
-                    {tick}s
+              {ticks.map((tick, index) => {
+                const major = index % DIRECTOR_RULER_MAJOR_EVERY === 0;
+                return (
+                  <span key={tick}>
+                    <span
+                      data-director-ruler-tick={major ? "major" : "minor"}
+                      className="absolute bottom-0 w-px"
+                      style={{
+                        left: `${(tick / timeline.duration) * 100}%`,
+                        height: major
+                          ? DIRECTOR_RULER_MAJOR_PX
+                          : DIRECTOR_RULER_MINOR_PX,
+                        background: major
+                          ? DIRECTOR_RULER_MAJOR_COLOR
+                          : DIRECTOR_RULER_MINOR_COLOR,
+                      }}
+                    />
+                    {major ? (
+                      <span
+                        className="absolute top-[5px] -translate-x-1/2 text-[12px] tabular-nums text-[#9d9d9d]"
+                        style={{ left: `${(tick / timeline.duration) * 100}%` }}
+                      >
+                        {tick}s
+                      </span>
+                    ) : null}
                   </span>
-                </span>
-              ))}
+                );
+              })}
             </div>
 
             {timeline.tracks.map((track) => (
@@ -1469,19 +1501,16 @@ export function DirectorTimeline() {
                   track.id === timeline.selectedTrackId
                 }
                 onPointerDown={beginScrub}
+                // Batch 595（源站逐像素实测）：轨道道是**纯色** #2a2a2a，没有竖向
+                // 网格线也没有行间分隔线（扫描整条 canvas 的 34-130px 行带，
+                // 只找到播放头那一条）。clone 原先按「每秒一条 border-l」画网格，
+                // 在 0.1s 细分下会变成十倍密度——按源站去掉。
                 className={cn(
-                  "relative h-8 cursor-ew-resize border-b border-white/[0.045]",
+                  "relative h-8 cursor-ew-resize bg-[#2a2a2a]",
                   track.id === timeline.selectedTrackId &&
                     "bg-[#09caf5]/[0.035]",
                 )}
               >
-                {ticks.map((tick) => (
-                  <span
-                    key={tick}
-                    className="pointer-events-none absolute bottom-0 top-0 border-l border-white/[0.045]"
-                    style={{ left: `${(tick / timeline.duration) * 100}%` }}
-                  />
-                ))}
                 {track.keyframes.map((keyframe) => {
                   const selected =
                     keyframe.id === timeline.selectedKeyframeId;

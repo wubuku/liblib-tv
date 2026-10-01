@@ -1,0 +1,267 @@
+{
+  "batch": 595,
+  "title": "时间轴标尺刻度：0.1s 次 / 1s 主 + 居中 {n}s 标签 + 取色，轨道道去网格",
+  "evidence": "2026-10-01 pixel scan of the source ruler canvas (2x DPR) at 1920x1150 + docs/research/liblib-canvas-batch595-2026-10-01/README.md",
+  "source_facts": {
+    "subdivision": "0.1s, fixed — 100 ticks for a 10s timeline at both zoom 42 and zoom 100",
+    "major_every": 10,
+    "labels": "{n}s, #9d9d9d, ~12px, band y 5.0-13.5, centred on the major tick",
+    "major_tick": "y 22.5-31.0, 8.5px, #878787",
+    "minor_tick": "y 27.5-31.0, 3.5px, #686868",
+    "ruler_background": "#212121",
+    "lane_background": "#2a2a2a, no vertical grid lines, no row separators",
+    "major_spacing": {
+      "zoom_42": 211,
+      "zoom_100": 500
+    }
+  },
+  "clone_only": [
+    "the ruler keeps h-7 (28px); the source's tick band bottoms out at canvas y=31, a 3px difference that would shift the whole lane stack for no strong evidence",
+    "the selected-track tint on a lane stays (the source has no equivalent left-column/lane selection highlight on the lane itself)"
+  ],
+  "not_verified": [
+    "the source's exact font family/size for the labels — the glyph band is 8.5px tall, which implies ~12px for a typical UI face, but the canvas draws text directly and exposes no font info"
+  ],
+  "results": [
+    {
+      "viewport": "1920x1150",
+      "checks": [
+        {
+          "name": "ruler:0.1s-tick-count",
+          "ok": true,
+          "detail": {
+            "duration": 8,
+            "expected": 81,
+            "actual": 81
+          }
+        },
+        {
+          "name": "ruler:major-every-10",
+          "ok": true,
+          "detail": {
+            "major": 9,
+            "minor": 72
+          }
+        },
+        {
+          "name": "ruler:major-tick",
+          "ok": true,
+          "detail": {
+            "major": {
+              "box": {
+                "x": 320,
+                "w": 1,
+                "h": 8.5,
+                "bottom": 1033
+              },
+              "color": "rgb(135, 135, 135)"
+            },
+            "bottoms": [
+              [
+                1033
+              ],
+              [
+                1033
+              ]
+            ]
+          }
+        },
+        {
+          "name": "ruler:minor-tick",
+          "ok": true,
+          "detail": {
+            "box": {
+              "x": 340,
+              "w": 1,
+              "h": 3.5,
+              "bottom": 1033
+            },
+            "color": "rgb(104, 104, 104)"
+          }
+        },
+        {
+          "name": "ruler:label-text-and-style",
+          "ok": true,
+          "detail": [
+            {
+              "text": "0s",
+              "color": "rgb(157, 157, 157)",
+              "fontSize": "12px",
+              "center": 320,
+              "x": 313.08,
+              "w": 13.84,
+              "top": 5,
+              "transform": "none"
+            },
+            {
+              "text": "1s",
+              "color": "rgb(157, 157, 157)",
+              "fontSize": "12px",
+              "center": 520,
+              "x": 513.08,
+              "w": 13.84,
+              "top": 5,
+              "transform": "none"
+            },
+            {
+              "text": "2s",
+              "color": "rgb(157, 157, 157)",
+              "fontSize": "12px",
+              "center": 720,
+              "x": 713.08,
+              "w": 13.84,
+              "top": 5,
+              "transform": "none"
+            }
+          ]
+        },
+        {
+          "name": "ruler:label-centred-on-tick",
+          "ok": true,
+          "detail": {
+            "labels": [
+              [
+                "0s",
+                320
+              ],
+              [
+                "1s",
+                520
+              ],
+              [
+                "2s",
+                720
+              ]
+            ],
+            "ticks": [
+              320,
+              520,
+              720
+            ]
+          }
+        },
+        {
+          "name": "ruler:background-212121",
+          "ok": true,
+          "detail": "rgb(33, 33, 33)"
+        },
+        {
+          "name": "lane:2a2a2a-no-grid",
+          "ok": true,
+          "detail": {
+            "count": 2,
+            "plainCount": 1,
+            "backgrounds": [
+              "rgb(42, 42, 42)"
+            ],
+            "verticals": 0
+          }
+        },
+        {
+          "name": "ruler:count-fixed-spacing-scales",
+          "ok": true,
+          "detail": {
+            "gaps": {
+              "25": 200,
+              "100": 501.16
+            },
+            "counts": {
+              "25": 81,
+              "100": 81
+            }
+          }
+        },
+        {
+          "name": "no-diagnostics",
+          "ok": true,
+          "detail": []
+        }
+      ],
+      "duration": 8,
+      "ruler": {
+        "background": "rgb(33, 33, 33)",
+        "height": 28,
+        "tickCount": 81,
+        "majorCount": 9,
+        "minorCount": 72,
+        "major": {
+          "box": {
+            "x": 320,
+            "w": 1,
+            "h": 8.5,
+            "bottom": 1033
+          },
+          "color": "rgb(135, 135, 135)"
+        },
+        "minor": {
+          "box": {
+            "x": 340,
+            "w": 1,
+            "h": 3.5,
+            "bottom": 1033
+          },
+          "color": "rgb(104, 104, 104)"
+        },
+        "majorBottoms": [
+          1033
+        ],
+        "minorBottoms": [
+          1033
+        ],
+        "majorGap": 200,
+        "firstLabels": [
+          {
+            "text": "0s",
+            "color": "rgb(157, 157, 157)",
+            "fontSize": "12px",
+            "center": 320,
+            "x": 313.08,
+            "w": 13.84,
+            "top": 5,
+            "transform": "none"
+          },
+          {
+            "text": "1s",
+            "color": "rgb(157, 157, 157)",
+            "fontSize": "12px",
+            "center": 520,
+            "x": 513.08,
+            "w": 13.84,
+            "top": 5,
+            "transform": "none"
+          },
+          {
+            "text": "2s",
+            "color": "rgb(157, 157, 157)",
+            "fontSize": "12px",
+            "center": 720,
+            "x": 713.08,
+            "w": 13.84,
+            "top": 5,
+            "transform": "none"
+          }
+        ],
+        "firstTickX": 320
+      },
+      "lane": {
+        "count": 2,
+        "plainCount": 1,
+        "backgrounds": [
+          "rgb(42, 42, 42)"
+        ],
+        "verticals": 0
+      },
+      "zoom": {
+        "gaps": {
+          "25": 200,
+          "100": 501.16
+        },
+        "counts": {
+          "25": 81,
+          "100": 81
+        }
+      },
+      "diagnostics": []
+    }
+  ]
+}
