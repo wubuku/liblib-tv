@@ -59,10 +59,10 @@ def ready(page, tries=6):
     return False
 
 
+# 只列**尚未审过**的态。审过并修完的删掉，避免每次重跑都撞 dev server 重启。
+# 全部审完后这里会是空的 —— 那本身就是"交互态已普查完"的标志。
 STATES = {
     "节点右键菜单": ("[role=menu]", lambda pg: pg.mouse.click(640, 323, button="right")),
-    "画布右键菜单": ("[role=menu]", lambda pg: pg.mouse.click(900, 620, button="right")),
-    "AI 抽屉": ('[aria-label="Agent"]', lambda pg: pg.mouse.click(1608, 796)),
 }
 
 
