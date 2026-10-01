@@ -89,7 +89,8 @@
   - **两个反直觉机制**（`getConnectionDropTarget`，`project.tsx:573` 起）：① **节点周围有一圈约 32 画布单位的「死区」**——`CONNECTION_NODE_HIT_PADDING = 32` 把它判为 `isNearNode`，但那里又没有合法端口，于是落进第②支；`isNearNode = true` 是在 `if (node.id === current.nodeId) return;` **之前**置位的，所以**拖回源节点自己身上也是同一个静默结果**。② **连内置节点不必瞄准端口**——`if (!port.legacy && candidatePorts.length > 1 && !hitsHandle) return;` 这条短路要求 `!port.legacy`，而内置节点的端口**全是 legacy**（M107 已证），于是只要落点进节点框就一定连上。[运行时+静态]
 - 双模式：connections（连线模式）/ objects（无线引用）。**2026-10-02 M111 拆分实测**——「切换」与「加引用」是**两件不同的事**，此前被写成一句「互斥…添加引用清空既有连线」：① **切换**：objects 模式**确实不渲染连线**（连线元素 `1 → 0`，且两节点均未位移、排除误拖），但**数据一条没少**——切回 connections 原样恢复（`0 → 1`），连续两次往返稳定为 `1`。**切换本身不删任何东西。** [运行时]
   ② **添加引用**：`project.tsx:907` 的 `addObjectReference` 第一句就是 `setConnections(cur => cur.filter(c => c.toNodeId !== targetNodeId))`——**删的是「以正在加引用的那个节点为下游」的全部连线**，并非全画布；其余节点之间的连线不受影响，随后由 `metadata.objectReferences` 顶替。**这一行未实测**：Set/Get 两个入口（「设为 Set」/「引用结果」）在**没有生成结果之前根本不渲染**——实测无线模式下节点悬浮工具条与连线模式**完全相同**（同样 5 个按钮），全页 innerText 搜不到「引用结果」「设为 Set」「无线引用」任何字样；而产出结果需付费生成。**如实记为源码依据。** [静态]
-- @mention：contentEditable 输入 `@` 弹候选插缩略图 chip，序列化「图片 N / 视频 N / 文本 N」标签。[静态+官方文档]
+- @mention：contentEditable 输入 `@` 弹候选选择器，选中后插缩略图 chip。**2026-10-02 M114 升级为运行时实证**：实测选择器列出「**文本1　一只穿蓝帽子的猫**」（标签 + 来源节点正文），回车后插入 1 个 chip、其 `title` 为「一只穿蓝帽子的猫」，**序列化的文本不含 `@`**——源码取 `reference.kind === "text" ? reference.text || reference.title : reference.label`，**文字引用插入的是节点正文、媒体引用插入的是标签**，都不是列表里那个「文本N」。[运行时+静态]
+  - **「不参与生成」标记的出现时机此前被写错了**：实测**刚连线打开面板时，提示词框显示为空、标记与顶部黄字都没有**；敲 `@` 弹出选择器时也没有；**回车插入 chip 之后两个才同时亮起**（黄字写「1 个素材」）。机制：应用在「提示词为空且连着文字引用」时**主动写入 `@Text 1`**（`aitudou-native-generation.ts:498`），而面板把「提示词恰为 `@Text 1`」**显示成空输入框**（`aitudou-native-generation-panel.tsx:129` 的 `prompt === "@Text 1" ? "" : prompt`）。**一旦用户动了这个框，该哨兵即被覆盖，点名依据消失，标记随之亮起。**（该哨兵是否真把文字送进生成请求属付费动作，未实测。）[运行时+静态]
 
 ## 7. 生成工作流（**付费动作，手册只描述不回走**）
 
