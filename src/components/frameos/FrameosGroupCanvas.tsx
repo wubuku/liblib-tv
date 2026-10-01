@@ -47,6 +47,7 @@ function GroupDiv({ group, selected }: { group: FrameosGroup; selected: boolean 
   const selectGroup = useFrameosStore((s) => s.selectGroup);
   const moveGroup = useFrameosStore((s) => s.moveGroup);
   const renameGroup = useFrameosStore((s) => s.renameGroup);
+  const ungroup = useFrameosStore((s) => s.ungroup);
   const { zoom } = useViewport();
   const [renaming, setRenaming] = useState(false);
   const dragRef = useRef<{ sx: number; sy: number; lastX: number; lastY: number; pushed: boolean } | null>(null);
@@ -129,7 +130,22 @@ function GroupDiv({ group, selected }: { group: FrameosGroup; selected: boolean 
               label: "删除",
               danger: true,
               shortcut: "⌫",
-              onClick: () => showToast("已删除分组 (mock)", "success"),
+              // Batch 344: 此前是 `showToast("已删除分组 (mock)", "success")` ——
+              // 弹一条绿色成功提示说「已删除分组」，但**组根本没有被删**。
+              // 实测 (probe-frameos-batch344-group-menu.py): 点击后
+              // groupCount 仍为 1、hasGroup 仍为 true、DOM 里分组盒还在。
+              //
+              // 改为直接复用 store 已有的 `ungroup`（工具条「解组」用的同一个
+              // action：移除分组、成员位置保持），并且**不发 toast** ——
+              // 组从画布上消失本身就是反馈，比一条可能不兑现的文案诚实
+              // （与 FrameosGroupToolbar 的解组保持一致）。
+              //
+              // CLONE_DECISION: 「删除分组」也可能指「连成员一起删」。那是破坏性
+              // 操作、且需要二次确认，源站行为未采样（被人机验证阻塞，见
+              // SOURCE_ACCESS_BLOCKED_2026-10-01.md），**不擅自发明**。这里取的是
+              // 非破坏、可撤销的那一种读法。若日后源站可采样且确认是另一种，
+              // 只需改这一处。
+              onClick: () => ungroup(group.id),
             },
           ],
         });

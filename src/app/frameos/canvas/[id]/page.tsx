@@ -360,11 +360,26 @@ function FrameosCanvasInner() {
       // (2026-09-26: 方向键不移动选中节点, Tab 不切换选中), 不发明行为
 
       // Delete / Backspace - 立即删除 (Batch 177 对齐源站: 无确认框)
-      if ((e.key === "Delete" || e.key === "Backspace") && state.selectedNodeId) {
-        e.preventDefault();
-        const node = state.nodes.find((n) => n.id === state.selectedNodeId);
-        if (node) {
-          state.removeNode(state.selectedNodeId);
+      if (e.key === "Delete" || e.key === "Backspace") {
+        // Batch 344: 分组右键菜单把 ⌫ 标成「删除分组」的快捷键, 但此前这个分支
+        // 只认 selectedNodeId —— 纯选中分组时按 ⌫ **毫无反应** (实测: hasGroup
+        // 仍为 true、pastDepth 不变)。菜单上写着的快捷键必须能用。
+        // 语义与菜单项一致: ungroup (移除分组、成员位置保持)。
+        if (state.selectedNodeId) {
+          e.preventDefault();
+          const node = state.nodes.find((n) => n.id === state.selectedNodeId);
+          if (node) {
+            state.removeNode(state.selectedNodeId);
+          }
+          return;
+        }
+        if (state.selectedGroupId) {
+          e.preventDefault();
+          const group = state.groups.find((g) => g.id === state.selectedGroupId);
+          if (group) {
+            state.ungroup(group.id);
+          }
+          return;
         }
         return;
       }

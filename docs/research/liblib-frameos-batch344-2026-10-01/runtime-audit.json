@@ -1,0 +1,83 @@
+{
+  "batch": 344,
+  "title": "FrameOS group context menu: 删除 actually deletes, and its ⌫ shortcut works",
+  "defect": "The group context menu's 删除 item only fired showToast(\"已删除分组 (mock)\", \"success\") -- a GREEN success toast claiming the group was deleted while the group was still on the canvas. Measured: after clicking it, groupCount stayed 1, hasGroup stayed true and the group box was still in the DOM. Separately, the menu advertises ⌫ as the shortcut for 删除, but the Delete/Backspace handler only looked at selectedNodeId, so pressing ⌫ with only a group selected did nothing at all.",
+  "fix": "删除 now calls the existing ungroup action (the same one the toolbar's 解组 uses) and fires no toast at all -- the group disappearing from the canvas is the honest feedback, and it matches the toolbar. The Delete/Backspace branch gained a selectedGroupId case with the same semantics. Reusing the existing action instead of hand-rolling it is the same principle as batches 328/341/343.",
+  "clone_decision": "「删除分组」could also mean 'delete the members too'. That is destructive, would need a confirmation, and the source site's behaviour was NOT sampled (blocked by the human-verification gate, see SOURCE_ACCESS_BLOCKED_2026-10-01.md) -- so it was NOT invented here. The non-destructive, undoable reading (members keep their positions) was taken. The 复制 / 创建副本 items are still mocks: the source confirmed the ITEMS exist but not what they do, and implementing them would require inventing semantics (does a duplicated group share members with the original? that would break the one-group-per-node model), so they were left untouched.",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "menu:has-three-items",
+        "menu:delete-present",
+        "menu:delete-advertises-backspace",
+        "delete:group-gone-from-store",
+        "delete:group-gone-from-dom",
+        "delete:members-kept",
+        "delete:group-count-drops",
+        "delete:no-dangling-selection",
+        "delete:no-false-success-toast",
+        "undo:group-restored",
+        "shortcut:group-is-selected",
+        "shortcut:backspace-removes-group",
+        "shortcut:backspace-keeps-members",
+        "shortcut:delete-still-removes-node",
+        "shortcut:node-count-drops",
+        "diagnostics:zero"
+      ],
+      "setup": {
+        "gid": "group-1790824393680-1",
+        "members": [
+          "text-1",
+          "text-2"
+        ],
+        "memberCount": 2,
+        "nodeCount": 7,
+        "groupCount": 1
+      },
+      "menu_items": [
+        "复制\n⌘C",
+        "创建副本\n⌘D",
+        "删除\n⌫"
+      ],
+      "after_delete": {
+        "groupCount": 0,
+        "hasGroup": false,
+        "selectedGroupId": null,
+        "selectedNodeId": null,
+        "pastDepth": 2,
+        "nodeCount": 7,
+        "membersAlive": true,
+        "groupBoxInDom": 0
+      },
+      "toasts_after_delete": [],
+      "undo": {
+        "hasGroup": true
+      },
+      "after_backspace": {
+        "groupCount": 0,
+        "hasGroup": false,
+        "selectedGroupId": null,
+        "selectedNodeId": null,
+        "pastDepth": 2,
+        "nodeCount": 7,
+        "membersAlive": true,
+        "groupBoxInDom": 0
+      },
+      "node_delete": {
+        "before": {
+          "victim": "text-1",
+          "nodeCount": 7
+        },
+        "after": {
+          "gone": true,
+          "nodeCount": 6
+        }
+      },
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

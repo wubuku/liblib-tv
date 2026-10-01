@@ -658,3 +658,45 @@ verifier batch343 **13/13 PASS**。
 
 **候选 Batch 344**：`generations` 是死状态字段（从未写入也从未读取）；
 `FrameosNodeEditPanel` 两个空壳按钮 + 整面板无入口（属源站对齐，阻塞）。
+
+## Batch 344（2026-10-01）：分组右键菜单「删除」弹绿色成功提示却什么都没删
+
+`FrameosGroupCanvas` 的分组右键菜单，「删除」项此前只是
+`showToast("已删除分组 (mock)", "success")`。
+
+实测（修复前）：
+```
+菜单项: ['复制\n⌘C', '创建副本\n⌘D', '删除\n⌫']
+[点「删除」] groupCount=1 hasGroup=True DOM 分组盒=1   ← 组还在原地
+[按 ⌫]      hasGroup=True groupCount=1 pastDepth=1     ← 毫无反应
+```
+
+第二个缺陷：菜单把 ⌫ 标成快捷键，但 `page.tsx` 的 Delete/Backspace 分支
+只认 `selectedNodeId` —— 纯选中分组时按 ⌫ 什么都不发生。**菜单上写着的
+快捷键必须能用。**
+
+🔑 为什么这条比「两个死按钮」严重：死按钮点了没反应，用户一眼就知道不对；
+这一条是**主动撒谎** —— 绿色对勾 +「已删除分组」+ 组仍在原地，用户会以为
+删掉了、继续操作，直到某天发现它还在，而中间的判断已基于错误前提。
+**一个会撒谎的 UI 比一个明显坏掉的 UI 更危险**：坏掉的让人停下，撒谎的让人
+继续往下走。
+
+修 1：「删除」改用 store 已有的 `ungroup`（工具条「解组」同一个 action，
+自带入栈 + 清理 selectedGroupId），并且**不发 toast** —— 组从画布消失本身
+就是反馈，比一条可能不兑现的文案诚实。
+修 2：Delete/Backspace 补 selectedGroupId 分支（节点优先，Batch 177 语义不变）。
+
+⚠️ CLONE_DECISION：「删除分组」也可能读作「连成员一起删」。那是破坏性操作、
+需二次确认，源站**未采样**（阻塞）→ **不擅自发明**，本次取非破坏可撤销的读法，
+注释里写明日后若源站确认是另一种读法只需改这一处。
+`复制`/`创建副本` 仍是 mock：源站确认了**条目存在**（SOURCE_FACT）但没采样
+**做什么**，要实现就得发明语义（如副本组是否与原组共享成员 → 会打破
+「一节点一组」模型）→ 不动，记录在案。
+
+变异测试：改回 `showToast("已删除分组 (mock)")` 后验证器失败于
+`delete:group-gone-from-store (hasGroup=True)`。
+
+verifier batch344 **15/15 PASS**。
+
+**候选 Batch 345**：`FrameosGroupCanvas.tsx:236`「批量连线 (mock)」同类未实现；
+`generations` 死状态字段；`FrameosNodeEditPanel` 两个空壳按钮（后者属源站对齐，阻塞）。
