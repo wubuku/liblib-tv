@@ -1,0 +1,255 @@
+{
+  "batch": 616,
+  "title": "Scene tree interior: header carries no border, list takes the source's px-2 pb-3 and thin scrollbar",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "/tmp/src593/probe613i, 2026-10-01, 1920x1150, director desk open: the source's tree has exactly two children — a 48px header with all four edges 0px and a list with px-2 pb-3 plus [scrollbar-color:rgba(255,255,255,0.2)_transparent] [scrollbar-width:thin]",
+    "the class strings and edge widths are quoted verbatim from that probe; by implementation time another user had resized the shared source tab to 1600x1000 and closed the desk, so no live re-measurement was possible and none is claimed"
+  ],
+  "claims": {
+    "sourceFact": [
+      "tree: div.flex.w-[232px].min-w-0.flex-col.bg-[#171717] at [48,52,232,1098] — two children only",
+      "header: [48,52,232,48] .flex.h-12.shrink-0.items-center.px-3.text-[12px].leading-5.text-white/90, border 0/0/0/0",
+      "list: .min-h-0.flex-1.overflow-y-auto.px-2.pb-3 with a thin scrollbar tinted rgba(255,255,255,0.2)"
+    ],
+    "cloneDecision": [
+      "the clone's two extra 36px toolbars stay — they hold the clone's own group/camera actions, and deleting clone functionality to match a child count is not what this work is for; the resulting 72px offset of the list's start (172 vs 100) is a consequence of that, recorded rather than removed",
+      "the header's search field and buttons stay; only the frame is aligned, and the search is verified to still filter"
+    ],
+    "notClaimed": [
+      "what text the source's 48px header carries — the class list was captured, the string was not"
+    ]
+  },
+  "checks": {
+    "desk": {
+      "tree": {
+        "box": [
+          48,
+          52,
+          232,
+          1098
+        ],
+        "bg": "rgb(23, 23, 23)"
+      },
+      "header": {
+        "box": [
+          48,
+          52,
+          232,
+          48
+        ],
+        "edges": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "padX": 12,
+        "padY": 0
+      },
+      "list": {
+        "box": [
+          48,
+          172,
+          232,
+          978
+        ],
+        "padX": 8,
+        "padBottom": 12,
+        "padTop": 0,
+        "overflowY": "auto",
+        "scrollbarColor": "rgba(255, 255, 255, 0.2) rgba(0, 0, 0, 0)",
+        "scrollbarWidth": "thin",
+        "clientH": 978,
+        "scrollH": 978
+      },
+      "children": [
+        {
+          "box": [
+            48,
+            52,
+            232,
+            48
+          ],
+          "cls": "flex h-12 shrink-0 items-center gap-1 px-3",
+          "text": ""
+        },
+        {
+          "box": [
+            48,
+            100,
+            232,
+            36
+          ],
+          "cls": "flex h-9 shrink-0 items-center gap-1 border-b border-white/[0.06] px-2",
+          "text": "打组 解组"
+        },
+        {
+          "box": [
+            48,
+            136,
+            232,
+            36
+          ],
+          "cls": "flex h-9 shrink-0 items-center gap-1 border-b border-white/[0.06] px-2",
+          "text": "1 个对象已选"
+        },
+        {
+          "box": [
+            48,
+            172,
+            232,
+            978
+          ],
+          "cls": "min-h-0 flex-1 overflow-y-auto px-2 pb-3 [scrollbar-color:rgba(255,255,255,0.2)_transparen",
+          "text": "角色1角色01 · 陈默场景物体3咖啡桌"
+        }
+      ],
+      "search": {
+        "box": [
+          91,
+          68,
+          132,
+          16
+        ],
+        "visible": true
+      },
+      "itemCount": 5
+    },
+    "tree:box-48-52-232-1098": {
+      "ok": true,
+      "detail": [
+        48,
+        52,
+        232,
+        1098
+      ]
+    },
+    "tree:bg-171717": {
+      "ok": true,
+      "detail": "rgb(23, 23, 23)"
+    },
+    "header:box-48-52-232-48": {
+      "ok": true,
+      "detail": [
+        48,
+        52,
+        232,
+        48
+      ]
+    },
+    "header:no-border-on-any-edge": {
+      "ok": true,
+      "detail": [
+        "0px",
+        "0px",
+        "0px",
+        "0px"
+      ]
+    },
+    "header:px-3": {
+      "ok": true,
+      "detail": 12
+    },
+    "header:no-vertical-padding-of-its-own": {
+      "ok": true,
+      "detail": 0
+    },
+    "list:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "list:px-2": {
+      "ok": true,
+      "detail": 8
+    },
+    "list:pb-3": {
+      "ok": true,
+      "detail": 12
+    },
+    "list:scrolls": {
+      "ok": true,
+      "detail": "auto"
+    },
+    "list:thin-scrollbar": {
+      "ok": true,
+      "detail": "thin / rgba(255, 255, 255, 0.2) rgba(0, 0, 0, 0)"
+    },
+    "list:starts-below-header-and-toolbars": {
+      "ok": true,
+      "detail": [
+        48,
+        172,
+        232,
+        978
+      ]
+    },
+    "tree:four-children-2-clone-only-toolbars": {
+      "ok": true,
+      "detail": [
+        "flex h-12 shrink-0 items-center gap-1 px",
+        "flex h-9 shrink-0 items-center gap-1 bor",
+        "flex h-9 shrink-0 items-center gap-1 bor",
+        "min-h-0 flex-1 overflow-y-auto px-2 pb-3"
+      ]
+    },
+    "tree:the-two-extra-children-are-36px-toolbars": {
+      "ok": true,
+      "detail": [
+        [
+          48,
+          100,
+          232,
+          36
+        ],
+        [
+          48,
+          136,
+          232,
+          36
+        ]
+      ]
+    },
+    "search:present-and-visible": {
+      "ok": true,
+      "detail": {
+        "box": [
+          91,
+          68,
+          132,
+          16
+        ],
+        "visible": true
+      }
+    },
+    "search:filters-the-tree": {
+      "ok": true,
+      "detail": {
+        "before": 5,
+        "after": 1
+      }
+    },
+    "search:clearing-restores": {
+      "ok": true,
+      "detail": 5
+    },
+    "diagnostics:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "diagnostics:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "_summary": {
+      "checks": 19,
+      "failures": []
+    }
+  },
+  "result": "19/19 passed"
+}

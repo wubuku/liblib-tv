@@ -303,7 +303,24 @@ export function DirectorObjectTree() {
     // 比源站浅 2 个色阶）。源站该 div 自身无右边框，右边界那条 1px
     // `border-white/10` 来自包住整列的 aside，本批已由 DirectorDesk 承担。
     <section data-director-tree className="flex h-full min-h-0 flex-col bg-[#171717]">
-      <div className="flex h-12 shrink-0 items-center gap-1 border-b border-white/[0.07] px-3">
+      {/* Batch 616（源站 2026-10-01 实测 /tmp/src593/probe613i，1920×1150
+          导演台态）：源站场景树整棵只有**两个**子节点 ——
+            div [48, 52, 232, 48]
+              .flex.h-12.shrink-0.items-center.px-3
+              .text-[12px].leading-5.text-white/90
+              border 0px/0px/0px/0px   ← **没有** border-b
+            div [48, 100, 232, 1050]
+              .min-h-0.flex-1.overflow-y-auto.px-2.pb-3
+              [scrollbar-color:rgba(255,255,255,0.2)_transparent]
+              [scrollbar-width:thin]
+          即：48px 的标题条（**无下边框**）+ 一条带 `px-2 pb-3` 与细滚动条的
+          列表。clone 的标题条自造了一条 `border-b border-white/[0.07]`
+          （源站该处四条边实测全 0），列表是 `py-2`（无左右内边距、无
+          `pb-3`、无自定义滚动条配色）。本批逐字对齐这三处。
+          标题条里装的东西与源站不同（源站是一条 `text-white/90` 的文字标题，
+          clone 是搜索框 + 若干按钮）属 clone 功能，按既定原则保留不动，
+          只对齐外框与列表几何。 */}
+      <div className="flex h-12 shrink-0 items-center gap-1 px-3">
         <label className="flex h-8 min-w-0 flex-1 items-center gap-2 rounded border border-white/[0.08] bg-[#222] px-2 text-[#777] focus-within:border-[#09caf5]/60">
           <Search size={14} />
           <input
@@ -395,7 +412,10 @@ export function DirectorObjectTree() {
         </div>
       ) : null}
 
-      <div className="min-h-0 flex-1 overflow-y-auto py-2">
+      {/* 源站列表逐字：`min-h-0 flex-1 overflow-y-auto px-2 pb-3` +
+          `[scrollbar-color:rgba(255,255,255,0.2)_transparent]
+           [scrollbar-width:thin]`（见上）。clone 原为 `py-2`。 */}
+      <div className="min-h-0 flex-1 overflow-y-auto px-2 pb-3 [scrollbar-color:rgba(255,255,255,0.2)_transparent] [scrollbar-width:thin]">
         {visibleGroups.length > 0 ? (
           <section className="mb-3" aria-label="群众分组">
             <h2 className="flex h-7 items-center gap-1 px-3 text-[11px] text-[#777]">
