@@ -46,4 +46,6 @@ LibTV 是一张**无限画布式 AI 影视工作台**。它的心智模型和 Fi
 
 ## 维护者
 
-任务实施账本见 [`task-inventory.yml`](task-inventory.yml)，逐张截图登记见 [`screenshots/manifest.yml`](screenshots/manifest.yml)，接力说明见 [`PROGRESS.md`](PROGRESS.md)，回走审计见 [`AUDIT.md`](AUDIT.md)。构建可浏览站点的方法见同目录 `PUBLISH.md`。
+任务实施账本见同目录 `task-inventory.yml`，逐张截图登记见 `screenshots/manifest.yml`，回走审计见 `AUDIT.md`。
+
+> 这些是**维护者**用的账本，不随站点发布 —— 站点里只保留面向使用者的部分。构建方法见同目录 `PUBLISH.md`。
