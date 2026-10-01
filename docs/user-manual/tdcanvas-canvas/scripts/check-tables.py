@@ -29,7 +29,6 @@
 
 退出码 0 表示所有表格语法完整，1 表示存在被劈开或缺表头的表格。
 """
-
 from __future__ import annotations
 
 import re
@@ -80,6 +79,73 @@ def fenced_code_lines(lines: list[str]) -> set[int]:
     return inside
 
 
+def check_code_spans(lines: list[str], code: set[int], rel: str) -> list[str]:
+    """检查围栏代码块之外，行内代码（`code`）的反引号是否成对。
+
+    **为什么需要这道检查（M84 实测）**：本脚本原先只管**列数**与**表头结构**，
+    抓不到一类"列数完全正确、渲染却是坏的"的错误——**行内代码里嵌了行内代码**。
+
+    M84 往 `PROGRESS.md` 写源码引用时写了这么一行：
+
+        | 源码 | `title={port.description \\|\\| \\`${port.label}\\`}` —— 原生 title |
+
+    列数是对的（本脚本报 ok），但按 CommonMark，**行内代码段内部不处理反斜杠转义**：
+    里面那个反引号会被当成收尾标记，于是外层代码段在它这里就结束了，产物里这一格
+    的代码高亮从中间断掉、后面半截变成正文。同批还有一处更隐蔽的落单反引号
+    （`父文本「90%`」`），会在**整段**末尾开一个永远不闭合的代码段。
+
+    判据分两种粒度：
+
+    - **表格行按单元格判**——GFM 是"先切单元格、再解析行内内容"，所以跨单元格的
+      行内代码根本不成立。嵌套反引号写在单元格里时，一格的反引号数必然是奇数
+      （外层 1 个 + 内层成对 2 个），而**整行的列数完全正确**。这正是列数校验的盲区。
+    - **其余行按段落判**（空行分隔的连续非围栏行累计）。markdown 允许行内代码跨行，
+      按行数会误报，按段落累计既能覆盖跨行，又能把"整个列表 6 个反引号、其中一个
+      条目少一个"这种真实错误抓出来。
+    """
+    problems: list[str] = []
+    start: int | None = None
+    count = 0
+
+    def flush() -> None:
+        nonlocal start, count
+        if start is not None and count % 2 == 1:
+            problems.append(
+                f"{rel}:{start + 1}: 这一段共 {count} 个反引号（奇数），"
+                f"有行内代码没闭合，会把后面的正文一起吞进代码高亮："
+                f"{lines[start].strip()[:52]}"
+            )
+        start, count = None, 0
+
+    for number, line in enumerate(lines):
+        if number in code:
+            continue
+        if is_table_row(line):
+            # 表格行：与段落累计分开，逐个单元格判奇偶。
+            # 注意**只能按未转义的竖线切**——单元格里常出现 `\|\|`（表格内的
+            # 逻辑或），按裸 `|` 切会把一格劈成两半，两半的反引号数都是奇数，
+            # 变成纯误报。GFM 的切分规则同样忽略转义竖线。
+            for cell in re.split(r"(?<!\\)\|", line.strip().strip("|")):
+                ticks = cell.count("`")
+                if ticks % 2 == 1:
+                    problems.append(
+                        f"{rel}:{number + 1}: 表格单元格里出现 {ticks} 个反引号（奇数），"
+                        f"多半是在行内代码里又嵌了行内代码——列数是对的，但这一格的"
+                        f"代码高亮会从中间断掉：{cell.strip()[:44]}"
+                    )
+            flush()
+            continue
+        if not line.strip():
+            flush()
+            continue
+        if start is None:
+            start = number
+            count = 0
+        count += line.replace("\\|", "").count("`")
+    flush()
+    return problems
+
+
 def check_file(path: Path, rel: str) -> list[str]:
     lines = path.read_text(encoding="utf-8").splitlines()
     code = fenced_code_lines(lines)
@@ -110,6 +176,7 @@ def check_file(path: Path, rel: str) -> list[str]:
                 f"结构，会整体渲染成原始管道文本（多半是被插在中间的引用块或列表劈开的）："
                 f"{head}"
             )
+    problems.extend(check_code_spans(lines, code, rel))
     return problems
 
 
@@ -145,7 +212,7 @@ def main() -> int:
     if problems:
         print(f"表格语法校验失败：{len(problems)} 项")
         return 1
-    print(f"  [ ok ] 表格语法校验：{len(md_files)} 个文件、{table_count} 个表格块语法完整")
+    print(f"  [ ok ] 表格语法校验：{len(md_files)} 个文件、{table_count} 个表格块语法完整，行内代码反引号全部成对")
     return 0
 
 

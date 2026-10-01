@@ -262,6 +262,31 @@ def mutate_table_rows_after_list(root: Path) -> None:
     path.write_text(text.replace(anchor, anchor + injected, 1), encoding="utf-8")
 
 
+def mutate_unescaped_pipe_in_code_span(root: Path) -> None:
+    """表格单元格里出现**未转义的竖线**——列数正确，但产物会丢内容（M84 加）。
+
+    M84 给 `check-tables.py` 加了行内代码反引号平衡检查，理由是自己写崩了两处。
+    这里注入的是**更狠的一类**：单元格里写 `` 收尾竖线 `|` ``，竖线没转义。
+    GFM 是"先按竖线切单元格、再解析行内内容"，所以这个竖线**照样切**，
+    该行从 3 格变成 4 格，而表格只有 3 列——**产物 HTML 里第 3 格的内容直接消失**
+    （M84 已在 `90-troubleshooting.html` 产物上实测确认，不是推断）。
+
+    关键点：这类错误的**列数校验查不出来**（行首行尾的竖线都还在），
+    所以只能靠新的反引号奇偶判据拦。
+    """
+
+    path = root / "90-troubleshooting.md"
+    text = path.read_text(encoding="utf-8")
+    anchor = "## 相关页面\n"
+    injected = (
+        "| 列A | 列B | 列C |\n"
+        "|---|---|---|\n"
+        "| 正常 | 转义过 `\\|` | 收尾竖线写成 `\\|` |\n"
+        "| 未转义 | 收尾竖线代码span `|` | 后面这段内容会被丢掉 |\n\n"
+    )
+    path.write_text(text.replace(anchor, injected + anchor, 1), encoding="utf-8")
+
+
 # ---------- 用例表：(名称, 变异, 期望由谁拦下, 期望出现的错误文字) ----------
 
 CASES: list[tuple[str, object, str, str]] = [
@@ -286,6 +311,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("表格被引用块劈开", mutate_table_split_by_quote, "tables", "会整体渲染成原始管道文本"),
     ("表格行脱离表头接在列表后", mutate_table_rows_after_list, "tables", "会整体渲染成原始管道文本"),
     ("代码块外的孤立表格行", mutate_table_outside_fence, "tables", "会渲染成普通段落"),
+    ("单元格内竖线未转义（产物丢内容）", mutate_unescaped_pipe_in_code_span, "tables", "反引号（奇数）"),
 ]
 
 
