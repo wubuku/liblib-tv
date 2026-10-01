@@ -187,6 +187,14 @@ LOG_DIR="$(mktemp -d "${TMPDIR:-/tmp}/liblib-verifiers.XXXXXX")"
 echo "running $total verifier(s) with $JOBS job(s); logs -> $LOG_DIR"
 echo "----"
 
+# 记下自身指纹: 跑完之后核对。
+# 起因: 我在一次全量**运行期间**改了这个脚本, 重试阶段 bash 读到半改完的
+# 版本, 直接报 `line 189: syntax error near unexpected token ';'` 并留下一堆
+# 半成品结果。那是我不该在运行中改它 —— 但工具对此毫无提示, 报出来的错误
+# 也完全指不到真因(「我明明刚 bash -n 过」)。
+# 所以: 开工前记指纹, 收尾时核对, 被改过就**明确说这一轮结果不可信**。
+SELF_DIGEST="$(shasum "$ROOT/scripts/run-liblib-verifiers.sh" 2>/dev/null | awk '{print $1}')"
+
 # ---- 并发执行 ----
 # 每个验证器一个独立 python 进程。xargs -P 按 JOBS 并行, 输出按顺序落文件。
 # 用 `|| true` 吞掉退出码: 真实成败由后面读文件统计, 这样 xargs 不会因任一
@@ -282,7 +290,29 @@ if [ -n "$aged_list" ]; then
 fi
 
 echo "----"
+
+# ---- 自我保护: 这一轮的结果可信吗 ----
+# 脚本在运行期间被改动过, 则后半段(统计/重试/汇总)跑的是**另一个版本**,
+# 报出来的数字没有意义。宁可退出码非零让人重跑, 也不给一份看似正常的错账。
+SELF_DIGEST_NOW="$(shasum "$ROOT/scripts/run-liblib-verifiers.sh" 2>/dev/null | awk '{print $1}')"
+SELF_CHANGED=0
+if [ -n "$SELF_DIGEST" ] && [ "$SELF_DIGEST" != "$SELF_DIGEST_NOW" ]; then
+  SELF_CHANGED=1
+fi
+
+if [ "$SELF_CHANGED" -eq 1 ]; then
+  echo "FATAL: this script changed WHILE RUNNING."
+  echo "       The tally below was produced by a different version of the"
+  echo "       script than the one that started this run, so it cannot be"
+  echo "       trusted. Re-run without editing the runner concurrently."
+  echo "       logs kept at $LOG_DIR"
+  exit 3
+fi
+
 echo "liblib verifiers: $pass passed, $fail failed (of $total, after $RETRIES retry)"
+if [ -n "$aged_list" ]; then
+  echo "(AGED_GATE historical contracts above are declared, not regressions)"
+fi
 if [ "$fail" -ne 0 ]; then
   echo "failed batches:$failed_list"
   echo "logs kept at $LOG_DIR"
@@ -290,3 +320,4 @@ if [ "$fail" -ne 0 ]; then
 fi
 rm -rf "$LOG_DIR"
 exit 0
+
