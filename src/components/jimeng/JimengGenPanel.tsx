@@ -420,6 +420,13 @@ export function JimengGenPanel({
                 <button
                   type="button"
                   aria-label="选择模型: 即梦 Seedance 2.0 VIP, Standard-only model"
+                  /* 批 833 SOURCE_FACT：源站同一枚按钮实测
+                     aria-haspopup="listbox" / aria-expanded="false"。
+                     声明「我弹出的是什么 role」是辅助技术读这个浮层的唯一线索，
+                     没有它屏幕阅读器只会说「按钮」。aria-expanded 跟着
+                     真实展开态走，不是写死的 false。 */
+                  aria-haspopup="listbox"
+                  aria-expanded={modelOpen}
                   onClick={() => setModelOpen((v) => !v)}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
@@ -433,7 +440,16 @@ export function JimengGenPanel({
                     style={{ background: "rgb(38,38,38)" }}
                     role="listbox"
                     aria-label="模型列表"
-                    // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
+                    // 批 833：**刻意不改**，理由写在这里以防后人"顺手改对"。
+                    // 源站在这一处**自相矛盾**：`jimeng_probe833_gentriggers.py`
+                    // 实测触发器上写着 aria-haspopup="listbox"，但
+                    // `jimeng_probe832_gendropdowns.py` 实测展开后的浮层是
+                    // `role=presentation`（**连可访问名都没有**），其子项才是
+                    // `role=option`（388×64）。两个信号指向不同 role。
+                    // 既然源站自己有歧义，按"取其一致的那一路"处理：保留 listbox
+                    // （与它自己的 aria-haspopup 一致），名字沿用既有值。
+                    // 记为 OPEN_QUESTION —— 等哪天能在源站造出可判定的样本再定。
+                    // data-testid 为批 832 补的锚点，与本条无关。
                     data-testid="gen-model-listbox"
                   >
                     {MODELS.map((m) => (
@@ -466,6 +482,13 @@ export function JimengGenPanel({
                 <button
                   type="button"
                   aria-label="视频尺寸选项: 16:9 · 720P · 1, Standard-only model"
+                  /* 批 833 SOURCE_FACT：源站这一枚是 aria-haspopup="**dialog**"
+                     —— 两条独立证据互相印证：① 触发器上声明的 haspopup；
+                     ② 展开后浮层的实测 role（jimeng_probe832_gendropdowns.py
+                     读到 `role=dialog name=视频尺寸选项 334×292`）。
+                     复刻此前一律用 listbox，与源站不符，本批改正。 */
+                  aria-haspopup="dialog"
+                  aria-expanded={openMenu === "ratio"}
                   onClick={() => setOpenMenu(openMenu === "ratio" ? null : "ratio")}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
@@ -478,8 +501,14 @@ export function JimengGenPanel({
                   <div
                     className="absolute bottom-[calc(100%+8px)] left-0 z-[140] flex w-[334px] gap-4 rounded-[10px] border border-white/[0.06] p-3"
                     style={{ background: "rgb(38,38,38)" }}
-                    role="listbox"
-                    aria-label="视频尺寸选项: 16:9 · 720P · 1, Standard-only model"
+                    /* 批 833 SOURCE_FACT：源站此处是 role=**dialog**、
+                       aria-label="视频尺寸选项"（334×292）。此前复刻把它写成
+                       listbox、且名字直接抄了**触发器**的 aria-label（那句确实
+                       也是源站的，但它是按钮的名字，不是这块浮层的名字）。
+                       两条独立证据都指向 dialog：触发器 aria-haspopup="dialog"
+                       + 展开层实测 role。逐字照抄源站。 */
+                    role="dialog"
+                    aria-label="视频尺寸选项"
                     // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
                     data-testid="gen-video-size-listbox"
                   >
@@ -523,6 +552,9 @@ export function JimengGenPanel({
                 <button
                   type="button"
                   aria-label="生成模式: 全能参考"
+                  /* 批 833 SOURCE_FACT：源站这一枚 aria-haspopup="listbox" */
+                  aria-haspopup="listbox"
+                  aria-expanded={openMenu === "ref"}
                   onClick={() => setOpenMenu(openMenu === "ref" ? null : "ref")}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
@@ -534,7 +566,12 @@ export function JimengGenPanel({
                     className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[192px] rounded-[10px] border border-white/[0.06] p-1.5"
                     style={{ background: "rgb(38,38,38)" }}
                     role="listbox"
-                    aria-label="生成模式: 全能参考"
+                    /* 批 833 SOURCE_FACT：源站此处 role=listbox、可访问名是
+                       **英文** "Reference mode options"（200×84）。中文界面上挂
+                       英文名看着像 bug，但那是源站就有的（它自己也混用中英，
+                       同一组里还有 "Duration options"）。逐字照抄，不"修正"——
+                       擅自改进源站缺陷是本项目明令禁止的。 */
+                    aria-label="Reference mode options"
                     // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
                     data-testid="gen-mode-listbox"
                   >
@@ -563,6 +600,10 @@ export function JimengGenPanel({
                 <button
                   type="button"
                   aria-label="选择视频生成时长: 4s"
+                  /* 批 833 SOURCE_FACT：源站这一枚 aria-haspopup="**dialog**"，
+                     展开后实测 role=dialog name="Duration options" 400×100 */
+                  aria-haspopup="dialog"
+                  aria-expanded={openMenu === "dur"}
                   onClick={() => setOpenMenu(openMenu === "dur" ? null : "dur")}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
@@ -573,8 +614,13 @@ export function JimengGenPanel({
                   <div
                     className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[120px] rounded-[10px] border border-white/[0.06] p-1.5"
                     style={{ background: "rgb(38,38,38)" }}
-                    role="listbox"
-                    aria-label="选择视频生成时长: 4s"
+                    /* 批 833 SOURCE_FACT：源站此处是 role=**dialog**、
+                       aria-label="**Duration options**"（400×100），选项文案
+                       `选择视频生成时长 0 / 5 / 10 / 15 s`。与尺寸那处同款：
+                       触发器 aria-haspopup="dialog" + 展开层实测 role 互证。
+                       名字是英文，照抄。 */
+                    role="dialog"
+                    aria-label="Duration options"
                     // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
                     data-testid="gen-duration-listbox"
                   >

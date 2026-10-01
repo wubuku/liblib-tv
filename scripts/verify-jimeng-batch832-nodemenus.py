@@ -76,6 +76,31 @@ NAME_EXEMPT = {
                              "只补一处等于没修（同 §43 的画布右键菜单）",
 }
 
+# 源站实测真值（`scripts/jimeng_probe833_gentriggers.py` + 832 的
+# `jimeng_probe832_gendropdowns.py`）。832 当时**没有**这张表，只验了
+# "可访问名非空"，于是把三处非源站的名字放了过去。
+SRC_NAME = {
+    # 源站在这一处自相矛盾：触发器 aria-haspopup="listbox"，但展开层实测是
+    # 无名 `role=presentation`。取一致的那一路 ⇒ listbox，名字沿用既有值。
+    "gen-model-listbox": "模型列表",
+    "gen-video-size-listbox": "视频尺寸选项",
+    "gen-mode-listbox": "Reference mode options",
+    "gen-duration-listbox": "Duration options",
+}
+SRC_ROLE = {
+    "gen-model-listbox": "listbox",
+    "gen-video-size-listbox": "dialog",
+    "gen-mode-listbox": "listbox",
+    "gen-duration-listbox": "dialog",
+}
+# 触发器上源站实测的 aria-haspopup（决定它弹出的 role）
+SRC_HASPOPUP = {
+    "gen-model-listbox": "listbox",
+    "gen-video-size-listbox": "dialog",
+    "gen-mode-listbox": "listbox",
+    "gen-duration-listbox": "dialog",
+}
+
 CENSUS_JS = """(scope) => {
   const SEL = '[role=dialog],[role=menu],[role=listbox],[role=popover]';
   const nameOf = (e) => {
@@ -349,10 +374,40 @@ def main() -> int:
                 f"opened={ok} count={el.count()}",
             )
             if el.count():
+                # 批 833 订正：可访问名不再要求"非空"就算过，而是**逐字**等于
+                # 源站那一版。832 当时只验了"有名字"，把三处非源站的名字
+                # （照抄了触发器按钮的 aria-label、复刻自造的两个英文名）
+                # 放过去了 —— 判据太松，等于没验。
                 check(
-                    f"E.{tid} 可访问名取自源站，本批**只补锚点**",
-                    bool(el.get_attribute("aria-label")),
-                    repr(el.get_attribute("aria-label"))[:60],
+                    f"E.{tid} 可访问名**逐字**等于源站（832 只验了非空，太松）",
+                    el.get_attribute("aria-label") == SRC_NAME[tid],
+                    f"实际={el.get_attribute('aria-label')!r} 源站={SRC_NAME[tid]!r}",
+                )
+                check(
+                    f"E.{tid} role 与源站一致（833：尺寸/时长 listbox→dialog）",
+                    el.get_attribute("role") == SRC_ROLE[tid],
+                    f"实际={el.get_attribute('role')!r} 源站={SRC_ROLE[tid]!r}",
+                )
+                # 批 833：触发器上要**声明**自己弹出的 role（源站四个按钮实测
+                # 都有 aria-haspopup + aria-expanded），且声明值必须与浮层实际
+                # role 一致 —— 两者互相矛盾时，说明有一处是错的。
+                trig = page.locator(
+                    f'.react-flow__node-toolbar button[aria-label^="{trig}"]').first
+                check(
+                    f"E.{tid} 触发器 aria-haspopup={SRC_HASPOPUP[tid]!r}（源站实测）",
+                    trig.get_attribute("aria-haspopup") == SRC_HASPOPUP[tid],
+                    repr(trig.get_attribute("aria-haspopup")),
+                )
+                check(
+                    f"E.{tid} 触发器 aria-expanded 随展开态翻转（此刻应 true）",
+                    trig.get_attribute("aria-expanded") == "true",
+                    repr(trig.get_attribute("aria-expanded")),
+                )
+                check(
+                    f"E.{tid} 声明的 haspopup 与浮层实际 role 自洽",
+                    trig.get_attribute("aria-haspopup") == el.get_attribute("role"),
+                    f"haspopup={trig.get_attribute('aria-haspopup')!r} "
+                    f"role={el.get_attribute('role')!r}",
                 )
                 census(f"视频生成面板·{trig}")
 

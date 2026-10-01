@@ -47,7 +47,12 @@ def main() -> None:
         page.wait_for_timeout(600)
         menu = page.evaluate(
             """() => {
-                const m = document.querySelector('[role="listbox"][aria-label="视频尺寸选项: 16:9 · 720P · 1, Standard-only model"]');
+                // 批 833 订正：这块浮层在源站上是 role=**dialog**、可访问名
+                // 「视频尺寸选项」（源站实测 334×292，见
+                // scripts/jimeng_probe832_gendropdowns.py）。此前复刻写成
+                // listbox 且把**触发器**的名字抄了过来，本批按源站改正 ——
+                // 触发器按钮的 aria-label 本身没变，仍然是那句长串。
+                const m = document.querySelector('[role="dialog"][aria-label="视频尺寸选项"]');
                 if (!m) return null;
                 return m.textContent.replace(/\\s+/g, ' ');
             }"""

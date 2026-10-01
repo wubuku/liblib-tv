@@ -1,0 +1,534 @@
+{
+  "picked_node": {
+    "tid": "rf__node-node_236ctpehgg",
+    "aria": "视频 node: 视频 1",
+    "x": 585,
+    "y": 355
+  },
+  "triggers": [
+    {
+      "key": "即梦 Seedance",
+      "found": true,
+      "trigger": {
+        "tag": "button",
+        "role": "",
+        "aria": "选择模型: 即梦 Seedance 2.0 VIP, Standard-only model",
+        "expanded": "false",
+        "haspopup": "listbox",
+        "text": "即梦 Seedance 2.0 VIP",
+        "w": 184,
+        "h": 32,
+        "x": 433,
+        "y": 694,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "8px"
+      },
+      "roleLayerDelta": 0,
+      "layers": [
+        {
+          "role": "application",
+          "name": "Canvas",
+          "tid": "rf__wrapper",
+          "w": 1512,
+          "h": 950,
+          "x": 0,
+          "y": 0,
+          "text": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Selected",
+          "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outl"
+        },
+        {
+          "role": "group",
+          "name": "视频 node: 视频 1",
+          "tid": "rf__node-node_236ctpehgg",
+          "w": 569,
+          "h": 320,
+          "x": 472,
+          "y": 195,
+          "text": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Selected",
+          "cls": "react-flow__node react-flow__node-video nopan selected selec"
+        },
+        {
+          "role": "group",
+          "name": "文本 node: 文本 1",
+          "tid": "rf__node-node_3bfb9r79qe",
+          "w": 320,
+          "h": 320,
+          "x": 596,
+          "y": 235,
+          "text": "双击编辑文本 文本 1",
+          "cls": "react-flow__node react-flow__node-text nopan selectable drag"
+        },
+        {
+          "role": "group",
+          "name": "双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+          "tid": "text-flow-node-full",
+          "w": 320,
+          "h": 320,
+          "x": 596,
+          "y": 235,
+          "text": "双击编辑文本",
+          "cls": "data-[connection-receiving=true]:border-transparent data-[co"
+        },
+        {
+          "role": "group",
+          "name": "时间线 node: 时间线 1",
+          "tid": "rf__node-node_cdwf8x6fbj",
+          "w": 1200,
+          "h": 207,
+          "x": 156,
+          "y": 357,
+          "text": "时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25",
+          "cls": "react-flow__node react-flow__node-timeline nopan selectable "
+        },
+        {
+          "role": "group",
+          "name": "文本 node: 文本 2",
+          "tid": "rf__node-node_aw29cp094x",
+          "w": 320,
+          "h": 320,
+          "x": 636,
+          "y": 273,
+          "text": "双击编辑文本 文本 2",
+          "cls": "react-flow__node react-flow__node-text nopan selectable drag"
+        },
+        {
+          "role": "group",
+          "name": "双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+          "tid": "text-flow-node-full",
+          "w": 320,
+          "h": 320,
+          "x": 636,
+          "y": 273,
+          "text": "双击编辑文本",
+          "cls": "data-[connection-receiving=true]:border-transparent data-[co"
+        },
+        {
+          "role": "group",
+          "name": "文本 node: 文本 3",
+          "tid": "rf__node-node_5gftn3dnt1",
+          "w": 320,
+          "h": 320,
+          "x": 676,
+          "y": 314,
+          "text": "测试文字样例 文本 3",
+          "cls": "react-flow__node react-flow__node-text nopan selectable drag"
+        },
+        {
+          "role": "group",
+          "name": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+          "tid": "text-flow-node-full",
+          "w": 320,
+          "h": 320,
+          "x": 676,
+          "y": 314,
+          "text": "测试文字样例",
+          "cls": "data-[connection-receiving=true]:border-transparent data-[co"
+        },
+        {
+          "role": "group",
+          "name": "外部 node: 导演台",
+          "tid": "rf__node-node_pxvkay973v",
+          "w": 320,
+          "h": 320,
+          "x": 756,
+          "y": 435,
+          "text": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 proces",
+          "cls": "react-flow__node react-flow__node-external nopan selectable "
+        }
+      ]
+    },
+    {
+      "key": "16:9",
+      "found": true,
+      "trigger": {
+        "tag": "button",
+        "role": "",
+        "aria": "视频尺寸选项: 16:9 · 720P · 1, Standard-only model",
+        "expanded": "false",
+        "haspopup": "dialog",
+        "text": "16:9 720P 1",
+        "w": 129,
+        "h": 32,
+        "x": 619,
+        "y": 694,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "8px"
+      },
+      "roleLayerDelta": 0,
+      "layers": [
+        {
+          "role": "application",
+          "name": "Canvas",
+          "tid": "rf__wrapper",
+          "w": 1512,
+          "h": 950,
+          "x": 0,
+          "y": 0,
+          "text": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Selected",
+          "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outl"
+        },
+        {
+          "role": "group",
+          "name": "视频 node: 视频 1",
+          "tid": "rf__node-node_236ctpehgg",
+          "w": 569,
+          "h": 320,
+          "x": 472,
+          "y": 195,
+          "text": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Selected",
+          "cls": "react-flow__node react-flow__node-video nopan selected selec"
+        },
+        {
+          "role": "group",
+          "name": "文本 node: 文本 1",
+          "tid": "rf__node-node_3bfb9r79qe",
+          "w": 320,
+          "h": 320,
+          "x": 596,
+          "y": 235,
+          "text": "双击编辑文本 文本 1",
+          "cls": "react-flow__node react-flow__node-text nopan selectable drag"
+        },
+        {
+          "role": "group",
+          "name": "双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+          "tid": "text-flow-node-full",
+          "w": 320,
+          "h": 320,
+          "x": 596,
+          "y": 235,
+          "text": "双击编辑文本",
+          "cls": "data-[connection-receiving=true]:border-transparent data-[co"
+        },
+        {
+          "role": "group",
+          "name": "时间线 node: 时间线 1",
+          "tid": "rf__node-node_cdwf8x6fbj",
+          "w": 1200,
+          "h": 207,
+          "x": 156,
+          "y": 357,
+          "text": "时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25",
+          "cls": "react-flow__node react-flow__node-timeline nopan selectable "
+        },
+        {
+          "role": "group",
+          "name": "文本 node: 文本 2",
+          "tid": "rf__node-node_aw29cp094x",
+          "w": 320,
+          "h": 320,
+          "x": 636,
+          "y": 273,
+          "text": "双击编辑文本 文本 2",
+          "cls": "react-flow__node react-flow__node-text nopan selectable drag"
+        },
+        {
+          "role": "group",
+          "name": "双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+          "tid": "text-flow-node-full",
+          "w": 320,
+          "h": 320,
+          "x": 636,
+          "y": 273,
+          "text": "双击编辑文本",
+          "cls": "data-[connection-receiving=true]:border-transparent data-[co"
+        },
+        {
+          "role": "group",
+          "name": "文本 node: 文本 3",
+          "tid": "rf__node-node_5gftn3dnt1",
+          "w": 320,
+          "h": 320,
+          "x": 676,
+          "y": 314,
+          "text": "测试文字样例 文本 3",
+          "cls": "react-flow__node react-flow__node-text nopan selectable drag"
+        },
+        {
+          "role": "group",
+          "name": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+          "tid": "text-flow-node-full",
+          "w": 320,
+          "h": 320,
+          "x": 676,
+          "y": 314,
+          "text": "测试文字样例",
+          "cls": "data-[connection-receiving=true]:border-transparent data-[co"
+        },
+        {
+          "role": "group",
+          "name": "外部 node: 导演台",
+          "tid": "rf__node-node_pxvkay973v",
+          "w": 320,
+          "h": 320,
+          "x": 756,
+          "y": 435,
+          "text": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 proces",
+          "cls": "react-flow__node react-flow__node-external nopan selectable "
+        }
+      ]
+    },
+    {
+      "key": "全能参考",
+      "found": true,
+      "trigger": {
+        "tag": "button",
+        "role": "",
+        "aria": "生成模式: 全能参考",
+        "expanded": "false",
+        "haspopup": "listbox",
+        "text": "全能参考",
+        "w": 80,
+        "h": 32,
+        "x": 750,
+        "y": 694,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "8px"
+      },
+      "roleLayerDelta": 0,
+      "layers": [
+        {
+          "role": "application",
+          "name": "Canvas",
+          "tid": "rf__wrapper",
+          "w": 1512,
+          "h": 950,
+          "x": 0,
+          "y": 0,
+          "text": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Selected",
+          "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outl"
+        },
+        {
+          "role": "group",
+          "name": "视频 node: 视频 1",
+          "tid": "rf__node-node_236ctpehgg",
+          "w": 569,
+          "h": 320,
+          "x": 472,
+          "y": 195,
+          "text": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Selected",
+          "cls": "react-flow__node react-flow__node-video nopan selected selec"
+        },
+        {
+          "role": "group",
+          "name": "文本 node: 文本 1",
+          "tid": "rf__node-node_3bfb9r79qe",
+          "w": 320,
+          "h": 320,
+          "x": 596,
+          "y": 235,
+          "text": "双击编辑文本 文本 1",
+          "cls": "react-flow__node react-flow__node-text nopan selectable drag"
+        },
+        {
+          "role": "group",
+          "name": "双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+          "tid": "text-flow-node-full",
+          "w": 320,
+          "h": 320,
+          "x": 596,
+          "y": 235,
+          "text": "双击编辑文本",
+          "cls": "data-[connection-receiving=true]:border-transparent data-[co"
+        },
+        {
+          "role": "group",
+          "name": "时间线 node: 时间线 1",
+          "tid": "rf__node-node_cdwf8x6fbj",
+          "w": 1200,
+          "h": 207,
+          "x": 156,
+          "y": 357,
+          "text": "时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25",
+          "cls": "react-flow__node react-flow__node-timeline nopan selectable "
+        },
+        {
+          "role": "group",
+          "name": "文本 node: 文本 2",
+          "tid": "rf__node-node_aw29cp094x",
+          "w": 320,
+          "h": 320,
+          "x": 636,
+          "y": 273,
+          "text": "双击编辑文本 文本 2",
+          "cls": "react-flow__node react-flow__node-text nopan selectable drag"
+        },
+        {
+          "role": "group",
+          "name": "双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+          "tid": "text-flow-node-full",
+          "w": 320,
+          "h": 320,
+          "x": 636,
+          "y": 273,
+          "text": "双击编辑文本",
+          "cls": "data-[connection-receiving=true]:border-transparent data-[co"
+        },
+        {
+          "role": "group",
+          "name": "文本 node: 文本 3",
+          "tid": "rf__node-node_5gftn3dnt1",
+          "w": 320,
+          "h": 320,
+          "x": 676,
+          "y": 314,
+          "text": "测试文字样例 文本 3",
+          "cls": "react-flow__node react-flow__node-text nopan selectable drag"
+        },
+        {
+          "role": "group",
+          "name": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+          "tid": "text-flow-node-full",
+          "w": 320,
+          "h": 320,
+          "x": 676,
+          "y": 314,
+          "text": "测试文字样例",
+          "cls": "data-[connection-receiving=true]:border-transparent data-[co"
+        },
+        {
+          "role": "group",
+          "name": "外部 node: 导演台",
+          "tid": "rf__node-node_pxvkay973v",
+          "w": 320,
+          "h": 320,
+          "x": 756,
+          "y": 435,
+          "text": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 proces",
+          "cls": "react-flow__node react-flow__node-external nopan selectable "
+        }
+      ]
+    },
+    {
+      "key": "4s",
+      "found": true,
+      "trigger": {
+        "tag": "button",
+        "role": "",
+        "aria": "选择视频生成时长: 4s",
+        "expanded": "false",
+        "haspopup": "dialog",
+        "text": "4s",
+        "w": 46,
+        "h": 32,
+        "x": 832,
+        "y": 694,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "8px"
+      },
+      "roleLayerDelta": 0,
+      "layers": [
+        {
+          "role": "application",
+          "name": "Canvas",
+          "tid": "rf__wrapper",
+          "w": 1512,
+          "h": 950,
+          "x": 0,
+          "y": 0,
+          "text": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Selected",
+          "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outl"
+        },
+        {
+          "role": "group",
+          "name": "视频 node: 视频 1",
+          "tid": "rf__node-node_236ctpehgg",
+          "w": 569,
+          "h": 320,
+          "x": 472,
+          "y": 195,
+          "text": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Selected",
+          "cls": "react-flow__node react-flow__node-video nopan selected selec"
+        },
+        {
+          "role": "group",
+          "name": "文本 node: 文本 1",
+          "tid": "rf__node-node_3bfb9r79qe",
+          "w": 320,
+          "h": 320,
+          "x": 596,
+          "y": 235,
+          "text": "双击编辑文本 文本 1",
+          "cls": "react-flow__node react-flow__node-text nopan selectable drag"
+        },
+        {
+          "role": "group",
+          "name": "双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+          "tid": "text-flow-node-full",
+          "w": 320,
+          "h": 320,
+          "x": 596,
+          "y": 235,
+          "text": "双击编辑文本",
+          "cls": "data-[connection-receiving=true]:border-transparent data-[co"
+        },
+        {
+          "role": "group",
+          "name": "时间线 node: 时间线 1",
+          "tid": "rf__node-node_cdwf8x6fbj",
+          "w": 1200,
+          "h": 207,
+          "x": 156,
+          "y": 357,
+          "text": "时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25",
+          "cls": "react-flow__node react-flow__node-timeline nopan selectable "
+        },
+        {
+          "role": "group",
+          "name": "文本 node: 文本 2",
+          "tid": "rf__node-node_aw29cp094x",
+          "w": 320,
+          "h": 320,
+          "x": 636,
+          "y": 273,
+          "text": "双击编辑文本 文本 2",
+          "cls": "react-flow__node react-flow__node-text nopan selectable drag"
+        },
+        {
+          "role": "group",
+          "name": "双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+          "tid": "text-flow-node-full",
+          "w": 320,
+          "h": 320,
+          "x": 636,
+          "y": 273,
+          "text": "双击编辑文本",
+          "cls": "data-[connection-receiving=true]:border-transparent data-[co"
+        },
+        {
+          "role": "group",
+          "name": "文本 node: 文本 3",
+          "tid": "rf__node-node_5gftn3dnt1",
+          "w": 320,
+          "h": 320,
+          "x": 676,
+          "y": 314,
+          "text": "测试文字样例 文本 3",
+          "cls": "react-flow__node react-flow__node-text nopan selectable drag"
+        },
+        {
+          "role": "group",
+          "name": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+          "tid": "text-flow-node-full",
+          "w": 320,
+          "h": 320,
+          "x": 676,
+          "y": 314,
+          "text": "测试文字样例",
+          "cls": "data-[connection-receiving=true]:border-transparent data-[co"
+        },
+        {
+          "role": "group",
+          "name": "外部 node: 导演台",
+          "tid": "rf__node-node_pxvkay973v",
+          "w": 320,
+          "h": 320,
+          "x": 756,
+          "y": 435,
+          "text": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 proces",
+          "cls": "react-flow__node react-flow__node-external nopan selectable "
+        }
+      ]
+    }
+  ]
+}

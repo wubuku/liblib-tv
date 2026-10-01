@@ -1,0 +1,590 @@
+{
+  "triggers": [
+    {
+      "key": "即梦 Seedance",
+      "found": true,
+      "trigger": {
+        "tag": "button",
+        "role": "",
+        "aria": "选择模型: 即梦 Seedance 2.0 VIP, Standard-only model",
+        "expanded": null,
+        "haspopup": null,
+        "text": "即梦 Seedance 2.0 VIP",
+        "w": 174,
+        "h": 32,
+        "x": 876,
+        "y": 651,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "8px"
+      },
+      "layers": [
+        {
+          "role": "application",
+          "name": "Canvas",
+          "tid": "rf__wrapper",
+          "w": 1680,
+          "h": 1050,
+          "x": 0,
+          "y": 0,
+          "text": "sb_518102884867410fb...20260622155459-tf5q2 0:02 / 0:06 视频 1",
+          "cls": "react-flow light"
+        },
+        {
+          "role": "group",
+          "name": "",
+          "tid": "rf__node-video-local-1",
+          "w": 415,
+          "h": 234,
+          "x": 433,
+          "y": 206,
+          "text": "sb_518102884867410fb...20260622155459-tf5q2 0:02 / 0:06",
+          "cls": "react-flow__node react-flow__node-video nopan selectable dra"
+        },
+        {
+          "role": "group",
+          "name": "",
+          "tid": "rf__node-video-empty-1",
+          "w": 415,
+          "h": 234,
+          "x": 992,
+          "y": 237,
+          "text": "视频 1",
+          "cls": "react-flow__node react-flow__node-video nopan selected selec"
+        }
+      ]
+    },
+    {
+      "key": "16:9",
+      "found": true,
+      "trigger": {
+        "tag": "button",
+        "role": "",
+        "aria": "视频尺寸选项: 16:9 · 720P · 1, Standard-only model",
+        "expanded": null,
+        "haspopup": null,
+        "text": "16:9 · 720P · 1",
+        "w": 132,
+        "h": 32,
+        "x": 1054,
+        "y": 651,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "8px"
+      },
+      "layers": [
+        {
+          "role": "application",
+          "name": "Canvas",
+          "tid": "rf__wrapper",
+          "w": 1680,
+          "h": 1050,
+          "x": 0,
+          "y": 0,
+          "text": "sb_518102884867410fb...20260622155459-tf5q2 0:02 / 0:06 视频 1",
+          "cls": "react-flow light"
+        },
+        {
+          "role": "group",
+          "name": "",
+          "tid": "rf__node-video-local-1",
+          "w": 415,
+          "h": 234,
+          "x": 433,
+          "y": 206,
+          "text": "sb_518102884867410fb...20260622155459-tf5q2 0:02 / 0:06",
+          "cls": "react-flow__node react-flow__node-video nopan selectable dra"
+        },
+        {
+          "role": "group",
+          "name": "",
+          "tid": "rf__node-video-empty-1",
+          "w": 415,
+          "h": 234,
+          "x": 992,
+          "y": 237,
+          "text": "视频 1",
+          "cls": "react-flow__node react-flow__node-video nopan selected selec"
+        },
+        {
+          "role": "listbox",
+          "name": "模型列表",
+          "tid": "gen-model-listbox",
+          "w": 392,
+          "h": 512,
+          "x": 876,
+          "y": 131,
+          "text": "即梦 Seedance 2.5 样片模式 样片模式，快速预览镜头效果 即梦 Seedance 2.5 最强模型，支持 5",
+          "cls": "absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[392px] ro"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 138,
+          "text": "即梦 Seedance 2.5 样片模式 样片模式，快速预览镜头效果",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 192,
+          "text": "即梦 Seedance 2.5 最强模型，支持 50个参考，新增视频编辑、超长生成",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 245,
+          "text": "即梦 Seedance 2.0 mini 极致性价比，相近的体验，比Fast更快的推理速度",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 299,
+          "text": "即梦 Seedance 2.0 Fast VIP 极速推理，会员专属通道，音视文图均可参考（暂不支持真人人脸）",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 70,
+          "x": 883,
+          "y": 352,
+          "text": "即梦 Seedance 2.0 VIP 全模态能力，会员专属通道，音视文图均可参考（暂不支持真人人脸）",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 422,
+          "text": "即梦 Seedance 1.0 Fast Pro级表现，加量不加价",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 475,
+          "text": "MiniMax H3 开源视频生成模型",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 529,
+          "text": "HappyHorse 1.1 国产视频生成模型",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 582,
+          "text": "Wan 3.0 Wan系列最新视频模型",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        }
+      ]
+    },
+    {
+      "key": "全能参考",
+      "found": true,
+      "trigger": {
+        "tag": "button",
+        "role": "",
+        "aria": "生成模式: 全能参考",
+        "expanded": null,
+        "haspopup": null,
+        "text": "全能参考",
+        "w": 80,
+        "h": 32,
+        "x": 1190,
+        "y": 651,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "8px"
+      },
+      "layers": [
+        {
+          "role": "application",
+          "name": "Canvas",
+          "tid": "rf__wrapper",
+          "w": 1680,
+          "h": 1050,
+          "x": 0,
+          "y": 0,
+          "text": "sb_518102884867410fb...20260622155459-tf5q2 0:02 / 0:06 视频 1",
+          "cls": "react-flow light"
+        },
+        {
+          "role": "group",
+          "name": "",
+          "tid": "rf__node-video-local-1",
+          "w": 415,
+          "h": 234,
+          "x": 433,
+          "y": 206,
+          "text": "sb_518102884867410fb...20260622155459-tf5q2 0:02 / 0:06",
+          "cls": "react-flow__node react-flow__node-video nopan selectable dra"
+        },
+        {
+          "role": "group",
+          "name": "",
+          "tid": "rf__node-video-empty-1",
+          "w": 415,
+          "h": 234,
+          "x": 992,
+          "y": 237,
+          "text": "视频 1",
+          "cls": "react-flow__node react-flow__node-video nopan selected selec"
+        },
+        {
+          "role": "listbox",
+          "name": "模型列表",
+          "tid": "gen-model-listbox",
+          "w": 392,
+          "h": 512,
+          "x": 876,
+          "y": 131,
+          "text": "即梦 Seedance 2.5 样片模式 样片模式，快速预览镜头效果 即梦 Seedance 2.5 最强模型，支持 5",
+          "cls": "absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[392px] ro"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 138,
+          "text": "即梦 Seedance 2.5 样片模式 样片模式，快速预览镜头效果",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 192,
+          "text": "即梦 Seedance 2.5 最强模型，支持 50个参考，新增视频编辑、超长生成",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 245,
+          "text": "即梦 Seedance 2.0 mini 极致性价比，相近的体验，比Fast更快的推理速度",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 299,
+          "text": "即梦 Seedance 2.0 Fast VIP 极速推理，会员专属通道，音视文图均可参考（暂不支持真人人脸）",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 70,
+          "x": 883,
+          "y": 352,
+          "text": "即梦 Seedance 2.0 VIP 全模态能力，会员专属通道，音视文图均可参考（暂不支持真人人脸）",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 422,
+          "text": "即梦 Seedance 1.0 Fast Pro级表现，加量不加价",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 475,
+          "text": "MiniMax H3 开源视频生成模型",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 529,
+          "text": "HappyHorse 1.1 国产视频生成模型",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 582,
+          "text": "Wan 3.0 Wan系列最新视频模型",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "listbox",
+          "name": "视频尺寸选项: 16:9 · 720P · 1, Standard-only model",
+          "tid": "gen-video-size-listbox",
+          "w": 334,
+          "h": 224,
+          "x": 1054,
+          "y": 419,
+          "text": "选择比例 21:9 16:9 4:3 1:1 3:4 9:16 选择分辨率 720P 1080P 4K 选择生成数量 1",
+          "cls": "absolute bottom-[calc(100%+8px)] left-0 z-[140] flex w-[334p"
+        }
+      ]
+    },
+    {
+      "key": "4s",
+      "found": true,
+      "trigger": {
+        "tag": "button",
+        "role": "",
+        "aria": "选择视频生成时长: 4s",
+        "expanded": null,
+        "haspopup": null,
+        "text": "4s",
+        "w": 45,
+        "h": 32,
+        "x": 1274,
+        "y": 651,
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "8px"
+      },
+      "layers": [
+        {
+          "role": "application",
+          "name": "Canvas",
+          "tid": "rf__wrapper",
+          "w": 1680,
+          "h": 1050,
+          "x": 0,
+          "y": 0,
+          "text": "sb_518102884867410fb...20260622155459-tf5q2 0:02 / 0:06 视频 1",
+          "cls": "react-flow light"
+        },
+        {
+          "role": "group",
+          "name": "",
+          "tid": "rf__node-video-local-1",
+          "w": 415,
+          "h": 234,
+          "x": 433,
+          "y": 206,
+          "text": "sb_518102884867410fb...20260622155459-tf5q2 0:02 / 0:06",
+          "cls": "react-flow__node react-flow__node-video nopan selectable dra"
+        },
+        {
+          "role": "group",
+          "name": "",
+          "tid": "rf__node-video-empty-1",
+          "w": 415,
+          "h": 234,
+          "x": 992,
+          "y": 237,
+          "text": "视频 1",
+          "cls": "react-flow__node react-flow__node-video nopan selected selec"
+        },
+        {
+          "role": "listbox",
+          "name": "模型列表",
+          "tid": "gen-model-listbox",
+          "w": 392,
+          "h": 512,
+          "x": 876,
+          "y": 131,
+          "text": "即梦 Seedance 2.5 样片模式 样片模式，快速预览镜头效果 即梦 Seedance 2.5 最强模型，支持 5",
+          "cls": "absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[392px] ro"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 138,
+          "text": "即梦 Seedance 2.5 样片模式 样片模式，快速预览镜头效果",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 192,
+          "text": "即梦 Seedance 2.5 最强模型，支持 50个参考，新增视频编辑、超长生成",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 245,
+          "text": "即梦 Seedance 2.0 mini 极致性价比，相近的体验，比Fast更快的推理速度",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 299,
+          "text": "即梦 Seedance 2.0 Fast VIP 极速推理，会员专属通道，音视文图均可参考（暂不支持真人人脸）",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 70,
+          "x": 883,
+          "y": 352,
+          "text": "即梦 Seedance 2.0 VIP 全模态能力，会员专属通道，音视文图均可参考（暂不支持真人人脸）",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 422,
+          "text": "即梦 Seedance 1.0 Fast Pro级表现，加量不加价",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 475,
+          "text": "MiniMax H3 开源视频生成模型",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 529,
+          "text": "HappyHorse 1.1 国产视频生成模型",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 378,
+          "h": 54,
+          "x": 883,
+          "y": 582,
+          "text": "Wan 3.0 Wan系列最新视频模型",
+          "cls": "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 p"
+        },
+        {
+          "role": "listbox",
+          "name": "生成模式: 全能参考",
+          "tid": "gen-mode-listbox",
+          "w": 192,
+          "h": 94,
+          "x": 1190,
+          "y": 549,
+          "text": "首尾帧 全能参考",
+          "cls": "absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[192px] ro"
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 178,
+          "h": 40,
+          "x": 1197,
+          "y": 556,
+          "text": "首尾帧",
+          "cls": "flex h-10 w-full items-center rounded-lg px-2.5 text-[13px] "
+        },
+        {
+          "role": "option",
+          "name": "",
+          "tid": "",
+          "w": 178,
+          "h": 40,
+          "x": 1197,
+          "y": 596,
+          "text": "全能参考",
+          "cls": "flex h-10 w-full items-center rounded-lg px-2.5 text-[13px] "
+        }
+      ]
+    }
+  ]
+}
