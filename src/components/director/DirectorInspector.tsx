@@ -1436,6 +1436,65 @@ function SceneAxisScrub({
   );
 }
 
+// Batch 585（源站 2026-10-01 实测）：颜色类行的形态是
+// `#` 前缀 + **可编辑 hex 文本框** + 取色器，三者同排
+// （角色 颜色 y=481/513/518：color #4f8ef7 + text 4F8EF7 + `#`；
+//   场景 天空颜色 y=452/457：color #060608 + text 060608 + `#`）。
+// 583/582 只把 hex 做成了只读读数，本批补上文本框与提交。
+// hex 允许省略 `#`；非法值不提交（保留上一次合法值），大小写归一为小写。
+function HexColorRow({
+  label,
+  value,
+  disabled,
+  onCommit,
+  testId,
+}: {
+  label: string;
+  value: string;
+  disabled: boolean;
+  onCommit: (hex: string) => void;
+  testId: string;
+}) {
+  const [draft, setDraft] = useState(value.replace("#", ""));
+  useEffect(() => {
+    setDraft(value.replace("#", ""));
+  }, [value]);
+  return (
+    <label className="flex items-center justify-between text-[11px] text-[#777]">
+      <span>{label}</span>
+      <span className="flex items-center gap-1.5">
+        <span className="text-[10px] text-[#8c8c8c]">#</span>
+        <input
+          type="text"
+          data-director-hex-input={testId}
+          aria-label={`${label} hex 值`}
+          value={draft}
+          disabled={disabled}
+          spellCheck={false}
+          onChange={(event) => {
+            const next = event.target.value.trim();
+            setDraft(next);
+            if (/^#?[0-9a-fA-F]{6}$/.test(next)) {
+              onCommit(next.startsWith("#") ? next.toLowerCase() : `#${next.toLowerCase()}`);
+            }
+          }}
+          onBlur={() => setDraft(value.replace("#", ""))}
+          className="h-6 w-[68px] rounded border border-white/[0.08] bg-[#222] px-1.5 text-[10px] tabular-nums text-[#c8c8c8] outline-none focus:border-[#09caf5]/60 disabled:opacity-45"
+        />
+        <input
+          type="color"
+          aria-label={label}
+          data-director-color-picker={testId}
+          value={value}
+          disabled={disabled}
+          onChange={(event) => onCommit(event.target.value)}
+          className="h-6 w-9 rounded border-0 bg-transparent"
+        />
+      </span>
+    </label>
+  );
+}
+
 function CameraFovHelp() {
   // Batch 582: 源站实测该说明**默认展开**（innerText 直接含文案，? 开关在
   // 其前），此前 clone 默认收起，现对齐为默认展开。
@@ -2013,30 +2072,14 @@ export function DirectorInspector({
                 </span>
               </label>
               {/* Batch 583: 颜色行按源站行序（y=481，紧随统一缩放）从上方
-                  按钮行移出，并补 hex 文本读数（源站 4F8EF7 + `#`）。 */}
-              <label className="flex items-center justify-between text-[11px] text-[#777]">
-                <span>颜色</span>
-                <span className="flex items-center gap-2">
-                  <span className="text-[10px] tabular-nums text-[#8c8c8c]">
-                    #{selected.color.replace("#", "")}
-                  </span>
-                  <span
-                    className="h-4 w-4 rounded-sm border border-white/20"
-                    style={{ backgroundColor: selected.color }}
-                  />
-                  <input
-                    type="color"
-                    aria-label="对象颜色"
-                    data-director-object-color
-                    value={selected.color}
-                    disabled={selected.locked}
-                    onChange={(event) =>
-                      updateObject(selected.id, { color: event.target.value })
-                    }
-                    className="h-0 w-0 opacity-0"
-                  />
-                </span>
-              </label>
+                  按钮行移出。Batch 585: hex 改为源站的可编辑文本框。 */}
+              <HexColorRow
+                label="颜色"
+                testId="object"
+                value={selected.color}
+                disabled={selected.locked}
+                onCommit={(hex) => updateObject(selected.id, { color: hex })}
+              />
             </div>
 
             {selected.camera ? (
@@ -2406,26 +2449,16 @@ export function DirectorInspector({
                   className="h-6 w-9 rounded border-0 bg-transparent"
                 />
               </label>
-              <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
-                <span>天空颜色</span>
-                {/* Batch 582（源站实测 y=452/457）：源站天空颜色除取色器外
-                    还有 hex 文本框 + `#` 前缀读数。 */}
-                <span className="flex items-center gap-1.5">
-                  <span className="text-[10px] tabular-nums text-[#8c8c8c]">
-                    #{(scene.skyColor ?? "#060608").replace("#", "")}
-                  </span>
-                  <input
-                    data-director-scene-sky-color
-                    type="color"
-                    aria-label="天空颜色"
-                    value={scene.skyColor ?? "#060608"}
-                    onChange={(event) =>
-                      updateScene({ skyColor: event.target.value })
-                    }
-                    className="h-6 w-9 rounded border-0 bg-transparent"
-                  />
-                </span>
-              </label>
+              {/* Batch 582/585（源站实测 y=452/457）：天空颜色为
+                  `#` + hex 文本框 + 取色器；582 先做成只读读数，本批
+                  换成源站的可编辑文本框。 */}
+              <HexColorRow
+                label="天空颜色"
+                testId="sky"
+                value={scene.skyColor ?? "#060608"}
+                disabled={false}
+                onCommit={(hex) => updateScene({ skyColor: hex })}
+              />
               <label className="flex h-9 items-center justify-between border-b border-white/[0.06] text-xs text-[#bcbcbc]">
                 <span>全景球 水平旋转</span>
                 <span className="flex items-center gap-2">

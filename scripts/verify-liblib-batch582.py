@@ -193,16 +193,21 @@ def run_desktop(page: Page) -> dict[str, Any]:
     result["opacity_row_text"] = opacity_text
     check("opacity:readout", "0.40" in opacity_text, detail=opacity_text)
 
-    # 5) sky color hex readout
-    sky_row = page.evaluate(
-        """() => {
-          const label = [...document.querySelectorAll('span')]
-            .find(el => el.textContent.trim() === '天空颜色');
-          return label?.parentElement?.innerText.replace(/\\n/g, ' ').trim() || '';
-        }"""
+    # 5) sky colour hex —— Batch 585 起为源站的**可编辑 hex 文本框**
+    # （582 原为只读读数），故断言改为读文本框值。
+    sky_hex = page.locator('[data-director-hex-input="sky"]')
+    result["sky_hex_value"] = sky_hex.input_value()
+    check("sky:hex-field", sky_hex.input_value() == "060608",
+          detail=sky_hex.input_value())
+    check(
+        "sky:hash-prefix",
+        "#" in sky_hex.evaluate(
+            "el => el.closest('label').innerText.replace(/\\n/g, ' ').trim()"),
     )
-    result["sky_row_text"] = sky_row
-    check("sky:hex-readout", "#060608" in sky_row, detail=sky_row)
+    check(
+        "sky:picker",
+        page.locator('[data-director-color-picker="sky"]').count() == 1,
+    )
 
     # 6) camera FOV help defaults to expanded (batch 581 follow-up)
     page.evaluate(

@@ -22,7 +22,8 @@
         "uniform:step",
         "uniform:writes-all-axes",
         "uniform:readout",
-        "color:hex-readout",
+        "color:hex-field",
+        "color:hash-prefix",
         "color:swatch",
         "motion:uniform-min",
         "motion:uniform-max",
@@ -82,7 +83,7 @@
         "旋转": 382,
         "缩放": 449,
         "统一缩放": 515,
-        "颜色": 544
+        "颜色": 547
       },
       "uniform_write": {
         "before": [
@@ -96,7 +97,7 @@
           1.75
         ]
       },
-      "color_row_text": "颜色 #8696a8",
+      "color_hex_value": "8696a8",
       "diagnostics": {
         "console": 1,
         "filtered_transformcontrols": 1,

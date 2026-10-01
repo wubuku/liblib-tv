@@ -1,0 +1,56 @@
+{
+  "batch": 585,
+  "title": "Colour rows use the source's editable hex field; closes 584 follow-ups (no ankle/foot group, camera axis chips)",
+  "evidence": "2026-10-01 live CDP sampling of the source director desk colour rows + docs/research/liblib-canvas-batch585-2026-10-01/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "color:hex-input",
+        "color:picker",
+        "color:picker-type",
+        "color:aria",
+        "color:hash-prefix",
+        "color:mirrors-store",
+        "color:hex-commits",
+        "color:input-follows-store",
+        "color:accepts-hash-prefix",
+        "color:invalid-rejected",
+        "color:invalid-reverts-on-blur",
+        "color:picker-commits",
+        "camera:chips-position",
+        "camera:chips-rotation",
+        "camera:chips-target",
+        "pose:seven-groups",
+        "pose:25-joints",
+        "pose:no-踝-group",
+        "pose:no-脚掌-group",
+        "pose:no-脚-group",
+        "sky:hex-input",
+        "sky:picker",
+        "sky:hex-commits",
+        "diagnostics:zero"
+      ],
+      "color_row_text": "颜色 #",
+      "camera_axis_chips": [
+        "position-X",
+        "position-Y",
+        "position-Z",
+        "rotation-X",
+        "rotation-Y",
+        "rotation-Z",
+        "scale-X",
+        "scale-Y",
+        "scale-Z",
+        "target-X",
+        "target-Y",
+        "target-Z"
+      ],
+      "diagnostics": {
+        "console": 3,
+        "filtered_transformcontrols": 3,
+        "errors": []
+      }
+    }
+  ]
+}

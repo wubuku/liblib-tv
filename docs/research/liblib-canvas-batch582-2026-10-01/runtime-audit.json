@@ -26,7 +26,9 @@
         "radius:step",
         "height:step",
         "opacity:readout",
-        "sky:hex-readout",
+        "sky:hex-field",
+        "sky:hash-prefix",
+        "sky:picker",
         "help:expanded-by-default",
         "help:copy-visible",
         "diagnostics:zero"
@@ -35,13 +37,13 @@
         "场景缩放": 154,
         "场景平移": 188,
         "场景旋转": 244,
-        "天空颜色": 604,
-        "全景球 水平旋转": 643,
-        "角色标签": 723,
-        "网格吸附": 763,
-        "高斯地面吸附": 804,
-        "地面透明度": 844,
-        "地面高度": 884
+        "天空颜色": 597,
+        "全景球 水平旋转": 631,
+        "角色标签": 711,
+        "网格吸附": 751,
+        "高斯地面吸附": 792,
+        "地面透明度": 832,
+        "地面高度": 872
       },
       "axis_scrub_aria": [
         "左右拖动调整 X 轴",
@@ -56,7 +58,7 @@
         "after": 1.5
       },
       "opacity_row_text": "地面透明度 0.40",
-      "sky_row_text": "天空颜色 #060608",
+      "sky_hex_value": "060608",
       "diagnostics": {
         "console": 0,
         "filtered_transformcontrols": 0,

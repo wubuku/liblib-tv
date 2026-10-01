@@ -233,25 +233,25 @@ def run_desktop(page: Page) -> dict[str, Any]:
         == f"{UNIFORM_SCALE:.1f}",
     )
 
-    # 4) 颜色 hex readout follows the color
-    color_row = page.evaluate(
-        """() => {
-          const label = [...document.querySelectorAll('span')]
-            .find(el => el.textContent.trim() === '颜色');
-          return label?.parentElement?.innerText.replace(/\\n/g, ' ').trim() || '';
-        }"""
-    )
-    result["color_row_text"] = color_row
+    # 4) 颜色 hex —— Batch 585 起为源站的**可编辑 hex 文本框**（原为只读
+    # 读数），故此处断言改为读文本框值 + 取色器存在。
     store_color = page.evaluate(
         """() => window.__director_store.getState().objects
              .find(o => o.kind === 'character').color"""
     )
+    hex_input = page.locator('[data-director-hex-input="object"]')
+    result["color_hex_value"] = hex_input.input_value()
     check(
-        "color:hex-readout",
-        store_color.replace("#", "").upper() in color_row.upper(),
-        detail=f"{color_row} vs {store_color}",
+        "color:hex-field",
+        hex_input.input_value() == store_color.replace("#", "").lower(),
+        detail=f"{hex_input.input_value()} vs {store_color}",
     )
-    check("color:swatch", page.locator("[data-director-object-color]").count() == 1)
+    check(
+        "color:hash-prefix",
+        "#" in hex_input.evaluate(
+            "el => el.closest('label').innerText.replace(/\\n/g, ' ').trim()"),
+    )
+    check("color:swatch", page.locator('[data-director-color-picker="object"]').count() == 1)
 
     # 5) motion tab uniform scale uses the same measured range
     page.evaluate(
