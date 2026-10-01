@@ -260,16 +260,40 @@ def main() -> None:
     #    /tmp/dbg625b.py); the rail is viewport-anchored, so a flyout's box must
     #    be identical at every width and height.  A portal that nudged a flyout
     #    by even a pixel would be a silent fidelity regression.
+    #
+    #    Batch 626 migrated ONE of those five premises, because batch 626 proved
+    #    it false — not because the portal moved anything.  geometry-submenu is
+    #    270 tall and hangs below the *whole* flyout card via
+    #    `top-[calc(100%+2px)]`, while the card's top comes from the rail anchor
+    #    and does not depend on viewport height.  So the viewport needs 786px of
+    #    height before the default position fits at all, and below that the
+    #    submenu's last controls (棱锥, 添加空对象) sit outside the screen no
+    #    matter what.  626 added a vertical clamp, so the submenu is now pinned
+    #    per height band: unchanged where nothing overflows, pulled up to the
+    #    8px safe margin where it does.  The four top-level flyouts keep the
+    #    strict "identical at every width and height" rule, and the submenu
+    #    keeps the strict "identical at every width" rule for x/width.
     BEFORE = {
         "panorama-flyout": [48, 196, 232, 134],
         "aspect-flyout": [48, 236, 232, 350],
         "add-character-flyout": [48, 116, 232, 390],
-        "geometry-submenu": [52, 508, 204, 270],
         "crowd-dialog": [294, 52, 220, 208],
     }
-    moved = [(r["flyout"], r["vw"], r["vh"], r["box"], BEFORE[r["flyout"]])
-             for r in live if r["box"] != BEFORE[r["flyout"]]]
+
+    def expected_box(flyout: str, vh: int) -> list[int]:
+        if flyout != "geometry-submenu":
+            return BEFORE[flyout]
+        # 786 = 508 (unclamped top) + 270 (height) + 8 (safe margin)
+        return [52, 508 if vh >= 786 else vh - 8 - 270, 204, 270]
+
+    moved = [(r["flyout"], r["vw"], r["vh"], r["box"],
+              expected_box(r["flyout"], r["vh"]))
+             for r in live
+             if r["box"] != expected_box(r["flyout"], r["vh"])]
     v.result["geometryBefore"] = BEFORE
+    v.result["geometrySubmenuPerHeight"] = {
+        f"{r['vw']}x{r['vh']}": r["box"] for r in live
+        if r["flyout"] == "geometry-submenu"}
     v.check("the-portal-moved-nothing", not moved, detail=moved[:5])
 
     audit["checks"] = v.result

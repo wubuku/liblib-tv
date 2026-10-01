@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent, ReactNode } from "react";
 import {
   Camera,
@@ -93,6 +93,10 @@ const DIRECTOR_LANE_BASE_COLOR = "#212121";
 const DIRECTOR_LANE_EDGE_COLOR = "#212121";
 const DIRECTOR_OBJECT_LANE_TOP_EDGE = "#355359";
 const DIRECTOR_PLAYHEAD_COLOR = "#05a3c5";
+
+// Batch 626：运动轨迹下拉相对时间轴根的默认纵向偏移，即原 `top-10`。
+// 提为常量是因为它现在同时是「钳制前的首选位置」和「不越界时保持不变的值」。
+const PATH_MENU_TOP = 40;
 const DIRECTOR_KEYFRAME_EDGE_COLOR = "#13879f";
 const DIRECTOR_KEYFRAME_FILL_COLOR = "#2f2f2f";
 // 11px 外接方 ÷ √2 = 7.78px，取 7.8px 让实测外接回到 11px。
@@ -608,6 +612,52 @@ export function DirectorTimeline({
       Math.max(8, Math.min(trigger.left - root.left, root.width - 176)),
     );
   };
+
+  // Batch 626：纵向也要钳制，原来只有横向有。
+  //
+  // 事实（探针 C，1440 宽 × 900/844/800/720/700/640/600/540 八档）：
+  // 菜单盒顶恒为 `视口高 − 141`、高 204，底边恒为 `视口高 + 63` —— 也就是
+  // 「圆环路径」「矩形路径」这两枚在**任何视口高度下都在屏幕外**，
+  // 包括 batch 590 一直用的 1920×1150 基准视口。原因是这个下拉高 204，
+  // 而它挂在一条贴底、高约 181 的时间轴之下 40px 处，纵向根本没有落脚点。
+  //
+  // 修法与既有的水平钳制同一口径：8px 安全边，越界多少上移多少，**不越界就
+  // 一个像素都不动**（所以宽视口下的几何与 590 之前的读数完全一致）。
+  // 这里量的是实际渲染高度而不是写死 204 —— 菜单是内容驱动的，写死会在改
+  // 文案或行高后悄悄失准（batch 623 的 `cells >= 50` 阈值漂移教训）。
+  //
+  // 直接写 `style.top` 而不用 state：`useLayoutEffect` 里同步 setState 会触发
+  // 级联渲染（`react-hooks/set-state-in-effect` 也会拦），而这本来就是一个
+  // 「量出的布局值写回 DOM」的场景。className 里的 `top-10` 保留为测量前的
+  // 默认值，越界时才由 effect 改写；不越界就把 inline style 撤掉，让默认值
+  // 始终只有一个来源。
+  useLayoutEffect(() => {
+    const menu = pathMenuRef.current;
+    const root = timelineRootRef.current;
+    if (pathMenuLeft === null || !menu || !root) return;
+    const clamp = () => {
+      // 绝对定位的包含块是**padding box 而不是 border box**，而时间轴根有
+      // `border-t border-white/10` 的 1px 上边框 —— 这个 `absolute` 下拉的
+      // 原点在根的 top 之下 1px。直接拿 getBoundingClientRect().top 当原点
+      // 会整整差一个边框宽：实测 `root.top 718 + top(-30) = 688`，而渲染出来
+      // 是 689，于是底边落在 `视口高 − 7` 够不到 8px 安全边，被本批自己的
+      // `fit-in-viewport` 以 `overflow b1` 抓住。探针 /tmp/dbg626d.py。
+      const borderTop = parseFloat(getComputedStyle(root).borderTopWidth) || 0;
+      const overflow =
+        root.getBoundingClientRect().top +
+        borderTop +
+        PATH_MENU_TOP +
+        // 用 getBoundingClientRect 而不是 offsetHeight：与任何按 rect 量的
+        // 几何断言保持同一测量基准。
+        menu.getBoundingClientRect().height -
+        (window.innerHeight - 8);
+      menu.style.top = overflow > 0 ? `${PATH_MENU_TOP - overflow}px` : "";
+    };
+    clamp();
+    // 时间轴高度可调、视口可缩放，两个都会改这条下拉该落在哪
+    window.addEventListener("resize", clamp);
+    return () => window.removeEventListener("resize", clamp);
+  }, [pathMenuLeft, timelineHeight, timelineCollapsed]);
 
   const togglePresetPanel = () => {
     if (selectedTrack?.kind !== "camera" || cameraFollowActive) return;

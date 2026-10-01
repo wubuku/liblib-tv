@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState, type ChangeEvent, type ReactNode } from "react";
+import { Fragment, useEffect, useLayoutEffect, useRef, useState, type ChangeEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import {
   ArrowDownToLine,
@@ -149,6 +149,9 @@ const FLYOUT_CARD_CLASS =
 // 故外层定位容器同时承载标题与卡片。
 const FLYOUT_TITLE_CLASS = "block truncate px-3 pb-2 text-xs text-[#8a8a8a]";
 
+// Batch 626：几何模型子菜单与 flyout 卡片底边之间的间隙，即原 `+2px`。
+const GEOMETRY_SUBMENU_GAP = 2;
+
 export function DirectorIconRail({
   onPanoramaSourceChange,
 }: {
@@ -238,6 +241,53 @@ export function DirectorIconRail({
     left: r.left + 294,
     top: r.top,
   }));
+
+  // Batch 626：几何模型子菜单也要纵向钳制。
+  //
+  // 事实（探针 C，1440 宽 × 900…540 八档）：子菜单盒恒为 @(52,508) 204×270，
+  // 底边恒 778 —— 因为它用 `top-[calc(100%+2px)]` 挂在**整张** flyout 卡片
+  // 之下，而卡片顶由 rail 锚点决定、与视口高无关。于是 `视口高 < 778` 时末尾
+  // 控件直接落到屏幕外：720 丢 2/8（棱锥、添加空对象），640 丢 4/8，540 丢 7/8。
+  //
+  // 否掉的替代方案记在这里，免得以后重犯：
+  // - 「翻到卡片上方」不行 —— 卡片顶在 y=116，子菜单要 270，翻上去顶边是 -154，
+  //   改从屏幕顶部出界，更糟；
+  // - 「改成可滚动列表」被否 —— 623/625 的判据是「被自己的滚动容器裁掉不算缺陷、
+  //   但要记录」；这里 8 项全可达是更好的结果，滚动等于把缺陷降级成妥协。
+  //
+  // 口径与时间轴那个下拉一致：8px 安全边，越界多少上移多少，不越界一个像素不动
+  // （≥800 视口的读数与 590 之前的几何完全一致）。
+  const characterFlyoutRef = useRef<HTMLDivElement | null>(null);
+  const geometrySubmenuRef = useRef<HTMLDivElement | null>(null);
+  useLayoutEffect(() => {
+    const submenu = geometrySubmenuRef.current;
+    if (!geometrySubmenuOpen || !characterPos || !submenu) return;
+    const clamp = () => {
+      const flyout = characterFlyoutRef.current;
+      if (!flyout) return;
+      // 与时间轴那个下拉同一口径：用 rect 而不是 offsetHeight，否则取整差
+      // 会让底边差一个亚像素够不到 8px 安全边。
+      const subH = submenu.getBoundingClientRect().height;
+      // 不越界就撤掉 inline style，位置继续由 className 的
+      // `top-[calc(100%+2px)]` 负责（默认位置只有一个来源）。
+      //
+      // 这里要连**子菜单自己的高度**一起算。第一版只测了
+      // `flyout.bottom + 2 <= 视口高 − 8`，等于假设子菜单高 0，于是
+      // 1440×640 / 1280×540 两格判成「放得下」而放弃钳制，子菜单照旧挂到
+      // 屏幕外、丢掉 4 枚与 7 枚活控件 —— 被本批自己的验收抓住。
+      const defaultBottom =
+        flyout.getBoundingClientRect().bottom + GEOMETRY_SUBMENU_GAP + subH;
+      submenu.style.top =
+        defaultBottom <= window.innerHeight - 8
+          ? ""
+          : `${window.innerHeight - 8 - subH - characterPos.top}px`;
+    };
+    clamp();
+    // rail 锚点会随视口缩放重算（useFlyoutAnchor 已订阅 resize），这里跟着重算
+    // 纵向落点，否则窗口一缩，子菜单的钳制量就停在旧视口的读数上。
+    window.addEventListener("resize", clamp);
+    return () => window.removeEventListener("resize", clamp);
+  }, [geometrySubmenuOpen, characterPos]);
 
   // Mount a flyout at body level with the viewport coordinates measured from its
   // anchor, so the z in RAIL_FLYOUT_CLASS competes against the timeline instead
@@ -425,6 +475,7 @@ export function DirectorIconRail({
               {entry.id === "add-character" && openFlyout === "add-character"
                 && characterPos && portalFlyout(characterPos, (
                 <div
+                  ref={characterFlyoutRef}
                   data-director-character-flyout
                   aria-label="添加角色"
                   className={cn(
@@ -458,6 +509,7 @@ export function DirectorIconRail({
                       （204×256），八项各 199×32、行距 32px。 */}
                   {geometrySubmenuOpen && (
                     <div
+                      ref={geometrySubmenuRef}
                       data-director-geometry-submenu
                       aria-label="几何模型"
                       className={cn(

@@ -1,0 +1,768 @@
+{
+  "batch": 626,
+  "title": "sweep every openable overlay for stacking and reachability: first the ruler turns out to be broken, then two menus turn out to hang off the bottom of the viewport",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "no live source reading: the shared source tab is at 1600x1000 with another user in it (probe616). This batch decides nothing about the source, and in particular not whether the source clamps, flips or scrolls these two menus at short viewport heights",
+    "the ruler first written for this batch was WRONG and is the main methodological finding: the scalar effectiveZ(X) = the z of X itself if X opens a stacking context, else of its nearest context-opening ancestor, is only meaningful between siblings inside ONE stacking context. Across subtrees it produced 18 violations that were all false positives — every one of them compared an overlay against data-director-workspace, which is the overlay's own ANCESTOR (fixed inset-0 z-100). A descendant always paints above its ancestor, so 50 < 100 is a structurally invalid comparison",
+    "the same error read geometry-submenu as ownZ 50 / effectiveZ 50, which looked like batch 625's portal had not taken effect. It had: the submenu's own z-50 is internal to the portaled flyout's z-160 context, so its outward level is 160. Cross-subtree comparison has to take the OUTERMOST context, which means a scalar has no single value in depth",
+    "replaced by paintOrder(a, b): short-circuit ancestry (an ancestor is not a competitor), else walk both ancestor chains top-down to the divergence point, compare z there (absent counts as 0), else DOM order",
+    "/tmp/dbg626a.py: first pass, 11 overlays x 3 viewports. Exposed three bugs in the probe itself (a double-wrapped arrow function producing SyntaxError: Unexpected end of input in most of the 33 cells; the camera-preset trigger disabled because no camera track was selected; the FOV tooltip scroll timeout because the field only mounts for a selected camera object and the tooltip is a sibling of the `?` badge, not its hover host)",
+    "/tmp/dbg626b.py: the corrected three-half judgement. The structure half passes 33/33, so the 18 were false positives. The ground-truth half reported 6 FAILs, all of which are its own blind spots, not defects: the FOV tooltip is pointer-events:none so elementsFromPoint skips it and the samples land on the inspector controls beneath — click-through is the design of a hover tooltip — and camera-preset-panel's bounding box samples hit what is behind its own padding while its 10 live controls report blocked=0",
+    "/tmp/dbg626c.py: located the casualty half's blockedBy=None. The controls are not occluded, they are OUTSIDE the viewport. motion-path-menu loses 2/5 at all eight heights (900/844/800/720/700/640/600/540) because its box top is always viewportHeight-141 with height 204, so its bottom is always viewportHeight+63. geometry-submenu's box is always @(52,508) 204x270, bottom always 778, so it loses controls whenever viewportHeight < 778 (2/8 at 720, 4/8 at 640, 7/8 at 540)",
+    "/tmp/dbg626d.py: explained the 1px the first fix left behind. Absolute positioning resolves against the PADDING box, not the border box, and the timeline root carries `border-t border-white/10`. Measured root.top 718 + top(-30) = 688, but it rendered at 689 — the clamp has to start from root.top + borderTopWidth"
+  ],
+  "claims": {
+    "cloneDecision": [
+      "both popovers now clamp vertically: 8px safe margin, shifted up by exactly the overflow, and NOT MOVED AT ALL when there is no overflow. The default position keeps a single source of truth: className's `top-10` / `top-[calc(100%+2px)]`; the layout effect only takes over on overflow and clears its inline style otherwise",
+      "the clamp measures the rendered height via getBoundingClientRect rather than hardcoding 204 — the menu is content-driven and a magic number would drift silently (batch 623's `cells >= 50` lesson). The timeline branch also adds borderTopWidth to its origin for the padding-box rule",
+      "the clamp is written straight to style.top in useLayoutEffect rather than through state: a synchronous setState there causes a cascading render (react-hooks/set-state-in-effect rejects it) and this is a measured-layout-value-written-back-to-the-DOM case",
+      "the 8px margin is 8px because the existing horizontal clamp in togglePathMenu already uses 8 (Math.max(8, Math.min(...)))"
+    ],
+    "notClaimed": [
+      "anything about the source — not whether the source's motion-path menu or geometry submenu clamps, flips or scrolls at short heights. What is repaired here is a clone-side invariant that 619's census has asserted for desk controls all along: a live control inside an open overlay must be reachable",
+      "that camera-fov-help-tooltip's readability or placement was verified. It is a pointer-events:none hover tooltip with 0 live controls, so 'no control is blocked' is vacuously true for it",
+      "that the 6 ground-truth FAILs are defects. They are that half's own blind spots, argued case by case in sourceEvidence, and it is not silently reduced to one verdict",
+      "the stacking of the 9 director-desk overlays and 7 canvas-page data-liblib-overlay markers this batch could not open: crowd-panel, model-library-panel, model-library-preview-panel, phone-vcam-panel, pose-panel, panel, mobile-panel, flyout, and zoom-menu / canvas-dropdown / asset / add-node / agent / shortcuts / share. The ruler simply does not reach them yet",
+      "that the motion-path menu has a no-op clamp case. It overflows at every height, so only the geometry submenu has that evidence (1440x800 and above stay at @(52,508) pixel-for-pixel)",
+      "the 898/899 breakpoint convention, which this batch left alone"
+    ]
+  },
+  "viewports": [
+    [
+      1920,
+      1150
+    ],
+    [
+      1440,
+      900
+    ],
+    [
+      1280,
+      720
+    ]
+  ],
+  "heightSweepViewports": [
+    [
+      "motion-path-menu",
+      [
+        [
+          1920,
+          900
+        ],
+        [
+          1920,
+          540
+        ],
+        [
+          1280,
+          640
+        ]
+      ]
+    ],
+    [
+      "geometry-submenu",
+      [
+        [
+          1440,
+          800
+        ],
+        [
+          1440,
+          640
+        ],
+        [
+          1280,
+          540
+        ]
+      ]
+    ]
+  ],
+  "measurements": [
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "overlay": "export-panel",
+      "box": [
+        1626,
+        702,
+        286,
+        267
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "liveCount": 5,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "overlay": "tree-context-menu",
+      "box": [
+        164,
+        216,
+        128,
+        170
+      ],
+      "ownZ": "120",
+      "pointerEvents": "auto",
+      "liveCount": 5,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "overlay": "panorama-flyout",
+      "box": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "liveCount": 3,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "overlay": "aspect-flyout",
+      "box": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "liveCount": 7,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "overlay": "add-character-flyout",
+      "box": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "liveCount": 11,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "overlay": "ai-import-modal",
+      "box": [
+        680,
+        306,
+        560,
+        539
+      ],
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "liveCount": 6,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "overlay": "geometry-submenu",
+      "box": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "liveCount": 8,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "overlay": "crowd-dialog",
+      "box": [
+        294,
+        52,
+        220,
+        208
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "liveCount": 5,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "overlay": "camera-fov-help-tooltip",
+      "box": [
+        1656,
+        668,
+        208,
+        68
+      ],
+      "ownZ": "1700",
+      "pointerEvents": "none",
+      "liveCount": 0,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "overlay": "camera-preset-panel",
+      "box": [
+        312,
+        677,
+        304,
+        292
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "liveCount": 10,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1920,
+      "vh": 1150,
+      "overlay": "motion-path-menu",
+      "box": [
+        389,
+        938,
+        176,
+        204
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "liveCount": 5,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "overlay": "export-panel",
+      "box": [
+        1146,
+        452,
+        286,
+        267
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "liveCount": 5,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "overlay": "tree-context-menu",
+      "box": [
+        164,
+        216,
+        128,
+        170
+      ],
+      "ownZ": "120",
+      "pointerEvents": "auto",
+      "liveCount": 5,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "overlay": "panorama-flyout",
+      "box": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "liveCount": 3,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "overlay": "aspect-flyout",
+      "box": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "liveCount": 7,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "overlay": "add-character-flyout",
+      "box": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "liveCount": 11,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "overlay": "ai-import-modal",
+      "box": [
+        440,
+        181,
+        560,
+        539
+      ],
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "liveCount": 6,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "overlay": "geometry-submenu",
+      "box": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "liveCount": 8,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "overlay": "crowd-dialog",
+      "box": [
+        294,
+        52,
+        220,
+        208
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "liveCount": 5,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "overlay": "camera-fov-help-tooltip",
+      "box": [
+        1176,
+        418,
+        208,
+        68
+      ],
+      "ownZ": "1700",
+      "pointerEvents": "none",
+      "liveCount": 0,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "overlay": "camera-preset-panel",
+      "box": [
+        312,
+        427,
+        304,
+        292
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "liveCount": 10,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1440,
+      "vh": 900,
+      "overlay": "motion-path-menu",
+      "box": [
+        389,
+        688,
+        176,
+        204
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "liveCount": 5,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "overlay": "export-panel",
+      "box": [
+        986,
+        272,
+        286,
+        267
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "liveCount": 5,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "overlay": "tree-context-menu",
+      "box": [
+        164,
+        216,
+        128,
+        170
+      ],
+      "ownZ": "120",
+      "pointerEvents": "auto",
+      "liveCount": 5,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "overlay": "panorama-flyout",
+      "box": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "liveCount": 3,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "overlay": "aspect-flyout",
+      "box": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "liveCount": 7,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "overlay": "add-character-flyout",
+      "box": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "liveCount": 11,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "overlay": "ai-import-modal",
+      "box": [
+        360,
+        91,
+        560,
+        539
+      ],
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "liveCount": 6,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "overlay": "geometry-submenu",
+      "box": [
+        52,
+        442,
+        204,
+        270
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "liveCount": 8,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "overlay": "crowd-dialog",
+      "box": [
+        294,
+        52,
+        220,
+        208
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "liveCount": 5,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "overlay": "camera-fov-help-tooltip",
+      "box": [
+        1016,
+        263,
+        208,
+        68
+      ],
+      "ownZ": "1700",
+      "pointerEvents": "none",
+      "liveCount": 0,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "overlay": "camera-preset-panel",
+      "box": [
+        312,
+        247,
+        304,
+        292
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "liveCount": 10,
+      "structBad": [],
+      "blocked": []
+    },
+    {
+      "vw": 1280,
+      "vh": 720,
+      "overlay": "motion-path-menu",
+      "box": [
+        389,
+        508,
+        176,
+        204
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "liveCount": 5,
+      "structBad": [],
+      "blocked": []
+    }
+  ],
+  "heightSweep": [
+    {
+      "vw": 1920,
+      "vh": 900,
+      "overlay": "motion-path-menu",
+      "box": [
+        389,
+        688,
+        176,
+        204
+      ],
+      "overflowBottom": 0,
+      "overflowRight": -1347,
+      "liveCount": 5,
+      "blocked": []
+    },
+    {
+      "vw": 1920,
+      "vh": 540,
+      "overlay": "motion-path-menu",
+      "box": [
+        389,
+        328,
+        176,
+        204
+      ],
+      "overflowBottom": 0,
+      "overflowRight": -1347,
+      "liveCount": 5,
+      "blocked": []
+    },
+    {
+      "vw": 1280,
+      "vh": 640,
+      "overlay": "motion-path-menu",
+      "box": [
+        389,
+        428,
+        176,
+        204
+      ],
+      "overflowBottom": 0,
+      "overflowRight": -707,
+      "liveCount": 5,
+      "blocked": []
+    },
+    {
+      "vw": 1440,
+      "vh": 800,
+      "overlay": "geometry-submenu",
+      "box": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "overflowBottom": -14,
+      "overflowRight": -1176,
+      "liveCount": 8,
+      "blocked": []
+    },
+    {
+      "vw": 1440,
+      "vh": 640,
+      "overlay": "geometry-submenu",
+      "box": [
+        52,
+        362,
+        204,
+        270
+      ],
+      "overflowBottom": 0,
+      "overflowRight": -1176,
+      "liveCount": 8,
+      "blocked": []
+    },
+    {
+      "vw": 1280,
+      "vh": 540,
+      "overlay": "geometry-submenu",
+      "box": [
+        52,
+        262,
+        204,
+        270
+      ],
+      "overflowBottom": 0,
+      "overflowRight": -1016,
+      "liveCount": 8,
+      "blocked": []
+    }
+  ],
+  "setupRetries": {
+    "matrix": 0,
+    "heightSweep": null,
+    "note": "infra-only retry of the store-ready wait; the dev server on 4317 is shared and one cell timed out at 60s in an earlier run while the same cell passed in the same run at two other viewports. Retries page setup only, never an assertion."
+  },
+  "checks": {
+    "total": 113,
+    "ok": true,
+    "failures": []
+  },
+  "baseline": {
+    "method": "backed the two source files up to /tmp, `git checkout --` them (never stash), re-ran the same verifier",
+    "total": 111,
+    "ok": false,
+    "failures": [
+      "live-controls-reachable/1920x1150/motion-path-menu",
+      "live-controls-reachable/1440x900/motion-path-menu",
+      "live-controls-reachable/1280x720/geometry-submenu",
+      "live-controls-reachable/1280x720/motion-path-menu",
+      "fit-in-viewport/1920x900/motion-path-menu",
+      "live-controls-reachable/1920x900/motion-path-menu",
+      "fit-in-viewport/1920x540/motion-path-menu",
+      "live-controls-reachable/1920x540/motion-path-menu",
+      "fit-in-viewport/1280x640/motion-path-menu",
+      "live-controls-reachable/1280x640/motion-path-menu",
+      "fit-in-viewport/1440x640/geometry-submenu",
+      "live-controls-reachable/1440x640/geometry-submenu",
+      "fit-in-viewport/1280x540/geometry-submenu",
+      "live-controls-reachable/1280x540/geometry-submenu"
+    ],
+    "note": "every no-panel-paints-above cell still passes, which is the point: this batch changed geometry, not stacking. The geometry-submenu at 1440x800 passes in BOTH runs with the same box @(52,508) and overflow b-14, which is the direct evidence that the clamp is a no-op where nothing overflows"
+  },
+  "regressions": {
+    "passed": {
+      "625": "5/5 (after the contract migration below)",
+      "624": "10/10",
+      "623": "24/24",
+      "622": "47/47",
+      "621": "40/40",
+      "620": "57/57",
+      "619": "89/89",
+      "617": "30/30",
+      "613": "55/55",
+      "611": "49/49",
+      "590": "85 checks, 0 diagnostics",
+      "96": "passed"
+    },
+    "notCountedAsPass": {
+      "40": "failed 6 consecutive runs at `assert video_result[\"frameDifference\"] > 1_000`. Measured rather than assumed: the assertion was replaced with a print in a /tmp COPY (the repo script was not touched) and the actual readings are BIMODAL — either exactly 0 (the two seeked frames decode identically) or ~66242. This batch's tree: 0 and 66242. Clean HEAD: 0, 0, 0. So the zero is pre-existing and in fact more consistent on clean HEAD; this is not a regression from 626, and the direction of the difference is the opposite of one. Mechanism is in the same family as the artifact batch 40's own header documents: blob-URL MediaRecorder WebM lacks keyframe indexing, so `seeked` fires without the decoded frame changing — the script already carries a standard hack for the sibling symptom (duration === Infinity on Chrome 147). Separately, batch 40's own header marks it AGED_GATE / HISTORICAL_CONTRACT and states it \"cannot be a basis for the current contract\" — it failed the same way at baseline 86673b6 and was superseded by batches 59/67-96. Recorded, not retried into a pass, and its assertion left alone."
+    },
+    "infraFlakes": [
+      "aspect-flyout@1440x900 hit one `open_desk` store-ready timeout at 60s while the same overlay passed at two other viewports in the same run; the verifier now retries PAGE SETUP only (never an assertion) once and records the count under setupRetries",
+      "one `Page.goto` 30s timeout during the batch-40 investigation — 4317 is shared with other developers"
+    ]
+  },
+  "contractMigrations": [
+    {
+      "verifier": "scripts/verify-liblib-batch625.py",
+      "check": "the-portal-moved-nothing",
+      "was": "all five rail flyouts pinned to one box, on the premise that a rail-anchored flyout's box is identical at every width and height",
+      "now": "the four top-level flyouts keep that strict rule; geometry-submenu is pinned per height band — [52, 508, 204, 270] while the viewport is >= 786 tall, and [52, vh-278, 204, 270] below that — while its x/width stay viewport-independent",
+      "why": "626 proved the premise false for the submenu, not that the portal moved anything: the submenu is 270 tall and hangs below the whole flyout card, whose top is rail-anchored, so below 786px its last controls fall outside the screen no matter what. 626 added the clamp. Migrated, not deleted: three of 625's five viewports (1150/900/844) must still land on 508 pixel-for-pixel, so the rule that actually matters — do not touch geometry where nothing overflows — survives. The formula agrees with four independently measured readings (640->362, 540->262, 720->442, 700->422).",
+      "result": "625 still 5/5"
+    }
+  ]
+}
