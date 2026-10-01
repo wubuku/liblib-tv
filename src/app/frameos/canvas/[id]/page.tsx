@@ -45,6 +45,9 @@ import { FrameosPromptEditor } from "@/components/frameos/FrameosPromptEditor";
 import { FrameosFocusMode } from "@/components/frameos/FrameosFocusMode";
 import { FrameosTemplatePanel } from "@/components/frameos/FrameosTemplatePanel";
 import { FrameosNodeSearch } from "@/components/frameos/FrameosNodeSearch";
+// Batch 348: 补完 Batch 168 的「双击空白添加节点」—— 事件半边早就接好,
+// 但 paneMenuAt 从没人读, 菜单从未渲染。这个组件是缺失的渲染半边。
+import { FrameosPaneAddNodeMenu } from "@/components/frameos/FrameosPaneAddNodeMenu";
 import { FrameosEmptyState } from "@/components/frameos/FrameosEmptyState";
 import { FrameosRefSelectBar } from "@/components/frameos/FrameosPromptEditor";
 import { FrameosFullscreenText } from "@/components/frameos/FrameosFullscreenText";
@@ -250,6 +253,12 @@ function FrameosCanvasInner() {
         }
         if (state.isOrganizeMenuOpen) {
           state.closeOrganizeMenu();
+          return;
+        }
+        // Batch 348: 「双击空白添加节点」菜单此前连 Esc 都关不掉
+        // (paneMenuAt 写进去就再没人清, 实测 confirmed)。
+        if (state.paneMenuAt) {
+          state.setPaneMenuAt(null);
           return;
         }
         selectNode(null);
@@ -738,6 +747,9 @@ function FrameosCanvasInner() {
       {/* 选中节点的浮动工具条 (跟随节点位置 + 画布缩放) */}
 
       {/* 节点拖动时的对齐辅助线 (原 470 行被删除, 改放在 500 行) */}
+      {/* Batch 348: 双击空白处的「选择节点类型」菜单 (paneMenuAt 驱动) */}
+      <FrameosPaneAddNodeMenu />
+
       {/* 帮助面板 */}
       <FrameosHelpPanel />
 

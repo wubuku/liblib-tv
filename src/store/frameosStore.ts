@@ -13,6 +13,10 @@ interface AddNodeOpts {
   // 视口尺寸 (window innerWidth/Height)
   viewportWidth?: number;
   viewportHeight?: number;
+  // Batch 348: 显式指定落点（**画布流坐标**，不是屏幕坐标）。
+  // 「双击空白处添加节点」用双击点作为落点 —— 之前 addNode 只能放视口中央或
+  // 随机位置，用户在哪儿双击就必须在哪儿出现，否则这个交互没有意义。
+  position?: { x: number; y: number };
 }
 
 interface Generation {
@@ -718,9 +722,15 @@ export const useFrameosStore = create<FrameosCanvasState>((rawSet, get) => {
     const meta = typeMeta[type] ?? typeMeta.text;
     const count = get().nodes.filter((n) => n.type === type).length + 1;
 
-    // 计算位置：画布中央（如果提供了 viewport），否则随机
+    // 计算位置：显式落点 > 画布中央（如果提供了 viewport），否则随机
     let position: { x: number; y: number };
-    if (opts && opts.viewportWidth && opts.zoom) {
+    if (opts?.position) {
+      // Batch 348: 以落点为**中心**（与「视口中央」分支同一套算法）
+      position = {
+        x: Math.round(opts.position.x - meta.w / 2),
+        y: Math.round(opts.position.y - meta.h / 2),
+      };
+    } else if (opts && opts.viewportWidth && opts.zoom) {
       // 视口中央在画布坐标系 = (viewportCenter - pan) / zoom
       const vw = opts.viewportWidth;
       const vh = opts.viewportHeight ?? 900;

@@ -1,0 +1,72 @@
+{
+  "batch": 348,
+  "title": "FrameOS double-click-to-add was half-wired: event half existed, menu half did not",
+  "defect": "Batch 168 wired the EVENT half of 'double-click empty canvas to add a node': a dblclick listener on .react-flow__pane that skips node hits and records the coordinates into paneMenuAt. But paneMenuAt had ZERO readers anywhere outside the store -- no component ever rendered it. Double-clicking empty canvas wrote state into the void: nothing appeared, and Escape could not even clear it (measured: paneMenuAt={x:140,y:140} both before and after Escape).",
+  "fix": "Added FrameosPaneAddNodeMenu (the missing rendering half), reusing the tool rail's exported NODE_TYPES so the list of node types has exactly one source of truth. Added an optional `position` to AddNodeOpts in FLOW coordinates -- addNode previously could only place a node at the viewport centre or at a random spot, so 'double-click here' would have put the node somewhere unrelated to where the user clicked. Added paneMenuAt to the Escape multi-level exit chain.",
+  "corrects_batch346": "Batch 346 recorded '双击空白处添加节点' as an unfixable fidelity gap, on the reasoning that the promise never says WHICH node type to add. That reasoning was wrong: Batch 168's own design already answers it -- the intent was a '选择节点类型' MENU from which the user picks. So the feature was not unimplementable, it was half-built. The general lesson: before writing a feature off as 'cannot implement without inventing', check whether an existing half-implementation already encodes the answer.",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "menu:empty-point-found",
+        "menu:renders-on-dblclick",
+        "menu:title",
+        "menu:has-type:text",
+        "menu:has-type:image",
+        "menu:has-type:video",
+        "menu:has-type:audio",
+        "menu:has-type:model3d",
+        "menu:has-type:director3d",
+        "menu:has-type:videoEdit",
+        "state:paneMenuAt-consumed",
+        "pick:node-count-plus-one",
+        "pick:type-is-text",
+        "pick:lands-at-double-click-point",
+        "pick:menu-closed",
+        "esc:menu-opened-first",
+        "esc:closes-menu",
+        "esc:clears-state",
+        "backdrop:closes-menu",
+        "node-dblclick:does-not-open-menu",
+        "undo:new-node-undoable",
+        "diagnostics:zero"
+      ],
+      "click_point": {
+        "x": 140,
+        "y": 140
+      },
+      "menu_types": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "model3d",
+        "director3d",
+        "videoEdit"
+      ],
+      "picked": {
+        "nodeCount": 8,
+        "newId": "text-1790829950991-1",
+        "type": "text",
+        "screenCenter": {
+          "x": 140,
+          "y": 141
+        },
+        "clickedAt": {
+          "x": 140,
+          "y": 140
+        },
+        "menuInDom": 0,
+        "paneMenuAt": null
+      },
+      "undo": {
+        "before": 8,
+        "after": 7
+      },
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
