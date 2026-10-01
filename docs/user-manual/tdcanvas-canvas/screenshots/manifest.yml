@@ -565,6 +565,18 @@ screenshots:
     alt: 删除组之后，两个音频节点仍原地留在画布上，组的虚线框已经消失
     sha256: 1e9fdad5a57f79beb23dceca0f413231ccdd79228a8a45bbd8cd9750da8e81f8
 
+  - file: screenshots/04-organize-canvas-group-copy-empty.png
+    task_id: organize-canvas
+    step: 只选中组（不选成员）复制粘贴后，画布上多出一个徽标为 0 个节点的空组，原组仍是 2 个节点
+    route: '/canvas/:id'
+    viewport: 1600x950
+    locale: zh-CN
+    captured_at: '2026-10-02'
+    verified_locator: '原组 徽标 2 个节点 框内两个音频节点 / 粘贴出的新组 徽标 0 个节点 框内为空'
+    visible_text: '2 个节点 / 0 个节点'
+    alt: 画布上并排两个组：左边是原组，徽标 2 个节点且框内有两个音频节点；右边是刚粘贴出来的组，徽标 0 个节点、框内是空的
+    sha256: 06f4e933606c3d4bbf95d8f77412223a0fd9da00ce43b4c62dc1de0d19491a67
+
   - file: screenshots/09-generate-images-panel-full.png
     task_id: generate-images
     step: 图片节点下方的完整生成面板（71% 缩放全貌）：模式/输入/参数行、参考素材区、描述框，以及模型 Seedream V5 Pro、比例 自适应/2k、数量 1x、约 ¥0.519 与发送按钮
