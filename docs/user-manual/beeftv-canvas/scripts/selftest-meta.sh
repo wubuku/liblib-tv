@@ -81,11 +81,29 @@ trap 'restore' EXIT
 # 危害与假通过同级：它让**正确的闸门输出被当成错误**。
 # 第二条命令 `grep -F ... >/dev/null` 会**读完整个输入**，不产生 SIGPIPE。
 
+# ── 内联注入的空转检测（Batch 162） ────────────────────────────────────
+# **为什么要加**：`run_fail_case` 的注入是内联 `python3 -c`，**没有锚点断言**。
+# 本批把闸门数从 9 改成 10、标题从「现有九道闸」改成「现有十道闸」之后，
+# 用例 6 的 `replace('### 现有九道闸', …)` **匹配不到、静默什么也没改**，
+# 闸门当然通过 → 用例判「本应报错，却通过了」。
+# **危险之处在于它不报错**：失败信息指向「闸门没报错」，会把人引向完全错误的方向，
+# 而真实原因是「测试自己没注入成功」。
+#
+# **通用解法**：eval 前后各做一次快照，**内容没变即判作废**。
+# 这样不必把每条内联注入都改写成带 assert 的注入脚本文件，
+# 而**任何未来的锚点失配都会被立刻暴露**（Batch 135「锚点错就作废」的推广）。
 run_fail_case() {
   local desc="$1"; shift
   local want="$1"; shift
   restore
+  local before after
+  before="$(cd "$ROOT" && for f in "${SNAP_FILES[@]}"; do [ -f "$f" ] && md5 -q "$f" 2>/dev/null; done | md5 -q)"
   eval "$@"                      # 注入破坏
+  after="$(cd "$ROOT" && for f in "${SNAP_FILES[@]}"; do [ -f "$f" ] && md5 -q "$f" 2>/dev/null; done | md5 -q)"
+  if [ "$before" = "$after" ]; then
+    echo "  · 前提不成立：注入**空转**（所有目标文件内容都没变，多半是锚点失配）；作废该用例"
+    VOID=$((VOID+1)); restore; return 0
+  fi
   local out rc
   out="$(python3 "$GATE" 2>&1)"; rc=$?
   if [ "$rc" -eq 0 ]; then
@@ -231,10 +249,11 @@ open(p,'w',encoding='utf-8').write(s)
 # 这不是假设出来的场景：**本闸上线当天就在真实 AUDIT-RULES.md 上抓到过**
 # （标题写「八道闸」而表里 9 行）。根因是标题数的是「verify 脚本数」，
 # 而表行数还要加上「站内死链」那道内联的——差 1 每次都刚好逃过肉眼。
-run_fail_case "6) 标题的闸数与表行数差 1" "标题写「8 道闸」，清单表却有 9 行" \
+run_fail_case "6) 标题的闸数与表行数差 1" "标题写「9 道闸」，清单表却有 10 行" \
   "python3 -c \"
 p='AUDIT-RULES.md'; s=open(p,encoding='utf-8').read()
-s=s.replace('### 现有九道闸','### 现有八道闸',1)
+assert '### 现有十道闸' in s, '锚点未命中'
+s=s.replace('### 现有十道闸','### 现有九道闸',1)
 open(p,'w',encoding='utf-8').write(s)
 \""
 

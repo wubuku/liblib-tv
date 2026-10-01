@@ -202,6 +202,10 @@ run_gate verify-label-drift.py 标签漂移
 # 手册会继续言之凿凿地说「找不到」。本闸对 7 条已登记断言逐条跑专属判据，
 # 并反向全量扫描 setter 零调用，要求与登记表双向一致。
 # 判据与「不检查什么」写在脚本 docstring 里，务必连着一读。
+# 截图取证文案闸（Batch 162 新增，第十道）：manifest 里录下的界面文案是否还在上游。
+# 它**部分**关掉了覆盖度表 C 类里「截图内容是否仍对得上界面」——
+# 核的是**登记的文案**，不是 PNG 像素；后者仍取决于重拍。
+run_gate verify-screenshots-literals.py 截图取证文案
 run_gate verify-unreachable.py 不可达断言
 
 # 第七道闸：markdown 表格结构核对。前面六道查的都是**内容对不对**，

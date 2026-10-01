@@ -11,7 +11,7 @@ import sys
 # 少一行在现实中不可能发生（闸不会自己消失），
 # 而多一行正是「加了闸忘了登记」的真实形态。
 s = sys.stdin.read()
-old = "| 元数据计数 / 索引⇄标题 / 侧栏覆盖 / 内链 / 正则引擎 / 报错即失败 / 无法核对≠通过 | 闸 9 `verify-meta.py`（8 个方向） |"
+old = "| 元数据计数 / 索引⇄标题 / 侧栏覆盖 / 内链 / 正则引擎 / 报错即失败 / 无法核对≠通过 / 覆盖度表自洽 | 闸 9 `verify-meta.py`（9 个方向） |"
 assert old in s, "锚点未命中：没找到 A 类最后一行（闸 9）"
 new = old + "\n| 反验注入：假装新增的第十道闸 | `scripts/verify-injected.py`（并不存在） |"
 out = s.replace(old, new, 1)
