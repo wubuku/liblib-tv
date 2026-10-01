@@ -1104,3 +1104,15 @@ screenshots:
     visible_text: '清空画布？这会删除当前画布上的所有节点和连线。取 消 清 空'
     alt: 清空画布的确认弹窗，标题「清空画布？」，正文说明会删除所有节点和连线，右下角是取消与红色的清空按钮，背景可见五个文本节点
     sha256: ab93a1c3b00d1c7179ec2e015588eb45404c040a8da251f552a70705a3fcc1ac
+
+  - file: screenshots/04-edit-nodes-group-toolbar.png
+    task_id: edit-nodes
+    step: 清空画布后只建一个「组」节点，在画布上直接点它，查看组节点被选中时的悬浮工具条
+    route: '/canvas/:id'
+    viewport: 1600x1000
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '清空后画布上只有 1 个 .node-element（data-node-id 形如 group-…，边框计算样式 border-style: dashed / border-width: 2px，左上角含 lucide-group 图标，内部文字「组 0 个节点」）；在其中心点单击后，以「信息」按钮向上找到的最内层容器含且仅含两个按钮，文本依次为「信息」「删除」，删除按钮计算色为红色；左侧面板同步显示「画布元素 1」与该组行'
+    visible_text: '信息 删除 组 0 个节点 画布元素 1'
+    alt: 画布上唯一的组节点被选中，蓝色虚线边框外浮出一条只有信息和删除两个按钮的悬浮工具条，直接证明组节点并非没有工具条
+    sha256: 70569bdecb2bca088c1cdfef94ff996ee48748b5fdd0b8f91318dce3536678c0
