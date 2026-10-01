@@ -1,0 +1,217 @@
+{
+  "viewport": "1920x1150",
+  "checks": [
+    {
+      "name": "static:tiny-scrollbar-declared",
+      "ok": true,
+      "detail": "globals.css carries the lifted .tiny-scrollbar rules"
+    },
+    {
+      "name": "columns:2px-gap-not-border",
+      "ok": true,
+      "detail": {
+        "gap": "2px",
+        "listBorderRight": "0px",
+        "delta": 2
+      }
+    },
+    {
+      "name": "columns:320-then-322",
+      "ok": true,
+      "detail": {
+        "list": {
+          "x": 0,
+          "y": 1005,
+          "w": 320,
+          "h": 145
+        },
+        "pane": {
+          "x": 322,
+          "y": 1005,
+          "w": 1598,
+          "h": 145
+        }
+      }
+    },
+    {
+      "name": "pane:1f1f1f-fills-remainder",
+      "ok": true,
+      "detail": {
+        "background": "rgb(31, 31, 31)",
+        "box": {
+          "x": 322,
+          "y": 1005,
+          "w": 1598,
+          "h": 145
+        },
+        "flex": {
+          "x": 0,
+          "y": 1005,
+          "w": 1920,
+          "h": 145
+        }
+      }
+    },
+    {
+      "name": "scroller:tiny-scrollbar-3px",
+      "ok": true,
+      "detail": {
+        "width": "thin",
+        "gutter": "stable",
+        "color": "rgb(134, 144, 156) rgba(0, 0, 0, 0)",
+        "scroll": [
+          1779,
+          1598
+        ]
+      }
+    },
+    {
+      "name": "content:content-sized-rounded-right-only",
+      "ok": true,
+      "detail": {
+        "radius": [
+          "6px",
+          "0px"
+        ],
+        "overflow": [
+          "hidden",
+          "hidden"
+        ],
+        "w": 1779,
+        "paneW": 1598
+      }
+    },
+    {
+      "name": "content:lane-base-212121",
+      "ok": true,
+      "detail": "rgb(33, 33, 33)"
+    },
+    {
+      "name": "scroller:scrolls-content-not-columns",
+      "ok": true,
+      "detail": {
+        "listX": 0,
+        "before": 0,
+        "scrollLeft": 120,
+        "maxScroll": 181,
+        "canvasX": 202
+      }
+    },
+    {
+      "name": "no-console-errors",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "stack": {
+    "flex": {
+      "box": {
+        "x": 0,
+        "y": 1005,
+        "w": 1920,
+        "h": 145
+      },
+      "background": "rgba(0, 0, 0, 0)",
+      "borderRightWidth": "0px",
+      "radiusRight": "0px",
+      "radiusLeft": "0px",
+      "overflowX": "visible",
+      "overflowY": "visible",
+      "scrollbarWidth": "auto",
+      "scrollbarGutter": "auto",
+      "scrollbarColor": "auto",
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "cls": "flex min-h-0 min-w-0 flex-1 gap-[2px]",
+      "gap": "2px"
+    },
+    "list": {
+      "box": {
+        "x": 0,
+        "y": 1005,
+        "w": 320,
+        "h": 145
+      },
+      "background": "rgb(31, 31, 31)",
+      "borderRightWidth": "0px",
+      "radiusRight": "0px",
+      "radiusLeft": "0px",
+      "overflowX": "auto",
+      "overflowY": "auto",
+      "scrollbarWidth": "auto",
+      "scrollbarGutter": "auto",
+      "scrollbarColor": "auto",
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "cls": "w-[320px] shrink-0 overflow-y-auto bg-[#1f1f1f] max-[899px]:w-[220px]"
+    },
+    "pane": {
+      "box": {
+        "x": 322,
+        "y": 1005,
+        "w": 1598,
+        "h": 145
+      },
+      "background": "rgb(31, 31, 31)",
+      "borderRightWidth": "0px",
+      "radiusRight": "0px",
+      "radiusLeft": "0px",
+      "overflowX": "visible",
+      "overflowY": "visible",
+      "scrollbarWidth": "auto",
+      "scrollbarGutter": "auto",
+      "scrollbarColor": "auto",
+      "scrollWidth": 1598,
+      "clientWidth": 1598,
+      "cls": "relative min-w-0 flex-1 bg-[#1f1f1f]"
+    },
+    "scroller": {
+      "box": {
+        "x": 322,
+        "y": 1005,
+        "w": 1598,
+        "h": 145
+      },
+      "background": "rgba(0, 0, 0, 0)",
+      "borderRightWidth": "0px",
+      "radiusRight": "0px",
+      "radiusLeft": "0px",
+      "overflowX": "auto",
+      "overflowY": "hidden",
+      "scrollbarWidth": "thin",
+      "scrollbarGutter": "stable",
+      "scrollbarColor": "rgb(134, 144, 156) rgba(0, 0, 0, 0)",
+      "scrollWidth": 1779,
+      "clientWidth": 1598,
+      "cls": "tiny-scrollbar h-full min-w-0 overflow-x-auto overflow-y-hidden"
+    },
+    "canvas": {
+      "box": {
+        "x": 322,
+        "y": 1005,
+        "w": 1779,
+        "h": 164
+      },
+      "background": "rgb(33, 33, 33)",
+      "borderRightWidth": "0px",
+      "radiusRight": "6px",
+      "radiusLeft": "0px",
+      "overflowX": "hidden",
+      "overflowY": "hidden",
+      "scrollbarWidth": "auto",
+      "scrollbarGutter": "auto",
+      "scrollbarColor": "rgb(134, 144, 156) rgba(0, 0, 0, 0)",
+      "scrollWidth": 1786,
+      "clientWidth": 1779,
+      "cls": "relative min-w-full shrink-0 overflow-hidden rounded-r-md"
+    },
+    "tinyScrollbarRules": 1
+  },
+  "scrolled": {
+    "listX": 0,
+    "before": 0,
+    "scrollLeft": 120,
+    "maxScroll": 181,
+    "canvasX": 202
+  }
+}

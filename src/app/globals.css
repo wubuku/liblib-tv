@@ -386,3 +386,36 @@
     left: 128px;
   }
 }
+
+/* Batch 600（源站 2026-10-01 实测）：导演台车道区的横向滚动容器带
+   `.tiny-scrollbar`，取自源站产物样式表
+   liblibtv_online/static/_next/static/chunks/2i0zx3s0wp9uo.css 的原规则，
+   其 `--border-emphasis` 在源站 :root 上解析为 #86909c：
+
+     .tiny-scrollbar{scrollbar-gutter:stable;scrollbar-width:thin;
+       scrollbar-color:var(--border-emphasis) transparent}
+     .tiny-scrollbar::-webkit-scrollbar{width:3px;height:3px}
+     .tiny-scrollbar::-webkit-scrollbar-track{background:0 0}
+     .tiny-scrollbar::-webkit-scrollbar-thumb{background-color:var(--border-emphasis);
+       border-radius:3px}
+
+   clone 原先用的是浏览器默认滚动条（macOS 上还常被 overlay 成 0 宽）。 */
+.tiny-scrollbar {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: #86909c transparent;
+}
+
+.tiny-scrollbar::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+.tiny-scrollbar::-webkit-scrollbar-track {
+  background: 0 0;
+}
+
+.tiny-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #86909c;
+  border-radius: 3px;
+}

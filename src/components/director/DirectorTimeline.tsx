@@ -1285,12 +1285,15 @@ export function DirectorTimeline({
       {timeline.editorMode === "curve" ? (
         <DirectorCurveEditor />
       ) : (
-      <div className="flex min-h-0 flex-1">
+      <div className="flex min-h-0 min-w-0 flex-1 gap-[2px]">
+        {/* Batch 600（源站实测）：两列之间是 2px 的 `gap-[2px]` **间隙**，不是
+            边框——源站左列 `z-10 shrink-0 bg-[#1f1f1f]` 的 borderRight 实测 0px。
+            clone 原先给左列加了 `border-r border-white/[0.07]`，把右列推前了 1px。 */}
         {/* Batch 593（源站实测）：左列 320px（不再随视口收窄），顶部有一条
             36px 空占位给覆盖在它上面的工具条，对象行与轨道行各 32px。 */}
         <div
           data-director-timeline-track-list
-          className="w-[320px] shrink-0 overflow-y-auto border-r border-white/[0.07] bg-[#1f1f1f] max-[899px]:w-[220px]"
+          className="w-[320px] shrink-0 overflow-y-auto bg-[#1f1f1f] max-[899px]:w-[220px]"
         >
           {/* 源站左列第一格是一个 320x36 的空 div（`bg-[#1f1f1f]`，实测
               innerHTML 长度为 0），专门给覆盖在上面的工具条让位；它让对象行
@@ -1540,11 +1543,23 @@ export function DirectorTimeline({
         </div>
 
         {!timelineCollapsed ? (
-        <div className="min-w-0 flex-1 overflow-x-auto overflow-y-hidden">
+        /* Batch 600（源站实测）：右列是**三层**——
+             pane  `relative min-w-0 flex-1 bg-[#1f1f1f]`
+             scroller `tiny-scrollbar h-full min-w-0 overflow-x-auto overflow-y-hidden`
+             内容  `relative shrink-0 overflow-hidden rounded-r-md bg-black/15`
+           内容按内容宽高排布（源站实测 2124×115，而 pane 1598×129），所以
+           `rounded-r-md` 的圆角落在**内容右端**而不是视口右缘，内容下方露出
+           的是 pane 的 #1f1f1f。clone 原先只有一层 scroller，且内容被
+           `min-h-full` 拉满，右缘圆角和底部露底都没有。 */
+        <div className="relative min-w-0 flex-1 bg-[#1f1f1f]">
+          <div className="tiny-scrollbar h-full min-w-0 overflow-x-auto overflow-y-hidden">
           <div
             ref={timelineCanvasRef}
             data-director-timeline-canvas
-            className="relative min-h-full min-w-full"
+            className="relative min-w-full shrink-0 overflow-hidden rounded-r-md"
+            // 源站这层是 `bg-black/15`，但它**观察不到**：包裹层与 canvas 同为
+            // 2124×115，canvas 逐像素不透明地铺满（底色就是实测的 #212121）。
+            // 所以这里保留可观测的 #212121，不去追一个永远被盖住的底色。
             style={{
               width: timelineWidth,
               background: DIRECTOR_LANE_BASE_COLOR,
@@ -1713,6 +1728,7 @@ export function DirectorTimeline({
                 </div>
               );
             })}
+          </div>
           </div>
         </div>
         ) : null}
