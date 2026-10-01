@@ -66,7 +66,7 @@
 | `/canvas`、`/canvas/:id` | 画布页与指定画布；**画布库列表页就是 `/canvas`** |
 | `/assets` | 资产页 / 素材库——见 [10-tasks/asset-library.md](10-tasks/asset-library.md) |
 | `/settings`（`?section=channels`，`?continue=1`） | **模型配置 / 个人渠道**——见 [10-tasks/model-channels.md](10-tasks/model-channels.md) |
-| `/plugins`、`/plugins/eagle` | 插件中心与 Eagle 素材库（需开启 `pluginCenterEnabled` 特性） |
+| `/plugins`、`/plugins/eagle` | 插件中心与 Eagle 素材库（`pluginCenterEnabled` 特性**默认就是开的**，你不需要做任何设置——见下方「特性开关默认值」） |
 | `/test-voice-recording` | **语音录制的开发测试页**——它挂在生产路由里、**侧栏没有任何入口**，只能手敲网址进入。页面用途写在源码注释里：「验证输入行内联波形录制和 STT 转写闭环」 |
 
 | `/dev/folders`、`/dev/director-repro` | **两个开发调试台**——文件夹样式预览台与导演台复现台。同样挂在生产路由里、**界面上没有任何入口**，只能手敲网址。比 `/test-voice-recording` 更冷的一层：**导演台复现台专门写了一段「隔离」逻辑**（源码注释：跳过工作区启动，*免得没有后端时打出真实 502 污染判据*），**但那段判断是 `import.meta.env.DEV` 包的，生产构建里会被摇树删除**——所以线上这两页**照样会去打后端**，没起后端时你看到的是连不上的半成品。 |
@@ -208,6 +208,32 @@ BeefTV 会读一批 URL 查询参数，其中有几个**没有任何界面动作
 | `AssetCount` | 2000 | 999999999 | 本地素材数量上限形同虚设 |
 | `CanvasCount` | 1000 | 999999999 | 本地画布数量上限形同虚设 |
 | `ImageTimeoutMinutes` | 8 | 9999 | 本地图片生成没有实际超时压力（视频/音频同理） |
+
+### 特性开关默认值（Batch 173 建，由闸 13 核对）
+
+> **这张表存在的理由**：手册多处写「这一整块由 `xxxEnabled` 特性开关控制，
+> **开关关掉时会怎样**」——**却从不说「默认是哪一边」**。
+> Batch 172 刚在策略常量上栽过一次同样的坑（**只写一套取值等于对多数读者说错**），
+> 而特性开关是同一类：**一句条件句，读者却不知道自己站在哪一边。**
+>
+> **实测 7 个开关里 6 个默认开**，唯一默认关的是 `frontendModels`（上游注释：
+> 「前台模型需要明确配置后才开放」）。**而它们一个都改不了**——
+> 服务端只注册了 `GET /features`，写入方法 `UpdateFeatureAvailability` 在 handler/cmd 层**零调用**
+> （这一点由闸 7 的 `feature-availability-readonly` 断言守着）。
+> **所以「关掉会怎样」是纯条件句：本地部署碰不到，你也改不动它。**
+>
+> 本表由 `scripts/verify-feature-flags.py` 在每次构建时与
+> `backend/internal/platform/feature_availability.go` 的 `DefaultFeatureAvailability()` 现场核对。
+
+| 开关 | 字段名 | 默认值 |
+|---|---|---|
+| 短剧创作 | `ShortDramaEnabled` | true |
+| 任务中心 | `TaskCenterEnabled` | true |
+| 个人渠道 / 自定义渠道 | `CustomChannelsEnabled` | true |
+| 前台模型（**唯一默认关的**） | `FrontendModelsEnabled` | false |
+| 插件中心 | `PluginCenterEnabled` | true |
+| 系统插件对用户可见 | `SystemPluginsVisibleToUsers` | true |
+| 时间线转写 | `TimelineTranscriptionEnabled` | true |
 
 ## 本地伴随进程
 

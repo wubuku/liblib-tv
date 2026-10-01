@@ -183,6 +183,13 @@ run_gate verify-line-counts.py 上游行数
 # 本闸要求**同一个常量的两套取值都与上游相符**——只核一半等于放过了本地模式那一半。
 run_gate verify-runtime-policy.py 部署模式策略
 
+# 第十三道闸（Batch 173 新增）：特性开关的默认值。
+# 手册多处写「这一整块由 xxxEnabled 开关控制，关掉时会怎样」，**却从不说默认是哪一边**——
+# 实测 7 个开关里 6 个默认开，唯一默认关的只有 frontendModels，
+# 所以「需开启 pluginCenterEnabled 特性」这种措辞会让人去找一个**根本不存在**的开关
+# （服务端只注册了 GET /features，写入方法在 handler/cmd 层零调用，闸 7 已守着这一点）。
+run_gate verify-feature-flags.py 特性开关默认值
+
 # 第七道闸：markdown 表格结构核对。前面六道查的都是**内容对不对**，
 # 这一道查**结构坏没坏**——单元格里的裸竖线（最常见就是代码里的 `||` 和带竖线的 URL）
 # 会多切出一列、把整行内容错位，而**构建照样成功**，只有读的人才看得见。

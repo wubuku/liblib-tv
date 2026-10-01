@@ -3452,3 +3452,64 @@ func (s *Service) RuntimePolicy() (RuntimePolicySetting, error) {
 
 35 任务 / 29 verified / 6 excluded / 41 md / 67 截图 / 35 个内容页 / **十二道闸全绿**
 （闸 9 十一个方向 / 36 例；闸 7 34 例；闸 11 5 例；闸 12 6 例）；适用 v1.6.16。
+
+---
+
+## 环境记录一百二十九（Batch 173，2026-10-02，顺着纪律 113 查另一类「只对某一种环境成立」——**特性开关的默认值，7 个里 6 个默认开**）
+
+### 查法：把「条件句」挑出来，看它漏了哪一半
+
+Batch 172 栽在策略常量上（同一个量两套取值、手册只写了一套）。
+**同一族的另一个形态是条件句**：手册多处写「这一整块由 `xxxEnabled` 特性开关控制，
+**开关关掉时会怎样**」——**却从不说默认是哪一边**。
+先看手册到底提了哪些开关：`customChannelsEnabled` 3 处、`pluginCenterEnabled` 1 处。
+
+### 量上游：7 个开关，6 个默认开
+
+`backend/internal/platform/feature_availability.go` 的 `DefaultFeatureAvailability()`：
+
+| 开关 | 默认值 |
+|---|---|
+| `ShortDramaEnabled` / `TaskCenterEnabled` / `CustomChannelsEnabled` | true |
+| **`FrontendModelsEnabled`** | **false**（注释：前台模型需要明确配置后才开放） |
+| `PluginCenterEnabled` / `SystemPluginsVisibleToUsers` / `TimelineTranscriptionEnabled` | true |
+
+### 手册因此有两处会误导读者
+
+1. `20-reference.md` 写「`/plugins`、`/plugins/eagle`｜插件中心与 Eagle 素材库
+   （**需开启 `pluginCenterEnabled` 特性**）」——
+   **它默认就是开的**，而更要紧的是：**根本没有开关可开**。
+   闸 7 的 `feature-availability-readonly` 断言早已确立：服务端**只注册 `GET /features`**，
+   写入方法 `UpdateFeatureAvailability` 在 handler/cmd 层**零调用**。
+   **这句话会让本地用户去找一个不存在的开关。**
+2. `model-channels.md` / `plugins-management.md` / `20-reference.md` 三处写
+   「开关关掉时这个分区会消失」——**作为条件句是对的，但读者不知道自己站在开的那一边**，
+   于是读起来像「这是个待设置项」。
+
+### 修法：4 处正文补「你属于哪一边」，另立闸 13
+
+正文补上同一段话：**该开关默认是开、且界面上与 API 里都没有开关可改它**
+（只注册了 `GET /features`）——**所以「关掉会怎样」是纯条件句，本地部署碰不到**。
+`90-troubleshooting.md` 那种「看到 X 就说明你的环境不是 Y」的写法在 Batch 172 已经用过一次，
+这里继续沿用同一个思路。
+
+新闸 13 `scripts/verify-feature-flags.py`：把 7 个开关的默认值登记成表，现场与
+`DefaultFeatureAvailability()` 核对。
+**如实说明覆盖不到什么**：只核这一个来源；`readFeatureAvailability()` 在配置已存在时
+读数据库里的值——**那属于运维改过的部署**，与本手册的默认场景无关。
+
+### 布尔判据的两种隐蔽失效，反验各钉一条
+
+布尔只有两个取值，于是**「判据太宽」与「判据太窄」都很隐蔽**：
+
+- 「解析不出来」若被当成 `false`，**永远不会报错** → 用例 3/4 专治（必须 rc=2）；
+- **本批真的栽了一次**：我自己写的表把唯一默认关的那格写成 `[**false**]`（带 markdown 强调），
+  闸门当场报「表解析不了 = 整轮未能核对」。**机器可读的格子就该是机器精确的值**，
+  强调要放到别的列去——**这条被钉成用例 3**，免得下次又被判据逼着改表。
+- 用例 2 单列「把 `FrontendModelsEnabled` 写成 true」——**这正是本批的发现本身**
+  （手册原文压根没提它的默认值），若有人「顺手统一成 true」，判据必须抓住。
+
+### 账本口径
+
+35 任务 / 29 verified / 6 excluded / 41 md / 67 截图 / 35 个内容页 / **十三道闸全绿**
+（闸 9 十一个方向 / 36 例；闸 7 34 例；闸 11 5 例；闸 12 6 例；闸 13 5 例）；适用 v1.6.16。
