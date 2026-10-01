@@ -76,6 +76,11 @@ export interface JimengTextNodeData extends Record<string, unknown> {
   /** 卡片背景色 (批 241 SOURCE_FACT: 文本节点选中工具条含「背景色」
    *  调色板——无 + 青绿/靛蓝/紫/橙/黄 六格)；null = 默认深色 */
   bgColor?: string | null;
+  /** 批 816 SOURCE_FACT: 富文本 HTML。源站文本节点编辑面是 **contenteditable DIV**，
+   *  按 ⌘B 会把 `<p>文字</p>` 改写成 `<p><strong>文字</strong></p>`（源站实测，
+   *  README §25）。纯文本存不下 strong/em/u/s/h1~h3/ul/ol 这些结构，故另存 HTML。
+   *  `text` 仍保留一份纯文本，供不支持富文本的落点（节点摘要等）使用。 */
+  html?: string;
 }
 
 /** 音频节点 (Batch 19；样式 CLONE_DECISION 波形 mock 400×120) */

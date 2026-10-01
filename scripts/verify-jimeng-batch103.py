@@ -3,8 +3,15 @@
 Contract (SOURCE_FACT 241-source-text-edit.png): double-clicking a text
 card enters inline editing and shows a rich-text toolbar above the card —
 字体∨ / 无序列表 / 有序列表 / 加粗 / 删除线 / 斜体 / 下划线 / 展开编辑 —
-8 mock buttons in a dark pill; the empty-state hint 双击编辑文本 is
-replaced by the focused textarea; Escape exits editing.
+8 buttons in a dark pill; the empty-state hint 双击编辑文本 is
+replaced by the focused editor; Escape exits editing.
+
+批 816 订正两处：
+- 编辑面从 <textarea> 改成 **contenteditable DIV**（源站实测 activeElement.ce=true，
+  按 ⌘B 会把 <p>文字</p> 改写成 <p><strong>文字</strong></p>）。故此处断言
+  contenteditable 而不是 textarea。
+- 按钮不再是「视觉 mock」，7 个已接上真行为（见 verify-jimeng-batch816.py）。
+  本文件只守**结构契约**（按钮顺序/数量/占位提示消失），行为断言归 816。
 """
 
 import os
@@ -58,6 +65,14 @@ def main() -> None:
                         .map(b => b.getAttribute('aria-label')),
                     hasTextarea: !!document.querySelector(
                         '.react-flow__node-text textarea'),
+                    // 批 816: 源站编辑面是 contenteditable DIV，不是 textarea
+                    hasEditor: !!document.querySelector(
+                        '[data-testid="text-rich-editor"]'),
+                    editorIsCE: (() => {
+                        const ed = document.querySelector(
+                            '[data-testid="text-rich-editor"]');
+                        return !!ed && ed.isContentEditable;
+                    })(),
                     hintGone: ![...document.querySelectorAll(
                         '.react-flow__node-text p')]
                         .some(p => p.textContent.trim() === '双击编辑文本'),
@@ -69,8 +84,9 @@ def main() -> None:
         else:
             if tb["buttons"] != WANT_BUTTONS:
                 failures.append(f"toolbar buttons: {tb['buttons']}")
-            if not tb["hasTextarea"]:
-                failures.append("editing textarea missing")
+            if not tb["hasEditor"] or not tb["editorIsCE"]:
+                # 批 816 订正：源站编辑面是 contenteditable DIV，不是 textarea
+                failures.append("contenteditable 编辑面缺失")
             if not tb["hintGone"]:
                 failures.append("双击编辑文本 hint still visible while editing")
         page.screenshot(

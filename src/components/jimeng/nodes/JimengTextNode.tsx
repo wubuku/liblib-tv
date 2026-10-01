@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { NodeToolbar, Position as TBPosition } from "@xyflow/react";
 import {
   Bold,
@@ -23,6 +23,33 @@ import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
 import { useJimengStore } from "@/store/jimengStore";
 
+/** 纯文本 → 富文本片段：转义后包一层 <p>（批 816 编辑面改成 innerHTML 后必须转义，
+ *  否则节点正文里的尖括号会被当成标签解析）。 */
+function escapeHtml(s: string) {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+/** 批 816: execCommand 在 Chromium 里产出的是<b>/<i>/<strike>，而源站落库的是
+ *  <strong>/<em>/<s>（源站实测 innerHTML 逐条比对）。渲染效果等价，但既然是复刻，
+ *  存进 store 的形态按源站来，免得日后对源站比对时对不上。 */
+function normalizeRichHtml(html: string) {
+  return html
+    .replace(/<(b)(\s[^>]*)?>/gi, "<strong>")
+    .replace(/<\/b>/gi, "</strong>")
+    .replace(/<(i)(\s[^>]*)?>/gi, "<em>")
+    .replace(/<\/i>/gi, "</em>")
+    .replace(/<(strike|s)(\s[^>]*)?>/gi, "<s>")
+    .replace(/<\/strike>/gi, "</s>")
+    .replace(/<\/s>/gi, "</s>")
+    // execCommand 的 formatBlock 在已是 <p> 的块上会再套一层，产出 <p><p>…</p></p>
+    // （实测），顺手压平
+    .replace(/<(p|h[1-6])>\s*<\1>/gi, "<$1>")
+    .replace(/<\/(p|h[1-6])>\s*<\/\1>/gi, "</$1>");
+}
+
 /**
  * 文字节点 (Batch 17/38/68)。结构与视频节点同族 (SOURCE_FACT §5 骨架)。
  * Batch 68 (SOURCE_FACT): 标题图标 T 字形、选中无工具条、占位
@@ -30,17 +57,171 @@ import { useJimengStore } from "@/store/jimengStore";
  * Batch 38: 双击卡片进入行内编辑，Enter/失焦提交。
  * Batch 241 (SOURCE_FACT, 241-source-text-edit.png): 编辑态卡上方出现
  * 富文本工具条——字体 T∨ / 无序列表 / 有序列表 / 加粗 B / 删除线 S /
- * 斜体 I / 下划线 U / 展开钮 (按钮为视觉 mock，未接真实格式化)。
+ * 斜体 I / 下划线 U / 展开钮。
  * Batch 241b (SOURCE_FACT, 243-source-font-menu.png): 选中(非编辑)态
  * 另有工具条 背景色(调色板: 无+青绿/靛蓝/紫/橙/黄 六格) / 展开钮 /
  * 下载——「选中无工具条」的批 68 观察已被源站演进推翻。
+ *
+ * ── Batch 816：工具条从"视觉 mock"接成真行为 ──────────────────────
+ * 批 241 把这 8 个按钮明确标为「视觉 mock，未接真实格式化」。本批接上 7 个，
+ * 依据是源站逐键实测（README §25，全部带 contenteditable 前置态门禁）：
+ *   ⌘B 加粗    <p>文字</p> → <p><strong>文字</strong></p>          响应
+ *   ⌘I 倾斜    → <strong><em>文字</em></strong>                  响应
+ *   ⌘U 下划线  → …<u>文字</u>…                                    响应
+ *   ⌘⇧X 删除线 → …<s><u>文字</u></s>…                             响应
+ *   ⌘⌥1/2/3 一~三级标题  p → h1 → h2 → h3                        响应
+ *   ⌘⌥0 普通文本  h1 → p                                          响应
+ *   ⌘⇧8/7 无序/有序列表 → ul+li / ol+li                            响应
+ * 由此可知源站编辑面是 **contenteditable DIV**（activeElement 实测 ce=true），
+ * 故编辑面从 <textarea> 改为 contenteditable div，格式化走 execCommand。
+ * 「展开编辑」是第 8 个按钮，源站形态待取证，暂不猜（见文件尾 OPEN_QUESTION）。
  */
 export function JimengTextNode({ id, data, selected }: NodeProps) {
   const d = data as JimengTextNodeData;
   const [editing, setEditing] = useState(false);
-  const [draft, setDraft] = useState(d.text);
+  const [fontMenuOpen, setFontMenuOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
-  const taRef = useRef<HTMLTextAreaElement>(null);
+  const editorRef = useRef<HTMLDivElement>(null);
+
+  /** 进入编辑态的初始内容：优先富文本，回落纯文本 */
+  const initialHtml = d.html ?? (d.text ? `<p>${escapeHtml(d.text)}</p>` : "");
+
+  // 批 816: 编辑面**不用** dangerouslySetInnerHTML。
+  // 实测那样写的话，点任意工具条按钮触发重渲染时 React 会把 innerHTML 重写回
+  // initialHtml（这里是空串），**用户刚打的字当场消失**。改成进入编辑态时
+  // 由 effect 用 ref 灌一次，之后这个节点归用户（浏览器）管，React 不再碰。
+  const seededRef = useRef(false);
+  useEffect(() => {
+    if (!editing) {
+      seededRef.current = false;
+      return;
+    }
+    if (seededRef.current) return;
+    seededRef.current = true;
+    const el = editorRef.current;
+    if (el) el.innerHTML = initialHtml;
+    el?.focus();
+  }, [editing, initialHtml]);
+
+  const updateNodeData = useJimengStore((s) => s.updateNodeData);
+  // Batch 48: 提交写回 store (mock 文字节点真实联动)；批 816 起同时写富文本 HTML
+  const commit = () => {
+    setEditing(false);
+    setFontMenuOpen(false);
+    const el = editorRef.current;
+    if (!el) return;
+    const nextHtml = normalizeRichHtml(el.innerHTML);
+    const nextText = (el.innerText || "").trim();
+    updateNodeData(id, { html: nextHtml, text: nextText });
+  };
+
+  // ── Batch 816: 源站实测的 10 个文本快捷键 ──────────────────────────
+  // 走 execCommand：它作用在当前选区上，与源站「选区加粗」的行为一致，
+  // 且不需要自己维护 Range。（批 241 的按钮是纯视觉 mock，现在共用这一套。）
+  const exec = useCallback((cmd: string, value?: string) => {
+    const el = editorRef.current;
+    if (!el) return;
+    // 批 816: 点工具条按钮时焦点会短暂离开编辑面，再 focus() 回来时选区已经没了，
+    // execCommand 就会作用在光标处而不是选中文字上。先存 Range、focus 后还原。
+    const sel = window.getSelection();
+    const saved = sel && sel.rangeCount ? sel.getRangeAt(0) : null;
+    el.focus();
+    if (saved && sel) {
+      sel.removeAllRanges();
+      sel.addRange(saved);
+    }
+    document.execCommand(cmd, false, value);
+  }, []);
+
+  /** 块级切换（普通文本 / 一~三级标题，对应面板 ⌘⌥0~3）。
+
+   * 不用 execCommand('formatBlock')：实测它在**已经是 <p> 的块上会再套一层**，
+   * 产出 `<p><p>…</p></p>`，反复按同一个键能堆出七八层。这里自己换块：
+   * 找到选区所在的最内层块，用目标标签重建它并把子节点搬过去，天然幂等。
+   */
+  const applyBlock = useCallback((tag: string) => {
+    const el = editorRef.current;
+    if (!el) return;
+    el.focus();
+    const sel = window.getSelection();
+    if (!sel || !sel.rangeCount) return;
+
+    const BLOCK = new Set(["P", "H1", "H2", "H3", "H4", "H5", "H6", "LI", "UL", "OL", "BLOCKQUOTE"]);
+    let block: HTMLElement | null = sel.getRangeAt(0).startContainer as HTMLElement;
+    while (block && block !== el && !(block.tagName && BLOCK.has(block.tagName))) {
+      block = block.parentElement;
+    }
+    if (block === el) block = null;
+
+    // 在列表里：把整个列表摊平成一个块（列表→标题/段落的常规语义）
+    let target: HTMLElement | null = block;
+    if (block?.tagName === "LI") {
+      target = block.parentElement; // UL / OL
+    }
+
+    const next = document.createElement(tag);
+    if (target) {
+      if (target.tagName === "UL" || target.tagName === "OL") {
+        // 摊平列表：搬 **<li> 的内容**，不是把 <li> 塞进 <p>（那是非法 HTML，
+        // 实测会得到 `<p><li>…</li></p>`）
+        const items = [...target.children].filter((c) => c.tagName === "LI");
+        items.forEach((li, i) => {
+          if (i > 0) next.appendChild(document.createElement("br"));
+          while (li.firstChild) next.appendChild(li.firstChild);
+        });
+      } else {
+        while (target.firstChild) next.appendChild(target.firstChild);
+      }
+      target.replaceWith(next);
+    } else {
+      next.textContent = sel.toString();
+      el.appendChild(next);
+    }
+    const r = document.createRange();
+    r.selectNodeContents(next);
+    sel.removeAllRanges();
+    sel.addRange(r);
+  }, []);
+
+  const onEditorKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const mod = e.metaKey || e.ctrlKey;
+    if (mod) {
+      const k = e.key.toLowerCase();
+      if (k === "b" && !e.shiftKey) {
+        e.preventDefault(); exec("bold"); return;
+      }
+      if (k === "i" && !e.shiftKey) {
+        e.preventDefault(); exec("italic"); return;
+      }
+      if (k === "u" && !e.shiftKey) {
+        e.preventDefault(); exec("underline"); return;
+      }
+      if (k === "x" && e.shiftKey) {
+        e.preventDefault(); exec("strikeThrough"); return;
+      }
+      if (k === "8" && e.shiftKey) {
+        e.preventDefault(); exec("insertUnorderedList"); return;
+      }
+      if (k === "7" && e.shiftKey) {
+        e.preventDefault(); exec("insertOrderedList"); return;
+      }
+      // ⌘⌥0~3 = 普通文本 / 一~三级标题（源站实测 p ⇄ h1/h2/h3）
+      if (e.altKey && ["0", "1", "2", "3"].includes(e.key)) {
+        e.preventDefault();
+        applyBlock(e.key === "0" ? "p" : `h${e.key}`);
+        return;
+      }
+    }
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      commit();
+    }
+    if (e.key === "Escape") {
+      e.preventDefault();
+      setEditing(false);
+      setFontMenuOpen(false);
+    }
+  };
 
   // 批 241b SOURCE_FACT: 调色板 无 + 青绿/靛蓝/紫/橙/黄 (色值为 CLONE_DECISION)
   const BG_COLORS: { label: string; value: string | null }[] = [
@@ -51,17 +232,6 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
     { label: "橙", value: "#FF9A4D" },
     { label: "黄", value: "#FFD44D" },
   ];
-
-  useEffect(() => {
-    if (editing) taRef.current?.focus();
-  }, [editing]);
-
-  const updateNodeData = useJimengStore((s) => s.updateNodeData);
-  // Batch 48: 提交写回 store (mock 文字节点真实联动)
-  const commit = () => {
-    setEditing(false);
-    updateNodeData(id, { text: draft });
-  };
 
   return (
     <div
@@ -147,7 +317,9 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
           setEditing(true);
         }}
       >
-        {/* 批 241 SOURCE_FACT: 编辑态富文本工具条 (视觉 mock) */}
+        {/* 批 241 SOURCE_FACT: 编辑态富文本工具条。
+            批 816: 7 个按钮接上真行为（与上方 10 个快捷键共用 exec 这一套），
+            与快捷键的实测对应见文件头。 */}
         {editing ? (
           <div
             className="absolute bottom-full left-1/2 z-[130] mb-2 flex -translate-x-1/2 items-center gap-0.5 rounded-xl bg-[#262626] p-1"
@@ -155,53 +327,117 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
             aria-label="文本格式"
             data-testid="text-format-toolbar"
           >
+            <div className="relative">
+              <button
+                type="button"
+                aria-label="字体"
+                aria-expanded={fontMenuOpen}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => setFontMenuOpen((v) => !v)}
+                className="flex h-7 items-center gap-0.5 rounded-md px-1.5 text-white/85 hover:bg-white/10"
+              >
+                <Type size={14} />
+                <ChevronDown size={10} className="text-white/60" />
+              </button>
+              {/* 批 816: 字体菜单 = 面板承诺的 ⌘⌥0~3 四个块级样式
+                  （源站实测 p ⇄ h1/h2/h3 双向可转，见文件头） */}
+              {fontMenuOpen ? (
+                <div
+                  role="menu"
+                  aria-label="字体"
+                  data-testid="text-font-menu"
+                  className="absolute bottom-full left-0 z-[140] mb-1 flex w-28 flex-col rounded-lg py-1"
+                  style={{ background: "rgb(38,38,38)" }}
+                >
+                  {[
+                    { label: "普通文本", tag: "p", cls: "text-[13px] font-normal" },
+                    { label: "一级标题", tag: "h1", cls: "text-[16px] font-semibold" },
+                    { label: "二级标题", tag: "h2", cls: "text-[15px] font-semibold" },
+                    { label: "三级标题", tag: "h3", cls: "text-[14px] font-semibold" },
+                  ].map(({ label, tag, cls }) => (
+                    <button
+                      key={label}
+                      type="button"
+                      role="menuitem"
+                      aria-label={`字体 ${label}`}
+                      onMouseDown={(e) => e.preventDefault()}
+                      onClick={() => {
+                        applyBlock(tag);
+                        setFontMenuOpen(false);
+                      }}
+                      className={`px-3 py-1.5 text-left text-white/85 hover:bg-white/10 ${cls}`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+            </div>
             {[
-              { label: "字体", node: <Type size={14} />, chevron: true },
-              { label: "无序列表", node: <List size={14} /> },
-              { label: "有序列表", node: <ListOrdered size={14} /> },
-              { label: "加粗", node: <Bold size={14} /> },
-              { label: "删除线", node: <Strikethrough size={14} /> },
-              { label: "斜体", node: <Italic size={14} /> },
-              { label: "下划线", node: <Underline size={14} /> },
-              { label: "展开编辑", node: <Maximize2 size={12} /> },
-            ].map(({ label, node: icon, chevron }) => (
+              { label: "无序列表", node: <List size={14} />, cmd: "insertUnorderedList" },
+              { label: "有序列表", node: <ListOrdered size={14} />, cmd: "insertOrderedList" },
+              { label: "加粗", node: <Bold size={14} />, cmd: "bold" },
+              { label: "删除线", node: <Strikethrough size={14} />, cmd: "strikeThrough" },
+              { label: "斜体", node: <Italic size={14} />, cmd: "italic" },
+              { label: "下划线", node: <Underline size={14} />, cmd: "underline" },
+            ].map(({ label, node: icon, cmd }) => (
               <button
                 key={label}
                 type="button"
                 aria-label={label}
+                data-testid={`text-fmt-${label}`}
+                // mousedown 阻止默认：否则点按钮会先把编辑面的选区收掉
                 onMouseDown={(e) => e.preventDefault()}
+                onClick={() => exec(cmd)}
                 className="flex h-7 items-center gap-0.5 rounded-md px-1.5 text-white/85 hover:bg-white/10"
               >
                 {icon}
-                {chevron ? <ChevronDown size={10} className="text-white/60" /> : null}
               </button>
             ))}
+            {/* OPEN_QUESTION 816-a: 源站形态未取证，暂不猜 */}
+            <button
+              type="button"
+              aria-label="展开编辑"
+              data-testid="text-expand"
+              onMouseDown={(e) => e.preventDefault()}
+              className="flex h-7 items-center rounded-md px-1.5 text-white/85 hover:bg-white/10"
+            >
+              <Maximize2 size={12} />
+            </button>
           </div>
         ) : null}
         {editing ? (
-          <textarea
-            ref={taRef}
-            value={draft}
-            onChange={(e) => setDraft(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                setEditing(false);
-              }
-              if (e.key === "Escape") {
-                setDraft(d.text);
-                setEditing(false);
-              }
+          /* 批 816 SOURCE_FACT: 源站编辑面是 contenteditable DIV（activeElement.ce=true），
+             富文本结构活在 innerHTML 里，故不用 textarea。 */
+          <div
+            ref={editorRef}
+            data-testid="text-rich-editor"
+            contentEditable
+            suppressContentEditableWarning
+            onKeyDown={onEditorKeyDown}
+            onBlur={(e) => {
+              // 批 816: 点工具条按钮会把焦点移出编辑面。若不挡这一下，
+              // onBlur→commit()→setEditing(false) 会把工具条整个卸掉，
+              // 表现为「点第一个按钮有效、之后全找不到按钮」。
+              const next = e.relatedTarget as HTMLElement | null;
+              if (next?.closest?.('[data-testid="text-format-toolbar"]')) return;
+              commit();
             }}
-            className="h-full w-full resize-none bg-transparent text-[13px] leading-[22px] text-white outline-none"
+            className="h-full w-full overflow-y-auto text-[13px] leading-[22px] text-white outline-none [&_h1]:text-[16px] [&_h1]:font-semibold [&_h2]:text-[15px] [&_h2]:font-semibold [&_h3]:text-[14px] [&_h3]:font-semibold [&_p]:m-0 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5"
+          />
+        ) : d.html ? (
+          <div
+            data-testid="text-rich-view"
+            className="text-[13px] leading-[22px] text-white/85 [&_h1]:text-[16px] [&_h1]:font-semibold [&_h2]:text-[15px] [&_h2]:font-semibold [&_h3]:text-[14px] [&_h3]:font-semibold [&_p]:m-0 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5"
+            dangerouslySetInnerHTML={{ __html: d.html }}
           />
         ) : (
           <p
             className={`text-[13px] leading-[22px] whitespace-pre-wrap ${
-              draft || d.text ? "text-white/85" : "text-white/40"
+              d.text ? "text-white/85" : "text-white/40"
             }`}
           >
-            {draft || d.text || "双击编辑文本"}
+            {d.text || "双击编辑文本"}
           </p>
         )}
       </div>
