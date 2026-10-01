@@ -389,3 +389,63 @@ screenshots:
     visible_text: 节点 7 已保存 / 编组 1 / 解除编组 布局∨ 背景色 ⤓ / 00:02 / 00:06
     alt: 编组卡片「编组 1」：上方工具条为 解除编组 / 布局∨ / 背景色 / 下载，组卡片四角各有一个圆形控制点，成员节点整体被圈在组内；顶栏节点计数为 7（组本身计入）
     sha256: ec8c3847ed4e16600b78c04ff1b7ad79b8240ce1471c3b18870a2ecdcf911ff0
+
+  - file: screenshots/28-timeline-clips.png
+    task_id: timeline-node
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T08:00:00+08:00
+    verified_locator: '时间线节点内 [aria-label^="Clip"] 两段，状态串 2 clips，播放读数 00:02 / 00:07'
+    visible_text: 00:02 / 00:07 / 00:00 00:05 00:10 00:15 00:20 00:25 00:30 / 00:02 / 00:05 / 全屏编辑
+    alt: 时间线节点内已有两个片段：轨道上并排两段缩略图，左段标 00:02、右段标 00:05，白色竖线为播放头正停在 00:02；上方控制栏为 分割 / 删除 与 ▶ 00:02 / 00:07（总时长为两段之和）、右侧导出时间线与全屏编辑；刻度尺仍为 00:00 起每 5 秒一格到 00:30；轨道末尾还有一个 ＋ 可继续加素材
+    sha256: ca434501f002b1e7897d2bb879d03295a78f5357adb26b9254f4369ddb8193d2
+
+  - file: screenshots/29-timeline-add-menu.png
+    task_id: timeline-node
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T07:52:00+08:00
+    verified_locator: 'aria 添加素材到时间线 展开菜单，三项逐字 本地上传 / 从资产库添加 / 从画布选择'
+    visible_text: 本地上传 / 从资产库添加 / 从画布选择 / 添加素材到时间线 / 00:30
+    alt: 时间线节点「时间线 1」内的「＋ 添加素材到时间线」展开为三项菜单：本地上传 / 从资产库添加 / 从画布选择，菜单浮层在轨道区下方展开
+    sha256: 76b15d44b95b25fe0b2c648d0488ac8d371f6c233462b2f9764610e443fd8343
+
+  - file: screenshots/30-upload-complete.png
+    task_id: assets-and-upload
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T07:48:00+08:00
+    verified_locator: '上传后生成的图片节点（标题为上传文件名，已省略中间）；状态串逐字 <filename>.png: Upload complete'
+    visible_text: 节点 6 已保存 / 智能改图 / 720 全景 / 扩图 / 智能超清 / 抠图 / 预设 / 多角度 / 智能打光 / 工具 / AI 助手
+    alt: 本地上传完成：左栏「上传」高亮为按下态，顶部工具条为图片节点专属的 智能改图✦ / 720 全景✦ / 扩图 / 智能超清 / 抠图 / 预设 / 多角度 / 智能打光✦ / 工具 / AI 助手 / 全屏 / 下载；画布中央是刚上传生成的图片节点，标题为上传文件名（已省略中间），顶栏「节点 6 已保存」
+    sha256: 4e7611992b6398822fdd8475b3421bc9f94e0de5da926ea7def8cfe34c4ef5bc
+
+  - file: screenshots/31-shortcuts-panel-bottom.png
+    task_id: help-and-shortcuts
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T07:46:00+08:00
+    verified_locator: '快捷键抽屉下滚位置：时间线组尾部 + 文本编辑组；橙框为注入 overlay'
+    visible_text: 向左裁剪 Q / 向右裁剪 W / 缩放时间线 ⌘ scroll / 文本编辑 / 加粗 ⌘ B / 倾斜 ⌘ I / 一级标题 ⌘ ⌥ 1 / 无序列表 ⌘ ⇧ 8 / 有序列表 ⌘ ⇧ 7
+    alt: 快捷键面板下滚部分：时间线组尾部（向左裁剪 Q / 向右裁剪 W / 缩放时间线 ⌘scroll）与完整文本编辑组（加粗 ⌘B、倾斜 ⌘I、下划线 ⌘U、删除线 ⌘⇧X、一级/二级/三级标题 ⌘⌥1/2/3、普通文本 ⌘⌥0、无序列表 ⌘⇧8、有序列表 ⌘⇧7）
+    sha256: 9155b56e9bae7700e49624bfbb874014b3a9d519a55c271a28c095787eeeb0e6
+
+  - file: screenshots/32-smart-layout.png
+    task_id: organize-group-layout
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T07:45:00+08:00
+    verified_locator: '执行「智能布局」后 .react-flow__node 坐标快照（行 y=99 / y=499）'
+    visible_text: 视频 1 / 文本 1 / 文本 2 / 文本 3 / 文本 4 / 100%
+    alt: 执行「智能布局」后的画布：同样排成两行、行间距 400，节点尺寸不变；与「宫格布局」相比肉眼差别很小，两者排出的行都不左对齐到同一列起点
+    sha256: 8a12de42de650696f74d9a291fcb17579b055ebe3f5a8218a68808b1a0c008b6
