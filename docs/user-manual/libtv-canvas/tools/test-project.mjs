@@ -13,4 +13,19 @@ export const TEST = {
   note: '由「新建项目」按钮创建的一次性取证项目，用户真实项目为 a860e1da8e9e4504bececda022386429',
 };
 
+/**
+ * 已用探针 p12 逐个打开两个 id 读顶栏标签**坐实**的对应关系（不推断）：
+ *   a4ef3de0cdca4977ba45b373eb5165b5 → 画布「手册取证画布」（原名「画布 1」）
+ *   34226ef170f248248c74f85290228f6b → 画布「画布 2」
+ *
+ * 由此得到一个关键结构事实：**LibTV 里一张「画布」= 一个 projectId**，
+ * 切换画布时 spaceId 不变、projectId 变。所以「切换画布」不是视图切换，是换了一整个项目。
+ * 而顶栏 `aria-label="项目名称"` 的输入框在两张画布下都显示同一个「未命名工作区」，
+ * 说明那个输入框绑的是 spaceId 那一层，**改画布名不会改它**。
+ */
+export const CANVAS_MAP = {
+  'a4ef3de0cdca4977ba45b373eb5165b5': '手册取证画布',
+  '34226ef170f248248c74f85290228f6b': '画布 2',
+};
+
 export const CANVAS_URL = `https://www.liblib.tv/canvas?spaceId=${TEST.spaceId}&projectId=${TEST.projectId}`;

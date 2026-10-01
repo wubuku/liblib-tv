@@ -63,9 +63,12 @@ export async function isEditorLocked(page) {
   });
 }
 
+/** Skill 自带的目标高亮脚本绝对路径（tools → libtv-canvas → user-manual → docs → 仓库根）。 */
+export const HIGHLIGHT_JS = resolve(HERE, '../../../../.agents/skills/web-studio-user-manual/scripts/highlight-target.js');
+
 /** 注入目标高亮脚本（幂等）。 */
 export async function injectHighlight(page) {
-  await page.addScriptTag({ path: resolve(HERE, '../../../.agents/skills/web-studio-user-manual/scripts/highlight-target.js') });
+  await page.addScriptTag({ path: HIGHLIGHT_JS });
 }
 
 /**
