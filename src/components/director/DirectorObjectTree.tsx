@@ -306,7 +306,10 @@ export function DirectorObjectTree() {
             aria-label="搜索场景内容"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="搜索场景内容"
+            // Batch 588（源站 2026-10-01 实测）：源站搜索框的
+            // placeholder 逐字是「请输入搜索内容」（216×32，无 aria-label）；
+            // 「搜索场景对象」是另一个 1×1 span 的无障碍标签，不是同一串。
+            placeholder="请输入搜索内容"
             className="min-w-0 flex-1 bg-transparent text-xs text-[#dedede] outline-none placeholder:text-[#666]"
           />
         </label>

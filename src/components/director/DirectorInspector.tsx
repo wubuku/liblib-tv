@@ -1471,6 +1471,11 @@ function HexColorRow({
           value={draft}
           disabled={disabled}
           spellCheck={false}
+          // Batch 588（源站实测）：hex 文本框 maxLength=6，且 `uppercase` 是
+          // **CSS text-transform**（源站 computed textTransform=uppercase，
+          // 底层值仍按输入原样保留），不是把值转大写——按值转换会与 585
+          // 已固化的 store 小写约定互相打架。
+          maxLength={6}
           onChange={(event) => {
             const next = event.target.value.trim();
             setDraft(next);
@@ -1479,7 +1484,7 @@ function HexColorRow({
             }
           }}
           onBlur={() => setDraft(value.replace("#", ""))}
-          className="h-6 w-[68px] rounded border border-white/[0.08] bg-[#222] px-1.5 text-[10px] tabular-nums text-[#c8c8c8] outline-none focus:border-[#09caf5]/60 disabled:opacity-45"
+          className="h-6 w-[68px] rounded border border-white/[0.08] bg-[#222] px-1.5 text-[10px] uppercase tabular-nums text-[#c8c8c8] outline-none focus:border-[#09caf5]/60 disabled:opacity-45"
         />
         <input
           type="color"
@@ -1492,6 +1497,115 @@ function HexColorRow({
         />
       </span>
     </label>
+  );
+}
+
+function SceneToggleRow({
+  label,
+  checked,
+  testId,
+  dataAttr = "data-director-scene-toggle",
+  onToggle,
+  compact = false,
+}: {
+  label: string;
+  checked: boolean;
+  testId: string;
+  /** 沿用既有行的属性名（batch 550 断言 data-director-scene-snap-to-grid）。 */
+  dataAttr?: string;
+  onToggle: (next: boolean) => void;
+  /** 地面行实测为 240×15（嵌套行），其余三行为整宽 280×56。 */
+  compact?: boolean;
+}) {
+  // Batch 588（源站 2026-10-01 实测）：场景面板的开关行不是原生 checkbox，
+  // 而是整宽 button（280×56，透明底、space-between、items-center）内含
+  // 标签 span + 24×14 全圆角轨道 + 10×10 旋钮：
+  //   开 = 轨道纯白 rgb(255,255,255)、旋钮 rgb(31,31,31) 居右（轨道 x+12）
+  //   关 = 轨道 rgba(255,255,255,0.18)、旋钮居左（轨道 x+2）
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-label={label}
+      aria-checked={checked}
+      {...{ [dataAttr]: testId }}
+      data-director-scene-toggle-on={checked ? "true" : "false"}
+      onClick={() => onToggle(!checked)}
+      className={cn(
+        "flex w-full items-center justify-between border-0 bg-transparent px-4 text-left text-xs text-[#bcbcbc]",
+        compact ? "h-[15px]" : "h-14",
+      )}
+    >
+      <span className="truncate">{label}</span>
+      <span
+        aria-hidden="true"
+        data-director-scene-toggle-track
+        className={cn(
+          "relative block h-[14px] w-6 shrink-0 rounded-full transition-colors",
+          checked ? "bg-white" : "bg-white/[0.18]",
+        )}
+      >
+        <span
+          data-director-scene-toggle-knob
+          className={cn(
+            "absolute top-[2px] block size-[10px] rounded-full transition-all",
+            checked
+              ? "left-[12px] bg-[#1f1f1f]"
+              : "left-[2px] bg-white/[0.18]",
+          )}
+        />
+      </span>
+    </button>
+  );
+}
+
+function NumericReadoutInput({
+  text,
+  ariaLabel,
+  testId,
+  width = "w-[70px]",
+  onCommit,
+}: {
+  text: string;
+  ariaLabel: string;
+  testId: string;
+  width?: string;
+  onCommit: (next: number) => void;
+}) {
+  // Batch 588（源站 2026-10-01 实测）：滑杆同排的读数是可编辑
+  // `input[type=text]`（readOnly=false、disabled=false），不是只读文本，
+  // 五处共用同一套样式 `focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg
+  // border-0`。提交语义沿用 batch 585 已验证的天空颜色 hex 行模式：
+  // 失焦提交、无法解析则回滚到上一个合法值。
+  const [draft, setDraft] = useState(text);
+  useEffect(() => {
+    setDraft(text);
+  }, [text]);
+  const commit = (next: string) => {
+    const parsed = Number.parseFloat(next.replace(/[%°]/g, "").trim());
+    if (Number.isFinite(parsed)) {
+      onCommit(parsed);
+    }
+  };
+  return (
+    <input
+      type="text"
+      inputMode="decimal"
+      data-director-scene-readout={testId}
+      aria-label={ariaLabel}
+      value={draft}
+      spellCheck={false}
+      onChange={(event) => {
+        setDraft(event.target.value);
+        commit(event.target.value);
+      }}
+      onBlur={() => setDraft(text)}
+      className={cn(
+        "h-7 min-w-px rounded-lg border-0 bg-white/[0.06] px-2 text-right text-[11px]",
+        "tabular-nums text-[#c8c8c8] outline-none focus:bg-white/[0.13]",
+        width,
+      )}
+    />
   );
 }
 
@@ -2283,9 +2397,17 @@ export function DirectorInspector({
                     }
                     className="w-24 accent-[#09caf5]"
                   />
-                  <span className="w-10 text-right text-[10px] tabular-nums text-[#8c8c8c]">
-                    {Math.round((scene.sceneScale ?? 1) * 100)}%
-                  </span>
+                  <NumericReadoutInput
+                    testId="scale"
+                    ariaLabel="场景缩放读数"
+                    text={`${Math.round((scene.sceneScale ?? 1) * 100)}%`}
+                    // 源站读数是百分比（值 3 -> `300%`），store 存的是倍数。
+                    onCommit={(next) =>
+                      updateScene({
+                        sceneScale: Math.min(10, Math.max(0.1, next / 100)),
+                      })
+                    }
+                  />
                 </span>
               </label>
               <div className="space-y-1 text-xs text-[#bcbcbc]">
@@ -2477,9 +2599,16 @@ export function DirectorInspector({
                     }
                     className="w-24 accent-[#09caf5]"
                   />
-                  <span className="w-8 text-right text-[10px] tabular-nums text-[#8c8c8c]">
-                    {scene.panoramaRotation ?? 0}°
-                  </span>
+                  <NumericReadoutInput
+                    testId="panorama-rotation"
+                    ariaLabel="全景球水平旋转读数"
+                    text={`${scene.panoramaRotation ?? 0}°`}
+                    onCommit={(next) =>
+                      updateScene({
+                        panoramaRotation: Math.min(360, Math.max(0, next)),
+                      })
+                    }
+                  />
                 </span>
               </label>
               <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
@@ -2500,47 +2629,39 @@ export function DirectorInspector({
                     }
                     className="w-24 accent-[#09caf5]"
                   />
-                  <span className="w-8 text-right text-[10px] tabular-nums text-[#8c8c8c]">
-                    {scene.panoramaSphereRadius ?? 30}
-                  </span>
+                  <NumericReadoutInput
+                    testId="sphere-radius"
+                    ariaLabel="全景球球形半径读数"
+                    text={`${scene.panoramaSphereRadius ?? 30}`}
+                    onCommit={(next) =>
+                      updateScene({
+                        panoramaSphereRadius: Math.min(500, Math.max(10, next)),
+                      })
+                    }
+                  />
                 </span>
               </label>
-              <label className="flex h-9 items-center justify-between border-b border-white/[0.06] text-xs text-[#bcbcbc]">
-                <span>角色标签</span>
-                <input
-                  data-director-scene-character-labels
-                  type="checkbox"
-                  checked={scene.showCharacterLabels ?? true}
-                  onChange={(event) =>
-                    updateScene({ showCharacterLabels: event.target.checked })
-                  }
-                  className="accent-[#09caf5]"
-                />
-              </label>
-              <label className="flex h-9 items-center justify-between border-b border-white/[0.06] text-xs text-[#bcbcbc]">
-                <span>网格吸附</span>
-                <input
-                  data-director-scene-snap-to-grid
-                  type="checkbox"
-                  checked={scene.snapToGrid ?? false}
-                  onChange={(event) =>
-                    updateScene({ snapToGrid: event.target.checked })
-                  }
-                  className="accent-[#09caf5]"
-                />
-              </label>
-              <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
-                <span>高斯地面吸附</span>
-                <input
-                  data-director-scene-gaussian-snap
-                  type="checkbox"
-                  checked={scene.gaussianGroundSnap ?? true}
-                  onChange={(event) =>
-                    updateScene({ gaussianGroundSnap: event.target.checked })
-                  }
-                  className="accent-[#09caf5]"
-                />
-              </label>
+              <SceneToggleRow
+                label="角色标签"
+                testId="character-labels"
+                dataAttr="data-director-scene-character-labels"
+                checked={scene.showCharacterLabels ?? true}
+                onToggle={(next) => updateScene({ showCharacterLabels: next })}
+              />
+              <SceneToggleRow
+                label="网格吸附"
+                testId="snap-to-grid"
+                dataAttr="data-director-scene-snap-to-grid"
+                checked={scene.snapToGrid ?? false}
+                onToggle={(next) => updateScene({ snapToGrid: next })}
+              />
+              <SceneToggleRow
+                label="高斯地面吸附"
+                testId="gaussian-snap"
+                dataAttr="data-director-scene-gaussian-snap"
+                checked={scene.gaussianGroundSnap ?? true}
+                onToggle={(next) => updateScene({ gaussianGroundSnap: next })}
+              />
               {/* Batch 582（源站实测 y 序：透明度 920 在前、高度 992 在后，
                   且透明度带 `0.40` 两位小数读数、高度步进 0.05）：顺序与
                   读数对齐源站。 */}
@@ -2562,9 +2683,17 @@ export function DirectorInspector({
                     }
                     className="w-24 accent-[#09caf5]"
                   />
-                  <span className="w-8 text-right text-[10px] tabular-nums text-[#8c8c8c]">
-                    {(scene.groundOpacity ?? 0.4).toFixed(2)}
-                  </span>
+                  <NumericReadoutInput
+                    testId="ground-opacity"
+                    ariaLabel="地面透明度读数"
+                    width="w-[62px]"
+                    text={(scene.groundOpacity ?? 0.4).toFixed(2)}
+                    onCommit={(next) =>
+                      updateScene({
+                        groundOpacity: Math.min(1, Math.max(0, next)),
+                      })
+                    }
+                  />
                 </span>
               </label>
               <label className="flex h-9 items-center justify-between text-xs text-[#bcbcbc]">
@@ -2583,9 +2712,17 @@ export function DirectorInspector({
                     }
                     className="w-24 accent-[#09caf5]"
                   />
-                  <span className="w-8 text-right text-[10px] tabular-nums text-[#8c8c8c]">
-                    {(scene.groundHeight ?? 0).toFixed(1)}
-                  </span>
+                  <NumericReadoutInput
+                    testId="ground-height"
+                    ariaLabel="地面高度读数"
+                    width="w-[62px]"
+                    text={(scene.groundHeight ?? 0).toFixed(1)}
+                    onCommit={(next) =>
+                      updateScene({
+                        groundHeight: Math.min(2, Math.max(-2, next)),
+                      })
+                    }
+                  />
                 </span>
               </label>
             </section>

@@ -125,10 +125,18 @@ def run_desktop(page: Page) -> dict[str, Any]:
         )
 
     # 2) 场景缩放 range + percentage readout
+    # Batch 588: 读数改为源站的**可编辑文本框**，其值不再出现在 innerText
+    # 里（input 的 value 不参与 innerText），故断言改为读文本框值。
     scale = page.locator("[data-director-scene-scale]")
     check("scale:min", scale.get_attribute("min") == "0.1")
     check("scale:max", scale.get_attribute("max") == "10")
-    check("scale:percent-readout", "%" in panel.inner_text())
+    scale_readout = page.locator("[data-director-scene-readout='scale']")
+    result["scale_readout"] = scale_readout.input_value()
+    check(
+        "scale:percent-readout",
+        scale_readout.input_value().strip().endswith("%"),
+        detail=scale_readout.input_value(),
+    )
 
     # 3) axis drag-scrub chips with the source aria, and a real drag commit
     chip_aria = page.evaluate(
@@ -183,15 +191,11 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("radius:step", radius.get_attribute("step") == "10")
     height = page.locator("[data-director-scene-ground-height]")
     check("height:step", height.get_attribute("step") == "0.05")
-    opacity_text = page.evaluate(
-        """() => {
-          const label = [...document.querySelectorAll('span')]
-            .find(el => el.textContent.trim() === '地面透明度');
-          return label?.parentElement?.innerText.replace(/\\n/g, ' ').trim() || '';
-        }"""
-    )
+    # Batch 588: 同上，透明度读数已是可编辑文本框，改读其值。
+    opacity_readout = page.locator("[data-director-scene-readout='ground-opacity']")
+    opacity_text = opacity_readout.input_value()
     result["opacity_row_text"] = opacity_text
-    check("opacity:readout", "0.40" in opacity_text, detail=opacity_text)
+    check("opacity:readout", opacity_text.strip() == "0.40", detail=opacity_text)
 
     # 5) sky colour hex —— Batch 585 起为源站的**可编辑 hex 文本框**
     # （582 原为只读读数），故断言改为读文本框值。

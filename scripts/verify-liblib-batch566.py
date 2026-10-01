@@ -101,7 +101,11 @@ def run_desktop(page: Page) -> dict[str, Any]:
     )
     check(
         "height:label",
-        "0.5" in slider.locator("xpath=..").inner_text(),
+        # Batch 588: 读数改为源站的可编辑文本框，input 的 value 不参与
+        # innerText，故改读文本框值（0.5 在 -2..2/step 0.05 上是合法值，
+        # 两位读数按 toFixed(1) 呈现）。
+        page.locator("[data-director-scene-readout='ground-height']").input_value()
+        == "0.5",
     )
 
     # 负值也支持（-2..2 范围）

@@ -113,19 +113,23 @@ def run_desktop(page: Page) -> dict[str, Any]:
             "window.__director_store.getState().scene.panoramaRotation"
         ) == 90,
     )
-    set_range(page, "[data-director-scene-panorama-radius]", "55")
+    # Batch 588 基线对照：582 已把球形半径量程对齐源站实测的
+    # 10–500 **step 10**，range 的值净化会把 55 吸附到 60，故原断言
+    # （期望 55）自 582 起即已失效，与 588 无关。改用步进对齐的取值。
+    # 读数自 588 起是可编辑文本框（input 的 value 不进 innerText），
+    # 故标签断言改读文本框值。
+    set_range(page, "[data-director-scene-panorama-radius]", "60")
     page.wait_for_timeout(150)
     check(
         "radius:persist",
         page.evaluate(
             "window.__director_store.getState().scene.panoramaSphereRadius"
-        ) == 55,
+        ) == 60,
     )
     check(
         "radius:label-updates",
-        "55" in page.locator("[data-director-scene-panorama-radius]")
-        .locator("xpath=..")
-        .inner_text(),
+        page.locator("[data-director-scene-readout='sphere-radius']").input_value()
+        == "60",
     )
 
     check("diagnostics:zero", not errors)

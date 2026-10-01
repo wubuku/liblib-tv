@@ -1,0 +1,80 @@
+{
+  "batch": 588,
+  "title": "场景面板读数改为可编辑文本框 + 开关行自绘轨道/旋钮 + 搜索框 placeholder 对齐源站",
+  "evidence": "2026-10-01 live CDP sampling of the source 3D场景 panel at 1920x1150 + docs/research/liblib-canvas-batch588-2026-10-01/README.md",
+  "not_verified": [
+    "whether the source commits the typed readout on blur, and how it clamps — this batch reuses the batch 585 hex-row commit pattern instead of inventing a rule",
+    "the default 球形半径: the sampled 60 may have been edited in the user's project, so the clone keeps its own default"
+  ],
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "readout:scale:present",
+        "readout:scale:type-text",
+        "readout:scale:editable",
+        "readout:scale:source-format",
+        "readout:panorama-rotation:present",
+        "readout:panorama-rotation:type-text",
+        "readout:panorama-rotation:editable",
+        "readout:panorama-rotation:source-format",
+        "readout:sphere-radius:present",
+        "readout:sphere-radius:type-text",
+        "readout:sphere-radius:editable",
+        "readout:sphere-radius:source-format",
+        "readout:ground-opacity:present",
+        "readout:ground-opacity:type-text",
+        "readout:ground-opacity:editable",
+        "readout:ground-opacity:source-format",
+        "readout:ground-height:present",
+        "readout:ground-height:type-text",
+        "readout:ground-height:editable",
+        "readout:ground-height:source-format",
+        "readout:scale:is-percent-of-store",
+        "readout:no-legacy-span",
+        "hex:maxlength",
+        "hex:uppercase-is-css",
+        "hex:keeps-typed-case",
+        "hex:commits-lowercase-store",
+        "toggle:角色标签:is-button",
+        "toggle:角色标签:role-switch",
+        "toggle:角色标签:aria-checked",
+        "toggle:角色标签:track-24x14",
+        "toggle:角色标签:knob-10x10",
+        "toggle:角色标签:no-native-checkbox",
+        "toggle:网格吸附:is-button",
+        "toggle:网格吸附:role-switch",
+        "toggle:网格吸附:aria-checked",
+        "toggle:网格吸附:track-24x14",
+        "toggle:网格吸附:knob-10x10",
+        "toggle:网格吸附:no-native-checkbox",
+        "toggle:高斯地面吸附:is-button",
+        "toggle:高斯地面吸附:role-switch",
+        "toggle:高斯地面吸附:aria-checked",
+        "toggle:高斯地面吸附:track-24x14",
+        "toggle:高斯地面吸附:knob-10x10",
+        "toggle:高斯地面吸附:no-native-checkbox",
+        "toggle:grid:starts-off",
+        "toggle:grid:turns-on",
+        "toggle:grid:store-follows",
+        "toggle:grid:knob-moves-right",
+        "toggle:grid:turns-off-again",
+        "search:present",
+        "search:still-labels-itself",
+        "diagnostics:zero"
+      ],
+      "readouts": {
+        "scale": "100%",
+        "panorama-rotation": "0°",
+        "sphere-radius": "30",
+        "ground-opacity": "0.40",
+        "ground-height": "0.0"
+      },
+      "diagnostics": {
+        "console": 0,
+        "filtered_transformcontrols": 0,
+        "errors": []
+      }
+    }
+  ]
+}
