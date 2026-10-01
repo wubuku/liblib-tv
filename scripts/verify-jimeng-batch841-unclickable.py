@@ -89,16 +89,31 @@ def main() -> int:
 
     # ── A. 普查本身 ───────────────────────────────────────────────
     print("— A. 普查跑通 —")
-    # A.0 退出码：不能只看"是不是 0"。本批工具**真报出 3 条焦点被遮的缺陷**，
-    #     退出码 1 是判据在干活，不是工具坏了。所以断言改成**与桶一致**：
-    #     任一缺陷桶非空就必须非 0，三个桶全空才 0。这条能两个方向失败 ——
-    #     把 kb_covered 从退出码里漏掉（缺陷被当通过放行），或者干脆写死 0，
-    #     都会被抓住；全空时想靠"反正不空"蒙混也过不去。
+    # A.0 退出码：不能只看"是不是 0"。本批工具**真报出焦点被遮的缺陷**，
+    #     退出码 1 是判据在干活，不是工具坏了。而自检不过又是**第三种**状态
+    #     （退出码 2 = 结果不可信，既不是"通过"也不是"查到缺陷"）。所以这里
+    #     断言的是**退出码与自检/缺陷桶三者一致**：
+    #       自检不过      ⇒ 2
+    #       自检过了且有缺陷 ⇒ 1
+    #       自检过了且没缺陷 ⇒ 0
+    #     三种都能两个方向失败：把 kb_covered 从退出码里漏掉（缺陷当通过放行）、
+    #     写死 0、或自检红着却退 0，都会被抓住。
     any_bad = bool(real or kb_bad or kb_cov)
-    check(f"A.0 退出码与缺陷桶一致（任一桶非空 ⇒ 非 0；实测 rc={r.returncode}，"
+    self_ok = (
+        kbst.get("reachable_before") is True
+        and kbst.get("unreachable_when_stripped") is True
+        and kbst.get("reachable_after_restore") is True
+        and (kbst.get("covered_n_when_shut") or 0)
+            > (kbst.get("covered_n_when_clear") or 0)
+        and (kbst.get("covered_n_when_skin") or 0)
+            == (kbst.get("covered_n_when_clear") or 0)
+        and (kbst.get("skin_top_n") or 0) > 0)
+    want_rc = 2 if not self_ok else (1 if any_bad else 0)
+    check(f"A.0 退出码与自检/缺陷桶三者一致（实测 rc={r.returncode}，"
+          f"自检={'过' if self_ok else '不过'}，"
           f"real={len(real)} / kb_bad={len(kb_bad)} / kb_covered={len(kb_cov)}）",
-          r.returncode == (1 if any_bad else 0),
-          f"rc={r.returncode}")
+          r.returncode == want_rc,
+          f"rc={r.returncode} 期望={want_rc}")
     check("A.1 结果可解析", not data.get("_parse_error"),
           str(data.get("_parse_error"))[:70])
     check(f"A.2 跑了 {len(states)} 个状态（覆盖面下限 {len(EXPECTED_STATES)}）",
@@ -242,6 +257,19 @@ def main() -> int:
     check("G.3 每条 finding 带 covered_n（全程有多少个这样的焦点位）",
           all("covered_n" in k for k in kb_cov),
           f"缺 covered_n 的 {sum(1 for k in kb_cov if 'covered_n' not in k)} 条")
+    # 只报「焦点停在了看不见的地方」是**现象**，不是**病因**：修的人第一句就会问
+    # 「被谁盖住的」。所以每条 finding 必须同时指名盖住它的是哪个浮层锚。
+    check("G.3b 每条 finding 指名**被哪个浮层盖住**（浮层锚的对照，不是光说看不见）",
+          bool(kb_cov) and all(
+              (k.get("covered") or {}).get("top")
+              and (k.get("covered") or {}).get("top_anchor")
+                  != (k.get("covered") or {}).get("focus_anchor")
+              and (k.get("covered") or {}).get("edges")
+              for k in kb_cov),
+          "; ".join(
+              f"{k.get('state')}←{(k.get('covered') or {}).get('top_anchor')}"
+              f"（边 {(k.get('covered') or {}).get('edges')}）"
+              for k in kb_cov)[:170])
     # 自检：盖一层遮挡物，被遮住的焦点位必须**变多**。比的是计数不是"有没有" ——
     # 基线里本来就真有几处（那正是本批查出来的缺陷），"撤掉后不再报"是错前提，
     # 第一版就栽在这儿、自检把自己判红了。
@@ -249,11 +277,67 @@ def main() -> int:
           (kbst.get("covered_n_when_shut") or 0)
           > (kbst.get("covered_n_when_clear") or 0),
           f"{kbst.get('covered_n_when_clear')} → {kbst.get('covered_n_when_shut')}")
+    # ⚠️ 反向自检：只验「会响」不够，还得验「分得清」。给每个可聚焦控件盖一层
+    #    「自己的皮」——**透明**、外扩 2px、插成同层兄弟，也就是**真的压在焦点
+    #    环上**。判据必须**不多报**：透明的东西什么也盖不住。
+    #    这一条把前三代判据当场判红 —— 它们只问「栈顶是不是外人」，压根不看
+    #    透明不透明。源站的 `text-flow-node-full` 正是这种皮（探针 845c 实测：
+    #    和焦点所在节点**不同支**、却和它同框）。
+    check("G.4b 反向自检：给每个控件盖一层「自己的皮」（透明、外扩 2px、"
+          "同层兄弟）后，被遮的焦点位**一个都不多**（专治前三代判据）",
+          (kbst.get("skin_n") or 0) > 0
+          and (kbst.get("covered_n_when_skin") or 0)
+              == (kbst.get("covered_n_when_clear") or 0),
+          f"铺了 {kbst.get('skin_n')} 层皮，"
+          f"{kbst.get('covered_n_when_clear')} → {kbst.get('covered_n_when_skin')}")
+    # 反向自检还必须**自证夹具真在局**：皮当过栈顶 0 次 ⇒ 上面那条恒真。
+    check("G.4b2 反向自检**自证夹具真在局**（皮当过栈顶 > 0 次，"
+          "否则「不多报」是恒真的空话）",
+          (kbst.get("skin_top_n") or 0) > 0,
+          f"皮当过栈顶 {kbst.get('skin_top_n')} 次")
+    # 阳性夹具必须**不透明**：透明的东西按第四版判据什么也盖不住，拿它当阳性
+    # 夹具就是在要求判据犯错。
+    check("G.4d 阳性夹具（自检遮挡层）必须**不透明**"
+          "（透明的盖子按新判据理应不多报，拿它当阳性就是要求判据犯错）",
+          re.search(r"data-kbcover-probe.{0,420}?background:rgb\(13,13,13\)",
+                    asrc, re.S) is not None)
+    # 结构判定：把 `ok_kb_self = ...` 到下一条 print 之间**切出来**看里面有没有
+    # 那条反向比较。早先用固定长度的正则（`.{0,900}?`）去数距离，结果注释一多
+    # 就被顶穿 —— 判据跟着注释长度漂移，这本身就是一种"判据会骗自己"。
+    _ok_blk = ""
+    _m = re.search(r"ok_kb_self\s*=", asrc)
+    if _m:
+        _nxt = re.search(r"\n\s*print\(", asrc[_m.end():])
+        _ok_blk = asrc[_m.end(): _m.end() + (_nxt.start() if _nxt else 4000)]
+    check("G.4c 反向自检**真的接进了** `ok_kb_self`（写完忘了接上 = 没有自检）",
+          "covered_n_when_skin" in _ok_blk
+          and "skin_top_n" in _ok_blk,
+          f"ok_kb_self 块 {len(_ok_blk)} 字符，"
+          f"含反向比较={'covered_n_when_skin' in _ok_blk} "
+          f"含夹具自证={'skin_top_n' in _ok_blk}")
     check("G.5 自检用的层必须是**深**的（Tab 1 就进去的层照不到被遮住的控件）",
           kbst.get("covered_probe_layer") == "jimeng-search-overlay",
           f"实际={kbst.get('covered_probe_layer')!r}")
     check("G.6 键盘探针在每一步都判「焦点是否被遮住」（源码里真有这一步）",
           "state: occluded ? 'covered' : 'other'" in asrc)
+    # 判据的**形状**本身就是断言对象：前两版都被证伪过，而且错的方向相反
+    # （第 1 版太松、第 2 版太严），病根都是拿 DOM 包含关系回答视觉问题。
+    # 第 3 版只问「栈顶是不是**另一个浮层**」。
+    check("G.6b 判「被遮」用**绘制栈**（elementsFromPoint），不是单点命中",
+          "document.elementsFromPoint(" in asrc)
+    check("G.6c 判据问的是「**焦点环还在不在**」：采样**边框**而不是中心，"
+          "且盖住它的东西必须**不透明**（透明的东西什么也盖不住）",
+          "EDGE" in asrc and "paintsOver" in asrc
+          and "b.left - 1" in asrc and "b.height / 2" in asrc)
+    check("G.6d 祖先的背景**不算**遮挡（祖先画在下面，不是盖在上面的）",
+          re.search(r"n === a \|\| \(n\.contains && n\.contains\(a\)\)\)\s*"
+                    r"return false", asrc) is not None)
+    check("G.6e 旧的包含关系判据**不许**留在源码里（三代都栽在这儿）",
+          "!a.contains(hit) && !hit.contains(a)" not in asrc
+          and "!a.contains(hit) && !hit.contains(hit)" not in asrc)
+    check("G.6f `nextjs-portal` 当判据的豁免**不许**留着"
+          "（它只是结构容器、什么都不画，第 3 版就栽在它上面）",
+          "topInPortal" not in asrc)
     # 打印行里的数字必须和 JSON 对得上。上一版就栽在"判据换了、打印行还挂在
     # 旧字段上"：输出里印的是 `covered=None、撤掉后不再报=None`，看着像句结论，
     # 其实什么都没说 —— 比不印更坏，因为它看着像有结论。

@@ -281,10 +281,29 @@ def main() -> int:
                 return {"ok": None, "why": "没有打开的浮层"}
             if not page.locator(f'[data-testid="{layer_tid}"]').count():
                 return {"ok": None, "why": "定位不到那个浮层"}
+            # ── 开层**那一瞬间**焦点在不在层里（blur 之前先读）──────────
+            #    冷启动口径（blur + 按 Tab）量的是"从零开始要按几次才进得去"，
+            #    而用户真正的路径是"点开 → 焦点本来就该在里面"。这是**两件事**：
+            #    打开时没接管（初始焦点）vs 接管了又放出去（焦点陷阱），修法完全
+            #    不同。只报 covered_n 不够 —— 那只说"焦点停在了看不见的地方"，
+            #    说不清是哪一种。不读这一下，finding 就只有现象没有病因。
+            at_open = page.evaluate("""(tid) => {
+              const layer = document.querySelector(`[data-testid="${tid}"]`);
+              const a = document.activeElement;
+              if (!a || a === document.body)
+                return {state: 'body', inside: false};
+              return {state: (layer && layer.contains(a)) ? 'inside' : 'other',
+                      inside: !!(layer && layer.contains(a)),
+                      al: (a.getAttribute('aria-label') || '').trim().slice(0, 30),
+                      tid: a.getAttribute('data-testid') || '',
+                      txt: (a.innerText || a.getAttribute('placeholder') || '')
+                            .trim().replace(/\\s+/g, ' ').slice(0, 24)};
+            }""", layer_tid)
             page.evaluate("""() => { const a = document.activeElement;
                 if (a && a.blur) a.blur(); return true; }""")
             covered = None
             covered_n = 0
+            skin_top_n = 0
             for i in range(1, max_tabs + 1):
                 page.keyboard.press("Tab")
                 step = page.evaluate("""(args) => {
@@ -300,26 +319,115 @@ def main() -> int:
                   //    和"浮层管好了自己的选项"是两回事。
                   const b = a.getBoundingClientRect();
                   if (b.width < 1 || b.height < 1) return {state: 'other'};
-                  const hit = document.elementFromPoint(b.x + b.width/2,
-                                                        b.y + b.height/2);
-                  const occluded = !!(hit && !a.contains(hit) && !hit.contains(a)
-                                      && !hit.closest('nextjs-portal'));
+                  // ⚠️⚠️⚠️ 这条判据被证伪过**三次**，三次错法都不同，而根因是
+                  //    我一直在问错问题。留着全部记录，免得下一个人"简化"回去：
+                  //
+                  //    第 1 版 `elementFromPoint` + DOM 包含：**太松**。只返回
+                  //      栈顶一个元素；它若是焦点自己的**后代**，`hit.contains(a)`
+                  //      为假而 `a.contains(hit)` 为真 ⇒ 判成"被遮"。批 843 的
+                  //      「音色: 音色库」假缺陷就是这么来的。
+                  //    第 2 版 `elementsFromPoint` 栈顶非自己非后代：**太严**。
+                  //      源站节点内容是 **portal 渲染**的（探针 845c 实测：栈顶
+                  //      `text-flow-node-full` 与焦点所在的 `rf__node-xxx`
+                  //      **不同支**却同框）—— 那层就是节点自己的皮。
+                  //    第 3 版「栈顶是不是**另一个浮层**」（比浮层锚）：**两个
+                  //      错**。① `nextjs-portal` 那个 div 自己是栈顶时，它只是
+                  //      结构容器、**什么都不画**，却被判成盖住了（自检里第 1 个
+                  //      被遮就是它）；② 比"最近的 testid 祖先"时，控件的锚是
+                  //      它**自己**、皮的锚是它**所在的容器**，两个 testid 必然
+                  //      不同 ⇒ 自己的皮被判成另一个浮层。
+                  //    三次都在回答"栈顶是不是外人"，可真正的问题是**焦点环
+                  //    还在不在**。焦点环画在控件的**边框**上，所以：
+                  //      · 该测**边框那一圈**，不是中心（不透明子元素永远盖住
+                  //        中心，拿中心测必然误报）；
+                  //      · 盖住它的东西必须**不透明** —— 透明的东西什么也盖不住，
+                  //        皮和 portal 容器都是这一类；
+                  //      · 祖先的背景画在**下面**，不算遮挡。
+                  //    四条边中点（外扩 1px）全被不透明的外人盖住 ⇒ 焦点环
+                  //    等于没了，判缺陷；只盖住一部分 ⇒ 焦点环还看得见，记 INFO。
+                  const ANCHOR = /(dialog|menu|listbox|popover|alertdialog)/i;
+                  const nameOf = (e) => (e ? (e.tagName + '/'
+                      + (e.getAttribute('data-testid') || e.getAttribute('aria-label')
+                         || (e.className || '').toString()
+                              .replace(/\\s+/g, ' ').slice(0, 40))
+                      || (e.innerText || '').trim().slice(0, 14)) : null);
+                  // 从 e 往上找有没有不透明底；一旦走到 a 的祖先就停（那画在下面）
+                  const paintsOver = (e, a) => {
+                    for (let n = e; n && n !== document.body;
+                         n = n.parentElement) {
+                      if (n === a || (n.contains && n.contains(a))) return false;
+                      const bg = getComputedStyle(n).backgroundColor || '';
+                      if (bg !== 'rgba(0, 0, 0, 0)'
+                          && !bg.startsWith('rgba(0, 0, 0, 0)')) return true;
+                    }
+                    return false;
+                  };
+                  const EDGE = [[b.left - 1, b.top + b.height / 2],
+                                [b.right + 1, b.top + b.height / 2],
+                                [b.x + b.width / 2, b.top - 1],
+                                [b.x + b.width / 2, b.bottom + 1]];
+                  let edges = 0, firstTop = null, firstName = null;
+                  let skinTop = false;
+                  for (const [ex, ey] of EDGE) {
+                    const st = document.elementsFromPoint(ex, ey) || [];
+                    const t = st[0] || null;
+                    if (!t) continue;
+                    if (t.getAttribute && t.getAttribute('data-kbskin-probe'))
+                      skinTop = true;   // 皮当过栈顶（自检要拿它自证夹具在局）
+                    if (t === a || a.contains(t) || (t.contains && t.contains(a)))
+                      continue;                      // 自己/后代/祖先 ⇒ 没被盖
+                    if (!paintsOver(t, a)) continue;   // 透明 ⇒ 什么也盖不住
+                    edges += 1;
+                    if (firstTop === null) {
+                      firstTop = t;
+                      firstName = nameOf(t);
+                    }
+                  }
+                  const ANCHOR_R = (e) => {
+                    for (let n = e; n && n !== document.body;
+                         n = n.parentElement) {
+                      const tid = n.getAttribute && n.getAttribute('data-testid');
+                      const role = n.getAttribute && n.getAttribute('role');
+                      if (tid) return 'tid:' + tid;
+                      if (role && ANCHOR.test(role)) return 'role:' + role;
+                    }
+                    return null;
+                  };
+                  const occluded = edges === EDGE.length;
                   return {state: occluded ? 'covered' : 'other',
+                          edges_covered: edges, edges_total: EDGE.length,
+                          skin_top: skinTop,
+                          top: firstName,
+                          top_anchor: firstTop ? ANCHOR_R(firstTop) : null,
+                          focus_anchor: ANCHOR_R(a),
                           al: (a.getAttribute('aria-label')||'').trim().slice(0,30),
                           tid: a.getAttribute('data-testid') || '',
+                          txt: (a.innerText || a.getAttribute('placeholder') || '')
+                                .trim().replace(/\\s+/g,' ').slice(0,20),
                           w: Math.round(b.width), h: Math.round(b.height)};
                 }""", [layer_tid])
                 if step.get("state") == "inside":
                     return {"ok": True, "tabs": i, "covered": covered,
-                            "covered_n": covered_n}
+                            "covered_n": covered_n, "skin_top_n": skin_top_n,
+                            "focus_at_open": at_open}
+                if step.get("skin_top"):
+                    # 「皮当过栈顶」几次 —— 反向自检的**自证**：皮要是从来没落到
+                    # 栈顶上过，那条"盖了皮也不多报"就是恒真的空话。
+                    skin_top_n += 1
                 if step.get("state") == "covered":
                     covered_n += 1
                     if covered is None:
                         covered = {"at_tab": i, "al": step.get("al"),
                                    "tid": step.get("tid"),
+                                   "top": step.get("top"),
+                                   "top_anchor": step.get("top_anchor"),
+                                   "focus_anchor": step.get("focus_anchor"),
+                                   "edges": f"{step.get('edges_covered')}"
+                                            f"/{step.get('edges_total')}",
                                    "size": f"{step.get('w')}x{step.get('h')}"}
             return {"ok": False, "tabs": max_tabs, "covered": covered,
-                    "covered_n": covered_n,
+                    "covered_n": covered_n, "skin_top_n": skin_top_n,
+                    "focus_at_open": at_open,
                     "why": f"Tab {max_tabs} 次都没进到 {layer_tid} 里"}
 
         
@@ -729,12 +837,16 @@ def main() -> int:
                   e.removeAttribute('data-kb-prev'); })""")
             page.wait_for_timeout(300)
             restored_kb = keyboard_probe(probe_layer)
-            # 再验「Tab 走进被遮住的控件」这一条：盖一层**真遮挡物**，
-            # 判据必须报出 covered；撤掉后必须不再报。
+            # 再验「Tab 走进被遮住的控件」这一条：盖一层**真浮层**，
+            # 判据必须报出 covered；撤掉后必须**少报**。
             # ⚠️ 这条**不能用上面那层**：截取帧下拉第 1 次 Tab 就进去了，
             #    探针当场返回，压根没机会走到被遮住的控件上 —— 自检于是恒假。
             #    换成一个**深**的层（顶栏搜索，实测 39 步），前面 38 个焦点位
             #    足够让探针看见遮挡。第一版就是栽在这儿，自检把自己判红了。
+            # ⚠️⚠️ 遮挡物**必须是带浮层锚的真浮层**（role=dialog + data-testid）。
+            #    第三版判据只认「栈顶是不是**另一个浮层**」，一个光秃秃的
+            #    `inset:0` div 没有浮层锚，判据对它天然免疫 —— 自检会照到自己
+            #    判红的下场（第二次）。自检的夹具必须长得像被它要验的那个东西。
             deep_layer = "jimeng-search-overlay"
             page.keyboard.press("Escape")
             page.wait_for_timeout(400)
@@ -750,11 +862,85 @@ def main() -> int:
                 except Exception:
                     pass
             if page.locator(f'[data-testid="{deep_layer}"]').count():
+                # ── 夹具一：给每个可聚焦控件盖一层「**它自己的皮**」────────
+                #    同框、挂在 body 下、**没有浮层锚**（无 data-testid / 无
+                #    dialog|menu|listbox|popover role、不在 portal 里）。
+                #    判据必须**不**把这些算成「被遮」——
+                #    第 1 版判据（elementFromPoint + 包含）会说遮（皮不是控件的
+                #    后代），第 2 版（栈顶非自己非后代）也会说遮（皮同样不是）。
+                #    这一条专治那两版，源站的 `text-flow-node-full` 就是这么
+                #    一种皮（探针 845c 实测它和焦点所在节点**不同支**却同框）。
+                #    ⚠️ 皮**不能**用 `pointer-events:none` —— 那样
+                #    `elementsFromPoint` 压根不返回它，这条自检就成了恒真的
+                #    空话（自检恒真比没有自检更坏：它会盖着错误的判据说"✓"）。
+                # ⚠️⚠️ 皮必须插成控件的**同层兄弟**（紧跟控件之后），不能挂在
+                #    body 末尾。前三版各错一次，错法一次比一次微妙：
+                #      ① `z-index:99997` 太大 → 皮盖住一切，连真遮挡一起盖；
+                #      ② 抄控件自己的 z-index → 皮落在子树底下，压根不当栈顶；
+                #      ③ 挂 body 末尾 + 抄最近层叠上下文的 z → 皮当上栈顶 33 次，
+                #         可**同层**的盖子按树序画在控件之后，body 末尾比它还后
+                #         —— 又盖住 3 个真遮挡，计数 4 → 1。
+                #    三次都不是判据错，是**夹具站错了位置**。真·「自己的皮」
+                #    必须和控件同层、紧贴着，谁也不是谁的后代 —— 源站那个
+                #    `text-flow-node-full` 就是这个形状（探针 845c 实测：和节点
+                #    外壳同框、不同支）。层叠上下文不是看元素自己的，是看它
+                #    所在的那一层。
+                skin_n = page.evaluate("""() => {
+                  const SEL = 'a[href],button,input,select,textarea,[tabindex],'
+                            + '[role=menuitem],[role=option]';
+                  let n = 0;
+                  for (const c of document.querySelectorAll(SEL)) {
+                    const r = c.getBoundingClientRect();
+                    if (r.width < 1 || r.height < 1) continue;
+                    if (!c.parentNode) continue;
+                    const cs = getComputedStyle(c);
+                    // absolute 的坐标要换算到 offsetParent 的坐标系去
+                    let ox = 0, oy = 0;
+                    const op = c.offsetParent;
+                    if (op) {
+                      const orr = op.getBoundingClientRect();
+                      ox = orr.x + (op.clientLeft || 0);
+                      oy = orr.y + (op.clientTop || 0);
+                    }
+                    const d = document.createElement('div');
+                    d.setAttribute('data-kbskin-probe', '1');
+                    // 外扩 2px：判据采样的是**边框外 1px**（焦点环就画在那儿），
+                    // 同框的皮够不到那儿，反向自检就成了空话。外扩 2px 让皮
+                    // 真的压在焦点环上 —— 判据仍必须判「没遮住」，因为它透明。
+                    // 此刻这条自检验证的是新判据的**核心主张**：透明的东西
+                    // 什么也盖不住。前面三代判据全都会在这里栽（它们只问
+                    // 「栈顶是不是外人」，压根不看透明不透明）。
+                    d.style.cssText = 'position:absolute;'
+                      + 'z-index:' + (cs.zIndex === 'auto' ? '0' : cs.zIndex) + ';'
+                      + 'left:' + (r.x - ox - 2) + 'px;'
+                      + 'top:' + (r.y - oy - 2) + 'px;'
+                      + 'width:' + (r.width + 4) + 'px;'
+                      + 'height:' + (r.height + 4) + 'px;'
+                      + 'background:transparent;';
+                    c.parentNode.insertBefore(d, c.nextSibling);
+                    n += 1;
+                  }
+                  return n;
+                }""")
+                page.wait_for_timeout(300)
+                skin_when_skin = keyboard_probe(deep_layer)
+                skin_top_when_skin = skin_when_skin.get("skin_top_n")
+                page.evaluate("""() => document.querySelectorAll('[data-kbskin-probe]')
+                    .forEach(e => e.remove())""")
+                # ── 夹具二：再来一层**真浮层**（role=dialog + data-testid）──
+                #    ⚠️ 它必须是**不透明**的。第四版判据问的是"焦点环还在不在"，
+                #    透明的东西什么也盖不住 —— 一个 `background:transparent` 的
+                #    遮挡层在新判据下**理应**不多报，自检要是拿它当阳性夹具，
+                #    就是在要求判据犯错。阳性夹具必须长得像真模态。
+                page.wait_for_timeout(300)
                 page.evaluate("""() => {
                   const d = document.createElement('div');
                   d.setAttribute('data-kbcover-probe', '1');
+                  d.setAttribute('role', 'dialog');
+                  d.setAttribute('data-testid', 'kb-self-test-cover');
+                  d.setAttribute('aria-label', '自检遮挡层');
                   d.style.cssText = 'position:fixed;inset:0;z-index:99998;'
-                                  + 'background:transparent';
+                                  + 'background:rgb(13,13,13)';
                   document.body.appendChild(d);
                 }""")
                 page.wait_for_timeout(300)
@@ -766,6 +952,8 @@ def main() -> int:
             else:
                 covered_when_shut = {"covered": None}
                 covered_when_clear = {"covered": None}
+                skin_when_skin = {"covered": None}
+                skin_n = 0
             page.keyboard.press("Escape")
             page.wait_for_timeout(400)
             kb_self = {"layer": probe_layer,
@@ -773,6 +961,11 @@ def main() -> int:
                        "unreachable_when_stripped": after_kb.get("ok") is False,
                        "reachable_after_restore": restored_kb.get("ok"),
                        "covered_probe_layer": deep_layer,
+                       "skin_n": skin_n,
+                       "skin_top_n": skin_top_when_skin,
+                       "clear_covered": covered_when_clear.get("covered"),
+                       "skin_covered": skin_when_skin.get("covered"),
+                       "covered_n_when_skin": skin_when_skin.get("covered_n"),
                        "covered_n_when_shut": covered_when_shut.get("covered_n"),
                        "covered_n_when_clear": covered_when_clear.get("covered_n")}
         else:
@@ -923,12 +1116,26 @@ def main() -> int:
                   #    自检把自己判红了。真正要证明的是判据**对遮挡敏感**：
                   #    盖上一层，被遮住的焦点位必须**变多**。
                   and (kb_self.get("covered_n_when_shut") or 0)
-                      > (kb_self.get("covered_n_when_clear") or 0))
+                      > (kb_self.get("covered_n_when_clear") or 0)
+                      # ⚠️ 反向那条同样要是判据：给每个控件盖一层「它自己的皮」
+                  #    （同框、无浮层锚）后，被遮的焦点位必须**一个都不多**。
+                  #    这一条把第 1 版（elementFromPoint + 包含）和第 2 版
+                  #    （栈顶非自己非后代）**当场判红** —— 两者都会把皮当成外人。
+                  #    只做正向不做反向，等于只验了判据「会响」，没验它「分得清」。
+                  and (kb_self.get("covered_n_when_skin") or 0)
+                      == (kb_self.get("covered_n_when_clear") or 0)
+                  # 而且皮必须**真的当过栈顶**（>0），否则上面那条是恒真的空话：
+                  # 皮压根没参与判定，"不多报"当然成立。
+                  and (kb_self.get("skin_top_n") or 0) > 0)
     print(f"自检（键盘）：把 {kb_self.get('layer')!r} 里的 tabindex 全摘成 -1 后"
           f"判为进不去={kb_self.get('unreachable_when_stripped')}、"
           f"还原后恢复={kb_self.get('reachable_after_restore')}"
           + f"；盖一层遮挡物后被遮住的焦点位 "
           f"{kb_self.get('covered_n_when_clear')} → {kb_self.get('covered_n_when_shut')}"
+          + f"，给 {kb_self.get('skin_n')} 个控件各盖一层「自己的皮」后 → "
+          f"{kb_self.get('covered_n_when_skin')}"
+          f"（皮当过栈顶 {kb_self.get('skin_top_n')} 次；"
+          f"必须不多报、且皮必须真当过栈顶）"
           + (f"（{kb_self.get('why')}）" if kb_self.get("why") else "")
           + f"  →  {'✓ 键盘判据能失败' if ok_kb_self else '✗ 键盘判据恒真，这轮结果不可信'}")
 
