@@ -252,17 +252,6 @@ screenshots:
     alt: 空图片节点与下方展开的文生图生成面板，含参考素材区、描述输入框与 Seedream V5 Pro 模型选择
     sha256: 78dfb8ae66bc667616b0d1d794e9b5477a021f13c474a713bebb776353ac0f8f
 
-  - file: screenshots/10-undo-persistence-clear-confirm.png
-    task_id: undo-persistence
-    step: 点击「清空画布」红色图标后的画布状态（确认弹窗未弹出，取证不完整）
-    route: '/canvas/:id'
-    viewport: 1280x720
-    locale: zh-CN
-    captured_at: '2026-09-27'
-    verified_locator: '节点仍完整保留 / 清空画布图标红色待确认态'
-    visible_text: '清空画布'
-    alt: 点击清空画布图标后的画布状态，节点仍完整保留
-    sha256: 976ff304e252fa77657063b22a73126320fd71142f49e15f1987870471302316
 
   - file: screenshots/10-undo-persistence-history-flyout.png
     task_id: undo-persistence
@@ -1103,3 +1092,15 @@ screenshots:
     visible_text: '文本 文本 Copy 文本 Copy Copy 文本 Copy Copy Copy 文本 Copy Copy Copy Copy'
     alt: 画布上五个文本节点沿对角线依次错开，标题从「文本」逐级叠加 Copy 变成「文本 Copy Copy Copy Copy」，左侧节点列表显示同样的五个标题
     sha256: 912681769306d7921c8f80fcf1c192b06fac9caa392d54aa2e285f3e3f5c4e95
+
+  - file: screenshots/09-undo-persistence-clear-confirm.png
+    task_id: undo-persistence
+    step: 点左侧 Dock 红色「清空画布」后弹出的确认框，背景可见画布上 5 个文本节点与左侧面板节点列表
+    route: '/canvas/:id'
+    viewport: 1600x1000
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '弹窗文本逐字为「清空画布？这会删除当前画布上的所有节点和连线。」，按钮为「取 消」与「清 空」（两者文本均含 antd 自动插入的空格）；此时画布上有 5 个 .node-element，左侧面板「画布元素 5」同步显示，标题依次为「文本」「文本 Copy」「文本 Copy Copy」「文本 Copy Copy Copy」「文本 Copy Copy Copy Copy」'
+    visible_text: '清空画布？这会删除当前画布上的所有节点和连线。取 消 清 空'
+    alt: 清空画布的确认弹窗，标题「清空画布？」，正文说明会删除所有节点和连线，右下角是取消与红色的清空按钮，背景可见五个文本节点
+    sha256: ab93a1c3b00d1c7179ec2e015588eb45404c040a8da251f552a70705a3fcc1ac
