@@ -72,7 +72,10 @@
 ## 6. 连线与引用（数据流语义）
 
 - 端口拖拽建立连线：贝塞尔曲线即时生成，两端节点 related 高亮。**2026-10-01 M97 复测成立**——判据是**先悬停源节点**再拖（端口 `visible ? pointer-events-auto : pointer-events-none`，未悬停时端口不可点，`mouse.down()` 会落在画布表面变成平移）。连线建立后按 `Delete` 删节点再 `Cmd+Z`，节点与连线一并回来，应用项目卡计数「2 个节点 · 1 条连线」实证。[运行时+静态]
-- 连线校验：**禁自连、禁组、非 multiple 输入口限一条入边**三条均已**运行时实证**（自连被拒、组身上取不到可交互端口、重复连同一对被拒、非多选口第二条入边被拒）；**方向不匹配即拒，但 input→output 仍可建立且方向自动归一化**（`normalizeConnectionHandles`）——output→output 与 input→input 均被拒。**类型兼容（any 通配）仍只有源码证据，未实测。**[运行时+静态；类型兼容为静态]
+- 连线校验：**禁自连、禁组、非 multiple 输入口限一条入边**三条均已**运行时实证**（自连被拒、组身上取不到可交互端口、重复连同一对被拒、非多选口第二条入边被拒）；**方向不匹配即拒，但 input→output 仍可建立且方向自动归一化**（`normalizeConnectionHandles`）——output→output 与 input→input 均被拒。[运行时+静态]
+- **类型兼容已由「仅源码证据」升级为运行时实证**（M107）。**4×4 互连矩阵实测：文本/图片/视频/音频两两互连 16 组全部建成（每组 `0 → 1`），被拒 0 组、判据不足 0 组**——每组独立一张干净画布，源置于 `[420,500]`、目标置于 `[1250,500]`，建完即挪走并断言互不重叠。连线数取 `path[data-connection-id]` 计数（避开 M98 踩过的 lucide 图标 path 误计）。**结论：内置节点之间不存在类型不匹配这回事。** [运行时]
+- 类型兼容的**结构性根因**（静态，与上条互为印证）：`components/canvas/nodes/builtin-nodes.tsx` 里 `ports` 出现 **0 次**——六种内置节点（Text/Image/Video/Audio/Config/Group）**根本没有定义任何端口**，全部回退到 `canvas-node-ports.ts:6-7` 的 `legacyInput`/`legacyOutput`，二者的 `dataType` 就是 `"any"`。因此 `areCanvasPortTypesCompatible`（`canvas-node-ports.ts:56-61`）里 `sourceType === "any" || targetType === "any"` 这一支**对内置节点恒真**——**类型闸门对内置节点互连是不可达的死分支**，等价于「没有类型限制」。端口定义只存在于另外两个注册源：`integrations/comfyui-local/canvas-node.tsx`（`comfyCanvasPorts`）与 `lib/canvas/plugin-loader.ts`（插件节点）；全仓 `ports:` 的非测试命中也只落在这两处。Group 由 `getCanvasNodePorts` 第 10 行直接返回 `[]`，Config 因 `hasSourceHandle: false` 只得 `[legacyInput]`。[静态]
+- **ComfyUI 侧的真实类型词表**：`types/canvas.ts:184` 的 `CanvasPortDataType` = `any | image | video | audio | text | number | boolean | json | (string & {})`；`inputPortType` 把 `integer/number → number`、`boolean → boolean`、`json → json`、`enum/string → text`，其余原样透传。**注意 `outputPortType` 把 `file` 类输出显式降级为 `"any"`**（`resourceType === "file" ? "any" : resourceType`）——**连强类型系统自己都留了通配口子**，ComfyUI 产出图片/视频/音频这类文件型输出时同样不会拦。[静态]
 - **拖线到空白处弹创建菜单**（文本/图片/视频/音频）→ 建节点+反向端口连线+选中+开面板。[静态]
 - 双模式：connections（连线模式）/ objects（无线引用）互斥——objects 模式不渲染连线、添加引用清空既有连线；引用支持 latest/pinned 版本。[静态]
 - @mention：contentEditable 输入 `@` 弹候选插缩略图 chip，序列化「图片 N / 视频 N / 文本 N」标签。[静态+官方文档]
