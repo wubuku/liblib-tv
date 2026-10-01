@@ -48,6 +48,10 @@
 | Minor(一致性) | 顶部导航「提示词库」与页面标题「提示词中心」名称不统一 | 可能让用户误以为是两个功能 | 已在 use-prompt-library.md 与排障中说明为同一页面 |
 | Minor(一致性) | 平台品牌名不统一：界面写「**AI 土豆**」，代码与文档用 `Aitudou` | 用户在界面里搜不到手册说的名字 | M31 已在 20-reference（API 配置表）、generate-images 前置条件、90-troubleshooting 三处说明「界面叫 AI 土豆、代码里叫 Aitudou，是同一个东西」 |
 | Minor(产品) | 图片节点「历史版本」入口在版本数 < 2 时**完全不渲染**（源码 `history.length < 2` 直接 return null），且上传/替换/裁剪/切图/放大**均不产生新版本**，只有 AI 生成结果进历史 | 用户以为功能不存在或「替换后想撤回」却无处可撤 | M31 已订正参考页「历史」→「历史版本」并写明三条规则与 `MAX_CANVAS_IMAGE_HISTORY = 24`；入口外观按源码描述，**未配图**（造第 2 版必须真跑生成，属付费边界） |
+| **Major(产品)** | **画布内顶栏菜单「删除当前画布」无任何确认弹窗，一点即删**；而首页项目卡删除走 `CanvasDeleteProjectsDialog` 有确认弹窗。同一个"删除画布"两条路径行为不一致 | 误触即永久丢失整个画布（无回收站、无撤销，撤销历史随画布一并消失） | **M32 实测 + 源码坐实**（`project.tsx:1264` 直接 `deleteProjects()`；首页走 `canvas-project-card.tsx` → `setDeleteIds` → 确认弹窗）。已在 90-troubleshooting 新增「画布不见了」条目、project-management 新增「删画布有两条路径」对照表与操作建议、navigate-canvas 菜单表加 ⚠️ 标注 |
+| Minor(产品) | 顶栏画布菜单与画布右键菜单共 13 个条目中，「复制所有节点」「粘贴」**没有对应界面按钮**，只能从菜单进入；且「复制所有节点 + 粘贴」实为**整画布复制**（实测 2 节点 → 4 节点） | 用户可能根本不知道整画布备份功能存在 | M32 已在 navigate-canvas 新增「画布里两个不显眼的菜单」整节（两图 + 两张完整条目表），并在 20-reference 与 shortcuts-help 补入口与实测数据 |
+| Minor(产品/误标) | 顶栏菜单「**导入资产**」名不副实：绑定的是 `onImportImage={() => handleUploadRequest()}`（`canvas-top-bar.tsx:90`），**与「上传资产」是同一个处理函数**，打开的是本地媒体文件选择器，与「我的资产」无关 | 用户会以为能在画布里导入 `我的资产.zip`，实际做不到 | M32 运行时实测（点击后 URL 不变、无任何导入文案、只弹文件选择器）+ 源码双重确认。已在 navigate-canvas 菜单表与 20-reference 明确标注「名不副实」并指向首页的正确入口 |
+| Minor(一致性) | 同一快捷键在两处菜单标签不一致：顶栏写 `Ctrl / Cmd + Z`，右键菜单只写 `Ctrl+Z`（Mac 上实际需 `Cmd`，界面未提示） | Mac 用户照右键菜单的标签按 Cmd 会困惑 | M32 已在三处（navigate-canvas / shortcuts-help / 20-reference）统一说明「以键位表与顶栏菜单为准」 |
 | Minor(缺陷) | 手册内 **4 处交叉引用锚点全部落空**（VitePress slugify 把全角括号/逗号/斜杠/引号折成 `-`，与直觉差异大） | 读者点「见某页某节」直接扑空 | M31 已全部订正，并新增 `scripts/check-anchors.py` 接入 `build-site.sh` 步骤 3 作 fail 级门禁（已做负向测试） |
 | 环境 | Playwright 每次 `chromium.launch()` 为全新 profile，IndexedDB 不保留 → 必须用 `launchPersistentContext` 才能跨脚本验证 | 自动化注意事项 | M20 已改用持久化 profile（/tmp 独立目录），并用固定种子资产保证可重放 |
 

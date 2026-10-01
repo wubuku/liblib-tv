@@ -55,6 +55,14 @@ export const FRAMEOS_GROUP_COLORS = [
   "#9ca3af",
 ];
 
+// Batch 331: 撤销栈条目。canvasKey 用于跨画布隔离（见 undo/redo）。
+type HistoryEntry = {
+  nodes: FrameosNode[];
+  edges: Edge[];
+  groups?: FrameosGroup[];
+  canvasKey?: string;
+};
+
 interface FrameosCanvasState {
   // 待确认操作 (删除节点/边时弹窗)
 
@@ -73,9 +81,11 @@ interface FrameosCanvasState {
   // Batch 329: 快照纳入 groups —— 此前只存 {nodes, edges}，而 removeNode
   // (Batch 328 reconcileGroups) / createGroup / ungroup 都会改动 groups，
   // 撤销却只还原 nodes/edges → 节点回来了、分组状态没回来（成员丢失/分组残留）。
-  // groups 为可选：旧快照（无该字段）按空数组处理，保持向后兼容。
-  past: { nodes: FrameosNode[]; edges: Edge[]; groups?: FrameosGroup[] }[];
-  future: { nodes: FrameosNode[]; edges: Edge[]; groups?: FrameosGroup[] }[];
+  // Batch 331: 快照带 canvasKey —— 换画布后旧画布的快照若被撤销，会把
+  // 上一张画布的整份图灌进当前画布。undo/redo 遇到异画布快照即拒绝。
+  // canvasKey 缺失 = Batch 331 之前的旧快照，按「与当前画布同源」处理。
+  past: HistoryEntry[];
+  future: HistoryEntry[];
 
   // minimap 是否显示 (canvas-map-dock 第一个按钮的 is-active 切换)
   showMinimap: boolean;
@@ -356,12 +366,32 @@ function reconcileGroups(
 // 此前 10 处各自手写 `{nodes, edges}`，漏掉 groups 是 Batch 328 之后
 // 「撤销删除成员 → 节点回来但成员集停在删除后」的根因。集中到一处后，
 // 新增 action 不再可能漏带。
+// Batch 331: 撤销栈按画布隔离。
+// 此前快照不记录来自哪张画布，而 setBreadcrumb 换画布时**只**清 groups/选中态、
+// 不重置 past/future → 在画布 A 的动作可以「撤销」到画布 B 上，把 A 的
+// nodes/edges/groups 整份灌进 B（实测 B 从 0 节点变成 A 的 7 个节点）。
+// 修复：快照带 canvasKey，undo/redo 遇到异画布快照即拒绝并清空该侧栈。
+function currentCanvasKey(breadcrumb: FrameosCanvasState["breadcrumb"]): string {
+  return `${breadcrumb.project}/${breadcrumb.scene}/${breadcrumb.canvas}`;
+}
+
 function pushHistorySnapshot(
-  state: { past: { nodes: FrameosNode[]; edges: Edge[]; groups?: FrameosGroup[] }[]; nodes: FrameosNode[]; edges: Edge[]; groups: FrameosGroup[] }
-): { nodes: FrameosNode[]; edges: Edge[]; groups?: FrameosGroup[] }[] {
+  state: {
+    past: HistoryEntry[];
+    nodes: FrameosNode[];
+    edges: Edge[];
+    groups: FrameosGroup[];
+    breadcrumb: FrameosCanvasState["breadcrumb"];
+  }
+): HistoryEntry[] {
   return [
     ...state.past.slice(-19),
-    { nodes: state.nodes, edges: state.edges, groups: state.groups },
+    {
+      nodes: state.nodes,
+      edges: state.edges,
+      groups: state.groups,
+      canvasKey: currentCanvasKey(state.breadcrumb),
+    },
   ];
 }
 
@@ -446,6 +476,10 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
       groups: [],
       nodes: data.nodes,
       edges: data.edges,
+      // Batch 331: 撤销栈按画布隔离 —— 换画布即清空两侧栈。
+      // 快照已带 canvasKey 做兜底校验，但语义上撤销本就不该跨画布生效。
+      past: [],
+      future: [],
     }));
   },
 
@@ -882,12 +916,22 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
   setSelectedModel: (model) => set({ selectedModel: model }),
 
   undo: () => {
-    const { past, nodes, edges, groups, future } = get();
+    const { past, nodes, edges, groups, future, breadcrumb } = get();
     if (past.length === 0) return;
     const prev = past[past.length - 1];
+    // Batch 331: 跨画布快照 —— 拒绝并丢弃整条异画布 past，
+    // 否则会把上一张画布的 nodes/edges/groups 灌进当前画布。
+    const here = currentCanvasKey(breadcrumb);
+    if (prev.canvasKey && prev.canvasKey !== here) {
+      set({ past: [], future: [] });
+      return;
+    }
     set({
       past: past.slice(0, -1),
-      future: [{ nodes, edges, groups }, ...future].slice(0, 20),
+      future: [
+        { nodes, edges, groups, canvasKey: here },
+        ...future,
+      ].slice(0, 20),
       nodes: prev.nodes,
       edges: prev.edges,
       // Batch 329: 同步还原分组。旧快照无 groups 字段时按「分组为空」处理，
@@ -898,11 +942,20 @@ export const useFrameosStore = create<FrameosCanvasState>((set, get) => ({
     });
   },
   redo: () => {
-    const { future, nodes, edges, groups, past } = get();
+    const { future, nodes, edges, groups, past, breadcrumb } = get();
     if (future.length === 0) return;
     const next = future[0];
+    const here = currentCanvasKey(breadcrumb);
+    // Batch 331: 同上，redo 侧同样按画布隔离
+    if (next.canvasKey && next.canvasKey !== here) {
+      set({ past: [], future: [] });
+      return;
+    }
     set({
-      past: [...past, { nodes, edges, groups }].slice(-20),
+      past: [
+        ...past,
+        { nodes, edges, groups, canvasKey: here },
+      ].slice(-20),
       future: future.slice(1),
       nodes: next.nodes,
       edges: next.edges,

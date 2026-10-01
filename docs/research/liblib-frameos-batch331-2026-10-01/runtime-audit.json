@@ -1,0 +1,36 @@
+{
+  "batch": 331,
+  "title": "FrameOS canvas-scoped undo history (no cross-canvas node injection)",
+  "defect": "history snapshots carried no canvas identity and setBreadcrumb reset neither past nor future, so an action taken on canvas A could be undone on canvas B, injecting all of A's nodes/edges/groups into B. Measured: canvas B went from 0 nodes to 7 (all of canvas A's) after a single undo.",
+  "fix": "HistoryEntry gained canvasKey written by pushHistorySnapshot; setBreadcrumb clears past/future on canvas switch; undo/redo reject and clear the stack when a snapshot's canvasKey does not match the current canvas (backstop)",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "setup:group-created",
+        "setup:other-canvas-available",
+        "switch:past-cleared",
+        "switch:future-cleared",
+        "undo:no-cross-canvas-leak",
+        "undo:canvas-b-unchanged",
+        "undo:no-group-leak",
+        "persist:other-canvas-clean",
+        "persist:no-foreign-ids-in-other",
+        "back:source-canvas-baseline-intact",
+        "back:no-foreign-nodes",
+        "same-canvas:setup-has-group",
+        "same-canvas:undo1-removed-group",
+        "same-canvas:undo1-kept-nodes",
+        "same-canvas:undo2-removed-node",
+        "same-canvas:redo1-restored-node",
+        "same-canvas:redo2-restored-group",
+        "same-canvas:redo2-nodes",
+        "diagnostics:zero"
+      ],
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}

@@ -575,3 +575,39 @@ screenshots:
     visible_text: '只需配置一个 API_KEY'
     alt: API 配置弹窗，标题下写明只需配置一个 API_KEY，正文是获取与粘贴两步引导，底部是验证并查询余额与保存两个按钮
     sha256: c27bc4469fa7ae89f888d52e0ba1e510a7b608a6cc374034befee278131f89b4
+
+  - file: screenshots/02-navigate-canvas-top-menu.png
+    task_id: navigate-canvas
+    step: 点击顶栏左侧汉堡按钮展开画布菜单，七个条目含红色的「删除当前画布」
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'button[aria-label=打开画布菜单] 展开后菜单项 主页/我的画布/新建画布/删除当前画布/导入资产/撤销/重做'
+    visible_text: '删除当前画布'
+    alt: 画布左上角展开的下拉菜单，自上而下是主页、我的画布、新建画布、红色的删除当前画布、导入资产，以及禁用态的撤销与重做
+    sha256: 9829a7665edfd18f5afe8274239583b539f1d5d46fa79a1edfa82c6feca84d63
+
+  - file: screenshots/02-navigate-canvas-context-menu.png
+    task_id: navigate-canvas
+    step: 在画布空白处点右键展开上下文菜单，六个条目含「复制所有节点」与「粘贴」
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '画布空白处 right click 展开后菜单项 上传资产/添加节点/撤销/重做/复制所有节点/粘贴'
+    visible_text: '复制所有节点'
+    alt: 画布空白处右键弹出的菜单，自上而下是上传资产、添加节点、撤销、重做、复制所有节点、粘贴，右下角显示在鼠标位置
+    sha256: 5a2780dece2d212ec6d67a1e9cfe8f64b8c4672e5ba760878f027d7281a22722
+
+  - file: screenshots/13-project-management-delete-confirm.png
+    task_id: project-management
+    step: 首页项目卡删除走确认弹窗，标题「删除画布？」正文「将删除 1 个画布，里面的节点和连线也会一起移除。」并提供取消与删除两个按钮
+    route: '/canvas'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'role=dialog 标题 删除画布？ / 正文 将删除 1 个画布，里面的节点和连线也会一起移除。 / 按钮 取 消 与 删 除'
+    visible_text: '将删除 1 个画布，里面的节点和连线也会一起移除。'
+    alt: 首页删除画布的确认弹窗，标题为删除画布，正文说明节点和连线会一起移除，底部是取消与红色的删除按钮
+    sha256: a09e1ebb2ef8315377ffb7256d9d76dc4ae250b493354f181300c4d680ea3c4c

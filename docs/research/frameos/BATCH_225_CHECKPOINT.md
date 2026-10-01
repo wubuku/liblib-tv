@@ -270,3 +270,29 @@ verifier batch330 **22/22 PASS**；batch251/232/177/159/174/328/329 回归 8/8 P
 **候选 Batch 331**：反向问题 —— 是否存在**不该入栈却入了**的 action
 （纯 UI 状态如 minimap 显隐/面板开关入历史，导致撤销「无事可做」）。
 需先用探针枚举全部 action 的入栈行为再决定立项。
+
+## Batch 331（2026-10-01）：撤销栈按画布隔离
+
+审计 Batch 329/330 后枚举全部 48 个 store action 的入栈行为（16 入栈 / 32 不入栈），
+在不入栈的一批里发现 `setBreadcrumb` 的问题：换画布时**只**清 `groups`/选中态，
+**不重置** `past`/`future`，而快照也不记录来自哪张画布 → 在画布 A 上做的动作
+可以在画布 B 上「撤销」，把 A 的 nodes/edges/groups **整份灌进 B**。
+
+实测：画布 B 从 0 节点变成画布 A 的 7 个节点（`afterUndoOnB`）。
+`reconcileGroups` 在此并不算错 —— 它拿 A 的节点收敛 A 的分组完全自洽；
+缺陷在于**根本不该把 A 的快照应用到 B**。
+
+修复：`HistoryEntry` 带 `canvasKey`；`setBreadcrumb` 换画布清空 past/future；
+`undo`/`redo` 遇异画布快照拒绝并清栈（兜底）。旧快照无 `canvasKey` 按同源处理。
+verifier batch331 **19/19 PASS**（含同画布逐步 undo1/undo2/redo1/redo2 断言）。
+
+⚠️ **首版探针漏判的教训**：直接在空 `past` 上切画布再撤销会得到 `B-clean`，
+但那只是因为 `undo` 是 no-op —— 必须先 `addNode` 制造快照才能复现。
+「先造前置状态」已写进探针与验证器，避免后人重蹈。
+
+**顺带记录（非本批缺陷）**：`canvasData` 只在切换时从 `MOCK_CANVASES` 写入、
+不回写实时编辑 → 切走再切回会丢失本地新增节点与分组。这是原型既有的 mock 边界
+（不实现持久化），验证器已按此正确的不变式书写断言。
+
+**候选 Batch 332**：`canvasData` 回写实时编辑。需先确认源站是否持久化画布内编辑
+（源站不可访问时不得凭空发明）；若按克隆一致性补齐须标注 clone-only。
