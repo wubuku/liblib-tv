@@ -59,23 +59,33 @@ PRESET_LABELS = [
     "看手机",
 ]
 
-GROUP_LABELS = ["身体", "头颈", "左臂", "右臂", "左腿", "右腿"]
-BONE_LABELS = [
-    "根骨骼",
-    "腰部",
-    "脊柱 1",
-    "脊柱 2",
-    "胸腔",
-    "颈部",
+# Batch 584（源站 2026-10-01 实测，角色A 姿势页）：姿势调节按解剖部位分七组
+# —— 身体 / 躯干 / 头部 / 手臂 — 肩 / 肘部 / 腿部 — 髋 / 膝部，四肢组内含
+# 「左 / 右」子行。原先的 6 组（身体/头颈/左臂/右臂/左腿/右腿）与骨骼链副标题
+# 是 clone 独有的组织法，随本批迁移。
+GROUP_LABELS = [
+    "身体",
+    "躯干",
     "头部",
-    "锁骨",
-    "上臂",
-    "前臂",
-    "手腕",
-    "大腿",
-    "小腿",
-    "脚掌",
+    "手臂 — 肩",
+    "肘部",
+    "腿部 — 髋",
+    "膝部",
 ]
+JOINT_LABELS = [
+    "前倾",
+    "转身",
+    "侧倾",
+    "扭转",
+    "点头",
+    "转头",
+    "歪头",
+    "前举",
+    "外展",
+    "前抬",
+    "弯曲",
+]
+SIDE_LABELS = ["左", "右"]
 
 
 def attach_errors(page: Page):
@@ -198,14 +208,31 @@ def run_desktop(page: Page):
     )
     panel = open_pose_panel(page)
     assert page.locator("[data-director-pose-preset]").count() == 20
-    assert page.locator("[data-director-pose-group]").count() == 6
+    assert page.locator("[data-director-pose-group]").count() == 7
     for label in PRESET_LABELS:
         assert panel.get_by_text(label, exact=True).count() >= 1, label
     for label in GROUP_LABELS:
         assert panel.get_by_text(label, exact=True).count() >= 1, label
     panel_text = panel.inner_text()
-    for label in BONE_LABELS:
+    for label in JOINT_LABELS:
         assert label in panel_text, label
+    # 源站姿势调节全部常驻展开，无手风琴折叠
+    for group_id in (
+        "body",
+        "torso",
+        "head",
+        "arm-shoulder",
+        "elbow",
+        "leg-hip",
+        "knee",
+    ):
+        group = page.locator(f'[data-director-pose-group="{group_id}"]')
+        assert group.get_attribute("data-expanded") == "true", group_id
+    # 四肢组的「左 / 右」子行各两组
+    assert page.locator('[data-director-pose-side="left"]').count() == 4
+    assert page.locator('[data-director-pose-side="right"]').count() == 4
+    # 关节滑杆总数 = 身体3 + 躯干3 + 头部3 + 肩6 + 肘2 + 髋6 + 膝2
+    assert page.locator("[data-director-pose-control]").count() == 25
     pose_state = page.locator("[data-director-pose-state]")
     assert pose_state.get_attribute("data-pose-preset") == "stand"
     page.screenshot(path=str(PRESETS_SCREENSHOT))
@@ -230,8 +257,8 @@ def run_desktop(page: Page):
     wave_diff = image_difference(stand_pixels, wave_pixels)
     assert max(wave_diff.mean) > 0.12, wave_diff.mean
 
-    right_arm = page.locator('[data-director-pose-group="right-arm"]')
-    right_arm.get_by_role("button").click()
+    # Batch 584: 手臂 — 肩 组常驻展开，无需折叠手势，直接取右肩滑杆
+    right_arm = page.locator('[data-director-pose-group="arm-shoulder"]')
     right_arm.locator(
         '[data-director-pose-control="rightShoulder.pitch"]'
     ).wait_for(state="visible")
@@ -305,8 +332,8 @@ def run_desktop(page: Page):
     ] == [0, 4]
 
     page.evaluate("window.__director_store.getState().setTimelineTime(3)")
-    if right_arm.get_by_role("button").get_attribute("aria-expanded") == "false":
-        right_arm.get_by_role("button").click()
+    # Batch 584: 姿势调节常驻展开，右肩滑杆无需折叠即可见/可拖
+    assert right_arm.get_attribute("data-expanded") == "true"
     shoulder = right_arm.locator(
         '[data-director-pose-control="rightShoulder.pitch"]'
     )
@@ -445,7 +472,7 @@ def verify_static_contract():
     ).read_text()
     store_source = (ROOT / "src/store/directorStore.ts").read_text()
 
-    for label in PRESET_LABELS + GROUP_LABELS + BONE_LABELS:
+    for label in PRESET_LABELS + GROUP_LABELS + JOINT_LABELS + SIDE_LABELS:
         assert label in pose_source, label
     assert "DIRECTOR_POSE_PRESET_IDS" in pose_source
     assert "interpolateDirectorPoseValue" in pose_source

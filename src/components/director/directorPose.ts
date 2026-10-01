@@ -51,11 +51,27 @@ export interface DirectorPoseControlDefinition {
   unit: "degree" | "meter";
 }
 
+// Batch 584（源站 2026-10-01 实测，角色A 姿势页）：姿势调节按**解剖部位**
+// 分组，四肢组内再分「左 / 右」子行；源站七组为 身体 / 躯干 / 头部 /
+// 手臂 — 肩 / 肘部 / 腿部 — 髋 / 膝部。side 仅用于渲染子行标题。
+export interface DirectorPoseControlRow {
+  side?: "left" | "right";
+  label?: string;
+  controls: DirectorPoseControlDefinition[];
+}
+
 export interface DirectorPoseControlGroup {
-  id: "body" | "head-neck" | "left-arm" | "right-arm" | "left-leg" | "right-leg";
+  id:
+    | "body"
+    | "torso"
+    | "head"
+    | "arm-shoulder"
+    | "elbow"
+    | "leg-hip"
+    | "knee";
   label: string;
   bones: string[];
-  controls: DirectorPoseControlDefinition[];
+  rows: DirectorPoseControlRow[];
 }
 
 const angle = (
@@ -72,92 +88,162 @@ const angle = (
   unit: "degree",
 });
 
+// Batch 584：滑杆量程逐项取自源站实测（range 的 min/max/step 全为 step=1）。
+// 注意滑杆量程 ≠ 钳制量程：源站 T型 预设的肩外展为 -70，落在源站滑杆下限
+// -10 之外，因此 DIRECTOR_POSE_CONTROL_REGISTRY 保留原有宽量程用于
+// normalizeDirectorPoseControls 钳制，滑杆仅按源站区间呈现（越界时
+// 滑块贴边，与源站行为一致）。
 export const DIRECTOR_POSE_CONTROL_GROUPS: DirectorPoseControlGroup[] = [
   {
     id: "body",
     label: "身体",
     bones: ["根骨骼", "腰部", "脊柱 1", "脊柱 2", "胸腔"],
-    controls: [
+    rows: [
       {
-        key: "body.offsetY",
-        label: "根骨骼 · 高度",
-        min: -0.6,
-        max: 0.35,
-        step: 0.01,
-        unit: "meter",
+        controls: [
+          angle("body.pitch", "前倾", -90, 90),
+          angle("body.yaw", "转身", -90, 90),
+          angle("body.roll", "侧倾", -45, 45),
+        ],
       },
-      angle("body.pitch", "根骨骼 · 前倾"),
-      angle("body.yaw", "根骨骼 · 转身"),
-      angle("body.roll", "根骨骼 · 侧倾"),
-      angle("torso.pitch", "腰部 · 前倾"),
-      angle("torso.yaw", "胸腔 · 扭转"),
-      angle("torso.roll", "脊柱 2 · 侧倾"),
     ],
   },
   {
-    id: "head-neck",
-    label: "头颈",
+    id: "torso",
+    label: "躯干",
+    bones: ["腰部", "脊柱 1", "脊柱 2", "胸腔"],
+    rows: [
+      {
+        controls: [
+          angle("torso.pitch", "前倾", -45, 45),
+          angle("torso.yaw", "扭转", -45, 45),
+          angle("torso.roll", "侧倾", -30, 30),
+        ],
+      },
+    ],
+  },
+  {
+    id: "head",
+    label: "头部",
     bones: ["颈部", "头部"],
-    controls: [
-      angle("head.pitch", "头部 · 点头", -90, 90),
-      angle("head.yaw", "颈部 · 转头", -90, 90),
-      angle("head.roll", "头部 · 歪头", -90, 90),
+    rows: [
+      {
+        controls: [
+          angle("head.pitch", "点头", -60, 60),
+          angle("head.yaw", "转头", -90, 90),
+          angle("head.roll", "歪头", -30, 30),
+        ],
+      },
     ],
   },
   {
-    id: "left-arm",
-    label: "左臂",
-    bones: ["锁骨", "上臂", "前臂", "手腕"],
-    controls: [
-      angle("leftShoulder.pitch", "上臂 · 前举"),
-      angle("leftShoulder.spread", "锁骨 · 外展"),
-      angle("leftShoulder.twist", "上臂 · 扭转"),
-      angle("leftElbow.bend", "前臂 · 弯曲", 0, 135),
-      angle("leftHand.pitch", "手腕 · 俯仰", -90, 90),
-      angle("leftHand.roll", "手腕 · 侧倾", -90, 90),
-      angle("leftHand.twist", "手腕 · 扭转", -90, 90),
+    id: "arm-shoulder",
+    label: "手臂 — 肩",
+    bones: ["锁骨", "上臂"],
+    rows: [
+      {
+        side: "left",
+        label: "左",
+        controls: [
+          angle("leftShoulder.pitch", "前举", -90, 180),
+          angle("leftShoulder.spread", "外展", -10, 90),
+          angle("leftShoulder.twist", "扭转", -90, 90),
+        ],
+      },
+      {
+        side: "right",
+        label: "右",
+        controls: [
+          angle("rightShoulder.pitch", "前举", -90, 180),
+          angle("rightShoulder.spread", "外展", -10, 90),
+          angle("rightShoulder.twist", "扭转", -90, 90),
+        ],
+      },
     ],
   },
   {
-    id: "right-arm",
-    label: "右臂",
-    bones: ["锁骨", "上臂", "前臂", "手腕"],
-    controls: [
-      angle("rightShoulder.pitch", "上臂 · 前举"),
-      angle("rightShoulder.spread", "锁骨 · 外展"),
-      angle("rightShoulder.twist", "上臂 · 扭转"),
-      angle("rightElbow.bend", "前臂 · 弯曲", 0, 135),
-      angle("rightHand.pitch", "手腕 · 俯仰", -90, 90),
-      angle("rightHand.roll", "手腕 · 侧倾", -90, 90),
-      angle("rightHand.twist", "手腕 · 扭转", -90, 90),
+    id: "elbow",
+    label: "肘部",
+    bones: ["前臂"],
+    rows: [
+      {
+        side: "left",
+        label: "左",
+        controls: [angle("leftElbow.bend", "弯曲", 0, 150)],
+      },
+      {
+        side: "right",
+        label: "右",
+        controls: [angle("rightElbow.bend", "弯曲", 0, 150)],
+      },
     ],
   },
   {
-    id: "left-leg",
-    label: "左腿",
-    bones: ["大腿", "小腿", "脚掌"],
-    controls: [
-      angle("leftHip.pitch", "大腿 · 前抬"),
-      angle("leftHip.spread", "大腿 · 外展"),
-      angle("leftHip.twist", "大腿 · 扭转"),
-      angle("leftKnee.bend", "小腿 · 弯曲", 0, 135),
-      angle("leftFoot.pitch", "脚掌 · 俯仰", -90, 90),
-      angle("leftFoot.roll", "脚掌 · 侧倾", -90, 90),
+    id: "leg-hip",
+    label: "腿部 — 髋",
+    bones: ["大腿"],
+    rows: [
+      {
+        side: "left",
+        label: "左",
+        controls: [
+          angle("leftHip.pitch", "前抬", -90, 90),
+          angle("leftHip.spread", "外展", -30, 60),
+          angle("leftHip.twist", "扭转", -45, 45),
+        ],
+      },
+      {
+        side: "right",
+        label: "右",
+        controls: [
+          angle("rightHip.pitch", "前抬", -90, 90),
+          angle("rightHip.spread", "外展", -30, 60),
+          angle("rightHip.twist", "扭转", -45, 45),
+        ],
+      },
     ],
   },
   {
-    id: "right-leg",
-    label: "右腿",
-    bones: ["大腿", "小腿", "脚掌"],
-    controls: [
-      angle("rightHip.pitch", "大腿 · 前抬"),
-      angle("rightHip.spread", "大腿 · 外展"),
-      angle("rightHip.twist", "大腿 · 扭转"),
-      angle("rightKnee.bend", "小腿 · 弯曲", 0, 135),
-      angle("rightFoot.pitch", "脚掌 · 俯仰", -90, 90),
-      angle("rightFoot.roll", "脚掌 · 侧倾", -90, 90),
+    id: "knee",
+    label: "膝部",
+    bones: ["小腿"],
+    rows: [
+      {
+        side: "left",
+        label: "左",
+        controls: [angle("leftKnee.bend", "弯曲", 0, 150)],
+      },
+      {
+        side: "right",
+        label: "右",
+        controls: [angle("rightKnee.bend", "弯曲", 0, 150)],
+      },
     ],
   },
+];
+
+// Batch 584: 源站姿势页没有「根骨骼 · 高度」「手腕」「脚掌」滑杆，但 clone
+// 的 20 个源站对齐预设（蹲下 / 坐姿 / 抱臂 / 招手…）依赖这些关节取值，
+// 因此它们只从 UI 隐去，仍登记在内部量程表里参与钳制与预设应用。
+const INTERNAL_POSE_CONTROLS: DirectorPoseControlDefinition[] = [
+  {
+    key: "body.offsetY",
+    label: "根骨骼 · 高度",
+    min: -0.6,
+    max: 0.35,
+    step: 0.01,
+    unit: "meter",
+  },
+  angle("leftHand.pitch", "手腕 · 俯仰", -90, 90),
+  angle("leftHand.roll", "手腕 · 侧倾", -90, 90),
+  angle("leftHand.twist", "手腕 · 扭转", -90, 90),
+  angle("rightHand.pitch", "手腕 · 俯仰", -90, 90),
+  angle("rightHand.roll", "手腕 · 侧倾", -90, 90),
+  angle("rightHand.twist", "手腕 · 扭转", -90, 90),
+  angle("leftFoot.pitch", "脚掌 · 俯仰", -90, 90),
+  angle("leftFoot.roll", "脚掌 · 侧倾", -90, 90),
+  angle("rightFoot.pitch", "脚掌 · 俯仰", -90, 90),
+  angle("rightFoot.roll", "脚掌 · 侧倾", -90, 90),
 ];
 
 export const DIRECTOR_POSE_PRESETS: DirectorPosePresetDefinition[] = [
@@ -485,11 +571,12 @@ export const DIRECTOR_POSE_PRESETS: DirectorPosePresetDefinition[] = [
 ];
 
 const controlLimits = new Map(
-  DIRECTOR_POSE_CONTROL_GROUPS.flatMap((group) =>
-    group.controls.map(
-      (control) => [control.key, control] as const,
+  [
+    ...DIRECTOR_POSE_CONTROL_GROUPS.flatMap((group) =>
+      group.rows.flatMap((row) => row.controls),
     ),
-  ),
+    ...INTERNAL_POSE_CONTROLS,
+  ].map((control) => [control.key, control] as const),
 );
 
 export function normalizeDirectorPoseControls(

@@ -1,0 +1,282 @@
+{
+  "batch": 584,
+  "title": "姿势 tab: seven anatomical groups permanently expanded, source joint labels/ranges, left-right sub-rows, no angle readout, internal joints hidden but preset-driven",
+  "evidence": "2026-10-01 live CDP sampling of the source director desk 姿势 tab + docs/research/liblib-canvas-batch584-2026-10-01/README.md",
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "groups:count",
+        "groups:source-ids",
+        "groups:all-expanded",
+        "groups:no-accordion-buttons",
+        "groups:label-身体",
+        "groups:label-躯干",
+        "groups:label-头部",
+        "groups:label-手臂 — 肩",
+        "groups:label-肘部",
+        "groups:label-腿部 — 髋",
+        "groups:label-膝部",
+        "sides:left-rows",
+        "sides:right-rows",
+        "joints:count",
+        "joint:body.pitch-present",
+        "joint:body.pitch-range",
+        "joint:body.pitch-step",
+        "joint:body.yaw-present",
+        "joint:body.yaw-range",
+        "joint:body.yaw-step",
+        "joint:body.roll-present",
+        "joint:body.roll-range",
+        "joint:body.roll-step",
+        "joint:torso.pitch-present",
+        "joint:torso.pitch-range",
+        "joint:torso.pitch-step",
+        "joint:torso.yaw-present",
+        "joint:torso.yaw-range",
+        "joint:torso.yaw-step",
+        "joint:torso.roll-present",
+        "joint:torso.roll-range",
+        "joint:torso.roll-step",
+        "joint:head.pitch-present",
+        "joint:head.pitch-range",
+        "joint:head.pitch-step",
+        "joint:head.yaw-present",
+        "joint:head.yaw-range",
+        "joint:head.yaw-step",
+        "joint:head.roll-present",
+        "joint:head.roll-range",
+        "joint:head.roll-step",
+        "joint:leftShoulder.pitch-present",
+        "joint:leftShoulder.pitch-range",
+        "joint:leftShoulder.pitch-step",
+        "joint:leftShoulder.spread-present",
+        "joint:leftShoulder.spread-range",
+        "joint:leftShoulder.spread-step",
+        "joint:leftShoulder.twist-present",
+        "joint:leftShoulder.twist-range",
+        "joint:leftShoulder.twist-step",
+        "joint:rightShoulder.pitch-present",
+        "joint:rightShoulder.pitch-range",
+        "joint:rightShoulder.pitch-step",
+        "joint:rightShoulder.spread-present",
+        "joint:rightShoulder.spread-range",
+        "joint:rightShoulder.spread-step",
+        "joint:rightShoulder.twist-present",
+        "joint:rightShoulder.twist-range",
+        "joint:rightShoulder.twist-step",
+        "joint:leftElbow.bend-present",
+        "joint:leftElbow.bend-range",
+        "joint:leftElbow.bend-step",
+        "joint:rightElbow.bend-present",
+        "joint:rightElbow.bend-range",
+        "joint:rightElbow.bend-step",
+        "joint:leftHip.pitch-present",
+        "joint:leftHip.pitch-range",
+        "joint:leftHip.pitch-step",
+        "joint:leftHip.spread-present",
+        "joint:leftHip.spread-range",
+        "joint:leftHip.spread-step",
+        "joint:leftHip.twist-present",
+        "joint:leftHip.twist-range",
+        "joint:leftHip.twist-step",
+        "joint:rightHip.pitch-present",
+        "joint:rightHip.pitch-range",
+        "joint:rightHip.pitch-step",
+        "joint:rightHip.spread-present",
+        "joint:rightHip.spread-range",
+        "joint:rightHip.spread-step",
+        "joint:rightHip.twist-present",
+        "joint:rightHip.twist-range",
+        "joint:rightHip.twist-step",
+        "joint:leftKnee.bend-present",
+        "joint:leftKnee.bend-range",
+        "joint:leftKnee.bend-step",
+        "joint:rightKnee.bend-present",
+        "joint:rightKnee.bend-range",
+        "joint:rightKnee.bend-step",
+        "joint:label-前倾",
+        "joint:label-转身",
+        "joint:label-侧倾",
+        "joint:label-扭转",
+        "joint:label-点头",
+        "joint:label-转头",
+        "joint:label-歪头",
+        "joint:label-前举",
+        "joint:label-外展",
+        "joint:label-前抬",
+        "joint:label-弯曲",
+        "readout:sr-only",
+        "readout:aria",
+        "readout:not-visible",
+        "internal:hidden-body.offsetY",
+        "internal:hidden-leftHand.pitch",
+        "internal:hidden-rightHand.roll",
+        "internal:hidden-leftFoot.pitch",
+        "internal:preset-still-drives-height",
+        "internal:preset-label",
+        "drag:commits",
+        "preset:stand-resets",
+        "preset:stand-label",
+        "diagnostics:zero"
+      ],
+      "group_ids": [
+        "body",
+        "torso",
+        "head",
+        "arm-shoulder",
+        "elbow",
+        "leg-hip",
+        "knee"
+      ],
+      "sliders": {
+        "body.pitch": {
+          "min": -90,
+          "max": 90,
+          "step": 1
+        },
+        "body.yaw": {
+          "min": -90,
+          "max": 90,
+          "step": 1
+        },
+        "body.roll": {
+          "min": -45,
+          "max": 45,
+          "step": 1
+        },
+        "torso.pitch": {
+          "min": -45,
+          "max": 45,
+          "step": 1
+        },
+        "torso.yaw": {
+          "min": -45,
+          "max": 45,
+          "step": 1
+        },
+        "torso.roll": {
+          "min": -30,
+          "max": 30,
+          "step": 1
+        },
+        "head.pitch": {
+          "min": -60,
+          "max": 60,
+          "step": 1
+        },
+        "head.yaw": {
+          "min": -90,
+          "max": 90,
+          "step": 1
+        },
+        "head.roll": {
+          "min": -30,
+          "max": 30,
+          "step": 1
+        },
+        "leftShoulder.pitch": {
+          "min": -90,
+          "max": 180,
+          "step": 1
+        },
+        "leftShoulder.spread": {
+          "min": -10,
+          "max": 90,
+          "step": 1
+        },
+        "leftShoulder.twist": {
+          "min": -90,
+          "max": 90,
+          "step": 1
+        },
+        "rightShoulder.pitch": {
+          "min": -90,
+          "max": 180,
+          "step": 1
+        },
+        "rightShoulder.spread": {
+          "min": -10,
+          "max": 90,
+          "step": 1
+        },
+        "rightShoulder.twist": {
+          "min": -90,
+          "max": 90,
+          "step": 1
+        },
+        "leftElbow.bend": {
+          "min": 0,
+          "max": 150,
+          "step": 1
+        },
+        "rightElbow.bend": {
+          "min": 0,
+          "max": 150,
+          "step": 1
+        },
+        "leftHip.pitch": {
+          "min": -90,
+          "max": 90,
+          "step": 1
+        },
+        "leftHip.spread": {
+          "min": -30,
+          "max": 60,
+          "step": 1
+        },
+        "leftHip.twist": {
+          "min": -45,
+          "max": 45,
+          "step": 1
+        },
+        "rightHip.pitch": {
+          "min": -90,
+          "max": 90,
+          "step": 1
+        },
+        "rightHip.spread": {
+          "min": -30,
+          "max": 60,
+          "step": 1
+        },
+        "rightHip.twist": {
+          "min": -45,
+          "max": 45,
+          "step": 1
+        },
+        "leftKnee.bend": {
+          "min": 0,
+          "max": 150,
+          "step": 1
+        },
+        "rightKnee.bend": {
+          "min": 0,
+          "max": 150,
+          "step": 1
+        }
+      },
+      "crouch_controls": {
+        "body.offsetY": -0.43,
+        "body.pitch": -26,
+        "torso.pitch": -24,
+        "head.pitch": 22,
+        "leftHip.pitch": 90,
+        "rightHip.pitch": 90,
+        "leftKnee.bend": 112,
+        "rightKnee.bend": 112,
+        "leftShoulder.pitch": 52,
+        "rightShoulder.pitch": 50,
+        "leftShoulder.spread": -10,
+        "rightShoulder.spread": 10,
+        "leftElbow.bend": 80,
+        "rightElbow.bend": 76
+      },
+      "diagnostics": {
+        "console": 0,
+        "filtered_transformcontrols": 0,
+        "errors": []
+      }
+    }
+  ]
+}

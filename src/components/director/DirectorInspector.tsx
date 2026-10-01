@@ -6,7 +6,6 @@ import { createPortal } from "react-dom";
 import {
   Camera,
   Check,
-  ChevronDown,
   Download,
   Eye,
   EyeOff,
@@ -42,6 +41,7 @@ import {
   createDirectorCharacterRig,
   DIRECTOR_POSE_CONTROL_GROUPS,
   DIRECTOR_POSE_PRESETS,
+  type DirectorPoseControlDefinition,
   type DirectorPoseControlGroup,
 } from "@/components/director/directorPose";
 import { getDirectorGroupAnchorTransform } from "@/components/director/directorGroupMath";
@@ -1133,44 +1133,35 @@ function PoseControlGroup({
   character: DirectorObject;
   group: DirectorPoseControlGroup;
 }) {
-  const [expanded, setExpanded] = useState(
-    group.id === "body" || group.id === "head-neck",
-  );
   const updateCharacterPoseControl = useDirectorStore(
     (state) => state.updateCharacterPoseControl,
   );
   const controls =
     character.characterRig?.controls ?? createDirectorCharacterRig().controls;
 
+  // Batch 584（源站实测）：姿势调节七组**全部常驻展开**、无折叠手风琴，
+  // 四肢组内先出「左 / 右」子行标题再出各关节滑杆。
   return (
     <section
       data-director-pose-group={group.id}
-      className="border-t border-white/[0.06]"
+      data-expanded="true"
+      className="border-t border-white/[0.06] pt-2"
     >
-      <button
-        type="button"
-        aria-expanded={expanded}
-        onClick={() => setExpanded((current) => !current)}
-        className="flex min-h-10 w-full items-center gap-2 py-2 text-left"
-      >
-        <span className="text-[11px] font-medium text-[#c8c8c8]">
-          {group.label}
-        </span>
-        <span className="min-w-0 flex-1 truncate text-[9px] text-[#626262]">
-          {group.bones.join(" / ")}
-        </span>
-        <ChevronDown
-          size={12}
-          className={cn(
-            "shrink-0 text-[#666] transition-transform",
-            expanded && "rotate-180",
-          )}
-        />
-      </button>
-      {expanded ? (
-        <div className="space-y-2 pb-3">
-          {group.controls.map((control) => {
-            return (
+      <h4 className="mb-1.5 text-[11px] font-medium text-[#c8c8c8]">
+        {group.label}
+      </h4>
+      <div className="space-y-2">
+        {group.rows.map((row, rowIndex) => (
+          <div key={row.side ?? `row-${rowIndex}`} className="space-y-2">
+            {row.label ? (
+              <p
+                data-director-pose-side={row.side}
+                className="text-[10px] text-[#8b8b8b]"
+              >
+                {row.label}
+              </p>
+            ) : null}
+            {row.controls.map((control) => (
               <PoseControl
                 key={control.key}
                 characterId={character.id}
@@ -1180,10 +1171,10 @@ function PoseControlGroup({
                 disabled={character.locked}
                 updateCharacterPoseControl={updateCharacterPoseControl}
               />
-            );
-          })}
-        </div>
-      ) : null}
+            ))}
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
@@ -1198,7 +1189,7 @@ function PoseControl({
 }: {
   characterId: string;
   groupLabel: string;
-  control: DirectorPoseControlGroup["controls"][number];
+  control: DirectorPoseControlDefinition;
   value: number;
   disabled: boolean;
   updateCharacterPoseControl: (
@@ -1213,12 +1204,19 @@ function PoseControl({
     fieldScope: control.key,
   });
 
+  // Batch 584: 源站为「标签在上、整宽滑杆在下」，且关节角**不显示数字
+  // 读数**（仅滑杆 + aria「{label}角度」）。此处对齐，角度值移入 output
+  // 的 aria/value 供辅助技术与 verifier 读取。
   return (
-    <label className="grid grid-cols-[minmax(0,1fr)_42px] items-center gap-x-2 gap-y-1">
-      <span className="truncate text-[10px] text-[#8b8b8b]">
+    <label className="block">
+      <span className="mb-1 block text-[10px] text-[#8b8b8b]">
         {control.label}
       </span>
-      <output className="text-right text-[10px] tabular-nums text-[#b8b8b8]">
+      <output
+        data-director-pose-value={control.key}
+        className="sr-only"
+        aria-label={`${control.label}角度`}
+      >
         {control.unit === "meter" ? value.toFixed(2) : `${Math.round(value)}°`}
       </output>
       <input
