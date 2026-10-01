@@ -911,3 +911,51 @@ screenshots:
     visible_text: 'TDCanvas 1'
     alt: 画布页的整条顶栏，左侧是主页图标、菜单图标、画布名 TDCanvas 1 与一颗灰色状态灯，右侧依次是配置、语言、主题、版本、快捷键与 Agent 机器人图标
     sha256: 77054a16c409df1fd799e599a1f7e46fec078cb719a13c92b803f8bce43c2faa
+
+  - file: screenshots/30-concepts-reference-unused.png
+    task_id: connect-references
+    step: 双击空白建文本节点与图片节点，给文本节点写入内容后从文本节点右侧输出口拖到图片节点左侧输入口连成一根线；点开图片节点底部的生成面板，观察参考素材条
+    route: '/canvas/:id'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '左侧文本节点标题「文本」内容「黄昏时分的山谷，逆光剪影，暖橙色天光」/ 右侧图片节点标题「图片」/ 两节点间一条实线连线 / 生成面板内参考素材条 data-reference-used="false" 显示「不参与生成」与角标「文本1」/ 面板头部黄色提示「1 个素材不符合当前模型的输入要求」/ 模式 文生图 输入 仅文本输入 参数 1k/2k'
+    visible_text: '1 个素材不符合当前模型的输入要求'
+    alt: 画布上左侧一个写着黄昏山谷描述的文本节点，右侧一个空图片节点，两者由一条连线相连；图片节点下方的生成面板里，参考素材条上有一张标着「文本1」的缩略图，缩略图上覆盖着「不参与生成」的黑底标签，面板顶部还有一行黄字提示一个素材不符合当前模型的输入要求
+    sha256: b5fdf2015de5fc9b3006a891056f46b5d635ac665baf4dd124a225e971d98f4f
+
+  - file: screenshots/30-concepts-reference-mention-picker.png
+    task_id: connect-references
+    step: 在图片节点的提示词框末尾输入「，氛围参考 」再敲一个 @ 字符，等待引用选择器弹出
+    route: '/canvas/:id'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '提示词框 contenteditable role="textbox" 内容「黄昏山谷，逆光剪影，暖橙色调，氛围参考 @」/ 其下弹出层带属性 data-canvas-resource-mention-menu="true"，内含一条「文本1 / 黄昏时分的山谷，逆光剪影」/ 面板顶部黄字提示仍在'
+    visible_text: '文本1'
+    alt: 图片节点的生成面板里，提示词末尾刚敲入一个 at 符号，编辑器下方弹出一个可选列表，列表里是一条名为「文本1」的引用，显示它来自左侧那个写着黄昏山谷描述的文本节点；面板顶部的黄色提示依然存在
+    sha256: 891160538adf6fdc2a7a009ba552f858e36e425a072c5c5af2b18ea3112e4021
+
+  - file: screenshots/30-concepts-reference-mention-inserted.png
+    task_id: connect-references
+    step: 在弹出的引用列表里点击「文本1」，等待引用以内联标签形式插入提示词，再观察参考素材条与面板顶部提示
+    route: '/canvas/:id'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '提示词框内容「黄昏山谷，逆光剪影，暖橙色调，氛围参考 」后紧跟一个圆角内联标签，标签文字为被引用文本节点的内容开头「黄昏时分的山谷，逆光剪...」/ 参考素材条仍显示「不参与生成」与「文本1」/ 面板顶部仍为「1 个素材不符合当前模型的输入要求」'
+    visible_text: '不参与生成'
+    alt: 引用已经插进提示词里，呈现为一个带边框的内联小标签，显示被引用文本的内容开头；但上方参考素材条上的「不参与生成」标签和面板顶部的黄色警告都还在，说明插入了引用并没有让这个素材转为参与生成
+    sha256: 78f6f1d1c5956c7fa1b9cd895f823e86be10bb56b14ffdc9462827a28673c31c
+
+  - file: screenshots/30-concepts-legacy-config-migrated.png
+    task_id: organize-canvas
+    step: 向画布写入一个 type 为 config 的历史遗留节点并连上一个文本节点，重新打开该画布，观察节点在加载时被改写成的类型与其上保留下来的提示词
+    route: '/canvas/:id'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '左侧画布标签页「画布元素 2」/ 节点列表两行分别为「文本 · 黄昏时分的山谷，逆光剪影」与「图片 · 图片」/ 画布上右侧节点标题已由「生成配置」变为「图片」，尺寸由 340x240 变为 620x350 / 点开其生成面板，提示词框内容为原 config 节点的 composerContent 原文'
+    visible_text: '把左侧文本当作提示词，配合参考图生成，保持黄昏色调。'
+    alt: 画布上一个文本节点连着一个图片节点，左侧面板的节点列表也只列出文本和图片两项；图片节点下方的生成面板里，提示词框保留了这条历史配置节点原来的整段提示词文字，说明节点类型被改写时提示词并没有丢
+    sha256: 2c7302ae49927564861a27d1dd8a2ceab7385eae310e548b818c6eac333b6d0a

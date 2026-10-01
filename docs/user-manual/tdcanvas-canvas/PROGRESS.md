@@ -323,3 +323,18 @@
   - 门禁四连全绿（15 tasks / 26 markdown / 76 images / **19 个锚点**）；站点构建 **22 页 / 76 图 / 19M**（实测）。站点回走：`use-agent.html` **0 坏图**、跨页锚点 `scrollY=1538` 生效、**0 个 HTTP≥400**。
   - **本轮门禁各拦一次，都是真问题**：① 新增的 `16-use-agent-canvas-topbar.png` 登记了却**没在正文引用**，被 gate-a 以 `manifest image is not referenced by Markdown` 拦下——**这道检查的价值正是在于挡住"截了图但忘了讲"**；② 锚点又漏全角冒号（`画布上多一个入口：…`）。**M34→M40 七个批次里锚点门禁拦下 5 次**。
   - 自动化教训：① **小到看不清的元素要用 `deviceScaleFactor` 拍**，不要事后用 PIL 拉伸（后者是把插值当证据）；② 枚举顶栏时 `button, a, [role=button]` 三种都要带上，漏了 `a` 会把整个导航漏掉；③ 判"面板开合"用容器 `x` 与 `innerWidth` 比较，**别用按钮 count**。
+
+## M41 — 两种打不开的节点类型 + 手册核心心智模型的重大纠错
+
+- **起因**：M40 收尾时想核实 `Config` 节点类型到底可不可达，发现它在 i18n 节点名表里存在、在侧边面板类型筛选里也存在，但**创建菜单里没有**。顺藤摸瓜查出两个从未被记录的事实。
+- **发现一：界面词汇表 9 种节点，创建菜单只给 7 种。** 运行时逐条点名右键菜单与「添加节点」子菜单，确认就是「文本/图片/视频/音频/组/ComfyUI 工作流/上传素材」七项。源码坐实：Config 在 `builtin-nodes.tsx:27` 被显式标了 `showInCreateMenu: false`（两个菜单都按这个字段过滤）；`aitudou` 压根没进 `BUILTIN_DEFINITIONS`，`canvas.aitudou.*` 整块 i18n **零组件引用**。
+- **发现二：这两种节点活不过一次打开。** `migrateLegacyGenerationNodes`（`project.tsx:3988`）在每次打开画布时把 `config`/`aitudou` 按 `generationMode`/`aitudouOperation` 改写成 image/video/audio/text 之一。实测注入一个 `config` 节点后重开：类型 `config`→`image`、标题「生成配置」→「图片」、尺寸 340×240→620×350，而**提示词原封不动搬到了新节点的提示词栏**。这一条同时解释了三处「界面死角」：筛选里的「Config」永远是空列表、首页「N 个配置」恒为 0、旧画布打开后节点会「变样」。
+- **发现三（本轮真正的重头戏）：手册的核心心智模型是错的。** 追查「为什么参考素材标着不参与生成」时，`30-concepts.md` 的「文本连到下游 → 内容拼入下游提示词」被实测推翻：
+  - 纯用户路径复现（建文本节点 → 写内容 → 拖线连到图片节点 → 配提示词）：参考素材条出现「文本1」，**盖着「不参与生成」**，面板顶部黄字「1 个素材不符合当前模型的输入要求」；
+  - 在提示词里敲 `@` 弹出引用选择器（带 `data-canvas-resource-mention-menu`），选中后内容以内联标签插入提示词——**但「不参与生成」标签与黄字都没有消失**。
+  - 根因在源码：判定「参与生成」靠 `aitudouNativeReferencedInputCounts` 扫参数里有没有 `@Text 1` 这类写法（正则带 `^@`），而引用选择器序列化时写出的是 `dataset.refLabel`，即**不带 @ 的「文本1」**。两边对不上，标记就一直亮着。
+  - 顺带厘清了一条容易误判的分叉：`buildNodeGenerationContext` 里「上游文本自动拼进提示词」那段代码**确实存在**，但只服务于旧的 `CanvasNodePromptPanel` 路径；v0.14.0 的图片/视频/音频/文本节点全部走 AI 土豆原生面板（`aitudouNativeNodeKind`），走的是另一套语义。**代码里有 ≠ 用户走的是那条路**——这正是手册写错的来源。
+- **改了 6 个文件**：`30-concepts.md`（新增「连线 ≠ 自动生效」与「两种打不开的节点类型」两整节，节点表补遗留类型说明）、`connect-references.md`、`generate-images.md`、`upload-materials.md`（三处断言统一改口径）、`create-nodes.md`（补菜单口径说明 + 修掉指向不存在内容的链接）、`organize-canvas.md`（Config 筛选加注）、`90-troubleshooting.md`（新增 2 条排障）。新增 4 图，76 → **80**。
+- **本轮最重要的一条是流程教训**：开工前发现 **`origin/master` 上只有 51 张图、磁盘有 76 张**，且 `use-agent.md` 整页不在仓库里——M33–M40 八个批次的新增文件**一个都没入库**。根因是 `git commit -m ... -- <pathspec>` **只提交已跟踪路径**，未跟踪的新文件被静默跳过；而我的提交后自查只查了「有没有混入他人路径」，**没查「本次新增文件是否全部入库」**。已补交 26 个文件（25 图 + 1 页）并 push，远端恢复一致。**这个盲区和「混入他人文件」是同一类风险的另一半，只防了一半。**
+- **自动化教训（本轮又踩了两个）**：① 端口手柄的 DOM 属性是 `data-port-direction`，取值是 **`input`/`output`** 而不是源码注释里的 `handleType: source/target`，按注释写选择器会一个都选不到；② 提示词编辑器没聚焦时按 `Meta+A` 选中的是**画布上的全部节点**而不是编辑器文字，回车就等于「清空画布」——自动化里清空文本前必须先确认焦点在 `contenteditable` 上。
+- **门禁四连全绿**（15 tasks / 26 markdown / **80 images**）；锚点门禁全通过；站点构建与回走见下方验收记录。

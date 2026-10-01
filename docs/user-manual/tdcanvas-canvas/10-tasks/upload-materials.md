@@ -56,7 +56,7 @@
 
 ![拖线到空白处弹出「利用画布节点生成」菜单](../screenshots/07-connect-references-drop-menu.png)
 
-把素材节点的右侧输出口连到图片/视频/音频节点，生成时它才会作为参考素材传入。详见 [connect-references.md](connect-references.md)。
+把素材节点的右侧输出口连到图片/视频/音频节点，它就会出现在对方的参考素材区。**注意「出现在参考素材区」不等于「一定参与生成」**——未被点名的素材会标着「不参与生成」，详见 [connect-references.md](connect-references.md) 与 [30-concepts.md](../30-concepts.md#连线不等于自动生效)。
 
 ## 取消与恢复
 

@@ -8,7 +8,7 @@
 ## 入口一：双击画布空白处（推荐）
 
 1. 在画布空白处**双击**，弹出「选择节点」菜单。
-2. 菜单共七项：**文本、图片、视频、音频、组、ComfyUI 工作流、上传素材**（最后一项在分隔线下）。
+2. 菜单共七项：**文本、图片、视频、音频、组、ComfyUI 工作流、上传素材**（最后一项在分隔线下）。这就是你能创建的全部——应用内部还存在「配置」和「AI 土豆任务」两种历史遗留类型，但它们不在菜单里，打开画布时也会被自动改写掉，参见 [30-concepts.md](../30-concepts.md#两种打不开的节点类型)。
 3. 点击任意一项，对应节点会在**双击位置**创建，并自动选中。
 
 ![双击弹出的「选择节点」菜单](../screenshots/03-create-nodes-double-click-menu.png)
@@ -67,5 +67,5 @@
 - [upload-materials.md](upload-materials.md)：往图片/视频/音频节点里填充真实素材。
 - [connect-references.md](connect-references.md)：把节点连成生成流程。
 - [organize-canvas.md](organize-canvas.md)：用组整理画布。
-- [30-concepts.md](../30-concepts.md)：七类节点各自的语义与在生成中的角色。
+- [30-concepts.md](../30-concepts.md)：七类节点各自的语义、连线的真实生效规则，以及两种打不开的历史遗留节点类型。
 
