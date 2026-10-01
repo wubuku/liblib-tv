@@ -1,0 +1,3295 @@
+{
+  "batch": 636,
+  "title": "633's \"width is not a variable\" re-checked in the short-window regime 635 uncovered — and the 898/899 family cliff pinned as width-driven",
+  "date": "2026-10-01",
+  "widths": [
+    898,
+    899,
+    1024,
+    1280,
+    1440,
+    1920
+  ],
+  "tops": {
+    "240": [
+      328,
+      364,
+      400,
+      436,
+      480,
+      560,
+      660
+    ],
+    "360": [
+      448,
+      480,
+      542,
+      660,
+      720,
+      780
+    ]
+  },
+  "cells": {
+    "w898|T240/wh=328": {
+      "width": 898,
+      "windowH": 328,
+      "pinnedTop": 240,
+      "requested": 88,
+      "timelineTop": 240,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 123,
+      "offViewport": 77,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898|T240/wh=364": {
+      "width": 898,
+      "windowH": 364,
+      "pinnedTop": 240,
+      "requested": 124,
+      "timelineTop": 240,
+      "timelineH": 124,
+      "storeHeight": 124,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 123,
+      "offViewport": 77,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898|T240/wh=400": {
+      "width": 898,
+      "windowH": 400,
+      "pinnedTop": 240,
+      "requested": 160,
+      "timelineTop": 240,
+      "timelineH": 160,
+      "storeHeight": 160,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898|T240/wh=436": {
+      "width": 898,
+      "windowH": 436,
+      "pinnedTop": 240,
+      "requested": 196,
+      "timelineTop": 240,
+      "timelineH": 196,
+      "storeHeight": 196,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 123,
+      "offViewport": 69,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898|T240/wh=480": {
+      "width": 898,
+      "windowH": 480,
+      "pinnedTop": 240,
+      "requested": 240,
+      "timelineTop": 240,
+      "timelineH": 240,
+      "storeHeight": 240,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 123,
+      "offViewport": 64,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898|T240/wh=560": {
+      "width": 898,
+      "windowH": 560,
+      "pinnedTop": 240,
+      "requested": 320,
+      "timelineTop": 240,
+      "timelineH": 320,
+      "storeHeight": 320,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 123,
+      "offViewport": 64,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898|T240/wh=660": {
+      "width": 898,
+      "windowH": 660,
+      "pinnedTop": 240,
+      "requested": 420,
+      "timelineTop": 240,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 123,
+      "offViewport": 64,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898|T360/wh=448": {
+      "width": 898,
+      "windowH": 448,
+      "pinnedTop": 360,
+      "requested": 88,
+      "timelineTop": 360,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 123,
+      "offViewport": 77,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898|T360/wh=480": {
+      "width": 898,
+      "windowH": 480,
+      "pinnedTop": 360,
+      "requested": 120,
+      "timelineTop": 360,
+      "timelineH": 120,
+      "storeHeight": 120,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 123,
+      "offViewport": 77,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898|T360/wh=542": {
+      "width": 898,
+      "windowH": 542,
+      "pinnedTop": 360,
+      "requested": 182,
+      "timelineTop": 366,
+      "timelineH": 176,
+      "storeHeight": 182,
+      "storeAgreesWithDom": false,
+      "clamped": true,
+      "spill": 0,
+      "viewportH": 278,
+      "total": 123,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898|T360/wh=660": {
+      "width": 898,
+      "windowH": 660,
+      "pinnedTop": 360,
+      "requested": 300,
+      "timelineTop": 360,
+      "timelineH": 300,
+      "storeHeight": 300,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 123,
+      "offViewport": 64,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898|T360/wh=720": {
+      "width": 898,
+      "windowH": 720,
+      "pinnedTop": 360,
+      "requested": 360,
+      "timelineTop": 360,
+      "timelineH": 360,
+      "storeHeight": 360,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 123,
+      "offViewport": 64,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898|T360/wh=780": {
+      "width": 898,
+      "windowH": 780,
+      "pinnedTop": 360,
+      "requested": 420,
+      "timelineTop": 360,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 123,
+      "offViewport": 64,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [],
+      "buriedCount": 0,
+      "buriedColumns": [],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899|T240/wh=328": {
+      "width": 899,
+      "windowH": 328,
+      "pinnedTop": 240,
+      "requested": 88,
+      "timelineTop": 240,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 61,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除咖啡桌",
+        "选择画幅比例",
+        "锁定咖啡桌",
+        "隐藏咖啡桌"
+      ],
+      "buriedCount": 5,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899|T240/wh=364": {
+      "width": 899,
+      "windowH": 364,
+      "pinnedTop": 240,
+      "requested": 124,
+      "timelineTop": 240,
+      "timelineH": 124,
+      "storeHeight": 124,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 42,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景"
+      ],
+      "buriedCount": 12,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899|T240/wh=400": {
+      "width": 899,
+      "windowH": 400,
+      "pinnedTop": 240,
+      "requested": 160,
+      "timelineTop": 240,
+      "timelineH": 160,
+      "storeHeight": 160,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 39,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景"
+      ],
+      "buriedCount": 12,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899|T240/wh=436": {
+      "width": 899,
+      "windowH": 436,
+      "pinnedTop": 240,
+      "requested": 196,
+      "timelineTop": 240,
+      "timelineH": 196,
+      "storeHeight": 196,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 22,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899|T240/wh=480": {
+      "width": 899,
+      "windowH": 480,
+      "pinnedTop": 240,
+      "requested": 240,
+      "timelineTop": 240,
+      "timelineH": 240,
+      "storeHeight": 240,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 22,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899|T240/wh=560": {
+      "width": 899,
+      "windowH": 560,
+      "pinnedTop": 240,
+      "requested": 320,
+      "timelineTop": 240,
+      "timelineH": 320,
+      "storeHeight": 320,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 12,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899|T240/wh=660": {
+      "width": 899,
+      "windowH": 660,
+      "pinnedTop": 240,
+      "requested": 420,
+      "timelineTop": 240,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899|T360/wh=448": {
+      "width": 899,
+      "windowH": 448,
+      "pinnedTop": 360,
+      "requested": 88,
+      "timelineTop": 360,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 37,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899|T360/wh=480": {
+      "width": 899,
+      "windowH": 480,
+      "pinnedTop": 360,
+      "requested": 120,
+      "timelineTop": 360,
+      "timelineH": 120,
+      "storeHeight": 120,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 35,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899|T360/wh=542": {
+      "width": 899,
+      "windowH": 542,
+      "pinnedTop": 360,
+      "requested": 182,
+      "timelineTop": 360,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 17,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899|T360/wh=660": {
+      "width": 899,
+      "windowH": 660,
+      "pinnedTop": 360,
+      "requested": 300,
+      "timelineTop": 360,
+      "timelineH": 300,
+      "storeHeight": 300,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899|T360/wh=720": {
+      "width": 899,
+      "windowH": 720,
+      "pinnedTop": 360,
+      "requested": 360,
+      "timelineTop": 360,
+      "timelineH": 360,
+      "storeHeight": 360,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899|T360/wh=780": {
+      "width": 899,
+      "windowH": 780,
+      "pinnedTop": 360,
+      "requested": 420,
+      "timelineTop": 360,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 10,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1024|T240/wh=328": {
+      "width": 1024,
+      "windowH": 328,
+      "pinnedTop": 240,
+      "requested": 88,
+      "timelineTop": 240,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 60,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除咖啡桌",
+        "选择画幅比例",
+        "锁定咖啡桌",
+        "隐藏咖啡桌"
+      ],
+      "buriedCount": 5,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1024|T240/wh=364": {
+      "width": 1024,
+      "windowH": 364,
+      "pinnedTop": 240,
+      "requested": 124,
+      "timelineTop": 240,
+      "timelineH": 124,
+      "storeHeight": 124,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 41,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景"
+      ],
+      "buriedCount": 12,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1024|T240/wh=400": {
+      "width": 1024,
+      "windowH": 400,
+      "pinnedTop": 240,
+      "requested": 160,
+      "timelineTop": 240,
+      "timelineH": 160,
+      "storeHeight": 160,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 38,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景"
+      ],
+      "buriedCount": 12,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1024|T240/wh=436": {
+      "width": 1024,
+      "windowH": 436,
+      "pinnedTop": 240,
+      "requested": 196,
+      "timelineTop": 240,
+      "timelineH": 196,
+      "storeHeight": 196,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 21,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1024|T240/wh=480": {
+      "width": 1024,
+      "windowH": 480,
+      "pinnedTop": 240,
+      "requested": 240,
+      "timelineTop": 240,
+      "timelineH": 240,
+      "storeHeight": 240,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 21,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1024|T240/wh=560": {
+      "width": 1024,
+      "windowH": 560,
+      "pinnedTop": 240,
+      "requested": 320,
+      "timelineTop": 240,
+      "timelineH": 320,
+      "storeHeight": 320,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 11,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1024|T240/wh=660": {
+      "width": 1024,
+      "windowH": 660,
+      "pinnedTop": 240,
+      "requested": 420,
+      "timelineTop": 240,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 9,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1024|T360/wh=448": {
+      "width": 1024,
+      "windowH": 448,
+      "pinnedTop": 360,
+      "requested": 88,
+      "timelineTop": 360,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 36,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1024|T360/wh=480": {
+      "width": 1024,
+      "windowH": 480,
+      "pinnedTop": 360,
+      "requested": 120,
+      "timelineTop": 360,
+      "timelineH": 120,
+      "storeHeight": 120,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 34,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1024|T360/wh=542": {
+      "width": 1024,
+      "windowH": 542,
+      "pinnedTop": 360,
+      "requested": 182,
+      "timelineTop": 360,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 16,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1024|T360/wh=660": {
+      "width": 1024,
+      "windowH": 660,
+      "pinnedTop": 360,
+      "requested": 300,
+      "timelineTop": 360,
+      "timelineH": 300,
+      "storeHeight": 300,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 9,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1024|T360/wh=720": {
+      "width": 1024,
+      "windowH": 720,
+      "pinnedTop": 360,
+      "requested": 360,
+      "timelineTop": 360,
+      "timelineH": 360,
+      "storeHeight": 360,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 9,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1024|T360/wh=780": {
+      "width": 1024,
+      "windowH": 780,
+      "pinnedTop": 360,
+      "requested": 420,
+      "timelineTop": 360,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 9,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1280|T240/wh=328": {
+      "width": 1280,
+      "windowH": 328,
+      "pinnedTop": 240,
+      "requested": 88,
+      "timelineTop": 240,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 57,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除咖啡桌",
+        "选择画幅比例",
+        "锁定咖啡桌",
+        "隐藏咖啡桌"
+      ],
+      "buriedCount": 5,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1280|T240/wh=364": {
+      "width": 1280,
+      "windowH": 364,
+      "pinnedTop": 240,
+      "requested": 124,
+      "timelineTop": 240,
+      "timelineH": 124,
+      "storeHeight": 124,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 37,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景"
+      ],
+      "buriedCount": 12,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1280|T240/wh=400": {
+      "width": 1280,
+      "windowH": 400,
+      "pinnedTop": 240,
+      "requested": 160,
+      "timelineTop": 240,
+      "timelineH": 160,
+      "storeHeight": 160,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 34,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景"
+      ],
+      "buriedCount": 12,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1280|T240/wh=436": {
+      "width": 1280,
+      "windowH": 436,
+      "pinnedTop": 240,
+      "requested": 196,
+      "timelineTop": 240,
+      "timelineH": 196,
+      "storeHeight": 196,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 16,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1280|T240/wh=480": {
+      "width": 1280,
+      "windowH": 480,
+      "pinnedTop": 240,
+      "requested": 240,
+      "timelineTop": 240,
+      "timelineH": 240,
+      "storeHeight": 240,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 16,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1280|T240/wh=560": {
+      "width": 1280,
+      "windowH": 560,
+      "pinnedTop": 240,
+      "requested": 320,
+      "timelineTop": 240,
+      "timelineH": 320,
+      "storeHeight": 320,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 6,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1280|T240/wh=660": {
+      "width": 1280,
+      "windowH": 660,
+      "pinnedTop": 240,
+      "requested": 420,
+      "timelineTop": 240,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1280|T360/wh=448": {
+      "width": 1280,
+      "windowH": 448,
+      "pinnedTop": 360,
+      "requested": 88,
+      "timelineTop": 360,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 33,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1280|T360/wh=480": {
+      "width": 1280,
+      "windowH": 480,
+      "pinnedTop": 360,
+      "requested": 120,
+      "timelineTop": 360,
+      "timelineH": 120,
+      "storeHeight": 120,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 31,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1280|T360/wh=542": {
+      "width": 1280,
+      "windowH": 542,
+      "pinnedTop": 360,
+      "requested": 182,
+      "timelineTop": 360,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 12,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1280|T360/wh=660": {
+      "width": 1280,
+      "windowH": 660,
+      "pinnedTop": 360,
+      "requested": 300,
+      "timelineTop": 360,
+      "timelineH": 300,
+      "storeHeight": 300,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1280|T360/wh=720": {
+      "width": 1280,
+      "windowH": 720,
+      "pinnedTop": 360,
+      "requested": 360,
+      "timelineTop": 360,
+      "timelineH": 360,
+      "storeHeight": 360,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1280|T360/wh=780": {
+      "width": 1280,
+      "windowH": 780,
+      "pinnedTop": 360,
+      "requested": 420,
+      "timelineTop": 360,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440|T240/wh=328": {
+      "width": 1440,
+      "windowH": 328,
+      "pinnedTop": 240,
+      "requested": 88,
+      "timelineTop": 240,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 57,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除咖啡桌",
+        "选择画幅比例",
+        "锁定咖啡桌",
+        "隐藏咖啡桌"
+      ],
+      "buriedCount": 5,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440|T240/wh=364": {
+      "width": 1440,
+      "windowH": 364,
+      "pinnedTop": 240,
+      "requested": 124,
+      "timelineTop": 240,
+      "timelineH": 124,
+      "storeHeight": 124,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 37,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景"
+      ],
+      "buriedCount": 12,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440|T240/wh=400": {
+      "width": 1440,
+      "windowH": 400,
+      "pinnedTop": 240,
+      "requested": 160,
+      "timelineTop": 240,
+      "timelineH": 160,
+      "storeHeight": 160,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 34,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景"
+      ],
+      "buriedCount": 12,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440|T240/wh=436": {
+      "width": 1440,
+      "windowH": 436,
+      "pinnedTop": 240,
+      "requested": 196,
+      "timelineTop": 240,
+      "timelineH": 196,
+      "storeHeight": 196,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 16,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440|T240/wh=480": {
+      "width": 1440,
+      "windowH": 480,
+      "pinnedTop": 240,
+      "requested": 240,
+      "timelineTop": 240,
+      "timelineH": 240,
+      "storeHeight": 240,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 16,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440|T240/wh=560": {
+      "width": 1440,
+      "windowH": 560,
+      "pinnedTop": 240,
+      "requested": 320,
+      "timelineTop": 240,
+      "timelineH": 320,
+      "storeHeight": 320,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 6,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440|T240/wh=660": {
+      "width": 1440,
+      "windowH": 660,
+      "pinnedTop": 240,
+      "requested": 420,
+      "timelineTop": 240,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440|T360/wh=448": {
+      "width": 1440,
+      "windowH": 448,
+      "pinnedTop": 360,
+      "requested": 88,
+      "timelineTop": 360,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 33,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440|T360/wh=480": {
+      "width": 1440,
+      "windowH": 480,
+      "pinnedTop": 360,
+      "requested": 120,
+      "timelineTop": 360,
+      "timelineH": 120,
+      "storeHeight": 120,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 31,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440|T360/wh=542": {
+      "width": 1440,
+      "windowH": 542,
+      "pinnedTop": 360,
+      "requested": 182,
+      "timelineTop": 360,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 12,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440|T360/wh=660": {
+      "width": 1440,
+      "windowH": 660,
+      "pinnedTop": 360,
+      "requested": 300,
+      "timelineTop": 360,
+      "timelineH": 300,
+      "storeHeight": 300,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440|T360/wh=720": {
+      "width": 1440,
+      "windowH": 720,
+      "pinnedTop": 360,
+      "requested": 360,
+      "timelineTop": 360,
+      "timelineH": 360,
+      "storeHeight": 360,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440|T360/wh=780": {
+      "width": 1440,
+      "windowH": 780,
+      "pinnedTop": 360,
+      "requested": 420,
+      "timelineTop": 360,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1920|T240/wh=328": {
+      "width": 1920,
+      "windowH": 328,
+      "pinnedTop": 240,
+      "requested": 88,
+      "timelineTop": 240,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 57,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除咖啡桌",
+        "选择画幅比例",
+        "锁定咖啡桌",
+        "隐藏咖啡桌"
+      ],
+      "buriedCount": 5,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1920|T240/wh=364": {
+      "width": 1920,
+      "windowH": 364,
+      "pinnedTop": 240,
+      "requested": 124,
+      "timelineTop": 240,
+      "timelineH": 124,
+      "storeHeight": 124,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 37,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景"
+      ],
+      "buriedCount": 12,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1920|T240/wh=400": {
+      "width": 1920,
+      "windowH": 400,
+      "pinnedTop": 240,
+      "requested": 160,
+      "timelineTop": 240,
+      "timelineH": 160,
+      "storeHeight": 160,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 34,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景"
+      ],
+      "buriedCount": 12,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1920|T240/wh=436": {
+      "width": 1920,
+      "windowH": 436,
+      "pinnedTop": 240,
+      "requested": 196,
+      "timelineTop": 240,
+      "timelineH": 196,
+      "storeHeight": 196,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 16,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1920|T240/wh=480": {
+      "width": 1920,
+      "windowH": 480,
+      "pinnedTop": 240,
+      "requested": 240,
+      "timelineTop": 240,
+      "timelineH": 240,
+      "storeHeight": 240,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 16,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1920|T240/wh=560": {
+      "width": 1920,
+      "windowH": 560,
+      "pinnedTop": 240,
+      "requested": 320,
+      "timelineTop": 240,
+      "timelineH": 320,
+      "storeHeight": 320,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 6,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1920|T240/wh=660": {
+      "width": 1920,
+      "windowH": 660,
+      "pinnedTop": 240,
+      "requested": 420,
+      "timelineTop": 240,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 152,
+      "total": 130,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "AI 识图导入",
+        "删除冷掉的咖啡",
+        "删除咖啡桌",
+        "删除咖啡馆背景",
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "选择画幅比例",
+        "锁定冷掉的咖啡",
+        "锁定咖啡桌",
+        "锁定咖啡馆背景",
+        "锁定机位01 · 对峙中景",
+        "隐藏冷掉的咖啡",
+        "隐藏咖啡桌",
+        "隐藏咖啡馆背景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 15,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1920|T360/wh=448": {
+      "width": 1920,
+      "windowH": 448,
+      "pinnedTop": 360,
+      "requested": 88,
+      "timelineTop": 360,
+      "timelineH": 88,
+      "storeHeight": 88,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 33,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1920|T360/wh=480": {
+      "width": 1920,
+      "windowH": 480,
+      "pinnedTop": 360,
+      "requested": 120,
+      "timelineTop": 360,
+      "timelineH": 120,
+      "storeHeight": 120,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 31,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1920|T360/wh=542": {
+      "width": 1920,
+      "windowH": 542,
+      "pinnedTop": 360,
+      "requested": 182,
+      "timelineTop": 360,
+      "timelineH": 182,
+      "storeHeight": 182,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 12,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1920|T360/wh=660": {
+      "width": 1920,
+      "windowH": 660,
+      "pinnedTop": 360,
+      "requested": 300,
+      "timelineTop": 360,
+      "timelineH": 300,
+      "storeHeight": 300,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1920|T360/wh=720": {
+      "width": 1920,
+      "windowH": 720,
+      "pinnedTop": 360,
+      "requested": 360,
+      "timelineTop": 360,
+      "timelineH": 360,
+      "storeHeight": 360,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1920|T360/wh=780": {
+      "width": 1920,
+      "windowH": 780,
+      "pinnedTop": 360,
+      "requested": 420,
+      "timelineTop": 360,
+      "timelineH": 420,
+      "storeHeight": 420,
+      "storeAgreesWithDom": true,
+      "clamped": false,
+      "spill": 0,
+      "viewportH": 272,
+      "total": 130,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedLabels": [
+        "删除机位01 · 对峙中景",
+        "帮助",
+        "锁定机位01 · 对峙中景",
+        "隐藏机位01 · 对峙中景"
+      ],
+      "buriedCount": 4,
+      "buriedColumns": [
+        "rail",
+        "tree"
+      ],
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    }
+  },
+  "checks": {
+    "the-grid-runs-78-cells": {
+      "ok": true,
+      "detail": 78
+    },
+    "no-cell-has-an-off-viewport-unreachable-control": {
+      "ok": true,
+      "detail": {}
+    },
+    "no-cell-has-a-control-collapsed-to-nothing": {
+      "ok": true,
+      "detail": {}
+    },
+    "no-cell-has-an-unexplained-covered-control": {
+      "ok": true,
+      "detail": {}
+    },
+    "every-cell-actually-exercised-the-off-viewport-branch": {
+      "ok": true,
+      "detail": []
+    },
+    "every-buried-control-sits-below-the-timelines-top-edge": {
+      "ok": true,
+      "detail": {}
+    },
+    "the-timeline-never-spills-past-the-window": {
+      "ok": true,
+      "detail": {}
+    },
+    "629s-closed-form-predicts-the-squeeze-in-every-cell": {
+      "ok": true,
+      "detail": {}
+    },
+    "the-timeline-height-law-is-min-with-window-minus-88-except-at-the-182-shortcut": {
+      "ok": true,
+      "detail": {}
+    },
+    "the-store-and-the-dom-diverge-only-at-182-in-the-narrow-family": {
+      "ok": true,
+      "detail": {
+        "divergentCells": {
+          "w898|T360/wh=542": {
+            "width": 898,
+            "store": 182,
+            "dom": 176
+          }
+        },
+        "divergences": 1,
+        "of": 78
+      }
+    },
+    "the-182-shortcut-costs-exactly-the-6px-family-gap": {
+      "ok": true,
+      "detail": {
+        "requestedAtDesktopDefault": 182,
+        "renderedInNarrowFamily": 176
+      }
+    },
+    "every-cell-except-the-named-182-shortcut-sat-on-its-pinned-top": {
+      "ok": true,
+      "detail": {
+        "shortcutCells": [
+          "w898|T360/wh=542"
+        ],
+        "otherDeviations": {}
+      }
+    },
+    "633s-width-is-not-a-variable-holds-in-the-short-window-regime-too": {
+      "ok": true,
+      "detail": {
+        "desktopWidths": [
+          899,
+          1024,
+          1280,
+          1440,
+          1920
+        ],
+        "disagreements": {}
+      }
+    },
+    "every-desktop-width-has-at-least-one-curve-that-moves": {
+      "ok": true,
+      "detail": {
+        "widthsWithNoMovingCurve": [],
+        "flatCurves": {
+          "w899|T360": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "w1024|T360": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "w1280|T360": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "w1440|T360": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "w1920|T360": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        }
+      }
+    },
+    "only-the-top-360-curves-are-flat": {
+      "ok": true,
+      "detail": {
+        "flatCurves": [
+          "w1024|T360",
+          "w1280|T360",
+          "w1440|T360",
+          "w1920|T360",
+          "w899|T360"
+        ],
+        "top240Curves": {
+          "899": [
+            5,
+            12,
+            12,
+            15,
+            15,
+            15,
+            15
+          ],
+          "1024": [
+            5,
+            12,
+            12,
+            15,
+            15,
+            15,
+            15
+          ],
+          "1280": [
+            5,
+            12,
+            12,
+            15,
+            15,
+            15,
+            15
+          ],
+          "1440": [
+            5,
+            12,
+            12,
+            15,
+            15,
+            15,
+            15
+          ],
+          "1920": [
+            5,
+            12,
+            12,
+            15,
+            15,
+            15,
+            15
+          ]
+        }
+      }
+    },
+    "every-desktop-width-shows-the-unsaturated-regime-at-top-240": {
+      "ok": true,
+      "detail": {
+        "flatBelowSaturation": {}
+      }
+    },
+    "the-saturation-line-is-the-same-for-every-desktop-width": {
+      "ok": true,
+      "detail": {
+        "899": 436,
+        "1024": 436,
+        "1280": 436,
+        "1440": 436,
+        "1920": 436
+      }
+    },
+    "the-narrow-family-column-buries-nothing-at-any-window-height": {
+      "ok": true,
+      "detail": {
+        "width": 898,
+        "counts": {
+          "T240/wh=328": 0,
+          "T240/wh=364": 0,
+          "T240/wh=400": 0,
+          "T240/wh=436": 0,
+          "T240/wh=480": 0,
+          "T240/wh=560": 0,
+          "T240/wh=660": 0,
+          "T360/wh=448": 0,
+          "T360/wh=480": 0,
+          "T360/wh=542": 0,
+          "T360/wh=660": 0,
+          "T360/wh=720": 0,
+          "T360/wh=780": 0
+        }
+      }
+    },
+    "the-family-cliff-sits-at-898-899-and-not-at-a-window-height": {
+      "ok": true,
+      "detail": {
+        "898": [
+          0
+        ],
+        "899": [
+          4,
+          5,
+          12,
+          15
+        ]
+      }
+    },
+    "this-run-reproduces-635s-recorded-audit-on-every-shared-1440-cell": {
+      "ok": true,
+      "detail": {
+        "disagreements": []
+      }
+    },
+    "633s-desktop-row-agrees-with-this-run-at-its-two-shared-points": {
+      "ok": true,
+      "detail": {
+        "prior633Desktop": {
+          "88": 1,
+          "120": 1,
+          "150": 1,
+          "182": 1,
+          "240": 4,
+          "300": 4,
+          "360": 10,
+          "420": 15
+        },
+        "mineAt1440x660": {
+          "420": 15,
+          "300": 4
+        },
+        "disagreements": {}
+      }
+    }
+  },
+  "ok": true,
+  "checkCount": 21,
+  "failures": [],
+  "totals": {
+    "unreachable": 0,
+    "zeroSize": 0,
+    "unexplained": 0,
+    "offViewport": 2318,
+    "curves": {
+      "898": {
+        "240": [
+          [
+            328,
+            0
+          ],
+          [
+            364,
+            0
+          ],
+          [
+            400,
+            0
+          ],
+          [
+            436,
+            0
+          ],
+          [
+            480,
+            0
+          ],
+          [
+            560,
+            0
+          ],
+          [
+            660,
+            0
+          ]
+        ],
+        "360": [
+          [
+            448,
+            0
+          ],
+          [
+            480,
+            0
+          ],
+          [
+            542,
+            0
+          ],
+          [
+            660,
+            0
+          ],
+          [
+            720,
+            0
+          ],
+          [
+            780,
+            0
+          ]
+        ]
+      },
+      "899": {
+        "240": [
+          [
+            328,
+            5
+          ],
+          [
+            364,
+            12
+          ],
+          [
+            400,
+            12
+          ],
+          [
+            436,
+            15
+          ],
+          [
+            480,
+            15
+          ],
+          [
+            560,
+            15
+          ],
+          [
+            660,
+            15
+          ]
+        ],
+        "360": [
+          [
+            448,
+            4
+          ],
+          [
+            480,
+            4
+          ],
+          [
+            542,
+            4
+          ],
+          [
+            660,
+            4
+          ],
+          [
+            720,
+            4
+          ],
+          [
+            780,
+            4
+          ]
+        ]
+      },
+      "1024": {
+        "240": [
+          [
+            328,
+            5
+          ],
+          [
+            364,
+            12
+          ],
+          [
+            400,
+            12
+          ],
+          [
+            436,
+            15
+          ],
+          [
+            480,
+            15
+          ],
+          [
+            560,
+            15
+          ],
+          [
+            660,
+            15
+          ]
+        ],
+        "360": [
+          [
+            448,
+            4
+          ],
+          [
+            480,
+            4
+          ],
+          [
+            542,
+            4
+          ],
+          [
+            660,
+            4
+          ],
+          [
+            720,
+            4
+          ],
+          [
+            780,
+            4
+          ]
+        ]
+      },
+      "1280": {
+        "240": [
+          [
+            328,
+            5
+          ],
+          [
+            364,
+            12
+          ],
+          [
+            400,
+            12
+          ],
+          [
+            436,
+            15
+          ],
+          [
+            480,
+            15
+          ],
+          [
+            560,
+            15
+          ],
+          [
+            660,
+            15
+          ]
+        ],
+        "360": [
+          [
+            448,
+            4
+          ],
+          [
+            480,
+            4
+          ],
+          [
+            542,
+            4
+          ],
+          [
+            660,
+            4
+          ],
+          [
+            720,
+            4
+          ],
+          [
+            780,
+            4
+          ]
+        ]
+      },
+      "1440": {
+        "240": [
+          [
+            328,
+            5
+          ],
+          [
+            364,
+            12
+          ],
+          [
+            400,
+            12
+          ],
+          [
+            436,
+            15
+          ],
+          [
+            480,
+            15
+          ],
+          [
+            560,
+            15
+          ],
+          [
+            660,
+            15
+          ]
+        ],
+        "360": [
+          [
+            448,
+            4
+          ],
+          [
+            480,
+            4
+          ],
+          [
+            542,
+            4
+          ],
+          [
+            660,
+            4
+          ],
+          [
+            720,
+            4
+          ],
+          [
+            780,
+            4
+          ]
+        ]
+      },
+      "1920": {
+        "240": [
+          [
+            328,
+            5
+          ],
+          [
+            364,
+            12
+          ],
+          [
+            400,
+            12
+          ],
+          [
+            436,
+            15
+          ],
+          [
+            480,
+            15
+          ],
+          [
+            560,
+            15
+          ],
+          [
+            660,
+            15
+          ]
+        ],
+        "360": [
+          [
+            448,
+            4
+          ],
+          [
+            480,
+            4
+          ],
+          [
+            542,
+            4
+          ],
+          [
+            660,
+            4
+          ],
+          [
+            720,
+            4
+          ],
+          [
+            780,
+            4
+          ]
+        ]
+      }
+    },
+    "saturationByWidth": {
+      "899": 436,
+      "1024": 436,
+      "1280": 436,
+      "1440": 436,
+      "1920": 436
+    },
+    "familyCliff": {
+      "898": [
+        0
+      ],
+      "899": [
+        4,
+        5,
+        12,
+        15
+      ]
+    }
+  }
+}
