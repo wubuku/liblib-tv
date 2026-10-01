@@ -24,7 +24,6 @@ import {
   Trash2,
   Waypoints,
   X,
-  ZoomIn,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useDirectorStore } from "@/store/directorStore";
@@ -370,9 +369,17 @@ export function DirectorTimeline() {
         ? track.kind === "group" && track.groupId === selectedGroupId
         : track.objectId === selectedObjectId && track.kind !== "pose",
   );
+  // Batch 594（源站 2026-10-01 实测，总时长 = 10000ms 时逐点采样）：
+  //   zoom   0  16  31   49   64   82  100
+  //   标尺宽 1598 1598 1598 2473 3220 4116 5012
+  // 49/64/82/100 四点严格共线，斜率 49.78 px/zoom、截距 ≈33.6px；zoom ≤ 31 时
+  // 宽度等于容器宽（1598），即源站把内容宽度夹在容器宽上。换成「每秒像素」
+  // 就是 3.36 + 4.978*zoom px/s，按总时长线性外推（**外推是推断**：源站只有
+  // 10s 这一个采样点，改总时长要写用户项目，没测）。
+  // 640px 的下限是 clone 自己的（源站是夹到容器宽，容器宽是动态的）。
   const timelineWidth = Math.max(
     640,
-    timeline.duration * 80 * timeline.zoom,
+    timeline.duration * (3.36 + 4.978 * timeline.zoom),
   );
   const playheadPosition =
     timeline.duration > 0
@@ -921,36 +928,65 @@ export function DirectorTimeline() {
           <Trash2 size={13} />
         </button>
         <span className="mx-1 h-5 w-px shrink-0 bg-white/10" />
-        <label className="flex h-7 shrink-0 items-center gap-1.5 text-[#777]">
-          <ZoomIn size={13} />
-          <input
-            type="range"
-            aria-label="时间轴缩放"
-            data-director-timeline-zoom
-            min="0.75"
-            max="2.5"
-            step="0.25"
-            value={timeline.zoom}
-            onChange={(event) =>
-              setTimelineZoom(Number(event.currentTarget.value))
-            }
-            className="w-20 accent-[#09caf5]"
-          />
-        </label>
-        {/* Batch 592（源站实测）：收起按钮的可及名随状态翻转——
-            展开时 `时间线最小化` @(1764,1027) 24×24，收起后同一位置变成
-            `展开时间线` @(1764,1121)。收起只收轨道区，工具栏整条保留。 */}
-        <button
-          type="button"
-          data-director-timeline-collapse
-          aria-label={timelineCollapsed ? "展开时间线" : "时间线最小化"}
-          title={timelineCollapsed ? "展开时间线" : "时间线最小化"}
-          aria-pressed={timelineCollapsed}
-          onClick={() => setTimelineCollapsed((collapsed) => !collapsed)}
-          className="flex h-6 w-6 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-white"
+        {/* Batch 594（源站 2026-10-01 实测）：缩放簇是 120x36 的独立块
+            `flex h-9 w-[120px] items-center gap-2 border-l border-white/[0.08]
+            bg-[#212121] px-2`，里面**没有**放大镜图标——只有自绘轨道 + 最小化钮。
+            轨道 71x16 容器 / 71x4 `rounded-full` `bg-white/40` / 12x12
+            `rounded-full` `border-[#F7F7F7] bg-[#F7F7F7]` 圆钮，上面盖一层
+            透明的原生 range（71x24）。量程 0-100，无 step 属性。 */}
+        <div
+          data-director-timeline-zoom-cluster
+          className="flex h-9 w-[120px] shrink-0 items-center gap-2 border-l border-white/[0.08] bg-[#212121] px-2"
         >
-          {timelineCollapsed ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-        </button>
+          <div className="relative h-4 min-w-0 flex-1">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 overflow-hidden rounded-full bg-white/40"
+            >
+              <div
+                className="h-full rounded-full bg-[#F7F7F7]"
+                style={{ width: `${timeline.zoom}%` }}
+              />
+            </div>
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute top-1/2 h-3 w-3 rounded-full border border-[#F7F7F7] bg-[#F7F7F7]"
+              style={{
+                left: `${timeline.zoom}%`,
+                transform: `translate(${timeline.zoom === 0 ? "0%" : "-50%"}, -50%)`,
+              }}
+            />
+            <input
+              type="range"
+              aria-label="时间轴缩放"
+              title="时间轴缩放"
+              data-director-timeline-zoom
+              min="0"
+              max="100"
+              value={timeline.zoom}
+              onChange={(event) =>
+                setTimelineZoom(Number(event.currentTarget.value))
+              }
+              className="absolute inset-x-0 top-1/2 m-0 h-6 w-full -translate-y-1/2 cursor-pointer appearance-none bg-transparent opacity-0"
+            />
+          </div>
+          {/* Batch 592（源站实测）：收起按钮的可及名随状态翻转——
+              展开时 `时间线最小化` @(1764,1027) 24×24，收起后同一位置变成
+              `展开时间线` @(1764,1121)。收起只收轨道区，工具条整条保留。
+              Batch 594 把它收进缩放簇（源站它就在簇内 `w-[120px]` 里）。 */}
+          <button
+            type="button"
+            data-director-timeline-collapse
+            aria-label={timelineCollapsed ? "展开时间线" : "时间线最小化"}
+            title={timelineCollapsed ? "展开时间线" : "时间线最小化"}
+            aria-pressed={timelineCollapsed}
+            onClick={() => setTimelineCollapsed((collapsed) => !collapsed)}
+            className="group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-white/65 transition-colors hover:bg-white/10 hover:text-white"
+          >
+            {timelineCollapsed ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+            <span className="hidden" aria-hidden="true" />
+          </button>
+        </div>
       </header>
 
       {presetPanelLeft !== null ? (

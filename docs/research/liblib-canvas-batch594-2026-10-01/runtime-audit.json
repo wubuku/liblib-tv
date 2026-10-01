@@ -1,0 +1,275 @@
+{
+  "batch": 594,
+  "title": "时间轴右列缩放簇：自绘轨道 + 12px 圆钮 + 0-100 量程 + 标尺宽度公式",
+  "evidence": "2026-10-01 live CDP sampling of the source director desk at 1920x1150 + docs/research/liblib-canvas-batch594-2026-10-01/README.md",
+  "source_facts": {
+    "cluster": "120x36 flex h-9 w-[120px] gap-2 border-l border-white/[0.08] bg-[#212121] px-2",
+    "slider": "input[type=range] min=0 max=100, no step attribute, 71x24, opacity 0, appearance-none",
+    "track": "71x4 rounded-full white/40",
+    "thumb": "12x12 rounded-full border+bg #F7F7F7",
+    "minimize": "24x24 inside the cluster, 时间线最小化 / 展开时间线",
+    "ruler_width_by_zoom_at_10s": {
+      "0": 1598,
+      "16": 1598,
+      "31": 1598,
+      "49": 2473,
+      "64": 3220,
+      "82": 4116,
+      "100": 5012
+    },
+    "ruler_width_law": "3.36 + 4.978*zoom px per second, clamped to the container width",
+    "no_magnifier_icon": true
+  },
+  "clone_only": [
+    "the ruler keeps a 640px floor — the source clamps to its (dynamic) container width"
+  ],
+  "not_verified": [
+    "the source's DEFAULT zoom: the sampled project sits at 43.7751 but that is a user-dragged value, so the clone seeds 44 to match the current look and says so",
+    "how the px/s slope scales with 总时长: only the 10s point was sampled, the duration-proportional extrapolation is an inference"
+  ],
+  "migrated_contracts": [
+    "batch 36: the zoom endpoint moved from 2.5 to 100 with the new 0-100 range"
+  ],
+  "results": [
+    {
+      "viewport": "1920x1150",
+      "checks": [
+        {
+          "name": "cluster:120x36",
+          "ok": true,
+          "detail": [
+            817,
+            969,
+            120,
+            36
+          ]
+        },
+        {
+          "name": "cluster:border-left-and-bg",
+          "ok": true,
+          "detail": {
+            "borderLeft": "1px oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+            "background": "rgb(33, 33, 33)"
+          }
+        },
+        {
+          "name": "zoom:range-0-100-no-step",
+          "ok": true,
+          "detail": {
+            "min": "0",
+            "max": "100",
+            "step": null,
+            "value": 1,
+            "type": "range",
+            "title": "时间轴缩放",
+            "box": [
+              826,
+              975,
+              71,
+              24
+            ],
+            "opacity": "0",
+            "appearance": "none"
+          }
+        },
+        {
+          "name": "zoom:71x24-transparent",
+          "ok": true,
+          "detail": {
+            "min": "0",
+            "max": "100",
+            "step": null,
+            "value": 1,
+            "type": "range",
+            "title": "时间轴缩放",
+            "box": [
+              826,
+              975,
+              71,
+              24
+            ],
+            "opacity": "0",
+            "appearance": "none"
+          }
+        },
+        {
+          "name": "track:71x4-round",
+          "ok": true,
+          "detail": {
+            "box": [
+              826,
+              985,
+              71,
+              4
+            ],
+            "radius": "3.35544e+07px",
+            "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.4)"
+          }
+        },
+        {
+          "name": "thumb:12x12-round",
+          "ok": true,
+          "detail": {
+            "box": [
+              821,
+              981,
+              12,
+              12
+            ],
+            "radius": "3.35544e+07px",
+            "background": "rgb(247, 247, 247)",
+            "left": "1%",
+            "transform": "translate(-50%, -50%)"
+          }
+        },
+        {
+          "name": "minimize:24x24-inside-cluster",
+          "ok": true,
+          "detail": {
+            "aria": "时间线最小化",
+            "box": [
+              905,
+              975,
+              24,
+              24
+            ]
+          }
+        },
+        {
+          "name": "cluster:no-icon-no-label",
+          "ok": true,
+          "detail": {
+            "svg": 1,
+            "label": 0
+          }
+        },
+        {
+          "name": "zoom:fill-and-thumb-follow",
+          "ok": true,
+          "detail": {
+            "fill": "25%",
+            "left": "25%",
+            "value": 25
+          }
+        },
+        {
+          "name": "ruler:width-follows-source-law",
+          "ok": true,
+          "detail": {
+            "actual": {
+              "0": 1600,
+              "25": 1600,
+              "50": 2018,
+              "100": 4009
+            },
+            "expected": {
+              "0": 1600,
+              "25": 1600,
+              "50": 2018,
+              "100": 4009
+            },
+            "duration": 8,
+            "container": 1600
+          }
+        },
+        {
+          "name": "ruler:clamps-to-container-then-grows",
+          "ok": true,
+          "detail": {
+            "samples": {
+              "0": 1600,
+              "25": 1600,
+              "50": 2018,
+              "100": 4009
+            },
+            "container": 1600
+          }
+        },
+        {
+          "name": "no-diagnostics",
+          "ok": true,
+          "detail": []
+        }
+      ],
+      "cluster": {
+        "cluster": [
+          817,
+          969,
+          120,
+          36
+        ],
+        "borderLeft": "1px oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+        "background": "rgb(33, 33, 33)",
+        "zoom": {
+          "min": "0",
+          "max": "100",
+          "step": null,
+          "value": 1,
+          "type": "range",
+          "title": "时间轴缩放",
+          "box": [
+            826,
+            975,
+            71,
+            24
+          ],
+          "opacity": "0",
+          "appearance": "none"
+        },
+        "track": {
+          "box": [
+            826,
+            985,
+            71,
+            4
+          ],
+          "radius": "3.35544e+07px",
+          "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.4)"
+        },
+        "thumb": {
+          "box": [
+            821,
+            981,
+            12,
+            12
+          ],
+          "radius": "3.35544e+07px",
+          "background": "rgb(247, 247, 247)",
+          "left": "1%",
+          "transform": "translate(-50%, -50%)"
+        },
+        "minimize": {
+          "aria": "时间线最小化",
+          "box": [
+            905,
+            975,
+            24,
+            24
+          ]
+        },
+        "svgCount": 1,
+        "labelCount": 0,
+        "fillWidth": "1%"
+      },
+      "at_25": {
+        "fill": "25%",
+        "left": "25%",
+        "value": 25
+      },
+      "ruler_width": {
+        "0": 1600,
+        "25": 1600,
+        "50": 2018,
+        "100": 4009
+      },
+      "ruler_width_expected": {
+        "0": 1600,
+        "25": 1600,
+        "50": 2018,
+        "100": 4009
+      },
+      "ruler_container_width": 1600,
+      "diagnostics": []
+    }
+  ]
+}

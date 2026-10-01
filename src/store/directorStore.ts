@@ -1008,7 +1008,10 @@ function createDefaultTimeline(): DirectorTimelineState {
     currentTime: 0,
     isPlaying: false,
     loop: true,
-    zoom: 1,
+    // Batch 594: 源站当前项目实测 zoom=43.7751（读数四舍五入显示 44）。那是
+    // 用户自己拖过的值，**默认值不可考**；这里取 44 是为了让 clone 打开时的
+    // 标尺密度与源站当前观感一致（10s ≈ 2212px），标为推断而非源站事实。
+    zoom: 44,
     autoKeyframe: true,
     tracks: [
       {
@@ -2111,7 +2114,10 @@ function repairDirectorSelectionState(
         restored.timeline.duration,
       ),
       isPlaying: false,
-      zoom: Math.min(Math.max(state.timeline.zoom, 0.75), 2.5),
+      // Batch 594（源站 2026-10-01 实测）：`时间轴缩放` 是 input[type=range]
+      // min=0 max=100（**没有 step 属性**，浏览器默认步长 1），不是 clone 原来
+      // 的 0.75-2.5 step 0.25。量程随之下放到 0-100。
+      zoom: Math.min(Math.max(state.timeline.zoom, 0), 100),
       selectedTrackId,
       selectedKeyframeId,
       selectedMotionPathId,
@@ -6945,11 +6951,13 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       },
     })),
 
+  // Batch 594: 源站 `时间轴缩放` 实测 min=0 max=100（无 step），钳制随之改到
+  // 0-100。恢复工程（`restore` 里的 timeline 钳制）也同步改了。
   setTimelineZoom: (zoom) =>
     set((state) => ({
       timeline: {
         ...state.timeline,
-        zoom: Math.min(Math.max(zoom, 0.75), 2.5),
+        zoom: Math.min(Math.max(zoom, 0), 100),
       },
     })),
 

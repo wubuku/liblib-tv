@@ -230,7 +230,9 @@ def run_desktop(page: Page):
     assert loop_button.get_attribute("aria-pressed") == "true"
 
     width_before = box(timeline_canvas)["width"]
-    page.locator("[data-director-timeline-zoom]").fill("2.5")
+    # Batch 594: 源站 `时间轴缩放` 是 min=0 max=100（无 step），不再是
+    # 0.75-2.5 step 0.25，所以端点值随之改成 100。
+    page.locator("[data-director-timeline-zoom]").fill("100")
     width_after = box(timeline_canvas)["width"]
     assert width_after > width_before
     assert_no_overflow(page)
