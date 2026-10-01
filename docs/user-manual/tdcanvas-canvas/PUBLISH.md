@@ -106,7 +106,7 @@ npx vitepress build  # 产物 .vitepress/dist/
 |---|---|---|
 | `audit_manual.py` | 图片/manifest 双向不一致、sha256、坏链、标题层级、占位文本 | 共享审计脚本 |
 | `check-anchors.py` | 交叉引用锚点落空 | M31 实测 4 处锚点全空 |
-| `check-structure.py` | 孤儿任务页、索引/侧边栏漏条 | M42 实测孤儿页可无声混入产物 |
+| `check-structure.py` | 孤儿任务页、索引/侧边栏漏条、**孤儿截图** | M42 实测孤儿页可无声混入产物；M89 实测孤儿图在七道门禁下全部通过 |
 | `check-ratings.py` | 任务评级在账本/索引/首页三处不一致 | M58 实测账本与下游漂移 |
 | `check-inventory-freshness.py` | 账本 screenshot_count 与 manifest 实数不符 | M59 实测 3 条数字过期 |
 | `check-claims.py` | 无证据的强断言（「逐字一致」等） | M44 实测速查表与截图自相矛盾 |

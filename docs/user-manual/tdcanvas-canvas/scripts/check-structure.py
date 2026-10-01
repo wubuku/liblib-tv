@@ -14,7 +14,7 @@
 2. `task-inventory.yml` 的 `manual_pages` ↔ 磁盘上真实存在的页面
 3. `10-tasks/*.md` ↔ `10-tasks/README.md` 索引 ↔ `.vitepress/config.mjs` 侧边栏
 
-退出码 0 表示结构闭环，1 表示存在孤儿页/漏登记/漏索引/漏侧边栏。
+退出码 0 表示结构闭环，1 表示存在孤儿页/漏登记/漏索引/漏侧边栏/孤儿截图。
 """
 
 from __future__ import annotations
@@ -27,10 +27,58 @@ TASKS_DIR = "10-tasks"
 INDEX = "10-tasks/README.md"
 INVENTORY = "task-inventory.yml"
 SIDEBAR = ".vitepress/config.mjs"
+MANIFEST = "screenshots/manifest.yml"
 
 PAGE_LINK_RE = re.compile(r"\]\((?:\./)?([A-Za-z0-9._-]+\.md)(?:#[^)]*)?\)")
 INVENTORY_PAGE_RE = re.compile(r"^\s*-\s+(?:\./)?((?:[A-Za-z0-9._-]+/)*[A-Za-z0-9._-]+\.md)\s*$", re.M)
 SIDEBAR_LINK_RE = re.compile(r"link:\s*['\"](/10-tasks/([A-Za-z0-9._-]+))['\"]")
+MANIFEST_FILE_RE = re.compile(r"^\s*-\s*file:\s*(?P<v>\S+)\s*$", re.M)
+MD_IMAGE_RE = re.compile(r"!\[[^\]]*\]\((?P<path>[^)]+?\.png)\)")
+SKIP_DIRS = {"node_modules", ".vitepress", "dist", ".git", "screenshots", "scripts"}
+
+
+def check_orphan_screenshots(root: Path, problems: list[str]) -> tuple[int, int]:
+    """孤儿截图：登记在 manifest 里，却没有任何页面引用它。
+
+    **为什么需要（M89 实测）**：这一类和"孤儿页"是同一个错误家族，但当时只堵了
+    页、没堵图。2026-10-01 在临时副本上注入一张孤儿图——文件放进 `screenshots/`、
+    manifest 补一条**字段齐全、sha256 正确**的记录、账本 `screenshot_count` 也对齐——
+    **七道门禁全部通过**，而这张图**没有任何页面引用**。
+
+    后果不是"构建坏了"，而是三件更隐蔽的事：
+    ① 账本写着「截图 4 张」，读者实际只看得到 3 张；
+    ② manifest 给这张图记了 `verified_locator` 与 `visible_text`，看起来像是**核对过**，
+       实际没有任何读者能走到它；
+    ③ 站点体积被撑大，而产物链接校验只查"链出去的目标存不存在"，不查"有没有人链它"。
+
+    **反方向已有门禁**：正文引用了但 manifest 没登记的情况，`audit_manual.py` 的
+    `image missing from manifest` 会拦下（自检里有对应用例）。这里只补缺失的那一半。
+    """
+    manifest = root / MANIFEST
+    if not manifest.is_file():
+        problems.append(f"缺少 {MANIFEST}")
+        return 0, 0
+
+    registered = {
+        Path(m.group("v")).name for m in MANIFEST_FILE_RE.finditer(manifest.read_text(encoding="utf-8"))
+    }
+    if not registered:
+        problems.append(f"{MANIFEST} 里一条截图记录都没解析到")
+        return 0, 0
+
+    referenced: set[str] = set()
+    for path in root.rglob("*.md"):
+        if SKIP_DIRS.intersection(path.parts):
+            continue
+        for match in MD_IMAGE_RE.finditer(path.read_text(encoding="utf-8")):
+            referenced.add(Path(match.group("path")).name)
+
+    for name in sorted(registered - referenced):
+        problems.append(
+            f"{MANIFEST} 登记了 {name}，但没有任何页面引用它（孤儿截图："
+            f"要么在某页补上引用，要么从 manifest 与账本里删掉）"
+        )
+    return len(registered), len(referenced)
 
 
 def fail(problems: list[str]) -> int:
@@ -106,9 +154,17 @@ def main() -> int:
     else:
         problems.append(f"缺少 {SIDEBAR}")
 
+    shots, _ = check_orphan_screenshots(root, problems)
+
     if problems:
         return fail(problems)
-    print(f"  [ ok ] 结构校验：{len(pages)} 个任务页全部登记在账本、索引与侧边栏中")
+    if shots:
+        print(
+            f"  [ ok ] 结构校验：{len(pages)} 个任务页全部登记在账本、索引与侧边栏中；"
+            f"{shots} 张截图全部被正文引用（无孤儿截图）"
+        )
+    else:
+        print(f"  [ ok ] 结构校验：{len(pages)} 个任务页全部登记在账本、索引与侧边栏中")
     return 0
 
 

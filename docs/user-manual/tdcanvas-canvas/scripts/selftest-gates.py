@@ -24,6 +24,8 @@ config.mjs」，差点被记成「构建抓到了孤儿页」）。两种都是�
 
 from __future__ import annotations
 
+import hashlib
+import re
 import shutil
 import subprocess
 import sys
@@ -287,6 +289,53 @@ def mutate_unescaped_pipe_in_code_span(root: Path) -> None:
     path.write_text(text.replace(anchor, injected + anchor, 1), encoding="utf-8")
 
 
+def mutate_orphan_screenshot(root: Path) -> None:
+    """孤儿截图：登记在 manifest 里，却没有任何页面引用它（M89 加）。
+
+    M89 在临时副本上实测过：把图放进 `screenshots/`、manifest 补一条**字段齐全、
+    sha256 正确**的记录、账本 `screenshot_count` 也对齐——**七道门禁全部通过**。
+    也就是说这一类错误能完全静默地混进发布产物：账本写着"截图 N 张"，
+    读者一张都看不到，而 manifest 里的 `verified_locator` 让它看起来像核对过。
+
+    这里注入同一形态，并**同时把账本计数对齐**，确保拦下它的只能是新判据本身，
+    而不是 `check-inventory-freshness` 顺手抓到的计数不符。
+    """
+
+    src = root / "screenshots/01-create-canvas-project-empty-home.png"
+    dst = root / "screenshots/99-selftest-orphan.png"
+    shutil.copyfile(src, dst)
+    digest = hashlib.sha256(dst.read_bytes()).hexdigest()
+
+    manifest = root / "screenshots/manifest.yml"
+    text = manifest.read_text(encoding="utf-8")
+    entry = (
+        "\n  - file: screenshots/99-selftest-orphan.png\n"
+        "    task_id: create-canvas-project\n"
+        "    step: 自检用孤儿截图：没有任何页面引用它\n"
+        "    route: '/canvas'\n"
+        "    viewport: 1280x720\n"
+        "    locale: zh-CN\n"
+        "    captured_at: '2026-10-01'\n"
+        "    verified_locator: '从一张画布开始'\n"
+        "    visible_text: '从一张画布开始'\n"
+        "    alt: 自检用孤儿截图\n"
+        f"    sha256: {digest}\n"
+    )
+    manifest.write_text(text.rstrip("\n") + "\n" + entry, encoding="utf-8")
+
+    inv = root / "task-inventory.yml"
+    lines = inv.read_text(encoding="utf-8").splitlines()
+    for i, line in enumerate(lines):
+        if line.strip().startswith("- id: create-canvas-project"):
+            for j in range(i, min(i + 25, len(lines))):
+                m = re.match(r"^(\s*)screenshot_count:\s*(\d+)", lines[j])
+                if m:
+                    lines[j] = f"{m.group(1)}screenshot_count: {int(m.group(2)) + 1}"
+                    break
+            break
+    inv.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 # ---------- 用例表：(名称, 变异, 期望由谁拦下, 期望出现的错误文字) ----------
 
 CASES: list[tuple[str, object, str, str]] = [
@@ -312,6 +361,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("表格行脱离表头接在列表后", mutate_table_rows_after_list, "tables", "会整体渲染成原始管道文本"),
     ("代码块外的孤立表格行", mutate_table_outside_fence, "tables", "会渲染成普通段落"),
     ("单元格内竖线未转义（产物丢内容）", mutate_unescaped_pipe_in_code_span, "tables", "反引号（奇数）"),
+    ("孤儿截图（登记了却没人引用）", mutate_orphan_screenshot, "structure", "孤儿截图"),
 ]
 
 
