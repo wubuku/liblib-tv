@@ -264,6 +264,40 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
     pushToast(FEEDBACK.assetsImported(accepted.length));
   };
 
+  /* ── Batch 833：「导出时间线」从 toast 桩接成**真下载** ─────────────────
+     此前点它只弹一句「导出时间线」—— 一个字都没产出。
+
+     ⚠️ **格式与源站不同，说清楚**：源站导出的是**渲染好的视频**；复刻没有渲染器
+     （本仓的时间线是数据，不是帧序列），所以导出的是**结构化 JSON**：节点名、
+     时长、每个片段的 label/start/length。这是能力边界的诚实表达，不是偷懒 ——
+     而 toast 里也把这句写给用户了，免得他以为拿到了视频。
+
+     为什么用 Blob + `<a download>` 而不是 data URI：data URI 会把整个 JSON 内联进
+     URL，对大文件不合适，且部分浏览器对超长 data URI 的下载名处理不稳。
+     ⚠️ `URL.revokeObjectURL` 必须放在 `a.click()` **之后**（同步 revoke 会让
+     还没开始的下载拿不到 blob）—— 放在 setTimeout 里。 */
+  const exportTimelineJson = () => {
+    const payload = {
+      节点: d.title ?? "时间线",
+      时长秒: span,
+      导出时刻: new Date().toISOString(),
+      片段: clips.map((c) => ({ 名称: c.label, 起点秒: c.start, 时长秒: c.length })),
+      说明: "复刻导出的结构化时间线；源站此处导出的是渲染后的视频。",
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `时间线-${(d.title ?? "timeline").replace(/[\\/:*?"<>|]/g, "_")}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 0);
+    pushToast(FEEDBACK.exportTimeline(clips.length, a.download));
+  };
+
   /* ── Batch 827：把资产栏从「装饰」接成真浏览器 ─────────────────────────
      此前这一栏是纯装饰：三个来源页签与三个类型页签点了只切一个 class，
      而那个「资产」框里显示的其实是**时间线的片段列表**
@@ -863,7 +897,7 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                  `parentElement` 是 BODY，读数才可以直接照搬源站。 */
               aria-label="导出时间线"
               data-testid="timeline-fullscreen-export"
-              onClick={() => pushToast(mockMsg("导出时间线"))}
+              onClick={exportTimelineJson}
               className="flex h-9 w-[76px] items-center justify-center rounded-lg text-[13px] text-white/80 hover:bg-white/10"
             >
               导出

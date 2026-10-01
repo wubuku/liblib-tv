@@ -66,6 +66,12 @@ export const FEEDBACK = {
     mockMsg(`已导入 ${n} 个文件到画布`),
   assetsImportSkipped: (n: number) =>
     mockMsg(`已跳过 ${n} 个文件：只接受图片 / 视频 / 音频`),
+  // ── 导出时间线（batch 833）：真下载，但**格式**与源站不同 ──
+  // 源站导出的是渲染好的视频；复刻没有渲染器，所以导出的是结构化 JSON。
+  // 动作是真的（浏览器真的下载了一个文件），所以**不标**（mock）；
+  // 但格式差异必须说清楚，否则用户会以为拿到了视频。
+  exportTimeline: (n: number, file: string) =>
+    mockMsg(`已导出时间线 ${file}（${n} 个片段）—— 源站导出视频，此处为结构化 JSON`),
   saveSubjectMeta: () => mockMsg("已保存主体描述"),
   needCanvasNodeFirst: (action: string) => mockMsg(`${action}：请先选中一个画布节点`),
   needAssetsFirst: (action: string) => mockMsg(`${action}：请先打开资产库`),
