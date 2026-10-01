@@ -1,0 +1,552 @@
+{
+  "batch": 615,
+  "title": "Narrow-viewport header: the 收起 button is no longer covered by the centred view-mode switcher",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "batch 94's mobile leg: 56 retries of 'subtree intercepts pointer events' from the 170px switcher over [data-director-panels-toggle]",
+    "baseline comparison (cp to /tmp + git checkout --, never stash) reproduced the same failure with batches 613/614 reverted, so it is pre-existing rather than collateral",
+    "probe615: the header's grid, the four children and the exact boxes/hit results at 390x844 and 1920x1150",
+    "probe615b: a throwaway tab at 390x844 with a device-metrics override on that tab only — it lands on the canvas page, so the source's narrow header is NOT measured and not claimed"
+  ],
+  "claims": {
+    "cloneDefect": [
+      "the view-mode switcher is absolute + fixed 170px, so it ignores the header's grid and covers the left column's tail",
+      "at 390px the left column is 147.5 wide and 收起 sits at [99.5,5.5,40,40], so its right half (110..139.5) is under the switcher and its centre is not clickable"
+    ],
+    "cloneDecision": [
+      "cap the left column at max-w-[calc(50vw-85px)] below 900px, 85 being half the switcher's fixed 170px",
+      "at >=900px 50vw-85 >= 395 > 280, so the cap never engages and the source's fixed 280px left head is untouched"
+    ],
+    "notClaimed": [
+      "what the source's header does at phone widths — unmeasured",
+      "the 170px switcher width itself, which comes from batch 605's desktop reading and is kept"
+    ]
+  },
+  "checks": {
+    "mobile": {
+      "mobile:desk": {
+        "vw": 390,
+        "vh": 844,
+        "header": {
+          "box": [
+            0,
+            0,
+            390,
+            52
+          ],
+          "hit": {
+            "tag": "div",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "390px"
+        },
+        "leftCol": {
+          "box": [
+            0,
+            0,
+            110,
+            51
+          ],
+          "hit": {
+            "tag": "div",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "110px",
+          "w": "110px"
+        },
+        "rightCol": {
+          "box": [
+            242.5,
+            0,
+            147.5,
+            51
+          ],
+          "hit": {
+            "tag": "svg",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "147.5px"
+        },
+        "group": {
+          "box": [
+            110,
+            8,
+            170,
+            36
+          ],
+          "hit": {
+            "tag": "div",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "170px"
+        },
+        "toggle": {
+          "box": [
+            64,
+            5.5,
+            40,
+            40
+          ],
+          "hit": {
+            "tag": "svg",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "40px"
+        },
+        "close": {
+          "box": [
+            8,
+            5.5,
+            40,
+            40
+          ],
+          "hit": {
+            "tag": "path",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "40px"
+        },
+        "exportBtn": {
+          "box": [
+            308.1,
+            9.5,
+            32,
+            32
+          ],
+          "hit": {
+            "tag": "path",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "32px"
+        },
+        "importBtn": {
+          "box": [
+            348.1,
+            9.5,
+            17.9,
+            32
+          ],
+          "hit": {
+            "tag": "path",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "17.9062px"
+        },
+        "overlap": false,
+        "switcherLeft": 110
+      },
+      "mobile:switcher-present": {
+        "ok": true,
+        "detail": ""
+      },
+      "mobile:switcher-still-170-wide": {
+        "ok": true,
+        "detail": [
+          110,
+          8,
+          170,
+          36
+        ]
+      },
+      "mobile:switcher-still-centred": {
+        "ok": true,
+        "detail": 110
+      },
+      "mobile:left-col-present": {
+        "ok": true,
+        "detail": ""
+      },
+      "mobile:left-col-capped-at-the-switcher": {
+        "ok": true,
+        "detail": "left 110 vs switcher left 110"
+      },
+      "mobile:no-overlap-with-the-switcher": {
+        "ok": true,
+        "detail": false
+      },
+      "mobile:收起-hit-testable": {
+        "ok": true,
+        "detail": {
+          "tag": "svg",
+          "aria": "",
+          "own": true
+        }
+      },
+      "mobile:关闭-hit-testable": {
+        "ok": true,
+        "detail": {
+          "tag": "path",
+          "aria": "",
+          "own": true
+        }
+      },
+      "mobile:导出-hit-testable": {
+        "ok": true,
+        "detail": {
+          "tag": "path",
+          "aria": "",
+          "own": true
+        }
+      },
+      "mobile:导入-hit-testable": {
+        "ok": true,
+        "detail": {
+          "tag": "path",
+          "aria": "",
+          "own": true
+        }
+      },
+      "mobile:收起-click-lands": {
+        "ok": true,
+        "detail": "true"
+      },
+      "mobile:no-page-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "mobile:no-console-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "mobile:diagnostics": {
+        "consoleErrors": 0,
+        "filtered": 0,
+        "pageErrors": 0
+      },
+      "_summary": {
+        "checks": 13,
+        "failures": []
+      }
+    },
+    "desktop": {
+      "desk": {
+        "vw": 1920,
+        "vh": 1150,
+        "header": {
+          "box": [
+            0,
+            0,
+            1920,
+            52
+          ],
+          "hit": {
+            "tag": "div",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "1920px"
+        },
+        "leftCol": {
+          "box": [
+            0,
+            0,
+            280,
+            51
+          ],
+          "hit": {
+            "tag": "p",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "280px"
+        },
+        "rightCol": {
+          "box": [
+            1640,
+            0,
+            280,
+            51
+          ],
+          "hit": {
+            "tag": "div",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "280px"
+        },
+        "group": {
+          "box": [
+            875,
+            8,
+            170,
+            36
+          ],
+          "hit": {
+            "tag": "div",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "170px"
+        },
+        "toggle": {
+          "box": [
+            240,
+            5.5,
+            40,
+            40
+          ],
+          "hit": {
+            "tag": "svg",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "40px"
+        },
+        "close": {
+          "box": [
+            0,
+            5.5,
+            40,
+            40
+          ],
+          "hit": {
+            "tag": "path",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "40px"
+        },
+        "exportBtn": {
+          "box": [
+            1818.3,
+            9.5,
+            32,
+            32
+          ],
+          "hit": {
+            "tag": "path",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "32px"
+        },
+        "importBtn": {
+          "box": [
+            1859.2,
+            9.5,
+            32,
+            32
+          ],
+          "hit": {
+            "tag": "path",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "32px"
+        },
+        "overlap": false,
+        "switcherLeft": 875
+      },
+      "desktop:left-col-still-280": {
+        "ok": true,
+        "detail": 280
+      },
+      "desktop:max-width-cap-does-not-engage": {
+        "ok": true,
+        "detail": "none"
+      },
+      "desktop:关闭-still-at-0-5.5": {
+        "ok": true,
+        "detail": [
+          0,
+          5.5,
+          40,
+          40
+        ]
+      },
+      "desktop:收起-still-at-240-5.5": {
+        "ok": true,
+        "detail": [
+          240,
+          5.5,
+          40,
+          40
+        ]
+      },
+      "desktop:switcher-still-@-": {
+        "ok": true,
+        "detail": [
+          875,
+          8,
+          170,
+          36
+        ]
+      },
+      "desktop:no-overlap": {
+        "ok": true,
+        "detail": false
+      },
+      "desktop:收起-click-lands": {
+        "ok": true,
+        "detail": ""
+      },
+      "desktop:场景-restores-it": {
+        "ok": true,
+        "detail": ""
+      },
+      "after": {
+        "vw": 1920,
+        "vh": 1150,
+        "header": {
+          "box": [
+            0,
+            0,
+            1920,
+            52
+          ],
+          "hit": {
+            "tag": "div",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "1920px"
+        },
+        "leftCol": {
+          "box": [
+            0,
+            0,
+            280,
+            51
+          ],
+          "hit": {
+            "tag": "p",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "280px"
+        },
+        "rightCol": {
+          "box": [
+            1640,
+            0,
+            280,
+            51
+          ],
+          "hit": {
+            "tag": "div",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "280px"
+        },
+        "group": {
+          "box": [
+            875,
+            8,
+            170,
+            36
+          ],
+          "hit": {
+            "tag": "div",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "170px"
+        },
+        "toggle": {
+          "box": [
+            240,
+            5.5,
+            40,
+            40
+          ],
+          "hit": {
+            "tag": "svg",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "40px"
+        },
+        "close": {
+          "box": [
+            0,
+            5.5,
+            40,
+            40
+          ],
+          "hit": {
+            "tag": "path",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "40px"
+        },
+        "exportBtn": {
+          "box": [
+            1818.3,
+            9.5,
+            32,
+            32
+          ],
+          "hit": {
+            "tag": "path",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "32px"
+        },
+        "importBtn": {
+          "box": [
+            1859.2,
+            9.5,
+            32,
+            32
+          ],
+          "hit": {
+            "tag": "path",
+            "aria": "",
+            "own": true
+          },
+          "maxW": "none",
+          "w": "32px"
+        },
+        "overlap": false,
+        "switcherLeft": 875
+      },
+      "desktop:geometry-restored": {
+        "ok": true,
+        "detail": [
+          240,
+          5.5,
+          40,
+          40
+        ]
+      },
+      "_summary": {
+        "checks": 9,
+        "failures": []
+      }
+    }
+  },
+  "result": "22/22 passed"
+}

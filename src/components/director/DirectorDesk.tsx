@@ -898,8 +898,18 @@ export default function DirectorDesk({
             （40 + 200 + 40 = 280）。两枚图标按钮都是 40x40 的
             `text-white/72 … hover:text-white`，图标 16px。clone 原先是
             32x32 `rounded text-[#a3a3a3]`，且把「返回画布」和「关闭导演台」
-            做成两个都调 closeWorkspace 的冗余按钮——源站左头只有一个关闭。 */}
-        <div className="flex h-full min-w-0 items-center max-[899px]:px-2 min-[900px]:w-[280px] min-[900px]:shrink-0">
+            做成两个都调 closeWorkspace 的冗余按钮——源站左头只有一个关闭。
+
+            Batch 615：`max-w-[calc(50vw-85px)]` 是窄屏下的碰撞解药。视角
+            切换器是 `absolute left-1/2 -translate-x-1/2` 的 **170px 定宽**，
+            它无视 grid 直接骑在正中，390px 视口下占 110..280；而左列是
+            `minmax(0,1fr)`，分到 147.5，收起按钮落在 99.5..139.5 —— 右半
+            被切换器整个压住，点 56 次都命中不了它（batch 94 移动腿红，
+            基线对照确认与 613/614 无关）。把左列压到切换器左缘
+            `50vw − 85`（85 = 170/2）即可让开：390 时左列 110、收起
+            62..102，与 110 相接不重叠；≥900 时 `50vw−85 ≥ 395 > 280`，
+            该上限永不生效，源站的 280 定宽与几何一字未动。 */}
+        <div className="flex h-full min-w-0 max-w-[calc(50vw-85px)] items-center max-[899px]:px-2 min-[900px]:max-w-none min-[900px]:w-[280px] min-[900px]:shrink-0">
           <button
             type="button"
             data-close-director
