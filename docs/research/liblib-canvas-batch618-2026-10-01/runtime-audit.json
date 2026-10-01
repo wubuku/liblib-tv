@@ -1,0 +1,5784 @@
+{
+  "batch": 618,
+  "title": "Mobile hit-test sweep at 390x844; move the toolbar's scroll host inward so nothing paints under the opaque right strip",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "no live source reading: the shared source tab is at 1600x1000 with the director desk closed by another user (probe616 re-run), so this batch makes no fidelity claim",
+    "/tmp/dbg618.py: batch 617's census re-used at 390x844 — interactive=41, covered=4 (总时长, 切换时间单位为 s, 选中角色、道具或分组后建立轨道, 预设运镜)",
+    "/tmp/dbg618b.py: the hitters are the transparent zoom range (absolute inset-x-0 opacity-0) and the opaque div[data-director-timeline-strip-right] (absolute right-0 z-30 244x36 bg-[#212121])",
+    "/tmp/dbg618c.py: scrolling the toolbar to its end clears all four — reachable, not dead — clientWidth 390 vs scrollWidth 1044",
+    "/tmp/dbg618d.py: the export-panel-open and timeline-collapsed states at 390 are clean; the drawer-open state reports 11 covered, all of them behind the drawer panel or the drawer scrim itself",
+    "/tmp/dbg618f.py (run twice, baseline vs fixed): sampling the shot chip's hit target while the inspector drawer settles showed the drawer at x=131 with the chip clear at t=0 and x=109 with the chip covered by t=80ms — batch 96's mobile shot click only ever landed inside that ~50ms window"
+  ],
+  "claims": {
+    "cloneDefect": [
+      "the toolbar reserved pr-[260px] for the absolutely positioned 244px right strip while keeping overflow-x-auto on the header itself; padding-right belongs to the scrollable overflow region, so once the left cluster overflowed its content box it kept painting out to the padding edge — into the reserve",
+      "at 1920 the cluster (1044px) fits its window and never overflows, so this was invisible; at 390 the window is 122px and 922px of toolbar painted under an opaque black block, so four controls were drawn yet unreachable, with no scrollbar to hint that anything was there"
+    ],
+    "cloneDecision": [
+      "the scroll host moves one level in, to [data-director-timeline-controls-scroll], so the clip edge is the content box (x=130 at 390) and overflow content can no longer reach the reserve",
+      "the four controls are now classified clipped — reachable by scrolling the cluster, exactly as at 1024 — rather than being redrawn or hidden",
+      "the inspector drawer gets max-[899px]:top-0, cancelling the desktop -top-9 at mobile widths so it starts at 88 like the scrim (absolute inset-0 -> 88..668) and like the tree drawer (top-[88px] min-[900px]:top-[52px]). The scrim's own extent already declared the shot-bar row usable while a drawer is open; the inspector drawer was the only one of the three that reached up over it. Desktop keeps -top-9, so batch 614's column (top 52 / width 281 / bottom at the timeline) is untouched"
+    ],
+    "contractMigration": [
+      "batch 596 asserted the header itself was the horizontal scroll container (strip:left-cell-scrolls). The contract's meaning ('the left cell scrolls') is unchanged, so the check now reads the inner cluster's overflowX instead of the header's; the reason batch 596 gave for keeping the strip outside the header is unaffected because the strip is still outside it"
+    ],
+    "notClaimed": [
+      "anything about the source at all",
+      "the mobile drawer's height is now 580 instead of 616 (it starts 36px lower and still ends at the timeline) — that follows from matching the scrim, and no reading says a mobile drawer should be any particular height",
+      "the source's own mobile toolbar and drawer arrangement is unknown; the source's director desk at 390 has never been sampled"
+    ]
+  },
+  "checks": {
+    "mobile": {
+      "mobile:census": {
+        "vw": 390,
+        "vh": 844,
+        "total": 41,
+        "blocked": [
+          {
+            "label": "9:16",
+            "tag": "button",
+            "box": [
+              347,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "场景描述已记录（本地草稿）",
+            "hitTag": "div",
+            "data": "directorAspect"
+          },
+          {
+            "label": "上传图片",
+            "tag": "button",
+            "box": [
+              371,
+              629,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "角色01 · 陈默",
+            "hitTag": "div",
+            "data": "directorScenePromptUpload"
+          },
+          {
+            "label": "总时长",
+            "tag": "input",
+            "box": [
+              135,
+              674.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "切换时间单位为 s",
+            "tag": "button",
+            "box": [
+              182,
+              674.5,
+              33,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimeUnit"
+          },
+          {
+            "label": "选中角色、道具或分组后建立轨道",
+            "tag": "button",
+            "box": [
+              230,
+              674.5,
+              82,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "div",
+            "data": "directorAddTrack"
+          },
+          {
+            "label": "预设运镜",
+            "tag": "button",
+            "box": [
+              312,
+              672.5,
+              77,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorCameraPresetTrigger"
+          }
+        ],
+        "covered": [],
+        "clipped": [
+          {
+            "label": "9:16",
+            "tag": "button",
+            "box": [
+              347,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "场景描述已记录（本地草稿）",
+            "hitTag": "div",
+            "data": "directorAspect"
+          },
+          {
+            "label": "上传图片",
+            "tag": "button",
+            "box": [
+              371,
+              629,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "角色01 · 陈默",
+            "hitTag": "div",
+            "data": "directorScenePromptUpload"
+          },
+          {
+            "label": "总时长",
+            "tag": "input",
+            "box": [
+              135,
+              674.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "切换时间单位为 s",
+            "tag": "button",
+            "box": [
+              182,
+              674.5,
+              33,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimeUnit"
+          },
+          {
+            "label": "选中角色、道具或分组后建立轨道",
+            "tag": "button",
+            "box": [
+              230,
+              674.5,
+              82,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "div",
+            "data": "directorAddTrack"
+          },
+          {
+            "label": "预设运镜",
+            "tag": "button",
+            "box": [
+              312,
+              672.5,
+              77,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorCameraPresetTrigger"
+          }
+        ],
+        "items": [
+          {
+            "label": "关闭",
+            "tag": "button",
+            "box": [
+              8,
+              5.5,
+              40,
+              40
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "closeDirector"
+          },
+          {
+            "label": "收起",
+            "tag": "button",
+            "box": [
+              64,
+              5.5,
+              40,
+              40
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorPanelsToggle"
+          },
+          {
+            "label": "导演视角",
+            "tag": "button",
+            "box": [
+              113,
+              10,
+              81,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "导演视角",
+            "hitTag": "button",
+            "data": "directorViewMode"
+          },
+          {
+            "label": "机位视角",
+            "tag": "button",
+            "box": [
+              196,
+              10,
+              81,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "机位视角",
+            "hitTag": "button",
+            "data": "directorViewMode"
+          },
+          {
+            "label": "导出导演台项目",
+            "tag": "button",
+            "box": [
+              308.1,
+              9.5,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorProjectExport"
+          },
+          {
+            "label": "导入导演台项目",
+            "tag": "button",
+            "box": [
+              348.1,
+              9.5,
+              17.9,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorProjectImport"
+          },
+          {
+            "label": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+            "tag": "button",
+            "box": [
+              41.6,
+              55.5,
+              177.1,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "机位01 · 对峙中景 · 镜头",
+            "hitTag": "span",
+            "data": "directorShotOption"
+          },
+          {
+            "label": "重置视角",
+            "tag": "button",
+            "box": [
+              308,
+              196,
+              62,
+              26.5
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "重置视角",
+            "hitTag": "button",
+            "data": "directorResetView"
+          },
+          {
+            "label": "X 正向",
+            "tag": "button",
+            "box": [
+              344.7,
+              146.4,
+              15,
+              15
+            ],
+            "z": "171",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "X 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "X 反向",
+            "tag": "button",
+            "box": [
+              300.3,
+              134.5,
+              15,
+              15
+            ],
+            "z": "49",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "X 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Y 正向",
+            "tag": "button",
+            "box": [
+              322.5,
+              113,
+              15,
+              15
+            ],
+            "z": "142",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Y 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Y 反向",
+            "tag": "button",
+            "box": [
+              322.5,
+              168,
+              15,
+              15
+            ],
+            "z": "78",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Y 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Z 正向",
+            "tag": "button",
+            "box": [
+              303.9,
+              147.6,
+              15,
+              15
+            ],
+            "z": "183",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Z 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Z 反向",
+            "tag": "button",
+            "box": [
+              341.1,
+              133.4,
+              15,
+              15
+            ],
+            "z": "37",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Z 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "打开场景对象",
+            "tag": "button",
+            "box": [
+              12,
+              100,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "打开属性面板",
+            "tag": "button",
+            "box": [
+              48,
+              100,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "移动",
+            "tag": "button",
+            "box": [
+              127,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "旋转",
+            "tag": "button",
+            "box": [
+              167,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "缩放",
+            "tag": "button",
+            "box": [
+              207,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "动画时间轴",
+            "tag": "button",
+            "box": [
+              247,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorTimelineToggle"
+          },
+          {
+            "label": "16:9",
+            "tag": "button",
+            "box": [
+              299,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "16:9",
+            "hitTag": "button",
+            "data": "directorAspect"
+          },
+          {
+            "label": "9:16",
+            "tag": "button",
+            "box": [
+              347,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "场景描述已记录（本地草稿）",
+            "hitTag": "div",
+            "data": "directorAspect"
+          },
+          {
+            "label": "上传图片",
+            "tag": "button",
+            "box": [
+              371,
+              629,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "角色01 · 陈默",
+            "hitTag": "div",
+            "data": "directorScenePromptUpload"
+          },
+          {
+            "label": "播放",
+            "tag": "button",
+            "box": [
+              8,
+              674.5,
+              26,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorPlayback"
+          },
+          {
+            "label": "自动帧",
+            "tag": "button",
+            "box": [
+              34,
+              674.5,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorAutoKeyframe"
+          },
+          {
+            "label": "循环播放",
+            "tag": "button",
+            "box": [
+              58,
+              674.5,
+              26,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorLoop"
+          },
+          {
+            "label": "播放头位置",
+            "tag": "input",
+            "box": [
+              88,
+              674.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "播放头位置",
+            "hitTag": "input",
+            "data": "directorTimelineTime,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "总时长",
+            "tag": "input",
+            "box": [
+              135,
+              674.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "切换时间单位为 s",
+            "tag": "button",
+            "box": [
+              182,
+              674.5,
+              33,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimeUnit"
+          },
+          {
+            "label": "选中角色、道具或分组后建立轨道",
+            "tag": "button",
+            "box": [
+              230,
+              674.5,
+              82,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "div",
+            "data": "directorAddTrack"
+          },
+          {
+            "label": "预设运镜",
+            "tag": "button",
+            "box": [
+              312,
+              672.5,
+              77,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorCameraPresetTrigger"
+          },
+          {
+            "label": "时间线最小化",
+            "tag": "button",
+            "box": [
+              234,
+              675,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTimelineCollapse"
+          },
+          {
+            "label": "导出视频到画布",
+            "tag": "button",
+            "box": [
+              274,
+              673,
+              108,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorExportTrigger"
+          },
+          {
+            "label": "收起属性",
+            "tag": "button",
+            "box": [
+              8,
+              747,
+              20,
+              20
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "变换",
+            "tag": "div",
+            "box": [
+              52,
+              780,
+              36,
+              18
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "变换",
+            "hitTag": "span",
+            "data": ""
+          },
+          {
+            "label": "上一关键帧",
+            "tag": "button",
+            "box": [
+              93,
+              777,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "当前帧有关键帧",
+            "tag": "button",
+            "box": [
+              119,
+              777,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<span>",
+            "hitTag": "span",
+            "data": ""
+          },
+          {
+            "label": "下一关键帧",
+            "tag": "button",
+            "box": [
+              145,
+              777,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "收起属性",
+            "tag": "button",
+            "box": [
+              8,
+              811,
+              20,
+              20
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "绘制轨迹",
+            "tag": "button",
+            "box": [
+              166,
+              809,
+              86,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "绘制轨迹",
+            "hitTag": "span",
+            "data": "directorTrackDrawTrail"
+          },
+          {
+            "label": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+            "tag": "button",
+            "box": [
+              225.5,
+              783,
+              11,
+              11
+            ],
+            "z": "10",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+            "hitTag": "button",
+            "data": "directorKeyframeId,directorKeyframeTime"
+          }
+        ],
+        "unexpected": []
+      },
+      "mobile:audited-a-real-number-of-controls": {
+        "ok": true,
+        "detail": 41
+      },
+      "mobile:no-control-is-covered": {
+        "ok": true,
+        "detail": []
+      },
+      "mobile:the-formerly-buried-four-are-clipped-not-covered": {
+        "ok": true,
+        "detail": {
+          "clipped": [
+            "9:16",
+            "上传图片",
+            "总时长",
+            "切换时间单位为 s",
+            "选中角色、道具或分组后建立轨道",
+            "预设运镜"
+          ],
+          "covered": []
+        }
+      },
+      "mobile:clipped": {
+        "count": 6,
+        "labels": [
+          "9:16",
+          "上传图片",
+          "总时长",
+          "切换时间单位为 s",
+          "选中角色、道具或分组后建立轨道",
+          "预设运镜"
+        ]
+      },
+      "mobile:clipped-count-is-explained": {
+        "ok": true,
+        "detail": 6
+      },
+      "mobile:toolbar": {
+        "host": [
+          8,
+          672.5,
+          122,
+          28
+        ],
+        "header": [
+          0,
+          669,
+          390,
+          36
+        ],
+        "strip": [
+          146,
+          669,
+          244,
+          36
+        ],
+        "hostOverflowX": "auto",
+        "hostOverflowY": "auto",
+        "headerOverflowX": "visible",
+        "headerPaddingRight": "260px",
+        "hostScrollW": 776,
+        "hostClientW": 122,
+        "hostScrollLeft": 0,
+        "needsScroll": true,
+        "sampleY": 687,
+        "samplesUnderStrip": [],
+        "sampleCount": 31
+      },
+      "mobile:the-scroll-host-is-an-inner-cluster": {
+        "ok": true,
+        "detail": "auto"
+      },
+      "mobile:the-toolbar-itself-no-longer-scrolls": {
+        "ok": true,
+        "detail": "visible"
+      },
+      "mobile:the-reserve-for-the-strip-is-still-260px": {
+        "ok": true,
+        "detail": "260px"
+      },
+      "mobile:the-cluster-does-overflow-at-390": {
+        "ok": true,
+        "detail": {
+          "clientW": 122,
+          "scrollW": 776
+        }
+      },
+      "mobile:nothing-from-the-cluster-is-painted-under-the-strip": {
+        "ok": true,
+        "detail": {
+          "samples": 31,
+          "underStrip": []
+        }
+      },
+      "mobile:unitButton": {
+        "x": 69.5,
+        "y": 686.5,
+        "scrollLeft": 129,
+        "label": "切换时间单位为 s"
+      },
+      "mobile:the-buried-unit-toggle-takes-a-real-click": {
+        "ok": true,
+        "detail": "切换时间单位为 s -> 切换时间单位为 ms (scrollLeft=129)"
+      },
+      "mobile:census-after-scroll": {
+        "vw": 390,
+        "vh": 844,
+        "total": 38,
+        "blocked": [
+          {
+            "label": "9:16",
+            "tag": "button",
+            "box": [
+              347,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "场景描述已记录（本地草稿）",
+            "hitTag": "div",
+            "data": "directorAspect"
+          },
+          {
+            "label": "上传图片",
+            "tag": "button",
+            "box": [
+              371,
+              629,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "角色01 · 陈默",
+            "hitTag": "div",
+            "data": "directorScenePromptUpload"
+          },
+          {
+            "label": "预设运镜",
+            "tag": "button",
+            "box": [
+              183,
+              672.5,
+              77,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorCameraPresetTrigger"
+          },
+          {
+            "label": "创建运动轨迹",
+            "tag": "button",
+            "box": [
+              260,
+              672.5,
+              99,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorCreateMotionPath"
+          }
+        ],
+        "covered": [],
+        "clipped": [
+          {
+            "label": "9:16",
+            "tag": "button",
+            "box": [
+              347,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "场景描述已记录（本地草稿）",
+            "hitTag": "div",
+            "data": "directorAspect"
+          },
+          {
+            "label": "上传图片",
+            "tag": "button",
+            "box": [
+              371,
+              629,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "角色01 · 陈默",
+            "hitTag": "div",
+            "data": "directorScenePromptUpload"
+          },
+          {
+            "label": "预设运镜",
+            "tag": "button",
+            "box": [
+              183,
+              672.5,
+              77,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorCameraPresetTrigger"
+          },
+          {
+            "label": "创建运动轨迹",
+            "tag": "button",
+            "box": [
+              260,
+              672.5,
+              99,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorCreateMotionPath"
+          }
+        ],
+        "items": [
+          {
+            "label": "关闭",
+            "tag": "button",
+            "box": [
+              8,
+              5.5,
+              40,
+              40
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "closeDirector"
+          },
+          {
+            "label": "收起",
+            "tag": "button",
+            "box": [
+              64,
+              5.5,
+              40,
+              40
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorPanelsToggle"
+          },
+          {
+            "label": "导演视角",
+            "tag": "button",
+            "box": [
+              113,
+              10,
+              81,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "导演视角",
+            "hitTag": "button",
+            "data": "directorViewMode"
+          },
+          {
+            "label": "机位视角",
+            "tag": "button",
+            "box": [
+              196,
+              10,
+              81,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "机位视角",
+            "hitTag": "button",
+            "data": "directorViewMode"
+          },
+          {
+            "label": "导出导演台项目",
+            "tag": "button",
+            "box": [
+              308.1,
+              9.5,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorProjectExport"
+          },
+          {
+            "label": "导入导演台项目",
+            "tag": "button",
+            "box": [
+              348.1,
+              9.5,
+              17.9,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorProjectImport"
+          },
+          {
+            "label": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+            "tag": "button",
+            "box": [
+              41.6,
+              55.5,
+              177.1,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "机位01 · 对峙中景 · 镜头",
+            "hitTag": "span",
+            "data": "directorShotOption"
+          },
+          {
+            "label": "重置视角",
+            "tag": "button",
+            "box": [
+              308,
+              196,
+              62,
+              26.5
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "重置视角",
+            "hitTag": "button",
+            "data": "directorResetView"
+          },
+          {
+            "label": "X 正向",
+            "tag": "button",
+            "box": [
+              344.7,
+              146.4,
+              15,
+              15
+            ],
+            "z": "171",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "X 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "X 反向",
+            "tag": "button",
+            "box": [
+              300.3,
+              134.5,
+              15,
+              15
+            ],
+            "z": "49",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "X 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Y 正向",
+            "tag": "button",
+            "box": [
+              322.5,
+              113,
+              15,
+              15
+            ],
+            "z": "142",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Y 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Y 反向",
+            "tag": "button",
+            "box": [
+              322.5,
+              168,
+              15,
+              15
+            ],
+            "z": "78",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Y 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Z 正向",
+            "tag": "button",
+            "box": [
+              303.9,
+              147.6,
+              15,
+              15
+            ],
+            "z": "183",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Z 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Z 反向",
+            "tag": "button",
+            "box": [
+              341.1,
+              133.4,
+              15,
+              15
+            ],
+            "z": "37",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Z 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "打开场景对象",
+            "tag": "button",
+            "box": [
+              12,
+              100,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "打开属性面板",
+            "tag": "button",
+            "box": [
+              48,
+              100,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "移动",
+            "tag": "button",
+            "box": [
+              127,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "旋转",
+            "tag": "button",
+            "box": [
+              167,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "缩放",
+            "tag": "button",
+            "box": [
+              207,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "动画时间轴",
+            "tag": "button",
+            "box": [
+              247,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorTimelineToggle"
+          },
+          {
+            "label": "16:9",
+            "tag": "button",
+            "box": [
+              299,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "16:9",
+            "hitTag": "button",
+            "data": "directorAspect"
+          },
+          {
+            "label": "9:16",
+            "tag": "button",
+            "box": [
+              347,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "场景描述已记录（本地草稿）",
+            "hitTag": "div",
+            "data": "directorAspect"
+          },
+          {
+            "label": "上传图片",
+            "tag": "button",
+            "box": [
+              371,
+              629,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "角色01 · 陈默",
+            "hitTag": "div",
+            "data": "directorScenePromptUpload"
+          },
+          {
+            "label": "总时长",
+            "tag": "input",
+            "box": [
+              6,
+              674.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "总时长",
+            "hitTag": "input",
+            "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "切换时间单位为 s",
+            "tag": "button",
+            "box": [
+              53,
+              674.5,
+              33,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "切换时间单位为 s",
+            "hitTag": "button",
+            "data": "directorTimeUnit"
+          },
+          {
+            "label": "选中角色、道具或分组后建立轨道",
+            "tag": "button",
+            "box": [
+              101,
+              674.5,
+              82,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "ms新建轨道预设运镜创建运动轨迹曲线编辑器轨道添加关键帧",
+            "hitTag": "header",
+            "data": "directorAddTrack"
+          },
+          {
+            "label": "预设运镜",
+            "tag": "button",
+            "box": [
+              183,
+              672.5,
+              77,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorCameraPresetTrigger"
+          },
+          {
+            "label": "创建运动轨迹",
+            "tag": "button",
+            "box": [
+              260,
+              672.5,
+              99,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorCreateMotionPath"
+          },
+          {
+            "label": "时间线最小化",
+            "tag": "button",
+            "box": [
+              234,
+              675,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTimelineCollapse"
+          },
+          {
+            "label": "导出视频到画布",
+            "tag": "button",
+            "box": [
+              274,
+              673,
+              108,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorExportTrigger"
+          },
+          {
+            "label": "收起属性",
+            "tag": "button",
+            "box": [
+              8,
+              747,
+              20,
+              20
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "变换",
+            "tag": "div",
+            "box": [
+              52,
+              780,
+              36,
+              18
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "变换",
+            "hitTag": "span",
+            "data": ""
+          },
+          {
+            "label": "上一关键帧",
+            "tag": "button",
+            "box": [
+              93,
+              777,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "当前帧有关键帧",
+            "tag": "button",
+            "box": [
+              119,
+              777,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<span>",
+            "hitTag": "span",
+            "data": ""
+          },
+          {
+            "label": "下一关键帧",
+            "tag": "button",
+            "box": [
+              145,
+              777,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "收起属性",
+            "tag": "button",
+            "box": [
+              8,
+              811,
+              20,
+              20
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "绘制轨迹",
+            "tag": "button",
+            "box": [
+              166,
+              809,
+              86,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "绘制轨迹",
+            "hitTag": "span",
+            "data": "directorTrackDrawTrail"
+          },
+          {
+            "label": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+            "tag": "button",
+            "box": [
+              225.5,
+              783,
+              11,
+              11
+            ],
+            "z": "10",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+            "hitTag": "button",
+            "data": "directorKeyframeId,directorKeyframeTime"
+          }
+        ],
+        "unexpected": []
+      },
+      "mobile:still-nothing-covered-after-the-click": {
+        "ok": true,
+        "detail": []
+      },
+      "mobile:no-page-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "mobile:no-console-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "mobile:diagnostics": {
+        "consoleErrors": 0,
+        "filtered": 0,
+        "pageErrors": 0
+      },
+      "_summary": {
+        "checks": 13,
+        "failures": []
+      }
+    },
+    "export-open": {
+      "export-open:census": {
+        "vw": 390,
+        "vh": 844,
+        "total": 41,
+        "blocked": [
+          {
+            "label": "9:16",
+            "tag": "button",
+            "box": [
+              347,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "场景描述已记录（本地草稿）",
+            "hitTag": "div",
+            "data": "directorAspect"
+          },
+          {
+            "label": "上传图片",
+            "tag": "button",
+            "box": [
+              371,
+              629,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "角色01 · 陈默",
+            "hitTag": "div",
+            "data": "directorScenePromptUpload"
+          },
+          {
+            "label": "总时长",
+            "tag": "input",
+            "box": [
+              135,
+              674.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "切换时间单位为 s",
+            "tag": "button",
+            "box": [
+              182,
+              674.5,
+              33,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimeUnit"
+          },
+          {
+            "label": "选中角色、道具或分组后建立轨道",
+            "tag": "button",
+            "box": [
+              230,
+              674.5,
+              82,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "div",
+            "data": "directorAddTrack"
+          },
+          {
+            "label": "预设运镜",
+            "tag": "button",
+            "box": [
+              312,
+              672.5,
+              77,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorCameraPresetTrigger"
+          }
+        ],
+        "covered": [],
+        "clipped": [
+          {
+            "label": "9:16",
+            "tag": "button",
+            "box": [
+              347,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "场景描述已记录（本地草稿）",
+            "hitTag": "div",
+            "data": "directorAspect"
+          },
+          {
+            "label": "上传图片",
+            "tag": "button",
+            "box": [
+              371,
+              629,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "角色01 · 陈默",
+            "hitTag": "div",
+            "data": "directorScenePromptUpload"
+          },
+          {
+            "label": "总时长",
+            "tag": "input",
+            "box": [
+              135,
+              674.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "切换时间单位为 s",
+            "tag": "button",
+            "box": [
+              182,
+              674.5,
+              33,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimeUnit"
+          },
+          {
+            "label": "选中角色、道具或分组后建立轨道",
+            "tag": "button",
+            "box": [
+              230,
+              674.5,
+              82,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "div",
+            "data": "directorAddTrack"
+          },
+          {
+            "label": "预设运镜",
+            "tag": "button",
+            "box": [
+              312,
+              672.5,
+              77,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorCameraPresetTrigger"
+          }
+        ],
+        "items": [
+          {
+            "label": "关闭",
+            "tag": "button",
+            "box": [
+              8,
+              5.5,
+              40,
+              40
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "closeDirector"
+          },
+          {
+            "label": "收起",
+            "tag": "button",
+            "box": [
+              64,
+              5.5,
+              40,
+              40
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorPanelsToggle"
+          },
+          {
+            "label": "导演视角",
+            "tag": "button",
+            "box": [
+              113,
+              10,
+              81,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "导演视角",
+            "hitTag": "button",
+            "data": "directorViewMode"
+          },
+          {
+            "label": "机位视角",
+            "tag": "button",
+            "box": [
+              196,
+              10,
+              81,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "机位视角",
+            "hitTag": "button",
+            "data": "directorViewMode"
+          },
+          {
+            "label": "导出导演台项目",
+            "tag": "button",
+            "box": [
+              292.7,
+              9.5,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorProjectExport"
+          },
+          {
+            "label": "导入导演台项目",
+            "tag": "button",
+            "box": [
+              332.7,
+              9.5,
+              14,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorProjectImport"
+          },
+          {
+            "label": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+            "tag": "button",
+            "box": [
+              41.6,
+              55.5,
+              177.1,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "机位01 · 对峙中景 · 镜头",
+            "hitTag": "span",
+            "data": "directorShotOption"
+          },
+          {
+            "label": "重置视角",
+            "tag": "button",
+            "box": [
+              308,
+              196,
+              62,
+              26.5
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "重置视角",
+            "hitTag": "button",
+            "data": "directorResetView"
+          },
+          {
+            "label": "X 正向",
+            "tag": "button",
+            "box": [
+              344.7,
+              146.4,
+              15,
+              15
+            ],
+            "z": "171",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "X 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "X 反向",
+            "tag": "button",
+            "box": [
+              300.3,
+              134.5,
+              15,
+              15
+            ],
+            "z": "49",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "X 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Y 正向",
+            "tag": "button",
+            "box": [
+              322.5,
+              113,
+              15,
+              15
+            ],
+            "z": "142",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Y 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Y 反向",
+            "tag": "button",
+            "box": [
+              322.5,
+              168,
+              15,
+              15
+            ],
+            "z": "78",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Y 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Z 正向",
+            "tag": "button",
+            "box": [
+              303.9,
+              147.6,
+              15,
+              15
+            ],
+            "z": "183",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Z 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Z 反向",
+            "tag": "button",
+            "box": [
+              341.1,
+              133.4,
+              15,
+              15
+            ],
+            "z": "37",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Z 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "打开场景对象",
+            "tag": "button",
+            "box": [
+              12,
+              100,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "打开属性面板",
+            "tag": "button",
+            "box": [
+              48,
+              100,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "移动",
+            "tag": "button",
+            "box": [
+              127,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "旋转",
+            "tag": "button",
+            "box": [
+              167,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "缩放",
+            "tag": "button",
+            "box": [
+              207,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "动画时间轴",
+            "tag": "button",
+            "box": [
+              247,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorTimelineToggle"
+          },
+          {
+            "label": "16:9",
+            "tag": "button",
+            "box": [
+              299,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "16:9",
+            "hitTag": "button",
+            "data": "directorAspect"
+          },
+          {
+            "label": "9:16",
+            "tag": "button",
+            "box": [
+              347,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "场景描述已记录（本地草稿）",
+            "hitTag": "div",
+            "data": "directorAspect"
+          },
+          {
+            "label": "上传图片",
+            "tag": "button",
+            "box": [
+              371,
+              629,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "角色01 · 陈默",
+            "hitTag": "div",
+            "data": "directorScenePromptUpload"
+          },
+          {
+            "label": "播放",
+            "tag": "button",
+            "box": [
+              8,
+              674.5,
+              26,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorPlayback"
+          },
+          {
+            "label": "自动帧",
+            "tag": "button",
+            "box": [
+              34,
+              674.5,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorAutoKeyframe"
+          },
+          {
+            "label": "循环播放",
+            "tag": "button",
+            "box": [
+              58,
+              674.5,
+              26,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorLoop"
+          },
+          {
+            "label": "播放头位置",
+            "tag": "input",
+            "box": [
+              88,
+              674.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "播放头位置",
+            "hitTag": "input",
+            "data": "directorTimelineTime,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "总时长",
+            "tag": "input",
+            "box": [
+              135,
+              674.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "切换时间单位为 s",
+            "tag": "button",
+            "box": [
+              182,
+              674.5,
+              33,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimeUnit"
+          },
+          {
+            "label": "选中角色、道具或分组后建立轨道",
+            "tag": "button",
+            "box": [
+              230,
+              674.5,
+              82,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "div",
+            "data": "directorAddTrack"
+          },
+          {
+            "label": "预设运镜",
+            "tag": "button",
+            "box": [
+              312,
+              672.5,
+              77,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorCameraPresetTrigger"
+          },
+          {
+            "label": "时间线最小化",
+            "tag": "button",
+            "box": [
+              234,
+              675,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTimelineCollapse"
+          },
+          {
+            "label": "导出视频到画布",
+            "tag": "button",
+            "box": [
+              274,
+              673,
+              108,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorExportTrigger"
+          },
+          {
+            "label": "收起属性",
+            "tag": "button",
+            "box": [
+              8,
+              747,
+              20,
+              20
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "变换",
+            "tag": "div",
+            "box": [
+              52,
+              780,
+              36,
+              18
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "变换",
+            "hitTag": "span",
+            "data": ""
+          },
+          {
+            "label": "上一关键帧",
+            "tag": "button",
+            "box": [
+              93,
+              777,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "当前帧有关键帧",
+            "tag": "button",
+            "box": [
+              119,
+              777,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<span>",
+            "hitTag": "span",
+            "data": ""
+          },
+          {
+            "label": "下一关键帧",
+            "tag": "button",
+            "box": [
+              145,
+              777,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "收起属性",
+            "tag": "button",
+            "box": [
+              8,
+              811,
+              20,
+              20
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "绘制轨迹",
+            "tag": "button",
+            "box": [
+              166,
+              809,
+              86,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "绘制轨迹",
+            "hitTag": "span",
+            "data": "directorTrackDrawTrail"
+          },
+          {
+            "label": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+            "tag": "button",
+            "box": [
+              225.5,
+              783,
+              11,
+              11
+            ],
+            "z": "10",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+            "hitTag": "button",
+            "data": "directorKeyframeId,directorKeyframeTime"
+          }
+        ],
+        "unexpected": []
+      },
+      "export-open:audited-a-real-number-of-controls": {
+        "ok": true,
+        "detail": 41
+      },
+      "export-open:no-control-is-covered": {
+        "ok": true,
+        "detail": []
+      },
+      "export-open:no-page-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "export-open:no-console-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "export-open:diagnostics": {
+        "consoleErrors": 0,
+        "filtered": 0,
+        "pageErrors": 0
+      },
+      "_summary": {
+        "checks": 4,
+        "failures": []
+      }
+    },
+    "collapsed": {
+      "collapsed:census": {
+        "vw": 390,
+        "vh": 844,
+        "total": 40,
+        "blocked": [
+          {
+            "label": "9:16",
+            "tag": "button",
+            "box": [
+              347,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "场景描述已记录（本地草稿）",
+            "hitTag": "div",
+            "data": "directorAspect"
+          },
+          {
+            "label": "上传图片",
+            "tag": "button",
+            "box": [
+              371,
+              629,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "角色01 · 陈默",
+            "hitTag": "div",
+            "data": "directorScenePromptUpload"
+          },
+          {
+            "label": "总时长",
+            "tag": "input",
+            "box": [
+              135,
+              674.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "切换时间单位为 s",
+            "tag": "button",
+            "box": [
+              182,
+              674.5,
+              33,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimeUnit"
+          },
+          {
+            "label": "选中角色、道具或分组后建立轨道",
+            "tag": "button",
+            "box": [
+              230,
+              674.5,
+              82,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "div",
+            "data": "directorAddTrack"
+          },
+          {
+            "label": "预设运镜",
+            "tag": "button",
+            "box": [
+              312,
+              672.5,
+              77,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorCameraPresetTrigger"
+          }
+        ],
+        "covered": [],
+        "clipped": [
+          {
+            "label": "9:16",
+            "tag": "button",
+            "box": [
+              347,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "场景描述已记录（本地草稿）",
+            "hitTag": "div",
+            "data": "directorAspect"
+          },
+          {
+            "label": "上传图片",
+            "tag": "button",
+            "box": [
+              371,
+              629,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "角色01 · 陈默",
+            "hitTag": "div",
+            "data": "directorScenePromptUpload"
+          },
+          {
+            "label": "总时长",
+            "tag": "input",
+            "box": [
+              135,
+              674.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "切换时间单位为 s",
+            "tag": "button",
+            "box": [
+              182,
+              674.5,
+              33,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimeUnit"
+          },
+          {
+            "label": "选中角色、道具或分组后建立轨道",
+            "tag": "button",
+            "box": [
+              230,
+              674.5,
+              82,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "div",
+            "data": "directorAddTrack"
+          },
+          {
+            "label": "预设运镜",
+            "tag": "button",
+            "box": [
+              312,
+              672.5,
+              77,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorCameraPresetTrigger"
+          }
+        ],
+        "items": [
+          {
+            "label": "关闭",
+            "tag": "button",
+            "box": [
+              8,
+              5.5,
+              40,
+              40
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "closeDirector"
+          },
+          {
+            "label": "收起",
+            "tag": "button",
+            "box": [
+              64,
+              5.5,
+              40,
+              40
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorPanelsToggle"
+          },
+          {
+            "label": "导演视角",
+            "tag": "button",
+            "box": [
+              113,
+              10,
+              81,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "导演视角",
+            "hitTag": "button",
+            "data": "directorViewMode"
+          },
+          {
+            "label": "机位视角",
+            "tag": "button",
+            "box": [
+              196,
+              10,
+              81,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "机位视角",
+            "hitTag": "button",
+            "data": "directorViewMode"
+          },
+          {
+            "label": "导出导演台项目",
+            "tag": "button",
+            "box": [
+              308.1,
+              9.5,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorProjectExport"
+          },
+          {
+            "label": "导入导演台项目",
+            "tag": "button",
+            "box": [
+              348.1,
+              9.5,
+              17.9,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorProjectImport"
+          },
+          {
+            "label": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+            "tag": "button",
+            "box": [
+              41.6,
+              55.5,
+              177.1,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "机位01 · 对峙中景 · 镜头",
+            "hitTag": "span",
+            "data": "directorShotOption"
+          },
+          {
+            "label": "重置视角",
+            "tag": "button",
+            "box": [
+              308,
+              196,
+              62,
+              26.5
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "重置视角",
+            "hitTag": "button",
+            "data": "directorResetView"
+          },
+          {
+            "label": "X 正向",
+            "tag": "button",
+            "box": [
+              344.7,
+              146.4,
+              15,
+              15
+            ],
+            "z": "171",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "X 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "X 反向",
+            "tag": "button",
+            "box": [
+              300.3,
+              134.5,
+              15,
+              15
+            ],
+            "z": "49",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "X 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Y 正向",
+            "tag": "button",
+            "box": [
+              322.5,
+              113,
+              15,
+              15
+            ],
+            "z": "142",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Y 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Y 反向",
+            "tag": "button",
+            "box": [
+              322.5,
+              168,
+              15,
+              15
+            ],
+            "z": "78",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Y 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Z 正向",
+            "tag": "button",
+            "box": [
+              303.9,
+              147.6,
+              15,
+              15
+            ],
+            "z": "183",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Z 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Z 反向",
+            "tag": "button",
+            "box": [
+              341.1,
+              133.4,
+              15,
+              15
+            ],
+            "z": "37",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Z 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "打开场景对象",
+            "tag": "button",
+            "box": [
+              12,
+              100,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "打开属性面板",
+            "tag": "button",
+            "box": [
+              48,
+              100,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "移动",
+            "tag": "button",
+            "box": [
+              127,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "旋转",
+            "tag": "button",
+            "box": [
+              167,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "缩放",
+            "tag": "button",
+            "box": [
+              207,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "动画时间轴",
+            "tag": "button",
+            "box": [
+              247,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorTimelineToggle"
+          },
+          {
+            "label": "16:9",
+            "tag": "button",
+            "box": [
+              299,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "16:9",
+            "hitTag": "button",
+            "data": "directorAspect"
+          },
+          {
+            "label": "9:16",
+            "tag": "button",
+            "box": [
+              347,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "场景描述已记录（本地草稿）",
+            "hitTag": "div",
+            "data": "directorAspect"
+          },
+          {
+            "label": "上传图片",
+            "tag": "button",
+            "box": [
+              371,
+              629,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "角色01 · 陈默",
+            "hitTag": "div",
+            "data": "directorScenePromptUpload"
+          },
+          {
+            "label": "播放",
+            "tag": "button",
+            "box": [
+              8,
+              674.5,
+              26,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorPlayback"
+          },
+          {
+            "label": "自动帧",
+            "tag": "button",
+            "box": [
+              34,
+              674.5,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorAutoKeyframe"
+          },
+          {
+            "label": "循环播放",
+            "tag": "button",
+            "box": [
+              58,
+              674.5,
+              26,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorLoop"
+          },
+          {
+            "label": "播放头位置",
+            "tag": "input",
+            "box": [
+              88,
+              674.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "播放头位置",
+            "hitTag": "input",
+            "data": "directorTimelineTime,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "总时长",
+            "tag": "input",
+            "box": [
+              135,
+              674.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "切换时间单位为 s",
+            "tag": "button",
+            "box": [
+              182,
+              674.5,
+              33,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "时间轴缩放",
+            "hitTag": "input",
+            "data": "directorTimeUnit"
+          },
+          {
+            "label": "选中角色、道具或分组后建立轨道",
+            "tag": "button",
+            "box": [
+              230,
+              674.5,
+              82,
+              24
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "div",
+            "data": "directorAddTrack"
+          },
+          {
+            "label": "预设运镜",
+            "tag": "button",
+            "box": [
+              312,
+              672.5,
+              77,
+              28
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": true,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorCameraPresetTrigger"
+          },
+          {
+            "label": "展开时间线",
+            "tag": "button",
+            "box": [
+              234,
+              675,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTimelineCollapse"
+          },
+          {
+            "label": "导出视频到画布",
+            "tag": "button",
+            "box": [
+              274,
+              673,
+              108,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorExportTrigger"
+          },
+          {
+            "label": "收起属性",
+            "tag": "button",
+            "box": [
+              8,
+              747,
+              20,
+              20
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "变换",
+            "tag": "div",
+            "box": [
+              52,
+              780,
+              36,
+              18
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "变换",
+            "hitTag": "span",
+            "data": ""
+          },
+          {
+            "label": "上一关键帧",
+            "tag": "button",
+            "box": [
+              93,
+              777,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "当前帧有关键帧",
+            "tag": "button",
+            "box": [
+              119,
+              777,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<span>",
+            "hitTag": "span",
+            "data": ""
+          },
+          {
+            "label": "下一关键帧",
+            "tag": "button",
+            "box": [
+              145,
+              777,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "收起属性",
+            "tag": "button",
+            "box": [
+              8,
+              811,
+              20,
+              20
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "绘制轨迹",
+            "tag": "button",
+            "box": [
+              166,
+              809,
+              86,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "绘制轨迹",
+            "hitTag": "span",
+            "data": "directorTrackDrawTrail"
+          }
+        ],
+        "unexpected": []
+      },
+      "collapsed:audited-a-real-number-of-controls": {
+        "ok": true,
+        "detail": 40
+      },
+      "collapsed:no-control-is-covered": {
+        "ok": true,
+        "detail": []
+      },
+      "collapsed:no-page-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "collapsed:no-console-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "collapsed:diagnostics": {
+        "consoleErrors": 0,
+        "filtered": 0,
+        "pageErrors": 0
+      },
+      "_summary": {
+        "checks": 4,
+        "failures": []
+      }
+    },
+    "drawer": {
+      "drawer:geometry": {
+        "drawer": [
+          109,
+          88,
+          281,
+          580
+        ],
+        "tree": [
+          -220,
+          88,
+          220,
+          756
+        ],
+        "scrim": [
+          0,
+          88,
+          390,
+          580
+        ],
+        "shotChip": "own",
+        "shotLabel": "own",
+        "activeShot": "director-shot-director-camera-main",
+        "pressed": "true"
+      },
+      "drawer:it-starts-below-the-shot-bar-row": {
+        "ok": true,
+        "detail": [
+          109,
+          88,
+          281,
+          580
+        ]
+      },
+      "drawer:it-ends-where-the-scrim-ends": {
+        "ok": true,
+        "detail": {
+          "drawer": [
+            109,
+            88,
+            281,
+            580
+          ],
+          "scrim": [
+            0,
+            88,
+            390,
+            580
+          ]
+        }
+      },
+      "drawer:the-scrim-still-starts-at-88": {
+        "ok": true,
+        "detail": [
+          0,
+          88,
+          390,
+          580
+        ]
+      },
+      "drawer:the-shot-chip-takes-its-own-hit": {
+        "ok": true,
+        "detail": "own"
+      },
+      "drawer:the-shot-label-takes-its-own-hit": {
+        "ok": true,
+        "detail": "own"
+      },
+      "drawer:the-shot-chip-click-lands-with-the-drawer-open": {
+        "ok": true,
+        "detail": "director-shot-director-camera-main -> director-shot-director-camera-main pressed=true"
+      },
+      "drawer:no-page-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "drawer:no-console-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "drawer:diagnostics": {
+        "consoleErrors": 1,
+        "filtered": 1,
+        "pageErrors": 0
+      },
+      "_summary": {
+        "checks": 8,
+        "failures": []
+      }
+    },
+    "desktop": {
+      "desktop:toolbar": {
+        "host": [
+          8,
+          972.5,
+          1652,
+          28
+        ],
+        "header": [
+          0,
+          969,
+          1920,
+          36
+        ],
+        "strip": [
+          1676,
+          969,
+          244,
+          36
+        ],
+        "hostOverflowX": "auto",
+        "hostScrollW": 1652,
+        "hostClientW": 1652,
+        "needsScroll": false,
+        "headerPaddingRight": "260px",
+        "inspector": [
+          1639,
+          52,
+          281,
+          916
+        ],
+        "first": [
+          {
+            "data": "true",
+            "box": [
+              8,
+              974.5,
+              26,
+              24
+            ],
+            "text": ""
+          },
+          {
+            "data": "true",
+            "box": [
+              34,
+              974.5,
+              24,
+              24
+            ],
+            "text": ""
+          },
+          {
+            "data": "true",
+            "box": [
+              58,
+              974.5,
+              26,
+              24
+            ],
+            "text": ""
+          },
+          {
+            "data": "true",
+            "box": [
+              230,
+              974.5,
+              82,
+              24
+            ],
+            "text": "新建轨道"
+          }
+        ]
+      },
+      "desktop:the-toolbar-is-still-36px": {
+        "ok": true,
+        "detail": [
+          0,
+          969,
+          1920,
+          36
+        ]
+      },
+      "desktop:the-toolbar-still-spans-the-full-width": {
+        "ok": true,
+        "detail": [
+          0,
+          969,
+          1920,
+          36
+        ]
+      },
+      "desktop:the-strip-is-still-244x36-at-the-right": {
+        "ok": true,
+        "detail": [
+          1676,
+          969,
+          244,
+          36
+        ]
+      },
+      "desktop:the-reserve-is-still-260px": {
+        "ok": true,
+        "detail": "260px"
+      },
+      "desktop:the-cluster-ends-where-the-reserve-begins": {
+        "ok": true,
+        "detail": {
+          "host": [
+            8,
+            972.5,
+            1652,
+            28
+          ],
+          "expectedRight": 1660
+        }
+      },
+      "desktop:the-cluster-does-not-scroll-at-1920": {
+        "ok": true,
+        "detail": {
+          "clientW": 1652,
+          "scrollW": 1652
+        }
+      },
+      "desktop:the-source-ordered-controls-are-untouched": {
+        "ok": true,
+        "detail": [
+          [
+            "true",
+            [
+              8,
+              974.5,
+              26,
+              24
+            ]
+          ],
+          [
+            "true",
+            [
+              34,
+              974.5,
+              24,
+              24
+            ]
+          ],
+          [
+            "true",
+            [
+              58,
+              974.5,
+              26,
+              24
+            ]
+          ],
+          [
+            "true",
+            [
+              230,
+              974.5,
+              82,
+              24
+            ]
+          ]
+        ]
+      },
+      "desktop:the-cluster-starts-at-the-toolbar's-content-box": {
+        "ok": true,
+        "detail": 8
+      },
+      "desktop:the-inspector-column-keeps-its-52px-top": {
+        "ok": true,
+        "detail": [
+          1639,
+          52,
+          281,
+          916
+        ]
+      },
+      "desktop:census": {
+        "vw": 1920,
+        "vh": 1150,
+        "total": 120,
+        "blocked": [
+          {
+            "label": "帮助",
+            "tag": "button",
+            "box": [
+              7.5,
+              1110,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": false,
+            "hitLabel": "收起属性",
+            "hitTag": "button",
+            "data": "directorRailEntry"
+          }
+        ],
+        "covered": [
+          {
+            "label": "帮助",
+            "tag": "button",
+            "box": [
+              7.5,
+              1110,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": false,
+            "hitLabel": "收起属性",
+            "hitTag": "button",
+            "data": "directorRailEntry"
+          }
+        ],
+        "clipped": [],
+        "items": [
+          {
+            "label": "关闭",
+            "tag": "button",
+            "box": [
+              0,
+              5.5,
+              40,
+              40
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "closeDirector"
+          },
+          {
+            "label": "收起",
+            "tag": "button",
+            "box": [
+              240,
+              5.5,
+              40,
+              40
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorPanelsToggle"
+          },
+          {
+            "label": "导演视角",
+            "tag": "button",
+            "box": [
+              878,
+              10,
+              81,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "导演视角",
+            "hitTag": "button",
+            "data": "directorViewMode"
+          },
+          {
+            "label": "机位视角",
+            "tag": "button",
+            "box": [
+              961,
+              10,
+              81,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "机位视角",
+            "hitTag": "button",
+            "data": "directorViewMode"
+          },
+          {
+            "label": "导出导演台项目",
+            "tag": "button",
+            "box": [
+              1818.3,
+              9.5,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorProjectExport"
+          },
+          {
+            "label": "导入导演台项目",
+            "tag": "button",
+            "box": [
+              1859.2,
+              9.5,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorProjectImport"
+          },
+          {
+            "label": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+            "tag": "button",
+            "box": [
+              322.6,
+              55.5,
+              177.1,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "机位01 · 对峙中景 · 镜头",
+            "hitTag": "span",
+            "data": "directorShotOption"
+          },
+          {
+            "label": "搜索场景内容",
+            "tag": "input",
+            "box": [
+              91,
+              68,
+              132,
+              16
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "搜索场景内容",
+            "hitTag": "input",
+            "data": ""
+          },
+          {
+            "label": "新增机位",
+            "tag": "button",
+            "box": [
+              236,
+              60,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorAddCamera"
+          },
+          {
+            "label": "打组",
+            "tag": "button",
+            "box": [
+              56,
+              103.5,
+              106,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "打组",
+            "hitTag": "button",
+            "data": "directorGroupAction"
+          },
+          {
+            "label": "解组",
+            "tag": "button",
+            "box": [
+              166,
+              103.5,
+              106,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "解组",
+            "hitTag": "button",
+            "data": "directorGroupAction"
+          },
+          {
+            "label": "复制当前选择",
+            "tag": "button",
+            "box": [
+              180,
+              139.5,
+              28,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorSelectionAction"
+          },
+          {
+            "label": "删除当前选择",
+            "tag": "button",
+            "box": [
+              212,
+              139.5,
+              28,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorSelectionAction"
+          },
+          {
+            "label": "清除当前选择",
+            "tag": "button",
+            "box": [
+              244,
+              139.5,
+              28,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorSelectionAction"
+          },
+          {
+            "label": "隐藏角色01 · 陈默",
+            "tag": "button",
+            "box": [
+              176,
+              204,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "锁定角色01 · 陈默",
+            "tag": "button",
+            "box": [
+              208,
+              204,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<rect>",
+            "hitTag": "rect",
+            "data": "directorObjectLock,directorObjectLocked"
+          },
+          {
+            "label": "删除角色01 · 陈默",
+            "tag": "button",
+            "box": [
+              240,
+              204,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorDeleteObject"
+          },
+          {
+            "label": "隐藏咖啡桌",
+            "tag": "button",
+            "box": [
+              176,
+              276,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "锁定咖啡桌",
+            "tag": "button",
+            "box": [
+              208,
+              276,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<rect>",
+            "hitTag": "rect",
+            "data": "directorObjectLock,directorObjectLocked"
+          },
+          {
+            "label": "删除咖啡桌",
+            "tag": "button",
+            "box": [
+              240,
+              276,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorDeleteObject"
+          },
+          {
+            "label": "隐藏冷掉的咖啡",
+            "tag": "button",
+            "box": [
+              176,
+              308,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "锁定冷掉的咖啡",
+            "tag": "button",
+            "box": [
+              208,
+              308,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<rect>",
+            "hitTag": "rect",
+            "data": "directorObjectLock,directorObjectLocked"
+          },
+          {
+            "label": "删除冷掉的咖啡",
+            "tag": "button",
+            "box": [
+              240,
+              308,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorDeleteObject"
+          },
+          {
+            "label": "隐藏咖啡馆背景",
+            "tag": "button",
+            "box": [
+              176,
+              340,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "锁定咖啡馆背景",
+            "tag": "button",
+            "box": [
+              208,
+              340,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<rect>",
+            "hitTag": "rect",
+            "data": "directorObjectLock,directorObjectLocked"
+          },
+          {
+            "label": "删除咖啡馆背景",
+            "tag": "button",
+            "box": [
+              240,
+              340,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorDeleteObject"
+          },
+          {
+            "label": "隐藏机位01 · 对峙中景",
+            "tag": "button",
+            "box": [
+              176,
+              412,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "锁定机位01 · 对峙中景",
+            "tag": "button",
+            "box": [
+              208,
+              412,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<rect>",
+            "hitTag": "rect",
+            "data": "directorObjectLock,directorObjectLocked"
+          },
+          {
+            "label": "删除机位01 · 对峙中景",
+            "tag": "button",
+            "box": [
+              240,
+              412,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorDeleteObject"
+          },
+          {
+            "label": "场景",
+            "tag": "button",
+            "box": [
+              7.5,
+              60,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorRailEntry"
+          },
+          {
+            "label": "添加角色",
+            "tag": "button",
+            "box": [
+              7.5,
+              116,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<circle>",
+            "hitTag": "circle",
+            "data": "directorRailEntry"
+          },
+          {
+            "label": "添加机位",
+            "tag": "button",
+            "box": [
+              7.5,
+              156,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorRailEntry"
+          },
+          {
+            "label": "全景图",
+            "tag": "button",
+            "box": [
+              7.5,
+              196,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorRailEntry"
+          },
+          {
+            "label": "选择画幅比例",
+            "tag": "button",
+            "box": [
+              7.5,
+              236,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorRailEntry"
+          },
+          {
+            "label": "AI 识图导入",
+            "tag": "button",
+            "box": [
+              7.5,
+              276,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorRailEntry"
+          },
+          {
+            "label": "帮助",
+            "tag": "button",
+            "box": [
+              7.5,
+              1110,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": false,
+            "hitLabel": "收起属性",
+            "hitTag": "button",
+            "data": "directorRailEntry"
+          },
+          {
+            "label": "重置视角",
+            "tag": "button",
+            "box": [
+              1557,
+              196,
+              62,
+              26.5
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "重置视角",
+            "hitTag": "button",
+            "data": "directorResetView"
+          },
+          {
+            "label": "X 正向",
+            "tag": "button",
+            "box": [
+              1593.7,
+              146.4,
+              15,
+              15
+            ],
+            "z": "171",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "X 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "X 反向",
+            "tag": "button",
+            "box": [
+              1549.3,
+              134.5,
+              15,
+              15
+            ],
+            "z": "49",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "X 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Y 正向",
+            "tag": "button",
+            "box": [
+              1571.5,
+              113,
+              15,
+              15
+            ],
+            "z": "142",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Y 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Y 反向",
+            "tag": "button",
+            "box": [
+              1571.5,
+              168,
+              15,
+              15
+            ],
+            "z": "78",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Y 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Z 正向",
+            "tag": "button",
+            "box": [
+              1552.9,
+              147.6,
+              15,
+              15
+            ],
+            "z": "183",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Z 正向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "Z 反向",
+            "tag": "button",
+            "box": [
+              1590.1,
+              133.4,
+              15,
+              15
+            ],
+            "z": "37",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "Z 反向",
+            "hitTag": "button",
+            "data": "directorViewportGizmoButton"
+          },
+          {
+            "label": "移动",
+            "tag": "button",
+            "box": [
+              603,
+              928,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "旋转",
+            "tag": "button",
+            "box": [
+              643,
+              928,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "缩放",
+            "tag": "button",
+            "box": [
+              683,
+              928,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "动画时间轴",
+            "tag": "button",
+            "box": [
+              723,
+              928,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorTimelineToggle"
+          },
+          {
+            "label": "16:9",
+            "tag": "button",
+            "box": [
+              776,
+              928,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "16:9",
+            "hitTag": "button",
+            "data": "directorAspect"
+          },
+          {
+            "label": "9:16",
+            "tag": "button",
+            "box": [
+              824,
+              928,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "9:16",
+            "hitTag": "button",
+            "data": "directorAspect"
+          },
+          {
+            "label": "1:1",
+            "tag": "button",
+            "box": [
+              872,
+              928,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "1:1",
+            "hitTag": "button",
+            "data": "directorAspect"
+          },
+          {
+            "label": "开启九宫格辅助线",
+            "tag": "button",
+            "box": [
+              920,
+              928,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "虚拟相机",
+            "tag": "button",
+            "box": [
+              973,
+              928,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorPhoneVcamTrigger"
+          },
+          {
+            "label": "添加群众阵列",
+            "tag": "button",
+            "box": [
+              1013,
+              928,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorCrowdTrigger"
+          },
+          {
+            "label": "模型库",
+            "tag": "button",
+            "box": [
+              1053,
+              928,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorModelLibraryTrigger"
+          },
+          {
+            "label": "保存构图",
+            "tag": "button",
+            "box": [
+              1106,
+              928,
+              84,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "保存构图",
+            "hitTag": "span",
+            "data": "directorCapture"
+          },
+          {
+            "label": "上传图片",
+            "tag": "button",
+            "box": [
+              1216,
+              929,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorScenePromptUpload"
+          },
+          {
+            "label": "描述想搭建的场景",
+            "tag": "input",
+            "box": [
+              1248,
+              937,
+              143,
+              16
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "描述想搭建的场景",
+            "hitTag": "input",
+            "data": "directorScenePromptInput"
+          },
+          {
+            "label": "发送",
+            "tag": "button",
+            "box": [
+              1395,
+              929,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<path>",
+            "hitTag": "path",
+            "data": "directorScenePromptSubmit"
+          },
+          {
+            "label": "属性",
+            "tag": "button",
+            "box": [
+              1656,
+              116,
+              50,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "属性",
+            "hitTag": "span",
+            "data": "directorCharacterTab"
+          },
+          {
+            "label": "姿势",
+            "tag": "button",
+            "box": [
+              1714,
+              116,
+              50,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "姿势",
+            "hitTag": "span",
+            "data": "directorCharacterTab"
+          },
+          {
+            "label": "<input>",
+            "tag": "input",
+            "box": [
+              1656,
+              201,
+              248,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<input>",
+            "hitTag": "input",
+            "data": "directorObjectName"
+          },
+          {
+            "label": "隐藏对象",
+            "tag": "button",
+            "box": [
+              1656,
+              245,
+              120,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "隐藏对象",
+            "hitTag": "button",
+            "data": ""
+          },
+          {
+            "label": "锁定对象",
+            "tag": "button",
+            "box": [
+              1784,
+              245,
+              120,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "锁定对象",
+            "hitTag": "button",
+            "data": "directorInspectorLock"
+          },
+          {
+            "label": "左右拖动调整 X 轴",
+            "tag": "button",
+            "box": [
+              1656,
+              342,
+              20,
+              28
+            ],
+            "z": "10",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "左右拖动调整 X 轴",
+            "hitTag": "button",
+            "data": "directorSceneAxisScrub"
+          },
+          {
+            "label": "<input>",
+            "tag": "input",
+            "box": [
+              1656,
+              342,
+              59,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<input>",
+            "hitTag": "input",
+            "data": "directorTransformField,directorTransformAxis"
+          },
+          {
+            "label": "当前帧有关键帧",
+            "tag": "button",
+            "box": [
+              1716,
+              342,
+              20,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<rect>",
+            "hitTag": "rect",
+            "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
+          },
+          {
+            "label": "左右拖动调整 Y 轴",
+            "tag": "button",
+            "box": [
+              1740,
+              342,
+              20,
+              28
+            ],
+            "z": "10",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "左右拖动调整 Y 轴",
+            "hitTag": "button",
+            "data": "directorSceneAxisScrub"
+          },
+          {
+            "label": "<input>",
+            "tag": "input",
+            "box": [
+              1740,
+              342,
+              59,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<input>",
+            "hitTag": "input",
+            "data": "directorTransformField,directorTransformAxis"
+          },
+          {
+            "label": "当前帧有关键帧",
+            "tag": "button",
+            "box": [
+              1800,
+              342,
+              20,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<rect>",
+            "hitTag": "rect",
+            "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
+          },
+          {
+            "label": "左右拖动调整 Z 轴",
+            "tag": "button",
+            "box": [
+              1824,
+              342,
+              20,
+              28
+            ],
+            "z": "10",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "左右拖动调整 Z 轴",
+            "hitTag": "button",
+            "data": "directorSceneAxisScrub"
+          },
+          {
+            "label": "<input>",
+            "tag": "input",
+            "box": [
+              1824,
+              342,
+              59,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<input>",
+            "hitTag": "input",
+            "data": "directorTransformField,directorTransformAxis"
+          },
+          {
+            "label": "当前帧有关键帧",
+            "tag": "button",
+            "box": [
+              1884,
+              342,
+              20,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<rect>",
+            "hitTag": "rect",
+            "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
+          },
+          {
+            "label": "左右拖动调整 X 轴",
+            "tag": "button",
+            "box": [
+              1656,
+              414,
+              20,
+              28
+            ],
+            "z": "10",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "左右拖动调整 X 轴",
+            "hitTag": "button",
+            "data": "directorSceneAxisScrub"
+          },
+          {
+            "label": "<input>",
+            "tag": "input",
+            "box": [
+              1656,
+              414,
+              59,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<input>",
+            "hitTag": "input",
+            "data": "directorTransformField,directorTransformAxis"
+          },
+          {
+            "label": "当前帧有关键帧",
+            "tag": "button",
+            "box": [
+              1716,
+              414,
+              20,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<rect>",
+            "hitTag": "rect",
+            "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
+          },
+          {
+            "label": "左右拖动调整 Y 轴",
+            "tag": "button",
+            "box": [
+              1740,
+              414,
+              20,
+              28
+            ],
+            "z": "10",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "左右拖动调整 Y 轴",
+            "hitTag": "button",
+            "data": "directorSceneAxisScrub"
+          },
+          {
+            "label": "<input>",
+            "tag": "input",
+            "box": [
+              1740,
+              414,
+              59,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<input>",
+            "hitTag": "input",
+            "data": "directorTransformField,directorTransformAxis"
+          },
+          {
+            "label": "当前帧有关键帧",
+            "tag": "button",
+            "box": [
+              1800,
+              414,
+              20,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<rect>",
+            "hitTag": "rect",
+            "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
+          },
+          {
+            "label": "左右拖动调整 Z 轴",
+            "tag": "button",
+            "box": [
+              1824,
+              414,
+              20,
+              28
+            ],
+            "z": "10",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "左右拖动调整 Z 轴",
+            "hitTag": "button",
+            "data": "directorSceneAxisScrub"
+          },
+          {
+            "label": "<input>",
+            "tag": "input",
+            "box": [
+              1824,
+              414,
+              59,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<input>",
+            "hitTag": "input",
+            "data": "directorTransformField,directorTransformAxis"
+          },
+          {
+            "label": "当前帧有关键帧",
+            "tag": "button",
+            "box": [
+              1884,
+              414,
+              20,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<rect>",
+            "hitTag": "rect",
+            "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
+          },
+          {
+            "label": "左右拖动调整 X 轴",
+            "tag": "button",
+            "box": [
+              1656,
+              486,
+              20,
+              28
+            ],
+            "z": "10",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "左右拖动调整 X 轴",
+            "hitTag": "button",
+            "data": "directorSceneAxisScrub"
+          },
+          {
+            "label": "<input>",
+            "tag": "input",
+            "box": [
+              1656,
+              486,
+              59,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<input>",
+            "hitTag": "input",
+            "data": "directorTransformField,directorTransformAxis"
+          },
+          {
+            "label": "当前帧有关键帧",
+            "tag": "button",
+            "box": [
+              1716,
+              486,
+              20,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<rect>",
+            "hitTag": "rect",
+            "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
+          },
+          {
+            "label": "左右拖动调整 Y 轴",
+            "tag": "button",
+            "box": [
+              1740,
+              486,
+              20,
+              28
+            ],
+            "z": "10",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "左右拖动调整 Y 轴",
+            "hitTag": "button",
+            "data": "directorSceneAxisScrub"
+          },
+          {
+            "label": "<input>",
+            "tag": "input",
+            "box": [
+              1740,
+              486,
+              59,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<input>",
+            "hitTag": "input",
+            "data": "directorTransformField,directorTransformAxis"
+          },
+          {
+            "label": "当前帧有关键帧",
+            "tag": "button",
+            "box": [
+              1800,
+              486,
+              20,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<rect>",
+            "hitTag": "rect",
+            "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
+          },
+          {
+            "label": "左右拖动调整 Z 轴",
+            "tag": "button",
+            "box": [
+              1824,
+              486,
+              20,
+              28
+            ],
+            "z": "10",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "左右拖动调整 Z 轴",
+            "hitTag": "button",
+            "data": "directorSceneAxisScrub"
+          },
+          {
+            "label": "<input>",
+            "tag": "input",
+            "box": [
+              1824,
+              486,
+              59,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<input>",
+            "hitTag": "input",
+            "data": "directorTransformField,directorTransformAxis"
+          },
+          {
+            "label": "当前帧有关键帧",
+            "tag": "button",
+            "box": [
+              1884,
+              486,
+              20,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<rect>",
+            "hitTag": "rect",
+            "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
+          },
+          {
+            "label": "统一缩放",
+            "tag": "input",
+            "box": [
+              1768,
+              526.3,
+              96,
+              16
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "统一缩放",
+            "hitTag": "input",
+            "data": "directorUniformScale"
+          },
+          {
+            "label": "颜色 hex 值",
+            "tag": "input",
+            "box": [
+              1794,
+              554.5,
+              68,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "颜色 hex 值",
+            "hitTag": "input",
+            "data": "directorHexInput"
+          },
+          {
+            "label": "颜色",
+            "tag": "input",
+            "box": [
+              1868,
+              554.5,
+              36,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "颜色",
+            "hitTag": "input",
+            "data": "directorColorPicker"
+          },
+          {
+            "label": "播放",
+            "tag": "button",
+            "box": [
+              8,
+              974.5,
+              26,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorPlayback"
+          },
+          {
+            "label": "自动帧",
+            "tag": "button",
+            "box": [
+              34,
+              974.5,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorAutoKeyframe"
+          },
+          {
+            "label": "循环播放",
+            "tag": "button",
+            "box": [
+              58,
+              974.5,
+              26,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorLoop"
+          },
+          {
+            "label": "播放头位置",
+            "tag": "input",
+            "box": [
+              88,
+              974.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "播放头位置",
+            "hitTag": "input",
+            "data": "directorTimelineTime,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "总时长",
+            "tag": "input",
+            "box": [
+              135,
+              974.5,
+              46,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "总时长",
+            "hitTag": "input",
+            "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
+          },
+          {
+            "label": "切换时间单位为 s",
+            "tag": "button",
+            "box": [
+              182,
+              974.5,
+              33,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "切换时间单位为 s",
+            "hitTag": "button",
+            "data": "directorTimeUnit"
+          },
+          {
+            "label": "选中角色、道具或分组后建立轨道",
+            "tag": "button",
+            "box": [
+              230,
+              974.5,
+              82,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "选中角色、道具或分组后建立轨道",
+            "hitTag": "button",
+            "data": "directorAddTrack"
+          },
+          {
+            "label": "预设运镜",
+            "tag": "button",
+            "box": [
+              312,
+              972.5,
+              77,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "预设运镜",
+            "hitTag": "button",
+            "data": "directorCameraPresetTrigger"
+          },
+          {
+            "label": "创建运动轨迹",
+            "tag": "button",
+            "box": [
+              389,
+              972.5,
+              99,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "创建运动轨迹",
+            "hitTag": "button",
+            "data": "directorCreateMotionPath"
+          },
+          {
+            "label": "曲线编辑器",
+            "tag": "button",
+            "box": [
+              488,
+              972.5,
+              88,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "曲线编辑器",
+            "hitTag": "button",
+            "data": "directorOpenCurveEditor"
+          },
+          {
+            "label": "轨道",
+            "tag": "button",
+            "box": [
+              576,
+              972.5,
+              55,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "轨道",
+            "hitTag": "button",
+            "data": "directorAddTrackManual"
+          },
+          {
+            "label": "移除角色01 · 陈默 · 变换轨道",
+            "tag": "button",
+            "box": [
+              631,
+              972.5,
+              28,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorRemoveTrack"
+          },
+          {
+            "label": "添加关键帧",
+            "tag": "button",
+            "box": [
+              659,
+              972.5,
+              88,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "添加关键帧",
+            "hitTag": "button",
+            "data": "directorAddKeyframe"
+          },
+          {
+            "label": "删除关键帧",
+            "tag": "button",
+            "box": [
+              747,
+              972.5,
+              28,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorDeleteKeyframe"
+          },
+          {
+            "label": "时间线最小化",
+            "tag": "button",
+            "box": [
+              1764,
+              975,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": "directorTimelineCollapse"
+          },
+          {
+            "label": "导出视频到画布",
+            "tag": "button",
+            "box": [
+              1804,
+              973,
+              108,
+              28
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "span",
+            "data": "directorExportTrigger"
+          },
+          {
+            "label": "收起属性",
+            "tag": "button",
+            "box": [
+              8,
+              1047,
+              20,
+              20
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "角色01 · 陈默",
+            "tag": "div",
+            "box": [
+              28,
+              1048,
+              60,
+              18
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "角色01 · 陈默",
+            "hitTag": "span",
+            "data": "directorTimelineObjectName"
+          },
+          {
+            "label": "变换",
+            "tag": "div",
+            "box": [
+              52,
+              1080,
+              36,
+              18
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "变换",
+            "hitTag": "span",
+            "data": ""
+          },
+          {
+            "label": "上一关键帧",
+            "tag": "button",
+            "box": [
+              93,
+              1077,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "当前帧有关键帧",
+            "tag": "button",
+            "box": [
+              119,
+              1077,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<span>",
+            "hitTag": "span",
+            "data": ""
+          },
+          {
+            "label": "下一关键帧",
+            "tag": "button",
+            "box": [
+              145,
+              1077,
+              24,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "收起属性",
+            "tag": "button",
+            "box": [
+              8,
+              1111,
+              20,
+              20
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "<svg>",
+            "hitTag": "svg",
+            "data": ""
+          },
+          {
+            "label": "机位01 · 对峙中景",
+            "tag": "div",
+            "box": [
+              28,
+              1112,
+              60,
+              18
+            ],
+            "z": "1",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "机位01 · 对峙中景",
+            "hitTag": "span",
+            "data": "directorTimelineObjectName"
+          },
+          {
+            "label": "绘制轨迹",
+            "tag": "button",
+            "box": [
+              226,
+              1109,
+              86,
+              24
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "绘制轨迹",
+            "hitTag": "span",
+            "data": "directorTrackDrawTrail"
+          },
+          {
+            "label": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+            "tag": "button",
+            "box": [
+              325.5,
+              1083,
+              11,
+              11
+            ],
+            "z": "10",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+            "hitTag": "button",
+            "data": "directorKeyframeId,directorKeyframeTime"
+          },
+          {
+            "label": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+            "tag": "button",
+            "box": [
+              1206,
+              1083,
+              11,
+              11
+            ],
+            "z": "10",
+            "own": true,
+            "clipped": false,
+            "hitLabel": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+            "hitTag": "button",
+            "data": "directorKeyframeId,directorKeyframeTime"
+          }
+        ],
+        "unexpected": []
+      },
+      "desktop:only-the-rails-帮助-is-covered": {
+        "ok": true,
+        "detail": [
+          "帮助"
+        ]
+      },
+      "desktop:no-page-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "desktop:no-console-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "_summary": {
+        "checks": 12,
+        "failures": []
+      }
+    }
+  },
+  "result": "41/41 passed"
+}

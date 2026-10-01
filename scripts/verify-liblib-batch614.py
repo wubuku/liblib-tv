@@ -446,8 +446,14 @@ def run_mobile(page: Page) -> dict[str, Any]:
             and near(bb["x"] + bb["width"], MOBILE["width"])
             and near(bb["width"], SOURCE_COL_W),
             detail=bb)
+    # Batch 618 迁移：这条断言的名字（抽屉起在顶栏之下）一直成立，但钉的
+    # **值**是桌面的 52 —— 移动端只是因为 `-top-9` 无条件生效才恰好对上。
+    # 618 给窄屏补了 `max-[899px]:top-0`，抽屉改为从 88 起（与遮罩
+    # `absolute inset-0` 的 88..668、以及树抽屉的 `top-[88px]` 对齐），好让
+    # 镜头条那一行在抽屉打开时保持可用。故这里改成真正的不变量「不低于顶栏
+    # 下沿」；窄屏的精确值 88 由 618 的抽屉腿钉住。
     v.check("mobile:drawer-starts-below-the-header",
-            bb is not None and near(bb["y"], CLONE_COL_TOP), detail=bb)
+            bb is not None and bb["y"] >= CLONE_COL_TOP, detail=bb)
     v.check("mobile:drawer-above-the-scrim",
             col.evaluate("el => parseInt(getComputedStyle(el).zIndex, 10) >= 20"))
     v.check("mobile:no-page-errors", not errors, detail=errors[:3])

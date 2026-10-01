@@ -1280,6 +1280,23 @@ export default function DirectorDesk({
                  （实测落在 1639..1640）。所以列取 281（border-box，含那
                  1px），内容仍是 280 @1640，与源站逐字对上。 */
               "absolute -top-9 bottom-0 right-0 z-30 w-[281px] overflow-hidden transition-transform duration-200",
+              /* Batch 618：窄屏下 `-top-9` 必须让位。
+                 `-top-9`（-36px）是桌面的取法——本 aside 的包含块是中间那格
+                 `relative.min-h-0.flex-1`（y 88..668），往上提 36 让列顶边落到
+                 52，与源站属性列同高。但窄屏下这 36px 正是**镜头条**那一行
+                 （y 52..88），于是抽屉一打开就把 clone 自己的镜头条盖掉：
+                 唯一那枚「机位01」chip 宽 177.1 @41.6，中心 130 落在抽屉
+                 （x 109..390）内，点不动。
+                 同一屏里另外两样东西都说明镜头条那一行**不该**被抽屉吃掉：
+                 (1) 关闭抽屉的遮罩是 `absolute inset-0`，即 88..668，起点
+                 正好在镜头条之下——遮罩的取景已经声明了「这一行保持可用」；
+                 (2) 场景树抽屉用的是 `top-[88px] min-[900px]:top-[52px]`
+                 （见上方 tree aside），窄屏同样从 88 起，只有属性抽屉没有这层
+                 覆写。两个抽屉行为不一致，属遗漏而非设计。
+                 故窄屏把 `-top-9` 抵掉：包含块本身就起于 88，`top-0` 即 88，
+                 抽屉与遮罩、与树抽屉三者对齐；桌面 `-top-9` 原样保留，614 的
+                 列几何（顶 52 / 宽 281 / 下沿止于时间线）一字未动。 */
+              "max-[899px]:top-0",
               activeMobilePanel === "inspector"
                 ? "max-[899px]:translate-x-0"
                 : "max-[899px]:translate-x-full",

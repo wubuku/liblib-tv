@@ -341,8 +341,14 @@ def run_mobile(page: Page):
     assert timeline_box["y"] == 668
     assert timeline_box["width"] == 390
     assert timeline_box["height"] == 176
+    # Batch 618 迁移：横向滚动的宿主从 header 本身下沉到内层
+    # `[data-director-timeline-controls-scroll]`。header 带着 `pr-[260px]`
+    # 给右格预留，而 padding-right 属于滚动溢出区——内容溢出后会画进预留区、
+    # 被不透明右格压住（390 下四枚控件因此点不动）。裁切线必须落在 content
+    # box，滚动宿主就得是 content box 本身。合同语义（「左格在窄屏横向滚动」）
+    # 不变，只换宿主。
     controls_metrics = page.locator(
-        "[data-director-timeline-controls]"
+        "[data-director-timeline-controls-scroll]"
     ).evaluate(
         "(element) => ({ clientWidth: element.clientWidth, scrollWidth: element.scrollWidth })"
     )

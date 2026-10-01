@@ -822,299 +822,322 @@ export function DirectorTimeline({
           所以这里把 header 的 gap 归零，各段自己带边距。 */}
       <header
         data-director-timeline-controls
-        className="flex h-9 shrink-0 items-center gap-0 overflow-x-auto border-b border-white/[0.07] px-2 py-1 pr-[260px]"
+        className="flex h-9 shrink-0 items-center gap-0 border-b border-white/[0.07] px-2 py-1 pr-[260px]"
       >
-        <button
-          type="button"
-          data-director-playback
-          aria-label={timeline.isPlaying ? "暂停" : "播放"}
-          title={timeline.isPlaying ? "暂停" : "播放"}
-          aria-pressed={timeline.isPlaying}
-          onClick={() => setTimelinePlaying(!timeline.isPlaying)}
-          className="flex h-6 w-[26px] shrink-0 items-center justify-center rounded-md text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-        >
-          {timeline.isPlaying ? <Pause size={14} /> : <Play size={14} />}
-        </button>
-        {/* Batch 591（源站 2026-10-01 实测，工具栏自左至右）：播放 /
-            自动帧 / 循环播放 / 播放头位置 / 总时长 / 时间单位 / 新建轨道。
-            自动帧此前排在循环播放之后，与源站顺序不符，本批前移。 */}
-        {/* Batch 573: 源站 CDP 枚举（截图 55，24px 图标钮 aria-label 自动帧，
-            无文字）——自动帧 toggle 对齐为图标钮；batch 36 的 data 属性与
-            aria-pressed 合同保留。 */}
-        <button
-          type="button"
-          data-director-auto-keyframe
-          aria-label="自动帧"
-          title="自动帧"
-          aria-pressed={timeline.autoKeyframe}
-          onClick={toggleAutoKeyframe}
-          className={cn(
-            "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-white/80 transition-colors hover:bg-white/10 hover:text-white",
-            timeline.autoKeyframe && "bg-white/10 text-white",
-          )}
-        >
-          {/* Batch 601（源站 4x 截图实测）：源站「自动帧」里是一个 14px
-              （`svg.h-3.5.w-3.5`）的**秒表**图标，不是圆点。 */}
-          <Timer size={14} />
-        </button>
-        <button
-          type="button"
-          data-director-loop
-          aria-label="循环播放"
-          title="循环播放"
-          aria-pressed={timeline.loop}
-          onClick={toggleTimelineLoop}
-          className={cn(
-            "flex h-6 w-[26px] shrink-0 items-center justify-center rounded-md text-[12px] leading-none transition-colors",
-            timeline.loop
-              ? "bg-white/10 text-neutral-50"
-              : "text-white/80 hover:bg-white/10 hover:text-white",
-          )}
-        >
-          <Repeat2 size={14} />
-        </button>
-        {/* Batch 591：源站两个读数是**连体**的可编辑文本框（各 46×24、
-            12px 居中）。Batch 601 精测补齐：左框 radius 8px 0 0 8px、
-            **中框 radius 0**、单位钮 radius 0 8px 8px 0，三者 gap 1px；
-            底色是 `bg-white/10`（不是 clone 的 `#222`），内边距 0，
-            文字 12px `#F7F7F7`，带 hover `bg-white/[0.16]` 与
-            focus `bg-white/[0.18] + ring-1 ring-[#5DDCFF]/70`。
-            值随单位切换：ms 模式整数毫秒（0 / 10000，源站默认），
-            s 模式两位小数（0.00 / 10.00）。aria 逐字为 播放头位置 / 总时长。 */}
-        <div className="ml-1 flex shrink-0 items-center gap-px">
-        <TimelineTimeField
-          testId="time"
-          ariaLabel="播放头位置"
-          className="rounded-l-lg"
-          value={timeline.currentTime}
-          unit={timeUnit}
-          onCommit={(seconds) =>
-            setTimelineTime(Math.min(Math.max(seconds, 0), timeline.duration))
-          }
-        />
-        <TimelineTimeField
-          testId="duration"
-          ariaLabel="总时长"
-          className=""
-          value={timeline.duration}
-          unit={timeUnit}
-          onCommit={setTimelineDuration}
-        />
-        <button
-          type="button"
-          data-director-time-unit
-          aria-label={timeUnit === "s" ? "切换时间单位为 ms" : "切换时间单位为 s"}
-          title={timeUnit === "s" ? "切换时间单位为 ms" : "切换时间单位为 s"}
-          onClick={() => setTimeUnit((unit) => (unit === "s" ? "ms" : "s"))}
-          className="flex h-6 w-[33px] shrink-0 items-center justify-center rounded-r-lg bg-white/10 px-2 text-[12px] tabular-nums leading-none text-[#F7F7F7] transition-colors hover:bg-white/[0.16] hover:text-white"
-        >
-          {timeUnit}
-        </button>
-        </div>
-        <button
-          type="button"
-          data-director-add-track
-          // Batch 591: 源站该按钮的可及名逐字是这句（描述「先选中再建立」
-          // 的前置条件），不是「新建轨道」；clone 的 title 仍保留更完整的
-          // 禁用提示（含 coachmark 指引），二者并存。
-          // Batch 601（源站实测）：按钮**显示文字**是「新建轨道」（82×24，
-          // 13px），可及名才是那句前置条件提示——两者并存，不是二选一。
-          aria-label="选中角色、道具或分组后建立轨道"
-          title={
-            trackCreatable
-              ? "新建轨道"
-              : "请选择一个角色或者摄像机后，可新建轨道"
-          }
-          disabled={!trackCreatable}
-          onClick={() => createTrackForSelectedObject()}
-          className={cn(
-            "ml-[15px] flex h-6 w-[82px] shrink-0 items-center justify-center gap-1 rounded-lg px-2 text-[13px] leading-none transition-colors",
-            trackCreatable
-              ? "text-[#bcbcbc] hover:bg-white/[0.06] hover:text-white"
-              : "text-[#525252]",
-          )}
-        >
-          <Plus size={13} />
-          新建轨道
-        </button>
-        {/* Batch 593：源站工具条只有七项（播放/自动帧/循环播放/播放头位置/
-            总时长/时间单位/新建轨道），**没有**「上一/下一关键帧」——它们在
-            源站位于每条轨道行内（见下方轨道行）。本批把这两个按钮从工具条
-            移到轨道行，工具条顺序与源站逐位一致。 */}
-        <button
-          ref={presetTriggerRef}
-          type="button"
-          data-director-camera-preset-trigger
-          disabled={selectedTrack?.kind !== "camera" || cameraFollowActive}
-          title={
-            cameraFollowActive
-              ? "跟随目标时不可使用预设运镜"
-              : undefined
-          }
-          aria-expanded={presetPanelLeft !== null}
-          onClick={togglePresetPanel}
-          className="flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]"
-        >
-          <Camera size={13} />
-          预设运镜
-        </button>
-        {cameraFollowActive && selectedTrack?.kind === "camera" ? (
-          <span
-            data-director-camera-preset-error
-            className="shrink-0 text-[10px] text-[#c9a36c]"
+        {/* Batch 618（移动端命中普查）：左格内容**不得渗进** `pr-[260px]`
+            这块给右格预留的区域。
+            之前的读法是「header 自己 overflow-x-auto + pr-260」，但 CSS 里
+            padding-right 属于**滚动溢出区**——内容溢出 content box 之后会一直
+            画到 padding box 边缘为止。桌面 1920 下左格内容 1044px 远小于
+            1392px 的窗口，根本不溢出，于是看不出问题；390 下窗口只有
+            390-8-260=122px，内容 1044px 溢出 922px，全都画进了预留区，而
+            右格是不透明的 `bg-[#212121]`（`absolute right-0` 244px 宽）——
+            于是「总时长」「时间单位」「新建轨道」「预设运镜」四枚控件**画在
+            不透明块底下**：命中测试打到的是右格本身，点不动，也看不出还有
+            内容（无滚动条提示）。1024 下同样溢出，但溢出部分落在视口之外，
+            只被算作 clipped，所以此前两轮普查（batch 617 的 1920/1024 腿）
+            都没报出来。
+            修法：把滚动容器下沉到内层 div，header 自身不再滚动，于是裁切线
+            落在 content box 右缘（x=130），内容滚过去也不会画进预留区——
+            与 1024 的表现一致（clipped，横向滚一下就到）。
+            桌面几何一字未动：内层 div 在 1920 下宽 1392 > 1044，不产生滚动条，
+            子节点各自的 ml/gap 都在内层 flex 里，位置逐像素不变。 */}
+        <div
+          data-director-timeline-controls-scroll
+          className="flex min-w-0 flex-1 items-center gap-0 overflow-x-auto"
           >
-            跟随目标时不可使用预设运镜
-          </span>
-        ) : null}
-        <button
-          ref={pathTriggerRef}
-          type="button"
-          data-director-create-motion-path
-          disabled={
-            !selectedTrack ||
-            selectedTrack.kind === "pose" ||
-            selectedTrack.kind === "group" ||
-            cameraFollowActive ||
-            selectedTrackLocked
-          }
-          title={
-            cameraFollowActive
-              ? "请先关闭机位跟随，再绘制轨迹"
-              : undefined
-          }
-          aria-expanded={pathMenuLeft !== null}
-          onClick={togglePathMenu}
-          className="flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]"
-        >
-          <Route size={13} />
-          创建运动轨迹
-        </button>
-        {cameraFollowActive ? (
-          <span
-            data-director-camera-follow-conflict
-            className="shrink-0 text-[10px] text-[#c9a36c]"
+          <button
+            type="button"
+            data-director-playback
+            aria-label={timeline.isPlaying ? "暂停" : "播放"}
+            title={timeline.isPlaying ? "暂停" : "播放"}
+            aria-pressed={timeline.isPlaying}
+            onClick={() => setTimelinePlaying(!timeline.isPlaying)}
+            className="flex h-6 w-[26px] shrink-0 items-center justify-center rounded-md text-white/80 transition-colors hover:bg-white/10 hover:text-white"
           >
-            请先关闭机位跟随，再绘制轨迹
-          </span>
-        ) : null}
-        <button
-          type="button"
-          data-director-open-curve-editor
-          disabled={!selectedTrack || selectedTrackLocked}
-          aria-pressed={timeline.editorMode === "curve"}
-          onClick={() => setTimelineEditorMode("curve")}
-          className={cn(
-            "flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]",
-            timeline.editorMode === "curve" &&
-              "bg-white/[0.07] text-[#5ddcff]",
-          )}
-        >
-          <ChartSpline size={13} />
-          曲线编辑器
-        </button>
-        {selectedPath ? (
-          <>
-            <button
-              type="button"
-              data-director-motion-path-enabled={selectedPath.id}
-              aria-label="启用曲线"
-              title="启用曲线"
-              aria-pressed={selectedPath.enabled}
-              disabled={selectedTrackLocked}
-              onClick={() => toggleMotionPathEnabled(selectedPath.id)}
-              className={cn(
-                "flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#777] hover:bg-white/[0.06] hover:text-white",
-                selectedPath.enabled && "bg-white/[0.07] text-[#5ddcff]",
-              )}
+            {timeline.isPlaying ? <Pause size={14} /> : <Play size={14} />}
+          </button>
+          {/* Batch 591（源站 2026-10-01 实测，工具栏自左至右）：播放 /
+              自动帧 / 循环播放 / 播放头位置 / 总时长 / 时间单位 / 新建轨道。
+              自动帧此前排在循环播放之后，与源站顺序不符，本批前移。 */}
+          {/* Batch 573: 源站 CDP 枚举（截图 55，24px 图标钮 aria-label 自动帧，
+              无文字）——自动帧 toggle 对齐为图标钮；batch 36 的 data 属性与
+              aria-pressed 合同保留。 */}
+          <button
+            type="button"
+            data-director-auto-keyframe
+            aria-label="自动帧"
+            title="自动帧"
+            aria-pressed={timeline.autoKeyframe}
+            onClick={toggleAutoKeyframe}
+            className={cn(
+              "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-white/80 transition-colors hover:bg-white/10 hover:text-white",
+              timeline.autoKeyframe && "bg-white/10 text-white",
+            )}
+          >
+            {/* Batch 601（源站 4x 截图实测）：源站「自动帧」里是一个 14px
+                （`svg.h-3.5.w-3.5`）的**秒表**图标，不是圆点。 */}
+            <Timer size={14} />
+          </button>
+          <button
+            type="button"
+            data-director-loop
+            aria-label="循环播放"
+            title="循环播放"
+            aria-pressed={timeline.loop}
+            onClick={toggleTimelineLoop}
+            className={cn(
+              "flex h-6 w-[26px] shrink-0 items-center justify-center rounded-md text-[12px] leading-none transition-colors",
+              timeline.loop
+                ? "bg-white/10 text-neutral-50"
+                : "text-white/80 hover:bg-white/10 hover:text-white",
+            )}
+          >
+            <Repeat2 size={14} />
+          </button>
+          {/* Batch 591：源站两个读数是**连体**的可编辑文本框（各 46×24、
+              12px 居中）。Batch 601 精测补齐：左框 radius 8px 0 0 8px、
+              **中框 radius 0**、单位钮 radius 0 8px 8px 0，三者 gap 1px；
+              底色是 `bg-white/10`（不是 clone 的 `#222`），内边距 0，
+              文字 12px `#F7F7F7`，带 hover `bg-white/[0.16]` 与
+              focus `bg-white/[0.18] + ring-1 ring-[#5DDCFF]/70`。
+              值随单位切换：ms 模式整数毫秒（0 / 10000，源站默认），
+              s 模式两位小数（0.00 / 10.00）。aria 逐字为 播放头位置 / 总时长。 */}
+          <div className="ml-1 flex shrink-0 items-center gap-px">
+          <TimelineTimeField
+            testId="time"
+            ariaLabel="播放头位置"
+            className="rounded-l-lg"
+            value={timeline.currentTime}
+            unit={timeUnit}
+            onCommit={(seconds) =>
+              setTimelineTime(Math.min(Math.max(seconds, 0), timeline.duration))
+            }
+          />
+          <TimelineTimeField
+            testId="duration"
+            ariaLabel="总时长"
+            className=""
+            value={timeline.duration}
+            unit={timeUnit}
+            onCommit={setTimelineDuration}
+          />
+          <button
+            type="button"
+            data-director-time-unit
+            aria-label={timeUnit === "s" ? "切换时间单位为 ms" : "切换时间单位为 s"}
+            title={timeUnit === "s" ? "切换时间单位为 ms" : "切换时间单位为 s"}
+            onClick={() => setTimeUnit((unit) => (unit === "s" ? "ms" : "s"))}
+            className="flex h-6 w-[33px] shrink-0 items-center justify-center rounded-r-lg bg-white/10 px-2 text-[12px] tabular-nums leading-none text-[#F7F7F7] transition-colors hover:bg-white/[0.16] hover:text-white"
+          >
+            {timeUnit}
+          </button>
+          </div>
+          <button
+            type="button"
+            data-director-add-track
+            // Batch 591: 源站该按钮的可及名逐字是这句（描述「先选中再建立」
+            // 的前置条件），不是「新建轨道」；clone 的 title 仍保留更完整的
+            // 禁用提示（含 coachmark 指引），二者并存。
+            // Batch 601（源站实测）：按钮**显示文字**是「新建轨道」（82×24，
+            // 13px），可及名才是那句前置条件提示——两者并存，不是二选一。
+            aria-label="选中角色、道具或分组后建立轨道"
+            title={
+              trackCreatable
+                ? "新建轨道"
+                : "请选择一个角色或者摄像机后，可新建轨道"
+            }
+            disabled={!trackCreatable}
+            onClick={() => createTrackForSelectedObject()}
+            className={cn(
+              "ml-[15px] flex h-6 w-[82px] shrink-0 items-center justify-center gap-1 rounded-lg px-2 text-[13px] leading-none transition-colors",
+              trackCreatable
+                ? "text-[#bcbcbc] hover:bg-white/[0.06] hover:text-white"
+                : "text-[#525252]",
+            )}
+          >
+            <Plus size={13} />
+            新建轨道
+          </button>
+          {/* Batch 593：源站工具条只有七项（播放/自动帧/循环播放/播放头位置/
+              总时长/时间单位/新建轨道），**没有**「上一/下一关键帧」——它们在
+              源站位于每条轨道行内（见下方轨道行）。本批把这两个按钮从工具条
+              移到轨道行，工具条顺序与源站逐位一致。 */}
+          <button
+            ref={presetTriggerRef}
+            type="button"
+            data-director-camera-preset-trigger
+            disabled={selectedTrack?.kind !== "camera" || cameraFollowActive}
+            title={
+              cameraFollowActive
+                ? "跟随目标时不可使用预设运镜"
+                : undefined
+            }
+            aria-expanded={presetPanelLeft !== null}
+            onClick={togglePresetPanel}
+            className="flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]"
+          >
+            <Camera size={13} />
+            预设运镜
+          </button>
+          {cameraFollowActive && selectedTrack?.kind === "camera" ? (
+            <span
+              data-director-camera-preset-error
+              className="shrink-0 text-[10px] text-[#c9a36c]"
             >
-              <Route size={13} />
-              启用曲线
-            </button>
-            {selectedTrack?.kind === "transform" ? (
+              跟随目标时不可使用预设运镜
+            </span>
+          ) : null}
+          <button
+            ref={pathTriggerRef}
+            type="button"
+            data-director-create-motion-path
+            disabled={
+              !selectedTrack ||
+              selectedTrack.kind === "pose" ||
+              selectedTrack.kind === "group" ||
+              cameraFollowActive ||
+              selectedTrackLocked
+            }
+            title={
+              cameraFollowActive
+                ? "请先关闭机位跟随，再绘制轨迹"
+                : undefined
+            }
+            aria-expanded={pathMenuLeft !== null}
+            onClick={togglePathMenu}
+            className="flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]"
+          >
+            <Route size={13} />
+            创建运动轨迹
+          </button>
+          {cameraFollowActive ? (
+            <span
+              data-director-camera-follow-conflict
+              className="shrink-0 text-[10px] text-[#c9a36c]"
+            >
+              请先关闭机位跟随，再绘制轨迹
+            </span>
+          ) : null}
+          <button
+            type="button"
+            data-director-open-curve-editor
+            disabled={!selectedTrack || selectedTrackLocked}
+            aria-pressed={timeline.editorMode === "curve"}
+            onClick={() => setTimelineEditorMode("curve")}
+            className={cn(
+              "flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]",
+              timeline.editorMode === "curve" &&
+                "bg-white/[0.07] text-[#5ddcff]",
+            )}
+          >
+            <ChartSpline size={13} />
+            曲线编辑器
+          </button>
+          {selectedPath ? (
+            <>
               <button
                 type="button"
-                data-director-motion-path-orient={selectedPath.id}
-                aria-label="绑定对象沿路径朝向"
-                title="绑定对象沿路径朝向"
-                aria-pressed={selectedPath.orientToPath}
+                data-director-motion-path-enabled={selectedPath.id}
+                aria-label="启用曲线"
+                title="启用曲线"
+                aria-pressed={selectedPath.enabled}
                 disabled={selectedTrackLocked}
-                onClick={() => toggleMotionPathOrient(selectedPath.id)}
+                onClick={() => toggleMotionPathEnabled(selectedPath.id)}
                 className={cn(
                   "flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#777] hover:bg-white/[0.06] hover:text-white",
-                  selectedPath.orientToPath &&
-                    "bg-white/[0.07] text-[#5ddcff]",
+                  selectedPath.enabled && "bg-white/[0.07] text-[#5ddcff]",
                 )}
               >
-                <Waypoints size={13} />
-                沿路径朝向
+                <Route size={13} />
+                启用曲线
               </button>
-            ) : null}
-            <button
-              type="button"
-              data-director-delete-motion-path={selectedPath.id}
-              aria-label="删除曲线"
-              title="删除曲线"
-              disabled={selectedTrackLocked}
-              onClick={() => deleteMotionPath(selectedPath.id)}
-              className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-[#f08d8d]"
-            >
-              <Trash2 size={13} />
-            </button>
-          </>
-        ) : null}
-        {/* Batch 593: 这个「轨道」按钮原先和工具条里的「+ 新建轨道」共用
-            data-director-add-track，按该属性定位会命中两个元素（batch 45 的
-            strict mode violation）。源站工具条只有「新建轨道」一个建轨入口，
-            这个是 clone 的手动补建入口，属性独立命名。 */}
-        <button
-          type="button"
-          data-director-add-track-manual
-          disabled={
-            (!selectedObjectId && !selectedGroupId) ||
-            hasSelectedObjectTrack ||
-            selectedTrackLocked
-          }
-          onClick={() => addTimelineTrack()}
-          className="flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]"
-        >
-          <Plus size={13} />
-          轨道
-        </button>
-        {/* Batch 593: 源站轨道行的四列栅格里没有删除位，删除轨道改挂在工具条
-            「轨道」按钮之后（clone-only 能力的落位调整，aria 保持不变）。 */}
-        <button
-          type="button"
-          data-director-remove-track
-          aria-label={`移除${selectedTrack?.label ?? ""}轨道`}
-          title="移除轨道"
-          disabled={!selectedTrack || selectedTrackLocked}
-          onClick={() => removeTimelineTrack()}
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-[#f08d8d] disabled:text-[#3f3f3f]"
-        >
-          <Trash2 size={13} />
-        </button>
-        <button
-          type="button"
-          data-director-add-keyframe
-          disabled={!selectedTrack || selectedTrackLocked}
-          onClick={() => addTimelineKeyframe()}
-          className="flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]"
-        >
-          <DiamondPlus size={13} />
-          添加关键帧
-        </button>
-        <button
-          type="button"
-          data-director-delete-keyframe
-          aria-label="删除关键帧"
-          title="删除关键帧"
-          disabled={!timeline.selectedKeyframeId || selectedTrackLocked}
-          onClick={() => deleteTimelineKeyframe()}
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-[#f08d8d] disabled:text-[#3f3f3f]"
-        >
-          <Trash2 size={13} />
-        </button>
-        <span className="mx-1 h-5 w-px shrink-0 bg-white/10" />
+              {selectedTrack?.kind === "transform" ? (
+                <button
+                  type="button"
+                  data-director-motion-path-orient={selectedPath.id}
+                  aria-label="绑定对象沿路径朝向"
+                  title="绑定对象沿路径朝向"
+                  aria-pressed={selectedPath.orientToPath}
+                  disabled={selectedTrackLocked}
+                  onClick={() => toggleMotionPathOrient(selectedPath.id)}
+                  className={cn(
+                    "flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#777] hover:bg-white/[0.06] hover:text-white",
+                    selectedPath.orientToPath &&
+                      "bg-white/[0.07] text-[#5ddcff]",
+                  )}
+                >
+                  <Waypoints size={13} />
+                  沿路径朝向
+                </button>
+              ) : null}
+              <button
+                type="button"
+                data-director-delete-motion-path={selectedPath.id}
+                aria-label="删除曲线"
+                title="删除曲线"
+                disabled={selectedTrackLocked}
+                onClick={() => deleteMotionPath(selectedPath.id)}
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-[#f08d8d]"
+              >
+                <Trash2 size={13} />
+              </button>
+            </>
+          ) : null}
+          {/* Batch 593: 这个「轨道」按钮原先和工具条里的「+ 新建轨道」共用
+              data-director-add-track，按该属性定位会命中两个元素（batch 45 的
+              strict mode violation）。源站工具条只有「新建轨道」一个建轨入口，
+              这个是 clone 的手动补建入口，属性独立命名。 */}
+          <button
+            type="button"
+            data-director-add-track-manual
+            disabled={
+              (!selectedObjectId && !selectedGroupId) ||
+              hasSelectedObjectTrack ||
+              selectedTrackLocked
+            }
+            onClick={() => addTimelineTrack()}
+            className="flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]"
+          >
+            <Plus size={13} />
+            轨道
+          </button>
+          {/* Batch 593: 源站轨道行的四列栅格里没有删除位，删除轨道改挂在工具条
+              「轨道」按钮之后（clone-only 能力的落位调整，aria 保持不变）。 */}
+          <button
+            type="button"
+            data-director-remove-track
+            aria-label={`移除${selectedTrack?.label ?? ""}轨道`}
+            title="移除轨道"
+            disabled={!selectedTrack || selectedTrackLocked}
+            onClick={() => removeTimelineTrack()}
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-[#f08d8d] disabled:text-[#3f3f3f]"
+          >
+            <Trash2 size={13} />
+          </button>
+          <button
+            type="button"
+            data-director-add-keyframe
+            disabled={!selectedTrack || selectedTrackLocked}
+            onClick={() => addTimelineKeyframe()}
+            className="flex h-7 shrink-0 items-center gap-1 rounded px-2 text-[11px] text-[#a7a7a7] hover:bg-white/[0.06] hover:text-white disabled:text-[#4f4f4f]"
+          >
+            <DiamondPlus size={13} />
+            添加关键帧
+          </button>
+          <button
+            type="button"
+            data-director-delete-keyframe
+            aria-label="删除关键帧"
+            title="删除关键帧"
+            disabled={!timeline.selectedKeyframeId || selectedTrackLocked}
+            onClick={() => deleteTimelineKeyframe()}
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#777] hover:bg-white/[0.06] hover:text-[#f08d8d] disabled:text-[#3f3f3f]"
+          >
+            <Trash2 size={13} />
+          </button>
+          <span className="mx-1 h-5 w-px shrink-0 bg-white/10" />
+        </div>
       </header>
 
       {/* Batch 596（源站 2026-10-01 实测）：工具条是**两格**结构——左格可横向

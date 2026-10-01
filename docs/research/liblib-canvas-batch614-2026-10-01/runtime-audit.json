@@ -482,27 +482,27 @@
         "ok": true,
         "detail": {
           "x": 390,
-          "y": 52,
+          "y": 88,
           "width": 281,
-          "height": 616
+          "height": 580
         }
       },
       "mobile:drawer-opens-flush-right": {
         "ok": true,
         "detail": {
           "x": 109,
-          "y": 52,
+          "y": 88,
           "width": 281,
-          "height": 616
+          "height": 580
         }
       },
       "mobile:drawer-starts-below-the-header": {
         "ok": true,
         "detail": {
           "x": 109,
-          "y": 52,
+          "y": 88,
           "width": 281,
-          "height": 616
+          "height": 580
         }
       },
       "mobile:drawer-above-the-scrim": {

@@ -152,10 +152,16 @@ def run_desktop(page: Page) -> dict[str, Any]:
                       spanCount: trigger.querySelectorAll('span').length,
                       inHeader: Boolean(trigger.closest('[data-director-timeline-controls]'))},
             headerHasExport: Boolean(header.querySelector('[data-director-export-trigger]')),
-            headerOverflowX: getComputedStyle(
-              document.querySelector('[data-director-timeline-controls]')).overflowX,
-            headerOverflowY: getComputedStyle(
-              document.querySelector('[data-director-timeline-controls]')).overflowY,
+            // Batch 618 迁移：左格的横向滚动宿主从 header 本身下沉到内层
+            // `[data-director-timeline-controls-scroll]`。原因是 header 还带着
+            // `pr-[260px]`（给右格预留），而 padding-right 属于滚动溢出区——
+            // 内容溢出后会一直画到预留区里、被不透明右格压住（390 下四枚控件
+            // 因此点不动）。裁切线必须落在 content box 右缘，滚动宿主就得是
+            // content box 本身。合同语义（「左格可横向滚动」）不变，只换宿主。
+            scrollHostOverflowX: getComputedStyle(
+              document.querySelector('[data-director-timeline-controls-scroll]')).overflowX,
+            scrollHostOverflowY: getComputedStyle(
+              document.querySelector('[data-director-timeline-controls-scroll]')).overflowY,
             order: [...document.querySelector('[data-director-timeline-controls]')
               .querySelectorAll('button, input')].map((el) => (
                 el.getAttribute('aria-label') || (el.innerText || '').trim()
@@ -209,9 +215,9 @@ def run_desktop(page: Page) -> dict[str, Any]:
     )
     check(
         "strip:left-cell-scrolls",
-        strip["headerOverflowX"] in {"auto", "scroll"}
+        strip["scrollHostOverflowX"] in {"auto", "scroll"}
         and strip["order"][: len(SOURCE_PREFIX)] == SOURCE_PREFIX,
-        detail={"overflow": [strip["headerOverflowX"], strip["headerOverflowY"]],
+        detail={"overflow": [strip["scrollHostOverflowX"], strip["scrollHostOverflowY"]],
                 "order": strip["order"][: len(SOURCE_PREFIX) + 1]},
     )
 

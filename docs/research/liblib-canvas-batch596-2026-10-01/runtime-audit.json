@@ -91,7 +91,7 @@
               "循环播放",
               "播放头位置",
               "总时长",
-              "切换时间单位为 ms",
+              "切换时间单位为 s",
               "选中角色、道具或分组后建立轨道",
               "预设运镜"
             ]
@@ -172,15 +172,15 @@
           "inHeader": false
         },
         "headerHasExport": false,
-        "headerOverflowX": "auto",
-        "headerOverflowY": "auto",
+        "scrollHostOverflowX": "auto",
+        "scrollHostOverflowY": "auto",
         "order": [
           "播放",
           "自动帧",
           "循环播放",
           "播放头位置",
           "总时长",
-          "切换时间单位为 ms",
+          "切换时间单位为 s",
           "选中角色、道具或分组后建立轨道",
           "预设运镜",
           "创建运动轨迹",
