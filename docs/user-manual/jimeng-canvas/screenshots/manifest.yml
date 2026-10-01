@@ -929,3 +929,15 @@ screenshots:
     visible_text: 当前视窗没有内容 / 回到节点 / 100% / 测试项目 / 节点 1 / 已保存 / 与 AI 对话
     alt: 抓手工具下把节点完全拖出视野后的画布：整幅画面空无一物，左下角 dock 第一个按钮是处于按下态的抓手图标、缩放读数 100%；画面顶部中央的提示条被橙色高亮框标出，左半写着「当前视窗没有内容」，右半是一个带准星图标的「回到节点」按钮
     sha256: 223b9ff3e832d84fda15ed72c02f1c53b98ee5b016761014070f39a6914dc557
+
+  - file: screenshots/76-connection-failed.png
+    task_id: connect-nodes
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T12:44:00+08:00
+    verified_locator: '已有 视频 1 → 视频 1 (2) 的参考线后，从 视频 1 (2) 的 source 手柄反向拖回 视频 1 的 target 手柄（会成环）被拒绝：顶部 toast 逐字「无法连接这些节点」（DIV 360×44 @(460,32)，含 1 个 svg，无 role/aria/testid），并画出 data-id="connection-failure:2"、stroke rgb(255, 162, 30) 的临时失败连线；状态行仍为「2 nodes, 1 edge」证明失败线不计数'
+    visible_text: 无法连接这些节点 / 视频 1 / 视频 1 (2) / 视频 1 (3) / 节点 3 / 已保存 / 89% / 与 AI 对话
+    alt: 在已有 A→B 的情况下反向拖 B→A 失败：画面顶部居中浮出带感叹号图标的黑色提示条，逐字写「无法连接这些节点」；横跨两个节点之间有一条被橙色高亮框标出的长弧线，那就是建线失败时画的临时失败连线，它不会计入状态行的连线数；左下角缩放读数 89%，顶栏「节点 3」
+    sha256: 8fff0f4de501630dc57304f49b76cb95db637f1c5ea35fc5a857ca7a593fe803

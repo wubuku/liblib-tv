@@ -870,3 +870,40 @@ dock `选择工具 / 小地图 / 显示连线 / Zoom options, 100%`、
 小地图已关闭、`back-to-content-overlay` 归零 `[0,0]`。
 
 **本批临时脚本（已清理）**：`scripts/_b26a.mjs`、`scripts/_b26b.mjs`
+
+## 2026-10-01 增量审计（批次 27：连线交互细节 —— 此前只记了「选中/删除/撤销」）
+
+| 变更 | 级别 | 证据 | 处理 |
+|---|---|---|---|
+| **连线 DOM 契约此前全手册 0 处记录** | Minor（覆盖缺口） | `.react-flow__edge.react-flow__edge-reference.nopan.selectable`、**`data-testid="rf__edge-<edgeId>"`**、aria `Reference connection from X to Y`；**每条边两层 path**（视觉 1px + **透明命中区 20px**）；`.react-flow__edgeupdater`=**0**（无控制点、不能拖弯） | `connect-nodes.md` 新增「连线的 DOM 结构」小节 + 参考页新增「连线速查」表 |
+| **建线被拒的三种情形与统一失败态此前 0 处记录** | **Major（用户会遇到且无解释）** | 自环 `A→A` / 连回去成环 / 重复拖同一对，三种各自独立复现 → 统一失败态 `data-id="connection-failure:N"`（N 从 0 递增，stroke `rgb(255,162,30)`）+ 顶部 toast 逐字「**无法连接这些节点**」 | `connect-nodes.md` 新增「建线失败会怎样」小节（规则表 + 两个信号）+ 截图 `76` + 排障页新症状 |
+| 🔴 **「无法连接这些节点」toast 纯 DOM 探测完全漏掉，是截图才发现的** | **Major（取证方法论）** | 该 toast 是 `DIV` **360×44 @(460,32)**，class `fixed top` + `left-1/2 -translate-x-1/2` + `w-[360px]`，含 1 个 ⚠ svg，**无 `role`/无 `aria`/无 `data-testid`**，且**不在 `.react-flow__*` 命名空间**内 —— 只按 edge/handle/节点选择器扫描必然漏 | §3.44 明确记录；截图 `76` 同时框住 toast 与失败线；排障页/参考页均写入逐字文案 |
+| ⚠️ **橙色失败线会让人误判「有两条线」** | Minor（准确性） | 失败时状态行仍 `1 edge` 而 DOM 有 **2 个** `.react-flow__edge` | 正文、参考页、排障页三处均写明「**判断连线数看状态行，不数 DOM**」 |
+| 🎨 **连线颜色是状态指示器，此前 0 处记录** | Minor（易用性） | 选中 `视频 1 (6)` 时 `1→(6)` 与 `(6)→(2)` 变**蓝** `rgb(0,142,229)`，其余保持**白** `rgb(255,255,255)` | 正文新增「连线的三种颜色」表 + 参考页；作为「判断参考线是否生效到当前节点」的最快办法 |
+| **「无 hover 高亮」是否定性结论** | Minor（防误解） | 先移开取基线、再悬停，`stroke`/`stroke-width`/`opacity`/`filter` **四项逐字相同** | 正文与参考页写明无悬停高亮，避免用户反复悬停找线索 |
+| **删节点连带删边 + ⌘Z 完整恢复，此前 0 处记录** | Minor（覆盖缺口，且影响排障信心） | 依次删 7 个副本，状态行边数阶梯下降 `4→2→2→2→2→1→0`，**每步降幅精确等于被删节点的边数**；删带 2 条线的节点后 ⌘Z → 节点与两条线**全部恢复** | 正文新增小节 + 排障页新症状（先说「不用怕，⌘Z 能一起恢复」） |
+| **手柄尺寸 `43×87` 是特定缩放下的值** | Minor（准确性） | 100% 缩放实测 `57×115`（另一轮 `60×120`） | 缺口表该行已改写为「尺寸随缩放变化、不是契约」，可靠判别仍看 `handle-left/right`、`source`/`target` |
+| 未选中节点的 source 手柄 `opacity-0` | Minor（易用性） | class 含 `opacity-0`，hover 节点或选中才显现 | 写入缺口表，解释「新手找不到连线点」 |
+| **`Page.reload` 不回滚服务端状态** | **Major（基线纪律）** | 批次 27 脚本 reload 后仍是上轮留下的 `2 nodes, 1 edge`，「建 2 节点」实际变成 3 节点 2 条边，结论一度错乱 | §3.44 记为取证坑：**归基线必须靠删除操作，不能靠 reload**；本次用「连续删除 + 末次 reload 复核」完成归位 |
+| ⌘D 副本落在视口外导致拖拽静默失效 | Minor（取证坑） | 副本中心实测 `cx=1289` > 视口宽 1280，按该坐标发鼠标事件全部落空 | 脚本改为**先按 ⇧1 适配画布**再拖 |
+| hover 断言同一时刻取两次快照 | Minor（取证坑） | 首轮两个快照取自同一时刻，结论无效 | 改为「移开→取基线→悬停→取值」，§3.44 记为独立坑 |
+
+## 批次 27 质量门复跑记录（2026-10-01 当次命令输出）
+
+| 检查项 | 命令 | 退出码 | 当次实测结果 |
+|---|---|---|---|
+| 截图 alt 审计 | `node scripts/jimeng-alt-audit.mjs` | 0 | **80 张**逐字一致 / 0 不一致 / 0 未引用 / 0 措辞冲突 |
+| 交叉一致性 | `node scripts/jimeng-crosscheck.mjs` | 0 | 命中均为预期 |
+| gate-a | `audit_manual.py … --phase gate-a` | **0** | `OK (gate-a): 17 tasks, 28 Markdown files, 80 images` |
+| final | `audit_manual.py … --phase final` | **0** | `OK (final): 17 tasks, 28 Markdown files, 80 images` |
+| 死链（本手册范围） | 独立扫描 `docs/user-manual/jimeng-canvas/**/*.md` | **0 命中** | **jimeng-canvas 死链数 = 0**（全仓 `verify-docs.py` 的唯一报错仍属他人正在编辑的 `beeftv-canvas`，按纪律未改动） |
+| 站点构建 | `build-site.sh` | **0** | dist 截图数 **76**、示意图 4、**0 warn** |
+
+**基线复核（批次 27 收尾，`baselineOk: true`）**：
+`1 node, 0 edges, 0 selected. Editable. Room connected. 已保存.`、
+仅 `视频 1`、0 编组、**0 条普通边且 0 条 `connection-failure` 失败线**、
+**无残留「无法连接这些节点」toast**、无可见工具条/右键菜单、可见 input 数 0、
+缩放 `100%`、视口 `translate(76.3134px, 15.8862px) scale(1)`、
+抓手工具已切回 **选择工具**、小地图已关闭、`back-to-content-overlay` 归零 `[0,0]`。
+
+**本批临时脚本（已清理）**：`scripts/_b27a.mjs` … `_b27h.mjs`

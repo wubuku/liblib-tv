@@ -1828,3 +1828,91 @@ dock 第一个按钮**不是固定的「选择工具」**，而是**两种工具
   要点**远离内容的位置**（角落）才有区分度。本批首轮因此得到
   「单击无位移」的错误中间结论，改点角落才拿到真语义。
 - CDP `Input.dispatchKeyEvent` 必须带 `text` 字段才插入字符（批次 24 已记）。
+
+---
+
+## §3.44 批次 27（2026-10-01）：连线（参考线）的完整交互 —— 此前只记了「选中/删除/撤销」
+
+**一、DOM 契约（全手册 0 处记录）**
+
+```
+.react-flow__edge.react-flow__edge-reference.nopan.selectable
+  data-id     = edge_<hash>              如 edge_2c8tw74g33
+  data-testid = rf__edge-<edgeId>        ← 可靠契约
+  aria-label  = Reference connection from 视频 node: 视频 1 to 视频 node: 视频 1 (2)
+  ├─ path.react-flow__edge-path          视觉线，stroke-width 1px
+  └─ path.react-flow__edge-interaction   透明命中区，stroke-width 20px
+```
+
+- **每条边两层 path**：1px 视觉线 + **20px 透明命中区** → **点线比看着准**。
+- **`.react-flow__edgeupdater` 数量 = 0** → **无控制点、连线不能拖弯**。
+- 命中测试：点在线上 → `elementFromPoint` 命中
+  `path.react-flow__edge-interaction`（即宽命中层，不是 1px 那条）。
+
+**二、颜色是状态指示器（DOM 级判据）**
+
+| 颜色 | 逐字 | 含义 |
+|---|---|---|
+| 白 | `rgb(255, 255, 255)` | 普通参考线 |
+| 蓝 | `rgb(0, 142, 229)` | **与当前选中节点直接相连** |
+| 橙 | `rgb(255, 162, 30)` | 建线失败（`connection-failure:N`） |
+
+- 关键对照：选中 `视频 1 (6)` 时，`1→(6)` 与 `(6)→(2)` **变蓝**，
+  `1→(2)`、`1→(3)` 保持白色。
+- 🔴 **没有 hover 高亮**：先移开取基线、再悬停，`stroke`/`stroke-width`/
+  `opacity`/`filter` **四项逐字相同**。
+  ⚠️ 本批第一次做 hover 时**两个快照取自同一时刻**，得到的是无效对照；
+  改成「移开→取基线→悬停→取值」后结论才成立（见取证坑）。
+
+**三、建线被拒的三种情形 + 统一失败态**
+
+| 拖拽 | 结果 | 失败边 aria |
+|---|---|---|
+| 自环 `A→A` | ❌ | `Edge from node_anztvntcas to node_anztvntcas`（**同 id**） |
+| 成环 `B→A`（已有 A→B） | ❌ | `Edge from <B> to <A>` |
+| 重复 `A→B`（已有） | ❌ | `Edge from <A> to <B>` |
+
+- 失败边：`data-id="connection-failure:N"`，**N 在会话内从 0 递增**
+  （本批实测到 0/1/2），`stroke rgb(255, 162, 30)`。
+- 🔴 **同时有顶部 toast**：逐字「**无法连接这些节点**」，
+  `DIV` **360×44 @ (460,32)**，`fixed top` + `left-1/2 -translate-x-1/2`
+  + `w-[360px]`，含 **1 个 svg**（⚠ 图标），
+  **无 `role`、无 `aria-label`、无 `data-testid`**。
+  👉 **这条 toast 是截图才看到的** —— 纯 DOM 探测（只查 edge/handle/节点）
+  **完全漏掉**它，因为它不在 `.react-flow__*` 命名空间里。
+- ⚠️ **失败线不计入状态行**：实测状态行 `1 edge` 而 DOM 有 2 个
+  `.react-flow__edge`。→ **判断连线数一律看状态行，不要数 DOM。**
+
+**四、删节点连带删边（7 次阶梯复现）**
+
+依次删掉 7 个副本，状态行边数：
+
+`4 → 2 → 2 → 2 → 2 → 1 → 0` → `1 node, 0 edges`
+
+每一步的降幅**精确等于被删节点身上的边数**。
+**⌘Z 完整恢复**：删掉带 2 条边的节点（`7 nodes, 4 edges` → `6 nodes, 2 edges`）
+后按 ⌘Z → 回到 `7 nodes, 4 edges`，**节点与两条线都回来**。
+
+**五、手柄尺寸订正**
+
+台账旧记 `43×87`（72%/74% 缩放下的值）。**100% 缩放实测 `57×115`**（另一轮
+`60×120`）。→ 手柄尺寸**随缩放变化，不是契约**；可靠判别仍应看
+`handle-left` / `handle-right` 或 `source` / `target`。
+另：未选中节点的 source 手柄 class 带 **`opacity-0`**，
+hover 节点或选中才显现 —— 这解释了新手「找不到连线点」。
+
+**六、取证坑（本批新增）**
+
+- ⚠️ **`Page.reload` 不会回滚服务端状态**。批次 27 的脚本 A `reload` 后
+  仍是上轮留下的 `2 nodes, 1 edge`，导致「建 2 节点」实际变成 3 节点、
+  2 条边，结论一度错乱。**归基线必须靠删除操作，不能靠 reload。**
+- ⌘D 副本会落在**视口之外**（实测副本中心 `cx=1289` > 视口宽 1280），
+  此时按其坐标发鼠标事件**全部落空**，拖拽静默无效。
+  → **拖拽前先 ⇧1 适配画布把节点收进视野。**
+- 把箭头函数字符串包成 `` await evalJs(`(() => (${fn})())`) `` 会**返回函数本身**
+  而非执行结果（`hs.find is not a function`）；字符串里再写 `\\n` 还会触发
+  `SyntaxError: Unexpected end of input`。→ 浏览器内表达式一律写成
+  完整 IIFE，字符串字面量用 `String.fromCharCode(10)` 代替 `\n`。
+- 归基线循环里**每步都 reload** 会打断删除进度（服务端已存但本地状态被刷掉）。
+  正确做法：**连续删除、不 reload**，最后一次再 reload 复核。
+- **hover 类断言必须前后错开取值**，否则拿到的是同一时刻的两次快照。
