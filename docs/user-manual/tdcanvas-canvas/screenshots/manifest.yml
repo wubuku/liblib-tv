@@ -875,3 +875,39 @@ screenshots:
     visible_text: '我的资产'
     alt: 浅色主题下的我的资产页面，搜索框与全部文本图片视频筛选为浅色底深字，右上四个工具栏按钮轮廓清晰，下方是一张带编辑复制删除操作的资产卡片
     sha256: d7533c3c083d0cfd386b14ed2db80f7b2dfd763d4670fa92919f1213185329b0
+
+  - file: screenshots/16-use-agent-status-dot.png
+    task_id: use-agent
+    step: 在画布页以 4 倍设备像素比放大截取项目标题右侧区域，读出 Codex 状态灯
+    route: '/canvas/:id'
+    viewport: 600x128 (deviceScaleFactor 4)
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '画布标题 TDCanvas 1 / 其右侧 button aria-label="打开本地 Codex 面板: Codex 未连接" title="Codex 未连接" 尺寸 28x28 / 内部唯一子元素 span.size-1.5.rounded-full 背景 rgb(183,187,192)'
+    visible_text: 'Codex 未连接'
+    alt: 四倍放大的画布顶栏，项目名 TDCanvas 1 右侧有一颗灰色小圆点，那是 Codex 连接状态灯，未连接时为灰色
+    sha256: 59bad9debbb0982464fffc65ee13d2d5e8df76853b30f7ff2d381e0b87d24cb9
+
+  - file: screenshots/16-use-agent-canvas-open.png
+    task_id: use-agent
+    step: 画布页点顶栏 bot 图标展开 Agent 面板，观察面板占去右侧 440px 后画布被压缩
+    route: '/canvas/:id'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '面板左边界 x=999 宽 440（视口 1440）/ 面板内 连接 TDCanvas Agent 与 方式一 方式二 / 左侧 Dock 与左下角缩放条位置不变 / 顶栏 bot 图标处于选中态'
+    visible_text: '连接 TDCanvas Agent'
+    alt: 画布页展开 Agent 面板后的全景，右侧四百四十像素被连接设置面板占据，画布区域被压缩，左侧 Dock、顶栏与左下角缩放条位置均未改变
+    sha256: 7db979b6fcea5f274c93e1f6cdf2a6b0ecbaf167bb811db2cdea6588e2c8938a
+
+  - file: screenshots/16-use-agent-canvas-topbar.png
+    task_id: use-agent
+    step: 截取画布页整条顶栏，记录左侧状态灯与右侧 bot 图标同时存在的版面
+    route: '/canvas/:id'
+    viewport: 1440x48
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '左侧 主页 图标 / 打开画布菜单 / TDCanvas 1 与其右侧状态灯 / 右侧 配置 中 切换到浅色主题 v0.14.0 快捷键 Agent 图标'
+    visible_text: 'TDCanvas 1'
+    alt: 画布页的整条顶栏，左侧是主页图标、菜单图标、画布名 TDCanvas 1 与一颗灰色状态灯，右侧依次是配置、语言、主题、版本、快捷键与 Agent 机器人图标
+    sha256: 77054a16c409df1fd799e599a1f7e46fec078cb719a13c92b803f8bce43c2faa
