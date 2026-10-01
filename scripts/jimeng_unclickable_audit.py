@@ -1206,6 +1206,24 @@ def main() -> int:
             # 它自己的 a11y 失手。**照抄，不修**。
             "esc_returns_to_trigger": False,
             "src": "jimeng_probe847d_baseline2.py（登录态 1512×950）"},
+        "text-bg-palette": {
+            # 源站那枚钮 **aria-label 是空的**，认它靠 innerText「背景色」
+            # （75×32）。层 = `DIV` fixed z=120 **214×40 @[657,190]**，
+            # 无 testid / 无 role / 无 aria-label，7 个可聚焦。
+            "src_tid": "(无 testid；触发器文案「背景色」)",
+            "src_kind": "palette",
+            "src_identified_by": "矩形 214×40 @[657,190]（探针 848b 差分）",
+            # ⚠️ 源站开层时把焦点丢给**画布根** `rf__wrapper`（tabindex=0），
+            #    **不在层矩形里** —— 这一层压根不接管焦点。
+            "takes_focus_at_open": False,
+            # 第 1 次 Tab 就逃出（落到视频节点）。
+            "traps_tab": False,
+            # ⚠️ `None` = **测不了**，不是「不动」：源站从不把焦点放进这层，
+            #    所以「层内方向键」这条路径压根不存在，无从观测。判据里
+            #    `None` 是 falsy ⇒ 不产生 finding，也不当通过。
+            "arrows_move": None,
+            "esc_returns_to_trigger": None,
+            "src": "jimeng_probe848b_textpalette.py（登录态 1512×950）"},
     }
     NOT_SAMPLED = {
         "video-fullscreen-preview":
@@ -1220,6 +1238,22 @@ def main() -> int:
             "**前置态没成立**：点第 2 个 `canvas-panel-launcher` 开出来的是"
             "「积分明细」（焦点落在 al='' 的 BUTTON 上），**0 个新的 fixed 层**"
             "（探针 847c/847d）。源站的生成历史入口这一版画布上取不到样。",
+        "video-toolbar-capture-menu":
+            "**BLOCKED_BY_FIXTURE**：源站这一版画布上的**视频节点是生成结果**，"
+            "不是挂在时间线上的可编辑片段 —— 选中后浮出来的是**生成面板**"
+            "（`选择模型: 即梦 Seedance 2.0 VIP` / `视频尺寸选项: 16:9·720P·1` / "
+            "`生成模式: 全能参考` / `选择视频生成时长: 4s` + `添加参考` / "
+            "`引用参考` / `展开视频生成器` / `生成`，探针 848 逐节点 dump），"
+            "**没有「截取帧」下拉**。复刻这一层是 mock 出来的可编辑视频形态，"
+            "源站对应物在这一版画布上不存在 ⇒ 不下结论。",
+        "video-toolbar-tools-menu":
+            "**BLOCKED_BY_FIXTURE**：同上 —— 源站视频节点选中后是生成面板，"
+            "**没有「工具」下拉**。要取样得先有一份**可编辑**的视频片段"
+            "（挂在时间线上、有帧序列），这一版画布不具备。",
+        "image-tools-menu":
+            "**BLOCKED_BY_FIXTURE**：这一版画布上**没有图片节点** —— 节点实测"
+            "只有 视频 / 文本×3 / 时间线 / 导演台 六个（探针 848）。"
+            "源站图片节点的工具条菜单无从取样。",
     }
     kb_no_initial, kb_escaped, kb_arrow_dead = [], [], []
     kb_judged, kb_not_sampled = [], []
