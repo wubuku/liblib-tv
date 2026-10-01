@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Download, Maximize2, Play, Plus, Trash2, Upload, Volume2, VolumeX, X } from "lucide-react";
+import { Download, Maximize2, Plus, Trash2, Upload, Volume2, VolumeX, X } from "lucide-react";
 import type { NodeProps } from "@xyflow/react";
 
 import { nodeRingShadow } from "@/components/jimeng/nodeChrome";
@@ -106,15 +106,40 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
         <JimengNodeTitle id={id} title={d.title} />
       </div>
 
+      {/* Batch 818 SOURCE_FACT：源站这个节点带一段**英文**节点描述
+          （1×1 隐藏 span，屏读专用），逐字取自源站：
+            `时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.`
+          复刻此前完全没有 —— 屏幕阅读器用户只会听到一个无名 group。
+          片段数按当前 clips 实时算，选中态尾句跟着 `selected` 走。 */}
+      <span
+        className="pointer-events-none absolute left-0 top-0 h-px w-px overflow-hidden"
+        style={{ clipPath: "inset(50%)" }}
+      >
+        {`时间线: 1 visual track, 0 audio tracks, ${clips.length} clips.${
+          selected ? " Selected." : " Not selected."
+        }`}
+      </span>
+
       <div
+        /* Batch 818 SOURCE_FACT（源站 100% 缩放，三次全新加载逐项一致）：
+           壳 1200×207 / r8 / 底色 `color(srgb 0.12549 ×3)` = **rgb(32,32,32)**。
+           复刻此前是 rgb(24,24,26) —— 差 (+8,+8,+6)，肉眼可见地比源站更黑。 */
         className="relative flex h-full w-full flex-col overflow-hidden rounded-lg"
         style={{
-          background: "rgb(24,24,26)",
+          background: "rgb(32,32,32)",
           boxShadow: nodeRingShadow(selected === true),
         }}
+        data-testid="timeline-shell"
       >
-        {/* 顶行：导入/删除 · 播放/时间码 · 下载/全屏编辑 */}
-        <div className="flex h-12 shrink-0 items-center gap-1 px-3">
+        {/* 顶行：导入/删除 · 播放/时间码 · 下载/全屏编辑
+            Batch 818 SOURCE_FACT：本行高 **66px**（源站 rel [1,1,1198,66]），
+            复刻此前 h-12(48)，差 18px。左右内边距 **13px**、控件间隙 **6px**
+            （源站由右簇三枚反推：全屏编辑右缘距壳右缘 13、导出与全屏编辑间隔 6；
+             左簇那两枚也是 6 —— [13,13,42,42] 与 [61,13,42,42]）。 */}
+        <div
+          className="flex h-[66px] shrink-0 items-center gap-[6px] px-[13px]"
+          data-testid="timeline-toolbar"
+        >
           <button
             type="button"
             aria-label="导入"
@@ -132,20 +157,30 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
             <Trash2 size={16} />
           </button>
 
-          <div className="flex flex-1 items-center justify-center gap-2 text-white/80">
-            <Play size={18} className="text-white/60" />
-            <span className="text-[13px]/[20px] tabular-nums" data-testid="timeline-time">
+          {/* Batch 818 SOURCE_FACT：源站这一段是 `timeline-playback-clock`
+              [566,22,123,24]，**18px**、由 `00:00` / `/` / `00:00` 三段组成，
+              旁边**没有播放图标**（源站工具条左端那两枚是无 aria 的裸 div，
+              见台账 §27.5）。复刻此前是 13px 且带一枚装饰性 <Play> ——
+              那个图标既无 aria 也无 onClick，纯装饰且源站无对照物，删掉。 */}
+          <div className="flex flex-1 items-center justify-center text-white/80">
+            <span
+              className="text-[18px]/[24px] tabular-nums"
+              data-testid="timeline-time"
+            >
               {fmt(0)} / {fmt(span)}
             </span>
           </div>
 
-          {/* 源站这一枚的 aria 是「导出时间线」不是「下载」 */}
+          {/* 源站这一枚的 aria 是「导出时间线」不是「下载」。
+              Batch 818 SOURCE_FACT：源站 **42×42 / r8**（rounded-lg = 8px）。
+              `verify-jimeng-batch813.py` 的文档头早就把 42×42 记成 SOURCE_FACT，
+              而实现一直是 size-8(32) —— **实现与自己的取证文档矛盾**，本批修掉。 */}
           <button
             type="button"
             aria-label="导出时间线"
             data-testid="timeline-export-trigger"
             onClick={() => setExportOpen((v) => !v)}
-            className="flex size-8 items-center justify-center rounded-md text-white/70 hover:bg-white/10"
+            className="flex size-[42px] items-center justify-center rounded-lg text-white/70 hover:bg-white/10"
           >
             <Download size={16} />
           </button>
@@ -210,9 +245,13 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
             aria-label="全屏编辑"
             data-testid="timeline-fullscreen-trigger"
             onClick={() => setFullscreen(true)}
-            className="flex h-8 items-center gap-1.5 whitespace-nowrap rounded-md px-2 text-[13px] text-white/85 hover:bg-white/10"
+            /* Batch 818 SOURCE_FACT：源站 **126×42 / r8**，标签纯白
+               （实测 color rgb(255,255,255)）。复刻此前 h-8 + px-2 自适应
+               得 89×32、r6、文字 white/85 —— 宽差 37px、字号色都不同。
+               宽 126 写死：源站就是定值，标签「全屏编辑」四字 19.5px。 */
+            className="flex h-[42px] w-[126px] items-center justify-center gap-1.5 whitespace-nowrap rounded-lg text-[19.5px] leading-none text-white hover:bg-white/10"
           >
-            <Maximize2 size={15} />
+            <Maximize2 size={24} />
             全屏编辑
           </button>
         </div>
@@ -226,40 +265,56 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
               源站那枚钮是从节点左缘内缩约 36px 放置的，正是为了避开手柄。
               128px → 钮心离左缘 64px，实测余量 ~14px（96px 时只剩 1px，太险）。
               （手柄几何是 batch 806 的地盘，不去动那边。） */}
-          <div className="flex w-32 shrink-0 flex-col items-center gap-3 border-r border-white/[0.06] py-2">
+          <div
+            className="flex w-32 shrink-0 flex-col items-center gap-3 border-r border-white/[0.06] py-2"
+            data-testid="timeline-track-gutter"
+          >
             <button
               type="button"
               aria-label={muted ? "取消静音" : "静音"}
               data-testid="timeline-mute-button"
               aria-pressed={muted}
               onClick={() => setMuted((v) => !v)}
-              className="flex size-8 items-center justify-center rounded-full text-white/70 hover:bg-white/10"
+              /* Batch 818 SOURCE_FACT：源站 **42×42 / r6**。
+                 复刻此前 size-8(32) + `rounded-full`（32px 上 = 16px 圆角），
+                 尺寸与圆角**同时**偏小/偏圆。同样是 813 文档头已记、
+                 实现未跟上的那条契约。6px = rounded-md。 */
+              className="flex size-[42px] items-center justify-center rounded-md text-white/70 hover:bg-white/10"
             >
-              {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+              {muted ? <VolumeX size={24} /> : <Volume2 size={24} />}
             </button>
           </div>
 
           <div className="min-w-0 flex-1">
             {/* 刻度尺：SOURCE_FACT 00:00→00:30，每 5s 一格 */}
             <div
-              className="relative h-6 border-b border-white/[0.06]"
+              className="relative h-[27px] border-b border-white/[0.06]"
               data-testid="timeline-ruler"
               aria-label="时间线刻度"
-            >
-              {Array.from({ length: TOTAL_SECONDS / TICK_STEP + 1 }, (_, i) => i * TICK_STEP).map((t) => (
+            >              {Array.from({ length: TOTAL_SECONDS / TICK_STEP + 1 }, (_, i) => i * TICK_STEP).map((t) => (
                 <span
                   key={t}
                   className="absolute top-0 flex h-full -translate-x-px flex-col items-start"
                   style={{ left: `${(t / TOTAL_SECONDS) * 100}%` }}
                 >
                   <span className="h-2 w-px bg-white/20" />
-                  <span className="text-[10px] leading-3 text-white/40 tabular-nums">{fmt(t)}</span>
+                  {/* Batch 818 SOURCE_FACT：源站刻度标签 **13.5px**（实测
+                     `font-size: 13.5px`），复刻此前 10px。
+                     注意 `getComputedStyle().fontSize` **不受** viewport
+                     transform 影响，所以这个数不受缩放归一化影响，是直读值。 */}
+                  <span className="text-[13.5px] leading-3 text-white/40 tabular-nums">{fmt(t)}</span>
                 </span>
               ))}
             </div>
 
-            {/* 轨道：片段 + 「+ 添加素材到时间线」 */}
-            <div className="relative h-[76px] px-3 py-2">
+            {/* 轨道：片段 + 「+ 添加素材到时间线」
+                Batch 818 SOURCE_FACT：源站刻度尺 **27** 高、片段轨道 **84** 高
+                （ruler [73,67,1126,27] / clip-track [73,100,1126,84]）。
+                复刻此前 h-6(24) / h-[76px]。 */}
+            <div
+              className="relative h-[84px] px-3 py-2"
+              data-testid="timeline-clip-track"
+            >
               {clips.map((c) => (
                 <div
                   key={c.id}
@@ -288,9 +343,14 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                   type="button"
                   onClick={addClip}
                   data-testid="timeline-add-clip"
-                  className="flex h-[60px] w-full items-center justify-center gap-2 rounded-md border border-dashed border-white/20 text-[13px] text-white/50 hover:border-white/35 hover:text-white/80"
+                  /* Batch 818 SOURCE_FACT：源站空态投放区是 **r6 + 实底
+                     `rgba(255,255,255,0.04)`、高 84**，**不是**虚线框。
+                     复刻此前是 `border-dashed border-white/20` 的虚线占位 ——
+                     两者观感完全不同（虚线是"尚未实现"的暗示，实底是"空轨道"）。
+                     文字：源站 19.5px 居中于投放区。 */
+                  className="flex h-[84px] w-full items-center justify-center gap-2 rounded-md bg-white/[0.04] text-[19.5px] leading-none text-white/35 transition-colors hover:bg-white/[0.07]"
                 >
-                  <Plus size={15} />
+                  <Plus size={24} />
                   添加素材到时间线
                 </button>
               ) : (

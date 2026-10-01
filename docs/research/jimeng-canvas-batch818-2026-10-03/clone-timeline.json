@@ -1,0 +1,365 @@
+{
+ "cls": "react-flow__node react-flow__node-timeline nopan selected selectable draggable",
+ "size": [
+  1200,
+  207
+ ],
+ "shell": {
+  "radius": "0px",
+  "bg": "rgba(0, 0, 0, 0)",
+  "border": "0px solid rgb(82, 82, 82)"
+ },
+ "aria": "",
+ "role": "group",
+ "descSpan": "时间线: 1 visual track, 0 audio tracks, 0 clips. Selected.",
+ "testids": [
+  [
+   "timeline-node",
+   [
+    0,
+    0,
+    1200,
+    207
+   ]
+  ],
+  [
+   "node-title-text",
+   [
+    0,
+    -31,
+    49,
+    24
+   ]
+  ],
+  [
+   "timeline-shell",
+   [
+    0,
+    0,
+    1200,
+    207
+   ]
+  ],
+  [
+   "timeline-toolbar",
+   [
+    0,
+    0,
+    1200,
+    66
+   ]
+  ],
+  [
+   "timeline-time",
+   [
+    519,
+    23,
+    84,
+    20
+   ]
+  ],
+  [
+   "timeline-export-trigger",
+   [
+    1016,
+    12,
+    42,
+    42
+   ]
+  ],
+  [
+   "timeline-fullscreen-trigger",
+   [
+    1062,
+    12,
+    126,
+    42
+   ]
+  ],
+  [
+   "timeline-track-gutter",
+   [
+    0,
+    66,
+    128,
+    141
+   ]
+  ],
+  [
+   "timeline-mute-button",
+   [
+    43,
+    74,
+    42,
+    42
+   ]
+  ],
+  [
+   "timeline-ruler",
+   [
+    128,
+    66,
+    1072,
+    27
+   ]
+  ],
+  [
+   "timeline-clip-track",
+   [
+    128,
+    93,
+    1072,
+    84
+   ]
+  ],
+  [
+   "timeline-add-clip",
+   [
+    140,
+    101,
+    1048,
+    84
+   ]
+  ],
+  [
+   "jimeng-connect-left",
+   [
+    -39,
+    86,
+    36,
+    36
+   ]
+  ],
+  [
+   "jimeng-connect-right",
+   [
+    1203,
+    86,
+    36,
+    36
+   ]
+  ]
+ ],
+ "ctl": [
+  {
+   "aria": "Rename 时间线 1",
+   "tid": "",
+   "rel": [
+    0,
+    -31,
+    49,
+    32
+   ],
+   "r": "8px",
+   "txt": "时间线 1"
+  },
+  {
+   "aria": "导入",
+   "tid": "",
+   "rel": [
+    12,
+    17,
+    32,
+    32
+   ],
+   "r": "6px",
+   "txt": ""
+  },
+  {
+   "aria": "删除时间线",
+   "tid": "",
+   "rel": [
+    48,
+    17,
+    32,
+    32
+   ],
+   "r": "6px",
+   "txt": ""
+  },
+  {
+   "aria": "导出时间线",
+   "tid": "timeline-export-trigger",
+   "rel": [
+    1016,
+    12,
+    42,
+    42
+   ],
+   "r": "8px",
+   "txt": ""
+  },
+  {
+   "aria": "全屏编辑",
+   "tid": "timeline-fullscreen-trigger",
+   "rel": [
+    1062,
+    12,
+    126,
+    42
+   ],
+   "r": "8px",
+   "txt": "全屏编辑"
+  },
+  {
+   "aria": "静音",
+   "tid": "timeline-mute-button",
+   "rel": [
+    43,
+    74,
+    42,
+    42
+   ],
+   "r": "6px",
+   "txt": ""
+  },
+  {
+   "aria": "",
+   "tid": "timeline-add-clip",
+   "rel": [
+    140,
+    101,
+    1048,
+    84
+   ],
+   "r": "6px",
+   "txt": "添加素材到时间线"
+  },
+  {
+   "aria": "Create connected node before 时间线 1",
+   "tid": "jimeng-connect-left",
+   "rel": [
+    -39,
+    86,
+    36,
+    36
+   ],
+   "r": "0px",
+   "txt": ""
+  },
+  {
+   "aria": "Create connected node after 时间线 1",
+   "tid": "jimeng-connect-right",
+   "rel": [
+    1203,
+    86,
+    36,
+    36
+   ],
+   "r": "0px",
+   "txt": ""
+  }
+ ],
+ "leaves": [
+  {
+   "rel": [
+    0,
+    -31,
+    49,
+    24
+   ],
+   "txt": "时间线 1",
+   "fs": "13px"
+  },
+  {
+   "rel": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "txt": "时间线: 1 visual trac",
+   "fs": "16px"
+  },
+  {
+   "rel": [
+    519,
+    23,
+    84,
+    20
+   ],
+   "txt": "00:00 / 00:00",
+   "fs": "13px"
+  },
+  {
+   "rel": [
+    127,
+    74,
+    36,
+    12
+   ],
+   "txt": "00:00",
+   "fs": "13.5px"
+  },
+  {
+   "rel": [
+    306,
+    74,
+    36,
+    12
+   ],
+   "txt": "00:05",
+   "fs": "13.5px"
+  },
+  {
+   "rel": [
+    484,
+    74,
+    33,
+    12
+   ],
+   "txt": "00:10",
+   "fs": "13.5px"
+  },
+  {
+   "rel": [
+    663,
+    74,
+    33,
+    12
+   ],
+   "txt": "00:15",
+   "fs": "13.5px"
+  },
+  {
+   "rel": [
+    842,
+    74,
+    36,
+    12
+   ],
+   "txt": "00:20",
+   "fs": "13.5px"
+  },
+  {
+   "rel": [
+    1020,
+    74,
+    36,
+    12
+   ],
+   "txt": "00:25",
+   "fs": "13.5px"
+  },
+  {
+   "rel": [
+    1199,
+    74,
+    36,
+    12
+   ],
+   "txt": "00:30",
+   "fs": "13.5px"
+  },
+  {
+   "rel": [
+    -1,
+    -1,
+    1,
+    1
+   ],
+   "txt": "No clips. Drag cli",
+   "fs": "16px"
+  }
+ ]
+}
