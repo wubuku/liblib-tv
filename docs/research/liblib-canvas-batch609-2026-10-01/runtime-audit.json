@@ -1,0 +1,1417 @@
+{
+  "batch": 609,
+  "title": "Source-shaped transform rows + 20x28 keyframe diamond toggles",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "probe66 tree dump of the source right inspector (280px column, x=1640)",
+    "probe67 exact computed styles for the keyframe toggle and 名称 input"
+  ],
+  "claims": {
+    "sourceFact": [
+      "field group = 28px label box + mb-1 + 28px control = 60px",
+      "cell = 80x28, rounded-lg, bg-white/10, no border, focus -> bg-white/13",
+      "grid-cols-3 gap-1",
+      "scrub chip = 20x28 absolute, rounded-l-lg, text-[12px] uppercase text-white/45",
+      "number input = h-full pl-6 pr-0 text-[12px], left aligned",
+      "keyframe toggle = 20x28, ml-px, border-l border-black/20",
+      "off = bg-white/[0.04] text-white/75, glyph fill=none",
+      "on = bg-[#263E43] text-[#5DDCFF], glyph fill=currentColor",
+      "glyph = 9x9 svg viewBox 0 0 10 10, rect 6.1 rx=1 rotate(45 5 5)",
+      "rows outside the object transform (注视坐标) carry no toggle"
+    ],
+    "inference": [
+      "clicking the toggle records/deletes a keyframe at the playhead — the source button was never clicked (needs authorisation); the two-state aria pair on a <button> is the basis",
+      "recording uses force=true so the global 自动关键帧 switch cannot veto an explicit click"
+    ],
+    "cloneOnly": [
+      "toggled state is per FIELD, not per axis: the clone's track keyframes store a whole DirectorTransform, so one keyframe at the playhead pins all three rows at once and any of the nine toggles deletes that same one keyframe; a persisted per-axis model is out of scope for this batch",
+      "fixes a latent bug: keyframedAxes only read value.transform (the camera track shape), so it was always empty for character/prop transform tracks — batch 575 only ever exercised a camera and hid it"
+    ],
+    "notClaimed": [
+      "the source's toggle click behaviour",
+      "the source's 280px column width, its tab strip, its sticky preview canvas and its three 248x28 selects — measured, left to a later batch"
+    ]
+  },
+  "checks": {
+    "off_state": {
+      "cell": {
+        "box": [
+          1645,
+          378,
+          85,
+          28
+        ],
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "radius": "8px",
+        "border": "0px"
+      },
+      "gridGap": "4px",
+      "gridWidth": 263,
+      "cellBoxes": [
+        [
+          1645,
+          378,
+          85,
+          28
+        ],
+        [
+          1734,
+          378,
+          85,
+          28
+        ],
+        [
+          1823,
+          378,
+          85,
+          28
+        ]
+      ],
+      "legend": {
+        "box": [
+          1645,
+          346,
+          26,
+          28
+        ],
+        "font": "13px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "weight": "400"
+      },
+      "groupH": 60,
+      "chip": {
+        "box": [
+          1645,
+          378,
+          20,
+          28
+        ],
+        "pos": "absolute",
+        "z": "10",
+        "radius": "8px 0px 0px 8px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "font": "12px",
+        "cursor": "ew-resize"
+      },
+      "input": {
+        "box": [
+          1645,
+          378,
+          64,
+          28
+        ],
+        "font": "12px",
+        "padLeft": "24px",
+        "textAlign": "start",
+        "transform": "none"
+      },
+      "toggle": {
+        "box": [
+          1710,
+          378,
+          20,
+          28
+        ],
+        "label": "当前帧无关键帧",
+        "state": "off",
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)",
+        "borderLeft": "1px oklab(0 0 0 / 0.2)",
+        "marginLeft": "1px",
+        "glyph": {
+          "box": [
+            1716.6,
+            388.1,
+            7.8,
+            7.8
+          ],
+          "fill": "none",
+          "stroke": "currentColor",
+          "strokeWidth": "1.2",
+          "viewBox": "0 0 10 10",
+          "svg": [
+            1716,
+            387.5,
+            9,
+            9
+          ]
+        }
+      },
+      "toggles": [
+        {
+          "id": "position-X",
+          "box": [
+            1710,
+            378,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "position-Y",
+          "box": [
+            1799,
+            378,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "position-Z",
+          "box": [
+            1888,
+            378,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "rotation-X",
+          "box": [
+            1710,
+            450,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "rotation-Y",
+          "box": [
+            1799,
+            450,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "rotation-Z",
+          "box": [
+            1888,
+            450,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "scale-X",
+          "box": [
+            1710,
+            522,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "scale-Y",
+          "box": [
+            1799,
+            522,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "scale-Z",
+          "box": [
+            1888,
+            522,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        }
+      ],
+      "name": {
+        "box": [
+          1645,
+          237,
+          263,
+          28
+        ],
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "radius": "8px",
+        "border": "0px",
+        "font": "12px",
+        "pad": "0px 8px",
+        "color": "rgb(247, 247, 247)"
+      },
+      "nameLabel": {
+        "box": [
+          1645,
+          205,
+          263,
+          28
+        ],
+        "font": "13px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)"
+      },
+      "track": {
+        "objectId": "director-character-lead",
+        "currentTime": 6.5,
+        "keyframeCount": 0,
+        "times": []
+      }
+    },
+    "cell:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "cell:height": {
+      "ok": true,
+      "detail": [
+        1645,
+        378,
+        85,
+        28
+      ]
+    },
+    "cell:radius": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "cell:no-border": {
+      "ok": true,
+      "detail": "0px"
+    },
+    "cell:fill-white-10": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+    },
+    "grid:gap-4": {
+      "ok": true,
+      "detail": "4px"
+    },
+    "grid:three-cells": {
+      "ok": true,
+      "detail": [
+        [
+          1645,
+          378,
+          85,
+          28
+        ],
+        [
+          1734,
+          378,
+          85,
+          28
+        ],
+        [
+          1823,
+          378,
+          85,
+          28
+        ]
+      ]
+    },
+    "grid:cells-equal-width": {
+      "ok": true,
+      "detail": [
+        [
+          1645,
+          378,
+          85,
+          28
+        ],
+        [
+          1734,
+          378,
+          85,
+          28
+        ],
+        [
+          1823,
+          378,
+          85,
+          28
+        ]
+      ]
+    },
+    "grid:horizontal-gaps": {
+      "ok": true,
+      "detail": [
+        4,
+        4
+      ]
+    },
+    "grid:rows-share-y": {
+      "ok": true,
+      "detail": [
+        [
+          1645,
+          378,
+          85,
+          28
+        ],
+        [
+          1734,
+          378,
+          85,
+          28
+        ],
+        [
+          1823,
+          378,
+          85,
+          28
+        ]
+      ]
+    },
+    "group:height-60": {
+      "ok": true,
+      "detail": 60
+    },
+    "label:height-28": {
+      "ok": true,
+      "detail": [
+        1645,
+        346,
+        26,
+        28
+      ]
+    },
+    "label:font-13": {
+      "ok": true,
+      "detail": "13px"
+    },
+    "label:weight-400": {
+      "ok": true,
+      "detail": "400"
+    },
+    "label:colour-white-45": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)"
+    },
+    "chip:position-absolute": {
+      "ok": true,
+      "detail": "absolute"
+    },
+    "chip:width-20": {
+      "ok": true,
+      "detail": [
+        1645,
+        378,
+        20,
+        28
+      ]
+    },
+    "chip:height-28": {
+      "ok": true,
+      "detail": [
+        1645,
+        378,
+        20,
+        28
+      ]
+    },
+    "chip:cursor-ew-resize": {
+      "ok": true,
+      "detail": "ew-resize"
+    },
+    "chip:font-12": {
+      "ok": true,
+      "detail": "12px"
+    },
+    "chip:uppercase": {
+      "ok": true,
+      "detail": {
+        "chip": [
+          1645,
+          378,
+          20,
+          28
+        ],
+        "cell": [
+          1645,
+          378,
+          85,
+          28
+        ]
+      }
+    },
+    "chip:colours-white-45": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)"
+    },
+    "input:height-28": {
+      "ok": true,
+      "detail": [
+        1645,
+        378,
+        64,
+        28
+      ]
+    },
+    "input:font-12": {
+      "ok": true,
+      "detail": "12px"
+    },
+    "input:pad-left-24": {
+      "ok": true,
+      "detail": "24px"
+    },
+    "input:left-aligned": {
+      "ok": true,
+      "detail": "start"
+    },
+    "toggle:present": {
+      "ok": true,
+      "detail": ""
+    },
+    "toggle:size-20x28": {
+      "ok": true,
+      "detail": [
+        1710,
+        378,
+        20,
+        28
+      ]
+    },
+    "toggle:aria-off": {
+      "ok": true,
+      "detail": "当前帧无关键帧"
+    },
+    "toggle:state-off": {
+      "ok": true,
+      "detail": "off"
+    },
+    "toggle:fill-white-4pct": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)"
+    },
+    "toggle:icon-white-75": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+    },
+    "toggle:border-l-1px-black-20": {
+      "ok": true,
+      "detail": "1px oklab(0 0 0 / 0.2)"
+    },
+    "toggle:margin-left-1px": {
+      "ok": true,
+      "detail": "1px"
+    },
+    "glyph:viewbox": {
+      "ok": true,
+      "detail": "0 0 10 10"
+    },
+    "glyph:svg-9x9": {
+      "ok": true,
+      "detail": [
+        1716,
+        387.5,
+        9,
+        9
+      ]
+    },
+    "glyph:fill-none": {
+      "ok": true,
+      "detail": "none"
+    },
+    "glyph:stroke-width": {
+      "ok": true,
+      "detail": "1.2"
+    },
+    "glyph:stroke-current": {
+      "ok": true,
+      "detail": "currentColor"
+    },
+    "toggles:three-rows-x-three": {
+      "ok": true,
+      "detail": [
+        "position-X",
+        "position-Y",
+        "position-Z",
+        "rotation-X",
+        "rotation-Y",
+        "rotation-Z",
+        "scale-X",
+        "scale-Y",
+        "scale-Z"
+      ]
+    },
+    "toggles:all-off-initially": {
+      "ok": true,
+      "detail": [
+        [
+          "position-X",
+          "off"
+        ],
+        [
+          "position-Y",
+          "off"
+        ],
+        [
+          "position-Z",
+          "off"
+        ],
+        [
+          "rotation-X",
+          "off"
+        ],
+        [
+          "rotation-Y",
+          "off"
+        ],
+        [
+          "rotation-Z",
+          "off"
+        ],
+        [
+          "scale-X",
+          "off"
+        ],
+        [
+          "scale-Y",
+          "off"
+        ],
+        [
+          "scale-Z",
+          "off"
+        ]
+      ]
+    },
+    "toggles:not-on-target-rows": {
+      "ok": true,
+      "detail": [
+        "position-X",
+        "position-Y",
+        "position-Z",
+        "rotation-X",
+        "rotation-Y",
+        "rotation-Z",
+        "scale-X",
+        "scale-Y",
+        "scale-Z"
+      ]
+    },
+    "store:no-keyframe": {
+      "ok": true,
+      "detail": {
+        "objectId": "director-character-lead",
+        "currentTime": 6.5,
+        "keyframeCount": 0,
+        "times": []
+      }
+    },
+    "name:height-28": {
+      "ok": true,
+      "detail": [
+        1645,
+        237,
+        263,
+        28
+      ]
+    },
+    "name:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "name:no-border": {
+      "ok": true,
+      "detail": "0px"
+    },
+    "name:fill-white-10": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+    },
+    "name:font-12": {
+      "ok": true,
+      "detail": "12px"
+    },
+    "name:pad-8": {
+      "ok": true,
+      "detail": "0px 8px"
+    },
+    "name:label-28-13px": {
+      "ok": true,
+      "detail": {
+        "box": [
+          1645,
+          205,
+          263,
+          28
+        ],
+        "font": "13px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)"
+      }
+    },
+    "after_click_on": {
+      "cell": {
+        "box": [
+          1645,
+          378,
+          85,
+          28
+        ],
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.13)",
+        "radius": "8px",
+        "border": "0px"
+      },
+      "gridGap": "4px",
+      "gridWidth": 263,
+      "cellBoxes": [
+        [
+          1645,
+          378,
+          85,
+          28
+        ],
+        [
+          1734,
+          378,
+          85,
+          28
+        ],
+        [
+          1823,
+          378,
+          85,
+          28
+        ]
+      ],
+      "legend": {
+        "box": [
+          1645,
+          346,
+          26,
+          28
+        ],
+        "font": "13px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "weight": "400"
+      },
+      "groupH": 60,
+      "chip": {
+        "box": [
+          1645,
+          378,
+          20,
+          28
+        ],
+        "pos": "absolute",
+        "z": "10",
+        "radius": "8px 0px 0px 8px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "font": "12px",
+        "cursor": "ew-resize"
+      },
+      "input": {
+        "box": [
+          1645,
+          378,
+          64,
+          28
+        ],
+        "font": "12px",
+        "padLeft": "24px",
+        "textAlign": "start",
+        "transform": "none"
+      },
+      "toggle": {
+        "box": [
+          1710,
+          378,
+          20,
+          28
+        ],
+        "label": "当前帧有关键帧",
+        "state": "on",
+        "bg": "rgb(38, 62, 67)",
+        "color": "rgb(93, 220, 255)",
+        "borderLeft": "1px oklab(0 0 0 / 0.2)",
+        "marginLeft": "1px",
+        "glyph": {
+          "box": [
+            1716.6,
+            388.1,
+            7.8,
+            7.8
+          ],
+          "fill": "currentColor",
+          "stroke": "currentColor",
+          "strokeWidth": "1.2",
+          "viewBox": "0 0 10 10",
+          "svg": [
+            1716,
+            387.5,
+            9,
+            9
+          ]
+        }
+      },
+      "toggles": [
+        {
+          "id": "position-X",
+          "box": [
+            1710,
+            378,
+            20,
+            28
+          ],
+          "label": "当前帧有关键帧",
+          "state": "on",
+          "bg": "rgb(38, 62, 67)",
+          "color": "rgb(93, 220, 255)"
+        },
+        {
+          "id": "position-Y",
+          "box": [
+            1799,
+            378,
+            20,
+            28
+          ],
+          "label": "当前帧有关键帧",
+          "state": "on",
+          "bg": "rgb(38, 62, 67)",
+          "color": "rgb(93, 220, 255)"
+        },
+        {
+          "id": "position-Z",
+          "box": [
+            1888,
+            378,
+            20,
+            28
+          ],
+          "label": "当前帧有关键帧",
+          "state": "on",
+          "bg": "rgb(38, 62, 67)",
+          "color": "rgb(93, 220, 255)"
+        },
+        {
+          "id": "rotation-X",
+          "box": [
+            1710,
+            450,
+            20,
+            28
+          ],
+          "label": "当前帧有关键帧",
+          "state": "on",
+          "bg": "rgb(38, 62, 67)",
+          "color": "rgb(93, 220, 255)"
+        },
+        {
+          "id": "rotation-Y",
+          "box": [
+            1799,
+            450,
+            20,
+            28
+          ],
+          "label": "当前帧有关键帧",
+          "state": "on",
+          "bg": "rgb(38, 62, 67)",
+          "color": "rgb(93, 220, 255)"
+        },
+        {
+          "id": "rotation-Z",
+          "box": [
+            1888,
+            450,
+            20,
+            28
+          ],
+          "label": "当前帧有关键帧",
+          "state": "on",
+          "bg": "rgb(38, 62, 67)",
+          "color": "rgb(93, 220, 255)"
+        },
+        {
+          "id": "scale-X",
+          "box": [
+            1710,
+            522,
+            20,
+            28
+          ],
+          "label": "当前帧有关键帧",
+          "state": "on",
+          "bg": "rgb(38, 62, 67)",
+          "color": "rgb(93, 220, 255)"
+        },
+        {
+          "id": "scale-Y",
+          "box": [
+            1799,
+            522,
+            20,
+            28
+          ],
+          "label": "当前帧有关键帧",
+          "state": "on",
+          "bg": "rgb(38, 62, 67)",
+          "color": "rgb(93, 220, 255)"
+        },
+        {
+          "id": "scale-Z",
+          "box": [
+            1888,
+            522,
+            20,
+            28
+          ],
+          "label": "当前帧有关键帧",
+          "state": "on",
+          "bg": "rgb(38, 62, 67)",
+          "color": "rgb(93, 220, 255)"
+        }
+      ],
+      "name": {
+        "box": [
+          1645,
+          237,
+          263,
+          28
+        ],
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "radius": "8px",
+        "border": "0px",
+        "font": "12px",
+        "pad": "0px 8px",
+        "color": "rgb(247, 247, 247)"
+      },
+      "nameLabel": {
+        "box": [
+          1645,
+          205,
+          263,
+          28
+        ],
+        "font": "13px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)"
+      },
+      "track": {
+        "objectId": "director-character-lead",
+        "currentTime": 6.5,
+        "keyframeCount": 1,
+        "times": [
+          6.5
+        ]
+      }
+    },
+    "click:keyframe-recorded": {
+      "ok": true,
+      "detail": {
+        "objectId": "director-character-lead",
+        "currentTime": 6.5,
+        "keyframeCount": 1,
+        "times": [
+          6.5
+        ]
+      }
+    },
+    "click:playhead-time": {
+      "ok": true,
+      "detail": {
+        "objectId": "director-character-lead",
+        "currentTime": 6.5,
+        "keyframeCount": 1,
+        "times": [
+          6.5
+        ]
+      }
+    },
+    "click:position-row-on": {
+      "ok": true,
+      "detail": {
+        "position-X": "on",
+        "position-Y": "on",
+        "position-Z": "on"
+      }
+    },
+    "click:one-keyframe-lights-every-row": {
+      "ok": true,
+      "detail": {
+        "position-X": "on",
+        "position-Y": "on",
+        "position-Z": "on",
+        "rotation-X": "on",
+        "rotation-Y": "on",
+        "rotation-Z": "on",
+        "scale-X": "on",
+        "scale-Y": "on",
+        "scale-Z": "on"
+      }
+    },
+    "click:still-exactly-one-keyframe": {
+      "ok": true,
+      "detail": {
+        "objectId": "director-character-lead",
+        "currentTime": 6.5,
+        "keyframeCount": 1,
+        "times": [
+          6.5
+        ]
+      }
+    },
+    "on:aria": {
+      "ok": true,
+      "detail": "当前帧有关键帧"
+    },
+    "on:state": {
+      "ok": true,
+      "detail": "on"
+    },
+    "on:fill-263E43": {
+      "ok": true,
+      "detail": "rgb(38, 62, 67)"
+    },
+    "on:icon-5DDCFF": {
+      "ok": true,
+      "detail": "rgb(93, 220, 255)"
+    },
+    "on:glyph-filled": {
+      "ok": true,
+      "detail": "currentColor"
+    },
+    "on:keeps-batch575-contract": {
+      "ok": true,
+      "detail": 3
+    },
+    "after_click_off": {
+      "cell": {
+        "box": [
+          1645,
+          378,
+          85,
+          28
+        ],
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.13)",
+        "radius": "8px",
+        "border": "0px"
+      },
+      "gridGap": "4px",
+      "gridWidth": 263,
+      "cellBoxes": [
+        [
+          1645,
+          378,
+          85,
+          28
+        ],
+        [
+          1734,
+          378,
+          85,
+          28
+        ],
+        [
+          1823,
+          378,
+          85,
+          28
+        ]
+      ],
+      "legend": {
+        "box": [
+          1645,
+          346,
+          26,
+          28
+        ],
+        "font": "13px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "weight": "400"
+      },
+      "groupH": 60,
+      "chip": {
+        "box": [
+          1645,
+          378,
+          20,
+          28
+        ],
+        "pos": "absolute",
+        "z": "10",
+        "radius": "8px 0px 0px 8px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "font": "12px",
+        "cursor": "ew-resize"
+      },
+      "input": {
+        "box": [
+          1645,
+          378,
+          64,
+          28
+        ],
+        "font": "12px",
+        "padLeft": "24px",
+        "textAlign": "start",
+        "transform": "none"
+      },
+      "toggle": {
+        "box": [
+          1710,
+          378,
+          20,
+          28
+        ],
+        "label": "当前帧无关键帧",
+        "state": "off",
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.040212)",
+        "color": "oklab(0.99846 -0.000836449 -0.000698802 / 0.751767)",
+        "borderLeft": "1px oklab(0 0 0 / 0.2)",
+        "marginLeft": "1px",
+        "glyph": {
+          "box": [
+            1716.6,
+            388.1,
+            7.8,
+            7.8
+          ],
+          "fill": "none",
+          "stroke": "currentColor",
+          "strokeWidth": "1.2",
+          "viewBox": "0 0 10 10",
+          "svg": [
+            1716,
+            387.5,
+            9,
+            9
+          ]
+        }
+      },
+      "toggles": [
+        {
+          "id": "position-X",
+          "box": [
+            1710,
+            378,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.040212)",
+          "color": "oklab(0.99846 -0.000836449 -0.000698802 / 0.751767)"
+        },
+        {
+          "id": "position-Y",
+          "box": [
+            1799,
+            378,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "position-Z",
+          "box": [
+            1888,
+            378,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "rotation-X",
+          "box": [
+            1710,
+            450,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "rotation-Y",
+          "box": [
+            1799,
+            450,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "rotation-Z",
+          "box": [
+            1888,
+            450,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "scale-X",
+          "box": [
+            1710,
+            522,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "scale-Y",
+          "box": [
+            1799,
+            522,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        },
+        {
+          "id": "scale-Z",
+          "box": [
+            1888,
+            522,
+            20,
+            28
+          ],
+          "label": "当前帧无关键帧",
+          "state": "off",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)"
+        }
+      ],
+      "name": {
+        "box": [
+          1645,
+          237,
+          263,
+          28
+        ],
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "radius": "8px",
+        "border": "0px",
+        "font": "12px",
+        "pad": "0px 8px",
+        "color": "rgb(247, 247, 247)"
+      },
+      "nameLabel": {
+        "box": [
+          1645,
+          205,
+          263,
+          28
+        ],
+        "font": "13px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)"
+      },
+      "track": {
+        "objectId": "director-character-lead",
+        "currentTime": 6.5,
+        "keyframeCount": 0,
+        "times": []
+      }
+    },
+    "untoggle:keyframe-gone": {
+      "ok": true,
+      "detail": {
+        "objectId": "director-character-lead",
+        "currentTime": 6.5,
+        "keyframeCount": 0,
+        "times": []
+      }
+    },
+    "untoggle:aria-back": {
+      "ok": true,
+      "detail": "当前帧无关键帧"
+    },
+    "untoggle:fill-back-to-4pct": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.040212)"
+    },
+    "untoggle:batch575-contract-cleared": {
+      "ok": true,
+      "detail": 0
+    },
+    "crossrow:records-one": {
+      "ok": true,
+      "detail": ""
+    },
+    "crossrow:any-row-deletes-it": {
+      "ok": true,
+      "detail": ""
+    },
+    "seek:other-playhead-reads-off": {
+      "ok": true,
+      "detail": [
+        [
+          "position-X",
+          "off"
+        ],
+        [
+          "position-Y",
+          "off"
+        ],
+        [
+          "position-Z",
+          "off"
+        ],
+        [
+          "rotation-X",
+          "off"
+        ],
+        [
+          "rotation-Y",
+          "off"
+        ],
+        [
+          "rotation-Z",
+          "off"
+        ],
+        [
+          "scale-X",
+          "off"
+        ],
+        [
+          "scale-Y",
+          "off"
+        ],
+        [
+          "scale-Z",
+          "off"
+        ]
+      ]
+    },
+    "seek:keyframe-survives": {
+      "ok": true,
+      "detail": {
+        "objectId": "director-character-lead",
+        "currentTime": 7.5,
+        "keyframeCount": 1,
+        "times": [
+          6.5
+        ]
+      }
+    },
+    "seek:back-reads-on": {
+      "ok": true,
+      "detail": [
+        [
+          "position-X",
+          "on"
+        ],
+        [
+          "position-Y",
+          "on"
+        ],
+        [
+          "position-Z",
+          "on"
+        ],
+        [
+          "rotation-X",
+          "on"
+        ],
+        [
+          "rotation-Y",
+          "on"
+        ],
+        [
+          "rotation-Z",
+          "on"
+        ],
+        [
+          "scale-X",
+          "on"
+        ],
+        [
+          "scale-Y",
+          "on"
+        ],
+        [
+          "scale-Z",
+          "on"
+        ]
+      ]
+    },
+    "locked:toggles-disabled": {
+      "ok": true,
+      "detail": [
+        "position-X",
+        "position-Y",
+        "position-Z",
+        "rotation-X",
+        "rotation-Y",
+        "rotation-Z",
+        "scale-X",
+        "scale-Y",
+        "scale-Z"
+      ]
+    },
+    "diagnostics:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "diagnostics:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "diagnostics": {
+      "consoleErrors": 0,
+      "filtered": 0,
+      "pageErrors": 0
+    },
+    "_summary": {
+      "checks": 73,
+      "failures": []
+    }
+  }
+}

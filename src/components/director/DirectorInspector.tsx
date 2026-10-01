@@ -71,6 +71,7 @@ function AxisFields({
   gestureTargetId = null,
   gestureCommandKind = "inspector-transform",
   keyframedAxes = [],
+  onToggleKeyframe,
 }: {
   label: string;
   field: keyof DirectorTransform | "target" | "followOffset";
@@ -81,6 +82,7 @@ function AxisFields({
   gestureTargetId?: string | null;
   gestureCommandKind?: string;
   keyframedAxes?: Array<0 | 1 | 2>;
+  onToggleKeyframe?: () => void;
 }) {
   const gesture = useDirectorGestureBoundary({
     commandKind: gestureCommandKind,
@@ -95,38 +97,48 @@ function AxisFields({
   const stepFor = () => (field === "rotation" ? 1 : field === "scale" ? 0.05 : 0.1);
   return (
     <fieldset className="border-0 p-0">
-      <legend className="mb-1.5 text-[11px] text-[#777]">{label}</legend>
-      <div className="grid grid-cols-3 gap-1.5">
-        {values.map((value, index) => (
+      {/* Batch 609（源站 2026-10-01 实测 probe66）：源站字段组标签是
+          `mb-1 flex h-7 items-center text-[13px] font-normal leading-none
+          text-white/45`（标签盒 28 高 + mb-1 4 + 控件 28 = 组高 60），
+          不是 clone 原来的 11px 灰字。 */}
+      <legend className="mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-white/45">
+        {label}
+      </legend>
+      {/* Batch 609：源站三轴行 gap-1（实测 80+4+80+4+80 = 248）。 */}
+      <div className="grid grid-cols-3 gap-1">
+        {values.map((value, index) => {
+          const axis = index as 0 | 1 | 2;
+          const keyframed = keyframedAxes.includes(axis);
+          return (
           <label
             key={axisLabels[index]}
-            className={`flex h-8 min-w-0 items-center rounded border border-white/[0.08] bg-[#222] px-1.5 focus-within:border-[#09caf5]/60 ${
-              isAxisDisabled(index) ? "opacity-45" : ""
-            }`}
+            /* Batch 609：源站单元格 80×28 `relative flex h-7 min-w-0
+                overflow-hidden rounded-lg bg-white/10`，
+                focus 态提亮到 bg-white/13（无描边）。 */
+            className={cn(
+              "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg-white/10 transition-colors",
+              isAxisDisabled(index) && "opacity-45",
+            )}
           >
             {isAxisDisabled(index) ? (
-              <span className="mr-1 text-[10px] text-[#666]">
-                {axisLabels[index]}
+              <span className="flex h-full w-5 shrink-0 items-center justify-center text-[12px] uppercase text-white/45">
+                {axisLabels[index].toLowerCase()}
               </span>
             ) : (
+              /* Batch 609：源站轴片 20×28 且 `absolute left-0 top-0 z-10`
+                  （实测 x=1656 而数值框同起点，轴片压在其上），不是流内 24 宽。 */
               <SceneAxisScrub
-                className="mr-1 border-0 bg-transparent"
-                axis={axisLabels[index]}
+                className="absolute left-0 top-0 z-10 flex h-7 w-5 touch-none select-none items-center justify-center rounded-[8px_0px_0px_8px] border-0 bg-transparent text-[12px] font-normal uppercase text-white/45 hover:bg-white/8 hover:text-white/45"
+                axis={axisLabels[index].toLowerCase()}
                 value={value}
                 step={stepFor()}
                 testId={`${field}-${axisLabels[index]}`}
                 onChange={(next) => onChange(index as 0 | 1 | 2, next)}
               />
             )}
-            {keyframedAxes.includes(index as 0 | 1 | 2) ? (
-              /* Batch 575: 源站截图 60——该轴存在关键帧时输入右侧的青色菱形标记 */
-              <span
-                data-director-keyframed-axis={field}
-                data-director-keyframed-axis-index={index}
-                aria-label={`${axisLabels[index]} 轴已有关键帧`}
-                className="mr-0.5 size-1.5 shrink-0 rotate-45 rounded-[1px] bg-[#09caf5]"
-              />
-            ) : null}
+            {/* Batch 609：源站数值框 `h-full min-w-0 flex-1 pl-6 pr-0
+                text-[12px] tabular-nums`（左对齐，pl-6 让开轴片），
+                并用 appearance:textfield 藏掉 number 步进箭头。 */}
             <input
               type="number"
               step={field === "rotation" ? 1 : field === "scale" ? 0.05 : 0.1}
@@ -138,12 +150,96 @@ function AxisFields({
               onChange={(event) =>
                 onChange(index as 0 | 1 | 2, Number(event.target.value))
               }
-              className="min-w-0 flex-1 bg-transparent text-right text-[11px] tabular-nums text-[#d5d5d5] outline-none"
+              className="h-full min-w-0 flex-1 appearance-none border-0 bg-transparent pl-6 pr-0 text-[12px] tabular-nums text-neutral-50 outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
             />
+            {/* Batch 609：源站每个格子右端挂一枚 20×28 关键帧开关
+                （`当前帧无关键帧` ↔ `当前帧有关键帧` 两态互斥）。 */}
+            {onToggleKeyframe ? (
+              <KeyframeToggleButton
+                on={keyframed}
+                testId={`${field}-${axisLabels[index]}`}
+                field={field}
+                axisIndex={axis}
+                disabled={isAxisDisabled(index)}
+                onClick={onToggleKeyframe}
+              />
+            ) : null}
           </label>
-        ))}
+          );
+        })}
       </div>
     </fieldset>
+  );
+}
+
+/* Batch 609（源站 2026-10-01 实测 probe67）：关键帧开关两态逐字照抄——
+     有：`bg-[#263E43] text-[#5DDCFF]`（实算 rgb(38,62,67) / rgb(93,220,255)）
+       菱形 rect `fill=currentColor`；
+     无：`bg-white/[0.04] text-white/75 hover:bg-white/[0.07] hover:text-[#5DDCFF]`
+       菱形 rect `fill=none stroke=currentColor stroke-width=1.2`。
+     两态都带 `ml-px border-l border-black/20`，9×9 svg viewBox 0 0 10 10。 */
+const KEYFRAME_TOGGLE_BASE =
+  "ml-px flex h-full w-[20px] cursor-pointer shrink-0 items-center justify-center border-l border-black/20 transition-colors";
+
+function KeyframeToggleButton({
+  on,
+  testId,
+  field,
+  axisIndex,
+  disabled,
+  onClick,
+}: {
+  on: boolean;
+  testId: string;
+  field: string;
+  axisIndex: 0 | 1 | 2;
+  disabled: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      data-director-keyframe-toggle={testId}
+      data-director-keyframe-toggle-state={on ? "on" : "off"}
+      /* Batch 575 的 `data-director-keyframed-axis` 合同迁到「有」态按钮上，
+         取证脚本与既有 verifier 的选择器不变。 */
+      {...(on
+        ? {
+            "data-director-keyframed-axis": field,
+            "data-director-keyframed-axis-index": axisIndex,
+          }
+        : {})}
+      aria-label={on ? "当前帧有关键帧" : "当前帧无关键帧"}
+      disabled={disabled}
+      onClick={onClick}
+      className={cn(
+        KEYFRAME_TOGGLE_BASE,
+        on
+          ? "bg-[#263E43] text-[#5DDCFF]"
+          : "bg-white/[0.04] text-white/75 hover:bg-white/[0.07] hover:text-[#5DDCFF]",
+      )}
+    >
+      <svg
+        width="9"
+        height="9"
+        viewBox="0 0 10 10"
+        aria-hidden="true"
+        focusable="false"
+        className="shrink-0"
+      >
+        <rect
+          x="1.95"
+          y="1.95"
+          width="6.1"
+          height="6.1"
+          rx="1"
+          transform="rotate(45 5 5)"
+          fill={on ? "currentColor" : "none"}
+          stroke="currentColor"
+          strokeWidth="1.2"
+        />
+      </svg>
+    </button>
   );
 }
 
@@ -1811,9 +1907,13 @@ export function DirectorInspector({
     (["position", "rotation", "scale"] as const).forEach((field, fieldIndex) => {
       const hasKey = track.keyframes.some((keyframe) => {
         // 相机轨道关键帧 value 形如 { transform, target, fov }；变换轨道
-        // keyframe.value 即 DirectorTransform。
-        const values = (keyframe.value as unknown as Record<string, unknown>)
-          ?.transform as unknown as Record<string, unknown> | undefined;
+        // keyframe.value 即 DirectorTransform。Batch 609 修：此前只读
+        // `value.transform`，于是**角色/道具这类 transform 轨道恒为 false**
+        // （batch 575 只测过相机，掩盖了它）——两种形态都要认。
+        const raw = keyframe.value as unknown as Record<string, unknown>;
+        const values = (raw?.transform ?? raw) as
+          | Record<string, unknown>
+          | undefined;
         return (
           Math.abs(keyframe.time - timeline.currentTime) < 0.001 &&
           Array.isArray(values?.[field])
@@ -1823,6 +1923,38 @@ export function DirectorInspector({
     });
     return axes;
   }, [selected, timeline]);
+  // Batch 609：关键帧开关要能「删掉当前帧这一枚」，所以这里除了字段粒度的
+  // 布尔判定，还要拿到播放头处那一枚关键帧的 id（同一时刻的多枚取最后一枚，
+  // 与 upsertTrackKeyframe 的覆盖写入顺序一致）。
+  const keyframeAtPlayheadId = useMemo(() => {
+    if (!selected) return null;
+    const track = timeline.tracks.find(
+      (candidate) =>
+        candidate.objectId === selected.id &&
+        (candidate.kind === "transform" || candidate.kind === "camera"),
+    );
+    if (!track) return null;
+    let hit: string | null = null;
+    for (const keyframe of track.keyframes) {
+      if (Math.abs(keyframe.time - timeline.currentTime) < 0.001) {
+        hit = keyframe.id;
+      }
+    }
+    return hit;
+  }, [selected, timeline]);
+  const deleteTimelineKeyframe = useDirectorStore(
+    (state) => state.deleteTimelineKeyframe,
+  );
+  // 有则删、无则按当前变换补一枚（force=true 绕开 autoKeyframe 开关——
+  // 显式打点不该被「自动关键帧」这个全局开关拦掉）。
+  const toggleKeyframeAtPlayhead = () => {
+    if (!selected) return;
+    if (keyframeAtPlayheadId) {
+      deleteTimelineKeyframe(keyframeAtPlayheadId);
+    } else {
+      recordObjectKeyframe(selected.id, true);
+    }
+  };
   useEffect(() => {
     const input = sceneNameInputRef.current;
     if (input && document.activeElement !== input) input.value = scene.name;
@@ -2024,7 +2156,13 @@ export function DirectorInspector({
               />
             ) : null}
             <label className="block">
-              <span className="mb-1.5 block text-[11px] text-[#777]">名称</span>
+              {/* Batch 609（源站 probe67 实测）：名称标签同样是 h-7 / 13px /
+                  text-white/45，输入框 `h-7 w-full rounded-lg border-0
+                  bg-white/10 px-2 text-[12px] text-neutral-50
+                  placeholder:text-white/30 focus:bg-white/13`。 */}
+              <span className="mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-white/45">
+                名称
+              </span>
               <input
                 ref={objectNameInputRef}
                 data-director-object-name
@@ -2036,7 +2174,7 @@ export function DirectorInspector({
                 onKeyDown={(event) => {
                   if (event.key === "Enter") event.currentTarget.blur();
                 }}
-                className="h-8 w-full rounded border border-white/[0.08] bg-[#222] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
+                className="h-7 w-full rounded-lg border-0 bg-white/10 px-2 text-[12px] text-neutral-50 outline-none placeholder:text-white/30 focus:bg-white/13 disabled:opacity-45"
               />
             </label>
 
@@ -2114,6 +2252,7 @@ export function DirectorInspector({
                 gestureTargetId={selected.id}
                 gestureCommandKind="object-transform"
                 keyframedAxes={keyframedAxes}
+                onToggleKeyframe={toggleKeyframeAtPlayhead}
                 onChange={(axis, value) => {
                   updateObjectTransform(selected.id, "position", axis, value);
                   recordObjectKeyframe(selected.id);
@@ -2155,6 +2294,8 @@ export function DirectorInspector({
                 disabledAxes={pathControlsRotationY ? [1] : []}
                 gestureTargetId={selected.id}
                 gestureCommandKind="object-transform"
+                keyframedAxes={keyframedAxes}
+                onToggleKeyframe={toggleKeyframeAtPlayhead}
                 onChange={(axis, value) => {
                   updateObjectTransform(selected.id, "rotation", axis, value);
                   recordObjectKeyframe(selected.id);
@@ -2175,6 +2316,8 @@ export function DirectorInspector({
                 disabled={selected.locked}
                 gestureTargetId={selected.id}
                 gestureCommandKind="object-transform"
+                keyframedAxes={keyframedAxes}
+                onToggleKeyframe={toggleKeyframeAtPlayhead}
                 onChange={(axis, value) => {
                   updateObjectTransform(selected.id, "scale", axis, value);
                   recordObjectKeyframe(selected.id);
