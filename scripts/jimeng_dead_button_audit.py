@@ -64,6 +64,14 @@ LIST_JS = """() => {
     if (el.closest('[aria-hidden="true"]')) continue;
     // 祖先里有别的可点元素时，点它大概率被子元素接管
     if (el.parentElement && el.parentElement.closest('button,[role=button]')) continue;
+    // Batch 808: 正确禁用的按钮不是死按钮。源站的「新建会话」就带
+    // aria-disabled=true（还没有会话可新建），复刻的「粘贴/重做/撤销」
+    // 在无可撤销操作时也是 disabled —— 点了没反应是**对的**。
+    // 不过滤就会把「设计如此」报成「没接交互」。
+    const disabled = el.disabled === true
+      || el.getAttribute('aria-disabled') === 'true'
+      || el.getAttribute('data-disabled') === 'true';
+    if (disabled) continue;
     out.push({
       tag: el.tagName.toLowerCase(),
       tid: el.getAttribute('data-testid') || '',

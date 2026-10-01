@@ -57,25 +57,40 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
       role="dialog"
       aria-label="Agent"
     >
-      {/* 头部 */}
+      {/* 头部 — Batch 808 SOURCE_FACT（@1680×826 登录态，aria/testid 逐个提取）：
+          会话列表 58×32 @[1314,41] `canvas-agent-session-menu-menu-trigger`
+            ↑ 此前复刻这里只是一段纯文本「新会话」，源站是**按钮**；无会话时
+              aria-disabled=true —— 正确禁用，不是没接交互
+          新建会话 32×32 @[1599,41] `canvas-agent-session-create`（同样 disabled）
+          收起     36×36 @[1637,41] `canvas-agent-session-collapse`（此前复刻 28×28） */}
       <div className="flex items-center justify-between px-4 py-3">
-        <span className="text-[14px] text-white/90">新会话</span>
+        <button
+          type="button"
+          aria-label="会话列表"
+          data-testid="canvas-agent-session-menu-trigger"
+          disabled
+          className="flex h-8 w-[58px] cursor-default items-center gap-1 rounded-lg px-2 text-[14px] text-white/90 disabled:text-white/45"
+        >
+          新会话
+        </button>
         <div className="flex items-center gap-1">
-          {/* 批 381 SOURCE_FACT: 头部实为 [新建会话][收起] 两钮 (aria 实测) */}
           <button
             type="button"
             aria-label="新建会话"
-            className="flex size-7 items-center justify-center rounded-md text-white/60 hover:bg-white/10 hover:text-white"
+            data-testid="canvas-agent-session-create"
+            disabled
+            className="flex size-8 cursor-default items-center justify-center rounded-md text-white/60"
           >
-            <SquarePen size={15} />
+            <SquarePen size={16} />
           </button>
           <button
             type="button"
             aria-label="收起"
+            data-testid="canvas-agent-session-collapse"
             onClick={onClose}
-            className="flex size-7 items-center justify-center rounded-md text-white/60 hover:bg-white/10 hover:text-white"
+            className="flex size-9 items-center justify-center rounded-md text-white/60 hover:bg-white/10 hover:text-white"
           >
-            <PanelRightClose size={15} />
+            <PanelRightClose size={16} />
           </button>
         </div>
       </div>
@@ -85,10 +100,15 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
         <p className="text-[24px] text-white/85">探索更多专业创作模式</p>
         <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
           {SKILL_CHIPS.map((chip) => (
+            /* SOURCE_FACT (batch 808): chip 105×36，最长的「/ 全流程广告片导演」
+               157 宽 —— 宽度随文案自适应，不是固定值。源站点这几个 chip 在本次
+               登录态探测下**同样没有可观测变化**，所以复刻保持 inert 才是对齐，
+               不要"顺手接上"。 */
             <button
               key={chip}
               type="button"
-              className="flex h-9 items-center rounded-full bg-white/[0.06] px-4 text-[13px] text-white/80 hover:bg-white/[0.12]"
+              data-testid="canvas-agent-mode-action"
+              className="flex h-9 items-center rounded-full bg-white/[0.06] px-5 text-[13px] text-white/80 hover:bg-white/[0.12]"
             >
               {chip}
             </button>
@@ -148,9 +168,15 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
                 </span>
               </span>
             ) : null}
-            <span className="mt-1 inline-flex items-center gap-1 rounded bg-white/[0.08] px-1 text-white/55">
+            {/* SOURCE_FACT (batch 808): 占位文案里的 @ 是 24×24 的独立可访问节点
+                `canvas-agent-composer-placeholder-mention` @[1608,672]，
+                与底行那个 32×32 的 `canvas-agent-composer-mention` 是两个东西 */}
+            <span
+              data-testid="canvas-agent-composer-placeholder-mention"
+              className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded bg-white/[0.08] text-white/55"
+            >
               <AtSign size={10} />
-              添加主体
+              <span className="sr-only">添加主体</span>
             </span>
             ，和 Agent 一起创作
           </p>
@@ -160,13 +186,16 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
             <button
               type="button"
               aria-label="从本地、画布或资产库添加"
+              data-testid="canvas-agent-composer-add"
               className="flex size-8 items-center justify-center rounded-md text-white/75 hover:bg-white/10"
             >
               <Plus size={16} />
             </button>
             <button
               type="button"
-              className="flex h-7 items-center gap-1 rounded-md px-2 text-[13px] text-white/75 hover:bg-white/10"
+              aria-label="使用技能"
+              data-testid="canvas-agent-skill-trigger"
+              className="flex h-8 w-[90px] items-center gap-1 rounded-md px-2 text-[13px] text-white/75 hover:bg-white/10"
             >
               <WandSparkles size={14} />
               使用技能
@@ -174,6 +203,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
             <button
               type="button"
               aria-label="引用参考"
+              data-testid="canvas-agent-composer-mention"
               className="flex size-8 items-center justify-center rounded-md text-white/75 hover:bg-white/10"
             >
               <AtSign size={14} />
@@ -182,6 +212,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
             <button
               type="button"
               aria-label="发送消息"
+              data-testid="canvas-agent-send"
               disabled={richPrefill ? false : !input.trim()}
               className={`flex size-8 items-center justify-center rounded-full ${
                 richPrefill || input.trim()

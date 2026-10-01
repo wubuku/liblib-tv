@@ -108,7 +108,11 @@ def main() -> None:
             return page.locator(".react-flow__node").count()
 
         def topbar_count() -> str:
-            return page.locator('[data-testid="canvas-node-summary-trigger"]').inner_text().strip()
+            # 归一化空白：节点摘要触发钮内部是 <span>节点</span><span>N</span>
+            # 两段（源站就是 26×28 两行折行），inner_text 会给 "节点\nN"。
+            # 断言要的是「节点 N」这个语义，不是具体怎么折行/怎么排 span。
+            raw = page.locator('[data-testid="canvas-node-summary-trigger"]').inner_text()
+            return " ".join(raw.split())
 
         def toast_text() -> str:
             t = page.locator('[role="status"]')

@@ -107,10 +107,15 @@ export function JimengPaneContextMenu({
         onMouseEnter={() => setSubmenuOpen(true)}
         onMouseLeave={() => setSubmenuOpen(false)}
       >
+        {/* Batch 808: 此前 onClick 是 toggle，配合 onMouseEnter 就出了个怪现象 ——
+            指针移上来子菜单已开，再点一下反而把它关掉。用户点「新建节点」
+            看起来毫无反应。改成「只开不关」：关子菜单交给 onMouseLeave，
+            与源站 hover 展开的行为一致。 */}
         <button
           type="button"
           role="menuitem"
-          onClick={() => setSubmenuOpen((v) => !v)}
+          data-testid="pane-menu-insert"
+          onClick={() => setSubmenuOpen(true)}
           className="flex h-9 w-full items-center justify-between rounded-lg px-2.5 text-[13px] text-white/85 hover:bg-white/10"
         >
           新建节点
