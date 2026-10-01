@@ -606,6 +606,99 @@ def p_retired_task_skill_pages(src):
 
 
 
+def p_image_toolbar_omits_tools(src):
+    """图片节点工具条上「复制提示词 / 反推提示词 / 质感调整 / 全景图」都点不到。
+
+    手册 90-troubleshooting 有一条用户求助「图片节点工具条上找不到这几项」。
+    本判据把那条否定式断言钉住，并且**区分两种不同的「找不到」**——
+    这是本条最容易被搞混、也最容易被写错的地方：
+
+      · 「复制提示词 / 反推提示词」在 group **"more"**，
+        而 canvas-node-toolbar **全库零处引用这个分组** → **任何节点类型都点不到**；
+      · 「质感调整」在 group "portrait"，但图片分支把该组**只保留 emotion**
+        → **图片节点上没有，非图片节点上有**；
+      · 「全景图」在 group "panorama"，渲染处写的是
+        `compact || isImage ? [] : inGroup("panorama")` → **同样只对图片节点隐藏**。
+
+    判据要求：
+      (a) 四个 id 确实存在于 imageToolDefinitions；
+      (b) copyPrompt / reversePrompt 的 group 是 "more"；
+      (c) 工具条**零处**引用 "more" 分组（证明是「永不渲染」而非「渲染了但条件隐藏」）；
+      (d) 质感调整（portraitTexture）在 "portrait" 组，且图片分支把该组过滤成只剩 emotion；
+      (e) **对照组**：panorama 组**确实有**渲染处，且带 `isImage` 条件。
+          少了 (e)，(c) 的「零引用」就可能只是我 grep 写窄了——**而这恰恰是本批
+          自己踩过的坑**（两次把正确的手册断言误判成错的，都因为 grep 太窄）。
+    """
+    defs = git_show(src, "web/src/components/canvas/canvas-image-toolbar-tools.tsx")
+    bar = git_show(src, "web/src/components/canvas/canvas-node-toolbar.tsx")
+    if not defs or not bar:
+        return None
+    # (a)(b) 四个 id 及其分组
+    for tool_id in ("copyPrompt", "reversePrompt", "portraitTexture", "panorama"):
+        if not re.search(r'id: "' + tool_id + r'"', defs):
+            return False
+    for tool_id in ("copyPrompt", "reversePrompt"):
+        m = re.search(r'id: "' + tool_id + r'",(?:(?!\n    \},).)*?group: "([^"]+)"', defs, re.S)
+        if not m or m.group(1) != "more":
+            return False
+    # (c) "more" 分组零渲染点
+    if re.search(r'inGroup\("more"\)', bar):
+        return False
+    # (d) 质感调整在 portrait 组，且图片分支只留 emotion
+    m = re.search(r'id: "portraitTexture",(?:(?!\n    \},).)*?group: "([^"]+)"', defs, re.S)
+    if not m or m.group(1) != "portrait":
+        return False
+    if not re.search(r'isImage \? inGroup\("portrait"\)\.filter\(\(tool\) => tool\.id === "emotion"\)', bar):
+        return False
+    # (e) 对照组：panorama 组有渲染处且带 isImage 条件
+    pm = re.search(r'const panoramaTools = ([^;]+);', bar)
+    if not pm or "isImage" not in pm.group(1) or 'inGroup("panorama")' not in pm.group(1):
+        return False
+    return True
+
+
+
+def p_audio_panel_never_offers_pitch_volume(src):
+    """音频设置面板从不超过声调与音量——尽管这两块的控件代码就在面板里。
+
+    手册 90-troubleshooting 写「音频设置里没有『声调』『音量』，面板从不提供这两项」。
+    这条断言的用处在于**防一个具体的误判**：只看 `audio-settings-panel.tsx` 会看到
+    `aria-label="声调"` / `aria-label="音量"` 两个 range 输入框，**很容易据此判定手册写错了**——
+    本批就差点这么改。真正的机制是这两块各自挂在 `profile.showPitch` / `profile.showVolume`
+    条件下，而**全部档位（minimax-speech / minimax-music）这两个开关都是 false**。
+
+    判据要求：
+      (a) 面板里确实存在这两块，且各自被 showPitch / showVolume 包着；
+      (b) `audio-generation.ts` 里**每一个**档位定义的 showPitch 都是 false；
+      (c) 每一个档位的 showVolume 也是 false；
+      (d) 对照组：showVoice / showSpeed 在至少一个档位是 true——
+          证明「全 false」不是因为这个字段根本没人用，而是被逐档显式关掉的。
+    """
+    panel = git_show(src, "web/src/components/audio-settings-panel.tsx")
+    lib = git_show(src, "web/src/lib/audio-generation.ts")
+    if not panel or not lib:
+        return None
+    if 'aria-label="声调"' not in panel or 'aria-label="音量"' not in panel:
+        return False
+    if not re.search(r"profile\.showPitch \?", panel) or not re.search(r"profile\.showVolume \?", panel):
+        return False
+    # 逐档位取 show* 的取值
+    def values(flag):
+        return re.findall(flag + r":\s*(true|false)", lib)
+    for flag in ("showPitch", "showVolume"):
+        vals = values(flag)
+        if not vals:
+            return False
+        if any(v == "true" for v in vals):
+            return False
+    # 对照组
+    for flag in ("showVoice", "showSpeed"):
+        if "true" not in values(flag):
+            return False
+    return True
+
+
+
 # 第 4 个字段 scan_key = (文件, setter 名)，表示该条**同时**能被方向二的
 # 全量 setter 扫描覆盖；为 None 表示**只有专属判据**（判据形态不同，
 # 例如「ref 零 click」或「路由先 Navigate」，setter 扫描天然照不到）。
@@ -647,6 +740,10 @@ REGISTRY = [
      p_test_voice_page_no_ui_entry, None),
     ("retired-task-skill-pages", "任务中心与技能页已退场：路由只留重定向、模块整体零引用",
      p_retired_task_skill_pages, None),
+    ("image-toolbar-omits-tools", "图片节点工具条上四项点不到（且区分「永不渲染」与「只对图片隐藏」）",
+     p_image_toolbar_omits_tools, None),
+    ("audio-panel-no-pitch-volume", "音频设置面板从不超过声调与音量（控件存在但全档位关闭）",
+     p_audio_panel_never_offers_pitch_volume, None),
 ]
 
 

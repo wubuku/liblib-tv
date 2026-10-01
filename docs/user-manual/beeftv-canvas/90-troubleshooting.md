@@ -11,8 +11,8 @@
 | 某些选项整个不见了 | **面板按当前模型的能力档案渲染**——模型没声明支持的项不显示。换个模型或改模型能力配置就会出现 | [generate-images.md](10-tasks/generate-images.md) |
 | 视频生成模式不是你选的那个 | 它**主要由连线素材推算**。先选模式再连素材，可能被自动纠正 | [generate-video.md](10-tasks/generate-video.md) |
 | 换了模型，之前的音色没了 | 音色列表随模型切换，不同档案的 ID 不通用，**自动回落到新模型的默认音色** | [generate-audio.md](10-tasks/generate-audio.md) |
-| 音频设置里没有「声调」「音量」 | 面板**从不提供**这两项，不是折叠了也不是漏看 | [generate-audio.md](10-tasks/generate-audio.md) |
-| 图片节点工具条上找不到「质感调整」「全景图」「复制提示词」 | 图片节点工具条**只渲染一部分动作**；全景图只在非图片节点上，复制/反推提示词目前任何界面都点不到 | [generate-images.md](10-tasks/generate-images.md) |
+| 音频设置里没有「声调」「音量」 | 面板**从不提供**这两项，不是折叠了也不是漏看。控件代码其实写在面板里，但被开关挡住、且**所有档位都关着**——所以「源码里找得到」不代表界面上有 | [generate-audio.md](10-tasks/generate-audio.md) |
+| 图片节点工具条上找不到「质感调整」「全景图」「复制提示词」 | 这四项**各有不同的原因**，别一概而论：「质感调整」和「全景图」**只对图片节点隐藏**（换到非图片节点上就有）；「复制提示词」「反推提示词」是**整组从未被渲染**——所以任何节点类型上都点不到，不是你找错地方 | [generate-images.md](10-tasks/generate-images.md) |
 | 素材（参考图组 / LoRA）被挡住或跳过 | 适配器未启用时会**直接挡下**，并给出原因 | [organize-canvas.md](10-tasks/organize-canvas.md) |
 | 素材标了「不可商用」却照样能生成 | 许可快照是**你自己的记录，平台不校验也不拦截** | [organize-canvas.md](10-tasks/organize-canvas.md) |
 | 「自动同步可信素材」开关亮着，素材好像没上传 | 它**默认就是开的**，且真正同步要同时满足四个条件 | [generate-video.md](10-tasks/generate-video.md) |
