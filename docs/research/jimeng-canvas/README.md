@@ -9245,15 +9245,17 @@ E 段改成两半：**取运行时输出**（E.1/E.2 要求 `仍把它当候选=
 ### 结果 / 范围
 
 `verify-jimeng-batch839-fullfloat.py` **17/17**。回归 832(70) / 833(41) /
-835(21) / 836(13) 全绿。
+835(21) / 836(13) 全绿；死按钮普查 265 个可点元素、**真死 0**。
 
 **范围限制（照 §54 的规矩写死）**：21 个状态是**本工具能打开的那些状态**，
 不等于全站所有交互态。新增一个状态**必须同时**往 verifier 的 `EXPECTED_TIDS`
 和 §C 的数量下限里加，否则「缩小了范围」没人会发现。
 
-另：`npm run check` 本轮 EXIT=2，4 个 tsc 错误**全部**在
-`src/components/director/DirectorIconRail.tsx`（并行会话当时正在编辑，非本批改动）；
-lint 0 error，本批两个文件无 error。等对方文件自愈后需复跑。
+另：本批中途 `npm run check` 一度 EXIT=2，4 个 tsc 错误**全部**在
+`src/components/director/DirectorIconRail.tsx` —— 那是并行会话当时正在编辑的
+文件，与本批无关，**没去碰**；十几分钟后复跑已自愈，最终 `npm run check` **EXIT=0**
+（lint 28 warning / 0 error，本批两个文件无 error）。
+写在这里是因为「等别人改完」本身也是批次交付的一部分，不能只报最后那个绿的数字。
 
 ## 57. Batch 839-refitems — 「不编条目」这个**结论本身**就是没验过的推论，而它还顺带放过了两处几何错（2026-10-04）
 

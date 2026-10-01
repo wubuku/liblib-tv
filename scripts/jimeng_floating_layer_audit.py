@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""jimeng **浮层普查（按几何，不按 role）** —— 补上 role 型普查的结构性盲区。
+"""jimeng **浮层普查（按几何，不按 role）** —— §38 契约的第二条通道。
 
 ## 为什么要有第二个通道
 
@@ -12,27 +12,33 @@
 
 这两处（批 836 补的锚点）在 role 型普查里**永远枚举不到**。源站侧测不到它们
 该有什么 role（BLOCKED_BY_FIXTURE），所以**不能靠加 role 来让普查看见它们** ——
-那会掩盖问题而不是解决问题。
+那会拿改产品去迁就工具，掩盖问题。
 
 正确的做法是**换一条通道**：不认 role，认**几何 + 可交互性** —— 一块
 「浮在别的东西之上、深色圆角板、里面至少有两个可交互子元素」的容器，
 就是候选浮层，有没有 role 都报出来。
 
-## 判据
+## 判据（枚举脚本全程**不引用** role 属性 —— 引用了就等于没开这条通道）
 
-候选浮层 = 同时满足：
-  ① 几何：不在文档流里"该在的位置"（`position: absolute|fixed`）且面积 ≥ 阈值
-  ② 层级：z-index 足够高，或位于 `.react-flow__node-toolbar` / 浮层宿主内
-  ③ 可交互：内部 ≥ 2 个可交互子元素（button / [role=*] / input / a）
+  ① 几何：`position: absolute|fixed|sticky` 且面积 ≥ 阈值
+  ② 层级：`z-index ≥ 100`，或挂在已知浮层宿主内
+  ③ 可交互：内部 ≥ 2 个可交互子元素（button / [role=*] / input / a …）
   ④ 可见：非 display:none / visibility:hidden，尺寸 ≥ 阈值
 
-**故意不查 `role`** —— 查了就等于没开第二条通道。
+排除：`.react-flow__node`（装着浮层的那一层）、`.react-flow__node-toolbar`
+（xyflow 自己的宿主壳，复刻控制不了；工具条自己的锚点是内层 `node-toolbar`）、
+铺满全屏的巨型容器。
 
-用法:
-    ~/.venvs/liblib-harness/bin/python scripts/jimeng_floating_layer_audit.py
+## 退出码
+
+  0 = 每个候选浮层都有 data-testid
+  1 = 有缺锚点的
+  2 = **自检没过**（判据恒真，本轮结果不可信）—— 不是 0，否则 CI 会当通过
+
+## 用法
+
+    python3 scripts/jimeng_floating_layer_audit.py
     SNAP_OUT=/tmp/x.json 换输出路径
-
-退出码：0 = 每个候选浮层都有 data-testid；1 = 有缺锚点的。
 """
 
 import json
@@ -45,15 +51,14 @@ URL = os.environ.get("SNAP_URL", "http://localhost:4317/jimeng/canvas/demo")
 OUT = os.environ.get("SNAP_OUT", "/tmp/jimeng-floating-layers.json")
 VIEWPORT = {"width": 1680, "height": 1050}
 
-# 「不指名」白名单：没有 data-testid 是**已知**且有理由的，逐条写清结论。
-# 与批 831/832 的白名单同一套规矩：不许写「同上」，每条自带取证。
-# 一条都不该有。留着这个字典是为了**将来**真有豁免时，格式与 §831/§832 的
-# 白名单一致（每条自带取证结论，不许写「同上」）。
-# ⚠️ 特别提醒：曾经在这里放过一个 `"": "..."` 的键 —— 空 tid 于是被**全部**
-#    豁免，`缺锚点` 恒为 0，工具变成"永远通过"。**万能借口比没有白名单更糟。**
+# 豁免清单：没有 data-testid 是**已知**且有理由的，逐条自带取证结论。
+# 与批 831/832 的白名单同一套规矩：不许写「同上」。
+#
+# ⚠️ 这里曾经放过一个 `"": "..."` 的条目 —— 空 tid 于是被**全部**豁免，
+#    `缺锚点` 恒为 0，工具"永远通过"。**万能钥匙式的豁免比没有豁免更糟**：
+#    它让工具看起来在干活。现在一条都不该有。
 NO_TID_EXEMPT: dict[str, str] = {}
 
-# 一块「浮层候选」的枚举脚本。**全程不引用 role 属性。**
 ENUM_JS = """() => {
   const vis = (e) => {
     const s = getComputedStyle(e);
@@ -80,29 +85,40 @@ ENUM_JS = """() => {
   for (const e of document.querySelectorAll('body *')) {
     if (!vis(e)) continue;
     const s = getComputedStyle(e);
-    // ① 几何：必须是浮起来的（absolute / fixed / sticky）
     if (!['absolute', 'fixed', 'sticky'].includes(s.position)) continue;
-    // ③ 可交互：内部至少 2 个可交互子元素
+    // ③ 可交互：**≥1 个**就行。
+    //    第一版写 ≥2，把「音乐模型」这种**只有一个选项**的下拉挡在外面 ——
+    //    实测它 392×66、items=1，absolute、z=140、挂在 node-toolbar 里，
+    //    四个条件里只差这一条。一个只有一项的下拉仍然是浮层。
     const kids = e.querySelectorAll(INTERACTIVE);
-    if (kids.length < 2) continue;
-    // ② 层级：显式高 z-index，或挂在已知的浮层宿主里
+    if (kids.length < 1) continue;
+    // ② 层级：z ≥ 100 / 挂在已知宿主内 / **顶栏内**。
+    //    账号菜单（canvas-user-menu 240×312）、更多菜单、搜索、生成历史全是
+    //    `absolute` 但**没有 z-index**，也不在节点宿主里 ⇒ 只看 z 的话这四层
+    //    全被挡掉。顶栏浮层挂在 `header[aria-label="Canvas top bar"]` 内，
+    //    那是它唯一的共同挂载点。
     const z = parseInt(s.zIndex || '0', 10);
+    // 缩放菜单（canvas-zoom-menu）是 `absolute` + **无 z-index** + 不在节点宿主
+    // 里，只看 z 就被挡掉；它的实测挂载点是底部 dock，所以 dock 也算宿主。
     const host = e.closest('.react-flow__node-toolbar, .react-flow__node-panel, '
                           + '[data-testid="canvas-node-insert-menu"], '
-                          + '[data-testid="canvas-insert-submenu"]');
-    if (!(z >= 100 || host)) continue;
-    // 排除"整块画布/顶栏"这类巨型容器：面积过大且几乎铺满时不当作浮层
+                          + '[data-testid="canvas-insert-submenu"], '
+                          + '[data-testid="canvas-bottom-dock"], '
+                          // 缩放菜单实测父链是 `div.jimeng-bottom-dock.relative`
+                          // —— **类名**，不是那个 testid（testid 在它里面的
+                          // 一层上）。只加 testid 会漏掉。
+                          + '.jimeng-bottom-dock');
+    const inTopbar = !!e.closest('header[aria-label="Canvas top bar"]');
+    if (!(z >= 100 || host || inTopbar)) continue;
     const r = e.getBoundingClientRect();
     if (r.width >= 1500 && r.height >= 700) continue;
-    // ⚠️ 排除**节点本体**：它符合全部几何条件（absolute + z=1000 + 多个按钮），
-    //    但它是**装着**浮层的那一层，不是浮层。留着会每次枚举都混进一条噪声。
     if (e.classList && e.classList.contains('react-flow__node')) continue;
-    // ⚠️ 同样排除 React Flow 自己的**宿主壳** `.react-flow__node-toolbar`：
-    //    它满足全部几何条件，但它是**装着**工具条的挂载点，不是工具条本身
-    //    （工具条自己的锚点是内层的 `node-toolbar`，照抄源站）。而且这层壳
-    //    由 xyflow 渲染，复刻**控制不了**，给它写豁免是唯一选择 —— 与其悄悄
-    //    豁免，不如把"为什么它不算候选"写在这里。
     if (e.classList && e.classList.contains('react-flow__node-toolbar')) continue;
+    // ⚠️ 同样排除**顶栏容器本身**：它 absolute + 在 header 内 + 10 个按钮，
+    //    三个条件全中，但它是**装着**那些浮层的架子（还带 pointer-events-none）。
+    //    浮层在它**里面**，各自有锚点。
+    if (e.closest('header[aria-label="Canvas top bar"]') &&
+        e.getAttribute('data-testid') === 'canvas-top-bar') continue;
     const key = s.position + '|' + Math.round(r.x) + '|' + Math.round(r.y)
               + '|' + Math.round(r.width) + 'x' + Math.round(r.height);
     if (seen.has(key)) continue;
@@ -110,12 +126,16 @@ ENUM_JS = """() => {
     out.push({
       tid: e.getAttribute('data-testid') || '',
       role: e.getAttribute('role') || '',      // 只作**记录**，不作筛选条件
+      // 自检探针的标记：让自检能**在重扫结果里认出这一个元素**，
+      // 而不必靠"元素还在不在"那种恒真判断（见下方自检段）。
+      selfcheck: e.getAttribute('data-selfcheck') || '',
       name: nameOf(e),
       pos: s.position, z: z,
       w: Math.round(r.width), h: Math.round(r.height),
       x: Math.round(r.x), y: Math.round(r.y),
       items: kids.length,
       inHost: !!host,
+      inTopbar: inTopbar,
       cls: (e.className || '').toString().replace(/\\s+/g, ' ').slice(0, 60),
     });
   }
@@ -124,96 +144,440 @@ ENUM_JS = """() => {
 
 
 def main() -> int:
-    out_rows: list[dict] = []
+    rows: list[dict] = []
+    skipped: list[str] = []          # 前置态没成立的状态 —— 如实记录，不静默跳过
+    empty: list[str] = []            # 打开了但枚举到 0 个候选 —— 与 skipped 分开记账
+    expected_empty: list[str] = []   # 这个状态本来就没有浮层（正常，不是盲区）
     with sync_playwright() as p:
         b = p.chromium.launch(headless=True)
         ctx = b.new_context(viewport=VIEWPORT)
         page = ctx.new_page()
         page.goto(URL, wait_until="domcontentloaded", timeout=60000)
-        page.wait_for_timeout(6000)
+        # ⚠️ **不要用固定等待**。开发期并行会话一直在改文件 → Next dev 周期性
+        #    重编译重载 → 有时 6 秒后画布还没就绪（节点数不足、左栏按钮没挂上）。
+        #    实测这会让「选不中 rf__node-video-local-1」连着 8 个状态一起废掉，
+        #    而输出里只写"前置态不成立"，**看不出是页面没加载好还是判据坏了**。
+        #    改成轮询一个明确的就绪条件。
+        ready = False
+        for _ in range(30):
+            page.wait_for_timeout(1000)
+            try:
+                n = page.evaluate("""() => ({
+                    nodes: document.querySelectorAll('.react-flow__node').length,
+                    rail: document.querySelectorAll('button[aria-label="文本"]').length,
+                })""")
+                if n["nodes"] >= 2 and n["rail"] >= 1:
+                    ready = True
+                    break
+            except Exception:
+                continue
+        page.wait_for_timeout(1200)
+        if not ready:
+            print("⚠ 页面 30s 内没就绪（节点/左栏未出现），本轮结果**不可信**")
 
-        def census(tag: str) -> None:
-            for r in page.evaluate(ENUM_JS):
+        # ── 以下四个 helper 是 832/835/836 三批踩坑换来的，别再简化 ──
+        def census(tag: str) -> int:
+            got = page.evaluate(ENUM_JS)
+            for r in got:
                 r["state"] = tag
-                out_rows.append(r)
+                rows.append(r)
+            return len(got)
 
-        census("初始")
+        def clear_selection() -> None:
+            """清空选中。
 
-        # 视频工具条的两个无 role 下拉（批 836 的盲区本体）
-        pt = page.evaluate("""() => {
-          const n = document.querySelector(
-            '.react-flow__node[data-testid="rf__node-video-local-1"]');
-          if (!n) return null;
-          const r = n.getBoundingClientRect();
-          const CTRL = 'button,[role=button],a,input';
-          for (const [fx, fy] of [[0.5,0.25],[0.25,0.5],[0.75,0.5],[0.5,0.75]]) {
-            const x = r.left + r.width * fx, y = r.top + r.height * fy;
-            const h = document.elementFromPoint(x, y);
-            if (h && n.contains(h) && !h.closest(CTRL)) return {x, y};
-          }
-          return null;
-        }""")
-        if pt:
+            必须清：工具条/生成面板的门控是 `selected === true && soloSelected`，
+            `addNodeAt` 插出的新节点自带 selected ⇒ 计数 2 ⇒ 面板**永远不挂**。
+            用点画布空白，不用 Escape（那会连浮层一起卸载）。
+            """
+            pt = page.evaluate("""() => {
+              const pane = document.querySelector('.react-flow__pane');
+              if (!pane) return null;
+              const r = pane.getBoundingClientRect();
+              for (const [fx, fy] of [[0.02,0.95],[0.98,0.95],[0.02,0.05],[0.98,0.05],
+                                      [0.5,0.97],[0.5,0.03]]) {
+                const x = r.left + r.width * fx, y = r.top + r.height * fy;
+                const h = document.elementFromPoint(x, y);
+                if (h && pane.contains(h)) return {x, y};
+              }
+              return null;
+            }""")
+            if pt:
+                page.mouse.click(pt["x"], pt["y"])
+                page.wait_for_timeout(450)
+            else:
+                page.keyboard.press("Escape")
+                page.wait_for_timeout(400)
+
+        def select_node(tid: str, retry: int = 1) -> bool:
+            """选中一个节点（且**只**选中它）。
+
+            两点都是踩出来的：
+              ① 命中点**不能落在控件上** —— 带媒体的视频节点中心是 32px 的
+                 播放/暂停键，它 onClick 有 stopPropagation ⇒ 点了不选中。
+              ② 画布上节点互相叠压，坐标点击常被别的节点子树拦截，`force=True`
+                 也没用（真实事件仍落到最上层）。所以先用 `elementFromPoint`
+                 问**事实**：哪个采样点的最上层元素落在本节点内且不是控件。
+            """
+            for attempt in range(retry + 1):
+                if attempt:
+                    page.wait_for_timeout(1200)
+                if _select_once(tid):
+                    return True
+            return False
+
+        def _select_once(tid: str) -> bool:
+            clear_selection()
+            pt = page.evaluate(
+                """(tid) => {
+              const n = document.querySelector(`.react-flow__node[data-testid="${tid}"]`);
+              if (!n) return null;
+              const r = n.getBoundingClientRect();
+              if (r.width < 8 || r.height < 8) return null;
+              const CTRL = 'button,[role=button],a,input,select,textarea,'
+                         + '[role=option],[role=menuitem],[role=tab]';
+              for (const [fx, fy] of [[0.5,0.5],[0.5,0.25],[0.25,0.5],[0.75,0.5],
+                                      [0.5,0.75],[0.2,0.2],[0.8,0.8],[0.3,0.3],
+                                      [0.7,0.7],[0.15,0.5],[0.85,0.5],[0.5,0.15]]) {
+                const x = r.left + r.width * fx, y = r.top + r.height * fy;
+                const h = document.elementFromPoint(x, y);
+                if (h && n.contains(h) && !h.closest(CTRL)) return {x, y};
+              }
+              return null;
+            }""", tid)
+            if pt is None:
+                return False
             page.mouse.click(pt["x"], pt["y"])
             page.wait_for_timeout(900)
-        for label, tag in [("截取帧", "视频工具条·截取帧下拉"),
-                           ("工具", "视频工具条·工具下拉")]:
-            loc = page.locator(f'.react-flow__node-toolbar button:text-is("{label}")')
+            return page.evaluate(
+                "() => document.querySelectorAll('.react-flow__node.selected').length === 1")
+
+        TID2TRIG = {
+            "gen-model-listbox": "选择模型", "gen-video-size-listbox": "视频尺寸选项",
+            "gen-mode-listbox": "生成模式", "gen-duration-listbox": "选择视频生成时长",
+            "image-gen-model-listbox": "选择模型", "image-gen-size-listbox": "图片尺寸选项",
+            "audio-gen-type-listbox": "创作类型", "audio-music-model-listbox": "选择模型",
+            "audio-music-duration-listbox": "选择时长", "audio-voice-model-listbox": "选择模型",
+            "audio-gen-mode-listbox": "音频生成", "audio-all-voices-listbox": "音色",
+            "image-tools-menu": "工具", "text-bg-palette": "背景色",
+        }
+
+        def close_open() -> None:
+            """把开着的下拉逐个点回它自己的触发器（toggle 关闭）。
+
+            **不能用 Escape**：那会取消选中 → NodeToolbar 卸载 → 顺带把还没
+            扫的浮层一起弄没了，判据会**假装**没查到。
+            """
+            for tid, trig in TID2TRIG.items():
+                if not page.locator(f'[data-testid="{tid}"]').count():
+                    continue
+                loc = page.locator(f'.react-flow__node-toolbar button[aria-label^="{trig}"]')
+                if not loc.count():
+                    continue
+                try:
+                    loc.first.click(timeout=4000)
+                except Exception:
+                    continue
+                page.wait_for_timeout(300)
+
+        def open_trigger(sel: str, want_tid: str | None = None,
+                         scope: str = ".react-flow__node-toolbar") -> bool:
+            """打开一个下拉。幂等 + 先收起别的（批 835 的教训，见上）。"""
+            close_open()
+            if want_tid and page.locator(f'[data-testid="{want_tid}"]').count():
+                return True
+            loc = page.locator(f'{scope} {sel}' if scope else sel)
+            if not loc.count():
+                return False
+            try:
+                loc.first.click(timeout=8000)
+            except Exception:
+                return False
+            page.wait_for_timeout(650)
+            return True
+
+        def node_tids() -> list[str]:
+            return page.evaluate(
+                "() => [...document.querySelectorAll('.react-flow__node')]"
+                ".map(n => n.getAttribute('data-testid'))")
+
+        def insert(kind: str) -> str | None:
+            """插入节点并返回新节点的 testid（按集合差分，不按序号）。
+
+            ⚠️ 不能让异常冒出去：左栏按钮在**开发期重编译**时会短暂消失
+            （并行会话改文件 → Next dev 重载 → 那一瞬间 DOM 重建），
+            一次 30s 超时会把**整份审计**带崩，前面 20 个状态的结果全丢。
+            这里改成"等一小会儿，还不在就返回 None"，由调用方如实记账。
+            """
+            loc = page.locator(f'button[aria-label="{kind}"]')
+            try:
+                loc.first.wait_for(state="attached", timeout=8000)
+            except Exception:
+                return None
+            before = set(node_tids())
+            try:
+                loc.first.click(timeout=8000)
+            except Exception:
+                return None
+            page.wait_for_timeout(1800)
+            new = [t for t in node_tids() if t not in before]
+            return new[0] if new else None
+
+        def step(tag: str, cond: bool, want: str = "",
+                 expect_empty: str = "") -> None:
+            """跑一个状态并普查。
+
+            两种"没结果"必须**分开记账**，都不能沉默：
+              · 前置态不成立（`cond` 为假）⇒ skipped
+              · 浮层确实打开了，但几何判据枚举到 0 个候选 ⇒ empty
+            第一版把第二种情况**静默吞掉**了：账号菜单/搜索/生成历史三个状态
+            既不在统计里、也不在 skipped 里，看上去像"跑过了且没问题"。
+            **"跑了但没看见"和"没跑"必须能被区分开**，否则漏报不可见。
+            """
+            if not cond:
+                skipped.append(f"{tag}（{want or '前置态不成立'}）")
+                return
+            n = census(tag)
+            if n == 0:
+                # 「这个状态本来就没有浮层」与「浮层开着但判据看不见」是两回事。
+                # 前者是正常的（例如空态、工具条那层架子），后者是盲区 ——
+                # 混在一起报，等于让正常项稀释真正的盲区。
+                if expect_empty:
+                    expected_empty.append(f"{tag}（{expect_empty}）")
+                else:
+                    empty.append(f"{tag}（浮层已打开，但几何判据枚举到 0 个候选）")
+
+        # ══ A. 空态 ══════════════════════════════════════════════
+        step("空态", True, expect_empty="画布上本来就没有任何浮层")
+
+        # ══ B. 视频节点（带媒体）工具条 ══════════════════════════
+        sel = select_node("rf__node-video-local-1")
+        step("视频工具条", sel, "选不中 rf__node-video-local-1",
+             expect_empty="工具条本身是 React Flow 的宿主架，判定为不是浮层；"
+                          "它带出来的两个下拉由下面两个状态各自枚举")
+        step("视频工具条·截取帧下拉",
+             open_trigger('button:text-is("截取帧")', "video-toolbar-capture-menu"),
+             "截取帧下拉打不开")
+        step("视频工具条·工具下拉",
+             open_trigger('button:text-is("工具")', "video-toolbar-tools-menu"),
+             "工具下拉打不开")
+
+        # ══ C. 视频生成面板（空视频节点）═══════════════════════════
+        sel = select_node("rf__node-video-empty-1")
+        step("视频生成面板", sel, "选不中 rf__node-video-empty-1",
+             expect_empty="生成面板是工具条里的一块板，本身没有独立锚点；"
+                          "它内部的 4 个下拉由下面 4 个状态各自枚举")
+        for trig, tid, label in [
+            ("选择模型", "gen-model-listbox", "模型"),
+            ("视频尺寸选项", "gen-video-size-listbox", "尺寸"),
+            ("生成模式", "gen-mode-listbox", "模式"),
+            ("选择视频生成时长", "gen-duration-listbox", "时长"),
+        ]:
+            step(f"视频生成面板·{label}下拉",
+                 open_trigger(f'button[aria-label^="{trig}"]', tid), f"{trig} 打不开")
+
+        # ══ D. 文本节点 ═══════════════════════════════════════════
+        txt = insert("文本")
+        opened = False
+        if txt and select_node(txt):
+            loc = page.locator(f'.react-flow__node[data-testid="{txt}"]')
             if loc.count():
-                loc.first.click()
-                page.wait_for_timeout(650)
-                census(tag)
+                try:
+                    loc.first.dblclick(timeout=8000)
+                    page.wait_for_timeout(1100)
+                except Exception:
+                    pass
+            # 「背景色」只在**选中非编辑态**的工具条上（isVisible={selected && !editing}）
+            sel2 = select_node(txt)
+            opened = open_trigger('button[aria-label="背景色"]', "text-bg-palette")
+        step("文本·背景色调色板", opened and sel2, "背景色调色板打不开")
+
+        # ══ E. 图片节点（带 poster：走「截取帧 → 首帧」才有）════════
+        # 带 poster 的图片节点**只能**靠视频「截取帧 → 首帧」产出：左栏新插的
+        # 图片节点没有 poster，渲染的是生成面板而不是工具条（批 832 踩过）。
+        # 每一步单独记账 —— 只报一句"没产出"等于什么都没说。
+        before = set(node_tids())
+        framed, why = None, ""
+        sel_v = select_node("rf__node-video-local-1")
+        if not sel_v:
+            why = "选不中 rf__node-video-local-1（选中数≠1）"
+        elif not open_trigger('button:has-text("截取帧")',
+                              "video-toolbar-capture-menu"):
+            why = "截取帧下拉打不开"
+        else:
+            it = page.locator('.react-flow__node-toolbar button:text-is("首帧")')
+            if not it.count():
+                # 只报"没有首帧项"等于什么都没说。把工具条上**此刻真实存在**的
+                # 按钮文案全打出来：是下拉没开（只有工具条那几枚），还是开了但
+                # 里面是别的字。这两者的修法完全不同。
+                labels = page.evaluate("""() => [...document.querySelectorAll(
+                    '.react-flow__node-toolbar button')]
+                    .map(b => (b.innerText || b.getAttribute('aria-label') || '').trim())""")
+                opened = page.locator(
+                    '[data-testid="video-toolbar-capture-menu"]').count()
+                why = (f"下拉里没有「首帧」项（截取帧下拉此刻{'开着' if opened else '**没开**'}）；"
+                       f"工具条按钮={labels}")
+            else:
+                it.first.click()
+                page.wait_for_timeout(2200)
+                new = [t for t in node_tids() if t not in before and t and "image" in t]
+                framed = new[0] if new else None
+                if framed is None:
+                    why = f"点了首帧但没长出图片节点（现有 {len(node_tids())} 个节点）"
+        step("图片节点产出（截帧）", framed is not None, why)
+        img_ok, why2 = False, ""
+        if framed is None:
+            why2 = "没有带 poster 的图片节点"
+        elif not select_node(framed):
+            why2 = "选不中图片节点"
+        else:
+            img_ok = open_trigger('button:text-is("工具")', "image-tools-menu")
+            if not img_ok:
+                why2 = "工具菜单打不开"
+        step("图片工具条·工具菜单", img_ok, why2)
+
+        # ══ F. 音频生成面板 ═══════════════════════════════════════
+        aud = insert("音频")
+        for branch, expect in [
+            ("音乐生成", [("选择模型", "audio-music-model-listbox", "音乐模型"),
+                          ("选择时长", "audio-music-duration-listbox", "音乐时长")]),
+            ("音频生成", [("选择模型", "audio-voice-model-listbox", "音色模型"),
+                          ("音频生成", "audio-gen-mode-listbox", "音频生成模式"),
+                          ("音色", "audio-all-voices-listbox", "全音色")]),
+        ]:
+            if aud and select_node(aud):
+                if open_trigger('button[aria-label^="创作类型"]', "audio-gen-type-listbox"):
+                    opt = page.locator('[data-testid="audio-gen-type-listbox"] [role=option]'
+                                       f':text-is("{branch}")')
+                    if opt.count():
+                        opt.first.click()
+                        page.wait_for_timeout(900)
+            for trig, tid, label in expect:
+                if aud:
+                    select_node(aud)
+                step(f"音频生成面板·{label}",
+                     open_trigger(f'button[aria-label^="{trig}"]', tid), f"{trig} 打不开")
+
+        # ══ G. 画布级浮层 ═════════════════════════════════════════
+        clear_selection()
+        page.mouse.click(840, 700, button="right")
+        page.wait_for_timeout(700)
+        step("画布右键菜单",
+             page.locator('[data-testid="canvas-context-menu"]').count() >= 1,
+             "右键菜单没出现")
+        page.keyboard.press("Escape")
+        page.wait_for_timeout(500)
+
+        z = page.locator('[data-testid="canvas-zoom-percent"]')
+        if z.count():
+            z.first.click()
+            page.wait_for_timeout(650)
+        step("缩放菜单",
+             page.locator('[data-testid="canvas-zoom-menu"]').count() >= 1,
+             "缩放菜单没出现")
+        if page.locator('[data-testid="canvas-zoom-menu"]').count():
+            page.keyboard.press("Escape")
+            page.wait_for_timeout(500)
+
+        # ══ H. 顶栏浮层 ═══════════════════════════════════════════
+        # testid 全部来自源码实测（第一版这四个是**凭印象猜的**，四个全错：
+        # 真实值是 topbar-share-panel / topbar-more-menu / jimeng-search-overlay
+        # / topbar-history-menu。猜名字的代价是四个状态白跑一轮。）
+        for label, tid, name in [
+            ("分享", "topbar-share-panel", "分享面板"),
+            ("用户菜单", "canvas-user-menu", "账号菜单"),
+            ("更多", "topbar-more-menu", "更多菜单"),
+            ("搜索", "jimeng-search-overlay", "搜索"),
+            ("生成历史", "topbar-history-menu", "生成历史"),
+        ]:
+            loc = page.locator(f'header[aria-label="Canvas top bar"] '
+                               f'button[aria-label="{label}"]')
+            if not loc.count():
+                loc = page.locator(f'button[aria-label="{label}"]')
+            if loc.count():
+                try:
+                    loc.first.click(timeout=6000)
+                    page.wait_for_timeout(700)
+                except Exception:
+                    # 点不开就当这个状态没成立，由 step() 如实记账
+                    page.locator('[data-testid="canvas-top-bar"]').first.click(
+                        timeout=3000) if page.locator(
+                        '[data-testid="canvas-top-bar"]').count() else None
+                    page.wait_for_timeout(400)
+            step(f"顶栏·{name}",
+                 page.locator(f'[data-testid="{tid}"]').count() >= 1,
+                 f"顶栏 {label} 打开后没找到 {tid}")
+            page.keyboard.press("Escape")
+            page.wait_for_timeout(450)
 
         # ── 自检：把一个锚点摘掉，普查**必须**报出来 ──────────────
-        #     不做这一步，上面那句"无 data-testid 0 个"就没有分量 ——
-        #     恒为 0 的判据和恒真的判据一样没用（批 827/832 各栽过一次）。
+        #     不做这一步，"缺锚点 0 个"就没有分量。
         selfcheck: dict = {}
         probe_tid = "video-toolbar-capture-menu"
-        removed = page.evaluate(
-            """(tid) => {
-              const e = document.querySelector(`[data-testid="${tid}"]`);
-              if (!e) return false;
-              e.removeAttribute('data-testid');
-              e.setAttribute('data-selfcheck', '1');
-              return true;
-            }""", probe_tid)
-        if removed:
-            after = page.evaluate(ENUM_JS)
-            hit = [r for r in after if r["tid"] == "" and r.get("selfcheck")]
-            rows = page.evaluate("""() => [...document.querySelectorAll('[data-selfcheck]')]
-                .map(e => ({hasTid: !!e.getAttribute('data-testid')}))""")
-            selfcheck = {
-                "removed": probe_tid,
-                "still_candidate": bool(rows),
-                "now_reported_missing": any(not r["hasTid"] for r in rows),
-            }
-            page.evaluate("""() => document.querySelectorAll('[data-selfcheck]')
-                .forEach(e => e.removeAttribute('data-selfcheck'))""")
+        if select_node("rf__node-video-local-1") and \
+                open_trigger('button:text-is("截取帧")', probe_tid):
+            removed = page.evaluate(
+                """(tid) => {
+                  const e = document.querySelector(`[data-testid="${tid}"]`);
+                  if (!e) return false;
+                  e.removeAttribute('data-testid');
+                  e.setAttribute('data-selfcheck', '1');
+                  return true;
+                }""", probe_tid)
+            if removed:
+                # ⚠️ 这里**必须重跑整段几何枚举**，不能只查 `[data-selfcheck]`
+                #    还在不在 —— 那种写法 `still_candidate = bool(rows2)`
+                #    恒为真（`removed` 为真 ⇒ 元素必然还在），等于没有自检：
+                #    哪怕有人把枚举改成"只挑有 data-testid 的"，它照样报 ✓。
+                #    真重扫才能证明几何判据**不依赖锚点**。
+                rows2 = page.evaluate(ENUM_JS)
+                probe = [r for r in rows2 if r.get("selfcheck") == "1"]
+                selfcheck = {
+                    "removed": probe_tid,
+                    "still_candidate": bool(probe),
+                    "now_reported_missing": any(not r.get("tid") for r in probe),
+                }
+                page.evaluate("""() => document.querySelectorAll('[data-selfcheck]')
+                    .forEach(e => e.removeAttribute('data-selfcheck'))""")
 
         ctx.close()
         b.close()
 
     with open(OUT, "w", encoding="utf-8") as f:
-        json.dump(out_rows, f, ensure_ascii=False, indent=2)
+        json.dump({"rows": rows, "skipped": skipped, "empty": empty,
+                   "expected_empty": expected_empty},
+                  f, ensure_ascii=False, indent=2)
 
-    # 只报**没有锚点**的候选浮层；白名单逐条豁免
-    missing = [r for r in out_rows if not r["tid"] and r["tid"] not in NO_TID_EXEMPT]
+    missing = [r for r in rows if not r["tid"] and r["tid"] not in NO_TID_EXEMPT]
     by_state: dict[str, int] = {}
-    for r in out_rows:
+    for r in rows:
         by_state[r["state"]] = by_state.get(r["state"], 0) + 1
 
-    print(f"候选浮层 {len(out_rows)} 个 / {len(by_state)} 个状态；"
-          f"无 data-testid {len(missing)} 个")
+    print(f"候选浮层 {len(rows)} 次 / {len(by_state)} 个状态；无 data-testid {len(missing)} 个")
     for s, n in by_state.items():
-        print(f"  {s:28} {n}")
+        print(f"  {s:26} {n}")
+    if skipped:
+        print(f"\n⚠ 前置态没成立、**没跑到**的状态（{len(skipped)} 个，不算通过）：")
+        for s in skipped:
+            print(f"    - {s}")
+    if expected_empty:
+        print(f"\n· 本来就没有浮层的状态（{len(expected_empty)} 个，正常）：")
+        for s_ in expected_empty:
+            print(f"    - {s_}")
+    if empty:
+        print(f"\n⚠ 打开了、但几何判据枚举到 **0 个候选**的状态（{len(empty)} 个）：")
+        print("   —— 这不是「干净」，是**判据看不见它们**。要么补判据，要么记为盲区。")
+        for s in empty:
+            print(f"    - {s}")
     for r in missing:
         print(f"  ★ 缺锚点 [{r['state']}] role={r['role']!r} {r['w']}x{r['h']} "
-              f"@{r['x']},{r['y']} items={r['items']} cls={r['cls'][:40]!r}")
+              f"@{r['x']},{r['y']} items={r['items']} cls={r['cls'][:44]!r}")
 
-    # 自检结果要**打在最前面**：它决定上面那份"0 个缺锚点"值不值得信
-    ok_self = bool(selfcheck) and selfcheck.get("now_reported_missing")
+    # 自检结果打在**最前面**：它决定上面那份"0 个缺锚点"值不值得信
+    ok_self = (bool(selfcheck) and selfcheck.get("still_candidate")
+               and selfcheck.get("now_reported_missing"))
     print(f"\n自检：摘掉 {selfcheck.get('removed')} 的 data-testid 后，"
-          f"普查仍把它当候选={selfcheck.get('still_candidate')}、"
+          f"**重跑几何枚举**仍把它当候选={selfcheck.get('still_candidate')}、"
           f"并报成缺锚点={selfcheck.get('now_reported_missing')}"
           f"  →  {'✓ 判据能失败' if ok_self else '✗ 判据恒真，这轮结果不可信'}")
     if not ok_self:
