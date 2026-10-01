@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Ban, Tag } from "lucide-react";
 import type { NodeProps } from "@xyflow/react";
 
+import { nodeRingShadow } from "@/components/jimeng/nodeChrome";
 import type { JimengAudioNodeData } from "@/types/jimeng";
 import { FileBadgeIcon } from "@/components/jimeng/icons";
 import { TAG_COLORS } from "@/components/jimeng/nodes/JimengVideoTitleRow";
@@ -35,20 +36,23 @@ export function JimengAudioNode({ id, data, selected }: NodeProps) {
       style={{ width: d.width, height: d.height }}
       data-jimeng-node-selected={selected || undefined}
     >
-      <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center justify-between gap-1.5 text-left text-white/70">
-        <div className="flex min-w-0 items-center gap-1.5">
+      {/* Batch 812 SOURCE_FACT: 标题行内容顶对齐在 -31（源站行盒 32 高但内容不居中），
+          左簇 24 高、gap-1 → 文字起点 x=20（源站实测）。此前 bottom-full h-8
+          + items-center + gap-1.5 把 22 高的文字放到 -27/x=22，低了 4px。 */}
+      <div className="absolute inset-x-0 top-[-31px] z-10 flex h-8 items-start justify-between pr-px text-left">
+        <div className="flex h-6 min-w-0 items-center gap-1 text-white/70">
           <FileBadgeIcon size={16} />
           <JimengNodeTitle id={id} title={d.title} />
         </div>
         <span className="relative">
           <button
             type="button"
-            aria-label="节点颜色标记"
+            aria-label="Add tags"
             onClick={(e) => {
               e.stopPropagation();
               setTagPickerOpen((v) => !v);
             }}
-            className="flex size-4 items-center justify-center opacity-0 group-hover:opacity-100"
+            className="nodrag flex size-6 items-center justify-center rounded-lg px-1 opacity-0 group-hover:opacity-100"
           >
             {d.tagColor ? (
               <span
@@ -101,10 +105,7 @@ export function JimengAudioNode({ id, data, selected }: NodeProps) {
         style={{
           background:
             "linear-gradient(to right bottom, rgb(30,30,32), rgb(22,22,24))",
-          boxShadow:
-            selected === true
-              ? "0 0 0 1.5px rgba(255,255,255,0.92)"
-              : "0 0 0 1px rgba(255,255,255,0.06) inset",
+          boxShadow: nodeRingShadow(selected === true),
         }}
       >
         {/* 批 236 SOURCE_FACT: 居中 5 柱波形图标 */}

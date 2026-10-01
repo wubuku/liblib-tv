@@ -3,6 +3,7 @@
 import { Box, ChevronRight } from "lucide-react";
 import type { NodeProps } from "@xyflow/react";
 
+import { nodeRingShadow } from "@/components/jimeng/nodeChrome";
 import type { JimengDirectorNodeData } from "@/types/jimeng";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
@@ -35,7 +36,7 @@ export function JimengDirectorNode({ id, data, selected }: NodeProps) {
       data-jimeng-node-selected={selected || undefined}
       data-testid="director-node"
     >
-      <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center gap-1.5 text-left text-white/70">
+      <div className="absolute inset-x-0 top-[-31px] z-10 flex h-8 items-start text-left">
         <Box size={16} />
         <JimengNodeTitle id={id} title={d.title} />
       </div>
@@ -44,10 +45,7 @@ export function JimengDirectorNode({ id, data, selected }: NodeProps) {
         className="flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden rounded-lg px-6 text-center"
         style={{
           background: "rgb(32,32,32)",
-          boxShadow:
-            selected === true
-              ? "0 0 0 1.5px rgba(255,255,255,0.92)"
-              : "0 0 0 1px rgba(255,255,255,0.06) inset",
+          boxShadow: nodeRingShadow(selected === true),
         }}
       >
         <Box size={28} className="text-white/70" />

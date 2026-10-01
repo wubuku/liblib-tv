@@ -45,14 +45,17 @@ export function JimengNodeTitle({ id, title }: { id: string; title: string }) {
           }
         }}
         onMouseDown={(e) => e.stopPropagation()}
-        className="max-w-full truncate whitespace-nowrap rounded border border-white/30 bg-transparent px-1 text-[13px] leading-[22px] text-white/70 outline-none"
+        className="max-w-full truncate whitespace-nowrap rounded border border-white/30 bg-transparent px-1 py-px text-[13px] leading-[22px] text-white/70 outline-none"
       />
     );
   }
 
   return (
     <span
-      className="max-w-full cursor-text truncate whitespace-nowrap text-[13px] leading-[22px]"
+      // Batch 812 SOURCE_FACT: 源站标题文字 span 实测 36×24、padding `1px 0px`、
+      // 13px/22px —— 即 22 行高 + 上下各 1px = 24 高。此前复刻无 padding，只有 22 高，
+      // 整行因此比源站矮 2px（且图标/文字互不对齐）。
+      className="max-w-full cursor-text truncate whitespace-nowrap py-px text-[13px] leading-[22px]"
       title={title}
       data-testid="node-title-text"
       onClick={(e) => {

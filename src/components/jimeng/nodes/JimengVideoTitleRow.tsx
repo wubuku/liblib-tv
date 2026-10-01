@@ -35,13 +35,17 @@ export function JimengVideoTitleRow({
 
   return (
     <div
-      className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center justify-between text-left"
+      // Batch 812 SOURCE_FACT: 源站标题行盒 32 高但内容**顶对齐**在 -31，
+      // 不是"在 32px 里居中"（居中会把 24 高的文字放到 -27，低 4px）。
+      // justify-between + pr-px 保留：源站标签钮贴着卡片右缘**内侧 1px**
+      // （实测 24 宽 @x=544、卡片宽 569 → 右缘 568）。
+      className="absolute inset-x-0 top-[-31px] z-10 flex h-8 items-start justify-between pr-px text-left"
       onDoubleClick={(e) => {
         e.stopPropagation();
         onDblClick();
       }}
     >
-      <div className="flex min-w-0 items-center gap-1.5 text-white/70">
+      <div className="flex h-6 min-w-0 items-center gap-1 text-white/70">
         <FileBadgeIcon size={16} />
         <JimengNodeTitle id={id} title={d.title} />
       </div>
@@ -49,12 +53,15 @@ export function JimengVideoTitleRow({
         <span className="relative">
           <button
             type="button"
-            aria-label="节点颜色标记"
+            // Batch 812 SOURCE_FACT: 源站实名是 `Add tags`（此前复刻自造
+            // 「节点颜色标记」）。行为不变 —— 仍是源站的 禁止+五色 选色盘 (batch 31)。
+            aria-label="Add tags"
             onClick={(e) => {
               e.stopPropagation();
               onToggleTagPicker();
             }}
-            className="flex size-4 items-center justify-center"
+            // 源站实测 24×24、圆角 8、padding 0 4px；复刻此前是 16×16 无圆角。
+            className="nodrag flex size-6 items-center justify-center rounded-lg px-1"
           >
             {d.tagColor ? (
               <span

@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import type { NodeProps } from "@xyflow/react";
 
+import { nodeRingShadow } from "@/components/jimeng/nodeChrome";
 import type { JimengSubjectNodeData } from "@/types/jimeng";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
@@ -66,7 +67,7 @@ export function JimengSubjectNode({ id, data, selected }: NodeProps) {
       data-jimeng-node-selected={selected || undefined}
       data-testid="subject-node"
     >
-      <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center gap-1.5 text-left text-white/70">
+      <div className="absolute inset-x-0 top-[-31px] z-10 flex h-8 items-start text-left">
         <SquareUser size={16} />
         <JimengNodeTitle id={id} title={d.title} />
       </div>
@@ -75,10 +76,7 @@ export function JimengSubjectNode({ id, data, selected }: NodeProps) {
         className="flex h-full w-full flex-col overflow-hidden rounded-lg p-3"
         style={{
           background: "rgb(24,24,26)",
-          boxShadow:
-            selected === true
-              ? "0 0 0 1.5px rgba(255,255,255,0.92)"
-              : "0 0 0 1px rgba(255,255,255,0.06) inset",
+          boxShadow: nodeRingShadow(selected === true),
         }}
       >
         <div className="flex items-center justify-between">

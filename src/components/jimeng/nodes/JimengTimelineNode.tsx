@@ -3,6 +3,7 @@
 import { Download, Maximize2, Play, Plus, Trash2, Upload, Volume2 } from "lucide-react";
 import type { NodeProps } from "@xyflow/react";
 
+import { nodeRingShadow } from "@/components/jimeng/nodeChrome";
 import type { JimengTimelineNodeData } from "@/types/jimeng";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
@@ -71,7 +72,7 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
       data-jimeng-node-selected={selected || undefined}
       data-testid="timeline-node"
     >
-      <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center gap-1.5 text-left text-white/70">
+      <div className="absolute inset-x-0 top-[-31px] z-10 flex h-8 items-start text-left">
         <JimengNodeTitle id={id} title={d.title} />
       </div>
 
@@ -79,10 +80,7 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
         className="relative flex h-full w-full flex-col overflow-hidden rounded-lg"
         style={{
           background: "rgb(24,24,26)",
-          boxShadow:
-            selected === true
-              ? "0 0 0 1.5px rgba(255,255,255,0.92)"
-              : "0 0 0 1px rgba(255,255,255,0.06) inset",
+          boxShadow: nodeRingShadow(selected === true),
         }}
       >
         {/* 顶行：导入/删除 · 播放/时间码 · 下载/全屏编辑 */}

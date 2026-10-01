@@ -2,6 +2,7 @@
 
 import { Maximize2, Pause, Play, Volume2, VolumeX } from "lucide-react";
 
+import { nodeRingShadow } from "@/components/jimeng/nodeChrome";
 import type { JimengTask } from "@/store/jimengStore";
 import type { JimengVideoNodeData } from "@/types/jimeng";
 import { useJimengStore } from "@/store/jimengStore";
@@ -51,10 +52,7 @@ export function JimengVideoMediaCard({
       style={{
         background:
           "linear-gradient(to right bottom, rgb(34,34,34), rgb(20,20,20))",
-        boxShadow:
-          selected === true
-            ? "0 0 0 1.5px rgba(255,255,255,0.92)"
-            : undefined,
+        boxShadow: nodeRingShadow(selected === true),
       }}
       onDoubleClick={() => {
         if (d.hasMedia) restartPlay(id);

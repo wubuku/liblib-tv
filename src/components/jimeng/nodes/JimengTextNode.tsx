@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import type { NodeProps } from "@xyflow/react";
 
+import { nodeRingShadow } from "@/components/jimeng/nodeChrome";
 import type { JimengTextNodeData } from "@/types/jimeng";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
@@ -68,7 +69,7 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
       style={{ width: d.width, height: d.height }}
       data-jimeng-node-selected={selected || undefined}
     >
-      <div className="absolute inset-x-0 bottom-full z-10 flex h-8 items-center gap-1.5 text-left text-white/70">
+      <div className="absolute inset-x-0 top-[-31px] z-10 flex h-8 items-start text-left">
         <Type size={16} />
         <JimengNodeTitle id={id} title={d.title} />
       </div>
@@ -139,10 +140,7 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
           background:
             d.bgColor ??
             "linear-gradient(to right bottom, rgb(30,30,32), rgb(22,22,24))",
-          boxShadow:
-            selected === true
-              ? "0 0 0 1.5px rgba(255,255,255,0.92)"
-              : "0 0 0 1px rgba(255,255,255,0.06) inset",
+          boxShadow: nodeRingShadow(selected === true),
         }}
         onDoubleClick={(e) => {
           e.stopPropagation();
