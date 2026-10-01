@@ -653,4 +653,37 @@ screenshots:
     visible_text: '库内改名D / 画布 1 / 双击画布 · 自由生成节点 / 资产管理 / 100 %'
     alt: '画布顶栏同时显示「库内改名D」和「画布 1」：前者是在画布库里改的标题，后者是画布切换器的名字，两者互不相通'
     sha256: 4b24120306b452bec12c6b63c983842be256f57d2b0e5c19a1fa6e02b662343a
+  - file: screenshots/58-asset-library-empty.png
+    task_id: asset-library
+    step: '素材库（/assets）空态：左侧导航 首页/项目/资产/模型配置，页头「个人资产库」与搜索、筛选、+ 新建三个控件，五个类型页签全部为 0，中间「当前暂无资产」，右侧「生成历史」与「个人资产库」两栏'
+    route: '/assets'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '.ant-tabs, [aria-label="搜索资产"]'
+    visible_text: '个人资产库 / 新建 / 全部 0 / 文本 0 / 图片 0 / 视频 0 / 音频 0 / 网格视图 / 列表视图 / 时间倒序 / 当前暂无资产 / 上传资产 / 生成历史 0 / 个人资产库 0'
+    alt: '素材库空态：左侧导航为首页、项目、资产、模型配置；页头「个人资产库」与搜索、筛选、新建三个控件；五个类型页签全部为 0；中间显示「当前暂无资产」和「上传资产」按钮；右侧是生成历史与个人资产库'
+    sha256: 555b95ece5c2baf59c29e35b1ea86a302d9af4c8965eb00f609209f3c139086b
+  - file: screenshots/59-asset-library-cards.png
+    task_id: asset-library
+    step: '批量上传两张本地 PNG 后的素材库：卡片带「图片」「素材」标签、文件名、日期，以及 1024x1024 · 175 B · image/png 与「批量上传 · 未关联项目」'
+    route: '/assets'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '[aria-label="资产视图"]'
+    visible_text: '个人资产库 / 全部 2 / 图片 2 / beef-asset-2 / beef-asset-1 / 1024x1024 · 175 B · image/png / 批量上传 · 未关联项目'
+    alt: '素材库中有两张图片卡片，卡片上标注「图片 素材」标签、文件名、日期，以及 1024x1024 · 175 B · image/png、批量上传 · 未关联项目'
+    sha256: e47be7b8fa3aabd820caf22a3daadcc43b729eaeff2e3ff2a476a808884371bc
+  - file: screenshots/60-asset-batch-upload.png
+    task_id: asset-library
+    step: '「+ 新建」→「上传资产」打开的「批量上传素材」弹窗：业务分类/自定义分类/公共标签三个下拉、虚线拖放区「选择图片或视频 / 支持多选上传，标题默认取文件名」、底部取消与开始上传'
+    route: '/assets'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '.library-batch-upload-modal'
+    visible_text: '批量上传素材 / 业务分类 / 素材 / 自定义分类 / 未分类 / 公共标签 / 输入后回车 / 选择图片或视频 / 支持多选上传，标题默认取文件名 / 取消 / 开始上传'
+    alt: '批量上传素材弹窗：上方三个下拉（业务分类 素材、自定义分类 未分类、公共标签 输入后回车），中间虚线拖放区「选择图片或视频」，底部取消与开始上传'
+    sha256: 1305d5972baada7af186d5db343253b22808273dac52ced66ac6d909fbf0ed3a
 

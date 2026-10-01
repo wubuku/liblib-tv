@@ -64,7 +64,7 @@
 | `/projects/:projectId/chapters/:chapterId` | 章节视图——**已注册但访问不到**（见下） |
 | `/projects/:projectId/workflow/:unitId/:stage` | 工作流单元 / 阶段——**已注册但访问不到**（见下） |
 | `/canvas`、`/canvas/:id` | 画布页与指定画布；**画布库列表页就是 `/canvas`** |
-| `/assets` | 资产页 |
+| `/assets` | 资产页 / 素材库——见 [10-tasks/asset-library.md](10-tasks/asset-library.md) |
 | `/settings`（`?section=channels`） | **模型配置 / 个人渠道**——配置模型服务与个人工作流 |
 | `/plugins`、`/plugins/eagle` | 插件中心与 Eagle 素材库（需开启 `pluginCenterEnabled` 特性） |
 

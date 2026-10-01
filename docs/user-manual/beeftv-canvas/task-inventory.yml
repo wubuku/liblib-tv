@@ -655,3 +655,61 @@ tasks:
       (b) 全库出现任一写入 readonly / mode=readonly 的导航代码，手册「无入口」结论即过期。
     manual_pages:
       - 10-tasks/readonly-canvas.md
+  - id: asset-library
+    title: 素材库（资产页）：上传、分类、筛选与「只在本机」的真相
+    role: beeftv-creator
+    frequency: common
+    impact: high
+    coverage: full
+    routes:
+      - '/assets'
+    evidence:
+      - type: runtime
+        note: >-
+          v1.6.14 dev(:3001) 实测（2026-10-01，外部无头 Playwright 1440×900）：
+          空态页头「个人资产库」+ 搜索/筛选/+ 新建三个控件，五个类型页签（全部/文本/图片/
+          视频/音频，均带计数），网格/列表视图切换，排序下拉「时间倒序」；空态文案
+          「当前暂无资产」+「上传资产」；右侧「生成历史 0 / 个人资产库 0」。
+          「+ 新建 → 上传资产」打开「批量上传素材」弹窗（业务分类 / 自定义分类 /
+          公共标签 三个下拉 + 拖放区「选择图片或视频 / 支持多选上传，标题默认取文件名」+
+          取消/开始上传）。实传两张本地 PNG 成功，卡片显示
+          「1024x1024 · 175 B · image/png」「批量上传 · 未关联项目」。
+          筛选面板展开后可见四组：资产来源（个人资产库/生成历史）、素材类型、
+          标签与分类（角色/场景/道具/素材/其他 五个内置分类）、我的分类（全部/未分类）、
+          快捷筛选（最近使用/我的收藏/回收站）。截图 58/59/60。
+      - type: runtime
+        note: >-
+          **手动上传的素材只存在本机**（本批头条）：上传两张后换用**全新浏览器上下文
+          （无任何本地数据）**打开 /assets，看到的是「当前暂无资产」；
+          同时查 SQLite 服务端库 assets / asset_versions / asset_representations /
+          asset_folders 四张表**均为 0 行**。
+          源码对应：素材列表来自 useAssetStore（zustand persist 写本地），
+          **前端从不调用 /api/assets**（该端点虽存在但无调用点）。
+          推论（已写入手册）：手动上传的素材不计入账号素材配额——服务端
+          UserStorageUsage 统计 assets 表，而 kind="asset" 的配额校验只在
+          canvas_bridge.go 的资产提交路径上（creation*.go 全部传 kind="canvas"）。
+      - type: static
+        note: >-
+          **素材文件夹走服务端，与画布库文件夹正相反**（Batch 138 的对照）：
+          web/src/pages/assets/index.tsx:154 用 listAssetFolders() 作为查询、
+          :304 调 createAssetFolder(name)，端点 /api/asset-folders 存在且响应正常
+          （本机返回 {"folders":[]}）。而画布库 index.tsx 零处 AssetFolder/asset-folders。
+          ⚠️ 本账号为空，**「新建素材文件夹能否跨浏览器存活」未做运行时验证**，
+          手册按源码陈述并标注此边界。
+      - type: static
+        note: >-
+          术语不一致：界面按钮写「新建文件夹」，但后端重名报错写
+          「已存在同名素材分类」（backend/internal/app/asset_library.go:97）。
+          页规模 1861 行（web/src/pages/assets/index.tsx），**是产品里最大的界面页，
+          本批之前手册零专门覆盖**（仅在 20-reference.md 路由表里一行「资产页」）。
+    status: verified
+    review_note: >-
+      页面结构、筛选分组、上传流程均为运行时实测。素材「只在本机」有运行时 +
+      数据库双重证据。素材文件夹的服务端属性**只有源码证据**（本机账号为空，
+      建文件夹的探针未成功执行），已在证据条目与手册中显式标注为未运行时验证。
+    review_condition: >-
+      (a) 素材列表开始从 /api/assets 拉取，或 (b) useAssetStore 去掉本地持久化改走服务端
+      ——任一成立，手册「只存在这台电脑」即过期。
+    manual_pages:
+      - 10-tasks/asset-library.md
+

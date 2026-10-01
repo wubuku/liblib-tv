@@ -85,6 +85,8 @@ run_case "12) 自动保存开始盯 title/canvasTitle" web/src/pages/canvas/use-
 run_case "13) 画布文件夹接上服务端" web/src/pages/canvas/index.tsx "$HERE/selftest-fix-13-folders-synced.py" "createAssetFolder" "canvas-folders-local-only"
 run_case "14) 画布封面挪进画布内容" web/src/components/canvas/canvas-folder-card.tsx "$HERE/selftest-fix-14-cover-synced.py" "coverDataUrl" "canvas-cover-localstorage-only"
 run_case "15) 导演台场景补上同步" web/src/pages/canvas/use-canvas-director.ts "$HERE/selftest-fix-15-director-sync.py" "scheduleLocalCanvasBackendSync(projectId)" "director-scenes-not-synced"
+run_case "16) 远端同步会话判定不再写死 false" web/src/services/local-workspace-sync.ts "$HERE/selftest-fix-16-asset-sync-gate.py" "beef-remote-sync-session" "asset-sync-gated-off"
+run_case "17) 前端真的调用服务端素材列表接口" web/src/services/api/workspace-data.ts "$HERE/selftest-fix-17-asset-list-called.py" 'http.get<{ assets: unknown[] }>("/assets")' "asset-list-endpoint-uncalled"
 
 echo "=== 基线：真实 origin/main 应当通过 ==="
 if python3 "$GATE" >/dev/null 2>&1; then echo "  ✓ origin/main 通过"; else echo "  ✗ origin/main 未通过"; FAIL=$((FAIL+1)); fi

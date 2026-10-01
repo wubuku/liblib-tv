@@ -418,6 +418,112 @@ def p_rename_not_synced(src):
     return bool(m3) and "syncLocalCanvasProjectToBackend" in m3.group(0)
 
 
+def _fn_body(text, header, terminator="\n}"):
+    """取出 `export function <header>` 到函数结束的原文（找不到返回空串）。
+
+    ⚠️ **两个写过的坑（Batch 139 自踩，两轮都首轮报失效、理由却是假的）**：
+      ① 不要在 header 后面加 `\\b`——header 以 `)` 结尾时，`)` 与其后的空格
+         都是非词字符，词边界永远不成立，会让每个以括号收尾的函数都「找不到」；
+      ② 不要把前缀写死成 `export function `——`loadAssetLibraryPage` 是
+         `export async function`，写死不匹配。
+    """
+    m = re.search(r"export (?:async )?function " + re.escape(header) + r".*?" + terminator, text, re.S)
+    return m.group(0) if m else ""
+
+
+def p_asset_sync_gated_off(src):
+    """素材侧的每个同步出口都挂在写死的常量上；对照组：画布内容那条路没有关卡。
+
+    这是 Batch 139 的头条判据。**只查「素材存本地」是不够的**——那只能说明结果，
+    说明不了原因；本判据要钉住的是「三个常量把远端分支全关掉了」这个机制，
+    否则上游哪天把常量改回来，手册会继续言之凿凿地说「只在本机」。
+
+    判据要求（缺一即判失效）：
+      (a) hasRemoteUserDataSyncSession() 函数体是 return false —— 上传收尾的同步开关；
+      (b) isLocalWorkspaceMode() 函数体是 return true —— 「本地工作区」判定；
+      (c) workspaceCapabilities() 里 local 是字面量 true —— 页面 remoteMode 的来源；
+      (d) 素材页确实按 remoteMode 分叉：列表查询 enabled: remoteMode、
+          新建文件夹 if (!remoteMode) 走本地、else 才调 createAssetFolder；
+      (e) 那个叫 loadAssetLibraryPage 的「远端」取数函数读的其实是本地 store
+          ——**名字叫 remote 却读本地**，这是最容易骗过只看名字的读者的地方；
+      (f) 对照组：画布内容保存路径上**没有**这道关卡（syncLocalCanvasProject
+          直接 http.put）。少了 (f) 就会把结论写成「什么都不上传」，
+          而手册另一处明写画布内容确实会上传——两份说法会互相打架。
+    """
+    wsm = git_show(src, "web/src/services/workspace-mode.ts")
+    sync = git_show(src, "web/src/services/local-workspace-sync.ts")
+    idx = git_show(src, "web/src/pages/assets/index.tsx")
+    repo = git_show(src, "web/src/services/local-workspace-repository.ts")
+    if not wsm or not sync or not idx or not repo:
+        return None
+    # (a) 同步会话判定恒假
+    body = _fn_body(sync, "hasRemoteUserDataSyncSession()")
+    if not body or "return false" not in body:
+        return False
+    # (b) 本地工作区判定恒真
+    body = _fn_body(wsm, "isLocalWorkspaceMode()")
+    if not body or "return true" not in body:
+        return False
+    # (c) 能力快照的 local 是写死的字面量
+    caps = re.search(r"export function workspaceCapabilities\(\).*?\n\}", wsm, re.S)
+    if not caps or not re.search(r"\blocal:\s*true\b", caps.group(0)):
+        return False
+    # (d) 素材页按 remoteMode 分叉
+    if not re.search(r"const remoteMode = Boolean\(userId\) && !localWorkspace", idx):
+        return False
+    if "enabled: remoteMode" not in idx:
+        return False
+    save_folder = re.search(r"const saveFolder = async \(\) => \{.*?\n    \};", idx, re.S)
+    if not save_folder:
+        return False
+    sf = save_folder.group(0)
+    if not re.search(r"if \(!remoteMode\)", sf):
+        return False
+    if "createAssetFolder" not in sf:
+        return False
+    # (e) 「远端」取数函数其实读本地 store
+    page = _fn_body(sync, "loadAssetLibraryPage(options: LocalAssetPageOptions)", "\n}")
+    if not page or "useAssetStore.getState().assets" not in page:
+        return False
+    # (f) 对照组：画布内容保存无条件 PUT，没有这道关卡
+    canvas_sync = re.search(r"function syncLocalCanvasProject\(.*?\n\}", repo, re.S)
+    if not canvas_sync:
+        return False
+    cs = canvas_sync.group(0)
+    if "http.put" not in cs:
+        return False
+    return "hasRemoteUserDataSyncSession" not in cs
+
+
+def p_asset_list_endpoint_uncalled(src):
+    """服务端的素材列表接口实现完整，但前端零处调用。
+
+    与 p_asset_sync_gated_off 互补：那条钉「远端分支跑不到」，这条钉
+    「就算跑到了也没有东西可调」。两条都在，才敢说「素材这一侧没有服务端出口」。
+
+    判据要求：
+      (a) 后端注册了 GET /assets，且带分页与筛选（hasUserAssetPageFilters）；
+      (b) 前端**没有任何一处**发起该 GET——用 git grep 扫全 web/src，
+          只认 http 客户端调用形态，路由路径 "/assets" 不算。
+    """
+    handler = git_show(src, "backend/internal/handler/user_data.go")
+    if not handler:
+        return None
+    if not re.search(r'r\.GET\("/assets"', handler):
+        return False
+    if "hasUserAssetPageFilters" not in handler or "UserAssetsPage" not in handler:
+        return False
+    r = subprocess.run(
+        ["git", "grep", "-n", "-E",
+         r"http\.(get|request|fetch)<[^>]*>\(\s*[\"\']/assets[\"\']",
+         REF, "--", "web/src"],
+        cwd=src, capture_output=True, text=True)
+    if (r.stdout or "").strip():
+        return False
+    return True
+
+
+
 # 第 4 个字段 scan_key = (文件, setter 名)，表示该条**同时**能被方向二的
 # 全量 setter 扫描覆盖；为 None 表示**只有专属判据**（判据形态不同，
 # 例如「ref 零 click」或「路由先 Navigate」，setter 扫描天然照不到）。
@@ -451,6 +557,10 @@ REGISTRY = [
      p_canvas_cover_is_localstorage, None),
     ("director-scenes-not-synced", "导演台场景只写本地、从不上传",
      p_director_scenes_not_synced, None),
+    ("asset-sync-gated-off", "素材侧每个同步出口都挂在写死的常量上（画布内容没有）",
+     p_asset_sync_gated_off, None),
+    ("asset-list-endpoint-uncalled", "服务端素材列表接口实现完整但前端零处调用",
+     p_asset_list_endpoint_uncalled, None),
 ]
 
 
