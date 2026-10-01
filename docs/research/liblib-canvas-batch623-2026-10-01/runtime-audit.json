@@ -1,0 +1,870 @@
+{
+  "batch": 623,
+  "title": "sweep the breakpoint neighbourhoods instead of three widths, and close the one-pixel gap between max-[899px] and min-[900px] that collapsed the resource rail at 899",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "no live source reading: the shared source tab is at 1600x1000 with another user in it (probe616), so this batch makes no fidelity claim",
+    "/tmp/dbg623a.py: 86 widths (dense +-3 around every breakpoint in src/ plus a coarse 40px pass), census at each, and a fresh-load cross-check at 17 widths",
+    "/tmp/dbg623b.py: the ancestor chain of both columns at 390/897/898/899/900, showing inert is carried by the aside wrapper — 622 read the inner section and got a false asymmetry",
+    "/tmp/dbg623c.py: panel geometry at 895..905 before and after the fix. Before: rail [0,0,0,0] and 108 controls at 899 vs [0,52,48,848] and 115 at 900. After: identical"
+  ],
+  "claims": {
+    "cloneDecision": [
+      "min-[900px] became min-[899px] in 16 places across DirectorDesk.tsx and DirectorIconRail.tsx, so narrow is <= 898 and desktop is >= 899 with no uncovered width. Only the min- side moved: max-[899px] already meant <= 898",
+      "the sweep is now part of acceptance: 86 widths, each with a census, a zero-size/display:none control check, and the on-screen/inert invariant for both columns"
+    ],
+    "notClaimed": [
+      "anything about the source at all — no source reading backs this batch, including the choice to put 899 on the desktop side. That choice follows 622, which aligned the JS to <= 898 mobile, and the arithmetic of the two media queries; it is not a source reading",
+      "the other breakpoints. 430/480/520/620/680/850 are independent per-component thresholds whose base bands are ordinary mobile-first defaults, not the complement of max-[899px]/min-[900px]; they were swept but not changed",
+      "that the sweep is exhaustive. 86 widths across 360..1920 is dense at the boundaries and coarse between them; a defect confined to an unsampled pixel between the coarse steps would still be missed"
+    ]
+  },
+  "breakpointsFound": [
+    430,
+    480,
+    520,
+    620,
+    680,
+    850,
+    899
+  ],
+  "checks": {
+    "sweep": {
+      "360": {
+        "total": 38,
+        "covered": 0,
+        "clipped": 1
+      },
+      "400": {
+        "total": 39,
+        "covered": 0,
+        "clipped": 1
+      },
+      "427": {
+        "total": 40,
+        "covered": 0,
+        "clipped": 2
+      },
+      "428": {
+        "total": 40,
+        "covered": 0,
+        "clipped": 2
+      },
+      "429": {
+        "total": 40,
+        "covered": 0,
+        "clipped": 2
+      },
+      "430": {
+        "total": 40,
+        "covered": 0,
+        "clipped": 2
+      },
+      "431": {
+        "total": 40,
+        "covered": 0,
+        "clipped": 2
+      },
+      "432": {
+        "total": 40,
+        "covered": 0,
+        "clipped": 2
+      },
+      "433": {
+        "total": 40,
+        "covered": 0,
+        "clipped": 2
+      },
+      "440": {
+        "total": 41,
+        "covered": 0,
+        "clipped": 2
+      },
+      "477": {
+        "total": 42,
+        "covered": 0,
+        "clipped": 2
+      },
+      "478": {
+        "total": 42,
+        "covered": 0,
+        "clipped": 2
+      },
+      "479": {
+        "total": 42,
+        "covered": 0,
+        "clipped": 2
+      },
+      "480": {
+        "total": 42,
+        "covered": 0,
+        "clipped": 2
+      },
+      "481": {
+        "total": 42,
+        "covered": 0,
+        "clipped": 2
+      },
+      "482": {
+        "total": 42,
+        "covered": 0,
+        "clipped": 2
+      },
+      "483": {
+        "total": 42,
+        "covered": 0,
+        "clipped": 2
+      },
+      "517": {
+        "total": 43,
+        "covered": 0,
+        "clipped": 2
+      },
+      "518": {
+        "total": 43,
+        "covered": 0,
+        "clipped": 2
+      },
+      "519": {
+        "total": 43,
+        "covered": 0,
+        "clipped": 2
+      },
+      "520": {
+        "total": 43,
+        "covered": 0,
+        "clipped": 2
+      },
+      "521": {
+        "total": 43,
+        "covered": 0,
+        "clipped": 2
+      },
+      "522": {
+        "total": 43,
+        "covered": 0,
+        "clipped": 2
+      },
+      "523": {
+        "total": 43,
+        "covered": 0,
+        "clipped": 2
+      },
+      "560": {
+        "total": 45,
+        "covered": 0,
+        "clipped": 2
+      },
+      "600": {
+        "total": 46,
+        "covered": 0,
+        "clipped": 2
+      },
+      "617": {
+        "total": 47,
+        "covered": 0,
+        "clipped": 2
+      },
+      "618": {
+        "total": 47,
+        "covered": 0,
+        "clipped": 2
+      },
+      "619": {
+        "total": 47,
+        "covered": 0,
+        "clipped": 2
+      },
+      "620": {
+        "total": 47,
+        "covered": 0,
+        "clipped": 1
+      },
+      "621": {
+        "total": 47,
+        "covered": 0,
+        "clipped": 1
+      },
+      "622": {
+        "total": 47,
+        "covered": 0,
+        "clipped": 1
+      },
+      "623": {
+        "total": 47,
+        "covered": 0,
+        "clipped": 1
+      },
+      "640": {
+        "total": 47,
+        "covered": 0,
+        "clipped": 1
+      },
+      "677": {
+        "total": 49,
+        "covered": 0,
+        "clipped": 2
+      },
+      "678": {
+        "total": 49,
+        "covered": 0,
+        "clipped": 2
+      },
+      "679": {
+        "total": 49,
+        "covered": 0,
+        "clipped": 2
+      },
+      "680": {
+        "total": 49,
+        "covered": 0,
+        "clipped": 2
+      },
+      "681": {
+        "total": 49,
+        "covered": 0,
+        "clipped": 2
+      },
+      "682": {
+        "total": 49,
+        "covered": 0,
+        "clipped": 1
+      },
+      "683": {
+        "total": 49,
+        "covered": 0,
+        "clipped": 1
+      },
+      "720": {
+        "total": 50,
+        "covered": 0,
+        "clipped": 1
+      },
+      "760": {
+        "total": 50,
+        "covered": 0,
+        "clipped": 1
+      },
+      "800": {
+        "total": 51,
+        "covered": 0,
+        "clipped": 0
+      },
+      "840": {
+        "total": 51,
+        "covered": 0,
+        "clipped": 0
+      },
+      "847": {
+        "total": 52,
+        "covered": 0,
+        "clipped": 1
+      },
+      "848": {
+        "total": 52,
+        "covered": 0,
+        "clipped": 1
+      },
+      "849": {
+        "total": 52,
+        "covered": 0,
+        "clipped": 1
+      },
+      "850": {
+        "total": 52,
+        "covered": 0,
+        "clipped": 1
+      },
+      "851": {
+        "total": 52,
+        "covered": 0,
+        "clipped": 1
+      },
+      "852": {
+        "total": 52,
+        "covered": 0,
+        "clipped": 1
+      },
+      "853": {
+        "total": 52,
+        "covered": 0,
+        "clipped": 1
+      },
+      "880": {
+        "total": 52,
+        "covered": 0,
+        "clipped": 0
+      },
+      "896": {
+        "total": 52,
+        "covered": 0,
+        "clipped": 0
+      },
+      "897": {
+        "total": 52,
+        "covered": 0,
+        "clipped": 0
+      },
+      "898": {
+        "total": 52,
+        "covered": 0,
+        "clipped": 0
+      },
+      "899": {
+        "total": 115,
+        "covered": 0,
+        "clipped": 8
+      },
+      "900": {
+        "total": 115,
+        "covered": 0,
+        "clipped": 8
+      },
+      "901": {
+        "total": 115,
+        "covered": 0,
+        "clipped": 8
+      },
+      "902": {
+        "total": 115,
+        "covered": 0,
+        "clipped": 8
+      },
+      "920": {
+        "total": 115,
+        "covered": 0,
+        "clipped": 8
+      },
+      "960": {
+        "total": 116,
+        "covered": 0,
+        "clipped": 7
+      },
+      "1000": {
+        "total": 116,
+        "covered": 0,
+        "clipped": 6
+      },
+      "1040": {
+        "total": 117,
+        "covered": 0,
+        "clipped": 5
+      },
+      "1080": {
+        "total": 117,
+        "covered": 0,
+        "clipped": 5
+      },
+      "1120": {
+        "total": 117,
+        "covered": 0,
+        "clipped": 4
+      },
+      "1160": {
+        "total": 118,
+        "covered": 0,
+        "clipped": 4
+      },
+      "1200": {
+        "total": 118,
+        "covered": 0,
+        "clipped": 3
+      },
+      "1240": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 4
+      },
+      "1280": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 3
+      },
+      "1320": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 3
+      },
+      "1360": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 2
+      },
+      "1400": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 2
+      },
+      "1440": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 1
+      },
+      "1480": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 1
+      },
+      "1520": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 0
+      },
+      "1560": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 0
+      },
+      "1600": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 0
+      },
+      "1640": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 0
+      },
+      "1680": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 0
+      },
+      "1720": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 0
+      },
+      "1760": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 0
+      },
+      "1800": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 0
+      },
+      "1840": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 0
+      },
+      "1880": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 0
+      },
+      "1920": {
+        "total": 120,
+        "covered": 0,
+        "clipped": 0
+      }
+    },
+    "the-sweep-covers-86-widths": {
+      "ok": true,
+      "detail": {
+        "dense": 49,
+        "coarse": 40
+      }
+    },
+    "no-width-has-a-covered-control": {
+      "ok": true,
+      "detail": {}
+    },
+    "no-width-has-a-control-collapsed-to-nothing": {
+      "ok": true,
+      "detail": {}
+    },
+    "fresh-vw429": {
+      "total": 40,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw430": {
+      "total": 40,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw479": {
+      "total": 42,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw480": {
+      "total": 42,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw519": {
+      "total": 43,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw520": {
+      "total": 43,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw619": {
+      "total": 47,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw620": {
+      "total": 47,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw679": {
+      "total": 49,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw680": {
+      "total": 49,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw849": {
+      "total": 52,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw850": {
+      "total": 52,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw897": {
+      "total": 52,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw898": {
+      "total": 52,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw899": {
+      "total": 115,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw900": {
+      "total": 115,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "fresh-vw901": {
+      "total": 115,
+      "covered": 0,
+      "zeroSize": []
+    },
+    "resizing-one-page-agrees-with-a-fresh-load": {
+      "ok": true,
+      "detail": []
+    },
+    "vw897:geometry": {
+      "vw": 897,
+      "tree": [
+        -220,
+        88,
+        220,
+        812
+      ],
+      "treeInert": true,
+      "inspector": [
+        897,
+        88,
+        281,
+        636
+      ],
+      "inspectorInert": true,
+      "rail": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "shotBar": [
+        0,
+        52,
+        897,
+        36
+      ]
+    },
+    "vw897:the-tree-is-inert-exactly-when-it-is-off-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": false,
+        "inert": true,
+        "box": [
+          -220,
+          88,
+          220,
+          812
+        ]
+      }
+    },
+    "vw897:the-inspector-is-inert-exactly-when-it-is-off-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": false,
+        "inert": true,
+        "box": [
+          897,
+          88,
+          281,
+          636
+        ]
+      }
+    },
+    "vw897:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "vw897:no-console-errors": {
+      "ok": true,
+      "detail": {
+        "errs": [],
+        "filtered": 0
+      }
+    },
+    "vw898:geometry": {
+      "vw": 898,
+      "tree": [
+        -220,
+        88,
+        220,
+        812
+      ],
+      "treeInert": true,
+      "inspector": [
+        898,
+        88,
+        281,
+        636
+      ],
+      "inspectorInert": true,
+      "rail": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "shotBar": [
+        0,
+        52,
+        898,
+        36
+      ]
+    },
+    "vw898:the-tree-is-inert-exactly-when-it-is-off-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": false,
+        "inert": true,
+        "box": [
+          -220,
+          88,
+          220,
+          812
+        ]
+      }
+    },
+    "vw898:the-inspector-is-inert-exactly-when-it-is-off-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": false,
+        "inert": true,
+        "box": [
+          898,
+          88,
+          281,
+          636
+        ]
+      }
+    },
+    "vw898:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "vw898:no-console-errors": {
+      "ok": true,
+      "detail": {
+        "errs": [],
+        "filtered": 0
+      }
+    },
+    "vw899:geometry": {
+      "vw": 899,
+      "tree": [
+        48,
+        52,
+        233,
+        848
+      ],
+      "treeInert": false,
+      "inspector": [
+        618,
+        52,
+        281,
+        666
+      ],
+      "inspectorInert": false,
+      "rail": [
+        0,
+        52,
+        48,
+        848
+      ],
+      "shotBar": [
+        281,
+        52,
+        618,
+        36
+      ]
+    },
+    "vw899:the-tree-is-inert-exactly-when-it-is-off-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": true,
+        "inert": false,
+        "box": [
+          48,
+          52,
+          233,
+          848
+        ]
+      }
+    },
+    "vw899:the-inspector-is-inert-exactly-when-it-is-off-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": true,
+        "inert": false,
+        "box": [
+          618,
+          52,
+          281,
+          666
+        ]
+      }
+    },
+    "vw899:the-resource-rail-has-its-source-width": {
+      "ok": true,
+      "detail": [
+        0,
+        52,
+        48,
+        848
+      ]
+    },
+    "vw899:the-tree-sits-at-the-source-column": {
+      "ok": true,
+      "detail": [
+        48,
+        52,
+        233,
+        848
+      ]
+    },
+    "vw899:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "vw899:no-console-errors": {
+      "ok": true,
+      "detail": {
+        "errs": [],
+        "filtered": 0
+      }
+    },
+    "vw900:geometry": {
+      "vw": 900,
+      "tree": [
+        48,
+        52,
+        233,
+        848
+      ],
+      "treeInert": false,
+      "inspector": [
+        619,
+        52,
+        281,
+        666
+      ],
+      "inspectorInert": false,
+      "rail": [
+        0,
+        52,
+        48,
+        848
+      ],
+      "shotBar": [
+        281,
+        52,
+        619,
+        36
+      ]
+    },
+    "vw900:the-tree-is-inert-exactly-when-it-is-off-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": true,
+        "inert": false,
+        "box": [
+          48,
+          52,
+          233,
+          848
+        ]
+      }
+    },
+    "vw900:the-inspector-is-inert-exactly-when-it-is-off-screen": {
+      "ok": true,
+      "detail": {
+        "onScreen": true,
+        "inert": false,
+        "box": [
+          619,
+          52,
+          281,
+          666
+        ]
+      }
+    },
+    "vw900:the-resource-rail-has-its-source-width": {
+      "ok": true,
+      "detail": [
+        0,
+        52,
+        48,
+        848
+      ]
+    },
+    "vw900:the-tree-sits-at-the-source-column": {
+      "ok": true,
+      "detail": [
+        48,
+        52,
+        233,
+        848
+      ]
+    },
+    "vw900:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "vw900:no-console-errors": {
+      "ok": true,
+      "detail": {
+        "errs": [],
+        "filtered": 0
+      }
+    }
+  },
+  "result": "24/24 passed"
+}

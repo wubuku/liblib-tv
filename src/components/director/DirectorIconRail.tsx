@@ -265,7 +265,17 @@ export function DirectorIconRail({
       // 现由 DirectorDesk 把它提到工作区根（`fixed`，即包含块）并改成
       // `top-[52px] bottom-0`，这里只需给出高度。z-30 保持低于时间线的
       // z-40 —— 与源站一致（源站「帮助」同样被时间线左簇盖住，见下）。
-      className="absolute bottom-0 left-0 top-[52px] z-30 hidden w-12 shrink-0 flex-col items-center gap-2 border-r border-white/8 bg-[#171717] p-2 min-[900px]:flex"
+      //
+      // Batch 623：`min-[900px]` → `min-[899px]`。原先这一对断点
+      // （`max-[899px]` + `min-[900px]`）看上去互补，其实是**错开一像素的**：
+      // Tailwind v4 把 `max-[899px]` 编译成 `@media (width < 899px)`（≤898）、
+      // `min-[900px]` 编译成 `@media (width >= 900px)`（≥900），于是 **899
+      // 落在两条都不生效的缝里**。缝里的资源栏塌成 `[0,0,0,0]` —— 7 枚活
+      // 控件一起消失，而普查不把「零尺寸」算作遮挡，所以 899 的普查报
+      // covered=0，看不出来。改成 `min-[899px]`（≥899）后与 `max-[899px]`
+      // 严丝合缝：窄屏 ≤898 / 桌面 ≥899，无缝无叠，也与 622 对齐过的
+      // `matchMedia('(max-width: 898px)')` 完全一致。
+      className="absolute bottom-0 left-0 top-[52px] z-30 hidden w-12 shrink-0 flex-col items-center gap-2 border-r border-white/8 bg-[#171717] p-2 min-[899px]:flex"
     >
       {/* 源站节奏：gap-2（8px）。`场景` 与 `添加角色` 之间还夹一条
           `<div class="border-white/8 h-2 w-8 border-b">` 分隔线（32×8

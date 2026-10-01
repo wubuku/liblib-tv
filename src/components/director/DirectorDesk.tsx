@@ -91,7 +91,7 @@ function DirectorShotBar() {
       // 正确让位量是**整条左列 281px**（48 资源栏 + 233 场景树）：镜头条自
       // x=281 起，与源站左列的结构一致 —— 源站在 y 52..88 这条带里 x<281 的
       // 部分同样是左列。窄屏 rail 隐藏、场景树是抽屉，故不加边距。
-      className="flex h-9 shrink-0 items-center gap-2 overflow-x-auto border-b border-white/[0.07] bg-[#171717] px-3 min-[900px]:ml-[281px]"
+      className="flex h-9 shrink-0 items-center gap-2 overflow-x-auto border-b border-white/[0.07] bg-[#171717] px-3 min-[899px]:ml-[281px]"
     >
       <span className="shrink-0 text-[10px] uppercase tracking-[0.08em] text-[#666]">
         镜头
@@ -929,7 +929,7 @@ export default function DirectorDesk({
             `50vw − 85`（85 = 170/2）即可让开：390 时左列 110、收起
             62..102，与 110 相接不重叠；≥900 时 `50vw−85 ≥ 395 > 280`，
             该上限永不生效，源站的 280 定宽与几何一字未动。 */}
-        <div className="flex h-full min-w-0 max-w-[calc(50vw-85px)] items-center max-[899px]:px-2 min-[900px]:max-w-none min-[900px]:w-[280px] min-[900px]:shrink-0">
+        <div className="flex h-full min-w-0 max-w-[calc(50vw-85px)] items-center max-[899px]:px-2 min-[899px]:max-w-none min-[899px]:w-[280px] min-[899px]:shrink-0">
           <button
             type="button"
             data-close-director
@@ -1057,7 +1057,7 @@ export default function DirectorDesk({
             justify-between h-12 px-3`）：源站这列里只有一行选中对象名
             `text-[15px] font-medium text-neutral-50`；clone 保留自己的
             状态文案与项目导入导出（源站导演台顶栏无对应物，clone-only）。 */}
-        <div className="flex h-full min-w-0 items-center justify-end gap-2 max-[899px]:px-2 min-[900px]:w-[280px] min-[900px]:shrink-0 min-[900px]:justify-between min-[900px]:px-3 min-[900px]:justify-self-end">
+        <div className="flex h-full min-w-0 items-center justify-end gap-2 max-[899px]:px-2 min-[899px]:w-[280px] min-[899px]:shrink-0 min-[899px]:justify-between min-[899px]:px-3 min-[899px]:justify-self-end">
           <span
             data-director-header-object-name
             className="min-w-0 truncate text-[15px] font-medium text-neutral-50"
@@ -1172,7 +1172,7 @@ export default function DirectorDesk({
           场景树则是 46/220 而非 48/232。
           现按源站把它们提到工作区根（`fixed`，本身即包含块）并定位
           `top-[52px] bottom-0`。窄屏（<900px）下 rail 仍隐藏、场景树仍
-          是 `left-0` 抽屉，故这两处覆写留在 min-[900px] 断点里。 */}
+          是 `left-0` 抽屉，故这两处覆写留在 min-[899px] 断点里。 */}
       <aside
         ref={treePanelRef}
         aria-label="场景对象"
@@ -1187,8 +1187,8 @@ export default function DirectorDesk({
         className={cn(
           // 233 = 源站树的 232 内容 + 源站 aside 那 1px `border-r`
           // （源站 aside 281 宽、树 48..280、边框落在 280..281）。
-          "absolute bottom-0 left-0 top-[88px] z-30 w-[220px] border-r border-white/10 transition-transform duration-200 min-[900px]:left-12 min-[900px]:top-[52px] min-[900px]:w-[233px]",
-          viewportPanelsCollapsed && "min-[900px]:hidden",
+          "absolute bottom-0 left-0 top-[88px] z-30 w-[220px] border-r border-white/10 transition-transform duration-200 min-[899px]:left-12 min-[899px]:top-[52px] min-[899px]:w-[233px]",
+          viewportPanelsCollapsed && "min-[899px]:hidden",
           activeMobilePanel === "tree"
             ? "max-[899px]:translate-x-0"
             : "max-[899px]:-translate-x-full",
@@ -1303,7 +1303,7 @@ export default function DirectorDesk({
                  同一屏里另外两样东西都说明镜头条那一行**不该**被抽屉吃掉：
                  (1) 关闭抽屉的遮罩是 `absolute inset-0`，即 88..668，起点
                  正好在镜头条之下——遮罩的取景已经声明了「这一行保持可用」；
-                 (2) 场景树抽屉用的是 `top-[88px] min-[900px]:top-[52px]`
+                 (2) 场景树抽屉用的是 `top-[88px] min-[899px]:top-[52px]`
                  （见上方 tree aside），窄屏同样从 88 起，只有属性抽屉没有这层
                  覆写。两个抽屉行为不一致，属遗漏而非设计。
                  故窄屏把 `-top-9` 抵掉：包含块本身就起于 88，`top-0` 即 88，
