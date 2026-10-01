@@ -27,7 +27,10 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useDirectorStore } from "@/store/directorStore";
+import {
+  DIRECTOR_TIMELINE_DEFAULT_HEIGHT,
+  useDirectorStore,
+} from "@/store/directorStore";
 import type { DirectorTimelineTrack } from "@/store/directorStore";
 import { DirectorCurveEditor } from "@/components/director/DirectorCurveEditor";
 import {
@@ -100,12 +103,6 @@ const DIRECTOR_KEYFRAME_BOX_PX = "7.8px";
 // 播放头位置读数 `0`、总时长读数 `10000`（该项目时长 10s × 1000）。
 // batch 591 把 clone 的默认单位定成 `s`，但那不是源站事实（源站两次观测都在
 // ms 态），本批按实测翻转。
-// Batch 607（源站 2026-10-01 实测）：展开态时间轴总高 182px（batch 591
-// 已钉住），面板顶边 8px 是拖拽把手。量程上限 420 / 下限 88（收起档高度）
-// 是 clone 自定的——源站的拖拽量程未取证。
-const DIRECTOR_TIMELINE_HEIGHT = 182;
-const DIRECTOR_TIMELINE_HEIGHT_MIN = 88;
-const DIRECTOR_TIMELINE_HEIGHT_MAX = 420;
 const DIRECTOR_DEFAULT_TIME_UNIT: DirectorTimeUnit = "ms";
 
 function directorTrackKeyframeState(
@@ -271,7 +268,11 @@ export function DirectorTimeline({
   // 字段，zoom 走同一条路）它不进持久化 schema，因此就放在组件本地，
   // 与 `timelineCollapsed` 同级。量程 88（收起档）..420 是 clone 自定的
   // ——源站的拖拽量程**未取证**（拖它会改用户真实工程里的面板高度）。
-  const [timelineHeight, setTimelineHeight] = useState(DIRECTOR_TIMELINE_HEIGHT);
+  // Batch 608：高度从组件本地 state 上提到 directorStore（视图态，不进持久化
+  // schema），好让「动画时间轴」开关与拖拽把手操作同一份状态。
+  const timelinePanelOpen = useDirectorStore((state) => state.timelinePanelOpen);
+  const timelineHeight = useDirectorStore((state) => state.timelineHeight);
+  const setTimelineHeight = useDirectorStore((state) => state.setTimelineHeight);
   const resizeDragRef = useRef<{ pointerId: number; startY: number; startHeight: number } | null>(
     null,
   );
@@ -291,12 +292,7 @@ export function DirectorTimeline({
     if (!drag || drag.pointerId !== event.pointerId) return;
     // 往上拖（clientY 变小）面板变高，所以取负号
     const next = drag.startHeight - (event.clientY - drag.startY);
-    setTimelineHeight(
-      Math.min(
-        DIRECTOR_TIMELINE_HEIGHT_MAX,
-        Math.max(DIRECTOR_TIMELINE_HEIGHT_MIN, Math.round(next)),
-      ),
-    );
+    setTimelineHeight(next);
   };
   const endHeightResize = (event: React.PointerEvent<HTMLDivElement>) => {
     if (resizeDragRef.current?.pointerId !== event.pointerId) return;
@@ -696,6 +692,16 @@ export function DirectorTimeline({
     target.addEventListener("lostpointercapture", handleLostPointerCapture);
   };
 
+  // Batch 608：源站底部胶囊里那枚「动画时间轴」是 `aria-pressed=true` 的开关
+  // （源站实测），时间轴面板当前可见。clone 原先时间轴常驻、无整条开关。
+  // 语义取「开关整条时间轴面板的可见性」——这是按钮名 + aria-pressed 开态 +
+  // 面板可见三者共同支持的读法，**属推断**：源站那枚按钮的点击行为没有取证
+  // （点它可能改用户真实工程），所以不声称其确切结果。这里落成一个真实可用
+  // 的开关，而不是一个不工作的按钮。
+  //
+  // 与「时间线最小化」（182 -> 88，面板仍在）是两个独立语义，互不影响。
+  if (!timelinePanelOpen) return null;
+
   return (
     <section
       ref={timelineRootRef}
@@ -717,10 +723,13 @@ export function DirectorTimeline({
         // 源站实测：展开 1920x182 @(0,968)；收起 1920x88 @(0,1062)
         timelineCollapsed
           ? "h-[88px]"
-          : cn("h-[182px]", timelineHeight !== DIRECTOR_TIMELINE_HEIGHT && "h-auto"),
+          : cn(
+              "h-[182px]",
+              timelineHeight !== DIRECTOR_TIMELINE_DEFAULT_HEIGHT && "h-auto",
+            ),
       )}
       style={
-        timelineCollapsed || timelineHeight === DIRECTOR_TIMELINE_HEIGHT
+        timelineCollapsed || timelineHeight === DIRECTOR_TIMELINE_DEFAULT_HEIGHT
           ? undefined
           : { height: timelineHeight }
       }

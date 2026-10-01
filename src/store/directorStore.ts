@@ -91,6 +91,13 @@ import {
   DIRECTOR_TIMELINE_DEFAULT_ZOOM,
   restoreDirectorProjectRuntimeSnapshotV1,
 } from "@/lib/directorProjectRuntimeAdapter";
+
+// Batch 607/608：时间轴面板的三个高度常量。此前定义在 DirectorTimeline.tsx
+// 组件本地；batch 608 把高度上提到 store（视图态），常量跟着搬到 store
+// 所在模块，组件改为引用。
+export const DIRECTOR_TIMELINE_DEFAULT_HEIGHT = 182;
+export const DIRECTOR_TIMELINE_HEIGHT_MIN = 88;
+export const DIRECTOR_TIMELINE_HEIGHT_MAX = 420;
 import {
   directorProjectPersistence,
   getDirectorProjectPersistenceSnapshot,
@@ -523,6 +530,13 @@ interface DirectorState {
   aspectRatio: DirectorAspectRatio;
   showThirds: boolean;
   viewportPanelsCollapsed: boolean;
+  // Batch 608（视图态，刻意不进持久化 schema —— 与 `viewportPanelsCollapsed`
+  // 同款，也与 batch 599 的 `timeline.zoom` 同款：文档 schema 只描述工程内容，
+  // 不描述面板当前开合/多高）。`timelinePanelOpen` 由视口底部胶囊那枚
+  // 「动画时间轴」驱动（源站实测它 `aria-pressed=true` 且时间轴面板可见）。
+  timelinePanelOpen: boolean;
+  /** Batch 607/608：顶边拖拽把手调出来的时间轴总高，量程 88..420。 */
+  timelineHeight: number;
   isCapturing: boolean;
   captures: DirectorCapture[];
   activeCaptureId: string | null;
@@ -624,6 +638,9 @@ interface DirectorState {
   toggleThirds: () => void;
   toggleViewportPanelsCollapsed: () => void;
   setViewportPanelsCollapsed: (collapsed: boolean) => void;
+  setTimelinePanelOpen: (open: boolean) => void;
+  toggleTimelinePanel: () => void;
+  setTimelineHeight: (height: number) => void;
   updateScene: (
     patch: Partial<DirectorScene>,
   ) => DirectorCommandResult;
@@ -2544,6 +2561,8 @@ function restoreDirectorProjectState(
     aspectRatio: restored.aspectRatio,
     showThirds: false,
     viewportPanelsCollapsed: false,
+  timelinePanelOpen: true,
+  timelineHeight: DIRECTOR_TIMELINE_DEFAULT_HEIGHT,
     isCapturing: false,
     captures: record.memory.captures.map((capture) => ({ ...capture })),
     activeCaptureId: null,
@@ -2580,6 +2599,8 @@ function createInvalidatedDirectorSessionState(): Partial<DirectorState> {
     aspectRatio: "16:9",
     showThirds: false,
     viewportPanelsCollapsed: false,
+  timelinePanelOpen: true,
+  timelineHeight: DIRECTOR_TIMELINE_DEFAULT_HEIGHT,
     isCapturing: false,
     captures: [],
     activeCaptureId: null,
@@ -2928,6 +2949,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   aspectRatio: "16:9",
   showThirds: false,
   viewportPanelsCollapsed: false,
+  timelinePanelOpen: true,
+  timelineHeight: DIRECTOR_TIMELINE_DEFAULT_HEIGHT,
   isCapturing: false,
   captures: [],
   activeCaptureId: null,
@@ -5468,6 +5491,16 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
 
   setViewportPanelsCollapsed: (collapsed) =>
     set({ viewportPanelsCollapsed: collapsed }),
+
+  setTimelinePanelOpen: (open) => set({ timelinePanelOpen: open }),
+  toggleTimelinePanel: () => set((state) => ({ timelinePanelOpen: !state.timelinePanelOpen })),
+  setTimelineHeight: (height) =>
+    set({
+      timelineHeight: Math.min(
+        DIRECTOR_TIMELINE_HEIGHT_MAX,
+        Math.max(DIRECTOR_TIMELINE_HEIGHT_MIN, Math.round(height)),
+      ),
+    }),
 
   updateScene: (patch) => {
     const state = get();

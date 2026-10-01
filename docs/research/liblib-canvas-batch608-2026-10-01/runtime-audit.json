@@ -1,0 +1,255 @@
+{
+  "viewport": "1920x1150",
+  "checks": [
+    {
+      "name": "toggle:mounted",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "toggle:32x32-icon-20px",
+      "ok": true,
+      "detail": [
+        32,
+        32,
+        {
+          "x": 718,
+          "y": 934,
+          "w": 20,
+          "h": 20,
+          "bottom": 954
+        }
+      ]
+    },
+    {
+      "name": "toggle:rounded-lg",
+      "ok": true,
+      "detail": "8px"
+    },
+    {
+      "name": "toggle:accessible-name-动画时间轴",
+      "ok": true,
+      "detail": [
+        "动画时间轴",
+        "动画时间轴"
+      ]
+    },
+    {
+      "name": "toggle:starts-pressed-with-panel-open",
+      "ok": true,
+      "detail": {
+        "pressed": "true",
+        "present": true
+      }
+    },
+    {
+      "name": "toggle:active-bg-white-8",
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+    },
+    {
+      "name": "timeline:default-height-182",
+      "ok": true,
+      "detail": [
+        182,
+        182
+      ]
+    },
+    {
+      "name": "toggle:close-clears-pressed",
+      "ok": true,
+      "detail": {
+        "pressed": "false",
+        "bg": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "name": "timeline:unmounted-when-closed",
+      "ok": true,
+      "detail": {
+        "present": false,
+        "open": false
+      }
+    },
+    {
+      "name": "viewport:grows-into-freed-space",
+      "ok": true,
+      "detail": {
+        "before": 880,
+        "after": 1062
+      }
+    },
+    {
+      "name": "toggle:reopen-restores",
+      "ok": true,
+      "detail": {
+        "pressed": "true",
+        "h": 182,
+        "open": true
+      }
+    },
+    {
+      "name": "minimize:independent-verb",
+      "ok": true,
+      "detail": {
+        "present": true,
+        "h": 88,
+        "open": true,
+        "pressed": "true"
+      }
+    },
+    {
+      "name": "store:owns-view-state",
+      "ok": true,
+      "detail": "timelinePanelOpen / timelineHeight are store view state"
+    },
+    {
+      "name": "store:view-state-not-persisted",
+      "ok": true,
+      "detail": "the document schema must not carry view state (batch 599 rule)"
+    },
+    {
+      "name": "no-console-errors",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "measured": {
+    "on": {
+      "toggle": {
+        "box": {
+          "x": 712,
+          "y": 928,
+          "w": 32,
+          "h": 32,
+          "bottom": 960
+        },
+        "pressed": "true",
+        "label": "动画时间轴",
+        "title": "动画时间轴",
+        "backgroundColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "svg": {
+          "x": 718,
+          "y": 934,
+          "w": 20,
+          "h": 20,
+          "bottom": 954
+        },
+        "className": "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8 bg-white/8"
+      },
+      "timelinePresent": true,
+      "timelineH": 182,
+      "viewportH": 880,
+      "viewportBottom": 968,
+      "store": {
+        "open": true,
+        "height": 182
+      }
+    },
+    "off": {
+      "toggle": {
+        "box": {
+          "x": 712,
+          "y": 1110,
+          "w": 32,
+          "h": 32,
+          "bottom": 1142
+        },
+        "pressed": "false",
+        "label": "动画时间轴",
+        "title": "动画时间轴",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "svg": {
+          "x": 718,
+          "y": 1116,
+          "w": 20,
+          "h": 20,
+          "bottom": 1136
+        },
+        "className": "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8"
+      },
+      "timelinePresent": false,
+      "timelineH": null,
+      "viewportH": 1062,
+      "viewportBottom": 1150,
+      "store": {
+        "open": false,
+        "height": 182
+      }
+    },
+    "reopened": {
+      "toggle": {
+        "box": {
+          "x": 712,
+          "y": 928,
+          "w": 32,
+          "h": 32,
+          "bottom": 960
+        },
+        "pressed": "true",
+        "label": "动画时间轴",
+        "title": "动画时间轴",
+        "backgroundColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "svg": {
+          "x": 718,
+          "y": 934,
+          "w": 20,
+          "h": 20,
+          "bottom": 954
+        },
+        "className": "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8 bg-white/8"
+      },
+      "timelinePresent": true,
+      "timelineH": 182,
+      "viewportH": 880,
+      "viewportBottom": 968,
+      "store": {
+        "open": true,
+        "height": 182
+      }
+    },
+    "minimized": {
+      "toggle": {
+        "box": {
+          "x": 712,
+          "y": 1022,
+          "w": 32,
+          "h": 32,
+          "bottom": 1054
+        },
+        "pressed": "true",
+        "label": "动画时间轴",
+        "title": "动画时间轴",
+        "backgroundColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "8px",
+        "svg": {
+          "x": 718,
+          "y": 1028,
+          "w": 20,
+          "h": 20,
+          "bottom": 1048
+        },
+        "className": "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8 bg-white/8"
+      },
+      "timelinePresent": true,
+      "timelineH": 88,
+      "viewportH": 974,
+      "viewportBottom": 1062,
+      "store": {
+        "open": true,
+        "height": 182
+      }
+    }
+  },
+  "diagnostics": {
+    "console": 0,
+    "errors": []
+  }
+}

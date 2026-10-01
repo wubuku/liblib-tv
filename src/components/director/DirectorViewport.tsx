@@ -19,6 +19,7 @@ import {
   Check,
   Boxes,
   Eye,
+  Film,
   Grid3X3,
   ImagePlus,
   Move3D,
@@ -2370,6 +2371,9 @@ export function DirectorViewport({
   // 几乎完全重叠、后者 pointer-events-auto 吞掉前者点击」的问题。
   bottomBarExtra?: ReactNode;
 }) {
+  // Batch 608：底部胶囊那枚「动画时间轴」开关
+  const timelinePanelOpen = useDirectorStore((state) => state.timelinePanelOpen);
+  const toggleTimelinePanel = useDirectorStore((state) => state.toggleTimelinePanel);
   const viewMode = useDirectorStore((state) => state.viewMode);
   const transformMode = useDirectorStore((state) => state.transformMode);
   const aspectRatio = useDirectorStore((state) => state.aspectRatio);
@@ -3384,6 +3388,30 @@ export function DirectorViewport({
             </button>
           ))}
         </div>
+        {/* 源站底部第一枚胶囊只有三项：移动 / 截图 / 动画时间轴
+            （各 32x32，icon 20px，`aria-pressed=true` 选中态追加 `bg-white/8`，
+            实测 @(869,976)）。clone 这枚胶囊控件更多（变换模式/画幅/九宫格/
+            虚拟相机/群众/模型库/保存构图），本批把源站有而 clone 无的
+            「动画时间轴」补进来，位置放在变换模式之后、画幅比例之前。
+            语义是「开关整条时间轴面板」，与面板内的「时间线最小化」
+            （182 -> 88，面板仍在）互不影响。
+            注意：源站这枚按钮的点击行为**未取证**（点它可能改用户真实工程），
+            aria-pressed 的语义取自「按钮名 + 开态 + 面板可见」的联合读法，
+            属 clone 侧推断，不声称源站的确切结果。 */}
+        <button
+          type="button"
+          data-director-timeline-toggle
+          aria-label="动画时间轴"
+          title="动画时间轴"
+          aria-pressed={timelinePanelOpen}
+          onClick={toggleTimelinePanel}
+          className={cn(
+            "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8",
+            timelinePanelOpen && "bg-white/8",
+          )}
+        >
+          <Film size={20} aria-hidden="true" />
+        </button>
         <span className="mx-0.5 h-5 w-px bg-white/10" />
         <div className="flex items-center gap-2" role="group" aria-label="画幅比例">
           {(["16:9", "9:16", "1:1"] as const).map((ratio) => (
