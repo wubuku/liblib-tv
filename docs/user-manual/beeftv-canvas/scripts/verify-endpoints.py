@@ -49,6 +49,7 @@ import os
 import re
 import sys
 import subprocess
+from baseline import resolve_ref, BaselineError
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -101,8 +102,11 @@ def find_source():
     return None
 
 
-def collect_routes(src, ref="origin/main"):
+def collect_routes(src, ref=None):
+    """ref=None → 由 baseline.resolve_ref() 按手册声明的基线解析。"""
     """从指定 ref 的工作树抽取生产路由（排除 _test.go）。"""
+    if ref is None:
+        ref = resolve_ref()
     files = subprocess.run(
         ["git", "ls-tree", "-r", ref, "--name-only"],
         cwd=src, capture_output=True, text=True, check=True,

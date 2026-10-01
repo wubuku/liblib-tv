@@ -33,6 +33,7 @@ import os
 import re
 import sys
 import subprocess
+from baseline import resolve_ref, BaselineError
 
 CANDIDATES = [
     os.environ.get("BEEFTV_SRC", ""),
@@ -99,7 +100,7 @@ def main():
     # Batch 167 普查发现本闸是**十道闸里唯一一道完全没有反向验证的**——
     # 而它恰恰是唯一一道 ref 写死、连注入都做不了的。补上这个口子，
     # 闸门的能力才谈得上被验证。
-    ref = os.environ.get("BEEFTV_REF", "origin/main")
+    ref = os.environ.get("BEEFTV_REF") or resolve_ref()
 
     tree = subprocess.run(["git", "ls-tree", "-r", ref, "--name-only"],
                           cwd=src, capture_output=True, text=True).stdout.split("\n")

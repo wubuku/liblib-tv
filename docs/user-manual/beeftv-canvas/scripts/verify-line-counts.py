@@ -29,11 +29,12 @@ import os
 import re
 import subprocess
 import sys
+from baseline import resolve_ref, BaselineError
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MANUAL = os.path.join(ROOT, "20-reference.md")
 SRC = os.environ.get("BEEFTV_SRC", "/Users/yangjiefeng/Documents/glanderness/BeefTV")
-REF = os.environ.get("BEEFTV_REF", "origin/main")
+REF = os.environ.get("BEEFTV_REF") or resolve_ref()
 CODE_EXT = (".ts", ".tsx")
 
 

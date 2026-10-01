@@ -3631,3 +3631,58 @@ Batch 173 的结论**从源码推导升级为运行时事实**。
 ### 账本口径
 
 35 任务 / 29 verified / 6 excluded / 41 md / 67 截图 / 35 个内容页 / **十三道闸全绿**（闸 8 反验 5 例）；适用 v1.6.16。
+
+## 环境记录一百三十一（Batch 175，2026-10-02，取证基线——**「上游走了」不能报成「手册错了」**）
+
+**起因**：Batch 174 记运行时证据时取自 `:8080`（后端由 v1.6.14 工作树 `852961a` 构建），
+逐文件比对 `platform/feature_availability.go`、`platform/runtime_policy.go` 等确认
+v1.6.14 与 origin/main 逐字节相同，故写了「证据可迁移」。**但那个可迁移性没有任何东西看守。**
+
+**实测**：8 道读源码的闸全部读**浮动的 `origin/main`**，而手册正文声明「适用 v1.6.16」。
+上游已走到 **v1.6.22**（`bcc3b05`，tag `v1.6.22`）：
+`3a74793..bcc3b05` = **27 个提交、223 个文件有差异**（web 162 / backend 40 / 其他 21）。
+把 8 道闸对着两个 ref 各跑一遍：
+
+| 闸 | v1.6.16（声明） | origin/main（v1.6.22） | 差异 |
+|---|---|---|---|
+| `verify-line-counts.py` | rc=0 | **rc=1** | `web/src/pages/canvas` 17009 → **17122** |
+| `verify-screenshots-literals.py` | rc=0 | **rc=1** | 「选择镜头模板」在上游已找不到 |
+| 其余 6 道 | rc=0 | rc=0 | 一致 |
+
+**查清了「选择镜头模板」**：v1.6.16 里是 `web/src/components/canvas/director/canvas-director-template-modal.tsx`
+（`Modal title="选择镜头模板"`，五款模板）；v1.6.22 里**该文件已从目录中消失**，
+`project.tsx` 的 `CanvasDirectorTemplateModal` 引用同步删除，
+`createDirectorShot()` 改为**直接硬编码** `createDirectorSceneFromTemplate("empty", …)`，
+而 `DIRECTOR_TEMPLATES`（`web/src/lib/canvas/director/director-templates.ts`）
+**保留着数据却已零引用**。**即上游把「先选模板再建节点」改成了「直接建空场景节点」。**
+
+**这 2 条在 v1.6.16 上都是绿的**——手册没写错，是上游走了。
+
+**为什么这个混淆比红灯本身更危险**：红灯只有一种修法（改正文）。于是人会把照 v1.6.16
+写的内容改成 v1.6.22 的样子，手册从此不对应任何真实版本。
+「上游走了」该升版并重做增量对账，「手册错了」才改正文——**两者修法相反，却共用同一个 `rc=1`**。
+
+**改动**：
+- 新增 `scripts/baseline.py`：8 道闸共用的 ref 解析。`BEEFTV_REF` 优先（反验不受破坏），
+  否则用手册声明的提交；**读不到声明抛 `BaselineError` → rc=2，绝不静悄悄退回 `origin/main`**。
+- `20-reference.md` 开头新增「### 取证基线」小节，声明**版本 v1.6.16 / 提交 `3a74793`**（唯一真值）。
+- 8 个脚本里写死的 `origin/main` 全部改为 `baseline.resolve_ref()`：
+  `verify-endpoints` / `verify-exclusions` / `verify-shortcuts` / `verify-label-drift` /
+  `verify-runtime-policy` / `verify-feature-flags` / `verify-screenshots-literals` / `verify-unreachable`。
+- 新增**闸 14** `verify-baseline.py`（方向一二三四）+ `selftest-baseline.py`（8 例）。
+- 纪律 **116 / 117**；A 类覆盖度表补第 14 行（闸 9 方向九当场抓到表与闸门数脱节）。
+
+**反验抓到的判据本体三个 bug**（都是上线首跑，**没有一个是读代码看出来的**）：
+1. 剥注释函数把**字符串字面量当 docstring 剥掉** —— `REF = "origin/main"` 被清空，
+   **判据把自己的论据一起删了**，对真实浮动 ref 完全无感（用例 5 漏报）。
+2. 照搬闸 7 处理 TypeScript 的那套只认 `//` 与 `/* */`，**漏了 Python 的 `#`** ——
+   注释里提到 origin/main 被误判成违规（用例 6 误伤）。
+3. 修 1 时暴露：**边解析边丢弃的扫描器，产出坐标必须跟着产出缓冲走** ——
+   docstring 区间记的是 `src` 下标，而 `out` 因丢弃注释早已错位，回填时删错位置。
+   **判据看起来在工作，其实没有。**
+
+**验收**：`verify-baseline.py` rc=0（13 个闸门脚本无浮动 ref；并提示「上游领先 27 个提交」且明说这不是错误）；
+`selftest-baseline.py` **8/8**；`build-site.sh` 全绿；闸 9 方向三/九/十一全过。
+
+**服务状态**：`:3001` 前端 200、`:8080` 后端有响应、`:3000` 未动。
+**未做**：v1.6.17–22 内容增量对账（含新增 `local_storage_failed` 失败态）留待下一批升版。

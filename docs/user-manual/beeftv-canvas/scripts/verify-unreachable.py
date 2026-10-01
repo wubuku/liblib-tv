@@ -67,6 +67,7 @@ import os
 import re
 import subprocess
 import sys
+from baseline import resolve_ref, BaselineError
 
 CANDIDATES = [
     os.environ.get("BEEFTV_SRC", ""),
@@ -75,7 +76,7 @@ CANDIDATES = [
 
 # 上游 ref 可用 BEEFTV_REF 覆盖——反向验证（self-test）需要指向一个
 # 「缺陷已被修复」的人造 ref，不能改工作树、更不能动别人分支。
-REF = os.environ.get("BEEFTV_REF", "origin/main")
+REF = os.environ.get("BEEFTV_REF") or resolve_ref()
 
 # ── 工具 ──────────────────────────────────────────────────────────────
 

@@ -42,6 +42,7 @@ import os
 import re
 import sys
 import subprocess
+from baseline import resolve_ref, BaselineError
 
 try:
     import yaml
@@ -200,7 +201,7 @@ def main():
     if not src:
         print("[skip] 未找到 BeefTV 源码，跳过 excluded 条件核对")
         return 2
-    ref = "origin/main"
+    ref = resolve_ref()
 
     problems = []
     notes = []

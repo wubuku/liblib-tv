@@ -38,10 +38,11 @@ import os
 import re
 import subprocess
 import sys
+from baseline import resolve_ref, BaselineError
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.environ.get("BEEFTV_SRC", "/Users/yangjiefeng/Documents/glanderness/BeefTV")
-REF = os.environ.get("BEEFTV_REF", "origin/main")
+REF = os.environ.get("BEEFTV_REF") or resolve_ref()
 MANIFEST = os.path.join(ROOT, "screenshots", "manifest.yml")
 
 # 保守形态：长度 ≥ 4、无 ASCII 字母数字、无空白

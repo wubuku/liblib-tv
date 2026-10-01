@@ -49,6 +49,7 @@ import os
 import re
 import sys
 import subprocess
+from baseline import resolve_ref, BaselineError
 
 CANDIDATES = [
     os.environ.get("BEEFTV_SRC", ""),
@@ -84,7 +85,9 @@ def git_show(src, ref, path):
     return r.stdout if r.returncode == 0 else ""
 
 
-def bindings(src, ref="origin/main"):
+def bindings(src, ref=None):
+    if ref is None:
+        ref = resolve_ref()
     """抽出两组键：必须带 Ctrl/Cmd 的、以及另有 Alt/Shift 独立绑定的。
 
     为什么必须分两组：同一个键可能有**两种**绑定，源码里是两条分支。例如
