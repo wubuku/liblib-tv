@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useJimengStore } from "@/store/jimengStore";
 import { useLayerFocus } from "@/hooks/useLayerFocus";
 import { FEEDBACK, sourcePickFeedback } from "@/components/jimeng/jimengFeedback";
@@ -49,6 +49,22 @@ const SKILLS = [
 /** Batch 809 SOURCE_FACT：点「引用参考」弹出「添加参考」，分类 tab 五项 */
 const REF_KINDS = ["主体", "图片", "视频", "音频", "文本"];
 
+/** Batch 839 SOURCE_FACT（`jimeng_839_refsource.py`，源站逐个分类点过一遍）：
+ *  条目面板「当前画布」段列的就是**画布上该类型的节点**，**倒序**（新的在前）：
+ *    视频 → ['视频 1']        文本 → ['文本 3','文本 2','文本 1']
+ *    主体/图片/音频 → ['暂无相关节点']（画布上确实没有这三种节点）
+ *  所以 838 的「不编条目」前提当时是**错的** —— 那批只试了「主体」一个分类，
+ *  就写成「每个分类都是空的」，属于**没验过的推论**（已就地更正，见台账 §55/§57）。
+ *  点一个条目 ⇒ composer 里多出同名芯片、浮层收起（也是实测）。
+ *  「<分类>库」段在本画布上恒空（没有主体库），复刻保持空态。 */
+const REF_KIND_TO_NODE_TYPE: Record<string, string> = {
+  主体: "subject",
+  图片: "image",
+  视频: "video",
+  音频: "audio",
+  文本: "text",
+};
+
 /** Batch 809 SOURCE_FACT：点「+」弹出三项来源菜单 */
 const ADD_SOURCES = ["上传", "从资产库添加", "从画布添加"];
 
@@ -89,6 +105,7 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
      是 `setMessages([])`，**直接销毁**当前会话且不可恢复 —— 那不叫新建。
      现在消息挂在 store 的 `aiSessions` 上，新建 = 追加一条并切过去，
      旧会话仍在「会话列表」里可切回。 */
+  const nodes = useJimengStore((s) => s.nodes);
   const sessions = useJimengStore((s) => s.aiSessions);
   const activeId = useJimengStore((s) => s.aiActiveSessionId);
   const appendAiMessage = useJimengStore((s) => s.appendAiMessage);
@@ -116,6 +133,15 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
      还是按「有没有会话」判定的，未取证。复刻自有语义：按当前会话判。 */
   const streamIsEmpty = messages.length === 0;
 
+  /* Batch 839 SOURCE_FACT：条目面板列**画布上该类型的节点**，倒序。
+     源站实测：文本 → 文本 3 / 文本 2 / 文本 1；视频 → 视频 1；
+     主体/图片/音频 → 「暂无相关节点」（画布上真没有这三种节点）。 */
+  const refItems = nodes
+    .filter((n) => n.type === REF_KIND_TO_NODE_TYPE[refKind])
+    .slice()
+    .reverse()
+    .map((n) => String(n.data?.title ?? ""));
+
   const addSkill = (chip: string) => {
     setTokens((t) => (t.includes(chip) ? t : [...t, chip]));
     setPanel(null);
@@ -125,6 +151,29 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
     setPanel(null);
     setSkillQuery("");
   };
+
+  /* Batch 839：Escape 关掉抽屉里开着的浮层。
+     这不是源站取证（源站这几块浮层按 Esc 什么反应，没验），而是**复刻自身
+     的一致性**：全仓 20+ 个浮层（JimengContextMenu / JimengHistoryMenu /
+     JimengPaneContextMenu / JimengNodeSummaryPopover / JimengShortcutsPanel /
+     JimengProjectPanel / JimengAccountPanels / JimengSharePanel …）都接了
+     Escape 关闭，唯独这个抽屉一个都没有 —— 一个模子里的例外，比整体缺功能
+     更难解释。判据落在**契约**上：浮层开着时按 Esc 必须收起。
+     两个必须做对的细节：
+       ① **捕获阶段**（批 794 已实测的坑）：JimengFlow 的全局 Escape 监听
+          注册得更早，会先跑一次同步重渲染；重渲染使本 effect 清理并重注册，
+          冒泡监听就被跳过了。JimengVideoPreview / JimengAccountPanels /
+          JimengVideoNode 都是因此才写 `true`。
+       ② **没开浮层时不吞键**：`if (!panel) return` —— 否则 Esc 在画布上会
+          被这里吃掉，画布的取消选中/退出编辑就失灵了。 */
+  useEffect(() => {
+    if (!panel) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closePanel();
+    };
+    window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
+  }, [panel]);
   const send = () => {
     if (!canSend) return;
     const text = richPrefill ? prefill || "" : composerText;
@@ -431,24 +480,35 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
              ⚠ 底部那枚「引用{分类}」确认钮是**复刻自有**：源站此处无任何可点条目，
                它是本仓让「加引用」不至于变成死路的那条路（832 的判据），
                保留并在注释里标明来源。 */
+          /* 层高 296 = 一级面板实高（源站 @[1003,482] 240×296）。批 838 写的 312
+             是因为一级当时多了 `py-2`（上下各 8）；逐分类复测后发现源站一级
+             **顶上没有内边距** —— 标题块从面板顶起 36 就到首行，底下留 4。
+             两块都按**顶**锚定 —— 早先按 bottom 锚，面板一有内容变高、顶就跟着
+             跑（判据当场变红）。
+             顺带记一个自己踩的坑：JSX 标签**内部**只能写花括号包裹的注释，
+             裸的块注释是语法错；而块注释里若出现「斜杠星号」字面量，
+             注释会被提前闭合 —— 我写「只能写 {花括号包注释}」时正好把它写进去了。 */
           <div
-            className="absolute inset-x-0 bottom-full mb-[-9px] h-0"
+            className="absolute inset-x-0 bottom-full mb-[-9px] h-[296px]"
             data-testid="agent-mention-panel"
             role="dialog"
             aria-label="添加参考"
           >
-            {/* 一级：分类列表（240 宽，行 232×48，右侧 ›） */}
+            {/* 一级：分类列表（240 宽，行 232×48，右侧 ›）
+                源站实高 296 = 36（标题块）+ 5×48 + 4×4（行距）+ 4（底留白）。
+                顶上**不**留白：`py-2` 会把首行推到 48，源站是 36。 */}
             <div
               role="listbox"
               aria-label="添加参考分类"
               data-testid="agent-ref-categories"
-              className="absolute bottom-0 right-[252px] w-[240px] rounded-2xl bg-[#262626] py-2"
+              className="absolute right-[252px] top-0 w-[240px] rounded-2xl bg-[#262626] pb-1"
             >
-              {/* 标题块**钉死 36px**：源站一级顶 482 → 首行顶 518，差 36 —— 二级面板的
-                顶正是靠这个 36 对齐到首行（518=518）。此前标题随字号只有 ~24px，
-                于是二级浮层比首行高出 21px，判据当场变红。 */}
+              {/* 标题块**36px 且贴着面板顶**：源站一级顶 482 → 首行顶 518，差 36。
+                批 838 把标题钉死成 36px，但一级同时还留着 `py-2`，首行实际落在
+                48 —— 而当时那条判据写的是「二级顶 == 一级顶 + 36」，拿常量比自己，
+                等于恒真，把这 12px 的错整个放了过去（批 839 订正）。 */}
             <p className="flex h-9 items-center px-3 text-[13px] text-white/85">添加参考</p>
-              <div className="mt-1 flex flex-col gap-1 px-1">
+              <div className="flex flex-col gap-1 px-1">
                 {REF_KINDS.map((k) => (
                   <button
                     key={k}
@@ -466,35 +526,54 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
                 ))}
               </div>
             </div>
-            {/* 二级：条目面板（240 宽，挂在左边，**顶对齐一级首行** = 一级顶 +36）。
-              源站二级底比一级底高 48px，但那是**两块高度不同**的结果（一级 296 /
-              二级 212），不是一条独立规则 —— 复刻两块高度不同，底差自然不同。
-              所以钉的是**看得见的那条对齐**（顶对齐首行），底缘只钉「不越过一级」。 */}
+            {/* 二级：条目面板（240 宽，挂在左边）。
+              ⚠ 批 839 订正批 838 的一条 SOURCE_FACT：源站二级的顶**跟着当前
+              选中行走**，不是永远对齐首行。批 838 只在默认选中的「主体」上量过
+              一次（518 == 首行 518），就把「对齐首行」当成了规则。逐个点开实测：
+                主体 行 518 → 二级 518    图片 行 570 → 二级 570
+                视频 行 622 → 二级 622    音频 行 674 → 二级 674
+                文本 行 726 → 二级 726
+              五个全中，所以这是真规则：top = 36 + index×52（48 行高 + 4 行距）。
+              同一个「只取样一次就外推」的错，这已经是第二次（见台账 §57）。
+              面板**高度由内容决定**（源站量到 56 / 76 / 160 / 212 四种），
+              底缘不作锚 —— 源站「文本」那块底 886，比一级底 778 还低 108。 */}
             <div
               data-testid="agent-ref-items"
-              className="absolute bottom-[37px] right-[496px] w-[240px] rounded-2xl bg-[#262626] py-1"
+              className="absolute right-[496px] w-[240px] rounded-2xl bg-[#262626] py-1"
+              style={{ top: 36 + REF_KINDS.indexOf(refKind) * 52 }}
             >
-              {["当前画布", `${refKind}库`].map((section, i) => (
-                <div key={section}>
-                  {i > 0 ? <div className="mx-3 my-1 h-px bg-white/10" /> : null}
-                  {/* 分组标题样式**未实测**（探针只量到空态那两行），
-                      这里取同族的弱化白，仅作形状对齐，不写成断言。 */}
-                  <p className="px-3 py-2 text-[12px] text-white/45">{section}</p>
+              <div>
+                <p className="px-3 py-2 text-[12px] text-white/45">当前画布</p>
+                {refItems.length > 0 ? (
+                  /* 条目行 232×48（与分类行同宽同高），行距 4 —— 源站实测 */
+                  <div className="flex flex-col gap-1 px-1 pb-1">
+                    {refItems.map((title) => (
+                      <button
+                        key={title}
+                        type="button"
+                        data-testid={`agent-ref-item-${title}`}
+                        onClick={() => {
+                          /* 源站实测：点条目 ⇒ composer 多出同名芯片、浮层收起。
+                             批 839 据此**撤掉**了确认钮。 */
+                          addSkill(title);
+                          pushToast(FEEDBACK.addReference(refKind));
+                          setPanel(null);
+                        }}
+                        className="flex h-12 items-center rounded-lg px-2 text-left text-[14px] text-white/85 hover:bg-white/8"
+                      >
+                        {title}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
                   <p className="px-3 py-5 text-center text-[12px] text-[#F5FBFF]">暂无相关节点</p>
-                </div>
-              ))}
-              <div className="px-1 pb-0.5 pt-1">
-                <button
-                  type="button"
-                  data-testid="agent-ref-confirm"
-                  onClick={() => {
-                    addSkill(`@${refKind}`);
-                    pushToast(FEEDBACK.addReference(refKind));
-                  }}
-                  className="flex h-8 w-full items-center justify-center rounded-md bg-white/10 text-[13px] text-white hover:bg-white/20"
-                >
-                  引用{refKind}
-                </button>
+                )}
+              </div>
+              <div className="mx-3 my-1 h-px bg-white/10" />
+              <div>
+                {/* 源站这一段是「<分类>库」；本画布上没有主体库，实测恒空 */}
+                <p className="px-3 py-2 text-[12px] text-white/45">{refKind}库</p>
+                <p className="px-3 py-5 text-center text-[12px] text-[#F5FBFF]">暂无相关节点</p>
               </div>
             </div>
           </div>

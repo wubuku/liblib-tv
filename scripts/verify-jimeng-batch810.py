@@ -143,13 +143,34 @@ def main() -> None:
         check("五个分类 tab", tabs == 5, f"count={tabs}")
         page.locator('[data-testid="agent-ref-kind-视频"]').click()
         page.wait_for_timeout(250)
-        check("切 tab 改确认按钮文案",
-              "视频" in page.locator('[data-testid="agent-ref-confirm"]').inner_text(),
-              page.locator('[data-testid="agent-ref-confirm"]').inner_text())
-        page.locator('[data-testid="agent-ref-confirm"]').click()
+        # ⚠ 批 839 **改写**本节两条判据。原来是「切 tab 改确认钮文案」+「确认后出
+        #   @视频 token」——它们量的是**复刻自有的确认钮**。源站实测：条目面板列的是
+        #   画布上该类型的节点，**点条目**直接插芯片并收起浮层，**根本没有确认钮**。
+        #   判据改成落在这条真实契约上（形状/内容/后果），不是落在我自己加的按钮上。
+        items = page.locator('[data-testid^="agent-ref-item-"]')
+        # ⚠ 不写死条目数：demo 画布上是**两个** video 节点（video-local-1 /
+        #   video-empty-1，后者标题是个 sb_…tf5q2 文件名）。写死 1 就是把 fixture
+        #   的巧合当契约。判据是「条目数 == 画布节点数」——内容由画布产生。
+        check("切到「视频」⇒ 条目数等于画布上的节点数（内容随画布走）",
+              items.count() == n(".react-flow__node"),
+              f'items={items.count()} nodes={n(".react-flow__node")}')
+        check("其中一个条目就是「视频 1」这个节点标题",
+              any(items.nth(i).inner_text().strip() == "视频 1" for i in range(items.count())),
+              str([items.nth(i).inner_text().strip() for i in range(items.count())]))
+        # ⚠ 量具坑（批 839 自己踩的）：**先取名字，再点**。
+        #   上一版是「点完条目再读 `items.first.inner_text()`」—— 而批 839 刚把
+        #   「点条目 ⇒ 浮层收起」接成真行为，于是被点的条目当场从 DOM 里没了，
+        #   这行直接 30s 超时，整个 810 跑不完。判据问的是「插的是不是**被点的
+        #   那个**名字」，那就必须在点击**之前**把名字抓下来 —— 读一个即将
+        #   消失的元素，是量具先坏，不是产品坏。
+        clicked_name = items.first.inner_text().strip()
+        page.locator('[data-testid^="agent-ref-item-"]').first.click()
         page.wait_for_timeout(400)
         tokens = page.locator('[data-testid="agent-composer-tokens"]').inner_text()
-        check("引用后 composer 多出 @视频 token", "@视频" in tokens, tokens[:60])
+        check("点条目 ⇒ composer 多出**被点那个**的芯片（不是 @分类 这种合成串）",
+              clicked_name in tokens, f"clicked={clicked_name!r} tokens={tokens[:60]!r}")
+        check("点条目 ⇒ 浮层自动收起（源站实测）",
+              n('[data-testid="agent-mention-panel"]') == 0)
 
         print("— + 添加：来源菜单 —")
         page.locator('[data-testid="canvas-agent-composer-add"]').click()

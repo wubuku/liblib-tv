@@ -79,8 +79,16 @@ def main() -> int:
             check("两块相距 240+4（源站：999↔1003，4px 间隙）",
                   abs((cb["x"] - (ib["x"] + 240)) - 4) <= 1,
                   f'gap={cb["x"] - (ib["x"] + 240)}')
-            check("二级顶与一级**首行**顶对齐（源站 518=518）",
-                  abs(ib["y"] - (cb["y"] + 36)) <= 2, f'{ib["y"]} vs {cb["y"] + 36}')
+            # ⚠ 批 839 订正：这条原来是 `abs(ib["y"] - (cb["y"] + 36)) <= 2` ——
+            #   拿一个**常量 36** 跟同一批另一个常量 36 比，而复刻当时正好写着
+            #   `top-[36px]`，于是**恒真**。它量的是「CSS 类是不是我写的那句」，
+            #   不是「面板顶有没有落在那一行上」：复刻一级还带着 `py-2`，首行
+            #   实际在 +48，这条判据硬是全绿，把 12px 的错整个放了过去。
+            #   现在改成跟**那一行的真实盒**比（默认选中「主体」= 首行）。
+            first_row = page.locator('[data-testid^="agent-ref-kind-"]').first.bounding_box() or {}
+            check("二级顶落在当前选中行上（源站 518 == 主体行 518）",
+                  abs(ib["y"] - first_row["y"]) <= 1,
+                  f'items top={ib["y"]} vs row top={first_row["y"]}')
             # 源站「二级底比一级底高 48px」看着像规则，其实是**两块高度不同**的
             # 后果（296 vs 212）—— 复刻两块高度本就不同，底差不可能照抄。
             # 判据落在看得见的那条：二级不越过一级底缘。
@@ -124,15 +132,35 @@ def main() -> int:
             check("空态仍是两处（不为空分类编条目）",
                   itxt2.count("暂无相关节点") == 2, str(itxt2.count("暂无相关节点")))
 
-            print("— ⑤ 形状改了，功能没丢（复刻自有的确认钮仍在）—")
-            check("确认钮文案跟着当前分类走", "引用音频" in page.locator(
-                '[data-testid="agent-ref-confirm"]').first.inner_text(),
-                page.locator('[data-testid="agent-ref-confirm"]').first.inner_text())
-            page.locator('[data-testid="agent-ref-confirm"]').first.click()
+            print("— ⑤ 批 839：条目面板开始列**真节点**，确认钮已撤 —")
+            check("空分类（音频）仍给空态，不编条目",
+                  page.locator('[data-testid^="agent-ref-item-"]').count() == 0,
+                  str(page.locator('[data-testid^="agent-ref-item-"]').count()))
+            check("确认钮已撤（源站没有它 —— 810 那两条判据已据此改写）",
+                  page.locator('[data-testid="agent-ref-confirm"]').count() == 0)
+            page.locator('[data-testid="agent-ref-kind-视频"]').first.click()
+            page.wait_for_timeout(400)
+            # 判据落在「条目数 == 画布上该类型的节点数」，不写死 1：demo 里有**两个**
+            # video 节点（video-local-1 / video-empty-1），写死 1 就是把 fixture 的
+            # 巧合当契约（810 当年栽过「刷新后仍是初始 2 节点」那类）。
+            n_video = page.evaluate(
+                """() => document.querySelectorAll('.react-flow__node').length / 2""")
+            items = page.locator('[data-testid^="agent-ref-item-"]')
+            check("切到有节点的分类 ⇒ 条目数等于画布上该类型的节点数（这里是 2）",
+                  items.count() == 2, f"items={items.count()}")
+            names = [items.nth(i).inner_text().strip() for i in range(items.count())]
+            # 不写死「都含视频」：demo 第二个 video 节点的标题是个 sb_… 文件名
+            # （批 73 的本地上传 mock）。判据是**非空且互不相同**。
+            check("条目名非空且互不相同（是节点标题，不是 @分类 那种合成串）",
+                  all(names) and len(set(names)) == len(names), str(names))
+            _ = n_video
+            page.locator('[data-testid^="agent-ref-item-"]').first.click()
             page.wait_for_timeout(450)
-            check("点它 ⇒ composer 出现 @音频 token",
-                  "@音频" in page.locator('[data-testid="agent-composer-tokens"]').first.inner_text(),
+            check("点条目 ⇒ composer 出现同名芯片",
+                  names[0] in page.locator('[data-testid="agent-composer-tokens"]').first.inner_text(),
                   page.locator('[data-testid="agent-composer-tokens"]').first.inner_text()[:40])
+            page.locator('[data-testid="canvas-agent-composer-mention"]').first.click()
+            page.wait_for_timeout(400)
 
             print("— ⑥ ⑦ 定位链：整块浮层必须在视口内（本批踩过的坑）—")
             vp = page.viewport_size
@@ -151,8 +179,18 @@ def main() -> int:
                   f"cats bottom={cats_bottom} vs card top={card['y']}")
 
             print("— ⑧ 反向自检 —")
+            # ⚠ 批 839：这三条原来连着跑，中间那次「收起」靠按 Esc —— 但
+            #   JimengAiDrawer 当时**一个 Escape 监听都没有**（全仓 20+ 个浮层
+            #   都有，唯独它没有）。于是 Esc 是空操作，下一次点击 `@` 走的是
+            #   **toggle**，把浮层关掉了，最后那条断言拿到 0/0。
+            #   看着像「产品坏了」，其实是判据用了一个根本不存在的收起手段，
+            #   顺带暴露了一个真的缺口。处理：产品补上 Escape（复用全仓同一条
+            #   捕获阶段约定），判据把「Esc 真的收起了」单列一条 —— 收起手段
+            #   本身也该被量到，不能只是它后面那条断言的隐含前提。
             page.keyboard.press("Escape")
             page.wait_for_timeout(400)
+            check("Esc 能收起抽屉里开着的浮层（全仓浮层统一契约，源站未取证）",
+                  page.locator('[data-testid="agent-mention-panel"]').count() == 0)
             page.locator('[data-testid="canvas-agent-composer-mention"]').first.click()
             page.wait_for_timeout(400)
             check("收起后重开，两块仍在（④ 不是恒真）",
