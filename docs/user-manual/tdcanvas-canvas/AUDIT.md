@@ -1,7 +1,7 @@
 # TDCanvas 手册回走审计（AUDIT）
 
 > Gate B 回走证据与问题分级台账。基线：被测应用 TDCanvas `v0.14.0`（`16b3127`）@ localhost:3000。
-> 状态：**Gate B 已完成（2026-10-01 更新）**——14 任务全部回走通过，final audit 通过（14 tasks / 25 markdown / 56 images）。首轮探索性发现已记入 SOURCE_OBSERVATIONS.md（§3 视口语义、
+> 状态：**Gate B 已完成（2026-10-01 更新）**——14 任务全部回走通过，final audit 通过（14 tasks / 25 markdown / 58 images）。首轮探索性发现已记入 SOURCE_OBSERVATIONS.md（§3 视口语义、
 > §9 官方文档差异）与 RUNTIME_AUDIT.md（调研包），不在此重复。
 
 ## 回走结论表（Gate B 逐任务追加）
@@ -54,6 +54,8 @@
 | Minor(产品/误标) | 顶栏菜单「**导入资产**」名不副实：绑定的是 `onImportImage={() => handleUploadRequest()}`（`canvas-top-bar.tsx:90`），**与「上传资产」是同一个处理函数**，打开的是本地媒体文件选择器，与「我的资产」无关 | 用户会以为能在画布里导入 `我的资产.zip`，实际做不到 | M32 运行时实测（点击后 URL 不变、无任何导入文案、只弹文件选择器）+ 源码双重确认。已在 navigate-canvas 菜单表与 20-reference 明确标注「名不副实」并指向首页的正确入口 |
 | Minor(一致性) | 同一快捷键在两处菜单标签不一致：顶栏写 `Ctrl / Cmd + Z`，右键菜单只写 `Ctrl+Z`（Mac 上实际需 `Cmd`，界面未提示） | Mac 用户照右键菜单的标签按 Cmd 会困惑 | M32 已在三处（navigate-canvas / shortcuts-help / 20-reference）统一说明「以键位表与顶栏菜单为准」 |
 | Minor(缺陷) | 手册内 **4 处交叉引用锚点全部落空**（VitePress slugify 把全角括号/逗号/斜杠/引号折成 `-`，与直觉差异大） | 读者点「见某页某节」直接扑空 | M31 已全部订正，并新增 `scripts/check-anchors.py` 接入 `build-site.sh` 步骤 3 作 fail 级门禁（已做负向测试） |
+| Minor(产品) | 资产页「**批量下载**」按钮**名不副实**：它是勾选模式入口而非下载动作；其产物 `TDCanvas.zip` 内只有裸文件（文本落 `.txt`），**无元数据，无法用「导入资产」还原**；而「导出资产」的 `我的资产.zip` 才是可往返的存档。且 zip 文件名取自「资产来源画布名 → 最近画布名 → 硬编码 `TDCanvas`」的兜底链，与用户输入的标题无关 | 用户拿「下载 ZIP」的产物去做备份，换机后无法还原；`TDCanvas.zip` 这个名字让人误以为是产品缺陷 | **M35 拆包实测 + 源码坐实**（`asset-transfer.ts`：`exportAssets` 写 `assets.json`+`files/`；`downloadAssetsZip` 逐资产写裸文件；`index.tsx:175` 三级兜底命名）。已在 manage-assets 新增「带走资产的三条路，别搞混」对照表、两个 zip 的目录树对比、「为什么两个 zip 名字不一样」，并把「下载 ZIP 未选中时为 disabled」写成易错点（2 图） |
+| Minor(产品) | 「导出资产」**只打包存进本机的图片/视频**（按本地存储键取二进制），用「**封面 URL**」粘贴的远程图片**不会进 zip**，只在 `assets.json` 里留一串 URL 文本 | 换机后远程封面链接失效，资产缩略图丢失且无提示 | M35 源码坐实（`exportAssets` 仅处理 `data.storageKey`）＋1 个纯文本资产的实包验证（`files: []`）。已在 manage-assets「导出不会下载远程封面」与「已知限制」写明，并建议改用「图片内容」的本地上传 |
 | 环境 | Playwright 每次 `chromium.launch()` 为全新 profile，IndexedDB 不保留 → 必须用 `launchPersistentContext` 才能跨脚本验证 | 自动化注意事项 | M20 已改用持久化 profile（/tmp 独立目录），并用固定种子资产保证可重放 |
 
 ## 未覆盖清单（交付报告中须列出的已知限制）
