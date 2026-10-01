@@ -73,16 +73,20 @@ TDCanvas v0.14.0 有一批「实现完毕但没接到界面上」的功能（Web
 |---|---|---|---|
 | 2026-10-01 | 22 | 85 | 21M |
 
-**本地查看（二选一）**：
+**本地查看**：
 
 ```bash
-# 方式一：预览服务（浏览器打开 http://localhost:4173）
-# 端口被其他手册预览占用时换一个（如 4174）：截图在 dist 内为 /assets/ 哈希路径
-python3 -m http.server 4174 -d .vitepress/dist
-
-# 方式二：直接用浏览器打开文件
-open .vitepress/dist/index.html
+# 启动一个静态服务器，浏览器打开 http://localhost:4173
+# 端口被其他手册预览占用时换一个（如 4174）
+python3 -m http.server 4173 -d .vitepress/dist
 ```
+
+> **两点必须知道**（都是实测结论，别踩）：
+>
+> - **不要用 `open dist/index.html` 直接打开文件。** 构建产物里的资源路径全是绝对路径（`/assets/...`、`/vp-icons.css`），在 `file://` 协议下会指向**文件系统根目录**，样式和脚本一律加载不上，整站退化成没样式的纯文本、点哪都跳不动。必须通过 HTTP 访问。
+> - **`python3 -m http.server` 不会返回站点的 404 页。** VitePress 确实生成了带侧边栏的 `dist/404.html`，但这个简易服务器对不存在的路径只返回它自己的裸报错（`Error response / File not found.`），**一个链接都没有**，读者落到那里就走不动了。**正式发布的站点不会有这个问题**——GitHub Pages、Netlify、以及配了 `error_page 404 /404.html;` 的 nginx 都会正确送出 `404.html`。本地预览时知道这一点即可。
+>
+> `./build-site.sh --preview` 是等价做法，它会构建完自动起服务。
 
 **重新构建**（手册内容更新后）：
 

@@ -35,6 +35,17 @@ cd docs/user-manual/tdcanvas-canvas
 python3 -m http.server 4173 -d .vitepress/dist           # 方式二：任意静态服务器指向 dist
 ```
 
+> **不要用 `file://` 直接打开 `dist/index.html`**：产物里的资源路径是绝对路径
+> （`/assets/...`），在 `file://` 下会指向文件系统根目录，样式与脚本全部加载
+> 失败。必须走 HTTP。
+>
+> **`python3 -m http.server` 不提供站点的 404 页**：VitePress 生成的
+> `dist/404.html`（带侧边栏与导航）只会被「把 404 映射到它」的主机送出
+> （GitHub Pages、Netlify 原生如此；nginx 需显式配置
+> `error_page 404 /404.html;`）。简易服务器对未知路径只返回自己的裸报错，
+> 读者落上去没有任何出口——**这是本地预览的已知限制，不是构建缺陷**，
+> 但部署时务必确认目标主机配好了 404 映射。
+
 ## 发布到任意 Web 服务器
 
 ```bash
