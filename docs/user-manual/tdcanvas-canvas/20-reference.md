@@ -273,6 +273,14 @@ TDCanvas 一共 7 条路由，其中两条**在浏览器里是"走不到底"的*
 | 方式一 / 方式二 | Option 1 / Option 2 | |
 | 未连接 / 连接 | Disconnected / Connect | |
 
+> **2026-10-01 M74 逐条复核（13 组全部成立）**：这张表此前的依据只有 M45 的一句「中英各 1814 条、双向 0 缺失」——那是**数量**对得上，并没有逐条核过这 13 行的**具体措辞**。本批把中文与英文两种界面下的可见文本各抓一份全集（首页 / 配置页 / 画布页），逐组检索，**13 组全部对得上**。
+>
+> 顺带核实的两处：
+> - **语言按钮确实是双向的**：中文界面读「切换到 English」，切过去之后立刻变成「**Switch to 简体中文**」；`<html lang>` 同步由 `zh-CN` 变为 `en-US`。
+> - 配置页的步骤文案比表里记的更完整——中文是「**第一步：获取 AI 土豆 API Key**」「**第二步：粘贴 API Key 并保存，连接画布**」，英文对应 `Step 1: Get an AI Tudou API key` / `Step 2: Paste your API key and save to connect`。表里只记了「第一步 / 第二步」这个前缀，**对照关系不变**。
+>
+> **仍然成立的那条经验**：按 `Config` 搜不到，因为英文界面真的写的是 `Settings`。
+
 ![英文界面的 API 配置页，标题为 API settings，字段标签为 Service credential，第一步按钮为 Join AI Tudou · Get API key，底部为 Verify & check balance 与 Save](screenshots/20-config-en.png)
 
 ### 切换后文案与布局一致（实测 6 条路由）
