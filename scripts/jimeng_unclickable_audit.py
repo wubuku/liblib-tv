@@ -132,11 +132,18 @@ def main() -> int:
 
         # ⚠️ 别叫 `open` —— 它会把内建 `open` 遮蔽掉，
         #    下面 `with open(OUT, "w")` 会炸成「unexpected keyword 'encoding'」。
-        def open_dropdown(sel: str, scope: str = ".react-flow__node-toolbar") -> bool:
+        def open_dropdown(sel: str, want_tid: str | None = None,
+                          scope: str = ".react-flow__node-toolbar") -> bool:
             # ⚠️ 这里**不能**先按 Escape 清场：第一版写了那么一句，结果把刚
             #    选中的节点取消了 → NodeToolbar 卸载 → 触发器根本不存在 →
             #    四个下拉状态**静默**没跑，输出只剩 4 个状态还"全绿"。
             #    835 之后下拉本来就互斥，直接点触发器即可。
+            #
+            # ⚠️ `want_tid` 的短路同样必需：层**已经开着**的时候再点一次触发器
+            #    是把它**关掉**。截帧那步就栽在这 —— 下拉里找不到「首帧」，
+            #    看着像"产品没有这一项"，其实是被自己刚点的那一下关掉了。
+            if want_tid and page.locator(f'[data-testid="{want_tid}"]').count():
+                return True
             loc = page.locator(f"{scope} {sel}" if scope else sel)
             if not loc.count():
                 return False
@@ -148,16 +155,82 @@ def main() -> int:
             return True
 
         def try_measure(tag: str, sel: str,
-                        scope: str = ".react-flow__node-toolbar") -> None:
+                        scope: str = ".react-flow__node-toolbar",
+                        want_tid: str | None = None) -> None:
             """打开一个下拉再普查；**打不开要如实记 skipped，不许静默跳过**。
 
             「跑了但没看见」和「没跑」必须能被分开 —— 否则下拉那些状态从统计里
             消失，工具看上去覆盖了全站，其实一半没碰过。
             """
-            if open_dropdown(sel, scope):
+            if open_dropdown(sel, want_tid, scope):
                 measure(tag)
             else:
                 skipped.append(f"{tag}（打不开：{sel}）")
+
+        # ── 下面三个 helper 是从浮层普查（§54 第二通道）搬过来的 ──
+        #     批 840 在那边踩过的坑，这边不该再踩一遍。
+        TID2TRIG = {
+            # ⚠️ 前两条是批 840 补的：原来**缺**它们，于是 `close_open()` 从来
+            #    关不掉视频节点那两个下拉 —— 开着的工具下拉会一路漏到后面某个
+            #    状态，被当成那个状态的浮层记进去。**漏下去比漏报更坏**。
+            "video-toolbar-capture-menu": "截取帧",
+            "video-toolbar-tools-menu": "工具",
+            "gen-model-listbox": "选择模型", "gen-video-size-listbox": "视频尺寸选项",
+            "gen-mode-listbox": "生成模式", "gen-duration-listbox": "选择视频生成时长",
+            "image-gen-model-listbox": "选择模型", "image-gen-size-listbox": "图片尺寸选项",
+            "audio-gen-type-listbox": "创作类型", "audio-music-model-listbox": "选择模型",
+            "audio-music-duration-listbox": "选择时长", "audio-voice-model-listbox": "选择模型",
+            "audio-gen-mode-listbox": "音频生成", "audio-all-voices-listbox": "音色",
+            "image-tools-menu": "工具", "text-bg-palette": "背景色",
+        }
+
+        def close_open() -> None:
+            """把开着的下拉逐个点回它自己的触发器（toggle 关闭）。
+
+            **不能用 Escape**：那会取消选中 → NodeToolbar 卸载 → 顺带把还没
+            扫的浮层一起弄没了，判据会**假装**没查到。
+            定位器要**同时**试 `aria-label` 和可见文案：视频工具条上那两枚
+            （截取帧 / 工具）压根没有 aria-label，名字就在按钮文字里。
+            """
+            for tid, trig in TID2TRIG.items():
+                if not page.locator(f'[data-testid="{tid}"]').count():
+                    continue
+                loc = page.locator(
+                    f'.react-flow__node-toolbar button[aria-label^="{trig}"], '
+                    f'.react-flow__node-toolbar button:text-is("{trig}")')
+                if not loc.count():
+                    continue
+                try:
+                    loc.first.click(timeout=4000)
+                except Exception:
+                    continue
+                page.wait_for_timeout(300)
+
+        def node_tids() -> list[str]:
+            return page.evaluate(
+                "() => [...document.querySelectorAll('.react-flow__node')]"
+                ".map(n => n.getAttribute('data-testid'))")
+
+        def insert(kind: str) -> str | None:
+            """插入节点并返回新节点的 testid（按**集合差分**，不按序号）。
+
+            ⚠️ 不能让异常冒出去：左栏按钮在开发期重编译时会短暂消失，
+            一次 30s 超时会把**整份审计**带崩，前面所有状态的结果全丢。
+            这里改成"等一小会儿，还不在就返回 None"，由调用方如实记账。
+            """
+            loc = page.locator(f'button[aria-label="{kind}"]')
+            try:
+                loc.first.wait_for(state="attached", timeout=8000)
+            except Exception:
+                return None
+            before = set(node_tids())
+            try:
+                loc.first.click(timeout=8000)
+            except Exception:
+                return None
+            page.wait_for_timeout(1800)
+            new = [t for t in node_tids() if t not in before]
+            return new[0] if new else None
 
         def measure(tag: str) -> None:
             """普查当前页面：找出所有**确认过**点不着的控件。"""
@@ -233,9 +306,35 @@ def main() -> int:
                     + '[role=menu], [role=listbox], [role=dialog], [role=popover], '
                     + '[data-testid$="-listbox"], [data-testid$="-menu"], '
                     + '[data-testid$="-panel"], [data-testid$="-palette"]');
+                  // ⚠️ 第三档（批 843 加）：**同一层里自己压自己**才是布局 bug。
+                  //    跨层遮挡一律 INFO —— 一个菜单盖住画布右下角的会员浮窗，
+                  //    用户关掉菜单就能点，那不是缺陷，是覆盖层的本职工作。
+                  //    「控件的最近浮层祖先」与「遮挡物的最近浮层祖先」**相同**，
+                  //    才是那种"这张菜单自己把自己盖住了"的毛病。
+                  //    （批 835 那种**跨层**互斥问题由 835 自己的 verifier 判，
+                  //    那条判据更重：它要求"两个下拉不该同时开着"。这里不重复。）
+                  const layerEl = el.closest('[data-testid]');
+                  const myLayer = layerEl
+                    ? (layerEl.getAttribute('data-testid') || '') : '';
+                  let sameLayer = false;
+                  if (myLayer) {
+                    for (const bk of blockers) {
+                      const bo = [...document.querySelectorAll('[data-testid]')]
+                        .find(e => e.getAttribute('data-testid') === myLayer);
+                      if (!bo) continue;
+                      // 遮挡物是否在**同一个** data-testid 层里
+                      const probeEl = [...document.querySelectorAll('*')]
+                        .find(e => e.getAttribute('role') === bk.role
+                                  && (e.className || '').toString()
+                                       === bk.cls);
+                      if (probeEl && bo.contains(probeEl)) { sameLayer = true; break; }
+                    }
+                  }
                   out.push({tid: el.getAttribute('data-testid') || '',
                             al: (el.getAttribute('aria-label')||'').trim(),
                             txt: (el.innerText||'').trim().slice(0,24),
+                            layer: myLayer,
+                            same_layer: sameLayer,
                             w: Math.round(r.width), h: Math.round(r.height),
                             x: Math.round(r.x), y: Math.round(r.y),
                             in_layer: inLayer,
@@ -311,8 +410,8 @@ def main() -> int:
             skipped.append("视频工具条（选不中 rf__node-video-local-1）")
         else:
             measure("视频工具条")
-            try_measure("视频工具条·截取帧下拉", 'button:has-text("截取帧")')
-            try_measure("视频工具条·工具下拉", 'button:has-text("工具")')
+            try_measure("视频工具条·截取帧下拉", 'button:has-text("截取帧")', ".react-flow__node-toolbar", "video-toolbar-capture-menu")
+            try_measure("视频工具条·工具下拉", 'button:has-text("工具")', ".react-flow__node-toolbar", "video-toolbar-tools-menu")
             if open_dropdown('button[aria-label="全屏预览"]'):
                 measure("视频全屏预览")
                 page.keyboard.press("Escape")
@@ -329,19 +428,157 @@ def main() -> int:
                               ('button[aria-label="生成模式"]', "模式"),
                               ('button[aria-label="选择视频生成时长"]', "时长")]:
                 try_measure(f"视频生成面板·{tid}下拉", trig,
-                            ".react-flow__node-toolbar, .react-flow__node-panel")
+                            ".react-flow__node-toolbar, .react-flow__node-panel",
+                            {"模型": "gen-model-listbox", "尺寸": "gen-video-size-listbox",
+                             "模式": "gen-mode-listbox", "时长": "gen-duration-listbox"}[tid])
+
+        # ══ D. 文本节点：背景色调色板 ═════════════════════════════
+        # 「背景色」只在**选中非编辑态**的工具条上（isVisible={selected && !editing}），
+        # 所以先双进入编辑、再重新选中——顺序反了按钮压根不出现。
+        txt = insert("文本")
+        if not txt or not select_node(txt):
+            skipped.append("文本·背景色调色板（插不出文本节点或选不中）")
+        else:
+            loc = page.locator(f'.react-flow__node[data-testid="{txt}"]')
+            if loc.count():
+                try:
+                    loc.first.dblclick(timeout=8000)
+                    page.wait_for_timeout(1100)
+                except Exception:
+                    pass
+            sel2 = select_node(txt)
+            if sel2 and open_dropdown('button[aria-label="背景色"]',
+                                      "text-bg-palette"):
+                measure("文本·背景色调色板")
+            else:
+                skipped.append("文本·背景色调色板（背景色按钮打不开）")
+
+        # ══ E. 图片节点：截帧产出 → 它的工具菜单 ═════════════════
+        # 带 poster 的图片节点**只能**靠「截取帧 → 首帧」产出：左栏新插的图片
+        # 节点没有 poster，渲染的是生成面板而不是工具条（832 踩过）。
+        sel_v = select_node("rf__node-video-local-1")
+        if not sel_v or not open_dropdown('button:has-text("截取帧")',
+                                          "video-toolbar-capture-menu"):
+            skipped.append("图片工具条·工具菜单（截取帧下拉打不开）")
+        else:
+            it = page.locator('.react-flow__node-toolbar button:text-is("首帧")')
+            if not it.count():
+                skipped.append("图片工具条·工具菜单（截取帧下拉里没有「首帧」）")
+            else:
+                before = set(node_tids())
+                it.first.click()
+                page.wait_for_timeout(2200)
+                new = [t for t in node_tids()
+                       if t not in before and t and "image" in t]
+                framed = new[0] if new else None
+                if framed is None:
+                    skipped.append("图片工具条·工具菜单（点了首帧没长出图片节点）")
+                elif not select_node(framed):
+                    skipped.append("图片工具条·工具菜单（选不中图片节点）")
+                elif open_dropdown('button:has-text("工具")', "image-tools-menu"):
+                    measure("图片工具条·工具菜单")
+                else:
+                    skipped.append("图片工具条·工具菜单（工具菜单打不开）")
+
+        # ══ F. 音频生成面板（两个分支，共 5 个下拉）════════════════
+        aud = insert("音频")
+        if not aud:
+            skipped.append("音频生成面板·（插不出音频节点）")
+        else:
+            for branch, expect in [
+                ("音乐生成", [("选择模型", "audio-music-model-listbox", "音乐模型"),
+                              ("选择时长", "audio-music-duration-listbox", "音乐时长")]),
+                ("音频生成", [("选择模型", "audio-voice-model-listbox", "音色模型"),
+                              ("音频生成", "audio-gen-mode-listbox", "音频生成模式"),
+                              ("音色", "audio-all-voices-listbox", "全音色")]),
+            ]:
+                if select_node(aud) and open_dropdown(
+                        'button[aria-label^="创作类型"]', "audio-gen-type-listbox"):
+                    opt = page.locator(
+                        '[data-testid="audio-gen-type-listbox"] [role=option]'
+                        f':text-is("{branch}")')
+                    if opt.count():
+                        opt.first.click()
+                        page.wait_for_timeout(900)
+                for trig, tid, label in expect:
+                    if select_node(aud):
+                        try_measure(f"音频生成面板·{label}",
+                                    f'button[aria-label^="{trig}"]',
+                                    ".react-flow__node-toolbar, "
+                                    ".react-flow__node-panel", tid)
+                    else:
+                        skipped.append(f"音频生成面板·{label}（选不中音频节点）")
 
         # 画布右键
+        # ⚠️ 落点**必须先验证是空画布**。第一版硬点 (840,640)，而跑到这里时
+        #    画布上已经插进了文本/音频节点，坐标落在**节点**上 ⇒ 开出来的是
+        #    节点菜单，不是画布菜单。后果不是"少测一个状态"那么简单：那条
+        #    finding 写的是「音色: 音色库」，而空画布菜单里**根本没有这一项**，
+        #    看到的人会以为产品有个不存在的菜单项。**落点不成立就该记账，
+        #    不该硬点。**
+        close_open()
         page.keyboard.press("Escape")
         page.wait_for_timeout(400)
-        page.mouse.click(840, 640, button="right")
-        page.wait_for_timeout(800)
-        if page.locator('[data-testid="canvas-context-menu"]').count():
-            measure("画布右键菜单")
+        spot = page.evaluate("""() => {
+          for (const [x, y] of [[840,640],[700,700],[900,560],[600,800],[1000,760]]) {
+            const t = document.elementFromPoint(x, y);
+            if (t && t.closest('.react-flow__pane') && !t.closest('.react-flow__node'))
+              return [x, y];
+          }
+          return null;
+        }""")
+        if spot:
+            page.mouse.click(spot[0], spot[1], button="right")
+            page.wait_for_timeout(800)
+            if page.locator('[data-testid="canvas-context-menu"]').count():
+                measure("画布右键菜单")
+            else:
+                skipped.append(f"画布右键菜单（@{spot[0]},{spot[1]} 点开了"
+                               "但没出现 canvas-context-menu）")
         else:
-            skipped.append("画布右键菜单（没打开）")
+            skipped.append("画布右键菜单（找不到确认是空画布的落点，"
+                           "硬点会开成节点菜单）")
         page.keyboard.press("Escape")
         page.wait_for_timeout(500)
+
+        # 缩放菜单
+        z = page.locator('[data-testid="canvas-zoom-percent"]')
+        if z.count():
+            z.first.click()
+            page.wait_for_timeout(650)
+        if page.locator('[data-testid="canvas-zoom-menu"]').count():
+            measure("缩放菜单")
+        else:
+            skipped.append("缩放菜单（没出现）")
+        page.keyboard.press("Escape")
+        page.wait_for_timeout(500)
+
+        # ══ H. 顶栏 5 个浮层 ═════════════════════════════════════
+        # testid 全部来自源码实测 —— 浮层普查第一版这四个是**凭印象猜的**，
+        # 四个全错，四个状态白跑一轮。猜名字的代价是实打实的。
+        for label, tid, name in [
+            ("分享", "topbar-share-panel", "分享面板"),
+            ("用户菜单", "canvas-user-menu", "账号菜单"),
+            ("更多", "topbar-more-menu", "更多菜单"),
+            ("搜索", "jimeng-search-overlay", "搜索"),
+            ("生成历史", "topbar-history-menu", "生成历史"),
+        ]:
+            loc = page.locator(f'header[aria-label="Canvas top bar"] '
+                               f'button[aria-label="{label}"]')
+            if not loc.count():
+                loc = page.locator(f'button[aria-label="{label}"]')
+            if loc.count():
+                try:
+                    loc.first.click(timeout=6000)
+                    page.wait_for_timeout(700)
+                except Exception:
+                    pass
+            if page.locator(f'[data-testid="{tid}"]').count():
+                measure(f"顶栏·{name}")
+            else:
+                skipped.append(f"顶栏·{name}（打开后没找到 {tid}）")
+            page.keyboard.press("Escape")
+            page.wait_for_timeout(450)
 
         # ── 自检：判据必须**能报出 1** ──────────────────────────────
         #     一个报 0 的工具，在证明自己之前什么都不是。第一版没有这一步，
@@ -397,10 +634,10 @@ def main() -> int:
 
     # 「点不着」只算 `covered_by_modal=false` 的那些：全屏模态盖住画布 chrome
     # 是覆盖层的**正常**行为（835 已定过这条），记进来只会稀释真缺陷。
-    real = [r for r in rows if r["confirmed"] and r.get("in_layer")
+    real = [r for r in rows if r["confirmed"] and r.get("same_layer")
             and not r.get("covered_by_modal")]
     by_modal = [r for r in rows if r.get("covered_by_modal")
-                or (r["confirmed"] and not r.get("in_layer"))]
+                or (r["confirmed"] and not r.get("same_layer"))]
     unconfirmed = [r for r in rows if not r["confirmed"]]
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump({"rows": rows, "skipped": skipped, "states": states_done,
@@ -410,7 +647,7 @@ def main() -> int:
                   f, ensure_ascii=False, indent=2)
 
     print(f"跑了 {len(states_done)} 个状态；候选 {len(rows)} 条 → "
-          f"**确认点不着（浮层里的选项被埋）{len(real)}**、"
+          f"**确认点不着（同一层自己压自己）{len(real)}**、"
           f"被全屏模态盖住（正常，INFO）{len(by_modal)}、"
           f"活页面确认没通过 {len(unconfirmed)}")
     for st in states_done:
@@ -420,15 +657,16 @@ def main() -> int:
         for s in skipped:
             print(f"    - {s}")
     for r in rows:
-        flag = ("★ 确认点不着（浮层里的选项被埋）"
-                if r["confirmed"] and r.get("in_layer")
+        flag = ("★ 确认点不着（**同一层**自己压自己）"
+                if r["confirmed"] and r.get("same_layer")
                 and not r.get("covered_by_modal")
                 else ("· 被全屏模态盖住（正常，INFO）" if r.get("covered_by_modal")
-                      else ("· 画布控件被开着的下拉盖住（关掉就能点，INFO）"
+                      else ("· 被**另一层**盖住（关掉那层就能点，INFO）"
                             if r["confirmed"] else
                             "?? 活页面确认没通过（不算）")))
         print(f"  {flag} [{r['state']}] al={r['al']!r} tid={r['tid']!r} "
-              f"{r['w']}×{r['h']} @{r['x']},{r['y']}")
+              f"层={r.get('layer') or '(无)'} {r['w']}×{r['h']} "
+              f"@{r['x']},{r['y']}")
         for bk in r["blockers"][:2]:
             print(f"      被 {bk['tid'] or bk['cls']!r} (z={bk['z']}) 挡住")
         if not r["confirmed"]:

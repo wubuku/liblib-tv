@@ -35,12 +35,20 @@ AUDIT = ROOT / "scripts" / "jimeng_unclickable_audit.py"
 OUT = Path("/tmp/jimeng-unclickable-b841.json")
 
 # 覆盖面下限：这些状态必须**真的跑到**。少一个就是有人悄悄缩小了范围。
+# 批 843 从 11 个扩到 24 个（补齐文本调色板 / 图片工具菜单 / 音频面板 5 个 /
+# 缩放 / 顶栏 5 个 / 画布右键）。顺序与审计脚本一致，别只改一处。
 EXPECTED_STATES = [
     "空态", "视频工具条",
     "视频工具条·截取帧下拉", "视频工具条·工具下拉", "视频全屏预览",
     "视频生成面板", "视频生成面板·模型下拉", "视频生成面板·尺寸下拉",
     "视频生成面板·模式下拉", "视频生成面板·时长下拉",
-    "画布右键菜单",
+    "文本·背景色调色板", "图片工具条·工具菜单",
+    "音频生成面板·音乐模型", "音频生成面板·音乐时长",
+    "音频生成面板·音色模型", "音频生成面板·音频生成模式",
+    "音频生成面板·全音色",
+    "画布右键菜单", "缩放菜单",
+    "顶栏·分享面板", "顶栏·账号菜单", "顶栏·更多菜单",
+    "顶栏·搜索", "顶栏·生成历史",
 ]
 
 failures: list[str] = []
@@ -105,9 +113,9 @@ def main() -> int:
 
     # ── D. 「缺陷」与「INFO」必须分开，且分界写死在源码里 ───────────
     print("\n— D. 分档：浮层盖住静态控件是正常的，不算缺陷 —")
-    check(f"D.1 缺陷桶 {len(real)} 条（浮层里的选项被埋）",
+    check(f"D.1 缺陷桶 {len(real)} 条（同一层自己压自己）",
           isinstance(real, list), f"类型={type(real).__name__}")
-    check(f"D.2 INFO 桶 {len(by_modal)} 条（模态/下拉的正常遮挡）",
+    check(f"D.2 INFO 桶 {len(by_modal)} 条（模态遮罩 / 跨层遮挡，正常）",
           isinstance(by_modal, list), f"类型={type(by_modal).__name__}")
     overlap = {id(x) for x in real} & {id(x) for x in by_modal}
     check("D.3 两个桶不重叠（同一个控件不能既算缺陷又算正常）",
@@ -116,9 +124,15 @@ def main() -> int:
     check("D.4 缺陷桶里没有一条是被全屏模态盖住的（那属于正常）",
           not bad_real, f"混进来 {len(bad_real)} 条")
     bad_info = [x for x in by_modal if not x.get("covered_by_modal")
-                and x.get("in_layer")]
-    check("D.5 INFO 桶里没有一条是「浮层里的选项」（那属于缺陷）",
+                and x.get("same_layer")]
+    check("D.5 INFO 桶里没有一条是「同一层自己压自己」（那属于缺陷）",
           not bad_info, f"混进来 {len(bad_info)} 条")
+    # 批 843：跨层遮挡必须**如实**记成 INFO，而且每条都要说清自己属于哪一层。
+    # 第一版那条 finding 写的是「音色: 音色库」，而空画布菜单里根本没这一项 ——
+    # 当时点在了节点上。没有 `layer` 字段，看到的人只能自己猜。
+    no_layer = [x for x in by_modal if "layer" not in x]
+    check("D.6 每条 finding 都带 `layer`（属于哪一层必须可读）",
+          not no_layer, f"缺 layer 的 {len(no_layer)} 条")
 
     # ── E. 源码侧的防阉割契约 ─────────────────────────────────────
     print("\n— E. 源码侧的防阉割契约 —")
@@ -148,6 +162,15 @@ def main() -> int:
     # ⑦ 视口外的控件不许参与判定
     check("E.9 视口外的控件被排除（滚一下就够得到，不算点不着）",
           "视口外" in asrc)
+    # ⑩ 批 843：跨层 vs 同层必须分档（第一版把跨层也算成缺陷，害得一条
+    #    「画布右键菜单里的音色项点不到」差点被当成产品缺陷去修）
+    check("E.10 分档落在「同一层自己压自己」上（`same_layer`）",
+          "same_layer" in asrc)
+    check("E.11 右键落点先验证是空画布（硬点会开成节点菜单）",
+          "找不到确认是空画布的落点" in asrc)
+    # ⑫ 层已经开着的时候不许再点触发器（那是把它**关掉**）
+    check("E.12 `open_dropdown` 有 `want_tid` 短路",
+          "want_tid" in asrc)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
