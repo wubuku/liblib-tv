@@ -14,6 +14,9 @@ import { useJimengStore } from "@/store/jimengStore";
 /** 源站给「缩放至选中项」配的禁用提示文案（藏在 1×1 隐藏 span 里）。 */
 const DISABLED_TITLE = "请先选择至少一个画布元素";
 
+/** 批 828：源站的缩放菜单用 aria-labelledby 指向缩放触发器，复刻照此给个稳定 id。 */
+export const ZOOM_MENU_TRIGGER_ID = "jimeng-zoom-menu-trigger";
+
 /**
  * 缩放百分比菜单 (Batch 7)。
  *
@@ -111,6 +114,12 @@ export function JimengZoomMenu({ onClose }: { onClose: () => void }) {
     <div
       ref={ref}
       role="menu"
+      // 批 828：源站实测 @1680×826 —— `data-testid="canvas-zoom-menu"`，
+      // aria-label 为空但用 **aria-labelledby 指向缩放触发器**（与账号菜单同型），
+      // 200×292 static，七项与本复刻逐字一致。几何本来就是对的，缺的只是
+      // 可指名 + 可定位，于是它对任何按 role 枚举的普查都是隐形的。
+      aria-labelledby={ZOOM_MENU_TRIGGER_ID}
+      data-testid="canvas-zoom-menu"
       // 外观收口到 jimengMenuChrome（batch 814）：与画布右键菜单同一套 ——
       // 200 宽、padding 4、行高 36、行间隙 4。此前本文件自带一份，
       // 右键菜单又自带一份，两份已经开始漂移（右键那份还是 192/p-2/行高 44）。

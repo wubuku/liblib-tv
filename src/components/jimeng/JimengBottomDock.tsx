@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Map, MousePointer2, Spline } from "lucide-react";
 
-import { JimengZoomMenu } from "@/components/jimeng/JimengZoomMenu";
+import { JimengZoomMenu, ZOOM_MENU_TRIGGER_ID } from "@/components/jimeng/JimengZoomMenu";
 import { useJimengStore } from "@/store/jimengStore";
 
 /**
@@ -75,6 +75,8 @@ export function JimengBottomDock() {
           type="button"
           // Batch 796 (SOURCE_FACT): 无障碍名逐字 = "Zoom options, {n}%"
           aria-label={`Zoom options, ${zoomPercent}%`}
+          // 批 828：源站的缩放菜单用 aria-labelledby 指向这个触发器，复刻照此接线
+          id={ZOOM_MENU_TRIGGER_ID}
           data-testid="canvas-zoom-percent"
           onClick={() => setZoomMenuOpen((v) => !v)}
           className="flex h-7 w-12 items-center justify-center rounded-md text-[13px] text-white/85 hover:bg-white/10"

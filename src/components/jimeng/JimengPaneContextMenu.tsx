@@ -149,6 +149,14 @@ export function JimengPaneContextMenu({
     <div
       ref={ref}
       role="menu"
+      // 批 828：批 824 给**同级**的 JimengContextMenu（节点右键菜单）补上了
+      // testid + 可访问名，却漏了这一个 —— 而画布空白处右键走的正是本组件。
+      // 两处是同一段代码的两个拷贝，只修一处等于没修。
+      // 名字逐字取自源站实测（@1680×826，稳定后测得）：
+      //   [data-testid="canvas-context-menu"] aria-label="Canvas context menu"
+      //   240×172 @[900,620] position:fixed
+      aria-label="Canvas context menu"
+      data-testid="canvas-context-menu"
       // 200 宽 / padding 4 / 行间隙 4 —— 与缩放菜单同一套（batch 814 收口到
       // jimengMenuChrome，此前这里是 w-48 p-2，行高 44）
       className={`fixed z-[200] ${MENU_PANEL_CLASS}`}
@@ -175,6 +183,11 @@ export function JimengPaneContextMenu({
             className="absolute left-full top-0 ml-1 flex w-[200px] flex-col gap-1 rounded-xl p-1"
             style={{ background: MENU_PANEL_BG }}
             role="menu"
+            // 批 828：只补锚点，**不补 aria-label** —— 源站这个子菜单实测同样
+            // 既无 data-testid 也无 aria-label（200×404 @[1148,414] static）。
+            // 源站没有的名字不编：编一个就成了"复刻自有"，得标 (mock)，而这里
+            // 一个用户可见的名字都不需要。给自动化一个 testid 就够。
+            data-testid="canvas-insert-submenu"
           >
             {/* 批 221 SOURCE_FACT: 子菜单以「添加节点」表头开始 */}
             <p className="flex h-8 shrink-0 items-center px-3 text-[13px] text-white/35">

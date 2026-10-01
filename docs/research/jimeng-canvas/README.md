@@ -7806,7 +7806,11 @@ border: 1px solid rgba(255,255,255,0.04)     padding/margin 全 0
   根本没有可见分隔线。
 
 `[66,67,1,139]` 是**我们**给「槽与轨道的边界」起的名字，不是源站的 testid
-（源站全站用类名，一个 testid 都没有）。该元素已删除，828 的断言改成**否定式**
+（源站那个位置**没有**分隔线元素 —— 它只是槽与轨道之间的边界）。⚠️ 紧跟其后那句
+「源站全站用类名，一个 testid 都没有」是**错的**，批 831 普查推翻了：源站节点壳是有
+testid 的（`video-flow-node-surface` / `timeline-flow-node` /
+`director-stage-flow-node-shell` / `timeline-flow-node-main-track`）。该元素已删除，
+828 的断言改成**否定式**
 （「槽与轨道之间没有独立分隔元素」），§40 对应小节已就地标注证伪。
 
 ### 教训

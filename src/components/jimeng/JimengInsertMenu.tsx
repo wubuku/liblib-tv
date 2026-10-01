@@ -52,6 +52,11 @@ export function JimengInsertMenu({
       className="absolute top-full left-1/2 z-[120] mt-3 w-48 -translate-x-1/2 rounded-xl p-2"
       style={{ background: "rgb(38,38,38)" }}
       role="menu"
+      // 批 828：只补**自动化锚点**，不补 aria-label。这块浮层挂在节点的连接
+      // 手柄「+」上（视频节点 / connect handles 两处共用），是**复刻侧的
+      // 便利入口**；源站没有一一对应的浮层，编一个 aria-label 就等于凭空
+      // 造了个名字。testid 对用户不可见，只是让普查能看见它。
+      data-testid="canvas-node-insert-menu"
     >
       <p className="px-2 pb-1 text-[13px] leading-8 text-white/45">添加节点</p>
       {MENU_ITEMS.map(({ icon: Icon, label }) => (
