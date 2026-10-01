@@ -424,12 +424,24 @@ function JimengFlow() {
         zoomOnDoubleClick={false}
       >
         {/* 小地图 (Batch 91/92, SOURCE_FACT): dock 切换，位于 dock 上方；
-            拖拽平移画布、滚轮缩放画布 (92-minimap-sem.json) */}
+            拖拽平移画布、滚轮缩放画布 (92-minimap-sem.json)
+            Batch 802 SOURCE_FACT 复测（源站 @1680×826，点「小地图」后量得）：
+              导航 dock 面板 @[12,656] **164×154**、padding 4、gap 4、flex column、
+              bg rgb(13,13,13)、radius 8；子元素 = 小地图 @[16,660] **156×114**
+              + 原 dock 行 @[16,778] 156×28（**与底栏原位重合**）。
+              ⇒ 源站是「同一个 dock 变高、小地图插在上方」，不是另浮一个面板。
+            复刻是分离浮层，故按**可实现的等价**对齐：把小地图面板落成
+            @[12,656] 164×118（4+114+4），其下缘正好贴住底栏顶边 774，
+            两者同底色 → 视觉上连成一整条，与源站一致。
+            bottom = 826 − 774 = 52；left 12；padding 4（此前 bottom-14 left-4
+            p-2 ⇒ 面板 @[16,616]、内层 @[9,641]，整体偏高 40px 且横向错位）。
+            残留差异：源站是单一元素统一 8px 圆角，复刻是两块相接，
+            接缝处圆角会略有断点（已记入台账）。 */}
         {minimapOpen ? (
           <div
             data-testid="jimeng-minimap-panel"
-            className="absolute bottom-14 left-4 z-[30] rounded-lg p-2"
-            style={{ background: "rgb(13,13,13)", width: 164, height: 154 }}
+            className="absolute bottom-[52px] left-3 z-[30] rounded-lg p-1"
+            style={{ background: "rgb(13,13,13)", width: 164, height: 118 }}
           >
             <MiniMap
               pannable
@@ -439,11 +451,18 @@ function JimengFlow() {
                 height: 114,
                 background: "rgba(255,255,255,0.08)",
                 borderRadius: 6,
+                // Batch 802: 必须压成**常规流**且清零 margin。`.react-flow__minimap`
+                // 被本仓样式表设成 position:absolute + top:-26px / left:-22px +
+                // margin:15px（实测 computed），使小地图跑到壳外左侧 @[5,645]；
+                // 只改 position 会停在 @[31,675]（差值恰为那 15px margin）。
+                // 两者都改后它是外壳 padding(4px) 内的常规块，正好落在
+                // @[16,660] 156×114，与源站一致。外壳本身 absolute，定位不受影响。
+                position: "static",
+                margin: 0,
               }}
               maskColor="rgba(0,0,0,0.45)"
               nodeColor={() => "#4a4a4a"}
               nodeStrokeColor="transparent"
-              className="!rounded-md"
             />
           </div>
         ) : null}

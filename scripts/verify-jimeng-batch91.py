@@ -36,7 +36,10 @@ def main() -> None:
                 .map(b => b.getAttribute('aria-label'))"""
         )
         # batch 93: dock 增加显示连线钮
-        if labels != ["选择工具", "小地图", "显示连线", "缩放"]:
+        # batch 796 起缩放钮 aria-label 逐字对齐源站 "Zoom options, {n}%"（含实时
+        # 百分比），故此处按前缀匹配，不再写死旧标签「缩放」。
+        if (len(labels) != 4 or labels[:3] != ["选择工具", "小地图", "显示连线"]
+                or not labels[3].startswith("Zoom options, ")):
             failures.append(f"dock buttons: {labels}")
 
         if not page.locator('[data-testid="jimeng-minimap-panel"]').count():
@@ -58,8 +61,11 @@ def main() -> None:
         if not panel:
             failures.append("minimap panel did not open")
         else:
-            if abs(panel["w"] - 164) > 6 or abs(panel["h"] - 154) > 6:
-                failures.append(f"minimap size: {panel['w']}x{panel['h']} want 164x154")
+            # batch 802 复测源站后改：面板只承载小地图，= 4(pad)+114+4 = 118 高，
+            # 下缘贴住底栏顶边（源站是 dock 整体变高到 154，复刻为分离浮层，
+            # 见台账 batch 802 条目的残留差异说明）。宽度仍 164。
+            if abs(panel["w"] - 164) > 6 or abs(panel["h"] - 118) > 6:
+                failures.append(f"minimap size: {panel['w']}x{panel['h']} want 164x118")
             if panel["bg"] != "rgb(13, 13, 13)":
                 failures.append(f"minimap bg: {panel['bg']}")
             if panel["radius"] != "8px":
