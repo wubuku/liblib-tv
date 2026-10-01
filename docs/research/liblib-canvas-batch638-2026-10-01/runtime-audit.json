@@ -1,0 +1,1358 @@
+{
+  "batch": 638,
+  "title": "instrument audit — the three-way truth table for the timeline's height, and where data-director-timeline-height lies",
+  "date": "2026-10-01",
+  "widths": [
+    898,
+    899,
+    1440
+  ],
+  "storeHeights": [
+    88,
+    124,
+    176,
+    182,
+    240,
+    420
+  ],
+  "cssCollapsed": {
+    "False": 88,
+    "True": 124
+  },
+  "cssAtDefault": {
+    "False": 182,
+    "True": 176
+  },
+  "cells": {
+    "w898/exp/store=88": {
+      "width": 898,
+      "narrow": true,
+      "collapsed": false,
+      "storeRequested": 88,
+      "storeHeight": 88,
+      "regime": "expanded-inline",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "88px",
+      "attr": "88",
+      "collapsedAttr": "false",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 77,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 0,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898/exp/store=124": {
+      "width": 898,
+      "narrow": true,
+      "collapsed": false,
+      "storeRequested": 124,
+      "storeHeight": 124,
+      "regime": "expanded-inline",
+      "predictedHeight": 124.0,
+      "rectH": 124,
+      "computedH": 124,
+      "inlineH": "124px",
+      "attr": "124",
+      "collapsedAttr": "false",
+      "attrSays": 124.0,
+      "attrTruthful": true,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 77,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 0,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898/exp/store=176": {
+      "width": 898,
+      "narrow": true,
+      "collapsed": false,
+      "storeRequested": 176,
+      "storeHeight": 176,
+      "regime": "expanded-inline",
+      "predictedHeight": 176.0,
+      "rectH": 176,
+      "computedH": 176,
+      "inlineH": "176px",
+      "attr": "176",
+      "collapsedAttr": "false",
+      "attrSays": 176.0,
+      "attrTruthful": true,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 0,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898/exp/store=182": {
+      "width": 898,
+      "narrow": true,
+      "collapsed": false,
+      "storeRequested": 182,
+      "storeHeight": 182,
+      "regime": "expanded-at-default-css",
+      "predictedHeight": 176.0,
+      "rectH": 176,
+      "computedH": 176,
+      "inlineH": "",
+      "attr": "182",
+      "collapsedAttr": "false",
+      "attrSays": 182.0,
+      "attrTruthful": false,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 0,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898/exp/store=240": {
+      "width": 898,
+      "narrow": true,
+      "collapsed": false,
+      "storeRequested": 240,
+      "storeHeight": 240,
+      "regime": "expanded-inline",
+      "predictedHeight": 240.0,
+      "rectH": 240,
+      "computedH": 240,
+      "inlineH": "240px",
+      "attr": "240",
+      "collapsedAttr": "false",
+      "attrSays": 240.0,
+      "attrTruthful": true,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 64,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 0,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898/exp/store=420": {
+      "width": 898,
+      "narrow": true,
+      "collapsed": false,
+      "storeRequested": 420,
+      "storeHeight": 420,
+      "regime": "expanded-inline",
+      "predictedHeight": 420.0,
+      "rectH": 420,
+      "computedH": 420,
+      "inlineH": "420px",
+      "attr": "420",
+      "collapsedAttr": "false",
+      "attrSays": 420.0,
+      "attrTruthful": true,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 64,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 0,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898/col/store=88": {
+      "width": 898,
+      "narrow": true,
+      "collapsed": true,
+      "storeRequested": 88,
+      "storeHeight": 88,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 124.0,
+      "rectH": 124,
+      "computedH": 124,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": false,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 0,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898/col/store=124": {
+      "width": 898,
+      "narrow": true,
+      "collapsed": true,
+      "storeRequested": 124,
+      "storeHeight": 124,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 124.0,
+      "rectH": 124,
+      "computedH": 124,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": false,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 0,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898/col/store=176": {
+      "width": 898,
+      "narrow": true,
+      "collapsed": true,
+      "storeRequested": 176,
+      "storeHeight": 176,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 124.0,
+      "rectH": 124,
+      "computedH": 124,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": false,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 0,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898/col/store=182": {
+      "width": 898,
+      "narrow": true,
+      "collapsed": true,
+      "storeRequested": 182,
+      "storeHeight": 182,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 124.0,
+      "rectH": 124,
+      "computedH": 124,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": false,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 0,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898/col/store=240": {
+      "width": 898,
+      "narrow": true,
+      "collapsed": true,
+      "storeRequested": 240,
+      "storeHeight": 240,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 124.0,
+      "rectH": 124,
+      "computedH": 124,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": false,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 0,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w898/col/store=420": {
+      "width": 898,
+      "narrow": true,
+      "collapsed": true,
+      "storeRequested": 420,
+      "storeHeight": 420,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 124.0,
+      "rectH": 124,
+      "computedH": 124,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": false,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 71,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 0,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899/exp/store=88": {
+      "width": 899,
+      "narrow": false,
+      "collapsed": false,
+      "storeRequested": 88,
+      "storeHeight": 88,
+      "regime": "expanded-inline",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "88px",
+      "attr": "88",
+      "collapsedAttr": "false",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 25,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899/exp/store=124": {
+      "width": 899,
+      "narrow": false,
+      "collapsed": false,
+      "storeRequested": 124,
+      "storeHeight": 124,
+      "regime": "expanded-inline",
+      "predictedHeight": 124.0,
+      "rectH": 124,
+      "computedH": 124,
+      "inlineH": "124px",
+      "attr": "124",
+      "collapsedAttr": "false",
+      "attrSays": 124.0,
+      "attrTruthful": true,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 18,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899/exp/store=176": {
+      "width": 899,
+      "narrow": false,
+      "collapsed": false,
+      "storeRequested": 176,
+      "storeHeight": 176,
+      "regime": "expanded-inline",
+      "predictedHeight": 176.0,
+      "rectH": 176,
+      "computedH": 176,
+      "inlineH": "176px",
+      "attr": "176",
+      "collapsedAttr": "false",
+      "attrSays": 176.0,
+      "attrTruthful": true,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899/exp/store=182": {
+      "width": 899,
+      "narrow": false,
+      "collapsed": false,
+      "storeRequested": 182,
+      "storeHeight": 182,
+      "regime": "expanded-at-default-css",
+      "predictedHeight": 182.0,
+      "rectH": 182,
+      "computedH": 182,
+      "inlineH": "",
+      "attr": "182",
+      "collapsedAttr": "false",
+      "attrSays": 182.0,
+      "attrTruthful": true,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899/exp/store=240": {
+      "width": 899,
+      "narrow": false,
+      "collapsed": false,
+      "storeRequested": 240,
+      "storeHeight": 240,
+      "regime": "expanded-inline",
+      "predictedHeight": 240.0,
+      "rectH": 240,
+      "computedH": 240,
+      "inlineH": "240px",
+      "attr": "240",
+      "collapsedAttr": "false",
+      "attrSays": 240.0,
+      "attrTruthful": true,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 10,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899/exp/store=420": {
+      "width": 899,
+      "narrow": false,
+      "collapsed": false,
+      "storeRequested": 420,
+      "storeHeight": 420,
+      "regime": "expanded-inline",
+      "predictedHeight": 420.0,
+      "rectH": 420,
+      "computedH": 420,
+      "inlineH": "420px",
+      "attr": "420",
+      "collapsedAttr": "false",
+      "attrSays": 420.0,
+      "attrTruthful": true,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 10,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899/col/store=88": {
+      "width": 899,
+      "narrow": false,
+      "collapsed": true,
+      "storeRequested": 88,
+      "storeHeight": 88,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 19,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899/col/store=124": {
+      "width": 899,
+      "narrow": false,
+      "collapsed": true,
+      "storeRequested": 124,
+      "storeHeight": 124,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 19,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899/col/store=176": {
+      "width": 899,
+      "narrow": false,
+      "collapsed": true,
+      "storeRequested": 176,
+      "storeHeight": 176,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 19,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899/col/store=182": {
+      "width": 899,
+      "narrow": false,
+      "collapsed": true,
+      "storeRequested": 182,
+      "storeHeight": 182,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 19,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899/col/store=240": {
+      "width": 899,
+      "narrow": false,
+      "collapsed": true,
+      "storeRequested": 240,
+      "storeHeight": 240,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 19,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w899/col/store=420": {
+      "width": 899,
+      "narrow": false,
+      "collapsed": true,
+      "storeRequested": 420,
+      "storeHeight": 420,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 19,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440/exp/store=88": {
+      "width": 1440,
+      "narrow": false,
+      "collapsed": false,
+      "storeRequested": 88,
+      "storeHeight": 88,
+      "regime": "expanded-inline",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "88px",
+      "attr": "88",
+      "collapsedAttr": "false",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 21,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440/exp/store=124": {
+      "width": 1440,
+      "narrow": false,
+      "collapsed": false,
+      "storeRequested": 124,
+      "storeHeight": 124,
+      "regime": "expanded-inline",
+      "predictedHeight": 124.0,
+      "rectH": 124,
+      "computedH": 124,
+      "inlineH": "124px",
+      "attr": "124",
+      "collapsedAttr": "false",
+      "attrSays": 124.0,
+      "attrTruthful": true,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 13,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440/exp/store=176": {
+      "width": 1440,
+      "narrow": false,
+      "collapsed": false,
+      "storeRequested": 176,
+      "storeHeight": 176,
+      "regime": "expanded-inline",
+      "predictedHeight": 176.0,
+      "rectH": 176,
+      "computedH": 176,
+      "inlineH": "176px",
+      "attr": "176",
+      "collapsedAttr": "false",
+      "attrSays": 176.0,
+      "attrTruthful": true,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 10,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440/exp/store=182": {
+      "width": 1440,
+      "narrow": false,
+      "collapsed": false,
+      "storeRequested": 182,
+      "storeHeight": 182,
+      "regime": "expanded-at-default-css",
+      "predictedHeight": 182.0,
+      "rectH": 182,
+      "computedH": 182,
+      "inlineH": "",
+      "attr": "182",
+      "collapsedAttr": "false",
+      "attrSays": 182.0,
+      "attrTruthful": true,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 10,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440/exp/store=240": {
+      "width": 1440,
+      "narrow": false,
+      "collapsed": false,
+      "storeRequested": 240,
+      "storeHeight": 240,
+      "regime": "expanded-inline",
+      "predictedHeight": 240.0,
+      "rectH": 240,
+      "computedH": 240,
+      "inlineH": "240px",
+      "attr": "240",
+      "collapsedAttr": "false",
+      "attrSays": 240.0,
+      "attrTruthful": true,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440/exp/store=420": {
+      "width": 1440,
+      "narrow": false,
+      "collapsed": false,
+      "storeRequested": 420,
+      "storeHeight": 420,
+      "regime": "expanded-inline",
+      "predictedHeight": 420.0,
+      "rectH": 420,
+      "computedH": 420,
+      "inlineH": "420px",
+      "attr": "420",
+      "collapsedAttr": "false",
+      "attrSays": 420.0,
+      "attrTruthful": true,
+      "607Conjunction": false,
+      "spill": 0,
+      "offViewport": 4,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440/col/store=88": {
+      "width": 1440,
+      "narrow": false,
+      "collapsed": true,
+      "storeRequested": 88,
+      "storeHeight": 88,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440/col/store=124": {
+      "width": 1440,
+      "narrow": false,
+      "collapsed": true,
+      "storeRequested": 124,
+      "storeHeight": 124,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440/col/store=176": {
+      "width": 1440,
+      "narrow": false,
+      "collapsed": true,
+      "storeRequested": 176,
+      "storeHeight": 176,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440/col/store=182": {
+      "width": 1440,
+      "narrow": false,
+      "collapsed": true,
+      "storeRequested": 182,
+      "storeHeight": 182,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440/col/store=240": {
+      "width": 1440,
+      "narrow": false,
+      "collapsed": true,
+      "storeRequested": 240,
+      "storeHeight": 240,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    },
+    "w1440/col/store=420": {
+      "width": 1440,
+      "narrow": false,
+      "collapsed": true,
+      "storeRequested": 420,
+      "storeHeight": 420,
+      "regime": "collapsed-css-only",
+      "predictedHeight": 88.0,
+      "rectH": 88,
+      "computedH": 88,
+      "inlineH": "",
+      "attr": "88",
+      "collapsedAttr": "true",
+      "attrSays": 88.0,
+      "attrTruthful": true,
+      "607Conjunction": true,
+      "spill": 0,
+      "offViewport": 15,
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [],
+      "buriedCount": 1,
+      "aboveTimelineTop": [],
+      "predictAgrees": true
+    }
+  },
+  "checks": {
+    "the-grid-runs-36-cells": {
+      "ok": true,
+      "detail": 36
+    },
+    "the-collapse-toggle-is-reachable-and-flips-the-data-attribute": {
+      "ok": true,
+      "detail": {
+        "failedTransitions": []
+      }
+    },
+    "every-cell-renders-what-its-regime-predicts": {
+      "ok": true,
+      "detail": {
+        "wrong": {}
+      }
+    },
+    "all-three-height-regimes-are-exercised": {
+      "ok": true,
+      "detail": {
+        "expanded-inline": 2,
+        "expanded-at-default-css": 2,
+        "collapsed-css-only": 4
+      }
+    },
+    "182-is-the-only-store-value-that-goes-to-css": {
+      "ok": true,
+      "detail": {
+        "swept": [
+          88,
+          124,
+          176,
+          182,
+          240,
+          420
+        ],
+        "rewritten": {}
+      }
+    },
+    "the-height-attribute-lies-in-exactly-the-two-css-handoff-cells": {
+      "ok": true,
+      "detail": {
+        "liars": [
+          "w898/col/store=124",
+          "w898/col/store=176",
+          "w898/col/store=182",
+          "w898/col/store=240",
+          "w898/col/store=420",
+          "w898/col/store=88",
+          "w898/exp/store=182"
+        ],
+        "derived": [
+          "w898/col/store=124",
+          "w898/col/store=176",
+          "w898/col/store=182",
+          "w898/col/store=240",
+          "w898/col/store=420",
+          "w898/col/store=88",
+          "w898/exp/store=182"
+        ],
+        "whatItSays": {
+          "w898/col/store=124": {
+            "attr": "88",
+            "computed": 124
+          },
+          "w898/col/store=176": {
+            "attr": "88",
+            "computed": 124
+          },
+          "w898/col/store=182": {
+            "attr": "88",
+            "computed": 124
+          },
+          "w898/col/store=240": {
+            "attr": "88",
+            "computed": 124
+          },
+          "w898/col/store=420": {
+            "attr": "88",
+            "computed": 124
+          },
+          "w898/col/store=88": {
+            "attr": "88",
+            "computed": 124
+          },
+          "w898/exp/store=182": {
+            "attr": "182",
+            "computed": 176
+          }
+        },
+        "whyItLies": "the attribute mirrors the store, but the DOM follows CSS on the two handoffs: collapsed (`:794` hardcodes 88 while the narrow CSS is 124) and store==182 (the inline style is omitted while the narrow CSS is 176)"
+      }
+    },
+    "while-expanded-the-attribute-is-always-just-the-store-value": {
+      "ok": true,
+      "detail": {
+        "mismatches": {},
+        "collapsedAttr": [
+          "88"
+        ],
+        "collapsedStoreValues": [
+          88,
+          124,
+          176,
+          182,
+          240,
+          420
+        ]
+      }
+    },
+    "the-rect-readers-629-to-637-were-reading-the-true-height": {
+      "ok": true,
+      "detail": {
+        "divergentCells": {},
+        "whyItMatters": "629-637 derive every height claim from getBoundingClientRect, so this is the check that those claims are sound"
+      }
+    },
+    "607s-collapse-contract-holds-only-in-the-desktop-family": {
+      "ok": true,
+      "detail": {
+        "perWidth": {
+          "898": {
+            "conjunctionHolds": false,
+            "computed": [
+              124
+            ],
+            "attr": [
+              "88"
+            ]
+          },
+          "899": {
+            "conjunctionHolds": true,
+            "computed": [
+              88
+            ],
+            "attr": [
+              "88"
+            ]
+          },
+          "1440": {
+            "conjunctionHolds": true,
+            "computed": [
+              88
+            ],
+            "attr": [
+              "88"
+            ]
+          }
+        },
+        "607Viewport": "1920x1150 (desktop only)",
+        "607Assertion": "computed==88 AND attr=='88'"
+      }
+    },
+    "no-cell-has-an-off-viewport-unreachable-control": {
+      "ok": true,
+      "detail": {}
+    },
+    "no-cell-has-a-control-collapsed-to-nothing": {
+      "ok": true,
+      "detail": {}
+    },
+    "no-cell-has-an-unexplained-covered-control": {
+      "ok": true,
+      "detail": {}
+    },
+    "every-buried-control-sits-below-the-timelines-top-edge": {
+      "ok": true,
+      "detail": {}
+    },
+    "no-timeline-spills-past-the-window": {
+      "ok": true,
+      "detail": {}
+    },
+    "629s-closed-form-predicts-the-squeeze-in-every-cell": {
+      "ok": true,
+      "detail": {}
+    },
+    "every-script-that-asserts-on-the-height-attribute-also-reads-geometry": {
+      "ok": true,
+      "detail": {
+        "readers": {
+          "verify-liblib-batch607.py": {
+            "usesAttrInAnAssertion": true,
+            "alsoReadsComputedGeometry": true
+          },
+          "verify-liblib-batch637.py": {
+            "usesAttrInAnAssertion": false,
+            "alsoReadsComputedGeometry": true
+          },
+          "verify-liblib-batch638.py": {
+            "usesAttrInAnAssertion": true,
+            "alsoReadsComputedGeometry": true
+          }
+        },
+        "unsound": {},
+        "note": "637 records the attribute but asserts on the rect; 607 asserts on both, so neither is fooled by it"
+      }
+    }
+  },
+  "ok": true,
+  "checkCount": 16,
+  "failures": [],
+  "totals": {
+    "unreachable": 0,
+    "zeroSize": 0,
+    "unexplained": 0,
+    "offViewport": 1209,
+    "truthTable": {
+      "narrow/expanded/store=88": {
+        "regime": "expanded-inline",
+        "store": 88,
+        "computed": 88,
+        "attr": "88",
+        "inline": "88px"
+      },
+      "narrow/expanded/store=124": {
+        "regime": "expanded-inline",
+        "store": 124,
+        "computed": 124,
+        "attr": "124",
+        "inline": "124px"
+      },
+      "narrow/expanded/store=176": {
+        "regime": "expanded-inline",
+        "store": 176,
+        "computed": 176,
+        "attr": "176",
+        "inline": "176px"
+      },
+      "narrow/expanded/store=182": {
+        "regime": "expanded-at-default-css",
+        "store": 182,
+        "computed": 176,
+        "attr": "182",
+        "inline": "(none)"
+      },
+      "narrow/expanded/store=240": {
+        "regime": "expanded-inline",
+        "store": 240,
+        "computed": 240,
+        "attr": "240",
+        "inline": "240px"
+      },
+      "narrow/expanded/store=420": {
+        "regime": "expanded-inline",
+        "store": 420,
+        "computed": 420,
+        "attr": "420",
+        "inline": "420px"
+      },
+      "narrow/collapsed/store=88": {
+        "regime": "collapsed-css-only",
+        "store": 88,
+        "computed": 124,
+        "attr": "88",
+        "inline": "(none)"
+      },
+      "narrow/collapsed/store=124": {
+        "regime": "collapsed-css-only",
+        "store": 124,
+        "computed": 124,
+        "attr": "88",
+        "inline": "(none)"
+      },
+      "narrow/collapsed/store=176": {
+        "regime": "collapsed-css-only",
+        "store": 176,
+        "computed": 124,
+        "attr": "88",
+        "inline": "(none)"
+      },
+      "narrow/collapsed/store=182": {
+        "regime": "collapsed-css-only",
+        "store": 182,
+        "computed": 124,
+        "attr": "88",
+        "inline": "(none)"
+      },
+      "narrow/collapsed/store=240": {
+        "regime": "collapsed-css-only",
+        "store": 240,
+        "computed": 124,
+        "attr": "88",
+        "inline": "(none)"
+      },
+      "narrow/collapsed/store=420": {
+        "regime": "collapsed-css-only",
+        "store": 420,
+        "computed": 124,
+        "attr": "88",
+        "inline": "(none)"
+      },
+      "desktop/expanded/store=88": {
+        "regime": "expanded-inline",
+        "store": 88,
+        "computed": 88,
+        "attr": "88",
+        "inline": "88px"
+      },
+      "desktop/expanded/store=124": {
+        "regime": "expanded-inline",
+        "store": 124,
+        "computed": 124,
+        "attr": "124",
+        "inline": "124px"
+      },
+      "desktop/expanded/store=176": {
+        "regime": "expanded-inline",
+        "store": 176,
+        "computed": 176,
+        "attr": "176",
+        "inline": "176px"
+      },
+      "desktop/expanded/store=182": {
+        "regime": "expanded-at-default-css",
+        "store": 182,
+        "computed": 182,
+        "attr": "182",
+        "inline": "(none)"
+      },
+      "desktop/expanded/store=240": {
+        "regime": "expanded-inline",
+        "store": 240,
+        "computed": 240,
+        "attr": "240",
+        "inline": "240px"
+      },
+      "desktop/expanded/store=420": {
+        "regime": "expanded-inline",
+        "store": 420,
+        "computed": 420,
+        "attr": "420",
+        "inline": "420px"
+      },
+      "desktop/collapsed/store=88": {
+        "regime": "collapsed-css-only",
+        "store": 88,
+        "computed": 88,
+        "attr": "88",
+        "inline": "(none)"
+      },
+      "desktop/collapsed/store=124": {
+        "regime": "collapsed-css-only",
+        "store": 124,
+        "computed": 88,
+        "attr": "88",
+        "inline": "(none)"
+      },
+      "desktop/collapsed/store=176": {
+        "regime": "collapsed-css-only",
+        "store": 176,
+        "computed": 88,
+        "attr": "88",
+        "inline": "(none)"
+      },
+      "desktop/collapsed/store=182": {
+        "regime": "collapsed-css-only",
+        "store": 182,
+        "computed": 88,
+        "attr": "88",
+        "inline": "(none)"
+      },
+      "desktop/collapsed/store=240": {
+        "regime": "collapsed-css-only",
+        "store": 240,
+        "computed": 88,
+        "attr": "88",
+        "inline": "(none)"
+      },
+      "desktop/collapsed/store=420": {
+        "regime": "collapsed-css-only",
+        "store": 420,
+        "computed": 88,
+        "attr": "88",
+        "inline": "(none)"
+      }
+    },
+    "attributeLiars": [
+      "w898/col/store=124",
+      "w898/col/store=176",
+      "w898/col/store=182",
+      "w898/col/store=240",
+      "w898/col/store=420",
+      "w898/col/store=88",
+      "w898/exp/store=182"
+    ],
+    "con607": {
+      "898": {
+        "conjunctionHolds": false,
+        "computed": [
+          124
+        ],
+        "attr": [
+          "88"
+        ]
+      },
+      "899": {
+        "conjunctionHolds": true,
+        "computed": [
+          88
+        ],
+        "attr": [
+          "88"
+        ]
+      },
+      "1440": {
+        "conjunctionHolds": true,
+        "computed": [
+          88
+        ],
+        "attr": [
+          "88"
+        ]
+      }
+    },
+    "attributeReaders": {
+      "verify-liblib-batch607.py": {
+        "usesAttrInAnAssertion": true,
+        "alsoReadsComputedGeometry": true
+      },
+      "verify-liblib-batch637.py": {
+        "usesAttrInAnAssertion": false,
+        "alsoReadsComputedGeometry": true
+      },
+      "verify-liblib-batch638.py": {
+        "usesAttrInAnAssertion": true,
+        "alsoReadsComputedGeometry": true
+      }
+    }
+  }
+}
