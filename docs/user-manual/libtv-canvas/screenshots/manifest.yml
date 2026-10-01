@@ -455,17 +455,6 @@ screenshots:
     visible_text: 50 放大 缩小 适合屏幕 缩放至50% 缩放至100% 缩放至800%
     alt: 缩放到百分之五十后的连线全貌，左侧是缩放菜单中的百分比档位，图片节点与视频节点分列两侧且连线清晰可见
     sha256: 3c5b3ebeaf5eb6ca792d0eac34df973951242e06464da94dd8500fffddec15ef
-  - file: screenshots/p07b-shortcuts-4col.png
-    task_id: shortcuts
-    step: 1
-    route: /canvas?spaceId&projectId
-    viewport: 1440x810@2x
-    locale: zh-CN
-    captured_at: 2026-10-01T00:00:00+08:00
-    verified_locator: role=button name="快捷键"
-    visible_text: 创作 成组 ⌘G 合并分镜组 ⌘⌥G 解组 ⌘⇧G 连线 ⌘L 缩放 放大 ⌘+ 适合画布 ⌘0 移动画布 移动 V 抓手工具 H 其他 撤销 ⌘Z 删除 ⌫
-    alt: 快捷键面板完整四列：创作、缩放、移动画布、其他
-    sha256: 0b51e8941540fd09e75e484a9837970f2f3440755f880a24a6efa82b45d417a4
   - file: screenshots/p08-shortcuts-1-chuangzuo.png
     task_id: shortcuts
     step: 2
@@ -632,28 +621,6 @@ screenshots:
     visible_text: 导演台 1 在3D空间中搭建场景并进行多视角截图 打开导演台 请开启浏览器硬件加速 当前浏览器无法使用硬件加速，导演台、全景预览、打光等 3D 功能暂不可用。 知道了 描述想要搭建的场景，支持通过参考图创建
     alt: 点「打开导演台」后进入的全屏工作区：顶部「导演台 1」，中央是 3D 视窗占位，下方是场景描述输入框；画面中央弹出「请开启浏览器硬件加速」提示框和「知道了」按钮
     sha256: ed8c7a29f8f0652a65cf266d4648d421b5ee218c8e74718efb2780e60f89b999
-  - file: screenshots/L-05-素材库面板.png
-    task_id: asset-library
-    step: 5
-    route: /canvas?spaceId=…&projectId=…
-    viewport: 1440x810@2x
-    locale: zh-CN
-    captured_at: 2026-10-02T01:59:23+08:00
-    verified_locator: css=button[data-sidebar-btn="open-asset"] 弹出的面板
-    visible_text: 素材库 风格库 NEW 特效库 NEW 打开工具箱 Group 1 文本节点 1 音频节点 2 导演台 1 资产管理 99%
-    alt: 点底部工具条「素材库」弹出的面板，包含三行：风格库（NEW）、特效库（NEW）、打开工具箱
-    sha256: de4ce1cc054f2226b2ec04ce55b00b328c2efe9fadba688f56f8b1b4668e5277
-  - file: screenshots/L-06-角色造型室.png
-    task_id: character-studio
-    step: 6
-    route: /canvas?spaceId=…&projectId=…
-    viewport: 1440x810@2x
-    locale: zh-CN
-    captured_at: 2026-10-02T01:59:28+08:00
-    verified_locator: css=button[data-sidebar-btn="character-library"] 打开的 h-screen w-screen 浮层
-    visible_text: 我的角色库 官方角色库 性别 年龄段 文化区域 创建新角色
-    alt: 角色造型室全屏面板：顶部「我的角色库 / 官方角色库」两个标签，左侧性别/年龄段/文化区域三个筛选下拉与搜索框，右侧列表/卡片/网格三种视图切换图标，中间横排展示角色形象并有右侧翻页箭头，空状态显示「创建新角色」，底部是「创建新角色」按钮
-    sha256: 0e199ddfa1acb085c7bec4ea33a337f0758e359cf05376590e7e55b800669990
   - file: screenshots/M-01-生成历史.png
     task_id: generate-media
     step: 1
@@ -687,17 +654,6 @@ screenshots:
     visible_text: 图片节点 1 视频节点 2 音频节点 3 资产管理 82%
     alt: 点开小地图后，画布左下角出现一块 150×110 的缩略图，里面是三个节点方块和一个表示当前视口的高亮框；它压在左下角工具条上
     sha256: e22f3353c2db46c740aba2fd075417c79af7bb03513aaa05e652356a5c4b643b
-  - file: screenshots/M-05-工具箱.png
-    task_id: asset-library
-    step: 5
-    route: /canvas?spaceId=…&projectId=…
-    viewport: 1440x810@2x
-    locale: zh-CN
-    captured_at: 2026-10-02T02:14:13+08:00
-    verified_locator: css=素材库面板里的「打开工具箱」→ 「我的工具箱」弹层
-    visible_text: 我的工具箱 使用 【预设】左弧滑行 【预设】电商手机弹出效果 【预设】咖啡杯出场 【预设】360旋转展示 【预设】机械臂视角 【预设】Live 2D
-    alt: 「我的工具箱」弹层：三列网格排布的镜头运动预设，每张卡片右上角有「使用」按钮，标题都带【预设】前缀
-    sha256: 17c59bb672124092817025fa26235b115b885faa82286afa11b4f0267c31aef9
   - file: screenshots/M-07-资产管理-资产标签.png
     task_id: asset-library
     step: 7
@@ -1259,3 +1215,47 @@ screenshots:
     visible_text: 我的工具箱
     alt: 悬停后**预览图变暗、中央浮出半透明黑底的「使用」按钮**。但**按钮自己的 opacity 悬停前后都是 1**、display 一直是 flex、visibility 一直是 visible —— 所以它**不是**故事板那种「opacity 0→1」，而是**一直存在、只是平时被预览图压在下面**，悬停才浮上来。卡片 141×141，按钮 50×24
     sha256: ec3bfc005221774a0b9182b5e653baa0cc6897248e75285b93c4cb4c143be881
+  - file: screenshots/M-133-角色造型室-完整.png
+    task_id: character-studio
+    step: 61
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点底栏 aria-label="角色造型室" (716,773)，等 3 秒后枚举全屏遮罩内的每一个按钮与输入框（**不点「创建新角色」**）
+    visible_text: 我的角色库 官方角色库 性别 年龄段 文化区域 创建新角色 创建新角色
+    alt: **全屏遮罩**（`z-(--z-modal) fixed inset-0 flex items-center justify-center bg-black/60`）。顶部两个库标签（左「我的角色库」高亮）；左侧三个筛选 `性别` `年龄段` `文化区域` + 搜索（**无障碍名是「搜索角色名称或描述」**）；右侧三枚图标 = **`多选`**(1198,96) / **`列表模式`**(1237,99，当前高亮) / **`宫格模式`**(1270,99) —— **只有两种视图模式，不是三种**；右侧两枚 28×28 翻页（左边那枚 `disabled: true`）；底部中央 `创建新角色` (662,721,116×40)。另有大量 1×1 的隐藏 checkbox（角色卡多选框）
+    sha256: 20ff09caad2db9d697c811553c0b298c42756c0ef47244979a955a2460c551c3
+  - file: screenshots/M-134-风格广场.png
+    task_id: asset-library
+    step: 62
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点底栏 aria-label="素材库" (676,773) → 在面板里点文案为「风格库」的可点元素 (670,589)，等 3 秒后读浮层
+    visible_text: 风格广场 我的收藏 最近使用 推荐 摄影写真 电商营销 动漫游戏 风格插画 平面设计 建筑及室内设计 创意玩法 文创周边 小说推文 仅看可商用 全部 Seedream 5.0 pro 热点推荐官 JM32 漫画素材三视图 漫剧素材三视图 捌陆设计 崩坏3 渡劫风纪行 Qwen-夸张透视 奇幻设计 Qwen-水墨动画
+    alt: 一个**素材市场**，不是普通列表。顶部三个标签 `风格广场`（当前）`我的收藏` `最近使用` + 搜索框（占位 `搜索风格名称、作者`）；第二排**十个分类标签** `推荐` `摄影写真` `电商营销` `动漫游戏` `风格插画` `平面设计` `建筑及室内设计` `创意玩法` `文创周边` `小说推文`，右侧 `仅看可商用` 勾选框 + `全部 ▾` 排序；下面六列卡片，每张 = 预览图 + `⋯` 菜单 + 名称 + `商用` 徽标 + 作者 + **一个数字**（`532.0w` `1.1w` `279` `5900` `59` `252`）。**带 w 单位的更像使用量/热度，不是价格**
+    sha256: 62296de41c03565ed25ec0678634871659e7e889dc3e1b40856308fd07eec1d0
+  - file: screenshots/M-135-特效广场.png
+    task_id: asset-library
+    step: 63
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点底栏 aria-label="素材库" → 点文案为「特效库」的可点元素 (670,645)
+    visible_text: 特效广场 我的收藏 最近使用 推荐 全部 小蜜蜂运镜 商用 vibe fckuing 3500 穿云而入 商用 管夯工作台 1500 飞跃地平线 商用 逆转引力 商用 omom 549 地球缩放 商用 孤雌的白日梦 525 没有更多了
+    alt: **`mantine-Modal-content` 居中模态框** `[100,79,1240×652]`。结构与风格广场几乎一样（同样三个标签 + 搜索「搜索特效名称、作者」），差别是**分类标签只有 `推荐` 一个**，而且卡片上的数字**带漏斗图标、是能直接看见的整数**，量级 `41`(AI搬砖侠) ~ `3500`(小蜜蜂运镜)，与风格广场的 `532.0w` 完全不同。悬停时卡片右上浮出 ☆（收藏）。列表末尾有一行 `没有更多了`
+    sha256: 6824f6ddd620116bf0e4e4f6c97e20e900aaf74d9a17f35ffebdf80c9b6f7381
+  - file: screenshots/M-137-快捷键面板.png
+    task_id: shortcuts
+    step: 64
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点底栏 aria-label="快捷键" (805,773)，等 2.6 秒后枚举面板内所有按钮与输入框
+    visible_text: 创作 成组 G 合并分镜组 ⌥ G 解组 ⇧ G 连线 L 复制节点和连线 D 生成 Enter 新建节点 Tab 节点复制 Option +拖动节点 创建副本 Option +拖动 缩放 放大 缩小 适应画布 0 触控板 鼠标 移动画布 键盘 Space 触控板 鼠标 移动 V 抓手工具 H 整理画布 ⌥ ⇧ F 其他 撤销 Z 重做 ⇧ Z 画布节点搜索 F 删除
+    alt: 面板 `[144,299,1152×437]`，`z-(--z-dropdown) absolute left-1/2 max-w-[1152px]`，**锚在底栏「快捷键」按钮正上方**（下方有一个指向它的小三角），分**四列**、列间有竖线、组标题是蓝色：`创作` / `缩放` / `移动画布` / `其他`。**「整理画布 ⌥⇧F」在第三列最后一行，不单独成组**。**三处读不到文字**：`删除` 的键帽是 ⌫ 图标、`缩放→触控板` 是捏合手势图标、`移动画布→触控板/鼠标` 是带 ✥ 的图标。面板内只有一枚按钮：`关闭快捷键面板`(1255,312,28×28)
+    sha256: 30b0f78274eca30f4bf584ca3d9eb7675acc3f6ae54ebca3a7f238cb43eb226d
