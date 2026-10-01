@@ -1,0 +1,523 @@
+{
+  "batch": 614,
+  "title": "Director desk inspector column: frame, panel chrome and title bar",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "probe614: the column wrapper and everything under it, on both sides",
+    "probe614b: scrollHeight vs clientHeight — the source's 1020 is content-driven, not viewport-anchored (the computed bottom:130px is a derived value)",
+    "probe614c: direct children of the scrolling content, which attributes the 278px content-height gap",
+    "probe614d: the panel's resolved border-left colour and the title bar's child count and computed font",
+    "probe614e: the 3D canvas box on both sides"
+  ],
+  "claims": {
+    "sourceFact": [
+      "column: div.absolute.right-0.top-0.z-20.flex.w-[281px].flex-col.overflow-hidden at [1639,0,281,1020]",
+      "panel: bg rgb(33,33,33) = #212121, border-left 1px rgba(255,255,255,0.08), the other three edges 0",
+      "title bar: div.flex.shrink-0.items-center.justify-between.h-12.px-3 at [1640,0,280,48], no border-b, exactly one child — span.text-[15px].font-medium.text-neutral-50 reading 摄像机 at [1652,11.9,45,23.3], computed 15px/23.25px/500 rgb(247,247,247)",
+      "the title band is the inspector's own title bar, so batch 606's '右头 = 选中对象名' reading is superseded: the text is the object kind, and the name lives in the 名称 field",
+      "the source's 3D canvas is full-bleed [0,0,1920,1150]"
+    ],
+    "overturnedReadings": [
+      "batch 610's '源站该列没有左边框' was half wrong — the column has none, but the panel inside it has a 1px border-l at 1639..1640, so the column is 281 wide including that pixel"
+    ],
+    "cloneDecision": [
+      "the column is anchored at top-52 rather than the source's top-0, because the clone's header is full-width (batch 606) and its right group occupies [1640,0,280,51]; a top-0 column would have its title bar covered end to end",
+      "the column runs to the viewport bottom instead of the source's content-driven 1020, because the clone's camera panel content measures 1185 against the source's 907",
+      "z-30 is kept over the source's z-20 so the mobile drawer clears the z-20 scrim; the two never overlap on desktop"
+    ],
+    "notClaimed": [
+      "the title band's text for object kinds other than a camera — the source was not re-driven, so the clone's existing wording is kept rather than invented",
+      "the 278px content-height difference (extra rows the source does not show: 可见/未锁定, 当前镜头, 镜头名称) — separate target",
+      "the source's full-bleed 3D canvas vs the clone's inset viewport frame — measured and recorded, separate target"
+    ]
+  },
+  "checks": {
+    "desktop": {
+      "desk": {
+        "col": {
+          "box": [
+            1639,
+            52,
+            281,
+            916
+          ],
+          "z": "30",
+          "overflow": "hidden",
+          "hidden": null
+        },
+        "panel": {
+          "box": [
+            1639,
+            52,
+            281,
+            916
+          ],
+          "bg": "rgb(33, 33, 33)",
+          "bl": "1px",
+          "blc": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+          "br": "0px",
+          "bt": "0px",
+          "bb": "0px",
+          "kind": "camera"
+        },
+        "header": {
+          "box": [
+            1640,
+            52,
+            280,
+            48
+          ],
+          "bb": "0px",
+          "justify": "space-between",
+          "kids": [
+            {
+              "tag": "span",
+              "box": [
+                1652,
+                64.4,
+                45,
+                23.3
+              ],
+              "text": "摄像机",
+              "font": "15px/23.25px/500",
+              "color": "rgb(247, 247, 247)"
+            }
+          ]
+        },
+        "scroller": {
+          "box": [
+            1640,
+            157,
+            280,
+            811
+          ],
+          "clientH": 811,
+          "scrollH": 1185
+        },
+        "firstField": [
+          1656,
+          373,
+          248,
+          28
+        ],
+        "main": [
+          281,
+          88,
+          1358,
+          880
+        ],
+        "canvas": [
+          281,
+          88,
+          1358,
+          880
+        ]
+      },
+      "col:present": {
+        "ok": true,
+        "detail": ""
+      },
+      "col:x-1639": {
+        "ok": true,
+        "detail": 1639
+      },
+      "col:w-281": {
+        "ok": true,
+        "detail": 281
+      },
+      "col:right-edge-flush": {
+        "ok": true,
+        "detail": 1920
+      },
+      "col:top-52-not-0 (documented deviation)": {
+        "ok": true,
+        "detail": 52
+      },
+      "col:bottom-stops-at-the-timeline": {
+        "ok": true,
+        "detail": "968 vs timeline 968"
+      },
+      "col:overflow-hidden": {
+        "ok": true,
+        "detail": "hidden"
+      },
+      "col:z-30-above-the-mobile-scrim": {
+        "ok": true,
+        "detail": "30"
+      },
+      "panel:present": {
+        "ok": true,
+        "detail": ""
+      },
+      "panel:bg-212121": {
+        "ok": true,
+        "detail": "rgb(33, 33, 33)"
+      },
+      "panel:border-left-1px-white-8": {
+        "ok": true,
+        "detail": "1px oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+      },
+      "panel:other-three-edges-0": {
+        "ok": true,
+        "detail": "0px/0px/0px"
+      },
+      "panel:border-box-starts-at-1639": {
+        "ok": true,
+        "detail": 1639
+      },
+      "panel:width-281-border-box": {
+        "ok": true,
+        "detail": 281
+      },
+      "title:present": {
+        "ok": true,
+        "detail": ""
+      },
+      "title:280x48": {
+        "ok": true,
+        "detail": [
+          1640,
+          52,
+          280,
+          48
+        ]
+      },
+      "title:no-border-b": {
+        "ok": true,
+        "detail": "0px"
+      },
+      "title:justify-between": {
+        "ok": true,
+        "detail": "space-between"
+      },
+      "title:exactly-one-child": {
+        "ok": true,
+        "detail": [
+          "span"
+        ]
+      },
+      "title:text-x-1652": {
+        "ok": true,
+        "detail": 1652
+      },
+      "title:font-15-23.25-500": {
+        "ok": true,
+        "detail": "15px/23.25px/500"
+      },
+      "title:color-neutral-50": {
+        "ok": true,
+        "detail": "rgb(247, 247, 247)"
+      },
+      "title:shows-the-object-kind": {
+        "ok": true,
+        "detail": "摄像机"
+      },
+      "title:not-the-old-generic-label": {
+        "ok": true,
+        "detail": ""
+      },
+      "content:first-field-at-1656": {
+        "ok": true,
+        "detail": [
+          1656,
+          373,
+          248,
+          28
+        ]
+      },
+      "content:scroller-inside-the-column": {
+        "ok": true,
+        "detail": {
+          "box": [
+            1640,
+            157,
+            280,
+            811
+          ],
+          "clientH": 811,
+          "scrollH": 1185
+        }
+      },
+      "viewport:frame-left-281": {
+        "ok": true,
+        "detail": [
+          281,
+          88,
+          1358,
+          880
+        ]
+      },
+      "viewport:frame-right-281": {
+        "ok": true,
+        "detail": [
+          281,
+          88,
+          1358,
+          880
+        ]
+      },
+      "viewport:canvas-left-281": {
+        "ok": true,
+        "detail": [
+          281,
+          88,
+          1358,
+          880
+        ]
+      },
+      "viewport:canvas-right-edge-1639": {
+        "ok": true,
+        "detail": [
+          281,
+          88,
+          1358,
+          880
+        ]
+      },
+      "viewport:one-webgl-canvas": {
+        "ok": true,
+        "detail": [
+          281,
+          88,
+          1358,
+          880
+        ]
+      },
+      "panel:deep-content-stays-reachable": {
+        "ok": true,
+        "detail": {
+          "reachable": true,
+          "box": [
+            1656,
+            482,
+            248,
+            56
+          ],
+          "selector": "camera-fov-field",
+          "hit": "div:"
+        }
+      },
+      "collapsed": {
+        "col": {
+          "box": [
+            1639,
+            52,
+            281,
+            916
+          ],
+          "z": "30",
+          "overflow": "hidden",
+          "hidden": null
+        },
+        "panel": {
+          "box": [
+            1639,
+            -210,
+            281,
+            916
+          ],
+          "bg": "rgb(33, 33, 33)",
+          "bl": "1px",
+          "blc": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)",
+          "br": "0px",
+          "bt": "0px",
+          "bb": "0px",
+          "kind": "camera"
+        },
+        "header": {
+          "box": [
+            1640,
+            -210,
+            280,
+            48
+          ],
+          "bb": "0px",
+          "justify": "space-between",
+          "kids": [
+            {
+              "tag": "span",
+              "box": [
+                1652,
+                -197.6,
+                45,
+                23.3
+              ],
+              "text": "摄像机",
+              "font": "15px/23.25px/500",
+              "color": "rgb(247, 247, 247)"
+            }
+          ]
+        },
+        "scroller": {
+          "box": [
+            1640,
+            -105,
+            280,
+            811
+          ],
+          "clientH": 811,
+          "scrollH": 1185
+        },
+        "firstField": [
+          1656,
+          -263,
+          248,
+          28
+        ],
+        "main": [
+          48,
+          88,
+          1591,
+          880
+        ],
+        "canvas": [
+          48,
+          88,
+          1591,
+          880
+        ]
+      },
+      "collapse:inspector-stays": {
+        "ok": true,
+        "detail": {
+          "box": [
+            1639,
+            52,
+            281,
+            916
+          ],
+          "z": "30",
+          "overflow": "hidden",
+          "hidden": null
+        }
+      },
+      "collapse:viewport-frees-only-the-tree-width": {
+        "ok": true,
+        "detail": [
+          48,
+          88,
+          1591,
+          880
+        ]
+      },
+      "restore:viewport-left-281-again": {
+        "ok": true,
+        "detail": [
+          281,
+          88,
+          1358,
+          880
+        ]
+      },
+      "restore:column-geometry-unchanged": {
+        "ok": true,
+        "detail": {
+          "box": [
+            1639,
+            52,
+            281,
+            916
+          ],
+          "z": "30",
+          "overflow": "hidden",
+          "hidden": null
+        }
+      },
+      "tab:motion-activates": {
+        "ok": true,
+        "detail": ""
+      },
+      "tab:captures-activates": {
+        "ok": true,
+        "detail": ""
+      },
+      "tab:properties-activates": {
+        "ok": true,
+        "detail": ""
+      },
+      "tab:properties-renders-the-fields": {
+        "ok": true,
+        "detail": {
+          "name": 1,
+          "fields": 12
+        }
+      },
+      "tab:title-back-to-摄像机": {
+        "ok": true,
+        "detail": [
+          {
+            "tag": "span",
+            "box": [
+              1652,
+              64.4,
+              45,
+              23.3
+            ],
+            "text": "摄像机",
+            "font": "15px/23.25px/500",
+            "color": "rgb(247, 247, 247)"
+          }
+        ]
+      },
+      "diagnostics:no-page-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "diagnostics:no-console-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "diagnostics": {
+        "consoleErrors": 0,
+        "filtered": 0,
+        "pageErrors": 0
+      },
+      "_summary": {
+        "checks": 43,
+        "failures": []
+      }
+    },
+    "mobile": {
+      "mobile:inspector-starts-off-screen": {
+        "ok": true,
+        "detail": {
+          "x": 390,
+          "y": 52,
+          "width": 281,
+          "height": 616
+        }
+      },
+      "mobile:drawer-opens-flush-right": {
+        "ok": true,
+        "detail": {
+          "x": 109,
+          "y": 52,
+          "width": 281,
+          "height": 616
+        }
+      },
+      "mobile:drawer-starts-below-the-header": {
+        "ok": true,
+        "detail": {
+          "x": 109,
+          "y": 52,
+          "width": 281,
+          "height": 616
+        }
+      },
+      "mobile:drawer-above-the-scrim": {
+        "ok": true,
+        "detail": ""
+      },
+      "mobile:no-page-errors": {
+        "ok": true,
+        "detail": []
+      },
+      "_summary": {
+        "checks": 5,
+        "failures": []
+      }
+    }
+  },
+  "result": "48/48 passed"
+}

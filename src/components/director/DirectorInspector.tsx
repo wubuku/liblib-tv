@@ -2188,13 +2188,29 @@ export function DirectorInspector({
         selectedGroup ? "group" : selected?.kind ?? "scene"
       }
       data-director-inspector-track-id={selectedTrack?.id ?? ""}
-      className="flex h-full min-h-0 flex-col bg-[#191919]"
+      // Batch 614（源站 2026-10-01 实测，/tmp/src593/probe614 + 614b/614c/614d）：
+      // 源站属性列的**面板**是
+      // `div.flex.min-h-0.flex-1.flex-col.overflow-hidden.border.w-[281px]
+      //   .border-y-0.border-l.border-r-0`，底色实测 `rgb(33,33,33)` = #212121，
+      // 四条边里只有 `border-left: 1px rgba(255,255,255,0.08)`（= white/8），
+      // 其余三边 0。clone 原为 `bg-[#191919]`（浅两阶）且无边框。
+      className="flex h-full min-h-0 flex-col border-l border-white/8 bg-[#212121]"
     >
-      <header className="flex h-12 shrink-0 items-center border-b border-white/[0.07] px-3">
-        <h2 className="text-xs font-medium text-[#dedede]">
-          {selectedGroup ? "分组属性" : selected ? "对象属性" : "场景属性"}
-        </h2>
-        <span className="ml-auto text-[10px] text-[#666]">
+      {/* 源站标题条 `[1640,0,280,48]`：
+          `div.flex.shrink-0.items-center.justify-between.h-12.px-3` ——
+          **没有 border-b**（clone 自造了一条），且实测只有 **1 个**子节点：
+          `span.text-[15px].font-medium.text-neutral-50`，值是**对象类别名**
+          （选中机位时为「摄像机」，`font=15px/23.25px/500 color=rgb(247,247,247)`），
+          位置 1652 = 1640 + px-3。`justify-between` 在单子节点下即贴左。
+          clone 原为「对象属性」小字 + 右端一枚 10px 的类别名，两段且都是
+          12px 以下，与源站不符。改为单条 15px 类别名。
+          只在「选中机位」这一态有源站读数，其余类别沿用 clone 既有措辞
+          （角色/群众/角色组/场景物体/Scene），标为推断不臆造新文案。 */}
+      <header className="flex h-12 shrink-0 items-center justify-between px-3">
+        {/* 源站该 span 的 computed 是 `15px/23.25px/500`；`text-[15px]` 只
+            设字号，行高要单给。clone 继承下来是 22.5px（1.5×），源站是
+            23.25px，故显式写死。 */}
+        <span className="text-[15px] font-medium leading-[23.25px] text-neutral-50">
           {selectedGroup
             ? selectedGroup.crowd
               ? "群众"

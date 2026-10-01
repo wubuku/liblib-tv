@@ -155,6 +155,9 @@ READ = """() => {
   const cs = (el) => getComputedStyle(el);
   const field = (el) => el ? {box: at(el), bg: cs(el).backgroundColor,
     radius: cs(el).borderRadius, border: cs(el).borderTopWidth,
+    // batch 614: the panel's own 1px left border, migrated in below
+    borderLeftWidth: cs(el).borderLeftWidth,
+    borderLeftColor: cs(el).borderLeftColor,
     font: cs(el).fontSize, pad: cs(el).padding, color: cs(el).color,
     align: cs(el).textAlign, appearance: cs(el).appearance,
     min: el.getAttribute('min'), max: el.getAttribute('max'),
@@ -312,10 +315,30 @@ def run(page: Page) -> dict[str, Any]:
     v.result["initial"] = r
 
     # --- column geometry ---------------------------------------------
-    v.check("panel:width-280", box_is(r["panel"]["box"], w=PANEL_W),
+    # Batch 614 migrated these two.  They used to read the panel as
+    # `280 @ 1640`, which was batch 610's own conclusion: "去掉那圈 1px
+    # 左边框… 源站该列没有（只有 section 之间的 border-b）".  That was half
+    # wrong.  Batch 614's live reading of the source's column tree
+    # (/tmp/src593/probe614d) shows the *wrapper* is
+    # `div.absolute.right-0.top-0.w-[281px]` at 1639 and the panel inside it
+    # carries `border-l` — computed `border-left: 1px rgba(255,255,255,0.08)`
+    # at 1639..1640, with the other three edges 0.  So the source has no
+    # border around the column but does have one on the panel, and the correct
+    # border-box is 281 @ 1639.
+    # The numbers batch 610 actually cared about are unchanged and still
+    # asserted below: the content origin stays 1640 and the fields stay 248
+    # wide at x=1656 (`name:248x28`, `name:x-1656`).
+    v.check("panel:width-281-border-box", box_is(r["panel"]["box"], w=281),
             detail=r["panel"]["box"])
-    v.check("panel:x-1640", box_is(r["panel"]["box"], x=PANEL_X),
+    v.check("panel:x-1639", box_is(r["panel"]["box"], x=1639),
             detail=r["panel"]["box"])
+    v.check("panel:1px-left-border-white-8",
+            r["panel"].get("borderLeftWidth") == "1px"
+            and abs(alpha_of(r["panel"].get("borderLeftColor", "")) - 0.08) < 0.001,
+            detail=r["panel"])
+    # content origin 1640 + the panel's px-4 (16) = 1656, unchanged by 614
+    v.check("panel:content-origin-still-1640", r["name"]["box"][0] == 1656,
+            detail=r["name"]["box"])
 
     # --- 名称 -----------------------------------------------------------
     v.check("name:248x28", box_is(r["name"]["box"], w=CONTENT_W, h=CONTROL_H),

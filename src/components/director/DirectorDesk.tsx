@@ -1183,11 +1183,18 @@ export default function DirectorDesk({
           <main
             className={cn(
               "absolute inset-y-0 min-w-0 max-[899px]:inset-x-0",
-              // Batch 587：收起只让出左侧 220px 场景面板，右侧属性面板
-              // 保留（源站收起后 inspector 仍在 x=1639 原位）。
+              /* Batch 613/614：这两个内缩值必须与左列、右列的**实际**几何
+                 对齐，否则视口框和两列之间会露出一条缝。
+                 613 之后左列是 rail 0..48 + 场景树 48..281（233 宽，含那
+                 1px 边框），右列 614 之后是 281 宽 —— 源站整列实测
+                 `aside [0,0,281,1150]`（含 1px border-r）与
+                 `div [1639,0,281,1020]`（含 1px border-l），两列合起来
+                 正好把 0..281 与 1639..1920 占满。
+                 此前这里是 46 / 266 / 288，是 613 之前的 46+220 与自造的
+                 288，与 613/614 改完的列宽都不一致了。 */
               viewportPanelsCollapsed
-                ? "left-[46px] right-[288px]"
-                : "left-[266px] right-[288px]",
+                ? "left-[48px] right-[281px]"
+                : "left-[281px] right-[281px]",
             )}
           >
             <DirectorViewport
@@ -1208,6 +1215,36 @@ export default function DirectorDesk({
             />
           </main>
 
+          {/* Batch 614（源站 2026-10-01 实测，/tmp/src593/probe614 +
+              614b/614c/614d）：源站属性列的整棵子树是
+              `div.absolute.right-0.top-0.z-20.flex.w-[281px].flex-col
+               .overflow-hidden` → `[1639,0,281,1020]`，里面
+              `div.flex.min-h-0.flex-1.flex-col.overflow-hidden.border.w-[281px]
+               .border-y-0.border-l.border-r-0`（底色实测 rgb(33,33,33)
+               = #212121，四条边里只有 `border-left: 1px
+               rgba(255,255,255,0.08)`），再里面是 48px 标题条 + 滚动区。
+              clone 此前整列比源站低 36px（88 起而非 52 起）、窄 1px、无左边框、
+              底色浅两阶、标题条自造了 border-b 且是两段小字。
+
+              **顶边**：源站是 `top-0`，因为它的顶栏只有左头 280px（就在左列
+              那块 aside 里），右列上方是空的。clone 的顶栏是**通栏** grid
+              （batch 606 建的），右组 280px 占着 `[1640,0,280,51]`，放到
+              top-0 会把本列的标题条整个盖住 —— 等于新造一个看不见的控件。
+              故上沿取 52。中间 flex 子节点从 88 起（52 顶栏 + 36 镜头条），
+              故用 `-top-9`（-36px）把它提到 52。
+
+              **底沿**：源站列高 1020 是**内容驱动**（实测 scrollHeight ==
+              clientHeight == 972，根本不滚动，computed 的 `bottom:130px`
+              只是派生值不是声明）。但 clone 的相机属性面板内容实测 1185，
+              比源站的 907 高 278（多出 可见/未锁定、当前镜头、镜头名称 等行，
+              属另一个靶心）—— 照抄内容驱动会让列冲出视口 140px；反过来若把
+              列拉满到视口底，clone 比源站高 52px 的时间线（182 vs 130）会盖住
+              面板下段，实测 `data-director-panorama-clear` 就此点不到
+              （batch 95 回归抓到）。所以底沿交给中间区：**止于时间线上沿**，
+              这正是源站那 1020 与时间线 1021 的关系。
+
+              z 保留 30 而非源站的 20：窄屏下属性列是抽屉，必须压过 `z-20` 的
+              移动端遮罩；桌面上两者无重叠区域，不影响观感。 */}
           <aside
             ref={inspectorPanelRef}
             aria-label="属性"
@@ -1216,15 +1253,16 @@ export default function DirectorDesk({
             data-director-focus-scope={
               activeMobileFocusScope === "inspector" ? "inspector" : undefined
             }
-            data-director-mobile-panel-state={activeMobilePanel === "inspector" ? "open" : "closed"}
+            data-director-mobile-panel-state={
+              activeMobilePanel === "inspector" ? "open" : "closed"
+            }
             className={cn(
-              /* Batch 610：右列此前是 `w-72 border-l`（288 宽），与同一列
-                 自己的 280px 右头（batch 606）以及源站实测的 280
-                 （`div.flex.min-h-full.flex-col` x=1640）都不一致；那圈
-                 1px 左边框是 clone 自造的，源站该列没有（只有 section 之间
-                 的 border-b）。去掉后列宽 280、内容宽 280-2*16=248，与源站
-                 的 248 逐字对上。 */
-              "absolute inset-y-0 right-0 z-30 w-[280px] transition-transform duration-200",
+              /* Batch 610 此前把列宽从自造的 `w-72 border-l`（288）收到 280，
+                 并说「源站该列没有左边框」—— 那句只对了一半：源站没有的是
+                 **整列**的边框，列**内部**的面板有一条 1px `border-l`
+                 （实测落在 1639..1640）。所以列取 281（border-box，含那
+                 1px），内容仍是 280 @1640，与源站逐字对上。 */
+              "absolute -top-9 bottom-0 right-0 z-30 w-[281px] overflow-hidden transition-transform duration-200",
               activeMobilePanel === "inspector"
                 ? "max-[899px]:translate-x-0"
                 : "max-[899px]:translate-x-full",
@@ -1240,6 +1278,7 @@ export default function DirectorDesk({
               onPanoramaSourceChange={setPanoramaSourceId}
             />
           </aside>
+
         </div>
 
         <DirectorTimeline
