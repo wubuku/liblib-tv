@@ -95,4 +95,4 @@ python3 -m http.server 4173 -d .vitepress/dist
 ./build-site.sh --preview  # 构建后自动启动 :4173 预览
 ```
 
-构建/发布的完整说明（含子路径部署与运维 FAQ）见 [PUBLISH.md](PUBLISH.md)。
+构建/发布的完整说明（含子路径部署、404 映射与运维 FAQ）写在**仓库里的 `PUBLISH.md`**，属于维护者文档，不随站点发布。

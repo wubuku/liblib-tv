@@ -153,6 +153,22 @@ def mutate_retracted_claim(root: Path) -> None:
     path.write_text(text, encoding="utf-8")
 
 
+def mutate_dead_dist_link(root: Path) -> None:
+    """在产物里塞一条指向不存在页面的链接（M56 发现的真实形态）。
+
+    自检不复制 dist（见 prepare 处的 ignore_patterns），所以这里现造一个最小
+    产物目录：一个 index.html，里面链向一个没被构建出来的页面。
+    """
+    dist = root / ".vitepress" / "dist"
+    dist.mkdir(parents=True, exist_ok=True)
+    (dist / "index.html").write_text(
+        '<!DOCTYPE html><html><body><a href="./nope.html">死链</a>'
+        '<a href="./ok.html">好链</a></body></html>',
+        encoding="utf-8",
+    )
+    (dist / "ok.html").write_text("<!DOCTYPE html><html><body>ok</body></html>", encoding="utf-8")
+
+
 def mutate_sidebar_rename(root: Path) -> None:
     path = root / ".vitepress/config.mjs"
     path.write_text(
@@ -181,6 +197,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("侧边栏条目被改名", mutate_sidebar_rename, "structure", "侧边栏缺少"),
     ("小节里的裸强断言（无证据）", mutate_bare_claim, "claims", "裸断言"),
     ("已订正的错误说法复现", mutate_retracted_claim, "retractions", "订正过的错误说法重新出现"),
+    ("产物里的死链", mutate_dead_dist_link, "distlinks", "指向不存在目标的链接"),
 ]
 
 
@@ -193,6 +210,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-structure.py"), str(root)]
     elif which == "retractions":
         cmd = [sys.executable, str(root / "scripts/check-retractions.py"), str(root)]
+    elif which == "distlinks":
+        cmd = [sys.executable, str(root / "scripts/check-dist-links.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)

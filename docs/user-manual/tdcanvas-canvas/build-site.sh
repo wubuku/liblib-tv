@@ -91,7 +91,7 @@ RETRACT_OUT="$(python3 scripts/check-retractions.py . 2>&1)" || fail "订正回�
 $RETRACT_OUT"
 echo "$RETRACT_OUT" | sed 's/^/  /'
 
-# 门禁自检：注入 15 类故障，断言每道门禁**以正确的理由**失败。
+# 门禁自检：注入 16 类故障，断言每道门禁**以正确的理由**失败。
 # 2026-10-01 M41/M42 实测：锚点门禁在 236 个标题里错判 29 个却一直报「全部有效」，
 # 孤儿页与索引漏条两类问题两道门禁全都放行——门禁自己坏了不会喊疼。
 # 这里断言的是**错误内容**而不只是退出码：只看退出码会被「变异脚本写歪了」
@@ -152,6 +152,15 @@ if [ -n "$MISSING_SIDEBAR" ]; then
 else
   ok "所有已发布页面均已收录进侧边栏"
 fi
+
+# 产物链接校验。放在构建之后，因为要读 dist。
+# M56 实测：build-site.sh 原本只查「有没有残留 .md 链接」，但 VitePress 会把
+# **所有** markdown 链接都改写成 .html——包括指向 srcExclude 页面的。于是检查
+# 全部通过，站点里却躺着一条指向 ./PUBLISH.html 的死链。
+# 「链接被正确改写」不等于「链接指向的东西存在」，前者查格式，后者查事实。
+DIST_LINK_OUT="$(python3 scripts/check-dist-links.py . 2>&1)" || fail "产物中存在死链：
+$DIST_LINK_OUT"
+echo "$DIST_LINK_OUT" | sed 's/^/  /'
 
 # ---------- 完成 ----------
 log "════════════════════════════════════════════"
