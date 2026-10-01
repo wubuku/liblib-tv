@@ -225,6 +225,38 @@ def mutate_ledger_pin_drift(root: Path) -> None:
     path.write_text(text, encoding="utf-8")
 
 
+def mutate_source_ref_out_of_range(root: Path) -> None:
+    """把正文里一处 file:line 引用的行号改成远超文件长度的值（M109 新门禁的负向测试）。
+
+    手册通篇用 `文件.ts:行号` 指向源码，这是读者唯一能自己复核"这条结论从哪来"
+    的把手。行号会随源码推进而漂移，而账本锁定门禁只在**应用仓 HEAD 变了**时报错
+    ——一旦有人把账本 sha 一起更新到新提交，那道门禁重新变绿，正文里那几十处
+    行号却可能早已指向别处。
+
+    注入方式选**越界**而不是「改错文件」：越界是"这行已经不存在了"这种最常见
+    的漂移形态（文件被删/被挪走/被重写），而且判据明确、无歧义。
+
+    替换的是**整个匹配**（含 `-起止` 区间部分）而不是只换第一个数字：本条用例
+    第一版只换了起点，把 `foo.ts:267-269` 改成了 `foo.ts:999999-269`——终点 269
+    完全合法，于是门禁放行，用例漏网。**这道自检自己抓出了自己注入方式的漏洞。**
+    """
+    import re as _re
+
+    for name in ["SOURCE_OBSERVATIONS.md", "20-reference.md", "30-concepts.md",
+                 "90-troubleshooting.md", "00-quickstart.md", "README.md"]:
+        page = root / name
+        if not page.is_file():
+            continue
+        text = page.read_text(encoding="utf-8")
+        found = _re.search(r"([A-Za-z0-9_][A-Za-z0-9_./-]*\.(?:ts|tsx|js|jsx|mjs|mts|css)):(\d+(?:-\d+)?)", text)
+        if not found:
+            continue
+        text = text.replace(found.group(0), f"{found.group(1)}:999999", 1)
+        page.write_text(text, encoding="utf-8")
+        return
+    raise AssertionError("正文里找不到任何 file:line 引用，自检用例无法构造")
+
+
 def mutate_dead_dist_link(root: Path) -> None:
     """在产物里塞一条指向不存在页面的链接（M56 发现的真实形态）。
 
@@ -561,6 +593,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("产物里页内锚点悬空", mutate_dangling_anchor_render, "render", "找不到对应 id"),
     ("账本锁定的提交与应用仓漂移", mutate_ledger_pin_drift, "ledgerpin", "与应用仓 HEAD 不一致"),
     ("发布文档的门禁表与脚本对不上", mutate_publish_gate_drift, "publishsync", "build-site.sh 并没有调用"),
+    ("源码引用行号越界（读者点过去没这行）", mutate_source_ref_out_of_range, "sourcerefs", "行号越界"),
 ]
 
 
@@ -589,6 +622,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-ledger-pin.py"), str(root)]
     elif which == "publishsync":
         cmd = [sys.executable, str(root / "scripts/check-publish-sync.py"), str(root)]
+    elif which == "sourcerefs":
+        cmd = [sys.executable, str(root / "scripts/check-source-refs.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)

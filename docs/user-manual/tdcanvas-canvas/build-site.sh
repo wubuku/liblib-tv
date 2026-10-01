@@ -127,6 +127,15 @@ PUBLISHSYNC_OUT="$(python3 scripts/check-publish-sync.py . 2>&1)" || fail "发�
 $PUBLISHSYNC_OUT"
 echo "$PUBLISHSYNC_OUT" | sed 's/^/  /'
 
+# 源码引用：手册里每处 `文件.ts:行号` 必须指向应用仓里真实存在的那一行。
+# 2026-10-02 M109 新增。账本锁定门禁只在应用仓 HEAD 变化时报错，可一旦有人把
+# 账本 sha 一起更新到新提交，那道门禁重新变绿，正文里那几十处行号却可能早已
+# 指向别处——读者点着行号跳过去看不到那行，结论就无法复核。
+# 路径只按后缀匹配（index.tsx 仓内有 6 个同名）；本机无应用仓时跳过而非失败。
+SOURCEREFS_OUT="$(python3 scripts/check-source-refs.py . 2>&1)" || fail "源码引用校验未通过（正文里的 file:line 指向了不存在的文件或越界的行）：
+$SOURCEREFS_OUT"
+echo "$SOURCEREFS_OUT" | sed 's/^/  /'
+
 # 表格语法：每个 Markdown 表格块都必须自带「表头 + |---| 分隔行」。
 # 2026-10-01 M65 实测：shortcuts-help.md 的「弹窗里的十三条」被一段多选提示的
 # 引用块从第 8 行和第 9 行之间劈开——前 8 行仍是表格，后 5 行（重做/重做/删除/

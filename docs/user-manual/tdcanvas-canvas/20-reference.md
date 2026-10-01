@@ -323,7 +323,7 @@ TDCanvas 一共 7 条路由，其中两条**在浏览器里是"走不到底"的*
 | 文档语言标记 | `html lang` 正确变为 `en-US` |
 | 横向溢出 | **0**（英文普遍比中文长 20–30%，但没撑破任何布局） |
 
-> **2026-10-01 M95 复测与订正**：本表此前只扫了 **6 条路由**，结论是"全部只剩 4 个字「简体中文」"。**补测第 7 条 `/canvas/:id` 后该结论不成立**——画布页的节点端口悬停提示照样是中文。**这不是翻译漏了词条，是端口提示压根没走 i18n**：`canvas-node.tsx:1110` 的 title 取值是「port.description，为空时用 port.label 拼上 port.dataType」，`port.label` 直接取端口定义里的中文字面量，`en-US.ts` 里**搜不到「输入」「输出」两个词**。所以**只有画布页有这个问题**，其余 6 条确实干净。顺带说明：先前的"4 个字"是把 `aria-label` 也算进去的结果，**可见文字其实是 0**。
+> **2026-10-01 M95 复测与订正**：本表此前只扫了 **6 条路由**，结论是"全部只剩 4 个字「简体中文」"。**补测第 7 条 `/canvas/:id` 后该结论不成立**——画布页的节点端口悬停提示照样是中文。**这不是翻译漏了词条，是端口提示压根没走 i18n**：`components/canvas/canvas-node.tsx:1111` 的 title 取值是「port.description，为空时用 port.label 拼上 port.dataType」，`port.label` 直接取端口定义里的中文字面量，`en-US.ts` 里**搜不到「输入」「输出」两个词**。所以**只有画布页有这个问题**，其余 6 条确实干净。顺带说明：先前的"4 个字"是把 `aria-label` 也算进去的结果，**可见文字其实是 0**。
 >
 > **顺带否证一条**：英文下的 Agent 面板 7 个图标按钮的 `aria-label` **全部已本地化**（Chat / History / Skills / Logs / New chat / Collapse Agent panel / Connection settings），没有漏译。
 
