@@ -1083,3 +1083,25 @@ screenshots:
     visible_text: 文本节点 3 画布 58 画布 资产 所有评级 文本节点 3 共 3 节点
     alt: 选完「文本」之后抽屉里只剩「文本节点 3」一行，但底部仍然写着「共 3 节点」——那个数字数的是整张画布，不跟着筛选走
     sha256: 68dc7c0abeb0774676435127c95cb0c8cd856bd7427c76f0975c470b02e2cee8
+  - file: screenshots/M-93-故事板-全部筛选下拉.png
+    task_id: storyboard-mode
+    step: 44
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 切到故事板后点视频列列头的「全部」按钮 (1355,71)
+    visible_text: 全部 成片 片段 文本 文本节点 1 图片 图片节点 2 待确认后生成 Lib Image 2.5 Pro 视频 视频节点 3 全部
+    alt: 视频列列头的「全部」按钮被点亮成高亮态，右下方弹出三项竖排菜单：全部（右侧带 ✓）、成片、片段；右侧 TV Director 面板正好压在视频列上
+    sha256: 790b82106256ef237fb7a003df05bea6b2b46f38f25eb22014a555da3aae5658
+  - file: screenshots/M-95-故事板-点对话之后.png
+    task_id: storyboard-mode
+    step: 45
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 把鼠标停在「图片节点 2」那一行上让「对话」按钮显形，再点它 (914,117)
+    visible_text: 文本 文本节点 1 图片 图片节点 2 对话 待确认后生成 Lib Image 2.5 Pro 视频 成片 新对话 让 TV Director 辅助你的无限创意 图片节点 2 全能创作
+    alt: 鼠标悬停在「图片节点 2」行上时，行尾右侧浮出一枚带气泡图标的「对话」按钮；右侧 TV Director 面板的输入框里挂着一枚「图片节点 2」附件 chip；视频列列头已从「全部」变成「成片」，而「视频节点 3」那一行已被筛掉
+    sha256: 12b0c60aee7b3b0acc8c52edc0914a7cc44e6eedb3bc5f99c79891d80b30b123
