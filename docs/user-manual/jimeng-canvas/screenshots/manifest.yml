@@ -1123,3 +1123,39 @@ screenshots:
     visible_text: 16s / 使用 / 快速调用参考音色，例如：海浪轰鸣，@父亲 强忍悲伤，低声说“灯塔熄灭了”，@女儿 满怀希望，坚定地回应“可它还在呼唤我”，随后空灵竖琴旋律渐起。/ 音频生成 / SeedAudio 1.0 / 全能配音 / 音色库 / 12 / 24
     alt: 选用音色「生动解说」之后的面板（680×204，被橙色高亮框标出）：左上角多出一个带波形图标的 16s 时长 chip，右侧是 ⊕ 添加参考钮；说明文字整段换成了用法示例「使用 @ 快速调用参考音色，例如：海浪轰鸣，@父亲 强忍悲伤…随后空灵竖琴旋律渐起。」；底部参数行仍是 音频生成、SeedAudio 1.0、全能配音、音色库、@、✦ 12 与划线的 24；注意提示词框本身仍然是空的
     sha256: 060f66a4449347e6c4a3f3150ac8aa68f38645b29a9f5638aa5ce96cd5b8d33b
+
+  - file: screenshots/92-ref-add-menu.png
+    task_id: prepare-generation
+    step: 9
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T17:05:00+08:00
+    verified_locator: '画布缩放 60%，选中空「视频 1」节点 → 打开 [data-testid="node-toolbar"] 内 aria 逐字「添加参考」的 48×48 按钮（实测 @282,449，aria-expanded 由 false 翻成 true）→ 出现的 [role="menu"][aria-label="添加参考"] 实测 240×130 @186,311，内含三个 role=menuitem 各 232×38、各 1 个 svg。**只打开未点选任何一项**，积分前后均 805'
+    visible_text: 上传参考内容 / 从资产库添加 / 从画布选择
+    alt: 点开面板左上角的 ⊕ 添加参考后弹出的 240×130 菜单（被橙色高亮框标出）：三个 232×38 的菜单项自上而下是「上传参考内容」（带向上箭头图标）、「从资产库添加」（带文件夹图标）、「从画布选择」（带方框四角图标）；菜单浮在生成面板的左上外侧，底下的提示词框还是空的，显示占位提示「上传参考图、输入文字或 @ 主体，描述你想生成的视频」
+    sha256: 35621d70fc2074103d6c6855e00078f7f8b1c027f3120ece0abb98f4a98107ea
+
+  - file: screenshots/93-mention-panel.png
+    task_id: prepare-generation
+    step: 10
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T17:06:00+08:00
+    verified_locator: '提示词为空时点 [data-testid="node-toolbar"] 内 aria 逐字「引用参考」的两个按钮中**参数行那处 32×32**（@729,591，常驻）→ 出现的 [data-testid="generation-mention-panel"] 实测 240×244 @163,259，内含 [role="listbox"][aria-label="可能@的内容"] 与 role=group 232×236；顶部 232×32 的「添加参考」是分组标题（无 role、cursor:auto、不可点），下面四个 role=option 各 232×48、各 2 个 svg，首项「主体」aria-selected=true。**手打 @ 打开的是同一个面板**'
+    visible_text: 添加参考 / 主体 / 图片 / 视频 / 音频
+    alt: 点开「引用参考」后弹出的 @ 提及面板（240×244，被橙色高亮框标出）：顶部一行小字标题「添加参考」只是分组标题、点不动；下面是四个 232×48 的类别项 主体、图片、视频、音频，每项左侧是图标、右侧是向右的小箭头，其中「主体」是默认选中态（背景略亮）；面板右侧的提示词框里已经出现一个 @ 加灰色占位文字「搜索主体、图片、视频」
+    sha256: 2af2d4cd811fc4e76ef593e355de49a46b9612dbfa20a7f5f6c25a3b1d146c32
+
+  - file: screenshots/94-mention-submenu.png
+    task_id: prepare-generation
+    step: 11
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T17:07:00+08:00
+    verified_locator: '在 @ 提及面板打开的状态下点 role=option 文本逐字「图片」（232×48 @167,347）→ 右侧紧贴弹出 [data-testid="generation-mention-submenu"] 实测 240×76 @407,347（一级面板右缘 403，间隙 4px），内含 [role="listbox"][aria-label="图片"]、role=group aria="图片" 232×68，以及逐字「暂无相关节点」的 role=status 232×68。四个类别（主体/图片/视频/音频）逐个点过，内容都是「暂无相关节点」；积分 805 未变'
+    visible_text: 添加参考 / 主体 / 图片 / 视频 / 音频 / 暂无相关节点
+    alt: 在 @ 提及面板里点「图片」后的两级选择器（两个浮层都被橙色高亮框标出）：左侧 240×244 的一级面板四个类别中「图片」呈高亮态，右侧紧贴着弹出 240×76 的二级子菜单，里面只有居中的一行灰字「暂无相关节点」；下方的提示词框仍显示 @ 加占位文字「搜索主体、图片、视频」，底部参数行是「即梦 Seedance 2.0 VIP」「16:9 · 720P · 1」「全能参考」「4s」「@」和 ✦ 56
+    sha256: 8ae2075d6a9e56a85adf34977e50877a08b3a6c8bf4f120cbe7a31a605d2772d

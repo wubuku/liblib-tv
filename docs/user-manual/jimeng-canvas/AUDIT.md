@@ -1218,3 +1218,97 @@ imagepanel / imagepanel2 / endcheck）。
 **本批临时脚本（已清理）**：`scripts/jimeng-b32-*.mjs` 共 9 个
 （filter / voice / libprobe / total-add / afteradd / shots / reshoot / reshoot2 / inspect / empty-check）。
 **长期保留**：`jimeng-baseline-restore.mjs`（归基线通用工具，本批新增）。
+
+---
+
+## 批次 33（2026-10-01）：参考输入的两条入口 + `@` 提及面板是两级选择器，不是搜索框
+
+### 做了什么
+
+只读观察：打开 `添加参考` 菜单、打开 `@` 提及面板、逐个点开四个类别的二级子菜单、
+测三条退出路径（`Esc` / 点空白 / `⌘A`+`Backspace`）、测「面板打开时继续打字」的行为。
+**未点 `生成`、未点 `添加参考` 的任何 menuitem、未选中任何二级项。**
+
+### 逐条发现
+
+1. **`添加参考`（48×48）**：`aria-expanded` false→true → `[role="menu"][aria-label="添加参考"]`
+   **240×130 @186,311**，三个 `role="menuitem"` 各 **232×38**、各 1 svg：
+   `上传参考内容` / `从资产库添加` / `从画布选择`。三项都是**选来源**，不是选素材。
+2. 🔴 **订正 `引用参考` 两处的旧结论**：早前记「24×24 能用、32×32 没反应」**记反了**。
+   实际两个都能用；**24×24 是条件性按钮 —— 只在提示词为空时存在**，
+   提示词一有字符就消失。旧记录之所以说 32×32「没反应」，是那次节点已被取消选中、
+   `node-toolbar` 整个卸载了。
+3. **`@` 面板 = 两级定步选择器**，不是搜索框：
+   - `[data-testid="generation-mention-panel"]` **240×244 @163,259**，
+     内含 `[role="listbox"][aria-label="可能@的内容"]`、`role="group"` 232×236、
+     顶部 232×32 **不可点的分组标题**「添加参考」、四个 `role="option"` 各 232×48 / 2 svg
+     （`主体` 默认 `aria-selected="true"` / `图片` / `视频` / `音频`）。
+   - 点任一「引用参考」**或手打 `@`** 打开的是同一个面板。
+   - 🔴 **面板打开时键入「主」→ 面板立即关闭、占位符消失、提示词变字面量 `@主`**，
+     再键「体」变 `@主体`。**不收窄、不选中。**「搜索主体、图片、视频」是占位提示。
+4. **二级子菜单** `[data-testid="generation-mention-submenu"]` **240×76**，
+   紧贴一级右缘（403 → 407，间隙 4px），内容四类**逐字都是 `暂无相关节点`**
+   （`role="status"` 232×68）。
+   🔴 **aria 不一致**：`主体` 的二级 listbox **无 aria、无 group**；
+   `图片`/`视频`/`音频` 的 listbox aria 逐字等于类别名，各带同名 `role="group"`。
+5. 🔴 **占位符会污染 `innerText`**：`@搜索主体、图片、视频`。
+   判「提示词为空」要看 `data-slot="generation-prompt-mention-placeholder"` 这个 span，
+   空的时候 `innerHTML` 是 `<p><br class="ProseMirror-trailingBreak"></p>`。
+
+### 取证过程中修正的自身错误
+
+- 本批初稿把「24×24 能打开面板 / 32×32 没反应」当成事实写进脚本注释，
+  复核后发现**两处都有效**，且差异来自 24×24 的条件性存在。**已在正文、参考页、
+  排错页、概念页四处就地订正并标注推翻标记。**
+- 一版探针用「视口内 + 不在 `node-toolbar` 内 + 不在 `.react-flow__node` 内」筛浮层，
+  结果把 `generation-mention-panel` 一起滤掉了（它**确实渲染在生成表单内部**，
+  不在 body 下），脚本一路打印 `floats: []` 却毫无察觉。
+  **改用「点击前后全页 DOM 签名差分」后一次定位到 `generation-mention-submenu`**，
+  差分之前连它的名字都不知道。
+- `Esc` 会**顺带取消节点选中**、卸载 `node-toolbar`；连按 3 次 Esc 后必须重新选中节点，
+  否则下一步取按钮拿到 `null`。已写进脚本模板。
+
+### 证据边界
+
+- **全程未点击「生成」/「发送」**，未提交任何生成任务。
+- 前后积分读数均 **805**，三条退出路径与四类二级菜单遍历**均未扣费**。
+- 未验证（**扣费 / 跨面板边界**）：`添加参考` 三个 menuitem 点下去各自会开什么、
+  `从资产库添加` 在空资产库下的表现、二级子菜单选中某个节点后提示词里会插入什么形态的
+  chip。
+- 未验证（**观察条件不成立**）：「二级列表为空」究竟是「空节点被排除」还是
+  「当前节点自身被排除」——本画布只有一个**空**的「视频 1」（`No resources: 0 ready`），
+  连「视频」类也是空的。**不对未观察到的行为下断言。**
+
+### 顺带修掉的一处历史笔误
+
+`30-concepts.md` 第 126 行有一句「见排障」的 Markdown 链接：链接文字是「排障」，
+目标本应是 `90-troubleshooting.md`，但**目标闭括号后面多跟了一个全角右括号
+（全角 `）` 混进了圆括号组里）**。于是整条链接的目标被解析成
+「`90-troubleshooting.md` + 全角右括号」这个**不存在的文件**，
+导致 **gate-a 从此前就一直以退出码 1 失败**。已把那个全角右括号移到链接外面。
+该问题在 HEAD 即存在，非本批引入。
+
+> 📌 附带教训：修好之后，**台账里又把这条坏链接原样抄了一遍**，
+> 于是 gate-a 再次以退出码 1 失败（报 `AUDIT.md: broken local link`）——
+> 门禁脚本的链接匹配比 Markdown 规范更宽松，连代码块里的字符也会扫。
+> **审计记录里引用坏链接时必须改写成纯文字描述，绝不能保留链接形态**，
+> 否则自己会成为下一次门禁的阻塞点。本节这句话就是按这个要求改写的。
+
+### 质量门（批次 33 收尾，结论只认当次命令输出）
+
+| 检查项 | 命令 | 退出码 | 当次实测结果 |
+|---|---|---|---|
+| 截图 alt 审计 | `node scripts/jimeng-alt-audit.mjs` | 0 | **98 条**逐字一致 / 0 不一致 / 0 未引用 / 0 措辞冲突 |
+| 交叉一致性 | `node scripts/jimeng-crosscheck.mjs` | 0 | 命中 51 处，均为已知历史结论行，无批次 33 新问题 |
+| gate-a | `audit_manual.py … --phase gate-a` | **0** | `OK (gate-a): 17 tasks, 28 Markdown files, 98 images` |
+| final | `audit_manual.py … --phase final` | **0** | `OK (final): 17 tasks, 28 Markdown files, 98 images` |
+| 死链（本手册范围） | 独立扫描（排除 node_modules/dist/site） | **0 命中** | 扫描 28 个 Markdown，链接 **254** 条，**死链 0** |
+| 站点构建 | `build-site.sh` | **0** | dist 截图数 **94**、示意图 4、**0 warn** |
+
+**基线复核（批次 33 收尾）**：`1 node, 0 edges, 1 selected. Editable. Room connected.
+已保存.`，仅 `视频 1`、0 编组、无残留浮层、**高亮 overlay 计数 0**、**顶栏积分 805**，
+提示词已清空（`innerHTML` 回到 `<p><br class="ProseMirror-trailingBreak"></p>`）。
+
+**本批临时脚本（已清理）**：`scripts/jimeng-b33-*.mjs`
+（state / refs / mention / probe / probe2 / probe3 / probe4 / probe5 / shots）。
+**长期保留**：无新增。
