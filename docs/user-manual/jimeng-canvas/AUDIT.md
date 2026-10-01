@@ -216,3 +216,51 @@
 | 状态行 | 逐字 `1 node, 0 edges, 0 selected. Editable. Room connected. 已保存.` |
 | 顶栏 | `测试项目`、`已保存` |
 | 面板 | `Close asset library` 已关闭，筛选浮层已收起 |
+
+## 2026-10-01 增量审计（批次 9：台账自纠 + 编组态取证 + 基线残留清理）
+
+| 变更 | 级别 | 证据 | 处理 |
+|---|---|---|---|
+| `PROGRESS.md` §2 称「源站边由全屏 canvas 层绘制，**无 `.react-flow__edge` DOM**」 | **Major（事实错误 + 台账自相矛盾）** | 该条与**同文件** `SOURCE_OBSERVATIONS.md` §2.x「边有 DOM（纠正旧结论）」直接冲突；批次 8、9 当日两次实测 `.react-flow__edge` 均存在（外层 + bezier `path` + aria 逐字可读） | **已订正**并在原地留「本条曾长期写错」的显式提示。教训：台账内部出现互斥记载时必须回 DOM 当场复核，不能凭先后取舍 |
+| 批次 8 记录的「手柄 class 为 `…handle-left nodrag nopan !top`、尺寸 43×87」 | **Major（证据本身有缺陷）** | 本批取到完整 class：`react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 …`（数十个 Tailwind 工具类 + `target`/`source` 角色词）。`!top` 实为 `!top-1/2`，批次 8 的 `!to` 是同一串被截断 3 字符的产物 | **已订正**：`connect-nodes.md` 改为「约 44×88、**随缩放变化**（72% 时 43×87、74% 时 44×88），不是固定契约」，并给出可靠判别依据（整词 `handle-left/right` 或角色词 `source`/`target`）。原 AUDIT 里据此写的教训前提也随之修正 |
+| 「恢复基线」的核对维度不全，漏掉节点标记残留 | **Major（台账可信度）** | 批次 8 收尾只核对了节点数/连线数/「已保存」，未查标记；`视频 1` 实际一直挂着批次 4 留下的 **`青绿色`**（顶栏 `青绿色, 1 objects`），**连续五批未被发现** | **已清除**（`移除“青绿色”`），reload 后顶栏无任何 `objects`。正文与观察记录写入「基线必须逐项核对全部持久化状态」并列出本画布的 6 个持久化维度 |
+| 「编组态的背景色是否同一套色板未单独验证」 | Minor（覆盖缺口） | 2026-10-01 实测：组工具条 `data-testid="node-toolbar"`（1049×40）点「背景色」→ 面板 **214×40**，六枚逐字与节点级**完全相同** | **已关闭**：`organize-group-layout.md` 明确写「不存在组专用配色」+ 截图 `51` |
+| 「拖到空白处松开取消建线」标为未验证 | Minor（覆盖缺口） | 实测：拖至 `.react-flow__pane` 松开后 `.react-flow__edge` 元素数仍为 **0**、状态行仍 `0 edges`；副作用是源节点变为选中态 | **已关闭**并写明副作用，避免用户误把「1 selected」当成连线成功 |
+| 编组卡片如何选中，长期未写 | Minor（易用性） | 三个背景层（`group-background`/`group-body-frame`/`group-content-operation-hit-ring`）全为 `pointer-events-none`，卡片**内部空白**扫遍 0 命中；**只有标题带 `group-title-hit-area`（高 18px）可点**，且位于卡片顶边上方 21px，**被顶栏遮住时需先下滚** | 正文新增提示块 + 四个角把手 aria 逐字 |
+| 节点标记色板被简写成「🚫 + 青/蓝/紫/橙/黄」 | Minor（准确性） | 实测 aria 逐字为 `全部清空` / `移除“青绿色”` / `添加“靛蓝色”` / `添加“紫色”` / `添加“橙色”` / `添加“黄色”`，引号为**中文全角**；顶栏 aria 形如 `青绿色, 1 objects` | **已订正为逐字文案**并注明「青绿/靛蓝是两字全称，不是青/蓝」 |
+| 浮动工具条用 class `.react-flow__node-toolbar` 定位，在编组/多选态失效 | Minor（可维护性） | 编组态下该选择器返回 `null`、多选态返回 **0×0 尺寸**，导致连续多轮误判「编组没有工具条」 | 观察记录写入：真实钩子是 **`data-testid="node-toolbar"` / `node-toolbar-feature-host`**，判据改用 `[data-testid^="node-toolbar"]` |
+| `README.md` 任务清单只列 14 项且无链接，3 个任务页无人引用 | Minor（覆盖缺口） | `10-tasks/` 实有 **17** 页，`subject-node` / `timeline-node` / `director-node` 在 `task-inventory.yml` 中本就存在，但 README 散文清单未收录、也无任何链接指向 | README 改为**分五组的 17 页可点击索引**（校验：内链 21 个，缺失 0） |
+| `PROGRESS.md` / `README.md` 多处计数停留在初版口径 | Minor（台账可信度） | 实际：任务 **17**（非 14）、正文 **23** 页（非 19）、任务页 17（非 14）、截图 **53+4**（非 22）、CDP 端口 **9444**（非 9333） | 全部订正；历史性段落加「**2026-09-23 口径**」注记而非改写历史 |
+| 框选手势连续两轮失败 | Minor（效率） | ① 起点落在节点上而非 `.react-flow__pane`；② 终点算成「包围盒下边 +30」而起点本就在下方，框未罩中任何节点。另有 `elementFromPoint` 候选过滤用宽正则 `/react-flow__node/`，把 `react-flow__node-video` 误当编组 | 观察记录写入三条教训；正文框选小节加手势提示 |
+| `organize-group-layout.md` 有一条孤儿 bullet（「宫格视图 G」）夹在截图与「取消/恢复」之间 | Minor（文档结构） | 该 bullet 属布局小节语义，被挤进「节点颜色标记」小节末尾且与图片相邻无空行 | 已移回「布局整理」小节并补上快捷键页链接 |
+| 滚轮平移方向与直觉相反 | Minor（易用性） | 实测 `wheel(+240)` 使画布内容**上移**（编组标题 y 由 36 跑到 -1404），需 `wheel(-240)` 才能下移 | 仅入观察记录（属导航语义，正文已有导航页覆盖） |
+
+## 批次 9 质量门复跑记录（2026-10-01 当次命令输出）
+
+| 检查项 | 命令 | 退出码 | 当次实测结果 |
+|---|---|---|---|
+| 表格列数 | 自写全目录校验 | 0 | 通过（修复 2 处由本批编辑引入的错位，见下） |
+| gate-a | `audit_manual.py … --phase gate-a` | **0** | 通过 |
+| final | `audit_manual.py … --phase final` | **0** | 通过 |
+| 死链 | `python3 scripts/verify-docs.py` | **0** | `1208 Markdown files, 5248 local targets, 0 expected-missing artifact link(s)` |
+| 站点构建 | `build-site.sh` | **0** | 23 页、**55 张截图**、4 张示意图、24M、无 `.md` 残留链接、alt 逐字一致 |
+
+> **本批质量门确实拦下了两次真实问题**（不是走过场）：
+> 1. **gate-a / final 首次 exit=1** —— 订正台账时替换字符串漏掉了单元格分隔符 `|`，
+>    把「已知事实」和「缺什么」并成一格，破坏表格结构。自写校验发现 2 处，
+>    修复后复跑 exit=0。
+> 2. **gate-a / final 再次 exit=1** —— 报错
+>    `manifest image is not referenced by Markdown: screenshots/52-multi-select-toolbar.png`：
+>    截图已登记但正文没引用。补进「框选多个节点」小节后复跑 exit=0。
+>
+> 截图数 53 → 55，增量正是本批入库的 `51` 与 `52`。
+
+### 批次 9 收尾的基线复核
+
+| 项 | 实测 |
+|---|---|
+| 节点 | `.react-flow__node` 元素数 **1**，aria 逐字 `视频 node: 视频 1` |
+| 连线 | `.react-flow__edge` 元素数 **0** |
+| 状态行 | 逐字 `1 node, 0 edges, 0 selected. Editable. Room connected. 已保存.` |
+| 顶栏 | `测试项目`、`已保存` |
+| **节点标记** | **无任何 `objects` 标记**（本批新增核对项，详见审计表对应行） |

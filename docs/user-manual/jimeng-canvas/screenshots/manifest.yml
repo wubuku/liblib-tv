@@ -665,3 +665,27 @@ screenshots:
     visible_text: 资产 / 主体 / 图片 / 视频 / 音频 / 文档 / 搜索 / 筛选 / 暂无图片素材 / 已选择 0 个素材 / 确认 / 操作 / 收藏 / 类型 / 超清 / 分辨率 / 1K / 2K / 4K / 8K / 比例 / 21:9
     alt: 资产库筛选浮层：从面板右上角的漏斗图标展开的右侧下拉，分为四组——「操作」组下是「收藏」，「类型」组下是「超清」，「分辨率」组下依次是 1K、2K、4K、8K 四档，「比例」组下是 21:9；各组之间以细分隔线隔开；背景面板仍显示「暂无图片素材」，底部「已选择 0 个素材」与灰色禁用的「确认」按钮
     sha256: 16994a8079746282cedfebe8dfbe36779c084eb393eab50f2b7c601113f7c2b2
+
+  - file: screenshots/51-group-background-palette.png
+    task_id: organize-group-layout
+    step: 4
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T10:35:00+08:00
+    verified_locator: '框选「视频 1 / 视频 2」两节点按 ⌘G 编成「组 node: 编组 1」（1050×403），点标题带选中后，组工具条 data-testid=node-toolbar（1049×40）的「背景色」展开的 214×40 六色浮层'
+    visible_text: 解除编组 / 布局 / 背景色 / 测试项目 / 节点 3 / 已保存 / 视频 1 / 74%
+    alt: 编组选中后的工具条「解除编组 / 布局 / 背景色」与展开的背景色色板：色板为 214×40 的一排六枚圆形色块，依次是白色描边的无颜色、青绿、靛蓝、紫、橙、黄；组卡片以白色细边框罩住两个视频节点，四角各有一个圆形缩放把手，右上角还有标签图标；左下角缩放读数 74%
+    sha256: 4e685c35034a0a538d4538c02966bc35e39f709e1704c6d56b2624db5d694833
+
+  - file: screenshots/52-multi-select-toolbar.png
+    task_id: organize-group-layout
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T10:30:00+08:00
+    verified_locator: '在 .react-flow__pane 上从包围盒对角外侧拖出选框，罩住「视频 1 / 视频 2」两节点，状态行 2 nodes, 0 edges, 2 selected'
+    visible_text: 测试项目 / 节点 2 / 已保存 / 视频 1 / 视频 2 / 74%
+    alt: 在画布空白处拖出矩形选框罩住「视频 1」「视频 2」两个节点后的多选状态，顶部出现多选工具条，两节点带选中描边，左下角缩放读数 74%
+    sha256: c904d22643c8f4a389b29a0c5abadefa7e10c92afa0236da7051f18283d563f3

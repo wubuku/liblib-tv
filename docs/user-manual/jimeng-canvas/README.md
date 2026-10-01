@@ -14,8 +14,10 @@
   证据才写入正文；`docs/research/jimeng-canvas/` 的复刻研究只作为候选线索。
 - 安全边界：不执行任何真实生成或按积分计费的操作；生成类任务只记录到
   「点击执行前一步」。
-- 进度：**手册已成稿并通过质量门**——14 个任务全部 `verified`，19 页正文 +
-  22 张登记截图，并已构建 VitePress 静态站点。
+- 进度：**手册已成稿并通过质量门**——**17** 个任务全部 `verified`，**23** 页正文 +
+  **53** 张登记截图（另 4 张示意图），并已构建 VitePress 静态站点。
+  - 2026-10-01 增量：任务集由 14 补至 17（新增时间线 / 主体 / 导演台三页操作指南），
+    截图由 22 增至 53；本 README 原先的计数与任务清单停留在初版口径，已按实际文件订正。
   - 2026-10-01 增量：修复越界链接导致的两道质量门失败（详见仓库内
     `AUDIT.md` 的「机械审计复跑记录」），并补齐 `use-node-toolbar`
     的图片节点工具条、视频修剪、截取帧三处覆盖缺口。gate-a / final 当日复跑均 exit=0。
@@ -25,9 +27,24 @@
 ## 手册正文
 
 - [快速上手](00-quickstart.md)
-- 任务指南（`10-tasks/`，14 页）：创建节点、平移缩放、连接节点、节点工具条、
-  准备生成、文本节点、复制删除撤销、资产库上传、播放预览、编组整理、
-  音频配音、AI 对话抽屉、画布上下文、帮助快捷键
+- 任务指南（`10-tasks/`，**17 页**）：
+  - 上手与画布：[创建第一个节点](10-tasks/create-first-node.md) ｜
+    [平移与缩放画布](10-tasks/navigate-canvas.md) ｜
+    [连接节点建立参考](10-tasks/connect-nodes.md) ｜
+    [使用节点工具条](10-tasks/use-node-toolbar.md) ｜
+    [准备生成（执行前一步）](10-tasks/prepare-generation.md)
+  - 编辑与整理：[编辑文本节点](10-tasks/edit-text-node.md) ｜
+    [复制、删除与撤销](10-tasks/duplicate-delete-history.md) ｜
+    [编组与布局整理](10-tasks/organize-group-layout.md)
+  - 节点类型：[时间线节点](10-tasks/timeline-node.md) ｜
+    [主体节点](10-tasks/subject-node.md) ｜
+    [导演台节点（Beta）](10-tasks/director-node.md) ｜
+    [音频与配音](10-tasks/audio-node-voice.md)
+  - 素材与预览：[资产库与本地上传](10-tasks/assets-and-upload.md) ｜
+    [媒体播放与预览](10-tasks/media-playback.md)
+  - 画布环境：[AI 对话抽屉](10-tasks/ai-agent-drawer.md) ｜
+    [画布上下文](10-tasks/canvas-context.md) ｜
+    [帮助与快捷键](10-tasks/help-and-shortcuts.md)
 - [参考速查](20-reference.md) ｜ [核心概念](30-concepts.md) ｜ [排障](90-troubleshooting.md)
 
 ## 以网站形式查看
@@ -52,12 +69,12 @@ python3 -m http.server 4173 -d .vitepress/dist
 不进入网站构建，因此这里用文件名而非站内链接引用（在 GitHub/编辑器中直接打开
 本目录即可）：
 
-- `task-inventory.yml`：14 个任务的范围、频率、影响与 `verified` 状态。
+- `task-inventory.yml`：**17** 个任务的范围、频率、影响与 `verified` 状态。
 - `PROGRESS.md`：探索、编写、验证与站点构建的完整进度记录。
 - `AUDIT.md`：真实浏览器回走审计结果、机械审计复跑记录与已接受限制。
 - `SOURCE_OBSERVATIONS.md`：源站观察台账（当日基线、逐任务 DOM/交互事实、
   源站演进纠错）。
-- `screenshots/manifest.yml`：22 张正式截图的登记与哈希。
+- `screenshots/manifest.yml`：**53** 张正式截图 + **4** 张示意图的登记与哈希。
 - `TEST_MEDIA_ASSETS.md`：授权测试媒体使用记录
   （权威清单见仓库级 `docs/CANVAS_TEST_MEDIA.md`，位于本手册目录之外）。
 - `FINAL-REPORT.md`：最终交付报告（目标版本/URL、角色、深度、覆盖率、
