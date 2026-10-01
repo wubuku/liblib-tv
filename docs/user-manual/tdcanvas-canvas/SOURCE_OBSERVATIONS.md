@@ -83,7 +83,8 @@
 - 类型兼容的**结构性根因**（静态，与上条互为印证）：`components/canvas/nodes/builtin-nodes.tsx` 里 `ports` 出现 **0 次**——六种内置节点（Text/Image/Video/Audio/Config/Group）**根本没有定义任何端口**，全部回退到 `canvas-node-ports.ts:6-7` 的 `legacyInput`/`legacyOutput`，二者的 `dataType` 就是 `"any"`。因此 `areCanvasPortTypesCompatible`（`canvas-node-ports.ts:56-61`）里 `sourceType === "any" || targetType === "any"` 这一支**对内置节点恒真**——**类型闸门对内置节点互连是不可达的死分支**，等价于「没有类型限制」。端口定义只存在于另外两个注册源：`integrations/comfyui-local/canvas-node.tsx`（`comfyCanvasPorts`）与 `lib/canvas/plugin-loader.ts`（插件节点）；全仓 `ports:` 的非测试命中也只落在这两处。Group 由 `getCanvasNodePorts` 第 10 行直接返回 `[]`，Config 因 `hasSourceHandle: false` 只得 `[legacyInput]`。[静态]
 - **ComfyUI 侧的真实类型词表**：`types/canvas.ts:184` 的 `CanvasPortDataType` = `any | image | video | audio | text | number | boolean | json | (string & {})`；`inputPortType` 把 `integer/number → number`、`boolean → boolean`、`json → json`、`enum/string → text`，其余原样透传。**注意 `outputPortType` 把 `file` 类输出显式降级为 `"any"`**（`resourceType === "file" ? "any" : resourceType`）——**连强类型系统自己都留了通配口子**，ComfyUI 产出图片/视频/音频这类文件型输出时同样不会拦。[静态]
 - **拖线到空白处弹创建菜单**（文本/图片/视频/音频）→ 建节点+反向端口连线+选中+开面板。[静态]
-- 双模式：connections（连线模式）/ objects（无线引用）互斥——objects 模式不渲染连线、添加引用清空既有连线；引用支持 latest/pinned 版本。[静态]
+- 双模式：connections（连线模式）/ objects（无线引用）。**2026-10-02 M111 拆分实测**——「切换」与「加引用」是**两件不同的事**，此前被写成一句「互斥…添加引用清空既有连线」：① **切换**：objects 模式**确实不渲染连线**（连线元素 `1 → 0`，且两节点均未位移、排除误拖），但**数据一条没少**——切回 connections 原样恢复（`0 → 1`），连续两次往返稳定为 `1`。**切换本身不删任何东西。** [运行时]
+  ② **添加引用**：`project.tsx:907` 的 `addObjectReference` 第一句就是 `setConnections(cur => cur.filter(c => c.toNodeId !== targetNodeId))`——**删的是「以正在加引用的那个节点为下游」的全部连线**，并非全画布；其余节点之间的连线不受影响，随后由 `metadata.objectReferences` 顶替。**这一行未实测**：Set/Get 两个入口（「设为 Set」/「引用结果」）在**没有生成结果之前根本不渲染**——实测无线模式下节点悬浮工具条与连线模式**完全相同**（同样 5 个按钮），全页 innerText 搜不到「引用结果」「设为 Set」「无线引用」任何字样；而产出结果需付费生成。**如实记为源码依据。** [静态]
 - @mention：contentEditable 输入 `@` 弹候选插缩略图 chip，序列化「图片 N / 视频 N / 文本 N」标签。[静态+官方文档]
 
 ## 7. 生成工作流（**付费动作，手册只描述不回走**）
