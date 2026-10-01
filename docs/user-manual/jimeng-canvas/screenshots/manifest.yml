@@ -1159,3 +1159,27 @@ screenshots:
     visible_text: 添加参考 / 主体 / 图片 / 视频 / 音频 / 暂无相关节点
     alt: 在 @ 提及面板里点「图片」后的两级选择器（两个浮层都被橙色高亮框标出）：左侧 240×244 的一级面板四个类别中「图片」呈高亮态，右侧紧贴着弹出 240×76 的二级子菜单，里面只有居中的一行灰字「暂无相关节点」；下方的提示词框仍显示 @ 加占位文字「搜索主体、图片、视频」，底部参数行是「即梦 Seedance 2.0 VIP」「16:9 · 720P · 1」「全能参考」「4s」「@」和 ✦ 56
     sha256: 8ae2075d6a9e56a85adf34977e50877a08b3a6c8bf4f120cbe7a31a605d2772d
+
+  - file: screenshots/95-mention-panel-image.png
+    task_id: prepare-generation
+    step: 12
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T16:55:00+08:00
+    verified_locator: '画布 60% 缩放，先用空白处拖拽把既有节点推出视口，在空白区点左栏 aria 逐字「图片」新建空图片节点（node_exg9bzvzjn）→ 选中 → 点提示词手打 @ → [data-testid="generation-mention-panel"] 实测 240×140 @175,363，仅 2 个 role=option（主体/图片），listbox aria 逐字「可能@的内容」；提示词 innerText 逐字「@搜索主体、图片」（**比视频节点少「视频」二字**）。面板 form[data-testid] 实测为 generation-form（无类型前缀）。**只读观察，积分 805 未变**，收尾按 data-id 精确删除'
+    visible_text: 添加参考 / 主体 / 图片 / @搜索主体、图片
+    alt: 图片节点的 @ 提及面板只有两类（240×140，被橙色高亮框标出）：顶部小字标题「添加参考」点不动，下面只有「主体」和「图片」两个 232×48 的类别项（都带向右的小箭头，「主体」是默认选中态）—— 对比视频节点同一位置有四类，这里没有「视频」也没有「音频」；右下方的提示词框里占位文字同步缩短成「@搜索主体、图片」，同样没有「视频」二字
+    sha256: c0bfaaddb291e964688d5c203bb663bcb8d396ec03136beb3a367e585bd86443
+
+  - file: screenshots/96-mention-panel-audio.png
+    task_id: prepare-generation
+    step: 13
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T16:55:00+08:00
+    verified_locator: '同上 pan 出去后在空白区点左栏 aria 逐字「音频」新建空音频节点（node_x2raeckx61）→ 选中 → 点提示词手打 @ → [data-testid="generation-mention-panel"] 实测 240×192 @185,315，3 个 role=option 逐字 主体/图片/音频，**没有「视频」**；listbox aria 仍为「可能@的内容」，顶部 232×32 不可点标题「添加参考」仍在。**只读观察，积分 805 未变**，收尾按 data-id 精确删除'
+    visible_text: 添加参考 / 主体 / 图片 / 音频
+    alt: 音频节点的 @ 提及面板有三类（240×192，被橙色高亮框标出）：类别自上而下是「主体」「图片」「音频」，比视频节点少一个「视频」—— 也就是说音频节点引不了画布上的视频；右下方的提示词框里只有一个 @ 符号
+    sha256: 02fd465007d8fe1fbd18f86caabe4f7d01e24853811ee33c1f07de1d40219a11
