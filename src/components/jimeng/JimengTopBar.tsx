@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 import { JimengLogo, VipDiamond } from "@/components/jimeng/icons";
-import { JimengHelpMenu } from "@/components/jimeng/JimengHelpMenu";
+import { JimengHelpMenu, USER_MENU_TRIGGER_ID } from "@/components/jimeng/JimengHelpMenu";
 import {
   JimengHelpCenterPanel,
   JimengWatermarkDialog,
@@ -440,6 +440,7 @@ export function JimengTopBar() {
         <div className="relative shrink-0">
           <button
             type="button"
+            id={USER_MENU_TRIGGER_ID}
             aria-label="用户菜单"
             data-testid="canvas-user-menu-trigger"
             onClick={() => setHelpOpen((v) => !v)}
@@ -450,14 +451,16 @@ export function JimengTopBar() {
         </div>
         </div>
         {helpOpen ? (
-          <div className="absolute right-3 top-[46px]">
-            <JimengHelpMenu
-              onClose={() => setHelpOpen(false)}
-              onOpenShortcuts={() => setShortcutsOpen(true)}
-              onOpenHelpCenter={() => setHelpCenterOpen(true)}
-              onOpenWatermark={() => setWatermarkOpen(true)}
-            />
-          </div>
+          /* 批 826：原来这层是 `absolute right-3 top-[46px]`，但它零宽零高，
+             于是菜单的 `right-0` / `calc(100%+8px)` 都相对这个空壳算 ——
+             12px 被扣了两次、纵向又多出 8px，菜单落在 @[1416,64] 而源站是
+             @[1428,56]。去掉包裹层，让菜单和分享面板一样直接相对 header 定位。 */
+          <JimengHelpMenu
+            onClose={() => setHelpOpen(false)}
+            onOpenShortcuts={() => setShortcutsOpen(true)}
+            onOpenHelpCenter={() => setHelpCenterOpen(true)}
+            onOpenWatermark={() => setWatermarkOpen(true)}
+          />
         ) : null}
       </div>
       </header>

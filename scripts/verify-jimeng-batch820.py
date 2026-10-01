@@ -101,8 +101,13 @@ def main() -> int:
                 .map(e => e.getAttribute('aria-label') ||
                           (e.getAttribute('data-testid')||'').replace('account-menu-item-',''))"""
         )
-        check("0.1 账号菜单 5 项齐全",
-              len(items) == 5, str(items))
+        # 批 826 订正：此前断言"5 项齐全"。源站实测（@1680×826，登录态，
+        # [data-testid="canvas-user-menu"]）是**六项** —— 末尾还有「新功能许愿」，
+        # 复刻此前整项没做。这里改成按源站逐项逐字核对，而不是把数字改成 6：
+        # 集合比对能同时抓住"少一项"和"多一项"，比只数长度严。
+        check("0.1 账号菜单 6 项齐全（批 826 订正：源站有第六项「新功能许愿」）",
+              items == ["帮助中心", "使用手册", "快捷键", "AI生成水印设置",
+                        "即梦CLI", "新功能许愿"], str(items))
 
         # ── 1. 帮助中心：右侧浮层 360×648 ────────────────────────────
         page.keyboard.press("Escape")

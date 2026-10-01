@@ -58,7 +58,20 @@ def main() -> None:
         if not menu:
             failures.append("avatar account menu did not open")
         else:
-            want = ["帮助中心", "使用手册", "快捷键", "AI生成水印设置", "即梦CLI"]
+            # 批 826 订正：此前这份清单是**五项**，据此断言"恰好五项"。
+            # 源站实测 @1680×826（登录态，[data-testid="canvas-user-menu"]）是
+            # **六项** —— 末尾还有「新功能许愿」，复刻此前整项没做，菜单因此
+            # 240×268 而非源站的 240×312（差的 44 = 36 + 4，正好一项）。
+            # 这里跟着源站事实更新，不是把断言放宽成"包含即可"——
+            # 逐项逐字、顺序都写死，少一项或换顺序照样红。
+            want = [
+                "帮助中心",
+                "使用手册",
+                "快捷键",
+                "AI生成水印设置",
+                "即梦CLI",
+                "新功能许愿",
+            ]
             if menu["items"] != want:
                 failures.append(f"avatar menu items: {menu['items']}")
         page.screenshot(
