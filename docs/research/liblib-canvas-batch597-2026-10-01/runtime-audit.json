@@ -1,0 +1,301 @@
+{
+  "batch": 597,
+  "title": "轨道列表选中态改为背景表达：对象行 teal 25% 覆盖层 + 轨道行 teal 10% 背景，文字色恒定",
+  "evidence": "2026-10-01 live CDP sampling of the source director desk at 1920x1150 + docs/research/liblib-canvas-batch597-2026-10-01/README.md",
+  "source_facts": {
+    "selected": {
+      "object_overlay": "rgba(60,181,204,0.25) full-bleed aria-hidden span, 320x32",
+      "track_background": "rgba(60,181,204,0.1)",
+      "track_text": "rgb(168,168,168)",
+      "names": "font-medium #F7F7F7",
+      "decorative_plus": "rgba(7,184,221,0.4)"
+    },
+    "plain": {
+      "object_overlay": "bg-white/10",
+      "track_background": "bg-transparent (+ hover:bg-white/[0.04])",
+      "track_text": "rgb(168,168,168)",
+      "decorative_plus": "#363636"
+    }
+  },
+  "clone_only": [],
+  "not_verified": [
+    "the source has a single track, so the 'plain' values were read right after a collapse/expand toggle rather than from clicking a second track; whether the toggle deselects or merely re-renders is not separated"
+  ],
+  "results": [
+    {
+      "viewport": "1920x1150",
+      "checks": [
+        {
+          "name": "object:overlay-present",
+          "ok": true,
+          "detail": {
+            "selected": "true",
+            "overlay": "rgba(60, 181, 204, 0.25)",
+            "overlaySize": [
+              319,
+              32
+            ],
+            "name": {
+              "text": "角色01 · 陈默",
+              "color": "rgb(247, 247, 247)",
+              "weight": "500"
+            }
+          }
+        },
+        {
+          "name": "selected:object-overlay-teal-25",
+          "ok": true,
+          "detail": {
+            "selected": "true",
+            "overlay": "rgba(60, 181, 204, 0.25)",
+            "overlaySize": [
+              319,
+              32
+            ],
+            "name": {
+              "text": "角色01 · 陈默",
+              "color": "rgb(247, 247, 247)",
+              "weight": "500"
+            }
+          }
+        },
+        {
+          "name": "selected:track-bg-teal-10",
+          "ok": true,
+          "detail": {
+            "selected": "true",
+            "background": "rgba(60, 181, 204, 0.1)",
+            "color": "rgb(168, 168, 168)",
+            "name": {
+              "text": "变换",
+              "color": "rgb(247, 247, 247)",
+              "weight": "500"
+            },
+            "value": {
+              "color": "rgb(168, 168, 168)",
+              "fontSize": "13px"
+            },
+            "plusStrokes": [
+              "rgba(7, 184, 221, 0.4)",
+              "rgba(7, 184, 221, 0.4)"
+            ]
+          }
+        },
+        {
+          "name": "selected:track-text-stays-a8a8a8",
+          "ok": true,
+          "detail": {
+            "row": "rgb(168, 168, 168)",
+            "value": {
+              "color": "rgb(168, 168, 168)",
+              "fontSize": "13px"
+            }
+          }
+        },
+        {
+          "name": "selected:names-stay-f7f7f7-medium",
+          "ok": true,
+          "detail": {
+            "object": {
+              "text": "角色01 · 陈默",
+              "color": "rgb(247, 247, 247)",
+              "weight": "500"
+            },
+            "track": {
+              "text": "变换",
+              "color": "rgb(247, 247, 247)",
+              "weight": "500"
+            }
+          }
+        },
+        {
+          "name": "selected:plus-teal-40",
+          "ok": true,
+          "detail": [
+            "rgba(7, 184, 221, 0.4)",
+            "rgba(7, 184, 221, 0.4)"
+          ]
+        },
+        {
+          "name": "selected:moves-to-the-other-track",
+          "ok": true,
+          "detail": {
+            "selected": "true",
+            "background": "rgba(60, 181, 204, 0.1)",
+            "color": "rgb(168, 168, 168)",
+            "name": {
+              "text": "机位",
+              "color": "rgb(247, 247, 247)",
+              "weight": "500"
+            },
+            "value": {
+              "color": "rgb(168, 168, 168)",
+              "fontSize": "13px"
+            },
+            "plusStrokes": [
+              "rgba(7, 184, 221, 0.4)",
+              "rgba(7, 184, 221, 0.4)"
+            ]
+          }
+        },
+        {
+          "name": "plain:track-bg-transparent",
+          "ok": true,
+          "detail": {
+            "selected": "false",
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(168, 168, 168)",
+            "name": {
+              "text": "变换",
+              "color": "rgb(247, 247, 247)",
+              "weight": "500"
+            },
+            "value": {
+              "color": "rgb(168, 168, 168)",
+              "fontSize": "13px"
+            },
+            "plusStrokes": [
+              "rgb(54, 54, 54)",
+              "rgb(54, 54, 54)"
+            ]
+          }
+        },
+        {
+          "name": "plain:track-text-stays-a8a8a8",
+          "ok": true,
+          "detail": "rgb(168, 168, 168)"
+        },
+        {
+          "name": "plain:object-overlay-white-10",
+          "ok": true,
+          "detail": {
+            "selected": "false",
+            "overlay": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+            "overlaySize": [
+              319,
+              32
+            ],
+            "name": {
+              "text": "角色01 · 陈默",
+              "color": "rgb(247, 247, 247)",
+              "weight": "500"
+            }
+          }
+        },
+        {
+          "name": "plain:plus-363636",
+          "ok": true,
+          "detail": [
+            "rgb(54, 54, 54)",
+            "rgb(54, 54, 54)"
+          ]
+        },
+        {
+          "name": "no-diagnostics",
+          "ok": true,
+          "detail": []
+        }
+      ],
+      "selected": {
+        "object": {
+          "selected": "true",
+          "overlay": "rgba(60, 181, 204, 0.25)",
+          "overlaySize": [
+            319,
+            32
+          ],
+          "name": {
+            "text": "角色01 · 陈默",
+            "color": "rgb(247, 247, 247)",
+            "weight": "500"
+          }
+        },
+        "track": {
+          "selected": "true",
+          "background": "rgba(60, 181, 204, 0.1)",
+          "color": "rgb(168, 168, 168)",
+          "name": {
+            "text": "变换",
+            "color": "rgb(247, 247, 247)",
+            "weight": "500"
+          },
+          "value": {
+            "color": "rgb(168, 168, 168)",
+            "fontSize": "13px"
+          },
+          "plusStrokes": [
+            "rgba(7, 184, 221, 0.4)",
+            "rgba(7, 184, 221, 0.4)"
+          ]
+        }
+      },
+      "other_selected": {
+        "object": {
+          "selected": "true",
+          "overlay": "rgba(60, 181, 204, 0.25)",
+          "overlaySize": [
+            319,
+            32
+          ],
+          "name": {
+            "text": "机位01 · 对峙中景",
+            "color": "rgb(247, 247, 247)",
+            "weight": "500"
+          }
+        },
+        "track": {
+          "selected": "true",
+          "background": "rgba(60, 181, 204, 0.1)",
+          "color": "rgb(168, 168, 168)",
+          "name": {
+            "text": "机位",
+            "color": "rgb(247, 247, 247)",
+            "weight": "500"
+          },
+          "value": {
+            "color": "rgb(168, 168, 168)",
+            "fontSize": "13px"
+          },
+          "plusStrokes": [
+            "rgba(7, 184, 221, 0.4)",
+            "rgba(7, 184, 221, 0.4)"
+          ]
+        }
+      },
+      "plain": {
+        "object": {
+          "selected": "false",
+          "overlay": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "overlaySize": [
+            319,
+            32
+          ],
+          "name": {
+            "text": "角色01 · 陈默",
+            "color": "rgb(247, 247, 247)",
+            "weight": "500"
+          }
+        },
+        "track": {
+          "selected": "false",
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgb(168, 168, 168)",
+          "name": {
+            "text": "变换",
+            "color": "rgb(247, 247, 247)",
+            "weight": "500"
+          },
+          "value": {
+            "color": "rgb(168, 168, 168)",
+            "fontSize": "13px"
+          },
+          "plusStrokes": [
+            "rgb(54, 54, 54)",
+            "rgb(54, 54, 54)"
+          ]
+        }
+      },
+      "diagnostics": []
+    }
+  ]
+}

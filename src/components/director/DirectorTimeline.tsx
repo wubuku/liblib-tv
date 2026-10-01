@@ -1265,6 +1265,9 @@ export function DirectorTimeline({
               const cameraTrack = group.tracks.find(
                 (track) => track.kind === "camera",
               );
+              const groupSelected = group.tracks.some(
+                (track) => track.id === timeline.selectedTrackId,
+              );
               return (
                 <div key={group.key} data-director-object-group={group.key}>
                   {/* 对象行：源站 320×32，栅格 16px / 1fr / 220px。第 1 列是
@@ -1274,11 +1277,23 @@ export function DirectorTimeline({
                       aria-pressed，不是 clone 之前用的 span role=button。 */}
                   <div
                     data-director-timeline-object-row={group.objectId}
+                    data-director-timeline-object-selected={groupSelected ? "true" : "false"}
                     className="group relative grid h-8 items-center gap-1 px-2 text-[12px] text-[#F7F7F7] transition-colors"
                     style={{
                       gridTemplateColumns: "16px minmax(0,1fr) 220px",
                     }}
                   >
+                    {/* Batch 597（源站 2026-10-01 实测）：对象行常驻一条
+                        `span[aria-hidden].absolute.inset-0` 覆盖层，颜色随「该对象
+                        的轨道是否被选中」在 rgba(60,181,204,0.25) 与 white/10 之间
+                        切换；行文字色恒为 #F7F7F7，**不随选中变化**。 */}
+                    <span
+                      aria-hidden="true"
+                      className={cn(
+                        "pointer-events-none absolute inset-x-0 inset-y-0",
+                        groupSelected ? "bg-[rgba(60,181,204,0.25)]" : "bg-white/10",
+                      )}
+                    />
                     <button
                       type="button"
                       aria-label={collapsed ? "展开属性" : "收起属性"}
@@ -1305,7 +1320,7 @@ export function DirectorTimeline({
                       title={group.objectName}
                       data-director-timeline-object-name={group.objectId}
                       onClick={() => selectTimelineTrack(group.tracks[0].id)}
-                      className="relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium transition-colors hover:text-white"
+                      className="relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white"
                     >
                       <span className="truncate">{group.objectName}</span>
                     </div>
@@ -1349,10 +1364,18 @@ export function DirectorTimeline({
                             data-director-track-label={track.id}
                             data-director-track-row={track.id}
                             data-director-track-row-kind={track.kind}
-                            className="group relative grid h-8 items-center gap-1 px-2 text-[12px] transition-colors hover:bg-white/[0.04] max-[899px]:[grid-template-columns:32px_36px_78px_minmax(0,1fr)]"
+                            data-director-track-row-selected={selected ? "true" : "false"}
+                            // Batch 597: 源站轨道行的选中态是**背景**
+                            // `rgba(60,181,204,0.1)`，未选中是 `bg-transparent`
+                            // + `hover:bg-white/[0.04]`；文字色恒为 #A8A8A8，
+                            // 轨道名另加 font-medium + #F7F7F7。clone 原先靠改
+                            // 文字色表达选中，与源站不符。
+                            className={cn(
+                              "group relative grid h-8 items-center gap-1 px-2 text-[12px] text-[#A8A8A8] transition-colors hover:bg-white/[0.04] max-[899px]:[grid-template-columns:32px_36px_78px_minmax(0,1fr)]",
+                              selected ? "bg-[rgba(60,181,204,0.1)]" : "bg-transparent",
+                            )}
                             style={{
                               gridTemplateColumns: "40px 36px 78px minmax(0,1fr)",
-                              color: selected ? "#F7F7F7" : "#A8A8A8",
                             }}
                           >
                             {/* 源站第 1 列 40px 是**纯装饰**的加号（aria-hidden）：
@@ -1363,11 +1386,20 @@ export function DirectorTimeline({
                             >
                               <span
                                 className="absolute left-5 top-0 w-px"
-                                style={{ bottom: "50%", background: "#363636" }}
+                                style={{
+                                  bottom: "50%",
+                                  background: selected
+                                    ? "rgba(7,184,221,0.4)"
+                                    : "#363636",
+                                }}
                               />
                               <span
                                 className="absolute left-5 top-1/2 h-px w-4"
-                                style={{ background: "#363636" }}
+                                style={{
+                                  background: selected
+                                    ? "rgba(7,184,221,0.4)"
+                                    : "#363636",
+                                }}
                               />
                             </span>
                             <div
@@ -1375,7 +1407,7 @@ export function DirectorTimeline({
                               tabIndex={0}
                               title={track.label}
                               onClick={() => selectTimelineTrack(track.id)}
-                              className="relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium transition-colors hover:text-white"
+                              className="relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white"
                             >
                               <span className="truncate">
                                 {directorTrackShortName(track)}
