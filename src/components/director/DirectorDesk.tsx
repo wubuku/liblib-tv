@@ -76,15 +76,22 @@ function DirectorShotBar() {
       data-director-shot-bar
       data-director-active-shot-id={activeShotId ?? ""}
       aria-label="导演台镜头"
-      // Batch 613：`镜头` 这条 nav 是 **clone 独有**功能（源站导演台没有
-      // 任何整幅页签行 —— 2026-10-01 全 DOM 搜索只命中三枚 nav：画布
-      // navbar `[0,8,1920,32]`、资源栏 `[0,52,48,1098]`、视口底部浮动
-      // 药丸 `[780,968,128,48]`）。但资源栏现在按源站从 y=52 起，镜头条
-      // 仍在同一行，左缘 48px 会被 rail 盖住、把「镜头」标签吃掉。
-      // 保留这条 clone 功能、不删；只是 ≥900px 时整体右移让开 rail 的 48px
-      // （窄屏 rail 隐藏、场景树是抽屉，故不加边距），让开后的底色仍是
-      // `#171717`，与源站该处场景树同色。
-      className="flex h-9 shrink-0 items-center gap-2 overflow-x-auto border-b border-white/[0.07] bg-[#171717] px-3 min-[900px]:ml-12"
+      // Batch 613：这条 nav 是 **clone 独有**功能（源站导演台没有任何整幅
+      // 页签行 —— 2026-10-01 全 DOM 搜索只命中三枚 nav：画布 navbar
+      // `[0,8,1920,32]`、资源栏 `[0,52,48,1098]`、视口底部浮动药丸
+      // `[780,968,128,48]`），按既定原则保留。
+      //
+      // Batch 617 修正了 613 给它的让位量。613 把资源栏与场景树按源站归位到
+      // 52..1150（左列 0..281 整条），却只把镜头条右移了 48px（`ml-12`），
+      // 结果镜头条的内容（`镜头` 标签 + `机位N` chip，自 x=48 起）**整条落在
+      // 场景树底下** —— 树 z-30、镜头条 z-auto，chip 点不动。613 的验收只断言
+      // 了标签的 x ≥ 48，没断言它在上层，漏了过去（见 probe617 的命中普查：
+      // 导演台 120 枚可交互控件里 chip 是唯一被自家树盖住的一枚）。
+      //
+      // 正确让位量是**整条左列 281px**（48 资源栏 + 233 场景树）：镜头条自
+      // x=281 起，与源站左列的结构一致 —— 源站在 y 52..88 这条带里 x<281 的
+      // 部分同样是左列。窄屏 rail 隐藏、场景树是抽屉，故不加边距。
+      className="flex h-9 shrink-0 items-center gap-2 overflow-x-auto border-b border-white/[0.07] bg-[#171717] px-3 min-[900px]:ml-[281px]"
     >
       <span className="shrink-0 text-[10px] uppercase tracking-[0.08em] text-[#666]">
         镜头

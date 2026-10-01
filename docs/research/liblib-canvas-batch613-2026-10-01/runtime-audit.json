@@ -126,15 +126,15 @@
       },
       "shotBar": {
         "box": [
-          48,
+          281,
           52,
-          1872,
+          1639,
           36
         ]
       },
       "shotLabel": {
         "box": [
-          60,
+          293,
           62,
           21.6,
           15
@@ -317,7 +317,7 @@
     "shotbar:starts-right-of-the-rail": {
       "ok": true,
       "detail": [
-        60,
+        293,
         62,
         21.6,
         15
@@ -326,6 +326,24 @@
     "shotbar:label-visible": {
       "ok": true,
       "detail": "镜头"
+    },
+    "shotbar:label-receives-its-own-click": {
+      "ok": true,
+      "detail": [
+        293,
+        62,
+        21.6,
+        15
+      ]
+    },
+    "shotbar:first-shot-chip-receives-its-own-click": {
+      "ok": true,
+      "detail": [
+        322.609375,
+        55.5,
+        177.09375,
+        28
+      ]
     },
     "timeline:present": {
       "ok": true,
@@ -463,15 +481,15 @@
       },
       "shotBar": {
         "box": [
-          48,
+          281,
           52,
-          1872,
+          1639,
           36
         ]
       },
       "shotLabel": {
         "box": [
-          60,
+          293,
           62,
           21.6,
           15
@@ -598,15 +616,15 @@
       },
       "shotBar": {
         "box": [
-          48,
+          281,
           52,
-          1872,
+          1639,
           36
         ]
       },
       "shotLabel": {
         "box": [
-          60,
+          293,
           62,
           21.6,
           15
@@ -726,9 +744,9 @@
       "pageErrors": 0
     },
     "_summary": {
-      "checks": 53,
+      "checks": 55,
       "failures": []
     }
   },
-  "result": "53/53 passed"
+  "result": "55/55 passed"
 }

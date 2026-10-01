@@ -111,6 +111,28 @@ IGNORE_CONSOLE = (
     "src/components/jimeng/JimengHelpMenu.tsx",
 )
 
+LABEL_HIT_JS = """() => {
+  const el = document.querySelector('[data-director-shot-bar] span');
+  if (!el) return null;
+  const r = el.getBoundingClientRect();
+  const h = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
+  return !!(h && (h === el || el.contains(h) || h.contains(el)));
+}"""
+
+CHIP_HIT_JS = """() => {
+  const el = document.querySelector('[data-director-shot-option]');
+  if (!el) return null;
+  const r = el.getBoundingClientRect();
+  const h = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
+  return !!(h && (h === el || el.contains(h) || h.contains(el)));
+}"""
+
+CHIP_BOX_JS = """() => {
+  const el = document.querySelector('[data-director-shot-option]');
+  return el ? (() => { const r = el.getBoundingClientRect();
+    return [r.x, r.y, r.width, r.height]; })() : null;
+}"""
+
 READ = """() => {
   const at = (el) => { const r = el.getBoundingClientRect();
     return [Math.round(r.x*10)/10, Math.round(r.y*10)/10,
@@ -307,6 +329,18 @@ def run(page: Page) -> dict[str, Any]:
         v.check("shotbar:starts-right-of-the-rail",
                 sl["box"][0] >= SOURCE_RAIL[2], detail=sl["box"])
         v.check("shotbar:label-visible", sl["text"] == "镜头", detail=sl["text"])
+        # Batch 617 added these two.  The checks above only pinned the label's
+        # x, which is why batch 613 shipped a regression: the rail AND the
+        # scene tree now run 52 -> viewport bottom, the tree is z-30 and the
+        # shot bar is z-auto, so a bar inset by only the rail's 48px had its
+        # whole content sitting *under* the tree — drawn, sized correctly,
+        # and completely unclickable.  Position is not stacking: assert the
+        # hit test too.
+        v.check("shotbar:label-receives-its-own-click",
+                page.evaluate(LABEL_HIT_JS) is True, detail=sl["box"])
+        v.check("shotbar:first-shot-chip-receives-its-own-click",
+                page.evaluate(CHIP_HIT_JS) is True,
+                detail=page.evaluate(CHIP_BOX_JS))
 
     # --- 6) stacking: the timeline covers 帮助, as it does on the source -
     tl = r["timeline"]
