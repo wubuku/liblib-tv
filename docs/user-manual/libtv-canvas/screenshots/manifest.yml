@@ -466,28 +466,6 @@ screenshots:
     visible_text: 50 放大 缩小 适合屏幕 缩放至50% 缩放至100% 缩放至800%
     alt: 缩放到百分之五十后的连线全貌，左侧是缩放菜单中的百分比档位，图片节点与视频节点分列两侧且连线清晰可见
     sha256: 3c5b3ebeaf5eb6ca792d0eac34df973951242e06464da94dd8500fffddec15ef
-  - file: screenshots/p06-asset-library.png
-    task_id: asset-library
-    step: 4
-    route: /canvas?spaceId&projectId
-    viewport: 1440x810@2x
-    locale: zh-CN
-    captured_at: 2026-10-01T00:00:00+08:00
-    verified_locator: role=button name="素材库"
-    visible_text: 风格库 新增风格节点 NEW 特效库 新增特效节点 NEW 打开工具箱
-    alt: 底部工具条打开的素材库面板，包含风格库、特效库与打开工具箱
-    sha256: 2f0cc6ea56661b21e9f6be1e126b0597616051c45a9cae734b1726714ae2f99a
-  - file: screenshots/p06-character-studio.png
-    task_id: character-studio
-    step: 1
-    route: /canvas?spaceId&projectId
-    viewport: 1440x810@2x
-    locale: zh-CN
-    captured_at: 2026-10-01T00:00:00+08:00
-    verified_locator: role=button name="角色造型室"
-    visible_text: 我的角色库 官方角色库 性别 年龄段 文化区域 创建新角色
-    alt: 角色造型室面板：两个角色库切换、三组筛选条件与创建新角色入口
-    sha256: ad4e356161acea280ef571b273e33581411d11d44bc2c3d7ff837c3ed37b6b6b
   - file: screenshots/p07b-shortcuts-4col.png
     task_id: shortcuts
     step: 1
@@ -653,3 +631,37 @@ screenshots:
     visible_text: Group 1 整组执行 添加到工具箱 转分镜组 解组 文本节点 1 音频节点 2
     alt: 按住组标题栏拖动整组后，方框与框内的文本节点、音频节点三者同步位移
     sha256: ad266a98899a1873123920a8b2662a3de7ec6b7c13f377f0404069c97b733d2b
+
+  - file: screenshots/L-01-导演台三维工作区.png
+    task_id: create-nodes
+    step: 1
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T01:58:42+08:00
+    verified_locator: role=button name="打开导演台"（节点卡上的入口）
+    visible_text: 导演台 1 在3D空间中搭建场景并进行多视角截图 打开导演台 请开启浏览器硬件加速 当前浏览器无法使用硬件加速，导演台、全景预览、打光等 3D 功能暂不可用。 知道了 描述想要搭建的场景，支持通过参考图创建
+    alt: 点「打开导演台」后进入的全屏工作区：顶部「导演台 1」，中央是 3D 视窗占位，下方是场景描述输入框；画面中央弹出「请开启浏览器硬件加速」提示框和「知道了」按钮
+    sha256: ed8c7a29f8f0652a65cf266d4648d421b5ee218c8e74718efb2780e60f89b999
+  - file: screenshots/L-05-素材库面板.png
+    task_id: asset-library
+    step: 5
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T01:59:23+08:00
+    verified_locator: css=button[data-sidebar-btn="open-asset"] 弹出的面板
+    visible_text: 素材库 风格库 NEW 特效库 NEW 打开工具箱 Group 1 文本节点 1 音频节点 2 导演台 1 资产管理 99%
+    alt: 点底部工具条「素材库」弹出的面板，包含三行：风格库（NEW）、特效库（NEW）、打开工具箱
+    sha256: de4ce1cc054f2226b2ec04ce55b00b328c2efe9fadba688f56f8b1b4668e5277
+  - file: screenshots/L-06-角色造型室.png
+    task_id: character-studio
+    step: 6
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T01:59:28+08:00
+    verified_locator: css=button[data-sidebar-btn="character-library"] 打开的 h-screen w-screen 浮层
+    visible_text: 我的角色库 官方角色库 性别 年龄段 文化区域 创建新角色
+    alt: 角色造型室全屏面板：顶部「我的角色库 / 官方角色库」两个标签，左侧性别/年龄段/文化区域三个筛选下拉与搜索框，右侧列表/卡片/网格三种视图切换图标，中间横排展示角色形象并有右侧翻页箭头，空状态显示「创建新角色」，底部是「创建新角色」按钮
+    sha256: 0e199ddfa1acb085c7bec4ea33a337f0758e359cf05376590e7e55b800669990
