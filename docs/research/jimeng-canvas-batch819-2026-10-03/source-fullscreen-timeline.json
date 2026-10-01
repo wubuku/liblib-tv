@@ -1,0 +1,676 @@
+{
+ "inline": {
+  "root": [
+   0,
+   0,
+   1200,
+   207
+  ],
+  "ticks": [
+   {
+    "txt": "00:00",
+    "x": 75,
+    "w": 54,
+    "fs": 13.5
+   },
+   {
+    "txt": "00:05",
+    "x": 235,
+    "w": 53,
+    "fs": 13.5
+   },
+   {
+    "txt": "00:10",
+    "x": 396,
+    "w": 50,
+    "fs": 13.5
+   },
+   {
+    "txt": "00:15",
+    "x": 556,
+    "w": 49,
+    "fs": 13.5
+   },
+   {
+    "txt": "00:00",
+    "x": 566,
+    "w": 52,
+    "fs": 18
+   },
+   {
+    "txt": "00:00",
+    "x": 636,
+    "w": 52,
+    "fs": 18
+   },
+   {
+    "txt": "00:20",
+    "x": 717,
+    "w": 53,
+    "fs": 13.5
+   },
+   {
+    "txt": "00:25",
+    "x": 877,
+    "w": 52,
+    "fs": 13.5
+   },
+   {
+    "txt": "00:30",
+    "x": 1038,
+    "w": 53,
+    "fs": 13.5
+   }
+  ]
+ },
+ "containers": [
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-flow-node",
+   "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visi",
+   "box": [
+    156,
+    132,
+    1200,
+    207
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-flow-node-main-track",
+   "cls": "flex flex-col w-full min-h-0 h-full overflow-hidden bg-dream",
+   "box": [
+    156,
+    132,
+    1200,
+    207
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-toolbar",
+   "cls": "relative flex flex-none items-center justify-between h-canva",
+   "box": [
+    157,
+    133,
+    1198,
+    66
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-visual-track",
+   "cls": "relative flex items-end w-full h-full gap-0 overflow-visible",
+   "box": [
+    157,
+    199,
+    1198,
+    139
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-track-scroll",
+   "cls": "[&::-webkit-scrollbar]:hidden relative self-start [flex:1_1_",
+   "box": [
+    223,
+    187,
+    1132,
+    151
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-track-canvas",
+   "cls": "octo-timeline-track-canvas relative flex flex-col min-w-full",
+   "box": [
+    229,
+    199,
+    1126,
+    139
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-clip-track",
+   "cls": "relative flex items-start min-w-0 overflow-visible [touch-ac",
+   "box": [
+    229,
+    232,
+    1126,
+    84
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-source-picker-slot",
+   "cls": "sticky left-canvas-timeline-node-track-viewport-left w-canva",
+   "box": [
+    229,
+    232,
+    1114,
+    84
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-editor",
+   "cls": "fixed left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/",
+   "box": [
+    0,
+    0,
+    1512,
+    950
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-top-content",
+   "cls": "flex flex-1 min-h-canvas-timeline-zero gap-canvas-timeline-t",
+   "box": [
+    12,
+    60,
+    1488,
+    652
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-canvas-assets",
+   "cls": "group/canvas-timeline-assets-panel relative flex flex-none f",
+   "box": [
+    12,
+    60,
+    360,
+    652
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-canvas-assets-content",
+   "cls": "absolute inset-y-0 left-0 flex flex-col overflow-visible bg-",
+   "box": [
+    12,
+    60,
+    360,
+    652
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-asset-primary-tabs",
+   "cls": "flex flex-none items-center px-canvas-timeline-panel-inline ",
+   "box": [
+    12,
+    60,
+    360,
+    56
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-imported-assets-file-drop",
+   "cls": "group/canvas-panel-scrollbar relative min-h-canvas-timeline-",
+   "box": [
+    12,
+    152,
+    360,
+    560
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-asset-scroll-frame",
+   "cls": "h-full pt-canvas-timeline-workspace-inset px-canvas-timeline",
+   "box": [
+    12,
+    152,
+    360,
+    560
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-asset-scroll",
+   "cls": "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden h-full ",
+   "box": [
+    28,
+    164,
+    328,
+    532
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-asset-empty",
+   "cls": "-translate-y-[calc((theme(spacing.canvas-timeline-panel-filt",
+   "box": [
+    28,
+    100,
+    328,
+    532
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-asset-overlay-host",
+   "cls": "pointer-events-none absolute inset-0",
+   "box": [
+    12,
+    60,
+    360,
+    652
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-preview-shell",
+   "cls": "relative flex flex-1 min-w-canvas-timeline-zero flex-col ove",
+   "box": [
+    380,
+    60,
+    1120,
+    652
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-preview",
+   "cls": "relative [flex:1_1_0] min-h-canvas-timeline-zero m-canvas-ti",
+   "box": [
+    384,
+    64,
+    1112,
+    604
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-preview-composition-frame",
+   "cls": "relative flex-none w-full h-full overflow-hidden rounded-can",
+   "box": [
+    403,
+    64,
+    1074,
+    604
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-preview-runtime-host",
+   "cls": "relative flex flex-none w-full h-full items-center justify-c",
+   "box": [
+    403,
+    64,
+    1074,
+    604
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-preview-status",
+   "cls": "absolute inset-0 flex items-center justify-center pointer-ev",
+   "box": [
+    403,
+    64,
+    1074,
+    604
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-preview-controls",
+   "cls": "relative flex flex-none items-center justify-center h-canvas",
+   "box": [
+    380,
+    668,
+    1120,
+    44
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-workspace",
+   "cls": "relative isolate flex flex-none flex-col min-h-canvas-timeli",
+   "box": [
+    12,
+    720,
+    1488,
+    218
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-toolbar",
+   "cls": "flex flex-none items-center justify-between h-canvas-timelin",
+   "box": [
+    12,
+    720,
+    1488,
+    44
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-track-scroll",
+   "cls": "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden absolut",
+   "box": [
+    12,
+    756,
+    1488,
+    182
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-track-canvas",
+   "cls": "relative box-border flex flex-col min-w-full min-h-full",
+   "box": [
+    12,
+    764,
+    1488,
+    174
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-visual-track",
+   "cls": "flex h-canvas-timeline-visual-track mt-canvas-timeline-track",
+   "box": [
+    12,
+    786,
+    1488,
+    56
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-visual-track-content",
+   "cls": "relative flex-none h-full min-w-canvas-timeline-track mx-can",
+   "box": [
+    64,
+    786,
+    1428,
+    56
+   ]
+  },
+  {
+   "sel": "[data-testid^=\"timeline\"]",
+   "tid": "timeline-fullscreen-track-blank-interaction-zone",
+   "cls": "relative flex-1 min-h-canvas-timeline-canvas-bottom",
+   "box": [
+    64,
+    842,
+    1436,
+    96
+   ]
+  },
+  {
+   "sel": "[class*=\"timeline\"]",
+   "tid": "rf__node-node_cdwf8x6fbj",
+   "cls": "react-flow__node react-flow__node-timeline nopan selected se",
+   "box": [
+    156,
+    132,
+    1200,
+    207
+   ]
+  },
+  {
+   "sel": "[class*=\"timeline\"]",
+   "tid": "",
+   "cls": "min-h-canvas-timeline-zero flex-1",
+   "box": [
+    157,
+    199,
+    1198,
+    139
+   ]
+  },
+  {
+   "sel": "[class*=\"timeline\"]",
+   "tid": "",
+   "cls": "relative z-canvas-timeline-source-picker-content flex h-canv",
+   "box": [
+    229,
+    232,
+    1114,
+    84
+   ]
+  },
+  {
+   "sel": "[class*=\"timeline\"]",
+   "tid": "",
+   "cls": "relative flex w-full min-w-canvas-timeline-zero",
+   "box": [
+    229,
+    232,
+    1114,
+    84
+   ]
+  },
+  {
+   "sel": "[class*=\"timeline\"]",
+   "tid": "",
+   "cls": "whitespace-nowrap border-solid font-dreamina-cn font-dreamin",
+   "box": [
+    229,
+    232,
+    1114,
+    84
+   ]
+  },
+  {
+   "sel": "[class*=\"timeline\"]",
+   "tid": "",
+   "cls": "flex items-center justify-between border-octo-ui-divider px-",
+   "box": [
+    0,
+    0,
+    1512,
+    60
+   ]
+  },
+  {
+   "sel": "[class*=\"timeline\"]",
+   "tid": "",
+   "cls": "flex flex-1 min-h-canvas-timeline-zero flex-col px-canvas-ti",
+   "box": [
+    0,
+    60,
+    1512,
+    890
+   ]
+  },
+  {
+   "sel": "[class*=\"timeline\"]",
+   "tid": "",
+   "cls": "flex min-h-canvas-timeline-zero flex-1 flex-col overflow-hid",
+   "box": [
+    12,
+    720,
+    1488,
+    218
+   ]
+  },
+  {
+   "sel": "[class*=\"timeline\"]",
+   "tid": "",
+   "cls": "group/canvas-panel-scrollbar relative [flex:1_1_0] min-h-can",
+   "box": [
+    12,
+    764,
+    1488,
+    174
+   ]
+  }
+ ],
+ "tickRows": [
+  {
+   "y": 766,
+   "n": 15,
+   "ticks": [
+    {
+     "txt": "00:00",
+     "x": 67,
+     "w": 30,
+     "y": 766,
+     "fs": 9
+    },
+    {
+     "txt": "00:05",
+     "x": 174,
+     "w": 29,
+     "y": 766,
+     "fs": 9
+    },
+    {
+     "txt": "00:10",
+     "x": 281,
+     "w": 27,
+     "y": 766,
+     "fs": 9
+    },
+    {
+     "txt": "00:15",
+     "x": 388,
+     "w": 27,
+     "y": 766,
+     "fs": 9
+    },
+    {
+     "txt": "00:20",
+     "x": 495,
+     "w": 29,
+     "y": 766,
+     "fs": 9
+    },
+    {
+     "txt": "00:25",
+     "x": 602,
+     "w": 28,
+     "y": 766,
+     "fs": 9
+    },
+    {
+     "txt": "00:30",
+     "x": 709,
+     "w": 29,
+     "y": 766,
+     "fs": 9
+    },
+    {
+     "txt": "00:35",
+     "x": 816,
+     "w": 28,
+     "y": 766,
+     "fs": 9
+    },
+    {
+     "txt": "00:40",
+     "x": 923,
+     "w": 30,
+     "y": 766,
+     "fs": 9
+    },
+    {
+     "txt": "00:45",
+     "x": 1030,
+     "w": 29,
+     "y": 766,
+     "fs": 9
+    },
+    {
+     "txt": "00:50",
+     "x": 1137,
+     "w": 29,
+     "y": 766,
+     "fs": 9
+    },
+    {
+     "txt": "00:55",
+     "x": 1244,
+     "w": 28,
+     "y": 766,
+     "fs": 9
+    },
+    {
+     "txt": "01:00",
+     "x": 1351,
+     "w": 27,
+     "y": 766,
+     "fs": 9
+    },
+    {
+     "txt": "01:05",
+     "x": 1458,
+     "w": 27,
+     "y": 766,
+     "fs": 9
+    },
+    {
+     "txt": "01:10",
+     "x": 1565,
+     "w": 25,
+     "y": 766,
+     "fs": 9
+    }
+   ]
+  },
+  {
+   "y": 202,
+   "n": 7,
+   "ticks": [
+    {
+     "txt": "00:00",
+     "x": 231,
+     "w": 54,
+     "y": 202,
+     "fs": 13.5
+    },
+    {
+     "txt": "00:05",
+     "x": 391,
+     "w": 53,
+     "y": 202,
+     "fs": 13.5
+    },
+    {
+     "txt": "00:10",
+     "x": 552,
+     "w": 50,
+     "y": 202,
+     "fs": 13.5
+    },
+    {
+     "txt": "00:15",
+     "x": 712,
+     "w": 49,
+     "y": 202,
+     "fs": 13.5
+    },
+    {
+     "txt": "00:20",
+     "x": 873,
+     "w": 53,
+     "y": 202,
+     "fs": 13.5
+    },
+    {
+     "txt": "00:25",
+     "x": 1033,
+     "w": 52,
+     "y": 202,
+     "fs": 13.5
+    },
+    {
+     "txt": "00:30",
+     "x": 1194,
+     "w": 53,
+     "y": 202,
+     "fs": 13.5
+    }
+   ]
+  }
+ ]
+}

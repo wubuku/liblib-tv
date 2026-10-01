@@ -102,6 +102,8 @@ PROBE = r"""() => {
 }"""
 
 # 源站（rel 壳左上角, 100% 缩放）
+TICK_STEP = 5
+
 WANT = {
     "exportBtn":   (42, 42, 8),
     "fullscreen":  (42, 126, 8),     # (高, 宽, 圆角) —— 别把宽高写反
@@ -218,6 +220,19 @@ def main() -> int:
                   str(labels))
             check("刻度字号 13.5px", all(t["fs"] == 13.5 for t in ticks),
                   str(sorted({t["fs"] for t in ticks})))
+            # 判据落在「相邻刻度的像素间距」上 —— 那是契约；不要断言绝对 x，
+            # 它随左侧槽宽浮动（复刻槽 128 vs 源站 66，§28.4 有意偏离）。
+            # 同理"右侧留白"必须用**同坐标系**：ticks 的 x 是屏幕绝对坐标，
+            # ruler_rel[2] 是相对壳的宽度，直接相减是拿苹果减橘子（我犯过）。
+            ruler_rel = d["ruler"]["rel"]
+            gaps = [round(ticks[i + 1]["x"] - ticks[i]["x"]) for i in range(len(ticks) - 1)]
+            pps = [g / TICK_STEP for g in gaps]
+            check("刻度步长 ≈32.1px/s（5s 间隔约 160px）",
+                  all(abs(p - 32.1) <= 1.2 for p in pps), f"每档 {pps}")
+            span = ticks[-1]["x"] - ticks[0]["x"]          # 00:00 → 00:30 的跨度
+            check("刻度不铺满轨道（右侧留白 ≈ 窗口 - 30s）",
+                  ruler_rel[2] - span > 20,
+                  f"轨道宽 {ruler_rel[2]} − 跨度 {span} = 留白 {ruler_rel[2] - span}px")
 
             print("\n— 空态投放区 —")
             check("投放区文案", d["addClipText"] == "添加素材到时间线", repr(d["addClipText"]))

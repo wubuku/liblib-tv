@@ -49,6 +49,19 @@ const FS_SUBTITLE = "Edit the main visual track and multiple audio tracks";
 
 const TOTAL_SECONDS = 30;
 const TICK_STEP = 5;
+/**
+ * Batch 819 SOURCE_FACT：刻度尺的**世界坐标步长** = 32.1 px/s
+ * （源站实测 00:00→00:30 跨 963px，100% 缩放，三次加载一致）。
+ *
+ * 它是**本表面专属**的常量，不是全局值：源站全屏编辑器的同一套刻度是
+ * 9px 字号 / 21.4px·s⁻¹，比值 1.5 恰为字号比 13.5/9 —— 源站按刻度标签
+ * 字号定间距。改字号时这个数也要跟着走，别当成绝对物理量。
+ *
+ * 轨道宽 1126px ÷ 32.1 = **35.1s 可见窗口**，而标签只画到 30s，
+ * 右侧留白约 163px。复刻此前用百分比把 30s 拉满全宽，窗口会随
+ * 面板宽度浮动 —— 与源站模型相反。
+ */
+const RULER_PX_PER_SEC = 32.1;
 
 function fmt(sec: number): string {
   const s = Math.max(0, Math.floor(sec));
@@ -286,16 +299,29 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
           </div>
 
           <div className="min-w-0 flex-1">
-            {/* 刻度尺：SOURCE_FACT 00:00→00:30，每 5s 一格 */}
+            {/* 刻度尺：SOURCE_FACT 00:00→00:30，每 5s 一格
+                Batch 819 SOURCE_FACT（解 818-a）：刻度位置是**世界坐标定值**，
+                不是百分比。实测内嵌时间线节点 00:00→00:30 跨 963px
+                ⇒ **32.1 px/s**，而轨道宽 1126px ⇒ 可见窗口 **≈35.1s**，
+                30s 的标签只占 85.5%，右侧留白 ~163px。
+                复刻此前用 `left: (t/30)*100%` 把 30s 拉满全宽（35.7px/s），
+                刻度随轨道宽浮动 —— 与源站模型相反。
+
+                附一条关键实测：**px/s 不是全局常量**。源站有两个时间线表面，
+                全屏编辑器的刻度是 9px 字号 / 21.4px·s⁻¹，内嵌节点是 13.5px /
+                32.1px·s⁻¹，两者比值 1.5 恰好等于字号比 13.5/9 ⇒ 源站按刻度
+                标签的字号定间距。**所以不能找一个"全局 px/s"照搬**，
+                只能按本表面的字号定 —— 这里的 32.1 就是 13.5px 字号对应值。*/}
             <div
               className="relative h-[27px] border-b border-white/[0.06]"
               data-testid="timeline-ruler"
               aria-label="时间线刻度"
-            >              {Array.from({ length: TOTAL_SECONDS / TICK_STEP + 1 }, (_, i) => i * TICK_STEP).map((t) => (
+            >
+              {Array.from({ length: TOTAL_SECONDS / TICK_STEP + 1 }, (_, i) => i * TICK_STEP).map((t) => (
                 <span
                   key={t}
                   className="absolute top-0 flex h-full -translate-x-px flex-col items-start"
-                  style={{ left: `${(t / TOTAL_SECONDS) * 100}%` }}
+                  style={{ left: `${t * RULER_PX_PER_SEC}px` }}
                 >
                   <span className="h-2 w-px bg-white/20" />
                   {/* Batch 818 SOURCE_FACT：源站刻度标签 **13.5px**（实测
@@ -320,8 +346,10 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                   key={c.id}
                   className="absolute top-2 flex h-[60px] items-center justify-between gap-2 rounded-md px-2 text-[12px] text-white/85"
                   style={{
-                    left: `calc(12px + ${(c.start / TOTAL_SECONDS) * 100}% * (100% - 24px) / 100%)`,
-                    width: `${(c.length / TOTAL_SECONDS) * 100}%`,
+                    /* Batch 819：与刻度同一套世界坐标映射（32.1px/s），
+                       否则刻度走定值、片段走百分比，两者会脱节。 */
+                    left: `${12 + c.start * RULER_PX_PER_SEC}px`,
+                    width: `${Math.max(1, c.length * RULER_PX_PER_SEC)}px`,
                     background: "rgba(255,255,255,0.10)",
                     border: "1px solid rgba(255,255,255,0.14)",
                   }}
