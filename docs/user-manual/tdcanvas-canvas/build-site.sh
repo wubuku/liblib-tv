@@ -73,6 +73,16 @@ STRUCT_OUT="$(python3 scripts/check-structure.py . 2>&1)" || fail "结构闭环�
 $STRUCT_OUT"
 echo "$STRUCT_OUT" | sed 's/^/  /'
 
+# 门禁自检：注入 13 类故障，断言每道门禁**以正确的理由**失败。
+# 2026-10-01 M41/M42 实测：锚点门禁在 236 个标题里错判 29 个却一直报「全部有效」，
+# 孤儿页与索引漏条两类问题两道门禁全都放行——门禁自己坏了不会喊疼。
+# 这里断言的是**错误内容**而不只是退出码：只看退出码会被「变异脚本写歪了」
+# 和「以错误理由失败」两种假阳性骗过去（探针误删 .vitepress 那次就差点中招）。
+# 全量约 1.4 秒，成本可忽略，故每次构建都跑。
+SELFTEST_OUT="$(python3 scripts/selftest-gates.py . 2>&1)" || fail "门禁自检未通过（存在形同虚设的门禁）：
+$SELFTEST_OUT"
+echo "$SELFTEST_OUT" | grep -E '^\s*\[ ok \]|^---' | sed 's/^/  /'
+
 # ---------- 步骤 4/6 清理旧产物 ----------
 log "步骤 4/6 清理旧构建产物"
 rm -rf .vitepress/dist .vitepress/cache

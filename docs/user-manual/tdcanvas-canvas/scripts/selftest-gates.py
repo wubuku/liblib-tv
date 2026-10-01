@@ -1,0 +1,215 @@
+#!/usr/bin/env python3
+"""门禁自检：故意注入故障，断言每道门禁**以正确的理由**失败。
+
+**为什么需要这道自检（M42 起因）**：M41 发现锚点门禁的 slugify 复刻漏了
+NFKD，在 236 个标题里错判 29 个，却一直报「全部有效」。M42 又发现孤儿任务页
+和索引漏条两类问题两道门禁全都放行。**门禁本身也是有 bug 的，而且它坏了不会
+自己喊疼**——所以必须有一道检查去检查「检查」。
+
+**核心设计：断言错误内容，而不只是退出码。** 只看退出码会被两种情况骗：
+① 变异脚本自己写歪了，被测对象其实没被改动（BSD sed 不支持 `0,/re/` 那次）；
+② 被测对象以**错误的理由**失败（探针误删 `.vitepress` 导致构建报「缺少
+config.mjs」，差点被记成「构建抓到了孤儿页」）。两种都是假阳性——而假阳性
+比假阴性更危险，因为它会让你以为门禁是好的。
+
+所以每个用例都声明「必须由哪道门禁、报出哪段文字」来拦，拦不到或报错理由
+不对都算失败。
+
+用法：
+    python3 scripts/selftest-gates.py            # 在本手册目录下跑
+    python3 scripts/selftest-gates.py <手册目录>
+
+退出码 0 表示全部用例按预期被拦下，1 表示有门禁形同虚设。
+"""
+
+from __future__ import annotations
+
+import shutil
+import subprocess
+import sys
+import tempfile
+import time
+from pathlib import Path
+
+REPO_SCRIPTS = Path(__file__).resolve().parents[4] / ".agents/skills/web-studio-user-manual/scripts"
+GATE = REPO_SCRIPTS / "audit_manual.py"
+
+
+# ---------- 变异函数：每个只改一处，改完必须能被预期门禁抓到 ----------
+
+
+def mutate_image_bytes(root: Path) -> None:
+    (root / "screenshots/30-concepts-two-text-nodes.png").open("ab").write(b"x")
+
+
+def mutate_manifest_drop_record(root: Path) -> None:
+    path = root / "screenshots/manifest.yml"
+    text = path.read_text(encoding="utf-8")
+    start = text.index("  - file: screenshots/30-concepts-two-text-nodes.png")
+    end = text.index("  - file:", start + 10)
+    path.write_text(text[:start] + text[end:], encoding="utf-8")
+
+
+def mutate_manifest_bad_sha(root: Path) -> None:
+    path = root / "screenshots/manifest.yml"
+    text = path.read_text(encoding="utf-8")
+    i = text.index("  - file: screenshots/30-concepts-two-text-nodes.png")
+    j = text.index("    sha256: ", i)
+    k = text.index("\n", j)
+    path.write_text(text[:j] + "    sha256: " + "0" * 64 + text[k:], encoding="utf-8")
+
+
+def mutate_manifest_bad_task_id(root: Path) -> None:
+    path = root / "screenshots/manifest.yml"
+    text = path.read_text(encoding="utf-8")
+    i = text.index("  - file: screenshots/30-concepts-legacy-config-migrated.png")
+    j = text.index("    task_id: organize-canvas", i)
+    path.write_text(
+        text[:j] + "    task_id: no-such-task" + text[j + len("    task_id: organize-canvas") :],
+        encoding="utf-8",
+    )
+
+
+def mutate_manifest_missing_field(root: Path) -> None:
+    path = root / "screenshots/manifest.yml"
+    text = path.read_text(encoding="utf-8")
+    i = text.index("  - file: screenshots/30-concepts-legacy-config-migrated.png")
+    j = text.index("    verified_locator:", i)
+    k = text.index("\n", j)
+    path.write_text(text[:j] + text[k + 1 :], encoding="utf-8")
+
+
+def mutate_delete_referenced_image(root: Path) -> None:
+    (root / "screenshots/30-concepts-two-text-nodes.png").unlink()
+
+
+def mutate_empty_alt(root: Path) -> None:
+    path = root / "30-concepts.md"
+    text = path.read_text(encoding="utf-8")
+    text = text.replace(
+        "![画布上两个文本节点：左侧是角色描述，右侧是风格提示词](screenshots/30-concepts-two-text-nodes.png)",
+        "![](screenshots/30-concepts-two-text-nodes.png)",
+    )
+    path.write_text(text, encoding="utf-8")
+
+
+def mutate_broken_md_link(root: Path) -> None:
+    path = root / "README.md"
+    path.write_text(
+        path.read_text(encoding="utf-8").replace("30-concepts.md", "30-concepts-nope.md"),
+        encoding="utf-8",
+    )
+
+
+def mutate_heading_jump(root: Path) -> None:
+    path = root / "30-concepts.md"
+    path.write_text(
+        path.read_text(encoding="utf-8").replace(
+            "## 连线不等于自动生效", "#### 连线不等于自动生效"
+        ),
+        encoding="utf-8",
+    )
+
+
+def mutate_broken_anchor(root: Path) -> None:
+    path = root / "10-tasks/create-nodes.md"
+    path.write_text(
+        path.read_text(encoding="utf-8").replace(
+            "../30-concepts.md#两种打不开的节点类型", "../30-concepts.md#根本没有这个标题"
+        ),
+        encoding="utf-8",
+    )
+
+
+def mutate_orphan_page(root: Path) -> None:
+    (root / "10-tasks/orphan-page.md").write_text(
+        "# 孤儿页\n\n没登记到 task-inventory.yml 的一页。\n", encoding="utf-8"
+    )
+
+
+def mutate_index_drop_entry(root: Path) -> None:
+    path = root / "10-tasks/README.md"
+    text = path.read_text(encoding="utf-8")
+    i = text.index("use-agent.md")
+    a, b = text.rindex("[", 0, i), text.index("]", i)
+    path.write_text(text[:a] + text[b + 1 :], encoding="utf-8")
+
+
+def mutate_sidebar_rename(root: Path) -> None:
+    path = root / ".vitepress/config.mjs"
+    path.write_text(
+        path.read_text(encoding="utf-8").replace(
+            "link: '/10-tasks/use-agent'", "link: '/10-tasks/renamed-agent'"
+        ),
+        encoding="utf-8",
+    )
+
+
+# ---------- 用例表：(名称, 变异, 期望由谁拦下, 期望出现的错误文字) ----------
+
+CASES: list[tuple[str, object, str, str]] = [
+    ("图片字节被改动", mutate_image_bytes, "gate", "sha256 mismatch"),
+    ("manifest 删掉一条记录", mutate_manifest_drop_record, "gate", "image missing from manifest"),
+    ("manifest 写错 sha256", mutate_manifest_bad_sha, "gate", "sha256 mismatch"),
+    ("manifest 用不存在的 task_id", mutate_manifest_bad_task_id, "gate", "unknown task_id"),
+    ("manifest 缺必填字段", mutate_manifest_missing_field, "gate", "missing verified_locator"),
+    ("正文引用的图片被删", mutate_delete_referenced_image, "gate", "missing image"),
+    ("正文图片空 alt", mutate_empty_alt, "gate", "empty alt text"),
+    ("md 链接指向不存在的文件", mutate_broken_md_link, "gate", "broken local link"),
+    ("标题层级跳跃 H2→H4", mutate_heading_jump, "gate", "heading jumps"),
+    ("锚点指向不存在的标题", mutate_broken_anchor, "anchor", "锚点不存在"),
+    ("孤儿任务页（未登记账本）", mutate_orphan_page, "structure", "孤儿页"),
+    ("任务索引漏一条", mutate_index_drop_entry, "structure", "索引缺少"),
+    ("侧边栏条目被改名", mutate_sidebar_rename, "structure", "侧边栏缺少"),
+]
+
+
+def run_gate(root: Path, which: str) -> tuple[int, str]:
+    if which == "gate":
+        cmd = [sys.executable, str(GATE), str(root), "--phase", "final"]
+    elif which == "anchor":
+        cmd = [sys.executable, str(root / "scripts/check-anchors.py"), str(root)]
+    else:
+        cmd = [sys.executable, str(root / "scripts/check-structure.py"), str(root)]
+    done = subprocess.run(cmd, capture_output=True, text=True)
+    return done.returncode, done.stdout + done.stderr
+
+
+def main() -> int:
+    source = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
+    if not GATE.is_file():
+        print(f"  [自检] 找不到共享门禁脚本：{GATE}")
+        return 1
+
+    print("=== 门禁自检：注入故障 → 断言被正确拦下 ===")
+    started = time.time()
+    passed, failed = 0, 0
+
+    for name, mutate, which, expected in CASES:
+        with tempfile.TemporaryDirectory(prefix="m42gate-") as tmp:
+            work = Path(tmp) / "manual"
+            shutil.copytree(source, work, ignore=shutil.ignore_patterns("dist", "cache", "node_modules"))
+            mutate(work)
+            code, output = run_gate(work, which)
+
+        if code != 0 and expected in output:
+            print(f"  [ ok ] {name:<26} 由 {which:<8} 以「{expected}」拦下")
+            passed += 1
+        elif code == 0:
+            print(f"  [漏网] {name:<26} {which} 竟然通过了")
+            failed += 1
+        else:
+            print(f"  [错因] {name:<26} {which} 失败了，但报的是「{expected}」以外的内容")
+            print(f"         {output.strip().splitlines()[-1][:150] if output.strip() else '(无输出)'}")
+            failed += 1
+
+    print(f"--- {passed}/{len(CASES)} 用例按预期被拦下，用时 {time.time() - started:.1f}s ---")
+    if failed:
+        print(f"门禁自检失败：{failed} 个用例没有以正确理由被拦下")
+        return 1
+    print("门禁自检通过：所有注入的故障都被对应门禁以正确理由拦下")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
