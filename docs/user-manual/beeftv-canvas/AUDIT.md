@@ -1252,3 +1252,36 @@
 - **为什么这条索引值得单列**：这 16 条里有 **3 条直接关系扣费**（可信素材默认开、已停用不重新扣费、许可快照不拦截）。把它们集中在一处，用户在犹豫要不要点「生成」之前能一次看完。
 - **证据形态**：全部为本轮已核实的源码结论汇总，无新增源码取证。
 - **账本口径**：27 任务 / 22 verified / 5 excluded / 33 md / 49 截图；适用 v1.6.16。
+
+## 环境记录八十六（Batch 130，2026-10-11，多标签同时编辑 / 并发编辑的零覆盖区）
+
+- **选题入口（§4.1 先查手册再下源码）**：手册里「多标签」「并发编辑」「storageRevision」「rebase」**全库零命中**。唯一一条形似的命中是 `30-concepts.md:51`「与你本地编辑冲突时宁可中断、保留你的编辑」——查证那是 **Agent 操作集**的冲突（`canvas-agent` 封闭指令集那套），与**存储层并发**是**两套完全不同的机制**。手册在一处提到、正文零覆盖 → 判定正路，下源码。
+- **查实的源码事实**（`web/src/lib/canvas/canvas-storage-revision.ts` 等）：
+  - `CanvasStorageDocument` = `{ state.projects, version, storageRevision, tombstones }`，墓碑分 **5 类**：projects / nodes / connections / sessions / messages（messages 再按 projectId→sessionId 两层嵌套）。
+  - `CanvasStorageConflict` 的 `kind` 也是这 5 类，`reason` 只有 `"concurrent-update"` 一种取值。
+  - 合并是**三方**的：base（上次读到的）/ local（我要写的）/ durable（盘上的）。`mergeValue` 逐字段决策：没改→durable；只有我改→local；两边相同→local；**两边不同→durable 且不提示**。两个特例：`key === "updatedAt"` 恒取 durable；`key === "generationEffectKeys"` 且都是数组时取**并集**。
+  - 删除不抹数据，写墓碑记 revision；`mergeEntities` 里若 durable 缺失而 base 存在、或墓碑 revision > baseRevision → 判冲突，**不会静默复活**。
+  - `mergeProject` 顶部还有一道 revision 闸：`local.revision !== durable.revision` 时**整条本地分支原样保留**（注释明说「绝不把另一个标签更新的服务端 revision 贴到这个标签的过期改动上」）；唯一例外是本地内容与 base 完全相同时，退回 durable 但**保留本地 viewport**。
+- **本批最有价值的一条发现——两种保存的冲突待遇完全不对称**：
+  - **普通编辑**：`use-canvas-store.ts:198` 调 `rebaseCanvasProjects({...}).document`，**`.conflicts` 被整个丢弃**。用户视角：改到同一字段时先落盘者赢，后改者**静默丢失、零提示**。去抖 **400ms**。
+  - **生成结果写回**：`canvas-generation-consumer.ts:486,490` **逐条检查** `rebased.conflicts`——有 `concurrent-update` → 抛「画布生成副作用与并发修改冲突」；有其他冲突 → 抛「画布生成副作用与已删除内容冲突」。两者都置 `reconcileLiveOnFailure = true`，catch 分支先 `reconcileCanvasGenerationFailure` + `reconcileCanvasGenerationLiveProject` 把画布拨回盘上真实样子，再 rethrow，**不留下半截结果**。
+  - 佐证：`CanvasStorageConflict` 这个**类型在自身模块外零引用**——冲突信息从不以结构化形式出栈，只能退化成两句文案。
+- **这两句报错在错误分类表里查无此条**（`generation-error.ts` 的 `PROVIDER_CODE_CATEGORIES` 全文无「并发」「冲突」字样），因此落进 `unknown` 兜底：`reason: "生成失败"` / `action: "请查看详情后再决定是否重试"`。而 `errorDetails` 存的是**原始报文**（`generation-error.ts:239,269`），所以节点错误详情里能看到「与并发修改冲突」原句——手册据此写成「看到『生成失败』要展开详情」。
+- **第三条文案此前被漏掉，本批补上**：`use-canvas-store.ts:141-148` `runWithBrowserCanvasStorageLock` 用 `navigator.locks`（Web Locks，**跨标签**）串行化；`requireCrossRealmLock` 时若浏览器没有该 API，则抛「当前浏览器不支持跨标签存储锁，已停止画布生成持久化」。**注意这个标志只加在生成落盘上**（`requireCrossRealmLock: true` 只出现在 `canvas-generation-consumer` 与 `use-asset-store`），**普通保存不带**，所以症状是「能编辑、生成结果存不进去」而非整个画布不可用。
+- **服务端还有一道独立的关卡**（此前的两轮并发/撤销审计都没覆盖到）：
+  - `backend/internal/repository/repository.go:37` `ErrCanvasRevisionConflict`；`UpsertCanvasProject` 用 `WHERE revision = expected` 做乐观锁，行数不为 1 即冲突（注释明说「缺行是冲突，绝不是邀请系统重建一张被删的画布」）。
+  - 文案一：`canvas_history.go:47`「云端画布已有更新，已停止覆盖；请保留本地草稿并加载最新版本」。
+  - 文案二：`user_data.go:479`「画布引用的素材已变化，当前内容未被覆盖，请保留草稿并重新加载」（`ErrCanvasHistoryResourceMissing`）。
+  - 两者都是 **409**，与本地那两条是**不同层**：本地合并能过，后端仍可能拒。
+- **「完全不会报」的两条路径**（写进手册，因为用户最容易在这里丢东西）：普通编辑撞车（静默让位）；本地/后端持久化失败（`console.error("画布本地持久化失败，已保留待写队列")` / `console.error("画布后端持久化失败，等待下次编辑重试")`，**只进控制台**）。
+- **跨标签同步：确认不存在，且证据是双向的**：`BroadcastChannel` 全库零命中；全库唯一的 `storage` 事件监听在 `components/layout/workspace-sidebar-state.ts:43`，**只服务侧栏折叠状态**（按 `WORKSPACE_SIDEBAR_STORAGE_KEY` 过滤）。**这条双向证据很有说服力**——平台**有能力**做跨标签同步，只是画布没接。所以手册写的是「两个标签是两个各自独立的编辑器，共享一块存储，中间没有同步」，而不是含糊地说「可能有同步问题」。
+- **本批最重要的收获在环境层，不在内容层**：核验版本时发现 **BeefTV 工作区当前处于 detached HEAD `@852961a`（v1.6.14）**，而手册声明适用版本是 **v1.6.16（`3a74793`）**——**取证对象与声明版本对不上**。
+  - 按既有做法（闸门读 `git show` 的**对象**而不是工作树），用 `git show <rev>:<path>` 逐文件比对：
+    - `canvas-storage-revision.ts` / `canvas-generation-consumer.ts` / `use-canvas-store.ts`：**v1.6.14 与 v1.6.16 逐字节相同**；
+    - 5 条用户可见文案在两个版本下**逐字相同**；`unknown` 兜底文案（reason/action）也逐字相同；
+    - 唯一有差异的是 `generation-error.ts`（v1.6.16 多 77 行，即 v1.6.15/16 的排查信息升级），**差异行不在本批依赖面上**。
+  - 结论：本批全部结论**对 v1.6.16 成立**。已在 PROGRESS 记录该环境风险，后续批次若依赖工作树内容，应先确认 HEAD 指向。
+- **落点**：`30-concepts.md` 新增「多标签同时编辑：谁赢、什么时候会失败」六小节（三方合并四行情形表 / 无跨标签同步 / 普通编辑 vs 生成写回对照 / 服务端关卡 / 什么时候完全不会报 / 指向排障页）；`90-troubleshooting.md` 新增「多标签同时编辑：5 条并发相关文案」层级对照表 + 统一处理顺序 + 「两种情况不会有任何提示」警告框，并在首节「不是 bug」索引**新增 1 条**（开着两个标签我改的东西不见了）。
+- **证据形态**：全部源码锚定，**未运行时取证**——多标签并发需要真的开两个标签页并同时改同一字段才能造出冲突，且生成路径触达付费边界；纯编辑路径虽可复现但只能验证「静默让位」这一半，收益低于代价。
+- **方法论复盘**：本批印证了 §4.1 的**判据是可复用的**——「手册零命中」与「手册只在一处提一句」都能作为入口，二者都指向正路；而 Batch 128/129 连续两批的**扫描类**选题主要产出假警报，本批改选**具体功能面**（多标签并发），一次命中，**这个转向是对的**。
+- **账本口径**：27 任务 / 22 verified / 5 excluded / 33 md / 49 截图；适用 v1.6.16。
