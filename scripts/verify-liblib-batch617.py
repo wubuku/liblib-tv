@@ -95,7 +95,36 @@ IGNORE_CONSOLE = (
 # name rather than by loosening the audit.
 KNOWN_BLOCKED = ("帮助",)
 
-AUDIT_JS = """() => {
+# Batch 619: transient overlays that are *open* legitimately cover what is
+# behind them.  Before this list existed, censusing the scene tree's context
+# menu reported all twelve of its 隐藏/锁定/删除 row buttons as defects, and
+# censusing the AI-import modal reported thirty-six — a menu covering the rows
+# it was opened on is the menu working, not a z-order bug.
+#
+# The list is by name, not by area, on purpose.  An area threshold was tried
+# first and is wrong in both directions: a full-screen modal needs no excuse
+# while a 200x300 flyout does, and the persistent chrome (the 281px inspector
+# column, the timeline strip) is big enough to be mistaken for a panel.  What
+# separates them is intent, and in this codebase intent is recorded — every
+# transient surface already carries a data attribute for exactly this purpose.
+# Each entry is an overlay root that is only mounted while it is open, so
+# matching one proves it is open rather than assuming it.
+# The attribution is reported per control in the audit, never swallowed.
+TRANSIENT_OVERLAYS = (
+    "[data-director-character-flyout]",
+    "[data-director-panorama-flyout]",
+    "[data-director-aspect-flyout]",
+    "[data-director-geometry-submenu]",
+    "[data-director-tree-context-menu]",
+    "[data-director-motion-path-menu]",
+    "[data-director-camera-preset-panel]",
+    "[data-director-export-panel]",
+    "[data-director-ai-import-backdrop]",
+    "[data-director-ai-import-modal]",
+    '[data-director-mobile-panel-state="open"]',
+)
+
+AUDIT_JS = """(overlays) => {
   const at = (el) => { const r = el.getBoundingClientRect();
     return [Math.round(r.x*10)/10, Math.round(r.y*10)/10,
             Math.round(r.width*10)/10, Math.round(r.height*10)/10]; };
@@ -107,6 +136,50 @@ AUDIT_JS = """() => {
     if (t) return t.length > 28 ? t.slice(0, 28) : t;
     return el.getAttribute('title') || el.getAttribute('placeholder')
         || '<' + el.tagName.toLowerCase() + '>';
+  };
+  const pkey = (el) => el ? el.tagName.toLowerCase() + '|'
+      + Array.from(el.attributes).map((a) => a.name + '=' + a.value).join(' ')
+          .slice(0, 70) : 'null';
+  // Batch 619: a dismiss catcher is a control that fills its containing block
+  // and paints nothing of its own — its whole job is to catch clicks on the
+  // empty area, so its centre is *supposed* to sit under whatever it dims.
+  // The first attempt tested "covers ~90% of the viewport" and never fired:
+  // the mobile scrim is inset-0 inside the workspace cell, which is about 68%
+  // of a 390x844 viewport.  Filling the containing block is the real shape.
+  const isScrim = (el) => {
+    const s = cs(el);
+    if (s.position !== 'absolute' && s.position !== 'fixed') return false;
+    const host = el.offsetParent;
+    const r = el.getBoundingClientRect();
+    const h = host ? host.getBoundingClientRect()
+      : {left: 0, top: 0, right: innerWidth, bottom: innerHeight,
+         width: innerWidth, height: innerHeight};
+    if (h.width < 40 || h.height < 40) return false;
+    return r.width >= h.width - 0.6 && r.height >= h.height - 0.6
+      && (el.textContent || '').trim() === ''
+      && s.backgroundColor !== 'rgba(0, 0, 0, 0)';
+  };
+  const overlayRoots = overlays.map((sel) => document.querySelector(sel))
+    .filter((el) => !!el && el.getBoundingClientRect().width > 0);
+  // Which open overlay is this control sitting behind?  The question is asked
+  // of the element that actually took the hit, by walking up from it — not by
+  // asking whether some overlay's rect happens to contain the control.  Two
+  // reasons, both learned the hard way:
+  //   * a context menu covers only the *right half* of the row buttons beside
+  //     it, so a "fully inside the rect" test exempts none of them, which is
+  //     how the first version reported twelve row buttons as defects;
+  //   * the element that took the hit is by construction inside the overlay,
+  //     so the attribution cannot be a coincidence.
+  // A dismiss catcher counts as an overlay: a control behind the scrim is
+  // behind a panel on purpose, it just happens to be an empty one.
+  const panelKeys = new Map(overlayRoots.map((el) => [el, pkey(el)]));
+  const covering = (el, hit) => {
+    for (let a = hit; a && a !== document.body; a = a.parentElement) {
+      if (a.contains(el)) continue;
+      if (panelKeys.has(a)) return panelKeys.get(a);
+      if (isScrim(a)) return pkey(a) + ' (scrim)';
+    }
+    return null;
   };
   const SEL = 'button, [role=button], [role=tab], [role=switch], [role=slider],'
     + ' [role=menuitem], input, select, textarea, a[href],'
@@ -150,6 +223,7 @@ AUDIT_JS = """() => {
     return false;
   };
   const items = [];
+  const scrims = [];
   for (const el of document.querySelectorAll(SEL)) {
     if (!inScope(el) || isFlow(el)) continue;
     const b = at(el);
@@ -158,21 +232,35 @@ AUDIT_JS = """() => {
     if (s.visibility === 'hidden' || s.display === 'none') continue;
     if (s.opacity !== '' && parseFloat(s.opacity) === 0) continue;
     if (s.pointerEvents === 'none') continue;
+    // a dismiss catcher is not a point control: its centre is meant to be
+    // under whatever it dims, so it never enters the census
+    if (isScrim(el)) { scrims.push({label: label(el), box: b}); continue; }
     const cx = b[0] + b[2] / 2, cy = b[1] + b[3] / 2;
     if (cx < 0 || cy < 0 || cx > innerWidth || cy > innerHeight) continue;
     const hit = document.elementFromPoint(cx, cy);
     const own = !!(hit && (hit === el || el.contains(hit) || hit.contains(el)));
-    const clipped = !own && isClipped(el);
+    const panel = own ? null : covering(el, hit);
+    const clipped = !own && !panel && isClipped(el);
     items.push({label: label(el), tag: el.tagName.toLowerCase(),
       box: b, z: s.zIndex, own, clipped,
+      panel: panel,
       hitLabel: hit ? label(hit) : null,
       hitTag: hit ? hit.tagName.toLowerCase() : null,
       data: Object.keys(el.dataset).slice(0, 3).join(',')});
   }
   const failed = items.filter((i) => !i.own);
+  const coveredByPanel = failed.filter((i) => i.panel);
+  const byPanel = new Map();
+  for (const c of coveredByPanel) byPanel.set(c.panel, (byPanel.get(c.panel) || 0) + 1);
   return {vw: innerWidth, vh: innerHeight, total: items.length,
+          scrims,
+          openOverlays: overlayRoots.map(pkey),
           blocked: failed,
-          covered: failed.filter((i) => !i.clipped),
+          // `covered` keeps its batch-617 meaning: a real defect.  Batch 619
+          // narrowed it by moving "behind an open transient overlay" out.
+          covered: failed.filter((i) => !i.clipped && !i.panel),
+          coveredByPanel,
+          panelAttribution: Array.from(byPanel.entries()),
           clipped: failed.filter((i) => i.clipped),
           items};
 }"""
@@ -244,7 +332,7 @@ class Verifier:
         self.page.mouse.move(5, 5)
         self.page.wait_for_timeout(200)
         self.strip_dev_overlay()
-        r = self.page.evaluate(AUDIT_JS)
+        r = self.page.evaluate(AUDIT_JS, list(TRANSIENT_OVERLAYS))
         r = dict(r)
         r["unexpected"] = [b for b in r["covered"]
                            if b["label"] not in KNOWN_BLOCKED]
@@ -398,6 +486,18 @@ def main() -> None:
             "notClaimed": [
                 "anything about the source at all — this batch is a 'can you "
                 "use it' audit of the clone",
+            ],
+            "censusMigration": [
+                "batch 619 narrowed what `covered` means in this audit's "
+                "census: a control sitting behind an OPEN transient overlay "
+                "(context menu, rail flyout, AI-import modal, mobile drawer) is "
+                "now reported under `coveredByPanel` with the overlay it sits "
+                "behind, and a dismiss catcher is reported under `scrims`. "
+                "Before that, censusing the scene tree's context menu reported "
+                "twelve row buttons and the import modal thirty-six, all of "
+                "them the overlay working as designed. `covered` still means "
+                "'a z-order bug' and batch 617's own assertions are unchanged: "
+                "the 1920 legs still find exactly 帮助, and the 390 legs nothing",
             ],
         },
     }

@@ -729,6 +729,19 @@ export function DirectorTimeline({
         // 布局上时间轴与属性面板列并不重叠（各自占一格），所以抬到 z-40
         // 不改变版面，只让面板/菜单类浮层能盖住右列。
         "z-40 pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none rounded-tr-none border-t border-white/10 bg-[#1f1f1f] text-white shadow-[0_-18px_48px_rgba(0,0,0,0.24)] backdrop-blur-xl max-[899px]:h-[176px]",
+        /* Batch 619：窄屏要把视口底部浮动条压下去。
+           导出面板从工具条右格**向上**弹出（`bottom-full`），390 下它落在
+           y 624..656，而视口的底部条 `div[data-director-bottom-bar]` 正好是
+           y 620..668 的 `z-[200]` —— 两者必然重叠。层叠上底部条赢：它在
+           `main` 里但 z 是 200，而本 section 是 z-40，于是面板自己的「导出
+           视频到画布」提交按钮（`data-director-export-submit`）被底部条的
+           工具行整个盖住，命中测试打到的是工具条（619 普查里唯一一条没有
+           浮层可归因的遮挡）。1920 下不重叠，所以之前一直没暴露。
+           抬的是本 section 而不是压底部条：底部条的 200 是 batch 604 **从源站
+           实测抄来的解析值**（`z-(--z-sticky)`），不能为了 clone 的浮层改它。
+           只在窄屏抬：桌面上抬到 210 会越过场景树右键菜单的 `fixed z-[120]`，
+           把贴着视口底边打开的菜单下半截盖掉，而桌面并不需要这次抬升。 */
+        "max-[899px]:z-[210]",
         // 源站实测：展开 1920x182 @(0,968)；收起 1920x88 @(0,1062)
         timelineCollapsed
           ? "h-[88px]"

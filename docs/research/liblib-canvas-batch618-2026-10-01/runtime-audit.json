@@ -35,6 +35,8 @@
         "vw": 390,
         "vh": 844,
         "total": 41,
+        "scrims": [],
+        "openOverlays": [],
         "blocked": [
           {
             "label": "9:16",
@@ -48,6 +50,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "场景描述已记录（本地草稿）",
             "hitTag": "div",
             "data": "directorAspect"
@@ -64,6 +67,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "角色01 · 陈默",
             "hitTag": "div",
             "data": "directorScenePromptUpload"
@@ -80,6 +84,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
@@ -96,6 +101,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimeUnit"
@@ -112,6 +118,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "div",
             "data": "directorAddTrack"
@@ -128,12 +135,15 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorCameraPresetTrigger"
           }
         ],
         "covered": [],
+        "coveredByPanel": [],
+        "panelAttribution": [],
         "clipped": [
           {
             "label": "9:16",
@@ -147,6 +157,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "场景描述已记录（本地草稿）",
             "hitTag": "div",
             "data": "directorAspect"
@@ -163,6 +174,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "角色01 · 陈默",
             "hitTag": "div",
             "data": "directorScenePromptUpload"
@@ -179,6 +191,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
@@ -195,6 +208,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimeUnit"
@@ -211,6 +225,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "div",
             "data": "directorAddTrack"
@@ -227,6 +242,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorCameraPresetTrigger"
@@ -245,6 +261,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "closeDirector"
@@ -261,6 +278,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorPanelsToggle"
@@ -277,6 +295,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "导演视角",
             "hitTag": "button",
             "data": "directorViewMode"
@@ -293,6 +312,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "机位视角",
             "hitTag": "button",
             "data": "directorViewMode"
@@ -309,6 +329,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorProjectExport"
@@ -325,6 +346,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorProjectImport"
@@ -341,6 +363,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "机位01 · 对峙中景 · 镜头",
             "hitTag": "span",
             "data": "directorShotOption"
@@ -357,6 +380,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "重置视角",
             "hitTag": "button",
             "data": "directorResetView"
@@ -373,6 +397,7 @@
             "z": "171",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "X 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -389,6 +414,7 @@
             "z": "49",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "X 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -405,6 +431,7 @@
             "z": "142",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Y 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -421,6 +448,7 @@
             "z": "78",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Y 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -437,6 +465,7 @@
             "z": "183",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Z 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -453,6 +482,7 @@
             "z": "37",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Z 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -469,6 +499,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -485,6 +516,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -501,6 +533,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorTransformMode"
@@ -517,6 +550,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorTransformMode"
@@ -533,6 +567,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorTransformMode"
@@ -549,6 +584,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorTimelineToggle"
@@ -565,6 +601,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "16:9",
             "hitTag": "button",
             "data": "directorAspect"
@@ -581,6 +618,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "场景描述已记录（本地草稿）",
             "hitTag": "div",
             "data": "directorAspect"
@@ -597,6 +635,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "角色01 · 陈默",
             "hitTag": "div",
             "data": "directorScenePromptUpload"
@@ -613,6 +652,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorPlayback"
@@ -629,6 +669,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorAutoKeyframe"
@@ -645,6 +686,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorLoop"
@@ -661,6 +703,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "播放头位置",
             "hitTag": "input",
             "data": "directorTimelineTime,directorTimeField,directorTimeFieldUnit"
@@ -677,6 +720,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
@@ -693,6 +737,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimeUnit"
@@ -709,6 +754,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "div",
             "data": "directorAddTrack"
@@ -725,6 +771,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorCameraPresetTrigger"
@@ -741,6 +788,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorTimelineCollapse"
@@ -757,6 +805,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorExportTrigger"
@@ -773,6 +822,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -789,6 +839,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "变换",
             "hitTag": "span",
             "data": ""
@@ -805,6 +856,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -821,6 +873,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<span>",
             "hitTag": "span",
             "data": ""
@@ -837,6 +890,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -853,6 +907,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -869,6 +924,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "绘制轨迹",
             "hitTag": "span",
             "data": "directorTrackDrawTrail"
@@ -885,6 +941,7 @@
             "z": "10",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "角色01 · 陈默 · 变换 00:00.00 关键帧",
             "hitTag": "button",
             "data": "directorKeyframeId,directorKeyframeTime"
@@ -1000,6 +1057,8 @@
         "vw": 390,
         "vh": 844,
         "total": 38,
+        "scrims": [],
+        "openOverlays": [],
         "blocked": [
           {
             "label": "9:16",
@@ -1013,6 +1072,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "场景描述已记录（本地草稿）",
             "hitTag": "div",
             "data": "directorAspect"
@@ -1029,6 +1089,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "角色01 · 陈默",
             "hitTag": "div",
             "data": "directorScenePromptUpload"
@@ -1045,6 +1106,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorCameraPresetTrigger"
@@ -1061,12 +1123,15 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorCreateMotionPath"
           }
         ],
         "covered": [],
+        "coveredByPanel": [],
+        "panelAttribution": [],
         "clipped": [
           {
             "label": "9:16",
@@ -1080,6 +1145,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "场景描述已记录（本地草稿）",
             "hitTag": "div",
             "data": "directorAspect"
@@ -1096,6 +1162,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "角色01 · 陈默",
             "hitTag": "div",
             "data": "directorScenePromptUpload"
@@ -1112,6 +1179,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorCameraPresetTrigger"
@@ -1128,6 +1196,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorCreateMotionPath"
@@ -1146,6 +1215,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "closeDirector"
@@ -1162,6 +1232,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorPanelsToggle"
@@ -1178,6 +1249,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "导演视角",
             "hitTag": "button",
             "data": "directorViewMode"
@@ -1194,6 +1266,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "机位视角",
             "hitTag": "button",
             "data": "directorViewMode"
@@ -1210,6 +1283,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorProjectExport"
@@ -1226,6 +1300,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorProjectImport"
@@ -1242,6 +1317,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "机位01 · 对峙中景 · 镜头",
             "hitTag": "span",
             "data": "directorShotOption"
@@ -1258,6 +1334,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "重置视角",
             "hitTag": "button",
             "data": "directorResetView"
@@ -1274,6 +1351,7 @@
             "z": "171",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "X 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -1290,6 +1368,7 @@
             "z": "49",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "X 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -1306,6 +1385,7 @@
             "z": "142",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Y 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -1322,6 +1402,7 @@
             "z": "78",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Y 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -1338,6 +1419,7 @@
             "z": "183",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Z 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -1354,6 +1436,7 @@
             "z": "37",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Z 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -1370,6 +1453,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -1386,6 +1470,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -1402,6 +1487,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorTransformMode"
@@ -1418,6 +1504,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorTransformMode"
@@ -1434,6 +1521,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorTransformMode"
@@ -1450,6 +1538,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorTimelineToggle"
@@ -1466,6 +1555,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "16:9",
             "hitTag": "button",
             "data": "directorAspect"
@@ -1482,6 +1572,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "场景描述已记录（本地草稿）",
             "hitTag": "div",
             "data": "directorAspect"
@@ -1498,6 +1589,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "角色01 · 陈默",
             "hitTag": "div",
             "data": "directorScenePromptUpload"
@@ -1514,6 +1606,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "总时长",
             "hitTag": "input",
             "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
@@ -1530,6 +1623,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "切换时间单位为 s",
             "hitTag": "button",
             "data": "directorTimeUnit"
@@ -1546,6 +1640,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "ms新建轨道预设运镜创建运动轨迹曲线编辑器轨道添加关键帧",
             "hitTag": "header",
             "data": "directorAddTrack"
@@ -1562,6 +1657,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorCameraPresetTrigger"
@@ -1578,6 +1674,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorCreateMotionPath"
@@ -1594,6 +1691,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorTimelineCollapse"
@@ -1610,6 +1708,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorExportTrigger"
@@ -1626,6 +1725,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -1642,6 +1742,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "变换",
             "hitTag": "span",
             "data": ""
@@ -1658,6 +1759,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -1674,6 +1776,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<span>",
             "hitTag": "span",
             "data": ""
@@ -1690,6 +1793,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -1706,6 +1810,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -1722,6 +1827,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "绘制轨迹",
             "hitTag": "span",
             "data": "directorTrackDrawTrail"
@@ -1738,6 +1844,7 @@
             "z": "10",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "角色01 · 陈默 · 变换 00:00.00 关键帧",
             "hitTag": "button",
             "data": "directorKeyframeId,directorKeyframeTime"
@@ -1768,11 +1875,104 @@
       }
     },
     "export-open": {
+      "export-open:the-overlay-actually-opened": {
+        "ok": true,
+        "detail": "[data-director-export-panel]"
+      },
       "export-open:census": {
         "vw": 390,
         "vh": 844,
-        "total": 41,
+        "total": 46,
+        "scrims": [],
+        "openOverlays": [
+          "section|data-director-export-panel=true data-director-export-status=idle class"
+        ],
         "blocked": [
+          {
+            "label": "移动",
+            "tag": "button",
+            "box": [
+              127,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": false,
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "旋转",
+            "tag": "button",
+            "box": [
+              167,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": false,
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "缩放",
+            "tag": "button",
+            "box": [
+              207,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": false,
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "动画时间轴",
+            "tag": "button",
+            "box": [
+              247,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": false,
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
+            "data": "directorTimelineToggle"
+          },
+          {
+            "label": "16:9",
+            "tag": "button",
+            "box": [
+              299,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": false,
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
+            "data": "directorAspect"
+          },
           {
             "label": "9:16",
             "tag": "button",
@@ -1784,9 +1984,10 @@
             ],
             "z": "auto",
             "own": false,
-            "clipped": true,
-            "hitLabel": "场景描述已记录（本地草稿）",
-            "hitTag": "div",
+            "clipped": false,
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
             "data": "directorAspect"
           },
           {
@@ -1801,6 +2002,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "角色01 · 陈默",
             "hitTag": "div",
             "data": "directorScenePromptUpload"
@@ -1817,6 +2019,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
@@ -1833,6 +2036,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimeUnit"
@@ -1849,7 +2053,8 @@
             "z": "auto",
             "own": false,
             "clipped": true,
-            "hitLabel": "导出视频到画布",
+            "panel": null,
+            "hitLabel": "导出视频到画布导出设置时长秒比例16:99:161:1输",
             "hitTag": "div",
             "data": "directorAddTrack"
           },
@@ -1865,13 +2070,99 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorCameraPresetTrigger"
           }
         ],
         "covered": [],
-        "clipped": [
+        "coveredByPanel": [
+          {
+            "label": "移动",
+            "tag": "button",
+            "box": [
+              127,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": false,
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "旋转",
+            "tag": "button",
+            "box": [
+              167,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": false,
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "缩放",
+            "tag": "button",
+            "box": [
+              207,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": false,
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
+            "data": "directorTransformMode"
+          },
+          {
+            "label": "动画时间轴",
+            "tag": "button",
+            "box": [
+              247,
+              628,
+              32,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": false,
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
+            "data": "directorTimelineToggle"
+          },
+          {
+            "label": "16:9",
+            "tag": "button",
+            "box": [
+              299,
+              628,
+              40,
+              32
+            ],
+            "z": "auto",
+            "own": false,
+            "clipped": false,
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
+            "data": "directorAspect"
+          },
           {
             "label": "9:16",
             "tag": "button",
@@ -1883,11 +2174,20 @@
             ],
             "z": "auto",
             "own": false,
-            "clipped": true,
-            "hitLabel": "场景描述已记录（本地草稿）",
-            "hitTag": "div",
+            "clipped": false,
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
             "data": "directorAspect"
-          },
+          }
+        ],
+        "panelAttribution": [
+          [
+            "section|data-director-export-panel=true data-director-export-status=idle class",
+            6
+          ]
+        ],
+        "clipped": [
           {
             "label": "上传图片",
             "tag": "button",
@@ -1900,6 +2200,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "角色01 · 陈默",
             "hitTag": "div",
             "data": "directorScenePromptUpload"
@@ -1916,6 +2217,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
@@ -1932,6 +2234,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimeUnit"
@@ -1948,7 +2251,8 @@
             "z": "auto",
             "own": false,
             "clipped": true,
-            "hitLabel": "导出视频到画布",
+            "panel": null,
+            "hitLabel": "导出视频到画布导出设置时长秒比例16:99:161:1输",
             "hitTag": "div",
             "data": "directorAddTrack"
           },
@@ -1964,6 +2268,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorCameraPresetTrigger"
@@ -1982,6 +2287,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "closeDirector"
@@ -1998,6 +2304,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorPanelsToggle"
@@ -2014,6 +2321,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "导演视角",
             "hitTag": "button",
             "data": "directorViewMode"
@@ -2030,6 +2338,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "机位视角",
             "hitTag": "button",
             "data": "directorViewMode"
@@ -2038,7 +2347,7 @@
             "label": "导出导演台项目",
             "tag": "button",
             "box": [
-              292.7,
+              308.1,
               9.5,
               32,
               32
@@ -2046,6 +2355,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorProjectExport"
@@ -2054,14 +2364,15 @@
             "label": "导入导演台项目",
             "tag": "button",
             "box": [
-              332.7,
+              348.1,
               9.5,
-              14,
+              17.9,
               32
             ],
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorProjectImport"
@@ -2078,6 +2389,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "机位01 · 对峙中景 · 镜头",
             "hitTag": "span",
             "data": "directorShotOption"
@@ -2094,6 +2406,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "重置视角",
             "hitTag": "button",
             "data": "directorResetView"
@@ -2110,6 +2423,7 @@
             "z": "171",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "X 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -2126,6 +2440,7 @@
             "z": "49",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "X 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -2142,6 +2457,7 @@
             "z": "142",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Y 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -2158,6 +2474,7 @@
             "z": "78",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Y 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -2174,6 +2491,7 @@
             "z": "183",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Z 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -2190,6 +2508,7 @@
             "z": "37",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Z 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -2206,6 +2525,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -2222,6 +2542,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -2236,10 +2557,11 @@
               32
             ],
             "z": "auto",
-            "own": true,
+            "own": false,
             "clipped": false,
-            "hitLabel": "<svg>",
-            "hitTag": "svg",
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
             "data": "directorTransformMode"
           },
           {
@@ -2252,10 +2574,11 @@
               32
             ],
             "z": "auto",
-            "own": true,
+            "own": false,
             "clipped": false,
-            "hitLabel": "<svg>",
-            "hitTag": "svg",
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
             "data": "directorTransformMode"
           },
           {
@@ -2268,10 +2591,11 @@
               32
             ],
             "z": "auto",
-            "own": true,
+            "own": false,
             "clipped": false,
-            "hitLabel": "<path>",
-            "hitTag": "path",
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
             "data": "directorTransformMode"
           },
           {
@@ -2284,10 +2608,11 @@
               32
             ],
             "z": "auto",
-            "own": true,
+            "own": false,
             "clipped": false,
-            "hitLabel": "<path>",
-            "hitTag": "path",
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
             "data": "directorTimelineToggle"
           },
           {
@@ -2300,9 +2625,10 @@
               32
             ],
             "z": "auto",
-            "own": true,
+            "own": false,
             "clipped": false,
-            "hitLabel": "16:9",
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
             "hitTag": "button",
             "data": "directorAspect"
           },
@@ -2317,9 +2643,10 @@
             ],
             "z": "auto",
             "own": false,
-            "clipped": true,
-            "hitLabel": "场景描述已记录（本地草稿）",
-            "hitTag": "div",
+            "clipped": false,
+            "panel": "section|data-director-export-panel=true data-director-export-status=idle class",
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
             "data": "directorAspect"
           },
           {
@@ -2334,6 +2661,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "角色01 · 陈默",
             "hitTag": "div",
             "data": "directorScenePromptUpload"
@@ -2350,6 +2678,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorPlayback"
@@ -2366,6 +2695,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorAutoKeyframe"
@@ -2382,6 +2712,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorLoop"
@@ -2398,6 +2729,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "播放头位置",
             "hitTag": "input",
             "data": "directorTimelineTime,directorTimeField,directorTimeFieldUnit"
@@ -2414,6 +2746,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
@@ -2430,6 +2763,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimeUnit"
@@ -2446,7 +2780,8 @@
             "z": "auto",
             "own": false,
             "clipped": true,
-            "hitLabel": "导出视频到画布",
+            "panel": null,
+            "hitLabel": "导出视频到画布导出设置时长秒比例16:99:161:1输",
             "hitTag": "div",
             "data": "directorAddTrack"
           },
@@ -2462,6 +2797,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorCameraPresetTrigger"
@@ -2478,6 +2814,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorTimelineCollapse"
@@ -2494,9 +2831,95 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorExportTrigger"
+          },
+          {
+            "label": "<input>",
+            "tag": "input",
+            "box": [
+              118,
+              473.3,
+              228,
+              16.5
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "panel": null,
+            "hitLabel": "<input>",
+            "hitTag": "input",
+            "data": "directorExportDuration"
+          },
+          {
+            "label": "16:9",
+            "tag": "button",
+            "box": [
+              109,
+              532,
+              84,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "panel": null,
+            "hitLabel": "16:9",
+            "hitTag": "button",
+            "data": "directorExportAspect"
+          },
+          {
+            "label": "9:16",
+            "tag": "button",
+            "box": [
+              197,
+              532,
+              84,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "panel": null,
+            "hitLabel": "9:16",
+            "hitTag": "button",
+            "data": "directorExportAspect"
+          },
+          {
+            "label": "1:1",
+            "tag": "button",
+            "box": [
+              285,
+              532,
+              84,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "panel": null,
+            "hitLabel": "1:1",
+            "hitTag": "button",
+            "data": "directorExportAspect"
+          },
+          {
+            "label": "导出视频到画布",
+            "tag": "button",
+            "box": [
+              109,
+              624,
+              260,
+              32
+            ],
+            "z": "auto",
+            "own": true,
+            "clipped": false,
+            "panel": null,
+            "hitLabel": "导出视频到画布",
+            "hitTag": "button",
+            "data": "directorExportSubmit"
           },
           {
             "label": "收起属性",
@@ -2510,6 +2933,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -2526,6 +2950,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "变换",
             "hitTag": "span",
             "data": ""
@@ -2542,6 +2967,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -2558,6 +2984,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<span>",
             "hitTag": "span",
             "data": ""
@@ -2574,6 +3001,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -2590,6 +3018,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -2606,6 +3035,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "绘制轨迹",
             "hitTag": "span",
             "data": "directorTrackDrawTrail"
@@ -2622,6 +3052,7 @@
             "z": "10",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "角色01 · 陈默 · 变换 00:00.00 关键帧",
             "hitTag": "button",
             "data": "directorKeyframeId,directorKeyframeTime"
@@ -2631,7 +3062,7 @@
       },
       "export-open:audited-a-real-number-of-controls": {
         "ok": true,
-        "detail": 41
+        "detail": 46
       },
       "export-open:no-control-is-covered": {
         "ok": true,
@@ -2651,7 +3082,7 @@
         "pageErrors": 0
       },
       "_summary": {
-        "checks": 4,
+        "checks": 5,
         "failures": []
       }
     },
@@ -2660,6 +3091,8 @@
         "vw": 390,
         "vh": 844,
         "total": 40,
+        "scrims": [],
+        "openOverlays": [],
         "blocked": [
           {
             "label": "9:16",
@@ -2673,6 +3106,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "场景描述已记录（本地草稿）",
             "hitTag": "div",
             "data": "directorAspect"
@@ -2689,6 +3123,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "角色01 · 陈默",
             "hitTag": "div",
             "data": "directorScenePromptUpload"
@@ -2705,6 +3140,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
@@ -2721,6 +3157,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimeUnit"
@@ -2737,6 +3174,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "div",
             "data": "directorAddTrack"
@@ -2753,12 +3191,15 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorCameraPresetTrigger"
           }
         ],
         "covered": [],
+        "coveredByPanel": [],
+        "panelAttribution": [],
         "clipped": [
           {
             "label": "9:16",
@@ -2772,6 +3213,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "场景描述已记录（本地草稿）",
             "hitTag": "div",
             "data": "directorAspect"
@@ -2788,6 +3230,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "角色01 · 陈默",
             "hitTag": "div",
             "data": "directorScenePromptUpload"
@@ -2804,6 +3247,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
@@ -2820,6 +3264,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimeUnit"
@@ -2836,6 +3281,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "div",
             "data": "directorAddTrack"
@@ -2852,6 +3298,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorCameraPresetTrigger"
@@ -2870,6 +3317,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "closeDirector"
@@ -2886,6 +3334,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorPanelsToggle"
@@ -2902,6 +3351,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "导演视角",
             "hitTag": "button",
             "data": "directorViewMode"
@@ -2918,6 +3368,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "机位视角",
             "hitTag": "button",
             "data": "directorViewMode"
@@ -2934,6 +3385,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorProjectExport"
@@ -2950,6 +3402,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorProjectImport"
@@ -2966,6 +3419,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "机位01 · 对峙中景 · 镜头",
             "hitTag": "span",
             "data": "directorShotOption"
@@ -2982,6 +3436,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "重置视角",
             "hitTag": "button",
             "data": "directorResetView"
@@ -2998,6 +3453,7 @@
             "z": "171",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "X 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -3014,6 +3470,7 @@
             "z": "49",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "X 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -3030,6 +3487,7 @@
             "z": "142",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Y 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -3046,6 +3504,7 @@
             "z": "78",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Y 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -3062,6 +3521,7 @@
             "z": "183",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Z 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -3078,6 +3538,7 @@
             "z": "37",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Z 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -3094,6 +3555,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -3110,6 +3572,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -3126,6 +3589,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorTransformMode"
@@ -3142,6 +3606,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorTransformMode"
@@ -3158,6 +3623,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorTransformMode"
@@ -3174,6 +3640,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorTimelineToggle"
@@ -3190,6 +3657,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "16:9",
             "hitTag": "button",
             "data": "directorAspect"
@@ -3206,6 +3674,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "场景描述已记录（本地草稿）",
             "hitTag": "div",
             "data": "directorAspect"
@@ -3222,6 +3691,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "角色01 · 陈默",
             "hitTag": "div",
             "data": "directorScenePromptUpload"
@@ -3238,6 +3708,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorPlayback"
@@ -3254,6 +3725,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorAutoKeyframe"
@@ -3270,6 +3742,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorLoop"
@@ -3286,6 +3759,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "播放头位置",
             "hitTag": "input",
             "data": "directorTimelineTime,directorTimeField,directorTimeFieldUnit"
@@ -3302,6 +3776,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
@@ -3318,6 +3793,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "时间轴缩放",
             "hitTag": "input",
             "data": "directorTimeUnit"
@@ -3334,6 +3810,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "div",
             "data": "directorAddTrack"
@@ -3350,6 +3827,7 @@
             "z": "auto",
             "own": false,
             "clipped": true,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorCameraPresetTrigger"
@@ -3366,6 +3844,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorTimelineCollapse"
@@ -3382,6 +3861,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorExportTrigger"
@@ -3398,6 +3878,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -3414,6 +3895,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "变换",
             "hitTag": "span",
             "data": ""
@@ -3430,6 +3912,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -3446,6 +3929,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<span>",
             "hitTag": "span",
             "data": ""
@@ -3462,6 +3946,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -3478,6 +3963,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -3494,6 +3980,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "绘制轨迹",
             "hitTag": "span",
             "data": "directorTrackDrawTrail"
@@ -3799,6 +4286,8 @@
         "vw": 1920,
         "vh": 1150,
         "total": 120,
+        "scrims": [],
+        "openOverlays": [],
         "blocked": [
           {
             "label": "帮助",
@@ -3812,6 +4301,7 @@
             "z": "auto",
             "own": false,
             "clipped": false,
+            "panel": null,
             "hitLabel": "收起属性",
             "hitTag": "button",
             "data": "directorRailEntry"
@@ -3830,11 +4320,14 @@
             "z": "auto",
             "own": false,
             "clipped": false,
+            "panel": null,
             "hitLabel": "收起属性",
             "hitTag": "button",
             "data": "directorRailEntry"
           }
         ],
+        "coveredByPanel": [],
+        "panelAttribution": [],
         "clipped": [],
         "items": [
           {
@@ -3849,6 +4342,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "closeDirector"
@@ -3865,6 +4359,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorPanelsToggle"
@@ -3881,6 +4376,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "导演视角",
             "hitTag": "button",
             "data": "directorViewMode"
@@ -3897,6 +4393,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "机位视角",
             "hitTag": "button",
             "data": "directorViewMode"
@@ -3913,6 +4410,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorProjectExport"
@@ -3929,6 +4427,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorProjectImport"
@@ -3945,6 +4444,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "机位01 · 对峙中景 · 镜头",
             "hitTag": "span",
             "data": "directorShotOption"
@@ -3961,6 +4461,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "搜索场景内容",
             "hitTag": "input",
             "data": ""
@@ -3977,6 +4478,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorAddCamera"
@@ -3993,6 +4495,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "打组",
             "hitTag": "button",
             "data": "directorGroupAction"
@@ -4009,6 +4512,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "解组",
             "hitTag": "button",
             "data": "directorGroupAction"
@@ -4025,6 +4529,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorSelectionAction"
@@ -4041,6 +4546,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorSelectionAction"
@@ -4057,6 +4563,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorSelectionAction"
@@ -4073,6 +4580,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -4089,6 +4597,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<rect>",
             "hitTag": "rect",
             "data": "directorObjectLock,directorObjectLocked"
@@ -4105,6 +4614,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorDeleteObject"
@@ -4121,6 +4631,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -4137,6 +4648,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<rect>",
             "hitTag": "rect",
             "data": "directorObjectLock,directorObjectLocked"
@@ -4153,6 +4665,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorDeleteObject"
@@ -4169,6 +4682,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -4185,6 +4699,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<rect>",
             "hitTag": "rect",
             "data": "directorObjectLock,directorObjectLocked"
@@ -4201,6 +4716,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorDeleteObject"
@@ -4217,6 +4733,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -4233,6 +4750,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<rect>",
             "hitTag": "rect",
             "data": "directorObjectLock,directorObjectLocked"
@@ -4249,6 +4767,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorDeleteObject"
@@ -4265,6 +4784,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -4281,6 +4801,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<rect>",
             "hitTag": "rect",
             "data": "directorObjectLock,directorObjectLocked"
@@ -4297,6 +4818,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorDeleteObject"
@@ -4313,6 +4835,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorRailEntry"
@@ -4329,6 +4852,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<circle>",
             "hitTag": "circle",
             "data": "directorRailEntry"
@@ -4345,6 +4869,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorRailEntry"
@@ -4361,6 +4886,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorRailEntry"
@@ -4377,6 +4903,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorRailEntry"
@@ -4393,6 +4920,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorRailEntry"
@@ -4409,6 +4937,7 @@
             "z": "auto",
             "own": false,
             "clipped": false,
+            "panel": null,
             "hitLabel": "收起属性",
             "hitTag": "button",
             "data": "directorRailEntry"
@@ -4425,6 +4954,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "重置视角",
             "hitTag": "button",
             "data": "directorResetView"
@@ -4441,6 +4971,7 @@
             "z": "171",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "X 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -4457,6 +4988,7 @@
             "z": "49",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "X 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -4473,6 +5005,7 @@
             "z": "142",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Y 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -4489,6 +5022,7 @@
             "z": "78",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Y 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -4505,6 +5039,7 @@
             "z": "183",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Z 正向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -4521,6 +5056,7 @@
             "z": "37",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "Z 反向",
             "hitTag": "button",
             "data": "directorViewportGizmoButton"
@@ -4537,6 +5073,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorTransformMode"
@@ -4553,6 +5090,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorTransformMode"
@@ -4569,6 +5107,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorTransformMode"
@@ -4585,6 +5124,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorTimelineToggle"
@@ -4601,6 +5141,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "16:9",
             "hitTag": "button",
             "data": "directorAspect"
@@ -4617,6 +5158,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "9:16",
             "hitTag": "button",
             "data": "directorAspect"
@@ -4633,6 +5175,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "1:1",
             "hitTag": "button",
             "data": "directorAspect"
@@ -4649,6 +5192,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -4665,6 +5209,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorPhoneVcamTrigger"
@@ -4681,6 +5226,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorCrowdTrigger"
@@ -4697,6 +5243,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorModelLibraryTrigger"
@@ -4713,6 +5260,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "保存构图",
             "hitTag": "span",
             "data": "directorCapture"
@@ -4729,6 +5277,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorScenePromptUpload"
@@ -4745,6 +5294,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "描述想搭建的场景",
             "hitTag": "input",
             "data": "directorScenePromptInput"
@@ -4761,6 +5311,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<path>",
             "hitTag": "path",
             "data": "directorScenePromptSubmit"
@@ -4777,6 +5328,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "属性",
             "hitTag": "span",
             "data": "directorCharacterTab"
@@ -4793,6 +5345,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "姿势",
             "hitTag": "span",
             "data": "directorCharacterTab"
@@ -4809,6 +5362,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<input>",
             "hitTag": "input",
             "data": "directorObjectName"
@@ -4825,6 +5379,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "隐藏对象",
             "hitTag": "button",
             "data": ""
@@ -4841,6 +5396,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "锁定对象",
             "hitTag": "button",
             "data": "directorInspectorLock"
@@ -4857,6 +5413,7 @@
             "z": "10",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "左右拖动调整 X 轴",
             "hitTag": "button",
             "data": "directorSceneAxisScrub"
@@ -4873,6 +5430,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<input>",
             "hitTag": "input",
             "data": "directorTransformField,directorTransformAxis"
@@ -4889,6 +5447,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<rect>",
             "hitTag": "rect",
             "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
@@ -4905,6 +5464,7 @@
             "z": "10",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "左右拖动调整 Y 轴",
             "hitTag": "button",
             "data": "directorSceneAxisScrub"
@@ -4921,6 +5481,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<input>",
             "hitTag": "input",
             "data": "directorTransformField,directorTransformAxis"
@@ -4937,6 +5498,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<rect>",
             "hitTag": "rect",
             "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
@@ -4953,6 +5515,7 @@
             "z": "10",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "左右拖动调整 Z 轴",
             "hitTag": "button",
             "data": "directorSceneAxisScrub"
@@ -4969,6 +5532,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<input>",
             "hitTag": "input",
             "data": "directorTransformField,directorTransformAxis"
@@ -4985,6 +5549,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<rect>",
             "hitTag": "rect",
             "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
@@ -5001,6 +5566,7 @@
             "z": "10",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "左右拖动调整 X 轴",
             "hitTag": "button",
             "data": "directorSceneAxisScrub"
@@ -5017,6 +5583,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<input>",
             "hitTag": "input",
             "data": "directorTransformField,directorTransformAxis"
@@ -5033,6 +5600,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<rect>",
             "hitTag": "rect",
             "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
@@ -5049,6 +5617,7 @@
             "z": "10",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "左右拖动调整 Y 轴",
             "hitTag": "button",
             "data": "directorSceneAxisScrub"
@@ -5065,6 +5634,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<input>",
             "hitTag": "input",
             "data": "directorTransformField,directorTransformAxis"
@@ -5081,6 +5651,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<rect>",
             "hitTag": "rect",
             "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
@@ -5097,6 +5668,7 @@
             "z": "10",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "左右拖动调整 Z 轴",
             "hitTag": "button",
             "data": "directorSceneAxisScrub"
@@ -5113,6 +5685,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<input>",
             "hitTag": "input",
             "data": "directorTransformField,directorTransformAxis"
@@ -5129,6 +5702,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<rect>",
             "hitTag": "rect",
             "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
@@ -5145,6 +5719,7 @@
             "z": "10",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "左右拖动调整 X 轴",
             "hitTag": "button",
             "data": "directorSceneAxisScrub"
@@ -5161,6 +5736,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<input>",
             "hitTag": "input",
             "data": "directorTransformField,directorTransformAxis"
@@ -5177,6 +5753,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<rect>",
             "hitTag": "rect",
             "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
@@ -5193,6 +5770,7 @@
             "z": "10",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "左右拖动调整 Y 轴",
             "hitTag": "button",
             "data": "directorSceneAxisScrub"
@@ -5209,6 +5787,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<input>",
             "hitTag": "input",
             "data": "directorTransformField,directorTransformAxis"
@@ -5225,6 +5804,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<rect>",
             "hitTag": "rect",
             "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
@@ -5241,6 +5821,7 @@
             "z": "10",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "左右拖动调整 Z 轴",
             "hitTag": "button",
             "data": "directorSceneAxisScrub"
@@ -5257,6 +5838,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<input>",
             "hitTag": "input",
             "data": "directorTransformField,directorTransformAxis"
@@ -5273,6 +5855,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<rect>",
             "hitTag": "rect",
             "data": "directorKeyframeToggle,directorKeyframeToggleState,directorKeyframedAxis"
@@ -5289,6 +5872,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "统一缩放",
             "hitTag": "input",
             "data": "directorUniformScale"
@@ -5305,6 +5889,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "颜色 hex 值",
             "hitTag": "input",
             "data": "directorHexInput"
@@ -5321,6 +5906,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "颜色",
             "hitTag": "input",
             "data": "directorColorPicker"
@@ -5337,6 +5923,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorPlayback"
@@ -5353,6 +5940,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorAutoKeyframe"
@@ -5369,6 +5957,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorLoop"
@@ -5385,6 +5974,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "播放头位置",
             "hitTag": "input",
             "data": "directorTimelineTime,directorTimeField,directorTimeFieldUnit"
@@ -5401,6 +5991,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "总时长",
             "hitTag": "input",
             "data": "directorTimelineDuration,directorTimeField,directorTimeFieldUnit"
@@ -5417,6 +6008,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "切换时间单位为 s",
             "hitTag": "button",
             "data": "directorTimeUnit"
@@ -5433,6 +6025,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "选中角色、道具或分组后建立轨道",
             "hitTag": "button",
             "data": "directorAddTrack"
@@ -5449,6 +6042,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "预设运镜",
             "hitTag": "button",
             "data": "directorCameraPresetTrigger"
@@ -5465,6 +6059,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "创建运动轨迹",
             "hitTag": "button",
             "data": "directorCreateMotionPath"
@@ -5481,6 +6076,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "曲线编辑器",
             "hitTag": "button",
             "data": "directorOpenCurveEditor"
@@ -5497,6 +6093,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "轨道",
             "hitTag": "button",
             "data": "directorAddTrackManual"
@@ -5513,6 +6110,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorRemoveTrack"
@@ -5529,6 +6127,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "添加关键帧",
             "hitTag": "button",
             "data": "directorAddKeyframe"
@@ -5545,6 +6144,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorDeleteKeyframe"
@@ -5561,6 +6161,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": "directorTimelineCollapse"
@@ -5577,6 +6178,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "导出视频到画布",
             "hitTag": "span",
             "data": "directorExportTrigger"
@@ -5593,6 +6195,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -5609,6 +6212,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "角色01 · 陈默",
             "hitTag": "span",
             "data": "directorTimelineObjectName"
@@ -5625,6 +6229,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "变换",
             "hitTag": "span",
             "data": ""
@@ -5641,6 +6246,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -5657,6 +6263,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<span>",
             "hitTag": "span",
             "data": ""
@@ -5673,6 +6280,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -5689,6 +6297,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "<svg>",
             "hitTag": "svg",
             "data": ""
@@ -5705,6 +6314,7 @@
             "z": "1",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "机位01 · 对峙中景",
             "hitTag": "span",
             "data": "directorTimelineObjectName"
@@ -5721,6 +6331,7 @@
             "z": "auto",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "绘制轨迹",
             "hitTag": "span",
             "data": "directorTrackDrawTrail"
@@ -5737,6 +6348,7 @@
             "z": "10",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "角色01 · 陈默 · 变换 00:00.00 关键帧",
             "hitTag": "button",
             "data": "directorKeyframeId,directorKeyframeTime"
@@ -5753,6 +6365,7 @@
             "z": "10",
             "own": true,
             "clipped": false,
+            "panel": null,
             "hitLabel": "角色01 · 陈默 · 变换 00:04.00 关键帧",
             "hitTag": "button",
             "data": "directorKeyframeId,directorKeyframeTime"
@@ -5780,5 +6393,5 @@
       }
     }
   },
-  "result": "41/41 passed"
+  "result": "42/42 passed"
 }

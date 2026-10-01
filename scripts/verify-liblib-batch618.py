@@ -58,6 +58,7 @@ b617 = importlib.util.module_from_spec(_spec)
 assert _spec.loader is not None
 _spec.loader.exec_module(b617)
 AUDIT_JS = b617.AUDIT_JS
+TRANSIENT_OVERLAYS = b617.TRANSIENT_OVERLAYS
 
 IGNORE_CONSOLE = (
     "The attached 3D object must be a part of the scene graph",
@@ -184,7 +185,7 @@ class Verifier:
         self.page.evaluate(
             "() => { for (const el of document.querySelectorAll('nextjs-portal'))"
             " el.remove(); }")
-        r = dict(self.page.evaluate(AUDIT_JS))
+        r = dict(self.page.evaluate(AUDIT_JS, list(TRANSIENT_OVERLAYS)))
         r["unexpected"] = [b for b in r["covered"] if b["label"] not in KNOWN_BLOCKED]
         self.result[name] = r
         return r
@@ -293,8 +294,14 @@ def run_mobile(browser: Any) -> dict[str, Any]:
     return v.result
 
 
-def run_mobile_state(browser: Any, tag: str, setup: str | None) -> dict[str, Any]:
-    """Census the desk at 390 in one more state (export panel open, collapsed)."""
+def run_mobile_state(browser: Any, tag: str, setup: str | None,
+                     expect: str | None = None) -> dict[str, Any]:
+    """Census the desk at 390 in one more state (export panel open, collapsed).
+
+    `expect` is the overlay the setup is supposed to open.  Without it a leg can
+    pass while the overlay never appeared — which is exactly what happened to
+    this file's export leg until batch 619 pointed it at the right button.
+    """
     page = browser.new_page(viewport=MOBILE, device_scale_factor=1)
     v = Verifier(page)
     console: list[str] = []
@@ -306,6 +313,9 @@ def run_mobile_state(browser: Any, tag: str, setup: str | None) -> dict[str, Any
     if setup:
         page.locator(setup).click(timeout=15_000)
         page.wait_for_timeout(700)
+    if expect:
+        v.check(f"{tag}:the-overlay-actually-opened",
+                page.locator(expect).first.is_visible(), detail=expect)
     r = v.census(f"{tag}:census")
     v.check(f"{tag}:audited-a-real-number-of-controls", r["total"] >= 30,
             detail=r["total"])
@@ -522,7 +532,14 @@ def main() -> None:
         browser = p.chromium.launch(headless=True)
         mobile = run_mobile(browser)
         export_open = run_mobile_state(browser, "export-open",
-                                       "[data-director-project-export]")
+                                       # the strip's 导出视频到画布 trigger, not the
+                                       # header's project-JSON export: the latter
+                                       # downloads a file and opens no panel, so
+                                       # batch 618's first run of this leg was
+                                       # censusing the plain desk under a label
+                                       # that claimed otherwise (found by 619)
+                                       "[data-director-export-trigger]",
+                                       "[data-director-export-panel]")
         collapsed = run_mobile_state(browser, "collapsed",
                                      "[data-director-timeline-collapse]")
         drawer = run_drawer(browser)
