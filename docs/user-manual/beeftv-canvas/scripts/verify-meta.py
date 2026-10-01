@@ -436,6 +436,49 @@ def regex_engine_check(root):
     return bad
 
 
+# ── 方向七：闸门不得「只报错不失败」 ──────────────────────────────────
+# **不变式**：闸门打印了 `✗`，退出码就必须非 0。
+#
+# **为什么它值得单独立一个方向**：方向五与方向六**各漏过一次计数**——
+# 闸门把问题打印出来了、**退出码却是 0**。而 build-site.sh、反验脚本、CI
+# **全都只看退出码**，于是构建照样「成功」、反验照样判「通过」。
+# **同一个错误犯两次，说明「再加一道记得检查的闸」不可靠**，所以 Batch 159
+# 把 `print("✗ …")` 改成了 `fail()`，让二者**在语法上无法分开**；
+# 本方向负责**不让有人改回去**。
+#
+# **只判形态、不判语义，且刻意收窄到本闸自己**：
+#   · **锚定「被打印的字符串以 ✗ 开头」**，而不是「这一行出现过 ✗」——
+#     第一版写成 `if "✗" in line and "print(" in line`，**误报 5 处**：
+#     两条注释里提到 `print("✗ …")`、检查器自己的匹配条件那行、
+#     以及一条 `✓` 提示语里顺带出现「✗」字样。**判据必须锚在真正的形态上，
+#     否则误报会让人开始忽略闸门输出**（Batch 150 判「不可建」同一条理由）。
+#   · **不扫其他闸**：全量普查过一遍（见 AUDIT「环境记录一百一十五」），
+#     其余闸用的是**早退 `return 1`** 或**累加器**（`verify-tables.py` 的
+#     `total_bad`）两种形态，退出码都对；**没有证据就不扩大范围**。
+#   · 豁免两类且都写明理由：① 计数函数自己的打印（内部已计数）；
+#     ② 报完立刻 `return 1` 的早退路径。
+_BARE_ERROR_RE = re.compile(r'^\s*print\(\s*f?["\']\s*✗')
+
+
+def bare_error_prints(root):
+    """返回 [(行号, 片段)]：本闸直接 print ✗ 却不经计数函数的地方。"""
+    path = os.path.join(root, "scripts", "verify-meta.py")
+    lines = open(path, encoding="utf-8").read().split("\n")
+    bad = []
+    for i, line in enumerate(lines):
+        if line.lstrip().startswith("#"):        # 注释不是代码
+            continue
+        if not _BARE_ERROR_RE.match(line):
+            continue
+        window = "\n".join(lines[max(0, i - 3):i + 1])
+        if "_FAILS.append" in window:            # ① fail() 自己
+            continue
+        if re.search(r"return 1", "\n".join(lines[i + 1:i + 5])):   # ② 早退
+            continue
+        bad.append((i + 1, line.strip()[:70]))
+    return bad
+
+
 # ── 方向六：内链完整性（源文件层） ──────────────────────────────────────
 # **为什么需要这个方向**，以及**它和第一道内联闸不重复在哪**：
 # 第一道闸在 `build-site.sh` 里逐个解析 **dist 产物里的 href**，管的是
@@ -587,6 +630,30 @@ def registered_scan_expectation():
     }
 
 
+# ── 错误输出与失败计数**合成一个动作**（Batch 159） ────────────────────
+# **为什么改结构而不是加一道检查**：方向五与方向六**各漏过一次 `fails += 1`**
+# ——闸门把问题打印出来了，**退出码却是 0**；而 build-site.sh、反验脚本、CI
+# **全都只看退出码**。同一个错误犯两次，说明「再加一道记得检查的闸」这条路线
+# 本身不可靠：**第三次还会犯**。
+#
+# **正确做法是让「打印报错」在语法上无法脱离「计入失败」**：本闸不再允许
+# 直接 `print("✗ …")`，一律走 `fail()`；第九道闸的**方向七**静态核对这一点。
+# `fail()` **不自己加 `✗` 标记**——标记留在调用方的字符串里，
+# 这样转换只是把 `print(` 换成 `fail(`，**字符串内容一个字都不动**
+# （第一版转换去掉了引号与 f 前缀，把隐式拼接的多行 f-string 弄坏了，已回退重做）。
+_FAILS = []
+
+
+def fail(msg):
+    """报告一处不一致。**打印与计数在同一个函数里，不可能只做一半。**"""
+    _FAILS.append(msg)
+    print(msg)
+
+
+def fail_count():
+    return len(_FAILS)
+
+
 def main():
     root = ROOT
     print("手册元数据核对：把「本手册有多少东西」逐条现场重数")
@@ -599,8 +666,6 @@ def main():
         print("元数据核对：0 条可核（截图真值前置不满足）")
         return 1
 
-    fails = 0
-
     # ── 方向一：逐条重数 ──
     for filename, kind, pat in REGISTRY:
         path = os.path.join(root, filename)
@@ -608,20 +673,17 @@ def main():
         try:
             text = open(path, encoding="utf-8").read()
         except OSError:
-            print(f"  ✗ {filename}：登记的文件不存在")
-            fails += 1
+            fail(f"  ✗ {filename}：登记的文件不存在")
             continue
         ms = [int(m.group(1)) for m in re.finditer(pat, text)]
         if not ms:
             # 登记的正则扫不到自己的条目 = 手册改了排版而登记表没跟上。
             # **这必须报错，不能当成「没有这条断言」**——静默通过是这类闸门最常见的失效。
-            print(f"  ✗ {filename}：{COUNTER_LABEL[kind]} 的登记正则扫不到（手册可能改了写法）")
-            fails += 1
+            fail(f"  ✗ {filename}：{COUNTER_LABEL[kind]} 的登记正则扫不到（手册可能改了写法）")
             continue
         bad = [v for v in ms if v != actual]
         if bad:
-            print(f"  ✗ {filename}：{COUNTER_LABEL[kind]} 写 {sorted(set(bad))}，实际 {actual}")
-            fails += 1
+            fail(f"  ✗ {filename}：{COUNTER_LABEL[kind]} 写 {sorted(set(bad))}，实际 {actual}")
         else:
             print(f"  ✓ {filename}：{COUNTER_LABEL[kind]} = {actual}")
 
@@ -632,17 +694,14 @@ def main():
         reg = {f: set() for (f, k, _p) in REGISTRY if k == kind}
         for f, vals in found[kind].items():
             if f not in reg:
-                print(f"  ✗ 「{sorted(vals)[0]}」形态出现在 {f}，但未登记为 {COUNTER_LABEL[kind]}")
-                fails += 1
+                fail(f"  ✗ 「{sorted(vals)[0]}」形态出现在 {f}，但未登记为 {COUNTER_LABEL[kind]}")
                 continue
             reg[f] |= vals
         for f, vals in sorted(reg.items()):
             if not vals:
-                print(f"  ✗ {f}：登记为 {COUNTER_LABEL[kind]}，但扫描命中为空（登记项已失效）")
-                fails += 1
+                fail(f"  ✗ {f}：登记为 {COUNTER_LABEL[kind]}，但扫描命中为空（登记项已失效）")
             elif found[kind].get(f) != vals:
-                print(f"  ✗ {f}：{COUNTER_LABEL[kind]} 扫描值 {sorted(found[kind][f])} ≠ 登记值 {sorted(vals)}")
-                fails += 1
+                fail(f"  ✗ {f}：{COUNTER_LABEL[kind]} 扫描值 {sorted(found[kind][f])} ≠ 登记值 {sorted(vals)}")
 
     total = len(REGISTRY)
 
@@ -650,30 +709,25 @@ def main():
     # 方向三/四/四之二/五的失败不属于「登记表里的 N 条计数」，
     # 共用一个计数器会让汇总行把「闸门清单不一致」说成「某条计数对不上」——
     # **汇总行报错因，比报错本身更难查**（Batch 157 的老毛病又长出一处）。
-    count_fails = fails
+    count_fails = fail_count()
 
     # ── 方向三：闸门清单三方一致 ──
     print("-" * 62)
     declared, rows, listed, invoked = gate_inventory(root)
     if declared is None:
-        print("  ✗ AUDIT-RULES.md 找不到「现有 N 道闸」标题")
-        fails += 1
+        fail("  ✗ AUDIT-RULES.md 找不到「现有 N 道闸」标题")
     else:
         if declared != rows:
-            print(f"  ✗ AUDIT-RULES.md 标题写「{declared} 道闸」，清单表却有 {rows} 行")
-            fails += 1
+            fail(f"  ✗ AUDIT-RULES.md 标题写「{declared} 道闸」，清单表却有 {rows} 行")
         expect_rows = len(invoked) + INLINE_GATE_SLACK
         if rows != expect_rows:
-            print(f"  ✗ 清单表 {rows} 行 ≠ build-site.sh 实际调用的 {len(invoked)} 个闸"
+            fail(f"  ✗ 清单表 {rows} 行 ≠ build-site.sh 实际调用的 {len(invoked)} 个闸"
                   f" + 内联 {INLINE_GATE_SLACK} 道（应 {expect_rows} 行）")
-            fails += 1
         for name in sorted(listed - invoked):
-            print(f"  ✗ 清单表列了 scripts/verify-{name}.py，但 build-site.sh 从不调用它")
-            fails += 1
+            fail(f"  ✗ 清单表列了 scripts/verify-{name}.py，但 build-site.sh 从不调用它")
         for name in sorted(invoked - listed):
-            print(f"  ✗ build-site.sh 调用了 scripts/verify-{name}.py，清单表却没有登记")
-            fails += 1
-        if fails == 0:
+            fail(f"  ✗ build-site.sh 调用了 scripts/verify-{name}.py，清单表却没有登记")
+        if not _FAILS:
             print(f"  ✓ 闸门清单三方一致：标题 {declared} 道 = 表 {rows} 行"
                   f" = build-site 实际 {len(invoked)} 个脚本 + 内联 {INLINE_GATE_SLACK} 道")
 
@@ -681,12 +735,10 @@ def main():
     print("-" * 62)
     missing, mismatched, n_pairs, n_pages = index_check(root)
     for f in missing:
-        print(f"  ✗ 任务页 {f} 不在 {INDEX_FILE} 的索引里（建了页面忘了登记）")
-        fails += 1
+        fail(f"  ✗ 任务页 {f} 不在 {INDEX_FILE} 的索引里（建了页面忘了登记）")
     for target, label, want in mismatched:
-        print(f"  ✗ 索引里 {target} 的链接文字「{label}」与页面标题「{want}」既不相同、"
+        fail(f"  ✗ 索引里 {target} 的链接文字「{label}」与页面标题「{want}」既不相同、"
               f"也不是「标题（提示）」形态")
-        fails += 1
     if not missing and not mismatched:
         print(f"  ✓ 任务索引双向一致：{n_pages} 个任务页全部登记，"
               f"{n_pairs} 条链接文字与页面标题一致（含有意的「标题（提示）」形态）")
@@ -695,8 +747,7 @@ def main():
     print("-" * 62)
     sb_missing, n_sb = sidebar_check(root)
     for f in sb_missing:
-        print(f"  ✗ 任务页 {f} 不在 vitepress 侧栏里（站点主导航缺入口，读者发现不了）")
-        fails += 1
+        fail(f"  ✗ 任务页 {f} 不在 vitepress 侧栏里（站点主导航缺入口，读者发现不了）")
     if not sb_missing:
         print(f"  ✓ 侧栏覆盖：{n_sb} 个任务页全部在侧栏"
               f"（只查存在性——侧栏用短标题是设计，不比文字）")
@@ -705,9 +756,8 @@ def main():
     print("-" * 62)
     bad_escapes = regex_engine_check(root)
     for path, pat, esc in bad_escapes:
-        print(f"  ✗ {path} 的 git grep -E 模式含 {esc}（git grep 的 ERE 不支持它，"
+        fail(f"  ✗ {path} 的 git grep -E 模式含 {esc}（git grep 的 ERE 不支持它，"
               f"会**静默永不匹配**）：{pat[:60]}")
-        fails += 1
     if not bad_escapes:
         print(f"  ✓ 正则引擎兼容：闸门脚本的 git grep 模式不含 git 不支持的形态"
               f"（\\s \\d \\w \\b / [^\\n] / 重复数>255 / 惰性量词 / \\xNN）"
@@ -717,25 +767,31 @@ def main():
     print("-" * 62)
     dead, viol, orphans, lst = link_integrity_check(root)
     for rel, tgt in dead:
-        print(f"  ✗ {rel} 的链接指向不存在的文件：{tgt}")
-        fails += 1
+        fail(f"  ✗ {rel} 的链接指向不存在的文件：{tgt}")
     for rel, tgt, why in viol:
-        print(f"  ✗ {rel}：{why} —— {tgt}")
-        fails += 1
+        fail(f"  ✗ {rel}：{why} —— {tgt}")
     for p in orphans:
-        print(f"  ✗ {p} 没有任何入链、也不在侧栏（站点首页除外）——读者在站点里发现不了它")
-        fails += 1
+        fail(f"  ✗ {p} 没有任何入链、也不在侧栏（站点首页除外）——读者在站点里发现不了它")
     if not dead and not viol and not orphans:
         print(f"  ✓ 内链完整：{lst['pages']} 个内容页、{lst['links']} 条 .md 相对链接 + "
               f"{lst['imgs']} 张 <img> 全部可达；无 #fragment、无绝对路径、无孤儿页"
               f"（外链 {lst['external']} 条）")
 
-    if fails:
+    # ── 方向七：闸门不得「只报错不失败」 ──
+    print("-" * 62)
+    bare = bare_error_prints(root)
+    for lineno, frag in bare:
+        fail(f"verify-meta.py:{lineno} 直接 print ✗ 却不经计数函数，退出码会仍是 0 —— {frag}")
+    if not bare:
+        print("  ✓ 报错即失败：闸门脚本里所有 ✗ 都经计数函数或紧跟 return 1，"
+              "**不存在「只报错不失败」**")
+
+    if _FAILS:
         print(f"元数据核对：登记表 {total} 条中 {total - count_fails} 条计数一致"
-              f"（{count_fails} 条不一致）；另有 {fails - count_fails} 处属方向三/四/四之二/五/六")
+              f"（{count_fails} 条不一致）；另有 {len(_FAILS) - count_fails} 处属方向三/四/四之二/五/六/七")
         return 1
     print(f"元数据核对：登记表 {total} 条计数全部与现场重数一致，"
-          f"且方向三/四/四之二/五/六亦全部通过")
+          f"且方向三/四/四之二/五/六/七亦全部通过")
     return 0
 
 

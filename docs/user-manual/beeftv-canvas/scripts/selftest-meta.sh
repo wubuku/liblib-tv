@@ -398,6 +398,21 @@ else
   restore
 fi
 
+# ── 方向七（Batch 159 新增）：闸门不得「只报错不失败」 ──
+#
+# **这条不变式来自两次真实事故**：方向五与方向六**各漏过一次 `fails += 1`**，
+# 闸门把问题打印出来了、**退出码却是 0**，而 build-site.sh / 反验 / CI 只看退出码。
+# 修法不是「再加一道记得检查的闸」（同一个错误已经犯两次，第三次还会犯），
+# 而是让 `print("✗ …")` **在结构上无法与计数分开**。
+#
+# 用例 22 尤其不能省：早退 `return 1` 是**正确写法**，
+# 若方向七不豁免它，就得把早退改成累加器——**为让闸门闭嘴而改坏代码**。
+run_file_case "21) 把 fail() 换回裸 print（必须报）" \
+  "scripts/verify-meta.py" "$HERE/selftest-meta-fix-21-bare-error-print.py" \
+  "退出码会仍是 0"
+run_file_pass_case "22) 早退路径上的裸 ✗ 打印（必须不报）" \
+  "scripts/verify-meta.py" "$HERE/selftest-meta-fix-22-early-return-exempt.py"
+
 echo "=== 基线：真实仓库应当通过 ==="
 restore
 if python3 "$GATE" >/dev/null 2>&1; then
