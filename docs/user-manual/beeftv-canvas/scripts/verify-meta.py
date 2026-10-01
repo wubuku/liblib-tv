@@ -124,6 +124,59 @@ def count_screenshots(root):
     return len(_manifest(root))
 
 
+# ── 方向三：闸门清单自洽（本闸盯着闸门清单表自己） ──────────────────
+#
+# **为什么需要这个方向**：Batch 145 抓到 `AUDIT-RULES.md` 的「现有 N 道闸」清单表
+# **漏登记了 Batch 143 自己加的第七道**。Batch 146 加第八道时——**又漏了一次**
+# （改了脚本、改了纪律条目，唯独没回头改那张表）。
+#
+# **两次同向的遗漏，足以说明靠人记不住**。而这件事本可以机器查：
+# 清单表里列的脚本、`build-site.sh` 里实际调用的脚本、以及标题里的数量，
+# **三个都是可数的**。这是第八道闸最该盯的东西——**它盯的是闸门体系自己**。
+#
+# 口径：
+#   · 「站内死链」那道是 `build-site.sh` **内联**的，没有独立脚本，
+#     所以 **表行数 = 独立 verify 脚本数 + 1**。这条偏移是**设计如此**，
+#     写死在这里而不是靠人去数——第一版就是因为忘了这个 +1 而自报错。
+#   · 只统计 `scripts/verify-*.py`：selftest-*.sh 是反向验证，不参与构建期检查。
+
+INLINE_GATE_SLACK = 1
+
+
+def gate_inventory(root):
+    """返回 (标题声明数, 清单表行数, 表里列出的脚本名集合, build-site 实际调用集合)。"""
+    rules_path = os.path.join(root, "AUDIT-RULES.md")
+    rules = open(rules_path, encoding="utf-8").read()
+
+    m = re.search(r"###\s*现有\s*([一二三四五六七八九十]+|\d+)\s*道闸", rules)
+    declared = _cn_int(m.group(1)) if m else None
+
+    # 清单表：标题之后的第一张表，取含「脚本」表头的那张
+    rows, listed = 0, set()
+    if m:
+        body = rules[m.end():]
+        for line in body.split("\n"):
+            if line.startswith("## ") or line.startswith("### "):
+                break
+            if line.startswith("|") and "脚本" not in line and not re.match(r"\|\s*-+", line):
+                if "`" in line:
+                    rows += 1
+                    for s in re.findall(r"scripts/(verify-[a-z-]+)\.py", line):
+                        listed.add(s)
+            if rows and line.strip() == "":
+                break
+
+    build = open(os.path.join(root, "build-site.sh"), encoding="utf-8").read()
+    invoked = set(re.findall(r"python3\s+scripts/(verify-[a-z-]+)\.py", build))
+    return declared, rows, listed, invoked
+
+
+def _cn_int(s):
+    digits = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5,
+              "六": 6, "七": 7, "八": 8, "九": 9, "十": 10}
+    return int(s) if s.isdigit() else digits.get(s)
+
+
 def screenshots_match_disk(root):
     """manifest 的 `file` 字段是**相对仓库根**的路径（如 `screenshots/01-home.png`）。
 
@@ -288,6 +341,32 @@ def main():
                 fails += 1
 
     total = len(REGISTRY)
+
+    # ── 方向三：闸门清单三方一致 ──
+    print("-" * 62)
+    declared, rows, listed, invoked = gate_inventory(root)
+    if declared is None:
+        print("  ✗ AUDIT-RULES.md 找不到「现有 N 道闸」标题")
+        fails += 1
+    else:
+        if declared != rows:
+            print(f"  ✗ AUDIT-RULES.md 标题写「{declared} 道闸」，清单表却有 {rows} 行")
+            fails += 1
+        expect_rows = len(invoked) + INLINE_GATE_SLACK
+        if rows != expect_rows:
+            print(f"  ✗ 清单表 {rows} 行 ≠ build-site.sh 实际调用的 {len(invoked)} 个闸"
+                  f" + 内联 {INLINE_GATE_SLACK} 道（应 {expect_rows} 行）")
+            fails += 1
+        for name in sorted(listed - invoked):
+            print(f"  ✗ 清单表列了 scripts/verify-{name}.py，但 build-site.sh 从不调用它")
+            fails += 1
+        for name in sorted(invoked - listed):
+            print(f"  ✗ build-site.sh 调用了 scripts/verify-{name}.py，清单表却没有登记")
+            fails += 1
+        if fails == 0:
+            print(f"  ✓ 闸门清单三方一致：标题 {declared} 道 = 表 {rows} 行"
+                  f" = build-site 实际 {len(invoked)} 个脚本 + 内联 {INLINE_GATE_SLACK} 道")
+
     if fails:
         print(f"元数据核对：{total - fails} 条一致，{fails} 条不一致")
         return 1
