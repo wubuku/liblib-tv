@@ -11,7 +11,7 @@
 - 当前目标：为 TDCanvas（桌面端 AI 无限画布，v0.14.0）的普通创作者编写中文、任务导向、可回走验证的用户手册。
 - 当前专项目录：`docs/user-manual/tdcanvas-canvas/`。
 - 被测应用：TDCanvas 本地工作副本 `/Users/yangjiefeng/Documents/AICoderTudou/TDCanvas`（锁定提交 `16b3127`），`web/` 下 `npm run dev`（需 nvm node 24）→ **http://localhost:3000**。
-- 本轮已完成：**14 个任务**全部运行时走查并 verified；Gate A 与 final audit 均通过（14 tasks / 25 Markdown / 48 images，sha256 全校验）；站点构建 21 页 / 48 图 / 16M。调研包 `docs/research/tdcanvas-2026-09-26/`（47 轮迭代）与真实素材运行时探索（RUNTIME_AUDIT.md）为任务底稿。
+- 本轮已完成：**14 个任务**全部运行时走查并 verified；Gate A 与 final audit 均通过（14 tasks / 25 Markdown / 51 images，sha256 全校验）；站点构建 21 页 / 51 图 / 17M。调研包 `docs/research/tdcanvas-2026-09-26/`（47 轮迭代）与真实素材运行时探索（RUNTIME_AUDIT.md）为任务底稿。
 - **M20–M22 摘要（2026-09-30）**：新增 `manage-assets`（我的资产，全链回走）与 `use-prompt-library`（提示词库，如实记录来源为空且无配置入口）两任务；补「导入资产」端到端还原回走；quickstart 增导航导览。详见本文件末尾 M20/M21/M22 条目。
 - **最近进展（2026-09-27）**：dev server 重启并清空本地数据获得干净首启；create-canvas-project 完成运行时走查与成稿（3 截图入 manifest）；**修正已知问题**——新项目默认标题实测「TDCanvas 1」（清数据后编号从 1 起，此前「TDCanvas 2」为残留计数），AUDIT.md 对应条目已结。
 - **Batch M5（2026-09-27）**：generate-images（描述型：面板字段运行时取证、状态机/停止≠取消/刷新恢复为源码+官方文档取证并标注）+ undo-persistence + project-management + shortcuts-help 四任务成稿；manifest +3（累计 20 张）。12 任务全部 drafted。
@@ -84,9 +84,9 @@
 | 工作文档冻结 | 完成（本目录五件套） |
 | 逐任务探索 + 10-tasks 成稿 | 完成（14 任务全部 drafted 并回走；M20 补两个导航页面） |
 | 00-quickstart / 20-reference / 30-concepts / 90-troubleshooting | 完成（quickstart M22 增导航导览；M24 增 concepts 心智模型；**M31 重写 20-reference 与 90-troubleshooting 两个 0 图页面**，各配分诊导读与「为什么」层） |
-| Gate A | 通过（14 tasks / 25 Markdown / 48 images） |
+| Gate A | 通过（14 tasks / 25 Markdown / 51 images） |
 | Gate B 回走 + AUDIT.md | 通过（14/14，无 Blocker/Major） |
-| final audit + 交付报告 | 通过（exit 0）+ 站点构建 21 页 / 48 图 |
+| final audit + 交付报告 | 通过（exit 0）+ 站点构建 21 页 / 51 图 |
 
 - **Batch M6（2026-09-27）**：README 手册首页（任务索引表）+ 20-reference（键位/格式限制/状态表/设置项/存储）+ 30-concepts（节点类型/连线语义/双模式/项目/生成生命周期）成稿；manifest 重构为审计脚本 schema（26 条全字段 + sha256）、12 任务状态转换为 documented；**Gate A 通过**（12 tasks / 22 Markdown / 26 images）。剩余：Gate B 全量回走 → final audit。
 - **Batch M7（2026-09-28）Gate B 完成**：按手册从入口重走 12 任务全部通过（AUDIT.md 回走结论表）；回走中新发现 Minor 缺陷（上传无内容嗅探）已记录并即时清理；**final audit 通过**（12 任务全部 verified，exit 0）。手册 v1 交付完成。
@@ -97,7 +97,7 @@
 - **目标版本**：TDCanvas v0.14.0（锁定 `16b3127`）@ localhost:3000（Web）。
 - **角色**：tdcanvas-desktop-web-creator（本地创作者，深度 thorough）。
 - **覆盖率**：task-inventory **14/14** 任务 verified（1 个 generate-images 为描述型，付费边界前验证；use-prompt-library 为限制记录型）。
-- **验证密度**：**48 张截图**（manifest 全字段+sha256）、14 任务回走（v1 阶段发现并修正 5 处问题：1 行号漂移、1 悬空 § 引用、1 卡号错位、1 README 状态过时、1 路径归属；M20–M22 新发现 3 处产品/一致性问题并写入手册；M24–M31 续发现 5 处，含 2 处**手册自身错误**——「历史版本」被写成「历史」、臆造了不存在的 `?` 键位）、五项自检 + verify-docs + Gate A/final audit 全绿。
+- **验证密度**：**51 张截图**（manifest 全字段+sha256）、14 任务回走（v1 阶段发现并修正 5 处问题：1 行号漂移、1 悬空 § 引用、1 卡号错位、1 README 状态过时、1 路径归属；M20–M22 新发现 3 处产品/一致性问题并写入手册；M24–M31 续发现 5 处，含 2 处**手册自身错误**——「历史版本」被写成「历史」、臆造了不存在的 `?` 键位）、五项自检 + verify-docs + Gate A/final audit 全绿。
 - **未覆盖项**：生成类付费流程的运行时回走（红线）、ComfyUI 环境全流程、Agent 连接全流程、真实多用户协作；**提示词库有内容时的交互**（产品侧无提示词来源数据且无配置入口，运行时无法造数）。
 - **已知限制**：多标签同项目编辑互相覆盖（产品缺陷，已入排障）；上传无内容嗅探（Minor，**M31 已用 FFmpeg 解码错误码坐实**）；缩放手柄在低缩放下较小（已补验：放大至 100% 后可精确拖拽，锁比保持）；视频资产无「编辑」按钮（Minor）；导航「提示词库」与页面标题「提示词中心」名称不统一（一致性）；**界面品牌名「AI 土豆」与文档用名 Aitudou 不一致**（M31 已说明为同一平台）；**图片「历史版本」入口在版本 < 2 时完全不渲染**（M31 源码确认）。
 - **维护入口**：本文件 §1 → task-inventory → AUDIT；上游更新时按 UPSTREAM_DIFF_AUDIT 协议增量重验。
