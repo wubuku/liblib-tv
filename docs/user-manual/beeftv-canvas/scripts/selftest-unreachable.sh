@@ -98,6 +98,8 @@ run_case "24) 审美批改两层统一成都取第一张" web/src/components/can
 run_case "25) 画风执行策略取消严格分支" web/src/lib/canvas/style-profile.ts "$HERE/selftest-fix-25-style-policy-fixed.py" 'executionPolicy?: "compatible-fallback";' "style-execution-policy-two-branches"
 run_case "26) local 标记不再写死 true" web/src/services/workspace-mode.ts "$HERE/selftest-fix-26-channel-title-merged.py" 'local: capabilitySnapshot?.profile === "remote"' "channel-page-three-names"
 
+run_case "27) /dev 调试台接上侧栏入口" web/src/components/layout/workspace-sidebar-nav.tsx "$HERE/selftest-fix-27-dev-lab-entry.py" 'to: "/dev/folders"' "dev-lab-routes-no-entry"
+
 echo "=== 基线：真实 origin/main 应当通过 ==="
 if python3 "$GATE" >/dev/null 2>&1; then echo "  ✓ origin/main 通过"; else echo "  ✗ origin/main 未通过"; FAIL=$((FAIL+1)); fi
 

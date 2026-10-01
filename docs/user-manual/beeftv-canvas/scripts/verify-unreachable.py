@@ -973,6 +973,98 @@ def p_channel_page_three_names(src):
     return not re.search(r'label:\s*\w+\s*\?[^,]*个人渠道', settings)
 
 
+DEV_ROUTE_FOLDERS = "/dev/folders"
+DEV_ROUTE_REPRO = "/dev/director-repro"
+
+
+def p_dev_lab_routes_no_entry(src):
+    """`/dev/folders` 与 `/dev/director-repro` 是开发调试台，**界面上零入口**。
+
+    Batch 155 查 20-reference 的路由表覆盖度时发现：上游 `router.tsx` 注册了 22 条路径，
+    手册只覆盖 15 条，漏掉的里有**这两个开发调试台**——它们与已在闸的
+    `/test-voice-recording`（`test-voice-page-no-ui-entry`）**完全同型**。
+
+    而且比那条更值得记：`app-providers.tsx` 里给导演台复现台写了专门的**隔离**逻辑
+    （跳过工作区启动，免得没后端时打出 502 污染判据），**但判断被 `import.meta.env.DEV`
+    包着**——源码注释自己写着「生产构建中本分支被摇树删除」。
+    **也就是说线上这两页照样会去打后端**，而手册原本一个字都没提。
+
+    判据要求：
+      (a) 两条路由在 `router.tsx` 里**都在**，且都指向 `pages/dev/` 下的组件；
+      (b) 两个页面组件**除 router 外零引用**——即界面上没有任何导航能到它们；
+      (c) **对照组**：隔离那段确实被 `import.meta.env.DEV` 包着。
+          少了 (c)，(a)(b) 只说明「它们是挂在路由上的冷页面」，
+          手册该写「开发调试台，线上可能打后端」；有了 (c) 才能断言
+          **「那段隔离在生产构建里不生效」**——这是手册那句话的依据。
+    """
+    router = git_show(src, "web/src/router.tsx")
+    if not router:
+        return None
+    # (a) 两条路由都在，且指向 pages/dev 组件
+    for route, comp in ((DEV_ROUTE_FOLDERS, "FolderPreviewLab"),
+                        (DEV_ROUTE_REPRO, "DirectorReproLab")):
+        if ('path: "' + route + '"') not in router:
+            return False
+        if comp not in router:
+            return False
+    # (b) 两个页面**零处导航入口**。
+    #
+    # **第一版写成「grep 组件名零额外引用」，被自己的反验用例 27 打回**：
+    # 反验往侧栏注入 `to: "/dev/folders"`，闸门却没报失效。
+    # 真因：**导航写的是路径，不是组件名**——`git grep FolderPreviewLab`
+    # 根本照不到 `to: "/dev/folders"`，因为侧栏**不需要 import 那个组件**。
+    # 这与 Batch 154 刚栽的「假通过」是同一类错误的镜像：
+    # 那次是注入没生效却被当成通过，这次是**判据管不到那个形态**。
+    #
+    # 正解就在隔壁 `p_test_voice_page_no_ui_entry` ——它 (c) 查的是
+    # **「全 web/src 零处导航到该路径」**。照它改：grep 路径字符串，
+    # 只允许 router.tsx 与页面自身命中。
+    #
+    # 教训：**判「有没有入口」要 grep 用户/代码实际会写的那一样**——
+    # 导航代码里出现的是 URL，不是组件标识符。
+    for route, page in ((DEV_ROUTE_FOLDERS, "web/src/pages/dev/folder-preview-lab.tsx"),
+                        (DEV_ROUTE_REPRO, "web/src/pages/dev/director-repro-lab.tsx")):
+        r = subprocess.run(
+            ["git", "grep", "-n", "-E", '"' + re.escape(route) + '"', REF, "--", "web/src"],
+            cwd=src, capture_output=True, text=True)
+        for line in (r.stdout or "").split("\n"):
+            if not line.strip():
+                continue
+            m = re.match(rf"^{re.escape(REF)}:(.+?):(\d+):", line)
+            if not m:
+                continue
+            path = m.group(1)
+            # 允许 router、页面自身，以及 app-providers.tsx。
+            #
+            # 最后一处豁免**不是放宽，是纠正一个真实的过严**：
+            # `app-providers.tsx:39` 有 `window.location.pathname === "/dev/director-repro"`
+            # ——那是 **isolateDevRepro 的判断条件**，用来**决定要不要隔离**，
+            # **它不是任何导航到该页面的入口**。第一版把它当「别处导航」直接 return False，
+            # 于是判据在**真实 origin/main 上就不成立**（连续第 N+1 次「判据过严」）。
+            #
+            # **判别依据**：导航入口会出现在 `to:` / `href` / `navigate(` 这类**动作**里；
+            # 而这里是**读取当前位置**做判断，动作方向相反。
+            if path in ("web/src/router.tsx", page, "web/src/components/layout/app-providers.tsx"):
+                continue
+            return False
+    # 同时确认组件名本身也没有被别处 import（两条独立证据）
+    for comp in ("FolderPreviewLab", "DirectorReproLab"):
+        r = subprocess.run(["git", "grep", "-l", "-F", comp, REF, "--", "web/src"],
+                           cwd=src, capture_output=True, text=True)
+        files = [x.split(":")[-1] if ":" in x else x for x in (r.stdout or "").split("\n") if x.strip()]
+        if len(files) > 2:
+            return False
+    # (c) 对照组：隔离被 DEV 包着
+    providers = git_show(src, "web/src/components/layout/app-providers.tsx")
+    if not providers:
+        return None
+    if 'const isolateDevRepro = import.meta.env.DEV' not in providers:
+        return False
+    if ('pathname === "' + DEV_ROUTE_REPRO + '"') not in providers:
+        return False
+    return "WorkspaceBootstrapHydrator" in providers
+
+
 # 第 4 个字段 scan_key = (文件, setter 名)，表示该条**同时**能被方向二的
 # 全量 setter 扫描覆盖；为 None 表示**只有专属判据**（判据形态不同，
 # 例如「ref 零 click」或「路由先 Navigate」，setter 扫描天然照不到）。
@@ -1032,6 +1124,8 @@ REGISTRY = [
      p_style_execution_policy_two_branches, None),
     ("channel-page-three-names", "模型配置页三个名字并存，「个人渠道」作大标题的分支永不渲染",
      p_channel_page_three_names, None),
+    ("dev-lab-routes-no-entry", "两个 /dev 调试台挂在生产路由但界面零入口，且隔离逻辑是 DEV-only",
+     p_dev_lab_routes_no_entry, None),
 ]
 
 
