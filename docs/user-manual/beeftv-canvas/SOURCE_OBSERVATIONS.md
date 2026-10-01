@@ -72,3 +72,15 @@ BeefTV 工作区当前是 **detached HEAD `@852961a`（v1.6.14）**，而手册�
 | 顶栏同时并存两个名字 | **runtime** | v1.6.14 dev :3001，外部无头 Playwright 1440×900，截图 57 |
 | 两种改名瞬间写请求 0；库内改名可被后续内容保存带上、顶栏改名带不上 | **runtime** | 同上，观测 `/api/canvas-projects` 的 PUT/POST/PATCH |
 
+## Batch 137 新增证据锚点（什么会触发上传）
+
+| 断言 | 证据 | 位置 |
+|---|---|---|
+| 自动保存只盯 7 个内容字段 | static | `web/src/pages/canvas/use-canvas-project-lifecycle.ts:277,280` |
+| 内容不变则不保存（逐字段全等 return） | static | 同文件 `:283`（`Object.entries(patch).every(...)`） |
+| 变化后 500ms 防抖再 PUT | static | 同文件 `:285` → `local-workspace-repository.ts:228-235` |
+| 后端不收 `canvasTitle` | static + **runtime** | 多次实测后端响应里 `canvasTitle` 恒为 `undefined` |
+| 复制那一刻写请求 0、编辑一次后 PUT 到副本自己 | **runtime** | v1.6.14 dev :3001，观测 `/api/canvas-projects`；编辑后服务端可查到该副本（节点数一致、revision 前进） |
+| 库内改名当次不存、随下一次内容保存存上 | **runtime** | 同上 |
+| 顶栏改名无论编辑多少次都存不上 | **runtime** | 同上 |
+

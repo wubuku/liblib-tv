@@ -81,6 +81,7 @@ run_case "8) stay=1 被提升为正式功能" web/src/pages/canvas/index.tsx "$H
 run_case "9) 方向三：新增一个未归类的零写出参数" web/src/pages/canvas/index.tsx "$HERE/selftest-fix-9-unmapped-param.py" "canvasSelftestUnmapped" "既不在豁免名单也不在缺陷登记里"
 run_case "10) 两处改名统一到同一字段" web/src/components/canvas/canvas-folder-card.tsx "$HERE/selftest-fix-10-two-names-merged.py" "updateProject(project.id, { canvasTitle: editingTitle })" "canvas-two-names"
 run_case "11) 顶栏改名补上后端同步" web/src/pages/canvas/project.tsx "$HERE/selftest-fix-11-rename-sync.py" "await syncLocalCanvasProjectToBackend(canvasId);" "canvas-rename-never-uploaded"
+run_case "12) 自动保存开始盯 title/canvasTitle" web/src/pages/canvas/use-canvas-project-lifecycle.ts "$HERE/selftest-fix-12-autosave-watches-title.py" "title: currentProject?.title" "canvas-autosave-watches-content-only"
 
 echo "=== 基线：真实 origin/main 应当通过 ==="
 if python3 "$GATE" >/dev/null 2>&1; then echo "  ✓ origin/main 通过"; else echo "  ✗ origin/main 未通过"; FAIL=$((FAIL+1)); fi

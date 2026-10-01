@@ -223,7 +223,13 @@ def p_readonly_no_ui_entry(src):
 
 
 def p_copy_not_synced(src):
-    """画布副本不上传：顶栏「复制画布」与只读「复制项目」都只写本地，从不上传。
+    """画布副本「复制那一刻」不上传：顶栏「复制画布」与只读「复制项目」都只写本地。
+
+    ⚠️ 判据的范围要说准，否则会被误读成「副本永远不落盘」——**这是 Batch 137
+    实测纠正过的**：复制后只要**做一次内容编辑**，500ms 防抖的内容保存就会把
+    副本 PUT 上去（目标就是副本自己）。所以本条断言的准确表述是
+    **「复制这个动作本身不触发上传」**，手册也据此写成「复制完顺手改一笔」，
+    而不是「副本永远只在本机」。
 
     判据要求三者同时成立，缺一即上游已修：
       (a) 两条复制入口都调用 store 的 importProject（纯内存 set，无网络）；
@@ -254,6 +260,39 @@ def p_copy_not_synced(src):
     if not m2:
         return False
     return "http." not in m2.group(0) and "fetch(" not in m2.group(0)
+
+
+def p_content_watcher_excludes_title(src):
+    """自动保存只盯「画布内容」字段，**title / canvasTitle 不在监视列表里**。
+
+    这是 Batch 135/136 三个缺陷的共同根因：改名不触发保存、复制不触发保存。
+    判据要求：
+      (a) 内容保存那个 effect 的 snapshot/patch 只含内容字段
+          （nodes/connections/chatSessions/activeChatId/appearance/backgroundMode/showImageInfo）；
+      (b) snapshot 与 patch 里都**不出现** title / canvasTitle；
+      (c) 差异判定存在（stored 全等则 return），这解释了「复制因为内容没变而不保存」。
+    """
+    body = git_show(src, "web/src/pages/canvas/use-canvas-project-lifecycle.ts")
+    if not body:
+        return None
+    snaps = re.findall(r"const (?:snapshot|patch) = \{([^}]*)\};", body)
+    if len(snaps) < 2:
+        return False
+    for s_ in snaps[:2]:
+        if re.search(r"\b(canvasTitle|title)\b", s_):
+            return False
+    # 外观字段在 snapshot 里是简写 `canvasAppearance`（状态变量名），
+    # 在 patch 里是 `appearance: canvasAppearance`（字段名）——**判据不能假设
+    # 两处写法一致**，否则会把这个正确成立的断言误报成失效（Batch 137 首轮就踩了）。
+    common = {"nodes", "connections", "chatSessions", "activeChatId",
+              "backgroundMode", "showImageInfo"}
+    for s_ in snaps[:2]:
+        keys = {k.strip().split(":")[0].strip() for k in s_.split(",") if k.strip()}
+        if not common.issubset(keys):
+            return False
+        if not ({"appearance", "canvasAppearance"} & keys):
+            return False
+    return "scheduleLocalCanvasBackendSync" in body and "every(([key, value])" in body
 
 
 def p_stay_acceptance_only(src):
@@ -299,6 +338,10 @@ def p_rename_two_names(src):
 
 def p_rename_not_synced(src):
     """改名同样绕过了带后端同步的保存路径：两处改名都只有 flushCanvasStorePersistence。
+
+    ⚠️ 同样要说准范围（Batch 137 实测）：**画布库改的名会被下一次内容保存顺带存上去**
+    （它写的是 title，后端收）；**顶栏改的名永远不会**（它写 canvasTitle，后端不收这个
+    字段）。所以本条断言是「改名动作本身不触发上传」，不是「改名永远不落盘」。
 
     与 p_copy_not_synced 同族但**不是同一条**：复制的问题是新项目没被上传，
     改名的问题是**已有项目的元数据没被上传**，而对照组（createLocalCanvasProject）
@@ -352,8 +395,10 @@ REGISTRY = [
     ("canvas-stay-acceptance-only", "画布库 `?stay=1` 只为验收脚本存在", p_stay_acceptance_only, None),
     ("canvas-two-names", "一张画布两个名字：顶栏与画布库互不同步",
      p_rename_two_names, None),
-    ("canvas-rename-never-uploaded", "画布改名（两处）都只写本地、从不上传",
+    ("canvas-rename-never-uploaded", "画布改名（两处）当次不上传",
      p_rename_not_synced, None),
+    ("canvas-autosave-watches-content-only", "自动保存只盯内容字段、不含名字",
+     p_content_watcher_excludes_title, None),
 ]
 
 
