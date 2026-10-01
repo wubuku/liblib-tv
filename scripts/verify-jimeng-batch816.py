@@ -226,7 +226,7 @@ def main() -> int:
         # ── 3. 字体菜单 ─────────────────────────────────────────────
         # 先重置再开菜单：反过来的话 reset 里的点击会走到已经打开的菜单上。
         reset_editor(page)
-        page.locator('[data-testid="text-format-toolbar"] button[aria-label="字体"]').click()
+        page.locator('[data-testid="text-format-toolbar"] button[aria-label="Text style"]').click()
         page.wait_for_timeout(400)
         fm = page.locator('[data-testid="text-font-menu"]')
         items = fm.locator('[role="menuitem"]').all_inner_texts() if fm.count() else []
@@ -241,15 +241,21 @@ def main() -> int:
                   st["inner"] != before and "<h1" in (st["inner"] or "") and st["editing"],
                   f"{str(before)[:30]} -> {str(st['inner'])[:40]}")
 
-        # ── 4. 第 8 个按钮：如实记录，不假装接好了 ───────────────────
-        exp = page.locator('[data-testid="text-expand"]')
-        before = page.evaluate(EDITOR_JS)["inner"]
-        exp.click()
-        page.wait_for_timeout(400)
-        st = page.evaluate(EDITOR_JS)
-        check("4.1 「展开编辑」是**已知未接**的第 8 个按钮（如实断言现状）",
-              st["inner"] == before and st["editing"],
-              "OPEN_QUESTION 816-a：源站形态未取证，本批不猜")
+        # ── 4. 第 8 个按钮 ──────────────────────────────────────────
+        # 批 816 写这条时它是 OPEN_QUESTION 816-a（源站形态未取证，断言"点了没变化"）。
+        # 批 817 拿到源站实名并接成真面板：aria-label 是「**全屏**」，
+        # 点开的面板叫「**全屏编辑**」。故本条改为守源站实名，
+        # 面板行为断言挪到 verify-jimeng-batch817.py。
+        eighth = page.evaluate(
+            """() => {
+                const bar = document.querySelector('[data-testid="text-format-toolbar"]');
+                if (!bar) return null;
+                const b = [...bar.querySelectorAll('button')].pop();
+                return b ? b.getAttribute('aria-label') : null;
+            }"""
+        )
+        check("4.1 第 8 个按钮名是源站的「全屏」（批 816 写的是猜的「展开编辑」）",
+              eighth == "全屏", str(eighth))
 
         # ── 5. 落库：Enter 提交 / Escape 取消 ────────────────────────
         # 判据坑：点完「展开编辑」焦点在按钮上，Enter 会被按钮吃掉，到不了编辑面。

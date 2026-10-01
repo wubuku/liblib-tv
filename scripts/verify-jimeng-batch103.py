@@ -26,15 +26,18 @@ BASE_URL = os.environ.get("JIMENG_BASE_URL", "http://localhost:4317")
 CANVAS_URL = f"{BASE_URL}/jimeng/canvas/demo"
 VIEWPORT = {"width": 1680, "height": 826}
 
+# 批 817 订正：第 1 与第 8 个的名字是批 241 **猜的**（「字体」「展开编辑」）。
+# 源站逐项实测的 aria-label 是 "Text style"（48×32，唯一带 chevron）与「全屏」
+# （32×32，点开的面板叫「全屏编辑」）。见 verify-jimeng-batch817.py 与 README §26。
 WANT_BUTTONS = [
-    "字体",
+    "Text style",
     "无序列表",
     "有序列表",
     "加粗",
     "删除线",
     "斜体",
     "下划线",
-    "展开编辑",
+    "全屏",
 ]
 
 
@@ -109,7 +112,7 @@ def main() -> None:
         for f in failures:
             print("  -", f)
         raise SystemExit(1)
-    print("PASS batch 103: text editing rich-text toolbar (8 mock buttons)")
+    print("PASS batch 103: text editing rich-text toolbar (8 buttons)")
 
 
 if __name__ == "__main__":

@@ -14,6 +14,7 @@ import {
   Strikethrough,
   Type,
   Underline,
+  X,
 } from "lucide-react";
 import type { NodeProps } from "@xyflow/react";
 
@@ -62,6 +63,14 @@ function normalizeRichHtml(html: string) {
  * 另有工具条 背景色(调色板: 无+青绿/靛蓝/紫/橙/黄 六格) / 展开钮 /
  * 下载——「选中无工具条」的批 68 观察已被源站演进推翻。
  *
+ * ── Batch 817：两个按钮名订正 + 「全屏编辑」接上 ──────────────────
+ * 批 241 给这 8 个按钮起的名有两个是**猜的**，批 816 逐项向源站核对后订正
+ * （aria-label 与几何均实测，见 README §26）：
+ *   第 1 个：复刻「字体」   → 源站 aria-label 是英文 "Text style"，48×32（带 chevron）
+ *   第 8 个：复刻「展开编辑」→ 源站 aria-label 是「**全屏**」32×32，点开的面板
+ *             标题是「**全屏编辑**」（实测 126×42 的标签按钮 @[1340,406]）
+ * 第 8 个此前是本文件留的 OPEN_QUESTION 816-a，本批拿到形态，接成真面板。
+ *
  * ── Batch 816：工具条从"视觉 mock"接成真行为 ──────────────────────
  * 批 241 把这 8 个按钮明确标为「视觉 mock，未接真实格式化」。本批接上 7 个，
  * 依据是源站逐键实测（README §25，全部带 contenteditable 前置态门禁）：
@@ -81,7 +90,14 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
   const [editing, setEditing] = useState(false);
   const [fontMenuOpen, setFontMenuOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
   const editorRef = useRef<HTMLDivElement>(null);
+  const fsRef = useRef<HTMLDivElement>(null);
+  /** 批 817: 全屏面板的初始内容，在**点击那一刻**从行内编辑面取。
+   *  踩过的坑：一开始让 effect 去读 d.html，灌出来是上一次保存的旧内容 ——
+   *  commit() 写 store 与 setFullscreen 在同一批里，但 effect 跑的时候
+   *  data prop 还没更新到。改成点击时先取值存 ref，effect 只负责灌。 */
+  const fsSeedRef = useRef("");
 
   /** 进入编辑态的初始内容：优先富文本，回落纯文本 */
   const initialHtml = d.html ?? (d.text ? `<p>${escapeHtml(d.text)}</p>` : "");
@@ -103,6 +119,18 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
     el?.focus();
   }, [editing, initialHtml]);
 
+  // 批 817: 全屏编辑面同样由 effect 灌一次内容（理由同上面的 editing 分支：
+  // 一旦用 dangerouslySetInnerHTML，重渲染就会把用户输入抹掉）
+  useEffect(() => {
+    if (!fullscreen) return;
+    const el = fsRef.current;
+    if (el) {
+      el.innerHTML = fsSeedRef.current;
+      el.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fullscreen]);
+
   const updateNodeData = useJimengStore((s) => s.updateNodeData);
   // Batch 48: 提交写回 store (mock 文字节点真实联动)；批 816 起同时写富文本 HTML
   const commit = () => {
@@ -115,11 +143,24 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
     updateNodeData(id, { html: nextHtml, text: nextText });
   };
 
-  // ── Batch 816: 源站实测的 10 个文本快捷键 ──────────────────────────
-  // 走 execCommand：它作用在当前选区上，与源站「选区加粗」的行为一致，
+  /** 批 817: 全屏编辑面的提交（写回同一个节点的 html/text） */
+  const commitFs = () => {
+    const el = fsRef.current;
+    if (!el) return;
+    updateNodeData(id, {
+      html: normalizeRichHtml(el.innerHTML),
+      text: (el.innerText || "").trim(),
+    });
+  };
+
+  // ── Batch 816: 源站实测的 10 个文本快捷键 ──────────────────────────  // 走 execCommand：它作用在当前选区上，与源站「选区加粗」的行为一致，
   // 且不需要自己维护 Range。（批 241 的按钮是纯视觉 mock，现在共用这一套。）
+  // 批 817: 全屏编辑面复用同一套格式化，故这两个函数要作用在**当前激活**的
+  // 编辑面上，而不是写死 editorRef。
+  const activeEditor = () => (fullscreen ? fsRef.current : editorRef.current);
+
   const exec = useCallback((cmd: string, value?: string) => {
-    const el = editorRef.current;
+    const el = activeEditor();
     if (!el) return;
     // 批 816: 点工具条按钮时焦点会短暂离开编辑面，再 focus() 回来时选区已经没了，
     // execCommand 就会作用在光标处而不是选中文字上。先存 Range、focus 后还原。
@@ -131,7 +172,8 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
       sel.addRange(saved);
     }
     document.execCommand(cmd, false, value);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fullscreen]);
 
   /** 块级切换（普通文本 / 一~三级标题，对应面板 ⌘⌥0~3）。
 
@@ -140,7 +182,7 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
    * 找到选区所在的最内层块，用目标标签重建它并把子节点搬过去，天然幂等。
    */
   const applyBlock = useCallback((tag: string) => {
-    const el = editorRef.current;
+    const el = activeEditor();
     if (!el) return;
     el.focus();
     const sel = window.getSelection();
@@ -181,7 +223,8 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
     r.selectNodeContents(next);
     sel.removeAllRanges();
     sel.addRange(r);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fullscreen]);
 
   const onEditorKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const mod = e.metaKey || e.ctrlKey;
@@ -221,6 +264,28 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
       setEditing(false);
       setFontMenuOpen(false);
     }
+  };
+
+  /** 批 817: 全屏编辑面的键盘。格式化键与行内共用（exec/applyBlock 已指向
+   *  当前激活面），Enter = 提交并留在全屏、Escape = 提交并关闭。
+   *  行内是 Enter 提交退出、Escape 取消，两处语义不同，故分开写。 */
+  const onFsKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const mod = e.metaKey || e.ctrlKey;
+    if (mod) {
+      const k = e.key.toLowerCase();
+      const map: Record<string, string> = { b: "bold", i: "italic", u: "underline" };
+      if (!e.shiftKey && map[k]) { e.preventDefault(); exec(map[k]); return; }
+      if (e.shiftKey && k === "x") { e.preventDefault(); exec("strikeThrough"); return; }
+      if (e.shiftKey && k === "8") { e.preventDefault(); exec("insertUnorderedList"); return; }
+      if (e.shiftKey && k === "7") { e.preventDefault(); exec("insertOrderedList"); return; }
+      if (e.altKey && ["0", "1", "2", "3"].includes(e.key)) {
+        e.preventDefault();
+        applyBlock(e.key === "0" ? "p" : `h${e.key}`);
+        return;
+      }
+    }
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); commitFs(); return; }
+    if (e.key === "Escape") { e.preventDefault(); commitFs(); setFullscreen(false); }
   };
 
   // 批 241b SOURCE_FACT: 调色板 无 + 青绿/靛蓝/紫/橙/黄 (色值为 CLONE_DECISION)
@@ -330,11 +395,12 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
             <div className="relative">
               <button
                 type="button"
-                aria-label="字体"
+                aria-label="Text style"
                 aria-expanded={fontMenuOpen}
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => setFontMenuOpen((v) => !v)}
-                className="flex h-7 items-center gap-0.5 rounded-md px-1.5 text-white/85 hover:bg-white/10"
+                // 批 817 SOURCE_FACT: 源站 Text style 48×32（唯一带 chevron、比其他宽 16）
+                className="flex h-8 w-12 items-center justify-center gap-0.5 rounded-lg text-white/85 hover:bg-white/10"
               >
                 <Type size={14} />
                 <ChevronDown size={10} className="text-white/60" />
@@ -389,18 +455,30 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
                 // mousedown 阻止默认：否则点按钮会先把编辑面的选区收掉
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => exec(cmd)}
-                className="flex h-7 items-center gap-0.5 rounded-md px-1.5 text-white/85 hover:bg-white/10"
+                // 批 817 SOURCE_FACT: 源站这六个都是 32×32
+                className="flex size-8 items-center justify-center rounded-lg text-white/85 hover:bg-white/10"
               >
                 {icon}
               </button>
             ))}
-            {/* OPEN_QUESTION 816-a: 源站形态未取证，暂不猜 */}
+            {/* 批 817 SOURCE_FACT: 源站第 8 个按钮 aria-label 是「全屏」（32×32），
+                点开的面板标题是「全屏编辑」。批 816 留的 OPEN_QUESTION 816-a 就此关闭。 */}
             <button
               type="button"
-              aria-label="展开编辑"
+              aria-label="全屏"
               data-testid="text-expand"
               onMouseDown={(e) => e.preventDefault()}
-              className="flex h-7 items-center rounded-md px-1.5 text-white/85 hover:bg-white/10"
+              onClick={() => {
+                // 批 817: 取当前行内编辑面的实时内容作为全屏面板的种子，
+                // 再提交 —— 否则用户刚打的字还没落库，effect 读到的仍是旧值。
+                const live = editorRef.current?.innerHTML ?? "";
+                fsSeedRef.current = live || initialHtml;
+                if (editing) commit();
+                setFontMenuOpen(false);
+                setFullscreen(true);
+              }}
+              // 批 817 SOURCE_FACT: 源站第 8 个按钮 32×32
+              className="flex size-8 items-center justify-center rounded-lg text-white/85 hover:bg-white/10"
             >
               <Maximize2 size={12} />
             </button>
@@ -448,6 +526,53 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
         size={{ width: d.width, height: d.height }}
         selected={selected === true}
       />
+
+      {/* 批 817 SOURCE_FACT: 点工具条「全屏」打开的面板，源站标题是「全屏编辑」
+          （实测 126×42 的标签按钮 @[1340,406]），面板是带 1px 描边、圆角 8px 的
+          浮层，正文在左上角。源站该面板**不是** contenteditable（点开后页面上
+          已无 [contenteditable]）—— 但照抄一个只能看不能改的面板等于又造一个
+          死入口（同 §21 ⌘0 那条判据：多一个能用的，好过一个源站式的死面板），
+          故此处沿用同一套富文本编辑面与 10 个快捷键 (CLONE_DECISION)。
+          源站面板右缘还有一个 ⊕ 圆形钮，作用未取证，不猜、不复刻。 */}
+      {fullscreen ? (
+        <div
+          className="absolute left-full top-1/2 z-[200] ml-6 flex h-[324px] w-[326px] -translate-y-1/2 flex-col rounded-lg border border-white/25 bg-[rgb(20,20,22)]"
+          role="dialog"
+          aria-label="全屏编辑"
+          data-testid="text-fullscreen"
+        >
+          <div className="flex h-11 shrink-0 items-center justify-between px-3">
+            <span className="text-[13px] text-white/80">全屏编辑</span>
+            <button
+              type="button"
+              aria-label="关闭全屏编辑"
+              data-testid="text-fullscreen-close"
+              onClick={() => setFullscreen(false)}
+              className="flex size-7 items-center justify-center rounded-md text-white/60 hover:bg-white/10 hover:text-white"
+            >
+              <X size={14} />
+            </button>
+          </div>
+          <div
+            ref={fsRef}
+            data-testid="text-fullscreen-editor"
+            contentEditable
+            suppressContentEditableWarning
+            onKeyDown={onFsKeyDown}
+            onBlur={(e) => {
+              const el = fsRef.current;
+              if (!el) return;
+              const next = e.relatedTarget as HTMLElement | null;
+              if (next?.closest?.('[data-testid="text-fullscreen"]')) return;
+              updateNodeData(id, {
+                html: normalizeRichHtml(el.innerHTML),
+                text: (el.innerText || "").trim(),
+              });
+            }}
+            className="min-h-0 flex-1 overflow-y-auto px-3 pb-3 text-[13px] leading-[22px] text-white/85 outline-none [&_h1]:text-[16px] [&_h1]:font-semibold [&_h2]:text-[15px] [&_h2]:font-semibold [&_h3]:text-[14px] [&_h3]:font-semibold [&_p]:m-0 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5"
+          />
+        </div>
+      ) : null}
     </div>
   );
 }
