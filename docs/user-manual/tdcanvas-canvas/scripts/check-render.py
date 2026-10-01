@@ -14,7 +14,7 @@
 **扫描范围严格限定在 `<main>…</main>`**：VitePress 的主题自带大量空 span（图标
 占位）与内联脚本，不限定范围就是 254 条纯噪声——M90 第一版就栽在这里。
 
-**五类病理**：
+**六类病理**：
 
 1. **表格列数不一致**——`thead` 的列数与各 `tbody` 行的实际列数不符。
    **这是内容被丢弃的直接症状**（M84 那类），优先级最高。
@@ -23,6 +23,9 @@
 4. **页内锚点悬空**——`href="#x"` 在本页找不到对应 `id`（**页内**；跨页锚点是
    `check-anchors.py` 的地盘，两者不重叠）。
 5. **空内容标签**——`<code></code>`、`<strong></strong>` 这类**正文里**的空元素。
+6. **行内代码段被提前截断**——内容以 `\` 结尾（M92）。CommonMark 在代码段内部
+   不处理反斜杠转义，作者想用 `\`` 显示反引号时会把代码段截断，**源码层判据抓不到**
+   （反引号总数仍是偶数），只有产物里看得见。
 
 **本脚本的每一条判据都做过阳性对照**（M91 做的）：故意在最小产物里注入对应病理，
 确认能被抓到，再拿它去扫真实产物。**没做过阳性对照的扫描器，其"0 命中"不能当
@@ -104,6 +107,30 @@ def check_empty(region: str, rel: str, out: list[str]) -> None:
         out.append(f"{rel}: 正文里出现空标签 {m.group(0)[:40]}")
 
 
+def check_early_closed_code(region: str, rel: str, out: list[str]) -> None:
+    """行内代码段被**提前截断**：`<code>` 的内容以反斜杠结尾。
+
+    **M92 实测**：CommonMark 规定**行内代码段内部不处理反斜杠转义**，所以写
+    `` `title={a \\| \\`x\\`}` `` 想在代码里显示反引号时，里面那个 `\\`` 会被当成
+    **收尾标记**，代码段就地截断，后半截漏成正文：
+
+        源：  源码是 `title={a \\| \\`x\\`}` 这种嵌套反引号
+        产物：源码是 <code>title={a \\| \\</code>x`}` 这种嵌套反引号
+
+    **为什么只能在产物侧判**：`check-tables.py` 的行内代码判据数的是**反引号总数
+    的奇偶**，而这里的反引号总数是 4（偶数）——**判据形态上就抓不到**。M92 实测
+    注入后 `check-tables.py` 报 ok，产物却是坏的。
+    产物里的可靠特征是唯一的：代码段内容**以 `\\` 结尾**，这在正常写法里不会出现。
+    """
+    for m in re.finditer(r"<code(?![^>]*v-pre)[^>]*>(?P<body>.*?)</code>", region, re.S):
+        body = TAG_RE.sub("", m.group("body"))
+        if body.rstrip().endswith("\\"):
+            out.append(
+                f"{rel}: 行内代码段被提前截断（内容以反斜杠结尾）——CommonMark 在代码段"
+                f"内部不处理反斜杠转义，里面的反引号会当收尾标记：{body.strip()[:40]}"
+            )
+
+
 def main() -> int:
     if len(sys.argv) < 2:
         print(__doc__, file=sys.stderr)
@@ -135,6 +162,7 @@ def main() -> int:
         check_images(region, rel, assets, problems)
         check_anchor(region, rel, problems)
         check_empty(region, rel, problems)
+        check_early_closed_code(region, rel, problems)
 
     for problem in problems:
         print(f"  [渲染] {problem}")
@@ -142,7 +170,7 @@ def main() -> int:
         print(f"产物渲染体检失败：{len(problems)} 项")
         return 1
     note = f"，跳过 {len(skipped)} 个无正文区的壳页（{', '.join(skipped)}）" if skipped else ""
-    print(f"  [ ok ] 产物渲染体检：{len(pages) - len(skipped)} 页的五类渲染病理均未命中{note}")
+    print(f"  [ ok ] 产物渲染体检：{len(pages) - len(skipped)} 页的六类渲染病理均未命中{note}")
     return 0
 
 

@@ -407,6 +407,52 @@ def mutate_broken_render(root: Path) -> None:
     )
 
 
+def mutate_early_closed_code(root: Path) -> None:
+    """行内代码段被提前截断（M92 补的缺口）。
+
+    M92 查门禁覆盖度时发现：`check-tables.py` 的行内代码判据数的是**反引号总数的
+    奇偶**，而嵌套反引号的总数是 4（偶数）——**判据形态上就抓不到**。实测注入后
+    `check-tables.py` 报 ok，产物却是坏的：`` `title={a \\| \\`x\\`}` `` 被截成
+    `<code>title={a \\| \\</code>x\`}`，后半截漏成正文。
+
+    这条**只能从产物侧判**，判据是代码段内容以反斜杠结尾。
+    """
+
+    dist = root / ".vitepress" / "dist"
+    dist.mkdir(parents=True, exist_ok=True)
+    (dist / "index.html").write_text(
+        "<!DOCTYPE html><html><body><main>"
+        "<p>源码是 <code>title={a \\| \\</code>x`}` 这种嵌套反引号。</p>"
+        "</main></body></html>",
+        encoding="utf-8",
+    )
+
+
+def mutate_pipe_leak_render(root: Path) -> None:
+    """本该渲染成表格的内容，在正文里留下了裸露的管道文本（M92 补的缺口）。"""
+
+    dist = root / ".vitepress" / "dist"
+    dist.mkdir(parents=True, exist_ok=True)
+    (dist / "index.html").write_text(
+        "<!DOCTYPE html><html><body><main>"
+        "<p>| 甲 | 乙 | 这行本该是一张表格 |</p>"
+        "</main></body></html>",
+        encoding="utf-8",
+    )
+
+
+def mutate_dangling_anchor_render(root: Path) -> None:
+    """产物里 `href="#x"` 指向本页不存在的 id（M92 补的缺口）。"""
+
+    dist = root / ".vitepress" / "dist"
+    dist.mkdir(parents=True, exist_ok=True)
+    (dist / "index.html").write_text(
+        '<!DOCTYPE html><html><body><main><h1 id="存在的标题">存在的标题</h1>'
+        '<a href="#不存在的锚点">点我</a></main></body></html>',
+        encoding="utf-8",
+    )
+
+
 # ---------- 用例表：(名称, 变异, 期望由谁拦下, 期望出现的错误文字) ----------
 
 CASES: list[tuple[str, object, str, str]] = [
@@ -437,6 +483,9 @@ CASES: list[tuple[str, object, str, str]] = [
     ("裸 {{ }} 被 Vue 插值吞掉", mutate_vue_interpolation, "emphasis", "插值吞掉"),
     ("同页锚点指向不存在的标题", mutate_same_page_anchor, "anchor", "锚点不存在"),
     ("产物表格列数不一致（内容被丢弃）", mutate_broken_render, "render", "多出来的格子连同内容已被渲染器丢弃"),
+    ("行内代码段被提前截断", mutate_early_closed_code, "render", "被提前截断"),
+    ("产物里裸露的管道文本", mutate_pipe_leak_render, "render", "裸露的表格管道文本"),
+    ("产物里页内锚点悬空", mutate_dangling_anchor_render, "render", "找不到对应 id"),
 ]
 
 
