@@ -98,9 +98,9 @@ def measure(page) -> dict[str, Any]:
         "coveredByTimeline": [
             (b["label"], b["hitInTimeline"], b["victimInColumn"])
             for b in r["coveredByTimelineOverlay"]],
-        "coveredByBottomBar": [
-            (b["label"], b["hitInBottomBar"], b["victimInViewport"], b.get("viewportH"))
-            for b in r["coveredByBottomBarSqueeze"]],
+        "coveredByViewportSqueeze": [
+            (b["label"], b["victimInViewport"], b.get("viewportH"))
+            for b in r["coveredByViewportSqueeze"]],
     }
 
 
@@ -191,23 +191,31 @@ def main() -> int:
     # bound is derived from the sweep itself (the tallest viewport at which it
     # still fires) rather than hand-picked, so a future change that widens the
     # collision upward fails here instead of being quietly absorbed.
+    #
+    # Batch 629 re-scoped the family.  628 keyed it on the COVERER being the
+    # bottom bar; 629 — sweeping the width x height corner neither 627 nor 628
+    # had covered — immediately produced coverers that are not the bottom bar
+    # (the viewport's own top toolbar, and the gizmo's own info panel covering a
+    # sibling axis label at 780x400).  Keying on the coverer matched only the
+    # one collision 628 happened to see.  The gate is now the victim being
+    # inside the 3D viewport, with the coverer recorded for the reader.
     fired = sorted({int(k.split("@")[1]) for k, r in sweep.items()
-                    if r["coveredByBottomBar"]})
+                    if r["coveredByViewportSqueeze"]})
     bound = max(fired) if fired else None
     above = [h for h in fired if bound is not None and h > bound]
-    v.check("the-bottom-bar-squeeze-stops-at-one-height", not above,
+    v.check("the-viewport-squeeze-stops-at-one-height", not above,
             detail={"bound": bound, "stillFiringAbove": above,
                     "firedAt": fired[:12]})
-    loose2 = {k: [e for e in r["coveredByBottomBar"] if not (e[1] and e[2])]
+    loose2 = {k: [e for e in r["coveredByViewportSqueeze"] if not e[1]]
               for k, r in sweep.items()
-              if [e for e in r["coveredByBottomBar"] if not (e[1] and e[2])]}
-    v.check("every-bottom-bar-exemption-has-both-halves", not loose2,
+              if [e for e in r["coveredByViewportSqueeze"] if not e[1]]}
+    v.check("every-viewport-exemption-is-inside-the-viewport", not loose2,
             detail={k: r[:3] for k, r in list(loose2.items())[:6]})
-    v.check("the-bottom-bar-squeeze-is-actually-exercised", bool(fired),
+    v.check("the-viewport-squeeze-is-actually-exercised", bool(fired),
             detail={"heights": fired[:12],
                     "minViewportHeightInvolved": min(
-                        (e[3] for r in sweep.values()
-                         for e in r["coveredByBottomBar"] if e[3] is not None),
+                        (e[2] for r in sweep.values()
+                         for e in r["coveredByViewportSqueeze"] if e[2] is not None),
                         default=None)})
 
     mism = [k for k, r in cross.items()

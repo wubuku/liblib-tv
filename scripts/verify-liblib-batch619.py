@@ -205,9 +205,9 @@ def run_state(browser: Any, v: Verifier, label: str, which: str,
         helpRows = [b for b in r["blocked"] if b["label"] in KNOWN_BLOCKED]
         v.check(f"{tag}:帮助-is-still-explained-by-a-known-reason",
                 all(b.get("panel") or b.get("timelineOverlay")
-                    or b.get("bottomBarSqueeze") for b in helpRows),
+                    or b.get("viewportSqueeze") for b in helpRows),
                 detail=[(b["label"], bool(b.get("panel")),
-                         b.get("timelineOverlay"), b.get("bottomBarSqueeze"))
+                         b.get("timelineOverlay"), b.get("viewportSqueeze"))
                         for b in helpRows])
         if overlay:
             # the exemption must actually have run, or this state proves nothing
@@ -234,12 +234,12 @@ def run_state(browser: Any, v: Verifier, label: str, which: str,
             v.check(f"{tag}:every-failure-is-either-a-defect-or-attributed",
                     nonClipped == (len(r["covered"]) + len(r["coveredByPanel"])
                                    + len(r["coveredByTimelineOverlay"])
-                                   + len(r["coveredByBottomBarSqueeze"])),
+                                   + len(r["coveredByViewportSqueeze"])),
                     detail={"nonClipped": nonClipped,
                             "covered": len(r["covered"]),
                             "attributed": len(r["coveredByPanel"]),
                             "timelineOverlay": len(r["coveredByTimelineOverlay"]),
-                            "bottomBarSqueeze": len(r["coveredByBottomBarSqueeze"])})
+                            "viewportSqueeze": len(r["coveredByViewportSqueeze"])})
         if "drawer" in label:
             v.check(f"{tag}:the-dismiss-catcher-was-not-audited-as-a-control",
                     any(s["label"] == "关闭移动端面板" for s in r["scrims"]),

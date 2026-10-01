@@ -300,18 +300,46 @@ AUDIT_JS = """(overlays) => {
     // source collides at a short viewport is simply unknown — which is why
     // this is a separate, *bounded* exemption rather than a member of the
     // source-fact family above.
-    const hitInBottomBar = !own && !!(hit && hit.closest
-      && hit.closest('[data-director-scene-prompt-bar]'));
-    const victimInViewport = !!el.closest('[data-director-viewport]');
+    //
+    // Batch 629 re-scoped this family, because batch 628 had drawn the line in
+    // the wrong place.  628 keyed the exemption on the *coverer's* identity
+    // (`hitInBottomBar`), and 629 — sweeping the width x height corner that
+    // neither 627 nor 628 had covered — immediately produced coverers that are
+    // NOT the bottom bar: the viewport's own top toolbar (16:9 / 9:16 / 1:1 /
+    // 画幅比例 / 开启九宫格辅助线 / 动画时间轴) and the gizmo's own info panel
+    // (「角色01 · 陈默可拖动三轴控件…」), which at 780x400 covers a sibling axis
+    // label of the same gizmo.  Keying on the coverer meant the family only
+    // matched the one collision 628 happened to see.
+    //
+    // The real invariant is about the *victim* and the *degenerate viewport*:
+    // a control inside the 3D viewport, in a viewport too short to hold its own
+    // top-anchored controls, cannot be expected to stay clickable.  So the
+    // test is now `victimInViewport` plus a recorded viewport height, and the
+    // coverer is recorded for the reader rather than used as the gate.  Both
+    // the 628 and the 629 verifiers then assert the bound is self-derived, so
+    // widening the collision upward still fails instead of being absorbed.
     const viewportEl = document.querySelector('[data-director-viewport]');
     const viewportH = viewportEl
       ? Math.round(viewportEl.getBoundingClientRect().height) : null;
-    const bottomBarSqueeze = !own && !clipped && !panel
-      && hitInBottomBar && victimInViewport;
+    const victimInViewport = !!el.closest('[data-director-viewport]');
+    const hitInBottomBar = !own && !!(hit && hit.closest
+      && hit.closest('[data-director-scene-prompt-bar]'));
+    // Batch 629: `hitInBottomBar` above names ONE of the three children of the
+    // viewport's bottom band, which is exactly why batch 628's line was drawn
+    // too narrow — it matched the sibling that happened to appear in 628's
+    // cells.  The band itself is `[data-director-bottom-bar]` (`absolute
+    // bottom-0 z-[200]`, measured 48px tall in every cell), holding the
+    // viewport toolbar (which carries the selected object's 「可拖动三轴控件」
+    // hint), the prompt bar, and the toolbar's own row.  Recorded for the
+    // reader; batch 629 asserts that every viewport-squeeze coverer is in it.
+    const hitInBottomBand = !own && !!(hit && hit.closest
+      && hit.closest('[data-director-bottom-bar]'));
+    const viewportSqueeze = !own && !clipped && !panel && victimInViewport;
     items.push({label: label(el), tag: el.tagName.toLowerCase(),
       box: b, z: s.zIndex, own, clipped, offViewport,
       panel: panel, timelineOverlay, hitInTimeline, victimInColumn,
-      bottomBarSqueeze, hitInBottomBar, victimInViewport, viewportH,
+      viewportSqueeze, hitInBottomBar, hitInBottomBand,
+      victimInViewport, viewportH,
       hitLabel: hit ? label(hit) : null,
       hitTag: hit ? hit.tagName.toLowerCase() : null,
       data: Object.keys(el.dataset).slice(0, 3).join(',')});
@@ -321,7 +349,7 @@ AUDIT_JS = """(overlays) => {
   const byPanel = new Map();
   for (const c of coveredByPanel) byPanel.set(c.panel, (byPanel.get(c.panel) || 0) + 1);
   const unexplained = failed.filter((i) => !i.clipped && !i.panel
-    && !i.timelineOverlay && !i.bottomBarSqueeze);
+    && !i.timelineOverlay && !i.viewportSqueeze);
   return {vw: innerWidth, vh: innerHeight, total: items.length,
           scrims,
           openOverlays: overlayRoots.map(pkey),
@@ -330,11 +358,11 @@ AUDIT_JS = """(overlays) => {
           // narrowed it by moving "behind an open transient overlay" out, batch
           // 628 narrowed it twice more — once for a source-measured structural
           // relationship (the timeline overlays the columns) and once for a
-          // degenerate-viewport collision whose bound the 628 verifier derives
+          // degenerate-viewport collision whose bound the 628/629 verifiers derive
           // from the sweep itself rather than from a hand-picked threshold.
           covered: unexplained,
           coveredByTimelineOverlay: failed.filter((i) => i.timelineOverlay),
-          coveredByBottomBarSqueeze: failed.filter((i) => i.bottomBarSqueeze),
+          coveredByViewportSqueeze: failed.filter((i) => i.viewportSqueeze),
           // Batch 627: the geometric-boundary half.  `covered` already counts an
           // off-viewport control as a defect once `isClipped` says nothing can
           // scroll it into view; these buckets make the split legible instead
