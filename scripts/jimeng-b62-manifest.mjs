@@ -6,7 +6,7 @@ import { createHash } from 'node:crypto';
 import { execSync } from 'node:child_process';
 
 const DOC = 'docs/user-manual/jimeng-canvas';
-const md = readFileSync(`${DOC}/10-tasks/ai-agent-drawer.md`, 'utf8');
+const md = readFileSync(`${DOC}/10-tasks/ai-agent-drawer.md`, 'utf8') + '\n' + readFileSync(`${DOC}/10-tasks/prepare-generation.md`, 'utf8');
 const MAN = `${DOC}/screenshots/manifest.yml`;
 
 // 文件 → { task_id, step, visible_text, verified_locator }
@@ -27,6 +27,10 @@ const META = {
     loc: '在空输入框按「@」→ 浮层 **role=listbox 且无 data-testid**，240×296@(770,252)，**向左溢出到抽屉之外**（抽屉左沿 868）→ 标题逐字「添加参考」232×32@(774,256) + **5 个** role=option 各 232×48、行距 52：主体(288) aria-selected=true / 图片(340) / 视频(392) / 音频(444) / 文本(496)，每项右侧 32×32 的 ›。⚠️ 前一轮按 innerText 行数误数成 6 项（把标题当选项），且首张截图 clip 从 x=860 起把菜单左侧 90px 切掉 ⇒ 补拍 clip={x:700,y:180,w:580,h:460}。积分 805 未变。详见 §3.81.5' },
   '62-agent-expanded.png': { step: 2, visible_text: '新会话',
     loc: '折叠态点「与 AI 对话」按钮 → 侧栏恢复 400×696@(868,12)（pointer-events:auto，49 个可见元素）→ 取侧栏内 5 个坐标做 elementFromPoint 基线读数，5/5 命中侧栏内（与折叠态 0/5 构成对照）→ 裁切 clip={x:860,y:8,w:412,h:700}。积分 805 未变' },
+  '63-price-model-sample.png': { step: 2, visible_text: '即梦 Seedance 2.5 (样片模式)',
+    loc: '左栏新建**空**视频节点（受控条件：60% 缩放）→ 打开生成面板 → 逐个切模型读价格（**全程未点生成**）。截图这一刻停在「即梦 Seedance 2.5 (样片模式)」「16:9 · 样片 480P · 4」「全能参考」「4s」，价格区 `Current price 144. Original price 192. Discount 48. 积分7.5折.`（画面上是 ✦ 144 + **带删除线的 192**）。注意**分辨率被连带改成「样片 480P」**、提示词占位文案也随模型变（「上传最多50个参考素材…」）。裁切 clip={x:260,y:445,w:700,h:225}。积分 805 未变。矩阵见 SOURCE_OBSERVATIONS §3.82.2' },
+  '63-size-dialog-2vip.png': { step: 3, visible_text: '选择比例',
+    loc: '点参数条 aria 前缀「视频尺寸选项」的 chip → 尺寸弹层 → 裁切 clip={x:330,y:190,w:480,h:420}。🔴 **本图是本批假阴性的反证**：DOM 读数曾报「302×40 只有 1 2 3 4 四项」，本图清楚显示**三段** —— 选择比例 21:9/16:9/4:3/1:1/3:4/9:16（16:9 高亮）、选择分辨率 720P/1080P/4K（各带蓝星，720P 高亮）、选择生成数量 1/2/3/4（4 高亮）。成因：`[role="listbox"]` 匹配到的是「选择生成数量」那一段自己，`last()` 恰好取中它，**外层被跳过**。已排除不是动画（采样 11 点/3 秒恒定）、不是模型不同（三模型相同）、不是张数不同（4→1 确认生效后仍相同）。**手册此前的三段描述正确，错误订正已撤回。** 积分 805 未变' },
 };
 
 const entries = [];
@@ -39,7 +43,7 @@ for (const [file, meta] of Object.entries(META)) {
   const abs = `${DOC}/screenshots/${file}`;
   if (!existsSync(abs)) { missing.push(file + '（截图文件不存在）'); continue; }
   const sha = createHash('sha256').update(readFileSync(abs)).digest('hex');
-  entries.push({ file: `screenshots/${file}`, task_id: 'ai-agent-drawer', step: meta.step,
+  entries.push({ file: `screenshots/${file}`, task_id: file.startsWith('63-') ? 'prepare-generation' : 'ai-agent-drawer', step: meta.step,
     route: '/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f',
     viewport: '1280x720@2x', locale: 'zh-CN',
     captured_at: '2026-10-01T23:55:00+08:00', verified_locator: meta.loc,
