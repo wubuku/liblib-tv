@@ -69,8 +69,20 @@ UNVERIFIABLE = {
     "上传": "点了会打开系统文件选择器，无头环境无法完成选择，没有可观测后果",
     # 以下两条都**人工复核过是活的**，记在这里是为了让工具不反复报它们，
     # 每条都附了复核方法，不是"猜它应该是活的"。
-    "选择工具": "已是当前激活工具（点前 class 就带 bg-white/10），点它正确地什么都不该变；"
-                "复核：点别的工具把它切走后再点它，class 会变",
+    # 批 837：删掉「选择工具」这条豁免 —— 它的理由是**探针够不着**，不是产品行为。
+    #   命中测试实测：dock 最左那枚钮 @[16,778,28,28]，center(30,792) 的命中元素
+    #   是 NEXTJS-PORTAL（Next dev 指示器，自身 rect 0×0，但 shadow 内容盖住那个点）。
+    #   本文件按坐标 `page.mouse.click` 点，于是事件投给了指示器，指纹当然不变
+    #   —— 于是被判 DEAD，再被写成「点它正确地什么都不该变」。**那句话描述的是
+    #   探针的失败，不是产品。**
+    #   两处一起修才算修完：
+    #     ① 产品（批 837）：那枚钮的 onClick 此前是 `setToolActive("select")`
+    #        —— 强制置位，已经是 select 时点它真的什么都不发生。改成 toggle，
+    #        并与 V 快捷键共用 store 里那一条 `toggleToolActive`。
+    #     ② 量具：每项点击前摘掉 dev portal（`clear_dev_portal`）。
+    #   重跑：265 扫 / 无响应 15 / **真死按钮 0**，「选择工具」**不再**出现在
+    #   不可验证清单里（只剩 上传 / 全部 两条，都有复核方法）。
+    #   留着它会有同一个坏处：将来这枚钮真的坏了，会被静默归进「无法验证」。
     # 批 827：把"外链 = 探针无法验证"这条**撤回**（批 820 的「使用手册」「即梦CLI」，
     # 以及批 826 照着同一措辞补的「新功能许愿」，三条一并移除）。
     #
@@ -218,6 +230,25 @@ def enter_state(page, code) -> None:
         exec(code, {"page": page})  # noqa: S102 - 普查脚本内部固定字面量，非外部输入
 
 
+def clear_dev_portal(page) -> None:
+    """摘掉 Next.js dev 指示器（**量具**缺陷，不是产品缺陷）。
+
+    批 837 实测：dock 最左那枚「选择工具」@[16,778,28,28]，其中心点的命中元素
+    是 NEXTJS-PORTAL（该 portal 自身 rect 是 0×0，但 shadow 里的指示器盖住了
+    那个点）。本文件用 `page.mouse.click(x, y)` 按坐标点，于是那一项的点击
+    **投给了指示器而不是按钮** —— 指纹当然不变，于是被判 DEAD。
+    「选择工具」那条 UNVERIFIABLE 的理由（「点它正确地什么都不该变」）就是这么来的：
+    不是产品的行为，是探针够不着。
+
+    `force=True` 救不了（force 只跳过可点性检查，事件仍投给最上层元素）。
+    摘掉 portal 才是修量具。生产构建里没有这个 portal。
+    """
+    try:
+        page.evaluate("() => document.querySelector('nextjs-portal')?.remove()")
+    except Error:
+        pass  # 导航中：下一轮复位会再清一次
+
+
 def fingerprint(page) -> str:
     """取一次指纹，**导航中重试**。
 
@@ -265,6 +296,7 @@ def main() -> int:
           for it in items:
             before = fingerprint(page)
             try:
+                clear_dev_portal(page)   # 批 837：坐标点击会被 dev 指示器吞掉
                 page.mouse.click(it["x"], it["y"])
                 # 220ms 不够：AI 抽屉这类带挂载过渡的面层在 220ms 时还没进 DOM，
                 # 会被误判成死按钮（实测 400ms 才稳定）。

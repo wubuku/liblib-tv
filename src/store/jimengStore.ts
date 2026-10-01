@@ -152,6 +152,10 @@ export interface JimengCanvasState {
   /** 底部 dock 工具态 (Batch 20): V 切换移动工具 */
   toolActive: "select" | "move";
   setToolActive: (tool: "select" | "move") => void;
+  /** Batch 837: 工具切换的**唯一**实现。dock 那枚钮与 V 快捷键此前各写一遍
+   *  「select ↔ move」，其中按钮那侧还写成了**强制置 select** —— 于是键盘能切、
+   *  按钮不能，两条路会漂。共用一条（同批 832 的规矩）。 */
+  toggleToolActive: () => void;
   /** 播放交互 (Batch 15/24): 切换播放态 / mock 时间走动 / 双击从头重播 */
   togglePlay: (id: string) => void;
   restartPlay: (id: string) => void;
@@ -981,6 +985,8 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   toolActive: "select",
 
   setToolActive: (tool) => set({ toolActive: tool }),
+  toggleToolActive: () =>
+    set((state) => ({ toolActive: state.toolActive === "select" ? "move" : "select" })),
 
   togglePlay: (id) =>
     set((state) => ({

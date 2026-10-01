@@ -20,7 +20,7 @@ import { useJimengStore } from "@/store/jimengStore";
 export function JimengBottomDock() {
   const zoomPercent = useJimengStore((s) => s.zoomPercent);
   const toolActive = useJimengStore((s) => s.toolActive);
-  const setToolActive = useJimengStore((s) => s.setToolActive);
+  const toggleToolActive = useJimengStore((s) => s.toggleToolActive);
   const minimapOpen = useJimengStore((s) => s.minimapOpen);
   const setMinimapOpen = useJimengStore((s) => s.setMinimapOpen);
   const edgesVisible = useJimengStore((s) => s.edgesVisible);
@@ -35,7 +35,19 @@ export function JimengBottomDock() {
           aria-label="选择工具"
           // Batch 816 SOURCE_FACT: testid `canvas-pointer-tool-toggle`
           data-testid="canvas-pointer-tool-toggle"
-          onClick={() => setToolActive("select")}
+          /* Batch 837 SOURCE_FACT（2026-10-04 dock 普查实测）：源站这枚是
+             **二态**开关 —— 初始 `aria-pressed="false"`，点一下变 **true**。
+             复刻此前 onClick 是 `setToolActive("select")`（强制置位），
+             于是「已经是 select 时点它」什么都不会发生；本批改成与 V 键
+             共用 toggleToolActive。
+             ⚠ 取值方向**故意与源站相反**并记档（台账 §52 的 837-a）：源站
+             默认 false、点一下 true，这暗示它的第二态才是「被按下的那个」，
+             语义无法从 aria 推出。复刻按**自己的**状态模型给
+             `toolActive === "select"` —— 宁可让序列反一次，也不发一个
+             语义颠倒的 aria-pressed（读屏会念「选择工具，已按下」而实际在
+             移动模式）。 */
+          aria-pressed={toolActive === "select"}
+          onClick={toggleToolActive}
           // Batch 810 (SOURCE_FACT 2026-10-03 重测 @1512): 三枚 28×28 图标钮
           // 圆角 **8px**（此前 rounded-md = 6px）；选中底色 **white/8**
           // （此前 white/10）。缩放钮源站实测同为 6px，不动。
@@ -51,6 +63,9 @@ export function JimengBottomDock() {
           type="button"
           aria-label="小地图"
           data-testid="canvas-display-toggle-minimap"
+          /* Batch 837 SOURCE_FACT：源站带 aria-pressed，初值 **false**（与复刻
+             store 的 minimapOpen=false 一致）。此前复刻一个都没发这个信号。 */
+          aria-pressed={minimapOpen}
           onClick={() => setMinimapOpen(!minimapOpen)}
           className={`flex size-7 items-center justify-center rounded-lg ${
             minimapOpen ? "bg-white/[0.08] text-white" : "text-white/85 hover:bg-white/[0.08]"
@@ -63,6 +78,9 @@ export function JimengBottomDock() {
           type="button"
           aria-label="显示连线"
           data-testid="canvas-display-toggle-connections"
+          /* Batch 837 SOURCE_FACT：源站带 aria-pressed，初值 **true**（与复刻
+             store 的 edgesVisible=true 一致）—— 这枚默认就是「开」。 */
+          aria-pressed={edgesVisible}
           onClick={() => setEdgesVisible(!edgesVisible)}
           className={`flex size-7 items-center justify-center rounded-lg ${
             edgesVisible ? "bg-white/[0.08] text-white" : "text-white/85 hover:bg-white/[0.08]"
@@ -77,6 +95,9 @@ export function JimengBottomDock() {
           aria-label={`Zoom options, ${zoomPercent}%`}
           // 批 828：源站的缩放菜单用 aria-labelledby 指向这个触发器，复刻照此接线
           id={ZOOM_MENU_TRIGGER_ID}
+          /* Batch 837 SOURCE_FACT：源站这枚**有** aria-expanded（实测 "false"），
+             但**没有** aria-pressed（实测 None）—— 别给错信号。 */
+          aria-expanded={zoomMenuOpen}
           data-testid="canvas-zoom-percent"
           onClick={() => setZoomMenuOpen((v) => !v)}
           className="flex h-7 w-12 items-center justify-center rounded-md text-[13px] text-white/85 hover:bg-white/10"

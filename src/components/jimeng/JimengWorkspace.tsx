@@ -132,7 +132,7 @@ function JimengFlow() {
     focusNode(focusReq.id);
   }, [focusReq, focusNode]);
   const toolActive = useJimengStore((s) => s.toolActive);
-  const setToolActive = useJimengStore((s) => s.setToolActive);
+  const toggleToolActive = useJimengStore((s) => s.toggleToolActive);
   const groupSelected = useJimengStore((s) => s.groupSelected);
   const ungroupSelected = useJimengStore((s) => s.ungroupSelected);
   const selectAll = useJimengStore((s) => s.selectAll);
@@ -269,7 +269,9 @@ function JimengFlow() {
         // 快捷键面板证据: V = 移动工具 (Batch 20)
         // Batch 815: 源站按 V 的状态指纹（画布背景/光标/testid/transform）零变化，
         // 源站自己测不到可见响应；复刻保留 Batch 20 的工具切换（CLONE_DECISION）。
-        setToolActive(toolActive === "select" ? "move" : "select");
+        // Batch 837: 改调共用的 toggleToolActive —— dock 那枚钮也走这一条，
+        // 免得「键盘能切、按钮不能」那种两路漂移再长回来。
+        toggleToolActive();
       } else if (!mod && e.key.toLowerCase() === "f" && !inField) {
         // 快捷键面板证据: F = 预览视图 (Batch 20/815 订正文案，源站面板写的是
         // 「预览视图」不是「全屏」)。CLONE_DECISION 浏览器全屏 (Batch 20)。
@@ -360,7 +362,7 @@ function JimengFlow() {
     removeNode,
     selectedNodeId,
     toolActive,
-    setToolActive,
+    toggleToolActive,
     fitView,
     zoomIn,
     zoomOut,
