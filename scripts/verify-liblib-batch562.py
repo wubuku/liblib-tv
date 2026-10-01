@@ -111,7 +111,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check(
         "panorama:connected-label",
         "已连接全景图" in section.inner_text()
-        or section.locator("[data-director-panorama-connected]").count() >= 0,
+        or section.locator("[data-director-panorama-connected]").count() == 1,
     )
 
     # ✕ 关闭

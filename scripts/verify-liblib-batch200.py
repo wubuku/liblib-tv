@@ -55,7 +55,12 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("chip:appears", chip.count() == 1)
     check("chip:text", "皮克斯动画广告" in (chip.inner_text() or ""))
     check("drawer:stays-open", drawer.count() == 1)
-    check("card:selected", page.locator("aside [aria-pressed='true']", has_text="皮克斯动画广告").count() >= 0 or True)
+    # Batch 335 修正: 原写作 `... .count() >= 0 or True` —— **恒真**，
+    # 无论卡片是否被选中都会通过。改为真正断言选中态。
+    check(
+        "card:selected",
+        page.locator("aside [aria-pressed='true']", has_text="皮克斯动画广告").count() == 1,
+    )
 
     # chip removable
     chip.locator("[data-agent-skill-chip-remove]").click()

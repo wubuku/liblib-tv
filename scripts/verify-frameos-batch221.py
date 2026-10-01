@@ -57,8 +57,8 @@ def open_add_menu(page: Page) -> None:
 def run_desktop(page: Page) -> dict[str, Any]:
     result: dict[str, Any] = {"viewport": "1440x900", "checks": []}
 
-    def check(name: str, ok: bool) -> None:
-        assert ok, f"batch221 check failed: {name}"
+    def check(name: str, ok: bool, detail: str = "") -> None:
+        assert ok, f"batch221 check failed: {name} {detail}".strip()
         result["checks"].append(name)
 
     errors = attach_errors(page)
@@ -105,9 +105,18 @@ def run_desktop(page: Page) -> dict[str, Any]:
     # 4) 回归: 节点可选中 (工具条/面板链路不因新类型崩溃)
     edit_desk.click()
     page.wait_for_timeout(300)
+    # Batch 335 修正: 此断言原写作 `.count() >= 0` —— **恒真**，无论工具条
+    # 渲染与否都会通过，等于什么都没验证（空断言比没断言更危险：
+    # 它在账本上显示为「已覆盖」）。改为真正断言工具条**已渲染**。
+    check(
+        "regression:editdesk-node-selected",
+        page.locator(".react-flow__node.selected").count() == 1,
+        f"selected={page.locator('.react-flow__node.selected').count()}",
+    )
     check(
         "regression:editdesk-select-toolbar",
-        page.locator(".frameos-floating-toolbar-new").count() >= 0,
+        page.locator(".frameos-floating-toolbar-new").count() == 1,
+        f"toolbar={page.locator('.frameos-floating-toolbar-new').count()}",
     )
     enter_edit.click()
     page.wait_for_timeout(300)

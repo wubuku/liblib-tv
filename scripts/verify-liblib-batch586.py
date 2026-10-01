@@ -137,7 +137,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
         "capture:send-all",
         page.locator("[data-director-capture-send-all]").inner_text().strip() == "发送到画布",
     )
-    check("capture:gallery-locator-resolves", gallery.count() >= 0)
+    # Batch 335 修正: `count() >= 0` 恒真 → 断言图库容器真的解析到
+    check("capture:gallery-locator-resolves", gallery.count() == 1)
 
     # 2) icon rail: the same seven entries, aria verbatim
     rail = page.evaluate(

@@ -85,7 +85,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.wait_for_timeout(900)
 
     node = page.locator(".react-flow__node-script-generator").first
-    check("node:created", node.count() >= 0 and node.is_visible())
+    # Batch 335 修正: `count() >= 0` 恒真 → 改为真的断言节点存在且可见
+    check("node:created", node.count() == 1 and node.is_visible())
 
     entry = node.locator(f"[data-script-generator-attempt='{ENTRY}']")
 

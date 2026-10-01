@@ -380,3 +380,32 @@ Batch 333 让内容**真的**跨刷新持久化后，三个验证器的「刷新
 **候选 Batch 335**：Batch 333 提出的「断言方向可能相反」全仓审计 ——
 grep 形如 `== nodes_before` / `== initial` 的断言，逐个核对方向。
 batch208 已证明绿色断言可能锁着缺陷。
+
+## Batch 335（2026-10-01）：全仓验证器「空断言 / 恒真断言」审计
+
+Batch 208 证明**绿色断言可能锁着缺陷**。本批推广到全仓：扫描所有
+`scripts/verify-*.py` 的恒真模式，**共 5 处，全部修正**。
+
+| 文件 | 原断言 | 修正为 |
+|---|---|---|
+| verify-frameos-batch221 | `toolbar.count() >= 0` | `== 1` + 补 `node.selected == 1` |
+| verify-liblib-batch200 | `... .count() >= 0 or True` | `== 1` |
+| verify-liblib-batch528 | `node.count() >= 0 and is_visible()` | `== 1 and ...` |
+| verify-liblib-batch562 | `... .count() >= 0`（or 短路分支） | `== 1` |
+| verify-liblib-batch586 | `gallery.count() >= 0` | `== 1` |
+
+`== []` 那一类（30+ 处）经抽查**全部合法**（确实在断言空态），不动。
+
+⚠️ **空断言比「没有断言」更危险**：`check("card:selected", X >= 0 or True)`
+在覆盖矩阵里显示为「✅ 已覆盖」，读账本的人会认为该行为已验证；
+实际上它对任何实现都通过，包括功能完全损坏的实现。
+不写断言至少在矩阵里是空缺，会引人去补。
+
+**与 Batch 208 的关系**：208 是断言**方向反了**（锁定缺陷）；
+335 是断言**恒真**（制造虚假覆盖感）。两者都是「绿色但无意义」。
+
+修正后复跑：frameos221 13/13；liblib200/528/562 PASS；liblib586 18/18。
+
+**候选 Batch 336**：把恒真断言检查做成**门禁脚本**（类似 verify-docs.py），
+对 `scripts/verify-*.py` 扫描 `>= 0` / `or True` 并在 runner 前置运行，
+避免同类问题再次混入。
