@@ -21,7 +21,13 @@ M90 实测：全站扫产物才发现 **7 处，跨 6 个页面**，而 `check-t
 这是继 M84（单元格内未转义竖线导致内容被丢弃）之后**第二类"源文件没事、
 产物坏了"**的缺陷。
 
-退出码 0 表示所有强调跨度写法正确，1 表示存在会渲染失效的跨度。
+**本脚本现在管两件事**，因为它们是同一族——markdown/Vue 构造在源文件里看着
+正常、渲染时才失效：
+
+1. `**加粗**` 的 flanking（M90）
+2. `{{ }}` 被 Vue 当插值吞掉（M91）——见下方 `check_vue_interpolation`
+
+退出码 0 表示全部写法正确，1 表示存在会渲染失效的写法。
 """
 
 from __future__ import annotations
@@ -96,6 +102,43 @@ def strip_inline_code(text: str) -> str:
     return re.sub(r"`[^`\n]*`", lambda m: _CODE_FILLER * len(m.group(0)), text)
 
 
+def check_vue_interpolation(
+    lines: list[str], rel: str, code: set[int]
+) -> list[str]:
+    """`{{ }}` 会被 Vue 当成插值求值，变量不存在时**渲染成空字符串**。
+
+    **M91 实测**：VitePress 把 markdown 编译成 Vue 组件，所以正文里的
+    `{{count}}` **不是字面量，而是插值**。写手册经常要引用 i18n 的占位符语法，
+    源文件读起来完全正常，产物里却**已经被吞掉了**：
+
+        源：  | 占位符（`{{count}}` 等） |     ← 行内代码段
+        产物：| 占位符（<code></code> 等） |  ← 空的 code，读者看不到 count
+
+        源：  「已导入 {{count}} 个画布」
+        产物：「已导入  个画布」            ← 正文里直接少了一段
+
+    第一种还能被 `check-render.py` 的"空标签"判据捞到；**第二种什么都测不出来**
+    ——它不产生任何异常标签，只是内容消失了。**所以只能在源侧拦。**
+
+    **正确写法**：`<span v-pre>{{count}}</span>`（M91 实测有效；要保留行内代码段
+    就把反引号放进 span：``<span v-pre>`{{count}}`</span>``）。
+    **HTML 实体 `&#123;` 在行内代码段里无效**——代码段会转义实体，读者会看到
+    字面的 `&amp;#123;`（这条也是 M91 实测排除的）。
+    """
+    problems: list[str] = []
+    for number, line in enumerate(lines, 1):
+        if number - 1 in code or "{{" not in line:
+            continue
+        guarded = re.sub(r"<span v-pre>.*?</span>", "", line)
+        for match in re.finditer(r"\{\{[^{}\n]*\}\}", guarded):
+            token = match.group(0)
+            problems.append(
+                f"{rel}:{number}: 正文里的 `{token}` 会被 Vue 当插值吞掉，"
+                f"产物里这段会消失——用 `<span v-pre>{token}</span>` 包起来"
+            )
+    return problems
+
+
 def main() -> int:
     root = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
     md_files = sorted(
@@ -104,7 +147,7 @@ def main() -> int:
         and not SKIP_DIRS.intersection(p.relative_to(root).parts)
     )
     if not md_files:
-        print("  [强调] 没有找到任何待检查的 .md 页面")
+        print("  [渲染陷阱] 没有找到任何待检查的 .md 页面")
         return 1
 
     problems: list[str] = []
@@ -113,6 +156,7 @@ def main() -> int:
         rel = path.relative_to(root).as_posix()
         lines = path.read_text(encoding="utf-8").splitlines()
         code = fenced_lines(lines)
+        problems.extend(check_vue_interpolation(lines, rel, code))
         for number, raw in enumerate(lines, 1):
             if number - 1 in code:
                 continue
@@ -139,11 +183,14 @@ def main() -> int:
                     )
 
     for problem in problems:
-        print(f"  [强调] {problem}")
+        print(f"  [渲染陷阱] {problem}")
     if problems:
-        print(f"强调写法校验失败：{len(problems)} 项（在标点与 ** 之间留一个空格即可）")
+        print(f"渲染陷阱校验失败：{len(problems)} 项")
         return 1
-    print(f"  [ ok ] 强调写法校验：{span_count} 个 `**…**` 跨度 flanking 均成立")
+    print(
+        f"  [ ok ] 渲染陷阱校验：{span_count} 个 `**…**` 跨度 flanking 均成立，"
+        "且无会被 Vue 吞掉的裸双花括号插值"
+    )
     return 0
 
 

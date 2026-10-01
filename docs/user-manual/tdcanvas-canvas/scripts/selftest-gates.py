@@ -354,6 +354,59 @@ def mutate_broken_emphasis(root: Path) -> None:
     path.write_text(text.replace(anchor, injected + anchor, 1), encoding="utf-8")
 
 
+def mutate_same_page_anchor(root: Path) -> None:
+    """**同页**锚点指向不存在的标题（M91 补的盲区）。
+
+    M91 实测：`check-anchors.py` 此前对同页锚点（`[文字](#标题)`，不带文件路径）
+    直接 `continue`，注释写"由 VitePress 保证"——**那个假设是假的**，标题里的
+    `：` `，` `"` 会被 slugify 折成 `-`，手写链接少写连字符就点不动。
+    全站仅 3 条同页锚点，**2 条是坏的**，而门禁当时报"44 个全部有效"。
+
+    先前的 `mutate_broken_anchor` 只改**跨页**链接，覆盖不到这个分支。
+    """
+
+    path = root / "10-tasks/connect-references.md"
+    text = path.read_text(encoding="utf-8")
+    path.write_text(
+        text.replace("#连线时的常见限制", "#根本没有这个同页标题", 1), encoding="utf-8"
+    )
+
+
+def mutate_vue_interpolation(root: Path) -> None:
+    """正文里裸写 `{{count}}`，会被 Vue 当插值吞掉（M91）。
+
+    源文件读起来完全正常，产物里那段**直接消失**：
+    行内代码段里表现为空的 `<code></code>`，正文里表现为凭空少一句话。
+    第二种**任何产物侧判据都测不出来**（不产生异常标签），所以只能源侧拦。
+    """
+
+    path = root / "10-tasks/connect-references.md"
+    path.write_text(
+        path.read_text(encoding="utf-8")
+        + "\n自检注入：i18n 原文是「已导入 {{count}} 个画布」。\n",
+        encoding="utf-8",
+    )
+
+
+def mutate_broken_render(root: Path) -> None:
+    """产物里表格列数不一致（多出的格连同内容被丢弃，M84 那类）。
+
+    自检不跑真实构建，所以现造一个最小产物目录，注入一个"表头 2 列、
+    某行 3 格"的表格。这是 M84 真实事故的产物形态：源码里列数是对的，
+    渲染器把多出来的格连同内容一起丢掉了。
+    """
+
+    dist = root / ".vitepress" / "dist"
+    dist.mkdir(parents=True, exist_ok=True)
+    (dist / "index.html").write_text(
+        "<!DOCTYPE html><html><body><main>"
+        "<table><thead><tr><th>甲</th><th>乙</th></tr></thead>"
+        "<tbody><tr><td>1</td><td>2</td><td>多出来的一格，内容会被丢弃</td></tr></tbody>"
+        "</table></main></body></html>",
+        encoding="utf-8",
+    )
+
+
 # ---------- 用例表：(名称, 变异, 期望由谁拦下, 期望出现的错误文字) ----------
 
 CASES: list[tuple[str, object, str, str]] = [
@@ -381,6 +434,9 @@ CASES: list[tuple[str, object, str, str]] = [
     ("单元格内竖线未转义（产物丢内容）", mutate_unescaped_pipe_in_code_span, "tables", "反引号（奇数）"),
     ("孤儿截图（登记了却没人引用）", mutate_orphan_screenshot, "structure", "孤儿截图"),
     ("** 紧邻标点导致加粗失效", mutate_broken_emphasis, "emphasis", "left-flanking"),
+    ("裸 {{ }} 被 Vue 插值吞掉", mutate_vue_interpolation, "emphasis", "插值吞掉"),
+    ("同页锚点指向不存在的标题", mutate_same_page_anchor, "anchor", "锚点不存在"),
+    ("产物表格列数不一致（内容被丢弃）", mutate_broken_render, "render", "多出来的格子连同内容已被渲染器丢弃"),
 ]
 
 
@@ -403,6 +459,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-emphasis.py"), str(root)]
     elif which == "distlinks":
         cmd = [sys.executable, str(root / "scripts/check-dist-links.py"), str(root)]
+    elif which == "render":
+        cmd = [sys.executable, str(root / "scripts/check-render.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)

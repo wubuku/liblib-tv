@@ -201,6 +201,16 @@ DIST_LINK_OUT="$(python3 scripts/check-dist-links.py . 2>&1)" || fail "产物中
 $DIST_LINK_OUT"
 echo "$DIST_LINK_OUT" | sed 's/^/  /'
 
+# 产物渲染体检：扫**构建后的 HTML**，查表格列数不一致、裸露管道文本、img 异常、
+# 页内锚点悬空、正文空标签五类病理。
+# 为什么必须在产物侧查：M84（单元格内未转义竖线导致整行内容被丢弃）与 M90
+# （`**` 紧邻标点导致加粗失效、留下字面量 `**`）都是**源文件完全正常、
+# 八道源码层门禁全部报 ok**，只有把产物打开才看得见。
+# 本门禁的每条判据都做过阳性对照（M91 在最小产物里注入对应病理逐一验证）。
+RENDER_OUT="$(python3 scripts/check-render.py . 2>&1)" || fail "产物渲染体检未通过（存在渲染后才暴露的病理）：
+$RENDER_OUT"
+echo "$RENDER_OUT" | sed 's/^/  /'
+
 # ---------- 完成 ----------
 log "════════════════════════════════════════════"
 ok "构建成功！发布产物: $SCRIPT_DIR/.vitepress/dist"

@@ -25,6 +25,7 @@ import unicodedata
 from pathlib import Path
 from urllib.parse import unquote
 
+INLINE_CODE_RE = re.compile(r"`[^`\n]*`")
 LINK_RE = re.compile(r"(?<!!)\[[^\]]+\]\(([^)\s]+)\)")
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.*)$")
 SKIP_DIRS = {"node_modules", ".vitepress", "dist", ".git"}
@@ -66,7 +67,13 @@ def main() -> int:
     checked = 0
     problems: list[str] = []
     for page in pages:
-        for target in LINK_RE.findall(page.read_text(encoding="utf-8")):
+        # 行内代码里的 `[x](#y)` 是**文档在讲语法**，不是真链接——必须跳过。
+        # M91 补同页锚点检查时立刻撞上这个：AUDIT.md 里把 `` `[文字](#标题)` ``
+        # 当示例写出来，被新判据当成一条坏锚点报了出来。判据没错，**输入没净化**。
+        text = INLINE_CODE_RE.sub(
+            lambda m: " " * len(m.group(0)), page.read_text(encoding="utf-8")
+        )
+        for target in LINK_RE.findall(text):
             if target.startswith(("http://", "https://", "mailto:", "data:")):
                 continue
             if "#" not in target:
@@ -79,8 +86,12 @@ def main() -> int:
             if not destination.exists():
                 problems.append(f"{page.relative_to(root)}: 目标文件不存在 -> {target}")
                 continue
-            if not raw_path:
-                continue  # 同页锚点，由 VitePress 保证
+            # 同页锚点（M91 订正）：此前在这里直接 `continue`，注释写"由 VitePress
+            # 保证"——**那个假设是假的**。同页锚点的 id 同样来自 slugify，标题里的
+            # 标点（`：` `，` `"`）会被折成 `-`，手写链接少写连字符就点不动。
+            # 实测：全站仅 3 条同页锚点，**2 条是坏的**（generate-images 的
+            # `#生图之外音频与…`、undo-persistence 的 `#清空画布撤销救得回来…`），
+            # 而本门禁当时报的是"44 个内部锚点链接全部有效"——一条都没查。
             if anchor and anchor not in ids_by_page.get(destination, set()):
                 problems.append(
                     f"{page.relative_to(root)}: 锚点不存在 -> {target}"

@@ -111,7 +111,8 @@ npx vitepress build  # 产物 .vitepress/dist/
 | `check-inventory-freshness.py` | 账本 screenshot_count 与 manifest 实数不符 | M59 实测 3 条数字过期 |
 | `check-claims.py` | 无证据的强断言（「逐字一致」等） | M44 实测速查表与截图自相矛盾 |
 | `check-retractions.py` | 已订正的错误说法复现 | M47 漏改、M52 补门禁 |
-| `check-emphasis.py` | `**` 紧邻标点导致加粗渲染失效 | M90 全站扫产物才发现 7 处（跨 6 页），其余门禁当时全部报 ok |
+| `check-emphasis.py` | `**` 紧邻标点导致加粗失效；**裸 `{{ }}` 被 Vue 插值吞掉** | M90 全站扫产物才发现 7 处加粗失效（跨 6 页）；M91 发现 i18n 占位符在产物里整段消失 |
+| `check-render.py` | **产物侧**渲染体检：表格列数不一致、裸露管道文本、img 异常、页内锚点悬空、正文空标签 | M84 整行内容被丢弃、M91 两条死链与一处空 `<code>`，源码层八道门禁当时全过 |
 | `check-tables.py` | 表格被非表格行劈开、缺表头与分隔行、**行内代码反引号不成对** | M65 实测「十三条」后 5 行渲染成原始管道文本；M84 实测单元格内竖线未转义会**让该行剩余内容从产物里消失** |
 | `selftest-gates.py` | 上面几道门禁**本身**坏了（注入 22 类故障） | M41 门禁静默错判 |
 | `check-dist-links.py` | 产物里的死链 | M56 实测 README 链到未生成页面 |
@@ -126,7 +127,8 @@ python3 scripts/check-inventory-freshness.py .  # 账本新鲜度
 python3 scripts/check-claims.py .         # 强断言
 python3 scripts/check-retractions.py .    # 订正回归
 python3 scripts/check-tables.py .        # 表格语法
-python3 scripts/check-emphasis.py .      # 强调写法
+python3 scripts/check-emphasis.py .      # 渲染陷阱（强调 flanking / Vue 插值）
+python3 scripts/check-render.py .        # 产物渲染体检（须在构建之后跑）
 python3 scripts/selftest-gates.py .       # 门禁自检
 python3 scripts/check-dist-links.py .     # 产物死链（须在构建后跑）
 ```
