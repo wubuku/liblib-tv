@@ -53,6 +53,8 @@
 | **顶栏主题按钮** | 顶栏右侧，日亮 / 月亮图标 | 任何时候随手切，一秒生效 |
 | **外观面板「主题模式」** | 左侧 Dock「画布外观」 | 已经在调外观时顺手改 |
 
+> **想自己复核这条？打开控制台看一个键就够了**。2026-10-01 实测：点顶栏主题按钮后，`localStorage` 会**新增一个键** `tdcanvas:theme_store`，值形如 `{"state":{"theme":"light"},"version":0}`（`dark` 同理）。**关掉整个浏览器再打开仍然是浅色**——实测确认。顺带记下切换时 DOM 上的两个标记：`<html>` 的 `class` 从 `font-sans dark` 变成 `font-sans`，页面根节点的 `class` 从 `ant-app tdcanvas-dark` 变成 `ant-app tdcanvas-light`；顶栏按钮的可访问名会同步从「切换到浅色主题」翻成「切换到深色主题」。**你不需要相信"全局"这个说法——去 `localStorage` 里看一眼 `tdcanvas:theme_store` 就能确认它确实落在了全局存储上。**
+
 ![浅色主题下的画布，浅米色点阵背景、白色节点与面板，左下角缩放条与左侧 Dock 均为浅色](../screenshots/01-create-canvas-project-light-canvas.png)
 
 浅色主题不是把深色反相，而是一套完整的独立配色：画布底色是**浅米色**（`oklch(1 0 0)` 的近白），节点与面板转白底深字，画布背景的**点阵变成浅棕点**。资产页的卡片、配置页的两栏布局在浅色下都正常：

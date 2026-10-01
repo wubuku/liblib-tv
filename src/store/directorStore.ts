@@ -98,6 +98,14 @@ import {
 export const DIRECTOR_TIMELINE_DEFAULT_HEIGHT = 182;
 export const DIRECTOR_TIMELINE_HEIGHT_MIN = 88;
 export const DIRECTOR_TIMELINE_HEIGHT_MAX = 420;
+
+// Batch 610：机位视野角度的量程。此前 updateCamera 的守卫写的是 20–120，
+// 而源站 range 实测（probe68 直接读 DOM 属性）是 min=15 / max=90；旧 UI
+// 只有 range 滑杆、根本提交不了区间外的值，所以这个矛盾一直藏着。batch
+// 610 给 FOV 加了可自由输入的数值框，矛盾就露出来了：钳到 15 会被守卫
+// 拒掉，输入框与 store 说法不一。常量搬到这里，让守卫与 UI 共用同一出处。
+export const DIRECTOR_CAMERA_FOV_MIN = 15;
+export const DIRECTOR_CAMERA_FOV_MAX = 90;
 import {
   directorProjectPersistence,
   getDirectorProjectPersistenceSnapshot,
@@ -5996,8 +6004,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       (patch.fov !== undefined &&
         (typeof patch.fov !== "number" ||
           !Number.isFinite(patch.fov) ||
-          patch.fov < 20 ||
-          patch.fov > 120)) ||
+          patch.fov < DIRECTOR_CAMERA_FOV_MIN ||
+          patch.fov > DIRECTOR_CAMERA_FOV_MAX)) ||
       (patch.target !== undefined && !validTuple(patch.target)) ||
       (patch.followOffset !== undefined && !validTuple(patch.followOffset)) ||
       (patch.lookAtMode !== undefined &&

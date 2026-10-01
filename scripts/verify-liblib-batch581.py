@@ -125,16 +125,40 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("tabs:count", len(tab_ys) == 3)
     check("tabs:single-row", len(set(tab_ys)) == 1, detail=tab_ys)
 
-    # 2) FOV control above 名称, source label form, source range
+    # 2) FOV range + the source's control form.
+    # Batch 610 correction: this used to assert `fov:above-name`, taken from a
+    # historical screenshot that read the `FOV 50°` **badge inside the sticky
+    # preview thumbnail** (`div.pointer-events-none.absolute.left-3.top-3`,
+    # measured y=134) as if it were the control.  The live reading puts the
+    # real control in the 视野角度 (FOV) section at y=798 — i.e. *below* 名称
+    # (y=321) and below 注视坐标 (y=721).  The assertion is migrated to that,
+    # and the preview thumbnail it was mistaken for is still clone-only.
     fov_field = page.locator("[data-director-camera-fov-field]")
     fov_field.wait_for(state="visible")
+    fov_field.scroll_into_view_if_needed()
+    page.wait_for_timeout(200)
     fov_y = fov_field.evaluate("el => Math.round(el.getBoundingClientRect().y)")
     name_y = page.locator("[data-director-object-name]").evaluate(
         "el => Math.round(el.getBoundingClientRect().y)"
     )
     result["fov_y"] = fov_y
     result["name_y"] = name_y
-    check("fov:above-name", fov_y < name_y, detail=f"{fov_y} vs {name_y}")
+    check("fov:below-name", fov_y > name_y, detail=f"{fov_y} vs {name_y}")
+    fov_label_y = page.evaluate(
+        """() => {
+          const el = [...document.querySelectorAll('*')].find(
+            (n) => n.childElementCount === 0
+              && (n.textContent || '').trim() === '视野角度 (FOV)');
+          return el ? Math.round(el.getBoundingClientRect().y) : null;
+        }"""
+    )
+    result["fov_label_y"] = fov_label_y
+    # The label is the first row of the field block: the source puts it 17.5px
+    # below its `section` top because the section carries `py-4`; the clone's
+    # field block carries no top padding, so the label sits flush with it.
+    check("fov:label-opens-section",
+          fov_label_y is not None and 0 <= fov_label_y - fov_y <= 4,
+          detail=f"{fov_label_y} vs field top {fov_y}")
 
     slider = page.locator("[data-director-camera-fov]")
     check("fov:min", slider.get_attribute("min") == "15")
@@ -147,10 +171,14 @@ def run_desktop(page: Page) -> dict[str, Any]:
           return s.objects.find((o) => o.kind === 'camera').camera.fov;
         }"""
     )
-    readout = page.locator("[data-director-camera-fov-readout]").inner_text().strip()
+    # Batch 610: the readout moved from a `<span>FOV 43°</span>` to the
+    # source's **number box** — a 49x28 `input[type=number]` with
+    # `text-center text-[13px] tabular-nums` (measured @(1834,842) next to the
+    # 170px slider).  The `°` suffix only ever existed on the preview
+    # thumbnail's badge, which the clone does not have.
+    readout = page.locator("[data-director-camera-fov-readout]").input_value().strip()
     result["fov_readout"] = readout
-    check("fov:readout-format", readout == f"FOV {store_fov}°" or readout == f"{store_fov}°",
-          detail=f"{readout} vs fov={store_fov}")
+    check("fov:readout-format", readout == f"{store_fov}", detail=f"{readout} vs fov={store_fov}")
     check("fov:label", "FOV" in fov_field.inner_text())
 
     set_range(page, "[data-director-camera-fov]", "37")
@@ -164,7 +192,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("fov:commit", after_fov == 37, detail=after_fov)
     check(
         "fov:readout-follows",
-        page.locator("[data-director-camera-fov-readout]").inner_text().strip() == "37°",
+        page.locator("[data-director-camera-fov-readout]").input_value().strip() == "37",
     )
 
     # 3) source row order
@@ -191,20 +219,37 @@ def run_desktop(page: Page) -> dict[str, Any]:
         check("order:source-sequence", ordered == sorted(ordered), detail=ordered)
 
     # 4) the FOV help block and its source copy
+    # Batch 610 correction: the live reading shows the copy is a **hover
+    # overlay** — `pointer-events-none absolute bottom-[calc(100%+8px)]
+    # left-1/2 w-52 -translate-x-1/2 rounded-lg bg-[#2b2b2b] px-2 py-1
+    # text-xs leading-5 text-white/85 opacity-0 shadow-[0_8px_20px_
+    # rgba(0,0,0,0.35)] transition-opacity group-hover:opacity-100`, measured
+    # 208x68 @(1655.7,738) with computed opacity 0 at rest.  It is not a click
+    # toggle and it is not expanded by default, so 581/582's
+    # `data-open` / `help-toggle` contracts are migrated to hover reveal.
     help_block = page.locator("[data-director-camera-fov-help]")
     help_block.scroll_into_view_if_needed()
-    # Batch 582: 源站实测该说明默认展开（innerText 直接含文案），581 曾
-    # 实现为默认收起，此处随 582 迁移为「默认展开 + 可切换收起」。
-    check("help:expanded-by-default", help_block.get_attribute("data-open") == "true")
-    check("help:label", "视野角度 (FOV)" in help_block.inner_text())
-    page.locator("[data-director-camera-fov-help-toggle]").click()
-    page.wait_for_timeout(250)
-    check("help:collapses", help_block.get_attribute("data-open") == "false")
-    page.locator("[data-director-camera-fov-help-toggle]").click()
-    page.wait_for_timeout(250)
-    check("help:reopens", help_block.get_attribute("data-open") == "true")
-    check("help:source-copy", SOURCE_FOV_HELP in help_block.inner_text())
-    result["help_text"] = help_block.inner_text().strip()
+    tooltip = page.locator("[data-director-camera-fov-help-tooltip]")
+    check("help:label", "视野角度 (FOV)" in fov_field.inner_text())
+    check("help:hidden-at-rest", tooltip.evaluate("el => getComputedStyle(el).opacity") == "0")
+    check("help:source-copy", SOURCE_FOV_HELP in tooltip.inner_text())
+    check("help:pointer-events-none",
+          tooltip.evaluate("el => getComputedStyle(el).pointerEvents") == "none")
+    tooltip_box = tooltip.evaluate(
+        "el => { const r = el.getBoundingClientRect();"
+        " return [Math.round(r.width), Math.round(r.height)]; }"
+    )
+    result["help_tooltip_box"] = tooltip_box
+    check("help:width-208", tooltip_box[0] == 208, detail=tooltip_box)
+    page.locator("[data-director-camera-fov-help-badge]").hover()
+    page.wait_for_timeout(300)
+    check("help:reveals-on-hover",
+          tooltip.evaluate("el => getComputedStyle(el).opacity") == "1")
+    page.mouse.move(5, 5)
+    page.wait_for_timeout(300)
+    check("help:hides-again",
+          tooltip.evaluate("el => getComputedStyle(el).opacity") == "0")
+    result["help_text"] = tooltip.inner_text().strip()
 
     # 5) follow target still works and reveals its follow-up section
     follow = page.locator("[data-director-camera-follow-target]")
@@ -287,8 +332,8 @@ def main() -> None:
         "Batch 581 verification passed: "
         f"{len(checks)} checks, 0 diagnostics. "
         "Camera 属性 panel matches the 2026-10-01 source sampling: tabs on one "
-        "row, FOV above 名称 with 15–90 range, source row order and FOV help "
-        "copy. See runtime-audit.json."
+        "row, the FOV section with 15–90 range below 注视坐标, source row "
+        "order, and the FOV copy as a hover overlay. See runtime-audit.json."
     )
 
 

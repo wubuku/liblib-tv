@@ -25,6 +25,8 @@ import {
 import { cn } from "@/lib/utils";
 import { DirectorCameraMotionTab } from "@/components/director/DirectorCameraMotionTab";
 import {
+  DIRECTOR_CAMERA_FOV_MAX,
+  DIRECTOR_CAMERA_FOV_MIN,
   useDirectorStore,
   type DirectorCameraLookAtMode,
   type DirectorCapture,
@@ -60,6 +62,29 @@ function cloneDirectorTransform(transform: DirectorTransform): DirectorTransform
 }
 
 const axisLabels = ["X", "Y", "Z"] as const;
+
+/* Batch 610（源站 2026-10-01 实测 probe68）：字段标签统一是
+   `mb-1 flex h-7 items-center text-[13px] font-normal leading-none
+   text-white/45`（28 高 + mb-1 + 28 高控件 = 组高 60）；下拉是
+   `h-7 w-full rounded-lg border-0 bg-white/10 px-2 text-[12px]
+   text-neutral-50 outline-none placeholder:text-white/30
+   focus:bg-white/13 appearance-none`。抽成一对组件，三枚 select 共用。 */
+function FieldLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-white/45">
+      {children}
+    </span>
+  );
+}
+
+const FIELD_CONTROL =
+  "h-7 w-full rounded-lg border-0 bg-white/10 px-2 text-[12px] text-neutral-50 outline-none placeholder:text-white/30 focus:bg-white/13 appearance-none";
+
+// Batch 610：源站 range 实测 min=15 / max=90 / step=1（probe68 直接读到
+// DOM 属性），填充比 (50-15)/(90-15)=46.6% 与实测 fill 宽 79.3/170 吻合。
+// 常量在 store 模块（与 updateCamera 的守卫同源），这里只是别名。
+const FOV_MIN = DIRECTOR_CAMERA_FOV_MIN;
+const FOV_MAX = DIRECTOR_CAMERA_FOV_MAX;
 
 function AxisFields({
   label,
@@ -688,7 +713,7 @@ function GroupInspector({ group }: { group: DirectorCharacterGroup }) {
   return (
     <div
       data-director-group-inspector
-      className="space-y-4 px-3 py-3"
+      className="space-y-4 px-4 py-3"
     >
       {hasLockedMember ? (
         <p
@@ -1351,7 +1376,7 @@ function CharacterPoseInspector({
   return (
     <div
       data-director-pose-panel
-      className="space-y-4 px-3 py-3"
+      className="space-y-4 px-4 py-3"
     >
       {character.locked ? (
         <p
@@ -1422,12 +1447,16 @@ function CameraFovField({
   objectId,
   fov,
   disabled,
+  fovKeyframed,
+  onToggleKeyframe,
   updateCamera,
   recordObjectKeyframe,
 }: {
   objectId: string;
   fov: number;
   disabled: boolean;
+  fovKeyframed: boolean;
+  onToggleKeyframe: () => void;
   updateCamera: (
     objectId: string,
     patch: Partial<NonNullable<DirectorObject["camera"]>>,
@@ -1440,41 +1469,111 @@ function CameraFovField({
     fieldScope: "fov",
   });
 
+  // Batch 610（源站 2026-10-01 实测 probe68）：FOV 控件**不在面板顶部**。
+  // 源站 y=134 那个 `FOV 50°` 是 sticky 预览缩略图
+  // （`div.pointer-events-none.absolute.left-3.top-3`）里的角标，不是控件；
+  // 真正的控件在 y=842 的「视野角度 (FOV)」段里，位于「注视坐标」之后。
+  // batch 581 据历史截图把它读成「FOV 行紧贴页签栏下方」，本批按 live
+  // 读数更正（见 README 的读数矛盾记录）。
+  const [draft, setDraft] = useState(String(fov));
+  useEffect(() => {
+    setDraft(String(fov));
+  }, [fov]);
+  const min = FOV_MIN;
+  const max = FOV_MAX;
+  const ratio = max > min ? (fov - min) / (max - min) : 0;
+  const commit = (next: number) => {
+    const clamped = Math.min(max, Math.max(min, next));
+    updateCamera(objectId, { fov: clamped });
+    recordObjectKeyframe(objectId);
+  };
   return (
-    // Batch 581（源站 2026-10-01 CDP 实测）：FOV 行紧贴页签栏下方（y=134），
-    // 早于「名称」（y=289），形态为 `FOV 50°` 单行——标签与度数读数同行、
-    // 滑杆在下。原生 range 属性实测 min=15 / max=90 / step=1（此前 clone
-    // 写死 min=20，量程比源站窄）。
     <div className="block" data-director-camera-fov-field>
-      <div className="mb-1.5 flex items-center justify-between text-[11px] text-[#777]">
-        <span className="flex items-center gap-1">
-          <Camera size={12} />
-          FOV
+      {/* 标题行：标签 + 16x16 的 ? 徽标，徽标是 tooltip 的 group 宿主 */}
+      <div className="mb-3 flex items-center gap-1">
+        <span className="text-[13px] font-medium leading-none text-white/45">
+          视野角度 (FOV)
         </span>
-        <span
-          data-director-camera-fov-readout
-          className="tabular-nums text-[#a7a7a7]"
-        >
-          {fov}°
+        <span className="group relative" data-director-camera-fov-help>
+          <span
+            aria-label="视野角度说明"
+            data-director-camera-fov-help-badge
+            className="flex h-4 w-4 cursor-default items-center justify-center rounded-full border border-white/20 text-[10px] text-white/45"
+          >
+            ?
+          </span>
+          {/* 源站是 hover 浮层（opacity-0 + group-hover:opacity-100 +
+              transition-opacity），不是可点开的展开块。 */}
+          <span
+            data-director-camera-fov-help-tooltip
+            className="z-1700 pointer-events-none absolute bottom-[calc(100%+8px)] left-1/2 w-52 -translate-x-1/2 rounded-lg bg-[#2b2b2b] px-2 py-1 text-xs leading-5 text-white/85 opacity-0 shadow-[0_8px_20px_rgba(0,0,0,0.35)] transition-opacity group-hover:opacity-100"
+          >
+            控制镜头视野范围。数值越小，画面越近、越聚焦；数值越大，画面越广、能看到更多环境。
+          </span>
         </span>
       </div>
-      <input
-        type="range"
-        min="15"
-        max="90"
-        step="1"
-        data-director-camera-fov
-        value={fov}
-        disabled={disabled}
-        {...(disabled ? {} : gesture)}
-        onChange={(event) => {
-          updateCamera(objectId, {
-            fov: Number(event.target.value),
-          });
-          recordObjectKeyframe(objectId);
-        }}
-        className="w-full accent-[#09caf5]"
-      />
+      {/* 控件行：170px 自绘滑块 + 8px 间隙 + 70px 数值框（170+8+70=248） */}
+      <div className="flex items-center justify-center gap-2">
+        <div
+          data-director-camera-fov-slider
+          className="relative h-5 w-[170px] shrink-0"
+        >
+          <div className="absolute left-0 top-1/2 h-1 w-full -translate-y-1/2 rounded-full bg-[#5c5c5c]">
+            <div
+              data-director-camera-fov-fill
+              className="h-full rounded-full bg-[#09caf5]"
+              style={{ width: `${ratio * 100}%` }}
+            />
+          </div>
+          <div
+            data-director-camera-fov-knob
+            className="pointer-events-none absolute top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#262626] bg-white"
+            style={{ left: `${ratio * 100}%` }}
+          />
+          <input
+            type="range"
+            min={min}
+            max={max}
+            step={1}
+            aria-label="视野角度 (FOV)"
+            data-director-camera-fov
+            value={fov}
+            disabled={disabled}
+            {...(disabled ? {} : gesture)}
+            onChange={(event) => commit(Number(event.target.value))}
+            className="absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 cursor-pointer touch-none opacity-0 disabled:cursor-default"
+          />
+        </div>
+        <div className="focus-within:bg-white/13 flex h-7 min-w-px flex-1 overflow-hidden rounded-lg bg-white/10 transition-colors">
+          <input
+            type="number"
+            min={min}
+            max={max}
+            step={1}
+            aria-label="视野角度 (FOV) 数值"
+            data-director-camera-fov-number
+            data-director-camera-fov-readout
+            value={draft}
+            disabled={disabled}
+            onChange={(event) => {
+              const raw = event.target.value;
+              setDraft(raw);
+              if (raw.trim() === "" || !Number.isFinite(Number(raw))) return;
+              commit(Number(raw));
+            }}
+            onBlur={() => setDraft(String(fov))}
+            className="h-full min-w-0 flex-1 border-0 bg-transparent px-2 text-center text-[13px] tabular-nums text-neutral-50 outline-none [appearance:textfield] disabled:opacity-45 [&::-webkit-inner-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+          />
+          <KeyframeToggleButton
+            on={fovKeyframed}
+            testId="fov"
+            field="camera"
+            axisIndex={0}
+            disabled={disabled}
+            onClick={onToggleKeyframe}
+          />
+        </div>
+      </div>
     </div>
   );
 }
@@ -1705,38 +1804,6 @@ function NumericReadoutInput({
   );
 }
 
-function CameraFovHelp() {
-  // Batch 582: 源站实测该说明**默认展开**（innerText 直接含文案，? 开关在
-  // 其前），此前 clone 默认收起，现对齐为默认展开。
-  const [open, setOpen] = useState(true);
-  return (
-    <div
-      data-director-camera-fov-help
-      data-open={open ? "true" : "false"}
-      className="space-y-1.5"
-    >
-      <div className="flex items-center gap-1.5">
-        <span className="text-[11px] text-[#777]">视野角度 (FOV)</span>
-        <button
-          type="button"
-          aria-label="视野角度说明"
-          aria-expanded={open}
-          data-director-camera-fov-help-toggle
-          onClick={() => setOpen((value) => !value)}
-          className="grid h-3.5 w-3.5 place-items-center rounded-full border border-white/20 text-[8px] leading-none text-[#8c8c8c] hover:border-white/40 hover:text-white"
-        >
-          ?
-        </button>
-      </div>
-      {open ? (
-        <p className="text-[10px] leading-4 text-[#6f6f6f]">
-          控制镜头视野范围。数值越小，画面越近、越聚焦；数值越大，画面越广、能看到更多环境。
-        </p>
-      ) : null}
-    </div>
-  );
-}
-
 function formatDirectorShotRange(startTime: number, endTime: number): string {
   return `${startTime.toFixed(1)}-${endTime.toFixed(1)}s`;
 }
@@ -1955,6 +2022,12 @@ export function DirectorInspector({
       recordObjectKeyframe(selected.id, true);
     }
   };
+  // Batch 610：FOV 数值框尾部的关键帧开关。源站把 fov 存在**相机轨道**
+  // 关键帧里（{ transform, target, fov }），与变换行读的是同一枚关键帧，
+  // 所以这里直接复用播放头那一枚的 id——按钮管的是「这一帧」，不是「这一
+  // 个字段」，与源站「每个数值框右端都挂同一枚开关」的结构一致。
+  const cameraFovKeyframed = keyframeAtPlayheadId !== null;
+  const toggleCameraFovKeyframe = toggleKeyframeAtPlayhead;
   useEffect(() => {
     const input = sceneNameInputRef.current;
     if (input && document.activeElement !== input) input.value = scene.name;
@@ -2134,7 +2207,7 @@ export function DirectorInspector({
           ) : selected.kind === "character" && characterTab === "pose" ? (
             <CharacterPoseInspector character={selected} />
           ) : (
-          <div className="space-y-4 px-3 py-3">
+          <div className="space-y-4 px-4 py-3">
             {selected.locked ? (
               <p
                 data-director-locked-hint
@@ -2144,17 +2217,8 @@ export function DirectorInspector({
                 对象已锁定，属性与变换编辑已停用
               </p>
             ) : null}
-            {/* Batch 581（源站实测 y=134，紧贴页签栏下方、早于「名称」
-                y=289）：FOV 行提到面板顶部。摄像机属性页才有。 */}
-            {selected.camera ? (
-              <CameraFovField
-                objectId={selected.id}
-                fov={selected.camera.fov}
-                disabled={selected.locked}
-                updateCamera={updateCamera}
-                recordObjectKeyframe={recordObjectKeyframe}
-              />
-            ) : null}
+            {/* Batch 610：FOV 控件已从面板顶部移到这里（源站实测 FOV 段
+                y=798，在「注视坐标」之后、「相机截图」之前）。 */}
             <label className="block">
               {/* Batch 609（源站 probe67 实测）：名称标签同样是 h-7 / 13px /
                   text-white/45，输入框 `h-7 w-full rounded-lg border-0
@@ -2180,7 +2244,7 @@ export function DirectorInspector({
 
             {selected.kind === "camera" ? (
               <label className="mt-3 block">
-                <span className="mb-1.5 block text-[11px] text-[#777]">切换机位</span>
+                <FieldLabel>切换机位</FieldLabel>
                 <select
                   data-director-camera-switch
                   value={
@@ -2191,7 +2255,7 @@ export function DirectorInspector({
                       selectShot(event.currentTarget.value);
                     }
                   }}
-                  className="h-8 w-full rounded border border-white/[0.08] bg-[#222] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
+                  className={cn(FIELD_CONTROL, "disabled:opacity-45")}
                 >
                   {objects
                     .filter((object) => object.kind === "camera")
@@ -2263,9 +2327,7 @@ export function DirectorInspector({
                   跟随视角仍留在下方摄像机分组（源站同屏未见，clone 保留）。 */}
               {selected.camera ? (
                 <label className="block">
-                  <span className="mb-1.5 block text-[11px] text-[#777]">
-                    跟随目标
-                  </span>
+                  <FieldLabel>跟随目标</FieldLabel>
                   <select
                     data-director-camera-follow-target
                     value={selected.camera.followTargetId ?? ""}
@@ -2275,7 +2337,7 @@ export function DirectorInspector({
                         followTargetId: event.currentTarget.value || null,
                       })
                     }
-                    className="h-8 w-full min-w-0 rounded border border-white/[0.08] bg-[#222] px-2 text-[11px] text-[#d2d2d2] outline-none focus:border-[#09caf5]/60"
+                    className={cn(FIELD_CONTROL, "min-w-0 disabled:opacity-45")}
                   >
                     <option value="">不跟随</option>
                     {cameraTargets.map((object) => (
@@ -2378,11 +2440,19 @@ export function DirectorInspector({
                 {/* Batch 581: FOV 控件已提到面板顶部（源站实测），此处保留
                     源站底部的说明块（y=816 `视野角度 (FOV)` + `?` 开关 +
                     文案），文案逐字取自源站。 */}
-                <CameraFovHelp />
+                {selected.camera ? (
+                  <CameraFovField
+                    objectId={selected.id}
+                    fov={selected.camera.fov}
+                    disabled={selected.locked}
+                    fovKeyframed={cameraFovKeyframed}
+                    onToggleKeyframe={toggleCameraFovKeyframe}
+                    updateCamera={updateCamera}
+                    recordObjectKeyframe={recordObjectKeyframe}
+                  />
+                ) : null}
                 <label className="block">
-                  <span className="mb-1.5 block text-[11px] text-[#777]">
-                    注视目标
-                  </span>
+                  <FieldLabel>注视目标</FieldLabel>
                   <select
                     data-director-camera-look-at-mode={
                       selected.camera.lookAtMode
@@ -2414,7 +2484,7 @@ export function DirectorInspector({
                         lookAtObjectId: null,
                       });
                     }}
-                    className="h-8 w-full min-w-0 rounded border border-white/[0.08] bg-[#222] px-2 text-[11px] text-[#d2d2d2] outline-none focus:border-[#09caf5]/60"
+                    className={cn(FIELD_CONTROL, "min-w-0 disabled:opacity-45")}
                   >
                     <option value="coordinate">手动坐标</option>
                     <option value="rotation">手动旋转</option>
@@ -2545,7 +2615,7 @@ export function DirectorInspector({
           </div>
           )
         ) : (
-          <div data-director-scene-settings className="space-y-4 px-3 py-3">
+          <div data-director-scene-settings className="space-y-4 px-4 py-3">
             <section data-director-scene-settings-section>
             <section
               data-director-scene-transform

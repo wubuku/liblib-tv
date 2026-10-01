@@ -1191,7 +1191,13 @@ export default function DirectorDesk({
             }
             data-director-mobile-panel-state={activeMobilePanel === "inspector" ? "open" : "closed"}
             className={cn(
-              "absolute inset-y-0 right-0 z-30 w-72 border-l border-white/[0.07] transition-transform duration-200",
+              /* Batch 610：右列此前是 `w-72 border-l`（288 宽），与同一列
+                 自己的 280px 右头（batch 606）以及源站实测的 280
+                 （`div.flex.min-h-full.flex-col` x=1640）都不一致；那圈
+                 1px 左边框是 clone 自造的，源站该列没有（只有 section 之间
+                 的 border-b）。去掉后列宽 280、内容宽 280-2*16=248，与源站
+                 的 248 逐字对上。 */
+              "absolute inset-y-0 right-0 z-30 w-[280px] transition-transform duration-200",
               activeMobilePanel === "inspector"
                 ? "max-[899px]:translate-x-0"
                 : "max-[899px]:translate-x-full",

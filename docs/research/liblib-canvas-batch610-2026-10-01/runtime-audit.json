@@ -1,0 +1,1234 @@
+{
+  "batch": 610,
+  "title": "属性 panel column at 280, source-shaped selects, and the FOV block",
+  "date": "2026-10-01",
+  "sourceEvidence": [
+    "probe66 whole-subtree dump of the source right column",
+    "probe68 exact computed styles for the 视野角度 (FOV) block"
+  ],
+  "claims": {
+    "sourceFact": [
+      "column = 280 wide at x=1640, px-4 content = 248 at x=1656",
+      "selects = 248x28 h-7 rounded-lg border-0 bg-white/10 px-2 text-[12px] appearance-none",
+      "field labels = 28px box, 13px, text-white/45",
+      "axis cells = 80x28, number inputs 59x28 at x=1656/1740/1824",
+      "注视坐标 cells are 80 wide and carry no keyframe toggle",
+      "FOV header = label 91.7x13 + 16x16 ? badge in a group relative host",
+      "FOV copy = hover overlay, 208 wide, bg #2b2b2b, z-1700, opacity 0 at rest",
+      "FOV control row = 170 + 8 + 70 = 248",
+      "slider = 4px #5c5c5c track, #09caf5 fill, 12px knob border-[#262626] bg-white",
+      "range min=15 max=90 step=1 (fill ratio cross-checks: 79.3/170 vs 35/75)",
+      "number box = 70x28 with a 49x28 text-center text-[13px] input + 20px keyframe toggle"
+    ],
+    "readingOverturned": [
+      "batch 581's `fov:above-name` came from a historical screenshot that mistook the sticky preview thumbnail's `FOV 50°` badge (div.pointer-events-none.absolute.left-3.top-3, y=134) for the control; the real control is at y=798, below 名称 (321) and 注视坐标 (721). 581's contracts are migrated, not deleted.",
+      "batch 582's `help:expanded-by-default` + click toggle: the live reading shows opacity-0 + group-hover:opacity-100, i.e. a hover overlay.  Migrated to hover reveal.",
+      "batch 581's readout contract moved from a `FOV 43°` span to the source's number box; the `°` suffix only ever existed on the preview badge."
+    ],
+    "inference": [
+      "the number box clamps to the measured 15–90 range on both ends",
+      "the number box's keyframe toggle records/deletes the playhead keyframe, like the axis cells — the source's button was never clicked (needs authorisation)"
+    ],
+    "notClaimed": [
+      "the sticky preview thumbnail (240x135 canvas + FOV badge + the 24x24 expand button) that the FOV badge belongs to; the clone has no such block yet",
+      "the source's FOV drag behaviour"
+    ]
+  },
+  "checks": {
+    "initial": {
+      "panel": {
+        "box": [
+          1640,
+          88,
+          280,
+          880
+        ],
+        "bg": "rgb(25, 25, 25)",
+        "radius": "0px",
+        "border": "0px",
+        "font": "16px",
+        "pad": "0px",
+        "color": "rgb(237, 237, 237)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": null
+      },
+      "name": {
+        "box": [
+          1656,
+          -1,
+          248,
+          28
+        ],
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "radius": "8px",
+        "border": "0px",
+        "font": "12px",
+        "pad": "0px 8px",
+        "color": "rgb(247, 247, 247)",
+        "align": "start",
+        "appearance": "auto",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": "机位01 · 对峙中景"
+      },
+      "nameLabel": {
+        "box": [
+          1656,
+          -33,
+          248,
+          28
+        ],
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "border": "0px",
+        "font": "13px",
+        "pad": "0px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": null
+      },
+      "switchShot": {
+        "box": [
+          1656,
+          75,
+          248,
+          28
+        ],
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "radius": "8px",
+        "border": "0px",
+        "font": "12px",
+        "pad": "0px 8px",
+        "color": "rgb(247, 247, 247)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": "director-shot-director-camera-main"
+      },
+      "switchLabel": {
+        "box": [
+          1656,
+          43,
+          248,
+          28
+        ],
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "border": "0px",
+        "font": "13px",
+        "pad": "0px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": null
+      },
+      "follow": {
+        "box": [
+          1656,
+          288,
+          248,
+          28
+        ],
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "radius": "8px",
+        "border": "0px",
+        "font": "12px",
+        "pad": "0px 8px",
+        "color": "rgb(247, 247, 247)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": ""
+      },
+      "followLabel": {
+        "box": [
+          1656,
+          256,
+          248,
+          28
+        ],
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "border": "0px",
+        "font": "13px",
+        "pad": "0px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": null
+      },
+      "lookAt": {
+        "box": [
+          1656,
+          844,
+          248,
+          28
+        ],
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "radius": "8px",
+        "border": "0px",
+        "font": "12px",
+        "pad": "0px 8px",
+        "color": "rgb(247, 247, 247)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": "coordinate"
+      },
+      "lookAtLabel": {
+        "box": [
+          1656,
+          812,
+          248,
+          28
+        ],
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "border": "0px",
+        "font": "13px",
+        "pad": "0px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": null
+      },
+      "posCell": {
+        "box": [
+          1656,
+          216,
+          80,
+          28
+        ],
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "radius": "8px",
+        "border": "0px",
+        "font": "16px",
+        "pad": "0px",
+        "color": "rgb(237, 237, 237)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": null
+      },
+      "posCells": [
+        [
+          1656,
+          216,
+          80,
+          28
+        ],
+        [
+          1740,
+          216,
+          80,
+          28
+        ],
+        [
+          1824,
+          216,
+          80,
+          28
+        ]
+      ],
+      "posInputs": [
+        [
+          1656,
+          216,
+          59,
+          28
+        ],
+        [
+          1740,
+          216,
+          59,
+          28
+        ],
+        [
+          1824,
+          216,
+          59,
+          28
+        ]
+      ],
+      "posLabels": [
+        {
+          "box": [
+            1656,
+            216,
+            20,
+            28
+          ],
+          "bg": "rgba(0, 0, 0, 0)",
+          "radius": "8px 0px 0px 8px",
+          "border": "0px",
+          "font": "12px",
+          "pad": "0px",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+          "align": "center",
+          "appearance": "button",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": ""
+        },
+        {
+          "box": [
+            1740,
+            216,
+            20,
+            28
+          ],
+          "bg": "rgba(0, 0, 0, 0)",
+          "radius": "8px 0px 0px 8px",
+          "border": "0px",
+          "font": "12px",
+          "pad": "0px",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+          "align": "center",
+          "appearance": "button",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": ""
+        },
+        {
+          "box": [
+            1824,
+            216,
+            20,
+            28
+          ],
+          "bg": "rgba(0, 0, 0, 0)",
+          "radius": "8px 0px 0px 8px",
+          "border": "0px",
+          "font": "12px",
+          "pad": "0px",
+          "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+          "align": "center",
+          "appearance": "button",
+          "min": null,
+          "max": null,
+          "step": null,
+          "value": ""
+        }
+      ],
+      "targetInput": {
+        "box": [
+          1656,
+          916,
+          80,
+          28
+        ],
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "border": "0px",
+        "font": "12px",
+        "pad": "0px 0px 0px 24px",
+        "color": "rgb(247, 247, 247)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": "0.1",
+        "value": "-0.3"
+      },
+      "targetHasToggle": false,
+      "fovLabel": {
+        "box": [
+          1656,
+          745.5,
+          91.7,
+          13
+        ],
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "border": "0px",
+        "font": "13px",
+        "pad": "0px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": null
+      },
+      "badge": {
+        "box": [
+          1751.7,
+          744,
+          16,
+          16
+        ],
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "3.35544e+07px",
+        "border": "1px",
+        "font": "10px",
+        "pad": "0px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": null
+      },
+      "tooltip": {
+        "box": [
+          1655.7,
+          668,
+          208,
+          68
+        ],
+        "opacity": "0",
+        "pointerEvents": "none",
+        "zIndex": "1700",
+        "bg": "rgb(43, 43, 43)",
+        "text": "控制镜头视野范围。数值越小，画面越近、越聚焦；数值越大，画面越广、能看到更多环境。"
+      },
+      "sliderBox": {
+        "box": [
+          1656,
+          776,
+          170,
+          20
+        ],
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "border": "0px",
+        "font": "16px",
+        "pad": "0px",
+        "color": "rgb(237, 237, 237)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": null
+      },
+      "track": {
+        "box": [
+          1656,
+          784,
+          170,
+          4
+        ],
+        "bg": "rgb(92, 92, 92)",
+        "radius": "3.35544e+07px",
+        "border": "0px",
+        "font": "16px",
+        "pad": "0px",
+        "color": "rgb(237, 237, 237)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": null
+      },
+      "fill": {
+        "box": [
+          1656,
+          784,
+          63.5,
+          4
+        ],
+        "bg": "rgb(9, 202, 245)"
+      },
+      "knob": {
+        "box": [
+          1713.5,
+          780,
+          12,
+          12
+        ],
+        "bg": "rgb(255, 255, 255)",
+        "border": "1px rgb(38, 38, 38)"
+      },
+      "range": {
+        "box": [
+          1656,
+          776,
+          170,
+          20
+        ],
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "border": "0px",
+        "font": "16px",
+        "pad": "0px",
+        "color": "rgb(237, 237, 237)",
+        "align": "start",
+        "appearance": "auto",
+        "min": "15",
+        "max": "90",
+        "step": "1",
+        "value": "43",
+        "opacity": "0",
+        "cursor": "pointer"
+      },
+      "numberBox": {
+        "box": [
+          1834,
+          772,
+          70,
+          28
+        ],
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "radius": "8px",
+        "border": "0px",
+        "font": "16px",
+        "pad": "0px",
+        "color": "rgb(237, 237, 237)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": null
+      },
+      "number": {
+        "box": [
+          1834,
+          772,
+          49,
+          28
+        ],
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "border": "0px",
+        "font": "13px",
+        "pad": "0px 8px",
+        "color": "rgb(247, 247, 247)",
+        "align": "center",
+        "appearance": "textfield",
+        "min": "15",
+        "max": "90",
+        "step": "1",
+        "value": "43"
+      },
+      "numberToggle": {
+        "box": [
+          1884,
+          772,
+          20,
+          28
+        ],
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+        "radius": "0px",
+        "border": "0px",
+        "font": "16px",
+        "pad": "0px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)",
+        "align": "center",
+        "appearance": "button",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": ""
+      },
+      "toggleStates": [
+        "position-X",
+        "position-Y",
+        "position-Z",
+        "rotation-X",
+        "rotation-Y",
+        "rotation-Z",
+        "scale-X",
+        "scale-Y",
+        "scale-Z",
+        "fov"
+      ],
+      "fov": {
+        "value": 43,
+        "currentTime": 6.5,
+        "keyframes": []
+      }
+    },
+    "panel:width-280": {
+      "ok": true,
+      "detail": [
+        1640,
+        88,
+        280,
+        880
+      ]
+    },
+    "panel:x-1640": {
+      "ok": true,
+      "detail": [
+        1640,
+        88,
+        280,
+        880
+      ]
+    },
+    "name:248x28": {
+      "ok": true,
+      "detail": [
+        1656,
+        -1,
+        248,
+        28
+      ]
+    },
+    "name:no-border": {
+      "ok": true,
+      "detail": "0px"
+    },
+    "name:radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "name:fill-white-10": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+    },
+    "name:font-12": {
+      "ok": true,
+      "detail": "12px"
+    },
+    "name:pad-8": {
+      "ok": true,
+      "detail": "0px 8px"
+    },
+    "select:切换机位-248x28": {
+      "ok": true,
+      "detail": [
+        1656,
+        75,
+        248,
+        28
+      ]
+    },
+    "select:切换机位-no-border": {
+      "ok": true,
+      "detail": "0px"
+    },
+    "select:切换机位-radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "select:切换机位-fill-white-10": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+    },
+    "select:切换机位-font-12": {
+      "ok": true,
+      "detail": "12px"
+    },
+    "select:切换机位-appearance-none": {
+      "ok": true,
+      "detail": "none"
+    },
+    "label:切换机位-h28": {
+      "ok": true,
+      "detail": [
+        1656,
+        43,
+        248,
+        28
+      ]
+    },
+    "label:切换机位-13px": {
+      "ok": true,
+      "detail": "13px"
+    },
+    "label:切换机位-white-45": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)"
+    },
+    "select:跟随目标-248x28": {
+      "ok": true,
+      "detail": [
+        1656,
+        288,
+        248,
+        28
+      ]
+    },
+    "select:跟随目标-no-border": {
+      "ok": true,
+      "detail": "0px"
+    },
+    "select:跟随目标-radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "select:跟随目标-fill-white-10": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+    },
+    "select:跟随目标-font-12": {
+      "ok": true,
+      "detail": "12px"
+    },
+    "select:跟随目标-appearance-none": {
+      "ok": true,
+      "detail": "none"
+    },
+    "label:跟随目标-h28": {
+      "ok": true,
+      "detail": [
+        1656,
+        256,
+        248,
+        28
+      ]
+    },
+    "label:跟随目标-13px": {
+      "ok": true,
+      "detail": "13px"
+    },
+    "label:跟随目标-white-45": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)"
+    },
+    "select:注视目标-248x28": {
+      "ok": true,
+      "detail": [
+        1656,
+        844,
+        248,
+        28
+      ]
+    },
+    "select:注视目标-no-border": {
+      "ok": true,
+      "detail": "0px"
+    },
+    "select:注视目标-radius-8": {
+      "ok": true,
+      "detail": "8px"
+    },
+    "select:注视目标-fill-white-10": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+    },
+    "select:注视目标-font-12": {
+      "ok": true,
+      "detail": "12px"
+    },
+    "select:注视目标-appearance-none": {
+      "ok": true,
+      "detail": "none"
+    },
+    "label:注视目标-h28": {
+      "ok": true,
+      "detail": [
+        1656,
+        812,
+        248,
+        28
+      ]
+    },
+    "label:注视目标-13px": {
+      "ok": true,
+      "detail": "13px"
+    },
+    "label:注视目标-white-45": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)"
+    },
+    "cells:80x28": {
+      "ok": true,
+      "detail": [
+        [
+          1656,
+          216,
+          80,
+          28
+        ],
+        [
+          1740,
+          216,
+          80,
+          28
+        ],
+        [
+          1824,
+          216,
+          80,
+          28
+        ]
+      ]
+    },
+    "cells:gap-4": {
+      "ok": true,
+      "detail": [
+        [
+          1656,
+          216,
+          80,
+          28
+        ],
+        [
+          1740,
+          216,
+          80,
+          28
+        ],
+        [
+          1824,
+          216,
+          80,
+          28
+        ]
+      ]
+    },
+    "axis-inputs:59x28": {
+      "ok": true,
+      "detail": [
+        [
+          1656,
+          216,
+          59,
+          28
+        ],
+        [
+          1740,
+          216,
+          59,
+          28
+        ],
+        [
+          1824,
+          216,
+          59,
+          28
+        ]
+      ]
+    },
+    "axis-inputs:source-x": {
+      "ok": true,
+      "detail": [
+        1656,
+        1740,
+        1824
+      ]
+    },
+    "axis-chips:20x28": {
+      "ok": true,
+      "detail": [
+        [
+          1656,
+          216,
+          20,
+          28
+        ],
+        [
+          1740,
+          216,
+          20,
+          28
+        ],
+        [
+          1824,
+          216,
+          20,
+          28
+        ]
+      ]
+    },
+    "target-cells:80-wide-no-toggle": {
+      "ok": true,
+      "detail": {
+        "box": [
+          1656,
+          916,
+          80,
+          28
+        ],
+        "hasToggle": false
+      }
+    },
+    "fov:label-13px": {
+      "ok": true,
+      "detail": {
+        "box": [
+          1656,
+          745.5,
+          91.7,
+          13
+        ],
+        "bg": "rgba(0, 0, 0, 0)",
+        "radius": "0px",
+        "border": "0px",
+        "font": "13px",
+        "pad": "0px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)",
+        "align": "start",
+        "appearance": "none",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": null
+      }
+    },
+    "fov:label-width": {
+      "ok": true,
+      "detail": [
+        1656,
+        745.5,
+        91.7,
+        13
+      ]
+    },
+    "fov:label-white-45": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.45)"
+    },
+    "fov:badge-16x16": {
+      "ok": true,
+      "detail": [
+        1751.7,
+        744,
+        16,
+        16
+      ]
+    },
+    "fov:badge-border-1px-white-20": {
+      "ok": true,
+      "detail": "1px / rgba(0, 0, 0, 0)"
+    },
+    "fov:tooltip-208-wide": {
+      "ok": true,
+      "detail": [
+        1655.7,
+        668,
+        208,
+        68
+      ]
+    },
+    "fov:tooltip-hidden-at-rest": {
+      "ok": true,
+      "detail": "0"
+    },
+    "fov:tooltip-untargetable": {
+      "ok": true,
+      "detail": "none"
+    },
+    "fov:tooltip-above-everything": {
+      "ok": true,
+      "detail": "1700"
+    },
+    "fov:tooltip-2b2b2b": {
+      "ok": true,
+      "detail": "rgb(43, 43, 43)"
+    },
+    "fov:tooltip-source-copy": {
+      "ok": true,
+      "detail": "控制镜头视野范围。数值越小，画面越近、越聚焦；数值越大，画面越广、能看到更多环境"
+    },
+    "fov:slider-170x20": {
+      "ok": true,
+      "detail": [
+        1656,
+        776,
+        170,
+        20
+      ]
+    },
+    "fov:track-4px-tall": {
+      "ok": true,
+      "detail": [
+        1656,
+        784,
+        170,
+        4
+      ]
+    },
+    "fov:track-5c5c5c": {
+      "ok": true,
+      "detail": "rgb(92, 92, 92)"
+    },
+    "fov:fill-09caf5": {
+      "ok": true,
+      "detail": "rgb(9, 202, 245)"
+    },
+    "fov:knob-12-white": {
+      "ok": true,
+      "detail": {
+        "box": [
+          1713.5,
+          780,
+          12,
+          12
+        ],
+        "bg": "rgb(255, 255, 255)",
+        "border": "1px rgb(38, 38, 38)"
+      }
+    },
+    "fov:knob-border-262626": {
+      "ok": true,
+      "detail": "1px rgb(38, 38, 38)"
+    },
+    "fov:range-invisible": {
+      "ok": true,
+      "detail": "0"
+    },
+    "fov:range-cursor-pointer": {
+      "ok": true,
+      "detail": "pointer"
+    },
+    "fov:range-15-90-step1": {
+      "ok": true,
+      "detail": "15/90/1"
+    },
+    "fov:number-box-70x28": {
+      "ok": true,
+      "detail": [
+        1834,
+        772,
+        70,
+        28
+      ]
+    },
+    "fov:number-input-49x28": {
+      "ok": true,
+      "detail": [
+        1834,
+        772,
+        49,
+        28
+      ]
+    },
+    "fov:number-centred-13px": {
+      "ok": true,
+      "detail": "center / 13px"
+    },
+    "fov:number-box-fill-white-10": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+    },
+    "fov:number-toggle-20x28": {
+      "ok": true,
+      "detail": {
+        "box": [
+          1884,
+          772,
+          20,
+          28
+        ],
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)",
+        "radius": "0px",
+        "border": "0px",
+        "font": "16px",
+        "pad": "0px",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)",
+        "align": "center",
+        "appearance": "button",
+        "min": null,
+        "max": null,
+        "step": null,
+        "value": ""
+      }
+    },
+    "fov:number-toggle-mounted": {
+      "ok": true,
+      "detail": [
+        "position-X",
+        "position-Y",
+        "position-Z",
+        "rotation-X",
+        "rotation-Y",
+        "rotation-Z",
+        "scale-X",
+        "scale-Y",
+        "scale-Z",
+        "fov"
+      ]
+    },
+    "fov:number-toggle-fill-white-4pct": {
+      "ok": true,
+      "detail": "oklab(0.999994 0.0000455678 0.0000200868 / 0.04)"
+    },
+    "fov:row-fills-248": {
+      "ok": true,
+      "detail": {
+        "slider": [
+          1656,
+          776,
+          170,
+          20
+        ],
+        "numberBox": [
+          1834,
+          772,
+          70,
+          28
+        ]
+      }
+    },
+    "fov:fill-ratio": {
+      "ok": true,
+      "detail": {
+        "fill": 63.5,
+        "expected": 63.46666666666667,
+        "fov": 43
+      }
+    },
+    "fov:knob-at-ratio": {
+      "ok": true,
+      "detail": {
+        "knobCx": 1719.5,
+        "fov": 43
+      }
+    },
+    "fov:number-shows-store": {
+      "ok": true,
+      "detail": "43 vs 43"
+    },
+    "drag:store-follows": {
+      "ok": true,
+      "detail": "43 -> 34"
+    },
+    "drag:number-follows": {
+      "ok": true,
+      "detail": "34"
+    },
+    "drag:fill-follows": {
+      "ok": true,
+      "detail": 43.1
+    },
+    "number:clamps-high": {
+      "ok": true,
+      "detail": 90
+    },
+    "number:high-reflects-back": {
+      "ok": true,
+      "detail": "90"
+    },
+    "number:clamps-low": {
+      "ok": true,
+      "detail": 15
+    },
+    "number:low-reflects-back": {
+      "ok": true,
+      "detail": "15"
+    },
+    "number:commits-in-range": {
+      "ok": true,
+      "detail": 61
+    },
+    "number:fill-follows-typing": {
+      "ok": true,
+      "detail": 104.3
+    },
+    "number:blank-draft-keeps-store": {
+      "ok": true,
+      "detail": 61
+    },
+    "number:blur-restores-draft": {
+      "ok": true,
+      "detail": ""
+    },
+    "fov-toggle:starts-empty": {
+      "ok": true,
+      "detail": []
+    },
+    "fov-toggle:records": {
+      "ok": true,
+      "detail": {
+        "value": 61,
+        "currentTime": 6.5,
+        "keyframes": [
+          6.5
+        ]
+      }
+    },
+    "fov-toggle:at-playhead": {
+      "ok": true,
+      "detail": {
+        "value": 61,
+        "currentTime": 6.5,
+        "keyframes": [
+          6.5
+        ]
+      }
+    },
+    "fov-toggle:aria-on": {
+      "ok": true,
+      "detail": ""
+    },
+    "fov-toggle:fill-263E43": {
+      "ok": true,
+      "detail": ""
+    },
+    "fov-toggle:deletes": {
+      "ok": true,
+      "detail": {
+        "value": 61,
+        "currentTime": 6.5,
+        "keyframes": []
+      }
+    },
+    "fov-toggle:aria-off": {
+      "ok": true,
+      "detail": ""
+    },
+    "tooltip:reveals-on-hover": {
+      "ok": true,
+      "detail": ""
+    },
+    "tooltip:hides-again": {
+      "ok": true,
+      "detail": ""
+    },
+    "locked:range-disabled": {
+      "ok": true,
+      "detail": ""
+    },
+    "locked:number-disabled": {
+      "ok": true,
+      "detail": ""
+    },
+    "locked:toggle-disabled": {
+      "ok": true,
+      "detail": ""
+    },
+    "diagnostics:no-page-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "diagnostics:no-console-errors": {
+      "ok": true,
+      "detail": []
+    },
+    "diagnostics": {
+      "consoleErrors": 1,
+      "filtered": 1,
+      "pageErrors": 0
+    },
+    "_summary": {
+      "checks": 97,
+      "failures": []
+    }
+  }
+}
