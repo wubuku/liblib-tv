@@ -907,3 +907,36 @@ screenshots:
     visible_text: 新对话 让 TV Director 辅助你的无限创意 感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词 全能创作
     alt: 右侧滑出的 TV Director 面板：标题「让 TV Director 辅助你的无限创意」，下面四个入口「感知画布开始创作」「从爆款预设开始剧本原创」「上传故事来改编」「批量优化提示词」，各带一枚图标和右箭头；底部输入框一排是「+」「全能创作」下拉、立方体、文件夹、手掌和提交箭头
     sha256: f66d055e8b8721a0b43bd8e4bb0b951374b4c7cb09ee495aa271d4e6e3f2ff0b
+  - file: screenshots/M-34-资产管理-行内动作按钮.png
+    task_id: organize-canvas
+    step: 28
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 打开资产管理抽屉，读行内所有**非空 aria-label** 的按钮（纯图标按钮的 innerText 是空的）
+    visible_text: 画布 47 画布 资产 所有评级 图片节点 1 共 1 节点
+    alt: 资产管理抽屉的「画布」标签：顶部「画布 / 资产」两个标签与「所有评级」筛选；下面一行是「图片节点 1」，行尾并排两枚 24×24 的圆形图标按钮（一枚是三点「⋯」，一枚是纸飞机）；底部左侧是收起箭头，右侧是「共 1 节点」
+    sha256: f2006a1ddbb65527470b53e93f5ded56b291fdc8d30f9812b6c9ac9b5efd340a
+  - file: screenshots/M-35-更多操作菜单.png
+    task_id: organize-canvas
+    step: 29
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点行内 aria-label="更多操作" 的 24×24 图标按钮 (265,212)
+    visible_text: 重命名 复制 添加到Agent 删除 画布 47 画布 资产 所有评级 图片节点 1 共 1 节点
+    alt: 点行尾「⋯」后弹出的四项竖排菜单：重命名、复制、添加到Agent、删除；菜单锚在按钮正下方，背景仍是资产管理抽屉与画布
+    sha256: 3ff20e1182ddd1eade5b801eb075f1e55173999b435b1ea399e6ebae75d061ba
+  - file: screenshots/M-37-定位到节点之后.png
+    task_id: organize-canvas
+    step: 30
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 把画布 Space+拖 平移 -360px 让节点跑到左边，再点 aria-label="定位到节点 图片节点 1"
+    visible_text: 画布 47 画布 资产 所有评级 图片节点 1 共 1 节点 图片节点 1 参考 标记 风格
+    alt: 点完「定位到节点」之后：左边抽屉里「图片节点 1」那一行处于高亮态，右边画布上的图片节点被拉回到视口中间偏右的位置，节点卡片和它下方的参数面板（参考 / 标记 / 风格）都完整可见
+    sha256: 5d142c8e6497a735441efad8e86045291bb149ef312669d3fca54b552c8d1b4f
