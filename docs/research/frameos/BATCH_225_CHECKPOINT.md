@@ -466,3 +466,23 @@ Type check → **Assertion gate** → Build。
 .github/workflows/ci.yml without workflow scope"）。
 这是凭据权限限制，**不做绕过**；需由有 `workflow` 权限者提交该文件。
 在提交之前，门禁只能靠人工跑 `npm run assertions:check`。
+
+## Batch 338（2026-10-01）：verify-docs.py 区分「产物缺失」与「链接写错」
+
+Batch 337 发现 `verify-docs.py` 在干净 checkout 上必失败，因而无法进 CI。
+本批新增 `is_expected_missing()`：submodule（`research/upstream/`）与 gitignore
+截图（`screenshots/*.{png,jpg,...}`）**降级为 note**，真断链仍 `return 1`。
+
+干净 checkout 实测（`git archive HEAD | tar -x`，与 CI 等价）：
+`passed: 1197 files, 5169 targets, 302 expected-missing`，**EXIT=0** ✅
+
+⚠️ **前提须说清**：干净副本里仍有 4 条指向 `10-tasks/use-agent.md` 的报错 ——
+该文件目前是**未跟踪**状态（`??`），属**其他开发者的在途 WIP**。
+按纪律本批**没有** `git add` 它。已实测：一旦其作者提交，干净 checkout 立刻 EXIT=0。
+**这不是 verify-docs 的缺陷，而是工作区状态的真实反映。**
+
+**一次自我纠正**：排查中我一度把 `90-troubleshooting.md` 的
+指向 `10-tasks/use-agent.md` 的链接改成 `../10-tasks/...`，以为解析失败；
+改完本地检查反而失败 → 说明**原路径本来就对**（链接以手册根为基准）。
+已 `git checkout` 还原。
+> 教训：在「文件未跟踪」与「链接写错」之间，先确认文件是否存在再改链接。
