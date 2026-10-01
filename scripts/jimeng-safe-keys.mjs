@@ -92,13 +92,29 @@ export async function canvasBaseline(page) {
         .map((e) => e.getAttribute('data-testid') || e.getAttribute('aria-label')),
       nodes: Array.from(document.querySelectorAll('.react-flow__node')).map((e) => {
         const r = e.getBoundingClientRect();
+        // ⚠️ 屏幕坐标随视口平移变化，**不能用来判断节点有没有被移动**。
+        // canvas 是节点自身 inline transform 里的画布坐标，与平移无关 —— 位置核对必须用它。
+        const m = /translate\(([-\d.]+)px,\s*([-\d.]+)px\)/.exec(e.style.transform || '');
         return {
           id: e.getAttribute('data-id'),
           box: `${Math.round(r.x)},${Math.round(r.y)} ${Math.round(r.width)}x${Math.round(r.height)}`,
+          canvas: m ? [Math.round(parseFloat(m[1]) * 100) / 100, Math.round(parseFloat(m[2]) * 100) / 100] : null,
+          title: (e.querySelector('[data-testid="flow-node-title"]') || {}).innerText || null,
           text: (e.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 24),
         };
       }),
     };
+  });
+}
+
+/** 与给定基线比对节点 canvas 坐标；返回偏离的 id 列表。 */
+export async function diffNodePositions(page, baseCanvasById, tol = 1.5) {
+  const cur = await canvasBaseline(page);
+  const now = Object.fromEntries(cur.nodes.map((n) => [n.id, n.canvas]));
+  return Object.keys(baseCanvasById).filter((id) => {
+    const c = now[id], e = baseCanvasById[id];
+    if (!c || !e) return true;
+    return Math.abs(c[0] - e[0]) > tol || Math.abs(c[1] - e[1]) > tol;
   });
 }
 
@@ -134,6 +150,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     transform: base.transform, groups: base.groups, dialogs: base.dialogs,
     nodeCount: base.nodes.length,
   }, null, 1));
+  console.log('\n节点（canvas 坐标与平移无关，位置核对必须用它）:');
+  for (const n of base.nodes) {
+    console.log(`  ${n.id}  canvas=[${n.canvas ? n.canvas.join(', ') : '?'}]  title=${JSON.stringify(n.title)}`);
+  }
   await b.close();
   process.exit(g.safe ? 0 : 1);
 }
