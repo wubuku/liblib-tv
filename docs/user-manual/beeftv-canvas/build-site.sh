@@ -216,6 +216,21 @@ else
   fail "不可达断言已过期，或登记表与上游现状不一致——需回走核实并更新 verify-unreachable.py"
 fi
 
+# 第七道闸：markdown 表格结构核对。前面六道查的都是**内容对不对**，
+# 这一道查**结构坏没坏**——单元格里的裸竖线（最常见就是代码里的 `||` 和带竖线的 URL）
+# 会多切出一列、把整行内容错位，而**构建照样成功**，只有读的人才看得见。
+# Batch 142 在 PROGRESS.md 里撞见 5 行这样的历史损坏，20-reference.md 里也有 1 行
+# （一个含 `|` 的端点 URL 把行切断了）。判据只拦「多于表头」：
+# 少于一列会被 GFM 补空单元格，渲染正常（PROGRESS 里大量「状态」列留空即属此类）。
+if TB_OUT="$(python3 scripts/verify-tables.py 2>&1)"; then
+  ok "$TB_OUT"
+else
+  printf '%s\n' "$TB_OUT" | while IFS= read -r line; do
+    [ -n "$line" ] && warn "表格结构 $line"
+  done
+  fail "表格被未转义的竖线截断——单元格内的 | 要写成 \| （代码段里的 || 写成 \|\|）"
+fi
+
 # ---------- 完成 ----------
 log "════════════════════════════════════════════"
 ok "构建成功！发布产物: $SCRIPT_DIR/.vitepress/dist"

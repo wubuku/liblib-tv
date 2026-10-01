@@ -131,7 +131,7 @@ BeefTV 会读一批 URL 查询参数，其中有几个**没有任何界面动作
 | `POST /agent/runs/:id/interjections` | 同上 |
 | `POST /agent/runs/:id/cancel` | 同上 |
 | `POST /agent/memories/compact` | 同上 |
-| ~~`/api/canvas-projects/:id/import/libtv|tapnow`~~ | 跨产品导入，v1.6.x 已下线（v1.6.14 运行时路由核对无此组） |
+| ~~`/api/canvas-projects/:id/import/libtv` \| ~~`/api/canvas-projects/:id/import/tapnow`~~ | 跨产品导入，v1.6.x 已下线（v1.6.14 运行时路由核对无此组） |
 
 > **Agent 相关端点为什么查不到**：后端**没有注册任何 `/agent/*` 路由**。上游有一份专门的测试文件 `backend/internal/handler/agent_retired_test.go`，它用**真实 HTTP 路由图**（而不是源码字符串）固化这条边界：旧 Agent 能力已下线，通用任务 API 也不能创建旧 Agent 任务。命中该边界时服务端的提示是「**Agent 能力已下线，请在画布中手动创建节点并生成**」。
 >
