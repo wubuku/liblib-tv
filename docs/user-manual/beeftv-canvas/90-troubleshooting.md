@@ -187,6 +187,8 @@ v1.6.9 前企业 Seedance 配置可能存了包名而非已安装的视频提供
 
 ### 报「同时排队或运行的任务最多 5 个」
 
+**只在默认部署出现**：本地部署（`localMode`）把这个上限放宽到 **999**，所以你看到这条说明**不是本地部署**——多半是你连的托管服务。
+
 账号级硬上限。批量创作表会自己排队所以通常撞不到，**单张卡片点「生成」**才会。等着，或者先把批量表的并发调低——见 [generate-images.md](10-tasks/generate-images.md) 与 [storage-quota.md](10-tasks/storage-quota.md)。
 
 ### localStorage 不可用

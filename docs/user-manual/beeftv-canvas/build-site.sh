@@ -175,6 +175,14 @@ run_gate verify-unreachable.py 不可达断言
 # 那时要更新快照表或删掉那句话里的论据，**不要放宽判据**。
 run_gate verify-line-counts.py 上游行数
 
+# 第十二道闸（Batch 172 新增）：随部署模式而变的策略常量。
+# 服务端有两套策略——DefaultRuntimePolicy()（默认部署）与 selfUseRuntimePolicy()（**本地部署**），
+# 切换判据是 `RuntimePolicy()` 里 `if s.localMode { … }`，而 NewLocal() 正是以 localMode=true 构造的。
+# **也就是说本手册的读者绝大多数走的是第二套**，而手册曾把
+# 「同时排队或运行的任务最多 5 个」「素材归档 30 天自动清除」当成固定事实写了 5 处。
+# 本闸要求**同一个常量的两套取值都与上游相符**——只核一半等于放过了本地模式那一半。
+run_gate verify-runtime-policy.py 部署模式策略
+
 # 第七道闸：markdown 表格结构核对。前面六道查的都是**内容对不对**，
 # 这一道查**结构坏没坏**——单元格里的裸竖线（最常见就是代码里的 `||` 和带竖线的 URL）
 # 会多切出一列、把整行内容错位，而**构建照样成功**，只有读的人才看得见。

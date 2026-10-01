@@ -182,6 +182,33 @@ BeefTV 会读一批 URL 查询参数，其中有几个**没有任何界面动作
 所以**行数只能当量级参考，不能当重要性结论**；这也是为什么 `create-workspace.md` 那句话
 现在写的是「体量第三大」而不是「第二大门户」。
 
+### 部署模式相关策略（Batch 172 建，由闸 12 核对）
+
+> **这张表存在的理由**：服务端有一批限制是**策略常量**，而
+> `backend/internal/platform/runtime_policy.go` 里**有两套**——
+> `DefaultRuntimePolicy()`（默认部署）与 `selfUseRuntimePolicy()`（**本地部署**）。
+> 切换判据只有一行：`RuntimePolicy()` 里 `if s.localMode { return selfUseRuntimePolicy() }`，
+> 而 `NewLocal(...)` 正是以 `localMode=true` 构造的。
+>
+> **也就是说：本手册的读者绝大多数走的是第二套。** 手册原来把
+> 「同时排队或运行的任务最多 **5** 个」「素材归档默认 **30 天**自动清除」
+> 当成固定事实写了 5 处，**而这两个数在本地部署下都不成立**（见 [10-tasks/storage-quota.md](10-tasks/storage-quota.md)）。
+>
+> **口径**：两列都必须与 `origin/main` 的 `runtime_policy.go` 解析值相符，
+> `scripts/verify-runtime-policy.py` 在每次构建时现场核，**两套都核**——
+> **只核一半等于放过了本地模式那一半**。
+> 形如 `envInt("CANVAS_WORKER_CONCURRENCY", …)` 的**可配置项本表不收**
+> （那是部署方配置，不属于本手册的断言），解析不出时按「未能核对」报 rc=2，**不假装通过**。
+
+| 策略项 | 默认部署 | 本地部署（localMode） | 对读者意味着什么 |
+|---|---|---|---|
+| `ActiveTaskLimit` | 5 | 999 | **本地撞不到**「最多 N 个」那条报错；批量并发也就没有 5 的天花板 |
+| `RecycleBinRetentionDays` | 30 | 0 | **本地归档素材永不自动彻底清除**（清理 worker 见 ≤0 直接返回），磁盘只增不减 |
+| `StoredFileGB` | 20 | 999 | 本地存储上限不是 20GB |
+| `AssetCount` | 2000 | 999999999 | 本地素材数量上限形同虚设 |
+| `CanvasCount` | 1000 | 999999999 | 本地画布数量上限形同虚设 |
+| `ImageTimeoutMinutes` | 8 | 9999 | 本地图片生成没有实际超时压力（视频/音频同理） |
+
 ## 本地伴随进程
 
 深度/线稿/姿态等本地推理由独立进程提供：强制 `http://127.0.0.1:17371` 精确回环地址；会话经挑战-签名交换建立；响应体上限 64KB（深度模块 32MB）。
