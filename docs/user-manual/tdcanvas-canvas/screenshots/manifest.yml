@@ -268,13 +268,13 @@ screenshots:
     task_id: shortcuts-help
     step: 点击顶栏「快捷键」打开帮助弹窗（键位与官方文档逐字一致）
     route: '/canvas/:id'
-    viewport: 1280x720
+    viewport: 1280x900
     locale: zh-CN
     captured_at: '2026-09-27'
     verified_locator: '弹窗标题 快捷键 / 键位 拖动画布 滚轮 Ctrl/Cmd+拖动 Cmd+A C/V Z Shift+Z Y Delete Esc 等'
     visible_text: '快捷键'
     alt: 快捷键帮助弹窗，逐条列出平移缩放框选全选复制粘贴撤销重做删除与取消的键位
-    sha256: 9f7f29e3e551e0d075a1b6ae552d18798e9232122138837bcd01cb2798d9b804
+    sha256: 303ad9fc2232ba3cdb938a49f88efd01399b5bc6a1dfe2c9d386c6f7db5408c5
 
   - file: screenshots/13-project-card-hover-actions.png
     task_id: project-management
@@ -959,3 +959,15 @@ screenshots:
     visible_text: '把左侧文本当作提示词，配合参考图生成，保持黄昏色调。'
     alt: 画布上一个文本节点连着一个图片节点，左侧面板的节点列表也只列出文本和图片两项；图片节点下方的生成面板里，提示词框保留了这条历史配置节点原来的整段提示词文字，说明节点类型被改写时提示词并没有丢
     sha256: 2c7302ae49927564861a27d1dd8a2ceab7385eae310e548b818c6eac333b6d0a
+
+  - file: screenshots/11-shortcuts-help-modal-full.png
+    task_id: shortcuts-help
+    step: 画布页点顶栏键盘图标打开快捷键弹窗，按弹窗自身的边界框裁剪，确保 13 行全部入画不被视口裁掉
+    route: '/canvas/:id'
+    viewport: '520x749 (弹窗自身边界框)'
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: 'role="dialog" 边界框 x=380 y=76 宽 520 高 749（1280x900 视口下底边 825 未越界）/ 弹窗内无任何内部滚动容器（scrollHeight 未大于 clientHeight），13 行完整 / 第 5 行右侧文案为「追加选择节点」/ 第 7 行右侧文案为「复制 / 粘贴节点，或粘贴剪切板文本/图片」/ 第 9、10 行右侧均为「重做」，分别对应 Ctrl/Cmd+Shift+Z 与 Ctrl/Cmd+Y'
+    visible_text: '复制 / 粘贴节点，或粘贴剪切板文本/图片'
+    alt: 快捷键弹窗的完整内容，十三行键位与作用一一对应：拖动画布平移视图、滚轮缩放画布、缩放滑杆精确调整缩放、Ctrl 加拖动框选多个节点、Shift 加点击追加选择节点、Ctrl 加 A 全选节点、Ctrl 加 C 与 V 复制粘贴节点或粘贴剪切板文本图片、Ctrl 加 Z 撤销、Ctrl 加 Shift 加 Z 重做、Ctrl 加 Y 重做、Delete 或 Backspace 删除选中、Esc 取消选择并关闭浮层、拖入图片视频音频上传到画布
+    sha256: 6a46aa00978d4111ad5e60f119bafa9d012a83d390e162a8ebfddd7362c8570f
