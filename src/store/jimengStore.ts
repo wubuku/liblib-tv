@@ -170,7 +170,16 @@ export interface JimengCanvasState {
   renameNode: (id: string, title: string) => void;
   /** 插入节点 (Batch 17/19): 左栏 / + 菜单 */
   addNodeAt: (
-    kind: "video" | "image" | "text" | "audio",
+    kind:
+      | "video"
+      | "image"
+      | "text"
+      | "audio"
+      // Batch 805 SOURCE_FACT: 左栏「时间线」「主体」「导演台」点下去
+      // 是在画布中心插入对应**节点**，不是打开浮层。
+      | "timeline"
+      | "subject"
+      | "director",
     position: { x: number; y: number },
   ) => void;
   /** 本地上传 (Batch 73, SOURCE_FACT): 上传文件 → 本地视频节点
@@ -205,7 +214,7 @@ export interface JimengTask {
 }
 
 // Batch 66 (SOURCE_FACT): 顶栏 保存中…/已保存 + 下载按钮 导出前请保存画布
-// 门控 — 任何内容变更为未保存态，mock 自动保存 1.2s 后恢复已保存。
+// 门控 — 任何内容变更为未保存态，mock 自动保存 2s 后恢复已保存。
 let saveTimer: number | null = null;
 function markDirty(state: JimengCanvasState): {
   project: JimengCanvasState["project"];
@@ -1081,6 +1090,52 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
               ...base,
               type: "audio" as const,
               data: { title: `音频 ${seq}`, duration: 15, width: 368, height: 368 },
+            },
+          ],
+        };
+      }
+      // Batch 805 SOURCE_FACT: 时间线/主体/导演台 三种节点，尺寸取源站实测
+      if (kind === "timeline") {
+        return {
+          ...markDirty(state),
+          past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+          future: [],
+          nodes: [
+            ...state.nodes,
+            {
+              ...base,
+              type: "timeline" as const,
+              data: { title: `时间线 ${seq}`, width: 1206, height: 212, duration: 0, clips: [] },
+            },
+          ],
+        };
+      }
+      if (kind === "subject") {
+        return {
+          ...markDirty(state),
+          past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+          future: [],
+          nodes: [
+            ...state.nodes,
+            {
+              ...base,
+              type: "subject" as const,
+              data: { title: `主体 ${seq}`, width: 352, height: 352, description: "", imported: [] },
+            },
+          ],
+        };
+      }
+      if (kind === "director") {
+        return {
+          ...markDirty(state),
+          past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+          future: [],
+          nodes: [
+            ...state.nodes,
+            {
+              ...base,
+              type: "director" as const,
+              data: { title: `导演台 ${seq}`, width: 320, height: 320, entered: false },
             },
           ],
         };

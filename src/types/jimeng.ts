@@ -8,7 +8,17 @@ import type { Node } from "@xyflow/react";
  * 本文件是复刻侧的类型契约（CLONE_DECISION 命名加 Jimeng 前缀）。
  */
 
-export type JimengNodeKind = "video" | "image" | "text" | "audio";
+export type JimengNodeKind =
+  | "video"
+  | "image"
+  | "text"
+  | "audio"
+  // Batch 805 SOURCE_FACT: 左栏「时间线」「主体」「导演台」不是打开浮层，
+  // 是在画布中心**插入对应节点**（源站落点 data-testid=rf__node-*、role=group，
+  // 位于 .react-flow__viewport 内，top bar 节点计数同步 +1）。
+  | "timeline"
+  | "subject"
+  | "director";
 
 export interface JimengVideoNodeData extends Record<string, unknown> {
   /** 节点标题 (源站: 文件名 / "视频 1") */
@@ -78,11 +88,62 @@ export interface JimengAudioNodeData extends Record<string, unknown> {
   tagColor?: string | null;
 }
 
+/** 时间线节点 (Batch 805 SOURCE_FACT @1680×826 登录态实测)
+ *
+ *  节点本体 1206×212：顶行 导入/删除 · 播放 ▶ · "00:00 / 00:00" · 下载 · 全屏编辑；
+ *  刻度尺 00:00→00:30 每 5s 一格；轨道区「+ 添加素材到时间线」。
+ *  尺寸为源站实测值；随视口缩放，非固定像素断言对象。
+ */
+export interface JimengTimelineNodeData extends Record<string, unknown> {
+  title: string;
+  width: number;
+  height: number;
+  /** 时间线总长 (秒)，源站空态为 0 */
+  duration: number;
+  /** 轨道上的素材片段 (mock：点击「添加素材到时间线」塞入) */
+  clips?: { id: string; label: string; start: number; length: number }[];
+}
+
+/** 主体节点 (Batch 805 SOURCE_FACT 实测 352×352)
+ *
+ *  标题行「主体 N」+ 右上编辑笔；副行「添加描述...」占位；
+ *  内卡四个入口 导入主体 / 从画布选择 / 从资产库选择 / 本地添加。
+ *  空态描述在源站是 sr-only 文本（不渲染成可见行）。
+ */
+export interface JimengSubjectNodeData extends Record<string, unknown> {
+  title: string;
+  width: number;
+  height: number;
+  /** 主体描述；空串时渲染「添加描述...」占位且可编辑 */
+  description?: string;
+  /** 已导入的主体资源名；空数组时走源站空态文案 */
+  imported?: string[];
+}
+
+/** 导演台节点 (Batch 805 SOURCE_FACT 实测 320×320)
+ *
+ *  空态：3D 图标 +「在 3D 空间中设计角色、机位与镜头」+「进入导演台」按钮。
+ *  源站把资源统计放在 sr-only（"No resources: 0 ready, ..."），不做成可见行。
+ */
+export interface JimengDirectorNodeData extends Record<string, unknown> {
+  title: string;
+  width: number;
+  height: number;
+  /** 是否已进入导演台（点「进入导演台」后置位，节点内文案随之变化） */
+  entered?: boolean;
+  ready?: number;
+  processing?: number;
+  failed?: number;
+}
+
 export type JimengNode = Node<
   | JimengVideoNodeData
   | JimengImageNodeData
   | JimengTextNodeData
-  | JimengAudioNodeData,
+  | JimengAudioNodeData
+  | JimengTimelineNodeData
+  | JimengSubjectNodeData
+  | JimengDirectorNodeData,
   JimengNodeKind
 > & {
   /** 编组 id (Batch 39；同组节点拖拽联动，⌘G/⌘⇧G) */

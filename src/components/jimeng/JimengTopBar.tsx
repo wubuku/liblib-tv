@@ -129,14 +129,23 @@ export function JimengTopBar() {
         data-testid="topbar-left"
         className="pointer-events-auto flex h-10 min-w-0 items-center rounded-lg"
       >
-        <button
-          type="button"
+        {/* SOURCE_FACT (batch 805): 源站的「返回首页」不是 button，是
+            `<a href="/ai-tool/home">` —— 真实链接，带 href。
+            此前复刻用 `<button>` 且没挂 onClick：全页 40 个可点元素里
+            它是唯一一个**点了什么都不发生**的（死按钮普查见
+            scripts/jimeng_dead_button_audit.py）。改成锚点后恢复的
+            不只是「能点」，还有链接才有的那几样交互：
+            悬停显示目标 URL、Cmd/Ctrl+点击新标签页打开、
+            复制链接地址、浏览器前进后退。源站同样是普通 <a>，
+            这里也不用 next/link —— 保留浏览器原生导航语义才是对齐点。 */}
+        <a
+          href="/jimeng"
           aria-label="返回首页"
           data-testid="canvas-project-logo"
           className="flex size-10 shrink-0 items-center justify-center rounded-lg text-white hover:bg-white/10"
         >
           <JimengLogo size={40} />
-        </button>
+        </a>
 
         {/* 标题与箭头拼成一个整体：左侧圆角归标题，右侧圆角归箭头 */}
         <div className="flex shrink-0 items-center">
@@ -198,7 +207,16 @@ export function JimengTopBar() {
           ) : null}
         </div>
 
-        {/* 节点摘要：距箭头 16px，28×28 内 10px 小字 */}
+        {/* 节点摘要：距箭头 16px，28×28 内 10px 小字
+
+            SOURCE_FACT (batch 807, 2026-10-03 实测)：标签是**两个独立的
+            nowrap span** —— `节点` @[156,21] 20×18、`10` @[178,21] 10×18
+            （间距 2px），10px/18px、rgba(255,255,255,0.6)，单行。
+            此前复刻把「节点 {n}」整串塞进 `size-7`(28px) 定宽按钮且
+            **没有 nowrap**：`节点 2` 刚好 28px 撑满就折行（截图里
+            「节点」和「2」上下两行），`节点 10`（32px）更必然折行。
+            修法：命中盒仍留 28×28（悬停底色要它），但标签单独 nowrap
+            且按源站拆成两个 span，超宽时向两侧溢出而不换行。 */}
         <div className="relative ml-4 shrink-0">
           <button
             type="button"
@@ -210,7 +228,10 @@ export function JimengTopBar() {
             }}
             className="flex size-7 items-center justify-center rounded-md text-[10px]/[18px] font-normal text-white/60 hover:bg-white/10"
           >
-            节点 {nodeCount}
+            <span className="flex items-center whitespace-nowrap">
+              <span>节点</span>
+              <span>{nodeCount}</span>
+            </span>
           </button>
           {nodeSummaryOpen ? (
             <JimengNodeSummaryPopover
@@ -231,7 +252,24 @@ export function JimengTopBar() {
           ) : null}
         </div>
 
-        <span className="ml-3 text-[13px]/[22px] text-white/40">
+        {/* SOURCE_FACT (batch 807): 「节点 N」与「已保存」之间有 1px 分隔线。
+            像素实测（807-topleft-source.png，460×64 裁剪放大 3 倍后逐列扫描）：
+            细而连续的一列落在原图 **x=196、y 26..34**（1×8px，峰值灰度 35
+            ⇒ over 底色 rgb(13,13,13) 的白 ≈ 9%），垂直中心 y=30 与
+            13px 文字行（y 19..41）中心一致。
+            复刻此前完全没有这根线。落位：28×28 命中盒右缘 184 + ml-3(12)
+            = 196，**与源站逐像素同位**。
+            顺带把「已保存」左距从 ml-3(12) 收到 ml-2(8)：源站「已」的第一笔
+            墨迹在 x=205，本改动后为 204（差 1px，在抗锯齿量测误差内）。 */}
+        <span
+          aria-hidden
+          data-testid="topbar-left-divider"
+          className="ml-3 h-2 w-px shrink-0 self-center bg-white/10"
+        />
+        <span
+          data-testid="topbar-saved-status"
+          className="ml-2 whitespace-nowrap text-[13px]/[22px] text-white/40"
+        >
           {project.saved ? "已保存" : "保存中…"}
         </span>
       </div>

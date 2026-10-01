@@ -41,7 +41,7 @@ const RAIL_ITEMS: {
   label: string;
   beta?: boolean;
   separatorBefore?: boolean;
-  insert?: "video" | "image" | "text" | "audio";
+  insert?: "video" | "image" | "text" | "audio" | "timeline" | "subject" | "director";
 }[] = [
   // Batch 68 (SOURCE_FACT): 标签对齐源站 aria-label 提取
   // (68-rail.json: 文本/图片/视频/音频/时间线/主体/导演台/资产库/上传)
@@ -49,9 +49,11 @@ const RAIL_ITEMS: {
   { icon: Image, label: "图片", insert: "image" },
   { icon: SquarePlay, label: "视频", insert: "video" },
   { icon: AudioLines, label: "音频", insert: "audio" },
-  { icon: LayoutTemplate, label: "时间线" },
-  { icon: SquareUser, label: "主体" },
-  { icon: Bot, label: "导演台", beta: true },
+  // Batch 805 SOURCE_FACT: 时间线/主体/导演台 点下去 = 在画布中心插入对应节点，
+  // 不是打开浮层（源站落点 rf__node-*，在 .react-flow__viewport 内，节点计数 +1）
+  { icon: LayoutTemplate, label: "时间线", insert: "timeline" },
+  { icon: SquareUser, label: "主体", insert: "subject" },
+  { icon: Bot, label: "导演台", beta: true, insert: "director" },
   // Batch 796 (SOURCE_FACT): 资产库 之前有一条 20×12 分隔条
   { icon: Folder, label: "资产库", separatorBefore: true },
   { icon: Upload, label: "上传" },
@@ -67,24 +69,46 @@ export function JimengToolRail() {
   // Batch 68: 按节点默认尺寸的一半回退，保证插入点为视口中心
   // (SOURCE_FACT 68-newnode-selected.png: 文本节点创建于视口中心)
   const HALF_SIZE: Record<
-    "video" | "image" | "text" | "audio",
+    "video" | "image" | "text" | "audio" | "timeline" | "subject" | "director",
     { w: number; h: number }
   > = {
     video: { w: 284.5, h: 160 },
     image: { w: 240, h: 180 },
     text: { w: 164, h: 170 },
     audio: { w: 200, h: 60 },
+    // Batch 805 SOURCE_FACT: 三种新节点按源站实测尺寸对半回退
+    timeline: { w: 603, h: 106 },
+    subject: { w: 176, h: 176 },
+    director: { w: 160, h: 160 },
   };
 
-  const insertAtCenter = (kind: "video" | "image" | "text" | "audio") => {
+  const insertAtCenter = (
+    kind: "video" | "image" | "text" | "audio" | "timeline" | "subject" | "director",
+  ) => {
     const el = document.querySelector(".jimeng-canvas");
     const position = screenToFlowPosition({
       x: el ? el.clientWidth / 2 : window.innerWidth / 2,
       y: el ? el.clientHeight / 2 : window.innerHeight / 2,
     });
-    addNodeAt(kind, {
+    // Batch 807 (CLONE_DECISION，有实测依据): 节点落在视口中心
+    // (SOURCE_FACT 68-newnode-selected.png)，但**当那个落点已经被占住**时
+    // 逐个级联错位。不这么做的话，连点两次时间线（或先后点时间线+主体+
+    // 导演台）会得到几个完全重合的节点，后一个把前一个的
+    // 「添加素材到时间线」整个盖住 —— 按钮在 DOM 里、用户点不到。
+    // 源站也不是精确重合：截图里 主体 1/2/3 落点互有偏移
+    // (684,237)/(784,317)/(700,230)，故取级联步进。步进取 (40,32)
+    // 世界像素：小于这个量级，320px 的导演台节点会把它下面的时间线节点
+    // 盖得看不出错开，用户既看不见也点不到。
+    const target = {
       x: position.x - HALF_SIZE[kind].w,
       y: position.y - HALF_SIZE[kind].h,
+    };
+    const occupied = useJimengStore.getState().nodes.filter(
+      (n) => Math.abs(n.position.x - target.x) < 24 && Math.abs(n.position.y - target.y) < 24,
+    ).length;
+    addNodeAt(kind, {
+      x: target.x + occupied * 40,
+      y: target.y + occupied * 32,
     });
   };
 

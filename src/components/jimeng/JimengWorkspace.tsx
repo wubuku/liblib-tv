@@ -17,6 +17,9 @@ import { useJimengStore } from "@/store/jimengStore";
 import { JimengVideoNode } from "@/components/jimeng/nodes/JimengVideoNode";
 import { JimengImageNode } from "@/components/jimeng/nodes/JimengImageNode";
 import { JimengTextNode } from "@/components/jimeng/nodes/JimengTextNode";
+import { JimengTimelineNode } from "@/components/jimeng/nodes/JimengTimelineNode";
+import { JimengSubjectNode } from "@/components/jimeng/nodes/JimengSubjectNode";
+import { JimengDirectorNode } from "@/components/jimeng/nodes/JimengDirectorNode";
 import { JimengAudioNode } from "@/components/jimeng/nodes/JimengAudioNode";
 import { JimengEdge } from "@/components/jimeng/JimengEdge";
 import { JimengTopBar } from "@/components/jimeng/JimengTopBar";
@@ -49,6 +52,10 @@ const nodeTypes = {
   image: JimengImageNode,
   text: JimengTextNode,
   audio: JimengAudioNode,
+  // Batch 805 SOURCE_FACT: 左栏「时间线」「主体」「导演台」插入的是节点
+  timeline: JimengTimelineNode,
+  subject: JimengSubjectNode,
+  director: JimengDirectorNode,
 };
 
 const edgeTypes = {
