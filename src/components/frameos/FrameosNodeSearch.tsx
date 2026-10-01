@@ -42,17 +42,22 @@ export function FrameosNodeSearch() {
 
   const focusNode = (id: string) => {
     selectNode(id);
-    const el = document.querySelector(
-      `.react-flow__node[data-id="${CSS.escape(id)}"]`,
-    );
-    if (el) {
-      const r = el.getBoundingClientRect();
-      setCenter(
-        r.left + r.width / 2,
-        r.top + r.height / 2,
-        { zoom: 2.73, duration: 600 },
-      );
-    }
+    // Batch 342: setCenter 要的是**画布流坐标**, 此前这里传的是
+    // getBoundingClientRect() 的**屏幕坐标** —— 两者只差「视口原点 + 缩放 +
+    // 平移」, 默认视图下偏移小容易被当成「差不多对」; 一旦用户缩放/平移过
+    // 画布, 点击搜索结果就会把视野挪到错误位置。
+    // 实测 (probe-frameos-batch342-search-focus.py, 人为把视口改成
+    // translate(400,260) scale(0.5)): 目标节点最终落在屏幕 (1272, -66),
+    // 中心比视口顶边还高 66px —— **节点被推出了屏幕**, 与组件注释声明的
+    // 「把视野缩放聚焦到它」正好相反。
+    const node = nodes.find((n) => n.id === id);
+    if (!node) return;
+    const w = (node.style?.width as number | undefined) ?? 300;
+    const h = (node.style?.height as number | undefined) ?? 200;
+    setCenter(node.position.x + w / 2, node.position.y + h / 2, {
+      zoom: 2.73,
+      duration: 600,
+    });
   };
 
   return (

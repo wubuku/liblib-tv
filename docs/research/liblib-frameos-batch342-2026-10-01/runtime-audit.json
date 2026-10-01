@@ -1,0 +1,77 @@
+{
+  "batch": 342,
+  "title": "FrameOS node search focuses the clicked node (flow coords, not screen coords)",
+  "defect": "FrameosNodeSearch.focusNode passed getBoundingClientRect() SCREEN coordinates to useReactFlow().setCenter(), which expects FLOW coordinates. The two differ by viewport origin + zoom + pan, so the bug is nearly invisible in the default view. Measured after distorting the viewport to translate(400,260) scale(0.5): the clicked node ended at screen (1272, -66) -- its centre 66px ABOVE the top of the viewport, i.e. the node was pushed OFF SCREEN, the exact opposite of the component's own documented intent ('把视野缩放聚焦到它').",
+  "fix": "focusNode now derives the centre from the node's flow coordinates (position + size/2) instead of its screen rect. Same zoom (2.73, the source-observed value) and duration.",
+  "clone_decision": "This is a clone-internal defect: the component's own comment states the intent, and the fix restores exactly that intent, so no source-site sampling was required. The source site remains blocked by the human-verification gate (see SOURCE_ACCESS_BLOCKED_2026-10-01.md).",
+  "negative_result": "The same batch also investigated Batch 333's persistence subscription, which writes localStorage once per store write (measured: one write per pointermove frame during a group drag). At fixture scale (7 nodes) it costs 0.025 ms/frame; at 287 nodes with a 60-member group the payload grows 3KB -> 111KB but the cost is still only 0.11 ms/frame. That is far below a 16ms frame budget, so NO change was made: 'one write per frame' sounds bad but is not measurably a user-visible defect. Numbers recorded so a future agent can re-evaluate if canvas size grows.",
+  "results": [
+    {
+      "viewport": "1600x950",
+      "checks": [
+        "precondition:viewport-distorted",
+        "search:panel-opens",
+        "search:target-listed",
+        "focus:node-selected",
+        "focus:zoom-2_73",
+        "focus:centered",
+        "focus:fully-visible",
+        "focus:second-result-selected",
+        "focus:second-result-centered",
+        "diagnostics:zero"
+      ],
+      "setup": {
+        "a": {
+          "id": "text-1",
+          "title": "文本节点1",
+          "position": {
+            "x": 442,
+            "y": 33
+          }
+        },
+        "b": {
+          "id": "text-2",
+          "title": "文本节点2",
+          "position": {
+            "x": 61,
+            "y": 96
+          }
+        }
+      },
+      "distorted_viewport": "translate(342.245px, 243.808px) scale(0.578704)",
+      "before_screen": {
+        "left": 598.0324096679688,
+        "top": 262.90509033203125,
+        "w": 173.611083984375,
+        "h": 115.74075317382812,
+        "cx": 684.8379516601562,
+        "cy": 320.7754669189453
+      },
+      "after_screen": {
+        "left": 390.50006103515625,
+        "top": 202,
+        "w": 818.9999389648438,
+        "h": 546,
+        "cx": 800.0000305175781,
+        "cy": 475
+      },
+      "after_viewport": "translate(-816.16px, 111.91px) scale(2.73)",
+      "offset": {
+        "dx": 0,
+        "dy": 0
+      },
+      "other_screen": {
+        "left": 390.5,
+        "top": 202.00001525878906,
+        "w": 819,
+        "h": 546,
+        "cx": 800,
+        "cy": 475.00001525878906
+      },
+      "diagnostics": {
+        "console": 0,
+        "errors": []
+      }
+    }
+  ]
+}
