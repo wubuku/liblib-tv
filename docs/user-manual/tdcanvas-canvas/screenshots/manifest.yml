@@ -839,3 +839,39 @@ screenshots:
     visible_text: 'Connect TDCanvas Agent'
     alt: 英文界面的 Agent 面板，标题下是选项一和选项二两段较长的英文说明与三条命令，底部是网页连接区和本地地址、连接令牌两个输入框
     sha256: e00a482b380a5607bb529edc63b3a296fe9fc76c8795d8a2cd93b39fa1422404
+
+  - file: screenshots/04-organize-canvas-appearance-light.png
+    task_id: organize-canvas
+    step: 切到浅色主题后打开画布外观面板，确认「主题模式」一栏中浅色为选中态
+    route: '/canvas/:id'
+    viewport: 460x420
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '面板标题 画布外观 / 画布输入模式 连线模式 无线模式 / 主题模式 浅色（黑色选中态）深色 / 网格样式 点 线 空白 / 图片信息 开关'
+    visible_text: '主题模式'
+    alt: 浅色主题下的画布外观面板，主题模式一栏中浅色按钮呈黑色选中态、深色未选中，下方还有网格样式与图片信息开关
+    sha256: 3fb0f40607a13285bad1f35fd1ea10d5a0001f88d98cf383abaec1d9179b47ee
+
+  - file: screenshots/01-create-canvas-project-light-canvas.png
+    task_id: create-canvas-project
+    step: 切到浅色主题后新建画布，观察浅色下的画布底色、点阵、节点条与 Dock
+    route: '/canvas/:id'
+    viewport: 1280x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '顶栏 TDCanvas 1 / 左侧 Dock 加号与搜索、资产、技能、历史、缩放、上传、画布外观 / 中央 双击画布自由创作 与五个创作芯片 / 左下角 缩放滑杆 100% / html 无 dark 类，body 背景 oklch(1 0 0)'
+    visible_text: '双击画布，自由创作'
+    alt: 浅色主题下的空白画布，浅米色点阵背景、白色左侧 Dock 与底栏，五个创作芯片横排在中央，缩放显示百分之百
+    sha256: ced3f73e618da6ce36aad5b609451c1aaec8e00629cbb2ce28ad1afbeef24766
+
+  - file: screenshots/14-manage-assets-light.png
+    task_id: manage-assets
+    step: 切到浅色主题后打开 /assets，核对资产页在浅色下的卡片与工具栏
+    route: '/assets'
+    viewport: 1280x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '页面标题 我的资产 / 工具栏 批量下载 导出资产 导入资产 新增资产 / 搜索框 搜索标题、内容、标签或来源 / 类型筛选 全部 文本 图片 视频 / 卡片底部 编辑 复制 删除'
+    visible_text: '我的资产'
+    alt: 浅色主题下的我的资产页面，搜索框与全部文本图片视频筛选为浅色底深字，右上四个工具栏按钮轮廓清晰，下方是一张带编辑复制删除操作的资产卡片
+    sha256: d7533c3c083d0cfd386b14ed2db80f7b2dfd763d4670fa92919f1213185329b0
