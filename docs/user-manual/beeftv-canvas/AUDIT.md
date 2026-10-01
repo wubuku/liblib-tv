@@ -1107,3 +1107,24 @@
   1. `build-site.sh` 步骤 6 之后接入为**第五道闸**；
   2. `AUDIT-RULES.md` 新增**第九节**，并把闸门索引从「四道」更新为「五道」。
 - **账本口径**：27 任务 / 22 verified / 5 excluded / 33 md / 49 截图；适用 v1.6.16。
+
+## 环境记录七十八（Batch 122，2026-10-11，图片节点工具条——本轮最大的覆盖缺口）
+
+- **选题依据**：Batch 114 遗留的「天空盒 / 摄像头」零命中。顺藤摸到 `canvas-node-angle-dialog.tsx`，再顺藤摸到 `canvas-image-toolbar-tools.tsx`，结果挖出**本轮最大的覆盖缺口**。
+- **量级**：图片节点工具条注册了 **15 个动作、7 个分组**，手册**只覆盖 3 个**（标注/局部重绘/裁切）。零命中的有：复制提示词、反推提示词、替换图片、锁定宽高比、表情调整、质感调整、宫格切分、调整尺寸、多角度、打光。手册对这条工具条的唯一描述是 `upload-materials.md` 里的一句分组名列表，从未说明**每个分组里装了什么**。
+- **§2 三层可达性全面命中（Batch 99 的模式再次出现，但这次是四组）**。`canvas-node-toolbar.tsx:330-345` 对图片节点做了**刻意裁剪**（源码注释自陈「Image nodes use a deliberately small, stable action hierarchy」）：
+  | 渲染分支 | 结果 |
+  |---|---|
+  | `imagePrimaryTools = primary.filter(id === "maskEdit")` | 主区只留局部重绘 |
+  | `portraitTools = ... inGroup("portrait").filter(id === "emotion")` | **质感调整被过滤掉**，只剩表情调整 |
+  | `viewpointLightingTools = ... filter(id === "angle" \|\| id === "lighting")` | 多角度 + 打光 |
+  | `panoramaTools = compact \|\| isImage ? [] : inGroup("panorama")` | **全景图在图片节点上恒为空**，只在非图片节点提供 |
+  | `processTools = ... filter(crop \|\| split \|\| annotation)` | 裁切/宫格切分/标注 |
+  | `imageSettingsTools = allTools.filter(replace \|\| resize \|\| node-lock)` | 替换图片 + 锁定宽高比 |
+- **一个彻底的不可达项**：`inGroup("more")` 在 `canvas-node-toolbar.tsx` 中出现 **0 次**（Batch 99 的结论在 v1.6.16 仍成立），而 `copyPrompt` / `reversePrompt` 在**全库再无第二处引用**。即**「复制提示词 / 反推提示词」在任何界面都点不到**——注册表里有、handler 也在，但当前上下文一个都不渲染。
+- **一处命名反直觉，值得单独写进手册**：`presets` 里 `id: "top"` 的标签是**俯拍**、`id: "bottom"` 的标签是**仰拍**——**内部标识与界面名相反**。这类东西不写出来，用户只能靠试。
+- **多角度面板参数**（实测自源码）：六预设 正面/左侧/右侧/背面/俯拍/仰拍；水平角度自由；**垂直俯仰 −60°~60°**；**景别缩放 1~10 步长 0.1**；镜头 标准/广角；环境 **天空盒/摄像头**；初值 45°/0°/4.8/标准。
+- **打光面板**实有：方向预设 6 个（前方/右侧/后方/左侧/顶部/底部）、角度、光线颜色、亮度、「关闭打光效果」开关。初稿只写了「可设方位角与高度角」，**把具体字段漏掉了**，回读组件后补全。
+- **落点**：`generate-images.md` 新增「图片节点工具条」一节（分组表 + 多角度 + 打光 + 「找不到的四个功能」提示）；`upload-materials.md` 那句分组列表加交叉引用。
+- **方法论复盘**：本批再次验证 §3——**「注册表里存在」是最容易骗人的一环**。15 个注册动作里，用户能点到的是 10 个，且这 10 个还被重新分配进了不同的分组按钮。只读注册表会写出 15 个都有的错误清单。
+- **账本口径**：27 任务 / 22 verified / 5 excluded / 33 md / 49 截图；适用 v1.6.16。
