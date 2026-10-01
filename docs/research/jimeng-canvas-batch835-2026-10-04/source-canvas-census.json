@@ -1,0 +1,5545 @@
+{
+  "url": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=project_list&from_page=create",
+  "viewport": {
+    "width": 1512,
+    "height": 950
+  },
+  "steps": [
+    {
+      "label": "① 加载完成后的默认态",
+      "body_len": 466,
+      "crashed": false,
+      "panel": [],
+      "pill": {
+        "x": 1381,
+        "y": 903,
+        "w": 118,
+        "h": 34,
+        "testid": "canvas-sidecar-launcher",
+        "tag": "BUTTON",
+        "ariaLabel": "与 AI 对话",
+        "ariaExpanded": "false",
+        "innerText": "",
+        "svg": 0
+      },
+      "pill_chain": [
+        {
+          "depth": 0,
+          "tag": "BUTTON",
+          "tid": "canvas-sidecar-launcher",
+          "rect": [
+            1381,
+            903,
+            118,
+            34
+          ],
+          "text": "",
+          "svg": 0,
+          "bg": "rgba(0, 0, 0, 0)",
+          "blur": "none",
+          "radius": "20px",
+          "position": "absolute"
+        },
+        {
+          "depth": 1,
+          "tag": "DIV",
+          "tid": "assistant-sidecar-launcher-frame",
+          "rect": [
+            1380,
+            902,
+            120,
+            36
+          ],
+          "text": "与 AI 对话",
+          "svg": 1,
+          "bg": "rgba(39, 39, 39, 0.72)",
+          "blur": "blur(40px)",
+          "radius": "20px",
+          "position": "relative"
+        },
+        {
+          "depth": 2,
+          "tag": "DIV",
+          "tid": "canvas-sidecar-launchers",
+          "rect": [
+            1380,
+            902,
+            120,
+            36
+          ],
+          "text": "与 AI 对话",
+          "svg": 1,
+          "bg": "rgba(0, 0, 0, 0)",
+          "blur": "none",
+          "radius": "0px",
+          "position": "absolute"
+        }
+      ],
+      "census": {
+        "tids": [
+          {
+            "tid": "workspace-workbench-shell",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-top-bar",
+            "rect": [
+              12,
+              10,
+              1488,
+              40
+            ]
+          },
+          {
+            "tid": "canvas-top-bar-left",
+            "rect": [
+              12,
+              10,
+              1103,
+              40
+            ]
+          },
+          {
+            "tid": "workspace-title-responsive-surface",
+            "rect": [
+              12,
+              10,
+              1103,
+              40
+            ]
+          },
+          {
+            "tid": "workspace-canvas-title",
+            "rect": [
+              12,
+              10,
+              230,
+              40
+            ]
+          },
+          {
+            "tid": "canvas-project-logo",
+            "rect": [
+              12,
+              10,
+              40,
+              40
+            ]
+          },
+          {
+            "tid": "canvas-project-logo-gradient-path",
+            "rect": [
+              20,
+              18,
+              24,
+              25
+            ]
+          },
+          {
+            "tid": "canvas-title-details",
+            "rect": [
+              48,
+              12,
+              194,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-project-title-trigger",
+            "rect": [
+              52,
+              16,
+              68,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-project-launcher-shell",
+            "rect": [
+              120,
+              16,
+              20,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-project-trigger",
+            "rect": [
+              120,
+              16,
+              20,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-title-metadata",
+            "rect": [
+              156,
+              16,
+              74,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-node-summary-trigger",
+            "rect": [
+              156,
+              16,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-node-summary-label",
+            "rect": [
+              156,
+              21,
+              28,
+              18
+            ]
+          },
+          {
+            "tid": "canvas-node-summary-count",
+            "rect": [
+              178,
+              21,
+              6,
+              18
+            ]
+          },
+          {
+            "tid": "canvas-title-separator",
+            "rect": [
+              188,
+              24,
+              8,
+              12
+            ]
+          },
+          {
+            "tid": "canvas-title-save-status",
+            "rect": [
+              200,
+              21,
+              30,
+              18
+            ]
+          },
+          {
+            "tid": "canvas-top-bar-actions",
+            "rect": [
+              1139,
+              10,
+              361,
+              40
+            ]
+          },
+          {
+            "tid": "canvas-agent-history-surface",
+            "rect": [
+              1139,
+              12,
+              68,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-panel-launcher",
+            "rect": [
+              1143,
+              16,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-panel-launcher",
+            "rect": [
+              1175,
+              16,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-share-entry",
+            "rect": [
+              1215,
+              12,
+              70,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-share-trigger",
+            "rect": [
+              1220,
+              16,
+              60,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-editor-menu",
+            "rect": [
+              1293,
+              12,
+              36,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-account-surface",
+            "rect": [
+              1337,
+              12,
+              163,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-commerce-entry-wrapper",
+            "rect": [
+              1341,
+              12,
+              111,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-commerce-entry",
+            "rect": [
+              1341,
+              16,
+              111,
+              28
+            ]
+          },
+          {
+            "tid": "workspace-account-summary-content",
+            "rect": [
+              1350,
+              21,
+              93,
+              18
+            ]
+          },
+          {
+            "tid": "canvas-account-separator",
+            "rect": [
+              1456,
+              24,
+              8,
+              12
+            ]
+          },
+          {
+            "tid": "canvas-user-menu-trigger",
+            "rect": [
+              1468,
+              16,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-user-avatar-image",
+            "rect": [
+              1470,
+              18,
+              24,
+              24
+            ]
+          },
+          {
+            "tid": "canvas-user-avatar-hover-mask",
+            "rect": [
+              1470,
+              18,
+              24,
+              24
+            ]
+          },
+          {
+            "tid": "workspace-hydrated-canvas-frame",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-workbench-shell",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-main-region",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-save-failure-anchor",
+            "rect": [
+              1496,
+              72,
+              0,
+              0
+            ]
+          },
+          {
+            "tid": "rf__wrapper",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "rf__node-node_236ctpehgg",
+            "rect": [
+              822,
+              488,
+              569,
+              320
+            ]
+          },
+          {
+            "tid": "video-flow-node-surface",
+            "rect": [
+              822,
+              488,
+              569,
+              320
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              793,
+              588,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              822,
+              457,
+              56,
+              32
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              1360,
+              588,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "video-node-empty",
+            "rect": [
+              823,
+              489,
+              567,
+              318
+            ]
+          },
+          {
+            "tid": "rf__node-node_3bfb9r79qe",
+            "rect": [
+              561,
+              143,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-flow-node-full",
+            "rect": [
+              561,
+              143,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-node-empty-placeholder",
+            "rect": [
+              585,
+              163,
+              272,
+              22
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              531,
+              243,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              561,
+              111,
+              56,
+              24
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              851,
+              243,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "rf__node-node_cdwf8x6fbj",
+            "rect": [
+              121,
+              265,
+              1200,
+              207
+            ]
+          },
+          {
+            "tid": "timeline-flow-node",
+            "rect": [
+              121,
+              265,
+              1200,
+              207
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              91,
+              309,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              121,
+              233,
+              69,
+              32
+            ]
+          },
+          {
+            "tid": "timeline-flow-node-main-track",
+            "rect": [
+              121,
+              265,
+              1200,
+              207
+            ]
+          },
+          {
+            "tid": "timeline-toolbar",
+            "rect": [
+              122,
+              266,
+              1198,
+              66
+            ]
+          },
+          {
+            "tid": "timeline-playback-clock",
+            "rect": [
+              687,
+              287,
+              123,
+              24
+            ]
+          },
+          {
+            "tid": "timeline-full-passive-track",
+            "rect": [
+              122,
+              332,
+              1198,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-track-gutter",
+            "rect": [
+              122,
+              332,
+              66,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-mute-button",
+            "rect": [
+              134,
+              386,
+              42,
+              42
+            ]
+          },
+          {
+            "tid": "timeline-node-track-divider",
+            "rect": [
+              188,
+              332,
+              1,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-passive-track-viewport",
+            "rect": [
+              188,
+              332,
+              1132,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-track-canvas",
+            "rect": [
+              194,
+              332,
+              1126,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-ruler",
+            "rect": [
+              194,
+              332,
+              1126,
+              27
+            ]
+          },
+          {
+            "tid": "timeline-ruler-interaction-extension",
+            "rect": [
+              194,
+              320,
+              1126,
+              12
+            ]
+          },
+          {
+            "tid": "timeline-clip-track",
+            "rect": [
+              194,
+              365,
+              1126,
+              84
+            ]
+          },
+          {
+            "tid": "timeline-passive-source-picker-slot",
+            "rect": [
+              194,
+              365,
+              1113,
+              84
+            ]
+          },
+          {
+            "tid": "timeline-empty-track-label",
+            "rect": [
+              688,
+              391,
+              156,
+              33
+            ]
+          },
+          {
+            "tid": "rf__node-node_aw29cp094x",
+            "rect": [
+              601,
+              181,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-flow-node-full",
+            "rect": [
+              601,
+              181,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-node-empty-placeholder",
+            "rect": [
+              625,
+              201,
+              272,
+              22
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              571,
+              281,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              601,
+              149,
+              58,
+              24
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              891,
+              281,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "rf__node-node_5gftn3dnt1",
+            "rect": [
+              641,
+              222,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-flow-node-full",
+            "rect": [
+              641,
+              222,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              611,
+              322,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              641,
+              190,
+              58,
+              24
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              931,
+              322,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "rf__node-node_pxvkay973v",
+            "rect": [
+              721,
+              343,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              691,
+              443,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              721,
+              311,
+              59,
+              32
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              1011,
+              443,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "director-stage-flow-node-shell",
+            "rect": [
+              721,
+              343,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "canvas-dot-grid",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-connection-flow-layer-host",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-connection-flow-layer",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-context-menu-terminal-feedback",
+            "rect": [
+              -1,
+              949,
+              1,
+              1
+            ]
+          },
+          {
+            "tid": "canvas-feature-sidecar",
+            "rect": [
+              1300,
+              475,
+              200,
+              463
+            ]
+          },
+          {
+            "tid": "canvas-creation-entry-feedback",
+            "rect": [
+              -1,
+              -1,
+              1,
+              1
+            ]
+          },
+          {
+            "tid": "canvas-fixed-toolbar-left-rail",
+            "rect": [
+              12,
+              72,
+              160,
+              862
+            ]
+          },
+          {
+            "tid": "canvas-navigation-shell",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-navigation-mask",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-navigation-mask-backdrop",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-navigation-mask-gradient",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-navigation-scroll-viewport",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-fixed-toolbar",
+            "rect": [
+              12,
+              304,
+              48,
+              398
+            ]
+          },
+          {
+            "tid": "workspace-bottom-dock-frame",
+            "rect": [
+              12,
+              898,
+              164,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-navigation-dock",
+            "rect": [
+              12,
+              898,
+              164,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-minimap-portal-target",
+            "rect": [
+              16,
+              784,
+              156,
+              114
+            ]
+          },
+          {
+            "tid": "canvas-bottom-dock",
+            "rect": [
+              16,
+              902,
+              156,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-pointer-tool-toggle",
+            "rect": [
+              16,
+              902,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-display-toggle-minimap",
+            "rect": [
+              48,
+              902,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-display-toggle-connections",
+            "rect": [
+              80,
+              902,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-zoom-percent",
+            "rect": [
+              124,
+              903,
+              48,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-sidecar-launchers",
+            "rect": [
+              1380,
+              902,
+              120,
+              36
+            ]
+          },
+          {
+            "tid": "assistant-sidecar-launcher-frame",
+            "rect": [
+              1380,
+              902,
+              120,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-sidecar-launcher",
+            "rect": [
+              1381,
+              903,
+              118,
+              34
+            ]
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Canvas title: 测试项目",
+            "rect": [
+              52,
+              16,
+              68,
+              28
+            ],
+            "tid": "canvas-project-title-trigger",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "项目",
+            "rect": [
+              120,
+              16,
+              20,
+              28
+            ],
+            "tid": "canvas-project-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "Canvas node summary: 节点 ",
+            "rect": [
+              156,
+              16,
+              28,
+              28
+            ],
+            "tid": "canvas-node-summary-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "搜索",
+            "rect": [
+              1143,
+              16,
+              28,
+              28
+            ],
+            "tid": "canvas-panel-launcher",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "生成历史",
+            "rect": [
+              1175,
+              16,
+              28,
+              28
+            ],
+            "tid": "canvas-panel-launcher",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "分享",
+            "rect": [
+              1220,
+              16,
+              60,
+              28
+            ],
+            "tid": "canvas-share-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "更多",
+            "rect": [
+              1297,
+              16,
+              28,
+              28
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "Credits: 805 · 基础会员",
+            "rect": [
+              1341,
+              16,
+              111,
+              28
+            ],
+            "tid": "canvas-commerce-entry",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "用户菜单",
+            "rect": [
+              1468,
+              16,
+              28,
+              28
+            ],
+            "tid": "canvas-user-menu-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "导出时间线",
+            "rect": [
+              1134,
+              278,
+              42,
+              42
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "全屏编辑",
+            "rect": [
+              1182,
+              278,
+              126,
+              42
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "静音",
+            "rect": [
+              134,
+              386,
+              42,
+              42
+            ],
+            "tid": "timeline-mute-button",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "添加素材到时间线",
+            "rect": [
+              194,
+              365,
+              1113,
+              84
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "文本",
+            "rect": [
+              16,
+              308,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "图片",
+            "rect": [
+              16,
+              350,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "视频",
+            "rect": [
+              16,
+              392,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "音频",
+            "rect": [
+              16,
+              434,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "时间线",
+            "rect": [
+              16,
+              476,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "主体",
+            "rect": [
+              16,
+              518,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "导演台",
+            "rect": [
+              16,
+              560,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "资产库",
+            "rect": [
+              16,
+              616,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "上传",
+            "rect": [
+              16,
+              658,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "选择工具",
+            "rect": [
+              16,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-pointer-tool-toggle",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "小地图",
+            "rect": [
+              48,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-minimap",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "显示连线",
+            "rect": [
+              80,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-connections",
+            "pressed": "true",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "Zoom options, 100%",
+            "rect": [
+              124,
+              903,
+              48,
+              28
+            ],
+            "tid": "canvas-zoom-percent",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "与 AI 对话",
+            "rect": [
+              1381,
+              903,
+              118,
+              34
+            ],
+            "tid": "canvas-sidecar-launcher",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          }
+        ],
+        "dock": [
+          {
+            "name": "选择工具",
+            "rect": [
+              16,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-pointer-tool-toggle",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "小地图",
+            "rect": [
+              48,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-minimap",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "显示连线",
+            "rect": [
+              80,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-connections",
+            "pressed": "true",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "Zoom options, 100%",
+            "rect": [
+              124,
+              903,
+              48,
+              28
+            ],
+            "tid": "canvas-zoom-percent",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "与 AI 对话",
+            "rect": [
+              1381,
+              903,
+              118,
+              34
+            ],
+            "tid": "canvas-sidecar-launcher",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          }
+        ],
+        "rail": [
+          {
+            "name": "文本",
+            "rect": [
+              16,
+              308,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "图片",
+            "rect": [
+              16,
+              350,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "视频",
+            "rect": [
+              16,
+              392,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "音频",
+            "rect": [
+              16,
+              434,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "时间线",
+            "rect": [
+              16,
+              476,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "主体",
+            "rect": [
+              16,
+              518,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "导演台",
+            "rect": [
+              16,
+              560,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "资产库",
+            "rect": [
+              16,
+              616,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "上传",
+            "rect": [
+              16,
+              658,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "选择工具",
+            "rect": [
+              16,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-pointer-tool-toggle",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "小地图",
+            "rect": [
+              48,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-minimap",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          }
+        ]
+      }
+    },
+    {
+      "label": "② 点「与 AI 对话」之后 @5000ms",
+      "body_len": 646,
+      "crashed": false,
+      "panel": [
+        {
+          "x": 1101,
+          "y": 13,
+          "w": 398,
+          "h": 924,
+          "text": "新会话 仅支持新建一个空会话 探索更多专业创作模式 / 视频反解 / 创作分镜 / 全流程广告片导演 / 剧本开发 / "
+        },
+        {
+          "x": 1101,
+          "y": 69,
+          "w": 398,
+          "h": 868,
+          "text": "探索更多专业创作模式 / 视频反解 / 创作分镜 / 全流程广告片导演 / 剧本开发 / 剧情短片 输入想法、剧本或上传"
+        },
+        {
+          "x": 1101,
+          "y": 69,
+          "w": 398,
+          "h": 696,
+          "text": "探索更多专业创作模式 / 视频反解 / 创作分镜 / 全流程广告片导演 / 剧本开发 / 剧情短片"
+        }
+      ],
+      "pill": {
+        "x": 1441,
+        "y": 921,
+        "w": 59,
+        "h": 17,
+        "testid": "canvas-sidecar-launcher",
+        "tag": "BUTTON",
+        "ariaLabel": "与 AI 对话",
+        "ariaExpanded": "true",
+        "innerText": "",
+        "svg": 0
+      },
+      "pill_chain": [
+        {
+          "depth": 0,
+          "tag": "BUTTON",
+          "tid": "canvas-sidecar-launcher",
+          "rect": [
+            1441,
+            921,
+            59,
+            17
+          ],
+          "text": "",
+          "svg": 0,
+          "bg": "rgba(0, 0, 0, 0)",
+          "blur": "none",
+          "radius": "20px",
+          "position": "absolute"
+        },
+        {
+          "depth": 1,
+          "tag": "DIV",
+          "tid": "assistant-sidecar-launcher-frame",
+          "rect": [
+            1440,
+            920,
+            60,
+            18
+          ],
+          "text": "与 AI 对话",
+          "svg": 1,
+          "bg": "rgba(39, 39, 39, 0.72)",
+          "blur": "blur(40px)",
+          "radius": "20px",
+          "position": "relative"
+        },
+        {
+          "depth": 2,
+          "tag": "DIV",
+          "tid": "canvas-sidecar-launchers",
+          "rect": [
+            1380,
+            902,
+            120,
+            36
+          ],
+          "text": "与 AI 对话",
+          "svg": 1,
+          "bg": "rgba(0, 0, 0, 0)",
+          "blur": "none",
+          "radius": "0px",
+          "position": "absolute"
+        }
+      ],
+      "census": {
+        "tids": [
+          {
+            "tid": "workspace-workbench-shell",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-top-bar",
+            "rect": [
+              12,
+              10,
+              1076,
+              40
+            ]
+          },
+          {
+            "tid": "canvas-top-bar-left",
+            "rect": [
+              12,
+              10,
+              691,
+              40
+            ]
+          },
+          {
+            "tid": "workspace-title-responsive-surface",
+            "rect": [
+              12,
+              10,
+              691,
+              40
+            ]
+          },
+          {
+            "tid": "workspace-canvas-title",
+            "rect": [
+              12,
+              10,
+              230,
+              40
+            ]
+          },
+          {
+            "tid": "canvas-project-logo",
+            "rect": [
+              12,
+              10,
+              40,
+              40
+            ]
+          },
+          {
+            "tid": "canvas-project-logo-gradient-path",
+            "rect": [
+              20,
+              18,
+              24,
+              25
+            ]
+          },
+          {
+            "tid": "canvas-title-details",
+            "rect": [
+              48,
+              12,
+              194,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-project-title-trigger",
+            "rect": [
+              52,
+              16,
+              68,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-project-launcher-shell",
+            "rect": [
+              120,
+              16,
+              20,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-project-trigger",
+            "rect": [
+              120,
+              16,
+              20,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-title-metadata",
+            "rect": [
+              156,
+              16,
+              74,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-node-summary-trigger",
+            "rect": [
+              156,
+              16,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-node-summary-label",
+            "rect": [
+              156,
+              21,
+              28,
+              18
+            ]
+          },
+          {
+            "tid": "canvas-node-summary-count",
+            "rect": [
+              178,
+              21,
+              6,
+              18
+            ]
+          },
+          {
+            "tid": "canvas-title-separator",
+            "rect": [
+              188,
+              24,
+              8,
+              12
+            ]
+          },
+          {
+            "tid": "canvas-title-save-status",
+            "rect": [
+              200,
+              21,
+              30,
+              18
+            ]
+          },
+          {
+            "tid": "canvas-top-bar-actions",
+            "rect": [
+              727,
+              10,
+              361,
+              40
+            ]
+          },
+          {
+            "tid": "canvas-agent-history-surface",
+            "rect": [
+              727,
+              12,
+              68,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-panel-launcher",
+            "rect": [
+              731,
+              16,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-panel-launcher",
+            "rect": [
+              763,
+              16,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-share-entry",
+            "rect": [
+              803,
+              12,
+              70,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-share-trigger",
+            "rect": [
+              808,
+              16,
+              60,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-editor-menu",
+            "rect": [
+              881,
+              12,
+              36,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-account-surface",
+            "rect": [
+              925,
+              12,
+              163,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-commerce-entry-wrapper",
+            "rect": [
+              929,
+              12,
+              111,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-commerce-entry",
+            "rect": [
+              929,
+              16,
+              111,
+              28
+            ]
+          },
+          {
+            "tid": "workspace-account-summary-content",
+            "rect": [
+              938,
+              21,
+              93,
+              18
+            ]
+          },
+          {
+            "tid": "canvas-account-separator",
+            "rect": [
+              1044,
+              24,
+              8,
+              12
+            ]
+          },
+          {
+            "tid": "canvas-user-menu-trigger",
+            "rect": [
+              1056,
+              16,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-user-avatar-image",
+            "rect": [
+              1058,
+              18,
+              24,
+              24
+            ]
+          },
+          {
+            "tid": "canvas-user-avatar-hover-mask",
+            "rect": [
+              1058,
+              18,
+              24,
+              24
+            ]
+          },
+          {
+            "tid": "workspace-hydrated-canvas-frame",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-workbench-shell",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-main-region",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-save-failure-anchor",
+            "rect": [
+              1496,
+              72,
+              0,
+              0
+            ]
+          },
+          {
+            "tid": "rf__wrapper",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "rf__node-node_236ctpehgg",
+            "rect": [
+              822,
+              488,
+              569,
+              320
+            ]
+          },
+          {
+            "tid": "video-flow-node-surface",
+            "rect": [
+              822,
+              488,
+              569,
+              320
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              793,
+              588,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              822,
+              457,
+              56,
+              32
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              1360,
+              588,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "video-node-empty",
+            "rect": [
+              823,
+              489,
+              567,
+              318
+            ]
+          },
+          {
+            "tid": "rf__node-node_3bfb9r79qe",
+            "rect": [
+              561,
+              143,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-flow-node-full",
+            "rect": [
+              561,
+              143,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-node-empty-placeholder",
+            "rect": [
+              585,
+              163,
+              272,
+              22
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              531,
+              243,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              561,
+              111,
+              56,
+              24
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              851,
+              243,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "rf__node-node_cdwf8x6fbj",
+            "rect": [
+              121,
+              265,
+              1200,
+              207
+            ]
+          },
+          {
+            "tid": "timeline-flow-node",
+            "rect": [
+              121,
+              265,
+              1200,
+              207
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              91,
+              309,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              121,
+              233,
+              69,
+              32
+            ]
+          },
+          {
+            "tid": "timeline-flow-node-main-track",
+            "rect": [
+              121,
+              265,
+              1200,
+              207
+            ]
+          },
+          {
+            "tid": "timeline-toolbar",
+            "rect": [
+              122,
+              266,
+              1198,
+              66
+            ]
+          },
+          {
+            "tid": "timeline-playback-clock",
+            "rect": [
+              687,
+              287,
+              123,
+              24
+            ]
+          },
+          {
+            "tid": "timeline-full-passive-track",
+            "rect": [
+              122,
+              332,
+              1198,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-track-gutter",
+            "rect": [
+              122,
+              332,
+              66,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-mute-button",
+            "rect": [
+              134,
+              386,
+              42,
+              42
+            ]
+          },
+          {
+            "tid": "timeline-node-track-divider",
+            "rect": [
+              188,
+              332,
+              1,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-passive-track-viewport",
+            "rect": [
+              188,
+              332,
+              1132,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-track-canvas",
+            "rect": [
+              194,
+              332,
+              1126,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-ruler",
+            "rect": [
+              194,
+              332,
+              1126,
+              27
+            ]
+          },
+          {
+            "tid": "timeline-ruler-interaction-extension",
+            "rect": [
+              194,
+              320,
+              1126,
+              12
+            ]
+          },
+          {
+            "tid": "timeline-clip-track",
+            "rect": [
+              194,
+              365,
+              1126,
+              84
+            ]
+          },
+          {
+            "tid": "timeline-passive-source-picker-slot",
+            "rect": [
+              194,
+              365,
+              1113,
+              84
+            ]
+          },
+          {
+            "tid": "timeline-empty-track-label",
+            "rect": [
+              688,
+              391,
+              156,
+              33
+            ]
+          },
+          {
+            "tid": "rf__node-node_aw29cp094x",
+            "rect": [
+              601,
+              181,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-flow-node-full",
+            "rect": [
+              601,
+              181,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-node-empty-placeholder",
+            "rect": [
+              625,
+              201,
+              272,
+              22
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              571,
+              281,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              601,
+              149,
+              58,
+              24
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              891,
+              281,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "rf__node-node_5gftn3dnt1",
+            "rect": [
+              641,
+              222,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-flow-node-full",
+            "rect": [
+              641,
+              222,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              611,
+              322,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              641,
+              190,
+              58,
+              24
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              931,
+              322,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "rf__node-node_pxvkay973v",
+            "rect": [
+              721,
+              343,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              691,
+              443,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              721,
+              311,
+              59,
+              32
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              1011,
+              443,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "director-stage-flow-node-shell",
+            "rect": [
+              721,
+              343,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "canvas-dot-grid",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-connection-flow-layer-host",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-connection-flow-layer",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-context-menu-terminal-feedback",
+            "rect": [
+              -1,
+              949,
+              1,
+              1
+            ]
+          },
+          {
+            "tid": "canvas-feature-sidecar",
+            "rect": [
+              1100,
+              12,
+              400,
+              926
+            ]
+          },
+          {
+            "tid": "canvas-agent-panel",
+            "rect": [
+              1101,
+              13,
+              398,
+              924
+            ]
+          },
+          {
+            "tid": "canvas-agent-session-menu-trigger",
+            "rect": [
+              1117,
+              25,
+              58,
+              32
+            ]
+          },
+          {
+            "tid": "canvas-agent-session-title",
+            "rect": [
+              1125,
+              30,
+              42,
+              22
+            ]
+          },
+          {
+            "tid": "canvas-agent-session-create",
+            "rect": [
+              1415,
+              25,
+              32,
+              32
+            ]
+          },
+          {
+            "tid": "canvas-agent-session-collapse",
+            "rect": [
+              1451,
+              23,
+              36,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-agent-session-heading",
+            "rect": [
+              1131,
+              328,
+              338,
+              27
+            ]
+          },
+          {
+            "tid": "canvas-agent-session-modes",
+            "rect": [
+              1131,
+              367,
+              338,
+              140
+            ]
+          },
+          {
+            "tid": "canvas-agent-mode-action",
+            "rect": [
+              1191,
+              375,
+              105,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-agent-mode-action",
+            "rect": [
+              1304,
+              375,
+              105,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-agent-mode-action",
+            "rect": [
+              1165,
+              419,
+              157,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-agent-mode-action",
+            "rect": [
+              1330,
+              419,
+              105,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-agent-mode-action",
+            "rect": [
+              1248,
+              463,
+              105,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-agent-session-composer",
+            "rect": [
+              1105,
+              769,
+              390,
+              164
+            ]
+          },
+          {
+            "tid": "prompt-composer",
+            "rect": [
+              1122,
+              784,
+              356,
+              84
+            ]
+          },
+          {
+            "tid": "canvas-agent-composer-placeholder-mention",
+            "rect": [
+              1428,
+              784,
+              24,
+              24
+            ]
+          },
+          {
+            "tid": "canvas-agent-composer-action-row",
+            "rect": [
+              1122,
+              884,
+              356,
+              32
+            ]
+          },
+          {
+            "tid": "canvas-agent-composer-add",
+            "rect": [
+              1122,
+              884,
+              32,
+              32
+            ]
+          },
+          {
+            "tid": "canvas-agent-skill-trigger",
+            "rect": [
+              1158,
+              884,
+              90,
+              32
+            ]
+          },
+          {
+            "tid": "canvas-agent-composer-mention",
+            "rect": [
+              1252,
+              884,
+              32,
+              32
+            ]
+          },
+          {
+            "tid": "canvas-agent-send",
+            "rect": [
+              1446,
+              884,
+              32,
+              32
+            ]
+          },
+          {
+            "tid": "canvas-sidecar-resize-handle",
+            "rect": [
+              1098,
+              12,
+              6,
+              926
+            ]
+          },
+          {
+            "tid": "canvas-creation-entry-feedback",
+            "rect": [
+              -1,
+              -1,
+              1,
+              1
+            ]
+          },
+          {
+            "tid": "canvas-fixed-toolbar-left-rail",
+            "rect": [
+              12,
+              72,
+              160,
+              862
+            ]
+          },
+          {
+            "tid": "canvas-navigation-shell",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-navigation-mask",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-navigation-mask-backdrop",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-navigation-mask-gradient",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-navigation-scroll-viewport",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-fixed-toolbar",
+            "rect": [
+              12,
+              304,
+              48,
+              398
+            ]
+          },
+          {
+            "tid": "workspace-bottom-dock-frame",
+            "rect": [
+              12,
+              898,
+              164,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-navigation-dock",
+            "rect": [
+              12,
+              898,
+              164,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-minimap-portal-target",
+            "rect": [
+              16,
+              784,
+              156,
+              114
+            ]
+          },
+          {
+            "tid": "canvas-bottom-dock",
+            "rect": [
+              16,
+              902,
+              156,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-pointer-tool-toggle",
+            "rect": [
+              16,
+              902,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-display-toggle-minimap",
+            "rect": [
+              48,
+              902,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-display-toggle-connections",
+            "rect": [
+              80,
+              902,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-zoom-percent",
+            "rect": [
+              124,
+              903,
+              48,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-sidecar-launchers",
+            "rect": [
+              1380,
+              902,
+              120,
+              36
+            ]
+          },
+          {
+            "tid": "assistant-sidecar-launcher-frame",
+            "rect": [
+              1440,
+              920,
+              60,
+              18
+            ]
+          },
+          {
+            "tid": "canvas-sidecar-launcher",
+            "rect": [
+              1441,
+              921,
+              59,
+              17
+            ]
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Canvas title: 测试项目",
+            "rect": [
+              52,
+              16,
+              68,
+              28
+            ],
+            "tid": "canvas-project-title-trigger",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "项目",
+            "rect": [
+              120,
+              16,
+              20,
+              28
+            ],
+            "tid": "canvas-project-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "Canvas node summary: 节点 ",
+            "rect": [
+              156,
+              16,
+              28,
+              28
+            ],
+            "tid": "canvas-node-summary-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "搜索",
+            "rect": [
+              731,
+              16,
+              28,
+              28
+            ],
+            "tid": "canvas-panel-launcher",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "生成历史",
+            "rect": [
+              763,
+              16,
+              28,
+              28
+            ],
+            "tid": "canvas-panel-launcher",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "分享",
+            "rect": [
+              808,
+              16,
+              60,
+              28
+            ],
+            "tid": "canvas-share-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "更多",
+            "rect": [
+              885,
+              16,
+              28,
+              28
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "Credits: 805 · 基础会员",
+            "rect": [
+              929,
+              16,
+              111,
+              28
+            ],
+            "tid": "canvas-commerce-entry",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "用户菜单",
+            "rect": [
+              1056,
+              16,
+              28,
+              28
+            ],
+            "tid": "canvas-user-menu-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "导出时间线",
+            "rect": [
+              1134,
+              278,
+              42,
+              42
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "全屏编辑",
+            "rect": [
+              1182,
+              278,
+              126,
+              42
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "静音",
+            "rect": [
+              134,
+              386,
+              42,
+              42
+            ],
+            "tid": "timeline-mute-button",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "添加素材到时间线",
+            "rect": [
+              194,
+              365,
+              1113,
+              84
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "会话列表",
+            "rect": [
+              1117,
+              25,
+              58,
+              32
+            ],
+            "tid": "canvas-agent-session-menu-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": "true"
+          },
+          {
+            "name": "新建会话",
+            "rect": [
+              1415,
+              25,
+              32,
+              32
+            ],
+            "tid": "canvas-agent-session-create",
+            "pressed": null,
+            "expanded": null,
+            "disabled": "true"
+          },
+          {
+            "name": "收起",
+            "rect": [
+              1451,
+              23,
+              36,
+              36
+            ],
+            "tid": "canvas-agent-session-collapse",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "/ 视频反解",
+            "rect": [
+              1191,
+              375,
+              105,
+              36
+            ],
+            "tid": "canvas-agent-mode-action",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "/ 创作分镜",
+            "rect": [
+              1304,
+              375,
+              105,
+              36
+            ],
+            "tid": "canvas-agent-mode-action",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "/ 全流程广告片导演",
+            "rect": [
+              1165,
+              419,
+              157,
+              36
+            ],
+            "tid": "canvas-agent-mode-action",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "/ 剧本开发",
+            "rect": [
+              1330,
+              419,
+              105,
+              36
+            ],
+            "tid": "canvas-agent-mode-action",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "/ 剧情短片",
+            "rect": [
+              1248,
+              463,
+              105,
+              36
+            ],
+            "tid": "canvas-agent-mode-action",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "引用参考",
+            "rect": [
+              1428,
+              784,
+              24,
+              24
+            ],
+            "tid": "canvas-agent-composer-placeholder-mention",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "从本地、画布或资产库添加",
+            "rect": [
+              1122,
+              884,
+              32,
+              32
+            ],
+            "tid": "canvas-agent-composer-add",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "使用技能",
+            "rect": [
+              1158,
+              884,
+              90,
+              32
+            ],
+            "tid": "canvas-agent-skill-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "引用参考",
+            "rect": [
+              1252,
+              884,
+              32,
+              32
+            ],
+            "tid": "canvas-agent-composer-mention",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "发送消息",
+            "rect": [
+              1446,
+              884,
+              32,
+              32
+            ],
+            "tid": "canvas-agent-send",
+            "pressed": null,
+            "expanded": null,
+            "disabled": "true"
+          },
+          {
+            "name": "Resize conversation pane",
+            "rect": [
+              1098,
+              12,
+              6,
+              926
+            ],
+            "tid": "canvas-sidecar-resize-handle",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "文本",
+            "rect": [
+              16,
+              308,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "图片",
+            "rect": [
+              16,
+              350,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "视频",
+            "rect": [
+              16,
+              392,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "音频",
+            "rect": [
+              16,
+              434,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "时间线",
+            "rect": [
+              16,
+              476,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "主体",
+            "rect": [
+              16,
+              518,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "导演台",
+            "rect": [
+              16,
+              560,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "资产库",
+            "rect": [
+              16,
+              616,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "上传",
+            "rect": [
+              16,
+              658,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "选择工具",
+            "rect": [
+              16,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-pointer-tool-toggle",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "小地图",
+            "rect": [
+              48,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-minimap",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "显示连线",
+            "rect": [
+              80,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-connections",
+            "pressed": "true",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "Zoom options, 100%",
+            "rect": [
+              124,
+              903,
+              48,
+              28
+            ],
+            "tid": "canvas-zoom-percent",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "与 AI 对话",
+            "rect": [
+              1441,
+              921,
+              59,
+              17
+            ],
+            "tid": "canvas-sidecar-launcher",
+            "pressed": null,
+            "expanded": "true",
+            "disabled": ""
+          }
+        ],
+        "dock": [
+          {
+            "name": "从本地、画布或资产库添加",
+            "rect": [
+              1122,
+              884,
+              32,
+              32
+            ],
+            "tid": "canvas-agent-composer-add",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "使用技能",
+            "rect": [
+              1158,
+              884,
+              90,
+              32
+            ],
+            "tid": "canvas-agent-skill-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "引用参考",
+            "rect": [
+              1252,
+              884,
+              32,
+              32
+            ],
+            "tid": "canvas-agent-composer-mention",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "发送消息",
+            "rect": [
+              1446,
+              884,
+              32,
+              32
+            ],
+            "tid": "canvas-agent-send",
+            "pressed": null,
+            "expanded": null,
+            "disabled": "true"
+          },
+          {
+            "name": "选择工具",
+            "rect": [
+              16,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-pointer-tool-toggle",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "小地图",
+            "rect": [
+              48,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-minimap",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "显示连线",
+            "rect": [
+              80,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-connections",
+            "pressed": "true",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "Zoom options, 100%",
+            "rect": [
+              124,
+              903,
+              48,
+              28
+            ],
+            "tid": "canvas-zoom-percent",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "与 AI 对话",
+            "rect": [
+              1441,
+              921,
+              59,
+              17
+            ],
+            "tid": "canvas-sidecar-launcher",
+            "pressed": null,
+            "expanded": "true",
+            "disabled": ""
+          }
+        ],
+        "rail": [
+          {
+            "name": "文本",
+            "rect": [
+              16,
+              308,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "图片",
+            "rect": [
+              16,
+              350,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "视频",
+            "rect": [
+              16,
+              392,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "音频",
+            "rect": [
+              16,
+              434,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "时间线",
+            "rect": [
+              16,
+              476,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "主体",
+            "rect": [
+              16,
+              518,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "导演台",
+            "rect": [
+              16,
+              560,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "资产库",
+            "rect": [
+              16,
+              616,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "上传",
+            "rect": [
+              16,
+              658,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "选择工具",
+            "rect": [
+              16,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-pointer-tool-toggle",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "小地图",
+            "rect": [
+              48,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-minimap",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          }
+        ]
+      },
+      "at_ms": 5000
+    },
+    {
+      "label": "③ 面板开着时再点一次药丸",
+      "body_len": 466,
+      "crashed": false,
+      "panel": [],
+      "pill": {
+        "x": 1381,
+        "y": 903,
+        "w": 118,
+        "h": 34,
+        "testid": "canvas-sidecar-launcher",
+        "tag": "BUTTON",
+        "ariaLabel": "与 AI 对话",
+        "ariaExpanded": "false",
+        "innerText": "",
+        "svg": 0
+      },
+      "pill_chain": [
+        {
+          "depth": 0,
+          "tag": "BUTTON",
+          "tid": "canvas-sidecar-launcher",
+          "rect": [
+            1381,
+            903,
+            118,
+            34
+          ],
+          "text": "",
+          "svg": 0,
+          "bg": "rgba(0, 0, 0, 0)",
+          "blur": "none",
+          "radius": "20px",
+          "position": "absolute"
+        },
+        {
+          "depth": 1,
+          "tag": "DIV",
+          "tid": "assistant-sidecar-launcher-frame",
+          "rect": [
+            1380,
+            902,
+            120,
+            36
+          ],
+          "text": "与 AI 对话",
+          "svg": 1,
+          "bg": "rgba(45, 45, 45, 0.72)",
+          "blur": "blur(40px)",
+          "radius": "20px",
+          "position": "relative"
+        },
+        {
+          "depth": 2,
+          "tag": "DIV",
+          "tid": "canvas-sidecar-launchers",
+          "rect": [
+            1380,
+            902,
+            120,
+            36
+          ],
+          "text": "与 AI 对话",
+          "svg": 1,
+          "bg": "rgba(0, 0, 0, 0)",
+          "blur": "none",
+          "radius": "0px",
+          "position": "absolute"
+        }
+      ],
+      "census": {
+        "tids": [
+          {
+            "tid": "workspace-workbench-shell",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-top-bar",
+            "rect": [
+              12,
+              10,
+              1488,
+              40
+            ]
+          },
+          {
+            "tid": "canvas-top-bar-left",
+            "rect": [
+              12,
+              10,
+              1103,
+              40
+            ]
+          },
+          {
+            "tid": "workspace-title-responsive-surface",
+            "rect": [
+              12,
+              10,
+              1103,
+              40
+            ]
+          },
+          {
+            "tid": "workspace-canvas-title",
+            "rect": [
+              12,
+              10,
+              230,
+              40
+            ]
+          },
+          {
+            "tid": "canvas-project-logo",
+            "rect": [
+              12,
+              10,
+              40,
+              40
+            ]
+          },
+          {
+            "tid": "canvas-project-logo-gradient-path",
+            "rect": [
+              20,
+              18,
+              24,
+              25
+            ]
+          },
+          {
+            "tid": "canvas-title-details",
+            "rect": [
+              48,
+              12,
+              194,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-project-title-trigger",
+            "rect": [
+              52,
+              16,
+              68,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-project-launcher-shell",
+            "rect": [
+              120,
+              16,
+              20,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-project-trigger",
+            "rect": [
+              120,
+              16,
+              20,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-title-metadata",
+            "rect": [
+              156,
+              16,
+              74,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-node-summary-trigger",
+            "rect": [
+              156,
+              16,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-node-summary-label",
+            "rect": [
+              156,
+              21,
+              28,
+              18
+            ]
+          },
+          {
+            "tid": "canvas-node-summary-count",
+            "rect": [
+              178,
+              21,
+              6,
+              18
+            ]
+          },
+          {
+            "tid": "canvas-title-separator",
+            "rect": [
+              188,
+              24,
+              8,
+              12
+            ]
+          },
+          {
+            "tid": "canvas-title-save-status",
+            "rect": [
+              200,
+              21,
+              30,
+              18
+            ]
+          },
+          {
+            "tid": "canvas-top-bar-actions",
+            "rect": [
+              1139,
+              10,
+              361,
+              40
+            ]
+          },
+          {
+            "tid": "canvas-agent-history-surface",
+            "rect": [
+              1139,
+              12,
+              68,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-panel-launcher",
+            "rect": [
+              1143,
+              16,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-panel-launcher",
+            "rect": [
+              1175,
+              16,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-share-entry",
+            "rect": [
+              1215,
+              12,
+              70,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-share-trigger",
+            "rect": [
+              1220,
+              16,
+              60,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-editor-menu",
+            "rect": [
+              1293,
+              12,
+              36,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-account-surface",
+            "rect": [
+              1337,
+              12,
+              163,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-commerce-entry-wrapper",
+            "rect": [
+              1341,
+              12,
+              111,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-commerce-entry",
+            "rect": [
+              1341,
+              16,
+              111,
+              28
+            ]
+          },
+          {
+            "tid": "workspace-account-summary-content",
+            "rect": [
+              1350,
+              21,
+              93,
+              18
+            ]
+          },
+          {
+            "tid": "canvas-account-separator",
+            "rect": [
+              1456,
+              24,
+              8,
+              12
+            ]
+          },
+          {
+            "tid": "canvas-user-menu-trigger",
+            "rect": [
+              1468,
+              16,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-user-avatar-image",
+            "rect": [
+              1470,
+              18,
+              24,
+              24
+            ]
+          },
+          {
+            "tid": "canvas-user-avatar-hover-mask",
+            "rect": [
+              1470,
+              18,
+              24,
+              24
+            ]
+          },
+          {
+            "tid": "workspace-hydrated-canvas-frame",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-workbench-shell",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-main-region",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-save-failure-anchor",
+            "rect": [
+              1496,
+              72,
+              0,
+              0
+            ]
+          },
+          {
+            "tid": "rf__wrapper",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "rf__node-node_236ctpehgg",
+            "rect": [
+              822,
+              488,
+              569,
+              320
+            ]
+          },
+          {
+            "tid": "video-flow-node-surface",
+            "rect": [
+              822,
+              488,
+              569,
+              320
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              793,
+              588,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              822,
+              457,
+              56,
+              32
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              1360,
+              588,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "video-node-empty",
+            "rect": [
+              823,
+              489,
+              567,
+              318
+            ]
+          },
+          {
+            "tid": "rf__node-node_3bfb9r79qe",
+            "rect": [
+              561,
+              143,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-flow-node-full",
+            "rect": [
+              561,
+              143,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-node-empty-placeholder",
+            "rect": [
+              585,
+              163,
+              272,
+              22
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              531,
+              243,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              561,
+              111,
+              56,
+              24
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              851,
+              243,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "rf__node-node_cdwf8x6fbj",
+            "rect": [
+              121,
+              265,
+              1200,
+              207
+            ]
+          },
+          {
+            "tid": "timeline-flow-node",
+            "rect": [
+              121,
+              265,
+              1200,
+              207
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              91,
+              309,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              121,
+              233,
+              69,
+              32
+            ]
+          },
+          {
+            "tid": "timeline-flow-node-main-track",
+            "rect": [
+              121,
+              265,
+              1200,
+              207
+            ]
+          },
+          {
+            "tid": "timeline-toolbar",
+            "rect": [
+              122,
+              266,
+              1198,
+              66
+            ]
+          },
+          {
+            "tid": "timeline-playback-clock",
+            "rect": [
+              687,
+              287,
+              123,
+              24
+            ]
+          },
+          {
+            "tid": "timeline-full-passive-track",
+            "rect": [
+              122,
+              332,
+              1198,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-track-gutter",
+            "rect": [
+              122,
+              332,
+              66,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-mute-button",
+            "rect": [
+              134,
+              386,
+              42,
+              42
+            ]
+          },
+          {
+            "tid": "timeline-node-track-divider",
+            "rect": [
+              188,
+              332,
+              1,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-passive-track-viewport",
+            "rect": [
+              188,
+              332,
+              1132,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-track-canvas",
+            "rect": [
+              194,
+              332,
+              1126,
+              139
+            ]
+          },
+          {
+            "tid": "timeline-ruler",
+            "rect": [
+              194,
+              332,
+              1126,
+              27
+            ]
+          },
+          {
+            "tid": "timeline-ruler-interaction-extension",
+            "rect": [
+              194,
+              320,
+              1126,
+              12
+            ]
+          },
+          {
+            "tid": "timeline-clip-track",
+            "rect": [
+              194,
+              365,
+              1126,
+              84
+            ]
+          },
+          {
+            "tid": "timeline-passive-source-picker-slot",
+            "rect": [
+              194,
+              365,
+              1113,
+              84
+            ]
+          },
+          {
+            "tid": "timeline-empty-track-label",
+            "rect": [
+              688,
+              391,
+              156,
+              33
+            ]
+          },
+          {
+            "tid": "rf__node-node_aw29cp094x",
+            "rect": [
+              601,
+              181,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-flow-node-full",
+            "rect": [
+              601,
+              181,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-node-empty-placeholder",
+            "rect": [
+              625,
+              201,
+              272,
+              22
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              571,
+              281,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              601,
+              149,
+              58,
+              24
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              891,
+              281,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "rf__node-node_5gftn3dnt1",
+            "rect": [
+              641,
+              222,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "text-flow-node-full",
+            "rect": [
+              641,
+              222,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              611,
+              322,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              641,
+              190,
+              58,
+              24
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              931,
+              322,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "rf__node-node_pxvkay973v",
+            "rect": [
+              721,
+              343,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "flow-node-target-handle",
+            "rect": [
+              691,
+              443,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "flow-node-title",
+            "rect": [
+              721,
+              311,
+              59,
+              32
+            ]
+          },
+          {
+            "tid": "flow-node-source-handle",
+            "rect": [
+              1011,
+              443,
+              60,
+              120
+            ]
+          },
+          {
+            "tid": "director-stage-flow-node-shell",
+            "rect": [
+              721,
+              343,
+              320,
+              320
+            ]
+          },
+          {
+            "tid": "canvas-dot-grid",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-connection-flow-layer-host",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-connection-flow-layer",
+            "rect": [
+              0,
+              0,
+              1512,
+              950
+            ]
+          },
+          {
+            "tid": "canvas-context-menu-terminal-feedback",
+            "rect": [
+              -1,
+              949,
+              1,
+              1
+            ]
+          },
+          {
+            "tid": "canvas-feature-sidecar",
+            "rect": [
+              1300,
+              475,
+              200,
+              463
+            ]
+          },
+          {
+            "tid": "canvas-creation-entry-feedback",
+            "rect": [
+              -1,
+              -1,
+              1,
+              1
+            ]
+          },
+          {
+            "tid": "canvas-fixed-toolbar-left-rail",
+            "rect": [
+              12,
+              72,
+              160,
+              862
+            ]
+          },
+          {
+            "tid": "canvas-navigation-shell",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-navigation-mask",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-navigation-mask-backdrop",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-navigation-mask-gradient",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-navigation-scroll-viewport",
+            "rect": [
+              12,
+              304,
+              160,
+              398
+            ]
+          },
+          {
+            "tid": "canvas-fixed-toolbar",
+            "rect": [
+              12,
+              304,
+              48,
+              398
+            ]
+          },
+          {
+            "tid": "workspace-bottom-dock-frame",
+            "rect": [
+              12,
+              898,
+              164,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-navigation-dock",
+            "rect": [
+              12,
+              898,
+              164,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-minimap-portal-target",
+            "rect": [
+              16,
+              784,
+              156,
+              114
+            ]
+          },
+          {
+            "tid": "canvas-bottom-dock",
+            "rect": [
+              16,
+              902,
+              156,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-pointer-tool-toggle",
+            "rect": [
+              16,
+              902,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-display-toggle-minimap",
+            "rect": [
+              48,
+              902,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-display-toggle-connections",
+            "rect": [
+              80,
+              902,
+              28,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-zoom-percent",
+            "rect": [
+              124,
+              903,
+              48,
+              28
+            ]
+          },
+          {
+            "tid": "canvas-sidecar-launchers",
+            "rect": [
+              1380,
+              902,
+              120,
+              36
+            ]
+          },
+          {
+            "tid": "assistant-sidecar-launcher-frame",
+            "rect": [
+              1380,
+              902,
+              120,
+              36
+            ]
+          },
+          {
+            "tid": "canvas-sidecar-launcher",
+            "rect": [
+              1381,
+              903,
+              118,
+              34
+            ]
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Canvas title: 测试项目",
+            "rect": [
+              52,
+              16,
+              68,
+              28
+            ],
+            "tid": "canvas-project-title-trigger",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "项目",
+            "rect": [
+              120,
+              16,
+              20,
+              28
+            ],
+            "tid": "canvas-project-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "Canvas node summary: 节点 ",
+            "rect": [
+              156,
+              16,
+              28,
+              28
+            ],
+            "tid": "canvas-node-summary-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "搜索",
+            "rect": [
+              1143,
+              16,
+              28,
+              28
+            ],
+            "tid": "canvas-panel-launcher",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "生成历史",
+            "rect": [
+              1175,
+              16,
+              28,
+              28
+            ],
+            "tid": "canvas-panel-launcher",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "分享",
+            "rect": [
+              1220,
+              16,
+              60,
+              28
+            ],
+            "tid": "canvas-share-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "更多",
+            "rect": [
+              1297,
+              16,
+              28,
+              28
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "Credits: 805 · 基础会员",
+            "rect": [
+              1341,
+              16,
+              111,
+              28
+            ],
+            "tid": "canvas-commerce-entry",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "用户菜单",
+            "rect": [
+              1468,
+              16,
+              28,
+              28
+            ],
+            "tid": "canvas-user-menu-trigger",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "导出时间线",
+            "rect": [
+              1134,
+              278,
+              42,
+              42
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "全屏编辑",
+            "rect": [
+              1182,
+              278,
+              126,
+              42
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "静音",
+            "rect": [
+              134,
+              386,
+              42,
+              42
+            ],
+            "tid": "timeline-mute-button",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "添加素材到时间线",
+            "rect": [
+              194,
+              365,
+              1113,
+              84
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "文本",
+            "rect": [
+              16,
+              308,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "图片",
+            "rect": [
+              16,
+              350,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "视频",
+            "rect": [
+              16,
+              392,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "音频",
+            "rect": [
+              16,
+              434,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "时间线",
+            "rect": [
+              16,
+              476,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "主体",
+            "rect": [
+              16,
+              518,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "导演台",
+            "rect": [
+              16,
+              560,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "资产库",
+            "rect": [
+              16,
+              616,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "上传",
+            "rect": [
+              16,
+              658,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "选择工具",
+            "rect": [
+              16,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-pointer-tool-toggle",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "小地图",
+            "rect": [
+              48,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-minimap",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "显示连线",
+            "rect": [
+              80,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-connections",
+            "pressed": "true",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "Zoom options, 100%",
+            "rect": [
+              124,
+              903,
+              48,
+              28
+            ],
+            "tid": "canvas-zoom-percent",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "与 AI 对话",
+            "rect": [
+              1381,
+              903,
+              118,
+              34
+            ],
+            "tid": "canvas-sidecar-launcher",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          }
+        ],
+        "dock": [
+          {
+            "name": "选择工具",
+            "rect": [
+              16,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-pointer-tool-toggle",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "小地图",
+            "rect": [
+              48,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-minimap",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "显示连线",
+            "rect": [
+              80,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-connections",
+            "pressed": "true",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "Zoom options, 100%",
+            "rect": [
+              124,
+              903,
+              48,
+              28
+            ],
+            "tid": "canvas-zoom-percent",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          },
+          {
+            "name": "与 AI 对话",
+            "rect": [
+              1381,
+              903,
+              118,
+              34
+            ],
+            "tid": "canvas-sidecar-launcher",
+            "pressed": null,
+            "expanded": "false",
+            "disabled": ""
+          }
+        ],
+        "rail": [
+          {
+            "name": "文本",
+            "rect": [
+              16,
+              308,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "图片",
+            "rect": [
+              16,
+              350,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "视频",
+            "rect": [
+              16,
+              392,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "音频",
+            "rect": [
+              16,
+              434,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "时间线",
+            "rect": [
+              16,
+              476,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "主体",
+            "rect": [
+              16,
+              518,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "导演台",
+            "rect": [
+              16,
+              560,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "资产库",
+            "rect": [
+              16,
+              616,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "上传",
+            "rect": [
+              16,
+              658,
+              40,
+              40
+            ],
+            "tid": "",
+            "pressed": null,
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "选择工具",
+            "rect": [
+              16,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-pointer-tool-toggle",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          },
+          {
+            "name": "小地图",
+            "rect": [
+              48,
+              902,
+              28,
+              28
+            ],
+            "tid": "canvas-display-toggle-minimap",
+            "pressed": "false",
+            "expanded": null,
+            "disabled": ""
+          }
+        ]
+      }
+    },
+    {
+      "label": "④ 点「选择工具」前后",
+      "aria_pressed_before": "false",
+      "aria_pressed_after": "true",
+      "note": "⚠ 更正：首轮我在这里写的是「aria-pressed 不变 ⇒ 单态指示」——**实测是 false → true，它确实是二态开关**。首轮那个 note 是我按常理写的预期，不是读数 —— 又一次「预期当读数」。"
+    }
+  ],
+  "open_settle_samples": [
+    {
+      "at_ms": 600,
+      "pill": {
+        "x": 1441,
+        "y": 921,
+        "w": 59,
+        "h": 17,
+        "testid": "canvas-sidecar-launcher",
+        "tag": "BUTTON",
+        "ariaLabel": "与 AI 对话",
+        "ariaExpanded": "true",
+        "innerText": "",
+        "svg": 0
+      },
+      "chain": [
+        {
+          "depth": 0,
+          "tag": "BUTTON",
+          "tid": "canvas-sidecar-launcher",
+          "rect": [
+            1441,
+            921,
+            59,
+            17
+          ],
+          "text": "",
+          "svg": 0,
+          "bg": "rgba(0, 0, 0, 0)",
+          "blur": "none",
+          "radius": "20px",
+          "position": "absolute"
+        },
+        {
+          "depth": 1,
+          "tag": "DIV",
+          "tid": "assistant-sidecar-launcher-frame",
+          "rect": [
+            1440,
+            920,
+            60,
+            18
+          ],
+          "text": "与 AI 对话",
+          "svg": 1,
+          "bg": "rgba(39, 39, 39, 0.72)",
+          "blur": "blur(40px)",
+          "radius": "20px",
+          "position": "relative"
+        },
+        {
+          "depth": 2,
+          "tag": "DIV",
+          "tid": "canvas-sidecar-launchers",
+          "rect": [
+            1380,
+            902,
+            120,
+            36
+          ],
+          "text": "与 AI 对话",
+          "svg": 1,
+          "bg": "rgba(0, 0, 0, 0)",
+          "blur": "none",
+          "radius": "0px",
+          "position": "absolute"
+        }
+      ]
+    },
+    {
+      "at_ms": 1200,
+      "pill": {
+        "x": 1441,
+        "y": 921,
+        "w": 59,
+        "h": 17,
+        "testid": "canvas-sidecar-launcher",
+        "tag": "BUTTON",
+        "ariaLabel": "与 AI 对话",
+        "ariaExpanded": "true",
+        "innerText": "",
+        "svg": 0
+      },
+      "chain": [
+        {
+          "depth": 0,
+          "tag": "BUTTON",
+          "tid": "canvas-sidecar-launcher",
+          "rect": [
+            1441,
+            921,
+            59,
+            17
+          ],
+          "text": "",
+          "svg": 0,
+          "bg": "rgba(0, 0, 0, 0)",
+          "blur": "none",
+          "radius": "20px",
+          "position": "absolute"
+        },
+        {
+          "depth": 1,
+          "tag": "DIV",
+          "tid": "assistant-sidecar-launcher-frame",
+          "rect": [
+            1440,
+            920,
+            60,
+            18
+          ],
+          "text": "与 AI 对话",
+          "svg": 1,
+          "bg": "rgba(39, 39, 39, 0.72)",
+          "blur": "blur(40px)",
+          "radius": "20px",
+          "position": "relative"
+        },
+        {
+          "depth": 2,
+          "tag": "DIV",
+          "tid": "canvas-sidecar-launchers",
+          "rect": [
+            1380,
+            902,
+            120,
+            36
+          ],
+          "text": "与 AI 对话",
+          "svg": 1,
+          "bg": "rgba(0, 0, 0, 0)",
+          "blur": "none",
+          "radius": "0px",
+          "position": "absolute"
+        }
+      ]
+    },
+    {
+      "at_ms": 2500,
+      "pill": {
+        "x": 1441,
+        "y": 921,
+        "w": 59,
+        "h": 17,
+        "testid": "canvas-sidecar-launcher",
+        "tag": "BUTTON",
+        "ariaLabel": "与 AI 对话",
+        "ariaExpanded": "true",
+        "innerText": "",
+        "svg": 0
+      },
+      "chain": [
+        {
+          "depth": 0,
+          "tag": "BUTTON",
+          "tid": "canvas-sidecar-launcher",
+          "rect": [
+            1441,
+            921,
+            59,
+            17
+          ],
+          "text": "",
+          "svg": 0,
+          "bg": "rgba(0, 0, 0, 0)",
+          "blur": "none",
+          "radius": "20px",
+          "position": "absolute"
+        },
+        {
+          "depth": 1,
+          "tag": "DIV",
+          "tid": "assistant-sidecar-launcher-frame",
+          "rect": [
+            1440,
+            920,
+            60,
+            18
+          ],
+          "text": "与 AI 对话",
+          "svg": 1,
+          "bg": "rgba(39, 39, 39, 0.72)",
+          "blur": "blur(40px)",
+          "radius": "20px",
+          "position": "relative"
+        },
+        {
+          "depth": 2,
+          "tag": "DIV",
+          "tid": "canvas-sidecar-launchers",
+          "rect": [
+            1380,
+            902,
+            120,
+            36
+          ],
+          "text": "与 AI 对话",
+          "svg": 1,
+          "bg": "rgba(0, 0, 0, 0)",
+          "blur": "none",
+          "radius": "0px",
+          "position": "absolute"
+        }
+      ]
+    },
+    {
+      "at_ms": 5000,
+      "pill": {
+        "x": 1441,
+        "y": 921,
+        "w": 59,
+        "h": 17,
+        "testid": "canvas-sidecar-launcher",
+        "tag": "BUTTON",
+        "ariaLabel": "与 AI 对话",
+        "ariaExpanded": "true",
+        "innerText": "",
+        "svg": 0
+      },
+      "chain": [
+        {
+          "depth": 0,
+          "tag": "BUTTON",
+          "tid": "canvas-sidecar-launcher",
+          "rect": [
+            1441,
+            921,
+            59,
+            17
+          ],
+          "text": "",
+          "svg": 0,
+          "bg": "rgba(0, 0, 0, 0)",
+          "blur": "none",
+          "radius": "20px",
+          "position": "absolute"
+        },
+        {
+          "depth": 1,
+          "tag": "DIV",
+          "tid": "assistant-sidecar-launcher-frame",
+          "rect": [
+            1440,
+            920,
+            60,
+            18
+          ],
+          "text": "与 AI 对话",
+          "svg": 1,
+          "bg": "rgba(39, 39, 39, 0.72)",
+          "blur": "blur(40px)",
+          "radius": "20px",
+          "position": "relative"
+        },
+        {
+          "depth": 2,
+          "tag": "DIV",
+          "tid": "canvas-sidecar-launchers",
+          "rect": [
+            1380,
+            902,
+            120,
+            36
+          ],
+          "text": "与 AI 对话",
+          "svg": 1,
+          "bg": "rgba(0, 0, 0, 0)",
+          "blur": "none",
+          "radius": "0px",
+          "position": "absolute"
+        }
+      ]
+    }
+  ],
+  "open_state_settled": true
+}

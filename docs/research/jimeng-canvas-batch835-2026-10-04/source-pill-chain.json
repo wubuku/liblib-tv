@@ -1,0 +1,200 @@
+{
+  "viewport": {
+    "width": 1512,
+    "height": 950
+  },
+  "closed": [
+    {
+      "depth": 0,
+      "tag": "BUTTON",
+      "tid": "canvas-sidecar-launcher",
+      "al": "与 AI 对话",
+      "rect": [
+        1381,
+        903,
+        118,
+        34
+      ],
+      "text": "",
+      "svg": 0,
+      "bg": "rgba(0, 0, 0, 0)",
+      "blur": "none",
+      "radius": "20px",
+      "position": "absolute",
+      "inset": "0px 0px 0px 0px"
+    },
+    {
+      "depth": 1,
+      "tag": "DIV",
+      "tid": "assistant-sidecar-launcher-frame",
+      "al": "",
+      "rect": [
+        1380,
+        902,
+        120,
+        36
+      ],
+      "text": "与 AI 对话",
+      "svg": 1,
+      "bg": "rgba(39, 39, 39, 0.72)",
+      "blur": "blur(40px)",
+      "radius": "20px",
+      "position": "relative",
+      "inset": "0px 0px 0px 0px"
+    },
+    {
+      "depth": 2,
+      "tag": "DIV",
+      "tid": "canvas-sidecar-launchers",
+      "al": "",
+      "rect": [
+        1380,
+        902,
+        120,
+        36
+      ],
+      "text": "与 AI 对话",
+      "svg": 1,
+      "bg": "rgba(0, 0, 0, 0)",
+      "blur": "none",
+      "radius": "0px",
+      "position": "absolute",
+      "inset": "902px 12px 12px 1380px"
+    },
+    {
+      "depth": 3,
+      "tag": "DIV",
+      "tid": "workspace-hydrated-canvas-frame",
+      "al": "",
+      "rect": [
+        0,
+        0,
+        1512,
+        950
+      ],
+      "text": "6 nodes, 0 edges, 0 ",
+      "svg": 39,
+      "bg": "rgb(13, 13, 13)",
+      "blur": "none",
+      "radius": "0px",
+      "position": "relative",
+      "inset": "0px 0px 0px 0px"
+    },
+    {
+      "depth": 4,
+      "tag": "MAIN",
+      "tid": "",
+      "al": "Canvas workspace",
+      "rect": [
+        0,
+        0,
+        1512,
+        950
+      ],
+      "text": "6 nodes, 0 edges, 0 ",
+      "svg": 39,
+      "bg": "rgba(0, 0, 0, 0)",
+      "blur": "none",
+      "radius": "0px",
+      "position": "absolute",
+      "inset": "0px 0px 0px 0px"
+    }
+  ],
+  "opened": [
+    {
+      "depth": 0,
+      "tag": "BUTTON",
+      "tid": "canvas-sidecar-launcher",
+      "al": "与 AI 对话",
+      "rect": [
+        1441,
+        921,
+        59,
+        17
+      ],
+      "text": "",
+      "svg": 0,
+      "bg": "rgba(0, 0, 0, 0)",
+      "blur": "none",
+      "radius": "20px",
+      "position": "absolute",
+      "inset": "0px 0px 0px 0px"
+    },
+    {
+      "depth": 1,
+      "tag": "DIV",
+      "tid": "assistant-sidecar-launcher-frame",
+      "al": "",
+      "rect": [
+        1440,
+        920,
+        60,
+        18
+      ],
+      "text": "与 AI 对话",
+      "svg": 1,
+      "bg": "rgba(39, 39, 39, 0.72)",
+      "blur": "blur(40px)",
+      "radius": "20px",
+      "position": "relative",
+      "inset": "0px 0px 0px 0px"
+    },
+    {
+      "depth": 2,
+      "tag": "DIV",
+      "tid": "canvas-sidecar-launchers",
+      "al": "",
+      "rect": [
+        1380,
+        902,
+        120,
+        36
+      ],
+      "text": "与 AI 对话",
+      "svg": 1,
+      "bg": "rgba(0, 0, 0, 0)",
+      "blur": "none",
+      "radius": "0px",
+      "position": "absolute",
+      "inset": "902px 12px 12px 1380px"
+    },
+    {
+      "depth": 3,
+      "tag": "DIV",
+      "tid": "workspace-hydrated-canvas-frame",
+      "al": "",
+      "rect": [
+        0,
+        0,
+        1512,
+        950
+      ],
+      "text": "6 nodes, 0 edges, 0 ",
+      "svg": 45,
+      "bg": "rgb(13, 13, 13)",
+      "blur": "none",
+      "radius": "0px",
+      "position": "relative",
+      "inset": "0px 0px 0px 0px"
+    },
+    {
+      "depth": 4,
+      "tag": "MAIN",
+      "tid": "",
+      "al": "Canvas workspace",
+      "rect": [
+        0,
+        0,
+        1512,
+        950
+      ],
+      "text": "6 nodes, 0 edges, 0 ",
+      "svg": 45,
+      "bg": "rgba(0, 0, 0, 0)",
+      "blur": "none",
+      "radius": "0px",
+      "position": "absolute",
+      "inset": "0px 0px 0px 0px"
+    }
+  ]
+}

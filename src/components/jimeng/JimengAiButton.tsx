@@ -17,6 +17,29 @@ import { useJimengStore } from "@/store/jimengStore";
  *
  * 渐变高光叠加仍是 CLONE_DECISION 近似（源站渐变值提取时截断）。
  * 点击展开 AI 对话抽屉 (Batch 12)。
+ *
+ * ── Batch 835 查过「它是不是一枚死按钮」：不是，**而且不该改成开关** ──
+ * 本地死按钮普查报它 DEAD，理由是复刻自己写的（「单独跑时 testid 集合会变」
+ * +「前一轮把抽屉打开了，抽屉正好盖住按钮」）。批 826 照抄批 820 的措辞、
+ * 批 827 撤回过一次 —— **照抄自己写的豁免同样不算证据**，所以本批去源站
+ * 量了四刀（`scripts/jimeng_835_*.py`，证据在
+ * `docs/research/jimeng-canvas-batch835-2026-10-04/`）：
+ *
+ *   关闭态  button 118×34  药丸 120×36  `aria-expanded="false"`  面板关着
+ *   点一下  面板开，同一枚按钮仍在 DOM，`aria-expanded="true"`
+ *           但它缩成 **59×17**、药丸缩成 **60×18**（正好一半）并挪到
+ *           面板右下角 —— 0.6/1.2/2.5/5s 四采样一致，不是过渡中态
+ *   再点    面板关，回 118×34 / `aria-expanded="false"`
+ *
+ * 结论：**源站确实是开关**，但它的「开态药丸」是个退化的残影 —— 60×18 的
+ * 20px 圆角药丸，截图（`source-panel-open.png`）里在面板打开时**根本看不见**。
+ * 复刻则在面板打开时**卸载**这枚钮（`JimengWorkspace.tsx` 的
+ * `{aiDrawerOpen ? null : <JimengAiButton />}`），面板的关闭路径是它自己的
+ * 「收起」钮。两者对用户**不可区分**，而复刻这样还少一个压在面板底缘上的
+ * 隐形热区。所以这里保持 `setAiDrawerOpen(true)`，**不**改成 toggle。
+ * ⚠ 更正一笔我自己写错的东西：以为那枚 59×17 会「压在发送钮上」——
+ *   不对。源站发送钮 @[1446,884,32,32]（y 884..916），残影 @[1440,920,60,18]
+ *   （y 920..938），中间**差 4px**，不重叠。反推出来的结论也得连同前提复核。
  */
 export function JimengAiButton() {
   const setAiDrawerOpen = useJimengStore((s) => s.setAiDrawerOpen);

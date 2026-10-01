@@ -1,0 +1,103 @@
+{
+  "viewport": {
+    "width": 1512,
+    "height": 950
+  },
+  "closed": {
+    "rect": [
+      1381,
+      903,
+      118,
+      34
+    ],
+    "ariaLabel": "与 AI 对话",
+    "ariaExpanded": "false",
+    "innerText": "",
+    "textLen": 0,
+    "svgCount": 0,
+    "borderRadius": "20px",
+    "background": "rgba(0, 0, 0, 0)"
+  },
+  "open_samples": [
+    {
+      "rect": [
+        1441,
+        921,
+        59,
+        17
+      ],
+      "ariaLabel": "与 AI 对话",
+      "ariaExpanded": "true",
+      "innerText": "",
+      "textLen": 0,
+      "svgCount": 0,
+      "borderRadius": "20px",
+      "background": "rgba(0, 0, 0, 0)",
+      "at_ms": 600
+    },
+    {
+      "rect": [
+        1441,
+        921,
+        59,
+        17
+      ],
+      "ariaLabel": "与 AI 对话",
+      "ariaExpanded": "true",
+      "innerText": "",
+      "textLen": 0,
+      "svgCount": 0,
+      "borderRadius": "20px",
+      "background": "rgba(0, 0, 0, 0)",
+      "at_ms": 1200
+    },
+    {
+      "rect": [
+        1441,
+        921,
+        59,
+        17
+      ],
+      "ariaLabel": "与 AI 对话",
+      "ariaExpanded": "true",
+      "innerText": "",
+      "textLen": 0,
+      "svgCount": 0,
+      "borderRadius": "20px",
+      "background": "rgba(0, 0, 0, 0)",
+      "at_ms": 2500
+    },
+    {
+      "rect": [
+        1441,
+        921,
+        59,
+        17
+      ],
+      "ariaLabel": "与 AI 对话",
+      "ariaExpanded": "true",
+      "innerText": "",
+      "textLen": 0,
+      "svgCount": 0,
+      "borderRadius": "20px",
+      "background": "rgba(0, 0, 0, 0)",
+      "at_ms": 5000
+    }
+  ],
+  "after_second_click": {
+    "rect": [
+      1381,
+      903,
+      118,
+      34
+    ],
+    "ariaLabel": "与 AI 对话",
+    "ariaExpanded": "false",
+    "innerText": "",
+    "textLen": 0,
+    "svgCount": 0,
+    "borderRadius": "20px",
+    "background": "rgba(0, 0, 0, 0)"
+  },
+  "panel_visible_after_second_click": false
+}

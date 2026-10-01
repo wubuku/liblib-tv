@@ -1,0 +1,381 @@
+{
+  "viewport": {
+    "width": 1512,
+    "height": 950
+  },
+  "session_phrase": [
+    {
+      "needle": "仅支持新建一个空会话",
+      "chain": [
+        {
+          "tag": "SPAN",
+          "tid": "",
+          "al": "",
+          "title": "",
+          "cls": "sr-only",
+          "rect": [
+            1414,
+            41,
+            1,
+            1
+          ],
+          "display": "block",
+          "visibility": "visible",
+          "text": "仅支持新建一个空会话"
+        },
+        {
+          "tag": "DIV",
+          "tid": "",
+          "al": "",
+          "title": "",
+          "cls": "flex shrink-0 items-center",
+          "rect": [
+            1415,
+            23,
+            72,
+            36
+          ],
+          "display": "flex",
+          "visibility": "visible",
+          "text": "仅支持新建一个空会话"
+        },
+        {
+          "tag": "HEADER",
+          "tid": "",
+          "al": "",
+          "title": "",
+          "cls": "h-agent-sidecar-header p-agent-sidecar-header-inset rounded-",
+          "rect": [
+            1101,
+            13,
+            398,
+            56
+          ],
+          "display": "flex",
+          "visibility": "visible",
+          "text": "新会话 仅支持新建一个空会话"
+        },
+        {
+          "tag": "DIV",
+          "tid": "canvas-agent-panel",
+          "al": "",
+          "title": "",
+          "cls": "flex h-full w-full max-w-full flex-col overflow-hidden",
+          "rect": [
+            1101,
+            13,
+            398,
+            924
+          ],
+          "display": "flex",
+          "visibility": "visible",
+          "text": "新会话 仅支持新建一个空会话 探索更多专业创作模式 / 视频反解 / 创作分镜 / 全流程广告片导演 / 剧本开发 / 剧情短片 输入想法、"
+        }
+      ]
+    }
+  ],
+  "session_label": [
+    {
+      "needle": "新会话",
+      "chain": [
+        {
+          "tag": "SPAN",
+          "tid": "canvas-agent-session-title",
+          "al": "",
+          "title": "",
+          "cls": "truncate",
+          "rect": [
+            1125,
+            30,
+            42,
+            22
+          ],
+          "display": "block",
+          "visibility": "visible",
+          "text": "新会话"
+        },
+        {
+          "tag": "BUTTON",
+          "tid": "canvas-agent-session-menu-trigger",
+          "al": "会话列表",
+          "title": "",
+          "cls": "inline-flex items-center gap-1 whitespace-nowrap border-soli",
+          "rect": [
+            1117,
+            25,
+            58,
+            32
+          ],
+          "display": "flex",
+          "visibility": "visible",
+          "text": "新会话"
+        },
+        {
+          "tag": "HEADER",
+          "tid": "",
+          "al": "",
+          "title": "",
+          "cls": "h-agent-sidecar-header p-agent-sidecar-header-inset rounded-",
+          "rect": [
+            1101,
+            13,
+            398,
+            56
+          ],
+          "display": "flex",
+          "visibility": "visible",
+          "text": "新会话 仅支持新建一个空会话"
+        },
+        {
+          "tag": "DIV",
+          "tid": "canvas-agent-panel",
+          "al": "",
+          "title": "",
+          "cls": "flex h-full w-full max-w-full flex-col overflow-hidden",
+          "rect": [
+            1101,
+            13,
+            398,
+            924
+          ],
+          "display": "flex",
+          "visibility": "visible",
+          "text": "新会话 仅支持新建一个空会话 探索更多专业创作模式 / 视频反解 / 创作分镜 / 全流程广告片导演 / 剧本开发 / 剧情短片 输入想法、"
+        }
+      ]
+    }
+  ],
+  "panel": {
+    "text": "新会话\n仅支持新建一个空会话\n探索更多专业创作模式\n/ 视频反解\n/ 创作分镜\n/ 全流程广告片导演\n/ 剧本开发\n/ 剧情短片\n输入想法、剧本或上传参考，支持“/”使用技能，@添加主体，和 Agent 一起创作\n输入想法、剧本或上传参考，支持“/”使用技能，@添加主体，和 Agent 一起创作\n使用技能\n说说你的想法或任务，上传参考、输入文字或",
+    "tids": [
+      {
+        "tid": "canvas-agent-session-menu-trigger",
+        "al": "会话列表",
+        "expanded": "false",
+        "disabled": null,
+        "rect": [
+          1117,
+          25,
+          58,
+          32
+        ]
+      },
+      {
+        "tid": "canvas-agent-session-title",
+        "al": "",
+        "expanded": null,
+        "disabled": null,
+        "rect": [
+          1125,
+          30,
+          42,
+          22
+        ]
+      },
+      {
+        "tid": "canvas-agent-session-create",
+        "al": "新建会话",
+        "expanded": null,
+        "disabled": "true",
+        "rect": [
+          1415,
+          25,
+          32,
+          32
+        ]
+      },
+      {
+        "tid": "canvas-agent-session-collapse",
+        "al": "收起",
+        "expanded": null,
+        "disabled": null,
+        "rect": [
+          1451,
+          23,
+          36,
+          36
+        ]
+      },
+      {
+        "tid": "canvas-agent-session-heading",
+        "al": "",
+        "expanded": null,
+        "disabled": null,
+        "rect": [
+          1131,
+          328,
+          338,
+          27
+        ]
+      },
+      {
+        "tid": "canvas-agent-session-modes",
+        "al": "",
+        "expanded": null,
+        "disabled": null,
+        "rect": [
+          1131,
+          367,
+          338,
+          140
+        ]
+      },
+      {
+        "tid": "canvas-agent-mode-action",
+        "al": "/ 视频反解",
+        "expanded": null,
+        "disabled": null,
+        "rect": [
+          1191,
+          375,
+          105,
+          36
+        ]
+      },
+      {
+        "tid": "canvas-agent-mode-action",
+        "al": "/ 创作分镜",
+        "expanded": null,
+        "disabled": null,
+        "rect": [
+          1304,
+          375,
+          105,
+          36
+        ]
+      },
+      {
+        "tid": "canvas-agent-mode-action",
+        "al": "/ 全流程广告片导演",
+        "expanded": null,
+        "disabled": null,
+        "rect": [
+          1165,
+          419,
+          157,
+          36
+        ]
+      },
+      {
+        "tid": "canvas-agent-mode-action",
+        "al": "/ 剧本开发",
+        "expanded": null,
+        "disabled": null,
+        "rect": [
+          1330,
+          419,
+          105,
+          36
+        ]
+      },
+      {
+        "tid": "canvas-agent-mode-action",
+        "al": "/ 剧情短片",
+        "expanded": null,
+        "disabled": null,
+        "rect": [
+          1248,
+          463,
+          105,
+          36
+        ]
+      },
+      {
+        "tid": "canvas-agent-session-composer",
+        "al": "",
+        "expanded": null,
+        "disabled": null,
+        "rect": [
+          1105,
+          769,
+          390,
+          164
+        ]
+      },
+      {
+        "tid": "prompt-composer",
+        "al": "说说你的想法或任务，上传参考、输入文字或",
+        "expanded": null,
+        "disabled": null,
+        "rect": [
+          1122,
+          784,
+          356,
+          84
+        ]
+      },
+      {
+        "tid": "canvas-agent-composer-placeholder-mention",
+        "al": "引用参考",
+        "expanded": null,
+        "disabled": null,
+        "rect": [
+          1428,
+          784,
+          24,
+          24
+        ]
+      },
+      {
+        "tid": "canvas-agent-composer-action-row",
+        "al": "",
+        "expanded": null,
+        "disabled": null,
+        "rect": [
+          1122,
+          884,
+          356,
+          32
+        ]
+      },
+      {
+        "tid": "canvas-agent-composer-add",
+        "al": "从本地、画布或资产库添加",
+        "expanded": "false",
+        "disabled": null,
+        "rect": [
+          1122,
+          884,
+          32,
+          32
+        ]
+      },
+      {
+        "tid": "canvas-agent-skill-trigger",
+        "al": "使用技能",
+        "expanded": "false",
+        "disabled": null,
+        "rect": [
+          1158,
+          884,
+          90,
+          32
+        ]
+      },
+      {
+        "tid": "canvas-agent-composer-mention",
+        "al": "引用参考",
+        "expanded": null,
+        "disabled": null,
+        "rect": [
+          1252,
+          884,
+          32,
+          32
+        ]
+      },
+      {
+        "tid": "canvas-agent-send",
+        "al": "发送消息",
+        "expanded": null,
+        "disabled": "true",
+        "rect": [
+          1446,
+          884,
+          32,
+          32
+        ]
+      }
+    ]
+  }
+}

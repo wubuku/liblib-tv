@@ -168,6 +168,11 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
         <button
           type="button"
           aria-label="会话列表"
+          /* 批 835 SOURCE_FACT (2026-10-04 面板普查): 源站这枚
+             `canvas-agent-session-menu-trigger` 实测带 `aria-expanded="false"`。
+             本批复刻接了真浮层（834），却没给开合状态发信号 —— 浮层能开，
+             但屏幕阅读器与自动化都读不到「现在开着还是关着」。 */
+          aria-expanded={panel === "sessions"}
           data-testid="canvas-agent-session-menu-trigger"
           disabled={!hasSession}
           onClick={() => setPanel((p) => (p === "sessions" ? null : "sessions"))}
@@ -507,10 +512,13 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
           </p>
           )}
           <div className="mt-2 flex items-center gap-1">
-            {/* 批 382 SOURCE_FACT: 输入行 aria 实测 从本地、画布或资产库添加 */}
+            {/* 批 382 SOURCE_FACT: 输入行 aria 实测 从本地、画布或资产库添加
+                批 835 SOURCE_FACT (2026-10-04 面板普查 19 元素):
+                源站这枚 **带** `aria-expanded`（实测 "false"），此前复刻漏了。 */}
             <button
               type="button"
               aria-label="从本地、画布或资产库添加"
+              aria-expanded={panel === "add"}
               data-testid="canvas-agent-composer-add"
               onClick={() => setPanel((v) => (v === "add" ? null : "add"))}
               className="flex size-8 items-center justify-center rounded-md text-white/75 hover:bg-white/10"
@@ -520,6 +528,8 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
             <button
               type="button"
               aria-label="使用技能"
+              /* 批 835 SOURCE_FACT: 源站这枚也带 aria-expanded（实测 "false"） */
+              aria-expanded={panel === "skills"}
               data-testid="canvas-agent-skill-trigger"
               onClick={() => setPanel((v) => (v === "skills" ? null : "skills"))}
               className="flex h-8 w-[90px] items-center gap-1 rounded-md px-2 text-[13px] text-white/75 hover:bg-white/10"
@@ -527,6 +537,9 @@ export function JimengAiDrawer({ onClose }: { onClose: () => void }) {
               <WandSparkles size={14} />
               使用技能
             </button>
+            {/* ⚠ 批 835：**这枚没有** aria-expanded，源站实测就是没有
+               （面板普查 19 个元素里它的 expanded=None）。不给它加 ——
+               「源站有才抄」和「源站没有就不加」是同一条规矩的两面。 */}
             <button
               type="button"
               aria-label="引用参考"
