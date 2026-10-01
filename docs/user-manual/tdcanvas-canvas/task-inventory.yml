@@ -227,7 +227,9 @@ tasks:
     coverage: full
     evidence:
       - type: static
-        note: 首页列表 updatedAt 倒序、卡片操作、封面数据推导、多选导出 zip（projects.json v3）、删除确认。
+        note: 封面数据推导；删除确认。
+      - type: runtime
+        note: 2026-10-02 M117 把导出 zip 从静态升级为运行时——**真的下载了一个 zip 并解压逐项核对**。结构：projects.json 顶层 app/version/exportedAt/projects，app=tdcanvas、version=3；projects[i]={project,files}；files[j]={storageKey,path,mimeType,bytes}；媒体落在 projects/<projectId>/files/，**声明 4 条全部真实存在于 zip**。★**原始文件名不保留**（path 取自 safeFileName(storageKey)，lib/canvas/canvas-export.ts:20），实测「我的照片.png/我的录音.wav/我的无损.flac/我的影片.mov」导出后变为 image_t5cJO….png / audio_3HSDs….wav / audio_X2HZ….**bin** / video_chuO….**bin**——**flac/mov/avi/mkv 因不在 fileExtension 表内（lib/canvas/canvas-export.ts:78-88）而落成 .bin**；但 files[j].mimeType 保留真实类型（audio/flac、video/quicktime），照它改名即可播放，这条已写成读者的操作指引。批量导出实测 TDCanvas-2.zip 含 projects 数组 2 条，空画布那条 files=0 且 zip 里不为它建目录。同批核实「卡片导出/重命名/删除与复选框**悬停才出现**」——手册表述正确（第 54 次否证，否证的是我方第一版探针），并查清未悬停时这些元素有 28×28 布局盒但祖先 div.td-home-project-actions 为 opacity:0；**「元素存在且有点击几何」不能证明「用户看得见」**。首页界面自陈排序规则「按最近修改时间排列」亦为 updatedAt 倒序提供自证。另记一条源码边界未触发：lib/canvas/canvas-export.ts:19 的 if (!blob) return 会静默跳过取不到的素材，本批无法构造该场景，如实记为源码依据。
     preconditions:
       - 已有至少一个画布项目
     routes:

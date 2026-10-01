@@ -61,6 +61,39 @@
 - 画布内选中若干节点后，工具栏「导出选中」把节点连同素材单独打一个 zip。
 - 导出为 zip 包，里面是 `projects.json`（version 3）+ `projects/<项目id>/files/` 下的素材文件。
 
+### zip 里的文件实际叫什么
+
+**实测（2026-10-02）：** 一次拖入四个文件（`我的照片.png` / `我的录音.wav` / `我的无损.flac` / `我的影片.mov`），从首页导出，解压后得到的是：
+
+| 你上传的文件 | zip 里实际的文件名 |
+|---|---|
+| 我的照片.png | `image_t5cJO3C74CF7YDEOEZ6TQ.png` |
+| 我的录音.wav | `audio_3HSDs526YoTn2M1T7eQ3L.wav` |
+| **我的无损.flac** | **`audio_X2HZMQIagL3qy87iNXWp6.bin`** |
+| **我的影片.mov** | **`video_chuO_tYMFNQIprqW3a38q.bin`** |
+
+两件必须先知道的事：
+
+- **原始文件名不保留。** zip 里的名字是「类型前缀 + 一串随机 ID + 扩展名」，**下载回来认不出哪个是哪张图**，只能靠 `projects.json` 对照。
+- **`.flac` / `.mov` / `.avi` / `.mkv` 会被改名成 `.bin`。** 双击打不开——**不是文件坏了，是扩展名被换掉了**。
+
+按 `mimeType` 就能改回来。`projects.json` 里每个文件都记着它真实是什么类型：
+
+```json
+{ "storageKey": "audio:X2HZMQIagL3qy87iNXWp6",
+  "path": "projects/…/files/audio_X2HZMQIagL3qy87iNXWp6.bin",
+  "mimeType": "audio/flac",
+  "bytes": 70 }
+```
+
+**照着 `mimeType` 把 `.bin` 改回正确扩展名就能正常播放**（`audio/flac` 改 `.flac`，`video/quicktime` 改 `.mov`）。哪些保得住、哪些会变：
+
+| 导出后保留原扩展名 | 导出后变成 `.bin` |
+|---|---|
+| `.png` `.jpg` `.webp` `.gif` `.mp4` `.webm` `.mp3` `.wav` `.ogg` | **`.flac` `.mov` `.avi` `.mkv`** |
+
+> **批量导出（勾选复选框）的结构是一样的**，只是 `projects` 数组里有多条：实测勾选 2 个项目导出 `TDCanvas-2.zip`，`projects.json` 的 `projects` 数组有 **2 条**，其中空画布那条 `files` 为 **0**——**它只占一个 JSON 条目，zip 里不会为它建目录**。
+
 > **⚠️ 这个 zip 导得出、导不回。TDCanvas 目前没有「导入画布」功能。** 把导出的 zip 拷到另一台机器，TDCanvas 里**没有任何入口**能把它读回去。下面三条证据来自 2026-10-01 的实测与源码核对：
 >
 > 1. **文案写了，实现没有**：i18n 的 `canvas` 命名空间下有 `canvas.import`「导入画布」、`canvas.imported`「已导入 <span v-pre>{{count}}</span> 个画布」、`canvas.importFailed`「导入失败，请选择有效的画布压缩包」三条文案，但全仓 `.tsx` 对这三条键的引用数**都是 0**（源码 grep）。

@@ -1678,3 +1678,29 @@
 
 - **手册的实质补充**：原文只说「上限 50 条，超出后最早的记录被丢弃」，**读者真正会遇到的现象——「撤到底发现有几步撤不回来」——一个字没提**。已在 `undo-persistence` 新增两节：「『50 条上限』在操作上意味着什么」（含「越早越回不去」「被挤出去的不是延迟撤销，是真没了」「想从头再来直接框选删除更快」）与「『一次拖拽算一条』是怎么算的」（含「一次拖拽里的微调无法逐个撤销」）。
 - **产出**：`undo-persistence.md` 新增两节 + 补实测标注、`SOURCE_OBSERVATIONS.md` §8 该条升级、`task-inventory.yml` 该任务补运行时证据、`AUDIT.md` +4 行。
+
+### 2026-10-02 · M117 · 导出 zip：真的下载解压逐项核对，补上手册完全没写的「文件叫什么名」
+
+- **做法变了**：前几十批的取证基本止于「界面上看到什么」。这一批**真的点导出、把 zip 下载下来、解压、逐项核对**——手册那句「zip 里有 `projects.json`（version 3）+ `projects/<id>/files/` 下的素材文件」从此有了实物对照。
+
+- **结构坐实**：`projects.json` 顶层 `app / version / exportedAt / projects`，`app = "tdcanvas"`、`version = 3`；`projects[i] = { project, files }`；`files[j] = { storageKey, path, mimeType, bytes }`；`project.nodes` / `connections` 数与画布一致；**`files` 声明的每一条都真实存在于 zip（实测 4 声明 / 4 实有）**。
+
+- ★ **手册完全没写、而读者一定会撞上的一层：zip 里的文件叫什么名**。一次拖入四个带中文名的文件，导出后：
+
+  | 你上传的文件 | zip 里实际的文件名 |
+  |---|---|
+  | 我的照片.png | `image_t5cJO3C74CF7YDEOEZ6TQ.png` |
+  | 我的录音.wav | `audio_3HSDs526YoTn2M1T7eQ3L.wav` |
+  | **我的无损.flac** | **`audio_X2HZMQIagL3qy87iNXWp6.bin`** |
+  | **我的影片.mov** | **`video_chuO_tYMFNQIprqW3a38q.bin`** |
+
+  - **原始文件名完全不保留**——`path` 的文件名取自 `safeFileName(storageKey)`（`canvas-export.ts:20`）。
+  - **`.flac` / `.mov` / `.avi` / `.mkv` 落成 `.bin`**——`fileExtension`（`:78-88`）只认 png/jpeg/webp/gif/mp4/webm/mpeg|mp3/wav/ogg。
+- ★ **但 `.bin` 不是坏文件，有现成的自救路径**：`files[j].mimeType` **保留真实类型**（实测那条 flac 记的仍是 `audio/flac`、mov 记 `video/quicktime`），照它改名即可播放。**这条已写成读者可直接照抄的操作指引**，并写明「双击打不开不是文件坏了、是扩展名被换掉了」。
+- **批量导出结构同样取证**：勾 2 个项目导出 `TDCanvas-2.zip`，`projects` 数组 **2 条**（`TDCanvas 146 files=4` / `TDCanvas 145 files=0`），**空画布那条只占一个 JSON 条目、zip 里不为它建目录**（实测 `files` 目录数 = 1）。
+- **一条源码边界如实记为未触发**：`canvas-export.ts:19` 的 `if (!blob) return;` 会**静默跳过**取不到 blob 的素材（既不进 `files` 列表也不进 zip、无提示）。本批无法构造 blob 丢失的场景，不冒充已实测。
+
+- **第 54 次否证（否证的是我自己第一版探针）**：第一版据「未悬停时视口内有 8 个 `rect.width>0` 的导出按钮」判成「**不需要悬停就存在**，与手册不一致」。**实际上祖先 `div.td-home-project-actions` 是 `opacity: 0`**——**元素在、布局盒在、连点击都能触发下载**，唯独用户看不见。截图双向裁决：未悬停的卡片上什么按钮都没有，悬停后才浮出下载/铅笔/垃圾桶三枚图标与左上复选框。**手册第 60 行「项目卡悬停时也可以单独导出」是对的，配套截图 `13-project-card-hover-actions.png` 也无需改。**
+- **★ 方法论（与 M103 同族的第二个实例）**：`opacity: 0` 的元素**仍有完整布局盒、仍能接收点击**（这与 `visibility: hidden` 不同），所以**几何判据和行为判据会双双通过**，只有视觉判据能否证。第一版正是靠「点击真的触发了下载」而更加确信了错误结论。**落成一句纪律：判「用户看得见 / 点得到」时，几何和行为都不够，必须查祖先链的计算样式或直接截图。**
+- **顺带的运行时自证**：首页界面自己写着「最近画布 / **按最近修改时间排列**，继续上一次创作。」——账本「按 `updatedAt` 倒序」那条静态断言由界面文案自证。另实测首页项目卡复选框总数 = **146**，与画布数一致（延续 M100/M101 的计数口径）。
+- **产出**：`project-management.md` 导出节新增「zip 里的文件实际叫什么」小节（实测对照表 + 格式分栏表 + 可照抄的 JSON 片段 + 批量导出结构）、`SOURCE_OBSERVATIONS.md` §2 升级、`task-inventory.yml` 该任务补运行时证据、`AUDIT.md` +5 行。

@@ -20,6 +20,16 @@
 - 首页空态：hero「从一张画布开始」+ 新建画布按钮 + 最近画布区；`?mode=new` 自动创建并跳转 `/canvas/:id`。[运行时]
 - 新项目默认标题 `TDCanvas <全局递增计数>`（首次清空数据实测为「TDCanvas 1」；编号随新建次数单调递增，删除项目不回退）。**2026-10-02 M105 订正**：本行原记「默认标题『TDCanvas 2』（编号规则待查）」——那是订正前的旧观察，早已由 AUDIT 确认编号 = 全局递增计数、手册正文也已同步为「TDCanvas 1」，唯独本账本没跟上。同批复核：M101–M104 四批探针连续新建的画布依次为 TDCanvas 34 / 35 / 36 / 37 / 42 / 49 / 50 / 56 / 61 / 63，**单调递增且与实测次数吻合**，独立印证了「全局递增」。[运行时]
 - 项目列表按 `updatedAt` 倒序；封面取最新生成物（数据推导）；删除走确认弹窗；导出 zip（fflate，`projects.json` v3 + 引用媒体）；`importProject` API 存在但无 UI 入口。[静态]
+  - **2026-10-02 M117 升级为运行时实证，并补上手册此前完全没写的一层——「zip 里的文件实际叫什么」**。
+    - **导出 zip 的真实结构（实测下载并解压）**：`projects.json` 顶层键 `app / version / exportedAt / projects`，`app = "tdcanvas"`、`version = 3`（与手册一致）；`projects[i]` = `{ project, files }`；`files[j]` = `{ storageKey, path, mimeType, bytes }`；`project.nodes` 数与画布一致、`connections` 数一致。媒体落在 `projects/<projectId>/files/` 下，**`files` 里声明的每一条都真实存在于 zip 中（实测 4 声明 / 4 实有）**。
+    - ★ **原始文件名完全不保留**：`path` 的文件名取自 `safeFileName(storageKey)`（`lib/canvas/canvas-export.ts:20`），即 `image_XXXX.png` 这种「类型前缀 + 随机 ID」。实测上传 `我的照片.png`/`我的录音.wav`/`我的无损.flac`/`我的影片.mov`，导出后分别变成 `image_t5cJO….png`、`audio_3HSDs….wav`、`audio_X2HZ….bin`、`video_chuO….bin`。
+    - ★ **`.flac` / `.mov` / `.avi` / `.mkv` 导出后变 `.bin`**：`fileExtension`（`lib/canvas/canvas-export.ts:78-88`）只认 png/jpeg/webp/gif/mp4/webm/mpeg|mp3/wav/ogg，其余落到 `storageKey.startsWith("image:") ? "png" : "bin"`。
+    - **可自救**：`files[j].mimeType` **保留真实类型**（实测那条 flac 记的仍是 `audio/flac`、mov 记 `video/quicktime`），照它把 `.bin` 改名即可播放。**这条是手册给读者的实际操作指引**。
+    - **批量导出**：勾选 2 个项目导出 `TDCanvas-2.zip`，`projects` 数组 **2 条**（`TDCanvas 146 files=4` 与 `TDCanvas 145 files=0`）——**空画布那条只占一个 JSON 条目，zip 里不为它建目录**（实测 `files` 目录数 = 1）。
+    - **另一条静默边界（源码，未触发）**：`lib/canvas/canvas-export.ts:19` 的 `if (!blob) return;` —— 取不到 blob 的素材既不进 `files` 列表也不进 zip，**无任何提示**。本批未能构造出 blob 丢失的场景，故如实记为源码依据。
+  - **项目卡的「导出/重命名/删除」与左上复选框：悬停才出现，手册表述正确**（M117 第 54 次否证，否证的是我自己第一版探针）。**未悬停时这些元素确实存在于 DOM 且有 28×28 的布局盒，但祖先 `div.td-home-project-actions` 是 `opacity: 0`**——**所以「元素存在 / 有点击几何」根本不能证明「用户看得见」**。截图双向确认：未悬停的项目卡上什么按钮都没有，悬停后右上浮出下载/铅笔/垃圾桶三枚图标、左上浮出复选框。
+    - 首页界面**自陈排序规则**：「最近画布 / 按最近修改时间排列，继续上一次创作。」——这是账本「按 updatedAt 倒序」那条静态断言的运行时自证。
+    - 顺带实测：首页项目卡复选框总数 = **146**，与画布数量一致（延续 M100/M101 的项目卡计数口径）。
 
 ## 3. 画布视口与手势（与常见画布不同的语义）
 
