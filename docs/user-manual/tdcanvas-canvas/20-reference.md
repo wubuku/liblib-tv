@@ -235,6 +235,66 @@ TDCanvas 一共 7 条路由，其中两条**在浏览器里是"走不到底"的*
 
 这页**没有任何 TDCanvas 顶部导航**——它渲染在导航壳之外，所以想用导航栏"退回"是不行的，只有「返回首页」这一个出口。碰到它先检查地址栏拼写。
 
+## 切到英文：功能不减，但术语会变
+
+顶栏右侧的「中 / EN」按钮可以一键切换界面语言，**立即生效，不需要刷新或重开**。
+
+**语言按钮本身是双向的**：中文界面下它的提示写「切换到 English」，切过去之后变成「Switch to 简体中文」——始终告诉你**点下去会变成什么**，而不是你现在是什么。
+
+![同一条顶栏导航的两种语言对照，上半是中文界面的我的画布、ComfyUI 本地、提示词库、我的资产、配置，下半是英文界面的 My Canvases、ComfyUI Local、Prompt Library、My Assets、Settings](screenshots/20-nav-bilingual.png)
+
+### 术语对照：哪些词会变
+
+**这一步最容易卡住人**——手册里写「配置」，切到英文去找 `Config` 却找不到，因为英文用的是另一个词。
+
+| 中文界面 | 英文界面 | 备注 |
+|---|---|---|
+| 我的画布 | My Canvases | |
+| ComfyUI 本地 | ComfyUI Local | |
+| 提示词库 | Prompt Library | |
+| 我的资产 | My Assets | |
+| **配置** | **Settings** | **不是 Config**，搜 `Config` 一定找不到 |
+| API 配置 | API settings | |
+| 服务密钥 | Service credential | |
+| 第一步 / 第二步 | Step 1 / Step 2 | |
+| 验证并查询余额 | Verify & check balance | |
+| 保存 | Save | |
+| 连接 TDCanvas Agent | Connect TDCanvas Agent | |
+| 方式一 / 方式二 | Option 1 / Option 2 | |
+| 未连接 / 连接 | Disconnected / Connect | |
+
+![英文界面的 API 配置页，标题为 API settings，字段标签为 Service credential，第一步按钮为 Join AI Tudou · Get API key，底部为 Verify & check balance 与 Save](screenshots/20-config-en.png)
+
+### 切换后功能完全一致（实测 6 条路由）
+
+2026-10-01 把界面切到英文后，逐条路由扫描残留中文：
+
+| 检查项 | 结果 |
+|---|---|
+| 中英翻译键位 | **各 1814 条，一一对应，0 缺失** |
+| 占位符（`{{count}}` 等） | **0 处不一致** |
+| 页面残留中文 | 6 条路由**全部只剩 4 个字**，且全是同一个字符串「简体中文」——就是语言切换按钮自己 |
+| 文档语言标记 | `html lang` 正确变为 `en-US` |
+| 横向溢出 | **0**（英文普遍比中文长 20–30%，但没撑破任何布局） |
+
+英文下的 Agent 面板是检验"长文案会不会撑破布局"的好样本——它的说明段落是全站最长的英文，实测正常换行、无截断：
+
+![英文界面的 Agent 面板，Connect TDCanvas Agent 标题下是 Option 1 与 Option 2 两段长说明和三条命令，底部是 Web connection 区与 Local URL、Connection token 输入框](screenshots/20-agent-en.png)
+
+> **唯一一处没翻干净的**：协议选择器里的 `Aitudou / 土豆 API` 这一项在英文界面下**仍然带中文「土豆」**。其余 1813 条都干净。
+
+### 品牌名有三处写法
+
+同一家服务在三个地方拼法不同，遇到时别以为找错了：
+
+| 出处 | 写法 |
+|---|---|
+| 中文界面 | **AI 土豆** |
+| 英文界面 | **AI Tudou** |
+| 代码与配置 | `Aitudou` |
+
+另外，顶部导航的「提示词库」进入后页面标题是「提示词中心」——这两个名字指的是同一个东西（见 [use-prompt-library.md](10-tasks/use-prompt-library.md)）。
+
 ## 数据与存储
 
 | 数据 | 位置 | 说明 |

@@ -803,3 +803,39 @@ screenshots:
     visible_text: '导航'
     alt: 窄屏下点汉堡后从左侧滑出的导航抽屉，标题为导航，左上有关闭按钮，里面依次是我的画布、ComfyUI 本地、提示词库、我的资产、配置五个带图标的链接
     sha256: 7d13f8d3b3c4d03c1d74eb2e5bfea376ff65223b2d65638e98dae4d3a4cf2ffa
+
+  - file: screenshots/20-nav-bilingual.png
+    task_id: navigate-canvas
+    step: 同一视口分别截取中文与英文两种界面下的顶栏导航，堆叠对比术语
+    route: '/canvas'
+    viewport: 1280x48 x2
+    locale: 'zh-CN + en-US'
+    captured_at: '2026-10-01'
+    verified_locator: '上半 中文 我的画布 ComfyUI 本地 提示词库 我的资产 配置 / 下半 English My Canvases ComfyUI Local Prompt Library My Assets Settings / 两侧语言按钮分别为 中 与 EN'
+    visible_text: 'My Canvases'
+    alt: 顶栏导航的中英文对照，上半条是中文界面的我的画布、ComfyUI 本地、提示词库、我的资产、配置，下半条是对应的英文 My Canvases、ComfyUI Local、Prompt Library、My Assets、Settings
+    sha256: 07f2c3d6b76091fad2205b150ee5062406f61eaafe8ba15be66f764dea5f573e
+
+  - file: screenshots/20-config-en.png
+    task_id: generate-images
+    step: 切到英文后打开 /config，核对英文术语与长文案是否撑破两栏布局
+    route: '/config'
+    viewport: 1280x900
+    locale: en-US
+    captured_at: '2026-10-01'
+    verified_locator: '页面标题 API settings / 副标题 Set the single credential TDCanvas uses for AI Tudou services / Service credential / Step 1 Get an AI Tudou API key / Join AI Tudou · Get API key / Step 2 Paste your API key and save to connect / Verify & check balance / Save（禁用）'
+    visible_text: 'Set the single credential TDCanvas uses for AI Tudou services'
+    alt: 英文界面的 API 配置页，标题为 API settings，字段为 Service credential，第一步是 Join AI Tudou 取 API key，底部有验证并查询余额与保存两个按钮
+    sha256: 9c8047bc40bab96331c326adb1bf90d8ad555d89a3e38c4ab1e889cac23d2604
+
+  - file: screenshots/20-agent-en.png
+    task_id: use-agent
+    step: 切到英文后展开 Agent 面板，检验全站最长英文文案的换行与布局
+    route: '/canvas'
+    viewport: 1280x900
+    locale: en-US
+    captured_at: '2026-10-01'
+    verified_locator: '标题 Connect TDCanvas Agent / Option 1 Use the Codex plugin / codex plugin remove tdcanvas / codex mcp remove tdcanvas / Option 2 Run TDCanvas Agent locally / npm --prefix canvas-agent run dev / Web connection Disconnected / Local URL http://127.0.0.1:17371'
+    visible_text: 'Connect TDCanvas Agent'
+    alt: 英文界面的 Agent 面板，标题下是选项一和选项二两段较长的英文说明与三条命令，底部是网页连接区和本地地址、连接令牌两个输入框
+    sha256: e00a482b380a5607bb529edc63b3a296fe9fc76c8795d8a2cd93b39fa1422404
