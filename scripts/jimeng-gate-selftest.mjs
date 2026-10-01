@@ -40,32 +40,40 @@ const sha = (s) => createHash('sha256').update(s).digest('hex');
 const CASES = [
   {
     id: 'alt-mismatch',
-    gates: ['1/8'],
+    gates: ['1/9'],
     why: '把正文里 99 号截图的 alt 改一个字，与 manifest.yml 登记的 alt 不再逐字一致',
-    expect: (out) => out.includes('❌ 1/8'),
+    expect: (out) => out.includes('❌ 1/9'),
     inject: (t) => t.replace('文本节点是 7 种类型里唯一不与卡片顶边齐平的', '文本节点是 7 种类型里唯一不与卡片顶边齐平'),
     mustChange: true,
   },
   {
     id: 'dead-link',
-    gates: ['3/8', '4/8', '5/8'],
+    gates: ['3/9', '4/9', '5/9'],
     why: '插一条指向不存在文件的死链（批次 57 真实发生过一次，属实的意外阳性对照）',
-    expect: (out) => out.includes('❌ 3/8') && out.includes('❌ 4/8') && out.includes('❌ 5/8'),
+    expect: (out) => out.includes('❌ 3/9') && out.includes('❌ 4/9') && out.includes('❌ 5/9'),
     inject: (t) => `${t}\n\n<!-- 门自测注入 -->\n[指向不存在](__gate_selftest_no_such__.md)\n`,
   },
   {
     id: 'ufffd',
-    gates: ['6/8'],
+    gates: ['6/9'],
     why: '注入一个 U+FFFD 替换字符（批次 57 我自己手误打进过一处，肉眼发现）',
-    expect: (out) => out.includes('❌ 6/8'),
+    expect: (out) => out.includes('❌ 6/9'),
     inject: (t) => `${t}\n\n<!-- 门自测注入：乱码 -->\n替换字符：�\n`,
   },
   {
     id: 'missing-shot',
-    gates: ['7/8'],
+    gates: ['7/9'],
     why: '引用一张不存在的截图，构建器的「截图数与源一致」应当报不一致',
-    expect: (out) => out.includes('❌ 7/8'),
+    expect: (out) => out.includes('❌ 7/9'),
     inject: (t) => `${t}\n\n![门自测注入的不存在截图](../screenshots/__gate_selftest_no_such__.png)\n`,
+  },
+  {
+    id: 'backfill-unmarked',
+    gates: ['8/9'],
+    why: '在正文里复述一条**已被推翻**的措辞、且**不带任何订正标记** —— 正是批次 74 抓到的那一类（改了结论没回填）',
+    expect: (out) => out.includes('❌ 8/9'),
+    // ⚠️ 注入文本里绝不能出现标记词（订正/推翻/已被/口径/机制…），否则门会判它「已标记」
+    inject: (t) => `${t}\n\n- 时间线/主体可连\n`,
   },
 ];
 

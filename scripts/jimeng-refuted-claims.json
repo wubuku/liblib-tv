@@ -1,0 +1,63 @@
+{
+  "_doc": "已被推翻的结论清单（批次 75 建）。jimeng-backfill-gate.mjs 据此检查：每条 pattern 的每一处命中，其上下文 ±3 行内必须有「订正标记」（删除线 / 已被推翻 / 订正 / 已关闭 / 不成立 / 口径…）。改一个字就要重新判读 —— 这是刻意的。",
+  "_invariant": "① 每条 entry 至少命中一处（否则是幽灵条目 ⇒ 红）；② 每处命中都必须带内联订正标记（否则是「改了结论没回填」⇒ 红）。",
+  "_why": "同一形状的错误已犯三次：批次 64 过期括注、批次 70 同文件数字打架、批次 74 订正没回填到原始记录。没有任何机械检查会抓到它，所以把它变成门。",
+  "entries": [
+    {
+      "id": "f-media-unavailable",
+      "label": "F 键「媒体类明确报不可用」已被批次 60 推翻（音频不报，是静默）",
+      "patterns": ["明确报不可用"],
+      "refuted_in": "批次 60（PROGRESS.md:1339 / AUDIT.md:3135）",
+      "reason": "批次 40 那句规律建立在视频、图片**两个样本**上；音频是第 3 个媒体类型，实测无任何反馈"
+    },
+    {
+      "id": "director-281",
+      "label": "导演台节点「281×281」是屏上口径，canvas 恒 320×320（批次 68）",
+      "patterns": ["281×281"],
+      "refuted_in": "批次 68（SOURCE_OBSERVATIONS.md §3.87.2）",
+      "reason": "281 自洽于 87.8% 缩放（320×0.878≈281），不是记错而是拿屏上像素当契约"
+    },
+    {
+      "id": "timeline-title",
+      "label": "「时间线源的菜单标题是『添加上下文』，其余六种是『添加节点』」已被批次 71 推翻",
+      "patterns": ["唯独.{0,12}时间线.{0,20}添加上下文", "唯独从时间线出发.{0,10}添加上下文"],
+      "refuted_in": "批次 71（SOURCE_OBSERVATIONS.md §3.90.4）",
+      "reason": "菜单标题只由「点了哪个 ⊕」决定（before＝添加上下文 / after＝添加节点），与源类型无关"
+    },
+    {
+      "id": "video-timeline-subject-connectable",
+      "label": "「视频源：时间线/主体可连」已被批次 28 推翻（两者当时都是灰的）",
+      "patterns": ["时间线/主体可连"],
+      "refuted_in": "批次 28（SOURCE_OBSERVATIONS.md §3.45 / AUDIT.md:915）",
+      "reason": "空视频源下时间线报「素材信息仍在加载中」、主体报「没有可用的就绪资源」，均为临时态"
+    },
+    {
+      "id": "menu-item-144x22",
+      "label": "「七项各 144×22」量的是文字标签 span，菜单项本身 192×36（批次 74）",
+      "patterns": ["144×22"],
+      "refuted_in": "批次 74（SOURCE_OBSERVATIONS.md §3.93.2）",
+      "reason": "逐帧采样证明菜单没有尺寸动画；菜单项内的 SPAN.min-w-0.flex-1 恰为 144×22"
+    },
+    {
+      "id": "rename-always-visible",
+      "label": "`Rename` 曾被标成「始终可见」，实为**仅选中时**才有（批次 57）",
+      "patterns": ["Rename.{0,12}始终可见|始终可见.{0,20}Rename"],
+      "refuted_in": "批次 57（connect-nodes.md「批次 57 订正之一」）",
+      "reason": "静息 0 个、悬停 0 个、选中 1 个，7 种类型全是这样"
+    },
+    {
+      "id": "image-source-miss-director",
+      "label": "「图片源只有文本不可连」漏了导演台（批次 28）",
+      "patterns": ["从图片节点出发[^。\\n]{0,20}文本"],
+      "refuted_in": "批次 28（SOURCE_OBSERVATIONS.md §3.45 / AUDIT.md:916）",
+      "reason": "实测文本与导演台同为灰、同为「无法连接这些节点」"
+    },
+    {
+      "id": "only-three-as-target",
+      "label": "「作为目标只有 图片/视频/音频 能被连」只在 after ⊕ 下成立（批次 71）",
+      "patterns": ["没有任何一种源能连它们"],
+      "refuted_in": "批次 71（SOURCE_OBSERVATIONS.md §3.90.4）",
+      "reason": "before ⊕ 下图片源与视频源都能连「文本」"
+    }
+  ]
+}
