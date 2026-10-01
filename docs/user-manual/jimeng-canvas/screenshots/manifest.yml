@@ -641,3 +641,27 @@ screenshots:
     visible_text: 资产 / 主体 / 图片 / 视频 / 音频 / 文档 / 搜索 / 暂无图片素材 / 已选择 0 个素材 / 确认 / 节点 3
     alt: 资产库面板空态：面板顶部为「资产 / 主体」两个页签，第二行是「图片 / 视频 / 音频 / 文档」四个筛选页签（图片为选中态），右侧有搜索框、日期与筛选两个图标按钮；内容区中央显示「暂无图片素材」——尽管画布上已有一个刚上传的图片节点；底部左侧是「已选择 0 个素材」，右侧「确认」按钮为灰色禁用态；橙色高亮框为面板范围
     sha256: 1e6acd1c9e289b3c798437983718c357c2f47b830a98b135e6dd526fa991ff47
+
+  - file: screenshots/49-connect-nodes-retested.png
+    task_id: connect-nodes
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T10:10:00+08:00
+    verified_locator: '从「视频 1」右侧 handle（43x87）拖到「视频 2」左侧 handle 生成的参考连线，edge aria 逐字为 Reference connection from 视频 node: 视频 1 to 视频 node: 视频 2'
+    visible_text: 视频 1 / 视频 2 / 节点 2 / 已保存
+    alt: 视频节点之间的参考连线：从左上「视频 1」节点的右缘拖出一条蓝色曲线，弯向右下「视频 2」节点的左缘，曲线中段略带弧度；两个节点各自左右边缘各有一个圆形加号连接点，右下角的「视频 2」节点标题行右侧还有标签图标；橙色高亮框标出两个节点与连线的整体范围
+    sha256: a93b36beda7b61b430b1d96ae2e5c4b7cdf85e32bb4358c5cb3fd072289721d8
+
+  - file: screenshots/50-asset-library-filter.png
+    task_id: assets-and-upload
+    step: 7
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T10:18:00+08:00
+    verified_locator: '资产库 aria「筛选」按钮展开的右侧浮层，四组逐字为 操作/收藏、类型/超清、分辨率/1K·2K·4K·8K、比例/21:9'
+    visible_text: 资产 / 主体 / 图片 / 视频 / 音频 / 文档 / 搜索 / 筛选 / 暂无图片素材 / 已选择 0 个素材 / 确认 / 操作 / 收藏 / 类型 / 超清 / 分辨率 / 1K / 2K / 4K / 8K / 比例 / 21:9
+    alt: 资产库筛选浮层：从面板右上角的漏斗图标展开的右侧下拉，分为四组——「操作」组下是「收藏」，「类型」组下是「超清」，「分辨率」组下依次是 1K、2K、4K、8K 四档，「比例」组下是 21:9；各组之间以细分隔线隔开；背景面板仍显示「暂无图片素材」，底部「已选择 0 个素材」与灰色禁用的「确认」按钮
+    sha256: 16994a8079746282cedfebe8dfbe36779c084eb393eab50f2b7c601113f7c2b2

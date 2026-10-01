@@ -22,6 +22,9 @@
 | 右下 | 与 AI 对话 |
 | 画布状态行 | `N nodes, N edges, N selected. Editable. Room connected. 已保存.` |
 
+> 状态行的英文会**按数量变形**：只有 1 个时用单数。实测 `1 node, 0 edges, 0 selected`、
+> `1 node, 1 edge, 0 selected`；而 0 条连线仍写作 `0 edges`（0 用复数）。
+
 ## 节点类型
 
 | 类型 | 新建形态 | 选中后 |
