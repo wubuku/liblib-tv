@@ -218,17 +218,20 @@ def run_desktop(page: Page) -> dict[str, Any]:
     desktop_snapshot = director_snapshot(page)
 
     phase[0] = "desktop-shell"
-    toggle = page.locator("[data-director-panels-toggle]")
-    toggle.click()
+    # Batch 587: 顶栏「收起」只收左侧场景面板，按钮随之卸载（源站收起后
+    # header 整条移除）；恢复入口是图标栏的「场景」，不是第二个按钮。
+    page.locator("[data-director-panels-toggle]").click()
     page.wait_for_function(
         "() => window.__director_store.getState().viewportPanelsCollapsed === true"
     )
     assert workspace.get_attribute("data-director-panels-collapsed") == "true"
-    toggle.click()
+    assert page.locator("[data-director-panels-toggle]").count() == 0
+    page.locator("[data-director-rail-entry='scene']").click()
     page.wait_for_function(
         "() => window.__director_store.getState().viewportPanelsCollapsed === false"
     )
     assert workspace.get_attribute("data-director-panels-collapsed") == "false"
+    assert page.locator("[data-director-panels-toggle]").count() == 1
 
     phase[0] = "desktop-close-reopen"
     page.locator("[data-close-director]").first.click()

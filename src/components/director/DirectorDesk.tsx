@@ -15,6 +15,7 @@ import {
   FileVideo2,
   ImageIcon,
   Info,
+  PanelLeftOpen,
   Upload,
   X,
 } from "lucide-react";
@@ -867,6 +868,26 @@ export default function DirectorDesk({
             <h1 className="truncate text-xs font-medium text-[#eeeeee]">3D导演台</h1>
             <p className="truncate text-[10px] text-[#666] max-[520px]:hidden">{scene.name}</p>
           </div>
+          {/* Batch 587（源站 2026-10-01 实测）：顶栏唯一的折叠入口是
+              「收起」，位于标题右侧。它只收掉左侧场景面板——图标栏、
+              3D 视口、右侧属性面板、视角切换、gizmo、重置视角全部保留
+              （源站收起后实测 header 与左面板从 DOM 移除，其余坐标不变）。
+              恢复入口不是第二个按钮，而是图标栏的「场景」条目。原先挂在
+              视口底栏的「全屏 / 恢复侧栏」是 clone 独有的全幅折叠，与源站
+              不符，本批移除。 */}
+          {!viewportPanelsCollapsed ? (
+            <button
+              type="button"
+              data-director-panels-toggle
+              aria-label="收起"
+              title="收起"
+              aria-pressed={false}
+              onClick={() => setViewportPanelsCollapsed(true)}
+              className="ml-2 flex size-8 shrink-0 items-center justify-center rounded text-[#a3a3a3] hover:bg-white/[0.06] hover:text-white"
+            >
+              <PanelLeftOpen size={17} />
+            </button>
+          ) : null}
           <div
             data-director-command-feedback
             data-director-command-feedback-disposition={
@@ -1092,8 +1113,10 @@ export default function DirectorDesk({
           <main
             className={cn(
               "absolute inset-y-0 min-w-0 max-[899px]:inset-x-0",
+              // Batch 587：收起只让出左侧 220px 场景面板，右侧属性面板
+              // 保留（源站收起后 inspector 仍在 x=1639 原位）。
               viewportPanelsCollapsed
-                ? "inset-x-0"
+                ? "left-[46px] right-[288px]"
                 : "left-[266px] right-[288px]",
             )}
           >
@@ -1113,19 +1136,14 @@ export default function DirectorDesk({
           <aside
             ref={inspectorPanelRef}
             aria-label="属性"
-            aria-hidden={
-              viewportPanelsCollapsed || inspectorMobileInactive
-                ? "true"
-                : undefined
-            }
-            inert={inspectorMobileInactive || viewportPanelsCollapsed}
+            aria-hidden={inspectorMobileInactive ? "true" : undefined}
+            inert={inspectorMobileInactive}
             data-director-focus-scope={
               activeMobileFocusScope === "inspector" ? "inspector" : undefined
             }
             data-director-mobile-panel-state={activeMobilePanel === "inspector" ? "open" : "closed"}
             className={cn(
               "absolute inset-y-0 right-0 z-30 w-72 border-l border-white/[0.07] transition-transform duration-200",
-              viewportPanelsCollapsed && "min-[900px]:hidden",
               activeMobilePanel === "inspector"
                 ? "max-[899px]:translate-x-0"
                 : "max-[899px]:translate-x-full",

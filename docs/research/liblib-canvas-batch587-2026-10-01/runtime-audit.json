@@ -1,0 +1,89 @@
+{
+  "batch": 587,
+  "title": "导演台「收起」语义对齐源站——只收左侧场景面板，恢复入口为图标栏「场景」",
+  "evidence": "2026-10-01 live CDP controlled before/after/restore diff of the source director desk at 1920x1150 + docs/research/liblib-canvas-batch587-2026-10-01/README.md",
+  "migrated_assertions": [
+    "verify-liblib-batch50.py: 收起 replaces 全屏; inspector stays visible; restore via rail 场景; data-director-panels-toggle now in DirectorDesk",
+    "verify-liblib-batch93.py: restore clicks rail 场景 instead of a second toggle press (the header button unmounts on collapse)",
+    "verify-liblib-batch74.py / batch89.py: unaffected — they only assert viewportPanelsCollapsed stays out of the persisted envelope and restores to false"
+  ],
+  "results": [
+    {
+      "viewport": "1440x900",
+      "checks": [
+        "header:collapse-present",
+        "header:collapse-aria",
+        "header:collapse-title",
+        "header:collapse-in-header",
+        "header:collapse-before-title",
+        "initial:expanded-flag",
+        "initial:tree-visible",
+        "initial:inspector-visible",
+        "bottombar:no-clone-fullscreen",
+        "collapsed:flag",
+        "collapsed:tree-hidden",
+        "collapsed:inspector-kept",
+        "collapsed:inspector-focusable",
+        "collapsed:viewport-grows",
+        "collapsed:viewport-left-edge",
+        "collapsed:viewport-right-edge-unchanged",
+        "collapsed:toggle-unmounted",
+        "collapsed:rail-kept",
+        "collapsed:view-mode-kept",
+        "collapsed:reset-view-kept",
+        "restored:flag",
+        "restored:tree-visible",
+        "restored:inspector-visible",
+        "restored:toggle-back",
+        "restored:toggle-aria",
+        "restored:viewport-geometry",
+        "diagnostics:zero"
+      ],
+      "expanded_viewport": {
+        "x": 266,
+        "y": 84,
+        "width": 886,
+        "height": 620
+      },
+      "viewport_bar_labels": [
+        "",
+        "X 正向",
+        "X 反向",
+        "Y 正向",
+        "Y 反向",
+        "Z 正向",
+        "Z 反向",
+        "打开场景对象",
+        "打开属性面板",
+        "移动",
+        "旋转",
+        "缩放",
+        "",
+        "",
+        "",
+        "开启九宫格辅助线",
+        "虚拟相机",
+        "添加群众阵列",
+        "模型库",
+        ""
+      ],
+      "collapsed_viewport": {
+        "x": 46,
+        "y": 84,
+        "width": 1106,
+        "height": 620
+      },
+      "restored_viewport": {
+        "x": 266,
+        "y": 84,
+        "width": 886,
+        "height": 620
+      },
+      "diagnostics": {
+        "console": 0,
+        "filtered_transformcontrols": 0,
+        "errors": []
+      }
+    }
+  ]
+}

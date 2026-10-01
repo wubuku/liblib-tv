@@ -93,6 +93,11 @@ export function DirectorIconRail({
   const addLocalModelLibraryItem = useDirectorStore(
     (state) => state.addLocalModelLibraryItem,
   );
+  // Batch 587: rail「场景」兼作收起态的恢复入口（源站收起后浮层内唯一
+  // 能把顶栏 + 左侧场景面板叫回来的控件）。
+  const setViewportPanelsCollapsed = useDirectorStore(
+    (state) => state.setViewportPanelsCollapsed,
+  );
   const characterUploadInputRef = useRef<HTMLInputElement | null>(null);
   const [characterAck, setCharacterAck] = useState<string | null>(null);
 
@@ -128,6 +133,12 @@ export function DirectorIconRail({
       return;
     }
     setOpenFlyout(null);
+    // Batch 587（源站 2026-10-01 实测）：收起之后顶栏与「收起」按钮一并
+    // 消失，浮层内没有第二个恢复按钮——点图标栏的「场景」条目即恢复
+    // 顶栏与左侧场景面板。图标栏本身在收起态保留。
+    if (id === "scene") {
+      setViewportPanelsCollapsed(false);
+    }
     if (id === "add-character") {
       // 仅 add-character 自身打开 flyout；由 handleCharacterOption 控制关闭。
       setOpenFlyout("add-character");
