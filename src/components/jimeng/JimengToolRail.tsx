@@ -2,20 +2,67 @@
 
 import {
   AudioLines,
-  Bot,
+  Box,
+  Film,
   Folder,
   Image,
-  LayoutTemplate,
   SquarePlay,
   SquareUser,
   Type,
   Upload,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { Fragment, useRef } from "react";
+import type { ComponentType } from "react";
 import { useReactFlow } from "@xyflow/react";
 
 import { useJimengStore } from "@/store/jimengStore";
+
+/**
+ * 导演台图标 (Batch 808)。
+ *
+ * 源站这个图标**不在 DOM 里**——按钮内只有一个空的 `<span class="contents">`
+ * （实测三个按钮都是），图形既不是 `<svg>` 也不是背景图/遮罩，所以只能靠
+ * 像素辨认。7× 放大后（807-rail-sbs.png 的导演台段）看清是：
+ *   上半 = 一个**等轴测立方体**（六边形外框 + 三条棱交于中心）
+ *   顶左 = 一小段弧形箭头
+ *   下半 = 绕着立方体底部的**双向弧形箭头**（旋转/环绕的暗示）
+ *
+ * 复刻此前用的是 lucide `Bot`（机器人头），与源站毫无相似之处。
+ * 这里用 lucide `Box` 的立方体路径（等轴测，与源站中心图形一致），
+ * 缩放后放在上方，下方补一段双向弧形箭头去对应源站的环绕箭头。
+ * 20px 下笔画已接近 1px，弧形箭头是**近似**而非逐像素复刻——
+ * 源站字形无法从 DOM 取得，弧段的曲率/箭头角度没有可量测的证据。
+ */
+function DirectorGlyph({ size = 20 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      {/* 立方体：lucide Box 的三条路径。变换要**先定目标中心**再缩放：
+          `translate(12 10) scale(.68) translate(-12 -12)` 把立方体自身的
+          中心 (12,12) 映射到 (12,10)，于是缩放后它落在 y 3.9~16.8，
+          正好给下方的弧段（y 19~22）让出位置。写成 translate(12 1.6)
+          会把立方体顶到 y=-4.5 直接被 viewBox 裁掉——第一版就踩了这个。 */}
+      <g transform="translate(12 10) scale(0.68) translate(-12 -12)">
+        <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+        <path d="m3.3 7 8.7 5 8.7-5" />
+        <path d="M12 22V12" />
+      </g>
+      {/* 底部环绕箭头：左半弧 + 右半弧，两端各一个箭头 */}
+      <path d="M4.6 20.1a7.4 3 0 0 0 14.8 0" />
+      <path d="M4.6 20.1 3.2 18.4M4.6 20.1l2 .3" />
+      <path d="M19.4 20.1l1.4-1.7M19.4 20.1l-2 .3" />
+    </svg>
+  );
+}
 
 /**
  * 左侧插入工具栏 — aside 绝对定位、**在 y=56 以下区域垂直居中**。
@@ -37,7 +84,7 @@ import { useJimengStore } from "@/store/jimengStore";
  *         「hover 高亮 rgba(255,255,255,0.12)」是台账错误，batch 796 已订正。
  */
 const RAIL_ITEMS: {
-  icon: LucideIcon;
+  icon: ComponentType<{ size?: number }>;
   label: string;
   beta?: boolean;
   separatorBefore?: boolean;
@@ -51,9 +98,9 @@ const RAIL_ITEMS: {
   { icon: AudioLines, label: "音频", insert: "audio" },
   // Batch 805 SOURCE_FACT: 时间线/主体/导演台 点下去 = 在画布中心插入对应节点，
   // 不是打开浮层（源站落点 rf__node-*，在 .react-flow__viewport 内，节点计数 +1）
-  { icon: LayoutTemplate, label: "时间线", insert: "timeline" },
+  { icon: Film, label: "时间线", insert: "timeline" },
   { icon: SquareUser, label: "主体", insert: "subject" },
-  { icon: Bot, label: "导演台", beta: true, insert: "director" },
+  { icon: DirectorGlyph, label: "导演台", beta: true, insert: "director" },
   // Batch 796 (SOURCE_FACT): 资产库 之前有一条 20×12 分隔条
   { icon: Folder, label: "资产库", separatorBefore: true },
   { icon: Upload, label: "上传" },
@@ -138,8 +185,20 @@ export function JimengToolRail() {
               className="relative flex size-10 items-center justify-center rounded-lg text-white/85"
             >
               <Icon size={20} />
+              {/* Batch 808 (SOURCE_FACT, 2026-10-03 像素实测):
+                  源站 Beta 是一枚**胶囊**，不是纯文字。
+                  逐像素定位：@[34,559] **23×14**，圆角 ≈3px
+                  （y=559 那一行只占 19px，y=561 起满宽 23px），
+                  底色是竖向渐变 rgb(29,46,57) → rgb(33,50,61)，
+                  文字 #009EFA、**非斜体**（放大后源站的 B 是直的，
+                  复刻此前写的 italic 明显右倾）。
+                  落位：相对 40×40 按钮 left 18px / top -1px
+                  （即压在图标 20×20 的右上角，图标 @[26,570]）。 */}
               {beta ? (
-                <span className="absolute -top-0.5 left-1/2 text-[7px] font-semibold italic leading-none text-[#009EFA] [transform:translateX(-50%)_translateY(-2px)]">
+                <span
+                  data-testid="rail-beta-badge"
+                  className="absolute left-[18px] top-[-1px] flex h-[14px] w-[23px] items-center justify-center rounded-[3px] text-[7px] font-semibold leading-none text-[#009EFA] [background:linear-gradient(180deg,rgb(29,46,57),rgb(33,50,61))]"
+                >
                   Beta
                 </span>
               ) : null}
