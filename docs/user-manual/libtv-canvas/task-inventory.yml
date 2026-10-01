@@ -203,18 +203,24 @@ tasks:
     frequency: core
     impact: high
     coverage: full
-    status: documented
+    status: verified
     evidence:
       - 'F-01..F-03：点击节点后卡片展开出提示词框、参考/标记/特效、底部参数条'
-      - 'p08-shortcuts-1-chuangzuo.png：成组 ⌘G / 合并分镜组 ⌘⌥G / 解组 ⌘⇧G / 连线 ⌘L / 复制节点和连线 ⌘D'
+      - 'batchE3/E2：Shift+拖动框选，选中 2/2（.react-flow__selection 拖动中实测 1 个，松开后 .selected 计数 2）'
+      - 'batchE3/E3：⌘L 连线，连线数 0 → 1'
+      - 'batchE3/E4：⌘G 成组，组元素 0 → 1、节点总数 2 → 3，组名 Group 1'
+      - 'batchE3/E6：⌘⇧G 解组，组元素 1 → 0、节点总数 3 → 2'
+      - 'batchE2/E7：⌘D 复制，节点数 3 → 4'
+      - 'batchE2/E8、E9：⌘Z 撤销 4 → 3；⌘⇧Z 重做 3 → 4'
+      - 'batchE2/E12：Option+拖动节点复制，4 → 5，副本命名「原名 - 副本」'
+      - 'batchE5/H2 + batchE6/I3：组操作条六个动作逐个读出；「转分镜组」opacity 0.45（灰）；整组可拖动，组框与成员同步位移 (+195,+38)'
     manual_pages:
       - 10-tasks/create-nodes.md
       - 10-tasks/shortcuts.md
     not_verified: >-
-      成组/解组/合并分镜组、⌘D 复制节点和连线这三组操作本轮**没有逐条实跑**：
-      成组需要先框选多个节点，而框选入口（空白处 Shift 拖拽）在本轮未取得可靠读数。
-      快捷键键位来自面板原文，按 SKILL 要求「面板自称 ≠ 运行时行为」，
-      已在 AUDIT.md 登记为待回走项，正文对这几项只给键位不给「已验证」字样。
+      「整组执行」会真的跑生成、扣积分，**没点过**；
+      「添加到工具箱」「布局下拉」的菜单内容也**没打开过**。
+      框选的语义边界（擦边是否算包含）只验证了「完整包住 → 选中」这一侧。
 
   - id: generate-media
     title: 生成图片 / 视频 / 音频
@@ -305,21 +311,28 @@ tasks:
     frequency: core
     impact: medium
     coverage: full
-    status: documented
+    status: verified
     evidence:
       - 'p07b-shortcuts-4col.png：四列完整面板'
       - 'p08-shortcuts-1..4：按列裁切，供正文分节配图'
+      - 'batchE3/E7：Tab 在焦点为画布 body 时弹出「添加节点」面板；焦点在输入框时无反应'
+      - 'batchE2/E10：⌘F 打开「搜索画布元素」，输入「图片」后列表收敛为「图片节点 2 共 4 节点」'
+      - 'batchE4b/E9：V/H 使底部工具条 tool-mode 按钮在「移动」↔「抓手工具」之间切换（按 V 复原）'
+      - 'batchE4b/G1：四种平移方式对照，Space+拖 / 抓手工具+拖 / 中键拖 均严格 1:1，空白处裸拖仅 (+16.3,0)'
+      - 'batchE4b/G2：⌘+滚轮缩放 133% → 201%，左下角百分比同步'
     manual_pages:
       - 10-tasks/shortcuts.md
+      - 10-tasks/organize-canvas.md
       - 20-reference.md
     findings:
       - '面板分「创作 / 缩放 / 移动画布 / 其他」四列，**⌘ 前缀是图形键帽、不是文字**，
         只读 innerText 会整列丢失（见 PROGRESS.md §2.4 三次读数记录）。'
-      - '「移动 = V」「抓手工具 = H」同属「移动画布」列 —— 已按单元格逐列坐实。'
+      - '「移动 = V」「抓手工具 = H」同属「移动画布」列，且对应底部工具条同一枚按钮 tool-mode。'
+      - '面板**没列**框选，但 Shift+空白拖拽实测可用，是成组/连线/复制的共同前置。'
     not_verified: >-
-      键位来自面板原文，**未逐条实按验证**。已实跑验证的只有：⌘0 适合画布、
-      ⌘+ / ⌘- 缩放、⌥⇧F 整理画布（会弹确认条）、⌘A + ⌫ 全选删除画布上节点。
-      其余键位在 AUDIT.md 登记为待回走。
+      `⌘Enter 生成` 会扣积分，全程没按；`⌘⌥G 合并分镜组` 实按无反应
+      （对应的「转分镜组」按钮 opacity 0.45，本身是灰的）；
+      触控板捏合、滚轮下拖这两项无法在无头环境模拟，仍是面板自称。
 
   # ───────────── 本轮明确不写 ─────────────
   - id: publish-and-share-external

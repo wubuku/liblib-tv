@@ -554,3 +554,102 @@ screenshots:
     visible_text: 新对话 让 TV Director 辅助你的无限创意 感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词 全能创作
     alt: TV Director 抽屉本体，标题「新对话」，引导语「让 TV Director 辅助你的无限创意」，下方四张技能卡与底部输入区
     sha256: 20889f8076f9cb578a25969ca5c99677d8263091ded491ce694d716500c7657f
+  - file: screenshots/K-01-Shift拖动框选.png
+    task_id: select-and-edit-nodes
+    step: 1
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T01:44:20+08:00
+    verified_locator: css=.react-flow__selection （Shift+拖动过程中出现的虚线选区）
+    visible_text: 文本节点 1 尝试：自己编写内容 音频节点 2 尝试：音频生视频 资产管理 92%
+    alt: 按住 Shift 从画布空白处向右下拖出一个虚线矩形，矩形完整罩住文本节点与音频节点两张卡
+    sha256: 9671c907071b01d29cbc1968089c732d9c4f208bfd3a088f5cfc3eabf92a3d8b
+  - file: screenshots/K-02-框选结果.png
+    task_id: select-and-edit-nodes
+    step: 2
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T01:44:22+08:00
+    verified_locator: css=.react-flow__node.selected （松开后带选中态的两个节点）
+    visible_text: 文本节点 1 尝试：自己编写内容 音频节点 2 尝试：音频生视频 资产管理 92%
+    alt: 松开左键后两张节点卡同时被选中，边框变蓝、卡片展开
+    sha256: e6890e04c421a37912d71c29e7860fcaadbb46c2804b8115e59426403ed4baa8
+  - file: screenshots/K-03-成组后.png
+    task_id: select-and-edit-nodes
+    step: 3
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T01:44:26+08:00
+    verified_locator: css=.react-flow__node[data-id*=group] 及其顶部操作条
+    visible_text: Group 1 整组执行 添加到工具箱 转分镜组 解组 文本节点 1 音频节点 2
+    alt: 两个节点被一个名为 Group 1 的蓝色方框圈住，方框上方浮出组操作条：颜色圆点、布局下拉、整组执行、添加到工具箱、转分镜组、解组、批量下载
+    sha256: 8f4c48a14779ad92e6b6a82fe2ffad67629fd073b6e31888a31b1fa0c566dc0d
+  - file: screenshots/K-04-节点搜索.png
+    task_id: select-and-edit-nodes
+    step: 4
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T01:34:17+08:00
+    verified_locator: css=input[placeholder="搜索画布元素"]
+    visible_text: 搜索画布元素 画布 资产 音频节点 3 音频节点 3 - 副本 图片节点 2 文本节点 1 共 4 节点
+    alt: 按 ⌘F 打开的画布节点搜索面板：顶部输入框占位「搜索画布元素」，下方按分组列出节点名，底部显示「共 4 节点」
+    sha256: d1c19999d48a984a78f0424ef53b380ee30f9044e194f5643d0a986aea1d96c6
+  - file: screenshots/K-05-Tab新建节点.png
+    task_id: create-nodes
+    step: 5
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T01:36:57+08:00
+    verified_locator: css=[data-guide-lockable-portal="true"] 「添加节点」面板
+    visible_text: 添加节点 文本 图片 视频 智能剪辑 Beta 导演台 NEW 逐帧拉片 SD 2.5 音频 脚本 素材库 添加资源 上传 从生成历史选择
+    alt: 焦点在画布上时按 Tab 弹出的「添加节点」面板，与点击底部加号按钮是同一个面板
+    sha256: d968fd135071e87b2a60242362f2e406f700d80070eca1c4e975172b82626e24
+  - file: screenshots/K-06-当前视窗没有节点.png
+    task_id: navigate-canvas
+    step: 6
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T01:44:36+08:00
+    verified_locator: role=button name="返回节点"
+    visible_text: 当前视窗没有节点 返回节点 资产管理 102%
+    alt: 用 Space 把视口拖到所有节点之外后，画面空白一片，底部中央浮出「当前视窗没有节点」提示和「返回节点」按钮
+    sha256: 21f740fbc9b42c3c4274f6c0a9c10a3d8113ec49d498512c26a093583a37626e
+  - file: screenshots/K-07-复制节点后.png
+    task_id: select-and-edit-nodes
+    step: 7
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T01:34:08+08:00
+    verified_locator: css=.react-flow__node （复制后多出的那份节点）
+    visible_text: 音频节点 3 - 副本 音频节点 3 尝试：音频生视频 图片节点 2 文本节点 1
+    alt: 选中一个节点后按 ⌘D，画布上多出一份副本，标题自动变成「原名 - 副本」
+    sha256: 4caf3d7264b4e0540720138706b463f7471ea331b9380a77ff10f37e5d2f1aab
+  - file: screenshots/K-08-底部两条工具栏.png
+    task_id: navigate-canvas
+    step: 8
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T01:39:58+08:00
+    verified_locator: css=button[data-sidebar-btn] （底部两条工具条的全部按钮）
+    visible_text: 资产管理 119% 添加节点 移动 素材库 角色造型室 生成历史 快捷键 教程 TV Director
+    alt: 画布底部两条工具条：左侧「资产管理」加四个图标开关与缩放百分比，中央是加号、移动、素材库、角色造型室、生成历史、快捷键、教程七键，右侧是蓝色 TV Director 圆钮
+    sha256: 26d711ceb8535455f8e0f8a403b2d20d724bdb4869a449c63872dfd02130e282
+  - file: screenshots/K-11-拖动整组后.png
+    task_id: select-and-edit-nodes
+    step: 9
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T01:46:37+08:00
+    verified_locator: css=.react-flow__node[data-id*=group] （拖动后的组）
+    visible_text: Group 1 整组执行 添加到工具箱 转分镜组 解组 文本节点 1 音频节点 2
+    alt: 按住组标题栏拖动整组后，方框与框内的文本节点、音频节点三者同步位移
+    sha256: ad266a98899a1873123920a8b2662a3de7ec6b7c13f377f0404069c97b733d2b
