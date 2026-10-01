@@ -1,0 +1,275 @@
+{
+ "startedAt": "2026-10-01T22:18:53.746Z",
+ "sources": {
+  "视频": {
+   "id": "node_286gjk6wx3",
+   "plus": [
+    {
+     "testid": "flow-node-target-connection-menu-button",
+     "aria": "Create connected node before 视频 2",
+     "box": "36x36"
+    },
+    {
+     "testid": "flow-node-source-connection-menu-button",
+     "aria": "Create connected node after 视频 2",
+     "box": "36x36"
+    }
+   ],
+   "reads": [
+    {
+     "testid": "flow-node-target-connection-menu-button",
+     "aria": "Create connected node before 视频 2",
+     "menuAria": "添加上下文",
+     "box": "200x316@420,337",
+     "avail": [
+      "文本",
+      "图片",
+      "视频",
+      "音频"
+     ],
+     "dis": [
+      "时间线:无法连接这些节点",
+      "主体:无法连接这些节点",
+      "导演台:无法连接这些节点"
+     ]
+    },
+    {
+     "testid": "flow-node-source-connection-menu-button",
+     "aria": "Create connected node after 视频 2",
+     "menuAria": "添加节点",
+     "box": "200x316@802,337",
+     "avail": [
+      "视频"
+     ],
+     "dis": [
+      "文本:无法连接这些节点",
+      "图片:无法连接这些节点",
+      "音频:无法连接这些节点",
+      "时间线:素材信息仍在加载中，请稍后重试。",
+      "主体:没有可用的就绪资源",
+      "导演台:无法连接这些节点"
+     ]
+    }
+   ]
+  },
+  "主体": {
+   "id": "node_ghnwd00jmw",
+   "plus": [
+    {
+     "testid": "flow-node-target-connection-menu-button",
+     "aria": "Create connected node before 主体 1",
+     "box": "36x36"
+    },
+    {
+     "testid": "flow-node-source-connection-menu-button",
+     "aria": "Create connected node after 主体 1",
+     "box": "36x36"
+    }
+   ],
+   "reads": [
+    {
+     "testid": "flow-node-target-connection-menu-button",
+     "aria": "Create connected node before 主体 1",
+     "menuAria": "添加上下文",
+     "box": "200x316@510,352",
+     "avail": [
+      "音频"
+     ],
+     "dis": [
+      "文本:无法连接这些节点",
+      "图片:没有可用的就绪资源",
+      "视频:没有可用的就绪资源",
+      "时间线:无法连接这些节点",
+      "主体:无法连接这些节点",
+      "导演台:无法连接这些节点"
+     ]
+    },
+    {
+     "testid": "flow-node-source-connection-menu-button",
+     "aria": "Create connected node after 主体 1",
+     "menuAria": "添加节点",
+     "box": "200x316@770,352",
+     "avail": [
+      "图片",
+      "视频",
+      "音频"
+     ],
+     "dis": [
+      "文本:无法连接这些节点",
+      "时间线:无法连接这些节点",
+      "主体:无法连接这些节点",
+      "导演台:无法连接这些节点"
+     ]
+    }
+   ]
+  },
+  "音频": {
+   "id": "node_tjw6abjq71",
+   "plus": [
+    {
+     "testid": "flow-node-target-connection-menu-button",
+     "aria": "Create connected node before 音频 1",
+     "box": "36x36"
+    },
+    {
+     "testid": "flow-node-source-connection-menu-button",
+     "aria": "Create connected node after 音频 1",
+     "box": "36x36"
+    }
+   ],
+   "reads": [
+    {
+     "testid": "flow-node-target-connection-menu-button",
+     "aria": "Create connected node before 音频 1",
+     "menuAria": "添加上下文",
+     "box": "200x316@506,344",
+     "avail": [
+      "图片",
+      "音频"
+     ],
+     "dis": [
+      "文本:无法连接这些节点",
+      "视频:无法连接这些节点",
+      "时间线:无法连接这些节点",
+      "主体:无法连接这些节点",
+      "导演台:无法连接这些节点"
+     ]
+    },
+    {
+     "testid": "flow-node-source-connection-menu-button",
+     "aria": "Create connected node after 音频 1",
+     "menuAria": "添加节点",
+     "box": "200x316@742,344",
+     "avail": [
+      "视频",
+      "音频"
+     ],
+     "dis": [
+      "文本:无法连接这些节点",
+      "图片:无法连接这些节点",
+      "时间线:素材信息仍在加载中，请稍后重试。",
+      "主体:无法连接这些节点",
+      "导演台:无法连接这些节点"
+     ]
+    }
+   ]
+  },
+  "图片": {
+   "id": "node_rdqg4akbsz",
+   "plus": [
+    {
+     "testid": "flow-node-target-connection-menu-button",
+     "aria": "Create connected node before 图片 1",
+     "box": "36x36"
+    },
+    {
+     "testid": "flow-node-source-connection-menu-button",
+     "aria": "Create connected node after 图片 1",
+     "box": "36x36"
+    }
+   ],
+   "reads": [
+    {
+     "testid": "flow-node-target-connection-menu-button",
+     "aria": "Create connected node before 图片 1",
+     "menuAria": "添加上下文",
+     "box": "200x316@506,342",
+     "avail": [
+      "文本",
+      "图片"
+     ],
+     "dis": [
+      "视频:无法连接这些节点",
+      "音频:无法连接这些节点",
+      "时间线:无法连接这些节点",
+      "主体:无法连接这些节点",
+      "导演台:无法连接这些节点"
+     ]
+    },
+    {
+     "testid": "flow-node-source-connection-menu-button",
+     "aria": "Create connected node after 图片 1",
+     "menuAria": "添加节点",
+     "box": "200x316@738,342",
+     "avail": [
+      "图片",
+      "视频",
+      "音频"
+     ],
+     "dis": [
+      "文本:无法连接这些节点",
+      "时间线:素材信息仍在加载中，请稍后重试。",
+      "主体:没有可用的就绪资源",
+      "导演台:无法连接这些节点"
+     ]
+    }
+   ]
+  },
+  "文本": {
+   "id": "node_p3r9qn9ne5",
+   "plus": [
+    {
+     "testid": "flow-node-source-connection-menu-button",
+     "aria": "Create connected node after 文本 4",
+     "box": "36x36"
+    }
+   ],
+   "reads": [
+    {
+     "testid": "flow-node-source-connection-menu-button",
+     "aria": "Create connected node after 文本 4",
+     "menuAria": "添加节点",
+     "box": "200x316@756,352",
+     "avail": [
+      "图片",
+      "视频"
+     ],
+     "dis": [
+      "文本:无法连接这些节点",
+      "音频:无法连接这些节点",
+      "时间线:无法连接这些节点",
+      "主体:无法连接这些节点",
+      "导演台:无法连接这些节点"
+     ]
+    }
+   ]
+  },
+  "时间线": {
+   "id": "node_29pwydg5n1",
+   "plus": [
+    {
+     "testid": "flow-node-target-connection-menu-button",
+     "aria": "Create connected node before 时间线 2",
+     "box": "36x36"
+    }
+   ],
+   "reads": [
+    {
+     "testid": "flow-node-target-connection-menu-button",
+     "aria": "Create connected node before 时间线 2",
+     "menuAria": "添加上下文",
+     "box": "200x316@290,344",
+     "avail": [
+      "音频"
+     ],
+     "dis": [
+      "文本:无法连接这些节点",
+      "图片:没有可用的就绪资源",
+      "视频:没有可用的就绪资源",
+      "时间线:无法连接这些节点",
+      "主体:无法连接这些节点",
+      "导演台:无法连接这些节点"
+     ]
+    }
+   ]
+  }
+ },
+ "end": {
+  "status": "6 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%",
+  "credit": 805,
+  "nodes": 6,
+  "dev": [],
+  "extra": []
+ }
+}

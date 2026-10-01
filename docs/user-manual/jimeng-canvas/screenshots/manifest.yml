@@ -1241,7 +1241,7 @@ screenshots:
     captured_at: 2026-10-01T23:05:00+08:00
     verified_locator: '左栏新建**空**时间线节点 node_2nms3s9qgz（受控条件：60% 缩放）→ 细网格逐点试点选中（tl 只读不动）→ 枚举选中态 ⊕：before 可见@(251,344)、**after 不存在** → 点 before ⊕ → 菜单 [data-testid=canvas-context-menu] 200×316，七项各 [role=menuitem]，**标题逐字「添加上下文」**（其余六种源均为「添加节点」）→ 逐项读数：文本/图片/视频/时间线/主体/导演台 全部 aria-disabled=true + color rgba(255,255,255,0.2)，**只有音频** aria-disabled=false + rgb(255,255,255)。图片/视频 的原因逐字为「没有可用的就绪资源」（与从别的源出发时时间线报「素材信息仍在加载中」正好相反）'
     visible_text: 添加上下文
-    alt: 从时间线节点出发弹出的菜单，标题逐字是「**添加上下文**」而不是其他六种源的「添加节点」（被橙色高亮框标出）；七项里只有「音频」是白色可点，文本／图片／视频／时间线／主体／导演台全是灰暗的禁用态；左上角能看到该节点只有一个 ⊕ 按钮；左下角缩放读数 60%
+    alt: 从时间线节点出发（它是**唯一只有 before ⊕** 的类型，因此这张图的「添加上下文」标题**不是**它的专属）弹出的菜单：七项里只有「音频」是白色可点，文本／图片／视频／时间线／主体／导演台全是灰暗禁用态；节点左侧只有一个 ⊕ 按钮
     sha256: 14b5d4129a55c675a42670993c246ddf8b72f12022bf85dee33138d9d4444917
 
   - file: screenshots/102-audio-node-selected-f-inert.png
@@ -1399,3 +1399,27 @@ screenshots:
     visible_text: 全部清空
     alt: 导演台节点被选中（白色细边框）并展开标签面板：面板 224×44，横向一排六个圆形按钮，从左到右是「全部清空」的禁用斜线图标、青绿、靛蓝、紫、橙、黄五枚彩色圆点；面板浮在节点上方，节点里仍可见说明文字「在 3D 空间中设计角色、机位与镜头」与「进入导演台」按钮
     sha256: b09bdf16266254f2165eb319123cd277f9ab97d70835c77cffe3cc83499dfd68
+
+  - file: screenshots/71-subject-before-menu.png
+    task_id: connect-nodes
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T22:12:00+08:00
+    verified_locator: '左栏点「主体」新建**自建**主体节点 → 点节点选中（**硬断言 `selected===1`**）→ 点 `flow-node-target-connection-menu-button`（aria 逐字 `Create connected node before 主体 1`，36×36，**仅选中时出现**）→ 菜单 `canvas-context-menu` / `role=menu` / aria 逐字「**添加上下文**」 / 200×316，七项各 192×36：仅「音频」`cursor:pointer`+`rgb(255,255,255)`；文本/时间线/主体/导演台「无法连接这些节点」、图片/视频「**没有可用的就绪资源**」，均 `aria-disabled=true`+`rgba(255,255,255,0.2)` → 裁切 clip={x:479,y:228,w:293,h:467}（**节点 ∪ 菜单**并集，**7 个菜单项中心全部落在 clip 内，被裁 0**）。**只读结构，没有点任何一项。** 同一实例再点 after ⊕ 读得「添加节点 / 图片·视频·音频」⇒ 同源不同向。节点已按 id 精确删除。积分 805 未变。详见 SOURCE_OBSERVATIONS §3.90.2'
+    visible_text: 添加上下文
+    alt: 同一个「主体 1」节点，点它**左边**的 ⊕（左侧那个圆圈加号按钮）弹出的菜单，标题逐字是「添加上下文」；七项里只有「音频」是白色可点，文本、图片、视频、时间线、主体、导演台全是灰暗的禁用态；节点右侧还有一个未被点亮的 ⊕ 按钮
+    sha256: 729af985db51b2dbc10a3426c9afef3fe947c676cf5a65f38091b1279d68c5e2
+
+  - file: screenshots/71-subject-source-menu.png
+    task_id: connect-nodes
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T21:58:00+08:00
+    verified_locator: '左栏点「主体」新建**自建**主体节点 → 选中（断言 `selected===1`）→ 点 `flow-node-source-connection-menu-button`（aria 逐字 `Create connected node after 主体 1`，36×36）→ 菜单 `canvas-context-menu` / `role=menu` / aria 逐字「**添加节点**」 / 200×316@775,353，七项各 192×36：图片/视频/音频 `cursor:pointer`+白；文本/时间线/主体/导演台「无法连接这些节点」`aria-disabled=true`+`rgba(255,255,255,0.2)` → 裁切 clip={x:457,y:224,w:548,h:475}（**节点 ∪ 菜单**并集，**7 项全部落在 clip 内，被裁 0**）。**只读结构，没有点任何一项。** 节点已按 id 精确删除。积分 805 未变。详见 SOURCE_OBSERVATIONS §3.90.4'
+    visible_text: 添加节点
+    alt: **同一个「主体 1」节点**，改点它**右边**的 ⊕ 弹出的菜单，标题逐字变成「添加节点」；可点项从刚才的「只有音频」变成「图片 / 视频 / 音频」三项（白色），文本 / 时间线 / 主体 / 导演台仍是灰暗禁用态；左下角能看到节点左侧那个 ⊕ 按钮
+    sha256: 713c6a9e051c4ff74d167cda0e1ed154e540686eed892e5feb0faa25068583a3

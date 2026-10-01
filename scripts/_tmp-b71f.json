@@ -1,0 +1,109 @@
+{
+ "startedAt": "2026-10-01T22:22:32.557Z",
+ "reads": {
+  "before": {
+   "aria": "添加上下文",
+   "box": "200x316@505,353",
+   "items": [
+    {
+     "name": "文本",
+     "reason": "无法连接这些节点",
+     "dis": "true",
+     "cursor": "not-allowed"
+    },
+    {
+     "name": "图片",
+     "reason": "没有可用的就绪资源",
+     "dis": "true",
+     "cursor": "not-allowed"
+    },
+    {
+     "name": "视频",
+     "reason": "没有可用的就绪资源",
+     "dis": "true",
+     "cursor": "not-allowed"
+    },
+    {
+     "name": "音频",
+     "reason": null,
+     "dis": null,
+     "cursor": "pointer"
+    },
+    {
+     "name": "时间线",
+     "reason": "无法连接这些节点",
+     "dis": "true",
+     "cursor": "not-allowed"
+    },
+    {
+     "name": "主体",
+     "reason": "无法连接这些节点",
+     "dis": "true",
+     "cursor": "not-allowed"
+    },
+    {
+     "name": "导演台",
+     "reason": "无法连接这些节点",
+     "dis": "true",
+     "cursor": "not-allowed"
+    }
+   ]
+  },
+  "after": {
+   "aria": "添加节点",
+   "box": "200x316@775,353",
+   "items": [
+    {
+     "name": "文本",
+     "reason": "无法连接这些节点",
+     "dis": "true",
+     "cursor": "not-allowed"
+    },
+    {
+     "name": "图片",
+     "reason": null,
+     "dis": null,
+     "cursor": "pointer"
+    },
+    {
+     "name": "视频",
+     "reason": null,
+     "dis": null,
+     "cursor": "pointer"
+    },
+    {
+     "name": "音频",
+     "reason": null,
+     "dis": null,
+     "cursor": "pointer"
+    },
+    {
+     "name": "时间线",
+     "reason": "无法连接这些节点",
+     "dis": "true",
+     "cursor": "not-allowed"
+    },
+    {
+     "name": "主体",
+     "reason": "无法连接这些节点",
+     "dis": "true",
+     "cursor": "not-allowed"
+    },
+    {
+     "name": "导演台",
+     "reason": "无法连接这些节点",
+     "dis": "true",
+     "cursor": "not-allowed"
+    }
+   ]
+  }
+ },
+ "end": {
+  "status": "6 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%",
+  "credit": 805,
+  "nodes": 6,
+  "dev": [],
+  "extra": []
+ }
+}
