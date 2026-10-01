@@ -973,6 +973,48 @@ def p_channel_page_three_names(src):
     return not re.search(r'label:\s*\w+\s*\?[^,]*个人渠道', settings)
 
 
+def p_default_config_no_models(src):
+    """出厂配置里**一个可用模型都没有**——「先生成再配模型」是走不通的。
+
+    手册 README 原本让读者从首页直接点「生成图片或视频」，而首页「需要先知道的
+    几件事」里讲了计费、字幕入口、本地配合，**唯独没讲要先配模型**。
+    读者点进去必然撞上「当前没有可用模型」，而**本地部署里没有管理员可找**。
+
+    Batch 156 补了这一条，顺手把它登记成断言——因为它是**出厂常量**，
+    上游哪天预置了默认模型，README 那句「默认一个可用模型都没有」就该失效。
+
+    判据要求：
+      (a) `defaultConfig` 里渠道数组为空、四个模型字段为空串、apiKey 为空串；
+      (b) **对照**：源码注释明写「不能内置供应商模型」——
+          证明 (a) 是**有意的产品决定**而不是初始化代码漏写。
+          少了 (b)，上游哪天补上预置渠道，(a) 也可能只是「还没初始化完」。
+      (c) 那句空态文案确实存在（手册要原样引用它）。
+    """
+    store = git_show(src, "web/src/stores/use-config-store.ts")
+    if not store:
+        return None
+    m = re.search(r"export const defaultConfig: AiConfig = \{(.*?)\n\};", store, re.S)
+    if not m:
+        return False
+    body = m.group(1)
+    for field, empty in ((r"channels:", r"\s*\[\]"),
+                         (r"apiKey:", r'\s*""'),
+                         (r"model:", r'\s*""'),
+                         (r"imageModel:", r'\s*""'),
+                         (r"videoModel:", r'\s*""'),
+                         (r"textModel:", r'\s*""')):
+        fm = re.search(field + empty, body)
+        if not fm:
+            return False
+    # (b) 对照组：注释说明这是有意决定
+    if "不能内置供应商模型" not in store:
+        return False
+    # (c) 空态文案
+    r = subprocess.run(["git", "grep", "-l", "-F", "当前没有可用模型，请联系管理员或检查模型配置",
+                        REF, "--", "web/src"], cwd=src, capture_output=True, text=True)
+    return bool((r.stdout or "").strip())
+
+
 DEV_ROUTE_FOLDERS = "/dev/folders"
 DEV_ROUTE_REPRO = "/dev/director-repro"
 
@@ -1126,6 +1168,8 @@ REGISTRY = [
      p_channel_page_three_names, None),
     ("dev-lab-routes-no-entry", "两个 /dev 调试台挂在生产路由但界面零入口，且隔离逻辑是 DEV-only",
      p_dev_lab_routes_no_entry, None),
+    ("default-config-no-models", "出厂配置零可用模型：先配模型是所有生成动作的前置条件",
+     p_default_config_no_models, None),
 ]
 
 

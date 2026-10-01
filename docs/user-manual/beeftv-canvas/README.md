@@ -22,6 +22,7 @@ BeefTV 是一个「无限画布 + 时间线剪辑 + 三维导演台 + 云端 Age
 | 建节点、传素材、连参考 | [10-tasks/](10-tasks/README.md) |
 | 整理画布库：搜索、文件夹、导入导出 | [10-tasks/manage-canvases.md](10-tasks/manage-canvases.md) |
 | 把画布给别人看、留一份副本 | [10-tasks/readonly-canvas.md](10-tasks/readonly-canvas.md) |
+| **先配一个模型渠道**（生成前的前置步骤） | [10-tasks/model-channels.md](10-tasks/model-channels.md) |
 | 生成图片或视频 | [10-tasks/generate-images.md](10-tasks/generate-images.md) · [10-tasks/generate-video.md](10-tasks/generate-video.md) |
 | 剪辑、配字幕、导出成片 | [10-tasks/timeline-editing.md](10-tasks/timeline-editing.md) · [10-tasks/subtitle-highlights.md](10-tasks/subtitle-highlights.md) · [10-tasks/timeline-export.md](10-tasks/timeline-export.md) |
 | 搭三维场景与运镜 | [10-tasks/director-basics.md](10-tasks/director-basics.md) |
@@ -29,11 +30,12 @@ BeefTV 是一个「无限画布 + 时间线剪辑 + 三维导演台 + 云端 Age
 | 搞懂名词与设计取舍 | [30-concepts.md](30-concepts.md) |
 | 报错了先看这里 | [90-troubleshooting.md](90-troubleshooting.md) |
 
-## 需要先知道的三件事
+## 需要先知道的四件事
 
-1. **生成类操作按量计费**——提交图片/视频生成会消耗渠道额度，相关页面都标注了费用提示与「可能再次消耗积分」的防重复扣费确认；
-2. **字幕入口不在视频节点上**——要在多轨时间线里点选 S 轨字幕片段，再点「精细编辑」；
-3. **部分功能需要本地或后台配合**——深度/线稿/姿态需要本机伴随进程，语音转写字幕需要本机 whisper.cpp，缺配置时会有明确报错（见 [90-troubleshooting.md](90-troubleshooting.md)）。
+1. **生成前得先有模型——这一步挡在所有生成动作前面**。新装好的 BeefTV **默认一个可用模型都没有**（出厂配置里渠道是空的、也没有 API Key，源码注释写明「不能内置供应商模型」）。直接去点「生成」会看到提示「**当前没有可用模型，请联系管理员或检查模型配置**」——**但本地部署里没有管理员可找，模型是你自己配的**：去 [10-tasks/model-channels.md](10-tasks/model-channels.md) 配一个渠道和 Key 再说。
+2. **生成类操作按量计费**——提交图片/视频生成会消耗渠道额度，相关页面都标注了费用提示与「可能再次消耗积分」的防重复扣费确认；
+3. **字幕入口不在视频节点上**——要在多轨时间线里点选 S 轨字幕片段，再点「精细编辑」；
+4. **部分功能需要本地或后台配合**——深度/线稿/姿态需要本机伴随进程，语音转写字幕需要本机 whisper.cpp，缺配置时会有明确报错（见 [90-troubleshooting.md](90-troubleshooting.md)）。
 
 ## 约定
 

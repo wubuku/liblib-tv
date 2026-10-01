@@ -100,6 +100,8 @@ run_case "26) local 标记不再写死 true" web/src/services/workspace-mode.ts 
 
 run_case "27) /dev 调试台接上侧栏入口" web/src/components/layout/workspace-sidebar-nav.tsx "$HERE/selftest-fix-27-dev-lab-entry.py" 'to: "/dev/folders"' "dev-lab-routes-no-entry"
 
+run_case "28) 出厂配置预置了默认模型" web/src/stores/use-config-store.ts "$HERE/selftest-fix-28-default-model.py" 'channels: [{ id: "beefapi-default"' "default-config-no-models"
+
 echo "=== 基线：真实 origin/main 应当通过 ==="
 if python3 "$GATE" >/dev/null 2>&1; then echo "  ✓ origin/main 通过"; else echo "  ✗ origin/main 未通过"; FAIL=$((FAIL+1)); fi
 
