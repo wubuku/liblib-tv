@@ -1183,3 +1183,15 @@ screenshots:
     visible_text: 添加参考 / 主体 / 图片 / 音频
     alt: 音频节点的 @ 提及面板有三类（240×192，被橙色高亮框标出）：类别自上而下是「主体」「图片」「音频」，比视频节点少一个「视频」—— 也就是说音频节点引不了画布上的视频；右下方的提示词框里只有一个 @ 符号
     sha256: 02fd465007d8fe1fbd18f86caabe4f7d01e24853811ee33c1f07de1d40219a11
+
+  - file: screenshots/97-from-canvas-picker.png
+    task_id: prepare-generation
+    step: 14
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T17:29:00+08:00
+    verified_locator: '在空图片节点（宿主）上点 aria 逐字「添加参考」→ [role="menu"][aria-label="添加参考"] 240×130 → 点第三项「从画布选择」（232×38@268,400，1 svg，无 aria-disabled）→ 出现全屏拾取模式：canvas-source-picker-canvas-mask 与 canvas-source-picker-canvas-frame 均 1280×720@0,0、generation-source-picker-chip 145×44@568,32（逐字「从画布选择」）、generation-source-picker-close aria 逐字「取消选择」24×24@677,42；form[data-testid=generation-form] 的 aria 由「图片」变为「生成」；隐藏辅助文案逐字 Select a supported ready media item on the canvas. Press Escape to cancel.（实测 1×1@850,630，视觉不可见）。**只开未选任何素材**，积分 805 未变，收尾按 data-id 精确删除'
+    visible_text: 从画布选择
+    alt: 进入「从画布选择」拾取模式后，屏幕顶部居中出现的一条蓝色圆角状态条（被橙色高亮框标出）：左端是一个取景框图标，中间是深色底的逐字文案「从画布选择」，右端是一个 ✕ 取消按钮（单独被另一个橙色高亮框标出，aria 逐字「取消选择」）—— 这是这个全屏模式在视觉上唯一的提示，其余部分（1280×720 的全屏遮罩与画布框）是不可见的
+    sha256: ea789554ece238b862607c68625aa4d7f980e0a11f32285471209249921b4b9e
