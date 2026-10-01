@@ -1,0 +1,84 @@
+{
+  "checks": [
+    {
+      "name": "consistency:all-pass",
+      "ok": true,
+      "detail": "failed=0 listed=[] rc=0"
+    },
+    {
+      "name": "consistency:retry-pass-not-listed",
+      "ok": true,
+      "detail": "回归守卫: 重试通过的 9002 不得留在清单里。failed=1 listed=['9001']"
+    },
+    {
+      "name": "consistency:retry-pass-announced",
+      "ok": true,
+      "detail": "重试通过必须有明确输出, 否则「清单少了谁」无从解释"
+    },
+    {
+      "name": "consistency:all-fail",
+      "ok": true,
+      "detail": "只有一个真探针时也应自洽。failed=1 listed=['9001']"
+    },
+    {
+      "name": "preflight:liblib-exits-2-on-dead-server",
+      "ok": true,
+      "detail": "死端口必须在开跑前 exit 2。rc=2 out=FATAL: dev server not reachable at http://127.0.0.1:4499\n       start it first (npm run dev), or set LIBLIB_BASE_URL\n"
+    },
+    {
+      "name": "preflight:frameos-exits-2-on-dead-server",
+      "ok": true,
+      "detail": "死端口必须在开跑前 exit 2。rc=2 out=FATAL: dev server not reachable at http://127.0.0.1:4499\n       start it first (npm run dev), or set LIBLIB_BASE_URL\n"
+    },
+    {
+      "name": "health:frameos-warns-when-server-dies",
+      "ok": true,
+      "detail": "服务器前置探活后立刻 503, 必须告警。hits=43 out= dev recompiles on any source change (yours OR a parallel\n         session's), and requests fail while it rebuilds.\n         Re-run the failed batches before treating them as regressions.\n         probe log: /var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//frameos-health.EIzXCO\nfailed batches: 347\n"
+    },
+    {
+      "name": "health:frameos-warning-names-probe-log",
+      "ok": true,
+      "detail": "告警必须指出 probe log 位置:  dev recompiles on any source change (yours OR a parallel\n         session's), and requests fail while it rebuilds.\n         Re-run the failed batches before treating them as regressions.\n         probe log: /var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//frameos-health.EIzXCO\nfailed batches: 347\n"
+    },
+    {
+      "name": "health:frameos-preflight-let-flaky-through",
+      "ok": true,
+      "detail": "前置探活必须放过第 1 个 200, 否则只验到 exit 2 那条老路径: FAIL batch347\n  File \"/Users/yangjiefeng/.pyenv/versions/3.10.6/lib/python3.10/site-packages/playwright/_impl/_connection.py\", line 528, in wrap_api_call\n    raise rewrite_error(error, f\"{parsed_st['a"
+    },
+    {
+      "name": "health:frameos-prober-actually-sampled",
+      "ok": true,
+      "detail": "探针必须真的采到过样(否则「没告警」是因为没机会看): hits=43"
+    },
+    {
+      "name": "health:liblib-warns-when-server-dies",
+      "ok": true,
+      "detail": "服务器前置探活后立刻 503, 必须告警。hits=12 out=uilds.\n         Re-run the failed batches before treating them as regressions.\n         probe log: /var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.iMgmVb/dev-server-health.log\nmavis-trash: moved to trash: '/var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.iMgmVb'\n"
+    },
+    {
+      "name": "health:liblib-warning-names-probe-log",
+      "ok": true,
+      "detail": "告警必须指出 probe log 位置: uilds.\n         Re-run the failed batches before treating them as regressions.\n         probe log: /var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.iMgmVb/dev-server-health.log\nmavis-trash: moved to trash: '/var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.iMgmVb'\n"
+    },
+    {
+      "name": "health:liblib-preflight-let-flaky-through",
+      "ok": true,
+      "detail": "前置探活必须放过第 1 个 200, 否则只验到 exit 2 那条老路径: running 1 verifier(s) with 4 job(s); logs -> /var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.iMgmVb\n----\nPASS batch7\n----\nliblib verifiers: 1 passed, 0 failed (of 1, after 1 retry)\n"
+    },
+    {
+      "name": "health:liblib-prober-actually-sampled",
+      "ok": true,
+      "detail": "探针必须真的采到过样(否则「没告警」是因为没机会看): hits=12"
+    },
+    {
+      "name": "health:frameos-quiet-when-healthy",
+      "ok": true,
+      "detail": "健康时不得告警(否则是噪声): PASS batch9003\n----\nframeos verifiers: 1 passed, 0 failed (after retry)\n"
+    },
+    {
+      "name": "health:liblib-quiet-when-healthy",
+      "ok": true,
+      "detail": "健康时不得告警(否则是噪声): ifiers.L3vdSe\n----\nPASS batch7\n----\nliblib verifiers: 1 passed, 0 failed (of 1, after 1 retry)\nmavis-trash: moved to trash: '/var/folders/17/x4gfsdmj74355x331tbfjts80000gn/T//liblib-verifiers.L3vdSe'\n"
+    }
+  ]
+}
