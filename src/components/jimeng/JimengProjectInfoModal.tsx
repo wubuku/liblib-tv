@@ -29,7 +29,14 @@ const DIST = [
   { key: null, label: "其他" },
 ] as const;
 
-export function JimengProjectInfoModal({ onClose }: { onClose: () => void }) {
+export function JimengProjectInfoModal({
+  onClose,
+  onViewCredits,
+}: {
+  onClose: () => void;
+  /** Batch 803: 「查看积分明细」跳到会员页的积分详情（跨面板闭环）。 */
+  onViewCredits?: () => void;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [tab, setTab] = useState<"basic" | "credits">("basic");
   const project = useJimengStore((s) => s.project);
@@ -131,6 +138,10 @@ export function JimengProjectInfoModal({ onClose }: { onClose: () => void }) {
 
             <button
               type="button"
+              onClick={() => {
+                onViewCredits?.();
+                onClose();
+              }}
               className="mt-6 text-[13px] text-[#009EFA] hover:underline"
             >
               查看积分明细

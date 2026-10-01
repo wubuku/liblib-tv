@@ -879,3 +879,73 @@ verifier batch348 **24/24 PASS**；变异测试摘掉组件 → FAIL。
 
 **候选 Batch 349**：`generations` 死状态清理；「双击空白添加节点」菜单视觉与源站
 一致性（采样阻塞）；用死状态普查法审 jimeng/director 各自的 store。
+
+---
+
+## Batch 349 — 生成完成提示重复派发 11 次 + 删死状态字段
+
+commit: (本批)
+性质: **CLONE_DECISION**（克隆侧；源站人机验证仍被拦，无一条源站采样）
+
+### 缺陷一（用户可见）：一次生成弹出 11 条一模一样的「生成完成 ✓」
+
+`FrameosGenerationOverlay` 的 tick 由 `setInterval(tick, 50)` 驱动，而收尾
+`setTimeout(..., 500)` 写在 tick 里、**且 `p>=100` 之后 interval 不停** ——
+于是收尾窗口内**每个 tick 都排一个收尾 timeout**。第一个 timeout 把
+`currentGeneration` 置 null 触发清理，但它之前排下的那些仍会陆续触发，
+**每个都 dispatch 一次 `frameos-toast`**；`showToast` 不去重、逐条堆叠。
+
+静态推算 500ms/50ms ≈ 11；**探针在真实 30 秒 mock 下实测 11 条**（`dom_done_toast_count=11`），
+推算与实测逐一对上。
+
+修：effect 体内加 `finished` 闩锁 + 进入收尾即 `clearInterval`。
+闩锁是局部变量而 effect 依赖 `currentGeneration`，所以**每次新生成天然拿到新闩锁**
+—— 验证器专为此断言了「第二次生成也要提示」。
+
+> 顺带：进度跑满后不再每 50ms 触发一次 setProgress/setNow（每秒 20 次渲染）。
+
+### 缺陷二：`generations` 死状态字段已删
+
+普查（`scripts/_deadstate_census.py`，临时工具未入库）扫 `FrameosCanvasState` 的
+**33 个数据字段**的 store 外读取点 —— **只有 `generations` 是 0**，
+且 store 内只有「声明 + 初值 `[]`」两处，从无任何读写。`src/` 与 `scripts/` 均零引用。
+
+留着它等于用注释承诺一个「生成任务列表」功能，对下一个维护者是**文档性谎言**。
+要不要「生成历史」是产品决定，源站未采样，**不发明**。
+
+### 验证
+
+verifier batch349 **9/9 PASS**、0 诊断。**两次变异测试都确认验证器会红**：
+① 去掉闩锁+停表 → `r1:one-done-event got=11`（数字等于缺陷原文）；
+② 加回 `generations` → `store:generations-field-removed has=True`。
+
+**mock 时钟压到 2s**：机制与时长无关（重复次数只取决于 p>=100 后的 500ms 窗口），
+变异测试在 2s 下同样复现 11 条，反过来印证；真实 30s 证据留在探针。
+
+### 两次「变异测试自身的坑」
+
+① 第一次变异只去闩锁、**却保留了 `clearInterval`** —— interval 照样停、缺陷没恢复，
+**验证器照常通过**。
+> **一次「变异测试通过」毫无意义，除非先确认变异真的移除了被测性质**；
+> 变异不到位比不做变异更危险，因为它给的是虚假信心。
+> 这次靠「报错里的数字必须等于缺陷原文的 11」才看穿 —— 只看到 PASS 就会把
+> 这批的验证证据当成废纸。
+
+② 第二轮数出 2 条，排查确认是**测量脚手架造的缺陷**：`INSTALL_SPY` 每轮都
+`addEventListener` 且不清旧的，一次派发被两个监听器各推一遍。
+修法：监听器只装一次 + 游标切分。
+> 这是本会话**第四次**「先看失败在哪一步」救下误改应用代码
+> （前三次：346 探针坐标失效、348 探针复用已有节点、Playwright `position` 笔误）。
+
+### 顺带记录（未修，非缺陷）
+
+- **生成流程在 demo 首屏完全不可达**：7 个 fixture 节点全是 text 或带 `imageUrl` 的
+  image/video，`FrameosPromptEditor` 对它们一律 return null。必须先加一个
+  「无媒体内容的生成节点」才够得着生成按钮。
+- **Batch 347 的可寻址性门禁普查不到生成按钮**：`FrameosGenerationOverlay`
+  整个没有任何 `data-frameos-*` 钩子，门禁在三种 UI 态里都没触达过它。
+  门禁的边界是「**普查所及范围内**零盲区」，不是「全 app 零盲区」。
+
+**候选 Batch 350**：`toggleDebugMode` 零调用（batch348 普查发现，本轮普查
+只覆盖数据字段未覆盖 action）；用同一普查法审 jimeng/director 各自的 store；
+「双击空白添加节点」菜单视觉与源站一致性（采样阻塞）。

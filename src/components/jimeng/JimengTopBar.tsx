@@ -88,6 +88,8 @@ export function JimengTopBar() {
   const [projectInfoOpen, setProjectInfoOpen] = useState(false);
   // Batch 799: 复制项目需要 pushToast / 剪贴板
   const pushToast = useJimengStore((s) => s.pushToast);
+  // Batch 803: 节点摘要弹层点节点 → 选中 + 聚焦
+  const requestFocusNode = useJimengStore((s) => s.requestFocusNode);
   // 单击项目名 = 行内重命名 (SOURCE_FACT batch 29)
   const [editingName, setEditingName] = useState(false);
 
@@ -187,6 +189,11 @@ export function JimengTopBar() {
             <JimengProjectPanel
               projectName={project.name}
               onClose={() => setProjectOpen(false)}
+              onOpenProject={(name) => {
+                renameProject(name);
+                pushToast(`已切换到「${name}」（mock）`);
+              }}
+              onCreate={() => pushToast("新建画布项目（mock）")}
             />
           ) : null}
         </div>
@@ -209,6 +216,17 @@ export function JimengTopBar() {
             <JimengNodeSummaryPopover
               nodeLabels={nodeLabels}
               onClose={() => setNodeSummaryOpen(false)}
+              onSelectNode={(label) => {
+                const hit = useJimengStore
+                  .getState()
+                  .nodes.find(
+                    (n) =>
+                      (typeof n.data?.title === "string" ? n.data.title : "节点") ===
+                      label,
+                  );
+                if (hit) requestFocusNode(hit.id);
+              }}
+              onOpenProjectInfo={() => setProjectInfoOpen(true)}
             />
           ) : null}
         </div>
@@ -292,6 +310,7 @@ export function JimengTopBar() {
           <JimengSharePanel
             canvasUrl={CANVAS_URL}
             onClose={() => setShareOpen(false)}
+            onCopy={copyProject}
           />
         ) : null}
 
@@ -362,7 +381,10 @@ export function JimengTopBar() {
       </div>
       </header>
       {projectInfoOpen ? (
-        <JimengProjectInfoModal onClose={() => setProjectInfoOpen(false)} />
+        <JimengProjectInfoModal
+          onClose={() => setProjectInfoOpen(false)}
+          onViewCredits={() => setMemberOpen(true)}
+        />
       ) : null}
       {memberOpen ? <JimengMemberModal onClose={() => setMemberOpen(false)} /> : null}
       {shortcutsOpen ? (

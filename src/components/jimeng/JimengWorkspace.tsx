@@ -101,6 +101,28 @@ function JimengFlow() {
   const past = useJimengStore((s) => s.past);
   const future = useJimengStore((s) => s.future);
   const selectedNodeId = useJimengStore((s) => s.selectedNodeId);
+  // Batch 803 (SOURCE_FACT UX): 顶栏「节点摘要」弹层点某个节点 → 该节点被选中
+  // 且视口平移聚焦到它。nonce 变化才重跑，支持重复点同一节点。
+  const focusReq = useJimengStore((s) => s.focusNodeRequest);
+  const focusNode = useCallback(
+    (nodeId: string) => {
+      const n = useJimengStore.getState().nodes.find((x) => x.id === nodeId);
+      if (!n) return;
+      selectNode(nodeId);
+      void fitView({
+        nodes: [{ id: nodeId }],
+        duration: 300,
+        maxZoom: 1,
+        padding: 0.35,
+      });
+      void n; // 尺寸信息保留给后续按节点大小算 padding
+    },
+    [fitView, selectNode],
+  );
+  useEffect(() => {
+    if (!focusReq) return;
+    focusNode(focusReq.id);
+  }, [focusReq, focusNode]);
   const toolActive = useJimengStore((s) => s.toolActive);
   const setToolActive = useJimengStore((s) => s.setToolActive);
   const groupSelected = useJimengStore((s) => s.groupSelected);

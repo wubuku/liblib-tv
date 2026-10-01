@@ -1,0 +1,56 @@
+{
+  "batch": 349,
+  "defect": "生成完成后「生成完成 ✓」toast 重复派发 11 次（p>=100 后每个 tick 都排收尾 timeout）",
+  "defect2": "generations 死状态字段：全仓只有声明+初值，从无读写",
+  "clock_note": "验证器用 2s mock 时钟；重复次数只取决于 p>=100 后的 500ms 窗口，与 durationMs 无关（真实 30s 时长的证据见探针 runtime-audit.json）",
+  "desktop": {
+    "viewport": "1440x900",
+    "checks": [
+      "store:generations-field-removed",
+      "setup:generate-button-present",
+      "r1:flow-started",
+      "r1:one-done-event",
+      "r1:one-done-dom-toast",
+      "r2:flow-started",
+      "r2:one-done-event",
+      "r2:one-done-dom-toast",
+      "diagnostics:zero"
+    ],
+    "round1": {
+      "started": true,
+      "cursor_before": 0,
+      "new_events": [
+        "生成完成 ✓"
+      ],
+      "done_events": [
+        "生成完成 ✓"
+      ],
+      "dom_toasts": [
+        "生成完成 ✓"
+      ],
+      "dom_done": [
+        "生成完成 ✓"
+      ]
+    },
+    "round2": {
+      "started": true,
+      "cursor_before": 1,
+      "new_events": [
+        "生成完成 ✓"
+      ],
+      "done_events": [
+        "生成完成 ✓"
+      ],
+      "dom_toasts": [
+        "生成完成 ✓"
+      ],
+      "dom_done": [
+        "生成完成 ✓"
+      ]
+    },
+    "diagnostics": {
+      "console": 0,
+      "errors": []
+    }
+  }
+}

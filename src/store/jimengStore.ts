@@ -60,6 +60,10 @@ export interface JimengCanvasState {
   onNodesChange: (changes: NodeChange<JimengNode>[]) => void;
   onEdgesChange: (changes: EdgeChange[]) => void;
   selectNode: (id: string | null) => void;
+  /** Batch 803: 顶栏「节点摘要」弹层点节点 → 选中并聚焦该节点。
+   *  nonce 用于重复点同一节点时也能重新触发（否则值不变、effect 不跑）。 */
+  focusNodeRequest: { id: string; nonce: number } | null;
+  requestFocusNode: (id: string) => void;
   setZoomPercent: (z: number) => void;
   /** "+" 手柄菜单 → 新建视频节点 (右侧 160 间距) 并连线 (Batch 4) */
   addVideoNodeAfter: (sourceId: string) => void;
@@ -326,6 +330,13 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   onEdgesChange: (changes) =>
     set((state) => ({ edges: applyEdgeChanges(changes, state.edges) })),
+
+  focusNodeRequest: null,
+
+  requestFocusNode: (id) =>
+    set((state) => ({
+      focusNodeRequest: { id, nonce: (state.focusNodeRequest?.nonce ?? 0) + 1 },
+    })),
 
   selectNode: (id) =>
     set((state) => ({

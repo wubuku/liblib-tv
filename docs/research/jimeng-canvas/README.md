@@ -4072,3 +4072,34 @@ zoomIn 等实例 API），**不是 DOM 节点**，直接 `ref.current.setAttribu
   以与 `JimengMemberModal` 一致（稳定的 SOURCE_FACT 是格式，见 §9.5）。
 - `Zoom options, 100%` vs `73%` —— 源站当前视口 100%；复刻沿用 README §4 记录的
   源站初始矩阵（73%）作为 demo 初始态。
+
+## 14. Batch 803 — 顶栏新增控件接成真交互（2026-10-01）
+
+batch 794/795/799 把顶栏控件的**外观与文案**复刻出来了，但其中若干按钮是死按钮：
+分享面板的「复制链接」没有 `onCopy`、节点摘要弹层点节点没有任何反应、
+项目面板点项目名/新建都不动、项目信息的「查看积分明细」不跳转。
+静态复刻做到这一步就停了 —— 本批把它们接成**真交互**（mock 数据支持）。
+
+### 14.1 交互契约与实现
+
+| 控件 | 交互 | 实现 |
+|---|---|---|
+| 分享面板「复制链接」 | 写剪贴板 + toast | 复用 batch 799 的 `copyProject()` |
+| 节点摘要弹层 · 节点条目 | 该节点**被选中**且**视口聚焦**平移过去 | store 新增 `focusNodeRequest {id, nonce}` + `requestFocusNode(id)`；`JimengFlow` 用 `fitView({nodes:[{id}], duration:300, maxZoom:1, padding:0.35})` 聚焦 |
+| 节点摘要「查看项目信息」 | 打开项目信息模态 | 复用 `projectInfoOpen` |
+| 项目信息「查看积分明细」 | 跳会员弹层的「积分详情」，并关闭本模态 | 跨面板闭环 |
+| 项目面板 · 项目名 | 改写顶栏标题（`renameProject`）+ toast | mock 切换 |
+| 项目面板「新建画布项目」 | toast | mock |
+
+`focusNodeRequest` 带 `nonce`：只存 id 的话，重复点同一节点时值不变、
+`useEffect` 不会重跑，第二次点击就失灵。nonce 让重复点击仍能触发。
+
+### 14.2 验收取向：断言**状态变化**，不断言元素存在
+
+`verify-jimeng-batch803.py` 17 项断言里，交互类断言都读**状态**而非存在性：
+剪贴板内容、`.react-flow__node.selected` 的 data-id、`.react-flow__viewport`
+的 transform 前后是否不同、顶栏标题 innerText 是否改名、toast 文案。
+「按钮存在」只能证明外观在，证明不了它是活的。
+
+踩坑：断言节点内容时用 `[data-id="..."]` 命中了 2 个元素 —— 节点本体与它的
+`NodeToolbar` **共用同一个 data-id**。必须写成 `.react-flow__node[data-id="..."]`。

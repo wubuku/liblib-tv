@@ -137,7 +137,11 @@ interface FrameosCanvasState {
   croppingNodeId: string | null;
 
   // 生成任务: { id, startedAt, durationMs, edgeIds, nodeIds, status }
-  generations: Generation[];
+  // Batch 349: 删掉 `generations: Generation[]` —— 死状态普查（扫全 src/ 每个
+  // 状态字段的外部读取点）证明它**只有声明和初值两处、从无任何读写**：
+  // startGeneration 只写 currentGeneration，完成时记录直接丢失。
+  // 留着它等于用注释承诺一个「生成任务列表」功能 —— 那是对维护者的文档性谎言。
+  // 真正要「生成历史」是产品决定，源站未采样，不在这里发明。
   currentGeneration: Generation | null;
 
   // ───── Actions ─────
@@ -643,7 +647,6 @@ export const useFrameosStore = create<FrameosCanvasState>((rawSet, get) => {
   past: [],
   future: [],
   canvasData: INITIAL_CANVAS_DATA,
-  generations: [],
   currentGeneration: null,
 
   setBreadcrumb: (b) => {
