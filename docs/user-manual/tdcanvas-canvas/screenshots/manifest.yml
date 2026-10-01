@@ -206,14 +206,14 @@ screenshots:
 
   - file: screenshots/07-connect-references-drop-menu.png
     task_id: connect-references
-    step: 从视频节点输出口拖线到空白处松手，弹出「利用画布节点生成」上下文菜单
+    step: 从视频节点输出口拖线到空白处松手，弹出上下文菜单（拍摄时该菜单标题为「利用画布节点生成」；当前 v0.14.0 已改名为「引用该节点生成」，四项不变）
     route: '/canvas/:id'
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-27'
-    verified_locator: '菜单标题 利用画布节点生成 / 选项 文本生成(提示词·广告词·品牌文案) 图片生成 视频生成 音频参考'
+    verified_locator: '菜单标题 利用画布节点生成（旧文案，当前版本为 引用该节点生成，见 i18n canvas.createMenu.fromNode 与 dist/assets/app-Djk_0pPR.js）/ 选项 文本生成(提示词·广告词·品牌文案) 图片生成 视频生成 音频参考'
     visible_text: '利用画布节点生成'
-    alt: 拖线到空白处松手后弹出利用画布节点生成菜单，含文本生成、图片生成、视频生成、音频参考四项
+    alt: 拖线到空白处松手后弹出的引用生成菜单，含文本生成、图片生成、视频生成、音频参考四项（截图拍摄时菜单名为「利用画布节点生成」，当前版本已改名）
     sha256: b0612c2f532c0c6228bdf106483c05a91f9ccfeee5592057ae71c0513cf5e10b
 
   - file: screenshots/07-connect-references-connection-menu.png
