@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type ChangeEvent } from "react";
+import { Fragment, useRef, useState, type ChangeEvent } from "react";
 import {
   ArrowDownToLine,
   Boxes,
@@ -258,14 +258,23 @@ export function DirectorIconRail({
     <div
       data-director-icon-rail
       aria-label="导演台资源栏"
-      className="absolute inset-y-0 left-0 z-30 hidden w-[46px] flex-col items-center gap-1 border-r border-white/[0.07] bg-[#1a1a1a] py-3 min-[900px]:flex"
+      // Batch 602（源站 2026-10-01 实测，/tmp/src593/probe50）：
+      // 源站 rail 是 `<nav>`，`border-white/8 flex w-12 shrink-0 flex-col
+      // items-center gap-2 border-r p-2` —— 48px 宽、**gap 2(8px)**、四周
+      // `p-2`，底色 `#171717`，右边框 `white/8`。clone 原先是 46px /
+      // gap-1 / py-3 / `#1a1a1a` / `white/[0.07]`，节奏密了 4px、底色偏浅。
+      className="absolute inset-y-0 left-0 z-30 hidden w-12 shrink-0 flex-col items-center gap-2 border-r border-white/8 bg-[#171717] p-2 min-[900px]:flex"
     >
-      <div className="flex flex-col items-center gap-1">
-        {railEntries.map((entry) => {
+      {/* 源站节奏：gap-2（8px）。`场景` 与 `添加角色` 之间还夹一条
+          `<div class="border-white/8 h-2 w-8 border-b">` 分隔线（32×8
+          @(8,100)）——加上上下各 8px 的 gap，正好把 添加角色 顶到 y=116。 */}
+      <div className="flex flex-col items-center gap-2">
+        {railEntries.map((entry, index) => {
           const Icon = entry.icon;
           const isActive = active === entry.id;
           return (
-            <div key={entry.id} className="relative">
+            <Fragment key={entry.id}>
+            <div className="relative">
               <button
                 type="button"
                 data-director-rail-entry={entry.id}
@@ -273,12 +282,16 @@ export function DirectorIconRail({
                 title={entry.label}
                 aria-pressed={isActive}
                 onClick={() => select(entry.id)}
+                // 源站逐字：`text-white/72 hover:bg-white/8 flex size-8
+                // items-center justify-center rounded-lg transition-colors
+                // hover:text-white`，选中态叠 `bg-white/10 text-white`。
                 className={cn(
-                  "flex size-8 items-center justify-center rounded-lg text-[#a5a5a5] transition-colors",
-                  isActive ? "bg-white/[0.12] text-white" : "hover:bg-white/[0.06] hover:text-[#d8d8d8]",
+                  "flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors",
+                  "hover:bg-white/8 hover:text-white",
+                  isActive && "bg-white/10 text-white",
                 )}
               >
-                <Icon size={16} />
+                <Icon size={20} />
               </button>
               {entry.id === "add-character" && openFlyout === "add-character" && (
                 <div
@@ -429,6 +442,17 @@ export function DirectorIconRail({
                 </div>
               )}
             </div>
+            {/* 源站在 `场景` 与 `添加角色` 之间有一条
+                `<div class="border-white/8 h-2 w-8 border-b">`（32×8 @(8,100)）。
+                它是 nav 的直接子节点，所以要跟按钮的包裹 div 平级。 */}
+            {index === 0 ? (
+              <span
+                aria-hidden="true"
+                data-director-rail-divider
+                className="block h-2 w-8 border-b border-white/8"
+              />
+            ) : null}
+            </Fragment>
           );
         })}
       </div>
@@ -437,9 +461,12 @@ export function DirectorIconRail({
         data-director-rail-entry="help"
         aria-label="帮助"
         title="帮助"
-        className="mt-auto flex size-8 items-center justify-center rounded-full text-[#a5a5a5] hover:bg-white/[0.06] hover:text-[#d8d8d8]"
+        // 源站的「帮助」与其它 rail 项同款：`rounded-lg`（不是 clone 的
+        // rounded-full）+ `text-white/72 hover:bg-white/8 hover:text-white`，
+        // 图标同为 20px。
+        className="mt-auto flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
       >
-        <HelpCircle size={16} />
+        <HelpCircle size={20} />
       </button>
       <input
         ref={characterUploadInputRef}

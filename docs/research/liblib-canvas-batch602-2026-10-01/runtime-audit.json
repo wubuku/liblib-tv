@@ -1,0 +1,365 @@
+{
+  "viewport": "1920x1150",
+  "checks": [
+    {
+      "name": "rail:48px-pad-8-gap-8-171717",
+      "ok": true,
+      "detail": {
+        "box": {
+          "x": 0,
+          "y": 84,
+          "w": 48,
+          "h": 884
+        },
+        "padding": "8px",
+        "gap": "8px",
+        "background": "rgb(23, 23, 23)",
+        "borderRightWidth": "1px",
+        "borderRightColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+      }
+    },
+    {
+      "name": "entries:32x32-at-x8-rounded-lg-20px-icon",
+      "ok": true,
+      "detail": [
+        [
+          "场景",
+          {
+            "x": 8,
+            "y": 92,
+            "w": 32,
+            "h": 32
+          },
+          20
+        ],
+        [
+          "添加角色",
+          {
+            "x": 8,
+            "y": 148,
+            "w": 32,
+            "h": 32
+          },
+          20
+        ],
+        [
+          "添加机位",
+          {
+            "x": 8,
+            "y": 188,
+            "w": 32,
+            "h": 32
+          },
+          20
+        ],
+        [
+          "全景图",
+          {
+            "x": 8,
+            "y": 228,
+            "w": 32,
+            "h": 32
+          },
+          20
+        ],
+        [
+          "选择画幅比例",
+          {
+            "x": 8,
+            "y": 268,
+            "w": 32,
+            "h": 32
+          },
+          20
+        ],
+        [
+          "AI 识图导入",
+          {
+            "x": 8,
+            "y": 308,
+            "w": 32,
+            "h": 32
+          },
+          20
+        ],
+        [
+          "帮助",
+          {
+            "x": 8,
+            "y": 928,
+            "w": 32,
+            "h": 32
+          },
+          20
+        ]
+      ]
+    },
+    {
+      "name": "entries:40px-pitch-8px-gaps-24px-across-divider",
+      "ok": true,
+      "detail": {
+        "gaps": [
+          24,
+          8,
+          8,
+          8,
+          8
+        ],
+        "pitches": [
+          56,
+          40,
+          40,
+          40,
+          40
+        ]
+      }
+    },
+    {
+      "name": "divider:32x8-white-8-between-scene-and-character",
+      "ok": true,
+      "detail": {
+        "x": 8,
+        "y": 132,
+        "w": 32,
+        "h": 8,
+        "borderBottomWidth": "1px",
+        "borderBottomColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+      }
+    },
+    {
+      "name": "entries:idle-white-72",
+      "ok": true,
+      "detail": [
+        [
+          "添加角色",
+          "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        [
+          "添加机位",
+          "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        [
+          "全景图",
+          "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        [
+          "选择画幅比例",
+          "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        [
+          "AI 识图导入",
+          "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)",
+          "rgba(0, 0, 0, 0)"
+        ]
+      ]
+    },
+    {
+      "name": "entries:active-white-10-on-white",
+      "ok": true,
+      "detail": [
+        {
+          "name": "场景",
+          "box": {
+            "x": 8,
+            "y": 92,
+            "w": 32,
+            "h": 32
+          },
+          "color": "rgb(255, 255, 255)",
+          "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "radius": "8px",
+          "pressed": "true",
+          "icon": 20
+        }
+      ]
+    },
+    {
+      "name": "help:pinned-to-the-bottom",
+      "ok": true,
+      "detail": {
+        "help": {
+          "x": 8,
+          "y": 928,
+          "w": 32,
+          "h": 32
+        },
+        "rail": {
+          "x": 0,
+          "y": 84,
+          "w": 48,
+          "h": 884
+        },
+        "last": {
+          "x": 8,
+          "y": 308,
+          "w": 32,
+          "h": 32
+        }
+      }
+    },
+    {
+      "name": "help:rounded-lg-20px-icon-idle-white-72",
+      "ok": true,
+      "detail": {
+        "name": "帮助",
+        "box": {
+          "x": 8,
+          "y": 928,
+          "w": 32,
+          "h": 32
+        },
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)",
+        "background": "rgba(0, 0, 0, 0)",
+        "radius": "8px",
+        "pressed": null,
+        "icon": 20,
+        "gap": 588,
+        "pitch": 620
+      }
+    },
+    {
+      "name": "no-console-errors",
+      "ok": true,
+      "detail": []
+    }
+  ],
+  "rail": {
+    "rail": {
+      "box": {
+        "x": 0,
+        "y": 84,
+        "w": 48,
+        "h": 884
+      },
+      "padding": "8px",
+      "gap": "8px",
+      "background": "rgb(23, 23, 23)",
+      "borderRightWidth": "1px",
+      "borderRightColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+    },
+    "divider": {
+      "x": 8,
+      "y": 132,
+      "w": 32,
+      "h": 8,
+      "borderBottomWidth": "1px",
+      "borderBottomColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.08)"
+    },
+    "items": [
+      {
+        "name": "场景",
+        "box": {
+          "x": 8,
+          "y": 92,
+          "w": 32,
+          "h": 32
+        },
+        "color": "rgb(255, 255, 255)",
+        "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "radius": "8px",
+        "pressed": "true",
+        "icon": 20
+      },
+      {
+        "name": "添加角色",
+        "box": {
+          "x": 8,
+          "y": 148,
+          "w": 32,
+          "h": 32
+        },
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)",
+        "background": "rgba(0, 0, 0, 0)",
+        "radius": "8px",
+        "pressed": "false",
+        "icon": 20,
+        "gap": 24,
+        "pitch": 56
+      },
+      {
+        "name": "添加机位",
+        "box": {
+          "x": 8,
+          "y": 188,
+          "w": 32,
+          "h": 32
+        },
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)",
+        "background": "rgba(0, 0, 0, 0)",
+        "radius": "8px",
+        "pressed": "false",
+        "icon": 20,
+        "gap": 8,
+        "pitch": 40
+      },
+      {
+        "name": "全景图",
+        "box": {
+          "x": 8,
+          "y": 228,
+          "w": 32,
+          "h": 32
+        },
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)",
+        "background": "rgba(0, 0, 0, 0)",
+        "radius": "8px",
+        "pressed": "false",
+        "icon": 20,
+        "gap": 8,
+        "pitch": 40
+      },
+      {
+        "name": "选择画幅比例",
+        "box": {
+          "x": 8,
+          "y": 268,
+          "w": 32,
+          "h": 32
+        },
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)",
+        "background": "rgba(0, 0, 0, 0)",
+        "radius": "8px",
+        "pressed": "false",
+        "icon": 20,
+        "gap": 8,
+        "pitch": 40
+      },
+      {
+        "name": "AI 识图导入",
+        "box": {
+          "x": 8,
+          "y": 308,
+          "w": 32,
+          "h": 32
+        },
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)",
+        "background": "rgba(0, 0, 0, 0)",
+        "radius": "8px",
+        "pressed": "false",
+        "icon": 20,
+        "gap": 8,
+        "pitch": 40
+      },
+      {
+        "name": "帮助",
+        "box": {
+          "x": 8,
+          "y": 928,
+          "w": 32,
+          "h": 32
+        },
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.72)",
+        "background": "rgba(0, 0, 0, 0)",
+        "radius": "8px",
+        "pressed": null,
+        "icon": 20,
+        "gap": 588,
+        "pitch": 620
+      }
+    ]
+  }
+}
