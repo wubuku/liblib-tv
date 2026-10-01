@@ -68,7 +68,19 @@ export function JimengNodeToolbar({
 
   return (
     <NodeToolbar isVisible={visible} position={Position.Top} offset={36}>
-      <div className="jimeng-node-toolbar flex h-10 select-none items-center gap-0.5 px-1.5">
+      {/* 批 837：给这层工具条**自己**补锚点，名字**照抄源站** ——
+          源站同一层实测 `data-testid="node-toolbar"`（320×40，3 项，文本「背景色」），
+          且它的 `role` 同样是空的。所以这里也**不补 role**。
+
+          为什么现在才补：`jimeng_floating_layer_audit.py`（按几何、不按 role
+          的第二条普查通道）会把它枚举成候选浮层 —— 它确实是 absolute +
+          z-1001 + 十几个可交互子元素。之前它没 testid，而当时唯一的"办法"
+          是往白名单里塞一条「空 tid 豁免」，那等于把所有缺锚点的浮层一起放过
+          ⇒ 工具永远通过。**补锚点比写豁免诚实。** */}
+      <div
+        className="jimeng-node-toolbar flex h-10 select-none items-center gap-0.5 px-1.5"
+        data-testid="node-toolbar"
+      >
         {ITEMS.map((item) => {
           const Icon = item.icon;
           const active = openMenu === item.label;
