@@ -699,14 +699,14 @@ screenshots:
 
   - file: screenshots/09-generate-images-video-panel.png
     task_id: generate-images
-    step: 选中空视频节点，节点下方展开「文本生视频」面板，底部显示模型 Seedance 2.0 Standard、时长 5秒 与约 ¥2.48–5.37
+    step: 选中空视频节点，节点下方展开「文生视频」面板，参数行列出 4~15 秒、480p/720p/1080p/2k/4k/native1080p/native4k 与比例 7 档，底部显示模型 Seedance 2.0 Standard、时长 5秒 与约 ¥2.48–5.37
     route: '/canvas/:id'
     viewport: 1280x900
     locale: zh-CN
     captured_at: '2026-10-01'
-    verified_locator: '面板标题 文本生视频 / 首帧图片 支持本地图片 或 图片 URL / 描述镜头、动作、节奏和声音 / 底部 Seedance 2.0 Standard · 5秒 · 约 ¥2.48–5.37 / 节点工具条 信息 删除 编辑 上传视频'
+    verified_locator: '面板标题 文生视频 / 模式 文生视频 / 参数 4~15 秒 · 480p/720p/1080p/2k/4k/native1080p/native4k · 比例 7 档 / 首帧图片 支持本地图片 或 图片 URL / 描述镜头、动作、节奏和声音 / 底部 Seedance 2.0 Standard · 5秒 · 约 ¥2.48–5.37 / 节点工具条 信息 删除 编辑 上传视频'
     visible_text: '约 ¥2.48–5.37'
-    alt: 视频节点及其下方的文本生视频面板，面板含首帧图片输入、描述框，底部是 Seedance 模型下拉、五秒时长与二点四八到五点三七元的价格区间
+    alt: 视频节点及其下方的文生视频面板，参数行写着 4~15 秒、七档分辨率与七档比例，下方是首帧图片输入和描述框，底部是 Seedance 模型下拉、五秒时长与二点四八到五点三七元的价格区间
     sha256: 5e78ee964e7c599662c9a4346b078e4c5188e21209bd35b2e980910497cdc881
 
   - file: screenshots/14-manage-assets-zip-disabled.png

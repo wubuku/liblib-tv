@@ -155,6 +155,22 @@ def mutate_retracted_claim(root: Path) -> None:
     path.write_text(text, encoding="utf-8")
 
 
+def mutate_retracted_freeresize(root: Path) -> None:
+    """R20：把 M93 订正掉的「自由缩放」原句放回去（验证 R20 这条订正抓得住）。"""
+    path = root / "10-tasks/edit-nodes.md"
+    text = path.read_text(encoding="utf-8")
+    text += "\n需要自由变形时，用悬浮工具条开启「自由缩放」（图片节点）。\n"
+    path.write_text(text, encoding="utf-8")
+
+
+def mutate_retracted_video_params(root: Path) -> None:
+    """R21：把 M93 订正掉的视频面板参数原句放回去（验证 R21 这条订正抓得住）。"""
+    path = root / "10-tasks/generate-images.md"
+    text = path.read_text(encoding="utf-8")
+    text += "\n时长可选 4-8 秒，分辨率 480p / 720p / 1080p 自动匹配。\n"
+    path.write_text(text, encoding="utf-8")
+
+
 def mutate_dead_dist_link(root: Path) -> None:
     """在产物里塞一条指向不存在页面的链接（M56 发现的真实形态）。
 
@@ -471,6 +487,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("侧边栏条目被改名", mutate_sidebar_rename, "structure", "侧边栏缺少"),
     ("小节里的裸强断言（无证据）", mutate_bare_claim, "claims", "裸断言"),
     ("已订正的错误说法复现", mutate_retracted_claim, "retractions", "订正过的错误说法重新出现"),
+    ("M93 订正的「自由缩放」复现", mutate_retracted_freeresize, "retractions", "R20"),
+    ("M93 订正的视频面板参数复现", mutate_retracted_video_params, "retractions", "R21"),
     ("产物里的死链", mutate_dead_dist_link, "distlinks", "指向不存在目标的链接"),
     ("任务评级三处不一致", mutate_rating_drift_inventory, "ratings", "评级漂移"),
     ("账本截图数与 manifest 不符", mutate_inventory_stale_count, "invfresh", "manifest 实为"),
