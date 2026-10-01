@@ -107,12 +107,34 @@ export async function canvasBaseline(page) {
   });
 }
 
-/** 与给定基线比对节点 canvas 坐标；返回偏离的 id 列表。 */
+/**
+ * 与给定基线比对节点 canvas 坐标；返回偏离的 id 列表。
+ *
+ * ⚠️ 2026-10-01 批次 57 修一个**恒真**的缺陷：
+ *   原实现写 `const e = baseCanvasById[id]; Math.abs(c[0] - e[0]) > tol`。
+ *   而 `jimeng-baseline-nodes.json` 里每个节点是 `{ canvas:[x,y], title }` ——
+ *   传进来的形状对不上，`e[0]` 是 `undefined`，
+ *   `Math.abs(x - undefined)` = `NaN`，而 **`NaN > tol` 恒为 false**。
+ *   ⇒ 第 8 道门的「节点位置偏离」无论节点实际偏了多少，都报「0 个」。
+ *   实测证据：故意把基线写偏 100 canvas px（容差 1.5），
+ *   旧形状返回 `[]`，正确形状返回 `["node_236ctpehgg"]`。
+ *
+ *   现在两种形状都接受，并且**形状不认识时直接抛错** ——
+ *   宁可报错，也不要静悄悄地把检查变成恒真。
+ *   🔑 一道质量门「从不失败」和「没有这道门」是同一件事。
+ */
 export async function diffNodePositions(page, baseCanvasById, tol = 1.5) {
   const cur = await canvasBaseline(page);
   const now = Object.fromEntries(cur.nodes.map((n) => [n.id, n.canvas]));
+  const pick = (v) => {
+    if (Array.isArray(v)) return v;                                  // { id: [x, y] }
+    if (v && Array.isArray(v.canvas)) return v.canvas;                // { id: { canvas:[x,y], … } }
+    throw new Error(
+      `[diffNodePositions] 基线条目形状不认识：${JSON.stringify(v)}。`
+      + ' 应为 [x, y] 或 { canvas: [x, y] } —— 传错形状会让本检查恒真（批次 57 事故）。');
+  };
   return Object.keys(baseCanvasById).filter((id) => {
-    const c = now[id], e = baseCanvasById[id];
+    const c = now[id], e = pick(baseCanvasById[id]);
     if (!c || !e) return true;
     return Math.abs(c[0] - e[0]) > tol || Math.abs(c[1] - e[1]) > tol;
   });
@@ -154,6 +176,37 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   for (const n of base.nodes) {
     console.log(`  ${n.id}  canvas=[${n.canvas ? n.canvas.join(', ') : '?'}]  title=${JSON.stringify(n.title)}`);
   }
+
+  // ---- 位置检查的**阳性对照**（批次 57 新增）----
+  // 🔑 一道「从不失败」的检查等于没有这道门。所以这里不测「有没有漂移」，
+  //    而是**故意**把基线写偏 100 canvas px（容差 1.5），断言它**必须被报出来**。
+  //    旧实现在这个用例上返回 []（恒真），正是它被漏掉那么多批次的原因。
+  if (base.nodes.length) {
+    const mk = (shape) => Object.fromEntries(base.nodes.map((n, i) => {
+      const c = i === 0 && n.canvas ? [n.canvas[0] + 100, n.canvas[1]] : n.canvas;
+      return [n.id, shape === 'flat' ? c : { canvas: c, title: n.title }];
+    }));
+    const victim = base.nodes[0].id;
+    const hitFlat = await diffNodePositions(page, mk('flat'), 1.5);
+    const hitWrapped = await diffNodePositions(page, mk('wrapped'), 1.5);
+    const okFlat = hitFlat.includes(victim);
+    const okWrapped = hitWrapped.includes(victim);
+    let threw = null;
+    try { await diffNodePositions(page, { [victim]: { nope: 1 } }, 1.5); }
+    catch (e) { threw = e.message; }
+    const okThrow = !!threw;
+    console.log('\n位置检查阳性对照（故意把第一个节点的基线写偏 +100 canvas px，容差 1.5）:');
+    console.log(`  {id:[x,y]} 形状        → ${JSON.stringify(hitFlat)}  ${okFlat ? '✅ 报出来了' : '❌ 漏报 —— 这门恒真了'}`);
+    console.log(`  {id:{canvas}} 形状      → ${JSON.stringify(hitWrapped)}  ${okWrapped ? '✅ 报出来了' : '❌ 漏报 —— 这门恒真了'}`);
+    console.log(`  形状不认识时是否抛错     → ${okThrow ? '✅ ' + String(threw).slice(0, 60) + '…' : '❌ 静悄悄通过'}`);
+    if (!okFlat || !okWrapped || !okThrow) {
+      console.log('  ⛔ 位置检查自测未通过 —— 第 8 道门不可信。');
+      await b.close();
+      process.exit(3);
+    }
+    console.log('  ✅ 位置检查自测通过：这门会失败，因此它有意义。');
+  }
+
   await b.close();
   process.exit(g.safe ? 0 : 1);
 }

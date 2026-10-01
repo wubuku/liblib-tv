@@ -1207,3 +1207,27 @@ screenshots:
     visible_text: 解除编组
     alt: 受控条件下（组内只有 3 个空文本节点、没有任何媒体节点）选中的「编组 1」组卡片：上方组工具条自左至右四项为 解除编组、布局∨、背景色、下载，组卡片四角各有一个圆形缩放把手，成员节点整体被圈在组内，顶栏节点计数为 10（他人 6 + 自建 3 + 组 1）、缩放 60%
     sha256: 8e6ae6e34cbddafd4cc05f6054d8fa7680343ca71d8bb571dc4fbe11f7c709d0
+
+  - file: screenshots/99-node-title-text-gap.png
+    task_id: connect-nodes
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T22:10:00+08:00
+    verified_locator: '受控条件：60% 缩放（scale 0.6），细网格逐点试点选中 node_3bfb9r79qe（三个文本节点在画布上互相重叠，矩形中心会选错 —— 实际命中的安全落点是 fx=0.10 fy=0.10）→ 注入橙色高亮框后裁切截图 clip={x:391,y:94,w:240,h:276}。读数：Rename 文本 1 逐字 35.5×24 @y，顶边−卡片顶=−32、底边−卡片顶=−8（60% 缩放下折合 canvas −53.3 / −13.3）。对照支 100 同法量视频节点得 +0.6'
+    visible_text: 文本 1
+    alt: 选中的文本节点：「Rename 文本 1」按钮（橙色框）整个浮在卡片顶边（另一条橙色横线）**上方**，两者之间有一条可见的黑色空隙 —— 文本节点是 7 种类型里唯一不与卡片顶边齐平的
+    sha256: 75057bc367188de9462f5817ef323dd8a09b05b961193b75c2f7720de39098f0
+
+  - file: screenshots/100-node-title-video-flush.png
+    task_id: connect-nodes
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-01T22:10:00+08:00
+    verified_locator: '对照条件：同一 60% 缩放、同一套高亮与裁切手法，选中 node_236ctpehgg（安全落点 fx=0.40 fy=0.10，共 156 个候选）→ 读数 Rename 视频 1 逐字 35.5×32，顶边−卡片顶=−31.4、底边−卡片顶=+0.6（底边压进卡片内），裁切 clip={x:548,y:301,w:389,h:276}。与 99 号同批次同条件拍摄，构成「底边关系因类型而异」的可见对照'
+    visible_text: 视频 1
+    alt: 对照：选中的视频节点，「Rename 视频 1」按钮（橙色框）的底边**直接压在**卡片顶边（橙色横线）上，中间没有空隙
+    sha256: 62586fc6e161d7c5ad90180e770acbfd2ac974e7bcdcba358dace43c90860012
