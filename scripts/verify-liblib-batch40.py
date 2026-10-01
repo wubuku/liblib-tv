@@ -366,8 +366,11 @@ def run_mobile(page: Page):
     panel = page.locator("[data-director-export-panel]")
     panel.wait_for(state="visible")
     panel_box = box(panel)
+    # Batch 596: 触发按钮从顶栏搬到了源站位置（时间轴右格），右格自身是
+    # `pr-2`（8px，源站实测），所以面板右边距从旧的 12px 变成 8px。上界跟着
+    # 改 378 -> 382；下界 12px 与「不越出视口」的意图不变。
     assert panel_box["x"] >= 12
-    assert panel_box["x"] + panel_box["width"] <= 378
+    assert panel_box["x"] + panel_box["width"] <= 382
     assert panel_box["y"] >= 40
     assert page.locator("[data-director-export-duration]").is_visible()
     assert page.locator('[data-director-export-aspect="1:1"]').is_visible()

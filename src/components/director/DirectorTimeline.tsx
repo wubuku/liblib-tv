@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { PointerEvent as ReactPointerEvent } from "react";
+import type { PointerEvent as ReactPointerEvent, ReactNode } from "react";
 import {
   Camera,
   ChartSpline,
@@ -187,7 +187,14 @@ function TimelineTimeField({
   );
 }
 
-export function DirectorTimeline() {
+export function DirectorTimeline({
+  trailing,
+}: {
+  /** Batch 596: 源站时间轴工具条右端除了缩放簇还挂着「导出视频到画布」
+   *  ((1804,1025) 108x28)，clone 原来把它放在顶栏。用这个插槽把归属组件
+   *  传进来，避免 DirectorTimeline 反向依赖 DirectorDesk 的状态。 */
+  trailing?: ReactNode;
+}) {
   const timeline = useDirectorStore((state) => state.timeline);
   const objects = useDirectorStore((state) => state.objects);
   const groups = useDirectorStore((state) => state.groups);
@@ -658,7 +665,7 @@ export function DirectorTimeline() {
           新建轨道，右格放标尺缩放与导出。 */}
       <header
         data-director-timeline-controls
-        className="flex h-9 shrink-0 items-center gap-1 overflow-x-auto border-b border-white/[0.07] px-2 py-1"
+        className="flex h-9 shrink-0 items-center gap-1 overflow-x-auto border-b border-white/[0.07] px-2 py-1 pr-[260px]"
       >
         <button
           type="button"
@@ -942,6 +949,20 @@ export function DirectorTimeline() {
           <Trash2 size={13} />
         </button>
         <span className="mx-1 h-5 w-px shrink-0 bg-white/10" />
+      </header>
+
+      {/* Batch 596（源站 2026-10-01 实测）：工具条是**两格**结构——左格可横向
+          滚动（clone 工具条比源站长很多），右格 `absolute right-0 top-0`
+          浮在上面装缩放簇 + 导出按钮，源站右格实测
+          `absolute right-0 top-0 z-20 flex h-9 items-center gap-2 bg-[#212121] pr-2`
+          244x36 @(1676,1021)。
+          右格必须**在 header 之外**：header 是 `overflow-x-auto`，按 CSS 规范它
+          的 overflow-y 会从 visible 变成 auto，于是向上弹出的导出面板会被裁掉
+          （实测面板中心点命中的是 WebGL canvas 而不是面板）。 */}
+      <div
+        data-director-timeline-strip-right
+        className="absolute right-0 top-0 z-30 flex h-9 items-center gap-2 bg-[#212121] pr-2"
+      >
         {/* Batch 594（源站 2026-10-01 实测）：缩放簇是 120x36 的独立块
             `flex h-9 w-[120px] items-center gap-2 border-l border-white/[0.08]
             bg-[#212121] px-2`，里面**没有**放大镜图标——只有自绘轨道 + 最小化钮。
@@ -1001,7 +1022,8 @@ export function DirectorTimeline() {
             <span className="hidden" aria-hidden="true" />
           </button>
         </div>
-      </header>
+        {trailing}
+      </div>
 
       {presetPanelLeft !== null ? (
         <div

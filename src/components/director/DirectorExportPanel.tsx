@@ -42,7 +42,12 @@ export function DirectorExportPanel({
     <section
       data-director-export-panel
       data-director-export-status={status}
-      className="absolute right-2 top-11 z-50 w-[286px] max-w-[calc(100vw-24px)] border border-white/[0.1] bg-[#242424] p-3 shadow-[0_14px_36px_rgba(0,0,0,0.48)]"
+      // Batch 596: 触发按钮从顶栏搬到了时间轴右端（源站实测它就在时间轴工具条
+      // 右端，`(1804,1025) 108x28`）。时间轴贴着视口底边，所以面板改为**向上**
+      // 弹出（bottom-full），否则会盖住轨道区。源站面板的实际几何**没有量**
+      // ——点那颗按钮有可能直接在用户项目上启动一次真实导出，属于付费/破坏性
+      // 动作，未授权不测。向上弹是按「贴底面板只能向上」做的推断。
+      className="absolute bottom-full right-0 z-50 mb-1 w-[286px] max-w-[calc(100vw-24px)] border border-white/[0.1] bg-[#242424] p-3 shadow-[0_14px_36px_rgba(0,0,0,0.48)]"
     >
       <div className="mb-3 flex items-center gap-2">
         <FileVideo2 size={14} className="text-[#5ddcff]" />

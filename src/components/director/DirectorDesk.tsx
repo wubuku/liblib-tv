@@ -12,7 +12,6 @@ import {
   ArrowLeft,
   Check,
   Download,
-  FileVideo2,
   ImageIcon,
   Info,
   PanelLeftOpen,
@@ -1032,34 +1031,6 @@ export default function DirectorDesk({
           >
             {projectTransferMessage ?? ""}
           </div>
-          <div className="relative">
-            <button
-              type="button"
-              data-director-export-trigger
-              aria-expanded={exportPanelOpen}
-              disabled={workspaceBusy}
-              onClick={toggleExportPanel}
-              className={cn(
-                "flex h-8 items-center gap-1.5 rounded px-2 text-[11px] text-[#b5b5b5] hover:bg-white/[0.06] hover:text-white disabled:text-[#555]",
-                exportPanelOpen && "bg-white/[0.07] text-white",
-              )}
-            >
-              <FileVideo2 size={14} />
-              <span className="max-[640px]:hidden">导出视频到画布</span>
-            </button>
-            <DirectorExportPanel
-              open={exportPanelOpen}
-              status={exportStatus}
-              durationSeconds={exportDuration}
-              maxDurationSeconds={timelineDuration}
-              aspectRatio={exportAspectRatio}
-              progress={exportProgress}
-              error={exportError}
-              onDurationChange={changeExportDuration}
-              onAspectRatioChange={changeExportAspectRatio}
-              onSubmit={beginVideoExport}
-            />
-          </div>
           <button
             type="button"
             aria-label="关闭导演台"
@@ -1161,7 +1132,41 @@ export default function DirectorDesk({
           </aside>
         </div>
 
-        <DirectorTimeline />
+        <DirectorTimeline
+          trailing={
+            // Batch 596（源站实测）：「导出视频到画布」在源站是时间轴工具条
+            // 右端的**浅色主按钮** `(1804,1025) 108x28`，`bg-[#f7f7f7]` /
+            // `text-[#141414]` / 12px medium / `rounded-lg`，**纯文字没有图标**。
+            // clone 原来在顶栏，深色幽灵按钮 + FileVideo2 图标。
+            <div className="relative">
+              <button
+                type="button"
+                data-director-export-trigger
+                aria-expanded={exportPanelOpen}
+                disabled={workspaceBusy}
+                onClick={toggleExportPanel}
+                className={cn(
+                  "relative flex h-7 shrink-0 items-center gap-2 rounded-lg bg-[#f7f7f7] px-3 text-[12px] font-medium leading-none text-[#141414] transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-60",
+                  exportPanelOpen && "bg-white",
+                )}
+              >
+                <span>导出视频到画布</span>
+              </button>
+              <DirectorExportPanel
+                open={exportPanelOpen}
+                status={exportStatus}
+                durationSeconds={exportDuration}
+                maxDurationSeconds={timelineDuration}
+                aspectRatio={exportAspectRatio}
+                progress={exportProgress}
+                error={exportError}
+                onDurationChange={changeExportDuration}
+                onAspectRatioChange={changeExportAspectRatio}
+                onSubmit={beginVideoExport}
+              />
+            </div>
+          }
+        />
       </div>
     </div>
   );

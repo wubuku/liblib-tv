@@ -45,8 +45,11 @@ def attach_errors(page: Page) -> list[str]:
     errors: list[str] = []
     page.on(
         "console",
+        # Batch 596: 与 batch 36-40 / 88 / 89 / 96 / 85 / 580 / 587-592 同约定
+        # 过滤已知瞬态 `TransformControls: The attached 3D object must be a part of
+        # the scene graph.`（three.js 在对象被替换的那一帧抛出）；这批是漏网。
         lambda message: errors.append(f"console:{message.type}:{message.text}")
-        if message.type == "error"
+        if message.type == "error" and "TransformControls" not in message.text
         else None,
     )
     page.on("pageerror", lambda error: errors.append(f"pageerror:{error}"))

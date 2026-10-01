@@ -1,0 +1,212 @@
+{
+  "batch": 596,
+  "title": "导出视频到画布归位到时间轴右格（浅色主按钮 108x28，纯文字）+ 工具条两格结构",
+  "evidence": "2026-10-01 live CDP sampling of the source director desk at 1920x1150 + docs/research/liblib-canvas-batch596-2026-10-01/README.md",
+  "source_facts": {
+    "right_cell": "244x36 @(1676,1021), absolute right-0 top-0 z-20 flex h-9 items-center gap-2 bg-[#212121] pr-2",
+    "export_button": "108x28 @(1804,1025), bg #f7f7f7, radius 8px, colour #141414, 12px medium, text only (no icon)",
+    "export_button_count_in_document": 1,
+    "export_button_location": "inside the timeline strip; the director top header has none"
+  },
+  "clone_only": [
+    "the panel opens upward (bottom-full) — the source's panel geometry was not measured because clicking the source button could start a real export in the user's project",
+    "the left cell keeps pr-[260px] so the scrolling toolbar does not run under the floating right cell"
+  ],
+  "not_verified": [
+    "the source's export panel size, position and contents — not exercised, clicking the source trigger is an externally visible / paid-class action"
+  ],
+  "migrated_contracts": [
+    "batch 40: the mobile panel right margin 12px -> 8px, because the right cell itself carries the source's pr-2"
+  ],
+  "results": [
+    {
+      "viewport": "1920x1150",
+      "checks": [
+        {
+          "name": "strip-right:cell",
+          "ok": true,
+          "detail": {
+            "box": [
+              1676,
+              969,
+              244,
+              36
+            ],
+            "position": "absolute",
+            "background": "rgb(33, 33, 33)",
+            "paddingRight": "8px",
+            "zIndex": "30",
+            "hasCluster": true
+          }
+        },
+        {
+          "name": "export:geometry",
+          "ok": true,
+          "detail": [
+            1804,
+            973,
+            108,
+            28
+          ]
+        },
+        {
+          "name": "export:light-primary-style",
+          "ok": true,
+          "detail": {
+            "background": "rgb(247, 247, 247)",
+            "color": "rgb(20, 20, 20)",
+            "radius": "8px",
+            "fontSize": "12px",
+            "fontWeight": "500"
+          }
+        },
+        {
+          "name": "export:text-only",
+          "ok": true,
+          "detail": {
+            "text": "导出视频到画布",
+            "svg": 0,
+            "spans": 1
+          }
+        },
+        {
+          "name": "export:left-the-header",
+          "ok": true,
+          "detail": {
+            "headerHasExport": false,
+            "inHeader": false
+          }
+        },
+        {
+          "name": "strip:left-cell-scrolls",
+          "ok": true,
+          "detail": {
+            "overflow": [
+              "auto",
+              "auto"
+            ],
+            "order": [
+              "播放",
+              "自动帧",
+              "循环播放",
+              "播放头位置",
+              "总时长",
+              "切换时间单位为 ms",
+              "选中角色、道具或分组后建立轨道",
+              "预设运镜"
+            ]
+          }
+        },
+        {
+          "name": "panel:hit-testable",
+          "ok": true,
+          "detail": {
+            "hit": "button",
+            "box": [
+              1626,
+              702,
+              286,
+              267
+            ]
+          }
+        },
+        {
+          "name": "panel:on-screen",
+          "ok": true,
+          "detail": {
+            "box": [
+              1626,
+              702,
+              286,
+              267
+            ],
+            "viewport": [
+              1920,
+              1150
+            ],
+            "hitInside": true,
+            "hit": "button",
+            "clippers": []
+          }
+        },
+        {
+          "name": "panel:no-clipping-ancestor",
+          "ok": true,
+          "detail": []
+        },
+        {
+          "name": "no-diagnostics",
+          "ok": true,
+          "detail": []
+        }
+      ],
+      "strip": {
+        "cell": {
+          "box": [
+            1676,
+            969,
+            244,
+            36
+          ],
+          "position": "absolute",
+          "background": "rgb(33, 33, 33)",
+          "paddingRight": "8px",
+          "zIndex": "30",
+          "hasCluster": true
+        },
+        "trigger": {
+          "box": [
+            1804,
+            973,
+            108,
+            28
+          ],
+          "background": "rgb(247, 247, 247)",
+          "color": "rgb(20, 20, 20)",
+          "radius": "8px",
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "text": "导出视频到画布",
+          "svgCount": 0,
+          "spanCount": 1,
+          "inHeader": false
+        },
+        "headerHasExport": false,
+        "headerOverflowX": "auto",
+        "headerOverflowY": "auto",
+        "order": [
+          "播放",
+          "自动帧",
+          "循环播放",
+          "播放头位置",
+          "总时长",
+          "切换时间单位为 ms",
+          "选中角色、道具或分组后建立轨道",
+          "预设运镜",
+          "创建运动轨迹",
+          "曲线编辑器",
+          "轨道",
+          "移除角色01 · 陈默 · 变换轨道",
+          "添加关键帧",
+          "删除关键帧"
+        ]
+      },
+      "panel": {
+        "box": [
+          1626,
+          702,
+          286,
+          267
+        ],
+        "viewport": [
+          1920,
+          1150
+        ],
+        "hitInside": true,
+        "hit": "button",
+        "clippers": []
+      },
+      "diagnostics": []
+    }
+  ]
+}
