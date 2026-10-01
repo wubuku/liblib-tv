@@ -1,0 +1,58 @@
+{
+  "checkedComponents": 153,
+  "unreferenced": [
+    {
+      "component": "CameraConfigDialog",
+      "path": "components/CameraConfigDialog.tsx",
+      "crossLine": false,
+      "registered": true,
+      "statusToken": "SPEC_COMPLETE"
+    },
+    {
+      "component": "CameraMovementDialog",
+      "path": "components/CameraMovementDialog.tsx",
+      "crossLine": false,
+      "registered": true,
+      "statusToken": "SPEC_COMPLETE"
+    },
+    {
+      "component": "CustomHandle",
+      "path": "components/CustomHandle.tsx",
+      "crossLine": false,
+      "registered": true,
+      "statusToken": "LEGACY"
+    },
+    {
+      "component": "PlusIndicator",
+      "path": "components/PlusIndicator.tsx",
+      "crossLine": false,
+      "registered": true,
+      "statusToken": "LEGACY"
+    },
+    {
+      "component": "ScriptHeader",
+      "path": "components/ScriptHeader.tsx",
+      "crossLine": false,
+      "registered": true,
+      "statusToken": "LEGACY"
+    },
+    {
+      "component": "JimengInferPanel",
+      "path": "components/jimeng/JimengInferPanel.tsx",
+      "crossLine": true,
+      "registered": false,
+      "statusToken": null
+    }
+  ],
+  "statusTokens": [
+    "LEGACY",
+    "SPEC_COMPLETE",
+    "EVIDENCE_GATED",
+    "DEPRECATED",
+    "DORMANT",
+    "REMOVED"
+  ],
+  "crossLineNoted": [
+    "JimengInferPanel"
+  ]
+}
