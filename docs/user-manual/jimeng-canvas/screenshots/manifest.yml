@@ -509,3 +509,15 @@ screenshots:
     visible_text: 项目信息 / 复制项目
     alt: 更多菜单：点击顶栏「更多」后弹出的两项小菜单——「项目信息」与「复制项目」，浮层 200×84，出现在按钮正下方，橙色高亮框为菜单范围
     sha256: f6b9f6d9e77126ca73f5e9d303a9065875876e3faf77ee6ecdddfb3b47d260f5
+
+  - file: screenshots/38-node-tags-palette.png
+    task_id: organize-group-layout
+    step: 4
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: 2026-10-01T08:35:00+08:00
+    verified_locator: '节点标题行 aria Add tags 打开的 6 枚圆形色板；色点计算样式 rgb(0,202,224) 与 rgb(190,104,255) 同时存在'
+    visible_text: 文本 1 / 双击编辑文本 / 背景色 / 节点 2 已保存
+    alt: 节点颜色标记色板：文本节点「文本 1」标题行右侧的标签图标旁已出现青、紫两个色点，色板浮层展开为一排 6 枚圆形——🚫 无标记，以及青、蓝、紫、橙、黄五色，其中已选中的青色与紫色各带一圈白色圆环；顶栏画布图标也同步显示青紫双色
+    sha256: b7e403bdfe7cf2fc4b683dfa1172ff1003c1b1049b32766c0211bc9bbbe6fa45
