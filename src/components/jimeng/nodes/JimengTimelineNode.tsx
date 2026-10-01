@@ -298,7 +298,19 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
             </button>
           </div>
 
-          <div className="min-w-0 flex-1">
+          <div
+            /* Batch 820 SOURCE_FACT：源站有独立的横向滚动容器
+               `[data-testid="timeline-track-scroll"]`
+               [223,187,1132,151]，类名带 `[&::-webkit-scrollbar]:hidden`
+               —— **滚动条隐藏但可滚**；内层 `timeline-track-canvas` 是
+               `min-w-full`（贴住容器宽，片段超窗时才撑开并出现滚动）。
+               复刻此前整条轨道 overflow-x: visible，一旦片段时间超过可见
+               窗口（≈33.4s）就会直接溢出面板被裁掉，没有滚动通道。
+               左侧静音槽在滚动区**之外**（源站 gutter 与 track-scroll 是
+               兄弟节点），所以滚动时它不动 —— 与下面的结构一致。 */
+            className="min-w-0 flex-1 overflow-x-auto [&::-webkit-scrollbar]:hidden"
+            data-testid="timeline-track-scroll"
+          >
             {/* 刻度尺：SOURCE_FACT 00:00→00:30，每 5s 一格
                 Batch 819 SOURCE_FACT（解 818-a）：刻度位置是**世界坐标定值**，
                 不是百分比。实测内嵌时间线节点 00:00→00:30 跨 963px
@@ -313,7 +325,7 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                 标签的字号定间距。**所以不能找一个"全局 px/s"照搬**，
                 只能按本表面的字号定 —— 这里的 32.1 就是 13.5px 字号对应值。*/}
             <div
-              className="relative h-[27px] border-b border-white/[0.06]"
+              className="relative h-[27px] min-w-full border-b border-white/[0.06]"
               data-testid="timeline-ruler"
               aria-label="时间线刻度"
             >
@@ -338,7 +350,7 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                 （ruler [73,67,1126,27] / clip-track [73,100,1126,84]）。
                 复刻此前 h-6(24) / h-[76px]。 */}
             <div
-              className="relative h-[84px] px-3 py-2"
+              className="relative h-[84px] min-w-full px-3 py-2"
               data-testid="timeline-clip-track"
             >
               {clips.map((c) => (
@@ -438,7 +450,16 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
           </div>
 
           <div className="flex min-h-0 flex-1">
-            <div className="w-[260px] shrink-0 border-r border-white/[0.08] p-3">
+            {/* Batch 820 SOURCE_FACT：源站资产栏
+               `[data-testid="timeline-fullscreen-canvas-assets"]` **360 宽**
+               @[12,60] 高 652，tabs 行 `…-asset-primary-tabs` 高 **56**
+               @[12,60]。全屏编辑器是 `fixed inset-0`，**不受画布缩放影响**，
+               所以这个宽度是视口绝对值，可直接照搬。复刻此前 260 宽。
+               注意它是**照搬源站的定值**，不是推导值 —— 别按内容去凑。 */}
+            <div
+              className="w-[360px] shrink-0 border-r border-white/[0.08] p-3"
+              data-testid="timeline-fs-assets"
+            >
               <div className="mb-2 flex flex-wrap gap-1">
                 {FS_SOURCES.map((sname) => (
                   <button

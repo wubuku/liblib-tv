@@ -6398,3 +6398,74 @@ width: max(1, c.length * 32.1)
 片段多到 33s 之外会溢出）。
 
 未取证：资产栏各 tab 的文案、空态的具体排版、关闭方式（Escape 是否等价）。
+
+---
+
+## 30. Batch 820-trackscroll — 819 换模型后暴露的两个缺口（2026-10-04）
+
+### 30.1 起因：换掉百分比模型才看得见的问题
+
+819 把刻度从百分比换成世界坐标定值（32.1px/s）之后，「片段超出可见窗口
+会怎样」从抽象问题变成了真问题。可见窗口 ≈33.4s（槽宽 128，源站 66，
+§28.4 有意偏离），而片段按 `TOTAL_SECONDS` 分布 —— 一旦有时间超出窗口，
+之前是**直接溢出被裁**，因为整条轨道 `overflow-x: visible`，根本没有滚动通道。
+
+源站有：`[data-testid="timeline-track-scroll"]` @[223,187,1132,151]，
+类名带 `[&::-webkit-scrollbar]:hidden`（**滚动条隐藏但可滚**），
+内层 `timeline-track-canvas` 是 `min-w-full`。且**左侧静音槽在滚动区之外**
+（gutter 与 track-scroll 是兄弟节点）—— 滚动时它不动。
+
+复刻照此补上：外层 `overflow-x-auto [&::-webkit-scrollbar]:hidden`，
+内层 ruler 与 clip-track 都加 `min-w-full`。空时间线下**不产生任何视觉变化**
+（内层贴住容器宽 ⇒ scrollWidth == clientWidth），片段超窗才撑开并出现滚动 ——
+这正是源站的行为，也是为什么「空态无多余滚动余量」值得写成一条断言。
+
+### 30.2 第二处：全屏编辑器资产栏 260 → 360
+
+源站 `[data-testid="timeline-fullscreen-canvas-assets"]` **360 宽** @[12,60]
+高 652，tabs 行 `…-asset-primary-tabs` 高 56。复刻此前 260。
+
+全屏编辑器是 `fixed inset-0`，**不受画布缩放影响** ⇒ 这个宽度是**视口绝对值**，
+可以直接照搬，不需要任何归一化。这与 818 里「节点内几何必须归一化」正好相反，
+两者的区别就是 **fixed 面板 vs 画布内节点**。
+
+值写死 360 是**照搬源站定值**，不是推导值 —— 别按内容去凑。
+
+### 30.3 一次探针假象：全屏编辑器「打不开」
+
+第一版探针报 `no overlay`，差点记成「复刻的全屏编辑器坏了」。
+换了个写法（`wait_for_selector` + 直接点 testid）就正常打开了。
+
+根因是**点击时序**：`wait_for_selector(timeline-shell)` 之后立刻点
+全屏按钮，此时节点刚插入、仍在布局，命中盒可能还没稳。`is_visible()` 与
+`bounding_box()` 都正常，但点击落空。
+
+这已经是本项目第三次栽在「插入后立即操作」上（批 813 插节点后马上断言、
+批 814 菜单溢出视口）。**插入类操作之后必须等一个真实信号**
+（几何稳定 / 目标元素出现），不能只靠 `wait_for_timeout`。
+
+### 30.4 验收
+
+`verify-jimeng-batch818-timelinestem.py` 从 37 项扩到 **43 项**，加 6 条：
+
+- 轨道滚动容器存在 / `overflow-x: auto`
+- **空态无多余滚动余量**（`scrollWidth - clientWidth ≤ 1`）
+- 内层轨道 `min-width: 100%`
+- 全屏编辑器能打开 / 资产栏 **360 宽**
+
+`fsAssets` 的选择器放宽成先查 document（浮层可能 portal 到别处）再回落到节点内。
+
+**43/43 通过。** 回归 807(36) / 813(37) / 817(17) / 806 全 PASS。
+
+⚠️ **812 本轮 FAIL，但与本批无关**：失败点是
+`src/components/jimeng/JimengAccountPanels.tsx:63` 出现散落的「（mock）」
+字面量 —— 该文件是**并行 session 刚建的未跟踪新文件**（`git status` 为 `??`），
+我本会话 0 次触碰，10 分钟前该 verifier 还 PASS。按规矩**没有代改**，
+记在此处备案。
+
+### 30.5 下一批候选（已定位，未实施）
+
+源站全屏编辑器的锚点体系（§29.6 已列 20+ 个 `timeline-fullscreen-*`）尚未逐项对齐：
+`timeline-fullscreen-top-content` 1488×652 @[12,60]（复刻的顶栏 `h-14` + 主体
+分栏结构与它不同构）、`-asset-primary-tabs` 56 高、资产空态排版、关闭方式
+（源站 Escape 是否等价 —— 本批探针确认过 Escape 能退出，但未确认是否是**唯一**方式）。

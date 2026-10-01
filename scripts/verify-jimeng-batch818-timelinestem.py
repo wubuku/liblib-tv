@@ -98,6 +98,16 @@ PROBE = r"""() => {
       const s = [...b.querySelectorAll('span')].find(x => /添加素材/.test(x.textContent || ''))
             || [...b.childNodes].find(n => n.nodeType === 3);
       return s ? parseFloat(getComputedStyle(s.nodeType === 3 ? b : s).fontSize) : null; })(),
+    // Batch 820：轨道横向滚动区
+    scroll: (() => { const s = node.querySelector('[data-testid="timeline-track-scroll"]');
+      if (!s) return null; const cs = getComputedStyle(s);
+      return { overflowX: cs.overflowX, w: Math.round(s.getBoundingClientRect().width),
+               scrollW: s.scrollWidth, clientW: s.clientWidth,
+               innerMinW: getComputedStyle(q('timeline-clip-track')).minWidth }; })(),
+    // Batch 820：全屏编辑器资产栏（fixed 面板，不受画布缩放影响）
+    fsAssets: (() => { const a = document.querySelector('[data-testid="timeline-fs-assets"]')
+                       || node.querySelector('[data-testid="timeline-fs-assets"]');
+      return a ? { w: Math.round(a.getBoundingClientRect().width) } : null; })(),
   };
 }"""
 
@@ -261,6 +271,32 @@ def main() -> int:
 
             print("\n— 回归 —")
             check("无 pageerror", not errs, "; ".join(errs[:2]))
+
+            # ── Batch 820：轨道横向滚动区 + 全屏编辑器资产栏 ──
+            print("\n— 轨道横向滚动区（源站 timeline-track-scroll）—")
+            sc = d["scroll"]
+            check("滚动容器存在", sc is not None)
+            if sc:
+                check("overflow-x = auto", sc["overflowX"] == "auto", sc["overflowX"])
+                # 空时间线时**不该**出现滚动余量（内层 min-w-full 贴住容器宽）
+                check("空态无多余滚动余量", sc["scrollW"] - sc["clientW"] <= 1,
+                      f'scrollW={sc["scrollW"]} clientW={sc["clientW"]}')
+                check("内层轨道 min-width:100%（贴住容器，片段超窗才撑开）",
+                      sc["innerMinW"] in ("100%", "0px") and sc["innerMinW"] == "100%",
+                      f'min-width={sc["innerMinW"]}')
+
+            print("\n— 全屏编辑器资产栏（源站 360 宽 @1512×950）—")
+            pg.locator('[data-testid="timeline-fullscreen-trigger"]').first.click()
+            pg.wait_for_selector('[data-testid="timeline-fullscreen"]', timeout=20000)
+            pg.wait_for_timeout(1000)
+            fs = pg.evaluate(PROBE)
+            check("全屏编辑器打开", fs.get("fsAssets") is not None, str(fs.get("fsAssets")))
+            if fs.get("fsAssets"):
+                check("资产栏 360 宽", fs["fsAssets"]["w"] == 360, f'{fs["fsAssets"]["w"]}px')
+            pg.screenshot(path=str(EVIDENCE / "clone-fullscreen-820.png"))
+            pg.locator('[data-testid="timeline-fullscreen-close"]').first.click()
+            pg.wait_for_timeout(600)
+
             pg.screenshot(path=str(EVIDENCE / "clone-timeline-818.png"))
         finally:
             b.close()
