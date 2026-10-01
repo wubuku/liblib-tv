@@ -129,16 +129,19 @@ const FILTERS: { label: string; options: string[] }[] = [
 ];
 
 export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
+  /* 批 835 SOURCE_FACT：音频面板里这 6 个下拉在源站上**互斥**（开下一个 ⇒
+     上一个自动关闭）。复刻此前是 6 个独立 boolean，于是能同时开着：
+     实测「音乐模型」（392 宽）会盖住「生成模式」（192 宽）里的选项，
+     用户点「音频生成」点不动 —— 批 832 的 verifier 就是在这一步 30s 超时的。
+     收成一个 state，顺带把 6 条声明缩成 1 条。 */
+  const [open, setOpen] = useState<"gen" | "music" | "dur" | "tts" | "dub" | "voice" | null>(
+    null,
+  );
   const [text, setText] = useState("");
   const canSend = text.trim().length > 0;
   const [genKind, setGenKind] = useState("音频生成");
-  const [genOpen, setGenOpen] = useState(false);
-  const [ttsOpen, setTtsOpen] = useState(false);
   // 批 487 SOURCE_FACT: 全能配音下拉 192×36 单选项
-  const [dubOpen, setDubOpen] = useState(false);
-  const [musicOpen, setMusicOpen] = useState(false);
   // 批 367 SOURCE_FACT: 时长连续滑杆弹出层 (0-360s 自由值)
-  const [durOpen, setDurOpen] = useState(false);
   const [duration, setDurationState] = useState(persistedMusicDuration);
   const [durDraft, setDurDraft] = useState<string | null>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -148,7 +151,6 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
     persistedMusicDuration = clamped;
     setDurationState(clamped);
   };
-  const [voiceOpen, setVoiceOpen] = useState(false);
   const [voice, setVoice] = useState("直爽女大");
   // 批 254/255/257: 筛选下拉选项与选中态；批 282: 性别筛选真实过滤网格
   const [filterSel, setFilterSel] = useState<Record<string, string | null>>({});
@@ -226,13 +228,13 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                 <button
                   type="button"
                   aria-label={`创作类型: ${genKind}`}
-                  onClick={() => setGenOpen((v) => !v)}
+                  onClick={() => setOpen((v) => (v === "gen" ? null : "gen"))}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
                   {genKind}
                   <ChevronDown size={12} className="text-white/60" />
                 </button>
-                {genOpen ? (
+                {open === "gen" ? (
                   <div
                     className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[192px] rounded-xl p-1.5"
                     style={{ background: "rgb(38,38,38)" }}
@@ -249,7 +251,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                         aria-selected={genKind === opt}
                         onClick={() => {
                           setGenKind(opt);
-                          setGenOpen(false);
+                          setOpen(null);
                         }}
                         className={`flex h-9 w-full items-center rounded-lg px-2.5 text-[13px] ${
                           genKind === opt ? "bg-white/[0.10] text-white" : "text-white/85 hover:bg-white/10"
@@ -269,13 +271,13 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                     <button
                       type="button"
                       aria-label="选择模型: SeedMusic 1.0 Preview"
-                      onClick={() => setMusicOpen((v) => !v)}
+                      onClick={() => setOpen((v) => (v === "music" ? null : "music"))}
                       className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                     >
                       SeedMusic 1.0 Preview
                       <ChevronDown size={12} className="text-white/60" />
                     </button>
-                    {musicOpen ? (
+                    {open === "music" ? (
                       <div
                         className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[392px] rounded-xl p-1.5"
                         style={{ background: "rgb(38,38,38)" }}
@@ -288,7 +290,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                           type="button"
                           role="option"
                           aria-selected
-                          onClick={() => setMusicOpen(false)}
+                          onClick={() => setOpen(null)}
                           className="flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 py-2 text-left hover:bg-white/10"
                         >
                           <span className="text-[13px] font-medium text-white">
@@ -306,20 +308,20 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                     <button
                       type="button"
                       aria-label={`选择时长: ${duration}s`}
-                      onClick={() => setDurOpen((v) => !v)}
+                      onClick={() => setOpen((v) => (v === "dur" ? null : "dur"))}
                       className={`flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08] ${
-                        durOpen ? "bg-white/[0.08]" : ""
+                        open === "dur" ? "bg-white/[0.08]" : ""
                       }`}
                     >
                       {duration}s
                       <ChevronDown
                         size={12}
                         className={`text-white/60 transition-transform ${
-                          durOpen ? "rotate-180" : ""
+                          open === "dur" ? "rotate-180" : ""
                         }`}
                       />
                     </button>
-                    {durOpen ? (
+                    {open === "dur" ? (
                       <div
                         className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[368px] rounded-xl p-3"
                         style={{ background: "rgb(38,38,38)" }}
@@ -425,7 +427,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                     <button
                       type="button"
                       aria-label="选择模型: SeedAudio 1.0, New"
-                      onClick={() => setTtsOpen((v) => !v)}
+                      onClick={() => setOpen((v) => (v === "tts" ? null : "tts"))}
                       className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                     >
                       SeedAudio 1.0
@@ -434,7 +436,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                       </span>
                       <ChevronDown size={12} className="text-white/60" />
                     </button>
-                    {ttsOpen ? (
+                    {open === "tts" ? (
                       <div
                         className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[392px] rounded-xl p-1.5"
                         style={{ background: "rgb(38,38,38)" }}
@@ -447,7 +449,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                           type="button"
                           role="option"
                           aria-selected
-                          onClick={() => setTtsOpen(false)}
+                          onClick={() => setOpen(null)}
                           className="flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 py-2 text-left hover:bg-white/10"
                         >
                           <span className="text-[13px] font-medium text-white">
@@ -465,15 +467,15 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                     <button
                       type="button"
                       aria-label="音频生成: 全能配音"
-                      onClick={() => setDubOpen((v) => !v)}
+                      onClick={() => setOpen((v) => (v === "dub" ? null : "dub"))}
                       className={`flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08] ${
-                        dubOpen ? "bg-white/[0.08]" : ""
+                        open === "dub" ? "bg-white/[0.08]" : ""
                       }`}
                     >
                       全能配音
                       <ChevronDown size={12} className="text-white/60" />
                     </button>
-                    {dubOpen ? (
+                    {open === "dub" ? (
                       <div
                         className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[192px] rounded-xl p-1.5"
                         style={{ background: "rgb(38,38,38)" }}
@@ -486,7 +488,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                           type="button"
                           role="option"
                           aria-selected
-                          onClick={() => setDubOpen(false)}
+                          onClick={() => setOpen(null)}
                           className="flex h-9 w-full items-center rounded-lg px-2.5 text-[13px] text-white bg-white/[0.10]"
                         >
                           全能配音
@@ -506,13 +508,13 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                     <button
                       type="button"
                       aria-label="音色: 音色库"
-                      onClick={() => setVoiceOpen((v) => !v)}
+                      onClick={() => setOpen((v) => (v === "voice" ? null : "voice"))}
                       className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                     >
                       音色库
                       <ChevronDown size={12} className="text-white/60" />
                     </button>
-                    {voiceOpen ? (
+                    {open === "voice" ? (
                       <div
                         className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[700px] rounded-xl p-3"
                         style={{ background: "rgb(38,38,38)" }}
@@ -582,7 +584,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                               aria-selected={voice === v}
                               onClick={() => {
                                 setVoice(v);
-                                setVoiceOpen(false);
+                                setOpen(null);
                               }}
                               className={`flex h-9 items-center gap-2 rounded-lg px-2 text-[13px] ${
                                 voice === v

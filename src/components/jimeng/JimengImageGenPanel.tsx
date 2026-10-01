@@ -21,8 +21,9 @@ import { NodeToolbar, Position } from "@xyflow/react";
 export function JimengImageGenPanel({ visible }: { visible: boolean }) {
   const [text, setText] = useState("");
   const canSend = text.trim().length > 0;
-  const [modelOpen, setModelOpen] = useState(false);
-  const [sizeOpen, setSizeOpen] = useState(false);
+  /* 批 835 SOURCE_FACT：这两个下拉在源站上**互斥**（开下一个 ⇒ 上一个关闭），
+     复刻此前是两个独立 state，能同时开着。收成一个。 */
+  const [open, setOpen] = useState<"model" | "size" | null>(null);
 
   return (
     <NodeToolbar isVisible={visible} position={Position.Bottom} offset={16}>
@@ -71,15 +72,15 @@ export function JimengImageGenPanel({ visible }: { visible: boolean }) {
                 <button
                   type="button"
                   aria-label="选择模型: Seedream 5.0 Lite"
-                  onClick={() => setModelOpen((v) => !v)}
+                  onClick={() => setOpen((v) => (v === "model" ? null : "model"))}
                   className={`flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08] ${
-                    modelOpen ? "bg-white/[0.08]" : ""
+                    open === "model" ? "bg-white/[0.08]" : ""
                   }`}
                 >
                   Seedream 5.0 Lite
                   <ChevronDown size={12} className="text-white/60" />
                 </button>
-                {modelOpen ? (
+                {open === "model" ? (
                   <div
                     className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[260px] rounded-xl p-1.5"
                     style={{ background: "rgb(38,38,38)" }}
@@ -92,7 +93,7 @@ export function JimengImageGenPanel({ visible }: { visible: boolean }) {
                       type="button"
                       role="option"
                       aria-selected
-                      onClick={() => setModelOpen(false)}
+                      onClick={() => setOpen(null)}
                       className="flex h-9 w-full items-center rounded-lg px-2.5 text-[13px] text-white bg-white/[0.10]"
                     >
                       Seedream 5.0 Lite
@@ -105,15 +106,15 @@ export function JimengImageGenPanel({ visible }: { visible: boolean }) {
                 <button
                   type="button"
                   aria-label="图片尺寸选项: 1:1 · 2K · 1"
-                  onClick={() => setSizeOpen((v) => !v)}
+                  onClick={() => setOpen((v) => (v === "size" ? null : "size"))}
                   className={`flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08] ${
-                    sizeOpen ? "bg-white/[0.08]" : ""
+                    open === "size" ? "bg-white/[0.08]" : ""
                   }`}
                 >
                   1:1 · 2K · 1
                   <ChevronDown size={12} className="text-white/60" />
                 </button>
-                {sizeOpen ? (
+                {open === "size" ? (
                   <div
                     className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[192px] rounded-xl p-1.5"
                     style={{ background: "rgb(38,38,38)" }}
@@ -126,7 +127,7 @@ export function JimengImageGenPanel({ visible }: { visible: boolean }) {
                       type="button"
                       role="option"
                       aria-selected
-                      onClick={() => setSizeOpen(false)}
+                      onClick={() => setOpen(null)}
                       className="flex h-9 w-full items-center rounded-lg px-2.5 text-[13px] text-white bg-white/[0.10]"
                     >
                       1:1 · 2K · 1

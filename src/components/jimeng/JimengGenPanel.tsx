@@ -99,11 +99,20 @@ export function JimengGenPanel({
   const [prompt, setPrompt] = useState("");
   const generateInto = useJimengStore((s) => s.generateInto);
   // Batch 41/61: 模型下拉，选择持久化到 store
-  const [modelOpen, setModelOpen] = useState(false);
+  /* 批 835 SOURCE_FACT：这一块面板里的 4 个下拉在源站上是**互斥**的 ——
+     开下一个，上一个自动关闭。源站实测（`jimeng_probe835_panexclusive.py`，
+     不按 Escape、不点空白，直接连点四个触发器）：
+       开「模型」   → 同时可见 1 层
+       再开「16:9」→ 4 层，**全是尺寸那组**，模型那层不见了
+       再开「全能参考」→ 1 层，尺寸那组也消失
+     此前复刻把它们拆成 `modelOpen` + `openMenu` 两个独立 state，于是能同时
+     开着，而且 392 宽的「模型」会盖住 192 宽的「生成模式」—— 用户点不到
+     被盖住的选项（批 832 的 verifier 就是在这一步点了 30s 超时的）。
+     这不是脚手架问题，是真缺陷。现在收成**一个** state。 */
+  const [open, setOpen] = useState<"model" | "ratio" | "ref" | "dur" | null>(null);
   const model = useJimengStore((s) => s.genModel);
   const setGenModel = useJimengStore((s) => s.setGenModel);
   // Batch 42: 比例/分辨率/数量 + 参考模式 + 时长 (SOURCE_FACT batch 42 提取)
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [ratio, setRatio] = useState("16:9");
   const [resolution, setResolution] = useState("720P");
   const [count, setCount] = useState("1");
@@ -426,15 +435,15 @@ export function JimengGenPanel({
                      没有它屏幕阅读器只会说「按钮」。aria-expanded 跟着
                      真实展开态走，不是写死的 false。 */
                   aria-haspopup="listbox"
-                  aria-expanded={modelOpen}
-                  onClick={() => setModelOpen((v) => !v)}
+                  aria-expanded={open === "model"}
+                  onClick={() => setOpen((v) => (v === "model" ? null : "model"))}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
                   {model}
                   <VipDiamond size={12} />
                   <ChevronDown size={12} className="text-white/60" />
                 </button>
-                {modelOpen ? (
+                {open === "model" ? (
                   <div
                     className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[392px] rounded-[10px] border border-white/[0.06] p-1.5"
                     style={{ background: "rgb(38,38,38)" }}
@@ -460,7 +469,7 @@ export function JimengGenPanel({
                         aria-selected={model === m.name}
                         onClick={() => {
                           setGenModel(m.name);
-                          setModelOpen(false);
+                          setOpen(null);
                         }}
                         className={`flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 py-2 text-left hover:bg-white/10 ${
                           model === m.name ? "bg-white/[0.08]" : ""
@@ -488,8 +497,8 @@ export function JimengGenPanel({
                      读到 `role=dialog name=视频尺寸选项 334×292`）。
                      复刻此前一律用 listbox，与源站不符，本批改正。 */
                   aria-haspopup="dialog"
-                  aria-expanded={openMenu === "ratio"}
-                  onClick={() => setOpenMenu(openMenu === "ratio" ? null : "ratio")}
+                  aria-expanded={open === "ratio"}
+                  onClick={() => setOpen((v) => (v === "ratio" ? null : "ratio"))}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
                   {ratio} · {resolution}
@@ -497,7 +506,7 @@ export function JimengGenPanel({
                   · {count}
                   <ChevronDown size={12} className="text-white/60" />
                 </button>
-                {openMenu === "ratio" ? (
+                {open === "ratio" ? (
                   <div
                     className="absolute bottom-[calc(100%+8px)] left-0 z-[140] flex w-[334px] gap-4 rounded-[10px] border border-white/[0.06] p-3"
                     style={{ background: "rgb(38,38,38)" }}
@@ -531,7 +540,7 @@ export function JimengGenPanel({
                               if (group.key === "ratio") setRatio(opt);
                               if (group.key === "resolution") setResolution(opt);
                               if (group.key === "count") setCount(opt);
-                              setOpenMenu(null);
+                              setOpen(null);
                             }}
                             className={`flex h-7 items-center rounded-md px-2 text-[12px] ${
                               (group.key === "ratio" ? ratio : group.key === "resolution" ? resolution : count) === opt
@@ -554,14 +563,14 @@ export function JimengGenPanel({
                   aria-label="生成模式: 全能参考"
                   /* 批 833 SOURCE_FACT：源站这一枚 aria-haspopup="listbox" */
                   aria-haspopup="listbox"
-                  aria-expanded={openMenu === "ref"}
-                  onClick={() => setOpenMenu(openMenu === "ref" ? null : "ref")}
+                  aria-expanded={open === "ref"}
+                  onClick={() => setOpen((v) => (v === "ref" ? null : "ref"))}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
                   {reference}
                   <ChevronDown size={12} className="text-white/60" />
                 </button>
-                {openMenu === "ref" ? (
+                {open === "ref" ? (
                   <div
                     className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[192px] rounded-[10px] border border-white/[0.06] p-1.5"
                     style={{ background: "rgb(38,38,38)" }}
@@ -583,7 +592,7 @@ export function JimengGenPanel({
                         aria-selected={reference === opt}
                         onClick={() => {
                           setReference(opt);
-                          setOpenMenu(null);
+                          setOpen(null);
                         }}
                         className={`flex h-10 w-full items-center rounded-lg px-2.5 text-[13px] ${
                           reference === opt ? "bg-white/[0.10] text-white" : "text-white/75 hover:bg-white/10"
@@ -603,14 +612,14 @@ export function JimengGenPanel({
                   /* 批 833 SOURCE_FACT：源站这一枚 aria-haspopup="**dialog**"，
                      展开后实测 role=dialog name="Duration options" 400×100 */
                   aria-haspopup="dialog"
-                  aria-expanded={openMenu === "dur"}
-                  onClick={() => setOpenMenu(openMenu === "dur" ? null : "dur")}
+                  aria-expanded={open === "dur"}
+                  onClick={() => setOpen((v) => (v === "dur" ? null : "dur"))}
                   className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                 >
                   {duration}
                   <ChevronDown size={12} className="text-white/60" />
                 </button>
-                {openMenu === "dur" ? (
+                {open === "dur" ? (
                   <div
                     className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[120px] rounded-[10px] border border-white/[0.06] p-1.5"
                     style={{ background: "rgb(38,38,38)" }}
@@ -632,7 +641,7 @@ export function JimengGenPanel({
                         aria-selected={duration === opt}
                         onClick={() => {
                           setDuration(opt);
-                          setOpenMenu(null);
+                          setOpen(null);
                         }}
                         className={`flex h-10 w-full items-center rounded-lg px-2.5 text-[13px] ${
                           duration === opt ? "bg-white/[0.10] text-white" : "text-white/75 hover:bg-white/10"
