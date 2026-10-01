@@ -1,0 +1,89 @@
+{
+  "batch": 360,
+  "defect": "普查未覆盖的两块: ①能新建但默认画布没有的节点类型(音频/智能剪辑/逐帧拉片)的编辑面板 —— 3 个死控件(AudioNode 播放音频、VideoClipEditPanel 的默认模式与输出设置); ②浮层(预览大图/标注画布/标注颜色菜单)—— 0 个。",
+  "fix": "3 个死控件改为「保持启用 + 去悬停反馈 + cursor default + title + data-inert」, 文案与几何不动(batch25 读的正是文案)。",
+  "role": "把节点类型与浮层纳入交互谎言门禁; 跳过导演台(另一条线, 有并行 session 在改)",
+  "desktop": {
+    "viewport": "1440x900",
+    "checks": [
+      "new-node:音频:created",
+      "new:音频:no-silent-discard",
+      "new:音频:no-dead-control",
+      "new:音频:no-lying-affordance",
+      "new:音频:coverage",
+      "new-node:智能剪辑:created",
+      "new:智能剪辑:no-silent-discard",
+      "new:智能剪辑:no-dead-control",
+      "new:智能剪辑:no-lying-affordance",
+      "new:智能剪辑:coverage",
+      "new-node:逐帧拉片:created",
+      "new:逐帧拉片:no-silent-discard",
+      "new:逐帧拉片:no-dead-control",
+      "new:逐帧拉片:no-lying-affordance",
+      "new:逐帧拉片:coverage",
+      "canvas:has-image-node",
+      "overlay:preview:opened",
+      "overlay:preview:no-silent-discard",
+      "overlay:preview:no-dead-control",
+      "overlay:preview:no-lying-affordance",
+      "overlay:preview:coverage",
+      "overlay:annotate:no-silent-discard",
+      "overlay:annotate:no-dead-control",
+      "overlay:annotate:no-lying-affordance",
+      "overlay:annotate:coverage",
+      "overlay:color-menu:opened",
+      "overlay:annotate:color:no-silent-discard",
+      "overlay:annotate:color:no-dead-control",
+      "overlay:annotate:color:no-lying-affordance",
+      "overlay:annotate:color:coverage",
+      "diagnostics:zero"
+    ],
+    "surfaces": {
+      "new:音频": {
+        "inputs": 1,
+        "controls": 37,
+        "silent": [],
+        "dead": []
+      },
+      "new:智能剪辑": {
+        "inputs": 2,
+        "controls": 46,
+        "silent": [],
+        "dead": []
+      },
+      "new:逐帧拉片": {
+        "inputs": 1,
+        "controls": 46,
+        "silent": [],
+        "dead": []
+      },
+      "overlay:preview": {
+        "inputs": 2,
+        "controls": 69,
+        "silent": [],
+        "dead": []
+      },
+      "overlay:annotate": {
+        "inputs": 2,
+        "controls": 54,
+        "silent": [],
+        "dead": []
+      },
+      "overlay:annotate:color": {
+        "inputs": 2,
+        "controls": 61,
+        "silent": [],
+        "dead": []
+      }
+    },
+    "created": {
+      "音频": "audio-1790849582494-lplxmg",
+      "智能剪辑": "video-clip-1790849586294-dcokqi",
+      "逐帧拉片": "shot-breakdown-1790849590066-ef2xd4"
+    },
+    "diagnostics": {
+      "console": 0,
+      "errors": []
+    }
+  }
+}

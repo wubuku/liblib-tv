@@ -1,0 +1,55 @@
+{
+  "__default__": {
+    "inputs": 1,
+    "controls": 36,
+    "silentDiscard": [],
+    "deadControls": []
+  },
+  "_imageNodes": [
+    "i-1FQ9tErTcC",
+    "i-lBzmo67AHv",
+    "i-dnwoZQ7jsG",
+    "i-vxeeCnxySa",
+    "i-YDfWhFlthe"
+  ],
+  "img:i-1FQ9tErTcC:preview": {
+    "inputs": 2,
+    "controls": 59,
+    "silentDiscard": [],
+    "deadControls": []
+  },
+  "img:i-1FQ9tErTcC:annotate:color": {
+    "inputs": 2,
+    "controls": 51,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_colorMenuOpened": true
+  },
+  "img:i-1FQ9tErTcC:annotate": {
+    "inputs": 2,
+    "controls": 44,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_annotateOpened": true
+  },
+  "img:i-lBzmo67AHv:preview": {
+    "inputs": 2,
+    "controls": 59,
+    "silentDiscard": [],
+    "deadControls": []
+  },
+  "img:i-lBzmo67AHv:annotate:color": {
+    "inputs": 2,
+    "controls": 51,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_colorMenuOpened": true
+  },
+  "img:i-lBzmo67AHv:annotate": {
+    "inputs": 2,
+    "controls": 44,
+    "silentDiscard": [],
+    "deadControls": [],
+    "_annotateOpened": true
+  }
+}

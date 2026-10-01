@@ -56,7 +56,10 @@ function AudioNodeComponent({ data, selected }: NodeProps<AudioNodeType>) {
         {audioSplit ? `${resultLabelByMode[audioSplit.mode]}结果` : "音频"}
       </div>
       <div className="mt-3 flex items-center gap-3 rounded-lg bg-[#1d1d1d] px-3 py-2.5">
-        <button type="button" aria-label="播放音频" className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white text-[#202020] hover:bg-[#ededed]">
+        {/* Batch 360: 普查发现这里**完全没有 onClick、也没 disabled**, 却带悬停反馈 —— 看着能点, 点了毫无反应。源站点击效果未采样, 不发明; 保留文案与几何(既有门禁 batch25 读的正是文案), 去掉悬停骗人的反馈, 加 title 说明。 */}
+        <button type="button" aria-label="播放音频" data-inert="true"
+          title="音频播放在克隆侧尚未接入"
+          className="flex size-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white/70 text-[#202020]">
           <Play size={13} fill="currentColor" className="ml-0.5" />
         </button>
         <div className="flex h-7 flex-1 items-center gap-1 overflow-hidden">

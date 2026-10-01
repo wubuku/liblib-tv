@@ -71,7 +71,9 @@ export function VideoClipEditPanel({
           <button
             type="button"
             data-video-clip-mode-setting
-            className="flex h-8 items-center gap-1.5 rounded-md px-1.5 hover:bg-white/[0.06]"
+            data-inert="true"
+            title="剪辑模式设置在克隆侧尚未接入"
+            className="flex h-8 cursor-default items-center gap-1.5 rounded-md px-1.5"
           >
             <Scissors size={14} className="text-[#aaa]" />
             <span>{mode ?? "默认模式"}</span>
@@ -81,7 +83,9 @@ export function VideoClipEditPanel({
           <button
             type="button"
             data-video-clip-output-setting
-            className="flex h-8 items-center gap-1.5 rounded-md px-1.5 hover:bg-white/[0.06]"
+            data-inert="true"
+            title="输出设置在克隆侧尚未接入"
+            className="flex h-8 cursor-default items-center gap-1.5 rounded-md px-1.5"
           >
             <RectangleHorizontal size={14} className="text-[#aaa]" />
             <span>16:9 · 720P · 30s</span>

@@ -132,6 +132,9 @@ SCAN_JS = """
       ariaDisabled: el.getAttribute('aria-disabled') || '',
       disabled: el.disabled === true,
       cursor: cs.cursor, wired, wiredByAncestor,
+      // hover 视觉暗示: 悬停会变色/变底色 —— 正是它让「点不动的控件」看着能点。
+      // 声明了惰性(data-inert)的控件若还留着 hover, 就还在骗人。
+      hasHoverAffordance: /hover:/.test(String(el.className || '')),
       data: Array.from(el.attributes).filter((a) => a.name.startsWith('data-') || a.name === 'data-testid')
                   .map((a) => a.name + (a.value ? '=' + a.value : '')),
     });
@@ -155,9 +158,19 @@ def classify(snap: dict[str, Any]) -> dict[str, Any]:
         it for it in snap["controls"]
         if not it["disabled"] and not it["wired"] and not it["wiredByAncestor"] and not inert(it)
     ]
+    # 元缺陷: 第一次做 360 时, 变异测试把 hover 底色加回来, 门禁**没红** ——
+    # 因为判据只管「有没有 handler」, 没管「看起来能不能点」。
+    # 而 hover 变色恰恰是这类缺陷最核心的视觉特征。踩到就补成门禁。
+    lying_affordance = [
+        it for it in snap["controls"]
+        if it.get("inert") == "true" and it.get("hasHoverAffordance")
+    ]
     return {
         "inputs": len(snap["inputs"]),
         "controls": len(snap["controls"]),
+        "lyingAffordance": [
+            {"tag": c["tag"], "aria": c["aria"], "text": c["text"]} for c in lying_affordance
+        ],
         "silentDiscard": [
             {"tag": i["tag"], "type": i["type"], "ph": i["placeholder"], "aria": i["aria"]}
             for i in silent
