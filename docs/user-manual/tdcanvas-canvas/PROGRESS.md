@@ -915,3 +915,23 @@
 - **顺带首次在真实文件上验证 `append-audit.py`**：追加 AUDIT.md 两行，工具正常放行并复查通过（这次两行都老老实实写了收尾竖线）。
 - **门禁**：无新门禁、无新图，正文两处补证据。产物 22 页 / 89 图。
 - **清单进度**：23 张表已核对 8 组，**余下约 11 张**。
+
+## M73 — 流程二次纠正：共享索引下**纯 commit** 才是危险的（M72 当场踩了）
+
+- **M72 真的裹带了别人的文件。** 提交后 `git show --numstat` 出现 8 个不属于手册的路径：`scripts/verify-liblib-batch610.py`（+653）、`docs/research/liblib-canvas-batch610-2026-10-01/runtime-audit.json`（+1234）、`src/components/director/DirectorInspector.tsx`（+158-88）、`DirectorDesk.tsx`、`directorStore.ts`、`verify-liblib-batch581.py` 等——**这些是别的 agent 正在写的代码**。
+- **损失评估：内容零丢失。** 逐个核对，这些文件在工作区都在、且与 HEAD 一致。提交只是把他们的工作**提前入库**了，他们的本地文件完好，后续编辑照常产生新 diff。**唯一的影响是"抢跑"**——那个 agent 下次提交时可能发现部分内容已入库，只需提交后续差异。
+- **根因（我上轮理解反了）**：
+  | 写法 | 危险条件 | 对本手册是否适用 |
+  |---|---|---|
+  | `git commit -- <pathspec>` | **该路径下**有并行编辑者时，pathspec 提交的是**工作区当前内容**，会把对方在写的代码裹进去 | ❌ **不适用**——`git log` 证实 `docs/user-manual/tdcanvas-canvas/` 近 25 个提交**只有我在提交**，我独占该目录 |
+  | 纯 `git commit`（不带 pathspec） | **索引是共享的**。别的 agent 在我 `add` 之后、`commit` 之前完成 `git add`，他们的内容就进了我的索引，**纯 commit 会一并提交** | ⚠️ **必然有窗口期**——M72 就是这么中招的 |
+  **所以那条"改用纯 commit"的建议，对独占路径的场景是反的。** 我上轮只记住了"危险的是 `commit`、不是 `add`"，却没意识到**去掉 pathspec 恰恰把范围从"我的目录"放大到了"整个索引"**。
+- **本手册的最终流程**（M73 起执行）：
+  ```bash
+  git add -- docs/user-manual/tdcanvas-canvas/                       # 可选，只是让状态可见
+  git diff --cached --numstat -- docs/user-manual/tdcanvas-canvas/  # 核对行数
+  git commit -m "..." -- docs/user-manual/tdcanvas-canvas/          # **必须带 pathspec**
+  ```
+  **pathspec 在这里的作用不是"限制提交内容"，而是"把提交范围钉死在我独占的目录内"**——无论共享索引里此刻躺着谁的暂存内容，都提交不到。`git add` 可以有也可以没有，有它只是让 `--cached` 核对有东西可看。
+- **不修正这次历史**：`reset` 需要强推，会让其他 agent 的本地 HEAD 指向不存在的提交，**在多 agent 共享的 master 上危害远大于收益**；内容没丢，提交本身有效。**已如实上报，由用户决定是否需要与其他 agent 协调。**
+- **教训**：共享工作区里，**"更严格的限定"和"更宽的提交"是反直觉的一对**。看到别人说"去掉 pathspec 更安全"时，要先问一句：**"我这个路径，真的没有第二个人在改吗？"** 答案是"没有"时，pathspec 是纯收益；答案是"有"时，要先解决并行编辑再谈提交方式。
