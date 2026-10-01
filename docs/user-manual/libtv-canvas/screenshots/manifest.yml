@@ -1105,3 +1105,25 @@ screenshots:
     visible_text: 文本 文本节点 1 图片 图片节点 2 对话 待确认后生成 Lib Image 2.5 Pro 视频 成片 新对话 让 TV Director 辅助你的无限创意 图片节点 2 全能创作
     alt: 鼠标悬停在「图片节点 2」行上时，行尾右侧浮出一枚带气泡图标的「对话」按钮；右侧 TV Director 面板的输入框里挂着一枚「图片节点 2」附件 chip；视频列列头已从「全部」变成「成片」，而「视频节点 3」那一行已被筛掉
     sha256: 12b0c60aee7b3b0acc8c52edc0914a7cc44e6eedb3bc5f99c79891d80b30b123
+  - file: screenshots/M-104-生成历史.png
+    task_id: generate-media
+    step: 46
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 打开生成历史面板，点右列 aria 之外的「所有评级」按钮 (1092,188)
+    visible_text: 所有评级 1 2 3 4 5 生成历史 全部画布 本画布 图片 0 视频 0 音频 0 时间倒序 批量操作 暂无历史记录
+    alt: 生成历史面板浮在画布上（四周和右下角都能看到画布本身，不是全屏遮罩）；点开「所有评级」后在其下方弹出一个 200×230 的浮层，从上到下是所有评级（右侧带 ✓）、1、2、3、4、5，后五档每项右边跟一枚橙色星星
+    sha256: 66a148936fb6b9173fe88a72f3e4a1925fbae0897731b683ab1e73d7406031a3
+  - file: screenshots/M-108-生成历史.png
+    task_id: generate-media
+    step: 47
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点排序按钮 (1195,188) 一次，再读它自己的 title
+    visible_text: 生成历史 全部画布 本画布 图片 0 视频 0 音频 0 所有评级 时间正序 批量操作 暂无历史记录
+    alt: 点完「时间倒序」之后：按钮文案变成「时间正序」并进入深色高亮态，鼠标悬停提示写「当前：最早优先」；对比 M-01 里那个「时间倒序」的常态。右上角能看到两枚视图图标夹一根滑杆，右端是 × 关闭
+    sha256: 02f3c22e509b4f3747c8c74301b20471edf404a349eab47a3f8e57774d840c11

@@ -196,6 +196,16 @@ NEW = [
      '文本 文本节点 1 图片 图片节点 2 对话 待确认后生成 Lib Image 2.5 Pro 视频 成片 新对话 让 TV Director 辅助你的无限创意 图片节点 2 全能创作',
      '鼠标悬停在「图片节点 2」行上时，行尾右侧浮出一枚带气泡图标的「对话」按钮；右侧 TV Director 面板的输入框里挂着一枚「图片节点 2」附件 chip；视频列列头已从「全部」变成「成片」，而「视频节点 3」那一行已被筛掉',
      'M-95-故事板-点对话之后.png'),
+    ('M-104-生成历史.png', 'generate-media', 46,
+     '打开生成历史面板，点右列 aria 之外的「所有评级」按钮 (1092,188)',
+     '所有评级 1 2 3 4 5 生成历史 全部画布 本画布 图片 0 视频 0 音频 0 时间倒序 批量操作 暂无历史记录',
+     '生成历史面板浮在画布上（四周和右下角都能看到画布本身，不是全屏遮罩）；点开「所有评级」后在其下方弹出一个 200×230 的浮层，从上到下是所有评级（右侧带 ✓）、1、2、3、4、5，后五档每项右边跟一枚橙色星星',
+     'M-104-生成历史.png'),
+    ('M-108-生成历史.png', 'generate-media', 47,
+     '点排序按钮 (1195,188) 一次，再读它自己的 title',
+     '生成历史 全部画布 本画布 图片 0 视频 0 音频 0 所有评级 时间正序 批量操作 暂无历史记录',
+     '点完「时间倒序」之后：按钮文案变成「时间正序」并进入深色高亮态，鼠标悬停提示写「当前：最早优先」；对比 M-01 里那个「时间倒序」的常态。右上角能看到两枚视图图标夹一根滑杆，右端是 × 关闭',
+     'M-108-生成历史.png'),
 ]
 
 
@@ -205,6 +215,28 @@ def sha256(path):
         for chunk in iter(lambda: f.read(1 << 20), b''):
             h.update(chunk)
     return h.hexdigest()
+
+
+def check_inventory_yaml():
+    """task-inventory.yml 必须能被 YAML 解析。
+
+    为什么要有这个自检：这个文件从建起来那天起就有几处「单引号没闭合 / 续行缩进不对」
+    的写法（`- 'xxx'` 后面跟一行更深缩进的中文），**PyYAML 直接报错**。
+    但 gate-a 脚本从头到尾没有解析过它，所以这些坏行一直躺在已提交的版本里没人发现。
+
+    教训和 §14/§16/§17 一脉相承：**「没人检查」不等于「没问题」**。
+    这里把解析放进和截图清单同一个脚本，跑一次构建就自动验一次。
+    """
+    import yaml
+    p = os.path.join(ROOT, 'task-inventory.yml')
+    try:
+        d = yaml.safe_load(open(p, encoding='utf-8'))
+    except Exception as e:                      # noqa: BLE001
+        print('!! task-inventory.yml YAML 解析失败:', str(e)[:200])
+        return False
+    n = len(d.get('tasks', []))
+    print(f'task-inventory.yml 解析通过: {n} 个任务')
+    return n > 0
 
 
 def main():
@@ -264,6 +296,7 @@ def main():
     # 4) 自检
     raw2 = open(MANIFEST, encoding='utf-8').read()
     listed2 = re.findall(r'- file: (\S+)', raw2)
+    check_inventory_yaml()
     print(f'\n清单 {len(listed2)} 条 / 磁盘 {len(disk)} 张；'
           f'死条目 {len([f for f in listed2 if f not in disk])}；'
           f'未登记 {len([f for f in disk if f not in listed2])}')
