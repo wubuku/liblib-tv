@@ -695,3 +695,75 @@ screenshots:
     visible_text: '1 个资产已保存为 TDCanvas.zip'
     alt: 下载完成后顶部提示一个资产已保存为 TDCanvas 点 zip，工具栏已自动退出批量模式恢复为四个常规按钮，卡片底部显示编辑、复制、删除
     sha256: b5bbf14650115ddd3fce3e81e0ea3ecb9a8700cb7ff82dd37f780817106264ed
+
+  - file: screenshots/16-use-agent-connect.png
+    task_id: use-agent
+    step: 点顶栏 Bot 图标展开 Agent 面板，默认落在连接设置页，含两种连接方式与网页连接区
+    route: '/canvas'
+    viewport: 1440x950
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '面板标题 连接 TDCanvas Agent / 方式一 在 Codex 中使用插件 / codex plugin remove tdcanvas / codex mcp remove tdcanvas / 方式二 本地运行 TDCanvas Agent / npm --prefix canvas-agent run dev / 网页连接 未连接 / Local URL http://127.0.0.1:17371 / Connect token 密文框'
+    visible_text: '连接 TDCanvas Agent'
+    alt: Agent 面板的连接设置页，上方是方式一在 Codex 中使用插件与两条移除命令，中间是方式二：本地运行与一条 npm 命令，下方是网页连接区与本地地址、连接 Token 两个输入框
+    sha256: 6e0ecd767ff4723edb20307eefc91b100ea7b8ff78ec5a283db9016f1b90e116
+
+  - file: screenshots/16-use-agent-chat.png
+    task_id: use-agent
+    step: 切到 Agent 面板的对话标签，未连接时消息区空白、输入框占位提示 MCP 初始化中且四个按钮全禁用
+    route: '/canvas'
+    viewport: 1440x950
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '顶部 对话 图标选中 / 输入框占位 MCP 初始化中，完成后即可发送 / 上传图片 选择 Skill 选择工具确认模式 选择 Codex 权限模式 / 发送按钮灰色'
+    visible_text: 'MCP 初始化中，完成后即可发送'
+    alt: Agent 面板的对话视图，消息区空白，底部输入框占位文字为 MCP 初始化中完成后即可发送，四个图标按钮与发送按钮均为灰色禁用
+    sha256: 3a5a45dc9b36e1dd591e4ac84321b6fa8247e21f89b90048cc4366d4ed555735
+
+  - file: screenshots/16-use-agent-skills.png
+    task_id: use-agent
+    step: 切到 Agent 面板的技能标签，未连接时显示空态「连接 Agent 后查看 Skill」
+    route: '/canvas'
+    viewport: 1440x950
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '标题 本地 Skill / 副标题 安装在本机，由 Codex 直接执行 / 重新读取 Skill / 创建 Skill / 搜索 Skill 输入框 / 全部来源 筛选 / 空态 连接 Agent 后查看 Skill'
+    visible_text: '连接 Agent 后查看 Skill'
+    alt: Agent 面板的技能视图，顶部为本地 Skill 标题、重新读取与创建 Skill 按钮、搜索框和全部来源筛选，中间空态写明连接 Agent 后查看 Skill
+    sha256: 75e2029273e9a601c1ac58f8e7ebeb5a1d174224d8b617caa18ab6e428f3edab
+
+  - file: screenshots/16-use-agent-permissions.png
+    task_id: use-agent
+    step: 在对话页展开 Codex 权限模式下拉，读取三档权限的真实选项与说明
+    route: '/canvas'
+    viewport: 1440x950
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '下拉项 请求批准 编辑工作区外文件或联网时始终询问（带对勾）/ 自动审查 由 Codex 审查风险操作，必要时再询问 / 完全访问权限 不受限制地访问网络和本机文件'
+    visible_text: '完全访问权限'
+    alt: Codex 权限模式的下拉展开为三项：请求批准、自动审查、完全访问权限，每项下方有一句说明，请求批准右侧带对勾表示当前选中
+    sha256: 63ad0eb991605586d7fc806ea24d66bd14f8d223518971c487e308657d46dd80
+
+  - file: screenshots/16-comfyui-local-browser.png
+    task_id: navigate-canvas
+    step: 浏览器打开 /comfyui-local，整页只有未配置徽标与桌面客户端提示，无任何按钮
+    route: '/comfyui-local'
+    viewport: 1280x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '页面标题 ComfyUI 本地模式 / 右上角徽标 未配置 / 橙色提示 此模式仅在桌面客户端中运行 / 本地环境需要访问电脑目录并管理 ComfyUI 进程 / 全页 button 数量 0'
+    visible_text: '此模式仅在桌面客户端中运行'
+    alt: 浏览器里的 ComfyUI 本地页面，右上角是未配置徽标，正文只有一条此模式仅在桌面客户端中运行的橙色提示，页面上没有任何按钮
+    sha256: 0ce18185e154ff54ceae72715a30ec544b22471a60898ced69aa7a9d7c9aba39
+
+  - file: screenshots/16-page-not-found.png
+    task_id: navigate-canvas
+    step: 访问不存在的地址，查看 404 页的完整形态与可用出口
+    route: '/this-page-does-not-exist'
+    viewport: 1280x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '中央 404 方块 / 标题 页面不存在 / 说明 这个地址没有对应的页面，可能已经移动或被合并到其他入口 / 按钮 返回首页 / 全页无顶部导航'
+    visible_text: '页面不存在'
+    alt: 404 页面，中央是 404 方块与页面不存在标题，下方一句说明文字和一个返回首页按钮，页面没有顶部导航栏
+    sha256: 755e75d1c5e98427e1999461d133297f0326a6185ad8eba14a7466448c201fb9

@@ -19,6 +19,7 @@
 - [撤销重做与自动保存](undo-persistence.md)
 - [管理项目（列表/重命名/导出/删除）](project-management.md)
 - [管理我的资产](manage-assets.md)
+- [连接 Agent 让它操作画布](use-agent.md)
 
 ## 简明任务
 

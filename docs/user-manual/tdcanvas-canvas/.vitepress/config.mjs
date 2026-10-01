@@ -77,6 +77,12 @@ export default defineConfig({
         ],
       },
       {
+        text: 'AI 助手',
+        items: [
+          { text: '连接 Agent 让它操作画布', link: '/10-tasks/use-agent' },
+        ],
+      },
+      {
         text: '参考与排障',
         items: [
           { text: '参考：键位、限制、状态与设置', link: '/20-reference' },

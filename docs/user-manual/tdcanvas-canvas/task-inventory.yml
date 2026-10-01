@@ -271,3 +271,23 @@ tasks:
     review_note: 2026-09-30 M20 回走：当前版本提示词来源为空且无添加入口（四个路由全量标签扫描无「提示词来源/新增来源」），故按「如实记录限制」处理，不臆造操作步骤；有内容时的交互取自当前版本 i18n 与源码并明确标注。1 张截图入 manifest。
     manual_pages:
       - 10-tasks/use-prompt-library.md
+  - id: use-agent
+    title: 连接 Agent 让它操作画布
+    role: tdcanvas-creator
+    frequency: occasional
+    impact: medium
+    coverage: full
+    evidence:
+      - type: runtime
+        note: 2026-10-01 Agent 面板逐标签运行时取证（Playwright 独立 profile，1440x950）：顶栏 Bot 图标 aria-label「打开 Agent」；面板内 7 个纯图标按钮（连接设置 plug-zap / 对话 message-square / 历史 history / 技能 sparkles / 日志 terminal / 新对话 plus / 收起 panel-right-close）；默认落在连接设置；两种连接方式与三条可复制命令（codex plugin remove tdcanvas、codex mcp remove tdcanvas、npm --prefix canvas-agent run dev）；Local URL 实测预填 http://127.0.0.1:17371、Connect token 密文框默认留空；未连接时对话页占位「MCP 初始化中，完成后即可发送」且发送/上传图片/选择 Skill/新对话四个按钮全禁用；工具确认下拉实测 2 项（手动确认/自动确认，默认自动确认）；Codex 权限下拉实测 3 项（请求批准/自动审查/完全访问权限，默认请求批准）；技能页空态「连接 Agent 后查看 Skill」；日志页状态「未启用」+ 地址 127.0.0.1:17371 + 全部/错误/警告/信息 0；历史页「连接本地 Agent 后显示历史记录」。
+      - type: static
+        note: router.tsx 无 /agent 路由，Agent 面板是 UserLayout 的常驻右侧面板而非独立页面；i18n agent.tools / agent.permission / agent.effort 提供三个下拉的完整枚举。
+    preconditions:
+      - 已启动 TDCanvas 并登录本机工作区
+    routes:
+      - '/canvas'
+      - '/'
+    status: verified
+    review_note: 2026-10-01 M36 新增。覆盖范围到「面板正确显示未连接状态」为止；真正连上 Agent 后的对话与执行效果需本机跑起 canvas-agent，属未验证范围，手册不写未验证步骤。4 张截图入 manifest。
+    manual_pages:
+      - 10-tasks/use-agent.md

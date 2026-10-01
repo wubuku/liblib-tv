@@ -28,6 +28,7 @@ TDCanvas 是一个**本地优先**的 AI 无限画布：把提示词（文本）
 | 撤销重做与自动保存 | [undo-persistence.md](10-tasks/undo-persistence.md) | 完整 |
 | 管理项目（列表/重命名/导出/删除） | [project-management.md](10-tasks/project-management.md) | 完整 |
 | 收藏、检索、导出我的资产 | [manage-assets.md](10-tasks/manage-assets.md) | 完整 |
+| 连接 Agent 让它操作画布 | [use-agent.md](10-tasks/use-agent.md) | 完整 |
 | 浏览提示词库（当前版本为空） | [use-prompt-library.md](10-tasks/use-prompt-library.md) | 简明 |
 | 快捷键与帮助 | [shortcuts-help.md](10-tasks/shortcuts-help.md) | 简明 |
 
@@ -51,7 +52,7 @@ TDCanvas 是一个**本地优先**的 AI 无限画布：把提示词（文本）
 
 ## 以网站形式查看本手册
 
-本手册已构建为 **VitePress 静态网站**（含侧边栏导航与中文全文搜索 ⌘K），构建产物在本目录 `.vitepress/dist/`（2026-10-01 构建：21 页 / 58 张截图 / 17M）。
+本手册已构建为 **VitePress 静态网站**（含侧边栏导航与中文全文搜索 ⌘K），构建产物在本目录 `.vitepress/dist/`（2026-10-01 构建：22 页 / 64 张截图 / 18M）。
 
 **本地查看（二选一）**：
 

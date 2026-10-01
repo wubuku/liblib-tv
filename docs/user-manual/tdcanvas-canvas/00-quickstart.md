@@ -52,7 +52,7 @@
 | 入口 | 用途 | 详见 |
 |---|---|---|
 | 我的画布 | 画布项目列表，新建、重命名、导出、删除 | [project-management.md](10-tasks/project-management.md) |
-| ComfyUI 本地 | 本地 ComfyUI 工作流环境 | 本手册未覆盖 |
+| ComfyUI 本地 | 本地 ComfyUI 工作流环境（**仅桌面客户端可用**，浏览器里是提示页） | [20-reference.md](20-reference.md#comfyui-本地与-404-两个走不到底的页面) |
 | 提示词库 | 浏览提示词（进入后页面标题为「提示词中心」） | [use-prompt-library.md](10-tasks/use-prompt-library.md) |
 | 我的资产 | 提示词与参考图的素材仓库，可导出备份 | [manage-assets.md](10-tasks/manage-assets.md) |
 | 配置 | 填写 AI 土豆 API Key（生成类功能必需） | [generate-images.md](10-tasks/generate-images.md) |
