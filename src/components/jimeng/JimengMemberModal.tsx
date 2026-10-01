@@ -91,7 +91,18 @@ export function JimengMemberModal({ onClose }: { onClose: () => void }) {
   }, [onClose]);
 
   return (
-    <div className="fixed inset-0 z-[250] overflow-auto bg-[#0D0D0D]">
+    /* 批 827：只加**自动化锚点**，不加 role / aria-label。
+       源站实测（@1680×1050，点 `canvas-commerce-entry`）这层同样是全屏
+       `fixed` 遮罩（z-index 1001, 1680×1050）且 **role / aria-label /
+       data-testid 全都没有** —— 也就是说"普查按 role 枚举看不见它"这件事
+       **源站也一样**，是源站自带的性质，不是复刻的缺陷。
+       所以这里刻意**不补 role**：补了就等于擅自改进源站语义，偏离源站。
+       但 data-testid 对用户不可见、只是自动化锚点，本项目的 816/823/826
+       三轮都把它立成了常备契约，所以补上，让普查能看见并如实记录它。 */
+    <div
+      data-testid="jimeng-member-modal"
+      className="fixed inset-0 z-[250] overflow-auto bg-[#0D0D0D]"
+    >
       <button
         type="button"
         aria-label="关闭订阅页"
