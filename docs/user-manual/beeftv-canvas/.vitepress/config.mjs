@@ -59,6 +59,7 @@ export default defineConfig({
         items: [
           { text: '整理画布、Frame 与外观', link: '/10-tasks/organize-canvas' },
           { text: '撤销重做、版本历史与回收站', link: '/10-tasks/undo-history-versions' },
+          { text: '账号存储、容量与配额', link: '/10-tasks/storage-quota' },
           { text: '快捷键与帮助中心', link: '/10-tasks/shortcuts-help' },
         ],
       },

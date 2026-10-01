@@ -111,6 +111,40 @@ tasks:
     status: verified
     manual_pages:
       - 10-tasks/manage-canvases.md
+  - id: storage-quota
+    title: 账号存储、容量与配额（侧栏容量条 + 九项服务端配额）
+    role: beeftv-creator
+    frequency: common
+    impact: high
+    coverage: full
+    evidence:
+      - type: static
+        note: >-
+          backend/internal/platform/runtime_policy.go DefaultRuntimePolicy() 默认值：StoredFileGB 20、
+          StructuredDataMB 256、ResourceUploadMB 50、GeneratedFileMB 64、DailyUploadMB 2048、
+          AssetCount 2000、CanvasCount 1000、TaskCount 20000、APICallLogCount 100000、
+          RecycleBinRetentionDays 30、ActiveTaskLimit 5；Request 段 TaskCreate/ResourceUpload/
+          ResourceImport 30 每分钟、AssetWrite/CanvasWrite 120 每分钟。报错文案逐条取自
+          storage_quota.go / upload_quota.go / task_creation.go / handler/security.go。
+          前端侧：account-storage-usage.ts 阈值 percent>=90 或已满=critical、>=70=warn、
+          percentLabel <0.1% 特例；formatBytes 仅当 value<10 且非字节时保留一位小数。
+          素材归档 30 天由 resource_deletion_worker.go cleanupExpiredArchivedAssets 走与手动删除
+          同一强校验路径。
+      - type: runtime
+        note: >-
+          v1.6.14 运行时未见真实容量数据（账号为空），故侧栏容量条的**实际渲染**未取证；
+          本条结论全部源码锚定，文案与阈值逐条比对原文，未改写。
+    routes:
+      - '/assets'
+    status: verified
+    review_note: >-
+      顺带订正 generate-images.md——原文写「并发 10 是默认值，适合先铺满」，但账号级
+      ActiveTaskLimit=5 决定了实际最多同时跑 5 个，该建议会误导用户，已改为 warning 并
+      说明批量自动排队、单卡生成才硬撞。另核实 undo-history-versions.md 的「最近 200 条」
+      **结论正确**（use-canvas-history-store.ts:55 的 .slice(0, 200)），但它与素材归档的
+      30 天是两套机制，已就地加区分说明。
+    manual_pages:
+      - 10-tasks/storage-quota.md
   - id: connect-references
     title: 连线引用：拖线、吸附、快速创建与批量连线
     role: beeftv-creator
