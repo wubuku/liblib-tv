@@ -50,7 +50,7 @@ VOID=0
 # **还原的基准必须是「进来时什么样」，而不是「仓库里已提交什么样」**——
 # 否则这个脚本就成了一个会吃掉未提交改动的工具，而它本该是被信任的检查工具。
 SNAP="$(mktemp -d "${TMPDIR:-/tmp}/beef-meta-selftest.XXXXXX")"
-SNAP_FILES=(README.md 10-tasks/README.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md 30-concepts.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py scripts/verify-meta.py)
+SNAP_FILES=(README.md 10-tasks/README.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md 30-concepts.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py scripts/verify-meta.py scripts/verify-endpoints.py scripts/verify-shortcuts.py)
 
 snapshot() {
   cd "$ROOT" || exit 1
@@ -75,6 +75,12 @@ restore() {
 snapshot
 trap 'restore' EXIT
 
+# 注意：这里**不能用 grep -q**（Batch 160 当场踩到）。脚本开了 `set -o pipefail`，
+# 而 `grep -q` 命中即退出 → 上游 `printf`/`echo` 收到 SIGPIPE 返回 141 →
+# 整条管道被判失败 → **明明打印出了要匹配的那行，用例却判「报错了但不是它」**。
+# 危害与假通过同级：它让**正确的闸门输出被当成错误**。
+# 第二条命令 `grep -F ... >/dev/null` 会**读完整个输入**，不产生 SIGPIPE。
+
 run_fail_case() {
   local desc="$1"; shift
   local want="$1"; shift
@@ -84,7 +90,7 @@ run_fail_case() {
   out="$(python3 "$GATE" 2>&1)"; rc=$?
   if [ "$rc" -eq 0 ]; then
     echo "  ✗ $desc：闸门本应报错，却通过了"; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
-  elif echo "$out" | grep -qF "$want"; then
+  elif echo "$out" | grep -F "$want" >/dev/null; then
     echo "  ✓ $desc：正确报出 [$want]（退出码 $rc）"; PASS=$((PASS+1))
   else
     echo "  ✗ $desc：报错了但不是 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
@@ -124,7 +130,7 @@ run_file_case() {
   out="$(python3 "$GATE" 2>&1)"; rc=$?
   if [ "$rc" -eq 0 ]; then
     echo "  ✗ $desc：闸门本应报错，却通过了"; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
-  elif printf '%s' "$out" | grep -qF "$want"; then
+  elif printf '%s' "$out" | grep -F "$want" >/dev/null; then
     echo "  ✓ $desc：正确报出 [$want]（退出码 $rc）"; PASS=$((PASS+1))
   else
     echo "  ✗ $desc：报错了但不是 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
@@ -319,7 +325,7 @@ else
   if [ "$rc6" -eq 0 ]; then
     echo "  ✗ 16) 模式非法却报「全部通过」——工具失败被当成了干净的否定结果"
     FAIL=$((FAIL+1))
-  elif printf '%s' "$out6" | grep -qF "判据执行异常"; then
+  elif printf '%s' "$out6" | grep -F "判据执行异常" >/dev/null; then
     echo "  ✓ 16) 模式非法：闸门正确报出 [判据执行异常]（退出码 $rc6）"; PASS=$((PASS+1))
   else
     echo "  ✗ 16) 报错了但不是「判据执行异常」；实际："; printf '%s' "$out6" | tail -5 | sed 's/^/      /'
@@ -361,7 +367,7 @@ if [ "$ok19" -eq 1 ]; then
   out19="$(python3 "$GATE" 2>&1)"; rc19=$?
   if [ "$rc19" -eq 0 ]; then
     echo "  ✗ 19) 索引已无入链却报通过——孤儿检测没在工作"; FAIL=$((FAIL+1))
-  elif printf '%s' "$out19" | grep -qF "10-tasks/README.md 没有任何入链"; then
+  elif printf '%s' "$out19" | grep -F "10-tasks/README.md 没有任何入链" >/dev/null; then
     echo "  ✓ 19) 正确报出 [10-tasks/README.md 没有任何入链]（退出码 $rc19）"; PASS=$((PASS+1))
   else
     echo "  ✗ 19) 报错了但不是孤儿页；实际："; printf '%s' "$out19" | grep '✗' | head -3 | sed 's/^/      /'
@@ -387,7 +393,7 @@ else
   if [ "$rc20" -eq 0 ]; then
     echo "  ✗ 20) 去掉首页豁免后仍报通过——孤儿检测对真实页面不工作，19 只是空壳"
     FAIL=$((FAIL+1))
-  elif printf '%s' "$out20" | grep -qF "README.md 没有任何入链"; then
+  elif printf '%s' "$out20" | grep -F "README.md 没有任何入链" >/dev/null; then
     echo "  ✓ 20) 去掉豁免后正确报出 [README.md 没有任何入链]（退出码 $rc20）——"
     echo "      证明孤儿检测有效，且豁免是真正承重的"
     PASS=$((PASS+1))
@@ -412,6 +418,18 @@ run_file_case "21) 把 fail() 换回裸 print（必须报）" \
   "退出码会仍是 0"
 run_file_pass_case "22) 早退路径上的裸 ✗ 打印（必须不报）" \
   "scripts/verify-meta.py" "$HERE/selftest-meta-fix-22-early-return-exempt.py"
+
+# ── 方向八（Batch 160 新增）：闸门不得在「无法核对」时返回 0 ──
+#
+# **为什么它是 Batch 157 的续集**：那批治的是「工具失败被当成零命中」，
+# 这批治的是它的**反面**——「工具/数据不可用被当成通过」。
+# 普查发现 **6 个闸共 11 处** `[skip]` 之后 `return 0`，
+# 而 build-site.sh 只看退出码：**上游目录一改名，5 个闸空转而绿。**
+run_file_case "23) skip 路径退回 return 0（必须报）" \
+  "scripts/verify-endpoints.py" "$HERE/selftest-meta-fix-23-skip-returns-zero.py" \
+  "打印 [skip] 之后却 return 0"
+run_file_pass_case "24) 普通 return 0（必须不报）" \
+  "scripts/verify-shortcuts.py" "$HERE/selftest-meta-fix-24-plain-return-zero-ok.py"
 
 echo "=== 基线：真实仓库应当通过 ==="
 restore

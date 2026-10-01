@@ -93,16 +93,16 @@ def main():
     src = find_source()
     if not src:
         print("[skip] 未找到 BeefTV 源码，跳过端点核对")
-        return 0
+        return 2
 
     try:
         routes = collect_routes(src)
     except subprocess.CalledProcessError as e:
         print(f"[skip] 读取上游源码失败（{e}），跳过端点核对")
-        return 0
+        return 2
     if not routes:
         print("[skip] 未抽取到任何生产路由，跳过端点核对")
-        return 0
+        return 2
 
     rn = {norm(r) for r in routes}
     problems = []

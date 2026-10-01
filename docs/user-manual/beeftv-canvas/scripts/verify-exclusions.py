@@ -62,7 +62,7 @@ def main():
     src = find_source()
     if not src:
         print("[skip] 未找到 BeefTV 源码，跳过 excluded 条件核对")
-        return 0
+        return 2
     ref = "origin/main"
 
     problems = []

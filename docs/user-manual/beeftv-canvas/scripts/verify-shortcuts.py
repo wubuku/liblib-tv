@@ -127,16 +127,16 @@ def main():
     src = find_source()
     if not src:
         print("[skip] 未找到 BeefTV 源码，跳过快捷键前缀核对")
-        return 0
+        return 2
     accel, alt = bindings(src)
     if not accel:
         print("[skip] 未能从上游抽出修饰键绑定（源码结构可能已变），跳过")
-        return 0
+        return 2
     # 有 Alt/Shift 独立绑定的键不查前缀（如 F：Ctrl/Cmd+F 与 Alt+Shift+F 并存）
     accel = accel - alt
     if not accel:
         print("[skip] 上游绑定的键均有 Alt/Shift 变体，无可校验的前缀项，跳过")
-        return 0
+        return 2
 
     import glob
     problems = []

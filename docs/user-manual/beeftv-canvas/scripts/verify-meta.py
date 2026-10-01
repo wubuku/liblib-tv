@@ -193,7 +193,13 @@ def gate_inventory(root):
                 break
 
     build = open(os.path.join(root, "build-site.sh"), encoding="utf-8").read()
+    # **两种调用形态都要认**（Batch 160 当场踩到）：原先只认
+    # `python3 scripts/verify-x.py`，而 Batch 160 把 6 个闸改走 `run_gate` 包装
+    # （为了区分退出码 2「未能核对」），于是 `invoked` 暴跌到 2 个、
+    # 方向三立刻报「清单表 9 行 ≠ 实际调用 2 个闸」。
+    # **判据锚定「build-site.sh 确实调用了哪些闸」这个事实，不是某一种写法。**
     invoked = set(re.findall(r"python3\s+scripts/(verify-[a-z-]+)\.py", build))
+    invoked |= set(re.findall(r"^\s*run_gate\s+(verify-[a-z-]+)\.py", build, re.M))
     return declared, rows, listed, invoked
 
 
@@ -433,6 +439,48 @@ def regex_engine_check(root):
                 bad.append((name, "惰性量词", "惰性量词 {..}?（POSIX ERE 不支持）"))
             if re.search(r"\\x[0-9a-fA-F]{2}", blob):
                 bad.append((name, "\\xNN", "十六进制转义（git 不识别，等于字面 xNN）"))
+    return bad
+
+
+# ── 方向八：闸门不得在「无法核对」时返回 0 ────────────────────────────
+# **不变式**：闸门打印了 `[skip]`，退出码就**不能是 0**。
+#
+# **背景（Batch 160 普查）**：**6 个闸共 11 处**在数据不可用时打印 `[skip]`
+# 然后 `return 0`——上游源码缺失、上游读取失败、没抽到路由、dist 未构建…
+# 而 `build-site.sh` 的闸调用点**只看退出码**。于是**上游目录一改名或一缺失，
+# 9 道闸里有 5 道什么都没查却全绿**，而手册账本里「已逐条核实」的声明
+# 被无声地跳过。**这与 Batch 157 修的「工具失败被当成零命中」是同一个病：
+# 「查不了」与「查过了没问题」返回了同一个码。**
+#
+# 修法：约定 **0 = 核对过且一致 / 1 = 核对过且不一致 / 2 = 根本没能核对**，
+# build-site.sh 用 `run_gate` 把 2 单独分支处理（**报成「未能核对」而不是
+# 「核对不一致」**——后者会让人去手册里找根本不存在的问题）。
+# 确需在无上游的环境构建时，可显式设 `ALLOW_UNVERIFIED=1` 放行，
+# **但那必须是主动决定，不能是默认行为。**
+#
+# **只判形态**：找「打印 `[skip]` 的块里紧跟的 `return 0`」，纯文本可枚举。
+_SKIP_RE = re.compile(r'^\s*return 0\s*$')
+
+
+def skip_returns_zero(root):
+    """返回 [(脚本, 行号, 片段)]：打印 [skip] 之后却 return 0 的地方。"""
+    bad = []
+    for name in sorted(os.listdir(os.path.join(root, "scripts"))):
+        if not (name.startswith("verify-") and name.endswith(".py")):
+            continue
+        path = os.path.join(root, "scripts", name)
+        lines = open(path, encoding="utf-8").read().split("\n")
+        for i, line in enumerate(lines):
+            if line.lstrip().startswith("#"):
+                continue
+            if "[skip]" not in line or "print(" not in line:
+                continue
+            j = i + 1
+            while j < len(lines) and (lines[j].strip() == "" or
+                                      re.match(r"^\s*print\(", lines[j])):
+                j += 1
+            if j < len(lines) and _SKIP_RE.match(lines[j]):
+                bad.append((name, j + 1, lines[j].strip()))
     return bad
 
 
@@ -724,9 +772,9 @@ def main():
             fail(f"  ✗ 清单表 {rows} 行 ≠ build-site.sh 实际调用的 {len(invoked)} 个闸"
                   f" + 内联 {INLINE_GATE_SLACK} 道（应 {expect_rows} 行）")
         for name in sorted(listed - invoked):
-            fail(f"  ✗ 清单表列了 scripts/verify-{name}.py，但 build-site.sh 从不调用它")
+            fail(f"  ✗ 清单表列了 scripts/{name}.py，但 build-site.sh 从不调用它")
         for name in sorted(invoked - listed):
-            fail(f"  ✗ build-site.sh 调用了 scripts/verify-{name}.py，清单表却没有登记")
+            fail(f"  ✗ build-site.sh 调用了 scripts/{name}.py，清单表却没有登记")
         if not _FAILS:
             print(f"  ✓ 闸门清单三方一致：标题 {declared} 道 = 表 {rows} 行"
                   f" = build-site 实际 {len(invoked)} 个脚本 + 内联 {INLINE_GATE_SLACK} 道")
@@ -786,12 +834,22 @@ def main():
         print("  ✓ 报错即失败：闸门脚本里所有 ✗ 都经计数函数或紧跟 return 1，"
               "**不存在「只报错不失败」**")
 
+    # ── 方向八：闸门不得在「无法核对」时返回 0 ──
+    print("-" * 62)
+    zeros = skip_returns_zero(root)
+    for name, lineno, frag in zeros:
+        fail(f"{name}:{lineno} 打印 [skip] 之后却 return 0——"
+             f"**「查不了」被当成「查过了没问题」**（Batch 160 同型共 11 处）")
+    if not zeros:
+        print("  ✓ 无法核对 ≠ 通过：所有 [skip] 路径的退出码都不是 0"
+              "（约定 0 一致 / 1 不一致 / 2 未能核对）")
+
     if _FAILS:
         print(f"元数据核对：登记表 {total} 条中 {total - count_fails} 条计数一致"
-              f"（{count_fails} 条不一致）；另有 {len(_FAILS) - count_fails} 处属方向三/四/四之二/五/六/七")
+              f"（{count_fails} 条不一致）；另有 {len(_FAILS) - count_fails} 处属方向三/四/四之二/五/六/七/八")
         return 1
     print(f"元数据核对：登记表 {total} 条计数全部与现场重数一致，"
-          f"且方向三/四/四之二/五/六/七亦全部通过")
+          f"且方向三/四/四之二/五/六/七/八亦全部通过")
     return 0
 
 

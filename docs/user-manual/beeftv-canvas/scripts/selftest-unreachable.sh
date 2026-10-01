@@ -62,7 +62,7 @@ run_case() {  # 说明 path 变换脚本 修复特征 期望失效的登记id
   out=$(BEEFTV_REF="$TMPREF" python3 "$GATE" 2>&1); rc=$?
   if [ "$rc" -eq 0 ]; then
     echo "  ✗ $desc：闸门**未**报失效（期望退出码 1）→ 反向验证失败"; FAIL=$((FAIL+1))
-  elif echo "$out" | grep -qF "$want"; then
+  elif echo "$out" | grep -F "$want" >/dev/null; then
     echo "  ✓ $desc：闸门正确报出 [$want] 失效（退出码 $rc）"; PASS=$((PASS+1))
   else
     echo "  ✗ $desc：报失效但不是 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
@@ -90,7 +90,7 @@ run_pass_case() {  # 说明 path 变换脚本 注入特征 期望**仍然成立*
   if [ "$rc" -ne 0 ]; then
     echo "  ✗ $desc：闸门**误伤**了（期望照旧通过，却退出码 $rc）；实际："
     echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
-  elif echo "$out" | grep -qF "$want"; then
+  elif echo "$out" | grep -F "$want" >/dev/null; then
     echo "  ✓ $desc：闸门未误伤，[$want] 仍被正确判为成立"; PASS=$((PASS+1))
   else
     echo "  ✗ $desc：虽通过但输出里找不到 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))

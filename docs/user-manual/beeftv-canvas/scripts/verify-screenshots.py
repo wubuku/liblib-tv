@@ -71,10 +71,10 @@ def collect():
 def main():
     if not os.path.isdir(SHOT_DIR):
         print(f"[skip] 未找到 {SHOT_DIR}/，跳过截图对账")
-        return 0
+        return 2
     if not os.path.isdir(DIST):
         print(f"[skip] 未找到 {DIST}/（尚未构建），跳过截图对账")
-        return 0
+        return 2
 
     files, man, referenced, dist = collect()
     problems = []

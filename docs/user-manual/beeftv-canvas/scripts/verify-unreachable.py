@@ -1454,7 +1454,7 @@ def main():
     src = find_source()
     if not src:
         print("[skip] 未找到 BeefTV 源码，跳过不可达声明核对")
-        return 0
+        return 2
 
     problems = []
     notes = []

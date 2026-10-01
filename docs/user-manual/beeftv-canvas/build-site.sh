@@ -20,6 +20,41 @@ ok()   { printf '\033[1;32m[  ok  %s]\033[0m %s\n' "$TS" "$*"; }
 warn() { printf '\033[1;33m[ warn %s]\033[0m %s\n' "$TS" "$*"; }
 fail() { printf '\033[1;31m[ FAIL %s]\033[0m %s\n' "$TS" "$*" >&2; exit 1; }
 
+
+# ── 「无法核对」专用分支（Batch 160） ─────────────────────────────────
+# 闸门约定：**退出码 0 = 核对过且一致；1 = 核对过且不一致；2 = 根本没能核对**。
+#
+# **为什么必须有 2**：Batch 160 普查发现 **6 个闸共 11 处**在「数据不可用」
+# （上游源码缺失、dist 未构建等）时打印 `[skip]` 然后 `return 0`——
+# 而所有闸的调用点**只看退出码**。于是**上游目录一改名/一缺失，
+# 9 道闸里有 5 道什么都没查却全绿**，手册账本里「已逐条核实」的声明
+# 被无声地跳过。**这与 Batch 157 修的「工具失败被当成零命中」是同一个病：
+# 「查不了」与「查过了没问题」返回了同一个码。**
+#
+# 这里**故意不复用通用的 if/else**：退出码 2 不是「查出问题」，
+# 报成「不一致」会让人去手册里找根本不存在的问题。
+run_gate() {  # $1=脚本 $2=名称；成功 0 / 不一致 1 / 无法核对 2
+  local script="$1" name="$2" out rc
+  out="$(python3 "scripts/$script" 2>&1)"; rc=$?
+  if [ "$rc" -eq 0 ]; then
+    ok "$out"; return 0
+  fi
+  if [ "$rc" -eq 2 ]; then
+    printf '%s\n' "$out" | while IFS= read -r line; do
+      [ -n "$line" ] && warn "$name 无法核对：$line"
+    done
+    if [ "${ALLOW_UNVERIFIED:-0}" = "1" ]; then
+      warn "$name **未能核对**（已设 ALLOW_UNVERIFIED=1，本次放行）——手册中与该闸相关的断言本次未经复查"
+      return 0
+    fi
+    fail "$name **未能核对**（不是「核对通过」）——手册里与该闸相关的断言本次未经复查。请修复上方 skip 原因；确需在无上游的环境构建，显式设 ALLOW_UNVERIFIED=1"
+  fi
+  printf '%s\n' "$out" | while IFS= read -r line; do
+    [ -n "$line" ] && warn "$name $line"
+  done
+  fail "$name 核对不一致——详见上方"
+}
+
 log "══════ BeefTV 用户手册站点 · 一键构建开始 ══════"
 log "工作目录: $SCRIPT_DIR"
 
@@ -136,85 +171,38 @@ fi
 # 背景（Batch 94）：17-light-mode.png 库里有、manifest 登记着、账本也引用着，唯独发布页
 # 不再引用它——重写该页时图片被「替换」而非「补入」。单看任一侧都发现不了，只有四方
 # 摊平比对才能揪出「证据在库但读者看不到」。详见 scripts/verify-screenshots.py。
-if SHOT_OUT="$(python3 scripts/verify-screenshots.py 2>&1)"; then
-  ok "$SHOT_OUT"
-else
-  printf '%s\n' "$SHOT_OUT" | while IFS= read -r line; do
-    [ -n "$line" ] && warn "截图 $line"
-  done
-  fail "截图对账不一致——孤儿图意味着证据在库但页面不展示，读者看不到"
-fi
+run_gate verify-screenshots.py 截图
 
 # 端点核对闸：20-reference.md 声明的 REST 端点 vs 上游生产路由注册。
 # 背景（Batch 96）：手册曾把 6 条 /agent/* 当现存接口教读者排查，而上游根本没注册
 # ——教用户去调不存在的接口，比漏写更糟，会把排障方向整体带偏。
 # 找不到 BeefTV 源码时脚本静默跳过，手册构建不依赖同级仓库。
-if EP_OUT="$(python3 scripts/verify-endpoints.py 2>&1)"; then
-  ok "$EP_OUT"
-else
-  printf '%s\n' "$EP_OUT" | while IFS= read -r line; do
-    [ -n "$line" ] && warn "端点 $line"
-  done
-  fail "REST 端点声明与上游生产路由不一致——详见上方"
-fi
+run_gate verify-endpoints.py 端点
 
 # 快捷键前缀闸：手册里指向「必须带 Ctrl/Cmd 的键」的写法是否都带了前缀。
 # 背景（Batch 110）：同一缺陷在两处出现过（Batch 97 导演台页、Batch 107 画布页
 # 都把重做写成 Shift+Z，漏了 Ctrl/Cmd）。表格看着完整、语义也说得通，只有拿每行
 # 去和源码绑定条件比对才暴露，故闸门化。
-if SC_OUT="$(python3 scripts/verify-shortcuts.py 2>&1)"; then
-  ok "$SC_OUT"
-else
-  printf '%s\n' "$SC_OUT" | while IFS= read -r line; do
-    [ -n "$line" ] && warn "快捷键 $line"
-  done
-  fail "快捷键修饰键前缀缺失——带 Ctrl/Cmd 的键被写成了裸键"
-fi
+run_gate verify-shortcuts.py 快捷键前缀
 
 # excluded 解禁条件闸：账本里「这页还差什么才能补」的判断，是否与上游现状一致。
 # 背景（Batch 111）：这类条件最危险的失效方式是悄悄过期——上游可能已解禁（或已
 # 彻底移除），而账本仍写旧理由，于是「什么时候能补这一页」的判断从此失准。
-if EX_OUT="$(python3 scripts/verify-exclusions.py 2>&1)"; then
-  ok "$EX_OUT"
-else
-  printf '%s\n' "$EX_OUT" | while IFS= read -r line; do
-    [ -n "$line" ] && warn "解禁条件 $line"
-  done
-  fail "excluded 任务的解禁条件可能已失效——需回走验证并更新 PROGRESS 条件表"
-fi
+run_gate verify-exclusions.py 解禁条件
 
 # 第五道闸：标签漂移核对（Batch 121）
 # 背景：同一轮审计连续四次撞上「同一个设置有多个叫法」（Batch 116/117/119/120）。
 # 产品里多个文件各持一份同义枚举表，改一处忘另一处就会漂移。本闸维护一份
 # 「已知分歧登记表」，出现未登记的新分歧、或登记的分歧已收敛，都以退出码 1 报出。
 # 判据与边界写在脚本 docstring 里，务必连着一读。
-if LD_OUT="$(python3 scripts/verify-label-drift.py 2>&1)"; then
-  ok "$LD_OUT"
-else
-  printf '%s\n' "$LD_OUT" | while IFS= read -r line; do
-    [ -n "$line" ] && warn "标签漂移 $line"
-  done
-  fail "存在未登记的标签漂移，或已登记的分歧已被上游统一——需更新 verify-label-drift.py 的登记表"
-fi
+run_gate verify-label-drift.py 标签漂移
 
 # 第六道闸：不可达声明核对。手册里最难悄悄过期的一类断言是**否定式断言**
 # ——「画布库没有导入入口」「审美批改建不出节点」。上游哪天把那个 click 补上，
 # 手册会继续言之凿凿地说「找不到」。本闸对 7 条已登记断言逐条跑专属判据，
 # 并反向全量扫描 setter 零调用，要求与登记表双向一致。
 # 判据与「不检查什么」写在脚本 docstring 里，务必连着一读。
-if UR_OUT="$(python3 scripts/verify-unreachable.py 2>&1)"; then
-  printf '%s\n' "$UR_OUT" | while IFS= read -r line; do
-    case "$line" in
-      '  '*) [ -n "$line" ] && ok "不可达声明$line" ;;
-      *)     [ -n "$line" ] && ok "$line" ;;
-    esac
-  done
-else
-  printf '%s\n' "$UR_OUT" | while IFS= read -r line; do
-    [ -n "$line" ] && warn "不可达声明 $line"
-  done
-  fail "不可达断言已过期，或登记表与上游现状不一致——需回走核实并更新 verify-unreachable.py"
-fi
+run_gate verify-unreachable.py 不可达断言
 
 # 第七道闸：markdown 表格结构核对。前面六道查的都是**内容对不对**，
 # 这一道查**结构坏没坏**——单元格里的裸竖线（最常见就是代码里的 `||` 和带竖线的 URL）
