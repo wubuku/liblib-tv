@@ -35,7 +35,9 @@ tasks:
       - type: static
         note: project.tsx 画布入口、空白右键/双击/底部工具栏五处创建入口（INTERACTION_CATALOG §5）；待运行时核实。
     preconditions:
-      - 已启动 BeefTV web 并登录
+      # 「并登录」是云端部署的说法；本地部署启动即有 local 身份，没有登录流程（Batch 157 订正）
+      - 已启动 BeefTV（本地部署无需登录）
+      - 已配一个可用模型渠道（出厂 defaultConfig 零可用模型，不配会在生成那一步被挡下）
     routes:
       - '/'
       - '/canvas'

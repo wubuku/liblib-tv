@@ -70,6 +70,34 @@ run_case() {  # 说明 path 变换脚本 修复特征 期望失效的登记id
   git update-ref -d "$TMPREF" >/dev/null 2>&1
 }
 
+run_pass_case() {  # 说明 path 变换脚本 注入特征 期望**仍然成立**的登记id
+  # 「不误伤」用例专用：注入一个**看似相关但不该被判失效**的形态，
+  # 闸门必须**照旧通过**。少了这一类，放宽判据就会被当成「更好了」而放过。
+  # Batch 157 用例 31 就是它：正则从只认 `=` 放宽到认 `[:=]` 之后，
+  # 必须证明**比较式 `starterMode === "guided"` 不算写入**。
+  local desc="$1" path="$2" tf="$3" feature="$4" want="$5" c out rc
+  CASE=$((CASE+1))
+  if ! c=$(build_ref "$path" "$tf"); then
+    echo "  ✗ $desc：合成 ref 失败，前提不成立，**本次验证作废**"; VOID=$((VOID+1))
+    git update-ref -d "$TMPREF" >/dev/null 2>&1; return
+  fi
+  if ! git show "$TMPREF:$path" 2>/dev/null | grep -F "$feature" >/dev/null; then
+    echo "  ✗ $desc：合成 ref 里找不到注入特征 [$feature] → 前提不成立，**本次验证作废**"
+    VOID=$((VOID+1)); git update-ref -d "$TMPREF" >/dev/null 2>&1; return
+  fi
+  echo "  前提成立：合成 ref 的 $path 已含 [$feature]"
+  out=$(BEEFTV_REF="$TMPREF" python3 "$GATE" 2>&1); rc=$?
+  if [ "$rc" -ne 0 ]; then
+    echo "  ✗ $desc：闸门**误伤**了（期望照旧通过，却退出码 $rc）；实际："
+    echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+  elif echo "$out" | grep -qF "$want"; then
+    echo "  ✓ $desc：闸门未误伤，[$want] 仍被正确判为成立"; PASS=$((PASS+1))
+  else
+    echo "  ✗ $desc：虽通过但输出里找不到 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+  fi
+  git update-ref -d "$TMPREF" >/dev/null 2>&1
+}
+
 run_case "1) setSort 补上调用" web/src/pages/canvas/index.tsx "$HERE/selftest-fix-1-setsort.py" "void setSort" "canvas-library-no-sort-filter"
 run_case "2) 画布库导入补上入口点击" web/src/pages/canvas/index.tsx "$HERE/selftest-fix-2-import-entry.py" "inputRef.current?.click()" "canvas-library-no-import-entry"
 run_case "3) AI 审美批改进「添加节点」清单" web/src/lib/canvas/tool-registry/definitions/add-node-menu-tools.tsx "$HERE/selftest-fix-3-artcritique-menu.py" "ai-art-critique" "art-critique-no-create-entry"
@@ -101,6 +129,15 @@ run_case "26) local 标记不再写死 true" web/src/services/workspace-mode.ts 
 run_case "27) /dev 调试台接上侧栏入口" web/src/components/layout/workspace-sidebar-nav.tsx "$HERE/selftest-fix-27-dev-lab-entry.py" 'to: "/dev/folders"' "dev-lab-routes-no-entry"
 
 run_case "28) 出厂配置预置了默认模型" web/src/stores/use-config-store.ts "$HERE/selftest-fix-28-default-model.py" 'channels: [{ id: "beefapi-default"' "default-config-no-models"
+
+run_case "29) 补上进入短剧引导的写入点" web/src/stores/canvas/use-canvas-store.ts "$HERE/selftest-fix-29-short-drama-entry.py" 'starterMode: "guided"' "short-drama-empty-state-unreachable"
+run_case "30) 空画布四个快捷入口被放出（改条件式）" web/src/components/canvas/canvas-short-drama-entry.tsx "$HERE/selftest-fix-30-empty-canvas-quickstarts.py" 'import.meta.env.DEV;' "empty-canvas-quickstarts-off"
+run_pass_case "31) 不误伤：只加比较式 starterMode === \"guided\"（不是写入）" web/src/lib/canvas/canvas-starter.ts "$HERE/selftest-fix-31-guided-comparison-only.py" 'isGuidedStarter' "short-drama-empty-state-unreachable"
+# 关于「工具失败必须与干净的否定结果可区分」：用例 32 **不放这里**。
+# 本脚本的框架是往 **BeefTV 源码**注入再重建临时 ref，而那条用例要改的是
+# **闸门脚本自己**（verify-unreachable.py）——它根本不在 BeefTV 仓里，
+# 用这个框架注入会直接锚点失配。它归 selftest-meta.sh（那边已把
+# scripts/verify-unreachable.py 纳入快照范围）。
 
 echo "=== 基线：真实 origin/main 应当通过 ==="
 if python3 "$GATE" >/dev/null 2>&1; then echo "  ✓ origin/main 通过"; else echo "  ✗ origin/main 未通过"; FAIL=$((FAIL+1)); fi

@@ -36,6 +36,7 @@ GATE="$HERE/verify-meta.py"
 
 PASS=0
 FAIL=0
+VOID=0
 
 # ── snapshot / restore：还原到「脚本启动时的状态」，不是 HEAD ─────────
 #
@@ -49,7 +50,7 @@ FAIL=0
 # **还原的基准必须是「进来时什么样」，而不是「仓库里已提交什么样」**——
 # 否则这个脚本就成了一个会吃掉未提交改动的工具，而它本该是被信任的检查工具。
 SNAP="$(mktemp -d "${TMPDIR:-/tmp}/beef-meta-selftest.XXXXXX")"
-SNAP_FILES=(README.md 10-tasks/README.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md build-site.sh .vitepress/config.mjs)
+SNAP_FILES=(README.md 10-tasks/README.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py)
 
 snapshot() {
   cd "$ROOT" || exit 1
@@ -108,15 +109,15 @@ run_file_case() {
   local fixer="$1"; shift
   local want="$1"; shift
   restore
-  [ -f "$target" ] || { echo "  · 前提不成立：目标文件 $target 不存在；作废"; return 0; }
+  [ -f "$target" ] || { echo "  · 前提不成立：目标文件 $target 不存在；作废"; VOID=$((VOID+1)); return 0; }
   if ! python3 "$fixer" < "$target" > "$target.injected" 2>"$target.injecterr"; then
     echo "  · 前提不成立：注入脚本未命中锚点（$(head -1 "$target.injecterr" 2>/dev/null)）；作废该用例"
-    restore; return 0
+    restore; VOID=$((VOID+1)); return 0
   fi
   # 注入后必须与注入前不同，否则说明注入脚本空转（也是前提不成立）
   if cmp -s "$target" "$target.injected"; then
     echo "  · 前提不成立：注入脚本空转（内容未变）；作废该用例"
-    restore; return 0
+    restore; VOID=$((VOID+1)); return 0
   fi
   mv "$target.injected" "$target"
   local out rc
@@ -153,14 +154,14 @@ run_file_pass_case() {
   local target="$1"; shift
   local fixer="$1"; shift
   restore
-  [ -f "$target" ] || { echo "  · 前提不成立：目标文件 $target 不存在；作废"; return 0; }
+  [ -f "$target" ] || { echo "  · 前提不成立：目标文件 $target 不存在；作废"; VOID=$((VOID+1)); return 0; }
   if ! python3 "$fixer" < "$target" > "$target.injected" 2>"$target.injecterr"; then
     echo "  · 前提不成立：注入脚本未命中锚点（$(head -1 "$target.injecterr" 2>/dev/null)）；作废该用例"
     restore; return 0
   fi
   if cmp -s "$target" "$target.injected"; then
     echo "  · 前提不成立：注入脚本空转（内容未变）；作废该用例"
-    restore; return 0
+    restore; VOID=$((VOID+1)); return 0
   fi
   mv "$target.injected" "$target"
   if python3 "$GATE" >/dev/null 2>&1; then
@@ -272,6 +273,61 @@ run_file_case "10) 任务页不在 vitepress 侧栏" \
 run_file_pass_case "11) 侧栏用短标题（必须不报）" \
   ".vitepress/config.mjs" "$HERE/selftest-meta-fix-11-sidebar-short-title.py"
 
+# ── 方向五（Batch 157 新增）：git grep 正则的引擎兼容性 ──
+#
+# **这两条是本批最重要的一对**：方向五守的是「闸门的正则会不会静默失效」，
+# 而它自己最可能的失效方式恰恰是**永远通过**。所以必须先证明它抓得到。
+#
+# 用例 14 尤其不能省：方向五只看 `git grep -E` 的模式，
+# **Python 的 re 支持 `\s`**，手册脚本里大量这么用是**完全正确的**。
+# 若不分引擎一律报错，它会一次报出几十处正当写法——
+# **第一次误报就会让人开始忽略这道闸，闸门就废了**
+# （Batch 150 判「文案逐字对账闸不可建」用的正是同一条理由）。
+run_file_case "13) git grep 模式里混入 \\s（必须报）" \
+  "scripts/verify-unreachable.py" "$HERE/selftest-meta-fix-13-bad-escape-in-gitgrep.py" \
+  "git grep -E 模式含"
+run_file_pass_case "14) Python re 里用 \\s（必须不报）" \
+  "scripts/verify-unreachable.py" "$HERE/selftest-meta-fix-14-pathsafe-s-in-python-re.py"
+# 用例 15：比 13 更危险的一类——惰性量词 `{0,n}?` 与「重复数 > 255」会让 git
+# **整条拒绝模式并返回 128**，stdout 为空；而空输出在判据里等于「零命中」，
+# **整条断言随之恒真**。本闸真实中过（p_readonly_no_ui_entry 从上线起是死代码）。
+run_file_case "15) git grep 模式里混入惰性量词 {0,300}?（必须报）" \
+  "scripts/verify-unreachable.py" "$HERE/selftest-meta-fix-15-lazy-quantifier.py" \
+  "git grep -E 模式含"
+
+# ── 用例 16：闸门自身的「工具失败必须可区分」运行时行为 ──
+#
+# 方向五（静态）能挡住**新的**非法模式，但 `_git_grep_run()` 那个运行时兜底
+# 属于「改回去也不会有任何静态检查发现」的那类——所以必须单独验它一次。
+#
+# **这条用例也说明为什么它不在 selftest-unreachable.sh 里**：
+# 那个框架靠 git plumbing 往 **BeefTV 源码**注入并重建临时 ref，
+# 而这里要改的是**闸门脚本自己**（scripts/verify-unreachable.py），
+# 它根本不在 BeefTV 仓里——用错框架会直接锚点失配。
+echo "=== 用例 16：git grep 模式非法时，闸门须报「判据执行异常」而非「仍成立」 ==="
+restore
+G6=scripts/verify-unreachable.py
+if [ ! -f "$G6" ]; then
+  echo "  · 前提不成立：$G6 不存在；作废该用例"; VOID=$((VOID+1))
+elif ! python3 "$HERE/selftest-meta-fix-15-lazy-quantifier.py" < "$G6" > "$G6.injected" 2>/dev/null; then
+  echo "  · 前提不成立：注入脚本未命中锚点；作废该用例"; VOID=$((VOID+1))
+elif cmp -s "$G6" "$G6.injected"; then
+  echo "  · 前提不成立：注入脚本空转；作废该用例"; VOID=$((VOID+1))
+else
+  mv "$G6.injected" "$G6"
+  out6="$(python3 "$G6" 2>&1)"; rc6=$?
+  if [ "$rc6" -eq 0 ]; then
+    echo "  ✗ 16) 模式非法却报「全部通过」——工具失败被当成了干净的否定结果"
+    FAIL=$((FAIL+1))
+  elif printf '%s' "$out6" | grep -qF "判据执行异常"; then
+    echo "  ✓ 16) 模式非法：闸门正确报出 [判据执行异常]（退出码 $rc6）"; PASS=$((PASS+1))
+  else
+    echo "  ✗ 16) 报错了但不是「判据执行异常」；实际："; printf '%s' "$out6" | tail -5 | sed 's/^/      /'
+    FAIL=$((FAIL+1))
+  fi
+  restore
+fi
+
 echo "=== 基线：真实仓库应当通过 ==="
 restore
 if python3 "$GATE" >/dev/null 2>&1; then
@@ -280,7 +336,15 @@ else
   echo "  ✗ 真实仓库未通过"; FAIL=$((FAIL+1))
 fi
 
-echo "=== 结果：通过 $PASS / 失败 $FAIL ==="
+# **作废数必须出现在汇总里**（Batch 157 实测踩到）：用例 13 的锚点写着
+# `subprocess.run(`，而本批把 git grep 调用点换成了 `_git_grep_run(`，
+# 锚点失配 → 该用例被作废 → **而汇总只打「通过/失败」，14 条里少的 1 条
+# 静静消失，整体还报「失败 0」**。作废的用例既没验到、也没被算失败，
+# 是最容易骗过人的一种绿灯。**宁可少认几条 ✓，不可让作废隐身。**
+echo "=== 结果：通过 $PASS / 失败 $FAIL / 作废 $VOID ==="
+if [ "$VOID" -gt 0 ]; then
+  echo "=== ⚠ 有 $VOID 条用例作废（前提不成立），它们**没有验到任何东西**，不算通过 ==="
+fi
 echo "=== 清理后状态 ==="
 # 与 **snapshot** 比对，而不是 `git status`。
 # 用 git status 会把「本批本来就还没提交的改动」也算成残留 —— 那是正常状态，不是残留。
@@ -292,3 +356,4 @@ for f in "${SNAP_FILES[@]}"; do
 done
 echo "  与进入脚本时不一致的文件: $leftover （应为 0）"
 [ "$FAIL" -eq 0 ] || exit 1
+[ "$VOID" -eq 0 ] || exit 1

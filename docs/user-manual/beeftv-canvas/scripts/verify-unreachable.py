@@ -40,6 +40,22 @@ Batch 135 补上 URL 侧），同样要求双向一致，但**必须带豁免名
     本闸只管「不可达声明」，不重复管「解禁条件」，两者刻意不重叠；
   · **方向三不判断「零写出是否就是缺陷」**——它只保证每个零写出参数都被
     显式归类为「已知豁免」或「已登记缺陷」，防止将来上游新增一个无人认领的参数。
+  · **`simple-mode-hardcoded` 只认 `=` 赋值，不认对象属性式**（`{ workspaceMode:
+    "simple" }`）。**这是故意保留的局限**：实测把 `=` 放宽成 `[:=]` 会立刻误伤
+    `workspaceMode === "simple"`（web/src 里 5 处以上，那是**比较**不是写入）。
+    **宁可漏照、不可误报**——误报会逼着人加豁免，越修越乱。方向五（第九道闸）
+    盯着的是「模式本身会不会被 git 整条拒绝」，那是另一回事。
+
+关于 `git grep` 的三条硬约束（Batch 157 实测，踩过就别再踩）：
+  ① `\s` `\d` `\w` `\b` 是**字面字母**，不是字符类 → 要写 `[[:space:]]` 等；
+  ② 方括号里的 `\n` 是「反斜杠 + 字母 n」，**排除的是字母 n**，不是换行；
+  ③ `{0,N}` 的 **N 不能超过 255**，`{0,n}?` 惰性量词（PCRE）**根本不支持**——
+     ②③会让 git **整条拒绝模式并返回 128、stdout 为空**，而空输出在判据里
+     与「零命中」等价 → **断言恒真、闸门永远绿**。
+     本闸 `p_readonly_no_ui_entry` 就这样当了很久的死代码。
+     兜底是所有 git grep 调用统一走 `_git_grep_run()`：**rc ≥ 128 即抛异常**，
+     由 main() 报成「判据执行异常」——**工具失败必须与干净的否定结果可区分**。
+     静态那一层由第九道闸方向五盯着。
 """
 
 import os
@@ -174,7 +190,7 @@ def p_projects_library_dead(src):
         return None
     if "loadProjectsPage" not in mod:
         return False
-    r = subprocess.run(["git", "grep", "-l", "loadProjectsPage", REF, "--", "web/src"],
+    r = _git_grep_run(["git", "grep", "-l", "loadProjectsPage", REF, "--", "web/src"],
                        cwd=src, capture_output=True, text=True)
     hits = [l for l in (r.stdout or "").split("\n") if l.strip()]
     return len(hits) <= 1
@@ -197,6 +213,39 @@ def p_chapter_workflow_routes(src):
     return has_routes and hardcoded_true and nav_first
 
 
+def _git_grep_run(args, cwd, capture_output=True, text=True):
+    """`git grep` 的统一入口：**git 自己出错时抛异常，不把空输出冒充成「零命中」**。
+
+    **这是 Batch 157 血的教训换来的。**
+    `git grep -E` 的模式一旦不合法（`{0,300}` 超过 255 的重复上限、
+    POSIX ERE 不支持的惰性量词 `{0,n}?`、它不认的 `\\s` / `\\xNN` …），
+    git 会**直接 fatal 并返回 128、stdout 为空**。而空输出与「确实没找到」
+    在这些判据里**完全等价**——于是一条断言可以恒真、闸门一直绿，
+    **而它什么都照不到**。
+
+    本闸真实中过：`p_readonly_no_ui_entry` 的模式同时犯了「重复数超 255」
+    与「惰性量词」两条，**整条判据从上线起就是死代码**，报的永远是「仍成立」。
+
+    **为什么做成薄包装而不是逐个改写调用点**：调用点有十来个，
+    后续用法各不相同（`r.stdout` / `r2.stdout` / 内联判断），
+    逐个改写容易改错一处；而薄包装让**所有 `r.stdout` 用法原样不动**，
+    一次性把整类静默失败堵死。
+    """
+    r = subprocess.run(args, cwd=cwd, capture_output=capture_output, text=text)
+    if r.returncode >= 128:
+        raise RuntimeError(
+            "git grep 执行失败（rc=%d），**本次结果不可用**——模式很可能不合法。"
+            "git 的原话：%s" % (r.returncode, (r.stderr or "").strip()[:200])
+        )
+    return r
+
+
+def git_grep_lines(src, *args):
+    """跑 `git grep` 并返回命中行列表；git 出错时抛异常（见 `_git_grep_run`）。"""
+    r = _git_grep_run(["git", "grep", *args], src)
+    return [l for l in (r.stdout or "").split("\n") if l.strip()]
+
+
 def p_readonly_no_ui_entry(src):
     """只读画布模式：判定完整、透传到位，但全库零处写入 readonly / mode=readonly。
 
@@ -216,9 +265,20 @@ def p_readonly_no_ui_entry(src):
         r'searchParams\.get\("mode"\)\s*===\s*"readonly"', body))
     if not judged:
         return False
-    r = subprocess.run(["git", "grep", "-I", "-E", r'["`][^"`\n]{0,300}?[?&](readonly|mode)\s*=\s*(1|readonly)',
-                        REF, "--", "web/src"], cwd=src, capture_output=True, text=True)
-    producers = [l for l in (r.stdout or "").split("\n") if l.strip()]
+    # 模式在**上线第一天就是死代码**，Batch 157 才发现。三处独立病因：
+    #   ① `{0,300}` 超过 git regex 的 255 重复上限 → `maximum repetition exceeds 255`
+    #   ② 惰性量词 `{0,300}?` 是 PCRE 语法，POSIX ERE 根本不支持 → `operand invalid`
+    #   ③ `\s` 在 git grep 里是字面字母 s
+    # ①② 任一都让 git **整条拒绝**并返回 128、stdout 为空；
+    # 而「空输出」与「没找到生产者」在这个判据里是同一个结果
+    # → **判据恒真、闸门永远绿、实际什么都没照到**。
+    # 现在：去掉惰性量词（改贪婪，`[^"`]` 跨不过引号，贪婪照样会回溯）、
+    #      重复数降到 120（< 255）、`\s` 换 `[[:space:]]`，
+    #      并统一走 git_grep_lines()——**git 报错时抛异常，由 main() 报成问题**。
+    producers = git_grep_lines(
+        src, "-I", "-E",
+        r'["`][^"`]{0,120}[?&](readonly|mode)[[:space:]]*=[[:space:]]*(1|readonly)',
+        REF, "--", "web/src")
     return not producers
 
 
@@ -515,7 +575,12 @@ def p_asset_list_endpoint_uncalled(src):
         return False
     r = subprocess.run(
         ["git", "grep", "-n", "-E",
-         r"http\.(get|request|fetch)<[^>]*>\(\s*[\"\']/assets[\"\']",
+         # 同样修引擎：`\s` 在 git grep 的 ERE 里是字面字母 s，
+         # 写 `http.get( '/assets' )`（括号后带空格）就抓不到了。
+         # 泛型 `<...>` 改为**可选**：原写法强制要求泛型参数，
+         # 而 `http.get('/assets')` 这种不带泛型的调用（完全合法、也确实有人这么写）
+         # 会整条漏掉——**泛型是调用习惯，不是「这是接口调用」的判据**。
+         r"http\.(get|request|fetch)(<[^>]*>)?\([[:space:]]*[\"\']/assets[\"\']",
          REF, "--", "web/src"],
         cwd=src, capture_output=True, text=True)
     if (r.stdout or "").strip():
@@ -591,7 +656,7 @@ def p_retired_task_skill_pages(src):
     if re.search(r'import .*@/pages/(tasks|skills)', router):
         return False
     for prefix in ("@/pages/tasks", "@/pages/skills"):
-        r = subprocess.run(["git", "grep", "-n", "-F", prefix, REF, "--", "web/src"],
+        r = _git_grep_run(["git", "grep", "-n", "-F", prefix, REF, "--", "web/src"],
                            cwd=src, capture_output=True, text=True)
         for line in (r.stdout or "").split("\n"):
             if not line.strip():
@@ -727,8 +792,20 @@ def p_simple_mode_hardcoded(src):
     if m.group(1) != "professional":
         return False
     # (b) 全库没有把 workspaceMode 赋成 simple 的地方
-    r = subprocess.run(["git", "grep", "-n", "-E",
-                        r'workspaceMode[^\n]{0,40}=\s*\{?\s*"?simple"?',
+    r = _git_grep_run(["git", "grep", "-n", "-E",
+                        # 引擎修正：`\s` 是字面字母 s、`[^\n]` 排除的是字母 n，两者都失效。
+                        #
+                        # **`[^\n]` 也不能简单换成 `.`**——闸门首轮跑完立刻自报失效，
+                        # 因为 `.` 会吃掉 `=`：`workspaceMode === "simple"` 里
+                        # `.{0,40}` 吞掉 ` ==` 之后照样能匹配上，**5 处比较被当成写入**
+                        # （canvas-config-composer.tsx:55 等）。旧的 `[^\n]` 只是**碰巧**没误报。
+                        # 正确写法是显式排除 `=` 与引号：既跨不过运算符，又跨不过字符串边界。
+                        #
+                        # 剩下一个**故意保留的局限**：`=` 之外没放宽 `:`，
+                        # 所以对象属性式（`{ workspaceMode: "simple" }`）仍照不到——
+                        # 实测放宽会立刻误伤那 5 处比较。**宁可漏照、不可误报**
+                        # （漏照的后果是这条断言暂时形同虚设，已写进脚本头声明）。
+                        r"workspaceMode[^=\"'`]{0,40}=[[:space:]]*\{?[[:space:]]*\"?simple\"?",
                         REF, "--", "web/src"],
                        cwd=src, capture_output=True, text=True)
     if (r.stdout or "").strip():
@@ -762,7 +839,7 @@ def p_canvas_locks_unsupported_message(src):
         return False
     if "当前浏览器不支持跨标签存储锁，已停止画布生成持久化" not in store:
         return False
-    r = subprocess.run(["git", "grep", "-l", "-F", "navigator.locks", REF, "--", "web/src"],
+    r = _git_grep_run(["git", "grep", "-l", "-F", "navigator.locks", REF, "--", "web/src"],
                        cwd=src, capture_output=True, text=True)
     files = [x for x in (r.stdout or "").split("\n") if x.strip()]
     return len(files) >= 3
@@ -839,7 +916,7 @@ def p_feature_availability_readonly(src):
     if "/features" not in handler:
         return False
     # (b) 写入方法在 handler / cmd 层零调用
-    r = subprocess.run(["git", "grep", "-n", "-E",
+    r = _git_grep_run(["git", "grep", "-n", "-E",
                         r"\.UpdateFeatureAvailability\(",
                         REF, "--", "backend/internal/handler", "backend/cmd"],
                        cwd=src, capture_output=True, text=True)
@@ -850,7 +927,7 @@ def p_feature_availability_readonly(src):
     if not bridge or "UpdateFeatureAvailability" not in bridge:
         return False
     # (c) 对照组：读取侧在用
-    r2 = subprocess.run(["git", "grep", "-l", "-F", "FeatureEnabled", REF, "--", "backend"],
+    r2 = _git_grep_run(["git", "grep", "-l", "-F", "FeatureEnabled", REF, "--", "backend"],
                         cwd=src, capture_output=True, text=True)
     files = [x for x in (r2.stdout or "").split("\n") if x.strip()]
     return len(files) >= 3
@@ -973,6 +1050,106 @@ def p_channel_page_three_names(src):
     return not re.search(r'label:\s*\w+\s*\?[^,]*个人渠道', settings)
 
 
+def p_short_drama_empty_state_unreachable(src):
+    """短剧引导空画布**有完整实现、零入口**：全库没有任何代码把 starterMode 设成 guided。
+
+    手册此前从未提过它——连「这是一套进不去的界面」都没说。而 Batch 141 把
+    「短剧 / 小说转视频生产台」登记成 excluded（路由退场），**那是另一件事**：
+    生产台是**路由退场**，短剧引导是**画布上的空状态**——组件活着、渲染条件写着，
+    唯独没有入口能让画布切过去。
+
+    这比 Batch 145 的「沙箱渲染器」更极端：沙箱那条**入口在外部**（第三方插件可
+    声明 `renderer: "sandbox"`），而这条**连外部入口都没有**。
+
+    判据要求：
+      (a) `CanvasStarterMode` 确实是二值枚举，且渲染分支按 `starterMode === "guided"` 判断；
+      (b) **全 web/src 零处把 starterMode 赋成 "guided"**——能找到的赋值只有 "freeform"
+          （那是「从引导退回自由」的按钮）和导入时的原样复制；
+      (c) **对照组**：短剧引导的组件与动作**确实都还在**
+          （`CanvasShortDramaEmptyState` 存在、且有 createShortDramaPipeline 这个动作）。
+          **少了 (c)，(a)(b) 也可能只是「功能已经删干净、只剩类型定义」**，
+          那手册该写的是「短剧引导已被移除」，而不是「它还在、只是进不去」。
+    """
+    starter = git_show(src, "web/src/lib/canvas/canvas-starter.ts")
+    router = git_show(src, "web/src/pages/canvas/project.tsx")
+    if not starter or not router:
+        return None
+    # (a) 枚举与分支
+    if 'export type CanvasStarterMode = "guided" | "freeform";' not in starter:
+        return False
+    if 'starterMode === "guided" ? "guided" : "freeform"' not in starter:
+        return False
+    if 'emptyStateKind === "guided" ?' not in router:
+        return False
+    # (b) 零处写入 "guided"
+    #
+    # **这个正则被反验用例 29 当场判失败过一次，修正记录别删**：
+    # 第一版写的是 `starterMode[^\n]{0,40}=\s*\{?\s*"guided"`，**只认等号**。
+    # 而上游现有的写法恰恰是**冒号属性式**——`project.tsx:2823`
+    # `updateProject(projectId, { starterMode: "freeform" })`。
+    # 也就是说，**上游将来补上这个入口时最可能用的正是冒号式**，
+    # 而那条路径**判据照不到 → 闸门会报「仍成立」→ 手册继续写「进不去」**。
+    # **那等于在手册里写假话**，比误报严重得多，所以这里宁可灵敏、不可漏。
+    #
+    # 仍然**故意不匹配比较式**：`starterMode === "guided"` 里 `[:=]` 只吃第一个
+    # `=`，后面紧跟的 `== "guided"` 对不上 `"guided"`，所以比较不会被当成写入。
+    # 用例 31（不误伤）就是钉这一条：**放宽正则不等于放宽成什么都能匹配。**
+    r = _git_grep_run(["git", "grep", "-n", "-E",
+                        r'starterMode[[:space:]]*[:=][[:space:]]*\{?[[:space:]]*\"guided\"',
+                        REF, "--", "web/src"], cwd=src, capture_output=True, text=True)
+    if (r.stdout or "").strip():
+        return False
+    # (c) 对照组：组件与动作都还在
+    if "CanvasShortDramaEmptyState" not in router:
+        return False
+    if "createShortDramaPipeline" not in router:
+        return False
+    r2 = _git_grep_run(["git", "grep", "-l", "-F", "CanvasShortDramaEmptyState",
+                         REF, "--", "web/src"], cwd=src, capture_output=True, text=True)
+    return bool((r2.stdout or "").strip())
+
+
+def p_empty_canvas_quickstarts_off(src):
+    """空画布上的四个快捷入口被 `const showQuickStarts = false` 写死关闭。
+
+    Batch 157 查「读者打开空画布看到什么」时撞见的。成因与已登记的
+    `simple-mode-hardcoded` **完全同型**：不是没有入口，而是**入口的取值被一个
+    常量焊死**——所以它连 URL 参数扫描都扫不到（根本没写成参数）。
+
+    与 `short-drama-empty-state-unreachable` 的区别要说清楚，否则容易合并成一条：
+      · 短剧引导：**字段存的是 starterMode，没有任何写入点**（入口被摘掉）；
+      · 快捷入口：**字段就摆在那儿，值是 false**（入口被关掉）。
+    两者在界面上表现相同（都是「找不到」），但一个是「没接线」、一个是「拨到关」。
+
+    判据要求：
+      (a) `const showQuickStarts = false` 是**字面量常量**，不是条件表达式——
+          与 simple-mode 判据同口径：写成 `cond ? false : true` 就会通过，那不是缺陷；
+      (b) **对照组**：四个快捷入口的**实现确实都在**（quickStarts 数组四项 +
+          按钮渲染分支 `showQuickStarts ?`）。
+          **少了 (b)，(a) 也可能只是「这个功能根本不存在」**，
+          那手册该写的是「产品没这个入口」而不是「入口被关掉了」；
+      (c) 源码注释自述「实现都还在，等工作流就绪再放出」——**有了它才能说清
+          这是有意的关闭而不是漏写**，手册那句话的措辞才对得上。
+    """
+    entry = git_show(src, "web/src/components/canvas/canvas-short-drama-entry.tsx")
+    if not entry:
+        return None
+    # (a) 字面量常量
+    m = re.search(r"const showQuickStarts = (true|false);", entry)
+    if not m:
+        return False
+    if m.group(1) != "false":
+        return False
+    # (b) 对照组：四项数据与渲染分支都还在
+    for label in ("故事脚本生成", "角色三视图", "全能参考生视频", "音频生视频"):
+        if label not in entry:
+            return False
+    if "showQuickStarts ?" not in entry:
+        return False
+    # (c) 注释自述「等对应工作流就绪再放出」
+    return "until their" in entry and "ready for release" in entry
+
+
 def p_default_config_no_models(src):
     """出厂配置里**一个可用模型都没有**——「先生成再配模型」是走不通的。
 
@@ -1010,7 +1187,7 @@ def p_default_config_no_models(src):
     if "不能内置供应商模型" not in store:
         return False
     # (c) 空态文案
-    r = subprocess.run(["git", "grep", "-l", "-F", "当前没有可用模型，请联系管理员或检查模型配置",
+    r = _git_grep_run(["git", "grep", "-l", "-F", "当前没有可用模型，请联系管理员或检查模型配置",
                         REF, "--", "web/src"], cwd=src, capture_output=True, text=True)
     return bool((r.stdout or "").strip())
 
@@ -1091,7 +1268,7 @@ def p_dev_lab_routes_no_entry(src):
             return False
     # 同时确认组件名本身也没有被别处 import（两条独立证据）
     for comp in ("FolderPreviewLab", "DirectorReproLab"):
-        r = subprocess.run(["git", "grep", "-l", "-F", comp, REF, "--", "web/src"],
+        r = _git_grep_run(["git", "grep", "-l", "-F", comp, REF, "--", "web/src"],
                            cwd=src, capture_output=True, text=True)
         files = [x.split(":")[-1] if ":" in x else x for x in (r.stdout or "").split("\n") if x.strip()]
         if len(files) > 2:
@@ -1170,6 +1347,10 @@ REGISTRY = [
      p_dev_lab_routes_no_entry, None),
     ("default-config-no-models", "出厂配置零可用模型：先配模型是所有生成动作的前置条件",
      p_default_config_no_models, None),
+    ("short-drama-empty-state-unreachable", "短剧引导空画布有完整实现但零入口：全库无一处写入 guided",
+     p_short_drama_empty_state_unreachable, None),
+    ("empty-canvas-quickstarts-off", "空画布四个快捷入口被常量写死关闭（与短剧引导同型不同因：关掉 vs 摘掉）",
+     p_empty_canvas_quickstarts_off, None),
 ]
 
 
@@ -1250,7 +1431,7 @@ def url_params_without_writer(src, strict=True):
     if not reads:
         return {}
 
-    gr = subprocess.run(["git", "grep", "-h", "-I", "-e", ".", REF, "--", "web/src"],
+    gr = _git_grep_run(["git", "grep", "-h", "-I", "-e", ".", REF, "--", "web/src"],
                         cwd=src, capture_output=True, text=True)
     all_text = gr.stdout or ""
 

@@ -165,18 +165,30 @@ def gate_inventory(root):
     m = re.search(r"###\s*现有\s*([一二三四五六七八九十]+|\d+)\s*道闸", rules)
     declared = _cn_int(m.group(1)) if m else None
 
-    # 清单表：标题之后的第一张表，取含「脚本」表头的那张
-    rows, listed = 0, set()
+    # 清单表：标题之后的第一张表
+    #
+    # **表头怎么跳不能用关键词**（Batch 157 当场踩到）：第一版写的是
+    # `if ... and "脚本" not in line` —— 结果本批我给「手册元数据」那行补了
+    # 「**闸门脚本**里 git grep 正则的引擎兼容性」这句话，**说明文字里的「脚本」
+    # 二字让这行被当成表头跳过**，清单表凭空少一行、闸门数对不上，
+    # 报出来的是「标题写 9 道、清单表却有 8 行」——**离真实原因十万八千里**。
+    # **判据必须落在结构上**：第一条 `|` 行是表头，`|---` 是分隔行，其余都是数据行。
+    rows, listed, seen_pipe = 0, set(), False
     if m:
         body = rules[m.end():]
         for line in body.split("\n"):
             if line.startswith("## ") or line.startswith("### "):
                 break
-            if line.startswith("|") and "脚本" not in line and not re.match(r"\|\s*-+", line):
-                if "`" in line:
-                    rows += 1
-                    for s in re.findall(r"scripts/(verify-[a-z-]+)\.py", line):
-                        listed.add(s)
+            if line.startswith("|"):
+                if not seen_pipe:
+                    seen_pipe = True
+                    continue          # 表头：第一条 `|` 行
+                if re.match(r"\|\s*:?-{2,}", line):
+                    continue          # 分隔行
+                rows += 1
+                for s in re.findall(r"scripts/(verify-[a-z-]+)\.py", line):
+                    listed.add(s)
+                continue
             if rows and line.strip() == "":
                 break
 
@@ -310,6 +322,120 @@ COUNTER_LABEL = {
 }
 
 
+# ── 方向五：闸门脚本里 git grep 正则的引擎兼容性 ──────────────────────
+# **为什么需要这个方向**：Batch 157 用例 29 判失败，顺藤摸下去发现是**一类
+# 系统性缺陷**，不是孤例：
+#
+#   `git grep -E` 走的是 POSIX ERE（macOS 上由 git 自己的 regcomp 实现），
+#   **它不支持 `\s` / `\d` / `\w` / `\b`——这些会被当成字面字母 s/d/w/b**；
+#   而且方括号里的 `\n` 是「反斜杠 + 字母 n」，**排除的是字母 n，不是换行**。
+#
+# 后果是**最坏的那种失效**：正则永远匹配不上 → 断言永远「通过」→ 闸门一直绿，
+# **而实际上它什么都照不到**。本次在 verify-unreachable.py 里一次查出 4 处，
+# 其中最严重的一处（`[^"`\n]` 排除字母 n）导致 `"/canvas?readonly=1"` 这种
+# 最自然的写法永远抓不到生产者——**那条断言已经这样「通过」了很多个批次**。
+#
+# **这类缺陷不可能靠 review 发现**（正则看上去完全正常），
+# 只能靠机器盯。本方向就是那个机器。
+def _strip_comment(line):
+    """去掉行尾注释，但不动引号里的 `#`。
+
+    **必须去注释**：本文件解释「`\\s` 在 git grep 里是字面字母 s」的那些注释
+    本身就在 git grep 调用的几行之内——不去掉就会**把说明文字当成违规代码**，
+    方向五一上线就自我误伤。
+    """
+    out = []
+    quote = None
+    i = 0
+    while i < len(line):
+        ch = line[i]
+        if quote:
+            out.append(ch)
+            if ch == "\\" and i + 1 < len(line):
+                out.append(line[i + 1])
+                i += 2
+                continue
+            if ch == quote:
+                quote = None
+        else:
+            if ch in "\"'":
+                quote = ch
+                out.append(ch)
+            elif ch == "#":
+                break
+            else:
+                out.append(ch)
+        i += 1
+    return "".join(out)
+
+
+def regex_engine_check(root):
+    """扫描闸门脚本里传给 `git grep -E` 的模式，返回不合规项。
+
+    只扫 `git grep` 的模式参数，**不扫 Python `re`**——Python 的 re 支持 \\s，
+    那里用 \\s 是对的，混在一起判会误报几十处。
+
+    **窗口取法踩过一次坑，记在这里别再改错**：第一版只取「调用行 + 含 REF 的行」，
+    而模式通常**单独成行**夹在两者中间——于是被整段跳过，方向五成了永远通过的闸。
+    当初的负向测试之所以「通过」，是因为**注入脚本恰好把模式写在了调用行内**，
+    **形状与真实代码不同**（Batch 154「注入点必须落在判据真的管得到的形态上」）。
+    现在改为：从调用行往后累积，**直到遇到含 REF 或 `--` 的行为止**。
+    """
+    bad = []
+    unsupported = [r"\s", r"\d", r"\w", r"\b"]
+    # 「这一行是模式参数」的形态：字符串字面量（可带 r/f 前缀）开头的续行。
+    # **必须只认这些**：手工维护一个 ±N 行窗口会把**附近的 Python re** 一并扫进来——
+    #   `re.match(rf"...:(\d+):...")` 是解析 git grep **输出**的正则，用 `\d` 完全正确，
+    #   第一版就因为它报了两处假违规。**窗口越宽，误报越多。**
+    lit_prefix = ('r"', "r'", 'rf"', "rf'", 'f"', "f'", '"', "'")
+    scripts = sorted(p for p in os.listdir(os.path.join(root, "scripts"))
+                     if p.startswith("verify-") and p.endswith(".py"))
+    for name in scripts:
+        path = os.path.join(root, "scripts", name)
+        with open(path, "r", encoding="utf-8") as fh:
+            lines = fh.readlines()
+        for i, line in enumerate(lines):
+            # 必须是**真的调用点**：`["git", "grep", ..., "-E", ...]` 这个列表字面量。
+            # 第一版只判「行里有 grep 和 -E」，结果把 `_git_grep_run` **文档字符串里**
+            # 那句「`git grep -E` 的模式一旦不合法（`{0,300}` …）」当成了代码——
+            # **说明文字被当成违规代码**，方向五一上线就自我误伤。
+            # 加上「必须出现带引号的 `"git"`」即可把散文里的反引号排除掉。
+            if '"git"' not in line and "'git'" not in line:
+                continue
+            if '"grep"' not in line and "'grep'" not in line:
+                continue
+            if '"-E"' not in line and "'-E'" not in line:
+                continue
+            cands = [_strip_comment(line)]
+            for j in range(i + 1, min(i + 8, len(lines))):
+                if "REF" in lines[j] or '"--"' in lines[j]:
+                    break
+                if lines[j].strip().startswith(lit_prefix):
+                    cands.append(_strip_comment(lines[j]))
+            blob = "".join(cands)
+            for m in re.finditer(r"\[\^([^\]]*)\]", blob):
+                if r"\n" in m.group(1):
+                    bad.append((name, m.group(0), "[^...\\n]"))
+            for esc in unsupported:
+                if esc in blob:
+                    bad.append((name, esc, esc))
+            # ── 下面三类是 Batch 157 用例 29 顺藤摸出来的「整条模式被 git 拒绝」型故障 ──
+            # 它们比转义类更隐蔽：**git 直接 fatal、stdout 为空**，
+            # 而空输出与「零命中」在判据里等价 → 断言恒真、闸门永远绿。
+            # 实测确认的三条：
+            #   · `{0,N}` 且 N > 255        → `maximum repetition exceeds 255`
+            #   · `{0,n}?` 惰性量词（PCRE）  → `repetition-operator operand invalid`
+            #   · `\xNN` 十六进制转义         → 不报错，但匹配 0 行（当成字面 xNN）
+            for m in re.finditer(r"\{\d+,\s*(\d+)\}", blob):
+                if int(m.group(1)) > 255:
+                    bad.append((name, m.group(0), "重复数 > 255（git 硬上限）"))
+            if re.search(r"\{\d+,\s*\d+\}\?", blob):
+                bad.append((name, "惰性量词", "惰性量词 {..}?（POSIX ERE 不支持）"))
+            if re.search(r"\\x[0-9a-fA-F]{2}", blob):
+                bad.append((name, "\\xNN", "十六进制转义（git 不识别，等于字面 xNN）"))
+    return bad
+
+
 # ── 方向一：登记表 ─────────────────────────────────────────────────
 # (文件名, 计数器, 该文件里用来写这个数的正则)
 # 正则**必须容忍 markdown 粗体**——Batch 139 的 `\b` 跨不过 `)` 是同源坑，
@@ -439,6 +565,12 @@ def main():
 
     total = len(REGISTRY)
 
+    # 方向一/二结束时的失败数快照。**必须单独记一个**：
+    # 方向三/四/四之二/五的失败不属于「登记表里的 N 条计数」，
+    # 共用一个计数器会让汇总行把「闸门清单不一致」说成「某条计数对不上」——
+    # **汇总行报错因，比报错本身更难查**（Batch 157 的老毛病又长出一处）。
+    count_fails = fails
+
     # ── 方向三：闸门清单三方一致 ──
     print("-" * 62)
     declared, rows, listed, invoked = gate_inventory(root)
@@ -488,11 +620,24 @@ def main():
         print(f"  ✓ 侧栏覆盖：{n_sb} 个任务页全部在侧栏"
               f"（只查存在性——侧栏用短标题是设计，不比文字）")
 
+    # ── 方向五：闸门脚本里的正则不得含 git grep 不支持的转义 ──
+    print("-" * 62)
+    bad_escapes = regex_engine_check(root)
+    for path, pat, esc in bad_escapes:
+        print(f"  ✗ {path} 的 git grep -E 模式含 {esc}（git grep 的 ERE 不支持它，"
+              f"会**静默永不匹配**）：{pat[:60]}")
+        fails += 1
+    if not bad_escapes:
+        print(f"  ✓ 正则引擎兼容：闸门脚本的 git grep 模式不含 git 不支持的形态"
+              f"（\\s \\d \\w \\b / [^\\n] / 重复数>255 / 惰性量词 / \\xNN）"
+              f"——这类写法会让 git 整条拒绝模式或静默匹配 0 行，断言随之恒真")
+
     if fails:
-        print(f"元数据核对：{total - fails} 条一致，{fails} 条不一致")
+        print(f"元数据核对：登记表 {total} 条中 {total - count_fails} 条计数一致"
+              f"（{count_fails} 条不一致）；另有 {fails - count_fails} 处属方向三/四/四之二/五")
         return 1
-    print(f"元数据核对：{total} 条全部与现场重数一致"
-          f"（业务数字与台账历史引述不归本闸管，见脚本头）")
+    print(f"元数据核对：登记表 {total} 条计数全部与现场重数一致，"
+          f"且方向三/四/四之二/五亦全部通过")
     return 0
 
 
