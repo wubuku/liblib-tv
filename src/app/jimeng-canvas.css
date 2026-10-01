@@ -14,15 +14,33 @@
   background: #0d0d0d; /* bg-dreamina-canvas-bg rgb(13,13,13) SOURCE_FACT */
 }
 
-/* 点阵网格：源站用 <canvas> 绘制，复刻用 CSS radial-gradient 近似
-   (CLONE_DECISION；73% 缩放下源站点距 ≈ 20px 屏幕 ≈ 28px 世界) */
+/* 点阵网格：源站用 WebGL <canvas> 绘制（画布上有 2 个 canvas 元素，
+   getContext('2d') 取不到像素），复刻用 CSS radial-gradient 近似。
+   Batch 799 改为**实测**参数（源站截图逐像素分析，1680×826）：
+     点距   **18px 世界坐标** —— 在 100% 缩放下量得 18px，缩到 48% 后量得
+            8.6px（≈18×0.48），说明网格锚定在世界空间、会随缩放缩放，
+            与复刻把背景挂在 .react-flow__pane（transform 之内）的行为一致。
+     点径   ~2px（100% 下非背景像素簇宽恒为 2）
+     峰值   rgb(45,45,45) 叠在 rgb(13,13,13) 上 ⇒ 白色 alpha ≈ 0.13
+            （13 + (255-13)×0.13 ≈ 44.5）
+   ⚠️ 本条**推翻**旧台账的猜测「28px / rgba(255,255,255,.075) / 73% 下约
+   20px 屏幕」—— 那是当初无法从 canvas 读像素时的估值，实测点距是 18px、
+   alpha 约 0.13，旧值偏大且偏淡。
+
+   tile 与相位由 JS 按真实 viewport 变换写入 --jm-grid-* （见
+   JimengWorkspace.applyGridVars）：复刻的 .react-flow__pane **不在**
+   .react-flow__viewport 内（实测 paneInsideViewport=false），是屏幕层，
+   其 CSS background 不会被 viewport 的 transform 缩放。若直接写死 18px，
+   网格会固定在 18px *屏幕* 间距，而源站是世界锚定（73% 下应为 13.1px）。
+   故用变量换算：tile = 18 × zoom，偏移 = pan mod tile。 */
 .jimeng-canvas .react-flow__pane {
   background-image: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.075) 1px,
+    rgba(255, 255, 255, 0.13) 1px,
     transparent 1px
   );
-  background-size: 28px 28px;
+  background-size: var(--jm-grid-tile, 18px) var(--jm-grid-tile, 18px);
+  background-position: var(--jm-grid-x, 0) var(--jm-grid-y, 0);
 }
 
 /* ---- 顶部 chrome 药丸 (搜索/帮助、会员) ----

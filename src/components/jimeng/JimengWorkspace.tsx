@@ -57,6 +57,9 @@ const edgeTypes = {
 
 const DEFAULT_VIEWPORT = { x: -60.6, y: 1.3, zoom: 0.7299 };
 
+/** Batch 799 SOURCE_FACT: 源站点阵网格的世界点距 18px（截图逐像素实测）。 */
+const GRID_WORLD_PX = 18;
+
 function JimengFlow() {
   const nodes = useJimengStore((s) => s.nodes);
   const edges = useJimengStore((s) => s.edges);
@@ -324,11 +327,29 @@ function JimengFlow() {
     cancelRefPicking,
   ]);
 
+  // Batch 799 SOURCE_FACT: 点阵网格是**世界锚定**的 —— 源站实测 100% 缩放下
+  // 屏幕点距 18px，缩到 48% 后变 8.6px（≈18×0.48），即点距随 zoom 缩放。
+  // 而复刻的 .react-flow__pane **不在** .react-flow__viewport 内（是屏幕层，
+  // 实测 paneInsideViewport=false），CSS background 不会被 viewport 变换缩放，
+  // 于是网格会固定在 18px 屏幕间距 —— 缩放时与源站不符。
+  // 这里把网格尺寸与相位按真实 viewport 变换写进 CSS 变量，让屏幕层的
+  // background 复现世界锚定：tile = 18×zoom，偏移 = pan mod tile。
+  const applyGridVars = useCallback((zoom: number, x: number, y: number) => {
+    const el = document.querySelector<HTMLElement>(".jimeng-canvas");
+    if (!el) return;
+    const tile = GRID_WORLD_PX * zoom;
+    if (!(tile > 0)) return;
+    el.style.setProperty("--jm-grid-tile", `${tile}px`);
+    el.style.setProperty("--jm-grid-x", `${x % tile}px`);
+    el.style.setProperty("--jm-grid-y", `${y % tile}px`);
+  }, []);
+
   const onMove = useCallback<OnMove>(
     (_event, viewport) => {
       setZoomPercent(viewport.zoom * 100);
+      applyGridVars(viewport.zoom, viewport.x, viewport.y);
     },
-    [setZoomPercent],
+    [setZoomPercent, applyGridVars],
   );
 
   // Batch 793 SOURCE_FACT: 点选模式下点击节点 = 选中为引用 (不改变画布选择)
@@ -346,6 +367,15 @@ function JimengFlow() {
       className={`jimeng-canvas relative h-full w-full ${
         refPicking ? "ring-2 ring-inset ring-[#0A5CD6]" : ""
       }`}
+      // Batch 799: 首屏也要有网格变量。onMove 不保证在挂载时触发，
+      // 缺了这层 fallback 会导致「不移动就不显示网格」。
+      style={
+        {
+          "--jm-grid-tile": `${GRID_WORLD_PX * DEFAULT_VIEWPORT.zoom}px`,
+          "--jm-grid-x": `${DEFAULT_VIEWPORT.x % (GRID_WORLD_PX * DEFAULT_VIEWPORT.zoom)}px`,
+          "--jm-grid-y": `${DEFAULT_VIEWPORT.y % (GRID_WORLD_PX * DEFAULT_VIEWPORT.zoom)}px`,
+        } as React.CSSProperties
+      }
     >
       <ReactFlow
         nodes={nodes}
