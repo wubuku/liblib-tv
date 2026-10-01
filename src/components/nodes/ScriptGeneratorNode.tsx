@@ -143,10 +143,16 @@ function ScriptGeneratorNodeComponent({ id, data, selected }: NodeProps<ScriptGe
             ))}
           </div>
 
+          {/* Batch 368: 「参考图」无 onClick 也无 disabled, 却带虚线边框 +
+              hover:border-white/[0.24] —— 虚线框是「点这里能上传」的标准视觉语言。
+              参考图上传的源站形态未采样(人机验证阻塞), 不发明; 按 batch
+              358/359/360/364/366/367 同策让 UI 停止撒谎。几何与文案不动。 */}
           <button
             type="button"
             data-script-generator-reference
-            className="mt-2 flex h-8 items-center gap-2 rounded-lg border border-dashed border-white/[0.12] px-2 text-[11px] text-[#9a9a9a] hover:border-white/[0.24] hover:text-white"
+            data-inert="true"
+            title="参考图上传暂不可用"
+            className="mt-2 flex h-8 cursor-default items-center gap-2 rounded-lg border border-dashed border-white/[0.12] px-2 text-[11px] text-[#9a9a9a]"
           >
             <FileUp size={12} />
             参考图

@@ -286,11 +286,19 @@ export function StoryboardScriptEditor() {
           </button>
         )}
         {step === 3 && (
+          /* Batch 368: 这颗**早就有 title 说明**「clone 不触发」, 说明当初
+             知道它不干活 —— 但处置只做了一半: 缺 `data-inert` 自证, 而且
+             `hover:bg-white` 还在, 白底亮起的 hover 仍在邀请点击。
+             「有 title 就算自证」是不成立的 —— title 要悬停才看得见,
+             视觉承诺已经先给出去了。付费合成**永不接线**, 按 358/359/360/
+             364/366/367 同策补齐 data-inert + cursor:default + 去 hover。
+             文案与几何不动。 */
           <button
             type="button"
             data-storyboard-synthesize-all
+            data-inert="true"
             title="一键合成全部提示词（真实合成为付费 AI 动作，clone 不触发）"
-            className="flex items-center gap-1.5 rounded-full bg-[#e8e8e8] px-4 py-2 text-sm text-[#1a1a1a] hover:bg-white"
+            className="flex cursor-default items-center gap-1.5 rounded-full bg-[#e8e8e8] px-4 py-2 text-sm text-[#1a1a1a]"
           >
             一键合成全部提示词
           </button>

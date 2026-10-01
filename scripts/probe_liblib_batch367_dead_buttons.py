@@ -71,12 +71,26 @@ WIRED = re.compile(r'\bon[A-Z]\w*\s*=|disabled\b')
 # 重复改动, 或撞上既有门禁钉住的约定。
 TAG = re.compile(r'<button\b((?:[^>"]|"[^"]*"|\'[^\']*\'|\{[^{}]*\})*?)(/?)>', re.S)
 JSX_COMMENT = re.compile(r'\{/\*.*?\*/\}', re.S)
+# Batch 368: **无花括号**的块注释 `/* ... */` 也得剥。
+# 起因是我自己踩的: 给 `SegmentReshootPanel` 写修复说明时用了
+#   return (
+#     /* Batch 368: …按「<button> 即控件」的口径… */
+#     <button ... />
+#   )
+# 这是**表达式位置**的 JS 块注释, 外面**没有花括号** —— 于是 `JSX_COMMENT`
+# (`\{/\*.*?\*/\}`) 匹配不到它, 注释里那句字面量 `<button>` 被当成真标签扫了出来,
+# 凭空多出一个候选。
+# > **给修复写的说明文档, 反过来制造了一个新的误报。** 判据必须能扛住
+# > 源码里出现「关于判据本身的文字」, 否则每修一次就多一个假零/假阳。
+# 顺序: 先剥带花括号那种(JSX children 位置), 再剥裸的那种。
+BARE_BLOCK_COMMENT = re.compile(r'/\*.*?\*/', re.S)
 LINE_COMMENT = re.compile(r'//[^\n]*')
 
 
 def strip_comments(text: str) -> str:
-    """剥掉 JSX 块注释与行注释, 但**保留换行**以维持行号。"""
+    """剥掉 JSX 块注释、裸块注释与行注释, 但**保留换行**以维持行号。"""
     text = JSX_COMMENT.sub(lambda m: re.sub(r"[^\n]", " ", m.group(0)), text)
+    text = BARE_BLOCK_COMMENT.sub(lambda m: re.sub(r"[^\n]", " ", m.group(0)), text)
     text = LINE_COMMENT.sub(lambda m: " " * len(m.group(0)), text)
     return text
 
@@ -116,8 +130,6 @@ def scan(path: Path) -> list[dict[str, object]]:
     found: list[dict[str, object]] = []
     for m in TAG.finditer(src):
         attrs = m.group(1)
-        if not SELF_CLAIM.search(attrs):
-            continue
         if WIRED.search(attrs):
             continue
         if "data-inert" in attrs:
@@ -131,6 +143,15 @@ def scan(path: Path) -> list[dict[str, object]]:
             "aria": aria.group(1) if aria else None,
             "hasHover": "hover:" in attrs,
             "hoverTarget": classify_hover_target(src, m.end()),
+            # Batch 368: 判据**上界**又一个洞。第一版要求「自称可点」
+            # (aria-label / data-testid / role=button) 才收, 理由是想避开
+            # 纯展示元素。但 `SegmentReshootPanel` 的「参考」「标记」「角色库」
+            # 三颗 pill **连 aria-label 都没有**, 却和同一行右侧**真能用的**
+            # 「展开/收起」长得一模一样 —— 于是 367 一个都没抓到, 是 368 的
+            # 运行时扫描按「<button> 即控件」的口径才报出来的。
+            # 与其猜「有没有自称」, 不如**全都收**, 把「自称」降级成一个标签:
+            # `selfClaim: false` 的候选**更值得看**(它连自己是个控件都没说清楚)。
+            "selfClaim": bool(SELF_CLAIM.search(attrs)),
             "selfClosing": m.group(2) == "/",
             "snippet": " ".join(raw_attrs.split())[:160],
         })

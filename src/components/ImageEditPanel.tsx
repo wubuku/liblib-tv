@@ -283,10 +283,19 @@ function PanoramaEditPanel({
         </button>
 
         <div className="flex h-[55px] shrink-0 items-start gap-2 pr-9">
+          {/* Batch 368: 全景分支的三个控件。它们的「主分支孪生体」里,
+              `data-image-editor-settings` 在 212 行**早已按 batch 358 同策修好**
+              (data-inert + title + cursor:default), 而全景分支这一支没人管 ——
+              **同一个面板的两个 variant 处置不一致**, 这正是按 variant 分支
+              写代码最容易漏的地方。batch 367 修过同文件 276 行的「展开全景编辑器」,
+              同样只在这一支。参考图选择/模型选择/生成参数在源站未采样,
+              不发明; 去 hover + cursor:default + title + data-inert。几何文案不动。 */}
           <button
             type="button"
             data-panorama-add-reference
-            className="pointer-events-auto flex h-[26px] items-center gap-1 rounded-full bg-white/[0.06] px-2.5 text-xs text-[#a5a5a5] hover:bg-white/10 hover:text-white"
+            data-inert="true"
+            title="全景参考图添加暂不可用"
+            className="pointer-events-auto flex h-[26px] cursor-default items-center gap-1 rounded-full bg-white/[0.06] px-2.5 text-xs text-[#a5a5a5]"
           >
             <Images size={13} />
             +参考
@@ -318,11 +327,13 @@ function PanoramaEditPanel({
         </div>
 
         <footer className="mt-2 flex h-[41px] shrink-0 items-end gap-1 border-t border-white/[0.07] pt-2 text-xs text-[#dfdfdf]">
-          <button data-image-editor-model type="button" className="pointer-events-auto flex h-8 items-center gap-1.5 rounded-md px-1.5 hover:bg-white/[0.06]">
+          <button data-image-editor-model data-inert="true" type="button" title="全景模型选择暂不可用"
+            className="pointer-events-auto flex h-8 cursor-default items-center gap-1.5 rounded-md px-1.5">
             <Link2 size={14} className="text-[#9a9a9a]" /><span>Lib Image</span><ChevronDown size={12} className="text-[#777]" />
           </button>
           <span className="h-4 w-px bg-white/10" />
-          <button data-image-editor-settings type="button" className="pointer-events-auto flex h-8 items-center gap-1 rounded-md px-1.5 hover:bg-white/[0.06]">
+          <button data-image-editor-settings data-inert="true" type="button" title="全景生成参数暂不可用"
+            className="pointer-events-auto flex h-8 cursor-default items-center gap-1 rounded-md px-1.5">
             <RectangleHorizontal size={14} className="text-[#9a9a9a]" />
             <span>{generationSettings}</span><ChevronDown size={12} className="text-[#777]" />
           </button>

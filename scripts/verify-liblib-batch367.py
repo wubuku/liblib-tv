@@ -294,19 +294,54 @@ def run() -> dict:
         page.screenshot(path=str(AUDIT.parent / "verify-last-probe.png"))
         browser.close()
 
-    # 断言 6: 源码普查里非 hoverTarget 的候选数必须为 0
+    # 断言 6: 源码普查里非 hoverTarget 的候选, 必须**只落在**「够不着」的只读白名单里。
+    #
+    # Batch 368 更新: 原来这里是「必须为 0」, 因为 367 的普查口径只收
+    # 「自称可点」(有 aria-label / data-testid / role=button) 的按钮 ——
+    # 而 batch 368 证明那个口径**漏掉了两类**: 没有任何标记的裸 `<button>`,
+    # 以及有 `data-*` 但不是 `data-testid` 的。口径放宽后普查如实多报出 5 个。
+    #
+    # 这 5 个是**够不着**的, 不是骗人的(定性见 batch368 README):
+    # - `CameraConfigDialog.tsx` 4 处: **全仓库无人 import**, 连 director 也没引用,
+    #   是死代码, 用户永远看不到;
+    # - `VideoGenerationPanel.tsx` 的 pill 兜底分支: 5 个 pill 全有 `hasMenu` 或
+    #   专门分支, 这行是给不存在的 label 留的, 当前不可达。
+    #
+    # 断言的**意图**没变 ——「不许出现会骗用户的死控件」; 变的是口径更准之后,
+    # 「够不着」与「骗人」必须分开记。白名单按**文件+行**写死, 不按文件名开口子:
+    # 新增一个候选就红, 少一个也红。
+    ALLOWED_UNREACHABLE = {
+        ("CameraConfigDialog.tsx", 102),
+        ("CameraConfigDialog.tsx", 140),
+        ("CameraConfigDialog.tsx", 178),
+        ("CameraConfigDialog.tsx", 216),
+        ("VideoGenerationPanel.tsx", 499),
+    }
     residual: list[str] = []
+    unreachable: list[str] = []
     for path in sorted((ROOT / "src" / "components").rglob("*.tsx")):
         rel = path.relative_to(ROOT / "src" / "components")
         if CENSUS.is_cross_line(rel):
             continue
         for hit in CENSUS.scan(path):
-            if not hit["hoverTarget"]:
-                residual.append(f"{rel}:{hit['line']} {hit['aria']!r}")
+            if hit["hoverTarget"]:
+                continue
+            key = (str(rel), int(hit["line"]))
+            token = f"{rel}:{hit['line']} {hit['aria']!r}"
+            if key in ALLOWED_UNREACHABLE:
+                unreachable.append(token)
+            else:
+                residual.append(token)
     add(
-        "source-census:no-plain-dead-buttons",
+        "source-census:no-reachable-dead-buttons",
         not residual,
-        f"仍自称可点又无接线的控件: {residual}",
+        f"普查残余应只落在只读白名单 {sorted(ALLOWED_UNREACHABLE)}; 实际多出: {residual}",
+    )
+    # 白名单也不能被无声删掉 —— 少一个说明有人「顺手清理」了死代码, 那要人来定
+    add(
+        "source-census:unreachable-allowlist-intact",
+        len(unreachable) == len(ALLOWED_UNREACHABLE),
+        f"白名单 {len(ALLOWED_UNREACHABLE)} 项, 实际命中 {len(unreachable)} 项: {unreachable}",
     )
 
     noisy = [

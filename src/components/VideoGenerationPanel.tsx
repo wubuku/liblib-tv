@@ -589,10 +589,17 @@ export function VideoGenerationPanel({
                   <span className="text-[13px] font-medium">元素选择模式</span>
                   <span className="text-[11px] opacity-90">点击图片选择局部元素</span>
                 </div>
+                {/* Batch 368: 「返回节点」无 onClick 也无 disabled, 却带
+                    hover:bg-white/30。它和 367 修过的「关闭」并排挂在同一个
+                    标记选择横幅上 —— 一个「进不去」一个「出不来」, 而**两个
+                    都会骗人**。源站横幅行为未采样(人机验证阻塞), 不发明;
+                    按 batch 358/359/360/364/366/367 同策让 UI 停止撒谎。 */}
                 <button
                   type="button"
                   data-mark-select-return
-                  className="shrink-0 rounded-lg bg-white/20 px-2.5 py-1 text-[11px] text-white hover:bg-white/30"
+                  data-inert="true"
+                  title="返回节点暂不可用"
+                  className="shrink-0 cursor-default rounded-lg bg-white/20 px-2.5 py-1 text-[11px] text-white"
                 >
                   返回节点
                 </button>

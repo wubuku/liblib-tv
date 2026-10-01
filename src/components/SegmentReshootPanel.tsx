@@ -126,10 +126,21 @@ export function SegmentReshootPanel({ zoom }: SegmentReshootPanelProps) {
           ].map((item) => {
             const Icon = item.icon;
             return (
+              /* Batch 368: 三颗 pill 无 onClick 也无 disabled, 却带
+                 hover:bg-white/[0.09] + hover:text-white, 和同一行右侧那颗
+                 **真能用的**「展开/收起」(setExpanded) 长得一模一样。
+                 而且它们**连 aria-label 和 data-* 都没有** ——
+                 batch 367 的源码普查要求「自称可点」(aria-label/data-testid/
+                 role=button), 于是这三个一个都没被抓到。是 368 的运行时扫描
+                 按「<button> 即控件」的口径才报出来的。
+                 三者的源站形态未采样(人机验证阻塞), 不发明;
+                 按 batch 358/359/360/364/366/367 同策让 UI 停止撒谎。 */
               <button
                 key={item.label}
                 type="button"
-                className="flex h-7 items-center gap-1.5 rounded-full bg-white/[0.05] px-2.5 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white"
+                data-inert="true"
+                title={`${item.label}在克隆侧尚未接入`}
+                className="flex h-7 cursor-default items-center gap-1.5 rounded-full bg-white/[0.05] px-2.5 text-xs text-[#aaa]"
               >
                 <Icon size={12} />
                 {item.label}
@@ -211,12 +222,19 @@ export function SegmentReshootPanel({ zoom }: SegmentReshootPanelProps) {
         </div>
 
         <footer className="mt-1 flex h-9 shrink-0 items-center gap-1 border-t border-white/[0.07] pt-1 text-xs text-[#dfdfdf]">
-          <button type="button" className="flex h-8 items-center gap-1.5 rounded-lg px-2 hover:bg-white/[0.06]">
+          {/* Batch 368: 「2.5」(带钻石图标, 读作积分余额) 与「720P · 1个」
+              两颗都无 onClick 也无 disabled, 却带 hover:bg-white/[0.06] 和
+              一个 **ChevronDown 下拉箭头** —— 下拉箭头是「点开有菜单」最强的
+              视觉承诺, 这里是纯骗。积分与生成参数都关联付费, 源站形态未采样,
+              **永不接线**; 按 batch 358/359/360/364/366/367 同策让 UI 停止撒谎。 */}
+          <button type="button" data-inert="true" title="积分选择暂不可用"
+            className="flex h-8 cursor-default items-center gap-1.5 rounded-lg px-2">
             <span className="font-semibold">2.5</span>
             <Gem size={11} fill="currentColor" className="text-[#f3b74c]" />
             <ChevronDown size={12} className="text-[#777]" />
           </button>
-          <button type="button" className="flex h-8 items-center gap-1 rounded-lg px-2 hover:bg-white/[0.06]">
+          <button type="button" data-inert="true" title="生成参数选择暂不可用"
+            className="flex h-8 cursor-default items-center gap-1 rounded-lg px-2">
             720P · 1个
             <Volume2 size={13} className="text-[#aaa]" />
             <ChevronDown size={12} className="text-[#777]" />

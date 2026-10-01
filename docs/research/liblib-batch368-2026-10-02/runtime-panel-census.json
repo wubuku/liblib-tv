@@ -1,0 +1,200 @@
+{
+  "url": "http://localhost:4317",
+  "viewport": {
+    "width": 1680,
+    "height": 1050
+  },
+  "panels": {
+    "image-edit/expand-panorama": {
+      "inputs": 1,
+      "controls": 58,
+      "lyingAffordance": [],
+      "silentDiscard": [],
+      "deadControls": [
+        {
+          "tag": "button",
+          "aria": "",
+          "text": "+参考",
+          "data": [
+            "data-panorama-add-reference=true"
+          ]
+        },
+        {
+          "tag": "button",
+          "aria": "",
+          "text": "Lib Image",
+          "data": [
+            "data-image-editor-model=true"
+          ]
+        },
+        {
+          "tag": "button",
+          "aria": "",
+          "text": "2:1 · 标准画质 · 2K · ",
+          "data": [
+            "data-image-editor-settings=true"
+          ]
+        }
+      ],
+      "why": "PanoramaEditPanel —— 367 修过「展开全景编辑器」",
+      "probe": "image-edit/expand-panorama"
+    },
+    "segment-reshoot/translate-prompt": {
+      "inputs": 3,
+      "controls": 67,
+      "lyingAffordance": [],
+      "silentDiscard": [],
+      "deadControls": [
+        {
+          "tag": "button",
+          "aria": "",
+          "text": "参考",
+          "data": []
+        },
+        {
+          "tag": "button",
+          "aria": "",
+          "text": "标记",
+          "data": []
+        },
+        {
+          "tag": "button",
+          "aria": "",
+          "text": "角色库",
+          "data": []
+        },
+        {
+          "tag": "button",
+          "aria": "",
+          "text": "2.5",
+          "data": []
+        },
+        {
+          "tag": "button",
+          "aria": "",
+          "text": "720P · 1个",
+          "data": []
+        },
+        {
+          "tag": "a",
+          "aria": "下载视频封面",
+          "text": "",
+          "data": []
+        }
+      ],
+      "why": "SegmentReshootPanel —— 367 修过「翻译片段重拍提示词」",
+      "probe": "segment-reshoot/translate-prompt"
+    },
+    "subtitle-erase/help (误报嫌疑)": {
+      "inputs": 2,
+      "controls": 45,
+      "lyingAffordance": [],
+      "silentDiscard": [],
+      "deadControls": [
+        {
+          "tag": "button",
+          "aria": "查看框选去字幕说明",
+          "text": "",
+          "data": [
+            "data-subtitle-erase-help=true"
+          ]
+        }
+      ],
+      "why": "SubtitleErasePanel —— 有 textarea? 有 hover 浮层",
+      "probe": "subtitle-erase/help (误报嫌疑)"
+    },
+    "storyboard-assets/add": {
+      "inputs": 1,
+      "controls": 42,
+      "lyingAffordance": [],
+      "silentDiscard": [],
+      "deadControls": [],
+      "why": "StoryboardScriptEditor 资产步 —— 367 修过「新增资产」",
+      "probe": "storyboard-assets/add"
+    },
+    "video-gen/favorite": {
+      "inputs": 6,
+      "controls": 70,
+      "lyingAffordance": [],
+      "silentDiscard": [],
+      "deadControls": [
+        {
+          "tag": "a",
+          "aria": "下载视频封面",
+          "text": "",
+          "data": []
+        }
+      ],
+      "why": "VideoGenerationPanel 特效库 —— 367 修过 4 个「收藏」",
+      "probe": "video-gen/favorite"
+    },
+    "video-gen/banner-close": {
+      "inputs": 6,
+      "controls": 68,
+      "lyingAffordance": [],
+      "silentDiscard": [],
+      "deadControls": [
+        {
+          "tag": "a",
+          "aria": "下载视频封面",
+          "text": "",
+          "data": []
+        },
+        {
+          "tag": "button",
+          "aria": "",
+          "text": "返回节点",
+          "data": [
+            "data-mark-select-return=true"
+          ]
+        }
+      ],
+      "why": "VideoGenerationPanel 标记选择横幅 —— 367 修过「关闭」",
+      "probe": "video-gen/banner-close"
+    },
+    "video-toolbar/undo-redo": {
+      "inputs": 6,
+      "controls": 66,
+      "lyingAffordance": [],
+      "silentDiscard": [],
+      "deadControls": [
+        {
+          "tag": "a",
+          "aria": "下载视频封面",
+          "text": "",
+          "data": []
+        }
+      ],
+      "why": "VideoProcessingToolbar —— 367 修过撤销/重做",
+      "probe": "video-toolbar/undo-redo"
+    },
+    "shot-breakdown/play-bgm": {
+      "inputs": 1,
+      "controls": 44,
+      "lyingAffordance": [],
+      "silentDiscard": [],
+      "deadControls": [],
+      "why": "ShotBreakdownResultNode 音乐卡 —— 367 修过「播放 BGM」",
+      "probe": "shot-breakdown/play-bgm"
+    },
+    "context-menu": {
+      "inputs": 5,
+      "controls": 58,
+      "lyingAffordance": [],
+      "silentDiscard": [],
+      "deadControls": [],
+      "why": "CanvasContextMenu —— 365 修过右键菜单, 从没被运行时扫过",
+      "probe": "context-menu"
+    }
+  },
+  "summary": {
+    "panelsScanned": 9,
+    "skipped": [],
+    "totals": {
+      "deadControls": 14,
+      "silentDiscard": 0,
+      "lyingAffordance": 0
+    },
+    "note": "打不开的面报跳过, 不报「0 问题」; 候选是否真的骗人仍需人工定性"
+  }
+}

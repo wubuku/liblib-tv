@@ -1,19 +1,72 @@
 {
   "components": {
+    "CameraConfigDialog.tsx": [
+      {
+        "line": 102,
+        "aria": null,
+        "hasHover": true,
+        "hoverTarget": false,
+        "selfClaim": false,
+        "selfClosing": false,
+        "snippet": "className=\"rounded-lg p-2 text-white/60 transition-colors hover:bg-white/10 hover:text-white\""
+      },
+      {
+        "line": 140,
+        "aria": null,
+        "hasHover": true,
+        "hoverTarget": false,
+        "selfClaim": false,
+        "selfClosing": false,
+        "snippet": "className=\"rounded-lg p-2 text-white/60 transition-colors hover:bg-white/10 hover:text-white\""
+      },
+      {
+        "line": 178,
+        "aria": null,
+        "hasHover": true,
+        "hoverTarget": false,
+        "selfClaim": false,
+        "selfClosing": false,
+        "snippet": "className=\"rounded-lg p-2 text-white/60 transition-colors hover:bg-white/10 hover:text-white\""
+      },
+      {
+        "line": 216,
+        "aria": null,
+        "hasHover": true,
+        "hoverTarget": false,
+        "selfClaim": false,
+        "selfClosing": false,
+        "snippet": "className=\"rounded-lg p-2 text-white/60 transition-colors hover:bg-white/10 hover:text-white\""
+      }
+    ],
     "SubtitleErasePanel.tsx": [
       {
         "line": 472,
         "aria": "查看框选去字幕说明",
         "hasHover": true,
+        "hoverTarget": true,
+        "selfClaim": true,
         "selfClosing": false,
         "snippet": "data-subtitle-erase-help type=\"button\" aria-label=\"查看框选去字幕说明\" className=\"flex size-4 items-center justify-center text-[#8b8b8b] hover:text-white\""
+      }
+    ],
+    "VideoGenerationPanel.tsx": [
+      {
+        "line": 499,
+        "aria": null,
+        "hasHover": true,
+        "hoverTarget": false,
+        "selfClaim": false,
+        "selfClosing": false,
+        "snippet": "key={item.label} type=\"button\" className=\"flex h-[26px] items-center gap-1.5 rounded-full bg-white/[0.05] px-2 py-1 text-xs text-[#aaa] hover:bg-white/[0.09] ho"
       }
     ]
   },
   "summary": {
-    "totalCandidates": 1,
+    "totalCandidates": 6,
     "components": [
-      "SubtitleErasePanel.tsx"
+      "CameraConfigDialog.tsx",
+      "SubtitleErasePanel.tsx",
+      "VideoGenerationPanel.tsx"
     ],
     "note": "源码层面候选; 可触达性与是否骗人需浏览器实测确认"
   }

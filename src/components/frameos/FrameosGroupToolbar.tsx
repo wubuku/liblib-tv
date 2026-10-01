@@ -249,9 +249,16 @@ export function FrameosGroupToolbar() {
           {/* 整组执行 = 源站付费生成入口, 不 mock 触发 */}
           {/* Batch 353: 补钩子 —— Batch 347 的可寻址门禁只普查默认/帮助/选中节点
               三种 UI 态, 分组态从未被扫到, 这三个按钮因此一直是无钩子盲区 */}
+          {/* Batch 368: 这颗**早就有处置**(cursor:default + 变暗), 说明当初
+             知道它不干活 —— 但只做了一半: 缺 `data-inert` 自证, 也没有 `title`
+             说明为什么不能点。「看起来是按钮但按不动」必须**自证**, 否则用户
+             只能靠反复试来发现。源站的整组执行是付费生成入口, **永不接线**;
+             按 358/359/360/364/366/367 同策补齐 data-inert + title。样式不动。 */}
           <button
             type="button"
             data-frameos-group-action="run-all"
+            data-inert="true"
+            title="整组执行为源站付费生成入口, clone 不触发"
             style={{ ...btnStyle, cursor: "default", color: "#9CA3AF" }}
           >
             <PlayIcon />

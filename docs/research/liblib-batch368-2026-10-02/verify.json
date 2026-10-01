@@ -1,0 +1,459 @@
+{
+  "checks": [
+    {
+      "name": "image-edit/expand-panorama|[data-panorama-add-reference]:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-panorama-add-reference]:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-panorama-add-reference]:title",
+      "ok": true,
+      "detail": "title='全景参考图添加暂不可用'"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-panorama-add-reference]:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-panorama-add-reference]:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-panorama-add-reference]:class-has-no-hover",
+      "ok": true,
+      "detail": "className=pointer-events-auto flex h-[26px] cursor-default items-center gap-1 rounded-full bg-white/[0.06] px-2.5 text-x"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-panorama-add-reference]:size-token-kept",
+      "ok": true,
+      "detail": "丢失尺寸 token []"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-panorama-add-reference] ~ * [data-image-editor-model], [data-image-editor-model]:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-panorama-add-reference] ~ * [data-image-editor-model], [data-image-editor-model]:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-panorama-add-reference] ~ * [data-image-editor-model], [data-image-editor-model]:title",
+      "ok": true,
+      "detail": "title='全景模型选择暂不可用'"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-panorama-add-reference] ~ * [data-image-editor-model], [data-image-editor-model]:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-panorama-add-reference] ~ * [data-image-editor-model], [data-image-editor-model]:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-panorama-add-reference] ~ * [data-image-editor-model], [data-image-editor-model]:class-has-no-hover",
+      "ok": true,
+      "detail": "className=pointer-events-auto flex h-8 cursor-default items-center gap-1.5 rounded-md px-1.5"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-panorama-add-reference] ~ * [data-image-editor-model], [data-image-editor-model]:size-token-kept",
+      "ok": true,
+      "detail": "丢失尺寸 token []"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-image-editor-settings]:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-image-editor-settings]:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-image-editor-settings]:title",
+      "ok": true,
+      "detail": "title='全景生成参数暂不可用'"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-image-editor-settings]:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-image-editor-settings]:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-image-editor-settings]:class-has-no-hover",
+      "ok": true,
+      "detail": "className=pointer-events-auto flex h-8 cursor-default items-center gap-1 rounded-md px-1.5"
+    },
+    {
+      "name": "image-edit/expand-panorama|[data-image-editor-settings]:size-token-kept",
+      "ok": true,
+      "detail": "丢失尺寸 token []"
+    },
+    {
+      "name": "image-edit/expand-panorama|live:[data-panorama-submit]",
+      "ok": true,
+      "detail": "必须仍然可用的控件被标了 inert: [(None, 'pointer-events-auto flex size-8 items-ce')]"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:参考:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:参考:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:参考:title",
+      "ok": true,
+      "detail": "title='参考在克隆侧尚未接入'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:参考:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:参考:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:参考:class-has-no-hover",
+      "ok": true,
+      "detail": "className=flex h-7 cursor-default items-center gap-1.5 rounded-full bg-white/[0.05] px-2.5 text-xs text-[#aaa]"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:参考:size-token-kept",
+      "ok": true,
+      "detail": "丢失尺寸 token []"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:标记:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:标记:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:标记:title",
+      "ok": true,
+      "detail": "title='标记在克隆侧尚未接入'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:标记:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:标记:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:标记:class-has-no-hover",
+      "ok": true,
+      "detail": "className=flex h-7 cursor-default items-center gap-1.5 rounded-full bg-white/[0.05] px-2.5 text-xs text-[#aaa]"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:标记:size-token-kept",
+      "ok": true,
+      "detail": "丢失尺寸 token []"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:角色库:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:角色库:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:角色库:title",
+      "ok": true,
+      "detail": "title='角色库在克隆侧尚未接入'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:角色库:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:角色库:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:角色库:class-has-no-hover",
+      "ok": true,
+      "detail": "className=flex h-7 cursor-default items-center gap-1.5 rounded-full bg-white/[0.05] px-2.5 text-xs text-[#aaa]"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:角色库:size-token-kept",
+      "ok": true,
+      "detail": "丢失尺寸 token []"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:2.5:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:2.5:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:2.5:title",
+      "ok": true,
+      "detail": "title='积分选择暂不可用'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:2.5:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:2.5:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:2.5:class-has-no-hover",
+      "ok": true,
+      "detail": "className=flex h-8 cursor-default items-center gap-1.5 rounded-lg px-2"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:2.5:size-token-kept",
+      "ok": true,
+      "detail": "丢失尺寸 token []"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:720P · 1个:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:720P · 1个:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:720P · 1个:title",
+      "ok": true,
+      "detail": "title='生成参数选择暂不可用'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:720P · 1个:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:720P · 1个:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:720P · 1个:class-has-no-hover",
+      "ok": true,
+      "detail": "className=flex h-8 cursor-default items-center gap-1 rounded-lg px-2"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|text:720P · 1个:size-token-kept",
+      "ok": true,
+      "detail": "丢失尺寸 token []"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|live:button[aria-label=\"展开片段重拍编辑器\"]",
+      "ok": true,
+      "detail": "必须仍然可用的控件被标了 inert: [(None, 'ml-auto flex size-7 items-center justify')]"
+    },
+    {
+      "name": "segment-reshoot/translate-prompt|live:[data-segment-submit]",
+      "ok": true,
+      "detail": "必须仍然可用的控件被标了 inert: [(None, 'flex size-8 shrink-0 items-center justif')]"
+    },
+    {
+      "name": "video-gen/banner-close|[data-mark-select-return]:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "video-gen/banner-close|[data-mark-select-return]:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "video-gen/banner-close|[data-mark-select-return]:title",
+      "ok": true,
+      "detail": "title='返回节点暂不可用'"
+    },
+    {
+      "name": "video-gen/banner-close|[data-mark-select-return]:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "video-gen/banner-close|[data-mark-select-return]:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "video-gen/banner-close|[data-mark-select-return]:class-has-no-hover",
+      "ok": true,
+      "detail": "className=shrink-0 cursor-default rounded-lg bg-white/20 px-2.5 py-1 text-[11px] text-white"
+    },
+    {
+      "name": "video-gen/banner-close|[data-mark-select-return]:size-token-kept",
+      "ok": true,
+      "detail": "丢失尺寸 token []"
+    },
+    {
+      "name": "video-gen/banner-close|live:[data-mark-select-trigger]",
+      "ok": true,
+      "detail": "必须仍然可用的控件被标了 inert: [(None, 'flex h-[26px] items-center gap-1.5 round')]"
+    },
+    {
+      "name": "storyboard/step3-reachable",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "storyboard/synthesize-all:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "storyboard/synthesize-all:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "storyboard/synthesize-all:title",
+      "ok": true,
+      "detail": "title='一键合成全部提示词（真实合成为付费 AI 动作，clone 不触发）'"
+    },
+    {
+      "name": "storyboard/synthesize-all:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "storyboard/synthesize-all:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "storyboard/synthesize-all:class-has-no-hover",
+      "ok": true,
+      "detail": "className=flex cursor-default items-center gap-1.5 rounded-full bg-[#e8e8e8] px-4 py-2 text-sm text-[#1a1a1a]"
+    },
+    {
+      "name": "storyboard/synthesize-all:size-token-kept",
+      "ok": true,
+      "detail": "丢失尺寸 token []"
+    },
+    {
+      "name": "script-generator:reachable",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "script-generator/reference:present",
+      "ok": true,
+      "detail": "找到 1 个"
+    },
+    {
+      "name": "script-generator/reference:inert",
+      "ok": true,
+      "detail": "data-inert='true'"
+    },
+    {
+      "name": "script-generator/reference:title",
+      "ok": true,
+      "detail": "title='参考图上传暂不可用'"
+    },
+    {
+      "name": "script-generator/reference:cursor",
+      "ok": true,
+      "detail": "cursor='default'"
+    },
+    {
+      "name": "script-generator/reference:not-disabled",
+      "ok": true,
+      "detail": "disabled=False"
+    },
+    {
+      "name": "script-generator/reference:class-has-no-hover",
+      "ok": true,
+      "detail": "className=mt-2 flex h-8 cursor-default items-center gap-2 rounded-lg border border-dashed border-white/[0.12] px-2 text-"
+    },
+    {
+      "name": "script-generator/reference:size-token-kept",
+      "ok": true,
+      "detail": "丢失尺寸 token []"
+    },
+    {
+      "name": "criteria:bare-block-comment-stripped",
+      "ok": true,
+      "detail": "裸 /* */ 注释里那句字面量 <button> 不该出现在剥注释后的文本中"
+    },
+    {
+      "name": "criteria:still-detects-real-dead",
+      "ok": true,
+      "detail": "当前文件候选 []"
+    },
+    {
+      "name": "criteria:planted-dead-found",
+      "ok": true,
+      "detail": "植入 1 死 2 好, 应只报 1: [(5, None, False)]"
+    },
+    {
+      "name": "criteria:planted-bare-button-has-no-selfclaim",
+      "ok": true,
+      "detail": "裸 <button>(无 aria-label/data-testid) 的 selfClaim 应为 False —— 而这正是旧口径漏掉它们的原因"
+    },
+    {
+      "name": "criteria:anchor-real-href-is-wired",
+      "ok": true,
+      "detail": "有 href 的 <a> 应算已接线: {'真链接': True, '空锚点': False, '无 href': False, '死按钮': False}"
+    },
+    {
+      "name": "criteria:anchor-empty-href-still-dead",
+      "ok": true,
+      "detail": "空锚点与无 href 的 <a> 仍应被判死: {'真链接': True, '空锚点': False, '无 href': False, '死按钮': False}"
+    },
+    {
+      "name": "source-census:residual-only-allowlisted",
+      "ok": true,
+      "detail": "普查残余应只落在只记录白名单 [('CameraConfigDialog.tsx', 102), ('CameraConfigDialog.tsx', 140), ('CameraConfigDialog.tsx', 178), ('CameraConfigDialog.tsx', 216), ('VideoGenerationPanel.tsx', 499)]; 实际多出: []"
+    }
+  ],
+  "errors": {
+    "console": [],
+    "page": []
+  },
+  "noisy": []
+}

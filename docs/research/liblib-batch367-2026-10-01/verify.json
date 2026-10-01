@@ -646,9 +646,14 @@
       "detail": "控件本身不该被改"
     },
     {
-      "name": "source-census:no-plain-dead-buttons",
+      "name": "source-census:no-reachable-dead-buttons",
       "ok": true,
-      "detail": "仍自称可点又无接线的控件: []"
+      "detail": "普查残余应只落在只读白名单 [('CameraConfigDialog.tsx', 102), ('CameraConfigDialog.tsx', 140), ('CameraConfigDialog.tsx', 178), ('CameraConfigDialog.tsx', 216), ('VideoGenerationPanel.tsx', 499)]; 实际多出: []"
+    },
+    {
+      "name": "source-census:unreachable-allowlist-intact",
+      "ok": true,
+      "detail": "白名单 5 项, 实际命中 5 项: ['CameraConfigDialog.tsx:102 None', 'CameraConfigDialog.tsx:140 None', 'CameraConfigDialog.tsx:178 None', 'CameraConfigDialog.tsx:216 None', 'VideoGenerationPanel.tsx:499 None']"
     }
   ],
   "errors": {

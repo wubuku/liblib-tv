@@ -72,7 +72,12 @@ SCAN_JS = """
                   .map((a) => a.name + (a.value ? '=' + a.value : '')),
     });
   }
-  for (const el of document.querySelectorAll('button, [role="button"], a[href]')) {
+  // Batch 368: 选择器原来是 `a[href]` —— 于是**没有 href 的 <a> 根本进不了扫描**。
+  // 而「看起来是链接、点了什么也不发生」最经典的形态恰恰就是 `<a>` 无 href
+  // (或 `href=""`), 它被这个选择器整个漏掉, 扫描器连报都报不出来。
+  // 本仓库当前没有这种实例(画布本体只有一处 `<a>`, 带 href + download),
+  // 但判据的洞是实的: 补上 `a` 全收, 由 `nativeAnchor` 决定 wired。
+  for (const el of document.querySelectorAll('button, [role="button"], a')) {
     const r = el.getBoundingClientRect();
     if (r.width === 0 || r.height === 0) continue;
     const rk = Object.keys(el).filter((k) => k.startsWith('__reactProps$'));
@@ -95,7 +100,15 @@ SCAN_JS = """
         }
       }
     }
-    const wired = hasOnClick || hasChange || labelWired;
+    // Batch 368: `<a href>` 有**原生行为**(导航/下载), 不经 React handler。
+    // 原来 `wired` 只认 React 的 onClick/onChange/onInput, 于是
+    // `<a href download aria-label="下载视频封面">` 被判成「点了没反应的控件」——
+    // 它在 4 个面板里各被误报一次, 是 368 那次普查 14 个候选里的 4 个。
+    // 补上原生语义, 判据是**变准**而不是变松: 有 href 的 <a> 点下去真的有反应。
+    // 注意别写反 —— 空 href(`href=""`/`href="#"`)仍然是骗人的, 照样该报。
+    const href = el.getAttribute('href');
+    const nativeAnchor = el.tagName === 'A' && href !== null && href.trim() !== '' && href.trim() !== '#';
+    const wired = hasOnClick || hasChange || labelWired || nativeAnchor;
     const cs = getComputedStyle(el);
     // ⚠️ 又踩了 batch358 的第 5 条, 而且是在我自己批评过它之后:
     // 这里写的是「两头都不占就跳过」, 而 Tailwind 下 <button> 的 computed cursor
@@ -104,6 +117,7 @@ SCAN_JS = """
     // 「启用却无 handler 的按钮」按定义就是这类缺陷本身, 不能被过滤器预先滤掉。
     // 所以: 凡是自称控件的元素一律收, 不看 cursor。
     const declaresControl = el.tagName === 'BUTTON'
+      || el.tagName === 'A'
       || el.getAttribute('role') === 'button'
       || el.hasAttribute('data-testid')
       || el.hasAttribute('aria-label');
