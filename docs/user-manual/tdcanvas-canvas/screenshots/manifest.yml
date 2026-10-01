@@ -492,6 +492,18 @@ screenshots:
     alt: 节点信息面板，显示节点的 ID、名称、类型、尺寸、位置与状态，右侧有信息与 JSON 两个页签
     sha256: 06b25246fd5c032e253f4177733dc9784f3d84c718b7dadf14acc8deb288bc3b
 
+  - file: screenshots/04-edit-nodes-text-toolbar.png
+    task_id: edit-nodes
+    step: 在全新空白 profile 里用空画布中央的「文字创作」芯片建一个文本节点并选中，读出该节点悬浮工具条的全部按钮
+    route: '/canvas/:id'
+    viewport: 1440x900
+    locale: zh-CN
+    captured_at: '2026-10-01'
+    verified_locator: '文本节点工具条 8 个按钮逐条实测（label + title）：信息(查看节点信息) 删除(移除节点) 存资产(加入我的资产) 编辑(编辑) 编辑文字(编辑文本) 生图(用文本生图) 缩小(减小字号) 放大(增大字号)；工具条框 735x48 @(233,30)。同一 profile 下实测其余类型作对照：空图片 4 个(信息 删除 编辑 上传图片)、有内容图片 13 个(信息 删除 存资产 下载 编辑 复制提示词 反推提示词 替换图片 裁剪 切图 放大 查看大图 更多)、空视频 4 个(信息 删除 编辑 上传视频)、组节点 0 个无工具条。干净 profile 的 localStorage 无任何 image-quick-tools 配置，故图中不含「多角度」'
+    visible_text: '编辑文字'
+    alt: 文本节点被选中后浮在节点上方的工具条，共八个按钮从左到右为信息、删除、存资产、编辑、编辑文字、生图、缩小、放大
+    sha256: 4427ee79a2ea930c9e54de0ccf2d7ebacaf8b46f3767e0c2d1fcf151cac2db16
+
   - file: screenshots/04-organize-canvas-group-empty.png
     task_id: organize-canvas
     step: 通过左侧 Dock「＋ 新建 → 组」创建的组，蓝色虚线框，右上角徽标为 0 个节点
