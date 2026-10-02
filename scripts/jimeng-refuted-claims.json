@@ -222,6 +222,60 @@
    ],
    "refuted_in": "批次 80",
    "reason": "三种点法（单击 / 再单击 / 双击标题行）都不产生 input/textarea/contenteditable，焦点仍停在 Rename 钮上；该步骤正文说得比本页「已验证说明」（只测了按钮存在性）更多"
+  },
+  {
+   "id": "fullscreen-dialog-bare-attr",
+   "label": "「`div[text-editor-fullscreen-dialog]`」是裸属性选择器（批次 82）",
+   "patterns": [
+    "div\\[text-editor-fullscreen-dialog\\]"
+   ],
+   "refuted_in": "批次 82（SOURCE_OBSERVATIONS.md §4.01.2）",
+   "reason": "`[text-editor-fullscreen-dialog]` → 无；`[data-testid=\"text-editor-fullscreen-dialog\"]` → 1280×720@0,0。尺寸对、定位方式错，它让本批连续四轮把「F 能用」读成「F 完全失效」"
+  },
+  {
+   "id": "topbar-marker-color",
+   "label": "顶栏有一项「标记色」（批次 83）",
+   "patterns": [
+    "顶栏.{0,30}标记色|标记色.{0,30}顶栏"
+   ],
+   "refuted_in": "批次 83（SOURCE_OBSERVATIONS.md §4.02.5）",
+   "reason": "穷举顶栏 x∈[190,911) 全部有面积元素只有 5 个，无一为它。注意这**不是**节点卡片上的 `Add tags`（那个仍在，见 handle-hotzone-type-diff 一带的标记色板记录）"
+  },
+  {
+   "id": "project-panel-240x200",
+   "label": "项目切换面板本体 240×200（批次 83）",
+   "patterns": [
+    "项目.{0,40}240×200|240×200.{0,40}项目"
+   ],
+   "refuted_in": "批次 83（canvas-context.md 订正三处）",
+   "reason": "240×200 是**内层 `<nav>`** 的高度，面板本体 `[data-testid=\"canvas-project-panel-popover\"]` 是 240×280@12,52；同时项目行 198×36（旧数 232×36 是「新建画布项目」那一行）、项目数三项→五项"
+  },
+  {
+   "id": "summary-panel-200x92",
+   "label": "节点汇总面板 200×92（批次 83）",
+   "patterns": [
+    "200×92"
+   ],
+   "refuted_in": "批次 83（SOURCE_OBSERVATIONS.md §4.02.2）",
+   "reason": "200×92 是画布上只有 2 行类型时的读数；7 行时为 200×292。高度是条公式：高 = 4 + 40×类型行数 + 12 + 36（每行恒 192×36）"
+  },
+  {
+   "id": "node-toolbar-canvas-192x40",
+   "label": "节点浮动工具条「canvas 恒 192×40」（批次 80）",
+   "patterns": [
+    "canvas 恒 `192×40`"
+   ],
+   "refuted_in": "批次 85（SOURCE_OBSERVATIONS.md §4.04.4）",
+   "reason": "60% 下屏上 192×40 ⇒ 192/0.6=320、40/0.6=67，canvas 实为 320×67。批次 80 把屏上值当成了 canvas 值（只看到 192/320=0.6=scale 就没做除法）"
+  },
+  {
+   "id": "title-row-32px-above",
+   "label": "「标题行在节点卡片顶边上方 32px」是契约（批次 88）",
+   "patterns": [
+    "上方 32px"
+   ],
+   "refuted_in": "批次 88（SOURCE_OBSERVATIONS.md §4.07.3）",
+   "reason": "40/60/100% 三档屏上 dy 为 −26/−32/−32、canvas dy 为 −64/−53/−32，两个口径都不恒定。顺带说明批次 78 的「31–33 canvas px」也只在某缩放下成立"
   }
  ]
 }
