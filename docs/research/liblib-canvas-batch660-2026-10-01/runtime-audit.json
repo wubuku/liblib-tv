@@ -1,0 +1,1419 @@
+{
+  "batch": 660,
+  "question": "where does 944 come from, and over which widths does 645's W-586 row formula actually hold?",
+  "decomposition": {
+    "row": "div.mx-auto.flex.shrink-0.items-center.gap-2",
+    "children": 2,
+    "terms": "viewport-toolbar + gap + scene-prompt-bar",
+    "measured": {
+      "1280": [
+        711,
+        225,
+        8
+      ],
+      "1440": [
+        711,
+        225,
+        8
+      ],
+      "1509": [
+        711,
+        225,
+        8
+      ],
+      "1510": [
+        711,
+        225,
+        8
+      ],
+      "1530": [
+        711,
+        225,
+        8
+      ],
+      "1531": [
+        711,
+        225,
+        8
+      ],
+      "1532": [
+        711,
+        225,
+        8
+      ],
+      "1540": [
+        711,
+        225,
+        8
+      ],
+      "1560": [
+        711,
+        225,
+        8
+      ],
+      "1600": [
+        711,
+        225,
+        8
+      ],
+      "1920": [
+        711,
+        225,
+        8
+      ]
+    },
+    "rowGap": {
+      "1280": "8px",
+      "1440": "8px",
+      "1509": "8px",
+      "1510": "8px",
+      "1530": "8px",
+      "1531": "8px",
+      "1532": "8px",
+      "1540": "8px",
+      "1560": "8px",
+      "1600": "8px",
+      "1920": "8px",
+      "700": "8px"
+    },
+    "rowShrink": {
+      "1280": "0",
+      "1440": "0",
+      "1509": "0",
+      "1510": "0",
+      "1530": "0",
+      "1531": "0",
+      "1532": "0",
+      "1540": "0",
+      "1560": "0",
+      "1600": "0",
+      "1920": "0",
+      "700": "0"
+    }
+  },
+  "refinementOf645": {
+    "what645Recorded": {
+      "narrow": "W - 24",
+      "desktop": "W - 586"
+    },
+    "theUnwrittenRegime": "the row is shrink-0, so below 1530 it does not shrink to W-586 — it stays 944 and overflows its host instead",
+    "rowWidthBelow1530": {
+      "1280": 944,
+      "1440": 944,
+      "1509": 944,
+      "1510": 944
+    },
+    "desktopRegimeStart": 1530
+  },
+  "threeThresholds": {
+    "700": {
+      "hostRight": 688,
+      "submitCentre": 876,
+      "submitRight": 892,
+      "rowRight": 897,
+      "centreInsideClip": false,
+      "buttonFullyInside": false,
+      "rowFullyInside": false,
+      "buttonReachable": false
+    },
+    "1280": {
+      "hostRight": 987,
+      "submitCentre": 1216,
+      "submitRight": 1232,
+      "rowRight": 1237,
+      "centreInsideClip": false,
+      "buttonFullyInside": false,
+      "rowFullyInside": false,
+      "buttonReachable": false
+    },
+    "1440": {
+      "hostRight": 1147,
+      "submitCentre": 1216,
+      "submitRight": 1232,
+      "rowRight": 1237,
+      "centreInsideClip": false,
+      "buttonFullyInside": false,
+      "rowFullyInside": false,
+      "buttonReachable": false
+    },
+    "1509": {
+      "hostRight": 1216,
+      "submitCentre": 1216,
+      "submitRight": 1232,
+      "rowRight": 1237,
+      "centreInsideClip": false,
+      "buttonFullyInside": false,
+      "rowFullyInside": false,
+      "buttonReachable": false
+    },
+    "1510": {
+      "hostRight": 1217,
+      "submitCentre": 1216,
+      "submitRight": 1232,
+      "rowRight": 1237,
+      "centreInsideClip": true,
+      "buttonFullyInside": false,
+      "rowFullyInside": false,
+      "buttonReachable": true
+    },
+    "1530": {
+      "hostRight": 1237,
+      "submitCentre": 1216,
+      "submitRight": 1232,
+      "rowRight": 1237,
+      "centreInsideClip": true,
+      "buttonFullyInside": true,
+      "rowFullyInside": false,
+      "buttonReachable": true
+    },
+    "1531": {
+      "hostRight": 1238,
+      "submitCentre": 1217,
+      "submitRight": 1233,
+      "rowRight": 1238,
+      "centreInsideClip": true,
+      "buttonFullyInside": true,
+      "rowFullyInside": false,
+      "buttonReachable": true
+    },
+    "1532": {
+      "hostRight": 1239,
+      "submitCentre": 1217,
+      "submitRight": 1233,
+      "rowRight": 1238,
+      "centreInsideClip": true,
+      "buttonFullyInside": true,
+      "rowFullyInside": true,
+      "buttonReachable": true
+    },
+    "1540": {
+      "hostRight": 1247,
+      "submitCentre": 1221,
+      "submitRight": 1237,
+      "rowRight": 1242,
+      "centreInsideClip": true,
+      "buttonFullyInside": true,
+      "rowFullyInside": true,
+      "buttonReachable": true
+    },
+    "1560": {
+      "hostRight": 1267,
+      "submitCentre": 1231,
+      "submitRight": 1247,
+      "rowRight": 1252,
+      "centreInsideClip": true,
+      "buttonFullyInside": true,
+      "rowFullyInside": true,
+      "buttonReachable": true
+    },
+    "1600": {
+      "hostRight": 1307,
+      "submitCentre": 1251,
+      "submitRight": 1267,
+      "rowRight": 1272,
+      "centreInsideClip": true,
+      "buttonFullyInside": true,
+      "rowFullyInside": true,
+      "buttonReachable": true
+    },
+    "1920": {
+      "hostRight": 1627,
+      "submitCentre": 1411,
+      "submitRight": 1427,
+      "rowRight": 1432,
+      "centreInsideClip": true,
+      "buttonFullyInside": true,
+      "rowFullyInside": true,
+      "buttonReachable": true
+    }
+  },
+  "crossBatch": {
+    "batch645SendBoundary": 1509,
+    "batch659ClipBoundary": 1510,
+    "onePixelApart": true,
+    "whereThePixelGoes": "645 measured the MARGIN of 发送 against the row's right edge; 659 measured whether 发送's CENTRE is inside the clip. An overflow:auto clip is exclusive on the right, so the two land on the two sides of one pixel."
+  },
+  "cells": {
+    "700": {
+      "w": 700,
+      "row": {
+        "x": 12,
+        "y": 926,
+        "right": 897,
+        "w": 885,
+        "h": 48
+      },
+      "rowClass": "mx-auto flex shrink-0 items-center gap-2",
+      "host": {
+        "x": 12,
+        "y": 926,
+        "right": 688,
+        "w": 676,
+        "h": 48
+      },
+      "kids": [
+        {
+          "markers": [
+            "data-director-viewport-toolbar"
+          ],
+          "x": 12,
+          "y": 926,
+          "right": 664,
+          "w": 652,
+          "h": 48
+        },
+        {
+          "markers": [
+            "data-director-scene-prompt-bar"
+          ],
+          "x": 672,
+          "y": 926,
+          "right": 897,
+          "w": 225,
+          "h": 48
+        }
+      ],
+      "childCount": 2,
+      "toolbar": {
+        "x": 12,
+        "y": 926,
+        "right": 664,
+        "w": 652,
+        "h": 48
+      },
+      "toolbarMaxWidth": "652px",
+      "rowGap": "8px",
+      "rowShrink": "0",
+      "submit": {
+        "x": 860,
+        "y": 935,
+        "right": 892,
+        "w": 32,
+        "h": 32
+      },
+      "submitCentre": 876,
+      "centreInsideClip": false,
+      "buttonFullyInside": false,
+      "rowFullyInside": false,
+      "buttonReachable": false,
+      "rowOverHost": 209,
+      "hostWidthMinus586": 90,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "1280": {
+      "w": 1280,
+      "row": {
+        "x": 293,
+        "y": 920,
+        "right": 1237,
+        "w": 944,
+        "h": 48
+      },
+      "rowClass": "mx-auto flex shrink-0 items-center gap-2",
+      "host": {
+        "x": 293,
+        "y": 920,
+        "right": 987,
+        "w": 694,
+        "h": 48
+      },
+      "kids": [
+        {
+          "markers": [
+            "data-director-viewport-toolbar"
+          ],
+          "x": 293,
+          "y": 920,
+          "right": 1004,
+          "w": 711,
+          "h": 48
+        },
+        {
+          "markers": [
+            "data-director-scene-prompt-bar"
+          ],
+          "x": 1012,
+          "y": 920,
+          "right": 1237,
+          "w": 225,
+          "h": 48
+        }
+      ],
+      "childCount": 2,
+      "toolbar": {
+        "x": 293,
+        "y": 920,
+        "right": 1004,
+        "w": 711,
+        "h": 48
+      },
+      "toolbarMaxWidth": "1232px",
+      "rowGap": "8px",
+      "rowShrink": "0",
+      "submit": {
+        "x": 1200,
+        "y": 929,
+        "right": 1232,
+        "w": 32,
+        "h": 32
+      },
+      "submitCentre": 1216,
+      "centreInsideClip": false,
+      "buttonFullyInside": false,
+      "rowFullyInside": false,
+      "buttonReachable": false,
+      "rowOverHost": 250,
+      "hostWidthMinus586": 108,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "1440": {
+      "w": 1440,
+      "row": {
+        "x": 293,
+        "y": 920,
+        "right": 1237,
+        "w": 944,
+        "h": 48
+      },
+      "rowClass": "mx-auto flex shrink-0 items-center gap-2",
+      "host": {
+        "x": 293,
+        "y": 920,
+        "right": 1147,
+        "w": 854,
+        "h": 48
+      },
+      "kids": [
+        {
+          "markers": [
+            "data-director-viewport-toolbar"
+          ],
+          "x": 293,
+          "y": 920,
+          "right": 1004,
+          "w": 711,
+          "h": 48
+        },
+        {
+          "markers": [
+            "data-director-scene-prompt-bar"
+          ],
+          "x": 1012,
+          "y": 920,
+          "right": 1237,
+          "w": 225,
+          "h": 48
+        }
+      ],
+      "childCount": 2,
+      "toolbar": {
+        "x": 293,
+        "y": 920,
+        "right": 1004,
+        "w": 711,
+        "h": 48
+      },
+      "toolbarMaxWidth": "1392px",
+      "rowGap": "8px",
+      "rowShrink": "0",
+      "submit": {
+        "x": 1200,
+        "y": 929,
+        "right": 1232,
+        "w": 32,
+        "h": 32
+      },
+      "submitCentre": 1216,
+      "centreInsideClip": false,
+      "buttonFullyInside": false,
+      "rowFullyInside": false,
+      "buttonReachable": false,
+      "rowOverHost": 90,
+      "hostWidthMinus586": 268,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "1510": {
+      "w": 1510,
+      "row": {
+        "x": 293,
+        "y": 920,
+        "right": 1237,
+        "w": 944,
+        "h": 48
+      },
+      "rowClass": "mx-auto flex shrink-0 items-center gap-2",
+      "host": {
+        "x": 293,
+        "y": 920,
+        "right": 1217,
+        "w": 924,
+        "h": 48
+      },
+      "kids": [
+        {
+          "markers": [
+            "data-director-viewport-toolbar"
+          ],
+          "x": 293,
+          "y": 920,
+          "right": 1004,
+          "w": 711,
+          "h": 48
+        },
+        {
+          "markers": [
+            "data-director-scene-prompt-bar"
+          ],
+          "x": 1012,
+          "y": 920,
+          "right": 1237,
+          "w": 225,
+          "h": 48
+        }
+      ],
+      "childCount": 2,
+      "toolbar": {
+        "x": 293,
+        "y": 920,
+        "right": 1004,
+        "w": 711,
+        "h": 48
+      },
+      "toolbarMaxWidth": "1462px",
+      "rowGap": "8px",
+      "rowShrink": "0",
+      "submit": {
+        "x": 1200,
+        "y": 929,
+        "right": 1232,
+        "w": 32,
+        "h": 32
+      },
+      "submitCentre": 1216,
+      "centreInsideClip": true,
+      "buttonFullyInside": false,
+      "rowFullyInside": false,
+      "buttonReachable": true,
+      "rowOverHost": 20,
+      "hostWidthMinus586": 338,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "1530": {
+      "w": 1530,
+      "row": {
+        "x": 293,
+        "y": 920,
+        "right": 1237,
+        "w": 944,
+        "h": 48
+      },
+      "rowClass": "mx-auto flex shrink-0 items-center gap-2",
+      "host": {
+        "x": 293,
+        "y": 920,
+        "right": 1237,
+        "w": 944,
+        "h": 48
+      },
+      "kids": [
+        {
+          "markers": [
+            "data-director-viewport-toolbar"
+          ],
+          "x": 293,
+          "y": 920,
+          "right": 1004,
+          "w": 711,
+          "h": 48
+        },
+        {
+          "markers": [
+            "data-director-scene-prompt-bar"
+          ],
+          "x": 1012,
+          "y": 920,
+          "right": 1237,
+          "w": 225,
+          "h": 48
+        }
+      ],
+      "childCount": 2,
+      "toolbar": {
+        "x": 293,
+        "y": 920,
+        "right": 1004,
+        "w": 711,
+        "h": 48
+      },
+      "toolbarMaxWidth": "1482px",
+      "rowGap": "8px",
+      "rowShrink": "0",
+      "submit": {
+        "x": 1200,
+        "y": 929,
+        "right": 1232,
+        "w": 32,
+        "h": 32
+      },
+      "submitCentre": 1216,
+      "centreInsideClip": true,
+      "buttonFullyInside": true,
+      "rowFullyInside": false,
+      "buttonReachable": true,
+      "rowOverHost": 0,
+      "hostWidthMinus586": 358,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "1531": {
+      "w": 1531,
+      "row": {
+        "x": 294,
+        "y": 920,
+        "right": 1238,
+        "w": 944,
+        "h": 48
+      },
+      "rowClass": "mx-auto flex shrink-0 items-center gap-2",
+      "host": {
+        "x": 293,
+        "y": 920,
+        "right": 1238,
+        "w": 945,
+        "h": 48
+      },
+      "kids": [
+        {
+          "markers": [
+            "data-director-viewport-toolbar"
+          ],
+          "x": 294,
+          "y": 920,
+          "right": 1005,
+          "w": 711,
+          "h": 48
+        },
+        {
+          "markers": [
+            "data-director-scene-prompt-bar"
+          ],
+          "x": 1013,
+          "y": 920,
+          "right": 1238,
+          "w": 225,
+          "h": 48
+        }
+      ],
+      "childCount": 2,
+      "toolbar": {
+        "x": 294,
+        "y": 920,
+        "right": 1005,
+        "w": 711,
+        "h": 48
+      },
+      "toolbarMaxWidth": "1483px",
+      "rowGap": "8px",
+      "rowShrink": "0",
+      "submit": {
+        "x": 1201,
+        "y": 929,
+        "right": 1233,
+        "w": 32,
+        "h": 32
+      },
+      "submitCentre": 1217,
+      "centreInsideClip": true,
+      "buttonFullyInside": true,
+      "rowFullyInside": false,
+      "buttonReachable": true,
+      "rowOverHost": 0,
+      "hostWidthMinus586": 359,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "1532": {
+      "w": 1532,
+      "row": {
+        "x": 294,
+        "y": 920,
+        "right": 1238,
+        "w": 944,
+        "h": 48
+      },
+      "rowClass": "mx-auto flex shrink-0 items-center gap-2",
+      "host": {
+        "x": 293,
+        "y": 920,
+        "right": 1239,
+        "w": 946,
+        "h": 48
+      },
+      "kids": [
+        {
+          "markers": [
+            "data-director-viewport-toolbar"
+          ],
+          "x": 294,
+          "y": 920,
+          "right": 1005,
+          "w": 711,
+          "h": 48
+        },
+        {
+          "markers": [
+            "data-director-scene-prompt-bar"
+          ],
+          "x": 1013,
+          "y": 920,
+          "right": 1238,
+          "w": 225,
+          "h": 48
+        }
+      ],
+      "childCount": 2,
+      "toolbar": {
+        "x": 294,
+        "y": 920,
+        "right": 1005,
+        "w": 711,
+        "h": 48
+      },
+      "toolbarMaxWidth": "1484px",
+      "rowGap": "8px",
+      "rowShrink": "0",
+      "submit": {
+        "x": 1201,
+        "y": 929,
+        "right": 1233,
+        "w": 32,
+        "h": 32
+      },
+      "submitCentre": 1217,
+      "centreInsideClip": true,
+      "buttonFullyInside": true,
+      "rowFullyInside": true,
+      "buttonReachable": true,
+      "rowOverHost": -1,
+      "hostWidthMinus586": 360,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "1540": {
+      "w": 1540,
+      "row": {
+        "x": 298,
+        "y": 920,
+        "right": 1242,
+        "w": 944,
+        "h": 48
+      },
+      "rowClass": "mx-auto flex shrink-0 items-center gap-2",
+      "host": {
+        "x": 293,
+        "y": 920,
+        "right": 1247,
+        "w": 954,
+        "h": 48
+      },
+      "kids": [
+        {
+          "markers": [
+            "data-director-viewport-toolbar"
+          ],
+          "x": 298,
+          "y": 920,
+          "right": 1009,
+          "w": 711,
+          "h": 48
+        },
+        {
+          "markers": [
+            "data-director-scene-prompt-bar"
+          ],
+          "x": 1017,
+          "y": 920,
+          "right": 1242,
+          "w": 225,
+          "h": 48
+        }
+      ],
+      "childCount": 2,
+      "toolbar": {
+        "x": 298,
+        "y": 920,
+        "right": 1009,
+        "w": 711,
+        "h": 48
+      },
+      "toolbarMaxWidth": "1492px",
+      "rowGap": "8px",
+      "rowShrink": "0",
+      "submit": {
+        "x": 1205,
+        "y": 929,
+        "right": 1237,
+        "w": 32,
+        "h": 32
+      },
+      "submitCentre": 1221,
+      "centreInsideClip": true,
+      "buttonFullyInside": true,
+      "rowFullyInside": true,
+      "buttonReachable": true,
+      "rowOverHost": -5,
+      "hostWidthMinus586": 368,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "1560": {
+      "w": 1560,
+      "row": {
+        "x": 308,
+        "y": 920,
+        "right": 1252,
+        "w": 944,
+        "h": 48
+      },
+      "rowClass": "mx-auto flex shrink-0 items-center gap-2",
+      "host": {
+        "x": 293,
+        "y": 920,
+        "right": 1267,
+        "w": 974,
+        "h": 48
+      },
+      "kids": [
+        {
+          "markers": [
+            "data-director-viewport-toolbar"
+          ],
+          "x": 308,
+          "y": 920,
+          "right": 1019,
+          "w": 711,
+          "h": 48
+        },
+        {
+          "markers": [
+            "data-director-scene-prompt-bar"
+          ],
+          "x": 1027,
+          "y": 920,
+          "right": 1252,
+          "w": 225,
+          "h": 48
+        }
+      ],
+      "childCount": 2,
+      "toolbar": {
+        "x": 308,
+        "y": 920,
+        "right": 1019,
+        "w": 711,
+        "h": 48
+      },
+      "toolbarMaxWidth": "1512px",
+      "rowGap": "8px",
+      "rowShrink": "0",
+      "submit": {
+        "x": 1215,
+        "y": 929,
+        "right": 1247,
+        "w": 32,
+        "h": 32
+      },
+      "submitCentre": 1231,
+      "centreInsideClip": true,
+      "buttonFullyInside": true,
+      "rowFullyInside": true,
+      "buttonReachable": true,
+      "rowOverHost": -15,
+      "hostWidthMinus586": 388,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "1600": {
+      "w": 1600,
+      "row": {
+        "x": 328,
+        "y": 920,
+        "right": 1272,
+        "w": 944,
+        "h": 48
+      },
+      "rowClass": "mx-auto flex shrink-0 items-center gap-2",
+      "host": {
+        "x": 293,
+        "y": 920,
+        "right": 1307,
+        "w": 1014,
+        "h": 48
+      },
+      "kids": [
+        {
+          "markers": [
+            "data-director-viewport-toolbar"
+          ],
+          "x": 328,
+          "y": 920,
+          "right": 1039,
+          "w": 711,
+          "h": 48
+        },
+        {
+          "markers": [
+            "data-director-scene-prompt-bar"
+          ],
+          "x": 1047,
+          "y": 920,
+          "right": 1272,
+          "w": 225,
+          "h": 48
+        }
+      ],
+      "childCount": 2,
+      "toolbar": {
+        "x": 328,
+        "y": 920,
+        "right": 1039,
+        "w": 711,
+        "h": 48
+      },
+      "toolbarMaxWidth": "1552px",
+      "rowGap": "8px",
+      "rowShrink": "0",
+      "submit": {
+        "x": 1235,
+        "y": 929,
+        "right": 1267,
+        "w": 32,
+        "h": 32
+      },
+      "submitCentre": 1251,
+      "centreInsideClip": true,
+      "buttonFullyInside": true,
+      "rowFullyInside": true,
+      "buttonReachable": true,
+      "rowOverHost": -35,
+      "hostWidthMinus586": 428,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "1920": {
+      "w": 1920,
+      "row": {
+        "x": 488,
+        "y": 920,
+        "right": 1432,
+        "w": 944,
+        "h": 48
+      },
+      "rowClass": "mx-auto flex shrink-0 items-center gap-2",
+      "host": {
+        "x": 293,
+        "y": 920,
+        "right": 1627,
+        "w": 1334,
+        "h": 48
+      },
+      "kids": [
+        {
+          "markers": [
+            "data-director-viewport-toolbar"
+          ],
+          "x": 488,
+          "y": 920,
+          "right": 1199,
+          "w": 711,
+          "h": 48
+        },
+        {
+          "markers": [
+            "data-director-scene-prompt-bar"
+          ],
+          "x": 1207,
+          "y": 920,
+          "right": 1432,
+          "w": 225,
+          "h": 48
+        }
+      ],
+      "childCount": 2,
+      "toolbar": {
+        "x": 488,
+        "y": 920,
+        "right": 1199,
+        "w": 711,
+        "h": 48
+      },
+      "toolbarMaxWidth": "1872px",
+      "rowGap": "8px",
+      "rowShrink": "0",
+      "submit": {
+        "x": 1395,
+        "y": 929,
+        "right": 1427,
+        "w": 32,
+        "h": 32
+      },
+      "submitCentre": 1411,
+      "centreInsideClip": true,
+      "buttonFullyInside": true,
+      "rowFullyInside": true,
+      "buttonReachable": true,
+      "rowOverHost": -195,
+      "hostWidthMinus586": 748,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "1509": {
+      "w": 1509,
+      "row": {
+        "x": 293,
+        "y": 920,
+        "right": 1237,
+        "w": 944,
+        "h": 48
+      },
+      "rowClass": "mx-auto flex shrink-0 items-center gap-2",
+      "host": {
+        "x": 293,
+        "y": 920,
+        "right": 1216,
+        "w": 923,
+        "h": 48
+      },
+      "kids": [
+        {
+          "markers": [
+            "data-director-viewport-toolbar"
+          ],
+          "x": 293,
+          "y": 920,
+          "right": 1004,
+          "w": 711,
+          "h": 48
+        },
+        {
+          "markers": [
+            "data-director-scene-prompt-bar"
+          ],
+          "x": 1012,
+          "y": 920,
+          "right": 1237,
+          "w": 225,
+          "h": 48
+        }
+      ],
+      "childCount": 2,
+      "toolbar": {
+        "x": 293,
+        "y": 920,
+        "right": 1004,
+        "w": 711,
+        "h": 48
+      },
+      "toolbarMaxWidth": "1461px",
+      "rowGap": "8px",
+      "rowShrink": "0",
+      "submit": {
+        "x": 1200,
+        "y": 929,
+        "right": 1232,
+        "w": 32,
+        "h": 32
+      },
+      "submitCentre": 1216,
+      "centreInsideClip": false,
+      "buttonFullyInside": false,
+      "rowFullyInside": false,
+      "buttonReachable": false,
+      "rowOverHost": 21,
+      "hostWidthMinus586": 337,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    }
+  },
+  "checks": {
+    "944-is-711-plus-8-plus-225-at-every-width-where-the-row-is-944": {
+      "ok": true,
+      "detail": {
+        "decomposed": {
+          "1280": [
+            711,
+            225,
+            8
+          ],
+          "1440": [
+            711,
+            225,
+            8
+          ],
+          "1509": [
+            711,
+            225,
+            8
+          ],
+          "1510": [
+            711,
+            225,
+            8
+          ],
+          "1530": [
+            711,
+            225,
+            8
+          ],
+          "1531": [
+            711,
+            225,
+            8
+          ],
+          "1532": [
+            711,
+            225,
+            8
+          ],
+          "1540": [
+            711,
+            225,
+            8
+          ],
+          "1560": [
+            711,
+            225,
+            8
+          ],
+          "1600": [
+            711,
+            225,
+            8
+          ],
+          "1920": [
+            711,
+            225,
+            8
+          ]
+        },
+        "rowGap": {
+          "1280": "8px",
+          "1440": "8px",
+          "1509": "8px",
+          "1510": "8px",
+          "1530": "8px",
+          "1531": "8px",
+          "1532": "8px",
+          "1540": "8px",
+          "1560": "8px",
+          "1600": "8px",
+          "1920": "8px",
+          "700": "8px"
+        },
+        "rowClassLiteral": "mx-auto flex shrink-0 items-center gap-2",
+        "childrenPerCell": {
+          "1280": 2,
+          "1440": 2,
+          "1509": 2,
+          "1510": 2,
+          "1530": 2,
+          "1531": 2,
+          "1532": 2,
+          "1540": 2,
+          "1560": 2,
+          "1600": 2,
+          "1920": 2,
+          "700": 2
+        },
+        "comparedWith645": {
+          "toolbarWidth": {
+            "narrow": "min(711, W - 48)",
+            "desktop": "711"
+          },
+          "rowBoxWidth": {
+            "narrow": "W - 24",
+            "desktop": "W - 586"
+          },
+          "rowLeft": {
+            "narrow": "12",
+            "desktop": "293"
+          },
+          "promptBarWidth": 225
+        },
+        "note": "the class literally says gap-2, so the 8 is not an inference"
+      },
+      "note": "the number 659 was handed as a given turns out to be three measured constants, identical to 645's"
+    },
+    "645s-w-minus-586-only-holds-from-1530-and-below-that-the-row-is-pinned": {
+      "ok": true,
+      "detail": {
+        "rowWidthBelow1530": {
+          "1280": 944,
+          "1440": 944,
+          "1509": 944,
+          "1510": 944
+        },
+        "rowWidthAtOrAbove1530": {
+          "1530": 944,
+          "1531": 944,
+          "1532": 944,
+          "1540": 944,
+          "1560": 944,
+          "1600": 944,
+          "1920": 944
+        },
+        "hostWidthMinus586": {
+          "700": 90,
+          "1280": 108,
+          "1440": 268,
+          "1509": 337,
+          "1510": 338,
+          "1530": 358,
+          "1531": 359,
+          "1532": 360,
+          "1540": 368,
+          "1560": 388,
+          "1600": 428,
+          "1920": 748
+        },
+        "theCorrection": "the row is flexShrink 0. It cannot shrink to W-586; below 1530 it stays 944 and overflows. 645's formula is right where it applies and silent outside — the silence was the gap.",
+        "whatThisDoesNotSay": "645 did not record a wrong number. It recorded the regime it measured. This batch adds the one it did not write down."
+      },
+      "note": "a closed form with an unwritten regime is not wrong, it is incomplete — and incomplete is the part that bites"
+    },
+    "the-three-thresholds-are-derived-from-the-sweep-not-typed-in": {
+      "ok": true,
+      "detail": {
+        "derivedFirstTrueWidth": {
+          "centreInsideClip": 1510,
+          "buttonFullyInside": 1530,
+          "rowFullyInside": 1532
+        },
+        "theDraftHadTypedIn": {
+          "centre": 1510,
+          "buttonRight": 1526,
+          "rowRight": 1531
+        },
+        "howWrongTheDraftWas": {
+          "buttonRight": "typed 1526, measured 1530",
+          "rowRight": "typed 1531, measured 1532"
+        },
+        "at1509": {
+          "hostRight": 1216,
+          "hostWidth": 923,
+          "rowRight": 1237,
+          "rowWidth": 944,
+          "submitCentre": 1216,
+          "submitRight": 1232,
+          "centreInsideClip": false,
+          "buttonFullyInside": false,
+          "rowFullyInside": false,
+          "buttonReachable": false
+        },
+        "at1510": {
+          "hostRight": 1217,
+          "hostWidth": 924,
+          "rowRight": 1237,
+          "rowWidth": 944,
+          "submitCentre": 1216,
+          "submitRight": 1232,
+          "centreInsideClip": true,
+          "buttonFullyInside": false,
+          "rowFullyInside": false,
+          "buttonReachable": true
+        },
+        "at1530": {
+          "hostRight": 1237,
+          "hostWidth": 944,
+          "rowRight": 1237,
+          "rowWidth": 944,
+          "submitCentre": 1216,
+          "submitRight": 1232,
+          "centreInsideClip": true,
+          "buttonFullyInside": true,
+          "rowFullyInside": false,
+          "buttonReachable": true
+        },
+        "atFirstRowInside": {
+          "hostRight": 1239,
+          "hostWidth": 946,
+          "rowRight": 1238,
+          "rowWidth": 944,
+          "submitCentre": 1217,
+          "submitRight": 1233,
+          "centreInsideClip": true,
+          "buttonFullyInside": true,
+          "rowFullyInside": true,
+          "buttonReachable": true
+        },
+        "theLadder": "the centre clears the clip first, the button's own right edge next, the row's right edge last. The middle rung lands exactly on 645's desktop-regime start (944 + 586 = 1530), which is the same number seen from a third point on the same rectangle.",
+        "whyItMattered": "1531 is 1530 + 1 and 1526 is neither — the typed ladder would have 'confirmed' a number no measurement supports."
+      },
+      "note": "compare the number to the reading, not to another number"
+    },
+    "645s-send-boundary-and-659s-clip-boundary-are-one-pixel-apart": {
+      "ok": true,
+      "detail": {
+        "batch645SendDesktopBoundary": 1509,
+        "batch659ClipBoundary": 1510,
+        "readAt1510": {
+          "buttonReachable": true,
+          "centreInsideClip": true,
+          "submitCentre": 1216,
+          "hostRight": 1217
+        },
+        "readAt1509": {
+          "buttonReachable": false,
+          "centreInsideClip": false,
+          "submitCentre": 1216,
+          "hostRight": 1216
+        },
+        "source": "batch645 runtime-audit.json claims.boundaries.发送.desktop, read from the file rather than retyped",
+        "thePoint": "two batches, two different questions (does the margin vanish? is the control clickable?), one rectangle, and they land on the two sides of a single pixel because the clip is exclusive."
+      },
+      "note": "cross-batch agreement is worth more than either batch alone; so is knowing exactly which pixel you disagree about"
+    },
+    "the-toolbar-constant-min-711-W-minus-48-holds-on-both-sides": {
+      "ok": true,
+      "detail": {
+        "atW700": {
+          "toolbar": {
+            "x": 12,
+            "y": 926,
+            "right": 664,
+            "w": 652,
+            "h": 48
+          },
+          "expectedToolbar": 652,
+          "row": {
+            "x": 12,
+            "y": 926,
+            "right": 897,
+            "w": 885,
+            "h": 48
+          },
+          "expectedRow": 885,
+          "toolbarMaxWidth": "652px"
+        },
+        "saturatedWidths": {
+          "1280": 711,
+          "1440": 711,
+          "1509": 711,
+          "1510": 711,
+          "1530": 711,
+          "1531": 711,
+          "1532": 711,
+          "1540": 711,
+          "1560": 711,
+          "1600": 711,
+          "1920": 711
+        },
+        "saturationPoint": "711 = W - 48 at W = 759; every width in this batch is above it, so the desktop side is the only one the formula's narrow branch would have caught",
+        "comparedWith645": {
+          "narrow": "min(711, W - 48)",
+          "desktop": "711"
+        }
+      },
+      "note": "a formula with only one branch exercised is not a formula; this batch exercises the other one once"
+    }
+  },
+  "ok": true,
+  "checkCount": 5,
+  "failures": [],
+  "totals": {
+    "widths": [
+      "700",
+      "1280",
+      "1440",
+      "1509",
+      "1510",
+      "1530",
+      "1531",
+      "1532",
+      "1540",
+      "1560",
+      "1600",
+      "1920"
+    ],
+    "rowWidth": 944,
+    "terms": [
+      711,
+      8,
+      225
+    ],
+    "rowChildCount": 2,
+    "rowIsShrinkZero": "0",
+    "desktopRegimeStart": 1530,
+    "threeThresholds": {
+      "centreInsideClip": 1510,
+      "buttonFullyInside": 1530,
+      "rowFullyInside": 1532
+    },
+    "sendBoundaryFrom645": 1509,
+    "clipBoundaryFrom659": 1510
+  }
+}
