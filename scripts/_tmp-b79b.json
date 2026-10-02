@@ -1,0 +1,296 @@
+{
+ "at": "2026-10-02T01:23:23.231Z",
+ "z0": {
+  "scale": 0.6,
+  "label": "Zoom options, 60%",
+  "stable": true
+ },
+ "rows": [
+  {
+   "id": "node_236ctpehgg",
+   "source": "既有(只读)",
+   "kind": "视频 1",
+   "scale": 0.6,
+   "attrs": [
+    "class=react-flow__node react-flow__node-video ",
+    "data-id=node_236ctpehgg",
+    "data-testid=rf__node-node_236ctpehgg",
+    "role=group",
+    "aria-roledescription=Canvas node",
+    "aria-describedby=canvas-node-description-node_236ctpehgg",
+    "aria-label=视频 node: 视频 1",
+    "ccfmp-element=true",
+    "data-first-content-source=node",
+    "style=z-index: 0; transform: translate(865px, "
+   ],
+   "nodeRect": {
+    "screen": [
+     192,
+     341.33
+    ],
+    "canvas": [
+     320,
+     568.88
+    ]
+   },
+   "union": {
+    "screen": [
+     226.8,
+     374.73
+    ],
+    "canvas": [
+     378,
+     624.55
+    ]
+   },
+   "biggestVisible": {
+    "tag": "DIV",
+    "testid": "video-flow-node-surface",
+    "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visi",
+    "screen": [
+     192,
+     341.33
+    ],
+    "canvas": [
+     320,
+     568.88
+    ]
+   },
+   "canvasPos": [
+    865,
+    400.111
+   ],
+   "title": "视频 1"
+  },
+  {
+   "id": "node_cdwf8x6fbj",
+   "source": "既有(只读)",
+   "kind": "时间线 1",
+   "scale": 0.6,
+   "attrs": [
+    "class=react-flow__node react-flow__node-timeli",
+    "data-id=node_cdwf8x6fbj",
+    "data-testid=rf__node-node_cdwf8x6fbj",
+    "role=group",
+    "aria-roledescription=Canvas node",
+    "aria-describedby=canvas-node-description-node_cdwf8x6fbj",
+    "aria-label=时间线 node: 时间线 1",
+    "ccfmp-element=true",
+    "data-first-content-source=node",
+    "style=z-index: 2; transform: translate(40.0555"
+   ],
+   "nodeRect": {
+    "screen": [
+     720,
+     124.2
+    ],
+    "canvas": [
+     1200,
+     207
+    ]
+   },
+   "union": {
+    "screen": [
+     742.39,
+     159.33
+    ],
+    "canvas": [
+     1237.32,
+     265.55
+    ]
+   },
+   "biggestVisible": {
+    "tag": "DIV",
+    "testid": "timeline-flow-node",
+    "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visi",
+    "screen": [
+     720,
+     124.2
+    ],
+    "canvas": [
+     1200,
+     207
+    ]
+   },
+   "canvasPos": [
+    40.0555,
+    370.5
+   ],
+   "title": "时间线 1"
+  },
+  {
+   "id": "node_6gvkvvsfej",
+   "source": "自建",
+   "kind": "音频(自建)",
+   "scale": 0.574468,
+   "attrs": [
+    "class=react-flow__node react-flow__node-audio ",
+    "data-id=node_6gvkvvsfej",
+    "data-testid=rf__node-node_6gvkvvsfej",
+    "role=group",
+    "aria-roledescription=Canvas node",
+    "aria-describedby=canvas-node-description-node_6gvkvvsfej",
+    "aria-label=音频 node: 音频 14",
+    "ccfmp-element=true",
+    "data-first-content-source=node",
+    "style=z-index: 53; transform: translate(4817.6"
+   ],
+   "nodeRect": {
+    "screen": [
+     183.83,
+     183.83
+    ],
+    "canvas": [
+     320,
+     320
+    ]
+   },
+   "union": {
+    "screen": [
+     279.14,
+     219.83
+    ],
+    "canvas": [
+     485.91,
+     382.66
+    ]
+   },
+   "biggestVisible": {
+    "tag": "DIV",
+    "testid": "flow-node-media-stroke",
+    "cls": "pointer-events-none absolute z-canvas-node-interaction-strok",
+    "screen": [
+     191.83,
+     191.83
+    ],
+    "canvas": [
+     333.92,
+     333.92
+    ]
+   },
+   "canvasPos": [
+    4817.62,
+    2568.12
+   ],
+   "title": "音频 14"
+  },
+  {
+   "id": "node_3k3t4wq8vp",
+   "source": "自建",
+   "kind": "主体(自建)",
+   "scale": 0.574468,
+   "attrs": [
+    "class=react-flow__node react-flow__node-subjec",
+    "data-id=node_3k3t4wq8vp",
+    "data-testid=rf__node-node_3k3t4wq8vp",
+    "role=group",
+    "aria-roledescription=Canvas node",
+    "aria-describedby=canvas-node-description-node_3k3t4wq8vp",
+    "aria-label=主体 node: 主体 1",
+    "ccfmp-element=true",
+    "data-first-content-source=node",
+    "style=z-index: 54; transform: translate(4841.6"
+   ],
+   "nodeRect": {
+    "screen": [
+     202.21,
+     202.21
+    ],
+    "canvas": [
+     352,
+     352
+    ]
+   },
+   "union": {
+    "screen": [
+     297.52,
+     238.21
+    ],
+    "canvas": [
+     517.91,
+     414.66
+    ]
+   },
+   "biggestVisible": {
+    "tag": "DIV",
+    "testid": "flow-node-media-stroke",
+    "cls": "pointer-events-none absolute z-canvas-node-interaction-strok",
+    "screen": [
+     210.21,
+     210.21
+    ],
+    "canvas": [
+     365.92,
+     365.92
+    ]
+   },
+   "canvasPos": [
+    4841.62,
+    2612.87
+   ],
+   "title": "主体 1"
+  },
+  {
+   "id": "node_f5dtajpzqg",
+   "source": "自建",
+   "kind": "视频(自建)",
+   "scale": 0.549886,
+   "attrs": [
+    "class=react-flow__node react-flow__node-video ",
+    "data-id=node_f5dtajpzqg",
+    "data-testid=rf__node-node_f5dtajpzqg",
+    "role=group",
+    "aria-roledescription=Canvas node",
+    "aria-describedby=canvas-node-description-node_f5dtajpzqg",
+    "aria-label=视频 node: 视频 2",
+    "ccfmp-element=true",
+    "data-first-content-source=node",
+    "style=z-index: 55; transform: translate(4733.1"
+   ],
+   "nodeRect": {
+    "screen": [
+     312.82,
+     175.96
+    ],
+    "canvas": [
+     568.88,
+     320
+    ]
+   },
+   "union": {
+    "screen": [
+     407.92,
+     211.41
+    ],
+    "canvas": [
+     741.83,
+     384.47
+    ]
+   },
+   "biggestVisible": {
+    "tag": "DIV",
+    "testid": "flow-node-media-stroke",
+    "cls": "pointer-events-none absolute z-canvas-node-interaction-strok",
+    "screen": [
+     320.82,
+     183.96
+    ],
+    "canvas": [
+     583.43,
+     334.55
+    ]
+   },
+   "canvasPos": [
+    4733.17,
+    2588.87
+   ],
+   "title": "视频 2"
+  }
+ ],
+ "end": {
+  "status": "22 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoomLabel": "Zoom options, 60%",
+  "scale": 0.6,
+  "deviation": []
+ }
+}

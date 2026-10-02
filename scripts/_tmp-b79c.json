@@ -1,0 +1,657 @@
+{
+ "at": "2026-10-02T01:25:22.636Z",
+ "id": "node_3k3t4wq8vp",
+ "scale": 0.6,
+ "rows": [
+  {
+   "tag": "DIV",
+   "tid": "",
+   "cls": "group relative flex min-h-32 min-w-40 flex-col overflo",
+   "aria": "",
+   "txt": "主体 1",
+   "screen": "211.2x211.2",
+   "vis": true,
+   "bg": "gradient"
+  },
+  {
+   "tag": "DIV",
+   "tid": "flow-node-target-handle",
+   "cls": "react-flow__handle react-flow__handle-left nodrag nopa",
+   "aria": "",
+   "txt": "",
+   "screen": "36.0x72.0",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "DIV",
+   "tid": "flow-node-title",
+   "cls": "absolute z-[10] flex text-left font-dreamina-cn text-d",
+   "aria": "",
+   "txt": "主体 1",
+   "screen": "55.5x32.0",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "svg",
+   "tid": "",
+   "cls": "shrink-0 mt-canvas-node-title-icon-inset",
+   "aria": "",
+   "txt": "",
+   "screen": "16.0x16.0",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "g",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "12.7x12.7",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "path",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "12.7x12.7",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "min-w-canvas-zero max-w-full whitespace-nowrap text-[1",
+   "aria": "",
+   "txt": "主体 1",
+   "screen": "35.5x24.0",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "BUTTON",
+   "tid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-now",
+   "aria": "Add tags",
+   "txt": "",
+   "screen": "24.0x24.0",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "absolute -inset-1 visible pointer-events-auto",
+   "aria": "",
+   "txt": "",
+   "screen": "32.0x32.0",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "absolute right-0 top-0 flex size-canvas-tag-trigger or",
+   "aria": "",
+   "txt": "",
+   "screen": "24.0x24.0",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "svg",
+   "tid": "",
+   "cls": "origin-center transition-none opacity-canvas-tag-visib",
+   "aria": "",
+   "txt": "",
+   "screen": "16.0x16.0",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "g",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "13.3x13.3",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "path",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "13.3x13.3",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "DIV",
+   "tid": "flow-node-source-handle",
+   "cls": "react-flow__handle react-flow__handle-right nodrag nop",
+   "aria": "",
+   "txt": "",
+   "screen": "36.0x72.0",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "DIV",
+   "tid": "subject-header",
+   "cls": "relative flex max-h-subject-metadata-max-height shrink",
+   "aria": "",
+   "txt": "主体 1",
+   "screen": "211.2x50.4",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "DIV",
+   "tid": "",
+   "cls": "relative flex items-center",
+   "aria": "",
+   "txt": "主体 1",
+   "screen": "192.0x21.6",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "BUTTON",
+   "tid": "",
+   "cls": "inline-flex items-center whitespace-nowrap border-soli",
+   "aria": "Edit 主体 1",
+   "txt": "主体 1",
+   "screen": "52.7x21.6",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "svg",
+   "tid": "",
+   "cls": "size-subject-metadata-title-prefix-width shrink-0 text",
+   "aria": "",
+   "txt": "",
+   "screen": "9.6x9.6",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "g",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "7.9x7.9",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "path",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "7.9x7.9",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "ml-subject-metadata-title-display-inline-padding min-w",
+   "aria": "",
+   "txt": "主体 1",
+   "screen": "26.3x14.4",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "svg",
+   "tid": "",
+   "cls": "ml-subject-metadata-title-display-gap mr-subject-metad",
+   "aria": "",
+   "txt": "",
+   "screen": "9.6x9.6",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "path",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "7.3x7.4",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "DIV",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "添加描述...",
+   "screen": "192.0x14.4",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "DIV",
+   "tid": "",
+   "cls": "group/canvas-panel-scrollbar relative w-full",
+   "aria": "",
+   "txt": "添加描述...",
+   "screen": "192.0x14.4",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "BUTTON",
+   "tid": "",
+   "cls": "inline-flex gap-1 border-solid motion-safe:transition-",
+   "aria": "Edit subject description",
+   "txt": "添加描述...",
+   "screen": "192.0x14.4",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "block w-full break-words",
+   "aria": "",
+   "txt": "添加描述...",
+   "screen": "183.6x12.0",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "DIV",
+   "tid": "subject-empty",
+   "cls": "bg-dreamina-block-secondary-default relative overflow-",
+   "aria": "",
+   "txt": "",
+   "screen": "192.0x151.2",
+   "vis": true,
+   "bg": "rgba(255, 255, 255, 0.04)"
+  },
+  {
+   "tag": "DIV",
+   "tid": "",
+   "cls": "absolute inset-0 flex items-center justify-center text",
+   "aria": "",
+   "txt": "",
+   "screen": "192.0x151.2",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "DIV",
+   "tid": "",
+   "cls": "flex items-center justify-center",
+   "aria": "Empty subject",
+   "txt": "",
+   "screen": "14.4x14.4",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "svg",
+   "tid": "",
+   "cls": "scale-[0.9473684211]",
+   "aria": "",
+   "txt": "",
+   "screen": "13.6x13.6",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "g",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "10.8x10.8",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "path",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "10.8x10.8",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "DIV",
+   "tid": "",
+   "cls": "absolute inset-0 flex items-center justify-center moti",
+   "aria": "",
+   "txt": "",
+   "screen": "172.8x136.1",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "DIV",
+   "tid": "subject-add-menu-main",
+   "cls": "flex min-w-canvas-zero w-full flex-col",
+   "aria": "",
+   "txt": "",
+   "screen": "151.2x84.2",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "BUTTON",
+   "tid": "",
+   "cls": "inline-flex items-center gap-1 whitespace-nowrap borde",
+   "aria": "导入主体",
+   "txt": "",
+   "screen": "151.2x19.4",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "flex size-4 shrink-0 items-center justify-center",
+   "aria": "",
+   "txt": "",
+   "screen": "8.6x8.6",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "svg",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "8.6x8.6",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "g",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "6.8x6.8",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "path",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "6.8x6.8",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "min-w-canvas-zero truncate whitespace-nowrap",
+   "aria": "",
+   "txt": "",
+   "screen": "28.1x10.8",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "BUTTON",
+   "tid": "",
+   "cls": "inline-flex items-center gap-1 whitespace-nowrap borde",
+   "aria": "添加主媒体",
+   "txt": "",
+   "screen": "151.2x19.4",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "flex size-4 shrink-0 items-center justify-center",
+   "aria": "",
+   "txt": "",
+   "screen": "8.6x8.6",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "svg",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "8.6x8.6",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "path",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "6.5x6.5",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "min-w-canvas-zero truncate whitespace-nowrap",
+   "aria": "",
+   "txt": "",
+   "screen": "35.1x10.8",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "BUTTON",
+   "tid": "",
+   "cls": "inline-flex items-center gap-1 whitespace-nowrap borde",
+   "aria": "从资产库选择",
+   "txt": "",
+   "screen": "151.2x19.4",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "flex size-4 shrink-0 items-center justify-center",
+   "aria": "",
+   "txt": "",
+   "screen": "8.6x8.6",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "svg",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "8.6x8.6",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "g",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "6.6x6.4",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "path",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "6.6x6.4",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "min-w-canvas-zero truncate whitespace-nowrap",
+   "aria": "",
+   "txt": "",
+   "screen": "42.1x10.8",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "BUTTON",
+   "tid": "",
+   "cls": "inline-flex items-center gap-1 whitespace-nowrap borde",
+   "aria": "本地添加",
+   "txt": "",
+   "screen": "151.2x19.4",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "flex size-4 shrink-0 items-center justify-center",
+   "aria": "",
+   "txt": "",
+   "screen": "8.6x8.6",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "svg",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "8.6x8.6",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "path",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "6.5x6.8",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "min-w-canvas-zero truncate whitespace-nowrap",
+   "aria": "",
+   "txt": "",
+   "screen": "28.1x10.8",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "INPUT",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "0.0x0.0",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "OUTPUT",
+   "tid": "subject-drop-overlay",
+   "cls": "[[data-subject-drop-target=true]_&]:visible [[data-sub",
+   "aria": "",
+   "txt": "",
+   "screen": "195.6x154.8",
+   "vis": false,
+   "bg": "color(srgb 0.12549 0.12549 0.12549 / 0.8)"
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "pointer-events-none absolute -inset-[4px] backdrop-blu",
+   "aria": "",
+   "txt": "",
+   "screen": "200.4x159.6",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "subject-drop-overlay-prompt",
+   "cls": "relative flex h-dreamina-tooltip min-w-canvas-subject-",
+   "aria": "",
+   "txt": "",
+   "screen": "69.0x21.6",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "svg",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "9.6x9.6",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "path",
+   "tid": "",
+   "cls": "",
+   "aria": "",
+   "txt": "",
+   "screen": "7.4x7.4",
+   "vis": false,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "pointer-events-none absolute inset-0 border border-dre",
+   "aria": "",
+   "txt": "",
+   "screen": "192.0x151.2",
+   "vis": true,
+   "bg": ""
+  },
+  {
+   "tag": "SPAN",
+   "tid": "",
+   "cls": "sr-only",
+   "aria": "",
+   "txt": "Empty subject: mai",
+   "screen": "0.6x0.6",
+   "vis": false,
+   "bg": ""
+  }
+ ]
+}

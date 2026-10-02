@@ -1,0 +1,328 @@
+{
+ "at": "2026-10-02T01:19:54.083Z",
+ "nodes": [
+  {
+   "id": "node_236ctpehgg",
+   "kind": "视频",
+   "title": "视频 1",
+   "mine": false,
+   "note": "",
+   "scaleAtMeasure": 0.6,
+   "zoomLabelAtMeasure": "Zoom options, 60%",
+   "scale": 0.6,
+   "className": "video nopan selectable draggable",
+   "usedSurface": true,
+   "surfaceTestId": "video-flow-node-surface",
+   "nodeScreen": [
+    192,
+    341.33
+   ],
+   "nodeCanvas": [
+    320,
+    568.88
+   ],
+   "bodyScreen": [
+    192,
+    341.33
+   ],
+   "bodyCanvas": [
+    320,
+    568.88
+   ],
+   "ratio": 0.5625,
+   "canvasPos": [
+    865,
+    400.111
+   ],
+   "innerTextHead": [
+    "视频 1",
+    "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+   ]
+  },
+  {
+   "id": "node_3bfb9r79qe",
+   "kind": "文本",
+   "title": "文本 1",
+   "mine": false,
+   "note": "",
+   "scaleAtMeasure": 0.6,
+   "zoomLabelAtMeasure": "Zoom options, 60%",
+   "scale": 0.6,
+   "className": "text nopan selectable draggable",
+   "usedSurface": false,
+   "surfaceTestId": null,
+   "nodeScreen": [
+    192,
+    192
+   ],
+   "nodeCanvas": [
+    320,
+    320
+   ],
+   "bodyScreen": [
+    192,
+    192
+   ],
+   "bodyCanvas": [
+    320,
+    320
+   ],
+   "ratio": 1,
+   "canvasPos": [
+    480.055,
+    240
+   ],
+   "innerTextHead": [
+    "双击编辑文本",
+    "文本 1"
+   ]
+  },
+  {
+   "id": "node_cdwf8x6fbj",
+   "kind": "时间线",
+   "title": "时间线 1",
+   "mine": false,
+   "note": "",
+   "scaleAtMeasure": 0.6,
+   "zoomLabelAtMeasure": "Zoom options, 60%",
+   "scale": 0.6,
+   "className": "timeline nopan selectable draggable",
+   "usedSurface": false,
+   "surfaceTestId": null,
+   "nodeScreen": [
+    720,
+    124.2
+   ],
+   "nodeCanvas": [
+    1200,
+    207
+   ],
+   "bodyScreen": [
+    720,
+    124.2
+   ],
+   "bodyCanvas": [
+    1200,
+    207
+   ],
+   "ratio": 5.7971,
+   "canvasPos": [
+    40.0555,
+    370.5
+   ],
+   "innerTextHead": [
+    "时间线 1",
+    "00:00"
+   ]
+  },
+  {
+   "id": "node_pxvkay973v",
+   "kind": "导演台",
+   "title": "导演台",
+   "mine": false,
+   "note": "",
+   "scaleAtMeasure": 0.6,
+   "zoomLabelAtMeasure": "Zoom options, 60%",
+   "scale": 0.6,
+   "className": "external nopan selectable draggable",
+   "usedSurface": false,
+   "surfaceTestId": null,
+   "nodeScreen": [
+    192,
+    192
+   ],
+   "nodeCanvas": [
+    320,
+    320
+   ],
+   "bodyScreen": [
+    192,
+    192
+   ],
+   "bodyCanvas": [
+    320,
+    320
+   ],
+   "ratio": 1,
+   "canvasPos": [
+    640.055,
+    440.651
+   ],
+   "innerTextHead": [
+    "导演台",
+    "在 3D 空间中设计角色、机位与镜头"
+   ]
+  },
+  {
+   "id": "node_ay7f1jn45r",
+   "kind": "音频",
+   "title": "音频 1",
+   "mine": false,
+   "note": "",
+   "scaleAtMeasure": 0.6,
+   "zoomLabelAtMeasure": "Zoom options, 60%",
+   "scale": 0.6,
+   "className": "audio nopan selectable draggable",
+   "usedSurface": false,
+   "surfaceTestId": null,
+   "nodeScreen": [
+    192,
+    192
+   ],
+   "nodeCanvas": [
+    320,
+    320
+   ],
+   "bodyScreen": [
+    192,
+    192
+   ],
+   "bodyCanvas": [
+    320,
+    320
+   ],
+   "ratio": 1,
+   "canvasPos": [
+    594.805,
+    569.5
+   ],
+   "innerTextHead": [
+    "音频 1",
+    "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+   ]
+  },
+  {
+   "id": "node_gref4sw056",
+   "kind": "图片(带内容)",
+   "title": "b22-upload",
+   "mine": false,
+   "note": "他人建的，只读",
+   "scaleAtMeasure": 0.6,
+   "zoomLabelAtMeasure": "Zoom options, 60%",
+   "scale": 0.6,
+   "className": "image nopan selectable draggable",
+   "usedSurface": false,
+   "surfaceTestId": null,
+   "nodeScreen": [
+    341.33,
+    192
+   ],
+   "nodeCanvas": [
+    568.88,
+    320
+   ],
+   "bodyScreen": [
+    341.33,
+    192
+   ],
+   "bodyCanvas": [
+    568.88,
+    320
+   ],
+   "ratio": 1.7778,
+   "canvasPos": [
+    3562.42,
+    1981.81
+   ],
+   "innerTextHead": [
+    "b22-upload"
+   ]
+  },
+  {
+   "id": "node_fxmjtwfsde",
+   "kind": "主体",
+   "title": "主体 1",
+   "mine": true,
+   "note": "自建",
+   "scaleAtMeasure": 0.6,
+   "zoomLabelAtMeasure": "Zoom options, 60%",
+   "scale": 0.6,
+   "className": "subject nopan selected selectable",
+   "usedSurface": false,
+   "surfaceTestId": null,
+   "nodeScreen": [
+    211.2,
+    211.2
+   ],
+   "nodeCanvas": [
+    352,
+    352
+   ],
+   "bodyScreen": [
+    211.2,
+    211.2
+   ],
+   "bodyCanvas": [
+    352,
+    352
+   ],
+   "ratio": 1,
+   "canvasPos": [
+    4801.62,
+    2552.12
+   ],
+   "innerTextHead": [
+    "主体 1",
+    "主体 1"
+   ]
+  }
+ ],
+ "claimCheck": {
+  "视频": {
+   "manual": "569×320",
+   "measured": "320×569",
+   "verdict": "❌ 差 249.0 / 248.9",
+   "scale": 0.6
+  },
+  "文本": {
+   "manual": "320×320",
+   "measured": "320×320",
+   "verdict": "✅ 一致",
+   "scale": 0.6
+  },
+  "时间线": {
+   "manual": "?",
+   "measured": "1200×207",
+   "verdict": "手册无数字",
+   "scale": 0.6
+  },
+  "导演台": {
+   "manual": "320×320",
+   "measured": "320×320",
+   "verdict": "✅ 一致",
+   "scale": 0.6
+  },
+  "音频": {
+   "manual": "240×240",
+   "measured": "320×320",
+   "verdict": "❌ 差 80.0 / 80.0",
+   "scale": 0.6
+  },
+  "图片(带内容)": {
+   "manual": "320×427",
+   "measured": "569×320",
+   "verdict": "❌ 差 248.9 / 107.0",
+   "scale": 0.6
+  },
+  "主体": {
+   "manual": "约 310×310",
+   "measured": "352×352",
+   "verdict": "❌ 差 42.0 / 42.0",
+   "scale": 0.6
+  }
+ },
+ "scale": {
+  "scale": 0.6,
+  "label": "Zoom options, 60%"
+ },
+ "scaleAfterCreate": {
+  "scale": 0.6,
+  "label": "Zoom options, 60%"
+ },
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoomLabel": "Zoom options, 60%",
+  "scale": 0.6,
+  "deviation": []
+ }
+}
