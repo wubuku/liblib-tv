@@ -1,0 +1,244 @@
+{
+ "at": "2026-10-02T08:46:47.085Z",
+ "fit": {
+  "zoom": "Zoom options, 23%",
+  "scale": 0.234098
+ },
+ "rectTwice": [
+  {
+   "x": 266,
+   "y": 152,
+   "w": 75,
+   "h": 75,
+   "t": "translate(153.879px, 96.2893px) scale(0.234098)"
+  },
+  {
+   "x": 266,
+   "y": 152,
+   "w": 75,
+   "h": 75,
+   "t": "translate(153.879px, 96.2893px) scale(0.234098)"
+  },
+  {
+   "x": 266,
+   "y": 152,
+   "w": 75,
+   "h": 75,
+   "t": "translate(153.879px, 96.2893px) scale(0.234098)"
+  }
+ ],
+ "stack": {
+  "rect": {
+   "x": 266,
+   "y": 152,
+   "w": 75,
+   "h": 75
+  },
+  "classes": "react-flow__node react-flow__node-text",
+  "transform": "translate(480.055px, 240px)",
+  "rows": [
+   {
+    "f": 0.5,
+    "x": 304,
+    "y": 190,
+    "topTag": "svg",
+    "topClass": "shrink-0 mt-canvas-node-title-icon-inset",
+    "topPE": "all",
+    "ownerId": "node_pxvkay973v",
+    "isSelf": false,
+    "chain": [
+     "svg.shrink-0",
+     "DIV.absolute",
+     "DIV.group",
+     "DIV.react-flow__node",
+     "DIV.react-flow__nodes",
+     "DIV.react-flow__viewport"
+    ]
+   },
+   {
+    "f": 0.3,
+    "x": 289,
+    "y": 175,
+    "topTag": "DIV",
+    "topClass": "data-[connection-receiving=true]:border-transparen",
+    "topPE": "all",
+    "ownerId": "node_5gftn3dnt1",
+    "isSelf": false,
+    "chain": [
+     "DIV.data-[connection-receiving=true]:border-transparent",
+     "DIV.react-flow__node",
+     "DIV.react-flow__nodes",
+     "DIV.react-flow__viewport",
+     "DIV.react-flow__pane",
+     "DIV.react-flow__renderer"
+    ]
+   },
+   {
+    "f": 0.7,
+    "x": 319,
+    "y": 205,
+    "topTag": "DIV",
+    "topClass": "relative flex min-h-canvas-zero flex-1 flex-col it",
+    "topPE": "all",
+    "ownerId": "node_pxvkay973v",
+    "isSelf": false,
+    "chain": [
+     "DIV.relative",
+     "DIV.relative",
+     "DIV.group",
+     "DIV.react-flow__node",
+     "DIV.react-flow__nodes",
+     "DIV.react-flow__viewport"
+    ]
+   },
+   {
+    "f": 0.2,
+    "x": 281,
+    "y": 167,
+    "topTag": "DIV",
+    "topClass": "data-[connection-receiving=true]:border-transparen",
+    "topPE": "all",
+    "ownerId": "node_aw29cp094x",
+    "isSelf": false,
+    "chain": [
+     "DIV.data-[connection-receiving=true]:border-transparent",
+     "DIV.react-flow__node",
+     "DIV.react-flow__nodes",
+     "DIV.react-flow__viewport",
+     "DIV.react-flow__pane",
+     "DIV.react-flow__renderer"
+    ]
+   },
+   {
+    "f": 0.8,
+    "x": 326,
+    "y": 212,
+    "topTag": "DIV",
+    "topClass": "relative flex min-h-canvas-zero flex-1 flex-col it",
+    "topPE": "all",
+    "ownerId": "node_pxvkay973v",
+    "isSelf": false,
+    "chain": [
+     "DIV.relative",
+     "DIV.relative",
+     "DIV.group",
+     "DIV.react-flow__node",
+     "DIV.react-flow__nodes",
+     "DIV.react-flow__viewport"
+    ]
+   },
+   {
+    "f": 0.1,
+    "x": 274,
+    "y": 160,
+    "topTag": "DIV",
+    "topClass": "data-[connection-receiving=true]:border-transparen",
+    "topPE": "all",
+    "ownerId": "node_3bfb9r79qe",
+    "isSelf": true,
+    "chain": [
+     "DIV.data-[connection-receiving=true]:border-transparent",
+     "DIV.react-flow__node",
+     "DIV.react-flow__nodes",
+     "DIV.react-flow__viewport",
+     "DIV.react-flow__pane",
+     "DIV.react-flow__renderer"
+    ]
+   },
+   {
+    "f": 0.9,
+    "x": 334,
+    "y": 220,
+    "topTag": "DIV",
+    "topClass": "absolute z-[10] flex text-left font-dreamina-cn te",
+    "topPE": "all",
+    "ownerId": "node_kdgnjkfng2",
+    "isSelf": false,
+    "chain": [
+     "DIV.absolute",
+     "DIV.group",
+     "DIV.react-flow__node",
+     "DIV.react-flow__nodes",
+     "DIV.react-flow__viewport",
+     "DIV.react-flow__pane"
+    ]
+   }
+  ]
+ },
+ "nodeInfo": {
+  "aria": "文本 node: 文本 1",
+  "cls": "react-flow__node react-flow__node-text",
+  "text": "双击编辑文本 文本 1",
+  "pe": "all",
+  "vis": "visible",
+  "op": "1"
+ },
+ "clickAt": {
+  "x": 274,
+  "y": 160
+ },
+ "beforeClickTop": {
+  "tag": "DIV",
+  "cls": "data-[connection-receiving=true]:border-transparent data-[co",
+  "text": "双击编辑文本"
+ },
+ "afterClick": {
+  "sel": "0",
+  "selectedIds": [],
+  "topNow": {
+   "tag": "DIV",
+   "cls": "data-[connection-receiving=true]:border-transparent data-[co"
+  },
+  "ownerNow": "node_3bfb9r79qe",
+  "pointer": {
+   "aria": "抓手工具",
+   "pressed": "true"
+  }
+ },
+ "tryOther": [
+  {
+   "id": "node_gp499g9p3m",
+   "aria": "音频 node: 音频 5",
+   "x": 377,
+   "y": 243
+  },
+  {
+   "id": "node_9y4j9jf0qv",
+   "aria": "音频 node: 音频 6",
+   "x": 616,
+   "y": 388
+  },
+  {
+   "id": "node_gref4sw056",
+   "aria": "图片 node: b22-upload",
+   "x": 1054,
+   "y": 598
+  },
+  {
+   "id": "node_d4tjtpnatq",
+   "aria": "时间线 node: 时间线 2",
+   "x": 640,
+   "y": 354
+  },
+  {
+   "id": "node_5h8sbgy7pd",
+   "aria": "音频 node: 音频 20",
+   "x": 754,
+   "y": 603
+  },
+  {
+   "id": "node_3p3sa1sgsv",
+   "aria": "音频 node: 音频 31",
+   "x": 810,
+   "y": 577
+  }
+ ],
+ "otherResult": {
+  "sel": "0",
+  "selectedIds": [],
+  "pointer": {
+   "aria": "抓手工具",
+   "pressed": "true"
+  }
+ }
+}

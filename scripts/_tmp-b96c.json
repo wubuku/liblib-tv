@@ -1,0 +1,484 @@
+{
+ "at": "2026-10-02T08:48:00.453Z",
+ "cells": [
+  {
+   "label": "①选择工具-起点",
+   "sel": "0",
+   "selectedIds": [],
+   "targetSelected": false,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "minimap": {
+    "pressed": "false",
+    "panel": 0
+   },
+   "connections": {
+    "pressed": "true"
+   },
+   "zoomMenuOpen": 0,
+   "zoomBtnText": "23%",
+   "ctxMenuOpen": false
+  },
+  {
+   "label": "②选择工具-单击",
+   "sel": "0",
+   "selectedIds": [],
+   "targetSelected": false,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "minimap": {
+    "pressed": "false",
+    "panel": 0
+   },
+   "connections": {
+    "pressed": "true"
+   },
+   "zoomMenuOpen": 0,
+   "zoomBtnText": "23%",
+   "ctxMenuOpen": false
+  },
+  {
+   "label": "③Esc后",
+   "sel": "0",
+   "selectedIds": [],
+   "targetSelected": false,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "minimap": {
+    "pressed": "false",
+    "panel": 0
+   },
+   "connections": {
+    "pressed": "true"
+   },
+   "zoomMenuOpen": 0,
+   "zoomBtnText": "23%",
+   "ctxMenuOpen": false
+  },
+  {
+   "label": "④点toggle后",
+   "sel": "0",
+   "selectedIds": [],
+   "targetSelected": false,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "抓手工具",
+    "pressed": "true"
+   },
+   "minimap": {
+    "pressed": "false",
+    "panel": 0
+   },
+   "connections": {
+    "pressed": "true"
+   },
+   "zoomMenuOpen": 0,
+   "zoomBtnText": "23%",
+   "ctxMenuOpen": false
+  },
+  {
+   "label": "⑤抓手-单击节点",
+   "sel": "0",
+   "selectedIds": [],
+   "targetSelected": false,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "抓手工具",
+    "pressed": "true"
+   },
+   "minimap": {
+    "pressed": "false",
+    "panel": 0
+   },
+   "connections": {
+    "pressed": "true"
+   },
+   "zoomMenuOpen": 0,
+   "zoomBtnText": "23%",
+   "ctxMenuOpen": false
+  },
+  {
+   "label": "⑥抓手-双击节点",
+   "sel": "0",
+   "selectedIds": [],
+   "targetSelected": false,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "抓手工具",
+    "pressed": "true"
+   },
+   "minimap": {
+    "pressed": "false",
+    "panel": 0
+   },
+   "connections": {
+    "pressed": "true"
+   },
+   "zoomMenuOpen": 0,
+   "zoomBtnText": "23%",
+   "ctxMenuOpen": false
+  },
+  {
+   "label": "⑦抓手-按V后",
+   "sel": "0",
+   "selectedIds": [],
+   "targetSelected": false,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "minimap": {
+    "pressed": "false",
+    "panel": 0
+   },
+   "connections": {
+    "pressed": "true"
+   },
+   "zoomMenuOpen": 0,
+   "zoomBtnText": "23%",
+   "ctxMenuOpen": false
+  },
+  {
+   "label": "⑧抓手-右键节点",
+   "sel": "1",
+   "selectedIds": [
+    "node_3bfb9r79qe"
+   ],
+   "targetSelected": true,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "minimap": {
+    "pressed": "false",
+    "panel": 0
+   },
+   "connections": {
+    "pressed": "true"
+   },
+   "zoomMenuOpen": 0,
+   "zoomBtnText": "23%",
+   "ctxMenuOpen": true
+  },
+  {
+   "label": "⑨抓手-点显示连线",
+   "sel": "1",
+   "selectedIds": [
+    "node_3bfb9r79qe"
+   ],
+   "targetSelected": true,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "minimap": {
+    "pressed": "false",
+    "panel": 0
+   },
+   "connections": {
+    "pressed": "false"
+   },
+   "zoomMenuOpen": 0,
+   "zoomBtnText": "23%",
+   "ctxMenuOpen": false
+  },
+  {
+   "label": "⑨b抓手-点回显示连线",
+   "sel": "1",
+   "selectedIds": [
+    "node_3bfb9r79qe"
+   ],
+   "targetSelected": true,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "minimap": {
+    "pressed": "false",
+    "panel": 0
+   },
+   "connections": {
+    "pressed": "true"
+   },
+   "zoomMenuOpen": 0,
+   "zoomBtnText": "23%",
+   "ctxMenuOpen": false
+  },
+  {
+   "label": "⑩抓手-点缩放值按钮",
+   "sel": "1",
+   "selectedIds": [
+    "node_3bfb9r79qe"
+   ],
+   "targetSelected": true,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "minimap": {
+    "pressed": "false",
+    "panel": 0
+   },
+   "connections": {
+    "pressed": "true"
+   },
+   "zoomMenuOpen": 1,
+   "zoomBtnText": "",
+   "ctxMenuOpen": false
+  },
+  {
+   "label": "⑪抓手-点小地图",
+   "sel": "1",
+   "selectedIds": [
+    "node_3bfb9r79qe"
+   ],
+   "targetSelected": true,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "minimap": {
+    "pressed": "true",
+    "panel": 1
+   },
+   "connections": {
+    "pressed": "true"
+   },
+   "zoomMenuOpen": 0,
+   "zoomBtnText": "23%",
+   "ctxMenuOpen": false
+  },
+  {
+   "label": "⑪b抓手-点回小地图",
+   "sel": "1",
+   "selectedIds": [
+    "node_3bfb9r79qe"
+   ],
+   "targetSelected": true,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "minimap": {
+    "pressed": "false",
+    "panel": 0
+   },
+   "connections": {
+    "pressed": "true"
+   },
+   "zoomMenuOpen": 0,
+   "zoomBtnText": "23%",
+   "ctxMenuOpen": false
+  },
+  {
+   "label": "⑫点toggle退出",
+   "sel": "1",
+   "selectedIds": [
+    "node_3bfb9r79qe"
+   ],
+   "targetSelected": true,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "抓手工具",
+    "pressed": "true"
+   },
+   "minimap": {
+    "pressed": "false",
+    "panel": 0
+   },
+   "connections": {
+    "pressed": "true"
+   },
+   "zoomMenuOpen": 0,
+   "zoomBtnText": "23%",
+   "ctxMenuOpen": false
+  },
+  {
+   "label": "⑬退出抓手-单击节点",
+   "sel": "1",
+   "selectedIds": [
+    "node_3bfb9r79qe"
+   ],
+   "targetSelected": true,
+   "targetPresent": true,
+   "editable": 0,
+   "pointer": {
+    "count": 1,
+    "aria": "抓手工具",
+    "pressed": "true"
+   },
+   "minimap": {
+    "pressed": "false",
+    "panel": 0
+   },
+   "connections": {
+    "pressed": "true"
+   },
+   "zoomMenuOpen": 0,
+   "zoomBtnText": "23%",
+   "ctxMenuOpen": false
+  }
+ ],
+ "start": {
+  "nodes": "39",
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": {
+   "aria": "Zoom options, 23%",
+   "text": "23%"
+  },
+  "scale": 0.234098
+ },
+ "toolAtStart": "抓手工具",
+ "toolAfterFix": "选择工具",
+ "fitBefore": {
+  "zoom": {
+   "aria": "Zoom options, 23%",
+   "text": "23%"
+  },
+  "scale": 0.234098
+ },
+ "fitAfter": {
+  "zoom": {
+   "aria": "Zoom options, 23%",
+   "text": "23%"
+  },
+  "scale": 0.234098
+ },
+ "pt": {
+  "x": 274,
+  "y": 160
+ },
+ "click1": {
+  "ok": true,
+  "pt": {
+   "x": 274,
+   "y": 160
+  },
+  "topBefore": {
+   "owner": "node_3bfb9r79qe",
+   "tag": "DIV"
+  },
+  "topAfter": {
+   "owner": "node_3bfb9r79qe"
+  },
+  "why": "选择工具下单击"
+ },
+ "baselineClickSelects": false,
+ "toggledToGrab": true,
+ "ptInGrab": {
+  "x": 274,
+  "y": 160
+ },
+ "click5": {
+  "ok": true,
+  "pt": {
+   "x": 274,
+   "y": 160
+  },
+  "topBefore": {
+   "owner": "node_3bfb9r79qe",
+   "tag": "DIV"
+  },
+  "topAfter": {
+   "owner": "node_3bfb9r79qe"
+  },
+  "why": "抓手态下单击"
+ },
+ "grabClickSelects": false,
+ "grabDblclickSelects": false,
+ "keyGuardV": {
+  "safe": true,
+  "tag": "DIV",
+  "testid": "rf__wrapper",
+  "where": "DIV[rf__wrapper] aria=\"Canvas\"",
+  "reason": "焦点在画布（DIV[rf__wrapper] aria=\"Canvas\"）——可以安全按字母键",
+  "openInputs": 0
+ },
+ "vSwitchesBack": true,
+ "grabRightClickMenu": true,
+ "grabDockToggleWorks": true,
+ "dockToggleRestored": true,
+ "grabZoomButtonWorks": true,
+ "grabMinimapWorks": true,
+ "backToSelect": false,
+ "click13": {
+  "ok": true,
+  "pt": {
+   "x": 304,
+   "y": 190
+  },
+  "topBefore": {
+   "owner": "node_3bfb9r79qe",
+   "tag": "DIV"
+  },
+  "topAfter": {
+   "owner": "node_3bfb9r79qe"
+  },
+  "why": "退出抓手态后单击"
+ },
+ "afterExitClickSelects": true,
+ "toolAtEnd": "选择工具",
+ "restore": {
+  "ok": true,
+  "tries": 1
+ },
+ "end": {
+  "nodes": "39",
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "text": "60%"
+  },
+  "scale": 0.6,
+  "pointer": {
+   "aria": "选择工具",
+   "pressed": "false"
+  }
+ }
+}

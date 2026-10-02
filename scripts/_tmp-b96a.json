@@ -1,0 +1,296 @@
+{
+ "at": "2026-10-02T08:40:57.448Z",
+ "start": {
+  "zoom": "Zoom options, 60%",
+  "scale": 0.6,
+  "nodes": "37",
+  "sel": "0"
+ },
+ "p1_zoomButton": {
+  "tag": "BUTTON",
+  "type": "button",
+  "aria": "Zoom options, 60%",
+  "testid": "canvas-zoom-percent",
+  "role": null,
+  "value": null,
+  "contentEditable": null,
+  "childInputs": 0,
+  "childTags": [],
+  "innerText": "60%",
+  "screen": {
+   "w": 48,
+   "h": 28,
+   "x": 124,
+   "y": 672
+  },
+  "isContentEditableHost": false
+ },
+ "p2_closed": {
+  "total": 2,
+  "list": [
+   {
+    "tag": "INPUT",
+    "type": "file",
+    "tid": null,
+    "aria": "替换媒体",
+    "role": null,
+    "value": null,
+    "text": ""
+   },
+   {
+    "tag": "INPUT",
+    "type": "file",
+    "tid": null,
+    "aria": null,
+    "role": null,
+    "value": null,
+    "text": ""
+   }
+  ],
+  "setZoomByText": [],
+  "zoomPctInput": 0
+ },
+ "p3_open": {
+  "total": 3,
+  "list": [
+   {
+    "tag": "INPUT",
+    "type": "file",
+    "tid": null,
+    "aria": "替换媒体",
+    "value": null
+   },
+   {
+    "tag": "INPUT",
+    "type": "file",
+    "tid": null,
+    "aria": null,
+    "value": null
+   },
+   {
+    "tag": "INPUT",
+    "type": "text",
+    "tid": "canvas-zoom-percent-input",
+    "aria": "Set zoom percentage",
+    "value": "60"
+   }
+  ],
+  "setZoomByText": [
+   {
+    "tag": "INPUT",
+    "tid": "canvas-zoom-percent-input",
+    "screen": {
+     "w": 48,
+     "h": 28,
+     "x": 124,
+     "y": 672
+    }
+   }
+  ],
+  "zoomPctInput": {
+   "tag": "INPUT",
+   "value": "60",
+   "min": null,
+   "max": null,
+   "step": null,
+   "aria": "Set zoom percentage",
+   "cls": "border-solid outline-none transition-col",
+   "screen": {
+    "w": 48,
+    "h": 28,
+    "x": 124,
+    "y": 672
+   }
+  },
+  "zoomMenuTids": [
+   "canvas-zoom-menu",
+   "canvas-zoom-percent",
+   "canvas-zoom-percent-input"
+  ],
+  "menu": null
+ },
+ "p4_dock": [
+  {
+   "aria": "替换媒体",
+   "tid": null,
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "22×22@1846,878"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "28×28@1845,836"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "24×24@836,662"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "24×24@852,684"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "24×24@860,710"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "24×24@884,734"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "24×24@908,758"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "24×24@932,782"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "24×24@956,806"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "24×24@980,830"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "24×24@1003,853"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "24×24@1004,644"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "24×24@1028,668"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "24×24@1052,692"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "24×24@1076,716"
+  },
+  {
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "24×24@1100,740"
+  },
+  {
+   "aria": "选择工具",
+   "tid": "canvas-pointer-tool-toggle",
+   "pressed": "false",
+   "role": null,
+   "text": "",
+   "screen": "28×28@16,672"
+  },
+  {
+   "aria": "小地图",
+   "tid": "canvas-display-toggle-minimap",
+   "pressed": "false",
+   "role": null,
+   "text": "",
+   "screen": "28×28@48,672"
+  },
+  {
+   "aria": "显示连线",
+   "tid": "canvas-display-toggle-connections",
+   "pressed": "true",
+   "role": null,
+   "text": "",
+   "screen": "28×28@80,672"
+  },
+  {
+   "aria": "Zoom options, 60%",
+   "tid": "canvas-zoom-percent",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "48×28@124,672"
+  },
+  {
+   "aria": "与 AI 对话",
+   "tid": "canvas-sidecar-launcher",
+   "pressed": null,
+   "role": null,
+   "text": "",
+   "screen": "118×34@1149,673"
+  }
+ ],
+ "p5_pointerTool": {
+  "count": 1,
+  "items": [
+   {
+    "aria": "选择工具",
+    "pressed": "false",
+    "screen": "28×28@16,672"
+   }
+  ]
+ },
+ "end": {
+  "zoom": "Zoom options, 60%",
+  "scale": 0.6
+ }
+}
