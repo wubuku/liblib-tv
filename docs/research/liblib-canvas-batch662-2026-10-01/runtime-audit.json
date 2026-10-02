@@ -1,0 +1,654 @@
+{
+ "verifier": {
+  "batch": 662,
+  "question": "661 named the control that covers `help`. Does that answer survive a change of state, and what is the blast radius?",
+  "theRefutation": {
+   "theGuess": "the rects of `收起属性` (H-39..H-19) and `帮助` (H-40..H-8) both hang off the viewport bottom, so overlap <=> 151 < h < 203 and the default 182 is the only bad value",
+   "theSweep": "18 heights, including 151/152, 202/203, the collapsed 88 and the 420 maximum",
+   "theResult": "topIsSelf never became True in any of them",
+   "whyTheGuessWasWrong": "it treated one MEMBER as the MECHANISM. The timeline's left column spans from H-h to the viewport bottom, so it always contains `帮助`'s y-range: h >= 24 is enough and the range floor is 88."
+  },
+  "instrument": {
+   "mechanism": "nearest ancestor-or-self of the stack top carrying a data-director-* attribute",
+   "why": "the stack top is one member of the cover; naming the member is not naming the cause"
+  },
+  "geometry": {
+   "topSixCy": {
+    "660": [
+     76,
+     132,
+     172,
+     212,
+     252,
+     292
+    ],
+    "720": [
+     76,
+     132,
+     172,
+     212,
+     252,
+     292
+    ],
+    "900": [
+     76,
+     132,
+     172,
+     212,
+     252,
+     292
+    ],
+    "1150": [
+     76,
+     132,
+     172,
+     212,
+     252,
+     292
+    ]
+   },
+   "topSixIsViewportInvariant": true,
+   "helpCy": {
+    "660": 636,
+    "720": 696,
+    "900": 876,
+    "1150": 1126
+   },
+   "helpCyIsHminus24": true,
+   "reading": "the rail is pinned at both ends: six entries at the top (viewport-invariant), `帮助` at the bottom via mt-auto"
+  },
+  "closedForm": {
+   "rule": "an entry is swallowed <=> its own centre is at or below the timeline's top edge, i.e. cy >= H - h",
+   "N": "N(H,h) = 1 + |{ cy in the six top entries : cy >= H - h }|",
+   "stepsAt": "h = H - 292 and h = H - 252 (one more entry each)",
+   "cells": 48,
+   "mismatches": {},
+   "predictedCounts": {
+    "1150/120": 1,
+    "1150/150": 1,
+    "1150/182": 1,
+    "1150/240": 1,
+    "1150/300": 1,
+    "1150/360": 1,
+    "1150/367": 1,
+    "1150/368": 1,
+    "1150/407": 1,
+    "1150/408": 1,
+    "1150/420": 1,
+    "1150/88": 1,
+    "660/120": 1,
+    "660/150": 1,
+    "660/182": 1,
+    "660/240": 1,
+    "660/300": 1,
+    "660/360": 1,
+    "660/367": 1,
+    "660/368": 2,
+    "660/407": 2,
+    "660/408": 3,
+    "660/420": 3,
+    "660/88": 1,
+    "720/120": 1,
+    "720/150": 1,
+    "720/182": 1,
+    "720/240": 1,
+    "720/300": 1,
+    "720/360": 1,
+    "720/367": 1,
+    "720/368": 1,
+    "720/407": 1,
+    "720/408": 1,
+    "720/420": 1,
+    "720/88": 1,
+    "900/120": 1,
+    "900/150": 1,
+    "900/182": 1,
+    "900/240": 1,
+    "900/300": 1,
+    "900/360": 1,
+    "900/367": 1,
+    "900/368": 1,
+    "900/407": 1,
+    "900/408": 1,
+    "900/420": 1,
+    "900/88": 1
+   }
+  },
+  "steps": {
+   "measured": [
+    1,
+    2,
+    2,
+    3
+   ],
+   "freshLoadCounts": {
+    "660/367": 1,
+    "660/368": 2,
+    "660/407": 2,
+    "660/408": 3
+   },
+   "freshLoadMatchesInPage": true
+  },
+  "members": {
+   "counts": {
+    "data-director-timeline-track-list=true": 39,
+    "data-director-timeline-object-row=director-character-lead": 4,
+    "data-director-track-label=director-track-character-lead-transform": 4,
+    "data-director-timeline-object-row=director-camera-main": 4,
+    "data-director-timeline=true": 2,
+    "data-director-playback=true": 1
+   },
+   "distinct": 6,
+   "blockedTotal": 54,
+   "mechanismInsideTimeline": 54,
+   "defaultCellMember": "data-director-timeline-object-row=director-camera-main"
+  },
+  "noRescue": {
+   "helpCentredAt": "H - 24",
+   "swallowedWhen": "h >= 24",
+   "storeRange": {
+    "min": 88,
+    "max": 420,
+    "default": 182
+   },
+   "rangeFloorIsAboveTheThreshold": true,
+   "collapsedState": {
+    "tlH": 88,
+    "helpTopIsSelf": false,
+    "helpMechanism": "data-director-timeline-track-list=true"
+   },
+   "uncollapsedState": {
+    "tlH": 182,
+    "helpTopIsSelf": false,
+    "helpMechanism": "data-director-timeline-object-row=director-camera-main"
+   }
+  },
+  "crossBatch633": {
+   "88": {
+    "prior633_railLabels": [
+     "帮助"
+    ],
+    "batch662_predicted": [
+     "帮助"
+    ],
+    "agree": true
+   },
+   "120": {
+    "prior633_railLabels": [
+     "帮助"
+    ],
+    "batch662_predicted": [
+     "帮助"
+    ],
+    "agree": true
+   },
+   "150": {
+    "prior633_railLabels": [
+     "帮助"
+    ],
+    "batch662_predicted": [
+     "帮助"
+    ],
+    "agree": true
+   },
+   "182": {
+    "prior633_railLabels": [
+     "帮助"
+    ],
+    "batch662_predicted": [
+     "帮助"
+    ],
+    "agree": true
+   },
+   "240": {
+    "prior633_railLabels": [
+     "帮助"
+    ],
+    "batch662_predicted": [
+     "帮助"
+    ],
+    "agree": true
+   },
+   "300": {
+    "prior633_railLabels": [
+     "帮助"
+    ],
+    "batch662_predicted": [
+     "帮助"
+    ],
+    "agree": true
+   },
+   "360": {
+    "prior633_railLabels": [
+     "帮助"
+    ],
+    "batch662_predicted": [
+     "帮助"
+    ],
+    "agree": true
+   },
+   "420": {
+    "prior633_railLabels": [
+     "AI 识图导入",
+     "帮助",
+     "选择画幅比例"
+    ],
+    "batch662_predicted": [
+     "AI 识图导入",
+     "帮助",
+     "选择画幅比例"
+    ],
+    "agree": true
+   }
+  }
+ },
+ "checks": {
+  "the-six-top-entries-are-pinned-to-the-top-and-help-is-pinned-to-the-bottom": {
+   "ok": true,
+   "detail": {
+    "topSixCyPerViewportHeight": {
+     "660": [
+      76,
+      132,
+      172,
+      212,
+      252,
+      292
+     ],
+     "720": [
+      76,
+      132,
+      172,
+      212,
+      252,
+      292
+     ],
+     "900": [
+      76,
+      132,
+      172,
+      212,
+      252,
+      292
+     ],
+     "1150": [
+      76,
+      132,
+      172,
+      212,
+      252,
+      292
+     ]
+    },
+    "topSixIsTheSameAtEveryHeight": true,
+    "helpCy": {
+     "660": 636,
+     "720": 696,
+     "900": 876,
+     "1150": 1126
+    },
+    "helpCyIsHminus24": true,
+    "mechanismInSource": "DirectorIconRail: the first six entries are stacked from the rail's top edge; `help` carries mt-auto so flex pushes it to the bottom",
+    "whyItMatters": "it is what makes N(H,h) a formula instead of a table: the six are constant and `帮助` moves at exactly 1px per px of height"
+   },
+   "note": "a two-ended pin turns a grid into an expression"
+  },
+  "help-is-swallowed-in-every-cell-of-the-grid": {
+   "ok": true,
+   "detail": {
+    "cells": 48,
+    "gridHeights": [
+     660,
+     720,
+     900,
+     1150
+    ],
+    "timelineHeights": [
+     88,
+     120,
+     150,
+     182,
+     240,
+     300,
+     360,
+     367,
+     368,
+     407,
+     408,
+     420
+    ],
+    "helpInStackButNeverTop": {
+     "inStack": "readings above are topIsSelf, i.e. the operational reading 661 settled",
+     "helpStackDepthAtDefault": 21,
+     "helpIndexInStackAtDefault": 8
+    },
+    "note": "this is the opposite of the batch's first guess, which predicted a clean band at 151 < h < 203 leaving the default as the only bad value"
+   },
+   "note": "18 heights, and the predicted clean band never appeared"
+  },
+  "the-blast-radius-closed-form-predicts-every-cell": {
+   "ok": true,
+   "detail": {
+    "rule": "N(H,h) = 1 + |{ cy in the six top entries : cy >= H - h }|",
+    "cells": 48,
+    "mismatches": {},
+    "measuredCounts": {
+     "660/88": 1,
+     "660/120": 1,
+     "660/150": 1,
+     "660/182": 1,
+     "660/240": 1,
+     "660/300": 1,
+     "660/360": 1,
+     "660/367": 1,
+     "660/368": 2,
+     "660/407": 2,
+     "660/408": 3,
+     "660/420": 3,
+     "720/88": 1,
+     "720/120": 1,
+     "720/150": 1,
+     "720/182": 1,
+     "720/240": 1,
+     "720/300": 1,
+     "720/360": 1,
+     "720/367": 1,
+     "720/368": 1,
+     "720/407": 1,
+     "720/408": 1,
+     "720/420": 1,
+     "900/88": 1,
+     "900/120": 1,
+     "900/150": 1,
+     "900/182": 1,
+     "900/240": 1,
+     "900/300": 1,
+     "900/360": 1,
+     "900/367": 1,
+     "900/368": 1,
+     "900/407": 1,
+     "900/408": 1,
+     "900/420": 1,
+     "1150/88": 1,
+     "1150/120": 1,
+     "1150/150": 1,
+     "1150/182": 1,
+     "1150/240": 1,
+     "1150/300": 1,
+     "1150/360": 1,
+     "1150/367": 1,
+     "1150/368": 1,
+     "1150/407": 1,
+     "1150/408": 1,
+     "1150/420": 1
+    },
+    "predictedCounts": {
+     "660/88": 1,
+     "660/120": 1,
+     "660/150": 1,
+     "660/182": 1,
+     "660/240": 1,
+     "660/300": 1,
+     "660/360": 1,
+     "660/367": 1,
+     "660/368": 2,
+     "660/407": 2,
+     "660/408": 3,
+     "660/420": 3,
+     "720/88": 1,
+     "720/120": 1,
+     "720/150": 1,
+     "720/182": 1,
+     "720/240": 1,
+     "720/300": 1,
+     "720/360": 1,
+     "720/367": 1,
+     "720/368": 1,
+     "720/407": 1,
+     "720/408": 1,
+     "720/420": 1,
+     "900/88": 1,
+     "900/120": 1,
+     "900/150": 1,
+     "900/182": 1,
+     "900/240": 1,
+     "900/300": 1,
+     "900/360": 1,
+     "900/367": 1,
+     "900/368": 1,
+     "900/407": 1,
+     "900/408": 1,
+     "900/420": 1,
+     "1150/88": 1,
+     "1150/120": 1,
+     "1150/150": 1,
+     "1150/182": 1,
+     "1150/240": 1,
+     "1150/300": 1,
+     "1150/360": 1,
+     "1150/367": 1,
+     "1150/368": 1,
+     "1150/407": 1,
+     "1150/408": 1,
+     "1150/420": 1
+    },
+    "theWorkings": "a rail entry is 32px wide inside a 48px rail, and the timeline's left column is 320px wide and full-height from H-h down, so every rail centre that reaches H-h is inside it",
+    "scope": "this N counts the rail column only. 633 recorded a `tree` column in the same cells — a different container, not covered here and not claimed."
+   },
+   "note": "48 cells, one expression, no exceptions"
+  },
+  "both-steps-are-pinned-to-a-single-pixel-and-survive-a-fresh-load": {
+   "ok": true,
+   "detail": {
+    "h367_vs_368": [
+     1,
+     2
+    ],
+    "h407_vs_408": [
+     2,
+     3
+    ],
+    "freshLoadCounts": {
+     "660/367": 1,
+     "660/368": 2,
+     "660/407": 2,
+     "660/408": 3
+    },
+    "freshLoadMatchesInPage": true,
+    "predictedSteps": {
+     "H660": [
+      368,
+      408
+     ],
+     "H720": [
+      428,
+      468
+     ],
+     "H900": [
+      608,
+      648
+     ],
+     "H1150": [
+      858,
+      898
+     ]
+    },
+    "whyOnlyH660HasSteps": "the second step needs h = H-252; at H=720 that is 468, above DIRECTOR_TIMELINE_HEIGHT_MAX=420",
+    "whyFreshLoads": "the sweep mutates the store in one page; the four edge cells were re-measured on four brand-new loads to show the reading is not an artefact of in-page mutation"
+   },
+   "note": "367 is one pixel short of a second victim"
+  },
+  "the-mechanism-is-the-timeline-in-every-cell-while-the-top-member-is-not": {
+   "ok": true,
+   "detail": {
+    "blockedControls": 54,
+    "mechanismInsideTimeline": 54,
+    "distinctMembers": 6,
+    "memberCounts": {
+     "data-director-timeline-track-list=true": 39,
+     "data-director-timeline-object-row=director-character-lead": 4,
+     "data-director-track-label=director-track-character-lead-transform": 4,
+     "data-director-timeline-object-row=director-camera-main": 4,
+     "data-director-timeline=true": 2,
+     "data-director-playback=true": 1
+    },
+    "why": "the left column is 320px wide and the rail 48px, and the timeline section is z-40 against the rail's z-30 — so the column wins every point inside it",
+    "theMembers": {
+     "track-list": "the column's own padding / scroll area, which is hit-testable even when empty",
+     "object-row": "an object row happens to be at the point",
+     "timeline": "the point sits exactly on the section's top edge, so there is no nearer data-* ancestor",
+     "playback": "the playback bar, at one cell"
+    },
+    "theInstrumentIsTheDeliverable": "any future batch that attributes an occlusion should name the mechanism, not the member"
+   },
+   "note": "a member is not a cause; the stack top is one row of a list"
+  },
+  "661s-coverer-is-the-member-of-one-cell-not-the-mechanism": {
+   "ok": true,
+   "detail": {
+    "defaultCell": "1150/182",
+    "memberThere": "data-director-timeline-object-row=director-camera-main",
+    "what661CalledIt": "收起属性 — the 20x20 toggle button inside that object row; the mechanism walk stops one level up, at the row",
+    "why661WasNotWrong": "at the cell 661 measured, that member IS what takes the hit. 658's audit recorded the label from the first run.",
+    "whatWasMissing": "that the member is a function of the timeline height: over the grid there are 6 distinct members, and the verdict (unreachable) does not depend on which one is on top",
+    "membersObserved": {
+     "data-director-timeline-track-list=true": 39,
+     "data-director-timeline-object-row=director-character-lead": 4,
+     "data-director-track-label=director-track-character-lead-transform": 4,
+     "data-director-timeline-object-row=director-camera-main": 4,
+     "data-director-timeline=true": 2,
+     "data-director-playback=true": 1
+    }
+   },
+   "note": "naming a member correctly is not the same as naming the cause"
+  },
+  "no-ui-state-rescues-help-because-the-range-floor-sits-above-the-threshold": {
+   "ok": true,
+   "detail": {
+    "helpCentredAt": "H - 24",
+    "swallowedWhen": "h >= 24",
+    "storeRangeReadFromSource": {
+     "DIRECTOR_TIMELINE_HEIGHT_MIN": 88,
+     "DIRECTOR_TIMELINE_HEIGHT_MAX": 420,
+     "DIRECTOR_TIMELINE_DEFAULT_HEIGHT": 182
+    },
+    "theDefaultSitsInsideTheBadRange": true,
+    "theMinimizeButton": {
+     "selector": "[data-director-timeline-collapse]",
+     "uncollapsed": {
+      "tlH": 182,
+      "helpTopIsSelf": false,
+      "helpMechanism": "data-director-timeline-object-row=director-camera-main"
+     },
+     "collapsed": {
+      "tlH": 88,
+      "helpTopIsSelf": false,
+      "helpMechanism": "data-director-timeline-track-list=true"
+     }
+    },
+    "whyThisIsAFormAndNotASample": "a sweep shows which heights are bad; this shows that every reachable height is bad, because the floor is a named constant 64px above the threshold",
+    "theDefectIsNotFixed": "630 already recorded that setTimelineHeight clamps to this magic range without comparing it to the available height; this batch adds the consequence — the clamp is what removes the only escape"
+   },
+   "note": "630's clamp and this batch's closed form are the same fact seen from two ends"
+  },
+  "the-closed-form-reproduces-633s-rail-column-member-by-member": {
+   "ok": true,
+   "detail": {
+    "windowHeight": 660,
+    "priorHeights": [
+     88,
+     120,
+     150,
+     182,
+     240,
+     300,
+     360,
+     420
+    ],
+    "priorInstrument": "633's own census, `buriedColumns`",
+    "comparison": {
+     "88": {
+      "prior633_railLabels": [
+       "帮助"
+      ],
+      "batch662_predicted": [
+       "帮助"
+      ],
+      "agree": true
+     },
+     "120": {
+      "prior633_railLabels": [
+       "帮助"
+      ],
+      "batch662_predicted": [
+       "帮助"
+      ],
+      "agree": true
+     },
+     "150": {
+      "prior633_railLabels": [
+       "帮助"
+      ],
+      "batch662_predicted": [
+       "帮助"
+      ],
+      "agree": true
+     },
+     "182": {
+      "prior633_railLabels": [
+       "帮助"
+      ],
+      "batch662_predicted": [
+       "帮助"
+      ],
+      "agree": true
+     },
+     "240": {
+      "prior633_railLabels": [
+       "帮助"
+      ],
+      "batch662_predicted": [
+       "帮助"
+      ],
+      "agree": true
+     },
+     "300": {
+      "prior633_railLabels": [
+       "帮助"
+      ],
+      "batch662_predicted": [
+       "帮助"
+      ],
+      "agree": true
+     },
+     "360": {
+      "prior633_railLabels": [
+       "帮助"
+      ],
+      "batch662_predicted": [
+       "帮助"
+      ],
+      "agree": true
+     },
+     "420": {
+      "prior633_railLabels": [
+       "AI 识图导入",
+       "帮助",
+       "选择画幅比例"
+      ],
+      "batch662_predicted": [
+       "AI 识图导入",
+       "帮助",
+       "选择画幅比例"
+      ],
+      "agree": true
+     }
+    },
+    "disagreements": {},
+    "whatWasNotRedone": "633's numbers were READ from its audit, not recomputed; this batch's rail column is predicted from the closed form and then compared",
+    "whyMemberLevel": "counting alone would let a wrong set of the right size pass; 633 recorded 帮助 / 选择画幅比例 / AI 识图导入 at h=420 and the form produces exactly those three"
+   },
+   "note": "two instruments, two batches, one page, same members"
+  }
+ }
+}
