@@ -118,6 +118,7 @@ SELFTEST_COSTS = {
     "selftest-ledger-refs.py": 1.2,  # Batch 184：闸 21，实测 1.18/1.26/0.66s
     "selftest-line-counts.py": 11.8,
     "selftest-runtime-policy.py": 0.7,
+    "selftest-quote-punct.py": 11,  # Batch 185：闸 22，实测 9.4/11.0s（6 例各跑一遍全量核对）
     "selftest-screenshots-literals.py": 23.5,
     "selftest-screenshots.py": 0.6,
     "selftest-selftest-bootable.py": 6.4,
