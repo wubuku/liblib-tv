@@ -107,7 +107,9 @@ SLOW = {
 # 因为「空着」和「量过但很快」在账面上长得一模一样，而只有后者是有意义的。
 SELFTEST_COSTS = {
     "selftest-baseline.py": 1.6,
+    "selftest-batch-rows.py": 0.4,  # Batch 183：闸 19，实测 0.39/0.39/0.45s
     "selftest-deadlinks.py": 0.6,
+    "selftest-encoding.py": 0.4,    # Batch 183：闸 20，实测 0.42/0.39/0.42s
     "selftest-endpoints.py": 1,   # Batch 181：闸 3 改批量读后 43s → 1s
     "selftest-error-copy.py": 1.6,
     "selftest-exclusions.py": 2, # Batch 181：闸 5 改批量读后 35.6s → 2s
