@@ -399,6 +399,16 @@
       ],
       "refuted_in": "批次 102（SOURCE_OBSERVATIONS.md §4.22.5，收窄而非推翻）",
       "reason": "挂住的是 `page.waitForEvent('filechooser')` **那一种等待写法**；换成全局 `page.on('filechooser', …)` 完全正常，批次 101（视频）与批次 102（文本）连续两次成功拉起选择器并完成上传。准确说法：「这条等待写法在 connectOverCDP 下会超时」，不是「这条路上传不了」。📌 判据教训：pattern 只写「挂住」**过宽**，把 §4.22 这段**专门记录订正过程**的小节也命中了 ⇒ 必须带上领域限定词（`connectOverCDP`）"
+    },
+    {
+      "id": "audio-media-node-needs-generation",
+      "label": "「造出带媒体的音频节点需要生成、属扣费边界，本手册未执行」—— 原写在 audio-node-voice.md 的「有内容的音频节点」一节（2026-09-23 记录）",
+      "patterns": [
+        "造出带媒体的音频节点",
+        "需要生成、属扣费边界"
+      ],
+      "refuted_in": "批次 104（SOURCE_OBSERVATIONS.md §4.24.0）",
+      "reason": "**不需要生成。** 左栏「上传」一样能造出带媒体的音频节点，而且**免费**（实测积分 805→805）；批次 102 测出 accept 白名单含 **17 种音频扩展名**（mp3/m4a/wav/flac/aac/wma…）。本轮用自造 4 秒 WAV 一次造出并把播放/暂停/波形跳转全部测完。这与批次 101 在视频侧犯的是同一个错：把「素材限制」写成了「扣费边界」"
     }
   ]
 }

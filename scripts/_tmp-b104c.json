@@ -1,0 +1,202 @@
+{
+ "at": "2026-10-02T12:30:24.109Z",
+ "selfId": "node_rezb9hd9kv",
+ "ariaEls": [
+  {
+   "tag": "BUTTON",
+   "aria": "Rename jimeng-b104-test",
+   "role": null,
+   "tid": null,
+   "cv": "178.75×53.33@1950,982",
+   "screen": "564,256 107×32",
+   "parentTid": "flow-node-title",
+   "cursor": "pointer"
+  },
+  {
+   "tag": "BUTTON",
+   "aria": "Add tags",
+   "role": null,
+   "tid": "flow-node-selected-tag",
+   "cv": "40×40@2197,982",
+   "screen": "712,256 24×24",
+   "parentTid": null,
+   "cursor": "pointer"
+  },
+  {
+   "tag": "BUTTON",
+   "aria": "Create connected node after jimeng-b104-test",
+   "role": null,
+   "tid": "flow-node-source-connection-menu-button",
+   "cv": "60×60@2255,1154",
+   "screen": "747,359 36×36",
+   "parentTid": null,
+   "cursor": "pointer"
+  },
+  {
+   "tag": "DIV",
+   "aria": "Seek jimeng-b104-test",
+   "role": "slider",
+   "tid": "audio-playback-waveform",
+   "cv": "272×82@1941,1137",
+   "screen": "558,349 163×49",
+   "parentTid": null,
+   "cursor": "ew-resize"
+  },
+  {
+   "tag": "BUTTON",
+   "aria": "Play jimeng-b104-test",
+   "role": null,
+   "tid": null,
+   "cv": "36×36@2179,1300",
+   "screen": "701,446 22×22",
+   "parentTid": null,
+   "cursor": "pointer"
+  },
+  {
+   "tag": "BUTTON",
+   "aria": "替换媒体",
+   "role": null,
+   "tid": null,
+   "cv": "36×36@2193,1044",
+   "screen": "710,293 22×22",
+   "parentTid": null,
+   "cursor": "pointer"
+  },
+  {
+   "tag": "INPUT",
+   "aria": "替换媒体",
+   "role": null,
+   "tid": null,
+   "cv": "0×0@1010,556",
+   "screen": "0,0 0×0",
+   "parentTid": null,
+   "cursor": "default"
+  }
+ ],
+ "durTree": {
+  "duration": {
+   "text": "00:00:0200 : 00 : 02",
+   "leaves": [
+    {
+     "tag": "SPAN",
+     "tid": "audio-duration-accessible",
+     "cls": "sr-only",
+     "ownText": "00:00:02",
+     "rect": "557,448 1×1"
+    },
+    {
+     "tag": "SPAN",
+     "tid": null,
+     "cls": "text-dreamina-on-media-text-placeholder",
+     "ownText": "00",
+     "rect": "557,450 16×15"
+    },
+    {
+     "tag": "SPAN",
+     "tid": null,
+     "cls": "text-dreamina-on-media-text-placeholder",
+     "ownText": ":|00",
+     "rect": "573,450 27×15"
+    },
+    {
+     "tag": "SPAN",
+     "tid": null,
+     "cls": "text-dreamina-on-media-text-primary",
+     "ownText": ":|02",
+     "rect": "600,450 26×15"
+    }
+   ]
+  },
+  "accessible": {
+   "text": "00:00:02",
+   "aria": null,
+   "cls": "sr-only"
+  }
+ },
+ "audio": [
+  {
+   "t": 0,
+   "src": "https://v26-dreamina-de.jianying.com/b702364973dd149645b537e87c3b304c/6abfb0cd/video/tos/c",
+   "currentSrc": "https://v26-dreamina-de.jianying.com/b702364973dd149645b537e87c3b304c/6abfb0cd/video/tos/c",
+   "sourceTags": [],
+   "readyState": 0,
+   "networkState": 1,
+   "paused": true,
+   "ct": 2,
+   "dur": null,
+   "error": null,
+   "preload": "none",
+   "canPlay": "maybe"
+  },
+  {
+   "t": 1000,
+   "src": "https://v26-dreamina-de.jianying.com/b702364973dd149645b537e87c3b304c/6abfb0cd/video/tos/c",
+   "currentSrc": "https://v26-dreamina-de.jianying.com/b702364973dd149645b537e87c3b304c/6abfb0cd/video/tos/c",
+   "sourceTags": [],
+   "readyState": 0,
+   "networkState": 1,
+   "paused": true,
+   "ct": 2,
+   "dur": null,
+   "error": null,
+   "preload": "none",
+   "canPlay": "maybe"
+  },
+  {
+   "t": 2000,
+   "src": "https://v26-dreamina-de.jianying.com/b702364973dd149645b537e87c3b304c/6abfb0cd/video/tos/c",
+   "currentSrc": "https://v26-dreamina-de.jianying.com/b702364973dd149645b537e87c3b304c/6abfb0cd/video/tos/c",
+   "sourceTags": [],
+   "readyState": 0,
+   "networkState": 1,
+   "paused": true,
+   "ct": 2,
+   "dur": null,
+   "error": null,
+   "preload": "none",
+   "canPlay": "maybe"
+  },
+  {
+   "t": 3000,
+   "src": "https://v26-dreamina-de.jianying.com/b702364973dd149645b537e87c3b304c/6abfb0cd/video/tos/c",
+   "currentSrc": "https://v26-dreamina-de.jianying.com/b702364973dd149645b537e87c3b304c/6abfb0cd/video/tos/c",
+   "sourceTags": [],
+   "readyState": 0,
+   "networkState": 1,
+   "paused": true,
+   "ct": 2,
+   "dur": null,
+   "error": null,
+   "preload": "none",
+   "canPlay": "maybe"
+  },
+  {
+   "t": 4000,
+   "src": "https://v26-dreamina-de.jianying.com/b702364973dd149645b537e87c3b304c/6abfb0cd/video/tos/c",
+   "currentSrc": "https://v26-dreamina-de.jianying.com/b702364973dd149645b537e87c3b304c/6abfb0cd/video/tos/c",
+   "sourceTags": [],
+   "readyState": 0,
+   "networkState": 1,
+   "paused": true,
+   "ct": 2,
+   "dur": null,
+   "error": null,
+   "preload": "none",
+   "canPlay": "maybe"
+  },
+  {
+   "t": 5000,
+   "src": "https://v26-dreamina-de.jianying.com/b702364973dd149645b537e87c3b304c/6abfb0cd/video/tos/c",
+   "currentSrc": "https://v26-dreamina-de.jianying.com/b702364973dd149645b537e87c3b304c/6abfb0cd/video/tos/c",
+   "sourceTags": [],
+   "readyState": 0,
+   "networkState": 1,
+   "paused": true,
+   "ct": 2,
+   "dur": null,
+   "error": null,
+   "preload": "none",
+   "canPlay": "maybe"
+  }
+ ]
+}
