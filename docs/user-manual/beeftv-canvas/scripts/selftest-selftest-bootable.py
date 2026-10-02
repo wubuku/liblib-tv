@@ -95,6 +95,41 @@ def sandbox():
     return tmp
 
 
+def sandbox_full(break_selftest=None):
+    """**完整**的手册树副本（外加 git init）——方向十六的真跑前提。
+
+    **为什么需要它，而 `sandbox()` 不够**：`sandbox()` 只 copytree `scripts/`，
+    **沙箱里没有任务台账、没有任务页、没有真截图**。实测在那种沙箱里真跑 21 份反验，
+    `selftest-exclusions.py` / `shot-drift` / `shot-pixels` 三份**因为环境缺口而失败**——
+    **而那正是判据最坏的一种错：拿环境的缺口冒充「反验坏了」**。
+    实测完整副本 **15.2 MB、拷贝 0.3 秒**，方向十六 21/21 全绿。
+    """
+    tmp = tempfile.mkdtemp(prefix="beef-bootable-full.")
+    for f in os.listdir(ROOT):
+        if f in ("node_modules", ".vitepress", "dist", ".git"):
+            continue
+        src = os.path.join(ROOT, f)
+        dst = os.path.join(tmp, f)
+        (shutil.copytree if os.path.isdir(src) else shutil.copy)(src, dst)
+    _git_init(tmp)
+    if break_selftest:
+        p = os.path.join(tmp, "scripts", break_selftest)
+        t = read(p)
+        # **让它崩**——形态与 Batch 207 那次 `FileNotFoundError` 一致：
+        # 方向一只保证「能启动」，而崩掉的那份**方向一照样报绿**。
+        #
+        # **第一版把它追加到文件末尾，用例 23 立刻报红而闸是绿的**——
+        # 那些反验都以 `sys.exit(main())` 收尾，**追加的那行永远执行不到**。
+        # **这就是「注入必须落在判据真的读的那条路径上」**（Batch 155/157 的原话），
+        # 只是这次踩的是自己的注入。修法：插在 `if __name__` **之前**，
+        # 那是模块体真正会走到的位置；**并 assert 钉死锚点**。
+        anchor = "\nif __name__ =="
+        i = t.find(anchor)
+        assert i != -1, "前提失配：%s 里找不到 `if __name__` 入口" % break_selftest
+        write(p, t[:i] + "\nraise SystemExit(1)  # Batch 210 用例 23 注入\n" + t[i:])
+    return tmp
+
+
 def check_anchor():
     t = read(GATE)
     assert "FIXTURE_RE" in t, "前提失配：闸 18 里找不到夹具分类判据"
@@ -102,6 +137,7 @@ def check_anchor():
     assert "SELFTEST_COSTS = {" in t, "前提失配：闸 18 里找不到实测耗时表"
     assert "_build_invokes" in t, "前提失配：闸 18 里找不到「只认代码不认注释」的判据"
     assert "_deleted_sibling_names" in t, "前提失配：闸 18 里找不到方向十五「被删掉的引用」判据"
+    assert "方向十六" in t, "前提失配：闸 18 里找不到方向十六「真跑反验」判据"
 
 
 # ── 1 现状 ──────────────────────────────────────────────────────────
@@ -515,6 +551,37 @@ def m_live_fixture_ref_not_reported():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── 23/24 真跑反验（方向十六，**Batch 210**）────────────────────────
+# **这两条各要 ~35 秒**（真跑 21 份反验），是这份反验里最贵的两条。
+# **贵的理由要写出来**：它们换来的是「反验坏了会让构建变红」这件事有守卫，
+# 而 **Batch 209 实测有两条用例作废了整整一个批次而闸 18 全绿**。
+def m_broken_selftest_caught():
+    check_anchor()
+    victim = "selftest-endpoints.py"
+    tmp = sandbox_full(break_selftest=victim)
+    try:
+        rc, out = run_in(tmp)
+        record("23 反验真跑不过→必报",
+               rc == 1 and "方向十六" in out and victim in out and "真跑没跑通" in out,
+               f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_clean_fleet_not_reported():
+    check_anchor()
+    tmp = sandbox_full()
+    try:
+        rc, out = run_in(tmp)
+        # **不误伤这一半必须同时证明「跑了」和「没报」**：
+        # 只断言 rc == 0 的话，方向十六走 [skip] 分支（树不完整）也是 rc=0，
+        # **那条路等于没测**。所以要看见它自己打出的那行汇总。
+        record("24 21 份反验真跑全绿→不报",
+               rc == 0 and "真跑 21 份非慢反验，21 份 rc=0" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main():
     tests = [m_clean, m_broken_selftest_syntax, m_broken_fixture_syntax,
              m_broken_shell, m_missing_local_module, m_fixture_not_treated_as_selftest,
@@ -524,7 +591,8 @@ def main():
              m_slow_fixture_crashes, m_slow_feature_missing,
              m_run_gate_silent, m_run_gate_reports, m_run_gate_confuses_codes,
              m_shell_unsafe_var, m_shell_safe_var,
-             m_deleted_fixture_ref, m_live_fixture_ref_not_reported]
+             m_deleted_fixture_ref, m_live_fixture_ref_not_reported,
+             m_broken_selftest_caught, m_clean_fleet_not_reported]
     for t in tests:
         try:
             t()

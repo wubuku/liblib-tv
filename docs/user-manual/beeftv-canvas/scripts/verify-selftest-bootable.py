@@ -34,9 +34,28 @@ Batch 178 的 34 例失败**全部发生在启动阶段**（import 失败、找�
     **「慢」是一个会悄悄变化的性质**：今天 97 秒，明天上游一大就可能变成 10 分钟。
     **不登记，它就会在某天悄悄越过可接受的界线。**
 
-**刻意不做的事**：本闸**不跑任何用例**。跑用例是 `bash scripts/selftest-*.sh`
-的事，那是提交前的动作；**构建期只保证「它至少能启动」**。
-**把「能启动」与「跑得对」分开，是这道闸能放进每次构建的前提。**
+**Batch 179 刻意不做的事，本批（210）部分推翻，理由必须写在这里**：
+当时写的是「本闸**不跑任何用例**……构建期只保证『它至少能启动』」，
+理由是 `selftest-unreachable.sh` 约 25 分钟、`selftest-meta.sh` 97 秒，**跑不起**。
+**那个理由在今天只剩一半成立**：慢的那几份**已经被识别出来并登记进 `SLOW`**，
+而**剩下的 21 份实测只要 31.3 / 34.4 / 32.4 / 32.0 秒**（四轮，同一台机器）。
+**决定当初是对的——它是在「不知道哪几份慢」这个前提下做的；
+前提变了，决定就该跟着变，而不是把前提忘了继续引用那句话。**
+于是新增**方向十六：非慢反验必须真的跑通**。
+**「能启动」与「跑得对」仍然分开**：方向十六跑的是**反验自己的用例**，
+方向一保证的仍然只是「反验能被启动」——**两者不是一回事，本闸两个都做。**
+
+**但真跑带来两个必须一起解决的问题，不解决就不该做**：
+  · **递归**：闸 18 的反验 `selftest-selftest-bootable.py` 装的就是闸 18 自己的用例集合，
+    **在闸 18 里跑它 = 闸 18 跑闸 18 跑闸 18**。所以方向十六**硬排除**它，
+    **并要求它必须在 `SLOW` 里**——不在就报出来（那说明有人把登记删了）。
+  · **沙箱**：闸 18 的反验把自己的每一例都放进一个**只有 `scripts/` 与
+    `build-site.sh` 的沙箱**，**那里没有手册正文**。
+    所以方向十六**先核前提**：手册根下的 `.md` 不足 5 份就 `[skip]` 不跑，
+    **并且把「这里不是一棵完整的手册树」说出来**。
+    **这一版最初是「用白名单缩到一两份」，实测证明那条路走不通**——
+    缩范围并不能让沙箱能跑，而缩了范围还得额外解释一遍「本次只跑了 N 份」；
+    **机制多一个，可错的地方就多一个**。核前提更短，也更准。
 
 退出码：0 全部可启动；1 有反验起不来；2 未能核对（找不到 scripts 目录 / 抽出 0 份反验）。
 """
@@ -48,6 +67,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from baseline import announce_fallback  # noqa: E402
@@ -114,10 +134,13 @@ SLOW = {
         "anchor": ("selftest-screenshots-literals.py", "def run(manifest_text"),
     },
     "selftest-selftest-bootable.py": {
-        # **Batch 209 重测：155.2 秒与 116.0 秒**（两次取大，纪律 204：漂的时候倒向安全那侧）。
-        # 此前登记 **68 秒**，而**那个 68 是在用例 9/10 已经作废的状态下测的**——
-        # 见下面 why 的最后一段，这是本条最要紧的地方。
-        "seconds": 156,
+        # **Batch 210 重测：209.3 秒与 383.7 秒**（两次取大，纪律 204：漂的时候倒向安全那侧）。
+        # **同一天同一台机器 1.8 倍漂**（209.3 → 383.7）——纪律 136 早就说过绝对毫秒会漂，
+        # **这里再实测一次，数字对得上那条纪律**。
+        # 变慢的来源是本批新增的两条用例 23/24：它们各自要建一棵**完整**的手册树副本
+        # （15.2 MB、拷贝 0.3 秒）再让方向十六真跑 21 份反验（~30 秒），
+        # **两条加起来就是本批新增的那 ~90 秒**。
+        "seconds": 384,
         "why": "每一例都要 `copytree` 整份 `scripts/`（87 个文件）进沙箱再跑一遍闸 18，"
                "**而闸 18 现在还会在沙箱里重放慢反验的夹具前提**。"
                "已越过 30 秒阈值，**放进构建会让每次构建多花三分之一时间**。"
@@ -188,7 +211,7 @@ SELFTEST_COSTS = {
     "selftest-scope.py": 0.4,
     "selftest-screenshots-literals.py": 30.1,
     "selftest-screenshots.py": 0.7,
-    "selftest-selftest-bootable.py": 156.0,   # Batch 209 重测：155.2 / 116.0 秒（**两次取大**）
+    "selftest-selftest-bootable.py": 384.0,   # Batch 210 重测：209.3 / 383.7 秒（**两次取大**；**同一天 1.8 倍漂**，纪律 136）
     "selftest-selftest-deps.py": 0.7,
     "selftest-shortcuts.py": 0.7,
     "selftest-shot-drift.py": 10.0,
@@ -1005,6 +1028,110 @@ def main():
                             "UTF-8 locale 下的 bash 会把那些字节算进变量名"
                             % (rel, n, m.group(1), line[j], why, m.group(1)))
                         break
+
+    # 方向十六（**Batch 210 新增**）：**非慢反验必须真的跑通**，而不只是「能启动」。
+    # **它治的是 Batch 209 那次事故暴露的最后一层**：用例 9/10 的注入锚点
+    # 被一次例行的数据刷新弄失效之后，两条都记成「作废」——
+    # **而方向一（能启动）、方向十五（引用没悬空）、方向五/五之二（慢反验前提）
+    # 全都照样报绿**。**反验不在构建路径上，而「作废」在退出码上与「失败」难以分辨**：
+    # 那次只有一次人工普查才撞见。
+    # **本方向问的是行为，不是写法**：逐份真跑，看退出码。
+    fleet_all = [n for n in names if n != "selftest-selftest-bootable.py"]
+    fleet = [n for n in fleet_all if n not in SLOW]
+    if "selftest-selftest-bootable.py" not in SLOW:
+        problems.append(
+            "方向十六：`selftest-selftest-bootable.py` **不在 SLOW 登记里**——"
+            "它是闸 18 自己的反验，被方向十六真跑会**无限递归**"
+            "　→ 请把它登记进 SLOW 并写明理由")
+    # **前提：真跑不许改现场。** 先记一份 git 状态，跑完再记一份，只比差集。
+    # **这不是「现场干不干净」，而是「跑完有没有变」**——
+    # 这个仓里别人正在改东西是常态，所以只能比差集，不能比绝对状态。
+    def _snapshot():
+        g = subprocess.run(["git", "-C", ROOT, "status", "--porcelain", "--", "."],
+                           capture_output=True, text=True)
+        return None if g.returncode != 0 else {l for l in g.stdout.split("\n") if l.strip()}
+
+    # **先核前提，再跑**（与 `selftest-zero-input.py` 的方向三同一套理由）：
+    # 闸 18 的反验把自己的每一例都放进一个**只有 `scripts/` 与 `build-site.sh` 的沙箱**，
+    # **那里没有手册正文**。真跑任何一份内容相关的反验都会得到一个
+    # **由环境造成的假失败**——而**拿环境的缺口冒充「反验坏了」，
+    # 是判据最坏的一种错**：它会让人去改反验，而真正的问题在沙箱。
+    # （这一版最初写的是「用白名单缩到一两份」，**实测证明那条路走不通**：
+    #  缩了范围并不能让沙箱变得能跑，而缩了范围还得在输出里解释一遍——
+    #  **机制多一个，可错的地方就多一个**。改成核前提更短也更准。）
+    # **这三条不是猜的，是实测里真实缺过的**（先做了一版「≥5 份 .md」，
+    # 结果 `selftest-exclusions.py` 报缺 `task-inventory.yml`、
+    # `shot-drift` / `shot-pixels` 报缺真图——**判据把自己的环境缺口
+    # 报成了三份反验坏了**）。所以逐条写清缺的是什么、为什么需要。
+    need = [("task-inventory.yml", "任务台账（`selftest-exclusions.py` 要读它）"),
+            ("10-tasks", "任务页目录"),
+            ("screenshots", "截图目录（`shot-pixels` / `shot-drift` 要读真图）")]
+    lack = [d for d, _ in need if not os.path.exists(os.path.join(ROOT, d))]
+    pngs = 0
+    sd = os.path.join(ROOT, "screenshots")
+    if os.path.isdir(sd):
+        pngs = len([f for f in os.listdir(sd) if f.endswith(".png")])
+    if lack or not pngs:
+        print("方向十六：[skip] 这里**不是一棵完整的手册树**（%s），不跑——"
+              "**不拿环境的缺口冒充「反验坏了」**"
+              % ("；".join("%s 缺失（%s）" % (d, w) for d, w in need if d in lack)
+                 or "screenshots 下 0 张 .png"))
+        fleet = []
+    before = _snapshot()
+    ran = ok = 0
+    fleet_cost = 0.0
+    budget = 300.0            # 整体预算（秒）。**超了要报，不能默默不跑**
+    per = 120.0               # 单份上限（秒）：实测最慢的一份 11.7 秒，这里留 10 倍
+    for fn in fleet:
+        if budget - fleet_cost <= 0:
+            problems.append(
+                f"方向十六：整体预算 {budget:.0f} 秒用尽，**剩下 {len(fleet) - ran} 份"
+                f"反验没有跑**（本轮已跑 {ok}/{len(fleet)} 份全绿）"
+                "　→ **没跑不等于没问题**；要么调预算，要么把慢的那几份登记进 SLOW")
+            break
+        t0 = time.time()
+        try:
+            r = subprocess.run(
+                ["bash", fn] if fn.endswith(".sh") else [sys.executable, fn],
+                cwd=SCRIPTS, capture_output=True, text=True,
+                timeout=min(per, budget - fleet_cost))
+            rc, out = r.returncode, (r.stdout or "") + (r.stderr or "")
+        except subprocess.TimeoutExpired:
+            rc, out = None, ""
+        d = time.time() - t0
+        fleet_cost += d
+        ran += 1
+        if rc == 0:
+            ok += 1
+            continue
+        tail = " / ".join(l.strip() for l in out.strip().split("\n") if l.strip())[-220:]
+        why = (f"**超时**（上限 {per:.0f} 秒，实测 {d:.1f} 秒）" if rc is None
+               else f"退出码 {rc}")
+        problems.append(
+            f"方向十六：反验 `{fn}` **真跑没跑通**（{why}，{d:.1f} 秒）"
+            "　→ 方向一只保证它「能启动」，**启动得了不等于跑得过**。"
+            "**作废的用例在退出码上与失败难以分辨**——Batch 209 实测有两条作废了整整一个批次，"
+            f"而闸 18 全绿。实际输出末尾：{tail or '(无输出)'}")
+
+    after = _snapshot()
+    if before is None or after is None:
+        print("方向十六：[skip] 本手册目录不在 git 检出里，"
+              "**核不了「真跑有没有改现场」**——如实报出，不装作核过了")
+    else:
+        dirty = after - before
+        if dirty:
+            problems.append(
+                f"方向十六：真跑 {ran} 份反验之后**现场多了 {len(dirty)} 处改动**："
+                f"{'、'.join(sorted(dirty)[:3])}"
+                "　→ **反验只该在临时目录里动手脚**；它改了真实手册，"
+                "下一次构建读到的就不是我们以为的那份了"
+                "（`selftest-meta.sh` 会原地改 15 个真实文件，**所以它必须留在 SLOW 里**）")
+    print("  方向十六：真跑 %d 份非慢反验，%d 份 rc=0，用时 %.1f 秒%s"
+          % (ran, ok, fleet_cost,
+             ("；**另有 %d 份按 SLOW 登记没跑**（%s）"
+              % (len(fleet_all) - ran,
+                 "、".join(sorted(n for n in fleet_all if n not in fleet)))
+              if fleet else "；**本轮一份都没跑**")))
 
     checked = py_ok + sh_ok
     if problems:
