@@ -1,0 +1,1914 @@
+{
+ "verifier": {
+  "cells": [
+   "1280x1150",
+   "1440x1150",
+   "1920x1150"
+  ],
+  "controls": {
+   "1280x1150": 130,
+   "1440x1150": 130,
+   "1920x1150": 130
+  },
+  "distinctNames": {
+   "1280x1150": 102,
+   "1440x1150": 102,
+   "1920x1150": 102
+  },
+  "shadowed": {
+   "1280x1150": 28,
+   "1440x1150": 28,
+   "1920x1150": 28
+  },
+  "collidingNames": {
+   "1280x1150": 8,
+   "1440x1150": 8,
+   "1920x1150": 8
+  },
+  "multiplicities": {
+   "当前帧有关键帧": 11,
+   "<input>": 10,
+   "左右拖动调整 X 轴": 3,
+   "左右拖动调整 Y 轴": 3,
+   "左右拖动调整 Z 轴": 3,
+   "上一关键帧": 2,
+   "下一关键帧": 2,
+   "收起属性": 2
+  },
+  "lattice": {
+   "当前帧有关键帧": {
+    "xs": [
+     119,
+     1076,
+     1160,
+     1244
+    ],
+    "ys": [
+     342,
+     414,
+     486,
+     1077,
+     1141
+    ],
+    "dx": [
+     957,
+     84,
+     84
+    ],
+    "dy": [
+     72,
+     72,
+     591,
+     64
+    ],
+    "xEquidistant": false,
+    "yEquidistant": false
+   },
+   "<input>": {
+    "xs": [
+     1016,
+     1100,
+     1184
+    ],
+    "ys": [
+     201,
+     342,
+     414,
+     486
+    ],
+    "dx": [
+     84,
+     84
+    ],
+    "dy": [
+     141,
+     72,
+     72
+    ],
+    "xEquidistant": true,
+    "yEquidistant": false
+   },
+   "左右拖动调整 X 轴": {
+    "xs": [
+     1016
+    ],
+    "ys": [
+     342,
+     414,
+     486
+    ],
+    "dx": [],
+    "dy": [
+     72,
+     72
+    ],
+    "xEquidistant": true,
+    "yEquidistant": true
+   },
+   "左右拖动调整 Y 轴": {
+    "xs": [
+     1100
+    ],
+    "ys": [
+     342,
+     414,
+     486
+    ],
+    "dx": [],
+    "dy": [
+     72,
+     72
+    ],
+    "xEquidistant": true,
+    "yEquidistant": true
+   },
+   "左右拖动调整 Z 轴": {
+    "xs": [
+     1184
+    ],
+    "ys": [
+     342,
+     414,
+     486
+    ],
+    "dx": [],
+    "dy": [
+     72,
+     72
+    ],
+    "xEquidistant": true,
+    "yEquidistant": true
+   },
+   "上一关键帧": {
+    "xs": [
+     93
+    ],
+    "ys": [
+     1077,
+     1141
+    ],
+    "dx": [],
+    "dy": [
+     64
+    ],
+    "xEquidistant": true,
+    "yEquidistant": true
+   },
+   "下一关键帧": {
+    "xs": [
+     145
+    ],
+    "ys": [
+     1077,
+     1141
+    ],
+    "dx": [],
+    "dy": [
+     64
+    ],
+    "xEquidistant": true,
+    "yEquidistant": true
+   },
+   "收起属性": {
+    "xs": [
+     8
+    ],
+    "ys": [
+     1047,
+     1111
+    ],
+    "dx": [],
+    "dy": [
+     64
+    ],
+    "xEquidistant": true,
+    "yEquidistant": true
+   }
+  },
+  "staticCensus": {
+   "filesScanned": 370,
+   "filesWithHits": 9,
+   "keyUses": 27,
+   "perFile": {
+    "verify-liblib-batch591.py": {
+     "上一关键帧": 3,
+     "下一关键帧": 3,
+     "当前帧有关键帧": 1
+    },
+    "verify-liblib-batch593.py": {
+     "上一关键帧": 3,
+     "下一关键帧": 3,
+     "当前帧有关键帧": 3,
+     "收起属性": 1
+    },
+    "verify-liblib-batch609.py": {
+     "左右拖动调整 X 轴": 1
+    },
+    "verify-liblib-batch610.py": {
+     "当前帧有关键帧": 1
+    },
+    "verify-liblib-batch612.py": {
+     "左右拖动调整 X 轴": 1
+    },
+    "verify-liblib-batch661.py": {
+     "收起属性": 1
+    },
+    "verify-liblib-batch664.py": {
+     "收起属性": 3
+    },
+    "verify-liblib-batch667.py": {
+     "收起属性": 1
+    },
+    "verify-liblib-batch672.py": {
+     "左右拖动调整 Y 轴": 1,
+     "左右拖动调整 Z 轴": 1
+    }
+   }
+  },
+  "bite": [
+   "上一关键帧",
+   "下一关键帧",
+   "左右拖动调整 X 轴",
+   "左右拖动调整 Y 轴",
+   "左右拖动调整 Z 轴",
+   "当前帧有关键帧",
+   "收起属性"
+  ],
+  "biteFiles": {
+   "上一关键帧": [
+    "verify-liblib-batch591.py",
+    "verify-liblib-batch593.py"
+   ],
+   "下一关键帧": [
+    "verify-liblib-batch591.py",
+    "verify-liblib-batch593.py"
+   ],
+   "左右拖动调整 X 轴": [
+    "verify-liblib-batch609.py",
+    "verify-liblib-batch612.py"
+   ],
+   "左右拖动调整 Y 轴": [
+    "verify-liblib-batch672.py"
+   ],
+   "左右拖动调整 Z 轴": [
+    "verify-liblib-batch672.py"
+   ],
+   "当前帧有关键帧": [
+    "verify-liblib-batch591.py",
+    "verify-liblib-batch593.py",
+    "verify-liblib-batch610.py"
+   ],
+   "收起属性": [
+    "verify-liblib-batch593.py",
+    "verify-liblib-batch661.py",
+    "verify-liblib-batch664.py",
+    "verify-liblib-batch667.py"
+   ]
+  },
+  "sameControlRepeated": [
+   "左右拖动调整 X 轴",
+   "左右拖动调整 Y 轴",
+   "左右拖动调整 Z 轴",
+   "上一关键帧",
+   "下一关键帧",
+   "收起属性"
+  ],
+  "differentControlsMerged": [
+   "当前帧有关键帧",
+   "<input>"
+  ],
+  "controlsJudged": 390
+ },
+ "cells": {
+  "1280x1150": {
+   "W": 1280,
+   "controls": 130,
+   "distinctNames": 102,
+   "collisions": [
+    {
+     "name": "当前帧有关键帧",
+     "n": 11,
+     "members": [
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1076,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1160,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1244,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1076,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1160,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1244,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1076,
+        486,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1160,
+        486,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1244,
+        486,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        119,
+        1077,
+        24,
+        24
+       ]
+      },
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        119,
+        1141,
+        24,
+        24
+       ]
+      }
+     ]
+    },
+    {
+     "name": "<input>",
+     "n": 10,
+     "members": [
+      {
+       "ident": "h-7.w-full.rounded-lg",
+       "tag": "input",
+       "box": [
+        1016,
+        201,
+        248,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1016,
+        342,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1100,
+        342,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1184,
+        342,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1016,
+        414,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1100,
+        414,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1184,
+        414,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1016,
+        486,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1100,
+        486,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1184,
+        486,
+        59,
+        28
+       ]
+      }
+     ]
+    },
+    {
+     "name": "左右拖动调整 X 轴",
+     "n": 3,
+     "members": [
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1016,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1016,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1016,
+        486,
+        20,
+        28
+       ]
+      }
+     ]
+    },
+    {
+     "name": "左右拖动调整 Y 轴",
+     "n": 3,
+     "members": [
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1100,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1100,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1100,
+        486,
+        20,
+        28
+       ]
+      }
+     ]
+    },
+    {
+     "name": "左右拖动调整 Z 轴",
+     "n": 3,
+     "members": [
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1184,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1184,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1184,
+        486,
+        20,
+        28
+       ]
+      }
+     ]
+    },
+    {
+     "name": "上一关键帧",
+     "n": 2,
+     "members": [
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        93,
+        1077,
+        24,
+        24
+       ]
+      },
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        93,
+        1141,
+        24,
+        24
+       ]
+      }
+     ]
+    },
+    {
+     "name": "下一关键帧",
+     "n": 2,
+     "members": [
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        145,
+        1077,
+        24,
+        24
+       ]
+      },
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        145,
+        1141,
+        24,
+        24
+       ]
+      }
+     ]
+    },
+    {
+     "name": "收起属性",
+     "n": 2,
+     "members": [
+      {
+       "ident": "group.relative.z-[1]",
+       "tag": "button",
+       "box": [
+        8,
+        1047,
+        20,
+        20
+       ]
+      },
+      {
+       "ident": "group.relative.z-[1]",
+       "tag": "button",
+       "box": [
+        8,
+        1111,
+        20,
+        20
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "1440x1150": {
+   "W": 1440,
+   "controls": 130,
+   "distinctNames": 102,
+   "collisions": [
+    {
+     "name": "当前帧有关键帧",
+     "n": 11,
+     "members": [
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1236,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1320,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1404,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1236,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1320,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1404,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1236,
+        486,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1320,
+        486,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1404,
+        486,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        119,
+        1077,
+        24,
+        24
+       ]
+      },
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        119,
+        1141,
+        24,
+        24
+       ]
+      }
+     ]
+    },
+    {
+     "name": "<input>",
+     "n": 10,
+     "members": [
+      {
+       "ident": "h-7.w-full.rounded-lg",
+       "tag": "input",
+       "box": [
+        1176,
+        201,
+        248,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1176,
+        342,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1260,
+        342,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1344,
+        342,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1176,
+        414,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1260,
+        414,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1344,
+        414,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1176,
+        486,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1260,
+        486,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1344,
+        486,
+        59,
+        28
+       ]
+      }
+     ]
+    },
+    {
+     "name": "左右拖动调整 X 轴",
+     "n": 3,
+     "members": [
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1176,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1176,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1176,
+        486,
+        20,
+        28
+       ]
+      }
+     ]
+    },
+    {
+     "name": "左右拖动调整 Y 轴",
+     "n": 3,
+     "members": [
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1260,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1260,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1260,
+        486,
+        20,
+        28
+       ]
+      }
+     ]
+    },
+    {
+     "name": "左右拖动调整 Z 轴",
+     "n": 3,
+     "members": [
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1344,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1344,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1344,
+        486,
+        20,
+        28
+       ]
+      }
+     ]
+    },
+    {
+     "name": "上一关键帧",
+     "n": 2,
+     "members": [
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        93,
+        1077,
+        24,
+        24
+       ]
+      },
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        93,
+        1141,
+        24,
+        24
+       ]
+      }
+     ]
+    },
+    {
+     "name": "下一关键帧",
+     "n": 2,
+     "members": [
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        145,
+        1077,
+        24,
+        24
+       ]
+      },
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        145,
+        1141,
+        24,
+        24
+       ]
+      }
+     ]
+    },
+    {
+     "name": "收起属性",
+     "n": 2,
+     "members": [
+      {
+       "ident": "group.relative.z-[1]",
+       "tag": "button",
+       "box": [
+        8,
+        1047,
+        20,
+        20
+       ]
+      },
+      {
+       "ident": "group.relative.z-[1]",
+       "tag": "button",
+       "box": [
+        8,
+        1111,
+        20,
+        20
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "1920x1150": {
+   "W": 1920,
+   "controls": 130,
+   "distinctNames": 102,
+   "collisions": [
+    {
+     "name": "当前帧有关键帧",
+     "n": 11,
+     "members": [
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1716,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1800,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1884,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1716,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1800,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1884,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1716,
+        486,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1800,
+        486,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "ml-px.flex.h-full",
+       "tag": "button",
+       "box": [
+        1884,
+        486,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        119,
+        1077,
+        24,
+        24
+       ]
+      },
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        119,
+        1141,
+        24,
+        24
+       ]
+      }
+     ]
+    },
+    {
+     "name": "<input>",
+     "n": 10,
+     "members": [
+      {
+       "ident": "h-7.w-full.rounded-lg",
+       "tag": "input",
+       "box": [
+        1656,
+        201,
+        248,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1656,
+        342,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1740,
+        342,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1824,
+        342,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1656,
+        414,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1740,
+        414,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1824,
+        414,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1656,
+        486,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1740,
+        486,
+        59,
+        28
+       ]
+      },
+      {
+       "ident": "h-full.min-w-0.flex-1",
+       "tag": "input",
+       "box": [
+        1824,
+        486,
+        59,
+        28
+       ]
+      }
+     ]
+    },
+    {
+     "name": "左右拖动调整 X 轴",
+     "n": 3,
+     "members": [
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1656,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1656,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1656,
+        486,
+        20,
+        28
+       ]
+      }
+     ]
+    },
+    {
+     "name": "左右拖动调整 Y 轴",
+     "n": 3,
+     "members": [
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1740,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1740,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1740,
+        486,
+        20,
+        28
+       ]
+      }
+     ]
+    },
+    {
+     "name": "左右拖动调整 Z 轴",
+     "n": 3,
+     "members": [
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1824,
+        342,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1824,
+        414,
+        20,
+        28
+       ]
+      },
+      {
+       "ident": "shrink-0.cursor-ew-resize.border-white/[0.08]",
+       "tag": "button",
+       "box": [
+        1824,
+        486,
+        20,
+        28
+       ]
+      }
+     ]
+    },
+    {
+     "name": "上一关键帧",
+     "n": 2,
+     "members": [
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        93,
+        1077,
+        24,
+        24
+       ]
+      },
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        93,
+        1141,
+        24,
+        24
+       ]
+      }
+     ]
+    },
+    {
+     "name": "下一关键帧",
+     "n": 2,
+     "members": [
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        145,
+        1077,
+        24,
+        24
+       ]
+      },
+      {
+       "ident": "group.relative.flex",
+       "tag": "button",
+       "box": [
+        145,
+        1141,
+        24,
+        24
+       ]
+      }
+     ]
+    },
+    {
+     "name": "收起属性",
+     "n": 2,
+     "members": [
+      {
+       "ident": "group.relative.z-[1]",
+       "tag": "button",
+       "box": [
+        8,
+        1047,
+        20,
+        20
+       ]
+      },
+      {
+       "ident": "group.relative.z-[1]",
+       "tag": "button",
+       "box": [
+        8,
+        1111,
+        20,
+        20
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "checks": {
+  "130-controls-collapse-to-102-names-at-every-viewport": {
+   "ok": true,
+   "detail": {
+    "controls": {
+     "1280x1150": 130,
+     "1440x1150": 130,
+     "1920x1150": 130
+    },
+    "distinctNames": {
+     "1280x1150": 102,
+     "1440x1150": 102,
+     "1920x1150": 102
+    },
+    "shadowed": {
+     "1280x1150": 28,
+     "1440x1150": 28,
+     "1920x1150": 28
+    },
+    "shadowedShare": 0.215
+   },
+   "note": "28 of 130 — a name-keyed dict loses more than a fifth of the table"
+  },
+  "eight-colliding-names-and-their-multiplicities-are-identical-at-three-viewports": {
+   "ok": true,
+   "detail": {
+    "collidingNames": {
+     "1280x1150": 8,
+     "1440x1150": 8,
+     "1920x1150": 8
+    },
+    "names": [
+     {
+      "name": "当前帧有关键帧",
+      "n": 11
+     },
+     {
+      "name": "<input>",
+      "n": 10
+     },
+     {
+      "name": "左右拖动调整 X 轴",
+      "n": 3
+     },
+     {
+      "name": "左右拖动调整 Y 轴",
+      "n": 3
+     },
+     {
+      "name": "左右拖动调整 Z 轴",
+      "n": 3
+     },
+     {
+      "name": "上一关键帧",
+      "n": 2
+     },
+     {
+      "name": "下一关键帧",
+      "n": 2
+     },
+     {
+      "name": "收起属性",
+      "n": 2
+     }
+    ],
+    "controlsInCollision": 36
+   },
+   "note": "one name with 11, one with 10, three with 3, three with 2"
+  },
+  "two-names-merge-different-controls-not-just-repeated-copies": {
+   "ok": true,
+   "detail": {
+    "sameControlRepeated": [
+     {
+      "name": "左右拖动调整 X 轴",
+      "n": 3,
+      "distinctShapes": 1,
+      "boxSizes": [
+       [
+        20,
+        28
+       ]
+      ],
+      "shapeCounts": [
+       {
+        "ident": "shrink-0.cursor-ew-resize.border-white/[",
+        "box": [
+         20,
+         28
+        ],
+        "n": 3
+       }
+      ]
+     },
+     {
+      "name": "左右拖动调整 Y 轴",
+      "n": 3,
+      "distinctShapes": 1,
+      "boxSizes": [
+       [
+        20,
+        28
+       ]
+      ],
+      "shapeCounts": [
+       {
+        "ident": "shrink-0.cursor-ew-resize.border-white/[",
+        "box": [
+         20,
+         28
+        ],
+        "n": 3
+       }
+      ]
+     },
+     {
+      "name": "左右拖动调整 Z 轴",
+      "n": 3,
+      "distinctShapes": 1,
+      "boxSizes": [
+       [
+        20,
+        28
+       ]
+      ],
+      "shapeCounts": [
+       {
+        "ident": "shrink-0.cursor-ew-resize.border-white/[",
+        "box": [
+         20,
+         28
+        ],
+        "n": 3
+       }
+      ]
+     },
+     {
+      "name": "上一关键帧",
+      "n": 2,
+      "distinctShapes": 1,
+      "boxSizes": [
+       [
+        24,
+        24
+       ]
+      ],
+      "shapeCounts": [
+       {
+        "ident": "group.relative.flex",
+        "box": [
+         24,
+         24
+        ],
+        "n": 2
+       }
+      ]
+     },
+     {
+      "name": "下一关键帧",
+      "n": 2,
+      "distinctShapes": 1,
+      "boxSizes": [
+       [
+        24,
+        24
+       ]
+      ],
+      "shapeCounts": [
+       {
+        "ident": "group.relative.flex",
+        "box": [
+         24,
+         24
+        ],
+        "n": 2
+       }
+      ]
+     },
+     {
+      "name": "收起属性",
+      "n": 2,
+      "distinctShapes": 1,
+      "boxSizes": [
+       [
+        20,
+        20
+       ]
+      ],
+      "shapeCounts": [
+       {
+        "ident": "group.relative.z-[1]",
+        "box": [
+         20,
+         20
+        ],
+        "n": 2
+       }
+      ]
+     }
+    ],
+    "differentControlsMerged": [
+     {
+      "name": "当前帧有关键帧",
+      "n": 11,
+      "distinctShapes": 2,
+      "boxSizes": [
+       [
+        20,
+        28
+       ],
+       [
+        24,
+        24
+       ]
+      ],
+      "shapeCounts": [
+       {
+        "ident": "ml-px.flex.h-full",
+        "box": [
+         20,
+         28
+        ],
+        "n": 9
+       },
+       {
+        "ident": "group.relative.flex",
+        "box": [
+         24,
+         24
+        ],
+        "n": 2
+       }
+      ]
+     },
+     {
+      "name": "<input>",
+      "n": 10,
+      "distinctShapes": 2,
+      "boxSizes": [
+       [
+        59,
+        28
+       ],
+       [
+        248,
+        28
+       ]
+      ],
+      "shapeCounts": [
+       {
+        "ident": "h-full.min-w-0.flex-1",
+        "box": [
+         59,
+         28
+        ],
+        "n": 9
+       },
+       {
+        "ident": "h-7.w-full.rounded-lg",
+        "box": [
+         248,
+         28
+        ],
+        "n": 1
+       }
+      ]
+     }
+    ]
+   },
+   "note": "当前帧有关键帧 is 9 timeline chips (20x28) PLUS 2 inspector buttons (24x24); <input> is not a name at all — it is lab()'s fallback when aria-label, placeholder and textContent all come up empty"
+  },
+  "the-colliding-names-were-used-as-keys-in-nine-historic-verifiers": {
+   "ok": true,
+   "detail": {
+    "staticCensus": {
+     "filesScanned": 370,
+     "filesWithHits": 9,
+     "keyUses": 27,
+     "perFile": {
+      "verify-liblib-batch591.py": {
+       "上一关键帧": 3,
+       "下一关键帧": 3,
+       "当前帧有关键帧": 1
+      },
+      "verify-liblib-batch593.py": {
+       "上一关键帧": 3,
+       "下一关键帧": 3,
+       "当前帧有关键帧": 3,
+       "收起属性": 1
+      },
+      "verify-liblib-batch609.py": {
+       "左右拖动调整 X 轴": 1
+      },
+      "verify-liblib-batch610.py": {
+       "当前帧有关键帧": 1
+      },
+      "verify-liblib-batch612.py": {
+       "左右拖动调整 X 轴": 1
+      },
+      "verify-liblib-batch661.py": {
+       "收起属性": 1
+      },
+      "verify-liblib-batch664.py": {
+       "收起属性": 3
+      },
+      "verify-liblib-batch667.py": {
+       "收起属性": 1
+      },
+      "verify-liblib-batch672.py": {
+       "左右拖动调整 Y 轴": 1,
+       "左右拖动调整 Z 轴": 1
+      }
+     },
+     "selfExcluded": "verify-liblib-batch673.py"
+    },
+    "bittenNames": [
+     "上一关键帧",
+     "下一关键帧",
+     "左右拖动调整 X 轴",
+     "左右拖动调整 Y 轴",
+     "左右拖动调整 Z 轴",
+     "当前帧有关键帧",
+     "收起属性"
+    ],
+    "filesPerName": {
+     "上一关键帧": [
+      "verify-liblib-batch591.py",
+      "verify-liblib-batch593.py"
+     ],
+     "下一关键帧": [
+      "verify-liblib-batch591.py",
+      "verify-liblib-batch593.py"
+     ],
+     "左右拖动调整 X 轴": [
+      "verify-liblib-batch609.py",
+      "verify-liblib-batch612.py"
+     ],
+     "左右拖动调整 Y 轴": [
+      "verify-liblib-batch672.py"
+     ],
+     "左右拖动调整 Z 轴": [
+      "verify-liblib-batch672.py"
+     ],
+     "当前帧有关键帧": [
+      "verify-liblib-batch591.py",
+      "verify-liblib-batch593.py",
+      "verify-liblib-batch610.py"
+     ],
+     "收起属性": [
+      "verify-liblib-batch593.py",
+      "verify-liblib-batch661.py",
+      "verify-liblib-batch664.py",
+      "verify-liblib-batch667.py"
+     ]
+    },
+    "collidingNamesNoVerifierKeys": [
+     "<input>"
+    ],
+    "selfReference": "this census counts the corpus it lives in, INCLUDING earlier liblib verifiers that quote the colliding names. Across three runs of the SAME census the bitten-name count moved 7 -> 6 -> 7 purely because this file was being edited between runs. That is why the count is recorded, not pinned; the census already excludes its own source (selfExcluded above)",
+    "whyKeyUsesIsNotPinned": "the scan covers every verify-liblib-batch*.py INCLUDING this one, so the total moves as this file is edited (26 -> 27 while writing this very check). The structure is asserted; the exact total is recorded, not pinned",
+    "worstOffender": {
+     "name": "收起属性",
+     "liveMultiplicity": 2,
+     "files": [
+      "verify-liblib-batch593.py",
+      "verify-liblib-batch661.py",
+      "verify-liblib-batch664.py",
+      "verify-liblib-batch667.py"
+     ]
+    }
+   },
+   "note": "收起属性 has TWO live elements and was keyed by name in 4 verifiers — including 661/664/667, whose reasoning is by name"
+  },
+  "the-blind-spot-is-bigger-than-the-gizmo-labels-alone": {
+   "ok": true,
+   "detail": {
+    "shadowed": 28,
+    "collidingNames": 8,
+    "gizmoLabelsAlone": 6,
+    "largestCollision": 11,
+    "worstName": "当前帧有关键帧"
+   },
+   "note": "672 saw 6 folded labels; the real folded population is 28 controls"
+  }
+ }
+}
