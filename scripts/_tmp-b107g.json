@@ -1,0 +1,128 @@
+{
+ "at": "2026-10-02T14:55:10.421Z",
+ "e0": {
+  "tag": "DIV",
+  "cls": "tiptap ProseMirror min-h-full w-full py-canvas-text-node-con",
+  "box": "544,312 192×116",
+  "focused": true,
+  "ce": "true",
+  "html": "<h1>一级标题行</h1><h2>二级标题行</h2><h3>三级标题行</h3><p>普通正文行。</p>",
+  "tags": [
+   "H1",
+   "H2",
+   "H3",
+   "P"
+  ],
+  "lines": [
+   {
+    "tag": "H1",
+    "cls": "",
+    "fs": "24px",
+    "fw": "500",
+    "t": "一级标题行"
+   },
+   {
+    "tag": "H2",
+    "cls": "",
+    "fs": "18px",
+    "fw": "500",
+    "t": "二级标题行"
+   },
+   {
+    "tag": "H3",
+    "cls": "",
+    "fs": "16px",
+    "fw": "500",
+    "t": "三级标题行"
+   },
+   {
+    "tag": "P",
+    "cls": "",
+    "fs": "13px",
+    "fw": "400",
+    "t": "普通正文行。"
+   }
+  ]
+ },
+ "base": {
+  "tag": "DIV",
+  "cls": "tiptap ProseMirror min-h-full w-full py-canvas-text-node-con",
+  "fs": "13px",
+  "fw": "400",
+  "box": "192×116",
+  "x": 640,
+  "y": 370,
+  "html": "<div contenteditable=\"true\" role=\"textbox\" aria-label=\"Text\" aria-multiline=\"true\" translate=\"no\" class=\"tiptap ProseMirror min-h-full w-full py-canvas-text-node-content-block px-canvas-text-node-cont"
+ },
+ "steps": [
+  {
+   "key": "h1",
+   "label": "一级标题",
+   "refused": "焦点在输入面（DIV aria=\"Text\"）——按字母键会变成打字，禁止"
+  },
+  {
+   "key": "h2",
+   "label": "二级标题",
+   "refused": "焦点在输入面（DIV aria=\"Text\"）——按字母键会变成打字，禁止"
+  },
+  {
+   "key": "h3",
+   "label": "三级标题",
+   "refused": "焦点在输入面（DIV aria=\"Text\"）——按字母键会变成打字，禁止"
+  },
+  {
+   "key": "p",
+   "label": "普通文本",
+   "refused": "焦点在输入面（DIV aria=\"Text\"）——按字母键会变成打字，禁止"
+  }
+ ],
+ "final": {
+  "tag": "DIV",
+  "cls": "tiptap ProseMirror min-h-full w-full py-canvas-text-node-con",
+  "box": "544,312 192×116",
+  "focused": true,
+  "ce": "true",
+  "html": "<h1>一级标题行</h1><h2>二级标题行</h2><h3>三级标题行</h3><p>普通正文行。</p>",
+  "tags": [
+   "H1",
+   "H2",
+   "H3",
+   "P"
+  ],
+  "lines": [
+   {
+    "tag": "H1",
+    "cls": "",
+    "fs": "24px",
+    "fw": "500",
+    "t": "一级标题行"
+   },
+   {
+    "tag": "H2",
+    "cls": "",
+    "fs": "18px",
+    "fw": "500",
+    "t": "二级标题行"
+   },
+   {
+    "tag": "H3",
+    "cls": "",
+    "fs": "16px",
+    "fw": "500",
+    "t": "三级标题行"
+   },
+   {
+    "tag": "P",
+    "cls": "",
+    "fs": "13px",
+    "fw": "400",
+    "t": "普通正文行。"
+   }
+  ]
+ },
+ "h3": {
+  "key": "h3",
+  "label": "三级标题",
+  "refused": "焦点在输入面（DIV aria=\"Text\"）——按字母键会变成打字，禁止"
+ }
+}

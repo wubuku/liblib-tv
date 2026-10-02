@@ -422,6 +422,27 @@ div{generation-mention-panel} < div < div < form{generation-form}
 💡 差分的输出要**去重 + 排序**再比，否则同一条签名会因为 `innerText` 变了一个字
 就被算成「删了一条 + 加了一条」，噪声淹没信号。
 
+### 🔴 加强版：portal 出来的东西，**连「属于哪个逻辑容器」都不体现在 DOM 树上**
+
+批次 107 为了验一个快捷键而撞出来的，比上面那条更狠一层。
+
+**文本节点的编辑态**，直觉上应该是「在那个节点里」——
+于是判据写成「`.react-flow__node[data-id=…]` 里面有没有 `[contenteditable]`」。
+结果**连着两轮都读成「编辑器没开」**，而编辑器明明开着、工具条也明明白白挂在页面上：
+
+- 可编辑面 = **`DIV.tiptap.ProseMirror`**，`contenteditable="true"` +
+  `role="textbox"` + `aria-label="Text"`，**不在节点里**；
+- 工具条 = `[data-testid="text-editor-toolbar"]` `316×40`，
+  父元素是 `DIV[text-editor-toolbar-boundary]`，**同样不在节点里**。
+
+⇒ 📌 **「浮层不在 body 下」的反面更实用：它在，但你按「逻辑归属」去找就找不到。**
+判「在不在编辑态」只能扫全局（`.tiptap.ProseMirror`）或看
+`document.activeElement` 是否 contenteditable。
+
+🔑 **一个更普适的推论**：**判「某个状态有没有发生」时，扫描范围本身就是一个假设。**
+「它在节点里」「它在 body 下」「它在这个浮层里」——每一条都要单独验，
+不能因为「上一次是这样」就沿用。
+
 ## 同类控件之间的 aria 未必一致
 
 `@` 面板的四个类别，点开后得到的二级菜单**结构一样**（都是 240×76、都只有

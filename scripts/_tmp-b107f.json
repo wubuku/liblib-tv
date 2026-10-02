@@ -1,0 +1,212 @@
+{
+ "at": "2026-10-02T14:52:42.525Z",
+ "selfId": "node_gmvz7secas",
+ "s0": {
+  "ce": [],
+  "n": 0,
+  "sel": true,
+  "activeInNodeCE": false,
+  "active": "DIV(ce)",
+  "toolbar": [
+   {
+    "tid": "timeline-toolbar",
+    "inside": false,
+    "n": 2,
+    "aria": [
+     "导出时间线",
+     "全屏编辑"
+    ]
+   },
+   {
+    "tid": "timeline-toolbar",
+    "inside": false,
+    "n": 2,
+    "aria": [
+     "导出时间线",
+     "全屏编辑"
+    ]
+   },
+   {
+    "tid": "text-editor-toolbar-overlay",
+    "inside": false,
+    "n": 8,
+    "aria": [
+     "Text style",
+     "无序列表",
+     "有序列表",
+     "加粗",
+     "删除线",
+     "倾斜",
+     "下划线",
+     "全屏"
+    ]
+   },
+   {
+    "tid": "text-editor-toolbar-boundary",
+    "inside": false,
+    "n": 8,
+    "aria": [
+     "Text style",
+     "无序列表",
+     "有序列表",
+     "加粗",
+     "删除线",
+     "倾斜",
+     "下划线",
+     "全屏"
+    ]
+   },
+   {
+    "tid": "text-editor-toolbar",
+    "inside": false,
+    "n": 8,
+    "aria": [
+     "Text style",
+     "无序列表",
+     "有序列表",
+     "加粗",
+     "删除线",
+     "倾斜",
+     "下划线",
+     "全屏"
+    ]
+   },
+   {
+    "tid": "canvas-fixed-toolbar-left-rail",
+    "inside": false,
+    "n": 9,
+    "aria": [
+     "文本",
+     "图片",
+     "视频",
+     "音频",
+     "时间线",
+     "主体",
+     "导演台",
+     "资产库",
+     "上传"
+    ]
+   },
+   {
+    "tid": "canvas-fixed-toolbar",
+    "inside": false,
+    "n": 9,
+    "aria": [
+     "文本",
+     "图片",
+     "视频",
+     "音频",
+     "时间线",
+     "主体",
+     "导演台",
+     "资产库",
+     "上传"
+    ]
+   }
+  ]
+ },
+ "s1": {
+  "ce": [],
+  "n": 0,
+  "sel": true,
+  "activeInNodeCE": false,
+  "active": "DIV(ce)",
+  "toolbar": [
+   {
+    "tid": "timeline-toolbar",
+    "inside": false,
+    "n": 2,
+    "aria": [
+     "导出时间线",
+     "全屏编辑"
+    ]
+   },
+   {
+    "tid": "timeline-toolbar",
+    "inside": false,
+    "n": 2,
+    "aria": [
+     "导出时间线",
+     "全屏编辑"
+    ]
+   },
+   {
+    "tid": "text-editor-toolbar-overlay",
+    "inside": false,
+    "n": 8,
+    "aria": [
+     "Text style",
+     "无序列表",
+     "有序列表",
+     "加粗",
+     "删除线",
+     "倾斜",
+     "下划线",
+     "全屏"
+    ]
+   },
+   {
+    "tid": "text-editor-toolbar-boundary",
+    "inside": false,
+    "n": 8,
+    "aria": [
+     "Text style",
+     "无序列表",
+     "有序列表",
+     "加粗",
+     "删除线",
+     "倾斜",
+     "下划线",
+     "全屏"
+    ]
+   },
+   {
+    "tid": "text-editor-toolbar",
+    "inside": false,
+    "n": 8,
+    "aria": [
+     "Text style",
+     "无序列表",
+     "有序列表",
+     "加粗",
+     "删除线",
+     "倾斜",
+     "下划线",
+     "全屏"
+    ]
+   },
+   {
+    "tid": "canvas-fixed-toolbar-left-rail",
+    "inside": false,
+    "n": 9,
+    "aria": [
+     "文本",
+     "图片",
+     "视频",
+     "音频",
+     "时间线",
+     "主体",
+     "导演台",
+     "资产库",
+     "上传"
+    ]
+   },
+   {
+    "tid": "canvas-fixed-toolbar",
+    "inside": false,
+    "n": 9,
+    "aria": [
+     "文本",
+     "图片",
+     "视频",
+     "音频",
+     "时间线",
+     "主体",
+     "导演台",
+     "资产库",
+     "上传"
+    ]
+   }
+  ]
+ }
+}
