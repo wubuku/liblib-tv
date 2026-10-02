@@ -1,0 +1,126 @@
+{
+ "at": "2026-10-02T06:43:29.152Z",
+ "dock": [
+  {
+   "tag": "BUTTON",
+   "aria": "替换媒体",
+   "tid": null,
+   "title": null,
+   "text": "",
+   "cls": "inline-flex size-9 shrink-0 items-center jus",
+   "pe": "none",
+   "box": "22×22@1846,884"
+  },
+  {
+   "tag": "BUTTON",
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "title": null,
+   "text": "",
+   "cls": "inline-flex items-center justify-center whit",
+   "pe": "none",
+   "box": "28×28@1845,842"
+  },
+  {
+   "tag": "BUTTON",
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "title": null,
+   "text": "",
+   "cls": "inline-flex items-center justify-center whit",
+   "pe": "none",
+   "box": "24×24@812,644"
+  },
+  {
+   "tag": "BUTTON",
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "title": null,
+   "text": "",
+   "cls": "inline-flex items-center justify-center whit",
+   "pe": "none",
+   "box": "24×24@836,668"
+  },
+  {
+   "tag": "BUTTON",
+   "aria": "Add tags",
+   "tid": "flow-node-selected-tag",
+   "title": null,
+   "text": "",
+   "cls": "inline-flex items-center justify-center whit",
+   "pe": "none",
+   "box": "24×24@852,690"
+  },
+  {
+   "tag": "BUTTON",
+   "aria": "抓手工具",
+   "tid": "canvas-pointer-tool-toggle",
+   "title": null,
+   "text": "",
+   "cls": "inline-flex items-center justify-center gap-",
+   "pe": "auto",
+   "box": "28×28@16,672"
+  },
+  {
+   "tag": "BUTTON",
+   "aria": "小地图",
+   "tid": "canvas-display-toggle-minimap",
+   "title": null,
+   "text": "",
+   "cls": "inline-flex items-center justify-center gap-",
+   "pe": "auto",
+   "box": "28×28@48,672"
+  },
+  {
+   "tag": "BUTTON",
+   "aria": "显示连线",
+   "tid": "canvas-display-toggle-connections",
+   "title": null,
+   "text": "",
+   "cls": "inline-flex items-center justify-center gap-",
+   "pe": "auto",
+   "box": "28×28@80,672"
+  },
+  {
+   "tag": "BUTTON",
+   "aria": "Zoom options, 60%",
+   "tid": "canvas-zoom-percent",
+   "title": null,
+   "text": "60%",
+   "cls": "inline-flex items-center justify-center gap-",
+   "pe": "auto",
+   "box": "48×28@124,672"
+  },
+  {
+   "tag": "BUTTON",
+   "aria": "与 AI 对话",
+   "tid": "canvas-sidecar-launcher",
+   "title": null,
+   "text": "",
+   "cls": "inline-flex items-center justify-center gap-",
+   "pe": "auto",
+   "box": "118×34@1149,673"
+  }
+ ],
+ "tools": [
+  {
+   "tag": "BUTTON",
+   "aria": "抓手工具",
+   "tid": "canvas-pointer-tool-toggle",
+   "title": null,
+   "text": "",
+   "cls": "inline-flex items-center justify-center gap-",
+   "pe": "auto",
+   "box": "28×28@16,672"
+  }
+ ],
+ "clickInGrab": {
+  "sel": "0"
+ },
+ "dblclickInGrab": {
+  "sel": "0"
+ },
+ "end": {
+  "sel": "0"
+ }
+}

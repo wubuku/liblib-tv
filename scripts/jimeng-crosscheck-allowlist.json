@@ -1,155 +1,164 @@
 {
- "_doc": "交叉一致性扫描器(jimeng-crosscheck2.mjs)命中的「面向读者/正文」条目白名单。双向不变式：不在名单里的命中=新不一致（门失败）；名单里对不上任何命中的条目=失效（门失败）。行号仅供定位，改文案会因 text 不匹配而触发重新判读——这是刻意的。",
- "ledger_files_exempt": [
-  "AUDIT.md",
-  "FINAL-REPORT.md",
-  "PROGRESS.md",
-  "SOURCE_OBSERVATIONS.md"
- ],
- "entries": [
-  {
-   "id": "cmdV",
-   "file": "10-tasks/duplicate-delete-history.md",
-   "line_at_judge": 170,
-   "text": "- 2026-09-23 曾以真实键盘事件发送 **⌘V** 未产生新节点，记为「不可用」。",
-   "reason": "2026-09-23 的旧结论（历史记录），同文件另一处已写明「已被 2026-10-01 复测推翻并在上文更正」—— 成对出现",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "cmdV",
-   "file": "10-tasks/duplicate-delete-history.md",
-   "line_at_judge": 197,
-   "text": "1 → 2 节点，两轮复现）—— 此前「单独未验证」的标注是**测试条件不成立**所致，已作废。**2026-09-23 的「⌘V 未生效」结论已被 2026-10-01 复测推翻并在上文更正。**",
-   "reason": "2026-09-23 的旧结论（历史记录），同文件另一处已写明「已被 2026-10-01 复测推翻并在上文更正」—— 成对出现",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "rightclick",
-   "file": "10-tasks/duplicate-delete-history.md",
-   "line_at_judge": 84,
-   "text": "> 🔧 **订正一条旧结论**：批次 5 曾记录「节点右键菜单在自动化下不弹出，脚本场景不可依赖」。",
-   "reason": "成对的勘误/订正行：推翻批次 5「右键菜单不弹出、脚本不可依赖」，现结论是能稳定弹出",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "rightclick",
-   "file": "10-tasks/duplicate-delete-history.md",
-   "line_at_judge": 201,
-   "text": "- **节点右键菜单在自动化下能稳定弹出**（推翻批次 5「不弹出、脚本不可依赖」的",
-   "reason": "成对的勘误/订正行：推翻批次 5「右键菜单不弹出、脚本不可依赖」，现结论是能稳定弹出",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "save-to-subject",
-   "file": "10-tasks/duplicate-delete-history.md",
-   "line_at_judge": 203,
-   "text": "- **订正「媒体节点可能多出『保存到主体库』」**：实测空视频节点**没有**该项。",
-   "reason": "订正行：实测空视频节点「没有」保存到主体库该项",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "text-style-menu",
-   "file": "10-tasks/edit-text-node.md",
-   "line_at_judge": 156,
-   "text": "2. 早期记录称 Text style 菜单「仅三项，无普通文本项」——**不准确**。",
-   "reason": "订正行：早期「Text style 仅三项」的记录不准确",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "cmdA",
-   "file": "10-tasks/help-and-shortcuts.md",
-   "line_at_judge": 220,
-   "text": "> （实测一次罩住 6 个）。⌘A 不存在；Shift+点选可用但要记住它是 **toggle**。",
-   "reason": "真实结论：⌘A 全选不存在（批次 56 受控复测：前置断言确有 2 个选中后按下，选中数不变）",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "hand-tool",
-   "file": "10-tasks/navigate-canvas.md",
-   "line_at_judge": 266,
-   "text": "滚轮平移、Ctrl+滚轮缩放、空白拖拽=框选（不平移）、缩放菜单七项逐字与",
-   "reason": "真实产品行为：选择工具下空白拖拽=框选（不平移）；同页已写明平移走抓手工具/滚轮。不是矛盾",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "cmdA",
-   "file": "10-tasks/organize-group-layout.md",
-   "line_at_judge": 60,
-   "text": "**⌘A 全选确实不存在**（前置断言「有 2 个已选」后按下，选中数不变）；",
-   "reason": "同上真实结论 + 批次 56 订正行（Shift+点选是 toggle）",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "cmdA",
-   "file": "10-tasks/organize-group-layout.md",
-   "line_at_judge": 277,
-   "text": "**（2026-10-01 批次 56 订正：Shift+点选是 toggle，不是「反向取消」；⌘A 仍不存在）**",
-   "reason": "同上真实结论 + 批次 56 订正行（Shift+点选是 toggle）",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "text-style-menu",
-   "file": "10-tasks/organize-group-layout.md",
-   "line_at_judge": 102,
-   "text": "1. 「**组工具条只有三项、无「下载」**」—— **错**。这是 2026-10-01 批次 15",
-   "reason": "订正行：「组工具条只有三项、无下载」是错的，恒为四项",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "text-style-menu",
-   "file": "30-concepts.md",
-   "line_at_judge": 570,
-   "text": "| 早前 | 组工具条只有三项，无「下载」 | 扫描漏了纯图标按钮，**图里明明是四项** |",
-   "reason": "假阴性成因表里作为例子引用的旧措辞，属概念页的勘误叙述",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "cmdA",
-   "file": "90-troubleshooting.md",
-   "line_at_judge": 104,
-   "text": "### ⌘A 全选 / Shift+点选没反应",
-   "reason": "排障条目标题与其结论行；⌘A 不存在是已受控复测的真实限制",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "cmdA",
-   "file": "90-troubleshooting.md",
-   "line_at_judge": 106,
-   "text": "- **⌘A 全选不存在**（面板未列出，实测按下选中数不变；批次 56 复测时前置已断言「确有 2 个选中」）。",
-   "reason": "排障条目标题与其结论行；⌘A 不存在是已受控复测的真实限制",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "hand-tool",
-   "file": "90-troubleshooting.md",
-   "line_at_judge": 10,
-   "text": "> 「空白拖拽不平移」补上了抓手工具的前提；「⌘V 粘贴没反应」已作废（实测可用）。",
-   "reason": "排障页在如实记录限制（空白拖拽不平移）与其前提（抓手工具），行内已自带勘误说明",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  },
-  {
-   "id": "hand-tool",
-   "file": "90-troubleshooting.md",
-   "line_at_judge": 44,
-   "text": "- 显示 **选择工具**（默认）→ 空白拖拽是**框选**，不平移。想平移请用",
-   "reason": "排障页在如实记录限制（空白拖拽不平移）与其前提（抓手工具），行内已自带勘误说明",
-   "judged_by": "batch 66",
-   "judged_at": "2026-10-01"
-  }
- ]
+  "_doc": "交叉一致性扫描器(jimeng-crosscheck2.mjs)命中的「面向读者/正文」条目白名单。双向不变式：不在名单里的命中=新不一致（门失败）；名单里对不上任何命中的条目=失效（门失败）。行号仅供定位，改文案会因 text 不匹配而触发重新判读——这是刻意的。",
+  "ledger_files_exempt": [
+    "AUDIT.md",
+    "FINAL-REPORT.md",
+    "PROGRESS.md",
+    "SOURCE_OBSERVATIONS.md"
+  ],
+  "entries": [
+    {
+      "id": "cmdV",
+      "file": "10-tasks/duplicate-delete-history.md",
+      "line_at_judge": 170,
+      "text": "- 2026-09-23 曾以真实键盘事件发送 **⌘V** 未产生新节点，记为「不可用」。",
+      "reason": "2026-09-23 的旧结论（历史记录），同文件另一处已写明「已被 2026-10-01 复测推翻并在上文更正」—— 成对出现",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "cmdV",
+      "file": "10-tasks/duplicate-delete-history.md",
+      "line_at_judge": 197,
+      "text": "1 → 2 节点，两轮复现）—— 此前「单独未验证」的标注是**测试条件不成立**所致，已作废。**2026-09-23 的「⌘V 未生效」结论已被 2026-10-01 复测推翻并在上文更正。**",
+      "reason": "2026-09-23 的旧结论（历史记录），同文件另一处已写明「已被 2026-10-01 复测推翻并在上文更正」—— 成对出现",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "rightclick",
+      "file": "10-tasks/duplicate-delete-history.md",
+      "line_at_judge": 84,
+      "text": "> 🔧 **订正一条旧结论**：批次 5 曾记录「节点右键菜单在自动化下不弹出，脚本场景不可依赖」。",
+      "reason": "成对的勘误/订正行：推翻批次 5「右键菜单不弹出、脚本不可依赖」，现结论是能稳定弹出",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "rightclick",
+      "file": "10-tasks/duplicate-delete-history.md",
+      "line_at_judge": 201,
+      "text": "- **节点右键菜单在自动化下能稳定弹出**（推翻批次 5「不弹出、脚本不可依赖」的",
+      "reason": "成对的勘误/订正行：推翻批次 5「右键菜单不弹出、脚本不可依赖」，现结论是能稳定弹出",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "save-to-subject",
+      "file": "10-tasks/duplicate-delete-history.md",
+      "line_at_judge": 203,
+      "text": "- **订正「媒体节点可能多出『保存到主体库』」**：实测空视频节点**没有**该项。",
+      "reason": "订正行：实测空视频节点「没有」保存到主体库该项",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "text-style-menu",
+      "file": "10-tasks/edit-text-node.md",
+      "line_at_judge": 156,
+      "text": "2. 早期记录称 Text style 菜单「仅三项，无普通文本项」——**不准确**。",
+      "reason": "订正行：早期「Text style 仅三项」的记录不准确",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "cmdA",
+      "file": "10-tasks/help-and-shortcuts.md",
+      "line_at_judge": 220,
+      "text": "> （实测一次罩住 6 个）。⌘A 不存在；Shift+点选可用但要记住它是 **toggle**。",
+      "reason": "真实结论：⌘A 全选不存在（批次 56 受控复测：前置断言确有 2 个选中后按下，选中数不变）",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "hand-tool",
+      "file": "10-tasks/navigate-canvas.md",
+      "line_at_judge": 266,
+      "text": "滚轮平移、Ctrl+滚轮缩放、空白拖拽=框选（不平移）、缩放菜单七项逐字与",
+      "reason": "真实产品行为：选择工具下空白拖拽=框选（不平移）；同页已写明平移走抓手工具/滚轮。不是矛盾",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "cmdA",
+      "file": "10-tasks/organize-group-layout.md",
+      "line_at_judge": 60,
+      "text": "**⌘A 全选确实不存在**（前置断言「有 2 个已选」后按下，选中数不变）；",
+      "reason": "同上真实结论 + 批次 56 订正行（Shift+点选是 toggle）",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "cmdA",
+      "file": "10-tasks/organize-group-layout.md",
+      "line_at_judge": 277,
+      "text": "**（2026-10-01 批次 56 订正：Shift+点选是 toggle，不是「反向取消」；⌘A 仍不存在）**",
+      "reason": "同上真实结论 + 批次 56 订正行（Shift+点选是 toggle）",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "text-style-menu",
+      "file": "10-tasks/organize-group-layout.md",
+      "line_at_judge": 102,
+      "text": "1. 「**组工具条只有三项、无「下载」**」—— **错**。这是 2026-10-01 批次 15",
+      "reason": "订正行：「组工具条只有三项、无下载」是错的，恒为四项",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "text-style-menu",
+      "file": "30-concepts.md",
+      "line_at_judge": 570,
+      "text": "| 早前 | 组工具条只有三项，无「下载」 | 扫描漏了纯图标按钮，**图里明明是四项** |",
+      "reason": "假阴性成因表里作为例子引用的旧措辞，属概念页的勘误叙述",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "cmdA",
+      "file": "90-troubleshooting.md",
+      "line_at_judge": 104,
+      "text": "### ⌘A 全选 / Shift+点选没反应",
+      "reason": "排障条目标题与其结论行；⌘A 不存在是已受控复测的真实限制",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "cmdA",
+      "file": "90-troubleshooting.md",
+      "line_at_judge": 106,
+      "text": "- **⌘A 全选不存在**（面板未列出，实测按下选中数不变；批次 56 复测时前置已断言「确有 2 个选中」）。",
+      "reason": "排障条目标题与其结论行；⌘A 不存在是已受控复测的真实限制",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "hand-tool",
+      "file": "90-troubleshooting.md",
+      "line_at_judge": 10,
+      "text": "> 「空白拖拽不平移」补上了抓手工具的前提；「⌘V 粘贴没反应」已作废（实测可用）。",
+      "reason": "排障页在如实记录限制（空白拖拽不平移）与其前提（抓手工具），行内已自带勘误说明",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "hand-tool",
+      "file": "90-troubleshooting.md",
+      "line_at_judge": 44,
+      "text": "- 显示 **选择工具**（默认）→ 空白拖拽是**框选**，不平移。想平移请用",
+      "reason": "排障页在如实记录限制（空白拖拽不平移）与其前提（抓手工具），行内已自带勘误说明",
+      "judged_by": "batch 66",
+      "judged_at": "2026-10-01"
+    },
+    {
+      "id": "hand-tool",
+      "file": "90-troubleshooting.md",
+      "line_at_judge": 1019,
+      "text": "| P03 工具钮 testid + aria | 空白拖拽不平移 | ✔ 恰有一个 `canvas-pointer-tool-toggle` |",
+      "reason": "批次 90 新增的判据自查表：该行只是把「抓手工具」列为**判据所服务的小节名**，不是产品断言。正文同一节（:40-66）已逐条写明「dock 上只有这一个工具钮、aria 在两词间翻、抓手态下点节点不选中、V 键不切工具」，并附 2026-10-02 对照实测",
+      "judged_by": "batch 90",
+      "judged_at": "2026-10-02"
+    }
+  ]
 }

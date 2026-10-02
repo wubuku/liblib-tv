@@ -1,0 +1,48 @@
+{
+ "at": "2026-10-02T06:26:39.860Z",
+ "p2": {
+  "active": {
+   "tag": "BUTTON",
+   "tid": "canvas-node-summary-trigger",
+   "aria": "Canvas node summary: 节点 20",
+   "cls": "inline-flex items-center justify-center "
+  },
+  "composer": null
+ },
+ "afterBlank": {
+  "active": {
+   "tag": "DIV",
+   "tid": "rf__wrapper",
+   "aria": "Canvas",
+   "cls": "react-flow octo-canvas-flow bg-dreamina-"
+  },
+  "open": true
+ },
+ "p1": {
+  "openAfterSecond": true,
+  "active": {
+   "tag": "ASIDE",
+   "tid": "canvas-feature-sidecar",
+   "aria": "Agent",
+   "cls": "border border-dreamina-stroke-primary ro"
+  }
+ },
+ "esc": {
+  "open": true,
+  "active": {
+   "tag": "ASIDE",
+   "tid": "canvas-feature-sidecar",
+   "aria": "Agent",
+   "cls": "border border-dreamina-stroke-primary ro"
+  }
+ },
+ "end": {
+  "open": true,
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "verdict": {
+  "toggleWorks": false,
+  "escCloses": false
+ }
+}

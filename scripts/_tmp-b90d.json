@@ -1,0 +1,72 @@
+{
+ "at": "2026-10-02T06:27:57.680Z",
+ "start": {
+  "credits": "Credits: 805 · 基础会员",
+  "sel": "0",
+  "state": {
+   "exists": true,
+   "box": "200×348@1068,360",
+   "pe": "none",
+   "visChildren": 0,
+   "verdict": "COLLAPSED"
+  },
+  "active": {
+   "tag": "DIV",
+   "tid": "rf__wrapper",
+   "aria": "Canvas"
+  }
+ },
+ "onCanvas": {
+  "state": {
+   "exists": true,
+   "box": "200×348@1068,360",
+   "pe": "none",
+   "visChildren": 0,
+   "verdict": "COLLAPSED"
+  },
+  "active": {
+   "tag": "DIV",
+   "tid": "rf__wrapper",
+   "aria": "Canvas"
+  }
+ },
+ "s1": {
+  "exists": true,
+  "box": "400×696@868,12",
+  "pe": "auto",
+  "visChildren": 53,
+  "verdict": "EXPANDED"
+ },
+ "s2": {
+  "exists": true,
+  "box": "200×348@1068,360",
+  "pe": "none",
+  "visChildren": 0,
+  "verdict": "COLLAPSED"
+ },
+ "s3": {
+  "exists": true,
+  "box": "400×696@868,12",
+  "pe": "auto",
+  "visChildren": 53,
+  "verdict": "EXPANDED"
+ },
+ "end": {
+  "state": {
+   "exists": true,
+   "box": "200×348@1068,360",
+   "pe": "none",
+   "visChildren": 0,
+   "verdict": "COLLAPSED"
+  },
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "verdict": {
+  "s1": "EXPANDED",
+  "s2": "COLLAPSED",
+  "s3": "EXPANDED",
+  "end": "COLLAPSED",
+  "isToggle": true
+ }
+}

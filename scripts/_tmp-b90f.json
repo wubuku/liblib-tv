@@ -1,0 +1,43 @@
+{
+ "at": "2026-10-02T06:44:19.177Z",
+ "before": {
+  "tool": {
+   "aria": "抓手工具",
+   "box": "28×28@16,672"
+  },
+  "sel": "0"
+ },
+ "inGrab": {
+  "tool": {
+   "aria": "抓手工具",
+   "box": "28×28@16,672"
+  },
+  "sel": "0"
+ },
+ "afterToggle": {
+  "tool": {
+   "aria": "选择工具",
+   "box": "28×28@16,672"
+  },
+  "sel": "0"
+ },
+ "inSel": {
+  "tool": {
+   "aria": "选择工具",
+   "box": "28×28@16,672"
+  },
+  "sel": "1"
+ },
+ "verdict": {
+  "grabBlocksSelection": true,
+  "toggleFlipsAria": true,
+  "selectionWorksAfterToggle": true
+ },
+ "end": {
+  "tool": {
+   "aria": "选择工具",
+   "box": "28×28@16,672"
+  },
+  "sel": "0"
+ }
+}
