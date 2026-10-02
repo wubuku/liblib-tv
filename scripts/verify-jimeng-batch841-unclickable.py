@@ -1802,6 +1802,29 @@ def main() -> int:
           and _p871.count("reopen_filter()") >= 3
           and "前置态没成立" in _p871)
 
+    # ── X. 批 872：另外三个筛选钮**逐个**取样（不许拿「同一组件」推测）──
+    print("— X. 批 872 四个筛选钮逐个取样，基线从「一个」升级为「四个」—")
+    p872 = ROOT / "scripts/jimeng_probe872_voicefilters_kb.py"
+    _p872 = p872.read_text(encoding="utf-8") if p872.exists() else ""
+    check("X.1 探针 872 在库里，且**四个标签都列全了**"
+          "（少列一个就等于有一个钮没取样，却看着像「都测过了」）",
+          bool(_p872) and all(f'"{l}"' in _p872 for l in
+                              ("性别", "年龄", "语言", "声音特点")))
+    check("X.2 「音色库开着没有」那条判据查的是**它自己的标题**"
+          "（第一版查 `[role=listbox]` —— 筛选层自己也是 listbox，"
+          "于是「筛选层还开着」被读成「音色库开着」，四个里丢了两个，"
+          "记成 BLOCKED_BY_FIXTURE）",
+          "get_by_text(\"全音色\", exact=True).count()" in _p872
+          and "page.locator('[role=listbox]').count() and" not in _p872)
+    check("X.3 基线条目现在写明是**四个钮逐个实测**的共同结论，"
+          "不是从「性别」外推的（871 当时明写「不许推测」）",
+          "**四个筛选钮逐个实测**" in _sbtxt
+          and "124/164/244" in _sbtxt
+          and "jimeng_probe872_voicefilters_kb.py" in _sbtxt)
+    check("X.4 高度公式被记成**实测三点**（n=3/4/6 ⇒ 124/164/244）"
+          "，不是照着 3 项那一个值推的",
+          "n×36+(n−1)×4+8" in _sbtxt and "三点全中" in _sbtxt)
+
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))
