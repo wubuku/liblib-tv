@@ -1,26 +1,112 @@
 // census-directorstore-value-domains：普查 directorStore 每条**叶路径**的写入点，
 // 按「写入点上有没有取整」分类。
 //
-// 用法：node scripts/census-directorstore-value-domains.mjs [--json]
+// 用法：
+//   node scripts/census-directorstore-value-domains.mjs            普查 store 叶路径
+//   node scripts/census-directorstore-value-domains.mjs --geometry 普查派生布局表达式
 //
-// 为什么按**写入点**而不是按函数体判：689 证明了 `timelineHeight` 的整数性来自
-// 「唯一写入点 + 该点末尾 Math.round」。把同一判据推到全树时，函数体级扫描会把
-// 「函数里有一处取整」读成「它写的字段都取整了」—— 一个 setter 同时写 5 个字段、
-// 只给其中一个 Math.round，就是反例。
-//
-// 为什么用 TypeScript 编译器 API 而不是正则：store 是嵌套子对象结构（timeline /
-// scene / phoneVcam 各是一棵树），正则分不清 `{ a: 1 }` 里的 a 属于哪一层；而且
-// 注释与 docstring 会混进文本扫描（673 已记那条纪律）。
+// `--geometry` 普查 `src/components/director/**` 里所有几何类 `style` 属性，
+// 并**把标识符追到它的定义**（690/688 的纪律：690 那条 `timelineWidth` 就藏在
+// const 后面，只扫 JSX 会漏掉整个像素族）。
 import ts from "typescript";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
+const REPO = path.resolve(HERE, "..");
 const SRC = path.resolve(HERE, "../src/store/directorStore.ts");
 const OUT = process.argv.includes("--json")
   ? null
   : "/tmp/census-directorstore-value-domains.json";
+
+// ---------------------------------------------------------------- geometry
+if (process.argv.includes("--geometry")) {
+  const GEO = /^(width|height|left|right|top|bottom|transform|minWidth|maxWidth|minHeight|maxHeight|flexBasis|gap|rowGap|columnGap|padding|paddingTop|paddingLeft|marginTop|marginLeft)$/;
+  const rows = [];
+  const dir = path.join(REPO, "src/components/director");
+  for (const f of fs.readdirSync(dir).filter((x) => /\.tsx?$/.test(x)).sort()) {
+    const text = fs.readFileSync(path.join(dir, f), "utf8");
+    const sf = ts.createSourceFile(f, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+    const decls = new Map();
+    (function c(nd) {
+      if (ts.isVariableDeclaration(nd) && ts.isIdentifier(nd.name) && nd.initializer) {
+        decls.set(nd.name.text, {
+          text: nd.initializer.getText(sf).replace(/\s+/g, " "),
+          line: sf.getLineAndCharacterOfPosition(nd.initializer.getStart(sf)).line + 1,
+        });
+      }
+      ts.forEachChild(nd, c);
+    })(sf);
+    (function w(nd) {
+      if (ts.isJsxAttribute(nd) && nd.name.text === "style" && nd.initializer &&
+          ts.isJsxExpression(nd.initializer) && nd.initializer.expression &&
+          ts.isObjectLiteralExpression(nd.initializer.expression)) {
+        for (const p of nd.initializer.expression.properties) {
+          if (!ts.isPropertyAssignment(p)) continue;
+          const key = ts.isIdentifier(p.name) ? p.name.text
+            : ts.isStringLiteral(p.name) ? p.name.text : null;
+          if (!key || !GEO.test(key)) continue;
+          const line = sf.getLineAndCharacterOfPosition(p.getStart(sf)).line + 1;
+          const inline = p.initializer.getText(sf).replace(/\s+/g, " ");
+          let via = null, defLine = null;
+          if (ts.isIdentifier(p.initializer)) {
+            const d = decls.get(p.initializer.text);
+            if (d) { via = d.text; defLine = d.line; }
+          } else {
+            via = inline;
+          }
+          rows.push({ file: f, line, key, inline, derived: via, defLine });
+        }
+      }
+      ts.forEachChild(nd, w);
+    })(sf);
+  }
+  const isLiteral = (s) => /^[-0-9.]+$/.test(s);
+  const isBare = (s) => /^[A-Za-z_$][A-Za-z0-9_.$]*$/.test(s);
+  const forEach = rows.map((r) => {
+    const t = r.derived || "";
+    // 算术判定要**剥掉反引号**：百分比族整族都是模板串
+    // （`${ratio * 100}%`），不剥就等于把整族排除在外。
+    const body = t.replace(/^`|`$/g, "");
+    const arithmetic = /[+*/]/.test(body);
+    const nonIntegerConst = (t.match(/[-+]?\d*\.\d+/g) || [])
+      .filter((x) => !Number.isInteger(Number(x)));
+    const rounded = /Math\.round|Math\.floor|Math\.ceil/.test(t);
+    let family = "plain";
+    if (arithmetic && (t.startsWith("`") || /%/.test(t))) family = "percent";
+    else if (arithmetic) family = "pixel";
+    else if (rounded) family = "rounded";
+    else if (isLiteral(t) || isBare(t)) family = "plain";
+    return { ...r, arithmetic, nonIntegerConst, rounded, family };
+  });
+  const derived = forEach.filter((r) => r.derived && r.arithmetic);
+  const byFamily = {};
+  for (const r of derived) (byFamily[r.family] = byFamily[r.family] || []).push(r);
+  const out = {
+    geometryPropsTotal: rows.length,
+    derivedTotal: derived.length,
+    pixelFamily: (byFamily.pixel || []).map((r) => ({
+      file: r.file, line: r.line, key: r.key, expr: r.derived,
+      nonIntegerConst: r.nonIntegerConst,
+    })),
+    percentFamily: (byFamily.percent || []).map((r) => ({
+      file: r.file, line: r.line, key: r.key, expr: r.derived,
+      nonIntegerConst: r.nonIntegerConst, rounded: r.rounded,
+    })),
+  };
+  console.log(`几何 style 属性 ${out.geometryPropsTotal} 条 · 派生表达式 ${out.derivedTotal} 条`);
+  console.log(`  像素族 ${out.pixelFamily.length} 条`);
+  for (const r of out.pixelFamily)
+    console.log(`    ${r.file}:${r.line} ${r.key} = ${r.expr}` +
+      (r.nonIntegerConst.length ? `   ⟵ 非整数常数 ${r.nonIntegerConst.join(",")}` : ""));
+  console.log(`  百分比族 ${out.percentFamily.length} 条`);
+  for (const r of out.percentFamily)
+    console.log(`    ${r.file}:${r.line} ${r.key} = ${r.expr}` +
+      (r.rounded ? "  [显式取整]" : "") +
+      (r.nonIntegerConst.length ? `  ⟵ 非整数常数 ${r.nonIntegerConst.join(",")}` : ""));
+  process.exit(0);
+}
 
 const text = fs.readFileSync(SRC, "utf8");
 const file = ts.createSourceFile(

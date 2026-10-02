@@ -1,0 +1,1308 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 900,
+  "base": {
+   "padLeft": 660,
+   "padTop": 305,
+   "padBorderBoxW": 314,
+   "padBorderBoxH": 96,
+   "padClientW": 312,
+   "padClientH": 94,
+   "borderLeft": 1,
+   "borderRight": 1,
+   "storeYaw": 0,
+   "storePitch": 0,
+   "storeRoll": 0,
+   "dataYaw": "0.00",
+   "visibleText": "0 / 0 / 0",
+   "ariaNow": "0",
+   "ariaText": "yaw 0, pitch 0",
+   "dotInlineLeft": "50%",
+   "dotRectLeft": 807,
+   "dotRectW": 20
+  },
+  "sweep": [
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": -44.42675159235669,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "-44.43",
+    "visibleText": "-44 / 5 / 0",
+    "ariaNow": "-44",
+    "ariaText": "yaw -44, pitch 5",
+    "dotInlineLeft": "0.636943%",
+    "dotRectLeft": 652.984375,
+    "dotRectW": 20,
+    "clientX": 662,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": -40.4140127388535,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "-40.41",
+    "visibleText": "-40 / 5 / 0",
+    "ariaNow": "-40",
+    "ariaText": "yaw -40, pitch 5",
+    "dotInlineLeft": "5.09554%",
+    "dotRectLeft": 666.890625,
+    "dotRectW": 20,
+    "clientX": 676,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": -36.40127388535032,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "-36.40",
+    "visibleText": "-36 / 5 / 0",
+    "ariaNow": "-36",
+    "ariaText": "yaw -36, pitch 5",
+    "dotInlineLeft": "9.55414%",
+    "dotRectLeft": 680.796875,
+    "dotRectW": 20,
+    "clientX": 690,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": -32.388535031847134,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "-32.39",
+    "visibleText": "-32 / 5 / 0",
+    "ariaNow": "-32",
+    "ariaText": "yaw -32, pitch 5",
+    "dotInlineLeft": "14.0127%",
+    "dotRectLeft": 694.71875,
+    "dotRectW": 20,
+    "clientX": 704,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": -28.375796178343954,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "-28.38",
+    "visibleText": "-28 / 5 / 0",
+    "ariaNow": "-28",
+    "ariaText": "yaw -28, pitch 5",
+    "dotInlineLeft": "18.4713%",
+    "dotRectLeft": 708.625,
+    "dotRectW": 20,
+    "clientX": 718,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": -24.363057324840764,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "-24.36",
+    "visibleText": "-24 / 5 / 0",
+    "ariaNow": "-24",
+    "ariaText": "yaw -24, pitch 5",
+    "dotInlineLeft": "22.9299%",
+    "dotRectLeft": 722.53125,
+    "dotRectW": 20,
+    "clientX": 732,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": -20.35031847133758,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "-20.35",
+    "visibleText": "-20 / 5 / 0",
+    "ariaNow": "-20",
+    "ariaText": "yaw -20, pitch 5",
+    "dotInlineLeft": "27.3885%",
+    "dotRectLeft": 736.4375,
+    "dotRectW": 20,
+    "clientX": 746,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": -16.337579617834397,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "-16.34",
+    "visibleText": "-16 / 5 / 0",
+    "ariaNow": "-16",
+    "ariaText": "yaw -16, pitch 5",
+    "dotInlineLeft": "31.8471%",
+    "dotRectLeft": 750.359375,
+    "dotRectW": 20,
+    "clientX": 760,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": -12.324840764331212,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "-12.32",
+    "visibleText": "-12 / 5 / 0",
+    "ariaNow": "-12",
+    "ariaText": "yaw -12, pitch 5",
+    "dotInlineLeft": "36.3057%",
+    "dotRectLeft": 764.265625,
+    "dotRectW": 20,
+    "clientX": 774,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": -8.312101910828023,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "-8.31",
+    "visibleText": "-8 / 5 / 0",
+    "ariaNow": "-8",
+    "ariaText": "yaw -8, pitch 5",
+    "dotInlineLeft": "40.7643%",
+    "dotRectLeft": 778.171875,
+    "dotRectW": 20,
+    "clientX": 788,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": -4.29936305732484,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "-4.30",
+    "visibleText": "-4 / 5 / 0",
+    "ariaNow": "-4",
+    "ariaText": "yaw -4, pitch 5",
+    "dotInlineLeft": "45.2229%",
+    "dotRectLeft": 792.09375,
+    "dotRectW": 20,
+    "clientX": 802,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": -0.286624203821656,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "-0.29",
+    "visibleText": "-0 / 5 / 0",
+    "ariaNow": "0",
+    "ariaText": "yaw -0, pitch 5",
+    "dotInlineLeft": "49.6815%",
+    "dotRectLeft": 806,
+    "dotRectW": 20,
+    "clientX": 816,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": 3.726114649681528,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "3.73",
+    "visibleText": "4 / 5 / 0",
+    "ariaNow": "4",
+    "ariaText": "yaw 4, pitch 5",
+    "dotInlineLeft": "54.1401%",
+    "dotRectLeft": 819.90625,
+    "dotRectW": 20,
+    "clientX": 830,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": 7.738853503184711,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "7.74",
+    "visibleText": "8 / 5 / 0",
+    "ariaNow": "8",
+    "ariaText": "yaw 8, pitch 5",
+    "dotInlineLeft": "58.5987%",
+    "dotRectLeft": 833.8125,
+    "dotRectW": 20,
+    "clientX": 844,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": 11.751592356687896,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "11.75",
+    "visibleText": "12 / 5 / 0",
+    "ariaNow": "12",
+    "ariaText": "yaw 12, pitch 5",
+    "dotInlineLeft": "63.0573%",
+    "dotRectLeft": 847.734375,
+    "dotRectW": 20,
+    "clientX": 858,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": 15.764331210191079,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "15.76",
+    "visibleText": "16 / 5 / 0",
+    "ariaNow": "16",
+    "ariaText": "yaw 16, pitch 5",
+    "dotInlineLeft": "67.5159%",
+    "dotRectLeft": 861.640625,
+    "dotRectW": 20,
+    "clientX": 872,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": 19.777070063694264,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "19.78",
+    "visibleText": "20 / 5 / 0",
+    "ariaNow": "20",
+    "ariaText": "yaw 20, pitch 5",
+    "dotInlineLeft": "71.9745%",
+    "dotRectLeft": 875.546875,
+    "dotRectW": 20,
+    "clientX": 886,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": 23.78980891719746,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "23.79",
+    "visibleText": "24 / 5 / 0",
+    "ariaNow": "24",
+    "ariaText": "yaw 24, pitch 5",
+    "dotInlineLeft": "76.4331%",
+    "dotRectLeft": 889.46875,
+    "dotRectW": 20,
+    "clientX": 900,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": 27.80254777070064,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "27.80",
+    "visibleText": "28 / 5 / 0",
+    "ariaNow": "28",
+    "ariaText": "yaw 28, pitch 5",
+    "dotInlineLeft": "80.8917%",
+    "dotRectLeft": 903.375,
+    "dotRectW": 20,
+    "clientX": 914,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": 31.815286624203825,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "31.82",
+    "visibleText": "32 / 5 / 0",
+    "ariaNow": "32",
+    "ariaText": "yaw 32, pitch 5",
+    "dotInlineLeft": "85.3503%",
+    "dotRectLeft": 917.28125,
+    "dotRectW": 20,
+    "clientX": 928,
+    "clientY": 345
+   },
+   {
+    "padLeft": 660,
+    "padTop": 305,
+    "padBorderBoxW": 314,
+    "padBorderBoxH": 96,
+    "padClientW": 312,
+    "padClientH": 94,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "storeYaw": 35.82802547770701,
+    "storePitch": 4.999999999999999,
+    "storeRoll": 0,
+    "dataYaw": "35.83",
+    "visibleText": "36 / 5 / 0",
+    "ariaNow": "36",
+    "ariaText": "yaw 36, pitch 5",
+    "dotInlineLeft": "89.8089%",
+    "dotRectLeft": 931.203125,
+    "dotRectW": 20,
+    "clientX": 942,
+    "clientY": 345
+   }
+  ],
+  "deviation": [
+   {
+    "clientX": 662,
+    "offset": 2,
+    "pct": 0.006369426751592357,
+    "predictedCentre": 662.9872611464968,
+    "measuredCentre": 662.984375,
+    "deviation": 0.984375,
+    "predictedDeviation": 0.9872611464968486
+   },
+   {
+    "clientX": 676,
+    "offset": 16,
+    "pct": 0.050955414012738856,
+    "predictedCentre": 676.8980891719746,
+    "measuredCentre": 676.890625,
+    "deviation": 0.890625,
+    "predictedDeviation": 0.8980891719745614
+   },
+   {
+    "clientX": 690,
+    "offset": 30,
+    "pct": 0.09554140127388536,
+    "predictedCentre": 690.8089171974523,
+    "measuredCentre": 690.796875,
+    "deviation": 0.796875,
+    "predictedDeviation": 0.8089171974522742
+   },
+   {
+    "clientX": 704,
+    "offset": 44,
+    "pct": 0.14012738853503184,
+    "predictedCentre": 704.71974522293,
+    "measuredCentre": 704.71875,
+    "deviation": 0.71875,
+    "predictedDeviation": 0.719745222929987
+   },
+   {
+    "clientX": 718,
+    "offset": 58,
+    "pct": 0.18471337579617833,
+    "predictedCentre": 718.6305732484076,
+    "measuredCentre": 718.625,
+    "deviation": 0.625,
+    "predictedDeviation": 0.6305732484075861
+   },
+   {
+    "clientX": 732,
+    "offset": 72,
+    "pct": 0.22929936305732485,
+    "predictedCentre": 732.5414012738854,
+    "measuredCentre": 732.53125,
+    "deviation": 0.53125,
+    "predictedDeviation": 0.5414012738854126
+   },
+   {
+    "clientX": 746,
+    "offset": 86,
+    "pct": 0.27388535031847133,
+    "predictedCentre": 746.452229299363,
+    "measuredCentre": 746.4375,
+    "deviation": 0.4375,
+    "predictedDeviation": 0.4522292993630117
+   },
+   {
+    "clientX": 760,
+    "offset": 100,
+    "pct": 0.3184713375796178,
+    "predictedCentre": 760.3630573248407,
+    "measuredCentre": 760.359375,
+    "deviation": 0.359375,
+    "predictedDeviation": 0.3630573248407245
+   },
+   {
+    "clientX": 774,
+    "offset": 114,
+    "pct": 0.3630573248407643,
+    "predictedCentre": 774.2738853503184,
+    "measuredCentre": 774.265625,
+    "deviation": 0.265625,
+    "predictedDeviation": 0.2738853503184373
+   },
+   {
+    "clientX": 788,
+    "offset": 128,
+    "pct": 0.40764331210191085,
+    "predictedCentre": 788.1847133757962,
+    "measuredCentre": 788.171875,
+    "deviation": 0.171875,
+    "predictedDeviation": 0.1847133757961501
+   },
+   {
+    "clientX": 802,
+    "offset": 142,
+    "pct": 0.45222929936305734,
+    "predictedCentre": 802.0955414012739,
+    "measuredCentre": 802.09375,
+    "deviation": 0.09375,
+    "predictedDeviation": 0.0955414012738629
+   },
+   {
+    "clientX": 816,
+    "offset": 156,
+    "pct": 0.4968152866242038,
+    "predictedCentre": 816.0063694267516,
+    "measuredCentre": 816.0,
+    "deviation": 0.0,
+    "predictedDeviation": 0.006369426751575702
+   },
+   {
+    "clientX": 830,
+    "offset": 170,
+    "pct": 0.5414012738853503,
+    "predictedCentre": 829.9171974522293,
+    "measuredCentre": 829.90625,
+    "deviation": -0.09375,
+    "predictedDeviation": -0.0828025477707115
+   },
+   {
+    "clientX": 844,
+    "offset": 184,
+    "pct": 0.5859872611464968,
+    "predictedCentre": 843.828025477707,
+    "measuredCentre": 843.8125,
+    "deviation": -0.1875,
+    "predictedDeviation": -0.1719745222929987
+   },
+   {
+    "clientX": 858,
+    "offset": 198,
+    "pct": 0.6305732484076433,
+    "predictedCentre": 857.7388535031847,
+    "measuredCentre": 857.734375,
+    "deviation": -0.265625,
+    "predictedDeviation": -0.2611464968152859
+   },
+   {
+    "clientX": 872,
+    "offset": 212,
+    "pct": 0.6751592356687898,
+    "predictedCentre": 871.6496815286624,
+    "measuredCentre": 871.640625,
+    "deviation": -0.359375,
+    "predictedDeviation": -0.3503184713375731
+   },
+   {
+    "clientX": 886,
+    "offset": 226,
+    "pct": 0.7197452229299363,
+    "predictedCentre": 885.5605095541401,
+    "measuredCentre": 885.546875,
+    "deviation": -0.453125,
+    "predictedDeviation": -0.4394904458598603
+   },
+   {
+    "clientX": 900,
+    "offset": 240,
+    "pct": 0.7643312101910829,
+    "predictedCentre": 899.4713375796179,
+    "measuredCentre": 899.46875,
+    "deviation": -0.53125,
+    "predictedDeviation": -0.5286624203821475
+   },
+   {
+    "clientX": 914,
+    "offset": 254,
+    "pct": 0.8089171974522293,
+    "predictedCentre": 913.3821656050956,
+    "measuredCentre": 913.375,
+    "deviation": -0.625,
+    "predictedDeviation": -0.6178343949044347
+   },
+   {
+    "clientX": 928,
+    "offset": 268,
+    "pct": 0.8535031847133758,
+    "predictedCentre": 927.2929936305733,
+    "measuredCentre": 927.28125,
+    "deviation": -0.71875,
+    "predictedDeviation": -0.7070063694267219
+   },
+   {
+    "clientX": 942,
+    "offset": 282,
+    "pct": 0.8980891719745223,
+    "predictedCentre": 941.203821656051,
+    "measuredCentre": 941.203125,
+    "deviation": -0.796875,
+    "predictedDeviation": -0.7961783439490091
+   }
+  ],
+  "aria": [
+   {
+    "clientX": 662,
+    "aria": -44.0,
+    "storeYaw": -44.42675159235669,
+    "positionErrorPx": 1.4794055201698484
+   },
+   {
+    "clientX": 676,
+    "aria": -40.0,
+    "storeYaw": -40.4140127388535,
+    "positionErrorPx": 1.4352441613588098
+   },
+   {
+    "clientX": 690,
+    "aria": -36.0,
+    "storeYaw": -36.40127388535032,
+    "positionErrorPx": 1.3910828025477713
+   },
+   {
+    "clientX": 704,
+    "aria": -32.0,
+    "storeYaw": -32.388535031847134,
+    "positionErrorPx": 1.3469214437367185
+   },
+   {
+    "clientX": 718,
+    "aria": -28.0,
+    "storeYaw": -28.375796178343954,
+    "positionErrorPx": 1.3027600849257084
+   },
+   {
+    "clientX": 732,
+    "aria": -24.0,
+    "storeYaw": -24.363057324840764,
+    "positionErrorPx": 1.2585987261146414
+   },
+   {
+    "clientX": 746,
+    "aria": -20.0,
+    "storeYaw": -20.35031847133758,
+    "positionErrorPx": 1.214437367303617
+   },
+   {
+    "clientX": 760,
+    "aria": -16.0,
+    "storeYaw": -16.337579617834397,
+    "positionErrorPx": 1.1702760084925714
+   },
+   {
+    "clientX": 774,
+    "aria": -12.0,
+    "storeYaw": -12.324840764331212,
+    "positionErrorPx": 1.1261146496815329
+   },
+   {
+    "clientX": 788,
+    "aria": -8.0,
+    "storeYaw": -8.312101910828023,
+    "positionErrorPx": 1.0819532908704765
+   },
+   {
+    "clientX": 802,
+    "aria": -4.0,
+    "storeYaw": -4.29936305732484,
+    "positionErrorPx": 1.037791932059445
+   },
+   {
+    "clientX": 816,
+    "aria": 0.0,
+    "storeYaw": -0.286624203821656,
+    "positionErrorPx": 0.9936305732484074
+   },
+   {
+    "clientX": 830,
+    "aria": 4.0,
+    "storeYaw": 3.726114649681528,
+    "positionErrorPx": 0.9494692144373715
+   },
+   {
+    "clientX": 844,
+    "aria": 8.0,
+    "storeYaw": 7.738853503184711,
+    "positionErrorPx": 0.905307855626333
+   },
+   {
+    "clientX": 858,
+    "aria": 12.0,
+    "storeYaw": 11.751592356687896,
+    "positionErrorPx": 0.8611464968152944
+   },
+   {
+    "clientX": 872,
+    "aria": 16.0,
+    "storeYaw": 15.764331210191079,
+    "positionErrorPx": 0.816985138004263
+   },
+   {
+    "clientX": 886,
+    "aria": 20.0,
+    "storeYaw": 19.777070063694264,
+    "positionErrorPx": 0.7728237791932173
+   },
+   {
+    "clientX": 900,
+    "aria": 24.0,
+    "storeYaw": 23.78980891719746,
+    "positionErrorPx": 0.7286624203821503
+   },
+   {
+    "clientX": 914,
+    "aria": 28.0,
+    "storeYaw": 27.80254777070064,
+    "positionErrorPx": 0.6845010615711118
+   },
+   {
+    "clientX": 928,
+    "aria": 32.0,
+    "storeYaw": 31.815286624203825,
+    "positionErrorPx": 0.6403397027600732
+   },
+   {
+    "clientX": 942,
+    "aria": 36.0,
+    "storeYaw": 35.82802547770701,
+    "positionErrorPx": 0.5961783439490489
+   }
+  ],
+  "censusText": "几何 style 属性 31 条 · 派生表达式 9 条\n  像素族 1 条\n    DirectorTimeline.tsx:1866 width = Math.max( 640, timeline.duration * (3.36 + 4.978 * timeline.zoom), )   ⟵ 非整数常数 3.36,4.978\n  百分比族 8 条\n    DirectorExportPanel.tsx:106 width = `${Math.round(progress * 100)}%`  [显式取整]\n    DirectorInspector.tsx:1638 width = `${ratio * 100}%`\n    DirectorInspector.tsx:1644 left = `${ratio * 100}%`\n    DirectorPhoneVcamPanel.tsx:552 left = `${50 + (phoneVcam.pose.yaw / 90) * 100}%`\n    DirectorPhoneVcamPanel.tsx:553 top = `${50 - (phoneVcam.pose.pitch / 60) * 100}%`\n    DirectorTimeline.tsx:1885 left = `${(tick / timeline.duration) * 100}%`\n    DirectorTimeline.tsx:1898 left = `${(tick / timeline.duration) * 100}%`\n    DirectorTimeline.tsx:2021 left = `clamp(9px, ${ (keyframe.time / timeline.duration) * 100 }%, calc(100% - 9px))`",
+  "padGeometry": {
+   "borderBoxW": 314,
+   "borderBoxH": 96,
+   "borderLeft": 1,
+   "borderRight": 1,
+   "paddingBoxW": 312,
+   "clientW": 312,
+   "isPowerOfTwoDivisor": false
+  },
+  "howThePadWasReached": "clicked [data-director-phone-vcam-trigger], then set phoneVcam.status = 'local-ready' through the real setter setPhoneVcamStatus so the connected branch would mount. The real connect path (local HTTPS preview server + certificate trust) was NOT exercised. Everything below the gate -- pointer handling, the pose math, the dot -- is the real component.",
+  "storeWritesInThisRun": [
+   "setPhoneVcamStatus('local-ready')"
+  ],
+  "relationTo690": "690 measured one field and one derived length. This batch censuses all 31 geometry style attributes, finds 9 derived expressions, and measures a second family whose fractional output needs no fitted constant at all.",
+  "hypothesisNotClaim": "All readings are from our own clone. The source site was not used. The pose pad is clone-only, so no source behaviour is claimed or implied."
+ },
+ "checks": {
+  "census-only-one-derived-pixel-length-exists-and-690-found-it": {
+   "ok": true,
+   "detail": {
+    "censusOutput": [
+     "几何 style 属性 31 条 · 派生表达式 9 条",
+     "  像素族 1 条",
+     "    DirectorTimeline.tsx:1866 width = Math.max( 640, timeline.duration * (3.36 + 4.978 * timeline.zoom), )   ⟵ 非整数常数 3.36,4.978",
+     "  百分比族 8 条",
+     "    DirectorExportPanel.tsx:106 width = `${Math.round(progress * 100)}%`  [显式取整]",
+     "    DirectorInspector.tsx:1638 width = `${ratio * 100}%`",
+     "    DirectorInspector.tsx:1644 left = `${ratio * 100}%`",
+     "    DirectorPhoneVcamPanel.tsx:552 left = `${50 + (phoneVcam.pose.yaw / 90) * 100}%`",
+     "    DirectorPhoneVcamPanel.tsx:553 top = `${50 - (phoneVcam.pose.pitch / 60) * 100}%`",
+     "    DirectorTimeline.tsx:1885 left = `${(tick / timeline.duration) * 100}%`",
+     "    DirectorTimeline.tsx:1898 left = `${(tick / timeline.duration) * 100}%`",
+     "    DirectorTimeline.tsx:2021 left = `clamp(9px, ${ (keyframe.time / timeline.duration) * 100 }%, calc(100% - 9px))`"
+    ],
+    "whyTheInstrumentFollowsIdentifiers": "690's timelineWidth is an identifier at the JSX site; the arithmetic lives in a const above it. Scanning only JSX attributes would have reported ZERO pixel-family expressions, which is the same mistake in reverse -- 688's lesson that reading half the code gives half the answer.",
+    "theInstrumentWasWrongFirst": "the first version tested /[+*\\/]/.test(t) && !/^[\"'`]/, which excluded every template literal -- i.e. the whole percent family -- and reported 1 derived expression. I checked that result against 690's known answer and it 'matched', which is exactly how a census blind spot gets mistaken for a finding. Stripping the backticks gives 9.",
+    "families": {
+     "pixel": "1 -- DirectorTimeline.tsx:1866, the only one with non-integer constants 3.36 and 4.978 (690)",
+     "percent": "8 -- one of them explicitly rounded (DirectorExportPanel.tsx:106 Math.round(progress*100))"
+    }
+   },
+   "note": "a census that agrees with a prior answer is not thereby validated"
+  },
+  "integer-pointer-coordinates-produce-fractional-pose-values": {
+   "ok": true,
+   "detail": {
+    "samples": 21,
+    "clientXs": [
+     662,
+     676,
+     690,
+     704,
+     718,
+     732,
+     746,
+     760,
+     774,
+     788,
+     802,
+     816,
+     830,
+     844,
+     858,
+     872,
+     886,
+     900,
+     914,
+     928,
+     942
+    ],
+    "bitExactAgainstTheFormula": 21,
+    "integerValuedSamples": 0,
+    "padBorderBoxWidth": 314,
+    "formula": "yaw = ((clientX - rect.left) / rect.width - 0.5) * 90 (DirectorPhoneVcamPanel.tsx:352-366)",
+    "sourceLine": "src/components/director/DirectorPhoneVcamPanel.tsx:352-366",
+    "whyNeverInteger": "the divisor is the measured border-box width 314 = 2*157, and 157 is odd, so an integer offset divided by it never terminates in binary floating point",
+    "censusAgrees": "690's census already put phoneVcam.pose.yaw and .pitch in the no-rounding class; this is the runtime half of that static fact.",
+    "reachability": "every one of these values came from a real page.mouse drag. No store API was used for any of them -- the opposite of 690's fractional-zoom tier, which was store-API-only."
+   },
+   "note": "a field can be fractional by construction, not by omission of rounding"
+  },
+  "one-field-reads-as-four-different-numbers-on-four-surfaces": {
+   "ok": true,
+   "detail": {
+    "surfaces": [
+     {
+      "clientX": 662,
+      "store": -44.42675159235669,
+      "dataAttr2dp": "-44.43",
+      "visible": "-44 / 5 / 0",
+      "aria": "-44",
+      "dotPercent": "0.636943%"
+     },
+     {
+      "clientX": 676,
+      "store": -40.4140127388535,
+      "dataAttr2dp": "-40.41",
+      "visible": "-40 / 5 / 0",
+      "aria": "-40",
+      "dotPercent": "5.09554%"
+     },
+     {
+      "clientX": 690,
+      "store": -36.40127388535032,
+      "dataAttr2dp": "-36.40",
+      "visible": "-36 / 5 / 0",
+      "aria": "-36",
+      "dotPercent": "9.55414%"
+     },
+     {
+      "clientX": 704,
+      "store": -32.388535031847134,
+      "dataAttr2dp": "-32.39",
+      "visible": "-32 / 5 / 0",
+      "aria": "-32",
+      "dotPercent": "14.0127%"
+     },
+     "…"
+    ],
+    "allSamples": [
+     {
+      "clientX": 662,
+      "store": -44.42675159235669,
+      "dataAttr2dp": "-44.43",
+      "visible": "-44 / 5 / 0",
+      "aria": "-44",
+      "dotPercent": "0.636943%"
+     },
+     {
+      "clientX": 676,
+      "store": -40.4140127388535,
+      "dataAttr2dp": "-40.41",
+      "visible": "-40 / 5 / 0",
+      "aria": "-40",
+      "dotPercent": "5.09554%"
+     },
+     {
+      "clientX": 690,
+      "store": -36.40127388535032,
+      "dataAttr2dp": "-36.40",
+      "visible": "-36 / 5 / 0",
+      "aria": "-36",
+      "dotPercent": "9.55414%"
+     },
+     {
+      "clientX": 704,
+      "store": -32.388535031847134,
+      "dataAttr2dp": "-32.39",
+      "visible": "-32 / 5 / 0",
+      "aria": "-32",
+      "dotPercent": "14.0127%"
+     },
+     {
+      "clientX": 718,
+      "store": -28.375796178343954,
+      "dataAttr2dp": "-28.38",
+      "visible": "-28 / 5 / 0",
+      "aria": "-28",
+      "dotPercent": "18.4713%"
+     },
+     {
+      "clientX": 732,
+      "store": -24.363057324840764,
+      "dataAttr2dp": "-24.36",
+      "visible": "-24 / 5 / 0",
+      "aria": "-24",
+      "dotPercent": "22.9299%"
+     },
+     {
+      "clientX": 746,
+      "store": -20.35031847133758,
+      "dataAttr2dp": "-20.35",
+      "visible": "-20 / 5 / 0",
+      "aria": "-20",
+      "dotPercent": "27.3885%"
+     },
+     {
+      "clientX": 760,
+      "store": -16.337579617834397,
+      "dataAttr2dp": "-16.34",
+      "visible": "-16 / 5 / 0",
+      "aria": "-16",
+      "dotPercent": "31.8471%"
+     },
+     {
+      "clientX": 774,
+      "store": -12.324840764331212,
+      "dataAttr2dp": "-12.32",
+      "visible": "-12 / 5 / 0",
+      "aria": "-12",
+      "dotPercent": "36.3057%"
+     },
+     {
+      "clientX": 788,
+      "store": -8.312101910828023,
+      "dataAttr2dp": "-8.31",
+      "visible": "-8 / 5 / 0",
+      "aria": "-8",
+      "dotPercent": "40.7643%"
+     },
+     {
+      "clientX": 802,
+      "store": -4.29936305732484,
+      "dataAttr2dp": "-4.30",
+      "visible": "-4 / 5 / 0",
+      "aria": "-4",
+      "dotPercent": "45.2229%"
+     },
+     {
+      "clientX": 816,
+      "store": -0.286624203821656,
+      "dataAttr2dp": "-0.29",
+      "visible": "-0 / 5 / 0",
+      "aria": "0",
+      "dotPercent": "49.6815%"
+     },
+     {
+      "clientX": 830,
+      "store": 3.726114649681528,
+      "dataAttr2dp": "3.73",
+      "visible": "4 / 5 / 0",
+      "aria": "4",
+      "dotPercent": "54.1401%"
+     },
+     {
+      "clientX": 844,
+      "store": 7.738853503184711,
+      "dataAttr2dp": "7.74",
+      "visible": "8 / 5 / 0",
+      "aria": "8",
+      "dotPercent": "58.5987%"
+     },
+     {
+      "clientX": 858,
+      "store": 11.751592356687896,
+      "dataAttr2dp": "11.75",
+      "visible": "12 / 5 / 0",
+      "aria": "12",
+      "dotPercent": "63.0573%"
+     },
+     {
+      "clientX": 872,
+      "store": 15.764331210191079,
+      "dataAttr2dp": "15.76",
+      "visible": "16 / 5 / 0",
+      "aria": "16",
+      "dotPercent": "67.5159%"
+     },
+     {
+      "clientX": 886,
+      "store": 19.777070063694264,
+      "dataAttr2dp": "19.78",
+      "visible": "20 / 5 / 0",
+      "aria": "20",
+      "dotPercent": "71.9745%"
+     },
+     {
+      "clientX": 900,
+      "store": 23.78980891719746,
+      "dataAttr2dp": "23.79",
+      "visible": "24 / 5 / 0",
+      "aria": "24",
+      "dotPercent": "76.4331%"
+     },
+     {
+      "clientX": 914,
+      "store": 27.80254777070064,
+      "dataAttr2dp": "27.80",
+      "visible": "28 / 5 / 0",
+      "aria": "28",
+      "dotPercent": "80.8917%"
+     },
+     {
+      "clientX": 928,
+      "store": 31.815286624203825,
+      "dataAttr2dp": "31.82",
+      "visible": "32 / 5 / 0",
+      "aria": "32",
+      "dotPercent": "85.3503%"
+     },
+     {
+      "clientX": 942,
+      "store": 35.82802547770701,
+      "dataAttr2dp": "35.83",
+      "visible": "36 / 5 / 0",
+      "aria": "36",
+      "dotPercent": "89.8089%"
+     }
+    ],
+    "roundingPerSurface": {
+     "store": "none -- the full double",
+     "data-yaw": "toFixed(2)",
+     "visibleText": "toFixed(0)",
+     "aria-valuenow": "Math.round",
+     "dotPosition": "none -- fractional percent"
+    },
+    "negativeZeroShown": [
+     {
+      "clientX": 816,
+      "storeYaw": -0.286624203821656,
+      "visible": "-0 / 5 / 0"
+     }
+    ],
+    "theNegativeZeroCase": "at clientX=816 the store holds -0.286624203821656 so toFixed(0) renders the string '-0' while aria-valuenow renders '0'. The same pose therefore shows a negative zero in one surface and a positive zero in another.",
+    "sourceLines": "DirectorPhoneVcamPanel.tsx:502-508 (data-yaw toFixed(2) plus the visible toFixed(0)) and :519-520 (aria-valuenow Math.round)",
+    "consequence": "the readout cannot express where the dot is: at store yaw -0.2866 the panel says 0 and the dot sits off-centre."
+   },
+   "note": "integrality is a property of the reader, not of the field"
+  },
+  "the-indicator-never-lands-under-the-pointer-because-of-a-border-mismatch": {
+   "ok": true,
+   "detail": {
+    "padBorderBoxWidth": 314,
+    "borderLeft": 1,
+    "borderRight": 1,
+    "paddingBoxWidth": 312,
+    "clientWidthAgrees": true,
+    "mechanism": "the formula divides by getBoundingClientRect().width, which is the BORDER box, but a CSS percentage left resolves against the containing block's PADDING box, and its origin is the inner edge of the left border. The pad carries a 1px border, so the two disagree by 2px of width and 1px of origin.",
+    "predictedDeviation": "1 + off*(312 - 314)/314",
+    "matchesWithinOneSixtyFourth": 21,
+    "samples": 21,
+    "maxAbsDeviationPx": 0.984375,
+    "worstSample": {
+     "clientX": 662,
+     "offset": 2,
+     "pct": 0.006369426751592357,
+     "predictedCentre": 662.9872611464968,
+     "measuredCentre": 662.984375,
+     "deviation": 0.984375,
+     "predictedDeviation": 0.9872611464968486
+    },
+    "deviationRangePx": [
+     -0.796875,
+     0.984375
+    ],
+    "crossesZero": true,
+    "scale": "this is about one device pixel at each end, NOT a sub-pixel effect; the 1/64px story is irrelevant at this magnitude",
+    "notAFidelityGap": "batch 563 recorded the source site's 虚拟相机 tab as QR-connect plus record/retry; the pose pad is clone-only and this file mentions 源站 zero times. So this is our own control's accuracy, not a deviation from the source.",
+    "productCallNotOurs": "whether 1px of slop on a 20px dot matters is a product decision, and fixing it means editing src/. Not changed."
+   },
+   "note": "the percentage resolves against the padding box; the formula divides by the border box"
+  },
+  "aria-valuenow-cannot-express-where-the-dot-actually-is": {
+   "ok": true,
+   "detail": {
+    "maxPositionErrorPx": 1.4794055201698484,
+    "worstSample": {
+     "clientX": 662,
+     "aria": -44.0,
+     "storeYaw": -44.42675159235669,
+     "positionErrorPx": 1.4794055201698484
+    },
+    "bound": "0.5 deg of yaw over 312px of padding box = 1.7333px",
+    "allSamples": [
+     {
+      "clientX": 662,
+      "aria": -44.0,
+      "storeYaw": -44.42675159235669,
+      "positionErrorPx": 1.4794055201698484
+     },
+     {
+      "clientX": 676,
+      "aria": -40.0,
+      "storeYaw": -40.4140127388535,
+      "positionErrorPx": 1.4352441613588098
+     },
+     {
+      "clientX": 690,
+      "aria": -36.0,
+      "storeYaw": -36.40127388535032,
+      "positionErrorPx": 1.3910828025477713
+     },
+     {
+      "clientX": 704,
+      "aria": -32.0,
+      "storeYaw": -32.388535031847134,
+      "positionErrorPx": 1.3469214437367185
+     },
+     {
+      "clientX": 718,
+      "aria": -28.0,
+      "storeYaw": -28.375796178343954,
+      "positionErrorPx": 1.3027600849257084
+     },
+     {
+      "clientX": 732,
+      "aria": -24.0,
+      "storeYaw": -24.363057324840764,
+      "positionErrorPx": 1.2585987261146414
+     },
+     {
+      "clientX": 746,
+      "aria": -20.0,
+      "storeYaw": -20.35031847133758,
+      "positionErrorPx": 1.214437367303617
+     },
+     {
+      "clientX": 760,
+      "aria": -16.0,
+      "storeYaw": -16.337579617834397,
+      "positionErrorPx": 1.1702760084925714
+     },
+     {
+      "clientX": 774,
+      "aria": -12.0,
+      "storeYaw": -12.324840764331212,
+      "positionErrorPx": 1.1261146496815329
+     },
+     {
+      "clientX": 788,
+      "aria": -8.0,
+      "storeYaw": -8.312101910828023,
+      "positionErrorPx": 1.0819532908704765
+     },
+     {
+      "clientX": 802,
+      "aria": -4.0,
+      "storeYaw": -4.29936305732484,
+      "positionErrorPx": 1.037791932059445
+     },
+     {
+      "clientX": 816,
+      "aria": 0.0,
+      "storeYaw": -0.286624203821656,
+      "positionErrorPx": 0.9936305732484074
+     },
+     {
+      "clientX": 830,
+      "aria": 4.0,
+      "storeYaw": 3.726114649681528,
+      "positionErrorPx": 0.9494692144373715
+     },
+     {
+      "clientX": 844,
+      "aria": 8.0,
+      "storeYaw": 7.738853503184711,
+      "positionErrorPx": 0.905307855626333
+     },
+     {
+      "clientX": 858,
+      "aria": 12.0,
+      "storeYaw": 11.751592356687896,
+      "positionErrorPx": 0.8611464968152944
+     },
+     {
+      "clientX": 872,
+      "aria": 16.0,
+      "storeYaw": 15.764331210191079,
+      "positionErrorPx": 0.816985138004263
+     },
+     {
+      "clientX": 886,
+      "aria": 20.0,
+      "storeYaw": 19.777070063694264,
+      "positionErrorPx": 0.7728237791932173
+     },
+     {
+      "clientX": 900,
+      "aria": 24.0,
+      "storeYaw": 23.78980891719746,
+      "positionErrorPx": 0.7286624203821503
+     },
+     {
+      "clientX": 914,
+      "aria": 28.0,
+      "storeYaw": 27.80254777070064,
+      "positionErrorPx": 0.6845010615711118
+     },
+     {
+      "clientX": 928,
+      "aria": 32.0,
+      "storeYaw": 31.815286624203825,
+      "positionErrorPx": 0.6403397027600732
+     },
+     {
+      "clientX": 942,
+      "aria": 36.0,
+      "storeYaw": 35.82802547770701,
+      "positionErrorPx": 0.5961783439490489
+     }
+    ],
+    "whatItMeans": "the pad is role=slider with aria-valuemin=-90 aria-valuemax=90 and an integer aria-valuenow, so assistive technology is told an integer while the drawn indicator sits up to that much away from where that integer says it is. A slider's announced value and its drawn thumb should agree to within a pixel.",
+    "theBorderOffsetIsSeparate": "this error is the rounding of the value, and it stacks with the border mismatch in the previous check; they are different causes and both are real."
+   },
+   "note": "an announced value that cannot place its own thumb"
+  },
+  "a-second-and-unrelated-mechanism-makes-integers-come-out-fractional": {
+   "ok": true,
+   "detail": {
+    "mechanismIn690": "MULTIPLY by a fitted non-integer constant (timeline.duration * (3.36 + 4.978 * zoom))",
+    "mechanismHere": "DIVIDE an integer offset by a measured width that is not a power of two (157 is prime), so the quotient never terminates",
+    "sharedShape": "integer inputs, fractional output",
+    "practicalDifference": "690's fraction needed a store write to reach the screen; this one is produced by the only control the user has, and 21/21 real pointer events produced it with zero store writes.",
+    "thePercentFamilyIsNotAllLikeThis": "of the 8 percent-family expressions only 2 (the pose pad's) were measured here; the other 6 are in the census table and unmeasured.",
+    "theRoundedOne": "DirectorExportPanel.tsx:106 wraps its value in Math.round, so that one is integer-valued by construction -- the same shape as 689's timelineHeight, arrived at by a different author for a different reason."
+   },
+   "note": "two mechanisms, one symptom; only one of them is UI-reachable"
+  }
+ }
+}
