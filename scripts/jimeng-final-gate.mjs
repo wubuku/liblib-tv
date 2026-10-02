@@ -166,6 +166,8 @@ for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
         const curIds = cur.nodes.map((n) => n.id);
         const leftover = curIds.filter((id) => led.ids.includes(id));
         const extReg = base._external_nodes || {};
+        const suspectCopies = cur.nodes.filter((n) => /\s\(\d+\)\s*$/.test(n.title || '')
+          && !(n.id in base.nodes) && !(n.id in extReg) && !led.ids.includes(n.id)).map((n) => `${n.id}(${n.title})`);
         const external = curIds.filter((id) => !(id in base.nodes) && !led.ids.includes(id));
         const knownExt = external.filter((id) => id in extReg);
         const newExt = external.filter((id) => !(id in extReg));
@@ -195,6 +197,11 @@ for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
           `缺失节点 ${missing.length} 个${missing.length ? '：' + missing.join(', ') : ''}`,
           `标题不符 ${titleBad.length} 处${titleBad.length ? '：' + titleBad.join('; ') : ''}`,
           `状态行描述部分 ${statusDescOk ? '✅ 一致' : '⛔ 不一致'}｜edges/selected ${zeroOk ? '✅ 为 0' : '⛔ 非 0'}（${cntOf(cur.status, 'edges')} / ${cntOf(cur.status, 'selected')}）`,
+          // 批次 77 盲区补丁：ledger 只记「我新建的节点」，**不记 ⌘D 派生的副本**。
+          // 一版脚本中止时留下的「文本 4 (2)」孤儿因此既不在 ledger 也不在基线，
+          // 被当成「外部节点」只计数 ⇒ 门是绿的、画布是脏的。
+          // 这里补一条**信息性**提示：标题形如 `xxx (2)` 且未登记的节点。
+          `疑似未登记副本 ${suspectCopies.length} 个${suspectCopies.length ? '：' + suspectCopies.join(', ') : ''}${suspectCopies.length ? ' ⚠️ 只提示不判负（他人测 ⌘D 也会这样）' : ''}`,
           `节点 canvas 坐标：`,
           ...cur.nodes.map((n) => `    ${n.id}  [${n.canvas ? n.canvas.join(', ') : '?'}]  ${JSON.stringify(n.title)}`),
         ];

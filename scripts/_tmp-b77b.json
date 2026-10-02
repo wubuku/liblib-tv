@@ -1,0 +1,74 @@
+{
+ "startedAt": "2026-10-02T00:11:01.880Z",
+ "created": [
+  "node_efxtcet2ya",
+  "node_pedjvp8dt6"
+ ],
+ "dup": [
+  {
+   "kind": "文本",
+   "createdCount": 1,
+   "n0": 21,
+   "n1": 22,
+   "origTitle": [
+    "双击编辑文本",
+    ""
+   ],
+   "dupTitle": [
+    "双击编辑文本",
+    ""
+   ],
+   "dx": 400,
+   "dy": 0,
+   "sameBox": true,
+   "afterUndo": {
+    "gone": true,
+    "nodes": 21
+   }
+  },
+  {
+   "kind": "主体",
+   "createdCount": 1,
+   "n0": 21,
+   "n1": 22,
+   "origTitle": [
+    "主体 1",
+    "主体 1"
+   ],
+   "dupTitle": [
+    "主体 1 (2)",
+    "主体 1 (2)"
+   ],
+   "dx": 432,
+   "dy": 0,
+   "sameBox": true,
+   "afterUndo": {
+    "gone": true,
+    "nodes": 21
+   }
+  }
+ ],
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%",
+  "credit": 805,
+  "nodes": 20,
+  "dev": [],
+  "extra": [
+   "node_ay7f1jn45r",
+   "node_w6b1h9fvzw",
+   "node_dt0wpmba0d",
+   "node_kdgnjkfng2",
+   "node_gp499g9p3m",
+   "node_9y4j9jf0qv",
+   "node_gref4sw056",
+   "node_20sb5adarj",
+   "node_y2n170za3z",
+   "node_1c5zafa3zk",
+   "node_fg4h8gry6x",
+   "node_kx0gzwzf7a",
+   "node_97x9w2s8dc",
+   "node_hm8fbbr85f"
+  ]
+ }
+}

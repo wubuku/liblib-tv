@@ -1,0 +1,702 @@
+{
+ "startedAt": "2026-10-02T00:06:37.828Z",
+ "created": [
+  "node_1218c624b7",
+  "node_awvkkfqpvh",
+  "node_6194atsyvd",
+  "node_262b4e964p",
+  "node_dvk831f8sf",
+  "node_swjcng56am",
+  "node_0rrkh9n4yk"
+ ],
+ "menus": {
+  "视频": {
+   "aria": "Canvas context menu",
+   "role": "menu",
+   "testid": "canvas-context-menu",
+   "box": "200x292",
+   "items": [
+    {
+     "name": "复制",
+     "sub": [
+      "⌘ C"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "复制副本",
+     "sub": [
+      "⌘ D"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "粘贴",
+     "sub": [
+      "⌘ V"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "下载",
+     "sub": [
+      "没有可用的就绪资源"
+     ],
+     "srOnly": [
+      "没有可用的就绪资源"
+     ],
+     "dis": "true",
+     "cursor": "not-allowed",
+     "color": "rgba(255, 255, 255, 0.2)",
+     "box": "192x36"
+    },
+    {
+     "name": "重做",
+     "sub": [
+      "⌘ ⇧ Z",
+      "无需重做操作"
+     ],
+     "srOnly": [
+      "无需重做操作"
+     ],
+     "dis": "true",
+     "cursor": "not-allowed",
+     "color": "rgba(255, 255, 255, 0.2)",
+     "box": "192x36"
+    },
+    {
+     "name": "撤销",
+     "sub": [
+      "⌘ Z"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "删除",
+     "sub": [
+      "⌫"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    }
+   ]
+  },
+  "文本": {
+   "aria": "Canvas context menu",
+   "role": "menu",
+   "testid": "canvas-context-menu",
+   "box": "200x292",
+   "items": [
+    {
+     "name": "复制",
+     "sub": [
+      "⌘ C"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "复制副本",
+     "sub": [
+      "⌘ D"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "粘贴",
+     "sub": [
+      "⌘ V"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "下载",
+     "sub": [],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "重做",
+     "sub": [
+      "⌘ ⇧ Z",
+      "无需重做操作"
+     ],
+     "srOnly": [
+      "无需重做操作"
+     ],
+     "dis": "true",
+     "cursor": "not-allowed",
+     "color": "rgba(255, 255, 255, 0.2)",
+     "box": "192x36"
+    },
+    {
+     "name": "撤销",
+     "sub": [
+      "⌘ Z"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "删除",
+     "sub": [
+      "⌫"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    }
+   ]
+  },
+  "图片": {
+   "aria": "Canvas context menu",
+   "role": "menu",
+   "testid": "canvas-context-menu",
+   "box": "200x332",
+   "items": [
+    {
+     "name": "复制",
+     "sub": [
+      "⌘ C"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "复制副本",
+     "sub": [
+      "⌘ D"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "复制为图片",
+     "sub": [
+      "⌘ ⇧ C",
+      "无法复制或剪切此选区。"
+     ],
+     "srOnly": [
+      "无法复制或剪切此选区。"
+     ],
+     "dis": "true",
+     "cursor": "not-allowed",
+     "color": "rgba(255, 255, 255, 0.2)",
+     "box": "192x36"
+    },
+    {
+     "name": "粘贴",
+     "sub": [
+      "⌘ V"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "下载",
+     "sub": [
+      "没有可用的就绪资源"
+     ],
+     "srOnly": [
+      "没有可用的就绪资源"
+     ],
+     "dis": "true",
+     "cursor": "not-allowed",
+     "color": "rgba(255, 255, 255, 0.2)",
+     "box": "192x36"
+    },
+    {
+     "name": "重做",
+     "sub": [
+      "⌘ ⇧ Z",
+      "无需重做操作"
+     ],
+     "srOnly": [
+      "无需重做操作"
+     ],
+     "dis": "true",
+     "cursor": "not-allowed",
+     "color": "rgba(255, 255, 255, 0.2)",
+     "box": "192x36"
+    },
+    {
+     "name": "撤销",
+     "sub": [
+      "⌘ Z"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "删除",
+     "sub": [
+      "⌫"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    }
+   ]
+  },
+  "音频": {
+   "aria": "Canvas context menu",
+   "role": "menu",
+   "testid": "canvas-context-menu",
+   "box": "200x292",
+   "items": [
+    {
+     "name": "复制",
+     "sub": [
+      "⌘ C"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "复制副本",
+     "sub": [
+      "⌘ D"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "粘贴",
+     "sub": [
+      "⌘ V"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "下载",
+     "sub": [
+      "没有可用的就绪资源"
+     ],
+     "srOnly": [
+      "没有可用的就绪资源"
+     ],
+     "dis": "true",
+     "cursor": "not-allowed",
+     "color": "rgba(255, 255, 255, 0.2)",
+     "box": "192x36"
+    },
+    {
+     "name": "重做",
+     "sub": [
+      "⌘ ⇧ Z",
+      "无需重做操作"
+     ],
+     "srOnly": [
+      "无需重做操作"
+     ],
+     "dis": "true",
+     "cursor": "not-allowed",
+     "color": "rgba(255, 255, 255, 0.2)",
+     "box": "192x36"
+    },
+    {
+     "name": "撤销",
+     "sub": [
+      "⌘ Z"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "删除",
+     "sub": [
+      "⌫"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    }
+   ]
+  },
+  "时间线": {
+   "aria": "Canvas context menu",
+   "role": "menu",
+   "testid": "canvas-context-menu",
+   "box": "200x292",
+   "items": [
+    {
+     "name": "复制",
+     "sub": [
+      "⌘ C"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "复制副本",
+     "sub": [
+      "⌘ D"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "粘贴",
+     "sub": [
+      "⌘ V"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "下载",
+     "sub": [
+      "请选择至少一个组、文本、图片或视频项"
+     ],
+     "srOnly": [
+      "请选择至少一个组、文本、图片或视频项"
+     ],
+     "dis": "true",
+     "cursor": "not-allowed",
+     "color": "rgba(255, 255, 255, 0.2)",
+     "box": "192x36"
+    },
+    {
+     "name": "重做",
+     "sub": [
+      "⌘ ⇧ Z",
+      "无需重做操作"
+     ],
+     "srOnly": [
+      "无需重做操作"
+     ],
+     "dis": "true",
+     "cursor": "not-allowed",
+     "color": "rgba(255, 255, 255, 0.2)",
+     "box": "192x36"
+    },
+    {
+     "name": "撤销",
+     "sub": [
+      "⌘ Z"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "删除",
+     "sub": [
+      "⌫"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    }
+   ]
+  },
+  "主体": {
+   "aria": "Canvas context menu",
+   "role": "menu",
+   "testid": "canvas-context-menu",
+   "box": "200x332",
+   "items": [
+    {
+     "name": "复制",
+     "sub": [
+      "⌘ C"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "复制副本",
+     "sub": [
+      "⌘ D"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "粘贴",
+     "sub": [
+      "⌘ V"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "保存到主体库",
+     "sub": [],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "下载",
+     "sub": [
+      "请选择至少一个组、文本、图片或视频项"
+     ],
+     "srOnly": [
+      "请选择至少一个组、文本、图片或视频项"
+     ],
+     "dis": "true",
+     "cursor": "not-allowed",
+     "color": "rgba(255, 255, 255, 0.2)",
+     "box": "192x36"
+    },
+    {
+     "name": "重做",
+     "sub": [
+      "⌘ ⇧ Z",
+      "无需重做操作"
+     ],
+     "srOnly": [
+      "无需重做操作"
+     ],
+     "dis": "true",
+     "cursor": "not-allowed",
+     "color": "rgba(255, 255, 255, 0.2)",
+     "box": "192x36"
+    },
+    {
+     "name": "撤销",
+     "sub": [
+      "⌘ Z"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "删除",
+     "sub": [
+      "⌫"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    }
+   ]
+  },
+  "导演台": {
+   "aria": "Canvas context menu",
+   "role": "menu",
+   "testid": "canvas-context-menu",
+   "box": "200x292",
+   "items": [
+    {
+     "name": "复制",
+     "sub": [
+      "⌘ C"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "复制副本",
+     "sub": [
+      "⌘ D"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "粘贴",
+     "sub": [
+      "⌘ V"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "下载",
+     "sub": [
+      "请选择至少一个组、文本、图片或视频项"
+     ],
+     "srOnly": [
+      "请选择至少一个组、文本、图片或视频项"
+     ],
+     "dis": "true",
+     "cursor": "not-allowed",
+     "color": "rgba(255, 255, 255, 0.2)",
+     "box": "192x36"
+    },
+    {
+     "name": "重做",
+     "sub": [
+      "⌘ ⇧ Z",
+      "无需重做操作"
+     ],
+     "srOnly": [
+      "无需重做操作"
+     ],
+     "dis": "true",
+     "cursor": "not-allowed",
+     "color": "rgba(255, 255, 255, 0.2)",
+     "box": "192x36"
+    },
+    {
+     "name": "撤销",
+     "sub": [
+      "⌘ Z"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    },
+    {
+     "name": "删除",
+     "sub": [
+      "⌫"
+     ],
+     "srOnly": [],
+     "dis": null,
+     "cursor": "pointer",
+     "color": "rgb(255, 255, 255)",
+     "box": "192x36"
+    }
+   ]
+  }
+ },
+ "dup": [
+  {
+   "kind": "图片",
+   "createdCount": 1,
+   "n0": 19,
+   "n1": 20,
+   "dupId": "node_nan5wmskrt",
+   "dupTitle": "图片 1 (2)",
+   "origTitle": "图片 1",
+   "dx": 400,
+   "dy": 0,
+   "sameBox": true,
+   "afterUndo": {
+    "nodes": 19,
+    "gone": true
+   }
+  }
+ ],
+ "end": {
+  "status": "18 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%",
+  "credit": 805,
+  "nodes": 18,
+  "dev": [],
+  "extra": [
+   "node_ay7f1jn45r",
+   "node_w6b1h9fvzw",
+   "node_dt0wpmba0d",
+   "node_kdgnjkfng2",
+   "node_gp499g9p3m",
+   "node_9y4j9jf0qv",
+   "node_gref4sw056",
+   "node_20sb5adarj",
+   "node_y2n170za3z",
+   "node_1c5zafa3zk",
+   "node_fg4h8gry6x",
+   "node_kx0gzwzf7a"
+  ]
+ }
+}
