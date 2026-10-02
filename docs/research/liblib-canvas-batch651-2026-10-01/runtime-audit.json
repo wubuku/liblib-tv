@@ -1,0 +1,1108 @@
+{
+  "batch": 651,
+  "question": "is batch 650's headline reading (the FOV help tooltip 91% covered by a sticky section) a property of the layout, or an artifact of Playwright's hover() auto-scrolling?",
+  "retracts": {
+    "batch": 650,
+    "claim": "camera-fov-help-tooltip@1280x720 — 68 tall, 62 of it painted over by section.sticky.top-0 (z 20, bg rgba(33,33,33,0.98))",
+    "verdict": "PROBE ARTIFACT — retracted"
+  },
+  "method": {
+    "pinned": "scrollTop forced to 0 on the badge's scrollable ancestor, then a bare mouse.move to the badge's centre (pointer events do not auto-scroll)",
+    "contrast": "the same cell opened through 626's @fov-hover@, which is Playwright's locator.hover() and DOES scrollIntoViewIfNeeded"
+  },
+  "pinnedScrollTopZero": {
+    "560": {
+      "tip": [
+        1015.7,
+        1042,
+        208,
+        68
+      ],
+      "sticky": [
+        1000,
+        157,
+        280,
+        168
+      ],
+      "stickyBottom": 325,
+      "overlap": false,
+      "overlapArea": 0,
+      "tipArea": 14144,
+      "pointerEvents": "none",
+      "zTip": "1700",
+      "zSticky": "20",
+      "locate": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 221,
+        "bandTop": 157,
+        "bandBottom": 378,
+        "naturalY": 961
+      },
+      "locateBeforePin": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 221,
+        "bandTop": 157,
+        "bandBottom": 378,
+        "naturalY": 961
+      }
+    },
+    "640": {
+      "tip": [
+        1015.7,
+        1042,
+        208,
+        68
+      ],
+      "sticky": [
+        1000,
+        157,
+        280,
+        168
+      ],
+      "stickyBottom": 325,
+      "overlap": false,
+      "overlapArea": 0,
+      "tipArea": 14144,
+      "pointerEvents": "none",
+      "zTip": "1700",
+      "zSticky": "20",
+      "locate": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 301,
+        "bandTop": 157,
+        "bandBottom": 458,
+        "naturalY": 961
+      },
+      "locateBeforePin": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 301,
+        "bandTop": 157,
+        "bandBottom": 458,
+        "naturalY": 961
+      }
+    },
+    "720": {
+      "tip": [
+        1015.7,
+        1042,
+        208,
+        68
+      ],
+      "sticky": [
+        1000,
+        157,
+        280,
+        168
+      ],
+      "stickyBottom": 325,
+      "overlap": false,
+      "overlapArea": 0,
+      "tipArea": 14144,
+      "pointerEvents": "none",
+      "zTip": "1700",
+      "zSticky": "20",
+      "locate": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 381,
+        "bandTop": 157,
+        "bandBottom": 538,
+        "naturalY": 961
+      },
+      "locateBeforePin": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 381,
+        "bandTop": 157,
+        "bandBottom": 538,
+        "naturalY": 961
+      }
+    },
+    "800": {
+      "tip": [
+        1015.7,
+        1042,
+        208,
+        68
+      ],
+      "sticky": [
+        1000,
+        157,
+        280,
+        168
+      ],
+      "stickyBottom": 325,
+      "overlap": false,
+      "overlapArea": 0,
+      "tipArea": 14144,
+      "pointerEvents": "none",
+      "zTip": "1700",
+      "zSticky": "20",
+      "locate": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 461,
+        "bandTop": 157,
+        "bandBottom": 618,
+        "naturalY": 961
+      },
+      "locateBeforePin": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 461,
+        "bandTop": 157,
+        "bandBottom": 618,
+        "naturalY": 961
+      }
+    },
+    "900": {
+      "tip": [
+        1015.7,
+        1042,
+        208,
+        68
+      ],
+      "sticky": [
+        1000,
+        157,
+        280,
+        168
+      ],
+      "stickyBottom": 325,
+      "overlap": false,
+      "overlapArea": 0,
+      "tipArea": 14144,
+      "pointerEvents": "none",
+      "zTip": "1700",
+      "zSticky": "20",
+      "locate": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 561,
+        "bandTop": 157,
+        "bandBottom": 718,
+        "naturalY": 961
+      },
+      "locateBeforePin": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 561,
+        "bandTop": 157,
+        "bandBottom": 718,
+        "naturalY": 961
+      }
+    },
+    "1150": {
+      "tip": [
+        1015.7,
+        1042,
+        208,
+        68
+      ],
+      "sticky": [
+        1000,
+        157,
+        280,
+        168
+      ],
+      "stickyBottom": 325,
+      "overlap": false,
+      "overlapArea": 0,
+      "tipArea": 14144,
+      "pointerEvents": "none",
+      "zTip": "1700",
+      "zSticky": "20",
+      "locate": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 811,
+        "bandTop": 157,
+        "bandBottom": 968,
+        "naturalY": 961
+      },
+      "locateBeforePin": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 811,
+        "bandTop": 157,
+        "bandBottom": 968,
+        "naturalY": 961
+      }
+    }
+  },
+  "hoverMode": {
+    "560": {
+      "tip": [
+        1015.7,
+        286,
+        208,
+        68
+      ],
+      "sticky": [
+        1000,
+        157,
+        280,
+        168
+      ],
+      "stickyBottom": 325,
+      "overlap": true,
+      "overlapArea": 8112,
+      "tipArea": 14144,
+      "pointerEvents": "none",
+      "zTip": "1700",
+      "zSticky": "20",
+      "locate": {
+        "pointer": [
+          1119.734375,
+          370
+        ],
+        "badgeY": 362,
+        "scrollerFound": true,
+        "scrollTop": 756,
+        "scrollH": 1185,
+        "clientH": 221,
+        "bandTop": 157,
+        "bandBottom": 378,
+        "naturalY": 961
+      },
+      "locateBeforeHover": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 221,
+        "bandTop": 157,
+        "bandBottom": 378,
+        "naturalY": 961
+      },
+      "hoverSucceeded": true
+    },
+    "640": {
+      "tip": [
+        1015.7,
+        366,
+        208,
+        68
+      ],
+      "sticky": [
+        1000,
+        157,
+        280,
+        168
+      ],
+      "stickyBottom": 325,
+      "overlap": false,
+      "overlapArea": 0,
+      "tipArea": 14144,
+      "pointerEvents": "none",
+      "zTip": "1700",
+      "zSticky": "20",
+      "locate": {
+        "pointer": [
+          1119.734375,
+          450
+        ],
+        "badgeY": 442,
+        "scrollerFound": true,
+        "scrollTop": 676,
+        "scrollH": 1185,
+        "clientH": 301,
+        "bandTop": 157,
+        "bandBottom": 458,
+        "naturalY": 961
+      },
+      "locateBeforeHover": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 301,
+        "bandTop": 157,
+        "bandBottom": 458,
+        "naturalY": 961
+      },
+      "hoverSucceeded": true
+    },
+    "720": {
+      "tip": [
+        1015.7,
+        263,
+        208,
+        68
+      ],
+      "sticky": [
+        1000,
+        157,
+        280,
+        168
+      ],
+      "stickyBottom": 325,
+      "overlap": true,
+      "overlapArea": 12896,
+      "tipArea": 14144,
+      "pointerEvents": "none",
+      "zTip": "1700",
+      "zSticky": "20",
+      "locate": {
+        "pointer": [
+          1119.734375,
+          347
+        ],
+        "badgeY": 339,
+        "scrollerFound": true,
+        "scrollTop": 779,
+        "scrollH": 1185,
+        "clientH": 381,
+        "bandTop": 157,
+        "bandBottom": 538,
+        "naturalY": 961
+      },
+      "locateBeforeHover": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 381,
+        "bandTop": 157,
+        "bandBottom": 538,
+        "naturalY": 961
+      },
+      "hoverSucceeded": true
+    },
+    "800": {
+      "tip": [
+        1015.7,
+        318,
+        208,
+        68
+      ],
+      "sticky": [
+        1000,
+        157,
+        280,
+        168
+      ],
+      "stickyBottom": 325,
+      "overlap": true,
+      "overlapArea": 1456,
+      "tipArea": 14144,
+      "pointerEvents": "none",
+      "zTip": "1700",
+      "zSticky": "20",
+      "locate": {
+        "pointer": [
+          1119.734375,
+          402
+        ],
+        "badgeY": 394,
+        "scrollerFound": true,
+        "scrollTop": 724,
+        "scrollH": 1185,
+        "clientH": 461,
+        "bandTop": 157,
+        "bandBottom": 618,
+        "naturalY": 961
+      },
+      "locateBeforeHover": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 461,
+        "bandTop": 157,
+        "bandBottom": 618,
+        "naturalY": 961
+      },
+      "hoverSucceeded": true
+    },
+    "900": {
+      "tip": [
+        1015.7,
+        418,
+        208,
+        68
+      ],
+      "sticky": [
+        1000,
+        157,
+        280,
+        168
+      ],
+      "stickyBottom": 325,
+      "overlap": false,
+      "overlapArea": 0,
+      "tipArea": 14144,
+      "pointerEvents": "none",
+      "zTip": "1700",
+      "zSticky": "20",
+      "locate": {
+        "pointer": [
+          1119.734375,
+          502
+        ],
+        "badgeY": 494,
+        "scrollerFound": true,
+        "scrollTop": 624,
+        "scrollH": 1185,
+        "clientH": 561,
+        "bandTop": 157,
+        "bandBottom": 718,
+        "naturalY": 961
+      },
+      "locateBeforeHover": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 561,
+        "bandTop": 157,
+        "bandBottom": 718,
+        "naturalY": 961
+      },
+      "hoverSucceeded": true
+    },
+    "1150": {
+      "tip": [
+        1015.7,
+        668,
+        208,
+        68
+      ],
+      "sticky": [
+        1000,
+        157,
+        280,
+        168
+      ],
+      "stickyBottom": 325,
+      "overlap": false,
+      "overlapArea": 0,
+      "tipArea": 14144,
+      "pointerEvents": "none",
+      "zTip": "1700",
+      "zSticky": "20",
+      "locate": {
+        "pointer": [
+          1119.734375,
+          752
+        ],
+        "badgeY": 744,
+        "scrollerFound": true,
+        "scrollTop": 374,
+        "scrollH": 1185,
+        "clientH": 811,
+        "bandTop": 157,
+        "bandBottom": 968,
+        "naturalY": 961
+      },
+      "locateBeforeHover": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 811,
+        "bandTop": 157,
+        "bandBottom": 968,
+        "naturalY": 961
+      },
+      "hoverSucceeded": true
+    }
+  },
+  "shortHeights": {
+    "360": {
+      "badgePresent": true,
+      "locate": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 21,
+        "bandTop": 157,
+        "bandBottom": 178,
+        "naturalY": 961
+      },
+      "hoverSucceeded": false,
+      "hoverError": "TimeoutError",
+      "tooltipAfterwards": true
+    },
+    "400": {
+      "badgePresent": true,
+      "locate": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 61,
+        "bandTop": 157,
+        "bandBottom": 218,
+        "naturalY": 961
+      },
+      "hoverSucceeded": false,
+      "hoverError": "TimeoutError",
+      "tooltipAfterwards": true
+    },
+    "440": {
+      "badgePresent": true,
+      "locate": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 101,
+        "bandTop": 157,
+        "bandBottom": 258,
+        "naturalY": 961
+      },
+      "hoverSucceeded": false,
+      "hoverError": "TimeoutError",
+      "tooltipAfterwards": true
+    },
+    "480": {
+      "badgePresent": true,
+      "locate": {
+        "pointer": [
+          1119.734375,
+          1126
+        ],
+        "badgeY": 1118,
+        "scrollerFound": true,
+        "scrollTop": 0,
+        "scrollH": 1185,
+        "clientH": 141,
+        "bandTop": 157,
+        "bandBottom": 298,
+        "naturalY": 961
+      },
+      "hoverSucceeded": false,
+      "hoverError": "TimeoutError",
+      "tooltipAfterwards": true
+    }
+  },
+  "viewports": [
+    [
+      1280,
+      560
+    ],
+    [
+      1280,
+      640
+    ],
+    [
+      1280,
+      720
+    ],
+    [
+      1280,
+      800
+    ],
+    [
+      1280,
+      900
+    ],
+    [
+      1280,
+      1150
+    ]
+  ],
+  "checks": {
+    "every-height-yields-a-reading-with-the-scroll-pinned": {
+      "ok": true,
+      "detail": {
+        "read": [
+          "560",
+          "640",
+          "720",
+          "800",
+          "900",
+          "1150"
+        ],
+        "unreadable": {}
+      },
+      "note": "an empty set here would make every claim below vacuous"
+    },
+    "with-the-scroll-pinned-at-zero-the-tooltip-is-never-covered": {
+      "ok": true,
+      "detail": {
+        "560": {
+          "tipY": 1042,
+          "stickyBottom": 325,
+          "overlap": false,
+          "overlapArea": 0
+        },
+        "640": {
+          "tipY": 1042,
+          "stickyBottom": 325,
+          "overlap": false,
+          "overlapArea": 0
+        },
+        "720": {
+          "tipY": 1042,
+          "stickyBottom": 325,
+          "overlap": false,
+          "overlapArea": 0
+        },
+        "800": {
+          "tipY": 1042,
+          "stickyBottom": 325,
+          "overlap": false,
+          "overlapArea": 0
+        },
+        "900": {
+          "tipY": 1042,
+          "stickyBottom": 325,
+          "overlap": false,
+          "overlapArea": 0
+        },
+        "1150": {
+          "tipY": 1042,
+          "stickyBottom": 325,
+          "overlap": false,
+          "overlapArea": 0
+        }
+      },
+      "note": "650 read 62 of 68 covered in ONE cell; here it is 0 in all six"
+    },
+    "all-three-numbers-are-invariant-across-viewport-height": {
+      "ok": true,
+      "detail": {
+        "tipY": {
+          "560": 1042,
+          "640": 1042,
+          "720": 1042,
+          "800": 1042,
+          "900": 1042,
+          "1150": 1042
+        },
+        "badgeY": {
+          "560": 1118,
+          "640": 1118,
+          "720": 1118,
+          "800": 1118,
+          "900": 1118,
+          "1150": 1118
+        },
+        "stickyBottom": {
+          "560": 325,
+          "640": 325,
+          "720": 325,
+          "800": 325,
+          "900": 325,
+          "1150": 325
+        },
+        "theDerivedConstant": "the tooltip sits at a fixed y inside the inspector's scroller, so its viewport position moves only with the scroller's own offset"
+      },
+      "note": "an invariant cannot be a function of the window height"
+    },
+    "the-hover-path-scrolls-and-the-tooltip-follows-it": {
+      "ok": true,
+      "detail": {
+        "hoverModeByHeight": {
+          "560": {
+            "scrollTopBeforeHover": 0,
+            "scrollTopAfterHover": 756,
+            "tipY": 286,
+            "overlapArea": 8112,
+            "hoverSucceeded": true
+          },
+          "640": {
+            "scrollTopBeforeHover": 0,
+            "scrollTopAfterHover": 676,
+            "tipY": 366,
+            "overlapArea": 0,
+            "hoverSucceeded": true
+          },
+          "720": {
+            "scrollTopBeforeHover": 0,
+            "scrollTopAfterHover": 779,
+            "tipY": 263,
+            "overlapArea": 12896,
+            "hoverSucceeded": true
+          },
+          "800": {
+            "scrollTopBeforeHover": 0,
+            "scrollTopAfterHover": 724,
+            "tipY": 318,
+            "overlapArea": 1456,
+            "hoverSucceeded": true
+          },
+          "900": {
+            "scrollTopBeforeHover": 0,
+            "scrollTopAfterHover": 624,
+            "tipY": 418,
+            "overlapArea": 0,
+            "hoverSucceeded": true
+          },
+          "1150": {
+            "scrollTopBeforeHover": 0,
+            "scrollTopAfterHover": 374,
+            "tipY": 668,
+            "overlapArea": 0,
+            "hoverSucceeded": true
+          }
+        },
+        "cellsHoverRolledTheScroller": [
+          "560",
+          "640",
+          "720",
+          "800",
+          "900",
+          "1150"
+        ],
+        "theMechanism": "Playwright's locator.hover() performs scrollIntoViewIfNeeded; 626's @fov-hover@ uses it; the tooltip is positioned from the badge, so the probe's scroll becomes the measurement",
+        "at650sCell": {
+          "scrollTopBeforeHover": 0,
+          "scrollTopAfterHover": 779,
+          "tipY": 263,
+          "overlapArea": 12896,
+          "hoverSucceeded": true
+        }
+      },
+      "note": "this is the sixth blind-spot shape: the probe's own side effect"
+    },
+    "the-badge-is-outside-the-inspectors-visible-band-at-every-height": {
+      "ok": true,
+      "detail": {
+        "560": {
+          "naturalY": 961,
+          "bandTop": 157,
+          "bandBottom": 378,
+          "insideBand": false
+        },
+        "640": {
+          "naturalY": 961,
+          "bandTop": 157,
+          "bandBottom": 458,
+          "insideBand": false
+        },
+        "720": {
+          "naturalY": 961,
+          "bandTop": 157,
+          "bandBottom": 538,
+          "insideBand": false
+        },
+        "800": {
+          "naturalY": 961,
+          "bandTop": 157,
+          "bandBottom": 618,
+          "insideBand": false
+        },
+        "900": {
+          "naturalY": 961,
+          "bandTop": 157,
+          "bandBottom": 718,
+          "insideBand": false
+        },
+        "1150": {
+          "naturalY": 961,
+          "bandTop": 157,
+          "bandBottom": 968,
+          "insideBand": false
+        }
+      },
+      "note": "so no hover-only overlay here can be read without scrolling"
+    },
+    "the-probe-errors-out-while-the-tooltip-is-actually-mounted": {
+      "ok": true,
+      "detail": {
+        "state3IsNotNoData": {
+          "360": {
+            "hoverSucceeded": false,
+            "hoverError": "TimeoutError",
+            "tooltipMountedAnyway": true
+          },
+          "400": {
+            "hoverSucceeded": false,
+            "hoverError": "TimeoutError",
+            "tooltipMountedAnyway": true
+          },
+          "440": {
+            "hoverSucceeded": false,
+            "hoverError": "TimeoutError",
+            "tooltipMountedAnyway": true
+          },
+          "480": {
+            "hoverSucceeded": false,
+            "hoverError": "TimeoutError",
+            "tooltipMountedAnyway": true
+          }
+        },
+        "shortHeightsSwept": [
+          "360",
+          "400",
+          "440",
+          "480"
+        ],
+        "state3Observed": {
+          "360": {
+            "badgePresent": true,
+            "locate": {
+              "pointer": [
+                1119.734375,
+                1126
+              ],
+              "badgeY": 1118,
+              "scrollerFound": true,
+              "scrollTop": 0,
+              "scrollH": 1185,
+              "clientH": 21,
+              "bandTop": 157,
+              "bandBottom": 178,
+              "naturalY": 961
+            },
+            "hoverSucceeded": false,
+            "hoverError": "TimeoutError",
+            "tooltipAfterwards": true
+          },
+          "400": {
+            "badgePresent": true,
+            "locate": {
+              "pointer": [
+                1119.734375,
+                1126
+              ],
+              "badgeY": 1118,
+              "scrollerFound": true,
+              "scrollTop": 0,
+              "scrollH": 1185,
+              "clientH": 61,
+              "bandTop": 157,
+              "bandBottom": 218,
+              "naturalY": 961
+            },
+            "hoverSucceeded": false,
+            "hoverError": "TimeoutError",
+            "tooltipAfterwards": true
+          },
+          "440": {
+            "badgePresent": true,
+            "locate": {
+              "pointer": [
+                1119.734375,
+                1126
+              ],
+              "badgeY": 1118,
+              "scrollerFound": true,
+              "scrollTop": 0,
+              "scrollH": 1185,
+              "clientH": 101,
+              "bandTop": 157,
+              "bandBottom": 258,
+              "naturalY": 961
+            },
+            "hoverSucceeded": false,
+            "hoverError": "TimeoutError",
+            "tooltipAfterwards": true
+          },
+          "480": {
+            "badgePresent": true,
+            "locate": {
+              "pointer": [
+                1119.734375,
+                1126
+              ],
+              "badgeY": 1118,
+              "scrollerFound": true,
+              "scrollTop": 0,
+              "scrollH": 1185,
+              "clientH": 141,
+              "bandTop": 157,
+              "bandBottom": 298,
+              "naturalY": 961
+            },
+            "hoverSucceeded": false,
+            "hoverError": "TimeoutError",
+            "tooltipAfterwards": true
+          }
+        },
+        "state3IsNotSilentlyAnEmptySet": true,
+        "cellsWhereHoverCouldNotHappenAtAll": {},
+        "theThreeStates": [
+          "opened with the scroll pinned at 0, and the sticky section does not reach it (the six cells above)",
+          "opened and it IS reached — only reachable by letting the probe scroll, which is 650's reading",
+          "hover() THROWS while the tooltip is mounted — at short viewport heights the badge is intercepted, Playwright retries the stability check and times out, and the overlay is open the whole time. A verifier that reads the exception as absence loses these cells."
+        ],
+        "whyItMatters": "collapsing states 2 and 3 into state 1 is how 650 reported a probe artifact as a layout fact",
+        "antiVacuity": "the first version accepted an EMPTY state-3 set via isinstance(failed, dict), which is always true and could not have failed. Four short heights are now swept so state 3 is a measurement. The SECOND version then asserted the tooltip was absent there — also wrong; the red caught it and the mounted tooltip is what the check now requires."
+      },
+      "note": "state 3 is recorded, not folded into the others"
+    },
+    "the-retraction-is-scoped-to-the-measurement-not-to-the-mechanism": {
+      "ok": true,
+      "detail": {
+        "pointerEvents": {
+          "560": "none",
+          "640": "none",
+          "720": "none",
+          "800": "none",
+          "900": "none",
+          "1150": "none"
+        },
+        "whatIsWithdrawn": "650's four specific numbers for camera-fov-help-tooltip@1280x720",
+        "whatIsNot": "that a section.sticky COULD paint over a tooltip in some scrolled state — this batch simply cannot measure that state, because getting there requires the probe to scroll",
+        "why": "a retraction that overreaches is its own kind of error; the scope has to be stated"
+      },
+      "note": null
+    },
+    "650s-number-is-reproduced-exactly-by-the-probes-own-scroll": {
+      "ok": true,
+      "detail": {
+        "at650sCell": [
+          1280,
+          720
+        ],
+        "underHover": {
+          "scrollTop": 779,
+          "tipY": 263,
+          "overlapArea": 12896,
+          "overlapBoxArea": 12896
+        },
+        "withScrollPinned": {
+          "scrollTop": 0,
+          "tipY": 1042,
+          "overlapArea": 0
+        },
+        "theScrollOffsetsHoverPicked": {
+          "560": 756,
+          "640": 676,
+          "720": 779,
+          "800": 724,
+          "900": 624,
+          "1150": 374
+        },
+        "thePoint": "650's 208x62 = 12896 area is reproduced to the square pixel by the scroll hover() chose. Six heights give six different scrollTop values (374..779), so the same layout yields six different tooltips. A quantity that changes with the probe is not a property of the page."
+      },
+      "note": "the retraction is reproduced, not merely asserted"
+    }
+  },
+  "ok": true,
+  "checkCount": 8,
+  "failures": [],
+  "totals": {
+    "heights": 6,
+    "cellsWithScrollPinned": 6,
+    "overlapCellsPinned": 0,
+    "overlapCellsHoverMode": 3,
+    "cellsHoverRolledTheScroller": 6,
+    "shortHeightsSwept": 4,
+    "shortHeightsWhereHoverThrew": 4,
+    "shortHeightsWhereTheTooltipWasMountedAnyway": 4,
+    "tipYInvariant": [
+      1042
+    ],
+    "stickyBottomInvariant": [
+      325
+    ]
+  }
+}
