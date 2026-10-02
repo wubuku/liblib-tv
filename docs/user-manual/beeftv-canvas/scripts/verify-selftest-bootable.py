@@ -214,6 +214,10 @@ SELFTEST_COSTS = {
     #: 它每例都起一个临时目录、跑一遍被测闸门，而闸门每次要 `git show` + `git grep`
     #: **全树**——9 例 2.8 秒，与闸 13 反验同量级。
     "selftest-quota-tables.py": 2.8,
+    #: **Batch 234 新增**：三次实测 0.38 / 0.35 / 0.37 秒，**按纪律 204 取最大 0.4**。
+    #: 它每例起一个临时目录并搬 `20-reference.md` + `.vitepress/config.mjs`——
+    #: **闸门必须能读出「当前该是哪个版本」与「哪些页会被发布」**，少搬一个则 8 例全 rc=2。
+    "selftest-current-version.py": 0.4,
     "selftest-quote-punct.py": 37.1,
     "selftest-runtime-policy.py": 1.0,
     "selftest-scope.py": 0.4,
