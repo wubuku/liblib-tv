@@ -2062,3 +2062,14 @@ screenshots:
     visible_text: 智能剪辑点开后是**盖在画布上的参数面板**（不是节点卡内联内容）：`+参考` → 提示词框（占位「描述想剪成什么效果」）→ 底部 `默认模式` / `16:9 · 720P · 30s` / 发送。⭐ 本图是**断开之后**的状态：`参考` 与提示词框之间**空空如也** —— 原来那张带序号「1」的视频缩略图整个不见了（对比 M-207 连接后的那张）。面板正文读数：`参考 描述想剪成什么效果 默认模式 16:9·720P·30s`（`1` 已不在）
     alt: 断开视频连线后，智能剪辑面板里带「1」的视频缩略图消失了，只剩 +参考 和提示词框
     sha256: 49adb4d567b6c36cbab47d29eaa7bc6ee229eb40e7343710d6334aa49acdaa53
+  - file: screenshots/M-290-风格广场-那个「全部」下拉其实是按模型筛.png
+    task_id: asset-library
+    step: 56
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: ⭐⭐ 结掉一条挂了两轮的 📖：广场顶部那个写「全部 ▾」的下拉**不是排序，是按模型筛**。⛔ 上一轮用「先猜选项名、再按名字找」（正则 `^(全部|最新|最热|价格…)`）—— 猜错了就永远读不到，于是两次记成「试过四种判据都读不出来」。本轮改成**点开前后各存一份元素指纹、只报新出现的**，一个名字都不用猜；⚠️ 教训：**阴性读数先问「我是按什么在找的」，再问「东西在不在」**
+    visible_text: 点开写着「全部」的下拉后，浮出一列菜单项，**七项全是模型名**（不是「最新/最热/价格」那类排序项）：`全部 / Lib Image / Style Image V7 / Qwen Image / Z Image / Seedream 4.5 / Seedream 5.0`，最上面「全部」为当前选中项。DOM 读数：7 个 `div.mantine-Menu-itemLabel`（不是 `role=option`，所以按 role 找必然读不到）
+    alt: 点开写着「全部」的下拉：浮出的七项全是模型名——全部、Lib Image、Style Image V7、Qwen Image、Z Image、Seedream 4.5、Seedream 5.0，最上面「全部」是当前选中项
+    sha256: d4de2fd6b5ca2f3f86676ee1d51c09fc057b3845ecb82c7e80f4251201917558
