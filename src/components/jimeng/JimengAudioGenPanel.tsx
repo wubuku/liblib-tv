@@ -758,6 +758,34 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                     setFilterSel((m) => ({ ...m, [label]: null }));
                                     setFilterOpen((o) => ({ ...o, [label]: false }));
                                   }}
+                                  /* ⚠️ 批 876 SOURCE_FACT：焦点在这个钮上按
+                                     **Esc 会清除**（探针 876c 源站**三次复现**
+                                     一致：值 男 → 全部 性别、Clear 消失）。
+                                     这是「撤销刚设的那个筛选」的语义，
+                                     与「焦点在**芯片**上按 Esc」**不同** ——
+                                     874 实测后者只收层、**值保留**。
+                                     Esc 的行为**由焦点位置决定**。
+
+                                     ⚠️ 刻意**不** `stopPropagation()`：
+                                     源站 Esc 是「清除 **+** 关掉整个音色库面板」
+                                     两个动作**同时**发生（实测 `voices_open`
+                                     变 False、焦点落到音频节点本体）。清除
+                                     归这一层，关面板**冒泡给上层 handler**，
+                                     两边都做，才与源站等价。
+                                     也因此这里**不** `focus()` 芯片 ——
+                                     源站焦点落点不是芯片（面板要关，
+                                     芯片一起卸载），强行聚焦只会多出
+                                     一个源站没有的落点。 */
+                                  onKeyDown={(e) => {
+                                    if (e.key === "Escape") {
+                                      setFilterSel((m) => ({
+                                        ...m, [label]: null,
+                                      }));
+                                      setFilterOpen((o) => ({
+                                        ...o, [label]: false,
+                                      }));
+                                    }
+                                  }}
                                   className="flex size-4 items-center justify-center rounded-full text-white/50 hover:text-white/80"
                                 >
                                   <X size={10} />

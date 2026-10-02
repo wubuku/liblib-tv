@@ -2203,6 +2203,20 @@ def main() -> int:
             "clear_behavior": (
                 "点它 ⇒ 值回落到「全部 {筛选名}」→ 它自己消失 → "
                 "焦点回到芯片（aria 变回 `{label}: 全部 {label}`）"),
+            # 876：清除钮的**键盘**行为（探针 876/876b/876c，876c **三次复现**一致）
+            "clear_in_tab_order": True,
+            "clear_tab_after_chip": True,
+            "clear_enter_fires": True,
+            "clear_space_fires": True,
+            "clear_arrows_dead": True,
+            # ⚠️ Esc 的行为**由焦点位置决定** —— 这是本批最容易记错的一条：
+            #   焦点在**芯片**上按 Esc  → 只收层，**值保留**（874 实测）
+            #   焦点在 **Clear** 上按 Esc → **清除**，而且**同时**关掉
+            #                                     整个音色库面板、焦点落到
+            #                                     **音频节点本体**
+            "clear_esc_fires": True,
+            "clear_esc_also_closes_voices": True,
+            "esc_depends_on_focus": True,
             # 875：外层格子**恒定 153×28**，选中前后都不变；变的是格子里
             # 装什么：未选中 芯片 135（=153−左右 padding 9×2），
             # 选中 芯片 111 + gap 8 + Clear 16 = 135（正好填满）。
@@ -2214,7 +2228,9 @@ def main() -> int:
                     "登录态，视口 1512×1200）+ "
                     "jimeng_probe873_voiceselect.py（选完之后）+ "
                     "jimeng_probe874_escvalue.py（焦点落点身份 / Esc 保留值）+ "
-                    "jimeng_probe875_clearfilter.py（**清除钮**，四钮逐个）")},
+                    "jimeng_probe875_clearfilter.py（**清除钮**，四钮逐个）+ "
+                    "jimeng_probe876c_clearfilter_kb2.py"
+                    "（**清除钮的键盘**，三次复现）")},
         # ══ 批 855：生成历史层（**按名字**找，不是按位置）════════════════
         # 这条 why 原来写「前置态没成立：点**第 2 个** `canvas-panel-launcher`
         # 开出的是『积分明细』」—— 那是**按位置猜名字**。855a 把顶栏 9 个按钮

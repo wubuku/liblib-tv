@@ -1943,6 +1943,74 @@ def main() -> int:
           "audio-voice-filter-clear" not in _ausrc
           and "hit_ok" in _p875c and "value_cleared" in _p875c)
 
+    # ── AA. 批 876：清除钮的**键盘**行为取样 + 一处真差异修掉 ──────
+    print("— AA. 批 876 清除钮键盘行为：Tab 在序列里 / Enter·Space 触发 / "
+          "方向键不接 / Esc 触发清除 —")
+    p876 = ROOT / "scripts/jimeng_probe876_clearfilter_kb.py"
+    p876b = ROOT / "scripts/jimeng_probe876b_clearfilter_mech.py"
+    p876c = ROOT / "scripts/jimeng_probe876c_clearfilter_kb2.py"
+    p876k = ROOT / "scripts/jimeng_probe876c_clearfilter_kb2_ck.py"
+    _p876 = p876.read_text(encoding="utf-8") if p876.exists() else ""
+    _p876b = p876b.read_text(encoding="utf-8") if p876b.exists() else ""
+    _p876c = p876c.read_text(encoding="utf-8") if p876c.exists() else ""
+    _p876k = p876k.read_text(encoding="utf-8") if p876k.exists() else ""
+    check("AA.1 876 的三跑链**都在库里**，且每一跑都写明了自己**作废/查机制"
+          "的理由**——876 两处起点错（用 mouse.click 聚焦 Clear，而点它本身就是"
+          "清除；用 mouse.click 聚焦芯片，而芯片是 toggle 会打开筛选层），"
+          "876c 才是用**程序化 focus** 的那跑。**错判据不许悄悄改掉**。"
+          " ⚠️ 这条**第一版是 FAIL 的，而且 FAIL 得对**：876 自己的 docstring 里"
+          "**压根没有作废声明**（它当时还不知道自己会作废）——"
+          "「只留跑对的那几个」正是被它破掉的。作废横幅已补上。",
+          bool(_p876) and bool(_p876b) and bool(_p876c) and bool(_p876k)
+          and "本文件**整跑作废**" in _p876
+          and "真结论由" in _p876
+          and "上一跑（876）为什么作废" in _p876b
+          and "把 876 的三处**起点错**钉死" in _p876c
+          and "程序化 focus" in _p876c)
+    check("AA.2 源站键盘行为进了 `SOURCE_BASELINE`（Tab 在序列里且紧跟芯片 / "
+          "Enter / Space 触发清除 / 方向键不接 / Esc 触发清除**且**顺带关掉"
+          "整个音色库面板），并单独记了 `esc_depends_on_focus`",
+          '"clear_in_tab_order": True' in _ausrc
+          and '"clear_enter_fires": True' in _ausrc
+          and '"clear_space_fires": True' in _ausrc
+          and '"clear_arrows_dead": True' in _ausrc
+          and '"clear_esc_fires": True' in _ausrc
+          and '"clear_esc_also_closes_voices": True' in _ausrc
+          and '"esc_depends_on_focus": True' in _ausrc)
+    check("AA.3 复刻的 Clear **响应 Esc**：焦点在它上面按 Esc 会清除"
+          "（875 加按钮时漏了；源站 876c 三次复现）。且**刻意不**"
+          "`stopPropagation` —— 源站 Esc 是「清除 **+** 关掉整个面板」"
+          "两个动作同时发生，关面板那半必须**继续冒泡**给上层 handler",
+          "onKeyDown={(e) => {" in _agp2
+          and 'if (e.key === "Escape")' in _agp2
+          and "[label]: null," in _agp2
+          and "不** `stopPropagation()`" in _agp2)
+    check("AA.4 Clear 的 Esc 分支**不** `focus()` 芯片"
+          "（源站实测 Esc 后焦点落在**音频节点本体**，不是芯片 —— 面板要关、"
+          "芯片一起卸载；强行聚焦只会多出一个源站没有的落点）",
+          # onClick 分支有 focus()，onKeyDown 分支没有：数一下
+          "chipRefs.current[label]?.focus();" in _agp2
+          and _agp2.count("chipRefs.current[label]?.focus();") == 1)
+    check("AA.5 复刻探针读值走的是**零破坏**读法（芯片的可见文案本身就是值），"
+          "那个「点开层再点芯片收层」的有破坏性读法只留作**交叉校验**、"
+          "默认不调 —— 第一跑就是被它**改了状态**才让 Enter/Space/方向键"
+          "三项全记成「聚不到焦点 ⇒ 测不了」",
+          "def value_text():" in _p876k
+          and "这个读法**有破坏性**" in _p876k
+          and _p876k.count("value_now()") == 1)
+    check("AA.6 复刻探针对「读不到」与「没有」**分栏记账**"
+          "（源站 876c 前两跑栽在这：`reopened=False` 被判据读成"
+          "「值没了」，还印出肯定句 —— 第四次「把够不着写成没有」）",
+          "不是「值没了」" in _p876c and "不是「值没了」" in _p876k
+          and "None      # None = 未知，不是 False" in _p876c)
+    check("AA.7 Esc 之后**重开**读值，而不是当场读（当场读会被「面板已经关了」"
+          "污染：Clear 读不到、值读不到，看着像清除也发生了）；"
+          "重开失败要先**重新选中节点**搭回前置态，"
+          "因为 Esc 之后音频生成面板整个收起、`音色: 音色库` 压根不在 DOM 里",
+          "前置态没成立：Esc 之后**音色库没开回来**" in _p876c
+          and "def reselect_node():" in _p876c
+          and "重新选中节点 → 面板回来 → 再开音色库" in _p876c)
+
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))
