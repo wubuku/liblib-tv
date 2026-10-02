@@ -1,0 +1,840 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 1150,
+  "census": [
+   {
+    "key": "motion-slider",
+    "file": "DirectorCameraMotionTab.tsx",
+    "line": 95,
+    "min": "min",
+    "max": "MOTION_SLIDER_MAX",
+    "step": "step",
+    "openedBy": "摄像机面板的「运动轨迹」页签"
+   },
+   {
+    "key": "pose-control",
+    "file": "DirectorInspector.tsx",
+    "line": 1352,
+    "min": "control.min",
+    "max": "control.max",
+    "step": "control.step",
+    "openedBy": "默认（选中角色）下**仍不出现**，原因未查"
+   },
+   {
+    "key": "camera-fov",
+    "file": "DirectorInspector.tsx",
+    "line": 1646,
+    "min": "15",
+    "max": "90",
+    "step": "1",
+    "openedBy": "选中机位"
+   },
+   {
+    "key": "uniform-scale",
+    "file": "DirectorInspector.tsx",
+    "line": 2531,
+    "min": "0.1",
+    "max": "10",
+    "step": "0.05",
+    "openedBy": "选中机位"
+   },
+   {
+    "key": "scene-scale",
+    "file": "DirectorInspector.tsx",
+    "line": 2764,
+    "min": "0.1",
+    "max": "10",
+    "step": "0.1",
+    "openedBy": "场景设置区（需另开）"
+   },
+   {
+    "key": "scene-panorama-rotation",
+    "file": "DirectorInspector.tsx",
+    "line": 2964,
+    "min": "0",
+    "max": "360",
+    "step": "1",
+    "openedBy": "场景设置区（需另开）"
+   },
+   {
+    "key": "scene-panorama-radius",
+    "file": "DirectorInspector.tsx",
+    "line": 2994,
+    "min": "10",
+    "max": "500",
+    "step": "10",
+    "openedBy": "场景设置区（需另开）"
+   },
+   {
+    "key": "scene-ground-opacity",
+    "file": "DirectorInspector.tsx",
+    "line": 3048,
+    "min": "0",
+    "max": "1",
+    "step": "0.05",
+    "openedBy": "场景设置区（需另开）"
+   },
+   {
+    "key": "scene-ground-height",
+    "file": "DirectorInspector.tsx",
+    "line": 3079,
+    "min": "-2",
+    "max": "2",
+    "step": "0.05",
+    "openedBy": "场景设置区（需另开）"
+   },
+   {
+    "key": "phone-vcam-stability",
+    "file": "DirectorPhoneVcamPanel.tsx",
+    "line": 603,
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "openedBy": "虚拟相机面板"
+   },
+   {
+    "key": "timeline-zoom",
+    "file": "DirectorTimeline.tsx",
+    "line": 1337,
+    "min": "0",
+    "max": "100",
+    "step": null,
+    "openedBy": "默认（时间轴常驻）"
+   }
+  ],
+  "table": [
+   {
+    "key": "motion-slider",
+    "status": "not-measured",
+    "openedBy": "摄像机面板的「运动轨迹」页签",
+    "file": "DirectorCameraMotionTab.tsx",
+    "line": 95
+   },
+   {
+    "key": "pose-control",
+    "status": "not-measured",
+    "openedBy": "默认（选中角色）下**仍不出现**，原因未查",
+    "file": "DirectorInspector.tsx",
+    "line": 1352
+   },
+   {
+    "key": "camera-fov",
+    "status": "measured",
+    "file": "DirectorInspector.tsx",
+    "line": 1646,
+    "trackPx": 170,
+    "opacity": "0",
+    "min": 15,
+    "max": 90,
+    "step": 1,
+    "declared": 76,
+    "mouseReachable": 20,
+    "mouseValues": [
+     "15",
+     "19",
+     "23",
+     "27",
+     "31",
+     "35",
+     "39",
+     "43",
+     "47",
+     "51",
+     "55",
+     "59",
+     "63",
+     "67",
+     "71",
+     "75",
+     "79",
+     "83",
+     "87",
+     "90"
+    ],
+    "keyboardHome": "15",
+    "keyboardEnd": "90",
+    "keyboardStepIsExactlyStep": true,
+    "keyboardSamples": [
+     "15",
+     "16",
+     "17",
+     "18",
+     "19",
+     "20",
+     "21",
+     "22",
+     "23",
+     "90"
+    ],
+    "mouseLeqTrackPx": true
+   },
+   {
+    "key": "uniform-scale",
+    "status": "measured",
+    "file": "DirectorInspector.tsx",
+    "line": 2531,
+    "trackPx": 96,
+    "opacity": "1",
+    "min": 0.1,
+    "max": 10,
+    "step": 0.05,
+    "declared": 199,
+    "mouseReachable": 11,
+    "mouseValues": [
+     "0.1",
+     "1.1",
+     "10",
+     "2.2",
+     "3.2",
+     "4.3",
+     "5.3",
+     "6.4",
+     "7.4",
+     "8.4",
+     "9.5"
+    ],
+    "keyboardHome": "0.1",
+    "keyboardEnd": "10",
+    "keyboardStepIsExactlyStep": true,
+    "keyboardSamples": [
+     "0.1",
+     "0.15",
+     "0.2",
+     "0.25",
+     "0.3",
+     "0.35",
+     "0.4",
+     "0.45",
+     "0.5",
+     "10"
+    ],
+    "mouseLeqTrackPx": true
+   },
+   {
+    "key": "scene-scale",
+    "status": "not-measured",
+    "openedBy": "场景设置区（需另开）",
+    "file": "DirectorInspector.tsx",
+    "line": 2764
+   },
+   {
+    "key": "scene-panorama-rotation",
+    "status": "not-measured",
+    "openedBy": "场景设置区（需另开）",
+    "file": "DirectorInspector.tsx",
+    "line": 2964
+   },
+   {
+    "key": "scene-panorama-radius",
+    "status": "not-measured",
+    "openedBy": "场景设置区（需另开）",
+    "file": "DirectorInspector.tsx",
+    "line": 2994
+   },
+   {
+    "key": "scene-ground-opacity",
+    "status": "not-measured",
+    "openedBy": "场景设置区（需另开）",
+    "file": "DirectorInspector.tsx",
+    "line": 3048
+   },
+   {
+    "key": "scene-ground-height",
+    "status": "not-measured",
+    "openedBy": "场景设置区（需另开）",
+    "file": "DirectorInspector.tsx",
+    "line": 3079
+   },
+   {
+    "key": "phone-vcam-stability",
+    "status": "measured",
+    "file": "DirectorPhoneVcamPanel.tsx",
+    "line": 603,
+    "trackPx": 314,
+    "opacity": "1",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "declared": 101,
+    "mouseReachable": 35,
+    "mouseValues": [
+     "0",
+     "100",
+     "12",
+     "15",
+     "18",
+     "21",
+     "24",
+     "27",
+     "3",
+     "30",
+     "33",
+     "36",
+     "39",
+     "42",
+     "45",
+     "48",
+     "51",
+     "54",
+     "57",
+     "6",
+     "60",
+     "63",
+     "66",
+     "69",
+     "72",
+     "75",
+     "78",
+     "81",
+     "84",
+     "87",
+     "9",
+     "90",
+     "93",
+     "96",
+     "99"
+    ],
+    "keyboardHome": "0",
+    "keyboardEnd": "100",
+    "keyboardStepIsExactlyStep": true,
+    "keyboardSamples": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8",
+     "100"
+    ],
+    "mouseLeqTrackPx": true
+   },
+   {
+    "key": "timeline-zoom",
+    "status": "measured",
+    "file": "DirectorTimeline.tsx",
+    "line": 1337,
+    "trackPx": 71,
+    "opacity": "0",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "declared": 101,
+    "mouseReachable": 8,
+    "mouseValues": [
+     "0",
+     "100",
+     "15",
+     "31",
+     "47",
+     "62",
+     "78",
+     "93"
+    ],
+    "keyboardHome": "0",
+    "keyboardEnd": "100",
+    "keyboardStepIsExactlyStep": true,
+    "keyboardSamples": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8",
+     "100"
+    ],
+    "mouseLeqTrackPx": true
+   }
+  ],
+  "pxPerValue": [
+   {
+    "key": "camera-fov",
+    "trackPx": 170,
+    "declared": 76,
+    "mouseReachable": 20,
+    "pxPerValue": 9.444444444444445
+   },
+   {
+    "key": "uniform-scale",
+    "trackPx": 96,
+    "declared": 199,
+    "mouseReachable": 11,
+    "pxPerValue": 10.666666666666666
+   },
+   {
+    "key": "phone-vcam-stability",
+    "trackPx": 314,
+    "declared": 101,
+    "mouseReachable": 35,
+    "pxPerValue": 9.515151515151516
+   },
+   {
+    "key": "timeline-zoom",
+    "trackPx": 71,
+    "declared": 101,
+    "mouseReachable": 8,
+    "pxPerValue": 11.833333333333334
+   }
+  ],
+  "theHeadline": "Across the five native ranges reachable in the default desk state, the mouse-reachable set is never larger than the track's pixel width while the declared step says otherwise -- and the keyboard reaches the declared values exactly. The worst case is a visible 96px slider declaring 199 values, where the mouse can deliver at most half of them.",
+  "theTwoRules": {
+   "mouse": "distinct clickable values <= track width in px",
+   "keyboard": "Home=min, each ArrowRight adds exactly step, End=max",
+   "whyStructural": "neither rule needs a model of the browser's thumb inset, which 693 recorded as inference because the thumb width was never measured"
+  },
+  "storeWritesInThisRun": [
+   "selectObject(activeCameraId) -- to switch the inspector to the camera panel",
+   "setPhoneVcamStatus('local-ready') -- to mount the vcam panel's content"
+  ],
+  "howThePanelWasReached": "clicked [data-director-phone-vcam-trigger]; the real connect path (local HTTPS preview server + certificate trust) was NOT exercised.",
+  "relationTo693": "693 measured this asymmetry on ONE control (the FOV slider). This batch checks whether it generalises, and answers: yes across the five reachable members of the class, with a rule that does not need the thumb-width inference.",
+  "hypothesisNotClaim": "All readings are from our own clone; the source site was not used and no source behaviour is claimed. The six unmeasured ranges have no readings here -- neither for nor against the rules."
+ },
+ "checks": {
+  "census-finds-eleven-native-ranges-and-labels-the-unmeasured-seven": {
+   "ok": true,
+   "detail": {
+    "total": 11,
+    "measured": 4,
+    "notMeasured": 7,
+    "theExpectationThatWasWrong": "the first version asserted 5 measurable and 6 unmeasurable, on the reasoning that selecting a character would expose pose-control. It does not -- that control is absent even with the default character selection, and I did not chase why. The readings were right and the expectation was wrong, so the assertion now states the measured 4/7 split.",
+    "table": [
+     {
+      "key": "motion-slider",
+      "status": "not-measured",
+      "openedBy": "摄像机面板的「运动轨迹」页签",
+      "file": "DirectorCameraMotionTab.tsx",
+      "line": 95
+     },
+     {
+      "key": "pose-control",
+      "status": "not-measured",
+      "openedBy": "默认（选中角色）下**仍不出现**，原因未查",
+      "file": "DirectorInspector.tsx",
+      "line": 1352
+     },
+     {
+      "key": "camera-fov",
+      "status": "measured",
+      "file": "DirectorInspector.tsx",
+      "line": 1646,
+      "trackPx": 170,
+      "opacity": "0",
+      "min": 15,
+      "max": 90,
+      "step": 1,
+      "declared": 76,
+      "mouseReachable": 20,
+      "mouseValues": [
+       "15",
+       "19",
+       "23",
+       "27",
+       "31",
+       "35",
+       "39",
+       "43",
+       "47",
+       "51",
+       "55",
+       "59",
+       "63",
+       "67",
+       "71",
+       "75",
+       "79",
+       "83",
+       "87",
+       "90"
+      ],
+      "keyboardHome": "15",
+      "keyboardEnd": "90",
+      "keyboardStepIsExactlyStep": true,
+      "keyboardSamples": [
+       "15",
+       "16",
+       "17",
+       "18",
+       "19",
+       "20",
+       "21",
+       "22",
+       "23",
+       "90"
+      ],
+      "mouseLeqTrackPx": true
+     },
+     {
+      "key": "uniform-scale",
+      "status": "measured",
+      "file": "DirectorInspector.tsx",
+      "line": 2531,
+      "trackPx": 96,
+      "opacity": "1",
+      "min": 0.1,
+      "max": 10,
+      "step": 0.05,
+      "declared": 199,
+      "mouseReachable": 11,
+      "mouseValues": [
+       "0.1",
+       "1.1",
+       "10",
+       "2.2",
+       "3.2",
+       "4.3",
+       "5.3",
+       "6.4",
+       "7.4",
+       "8.4",
+       "9.5"
+      ],
+      "keyboardHome": "0.1",
+      "keyboardEnd": "10",
+      "keyboardStepIsExactlyStep": true,
+      "keyboardSamples": [
+       "0.1",
+       "0.15",
+       "0.2",
+       "0.25",
+       "0.3",
+       "0.35",
+       "0.4",
+       "0.45",
+       "0.5",
+       "10"
+      ],
+      "mouseLeqTrackPx": true
+     },
+     {
+      "key": "scene-scale",
+      "status": "not-measured",
+      "openedBy": "场景设置区（需另开）",
+      "file": "DirectorInspector.tsx",
+      "line": 2764
+     },
+     {
+      "key": "scene-panorama-rotation",
+      "status": "not-measured",
+      "openedBy": "场景设置区（需另开）",
+      "file": "DirectorInspector.tsx",
+      "line": 2964
+     },
+     {
+      "key": "scene-panorama-radius",
+      "status": "not-measured",
+      "openedBy": "场景设置区（需另开）",
+      "file": "DirectorInspector.tsx",
+      "line": 2994
+     },
+     {
+      "key": "scene-ground-opacity",
+      "status": "not-measured",
+      "openedBy": "场景设置区（需另开）",
+      "file": "DirectorInspector.tsx",
+      "line": 3048
+     },
+     {
+      "key": "scene-ground-height",
+      "status": "not-measured",
+      "openedBy": "场景设置区（需另开）",
+      "file": "DirectorInspector.tsx",
+      "line": 3079
+     },
+     {
+      "key": "phone-vcam-stability",
+      "status": "measured",
+      "file": "DirectorPhoneVcamPanel.tsx",
+      "line": 603,
+      "trackPx": 314,
+      "opacity": "1",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "declared": 101,
+      "mouseReachable": 35,
+      "mouseValues": [
+       "0",
+       "100",
+       "12",
+       "15",
+       "18",
+       "21",
+       "24",
+       "27",
+       "3",
+       "30",
+       "33",
+       "36",
+       "39",
+       "42",
+       "45",
+       "48",
+       "51",
+       "54",
+       "57",
+       "6",
+       "60",
+       "63",
+       "66",
+       "69",
+       "72",
+       "75",
+       "78",
+       "81",
+       "84",
+       "87",
+       "9",
+       "90",
+       "93",
+       "96",
+       "99"
+      ],
+      "keyboardHome": "0",
+      "keyboardEnd": "100",
+      "keyboardStepIsExactlyStep": true,
+      "keyboardSamples": [
+       "0",
+       "1",
+       "2",
+       "3",
+       "4",
+       "5",
+       "6",
+       "7",
+       "8",
+       "100"
+      ],
+      "mouseLeqTrackPx": true
+     },
+     {
+      "key": "timeline-zoom",
+      "status": "measured",
+      "file": "DirectorTimeline.tsx",
+      "line": 1337,
+      "trackPx": 71,
+      "opacity": "0",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "declared": 101,
+      "mouseReachable": 8,
+      "mouseValues": [
+       "0",
+       "100",
+       "15",
+       "31",
+       "47",
+       "62",
+       "78",
+       "93"
+      ],
+      "keyboardHome": "0",
+      "keyboardEnd": "100",
+      "keyboardStepIsExactlyStep": true,
+      "keyboardSamples": [
+       "0",
+       "1",
+       "2",
+       "3",
+       "4",
+       "5",
+       "6",
+       "7",
+       "8",
+       "100"
+      ],
+      "mouseLeqTrackPx": true
+     }
+    ],
+    "theThirdState": "the six unmeasured rows are not omitted -- each records which control opens it, so a later batch can pick them up without rediscovering the inventory. 671's rule: a third state must be recorded separately from measured values, never merged into them.",
+    "declaredRangeAcrossTheClass": [
+     76,
+     101,
+     199
+    ]
+   },
+   "note": "an inventory whose unmeasured rows say how to reach them"
+  },
+  "mouse-reachable-count-never-exceeds-the-track-width": {
+   "ok": true,
+   "detail": {
+    "rule": "distinct values reachable by clicking <= track width in px",
+    "perSite": [
+     {
+      "key": "camera-fov",
+      "trackPx": 170,
+      "declared": 76,
+      "mouseReachable": 20,
+      "holds": true
+     },
+     {
+      "key": "uniform-scale",
+      "trackPx": 96,
+      "declared": 199,
+      "mouseReachable": 11,
+      "holds": true
+     },
+     {
+      "key": "phone-vcam-stability",
+      "trackPx": 314,
+      "declared": 101,
+      "mouseReachable": 35,
+      "holds": true
+     },
+     {
+      "key": "timeline-zoom",
+      "trackPx": 71,
+      "declared": 101,
+      "mouseReachable": 8,
+      "holds": true
+     }
+    ],
+    "allHold": true,
+    "whyItIsStructural": "one click gives one pixel position, so the mouse cannot distinguish more values than the track has pixels. The rule needs no model of how the browser maps pixels to values -- which is why 693's unmeasured thumb width does not block it.",
+    "theLosers": [
+     {
+      "key": "camera-fov",
+      "lost": 56
+     },
+     {
+      "key": "uniform-scale",
+      "lost": 188
+     },
+     {
+      "key": "phone-vcam-stability",
+      "lost": 66
+     },
+     {
+      "key": "timeline-zoom",
+      "lost": 93
+     }
+    ]
+   },
+   "note": "a rule over the whole primitive class, not a single control"
+  },
+  "the-keyboard-reaches-every-declared-value-with-exactly-the-declared-step": {
+   "ok": true,
+   "detail": {
+    "rule": "Home reaches min, each ArrowRight adds exactly step, End reaches max",
+    "perSite": [
+     {
+      "key": "camera-fov",
+      "min": 15,
+      "max": 90,
+      "step": 1,
+      "home": "15",
+      "end": "90",
+      "stepExact": true
+     },
+     {
+      "key": "uniform-scale",
+      "min": 0.1,
+      "max": 10,
+      "step": 0.05,
+      "home": "0.1",
+      "end": "10",
+      "stepExact": true
+     },
+     {
+      "key": "phone-vcam-stability",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "home": "0",
+      "end": "100",
+      "stepExact": true
+     },
+     {
+      "key": "timeline-zoom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "home": "0",
+      "end": "100",
+      "stepExact": true
+     }
+    ],
+    "consequence": "the keyboard honours the declared step on all four, so the declared range is genuinely reachable -- it is only the MOUSE that cannot deliver it. That is the same asymmetry 693 found on one control, now measured across the class.",
+    "notClaimedAsAProof": "this shows the keyboard path reaches the endpoints and steps correctly; it does not enumerate all declared values by keyboard, which would need min(span/step, ...) presses."
+   },
+   "note": "same control, two reachable sets -- now across four controls"
+  },
+  "the-worst-case-is-a-visible-96px-slider-declaring-199-values": {
+   "ok": true,
+   "detail": {
+    "key": "uniform-scale",
+    "trackPx": 96,
+    "declared": 199,
+    "mouseReachable": 11,
+    "lostToTheMouse": 188,
+    "opacity": "1",
+    "whyThisOneMatters": "the other lossy sliders are opacity:0 natives hidden under a self-drawn track, so the user never sees the platform. This one is a plain visible range, so the coarse stepping is directly visible: the knob jumps in visibly uneven jumps.",
+    "theStep": 0.05,
+    "productCall": "whether a 199-value range should be on a 96px slider is a product decision. Changing it means touching src/, so nothing was changed."
+   },
+   "note": "a visible native range, so the loss is visible"
+  },
+  "how-many-pixels-one-mouse-value-costs-is-almost-independent-of-the-declared-step": {
+   "ok": true,
+   "detail": {
+    "perSite": [
+     {
+      "key": "camera-fov",
+      "trackPx": 170,
+      "declared": 76,
+      "mouseReachable": 20,
+      "pxPerValue": 9.444444444444445
+     },
+     {
+      "key": "uniform-scale",
+      "trackPx": 96,
+      "declared": 199,
+      "mouseReachable": 11,
+      "pxPerValue": 10.666666666666666
+     },
+     {
+      "key": "phone-vcam-stability",
+      "trackPx": 314,
+      "declared": 101,
+      "mouseReachable": 35,
+      "pxPerValue": 9.515151515151516
+     },
+     {
+      "key": "timeline-zoom",
+      "trackPx": 71,
+      "declared": 101,
+      "mouseReachable": 8,
+      "pxPerValue": 11.833333333333334
+     }
+    ],
+    "pxPerValueRange": [
+     9.444444444444445,
+     11.833333333333334
+    ],
+    "spreadRatio": 1.2529411764705882,
+    "trackWidthRange": [
+     71,
+     314
+    ],
+    "trackWidthSpread": 4.422535211267606,
+    "declaredCountRange": [
+     76,
+     199
+    ],
+    "declaredCountSpread": 2.6184210526315788,
+    "whatItSays": "the mouse-reachable set is set by the track's pixel geometry, not by the declared step: across a 4.4x range of track widths and a 2.6x range of declared counts, one reachable value still costs about the same number of pixels (9.4 to 11.8).",
+    "whyItIsStrongerThanThePreviousRule": "'reachable <= width' is only an upper bound and says nothing about how much is lost. This pins the loss to a near-constant pixels-per-value, which is what makes the loss predictable.",
+    "mechanismNotClaimed": "WHY roughly ten pixels per value was NOT measured: the thumb width, the browser's value-to-pixel mapping, and any rounding rule inside the control are all unmeasured here. 693 already recorded the thumb inset as inference for the same reason. This batch claims the invariant and explicitly not its cause.",
+    "theWorstLoser": "uniform-scale: 199 declared, 11 reachable, so 188 values are unreachable by clicking -- and it is a plain visible range, so the coarse stepping is visible rather than hidden under a self-drawn track"
+   },
+   "note": "a measured invariant, with its cause explicitly left unclaimed"
+  }
+ }
+}
