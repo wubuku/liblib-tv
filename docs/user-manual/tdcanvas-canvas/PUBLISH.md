@@ -322,6 +322,45 @@ python3 scripts/append-audit.py AUDIT.md < /tmp/audit-rows.txt
 
 **还有一条元教训**：M160 本批自己也踩了——在 `SOURCE_OBSERVATIONS.md` 上方插入 3 行，把 R26 登记在**行号 357** 的豁免顶到了 360，**豁免静默失效**，门禁开始报一条根本没改过的行。**M152 那条「豁免必须精确到文件:行号」只说对了一半**：行号精确，但**不稳定**。已补「内容锚点」形态（`文件#行内稳定片段`，≥8 字），行号与锚点取并集——**插入不掉，删改才失效，且仍然窄到无法滥用**。
 
+### ★ 第九条：定位靠 `data-*` 语义标记，不靠 class 猜（M177 新增）
+
+前八条治的是「读数不可信」「读数不是常量」。第九条治的是更前面一步的事：**你找的根本不是那个元素**——于是你量到的是别的东西，或者**什么都没量到**。
+
+| 现象 | 实测 |
+|---|---|
+| 按 `[class*="context-menu"]` 找连线右键菜单 | **一个都找不到**——菜单根是 **`data-canvas-context-menu="connection"`**，那个标记**在 `data-` 属性上，不在 class 里**。连查三轮都读出「右键没反应」，差点记成「产品不响应右键」 |
+| 按「有贝塞尔曲线」抓 `path` | **把 39 个 lucide 图标的路径全抓了进来**——图标 path 是 viewBox 坐标、`stroke` 有值、2px 宽，**每一项特征都能冒充连线**。真连线只有 1 条，靠 `data-connection-id` 一秒定位 |
+| 在连线上用 `getPointAtLength` 取点喂 `elementFromPoint` | 返回的是 **SVG 用户坐标**，而 `elementFromPoint` 要**屏幕坐标**；连线层还带 `origin-top-left` 变换。混用后**每个点都落在画布空白上**，连 `d=0` 也命中 `DIV.h-full`——看着像「命中区极窄」，其实是**量错了坐标系**。要先过 `getScreenCTM()` |
+
+这三条的症状**全都长得像「产品没这个功能」或「界面就是这样」**，而真因全在探针侧。
+
+**已知的定位标记**（2026-10-03 从 `web/src` 实读，应用里共 75 个；下面是交互类，全量见文末命令）：
+
+| 对象 | 标记 |
+|---|---|
+| 节点 | `data-node-id` |
+| 连线 | `data-connection-id`；其菜单另有 `data-canvas-context-menu="connection"` |
+| 端口 | `data-port-direction` / `data-port-id` / `data-port-type` |
+| 节点悬浮工具条 | `data-canvas-node-hover-toolbar`（**必须限定在 `.td-canvas-flyout` 内**，M168） |
+| 工具条按钮 | `data-canvas-node-toolbar-action` |
+| 画布工具 | `data-canvas-tool` / `data-canvas-view-control` / `data-canvas-panning` / `data-canvas-no-zoom` |
+| 弹层 | `data-canvas-context-menu` / `data-canvas-node-popup` / `data-node-create-menu` / `data-connection-create-menu` |
+| 卡片与封面 | `data-canvas-project-card` / `data-canvas-project-cover` / `data-canvas-project-preview` |
+| 引用 | `data-canvas-connected-references` / `data-reference-node-id` / `data-reference-kind` |
+| 图片历史 | `data-canvas-image-history` / `data-canvas-image-history-trigger` |
+
+> **这张表由 `scripts/check-probe-contracts.py` 双向守着**：探针里用到的每个 `data-*` 标记
+> 必须在这张表里出现；表里的每个也必须真在应用源码里存在。
+> **两边都查**，杜绝「表过期」与「探针偷偷用了新标记」两种漂移。
+
+**没有 `data-*` 标记时**才退到 `title` / `aria-label`，而且**必须实测悬停**——
+`aria-label` 是给读屏软件的，**鼠标停上去不会弹**（M175 为此连续否证自己的判据三次）。
+
+```bash
+# 重新取一遍全量标记；上表若与之不符，以这条命令的输出为准
+grep -rho "data-[a-z][a-z0-9-]*" <应用仓>/web/src --include=*.tsx --include=*.ts | sort -u
+```
+
 ### 提示词—任务对照扫描
 
 ```bash

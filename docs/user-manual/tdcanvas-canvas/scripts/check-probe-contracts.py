@@ -43,6 +43,16 @@ DESTRUCTIVE_RE = re.compile(
 STRING_RE = re.compile(r"'([^']+)'|\"([^\"]+)\"")
 HEADING = "七条判据纪律"
 
+# M178：第九条纪律的锚点小节，以及标记表的两个方向。
+MARKER_HEADING = "第九条：定位靠"
+MARKER_RE = re.compile(r"data-[a-z][a-z0-9-]*")
+
+# 与 check-ledger-pin.py 同一处应用仓副本。**本机没有就跳过**——
+# 手册仓会被 clone 到别的机器，那台机器上不会有一份应用源码，
+# 要求「必须查到应用源码」会让门禁在别的机器上直接失败。
+# 「跳过」与「缺失」必须分清（M151 已订正过这条）。
+APP_REPO = Path("/Users/yangjiefeng/Documents/AICoderTudou/TDCanvas")
+
 
 def destructive_items(script: Path) -> list[str]:
     """从探针源码里解析出不可逆按钮白名单。"""
@@ -94,6 +104,74 @@ def main() -> int:
             "读者查手册查不到清单，就等于没有这道闸。"
         )
         return 1
+
+    # ---------- 第二项：定位标记表双向核对（M178 新增） ----------
+    #
+    # M177 连续栽在「找错元素」上：按 class 找 data-* 承载的菜单，一个都找不到；
+    # 按「有贝塞尔曲线」抓 path，把 39 个 lucide 图标全抓了进来。
+    # 两件事的共同点是**用「看起来像」的特征去定位**，而不是用语义标记。
+    # 于是把标记表补进第九条纪律，并让本门禁双向守住它：
+    #   正向 —— 探针用到的每个 data-* 必须在表里（防「探针偷偷用了新标记」）
+    #   反向 —— 表里的每个必须真在应用源码里存在（防「表过期」）
+    # 少任何一向都是**假门禁**：只有正向，表可以永远空着；只有反向，探针可以随便用。
+    marker_section = None
+    ms = s_txt = publish.read_text(encoding="utf-8")
+    mi = ms.find(MARKER_HEADING)
+    if mi < 0:
+        print(
+            f"  [探针契约] PUBLISH.md 里找不到「{MARKER_HEADING}…」小节。\n"
+            "  本门禁守的就是那张定位标记表；它被改名或删除时请同步修改本门禁。"
+        )
+        return 1
+    mj = ms.find("\n### ", mi)
+    marker_section = ms[mi : mj if mj > 0 else len(ms)]
+
+    probes = sorted(root.glob("scripts/probe-*.js"))
+    used: dict[str, list[str]] = {}
+    for pr in probes:
+        for m in MARKER_RE.findall(pr.read_text(encoding="utf-8")):
+            used.setdefault(m, []).append(pr.name)
+
+    listed = set(MARKER_RE.findall(marker_section))
+    missing = sorted(m for m in used if m not in listed)
+    if missing:
+        print(
+            f"  [探针契约] 探针用到的定位标记没进 PUBLISH.md 第九条的表："
+            + "、".join(missing)
+        )
+        print(
+            "    用到的标记必须在表里——**读者查不到这张表，等于没有这道闸**。"
+            "    补表时顺手确认它在应用源码里真的存在。"
+        )
+        return 1
+
+    # 反向：表里的必须真存在
+    stale: list[str] = []
+    if not APP_REPO.exists():
+        print(f"  [skip] 本机没有应用仓副本（{APP_REPO}），跳过「标记表是否过期」的反向核对")
+    else:
+        src = APP_REPO / "web" / "src"
+        if not src.is_dir():
+            print(f"  [skip] 应用仓里没有 web/src（{src}），跳过反向核对")
+        else:
+            real: set[str] = set()
+            for f in src.rglob("*.ts*"):
+                if f.suffix in (".ts", ".tsx"):
+                    real.update(MARKER_RE.findall(f.read_text(encoding="utf-8", errors="ignore")))
+            stale = sorted(m for m in listed if m not in real)
+            if stale:
+                print(
+                    f"  [探针契约] PUBLISH.md 第九条的表里列了应用源码中**不存在**的标记："
+                    + "、".join(stale)
+                )
+                print("    表过期比表缺失更坏：维护者会照着它去找一个不存在的元素。")
+                return 1
+
+    print(
+        f"  [ ok ] 定位标记表：探针用到 {len(used)} 个、表里列了 {len(listed)} 个，"
+        f"正向无遗漏"
+        + ("，反向逐个核对通过" if APP_REPO.exists() and not stale else "（反向已跳过）")
+    )
 
     print(
         f"  [ ok ] 探针契约：不可逆按钮白名单 {len(items)} 项"

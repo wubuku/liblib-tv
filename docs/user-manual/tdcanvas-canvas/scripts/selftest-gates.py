@@ -819,6 +819,44 @@ def mutate_probe_contract_drift(root: Path) -> None:
     )
 
 
+def mutate_probe_marker_undocumented(root: Path) -> None:
+    """探针用了**没登记进标记表**的 data-* 时，必须被拦下（M178）。
+
+    M177 连续栽在「找错元素」上：按 class 找 data-* 承载的右键菜单，
+    一个都找不到，连查三轮读出「产品不响应右键」。而三支已提交探针里
+    **全都在用 data-* 标记定位**——这意味着这类标记会不断新增。
+
+    若新标记可以静默进入探针，下一个维护者就会拿它去定位，
+    然后在文档里查不到它是什么、什么时候引入的、是不是已经废弃。
+    **读者查不到这张表，等于没有这道闸。**
+    """
+
+    path = root / "scripts/probe-toolbar-states.js"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace("'[data-node-id]'", "'[data-node-id]', '[data-selftest-ghost]'", 1)
+    assert patched != text, "注入失败：没找到 data-node-id 那一处"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_probe_marker_ghost_in_table(root: Path) -> None:
+    """标记表里列了**应用源码中并不存在**的 data-* 时，必须被拦下（M178）。
+
+    反向那一向不能省：**表过期比表缺失更坏**——缺项只是查不到，
+    过期则是照着它去找一个根本不存在的元素，浪费一轮排查，
+    还会怀疑「是不是这个版本删掉了」。
+
+    M178 实测这道反向检查真能拦下（在临时副本里往表里塞一个假标记，
+    门禁 exit=1 并指名道姓报出来）。
+    """
+
+    path = root / "PUBLISH.md"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace("| 节点 | `data-node-id` |",
+                           "| 节点 | `data-node-id` / `data-selftest-ghost` |", 1)
+    assert patched != text, "注入失败：没找到标记表里 data-node-id 那一格"
+    path.write_text(patched, encoding="utf-8")
+
+
 def mutate_probe_contract_extra_context(root: Path) -> None:
     """文档比源码写得**更细**（多写背景）**不该被误报**（M144 的判据边界）。
 
@@ -1157,6 +1195,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("账本运行时结论只写在 review_note 里（记账漂移）", mutate_inventory_evidence_drift, "inventoryevid", "记账漂移"),
     ("写「未实测」不该被当成声称实测（否定形态不得误报）", mutate_inventory_evidence_negation, "inventoryevid", EXPECT_PASS),
     ("探针白名单在文档里被删成「见源码」（文档查不到清单）", mutate_probe_contract_drift, "probecontracts", "漏列了不可逆按钮"),
+    ("探针用未登记的 data-* 定位（读者查不到这张表）", mutate_probe_marker_undocumented, "probecontracts", "没进 PUBLISH.md 第九条的表"),
+    ("标记表里列了应用源码中不存在的 data-*（表过期比缺项更坏）", mutate_probe_marker_ghost_in_table, "probecontracts", "应用源码中**不存在**的标记"),
     ("顶层页面从内容门禁清单里被删掉（于是谁都不扫它）", mutate_coverage_drop_body_page, "pagecoverage", "漏网"),
     ("页面排除表里的理由写得过短（等于没写理由）", mutate_coverage_reason_too_short, "pagecoverage", "豁免过宽"),
     ("页面排除表里留着已不存在的文件（表会失真）", mutate_coverage_stale_exclusion, "pagecoverage", "过期"),
