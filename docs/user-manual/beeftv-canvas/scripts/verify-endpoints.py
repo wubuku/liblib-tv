@@ -49,17 +49,13 @@ import os
 import re
 import sys
 import subprocess
+import beefsrc
 from baseline import resolve_ref, BaselineError, baseline_guard
 from batchread import read_many
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # 上游仓库候选位置：环境变量优先，其次同级目录
-CANDIDATES = [
-    os.environ.get("BEEFTV_SRC", ""),
-    "/Users/yangjiefeng/Documents/glanderness/BeefTV",
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "..", "glanderness", "BeefTV"),
-]
 
 REFERENCE_REL = "20-reference.md"
 
@@ -97,10 +93,22 @@ METHODS = {"GET", "POST", "PUT", "DELETE", "PATCH", "GET/POST"}
 
 
 def find_source():
-    for c in CANDIDATES:
-        if c and os.path.isdir(os.path.join(c, "backend")):
-            return os.path.abspath(c)
-    return None
+    """**Batch 197：路径解析收敛到 `beefsrc` 单一来源**（含"是否走了兜底"）。
+
+    原先这里各带一张 `CANDIDATES` 表，判真条件还不一样
+    （本组问 `isdir(c/"backend")`，`quote-punct`/`shot-drift` 问 `isdir(c/".git")`），
+    **而 `baseline.py` 又是第三种**——同一个 `BEEFTV_SRC` 在不同闸里会解析成不同的仓。
+    实测缺陷：`.git` 目录式判真在 **git worktree 上必然失败**（那里 `.git` 是文件），
+    于是用户显式指定的路径被**静默忽略**、改用兜底那份，而闸一声不吭。
+    """
+    src, is_fallback = beefsrc.resolve_src()
+    if src is None:
+        return None
+    if is_fallback:
+        # **静默降级与「明确说明」的差别，就是本手册整套纪律在说的事**
+        print("[兜底] 未采用 BEEFTV_SRC 指定的路径（它不是一个 git 检出），"
+              "改用候选表里的 %s" % src)
+    return src
 
 
 def collect_routes(src, ref=None):

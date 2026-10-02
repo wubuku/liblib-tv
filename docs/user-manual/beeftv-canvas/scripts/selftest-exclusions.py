@@ -29,6 +29,7 @@ ROOT = os.path.dirname(HERE)
 GATE = os.path.join(HERE, "verify-exclusions.py")
 BATCHREAD = os.path.join(HERE, "batchread.py")
 BASELINE = os.path.join(HERE, "baseline.py")
+BEEFSRC = os.path.join(HERE, "beefsrc.py")
 INVENTORY_REL = "task-inventory.yml"
 
 PASS = VOID = FAIL = 0
@@ -47,6 +48,9 @@ def _prepare(tmp, inventory_text, gate_text=None):
     # ModuleNotFoundError，**该反验的每一例都失败**，而 build-site.sh 仍全绿。
     # **这正是闸 17 建成后第一次真的派上用场**：改动落地几分钟内就被抓到。
     shutil.copy(BATCHREAD, os.path.join(tmp, "scripts", "batchread.py"))
+    #: **Batch 197**：`verify-exclusions.py` 现在 import `beefsrc`（路径解析的单一来源），
+    #: 临时目录里没有它就会 import 失败，**该反验每一例都会失败而构建仍然全绿**。
+    shutil.copy(BEEFSRC, os.path.join(tmp, "scripts", "beefsrc.py"))
     shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-exclusions.py"))
     if gate_text is not None:
         with open(os.path.join(tmp, "scripts", "verify-exclusions.py"), "w", encoding="utf-8") as fh:

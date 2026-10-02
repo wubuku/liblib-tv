@@ -26,6 +26,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 GATE = os.path.join(HERE, "verify-shortcuts.py")
 BASELINE = os.path.join(HERE, "baseline.py")
+BEEFSRC = os.path.join(HERE, "beefsrc.py")
 
 PASS = VOID = FAIL = 0
 GATE_SRC = open(GATE, encoding="utf-8").read()
@@ -45,6 +46,9 @@ def make_manual(tmp, copy_all=True, extra=None):
     # 临时目录里没有它 → 闸门启动即 ModuleNotFoundError，**每一例都失败**，
     # **而 build-site.sh 仍然全绿**——反验坏掉不产生任何构建期信号。
     shutil.copy(BASELINE, os.path.join(tmp, "scripts", "baseline.py"))
+    #: **Batch 197**：`verify-shortcuts.py` 现在 import `beefsrc`（路径解析的单一来源），
+    #: 临时目录里没有它就会 import 失败，**该反验每一例都会失败而构建仍然全绿**。
+    shutil.copy(BEEFSRC, os.path.join(tmp, "scripts", "beefsrc.py"))
     shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-shortcuts.py"))
     if copy_all:
         for p in os.listdir(ROOT):

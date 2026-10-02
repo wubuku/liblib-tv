@@ -20,13 +20,18 @@ Batch 167 补上 `BEEFTV_REF` 覆盖，本文件就是那之后的第一次验�
 """
 import os
 import subprocess
+from beefsrc import resolve_src, explain
 import sys
 import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 GATE = os.path.join(HERE, "verify-label-drift.py")
-SRC = os.environ.get("BEEFTV_SRC", "/Users/yangjiefeng/Documents/glanderness/BeefTV")
+#: **Batch 197：路径解析收敛到 `beefsrc` 单一来源**（原先硬编码绝对路径，
+#: 而闸与这份反验各有一份，于是反验可能在一个仓上注入、闸却在另一个仓上核）。
+SRC, _FB = resolve_src()
+if SRC is None:
+    raise SystemExit("找不到可用的 BeefTV 源码仓：设 BEEFTV_SRC。候选：\n" + explain())
 TMPREF = "refs/manual-selftest-label-drift"
 
 PASS = VOID = FAIL = 0

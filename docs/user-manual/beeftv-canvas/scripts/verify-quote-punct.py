@@ -50,6 +50,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import beefsrc
 from baseline import resolve_ref, BaselineError   # noqa: E402
 from batchread import read_many                    # noqa: E402
 
@@ -59,10 +60,6 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # 里的「」大量是纪律编号与自我指涉，**不归本闸管**——判据的输入范围必须等于发布范围。
 # 与 verify-label-drift.py 同一写法：环境变量优先 + 硬编码兜底。
 # **只认环境变量是不够的**——构建脚本里没人 export 它，闸会一路 rc=2「未能核对」。
-CANDIDATES = [
-    os.environ.get("BEEFTV_SRC", ""),
-    "/Users/yangjiefeng/Documents/glanderness/BeefTV",
-]
 
 # **这五个必须都是会被发布的页面**（Batch 190 加了守卫，见 `verify-scope.py` 方向一）。
 # 本清单原先有第六个 `PUBLISH.md`——而它被 `config.mjs` 的 `srcExclude` 排除，
@@ -116,12 +113,18 @@ def load_corpus(src, ref):
 
 def main():
     try:
-        src = next((c for c in CANDIDATES
-                    if c and os.path.isdir(os.path.join(c, ".git"))), None)
-        if not src:
-            print("[未能核对] 找不到 BeefTV 源码目录：设 BEEFTV_SRC，"
-                  "或确认兜底路径 %s 还在" % CANDIDATES[-1])
+        # **Batch 197：路径解析收敛到 `beefsrc` 单一来源。**
+        # 原先这里判 `isdir(c/".git")`——**在 git worktree 上必然判假**（那里
+        # `.git` 是文件），于是用户显式指定的 `BEEFTV_SRC` 被静默忽略、
+        # 改用兜底那份，而闸一声不吭。现在改判「能不能当 git 仓用」。
+        src, is_fallback = beefsrc.resolve_src()
+        if src is None:
+            print("[未能核对] 找不到可用的 BeefTV 源码仓。候选与判真结果：\n"
+                  + beefsrc.explain())
             return 2
+        if is_fallback:
+            print("[兜底] 未采用 BEEFTV_SRC 指定的路径（它不是一个 git 检出），"
+                  "改用候选表里的 %s" % src)
         # 与 verify-label-drift.py 同一写法：`resolve_ref()` **返回 ref 字符串本身**
         # （不是元组——我第一版写成 `resolve_ref()[1]`，取到的是第二个字符 "c"，
         # 于是 git ls-tree 报「Not a valid object name c」）

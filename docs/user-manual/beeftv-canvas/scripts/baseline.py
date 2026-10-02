@@ -49,9 +49,20 @@ import os
 import re
 import subprocess
 
+import beefsrc
+from beefsrc import resolve_src
+
 ROOT = os.environ.get("BEEFTV_MANUAL_ROOT") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REFERENCE = os.path.join(ROOT, "20-reference.md")
-SRC = os.environ.get("BEEFTV_SRC", "/Users/yangjiefeng/Documents/glanderness/BeefTV")
+
+#: 上游仓路径。**Batch 197：从 `beefsrc.resolve_src()` 取，不再单点读环境变量。**
+#: 原先这里是 `os.environ.get("BEEFTV_SRC", <硬编码>)`——**没有任何校验**，
+#: 于是 `BEEFTV_SRC` 指向不存在的路径时，该路径被原样塞进 `git -C <path>`，
+#: 报错说「基线提交在 <你设的路径> 里不存在」，
+#: **而真正的原因多半是「那不是一个仓」**（Batch 196 实测 12 道闸都这么说）。
+#: 而 7 道闸各自带着一张 `CANDIDATES` 表、判真条件还不一样，
+#: **同一个 `BEEFTV_SRC` 在不同闸里会解析成不同的仓**——同一份事实被手写了 4 遍。
+SRC, _SRC_IS_FALLBACK = resolve_src()
 
 # 手册里「取证基线」小节声明的两个字段。改动这里 = 改手册的取证对象。
 _FIELD_RE = re.compile(r"^-\s*\*\*(版本|提交)\*\*[：:]\s*`?([^`\s]+)`?\s*$")
@@ -106,15 +117,25 @@ def resolve_ref():
     override = os.environ.get("BEEFTV_REF")
     if override:
         return override
+    if SRC is None:
+        # **Batch 197 新增的这一支**。原先没有它，于是 `commit_exists` 会拿
+        # `None` 当路径去跑 `git -C None`，而错误信息说的是「基线提交不存在」——
+        # **一个仓都没找到，却报成「提交号写错了」**，排查方向直接跑偏。
+        raise BaselineError(
+            "找不到可用的 BeefTV 源码仓：设 `BEEFTV_SRC` 指向一个 git 检出"
+            "（普通检出与 worktree 都行）。候选与判真结果：\n" + beefsrc.explain())
     _version, commit = declared_baseline()
     if not commit_exists(commit):
         raise BaselineError(
             f"手册声明的取证基线提交 {commit} 在 {SRC} 里不存在"
-            "（上游可能已 gc 掉该对象，或提交号写错了）")
+            "（上游可能已 gc 掉该对象、提交号写错了，"
+            "**或者你 shallow clone 过——浅克隆只有最近一次提交的历史**）")
     return commit
 
 
 def commit_exists(rev):
+    if SRC is None:
+        return False
     r = subprocess.run(["git", "-C", SRC, "rev-parse", "--verify", "--quiet", rev + "^{commit}"],
                        capture_output=True, text=True)
     return r.returncode == 0

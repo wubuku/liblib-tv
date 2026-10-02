@@ -16,13 +16,18 @@
 # 悬空对象会被 git gc 自动回收，**不会进入任何分支、不影响工作树**。
 # 退出前会打印 BeefTV 的工作树改动数与 HEAD，供你复核确实没被碰过。
 set -uo pipefail
-SRC="${BEEFTV_SRC:-/Users/yangjiefeng/Documents/glanderness/BeefTV}"
-GATE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/verify-unreachable.py"
-TMPREF=refs/manual-gate-selftest
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# **Batch 197：路径解析收敛到 `beefsrc` 单一来源**——
+# 原先这里硬编码绝对路径，而闸用它自己那张 `CANDIDATES`；
+# **反验在一个仓上注入、闸在另一个仓上核**，注入就白注了。
+# **`HERE` 必须先于它定义**：`set -u` 下引用未定义变量会直接退出。
+SRC="$(python3 -c 'import sys; sys.path.insert(0, sys.argv[1]); import beefsrc; print(beefsrc.resolve_src()[0] or "")' "$HERE")"
+[ -n "$SRC" ] || { echo "找不到可用的 BeefTV 源码仓：设 BEEFTV_SRC" >&2; exit 1; }
+GATE="$HERE/verify-unreachable.py"
+TMPREF=refs/manual-gate-selftest
 IDXBASE="${TMPDIR:-/tmp}/beef-gate-selftest"
-CASE=0
 cd "$SRC" || exit 1
+CASE=0
 
 build_ref() {  # $1=path  $2=变换脚本路径 → 成功时 stdout 输出 commit sha
   local path="$1" tf="$2" base blob tree commit IDX

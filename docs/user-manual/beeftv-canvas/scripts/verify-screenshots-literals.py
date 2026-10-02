@@ -39,9 +39,12 @@ import re
 import subprocess
 import sys
 from baseline import resolve_ref, BaselineError, module_ref, baseline_guard
+from baseline import SRC as _BEEFSRC
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.environ.get("BEEFTV_SRC", "/Users/yangjiefeng/Documents/glanderness/BeefTV")
+#: **Batch 197：不再单点读环境变量，改从 `baseline` 取统一解析后的路径**
+#: （原先无任何校验，坏路径会被原样塞进 `git -C <path>`）。
+SRC = _BEEFSRC
 REF = module_ref()
 MANIFEST = os.path.join(ROOT, "screenshots", "manifest.yml")
 
@@ -100,7 +103,7 @@ def main():
     if not os.path.isfile(MANIFEST):
         print("截图取证文案核对：未找到 manifest，跳过")
         return 2
-    if not os.path.isdir(SRC):
+    if SRC is None:
         print("截图取证文案核对：未找到 BeefTV 源码，无法核对")
         return 2
     try:

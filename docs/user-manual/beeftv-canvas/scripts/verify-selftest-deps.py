@@ -198,6 +198,22 @@ def main():
         # **只用 AST 认独立字符串常量**，否则注入夹具里伪造的闸门名会被当成真搬运。
         gate_names = sorted(independent_gate_names(text, SCRIPTS))
         if not gate_names:
+            # **Batch 197 实测出来的假阴性**：`independent_gate_names` 遇 `SyntaxError`
+            # 直接 `return names`（空集），于是这份反验被 `continue` 整份跳过——
+            # **而本闸报出的份数会跟着变小，且它报得很绿**。
+            # 实测：我把 3 份反验插坏（缩进错 → IndentationError），
+            # 本闸的「N 份反验会把闸门复制进临时目录」**从 15 掉到 12，rc 仍是 0**。
+            # 这是纪律 156 的又一次：判据报出的「它核了几项」少了 3，而没人看得出来。
+            # 闸 18 能抓到「反验语法坏掉」，但**它修不了本闸自己那个少掉的数字**。
+            try:
+                ast.parse(text)
+            except SyntaxError as exc:
+                problems.append(
+                    f"方向一：`{fn}` 看起来会把闸门复制进临时目录，"
+                    f"**但它语法错误（{exc.msg}，第 {exc.lineno} 行），本闸已整份跳过它**——"
+                    "于是本闸报出的「份数」会少算它，而 rc 仍可能是 0"
+                    "　→ 这就是「一个都没检查」与「全部都检查了」长得一样。"
+                    "语法本身由闸 18 负责，但**少算的份数只有本闸自己能看见**")
             continue
         # 整目录搬运：依赖必然齐备，不逐个核（否则会误报）
         if copies_whole_scripts(text):

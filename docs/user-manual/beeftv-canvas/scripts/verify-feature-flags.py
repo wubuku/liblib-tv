@@ -27,10 +27,13 @@ import re
 import subprocess
 import sys
 from baseline import resolve_ref, BaselineError, module_ref, baseline_guard
+from baseline import SRC as _BEEFSRC
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MANUAL = os.path.join(ROOT, "20-reference.md")
-SRC = os.environ.get("BEEFTV_SRC", "/Users/yangjiefeng/Documents/glanderness/BeefTV")
+#: **Batch 197：不再单点读环境变量，改从 `baseline` 取统一解析后的路径**
+#: （原先无任何校验，坏路径会被原样塞进 `git -C <path>`）。
+SRC = _BEEFSRC
 REF = module_ref()
 FLAGS_FILE = "backend/internal/platform/feature_availability.go"
 
@@ -96,7 +99,7 @@ def main():
     except ValueError as exc:
         print(f"[skip] {exc}，特性开关默认值核对本轮未能进行")
         return 2
-    if not os.path.isdir(SRC):
+    if SRC is None:
         print(f"[skip] 未找到 BeefTV 源码 {SRC}，特性开关默认值核对本轮未能进行")
         return 2
     text = _git_show(FLAGS_FILE)

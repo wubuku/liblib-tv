@@ -67,12 +67,9 @@ import os
 import re
 import subprocess
 import sys
+import beefsrc
 from baseline import resolve_ref, BaselineError, module_ref, baseline_guard
 
-CANDIDATES = [
-    os.environ.get("BEEFTV_SRC", ""),
-    "/Users/yangjiefeng/Documents/glanderness/BeefTV",
-]
 
 # 上游 ref 可用 BEEFTV_REF 覆盖——反向验证（self-test）需要指向一个
 # 「缺陷已被修复」的人造 ref，不能改工作树、更不能动别人分支。
@@ -82,10 +79,22 @@ REF = module_ref()
 
 
 def find_source():
-    for c in CANDIDATES:
-        if c and os.path.isdir(os.path.join(c, "backend")):
-            return os.path.abspath(c)
-    return None
+    """**Batch 197：路径解析收敛到 `beefsrc` 单一来源**（含"是否走了兜底"）。
+
+    原先这里各带一张 `CANDIDATES` 表，判真条件还不一样
+    （本组问 `isdir(c/"backend")`，`quote-punct`/`shot-drift` 问 `isdir(c/".git")`），
+    **而 `baseline.py` 又是第三种**——同一个 `BEEFTV_SRC` 在不同闸里会解析成不同的仓。
+    实测缺陷：`.git` 目录式判真在 **git worktree 上必然失败**（那里 `.git` 是文件），
+    于是用户显式指定的路径被**静默忽略**、改用兜底那份，而闸一声不吭。
+    """
+    src, is_fallback = beefsrc.resolve_src()
+    if src is None:
+        return None
+    if is_fallback:
+        # **静默降级与「明确说明」的差别，就是本手册整套纪律在说的事**
+        print("[兜底] 未采用 BEEFTV_SRC 指定的路径（它不是一个 git 检出），"
+              "改用候选表里的 %s" % src)
+    return src
 
 
 def git_show(src, path, ref=REF):
