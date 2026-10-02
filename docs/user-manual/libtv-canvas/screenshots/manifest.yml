@@ -1501,3 +1501,14 @@ screenshots:
     visible_text: 分镜叙事 调度故事板 故事板 25宫格连贯分镜 剧情推演四宫格 画面推演 - 3秒后 画面推演 - 5秒前 质感调节 人像质感调节 电影级光影校正 空间与机位 720全景 多机位九宫格 设定图 角色脸部三视图 角色设定图 角色三视图 场景设定图 产品设定图 角色设定图仅支持Lib Image、General image Pro、General image V2模型
     alt: **更正两处**：是**三列**（不是四列）、**15 项**（不是 11 项）—— 中间那列上下分成「质感调节」「空间与机位」两个组，共四个组标题。⭐⭐ **本批最有用的发现**：15 项**每一枚 `cursor` 都是 `not-allowed`**，而**悬停提示直接写出原因** —— `调度故事板仅支持Lib Image模型`、`角色设定图仅支持Lib Image、General image Pro、General image V2模型`。**整片灰不是坏了，是当前模型不在支持名单里**。每项还带一句自己的说明（`故事板`「生成完整剧情片段」、`角色三视图`「正侧背视图与脸部特写」…）。⚠️ 本轮模型是 `Lib Image 2.5 Pro` 而提示写「**Lib Image**」，两者是否同一个模型界面没写清，**不猜**
     sha256: eb6ffb3989d4eb040b07cd463bb003d2db3d2bdccbb79ed5fc5ce7d65c870438
+  - file: screenshots/M-174-换模型后预设.png
+    task_id: create-nodes
+    step: 90
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 把图片节点模型从 `Lib Image 2.5 Pro` 换成 `Lib Image` → 再开预设选择器数 15 条的 `cursor` → **换回原模型并逐字确认复原**。点选项全程用 Playwright `getByText`（按文案定位，不认 role/class）
+    visible_text: 分镜叙事 调度故事板 故事板 25宫格连贯分镜 剧情推演四宫格 画面推演 - 3秒后 画面推演 - 5秒前 质感调节 人像质感调节 电影级光影校正 空间与机位 720全景 多机位九宫格 设定图 角色脸部三视图 角色设定图 角色三视图 场景设定图 产品设定图
+    alt: ⭐ **把正文里那条自己写的建议验掉了**：原模型 `Lib Image 2.5 Pro` 下 **15 条可点 0 条**，换成 `Lib Image` 后 **15 条全部变亮**（`cursor: pointer`、`aria-disabled` 消失），换回原模型后**可点条数回到 0，已复原**。⚠️ **换模型会改价格** —— 同一节点 `⚡15` → `⚡18`。📖 点其中任意一条会发生什么仍未验（会写数据）
+    sha256: 5b0b5e49e7e6af6720e5250d455a3cf678ea67d654640e89786f009b7d96ee41
