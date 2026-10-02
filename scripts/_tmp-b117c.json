@@ -1,0 +1,697 @@
+{
+ "at": "2026-10-02T22:57:21.537Z",
+ "round": "c",
+ "self": "node_z4sjnc4qve",
+ "nodeExists": true,
+ "clean": {
+  "selected": true,
+  "inner": "双击编辑文本 文本 4",
+  "titleRect": [
+   260,
+   248,
+   58,
+   24
+  ],
+  "titleText": "文本 4",
+  "renameBtn": {
+   "aria": "Rename 文本 4",
+   "rect": [
+    280,
+    248,
+    38,
+    24
+   ]
+  },
+  "tids": [
+   "text-flow-node-full",
+   "text-node-empty-placeholder",
+   "text-node-resize-controls",
+   "text-node-resize-top-left",
+   "text-node-resize-top",
+   "text-node-resize-top-right",
+   "text-node-resize-right",
+   "text-node-resize-bottom-right",
+   "textarea-resize-affordance",
+   "text-node-resize-bottom",
+   "text-node-resize-bottom-left",
+   "text-node-resize-left",
+   "text-node-selection-outline",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button"
+  ],
+  "contenteditables": [],
+  "inputs": [
+   {
+    "tag": "INPUT",
+    "aria": "替换媒体",
+    "type": "file",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "tag": "INPUT",
+    "aria": null,
+    "type": "file",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ]
+   }
+  ],
+  "focus": {
+   "tag": "DIV",
+   "aria": "文本 node: 文本 4",
+   "tid": "rf__node-node_z4sjnc4qve",
+   "isCE": false,
+   "isInputLike": false
+  }
+ },
+ "trials": [
+  {
+   "tag": "①单击Rename钮",
+   "act": {
+    "x": 283,
+    "y": 249,
+    "aria": "Rename 文本 4"
+   },
+   "pre": {
+    "selected": true,
+    "renameBtn": {
+     "aria": "Rename 文本 4",
+     "rect": [
+      280,
+      248,
+      38,
+      24
+     ]
+    }
+   },
+   "j0": {
+    "tag": "①单击Rename钮 t0",
+    "B标题编辑面": [],
+    "A正文编辑器": [],
+    "focus": {
+     "tag": "BUTTON",
+     "aria": "Rename 文本 4",
+     "tid": null,
+     "isCE": false,
+     "isInputLike": false
+    },
+    "进标题编辑态": false,
+    "进正文编辑态": false
+   },
+   "j1": {
+    "tag": "①单击Rename钮 t+1.2s",
+    "B标题编辑面": [],
+    "A正文编辑器": [],
+    "focus": {
+     "tag": "BUTTON",
+     "aria": "Rename 文本 4",
+     "tid": null,
+     "isCE": false,
+     "isInputLike": false
+    },
+    "进标题编辑态": false,
+    "进正文编辑态": false
+   },
+   "j2": {
+    "tag": "①单击Rename钮 t+3.7s",
+    "B标题编辑面": [],
+    "A正文编辑器": [],
+    "focus": {
+     "tag": "BUTTON",
+     "aria": "Rename 文本 4",
+     "tid": null,
+     "isCE": false,
+     "isInputLike": false
+    },
+    "进标题编辑态": false,
+    "进正文编辑态": false
+   },
+   "三次一致": true,
+   "进标题编辑态": false,
+   "进正文编辑态": false,
+   "焦点": {
+    "tag": "BUTTON",
+    "aria": "Rename 文本 4",
+    "tid": null,
+    "isCE": false,
+    "isInputLike": false
+   },
+   "末态tids": [
+    "text-flow-node-full",
+    "text-node-empty-placeholder",
+    "text-node-resize-controls",
+    "text-node-resize-top-left",
+    "text-node-resize-top",
+    "text-node-resize-top-right",
+    "text-node-resize-right",
+    "text-node-resize-bottom-right",
+    "textarea-resize-affordance",
+    "text-node-resize-bottom",
+    "text-node-resize-bottom-left",
+    "text-node-resize-left",
+    "text-node-selection-outline",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "flow-node-source-connection-menu-button"
+   ],
+   "末态inner": "双击编辑文本 文本 4"
+  },
+  {
+   "tag": "②双击Rename钮",
+   "act": {
+    "x": 283,
+    "y": 249,
+    "aria": "Rename 文本 4"
+   },
+   "pre": {
+    "selected": true,
+    "renameBtn": {
+     "aria": "Rename 文本 4",
+     "rect": [
+      280,
+      248,
+      38,
+      24
+     ]
+    }
+   },
+   "j0": {
+    "tag": "②双击Rename钮 t0",
+    "B标题编辑面": [
+     {
+      "kind": "input",
+      "tag": "INPUT",
+      "aria": "Node title",
+      "type": null,
+      "rect": [
+       280,
+       248,
+       49,
+       24
+      ]
+     }
+    ],
+    "A正文编辑器": [],
+    "focus": {
+     "tag": "INPUT",
+     "aria": "Node title",
+     "tid": null,
+     "isCE": false,
+     "isInputLike": true
+    },
+    "进标题编辑态": true,
+    "进正文编辑态": false
+   },
+   "j1": {
+    "tag": "②双击Rename钮 t+1.2s",
+    "B标题编辑面": [
+     {
+      "kind": "input",
+      "tag": "INPUT",
+      "aria": "Node title",
+      "type": null,
+      "rect": [
+       280,
+       248,
+       49,
+       24
+      ]
+     }
+    ],
+    "A正文编辑器": [],
+    "focus": {
+     "tag": "INPUT",
+     "aria": "Node title",
+     "tid": null,
+     "isCE": false,
+     "isInputLike": true
+    },
+    "进标题编辑态": true,
+    "进正文编辑态": false
+   },
+   "j2": {
+    "tag": "②双击Rename钮 t+3.7s",
+    "B标题编辑面": [
+     {
+      "kind": "input",
+      "tag": "INPUT",
+      "aria": "Node title",
+      "type": null,
+      "rect": [
+       280,
+       248,
+       49,
+       24
+      ]
+     }
+    ],
+    "A正文编辑器": [],
+    "focus": {
+     "tag": "INPUT",
+     "aria": "Node title",
+     "tid": null,
+     "isCE": false,
+     "isInputLike": true
+    },
+    "进标题编辑态": true,
+    "进正文编辑态": false
+   },
+   "三次一致": true,
+   "进标题编辑态": true,
+   "进正文编辑态": false,
+   "焦点": {
+    "tag": "INPUT",
+    "aria": "Node title",
+    "tid": null,
+    "isCE": false,
+    "isInputLike": true
+   },
+   "末态tids": [
+    "text-flow-node-full",
+    "text-node-empty-placeholder",
+    "text-node-resize-controls",
+    "text-node-resize-top-left",
+    "text-node-resize-top",
+    "text-node-resize-top-right",
+    "text-node-resize-right",
+    "text-node-resize-bottom-right",
+    "textarea-resize-affordance",
+    "text-node-resize-bottom",
+    "text-node-resize-bottom-left",
+    "text-node-resize-left",
+    "text-node-selection-outline",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "flow-node-source-connection-menu-button"
+   ],
+   "末态inner": "双击编辑文本"
+  },
+  {
+   "tag": "③单击后Enter",
+   "act": {
+    "pt": {
+     "x": 283,
+     "y": 249,
+     "aria": "Rename 文本 4"
+    },
+    "guard": {
+     "safe": true,
+     "where": "BUTTON aria=\"Rename 文本 4\""
+    }
+   },
+   "pre": {
+    "selected": true,
+    "renameBtn": {
+     "aria": "Rename 文本 4",
+     "rect": [
+      280,
+      248,
+      38,
+      24
+     ]
+    }
+   },
+   "j0": {
+    "tag": "③单击后Enter t0",
+    "B标题编辑面": [],
+    "A正文编辑器": [
+     {
+      "aria": "Text",
+      "rect": [
+       260,
+       280,
+       192,
+       37
+      ]
+     }
+    ],
+    "focus": {
+     "tag": "DIV",
+     "aria": "Text",
+     "tid": null,
+     "isCE": true,
+     "isInputLike": true
+    },
+    "进标题编辑态": false,
+    "进正文编辑态": true
+   },
+   "j1": {
+    "tag": "③单击后Enter t+1.2s",
+    "B标题编辑面": [],
+    "A正文编辑器": [
+     {
+      "aria": "Text",
+      "rect": [
+       260,
+       280,
+       192,
+       37
+      ]
+     }
+    ],
+    "focus": {
+     "tag": "DIV",
+     "aria": "Text",
+     "tid": null,
+     "isCE": true,
+     "isInputLike": true
+    },
+    "进标题编辑态": false,
+    "进正文编辑态": true
+   },
+   "j2": {
+    "tag": "③单击后Enter t+3.7s",
+    "B标题编辑面": [],
+    "A正文编辑器": [
+     {
+      "aria": "Text",
+      "rect": [
+       260,
+       280,
+       192,
+       37
+      ]
+     }
+    ],
+    "focus": {
+     "tag": "DIV",
+     "aria": "Text",
+     "tid": null,
+     "isCE": true,
+     "isInputLike": true
+    },
+    "进标题编辑态": false,
+    "进正文编辑态": true
+   },
+   "三次一致": true,
+   "进标题编辑态": false,
+   "进正文编辑态": true,
+   "焦点": {
+    "tag": "DIV",
+    "aria": "Text",
+    "tid": null,
+    "isCE": true,
+    "isInputLike": true
+   },
+   "末态tids": [
+    "text-flow-node-editing-underlay",
+    "text-flow-node-full",
+    "text-node-empty-placeholder",
+    "text-node-editing-hotspot",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle"
+   ],
+   "末态inner": "No resources: 0 ready, 0 processing, 0 failed. Selected. 双击编辑文本 文本 4"
+  },
+  {
+   "tag": "④单击后Space",
+   "act": {
+    "x": 283,
+    "y": 249,
+    "aria": "Rename 文本 4"
+   },
+   "pre": {
+    "selected": true,
+    "renameBtn": {
+     "aria": "Rename 文本 4",
+     "rect": [
+      280,
+      248,
+      38,
+      24
+     ]
+    }
+   },
+   "j0": {
+    "tag": "④单击后Space t0",
+    "B标题编辑面": [],
+    "A正文编辑器": [],
+    "focus": {
+     "tag": "BUTTON",
+     "aria": "Rename 文本 4",
+     "tid": null,
+     "isCE": false,
+     "isInputLike": false
+    },
+    "进标题编辑态": false,
+    "进正文编辑态": false
+   },
+   "j1": {
+    "tag": "④单击后Space t+1.2s",
+    "B标题编辑面": [],
+    "A正文编辑器": [],
+    "focus": {
+     "tag": "BUTTON",
+     "aria": "Rename 文本 4",
+     "tid": null,
+     "isCE": false,
+     "isInputLike": false
+    },
+    "进标题编辑态": false,
+    "进正文编辑态": false
+   },
+   "j2": {
+    "tag": "④单击后Space t+3.7s",
+    "B标题编辑面": [],
+    "A正文编辑器": [],
+    "focus": {
+     "tag": "BUTTON",
+     "aria": "Rename 文本 4",
+     "tid": null,
+     "isCE": false,
+     "isInputLike": false
+    },
+    "进标题编辑态": false,
+    "进正文编辑态": false
+   },
+   "三次一致": true,
+   "进标题编辑态": false,
+   "进正文编辑态": false,
+   "焦点": {
+    "tag": "BUTTON",
+    "aria": "Rename 文本 4",
+    "tid": null,
+    "isCE": false,
+    "isInputLike": false
+   },
+   "末态tids": [
+    "text-flow-node-full",
+    "text-node-empty-placeholder",
+    "text-node-resize-controls",
+    "text-node-resize-top-left",
+    "text-node-resize-top",
+    "text-node-resize-top-right",
+    "text-node-resize-right",
+    "text-node-resize-bottom-right",
+    "textarea-resize-affordance",
+    "text-node-resize-bottom",
+    "text-node-resize-bottom-left",
+    "text-node-resize-left",
+    "text-node-selection-outline",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "flow-node-source-connection-menu-button"
+   ],
+   "末态inner": "双击编辑文本 文本 4"
+  },
+  {
+   "tag": "⑤单击后立刻双击",
+   "act": {
+    "x": 283,
+    "y": 249,
+    "aria": "Rename 文本 4"
+   },
+   "pre": {
+    "selected": true,
+    "renameBtn": {
+     "aria": "Rename 文本 4",
+     "rect": [
+      280,
+      248,
+      38,
+      24
+     ]
+    }
+   },
+   "j0": {
+    "tag": "⑤单击后立刻双击 t0",
+    "B标题编辑面": [
+     {
+      "kind": "input",
+      "tag": "INPUT",
+      "aria": "Node title",
+      "type": null,
+      "rect": [
+       280,
+       248,
+       49,
+       24
+      ]
+     }
+    ],
+    "A正文编辑器": [],
+    "focus": {
+     "tag": "INPUT",
+     "aria": "Node title",
+     "tid": null,
+     "isCE": false,
+     "isInputLike": true
+    },
+    "进标题编辑态": true,
+    "进正文编辑态": false
+   },
+   "j1": {
+    "tag": "⑤单击后立刻双击 t+1.2s",
+    "B标题编辑面": [
+     {
+      "kind": "input",
+      "tag": "INPUT",
+      "aria": "Node title",
+      "type": null,
+      "rect": [
+       280,
+       248,
+       49,
+       24
+      ]
+     }
+    ],
+    "A正文编辑器": [],
+    "focus": {
+     "tag": "INPUT",
+     "aria": "Node title",
+     "tid": null,
+     "isCE": false,
+     "isInputLike": true
+    },
+    "进标题编辑态": true,
+    "进正文编辑态": false
+   },
+   "j2": {
+    "tag": "⑤单击后立刻双击 t+3.7s",
+    "B标题编辑面": [
+     {
+      "kind": "input",
+      "tag": "INPUT",
+      "aria": "Node title",
+      "type": null,
+      "rect": [
+       280,
+       248,
+       49,
+       24
+      ]
+     }
+    ],
+    "A正文编辑器": [],
+    "focus": {
+     "tag": "INPUT",
+     "aria": "Node title",
+     "tid": null,
+     "isCE": false,
+     "isInputLike": true
+    },
+    "进标题编辑态": true,
+    "进正文编辑态": false
+   },
+   "三次一致": true,
+   "进标题编辑态": true,
+   "进正文编辑态": false,
+   "焦点": {
+    "tag": "INPUT",
+    "aria": "Node title",
+    "tid": null,
+    "isCE": false,
+    "isInputLike": true
+   },
+   "末态tids": [
+    "text-flow-node-full",
+    "text-node-empty-placeholder",
+    "text-node-resize-controls",
+    "text-node-resize-top-left",
+    "text-node-resize-top",
+    "text-node-resize-top-right",
+    "text-node-resize-right",
+    "text-node-resize-bottom-right",
+    "textarea-resize-affordance",
+    "text-node-resize-bottom",
+    "text-node-resize-bottom-left",
+    "text-node-resize-left",
+    "text-node-selection-outline",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "flow-node-source-connection-menu-button"
+   ],
+   "末态inner": "双击编辑文本"
+  }
+ ],
+ "verdict": [
+  {
+   "试": "①单击Rename钮",
+   "进标题编辑态": false,
+   "进正文编辑态": false,
+   "三次一致": true,
+   "焦点": "Rename 文本 4"
+  },
+  {
+   "试": "②双击Rename钮",
+   "进标题编辑态": true,
+   "进正文编辑态": false,
+   "三次一致": true,
+   "焦点": "Node title"
+  },
+  {
+   "试": "③单击后Enter",
+   "进标题编辑态": false,
+   "进正文编辑态": true,
+   "三次一致": true,
+   "焦点": "Text"
+  },
+  {
+   "试": "④单击后Space",
+   "进标题编辑态": false,
+   "进正文编辑态": false,
+   "三次一致": true,
+   "焦点": "Rename 文本 4"
+  },
+  {
+   "试": "⑤单击后立刻双击",
+   "进标题编辑态": true,
+   "进正文编辑态": false,
+   "三次一致": true,
+   "焦点": "Node title"
+  }
+ ],
+ "anyTitle": [
+  "②双击Rename钮",
+  "⑤单击后立刻双击"
+ ],
+ "anyBody": [
+  "③单击后Enter"
+ ],
+ "end": {
+  "nodes": "77",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}

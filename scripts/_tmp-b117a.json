@@ -1,0 +1,963 @@
+{
+ "at": "2026-10-02T22:53:59.984Z",
+ "round": "a",
+ "start": {
+  "nodes": "76",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "guard": {
+  "diff": [
+   "node_z4sjnc4qve"
+  ],
+  "sel": [
+   "node_z4sjnc4qve"
+  ],
+  "ok": true
+ },
+ "self": "node_z4sjnc4qve",
+ "node": {
+  "selected": true,
+  "inner": "双击编辑文本 文本 4",
+  "rect": [
+   260,
+   280,
+   192,
+   192
+  ],
+  "tids": [
+   "text-flow-node-full",
+   "text-node-empty-placeholder",
+   "text-node-resize-controls",
+   "text-node-resize-top-left",
+   "text-node-resize-top",
+   "text-node-resize-top-right",
+   "text-node-resize-right",
+   "text-node-resize-bottom-right",
+   "textarea-resize-affordance",
+   "text-node-resize-bottom",
+   "text-node-resize-bottom-left",
+   "text-node-resize-left",
+   "text-node-selection-outline",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button"
+  ],
+  "title": {
+   "rect": [
+    260,
+    248,
+    58,
+    24
+   ],
+   "text": "文本 4",
+   "kids": [
+    {
+     "tag": "svg",
+     "aria": null,
+     "cls": "shrink-0",
+     "rect": [
+      260,
+      252,
+      16,
+      16
+     ]
+    },
+    {
+     "tag": "path",
+     "aria": null,
+     "cls": "",
+     "rect": [
+      263,
+      255,
+      10,
+      10
+     ]
+    },
+    {
+     "tag": "BUTTON",
+     "aria": "Rename 文本 4",
+     "cls": "gap-1 border-solid font-dr",
+     "rect": [
+      280,
+      248,
+      38,
+      24
+     ]
+    },
+    {
+     "tag": "SPAN",
+     "aria": null,
+     "cls": "min-w-canvas-zero max-w-fu",
+     "rect": [
+      280,
+      249,
+      38,
+      22
+     ]
+    }
+   ]
+  },
+  "btns": [
+   {
+    "aria": "Resize text from top left",
+    "rect": [
+     244,
+     264,
+     24,
+     24
+    ]
+   },
+   {
+    "aria": "Resize text from top. Press Enter to reset this dimension",
+    "rect": [
+     267,
+     271,
+     178,
+     10
+    ]
+   },
+   {
+    "aria": "Resize text from top right",
+    "rect": [
+     444,
+     264,
+     24,
+     24
+    ]
+   },
+   {
+    "aria": "Resize text from right. Press Enter to reset this dimension",
+    "rect": [
+     451,
+     287,
+     10,
+     178
+    ]
+   },
+   {
+    "aria": "Resize text from bottom right",
+    "rect": [
+     444,
+     464,
+     24,
+     24
+    ]
+   },
+   {
+    "aria": "Resize text from bottom. Press Enter to reset this dimension",
+    "rect": [
+     267,
+     471,
+     178,
+     10
+    ]
+   },
+   {
+    "aria": "Resize text from bottom left",
+    "rect": [
+     244,
+     464,
+     24,
+     24
+    ]
+   },
+   {
+    "aria": "Resize text from left. Press Enter to reset this dimension",
+    "rect": [
+     251,
+     287,
+     10,
+     178
+    ]
+   },
+   {
+    "aria": "Rename 文本 4",
+    "rect": [
+     280,
+     248,
+     38,
+     24
+    ]
+   },
+   {
+    "aria": "Add tags",
+    "rect": [
+     428,
+     248,
+     24,
+     24
+    ]
+   },
+   {
+    "aria": "Create connected node after 文本 4",
+    "rect": [
+     463,
+     351,
+     36,
+     36
+    ]
+   }
+  ]
+ },
+ "docInputsBefore": [
+  {
+   "tag": "INPUT",
+   "tid": null,
+   "aria": "替换媒体",
+   "type": "file",
+   "pe": "all",
+   "ce": false,
+   "rect": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "inNode": true,
+   "inToolbar": false,
+   "value": ""
+  },
+  {
+   "tag": "INPUT",
+   "tid": null,
+   "aria": null,
+   "type": "file",
+   "pe": "auto",
+   "ce": false,
+   "rect": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "inNode": false,
+   "inToolbar": false,
+   "value": ""
+  }
+ ],
+ "trials": [
+  {
+   "tag": "①单击Rename钮",
+   "act": {
+    "x": 283,
+    "y": 249,
+    "aria": "Rename 文本 4",
+    "rect": [
+     280,
+     248,
+     38,
+     24
+    ]
+   },
+   "fBefore": {
+    "at": 1790981646984,
+    "lbl": "①单击Rename钮-before",
+    "tag": "DIV",
+    "tid": "rf__wrapper",
+    "aria": "Canvas",
+    "type": null,
+    "isInputLike": false,
+    "value": null,
+    "inNode": false
+   },
+   "t0": {
+    "at": 1790981647002,
+    "lbl": "①单击Rename钮-t0",
+    "tag": "BUTTON",
+    "tid": null,
+    "aria": "Rename 文本 4",
+    "type": "button",
+    "isInputLike": false,
+    "value": "",
+    "inNode": true
+   },
+   "t1": {
+    "at": 1790981648206,
+    "lbl": "①单击Rename钮-t1.2s",
+    "tag": "BUTTON",
+    "tid": null,
+    "aria": "Rename 文本 4",
+    "type": "button",
+    "isInputLike": false,
+    "value": "",
+    "inNode": true
+   },
+   "t2": {
+    "at": 1790981650708,
+    "lbl": "①单击Rename钮-t+3.7s",
+    "tag": "BUTTON",
+    "tid": null,
+    "aria": "Rename 文本 4",
+    "type": "button",
+    "isInputLike": false,
+    "value": "",
+    "inNode": true
+   },
+   "nInputsBefore": 2,
+   "nInputsAfter": 2,
+   "added": [],
+   "进编辑态": false,
+   "三次一致": true,
+   "焦点": "Rename 文本 4",
+   "全部输入面": [
+    {
+     "tag": "INPUT",
+     "tid": null,
+     "aria": "替换媒体",
+     "type": "file",
+     "pe": "all",
+     "ce": false,
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "inNode": true,
+     "inToolbar": false,
+     "value": ""
+    },
+    {
+     "tag": "INPUT",
+     "tid": null,
+     "aria": null,
+     "type": "file",
+     "pe": "auto",
+     "ce": false,
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "inNode": false,
+     "inToolbar": false,
+     "value": ""
+    }
+   ]
+  },
+  {
+   "tag": "②再单击一次",
+   "act": {
+    "x": 283,
+    "y": 249,
+    "aria": "Rename 文本 4",
+    "rect": [
+     280,
+     248,
+     38,
+     24
+    ]
+   },
+   "fBefore": {
+    "at": 1790981650722,
+    "lbl": "②再单击一次-before",
+    "tag": "BUTTON",
+    "tid": null,
+    "aria": "Rename 文本 4",
+    "type": "button",
+    "isInputLike": false,
+    "value": "",
+    "inNode": true
+   },
+   "t0": {
+    "at": 1790981650776,
+    "lbl": "②再单击一次-t0",
+    "tag": "BUTTON",
+    "tid": null,
+    "aria": "Rename 文本 4",
+    "type": "button",
+    "isInputLike": false,
+    "value": "",
+    "inNode": true
+   },
+   "t1": {
+    "at": 1790981652007,
+    "lbl": "②再单击一次-t1.2s",
+    "tag": "BUTTON",
+    "tid": null,
+    "aria": "Rename 文本 4",
+    "type": "button",
+    "isInputLike": false,
+    "value": "",
+    "inNode": true
+   },
+   "t2": {
+    "at": 1790981654526,
+    "lbl": "②再单击一次-t+3.7s",
+    "tag": "BUTTON",
+    "tid": null,
+    "aria": "Rename 文本 4",
+    "type": "button",
+    "isInputLike": false,
+    "value": "",
+    "inNode": true
+   },
+   "nInputsBefore": 2,
+   "nInputsAfter": 2,
+   "added": [],
+   "进编辑态": false,
+   "三次一致": true,
+   "焦点": "Rename 文本 4",
+   "全部输入面": [
+    {
+     "tag": "INPUT",
+     "tid": null,
+     "aria": "替换媒体",
+     "type": "file",
+     "pe": "all",
+     "ce": false,
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "inNode": true,
+     "inToolbar": false,
+     "value": ""
+    },
+    {
+     "tag": "INPUT",
+     "tid": null,
+     "aria": null,
+     "type": "file",
+     "pe": "auto",
+     "ce": false,
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "inNode": false,
+     "inToolbar": false,
+     "value": ""
+    }
+   ]
+  },
+  {
+   "tag": "③双击标题行(避开按钮)",
+   "act": {
+    "x": 261,
+    "y": 249,
+    "titleRect": [
+     260,
+     248,
+     58,
+     24
+    ]
+   },
+   "fBefore": {
+    "at": 1790981654554,
+    "lbl": "③双击标题行(避开按钮)-before",
+    "tag": "BUTTON",
+    "tid": null,
+    "aria": "Rename 文本 4",
+    "type": "button",
+    "isInputLike": false,
+    "value": "",
+    "inNode": true
+   },
+   "t0": {
+    "at": 1790981654606,
+    "lbl": "③双击标题行(避开按钮)-t0",
+    "tag": "DIV",
+    "tid": "rf__wrapper",
+    "aria": "Canvas",
+    "type": null,
+    "isInputLike": false,
+    "value": null,
+    "inNode": false
+   },
+   "t1": {
+    "at": 1790981655817,
+    "lbl": "③双击标题行(避开按钮)-t1.2s",
+    "tag": "DIV",
+    "tid": null,
+    "aria": "Text",
+    "type": null,
+    "isInputLike": true,
+    "value": null,
+    "inNode": false
+   },
+   "t2": {
+    "at": 1790981658331,
+    "lbl": "③双击标题行(避开按钮)-t+3.7s",
+    "tag": "DIV",
+    "tid": null,
+    "aria": "Text",
+    "type": null,
+    "isInputLike": true,
+    "value": null,
+    "inNode": false
+   },
+   "nInputsBefore": 2,
+   "nInputsAfter": 3,
+   "added": [
+    {
+     "tag": "DIV",
+     "tid": null,
+     "aria": "Text",
+     "type": null,
+     "pe": "auto",
+     "ce": true,
+     "rect": [
+      260,
+      280,
+      192,
+      37
+     ],
+     "inNode": false,
+     "inToolbar": false,
+     "value": null
+    }
+   ],
+   "进编辑态": true,
+   "三次一致": false,
+   "焦点": "Text",
+   "全部输入面": [
+    {
+     "tag": "INPUT",
+     "tid": null,
+     "aria": "替换媒体",
+     "type": "file",
+     "pe": "all",
+     "ce": false,
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "inNode": true,
+     "inToolbar": false,
+     "value": ""
+    },
+    {
+     "tag": "DIV",
+     "tid": null,
+     "aria": "Text",
+     "type": null,
+     "pe": "auto",
+     "ce": true,
+     "rect": [
+      260,
+      280,
+      192,
+      37
+     ],
+     "inNode": false,
+     "inToolbar": false,
+     "value": null
+    },
+    {
+     "tag": "INPUT",
+     "tid": null,
+     "aria": null,
+     "type": "file",
+     "pe": "auto",
+     "ce": false,
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "inNode": false,
+     "inToolbar": false,
+     "value": ""
+    }
+   ]
+  },
+  {
+   "tag": "④双击Rename钮",
+   "act": {
+    "__err": "no-rename"
+   },
+   "fBefore": {
+    "at": 1790981658338,
+    "lbl": "④双击Rename钮-before",
+    "tag": "DIV",
+    "tid": null,
+    "aria": "Text",
+    "type": null,
+    "isInputLike": true,
+    "value": null,
+    "inNode": false
+   },
+   "t0": {
+    "at": 1790981658347,
+    "lbl": "④双击Rename钮-t0",
+    "tag": "DIV",
+    "tid": null,
+    "aria": "Text",
+    "type": null,
+    "isInputLike": true,
+    "value": null,
+    "inNode": false
+   },
+   "t1": {
+    "at": 1790981659553,
+    "lbl": "④双击Rename钮-t1.2s",
+    "tag": "DIV",
+    "tid": null,
+    "aria": "Text",
+    "type": null,
+    "isInputLike": true,
+    "value": null,
+    "inNode": false
+   },
+   "t2": {
+    "at": 1790981662068,
+    "lbl": "④双击Rename钮-t+3.7s",
+    "tag": "DIV",
+    "tid": null,
+    "aria": "Text",
+    "type": null,
+    "isInputLike": true,
+    "value": null,
+    "inNode": false
+   },
+   "nInputsBefore": 3,
+   "nInputsAfter": 3,
+   "added": [],
+   "进编辑态": true,
+   "三次一致": true,
+   "焦点": "Text",
+   "全部输入面": [
+    {
+     "tag": "INPUT",
+     "tid": null,
+     "aria": "替换媒体",
+     "type": "file",
+     "pe": "all",
+     "ce": false,
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "inNode": true,
+     "inToolbar": false,
+     "value": ""
+    },
+    {
+     "tag": "DIV",
+     "tid": null,
+     "aria": "Text",
+     "type": null,
+     "pe": "auto",
+     "ce": true,
+     "rect": [
+      260,
+      280,
+      192,
+      37
+     ],
+     "inNode": false,
+     "inToolbar": false,
+     "value": null
+    },
+    {
+     "tag": "INPUT",
+     "tid": null,
+     "aria": null,
+     "type": "file",
+     "pe": "auto",
+     "ce": false,
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "inNode": false,
+     "inToolbar": false,
+     "value": ""
+    }
+   ]
+  },
+  {
+   "tag": "⑤单击后Enter",
+   "act": {
+    "__err": "no-rename"
+   },
+   "fBefore": {
+    "at": 1790981662074,
+    "lbl": "⑤单击后Enter-before",
+    "tag": "DIV",
+    "tid": null,
+    "aria": "Text",
+    "type": null,
+    "isInputLike": true,
+    "value": null,
+    "inNode": false
+   },
+   "t0": {
+    "at": 1790981662076,
+    "lbl": "⑤单击后Enter-t0",
+    "tag": "DIV",
+    "tid": null,
+    "aria": "Text",
+    "type": null,
+    "isInputLike": true,
+    "value": null,
+    "inNode": false
+   },
+   "t1": {
+    "at": 1790981663282,
+    "lbl": "⑤单击后Enter-t1.2s",
+    "tag": "DIV",
+    "tid": null,
+    "aria": "Text",
+    "type": null,
+    "isInputLike": true,
+    "value": null,
+    "inNode": false
+   },
+   "t2": {
+    "at": 1790981665822,
+    "lbl": "⑤单击后Enter-t+3.7s",
+    "tag": "DIV",
+    "tid": null,
+    "aria": "Text",
+    "type": null,
+    "isInputLike": true,
+    "value": null,
+    "inNode": false
+   },
+   "nInputsBefore": 3,
+   "nInputsAfter": 3,
+   "added": [],
+   "进编辑态": true,
+   "三次一致": true,
+   "焦点": "Text",
+   "全部输入面": [
+    {
+     "tag": "INPUT",
+     "tid": null,
+     "aria": "替换媒体",
+     "type": "file",
+     "pe": "all",
+     "ce": false,
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "inNode": true,
+     "inToolbar": false,
+     "value": ""
+    },
+    {
+     "tag": "DIV",
+     "tid": null,
+     "aria": "Text",
+     "type": null,
+     "pe": "auto",
+     "ce": true,
+     "rect": [
+      260,
+      280,
+      192,
+      37
+     ],
+     "inNode": false,
+     "inToolbar": false,
+     "value": null
+    },
+    {
+     "tag": "INPUT",
+     "tid": null,
+     "aria": null,
+     "type": "file",
+     "pe": "auto",
+     "ce": false,
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "inNode": false,
+     "inToolbar": false,
+     "value": ""
+    }
+   ]
+  },
+  {
+   "tag": "⑥单击后Space",
+   "act": {
+    "__err": "no-rename"
+   },
+   "fBefore": {
+    "at": 1790981665916,
+    "lbl": "⑥单击后Space-before",
+    "tag": "DIV",
+    "tid": null,
+    "aria": "Text",
+    "type": null,
+    "isInputLike": true,
+    "value": null,
+    "inNode": false
+   },
+   "t0": {
+    "at": 1790981665945,
+    "lbl": "⑥单击后Space-t0",
+    "tag": "DIV",
+    "tid": null,
+    "aria": "Text",
+    "type": null,
+    "isInputLike": true,
+    "value": null,
+    "inNode": false
+   },
+   "t1": {
+    "at": 1790981667148,
+    "lbl": "⑥单击后Space-t1.2s",
+    "tag": "DIV",
+    "tid": null,
+    "aria": "Text",
+    "type": null,
+    "isInputLike": true,
+    "value": null,
+    "inNode": false
+   },
+   "t2": {
+    "at": 1790981669661,
+    "lbl": "⑥单击后Space-t+3.7s",
+    "tag": "DIV",
+    "tid": null,
+    "aria": "Text",
+    "type": null,
+    "isInputLike": true,
+    "value": null,
+    "inNode": false
+   },
+   "nInputsBefore": 3,
+   "nInputsAfter": 3,
+   "added": [],
+   "进编辑态": true,
+   "三次一致": true,
+   "焦点": "Text",
+   "全部输入面": [
+    {
+     "tag": "INPUT",
+     "tid": null,
+     "aria": "替换媒体",
+     "type": "file",
+     "pe": "all",
+     "ce": false,
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "inNode": true,
+     "inToolbar": false,
+     "value": ""
+    },
+    {
+     "tag": "DIV",
+     "tid": null,
+     "aria": "Text",
+     "type": null,
+     "pe": "auto",
+     "ce": true,
+     "rect": [
+      260,
+      280,
+      192,
+      37
+     ],
+     "inNode": false,
+     "inToolbar": false,
+     "value": null
+    },
+    {
+     "tag": "INPUT",
+     "tid": null,
+     "aria": null,
+     "type": "file",
+     "pe": "auto",
+     "ce": false,
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "inNode": false,
+     "inToolbar": false,
+     "value": ""
+    }
+   ]
+  }
+ ],
+ "verdict": [
+  {
+   "试": "①单击Rename钮",
+   "进编辑态": false,
+   "焦点": "Rename 文本 4",
+   "新增输入面": 0,
+   "输入面总数": 2,
+   "三次一致": true
+  },
+  {
+   "试": "②再单击一次",
+   "进编辑态": false,
+   "焦点": "Rename 文本 4",
+   "新增输入面": 0,
+   "输入面总数": 2,
+   "三次一致": true
+  },
+  {
+   "试": "③双击标题行(避开按钮)",
+   "进编辑态": true,
+   "焦点": "Text",
+   "新增输入面": 1,
+   "输入面总数": 3,
+   "三次一致": false
+  },
+  {
+   "试": "④双击Rename钮",
+   "进编辑态": true,
+   "焦点": "Text",
+   "新增输入面": 0,
+   "输入面总数": 3,
+   "三次一致": true
+  },
+  {
+   "试": "⑤单击后Enter",
+   "进编辑态": true,
+   "焦点": "Text",
+   "新增输入面": 0,
+   "输入面总数": 3,
+   "三次一致": true
+  },
+  {
+   "试": "⑥单击后Space",
+   "进编辑态": true,
+   "焦点": "Text",
+   "新增输入面": 0,
+   "输入面总数": 3,
+   "三次一致": true
+  }
+ ],
+ "anyEntered": [
+  "③双击标题行(避开按钮)",
+  "④双击Rename钮",
+  "⑤单击后Enter",
+  "⑥单击后Space"
+ ],
+ "end": {
+  "nodes": "77",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}
