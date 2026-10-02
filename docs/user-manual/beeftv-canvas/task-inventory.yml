@@ -33,7 +33,7 @@ tasks:
     coverage: flagship
     evidence:
       - type: static
-        note: project.tsx 画布入口、空白右键/双击/底部工具栏五处创建入口（INTERACTION_CATALOG §5）；待运行时核实。
+        note: project.tsx 画布入口、空白右键/双击/底部工具栏五处创建入口（INTERACTION_CATALOG §5）；**入口存在性已由截图 01-home 实证、空画布态与底部工具栏由 02-canvas-empty 实证（v1.6.14 走查）**——**但「五处入口各自都能真正建出画布」仍未逐个取证**，两者不是一回事，不合并。
     preconditions:
       # 「并登录」是云端部署的说法；本地部署启动即有 local 身份，没有登录流程（Batch 157 订正）
       - 已启动 BeefTV（本地部署无需登录）
