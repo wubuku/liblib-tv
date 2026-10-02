@@ -70,6 +70,9 @@ EXPECTED_STATES = [
     "文本·全屏编辑", "时间线·全屏", "主体·元数据编辑器",
     # 批 869：AI 抽屉里那两个**冷启动就能点开**的内层面板。
     "AI 侧栏·搜索技能", "AI 侧栏·添加参考",
+    # 批 870：音色库的筛选下拉。870 之前它**测不了**（四个面板无条件常驻，
+    # 而 `open_layer()` 返回外层）—— 修完判据和产品才第一次有资格进表。
+    "音频生成面板·音色筛选",
 ]
 
 # 契约里**声明**的、前置态在复刻侧**无法成立**的状态 → 必须出现在 skip 理由里的片段。
@@ -1675,9 +1678,14 @@ def main() -> int:
           "（筛选面板不再无条件常驻，栈顶自然回到外层）",
           _sk_layer.get("音频生成面板·全音色") == "audio-all-voices-listbox",
           f"layer={_sk_layer.get('音频生成面板·全音色')}")
-    _agp = strip_py_comments(
-        (ROOT / "src/components/jimeng/JimengAudioGenPanel.tsx")
-        .read_text(encoding="utf-8"))
+    # ⚠️⚠️ 剥 .tsx 只能靠 `strip_comments`（JS/TS 那个）。870 第一版在这里
+    #   用了 `strip_py_comments` —— 那是 Python 注释器（只认 `#`），对 TSX
+    #   一点作用都没有，于是 V.3 被**我自己写在注释里**的那句
+    #   「此前这里是 bottom-[…]」判成红的。换对工具之后**仍然**判红 ——
+    #   剥注释器对这份文件不干净，所以那条判据改成打**代码形态**（见 V.3）。
+    _agp_raw = (ROOT / "src/components/jimeng/JimengAudioGenPanel.tsx") \
+        .read_text(encoding="utf-8")
+    _agp = strip_comments(_agp_raw)
     check("U.7 筛选面板的渲染条件**真的带开合判据**了"
           "（原来只有 `options ?`，而 `options` 是写死的非空数组 ⇒ "
           "「全音色」一打开四个面板同时展开、y 全为负、点不到也关不掉；"
@@ -1705,6 +1713,41 @@ def main() -> int:
           _ausrc_nc.count("if bail_if_dead(") == 3
           and "def bail_if_dead(" in _ausrc_nc
           and "def page_alive(" in _ausrc_nc)
+
+    # ── V. 批 870：源站取样把「筛选面板落在视口外」那一半也修掉了 ──────
+    print("— V. 批 870 音色库筛选面板：源站取样 + 版式逐项对齐 —")
+    _vf = {r.get("state"): r for r in data.get("keyboard", [])
+           if r.get("layer") == "audio-voice-filter-listbox"}
+    check("V.1 筛选下拉进了**常驻契约**，而且真的量到了"
+          "（870 之前它测不了：面板无条件常驻 + `open_layer()` 认外层）",
+          "音频生成面板·音色筛选" in EXPECTED_STATES
+          and bool(_vf.get("音频生成面板·音色筛选", {}).get("ok")),
+          f"契约里={'音频生成面板·音色筛选' in EXPECTED_STATES} "
+          f"ok={_vf.get('音频生成面板·音色筛选', {}).get('ok')}")
+    check("V.2 它归到**自己**而不是外层音色库（869 那条 `open_layer()` 修正的"
+          "第二个受益者）",
+          _vf.get("音频生成面板·音色筛选", {}).get("layer")
+          == "audio-voice-filter-listbox")
+    _stale_cls = [ln.strip()[:60] for ln in _agp_raw.splitlines()
+                  if "bottom-[calc(100%+6px)]" in ln and "className" in ln]
+    check("V.3 展开方向是**向下**（源站实测：钮 153×28 @y656、层 161×124 @y692，"
+          "即钮底 +8）—— 此前是 `bottom-[calc(100%+6px)]` 向上展开，"
+          "实测 y 跑到 -56，整个面板在视口外点不到",
+          "top-[calc(100%+8px)]" in _agp
+          and not _stale_cls
+          and "left-[-4px]" in _agp and "w-[161px]" in _agp,
+          f"下向={'top-[calc(100%+8px)]' in _agp} 残留={_stale_cls}")
+    check("V.4 `aria-label` **逐字抄源站**的 `{label} options`"
+          "（源站实测 aria-label=`性别 options`；此前复刻自造「筛选 性别」）",
+          "aria-label={`${label} options`}" in _agp
+          and "筛选 ${label}" not in _agp)
+    p870s_ = ROOT / "scripts/jimeng_probe870_voicefilter_src.py"
+    _p870s = p870s_  .read_text(encoding="utf-8") if p870s_.exists() else ""
+    check("V.5 源站探针在库里，且**先验登录态**再动手"
+          "（掉到登录页就记 BLOCKED_BY_FIXTURE，"
+          "绝不把「登录没了」写成「源站没有筛选钮」）",
+          bool(_p870s) and "logged_in" in _p870s
+          and "不是**「源站没有筛选钮」" in _p870s)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

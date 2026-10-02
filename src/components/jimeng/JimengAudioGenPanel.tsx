@@ -618,26 +618,49 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                               {/* ⚠️⚠️ 批 870：渲染条件原来只有 `options ?`
                                   —— 而 `options` 是 FILTERS 里写死的**非空
                                   数组**，等于**没有开合状态**：「全音色」一
-                                  打开，**四个筛选面板同时渲染**，而且位置是
-                                  `bottom-full` 叠在已经抬起来的音色库之上 ⇒
-                                  实测 y 坐标 -56 / -92 / -164 / -164，
-                                  **整个跑到视口外**，看得见、点不着、也关不掉。
+                                  打开，**四个筛选面板同时渲染**。
                                   探针 870 量完才动手（先探再判）；这里补上
-                                  真正的开合判据。
-                                  ⚠️ 源站这几个筛选面板**没取样** —— 本条
-                                  修的是「四个面板无条件常驻 + 点不到」这件
-                                  在任何源站行为下都说不通的事；至于源站点开
-                                  之后面板**长什么样、落在哪**，仍然**未取样**，
-                                  本批不猜、不改版式。 */}
+                                  真正的开合判据。 */}
                               {options && filterSel[label] !== undefined ? (
+                                /* ⚠️ 批 870：**版式按源站实测逐项对齐**（探针
+                                   `jimeng_probe870_voicefilter_src.py`，
+                                   登录态、视口 1512×1200）：
+                                     · 音色库面板   680×96 @[522,600]
+                                     · 筛选钮       153×28 @[538,656]（×4）
+                                     · 展开层       161×124 @[534,692]
+                                       role=listbox，aria-label=`性别 options`
+                                     ⇒ 展开层落在筛选钮**正下方 +8**、
+                                       **左移 4**、左右各留 4 padding。
+                                   此前这里是 `bottom-[calc(100%+6px)]`
+                                   （向上）⇒ 叠在已经抬起来的音色库之上，
+                                   实测 y 跑到 **-56**，整个面板在视口外、
+                                   点也点不到。源站是**向下**展开的。 */
                                 <div
-                                  className="absolute bottom-[calc(100%+6px)] left-0 z-[150] w-[150px] rounded-xl p-1.5"
+                                  className="absolute left-[-4px] top-[calc(100%+8px)] z-[150] w-[161px] rounded-xl p-1"
                                   style={{ background: "rgb(38,38,38)" }}
                                   role="listbox"
-                                  aria-label={`筛选 ${label}`}
+                                  /* 源站逐字：`性别 options`（探针 870 实测）。
+                                     此前复刻写的是「筛选 性别」—— 那是**复刻
+                                     自造**的名字，源站没有。 */
+                                  aria-label={`${label} options`}
                                   // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
                                   data-testid="audio-voice-filter-listbox"
                                 >
+                                {/* ⚠️ 批 870：`gap-1`（4px）是按源站实测补的 ——
+                                    源站三个选项行 y=696/736/776、行高 36 ⇒
+                                    行距 4（内层 116 = 3×36 + 2×4）。此前复刻
+                                    没有间距，面板矮 8px。
+                                    ⚠️ 顺带记一个自己踩的坑：这个注释**第一版
+                                    写成裸的块注释**，而它在 JSX 的
+                                    **children** 区域里 —— 那里块注释的
+                                    起止符是**文本**不是注释，于是 eslint 报
+                                    `Unexpected token`；改成形如
+                                    「花括号包住块注释」之后，又因为**正文里
+                                    写了块注释的结束符**而提前闭合。
+                                    children 区的注释要写花括号包住的形式，
+                                    而且**正文里不许再出现结束符**——
+                                    跟 docstring 里不许写三引号是同一条。 */}
+                                <div className="flex flex-col gap-1">
                                   {options.map((opt) => (
                                     <button
                                       key={opt}
@@ -659,6 +682,9 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                       {opt}
                                     </button>
                                   ))}
+                                </div>
+                                {/* ↑ 关掉「选项列表」那层（批 870 为了加
+                                    gap-1 引入的），下面这个才是筛选面板本身 */}
                                 </div>
                               ) : null}
                             </div>

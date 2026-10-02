@@ -1235,6 +1235,33 @@ def main() -> int:
                     else:
                         skipped.append(f"音频生成面板·{label}（选不中音频节点）")
 
+            # ── 音色库的**筛选下拉**（批 870 加）────────────────────
+            #   两步：先开音色库，再点里面的筛选钮。上面那个 `expect` 循环
+            #   只能表达**一步**（`open_dropdown` 一次点一个触发器）。
+            #   ⚠️ 870 之前这一层**根本测不了**：四个筛选面板无条件常驻
+            #   （探针 870 实测），而审计的 `open_layer()` 又返回**外层**
+            #   音色库 ⇒ 量到的永远是外层。修完判据 + 修完产品，才第一次
+            #   有资格把它当一个独立状态来量。
+            if select_node(aud):
+                if open_dropdown('button[aria-label^="音色"]',
+                                 "audio-all-voices-listbox"):
+                    # ⚠️ 作用域必须是**两段**：实测音色库那层 `role=listbox`
+                    #   渲染在 `.react-flow__node-toolbar` 里（祖先链实测：
+                    #   BUTTON → DIV.relative → … → DIV.react-flow__node-toolbar），
+                    #   **不在** `.react-flow__node-panel`。第一版只写 node-panel
+                    #   ⇒ 计数 0 ⇒ 记成「打不开」—— 又是一次「够不着」被写成
+                    #   「没有」。跟其余音频状态用同一个作用域最稳（触发器在
+                    #   哪一栏，层就在哪一栏）。
+                    try_measure("音频生成面板·音色筛选",
+                                'button:has-text("性别")',
+                                ".react-flow__node-toolbar, "
+                                ".react-flow__node-panel",
+                                "audio-voice-filter-listbox")
+                else:
+                    skipped.append("音频生成面板·音色筛选（音色库打不开）")
+            else:
+                skipped.append("音频生成面板·音色筛选（选不中音频节点）")
+
         # 画布右键
         # ⚠️ 落点**必须先验证是空画布**。第一版硬点 (840,640)，而跑到这里时
         #    画布上已经插进了文本/音频节点，坐标落在**节点**上 ⇒ 开出来的是
