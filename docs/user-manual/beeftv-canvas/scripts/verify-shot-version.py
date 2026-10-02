@@ -192,7 +192,6 @@ def direction_two():
 
 
 @baseline_guard
-@baseline_guard
 def main():
     entries, _text = parse_manifest()
     if entries is None:

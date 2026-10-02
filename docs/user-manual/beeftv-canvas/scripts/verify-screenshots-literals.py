@@ -96,7 +96,6 @@ def in_source(text):
 
 
 @baseline_guard
-@baseline_guard
 def main():
     if not os.path.isfile(MANIFEST):
         print("截图取证文案核对：未找到 manifest，跳过")

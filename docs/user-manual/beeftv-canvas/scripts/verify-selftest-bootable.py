@@ -129,7 +129,7 @@ SELFTEST_COSTS = {
     "selftest-shot-drift.py": 23,   # Batch 189：闸 23，实测 19.4/23.1s（7 例，每例两棵树）
     "selftest-shot-pixels.py": 10,  # Batch 191：闸 25，实测 9.39/9.39s（6 例，用例 6 真图全解 4s）
     "selftest-tables.sh": 2.0,
-    "selftest-zero-input.py": 1.6,  # Batch 192：跨全部闸的零输入体检，实测 1.46/1.61s（空树里各闸秒退）
+    "selftest-zero-input.py": 9.4,  # Batch 196：加方向三（手册树正常但上游仓不可用，跑在真实树上）后实测 9.4s
 }
 
 

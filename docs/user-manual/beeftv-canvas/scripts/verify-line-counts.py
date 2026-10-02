@@ -88,7 +88,6 @@ def parse_table():
 
 
 @baseline_guard
-@baseline_guard
 def main():
     try:
         rows = parse_table()

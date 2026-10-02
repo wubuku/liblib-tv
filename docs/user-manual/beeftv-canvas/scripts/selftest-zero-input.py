@@ -50,12 +50,43 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REAL_ROOT = os.path.dirname(HERE)
 
 #: 「0 个 X」形态。**只认 0**，因为「N 个文件全部合格」是正常输出。
 ZERO_COUNT_RE = re.compile(r"(\d+)\s*个(?:文件|页面|张|项|条|篇|断言|任务|反验|目录)")
+
+#: **闸必须只读**（Batch 196 方向三的前提，见 `check_readonly()`）。
+#: 方向一在临时树上跑，怎么写都无所谓；**方向三在真实手册树上跑**，
+#: 一道闸若有了写操作，体检就会把「先 nuked 再检查」变成事实。
+#: 这个前提不能靠「我记得闸都是只读的」——**它必须自己核**。
+WRITE_RE = re.compile(
+    r"""open\(\s*[^)]*?["'][wax+]"""
+    r"""|os\.remove\(|os\.unlink\(|os\.rmdir\(|shutil\.rmtree\("""
+    r"""|os\.makedirs\(|os\.mkdir\("""
+    r"""|\.write_text\(|\.write_bytes\(""")
+
+
+def check_readonly(gates):
+    """**闸必须只读**——方向三跑在真实手册树上，这是它的安全前提。
+
+    实测（Batch 196）：25 道闸全部无写操作，所以这个前提今天成立。
+    **但「今天成立」和「永远成立」是两回事**——将来某道闸顺手加个
+    `open(..., "w")`，体检就会在真实手册树上执行它。
+
+    所以这里**主动核**：有写操作就 **rc=2「未能核对」**并拒绝开跑。
+    **判据的边界就该写在判据里**，不让人以为它覆盖了它没覆盖的东西。
+    """
+    dirty = []
+    for gate in gates:
+        path = os.path.join(HERE, gate)
+        with open(path, encoding="utf-8") as fh:
+            for n, line in enumerate(fh, 1):
+                if WRITE_RE.search(line):
+                    dirty.append("%s:%d" % (gate, n))
+    return dirty
 
 #: 这些闸的输入全部在手册树之外（读上游仓库或扫 scripts/），空树对它们没有意义，
 #: **不算「空转」**。列在这里是因为它们报的数不是「核了几项手册文件」。
@@ -76,46 +107,45 @@ def empty_tree(tmp):
     return tmp
 
 
-def main():
-    gates = sorted(f for f in os.listdir(HERE)
-                   if f.startswith("verify-") and f.endswith(".py"))
-    tmp = tempfile.mkdtemp(prefix="zero-input-")
-    found, crashed = [], []
-    try:
-        empty_tree(tmp)
-        env = dict(os.environ)
-        env["BEEFTV_MANUAL_ROOT"] = tmp
-        env["PYTHONDONTWRITEBYTECODE"] = "1"
-        env["BEEFTV_SRC"] = os.environ.get("BEEFTV_SRC", "")
-        for gate in gates:
-            try:
-                p = subprocess.run(
-                    [sys.executable, os.path.join(tmp, "scripts", gate)],
-                    capture_output=True, text=True, env=env, timeout=180)
-                rc, out = p.returncode, (p.stdout or "") + (p.stderr or "")
-            except subprocess.TimeoutExpired:
-                rc, out = -1, "超时"
-            if gate in EXEMPT:
-                continue
-            # 方向二：**空树上不可能有「核出不一致」**，所以 rc=1 必然是异常泄漏
-            # （Batch 193 实测：10 道闸把 `BaselineError` 一路抛到解释器顶端，
-            #  而 rc=1 在本项目的约定里意为「核过，且核出问题了」——**两回事**。）
-            if rc == 1 and ("Traceback" in out or "Error:" in out):
-                tail = next((l.strip() for l in reversed(out.split("\n"))
-                             if l.strip() and not l.strip().startswith("File \"")), "")
-                crashed.append((gate, tail[:90]))
-                continue
-            if rc != 0:
-                continue                       # rc=2「未能核对」是对的，不看
-            zeros = [m.group(0) for m in ZERO_COUNT_RE.finditer(out) if m.group(1) == "0"]
-            if zeros:
-                found.append((gate, zeros))
-    finally:
-        shutil.rmtree(tmp, ignore_errors=True)
+def run_gates(gates, script_dir, env, skip=()):
+    """逐个跑闸，返回 `(崩溃, 报绿)` 两个名单。
 
+    **判据（两个方向共用，极窄）**：
+      · **崩溃**：`rc == 1` 且输出里有 `Traceback` / `Error:`
+        —— rc=1 在本项目约定里意为「核过，且核出不一致」，
+        **而异常泄漏意味着本轮根本没开始核**（Batch 193 实测的形态）。
+      · **报绿**：`rc == 0` 且输出里出现「0 个 X」
+        —— 「一个都没检查」和「全部都合格」在退出码上一样，
+        **前者读起来却像好消息**（纪律 156）。
+    其余一律不看：`rc == 2`（未能核对）是对的，`rc == 1` 无异常是真的核出了不一致。
+    """
+    crashed, found = [], []
+    for gate in gates:
+        if gate in skip:
+            continue
+        try:
+            p = subprocess.run(
+                [sys.executable, os.path.join(script_dir, gate)],
+                capture_output=True, text=True, env=env, timeout=180)
+            rc, out = p.returncode, (p.stdout or "") + (p.stderr or "")
+        except subprocess.TimeoutExpired:
+            rc, out = -1, "超时"
+        if rc == 1 and ("Traceback" in out or "Error:" in out):
+            tail = next((l.strip() for l in reversed(out.split("\n"))
+                         if l.strip() and not l.strip().startswith("File \"")), "")
+            crashed.append((gate, tail[:90]))
+            continue
+        if rc != 0:
+            continue
+        zeros = [m.group(0) for m in ZERO_COUNT_RE.finditer(out) if m.group(1) == "0"]
+        if zeros:
+            found.append((gate, zeros))
+    return crashed, found
+
+
+def report(label, crashed, found, scene):
     if crashed:
-        print("零输入体检（方向二）：%d 道闸在「什么都没有」时把异常当成了「核出不一致」——"
-              % len(crashed))
+        print("%s：%d 道闸在「%s」时把异常当成了「核出不一致」——" % (label, len(crashed), scene))
         for gate, tail in crashed:
             print("  · `%s` 以 rc=1 退出，最后一行是：%s" % (gate, tail))
             print("    → rc=1 意为「核过且核出不一致」，**而实际是本轮根本没开始核**。"
@@ -124,18 +154,89 @@ def main():
               "（盖住任意深度的调用点，try 写在 main 里会漏）。")
         print()
     if found:
-        print("零输入体检（方向一）：%d 道闸在「什么都没有」时报绿 ——" % len(found))
+        print("%s：%d 道闸在「%s」时报绿 ——" % (label, len(found), scene))
         for gate, zeros in found:
-            print("  · `%s` 输出里出现 %s，**而退出码是 0**" % (gate, "、".join(sorted(set(zeros)))))
+            print("  · `%s` 输出里出现 %s，**而退出码是 0**"
+                  % (gate, "、".join(sorted(set(zeros)))))
             print("    → 「一个都没检查」和「全部都合格」在退出码上一样，"
                   "**前者读起来却像好消息**（纪律 156）")
         print()
-    if found or crashed:
+
+
+def direction_one(gates):
+    """**手册树为空**：一个 .md / 截图 / 清单都没有。"""
+    tmp = tempfile.mkdtemp(prefix="zero-input-")
+    try:
+        empty_tree(tmp)
+        env = dict(os.environ)
+        env["BEEFTV_MANUAL_ROOT"] = tmp
+        env["PYTHONDONTWRITEBYTECODE"] = "1"
+        env["BEEFTV_SRC"] = os.environ.get("BEEFTV_SRC", "")
+        return run_gates(gates, os.path.join(tmp, "scripts"), env, skip=EXEMPT)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def direction_three(gates):
+    """**手册树正常，上游 BeefTV 仓不可用**（`BEEFTV_SRC` 指向不存在的路径）。
+
+    这是方向一的**另一个极端**，与 Batch 193 同源而**至今没被测过**：
+    方向一测的是「手册这边什么都没有」，方向三测的是「手册这边什么都有，
+    **但它要核的那个上游不在**」。
+
+    **为什么不能复制手册树**（方向一可以，方向三不行）：
+    方向三的整个前提是「手册树**正常**」——复制出来的树天然无法同时
+    满足「正常」与「隔离」。所以它**只能跑在真实手册树上**，
+    于是「闸必须只读」从一句约定升级成**判据自己核的前提**（`check_readonly()`）。
+
+    **实测 5.3s**，比方向一那 1.2s 慢一点，但**远低于 `build-site.sh` 的 25s**——
+    原因是闸在基线不可解析时**提前退出**，并不真去读上游。
+    """
+    scratch = tempfile.mkdtemp(prefix="zero-input-")
+    bad = os.path.join(scratch, "上游仓不在这里")   # **故意不创建**
+    try:
+        env = dict(os.environ)
+        env["BEEFTV_MANUAL_ROOT"] = REAL_ROOT
+        env["PYTHONDONTWRITEBYTECODE"] = "1"
+        env["BEEFTV_SRC"] = bad
+        return run_gates(gates, HERE, env)
+    finally:
+        shutil.rmtree(scratch, ignore_errors=True)
+
+
+def main():
+    gates = sorted(f for f in os.listdir(HERE)
+                   if f.startswith("verify-") and f.endswith(".py"))
+
+    # 方向三的安全前提：闸必须只读。**先核前提，再跑体检**——
+    # 顺序反了就等于在真实手册树上执行一段还没被允许的代码。
+    dirty = check_readonly(gates)
+    if dirty:
+        print("零输入体检（方向三）**拒绝开跑**：%d 处写操作出现在闸里 ——" % len(dirty))
+        for where in dirty[:10]:
+            print("  · %s" % where)
+        print("    → 方向三跑在**真实手册树**上（它的前提就是「手册树正常」），"
+              "闸若可写，体检会先改再核。")
+        print("    → 要么把写操作挪出闸（闸应当只读），要么给方向三单独复制一份手册树。")
+        return 2
+
+    t0 = time.time()
+    c1, f1 = direction_one(gates)
+    c3, f3 = direction_three(gates)
+    cost = time.time() - t0
+
+    report("零输入体检（方向一/二）", c1, f1, "手册树为空")
+    report("零输入体检（方向三）", c3, f3, "手册树正常但上游仓不可用")
+
+    if f1 or c1 or f3 or c3:
         return 1
-    print("零输入体检：%d 道闸在空手册树上逐一跑过 —— "
-          "**没有一道在零输入下报绿**（方向一），"
-          "**也没有一道把异常当成「核出不一致」**（方向二）；"
-          "%d 道豁免，其输入不在手册树内" % (len(gates), len(EXEMPT)))
+    print("零输入体检：%d 道闸在两个极端下各跑一遍 —— " % len(gates))
+    print("  · 方向一/二（手册树为空）：没有一道在零输入下报绿，"
+          "也没有一道把异常当成「核出不一致」；%d 道豁免，其输入不在手册树内"
+          % len(EXEMPT))
+    print("  · 方向三（手册树正常、上游不可用）：没有一道报绿，"
+          "也没有一道把异常当成「核出不一致」")
+    print("  · 实测 %.1fs（含「闸只读」前提自检 %d 处写操作 = 0）" % (cost, len(dirty)))
     return 0
 
 

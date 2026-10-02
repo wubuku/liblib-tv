@@ -1577,7 +1577,6 @@ def url_params_without_writer(src, strict=True):
 
 
 @baseline_guard
-@baseline_guard
 def main():
     src = find_source()
     if not src:
