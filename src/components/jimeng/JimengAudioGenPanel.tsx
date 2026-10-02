@@ -842,6 +842,39 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                         }
                                       };
                                       refocus();
+                                      /* ⚠️ 批 882：**根因找到了**。抓 chunk 定位到
+                                         `@xyflow/react` 的 `useNodesSelection`：
+
+                                           } else if (unselect || node.selected
+                                                      && multiSelectionActive) {
+                                             unselectNodesAndEdges(...);
+                                             requestAnimationFrame(() =>
+                                               nodeRef?.current?.blur());
+                                           }
+
+                                         Esc ⇒ 面板关 ⇒ 节点**失去选中态**
+                                         ⇒ 这个分支触发 ⇒ 它在自己的 rAF 里
+                                         `blur()` 掉节点。
+
+                                         而我这里注册 rAF 是**同步**的（事件处理
+                                         里），它注册 rAF 是**状态更新后那次渲染
+                                         里** —— **同一个 rAF 队列里它排在我后面**
+                                         ⇒ blur 赢 ⇒ 这就是「同步 focus 成功、
+                                         ~50ms 后被抢走」的**全部原因**（881）。
+
+                                         所以用**双层 rAF**：第一层排在 React Flow
+                                         之后（它先跑），第二层再落焦点 ⇒ 不必
+                                         等 120ms 那种「取整出来的数」。
+
+                                         ⚠️ 仍**未验证**：双 rAF 能否**保证**排在
+                                         React Flow 之后 —— 那是**注册顺序**的
+                                         性质，不是契约。React Flow 哪天改成
+                                         `setTimeout` 或 `useEffect` 就又失效。
+                                         所以 120ms 补落**保留**（它是对
+                                         「万一双 rAF 也不够」的兜底）。 */
+                                      requestAnimationFrame(() =>
+                                        requestAnimationFrame(refocus),
+                                      );
                                       requestAnimationFrame(refocus);
                                       setTimeout(refocus, 120);
                                       setFilterSel((m) => ({

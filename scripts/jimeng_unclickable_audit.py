@@ -2242,12 +2242,30 @@ def main() -> int:
             #       → +46~56ms blur（**被某个延迟动作抢走**）
             #       → 节点 DOM **没被替换**（标记还在、isConnected、同一个元素）
             #   ⇒ 同步落焦点**不够**，必须在那个动作**之后**补落。
-            # ⚠️⚠️ 那个「延迟动作」是**哪个 handler 仍未查明**（⚠️ 未验证）。
-            #   复刻现修法是**补落**（rAF + 120ms setTimeout），属于**绕过**
-            #   不是**根修** —— 它若改了时间或顺序，这里就失效。
+            # ⚠️⚠️ 882：**根因查到了**，881 那条「未查明」作废。
+            #   抓 vendor chunk 定位到 `@xyflow/react` 的 `useNodesSelection`：
+            #     } else if (unselect || node.selected && multiSelectionActive) {
+            #        unselectNodesAndEdges({nodes:[node], edges:[]});
+            #        requestAnimationFrame(() => nodeRef?.current?.blur());
+            #     }
+            #   Esc ⇒ 面板关 ⇒ 节点**失去选中态** ⇒ 该分支触发 ⇒ 它在自己的
+            #   rAF 里 `blur()`。而组件里那个 rAF 是**同步注册**的（事件处理里），
+            #   它是**状态更新后那次渲染里**注册 ⇒ **同一个 rAF 队列里它排后面**
+            #   ⇒ blur 赢。这才是「同步 focus 成功、~50ms 后被抢走」的**全部原因**。
+            #   根修 = **双层 rAF**（第二层排在 React Flow 之后）：
+            #   实测 blur +355ms → 补落 +356ms，间隔 **1ms**（原 120ms 兜底方案
+            #   的时间窗是 ~120ms）。120ms 保留为兜底。
+            # ⚠️ **仍未验证**：双 rAF 能否保证排在 React Flow 之后 —— 那是
+            #   **注册顺序**的性质，不是契约。
+            # ⚠️⚠️ **更根本的疑点没查**：源站 Esc 之后音频节点**还在选中态吗**？
+            #   React Flow 会 blur 是因为它**取消了选中**；源站为什么没这问题，
+            #   可能是因为源站 Esc **不取消节点选中**。若如此，那「取消选中」
+            #   本身才是**更根本的差异**，而焦点落点只是它的症状。**未取样。**
             "clear_esc_focus_mechanism": (
-                "复刻：同步 focus 成功(+6ms) → +46~56ms 被**未知延迟动作**抢走"
-                " → rAF/120ms 补落回节点。抢焦点者身份**未查明**（未验证）。"),
+                "复刻：根因是 `@xyflow/react` 的 `useNodesSelection` —— 节点"
+                "**失去选中态**时它在 `requestAnimationFrame` 里 `nodeRef.blur()`，"
+                "且那个 rAF 注册得比我们的**晚**（状态更新后那次渲染里）⇒ blur 赢。"
+                "根修 = **双层 rAF**（第二层排在它之后），实测间隔 1ms。"),
             # 875：外层格子**恒定 153×28**，选中前后都不变；变的是格子里
             # 装什么：未选中 芯片 135（=153−左右 padding 9×2），
             # 选中 芯片 111 + gap 8 + Clear 16 = 135（正好填满）。

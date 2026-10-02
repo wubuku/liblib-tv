@@ -2060,13 +2060,18 @@ def main() -> int:
           "`38` 逐轮插节点就变，是**易变量**）—— 只记「落在该节点本体」",
           '"clear_esc_focus": "该音频节点本体' in _ausrc
           and "序号是易变量，不许钉" in _ausrc)
-    check("BB.8 880/881 的**机制链**记进基线（每一步排除了什么、结论停在哪）"
-          "——半年后不用重查一遍；且**抢焦点那个动作的身份明确标为"
-          "「未查明 / 未验证」**，现修法（rAF + 120ms 补落）写明是"
-          "**绕过**不是**根修**，不许写成「已解决」",
+    check("BB.8 880/881/882 的**机制链**记进基线，每一步排除了什么、结论停在哪。"
+          " ⚠️ 882 把 881 那条「未查明」**作废**并给出**根因**："
+          "`@xyflow/react` 的 `useNodesSelection` 在节点失去选中态时于 "
+          "`requestAnimationFrame` 里 `nodeRef.blur()`，且那个 rAF 注册得**更晚**"
+          "（状态更新后那次渲染里）⇒ 同一个 rAF 队列里它排在我们后面。"
+          "**根修是双层 rAF**，不是 120ms 兜底；未验证的部分（注册顺序不是契约、"
+          "源站是否也取消选中）必须**留在基线里不许删**",
           '"clear_esc_focus_mechanism"' in _ausrc
-          and "未查明" in _ausrc and "属于**绕过**" in _ausrc
-          and "不是**根修**" in _ausrc)
+          and "useNodesSelection" in _ausrc
+          and "根修 = **双层 rAF**" in _ausrc
+          and "注册顺序" in _ausrc and "不是契约" in _ausrc
+          and "更根本的疑点没查" in _ausrc)
     check("BB.9 881 探针的**判据跟着事实一起改过**（第一版只看「DOM 有没有被"
           "替换」，于是修好之后仍然打出「机制仍未查清」—— 方向相反的同族错误："
           "**修好了还说没查清**）。现在按「焦点最终在不在节点上」分两条互斥判据，"
@@ -2074,6 +2079,17 @@ def main() -> int:
           "判据**跟着事实一起改过**" in _p881
           and "修好了还说没查清" in _p881
           and "res[\"why_still_unknown\"]" in _p881)
+    p882 = ROOT / "scripts/jimeng_probe882_whostealsfocus_ck.py"
+    _p882 = p882.read_text(encoding="utf-8") if p882.exists() else ""
+    check("BB.10 882 探针用**劫持 prototype** 抓调用栈定位到那个 handler，"
+          "而且**每段测完自己 reload 恢复**（诊断动作不许留痕）；"
+          "另有**不按 Esc 的对照组**——焦点不动，确证是 Esc 触发的，"
+          "不是「面板本来就会掉焦点」",
+          bool(_p882)
+          and "HTMLElement.prototype.focus" in _p882
+          and "诊断动作**必须**恢复" in _p882
+          and "location.reload()" in _p882
+          and "没按 Esc（对照）" in _p882)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
