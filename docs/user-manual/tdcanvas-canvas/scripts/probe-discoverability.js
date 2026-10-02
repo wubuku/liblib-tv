@@ -56,6 +56,22 @@
  *     → 命中判据改成读链末端元素的 `getBoundingClientRect()`，看它是否落在按钮矩形内。
  *     **「我的判据有洞」和「产品有问题」要分开查，前者更常见。**
  *
+ * 8. **★ 「有没有提示」这个信号单独用会误报，必须配着「有没有可见文字」一起看**（M135）
+ *    M135 把这条判据扫到首页、提示词库、我的资产、配置、ComfyUI 本地五页共 **60 个按钮**，
+ *    判「无任何提示」的有二十几个，**逐条读完，一个都不构成可发现性问题**：
+ *      - 大多数**自己印着字**（「新建画布」「删除全部」「保 存」「验证并查询余额」
+ *        「批量下载」「全部 / 文本 / 图片 / 视频」……）——**看得见就不用悬停**；
+ *      - 其余是**隐藏态**或**禁用态**控件，本来就不该指望它给提示。
+ *    → 报告里的「认不出吗」必须**先扣掉自带可见文字的**。
+ *    M127 那句「区分度在悬停提示覆盖率」有个没说出口的前提：**那个按钮本来就没有可见文字**。
+ *
+ * 8b. **★ 几何非零不等于可见——类名里可能写着「隐藏」**（M135 又一条判据边界）
+ *     资产页搜索框的清除按钮 `ant-input-clear-icon ant-input-clear-icon-hidden`
+ *     **有 12×12 的非零几何**，`display`/`visibility`/`opacity` 全部正常，
+ *     前面所有判据都判它「可见」——**但类名里明明白白写着 `-hidden`，它根本不显示**。
+ *     这是「自身可见但读者看不见」的第四种（前三种：0×0 / 1×1、伪元素、在视口外）。
+ *     → 判可见性时**顺手看一眼类名里有没有 `hidden` / `invisible`**。
+ *
  * 7c. **元素可能在视口外，鼠标压根进不去**（M132 顺带发现）
  *     顶栏「调整右侧面板宽度」那条把手宽 16px，因为带 `translate-x-1/2`，
  *     **有 9px 落在视口右缘之外**，脚本把鼠标移到它中心时已在屏幕外，
@@ -125,6 +141,10 @@ const SNAP = `(() => {
     while (p && depth < 12) {
       const cs = getComputedStyle(p);
       if (cs.display === 'none' || cs.visibility === 'hidden' || parseFloat(cs.opacity) < 0.05) return false;
+      // ★ 判据 8b：类名里可能直接写着「隐藏」。
+      //   antd 的 ant-input-clear-icon-hidden 有 12x12 的非零几何、display/visibility/opacity 全正常，
+      //   前面所有判据都会把它判成「可见」——**但它根本不显示**。
+      if (/\b(hidden|invisible)\b/.test(String(p.className || ''))) return false;
       p = p.parentElement; depth++;
     }
     return true;
@@ -160,6 +180,8 @@ const READ_BATCH = (region) => {
       if (cs.display === 'none') return { ok: false, why: p.tagName + ' 的 display:none' };
       if (cs.visibility === 'hidden') return { ok: false, why: p.tagName + ' 的 visibility:hidden' };
       if (parseFloat(cs.opacity) < 0.05) return { ok: false, why: p.tagName + ' 的 opacity:' + cs.opacity };
+      // ★ 判据 8b：类名里写着「隐藏」的控件，几何非零也等于看不见
+      if (/\b(hidden|invisible)\b/.test(String(p.className || ''))) return { ok: false, why: p.tagName + ' 的类名里写着 hidden/invisible' };
       p = p.parentElement; depth++;
     }
     return { ok: true, why: '' };
