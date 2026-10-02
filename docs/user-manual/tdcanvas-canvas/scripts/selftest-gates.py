@@ -942,10 +942,12 @@ def mutate_retracted_allowlist_too_broad(root: Path) -> None:
 
     path = root / "scripts/check-retractions.py"
     text = path.read_text(encoding="utf-8")
-    # M154 给 R27 的 allow_in 加了第二处（task-inventory.yml:131），
-    # 这一行不再只有一处——注入要按**前缀**匹配，不能写死整行。
+    # M154 给 R27 的 allow_in 加了第二处，这一行不再只有一处——
+    # 注入要按**前缀**匹配，不能写死整行。
+    # M173 起这一处也改成了内容锚点形态（行号形态已退役），
+    # 所以匹配的是锚点前缀，不是 `:\d+`。
     patched = re.sub(
-        r'"allow_in": \["10-tasks/edit-nodes\.md:\d+"[^\]]*\]',
+        r'"allow_in": \["10-tasks/edit-nodes\.md#[^"]*"[^\]]*\]',
         '"allow_in": ["10-tasks/edit-nodes.md"]', text, count=1)
     assert patched != text, "注入失败：没找到 allow_in 那一行"
     path.write_text(patched, encoding="utf-8")
@@ -991,6 +993,29 @@ def mutate_anchor_exemption_too_short(root: Path) -> None:
     patched = re.sub(
         r'"SOURCE_OBSERVATIONS\.md#这一列的像素值已作废"',
         '"SOURCE_OBSERVATIONS.md#像素值"', text, count=1)
+    assert patched != text, "注入失败：没找到 R31 的内容锚点豁免"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_anchor_exemption_back_to_lineno(root: Path) -> None:
+    """把豁免写回**已退役的行号形态**时，必须被明确拦下（M173）。
+
+    M172 把 6 个行号豁免迁成了内容锚点，并做了严格 A/B 对照：
+    同一份插了 2 行的内容，行号形态 exit=1（5 条假阳性），锚点形态 exit=0。
+    M173 迁完最后 2 处后行号形态**一个使用者都不剩**，于是正式退役。
+
+    这一例守的是**退役本身**：如果有人（或未来的我）顺手写回行号，
+    门禁必须点名说「这是已退役的写法」，而不是继续默默接受——
+    默默接受等于退役从来没发生过，下一批就会有人再写一个行号豁免。
+    """
+
+    import re
+
+    path = root / "scripts/check-retractions.py"
+    text = path.read_text(encoding="utf-8")
+    patched = re.sub(
+        r'"SOURCE_OBSERVATIONS\.md#这一列的像素值已作废"',
+        '"SOURCE_OBSERVATIONS.md:357"', text, count=1)
     assert patched != text, "注入失败：没找到 R31 的内容锚点豁免"
     path.write_text(patched, encoding="utf-8")
 
@@ -1103,6 +1128,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("订正豁免写成只给文件名（豁免必须窄到无法滥用）", mutate_retracted_allowlist_too_broad, "retractions", "写法不合法"),
     ("内容锚点豁免指错行时不能放行（锚点必须真的对得上）", mutate_anchor_exemption_wrong_fragment, "retractions", "订正过的错误说法重新出现"),
     ("内容锚点短于 8 字判非法（锚点不能退化成模糊匹配）", mutate_anchor_exemption_too_short, "retractions", "写法不合法"),
+    ("行号豁免形态已退役，写回去必须被点名（否则退役形同虚设）", mutate_anchor_exemption_back_to_lineno, "retractions", "已退役的行号写法"),
     ("已订正说法复现到**账本**里（正文之外的盲区）", mutate_retracted_ledger_repro, "retractions", "订正过的错误说法重新出现"),
     ("产物里的死链", mutate_dead_dist_link, "distlinks", "指向不存在目标的链接"),
     ("任务评级三处不一致", mutate_rating_drift_inventory, "ratings", "评级漂移"),
