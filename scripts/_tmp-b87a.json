@@ -1,0 +1,315 @@
+{
+ "at": "2026-10-02T04:44:18.555Z",
+ "canvas": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": 60
+ },
+ "grids": [
+  {
+   "zoom": 74,
+   "setZoom": {
+    "ok": true,
+    "how": "input",
+    "pct": 74
+   },
+   "marquee": {
+    "ids": [
+     "node_20sb5adarj",
+     "node_y2n170za3z"
+    ],
+    "from": [
+     110,
+     399
+    ],
+    "to": [
+     424,
+     714
+    ],
+    "onPane": true,
+    "nodeBox": "266x266",
+    "selAfter": "7"
+   },
+   "sel": "7",
+   "scale": {
+    "scale": 0.74,
+    "stable": true
+   },
+   "bars": [
+    {
+     "testid": "selection-context-toolbar-surface",
+     "tag": "DIV",
+     "screen": "464x40@104,288",
+     "canvas": "627x54",
+     "scale": 0.74,
+     "area": 18560,
+     "text": "7 节点 ｜ 编组 ｜ 布局 ｜ 没有可用的就绪资源",
+     "btns": [
+      {
+       "t": "编组",
+       "testid": null,
+       "box": "62x32@276,292",
+       "ariaDisabled": null,
+       "cursor": "pointer"
+      },
+      {
+       "t": "布局",
+       "testid": null,
+       "box": "78x32@340,292",
+       "ariaDisabled": null,
+       "cursor": "pointer"
+      },
+      {
+       "t": "下载",
+       "testid": null,
+       "box": "32x32@427,292",
+       "ariaDisabled": "true",
+       "cursor": "not-allowed"
+      },
+      {
+       "t": "Add tags",
+       "testid": "flow-node-selected-tag",
+       "box": "24x24@544,336",
+       "ariaDisabled": null,
+       "cursor": "pointer"
+      }
+     ],
+     "parent": "node-toolbar"
+    },
+    {
+     "testid": "selection-context-toolbar",
+     "tag": "DIV",
+     "screen": "255x40@208,288",
+     "canvas": "345x54",
+     "scale": 0.74,
+     "area": 10200,
+     "text": "7 节点 ｜ 编组 ｜ 布局 ｜ 没有可用的就绪资源",
+     "btns": [
+      {
+       "t": "编组",
+       "testid": null,
+       "box": "62x32@276,292",
+       "ariaDisabled": null,
+       "cursor": "pointer"
+      },
+      {
+       "t": "布局",
+       "testid": null,
+       "box": "78x32@340,292",
+       "ariaDisabled": null,
+       "cursor": "pointer"
+      },
+      {
+       "t": "下载",
+       "testid": null,
+       "box": "32x32@427,292",
+       "ariaDisabled": "true",
+       "cursor": "not-allowed"
+      }
+     ],
+     "parent": "relative flex w-max justify-center"
+    },
+    {
+     "testid": "selection-context-toolbar-count",
+     "tag": "SPAN",
+     "screen": "53x32@213,292",
+     "canvas": "72x43",
+     "scale": 0.74,
+     "area": 1696,
+     "text": "7 节点",
+     "btns": [],
+     "parent": "selection-context-toolbar"
+    }
+   ]
+  },
+  {
+   "zoom": 100,
+   "setZoom": {
+    "ok": true,
+    "how": "input",
+    "pct": 100
+   },
+   "marquee": {
+    "err": "视口内只有 0 个节点，不够 2"
+   },
+   "sel": "0",
+   "scale": {
+    "scale": 1,
+    "stable": true
+   },
+   "bars": []
+  },
+  {
+   "zoom": 60,
+   "setZoom": {
+    "ok": true,
+    "how": "input",
+    "pct": 60
+   },
+   "marquee": {
+    "ids": [
+     "node_9y4j9jf0qv",
+     "node_20sb5adarj"
+    ],
+    "from": [
+     141,
+     126
+    ],
+    "to": [
+     445,
+     603
+    ],
+    "onPane": true,
+    "nodeBox": "256x429",
+    "selAfter": "8"
+   },
+   "sel": "8",
+   "scale": {
+    "scale": 0.6,
+    "stable": true
+   },
+   "bars": [
+    {
+     "testid": "selection-context-toolbar-surface",
+     "tag": "DIV",
+     "screen": "441x40@141,50",
+     "canvas": "734x67",
+     "scale": 0.6,
+     "area": 17640,
+     "text": "8 节点 ｜ 编组 ｜ 布局 ｜ 没有可用的就绪资源",
+     "btns": [
+      {
+       "t": "编组",
+       "testid": null,
+       "box": "62x32@301,54",
+       "ariaDisabled": null,
+       "cursor": "pointer"
+      },
+      {
+       "t": "布局",
+       "testid": null,
+       "box": "78x32@365,54",
+       "ariaDisabled": null,
+       "cursor": "pointer"
+      },
+      {
+       "t": "下载",
+       "testid": null,
+       "box": "32x32@452,54",
+       "ariaDisabled": "true",
+       "cursor": "not-allowed"
+      },
+      {
+       "t": "Add tags",
+       "testid": "flow-node-selected-tag",
+       "box": "24x24@558,98",
+       "ariaDisabled": null,
+       "cursor": "pointer"
+      }
+     ],
+     "parent": "node-toolbar"
+    },
+    {
+     "testid": "selection-context-toolbar",
+     "tag": "DIV",
+     "screen": "256x40@233,50",
+     "canvas": "427x67",
+     "scale": 0.6,
+     "area": 10240,
+     "text": "8 节点 ｜ 编组 ｜ 布局 ｜ 没有可用的就绪资源",
+     "btns": [
+      {
+       "t": "编组",
+       "testid": null,
+       "box": "62x32@301,54",
+       "ariaDisabled": null,
+       "cursor": "pointer"
+      },
+      {
+       "t": "布局",
+       "testid": null,
+       "box": "78x32@365,54",
+       "ariaDisabled": null,
+       "cursor": "pointer"
+      },
+      {
+       "t": "下载",
+       "testid": null,
+       "box": "32x32@452,54",
+       "ariaDisabled": "true",
+       "cursor": "not-allowed"
+      }
+     ],
+     "parent": "relative flex w-max justify-center"
+    },
+    {
+     "testid": "selection-context-toolbar-count",
+     "tag": "SPAN",
+     "screen": "54x32@238,54",
+     "canvas": "90x53",
+     "scale": 0.6,
+     "area": 1728,
+     "text": "8 节点",
+     "btns": [],
+     "parent": "selection-context-toolbar"
+    }
+   ]
+  },
+  {
+   "zoom": 100,
+   "setZoom": {
+    "ok": true,
+    "how": "input",
+    "pct": 100
+   },
+   "marquee": {
+    "err": "视口内只有 0 个节点，不够 2"
+   },
+   "sel": "0",
+   "scale": {
+    "scale": 1,
+    "stable": true
+   },
+   "bars": []
+  }
+ ],
+ "byCount": [
+  {
+   "n": 1,
+   "marquee": {
+    "err": "视口内只有 0 个节点，不够 1"
+   },
+   "sel": "0",
+   "zoom": 100,
+   "bars": []
+  },
+  {
+   "n": 2,
+   "marquee": {
+    "err": "视口内只有 0 个节点，不够 2"
+   },
+   "sel": "0",
+   "zoom": 100,
+   "bars": []
+  },
+  {
+   "n": 3,
+   "marquee": {
+    "err": "视口内只有 0 个节点，不够 3"
+   },
+   "sel": "0",
+   "zoom": 100,
+   "bars": []
+  }
+ ],
+ "verdict": {},
+ "zoomFinal": {
+  "ok": true,
+  "how": "input",
+  "pct": 60
+ },
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": 60,
+  "leftover": 20
+ }
+}
