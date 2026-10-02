@@ -1,0 +1,545 @@
+{
+ "verifier": {
+  "batch": 664,
+  "question": "663 found an instrument that answers, confidently, a question it cannot see.  How many instruments stand on that blind spot, and what does it cost today?",
+  "census": {
+   "mustBeTwoLayered": {
+    "pythonAstHitCalls": 0,
+    "jsLayerHitCalls": 26,
+    "why": "the first version scanned only the Python AST and found zero. 654's AST census counted `.click()` on the Python side; `document.elementFromPoint` lives INSIDE a JS string constant, so the instrument is in the string."
+   },
+   "scripts": 361,
+   "unparsable": [],
+   "totals": {
+    "filesWithHit": 51,
+    "hitCallsInJs": 26,
+    "hitCallsInPeAwarePayload": 10,
+    "evaluates": 101
+   },
+   "weakMetric": "「payload mentions pointer-events」 is NOT 「the call is guarded」: 659's FORCE_PE_JS sets it rather than reads it. This batch claims only the former.",
+   "filesThatCanRefuse": [
+    "verify-liblib-batch663.py"
+   ]
+  },
+  "theCost": {
+   "perViewport": {
+    "1280x1150": {
+     "liveControls": 132,
+     "pointerEventsNoneElements": 22,
+     "ofWhichOpacityZero": 1,
+     "controlsWhoseCentreIsUnderOne": 27
+    },
+    "1280x720": {
+     "liveControls": 132,
+     "pointerEventsNoneElements": 22,
+     "ofWhichOpacityZero": 1,
+     "controlsWhoseCentreIsUnderOne": 27
+    },
+    "1920x1150": {
+     "liveControls": 132,
+     "pointerEventsNoneElements": 22,
+     "ofWhichOpacityZero": 1,
+     "controlsWhoseCentreIsUnderOne": 30
+    }
+   },
+   "theZero": "in every covered cell the hit test still returns the control or its own icon, OR the control's occlusion is already on record in 658's occludedKeys",
+   "exceptionsNamed": {
+    "收起属性": "662's in-case defect",
+    "ancestor container": "632's 'the coverer is often a container, not a leaf', detected as hitContainsControl",
+    "on-record families": "658's occludedKeys — the scene-prompt family that 659 and 660 closed-formed"
+   },
+   "alreadyAttributed": {
+    "1280x1150": [
+     {
+      "control": "帮助",
+      "why": "662's in-case defect"
+     },
+     {
+      "control": "描述想搭建的场景",
+      "controlAttr": "data-director-scene-prompt-input",
+      "matchedPriorKey": [
+       "data-director-scene-prompt-input|描述想搭建的场景"
+      ],
+      "why": "658 already recorded this control as occluded, and 659/660 closed-formed the scene-prompt family"
+     }
+    ],
+    "1280x720": [
+     {
+      "control": "帮助",
+      "why": "662's in-case defect"
+     },
+     {
+      "control": "描述想搭建的场景",
+      "controlAttr": "data-director-scene-prompt-input",
+      "matchedPriorKey": [
+       "data-director-scene-prompt-input|描述想搭建的场景"
+      ],
+      "why": "658 already recorded this control as occluded, and 659/660 closed-formed the scene-prompt family"
+     }
+    ],
+    "1920x1150": [
+     {
+      "control": "帮助",
+      "why": "662's in-case defect"
+     }
+    ]
+   },
+   "admissibilityIsCrossBatch": "a non-self hitter is admissible iff the control's own data attribute appears in 658's occludedKeys. That is the accumulated record, not a whitelist this batch wrote.",
+   "unknownNamedExceptions": {},
+   "scope": "the zero covers 'what is AT this point'. It does NOT cover 'what is PAINTED here': all 22 elements are invisible to any hit-test-based criterion, and they include the playhead, the aspect frame and the bottom-bar host."
+  },
+  "whoTheyAre": {
+   "byDataAt1920": {
+    "(no data-director attr)": 13,
+    "data-director-webgl-canvas=true": 1,
+    "data-director-character-label=角色01 · 陈默": 1,
+    "data-director-gizmo-webgl-canvas-wrapper=true": 1,
+    "data-director-gizmo-webgl-canvas=true": 1,
+    "data-director-aspect-frame=true data-director-aspect-ratio=16:9": 1,
+    "data-director-bottom-bar=true": 1,
+    "data-director-scene-prompt-status=true": 1,
+    "data-director-timeline-coachmark=true": 1,
+    "data-director-playhead=true data-director-playhead-time=0.000": 1
+   },
+   "unnamed": 13
+  },
+  "theGateExists": {
+   "batch663States": [
+    [
+     "1280x720/add-character-flyout",
+     "measured-empty"
+    ],
+    [
+     "1280x720/ai-import-modal",
+     "measured-empty"
+    ],
+    [
+     "1280x720/aspect-flyout",
+     "measured-empty"
+    ],
+    [
+     "1280x720/camera-fov-help-tooltip",
+     "not-measurable"
+    ],
+    [
+     "1280x720/camera-preset-panel",
+     "measured-nonempty"
+    ],
+    [
+     "1280x720/crowd-dialog",
+     "measured-empty"
+    ],
+    [
+     "1280x720/export-panel",
+     "measured-empty"
+    ],
+    [
+     "1280x720/geometry-submenu",
+     "measured-empty"
+    ],
+    [
+     "1280x720/motion-path-menu",
+     "measured-empty"
+    ],
+    [
+     "1280x720/panorama-flyout",
+     "measured-empty"
+    ],
+    [
+     "1280x720/tree-context-menu",
+     "measured-empty"
+    ],
+    [
+     "1440x900/add-character-flyout",
+     "measured-empty"
+    ],
+    [
+     "1440x900/ai-import-modal",
+     "measured-empty"
+    ],
+    [
+     "1440x900/aspect-flyout",
+     "measured-empty"
+    ],
+    [
+     "1440x900/camera-fov-help-tooltip",
+     "not-measurable"
+    ],
+    [
+     "1440x900/camera-preset-panel",
+     "measured-nonempty"
+    ],
+    [
+     "1440x900/crowd-dialog",
+     "measured-empty"
+    ],
+    [
+     "1440x900/export-panel",
+     "measured-empty"
+    ],
+    [
+     "1440x900/geometry-submenu",
+     "measured-empty"
+    ],
+    [
+     "1440x900/motion-path-menu",
+     "measured-empty"
+    ],
+    [
+     "1440x900/panorama-flyout",
+     "measured-empty"
+    ],
+    [
+     "1440x900/tree-context-menu",
+     "measured-empty"
+    ],
+    [
+     "1920x1150/add-character-flyout",
+     "measured-empty"
+    ],
+    [
+     "1920x1150/ai-import-modal",
+     "measured-empty"
+    ],
+    [
+     "1920x1150/aspect-flyout",
+     "measured-empty"
+    ],
+    [
+     "1920x1150/camera-fov-help-tooltip",
+     "not-measurable"
+    ],
+    [
+     "1920x1150/camera-preset-panel",
+     "measured-nonempty"
+    ],
+    [
+     "1920x1150/crowd-dialog",
+     "measured-empty"
+    ],
+    [
+     "1920x1150/export-panel",
+     "measured-empty"
+    ],
+    [
+     "1920x1150/geometry-submenu",
+     "measured-empty"
+    ],
+    [
+     "1920x1150/motion-path-menu",
+     "measured-empty"
+    ],
+    [
+     "1920x1150/panorama-flyout",
+     "measured-empty"
+    ],
+    [
+     "1920x1150/tree-context-menu",
+     "measured-empty"
+    ]
+   ],
+   "notMeasurableIn663": 3,
+   "readFrom": "663's audit, not re-run"
+  }
+ },
+ "checks": {
+  "the-census-has-to-be-two-layered-and-that-is-now-a-checked-fact": {
+   "ok": true,
+   "detail": {
+    "pythonAstHitCalls": 0,
+    "jsLayerHitCalls": 26,
+    "scripts": 361,
+    "unparsable": [],
+    "theFirstRunFoundNothing": "and that is not a null result -- it is a fact about where the instrument lives",
+    "rule": "a call-site census over a criterion corpus has to count the Python side (how often a payload is evaluated) and the JS side (how many hit tests are in it) separately"
+   },
+   "note": "654's AST census was right for `.click()` and wrong for this"
+  },
+  "of-the-hit-test-call-sites-only-one-payload-can-refuse": {
+   "ok": true,
+   "detail": {
+    "scripts": 361,
+    "filesWithHitCalls": 51,
+    "hitCallsInJs": 26,
+    "hitCallsInPeAwarePayload": 10,
+    "evaluateCallSites": 101,
+    "filesThatCanRefuse": [
+     "verify-liblib-batch663.py"
+    ],
+    "whatARefusalLooksLike": "a returned field whose value can say 'this instrument cannot see the target' -- 663's `state`",
+    "whatThisDoesNotClaim": "that the other 20 files have a bug. 'Mentions pointer-events' and 'guards the call' are different claims and only the first is measured here.",
+    "theConsequence": "the mechanism exists and is unique; the population it would fire on is measured in the next checks; nobody else uses it."
+   },
+   "note": "a gate that only one instrument walks through is not yet a criterion"
+  },
+  "the-blind-population-is-22-elements-and-13-cannot-even-be-named": {
+   "ok": true,
+   "detail": {
+    "perViewport": {
+     "1280x1150": {
+      "liveControls": 132,
+      "pointerEventsNoneElements": 22,
+      "ofWhichOpacityZero": 1,
+      "controlsWhoseCentreIsUnderOne": 27
+     },
+     "1280x720": {
+      "liveControls": 132,
+      "pointerEventsNoneElements": 22,
+      "ofWhichOpacityZero": 1,
+      "controlsWhoseCentreIsUnderOne": 27
+     },
+     "1920x1150": {
+      "liveControls": 132,
+      "pointerEventsNoneElements": 22,
+      "ofWhichOpacityZero": 1,
+      "controlsWhoseCentreIsUnderOne": 30
+     }
+    },
+    "constantAcrossViewports": true,
+    "unnamedElements": 13,
+    "whyItMatters": "13 of 22 carry no data-director attribute, so even a criterion that wanted to refer to them by name could not -- the naming gap is part of the blind spot, not beside it",
+    "ofWhichOpacityZero": {
+     "1280x1150": 1,
+     "1280x720": 1,
+     "1920x1150": 1
+    }
+   },
+   "note": "an instrument that cannot see it and a name that cannot address it are the same gap twice"
+  },
+  "the-blind-population-includes-the-playhead-and-the-aspect-frame": {
+   "ok": true,
+   "detail": {
+    "byDataAt1920": {
+     "(no data-director attr)": 13,
+     "data-director-webgl-canvas=true": 1,
+     "data-director-character-label=角色01 · 陈默": 1,
+     "data-director-gizmo-webgl-canvas-wrapper=true": 1,
+     "data-director-gizmo-webgl-canvas=true": 1,
+     "data-director-aspect-frame=true data-director-aspect-ratio=16:9": 1,
+     "data-director-bottom-bar=true": 1,
+     "data-director-scene-prompt-status=true": 1,
+     "data-director-timeline-coachmark=true": 1,
+     "data-director-playhead=true data-director-playhead-time=0.000": 1
+    },
+    "playhead": "the only mark on the timeline that says where 'now' is, and it is pointer-events:none -- no hit-test-based criterion can see it",
+    "aspectFrame": "the 16:9 framing guide",
+    "bottomBar": "the host div carries the attribute but not the clicks; only its children are hit-testable",
+    "webglCanvases": "the viewport and gizmo canvases",
+    "scoped": "these are named as MEMBERS OF THE BLIND SET, not as defects. They are click-through layers, which is what they are for."
+   },
+   "note": "invisible to a click test does not mean invisible on screen"
+  },
+  "no-new-occlusion-hides-behind-the-pointer-events-none-population": {
+   "ok": true,
+   "detail": {
+    "controlsWhoseCentreIsUnderOne": {
+     "1280x1150": 27,
+     "1280x720": 27,
+     "1920x1150": 30
+    },
+    "liveControls": {
+     "1280x1150": 132,
+     "1280x720": 132,
+     "1920x1150": 132
+    },
+    "shareCovered": {
+     "1280x1150": "27/132",
+     "1280x720": "27/132",
+     "1920x1150": "30/132"
+    },
+    "everyOtherCellSelfOrDescendant": "in all covered cells the hit test returns the control or a descendant, i.e. the control is still clickable",
+    "admissibilityTest": "structural and CROSS-BATCH, not a string whitelist: ancestor hitter = 632; control attr present in 658's occludedKeys = 658/659/660; hitter is 收起属性 = 662. Anything else is a NEW occlusion and fails here.",
+    "alreadyAttributed": {
+     "1280x1150": [
+      {
+       "control": "帮助",
+       "why": "662's in-case defect"
+      },
+      {
+       "control": "描述想搭建的场景",
+       "controlAttr": "data-director-scene-prompt-input",
+       "matchedPriorKey": [
+        "data-director-scene-prompt-input|描述想搭建的场景"
+       ],
+       "why": "658 already recorded this control as occluded, and 659/660 closed-formed the scene-prompt family"
+      }
+     ],
+     "1280x720": [
+      {
+       "control": "帮助",
+       "why": "662's in-case defect"
+      },
+      {
+       "control": "描述想搭建的场景",
+       "controlAttr": "data-director-scene-prompt-input",
+       "matchedPriorKey": [
+        "data-director-scene-prompt-input|描述想搭建的场景"
+       ],
+       "why": "658 already recorded this control as occluded, and 659/660 closed-formed the scene-prompt family"
+      }
+     ],
+     "1920x1150": [
+      {
+       "control": "帮助",
+       "why": "662's in-case defect"
+      }
+     ]
+    },
+    "containerCasesObserved": 0,
+    "exceptions": {
+     "收起属性": "662's in-case defect, already attributed and closed-form'd",
+     "ancestor container": "632's 'the coverer is often a container, not a leaf' — measured as `hitContainsControl`, not matched by text",
+     "scene-prompt family": "658 recorded `data-director-scene-prompt-input|描述想搭建的场景` as occluded at both 720 and 1150, and 659/660 gave it the W >= 1510 rule. The hitter here is a TRANSPARENT 280px inspector column (backgroundColor rgba(0,0,0,0)) — hit-testable though invisible, which is why no painting-based criterion ever named it."
+    },
+    "newOcclusions": {},
+    "theCaseThatAlmostSlippedThrough": "the scene-prompt input's coverer is transparent, so it is invisible to any PAINT-based reading and only shows up under a hit test",
+    "whyThisIsWorthRecording": "an empty set is not evidence -- but a measured zero with its scope written down is different from an unrecorded one, and this one is falsifiable by the next batch"
+   },
+   "note": "空集不算证据；但量到的零和没记录不是一回事"
+  },
+  "the-gate-already-exists-and-it-fired": {
+   "ok": true,
+   "detail": {
+    "batch663States": [
+     [
+      "1280x720/add-character-flyout",
+      "measured-empty"
+     ],
+     [
+      "1280x720/ai-import-modal",
+      "measured-empty"
+     ],
+     [
+      "1280x720/aspect-flyout",
+      "measured-empty"
+     ],
+     [
+      "1280x720/camera-fov-help-tooltip",
+      "not-measurable"
+     ],
+     [
+      "1280x720/camera-preset-panel",
+      "measured-nonempty"
+     ],
+     [
+      "1280x720/crowd-dialog",
+      "measured-empty"
+     ],
+     [
+      "1280x720/export-panel",
+      "measured-empty"
+     ],
+     [
+      "1280x720/geometry-submenu",
+      "measured-empty"
+     ],
+     [
+      "1280x720/motion-path-menu",
+      "measured-empty"
+     ],
+     [
+      "1280x720/panorama-flyout",
+      "measured-empty"
+     ],
+     [
+      "1280x720/tree-context-menu",
+      "measured-empty"
+     ],
+     [
+      "1440x900/add-character-flyout",
+      "measured-empty"
+     ],
+     [
+      "1440x900/ai-import-modal",
+      "measured-empty"
+     ],
+     [
+      "1440x900/aspect-flyout",
+      "measured-empty"
+     ],
+     [
+      "1440x900/camera-fov-help-tooltip",
+      "not-measurable"
+     ],
+     [
+      "1440x900/camera-preset-panel",
+      "measured-nonempty"
+     ],
+     [
+      "1440x900/crowd-dialog",
+      "measured-empty"
+     ],
+     [
+      "1440x900/export-panel",
+      "measured-empty"
+     ],
+     [
+      "1440x900/geometry-submenu",
+      "measured-empty"
+     ],
+     [
+      "1440x900/motion-path-menu",
+      "measured-empty"
+     ],
+     [
+      "1440x900/panorama-flyout",
+      "measured-empty"
+     ],
+     [
+      "1440x900/tree-context-menu",
+      "measured-empty"
+     ],
+     [
+      "1920x1150/add-character-flyout",
+      "measured-empty"
+     ],
+     [
+      "1920x1150/ai-import-modal",
+      "measured-empty"
+     ],
+     [
+      "1920x1150/aspect-flyout",
+      "measured-empty"
+     ],
+     [
+      "1920x1150/camera-fov-help-tooltip",
+      "not-measurable"
+     ],
+     [
+      "1920x1150/camera-preset-panel",
+      "measured-nonempty"
+     ],
+     [
+      "1920x1150/crowd-dialog",
+      "measured-empty"
+     ],
+     [
+      "1920x1150/export-panel",
+      "measured-empty"
+     ],
+     [
+      "1920x1150/geometry-submenu",
+      "measured-empty"
+     ],
+     [
+      "1920x1150/motion-path-menu",
+      "measured-empty"
+     ],
+     [
+      "1920x1150/panorama-flyout",
+      "measured-empty"
+     ],
+     [
+      "1920x1150/tree-context-menu",
+      "measured-empty"
+     ]
+    ],
+    "notMeasurableCells": 3,
+    "readFrom": "663's audit — not re-run here",
+    "population": "22 elements in the open desk, of which the 3 the gate fired on are the ones sitting at a probed overlay's centre",
+    "theGap": "mechanism done, population measured, and no second instrument uses it. Turning that into a shared criterion is a `只增不改` change with a mechanical zero-regression proof, which this batch did NOT do and does NOT claim."
+   },
+   "note": "基础设施齐了，缺的是有人接线"
+  }
+ }
+}
