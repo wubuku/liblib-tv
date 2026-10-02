@@ -968,6 +968,20 @@ def fail_count():
 
 def main():
     root = ROOT
+    # **入口先确认基本输入在**（Batch 193 实测加）。
+    # 本闸原来第一个动作就是 `open("screenshots/manifest.yml")`——
+    # **手册树不在时它抛未捕获的 `FileNotFoundError` 并以 rc=1 退出**，
+    # 而 rc=1 意为「核过，且核出不一致」。**实际是「一本手册都没有，本轮根本没开始核」。**
+    # 同一批给另外 10 道闸换了 `baseline_guard`，**本闸不读上游、没有基线可读**，
+    # 所以要自己认这四样东西：**它们是这个判据的输入，不是它核的内容。**
+    _missing = [p for p in ("README.md", "screenshots/manifest.yml",
+                            "AUDIT-RULES.md", "PROGRESS.md")
+                if not os.path.exists(os.path.join(root, p))]
+    if _missing:
+        print("[未能核对] 手册基本输入缺失：%s" % "、".join(_missing))
+        print("  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——"
+              "它说的是「手册树本身不在」，修法是恢复手册文件，不在内容上找。")
+        return 2
     print("手册元数据核对：把「本手册有多少东西」逐条现场重数")
     print("=" * 62)
 

@@ -67,7 +67,7 @@ import os
 import re
 import subprocess
 import sys
-from baseline import resolve_ref, BaselineError
+from baseline import resolve_ref, BaselineError, module_ref, baseline_guard
 
 CANDIDATES = [
     os.environ.get("BEEFTV_SRC", ""),
@@ -76,7 +76,7 @@ CANDIDATES = [
 
 # 上游 ref 可用 BEEFTV_REF 覆盖——反向验证（self-test）需要指向一个
 # 「缺陷已被修复」的人造 ref，不能改工作树、更不能动别人分支。
-REF = os.environ.get("BEEFTV_REF") or resolve_ref()
+REF = module_ref()
 
 # ── 工具 ──────────────────────────────────────────────────────────────
 
@@ -1576,6 +1576,8 @@ def url_params_without_writer(src, strict=True):
     return {p: n for p, n in reads.items() if p.lower() not in loose_written}
 
 
+@baseline_guard
+@baseline_guard
 def main():
     src = find_source()
     if not src:

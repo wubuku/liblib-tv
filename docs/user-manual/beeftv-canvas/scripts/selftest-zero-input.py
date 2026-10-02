@@ -67,7 +67,7 @@ def main():
     gates = sorted(f for f in os.listdir(HERE)
                    if f.startswith("verify-") and f.endswith(".py"))
     tmp = tempfile.mkdtemp(prefix="zero-input-")
-    found = []
+    found, crashed = [], []
     try:
         empty_tree(tmp)
         env = dict(os.environ)
@@ -82,28 +82,47 @@ def main():
                 rc, out = p.returncode, (p.stdout or "") + (p.stderr or "")
             except subprocess.TimeoutExpired:
                 rc, out = -1, "超时"
-            if rc != 0:
-                continue                       # 非 0 一律是安全的，不看
             if gate in EXEMPT:
                 continue
+            # 方向二：**空树上不可能有「核出不一致」**，所以 rc=1 必然是异常泄漏
+            # （Batch 193 实测：10 道闸把 `BaselineError` 一路抛到解释器顶端，
+            #  而 rc=1 在本项目的约定里意为「核过，且核出问题了」——**两回事**。）
+            if rc == 1 and ("Traceback" in out or "Error:" in out):
+                tail = next((l.strip() for l in reversed(out.split("\n"))
+                             if l.strip() and not l.strip().startswith("File \"")), "")
+                crashed.append((gate, tail[:90]))
+                continue
+            if rc != 0:
+                continue                       # rc=2「未能核对」是对的，不看
             zeros = [m.group(0) for m in ZERO_COUNT_RE.finditer(out) if m.group(1) == "0"]
             if zeros:
                 found.append((gate, zeros))
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
+    if crashed:
+        print("零输入体检（方向二）：%d 道闸在「什么都没有」时把异常当成了「核出不一致」——"
+              % len(crashed))
+        for gate, tail in crashed:
+            print("  · `%s` 以 rc=1 退出，最后一行是：%s" % (gate, tail))
+            print("    → rc=1 意为「核过且核出不一致」，**而实际是本轮根本没开始核**。"
+                  "两种说法把排查引向完全不同的方向")
+        print("    → 修法：把异常转成 rc=2。`baseline_guard` 装饰器就是为这件事加的"
+              "（盖住任意深度的调用点，try 写在 main 里会漏）。")
+        print()
     if found:
-        print("零输入体检：%d 道闸在「什么都没有」时报绿 ——" % len(found))
+        print("零输入体检（方向一）：%d 道闸在「什么都没有」时报绿 ——" % len(found))
         for gate, zeros in found:
             print("  · `%s` 输出里出现 %s，**而退出码是 0**" % (gate, "、".join(sorted(set(zeros)))))
             print("    → 「一个都没检查」和「全部都合格」在退出码上一样，"
                   "**前者读起来却像好消息**（纪律 156）")
         print()
-        print("修法：在打印那个计数之前加一句下界检查，`checked == 0` 时 return 2。")
+    if found or crashed:
         return 1
-    print("零输入体检：%d 道闸逐一在空手册树上跑过，"
-          "**没有一道在零输入下报绿**（%d 道豁免，其输入不在手册树内）"
-          % (len(gates), len(EXEMPT)))
+    print("零输入体检：%d 道闸逐一在空手册树上跑过 —— "
+          "**没有一道在零输入下报绿**（方向一），"
+          "**也没有一道把异常当成「核出不一致」**（方向二）；"
+          "%d 道豁免，其输入不在手册树内" % (len(gates), len(EXEMPT)))
     return 0
 
 

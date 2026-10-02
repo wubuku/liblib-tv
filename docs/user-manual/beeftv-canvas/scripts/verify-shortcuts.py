@@ -49,7 +49,7 @@ import os
 import re
 import sys
 import subprocess
-from baseline import resolve_ref, BaselineError
+from baseline import resolve_ref, BaselineError, baseline_guard
 
 CANDIDATES = [
     os.environ.get("BEEFTV_SRC", ""),
@@ -167,6 +167,7 @@ def scan(page, body, accel):
     return bad
 
 
+@baseline_guard
 def main():
     src = find_source()
     if not src:

@@ -29,12 +29,12 @@ import os
 import re
 import subprocess
 import sys
-from baseline import resolve_ref, BaselineError
+from baseline import resolve_ref, BaselineError, module_ref, baseline_guard
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MANUAL = os.path.join(ROOT, "20-reference.md")
 SRC = os.environ.get("BEEFTV_SRC", "/Users/yangjiefeng/Documents/glanderness/BeefTV")
-REF = os.environ.get("BEEFTV_REF") or resolve_ref()
+REF = module_ref()
 CODE_EXT = (".ts", ".tsx")
 
 
@@ -87,6 +87,8 @@ def parse_table():
     return rows
 
 
+@baseline_guard
+@baseline_guard
 def main():
     try:
         rows = parse_table()

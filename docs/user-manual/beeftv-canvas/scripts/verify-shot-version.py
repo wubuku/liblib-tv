@@ -42,11 +42,11 @@ import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from baseline import resolve_ref, BaselineError  # noqa: E402
+from baseline import resolve_ref, BaselineError, module_ref, baseline_guard# noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.environ.get("BEEFTV_SRC", "/Users/yangjiefeng/Documents/glanderness/BeefTV")
-REF = os.environ.get("BEEFTV_REF") or resolve_ref()
+REF = module_ref()
 MANIFEST = os.path.join(ROOT, "screenshots", "manifest.yml")
 
 # ── 已在上游被删除、但手册仍保留其截图的登记表 ───────────────────────
@@ -191,6 +191,8 @@ def direction_two():
     return problems
 
 
+@baseline_guard
+@baseline_guard
 def main():
     entries, _text = parse_manifest()
     if entries is None:

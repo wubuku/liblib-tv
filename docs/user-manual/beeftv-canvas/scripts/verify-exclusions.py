@@ -42,7 +42,7 @@ import os
 import re
 import sys
 import subprocess
-from baseline import resolve_ref, BaselineError
+from baseline import resolve_ref, BaselineError, baseline_guard
 from batchread import read_many
 
 try:
@@ -251,6 +251,7 @@ def check_coverage(root):
     return (problems, notes, False)
 
 
+@baseline_guard
 def main():
     src = find_source()
     if not src:

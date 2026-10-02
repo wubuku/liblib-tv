@@ -38,11 +38,11 @@ import os
 import re
 import subprocess
 import sys
-from baseline import resolve_ref, BaselineError
+from baseline import resolve_ref, BaselineError, module_ref, baseline_guard
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.environ.get("BEEFTV_SRC", "/Users/yangjiefeng/Documents/glanderness/BeefTV")
-REF = os.environ.get("BEEFTV_REF") or resolve_ref()
+REF = module_ref()
 MANIFEST = os.path.join(ROOT, "screenshots", "manifest.yml")
 
 # 保守形态：长度 ≥ 4、无 ASCII 字母数字、无空白
@@ -95,6 +95,8 @@ def in_source(text):
     return r.returncode == 0
 
 
+@baseline_guard
+@baseline_guard
 def main():
     if not os.path.isfile(MANIFEST):
         print("截图取证文案核对：未找到 manifest，跳过")

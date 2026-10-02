@@ -44,6 +44,7 @@
 用环境变量显式传入是最省事、也最不容易被误删的做法。
 """
 
+import functools
 import os
 import re
 import subprocess
@@ -123,6 +124,73 @@ def describe():
     """给闸门输出用的一行说明：当前按哪个版本取证。"""
     version, commit = declared_baseline()
     return f"{version}（{commit}）"
+
+
+#: 模块级 `module_ref()` 攒下的「拿不到基线」异常，由 `@baseline_guard` 转成 rc=2。
+#: **它存在的原因是实测出来的**（Batch 193）：10 道闸里有 7 道把
+#: `REF = os.environ.get("BEEFTV_REF") or resolve_ref()` 写在**模块级**——
+#: 那行在 `import` 时就执行，**远在 `main()` 与装饰器之前**，
+#: 所以第一版的 `@baseline_guard` 对它们完全无效（实测改完仍剩 7 道 rc=1）。
+_PENDING = []
+
+
+def module_ref():
+    """给闸在**模块级**算基线用：拿不到就把异常存下来，由 `@baseline_guard` 转成 rc=2。
+
+    **为什么不直接 `resolve_ref()`**——因为模块级的异常在 import 阶段就抛出去了，
+    那一刻 `main()` 还没被调用，任何装饰器和 try 都接不住。
+    而闸把 `REF` 写成模块级是有原因的：**它下面十几个函数都要用**，
+    改成传参会让每一处都变（`REF` 在 `verify-feature-flags.py` 之类处被引用十几次）。
+
+    **为什么不在这里直接 `sys.exit(2)`**：模块导入期退出，会让
+    「这个文件 import 不了」和「这个闸跑不出结论」变成同一件事——
+    **而闸 18 正要靠 import 成功与否来判断反验夹具是否语法可解析**。
+    所以这里只记录，退出交给 `main` 的入口。
+    """
+    try:
+        return resolve_ref()
+    except BaselineError as exc:
+        _PENDING.append(exc)
+        return None
+
+
+def baseline_guard(fn):
+    """把闸门 `main()` 整个包起来：拿不到基线就 rc=2「未能核对」。
+
+    **这个装饰器为什么存在（Batch 193 实测，不是设想的）**：
+    本模块的 docstring 写着「读不到声明时**不猜**，抛 `BaselineError`
+    **让调用方返回 rc=2**『未能核对』」——**而 Batch 193 实测发现 10 道闸
+    一个都没实现那半句**。
+
+    实测：在一棵空手册树（没有 `20-reference.md`）上跑这 10 道闸，
+    它们**全部抛未捕获的 `BaselineError` 并以 rc=1 退出**——
+    而 rc=1 在本项目的约定里意为「**核过，且核出问题了**」。
+    **实际发生的事是「一个文件都没找到，本轮根本没开始核」。**
+    两种说法把排查引向完全不同的方向：
+      · rc=1 → 「去手册里找哪里写错了」；
+      · rc=2 → 「去查基线声明读不到 / 上游在不在」。
+
+    **它接两处**（第一版只接住了一处，实测漏了 7 道）：
+      · `module_ref()` 在**模块级**攒下的异常（import 阶段发生的）；
+      · `main()` 运行途中抛出的 `BaselineError`（任意深度，`verify-shortcuts.py`
+        的调用点在第二层函数 `bindings()` 里，**try 写在 main 里盖不住**）。
+
+    **它不会盖住别的东西**：只捕 `BaselineError`，其它异常照旧冒泡
+    （那属于判据自己的 bug，该在构建里炸出来而不是被这里吃掉）。
+    """
+    @functools.wraps(fn)
+    def wrapper(*args, **kwargs):
+        pending = _PENDING[0] if _PENDING else None
+        try:
+            if pending is not None:
+                raise pending
+            return fn(*args, **kwargs)
+        except BaselineError as exc:
+            print("[未能核对] %s" % exc)
+            print("  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——"
+                  "它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。")
+            return 2
+    return wrapper
 
 
 def upstream_tip():

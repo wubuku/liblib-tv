@@ -33,7 +33,7 @@ import os
 import re
 import sys
 import subprocess
-from baseline import resolve_ref, BaselineError
+from baseline import resolve_ref, BaselineError, baseline_guard
 from batchread import read_many
 
 CANDIDATES = [
@@ -92,6 +92,7 @@ def find_source():
     return None
 
 
+@baseline_guard
 def main():
     src = find_source()
     if not src:
