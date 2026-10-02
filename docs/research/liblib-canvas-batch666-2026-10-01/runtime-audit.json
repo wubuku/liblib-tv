@@ -1,0 +1,736 @@
+{
+ "verifier": {
+  "batch": 666,
+  "question": "665's CH3 cell said 24 controls are clickable yet have a pointer-events:none layer over their centre. 662's lesson is to name the mechanism, not the member.  Who are they?",
+  "totalsPerCell": {
+   "1280x720": 24,
+   "1280x1150": 24,
+   "1366x1150": 25,
+   "1440x1150": 26,
+   "1600x1150": 27,
+   "1920x1150": 27
+  },
+  "covererIdentitiesPerCell": {
+   "1280x720": 2,
+   "1280x1150": 2,
+   "1366x1150": 2,
+   "1440x1150": 2,
+   "1600x1150": 2,
+   "1920x1150": 2
+  },
+  "ancestorHitsPerCell": {
+   "1280x720": 0,
+   "1280x1150": 0,
+   "1366x1150": 0,
+   "1440x1150": 0,
+   "1600x1150": 0,
+   "1920x1150": 0
+  },
+  "viewportLayer": {
+   "boxPerCell": {
+    "1280x720": [
+     281,
+     88,
+     718,
+     450
+    ],
+    "1280x1150": [
+     281,
+     88,
+     718,
+     880
+    ],
+    "1366x1150": [
+     281,
+     88,
+     804,
+     880
+    ],
+    "1440x1150": [
+     281,
+     88,
+     878,
+     880
+    ],
+    "1600x1150": [
+     281,
+     88,
+     1038,
+     880
+    ],
+    "1920x1150": [
+     281,
+     88,
+     1358,
+     880
+    ]
+   },
+   "geometry": {
+    "left": {
+     "1280x720": 281,
+     "1280x1150": 281,
+     "1366x1150": 281,
+     "1440x1150": 281,
+     "1600x1150": 281,
+     "1920x1150": 281
+    },
+    "leftIsConstant281": true,
+    "width": {
+     "1280x720": 718,
+     "1280x1150": 718,
+     "1366x1150": 804,
+     "1440x1150": 878,
+     "1600x1150": 1038,
+     "1920x1150": 1358
+    },
+    "widthIsWminus562": true,
+    "top": {
+     "1280x720": 88,
+     "1280x1150": 88,
+     "1366x1150": 88,
+     "1440x1150": 88,
+     "1600x1150": 88,
+     "1920x1150": 88
+    },
+    "topIsConstant88": true,
+    "height": {
+     "1280x720": 450,
+     "1280x1150": 880,
+     "1366x1150": 880,
+     "1440x1150": 880,
+     "1600x1150": 880,
+     "1920x1150": 880
+    },
+    "heightIsHminus270": true,
+    "bottom": {
+     "1280x720": 538,
+     "1280x1150": 968,
+     "1366x1150": 968,
+     "1440x1150": 968,
+     "1600x1150": 968,
+     "1920x1150": 968
+    },
+    "bottomIsHminus182": true,
+    "rightEdge": {
+     "1280x720": 999,
+     "1280x1150": 999,
+     "1366x1150": 1085,
+     "1440x1150": 1159,
+     "1600x1150": 1319,
+     "1920x1150": 1639
+    },
+    "rightEdgeIsWminus281": true
+   },
+   "members": {
+    "1280x720": [
+     "16:9",
+     "1:1",
+     "9:16",
+     "X 反向",
+     "X 正向",
+     "Y 反向",
+     "Y 正向",
+     "Z 反向",
+     "Z 正向",
+     "保存构图",
+     "动画时间轴",
+     "开启九宫格辅助线",
+     "旋转",
+     "模型库",
+     "添加群众阵列",
+     "移动",
+     "缩放",
+     "虚拟相机",
+     "重置视角"
+    ],
+    "1280x1150": [
+     "16:9",
+     "1:1",
+     "9:16",
+     "X 反向",
+     "X 正向",
+     "Y 反向",
+     "Y 正向",
+     "Z 反向",
+     "Z 正向",
+     "保存构图",
+     "动画时间轴",
+     "开启九宫格辅助线",
+     "旋转",
+     "模型库",
+     "添加群众阵列",
+     "移动",
+     "缩放",
+     "虚拟相机",
+     "重置视角"
+    ],
+    "1366x1150": [
+     "16:9",
+     "1:1",
+     "9:16",
+     "X 反向",
+     "X 正向",
+     "Y 反向",
+     "Y 正向",
+     "Z 反向",
+     "Z 正向",
+     "上传图片",
+     "保存构图",
+     "动画时间轴",
+     "开启九宫格辅助线",
+     "旋转",
+     "模型库",
+     "添加群众阵列",
+     "移动",
+     "缩放",
+     "虚拟相机",
+     "重置视角"
+    ],
+    "1440x1150": [
+     "16:9",
+     "1:1",
+     "9:16",
+     "X 反向",
+     "X 正向",
+     "Y 反向",
+     "Y 正向",
+     "Z 反向",
+     "Z 正向",
+     "上传图片",
+     "保存构图",
+     "动画时间轴",
+     "开启九宫格辅助线",
+     "描述想搭建的场景",
+     "旋转",
+     "模型库",
+     "添加群众阵列",
+     "移动",
+     "缩放",
+     "虚拟相机",
+     "重置视角"
+    ],
+    "1600x1150": [
+     "16:9",
+     "1:1",
+     "9:16",
+     "X 反向",
+     "X 正向",
+     "Y 反向",
+     "Y 正向",
+     "Z 反向",
+     "Z 正向",
+     "上传图片",
+     "保存构图",
+     "动画时间轴",
+     "发送",
+     "开启九宫格辅助线",
+     "描述想搭建的场景",
+     "旋转",
+     "模型库",
+     "添加群众阵列",
+     "移动",
+     "缩放",
+     "虚拟相机",
+     "重置视角"
+    ],
+    "1920x1150": [
+     "16:9",
+     "1:1",
+     "9:16",
+     "X 反向",
+     "X 正向",
+     "Y 反向",
+     "Y 正向",
+     "Z 反向",
+     "Z 正向",
+     "上传图片",
+     "保存构图",
+     "动画时间轴",
+     "发送",
+     "开启九宫格辅助线",
+     "描述想搭建的场景",
+     "旋转",
+     "模型库",
+     "添加群众阵列",
+     "移动",
+     "缩放",
+     "虚拟相机",
+     "重置视角"
+    ]
+   }
+  },
+  "rowHighlightLayer": {
+   "geometry": {
+    "x": {
+     "1280x720": 0,
+     "1280x1150": 0,
+     "1366x1150": 0,
+     "1440x1150": 0,
+     "1600x1150": 0,
+     "1920x1150": 0
+    },
+    "width": {
+     "1280x720": 320,
+     "1280x1150": 320,
+     "1366x1150": 320,
+     "1440x1150": 320,
+     "1600x1150": 320,
+     "1920x1150": 320
+    },
+    "bothConstant": true,
+    "nBoxesPerCell": {
+     "1280x720": 2,
+     "1280x1150": 2,
+     "1366x1150": 2,
+     "1440x1150": 2,
+     "1600x1150": 2,
+     "1920x1150": 2
+    },
+    "membersIdenticalEverywhere": true,
+    "members": {
+     "1280x720": [
+      "收起属性",
+      "收起属性",
+      "机位01 · 对峙中景",
+      "绘制轨迹",
+      "角色01 · 陈默"
+     ],
+     "1280x1150": [
+      "收起属性",
+      "收起属性",
+      "机位01 · 对峙中景",
+      "绘制轨迹",
+      "角色01 · 陈默"
+     ],
+     "1366x1150": [
+      "收起属性",
+      "收起属性",
+      "机位01 · 对峙中景",
+      "绘制轨迹",
+      "角色01 · 陈默"
+     ],
+     "1440x1150": [
+      "收起属性",
+      "收起属性",
+      "机位01 · 对峙中景",
+      "绘制轨迹",
+      "角色01 · 陈默"
+     ],
+     "1600x1150": [
+      "收起属性",
+      "收起属性",
+      "机位01 · 对峙中景",
+      "绘制轨迹",
+      "角色01 · 陈默"
+     ],
+     "1920x1150": [
+      "收起属性",
+      "收起属性",
+      "机位01 · 对峙中景",
+      "绘制轨迹",
+      "角色01 · 陈默"
+     ]
+    }
+   }
+  },
+  "closedForm": {
+   "rule1": "a control belongs to the viewport layer <=> its centre x <= W - 281 and its centre y <= H - 182 (the layer's BOTTOM edge; its height is H-270)",
+   "rule2": "a control belongs to a row highlight layer <=> its centre falls inside one of the 320x32 row boxes",
+   "membershipChecked": 123,
+   "mismatches": {}
+  },
+  "thePromptBarJoins": {
+   "members": {
+    "1280x720": [],
+    "1280x1150": [],
+    "1366x1150": [
+     "上传图片"
+    ],
+    "1440x1150": [
+     "上传图片",
+     "描述想搭建的场景"
+    ],
+    "1600x1150": [
+     "上传图片",
+     "发送",
+     "描述想搭建的场景"
+    ],
+    "1920x1150": [
+     "上传图片",
+     "发送",
+     "描述想搭建的场景"
+    ]
+   },
+   "layerRightEdge": {
+    "1280x720": 999,
+    "1280x1150": 999,
+    "1366x1150": 1085,
+    "1440x1150": 1159,
+    "1600x1150": 1319,
+    "1920x1150": 1639
+   },
+   "centreX": {
+    "1280x720": {},
+    "1280x1150": {},
+    "1366x1150": {
+     "上传图片": 1037
+    },
+    "1440x1150": {
+     "上传图片": 1037,
+     "描述想搭建的场景": 1125
+    },
+    "1600x1150": {
+     "上传图片": 1072,
+     "描述想搭建的场景": 1160,
+     "发送": 1251
+    },
+    "1920x1150": {
+     "上传图片": 1232,
+     "描述想搭建的场景": 1320,
+     "发送": 1411
+    }
+   }
+  },
+  "notADefectClaim": "all of these are own=True, i.e. clickable; pe:none layers are click-through by design"
+ },
+ "checks": {
+  "two-coverer-identities-explain-every-cell": {
+   "ok": true,
+   "detail": {
+    "identitiesPerCell": {
+     "1280x720": 2,
+     "1280x1150": 2,
+     "1366x1150": 2,
+     "1440x1150": 2,
+     "1600x1150": 2,
+     "1920x1150": 2
+    },
+    "totalsPerCell": {
+     "1280x720": 24,
+     "1280x1150": 24,
+     "1366x1150": 25,
+     "1440x1150": 26,
+     "1600x1150": 27,
+     "1920x1150": 27
+    },
+    "viewportLayer": {
+     "members1280": [
+      "16:9",
+      "1:1",
+      "9:16",
+      "X 反向",
+      "X 正向",
+      "Y 反向",
+      "Y 正向",
+      "Z 反向",
+      "Z 正向",
+      "保存构图",
+      "动画时间轴",
+      "开启九宫格辅助线",
+      "旋转",
+      "模型库",
+      "添加群众阵列",
+      "移动",
+      "缩放",
+      "虚拟相机",
+      "重置视角"
+     ],
+     "nPerCell": {
+      "1280x720": 19,
+      "1280x1150": 19,
+      "1366x1150": 20,
+      "1440x1150": 21,
+      "1600x1150": 22,
+      "1920x1150": 22
+     }
+    },
+    "rowLayer": {
+     "members": [
+      "收起属性",
+      "收起属性",
+      "机位01 · 对峙中景",
+      "绘制轨迹",
+      "角色01 · 陈默"
+     ],
+     "nPerCell": {
+      "1280x720": 5,
+      "1280x1150": 5,
+      "1366x1150": 5,
+      "1440x1150": 5,
+      "1600x1150": 5,
+      "1920x1150": 5
+     }
+    },
+    "whyThisIsThe662Lesson": "662 found that naming the member (`收起属性`) was not naming the cause. Same move here: 24-27 victims, TWO coverers, and the membership is a box-containment test, not a list."
+   },
+   "note": "many victims, two mechanisms — the shape 662 found, one layer up"
+  },
+  "the-viewport-layer-box-equals-the-viewport-cell-on-all-four-edges": {
+   "ok": true,
+   "detail": {
+    "geometry": {
+     "left": {
+      "1280x720": 281,
+      "1280x1150": 281,
+      "1366x1150": 281,
+      "1440x1150": 281,
+      "1600x1150": 281,
+      "1920x1150": 281
+     },
+     "leftIsConstant281": true,
+     "width": {
+      "1280x720": 718,
+      "1280x1150": 718,
+      "1366x1150": 804,
+      "1440x1150": 878,
+      "1600x1150": 1038,
+      "1920x1150": 1358
+     },
+     "widthIsWminus562": true,
+     "top": {
+      "1280x720": 88,
+      "1280x1150": 88,
+      "1366x1150": 88,
+      "1440x1150": 88,
+      "1600x1150": 88,
+      "1920x1150": 88
+     },
+     "topIsConstant88": true,
+     "height": {
+      "1280x720": 450,
+      "1280x1150": 880,
+      "1366x1150": 880,
+      "1440x1150": 880,
+      "1600x1150": 880,
+      "1920x1150": 880
+     },
+     "heightIsHminus270": true,
+     "bottom": {
+      "1280x720": 538,
+      "1280x1150": 968,
+      "1366x1150": 968,
+      "1440x1150": 968,
+      "1600x1150": 968,
+      "1920x1150": 968
+     },
+     "bottomIsHminus182": true,
+     "rightEdge": {
+      "1280x720": 999,
+      "1280x1150": 999,
+      "1366x1150": 1085,
+      "1440x1150": 1159,
+      "1600x1150": 1319,
+      "1920x1150": 1639
+     },
+     "rightEdgeIsWminus281": true
+    },
+    "theFourEdges": {
+     "left 281": "48 (the icon rail) + 233 (the scene-tree column)",
+     "right W-281": "the inspector is 281 wide",
+     "top 88": "under the top band",
+     "bottom H-182": "the timeline's top edge — the layer stops exactly where the timeline starts"
+    },
+    "measured": "718/804/878/1038/1358 wide at 1280/1366/1440/1600/1920 and 450/880 tall at 720/1150, matching W-562 and H-270 digit for digit",
+    "theNumberBelongsToTheBottomEdge": "H-182 is the bottom, not the height. The first draft asserted `height == H-182` and went red — 450 != 538 at H=720. Height is H-270, and 88 + (H-270) = H-182. Same error class as 634/638/660: a derived quantity asserted as if it were the measured one.",
+    "scope": "the constants 281 / 88 / 182 / 270 are THIS reading's values, not derived from source. If the column widths ever change, this check goes red — which is the point."
+   },
+   "note": "a box that coincides with the layout cell it covers is a fact, not a coincidence"
+  },
+  "the-coverer-is-never-an-ancestor-of-the-control": {
+   "ok": true,
+   "detail": {
+    "ancestorHitsPerCell": {
+     "1280x720": 0,
+     "1280x1150": 0,
+     "1366x1150": 0,
+     "1440x1150": 0,
+     "1600x1150": 0,
+     "1920x1150": 0
+    },
+    "totalsPerCell": {
+     "1280x720": 24,
+     "1280x1150": 24,
+     "1366x1150": 25,
+     "1440x1150": 26,
+     "1600x1150": 27,
+     "1920x1150": 27
+    },
+    "test": "object identity along the real parentElement chain",
+    "theFirstDraftGotThisWrong": "it compared an identity STRING (class or '<div>') against a chain built from data attributes, so the two vocabularies never met and it reported 'not an ancestor' for everything — including cases that are ancestors.  The test's bug, not the page's.",
+    "whyItMatters": "if the coverer were always an ancestor, CH3 would be a tautology and cost nothing to report.  It is not: these are genuine cross-container overlaps, which is what makes 665's cell worth closing."
+   },
+   "note": "a string-keyed ancestor test is a test that cannot fail"
+  },
+  "the-box-containment-rule-predicts-every-viewport-layer-member": {
+   "ok": true,
+   "detail": {
+    "closedForm": {
+     "rule1": "a control belongs to the viewport layer <=> its centre x <= W - 281 and its centre y <= H - 182 (the layer's BOTTOM edge; its height is H-270)",
+     "rule2": "a control belongs to a row highlight layer <=> its centre falls inside one of the 320x32 row boxes",
+     "membershipChecked": 123,
+     "mismatches": {}
+    },
+    "membershipChecked": 123,
+    "rule": "centre x <= W-281 and centre y <= H-182",
+    "derivedNotTranscribed": "the rule is stated once and applied to every member of every cell; the layer's box is measured, not assumed"
+   },
+   "note": "a closed form beats a list of names"
+  },
+  "the-row-highlight-layer-swallows-exactly-five-and-never-changes": {
+   "ok": true,
+   "detail": {
+    "geometry": {
+     "x": {
+      "1280x720": 0,
+      "1280x1150": 0,
+      "1366x1150": 0,
+      "1440x1150": 0,
+      "1600x1150": 0,
+      "1920x1150": 0
+     },
+     "width": {
+      "1280x720": 320,
+      "1280x1150": 320,
+      "1366x1150": 320,
+      "1440x1150": 320,
+      "1600x1150": 320,
+      "1920x1150": 320
+     },
+     "bothConstant": true,
+     "nBoxesPerCell": {
+      "1280x720": 2,
+      "1280x1150": 2,
+      "1366x1150": 2,
+      "1440x1150": 2,
+      "1600x1150": 2,
+      "1920x1150": 2
+     },
+     "membersIdenticalEverywhere": true,
+     "members": {
+      "1280x720": [
+       "收起属性",
+       "收起属性",
+       "机位01 · 对峙中景",
+       "绘制轨迹",
+       "角色01 · 陈默"
+      ],
+      "1280x1150": [
+       "收起属性",
+       "收起属性",
+       "机位01 · 对峙中景",
+       "绘制轨迹",
+       "角色01 · 陈默"
+      ],
+      "1366x1150": [
+       "收起属性",
+       "收起属性",
+       "机位01 · 对峙中景",
+       "绘制轨迹",
+       "角色01 · 陈默"
+      ],
+      "1440x1150": [
+       "收起属性",
+       "收起属性",
+       "机位01 · 对峙中景",
+       "绘制轨迹",
+       "角色01 · 陈默"
+      ],
+      "1600x1150": [
+       "收起属性",
+       "收起属性",
+       "机位01 · 对峙中景",
+       "绘制轨迹",
+       "角色01 · 陈默"
+      ],
+      "1920x1150": [
+       "收起属性",
+       "收起属性",
+       "机位01 · 对峙中景",
+       "绘制轨迹",
+       "角色01 · 陈默"
+      ]
+     }
+    },
+    "theFive": [
+     "收起属性",
+     "收起属性",
+     "机位01 · 对峙中景",
+     "绘制轨迹",
+     "角色01 · 陈默"
+    ],
+    "nBoxesPerCell": {
+     "1280x720": 2,
+     "1280x1150": 2,
+     "1366x1150": 2,
+     "1440x1150": 2,
+     "1600x1150": 2,
+     "1920x1150": 2
+    },
+    "theIdentityCollapsesTwoElements": "the class string is the same for every object row, so ONE identity covers several elements; the first draft reported a single box for all of them, which is why the box count is recorded here",
+    "sourceFact": "DirectorTimeline.tsx:1636-1642 — the `span[aria-hidden].absolute.inset-0` row highlight, whose colour switches with selection",
+    "whyConstant": "the object rows are 32px and their y positions do not depend on the viewport, so the same five controls fall under a row highlight at every width and height"
+   },
+   "note": "a constant five is a structural fact, not a coincidence"
+  },
+  "the-prompt-bar-controls-join-the-layer-one-by-one-as-it-widens": {
+   "ok": true,
+   "detail": {
+    "members": {
+     "1280x720": [],
+     "1280x1150": [],
+     "1366x1150": [
+      "上传图片"
+     ],
+     "1440x1150": [
+      "上传图片",
+      "描述想搭建的场景"
+     ],
+     "1600x1150": [
+      "上传图片",
+      "发送",
+      "描述想搭建的场景"
+     ],
+     "1920x1150": [
+      "上传图片",
+      "发送",
+      "描述想搭建的场景"
+     ]
+    },
+    "layerRightEdge": {
+     "1280x720": 999,
+     "1280x1150": 999,
+     "1366x1150": 1085,
+     "1440x1150": 1159,
+     "1600x1150": 1319,
+     "1920x1150": 1639
+    },
+    "centreX": {
+     "1280x720": {},
+     "1280x1150": {},
+     "1366x1150": {
+      "上传图片": 1037
+     },
+     "1440x1150": {
+      "上传图片": 1037,
+      "描述想搭建的场景": 1125
+     },
+     "1600x1150": {
+      "上传图片": 1072,
+      "描述想搭建的场景": 1160,
+      "发送": 1251
+     },
+     "1920x1150": {
+      "上传图片": 1232,
+      "描述想搭建的场景": 1320,
+      "发送": 1411
+     }
+    },
+    "theMechanism": "the layer's right edge is W-281, so a prompt bar control joins exactly when the layer reaches its centre x. Five widths, and the membership goes 0 -> 1 -> 2 -> 3 -> 3: at 1280 the edge is 999 and every prompt control sits past it; at 1366 (edge 1085) 上传图片 is in; at 1440 (edge 1159) 描述想搭建的场景 joins; at 1600 and 1920 all three are in. Each control joins at its own width.",
+    "myFirstReadingWasWrong": "I sampled three widths and wrote '19 -> 21 -> 22', implying one join. Sampling five widths shows 0 -> 1 -> 2 -> 3 -> 3 — three separate joins. A three-point sample drew a line through a staircase.",
+    "notAWidthIndependentSurface": "this is the opposite of 633's finding that the burial surface does not depend on width — here it very much does",
+    "priorWork": "659 and 660 closed the prompt bar's OWN reachability rule (W >= 1510). That is a different question from 'is it under a pe:none layer', and the two must not be conflated."
+   },
+   "note": "one edge of one box, and three controls join in order"
+  }
+ }
+}
