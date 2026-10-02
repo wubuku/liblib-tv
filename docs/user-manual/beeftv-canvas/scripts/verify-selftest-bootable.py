@@ -114,11 +114,21 @@ SLOW = {
         "anchor": ("selftest-screenshots-literals.py", "def run(manifest_text"),
     },
     "selftest-selftest-bootable.py": {
-        # **同一天同一台机器实测两次：68.0s 与 53.1s**（纪律 191/136：绝对值漂 15 秒）。
-        # **能确定的只有量级**——「它确实越过 30 秒阈值」；68 只当历史快照看。
-        # 本批新增的固定成本：方向十三让**每个沙箱**多跑 3 次 bash 探针，18 例共 54 次。
-        "seconds": 68,
-        "why": "每一例都要 `copytree` 整份 `scripts/`（87 个文件）进沙箱再跑一遍闸 18，**而闸 18 现在还会在沙箱里重放慢反验的夹具前提**。33.6 秒已越过 30 秒阈值，**放进构建会让每次构建多花三分之一时间**。登记 + 提交前跑——**这与 `selftest-meta.sh` 是同一类必要成本**：它核的是「反验本身还能不能用」，而反验不在构建路径上。",
+        # **Batch 209 重测：155.2 秒与 116.0 秒**（两次取大，纪律 204：漂的时候倒向安全那侧）。
+        # 此前登记 **68 秒**，而**那个 68 是在用例 9/10 已经作废的状态下测的**——
+        # 见下面 why 的最后一段，这是本条最要紧的地方。
+        "seconds": 156,
+        "why": "每一例都要 `copytree` 整份 `scripts/`（87 个文件）进沙箱再跑一遍闸 18，"
+               "**而闸 18 现在还会在沙箱里重放慢反验的夹具前提**。"
+               "已越过 30 秒阈值，**放进构建会让每次构建多花三分之一时间**。"
+               "登记 + 提交前跑——**这与 `selftest-meta.sh` 是同一类必要成本**："
+               "它核的是「反验本身还能不能用」，而反验不在构建路径上。"
+               "**登记值此前低报了 88 秒，而低报的方向是唯一危险的那个**（纪律 204）："
+               "**「作废的用例」会让反验跑得更快、验得更少**——"
+               "用例 9/10 的注入锚点被 Batch 208 那次例行数据刷新弄失效之后，"
+               "它们每次都在断言处直接返回，**一秒的闸都不跑**。"
+               "**换句话说：那两条用例正是「让这份耗时登记值变好看」的原因。**"
+               "已改锚键（锚键不锚值），两条重新真跑，登记值按新实测据实上调。",
         "anchor": ("selftest-selftest-bootable.py", "m_slow_feature_missing"),
     },
     "selftest-unreachable.sh": {
@@ -178,7 +188,7 @@ SELFTEST_COSTS = {
     "selftest-scope.py": 0.4,
     "selftest-screenshots-literals.py": 30.1,
     "selftest-screenshots.py": 0.7,
-    "selftest-selftest-bootable.py": 78.5,
+    "selftest-selftest-bootable.py": 156.0,   # Batch 209 重测：155.2 / 116.0 秒（**两次取大**）
     "selftest-selftest-deps.py": 0.7,
     "selftest-shortcuts.py": 0.7,
     "selftest-shot-drift.py": 10.0,
@@ -338,6 +348,58 @@ def _build_invokes(fn):
         if fn in line:
             return True
     return False
+
+
+#: 反验引用的同层文件名（`selftest-*.py|sh` 与 `verify-*.py`）。
+#: **刻意不匹配 glob 形态**：`selftest-*.py`、`selftest-fix-*-fixture.py` 里
+#: 那个 `*` 不在字符类里，所以**通配写法不会被当成一个真实文件名**。
+DANGLING_RE = re.compile(r"\b((?:selftest|verify)-[A-Za-z0-9._-]+\.(?:py|sh))\b")
+
+
+def _code_only(path):
+    """只留真正会被执行到的字面量：Python 用 AST 剥注释与文档字符串，shell 剥 `#` 注释。
+
+    **与 `verify-meta.py` 的同名函数同一套做法**（方向十一的「驱动按事实判定」
+    就靠它）。**重复而不共用是有意的**：闸之间互相 import 会让任一方坏掉时
+    另一方跟着起不来——**那正是 Batch 178 记的那次失效**。
+    """
+    src = open(path, encoding="utf-8", errors="ignore").read()
+    if path.endswith(".py"):
+        tree = ast.parse(src)
+        docs = set()
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.Module, ast.FunctionDef,
+                                 ast.AsyncFunctionDef, ast.ClassDef)):
+                b = getattr(node, "body", None)
+                if b and isinstance(b[0], ast.Expr) and \
+                        isinstance(b[0].value, ast.Constant) and \
+                        isinstance(b[0].value.value, str):
+                    docs.add(id(b[0].value))
+        return "\n".join(n.value for n in ast.walk(tree)
+                         if isinstance(n, ast.Constant) and isinstance(n.value, str)
+                         and id(n) not in docs)
+    return "\n".join(re.sub(r"#.*$", "", ln) for ln in src.split("\n"))
+
+
+def _deleted_sibling_names():
+    """`scripts/` 下**历史上删掉过、现在已不在场**的文件名集合。
+
+    **取不到就返回 `None`（核不了），而不是空集合（没有问题）**——
+    纪律 203：一个不记账的「跳过」会让「没查」看起来像「查了没成」。
+
+    **为什么用 git 删除历史，而不是「这个名字看着像不像夹具」**：
+    第一版按名字收窄（只认 `selftest-fix-*`）也试过，实测**漏掉真事故**——
+    事故那个名字是 `selftest-fix-2-…`，能认出来，可判据一旦这么写，
+    下一个被删的夹具换个命名就又漏了。**「删过」是事实，「像什么」是约定**（纪律 101）。
+    """
+    r = subprocess.run(
+        ["git", "-C", ROOT, "log", "--diff-filter=D", "--name-only", "--format=",
+         "--", "scripts"],
+        capture_output=True, text=True, timeout=60)
+    if r.returncode != 0:
+        return None
+    return {os.path.basename(ln.strip()) for ln in r.stdout.split("\n")
+            if ln.strip() and ln.strip().endswith((".py", ".sh"))}
 
 
 def is_fixture(fn):
@@ -826,6 +888,66 @@ def main():
             "**这条用例会作废，而作废的用例什么都不验却不算失败**（纪律 178）"
             "　→ 上游 `origin/main` 改了这段内容或路径：要么改夹具的锚，"
             "要么把该用例移到不再成立的位置")
+
+    # 方向十五（**Batch 209 新增**）：反验引用的**被删掉的**同层文件必须清干净。
+    #
+    # **背景是一次实测事故，不是推演**：Batch 207 删掉了注入夹具
+    # `selftest-fix-2-import-entry.py`，写在账本里的理由是
+    # 「**它只被这一条用**」——**而这个理由从来没被核过**：
+    # 闸 18 自己的反验 `selftest-selftest-bootable.py` 也引用它。
+    # 于是那条用例一跑就 `FileNotFoundError`，
+    # 而**反验不在构建路径上**（闸 18 明确写下的设计前提），**账面全绿**。
+    # Batch 209 第一次真跑那份反验就撞上了，**而且撞出来的形态比 Batch 207 那次更隐蔽**：
+    # 那份反验的 `main()` 只接 `AssertionError`，别的异常一路抛到解释器顶端，
+    # 于是**已经跑完的 19 例结果一行都没打印**，整份报告只剩一行 Traceback——
+    # **「20 例全过」与「一份报告都没交出来」在退出码上都是非 0，肉眼分不开。**
+    #
+    # ── **第一版被判据自己的数据推翻，这里必须写下来** ──
+    # 第一版核的是「反验代码里引用的每个同层文件名都得在场」。
+    # **它一次跑出 10 条，其中 9 条是假的**：注入夹具**本来就该**引用现场不存在的名字
+    # （`write(os.path.join(tmp, "scripts", "selftest-orphan.py"))` 是把文件**造出来**，
+    #  `s.replace('verify-tables.py', 'verify-foo.py')` 是往**别的文件的内容里**注入字符串，
+    #  而 `| scripts/verify-injected.py（并不存在） |` 是**写进手册的表格文本**）。
+    # **假阳性率 9/10 的判据不能上线**（纪律 166：首跑全红同样不是证据）。
+    #
+    # ── **收窄的依据是一个量出来的分界，不是拍脑袋** ──
+    # 逐个查那 10 个名字在 git 历史里的下落，结果是**分得干干净净的**：
+    # **10 个里只有 1 个真的存在过**（`selftest-fix-2-import-entry.py`，正是事故主角），
+    # **其余 9 个从未存在过**——它们是注入夹具**带进来**的名字，不是**丢掉的**引用。
+    # 于是判据收窄成「**只报曾经存在过、现在不在场的名字**」：
+    # **它精确对准这次事故的形态（被删的引用），实测假阳性 0/9。**
+    # **代价也要写清楚**：引用一个**从未存在过**的错名字（打错字、写错版本号）本方向看不见。
+    # **判据的盲区要自己写出来，否则下游会把它当成事实**（纪律 196）。
+    dang = _deleted_sibling_names()
+    _st = [f for f in os.listdir(SCRIPTS)
+           if f.startswith("selftest-") and f.endswith((".py", ".sh"))]
+    if dang is None:
+        # 取不到就是**核不了**，不是「没有问题」——**如实报出，不装作核过了**（纪律 203）
+        print("方向十五：[skip] 本手册目录不在 git 检出里（或读不到删除历史），"
+              "**核不了「被删掉的引用」**——如实报出，不装作核过了")
+    else:
+        _hits = 0
+        for fn in sorted(_st):
+            path = os.path.join(SCRIPTS, fn)
+            try:
+                body = _code_only(path)
+            except (OSError, SyntaxError):
+                continue
+            for ref in sorted(set(DANGLING_RE.findall(body)) & dang):
+                _hits += 1
+                problems.append(
+                    f"方向十五：{fn} 引用了 `{ref}`，而它**已经被删掉**"
+                    "　→ 反验不在构建路径上，引用一个被删掉的文件**只有真跑它才会炸**，"
+                    "而炸起来常常是「整份报告只剩一行 Traceback」（Batch 209 实测）"
+                    "　→ 删它之前先确认「只被这一处用」：**这句话 Batch 207 写过、"
+                    "也从没被核过**，而它就是那次漏网的直接原因")
+        if _hits == 0:
+            print("  方向十五：%d 份反验与注入夹具的代码里"
+                  "**没有引用指向任何一个被删掉的同层文件**"
+                  "（`scripts/` 下历史上删过 %d 个文件）"
+                  "　→ **看不见的形态也要说清楚**：引用一个**从未存在过**的错名字"
+                  "本方向抓不到（判据认的是「删过」这个事实，不是名字长得像不像）"
+                  % (len(_st), len(dang)))
 
     # 方向十三（**Batch 204 新增**）：**闸的失败必须真的被说出来**。
     # 背景是实测出来的：`run_gate` 原来写成 `out="$(python3 ...)"; rc=$?`，

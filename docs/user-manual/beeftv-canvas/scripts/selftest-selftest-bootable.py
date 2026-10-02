@@ -42,6 +42,16 @@ BUILD = os.path.join(ROOT, "build-site.sh")
 
 results = []
 
+#: 注入锚点**只锚键，不锚值**。
+#: 原式写的是整段字面量 `'"selftest-shot-version.py": 2.0,'`——
+#: **而那个 `2.0` 是一个会被例行重测刷新的测量值**：Batch 208 把 25 个
+#: `SELFTEST_COSTS` 数字全按实测换过一遍（`2.0` → `0.8`），
+#: 于是本反验的用例 9 与用例 10 **从那一刻起注入全部失效**，
+#: 两条都记成「作废」——**而作废的用例什么都不验却不算通过**（纪律 178/202）。
+#: **一次例行的数据刷新，静悄悄废掉了两条守卫方向的用例。**
+#: 键名是结构事实（「这份反验在耗时表里有一行」），**刷新数据不会动它**。
+COST_KEY = '"selftest-shot-version.py":'
+
 
 def read(p):
     with open(p, encoding="utf-8") as fh:
@@ -91,6 +101,7 @@ def check_anchor():
     assert "SLOW = {" in t, "前提失配：闸 18 里找不到慢反验登记表"
     assert "SELFTEST_COSTS = {" in t, "前提失配：闸 18 里找不到实测耗时表"
     assert "_build_invokes" in t, "前提失配：闸 18 里找不到「只认代码不认注释」的判据"
+    assert "_deleted_sibling_names" in t, "前提失配：闸 18 里找不到方向十五「被删掉的引用」判据"
 
 
 # ── 1 现状 ──────────────────────────────────────────────────────────
@@ -230,9 +241,8 @@ def m_slow_not_registered():
         p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
         t = read(p)
         # 造一份实测 999 秒、却没进 SLOW 的反验
-        new = t.replace('"selftest-shot-version.py": 2.0,',
-                        '"selftest-shot-version.py": 999,', 1)
-        assert new != t, "注入未生效：耗时没被改成 999"
+        new, k = re.subn(re.escape(COST_KEY) + r"\s*[\d.]+,", COST_KEY + " 999,", t, count=1)
+        assert k == 1, "注入未生效：没找到耗时条目 %s（k=%d）" % (COST_KEY, k)
         write(p, new)
         rc, out = run_in(tmp)
         record("9 变慢却没登记→必报", rc == 1 and "却没登记为慢" in out, f"rc={rc}")
@@ -247,8 +257,9 @@ def m_never_measured():
     try:
         p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
         t = read(p)
-        new = t.replace('"selftest-shot-version.py": 2.0,', '', 1)
-        assert new != t, "注入未生效：耗时条目没被删"
+        new, k = re.subn(r"^\s*" + re.escape(COST_KEY) + r"[^\n]*\n", "", t, count=1,
+                         flags=re.M)
+        assert k == 1, "注入未生效：耗时条目 %s 没删掉（k=%d）" % (COST_KEY, k)
         write(p, new)
         rc, out = run_in(tmp)
         record("10 缺实测耗时→必报", rc == 1 and "没有它的实测耗时" in out, f"rc={rc}")
@@ -341,7 +352,16 @@ def m_slow_feature_missing():
     check_anchor()
     tmp = sandbox()
     try:
-        fx = os.path.join(tmp, "scripts", "selftest-fix-2-import-entry.py")
+        # **Batch 209 换了这份夹具**：原来写的是 `selftest-fix-2-import-entry.py`，
+        # 而 Batch 207 把它连同它的用例一起删了——理由写着「它只被这一条用」，
+        # **而这个理由从没被核过：本条用例也在用它**。
+        # 于是从 Batch 207 起，本反验跑到这一例就 `FileNotFoundError`，
+        # **整份报告一行都没交出来**（`main()` 只接 `AssertionError`）。
+        # 闸 18 的方向十五就是为这件事建的。
+        fx = os.path.join(tmp, "scripts", "selftest-fix-4-workspace-mode.py")
+        # **锚点必须先 assert 钉死**：Batch 205 起的规矩——
+        # 注入用的那份夹具不在场时，要报「前提失配」而不是崩在半路。
+        assert os.path.isfile(fx), "前提失配：注入用的夹具 %s 不在场" % os.path.basename(fx)
         t = read(fx)
         i = t.index("sys.stdout.write")
         # 改成**恒等变换**：它跑得动，却什么也没注入。
@@ -443,6 +463,58 @@ def m_shell_safe_var():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── 21/22 悬空引用（方向十五，**Batch 209**）────────────────────────
+# **沙箱必须自己是一个 git 检出**：方向十五问的是「这个文件**被删过**」，
+# 而「被删过」这件事只有 git 知道。**不 init 的话它会走 [skip] 分支**，
+# 而 [skip] 出来的 rc=0 与「核过且没问题」的 rc=0 **在退出码上分不开**——
+# 所以用例必须**看得见它真的跑了**（见下面 22 的断言）。
+def _git(tmp, *args):
+    return subprocess.run(["git", "-C", tmp, *args], capture_output=True, text=True)
+
+
+def _git_init(tmp):
+    who = ["-c", "user.email=selftest@local", "-c", "user.name=selftest"]
+    for argv in (("init", "-q"), ("add", "-A"),
+                 (*who, "commit", "-qm", "base")):
+        r = _git(tmp, *argv)
+        assert r.returncode == 0, "前提失配：沙箱 git %s 失败：%s" % (
+            argv[0], (r.stderr or "").strip()[:80])
+
+
+def m_deleted_fixture_ref():
+    check_anchor()
+    tmp = sandbox()
+    try:
+        victim = "selftest-fix-1-setsort.py"
+        path = os.path.join(tmp, "scripts", victim)
+        assert os.path.isfile(path), "前提失配：待删的夹具不在场"
+        _git_init(tmp)
+        os.remove(path)
+        _git(tmp, "add", "-A")
+        _git(tmp, "-c", "user.email=selftest@local", "-c", "user.name=selftest",
+             "commit", "-qm", "delete")
+        rc, out = run_in(tmp)
+        record("21 反验引用被删掉的夹具→必报",
+               rc == 1 and "方向十五" in out and victim in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_live_fixture_ref_not_reported():
+    check_anchor()
+    tmp = sandbox()
+    try:
+        _git_init(tmp)
+        rc, out = run_in(tmp)
+        # **不误伤这一半必须同时证明「跑了」和「没报」**：
+        # 只断言 rc == 0 的话，方向十五走 [skip] 分支也是 rc=0，
+        # **那条路等于没测**。所以要看见它自己打出的「一个都没有」。
+        record("22 反验引用的夹具都在场→不报",
+               rc == 0 and "没有引用指向任何一个被删掉的同层文件" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main():
     tests = [m_clean, m_broken_selftest_syntax, m_broken_fixture_syntax,
              m_broken_shell, m_missing_local_module, m_fixture_not_treated_as_selftest,
@@ -451,12 +523,23 @@ def main():
              m_fixture_anchor_missed, m_no_fixture_triples,
              m_slow_fixture_crashes, m_slow_feature_missing,
              m_run_gate_silent, m_run_gate_reports, m_run_gate_confuses_codes,
-             m_shell_unsafe_var, m_shell_safe_var]
+             m_shell_unsafe_var, m_shell_safe_var,
+             m_deleted_fixture_ref, m_live_fixture_ref_not_reported]
     for t in tests:
         try:
             t()
         except AssertionError as exc:
             record(t.__name__, "作废", f"前提失配：{exc}")
+        except Exception as exc:  # noqa: BLE001
+            # **Batch 209 加的。原来只接 `AssertionError`——**
+            # **而实测那次事故是 `FileNotFoundError`**：它一路抛到解释器顶端，
+            # 于是**已经跑完的 19 例结果一行都没打印**，整份报告只剩一行 Traceback。
+            # **「20 例全过」与「一份报告都没交出来」在退出码上都是非 0，肉眼分不开。**
+            # 记成「失败」而不是「作废」：**用例自己崩了是它自己的问题，
+            # 而「作废」的含义是「前提不成立、这条什么都没验」**——两者混起来，
+            # 下一个人会以为只是锚点过期，去改夹具，而真正的问题在反验本体。
+            record(t.__name__, "失败",
+                   f"用例自身抛异常：{type(exc).__name__}: {exc}")
     failed = 0
     for name, status, detail in results:
         mark = {"通过": "✓", "失败": "✗", "作废": "—"}[status]
