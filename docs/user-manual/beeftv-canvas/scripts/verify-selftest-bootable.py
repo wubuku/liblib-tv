@@ -115,6 +115,7 @@ SELFTEST_COSTS = {
     "selftest-exclusions.py": 2, # Batch 181：闸 5 改批量读后 35.6s → 2s
     "selftest-feature-flags.py": 0.4,
     "selftest-label-drift.py": 4,  # Batch 182：闸 6 改批量读后 105s → 4s
+    "selftest-ledger-refs.py": 1.2,  # Batch 184：闸 21，实测 1.18/1.26/0.66s
     "selftest-line-counts.py": 11.8,
     "selftest-runtime-policy.py": 0.7,
     "selftest-screenshots-literals.py": 23.5,
