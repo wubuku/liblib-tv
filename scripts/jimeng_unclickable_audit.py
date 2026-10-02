@@ -1402,6 +1402,47 @@ def main() -> int:
             "takes_focus_at_open": True, "traps_tab": False,
             "arrows_move": False, "esc_returns_to_trigger": False,
             "src": "jimeng_probe851b_audiopanel_kb.py（登录态，视口 1512×1200）"},
+        # ══ 批 853：又把 2 层从 kb_not_sampled 升进基线表 ═════════════════
+        # 851/§70 记的 3 层「测不到」，853 拆开之后**两层真取到样、一层是
+        # 源站事实**。过程见 README §71，两条方法论值得单列：
+        #  · **③ 方向键必须排在 ② Tab 之前测**（853c）。① 已经把「层刚打开、
+        #    焦点自然落在层内」这个最好的起点建好了；② 那串 Tab 是**破坏性**的
+        #    （源站这几层第 1 次就逃出）。853b 把 ③ 排在 ② 之后，就得 ensure_open
+        #    再 `focus()` 重建起点 —— 而源站**对 `focus()` 反应不稳**（音乐模型层、
+        #    音色库层连着两次「focus() 后焦点仍不在层内」），于是白交两份「没测到」。
+        #    这与 852 病根②同源：**别为了「建立起点」去动它，用天然的那个。**
+        #  · 认层**换判据不解决判据量错对象**：851b 用矩形差分抓到整页容器，
+        #    853b 改用「取最近公共祖先」**又**抓到整页（该 class 实测 63 个 chip
+        #    散布整个画布节点区）—— 同一个错的两面。真正管用的是
+        #    `mark_voice_panel()`：**从标题「全音色」往上找「装 ≥8 个可见 chip
+        #    且面积 < 半个视口」的最小祖先**，才落到真正的 680×96 面板。
+        "audio-music-model-listbox": {
+            "src_tid": "(无 testid)", "src_kind": "listbox",
+            "src_identified_by": "role=listbox + 矩形 400×112（探针 853b）",
+            "takes_focus_at_open": True, "traps_tab": False,
+            # ⚠️ False 的原因是**内容只有 1 项**（SeedMusic 1.0 Preview），
+            #    轨迹实测 4 次全停在同一项 ⇒ 无处可去。**不是**「源站方向键坏了」。
+            "arrows_move": False, "esc_returns_to_trigger": False,
+            "src": "jimeng_probe853b_audiostruct_kb.py（登录态，视口 1512×1200）"},
+        "audio-all-voices-listbox": {
+            "src_tid": "(无 testid)", "src_kind": "面板（既非 listbox 也非 dialog）",
+            "src_identified_by": (
+                "标题「全音色」+ ≥8 个 `min-w-canvas-audio-voice-shrinkable` "
+                "chip + 面积<半视口的最小祖先 ⇒ 680×96（探针 853b/c）"),
+            # ⚠️ **这是 15 层里唯一开层不接管焦点的**：焦点自始至终停在
+            #    触发器 `BUTTON/音色: 音色库` 上，**从没进过面板**。
+            "takes_focus_at_open": False, "traps_tab": False,
+            # 没测到，而且**是测到了「测不到」这件事本身**：焦点不在层内 ⇒
+            # 没有层内起点可按方向键。与「判据没测到」要分清。
+            # ⚠️ 理由写成**字段**而不是只写在注释里：判据要能机读，否则半年后
+            #    分不清它是「测到了测不到」还是「忘了测」。
+            "arrows_move": None,
+            "arrows_move_why": (
+                "焦点自始至终停在触发器上、**从没进过面板** ⇒ 层内没有起点，"
+                "按方向键无从谈起。**这不是「判据没测到」**，"
+                "是测到了「源站这一层开层不接管焦点」这个事实本身。"),
+            "esc_returns_to_trigger": True,
+            "src": "jimeng_probe853b_audiostruct_kb.py（登录态，视口 1512×1200）"},
         "jimeng-search-overlay": {
             "src_tid": "canvas-feature-panel", "src_kind": "dialog",
             "src_identified_by": "testid",
@@ -1501,26 +1542,31 @@ def main() -> int:
     #    这条**线索**写进 why，好让下一批知道从哪下手。
     # ⚠️ 这 3 层的「没取到」**原因各不相同**，下一步动作也完全不同 ——
     #    笼统写一句「没取过样」会把三种病混成一种。
-    NOT_SAMPLED["audio-music-model-listbox"] = (
-        "**前置态没成立**：源站音频面板要先点「创作类型」切到**音乐生成**才会"
-        "出现音乐分支的下拉，而探针 851b 在 `创作类型` 下拉里**找不到**"
-        "「音乐生成」这个 option（Playwright 的 `[role=option]:text-is(…)` 计数 0）"
-        "⇒ 切不过去。⚠️ 那一轮量到的 `选择模型: SeedAudio 1.0` **仍是音频生成分支"
-        "的同一个层**，等于把 `audio-voice-model-listbox` 重测了一遍 —— "
-        "**重复测量不能当独立取样**，所以这一层判作没测到。下一步：先把"
-        "「创作类型」下拉的选项结构 dump 出来（它可能根本不是 role=option）。")
+    # ⚠️ 853 更正：这 3 层里**两层已升进基线表**（`audio-music-model-listbox`
+    #    与 `audio-all-voices-listbox`，见 SOURCE_BASELINE），**第三层是源站
+    #    事实**。三条 why 逐条改写 —— 留着旧文案就是**假病历**。
     NOT_SAMPLED["audio-music-duration-listbox"] = (
-        "**前置态没成立**：依赖同一个「切到音乐生成」的动作。851b 里"
-        "`button[aria-label^=选择时长]` 计数 **0** —— 触发器压根不存在。"
-        "下一步同 `audio-music-model-listbox`：先把分支切过去。")
-    NOT_SAMPLED["audio-all-voices-listbox"] = (
-        "**判据量错对象**：触发器 `音色: 音色库` 68×32 是**找得到、点得着**的，"
-        "但探针用矩形差分认层时抓到的是 **648×1932 @[684,695] z=auto role=''** —— "
-        "那是**整页容器**，不是音色面板；按 role 打标记也没打中（它既不是 "
-        "listbox 也不是 dialog）。于是 `in_layer` 判成 False，读出来的"
-        "「源站这一层开层不接管焦点」是**伪像**，不作数。下一步：给"
-        "「音色库」这一层换个认法（dump 它的真实 class/结构），而不是"
-        "放宽判据 —— 放宽只会把伪像洗成结论。")
+        "**源站没有这个入口**（853 实测，登录态，视口 1512×1200）。这一层原先记"
+        "「前置态没成立」，理由是「切不到音乐生成分支」—— 853b 用**文本**找到"
+        "「音乐生成」那个 `<SPAN role=\"\">`（851 按 `[role=option]:text-is(…)` "
+        "**永远数不到它，因为它根本不是 role=option**）并成功切了过去；"
+        "切过去之后 `button[aria-label^=\"选择时长\"]` 计数**仍是 0**"
+        "（重新选中节点、等到面板刷新完，仍是 0），而同一时刻"
+        "`选择模型` 计数是 1（`SeedMusic 1.0 Preview`）⇒ **音乐分支有模型、"
+        "没有时长下拉**。\n"
+        "⚠️ 这跟「判据量错对象」是**两码事**：这里触发器压根不存在，"
+        "任何认法都找不到它。**源站没做的，不许在复刻里假称可用**，"
+        "也不许按「音频分支有时长 ⇒ 音乐分支也该有」推测实现（847 明令）。")
+    # ⚠️⚠️ `audio-all-voices-listbox` **不在** NOT_SAMPLED 里了 —— 刻意删掉的。
+    #    循环是「先查 NOT_SAMPLED、再查 SOURCE_BASELINE」，只要它还留在
+    #    NOT_SAMPLED 就会被打回 `kb_not_sampled`，**永远进不了基线表**。
+    #    留一条备忘在这儿（而不是留一条 NOT_SAMPLED 记录），是因为它讲的是
+    #    **判据史**不是「没取到样」：
+    #      851b 记的「判据量错对象」是真的（矩形差分抓到 648×1932 整页容器），
+    #      当时读出的「开层不接管焦点」是**伪像**；853b 换对认法后重测，
+    #      结论**仍然是**「不接管焦点」—— 伪像与真结论**碰巧同形**。
+    #    这正是 851b「不许放宽判据、要重新认层」的理由：放宽只会把伪像洗成
+    #    结论，而重新认层才知道这次的「不接管焦点」是真的。
     kb_no_initial, kb_escaped, kb_arrow_dead = [], [], []
     kb_judged, kb_not_sampled = [], []
     for r in kb_rows:

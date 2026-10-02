@@ -144,15 +144,28 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
      **不困 Tab**（第 1 次就逃出、层还在）、**Esc 后焦点不回触发器**
      （落到节点 / 顶栏控件 —— 源站自己的 a11y 失手，**照抄不修**）。
 
-     ⚠️ 这里**只接这两层**。另外三个（`audio-music-model-listbox` /
-     `audio-music-duration-listbox` / `audio-all-voices-listbox`）源站
-     **至今没取到样**：音乐分支切不过去，音色库那一层判据认层认错了
-     （详见审计 `NOT_SAMPLED` 里的逐条说明）。给没取到样的层接上，就是
-     「源站测不到的行为也实现」—— 那是**伪称可用**，比不做更坏。 */
+     ⚠️ 853 更正：这句话原先写「另外三个源站**至今没取到样**」，853b 取到样了 ——
+     `audio-music-model-listbox` 与 `audio-all-voices-listbox` 两层都已进源站基线表
+     （见审计 `SOURCE_BASELINE`），`audio-music-duration-listbox` 则是**源站事实**：
+     音乐分支**压根没有**时长下拉（切过去后 `选择时长` 触发器计数 0，而同一时刻
+     `选择模型` 计数 1）。**源站没做的，不许在复刻里假称可用**。
+     剩下两层**刻意不接** `useTakeFocusAtOpen`：音乐时长（源站无此入口）、
+     全音色（源站实测**开层不接管焦点** —— 焦点自始至终停在触发器上，
+     复刻同样不接管，行为一致）。*/
   const voiceBoxRef = useRef<HTMLDivElement>(null);
   const dubBoxRef = useRef<HTMLDivElement>(null);
+  const musicBoxRef = useRef<HTMLDivElement>(null);
   useTakeFocusAtOpen(voiceBoxRef, open === "tts");
   useTakeFocusAtOpen(dubBoxRef, open === "dub");
+  /* 批 853 SOURCE_FACT（探针 853b 实测，登录态视口 1512×1200）：音乐模型层
+     **开层即接管焦点**（焦点落在层内 `SeedMusic 1.0 Preview` 那个 BUTTON 上）、
+     **不困 Tab**（第 1 次就逃出、层还在）、**Esc 后焦点不回触发器**（落到
+     `BUTTON/生成`）—— 与音色模型/生成模式两层**完全同款**。
+     ⚠️ 但方向键 `moved=False`，原因是**这一层只有 1 个选项**（实测 4 次
+     ArrowDown 全停在同一项）⇒ 无处可去，**不是**「源站方向键坏了」。
+     所以**只接接管焦点，刻意不接 `useArrowKeys`**：接了也只会让 1 个元素
+     环绕到自己 —— 接一个源站没有的行为，比不接更坏。 */
+  useTakeFocusAtOpen(musicBoxRef, open === "music");
   /* 批 852 SOURCE_FACT（探针 852 实测）：音色模型**方向键在层内移动**（2 项，
      moved=True）；音频生成模式**只有 1 个选项**，方向键无处可去（moved=False）。
      两层都接上 —— 后者接了也不会动（只有一个元素，环绕到自己），行为与源站
@@ -301,6 +314,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                     </button>
                     {open === "music" ? (
                       <div
+                        ref={musicBoxRef}
                         className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[392px] rounded-xl p-1.5"
                         style={{ background: "rgb(38,38,38)" }}
                         role="listbox"
@@ -497,6 +511,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                         <button
                           type="button"
                           role="option"
+                          aria-selected={false}
                           aria-label="Seed TTS, 上百个预设音色，让你玩转人声配音"
                           onClick={() => setOpen(null)}
                           className="flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 py-2 text-left hover:bg-white/10"

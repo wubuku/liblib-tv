@@ -640,50 +640,62 @@ def main() -> int:
     #      · 判据量错对象（音色库认成了整页容器）—— 下一步是换认法
     #    笼统写一句「没取过样」会把它们混成一种，而下一步动作完全相反。
     print("\n— K. 音频面板：三种「没取到」各归各的账 —")
-    AUD_OK = ["audio-voice-model-listbox", "audio-gen-mode-listbox"]
-    AUD_MISS = ["audio-music-model-listbox", "audio-music-duration-listbox",
-                "audio-all-voices-listbox"]
-    check("K.1 取到样的 2 层**在基线表里**（851b 实测：接管焦点 / 不困 Tab /"
-          " Esc 不归位）",
+    # ⚠️⚠️ 853 之后这三条判据的前提**变了**，必须跟着改（847 定的规矩：
+    #    判据被正确推翻时**改判据不改产品**）：
+    #    · `audio-music-model-listbox` / `audio-all-voices-listbox` 已**取到样**
+    #      ⇒ K.3/K.5/K.7 那三条「不许进基线表 / 伪像 / 不许接 hook」的前提
+    #        已经不存在了，继续留着会**逼着代码回到错误的状态**。
+    #    · `audio-music-duration-listbox` 仍在 not_sampled，但原因从
+    #      「前置态没成立」变成「**源站没有这个入口**」—— 新的、且更硬的病。
+    AUD_OK = ["audio-voice-model-listbox", "audio-gen-mode-listbox",
+              "audio-music-model-listbox", "audio-all-voices-listbox"]
+    AUD_MISS = ["audio-music-duration-listbox"]
+    check("K.1 取到样的 4 层**在基线表里**（851b 两层 + 853b 两层）",
           all(t in base for t in AUD_OK),
           f"{[t for t in AUD_OK if t in base]}")
-    check("K.2 那 2 层的方向键是**实测过的布尔**（852 补测；"
+    # ⚠️⚠️ 这里**不能**笼统要求 4 层都是 bool：全音色层的 `arrows_move` 合法地
+    #    是 `None`，而这个 `None` 的含义与「判据没测到」**不同** ——
+    #    它是「**测到了「测不到」这件事本身**」：焦点自始至终没进过面板，
+    #    层内压根没有起点可按。把两者混起来，下一批就会去查错的东西。
+    #    所以拆成两条：另外 3 层必须是**实测过的布尔**；全音色层必须是 `None`
+    #    **且**它的 `None` 带得出来源（M.8 查那个）。
+    AUD_BOOL = [t for t in AUD_OK if t != "audio-all-voices-listbox"]
+    check("K.2 除全音色外的 3 层方向键是**实测过的布尔**（852/853 补测；"
           "「不许偷偷填值」依然成立）",
           all(isinstance(base.get(t, {}).get("arrows_move", None), bool)
-              for t in AUD_OK),
-          f"{ {t: base.get(t, {}).get('arrows_move', 'MISSING') for t in AUD_OK} }")
+              for t in AUD_BOOL),
+          f"{ {t: base.get(t, {}).get('arrows_move', 'MISSING') for t in AUD_BOOL} }")
     whys = [n.get("why", "") for n in kb_ns
             if n.get("layer") in AUD_MISS]
-    check("K.3 没取到的 3 层**仍留在** `kb_not_sampled`"
+    check("K.3 没取到样的 1 层**仍留在** `kb_not_sampled`"
           "（实测不到 ≠ 可以按「同类层」推测）",
           all(t not in base and t in {n.get("layer") for n in kb_ns}
               for t in AUD_MISS),
           f"进了基线表的：{[t for t in AUD_MISS if t in base]}")
-    check("K.4 这 3 层的 why **互不相同**（笼统一句「没取过样」会把"
-          "「前置态没成立」和「判据量错对象」混成一种）",
-          len(whys) == len(AUD_MISS) and len(set(whys)) == len(whys)
-          and any("前置态没成立" in w for w in whys)
-          and any("量错对象" in w for w in whys),
-          f"{len(whys)} 条 why，去重后 {len(set(whys))} 条")
-    # 音色库那条必须点明「伪像」——它读出来的「源站不接管焦点」是认错层造成的
-    av = next((n.get("why", "") for n in kb_ns
-               if n.get("layer") == "audio-all-voices-listbox"), "")
-    check("K.5 音色库那一层的 why 写明读出来的结论是**伪像**"
-          "（判据把整页容器当成了层；放宽判据只会把伪像洗成结论）",
-          "伪像" in av and "648" in av, f"why={av[:60]!r}")
-    # 产品侧：**只接取到样的 2 层**
+    whys = [n.get("why", "") for n in kb_ns
+            if n.get("layer") in AUD_MISS]
+    check("K.4 那一层的 why 写明是「**源站没有这个入口**」"
+          "（853 实测：切到音乐分支后 `选择时长` 触发器计数 0，"
+          "而同一时刻 `选择模型` 计数 1 ⇒ 源站音乐分支只有模型、没有时长）",
+          len(whys) == 1 and "源站没有这个入口" in whys[0],
+          f"why={whys[0][:50]!r}" if whys else "没有 why")
+    # 产品侧：853b 取到样的**音乐模型**要接接管焦点（源站实测接管）；
+    # **全音色**源站实测**不**接管 ⇒ 复刻也**不许**接。
     audp = ROOT / "src/components/jimeng/JimengAudioGenPanel.tsx"
     asrc2 = audp.read_text(encoding="utf-8") if audp.exists() else ""
-    check("K.6 复刻接了**取到样的 2 层**（voiceBoxRef / dubBoxRef）",
+    check("K.6 复刻接了**取到样且源站接管焦点**的 3 层"
+          "（voiceBoxRef / dubBoxRef / musicBoxRef）",
           all(f"useTakeFocusAtOpen({v}" in asrc2
-              for v in ("voiceBoxRef", "dubBoxRef"))
-          and all(f"ref={{{v}}}" in asrc2 for v in ("voiceBoxRef", "dubBoxRef")),
-          f"接上 {sum(1 for v in ('voiceBoxRef', 'dubBoxRef') if f'useTakeFocusAtOpen({v}' in asrc2)}/2")
-    # ⚠️ 核心：**没取到样的 3 层不许接** —— 接了就是「源站测不到的行为也实现」
-    not_connected = [v for v in ("musicBoxRef", "durBoxRef", "voicesBoxRef")
+              for v in ("voiceBoxRef", "dubBoxRef", "musicBoxRef"))
+          and all(f"ref={{{v}}}" in asrc2
+                  for v in ("voiceBoxRef", "dubBoxRef", "musicBoxRef")),
+          f"接上 {sum(1 for v in ('voiceBoxRef', 'dubBoxRef', 'musicBoxRef') if f'useTakeFocusAtOpen({v}' in asrc2)}/3")
+    # ⚠️ 核心：源站**实测不接管焦点**的层（全音色）**不许**接 ——
+    #    接了就是「源站没有的行为也实现」。音乐时长（源站无此入口）同理。
+    not_connected = [v for v in ("durBoxRef", "voicesBoxRef")
                      if f"useTakeFocusAtOpen({v}" in asrc2]
-    check("K.7 **没取到样**的 3 层**不许**接那个 hook"
-          "（接了就是「伪称可用」，比不做更坏）",
+    check("K.7 源站**不接管焦点**的全音色层 / 源站**无入口**的音乐时长层"
+          "**不许**接那个 hook（接了就是「伪称可用」，比不做更坏）",
           not not_connected, f"误接的：{not_connected or '无'}")
     # 探针侧：重开不许靠「点两下」的状态假设
     lib = ROOT / "scripts/jimeng_kb_probe_lib.py"
@@ -770,6 +782,78 @@ def main() -> int:
           "源站实测 2 项，且方向键在两项间来回）",
           n_opt == 1 and "上百个预设音色，让你玩转人声配音" in a2,
           f"Seed TTS 项 {n_opt} 个")
+
+    # ── M. 批 853：两种「测不到」拆开 + 两条方法论 ─────────────────────────
+    #    §70 结尾那 3 层，拆完之后是**三层三种命运**：2 层取到样、1 层是源站事实。
+    #    而 853b 中途栽了三次，每一次的教训都比结论更值钱：
+    print("\n— M. 853：换判据不解决判据量错对象；③ 必须排在 ② 之前 —")
+    p853b = ROOT / "scripts/jimeng_probe853b_audiostruct_kb.py"
+    q853b = p853b.read_text(encoding="utf-8") if p853b.exists() else ""
+    check("M.1 源站探针**自己 goto 画布 URL**"
+          "（853 第一版漏了这行 ⇒ 页面停在 runner 默认的首页/推广浮层，"
+          "左栏全是「打开画布/新建画布」，还误判成「夹具不具备」）",
+          "page.goto(" in q853b and "64b58cd5-7b04-4312-890a-09f2d1d3399f" in q853b)
+    # ⚠️ 判据本身也栽过一次：第一版写 `"text-is" not in q853b` 当条件，
+    #    结果**探针注释里引了 851 的 `text-is(` 当反面教材**就把它判红了。
+    #    —— **判据自己也可能量错对象**。改成查「有没有把 text-is 用作
+    #    **选择器**」（形如 `text-is(` 且前面带 `locator(`/`:`），
+    #    而不是查这个字符串在文件里出不出现。
+    # ⚠️⚠️ 这条判据自己返工了**三次**：先查「文件里没有 text-is」，
+    #    被探针 docstring 里引的 851 反面教材判红；改成「只看 # 注释行」，
+    #    又被 docstring（三引号字符串，不是 # 注释）判红。
+    #    ⇒ 两次都是**同一个病**：拿「某个字符串在不在」当判据。
+    #    按 852 的教训（**判据要可证伪、要量真正要量的东西**），这里只查
+    #    **正向证据**：探针是**按 innerText 文本相等**找那个 SPAN 的，
+    #    并**沿祖先链找 cursor:pointer** 去点 —— 这两条就是修法的全部内容。
+    #    「没有用 text-is」是它的推论，不需要（也不该）单独断言。
+    m2_text_find = "innerText||'').trim() === '音乐生成'" in q853b
+    m2_pointer = "cursor === 'pointer'" in q853b
+    check("M.2 切分支按**innerText 文本相等**找那个 `SPAN`"
+          "（851 按 `[role=option]:text-is(…)` 永远数不到它，"
+          "因为它**根本不是 role=option**），再沿祖先链找**可点的祖先**"
+          "（cursor:pointer）去点",
+          m2_text_find and m2_pointer,
+          f"按 innerText 文本找={m2_text_find} 找 cursor:pointer 祖先={m2_pointer}")
+    check("M.3 音色库层用**专用认法**：标题「全音色」+ ≥8 可见 chip + "
+          "面积<半视口的最小祖先（853b 用「最近公共祖先」**又**量到整页："
+          "该 class 实测 63 个 chip 散布整个画布节点区 —— **换判据不解决"
+          "判据量错对象**）",
+          "def mark_voice_panel(" in lsrc
+          and "全音色" in lsrc and "min-w-canvas-audio-voice-shrinkable" in lsrc
+          and "max_frac" in lsrc)
+    # ★ 853c 的方法论：③ 方向键必须排在 ② Tab **之前**
+    i3 = lsrc.index('rec["arrow_down"] = {"measured": True, "moved": uniq > 1,')
+    i3b = lsrc.index("③ 方向键**先于**② 测") if "③ 方向键**先于**② 测" in lsrc \
+        else lsrc.index("③ 方向键**先于**")
+    i2 = lsrc.index("# ② Tab 逃出（层还在才谈得上")
+    check("M.4 共享库里 **③ 方向键排在 ② Tab 之前**"
+          "（① 已经把「焦点自然落在层内」这个最好的起点建好了；"
+          "② 那串 Tab 是**破坏性**的，源站这几层第 1 次就逃出。853b 把 ③ 排在"
+          "② 之后就得 `focus()` 重建起点，而源站对 `focus()` 反应不稳 —— "
+          "音乐模型层、音色库层连着两次白交「没测到」）",
+          i3b < i2 < i3 or i3b < i2,
+          f"③段 @{i3b} < ②段 @{i2} < moved 赋值 @{i3}")
+    check("M.5 `moved` **仍把起点算进去**（852 修正没被 853 改回去）",
+          "set(seq) | {start_who}" in lsrc)
+    check("M.6 基线表里**音乐模型**方向键 False 的理由写明是"
+          "「**内容只有 1 项**」而不是「源站方向键坏了」",
+          "只有 1 项" in lsrc or "只有 1 项" in (
+              ROOT / "scripts/jimeng_unclickable_audit.py").read_text(encoding="utf-8"))
+    check("M.7 基线表里**全音色**记 `takes_focus_at_open: False` 且 why 写明"
+          "「焦点自始至终停在触发器上」"
+          "（853c：伪像与真结论**碰巧同形** —— 重新认层后才知道这次是真的）",
+          base.get("audio-all-voices-listbox", {}).get("takes_focus_at_open")
+          is False)
+    av2 = base.get("audio-all-voices-listbox", {})
+    # ⚠️ 这个 `None` 必须**自带理由**且理由可机读 —— 只写在源码注释里的话，
+    #    判据查不到，半年后没人知道它是「测到了测不到」还是「忘了测」。
+    awhy = str(av2.get("arrows_move_why", ""))
+    check("M.8 全音色层的 `arrows_move` 留 `None`，**且**有可机读的 "
+          "`arrows_move_why` 说清是「焦点不在层内 ⇒ 没有层内起点」"
+          "—— 这跟「判据没测到」要分清",
+          av2.get("arrows_move", "MISSING") is None
+          and "焦点" in awhy and "层内" in awhy,
+          f"arrows_move={av2.get('arrows_move', 'MISSING')!r} why={awhy[:40]!r}")
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
