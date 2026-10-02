@@ -178,6 +178,46 @@ RETRACTIONS: list[dict[str, str]] = [
         "why": "M31 记录的这两个高度在当前版本都对不上。顶栏源码是写死的 h-14 = 56px，2026-10-02 M108 运行时实测顶栏 y=0、高 56；节点上方有两条不同浮层，实测高分别约 27px（节点名那一条，top:-40px）与 32px（h-8，top:-39px），**都不是 48px**。初版疑似把顶栏高度当成了工具条高度。同一句里的按钮纵坐标 −42 也没注明所属坐标系：该偏移是画布世界单位常量（实测恒为 −40），会随缩放放大到屏幕，42/40 = 1.05 对应约 105% 缩放（2026-10-02 M108）",
         "fixed_in": "M108",
     },
+    # ── M152 补登记：M109–M151 这四十三批的订正，此前**一条都没进这张表**。
+    #    实测证据：M152 拿本表当权威清单去扫，24 条里 fixed_in 最新只到 M108；
+    #    而 AUDIT.md 里提到订正的记录有 86 条、覆盖 M5–M151。
+    #    **这张表是「防止已订正说法复现」的唯一机制，表外的订正等于没被守住。**
+    {
+        "id": "R25",
+        "wrong": "Dock 认不出 9 个",
+        "why": "M125–M129 连续四批据「按 class 名找悬停浮层」写下「左侧 Dock 16 个按钮里有 9 个认不出、悬停无任何提示」，M129 还把它写进了探针的结论。**M132 第 63 次否证整组作废**：Dock 用的是自研浮层，类名 `pointer-events-none absolute left-[calc(100%+8px)]`，**不含 tooltip / tip 任何字样**；按类名找只抓得到同区域的 antd `div.ant-tooltip`。实测 Dock 8 个按钮悬停提示**逐字齐全**，「删除选中」也有浮层。正确判据是**悬停前后全页可见文本取差集**，不依赖类名（2026-10-02 M132）",
+        "fixed_in": "M132",
+    },
+    {
+        "id": "R26",
+        "wrong": "三处按钮区",
+        "why": "M132 补出**顶栏**这一处按钮区后，两页仍写「三处按钮区」，实际是**四处**（左侧 Dock / 节点悬浮工具条 / 画布视图控制 / 顶栏）。M139 回走时订正为四处并把顶栏列进去。写死数量而不列出处，下批加一处就会漏改（2026-10-02 M139）",
+        "fixed_in": "M139",
+    },
+    {
+        "id": "R27",
+        "wrong": "共 5 种",
+        "why": "同一页的对照表逐行点数是 2 / 4 / 5 / 6 / 8 / 13 **共 6 种**，错的是正文那句汇总，**表格每一行都是对的**。读者按汇总去记「只有 5 种」，一遇到第 6 种就以为记错了、以为自己看错了（2026-10-02 M137）",
+        "fixed_in": "M137",
+        # M152 新增机制：这一条在正文里**必须**原样出现一次——`edit-nodes.md` 的
+        # 订正说明块要引述「原文写『长度从 2 到 13 共 5 种』」，
+        # 读者正是靠这句引述才知道原文错在哪。改写措辞反而会毁掉这段说明的价值。
+        # **豁免必须精确到「文件:行号」**，只写文件名等于把整页都开豁免，
+        # 那和 M140 查出的「文档可以比源码写得细」正是反面：**豁免要窄到无法滥用。**
+        "allow_in": ["10-tasks/edit-nodes.md:36"],
+    },
+    {
+        "id": "R28",
+        "wrong": "所有节点类型的工具条都是 4 个按钮",
+        "why": "M137 第一版探针的**假结论**，症状像产品有个统一的 4 按钮工具条。真因：节点默认全部叠在画布中心，按 DOM 顺序取中心点点选，**命中的永远是最上层那一个**，七种类型数出来全是同一个节点（按钮文字还逐轮往后挪一位）。正确判据是 `elementFromPoint` 阳性对照 + 每轮清空画布只留一个节点（2026-10-02 M137）",
+        "fixed_in": "M137",
+    },
+    {
+        "id": "R29",
+        "wrong": "按钮本身没有状态变化，说明这个功能没有状态",
+        "why": "M136 实测 13 个按钮的 `aria-pressed` / `expanded` / `checked` / `current` **全为 null**，点下去信号全不变。但**这是读法边界，不是产品结论**：「隐藏连线」那种开关状态显示在**按钮外观**上、不在这些属性里。**「按钮没有状态变化」≠「这个功能没有状态」**，写进手册时必须把这条边界一起写上（2026-10-02 M136）",
+        "fixed_in": "M136",
+    },
 ]
 
 
@@ -202,14 +242,37 @@ def main() -> int:
 
     for item in RETRACTIONS:
         needle = item["wrong"]
+        # M152：`allow_in` 允许**精确到「文件:行号」**的刻意反例引述。
+        # 那些行是订正说明块的一部分——读者要看到「原文错在哪」，改写反而毁掉价值。
+        # 但豁免必须窄：写全名文件等于整页开豁免，那会让这条门禁形同虚设。
+        allowed = set(item.get("allow_in", []))
+        # M152：豁免必须精确到「文件:行号」。写全名文件等于整页开豁免，
+        # 那这道门禁就形同虚设——**豁免要窄到无法滥用**。
+        # 在这里校验形状，而不是等它悄悄放宽了才发现。
+        for where in sorted(allowed):
+            if not re.fullmatch(r"[^:]+:\d+", where):
+                problems.append(
+                    f"[{item['id']}] allow_in 的豁免位置写法不合法：{where!r}。"
+                    "**必须精确到「文件:行号」**（如 `10-tasks/edit-nodes.md:36`）；"
+                    "只写文件名等于把整页都开豁免，读者再也拦不住这里出错的说法。"
+                )
+                allowed = {w for w in allowed if w != where}
         hits: list[str] = []
+        exempted: list[str] = []
         for page in pages:
+            rel = page.relative_to(root).as_posix()
             for lineno, line in enumerate(page.read_text(encoding="utf-8").splitlines(), 1):
                 if needle in line:
-                    hits.append(f"{page.relative_to(root)}:{lineno}")
+                    where = f"{rel}:{lineno}"
+                    if where in allowed:
+                        exempted.append(where)
+                    else:
+                        hits.append(where)
         checked += 1
         if hits:
             problems.append(f"[{item['id']}] 订正过的错误说法重新出现：{needle!r}\n      {item['why']}\n      出现在：{', '.join(hits)}")
+        if exempted:
+            print(f"  [豁免] [{item['id']}] {', '.join(exempted)} 是刻意反例引述（已登记 allow_in）")
 
     print(f"[retractions] 已登记订正 {len(RETRACTIONS)} 条，扫描正文 {len(pages)} 页")
 

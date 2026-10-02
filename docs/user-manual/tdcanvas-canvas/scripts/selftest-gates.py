@@ -913,6 +913,41 @@ def mutate_gate_silence_ledger_evid_reintroduced(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_retracted_m132_dock(root: Path) -> None:
+    """M132 订正的「Dock 认不出 9 个」复现（R25，M152 补登记）。
+
+    M152 查出 `RETRACTIONS` 表只覆盖 **M39–M108**——
+    **M109 到 M151 这四十三批的订正一条都没进表**，
+    而这张表是「防止已订正说法复现」的唯一机制。**表外的订正等于没被守住。**
+    """
+
+    path = root / "README.md"
+    path.write_text(
+        path.read_text(encoding="utf-8") + "\n自检注入：Dock 认不出 9 个按钮。\n",
+        encoding="utf-8",
+    )
+
+
+def mutate_retracted_allowlist_too_broad(root: Path) -> None:
+    """`allow_in` 豁免写成**只给文件名**时，必须被门禁拒绝（M152）。
+
+    M152 加 `allow_in` 是为了让订正说明块能引述原错误说法，
+    但**豁免一旦放宽到整页，这条门禁就形同虚设**——
+    这正是 M140 查出的「文档可以比源码写得细」的反面教训：
+    **豁免要窄到无法滥用**。
+    门禁若不校验豁免的形状，加机制的人就会顺手写宽。
+    """
+
+    import re
+
+    path = root / "scripts/check-retractions.py"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace('"allow_in": ["10-tasks/edit-nodes.md:36"],',
+                           '"allow_in": ["10-tasks/edit-nodes.md"],', 1)
+    assert patched != text, "注入失败：没找到 allow_in 那一行"
+    path.write_text(patched, encoding="utf-8")
+
+
 CASES: list[tuple[str, object, str, str]] = [
     ("图片字节被改动", mutate_image_bytes, "gate", "sha256 mismatch"),
     ("manifest 删掉一条记录", mutate_manifest_drop_record, "gate", "image missing from manifest"),
@@ -933,6 +968,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("M93 订正的「自由缩放」复现", mutate_retracted_freeresize, "retractions", "R20"),
     ("M93 订正的视频面板参数复现", mutate_retracted_video_params, "retractions", "R21"),
     ("M99 撤回的「方向拖反会连上」复现", mutate_retracted_stale_count, "retractions", "R22"),
+    ("M132 订正的「Dock 认不出 9 个」复现（M152 补登记）", mutate_retracted_m132_dock, "retractions", "R25"),
+    ("订正豁免写成只给文件名（豁免必须窄到无法滥用）", mutate_retracted_allowlist_too_broad, "retractions", "写法不合法"),
     ("产物里的死链", mutate_dead_dist_link, "distlinks", "指向不存在目标的链接"),
     ("任务评级三处不一致", mutate_rating_drift_inventory, "ratings", "评级漂移"),
     ("账本截图数与 manifest 不符", mutate_inventory_stale_count, "invfresh", "manifest 实为"),
