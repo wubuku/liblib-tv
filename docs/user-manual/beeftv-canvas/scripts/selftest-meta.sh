@@ -22,6 +22,11 @@
 #  11) 方向四之二**不误伤**：侧栏文字用短标题（「上传本地素材」vs 页面 h1）
 #      是有意设计，必须放行——**该方向只查存在性，不比文字**
 #
+# Batch 225 新增方向六之二（页内相对指代不许悬空），加了 2 例，**成对**：
+#  12) 能抓：把被引用的那句「运行时实证」改掉 → 下面那层证据声明悬空，必须报
+#  13) 不误伤：同一处耦合，只把指代方式换成自指的「本节」→ 必须放行
+#      （**「本节」恒成立，方向刻意不查**；少了它，12 可能只是「逢那句话就报」）
+#
 # 第 4 条是本闸最关键的一条：Batch 145 之所以能撞见那批过期数字，
 # 正是因为它们当时**没人扫**；但反过来，闸门也不能因此把
 # `AUDIT-RULES.md:334` 那句「README 写着 25 篇」当成当前声明去报错。
@@ -55,7 +60,7 @@ VOID=0
 # **还原的基准必须是「进来时什么样」，而不是「仓库里已提交什么样」**——
 # 否则这个脚本就成了一个会吃掉未提交改动的工具，而它本该是被信任的检查工具。
 SNAP="$(mktemp -d "${TMPDIR:-/tmp}/beef-meta-selftest.XXXXXX")"
-SNAP_FILES=(README.md 10-tasks/README.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md 30-concepts.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py scripts/verify-meta.py scripts/verify-endpoints.py scripts/verify-shortcuts.py scripts/verify-screenshots.py)
+SNAP_FILES=(README.md 10-tasks/README.md 10-tasks/timeline-editing.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md 30-concepts.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py scripts/verify-meta.py scripts/verify-endpoints.py scripts/verify-shortcuts.py scripts/verify-screenshots.py)
 
 snapshot() {
   cd "$ROOT" || exit 1
@@ -186,7 +191,12 @@ run_file_pass_case() {
   [ -f "$target" ] || { echo "  · 前提不成立：目标文件 $target 不存在；作废"; VOID=$((VOID+1)); return 0; }
   if ! python3 "$fixer" < "$target" > "$target.injected" 2>"$target.injecterr"; then
     echo "  · 前提不成立：注入脚本未命中锚点（$(head -1 "$target.injecterr" 2>/dev/null)）；作废该用例"
-    restore; return 0
+    # **Batch 225 修**：这里原本漏了 `VOID=$((VOID+1))`——同函数的下一个分支有。
+    # 后果不是「用例失败」，是**它静默消失**：既不进 PASS 也不进 VOID，直接 return 0。
+    # 脚本头自己写着「作废的用例既没验到、也没被算失败，是最容易骗过人的一种绿灯」，
+    # **而这行代码正是那句话的一个实例**。而它是 Batch 225 的用例 41 依赖的那个函数——
+    # 夹具一旦哪天锚点失配，用例 41 就会变成一盏假绿灯。
+    restore; VOID=$((VOID+1)); return 0
   fi
   if cmp -s "$target" "$target.injected"; then
     echo "  · 前提不成立：注入脚本空转（内容未变）；作废该用例"
@@ -536,6 +546,15 @@ run_file_case "38) config.mjs 里没有 srcExclude（必须 rc=2 未能核对）
 run_file_case "39) srcExclude 解析出 0 项（必须 rc=2：零输入不许报绿）" \
   ".vitepress/config.mjs" "$HERE/selftest-meta-fix-39-scope-exclude-empty.py" \
   "不得当成"
+# **方向六之二（Batch 225 新增）：页内相对指代不许悬空。40/41 成对。**
+# 40 钉「能抓」：把被引用的那句「运行时实证」改掉，分层声明就悬空了。
+# 41 钉「不误伤」：同一处耦合，只把指代方式换成自指的「本节」，必须放行——
+#    **「本节」在这张手册里恒成立，方向刻意不查它**（查了就是稳定误报）。
+run_file_case "40) 被引用的原句被改写 → 页内指代悬空（必须报）" \
+  "10-tasks/timeline-editing.md" "$HERE/selftest-meta-fix-40-relative-ref-dangling.py" \
+  "指代悬空"
+run_file_pass_case "41) 不误伤：指代改写成自指的「本节」（必须放行）" \
+  "10-tasks/timeline-editing.md" "$HERE/selftest-meta-fix-41-relative-ref-self.py"
 
 echo "=== 基线：真实仓库应当通过 ==="
 restore

@@ -27,6 +27,13 @@ Batch 143 立过一条「六道闸全绿不等于发布物正确」，
     实际调用的脚本三者一致。**这道闸盯着闸门体系自己**。
   方向四（Batch 153）：任务索引 ⇄ 页面标题双向对账——每个任务页都必须在索引里，
     且索引的链接文字与页面 h1 一致（或等于 `h1（……）` 这一有意形态）。
+  方向六之二（Batch 225）：页内相对指代不许悬空——「上表/下表/上图/下图/上面那句「X」」
+    必须指得到。**它与方向六同族**：一个指向文件，一个指向页面里的某张表/图/那句话。
+    而 Batch 220-224 那一串批次把「证据分层」立成了纪律，**分层的写法大量依赖相对指代**——
+    最典型是「**上面那句**『运行时实证』说的是 A，**而本节的** B 只做了源码核对」。
+    **今天全对，耦合却是隐式的**：有人改写上面那句话，下面这句就悬空，
+    而**悬空的分层声明比没有更坏**——读者被告知证据等级不同，却找不到该比对的那一处，
+    **于是只能假设两层一样**。
   方向四之二（Batch 154）：任务页还必须在 **vitepress 侧栏**里——侧栏是站点主导航，
     比 README 索引更关键。该方向**只查存在性、不查文字**，因为侧栏用短标题是有意设计。
 
@@ -912,10 +919,21 @@ def bare_error_prints(root):
 # 第一版只认 markdown，于是把 14 张**确实在用**的图判成「未被引用」。
 # **只判一种语法 = 稳定误报**，而误报会让人开始忽略闸门输出。
 # （与 Batch 150 判「文案逐字对账闸不可建」用的是同一条理由。）
+#: **参与发布的页面 = 除下面这些之外的全部 .md**（Batch 225 提为模块级常量）。
+#:
+#: **为什么提上来**：方向六之二（页内相对指代）要扫**同一批页面**，
+#: 而方向六原先把这份名单写死在函数体里。**两个方向各写一份 = 必然漂移的副本**——
+#: 漂移的后果是稳定的：两份名单一旦不同，两个方向就会在不同的页面集合上工作，
+#: **且谁都不会发现**（纪律 224/226）。
+#: **同一文件内共享一个常量不违反纪律 178**——那条说的是
+#: 「闸之间互相 import 会让任一方坏掉时另一方起不来」，而这里是同一进程的同一常量。
+PUBLISHED_SKIP = {"AUDIT.md", "AUDIT-RULES.md", "PROGRESS.md", "SOURCE_OBSERVATIONS.md",
+                  "PUBLISH.md", "FINAL-REPORT.md", "task-inventory.yml"}
+
+
 def link_integrity_check(root):
     """返回 (断链, 约定违反, 孤儿页, 统计字典)。"""
-    skip = {"AUDIT.md", "AUDIT-RULES.md", "PROGRESS.md", "SOURCE_OBSERVATIONS.md",
-            "PUBLISH.md", "FINAL-REPORT.md", "task-inventory.yml"}
+    skip = PUBLISHED_SKIP
     md_link = re.compile(r"\]\(([^)\s]+)\)")
     html_img = re.compile(r"<img\b[^>]*\bsrc=[\"']([^\"']+)[\"']", re.I)
 
@@ -974,6 +992,90 @@ def link_integrity_check(root):
     stats = {"pages": len(pages), "links": n_links, "imgs": n_imgs, "external": n_ext}
     return dead, viol, orphans, stats
 
+
+# ── 方向六之二：页内相对指代不许悬空（Batch 225 新增）────────────────────
+# **它与方向六同族**：方向六管「跨文件的引用是否可达」（md 链接与图片），
+# 本方向管「**同一页内**的引用是否指向真实存在的东西」——
+# 一个指向文件，一个指向「上面那张表」和「上面那句话」。
+#
+# **为什么值得单独立一个方向**：Batch 220-224 那一串批次把「证据分层」立成了纪律
+# （228/229/230/231/232），而**分层的写法大量依赖相对指代**——
+# 最典型的是 `timeline-editing.md`：「**上面那句**『运行时实证』说的是弹窗结构…，
+# **而本节的**轨道默认值…只做了源码核对」。
+# **今天全对**（实测 12 处可核对的指代零悬空），**但耦合是隐式的**：
+# 有人改写上面那句话的措辞、或把那张表移走，下面这句就**悬空**——
+# 而**悬空的分层声明比没有更坏**：读者被告知「证据等级不同」，
+# 却找不到该去比对的另一处，**于是只能假设两层一样**。
+#
+# **范围是量过之后才定的**（全库 32 处相对指代里）：
+#   · 「上表 / 下表 / 上图 / 下图 / 上面那句「X」」→ **可机械核对**（12 处）
+#   · 「本节 / 前述 / 上述」→ **自指，恒真无鉴别力**（18 处），不查
+#   · 「上文四步」→ **实测不可机械判定**：`subtitle-highlights.md` 的「上文四步」
+#     指的是 L17-20 那四步，而**最近的列表块是 L50-54 的五步**——
+#     严格判会误报、宽松判会漏，**全库仅此 1 处、假阳性率 100%，排除**。
+#   · 「下面那段」（`manage-canvases.md`）→ **无目标词，不可核对**；
+#     手写核对时我曾按「警告」二字去找被指对象，**结果判成悬空**——
+#     **读原文才发现被指对象就在下方两行，只是不含那两个字。**
+#     **这一条是本方向上线的头号理由**：探针自己的错，
+#     长得很像被测页面的错，**而只有机器能替你分**。
+REL_REF_RE = re.compile(r"(上表|下表|上图|下图|上面那[句段][^。；\n]{0,4}「([^」]{1,20})」)")
+
+
+def _is_table_row(line):
+    t = line.strip()
+    return t.startswith("|") and t.endswith("|") and not set(t) <= set("|-: ") and t.count("|") >= 2
+
+
+def _is_figure(line):
+    return "![" in line or line.strip().startswith("<img")
+
+
+def relative_ref_check(root):
+    """页内相对指代是否悬空。返回 (悬空列表, 统计字典, unverifiable)。
+
+    **扫不到任何可核对指代时 `unverifiable=True` 而不是「通过」**——
+    词表一旦悄悄失配（例如有人把「上表」改写成「上面的表」），
+    静默通过会让这个方向变成一盏永远绿的灯（纪律 216 的反面）。
+    """
+    dangling = []
+    n_tab = n_fig = n_sent = 0
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = [d for d in dirnames
+                       if d not in (".vitepress", "node_modules", ".git", "screenshots", "dist")]
+        for fn in sorted(filenames):
+            if not fn.endswith(".md") or fn in PUBLISHED_SKIP:
+                continue
+            full = os.path.join(dirpath, fn)
+            rel = os.path.relpath(full, root)
+            with open(full, encoding="utf-8") as fh:
+                lines = fh.read().split("\n")
+            for i, line in enumerate(lines):
+                for m in REL_REF_RE.finditer(line):
+                    word, target = m.group(1), m.group(2)
+                    if word in ("上表", "下表"):
+                        n_tab += 1
+                        hit = None
+                        if word == "上表":
+                            rng = range(i - 1, -1, -1)
+                        else:
+                            rng = range(i + 1, len(lines))
+                        for j in rng:
+                            if _is_table_row(lines[j]):
+                                hit = j + 1
+                                break
+                    elif word in ("上图", "下图"):
+                        n_fig += 1
+                        rng = range(i - 1, -1, -1) if word == "上图" else range(i + 1, len(lines))
+                        hit = next((j + 1 for j in rng if _is_figure(lines[j])), None)
+                    else:  # 上面那句「X」
+                        n_sent += 1
+                        hit = next((j + 1 for j in range(i - 1, -1, -1)
+                                    if target in lines[j]), None)
+                    if hit is None:
+                        dangling.append((rel, i + 1, m.group(0)))
+    checked = n_tab + n_fig + n_sent
+    stats = {"tab": n_tab, "fig": n_fig, "sent": n_sent, "checked": checked}
+    return dangling, stats, checked == 0
 
 # ── 方向一：登记表 ─────────────────────────────────────────────────
 # (文件名, 计数器, 该文件里用来写这个数的正则)
@@ -1215,6 +1317,24 @@ def main():
         print(f"  ✓ 内链完整：{lst['pages']} 个内容页、{lst['links']} 条 .md 相对链接 + "
               f"{lst['imgs']} 张 <img> 全部可达；无 #fragment、无绝对路径、无孤儿页"
               f"（外链 {lst['external']} 条）")
+
+    # ── 方向六之二：页内相对指代不许悬空（Batch 225 新增）──
+    print("-" * 62)
+    dangling, rst, unver = relative_ref_check(root)
+    for rel, lineno, word in dangling:
+        fail(f"  ✗ {rel}:{lineno} 的「{word}」指代悬空——**该方向上找不到它指的对象**；"
+             f"悬空的分层声明比没有更坏：读者被告知证据等级不同，"
+             f"却找不到该去比对的那一处，于是只能假设两层一样")
+    if unver:
+        # **走 fail() 而不是 return 2**：本闸没有 rc=2 的通道，
+        # 而「扫到 0 处」本身就是问题——词表失配会让这个方向变成一盏永远绿的灯
+        # （纪律 216 的反面）。**让它把构建点红，比让它安静地「未能核对」更有用。**
+        fail("  ✗ 页内相对指代：全库扫到 0 处可核对指代——**词表已失配**，"
+             "本方向从此变成一盏永远绿的灯（纪律 216 的反面）")
+    if not dangling and not unver:
+        print(f"  ✓ 页内指代不悬空：{rst['checked']} 处可核对指代（表格 {rst['tab']} / "
+              f"图 {rst['fig']} / 上面那句 {rst['sent']}）全部指得到"
+              f"（不查「本节/前述」这类自指——恒真无鉴别力）")
 
     # ── 方向七：闸门不得「只报错不失败」 ──
     print("-" * 62)
