@@ -44,8 +44,10 @@ Batch 178 的 34 例失败**全部发生在启动阶段**（import 失败、找�
 import ast
 import os
 import re
+import shutil
 import subprocess
 import sys
+import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from baseline import announce_fallback  # noqa: E402
@@ -93,7 +95,10 @@ SLOW = {
         "anchor": ("selftest-zero-input.py", "def direction_three"),
     },
     "selftest-selftest-bootable.py": {
-        "seconds": 34,           # 历史快照（Batch 201：13 例时 20.8s，加 2 例后 33.6s；Batch 202 同场复核 42.8s——**同样漂，见上一条**）
+        # **同一天同一台机器实测两次：68.0s 与 53.1s**（纪律 191/136：绝对值漂 15 秒）。
+        # **能确定的只有量级**——「它确实越过 30 秒阈值」；68 只当历史快照看。
+        # 本批新增的固定成本：方向十三让**每个沙箱**多跑 3 次 bash 探针，18 例共 54 次。
+        "seconds": 68,
         "why": "每一例都要 `copytree` 整份 `scripts/`（87 个文件）进沙箱再跑一遍闸 18，**而闸 18 现在还会在沙箱里重放慢反验的夹具前提**。33.6 秒已越过 30 秒阈值，**放进构建会让每次构建多花三分之一时间**。登记 + 提交前跑——**这与 `selftest-meta.sh` 是同一类必要成本**：它核的是「反验本身还能不能用」，而反验不在构建路径上。",
         "anchor": ("selftest-selftest-bootable.py", "m_slow_feature_missing"),
     },
@@ -194,6 +199,55 @@ def _looks_third_party(mod):
     """
     return mod in ("__future__", "builtins")
 
+
+
+def _extract_fn(src, name):
+    """把 `build-site.sh` 里的某个 shell 函数**原样抠出来**。
+
+    **为什么不 source 整份脚本**：一 source 它就真的开始建站。
+    抠到**行首的单个 `}`** 为止；单行函数（`fail`）就地结束。
+    **抠不出来就抛**——让用例作废，而不是拿一个空串继续跑：
+    作废的反验比失败的反验更危险，因为它连报红都不报（纪律 178）。
+    """
+    # **空白不能写死**：`log()` 在脚本里写成 `log()  {`（两个空格），
+    # 而 `fail()` 是单行体——两种形态都得抠得出来。
+    m = re.search(r"\n%s\(\)\s*\{" % re.escape(name), src)
+    assert m, "build-site.sh 里找不到函数 %s" % name
+    start = m.start()
+    head_end = src.find("\n", start + 1)
+    head = src[start + 1:head_end]
+    if head.rstrip().endswith("}"):
+        return head + "\n"
+    end = src.find("\n}\n", head_end)
+    assert end > head_end, "函数 %s 找不到行首的收尾花括号" % name
+    return src[start + 1:end + 3]
+
+
+def _run_gate_probe(stub_rc):
+    """**把 `build-site.sh` 的真 `run_gate` 抠出来跑一遍**，问它一道指定退出码的闸会怎样。
+
+    **为什么不 grep 判写法**：`out="$(...)"` 后面跟不跟 `|| rc=$?` 是写法，
+    而「闸失败时构建到底说不说话」是事实（纪律 171）。
+    **行为可判、写法不可判**，所以这里用真函数 + stub 闸真跑一遍。
+    返回 `(rc, 输出)`；输出含 ANSI 颜色码，判断时只找中文文案。
+    """
+    with open(os.path.join(ROOT, "build-site.sh"), encoding="utf-8") as fh:
+        src = fh.read()
+    fns = "".join(_extract_fn(src, n) + "\n\n" for n in ("log", "ok", "warn", "fail", "run_gate"))
+    tmp = tempfile.mkdtemp(prefix="run-gate-probe.")
+    try:
+        os.makedirs(os.path.join(tmp, "scripts"), exist_ok=True)
+        with open(os.path.join(tmp, "scripts", "stub.py"), "w", encoding="utf-8") as fh:
+            fh.write("import sys\nprint('闸的输出：某某与手册对不上')\n"
+                     "print('第二行')\nsys.exit(%d)\n" % stub_rc)
+        probe = ('set -euo pipefail\nTS="00:00:00"\n' + fns + 'run_gate "stub.py" "试闸"\n')
+        p = os.path.join(tmp, "probe.sh")
+        with open(p, "w", encoding="utf-8") as fh:
+            fh.write(probe)
+        r = subprocess.run(["bash", p], cwd=tmp, capture_output=True, text=True, timeout=60)
+        return r.returncode, (r.stdout or "") + (r.stderr or "")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 def _build_invokes(fn):
@@ -648,6 +702,37 @@ def main():
             "　→ 上游 `origin/main` 改了这段内容或路径：要么改夹具的锚，"
             "要么把该用例移到不再成立的位置")
 
+    # 方向十三（**Batch 204 新增**）：**闸的失败必须真的被说出来**。
+    # 背景是实测出来的：`run_gate` 原来写成 `out="$(python3 ...)"; rc=$?`，
+    # 而在 `set -e` 下这一行会让整份构建脚本当场退出——
+    # `rc=$?` 与三段分支**一行都执行不到**，`$out` 也随退出被丢掉。
+    # 于是闸 21 报红时，构建**只留下一个 rc=1，日志停在闸 20，再无一句话**。
+    # **一个从不执行的报错分支，比没有报错分支更坏**：它让人以为构建是透明的。
+    # 这里**行为可判**：抠出真函数、配 stub 闸真跑一遍，三种退出码各问一次。
+    _try = _run_gate_probe
+    rc1, out1 = _try(1)
+    if rc1 != 1 or "核对不一致" not in out1 or "试闸" not in out1 or "闸的输出" not in out1:
+        problems.append(
+            "方向十三：闸报「不一致」时，构建**没有把它说出来**（rc=%d）"
+            "　→ `run_gate` 里的 `out=\"$(...)\"` 少了 `|| rc=$?`，"
+            "`set -e` 会让它当场退出，三段分支永远执行不到；"
+            "**闸名与闸的输出都会一起被丢掉**" % rc1)
+    rc2, out2 = _try(2)
+    if rc2 != 1 or "未能核对" not in out2 or "核对不一致" in out2:
+        problems.append(
+            "方向十三：闸报「未能核对」时，构建**没说清楚**（rc=%d）"
+            "　→ 退出码 2 **不得**被说成「核对不一致」——那会把人引去手册里"
+            "找根本不存在的问题（Batch 160 立这个码的理由）" % rc2)
+    # **成功路径不检查闸名**：`ok "$out"` 只打闸自己的输出，
+    # 闸名只出现在 `warn`/`fail` 两条分支里——**这是既有设计，不是缺陷**，
+    # 而判据要按事实写：第一版这里也查了「试闸」，于是 rc=0 正常却报红。
+    # **判据把「没检查过的事实」当成失败，等于自己制造假阳性。**
+    rc0, out0 = _try(0)
+    if rc0 != 0 or "闸的输出" not in out0 or "[ FAIL " in out0:
+        problems.append(
+            "方向十三：闸 rc=0 时，构建**没有正常收下它的输出**（rc=%d）——"
+            "这一支是**不误伤**：修 run_gate 时最容易把成功路径也弄坏" % rc0)
+
     checked = py_ok + sh_ok
     if problems:
         print("反验启动核对：%d 份反验中有 %d 处问题" % (len(names), len(problems)))
@@ -663,6 +748,8 @@ def main():
     print("  另有 %d 份注入夹具（selftest-*-fix-*.py）语法可解析" % fx_ok)
     print("  慢反验 %d 份已登记（%s）——提交前手动跑"
           % (len(SLOW), "、".join(sorted(SLOW))))
+    print("  构建出口核对（方向十三）：闸 rc=0/1/2 三种结局**都被真跑了一遍**"
+          "（rc=1 报「不一致」、rc=2 报「未能核对」而不是「不一致」、rc=0 正常收下）")
     print("  慢反验前提核对（方向五/五之二，**只查前提不查结果**）："
           "`selftest-meta.sh` %d 个夹具锚点、%d 个因目标不在场跳过；"
           "`selftest-unreachable.sh` %d/%d 个用例前提成立、%d 个跳过"

@@ -44,6 +44,7 @@
 退出码：0 无人空转；1 至少一个闸在零输入下报绿。
 """
 
+import ast
 import os
 import re
 import shutil
@@ -62,11 +63,75 @@ ZERO_COUNT_RE = re.compile(r"(\d+)\s*个(?:文件|页面|张|项|条|篇|断言|
 #: 方向一在临时树上跑，怎么写都无所谓；**方向三在真实手册树上跑**，
 #: 一道闸若有了写操作，体检就会把「先 nuked 再检查」变成事实。
 #: 这个前提不能靠「我记得闸都是只读的」——**它必须自己核**。
-WRITE_RE = re.compile(
-    r"""open\(\s*[^)]*?["'][wax+]"""
-    r"""|os\.remove\(|os\.unlink\(|os\.rmdir\(|shutil\.rmtree\("""
-    r"""|os\.makedirs\(|os\.mkdir\("""
-    r"""|\.write_text\(|\.write_bytes\(""")
+#: **写操作的入口**（Batch 204 从正则换成 AST，理由见 `check_readonly` 的说明）。
+#: 第一版是逐行正则 `open\(\s*[^)]*?["'][wax+]`，而 `[^)]*?` **跨不过一个 `)`**——
+#: `open(os.path.join(tmp, "x"), "w")` 这种最常见的写法它**完全看不见**。
+#: **一道看不见 `open(f(...), "w")` 的只读判据，等于没有这道判据。**
+WRITE_FUNCS = {
+    # 删除 / 建目录
+    "remove", "unlink", "rmdir", "removedirs", "makedirs", "mkdir",
+    "rmtree", "copyfile", "copy2", "copytree", "move", "rename", "chmod",
+    # 写文件
+    "write_text", "write_bytes",
+}
+#: `open(...)` 的第 2 个实参（mode）里出现这些字母就算写。
+WRITE_MODE_CHARS = "wax+"
+
+
+def _call_name(node):
+    """取一个调用点被调用的名字（`open` / `os.remove` / `Path.write_text` 的末段）。"""
+    f = node.func
+    if isinstance(f, ast.Name):
+        return f.id
+    if isinstance(f, ast.Attribute):
+        return f.attr
+    return None
+
+
+def _is_write_call(node):
+    """这个调用是不是一次写操作（**认事实：被调什么、第几个实参是什么**）。"""
+    name = _call_name(node)
+    if name is None:
+        return False
+    if name in WRITE_FUNCS:
+        return True
+    if name == "open" and len(node.args) >= 2:
+        mode = node.args[1]
+        # 只在 mode 是**字面量**时判；算出来的 mode 静态不可知，**如实不算**
+        # （声称覆盖了它其实没覆盖的，比不覆盖更坏）。
+        if isinstance(mode, ast.Constant) and isinstance(mode.value, str):
+            return any(c in mode.value for c in WRITE_MODE_CHARS)
+    return False
+
+
+def write_calls(path):
+    """返回这个文件里所有写操作的行号（**语法坏掉就抛**，不返回空列表）。
+
+    **语法坏掉必须抛而不是当「没有写操作」**——那会让一道坏掉的闸
+    在方向三眼里变成一道干净的闸（纪律 178 的同款：查不了 ≠ 查过了没问题）。
+    """
+    with open(path, encoding="utf-8") as fh:
+        tree = ast.parse(fh.read(), filename=path)
+    return {n.lineno for n in ast.walk(tree)
+            if isinstance(n, ast.Call) and _is_write_call(n)}
+
+
+#: **逐行**豁免，不是逐个文件放行（Batch 204）。
+#: **按文件列 = 整份文件随便写**——那等于把一道闸变回可写，
+#: 而方向三跑的正是**真实手册树**；**按行列 = 只放过这几行**，
+#: 同一份闸里**新增任何一行写操作都会立刻重新变红**。
+#: 每条都写清「为什么这一行可以写」——**没有理由的豁免等于没有豁免**。
+READONLY_EXEMPT = {
+    "verify-selftest-bootable.py": {
+        236: "方向十三：在 `tempfile.mkdtemp()` 出来的临时目录里建 `scripts/`"
+             "（**不在手册树里**——`mkdtemp` 落在系统临时目录）",
+        237: "方向十三：往那个临时目录写 stub 闸脚本"
+             "（**这一行老正则看不见**——`[^)]?` 跨不过 `os.path.join(...)` 里那个 `)`，"
+             "所以第一版豁免表照着正则的输出建，**漏的正是它**）",
+        242: "方向十三：往那个临时目录写探针脚本",
+        247: "方向十三：删掉那个临时目录",
+    },
+}
 
 
 def check_readonly(gates):
@@ -78,14 +143,33 @@ def check_readonly(gates):
 
     所以这里**主动核**：有写操作就 **rc=2「未能核对」**并拒绝开跑。
     **判据的边界就该写在判据里**，不让人以为它覆盖了它没覆盖的东西。
+
+    **「先核前提再执行」的顺序不能动**（Batch 204）：
+    有人提过改用「跑完再比对手册树有没有变」——那是**跑完之后**才发现，
+    而方向三跑的就是真实手册树，**先核才安全**。
+    所以豁免走**逐行登记**，不走事后 diff。
+
+    **豁免双向可检**：登记的那一行若已不是写操作，报「例外已失效，请删掉」——
+    **一条过期的豁免会让真写操作悄悄重新变红**，那比没有豁免更坏。
+
+    **本判据的边界（Batch 204 实测后写下来的）**：
+      · 判的是**调用点**：调用哪个函数、第几个实参是什么——由语法树说了算，
+        **不由行里的字符顺序说了算**（第一版按行正则，`[^)]*?` 跨不过 `)`，
+        `open(os.path.join(tmp, "x"), "w")` 会被**完全放过**）；
+      · `open` 的 mode **只认字面量**，算出来的 mode 静态不可知，**如实不算**；
+      · **子进程里的写看不见**（`subprocess` 调外部程序改文件），
+        **判据覆盖不到的地方必须说出来，而不是让人以为它全覆盖**。
     """
     dirty = []
     for gate in gates:
         path = os.path.join(HERE, gate)
-        with open(path, encoding="utf-8") as fh:
-            for n, line in enumerate(fh, 1):
-                if WRITE_RE.search(line):
-                    dirty.append("%s:%d" % (gate, n))
+        allow = READONLY_EXEMPT.get(gate, {})
+        hit = write_calls(path)
+        for n in sorted(hit - set(allow)):
+            dirty.append("%s:%d 出现了不在豁免表里的写操作" % (gate, n))
+        for n in sorted(set(allow) - hit):
+            dirty.append("%s:%d 的只读豁免**已失效**（那一行不再是写操作）"
+                         "　→ 请删掉这条登记：留着它，下一个人会以为这一行仍然被放过" % (gate, n))
     return dirty
 
 #: 这些闸的输入全部在手册树之外（读上游仓库或扫 scripts/），空树对它们没有意义，
@@ -333,12 +417,15 @@ def main():
     # 顺序反了就等于在真实手册树上执行一段还没被允许的代码。
     dirty = check_readonly(gates)
     if dirty:
-        print("零输入体检（方向三）**拒绝开跑**：%d 处写操作出现在闸里 ——" % len(dirty))
+        print("零输入体检（方向三）**拒绝开跑**：%d 处闸里出现了不该有的写操作"
+              "或已失效的只读豁免 ——" % len(dirty))
         for where in dirty[:10]:
             print("  · %s" % where)
         print("    → 方向三跑在**真实手册树**上（它的前提就是「手册树正常」），"
               "闸若可写，体检会先改再核。")
-        print("    → 要么把写操作挪出闸（闸应当只读），要么给方向三单独复制一份手册树。")
+        print("    → 要么把写操作挪出闸（闸应当只读），"
+              "要么按**行**登记进 `READONLY_EXEMPT` 并写清理由，"
+              "要么给方向三单独复制一份手册树。")
         return 2
 
     t0 = time.time()

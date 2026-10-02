@@ -14,6 +14,9 @@
   9  慢反验夹具没注入特征                → 必报（方向五之二，**与上一条是不同形态**）
   6  **注入夹具不得被当成反验**            → 必须不报（**上线首跑就误报过 58 处**）
   7  真实现状                              → 不报
+  8  构建出口哑了（少一个 `|| rc=$?`）        → 必报（方向十三，Batch 204）
+  9  构建出口能把三种退出码说清楚             → 必须不报（**不误伤**）
+  10  `未能核对` 被说成 `核对不一致`          → 必报（方向十三，**第三个形态**）
 
 **用例 6 是本文件的核心**：闸 18 上线首跑时把 58 份 `selftest-*-fix-*.py`
 **注入夹具**当成了反验，报出 58 处「没有指向被测闸门」——
@@ -33,6 +36,7 @@ import tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GATE = os.path.join(ROOT, "scripts", "verify-selftest-bootable.py")
 SCRIPTS = os.path.join(ROOT, "scripts")
+BUILD = os.path.join(ROOT, "build-site.sh")
 
 results = []
 
@@ -72,6 +76,10 @@ def sandbox():
     tmp = tempfile.mkdtemp(prefix="beef-bootable-selftest.")
     shutil.copytree(SCRIPTS, os.path.join(tmp, "scripts"))
     shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-selftest-bootable.py"))
+    # **Batch 204：方向十三与方向四c 都要读 `build-site.sh`**（闸唯一的出口）。
+    # 沙箱里没有它，方向十三会在**每一个**用例里报「抠不出函数」——
+    # 于是不是新加的三条变红，而是全部用例一起变红。
+    shutil.copy(BUILD, os.path.join(tmp, "build-site.sh"))
     return tmp
 
 
@@ -345,13 +353,64 @@ def m_slow_feature_missing():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── 16/17/18 构建出口（方向十三，Batch 204）──────────────────────────
+# **方向十三问的是行为，不是写法**：闸失败时构建说不说话。
+# 所以反验也不能去 grep「有没有 `|| rc=$?`」——那是在测写法。
+# 这里把 `build-site.sh` 改回**那个会静默中止的写法**，方向十三必须报出来。
+_OLD_RUN_GATE = 'out="$(python3 "scripts/$script" 2>&1)" || rc=$?\n'
+_NEW_RUN_GATE = 'out="$(python3 "scripts/$script" 2>&1)"; rc=$?\n'
+
+
+def m_run_gate_silent():
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "build-site.sh")
+        t = read(p)
+        assert t.count(_OLD_RUN_GATE) == 1, "前提失配：build-site.sh 里那个 `|| rc=$?` 不见了"
+        write(p, t.replace(_OLD_RUN_GATE, _NEW_RUN_GATE))
+        rc, out = run_in(tmp)
+        record("16 构建出口哑了→必报", rc == 1 and "方向十三" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_run_gate_reports():
+    """**不误伤的那一半**：修 `run_gate` 时最容易顺手把成功路径也弄坏。"""
+    check_anchor()
+    tmp = sandbox()
+    try:
+        rc, out = run_in(tmp)
+        record("17 出口能报（不误伤）→必须不报", rc == 0, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_run_gate_confuses_codes():
+    """**第三个形态**：`未能核对` 被说成 `核对不一致`——Batch 160 专门立 rc=2 就是防这个。"""
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "build-site.sh")
+        t = read(p)
+        old = '  if [ "$rc" -eq 2 ]; then\n'
+        assert t.count(old) == 1, "前提失配：build-site.sh 里找不到 rc=2 分支"
+        write(p, t.replace(old, "  if false; then\n"))
+        rc, out = run_in(tmp)
+        record("18 未能核对被说成不一致→必报",
+               rc == 1 and "方向十三" in out and "未能核对" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main():
     tests = [m_clean, m_broken_selftest_syntax, m_broken_fixture_syntax,
              m_broken_shell, m_missing_local_module, m_fixture_not_treated_as_selftest,
              m_real_selftest_detected, m_slow_entry_under_budget, m_slow_not_registered,
              m_never_measured, m_comment_is_not_invocation,
              m_fixture_anchor_missed, m_no_fixture_triples,
-             m_slow_fixture_crashes, m_slow_feature_missing]
+             m_slow_fixture_crashes, m_slow_feature_missing,
+             m_run_gate_silent, m_run_gate_reports, m_run_gate_confuses_codes]
     for t in tests:
         try:
             t()
