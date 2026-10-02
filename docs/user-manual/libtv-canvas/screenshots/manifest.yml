@@ -1457,3 +1457,25 @@ screenshots:
     visible_text: 参考 标记 特效 角色库 运镜 猫在窗台上打盹 2.0 全能参考 16:9 · 720P · 5s · 1个 135
     alt: 视频节点参数条**七枚**从左到右：`2.0 ▾` / `全能参考 ▾` / `16:9 · 720P · 5s · 1个 · 🔊 ▾` / `📄`（**提示词优化**）/ `文A`（**翻译提示词**）/ `⚙`（高级设置）/ **白色圆形上箭头**（生成按钮）。`⚡135` 是积分数字**不是按钮**。⭐ 生成按钮的身份是靠**音频节点同位置那枚的禁用态**（`disabled` + `cursor: not-allowed` + tooltip「请输入提示词**或添加参考素材**」）交叉推断的 —— 视频这枚 `disabled:false` 会真扣 135 积分，**本手册没点**
     sha256: 1fff3f42909df270073bef5d2d53561063216fff66ea6a03f07f8031602235bf
+  - file: screenshots/M-169-图片-参数条按钮命名.png
+    task_id: create-nodes
+    step: 85
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 先用抽屉「定位到节点」把图片节点拉进画面，再在节点框内**扫网格找独占点**（要求 `elementFromPoint(x,y).closest(".react-flow__node") === 目标`），最后**先验悬停点归属再读 Tooltip** —— AZ1 那批按钮 rect 都在 y=747..779，**压在底栏工具条上**，读回的 `移动`/`素材库`/`生成历史` 全是底栏的 tooltip
+    visible_text: 参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink
+    alt: 图片节点参数条**七枚**逐枚悬停实名：`Lib Image 2.5 Pro` / `16:9 · 标准画质 · 2K · 1张` / `预设`（带 aria）/ **`Panavision DXL2 已关闭 Arri Signature Prime 35mm ƒ/4`**（**无文字、无 aria、连 SVG 都没有**那枚）/ `翻译提示词` / `⚙` / 生成按钮（`disabled` + `cursor: not-allowed` + 「请输入提示词或添加参考素材」）。⭐ **摄像机那枚的 tooltip 直接报出当前相机/镜头/焦距/光圈与开关状态**，不点开也能看出设置。⚠️ **图片节点没有 `📄 提示词优化`** —— 只有视频节点有
+    sha256: 62b898458cf72bdafa7a80e02094a81a405caa5ac0e399e939c4e62bca15147c
+  - file: screenshots/M-170-重名-定位到节点.png
+    task_id: organize-canvas
+    step: 86
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点抽屉行内「定位到节点」，前后各读一次 `.react-flow__viewport` 的 transform
+    visible_text: 未命名工作区 画布 2 画布 资产 所有评级 共 11 节点
+    alt: **手册此前完全没记的一处副作用**：「定位到节点」不只平移画布，**还把缩放改成 `100%`** —— 实测 `scale` `0.42 → 1`、`translate` `-238,-62 → -1623,-274`，**画布上所有节点一起从 148×148 变成 350×350**，不只是被定位的那一个。⚠️ 缩放按画布持久化，**刷新也不会自己回去**。💡 反过来这也是一个「回到 100%」的快捷入口
+    sha256: 8c28dfb698f82c02f4cf54ab4a6729194a900efa3007ffd275fec42def215b1e
