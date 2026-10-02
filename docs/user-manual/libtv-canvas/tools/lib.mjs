@@ -38,7 +38,13 @@ export async function launch(opts = {}) {
     locale: 'zh-CN',
     timezoneId: 'Asia/Shanghai',
     deviceScaleFactor: 2,
-    reducedMotion: 'reduce',
+    // 'reduce' 是为了让截图可比（动画停在中途不会每次都不一样）。
+    // ⚠️ 但要**按需覆盖**：站点有些元素靠动画驱动 inline opacity，
+    //    在 'reduce' 下过渡被跳过，它们可能停在 opacity 0 —— 也就是
+    //    「DOM 里有、屏幕上没有」。要核实某个元素到底显不显示，
+    //    用 launch({ reducedMotion: 'no-preference' }) 再量**整条祖先链的 opacity 连乘**
+    //    （只看它自己那一层会读出假的稳定值，CI-2 就栽在这儿）。
+    reducedMotion: opts.reducedMotion ?? 'reduce',
     colorScheme: 'light',
   });
   ctx.setDefaultTimeout(opts.timeout ?? 20000);

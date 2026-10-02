@@ -912,4 +912,4 @@ https://www.liblib.tv/canvas?spaceId=…&projectId=…
 
 - [10-tasks/](10-tasks/README.md) —— 任务指南索引
 - [20-reference.md](20-reference.md) —— 参数与名词
-- [task-inventory.yml](task-inventory.yml) —— 本手册的验证边界逐条登记
+- `task-inventory.yml`（仓库内，不随站点发布） —— 本手册的验证边界逐条登记

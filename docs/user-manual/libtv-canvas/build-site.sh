@@ -187,6 +187,16 @@ $LITERAL_BOLD"; }
 [ "$DIST_PNG" -eq "$PNG_COUNT" ] || fail "产物截图数 $DIST_PNG 与源目录 $PNG_COUNT 不一致，有图没被打包"
 ok "全部 $DIST_PNG 张截图均已打包进产物"
 
+# 校验 6：锚点链接。
+# ⭐ 上面「产物无死链」只查 href 指向的 .html 存不存在，**不查 #锚点**。
+#    标题一改，链接就悄悄烂掉，点进去只是落在页顶。CI 批实测一次抓出 5 条历史失效锚点。
+if command -v python3 >/dev/null 2>&1; then
+  LINK_AUDIT="$(python3 "$SCRIPT_DIR/tools/link-audit.py" 2>&1)" \
+    && ok "锚点链接全部有效" \
+    || fail "锚点链接失效：
+$LINK_AUDIT"
+fi
+
 # ---------- 完成 ----------
 log "════════════════════════════════════════════"
 ok "构建成功！发布产物: $SCRIPT_DIR/.vitepress/dist"

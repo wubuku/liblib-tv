@@ -157,7 +157,7 @@ TV Director 会**真的动你的画布**（建节点、改配置），并且可�
 
 资产管理抽屉每行的 `⋯` 菜单里有 `添加到Agent` —— 点它等于「开一张新对话 +
 把节点挂成附件」，**不会自动发送**。实测细节见
-[organize-canvas.md](organize-canvas.md#更多操作菜单里的四项)。
+[organize-canvas.md](organize-canvas.md#⋯-菜单里的四项)。
 
 ---
 
