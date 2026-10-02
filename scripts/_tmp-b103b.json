@@ -1,0 +1,209 @@
+{
+ "at": "2026-10-02T12:11:28.972Z",
+ "containers": [
+  {
+   "tag": "DIV",
+   "tid": "canvas-top-bar-left",
+   "id": "",
+   "aria": null,
+   "rect": "12,10 871×40",
+   "nBtn": 3
+  },
+  {
+   "tag": "ASIDE",
+   "tid": "canvas-fixed-toolbar-left-rail",
+   "id": "",
+   "aria": "Canvas left toolbar",
+   "rect": "12,72 160×632",
+   "nBtn": 9
+  },
+  {
+   "tag": "DIV",
+   "tid": null,
+   "id": "",
+   "aria": null,
+   "rect": "12,72 160×632",
+   "nBtn": 9
+  },
+  {
+   "tag": "DIV",
+   "tid": "canvas-navigation-shell",
+   "id": "",
+   "aria": null,
+   "rect": "12,189 160×398",
+   "nBtn": 9
+  },
+  {
+   "tag": "DIV",
+   "tid": "canvas-navigation-mask",
+   "id": "",
+   "aria": null,
+   "rect": "12,189 160×398",
+   "nBtn": 0
+  },
+  {
+   "tag": "DIV",
+   "tid": "canvas-navigation-mask-backdrop",
+   "id": "",
+   "aria": null,
+   "rect": "12,189 160×398",
+   "nBtn": 0
+  },
+  {
+   "tag": "DIV",
+   "tid": "canvas-navigation-mask-gradient",
+   "id": "",
+   "aria": null,
+   "rect": "12,189 160×398",
+   "nBtn": 0
+  },
+  {
+   "tag": "DIV",
+   "tid": "canvas-navigation-scroll-viewport",
+   "id": "",
+   "aria": null,
+   "rect": "12,189 160×398",
+   "nBtn": 9
+  },
+  {
+   "tag": "DIV",
+   "tid": "canvas-navigation-dock",
+   "id": "",
+   "aria": null,
+   "rect": "12,668 164×36",
+   "nBtn": 4
+  }
+ ],
+ "rail": {
+  "boxTag": "DIV",
+  "boxTid": null,
+  "boxId": "",
+  "boxRect": "12,72 160×632",
+  "nDescendantBtns": 9,
+  "count": 9,
+  "testidNull": 9,
+  "items": [
+   {
+    "aria": "文本",
+    "tid": null,
+    "y": 193,
+    "x": 16,
+    "w": 40,
+    "h": 40,
+    "insideByCenter": true,
+    "hitSelf": true
+   },
+   {
+    "aria": "图片",
+    "tid": null,
+    "y": 235,
+    "x": 16,
+    "w": 40,
+    "h": 40,
+    "insideByCenter": true,
+    "hitSelf": true
+   },
+   {
+    "aria": "视频",
+    "tid": null,
+    "y": 277,
+    "x": 16,
+    "w": 40,
+    "h": 40,
+    "insideByCenter": true,
+    "hitSelf": true
+   },
+   {
+    "aria": "音频",
+    "tid": null,
+    "y": 319,
+    "x": 16,
+    "w": 40,
+    "h": 40,
+    "insideByCenter": true,
+    "hitSelf": true
+   },
+   {
+    "aria": "时间线",
+    "tid": null,
+    "y": 361,
+    "x": 16,
+    "w": 40,
+    "h": 40,
+    "insideByCenter": true,
+    "hitSelf": true
+   },
+   {
+    "aria": "主体",
+    "tid": null,
+    "y": 403,
+    "x": 16,
+    "w": 40,
+    "h": 40,
+    "insideByCenter": true,
+    "hitSelf": true
+   },
+   {
+    "aria": "导演台",
+    "tid": null,
+    "y": 445,
+    "x": 16,
+    "w": 40,
+    "h": 40,
+    "insideByCenter": true,
+    "hitSelf": true
+   },
+   {
+    "aria": "资产库",
+    "tid": null,
+    "y": 501,
+    "x": 16,
+    "w": 40,
+    "h": 40,
+    "insideByCenter": true,
+    "hitSelf": true
+   },
+   {
+    "aria": "上传",
+    "tid": null,
+    "y": 543,
+    "x": 16,
+    "w": 40,
+    "h": 40,
+    "insideByCenter": true,
+    "hitSelf": true
+   }
+  ],
+  "ys": [
+   193,
+   235,
+   277,
+   319,
+   361,
+   403,
+   445,
+   501,
+   543
+  ],
+  "steps": [
+   42,
+   42,
+   42,
+   42,
+   42,
+   42,
+   56,
+   42
+  ]
+ },
+ "cross": {
+  "all": 9,
+  "withAria": 9,
+  "nonZero": 9,
+  "both": 9,
+  "dropped": []
+ },
+ "end": {
+  "scale": 0.6
+ }
+}
