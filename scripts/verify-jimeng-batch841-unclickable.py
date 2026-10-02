@@ -2299,13 +2299,14 @@ def main() -> int:
           # 890 自己就把两条「仍未验证」留在了基线里。
           and "机制已定位到一层、但未钉死" in _ausrc
           and "仍然存在的差异" in _ausrc
-          and "**至今没测到**" in _ausrc
-          # ⚠️⚠️ 第三版（891 推进了事实）：「确切规则**未验死**」那句被
-          # **891 证伪**换掉了 ⇒ 锚点跟着改成「**已证伪**」。但**不许**因此
-          # 把「源站有没有 preventDefault **至今没测到**」一起删掉 ——
-          # 891 证伪的是**通用假设**，**证不了源站自己的行为**。
+          # ⚠️⚠️ 第四版（892 把「有没有 preventDefault」测掉了）：原锚点
+          # 「**至今没测到**」已过时 ⇒ 换成 891/892 留下的**当前**那个未钉死的
+          # 东西：那个**矛盾**。**判据要跟上事实**，但**不许**因为
+          # 「preventDefault 已有答案」就把矛盾一起删掉。
           and "891 已把这条「浏览器规则」假设证伪" in _ausrc
-          and "空白页**证不了**源站自己的行为" in _ausrc)
+          and "空白页**证不了**源站自己的行为" in _ausrc
+          and '"contradiction_891_vs_source_still_open"' in _ausrc
+          and "**不可能同时成立**" in _ausrc)
     # ══════════ 批 890：DD.8 那条差异的机制，查到一层就**停** ══════════
     p890 = ROOT / "scripts/jimeng_probe890_nodefocus_why_src.py"
     p890b = ROOT / "scripts/jimeng_probe890b_nodefocus_why2_src.py"
@@ -2350,13 +2351,16 @@ def main() -> int:
           "复刻侧 JS 调 `focus()` 的次数是 0" in _ausrc
           and "纯浏览器原生" in _ausrc
           and "有没有被 `preventDefault()`" in _ausrc
-          and "**至今没测到**" in _ausrc
-          # ⚠️ 第二版（891 证伪了那条「浏览器规则」假设）：
-          # 原锚点「确切规则**未验死**」已被 891 换成「**已证伪**」——
-          # **判据要跟上事实**，但**不许**顺势把「源站自己有没有 preventDefault
-          # 至今没测到」这条删掉（891 只否掉了**通用**假设）。
+          # ⚠️⚠️ 第三版（892 把这一格测掉了）：原锚点「**至今没测到**」已过时
+          # ⇒ 改成「**892 已测掉：没有**」。**判据要跟上事实**，但
+          # **不许**因此把 891 那条「**已证伪**」和 892 留下的
+          # 「`cancelBubble` 不可信 / 那个矛盾仍未钉死」一起删掉。
+          and "**892 已测掉：" in _ausrc
           and "891 已把这条「浏览器规则」假设证伪" in _ausrc
-          and "读不到不代表没有" in _ausrc)
+          # 「读不到不代表没有」这句**必须留着** —— 它是 890b→892 取法
+          # 换代的理由，也是通用教训
+          and "读不到不代表没有" in _ausrc
+          and "这一步仍未测到" in _ausrc)
     check("EE.5 「点节点中心那个坐标落到了谁」只**说明落点是谁**，"
           "**不许**据此推出「所以焦点会/不会移动」—— 那一步**没测**"
           "（落点是不可聚焦后代：源站 `svg`/tabIndex=-1、复刻 `SPAN`/tabIndex=-1；"
@@ -2382,17 +2386,23 @@ def main() -> int:
           and "不是前提" in _ausrc
           and "「祖先可聚焦」不是前提" in _ausrc
           and "「落点不可聚焦」不是前提" in _ausrc)
-    check("FF.2 证伪**收窄**出唯一候选：只有 **`preventDefault()`** 能阻止"
+    check("FF.2 证伪**收窄**出当时的唯一候选：只有 **`preventDefault()`** 能阻止"
           "浏览器移动焦点（**`stopPropagation` 挡不住** —— 只停冒泡、"
-          "**不**阻止默认）。⚠️ 而「源站到底有没有 preventDefault」"
-          "**仍未测到**（890b 挂在 document 冒泡阶段，事件**没冒泡到** document，"
-          "读数空数组 ⇒ 读不到**不代表没有**），下一批的取法也写在基线里",
+          "**不**阻止默认）。"
+          "⚠️⚠️ **本条第二版（892 推进了事实）**：891 写的「源站有没有 "
+          "preventDefault **至今没测到**」**已被 892 测掉**（结论：**没**有）。"
+          "**判据要跟上事实**，但**不许**因此把「`cancelBubble` 不能当 "
+          "stopPropagation 的证据」那条一起删掉 —— 892 读到的是 "
+          "`bubbles=True` 却**没冒泡到 document** 这一组拉扯读数，"
+          "那一步**仍未测到**",
           "**只有 `preventDefault()` 能阻止浏览器移动焦点**" in _ausrc
           and "`stopPropagation` 挡不住" in _ausrc
           and '"src_site_preventdefault_still_unmeasured"' in _ausrc
-          and "**仍未测到**" in _ausrc
-          and "读不到不代表没有" in _ausrc
-          and "派发**结束**后再读那个对象的 `defaultPrevented`" in _ausrc)
+          # 891 那格**已被取代**（保留是为了记录取法的演进）
+          and "**已被 892 取代**" in _ausrc
+          and "见 `src_site_preventdefault_False_892`" in _ausrc
+          # ⚠️ 但 892 自己也留了一个「仍未测到」—— 不许跟着删
+          and "这一步仍未测到" in _ausrc)
     check("FF.3 方法论：**「读数能这么解释」不等于「这条规则成立」** —— 一条"
           "机制假设要能被采信得满足两条：① 能解释**全部**相关读数；"
           "② **扛得住**一个专门为证伪它设计的**最小复现**。第 ② 条是新的，"
@@ -2422,6 +2432,44 @@ def main() -> int:
           "数组名与 handler 名**必须分开**" in _p891
           and "别当成" in _p891
           and "「浏览器没触发」" in _p891)
+    # ══════════ 批 892：「唯一候选」被否掉 ⇒ 留下一个**矛盾** ══════════
+    p892 = ROOT / "scripts/jimeng_probe892_preventdefault_src.py"
+    _p892 = p892.read_text(encoding="utf-8") if p892.exists() else ""
+    check("GG.1 892 用 891 写在基线里的那条取法测那**唯一候选**："
+          "**捕获阶段只保存事件对象的引用**（不读值），等**派发结束**后再读 "
+          "`defaultPrevented` —— 事件对象派发结束后仍保留**最终**值，"
+          "所以**与 handler 跑没跑完无关**。结论：源站**没** preventDefault"
+          "（A/B 各 2/2）⇒ 891 的候选**被否掉**",
+          bool(_p892)
+          and "w.onCap = (e) => { if (!w.saved) { w.saved = e;" in _p892
+          and "等事件派发**彻底结束**再读" in _p892
+          and '"src_site_preventdefault_False_892"' in _ausrc
+          and "**没** preventDefault" in _ausrc
+          and "被否掉了" in _ausrc)
+    check("GG.2 `cancelBubble` **派发结束后会被重置** ⇒ 它**不能**当"
+          "「有没有人调过 `stopPropagation()`」的证据。892 读到的是一组"
+          "**互相拉扯**的读数（`bubbles=True` 但 document 冒泡收到 **0** 次），"
+          "这一步**仍未测到**，**不许**拿 `cancelBubble=False` 当结论",
+          '"cancelbubble_unreliable_after_dispatch"' in _ausrc
+          and "**不能**用来证明" in _ausrc
+          and "这一步仍未测到" in _ausrc
+          and "**不许**拿 `cancelBubble=False` 当证据" in _ausrc)
+    check("GG.3 **矛盾必须写下来**，不许硬凑一个解释：891 的 C1 说「浏览器"
+          "**会**移动焦点」，而源站结构与 C1 **完全一样**却 `focusin` **0** 次，"
+          "892 又证明源站**没**被 preventDefault ⇒ 「会移动」与「没移动且没被"
+          "阻止」**不可能同时成立**。⇒ 说明源站在**那一刻**做了空白页复现里"
+          "没有的事。净进展是**排除了两个候选**（浏览器规则、preventDefault）",
+          '"contradiction_891_vs_source_still_open"' in _ausrc
+          and "**不可能同时成立**" in _ausrc
+          and "排除了两个候选" in _ausrc
+          and "浏览器规则" in _ausrc)
+    check("GG.4 下一个假设**必须标未测**（典型：点击那一刻节点的 `tabindex` "
+          "被移除 ⇒ 那一刻不可聚焦），而且要点明 **890b 记的 `tabindex='0'` "
+          "是点击**之前**读的、**不覆盖**那个时刻** —— 不许拿旧读数当"
+          "「那一刻也一样」",
+          "最可能的下一步假设（**未测**）" in _ausrc
+          and "tabindex` 被移除" in _ausrc
+          and "**不覆盖**这个时刻" in _ausrc)
     check("CC.7 886 的教训落地：**组件内凡是要复用，就该提到模块级，"
           "别复制第二份** —— 886 第一版把实现抽成组件内闭包，结果它和 Clear "
           "内联那段是**复制粘贴关系**，按内容替换**匹配到了自己**、把文件改坏"
