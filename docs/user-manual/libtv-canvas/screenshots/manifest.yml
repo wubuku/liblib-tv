@@ -1633,3 +1633,36 @@ screenshots:
     visible_text: 共 11 节点
     alt: ⭐ **判断画布上有多少节点，要看这里，不要数页面上渲染了几个。** `.react-flow__node` **只渲染视口内的节点** —— 整理铺开之后有一部分落到视口外，页面上会「看起来」少到只剩 2 个，极易误判成节点被删。抽屉底部的「共 N 节点」数的是整张画布，稳定可靠。⚠️ 配套的判据教训：一次调用里如果拿到 65 KB 文本、且内容全是 JS chunk 名和转义引号，那不是读到了界面，是**读到了 `<script>` 里的 Next.js RSC flight payload**
     sha256: af2d0f6f9e3bef65b8a8a50a7a047ee7b9b46b714800cca0944d57fc8c47acad
+  - file: screenshots/M-191-缩放菜单-全貌.png
+    task_id: organize-canvas
+    step: 29
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 先把菜单**定位到容器**（`mantine-Menu-dropdown`，`189×278`），再读它的逐行内容 —— 不用在整页上按文本筛（BF1 那样做三行全报「没找到」）
+    visible_text: % 放大 ⌘ + 缩小 ⌘ - 适合屏幕 ⌘ 0 缩放至50% 缩放至100% 缩放至800%
+    alt: 缩放菜单完整**七行**，逐字文案带键帽：`%`（就是那个能敲数字的输入框）/ `放大 ⌘ +` / `缩小 ⌘ -` / `适合屏幕 ⌘ 0` / 分隔线 / `缩放至50%` / `缩放至100%` / `缩放至800%`。
+    sha256: 443d7f47439f4351ef070ffcf8496688741a7cff2424225def3bd27ea3672389
+  - file: screenshots/M-192-画布下拉-列表.png
+    task_id: manage-canvases
+    step: 30
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点顶栏正文为 `画布 N` 的那枚按钮，**先定位到下拉容器**（`212×220`）读滚动高度，再用「最内层去重」逐行读，滚到底再读一次
+    visible_text: 画布 63 画布 62 画布 61 画布 60 画布 59 画布 58 画布 57 画布 56 画布 55 画布 54 画布 53 画布 52 画布 51 画布 50 画布 49 画布 48 画布 47 画布 46 画布 45 画布 44 画布 8 画布 7 画布 6 画布 5 画布 4 画布 3 画布 2 手册取证画布
+    alt: ⭐ **顶栏「画布 N」弹出的不是几个画布，而是一长串**：容器只有 `212×220`，**内部内容高 2260**（可见部分只占十分之一），必须往下滚才看得完。本账户实测 **28 张**：编号 `画布 2`~`画布 8`、`画布 44`~`画布 63`，外加一张自建的 `手册取证画布`。⚠️ **编号不连续** —— 9~43 之间的号是**已被删除的画布**，编号不回收。所以「最大编号 63」不代表有 63 张画布；只看首屏会以为只有二十来张
+    sha256: 1a995523342e95982b2a63b89ed6a91a72f292ab296723101d6353cf192a2bda
+  - file: screenshots/M-193-音频节点-参数条完整.png
+    task_id: create-nodes
+    step: 94
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 选中一个音频节点前后各跑一次 `fingerprint()`，用 `diffPanels()` 取**新出现的面板**，再读它们的完整 `innerText` —— 面板差集法不会漏也不会混
+    visible_text: 参考 描述你想要的音频效果，可用 @ 引用音频 Seed Audio 1.0 中文 · 24k · wav 0/2000 1 高级设置 语速 声调 音量
+    alt: 音频节点参数面板的**完整逐字读数**：`参考` / `描述你想要的音频效果，可用 @ 引用音频` / `Seed Audio 1.0` · `中文 · 24k · wav` · `0/2000` · `1` / **`高级设置`** / `语速 声调 音量`。⭐ 新补上的一处：`高级设置` 是**写在面板正文里的独立一行**，它和参数条上那枚 `⚙` 打开的是同一组滑杆 —— 两处入口，看漏哪处都还能找到另一个。
+    sha256: 7dd938429749a5269e7f86b2f57db5c52dc4313f6e7b9c6054ca2b36584ae2fe
