@@ -47,6 +47,9 @@ import re
 import subprocess
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from baseline import announce_fallback  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCRIPTS = os.path.join(ROOT, "scripts")
 
@@ -67,12 +70,30 @@ SCRIPTS = os.path.join(ROOT, "scripts")
 SLOW_BUDGET_SEC = 30
 SLOW = {
     "selftest-zero-input.py": {
-        "seconds": 33,           # 实测（Batch 201：9.4s → 33.2s）
-        "why": "**它变慢不是因为多了检查，是因为各闸不再秒退**——Batch 197 给 `beefsrc` 加了可用的兜底之后，方向三里 `BEEFTV_SRC` 指向非仓的闸**会回落到真仓把整道闸跑完**（单 `verify-unreachable.py` 就 16.8s）。33 秒已越过 30 秒阈值，**放进构建会让每次构建多花三分之一时间**。登记 + 提交前跑——**与 `selftest-meta.sh`、`selftest-unreachable.sh` 同一类必要成本**：它核的是「全部闸在两个极端下各自会说什么」，而那只能靠逐道真跑。",
+        # **Batch 202 把这个数字的来历写清楚，因为它此前一直没人核**
+        # （方向四a 只核「是不是正数、是不是 > 30」，**从不核它等于实测值**——
+        # 一个从未被核对过的常数，注释里却写着「实测」，见纪律 191）。
+        # **82s 是 Batch 202 实施当时的一次快照，不是可复现的值**：
+        # 同一天同机交错重测，同一套 25 道闸得 **62.3s / 32.5s**，
+        # 单 `verify-unreachable.py` 得 **20.6s / 17.2s**——
+        # **绝对值 2 倍漂，连比值都在 1.9～3.0 之间漂**（本机同时有别人的构建在跑）。
+        # 所以这里能确定的只有**量级**：「它确实越过 30 秒阈值」，
+        # 而 82 这个具体数字**只当历史快照看**。
+        # **两次变慢的原因都是同一个，且都不是它多做了什么**：
+        # Batch 197 给 `beefsrc` 加了可用的兜底 → 方向三里 7 道闸**回落到真仓把整道闸跑完**；
+        # Batch 202 把原本 rc=2 的 2 道闸也接上兜底 → **它们于是也真的跑完了**。
+        "seconds": 82,           # 历史快照（方向四a 只看它 > 30，不看它准不准）
+        "why": "**它变慢不是因为多了检查，是因为被它核的那些闸不再秒退**——"
+        "Batch 197 给 `beefsrc` 加了可用的兜底之后，方向三里 `BEEFTV_SRC` 指向非仓的 7 道闸"
+        "**回落到真仓把整道闸跑完**；Batch 202 把原本 rc=2 的 2 道闸也接上兜底，"
+        "**它们于是也真的跑完了**。已越过 30 秒阈值（**量级可信，具体秒数不可信，见左侧注释**）。"
+        "登记 + 提交前跑——**与另外三份慢反验同一类必要成本**："
+        "它核的是「全部闸在两个极端下各自会说什么」，而那只能靠逐道真跑。"
+        "**两次变慢都不是它多做了什么，而是被它核的那些闸真的开始做事了。**",
         "anchor": ("selftest-zero-input.py", "def direction_three"),
     },
     "selftest-selftest-bootable.py": {
-        "seconds": 34,           # 实测（Batch 201：13 例时 20.8s，加 2 例后 33.6s）
+        "seconds": 34,           # 历史快照（Batch 201：13 例时 20.8s，加 2 例后 33.6s；Batch 202 同场复核 42.8s——**同样漂，见上一条**）
         "why": "每一例都要 `copytree` 整份 `scripts/`（87 个文件）进沙箱再跑一遍闸 18，**而闸 18 现在还会在沙箱里重放慢反验的夹具前提**。33.6 秒已越过 30 秒阈值，**放进构建会让每次构建多花三分之一时间**。登记 + 提交前跑——**这与 `selftest-meta.sh` 是同一类必要成本**：它核的是「反验本身还能不能用」，而反验不在构建路径上。",
         "anchor": ("selftest-selftest-bootable.py", "m_slow_feature_missing"),
     },
@@ -314,6 +335,7 @@ def _slow_fixture_triples(script_name):
 
 
 def main():
+    announce_fallback()
     if not os.path.isdir(SCRIPTS):
         print(f"[skip] 找不到 {SCRIPTS}，跳过反验启动核对")
         return 2
@@ -419,11 +441,11 @@ def main():
     # 方向三：每份反验都要能说出自己测的是哪道闸（或哪个被闸依赖的共享模块）
     #
     # **Batch 198 扩了「或哪个共享模块」**：本批给 `beefsrc.py` 配反验时撞上的——
-    # `beefsrc` 是 13 道闸共同依赖的路径解析模块，**它不是闸，也不对应任何一道闸**，
+    # `beefsrc` 是 15 道闸共同依赖的路径解析模块，**它不是闸，也不对应任何一道闸**，
     # 而原判据只认 `verify-*.py`，于是它报「找不到被测闸门」。
     # 扩法的关键是**那个集合是算出来的、不是名单**：
     # 「`scripts/` 下不是 verify-/selftest- 的 .py，且**至少被一道闸 import 过**」——
-    # **`beefsrc` 改坏时 13 道闸一起失效，这就是「它值得有反验」的事实依据**，
+    # **`beefsrc` 改坏时 15 道闸一起失效，这就是「它值得有反验」的事实依据**，
     # 而不是一个我随手维护的白名单（那正是纪律 101 的形态）。
     # 认闸名、认模块名都是「按写法判定」的老毛病；**判据认的仍然是事实**。
     shared = _shared_modules()

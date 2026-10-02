@@ -97,6 +97,11 @@ EXEMPT = {
 }
 
 
+def read(p):
+    with open(p, encoding="utf-8") as fh:
+        return fh.read()
+
+
 def empty_tree(tmp):
     """一棵空手册树：只有闸脚本与共用模块，**没有任何 .md / 截图 / 清单**。"""
     os.makedirs(os.path.join(tmp, "scripts"), exist_ok=True)
@@ -104,14 +109,19 @@ def empty_tree(tmp):
     for name in sorted(os.listdir(HERE)):
         if name.endswith(".py") and not name.startswith("selftest-"):
             shutil.copy(os.path.join(HERE, name), os.path.join(tmp, "scripts", name))
-    # **显式再搬一次 `beefsrc`**（Batch 201，闸 17 方向一抓到的）：
+    # **显式再搬一次这两个共用模块**（闸 17 方向一两次各抓一次，Batch 201/202）：
     # 上面那个循环其实已经把所有非反验的 `.py` 都搬了，**但闸 17 判的是
     # 「有没有一条看得见的搬运动作」**——循环写法静态不可判定，
     # 它会把「搬过了」报成「没搬」（Batch 190/194 同款：判据认写法不认事实）。
-    # **这里不改成新契约机制**（那本身是腐烂点），而是照 Batch 197 的规矩
+    # **这里不新造契约机制**（那本身是腐烂点），而是照 Batch 197 的规矩
     # **把写法改成可判定的**：显式一条、目标路径写死文件名。
+    # **刻意不在注释里点名任何一道闸**：注释会被人 grep 到，
+    # 而闸 17 的方向一要认的是「这份反验搬了哪些闸」——
+    # **一句解释性的话不该凭空造出一条搬运关系来。**
     shutil.copy(os.path.join(HERE, "beefsrc.py"),
                 os.path.join(tmp, "scripts", "beefsrc.py"))
+    shutil.copy(os.path.join(HERE, "baseline.py"),
+                os.path.join(tmp, "scripts", "baseline.py"))
     return tmp
 
 
@@ -127,7 +137,7 @@ def run_gates(gates, script_dir, env, skip=()):
         **前者读起来却像好消息**（纪律 156）。
     其余一律不看：`rc == 2`（未能核对）是对的，`rc == 1` 无异常是真的核出了不一致。
     """
-    crashed, found = [], []
+    crashed, found, silent = [], [], []
     for gate in gates:
         if gate in skip:
             continue
@@ -148,7 +158,26 @@ def run_gates(gates, script_dir, env, skip=()):
         zeros = [m.group(0) for m in ZERO_COUNT_RE.finditer(out) if m.group(1) == "0"]
         if zeros:
             found.append((gate, zeros))
-    return crashed, found
+        # 方向三之三：**在「`BEEFTV_SRC` 指向非仓」这一次运行里，
+        # 凡是碰过上游解析的闸都必然走了兜底**——那么它就必须说出来。
+        # 判据不问「它是不是真走了兜底」（那要问解析器），
+        # **只问「它说了没有」**：说了就一定走了，没说就有可能是静默降级。
+        if _touches_upstream(gate) and "[兜底]" not in out:
+            silent.append(gate)
+    return crashed, found, silent
+
+
+def _touches_upstream(gate):
+    """这道闸会不会去解析上游仓（**认事实：它 import 了 `baseline` / `beefsrc`**）。
+
+    **为什么要先判「碰没碰过上游」**：方向三里另一些闸的输入全在手册树内
+    （11 道正当 rc=0），**它们压根没解析过上游，也就无所谓有没有说明**——
+    要求它们打印 `[兜底]` 是判据在说假话（纪律 166：首跑全绿不是证据，
+    首跑全红同样不是）。
+    """
+    src = read(os.path.join(HERE, gate))
+    return bool(re.search(r"^\s*(?:import\s+(?:baseline|beefsrc)\b"
+                          r"|from\s+(?:baseline|beefsrc)\s+import)", src, re.M))
 
 
 def report(label, crashed, found, scene):
@@ -180,7 +209,7 @@ def direction_one(gates):
         env["BEEFTV_MANUAL_ROOT"] = tmp
         env["PYTHONDONTWRITEBYTECODE"] = "1"
         env["BEEFTV_SRC"] = os.environ.get("BEEFTV_SRC", "")
-        return run_gates(gates, os.path.join(tmp, "scripts"), env, skip=EXEMPT)
+        return run_gates(gates, os.path.join(tmp, "scripts"), env, skip=EXEMPT)[:2] + ([],)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -243,14 +272,27 @@ def main():
         return 2
 
     t0 = time.time()
-    c1, f1 = direction_one(gates)
-    c3, f3 = direction_three(gates)
+    c1, f1, _ = direction_one(gates)
+    c3, f3, silent = direction_three(gates)
     cost = time.time() - t0
 
     report("零输入体检（方向一/二）", c1, f1, "手册树为空")
-    report("零输入体检（方向三）", c3, f3, "手册树正常但上游仓不可用")
+    report("零输入体检（方向三）", c3, f3, "手册树正常、`BEEFTV_SRC` 指向非仓")
 
-    if f1 or c1 or f3 or c3:
+    if silent:
+        print("零输入体检（方向三之三）：%d 道闸**走了兜底却一声不吭**——" % len(silent))
+        for gate in silent:
+            print("  · `%s` 在 `BEEFTV_SRC` 指向非仓时输出了结果，"
+                  "**而它 import 了 `baseline`/`beefsrc`、必然回落到候选表里的真仓**"
+                  % gate)
+            print("    → **静默降级比直接失败更坏，因为它还报绿**（纪律 172）："
+                  "读者无从知道它核的不是 `BEEFTV_SRC` 指定的那一份")
+        print("    → 修法：在 `main()` 开头调 `baseline.announce_fallback()`。"
+              "**措辞只写一份**——15 道碰上游解析的闸共用同一个函数，"
+              "它自己从调用栈认出调用者是哪道闸")
+        print()
+
+    if f1 or c1 or f3 or c3 or silent:
         return 1
     print("零输入体检：%d 道闸在两个极端下各跑一遍 —— " % len(gates))
     print("  · 方向一/二（手册树为空）：没有一道在零输入下报绿，"
@@ -258,6 +300,7 @@ def main():
           % len(EXEMPT))
     print("  · 方向三（手册树正常、`BEEFTV_SRC` 指向非仓）：没有一道报绿，"
           "也没有一道把异常当成「核出不一致」")
+    print("  · 方向三之三：**碰过上游解析的闸，走了兜底都明说了**（纪律 172）")
     print("  · 实测 %.1fs（含「闸只读」前提自检 %d 处写操作 = 0）" % (cost, len(dirty)))
     return 0
 

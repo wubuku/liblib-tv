@@ -28,6 +28,7 @@ import subprocess
 import sys
 from baseline import resolve_ref, BaselineError, module_ref, baseline_guard
 from baseline import SRC as _BEEFSRC
+from baseline import announce_fallback
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MANUAL = os.path.join(ROOT, "20-reference.md")
@@ -94,6 +95,7 @@ def parse_table():
 
 @baseline_guard
 def main():
+    announce_fallback()
     try:
         rows = parse_table()
     except ValueError as exc:

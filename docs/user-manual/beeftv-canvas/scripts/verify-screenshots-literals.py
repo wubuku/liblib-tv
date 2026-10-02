@@ -40,6 +40,7 @@ import subprocess
 import sys
 from baseline import resolve_ref, BaselineError, module_ref, baseline_guard
 from baseline import SRC as _BEEFSRC
+from baseline import announce_fallback
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #: **Batch 197：不再单点读环境变量，改从 `baseline` 取统一解析后的路径**
@@ -100,6 +101,7 @@ def in_source(text):
 
 @baseline_guard
 def main():
+    announce_fallback()
     if not os.path.isfile(MANIFEST):
         print("截图取证文案核对：未找到 manifest，跳过")
         return 2

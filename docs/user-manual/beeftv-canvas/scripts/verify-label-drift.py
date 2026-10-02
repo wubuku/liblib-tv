@@ -34,6 +34,7 @@ import re
 import sys
 import subprocess
 import beefsrc
+from baseline import announce_fallback
 from baseline import resolve_ref, BaselineError, baseline_guard
 from batchread import read_many
 
@@ -95,9 +96,10 @@ def find_source():
     if src is None:
         return None
     if is_fallback:
-        # **静默降级与「明确说明」的差别，就是本手册整套纪律在说的事**
-        print("[兜底] 未采用 BEEFTV_SRC 指定的路径（它不是一个 git 检出），"
-              "改用候选表里的 %s" % src)
+        # **Batch 202：措辞收敛到 `baseline.announce_fallback`**——
+        # 纪律 172 要 15 道闸都说出「我读的是哪一份」，
+        # **而这份措辞不该被手写 8 遍**（又一次「同一份事实被手写多遍」）。
+        announce_fallback()
     return src
 
 

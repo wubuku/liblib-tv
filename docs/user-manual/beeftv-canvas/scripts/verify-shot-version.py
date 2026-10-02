@@ -43,7 +43,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from baseline import resolve_ref, BaselineError, module_ref, baseline_guard
-from baseline import SRC as _BEEFSRC# noqa: E402
+from baseline import SRC as _BEEFSRC
+from baseline import announce_fallback# noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #: **Batch 197：不再单点读环境变量，改从 `baseline` 取统一解析后的路径**
@@ -196,6 +197,7 @@ def direction_two():
 
 @baseline_guard
 def main():
+    announce_fallback()
     entries, _text = parse_manifest()
     if entries is None:
         print(f"[skip] 读不到 {os.path.basename(MANIFEST)}，跳过截图版本核对")

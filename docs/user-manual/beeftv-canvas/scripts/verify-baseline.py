@@ -44,6 +44,7 @@ import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from baseline import announce_fallback  # noqa: E402
 from baseline import (  # noqa: E402
     REFERENCE, ROOT, SRC, BaselineError, commit_exists, declared_baseline, upstream_tip,
 )
@@ -235,6 +236,7 @@ def direction_four():
 
 
 def main():
+    announce_fallback()
     if not os.path.isdir(SRC):
         print(f"[skip] 未找到 BeefTV 源码（{SRC}），跳过取证基线核对")
         return 2

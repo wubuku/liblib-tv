@@ -43,7 +43,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from baseline import resolve_ref, BaselineError, module_ref, baseline_guard
-from baseline import SRC as _BEEFSRC# noqa: E402
+from baseline import SRC as _BEEFSRC
+from baseline import announce_fallback# noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #: **Batch 197：不再单点读环境变量，改从 `baseline` 取统一解析后的路径**
@@ -112,6 +113,7 @@ def manual_sections():
 
 @baseline_guard
 def main():
+    announce_fallback()
     if SRC is None:
         print(f"[skip] 未找到 BeefTV 源码（{SRC}），跳过错误文案核对")
         return 2

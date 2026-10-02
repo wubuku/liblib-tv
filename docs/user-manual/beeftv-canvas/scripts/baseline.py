@@ -46,6 +46,7 @@
 
 import functools
 import os
+import sys
 import re
 import subprocess
 
@@ -139,6 +140,38 @@ def commit_exists(rev):
     r = subprocess.run(["git", "-C", SRC, "rev-parse", "--verify", "--quiet", rev + "^{commit}"],
                        capture_output=True, text=True)
     return r.returncode == 0
+
+
+def announce_fallback(gate_label=None):
+    """**走了兜底就把这件事说出来**——纪律 172（Batch 202 补齐）。
+
+    **Batch 197 只实现了一半**：那 7 道自带 `CANDIDATES` 的闸在自己的 `find_source()`
+    里打了 `[兜底]`，而**另外 6 道从本模块取 `SRC` 的闸一句都不说**——
+    实测它们在 `BEEFTV_SRC` 指向非仓时 **rc=0、输出是一句干净的「核对通过」**，
+    **而核的是用户没指定的另一份检出**。**静默降级比直接失败更坏，因为它还报绿。**
+
+    所以这句话**集中放在这里**：15 道碰上游解析的闸共用一个措辞、一个判断，
+    **而不是每道闸各写一遍**（那又是一次「同一份事实被手写多遍」）。
+    **闸必须在自己的输出里留下「我读的是哪一份」的痕迹**，
+    否则「核过」与「核的是你指定的那份」在结果里长得一模一样。
+    """
+    if not _SRC_IS_FALLBACK:
+        return
+    if gate_label is None:
+        # **从调用栈认出调用者是哪道闸**——这样 15 道闸一句名字都不用写。
+        # 「每道闸把自己的名字报出来」这件事如果靠传参，就多了一份要维护的清单；
+        # **而调用者自己的模块名本来就是它，不用问第二个人**。
+        # **用调用者的文件名，不用 `__name__`**：闸是以 `python3 verify-xxx.py`
+        # 跑的，于是每道闸的 `__name__` **全都是 `__main__`**——
+        # 实测第一版就是这么写的，输出一排「[兜底] __main__ 未采用…」，
+        # **说了等于没说，因为它没说是哪道闸说的**。
+        # `co_filename` 才是它自己的身份，而那本来就是它，不用问第二个人。
+        try:
+            gate_label = os.path.basename(sys._getframe(1).f_code.co_filename)
+        except Exception:                                # noqa: BLE001
+            gate_label = "某道闸"
+    print(f"[兜底] {gate_label} 未采用 BEEFTV_SRC 指定的路径（它不是一个 git 检出），"
+          f"改用候选表里的 {SRC}")
 
 
 def describe():
