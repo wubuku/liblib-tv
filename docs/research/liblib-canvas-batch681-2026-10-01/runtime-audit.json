@@ -1,0 +1,1439 @@
+{
+ "verifier": {
+  "cells": [
+   "1280x720",
+   "1280x1150",
+   "1920x1150"
+  ],
+  "zAndPosition": {
+   "1280x720": {
+    "railZ": "30",
+    "barZ": "40",
+    "railPos": "absolute",
+    "barPos": "relative"
+   },
+   "1280x1150": {
+    "railZ": "30",
+    "barZ": "40",
+    "railPos": "absolute",
+    "barPos": "relative"
+   },
+   "1920x1150": {
+    "railZ": "30",
+    "barZ": "40",
+    "railPos": "absolute",
+    "barPos": "relative"
+   }
+  },
+  "geometry": {
+   "1280x720": {
+    "helpBox": [
+     8,
+     680,
+     32,
+     32
+    ],
+    "barBox": [
+     0,
+     538,
+     1280,
+     182
+    ],
+    "helpTopFromBottom": 40,
+    "barTopFromBottom": 182,
+    "overlapHeight": 174,
+    "helpFullyInsideBar": true
+   },
+   "1280x1150": {
+    "helpBox": [
+     8,
+     1110,
+     32,
+     32
+    ],
+    "barBox": [
+     0,
+     968,
+     1280,
+     182
+    ],
+    "helpTopFromBottom": 40,
+    "barTopFromBottom": 182,
+    "overlapHeight": 174,
+    "helpFullyInsideBar": true
+   },
+   "1920x1150": {
+    "helpBox": [
+     8,
+     1110,
+     32,
+     32
+    ],
+    "barBox": [
+     0,
+     968,
+     1920,
+     182
+    ],
+    "helpTopFromBottom": 40,
+    "barTopFromBottom": 182,
+    "overlapHeight": 174,
+    "helpFullyInsideBar": true
+   }
+  },
+  "chains": {
+   "1280x720": [
+    {
+     "tag": "button",
+     "data": "-",
+     "cls": "group relative z-[1]",
+     "z": "1",
+     "pos": "relative",
+     "box": [
+      8,
+      681,
+      20,
+      20
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "director-camera-main",
+     "cls": "group relative grid",
+     "z": "auto",
+     "pos": "relative",
+     "box": [
+      0,
+      675,
+      320,
+      32
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "-",
+     "cls": "",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      675,
+      320,
+      64
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "true",
+     "cls": "w-[320px] shrink-0 overflow-y-auto",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      575,
+      320,
+      145
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "-",
+     "cls": "flex min-h-0 min-w-0",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      575,
+      1280,
+      145
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "section",
+     "data": "-",
+     "cls": "z-40 pointer-events-auto relative",
+     "z": "40",
+     "pos": "relative",
+     "box": [
+      0,
+      538,
+      1280,
+      182
+     ],
+     "isHelp": false
+    }
+   ],
+   "1280x1150": [
+    {
+     "tag": "button",
+     "data": "-",
+     "cls": "group relative z-[1]",
+     "z": "1",
+     "pos": "relative",
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "director-camera-main",
+     "cls": "group relative grid",
+     "z": "auto",
+     "pos": "relative",
+     "box": [
+      0,
+      1105,
+      320,
+      32
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "-",
+     "cls": "",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      1105,
+      320,
+      64
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "true",
+     "cls": "w-[320px] shrink-0 overflow-y-auto",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      1005,
+      320,
+      145
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "-",
+     "cls": "flex min-h-0 min-w-0",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      1005,
+      1280,
+      145
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "section",
+     "data": "-",
+     "cls": "z-40 pointer-events-auto relative",
+     "z": "40",
+     "pos": "relative",
+     "box": [
+      0,
+      968,
+      1280,
+      182
+     ],
+     "isHelp": false
+    }
+   ],
+   "1920x1150": [
+    {
+     "tag": "button",
+     "data": "-",
+     "cls": "group relative z-[1]",
+     "z": "1",
+     "pos": "relative",
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "director-camera-main",
+     "cls": "group relative grid",
+     "z": "auto",
+     "pos": "relative",
+     "box": [
+      0,
+      1105,
+      320,
+      32
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "-",
+     "cls": "",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      1105,
+      320,
+      64
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "true",
+     "cls": "w-[320px] shrink-0 overflow-y-auto",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      1005,
+      320,
+      145
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "-",
+     "cls": "flex min-h-0 min-w-0",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      1005,
+      1920,
+      145
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "section",
+     "data": "-",
+     "cls": "z-40 pointer-events-auto relative",
+     "z": "40",
+     "pos": "relative",
+     "box": [
+      0,
+      968,
+      1920,
+      182
+     ],
+     "isHelp": false
+    }
+   ]
+  },
+  "chevrons": {
+   "1280x720": [
+    {
+     "box": [
+      8,
+      617,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      681,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "1280x1150": [
+    {
+     "box": [
+      8,
+      1047,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "1920x1150": [
+    {
+     "box": [
+      8,
+      1047,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ]
+  },
+  "domOrder": {
+   "1280x720": {
+    "iHelp": 257,
+    "iList": 587,
+    "helpBeforeList": true
+   },
+   "1280x1150": {
+    "iHelp": 257,
+    "iList": 587,
+    "helpBeforeList": true
+   },
+   "1920x1150": {
+    "iHelp": 257,
+    "iList": 587,
+    "helpBeforeList": true
+   }
+  },
+  "sourceFactOnRecord": "src/components/director/DirectorTimeline.tsx:1591-1595 records a source measurement: the source's left column is `z-10 shrink-0 bg-[#1f1f1f]`. The clone puts that same column inside a `z-40` bottom-bar section while the rail is `z-30`.",
+  "hypothesisNotClaim": "IF the source's left column really is z-10 and the source's rail is higher, then 帮助 is clickable in the source. THIS BATCH TOOK NO SOURCE EVIDENCE AND CLAIMS NOTHING ABOUT SOURCE BEHAVIOUR. The only source fact used is the z-10 note already committed to the repo — not a new reading.",
+  "productDecision": {
+   "A": "raise the rail above the bar (z-30 -> higher): the rail would then cover the timeline's 320px left column, which hosts 15+ controls",
+   "B": "move 帮助 off the bottom (mt-auto -> e.g. mb-14): departs from the source rhythm, and whether the source also pins it to the bottom is NOT established by this batch",
+   "chosen": null,
+   "note": "product decision — this batch changed no src/"
+  },
+  "judged": 3
+ },
+ "cells": {
+  "1280x720": {
+   "vw": 1280,
+   "vh": 720,
+   "help": {
+    "box": [
+     8,
+     680,
+     32,
+     32
+    ],
+    "z": "auto",
+    "pos": "static",
+    "pe": "auto",
+    "cls": "mt-auto flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
+   },
+   "railContainer": {
+    "box": [
+     0,
+     52,
+     48,
+     668
+    ],
+    "z": "30",
+    "pos": "absolute",
+    "pe": "auto",
+    "cls": "absolute bottom-0 left-0 top-[52px] z-30 hidden w-12 shrink-0 flex-col items-center"
+   },
+   "barSection": {
+    "box": [
+     0,
+     538,
+     1280,
+     182
+    ],
+    "z": "40",
+    "pos": "relative",
+    "pe": "auto",
+    "cls": "z-40 pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none"
+   },
+   "trackList": {
+    "box": [
+     0,
+     575,
+     320,
+     145
+    ],
+    "z": "auto",
+    "pos": "static",
+    "pe": "auto",
+    "cls": "w-[320px] shrink-0 overflow-y-auto bg-[#1f1f1f] max-[899px]:w-[220px]"
+   },
+   "chevrons": [
+    {
+     "box": [
+      8,
+      617,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      681,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "chain": [
+    {
+     "tag": "button",
+     "data": "-",
+     "cls": "group relative z-[1]",
+     "z": "1",
+     "pos": "relative",
+     "box": [
+      8,
+      681,
+      20,
+      20
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "director-camera-main",
+     "cls": "group relative grid",
+     "z": "auto",
+     "pos": "relative",
+     "box": [
+      0,
+      675,
+      320,
+      32
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "-",
+     "cls": "",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      675,
+      320,
+      64
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "true",
+     "cls": "w-[320px] shrink-0 overflow-y-auto",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      575,
+      320,
+      145
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "-",
+     "cls": "flex min-h-0 min-w-0",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      575,
+      1280,
+      145
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "section",
+     "data": "-",
+     "cls": "z-40 pointer-events-auto relative",
+     "z": "40",
+     "pos": "relative",
+     "box": [
+      0,
+      538,
+      1280,
+      182
+     ],
+     "isHelp": false
+    }
+   ],
+   "domOrder": {
+    "iHelp": 257,
+    "iList": 587,
+    "helpBeforeList": true
+   }
+  },
+  "1280x1150": {
+   "vw": 1280,
+   "vh": 1150,
+   "help": {
+    "box": [
+     8,
+     1110,
+     32,
+     32
+    ],
+    "z": "auto",
+    "pos": "static",
+    "pe": "auto",
+    "cls": "mt-auto flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
+   },
+   "railContainer": {
+    "box": [
+     0,
+     52,
+     48,
+     1098
+    ],
+    "z": "30",
+    "pos": "absolute",
+    "pe": "auto",
+    "cls": "absolute bottom-0 left-0 top-[52px] z-30 hidden w-12 shrink-0 flex-col items-center"
+   },
+   "barSection": {
+    "box": [
+     0,
+     968,
+     1280,
+     182
+    ],
+    "z": "40",
+    "pos": "relative",
+    "pe": "auto",
+    "cls": "z-40 pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none"
+   },
+   "trackList": {
+    "box": [
+     0,
+     1005,
+     320,
+     145
+    ],
+    "z": "auto",
+    "pos": "static",
+    "pe": "auto",
+    "cls": "w-[320px] shrink-0 overflow-y-auto bg-[#1f1f1f] max-[899px]:w-[220px]"
+   },
+   "chevrons": [
+    {
+     "box": [
+      8,
+      1047,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "chain": [
+    {
+     "tag": "button",
+     "data": "-",
+     "cls": "group relative z-[1]",
+     "z": "1",
+     "pos": "relative",
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "director-camera-main",
+     "cls": "group relative grid",
+     "z": "auto",
+     "pos": "relative",
+     "box": [
+      0,
+      1105,
+      320,
+      32
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "-",
+     "cls": "",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      1105,
+      320,
+      64
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "true",
+     "cls": "w-[320px] shrink-0 overflow-y-auto",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      1005,
+      320,
+      145
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "-",
+     "cls": "flex min-h-0 min-w-0",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      1005,
+      1280,
+      145
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "section",
+     "data": "-",
+     "cls": "z-40 pointer-events-auto relative",
+     "z": "40",
+     "pos": "relative",
+     "box": [
+      0,
+      968,
+      1280,
+      182
+     ],
+     "isHelp": false
+    }
+   ],
+   "domOrder": {
+    "iHelp": 257,
+    "iList": 587,
+    "helpBeforeList": true
+   }
+  },
+  "1920x1150": {
+   "vw": 1920,
+   "vh": 1150,
+   "help": {
+    "box": [
+     8,
+     1110,
+     32,
+     32
+    ],
+    "z": "auto",
+    "pos": "static",
+    "pe": "auto",
+    "cls": "mt-auto flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
+   },
+   "railContainer": {
+    "box": [
+     0,
+     52,
+     48,
+     1098
+    ],
+    "z": "30",
+    "pos": "absolute",
+    "pe": "auto",
+    "cls": "absolute bottom-0 left-0 top-[52px] z-30 hidden w-12 shrink-0 flex-col items-center"
+   },
+   "barSection": {
+    "box": [
+     0,
+     968,
+     1920,
+     182
+    ],
+    "z": "40",
+    "pos": "relative",
+    "pe": "auto",
+    "cls": "z-40 pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none"
+   },
+   "trackList": {
+    "box": [
+     0,
+     1005,
+     320,
+     145
+    ],
+    "z": "auto",
+    "pos": "static",
+    "pe": "auto",
+    "cls": "w-[320px] shrink-0 overflow-y-auto bg-[#1f1f1f] max-[899px]:w-[220px]"
+   },
+   "chevrons": [
+    {
+     "box": [
+      8,
+      1047,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "chain": [
+    {
+     "tag": "button",
+     "data": "-",
+     "cls": "group relative z-[1]",
+     "z": "1",
+     "pos": "relative",
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "director-camera-main",
+     "cls": "group relative grid",
+     "z": "auto",
+     "pos": "relative",
+     "box": [
+      0,
+      1105,
+      320,
+      32
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "-",
+     "cls": "",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      1105,
+      320,
+      64
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "true",
+     "cls": "w-[320px] shrink-0 overflow-y-auto",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      1005,
+      320,
+      145
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "div",
+     "data": "-",
+     "cls": "flex min-h-0 min-w-0",
+     "z": "auto",
+     "pos": "static",
+     "box": [
+      0,
+      1005,
+      1920,
+      145
+     ],
+     "isHelp": false
+    },
+    {
+     "tag": "section",
+     "data": "-",
+     "cls": "z-40 pointer-events-auto relative",
+     "z": "40",
+     "pos": "relative",
+     "box": [
+      0,
+      968,
+      1920,
+      182
+     ],
+     "isHelp": false
+    }
+   ],
+   "domOrder": {
+    "iHelp": 257,
+    "iList": 587,
+    "helpBeforeList": true
+   }
+  }
+ },
+ "checks": {
+  "the-rail-is-z-30-and-the-timeline-bottom-bar-is-z-40-in-every-cell": {
+   "ok": true,
+   "detail": {
+    "zAndPosition": {
+     "1280x720": {
+      "railZ": "30",
+      "barZ": "40",
+      "railPos": "absolute",
+      "barPos": "relative"
+     },
+     "1280x1150": {
+      "railZ": "30",
+      "barZ": "40",
+      "railPos": "absolute",
+      "barPos": "relative"
+     },
+     "1920x1150": {
+      "railZ": "30",
+      "barZ": "40",
+      "railPos": "absolute",
+      "barPos": "relative"
+     }
+    },
+    "railClass": "absolute bottom-0 left-0 top-[52px] z-30 hidden w-12 shrink-0 flex-col items-center",
+    "barClass": "z-40 pointer-events-auto relative flex w-full min-w-0 shrink-0 flex-col overflow-visible rounded-tl-none",
+    "domOrder": {
+     "1280x720": {
+      "iHelp": 257,
+      "iList": 587,
+      "helpBeforeList": true
+     },
+     "1280x1150": {
+      "iHelp": 257,
+      "iList": 587,
+      "helpBeforeList": true
+     },
+     "1920x1150": {
+      "iHelp": 257,
+      "iList": 587,
+      "helpBeforeList": true
+     }
+    }
+   },
+   "note": "DOM order puts the rail FIRST — it is the z comparison, not document order, that puts the timeline on top"
+  },
+  "the-geometry-makes-the-overlap-unavoidable-not-a-coincidence": {
+   "ok": true,
+   "detail": {
+    "1280x720": {
+     "helpBox": [
+      8,
+      680,
+      32,
+      32
+     ],
+     "barBox": [
+      0,
+      538,
+      1280,
+      182
+     ],
+     "helpTopFromBottom": 40,
+     "barTopFromBottom": 182,
+     "overlapHeight": 174,
+     "helpFullyInsideBar": true
+    },
+    "1280x1150": {
+     "helpBox": [
+      8,
+      1110,
+      32,
+      32
+     ],
+     "barBox": [
+      0,
+      968,
+      1280,
+      182
+     ],
+     "helpTopFromBottom": 40,
+     "barTopFromBottom": 182,
+     "overlapHeight": 174,
+     "helpFullyInsideBar": true
+    },
+    "1920x1150": {
+     "helpBox": [
+      8,
+      1110,
+      32,
+      32
+     ],
+     "barBox": [
+      0,
+      968,
+      1920,
+      182
+     ],
+     "helpTopFromBottom": 40,
+     "barTopFromBottom": 182,
+     "overlapHeight": 174,
+     "helpFullyInsideBar": true
+    }
+   },
+   "note": "bar height 182 > distance from 帮助's top to the bottom 40, so the two always intersect — that is why 680's reading is width- and height-independent"
+  },
+  "the-help-button-does-not-even-reach-the-top-six-of-its-own-hit-chain": {
+   "ok": true,
+   "detail": {
+    "1280x720": {
+     "chain": [
+      {
+       "tag": "button",
+       "data": "-",
+       "z": "1",
+       "box": [
+        8,
+        681,
+        20,
+        20
+       ],
+       "cls": "group relative z-[1]"
+      },
+      {
+       "tag": "div",
+       "data": "director-camera-main",
+       "z": "auto",
+       "box": [
+        0,
+        675,
+        320,
+        32
+       ],
+       "cls": "group relative grid"
+      },
+      {
+       "tag": "div",
+       "data": "-",
+       "z": "auto",
+       "box": [
+        0,
+        675,
+        320,
+        64
+       ],
+       "cls": ""
+      },
+      {
+       "tag": "div",
+       "data": "true",
+       "z": "auto",
+       "box": [
+        0,
+        575,
+        320,
+        145
+       ],
+       "cls": "w-[320px] shrink-0 overflow-y-auto"
+      },
+      {
+       "tag": "div",
+       "data": "-",
+       "z": "auto",
+       "box": [
+        0,
+        575,
+        1280,
+        145
+       ],
+       "cls": "flex min-h-0 min-w-0"
+      },
+      {
+       "tag": "section",
+       "data": "-",
+       "z": "40",
+       "box": [
+        0,
+        538,
+        1280,
+        182
+       ],
+       "cls": "z-40 pointer-events-auto relative"
+      }
+     ],
+     "chevrons": [
+      {
+       "box": [
+        8,
+        617,
+        20,
+        20
+       ],
+       "row": "director-character-lead"
+      },
+      {
+       "box": [
+        8,
+        681,
+        20,
+        20
+       ],
+       "row": "director-camera-main"
+      }
+     ]
+    },
+    "1280x1150": {
+     "chain": [
+      {
+       "tag": "button",
+       "data": "-",
+       "z": "1",
+       "box": [
+        8,
+        1111,
+        20,
+        20
+       ],
+       "cls": "group relative z-[1]"
+      },
+      {
+       "tag": "div",
+       "data": "director-camera-main",
+       "z": "auto",
+       "box": [
+        0,
+        1105,
+        320,
+        32
+       ],
+       "cls": "group relative grid"
+      },
+      {
+       "tag": "div",
+       "data": "-",
+       "z": "auto",
+       "box": [
+        0,
+        1105,
+        320,
+        64
+       ],
+       "cls": ""
+      },
+      {
+       "tag": "div",
+       "data": "true",
+       "z": "auto",
+       "box": [
+        0,
+        1005,
+        320,
+        145
+       ],
+       "cls": "w-[320px] shrink-0 overflow-y-auto"
+      },
+      {
+       "tag": "div",
+       "data": "-",
+       "z": "auto",
+       "box": [
+        0,
+        1005,
+        1280,
+        145
+       ],
+       "cls": "flex min-h-0 min-w-0"
+      },
+      {
+       "tag": "section",
+       "data": "-",
+       "z": "40",
+       "box": [
+        0,
+        968,
+        1280,
+        182
+       ],
+       "cls": "z-40 pointer-events-auto relative"
+      }
+     ],
+     "chevrons": [
+      {
+       "box": [
+        8,
+        1047,
+        20,
+        20
+       ],
+       "row": "director-character-lead"
+      },
+      {
+       "box": [
+        8,
+        1111,
+        20,
+        20
+       ],
+       "row": "director-camera-main"
+      }
+     ]
+    },
+    "1920x1150": {
+     "chain": [
+      {
+       "tag": "button",
+       "data": "-",
+       "z": "1",
+       "box": [
+        8,
+        1111,
+        20,
+        20
+       ],
+       "cls": "group relative z-[1]"
+      },
+      {
+       "tag": "div",
+       "data": "director-camera-main",
+       "z": "auto",
+       "box": [
+        0,
+        1105,
+        320,
+        32
+       ],
+       "cls": "group relative grid"
+      },
+      {
+       "tag": "div",
+       "data": "-",
+       "z": "auto",
+       "box": [
+        0,
+        1105,
+        320,
+        64
+       ],
+       "cls": ""
+      },
+      {
+       "tag": "div",
+       "data": "true",
+       "z": "auto",
+       "box": [
+        0,
+        1005,
+        320,
+        145
+       ],
+       "cls": "w-[320px] shrink-0 overflow-y-auto"
+      },
+      {
+       "tag": "div",
+       "data": "-",
+       "z": "auto",
+       "box": [
+        0,
+        1005,
+        1920,
+        145
+       ],
+       "cls": "flex min-h-0 min-w-0"
+      },
+      {
+       "tag": "section",
+       "data": "-",
+       "z": "40",
+       "box": [
+        0,
+        968,
+        1920,
+        182
+       ],
+       "cls": "z-40 pointer-events-auto relative"
+      }
+     ],
+     "chevrons": [
+      {
+       "box": [
+        8,
+        1047,
+        20,
+        20
+       ],
+       "row": "director-character-lead"
+      },
+      {
+       "box": [
+        8,
+        1111,
+        20,
+        20
+       ],
+       "row": "director-camera-main"
+      }
+     ]
+    }
+   },
+   "note": "top of the stack is the timeline's 收起属性 chevron, every cell"
+  },
+  "the-chevron-that-wins-is-the-camera-main-row-one-and-it-matches-662s-reading": {
+   "ok": true,
+   "detail": {
+    "1280x720": {
+     "chevrons": [
+      {
+       "box": [
+        8,
+        617,
+        20,
+        20
+       ],
+       "row": "director-character-lead"
+      },
+      {
+       "box": [
+        8,
+        681,
+        20,
+        20
+       ],
+       "row": "director-camera-main"
+      }
+     ],
+     "topOfChain": {
+      "tag": "button",
+      "data": "-",
+      "cls": "group relative z-[1]",
+      "z": "1",
+      "pos": "relative",
+      "box": [
+       8,
+       681,
+       20,
+       20
+      ],
+      "isHelp": false
+     }
+    },
+    "1280x1150": {
+     "chevrons": [
+      {
+       "box": [
+        8,
+        1047,
+        20,
+        20
+       ],
+       "row": "director-character-lead"
+      },
+      {
+       "box": [
+        8,
+        1111,
+        20,
+        20
+       ],
+       "row": "director-camera-main"
+      }
+     ],
+     "topOfChain": {
+      "tag": "button",
+      "data": "-",
+      "cls": "group relative z-[1]",
+      "z": "1",
+      "pos": "relative",
+      "box": [
+       8,
+       1111,
+       20,
+       20
+      ],
+      "isHelp": false
+     }
+    },
+    "1920x1150": {
+     "chevrons": [
+      {
+       "box": [
+        8,
+        1047,
+        20,
+        20
+       ],
+       "row": "director-character-lead"
+      },
+      {
+       "box": [
+        8,
+        1111,
+        20,
+        20
+       ],
+       "row": "director-camera-main"
+      }
+     ],
+     "topOfChain": {
+      "tag": "button",
+      "data": "-",
+      "cls": "group relative z-[1]",
+      "z": "1",
+      "pos": "relative",
+      "box": [
+       8,
+       1111,
+       20,
+       20
+      ],
+      "isHelp": false
+     }
+    }
+   },
+   "note": "closes 662/667's in-case onto a named row: data-director-timeline-object-row=director-camera-main"
+  }
+ }
+}
