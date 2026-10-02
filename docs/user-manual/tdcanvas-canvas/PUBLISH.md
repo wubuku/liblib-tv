@@ -179,11 +179,14 @@ python3 scripts/check-dist-links.py .     # 产物死链（须在构建后跑）
 
 追加请改用：
 
+把要追加的行**先写进一个临时文件**（用 `write` 工具或编辑器落盘，**不要用 heredoc**，见下），再重定向进去：
+
 ```bash
-python3 scripts/append-audit.py AUDIT.md <<'EOF'
-| 级别 | 描述 | 影响 | 处置 |
-EOF
+# 行文写进 /tmp/audit-rows.txt（含中文），然后：
+python3 scripts/append-audit.py AUDIT.md < /tmp/audit-rows.txt
 ```
+
+⚠️ **不要用 `<<'EOF'` heredoc 传中文**（本段此前正是那么写的，M142 已订正）。这是本项目**已确证的写入事故源**：heredoc 会把**末行的中文截断**，写进去的是「对的」变成残缺——M130 用它写 commit message 时亲历过，同一手法的文件用 `write` 工具落盘则完好无损。**判据是写入路径，不是内容**：同一批内容，走 `write` 的完好，走 heredoc 的中招。**中文一律先用 `write` 工具落盘成文件，再从文件重定向进来。**
 
 它做三件事：逐行**自动补齐**收尾竖线并打印提示；校验「追加的表格行必须接在旧表格行后面」，**否则拒绝写入**（不造孤立块）；写盘前复用 `check-tables.py` 的判据整体复查，**不通过就回滚、文件保持原样**。
 
