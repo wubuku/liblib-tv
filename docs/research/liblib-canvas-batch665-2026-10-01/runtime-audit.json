@@ -1,0 +1,681 @@
+{
+ "verifier": {
+  "batch": 665,
+  "question": "639 left 'a consistency table for the painting-class and hit-class readings' open for two years. Build it — and while building it, find where the third state collapses in the shared criterion.",
+  "theCollapseSite": {
+   "file": "scripts/verify-liblib-batch617.py",
+   "line": 282,
+   "code": "if (s.pointerEvents === 'none') continue;",
+   "whatItDoes": "a pe:none control is not enumerated at all, so it is absent from the ledger rather than reported as unmeasurable",
+   "why664MissedIt": "664 censused MEASUREMENT calls; this is an INCLUSION filter. 664 found the instrument end, this batch found the inclusion end."
+  },
+  "gates": {
+   "L276_outOfScopeOrFlow": {
+    "line": 276,
+    "what": "not in the desk scope, or inside react-flow",
+    "droppedPerHeight": {
+     "720": 60,
+     "900": 60,
+     "1150": 60
+    }
+   },
+   "L278_zeroSize": {
+    "line": 278,
+    "what": "width or height is 0",
+    "droppedPerHeight": {
+     "720": 4,
+     "900": 4,
+     "1150": 4
+    }
+   },
+   "L280_visibilityOrDisplay": {
+    "line": 280,
+    "what": "visibility:hidden or display:none",
+    "droppedPerHeight": {
+     "720": 0,
+     "900": 0,
+     "1150": 0
+    }
+   },
+   "L281_opacityZero": {
+    "line": 281,
+    "what": "opacity:0",
+    "droppedPerHeight": {
+     "720": 2,
+     "900": 2,
+     "1150": 2
+    }
+   },
+   "L282_pointerEventsNone": {
+    "line": 282,
+    "what": "pointer-events:none — THE THIRD-STATE COLLAPSE",
+    "droppedPerHeight": {
+     "720": 0,
+     "900": 0,
+     "1150": 0
+    }
+   },
+   "L285_isScrim": {
+    "line": 285,
+    "what": "a dismiss catcher, recorded as a scrim instead",
+    "droppedPerHeight": {
+     "720": 0,
+     "900": 0,
+     "1150": 0
+    }
+   }
+  },
+  "gatesTotal": {
+   "720": {
+    "raw": 196,
+    "dropped": 66,
+    "kept": 130
+   },
+   "900": {
+    "raw": 196,
+    "dropped": 66,
+    "kept": 130
+   },
+   "1150": {
+    "raw": 196,
+    "dropped": 66,
+    "kept": 130
+   }
+  },
+  "faithfulnessTo617": {
+   "720": {
+    "myKept": 130,
+    "theirTotal": 130,
+    "myBlocked": 16,
+    "theirBlocked": 16,
+    "sameTotal": true,
+    "sameBlockedCount": true,
+    "theirScrims": 0
+   },
+   "900": {
+    "myKept": 130,
+    "theirTotal": 130,
+    "myBlocked": 14,
+    "theirBlocked": 14,
+    "sameTotal": true,
+    "sameBlockedCount": true,
+    "theirScrims": 0
+   },
+   "1150": {
+    "myKept": 130,
+    "theirTotal": 130,
+    "myBlocked": 14,
+    "theirBlocked": 14,
+    "sameTotal": true,
+    "sameBlockedCount": true,
+    "theirScrims": 0
+   }
+  },
+  "table": {
+   "720": {
+    "all four readings agree": 92,
+    "CH3b: a pe:none layer over a control that is NOT own": 2,
+    "CH3 hit-testability: own, yet a pe:none layer sits over it": 24,
+    "CH4 transparency: a fully transparent element took the hit": 2,
+    "off-viewport": 10
+   },
+   "900": {
+    "all four readings agree": 92,
+    "CH3b: a pe:none layer over a control that is NOT own": 2,
+    "CH3 hit-testability: own, yet a pe:none layer sits over it": 24,
+    "CH4 transparency: a fully transparent element took the hit": 2,
+    "off-viewport": 10
+   },
+   "1150": {
+    "all four readings agree": 92,
+    "CH3b: a pe:none layer over a control that is NOT own": 2,
+    "CH3 hit-testability: own, yet a pe:none layer sits over it": 24,
+    "CH4 transparency: a fully transparent element took the hit": 2,
+    "off-viewport": 10
+   }
+  },
+  "tableIsIdenticalAtEveryHeight": true,
+  "CH1Clipping": {
+   "720": 0,
+   "900": 0,
+   "1150": 0
+  },
+  "CH3Labels": [
+   "重置视角",
+   "X 正向",
+   "X 反向",
+   "Y 正向",
+   "Y 反向",
+   "Z 正向",
+   "Z 反向",
+   "移动",
+   "旋转",
+   "缩放"
+  ],
+  "peNonePopulation": {
+   "720": 22,
+   "900": 22,
+   "1150": 22
+  },
+  "opacityZeroDropped": [
+   {
+    "h": 720,
+    "label": "<input>",
+    "data": "directorScenePromptFile",
+    "box": [
+     1013,
+     513.5,
+     1,
+     1
+    ],
+    "opacity": "0"
+   },
+   {
+    "h": 720,
+    "label": "时间轴缩放",
+    "data": "directorTimelineZoom",
+    "box": [
+     1045,
+     545,
+     71,
+     24
+    ],
+    "opacity": "0"
+   },
+   {
+    "h": 900,
+    "label": "<input>",
+    "data": "directorScenePromptFile",
+    "box": [
+     1013,
+     693.5,
+     1,
+     1
+    ],
+    "opacity": "0"
+   },
+   {
+    "h": 900,
+    "label": "时间轴缩放",
+    "data": "directorTimelineZoom",
+    "box": [
+     1045,
+     725,
+     71,
+     24
+    ],
+    "opacity": "0"
+   },
+   {
+    "h": 1150,
+    "label": "<input>",
+    "data": "directorScenePromptFile",
+    "box": [
+     1013,
+     943.5,
+     1,
+     1
+    ],
+    "opacity": "0"
+   },
+   {
+    "h": 1150,
+    "label": "时间轴缩放",
+    "data": "directorTimelineZoom",
+    "box": [
+     1045,
+     975,
+     71,
+     24
+    ],
+    "opacity": "0"
+   }
+  ],
+  "crossBatch658": {
+   "promptFileKeyPresentIn658": true,
+   "theirKeys": [
+    "data-director-rail-entry|帮助",
+    "data-director-scene-prompt-file|",
+    "data-director-scene-prompt-input|描述想搭建的场景",
+    "data-director-scene-prompt-submit|发送",
+    "data-director-scene-prompt-upload|上传图片"
+   ]
+  },
+  "accounting": {
+   "720": {
+    "droppedKeys": 33,
+    "keptCount": 130,
+    "rawCount": 196,
+    "theirTotal": 130,
+    "keyLevelDiffAvailable": false
+   },
+   "900": {
+    "droppedKeys": 33,
+    "keptCount": 130,
+    "rawCount": 196,
+    "theirTotal": 130,
+    "keyLevelDiffAvailable": false
+   },
+   "1150": {
+    "droppedKeys": 33,
+    "keptCount": 130,
+    "rawCount": 196,
+    "theirTotal": 130,
+    "keyLevelDiffAvailable": false
+   }
+  }
+ },
+ "checks": {
+  "the-copied-filters-reproduce-617s-own-census-exactly": {
+   "ok": true,
+   "detail": {
+    "perHeight": {
+     "720": {
+      "myKept": 130,
+      "theirTotal": 130,
+      "myBlocked": 16,
+      "theirBlocked": 16,
+      "sameTotal": true,
+      "sameBlockedCount": true,
+      "theirScrims": 0
+     },
+     "900": {
+      "myKept": 130,
+      "theirTotal": 130,
+      "myBlocked": 14,
+      "theirBlocked": 14,
+      "sameTotal": true,
+      "sameBlockedCount": true,
+      "theirScrims": 0
+     },
+     "1150": {
+      "myKept": 130,
+      "theirTotal": 130,
+      "myBlocked": 14,
+      "theirBlocked": 14,
+      "sameTotal": true,
+      "sameBlockedCount": true,
+      "theirScrims": 0
+     }
+    },
+    "whatWasCopied": "617's scope selector, inScope, isFlow, isScrim, and both readings (own, paintedAtCentre) verbatim from 617:298-319",
+    "whyItMatters": "the point of copying was to reuse the shared criterion's own numbers instead of inventing near-misses.  That only counts if the copy is provably faithful, and this is the proof: same kept count, same blocked count, at every height.",
+    "aWiderProbeFirstFound132": "an earlier bare probe with NO filters enumerated 132; the two extra were exactly the two opacity:0 controls L281 drops. There is no divergence between the two censuses — my first read of it as a superset was wrong."
+   },
+   "note": "a reused criterion is only reuse if the copy is provably equal"
+  },
+  "every-dropped-control-is-attributed-to-one-of-the-six-gates": {
+   "ok": true,
+   "detail": {
+    "gates": {
+     "L276_outOfScopeOrFlow": {
+      "line": 276,
+      "what": "not in the desk scope, or inside react-flow",
+      "droppedPerHeight": {
+       "720": 60,
+       "900": 60,
+       "1150": 60
+      }
+     },
+     "L278_zeroSize": {
+      "line": 278,
+      "what": "width or height is 0",
+      "droppedPerHeight": {
+       "720": 4,
+       "900": 4,
+       "1150": 4
+      }
+     },
+     "L280_visibilityOrDisplay": {
+      "line": 280,
+      "what": "visibility:hidden or display:none",
+      "droppedPerHeight": {
+       "720": 0,
+       "900": 0,
+       "1150": 0
+      }
+     },
+     "L281_opacityZero": {
+      "line": 281,
+      "what": "opacity:0",
+      "droppedPerHeight": {
+       "720": 2,
+       "900": 2,
+       "1150": 2
+      }
+     },
+     "L282_pointerEventsNone": {
+      "line": 282,
+      "what": "pointer-events:none — THE THIRD-STATE COLLAPSE",
+      "droppedPerHeight": {
+       "720": 0,
+       "900": 0,
+       "1150": 0
+      }
+     },
+     "L285_isScrim": {
+      "line": 285,
+      "what": "a dismiss catcher, recorded as a scrim instead",
+      "droppedPerHeight": {
+       "720": 0,
+       "900": 0,
+       "1150": 0
+      }
+     }
+    },
+    "gatesTotal": {
+     "720": {
+      "raw": 196,
+      "dropped": 66,
+      "kept": 130
+     },
+     "900": {
+      "raw": 196,
+      "dropped": 66,
+      "kept": 130
+     },
+     "1150": {
+      "raw": 196,
+      "dropped": 66,
+      "kept": 130
+     }
+    },
+    "accounting": {
+     "720": {
+      "droppedKeys": 33,
+      "keptCount": 130,
+      "rawCount": 196,
+      "theirTotal": 130,
+      "keyLevelDiffAvailable": false
+     },
+     "900": {
+      "droppedKeys": 33,
+      "keptCount": 130,
+      "rawCount": 196,
+      "theirTotal": 130,
+      "keyLevelDiffAvailable": false
+     },
+     "1150": {
+      "droppedKeys": 33,
+      "keptCount": 130,
+      "rawCount": 196,
+      "theirTotal": 130,
+      "keyLevelDiffAvailable": false
+     }
+    },
+    "countedPerHeight": "one census per page load; the raw population is the whole document, so L276 carries the canvas page's own top bar",
+    "L276sample": "项目菜单 / 工作区名称 / 画布 2 / 工作流 / 故事板",
+    "L278sample": "623's in-case zero-size family, unchanged",
+    "L281sample": [
+     {
+      "h": 720,
+      "label": "<input>",
+      "data": "directorScenePromptFile",
+      "box": [
+       1013,
+       513.5,
+       1,
+       1
+      ],
+      "opacity": "0"
+     },
+     {
+      "h": 720,
+      "label": "时间轴缩放",
+      "data": "directorTimelineZoom",
+      "box": [
+       1045,
+       545,
+       71,
+       24
+      ],
+      "opacity": "0"
+     },
+     {
+      "h": 900,
+      "label": "<input>",
+      "data": "directorScenePromptFile",
+      "box": [
+       1013,
+       693.5,
+       1,
+       1
+      ],
+      "opacity": "0"
+     },
+     {
+      "h": 900,
+      "label": "时间轴缩放",
+      "data": "directorTimelineZoom",
+      "box": [
+       1045,
+       725,
+       71,
+       24
+      ],
+      "opacity": "0"
+     },
+     {
+      "h": 1150,
+      "label": "<input>",
+      "data": "directorScenePromptFile",
+      "box": [
+       1013,
+       943.5,
+       1,
+       1
+      ],
+      "opacity": "0"
+     },
+     {
+      "h": 1150,
+      "label": "时间轴缩放",
+      "data": "directorTimelineZoom",
+      "box": [
+       1045,
+       975,
+       71,
+       24
+      ],
+      "opacity": "0"
+     }
+    ],
+    "rule": "record the FIRST gate that would have removed each control instead of letting a bare `continue` make it disappear"
+   },
+   "note": "a silent continue is a control that cannot be asked about"
+  },
+  "the-third-state-gate-fires-zero-times-in-the-desk": {
+   "ok": true,
+   "detail": {
+    "L282DroppedPerHeight": {
+     "720": 0,
+     "900": 0,
+     "1150": 0
+    },
+    "peNonePopulation": {
+     "720": 22,
+     "900": 22,
+     "1150": 22
+    },
+    "reading": "none of the desk's own CONTROLS is pointer-events:none, so the inclusion end of the third-state collapse does not fire on this page",
+    "scope": "this is a measured zero, and its scope is the INCLUSION end only.  It does not mean the desk has no blind spot — the next check is that.",
+    "notClaimed": "that the gate should be removed or changed. It is a shared criterion; a change needs 只增不改 plus a mechanical zero-regression proof, which this batch did not do.",
+    "alsoZero": {
+     "L280_visibilityOrDisplay": {
+      "720": 0,
+      "900": 0,
+      "1150": 0
+     },
+     "L285_isScrim": {
+      "720": 0,
+      "900": 0,
+      "1150": 0
+     }
+    }
+   },
+   "note": "a measured zero, scoped to the inclusion end — and scoped honestly, because the next cell is not zero"
+  },
+  "the-blind-spot-is-outside-the-gate-not-inside-it": {
+   "ok": true,
+   "detail": {
+    "CH3count": {
+     "720": 24,
+     "900": 24,
+     "1150": 24
+    },
+    "samples": [
+     "重置视角",
+     "X 正向",
+     "X 反向",
+     "Y 正向",
+     "Y 反向",
+     "Z 正向",
+     "Z 反向",
+     "移动",
+     "旋转",
+     "缩放"
+    ],
+    "mechanism": "L282 tests the CONTROL's own pointer-events. The damage 664 measured is a DIFFERENT pe:none element lying over the control's centre.  A gate that asks the first question is structurally unable to speak about the second.",
+    "notADefectClaim": "own=True means those controls are still clickable.  The claim is only that `own` cannot see what is lying on top of them.",
+    "shareOfKept": {
+     "720": "24/130",
+     "900": "24/130",
+     "1150": "24/130"
+    }
+   },
+   "note": "the gate is in the right place and the wrong question"
+  },
+  "the-four-channel-table-is-identical-at-all-three-heights": {
+   "ok": true,
+   "detail": {
+    "table": {
+     "720": {
+      "all four readings agree": 92,
+      "CH3b: a pe:none layer over a control that is NOT own": 2,
+      "CH3 hit-testability: own, yet a pe:none layer sits over it": 24,
+      "CH4 transparency: a fully transparent element took the hit": 2,
+      "off-viewport": 10
+     },
+     "900": {
+      "all four readings agree": 92,
+      "CH3b: a pe:none layer over a control that is NOT own": 2,
+      "CH3 hit-testability: own, yet a pe:none layer sits over it": 24,
+      "CH4 transparency: a fully transparent element took the hit": 2,
+      "off-viewport": 10
+     },
+     "1150": {
+      "all four readings agree": 92,
+      "CH3b: a pe:none layer over a control that is NOT own": 2,
+      "CH3 hit-testability: own, yet a pe:none layer sits over it": 24,
+      "CH4 transparency: a fully transparent element took the hit": 2,
+      "off-viewport": 10
+     }
+    },
+    "identicalAtEveryHeight": true,
+    "CH1Clipping": {
+     "720": 0,
+     "900": 0,
+     "1150": 0
+    },
+    "whyCH1isZero": "646's family — a control scrolled out of its OWN scroller — was found on the CANVAS PAGE's 1020px toolbar, not in the director desk. `own` and `paintedAtCentre` therefore never disagree here.",
+    "regularity": "the same shape 633 found for the burial surface: at W=1280 the cell counts do not move with the viewport height",
+    "scope": "W=1280 x 3 heights only. NOT a theorem; a width or a shorter viewport can move these cells and this check will go red.",
+    "CH4isPriorWork": "the two CH4 cells are 662's 帮助←收起属性 and 664's transparent inspector column — prior findings, counted here for the table",
+    "CH2": "one control per height: not own, with a faded ancestor"
+   },
+   "note": "regularity is a fact about the surface, not about the world"
+  },
+  "one-of-the-two-silently-dropped-controls-is-a-defect-658-counted": {
+   "ok": true,
+   "detail": {
+    "opacityZeroDropped": [
+     {
+      "h": 720,
+      "label": "<input>",
+      "data": "directorScenePromptFile",
+      "box": [
+       1013,
+       513.5,
+       1,
+       1
+      ],
+      "opacity": "0"
+     },
+     {
+      "h": 720,
+      "label": "时间轴缩放",
+      "data": "directorTimelineZoom",
+      "box": [
+       1045,
+       545,
+       71,
+       24
+      ],
+      "opacity": "0"
+     },
+     {
+      "h": 900,
+      "label": "<input>",
+      "data": "directorScenePromptFile",
+      "box": [
+       1013,
+       693.5,
+       1,
+       1
+      ],
+      "opacity": "0"
+     },
+     {
+      "h": 900,
+      "label": "时间轴缩放",
+      "data": "directorTimelineZoom",
+      "box": [
+       1045,
+       725,
+       71,
+       24
+      ],
+      "opacity": "0"
+     },
+     {
+      "h": 1150,
+      "label": "<input>",
+      "data": "directorScenePromptFile",
+      "box": [
+       1013,
+       943.5,
+       1,
+       1
+      ],
+      "opacity": "0"
+     },
+     {
+      "h": 1150,
+      "label": "时间轴缩放",
+      "data": "directorTimelineZoom",
+      "box": [
+       1045,
+       975,
+       71,
+       24
+      ],
+      "opacity": "0"
+     }
+    ],
+    "in658sOccludedKeys": true,
+    "theirKeys": [
+     "data-director-rail-entry|帮助",
+     "data-director-scene-prompt-file|",
+     "data-director-scene-prompt-input|描述想搭建的场景",
+     "data-director-scene-prompt-submit|发送",
+     "data-director-scene-prompt-upload|上传图片"
+    ],
+    "theDisagreement": "658 counted `data-director-scene-prompt-file` among the prompt bar's unreachable controls; 617's census CANNOT ENUMERATE it, because L281 drops it for opacity:0. Neither ledger says so.",
+    "whatItIs": "a 1x1 sr-only file input at opacity 0 — the user cannot see it or click it, yet a script can still drive it",
+    "scoped": "659 and 660's closed form (centre strictly inside the host's clip box) is a statement about VISIBLE controls; this one is not visible, so the form does not cover it and is not claimed to",
+    "notClaimed": "whether an sr-only file input should count as a control at all — that is a product decision"
+   },
+   "note": "two censuses disagree about whether something exists, and neither wrote it down"
+  }
+ }
+}
