@@ -53,11 +53,16 @@
 | 还没放素材 | `No resources: 0 ready, 0 processing, 0 failed.` |
 | 素材已处理完 | `1 resource: 1 ready, 0 processing, 0 failed.` |
 | 素材收下了、还在处理 | `1 resource: 0 ready, 1 processing, 0 failed.` |
-| 素材处理失败 | `2 resources: 1 ready, 0 processing, 1 failed.` ← ⚠️ 抄写，未实测 |
+| 素材处理失败 | `2 resources: 1 ready, 0 processing, 1 failed.` ← ⚠️ **2026-10-03 批次 112 仍未能造出，见下** |
 
 - 资源账后面还会跟一句状态：`Selected.` 或 `Not selected.`
 - 别的节点类型用别的措辞，例如时间线节点写
   `时间线: 1 visual track, 0 audio tracks, 0 clips.`
+- 🔴 **资源账在哪个属性里，因节点类型而异**（批次 112 实测）：
+  **视频 / 音频节点在 `innerText` 里；图片节点在 `aria-label` 里** ——
+  一张「预览不可用」的图片节点，`innerText` 逐字是 `预览不可用 重试 jimeng-b1...truncated`，
+  **账不在里面**；账在 aria 上，逐字 `1 resource: 1 ready, 0 processing, 0 failed. Selected.`
+  ⇒ 读账要**两个都读**（aria 优先，回落 `innerText`），别只读一个。
 - 📌 **这张账是「上传期」的账**。播放期出问题**不会**把它翻成 `failed`
   —— 详见下面的[「媒体异常」](#媒体异常)。
 
@@ -189,6 +194,46 @@
 不要当成「资源坏了」；
 **「节点上写着『正在处理上传内容…`、而且整张卡片只有改名按钮」是处理中**，
 它既不是空节点、也不是坏了 —— 它是**素材被收下了但后端还没处理完**。
+
+### 🆕「预览不可用」：图片节点专属的第四档（2026-10-03 批次 112 实测）
+
+此前全册只分「空 / 处理中 / 资源失效（播放侧）」几档。批次 112 用**自造的坏图片**
+造出**图片节点专属**的一档：**素材在、也 ready，但预览不出来**。
+
+素材（全部自造、免费，扩展名都在白名单里）：
+
+| 文件 | 做法 | 结果 |
+|---|---|---|
+| `jimeng-b112-empty.png` | **0 字节** | 🔴 **连节点都没建出来**（客户端就拒了） |
+| `jimeng-b112-text.png` | 纯文本改 `.png` 扩展名 | 🔴 **连节点都没建出来** |
+| `jimeng-b112-truncated.png` | 合法 PNG 签名 + 完整 `IHDR`，**缺 IDAT/IEND**（33 字节） | ✅ **造出了这一档** |
+| `jimeng-b112-badidat.png` | 结构与 CRC 全合法，IDAT 是 64 字节垃圾 | 资源账 `1 ready`、`imgs: 1`，**正常渲染** ⇒ 服务端容忍了 |
+
+**「预览不可用」这一档的逐字读数**：
+
+| 观测量 | 逐字 |
+|---|---|
+| `innerText` | `预览不可用 重试 jimeng-b1...truncated` |
+| 关键 testid | **`image-preview-unavailable`**，`192×192`（**铺满整张卡**） |
+| 其内结构 | `<div data-canvas-content-evidence="element" data-canvas-content-state="media_error" elementtiming="canvas-initial-content">预览不可用</div>` ＋ `<button aria-label="Retry <名>">` |
+| 按钮 | **`Retry <名>`**（**英文** Retry，不是中文「重试」）`48×19 @616,360` |
+| `<img>` 数量 | 从 **1 掉到 0** |
+| **资源账** | ⚠️ **纹丝不动**：仍在 aria 上逐字 `1 resource: 1 ready, 0 processing, 0 failed. Selected.` |
+
+🔑 **`data-canvas-content-state="media_error"` 是产品自己声明的标志** ——
+比「有没有某个 testid」更可靠，因为它写的就是「这是一个媒体错误」这层语义。
+⇒ 📌 找这一档最快的方式：**扫 `data-canvas-content-state`**，不是扫 testid。
+
+**点 `Retry <名>` 会怎样**（与「重试播放」同构）：
+
+- **1.2 秒内短暂恢复一帧**（`imgs` 回到 **1**、`预览不可用` 暂时消失）
+- 紧接着又回到 `预览不可用`
+- 连采 **12 次 / 14.4 秒**，**资源账 `ready=1 failed=0` 逐位不动**
+- ⇒ 📌 **`Retry` 只是重新取一次预览**：取到就闪一帧，取不到就**回原样、连文案都不换**
+
+⚠️ **和「资源失效」的区别**：两者**资源账都是 `1 ready`**（这是第三次独立应验
+「渲染/播放期失败不改资源账」），只能靠**卡片中央那行字**分：
+`音频播放失败 ＋ 重试播放音频` vs `预览不可用 ＋ Retry <名>`。
 
 ### ⚠️ 处理中会等多久？本轮没等到底
 

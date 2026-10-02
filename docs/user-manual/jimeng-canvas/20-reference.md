@@ -900,13 +900,30 @@ aria 逐字 `Create connected node before <节点名>`）—— **批次 71 新�
 | 还没放素材 | `No resources: 0 ready, 0 processing, 0 failed.` |
 | 素材处理完 | `1 resource: 1 ready, 0 processing, 0 failed.` |
 | 素材收下了、还在处理 | `1 resource: 0 ready, 1 processing, 0 failed.` |
-| 素材处理失败 | `2 resources: 1 ready, 0 processing, 1 failed.` ← ⚠️ 抄写，未实测 |
+| 素材处理失败 | `2 resources: 1 ready, 0 processing, 1 failed.` ← ⚠️ **批次 112 仍未能造出** |
 
 - 资源账后面跟 `Selected.` 或 `Not selected.`
 - 节点类型不同，措辞也不同：时间线节点写
   `时间线: 1 visual track, 0 audio tracks, 0 clips.`
 - 🔴 **这是「上传期」的账，播放期失败不会改它**
   （批次 105 实测：注入播放期加载失败后，账本仍是 `1 ready, 0 processing, 0 failed`）。
+- 🔴 **账在哪个属性里，因节点类型而异**（批次 112 实测）：
+  **视频 / 音频节点在 `innerText` 里；图片节点在 `aria-label` 里。**
+  一张「预览不可用」的图片节点 `innerText` 逐字是 `预览不可用 重试 jimeng-b1...truncated`，
+  **账不在里面**；它在 aria 上：`1 resource: 1 ready, 0 processing, 0 failed. Selected.`
+  ⇒ 读账**两个都要读**（aria 优先，回落 `innerText`）。
+- 🔴 **`failed` 这一档至今没能自然造出**（批次 105 两次 mp4、批次 112 四种坏图片全部落空）：
+  - **0 字节**与**纯文本改扩展名** ⇒ **连节点都不建**（客户端就拒了）
+  - 能建出节点的三种损坏（截断 PNG / IDAT 垃圾 / 伪随机 mp4）⇒ 资源账**要么 `1 ready`、要么永远 `processing`**
+  ⇒ 结论按三态记「**无法验证**」：`2 resources: 1 ready, 0 processing, 1 failed.`
+  **仍然只是抄写**，请以遇到时的实际读数为准。
+- 🆕 **找「媒体渲染失败」最快的判据**（批次 112）：
+  扫 **`data-canvas-content-state="media_error"`** ——
+  它写的就是「这是一个媒体错误」这层语义，比「某个 testid 在不在」可靠。
+  图片节点上它出现在
+  `<div data-canvas-content-evidence="element" data-canvas-content-state="media_error"
+  elementtiming="canvas-initial-content">预览不可用</div>` 里，
+  外层 testid **`image-preview-unavailable`**（`192×192` 铺满整卡）。
 - 「处理中」这一档的卡片特征：testid **`video-node-uploading`**、
   aria `<素材名>.mp4: 正在处理上传内容…`、卡片里**只有一个** `Rename <名>` 按钮、
   `<video>` 与 `<img>` **各 0 个**。详见[预览与播放视频节点](10-tasks/media-playback.md#媒体异常)。

@@ -1,0 +1,39 @@
+{
+ "at": "2026-10-02T19:55:17.818Z",
+ "round": "z",
+ "self": "node_67havtjgd8",
+ "start": {
+  "nodes": "77",
+  "sel": "1",
+  "edges": "0",
+  "zoom": "Zoom options, 60%",
+  "tool": "选择工具",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "menuText": "复制 ⌘ C 复制副本 ⌘ D 复制为图片 ⌘ ⇧ C 粘贴 ⌘ V 保存到主体库 下载 重做 ⌘ ⇧ Z 无需重做操作 撤销 ⌘ Z 删除 ⌫",
+ "deleted": {
+  "gone": [
+   "node_67havtjgd8"
+  ],
+  "onlySelf": true
+ },
+ "end": {
+  "nodes": "76",
+  "sel": "0",
+  "edges": "0",
+  "zoom": "Zoom options, 60%",
+  "tool": "选择工具",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "read2": {
+  "nodes": "76",
+  "sel": "0",
+  "edges": "0",
+  "zoom": "Zoom options, 60%",
+  "tool": "选择工具",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "idsEnd": 76,
+ "leftover": [],
+ "clean": true
+}
