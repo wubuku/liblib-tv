@@ -143,6 +143,19 @@
 > 按钮依然无变化，拖动请求 `(+37,+29)`、落点 `(+34,+27)`，对 640 的步长取模仍是 `34,27`。
 > 唯一没排除的可能是它在**别的画布 / 别的项目设置**里才生效。
 
+### 连接口与连线
+
+| 元素 | 读法 | 实测 |
+|---|---|---|
+| 端口（入口） | `[data-handleid="target"]` | 贴节点**左边界**，class 含 `react-flow__handle-left` `connectable`，光标 `crosshair` |
+| 端口（出口） | `[data-handleid="source"]` | 贴节点**右边界**，class 含 `react-flow__handle-right` `connectable`，光标 `crosshair` —— ⚠️ **`逐帧拉片` 的出口是 `grab`** |
+| 端口数量 | 每个节点 2 个 | 11/11 个节点都是 |
+| ⭐ 端口的真实可点范围 | 端口元素**本身 `0×0`**，真正能点的是**套在里面的 `80×80` 透明圆形** | 所以节点左右边缘往外一带的 80 像素都起得了线，不必精确对准小圆点 |
+| ⭐ **连线的两端** | **`aria-label="Edge from <源id> to <目标id>"`** | ⚠️ `.react-flow__edge` 上**没有** `data-source` / `data-target`；`data-id` 是随机串（`e-5U2jB82fuL`），**从 path 的 `d` 坐标反推距离 969~1325 全错** |
+| 连线其他属性 | `data-testid="rf__edge-<id>"` · `role="group"` · `aria-roledescription="edge"` · `tabindex="0"` | class `react-flow__edge react-flow__edge-default nopan selectable` |
+| 连线的可点范围 | `stroke: rgba(0,0,0,0)`（**透明**）+ `stroke-width: 20px` | 线条本身看不见，是靠 **20 像素宽的透明描边**撑出可点区域 |
+| 拖动中的临时连线 | `data-id="__temp_connection_edge__"` | 松手成功变正式连线；**失败会自己消失，不落盘**（本轮 DOM 数到 2 条、刷新后仍是 1 条） |
+
 ### 组操作条（成组后浮出）
 
 组被选中时浮现在组上方，7 个动作**不是 `<button>`，是 `div` / `span`**，中间夹 2 条竖分隔线：

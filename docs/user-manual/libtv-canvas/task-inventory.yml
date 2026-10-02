@@ -271,6 +271,11 @@ tasks:
       - 'G-01-连线-起点端口.png / G-02-连线-拖拽中.png'
       - 'H-11-节点连线-完整.png：连线成立，edgeCount=1'
       - '端口 DOM：输出 .react-flow__handle-right[data-handleid=source][data-handlepos=right]；输入 .react-flow__handle-left[data-handleid=target][data-handlepos=left]'
+      - 'batchBG1/BG3：⭐⭐ **端口元素本身 `getBoundingClientRect()` 是 0×0**，伪元素 `::before`/`::after` 都 `content: none`，但 `display:block`/`visibility:visible`/`opacity:1`、class 含 `connectable`、位置也对（target 贴左边界、source 贴右边界）。⭐ **谜底在 `innerHTML`：真正可点可拖的是套在里面的一个 `80×80` 透明圆形**（`border-radius:50%` + `pointer-events:auto`）—— 所以**不必精确对准小圆点**，节点左右边缘往外 80 像素都起得了线。悬停/选中**都不会**让它展开（`expandedOnHover:false`、`expandedOnSelect:false`）'
+      - 'batchBG1：**11/11 个节点都是恰好 2 个端口**（`target` + `source`），光标全是 `crosshair`，**唯一例外是 `逐帧拉片` 的出口为 `grab`**'
+      - 'batchBG3/BG4：⭐⭐ **连线的两端写在 `aria-label` 里** —— `aria-label="Edge from i-9nlG6HdjK2 to v-eMpqKtiLlx"`（即**图片节点 → 视频节点**）。⚠️ `.react-flow__edge` 上**没有** `data-source`/`data-target`，`data-id` 是随机串，**从 `path` 的 `d` 坐标反推距离 969~1325 全错**。其他属性：`data-testid="rf__edge-<id>"` · `role="group"` · `aria-roledescription="edge"` · `tabindex="0"`；class `react-flow__edge react-flow__edge-default nopan selectable`；`stroke` **透明**、靠 **`stroke-width: 20px`** 撑出可点区域'
+      - 'batchBG3/BG4：拖动中会多出一条 `.react-flow__edge`，`data-id="__temp_connection_edge__"`。⚠️ **松手失败它会自己消失、不落盘** —— 本轮 DOM 数到 2 条、**刷新后仍是 1 条**，`⌘Z` 也撤不掉。所以「拖动时数到 2 条」不能直接判为「连上了」'
+      - 'batchBG1/BG3：端口**悬停没有 tooltip**（`tips: []`）—— 与摄像机按钮同族，只能靠位置 + `data-handleid` 认它'
     manual_pages:
       - 10-tasks/connect-nodes.md
     notes: >-
