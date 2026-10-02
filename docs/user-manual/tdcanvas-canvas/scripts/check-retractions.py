@@ -32,6 +32,8 @@ EXCLUDED = {"AUDIT.md", "PROGRESS.md", "TEST_MEDIA_ASSETS.md", "PUBLISH.md"}
 # rglob 会把 137 个第三方文档一起扫进来，制造假阳性。与 check-claims.py 保持一致。
 BODY_PAGES = ["README.md", "00-quickstart.md", "20-reference.md", "30-concepts.md", "90-troubleshooting.md"]
 BODY_GLOBS = ["10-tasks/*.md"]
+# M153 新增：账本也纳入扫描（见 iter_body_pages 里的说明）
+LEDGER_PAGES = ["task-inventory.yml", "SOURCE_OBSERVATIONS.md"]
 
 RETRACTIONS: list[dict[str, str]] = [
     {
@@ -93,12 +95,14 @@ RETRACTIONS: list[dict[str, str]] = [
         "wrong": "导出是唯一能带走项目的方式",
         "why": "画布 zip 没有导入功能，带不走项目（2026-10-01 三重取证：i18n 三条文案零引用、首页无文件选择器、喂给导入资产报格式错）",
         "fixed_in": "M47",
+        "allow_in": ["task-inventory.yml:257"],
     },
     {
         "id": "R2",
         "wrong": "可以整体拷到另一台机器导入",
         "why": "同 R1，画布侧只实现了导出、从未实现读回",
         "fixed_in": "M47",
+        "allow_in": ["task-inventory.yml:257"],
     },
     {
         "id": "R3",
@@ -129,6 +133,7 @@ RETRACTIONS: list[dict[str, str]] = [
         "wrong": "用首页的批量导出得到 zip",
         "why": "同 R1。M47 漏改了 undo-persistence 这一处，M52 才发现",
         "fixed_in": "M52",
+        "allow_in": ["task-inventory.yml:237"],
     },
     {
         "id": "R8",
@@ -187,12 +192,14 @@ RETRACTIONS: list[dict[str, str]] = [
         "wrong": "Dock 认不出 9 个",
         "why": "M125–M129 连续四批据「按 class 名找悬停浮层」写下「左侧 Dock 16 个按钮里有 9 个认不出、悬停无任何提示」，M129 还把它写进了探针的结论。**M132 第 63 次否证整组作废**：Dock 用的是自研浮层，类名 `pointer-events-none absolute left-[calc(100%+8px)]`，**不含 tooltip / tip 任何字样**；按类名找只抓得到同区域的 antd `div.ant-tooltip`。实测 Dock 8 个按钮悬停提示**逐字齐全**，「删除选中」也有浮层。正确判据是**悬停前后全页可见文本取差集**，不依赖类名（2026-10-02 M132）",
         "fixed_in": "M132",
+        "allow_in": ["task-inventory.yml:47"],
     },
     {
         "id": "R26",
         "wrong": "三处按钮区",
         "why": "M132 补出**顶栏**这一处按钮区后，两页仍写「三处按钮区」，实际是**四处**（左侧 Dock / 节点悬浮工具条 / 画布视图控制 / 顶栏）。M139 回走时订正为四处并把顶栏列进去。写死数量而不列出处，下批加一处就会漏改（2026-10-02 M139）",
         "fixed_in": "M139",
+        "allow_in": ["task-inventory.yml:126", "SOURCE_OBSERVATIONS.md:357"],
     },
     {
         "id": "R27",
@@ -228,6 +235,19 @@ def iter_body_pages(root: Path):
             yield path
     for pattern in BODY_GLOBS:
         yield from sorted(root.glob(pattern))
+    # M153：把**账本**纳入扫描范围。
+    # 实测盲区：把已订正的「Dock 认不出 9 个」写进 `task-inventory.yml`，
+    # 本门禁报 ok——**它连扫都没扫到那个文件**。
+    # M152 补登记 R25 时只扫了正文三页，**「补登记」这件事自己也有覆盖不全**。
+    #
+    # ★ **AUDIT.md / PROGRESS.md 不纳入**：那两个文件本身就是订正记录，
+    #   逐行豁免不现实（全库命中 22 处），而且把它们纳入会让本门禁的信号淹没在噪声里。
+    #   **账本不一样**——它的 review_note 记录的是各任务的取证结论，
+    #   **未订正的错误说法混进去就是真的错了**，值得守。
+    for name in LEDGER_PAGES:
+        path = root / name
+        if path.is_file():
+            yield path
 
 
 def main() -> int:

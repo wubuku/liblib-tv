@@ -948,6 +948,33 @@ def mutate_retracted_allowlist_too_broad(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_retracted_ledger_repro(root: Path) -> None:
+    """已订正的说法复现到**账本**里（正文之外，M153 补的覆盖范围）。
+
+    M153 实测盲区：把「Dock 认不出 9 个」写进 `task-inventory.yml`，
+    `check-retractions.py` 报 ok——**它只扫 5 个固定页 + `10-tasks/*.md`，
+    账本根本不在扫描范围里**。M152 补登记 R25 时也只扫了正文三页，
+    **「补登记」这件事自己就有覆盖不全**。
+
+    ★ **注入位置必须避开 `allow_in` 登记的行**（M153 第一版阳性对照就踩了这个：
+    注入恰好落在 R25 豁免的那一行，于是被如实放行、exit=0——
+    **那是判据行为正确，是对照设计错了**）。
+    """
+
+    path = root / "task-inventory.yml"
+    lines = path.read_text(encoding="utf-8").splitlines()
+    exempt = {47, 126, 237, 257}
+    for i, line in enumerate(lines, 1):
+        if i in exempt:
+            continue
+        if "review_note:" in line or "note:" in line:
+            lines[i - 1] = line + " 另外 Dock 认不出 9 个按钮。"
+            break
+    else:
+        raise AssertionError("没找到可注入的行")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 CASES: list[tuple[str, object, str, str]] = [
     ("图片字节被改动", mutate_image_bytes, "gate", "sha256 mismatch"),
     ("manifest 删掉一条记录", mutate_manifest_drop_record, "gate", "image missing from manifest"),
@@ -970,6 +997,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("M99 撤回的「方向拖反会连上」复现", mutate_retracted_stale_count, "retractions", "R22"),
     ("M132 订正的「Dock 认不出 9 个」复现（M152 补登记）", mutate_retracted_m132_dock, "retractions", "R25"),
     ("订正豁免写成只给文件名（豁免必须窄到无法滥用）", mutate_retracted_allowlist_too_broad, "retractions", "写法不合法"),
+    ("已订正说法复现到**账本**里（正文之外的盲区）", mutate_retracted_ledger_repro, "retractions", "订正过的错误说法重新出现"),
     ("产物里的死链", mutate_dead_dist_link, "distlinks", "指向不存在目标的链接"),
     ("任务评级三处不一致", mutate_rating_drift_inventory, "ratings", "评级漂移"),
     ("账本截图数与 manifest 不符", mutate_inventory_stale_count, "invfresh", "manifest 实为"),
