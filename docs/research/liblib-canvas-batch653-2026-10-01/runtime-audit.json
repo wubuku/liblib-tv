@@ -1,0 +1,465 @@
+{
+  "batch": 653,
+  "question": "do 648's four desk-drawer open paths — all locator.click(), one of them click-then-hover — inherit a probe-side-effect scroll the way @fov-hover@ does?",
+  "criterion": "652's, unchanged: did the probe move a scrollable container, and is the offset the same at every height?",
+  "grid": {
+    "width": 1280,
+    "heights": [
+      720,
+      900,
+      1150
+    ]
+  },
+  "drawers": {
+    "crowd-panel": {
+      "scrolledAtAll": false,
+      "scrollAmountsByHeight": {
+        "720": [],
+        "900": [],
+        "1150": []
+      },
+      "amountVariesWithHeight": false,
+      "boxes": {
+        "720": [
+          504,
+          258,
+          272,
+          208
+        ],
+        "900": [
+          504,
+          438,
+          272,
+          208
+        ],
+        "1150": [
+          504,
+          688,
+          272,
+          208
+        ]
+      },
+      "boxXConstant": true,
+      "errors": {}
+    },
+    "phone-vcam-panel": {
+      "scrolledAtAll": false,
+      "scrollAmountsByHeight": {
+        "720": [],
+        "900": [],
+        "1150": []
+      },
+      "amountVariesWithHeight": false,
+      "boxes": {
+        "720": [
+          647,
+          144,
+          340,
+          322
+        ],
+        "900": [
+          647,
+          324,
+          340,
+          322
+        ],
+        "1150": [
+          647,
+          574,
+          340,
+          322
+        ]
+      },
+      "boxXConstant": true,
+      "errors": {}
+    },
+    "model-library-panel": {
+      "scrolledAtAll": false,
+      "scrollAmountsByHeight": {
+        "720": [],
+        "900": [],
+        "1150": []
+      },
+      "amountVariesWithHeight": false,
+      "boxes": {
+        "720": [
+          390,
+          136,
+          500,
+          330
+        ],
+        "900": [
+          390,
+          286,
+          500,
+          360
+        ],
+        "1150": [
+          390,
+          536,
+          500,
+          360
+        ]
+      },
+      "boxXConstant": true,
+      "errors": {}
+    },
+    "model-library-preview-panel": {
+      "scrolledAtAll": false,
+      "scrollAmountsByHeight": {
+        "720": [],
+        "900": [],
+        "1150": []
+      },
+      "amountVariesWithHeight": false,
+      "boxes": {
+        "720": [
+          391,
+          253,
+          498,
+          72
+        ],
+        "900": [
+          391,
+          403,
+          498,
+          72
+        ],
+        "1150": [
+          391,
+          653,
+          498,
+          72
+        ]
+      },
+      "boxXConstant": true,
+      "errors": {}
+    }
+  },
+  "cells": {
+    "crowd-panel@720": {
+      "box": [
+        504,
+        258,
+        272,
+        208
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "phone-vcam-panel@720": {
+      "box": [
+        647,
+        144,
+        340,
+        322
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "model-library-panel@720": {
+      "box": [
+        390,
+        136,
+        500,
+        330
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "model-library-preview-panel@720": {
+      "box": [
+        391,
+        253,
+        498,
+        72
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "crowd-panel@900": {
+      "box": [
+        504,
+        438,
+        272,
+        208
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "phone-vcam-panel@900": {
+      "box": [
+        647,
+        324,
+        340,
+        322
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "model-library-panel@900": {
+      "box": [
+        390,
+        286,
+        500,
+        360
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "model-library-preview-panel@900": {
+      "box": [
+        391,
+        403,
+        498,
+        72
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "crowd-panel@1150": {
+      "box": [
+        504,
+        688,
+        272,
+        208
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "phone-vcam-panel@1150": {
+      "box": [
+        647,
+        574,
+        340,
+        322
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "model-library-panel@1150": {
+      "box": [
+        390,
+        536,
+        500,
+        360
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "model-library-preview-panel@1150": {
+      "box": [
+        391,
+        653,
+        498,
+        72
+      ],
+      "scrolled": [],
+      "err": null
+    }
+  },
+  "checks": {
+    "none-of-the-four-drawer-paths-moves-a-scroll-offset": {
+      "ok": true,
+      "detail": {
+        "pathsThatScrolled": [],
+        "allFour": [
+          "crowd-panel",
+          "model-library-panel",
+          "model-library-preview-panel",
+          "phone-vcam-panel"
+        ],
+        "detail": {
+          "crowd-panel": {
+            "720": [],
+            "900": [],
+            "1150": []
+          },
+          "phone-vcam-panel": {
+            "720": [],
+            "900": [],
+            "1150": []
+          },
+          "model-library-panel": {
+            "720": [],
+            "900": [],
+            "1150": []
+          },
+          "model-library-preview-panel": {
+            "720": [],
+            "900": [],
+            "1150": []
+          }
+        },
+        "why": "these four are locator.click() on a trigger that is already in view, plus one hover on a card that is already inside the open panel — so there is nothing for the probe to scroll to reach"
+      },
+      "note": "the four readings 648 and 649 took are therefore clean"
+    },
+    "the-hover-bearing-drawer-is-clean-too": {
+      "ok": true,
+      "detail": {
+        "scrolledAtAll": false,
+        "scrollAmountsByHeight": {
+          "720": [],
+          "900": [],
+          "1150": []
+        },
+        "amountVariesWithHeight": false,
+        "boxes": {
+          "720": [
+            391,
+            253,
+            498,
+            72
+          ],
+          "900": [
+            391,
+            403,
+            498,
+            72
+          ],
+          "1150": [
+            391,
+            653,
+            498,
+            72
+          ]
+        },
+        "boxXConstant": true,
+        "errors": {}
+      },
+      "note": "this was the one that could have been 651 all over again"
+    },
+    "every-drawer-opened-in-every-cell": {
+      "ok": true,
+      "detail": {
+        "cellsWithNoBox": {},
+        "errors": {},
+        "note": "a drawer that failed to open would produce an empty scroll set and read as 'clean' — the same vacuous green 646 had to guard against"
+      },
+      "note": null
+    },
+    "the-drawers-keep-a-height-invariant-horizontal-box": {
+      "ok": true,
+      "detail": {
+        "pathsWhoseXMoved": {},
+        "boxes": {
+          "crowd-panel": {
+            "720": [
+              504,
+              258,
+              272,
+              208
+            ],
+            "900": [
+              504,
+              438,
+              272,
+              208
+            ],
+            "1150": [
+              504,
+              688,
+              272,
+              208
+            ]
+          },
+          "phone-vcam-panel": {
+            "720": [
+              647,
+              144,
+              340,
+              322
+            ],
+            "900": [
+              647,
+              324,
+              340,
+              322
+            ],
+            "1150": [
+              647,
+              574,
+              340,
+              322
+            ]
+          },
+          "model-library-panel": {
+            "720": [
+              390,
+              136,
+              500,
+              330
+            ],
+            "900": [
+              390,
+              286,
+              500,
+              360
+            ],
+            "1150": [
+              390,
+              536,
+              500,
+              360
+            ]
+          },
+          "model-library-preview-panel": {
+            "720": [
+              391,
+              253,
+              498,
+              72
+            ],
+            "900": [
+              391,
+              403,
+              498,
+              72
+            ],
+            "1150": [
+              391,
+              653,
+              498,
+              72
+            ]
+          }
+        },
+        "whyX": "the drawers are width-anchored, so their x must not depend on the window height. A violation would mean something moved that this batch did not account for."
+      },
+      "note": null
+    },
+    "648s-and-649s-drawer-readings-were-never-scroll-contaminated": {
+      "ok": true,
+      "detail": {
+        "batch648Totals": {
+          "cells": 12,
+          "markersResolved": 15,
+          "markersNotOverlays": 4,
+          "overlaysOpenedWithARealClick": 4,
+          "canvasPathsRecordedNotMeasured": 7,
+          "totalLiveControlsChecked": 69
+        },
+        "batch649Totals": {
+          "canvasCells": 21,
+          "controlCells": 9,
+          "overlaysMeasured": 7,
+          "totalLiveControlsChecked": 192,
+          "derivedCandidateTotal": 308,
+          "competitorCandidatesOnTheNamedList": 0
+        },
+        "claim": "648 opened these four with a real click and 649 re-read three of them with the derived ruler; neither recorded a scroll offset because neither was looking for one. 653 makes it an asserted quantity and the answer is zero, so those readings stand — retroactively, and on evidence rather than on absence of suspicion."
+      },
+      "note": "absence of suspicion is not evidence; a measured zero is"
+    }
+  },
+  "ok": true,
+  "checkCount": 5,
+  "failures": [],
+  "totals": {
+    "drawers": 4,
+    "pathsThatScrolled": [],
+    "cells": 12,
+    "heights": 3
+  }
+}
