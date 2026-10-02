@@ -70,10 +70,15 @@ def record(name, ok, detail=""):
     results.append((name, "通过" if ok else "失败", detail))
 
 
+BASELINE_HEADING_RE = re.compile(r"^(#{1,6})[ \t]*取证基线[ \t]*$", re.M)
+
+
 def check_baseline_anchor():
     """所有注入用例的共同前提：基线小节确实存在且可解析。"""
     text = read(REFERENCE)
-    assert "### 取证基线" in text, "前提失配：20-reference.md 里找不到「### 取证基线」锚点"
+    # **按标题文字定位，不认死级别**（Batch 232：baseline.py 改锚点后，这里必须同步，
+    # 否则判据与被测对象的口径会悄悄分家，而两边都报绿）
+    assert BASELINE_HEADING_RE.search(text), "前提失配：20-reference.md 里找不到「取证基线」锚点"
     assert re.search(r"^-\s*\*\*版本\*\*[：:]", text, re.M), "前提失配：基线小节缺「版本」字段"
     assert re.search(r"^-\s*\*\*提交\*\*[：:]", text, re.M), "前提失配：基线小节缺「提交」字段"
 
@@ -84,11 +89,14 @@ def m_missing_baseline_section():
     saved = snapshot()
     try:
         text = saved[REFERENCE]
-        i = text.index("### 取证基线")
-        j = text.index("\n## ", i)
+        m = BASELINE_HEADING_RE.search(text)
+        i = m.start()
+        level = len(m.group(1))
+        nxt = re.search(r"^#{1,%d}[ \t]" % level, text[m.end():], re.M)
+        j = m.end() + (nxt.start() if nxt else len(text) - m.end())
         write(REFERENCE, text[:i] + text[j:])
         after = read(REFERENCE)
-        assert "### 取证基线" not in after, "注入未生效：小节标题仍在"
+        assert not BASELINE_HEADING_RE.search(after), "注入未生效：小节标题仍在"
         rc, out = run_gate(ROOT)
         record("1 基线声明缺失→必报", rc == 1 and "取证基线" in out,
                f"rc={rc}")

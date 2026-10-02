@@ -86,12 +86,25 @@ def declared_baseline():
     except OSError as exc:
         raise BaselineError(f"读不到 {os.path.basename(REFERENCE)}：{exc}")
 
-    start = text.find("### 取证基线")
-    if start < 0:
+    # **按标题文字定位，不认死级别**（Batch 232）。
+    # 原实现写死 `text.find("### 取证基线")`——于是「把这一节从 H3 改成 H2」这种
+    # **纯结构修正**会让 15 道读基线的闸同时报「未能核对」。
+    # 而那次改动本身是对的：`20-reference.md` 的第一个小节是顶层小节、
+    # 本页其余 7 个顶层小节全是 H2，**它没有任何 H2 父级却写成 H3**，
+    # 在页内目录里被降级（闸 29 就是为它建的）。
+    #
+    # **修法是让锚点不依赖级别，而不是放弃结构修正**——同 Batch 225 那次一样：
+    # 锚点该按「这是哪个小节」定位，不该按「它是第几级 #」定位。
+    m = re.search(r"^(#{1,6})[ \t]*取证基线[ \t]*$", text, re.M)
+    if not m:
         raise BaselineError(
-            "20-reference.md 里找不到「### 取证基线」小节——手册没有声明它照哪个版本取证")
-    end = text.find("\n### ", start + 1)
-    section = text[start:] if end < 0 else text[start:end]
+            "20-reference.md 里找不到「取证基线」小节——手册没有声明它照哪个版本取证")
+    level = len(m.group(1))
+    tail = text[m.end():]
+    # 段落到「下一个**同级或更浅**的标题」为止（原实现只认 `\n### `，
+    # 小节是 H2 时会一路吃到页尾，把后面的字段也算进来）
+    nxt = re.search(r"^#{1,%d}[ \t]" % level, tail, re.M)
+    section = text[m.start(): m.end() + (nxt.start() if nxt else len(tail))]
 
     version = commit = None
     for line in section.splitlines():
@@ -105,7 +118,7 @@ def declared_baseline():
             commit = val
     if not version or not commit:
         raise BaselineError(
-            "「### 取证基线」小节里没有同时声明「版本」和「提交」两个字段")
+            "「取证基线」小节里没有同时声明「版本」和「提交」两个字段")
     return version, commit
 
 

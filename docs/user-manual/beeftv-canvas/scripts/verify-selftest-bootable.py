@@ -209,6 +209,7 @@ SELFTEST_COSTS = {
     "selftest-link-labels.sh": 2.4,
     "selftest-query-params.py": 0.8,
     "selftest-container-closers.py": 1.13,
+    "selftest-heading-uniqueness.py": 1.10,
     "selftest-quote-punct.py": 37.1,
     "selftest-runtime-policy.py": 1.0,
     "selftest-scope.py": 0.4,
