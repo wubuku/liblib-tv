@@ -40,7 +40,7 @@ tasks:
       - '/canvas'
       - '/canvas/:id'
     status: verified
-    screenshot_count: 6
+    screenshot_count: 7
     manual_pages:
       - 00-quickstart.md
       - 10-tasks/create-canvas-project.md

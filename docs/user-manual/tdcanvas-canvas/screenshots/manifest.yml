@@ -1273,3 +1273,16 @@ screenshots:
     visible_text: '文生视频 自动识别 未连接素材 4–15 秒 · 480p/720p/1080p/2k/4k/native1080p/native4k · 比例 7 档 Seedance 2.0 Standard 5秒 约 ¥ 2.48-5.37'
     alt: 视频节点的文生视频面板，参数行列出了七档分辨率与七档比例，底部显示模型 Seedance 2.0 Standard、时长 5 秒与约 2.48 至 5.37 元的价格区间
     sha256: 8e77283f2f57ea48cfc34a270b1359930d1cb8b1b5ca12ffad050b184a90f9cd
+
+  - file: screenshots/00-readme-what-is-this.png
+    task_id: create-canvas-project
+    step: 为手册落地页 README「这是什么」补的产品全貌图：把文本节点与参考素材图片节点连成一条线，取消选中让工具条不入镜；画布缩放 58%（由「重置视图」自动框出，非人为设定）
+    route: '/canvas/:id'
+    viewport: 1600x950
+    locale: zh-CN
+    captured_at: '2026-10-03'
+    verified_locator: '逐项实读并断言：节点数恰为 2（image-1790941317841-kus2p 文本「m157.png参考素材」、text-1790942017662-pv12x 文本「文本生图双击编辑文字」）、[data-connection-id] 恰为 1、节点工具条数 0（已取消选中）、两个节点 rect 均未被视口裁切。连线由文本节点右侧输出端口拖到图片节点左侧输入端口建成，拖前拖后均由 data-connection-id 计数佐证'
+    visible_text: 'TDCanvas 3 双击编辑文字 生图 m157.png 参考素材 58%'
+    alt: '画布工作区全貌：顶部是顶栏、左侧是常驻的竖排图标按钮条，画布上左边一个参考素材图片节点、右上一个文本节点，两者之间连着一条线，左下角是视图控制与缩放滑杆（显示 58%）'
+    sha256: eebfce1385752ebb50e587585e535f9d9f7047a4fff1c4c007fd2984d238a5ec
+    m164_note: '这张图拍了四版才成，前三版各栽一处：① 缩放还停在上一批的 300%、节点大半在屏幕外；② 连线数判据写成 svg path 的并集，把按钮里的图标 path 全数进来（105→145），而它看起来像个计数（M156 第②步「定范围」）；③ 连线拖拽的起点是按算术推出来的，落在顶栏里（y=40，顶栏高 64），探针没做阳性对照就按下了鼠标。最终版每一步都先 elementFromPoint 确认命中的是目标，任何一步不过就 abort、不产出图片——本批三次是靠这个守卫拦下废图的。'
