@@ -86,7 +86,7 @@ def main() -> int:
 
     # --- 3. 追加后整体复查，语法有问题就回滚 ---
     # 判据直接复用 check-tables.py，不另立一套——两套规则迟早会漂移，
-    # 而"这个工具说没问题、门禁说有���题"是最难排查的一类矛盾。
+    # 而"这个工具说没问题、门禁说有问题"是最难排查的一类矛盾。
     merged = original + ("" if original.endswith("\n") or not original else "\n") + patched
     lines = merged.splitlines()
     index = 0

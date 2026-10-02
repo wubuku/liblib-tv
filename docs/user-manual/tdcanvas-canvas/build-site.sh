@@ -136,6 +136,14 @@ PUBLISHSYNC_OUT="$(python3 scripts/check-publish-sync.py . 2>&1)" || fail "发�
 $PUBLISHSYNC_OUT"
 echo "$PUBLISHSYNC_OUT" | sed 's/^/  /'
 
+# 编码完整性：文件里出现 U+FFFD 替换字符，说明某处多字节中文被截断。
+# 2026-10-02 M131 新增。此前十五道门禁**没有一道扫它**，而手册里已潜伏 8 处
+# （来自 M71 / M108 / M113 三个老提交），产物侧照渲染，读者看到的是「上传的<坏>片节点」。
+# 根因是写入路径（bash heredoc 传中文）而非内容，故判据只是"有没有 U+FFFD"这一个信号。
+ENCODING_OUT="$(python3 scripts/check-encoding.py . 2>&1)" || fail "编码校验未通过（文件里出现了 U+FFFD 替换字符 = 多字节中文被截断）：
+$ENCODING_OUT"
+echo "$ENCODING_OUT" | sed 's/^/  /'
+
 # 源码引用：手册里每处 `文件.ts:行号` 必须指向应用仓里真实存在的那一行。
 # 2026-10-02 M109 新增。账本锁定门禁只在应用仓 HEAD 变化时报错，可一旦有人把
 # 账本 sha 一起更新到新提交，那道门禁重新变绿，正文里那几十处行号却可能早已

@@ -670,6 +670,24 @@ def mutate_inventory_yaml_bad_type(root: Path) -> None:
     inv.write_text(text, encoding="utf-8")
 
 
+def mutate_encoding_mojibake(root: Path) -> None:
+    """往正文里塞一个 U+FFFD 替换字符（第十六道门禁的负向测试，M131）。
+
+    ★ **注入刻意用字节写法 `b"\\xef\\xbf\\xbd"`，不在源码里放 U+FFFD 字面量**——
+    放字面量的话，**这个注入函数自己就带着乱码**，会被新门禁当场判为不合规。
+    这正是 check-encoding.py 文件头里记的「判据自指」坑。
+
+    ★ **另一个教训（M128 同族）**：注入完之后**必须验"撤回是否真的干净"**。
+    M131 第一版注入的是「坏字 + 测 + U+FFFD + 试」，而撤回脚本找的是「坏字 + U+FFFD + 试」，
+    **少算了一个「测」字，于是撤回失败、注入残留在工作区里**，差点被提交进去。
+    """
+    target = root / "10-tasks" / "edit-nodes.md"
+    data = target.read_bytes()
+    data += "\n\xe5\x9b\xbe\xef\xbf\xbd\n".encode("latin-1").decode("unicode_escape").encode("latin-1")
+    target.write_bytes(data)
+
+
+
 CASES: list[tuple[str, object, str, str]] = [
     ("图片字节被改动", mutate_image_bytes, "gate", "sha256 mismatch"),
     ("manifest 删掉一条记录", mutate_manifest_drop_record, "gate", "image missing from manifest"),
@@ -712,6 +730,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("账本不是合法 YAML（note 嵌了冒号+空格）", mutate_inventory_yaml_broken, "inventoryyaml", "不是合法 YAML"),
     ("账本任务 id 重复（按 id 查会静默取到第一条）", mutate_inventory_yaml_dup_id, "inventoryyaml", "id 重复"),
     ("账本证据 type 拼错（门禁集合必须从实际数据数出来）", mutate_inventory_yaml_bad_type, "inventoryyaml", "不在已知集合内"),
+("正文里有多字节中文被截断（U+FFFD）", mutate_encoding_mojibake, "encoding", "替换字符"),
 ]
 
 
@@ -744,6 +763,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-source-refs.py"), str(root)]
     elif which == "inventoryyaml":
         cmd = [sys.executable, str(root / "scripts/check-inventory-yaml.py"), str(root)]
+    elif which == "encoding":
+        cmd = [sys.executable, str(root / "scripts/check-encoding.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)
