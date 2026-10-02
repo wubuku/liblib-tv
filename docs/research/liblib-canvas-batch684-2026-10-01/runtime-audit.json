@@ -1,0 +1,1103 @@
+{
+ "verifier": {
+  "heights": [
+   400,
+   720,
+   1150
+  ],
+  "tracks": [
+   "director-track-camera-main",
+   "director-track-character-lead-transform"
+  ],
+  "perCell": {
+   "1280x400": {
+    "director-track-camera-main": {
+     "rowBox": [
+      0,
+      387,
+      320,
+      32
+     ],
+     "members": [
+      {
+       "name": "机位",
+       "box": [
+        52,
+        394,
+        36,
+        18
+       ],
+       "selfDataAttrNames": [],
+       "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white",
+       "role": "track-label",
+       "size": [
+        36,
+        18
+       ]
+      },
+      {
+       "name": "上一关键帧",
+       "box": [
+        93,
+        391,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      },
+      {
+       "name": "当前帧有关键帧",
+       "box": [
+        119,
+        391,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      },
+      {
+       "name": "下一关键帧",
+       "box": [
+        145,
+        391,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      }
+     ],
+     "sizeHistogram": {
+      "36x18": 1,
+      "24x24": 3
+     },
+     "roles": {
+      "keyframe-nav": 3,
+      "track-label": 1
+     }
+    },
+    "director-track-character-lead-transform": {
+     "rowBox": [
+      0,
+      323,
+      320,
+      32
+     ],
+     "members": [
+      {
+       "name": "变换",
+       "box": [
+        52,
+        330,
+        36,
+        18
+       ],
+       "selfDataAttrNames": [],
+       "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white",
+       "role": "track-label",
+       "size": [
+        36,
+        18
+       ]
+      },
+      {
+       "name": "上一关键帧",
+       "box": [
+        93,
+        327,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      },
+      {
+       "name": "当前帧有关键帧",
+       "box": [
+        119,
+        327,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      },
+      {
+       "name": "下一关键帧",
+       "box": [
+        145,
+        327,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      }
+     ],
+     "sizeHistogram": {
+      "36x18": 1,
+      "24x24": 3
+     },
+     "roles": {
+      "keyframe-nav": 3,
+      "track-label": 1
+     }
+    }
+   },
+   "1280x720": {
+    "director-track-camera-main": {
+     "rowBox": [
+      0,
+      707,
+      320,
+      32
+     ],
+     "members": [
+      {
+       "name": "机位",
+       "box": [
+        52,
+        714,
+        36,
+        18
+       ],
+       "selfDataAttrNames": [],
+       "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white",
+       "role": "track-label",
+       "size": [
+        36,
+        18
+       ]
+      },
+      {
+       "name": "上一关键帧",
+       "box": [
+        93,
+        711,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      },
+      {
+       "name": "当前帧有关键帧",
+       "box": [
+        119,
+        711,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      },
+      {
+       "name": "下一关键帧",
+       "box": [
+        145,
+        711,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      }
+     ],
+     "sizeHistogram": {
+      "36x18": 1,
+      "24x24": 3
+     },
+     "roles": {
+      "keyframe-nav": 3,
+      "track-label": 1
+     }
+    },
+    "director-track-character-lead-transform": {
+     "rowBox": [
+      0,
+      643,
+      320,
+      32
+     ],
+     "members": [
+      {
+       "name": "变换",
+       "box": [
+        52,
+        650,
+        36,
+        18
+       ],
+       "selfDataAttrNames": [],
+       "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white",
+       "role": "track-label",
+       "size": [
+        36,
+        18
+       ]
+      },
+      {
+       "name": "上一关键帧",
+       "box": [
+        93,
+        647,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      },
+      {
+       "name": "当前帧有关键帧",
+       "box": [
+        119,
+        647,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      },
+      {
+       "name": "下一关键帧",
+       "box": [
+        145,
+        647,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      }
+     ],
+     "sizeHistogram": {
+      "36x18": 1,
+      "24x24": 3
+     },
+     "roles": {
+      "keyframe-nav": 3,
+      "track-label": 1
+     }
+    }
+   },
+   "1280x1150": {
+    "director-track-camera-main": {
+     "rowBox": [
+      0,
+      1137,
+      320,
+      32
+     ],
+     "members": [
+      {
+       "name": "机位",
+       "box": [
+        52,
+        1144,
+        36,
+        18
+       ],
+       "selfDataAttrNames": [],
+       "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white",
+       "role": "track-label",
+       "size": [
+        36,
+        18
+       ]
+      },
+      {
+       "name": "上一关键帧",
+       "box": [
+        93,
+        1141,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      },
+      {
+       "name": "当前帧有关键帧",
+       "box": [
+        119,
+        1141,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      },
+      {
+       "name": "下一关键帧",
+       "box": [
+        145,
+        1141,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      }
+     ],
+     "sizeHistogram": {
+      "36x18": 1,
+      "24x24": 3
+     },
+     "roles": {
+      "keyframe-nav": 3,
+      "track-label": 1
+     }
+    },
+    "director-track-character-lead-transform": {
+     "rowBox": [
+      0,
+      1073,
+      320,
+      32
+     ],
+     "members": [
+      {
+       "name": "变换",
+       "box": [
+        52,
+        1080,
+        36,
+        18
+       ],
+       "selfDataAttrNames": [],
+       "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white",
+       "role": "track-label",
+       "size": [
+        36,
+        18
+       ]
+      },
+      {
+       "name": "上一关键帧",
+       "box": [
+        93,
+        1077,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      },
+      {
+       "name": "当前帧有关键帧",
+       "box": [
+        119,
+        1077,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      },
+      {
+       "name": "下一关键帧",
+       "box": [
+        145,
+        1077,
+        24,
+        24
+       ],
+       "selfDataAttrNames": [],
+       "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent",
+       "role": "keyframe-nav",
+       "size": [
+        24,
+        24
+       ]
+      }
+     ],
+     "sizeHistogram": {
+      "36x18": 1,
+      "24x24": 3
+     },
+     "roles": {
+      "keyframe-nav": 3,
+      "track-label": 1
+     }
+    }
+   }
+  },
+  "labelSizes": [
+   [
+    36,
+    18
+   ]
+  ],
+  "navSizes": [
+   [
+    24,
+    24
+   ]
+  ],
+  "sizeHistogramPerCell": {
+   "1280x400|director-track-camera-main": {
+    "36x18": 1,
+    "24x24": 3
+   },
+   "1280x400|director-track-character-lead-transform": {
+    "36x18": 1,
+    "24x24": 3
+   },
+   "1280x720|director-track-camera-main": {
+    "36x18": 1,
+    "24x24": 3
+   },
+   "1280x720|director-track-character-lead-transform": {
+    "36x18": 1,
+    "24x24": 3
+   },
+   "1280x1150|director-track-camera-main": {
+    "36x18": 1,
+    "24x24": 3
+   },
+   "1280x1150|director-track-character-lead-transform": {
+    "36x18": 1,
+    "24x24": 3
+   }
+  },
+  "noSelfData": true,
+  "judged": 24
+ },
+ "cells": {
+  "1280x400": {
+   "director-track-camera-main": {
+    "rowBox": [
+     0,
+     387,
+     320,
+     32
+    ],
+    "members": [
+     {
+      "name": "机位",
+      "box": [
+       52,
+       394,
+       36,
+       18
+      ],
+      "selfDataAttrNames": [],
+      "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white"
+     },
+     {
+      "name": "上一关键帧",
+      "box": [
+       93,
+       391,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     },
+     {
+      "name": "当前帧有关键帧",
+      "box": [
+       119,
+       391,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     },
+     {
+      "name": "下一关键帧",
+      "box": [
+       145,
+       391,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     }
+    ]
+   },
+   "director-track-character-lead-transform": {
+    "rowBox": [
+     0,
+     323,
+     320,
+     32
+    ],
+    "members": [
+     {
+      "name": "变换",
+      "box": [
+       52,
+       330,
+       36,
+       18
+      ],
+      "selfDataAttrNames": [],
+      "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white"
+     },
+     {
+      "name": "上一关键帧",
+      "box": [
+       93,
+       327,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     },
+     {
+      "name": "当前帧有关键帧",
+      "box": [
+       119,
+       327,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     },
+     {
+      "name": "下一关键帧",
+      "box": [
+       145,
+       327,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     }
+    ]
+   }
+  },
+  "1280x720": {
+   "director-track-camera-main": {
+    "rowBox": [
+     0,
+     707,
+     320,
+     32
+    ],
+    "members": [
+     {
+      "name": "机位",
+      "box": [
+       52,
+       714,
+       36,
+       18
+      ],
+      "selfDataAttrNames": [],
+      "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white"
+     },
+     {
+      "name": "上一关键帧",
+      "box": [
+       93,
+       711,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     },
+     {
+      "name": "当前帧有关键帧",
+      "box": [
+       119,
+       711,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     },
+     {
+      "name": "下一关键帧",
+      "box": [
+       145,
+       711,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     }
+    ]
+   },
+   "director-track-character-lead-transform": {
+    "rowBox": [
+     0,
+     643,
+     320,
+     32
+    ],
+    "members": [
+     {
+      "name": "变换",
+      "box": [
+       52,
+       650,
+       36,
+       18
+      ],
+      "selfDataAttrNames": [],
+      "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white"
+     },
+     {
+      "name": "上一关键帧",
+      "box": [
+       93,
+       647,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     },
+     {
+      "name": "当前帧有关键帧",
+      "box": [
+       119,
+       647,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     },
+     {
+      "name": "下一关键帧",
+      "box": [
+       145,
+       647,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     }
+    ]
+   }
+  },
+  "1280x1150": {
+   "director-track-camera-main": {
+    "rowBox": [
+     0,
+     1137,
+     320,
+     32
+    ],
+    "members": [
+     {
+      "name": "机位",
+      "box": [
+       52,
+       1144,
+       36,
+       18
+      ],
+      "selfDataAttrNames": [],
+      "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white"
+     },
+     {
+      "name": "上一关键帧",
+      "box": [
+       93,
+       1141,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     },
+     {
+      "name": "当前帧有关键帧",
+      "box": [
+       119,
+       1141,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     },
+     {
+      "name": "下一关键帧",
+      "box": [
+       145,
+       1141,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     }
+    ]
+   },
+   "director-track-character-lead-transform": {
+    "rowBox": [
+     0,
+     1073,
+     320,
+     32
+    ],
+    "members": [
+     {
+      "name": "变换",
+      "box": [
+       52,
+       1080,
+       36,
+       18
+      ],
+      "selfDataAttrNames": [],
+      "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white"
+     },
+     {
+      "name": "上一关键帧",
+      "box": [
+       93,
+       1077,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     },
+     {
+      "name": "当前帧有关键帧",
+      "box": [
+       119,
+       1077,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     },
+     {
+      "name": "下一关键帧",
+      "box": [
+       145,
+       1077,
+       24,
+       24
+      ],
+      "selfDataAttrNames": [],
+      "cls": "group relative flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:text-white/25 disabled:hover:bg-transparent"
+     }
+    ]
+   }
+  }
+ },
+ "checks": {
+  "each-track-row-is-one-label-plus-three-nav-buttons": {
+   "ok": true,
+   "detail": {
+    "rolesPerCell": {
+     "1280x400|director-track-camera-main": {
+      "keyframe-nav": 3,
+      "track-label": 1
+     },
+     "1280x400|director-track-character-lead-transform": {
+      "keyframe-nav": 3,
+      "track-label": 1
+     },
+     "1280x720|director-track-camera-main": {
+      "keyframe-nav": 3,
+      "track-label": 1
+     },
+     "1280x720|director-track-character-lead-transform": {
+      "keyframe-nav": 3,
+      "track-label": 1
+     },
+     "1280x1150|director-track-camera-main": {
+      "keyframe-nav": 3,
+      "track-label": 1
+     },
+     "1280x1150|director-track-character-lead-transform": {
+      "keyframe-nav": 3,
+      "track-label": 1
+     }
+    },
+    "rowBoxes": {
+     "1280x400|director-track-camera-main": [
+      0,
+      387,
+      320,
+      32
+     ],
+     "1280x400|director-track-character-lead-transform": [
+      0,
+      323,
+      320,
+      32
+     ],
+     "1280x720|director-track-camera-main": [
+      0,
+      707,
+      320,
+      32
+     ],
+     "1280x720|director-track-character-lead-transform": [
+      0,
+      643,
+      320,
+      32
+     ],
+     "1280x1150|director-track-camera-main": [
+      0,
+      1137,
+      320,
+      32
+     ],
+     "1280x1150|director-track-character-lead-transform": [
+      0,
+      1073,
+      320,
+      32
+     ]
+    }
+   },
+   "note": "identified by CLASS ROLE (truncate vs h-6 w-6), not by accessible name — 673 already showed name-keying folds"
+  },
+  "the-36x18-member-is-the-track-label-and-the-24x24-ones-are-the-nav-buttons": {
+   "ok": true,
+   "detail": {
+    "labelSizes": [
+     [
+      36,
+      18
+     ]
+    ],
+    "navSizes": [
+     [
+      24,
+      24
+     ]
+    ],
+    "labelMembers": [
+     {
+      "cell": "1280x400",
+      "track": "director-track-camera-main",
+      "name": "机位",
+      "box": [
+       52,
+       394,
+       36,
+       18
+      ],
+      "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white"
+     },
+     {
+      "cell": "1280x400",
+      "track": "director-track-character-lead-transform",
+      "name": "变换",
+      "box": [
+       52,
+       330,
+       36,
+       18
+      ],
+      "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white"
+     },
+     {
+      "cell": "1280x720",
+      "track": "director-track-camera-main",
+      "name": "机位",
+      "box": [
+       52,
+       714,
+       36,
+       18
+      ],
+      "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white"
+     },
+     {
+      "cell": "1280x720",
+      "track": "director-track-character-lead-transform",
+      "name": "变换",
+      "box": [
+       52,
+       650,
+       36,
+       18
+      ],
+      "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white"
+     },
+     {
+      "cell": "1280x1150",
+      "track": "director-track-camera-main",
+      "name": "机位",
+      "box": [
+       52,
+       1144,
+       36,
+       18
+      ],
+      "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white"
+     },
+     {
+      "cell": "1280x1150",
+      "track": "director-track-character-lead-transform",
+      "name": "变换",
+      "box": [
+       52,
+       1080,
+       36,
+       18
+      ],
+      "cls": "relative z-[1] min-w-0 cursor-pointer truncate text-left font-medium text-[#F7F7F7] transition-colors hover:text-white"
+     }
+    ],
+    "sizeHistogramPerCell": {
+     "1280x400|director-track-camera-main": {
+      "36x18": 1,
+      "24x24": 3
+     },
+     "1280x400|director-track-character-lead-transform": {
+      "36x18": 1,
+      "24x24": 3
+     },
+     "1280x720|director-track-camera-main": {
+      "36x18": 1,
+      "24x24": 3
+     },
+     "1280x720|director-track-character-lead-transform": {
+      "36x18": 1,
+      "24x24": 3
+     },
+     "1280x1150|director-track-camera-main": {
+      "36x18": 1,
+      "24x24": 3
+     },
+     "1280x1150|director-track-character-lead-transform": {
+      "36x18": 1,
+      "24x24": 3
+     }
+    }
+   },
+   "note": "the two-size group is 1 label + 3 buttons, constant across heights"
+  },
+  "none-of-the-four-members-carries-a-data-attribute-of-its-own": {
+   "ok": true,
+   "detail": {
+    "membersChecked": 24,
+    "expected": 24,
+    "withSelfData": [],
+    "howTheyAreIdentified": "all four inherit `data-director-track-label=<track>` from the row ancestor. The nearest-data rule therefore attributes FOUR controls of TWO sizes to ONE key."
+   },
+   "note": "this is why 683 saw a two-size key — and it is containment, not identity"
+  },
+  "this-is-the-anatomy-of-a-track-row-not-a-heterogeneity-anomaly": {
+   "ok": true,
+   "detail": {
+    "correctionTo683": "683's READING stands: two data keys each carry two sizes at every height. What was wrong is the interpretation — I called it '673's 异类合并, size-side', implying an anomaly. It is the normal anatomy of a track row: one label button plus three icon buttons.",
+    "historyRule": "historic batches are not rewritten; the correction is recorded here, and 683 stays as it was committed",
+    "whatIsStillTrue": "the two-size-per-key fact, and the reusable inference below"
+   },
+   "note": "a fact can be right and its name wrong — the reading survives, the label does not"
+  },
+  "the-reusable-inference-a-container-key-versus-same-class-instances": {
+   "ok": true,
+   "detail": {
+    "inference": "To tell whether several members under one key are INSTANCES OF ONE CLASS or A CONTAINER AND ITS CHILDREN, compare their box sizes and class roles — which is exactly the quantity 683 already measured. 683 measured the right thing; I named it wrong.",
+    "alsoExplains674": "674's 'irreducible 4' has the same cause: the three nav buttons have no per-node data attribute at all, so the nearest-data rule lends them the track's key and they are necessarily equal. 674 said 'not claimed to be a lower bound' — this is WHY it is not.",
+    "toBreakItApart": "give the three nav buttons their own data-*; that is a change to src/ — PRODUCT DECISION"
+   },
+   "note": "this is the actionable output of the batch"
+  }
+ }
+}
