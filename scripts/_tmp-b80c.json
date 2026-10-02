@@ -1,0 +1,93 @@
+{
+ "at": "2026-10-02T01:57:26.974Z",
+ "toolbars": [
+  {
+   "box": "0.0x0.0@640,476",
+   "display": "block",
+   "visibility": "visible",
+   "opacity": "1",
+   "buttons": 0,
+   "inNode": null,
+   "parentTestId": null,
+   "parentCls": "react-flow__renderer"
+  },
+  {
+   "box": "192.0x40.0@544,188",
+   "display": "block",
+   "visibility": "visible",
+   "opacity": "1",
+   "buttons": 3,
+   "inNode": null,
+   "parentTestId": null,
+   "parentCls": "react-flow__renderer"
+  }
+ ],
+ "toolbarLike": [
+  {
+   "box": "104x25@-1764,-1072",
+   "tag": "DIV",
+   "tid": "",
+   "cls": "flex items-center gap-canvas-timeline-node-tra",
+   "pos": "static",
+   "buttons": 2,
+   "inNode": true
+  },
+  {
+   "box": "160x40@560,188",
+   "tag": "DIV",
+   "tid": "selection-context-toolbar",
+   "cls": "nodrag box-border flex max-w-full select-none ",
+   "pos": "static",
+   "buttons": 3,
+   "inNode": false
+  }
+ ],
+ "renameBtn": {
+  "aria": "Rename 文本 4",
+  "x": 583,
+  "y": 244,
+  "outer": "<button data-node-title-selected=\"true\" aria-label=\"Rename 文本 4\" class=\"gap-1 border-solid font-dreamina-cn motion-safe:transition-colors motion-safe:duration-dreamina-instant motion-safe:ease-dreamin"
+ },
+ "before": {
+  "inputs": 2,
+  "ce": 0,
+  "active": "BUTTON.inline-flex size-9 shrin"
+ },
+ "after": {
+  "inputs": [
+   {
+    "tag": "INPUT",
+    "type": "file",
+    "tid": "",
+    "cls": "h-8 w-full border border-solid border-octo-border ",
+    "aria": "替换媒体",
+    "value": "",
+    "text": "",
+    "box": "0x0@0,0",
+    "inNode": "node_gref4sw056",
+    "focused": false
+   },
+   {
+    "tag": "INPUT",
+    "type": "file",
+    "tid": "",
+    "cls": "",
+    "aria": "",
+    "value": "",
+    "text": "",
+    "box": "0x0@0,0",
+    "inNode": null,
+    "focused": false
+   }
+  ],
+  "textareas": [],
+  "editables": [],
+  "active": {
+   "tag": "BUTTON",
+   "cls": "gap-1 border-solid font-dreamina-cn moti",
+   "aria": "Rename 文本 4",
+   "value": ""
+  },
+  "nodeTitleHTML": "<div class=\"absolute z-[10] flex text-left font-dreamina-cn text-dreamina-cn-13 font-dreamina-regular items-center h-[24px] text-dreamina-on-media-text-placeholder [&amp;:hover:not(:active):not([data-node-title-selected=true]):not([data-node-title-dragging=true])]:text-dreamina-text-tertiary [.react"
+ }
+}

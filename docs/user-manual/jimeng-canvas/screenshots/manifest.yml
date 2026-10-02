@@ -1435,3 +1435,15 @@ screenshots:
     visible_text: 视频 2
     alt: 空视频节点：标题行「视频 2」与标签按钮，卡片内只有一个居中的占位图标，左右各一个 ⊕ 连接按钮，整张卡片没有任何播放、进度或音量控件，底部也没有时间读数
     sha256: 62aef6e188719c58adbe88501b0951d360d16018042212bd2ebb8c09ad21f901
+
+  - file: screenshots/80-text-node-context-menu.png
+    task_id: edit-text-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T10:10:00+08:00
+    verified_locator: 左栏点「文本」新建**自建**文本节点 → 断言 `selected===true` → 右键（落点先用 `elementFromPoint` 验归属本节点）→ 菜单 `canvas-context-menu` / aria 逐字 `Canvas context menu` / **200×292**，**7 项**各 192×36：复制 ⌘C / 复制副本 ⌘D / 粘贴 ⌘V / 下载 / **重做 ⇧⌘Z（`aria-disabled=true`、`cursor:not-allowed`、`SPAN.sr-only`「无需重做操作」）** / 撤销 ⌘Z / 删除 ⌫ → 裁切 clip={x:516,y:178,w:334,h:423}（**节点可见后代并集 ∩ 浮动工具条 ∩ 菜单**；工具条 `[data-testid=node-toolbar]` **不在节点 DOM 内**、在 `.react-flow__renderer` 下，**不纳入就会被守卫判成外来语义 UI** —— 第一版就是这样被拦下的）→ 守卫：clip 内他人节点 `0`、外来语义 UI `0`、菜单 7 项全在内。**只读观察，没有点任何一项**（含禁用的「重做」）。节点已按 id 精确删除。积分 805 未变。详见 SOURCE_OBSERVATIONS §3.99'
+    visible_text: 复制
+    alt: 文本节点右键菜单：节点上方浮着三项工具条（背景色、全屏、下载），节点标题为「T 文本 4」、正文区显示占位「双击编辑文本」；右下方弹出的菜单共七项，依次为复制 ⌘C、复制副本 ⌘D、粘贴 ⌘V、下载、（一条分隔线）、灰色禁用的重做 ⇧⌘Z、撤销 ⌘Z、删除 ⌫，其中「重做」是本页此前漏记的那一项
+    sha256: 187212e6d30da3b018f2f74339f70563ef00489d3ab1b833cb71252985186b12

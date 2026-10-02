@@ -213,6 +213,15 @@
    ],
    "refuted_in": "批次 79",
    "reason": "只读复核画布上那个带内容图片节点：屏上 341.33×192 @0.6 ⇒ canvas 568.88×320（16:9）。320×427 未复现"
+  },
+  {
+   "id": "rename-turns-title-into-input",
+   "label": "「点 Rename 后标题变为输入框，改名后回车提交」",
+   "patterns": [
+    "标题变为输入框"
+   ],
+   "refuted_in": "批次 80",
+   "reason": "三种点法（单击 / 再单击 / 双击标题行）都不产生 input/textarea/contenteditable，焦点仍停在 Rename 钮上；该步骤正文说得比本页「已验证说明」（只测了按钮存在性）更多"
   }
  ]
 }
