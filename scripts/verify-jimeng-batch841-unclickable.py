@@ -2479,15 +2479,19 @@ def main() -> int:
           "假设一旦被验死，钉它的措辞就会把判据锁死在过时状态）："
           "A 序列 mousedown 那一刻 `isConnected=False` + `tabIndexProp=-1` + "
           "`focusin` 0 次；B 序列 `tabIndexProp=0` + `focusin` 2 次。"
-          "⚠️ 同时**不许**顺势把它推广成「源站未选中节点一律不可聚焦」"
-          "（与 889d 的 Tab 走查**不一致**，**未查清**），更**不许**据此改复刻的 "
-          "`nodesFocusable`",
+          "⚠️ 同时**不许**顺势把它推广成「源站未选中节点一律不可聚焦」。"
+          "⚠️⚠️ **本条第三版（894 又推翻了它的另一半前提）**：893 当初说"
+          "「与 889d 的 Tab 走查不一致、**未查清**」—— 894 查明那是"
+          "**跨时刻读数混比**（889d 读的是**焦点落在节点的那一刻**），"
+          "**根本不是矛盾**。而且 894 测出**选中的**新节点**也**是 `None`/`-1`"
+          " ⇒ 判据改钉这两个事实",
           '"click_moment_node_not_focusable_893"' in _ausrc
           and "isConnected=False" in _ausrc
           and "tabIndexProp=-1" in _ausrc
           and '"source_node_tabindex_is_conditional_893"' in _ausrc
-          and "**未测**" in _ausrc
-          and "**不许**写成「源站未选中节点一律不可聚焦」" in _ausrc
+          # 894 的修正：不是矛盾，是跨时刻混比；且选中节点也是 -1
+          and "跨时刻读数混比" in _ausrc
+          and "**选中的新节点也是 " in _ausrc
           and "更**不许**据此改复刻的 `nodesFocusable`" in _ausrc)
     # ══════════ 批 893：矛盾解开（机制钉死） ══════════
     p893 = ROOT / "scripts/jimeng_probe893_clickmoment_src.py"
@@ -2519,16 +2523,33 @@ def main() -> int:
           and "三者不再冲突" in _ausrc
           # ⚠️ `tabindex` 是**事后**才有的，不许写成「源站节点没有 tabindex」
           and "别写成「源站节点没有 tabindex」" in _ausrc)
-    check("HH.3 893 顺带撞出的**不一致**必须留账：点空白之后，893 那个"
-          "**刚创建的音频**节点 `tabindex=None`，而 889d 的 Tab 走查里"
-          "**点空白之后**页面自带节点**全都是** `tabindex='0'` 且**能被 Tab 到**。"
-          "⚠️ 原因**未测**（节点类型 / 是否刚创建 / 走查里是否被选中）⇒ "
-          "**不许**推广成「源站未选中节点一律不可聚焦」，"
-          "更**不许**据此改复刻的 `nodesFocusable`（那会动整个画布的 Tab 顺序）",
+    check("HH.3 ⚠️⚠️ **本条第二版（894 推翻了它的前提）**：893 撞出的"
+          "「不一致」是**跨时刻读数混比** —— 889d 是在**焦点落在节点的那一刻**"
+          "读的 `tabindex`，894 读的是**中性状态**，两者**本来就不该比**。"
+          "⇒ 894 实测（矩阵，每种条件 2 轮）：`fresh_load`（刚载完什么都不做）"
+          "与 `after_blank`（点空白）下，**所有类型**节点"
+          "**全都是 `tabindex=None` / `tabIndexProp=-1`**；"
+          "**选中**的新节点**也**是 `None`/`-1`。"
+          "⇒ 判据必须钉这个**新事实**，并**禁止**把它简化成"
+          "「源站未选中节点一律不可聚焦」",
           '"source_node_tabindex_is_conditional_893"' in _ausrc
-          and "**未测**" in _ausrc
-          and "**不许**写成「源站未选中节点一律不可聚焦」" in _ausrc
-          and "更**不许**据此改复刻的 `nodesFocusable`" in _ausrc)
+          and "**894 推翻了本条的第一版" in _ausrc
+          and "跨时刻读数混比" in _ausrc
+          and "本来就不该放在一起比" in _ausrc
+          and "**全都是 `tabindex=None` / `tabIndexProp=-1`**" in _ausrc
+          and "**选中的新节点也是 " in _ausrc
+          and "不许**写成「源站未选中节点一律不可聚焦」" in _ausrc)
+    check("HH.4 由此得到的**产品差异**要写进基线（源站中性态节点**不可 Tab "
+          "到达** vs 复刻 `nodesFocusable` 默认 true ⇒ **任何时候**可达），"
+          "同时**必须钉住两条不许**：① 源站那个动态策略看着像 roving "
+          "tabindex，但**确切规则未测** ⇒ **不许**照着「中性态 -1」硬设"
+          "（会把 Tab 走查整个改掉，§77）；② 更**不许**据此改复刻的 "
+          "`nodesFocusable`（那是**整个画布 Tab 顺序**的改动）",
+          '"source_nodes_not_tabreachable_in_neutral_state_894"' in _ausrc
+          and "不可 Tab 到达" in _ausrc
+          and "**确切规则未测**" in _ausrc
+          and "更**不许**据此改复刻的 `nodesFocusable`" in _ausrc
+          and "整个画布 Tab 顺序" in _ausrc)
     check("HH.4 基线里**不许**留一条「仍未解决」跟结论打架：矛盾条目已改名 "
           "`..._RESOLVED_893`，且旧名字**必须已经不在**基线里。"
           "⚠️ 判据要跟上事实（钉假设的措辞会把判据锁死在过时状态），"
