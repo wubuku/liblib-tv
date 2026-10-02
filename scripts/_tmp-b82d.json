@@ -1,0 +1,77 @@
+{
+ "at": "2026-10-02T02:43:34.080Z",
+ "drawer": {
+  "found": true,
+  "closeAria": "Close keyboard shortcuts",
+  "box": "240x604@1028,56",
+  "title": "快捷键",
+  "scroller": {
+   "scrollHeight": 1300,
+   "clientHeight": 548,
+   "testid": "shortcut-help-scroll-region"
+  }
+ },
+ "panelRows": [
+  {
+   "fn": "通用操作",
+   "key": "打开/关闭 Agent"
+  }
+ ],
+ "drawerClosed": true,
+ "keys": {
+  "G": {
+   "pre": {
+    "ok": false,
+    "emptyAt": "200,120",
+    "selected": false,
+    "enteredEdit": false,
+    "focusWhere": "DIV[rf__wrapper] aria=\"Canvas\"",
+    "guardSafe": true
+   },
+   "void": "前置不成立"
+  },
+  "V": {
+   "pre": {
+    "ok": false,
+    "emptyAt": "200,120",
+    "selected": false,
+    "enteredEdit": false,
+    "focusWhere": "DIV[rf__wrapper] aria=\"Canvas\"",
+    "guardSafe": true
+   },
+   "dockBefore": {
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "void": "前置不成立"
+  },
+  "cmdA": {
+   "pre": {
+    "ok": false,
+    "emptyAt": "200,120",
+    "selected": false,
+    "enteredEdit": false,
+    "focusWhere": "DIV[rf__wrapper] aria=\"Canvas\"",
+    "guardSafe": true
+   },
+   "before": "0",
+   "void": "前置不成立"
+  },
+  "shift2": {
+   "pre": {
+    "ok": false,
+    "emptyAt": "200,120",
+    "selected": false,
+    "enteredEdit": false,
+    "focusWhere": "DIV[rf__wrapper] aria=\"Canvas\"",
+    "guardSafe": true
+   },
+   "zoomBefore": "Zoom options, 60%",
+   "void": "前置不成立"
+  }
+ },
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoomLabel": "Zoom options, 60%"
+ }
+}

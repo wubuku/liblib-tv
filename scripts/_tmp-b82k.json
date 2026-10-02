@@ -1,0 +1,225 @@
+{
+ "at": "2026-10-02T03:03:56.128Z",
+ "zoom": {
+  "ok": true,
+  "how": "already"
+ },
+ "agentBefore": {
+  "total": 20,
+  "withArea": 20,
+  "pmAnywhere": 1,
+  "pmInNode": 0
+ },
+ "agentClosed": {
+  "total": 1,
+  "withArea": 1,
+  "pmAnywhere": 0,
+  "pmInNode": 0
+ },
+ "keys": {
+  "G@B'": {
+   "pre": {
+    "ok": true,
+    "from": "504,224",
+    "to": "776,496",
+    "pad": 40,
+    "scale": 0.6,
+    "selected": true,
+    "selCount": "3",
+    "focusWhere": "DIV[rf__wrapper] aria=\"Canvas\"",
+    "focusOnCanvas": true,
+    "agent": {
+     "total": 1,
+     "withArea": 1,
+     "pmAnywhere": 0,
+     "pmInNode": 0
+    }
+   },
+   "guardSafe": true,
+   "preFocus": "DIV[rf__wrapper] aria=\"Canvas\"",
+   "before": {
+    "sel": "3",
+    "vis": 844,
+    "zoom": "Zoom options, 60%",
+    "dock": {
+     "aria": "选择工具",
+     "pressed": "false"
+    },
+    "fs": null,
+    "agent": 1
+   },
+   "toast": {
+    "box": "360x44@460,32",
+    "text": "此快捷键当前不可用"
+   },
+   "toastAfterMs": 300,
+   "sampledToMs": 2500,
+   "after": {
+    "sel": "3",
+    "vis": 856,
+    "zoom": "Zoom options, 60%",
+    "dock": {
+     "aria": "选择工具",
+     "pressed": "false"
+    },
+    "fs": null,
+    "agent": 1
+   },
+   "changed": {
+    "vis": "844→856"
+   }
+  },
+  "F@B'": {
+   "pre": {
+    "ok": true,
+    "from": "504,224",
+    "to": "776,496",
+    "pad": 40,
+    "scale": 0.6,
+    "selected": true,
+    "selCount": "3",
+    "focusWhere": "DIV[rf__wrapper] aria=\"Canvas\"",
+    "focusOnCanvas": true,
+    "agent": {
+     "total": 1,
+     "withArea": 1,
+     "pmAnywhere": 0,
+     "pmInNode": 0
+    }
+   },
+   "guardSafe": true,
+   "preFocus": "DIV[rf__wrapper] aria=\"Canvas\"",
+   "before": {
+    "sel": "3",
+    "vis": 844,
+    "zoom": "Zoom options, 60%",
+    "dock": {
+     "aria": "选择工具",
+     "pressed": "false"
+    },
+    "fs": null,
+    "agent": 1
+   },
+   "toast": null,
+   "sampledToMs": 1300,
+   "after": {
+    "sel": "3",
+    "vis": 844,
+    "zoom": "Zoom options, 60%",
+    "dock": {
+     "aria": "选择工具",
+     "pressed": "false"
+    },
+    "fs": null,
+    "agent": 1
+   },
+   "changed": {}
+  },
+  "V@B'": {
+   "pre": {
+    "ok": true,
+    "from": "528,248",
+    "to": "800,520",
+    "pad": 40,
+    "scale": 0.6,
+    "selected": true,
+    "selCount": "3",
+    "focusWhere": "DIV[rf__wrapper] aria=\"Canvas\"",
+    "focusOnCanvas": true,
+    "agent": {
+     "total": 1,
+     "withArea": 1,
+     "pmAnywhere": 0,
+     "pmInNode": 0
+    }
+   },
+   "guardSafe": true,
+   "preFocus": "DIV[rf__wrapper] aria=\"Canvas\"",
+   "before": {
+    "sel": "3",
+    "vis": 844,
+    "zoom": "Zoom options, 60%",
+    "dock": {
+     "aria": "选择工具",
+     "pressed": "false"
+    },
+    "fs": null,
+    "agent": 1
+   },
+   "toast": null,
+   "sampledToMs": 500,
+   "after": {
+    "sel": "3",
+    "vis": 844,
+    "zoom": "Zoom options, 60%",
+    "dock": {
+     "aria": "选择工具",
+     "pressed": "false"
+    },
+    "fs": null,
+    "agent": 1
+   },
+   "changed": {}
+  },
+  "F@A": {
+   "pre": {
+    "ok": true,
+    "selCount": "0",
+    "focusWhere": "DIV[rf__wrapper] aria=\"Canvas\"",
+    "focusOnCanvas": true,
+    "agent": {
+     "total": 1,
+     "withArea": 1,
+     "pmAnywhere": 0,
+     "pmInNode": 0
+    }
+   },
+   "guardSafe": true,
+   "preFocus": "DIV[rf__wrapper] aria=\"Canvas\"",
+   "before": {
+    "sel": "0",
+    "vis": 824,
+    "zoom": "Zoom options, 60%",
+    "dock": {
+     "aria": "选择工具",
+     "pressed": "false"
+    },
+    "fs": null,
+    "agent": 1
+   },
+   "toast": null,
+   "sampledToMs": 2500,
+   "after": {
+    "sel": "0",
+    "vis": 824,
+    "zoom": "Zoom options, 60%",
+    "dock": {
+     "aria": "选择工具",
+     "pressed": "false"
+    },
+    "fs": null,
+    "agent": 1
+   },
+   "changed": {}
+  }
+ },
+ "fsAfterEsc": null,
+ "zoomFinal": {
+  "ok": true,
+  "how": "already"
+ },
+ "end": {
+  "status": "22 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%",
+  "agent": {
+   "total": 1,
+   "withArea": 1,
+   "pmAnywhere": 0,
+   "pmInNode": 0
+  },
+  "leftover": [
+   "node_9k64mdytz8",
+   "node_hyent4tp4c"
+  ]
+ }
+}

@@ -1,0 +1,50 @@
+{
+ "at": "2026-10-02T02:55:58.750Z",
+ "before": {
+  "transform": "translate(97.2507px, 173.882px) scale(0.126565)",
+  "scale": 0.126565,
+  "count": 22,
+  "canvasRange": {
+   "x": [
+    40.0555,
+    4168.3
+   ],
+   "y": [
+    240,
+    1981.81
+   ]
+  },
+  "zoomInput": null,
+  "status": "22 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+ },
+ "leftover": [
+  "node_32x2zvaysb",
+  "node_snn0297esd"
+ ],
+ "afterCmd0": {
+  "pct": 24,
+  "tf": "translate(107.483px, 96.432px) scale(0.236148)"
+ },
+ "afterCmd1": {
+  "pct": 100,
+  "again": 100,
+  "settled": true
+ },
+ "after": {
+  "transform": "translate(-1615.01px, -756.112px) scale(1)",
+  "scale": 1,
+  "count": 22,
+  "canvasRange": {
+   "x": [
+    40.0555,
+    4168.3
+   ],
+   "y": [
+    240,
+    1981.81
+   ]
+  },
+  "zoomInput": null,
+  "status": "22 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+ }
+}

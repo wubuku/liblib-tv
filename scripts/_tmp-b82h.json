@@ -1,0 +1,118 @@
+{
+ "at": "2026-10-02T02:54:16.689Z",
+ "zoomRestore": {
+  "ok": false,
+  "pct": 13
+ },
+ "agentInitial": {
+  "total": 20,
+  "withArea": 20,
+  "proseMirrors": [
+   {
+    "box": "357x84@890,554",
+    "ce": "true",
+    "connected": true,
+    "inAgent": true,
+    "inNode": false,
+    "ph": ""
+   }
+  ]
+ },
+ "toggle": [
+  {
+   "i": 0,
+   "focus": "DIV[rf__wrapper] aria=\"Canvas\"",
+   "total": 1,
+   "withArea": 1,
+   "proseMirrors": [],
+   "vis": 777
+  },
+  {
+   "i": 1,
+   "focus": "SECTION[canvas-main-region] aria=\"Canvas editing area\"",
+   "total": 20,
+   "withArea": 20,
+   "proseMirrors": [
+    {
+     "box": "357x84@890,554",
+     "ce": "true",
+     "connected": true,
+     "inAgent": true,
+     "inNode": false,
+     "ph": ""
+    }
+   ],
+   "vis": 831
+  }
+ ],
+ "agentFinal": {
+  "total": 20,
+  "withArea": 20,
+  "proseMirrors": [
+   {
+    "box": "357x84@890,554",
+    "ce": "true",
+    "connected": true,
+    "inAgent": true,
+    "inNode": false,
+    "ph": ""
+   }
+  ]
+ },
+ "agentClosedAgain": {
+  "total": 1,
+  "withArea": 1,
+  "proseMirrors": []
+ },
+ "zoomAfterCreate": 13,
+ "keys": {
+  "G@B": {
+   "pre": {
+    "ok": false,
+    "why": "无标题行落点"
+   },
+   "void": "前置不成立"
+  },
+  "V@B": {
+   "pre": {
+    "ok": false,
+    "why": "无标题行落点"
+   },
+   "void": "前置不成立"
+  },
+  "F@B": {
+   "pre": {
+    "ok": false,
+    "why": "无标题行落点"
+   },
+   "void": "前置不成立"
+  }
+ },
+ "fsAfterEsc": {
+  "fs": null,
+  "nodeEditing": {
+   "inNode": false
+  }
+ },
+ "zoomFinal": {
+  "ok": false,
+  "pct": 13
+ },
+ "end": {
+  "status": "22 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoomLabel": "Zoom options, 13%",
+  "zoomRestore": {
+   "ok": false,
+   "pct": 13
+  },
+  "leftover": [
+   "node_32x2zvaysb",
+   "node_snn0297esd"
+  ],
+  "agent": {
+   "total": 1,
+   "withArea": 1,
+   "proseMirrors": []
+  }
+ }
+}

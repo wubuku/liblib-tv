@@ -1,0 +1,158 @@
+{
+ "at": "2026-10-02T02:36:14.151Z",
+ "userMenu": {
+  "found": true,
+  "box": "240x312@1028,56",
+  "count": 6,
+  "items": [
+   "帮助中心",
+   "使用手册",
+   "快捷键",
+   "AI生成水印设置",
+   "即梦CLI",
+   "新功能许愿"
+  ],
+  "account": null
+ },
+ "menuStillOpenAfterClick": false,
+ "drawerFound": true,
+ "panelRows": [
+  {
+   "fn": "测试项目",
+   "key": "节点 20 已保存"
+  },
+  {
+   "fn": "节点",
+   "key": "20 已保存"
+  },
+  {
+   "fn": "805",
+   "key": "基础会员"
+  },
+  {
+   "fn": "20 nodes, 0 edges, 0 s",
+   "key": "视频 1 No resources: 0 r"
+  },
+  {
+   "fn": "视频 1",
+   "key": "No resources: 0 ready,"
+  },
+  {
+   "fn": "时间线 1",
+   "key": "00:00 / 00:00 全屏编辑 00:"
+  },
+  {
+   "fn": "00:00",
+   "key": "/ 00:00 全屏编辑 00:00 00:"
+  },
+  {
+   "fn": "00:00",
+   "key": "/ 00:00 全屏编辑"
+  },
+  {
+   "fn": "00:00",
+   "key": "/ 00:00"
+  },
+  {
+   "fn": "00:00",
+   "key": "00:05 00:10 00:15 00:2"
+  },
+  {
+   "fn": "导演台",
+   "key": "在 3D 空间中设计角色、机位与镜头 进入导"
+  },
+  {
+   "fn": "在 3D 空间中设计角色、机位与镜头",
+   "key": "进入导演台"
+  },
+  {
+   "fn": "音频 1",
+   "key": "No resources: 0 ready,"
+  },
+  {
+   "fn": "音频 2",
+   "key": "No resources: 0 ready,"
+  },
+  {
+   "fn": "音频 3",
+   "key": "No resources: 0 ready,"
+  },
+  {
+   "fn": "音频 4",
+   "key": "No resources: 0 ready,"
+  },
+  {
+   "fn": "音频 5",
+   "key": "No resources: 0 ready,"
+  },
+  {
+   "fn": "音频 6",
+   "key": "No resources: 0 ready,"
+  },
+  {
+   "fn": "音频 7",
+   "key": "No resources: 0 ready,"
+  },
+  {
+   "fn": "音频 8",
+   "key": "No resources: 0 ready,"
+  },
+  {
+   "fn": "音频 9",
+   "key": "No resources: 0 ready,"
+  },
+  {
+   "fn": "音频 10",
+   "key": "No resources: 0 ready,"
+  },
+  {
+   "fn": "音频 11",
+   "key": "No resources: 0 ready,"
+  },
+  {
+   "fn": "音频 12",
+   "key": "No resources: 0 ready,"
+  },
+  {
+   "fn": "音频 13",
+   "key": "No resources: 0 ready,"
+  },
+  {
+   "fn": "当前视窗没有内容",
+   "key": "回到节点"
+  },
+  {
+   "fn": "文本",
+   "key": "图片 视频 音频 时间线 主体 导演台 资产"
+  },
+  {
+   "fn": "快捷键",
+   "key": "通用操作 打开/关闭 Agent ⌘ / 撤"
+  },
+  {
+   "fn": "通用操作",
+   "key": "打开/关闭 Agent ⌘ / 撤销 ⌘ Z"
+  }
+ ],
+ "drawerBox": {
+  "box": "1280x720@0,0",
+  "scroller": {
+   "scrollHeight": 2302,
+   "clientHeight": 720,
+   "testid": ""
+  },
+  "hasCloseBtn": true
+ },
+ "drawerClosed": true,
+ "focus": {
+  "where": "DIV[rf__wrapper] aria=\"Canvas\"",
+  "safe": true,
+  "selected": false,
+  "guardReason": "焦点在画布（DIV[rf__wrapper] aria=\"Canvas\"）——可以安全按字母键"
+ },
+ "error": "节点未选中 ⇒ VOID",
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoomLabel": "Zoom options, 60%"
+ }
+}

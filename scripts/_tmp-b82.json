@@ -1,0 +1,86 @@
+{
+ "at": "2026-10-02T02:33:44.063Z",
+ "userMenu": {
+  "found": true,
+  "box": "240x312@1028,56",
+  "count": 6,
+  "items": [
+   {
+    "text": "帮助中心",
+    "box": "232x36"
+   },
+   {
+    "text": "使用手册",
+    "box": "232x36"
+   },
+   {
+    "text": "快捷键",
+    "box": "232x36"
+   },
+   {
+    "text": "AI生成水印设置",
+    "box": "232x36"
+   },
+   {
+    "text": "即梦CLI",
+    "box": "232x36"
+   },
+   {
+    "text": "新功能许愿",
+    "box": "232x36"
+   }
+  ],
+  "hasAccountBlock": false
+ },
+ "drawer": {
+  "found": false
+ },
+ "drawerClosed": true,
+ "cmdA": {
+  "beforeSelected": "1",
+  "precondition": "自建节点已选中（≥1）",
+  "guard": {
+   "safe": true,
+   "where": "BUTTON aria=\"文本\""
+  },
+  "afterSelected": "1",
+  "effective": false
+ },
+ "shift2": {
+  "nodeSelected": true,
+  "zoomBefore": "Zoom options, 60%",
+  "guard": {
+   "safe": true,
+   "where": "BUTTON aria=\"文本\""
+  },
+  "zoomAfter": "Zoom options, 60%",
+  "effective": false
+ },
+ "vKey": {
+  "dockBefore": {
+   "aria": "选择工具",
+   "pressed": "false"
+  },
+  "guard": {
+   "safe": true,
+   "where": "BUTTON aria=\"文本\""
+  },
+  "dockAfter": {
+   "aria": "选择工具",
+   "pressed": "false"
+  },
+  "effective": false
+ },
+ "gKey": {
+  "guard": {
+   "safe": true,
+   "where": "BUTTON aria=\"文本\""
+  },
+  "toastEarly": null,
+  "toastLate": null
+ },
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoomLabel": "Zoom options, 60%"
+ }
+}
