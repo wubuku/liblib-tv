@@ -1,0 +1,3073 @@
+{
+ "verifier": {
+  "widths": [
+   1280,
+   1920
+  ],
+  "heights": [
+   300,
+   400,
+   500,
+   600,
+   720,
+   850,
+   1000,
+   1150,
+   1400,
+   1700
+  ],
+  "fracs": [
+   0.1,
+   0.3,
+   0.5,
+   0.7,
+   0.9
+  ],
+  "samplesPerControl": 25,
+  "cells": [
+   "1280x300",
+   "1280x400",
+   "1280x500",
+   "1280x600",
+   "1280x720",
+   "1280x850",
+   "1280x1000",
+   "1280x1150",
+   "1280x1400",
+   "1280x1700",
+   "1920x300",
+   "1920x400",
+   "1920x500",
+   "1920x600",
+   "1920x720",
+   "1920x850",
+   "1920x1000",
+   "1920x1150",
+   "1920x1400",
+   "1920x1700"
+  ],
+  "timelineBoxes": {
+   "1280x300": [
+    0,
+    155,
+    320,
+    145
+   ],
+   "1280x400": [
+    0,
+    255,
+    320,
+    145
+   ],
+   "1280x500": [
+    0,
+    355,
+    320,
+    145
+   ],
+   "1280x600": [
+    0,
+    455,
+    320,
+    145
+   ],
+   "1280x720": [
+    0,
+    575,
+    320,
+    145
+   ],
+   "1280x850": [
+    0,
+    705,
+    320,
+    145
+   ],
+   "1280x1000": [
+    0,
+    855,
+    320,
+    145
+   ],
+   "1280x1150": [
+    0,
+    1005,
+    320,
+    145
+   ],
+   "1280x1400": [
+    0,
+    1255,
+    320,
+    145
+   ],
+   "1280x1700": [
+    0,
+    1555,
+    320,
+    145
+   ],
+   "1920x300": [
+    0,
+    155,
+    320,
+    145
+   ],
+   "1920x400": [
+    0,
+    255,
+    320,
+    145
+   ],
+   "1920x500": [
+    0,
+    355,
+    320,
+    145
+   ],
+   "1920x600": [
+    0,
+    455,
+    320,
+    145
+   ],
+   "1920x720": [
+    0,
+    575,
+    320,
+    145
+   ],
+   "1920x850": [
+    0,
+    705,
+    320,
+    145
+   ],
+   "1920x1000": [
+    0,
+    855,
+    320,
+    145
+   ],
+   "1920x1150": [
+    0,
+    1005,
+    320,
+    145
+   ],
+   "1920x1400": [
+    0,
+    1255,
+    320,
+    145
+   ],
+   "1920x1700": [
+    0,
+    1555,
+    320,
+    145
+   ]
+  },
+  "series": {
+   "data-director-rail-entry=help": {
+    "1280x300": {
+     "state": "no-samples",
+     "frac": null
+    },
+    "1280x400": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x500": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x600": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x720": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x850": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1000": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1150": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1400": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1700": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x300": {
+     "state": "no-samples",
+     "frac": null
+    },
+    "1920x400": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x500": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x600": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x720": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x850": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x1000": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x1150": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x1400": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x1700": {
+     "state": "measured",
+     "frac": 1.0
+    }
+   },
+   "data-director-color-picker=object": {
+    "1280x300": {
+     "state": "no-samples",
+     "frac": null
+    },
+    "1280x400": {
+     "state": "no-samples",
+     "frac": null
+    },
+    "1280x500": {
+     "state": "no-samples",
+     "frac": null
+    },
+    "1280x600": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x720": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x850": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1280x1000": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1280x1150": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1280x1400": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1280x1700": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x300": {
+     "state": "no-samples",
+     "frac": null
+    },
+    "1920x400": {
+     "state": "no-samples",
+     "frac": null
+    },
+    "1920x500": {
+     "state": "no-samples",
+     "frac": null
+    },
+    "1920x600": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x720": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x850": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1000": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1150": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1400": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1700": {
+     "state": "measured",
+     "frac": 0.0
+    }
+   },
+   "data-director-hex-input=object": {
+    "1280x300": {
+     "state": "no-samples",
+     "frac": null
+    },
+    "1280x400": {
+     "state": "no-samples",
+     "frac": null
+    },
+    "1280x500": {
+     "state": "no-samples",
+     "frac": null
+    },
+    "1280x600": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x720": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x850": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1280x1000": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1280x1150": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1280x1400": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1280x1700": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x300": {
+     "state": "no-samples",
+     "frac": null
+    },
+    "1920x400": {
+     "state": "no-samples",
+     "frac": null
+    },
+    "1920x500": {
+     "state": "no-samples",
+     "frac": null
+    },
+    "1920x600": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x720": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x850": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1000": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1150": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1400": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1700": {
+     "state": "measured",
+     "frac": 0.0
+    }
+   },
+   "data-director-scene-prompt-submit=true": {
+    "1280x300": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x400": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x500": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x600": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x720": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x850": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1000": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1150": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1400": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1700": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x300": {
+     "state": "measured",
+     "frac": 0.2
+    },
+    "1920x400": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x500": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x600": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x720": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x850": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1000": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1150": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1400": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1700": {
+     "state": "measured",
+     "frac": 0.0
+    }
+   },
+   "data-director-scene-prompt-upload=true": {
+    "1280x300": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x400": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x500": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x600": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x720": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x850": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1000": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1150": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1400": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1700": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x300": {
+     "state": "measured",
+     "frac": 0.2
+    },
+    "1920x400": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x500": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x600": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x720": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x850": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1000": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1150": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1400": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1700": {
+     "state": "measured",
+     "frac": 0.0
+    }
+   },
+   "data-director-scene-prompt-input=true": {
+    "1280x300": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x400": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x500": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x600": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x720": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x850": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1000": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1150": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1400": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1280x1700": {
+     "state": "measured",
+     "frac": 1.0
+    },
+    "1920x300": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x400": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x500": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x600": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x720": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x850": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1000": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1150": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1400": {
+     "state": "measured",
+     "frac": 0.0
+    },
+    "1920x1700": {
+     "state": "measured",
+     "frac": 0.0
+    }
+   }
+  },
+  "help": {
+   "measured": 18,
+   "allFull": true,
+   "noSamplesCells": [
+    "1280x300",
+    "1920x300"
+   ],
+   "coverers": [
+    "button|group.relative",
+    "div|group.relative",
+    "span|relative.h-full",
+    "span|truncate",
+    "svg|lucide.lucide-chevron-right"
+   ]
+  },
+  "colorBand": {
+   "blocked": [
+    600,
+    720
+   ],
+   "clear": [
+    850,
+    1000,
+    1150,
+    1400,
+    1700
+   ],
+   "partial": []
+  },
+  "promptByWidth": {
+   "1280": {
+    "300": 1.0,
+    "400": 1.0,
+    "500": 1.0,
+    "600": 1.0,
+    "720": 1.0,
+    "850": 1.0,
+    "1000": 1.0,
+    "1150": 1.0,
+    "1400": 1.0,
+    "1700": 1.0
+   },
+   "1920": {
+    "300": 0.2,
+    "400": 0.0,
+    "500": 0.0,
+    "600": 0.0,
+    "720": 0.0,
+    "850": 0.0,
+    "1000": 0.0,
+    "1150": 0.0,
+    "1400": 0.0,
+    "1700": 0.0
+   }
+  },
+  "judged": 65000
+ },
+ "cells": {
+  "1280x300": {
+   "controls": 130,
+   "timeline": [
+    0,
+    155,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "no-samples",
+     "box": [
+      32,
+      20
+     ]
+    },
+    "data-director-color-picker=object": {
+     "state": "no-samples",
+     "box": [
+      36,
+      24
+     ]
+    },
+    "data-director-hex-input=object": {
+     "state": "no-samples",
+     "box": [
+      68,
+      24
+     ]
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "header|flex.h-12": 15,
+      "div|scrollbar-hide.flex": 10
+     }
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "span|text-[15px].font-medium": 3,
+      "header|flex.h-12": 12,
+      "div|scrollbar-hide.flex": 10
+     }
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "header|flex.h-12": 20,
+      "div|scrollbar-hide.flex": 5
+     }
+    }
+   }
+  },
+  "1280x400": {
+   "controls": 130,
+   "timeline": [
+    0,
+    255,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "no-samples",
+     "box": [
+      36,
+      24
+     ]
+    },
+    "data-director-hex-input=object": {
+     "state": "no-samples",
+     "box": [
+      68,
+      24
+     ]
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "span|mb-1.flex": 15,
+      "input|h-7.w-full": 10
+     }
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "span|mb-1.flex": 15,
+      "input|h-7.w-full": 10
+     }
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "span|mb-1.flex": 15,
+      "label|block": 5,
+      "input|h-7.w-full": 5
+     }
+    }
+   }
+  },
+  "1280x500": {
+   "controls": 130,
+   "timeline": [
+    0,
+    355,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "no-samples",
+     "box": [
+      36,
+      24
+     ]
+    },
+    "data-director-hex-input=object": {
+     "state": "no-samples",
+     "box": [
+      68,
+      24
+     ]
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|space-y-4.px-4": 10,
+      "div|space-y-3.border-t": 15
+     }
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|space-y-4.px-4": 10,
+      "div|space-y-3.border-t": 15
+     }
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|space-y-4.px-4": 10,
+      "div|space-y-3.border-t": 15
+     }
+    }
+   }
+  },
+  "1280x600": {
+   "controls": 130,
+   "timeline": [
+    0,
+    455,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "measured",
+     "box": [
+      36,
+      24
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|relative.h-8": 25
+     }
+    },
+    "data-director-hex-input=object": {
+     "state": "measured",
+     "box": [
+      68,
+      24
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|relative.h-8": 25
+     }
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "fieldset|border-0.p-0": 25
+     }
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "legend|mb-1.flex": 15,
+      "fieldset|border-0.p-0": 10
+     }
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "fieldset|border-0.p-0": 25
+     }
+    }
+   }
+  },
+  "1280x720": {
+   "controls": 130,
+   "timeline": [
+    0,
+    575,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "measured",
+     "box": [
+      36,
+      24
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "span|": 8,
+      "button|relative.flex": 7,
+      "div|absolute.right-0": 5,
+      "div|relative.shrink-0": 5
+     }
+    },
+    "data-director-hex-input=object": {
+     "state": "measured",
+     "box": [
+      68,
+      24
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|absolute.right-0": 8,
+      "div|relative.shrink-0": 5,
+      "button|relative.flex": 6,
+      "span|": 6
+     }
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|shrink-0.cursor-ew-resize": 2,
+      "div|space-y-3.border-t": 10,
+      "input|w-24.accent-[#09caf5]": 4,
+      "input|h-full.min-w-0": 8,
+      "span|flex.items-center": 1
+     }
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|shrink-0.cursor-ew-resize": 4,
+      "div|space-y-3.border-t": 10,
+      "span|": 5,
+      "input|h-full.min-w-0": 6
+     }
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "input|h-full.min-w-0": 6,
+      "div|space-y-3.border-t": 15,
+      "div|grid.grid-cols-3": 4
+     }
+    }
+   }
+  },
+  "1280x850": {
+   "controls": 130,
+   "timeline": [
+    0,
+    705,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "measured",
+     "box": [
+      36,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-hex-input=object": {
+     "state": "measured",
+     "box": [
+      68,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    }
+   }
+  },
+  "1280x1000": {
+   "controls": 130,
+   "timeline": [
+    0,
+    855,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "measured",
+     "box": [
+      36,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-hex-input=object": {
+     "state": "measured",
+     "box": [
+      68,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    }
+   }
+  },
+  "1280x1150": {
+   "controls": 130,
+   "timeline": [
+    0,
+    1005,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "measured",
+     "box": [
+      36,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-hex-input=object": {
+     "state": "measured",
+     "box": [
+      68,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    }
+   }
+  },
+  "1280x1400": {
+   "controls": 130,
+   "timeline": [
+    0,
+    1255,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "measured",
+     "box": [
+      36,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-hex-input=object": {
+     "state": "measured",
+     "box": [
+      68,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    }
+   }
+  },
+  "1280x1700": {
+   "controls": 130,
+   "timeline": [
+    0,
+    1555,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "measured",
+     "box": [
+      36,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-hex-input=object": {
+     "state": "measured",
+     "box": [
+      68,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|min-h-0.flex-1": 25
+     }
+    }
+   }
+  },
+  "1920x300": {
+   "controls": 130,
+   "timeline": [
+    0,
+    155,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "no-samples",
+     "box": [
+      32,
+      20
+     ]
+    },
+    "data-director-color-picker=object": {
+     "state": "no-samples",
+     "box": [
+      36,
+      24
+     ]
+    },
+    "data-director-hex-input=object": {
+     "state": "no-samples",
+     "box": [
+      68,
+      24
+     ]
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.2,
+     "foreign": 5,
+     "samples": 25,
+     "centre": false,
+     "coverers": {
+      "nav|flex.h-9": 5
+     }
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.2,
+     "foreign": 5,
+     "samples": 25,
+     "centre": false,
+     "coverers": {
+      "nav|flex.h-9": 5
+     }
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    }
+   }
+  },
+  "1920x400": {
+   "controls": 130,
+   "timeline": [
+    0,
+    255,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "no-samples",
+     "box": [
+      36,
+      24
+     ]
+    },
+    "data-director-hex-input=object": {
+     "state": "no-samples",
+     "box": [
+      68,
+      24
+     ]
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    }
+   }
+  },
+  "1920x500": {
+   "controls": 130,
+   "timeline": [
+    0,
+    355,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "no-samples",
+     "box": [
+      36,
+      24
+     ]
+    },
+    "data-director-hex-input=object": {
+     "state": "no-samples",
+     "box": [
+      68,
+      24
+     ]
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    }
+   }
+  },
+  "1920x600": {
+   "controls": 130,
+   "timeline": [
+    0,
+    455,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "measured",
+     "box": [
+      36,
+      24
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|relative.h-8": 25
+     }
+    },
+    "data-director-hex-input=object": {
+     "state": "measured",
+     "box": [
+      68,
+      24
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|relative.h-8": 25
+     }
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    }
+   }
+  },
+  "1920x720": {
+   "controls": 130,
+   "timeline": [
+    0,
+    575,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "measured",
+     "box": [
+      36,
+      24
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "span|": 8,
+      "button|relative.flex": 7,
+      "div|absolute.right-0": 5,
+      "div|relative.shrink-0": 5
+     }
+    },
+    "data-director-hex-input=object": {
+     "state": "measured",
+     "box": [
+      68,
+      24
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "div|absolute.right-0": 8,
+      "div|relative.shrink-0": 5,
+      "button|relative.flex": 6,
+      "span|": 6
+     }
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    }
+   }
+  },
+  "1920x850": {
+   "controls": 130,
+   "timeline": [
+    0,
+    705,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "measured",
+     "box": [
+      36,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-hex-input=object": {
+     "state": "measured",
+     "box": [
+      68,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    }
+   }
+  },
+  "1920x1000": {
+   "controls": 130,
+   "timeline": [
+    0,
+    855,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "measured",
+     "box": [
+      36,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-hex-input=object": {
+     "state": "measured",
+     "box": [
+      68,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    }
+   }
+  },
+  "1920x1150": {
+   "controls": 130,
+   "timeline": [
+    0,
+    1005,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "measured",
+     "box": [
+      36,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-hex-input=object": {
+     "state": "measured",
+     "box": [
+      68,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    }
+   }
+  },
+  "1920x1400": {
+   "controls": 130,
+   "timeline": [
+    0,
+    1255,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "measured",
+     "box": [
+      36,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-hex-input=object": {
+     "state": "measured",
+     "box": [
+      68,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    }
+   }
+  },
+  "1920x1700": {
+   "controls": 130,
+   "timeline": [
+    0,
+    1555,
+    320,
+    145
+   ],
+   "tracked": {
+    "data-director-rail-entry=help": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 1.0,
+     "foreign": 25,
+     "samples": 25,
+     "centre": true,
+     "coverers": {
+      "button|group.relative": 8,
+      "div|group.relative": 5,
+      "span|relative.h-full": 5,
+      "svg|lucide.lucide-chevron-right": 1,
+      "span|truncate": 6
+     }
+    },
+    "data-director-color-picker=object": {
+     "state": "measured",
+     "box": [
+      36,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-hex-input=object": {
+     "state": "measured",
+     "box": [
+      68,
+      24
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-submit=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-upload=true": {
+     "state": "measured",
+     "box": [
+      32,
+      32
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    },
+    "data-director-scene-prompt-input=true": {
+     "state": "measured",
+     "box": [
+      143,
+      16
+     ],
+     "frac": 0.0,
+     "foreign": 0,
+     "samples": 25,
+     "centre": false,
+     "coverers": {}
+    }
+   }
+  }
+ },
+ "checks": {
+  "the-timeline-is-145-tall-and-bottom-anchored-at-every-cell": {
+   "ok": true,
+   "detail": {
+    "rule": "timeline.y == H - 145 and timeline.height == 145",
+    "boxes": {
+     "1280x300": [
+      0,
+      155,
+      320,
+      145
+     ],
+     "1280x400": [
+      0,
+      255,
+      320,
+      145
+     ],
+     "1280x500": [
+      0,
+      355,
+      320,
+      145
+     ],
+     "1280x600": [
+      0,
+      455,
+      320,
+      145
+     ],
+     "1280x720": [
+      0,
+      575,
+      320,
+      145
+     ],
+     "1280x850": [
+      0,
+      705,
+      320,
+      145
+     ],
+     "1280x1000": [
+      0,
+      855,
+      320,
+      145
+     ],
+     "1280x1150": [
+      0,
+      1005,
+      320,
+      145
+     ],
+     "1280x1400": [
+      0,
+      1255,
+      320,
+      145
+     ],
+     "1280x1700": [
+      0,
+      1555,
+      320,
+      145
+     ],
+     "1920x300": [
+      0,
+      155,
+      320,
+      145
+     ],
+     "1920x400": [
+      0,
+      255,
+      320,
+      145
+     ],
+     "1920x500": [
+      0,
+      355,
+      320,
+      145
+     ],
+     "1920x600": [
+      0,
+      455,
+      320,
+      145
+     ],
+     "1920x720": [
+      0,
+      575,
+      320,
+      145
+     ],
+     "1920x850": [
+      0,
+      705,
+      320,
+      145
+     ],
+     "1920x1000": [
+      0,
+      855,
+      320,
+      145
+     ],
+     "1920x1150": [
+      0,
+      1005,
+      320,
+      145
+     ],
+     "1920x1400": [
+      0,
+      1255,
+      320,
+      145
+     ],
+     "1920x1700": [
+      0,
+      1555,
+      320,
+      145
+     ]
+    }
+   },
+   "note": "so no height can move anything inside the timeline relative to the bottom edge — height alone cannot unblock anything there"
+  },
+  "help-is-fully-blocked-in-every-cell-where-it-has-samples": {
+   "ok": true,
+   "detail": {
+    "measuredCells": 18,
+    "allFull": true,
+    "neverClear": true,
+    "noSamplesCells": [
+     "1280x300",
+     "1920x300"
+    ],
+    "absentCells": [],
+    "covererIdentities": [
+     "button|group.relative",
+     "div|group.relative",
+     "span|relative.h-full",
+     "span|truncate",
+     "svg|lucide.lucide-chevron-right"
+    ]
+   },
+   "note": "679 said '6 格恒定' — that was about width. It is also true across every height measured here"
+  },
+  "the-two-color-controls-are-blocked-in-a-band-not-a-trend": {
+   "ok": true,
+   "detail": {
+    "blockedHeights": [
+     600,
+     720
+    ],
+    "clearHeights": [
+     850,
+     1000,
+     1150,
+     1400,
+     1700
+    ],
+    "partialHeights": [],
+    "notMeasuredHeights": [
+     300,
+     400,
+     500
+    ],
+    "notMeasuredState": "below H=600 these two controls have no in-viewport sample at all — that is `no-samples`, NOT `clear`",
+    "covererByHeight": {
+     "1280x600": [
+      "div|relative.h-8"
+     ],
+     "1280x720": [
+      "button|relative.flex",
+      "div|absolute.right-0",
+      "div|relative.shrink-0",
+      "span|"
+     ],
+     "1280x850": [],
+     "1280x1000": [],
+     "1280x1150": [],
+     "1280x1400": [],
+     "1280x1700": [],
+     "1920x600": [
+      "div|relative.h-8"
+     ],
+     "1920x720": [
+      "button|relative.flex",
+      "div|absolute.right-0",
+      "div|relative.shrink-0",
+      "span|"
+     ],
+     "1920x850": [],
+     "1920x1000": [],
+     "1920x1150": [],
+     "1920x1400": [],
+     "1920x1700": []
+    },
+    "perSeries": {
+     "data-director-color-picker=object": {
+      "1280x300": {
+       "state": "no-samples",
+       "frac": null
+      },
+      "1280x400": {
+       "state": "no-samples",
+       "frac": null
+      },
+      "1280x500": {
+       "state": "no-samples",
+       "frac": null
+      },
+      "1280x600": {
+       "state": "measured",
+       "frac": 1.0
+      },
+      "1280x720": {
+       "state": "measured",
+       "frac": 1.0
+      },
+      "1280x850": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1280x1000": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1280x1150": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1280x1400": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1280x1700": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1920x300": {
+       "state": "no-samples",
+       "frac": null
+      },
+      "1920x400": {
+       "state": "no-samples",
+       "frac": null
+      },
+      "1920x500": {
+       "state": "no-samples",
+       "frac": null
+      },
+      "1920x600": {
+       "state": "measured",
+       "frac": 1.0
+      },
+      "1920x720": {
+       "state": "measured",
+       "frac": 1.0
+      },
+      "1920x850": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1920x1000": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1920x1150": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1920x1400": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1920x1700": {
+       "state": "measured",
+       "frac": 0.0
+      }
+     },
+     "data-director-hex-input=object": {
+      "1280x300": {
+       "state": "no-samples",
+       "frac": null
+      },
+      "1280x400": {
+       "state": "no-samples",
+       "frac": null
+      },
+      "1280x500": {
+       "state": "no-samples",
+       "frac": null
+      },
+      "1280x600": {
+       "state": "measured",
+       "frac": 1.0
+      },
+      "1280x720": {
+       "state": "measured",
+       "frac": 1.0
+      },
+      "1280x850": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1280x1000": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1280x1150": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1280x1400": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1280x1700": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1920x300": {
+       "state": "no-samples",
+       "frac": null
+      },
+      "1920x400": {
+       "state": "no-samples",
+       "frac": null
+      },
+      "1920x500": {
+       "state": "no-samples",
+       "frac": null
+      },
+      "1920x600": {
+       "state": "measured",
+       "frac": 1.0
+      },
+      "1920x720": {
+       "state": "measured",
+       "frac": 1.0
+      },
+      "1920x850": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1920x1000": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1920x1150": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1920x1400": {
+       "state": "measured",
+       "frac": 0.0
+      },
+      "1920x1700": {
+       "state": "measured",
+       "frac": 0.0
+      }
+     }
+    }
+   },
+   "note": "measuring only H=1150 says 'clickable'; only H=720 says 'never clickable' — both are wrong"
+  },
+  "the-three-prompt-controls-are-blocked-at-1280-and-clear-at-1920": {
+   "ok": true,
+   "detail": {
+    "byWidth": {
+     "1280": {
+      "300": 1.0,
+      "400": 1.0,
+      "500": 1.0,
+      "600": 1.0,
+      "720": 1.0,
+      "850": 1.0,
+      "1000": 1.0,
+      "1150": 1.0,
+      "1400": 1.0,
+      "1700": 1.0
+     },
+     "1920": {
+      "300": 0.2,
+      "400": 0.0,
+      "500": 0.0,
+      "600": 0.0,
+      "720": 0.0,
+      "850": 0.0,
+      "1000": 0.0,
+      "1150": 0.0,
+      "1400": 0.0,
+      "1700": 0.0
+     }
+    },
+    "covererIdentitiesByCell": {
+     "1280x300": [
+      "div|scrollbar-hide.flex",
+      "header|flex.h-12"
+     ],
+     "1280x400": [
+      "input|h-7.w-full",
+      "span|mb-1.flex"
+     ],
+     "1280x500": [
+      "div|space-y-3.border-t",
+      "div|space-y-4.px-4"
+     ],
+     "1280x600": [
+      "fieldset|border-0.p-0"
+     ],
+     "1280x720": [
+      "button|shrink-0.cursor-ew-resize",
+      "div|space-y-3.border-t",
+      "input|h-full.min-w-0",
+      "input|w-24.accent-[#09caf5]",
+      "span|flex.items-center"
+     ],
+     "1280x850": [
+      "div|min-h-0.flex-1"
+     ],
+     "1280x1000": [
+      "div|min-h-0.flex-1"
+     ],
+     "1280x1150": [
+      "div|min-h-0.flex-1"
+     ],
+     "1280x1400": [
+      "div|min-h-0.flex-1"
+     ],
+     "1280x1700": [
+      "div|min-h-0.flex-1"
+     ],
+     "1920x300": [
+      "nav|flex.h-9"
+     ],
+     "1920x400": [],
+     "1920x500": [],
+     "1920x600": [],
+     "1920x720": [],
+     "1920x850": [],
+     "1920x1000": [],
+     "1920x1150": [],
+     "1920x1400": [],
+     "1920x1700": []
+    }
+   },
+   "note": "width-driven, not height-driven — but WHICH element covers them changes with height, so at 1280 the prompt bar's own contents overlap each other"
+  },
+  "the-six-split-into-three-disjoint-drivers": {
+   "ok": true,
+   "detail": {
+    "heightInvariant": [
+     "data-director-rail-entry=help"
+    ],
+    "heightBand": [
+     "data-director-color-picker=object",
+     "data-director-hex-input=object"
+    ],
+    "widthDriven": [
+     "data-director-scene-prompt-submit=true",
+     "data-director-scene-prompt-upload=true",
+     "data-director-scene-prompt-input=true"
+    ],
+    "allSixAreTracked": 6
+   },
+   "note": "'6 fully unclickable' is true but hides three defects with three different fixes"
+  },
+  "the-cells-shared-with-679-agree-cell-for-cell-on-who-is-fully-blocked": {
+   "ok": true,
+   "detail": {
+    "batch679ByCell": {
+     "1280x1150": [
+      "data-director-rail-entry=help",
+      "data-director-scene-prompt-input=true",
+      "data-director-scene-prompt-submit=true",
+      "data-director-scene-prompt-upload=true"
+     ],
+     "1280x720": [
+      "data-director-color-picker=object",
+      "data-director-hex-input=object",
+      "data-director-rail-entry=help",
+      "data-director-scene-prompt-input=true",
+      "data-director-scene-prompt-submit=true",
+      "data-director-scene-prompt-upload=true"
+     ],
+     "1366x1150": [
+      "data-director-rail-entry=help",
+      "data-director-scene-prompt-submit=true"
+     ],
+     "1440x1150": [
+      "data-director-rail-entry=help",
+      "data-director-scene-prompt-submit=true"
+     ],
+     "1600x1150": [
+      "data-director-rail-entry=help"
+     ],
+     "1920x1150": [
+      "data-director-rail-entry=help"
+     ]
+    },
+    "batch680AtSharedCells": {
+     "1280x1150": [
+      "data-director-rail-entry=help",
+      "data-director-scene-prompt-input=true",
+      "data-director-scene-prompt-submit=true",
+      "data-director-scene-prompt-upload=true"
+     ],
+     "1280x720": [
+      "data-director-color-picker=object",
+      "data-director-hex-input=object",
+      "data-director-rail-entry=help",
+      "data-director-scene-prompt-input=true",
+      "data-director-scene-prompt-submit=true",
+      "data-director-scene-prompt-upload=true"
+     ],
+     "1920x1150": [
+      "data-director-rail-entry=help"
+     ]
+    },
+    "sharedCells": [
+     "1280x1150",
+     "1280x720",
+     "1920x1150"
+    ],
+    "whyThree": "679 used 1280x720, 1280x1150, 1366x1150, 1440x1150, 1600x1150, 1920x1150. This batch sweeps both widths at ten heights, so the pairs BOTH cover are 1280x720, 1280x1150 and 1920x1150 — three, not four. 1920x720 exists only here, so there is nothing to compare it to.",
+    "mismatched": {},
+    "sameSixControlsOverall": true,
+    "whyMembershipNotTotals": "679 used one height per width, this batch sweeps ten, so the per-cell counts differ by design. The comparison is per-cell membership of the fully-blocked set."
+   },
+   "note": "same instrument on the shared cells — the readings are not run-specific"
+  }
+ }
+}
