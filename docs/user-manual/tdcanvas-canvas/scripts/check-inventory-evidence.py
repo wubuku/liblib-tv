@@ -28,6 +28,16 @@
 
 **它不检查 note 内容写得对不对**，那是 `check-claims.py` 的事。
 
+**「跳过」不等于「通过」（M150 订正）**：本脚本此前在**账本不存在**时
+打印 `[skip]` 并 `return 0`。实测同一批里另外四道门禁
+（`check-inventory-yaml` / `check-inventory-freshness` / `check-ratings` /
+`check-structure`）在同样情况下**全部 exit=1「缺少文件」**——
+**同一件事，三道报错、一道放行，读起来却像「通过」。**
+这正是 `PUBLISH.md`「第一条判据」点名的形态：**「没找到」绝不能等同于「不用找了」**。
+现已改为：**账本不存在 → exit=1**；其余三条 skip 路径（缺 PyYAML / YAML 坏了 /
+取不到任务列表）保留跳过，但**措辞统一为「本门禁未执行（不等于通过）」**——
+跳过在本项目是合法选项，**但必须说得像跳过，而不能说成通过**。
+
 用法：
 
     python3 scripts/check-inventory-evidence.py .
@@ -47,25 +57,41 @@ RUNTIME_TYPES = {"runtime", "boundary"}
 def main(argv: list[str]) -> int:
     root = Path(argv[1] if len(argv) > 1 else ".").resolve()
     inv = root / "task-inventory.yml"
+    # M150 订正：**账本不存在必须报错，不能 exit=0 静默跳过。**
+    # 实测同一批里 `check-inventory-yaml` / `check-inventory-freshness` /
+    # `check-ratings` / `check-structure` **四道全部 exit=1「缺少文件」**，
+    # 只有本门禁报 `[skip]` + exit=0——**同一件事，三道报错一道放行，读起来像「通过」**。
+    # 这正是 PUBLISH.md「第一条判据」点名的形态：**「没找到」绝不能等同于「不用找了」**。
     if not inv.exists():
-        print("[skip] 账本不存在，跳过证据一致性校验")
-        return 0
+        print(
+            f"证据一致性校验未执行：账本不存在（{inv}）。"
+            "这不是通过——请确认账本是否被误删或改名。"
+        )
+        return 1
 
     try:
         import yaml
     except ImportError:
-        print("[skip] 本机没装 PyYAML，无法按语义读账本，显式跳过（不假装通过）")
+        # 这条 skip 是合理的：环境缺 PyYAML 属于环境问题，且已显式说明。
+        # 但措辞要统一——**「本门禁未执行」不能被读成「检查通过」**。
+        print(
+            "[skip] 本门禁未执行：本机没装 PyYAML，无法按语义读账本"
+            "（不是检查通过；装上 PyYAML 后本门禁才会真正运行）"
+        )
         return 0
 
     try:
         data = yaml.safe_load(inv.read_text(encoding="utf-8"))
     except Exception as e:  # YAML 坏了是 check-inventory-yaml.py 的职责，这里不重复报
-        print(f"[skip] 账本不是合法 YAML，交给第十五道门禁处理：{e}")
+        print(
+            f"[skip] 本门禁未执行：账本不是合法 YAML，交给第十五道门禁处理：{e}"
+            "（本门禁未运行，不等于通过）"
+        )
         return 0
 
     tasks = data.get("tasks") if isinstance(data, dict) else data
     if not isinstance(tasks, list):
-        print("[skip] 取不到任务列表，跳过")
+        print("[skip] 本门禁未执行：取不到任务列表（本门禁未运行，不等于通过）")
         return 0
 
     problems: list[str] = []
