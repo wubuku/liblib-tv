@@ -123,6 +123,15 @@ echo "$LEDGERPIN_OUT" | sed 's/^/  /'
 # 发布文档一致性：PUBLISH.md 的「构建时的门禁」那张表是维护者排查的唯一索引，
 # 而它与脚本之间原本没有任何机制相连——2026-10-02 M106 实测该表已漂移
 # （把一个构建从不执行的共享脚本列成了构建门禁）。这道门禁把两者钉在一起。
+# 账本 YAML 可解析性（第十五道门禁，M123 新增）：此前十四道门禁**无一 import yaml**，
+# 全是按行正则读账本，所以「门禁全绿」与「账本是合法 YAML」一直是两件事。实测真出事过：
+# 账本第 143 行第 340 列的 note 里嵌了 `{a === "b" ? x : null}` 这类带半角「冒号 + 空格」
+# 的源码片段，整个文件用 yaml.safe_load 直接崩。任何将来想用标准 YAML 工具消费这份
+# 账本的人都会当场失败——而那正是账本存在的意义（给人读、给工具读）。
+INVYAML_OUT="$(python3 scripts/check-inventory-yaml.py . 2>&1)" || fail "账本 YAML 校验未通过（task-inventory.yml 不是合法 YAML、任务 id 重复、或证据 type 非法）：
+$INVYAML_OUT"
+echo "$INVYAML_OUT" | sed 's/^/  /'
+
 PUBLISHSYNC_OUT="$(python3 scripts/check-publish-sync.py . 2>&1)" || fail "发布文档一致性校验未通过（PUBLISH.md 的门禁表与 build-site.sh 实际调用对不上）：
 $PUBLISHSYNC_OUT"
 echo "$PUBLISHSYNC_OUT" | sed 's/^/  /'

@@ -15,7 +15,7 @@ cd docs/user-manual/tdcanvas-canvas
 |---|---|---|
 | 1/6 | 环境检查 | node ≥ 18、npm 可用、站点配置与首页内容存在 |
 | 2/6 | 依赖安装 | `node_modules/vitepress` 缺失时自动 `npm install`（已装则跳过并打印 vitepress 版本） |
-| 3/6 | 内容清单 + **门禁** | 先统计 Markdown 页数与截图数（`find` 排除 AUDIT/PROGRESS/TEST_MEDIA_ASSETS/SOURCE_OBSERVATIONS，注意**未排除 PUBLISH.md 自己**，故此数比实际发布页数多 1），数量异常直接报错；随后依次跑**十四道门禁 + 一道门禁自检**，见下文「构建时的门禁」 |
+| 3/6 | 内容清单 + **门禁** | 先统计 Markdown 页数与截图数（`find` 排除 AUDIT/PROGRESS/TEST_MEDIA_ASSETS/SOURCE_OBSERVATIONS，注意**未排除 PUBLISH.md 自己**，故此数比实际发布页数多 1），数量异常直接报错；随后依次跑**十五道门禁 + 一道门禁自检**，见下文「构建时的门禁」 |
 | 4/6 | 清理旧产物 | 删除 `.vitepress/dist` 与 `.vitepress/cache`，保证产物干净 |
 | 5/6 | 构建 | `npx vitepress build`（client + server 双端打包、页面渲染） |
 | 6/6 | 产物校验 | 校验 dist 页面数、截图数（与源截图逐一比对）、总体积、是否有未改写的 `.md` 残留链接、**侧边栏完整性**（每个已发布页面都必须出现在 `config.mjs` 侧边栏中，否则报 warn） |
@@ -98,7 +98,7 @@ npx vitepress build  # 产物 .vitepress/dist/
 
 ### 构建时的门禁：十二道 + 一道自检
 
-`./build-site.sh` 步骤 3 会依次跑**十四道门禁、再跑门禁自检**，然后才进入构建；步骤 6 回填统计并校验产物死链。**这些门禁源于实测暴露的真实缺陷，不是形式检查**：
+`./build-site.sh` 步骤 3 会依次跑**十五道门禁、再跑门禁自检**，然后才进入构建；步骤 6 回填统计并校验产物死链。**这些门禁源于实测暴露的真实缺陷，不是形式检查**：
 
 | 门禁 | 拦什么 | 由来 |
 |---|---|---|
@@ -114,6 +114,7 @@ npx vitepress build  # 产物 .vitepress/dist/
 | `check-ledger-pin.py` | 锁定提交/版本号**在各声明文件之间不一致**，或与应用仓 HEAD、`package.json` 对不上 | M105 实测账本以「版本锁定」口吻陈述旧观察而无任何机制守候；M110 查出锁定 sha 其实在 `task-inventory.yml` 里**也声明了一次**而门禁只看着账本 |
 | `check-publish-sync.py` | 本表与 `build-site.sh` 实际调用的门禁集合对不上 | M106 实测本表早已漂移（把一个构建从不执行的脚本列成构建门禁）|
 | `check-source-refs.py` | 正文里 `file:line` 引用指向不存在的文件或越界的行 | M109 实测 4 处路径有歧义（`index.tsx` 仓内 6 个同名），且出现 7 次的 `canvas-node.tsx:1110` 实际已漂到 1111 |
+| `check-inventory-yaml.py` | 账本**不是合法 YAML**、任务 id 重复、证据 `type` 不在已知集合内 | M123 实测账本第 143 行第 340 列因 note 里嵌了 `{a === "b" ? x : null}` 这类**带半角「冒号+空格」的源码片段**而整体不可解析；而此前的十四道门禁**无一 import yaml**（全是正则按行读），所以「门禁全绿」与「账本是合法 YAML」一直是两件事 |
 | `selftest-gates.py` | 上面几道门禁**本身**坏了（注入 38 类故障） | M41 门禁静默错判 |
 | `check-dist-links.py` | 产物里的死链 | M56 实测 README 链到未生成页面 |
 
@@ -135,6 +136,7 @@ python3 scripts/check-retractions.py .    # 订正回归
 python3 scripts/check-ledger-pin.py .    # 账本锁定提交 vs 应用仓 HEAD
 python3 scripts/check-publish-sync.py .  # 发布文档门禁表 vs 构建脚本实际调用
 python3 scripts/check-source-refs.py .  # 源码引用 file:line 是否指向真实存在的行
+python3 scripts/check-inventory-yaml.py .  # 账本本身是不是合法 YAML
 python3 scripts/check-tables.py .        # 表格语法
 python3 scripts/check-emphasis.py .      # 渲染陷阱（强调 flanking / Vue 插值）
 python3 scripts/check-render.py .        # 产物渲染体检（须在构建之后跑）

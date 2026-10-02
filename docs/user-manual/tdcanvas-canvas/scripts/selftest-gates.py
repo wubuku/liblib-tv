@@ -619,6 +619,57 @@ def mutate_dangling_anchor_render(root: Path) -> None:
 
 # ---------- 用例表：(名称, 变异, 期望由谁拦下, 期望出现的错误文字) ----------
 
+def mutate_inventory_yaml_broken(root: Path) -> None:
+    """把账本改成**不是合法 YAML**（第十五道门禁的负向测试，M123）。
+
+    这是**真实故障**的重放，不是假想：账本第 143 行第 340 列的 review_note 里
+    嵌了 `{menu.type === "node" ? <复制> : null}`，第 163、263 行同理。
+    YAML 的 plain scalar 一旦出现「半角冒号 + 空格」就被当成 key: value，
+    整个文件随即不可解析。
+
+    为什么这道负向测试不可省：M123 实测发现**此前的十四道门禁无一 import yaml**，
+    全是按行正则读账本——正则读得动坏掉的 YAML，所以「门禁全绿」与「账本是合法
+    YAML」一直是两件事。**没有这道用例，这道门禁自己也可能是形同虚设的。**
+    """
+    inv = root / "task-inventory.yml"
+    text = inv.read_text(encoding="utf-8")
+    # 注入一个带半角「冒号 + 空格」的 plain scalar 值——YAML 会把它当成 key: value
+    marker = "    screenshot_count: 1"
+    injected = "    injected_probe: a: b\n"
+    text = text.replace(marker, injected + marker, 1)
+    inv.write_text(text, encoding="utf-8")
+
+
+def mutate_inventory_yaml_dup_id(root: Path) -> None:
+    """让两个任务共用同一个 id（第十五道门禁的负向测试，M123）。
+
+    重复 id 的危害是**静默**的：任何「按 id 查任务」的工具都会拿到第一条，
+    后面的永远读不到，而文件本身看起来完全正常——没有一处会报错。
+    """
+    inv = root / "task-inventory.yml"
+    text = inv.read_text(encoding="utf-8")
+    ids = [ln for ln in text.split("\n") if ln.startswith("  - id: ")]
+    if len(ids) < 2:
+        return
+    first = ids[0].split(": ", 1)[1].strip()
+    text = text.replace(ids[1], f"  - id: {first}", 1)
+    inv.write_text(text, encoding="utf-8")
+
+
+def mutate_inventory_yaml_bad_type(root: Path) -> None:
+    """把一条证据的 type 改成不存在的值（第十五道门禁的负向测试，M123）。
+
+    这条用例还有个额外教训：门禁**第一版的已知集合是我按常见约定臆想的**
+    （runtime/static/derived/source），而账本里实际用的是 runtime/static/**boundary**
+    ——`derived` 与 `source` 根本不存在。门禁当场把自己顶红，逼我把集合改成
+    从实际数据里数出来的。**判据集合必须数出来，不能照惯例编。**
+    """
+    inv = root / "task-inventory.yml"
+    text = inv.read_text(encoding="utf-8")
+    text = text.replace("      - type: boundary", "      - type: boundaryy", 1)
+    inv.write_text(text, encoding="utf-8")
+
+
 CASES: list[tuple[str, object, str, str]] = [
     ("图片字节被改动", mutate_image_bytes, "gate", "sha256 mismatch"),
     ("manifest 删掉一条记录", mutate_manifest_drop_record, "gate", "image missing from manifest"),
@@ -658,6 +709,9 @@ CASES: list[tuple[str, object, str, str]] = [
     ("源码引用行号越界（读者点过去没这行）", mutate_source_ref_out_of_range, "sourcerefs", "行号越界"),
     ("两份锁定声明互相对不上", mutate_pin_declarer_disagreement, "ledgerpin", "各声明文件锁定的提交不一致"),
     ("只改一个文件的版本号（并集判据的经典漏网）", mutate_pin_version_drift, "ledgerpin", "各声明文件写的应用版本不一致"),
+    ("账本不是合法 YAML（note 嵌了冒号+空格）", mutate_inventory_yaml_broken, "inventoryyaml", "不是合法 YAML"),
+    ("账本任务 id 重复（按 id 查会静默取到第一条）", mutate_inventory_yaml_dup_id, "inventoryyaml", "id 重复"),
+    ("账本证据 type 拼错（门禁集合必须从实际数据数出来）", mutate_inventory_yaml_bad_type, "inventoryyaml", "不在已知集合内"),
 ]
 
 
@@ -688,6 +742,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-publish-sync.py"), str(root)]
     elif which == "sourcerefs":
         cmd = [sys.executable, str(root / "scripts/check-source-refs.py"), str(root)]
+    elif which == "inventoryyaml":
+        cmd = [sys.executable, str(root / "scripts/check-inventory-yaml.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)
