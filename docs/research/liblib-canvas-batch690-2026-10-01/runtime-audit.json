@@ -1,0 +1,4934 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 720,
+  "duration": 8.0,
+  "scrollerWidth": 958.0,
+  "base": {
+   "duration": 8,
+   "storeZoom": 44,
+   "heightNow": 182,
+   "styleW": "1779.14px",
+   "rectW": 1779.125,
+   "scrollerW": 958,
+   "scrollerRectW": 958,
+   "tickCount": "81",
+   "lastTickOff": 1779.125,
+   "inputValue": "44",
+   "inputMin": "0",
+   "inputMax": "100",
+   "inputStep": null
+  },
+  "census": {
+   "setters": [
+    "setAspectRatio",
+    "setCapturing",
+    "setMotionPathAnchorType",
+    "setPhoneVcamGyroEnabled",
+    "setPhoneVcamHold",
+    "setPhoneVcamRecordingTime",
+    "setPhoneVcamSampleCount",
+    "setPhoneVcamStability",
+    "setPhoneVcamStatus",
+    "setTimelineDuration",
+    "setTimelineEditorMode",
+    "setTimelineHeight",
+    "setTimelinePanelOpen",
+    "setTimelinePlaying",
+    "setTimelineTime",
+    "setTimelineZoom",
+    "setTrackSpeedCurveControl",
+    "setTrackSpeedCurvePreset",
+    "setTransformMode",
+    "setViewMode",
+    "setViewportPanelsCollapsed"
+   ],
+   "setCalls": 221,
+   "writeSites": 507,
+   "pathsTotal": 74,
+   "allRounded": [
+    "timelineHeight"
+   ],
+   "someRounded": [
+    "phoneVcam.sampleCount"
+   ]
+  },
+  "law": {
+   "expression": "max(640, duration * (3.36 + 4.978 * zoom))",
+   "scale": 3.36,
+   "pxPerZoom": 4.978,
+   "floorPx": 640,
+   "sourceLine": "DirectorTimeline.tsx:495-498"
+  },
+  "sweep": [
+   {
+    "duration": 8,
+    "storeZoom": 18,
+    "heightNow": 182,
+    "styleW": "743.712px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "18",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 18,
+    "tier": "ui-reachable",
+    "expected": 743.712
+   },
+   {
+    "duration": 8,
+    "storeZoom": 19,
+    "heightNow": 182,
+    "styleW": "783.536px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "19",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 19,
+    "tier": "ui-reachable",
+    "expected": 783.536
+   },
+   {
+    "duration": 8,
+    "storeZoom": 20,
+    "heightNow": 182,
+    "styleW": "823.36px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "20",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 20,
+    "tier": "ui-reachable",
+    "expected": 823.36
+   },
+   {
+    "duration": 8,
+    "storeZoom": 21,
+    "heightNow": 182,
+    "styleW": "863.184px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "21",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 21,
+    "tier": "ui-reachable",
+    "expected": 863.184
+   },
+   {
+    "duration": 8,
+    "storeZoom": 22,
+    "heightNow": 182,
+    "styleW": "903.008px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "22",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 22,
+    "tier": "ui-reachable",
+    "expected": 903.0079999999999
+   },
+   {
+    "duration": 8,
+    "storeZoom": 23,
+    "heightNow": 182,
+    "styleW": "942.832px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "23",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 23,
+    "tier": "ui-reachable",
+    "expected": 942.832
+   },
+   {
+    "duration": 8,
+    "storeZoom": 24,
+    "heightNow": 182,
+    "styleW": "982.656px",
+    "rectW": 982.640625,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 982.640625,
+    "inputValue": "24",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 24,
+    "tier": "ui-reachable",
+    "expected": 982.656
+   },
+   {
+    "duration": 8,
+    "storeZoom": 25,
+    "heightNow": 182,
+    "styleW": "1022.48px",
+    "rectW": 1022.46875,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 1022.46875,
+    "inputValue": "25",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 25,
+    "tier": "ui-reachable",
+    "expected": 1022.4799999999999
+   },
+   {
+    "duration": 8,
+    "storeZoom": 26,
+    "heightNow": 182,
+    "styleW": "1062.3px",
+    "rectW": 1062.296875,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 1062.296875,
+    "inputValue": "26",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 26,
+    "tier": "ui-reachable",
+    "expected": 1062.304
+   },
+   {
+    "duration": 8,
+    "storeZoom": 30,
+    "heightNow": 182,
+    "styleW": "1221.6px",
+    "rectW": 1221.59375,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 1221.59375,
+    "inputValue": "30",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 30,
+    "tier": "ui-reachable",
+    "expected": 1221.6000000000001
+   },
+   {
+    "duration": 8,
+    "storeZoom": 42,
+    "heightNow": 182,
+    "styleW": "1699.49px",
+    "rectW": 1699.484375,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 1699.484375,
+    "inputValue": "42",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 42,
+    "tier": "ui-reachable",
+    "expected": 1699.488
+   },
+   {
+    "duration": 8,
+    "storeZoom": 49,
+    "heightNow": 182,
+    "styleW": "1978.26px",
+    "rectW": 1978.25,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 1978.25,
+    "inputValue": "49",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 49,
+    "tier": "ui-reachable",
+    "expected": 1978.256
+   },
+   {
+    "duration": 8,
+    "storeZoom": 64,
+    "heightNow": 182,
+    "styleW": "2575.62px",
+    "rectW": 2575.609375,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 2575.609375,
+    "inputValue": "64",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 64,
+    "tier": "ui-reachable",
+    "expected": 2575.616
+   },
+   {
+    "duration": 8,
+    "storeZoom": 100,
+    "heightNow": 182,
+    "styleW": "4009.28px",
+    "rectW": 4009.265625,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 4009.265625,
+    "inputValue": "100",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 100,
+    "tier": "ui-reachable",
+    "expected": 4009.2799999999997
+   },
+   {
+    "duration": 8,
+    "storeZoom": 42.5,
+    "heightNow": 182,
+    "styleW": "1719.4px",
+    "rectW": 1719.390625,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 1719.390625,
+    "inputValue": "43",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 42.5,
+    "tier": "store-api-only",
+    "expected": 1719.4
+   },
+   {
+    "duration": 8,
+    "storeZoom": 33.333333333333336,
+    "heightNow": 182,
+    "styleW": "1354.35px",
+    "rectW": 1354.34375,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 1354.34375,
+    "inputValue": "33",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 33.333333333333336,
+    "tier": "store-api-only",
+    "expected": 1354.3466666666668
+   },
+   {
+    "duration": 8,
+    "storeZoom": 42.123456789,
+    "heightNow": 182,
+    "styleW": "1704.4px",
+    "rectW": 1704.390625,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 1704.390625,
+    "inputValue": "42",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 42.123456789,
+    "tier": "store-api-only",
+    "expected": 1704.4045431651361
+   },
+   {
+    "duration": 8,
+    "storeZoom": 0.015625,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "0",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 0.015625,
+    "tier": "store-api-only",
+    "expected": 640
+   }
+  ],
+  "heightControl": [
+   {
+    "duration": 8,
+    "storeZoom": 0.015625,
+    "heightNow": 183,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "0",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 182.5
+   },
+   {
+    "duration": 8,
+    "storeZoom": 0.015625,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "0",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 182.25
+   },
+   {
+    "duration": 8,
+    "storeZoom": 0.015625,
+    "heightNow": 101,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "0",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 100.5
+   },
+   {
+    "duration": 8,
+    "storeZoom": 0.015625,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "0",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 181.999999
+   },
+   {
+    "duration": 8,
+    "storeZoom": 0.015625,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "0",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null,
+    "asked": 182.0
+   }
+  ],
+  "keyboardSeq": [
+   {
+    "duration": 8,
+    "storeZoom": 0,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "0",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null
+   },
+   {
+    "duration": 8,
+    "storeZoom": 1,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "1",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null
+   },
+   {
+    "duration": 8,
+    "storeZoom": 2,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "2",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null
+   },
+   {
+    "duration": 8,
+    "storeZoom": 3,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "3",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null
+   },
+   {
+    "duration": 8,
+    "storeZoom": 4,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "4",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null
+   },
+   {
+    "duration": 8,
+    "storeZoom": 5,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "5",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null
+   },
+   {
+    "duration": 8,
+    "storeZoom": 6,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "6",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null
+   },
+   {
+    "duration": 8,
+    "storeZoom": 7,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "7",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null
+   },
+   {
+    "duration": 8,
+    "storeZoom": 8,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "8",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null
+   },
+   {
+    "duration": 8,
+    "storeZoom": 9,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "9",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null
+   },
+   {
+    "duration": 8,
+    "storeZoom": 10,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "10",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null
+   },
+   {
+    "duration": 8,
+    "storeZoom": 11,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "11",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null
+   },
+   {
+    "duration": 8,
+    "storeZoom": 12,
+    "heightNow": 182,
+    "styleW": "640px",
+    "rectW": 958,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 958,
+    "inputValue": "12",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null
+   },
+   {
+    "duration": 8,
+    "storeZoom": 100,
+    "heightNow": 182,
+    "styleW": "4009.28px",
+    "rectW": 4009.265625,
+    "scrollerW": 958,
+    "scrollerRectW": 958,
+    "tickCount": "81",
+    "lastTickOff": 4009.265625,
+    "inputValue": "100",
+    "inputMin": "0",
+    "inputMax": "100",
+    "inputStep": null
+   }
+  ],
+  "crossover": {
+   "zStar": 23.380875853756528,
+   "largestZoomStillClamped": 23,
+   "smallestZoomAboveContainer": 24
+  },
+  "zoom49": {
+   "duration": 8,
+   "storeZoom": 49,
+   "heightNow": 182,
+   "styleW": "1978.26px",
+   "rectW": 1978.25,
+   "scrollerW": 958,
+   "scrollerRectW": 958,
+   "tickCount": "81",
+   "lastTickOff": 1978.25,
+   "inputValue": "49",
+   "inputMin": "0",
+   "inputMax": "100",
+   "inputStep": null,
+   "asked": 49,
+   "tier": "ui-reachable",
+   "expected": 1978.256
+  },
+  "relationTo685686689": "685 measured 1/64px ramps on the width axis and found Math.round flattening them into plateaus. 686 found no sub-pixel deformation on the height axis, empirically. 689 closed one field's domain structurally. This batch walks the other direction: it shows the sub-pixel widths on the width axis have a cause that has nothing to do with fractional store values -- the render formula's own constants -- and that 689's property is a conjunction, not a field property.",
+  "hypothesisNotClaim": "All readings are from our own clone. The source site was not used, no source-site behaviour is claimed, and nothing here implies the source's ruler width is duration-independent."
+ },
+ "census": {
+  "source": "src/store/directorStore.ts",
+  "setters": [
+   "setAspectRatio",
+   "setCapturing",
+   "setMotionPathAnchorType",
+   "setPhoneVcamGyroEnabled",
+   "setPhoneVcamHold",
+   "setPhoneVcamRecordingTime",
+   "setPhoneVcamSampleCount",
+   "setPhoneVcamStability",
+   "setPhoneVcamStatus",
+   "setTimelineDuration",
+   "setTimelineEditorMode",
+   "setTimelineHeight",
+   "setTimelinePanelOpen",
+   "setTimelinePlaying",
+   "setTimelineTime",
+   "setTimelineZoom",
+   "setTrackSpeedCurveControl",
+   "setTrackSpeedCurvePreset",
+   "setTransformMode",
+   "setViewMode",
+   "setViewportPanelsCollapsed"
+  ],
+  "setCalls": 221,
+  "writeSites": 507,
+  "pathsTotal": 74,
+  "allRounded": [
+   "timelineHeight"
+  ],
+  "someRounded": [
+   "phoneVcam.sampleCount"
+  ],
+  "noneRounded": [
+   "activeCameraId",
+   "activeCaptureId",
+   "activeShotId",
+   "aspectRatio",
+   "authoredObjects",
+   "captures",
+   "clipboard",
+   "clipboardPasteCount",
+   "generation",
+   "groups",
+   "handleIn",
+   "handleOut",
+   "history",
+   "history.activeGesture",
+   "isCapturing",
+   "lastCommandResult",
+   "localModelLibrary",
+   "localModelResources",
+   "objects",
+   "phoneVcam",
+   "phoneVcam.baselineCamera",
+   "phoneVcam.elevation",
+   "phoneVcam.error",
+   "phoneVcam.gyroEnabled",
+   "phoneVcam.hold",
+   "phoneVcam.importedCameraId",
+   "phoneVcam.importedTrackId",
+   "phoneVcam.keepLevel",
+   "phoneVcam.pose",
+   "phoneVcam.pose.pitch",
+   "phoneVcam.pose.roll",
+   "phoneVcam.pose.yaw",
+   "phoneVcam.recordingStartTime",
+   "phoneVcam.stability",
+   "phoneVcam.status",
+   "phoneVcam.takeCount",
+   "projectId",
+   "projectLifecycle",
+   "projectOwner",
+   "scene",
+   "selectedGroupId",
+   "selectedObjectId",
+   "selectedObjectIds",
+   "sessionId",
+   "sessionOutcome",
+   "shots",
+   "showThirds",
+   "sourceNodeId",
+   "timeline",
+   "timeline.autoKeyframe",
+   "timeline.cameraMotionPreset.error.message",
+   "timeline.cameraMotionPreset.error.mode",
+   "timeline.cameraMotionPreset.error.preset",
+   "timeline.cameraMotionPreset.error.trackId",
+   "timeline.currentTime",
+   "timeline.duration",
+   "timeline.editorMode",
+   "timeline.isPlaying",
+   "timeline.loop",
+   "timeline.motionPathDraft",
+   "timeline.motionPathDraft.anchors",
+   "timeline.motionPaths",
+   "timeline.selectedKeyframeId",
+   "timeline.selectedMotionPathAnchorId",
+   "timeline.selectedMotionPathHandle",
+   "timeline.selectedTrackId",
+   "timeline.tracks",
+   "timeline.zoom",
+   "timelinePanelOpen",
+   "transformMode",
+   "viewMode",
+   "viewportPanelsCollapsed"
+  ],
+  "detail": [
+   {
+    "path": "activeCameraId",
+    "writers": [
+     null
+    ],
+    "writeCount": 3,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 4686,
+      "round": null,
+      "value": "camera.id"
+     },
+     {
+      "owner": null,
+      "line": 4840,
+      "round": null,
+      "value": "shot.cameraId"
+     },
+     {
+      "owner": null,
+      "line": 6857,
+      "round": null,
+      "value": "cameraId"
+     }
+    ]
+   },
+   {
+    "path": "activeCaptureId",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6289,
+      "round": null,
+      "value": "capture.id"
+     },
+     {
+      "owner": null,
+      "line": 6295,
+      "round": null,
+      "value": "captureId && state.captures.some((capture) => capture.id === captureId) ? captureId : null"
+     }
+    ]
+   },
+   {
+    "path": "activeShotId",
+    "writers": [
+     null
+    ],
+    "writeCount": 4,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 4687,
+      "round": null,
+      "value": "shot.id"
+     },
+     {
+      "owner": null,
+      "line": 4811,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 4839,
+      "round": null,
+      "value": "shot.id"
+     },
+     {
+      "owner": null,
+      "line": 6858,
+      "round": null,
+      "value": "shot.id"
+     }
+    ]
+   },
+   {
+    "path": "aspectRatio",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 5491,
+      "round": null,
+      "value": "ratio"
+     }
+    ]
+   },
+   {
+    "path": "authoredObjects",
+    "writers": [
+     null
+    ],
+    "writeCount": 8,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 4533,
+      "round": null,
+      "value": "authoredObjects"
+     },
+     {
+      "owner": null,
+      "line": 4676,
+      "round": null,
+      "value": "authoredObjects"
+     },
+     {
+      "owner": null,
+      "line": 5200,
+      "round": null,
+      "value": "authoredObjects"
+     },
+     {
+      "owner": null,
+      "line": 5453,
+      "round": null,
+      "value": "authoredObjects"
+     },
+     {
+      "owner": null,
+      "line": 5807,
+      "round": null,
+      "value": "authoredObjects"
+     },
+     {
+      "owner": null,
+      "line": 5950,
+      "round": null,
+      "value": "authoredObjects"
+     },
+     {
+      "owner": null,
+      "line": 6183,
+      "round": null,
+      "value": "authoredObjects"
+     },
+     {
+      "owner": null,
+      "line": 6847,
+      "round": null,
+      "value": "authoredObjects"
+     }
+    ]
+   },
+   {
+    "path": "captures",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6287,
+      "round": null,
+      "value": "nextCaptures"
+     },
+     {
+      "owner": null,
+      "line": 6315,
+      "round": null,
+      "value": "state.captures.map((capture) => capture.id === captureId ? { ...capture, sentNodeId: nodeId } : capture, )"
+     }
+    ]
+   },
+   {
+    "path": "clipboard",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3252,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 3941,
+      "round": null,
+      "value": "built.packet"
+     }
+    ]
+   },
+   {
+    "path": "clipboardPasteCount",
+    "writers": [
+     null
+    ],
+    "writeCount": 3,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3253,
+      "round": null,
+      "value": "0"
+     },
+     {
+      "owner": null,
+      "line": 3942,
+      "round": null,
+      "value": "0"
+     },
+     {
+      "owner": null,
+      "line": 4045,
+      "round": null,
+      "value": "state.clipboardPasteCount + 1"
+     }
+    ]
+   },
+   {
+    "path": "generation",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3324,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "groups",
+    "writers": [
+     null
+    ],
+    "writeCount": 3,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 4430,
+      "round": null,
+      "value": "groups"
+     },
+     {
+      "owner": null,
+      "line": 4539,
+      "round": null,
+      "value": "[...state.groups, group]"
+     },
+     {
+      "owner": null,
+      "line": 5310,
+      "round": null,
+      "value": "groups"
+     }
+    ]
+   },
+   {
+    "path": "handleIn",
+    "writers": [
+     null
+    ],
+    "writeCount": 4,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 8125,
+      "round": null,
+      "value": "safeValue"
+     },
+     {
+      "owner": null,
+      "line": 8133,
+      "round": null,
+      "value": "anchor.type === \"symmetric\" ? opposite : anchor.handleIn"
+     },
+     {
+      "owner": null,
+      "line": 8200,
+      "round": null,
+      "value": "localValue"
+     },
+     {
+      "owner": null,
+      "line": 8208,
+      "round": null,
+      "value": "anchor.type === \"symmetric\" ? opposite : anchor.handleIn"
+     }
+    ]
+   },
+   {
+    "path": "handleOut",
+    "writers": [
+     null
+    ],
+    "writeCount": 4,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 8126,
+      "round": null,
+      "value": "anchor.type === \"symmetric\" ? opposite : anchor.handleOut"
+     },
+     {
+      "owner": null,
+      "line": 8132,
+      "round": null,
+      "value": "safeValue"
+     },
+     {
+      "owner": null,
+      "line": 8201,
+      "round": null,
+      "value": "anchor.type === \"symmetric\" ? opposite : anchor.handleOut"
+     },
+     {
+      "owner": null,
+      "line": 8207,
+      "round": null,
+      "value": "localValue"
+     }
+    ]
+   },
+   {
+    "path": "history",
+    "writers": [
+     null
+    ],
+    "writeCount": 17,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3054,
+      "round": null,
+      "value": "historyForDirectorProject(result.session.projectId)"
+     },
+     {
+      "owner": null,
+      "line": 3251,
+      "round": null,
+      "value": "history"
+     },
+     {
+      "owner": null,
+      "line": 3334,
+      "round": null,
+      "value": "createDirectorHistoryState()"
+     },
+     {
+      "owner": null,
+      "line": 3667,
+      "round": null,
+      "value": "history"
+     },
+     {
+      "owner": null,
+      "line": 3807,
+      "round": null,
+      "value": "history"
+     },
+     {
+      "owner": null,
+      "line": 3880,
+      "round": null,
+      "value": "history"
+     },
+     {
+      "owner": null,
+      "line": 4046,
+      "round": null,
+      "value": "history"
+     },
+     {
+      "owner": null,
+      "line": 4182,
+      "round": null,
+      "value": "history"
+     },
+     {
+      "owner": null,
+      "line": 4435,
+      "round": null,
+      "value": "commit.history"
+     },
+     {
+      "owner": null,
+      "line": 4689,
+      "round": null,
+      "value": "history"
+     },
+     {
+      "owner": null,
+      "line": 4799,
+      "round": null,
+      "value": "history"
+     },
+     {
+      "owner": null,
+      "line": 4971,
+      "round": null,
+      "value": "commit.history"
+     },
+     {
+      "owner": null,
+      "line": 5312,
+      "round": null,
+      "value": "commit.history"
+     },
+     {
+      "owner": null,
+      "line": 5456,
+      "round": null,
+      "value": "commit.history"
+     },
+     {
+      "owner": null,
+      "line": 5656,
+      "round": null,
+      "value": "history"
+     },
+     {
+      "owner": null,
+      "line": 5810,
+      "round": null,
+      "value": "commit.history"
+     },
+     {
+      "owner": null,
+      "line": 6189,
+      "round": null,
+      "value": "commit.history"
+     }
+    ]
+   },
+   {
+    "path": "history.activeGesture",
+    "writers": [
+     null
+    ],
+    "writeCount": 6,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3588,
+      "round": null,
+      "value": "gesture"
+     },
+     {
+      "owner": null,
+      "line": 3619,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 3631,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 3695,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 3708,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 3732,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "isCapturing",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3327,
+      "round": null,
+      "value": "false"
+     },
+     {
+      "owner": null,
+      "line": 6230,
+      "round": null,
+      "value": "capturing"
+     }
+    ]
+   },
+   {
+    "path": "lastCommandResult",
+    "writers": [
+     null
+    ],
+    "writeCount": 120,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3056,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 3113,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3122,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3135,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3145,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3171,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3183,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3204,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3254,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3335,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 3539,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3548,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3557,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3567,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3590,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3604,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3620,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3632,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3648,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3667,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3680,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3696,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3709,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3725,
+      "round": null,
+      "value": "staleResult"
+     },
+     {
+      "owner": null,
+      "line": 3733,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3751,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3761,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3775,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3790,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3807,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3824,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3834,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3848,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3863,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3880,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3896,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3906,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3931,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3943,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3956,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3965,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3979,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 3989,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4006,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4021,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4047,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4064,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4074,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4109,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4125,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4142,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4183,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4343,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4352,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4366,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4372,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4424,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4436,
+      "round": null,
+      "value": "commit.result"
+     },
+     {
+      "owner": null,
+      "line": 4557,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4571,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4589,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4599,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4649,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4690,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4714,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4725,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4735,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4776,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4800,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4884,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4895,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4916,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4922,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4957,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4972,
+      "round": null,
+      "value": "commit.result"
+     },
+     {
+      "owner": null,
+      "line": 5229,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5238,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5253,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5262,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5268,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5304,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5313,
+      "round": null,
+      "value": "commit.result"
+     },
+     {
+      "owner": null,
+      "line": 5330,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5345,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5360,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5369,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5416,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5447,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5457,
+      "round": null,
+      "value": "commit.result"
+     },
+     {
+      "owner": null,
+      "line": 5555,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5566,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5577,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5597,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5610,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5633,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5657,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5676,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5698,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5711,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5731,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5743,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5749,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5796,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5811,
+      "round": null,
+      "value": "commit.result"
+     },
+     {
+      "owner": null,
+      "line": 5841,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5852,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5861,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5870,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5984,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 6027,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 6050,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 6061,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 6092,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 6101,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 6107,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 6172,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 6190,
+      "round": null,
+      "value": "commit.result"
+     },
+     {
+      "owner": null,
+      "line": 7252,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 7583,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 8623,
+      "round": null,
+      "value": "result"
+     }
+    ]
+   },
+   {
+    "path": "localModelLibrary",
+    "writers": [
+     null
+    ],
+    "writeCount": 5,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3450,
+      "round": null,
+      "value": "released.localModelLibrary"
+     },
+     {
+      "owner": null,
+      "line": 3522,
+      "round": null,
+      "value": "localModelLibrary"
+     },
+     {
+      "owner": null,
+      "line": 4107,
+      "round": null,
+      "value": "localModelLibrary"
+     },
+     {
+      "owner": null,
+      "line": 4984,
+      "round": null,
+      "value": "localModelLibrary"
+     },
+     {
+      "owner": null,
+      "line": 5003,
+      "round": null,
+      "value": "items"
+     }
+    ]
+   },
+   {
+    "path": "localModelResources",
+    "writers": [
+     null
+    ],
+    "writeCount": 10,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3451,
+      "round": null,
+      "value": "released.localModelResources"
+     },
+     {
+      "owner": null,
+      "line": 3523,
+      "round": null,
+      "value": "localModelResources"
+     },
+     {
+      "owner": null,
+      "line": 4108,
+      "round": null,
+      "value": "localModelResources"
+     },
+     {
+      "owner": null,
+      "line": 4985,
+      "round": null,
+      "value": "createDirectorLocalResourceMap( localModelLibrary, )"
+     },
+     {
+      "owner": null,
+      "line": 5004,
+      "round": null,
+      "value": "addDirectorLocalResource( state.localModelResources, descriptor, )"
+     },
+     {
+      "owner": null,
+      "line": 5041,
+      "round": null,
+      "value": "nextResources"
+     },
+     {
+      "owner": null,
+      "line": 5070,
+      "round": null,
+      "value": "retryDirectorLocalResource( state.localModelResources, resourceId, )"
+     },
+     {
+      "owner": null,
+      "line": 5087,
+      "round": null,
+      "value": "next"
+     },
+     {
+      "owner": null,
+      "line": 5104,
+      "round": null,
+      "value": "next"
+     },
+     {
+      "owner": null,
+      "line": 5139,
+      "round": null,
+      "value": "markDirectorLocalResourceReleased( state.localModelResources, resourceId, )"
+     }
+    ]
+   },
+   {
+    "path": "objects",
+    "writers": [
+     null
+    ],
+    "writeCount": 37,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 4534,
+      "round": null,
+      "value": "projectDirectorRuntimeObjects( authoredObjects, timeline, state.groups.concat(group), )"
+     },
+     {
+      "owner": null,
+      "line": 4677,
+      "round": null,
+      "value": "projectDirectorRuntimeObjects( authoredObjects, timeline, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 4970,
+      "round": null,
+      "value": "objects"
+     },
+     {
+      "owner": null,
+      "line": 5201,
+      "round": null,
+      "value": "projectDirectorRuntimeObjects( authoredObjects, timeline, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 5454,
+      "round": null,
+      "value": "objects"
+     },
+     {
+      "owner": null,
+      "line": 5808,
+      "round": null,
+      "value": "objects"
+     },
+     {
+      "owner": null,
+      "line": 5951,
+      "round": null,
+      "value": "projectDirectorRuntimeObjects( authoredObjects, timeline, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 6184,
+      "round": null,
+      "value": "objects"
+     },
+     {
+      "owner": null,
+      "line": 6481,
+      "round": null,
+      "value": "state.objects.map((object) => object.id === camera.id ? { ...object, transform: cloneTransform(nextCamera.transform), camera: { ...object.camera!, tar…"
+     },
+     {
+      "owner": null,
+      "line": 6535,
+      "round": null,
+      "value": "state.objects.map((object) => object.id === camera.id ? { ...object, transform: cloneTransform(nextCamera.transform), camera: { ...object.camera!, tar…"
+     },
+     {
+      "owner": null,
+      "line": 6628,
+      "round": null,
+      "value": "activeCamera ? sampledObjects.map((object) => object.id === activeCamera.id ? activeCamera : object, ) : sampledObjects"
+     },
+     {
+      "owner": null,
+      "line": 6848,
+      "round": null,
+      "value": "projectDirectorRuntimeObjects( authoredObjects, timeline, current.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 6884,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, state.timeline, currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 6923,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, state.timeline, currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 6946,
+      "round": null,
+      "value": "restart ? applyTimelineAtTime( state.authoredObjects, state.timeline, currentTime, state.groups, ) : state.objects"
+     },
+     {
+      "owner": null,
+      "line": 6974,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, state.timeline, currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 7099,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, keyframe.time, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 7341,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, state.timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 7371,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, state.timeline, nextTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 7522,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 7555,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 7689,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, selectedTimeline, selectedTimeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 7740,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, selectedTimeline, selectedTimeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 7943,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 8036,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 8087,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 8149,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 8224,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 8261,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 8324,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 8371,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 8406,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 8464,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 8501,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 8544,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 8571,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     },
+     {
+      "owner": null,
+      "line": 8604,
+      "round": null,
+      "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3333,
+      "round": null,
+      "value": "createDefaultPhoneVcamState()"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.baselineCamera",
+    "writers": [
+     null
+    ],
+    "writeCount": 6,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6383,
+      "round": null,
+      "value": "baselineCamera"
+     },
+     {
+      "owner": null,
+      "line": 6432,
+      "round": null,
+      "value": "baselineCamera"
+     },
+     {
+      "owner": null,
+      "line": 6497,
+      "round": null,
+      "value": "baselineCamera"
+     },
+     {
+      "owner": null,
+      "line": 6551,
+      "round": null,
+      "value": "baselineCamera"
+     },
+     {
+      "owner": null,
+      "line": 6599,
+      "round": null,
+      "value": "cloneCameraValue(camera) ?? current.phoneVcam.baselineCamera"
+     },
+     {
+      "owner": null,
+      "line": 6864,
+      "round": null,
+      "value": "cloneCameraKeyframeValue(lastValue)"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.elevation",
+    "writers": [
+     null
+    ],
+    "writeCount": 3,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6381,
+      "round": null,
+      "value": "0"
+     },
+     {
+      "owner": null,
+      "line": 6433,
+      "round": null,
+      "value": "0"
+     },
+     {
+      "owner": null,
+      "line": 6550,
+      "round": null,
+      "value": "elevation"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.error",
+    "writers": [
+     null
+    ],
+    "writeCount": 16,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6325,
+      "round": null,
+      "value": "error"
+     },
+     {
+      "owner": null,
+      "line": 6344,
+      "round": null,
+      "value": "\"导演台视口还未准备好\""
+     },
+     {
+      "owner": null,
+      "line": 6354,
+      "round": null,
+      "value": "\"请先关闭机位跟随，再使用手机运镜\""
+     },
+     {
+      "owner": null,
+      "line": 6386,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 6436,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 6498,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 6552,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 6566,
+      "round": null,
+      "value": "\"导演台视口还未准备好\""
+     },
+     {
+      "owner": null,
+      "line": 6575,
+      "round": null,
+      "value": "\"请先关闭机位跟随，再使用手机运镜\""
+     },
+     {
+      "owner": null,
+      "line": 6589,
+      "round": null,
+      "value": "\"当前播放头后没有可录制时长\""
+     },
+     {
+      "owner": null,
+      "line": 6605,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 6686,
+      "round": null,
+      "value": "\"本次手机运镜没有有效录制内容\""
+     },
+     {
+      "owner": null,
+      "line": 6699,
+      "round": null,
+      "value": "\"导演台会话已失效，请重新录制\""
+     },
+     {
+      "owner": null,
+      "line": 6729,
+      "round": null,
+      "value": "\"手机运镜结果未被接受，请重新录制\""
+     },
+     {
+      "owner": null,
+      "line": 6757,
+      "round": null,
+      "value": "\"手机运镜结果已失效，请重新录制\""
+     },
+     {
+      "owner": null,
+      "line": 6870,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.gyroEnabled",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6395,
+      "round": null,
+      "value": "enabled"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.hold",
+    "writers": [
+     null
+    ],
+    "writeCount": 3,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6380,
+      "round": null,
+      "value": "false"
+     },
+     {
+      "owner": null,
+      "line": 6419,
+      "round": null,
+      "value": "hold"
+     },
+     {
+      "owner": null,
+      "line": 6435,
+      "round": null,
+      "value": "false"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.importedCameraId",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6603,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 6868,
+      "round": null,
+      "value": "cameraId"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.importedTrackId",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6604,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 6869,
+      "round": null,
+      "value": "trackId"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.keepLevel",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6413,
+      "round": null,
+      "value": "!state.phoneVcam.keepLevel"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.pose",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6466,
+      "round": null,
+      "value": "normalizedPose"
+     },
+     {
+      "owner": null,
+      "line": 6496,
+      "round": null,
+      "value": "normalizedPose"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.pose.pitch",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6382,
+      "round": null,
+      "value": "0"
+     },
+     {
+      "owner": null,
+      "line": 6434,
+      "round": null,
+      "value": "0"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.pose.roll",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6382,
+      "round": null,
+      "value": "0"
+     },
+     {
+      "owner": null,
+      "line": 6434,
+      "round": null,
+      "value": "0"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.pose.yaw",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6382,
+      "round": null,
+      "value": "0"
+     },
+     {
+      "owner": null,
+      "line": 6434,
+      "round": null,
+      "value": "0"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.recordingStartTime",
+    "writers": [
+     null
+    ],
+    "writeCount": 8,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6326,
+      "round": null,
+      "value": "status === \"recording\" ? state.phoneVcam.recordingStartTime : null"
+     },
+     {
+      "owner": null,
+      "line": 6384,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 6601,
+      "round": null,
+      "value": "current.timeline.currentTime"
+     },
+     {
+      "owner": null,
+      "line": 6685,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 6698,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 6728,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 6756,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 6865,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.sampleCount",
+    "writers": [
+     null
+    ],
+    "writeCount": 4,
+    "allRounded": false,
+    "anyRounded": true,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6385,
+      "round": null,
+      "value": "0"
+     },
+     {
+      "owner": null,
+      "line": 6602,
+      "round": null,
+      "value": "0"
+     },
+     {
+      "owner": null,
+      "line": 6645,
+      "round": "round",
+      "value": "Math.max( 0, Math.round(Number.isFinite(count) ? count : 0), )"
+     },
+     {
+      "owner": null,
+      "line": 6866,
+      "round": null,
+      "value": "validSamples.length"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.stability",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6402,
+      "round": null,
+      "value": "Math.min( Math.max(Number.isFinite(stability) ? stability : 0, 0), 100, )"
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.status",
+    "writers": [
+     null
+    ],
+    "writeCount": 10,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6324,
+      "round": null,
+      "value": "status"
+     },
+     {
+      "owner": null,
+      "line": 6343,
+      "round": null,
+      "value": "\"error\""
+     },
+     {
+      "owner": null,
+      "line": 6353,
+      "round": null,
+      "value": "\"error\""
+     },
+     {
+      "owner": null,
+      "line": 6379,
+      "round": null,
+      "value": "\"local-ready\""
+     },
+     {
+      "owner": null,
+      "line": 6598,
+      "round": null,
+      "value": "\"recording\""
+     },
+     {
+      "owner": null,
+      "line": 6681,
+      "round": null,
+      "value": "current.phoneVcam.status === \"recording\" ? \"local-ready\" : current.phoneVcam.status"
+     },
+     {
+      "owner": null,
+      "line": 6697,
+      "round": null,
+      "value": "\"local-ready\""
+     },
+     {
+      "owner": null,
+      "line": 6727,
+      "round": null,
+      "value": "\"local-ready\""
+     },
+     {
+      "owner": null,
+      "line": 6755,
+      "round": null,
+      "value": "\"local-ready\""
+     },
+     {
+      "owner": null,
+      "line": 6863,
+      "round": null,
+      "value": "\"imported\""
+     }
+    ]
+   },
+   {
+    "path": "phoneVcam.takeCount",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6867,
+      "round": null,
+      "value": "takeIndex"
+     }
+    ]
+   },
+   {
+    "path": "projectId",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3322,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "projectLifecycle",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3325,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "projectOwner",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3321,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "scene",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 5655,
+      "round": null,
+      "value": "nextScene"
+     }
+    ]
+   },
+   {
+    "path": "selectedGroupId",
+    "writers": [
+     null
+    ],
+    "writeCount": 27,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 4224,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 4265,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 4276,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 4320,
+      "round": null,
+      "value": "group.id"
+     },
+     {
+      "owner": null,
+      "line": 4433,
+      "round": null,
+      "value": "group.id"
+     },
+     {
+      "owner": null,
+      "line": 4542,
+      "round": null,
+      "value": "group.id"
+     },
+     {
+      "owner": null,
+      "line": 4685,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 4843,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 5208,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 5477,
+      "round": null,
+      "value": "selectedGroupId"
+     },
+     {
+      "owner": null,
+      "line": 5958,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 6187,
+      "round": null,
+      "value": "selection.selectedGroupId"
+     },
+     {
+      "owner": null,
+      "line": 6365,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 6856,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 7034,
+      "round": null,
+      "value": "group?.id ?? null"
+     },
+     {
+      "owner": null,
+      "line": 7098,
+      "round": null,
+      "value": "group?.id ?? null"
+     },
+     {
+      "owner": null,
+      "line": 7129,
+      "round": null,
+      "value": "requestedGroup.id"
+     },
+     {
+      "owner": null,
+      "line": 7175,
+      "round": null,
+      "value": "requestedGroup.id"
+     },
+     {
+      "owner": null,
+      "line": 7194,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 7238,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 7432,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 7496,
+      "round": null,
+      "value": "group.id"
+     },
+     {
+      "owner": null,
+      "line": 7697,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 7748,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 7800,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 7942,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 7998,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "selectedObjectId",
+    "writers": [
+     null
+    ],
+    "writeCount": 27,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 4222,
+      "round": null,
+      "value": "objectId"
+     },
+     {
+      "owner": null,
+      "line": 4263,
+      "round": null,
+      "value": "selectedObjectId"
+     },
+     {
+      "owner": null,
+      "line": 4274,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 4318,
+      "round": null,
+      "value": "selectedObjectId"
+     },
+     {
+      "owner": null,
+      "line": 4431,
+      "round": null,
+      "value": "selectedObjectId"
+     },
+     {
+      "owner": null,
+      "line": 4540,
+      "round": null,
+      "value": "selectedObjectId"
+     },
+     {
+      "owner": null,
+      "line": 4683,
+      "round": null,
+      "value": "camera.id"
+     },
+     {
+      "owner": null,
+      "line": 4841,
+      "round": null,
+      "value": "shot.cameraId"
+     },
+     {
+      "owner": null,
+      "line": 5206,
+      "round": null,
+      "value": "objectId"
+     },
+     {
+      "owner": null,
+      "line": 5475,
+      "round": null,
+      "value": "selectedObjectId"
+     },
+     {
+      "owner": null,
+      "line": 5956,
+      "round": null,
+      "value": "objectId"
+     },
+     {
+      "owner": null,
+      "line": 6185,
+      "round": null,
+      "value": "selection.selectedObjectId"
+     },
+     {
+      "owner": null,
+      "line": 6363,
+      "round": null,
+      "value": "camera.id"
+     },
+     {
+      "owner": null,
+      "line": 6854,
+      "round": null,
+      "value": "cameraId"
+     },
+     {
+      "owner": null,
+      "line": 7032,
+      "round": null,
+      "value": "selectedObjectId"
+     },
+     {
+      "owner": null,
+      "line": 7096,
+      "round": null,
+      "value": "selectedObjectId"
+     },
+     {
+      "owner": null,
+      "line": 7127,
+      "round": null,
+      "value": "selectedObjectId"
+     },
+     {
+      "owner": null,
+      "line": 7173,
+      "round": null,
+      "value": "selectedObjectId"
+     },
+     {
+      "owner": null,
+      "line": 7192,
+      "round": null,
+      "value": "selectedObjectId"
+     },
+     {
+      "owner": null,
+      "line": 7236,
+      "round": null,
+      "value": "selectedObjectId"
+     },
+     {
+      "owner": null,
+      "line": 7430,
+      "round": null,
+      "value": "objectId"
+     },
+     {
+      "owner": null,
+      "line": 7494,
+      "round": null,
+      "value": "selectedObjectId"
+     },
+     {
+      "owner": null,
+      "line": 7695,
+      "round": null,
+      "value": "camera.id"
+     },
+     {
+      "owner": null,
+      "line": 7746,
+      "round": null,
+      "value": "object.id"
+     },
+     {
+      "owner": null,
+      "line": 7798,
+      "round": null,
+      "value": "object.id"
+     },
+     {
+      "owner": null,
+      "line": 7940,
+      "round": null,
+      "value": "draft.objectId"
+     },
+     {
+      "owner": null,
+      "line": 7996,
+      "round": null,
+      "value": "object.id"
+     }
+    ]
+   },
+   {
+    "path": "selectedObjectIds",
+    "writers": [
+     null
+    ],
+    "writeCount": 27,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 4223,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 4264,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 4275,
+      "round": null,
+      "value": "[]"
+     },
+     {
+      "owner": null,
+      "line": 4319,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 4432,
+      "round": null,
+      "value": "characterIds"
+     },
+     {
+      "owner": null,
+      "line": 4541,
+      "round": null,
+      "value": "[...group.characterIds]"
+     },
+     {
+      "owner": null,
+      "line": 4684,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 4842,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 5207,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 5476,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 5957,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 6186,
+      "round": null,
+      "value": "selection.selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 6364,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 6855,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 7033,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 7097,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 7128,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 7174,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 7193,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 7237,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 7431,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 7495,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 7696,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 7747,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 7799,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 7941,
+      "round": null,
+      "value": "selectedObjectIds"
+     },
+     {
+      "owner": null,
+      "line": 7997,
+      "round": null,
+      "value": "selectedObjectIds"
+     }
+    ]
+   },
+   {
+    "path": "sessionId",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3323,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "sessionOutcome",
+    "writers": [
+     null
+    ],
+    "writeCount": 6,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 2983,
+      "round": null,
+      "value": "createDirectorSessionOutcome(result)"
+     },
+     {
+      "owner": null,
+      "line": 3005,
+      "round": null,
+      "value": "createDirectorSessionOutcome(result)"
+     },
+     {
+      "owner": null,
+      "line": 3024,
+      "round": null,
+      "value": "createDirectorSessionOutcome(result)"
+     },
+     {
+      "owner": null,
+      "line": 3055,
+      "round": null,
+      "value": "createDirectorSessionOutcome(result)"
+     },
+     {
+      "owner": null,
+      "line": 3068,
+      "round": null,
+      "value": "createDirectorSessionOutcome(result)"
+     },
+     {
+      "owner": null,
+      "line": 3326,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "shots",
+    "writers": [
+     null
+    ],
+    "writeCount": 4,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 4682,
+      "round": null,
+      "value": "shots"
+     },
+     {
+      "owner": null,
+      "line": 4968,
+      "round": null,
+      "value": "shots"
+     },
+     {
+      "owner": null,
+      "line": 6288,
+      "round": null,
+      "value": "shots"
+     },
+     {
+      "owner": null,
+      "line": 6853,
+      "round": null,
+      "value": "shots"
+     }
+    ]
+   },
+   {
+    "path": "showThirds",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 5493,
+      "round": null,
+      "value": "!state.showThirds"
+     }
+    ]
+   },
+   {
+    "path": "sourceNodeId",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3320,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "timeline",
+    "writers": [
+     null
+    ],
+    "writeCount": 47,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 4231,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 4266,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 4277,
+      "round": null,
+      "value": "normalizeDirectorTimelineSelection( { ...state.timeline, selectedMotionPathId: null, selectedMotionPathAnchorId: null, selectedMotionPathHandle: null,…"
+     },
+     {
+      "owner": null,
+      "line": 4321,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 4434,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 4543,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 4688,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 4798,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 4844,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 4969,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 5209,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 5311,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 5455,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 5478,
+      "round": null,
+      "value": "normalizeDirectorTimelineSelection( state.timeline, { selectedObjectId, selectedObjectIds, selectedGroupId, }, )"
+     },
+     {
+      "owner": null,
+      "line": 5809,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 5959,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 6188,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 6366,
+      "round": null,
+      "value": "normalizeDirectorTimelineSelection( { ...current.timeline, isPlaying: false, }, { selectedObjectId: camera.id, selectedObjectIds, selectedGroupId: nul…"
+     },
+     {
+      "owner": null,
+      "line": 6860,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 7035,
+      "round": null,
+      "value": "normalizeDirectorTimelineSelection( { ...state.timeline, selectedTrackId: track.id, selectedKeyframeId: null, selectedMotionPathId: track.motionPathId…"
+     },
+     {
+      "owner": null,
+      "line": 7105,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 7130,
+      "round": null,
+      "value": "normalizeDirectorTimelineSelection( { ...state.timeline, selectedTrackId: existing.id, selectedKeyframeId: null, selectedMotionPathId: existing.motion…"
+     },
+     {
+      "owner": null,
+      "line": 7176,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 7195,
+      "round": null,
+      "value": "normalizeDirectorTimelineSelection( { ...state.timeline, selectedTrackId: existing.id, selectedKeyframeId: null, selectedMotionPathId: existing.motion…"
+     },
+     {
+      "owner": null,
+      "line": 7239,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 7433,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 7497,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 7528,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 7561,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 7698,
+      "round": null,
+      "value": "selectedTimeline"
+     },
+     {
+      "owner": null,
+      "line": 7749,
+      "round": null,
+      "value": "selectedTimeline"
+     },
+     {
+      "owner": null,
+      "line": 7801,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 7949,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 8000,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 8042,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 8093,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 8155,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 8230,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 8267,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 8330,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 8377,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 8412,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 8470,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 8507,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 8550,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 8577,
+      "round": null,
+      "value": "timeline"
+     },
+     {
+      "owner": null,
+      "line": 8610,
+      "round": null,
+      "value": "timeline"
+     }
+    ]
+   },
+   {
+    "path": "timeline.autoKeyframe",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6997,
+      "round": null,
+      "value": "!state.timeline.autoKeyframe"
+     }
+    ]
+   },
+   {
+    "path": "timeline.cameraMotionPreset.error.message",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 7597,
+      "round": null,
+      "value": "\"跟随目标时不可使用预设运镜\""
+     },
+     {
+      "owner": null,
+      "line": 7620,
+      "round": null,
+      "value": "\"当前时间轴没有可追加的时长\""
+     }
+    ]
+   },
+   {
+    "path": "timeline.cameraMotionPreset.error.mode",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 7596,
+      "round": null,
+      "value": "mode"
+     },
+     {
+      "owner": null,
+      "line": 7619,
+      "round": null,
+      "value": "mode"
+     }
+    ]
+   },
+   {
+    "path": "timeline.cameraMotionPreset.error.preset",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 7595,
+      "round": null,
+      "value": "preset"
+     },
+     {
+      "owner": null,
+      "line": 7618,
+      "round": null,
+      "value": "preset"
+     }
+    ]
+   },
+   {
+    "path": "timeline.cameraMotionPreset.error.trackId",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 7594,
+      "round": null,
+      "value": "track.id"
+     },
+     {
+      "owner": null,
+      "line": 7617,
+      "round": null,
+      "value": "track.id"
+     }
+    ]
+   },
+   {
+    "path": "timeline.currentTime",
+    "writers": [
+     null
+    ],
+    "writeCount": 6,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6635,
+      "round": null,
+      "value": "currentTime"
+     },
+     {
+      "owner": null,
+      "line": 6892,
+      "round": null,
+      "value": "currentTime"
+     },
+     {
+      "owner": null,
+      "line": 6932,
+      "round": null,
+      "value": "currentTime"
+     },
+     {
+      "owner": null,
+      "line": 6956,
+      "round": null,
+      "value": "currentTime"
+     },
+     {
+      "owner": null,
+      "line": 6982,
+      "round": null,
+      "value": "currentTime"
+     },
+     {
+      "owner": null,
+      "line": 7379,
+      "round": null,
+      "value": "nextTime"
+     }
+    ]
+   },
+   {
+    "path": "timeline.duration",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6931,
+      "round": null,
+      "value": "duration"
+     }
+    ]
+   },
+   {
+    "path": "timeline.editorMode",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 7505,
+      "round": null,
+      "value": "mode"
+     }
+    ]
+   },
+   {
+    "path": "timeline.isPlaying",
+    "writers": [
+     null
+    ],
+    "writeCount": 13,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3330,
+      "round": null,
+      "value": "false"
+     },
+     {
+      "owner": null,
+      "line": 6595,
+      "round": null,
+      "value": "false"
+     },
+     {
+      "owner": null,
+      "line": 6636,
+      "round": null,
+      "value": "false"
+     },
+     {
+      "owner": null,
+      "line": 6893,
+      "round": null,
+      "value": "false"
+     },
+     {
+      "owner": null,
+      "line": 6940,
+      "round": null,
+      "value": "false"
+     },
+     {
+      "owner": null,
+      "line": 6957,
+      "round": null,
+      "value": "true"
+     },
+     {
+      "owner": null,
+      "line": 6983,
+      "round": null,
+      "value": "reachedEnd ? state.timeline.loop : true"
+     },
+     {
+      "owner": null,
+      "line": 7293,
+      "round": null,
+      "value": "false"
+     },
+     {
+      "owner": null,
+      "line": 7317,
+      "round": null,
+      "value": "false"
+     },
+     {
+      "owner": null,
+      "line": 7350,
+      "round": null,
+      "value": "false"
+     },
+     {
+      "owner": null,
+      "line": 7381,
+      "round": null,
+      "value": "false"
+     },
+     {
+      "owner": null,
+      "line": 7506,
+      "round": null,
+      "value": "false"
+     },
+     {
+      "owner": null,
+      "line": 7960,
+      "round": null,
+      "value": "false"
+     }
+    ]
+   },
+   {
+    "path": "timeline.loop",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 6990,
+      "round": null,
+      "value": "!state.timeline.loop"
+     }
+    ]
+   },
+   {
+    "path": "timeline.motionPathDraft",
+    "writers": [
+     null
+    ],
+    "writeCount": 3,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 3331,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 7888,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 7957,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "timeline.motionPathDraft.anchors",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 7836,
+      "round": null,
+      "value": "[...draft.anchors, anchor]"
+     },
+     {
+      "owner": null,
+      "line": 7873,
+      "round": null,
+      "value": "anchors"
+     }
+    ]
+   },
+   {
+    "path": "timeline.motionPaths",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 8424,
+      "round": null,
+      "value": "state.timeline.motionPaths.map((path) => path.id === pathId ? { ...path, name } : path, )"
+     }
+    ]
+   },
+   {
+    "path": "timeline.selectedKeyframeId",
+    "writers": [
+     null
+    ],
+    "writeCount": 4,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 7292,
+      "round": null,
+      "value": "result.keyframeId"
+     },
+     {
+      "owner": null,
+      "line": 7316,
+      "round": null,
+      "value": "result.keyframeId"
+     },
+     {
+      "owner": null,
+      "line": 7349,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 7380,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "timeline.selectedMotionPathAnchorId",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 7889,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 7958,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "timeline.selectedMotionPathHandle",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 7890,
+      "round": null,
+      "value": "null"
+     },
+     {
+      "owner": null,
+      "line": 7959,
+      "round": null,
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "path": "timeline.selectedTrackId",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 7291,
+      "round": null,
+      "value": "track.id"
+     },
+     {
+      "owner": null,
+      "line": 7315,
+      "round": null,
+      "value": "track.id"
+     }
+    ]
+   },
+   {
+    "path": "timeline.tracks",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 7288,
+      "round": null,
+      "value": "state.timeline.tracks.map((item) => item.id === track.id ? result.track : item, )"
+     },
+     {
+      "owner": null,
+      "line": 7312,
+      "round": null,
+      "value": "state.timeline.tracks.map((item) => item.id === track.id ? result.track : item, )"
+     }
+    ]
+   },
+   {
+    "path": "timeline.zoom",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 7007,
+      "round": null,
+      "value": "Math.min(Math.max(zoom, 0), 100)"
+     }
+    ]
+   },
+   {
+    "path": "timelineHeight",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": true,
+    "anyRounded": true,
+    "sites": [
+     {
+      "owner": null,
+      "line": 5507,
+      "round": "round",
+      "value": "Math.min( DIRECTOR_TIMELINE_HEIGHT_MAX, Math.max(DIRECTOR_TIMELINE_HEIGHT_MIN, Math.round(height)), )"
+     }
+    ]
+   },
+   {
+    "path": "timelinePanelOpen",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 5503,
+      "round": null,
+      "value": "open"
+     },
+     {
+      "owner": null,
+      "line": 5504,
+      "round": null,
+      "value": "!state.timelinePanelOpen"
+     }
+    ]
+   },
+   {
+    "path": "transformMode",
+    "writers": [
+     null
+    ],
+    "writeCount": 1,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 5489,
+      "round": null,
+      "value": "mode"
+     }
+    ]
+   },
+   {
+    "path": "viewMode",
+    "writers": [
+     null
+    ],
+    "writeCount": 5,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 5474,
+      "round": null,
+      "value": "mode"
+     },
+     {
+      "owner": null,
+      "line": 6362,
+      "round": null,
+      "value": "\"camera\""
+     },
+     {
+      "owner": null,
+      "line": 6859,
+      "round": null,
+      "value": "\"camera\""
+     },
+     {
+      "owner": null,
+      "line": 7797,
+      "round": null,
+      "value": "\"director\""
+     },
+     {
+      "owner": null,
+      "line": 7999,
+      "round": null,
+      "value": "\"director\""
+     }
+    ]
+   },
+   {
+    "path": "viewportPanelsCollapsed",
+    "writers": [
+     null
+    ],
+    "writeCount": 2,
+    "allRounded": false,
+    "anyRounded": false,
+    "sites": [
+     {
+      "owner": null,
+      "line": 5497,
+      "round": null,
+      "value": "!state.viewportPanelsCollapsed"
+     },
+     {
+      "owner": null,
+      "line": 5501,
+      "round": null,
+      "value": "collapsed"
+     }
+    ]
+   }
+  ]
+ },
+ "checks": {
+  "census-one-leaf-path-in-74-is-integer-valued-by-construction": {
+   "ok": true,
+   "detail": {
+    "pathsTotal": 74,
+    "setCalls": 221,
+    "writeSites": 507,
+    "allRounded": [
+     "timelineHeight"
+    ],
+    "someRounded": [
+     "phoneVcam.sampleCount"
+    ],
+    "noneRoundedCount": 72,
+    "theThreeLayoutInputs": [
+     "timeline.zoom",
+     "timeline.currentTime",
+     "timeline.duration"
+    ],
+    "instrument": "scripts/census-directorstore-value-domains.mjs",
+    "whyPerWriteSite": "An earlier version of this check rounded per FUNCTION BODY. That reads 'one Math.round somewhere in this setter' as 'every field it writes is rounded', which is false whenever a setter writes several fields and rounds only one. The census attributes rounding to each value expression instead.",
+    "scopeLimit": "directorStore only. The other two stores are not censused."
+   },
+   "note": "689 measured one field by hand; this measures all 74 leaf paths"
+  },
+  "integer-zoom-still-produces-a-fractional-width": {
+   "ok": true,
+   "detail": {
+    "uiZoomsProbed": [
+     18,
+     19,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25,
+     26,
+     30,
+     42,
+     49,
+     64,
+     100
+    ],
+    "fractionalStyleWidths": [
+     18,
+     19,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25,
+     26,
+     30,
+     42,
+     49,
+     64,
+     100
+    ],
+    "integerStyleWidths": [],
+    "law": "max(640, duration * (3.36 + 4.978 * zoom))",
+    "lawHeldOnEverySample": true,
+    "duration": 8.0,
+    "sourceOfTheFraction": "NOT a fractional store value -- zoom and duration are both integers in every one of these samples. The constants 3.36 and 4.978 are not integers, so the product is fractional.",
+    "sample": [
+     {
+      "zoom": 18,
+      "duration": 8,
+      "styleW": "743.712px",
+      "expected": 743.712
+     },
+     {
+      "zoom": 19,
+      "duration": 8,
+      "styleW": "783.536px",
+      "expected": 783.536
+     },
+     {
+      "zoom": 20,
+      "duration": 8,
+      "styleW": "823.36px",
+      "expected": 823.36
+     },
+     {
+      "zoom": 21,
+      "duration": 8,
+      "styleW": "863.184px",
+      "expected": 863.184
+     },
+     {
+      "zoom": 22,
+      "duration": 8,
+      "styleW": "903.008px",
+      "expected": 903.0079999999999
+     },
+     {
+      "zoom": 23,
+      "duration": 8,
+      "styleW": "942.832px",
+      "expected": 942.832
+     }
+    ],
+    "whyThisMatters": "689 closed the domain of timelineHeight. This shows the property is not transferable: a field can be integer-valued AND still yield a sub-pixel layout length, because the consumer multiplies by a non-integer."
+   },
+   "note": "this is the finding that refutes generalising 689"
+  },
+  "the-fraction-reaches-the-dom-and-lands-on-the-1-64px-grid": {
+   "ok": true,
+   "detail": {
+    "samples": 18,
+    "onGrid": 18,
+    "unclampedSamples": 11,
+    "floorToSixtyFourthMatchesExactly": 11,
+    "clampedToTheMinWFloor": 7,
+    "clampedMatchesTheScrollerExactly": 7,
+    "residualRangePx": [
+     0.0029166666668061225,
+     0.015374999999949068
+    ],
+    "residualBoundPx": [
+     0,
+     0.015625
+    ],
+    "quantisationRule": "the layout value is floor(px * 64) / 64 -- a FLOOR, not a nearest rounding. z=24 is the sample that proves it: 982.656*64 = 62909.984, floor gives 982.640625 which is exactly what was read, while rounding would have given 982.65625.",
+    "storeReadbackBitExact": true,
+    "threeLayersOfPrecision": {
+     "storeDouble": [
+      1719.4,
+      1354.3466666666668,
+      1704.4045431651361
+     ],
+     "domSpecifiedString": [
+      "1719.4px",
+      "1354.35px",
+      "1704.4px"
+     ],
+     "usedLayoutValue": [
+      1719.390625,
+      1354.34375,
+      1704.390625
+     ]
+    },
+    "serialisation": "the inline style string is the double re-serialised at six significant digits, so the fraction survives into the DOM but the text is not a round trip. getBoundingClientRect() is the exact one.",
+    "magnitude": "the worst deviation is under one 1/64px cell, i.e. under 0.0156px. This is NOT reported as a defect.",
+    "tickCountAlwaysInteger": [
+     "81"
+    ]
+   },
+   "note": "three separate roundings between the store and the pixel"
+  },
+  "control-the-same-instrument-reads-the-rounding-when-the-field-has-it": {
+   "ok": true,
+   "detail": {
+    "heightAsked": [
+     182.5,
+     182.25,
+     100.5,
+     181.999999,
+     182.0
+    ],
+    "heightStored": [
+     183,
+     182,
+     101,
+     182,
+     182
+    ],
+    "heightExpectedByJsRound": [
+     183,
+     182,
+     101,
+     182,
+     182
+    ],
+    "zoomAsked": [
+     42.5,
+     33.333333333333336,
+     42.123456789,
+     0.015625
+    ],
+    "zoomStored": [
+     42.5,
+     33.333333333333336,
+     42.123456789,
+     0.015625
+    ],
+    "whyAControlIsNeeded": "685 found Math.round manufacturing plateaus out of real ramps. A rounded field therefore looks exactly like an instrument that cannot see fractions. Driving timelineHeight and timeline.zoom from the same page with the same reader separates 'the field is rounded' from 'the ruler is blind': one rounds, the other does not.",
+    "theAssertionThatWasWrong": "the first version compared against Python's round(), which is round-half-to-EVEN: it predicts 182 for 182.5 and 100 for 100.5, while Math.round gives 183 and 101. The readings were right and the assertion was wrong, so the assertion was replaced with an explicit half-up js_round().",
+    "sourceFact": "directorStore.ts:5505-5512 setTimelineHeight is the only writer and ends in Math.round; :7003-7008 setTimelineZoom clamps to [0,100] and does NOT round."
+   },
+   "note": "without this, check 3 could be a blind instrument"
+  },
+  "fractional-zoom-is-not-reachable-from-the-ui": {
+   "ok": true,
+   "detail": {
+    "min": "0",
+    "max": "100",
+    "stepAttribute": null,
+    "arrowSequence": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8",
+     "9",
+     "10",
+     "11",
+     "12",
+     "100"
+    ],
+    "allIntegers": true,
+    "stepIsExactlyOne": true,
+    "notInThePersistenceSchema": "src/lib/directorProjectRuntimeAdapter.ts:277 reinstates zoom to DIRECTOR_TIMELINE_DEFAULT_ZOOM on open, so a fraction cannot be carried in or out through a saved project either.",
+    "soTheApiOnlyTierIsApiOnly": "the four fractional samples in check 2 and 3 were written through the store, not through any control on screen",
+    "consequence": "the fractional widths in check 3 are not something a user can produce. But check 2 shows integer zooms produce fractional widths anyway, so the sub-pixel phenomenon does not depend on the unreachable tier at all."
+   },
+   "note": "688's discipline: ask what is reachable before calling it a defect"
+  },
+  "the-min-w-full-crossover-sits-on-the-first-integer-the-formula-predicts": {
+   "ok": true,
+   "detail": {
+    "scrollerClientWidth": 958.0,
+    "scrollerRectWidth": 958.0,
+    "clientWidthIsRoundedBySpec": false,
+    "duration": 8.0,
+    "zStar": 23.380875853756528,
+    "formula": "z* = (scrollerRectW / duration - 3.36) / 4.978",
+    "largestZoomStillClamped": 23,
+    "smallestZoomAboveContainer": 24,
+    "adjacent": true,
+    "belowTheCrossover": "style says 640px while the rendered width is the scroller width -- the specified value and the used value are different quantities",
+    "whyItMatters": "reading style.width alone would have reported a constant 640px for every zoom up to 23, i.e. a plateau that the user never sees"
+   },
+   "note": "the specified value and the used value are two different readings"
+  },
+  "the-ruler-width-law-carries-a-duration-scaling-the-source-data-cannot-split": {
+   "ok": true,
+   "detail": {
+    "zoom": 49,
+    "duration": 8.0,
+    "measuredWidth": 1978.25,
+    "cloneReading": 1978.256,
+    "durationFreeReading": 2472.82,
+    "ratioMeasured": 1.25,
+    "ratioPredicted": 1.25,
+    "closedForm": "the two readings differ by exactly the factor 10/duration, so at the clone's default duration the ruler is 0.8x the duration-independent reading, and at duration 20 it would be 0.5x",
+    "sourceFact": "DirectorTimeline.tsx:487-493 records four source points taken at duration=10s (zoom 49/64/82/100). Both readings fit all four.",
+    "theCommentsOwnThis": "the same comment already flags the duration extrapolation as an inference. This batch quantifies what that unverified choice costs.",
+    "notAClaimAboutTheSource": "no source-site behaviour is claimed. The source may well scale with duration; there is no measurement that separates the two."
+   },
+   "note": "an unverified inference with a closed-form price tag"
+  }
+ }
+}
