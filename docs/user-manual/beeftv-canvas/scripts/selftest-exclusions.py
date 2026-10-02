@@ -10,8 +10,18 @@
     1) 账本新增一条**未登记**的 excluded → 必须报「未被本闸认领」
     2) 登记表里有一条**已不再是** excluded 的 → 必须报「过期登记」
     3) 条件判据块数与 MECHANICAL_CONDITIONS 条目数不符 → 必须报
-  不误伤 1 条：
+    不误伤 1 条：
     4) 只改 excluded 任务的其他字段（不动 id、不动 status）→ 必须照旧通过
+
+Batch 222 又加了「证据降级告知」方向，于是这里从 4 例变 9 例。
+**新加的 4 例成对，验的是同一件事的两侧**：
+  能抓 2 条：
+    6) 把某一页上的告知**逐词抹掉** → 必须报「读者看不到」
+    7) 凭空加一句降级自述，而目标页面确实没告知 → 必须报
+  不误伤 2 条：
+    8) 同样的注入，但目标页面**已经告知** → 必须放行
+    9) 只往页面插一句与证据等级无关的正文 → 必须放行
+  **8 和 6 缺一不可**：只有 6 的话，「能抓」可能只是「逢降级必报」。
 
 ⚠️ 每条注入都用 `assert` 钉死锚点。**锚点失配会静默产出「什么都没改」的输入**，
 然后用例把「闸门没报错」当成结论——Batch 162 为此专门加了通用空转检测，
@@ -24,6 +34,11 @@ import subprocess
 import sys
 import tempfile
 
+try:
+    import yaml
+except ImportError:  # 反验需要按账本找出该复制哪些页面
+    yaml = None
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 GATE = os.path.join(HERE, "verify-exclusions.py")
@@ -35,7 +50,23 @@ INVENTORY_REL = "task-inventory.yml"
 PASS = VOID = FAIL = 0
 
 
-def _prepare(tmp, inventory_text, gate_text=None):
+def _manual_pages(inventory_text):
+    """账本里全部 `manual_pages`（**不限 status**——降级自述不只出现在 excluded）。"""
+    if yaml is None:
+        return []
+    data = yaml.safe_load(inventory_text)
+    items = data if isinstance(data, list) else (data or {}).get("tasks", data)
+    if isinstance(items, dict):
+        items = list(items.values())
+    out = []
+    for it in items or []:
+        if isinstance(it, dict):
+            for p in (it.get("manual_pages") or []):
+                out.append(str(p))
+    return out
+
+
+def _prepare(tmp, inventory_text, gate_text=None, page_edits=None):
     os.makedirs(os.path.join(tmp, "scripts"))
     # **必须连同 baseline.py 一起复制**（Batch 178 修，闸 17 抓出）：
     # 自 Batch 175 起被测闸门会 `from baseline import resolve_ref`；
@@ -58,17 +89,47 @@ def _prepare(tmp, inventory_text, gate_text=None):
     with open(os.path.join(tmp, INVENTORY_REL), "w", encoding="utf-8") as fh:
         fh.write(inventory_text)
 
+    # **Batch 222 新增：把 `manual_pages` 指向的发布页也复制进来。**
+    # 起因是本批新增的「证据降级告知」方向要读页面——**临时目录里没有那些文件**，
+    # 于是它判定「页面读不到」并把退出码抬到 2，而下面 5 个老用例的判定是
+    # 「本应放行却报错（误伤）」，**每一例都会失败**，
+    # **而 build-site.sh 仍然全绿**（反验坏掉不产生任何构建期信号，Batch 178）。
+    for rel in _manual_pages(inventory_text):
+        src_page = os.path.join(ROOT, rel)
+        if not os.path.isfile(src_page):
+            continue
+        dst = os.path.join(tmp, rel)
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        shutil.copy(src_page, dst)
 
-def run(desc, want, expect_fail=True, transform=None, gate_text=None, inventory_text=None):
+    for rel, fn in (page_edits or {}).items():
+        path = os.path.join(tmp, rel)
+        assert os.path.isfile(path), f"页面没被复制进来，注入无处可下：{rel}"
+        with open(path, encoding="utf-8") as fh:
+            body = fh.read()
+        new_body = fn(body)
+        assert new_body != body, f"页面注入空转：{rel}"
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(new_body)
+
+
+def run(desc, want, expect_fail=True, transform=None, gate_text=None,
+        inventory_text=None, page_edits=None):
     global PASS, VOID, FAIL
     base_inventory = open(os.path.join(ROOT, INVENTORY_REL), encoding="utf-8").read()
     base_gate = open(GATE, encoding="utf-8").read()
 
     inv = inventory_text if inventory_text is not None else base_inventory
     gt = gate_text if gate_text is not None else base_gate
+    pe = page_edits
     if transform is not None:
         try:
-            inv, gt = transform(inv, gt)
+            out = transform(inv, gt)
+            # transform 可返回 (inv, gate) 或 (inv, gate, page_edits) 三元组
+            if len(out) == 3:
+                inv, gt, pe = out
+            else:
+                inv, gt = out
         except AssertionError as exc:
             print("  ✗ %s：锚点未命中，注入空转 → **本用例作废**（%s）" % (desc, exc))
             VOID += 1
@@ -76,7 +137,7 @@ def run(desc, want, expect_fail=True, transform=None, gate_text=None, inventory_
 
     tmp = tempfile.mkdtemp(prefix="beef-excl-selftest.")
     try:
-        _prepare(tmp, inv, gt)
+        _prepare(tmp, inv, gt, pe)
         # baseline.py 用 BEEFTV_MANUAL_ROOT 定位手册根（Batch 178）：
         # 临时仓里没有 20-reference.md，不传就抛「读不到 20-reference.md」。
         env={**os.environ, "BEEFTV_MANUAL_ROOT": ROOT}
@@ -152,6 +213,80 @@ def t_benign(inv, _gate):
     return inv.replace(anchor, anchor + "（反验注入：只改这段文字，id 与 status 均不动）", 1), _gate
 
 
+def _tell_terms(gate_text):
+    """从**被测闸自己**里读告知词表——**不在这里手抄一份**（纪律 224/226）。
+
+    手抄的后果不是「抄错」，是**抄对了也会漂**：闸里加了词而这里没加，
+    用例就会拿着旧的短名单去抹页面，**抹不干净，判据仍报绿，测试却通过了**。
+    """
+    m = re.search(r"PAGE_TELL_TERMS = \((.*?)\n\)", gate_text, re.S)
+    assert m, "锚点未命中：找不到 PAGE_TELL_TERMS"
+    terms = re.findall(r'"([^"]+)"', m.group(1))
+    assert terms, "PAGE_TELL_TERMS 解析出 0 项——注入必然空转"
+    return terms
+
+
+def t_silent_page(_inv, gate):
+    """把某一页上的告知**逐词抹掉** → 判据必须报「读者看不到」。
+
+    **只删一句是不够的，而这一点是量出来的**：被测页 `storage-quota` 同时命中
+    「没有运行时」和「不可用」，后者出自页内一张故障对照表的单元格。
+    删掉那句最强的提示，它照样判绿——**而那正是假阴性的形状**：
+    测试报告「通过」，真缺陷还在。所以这里按被测闸自己的词表逐词抹，
+    不挑一个好看的锚点。
+    """
+    terms = _tell_terms(gate)
+
+    def edit(body):
+        out = body
+        for w in terms:
+            out = out.replace(w, "")
+        return out
+
+    return _inv, gate, {"10-tasks/storage-quota.md": edit}
+
+
+def t_injected_downgrade(inv, _gate):
+    """给一个**页面完全没告知**的任务凭空加一句降级自述 → 必须报。
+
+    这一例钉的是**输入侧**：判据看得见「账本说了」，也要看得见「页面没说」。
+    靶子选 `create-nodes`——实测它的页面不含任何告知词，而它此刻在账本里
+    **本就没有**降级自述，所以干净树下这一条不成立（**不误伤**由用例 4 保证）。
+    """
+    m = re.search(r"  - id: create-nodes\n(.*?)(?=\n  - id: )", inv, re.S)
+    assert m, "锚点未命中：找不到 create-nodes 任务块"
+    block = m.group(0)
+    assert "review_note:" not in block, \
+        "前提失配：create-nodes 已有 review_note，注入的不是同一个位置"
+    return (inv.replace(block, block + "\n    review_note: 反验注入：本节只有源码证据，没有运行时实证。\n", 1),
+            _gate)
+
+
+def t_downgrade_already_told(inv, _gate):
+    """给一个**页面已经告知**的任务加降级自述 → 必须放行（不误伤）。
+
+    与上一例成对：**同一个注入，只因为目标页面的实际状态不同就得出相反结论**。
+    没有这一对，「能抓」就可能只是「逢降级必报」——那种判据一样绿，但一文不值。
+    """
+    m = re.search(r"  - id: generate-audio\n(.*?)(?=\n  - id: )", inv, re.S)
+    assert m, "锚点未命中：找不到 generate-audio 任务块"
+    block = m.group(0)
+    assert "仅有源码" in block, \
+        "前提失配：该任务账本里本就有降级自述，注入的不是同一个位置"
+    return (inv.replace(block, block + "\n    review_condition: 反验注入：本节只有源码证据，没有运行时实证。\n", 1),
+            _gate)
+
+
+def t_benign_page(inv, gate):
+    """只往页面上插一句与证据等级无关的正文 → 必须放行。"""
+    def edit(body):
+        anchor = "## 账号有九项配额"
+        assert body.count(anchor) == 1, "锚点未命中：找不到「## 账号有九项配额」"
+        return body.replace(anchor, anchor + "\n\n（反验注入：与证据等级无关的一句正文。）", 1)
+
+    return inv, gate, {"10-tasks/storage-quota.md": edit}
+
+
 def main():
     r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
     if r.returncode == 0:
@@ -167,6 +302,14 @@ def main():
         expect_fail=False, transform=t_benign)
     run("5) excluded 却没写 exclusion_reason（必须报）", "没写 exclusion_reason",
         transform=t_missing_reason)
+    run("6) 页面上的告知被抹掉（必须报）", "只有记账的人看得见",
+        transform=t_silent_page)
+    run("7) 凭空加的降级自述 + 页面无告知（必须报）", "只有记账的人看得见",
+        transform=t_injected_downgrade)
+    run("8) 不误伤：降级自述 + 页面已告知（必须放行）", "证据降级告知",
+        expect_fail=False, transform=t_downgrade_already_told)
+    run("9) 不误伤：只改页面无关正文（必须放行）", "证据降级告知",
+        expect_fail=False, transform=t_benign_page)
 
     print("=== 结果：通过 %d / 失败 %d / 作废 %d ===" % (PASS, FAIL, VOID))
     return 1 if (FAIL or VOID) else 0

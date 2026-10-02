@@ -31,6 +31,11 @@ Agent 记忆与技能 / 本地伴随进程），每条都附了「开放条件�
 
 第 5 条（真实生成产生版本族）属于付费边界，**不可机械判定**，脚本不检查。
 
+Batch 222 再加第 6 条方向：**账本自述的证据降级，读者必须能在那一页上看到。**
+它与本闸已有的「理由完整性」同族而不同层——后者核「理由**写没写**」，
+本条核「理由**有没有到达读者眼前**」。理由写在账本里、而页面通篇是确定结论，
+**读者会把证据最弱的部分和已截图的部分当成同一种可信度**（纪律 229）。
+
 退出码：0 条件全部仍成立；1 有条件已失效。
 
 ⚠️ 上面那句「不可机械判定」**过去只是写在文档里的一句话**——`media-versions` 至少
@@ -262,6 +267,154 @@ def check_coverage(root):
     return (problems, notes, False)
 
 
+# ── 降级自述 → 页面告知（Batch 222 新增）────────────────────────────────
+# 纪律 228：账本里写着的「哪一部分没验证」，必须出现在读者能读到的那一页上。
+#
+# **输入侧刻意窄**：只认作者原话里的**否定式缺失声明**（只有源码 / 未取证 /
+# 没有运行时…），不推断语气。「页面所有断言均有运行时或源码证据」这类
+# **正向的证据构成陈述不算**——实测把它们算进去，14 个输入里会有 2 个变成
+# 假阳性（`readonly-canvas` 与 `concepts-architecture` 说的「源码证据」是
+# 「证据里有静态成分」，不是「有东西没验证」）。判据一旦误报，人就会开始整段忽略它。
+#
+# 同理「六内置插件清单**为**源码证据」也不入面：「为」是陈述来源，
+# 而入面的是**声明缺失**的「只有 / 仅有 / 未 / 没有 / 无」。这条线是有意的。
+DOWNGRADE_TERMS = (
+    "只有源码", "仅有源码", "只基于源码", "仅基于源码",
+    "无运行时", "没有运行时", "未取证", "未能走查", "没有走查",
+    "未在真实", "尚未在真实", "未运行时验证", "未做运行时", "没有实测",
+    "未走查", "未验证", "未核实",
+)
+
+# 页面侧词表取**宽**——宁可漏检不可误报。
+# **而「宽」在这一侧有实测代价，必须记下来**：第一版把「受限」「空」这类泛词
+# 算进清单，结果 `asset-library` 这个真缺陷被两条毫不相干的语境双双遮住——
+# 「素材库**空**态」（那是一句截图 alt 文字）和「画布库那套还额外**受限**于服务端
+# 压根没有画布文件夹这个概念」——判据报了绿。**泛词一律不进清单**，
+# 而判据的鉴别力由反验用例一正一反钉死。
+PAGE_TELL_TERMS = (
+    "未验证", "未核实", "未走查", "未能走查", "没有走查", "未在真实", "尚未在真实",
+    "无运行时", "没有运行时", "只基于源码", "仅基于源码", "只有源码", "仅有源码",
+    "源码证据", "静态证据", "没有实证", "无实证", "未实测", "未确认",
+    "没有入口", "不会上传到", "不可用", "不可达",
+    # 下面三个是**上线首跑当天补的**，不是事后想起来的：判据第一次真跑就报
+    # `asset-library` 缺告知，而那一页其实已经写了「下面三条依据是**读源码
+    # 推出来的**，不是运行时观测」——**词表没有「读源码」这三个字**。
+    # 即：判据上线**当天**就有一次真实误报，**靠的是它自己会喊**。
+    # 补完复查全库 35 个页面，唯一变化是 asset-library 从「缺」变「已告知」，
+    # 其余 34 个状态不变（**没有顺手放宽到别的页面上**）。
+    "读源码", "源码推导", "源码结论", "非运行时", "未在界面",
+    # 这三个同样是读原文补的：`cloud-agent` / `agent-memory-skills` 的页首写的是
+    # 「当前状态（v1.6.x **源码核查**）」，`timeline-editing` 写的是「本节数值**取自源码**」。
+    # **判据报「缺」而页面上明明写着，不是因为页面没告知，是因为判据只认一种措辞**——
+    # 这与「输入匹配不到判据就等于不存在」（纪律 216）是同一个病的两种长相。
+    "源码核查", "取自源码", "源码推演",
+)
+
+
+def _inventory_items(root):
+    """读账本任务表。**读不到时返回 `None`，而 `None` 绝不等于「空账本」。**
+
+    纪律 216：判据的输入若匹配不到，它就等于不存在。「账本里 0 个任务」
+    与「账本读不出来」在下游会长得一模一样，所以这里必须让两者可区分——
+    前者该报不一致，后者只能报「未能核对」。
+
+    **不复用 `excluded_ids`**：那个函数只吐出 `status: excluded` 的 id，
+    而本方向要看**全部 35 条**（降级自述不限于 excluded——Batch 221 命中的
+    `storage-quota` 恰恰是 verified）。共用一个只能筛 excluded 的函数，
+    等于把「账本有哪些任务」和「哪些任务被排除」两件事混成一个。
+    """
+    if yaml is None:
+        return None
+    path = os.path.join(root, "task-inventory.yml")
+    if not os.path.isfile(path):
+        return None
+    with open(path, encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+    items = data if isinstance(data, list) else (data or {}).get("tasks", data)
+    if isinstance(items, dict):
+        items = list(items.values())
+    items = [i for i in (items or []) if isinstance(i, dict)]
+    return items or None
+
+
+def _task_selftext(item):
+    """作者在账本里为这个任务写下的全部自述文本。
+
+    **降级声明落在哪个字段是不固定的**——`art-critique` 的理由当年就写在
+    没人读的 `review_note` 里（Batch 187）。所以这里读全部已知字段，
+    而不是只挑一个「标准字段」。
+    """
+    parts = []
+    for key in ("exclusion_reason", "review_note", "review_condition"):
+        if item.get(key):
+            parts.append(str(item[key]))
+    ev = item.get("evidence")
+    if isinstance(ev, list):
+        for e in ev:
+            if isinstance(e, dict) and e.get("note"):
+                parts.append(str(e["note"]))
+    return "\n".join(parts)
+
+
+def check_downgrade_reaches_page(root):
+    """账本自述的证据降级，读者必须能在那一页上看到它。返回 (problems, notes, unverifiable)。
+
+    **为什么这条必须存在**：`check_reasons` 是同族的前一条，它核的是
+    「排除理由**写没写**」；而本条核的是理由**有没有到达读者眼前**。
+    两者之间隔着一整条没人走的路——**账本里写着的、只有记账的人看得见的降级**。
+    实测：这类页面读起来和已截图的页面一样确定，因为**证据最强与最弱的
+    部分并排出现时，读者只会按最强的那部分理解整页**（纪律 229）。
+
+    **页面上任何一个告知词就算过**——本方向刻意不判「告知写得够不够好」，
+    那是不可机械判定的事。判据只回答「有没有说」。
+    """
+    items = _inventory_items(root)
+    if items is None:
+        return ([], [], True)
+
+    problems, notes = [], []
+    downgraded = told = 0
+    for item in items:
+        tid = item.get("id") or "?"
+        hits = sorted({t for t in DOWNGRADE_TERMS if t in _task_selftext(item)})
+        if not hits:
+            continue
+        downgraded += 1
+        pages = item.get("manual_pages") or []
+        if not pages:
+            problems.append(
+                f"{tid}：账本自述证据降级（命中 {', '.join(hits)}）却没登记 manual_pages → "
+                f"**读者在手册里找不到任何一页能看到这条说明**，而下一个人只会从页面上读"
+            )
+            continue
+        bodies, unreadable = [], []
+        for p in pages:
+            path = os.path.join(root, p)
+            if not os.path.isfile(path):
+                unreadable.append(p)
+                continue
+            with open(path, encoding="utf-8") as f:
+                bodies.append(f.read())
+        if unreadable:
+            # 页面读不到 = **未能核对**（2），不是「核对不一致」（1）——
+            # 后者会让人跑去手册里找根本不存在的问题（Batch 160）。
+            return ([], [], True)
+        if any(any(t in b for t in PAGE_TELL_TERMS) for b in bodies):
+            told += 1
+            continue
+        problems.append(
+            f"{tid}：账本白纸黑字自述「{', '.join(hits)}」，"
+            f"而 {', '.join(pages)} 上找不到任何对应的告知 → "
+            f"**证据最弱的那部分只有记账的人看得见**，"
+            f"读者会把它和同页已截图的部分当成同一种可信度"
+        )
+    notes.append(
+        f"证据降级告知：账本自述降级 {downgraded} 条，其中 {told} 条已在手册页面上告知读者"
+        f"（判据只核「有没有说」，不核「说得够不够好」）"
+    )
+    return (problems, notes, False)
+
+
 @baseline_guard
 def main():
     src = find_source()
@@ -286,6 +439,17 @@ def main():
     problems += reason_problems
     if reason_unverifiable:
         print("[skip] 未能读取 task-inventory.yml，excluded 理由完整性本轮未能核对")
+
+    # —— 降级自述是否到达读者眼前（Batch 222）：写了理由 ≠ 读者看得到 ——
+    # 上一条 `reason_unverifiable` **只打印、不参与退出码**（Batch 187 遗留）。
+    # **本方向不复制这个疏漏**：读不到页面时它必须能把 rc 抬到 2，
+    # 否则「没核对成」和「核对过且一致」在账面上完全一样。
+    dg_problems, dg_notes, dg_unverifiable = check_downgrade_reaches_page(ROOT)
+    problems += dg_problems
+    notes += dg_notes
+    if dg_unverifiable:
+        unverifiable = True
+        print("[skip] 未能读取账本或手册页面，证据降级告知本轮未能核对")
 
     # —— 条件 1：/agent/* 路由仍未注册 ——
     # **Batch 181 改**：原先是 `for f in git_ls(...): git_show(src, ref, f)`，
