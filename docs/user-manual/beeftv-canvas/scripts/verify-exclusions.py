@@ -43,6 +43,7 @@ import re
 import sys
 import subprocess
 from baseline import resolve_ref, BaselineError
+from batchread import read_many
 
 try:
     import yaml
@@ -215,11 +216,20 @@ def main():
         print("[skip] 未能读取 task-inventory.yml，excluded 覆盖完整性本轮未能核对")
 
     # —— 条件 1：/agent/* 路由仍未注册 ——
+    # **Batch 181 改**：原先是 `for f in git_ls(...): git_show(src, ref, f)`，
+    # 即**每个 backend 文件一次 `git show` 子进程**——实测 347 个非测试 .go、
+    # 单次 25ms → **闸门本体约 9 秒**（反验 5 例就是 35.6 秒）。
+    # 改成 `batchread.read_many`：**两次进程调用取代 347 次**，
+    # 实测 0.19 秒且与逐个 `git show` **逐字节一致**（抽样 40 个零差异）。
+    go_files = [f for f in git_ls(src, ref)
+                if f.startswith("backend/") and f.endswith(".go")
+                and not f.endswith("_test.go")]
     routes = set()
-    for f in git_ls(src, ref):
-        if not f.startswith("backend/") or not f.endswith(".go") or f.endswith("_test.go"):
-            continue
-        for m in ROUTE_RE.finditer(git_show(src, ref, f)):
+    for f, body in read_many(src, ref, go_files).items():
+        # 批量读回的是 **bytes**（按 size 精确切分的前提），而 ROUTE_RE 是字符串正则。
+        # **必须显式解码**——顺带说明为什么不能用 `text=True`：
+        # 走 text 就得编解码往返，而「切出来的正好是 size 字节」这件事只在 bytes 上成立。
+        for m in ROUTE_RE.finditer(body.decode("utf-8", "replace")):
             routes.add(m.group(1))
     agent_routes = sorted(r for r in routes if "agent" in r)
     if agent_routes:

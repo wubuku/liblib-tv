@@ -27,6 +27,7 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 GATE = os.path.join(HERE, "verify-exclusions.py")
+BATCHREAD = os.path.join(HERE, "batchread.py")
 BASELINE = os.path.join(HERE, "baseline.py")
 INVENTORY_REL = "task-inventory.yml"
 
@@ -40,6 +41,12 @@ def _prepare(tmp, inventory_text, gate_text=None):
     # 临时目录里没有它 → 闸门启动即 ModuleNotFoundError，**每一例都失败**，
     # **而 build-site.sh 仍然全绿**——反验坏掉不产生任何构建期信号。
     shutil.copy(BASELINE, os.path.join(tmp, "scripts", "baseline.py"))
+    # **必须连同 batchread.py 一起复制**（Batch 181 修，闸 17 抓出）：
+    # 闸 5/闸 3 改为用 `batchread.read_many` 批量读上游（原来每个文件一次
+    # `git show` 子进程，闸门本体各 10 秒）。临时目录里没有它 →
+    # ModuleNotFoundError，**该反验的每一例都失败**，而 build-site.sh 仍全绿。
+    # **这正是闸 17 建成后第一次真的派上用场**：改动落地几分钟内就被抓到。
+    shutil.copy(BATCHREAD, os.path.join(tmp, "scripts", "batchread.py"))
     shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-exclusions.py"))
     if gate_text is not None:
         with open(os.path.join(tmp, "scripts", "verify-exclusions.py"), "w", encoding="utf-8") as fh:

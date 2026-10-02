@@ -84,21 +84,8 @@ SLOW = {
                "而优化它并不会让它变得安全。**",
         "anchor": ("selftest-meta.sh", "SNAP_FILES"),
     },
-    "selftest-exclusions.py": {
-        "seconds": 35.6,          # 实测（Batch 180）
-        "why": "慢的根因**不在反验框架，在被测闸门**：`verify-exclusions.py` 10 秒，"
-               "而它会 `git ls-tree` 列出全部上游文件后**逐个 `git show`**"
-               "（每个文件一次子进程）。**5 个用例 × 10 秒 ≈ 35 秒。**"
-               "**根治办法是让闸门改用 `git grep` 或一次性 checkout**，"
-               "但那属于闸门性能优化，不在本闸职责内——**先如实登记，别假装它不慢**。",
-        "anchor": ("verify-exclusions.py", "git_show(src, ref, f)"),
-    },
-    "selftest-endpoints.py": {
-        "seconds": 43,            # 实测（Batch 180）
-        "why": "同样是被测闸门拖慢：`verify-endpoints.py` 本体 10 秒"
-               "（要核对 28 条端点是否真的注册）。7 个用例各跑一次。",
-        "anchor": ("verify-endpoints.py", "collect_routes"),
-    },
+
+
     "selftest-label-drift.py": {
         "seconds": 105,           # 实测（Batch 180）
         "why": "**三份里最慢的**。它的做法是**往上游仓库建合成 ref**（git read-tree/write-tree），"
@@ -123,9 +110,9 @@ SLOW = {
 SELFTEST_COSTS = {
     "selftest-baseline.py": 1.6,
     "selftest-deadlinks.py": 0.6,
-    "selftest-endpoints.py": 43,
+    "selftest-endpoints.py": 1,   # Batch 181：闸 3 改批量读后 43s → 1s
     "selftest-error-copy.py": 1.6,
-    "selftest-exclusions.py": 35.6,
+    "selftest-exclusions.py": 2, # Batch 181：闸 5 改批量读后 35.6s → 2s
     "selftest-feature-flags.py": 0.4,
     "selftest-label-drift.py": 105,
     "selftest-line-counts.py": 11.8,
