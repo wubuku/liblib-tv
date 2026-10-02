@@ -1,0 +1,6276 @@
+{
+ "verifier": {
+  "cells": [
+   "1280x1150",
+   "1440x1150",
+   "1920x1150"
+  ],
+  "cellsPerViewport": {
+   "1280x1150": 120,
+   "1440x1150": 120,
+   "1920x1150": 120
+  },
+  "fpCountPerViewport": {
+   "1280x1150": 73,
+   "1440x1150": 75,
+   "1920x1150": 76
+  },
+  "alwaysFalsePositives": 66,
+  "families": 8,
+  "familySizesPerCell": {
+   "flex.min-w-0.items-center.justify-center": [
+    2,
+    2,
+    2
+   ],
+   "relative.min-h-0.flex-1": [
+    25,
+    25,
+    25
+   ],
+   "absolute.inset-0": [
+    19,
+    21,
+    22
+   ],
+   "h-full.min-w-0.flex-1.appearance-none": [
+    9,
+    9,
+    9
+   ],
+   "absolute.bottom-0.left-0.top-[52px]": [
+    3,
+    3,
+    3
+   ],
+   "min-h-0.flex-1.overflow-y-auto.px-2": [
+    12,
+    12,
+    12
+   ],
+   "flex.h-9.shrink-0.items-center": [
+    2,
+    2,
+    2
+   ],
+   "lucide.lucide-circle-question-mark": [
+    1,
+    1,
+    1
+   ]
+  },
+  "blameRule": "topmost candidate strictly below the control in the hit stack; if the control is not in the stack, the topmost candidate",
+  "axisButtons": 6,
+  "axisLabels": 3
+ },
+ "cells": {
+  "1280x1150": {
+   "W": 1280,
+   "cells": 120,
+   "rows": [
+    {
+     "name": "关闭",
+     "ident": "flex.size-10.shrink-0.items-center",
+     "w": 40,
+     "h": 40,
+     "cx": 20,
+     "cy": 25.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "收起",
+     "ident": "flex.size-10.shrink-0.items-center",
+     "w": 40,
+     "h": 40,
+     "cx": 260,
+     "cy": 25.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "导演视角",
+     "ident": "flex.h-8.min-w-0.flex-1",
+     "w": 81,
+     "h": 32,
+     "cx": 598.5,
+     "cy": 26,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "flex.min-w-0.items-center.justify-center",
+     "blameAt": 3,
+     "cands": [
+      "flex.min-w-0.items-center.justify-center"
+     ]
+    },
+    {
+     "name": "机位视角",
+     "ident": "flex.h-8.min-w-0.flex-1",
+     "w": 81,
+     "h": 32,
+     "cx": 681.5,
+     "cy": 26,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "flex.min-w-0.items-center.justify-center",
+     "blameAt": 3,
+     "cands": [
+      "flex.min-w-0.items-center.justify-center"
+     ]
+    },
+    {
+     "name": "导出导演台项目",
+     "ident": "flex.h-8.w-8.items-center",
+     "w": 32,
+     "h": 32,
+     "cx": 1194.33,
+     "cy": 25.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "导入导演台项目",
+     "ident": "flex.h-8.w-8.items-center",
+     "w": 32,
+     "h": 32,
+     "cx": 1235.16,
+     "cy": 25.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 177.09,
+     "h": 28,
+     "cx": 411.16,
+     "cy": 69.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "搜索场景内容",
+     "ident": "min-w-0.flex-1.bg-transparent.text-xs",
+     "w": 132,
+     "h": 16,
+     "cx": 157,
+     "cy": 76,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "新增机位",
+     "ident": "flex.h-8.w-8.shrink-0",
+     "w": 32,
+     "h": 32,
+     "cx": 252,
+     "cy": 76,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "打组",
+     "ident": "flex.h-7.flex-1.items-center",
+     "w": 106,
+     "h": 28,
+     "cx": 109,
+     "cy": 117.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 4,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "解组",
+     "ident": "flex.h-7.flex-1.items-center",
+     "w": 106,
+     "h": 28,
+     "cx": 219,
+     "cy": 117.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 4,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "复制当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 194,
+     "cy": 153.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 5,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 226,
+     "cy": 153.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 5,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "清除当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 258,
+     "cy": 153.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 7,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏角色01 · 陈默",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 216,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定角色01 · 陈默",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 216,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除角色01 · 陈默",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 216,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏咖啡桌",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 288,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定咖啡桌",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 288,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除咖啡桌",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 288,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏冷掉的咖啡",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 320,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定冷掉的咖啡",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 320,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除冷掉的咖啡",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 320,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏咖啡馆背景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 352,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定咖啡馆背景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 352,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除咖啡馆背景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 352,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏机位01 · 对峙中景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 424,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定机位01 · 对峙中景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 424,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除机位01 · 对峙中景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 424,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "场景",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 76,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "添加角色",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 132,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 6,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "添加机位",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 172,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 6,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "全景图",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 212,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 5,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "选择画幅比例",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 252,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 6,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "AI 识图导入",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 292,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 6,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "帮助",
+     "ident": "mt-auto.flex.size-8.items-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 1126,
+     "selfAt": 6,
+     "hitBlocked": true,
+     "nCand": 7,
+     "trueFP": false,
+     "blame": "flex.min-h-0.flex-1.flex-col",
+     "blameAt": 10,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "z-40.pointer-events-auto.relative.flex",
+      "flex.min-h-0.min-w-0.flex-1",
+      "w-[320px].shrink-0.overflow-y-auto.bg-[#1f1f1f]",
+      "<div>",
+      "group.relative.grid.h-8",
+      "group.relative.z-[1].flex"
+     ]
+    },
+    {
+     "name": "重置视角",
+     "ident": "absolute.right-0.top-[calc(100%+8px)].whitespace-nowrap",
+     "w": 62,
+     "h": 26.5,
+     "cx": 948,
+     "cy": 209.25,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 1,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "X 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 961.22,
+     "cy": 153.94,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "X 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 916.77,
+     "cy": 142.05,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "Y 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 939,
+     "cy": 120.52,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "Y 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 939,
+     "cy": 175.47,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "Z 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 920.38,
+     "cy": 155.08,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "Z 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 957.61,
+     "cy": 140.91,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "移动",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 424,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 6,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "旋转",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 464,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 6,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "缩放",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 504,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 7,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "动画时间轴",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 544,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 6,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "16:9",
+     "ident": "flex.h-8.min-w-10.shrink-0",
+     "w": 40,
+     "h": 32,
+     "cx": 601,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "9:16",
+     "ident": "flex.h-8.min-w-10.shrink-0",
+     "w": 40,
+     "h": 32,
+     "cx": 649,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "1:1",
+     "ident": "flex.h-8.min-w-10.shrink-0",
+     "w": 40,
+     "h": 32,
+     "cx": 697,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "开启九宫格辅助线",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 741,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "虚拟相机",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 794,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "添加群众阵列",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 834,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "模型库",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 874,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 6,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "保存构图",
+     "ident": "flex.h-8.items-center.gap-1.5",
+     "w": 84,
+     "h": 32,
+     "cx": 953,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "上传图片",
+     "ident": "hover:bg-white/8.col-start-1.row-start-1.flex",
+     "w": 32,
+     "h": 32,
+     "cx": 1037,
+     "cy": 945,
+     "selfAt": -1,
+     "hitBlocked": true,
+     "nCand": 3,
+     "trueFP": false,
+     "blame": "min-h-0.flex-1.overflow-y-auto",
+     "blameAt": 0,
+     "cands": [
+      "absolute.-top-9.bottom-0.right-0",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto"
+     ]
+    },
+    {
+     "name": "描述想搭建的场景",
+     "ident": "col-start-2.row-start-1.min-w-0.bg-transparent",
+     "w": 143,
+     "h": 16,
+     "cx": 1124.5,
+     "cy": 945,
+     "selfAt": -1,
+     "hitBlocked": true,
+     "nCand": 3,
+     "trueFP": false,
+     "blame": "min-h-0.flex-1.overflow-y-auto",
+     "blameAt": 0,
+     "cands": [
+      "absolute.-top-9.bottom-0.right-0",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto"
+     ]
+    },
+    {
+     "name": "发送",
+     "ident": "col-start-3.row-start-1.ml-1.flex",
+     "w": 32,
+     "h": 32,
+     "cx": 1216,
+     "cy": 945,
+     "selfAt": -1,
+     "hitBlocked": true,
+     "nCand": 3,
+     "trueFP": false,
+     "blame": "min-h-0.flex-1.overflow-y-auto",
+     "blameAt": 0,
+     "cands": [
+      "absolute.-top-9.bottom-0.right-0",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto"
+     ]
+    },
+    {
+     "name": "属性",
+     "ident": "relative.flex.h-7.min-w-12",
+     "w": 50,
+     "h": 28,
+     "cx": 1041,
+     "cy": 130,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "姿势",
+     "ident": "relative.flex.h-7.min-w-12",
+     "w": 50,
+     "h": 28,
+     "cx": 1099,
+     "cy": 130,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "<input>",
+     "ident": "h-7.w-full.rounded-lg.border-0",
+     "w": 248,
+     "h": 28,
+     "cx": 1140,
+     "cy": 215,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "隐藏对象",
+     "ident": "flex.h-8.flex-1.items-center",
+     "w": 120,
+     "h": 32,
+     "cx": 1076,
+     "cy": 261,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "锁定对象",
+     "ident": "flex.h-8.flex-1.items-center",
+     "w": 120,
+     "h": 32,
+     "cx": 1204,
+     "cy": 261,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 X 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1026,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1045.5,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1086,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Y 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1110,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1129.5,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1170,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Z 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1194,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1213.5,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1254,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 X 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1026,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1045.5,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1086,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Y 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1110,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1129.5,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1170,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Z 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1194,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1213.5,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1254,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 X 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1026,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1045.5,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1086,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Y 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1110,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1129.5,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1170,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Z 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1194,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1213.5,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1254,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "统一缩放",
+     "ident": "w-24.accent-[#09caf5]",
+     "w": 96,
+     "h": 16,
+     "cx": 1176,
+     "cy": 534.25,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "颜色 hex 值",
+     "ident": "h-6.w-[68px].rounded.border",
+     "w": 68,
+     "h": 24,
+     "cx": 1188,
+     "cy": 566.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "颜色",
+     "ident": "h-6.w-9.rounded.border-0",
+     "w": 36,
+     "h": 24,
+     "cx": 1246,
+     "cy": 566.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "播放",
+     "ident": "flex.h-6.w-[26px].shrink-0",
+     "w": 26,
+     "h": 24,
+     "cx": 21,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.bottom-0.left-0.top-[52px]",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[52px]"
+     ]
+    },
+    {
+     "name": "自动帧",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 46,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.bottom-0.left-0.top-[52px]",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[52px]"
+     ]
+    },
+    {
+     "name": "循环播放",
+     "ident": "flex.h-6.w-[26px].shrink-0",
+     "w": 26,
+     "h": 24,
+     "cx": 71,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "播放头位置",
+     "ident": "h-6.w-[46px].shrink-0.border-0",
+     "w": 46,
+     "h": 24,
+     "cx": 111,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "总时长",
+     "ident": "h-6.w-[46px].shrink-0.border-0",
+     "w": 46,
+     "h": 24,
+     "cx": 158,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "切换时间单位为 s",
+     "ident": "flex.h-6.w-[33px].shrink-0",
+     "w": 33,
+     "h": 24,
+     "cx": 198.5,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "选中角色、道具或分组后建立轨道",
+     "ident": "ml-[15px].flex.h-6.w-[82px]",
+     "w": 82,
+     "h": 24,
+     "cx": 271,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 4,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "预设运镜",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 77,
+     "h": 28,
+     "cx": 350.5,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "创建运动轨迹",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 99,
+     "h": 28,
+     "cx": 438.5,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "曲线编辑器",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 88,
+     "h": 28,
+     "cx": 532,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "轨道",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 55,
+     "h": 28,
+     "cx": 603.5,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "移除角色01 · 陈默 · 变换轨道",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 645,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "添加关键帧",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 88,
+     "h": 28,
+     "cx": 703,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "删除关键帧",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 761,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "时间线最小化",
+     "ident": "group.relative.flex.h-6",
+     "w": 24,
+     "h": 24,
+     "cx": 1136,
+     "cy": 987,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "flex.h-9.shrink-0.items-center",
+     "blameAt": 4,
+     "cands": [
+      "flex.h-9.shrink-0.items-center"
+     ]
+    },
+    {
+     "name": "导出视频到画布",
+     "ident": "relative.flex.h-7.shrink-0",
+     "w": 108,
+     "h": 28,
+     "cx": 1218,
+     "cy": 987,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "flex.h-9.shrink-0.items-center",
+     "blameAt": 4,
+     "cands": [
+      "flex.h-9.shrink-0.items-center"
+     ]
+    },
+    {
+     "name": "收起属性",
+     "ident": "group.relative.z-[1].flex",
+     "w": 20,
+     "h": 20,
+     "cx": 18,
+     "cy": 1057,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.bottom-0.left-0.top-[52px]",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[52px]"
+     ]
+    },
+    {
+     "name": "角色01 · 陈默",
+     "ident": "relative.z-[1].min-w-0.cursor-pointer",
+     "w": 60,
+     "h": 18,
+     "cx": 58,
+     "cy": 1057,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "变换",
+     "ident": "relative.z-[1].min-w-0.cursor-pointer",
+     "w": 36,
+     "h": 18,
+     "cx": 70,
+     "cy": 1089,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "上一关键帧",
+     "ident": "group.relative.flex.h-6",
+     "w": 24,
+     "h": 24,
+     "cx": 105,
+     "cy": 1089,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 8,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "group.relative.flex.h-6",
+     "w": 24,
+     "h": 24,
+     "cx": 131,
+     "cy": 1089,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 8,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "下一关键帧",
+     "ident": "group.relative.flex.h-6",
+     "w": 24,
+     "h": 24,
+     "cx": 157,
+     "cy": 1089,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 8,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "收起属性",
+     "ident": "group.relative.z-[1].flex",
+     "w": 20,
+     "h": 20,
+     "cx": 18,
+     "cy": 1121,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 4,
+     "trueFP": true,
+     "blame": "lucide.lucide-circle-question-mark",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[52px]",
+      "mt-auto.flex.size-8.items-center",
+      "lucide.lucide-circle-question-mark",
+      "<circle>"
+     ]
+    },
+    {
+     "name": "机位01 · 对峙中景",
+     "ident": "relative.z-[1].min-w-0.cursor-pointer",
+     "w": 60,
+     "h": 18,
+     "cx": 58,
+     "cy": 1121,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "绘制轨迹",
+     "ident": "flex.h-6.w-fit.min-w-0",
+     "w": 86,
+     "h": 24,
+     "cx": 269,
+     "cy": 1121,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 8,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "w": 11.03,
+     "h": 11.03,
+     "cx": 331,
+     "cy": 1088.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "w": 11.03,
+     "h": 11.03,
+     "cx": 1211.56,
+     "cy": 1088.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    }
+   ]
+  },
+  "1440x1150": {
+   "W": 1440,
+   "cells": 120,
+   "rows": [
+    {
+     "name": "关闭",
+     "ident": "flex.size-10.shrink-0.items-center",
+     "w": 40,
+     "h": 40,
+     "cx": 20,
+     "cy": 25.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "收起",
+     "ident": "flex.size-10.shrink-0.items-center",
+     "w": 40,
+     "h": 40,
+     "cx": 260,
+     "cy": 25.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "导演视角",
+     "ident": "flex.h-8.min-w-0.flex-1",
+     "w": 81,
+     "h": 32,
+     "cx": 678.5,
+     "cy": 26,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "flex.min-w-0.items-center.justify-center",
+     "blameAt": 3,
+     "cands": [
+      "flex.min-w-0.items-center.justify-center"
+     ]
+    },
+    {
+     "name": "机位视角",
+     "ident": "flex.h-8.min-w-0.flex-1",
+     "w": 81,
+     "h": 32,
+     "cx": 761.5,
+     "cy": 26,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "flex.min-w-0.items-center.justify-center",
+     "blameAt": 3,
+     "cands": [
+      "flex.min-w-0.items-center.justify-center"
+     ]
+    },
+    {
+     "name": "导出导演台项目",
+     "ident": "flex.h-8.w-8.items-center",
+     "w": 32,
+     "h": 32,
+     "cx": 1354.33,
+     "cy": 25.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "导入导演台项目",
+     "ident": "flex.h-8.w-8.items-center",
+     "w": 32,
+     "h": 32,
+     "cx": 1395.16,
+     "cy": 25.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 177.09,
+     "h": 28,
+     "cx": 411.16,
+     "cy": 69.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "搜索场景内容",
+     "ident": "min-w-0.flex-1.bg-transparent.text-xs",
+     "w": 132,
+     "h": 16,
+     "cx": 157,
+     "cy": 76,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "新增机位",
+     "ident": "flex.h-8.w-8.shrink-0",
+     "w": 32,
+     "h": 32,
+     "cx": 252,
+     "cy": 76,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "打组",
+     "ident": "flex.h-7.flex-1.items-center",
+     "w": 106,
+     "h": 28,
+     "cx": 109,
+     "cy": 117.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 4,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "解组",
+     "ident": "flex.h-7.flex-1.items-center",
+     "w": 106,
+     "h": 28,
+     "cx": 219,
+     "cy": 117.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 4,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "复制当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 194,
+     "cy": 153.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 5,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 226,
+     "cy": 153.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 5,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "清除当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 258,
+     "cy": 153.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 7,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏角色01 · 陈默",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 216,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定角色01 · 陈默",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 216,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除角色01 · 陈默",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 216,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏咖啡桌",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 288,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定咖啡桌",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 288,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除咖啡桌",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 288,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏冷掉的咖啡",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 320,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定冷掉的咖啡",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 320,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除冷掉的咖啡",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 320,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏咖啡馆背景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 352,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定咖啡馆背景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 352,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除咖啡馆背景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 352,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏机位01 · 对峙中景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 424,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定机位01 · 对峙中景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 424,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除机位01 · 对峙中景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 424,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "场景",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 76,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "添加角色",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 132,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 6,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "添加机位",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 172,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 6,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "全景图",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 212,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 5,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "选择画幅比例",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 252,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 6,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "AI 识图导入",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 292,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 6,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "帮助",
+     "ident": "mt-auto.flex.size-8.items-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 1126,
+     "selfAt": 6,
+     "hitBlocked": true,
+     "nCand": 7,
+     "trueFP": false,
+     "blame": "flex.min-h-0.flex-1.flex-col",
+     "blameAt": 10,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "z-40.pointer-events-auto.relative.flex",
+      "flex.min-h-0.min-w-0.flex-1",
+      "w-[320px].shrink-0.overflow-y-auto.bg-[#1f1f1f]",
+      "<div>",
+      "group.relative.grid.h-8",
+      "group.relative.z-[1].flex"
+     ]
+    },
+    {
+     "name": "重置视角",
+     "ident": "absolute.right-0.top-[calc(100%+8px)].whitespace-nowrap",
+     "w": 62,
+     "h": 26.5,
+     "cx": 1108,
+     "cy": 209.25,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 1,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "X 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 1121.22,
+     "cy": 153.94,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "X 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 1076.77,
+     "cy": 142.05,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "Y 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 1099,
+     "cy": 120.52,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "Y 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 1099,
+     "cy": 175.47,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "Z 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 1080.38,
+     "cy": 155.08,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "Z 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 1117.61,
+     "cy": 140.91,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "移动",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 424,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 6,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "旋转",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 464,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 6,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "缩放",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 504,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 7,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "动画时间轴",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 544,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 6,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "16:9",
+     "ident": "flex.h-8.min-w-10.shrink-0",
+     "w": 40,
+     "h": 32,
+     "cx": 601,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "9:16",
+     "ident": "flex.h-8.min-w-10.shrink-0",
+     "w": 40,
+     "h": 32,
+     "cx": 649,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "1:1",
+     "ident": "flex.h-8.min-w-10.shrink-0",
+     "w": 40,
+     "h": 32,
+     "cx": 697,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "开启九宫格辅助线",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 741,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "虚拟相机",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 794,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "添加群众阵列",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 834,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "模型库",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 874,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 6,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "保存构图",
+     "ident": "flex.h-8.items-center.gap-1.5",
+     "w": 84,
+     "h": 32,
+     "cx": 953,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "上传图片",
+     "ident": "hover:bg-white/8.col-start-1.row-start-1.flex",
+     "w": 32,
+     "h": 32,
+     "cx": 1037,
+     "cy": 945,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "描述想搭建的场景",
+     "ident": "col-start-2.row-start-1.min-w-0.bg-transparent",
+     "w": 143,
+     "h": 16,
+     "cx": 1124.5,
+     "cy": 945,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 4,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "发送",
+     "ident": "col-start-3.row-start-1.ml-1.flex",
+     "w": 32,
+     "h": 32,
+     "cx": 1216,
+     "cy": 945,
+     "selfAt": -1,
+     "hitBlocked": true,
+     "nCand": 3,
+     "trueFP": false,
+     "blame": "min-h-0.flex-1.overflow-y-auto",
+     "blameAt": 0,
+     "cands": [
+      "absolute.-top-9.bottom-0.right-0",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto"
+     ]
+    },
+    {
+     "name": "属性",
+     "ident": "relative.flex.h-7.min-w-12",
+     "w": 50,
+     "h": 28,
+     "cx": 1201,
+     "cy": 130,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "姿势",
+     "ident": "relative.flex.h-7.min-w-12",
+     "w": 50,
+     "h": 28,
+     "cx": 1259,
+     "cy": 130,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "<input>",
+     "ident": "h-7.w-full.rounded-lg.border-0",
+     "w": 248,
+     "h": 28,
+     "cx": 1300,
+     "cy": 215,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "隐藏对象",
+     "ident": "flex.h-8.flex-1.items-center",
+     "w": 120,
+     "h": 32,
+     "cx": 1236,
+     "cy": 261,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "锁定对象",
+     "ident": "flex.h-8.flex-1.items-center",
+     "w": 120,
+     "h": 32,
+     "cx": 1364,
+     "cy": 261,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 X 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1186,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1205.5,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1246,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Y 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1270,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1289.5,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1330,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Z 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1354,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1373.5,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1414,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 X 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1186,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1205.5,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1246,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Y 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1270,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1289.5,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1330,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Z 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1354,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1373.5,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1414,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 X 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1186,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1205.5,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1246,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Y 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1270,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1289.5,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1330,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Z 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1354,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1373.5,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1414,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "统一缩放",
+     "ident": "w-24.accent-[#09caf5]",
+     "w": 96,
+     "h": 16,
+     "cx": 1336,
+     "cy": 534.25,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "颜色 hex 值",
+     "ident": "h-6.w-[68px].rounded.border",
+     "w": 68,
+     "h": 24,
+     "cx": 1348,
+     "cy": 566.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "颜色",
+     "ident": "h-6.w-9.rounded.border-0",
+     "w": 36,
+     "h": 24,
+     "cx": 1406,
+     "cy": 566.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "播放",
+     "ident": "flex.h-6.w-[26px].shrink-0",
+     "w": 26,
+     "h": 24,
+     "cx": 21,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.bottom-0.left-0.top-[52px]",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[52px]"
+     ]
+    },
+    {
+     "name": "自动帧",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 46,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.bottom-0.left-0.top-[52px]",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[52px]"
+     ]
+    },
+    {
+     "name": "循环播放",
+     "ident": "flex.h-6.w-[26px].shrink-0",
+     "w": 26,
+     "h": 24,
+     "cx": 71,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "播放头位置",
+     "ident": "h-6.w-[46px].shrink-0.border-0",
+     "w": 46,
+     "h": 24,
+     "cx": 111,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "总时长",
+     "ident": "h-6.w-[46px].shrink-0.border-0",
+     "w": 46,
+     "h": 24,
+     "cx": 158,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "切换时间单位为 s",
+     "ident": "flex.h-6.w-[33px].shrink-0",
+     "w": 33,
+     "h": 24,
+     "cx": 198.5,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "选中角色、道具或分组后建立轨道",
+     "ident": "ml-[15px].flex.h-6.w-[82px]",
+     "w": 82,
+     "h": 24,
+     "cx": 271,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 4,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "预设运镜",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 77,
+     "h": 28,
+     "cx": 350.5,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "创建运动轨迹",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 99,
+     "h": 28,
+     "cx": 438.5,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "曲线编辑器",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 88,
+     "h": 28,
+     "cx": 532,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "轨道",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 55,
+     "h": 28,
+     "cx": 603.5,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "移除角色01 · 陈默 · 变换轨道",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 645,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "添加关键帧",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 88,
+     "h": 28,
+     "cx": 703,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "删除关键帧",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 761,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "时间线最小化",
+     "ident": "group.relative.flex.h-6",
+     "w": 24,
+     "h": 24,
+     "cx": 1296,
+     "cy": 987,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "flex.h-9.shrink-0.items-center",
+     "blameAt": 4,
+     "cands": [
+      "flex.h-9.shrink-0.items-center"
+     ]
+    },
+    {
+     "name": "导出视频到画布",
+     "ident": "relative.flex.h-7.shrink-0",
+     "w": 108,
+     "h": 28,
+     "cx": 1378,
+     "cy": 987,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "flex.h-9.shrink-0.items-center",
+     "blameAt": 4,
+     "cands": [
+      "flex.h-9.shrink-0.items-center"
+     ]
+    },
+    {
+     "name": "收起属性",
+     "ident": "group.relative.z-[1].flex",
+     "w": 20,
+     "h": 20,
+     "cx": 18,
+     "cy": 1057,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.bottom-0.left-0.top-[52px]",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[52px]"
+     ]
+    },
+    {
+     "name": "角色01 · 陈默",
+     "ident": "relative.z-[1].min-w-0.cursor-pointer",
+     "w": 60,
+     "h": 18,
+     "cx": 58,
+     "cy": 1057,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "变换",
+     "ident": "relative.z-[1].min-w-0.cursor-pointer",
+     "w": 36,
+     "h": 18,
+     "cx": 70,
+     "cy": 1089,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "上一关键帧",
+     "ident": "group.relative.flex.h-6",
+     "w": 24,
+     "h": 24,
+     "cx": 105,
+     "cy": 1089,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 8,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "group.relative.flex.h-6",
+     "w": 24,
+     "h": 24,
+     "cx": 131,
+     "cy": 1089,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 8,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "下一关键帧",
+     "ident": "group.relative.flex.h-6",
+     "w": 24,
+     "h": 24,
+     "cx": 157,
+     "cy": 1089,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 8,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "收起属性",
+     "ident": "group.relative.z-[1].flex",
+     "w": 20,
+     "h": 20,
+     "cx": 18,
+     "cy": 1121,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 4,
+     "trueFP": true,
+     "blame": "lucide.lucide-circle-question-mark",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[52px]",
+      "mt-auto.flex.size-8.items-center",
+      "lucide.lucide-circle-question-mark",
+      "<circle>"
+     ]
+    },
+    {
+     "name": "机位01 · 对峙中景",
+     "ident": "relative.z-[1].min-w-0.cursor-pointer",
+     "w": 60,
+     "h": 18,
+     "cx": 58,
+     "cy": 1121,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "绘制轨迹",
+     "ident": "flex.h-6.w-fit.min-w-0",
+     "w": 86,
+     "h": 24,
+     "cx": 269,
+     "cy": 1121,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 8,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "w": 11.03,
+     "h": 11.03,
+     "cx": 331,
+     "cy": 1088.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "w": 11.03,
+     "h": 11.03,
+     "cx": 1211.56,
+     "cy": 1088.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    }
+   ]
+  },
+  "1920x1150": {
+   "W": 1920,
+   "cells": 120,
+   "rows": [
+    {
+     "name": "关闭",
+     "ident": "flex.size-10.shrink-0.items-center",
+     "w": 40,
+     "h": 40,
+     "cx": 20,
+     "cy": 25.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "收起",
+     "ident": "flex.size-10.shrink-0.items-center",
+     "w": 40,
+     "h": 40,
+     "cx": 260,
+     "cy": 25.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "导演视角",
+     "ident": "flex.h-8.min-w-0.flex-1",
+     "w": 81,
+     "h": 32,
+     "cx": 918.5,
+     "cy": 26,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "flex.min-w-0.items-center.justify-center",
+     "blameAt": 3,
+     "cands": [
+      "flex.min-w-0.items-center.justify-center"
+     ]
+    },
+    {
+     "name": "机位视角",
+     "ident": "flex.h-8.min-w-0.flex-1",
+     "w": 81,
+     "h": 32,
+     "cx": 1001.5,
+     "cy": 26,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "flex.min-w-0.items-center.justify-center",
+     "blameAt": 3,
+     "cands": [
+      "flex.min-w-0.items-center.justify-center"
+     ]
+    },
+    {
+     "name": "导出导演台项目",
+     "ident": "flex.h-8.w-8.items-center",
+     "w": 32,
+     "h": 32,
+     "cx": 1834.33,
+     "cy": 25.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "导入导演台项目",
+     "ident": "flex.h-8.w-8.items-center",
+     "w": 32,
+     "h": 32,
+     "cx": 1875.16,
+     "cy": 25.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 177.09,
+     "h": 28,
+     "cx": 411.16,
+     "cy": 69.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "搜索场景内容",
+     "ident": "min-w-0.flex-1.bg-transparent.text-xs",
+     "w": 132,
+     "h": 16,
+     "cx": 157,
+     "cy": 76,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "新增机位",
+     "ident": "flex.h-8.w-8.shrink-0",
+     "w": 32,
+     "h": 32,
+     "cx": 252,
+     "cy": 76,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "打组",
+     "ident": "flex.h-7.flex-1.items-center",
+     "w": 106,
+     "h": 28,
+     "cx": 109,
+     "cy": 117.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 4,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "解组",
+     "ident": "flex.h-7.flex-1.items-center",
+     "w": 106,
+     "h": 28,
+     "cx": 219,
+     "cy": 117.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 4,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "复制当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 194,
+     "cy": 153.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 5,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 226,
+     "cy": 153.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 5,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "清除当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 258,
+     "cy": 153.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 7,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏角色01 · 陈默",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 216,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定角色01 · 陈默",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 216,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除角色01 · 陈默",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 216,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏咖啡桌",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 288,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定咖啡桌",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 288,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除咖啡桌",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 288,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏冷掉的咖啡",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 320,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定冷掉的咖啡",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 320,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除冷掉的咖啡",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 320,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏咖啡馆背景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 352,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定咖啡馆背景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 352,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除咖啡馆背景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 352,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "隐藏机位01 · 对峙中景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 188,
+     "cy": 424,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "锁定机位01 · 对峙中景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 220,
+     "cy": 424,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 9,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "删除机位01 · 对峙中景",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 252,
+     "cy": 424,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 8,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "场景",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 76,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "添加角色",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 132,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 6,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "添加机位",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 172,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 6,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "全景图",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 212,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 5,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "选择画幅比例",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 252,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 6,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "AI 识图导入",
+     "ident": "flex.size-8.items-center.justify-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 292,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 2,
+     "trueFP": true,
+     "blame": "relative.min-h-0.flex-1",
+     "blameAt": 6,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    {
+     "name": "帮助",
+     "ident": "mt-auto.flex.size-8.items-center",
+     "w": 32,
+     "h": 32,
+     "cx": 23.5,
+     "cy": 1126,
+     "selfAt": 6,
+     "hitBlocked": true,
+     "nCand": 7,
+     "trueFP": false,
+     "blame": "flex.min-h-0.flex-1.flex-col",
+     "blameAt": 10,
+     "cands": [
+      "flex.min-h-0.flex-1.flex-col",
+      "z-40.pointer-events-auto.relative.flex",
+      "flex.min-h-0.min-w-0.flex-1",
+      "w-[320px].shrink-0.overflow-y-auto.bg-[#1f1f1f]",
+      "<div>",
+      "group.relative.grid.h-8",
+      "group.relative.z-[1].flex"
+     ]
+    },
+    {
+     "name": "重置视角",
+     "ident": "absolute.right-0.top-[calc(100%+8px)].whitespace-nowrap",
+     "w": 62,
+     "h": 26.5,
+     "cx": 1588,
+     "cy": 209.25,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 1,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "X 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 1601.22,
+     "cy": 153.94,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "X 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 1556.77,
+     "cy": 142.05,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "Y 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 1579,
+     "cy": 120.52,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "Y 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 1579,
+     "cy": 175.47,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "Z 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 1560.38,
+     "cy": 155.08,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "Z 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "w": 15,
+     "h": 15,
+     "cx": 1597.61,
+     "cy": 140.91,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 3,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "移动",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 619,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 6,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "旋转",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 659,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 6,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "缩放",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 699,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 7,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "动画时间轴",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 739,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 6,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "16:9",
+     "ident": "flex.h-8.min-w-10.shrink-0",
+     "w": 40,
+     "h": 32,
+     "cx": 796,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "9:16",
+     "ident": "flex.h-8.min-w-10.shrink-0",
+     "w": 40,
+     "h": 32,
+     "cx": 844,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "1:1",
+     "ident": "flex.h-8.min-w-10.shrink-0",
+     "w": 40,
+     "h": 32,
+     "cx": 892,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "开启九宫格辅助线",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 936,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "虚拟相机",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 989,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "添加群众阵列",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 1029,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "模型库",
+     "ident": "group.relative.flex.size-8",
+     "w": 32,
+     "h": 32,
+     "cx": 1069,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 6,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "保存构图",
+     "ident": "flex.h-8.items-center.gap-1.5",
+     "w": 84,
+     "h": 32,
+     "cx": 1148,
+     "cy": 944,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "上传图片",
+     "ident": "hover:bg-white/8.col-start-1.row-start-1.flex",
+     "w": 32,
+     "h": 32,
+     "cx": 1232,
+     "cy": 945,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 5,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "描述想搭建的场景",
+     "ident": "col-start-2.row-start-1.min-w-0.bg-transparent",
+     "w": 143,
+     "h": 16,
+     "cx": 1319.5,
+     "cy": 945,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 4,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "发送",
+     "ident": "col-start-3.row-start-1.ml-1.flex",
+     "w": 32,
+     "h": 32,
+     "cx": 1411,
+     "cy": 945,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.inset-0",
+     "blameAt": 6,
+     "cands": [
+      "absolute.inset-0"
+     ]
+    },
+    {
+     "name": "属性",
+     "ident": "relative.flex.h-7.min-w-12",
+     "w": 50,
+     "h": 28,
+     "cx": 1681,
+     "cy": 130,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "姿势",
+     "ident": "relative.flex.h-7.min-w-12",
+     "w": 50,
+     "h": 28,
+     "cx": 1739,
+     "cy": 130,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "<input>",
+     "ident": "h-7.w-full.rounded-lg.border-0",
+     "w": 248,
+     "h": 28,
+     "cx": 1780,
+     "cy": 215,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "隐藏对象",
+     "ident": "flex.h-8.flex-1.items-center",
+     "w": 120,
+     "h": 32,
+     "cx": 1716,
+     "cy": 261,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "锁定对象",
+     "ident": "flex.h-8.flex-1.items-center",
+     "w": 120,
+     "h": 32,
+     "cx": 1844,
+     "cy": 261,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 X 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1666,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1685.5,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1726,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Y 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1750,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1769.5,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1810,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Z 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1834,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1853.5,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1894,
+     "cy": 356,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 X 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1666,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1685.5,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1726,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Y 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1750,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1769.5,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1810,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Z 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1834,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1853.5,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1894,
+     "cy": 428,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 X 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1666,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1685.5,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1726,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Y 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1750,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1769.5,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1810,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "左右拖动调整 Z 轴",
+     "ident": "shrink-0.cursor-ew-resize.border-white/[0.08].hover:border-[#09caf5]/40",
+     "w": 20,
+     "h": 28,
+     "cx": 1834,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "h-full.min-w-0.flex-1.appearance-none",
+     "blameAt": 1,
+     "cands": [
+      "h-full.min-w-0.flex-1.appearance-none"
+     ]
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "w": 59,
+     "h": 28,
+     "cx": 1853.5,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "ml-px.flex.h-full.w-[20px]",
+     "w": 20,
+     "h": 28,
+     "cx": 1894,
+     "cy": 500,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "统一缩放",
+     "ident": "w-24.accent-[#09caf5]",
+     "w": 96,
+     "h": 16,
+     "cx": 1816,
+     "cy": 534.25,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "颜色 hex 值",
+     "ident": "h-6.w-[68px].rounded.border",
+     "w": 68,
+     "h": 24,
+     "cx": 1828,
+     "cy": 566.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "颜色",
+     "ident": "h-6.w-9.rounded.border-0",
+     "w": 36,
+     "h": 24,
+     "cx": 1886,
+     "cy": 566.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "播放",
+     "ident": "flex.h-6.w-[26px].shrink-0",
+     "w": 26,
+     "h": 24,
+     "cx": 21,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.bottom-0.left-0.top-[52px]",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[52px]"
+     ]
+    },
+    {
+     "name": "自动帧",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "w": 24,
+     "h": 24,
+     "cx": 46,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.bottom-0.left-0.top-[52px]",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[52px]"
+     ]
+    },
+    {
+     "name": "循环播放",
+     "ident": "flex.h-6.w-[26px].shrink-0",
+     "w": 26,
+     "h": 24,
+     "cx": 71,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "播放头位置",
+     "ident": "h-6.w-[46px].shrink-0.border-0",
+     "w": 46,
+     "h": 24,
+     "cx": 111,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "总时长",
+     "ident": "h-6.w-[46px].shrink-0.border-0",
+     "w": 46,
+     "h": 24,
+     "cx": 158,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "切换时间单位为 s",
+     "ident": "flex.h-6.w-[33px].shrink-0",
+     "w": 33,
+     "h": 24,
+     "cx": 198.5,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 5,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "选中角色、道具或分组后建立轨道",
+     "ident": "ml-[15px].flex.h-6.w-[82px]",
+     "w": 82,
+     "h": 24,
+     "cx": 271,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 4,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "预设运镜",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 77,
+     "h": 28,
+     "cx": 350.5,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "创建运动轨迹",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 99,
+     "h": 28,
+     "cx": 438.5,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "曲线编辑器",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 88,
+     "h": 28,
+     "cx": 532,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "轨道",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 55,
+     "h": 28,
+     "cx": 603.5,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "移除角色01 · 陈默 · 变换轨道",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 645,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "添加关键帧",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "w": 88,
+     "h": 28,
+     "cx": 703,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "删除关键帧",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "w": 28,
+     "h": 28,
+     "cx": 761,
+     "cy": 986.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "时间线最小化",
+     "ident": "group.relative.flex.h-6",
+     "w": 24,
+     "h": 24,
+     "cx": 1776,
+     "cy": 987,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "flex.h-9.shrink-0.items-center",
+     "blameAt": 4,
+     "cands": [
+      "flex.h-9.shrink-0.items-center"
+     ]
+    },
+    {
+     "name": "导出视频到画布",
+     "ident": "relative.flex.h-7.shrink-0",
+     "w": 108,
+     "h": 28,
+     "cx": 1858,
+     "cy": 987,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "flex.h-9.shrink-0.items-center",
+     "blameAt": 4,
+     "cands": [
+      "flex.h-9.shrink-0.items-center"
+     ]
+    },
+    {
+     "name": "收起属性",
+     "ident": "group.relative.z-[1].flex",
+     "w": 20,
+     "h": 20,
+     "cx": 18,
+     "cy": 1057,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 1,
+     "trueFP": true,
+     "blame": "absolute.bottom-0.left-0.top-[52px]",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[52px]"
+     ]
+    },
+    {
+     "name": "角色01 · 陈默",
+     "ident": "relative.z-[1].min-w-0.cursor-pointer",
+     "w": 60,
+     "h": 18,
+     "cx": 58,
+     "cy": 1057,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "变换",
+     "ident": "relative.z-[1].min-w-0.cursor-pointer",
+     "w": 36,
+     "h": 18,
+     "cx": 70,
+     "cy": 1089,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "上一关键帧",
+     "ident": "group.relative.flex.h-6",
+     "w": 24,
+     "h": 24,
+     "cx": 105,
+     "cy": 1089,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 8,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "当前帧有关键帧",
+     "ident": "group.relative.flex.h-6",
+     "w": 24,
+     "h": 24,
+     "cx": 131,
+     "cy": 1089,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 8,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "下一关键帧",
+     "ident": "group.relative.flex.h-6",
+     "w": 24,
+     "h": 24,
+     "cx": 157,
+     "cy": 1089,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 8,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "收起属性",
+     "ident": "group.relative.z-[1].flex",
+     "w": 20,
+     "h": 20,
+     "cx": 18,
+     "cy": 1121,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 4,
+     "trueFP": true,
+     "blame": "lucide.lucide-circle-question-mark",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[52px]",
+      "mt-auto.flex.size-8.items-center",
+      "lucide.lucide-circle-question-mark",
+      "<circle>"
+     ]
+    },
+    {
+     "name": "机位01 · 对峙中景",
+     "ident": "relative.z-[1].min-w-0.cursor-pointer",
+     "w": 60,
+     "h": 18,
+     "cx": 58,
+     "cy": 1121,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 7,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "绘制轨迹",
+     "ident": "flex.h-6.w-fit.min-w-0",
+     "w": 86,
+     "h": 24,
+     "cx": 269,
+     "cy": 1121,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 3,
+     "trueFP": true,
+     "blame": "min-h-0.flex-1.overflow-y-auto.px-2",
+     "blameAt": 8,
+     "cands": [
+      "absolute.bottom-0.left-0.top-[88px]",
+      "flex.h-full.min-h-0.flex-col",
+      "min-h-0.flex-1.overflow-y-auto.px-2"
+     ]
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "w": 11.03,
+     "h": 11.03,
+     "cx": 331,
+     "cy": 1088.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "w": 11.03,
+     "h": 11.03,
+     "cx": 1211.56,
+     "cy": 1088.5,
+     "selfAt": 0,
+     "hitBlocked": false,
+     "nCand": 0,
+     "trueFP": false,
+     "blame": null,
+     "blameAt": null,
+     "cands": []
+    }
+   ]
+  }
+ },
+ "checks": {
+  "the-66-always-false-positives-partition-into-a-handful-of-families": {
+   "ok": true,
+   "detail": {
+    "alwaysFalsePositives": 66,
+    "families": 8,
+    "familySizesPerCell": {
+     "flex.min-w-0.items-center.justify-center": [
+      2,
+      2,
+      2
+     ],
+     "relative.min-h-0.flex-1": [
+      25,
+      25,
+      25
+     ],
+     "absolute.inset-0": [
+      19,
+      21,
+      22
+     ],
+     "h-full.min-w-0.flex-1.appearance-none": [
+      9,
+      9,
+      9
+     ],
+     "absolute.bottom-0.left-0.top-[52px]": [
+      3,
+      3,
+      3
+     ],
+     "min-h-0.flex-1.overflow-y-auto.px-2": [
+      12,
+      12,
+      12
+     ],
+     "flex.h-9.shrink-0.items-center": [
+      2,
+      2,
+      2
+     ],
+     "lucide.lucide-circle-question-mark": [
+      1,
+      1,
+      1
+     ]
+    },
+    "familyPresentAtAllCells": {},
+    "fpCountPerCell": {
+     "1280x1150": 73,
+     "1440x1150": 75,
+     "1920x1150": 76
+    },
+    "cellsPerViewport": {
+     "1280x1150": 120,
+     "1440x1150": 120,
+     "1920x1150": 120
+    }
+   },
+   "note": "no hand-written list: the partition is computed by the blame rule"
+  },
+  "the-gizmo-family-is-six-axis-buttons-with-exactly-one-candidate": {
+   "ok": true,
+   "detail": {
+    "axisButtons": [
+     "X 反向",
+     "X 正向",
+     "Y 反向",
+     "Y 正向",
+     "Z 反向",
+     "Z 正向"
+    ],
+    "axisButtonBoxes@first": {
+     "X 反向": [
+      15,
+      15
+     ],
+     "X 正向": [
+      15,
+      15
+     ],
+     "Y 反向": [
+      15,
+      15
+     ],
+     "Y 正向": [
+      15,
+      15
+     ],
+     "Z 反向": [
+      15,
+      15
+     ],
+     "Z 正向": [
+      15,
+      15
+     ]
+    },
+    "candidatesPerButton": {
+     "X 反向": 1,
+     "X 正向": 1,
+     "Y 反向": 1,
+     "Y 正向": 1,
+     "Z 反向": 1,
+     "Z 正向": 1
+    },
+    "blamePerButton": [
+     "absolute.inset-0"
+    ],
+    "blameStackIndex": [
+     3
+    ]
+   },
+   "note": "the whole family reduces to ONE element: the viewport's own div.absolute.inset-0, three levels below each button"
+  },
+  "there-are-nine-axis-related-controls-but-only-six-axis-buttons": {
+   "ok": true,
+   "detail": {
+    "axisButtons": 6,
+    "axisLabelNames": [
+     "左右拖动调整 X 轴",
+     "左右拖动调整 Y 轴",
+     "左右拖动调整 Z 轴"
+    ],
+    "axisLabelElements": 9,
+    "axisRelatedTotal": 9,
+    "correctionTo670": "670's README said 'all 9 gizmo axis buttons X/Y/Z 正向·反向'; those names are 6 controls, and 3 more names are the drag labels",
+    "instrumentCaveat": "the 3 label names come from 9 ELEMENTS — lab() reads textContent, so three nested levels per label collapse into one name; every name-keyed census in this repo silently deduplicates them"
+   },
+   "note": "historical batches are not rewritten; the correction lives here"
+  },
+  "the-blame-is-never-an-ancestor-of-the-control": {
+   "ok": true,
+   "detail": {
+    "fpCells": 224,
+    "selfAtForAxisButtons": [
+     0
+    ],
+    "blameAtForAxisButtons": [
+     3
+    ]
+   },
+   "note": "the blamed element is strictly BELOW the control in the hit stack — that is what makes it a false positive rather than a real occlusion"
+  }
+ }
+}
