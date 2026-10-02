@@ -190,6 +190,17 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   const [voice, setVoice] = useState("直爽女大");
   // 批 254/255/257: 筛选下拉选项与选中态；批 282: 性别筛选真实过滤网格
   const [filterSel, setFilterSel] = useState<Record<string, string | null>>({});
+  /* 批 873：把「**开着没有**」和「**选了什么**」拆成**两个**状态。
+
+     原来只有一个 `filterSel`，它同时承担两件事：既是选中值，又是开合标志
+     （面板渲染条件 `filterSel[label] !== undefined`）。于是**选完一个选项
+     后面板收不起来** —— 选中值还在 ⇒ 「开着」⇒ 层一直挂着。
+
+     源站实测（`jimeng_probe873_voiceselect.py`，登录态、视口 1512×1200）：
+     选「男」**和**选「全部 性别」**都**自动收起层，焦点回到筛选钮
+     （实测落点 `BUTTON/性别: 男` / `BUTTON/性别: 全部 性别`）。
+     两个选项**都**收 ⇒ 拆状态是唯一能同时表达「值留着、层收了」的写法。 */
+  const [filterOpen, setFilterOpen] = useState<Record<string, boolean>>({});
 
   /* 批 871：四个筛选面板各接一次「开层接管焦点」。
      ⚠️ 为什么是**四组显式 ref + 四次 hook 调用**，而不是
@@ -210,10 +221,10 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   const filterAgeBox = useRef<HTMLDivElement>(null);
   const filterLangBox = useRef<HTMLDivElement>(null);
   const filterToneBox = useRef<HTMLDivElement>(null);
-  useTakeFocusAtOpen(filterGenderBox, filterSel["性别"] !== undefined);
-  useTakeFocusAtOpen(filterAgeBox, filterSel["年龄"] !== undefined);
-  useTakeFocusAtOpen(filterLangBox, filterSel["语言"] !== undefined);
-  useTakeFocusAtOpen(filterToneBox, filterSel["声音特点"] !== undefined);
+  useTakeFocusAtOpen(filterGenderBox, filterOpen["性别"] === true);
+  useTakeFocusAtOpen(filterAgeBox, filterOpen["年龄"] === true);
+  useTakeFocusAtOpen(filterLangBox, filterOpen["语言"] === true);
+  useTakeFocusAtOpen(filterToneBox, filterOpen["声音特点"] === true);
   const filterBoxRef: Record<string, RefObject<HTMLDivElement | null>> = {
     "性别": filterGenderBox, "年龄": filterAgeBox,
     "语言": filterLangBox, "声音特点": filterToneBox,
@@ -623,7 +634,14 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                             <div key={label} className="relative">
                               <button
                                 type="button"
-                                onClick={() =>
+                                onClick={() => {
+                                  /* ⚠️⚠️ 批 873：箭头**必须改成块体**
+                                     `{ … }` —— 原来它是**表达式体**
+                                     `() => setFilterSel(…)`，一个表达式体里
+                                     放不下第二条语句：加分号会把 JSX 属性
+                                     表达式**切断**，parser 报 `'}' expected`
+                                     而位置指着**下一句**（查错地方的经典坑）。
+                                     要两条语句，就得是块体。 */
                                   setFilterSel((m) => ({
                                     ...m,
                                     /* ⚠️⚠️ 批 870：这一行原来是
@@ -636,9 +654,27 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                        一直是 4 个（见 §87）。 */
                                     [label]: m[label] === undefined
                                       ? null : undefined,
-                                  }))
-                                }
-                                aria-expanded={filterSel[label] !== undefined}
+                                  }));
+                                  /* 批 873：开合**另算**（见上面 filterOpen）。
+                                     ⚠️ 原来 `onClick={() => setFilterSel(…)}`
+                                        是**单表达式**箭头（结尾没分号）；
+                                        现在多了一句，就必须补 `;` ——
+                                        少一个分号，parser 报的是
+                                        `'}' expected`，位置却指着**下一句**，
+                                        很容易查错地方。
+                                     870 修的「关不掉」靠的就是这条切换 ——
+                                     拆状态之后它仍然成立，**没有回归**。 */
+                                  setFilterOpen((o) => ({ ...o, [label]: !o[label] }));
+                                }}
+                                aria-expanded={filterOpen[label] === true}
+                                /* 批 873：源站这个钮的 `aria-label` 是
+                                   **`{筛选名}: {当前值}`**（探针 873 实测焦点落点
+                                   读作 `BUTTON/性别: 男` 与
+                                   `BUTTON/性别: 全部 性别`）。复刻原先**没有**
+                                   aria-label，只靠可见文案 —— 选中之后文案变成
+                                   「男」，可访问名就从「性别」变成了「男」，
+                                   筛选维度丢了。逐字对齐。 */
+                                aria-label={`${label}: ${filterSel[label] ?? label}`}
                                 className="flex h-7 items-center gap-1 rounded-md bg-white/[0.06] px-2 text-[12px] text-white/70"
                               >
                                 {filterSel[label] ?? label}
@@ -650,7 +686,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                   打开，**四个筛选面板同时渲染**。
                                   探针 870 量完才动手（先探再判）；这里补上
                                   真正的开合判据。 */}
-                              {options && filterSel[label] !== undefined ? (
+                              {options && filterOpen[label] === true ? (
                                 /* ⚠️ 批 870：**版式按源站实测逐项对齐**（探针
                                    `jimeng_probe870_voicefilter_src.py`，
                                    登录态、视口 1512×1200）：
@@ -700,9 +736,12 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                     if (e.key === "Escape") {
                                       e.preventDefault();
                                       e.stopPropagation();
-                                      setFilterSel((m) => ({
-                                        ...m, [label]: undefined,
-                                      }));
+                                      // 批 873：**只关层，不清选中值**。
+                                      // 源站「Esc 之后选中值还在不在」**没量到**
+                                      // —— 这里按「收层 ≠ 取消选择」实现，
+                                      // 并把它记进范围限制，别让下一个人
+                                      // 以为这是源站行为。
+                                      setFilterOpen((o) => ({ ...o, [label]: false }));
                                       // 焦点回筛选钮（源站实测就是回到它）
                                       chip?.focus();
                                       return;
@@ -754,12 +793,33 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                       type="button"
                                       role="option"
                                       aria-selected={(filterSel[label] ?? label) === opt}
-                                      onClick={() =>
+                                      onClick={(e) => {
+                                        /* 块体，理由同上（一条 JSX 属性里
+                                           要三条语句 ⇒ 必须是块体）。 */
+                                        /* 批 873：源站实测选完之后**焦点回到
+                                           那个筛选钮**（落点 `BUTTON/性别: 男`）。
+                                           复刻原先什么都不做 ⇒ 面板一卸，焦点
+                                           **掉到 body**（复刻探针实测
+                                           `focus='body'`）—— 那是最坏落点：
+                                           键盘用户完全不知道自己在哪。
+                                           ⚠️ 必须**先** focus 再 setState：
+                                           收层后这块 DOM 就被卸载了。 */
+                                        const chipBtn = (e.currentTarget as HTMLElement)
+                                          .closest('[role="listbox"]')
+                                          ?.previousElementSibling as HTMLElement | null;
+                                        chipBtn?.focus();
                                         setFilterSel((m) => ({
                                           ...m,
                                           [label]: opt.startsWith("全部") ? label : opt,
-                                        }))
-                                      }
+                                        }));
+                                        /* 批 873：源站实测**选完自动收层**
+                                           （选「男」和选「全部 性别」都收，
+                                           探针 873 两条路径分别量过），
+                                           焦点回到筛选钮。 */
+                                        setFilterOpen((o) => ({
+                                          ...o, [label]: false,
+                                        }));
+                                      }}
                                       className={`flex h-9 w-full items-center rounded-lg px-2.5 text-[13px] ${
                                         (filterSel[label] ?? label) === opt
                                           ? "bg-white/[0.10] text-white"

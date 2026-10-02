@@ -205,6 +205,61 @@ def main() -> int:
             print(f"\n③ 再点一次「性别」：筛选面板 "
                   f"{res['after_second_click']['n']} 个")
 
+        # ── 批 873：选完一个选项之后 ──────────────────────────────────
+        #   源站实测（探针 873）：选「男」**和**选「全部 性别」**都**自动收层，
+        #   焦点回到筛选钮。复刻原先用 `filterSel[label] !== undefined` 当
+        #   开合标志 ⇒ 选中值还在 ⇒ **层收不起来**。873 拆成两个状态修的。
+        res["after_select"] = {}
+        # ⚠️ ③ 刚把层关上了，选项**已经不在 DOM 里** ⇒ 不先重开的话
+        #   `get_by_text("男")` 数到 0，整段被静默跳过（第一版就这样白跑一轮）。
+        if pg.locator(FILTER_TID).count() == 0:
+            chip0 = pg.get_by_text("性别", exact=True).first
+            if chip0.count():
+                chip0.click(timeout=6000)
+                time.sleep(0.8)
+        if pg.locator(FILTER_TID).count() > 0:
+            pick = pg.get_by_text("男", exact=True).first
+            if pick.count():
+                pick.click(timeout=6000)
+                time.sleep(0.9)
+                res["after_select"] = {
+                    "panel_closed": pg.locator(FILTER_TID).count() == 0,
+                    "chip_text": pg.evaluate("""() => {
+                      for (const b of document.querySelectorAll('button')) {
+                        const t = (b.innerText || '').trim();
+                        if (t === '男' || t === '女'
+                            || t === '全部 性别' || t === '性别') {
+                          const r = b.getBoundingClientRect();
+                          if (r.width < 20 || r.height < 10) continue;
+                          return {t, expanded: b.getAttribute('aria-expanded')};
+                        }
+                      }
+                      return null;
+                    }"""),
+                    "focus": pg.evaluate("""() => {
+                      const a = document.activeElement;
+                      if (!a || a === document.body) return 'body';
+                      return a.tagName + '/' + ((a.innerText || '')
+                             .trim().slice(0, 12));
+                    }"""),
+                }
+                print("\n④ 选「男」之后：层收了="
+                      f"{res['after_select']['panel_closed']}"
+                      f" 芯片={res['after_select']['chip_text']}"
+                      f" 焦点={res['after_select']['focus']!r}")
+                # ⚠️ 关键回归点：芯片文案**已经变成「男」**了，此时再点它
+                #   必须还能把层打开 —— 源站探针 873 第二轮就栽在这里
+                #   （按旧文案「性别」去找，找不到 ⇒ 记成「前置态没成立」）。
+                chip = pg.get_by_text("男", exact=True).first
+                res["reopen_with_new_label"] = False
+                if chip.count():
+                    chip.click(timeout=6000)
+                    time.sleep(0.8)
+                    res["reopen_with_new_label"] = (
+                        pg.locator(FILTER_TID).count() > 0)
+                print(f"   文案变「男」之后再点它能重开="
+                      f"{res['reopen_with_new_label']}")
+
         res["modalish_of_filter"] = pg.evaluate(modalish_js,
                                                  "audio-voice-filter-listbox")
         b.close()

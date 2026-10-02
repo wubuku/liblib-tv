@@ -1686,17 +1686,28 @@ def main() -> int:
     _agp_raw = (ROOT / "src/components/jimeng/JimengAudioGenPanel.tsx") \
         .read_text(encoding="utf-8")
     _agp = strip_comments(_agp_raw)
-    check("U.7 筛选面板的渲染条件**真的带开合判据**了"
-          "（原来只有 `options ?`，而 `options` 是写死的非空数组 ⇒ "
-          "「全音色」一打开四个面板同时展开、y 全为负、点不到也关不掉；"
-          "探针 870 量完才动的手）",
-          "options && filterSel[label] !== undefined" in _agp,
-          f"带判据={'options && filterSel[label] !== undefined' in _agp}")
-    check("U.8 筛选钮的 `onClick` **能关上**了"
-          "（原来 `? null : m[label]` 把值原样写回去，只能开关不了 —— "
-          "探针 870 实测连点两回，面板数一直是 4）",
-          "? null : undefined" in _agp
-          and "aria-expanded={filterSel[label] !== undefined}" in _agp)
+    # ⚠️⚠️ U.7/U.8 原来钉的是**实现字面量**（`options && filterSel[…] !==
+    #   undefined` / `aria-expanded={filterSel[…] !== undefined}`）。批 873
+    #   把「开着没有」拆成独立的 `filterOpen` 之后，那两句字面量自然不成立
+    #   —— 而它们要护的**意图**（渲染条件带开合判据 / 那个钮能关）**一个字
+    #   都没变**。钉字面量就会逼着人把拆状态这个修复退回去。
+    #   所以这两条改成钉**意图**：条件里必须有一个**随状态变化**的判据，
+    #   且那个**无条件**的老写法不许回来。
+    check("U.7 筛选面板的渲染条件**带开合判据**（不是无条件的 `options ?`"
+          " —— 而 `options` 是写死的非空数组，无条件渲染 ⇒ 「全音色」一打开"
+          "四个面板同时展开、y 全为负、点不到也关不掉；探针 870 量完才动手。"
+          "873 又把开合拆成独立 `filterOpen`，判据换了写法但意图没变）",
+          "{options ? (" not in _agp
+          and "options && filterOpen[label] === true" in _agp,
+          f"无条件渲染还在={'{options ? (' in _agp} "
+          f"带判据={'options && filterOpen[label] === true' in _agp}")
+    check("U.8 筛选钮**能关上**了：开合由 `setFilterOpen` **取反**负责"
+          "（870 原来 `? null : m[label]` 把值原样写回去，只能开关不了；"
+          "873 之后开合不再靠选中值），选中值的 `? null : undefined` 切换"
+          "仍在，且 `aria-expanded` 跟着 `filterOpen` 走",
+          "setFilterOpen((o) => ({ ...o, [label]: !o[label] }))" in _agp
+          and "? null : undefined" in _agp
+          and "aria-expanded={filterOpen[label] === true}" in _agp)
     p869 = ROOT / "scripts/jimeng_probe869_drawerpanels.py"
     p870 = ROOT / "scripts/jimeng_probe870_voicefilter.py"
     p869s = p869.read_text(encoding="utf-8") if p869.exists() else ""
@@ -1824,6 +1835,35 @@ def main() -> int:
     check("X.4 高度公式被记成**实测三点**（n=3/4/6 ⇒ 124/164/244）"
           "，不是照着 3 项那一个值推的",
           "n×36+(n−1)×4+8" in _sbtxt and "三点全中" in _sbtxt)
+
+    # ── Y. 批 873：把「**选完之后**」也测了（前面几批只测「打开」）──────
+    print("— Y. 批 873 选完一个选项之后：收层 / 焦点回钮 / 文案与 aria —")
+    p873 = ROOT / "scripts/jimeng_probe873_voiceselect.py"
+    _p873 = p873.read_text(encoding="utf-8") if p873.exists() else ""
+    check("Y.1 源站「选完之后」探针在库里，且**两条选项路径都量**"
+          "（选具体值 vs 选「全部 X」）—— 复刻两条走同一个 onClick，"
+          "「同一个回调 ⇒ 行为一样」是推测不是取样",
+          bool(_p873) and '"全部 性别", "男"' in _p873
+          and "不合并成结论" in _p873)
+    check("Y.2 源站探针第二轮**不再按旧文案**找芯片（选完之后芯片文案已经"
+          "变了，按旧名找必然数到 0 ⇒ 被记成「前置态没成立」）"
+          "，改用开层时记下的坐标并**验落点**",
+          "chip_rect_reused" in _p873 and "不是按钮" in _p873)
+    check("Y.3 「开着没有」和「选了什么」是**两个状态**"
+          "（原来一个 `filterSel` 兼任两职 ⇒ 选中值还在 ⇒ 层收不起来；"
+          "源站实测选完**都**收层）",
+          "const [filterOpen, setFilterOpen]" in _agp2
+          and "options && filterOpen[label] === true" in _agp2
+          and _agp2.count("[label]: false") >= 2)
+          # 上面那两处：Esc 收层、选完收层（源站实测两条都收）
+    check("Y.4 选完之后**焦点回筛选钮**（源站实测落点 `BUTTON/性别: 男`；"
+          "复刻原先什么都不做 ⇒ 面板一卸焦点**掉到 body**，那是最坏落点）",
+          "chipBtn?.focus()" in _agp2
+          and "closest('[role=\"listbox\"]')" in _agp2)
+    check("Y.5 芯片的 `aria-label` 按源站实测的 **`{筛选名}: {当前值}`** 对齐"
+          "（复刻原先没有 aria-label，选中之后可访问名会从「性别」变成「男」，"
+          "筛选维度就丢了）",
+          "aria-label={`${label}: ${filterSel[label] ?? label}`}" in _agp2)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
