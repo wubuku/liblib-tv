@@ -95,14 +95,16 @@ tasks:
       - type: static
         note: sourceOrigin upload 标记、文件选择器上传到空节点原地替换类型。
       - type: runtime
+        note: '2026-10-03 M171 拒收路径配图（走真实 input[type=file]，非模拟拖拽）：一次投三个文件后实测三条提示并存——成功条 y=8、unsupported 条 y=64、too-large 条 y=120，间距 56px，全部完整在视口内且 elementFromPoint 实测无遮挡；两条错误文案与 i18n 逐字一致且各自点名对应文件；投前归零、投后节点 +1 只建出合规那张。**同时否证了自己一条判据**：原写「提示条必须在顶栏 64px 以下」，等动画落位后 unsupported 条正落在 y=64，当场证伪——antd message 本就浮在最上层，盖住顶栏是它的正常设计，与 M166 那条「工具条不许压住菜单」是同一类越界判据。**探针两处硬伤**：rectOf 用 textContent 反查元素会命中包住整页的 .ant-message 祖先（M168 同病）；等 y >= 0 不等于等动画结束，须等 ant-message-fade-appear 类被摘掉，否则读到的是移动中的假坐标。'
+      - type: runtime
         note: 2026-10-02 M115 把「拖放 40px 阶梯错位」从静态升级为运行时（3 文件 Δ=(40,40) 精确，toast 计数逐字），并**订正了此前账本依据的一个错误推断**：拖放与文件选择器是两套代码，`handleDrop`（project.tsx:2772-2788）无条件新建、**没有「落在节点上就替换」的分支**；替换只在 `handleImageInputChange`（project.tsx:2713-2750）的 `target.nodeId` 支（2742 行）。实测拖到节点正中心 → 节点数 1→2、目标节点 blob 地址逐字不变、与拖到空白同形。同批钉死：上限为 50 * 1024 * 1024（canvas-upload-material.ts:3）、判据 `size > MAX` 严格大于（52MiB 拒 / 恰好 50MiB 收）；三条提示文案逐字；混拖两条 toast 并存；判定函数 8/8 全对（MIME 优先、**仅 MIME 为空才回退扩展名**，故陌生非空 MIME + 合法扩展名仍被拒，无扩展名但 MIME 命中则被收）。同批**否证自己的上一轮记录两条**：「拖到节点上会替换」与「白名单外静默丢弃」（后者实有完整提示，上一轮因在节点落定后才翻 DOM 而漏掉 antd message 的约 3 秒存活窗口，改为 drop 后 100ms 间隔轮询 5.5 秒并以「合法文件必须抓到成功 toast」作阳性对照才稳定抓到）。
     preconditions:
       - 已准备本地素材（见 TEST_MEDIA_ASSETS.md）
     routes:
       - '/canvas/:id'
     status: verified
-    screenshot_count: 3
-    review_note: 2026-09-27 运行时走查完成（真实视频 809KB 与音频 1.1MB 注入成功，原生播放器节点 + toast 逐字；图片 3.9MB 同路径成功）；行为细节——有选中节点时上传仍新建节点而非替换。 2026-10-02 M115 素材拖放上传两条路径实测（拖到画布空白处、拖到节点连接口），判定函数 8/8 钉死；本批含两条自我否证
+    screenshot_count: 4
+    review_note: 2026-09-27 运行时走查完成（真实视频 809KB 与音频 1.1MB 注入成功，原生播放器节点 + toast 逐字；图片 3.9MB 同路径成功）；行为细节——有选中节点时上传仍新建节点而非替换。 2026-10-02 M115 素材拖放上传两条路径实测（拖到画布空白处、拖到节点连接口），判定函数 8/8 钉死；本批含两条自我否证。 2026-10-03 M171 把两条拒收提示**配成图**：一次投三个文件，合规小图建出节点、51MB 的 PNG 与 .txt 各自被拒且两条提示并存，首次把「不合规被单独拒掉、合规的照常上传」这条从文字变成可看的画面。
     manual_pages:
       - 10-tasks/upload-materials.md
   - id: edit-nodes

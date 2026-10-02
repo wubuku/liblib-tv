@@ -1325,3 +1325,16 @@ screenshots:
     visible_text: 'TDCanvas 3 m157.png 参考素材 文本 生图 双击编辑文字 60%'
     alt: 刷新后重新打开画布的样子：缩放读数仍是 60%，三个节点（一张参考素材图、一个空文本节点、一个组）都停在刷新前摆好的位置上——它们与「重置视图」给出的 44% 默认视口明显不同，说明恢复回来的是你自己摆的那一版，而不是默认状态
     sha256: 59af8de534a2bf05718afbfabcd3ccbc862810ce4aa0e408bfaa97ab5ab34634
+
+  - file: screenshots/90-troubleshooting-upload-rejected.png
+    task_id: upload-materials
+    step: 排障页「上传失败提示 too-large / unsupported」配图：走真实的 input[type=file]（project.tsx:3934）一次投三个文件——合规小图、严格大于 50MB 的 PNG、扩展名不在清单里的 .txt；不拖拽、不模拟
+    route: '/canvas/:id'
+    viewport: 1600x800
+    locale: zh-CN
+    captured_at: '2026-10-03'
+    m171_note: '这张图前后拍了七版，**六版死在守卫上，没有一版是拍坏的**。死因分三层，一层比一层深：① 最初的 rectOf() 用 textContent 反查元素，命中的是包住整页的 .ant-message 祖先（rect x=0,y=-16,w=1600,h=800），把两条提示合成了一个 textContent，`children.length > 2` 拦不住——**选择器越界和 M168 那次同一病**；② 改成按 .ant-message > .ant-message-notice 逐条定位后，仍读出 y = -31/-40/-47，因为入场动画没走完，notice 的 class 还挂着 ant-message-fade-appear，y 是移动中的假坐标——**等 y >= 0 是不够的，得等动画类被摘掉**；③ 守到动画结束后 y 落在 8/64/120，此时我原先那条「提示条必须在顶栏 64px 以下」的判据反而**拦下了正确状态**——antd message 本就浮在最上层，盖在顶栏上是它的正常设计。这条判据是 M166 犯过的同一类错（对合理状态不成立），当场废掉，换成 elementFromPoint 实测中心点无遮挡。另有一处：探针开头的 waitForSelector 写的是 [data-node-id]，那是**依赖别人留下的残留**；画布真归零后就永远等不到，改等自己真正要用的 input[type=file]。还有：文件名第一版带随机时间戳（ok-sample-680312.png），手册读者对不上这是什么文件，改为 holiday-photo / huge-render / meeting-notes 三个可读名。'
+    verified_locator: '三条 .ant-message-notice 各自 rect 实读：成功 y=8 x=622 356x40、unsupported y=64 x=420 759x40、too-large y=120 x=636 329x40，全部 inView 且 class 已无 ant-message-fade-appear；逐条 elementFromPoint 取中心点，祖先链均回溯到 notice 自身（occluded=false）；两条错误提示各恰好一条、不多不少，互不同坐标；两条文案与 web/src/i18n/locales/zh-CN.ts:424-425 逐字一致（50MB 与十种扩展名清单），且各自点名了对应的文件；投文件前节点数经清空确认归零，投后 +1，只建出 holiday-photo.png，被拒的 huge-render.png 与 meeting-notes.txt 均未建节点；悬浮工具条 0 条（该守卫经自证：选中时 1 条 1285x48、未选中时 0 条，能验出错误状态）'
+    visible_text: '已添加 1 个素材节点，可连接到生图或生视频节点 / meeting-notes.txt 的格式不受支持，请使用 JPG、PNG、WebP、MP4、MOV、AVI、MKV、MP3、WAV 或 FLAC / huge-render.png 超过 50MB，未添加到画布 / holiday-photo... 参考素材 / 清空画布 / 100%'
+    alt: 一次投三个文件之后的画布：顶部并排三条提示——绿色一条说已添加 1 个素材节点，两条红色分别点名 meeting-notes.txt 格式不受支持、huge-render.png 超过 50MB；画布上只站着那张合规的小图，被拒的两个文件都没变成节点
+    sha256: 1b1a8a35b7a50dce683e04c85415f2e9907c84c6edcd65f376ef204986ecb439

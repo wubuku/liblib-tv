@@ -95,14 +95,14 @@ RETRACTIONS: list[dict[str, str]] = [
         "wrong": "导出是唯一能带走项目的方式",
         "why": "画布 zip 没有导入功能，带不走项目（2026-10-01 三重取证：i18n 三条文案零引用、首页无文件选择器、喂给导入资产报格式错）",
         "fixed_in": "M47",
-        "allow_in": ["task-inventory.yml:257"],
+        "allow_in": ["task-inventory.yml:259"],
     },
     {
         "id": "R2",
         "wrong": "可以整体拷到另一台机器导入",
         "why": "同 R1，画布侧只实现了导出、从未实现读回",
         "fixed_in": "M47",
-        "allow_in": ["task-inventory.yml:257"],
+        "allow_in": ["task-inventory.yml:259"],
     },
     {
         "id": "R3",
@@ -133,7 +133,7 @@ RETRACTIONS: list[dict[str, str]] = [
         "wrong": "用首页的批量导出得到 zip",
         "why": "同 R1。M47 漏改了 undo-persistence 这一处，M52 才发现",
         "fixed_in": "M52",
-        "allow_in": ["task-inventory.yml:237"],
+        "allow_in": ["task-inventory.yml:239"],
     },
     {
         "id": "R8",
@@ -203,7 +203,7 @@ RETRACTIONS: list[dict[str, str]] = [
         "wrong": "三处按钮区",
         "why": "M132 补出**顶栏**这一处按钮区后，两页仍写「三处按钮区」，实际是**四处**（左侧 Dock / 节点悬浮工具条 / 画布视图控制 / 顶栏）。M139 回走时订正为四处并把顶栏列进去。写死数量而不列出处，下批加一处就会漏改（2026-10-02 M139）",
         "fixed_in": "M139",
-        "allow_in": ["task-inventory.yml:126", "SOURCE_OBSERVATIONS.md#三处按钮区的顺序固定"],
+        "allow_in": ["task-inventory.yml:128", "SOURCE_OBSERVATIONS.md#三处按钮区的顺序固定"],
     },
     {
         "id": "R27",
@@ -215,7 +215,7 @@ RETRACTIONS: list[dict[str, str]] = [
         # 读者正是靠这句引述才知道原文错在哪。改写措辞反而会毁掉这段说明的价值。
         # **豁免必须精确到「文件:行号」**，只写文件名等于把整页都开豁免，
         # 那和 M140 查出的「文档可以比源码写得细」正是反面：**豁免要窄到无法滥用。**
-        "allow_in": ["10-tasks/edit-nodes.md:36", "task-inventory.yml:131"],
+        "allow_in": ["10-tasks/edit-nodes.md:36", "task-inventory.yml:133"],
         # ↑ 第二处是 M154 补登记 M137 取证时写进账本的——账本同样会引述原错误说法，
         #   而 M153 已把账本纳入扫描范围。**扩了覆盖范围，就要补齐对应的豁免。**
     },
