@@ -333,6 +333,16 @@
    ],
    "refuted_in": "批次 96（SOURCE_OBSERVATIONS.md §4.16.4）",
    "reason": "按钮始终是 <button data-testid=\"canvas-zoom-percent\">，内部 0 个 input、0 个子元素、不是 contenteditable。那个 aria=\"Set zoom percentage\" 的 input[data-testid=\"canvas-zoom-percent-input\"] 是**菜单打开时另外渲染的元素**，只是叠在同一坐标(48×28@124,672)上。三个后果：菜单打开期间按钮 innerText 从 \"60%\" 变空串（读按钮文字当判据会失效）；菜单关闭时全页没有这个输入框；min/max/step 全空 ⇒ 8%–800% 钳制是程序做的"
+  },
+  {
+   "id": "voice-play-aria-flips-to-pause",
+   "label": "「试听按钮 aria 由 Play X 就地翻成 Pause X，可再次点击停止」（批次 32，audio-node-voice.md 试听一节）",
+   "patterns": [
+    "播放中 aria 变成 `Pause 生动解说`",
+    "点下后 \\*\\*0.9s 仍是 `Play`\\*\\*"
+   ],
+   "refuted_in": "批次 97（SOURCE_OBSERVATIONS.md §4.17.7，**判 VOID 而非推翻**）",
+   "reason": "本轮用 MutationObserver 逐条记 aria-label 变化（不漏快速翻转）再连采样 30 秒：observer 记到 0 条、轮询也只读到起手一次 Play，Pause 一次都没出现。与批次 32 矛盾。判不了是功能变了、这次没触发、还是环境不允许播放 ⇒ 记 VOID 不下结论。但这条已不能当可靠判据，正文已加「本轮未能复现」标注。留下的强判据：判断这类快速状态翻转要用 MutationObserver 而非轮询"
   }
  ]
 }
