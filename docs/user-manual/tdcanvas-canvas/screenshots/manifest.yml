@@ -24,6 +24,18 @@ screenshots:
     alt: 画布左侧的悬浮按钮条，从上到下只有一排没有任何文字标注的图标——加号、放大镜、文件夹、星形、时钟、上传箭头、调色板、垃圾桶和一把剪刀，最下面是指南针、眼睛、磁铁、靶心、一条显示 91% 的缩放滑杆和一个问号圆
     sha256: f5d98b05fca1cbfc244ead8764b25c695773af12869f822422d0478b3078f5ab
 
+  - file: screenshots/04-icon-reuse-same-screen.png
+    task_id: edit-nodes
+    step: 同时选中一个图片节点并打开右侧 Agent 面板，拍下整屏，用来对照三处按钮区的位置距离
+    route: '/canvas/:id'
+    viewport: 1600x950
+    locale: zh-CN
+    captured_at: '2026-10-02'
+    verified_locator: '同一屏内实测到成对出现的同款图标：scissors 在 Dock 的 x=32,y=618（清空画布）与工具条的 x=963,y=251（裁剪并生成新节点）相距 931 像素；upload 在 Dock 的 x=32,y=505（上传资产）与工具条的 x=847,y=251（替换图片）相距 815 像素；trash2 在 Dock 的 x=32,y=573（删除选中）与工具条的删除按钮；message-square 在 Agent 面板的 x=1322,y=16（对话）与工具条的编辑按钮。左侧 Dock 为常驻竖列、节点工具条为跟随节点的横条、Agent 面板为右侧 441 宽的固定列，三者水平方向相距甚远'
+    visible_text: '信息 删除 存资产 下载 编辑 复制提示词 反推提示词 替换图片 裁剪 切图 放大 连接 TDCanvas Agent 91%'
+    alt: 画布整屏，左侧是一条常驻的竖排图标按钮条，选中的图片节点上方浮出一条横排工具条，右侧是打开着的 Agent 面板，三处都能看到成对出现的相同图标，但彼此相距很远
+    sha256: 3698b7a17f40ec2bc6921966810e6ee63589bfbf967ff50d107e2c6e7d1f0d73
+
   - file: screenshots/01-create-canvas-project-empty-home.png
     task_id: create-canvas-project
     step: 打开 /canvas 首页空态（hero + 新建画布按钮 + 最近画布空区）
