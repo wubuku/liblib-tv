@@ -231,6 +231,45 @@ AUDIT_JS = """(overlays) => {
     }
     return false;
   };
+  // Batch 643: `isClipped` answers "is this control outside SOME clipping
+  // ancestor".  That is not the same question as "which box governs this
+  // control's visibility", so walk the same chain again and stop at the FIRST
+  // ancestor that actually clips — the scroller whose scroll offset decides
+  // whether the control can be seen at all.
+  //
+  // This matters because `clipped` is read downstream as "the user can scroll to
+  // it", and nothing ever tested that premise: the scroller could be
+  // `overflow: hidden` with no overflow extent, in which case scrolling is not a
+  // remedy at all.  Whether it can actually scroll is now a measurement.
+  const innermostClipper = (el) => {
+    const b = el.getBoundingClientRect();
+    let a = el.parentElement;
+    while (a && a !== document.body) {
+      const cstyle = getComputedStyle(a);
+      if (/(auto|scroll|hidden|clip)/.test(cstyle.overflowX + cstyle.overflowY)) {
+        const r = a.getBoundingClientRect();
+        if (r.width > 0 && r.height > 0
+            && !(b.left >= r.left - 0.5 && b.right <= r.right + 0.5
+                 && b.top >= r.top - 0.5 && b.bottom <= r.bottom + 0.5)) {
+          return a;
+        }
+      }
+      a = a.parentElement;
+    }
+    return null;
+  };
+  // Batch 643: a surface name, read off the DOM as the nearest `data-director-*`
+  // ancestor.  Derived, never typed — a hand-written list of surfaces would go
+  // stale the moment the desk grows one, which is exactly how 628's name-based
+  // exemption had to be re-scoped by 629.
+  const surfaceOf = (n) => {
+    for (let a = n; a && a !== document.body; a = a.parentElement) {
+      const k = Object.keys(a.dataset || {})
+        .find((d) => d.indexOf('director') === 0);
+      if (k) return k;
+    }
+    return null;
+  };
   const items = [];
   const scrims = [];
   for (const el of document.querySelectorAll(SEL)) {
@@ -261,6 +300,53 @@ AUDIT_JS = """(overlays) => {
     const own = !!(hit && (hit === el || el.contains(hit) || hit.contains(el)));
     const panel = own ? null : covering(el, hit);
     const clipped = !own && !panel && isClipped(el);
+    // Batch 643: the JOINT condition.  `clipped` and "covered" are two
+    // independent facts about one control:
+    //   clipped — it sits outside the client rect of one of its OWN scrolling
+    //             or clipping ancestors;
+    //   covered — something else is painted on top of it at its centre.
+    // The criterion used the first as a VETO over the second: `clipped` is
+    // gated on `!own && !panel`, and `!clipped` then guards `timelineOverlay`,
+    // `viewportSqueeze` and `unexplained` alike.  So a control that is BOTH
+    // scrolled out of its own row AND painted over by a different surface was
+    // filed under `clipped` and appeared in NO coverage bucket at all.  Batch
+    // 640 could not see it (its search required the centre to be clear) and
+    // batch 642 could only report it because the new `roundControls` list
+    // happened to carry it — neither was looking for this state.
+    //
+    // Purely additive: `clipped` and every verdict built on it are untouched,
+    // and batch 643 proves that mechanically against the committed audits.
+    //
+    // `hit !== null` is load-bearing and the first version of this line got it
+    // wrong.  `!own` is ALSO true for every control that is simply off-window,
+    // because the centre probe is skipped there and `hit` stays null — nothing
+    // is covering such a control at all.  Omitting the test made the joint
+    // bucket 363 items wide instead of 14, i.e. it counted "scrolled away" as
+    // "painted over".  The two halves must each be present: something really
+    // took the hit, AND an ancestor of the victim's own really clips it.
+    const clipRaw = isClipped(el);
+    const bothCoveredAndClipped = !own && hit !== null && !panel && clipRaw;
+    const clipEl = bothCoveredAndClipped ? innermostClipper(el) : null;
+    const clipStyle = clipEl ? getComputedStyle(clipEl) : null;
+    const clipperCanScroll = !!(clipStyle && (((clipStyle.overflowX === 'auto'
+        || clipStyle.overflowX === 'scroll')
+        && clipEl.scrollWidth > clipEl.clientWidth + 0.5)
+      || ((clipStyle.overflowY === 'auto' || clipStyle.overflowY === 'scroll')
+        && clipEl.scrollHeight > clipEl.clientHeight + 0.5)));
+    // `covererInClipper` is the load-bearing new fact.  `clipped` is read as
+    // "scroll the row and the control comes back", but that remedy only works
+    // if whatever is doing the covering moves WITH the scroller.  Measured per
+    // control, never assumed.
+    const covererInClipper = !!(clipEl && hit && clipEl.contains(hit));
+    const covererSurface = !own && hit ? surfaceOf(hit) : null;
+    const victimSurface = bothCoveredAndClipped ? surfaceOf(el) : null;
+    const covererSurfaceBox = (covererSurface && hit)
+      ? (function () { for (let a = hit; a && a !== document.body;
+                            a = a.parentElement) {
+          if (Object.keys(a.dataset || {})
+              .some((d) => d.indexOf('director') === 0)) { return at(a); } }
+        return null; })()
+      : null;
     // Batch 628: a *structural* explanation for the one cover relationship that
     // is a source fact rather than a clone bug.  Batch 613 measured, on the
     // source at 1920x1150, that the left column is one `aside.absolute
@@ -379,6 +465,13 @@ AUDIT_JS = """(overlays) => {
         ? "rounded control: the centre is the only valid sample; a lattice "
           + "probe reports its own corners as blocked by design (batch 641)"
         : null,
+      bothCoveredAndClipped: bothCoveredAndClipped, clipRaw: clipRaw,
+      clipperCanScroll: clipperCanScroll, covererInClipper: covererInClipper,
+      covererSurface: covererSurface, covererSurfaceBox: covererSurfaceBox,
+      victimSurface: victimSurface,
+      clipperKey: clipEl ? (Object.keys(clipEl.dataset).slice(0, 3).join(',')
+        || clipEl.getAttribute('aria-label')
+        || clipEl.tagName.toLowerCase()) : null,
       hitLabel: hit ? label(hit) : null,
       hitTag: hit ? hit.tagName.toLowerCase() : null,
       data: Object.keys(el.dataset).slice(0, 3).join(',')});
@@ -389,6 +482,16 @@ AUDIT_JS = """(overlays) => {
   for (const c of coveredByPanel) byPanel.set(c.panel, (byPanel.get(c.panel) || 0) + 1);
   const unexplained = failed.filter((i) => !i.clipped && !i.panel
     && !i.timelineOverlay && !i.viewportSqueeze);
+  // Batch 643: the joint bucket, and which surface did the covering in each
+  // case.  Built from the per-item flag rather than re-testing anything, so it
+  // cannot disagree with `items[].bothCoveredAndClipped`.
+  const joint = failed.filter((i) => i.bothCoveredAndClipped);
+  const jointBySurface = new Map();
+  for (const j of joint) {
+    const k = j.covererSurface || '(none)';
+    jointBySurface.set(k, (jointBySurface.get(k) || 0) + 1);
+  }
+  const jointSurfaces = Array.from(jointBySurface.entries()).sort();
   return {vw: innerWidth, vh: innerHeight, total: items.length,
           scrims,
           // Batch 642: the round controls, so a later batch can enumerate them
@@ -407,6 +510,19 @@ AUDIT_JS = """(overlays) => {
           covered: unexplained,
           coveredByTimelineOverlay: failed.filter((i) => i.timelineOverlay),
           coveredByViewportSqueeze: failed.filter((i) => i.viewportSqueeze),
+          // Batch 643: the state that used to have no home at all — covered AND
+          // clipped at the same time.  It is NOT in `covered` (the `clipped`
+          // veto excludes it) and NOT in either exemption family (the same veto
+          // excludes it from those too), so it used to be accounted for
+          // nowhere.  Recorded as its own bucket rather than folded into an
+          // existing one, because batch 643 showed that neither fold-in is
+          // right: the coverer is outside the victim's own scroller in every
+          // measured case, and 629's closed form fires on all of them
+          // regardless of which surface actually did the covering.
+          bothCoveredAndClipped: joint,
+          // Which surface did the covering, counted.  Read off the DOM, never
+          // typed, so a new surface cannot slip past this histogram.
+          jointCovererSurfaces: jointSurfaces,
           // Batch 627: the geometric-boundary half.  `covered` already counts an
           // off-viewport control as a defect once `isClipped` says nothing can
           // scroll it into view; these buckets make the split legible instead
