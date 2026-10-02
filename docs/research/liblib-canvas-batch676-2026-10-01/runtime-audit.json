@@ -1,0 +1,1132 @@
+{
+ "verifier": {
+  "cells": [
+   "1280x720",
+   "1280x1150",
+   "1366x1150",
+   "1440x1150",
+   "1600x1150",
+   "1920x1150"
+  ],
+  "injectCells": [
+   "1280x1150",
+   "1920x1150"
+  ],
+  "toggleRows": {
+   "1280x720": [
+    "director-character-lead",
+    "director-camera-main"
+   ],
+   "1280x1150": [
+    "director-character-lead",
+    "director-camera-main"
+   ],
+   "1366x1150": [
+    "director-character-lead",
+    "director-camera-main"
+   ],
+   "1440x1150": [
+    "director-character-lead",
+    "director-camera-main"
+   ],
+   "1600x1150": [
+    "director-character-lead",
+    "director-camera-main"
+   ],
+   "1920x1150": [
+    "director-character-lead",
+    "director-camera-main"
+   ]
+  },
+  "toggleBoxes": {
+   "1280x720": [
+    [
+     8,
+     617,
+     20,
+     20
+    ],
+    [
+     8,
+     681,
+     20,
+     20
+    ]
+   ],
+   "1280x1150": [
+    [
+     8,
+     1047,
+     20,
+     20
+    ],
+    [
+     8,
+     1111,
+     20,
+     20
+    ]
+   ],
+   "1366x1150": [
+    [
+     8,
+     1047,
+     20,
+     20
+    ],
+    [
+     8,
+     1111,
+     20,
+     20
+    ]
+   ],
+   "1440x1150": [
+    [
+     8,
+     1047,
+     20,
+     20
+    ],
+    [
+     8,
+     1111,
+     20,
+     20
+    ]
+   ],
+   "1600x1150": [
+    [
+     8,
+     1047,
+     20,
+     20
+    ],
+    [
+     8,
+     1111,
+     20,
+     20
+    ]
+   ],
+   "1920x1150": [
+    [
+     8,
+     1047,
+     20,
+     20
+    ],
+    [
+     8,
+     1111,
+     20,
+     20
+    ]
+   ]
+  },
+  "toggleIndicesEverSeenAsForeignHitter": [
+   1
+  ],
+  "perCell": {
+   "1280x720": {
+    "toggleForeignHits": [
+     {
+      "control": "帮助",
+      "label": "收起属性",
+      "row": "director-camera-main",
+      "index": 1
+     }
+    ],
+    "helpVerdict": "收起属性"
+   },
+   "1280x1150": {
+    "toggleForeignHits": [
+     {
+      "control": "帮助",
+      "label": "收起属性",
+      "row": "director-camera-main",
+      "index": 1
+     }
+    ],
+    "helpVerdict": "收起属性"
+   },
+   "1366x1150": {
+    "toggleForeignHits": [
+     {
+      "control": "帮助",
+      "label": "收起属性",
+      "row": "director-camera-main",
+      "index": 1
+     }
+    ],
+    "helpVerdict": "收起属性"
+   },
+   "1440x1150": {
+    "toggleForeignHits": [
+     {
+      "control": "帮助",
+      "label": "收起属性",
+      "row": "director-camera-main",
+      "index": 1
+     }
+    ],
+    "helpVerdict": "收起属性"
+   },
+   "1600x1150": {
+    "toggleForeignHits": [
+     {
+      "control": "帮助",
+      "label": "收起属性",
+      "row": "director-camera-main",
+      "index": 1
+     }
+    ],
+    "helpVerdict": "收起属性"
+   },
+   "1920x1150": {
+    "toggleForeignHits": [
+     {
+      "control": "帮助",
+      "label": "收起属性",
+      "row": "director-camera-main",
+      "index": 1
+     }
+    ],
+    "helpVerdict": "收起属性"
+   }
+  },
+  "injection": {
+   "1280x1150": {
+    "baseline": {
+     "helpVerdict": "收起属性",
+     "selfHits": [
+      9,
+      9
+     ]
+    },
+    "unseen": {
+     "row": "director-character-lead",
+     "applied": true,
+     "helpVerdict": "收起属性",
+     "selfHits": [
+      0,
+      9
+     ]
+    },
+    "seen": {
+     "row": "director-camera-main",
+     "applied": true,
+     "helpVerdict": "机位01 · 对峙中景绘制轨迹",
+     "selfHits": [
+      9,
+      0
+     ]
+    }
+   },
+   "1920x1150": {
+    "baseline": {
+     "helpVerdict": "收起属性",
+     "selfHits": [
+      9,
+      9
+     ]
+    },
+    "unseen": {
+     "row": "director-character-lead",
+     "applied": true,
+     "helpVerdict": "收起属性",
+     "selfHits": [
+      0,
+      9
+     ]
+    },
+    "seen": {
+     "row": "director-camera-main",
+     "applied": true,
+     "helpVerdict": "机位01 · 对峙中景绘制轨迹",
+     "selfHits": [
+      9,
+      0
+     ]
+    }
+   }
+  },
+  "judged": 27
+ },
+ "baseline": {
+  "1280x720": {
+   "vw": 1280,
+   "vh": 720,
+   "toggles": [
+    {
+     "box": [
+      8,
+      617,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      681,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "selfHits": [
+    9,
+    9
+   ],
+   "foreign": [
+    {
+     "control": "帮助",
+     "hitLabel": "收起属性",
+     "hitTag": "button",
+     "hitRow": "director-camera-main",
+     "toggleIndex": 1
+    },
+    {
+     "control": "上传图片",
+     "hitLabel": "位置xyz旋转xyz缩放xyz统一缩放1.0颜色",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    },
+    {
+     "control": "描述想搭建的场景",
+     "hitLabel": "位置xyz旋转xyz缩放xyz统一缩放1.0颜色",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    },
+    {
+     "control": "发送",
+     "hitLabel": "位置xyz旋转xyz缩放xyz统一缩放1.0颜色",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    },
+    {
+     "control": "颜色 hex 值",
+     "hitLabel": "导出视频到画布",
+     "hitTag": "button",
+     "hitRow": "-",
+     "toggleIndex": -1
+    },
+    {
+     "control": "颜色",
+     "hitLabel": "导出视频到画布",
+     "hitTag": "button",
+     "hitRow": "-",
+     "toggleIndex": -1
+    }
+   ],
+   "helpVerdict": "收起属性",
+   "helpCentre": [
+    24,
+    696
+   ]
+  },
+  "1280x1150": {
+   "vw": 1280,
+   "vh": 1150,
+   "toggles": [
+    {
+     "box": [
+      8,
+      1047,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "selfHits": [
+    9,
+    9
+   ],
+   "foreign": [
+    {
+     "control": "帮助",
+     "hitLabel": "收起属性",
+     "hitTag": "button",
+     "hitRow": "director-camera-main",
+     "toggleIndex": 1
+    },
+    {
+     "control": "上传图片",
+     "hitLabel": "名称可见未锁定位置xyz旋转xyz缩放xyz统一",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    },
+    {
+     "control": "描述想搭建的场景",
+     "hitLabel": "名称可见未锁定位置xyz旋转xyz缩放xyz统一",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    },
+    {
+     "control": "发送",
+     "hitLabel": "名称可见未锁定位置xyz旋转xyz缩放xyz统一",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    }
+   ],
+   "helpVerdict": "收起属性",
+   "helpCentre": [
+    24,
+    1126
+   ]
+  },
+  "1366x1150": {
+   "vw": 1366,
+   "vh": 1150,
+   "toggles": [
+    {
+     "box": [
+      8,
+      1047,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "selfHits": [
+    9,
+    9
+   ],
+   "foreign": [
+    {
+     "control": "帮助",
+     "hitLabel": "收起属性",
+     "hitTag": "button",
+     "hitRow": "director-camera-main",
+     "toggleIndex": 1
+    },
+    {
+     "control": "描述想搭建的场景",
+     "hitLabel": "名称可见未锁定位置xyz旋转xyz缩放xyz统一",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    },
+    {
+     "control": "发送",
+     "hitLabel": "名称可见未锁定位置xyz旋转xyz缩放xyz统一",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    }
+   ],
+   "helpVerdict": "收起属性",
+   "helpCentre": [
+    24,
+    1126
+   ]
+  },
+  "1440x1150": {
+   "vw": 1440,
+   "vh": 1150,
+   "toggles": [
+    {
+     "box": [
+      8,
+      1047,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "selfHits": [
+    9,
+    9
+   ],
+   "foreign": [
+    {
+     "control": "帮助",
+     "hitLabel": "收起属性",
+     "hitTag": "button",
+     "hitRow": "director-camera-main",
+     "toggleIndex": 1
+    },
+    {
+     "control": "发送",
+     "hitLabel": "名称可见未锁定位置xyz旋转xyz缩放xyz统一",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    }
+   ],
+   "helpVerdict": "收起属性",
+   "helpCentre": [
+    24,
+    1126
+   ]
+  },
+  "1600x1150": {
+   "vw": 1600,
+   "vh": 1150,
+   "toggles": [
+    {
+     "box": [
+      8,
+      1047,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "selfHits": [
+    9,
+    9
+   ],
+   "foreign": [
+    {
+     "control": "帮助",
+     "hitLabel": "收起属性",
+     "hitTag": "button",
+     "hitRow": "director-camera-main",
+     "toggleIndex": 1
+    }
+   ],
+   "helpVerdict": "收起属性",
+   "helpCentre": [
+    24,
+    1126
+   ]
+  },
+  "1920x1150": {
+   "vw": 1920,
+   "vh": 1150,
+   "toggles": [
+    {
+     "box": [
+      8,
+      1047,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "selfHits": [
+    9,
+    9
+   ],
+   "foreign": [
+    {
+     "control": "帮助",
+     "hitLabel": "收起属性",
+     "hitTag": "button",
+     "hitRow": "director-camera-main",
+     "toggleIndex": 1
+    }
+   ],
+   "helpVerdict": "收起属性",
+   "helpCentre": [
+    24,
+    1126
+   ]
+  }
+ },
+ "injection": {
+  "1280x1150|director-character-lead": {
+   "injectedRow": "director-character-lead",
+   "applied": true,
+   "vw": 1280,
+   "vh": 1150,
+   "toggles": [
+    {
+     "box": [
+      8,
+      1047,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "selfHits": [
+    0,
+    9
+   ],
+   "foreign": [
+    {
+     "control": "帮助",
+     "hitLabel": "收起属性",
+     "hitTag": "button",
+     "hitRow": "director-camera-main",
+     "toggleIndex": 1
+    },
+    {
+     "control": "上传图片",
+     "hitLabel": "名称可见未锁定位置xyz旋转xyz缩放xyz统一",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    },
+    {
+     "control": "描述想搭建的场景",
+     "hitLabel": "名称可见未锁定位置xyz旋转xyz缩放xyz统一",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    },
+    {
+     "control": "发送",
+     "hitLabel": "名称可见未锁定位置xyz旋转xyz缩放xyz统一",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    }
+   ],
+   "helpVerdict": "收起属性",
+   "helpCentre": [
+    24,
+    1126
+   ]
+  },
+  "1280x1150|director-camera-main": {
+   "injectedRow": "director-camera-main",
+   "applied": true,
+   "vw": 1280,
+   "vh": 1150,
+   "toggles": [
+    {
+     "box": [
+      8,
+      1047,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "selfHits": [
+    9,
+    0
+   ],
+   "foreign": [
+    {
+     "control": "帮助",
+     "hitLabel": "机位01 · 对峙中景绘制轨迹",
+     "hitTag": "div",
+     "hitRow": "director-camera-main",
+     "toggleIndex": -1
+    },
+    {
+     "control": "上传图片",
+     "hitLabel": "名称可见未锁定位置xyz旋转xyz缩放xyz统一",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    },
+    {
+     "control": "描述想搭建的场景",
+     "hitLabel": "名称可见未锁定位置xyz旋转xyz缩放xyz统一",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    },
+    {
+     "control": "发送",
+     "hitLabel": "名称可见未锁定位置xyz旋转xyz缩放xyz统一",
+     "hitTag": "div",
+     "hitRow": "-",
+     "toggleIndex": -1
+    }
+   ],
+   "helpVerdict": "机位01 · 对峙中景绘制轨迹",
+   "helpCentre": [
+    24,
+    1126
+   ]
+  },
+  "1920x1150|director-character-lead": {
+   "injectedRow": "director-character-lead",
+   "applied": true,
+   "vw": 1920,
+   "vh": 1150,
+   "toggles": [
+    {
+     "box": [
+      8,
+      1047,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "selfHits": [
+    0,
+    9
+   ],
+   "foreign": [
+    {
+     "control": "帮助",
+     "hitLabel": "收起属性",
+     "hitTag": "button",
+     "hitRow": "director-camera-main",
+     "toggleIndex": 1
+    }
+   ],
+   "helpVerdict": "收起属性",
+   "helpCentre": [
+    24,
+    1126
+   ]
+  },
+  "1920x1150|director-camera-main": {
+   "injectedRow": "director-camera-main",
+   "applied": true,
+   "vw": 1920,
+   "vh": 1150,
+   "toggles": [
+    {
+     "box": [
+      8,
+      1047,
+      20,
+      20
+     ],
+     "row": "director-character-lead"
+    },
+    {
+     "box": [
+      8,
+      1111,
+      20,
+      20
+     ],
+     "row": "director-camera-main"
+    }
+   ],
+   "selfHits": [
+    9,
+    0
+   ],
+   "foreign": [
+    {
+     "control": "帮助",
+     "hitLabel": "机位01 · 对峙中景绘制轨迹",
+     "hitTag": "div",
+     "hitRow": "director-camera-main",
+     "toggleIndex": -1
+    }
+   ],
+   "helpVerdict": "机位01 · 对峙中景绘制轨迹",
+   "helpCentre": [
+    24,
+    1126
+   ]
+  }
+ },
+ "checks": {
+  "two-toggles-share-the-name-same-column-same-size-and-are-bottom-anchored": {
+   "ok": true,
+   "detail": {
+    "rows": {
+     "1280x720": [
+      "director-character-lead",
+      "director-camera-main"
+     ],
+     "1280x1150": [
+      "director-character-lead",
+      "director-camera-main"
+     ],
+     "1366x1150": [
+      "director-character-lead",
+      "director-camera-main"
+     ],
+     "1440x1150": [
+      "director-character-lead",
+      "director-camera-main"
+     ],
+     "1600x1150": [
+      "director-character-lead",
+      "director-camera-main"
+     ],
+     "1920x1150": [
+      "director-character-lead",
+      "director-camera-main"
+     ]
+    },
+    "boxes": {
+     "1280x720": [
+      [
+       8,
+       617,
+       20,
+       20
+      ],
+      [
+       8,
+       681,
+       20,
+       20
+      ]
+     ],
+     "1280x1150": [
+      [
+       8,
+       1047,
+       20,
+       20
+      ],
+      [
+       8,
+       1111,
+       20,
+       20
+      ]
+     ],
+     "1366x1150": [
+      [
+       8,
+       1047,
+       20,
+       20
+      ],
+      [
+       8,
+       1111,
+       20,
+       20
+      ]
+     ],
+     "1440x1150": [
+      [
+       8,
+       1047,
+       20,
+       20
+      ],
+      [
+       8,
+       1111,
+       20,
+       20
+      ]
+     ],
+     "1600x1150": [
+      [
+       8,
+       1047,
+       20,
+       20
+      ],
+      [
+       8,
+       1111,
+       20,
+       20
+      ]
+     ],
+     "1920x1150": [
+      [
+       8,
+       1047,
+       20,
+       20
+      ],
+      [
+       8,
+       1111,
+       20,
+       20
+      ]
+     ]
+    },
+    "distinctXWidthHeight": [
+     [
+      8,
+      20,
+      20
+     ]
+    ],
+    "closes662": "662 recorded 收起属性 as sitting at H−39..H−19. The director-camera-main button is exactly that one, in all six cells; the character-lead one is at H−103..H−83."
+   },
+   "note": "only y moves with viewport height — same x=8, same 20x20, bottom-anchored, which is why the 帮助 probe always lands on one of them"
+  },
+  "only-one-of-the-two-ever-appears-as-a-foreign-hitter-in-667s-own-six-cells": {
+   "ok": true,
+   "detail": {
+    "toggleIndicesEverSeen": [
+     1
+    ],
+    "perCell": {
+     "1280x720": {
+      "toggleForeignHits": [
+       {
+        "control": "帮助",
+        "label": "收起属性",
+        "row": "director-camera-main",
+        "index": 1
+       }
+      ],
+      "helpVerdict": "收起属性"
+     },
+     "1280x1150": {
+      "toggleForeignHits": [
+       {
+        "control": "帮助",
+        "label": "收起属性",
+        "row": "director-camera-main",
+        "index": 1
+       }
+      ],
+      "helpVerdict": "收起属性"
+     },
+     "1366x1150": {
+      "toggleForeignHits": [
+       {
+        "control": "帮助",
+        "label": "收起属性",
+        "row": "director-camera-main",
+        "index": 1
+       }
+      ],
+      "helpVerdict": "收起属性"
+     },
+     "1440x1150": {
+      "toggleForeignHits": [
+       {
+        "control": "帮助",
+        "label": "收起属性",
+        "row": "director-camera-main",
+        "index": 1
+       }
+      ],
+      "helpVerdict": "收起属性"
+     },
+     "1600x1150": {
+      "toggleForeignHits": [
+       {
+        "control": "帮助",
+        "label": "收起属性",
+        "row": "director-camera-main",
+        "index": 1
+       }
+      ],
+      "helpVerdict": "收起属性"
+     },
+     "1920x1150": {
+      "toggleForeignHits": [
+       {
+        "control": "帮助",
+        "label": "收起属性",
+        "row": "director-camera-main",
+        "index": 1
+       }
+      ],
+      "helpVerdict": "收起属性"
+     }
+    },
+    "reading": "in all six cells the 收起属性 hitter is the data-director-timeline-object-row=director-camera-main button; the character-lead button never appears"
+   },
+   "note": "673's collision is a LATENT risk in these six cells, not a live one"
+  },
+  "the-never-seen-toggle-is-not-broken-it-is-fully-clickable": {
+   "ok": true,
+   "detail": {
+    "selfHitsPerCell": {
+     "1280x720": [
+      9,
+      9
+     ],
+     "1280x1150": [
+      9,
+      9
+     ],
+     "1366x1150": [
+      9,
+      9
+     ],
+     "1440x1150": [
+      9,
+      9
+     ],
+     "1600x1150": [
+      9,
+      9
+     ],
+     "1920x1150": [
+      9,
+      9
+     ]
+    },
+    "probes": "3x3 inside each 20x20 button's own box"
+   },
+   "note": "do not read 'never occludes anyone' as 'is broken' — it is 9/9"
+  },
+  "breaking-the-never-seen-toggle-leaves-667s-name-based-verdict-unchanged": {
+   "ok": true,
+   "detail": {
+    "1280x1150": {
+     "baseline": "收起属性",
+     "injected": "收起属性",
+     "injectedRow": "director-character-lead",
+     "selfHitsBefore": [
+      9,
+      9
+     ],
+     "selfHitsAfter": [
+      0,
+      9
+     ]
+    },
+    "1920x1150": {
+     "baseline": "收起属性",
+     "injected": "收起属性",
+     "injectedRow": "director-character-lead",
+     "selfHitsBefore": [
+      9,
+      9
+     ],
+     "selfHitsAfter": [
+      0,
+      9
+     ]
+    }
+   },
+   "note": "the character-lead button can be made unclickable and 667's assertion still holds — it never looks at that element"
+  },
+  "breaking-the-seen-toggle-does-change-it-so-the-previous-check-is-not-vacuous": {
+   "ok": true,
+   "detail": {
+    "1280x1150": {
+     "baseline": "收起属性",
+     "injected": "机位01 · 对峙中景绘制轨迹",
+     "injectedRow": "director-camera-main"
+    },
+    "1920x1150": {
+     "baseline": "收起属性",
+     "injected": "机位01 · 对峙中景绘制轨迹",
+     "injectedRow": "director-camera-main"
+    }
+   },
+   "note": "positive control: without it, check 4 could just mean 'the injection did not work'"
+  },
+  "both-injections-are-not-no-ops-on-the-injected-button-itself": {
+   "ok": true,
+   "detail": {
+    "1280x1150": {
+     "unseen": {
+      "row": "director-character-lead",
+      "selfHits": [
+       0,
+       9
+      ]
+     },
+     "seen": {
+      "row": "director-camera-main",
+      "selfHits": [
+       9,
+       0
+      ]
+     }
+    },
+    "1920x1150": {
+     "unseen": {
+      "row": "director-character-lead",
+      "selfHits": [
+       0,
+       9
+      ]
+     },
+     "seen": {
+      "row": "director-camera-main",
+      "selfHits": [
+       9,
+       0
+      ]
+     }
+    }
+   },
+   "note": "the injected button loses all 9 of its own hits in both cases — so the injection always bit; it was 667's probe that never looked"
+  }
+ }
+}
