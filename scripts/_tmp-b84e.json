@@ -1,0 +1,50 @@
+{
+ "at": "2026-10-02T03:59:51.847Z",
+ "enter": {
+  "status": "20 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+  "sel": "1",
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员",
+  "drawer": "200x348@1068,360"
+ },
+ "afterExpand": {
+  "drawer": "400x696@868,12",
+  "pm": {
+   "text": "音频 6||",
+   "html": "<p><span class=\"react-renderer node-composerChip inline-flex items-center align-top [&amp;:has([data-chip-layout=text])]:inline [&amp;:has([data-chip-layout=text])]:align-baseline [&amp;:has([data-chi",
+   "box": "357x84@890,554"
+  }
+ },
+ "probeAt910_574": {
+  "tag": "SPAN",
+  "cls": "select-text.rounded-dreamina-control.font-dreamina-cn",
+  "box": "69x24@890,554",
+  "t": "音频 6",
+  "ce": null,
+  "testid": null
+ },
+ "afterCollapse": {
+  "drawer": "200x348@1068,360"
+ },
+ "deselect": {
+  "before": "1",
+  "at": {
+   "x": 210,
+   "y": 110,
+   "hit": "react-flow__pane"
+  },
+  "after": "0",
+  "focus": "DIV[rf__wrapper] aria=\"Canvas\""
+ },
+ "zoom": {
+  "ok": true,
+  "how": "already"
+ },
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "sel": "0",
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员",
+  "drawer": "200x348@1068,360"
+ }
+}

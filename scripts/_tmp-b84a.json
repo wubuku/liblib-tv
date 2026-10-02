@@ -1,0 +1,137 @@
+{
+ "at": "2026-10-02T03:48:50.984Z",
+ "zoom": {
+  "ok": true,
+  "how": "already"
+ },
+ "before": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%"
+ },
+ "launcher": {
+  "x": 1208,
+  "y": 690,
+  "box": "118x34@1149,673"
+ },
+ "expanded": {
+  "[data-testid=\"canvas-feature-sidecar\"]": {
+   "box": "400x696@868,12",
+   "withArea": 53,
+   "tag": "ASIDE",
+   "aria": "Agent",
+   "z": "40",
+   "pe": "auto",
+   "display": "flex"
+  },
+  "[data-testid=\"canvas-agent-panel\"]": {
+   "box": "398x694@869,13",
+   "withArea": 52,
+   "tag": "DIV",
+   "aria": null,
+   "z": "auto",
+   "pe": "auto",
+   "display": "flex"
+  },
+  "[data-testid=\"canvas-agent-session-composer\"]": {
+   "box": "390x164@873,539",
+   "withArea": 26,
+   "tag": "DIV",
+   "aria": null,
+   "z": "auto",
+   "pe": "auto",
+   "display": "flex"
+  },
+  "[data-testid=\"prompt-composer\"]": {
+   "box": "357x84@890,554",
+   "withArea": 6,
+   "tag": "DIV",
+   "aria": "说说你的想法或任务，上传参考、输入文字或",
+   "z": "auto",
+   "pe": "auto",
+   "display": "flex"
+  }
+ },
+ "counts": {
+  "sidecarUnique": 1,
+  "sidecarWithArea": 53,
+  "panelWithArea": 52,
+  "prefixTotal": 20,
+  "prefixWithArea": 20,
+  "wholePageWithArea": 846,
+  "pmInSidecar": true,
+  "pmAnywhere": 1,
+  "pmBox": "357x84@890,554",
+  "pmInNode": 0
+ },
+ "expandedFocus": {
+  "safe": false,
+  "tag": "ASIDE",
+  "testid": "canvas-feature-sidecar",
+  "where": "ASIDE[canvas-feature-sidecar] aria=\"Agent\"",
+  "reason": "焦点在浮层容器（ASIDE[canvas-feature-sidecar] aria=\"Agent\"）——按键可能被浮层吞掉，先 Esc 关闭"
+ },
+ "pmPoint": {
+  "x": 910,
+  "y": 574
+ },
+ "preShortcuts": {
+  "focus": "DIV aria=\"说说你的想法或任务，上传参考、输入文字或\"",
+  "safe": false,
+  "sel": "0"
+ },
+ "collapseBtn": {
+  "x": 1237,
+  "y": 41,
+  "aria": "收起"
+ },
+ "collapsed": {
+  "sidecar": {
+   "box": "200x348@1068,360",
+   "withArea": 0,
+   "tag": "ASIDE",
+   "aria": "Agent",
+   "z": "40",
+   "pe": "none",
+   "display": "flex"
+  },
+  "panel": {
+   "err": "未找到 [data-testid=\"canvas-agent-panel\"]"
+  },
+  "counts": {
+   "sidecarWithArea": 0,
+   "prefixTotal": 1,
+   "prefixWithArea": 1,
+   "pmAnywhere": 0
+  },
+  "focus": {
+   "safe": true,
+   "tag": "BUTTON",
+   "testid": "canvas-sidecar-launcher",
+   "where": "BUTTON[canvas-sidecar-launcher] aria=\"与 AI 对话\"",
+   "reason": "焦点在画布（BUTTON[canvas-sidecar-launcher] aria=\"与 AI 对话\"）——可以安全按字母键",
+   "openInputs": 0
+  }
+ },
+ "afterSlashOpen": {
+  "focus": {
+   "safe": false,
+   "tag": "ASIDE",
+   "testid": "canvas-feature-sidecar",
+   "where": "ASIDE[canvas-feature-sidecar] aria=\"Agent\"",
+   "reason": "焦点在浮层容器（ASIDE[canvas-feature-sidecar] aria=\"Agent\"）——按键可能被浮层吞掉，先 Esc 关闭"
+  },
+  "sidecar": {
+   "box": "400x696@868,12",
+   "withArea": 53,
+   "tag": "ASIDE",
+   "aria": "Agent",
+   "z": "40",
+   "pe": "auto",
+   "display": "flex"
+  }
+ },
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%"
+ }
+}

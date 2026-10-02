@@ -1,0 +1,152 @@
+{
+ "at": "2026-10-02T03:56:35.297Z",
+ "zoom": {
+  "ok": true,
+  "how": "already"
+ },
+ "grids": {
+  "A": {
+   "marquee": {
+    "from": "331,305",
+    "to": "583,557"
+   },
+   "before": {
+    "sel": "1",
+    "focusWhere": "DIV[rf__wrapper] aria=\"Canvas\"",
+    "focusTag": "DIV",
+    "focusTestid": "rf__wrapper",
+    "onCanvasPane": true,
+    "guardSafe": true,
+    "pm": null,
+    "drawer": "200x348@1068,360"
+   },
+   "toast": {
+    "box": "360x44@460,32",
+    "text": "此快捷键当前不可用"
+   },
+   "toastAfterMs": 300,
+   "sampledToMs": 2500,
+   "after": {
+    "sel": "1",
+    "focusWhere": "DIV[rf__wrapper] aria=\"Canvas\"",
+    "focusTag": "DIV",
+    "focusTestid": "rf__wrapper",
+    "onCanvasPane": true,
+    "guardSafe": true,
+    "pm": null,
+    "drawer": "200x348@1068,360"
+   },
+   "verdict": "画布收到 G，弹出提示"
+  },
+  "B": {
+   "clicked": {
+    "x": 910,
+    "y": 574
+   },
+   "before": {
+    "sel": "1",
+    "focusWhere": "DIV aria=\"说说你的想法或任务，上传参考、输入文字或\"",
+    "focusTag": "DIV",
+    "focusTestid": null,
+    "onCanvasPane": false,
+    "guardSafe": false,
+    "pm": "音频 6||",
+    "drawer": "400x696@868,12"
+   },
+   "toast": null,
+   "toastAfterMs": 2500,
+   "sampledToMs": 2500,
+   "after": {
+    "sel": "1",
+    "focusWhere": "DIV aria=\"说说你的想法或任务，上传参考、输入文字或\"",
+    "focusTag": "DIV",
+    "focusTestid": null,
+    "onCanvasPane": false,
+    "guardSafe": false,
+    "pm": "g",
+    "drawer": "400x696@868,12"
+   },
+   "verdict": "字母被输入框吃掉"
+  },
+  "C": {
+   "clicked": {
+    "x": 904,
+    "y": 226,
+    "t": "探索更多专业创作模式"
+   },
+   "before": {
+    "sel": "1",
+    "focusWhere": "ASIDE[canvas-feature-sidecar] aria=\"Agent\"",
+    "focusTag": "ASIDE",
+    "focusTestid": "canvas-feature-sidecar",
+    "onCanvasPane": true,
+    "guardSafe": false,
+    "pm": "g",
+    "drawer": "400x696@868,12"
+   },
+   "toast": null,
+   "toastAfterMs": 2500,
+   "sampledToMs": 2500,
+   "after": {
+    "sel": "1",
+    "focusWhere": "ASIDE[canvas-feature-sidecar] aria=\"Agent\"",
+    "focusTag": "ASIDE",
+    "focusTestid": "canvas-feature-sidecar",
+    "onCanvasPane": true,
+    "guardSafe": false,
+    "pm": "g",
+    "drawer": "400x696@868,12"
+   },
+   "verdict": "字母被输入框吃掉"
+  },
+  "D": {
+   "marquee": {
+    "from": "308,234",
+    "to": "560,486"
+   },
+   "before": {
+    "sel": "1",
+    "focusWhere": "DIV[rf__wrapper] aria=\"Canvas\"",
+    "focusTag": "DIV",
+    "focusTestid": "rf__wrapper",
+    "onCanvasPane": true,
+    "guardSafe": true,
+    "pm": null,
+    "drawer": "200x348@1068,360"
+   },
+   "toast": {
+    "box": "360x44@460,32",
+    "text": "此快捷键当前不可用"
+   },
+   "toastAfterMs": 300,
+   "sampledToMs": 2500,
+   "after": {
+    "sel": "1",
+    "focusWhere": "DIV[rf__wrapper] aria=\"Canvas\"",
+    "focusTag": "DIV",
+    "focusTestid": "rf__wrapper",
+    "onCanvasPane": true,
+    "guardSafe": true,
+    "pm": null,
+    "drawer": "200x348@1068,360"
+   },
+   "verdict": "画布收到 G，弹出提示"
+  }
+ },
+ "cleaned": "|",
+ "afterCollapse": {
+  "drawer": "200x348@1068,360",
+  "focus": "DIV[rf__wrapper] aria=\"Canvas\""
+ },
+ "zoomFinal": {
+  "ok": true,
+  "how": "already"
+ },
+ "end": {
+  "status": "20 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%",
+  "drawer": "200x348@1068,360",
+  "pm": null,
+  "sel": "1"
+ }
+}
