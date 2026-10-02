@@ -14,6 +14,22 @@
 早先的实现漏了 NFKD，且用 `isalnum()` 逐字判断，236 个标题里错判 29 个，
 锚点门禁长期给假通过——M41 才把它暴露出来。
 
+**第二次假通过（M140，同族复发）**：`collect_ids` 逐行匹配标题、**不识别代码围栏**，
+把 bash 代码块里的 `# 注释` 当成真标题收进 id 集合。手册现存 4 处这样的"假标题"
+（README.md 两处、PUBLISH.md 两处）。实测阳性对照：按本脚本算法算出的
+`#启动一个静态服务器-浏览器打开-http-localhost-4173` 写进链接后，本脚本报
+「58 个内部锚点链接全部有效」exit=0 **放行**，而产物里那行是 `<span>` 着色代码、
+**没有这个 id**——链接点不动。
+
+**两次都是同一个教训：门禁的假通过比门禁的报错更难发现。** 报错会逼你去查，
+假通过让你把一个坏链接当成已验证的结论写进手册。**所以每改一次判据，
+必须先问「它现在会不会假通过」，并用阳性对照实测，而不是只看退出码。**
+
+**另一条判据边界（M140 实测）**：源码层与产物层的锚点口径不一致，
+**源码层假通过时只有产物侧 `check-render.py` 能兜住**；但 `PUBLISH.md` 恰被
+`srcExclude` 排除，它那两处假标题**永远到不了产物侧，两层都漏**——这就是
+为什么根因必须在源码层修，不能指望下游兜。
+
 退出码 0 表示全部有效，1 表示存在坏锚点。
 """
 
@@ -48,7 +64,19 @@ def slugify(text: str) -> str:
     return text.lower()
 def collect_ids(markdown: Path) -> set[str]:
     ids: set[str] = set()
+    fenced = False
     for line in markdown.read_text(encoding="utf-8").splitlines():
+        # M140：**代码围栏必须识别**。此前这里逐行匹配标题、不看是不是在 ``` 里，
+        # 于是 bash 代码块里的 `# 注释` 被当成真标题收进 id 集合——而产物里那行是
+        # `<span>` 着色代码、**根本没有 id**。实测：按本脚本算法算出的 slug 写进
+        # 链接后，本脚本报「58 个内部锚点链接全部有效」exit=0 放行，**假通过**。
+        # 与 M41（漏 NFKD）是同族复发：门禁的假通过比门禁的报错更难发现。
+        # 缩进代码块（4 空格 / 制表符）同理不产生标题。
+        if line.lstrip().startswith("```"):
+            fenced = not fenced
+            continue
+        if fenced or line.startswith(("    ", "\t")):
+            continue
         match = HEADING_RE.match(line)
         if match:
             ids.add(slugify(match.group(2)))

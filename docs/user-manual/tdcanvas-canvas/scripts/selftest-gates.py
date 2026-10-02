@@ -536,6 +536,28 @@ def mutate_same_page_anchor(root: Path) -> None:
     )
 
 
+def mutate_fenced_pseudo_anchor(root: Path) -> None:
+    """锚点指向**代码块里的注释行**（M140 补的盲区）。
+
+    M140 实测：`collect_ids` 此前逐行匹配标题、**不识别代码围栏**，把 bash 代码块里
+    的 `# 注释` 当成真标题收进 id 集合。手册现存 4 处这样的"假标题"。按脚本自己的
+    算法算出其 slug 写进链接后，`check-anchors.py` 报「全部有效」exit=0 **假通过**，
+    而产物里那行是 `<span>` 着色代码、**没有这个 id**。
+
+    与 M41（漏 NFKD）同族：都是**假通过**而非报错，所以更难发现。`mutate_broken_anchor`
+    与 `mutate_same_page_anchor` 都指向真实标题，覆盖不到这个分支——需要一条
+    「指向**不存在**的标题、但该 slug 恰好由代码块注释生成」的链接。
+    """
+
+    path = root / "README.md"
+    fake = "启动一个静态服务器-浏览器打开-http-localhost-4173"
+    path.write_text(
+        path.read_text(encoding="utf-8")
+        + f"\n自检注入：[对照](README.md#{fake})\n",
+        encoding="utf-8",
+    )
+
+
 def mutate_vue_interpolation(root: Path) -> None:
     """正文里裸写 `{{count}}`，会被 Vue 当插值吞掉（M91）。
 
@@ -788,6 +810,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("md 链接指向不存在的文件", mutate_broken_md_link, "gate", "broken local link"),
     ("标题层级跳跃 H2→H4", mutate_heading_jump, "gate", "heading jumps"),
     ("锚点指向不存在的标题", mutate_broken_anchor, "anchor", "锚点不存在"),
+    ("锚点指向代码块里的注释行（假标题）", mutate_fenced_pseudo_anchor, "anchor", "锚点不存在"),
     ("孤儿任务页（未登记账本）", mutate_orphan_page, "structure", "孤儿页"),
     ("任务索引漏一条", mutate_index_drop_entry, "structure", "索引缺少"),
     ("侧边栏条目被改名", mutate_sidebar_rename, "structure", "侧边栏缺少"),
