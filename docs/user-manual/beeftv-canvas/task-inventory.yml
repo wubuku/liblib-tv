@@ -421,6 +421,8 @@ tasks:
     routes:
       - '/canvas'
     status: excluded
+    exclusion_reason: >-
+      唯一剩余的排除原因是付费边界：一次批改最多 9 次模型调用（ART_CRITIQUE_MAX_MODEL_CALLS=9），本手册不触发，故报告产出部分只有源码证据、没有运行时实证。**创建入口已不再是排除理由**（Batch 163 运行时实证：插件中心开启「AI 审美批改」后「添加节点」菜单即出现该项，点击可建出节点）——判为 excluded 而非 verified，是因为「能建出来」不等于「跑得出报告」。
     review_note: >-
       唯一剩余的排除原因是付费边界：一次批改最多 9 次模型调用（ART_CRITIQUE_MAX_MODEL_CALLS=9），
       本手册不触发，故报告产出部分只有源码证据、没有运行时实证。**创建入口已不再是排除理由**——

@@ -112,7 +112,7 @@ SELFTEST_COSTS = {
     "selftest-encoding.py": 0.4,    # Batch 183：闸 20，实测 0.42/0.39/0.42s
     "selftest-endpoints.py": 1,   # Batch 181：闸 3 改批量读后 43s → 1s
     "selftest-error-copy.py": 1.6,
-    "selftest-exclusions.py": 2, # Batch 181：闸 5 改批量读后 35.6s → 2s
+    "selftest-exclusions.py": 5,  # Batch 187：加理由完整性方向并加到 6 例后实测 4.3/4.8s
     "selftest-feature-flags.py": 0.4,
     "selftest-label-drift.py": 4,  # Batch 182：闸 6 改批量读后 105s → 4s
     "selftest-ledger-refs.py": 1.2,  # Batch 184：闸 21，实测 1.18/1.26/0.66s

@@ -145,6 +145,60 @@ def excluded_ids(root):
     return out
 
 
+def check_reasons(root):
+    """每条 excluded 都必须写 `exclusion_reason`（Batch 187 新增）。
+
+    **为什么这条必须存在**：覆盖完整性检查只核「每条 excluded 有没有被 COVERED / EXEMPT
+    认领」——**认领的是「有没有东西在看它」，不是「它的理由写没写」**。
+    于是一条 excluded 可以被完整地看守着、闸门全绿，**而账本里根本没有它的排除理由**。
+
+    **上线首跑就抓到真缺陷**：`art-critique` 的理由写在 **`review_note`** 里，
+    而**没有任何脚本读那个字段**（`exclusion_reason` 才是反验的锚点）。
+    它偏偏又是全 6 条里**理由变化最大**的一条——
+    `review_note` 里明写「**创建入口已不再是排除理由**」（Batch 163 运行时已证伪入口不存在），
+    **而按 `exclusion_reason` 读的人会以为这条根本没有理由。**
+
+    **判据刻意不判「理由写得好不好」**——那不可机械判定。只判：
+      · 字段存在；
+      · 去掉空白后非空；
+      · 长度 ≥ 12 字（短于这个的多半是写了个标题而不是理由）。
+    **报的时候把「它实际用了哪个字段」一并打出来**，因为本条缺陷的性质正是
+    「写在了别处」，只报「缺字段」会让人去新建一个字段而不是去找原来那个。
+    """
+    if yaml is None:
+        return ["未能读取 task-inventory.yml（缺 PyYAML），理由完整性本轮未核对"], True
+    path = os.path.join(root, "task-inventory.yml")
+    if not os.path.isfile(path):
+        return ["task-inventory.yml 不存在"], True
+    with open(path, encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+    items = data if isinstance(data, list) else (data or {}).get("tasks", data)
+    if isinstance(items, dict):
+        items = list(items.values())
+
+    problems = []
+    for item in items or []:
+        if not isinstance(item, dict):
+            continue
+        if str(item.get("status", "")) != "excluded":
+            continue
+        tid = item.get("id") or "?"
+        reason = item.get("exclusion_reason")
+        text = " ".join(str(reason).split()) if reason is not None else ""
+        if text and len(text) >= 12:
+            continue
+        # 报「实际写在了哪个字段」——本条缺陷的性质是「写在了别处」
+        elsewhere = [k for k in ("review_note", "note", "comment", "remark")
+                     if item.get(k)]
+        where = ("，而它写在了 `%s`（**没有任何脚本读那个字段**）" % "`, `".join(elsewhere)
+                 if elsewhere else "，且账本里找不到任何替代字段")
+        problems.append(
+            f"{tid}：excluded 却没写 exclusion_reason"
+            f"（{len(text)} 字{where}）——**它被完整地看守着，闸门全绿，"
+            f"而接手的下一个人看不到它为什么被排除**")
+    return problems, False
+
+
 def check_coverage(root):
     """双向完整性检查。返回 (problems, notes, unverifiable)。
 
@@ -214,6 +268,12 @@ def main():
     notes += cov_notes
     if unverifiable:
         print("[skip] 未能读取 task-inventory.yml，excluded 覆盖完整性本轮未能核对")
+
+    # —— 理由完整性（Batch 187）：被认领 ≠ 写了理由 ——
+    reason_problems, reason_unverifiable = check_reasons(ROOT)
+    problems += reason_problems
+    if reason_unverifiable:
+        print("[skip] 未能读取 task-inventory.yml，excluded 理由完整性本轮未能核对")
 
     # —— 条件 1：/agent/* 路由仍未注册 ——
     # **Batch 181 改**：原先是 `for f in git_ls(...): git_show(src, ref, f)`，

@@ -123,6 +123,24 @@ def t_condition_count(_inv, gate):
     return _inv, gate.replace(anchor, "    # —— 条件 5：反验注入的假条件块 ——\n" + anchor, 1)
 
 
+def t_missing_reason(inv, _gate):
+    """把 art-critique 的 exclusion_reason 整段删掉 → 必须报「没写理由」。
+
+    **这一例钉的是 Batch 187 新增的那条方向**：上线首跑就抓到 art-critique
+    的理由写在 `review_note` 里、而**没有任何脚本读那个字段**。
+    注入时**连 review_note 一起留着**——因为真实缺陷的性质正是「写在了别处」，
+    只删 exclusion_reason 会退化成「两条理由都没有」，测的就不是同一件事了。
+    """
+    m = re.search(r"  - id: art-critique\n(.*?)(?=\n  - id: )", inv, re.S)
+    assert m, "锚点未命中：找不到 art-critique 任务块"
+    block = m.group(0)
+    assert "exclusion_reason:" in block, "前提失配：art-critique 已经没有 exclusion_reason 了"
+    assert "review_note:" in block, "前提失配：art-critique 没有 review_note，测的就不是同一件事"
+    stripped = re.sub(r"    exclusion_reason: >-\n(      .*\n)+", "", block, count=1)
+    assert stripped != block, "前提失配：注入没生效"
+    return inv.replace(block, stripped, 1), _gate
+
+
 def t_benign(inv, _gate):
     """只改 excluded 任务的无关字段：id 与 status 都不动。"""
     anchor = "    exclusion_reason: 版本族需真实生成才能产生，受付费边界限制"
@@ -143,6 +161,8 @@ def main():
     run("3) 条件判据块数与清单不符（必须报）", "条件清单与实际判据块数不符", transform=t_condition_count)
     run("4) 不误伤：只改 excluded 任务的无关字段（必须放行）", "全部已认领",
         expect_fail=False, transform=t_benign)
+    run("5) excluded 却没写 exclusion_reason（必须报）", "没写 exclusion_reason",
+        transform=t_missing_reason)
 
     print("=== 结果：通过 %d / 失败 %d / 作废 %d ===" % (PASS, FAIL, VOID))
     return 1 if (FAIL or VOID) else 0

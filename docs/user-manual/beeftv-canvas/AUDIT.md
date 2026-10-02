@@ -4271,3 +4271,52 @@ U+FFFD 自己的合法编码），**解码成功不等于没坏过**——「查
 （另两次：Batch 183 拿 `18c` 当非法例子、Batch 184 把 `/` 样本找错页面）。
 
 **纪律 145/146**；验收：**22 道闸全绿**、selftest-quote-punct 7/7、build-site.sh 全绿。
+
+## 环境记录一百四十四（Batch 187，2026-10-02，被正确认领 ≠ 被正确记录）
+
+**起因**：Batch 186 之后要找下一个真空白。候选之一是
+「6 个 excluded 任务的解禁条件，有没有已满足却没销账的」。
+
+**一、先独立复核，不信闸门自己的结论**
+闸 5 声明它机械判定 4 条条件，逐条回上游 `bcc3b05` 查：
+
+| 条件 | 复核结果 |
+|---|---|
+| `/agent/*` 路由仍未注册 | ✓ 只剩注释「`/agent/memories` 路由已移除」，无任何注册 |
+| `developingNodeTypes` 仍含那三个节点类型 | ✓ `canvas-feature-availability.ts:6` 仍是 `MediaConversion`/`Frame`/`Script` |
+| 本地运行时二进制不在仓库内 | ✓ `git ls-tree` 无匹配 |
+| `isLocalWorkspaceMode()` 无条件 `return true` 且 `LocalAwareProjectRoute` 先重定向 | ✓ `workspace-mode.ts:13`；`router.tsx:39` 里 `<Navigate>` 在 `<ProjectDetailPage />` 之前 |
+
+**结论是一个明确的否定：4 条全部仍成立，没有任何任务可解禁。**
+
+**二、真正的缺陷在别处——核条件时顺手撞见的**
+闸 5 的**覆盖完整性**只核「每条 excluded 有没有被 `COVERED` / `EXEMPT` 认领」——
+**认领的是「有没有东西在看它」，不是「它的理由写没写」**。
+于是去读那 6 条的 `exclusion_reason`，**发现 `art-critique` 根本没有这个字段**。
+
+**三、它写在哪、为什么这很要命**
+它写在 **`review_note`** 里，而**全仓没有任何脚本读 `review_note`**
+（`exclusion_reason` 才是 `selftest-exclusions.py` 的锚点）。
+
+**而它偏偏又是全 6 条里理由变化最大的一条**——`review_note` 里明写：
+
+> 唯一剩余的排除原因是付费边界：一次批改最多 9 次模型调用……
+> **创建入口已不再是排除理由**——Batch 163 运行时实证：插件中心开启「AI 审美批改」后，
+> 「添加节点」菜单即出现该项，点击可建出节点。
+
+**即：这条任务的理由被推翻过一次又重写过一次，而重写的那份没人读。**
+按 `exclusion_reason` 读账本的人（以及任何接手的下一个人）会以为它根本没有理由。
+
+**四、闸 5 加一条方向**
+「每条 excluded 必须写 `exclusion_reason`」（存在、非空、≥12 字），**上线首跑即抓到
+`art-critique`**。**判据报的时候把「它实际用了哪个字段」一并打出来**——
+因为本条缺陷的性质正是「写在了别处」，**只报「缺字段」会让人去新建一个字段，
+而不是去找原来那个**。
+
+**五、处置**：`art-critique` 补上规范的 `exclusion_reason`（含「创建入口已不再是排除理由」
+这句关键更正），`review_note` 保留全文。**反验 5 → 6 例**，新增那条**刻意把 `review_note`
+一起留着**——因为真实缺陷的性质是「写在了别处」，**只删 `exclusion_reason` 会退化成
+「两条理由都没有」，测的就不是同一件事了**。
+
+**纪律 147/148**；验收：**22 道闸全绿**、selftest-exclusions 6/6（实测 4.3/4.8s）、
+build-site.sh 全绿。
