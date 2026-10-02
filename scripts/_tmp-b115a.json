@@ -1,0 +1,580 @@
+{
+ "at": "2026-10-02T22:00:02.700Z",
+ "round": "a",
+ "start": {
+  "nodes": "76",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "rect": [
+    124,
+    672,
+    48,
+    28
+   ]
+  }
+ },
+ "guard": {
+  "diff": [
+   "node_7xjntrj1s5"
+  ],
+  "sel": [
+   "node_7xjntrj1s5"
+  ],
+  "ok": true
+ },
+ "self": "node_7xjntrj1s5",
+ "node": {
+  "selected": true,
+  "inner": "主体 1 主体 1 添加描述... 导入主体 从画布选择 从资产库选择 本地添加 Empty subject: main missing, 0 auxiliaries, voice missing. Selected.",
+  "rect": [
+   260,
+   280,
+   211,
+   211
+  ],
+  "tids": [
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-target-connection-menu-button",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "subject-header",
+   "subject-empty",
+   "subject-add-menu-main",
+   "subject-drop-overlay",
+   "subject-drop-overlay-prompt"
+  ],
+  "inputs": [
+   {
+    "tag": "INPUT",
+    "tid": null,
+    "aria": null,
+    "type": "file",
+    "pe": "auto",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ]
+   }
+  ],
+  "titleEl": {
+   "rect": [
+    260,
+    248,
+    56,
+    32
+   ],
+   "text": "主体 1",
+   "kids": [
+    {
+     "tag": "svg",
+     "tid": null,
+     "aria": null,
+     "cls": "shrink-0 mt-canvas-node-title-",
+     "pe": "all",
+     "rect": [
+      260,
+      252,
+      16,
+      16
+     ]
+    },
+    {
+     "tag": "g",
+     "tid": null,
+     "aria": null,
+     "cls": "",
+     "pe": "all",
+     "rect": [
+      262,
+      254,
+      13,
+      13
+     ]
+    },
+    {
+     "tag": "path",
+     "tid": null,
+     "aria": null,
+     "cls": "",
+     "pe": "all",
+     "rect": [
+      262,
+      254,
+      13,
+      13
+     ]
+    },
+    {
+     "tag": "BUTTON",
+     "tid": null,
+     "aria": "Rename 主体 1",
+     "cls": "gap-1 border-solid font-dreami",
+     "pe": "all",
+     "rect": [
+      280,
+      248,
+      36,
+      32
+     ]
+    },
+    {
+     "tag": "SPAN",
+     "tid": null,
+     "aria": null,
+     "cls": "min-w-canvas-zero max-w-full w",
+     "pe": "all",
+     "rect": [
+      280,
+      248,
+      36,
+      24
+     ]
+    }
+   ]
+  }
+ },
+ "focusBefore": {
+  "at": 1790978409636,
+  "lbl": "before-click",
+  "tag": "DIV",
+  "tid": "rf__wrapper",
+  "aria": "Canvas",
+  "type": null,
+  "isInputLike": false,
+  "value": null,
+  "chain": [
+   {
+    "d": 1,
+    "tag": "DIV",
+    "tid": "rf__wrapper",
+    "aria": "Canvas",
+    "type": null,
+    "cls": "react-flow octo-canvas-flow bg-dre",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 2,
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "type": null,
+    "cls": "w-full h-full",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 3,
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "type": null,
+    "cls": "relative h-full w-full",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 4,
+    "tag": "SECTION",
+    "tid": "canvas-main-region",
+    "aria": "Canvas editing area",
+    "type": null,
+    "cls": "absolute inset-0 min-h-0 min-w-0 o",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 5,
+    "tag": "DIV",
+    "tid": "canvas-workbench-shell",
+    "aria": null,
+    "type": null,
+    "cls": "relative h-full min-h-0 min-w-0 ov",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 6,
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "type": null,
+    "cls": "absolute inset-0 opacity-workspace",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   }
+  ]
+ },
+ "titlePoint": {
+  "n": 448,
+  "first": {
+   "x": 261,
+   "y": 249,
+   "hit": "DIV"
+  },
+  "titleRect": [
+   260,
+   248,
+   56,
+   32
+  ],
+  "titleText": "主体 1"
+ },
+ "focusT0": {
+  "at": 1790978409653,
+  "lbl": "t+0ms",
+  "tag": "DIV",
+  "tid": "rf__wrapper",
+  "aria": "Canvas",
+  "type": null,
+  "isInputLike": false,
+  "value": null,
+  "chain": [
+   {
+    "d": 1,
+    "tag": "DIV",
+    "tid": "rf__wrapper",
+    "aria": "Canvas",
+    "type": null,
+    "cls": "react-flow octo-canvas-flow bg-dre",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 2,
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "type": null,
+    "cls": "w-full h-full",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 3,
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "type": null,
+    "cls": "relative h-full w-full",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 4,
+    "tag": "SECTION",
+    "tid": "canvas-main-region",
+    "aria": "Canvas editing area",
+    "type": null,
+    "cls": "absolute inset-0 min-h-0 min-w-0 o",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 5,
+    "tag": "DIV",
+    "tid": "canvas-workbench-shell",
+    "aria": null,
+    "type": null,
+    "cls": "relative h-full min-h-0 min-w-0 ov",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 6,
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "type": null,
+    "cls": "absolute inset-0 opacity-workspace",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   }
+  ]
+ },
+ "focusT1500": {
+  "at": 1790978411154,
+  "lbl": "t+1500ms",
+  "tag": "DIV",
+  "tid": "rf__wrapper",
+  "aria": "Canvas",
+  "type": null,
+  "isInputLike": false,
+  "value": null,
+  "chain": [
+   {
+    "d": 1,
+    "tag": "DIV",
+    "tid": "rf__wrapper",
+    "aria": "Canvas",
+    "type": null,
+    "cls": "react-flow octo-canvas-flow bg-dre",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 2,
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "type": null,
+    "cls": "w-full h-full",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 3,
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "type": null,
+    "cls": "relative h-full w-full",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 4,
+    "tag": "SECTION",
+    "tid": "canvas-main-region",
+    "aria": "Canvas editing area",
+    "type": null,
+    "cls": "absolute inset-0 min-h-0 min-w-0 o",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 5,
+    "tag": "DIV",
+    "tid": "canvas-workbench-shell",
+    "aria": null,
+    "type": null,
+    "cls": "relative h-full min-h-0 min-w-0 ov",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 6,
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "type": null,
+    "cls": "absolute inset-0 opacity-workspace",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   }
+  ]
+ },
+ "focusT4500": {
+  "at": 1790978414157,
+  "lbl": "t+4500ms",
+  "tag": "DIV",
+  "tid": "rf__wrapper",
+  "aria": "Canvas",
+  "type": null,
+  "isInputLike": false,
+  "value": null,
+  "chain": [
+   {
+    "d": 1,
+    "tag": "DIV",
+    "tid": "rf__wrapper",
+    "aria": "Canvas",
+    "type": null,
+    "cls": "react-flow octo-canvas-flow bg-dre",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 2,
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "type": null,
+    "cls": "w-full h-full",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 3,
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "type": null,
+    "cls": "relative h-full w-full",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 4,
+    "tag": "SECTION",
+    "tid": "canvas-main-region",
+    "aria": "Canvas editing area",
+    "type": null,
+    "cls": "absolute inset-0 min-h-0 min-w-0 o",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 5,
+    "tag": "DIV",
+    "tid": "canvas-workbench-shell",
+    "aria": null,
+    "type": null,
+    "cls": "relative h-full min-h-0 min-w-0 ov",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "d": 6,
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "type": null,
+    "cls": "absolute inset-0 opacity-workspace",
+    "ce": false,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   }
+  ]
+ },
+ "verdict": {
+  "标题文本": "主体 1",
+  "落点": {
+   "x": 261,
+   "y": 249,
+   "hit": "DIV"
+  },
+  "自动获焦": false,
+  "获焦元素": "Canvas",
+  "瞬时与稳定是否一致": true
+ },
+ "end": {
+  "nodes": "77",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}
