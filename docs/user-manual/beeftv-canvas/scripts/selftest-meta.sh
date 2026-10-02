@@ -516,6 +516,27 @@ run_file_case "35) 对应关系表某行例数写成 0（必须报）" \
 run_file_pass_case "36) 不误伤：只改对应关系表的备注文字（必须放行）" \
   "AUDIT-RULES.md" "$HERE/selftest-meta-fix-36-remark-only.py"
 
+# ── 37-39（Batch 218）：发布范围的真值必须被**读**，不能被**抄** ────────
+#
+# 闸 9 原来在脚本里抄了一份 srcExclude，注释写着「与 config.mjs 保持一致——
+# **改了那边就要改这里**，这是有意的耦合」。**那句话是一次已经发生过的失败承诺**：
+# 把 20-reference.md 加进 config.mjs 之后，闸 9 照旧打印「✓ 内容页数 = 35」
+# （真值已是 34），**而同一时刻闸 16 立刻改口**。
+#
+# **这三例验的是「修法生效了」，不是「判据还能抓那个已知缺陷」**（纪律 225）：
+# 改法写了但没接上，判据照样能抓已知缺陷、看起来一切正常。
+# `.vitepress/config.mjs` **本来就在 SNAP_FILES 里**，所以这三例的还原与空转检测都覆盖它——
+# **注入一个不在快照里的文件，会把它永久留在损坏状态**（那比用例失败严重得多）。
+run_file_case "37) 发布配置里多排一个发布页（本闸的正向数必须跟着变）" \
+  ".vitepress/config.mjs" "$HERE/selftest-meta-fix-37-scope-drops-page.py" \
+  "实际 34"
+run_file_case "38) config.mjs 里没有 srcExclude（必须 rc=2 未能核对）" \
+  ".vitepress/config.mjs" "$HERE/selftest-meta-fix-38-scope-exclude-gone.py" \
+  "未能核对"
+run_file_case "39) srcExclude 解析出 0 项（必须 rc=2：零输入不许报绿）" \
+  ".vitepress/config.mjs" "$HERE/selftest-meta-fix-39-scope-exclude-empty.py" \
+  "不得当成"
+
 echo "=== 基线：真实仓库应当通过 ==="
 restore
 if python3 "$GATE" >/dev/null 2>&1; then

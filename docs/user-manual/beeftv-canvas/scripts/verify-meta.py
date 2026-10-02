@@ -72,11 +72,54 @@ except ImportError:  # pragma: no cover
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # vitepress 的 srcExclude：这些文件不参与发布，天然不是「读者能看到的元数据」。
-# 与 .vitepress/config.mjs 保持一致——**改了那边就要改这里**，这是有意的耦合。
-SRC_EXCLUDE_BASENAMES = {
-    "AUDIT.md", "AUDIT-RULES.md", "PROGRESS.md",
-    "SOURCE_OBSERVATIONS.md", "PUBLISH.md", "FINAL-REPORT.md",
-}
+#
+# ── Batch 218：这里原来是抄的一份，注释写着「与 config.mjs 保持一致——
+#    **改了那边就要改这里**，这是有意的耦合」。**那句话是一次已经发生过的失败承诺。**
+#
+# 实测：把 `20-reference.md` 加进 `config.mjs` 的 `srcExclude`（内容页真值 35 → 34），
+# **本闸 rc=0，照旧打印「✓ README.md：内容页数 = 35」**——
+# 而同一时刻闸 16 立刻改口报「没有任何发布页声明截图拍于」。
+# **同一份配置变更，一道闸跟、一道闸不跟**；更要紧的是**不跟的那一道给出的是绿灯，
+# 且绿灯里印着一个已经错了的数字**（纪律 222：恒真的判据骗人于「绿」）。
+#
+# **「改了那边就要改这里」是靠人记的，而人记的东西必然漂移。** 现在改成从
+# `config.mjs` 读真值：**同一类声明写两处，就该有一处是读出来的，不是抄出来的。**
+_EXCLUDE_CACHE = []
+
+
+def excluded_basenames():
+    """从 `.vitepress/config.mjs` 的 `srcExclude` 读**不发布**的 md 基名。
+
+    **与 `verify-shot-version.py` 里的同名函数刻意不共用**（Batch 178：
+    闸之间互相 import，任一方坏掉会让另一方跟着起不来），**但两者读同一个真值文件**——
+    「不共用实现」与「不共用真值」是两件事，只做后一件就够。
+
+    **三种情况一律抛，绝不退回任何内置列表**：
+      · 读不到 `config.mjs`；
+      · 读得到但里面没有 `srcExclude`（发布范围的定义改了）；
+      · `srcExclude` 解析出 0 个 md——**这一条最阴**：空集合会让**所有**文件
+        都算发布页，判据于是悄悄从「排除」翻成「全放行」，
+        **而它看起来像「没有排除项」这一正常情况**（Batch 191：零输入不许报绿）。
+    """
+    global _EXCLUDE_CACHE
+    if _EXCLUDE_CACHE:
+        return _EXCLUDE_CACHE
+    cfg = os.path.join(ROOT, ".vitepress", "config.mjs")
+    try:
+        with open(cfg, encoding="utf-8") as fh:
+            text = fh.read()
+    except (OSError, UnicodeDecodeError) as exc:
+        raise LookupError("读不到 %s：%s" % (cfg, exc))
+    m = re.search(r"srcExclude:\s*\[(.*?)\]", text, re.S)
+    if not m:
+        raise LookupError("%s 里找不到 srcExclude——发布范围的定义改了，本闸必须跟上" % cfg)
+    out = {x.split("/")[-1] for x in re.findall(r"'([^']+)'", m.group(1)) if x.endswith(".md")}
+    if not out:
+        raise LookupError(
+            "%s 的 srcExclude 解析出 0 个 md——**不得当成「没有排除项」**："
+            "那会让本闸把所有文件都算成发布页，而它看起来完全正常" % cfg)
+    _EXCLUDE_CACHE = out
+    return out
 
 # FINAL-REPORT.md 虽被 srcExclude，但它是交付说明文档、明确写了发布物计数，
 # 因此**显式纳入**登记与扫描范围（见 REGISTRY 里的条目）。
@@ -99,7 +142,7 @@ def count_content_pages(root):
     **不是一篇内容**，所以不进这个计数——手册里说的是「内容页」。
     """
     top = [p for p in glob.glob(os.path.join(root, "*.md"))
-           if os.path.basename(p) not in SRC_EXCLUDE_BASENAMES]
+           if os.path.basename(p) not in excluded_basenames()]
     tasks = glob.glob(os.path.join(root, "10-tasks", "*.md"))
     return len(top) + len(tasks)
 
@@ -972,7 +1015,7 @@ SCAN_PATTERNS = {
 def scan_meta(root):
     """反向扫描参与发布的页面，返回 {计数器: {文件名: 数字集合}}。"""
     targets = [p for p in glob.glob(os.path.join(root, "*.md"))
-               if os.path.basename(p) not in SRC_EXCLUDE_BASENAMES]
+               if os.path.basename(p) not in excluded_basenames()]
     targets += [os.path.join(root, f) for f in EXTRA_SCAN_FILES]
     targets += glob.glob(os.path.join(root, "10-tasks", "*.md"))
 
@@ -1041,6 +1084,16 @@ def main():
         print("[未能核对] 手册基本输入缺失：%s" % "、".join(_missing))
         print("  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——"
               "它说的是「手册树本身不在」，修法是恢复手册文件，不在内容上找。")
+        return 2
+    # **发布范围的真值文件也必须在场**（Batch 218）。它不在 `_missing` 那四样里，
+    # 而本闸的正向数字（内容页数、任务页数）**全靠它划定「哪些算发布页」**——
+    # 读不到就等于拿一把没有刻度的尺子量东西，而**那把尺子不会报错**。
+    try:
+        excluded_basenames()
+    except LookupError as exc:
+        print("[未能核对] %s" % exc)
+        print("  → 本闸本轮没有核对任何断言。**这不是「核对通过」**——"
+              "修法是恢复发布配置，不在内容上找。")
         return 2
     print("手册元数据核对：把「本手册有多少东西」逐条现场重数")
     print("=" * 62)
