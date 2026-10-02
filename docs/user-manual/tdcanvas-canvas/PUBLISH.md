@@ -142,6 +142,7 @@ M139 修一处悬空锚点时栽了：标题是「悬浮工具条：每个节点
 | `check-inventory-yaml.py` | 账本**不是合法 YAML**、任务 id 重复、证据 `type` 不在已知集合内 | M123 实测账本第 143 行第 340 列因 note 里嵌了 `{a === "b" ? x : null}` 这类**带半角「冒号+空格」的源码片段**而整体不可解析；而此前的十四道门禁**无一 import yaml**（全是正则按行读），所以「门禁全绿」与「账本是合法 YAML」一直是两件事 |
 | `check-encoding.py` | 文件里出现 **U+FFFD 替换字符**（多字节中文被截断的残骸） | M131 实测手册里已潜伏 **8 处**，分别来自 **M71 / M108 / M113** 三个几十批前的提交，`append-audit.py` 里的那处**从 M71 起就一直带着病在跑**；产物侧照渲染，读者看到的是「上传的<三个坏字节>片节点」。**此前的十六道门禁无一扫它。** ★**判据自指的坑（本门禁第一版就被自己判为不合规）**：文档里为了说明 U+FFFD 是什么而写了它的**字面量**，结果脚本自己被抓出 7 处。**修法是文档里不写字面量，不是给自己开豁免**——豁免名单会变成真实的后门 |
 | `check-inventory-evidence.py` | `review_note` 声称做过实测/运行时，但 `evidence` 里**一条 `runtime` 或 `boundary` 都没有**（记账漂移） | M133 查出 `organize-canvas`（M101/M102/M103/M104 四批）与 `shortcuts-help`（M60/M78 两批）的运行时取证**全部只写在 `review_note` 里**，受校验的 `evidence` 始终只有一条 `static`——账本自己跟自己打架，**而构建与门禁输出里完全看不出来**。**光修一次没用**：下批把结论写进 `review_note` 而忘了同步 `evidence`，同样的漂移会重新长出来 |
+| `check-section-ownership.py` | 「→ 相关任务页」出口行**挂在 `##` 章节标题下**，而不是 `###` 条目下 | M145 批量给 15 条排障条目补出口时，**第一版把其中 2 处插错了位置**。症状极隐蔽：条目数仍是 36、**十八道既有门禁全绿**——它们各查语法、查链接存在、查锚点存在、查页面闭环，**没有一道问「这段内容属于哪个标题」，位置是所有既有判据的盲区**。读者点进去到的是另一个问题。**阳性对照**：把一个出口行移到章节标题下，门禁报出行号 exit=1。★ **边界**：只校验出口标记行、**不校验出口指向的任务页对不对**（那是内容判断），没有 `###` 条目结构的页面直接跳过 |
 | `check-probe-contracts.py` | 源码里的探针硬约束（不可逆按钮白名单）与 `PUBLISH.md` 纪律表**对不上** | M144 查出一处**读者实际查不到内容**的漂移：M143 新写的纪律表只写「白名单四项」，**却没列出是哪四项**——维护者在这张表里查不到清单，必须去翻 `.js` 源码。**只守「文档不能漏掉源码里的硬约束」**：文档可以比源码写得细（多写背景），但不能漏项。★ **边界如实说清**：只校验这一项常量，其余纪律是自然语言、**无法机械判定，不碰**——把它们也算进来只会做出一个「全绿但什么都没查」的假门禁，而那正是 M140 刚查出的那类害处 |
 | `selftest-gates.py` | 上面几道门禁**本身**坏了（注入 38 类故障） | M41 门禁静默错判 |
 | `check-dist-links.py` | 产物里的死链 | M56 实测 README 链到未生成页面 |
@@ -168,6 +169,7 @@ python3 scripts/check-inventory-yaml.py .  # 账本本身是不是合法 YAML
 python3 scripts/check-encoding.py .     # 有没有被截断的多字节中文
 python3 scripts/check-inventory-evidence.py .  # 账本的运行时结论有没有只写在 review_note 里
 python3 scripts/check-probe-contracts.py .  # 源码里的探针硬约束与文档对不对得上
+python3 scripts/check-section-ownership.py .  # 出口行是不是挂在正确的条目下
 python3 scripts/check-tables.py .        # 表格语法
 python3 scripts/check-emphasis.py .      # 渲染陷阱（强调 flanking / Vue 插值）
 python3 scripts/check-render.py .        # 产物渲染体检（须在构建之后跑）

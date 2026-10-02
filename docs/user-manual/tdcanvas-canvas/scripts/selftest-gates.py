@@ -842,6 +842,41 @@ def mutate_probe_contract_extra_context(root: Path) -> None:
     )
 
 
+def mutate_ownership_wrong(root: Path) -> None:
+    """出口行挂到 `##` 章节标题下，而不是 `###` 条目下（M146）。
+
+    M145 第一版的真实错位。**症状极隐蔽**：条目数不变、其余门禁全绿，
+    但读者点那条出口到的是另一个问题。
+    """
+
+    path = root / "90-troubleshooting.md"
+    lines = path.read_text(encoding="utf-8").splitlines()
+    idx = next(i for i, l in enumerate(lines) if "→ **相关任务页**" in l)
+    line = lines.pop(idx)
+    while lines and lines[idx].strip() == "":
+        lines.pop(idx)
+    sec = next(i for i, l in enumerate(lines) if l.startswith("## "))
+    lines[sec + 1 : sec + 1] = ["", line]
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def mutate_ownership_ok(root: Path) -> None:
+    """出口行挂在正确的条目下**不该被误报**（M146 的判据边界）。
+
+    本门禁只判「归属哪个条目」，**不判「这条出口该不该有」**。
+    若误判「同一章节下出现两次出口就是重复」，正常内容会被当成缺陷。
+    """
+
+    path = root / "90-troubleshooting.md"
+    text = path.read_text(encoding="utf-8")
+    # 在一个已有出口的条目里再加一行普通说明文字（位置仍属该条目）
+    lines = text.splitlines()
+    idx = next(i for i, l in enumerate(lines) if "→ **相关任务页**" in l)
+    lines.insert(idx, "")
+    lines.insert(idx + 1, "补充说明：这一段仍属于上一条条目，出口位置不应被判为错误。")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 CASES: list[tuple[str, object, str, str]] = [
     ("图片字节被改动", mutate_image_bytes, "gate", "sha256 mismatch"),
     ("manifest 删掉一条记录", mutate_manifest_drop_record, "gate", "image missing from manifest"),
@@ -890,6 +925,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("写「未实测」不该被当成声称实测（否定形态不得误报）", mutate_inventory_evidence_negation, "inventoryevid", EXPECT_PASS),
     ("探针白名单在文档里被删成「见源码」（文档查不到清单）", mutate_probe_contract_drift, "probecontracts", "漏列了不可逆按钮"),
     ("文档比源码写得更细不该被误报（不做双向全等）", mutate_probe_contract_extra_context, "probecontracts", EXPECT_PASS),
+    ("出口行挂到章节标题下（位置错但门禁全绿过）", mutate_ownership_wrong, "ownership", "归属错误"),
+    ("出口行挂在正确条目下不该被误报（不判该不该有）", mutate_ownership_ok, "ownership", EXPECT_PASS),
 ]
 
 
@@ -928,6 +965,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-inventory-evidence.py"), str(root)]
     elif which == "probecontracts":
         cmd = [sys.executable, str(root / "scripts/check-probe-contracts.py"), str(root)]
+    elif which == "ownership":
+        cmd = [sys.executable, str(root / "scripts/check-section-ownership.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)
