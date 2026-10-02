@@ -3378,3 +3378,12 @@ S3 找「编组」按钮返回 `null`，`throw` 中止。诊断 dump 显示**同
 | 用「`position:absolute` + 8 button + 200~500 宽」猜编辑态工具条 | 判据缺陷 | 没猜到 | 改为从按钮 aria **往上回溯共同祖先** |
 | 无脑点「标题行 `r.y − 15`」当选中手段 | 判据缺陷 | `selected:false`；且新节点**本来就自动选中** | 新增 `ensureSelected`：先看自动选中 → 候选点（先验 `elementFromPoint` 归属）→ 点完再断言 |
 | 把「节点被选中」自带的 `data-node-title-selected="true"` 读成「点击的结果」 | 判读错误 | 第 0 步（未点任何东西）它就已是 `true` | 台账记「又一次把相关当因果」 |
+
+### 批次 81（2026-10-02）新增
+
+| 缺陷 | 级别 | 证据 | 处置 |
+|---|---|---|---|
+| 🔴 **分区示意图漏画「分享」「更多」两个顶栏按钮** | Minor（首屏误导） | 实测顶栏 `[data-testid=canvas-top-bar]` 有 **10** 个可点元素，示意图只画了 8 个可点项。示意图依据 `§2.1` 基线绘制，此后顶栏新增按钮没人回补 | SVG 补两个 `<text>` 并重排 x 坐标；`00-quickstart.md` 的 alt 与 manifest 同步补注 |
+| **`00-quickstart.md` 从未与实测对齐过**（普查里唯一「0 次批次提及」的读者页） | Minor（时效） | 20 个读者页中位数 **77**，该页最大值 **0** | 逐条对账：左栏 9 项、dock 4 项、缩放菜单 7 项、右下「与 AI 对话」**全部逐字一致**；新增「界面清单」小节，含三个 `data-testid` |
+| 「已保存」被画成与可点元素并列 | Minor（语义） | 它是画布保存状态标签，出现在底部状态行，不可点 | alt 补注「是状态标签、不是可点按钮」 |
+| 枚举顶栏时用 `querySelectorAll('button')` 会漏掉返回首页 | 判据缺陷（工具） | 返回首页是 **`<a>`**（`data-testid=canvas-project-logo`）不是 `<button>` | 枚举函数同时收 `button,[role="button"],[role="menuitem"],[role="tab"],a,input` |
