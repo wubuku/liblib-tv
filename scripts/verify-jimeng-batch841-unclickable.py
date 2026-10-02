@@ -52,6 +52,12 @@ EXPECTED_STATES = [
     # 批 865：从「一次性测量」提升为**常驻状态**（§82 探到、864 修好，
     # 但证据只在探针输出里 —— 不进状态表就没人盯着它会不会再坏）。
     "资产库模态", "项目信息模态",
+    # 批 867：探针 867 探到、且**冷启动就能点开**的另外 3 个浮层。
+    # 另 3 个（timeline-fullscreen / text-fullscreen /
+    # subject-metadata-editor）**没进**状态表：冷启动画布上压根没有那几个
+    # 节点（实测 `rf__node-timeline` / `rf__node-text` /
+    # `rf__node-subject` 计数都是 0）⇒ **前置态没成立**，不是「入口没有」。
+    "顶栏·节点摘要", "顶栏·项目面板", "AI 侧栏",
 ]
 
 failures: list[str] = []

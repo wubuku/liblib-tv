@@ -1212,6 +1212,20 @@ def main() -> int:
              [('[data-testid="canvas-more-trigger"]', None),
               ('[role="menuitem"]:text-is("项目信息")', None)],
              "project-info-modal", "顶栏「更多」→「项目信息」"),
+            # ══ 批 867：探针 867 探到的另外 3 个浮层，一并进常驻状态 ══
+            #   三个都**不是**真模态（实测 modalish=false），所以 865 的模态
+            #   语义桶**不管**它们；它们受管的是源站无关的那几个键盘桶
+            #   （Tab 进不去 / 走进被遮 / 偏深）。这正是「进状态表」的价值：
+            #   不是每个层都要被判缺陷，而是每个层都要**被量**。
+            ("顶栏·节点摘要",
+             [('[data-testid="canvas-node-summary-trigger"]', None)],
+             "topbar-node-summary", "顶栏「节点 2」药丸"),
+            ("顶栏·项目面板",
+             [('[data-testid="canvas-project-trigger"]', None)],
+             "topbar-project-panel", "顶栏「项目」"),
+            ("AI 侧栏",
+             [('button[aria-label="与 AI 对话"]', None)],
+             "canvas-agent-drawer", "右下角「与 AI 对话」"),
         ]:
             for sel, _ in path:
                 el = page.locator(sel).first
