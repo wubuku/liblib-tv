@@ -1,0 +1,89 @@
+{
+ "at": "2026-10-02T07:23:55.694Z",
+ "start": {
+  "nodes": 23,
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": 60,
+  "focus": {
+   "tag": "BODY",
+   "tid": null,
+   "aria": null,
+   "cls": "",
+   "inCanvas": false
+  }
+ },
+ "g1": {
+  "deleteOk": true,
+  "focusBeforeMenu": {
+   "tag": "DIV",
+   "tid": null,
+   "aria": "复制",
+   "cls": "justify-center gap-1 whitespace-nowrap b",
+   "inCanvas": true
+  },
+  "focusAfterDelete": {
+   "tag": "BODY",
+   "tid": null,
+   "aria": null,
+   "cls": "",
+   "inCanvas": false
+  },
+  "nodesAfter": 24
+ },
+ "g1_undo": {
+  "bBack": true,
+  "nodes": 25,
+  "focus": {
+   "tag": "BODY",
+   "tid": null,
+   "aria": null,
+   "cls": "",
+   "inCanvas": false
+  }
+ },
+ "g2": {
+  "deleteOk": true,
+  "nodesAfter": 26,
+  "focus": {
+   "tag": "DIV",
+   "tid": "rf__wrapper",
+   "aria": "Canvas",
+   "cls": "react-flow octo-canvas-flow bg-dreamina-",
+   "inCanvas": true
+  },
+  "blankPoint": {
+   "x": 128,
+   "y": 144
+  }
+ },
+ "g2_undo": {
+  "bBack": true,
+  "bInfo": {
+   "aria": "文本 node: 文本 5 (2)",
+   "x": 2356.57,
+   "y": 1036.11
+  },
+  "nodes": 27
+ },
+ "verdict": {
+  "g1_restores": true,
+  "g2_restores": true,
+  "sameIdInG2": "文本 node: 文本 5 (2)",
+  "conclusion": "焦点不是变量"
+ },
+ "cleanup": {
+  "mine": [
+   "node_3ft0rc3w8t",
+   "node_7pyfaxckj7",
+   "node_es2t1jwe9m",
+   "node_1jtnhp8qy2"
+  ],
+  "leftover": [],
+  "nodes": 23
+ },
+ "end": {
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": 60
+ }
+}

@@ -1,0 +1,104 @@
+{
+ "at": "2026-10-02T07:21:43.679Z",
+ "start": {
+  "nodes": 23,
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": 60
+ },
+ "A": {
+  "aria": "文本 node: 文本 4",
+  "x": 1916.57,
+  "y": 956.112
+ },
+ "menu": [
+  {
+   "t": "复制 ⌘ C",
+   "dis": null
+  },
+  {
+   "t": "复制副本 ⌘ D",
+   "dis": null
+  },
+  {
+   "t": "粘贴 ⌘ V",
+   "dis": null
+  },
+  {
+   "t": "下载",
+   "dis": null
+  },
+  {
+   "t": "重做 ⌘ ⇧ Z 无需重做操作",
+   "dis": "true"
+  },
+  {
+   "t": "撤销 ⌘ Z",
+   "dis": null
+  },
+  {
+   "t": "删除 ⌫",
+   "dis": null
+  }
+ ],
+ "p2a": {
+  "clicked": true,
+  "added": 1,
+  "newId": "node_kc7ww2k1ch",
+  "aInfo": {
+   "aria": "文本 node: 文本 4",
+   "x": 1916.57,
+   "y": 956.112
+  },
+  "bInfo": {
+   "aria": "文本 node: 文本 4 (2)",
+   "x": 2316.57,
+   "y": 956.112
+  },
+  "offset": {
+   "dx": 400.0000000000002,
+   "dy": 0
+  }
+ },
+ "p2b": {
+  "selectB": true,
+  "added": 0,
+  "newId": null,
+  "cInfo": null
+ },
+ "p1_delete": {
+  "selectOk": true,
+  "menuOpen": true,
+  "deleted": true,
+  "nodes": 24,
+  "bThere": false
+ },
+ "p1_undo": {
+  "nodes": 24,
+  "bBack": false,
+  "bInfo": null,
+  "beforePos": {
+   "aria": "文本 node: 文本 4 (2)",
+   "x": 2316.57,
+   "y": 956.112
+  }
+ },
+ "p1": {
+  "sameId": false,
+  "verdict": "NOT_RESTORED",
+  "posRestored": false
+ },
+ "cleanup": {
+  "mine": [
+   "node_3jgt4z0tmt",
+   "node_kc7ww2k1ch"
+  ],
+  "leftover": [],
+  "nodes": 23,
+  "sel": "0"
+ },
+ "end": {
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": 60
+ }
+}

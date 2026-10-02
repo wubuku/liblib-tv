@@ -1,0 +1,64 @@
+{
+ "at": "2026-10-02T07:20:30.915Z",
+ "targets": [
+  "node_z3qd75wjaf",
+  "node_hfn7m4kt1v"
+ ],
+ "start": {
+  "nodes": 25,
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": 60
+ },
+ "results": [
+  {
+   "id": "node_z3qd75wjaf",
+   "verify": {
+    "aria": "文本 node: 文本 4",
+    "cls": "react-flow__node react-flow__node-text n"
+   },
+   "menuAt": {
+    "zoom": 60,
+    "items": [
+     "复制 ⌘ C",
+     "复制副本 ⌘ D",
+     "粘贴 ⌘ V",
+     "下载",
+     "重做 ⌘ ⇧ Z 无需重做操作",
+     "撤销 ⌘ Z",
+     "删除 ⌫"
+    ]
+   },
+   "deleted": true,
+   "via": "zoom 60% + 右键删除"
+  },
+  {
+   "id": "node_hfn7m4kt1v",
+   "verify": {
+    "aria": "文本 node: 文本 5",
+    "cls": "react-flow__node react-flow__node-text n"
+   },
+   "menuAt": {
+    "zoom": 60,
+    "items": [
+     "复制 ⌘ C",
+     "复制副本 ⌘ D",
+     "粘贴 ⌘ V",
+     "下载",
+     "重做 ⌘ ⇧ Z 无需重做操作",
+     "撤销 ⌘ Z",
+     "删除 ⌫"
+    ]
+   },
+   "deleted": true,
+   "via": "zoom 60% + 右键删除"
+  }
+ ],
+ "end": {
+  "nodes": 23,
+  "sel": "0",
+  "zoom": 60,
+  "credits": "Credits: 805 · 基础会员",
+  "leftover": []
+ }
+}

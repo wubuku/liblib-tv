@@ -1,0 +1,57 @@
+{
+ "at": "2026-10-02T07:18:27.596Z",
+ "start": {
+  "nodes": 24,
+  "sel": "1",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": 60
+ },
+ "orphanCleanup": [
+  {
+   "id": "node_z3qd75wjaf",
+   "r": {
+    "via": "direct-rightclick",
+    "menu": null
+   },
+   "still": true
+  }
+ ],
+ "afterCleanup": {
+  "nodes": 24,
+  "sel": "1"
+ },
+ "A": {
+  "id": "node_hfn7m4kt1v",
+  "pos": {
+   "x": 1956.57,
+   "y": 1036.11
+  },
+  "aria": "文本 node: 文本 5"
+ },
+ "p2": {
+  "added": 0,
+  "newId": null,
+  "aPos": {
+   "x": 1956.57,
+   "y": 1036.11
+  },
+  "bPos": null,
+  "offset": null,
+  "bAria": null
+ },
+ "p1": "VOID-no-copy",
+ "cleanup": {
+  "mine": [
+   "node_hfn7m4kt1v"
+  ],
+  "leftover": [
+   "node_hfn7m4kt1v"
+  ],
+  "nodes": 25,
+  "sel": "0"
+ },
+ "end": {
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": 60
+ }
+}
