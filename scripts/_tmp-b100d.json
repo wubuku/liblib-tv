@@ -1,0 +1,894 @@
+{
+ "at": "2026-10-02T10:02:03.311Z",
+ "start": {
+  "nodes": "46",
+  "sel": "0",
+  "zoom": "Zoom options, 60%",
+  "tool": "选择工具"
+ },
+ "panel": {
+  "present": true,
+  "screen": "240×548@1028,112",
+  "scrollHeight": 1300,
+  "clientHeight": 548,
+  "leafCount": 62,
+  "groups": [
+   {
+    "group": "通用操作",
+    "items": [
+     {
+      "name": "打开/关闭 Agent",
+      "keys": [
+       "⌘ /"
+      ]
+     },
+     {
+      "name": "撤销",
+      "keys": [
+       "⌘ Z"
+      ]
+     },
+     {
+      "name": "还原",
+      "keys": [
+       "⌘ ⇧ Z",
+       "⌘ Y"
+      ]
+     },
+     {
+      "name": "移动工具",
+      "keys": [
+       "V"
+      ]
+     },
+     {
+      "name": "预览视图",
+      "keys": [
+       "F"
+      ]
+     },
+     {
+      "name": "宫格视图",
+      "keys": [
+       "G"
+      ]
+     },
+     {
+      "name": "创建编组",
+      "keys": [
+       "⌘ G"
+      ]
+     },
+     {
+      "name": "取消编组",
+      "keys": [
+       "⌘ ⇧ G"
+      ]
+     }
+    ]
+   },
+   {
+    "group": "视图",
+    "items": [
+     {
+      "name": "放大视图",
+      "keys": [
+       "⌘ +"
+      ]
+     },
+     {
+      "name": "缩小视图",
+      "keys": [
+       "⌘ -"
+      ]
+     },
+     {
+      "name": "适配画布",
+      "keys": [
+       "⇧ 1",
+       "⌘ 0"
+      ]
+     },
+     {
+      "name": "缩放至 100%",
+      "keys": [
+       "⌘ 1"
+      ]
+     },
+     {
+      "name": "缩放至选中项",
+      "keys": [
+       "⇧ 2"
+      ]
+     },
+     {
+      "name": "缩放画布",
+      "keys": [
+       "⌘ scroll"
+      ]
+     }
+    ]
+   },
+   {
+    "group": "时间线",
+    "items": [
+     {
+      "name": "分割片段",
+      "keys": [
+       "⌘ B"
+      ]
+     },
+     {
+      "name": "向左裁剪",
+      "keys": [
+       "Q"
+      ]
+     },
+     {
+      "name": "向右裁剪",
+      "keys": [
+       "W"
+      ]
+     },
+     {
+      "name": "缩放时间线",
+      "keys": [
+       "⌘ scroll"
+      ]
+     }
+    ]
+   },
+   {
+    "group": "文本编辑",
+    "items": [
+     {
+      "name": "加粗",
+      "keys": [
+       "⌘ B"
+      ]
+     },
+     {
+      "name": "倾斜",
+      "keys": [
+       "⌘ I"
+      ]
+     },
+     {
+      "name": "下划线",
+      "keys": [
+       "⌘ U"
+      ]
+     },
+     {
+      "name": "删除线",
+      "keys": [
+       "⌘ ⇧ X"
+      ]
+     },
+     {
+      "name": "一级标题",
+      "keys": [
+       "⌘ ⌥ 1"
+      ]
+     },
+     {
+      "name": "二级标题",
+      "keys": [
+       "⌘ ⌥ 2"
+      ]
+     },
+     {
+      "name": "三级标题",
+      "keys": [
+       "⌘ ⌥ 3"
+      ]
+     },
+     {
+      "name": "普通文本",
+      "keys": [
+       "⌘ ⌥ 0"
+      ]
+     },
+     {
+      "name": "无序列表",
+      "keys": [
+       "⌘ ⇧ 8"
+      ]
+     },
+     {
+      "name": "有序列表",
+      "keys": [
+       "⌘ ⇧ 7"
+      ]
+     }
+    ]
+   }
+  ],
+  "itemCount": 28
+ },
+ "normExamples": [
+  {
+   "raw": "⌘ -",
+   "norm": "⌘-"
+  },
+  {
+   "raw": "⌘ −",
+   "norm": "⌘-"
+  },
+  {
+   "raw": "⌘ scroll",
+   "norm": "⌘滚动"
+  },
+  {
+   "raw": "⌘ + 滚轮",
+   "norm": "⌘+滚轮"
+  }
+ ],
+ "cellCounts": {
+  "ok": 50,
+  "no": 23,
+  "prose": 200
+ },
+ "classify": [
+  {
+   "group": "通用操作",
+   "name": "打开/关闭 Agent",
+   "keys": [
+    "⌘ /"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ /",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ /（打开/关闭 Agent）"
+    }
+   ]
+  },
+  {
+   "group": "通用操作",
+   "name": "撤销",
+   "keys": [
+    "⌘ Z"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ Z",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ Z（撤销）"
+    }
+   ]
+  },
+  {
+   "group": "通用操作",
+   "name": "还原",
+   "keys": [
+    "⌘ ⇧ Z",
+    "⌘ Y"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ ⇧ Z",
+     "okExact": null,
+     "noExact": null,
+     "prose": null
+    },
+    {
+     "panel": "⌘ Y",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ Y（还原）"
+    }
+   ]
+  },
+  {
+   "group": "通用操作",
+   "name": "移动工具",
+   "keys": [
+    "V"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "V",
+     "okExact": null,
+     "noExact": null,
+     "prose": null
+    }
+   ]
+  },
+  {
+   "group": "通用操作",
+   "name": "预览视图",
+   "keys": [
+    "F"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "F",
+     "okExact": null,
+     "noExact": null,
+     "prose": "f"
+    }
+   ]
+  },
+  {
+   "group": "通用操作",
+   "name": "宫格视图",
+   "keys": [
+    "G"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "G",
+     "okExact": null,
+     "noExact": null,
+     "prose": null
+    }
+   ]
+  },
+  {
+   "group": "通用操作",
+   "name": "创建编组",
+   "keys": [
+    "⌘ G"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ G",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ G（创建编组）"
+    }
+   ]
+  },
+  {
+   "group": "通用操作",
+   "name": "取消编组",
+   "keys": [
+    "⌘ ⇧ G"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ ⇧ G",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ ⇧ G（取消编组）"
+    }
+   ]
+  },
+  {
+   "group": "视图",
+   "name": "放大视图",
+   "keys": [
+    "⌘ +"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ +",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ + / ⌘ −"
+    }
+   ]
+  },
+  {
+   "group": "视图",
+   "name": "缩小视图",
+   "keys": [
+    "⌘ -"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ -",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ + / ⌘ −"
+    }
+   ]
+  },
+  {
+   "group": "视图",
+   "name": "适配画布",
+   "keys": [
+    "⇧ 1",
+    "⌘ 0"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⇧ 1",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ 0 / ⇧ 1（适配画布）"
+    },
+    {
+     "panel": "⌘ 0",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ 0 / ⇧ 1（适配画布）"
+    }
+   ]
+  },
+  {
+   "group": "视图",
+   "name": "缩放至 100%",
+   "keys": [
+    "⌘ 1"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ 1",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ 1（缩放至 100%）"
+    }
+   ]
+  },
+  {
+   "group": "视图",
+   "name": "缩放至选中项",
+   "keys": [
+    "⇧ 2"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⇧ 2",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⇧ 2（缩放至选中项）"
+    }
+   ]
+  },
+  {
+   "group": "视图",
+   "name": "缩放画布",
+   "keys": [
+    "⌘ scroll"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ scroll",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ scroll"
+    }
+   ]
+  },
+  {
+   "group": "时间线",
+   "name": "分割片段",
+   "keys": [
+    "⌘ B"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ B",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ B / ⌘ I / ⌘ U / ⌘ ⇧ X"
+    }
+   ]
+  },
+  {
+   "group": "时间线",
+   "name": "向左裁剪",
+   "keys": [
+    "Q"
+   ],
+   "cls": "mentioned",
+   "mentioned": "向左裁剪",
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": "向左裁剪",
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "Q",
+     "okExact": null,
+     "noExact": null,
+     "prose": null
+    }
+   ]
+  },
+  {
+   "group": "时间线",
+   "name": "向右裁剪",
+   "keys": [
+    "W"
+   ],
+   "cls": "mentioned",
+   "mentioned": "向右裁剪",
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": "向右裁剪",
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "W",
+     "okExact": null,
+     "noExact": null,
+     "prose": null
+    }
+   ]
+  },
+  {
+   "group": "时间线",
+   "name": "缩放时间线",
+   "keys": [
+    "⌘ scroll"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ scroll",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ scroll"
+    }
+   ]
+  },
+  {
+   "group": "文本编辑",
+   "name": "加粗",
+   "keys": [
+    "⌘ B"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ B",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ B / ⌘ I / ⌘ U / ⌘ ⇧ X"
+    }
+   ]
+  },
+  {
+   "group": "文本编辑",
+   "name": "倾斜",
+   "keys": [
+    "⌘ I"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ I",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ B / ⌘ I / ⌘ U / ⌘ ⇧ X"
+    }
+   ]
+  },
+  {
+   "group": "文本编辑",
+   "name": "下划线",
+   "keys": [
+    "⌘ U"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ U",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ B / ⌘ I / ⌘ U / ⌘ ⇧ X"
+    }
+   ]
+  },
+  {
+   "group": "文本编辑",
+   "name": "删除线",
+   "keys": [
+    "⌘ ⇧ X"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ ⇧ X",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ B / ⌘ I / ⌘ U / ⌘ ⇧ X"
+    }
+   ]
+  },
+  {
+   "group": "文本编辑",
+   "name": "一级标题",
+   "keys": [
+    "⌘ ⌥ 1"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ ⌥ 1",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ ⌥ 1 / ⌘ ⌥ 2 / ⌘ ⌥ 0"
+    }
+   ]
+  },
+  {
+   "group": "文本编辑",
+   "name": "二级标题",
+   "keys": [
+    "⌘ ⌥ 2"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ ⌥ 2",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ ⌥ 1 / ⌘ ⌥ 2 / ⌘ ⌥ 0"
+    }
+   ]
+  },
+  {
+   "group": "文本编辑",
+   "name": "三级标题",
+   "keys": [
+    "⌘ ⌥ 3"
+   ],
+   "cls": "NOT-MENTIONED",
+   "mentioned": false,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": false
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ ⌥ 3",
+     "okExact": null,
+     "noExact": null,
+     "prose": null
+    }
+   ]
+  },
+  {
+   "group": "文本编辑",
+   "name": "普通文本",
+   "keys": [
+    "⌘ ⌥ 0"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ ⌥ 0",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ ⌥ 1 / ⌘ ⌥ 2 / ⌘ ⌥ 0"
+    }
+   ]
+  },
+  {
+   "group": "文本编辑",
+   "name": "无序列表",
+   "keys": [
+    "⌘ ⇧ 8"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ ⇧ 8",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ ⇧ 8 / ⌘ ⇧ 7"
+    }
+   ]
+  },
+  {
+   "group": "文本编辑",
+   "name": "有序列表",
+   "keys": [
+    "⌘ ⇧ 7"
+   ],
+   "cls": "mentioned",
+   "mentioned": true,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": true
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ ⇧ 7",
+     "okExact": null,
+     "noExact": null,
+     "prose": "⌘ ⇧ 8 / ⌘ ⇧ 7"
+    }
+   ]
+  }
+ ],
+ "notMentioned": [
+  {
+   "group": "文本编辑",
+   "name": "三级标题",
+   "keys": [
+    "⌘ ⌥ 3"
+   ],
+   "cls": "NOT-MENTIONED",
+   "mentioned": false,
+   "signals": {
+    "inOkTable": false,
+    "inNoTable": false,
+    "inProse": false
+   },
+   "keyCells": [
+    {
+     "panel": "⌘ ⌥ 3",
+     "okExact": null,
+     "noExact": null,
+     "prose": null
+    }
+   ]
+  }
+ ],
+ "end": {
+  "nodes": "46",
+  "sel": "0",
+  "zoom": "Zoom options, 60%",
+  "tool": "选择工具"
+ }
+}
