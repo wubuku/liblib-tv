@@ -94,6 +94,25 @@ SLOW = {
         "**两次变慢都不是它多做了什么，而是被它核的那些闸真的开始做事了。**",
         "anchor": ("selftest-zero-input.py", "def direction_three"),
     },
+    # **Batch 208 补登记的两条**：它们此前都在 `SELFTEST_COSTS` 里写着**低报的秒数**
+    # （`selftest-quote-punct.py` 登记 11 秒、实测 37.1 秒），于是方向四d
+    # 「超过阈值却没登记为慢」**永远看不见它们**——**判据核的正是那个错的数**。
+    "selftest-quote-punct.py": {
+        "seconds": 38,           # 实测（Batch 208：37.1/30.6 秒，**两次取大**）
+        "why": "**它此前登记的是 11 秒，而实测 37.1 秒**——"
+               "**低报的方向是唯一危险的那个**：方向四d 用这个数判「你登记为不慢，"
+               "到底是不是真的不慢」，而**错的正是这个数本身**，于是判据无从发现。"
+               "它是闸 22（引号文案标点漂移）的反验，"
+               "而闸 22 要把**四份手册的 900 段引号**逐条回上游语料里找字面出处。",
+        "anchor": ("selftest-quote-punct.py", "def m_missing_comma_must_report"),
+    },
+    "selftest-screenshots-literals.py": {
+        "seconds": 31,           # 实测（Batch 208：30.1/24.3 秒，**两次取大**；**恰压 30 秒线，如实记**）
+        "why": "**与上一条同一个病**：登记 23 秒、实测 30.1 秒，**刚好越过阈值**。"
+               "**这一条是「阈值型守卫」为什么必须取保守方向的最好例子**——"
+               "差 0.1 秒，而判据看到的是 23。",
+        "anchor": ("selftest-screenshots-literals.py", "def run(manifest_text"),
+    },
     "selftest-selftest-bootable.py": {
         # **同一天同一台机器实测两次：68.0s 与 53.1s**（纪律 191/136：绝对值漂 15 秒）。
         # **能确定的只有量级**——「它确实越过 30 秒阈值」；68 只当历史快照看。
@@ -142,32 +161,31 @@ SLOW = {
 # 把秒数填进来。**故意留空的值会让构建失败**——
 # 因为「空着」和「量过但很快」在账面上长得一模一样，而只有后者是有意义的。
 SELFTEST_COSTS = {
-    "selftest-baseline.py": 1.6,
-    # Batch 198：`beefsrc` 反验（6 例），实测 0.29s——临时树里现造仓与 worktree
-    "selftest-beefsrc.py": 0.4,
-    "selftest-batch-rows.py": 0.4,  # Batch 183：闸 19，实测 0.39/0.39/0.45s
-    "selftest-deadlinks.py": 0.6,
-    "selftest-encoding.py": 0.4,    # Batch 183：闸 20，实测 0.42/0.39/0.42s
-    "selftest-endpoints.py": 1,   # Batch 181：闸 3 改批量读后 43s → 1s
-    "selftest-error-copy.py": 1.6,
-    "selftest-exclusions.py": 5,  # Batch 187：加理由完整性方向并加到 6 例后实测 4.3/4.8s
+    "selftest-baseline.py": 0.7,
+    "selftest-batch-rows.py": 0.1,
+    "selftest-beefsrc.py": 0.3,
+    "selftest-deadlinks.py": 0.2,
+    "selftest-encoding.py": 0.2,
+    "selftest-endpoints.py": 0.8,
+    "selftest-error-copy.py": 0.8,
+    "selftest-exclusions.py": 1.6,
     "selftest-feature-flags.py": 0.4,
-    "selftest-label-drift.py": 4,  # Batch 182：闸 6 改批量读后 105s → 4s
-    "selftest-ledger-refs.py": 1.2,  # Batch 184：闸 21，实测 1.18/1.26/0.66s
-    "selftest-line-counts.py": 11.8,
-    "selftest-runtime-policy.py": 0.7,
-    "selftest-quote-punct.py": 11,  # Batch 185：闸 22，实测 9.4/11.0s（6 例各跑一遍全量核对）
-    "selftest-screenshots-literals.py": 23.5,
-    "selftest-screenshots.py": 0.6,
-    "selftest-selftest-bootable.py": 34,  # Batch 201：再加方向五之二的 2 例后实测 33.6s
-    "selftest-selftest-deps.py": 0.6,
-    "selftest-scope.py": 0.3,   # Batch 190：闸 24，实测 0.23/0.21/0.27s（5 例，各起一棵临时树）
-    "selftest-shortcuts.py": 1.3,
-    "selftest-shot-version.py": 2.0,
-    "selftest-shot-drift.py": 23,   # Batch 189：闸 23，实测 19.4/23.1s（7 例，每例两棵树）
-    "selftest-shot-pixels.py": 10,  # Batch 191：闸 25，实测 9.39/9.39s（6 例，用例 6 真图全解 4s）
-    "selftest-tables.sh": 2.0,
-    "selftest-zero-input.py": 9.4,  # Batch 196：加方向三（手册树正常但上游仓不可用，跑在真实树上）后实测 9.4s
+    "selftest-label-drift.py": 1.9,
+    "selftest-ledger-refs.py": 0.3,
+    "selftest-line-counts.py": 4.8,
+    "selftest-quote-punct.py": 37.1,
+    "selftest-runtime-policy.py": 1.0,
+    "selftest-scope.py": 0.4,
+    "selftest-screenshots-literals.py": 30.1,
+    "selftest-screenshots.py": 0.7,
+    "selftest-selftest-bootable.py": 78.5,
+    "selftest-selftest-deps.py": 0.7,
+    "selftest-shortcuts.py": 0.7,
+    "selftest-shot-drift.py": 10.0,
+    "selftest-shot-pixels.py": 7.1,
+    "selftest-shot-version.py": 0.8,
+    "selftest-tables.sh": 0.8,
+    "selftest-zero-input.py": 42.1,
 }
 
 
