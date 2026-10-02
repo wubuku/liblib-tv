@@ -45,6 +45,24 @@ def unescaped_pipes(line):
     return len(re.findall(r"(?<!\\)\|", line))
 
 
+def ends_with_pipe(line):
+    """这一行是不是以**未转义**的竖线结尾（GFM 表格行的规范形态）。
+
+    **Batch 206 新增的判据，配一条实测出来的假阴性**：
+    本闸原先只比「未转义竖线总数」与表头个数，**而少一个与多一个会互相抵消**——
+    实测 `AUDIT-RULES.md` 里「闸 17」那一行**行尾根本没有竖线**（它被切在倒数第二格），
+    却在 350 列处有一个裸竖线恰好把总数凑够，于是本闸报绿。
+    **「少一个结构竖线 + 多一个字面竖线」在计数上等价，在危害上完全不同**：
+    前者让 GFM 少切一列，后者让一行凭空多出一列。
+
+    **为什么单独立一条而不是把「少于表头」也算坏**：
+    「少于表头」是**有意允许**的（GFM 补空），本项目有大量「状态」列留空的历史行。
+    **行尾有没有竖线与列数够不够是两件事**，混在一起判就会把有意留空的行一起冤枉。
+    """
+    t = line.rstrip()
+    return bool(t) and t[-1] == "|" and (len(t) < 2 or t[-2] != "\\")
+
+
 def is_separator(line):
     s = line.strip()
     return bool(s) and set(s) <= set("|-: ") and "-" in s
@@ -59,6 +77,7 @@ def scan(path):
         return []
 
     problems = []
+    tail_problems = []          # **行尾缺竖线**（Batch 206，与列数分开记）
     fence = None
     block = []  # [(行号, 原始行)]
 
@@ -84,6 +103,12 @@ def scan(path):
             # 多于表头 = 真的多切出一列 = 损坏；少于表头会被 GFM 补空，不算
             if n > header_n:
                 problems.append((lineno, n, header_n, raw.strip()[:70]))
+            # **行尾必须是一个未转义竖线**（Batch 206）：列数相等不等于这一行是表格行。
+            # **刻意与上一条分开判**——「列数够不够」和「这一行闭没闭合」是两件事。
+            if not ends_with_pipe(raw):
+                tail_problems.append(
+                    (lineno, n, header_n,
+                     raw.strip()[:70] + "  ← 行尾没有竖线，这一行不是一条闭合的表格行"))
         block.clear()
 
     for idx, line in enumerate(lines, 1):
@@ -103,7 +128,7 @@ def scan(path):
         else:
             flush()
     flush()
-    return problems
+    return tail_problems + problems
 
 
 def main():

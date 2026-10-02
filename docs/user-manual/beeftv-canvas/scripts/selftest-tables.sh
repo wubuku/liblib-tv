@@ -86,6 +86,21 @@ run_case "5) 表格里某一行被空行隔出去（那一行不再属于表格�
   's = s.replace("\n\n**已退场、访问会被重定向回首页的路由**", "\n\n| `/injected` | 悬空的一行 |\n\n**已退场、访问会被重定向回首页的路由**", 1)' \
   20-reference.md yes
 
+# 6 是 Batch 206 加的：**行尾缺竖线**（而列数刚好相等）。
+# **注入必须复现「少一个结构竖线 + 多一个字面竖线」这个互相抵消的形态**——
+# 只注入「行尾缺竖线」的话，未转义竖线会从 4 掉到 3，**旧判据照样报绿**，
+# 那样这条用例就测不出「计数相等却仍然损坏」这件事。
+run_case "6) 行尾没有竖线、但列数与表头相等（计数抵消，必须报）" 20-reference.md \
+  'L = s.split("\n")
+for i, l in enumerate(L):
+    if l.startswith("|") and l.rstrip().endswith("|") and l.count("|") >= 4 and "---" not in l:
+        cells = l[1:-1].split("|")
+        last = cells[-1].strip()
+        head, tail = (last.split(" ", 1) + [""])[:2] if " " in last else (last, "尾巴")
+        L[i] = "|" + "|".join(cells[:-1]) + "| " + head + " | " + tail
+        break
+s = "\n".join(L)' 20-reference.md yes
+
 echo "=== 基线：真实手册应当通过 ==="
 if python3 "$GATE" "$ROOT" >/dev/null 2>&1; then echo "  ✓ 真实手册通过"; else echo "  ✗ 真实手册未通过"; FAIL=$((FAIL+1)); fi
 
