@@ -1,0 +1,416 @@
+{
+ "at": "2026-10-02T07:04:34.018Z",
+ "preflight": {
+  "zoomBefore": 24,
+  "selBefore": "1",
+  "zoomFixed": true,
+  "selAfter": "0"
+ },
+ "start": {
+  "edges": "0",
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": 60
+ },
+ "byTypeUnselected": {
+  "video": [
+   {
+    "aria": "视频 node: 视频 1",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   }
+  ],
+  "text": [
+   {
+    "aria": "文本 node: 文本 1",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "文本 node: 文本 2",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "文本 node: 文本 3",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   }
+  ],
+  "timeline": [
+   {
+    "aria": "时间线 node: 时间线 1",
+    "sel": false,
+    "source": null,
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   }
+  ],
+  "external": [
+   {
+    "aria": "外部 node: 导演台",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   }
+  ],
+  "audio": [
+   {
+    "aria": "音频 node: 音频 1",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "音频 node: 音频 2",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "音频 node: 音频 3",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "音频 node: 音频 4",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "音频 node: 音频 5",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "音频 node: 音频 6",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "音频 node: 音频 7",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "音频 node: 音频 8",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "音频 node: 音频 9",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "音频 node: 音频 10",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "音频 node: 音频 11",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "音频 node: 音频 12",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "音频 node: 音频 13",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   },
+   {
+    "aria": "音频 node: 音频 14",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   }
+  ],
+  "image": [
+   {
+    "aria": "图片 node: b22-upload",
+    "sel": false,
+    "source": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "target": {
+     "box": "36×72",
+     "pe": "none",
+     "op": "0",
+     "vis": "visible"
+    },
+    "plus": 0
+   }
+  ]
+ },
+ "scaleAtFit": 0.236148,
+ "导演台": {
+  "source": {
+   "box": "14×28",
+   "pe": "none",
+   "op": "0",
+   "canvas": "60×120",
+   "center": [
+    376,
+    238
+   ]
+  },
+  "target": {
+   "box": "14×28",
+   "pe": "none",
+   "op": "0",
+   "canvas": "60×120",
+   "center": [
+    301,
+    238
+   ]
+  },
+  "plus": []
+ },
+ "verdict": {
+  "onlyDirectorHasNoPe": false,
+  "edgesUnchanged": true
+ },
+ "end": {
+  "edges": "0",
+  "sel": "0",
+  "zoom": 60,
+  "zoomStable": true,
+  "credits": "Credits: 805 · 基础会员"
+ }
+}

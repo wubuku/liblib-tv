@@ -1,0 +1,190 @@
+{
+ "at": "2026-10-02T07:07:04.243Z",
+ "rows": [
+  {
+   "type": "external",
+   "aria": "外部 node: 导演台",
+   "sel": true,
+   "plus": [],
+   "h": {
+    "source": {
+     "box": "14×28@369,224",
+     "elPe": "none",
+     "elOp": "0",
+     "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 before:absolute before:top-1/2 before:h-canvas-connection-handle-hotspot before:w-canvas-connection-handle-hotspot before:-translate-y-1/2 before:content-[''] after:pointer-events-none after:absolute after:left-[--octo-flow-node-handle-glyph-x] after:top-[--octo-flow-node-handle-glyph-y] after:size-5 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-[linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor)] after:bg-canvas-connection-handle-glyph after:bg-center after:bg-no-repeat after:content-[''] before:origin-top-left after:origin-top-left before:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] after:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] text-canvas-connection-handle-default after:border-canvas-connection-handle after:border-current after:bg-dreamina-block-secondary-default [.react-flow\\_\\_node:hover_&]:after:backdrop-blur-dreamina-floating-control data-[node-selected-visible=true]:after:backdrop-blur-dreamina-floating-control before:pointer-events-none before:left-1/2 !right-0 !translate-x-1/2 !-translate-y-1/2 opacity-0 source connectableend",
+     "pe": {
+      "::before": {
+       "content": "\"\"",
+       "pe": "none",
+       "pos": "absolute",
+       "w": "40px",
+       "h": "80px",
+       "left": "30px",
+       "top": "60px",
+       "bg": "rgba(0, 0, 0, 0)",
+       "op": "1",
+       "z": "auto"
+      },
+      "::after": {
+       "content": "\"\"",
+       "pe": "none",
+       "pos": "absolute",
+       "w": "20px",
+       "h": "20px",
+       "left": "74px",
+       "top": "60px",
+       "bg": "rgba(255, 255, 255, 0.04)",
+       "op": "1",
+       "z": "auto"
+      }
+     },
+     "center": [
+      376,
+      238
+     ]
+    },
+    "target": {
+     "box": "14×28@294,224",
+     "elPe": "none",
+     "elOp": "0",
+     "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 before:absolute before:top-1/2 before:h-canvas-connection-handle-hotspot before:w-canvas-connection-handle-hotspot before:-translate-y-1/2 before:content-[''] after:pointer-events-none after:absolute after:left-[--octo-flow-node-handle-glyph-x] after:top-[--octo-flow-node-handle-glyph-y] after:size-5 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-[linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor)] after:bg-canvas-connection-handle-glyph after:bg-center after:bg-no-repeat after:content-[''] before:origin-top-left after:origin-top-left before:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] after:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] text-canvas-connection-handle-default after:border-canvas-connection-handle after:border-current after:bg-dreamina-block-secondary-default before:pointer-events-none before:left-1/2 before:-translate-x-full !left-0 !-translate-x-1/2 !-translate-y-1/2 !opacity-0 target connectableend",
+     "pe": {
+      "::before": {
+       "content": "\"\"",
+       "pe": "none",
+       "pos": "absolute",
+       "w": "40px",
+       "h": "80px",
+       "left": "30px",
+       "top": "60px",
+       "bg": "rgba(0, 0, 0, 0)",
+       "op": "1",
+       "z": "auto"
+      },
+      "::after": {
+       "content": "\"\"",
+       "pe": "none",
+       "pos": "absolute",
+       "w": "20px",
+       "h": "20px",
+       "left": "-14px",
+       "top": "60px",
+       "bg": "rgba(255, 255, 255, 0.04)",
+       "op": "1",
+       "z": "auto"
+      }
+     },
+     "center": [
+      301,
+      238
+     ]
+    }
+   }
+  },
+  {
+   "type": "audio",
+   "aria": "音频 node: 音频 6",
+   "sel": true,
+   "plus": [
+    "Create connected node before 音频 6",
+    "Create connected node after 音频 6"
+   ],
+   "h": {
+    "source": {
+     "box": "14×28@647,377",
+     "elPe": "none",
+     "elOp": "1",
+     "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 before:absolute before:top-1/2 before:h-canvas-connection-handle-hotspot before:w-canvas-connection-handle-hotspot before:-translate-y-1/2 before:content-[''] after:pointer-events-none after:absolute after:left-[--octo-flow-node-handle-glyph-x] after:top-[--octo-flow-node-handle-glyph-y] after:size-5 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-[linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor)] after:bg-canvas-connection-handle-glyph after:bg-center after:bg-no-repeat after:content-[''] before:origin-top-left after:origin-top-left before:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] after:[scale:calc(var(--octo-canvas-node-chrome-counter-scale,1)*0.5)] after:opacity-dreamina-media-action-hidden [.react-flow\\_\\_node:hover_&]:after:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] [.react-flow\\_\\_node:hover_&]:after:[translate:0_0] [.react-flow\\_\\_node:hover_&]:after:opacity-dreamina-media-action-visible data-[node-selected-visible=true]:after:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] data-[node-selected-visible=true]:after:[translate:0_0] data-[node-selected-visible=true]:after:opacity-dreamina-media-action-visible after:[translate:-20px_0] text-canvas-connection-handle-default after:border-canvas-connection-handle after:border-current after:bg-dreamina-block-secondary-default [.react-flow\\_\\_node:hover_&]:after:backdrop-blur-dreamina-floating-control data-[node-selected-visible=true]:after:backdrop-blur-dreamina-floating-control hover:opacity-100 hover:text-dreamina-on-media-text-primary hover:after:border-dreamina-on-media-text-primary active:text-dreamina-on-media-text-placeholder active:after:border-dreamina-on-media-text-placeholder before:pointer-events-auto before:left-1/2 !right-0 !translate-x-1/2 !-translate-y-1/2 opacity-100 source connectable connectablestart connectableend connectionindicator",
+     "pe": {
+      "::before": {
+       "content": "\"\"",
+       "pe": "auto",
+       "pos": "absolute",
+       "w": "40px",
+       "h": "80px",
+       "left": "30px",
+       "top": "60px",
+       "bg": "rgba(0, 0, 0, 0)",
+       "op": "1",
+       "z": "auto"
+      },
+      "::after": {
+       "content": "\"\"",
+       "pe": "none",
+       "pos": "absolute",
+       "w": "20px",
+       "h": "20px",
+       "left": "74px",
+       "top": "60px",
+       "bg": "rgba(255, 255, 255, 0.04)",
+       "op": "1",
+       "z": "auto"
+      }
+     },
+     "center": [
+      654,
+      391
+     ]
+    },
+    "target": {
+     "box": "14×28@571,377",
+     "elPe": "none",
+     "elOp": "1",
+     "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 before:absolute before:top-1/2 before:h-canvas-connection-handle-hotspot before:w-canvas-connection-handle-hotspot before:-translate-y-1/2 before:content-[''] after:pointer-events-none after:absolute after:left-[--octo-flow-node-handle-glyph-x] after:top-[--octo-flow-node-handle-glyph-y] after:size-5 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-[linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor)] after:bg-canvas-connection-handle-glyph after:bg-center after:bg-no-repeat after:content-[''] before:origin-top-left after:origin-top-left before:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] after:[scale:calc(var(--octo-canvas-node-chrome-counter-scale,1)*0.5)] after:opacity-dreamina-media-action-hidden [.react-flow\\_\\_node:hover_&]:after:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] [.react-flow\\_\\_node:hover_&]:after:[translate:0_0] [.react-flow\\_\\_node:hover_&]:after:opacity-dreamina-media-action-visible data-[node-selected-visible=true]:after:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] data-[node-selected-visible=true]:after:[translate:0_0] data-[node-selected-visible=true]:after:opacity-dreamina-media-action-visible after:[translate:20px_0] text-canvas-connection-handle-default after:border-canvas-connection-handle after:border-current after:bg-dreamina-block-secondary-default [.react-flow\\_\\_node:hover_&]:after:backdrop-blur-dreamina-floating-control data-[node-selected-visible=true]:after:backdrop-blur-dreamina-floating-control hover:opacity-100 hover:text-dreamina-on-media-text-primary hover:after:border-dreamina-on-media-text-primary active:text-dreamina-on-media-text-placeholder active:after:border-dreamina-on-media-text-placeholder before:pointer-events-auto before:left-1/2 before:-translate-x-full !left-0 !-translate-x-1/2 !-translate-y-1/2 opacity-100 target connectable connectablestart connectableend connectionindicator",
+     "pe": {
+      "::before": {
+       "content": "\"\"",
+       "pe": "auto",
+       "pos": "absolute",
+       "w": "40px",
+       "h": "80px",
+       "left": "30px",
+       "top": "60px",
+       "bg": "rgba(0, 0, 0, 0)",
+       "op": "1",
+       "z": "auto"
+      },
+      "::after": {
+       "content": "\"\"",
+       "pe": "none",
+       "pos": "absolute",
+       "w": "20px",
+       "h": "20px",
+       "left": "-14px",
+       "top": "60px",
+       "bg": "rgba(255, 255, 255, 0.04)",
+       "op": "1",
+       "z": "auto"
+      }
+     },
+     "center": [
+      578,
+      391
+     ]
+    }
+   }
+  }
+ ],
+ "verdict": [
+  {
+   "type": "external",
+   "plus": 0,
+   "elOp": "0",
+   "beforePe": "none",
+   "afterPe": "none"
+  },
+  {
+   "type": "audio",
+   "plus": 2,
+   "elOp": "1",
+   "beforePe": "auto",
+   "afterPe": "none"
+  }
+ ],
+ "end": {
+  "edges": "0",
+  "sel": "0",
+  "zoom": 60,
+  "credits": "Credits: 805 · 基础会员"
+ }
+}
