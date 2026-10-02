@@ -24,6 +24,42 @@ screenshots:
     alt: 画布左侧的悬浮按钮条，从上到下只有一排没有任何文字标注的图标——加号、放大镜、文件夹、星形、时钟、上传箭头、调色板、垃圾桶和一把剪刀，最下面是指南针、眼睛、磁铁、靶心、一条显示 91% 的缩放滑杆和一个问号圆
     sha256: f5d98b05fca1cbfc244ead8764b25c695773af12869f822422d0478b3078f5ab
 
+  - file: screenshots/00-dock-hover-tooltip.png
+    task_id: create-canvas-project
+    step: 鼠标停在左侧 Dock 的「历史」按钮上，整条 Dock 保持可见，用来证明每个按钮停上去都会弹出名字
+    route: '/canvas/:id'
+    viewport: 300x340
+    locale: zh-CN
+    captured_at: '2026-10-03'
+    verified_locator: '悬停前后全页可见文本取差集：新增文本 ["历史", "历史新建"]，新增浮层 72,484,40x24 SPAN.pointer-events-none absolute left-[calc(100%+8px)] text="历史"；:hover 链长 17、末端 path、末端几何落在历史按钮矩形内（阳性对照成立）'
+    visible_text: '新建 历史'
+    alt: 同一条左侧按钮条，「历史」那一格被点亮、右侧弹出一个写着「历史」的圆角标签，底部的剪刀按钮是红色的，加号右上角仍挂着「新建」徽标
+    sha256: 52c42f39640274e8bbc464a2b8e1028aad53cbf2df3a3eba13ea8db05d1fde00
+
+  - file: screenshots/00-topbar-two-blank.png
+    task_id: create-canvas-project
+    step: 鼠标停在顶栏的「主页」按钮上、截取顶栏左侧，用来对照它有悬停提示而右边的画布菜单按钮没有
+    route: '/canvas/:id'
+    viewport: 360x108
+    locale: zh-CN
+    captured_at: '2026-10-03'
+    verified_locator: '悬停前后全页可见文本取差集：主页按钮新增文本 ["主页"]、新增浮层 16,62,44x34 DIV.ant-tooltip text="主页"；同一次测量里 打开画布菜单（@62,16）悬停新增文本为空数组、:hover 链长 16 末端 path（指针确实落在按钮上），两者同为无 title 无浮层'
+    visible_text: '主页 TDCanvas 1'
+    alt: 画布顶栏左侧，鼠标停在青色的主页方块上、下方弹出「主页」标签，而它右边那个三横线的汉堡按钮停在原地、什么提示都没有
+    sha256: 437b09f6605671bd407da2e2ecb1de4e0b131eeade4bd28f111282b4cf6c9c2b
+
+  - file: screenshots/00-add-node-flyout-open.png
+    task_id: create-nodes
+    step: 点开左侧 Dock 的「＋」之后的添加节点面板，同时露出变成叉号的按钮本身
+    route: '/canvas/:id'
+    viewport: 320x380
+    locale: zh-CN
+    captured_at: '2026-10-03'
+    verified_locator: '[data-canvas-tool="tool-create"] 的 svg 类名由 lucide-plus 变为 lucide-x、aria-label 前后都是「添加节点」、aria-expanded 恒为 null；面板容器 .td-canvas-flyout 位于 88,240,212x352，标题「添加节点」，七项依次 文本/图片/视频/音频/ComfyUI 工作流/组/（分隔线）/上传素材'
+    visible_text: '添加节点 文本 图片 视频 音频 ComfyUI 工作流 组 上传素材 新建'
+    alt: 添加节点面板打开的样子，面板从按钮右侧展开、标题为添加节点，下面依次是文本、图片、视频、音频、ComfyUI 工作流、组和分隔线后的上传素材，左侧的加号按钮同时变成了叉号
+    sha256: 84a77b3ed8550d7fb9507469f6e995eb913a6738ad7c1b89084be65979ea4dd5
+
   - file: screenshots/04-icon-reuse-same-screen.png
     task_id: edit-nodes
     step: 同时选中一个图片节点并打开右侧 Agent 面板，拍下整屏，用来对照三处按钮区的位置距离

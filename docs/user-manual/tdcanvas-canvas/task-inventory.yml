@@ -40,7 +40,7 @@ tasks:
       - '/canvas'
       - '/canvas/:id'
     status: verified
-    screenshot_count: 4
+    screenshot_count: 6
     manual_pages:
       - 00-quickstart.md
       - 10-tasks/create-canvas-project.md
@@ -79,7 +79,7 @@ tasks:
     routes:
       - '/canvas/:id'
     status: verified
-    screenshot_count: 5
+    screenshot_count: 6
     manual_pages:
       - 10-tasks/create-nodes.md
     review_note: 2026-09-27 运行时走查完成（双击菜单逐字、文字/视频/音频/组四类空节点创建），截图 2 张入 manifest；Gate B 待全量回走。2026-10-01 M59 对账补：另 3 张（00-quickstart-first-text-node / 30-concepts-add-node-menu / 30-concepts-two-text-nodes）分别由快速上手与概念页复用登记，本任务 manifest 实为 5 张；M53 走查确认空画布中央「双击画布，自由创作」与五芯片（文字/图片/视频/音频/上传素材）、左栏首项可访问名是「添加节点」（纯图标）。
