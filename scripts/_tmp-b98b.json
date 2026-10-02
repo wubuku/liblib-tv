@@ -1,0 +1,746 @@
+{
+ "at": "2026-10-02T09:28:02.623Z",
+ "start": {
+  "nodes": "45",
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": "Zoom options, 60%",
+  "scale": 0.6,
+  "tool": "选择工具"
+ },
+ "zoom": {
+  "label": "Zoom options, 60%",
+  "a": 0.6,
+  "c": 0.6,
+  "stable": true
+ },
+ "fit": {
+  "label": "Zoom options, 23%",
+  "scale": 0.22669
+ },
+ "idsBefore": 45,
+ "rail": [
+  {
+   "aria": "主体",
+   "x": 16,
+   "y": 403,
+   "w": 40,
+   "h": 40
+  }
+ ],
+ "guard": {
+  "before": 45,
+  "after": 46,
+  "created": [
+   "node_4n43vk37ft"
+  ],
+  "selIds": [
+   "node_4n43vk37ft"
+  ],
+  "newSel": [
+   "node_4n43vk37ft"
+  ]
+ },
+ "selfId": "node_4n43vk37ft",
+ "selfInfo": {
+  "aria": "主体 node: 主体 1",
+  "cls": "react-flow__node react-flow__node-subject nopan selected selectable draggable",
+  "translate": "translate(1900.57px, 1029.58px)",
+  "screen": "79.79×79.79@600,329"
+ },
+ "p1": {
+  "scale": 0.22669,
+  "node": {
+   "screen": "79.79×79.79",
+   "canvas": 352
+  },
+  "innerText": "主体 1 主体 1 添加描述... 导入主体 从画布选择 从资产库选择 本地添加 Empty subject: main missing, 0 auxiliaries, voice missing. Selected.",
+  "innerTestids": [
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-target-connection-menu-button",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "subject-header",
+   "subject-empty",
+   "subject-add-menu-main",
+   "subject-drop-overlay",
+   "subject-drop-overlay-prompt"
+  ],
+  "innerAria": [
+   "Create connected node before 主体 1",
+   "Rename 主体 1",
+   "Add tags",
+   "Create connected node after 主体 1",
+   "Edit 主体 1",
+   "Edit subject description",
+   "Empty subject",
+   "导入主体",
+   "添加主媒体",
+   "从资产库选择",
+   "本地添加"
+  ],
+  "buttons": 10,
+  "inputs": 1,
+  "mediaTags": [],
+  "layerCount": 59,
+  "layers": [
+   {
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "screen": "80×80",
+    "canvas": "352×352",
+    "dep": 0
+   },
+   {
+    "tag": "DIV",
+    "tid": "flow-node-media-stroke",
+    "aria": null,
+    "screen": "83×83",
+    "canvas": "368×368",
+    "dep": 1
+   },
+   {
+    "tag": "DIV",
+    "tid": "flow-node-target-handle",
+    "aria": null,
+    "screen": "14×27",
+    "canvas": "60×120",
+    "dep": 1
+   },
+   {
+    "tag": "BUTTON",
+    "tid": "flow-node-target-connection-menu-button",
+    "aria": "Create connected node before 主体 1",
+    "screen": "16×16",
+    "canvas": "72×72",
+    "dep": 1
+   },
+   {
+    "tag": "DIV",
+    "tid": "flow-node-title",
+    "aria": null,
+    "screen": "25×15",
+    "canvas": "111.09×64",
+    "dep": 1
+   },
+   {
+    "tag": "svg",
+    "tid": null,
+    "aria": null,
+    "screen": "7×7",
+    "canvas": "32×32",
+    "dep": 2
+   },
+   {
+    "tag": "g",
+    "tid": null,
+    "aria": null,
+    "screen": "6×6",
+    "canvas": "25.33×25.33",
+    "dep": 3
+   },
+   {
+    "tag": "path",
+    "tid": null,
+    "aria": null,
+    "screen": "6×6",
+    "canvas": "25.33×25.33",
+    "dep": 4
+   },
+   {
+    "tag": "BUTTON",
+    "tid": null,
+    "aria": "Rename 主体 1",
+    "screen": "16×15",
+    "canvas": "71.09×64",
+    "dep": 2
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "aria": null,
+    "screen": "16×11",
+    "canvas": "71.09×48",
+    "dep": 3
+   },
+   {
+    "tag": "BUTTON",
+    "tid": "flow-node-selected-tag",
+    "aria": "Add tags",
+    "screen": "11×11",
+    "canvas": "48×48",
+    "dep": 1
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "aria": null,
+    "screen": "29×29",
+    "canvas": "128×128",
+    "dep": 2
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "aria": null,
+    "screen": "11×11",
+    "canvas": "48×48",
+    "dep": 2
+   },
+   {
+    "tag": "svg",
+    "tid": null,
+    "aria": null,
+    "screen": "7×7",
+    "canvas": "32×32",
+    "dep": 3
+   },
+   {
+    "tag": "g",
+    "tid": null,
+    "aria": null,
+    "screen": "6×6",
+    "canvas": "26.67×26.67",
+    "dep": 4
+   },
+   {
+    "tag": "path",
+    "tid": null,
+    "aria": null,
+    "screen": "6×6",
+    "canvas": "26.67×26.67",
+    "dep": 5
+   },
+   {
+    "tag": "DIV",
+    "tid": "flow-node-source-handle",
+    "aria": null,
+    "screen": "14×27",
+    "canvas": "60×120",
+    "dep": 1
+   },
+   {
+    "tag": "BUTTON",
+    "tid": "flow-node-source-connection-menu-button",
+    "aria": "Create connected node after 主体 1",
+    "screen": "16×16",
+    "canvas": "72×72",
+    "dep": 1
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "aria": null,
+    "screen": "80×80",
+    "canvas": "352×352",
+    "dep": 1
+   },
+   {
+    "tag": "DIV",
+    "tid": "subject-header",
+    "aria": null,
+    "screen": "80×19",
+    "canvas": "352×84",
+    "dep": 1
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "screen": "73×8",
+    "canvas": "320×36",
+    "dep": 2
+   },
+   {
+    "tag": "BUTTON",
+    "tid": null,
+    "aria": "Edit 主体 1",
+    "screen": "20×8",
+    "canvas": "87.86×36",
+    "dep": 3
+   },
+   {
+    "tag": "svg",
+    "tid": null,
+    "aria": null,
+    "screen": "4×4",
+    "canvas": "16×16",
+    "dep": 4
+   },
+   {
+    "tag": "g",
+    "tid": null,
+    "aria": null,
+    "screen": "3×3",
+    "canvas": "13.2×13.2",
+    "dep": 5
+   },
+   {
+    "tag": "path",
+    "tid": null,
+    "aria": null,
+    "screen": "3×3",
+    "canvas": "13.2×13.2",
+    "dep": 6
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "aria": null,
+    "screen": "10×5",
+    "canvas": "43.86×24",
+    "dep": 4
+   },
+   {
+    "tag": "svg",
+    "tid": null,
+    "aria": null,
+    "screen": "4×4",
+    "canvas": "16×16",
+    "dep": 4
+   },
+   {
+    "tag": "path",
+    "tid": null,
+    "aria": null,
+    "screen": "3×3",
+    "canvas": "12.25×12.25",
+    "dep": 5
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "screen": "73×5",
+    "canvas": "320×24",
+    "dep": 2
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "screen": "73×5",
+    "canvas": "320×24",
+    "dep": 3
+   },
+   {
+    "tag": "BUTTON",
+    "tid": null,
+    "aria": "Edit subject description",
+    "screen": "73×5",
+    "canvas": "320×24",
+    "dep": 4
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "aria": null,
+    "screen": "69×5",
+    "canvas": "306×20",
+    "dep": 5
+   },
+   {
+    "tag": "DIV",
+    "tid": "subject-empty",
+    "aria": null,
+    "screen": "73×57",
+    "canvas": "320×252",
+    "dep": 1
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "aria": null,
+    "screen": "73×57",
+    "canvas": "320×252",
+    "dep": 2
+   },
+   {
+    "tag": "DIV",
+    "tid": "subject-add-menu-main",
+    "aria": null,
+    "screen": "63×35",
+    "canvas": "280×156",
+    "dep": 3
+   },
+   {
+    "tag": "BUTTON",
+    "tid": null,
+    "aria": "导入主体",
+    "screen": "63×8",
+    "canvas": "280×36",
+    "dep": 4
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "aria": null,
+    "screen": "4×4",
+    "canvas": "16×16",
+    "dep": 5
+   },
+   {
+    "tag": "svg",
+    "tid": null,
+    "aria": null,
+    "screen": "4×4",
+    "canvas": "16×16",
+    "dep": 6
+   },
+   {
+    "tag": "g",
+    "tid": null,
+    "aria": null,
+    "screen": "3×3",
+    "canvas": "12.67×12.67",
+    "dep": 7
+   },
+   {
+    "tag": "path",
+    "tid": null,
+    "aria": null,
+    "screen": "3×3",
+    "canvas": "12.67×12.67",
+    "dep": 8
+   }
+  ]
+ },
+ "handles": {
+  "src": {
+   "testid": "flow-node-source-handle",
+   "aria": null,
+   "screen": "14×27@673,355",
+   "self": {
+    "pe": "none",
+    "op": "1"
+   },
+   "before": {
+    "pe": "auto",
+    "w": "40px",
+    "h": "80px",
+    "op": "1"
+   },
+   "after": {
+    "pe": "none",
+    "w": "20px",
+    "h": "20px",
+    "op": "1"
+   }
+  },
+  "tgt": {
+   "testid": "flow-node-target-handle",
+   "aria": null,
+   "screen": "14×27@593,355",
+   "self": {
+    "pe": "none",
+    "op": "1"
+   },
+   "before": {
+    "pe": "auto",
+    "w": "40px",
+    "h": "80px",
+    "op": "1"
+   },
+   "after": {
+    "pe": "none",
+    "w": "20px",
+    "h": "20px",
+    "op": "1"
+   }
+  }
+ },
+ "probe": [
+  {
+   "label": "①未选中",
+   "selected": true,
+   "sel": "1",
+   "byTestid": [
+    {
+     "screen": "0×0@640,429",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    },
+    {
+     "screen": "80×0@600,293",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    }
+   ],
+   "byClass": [
+    {
+     "screen": "0×0@640,429",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    },
+    {
+     "screen": "0×0@640,293",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    },
+    {
+     "screen": "80×0@600,293",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    }
+   ],
+   "bySelToolbar": [],
+   "bySelSurface": [
+    {
+     "screen": "80×0@600,293",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    }
+   ],
+   "featureHost": [
+    {
+     "screen": "0×0@640,429",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    }
+   ],
+   "popupHost": [
+    {
+     "screen": "0×0@640,293",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    }
+   ],
+   "visibleToolbarish": [
+    {
+     "tid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "screen": "1280×720@0,0"
+    },
+    {
+     "tid": "canvas-fixed-toolbar-left-rail",
+     "cls": "pointer-events-none absolute bottom-4 left-workspa",
+     "screen": "160×632@12,72"
+    },
+    {
+     "tid": "canvas-navigation-dock",
+     "cls": "dreamina-canvas-navigation-dock box-border flex h-",
+     "screen": "164×36@12,668"
+    }
+   ],
+   "activeElement": {
+    "tag": "BUTTON",
+    "aria": "主体",
+    "type": "button",
+    "value": "",
+    "inSubject": false
+   }
+  },
+  {
+   "label": "②选中后",
+   "selected": true,
+   "sel": "1",
+   "byTestid": [
+    {
+     "screen": "0×0@640,429",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    },
+    {
+     "screen": "80×0@600,293",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    }
+   ],
+   "byClass": [
+    {
+     "screen": "0×0@640,429",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    },
+    {
+     "screen": "0×0@640,293",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    },
+    {
+     "screen": "80×0@600,293",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    }
+   ],
+   "bySelToolbar": [],
+   "bySelSurface": [
+    {
+     "screen": "80×0@600,293",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    }
+   ],
+   "featureHost": [
+    {
+     "screen": "0×0@640,429",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    }
+   ],
+   "popupHost": [
+    {
+     "screen": "0×0@640,293",
+     "visible": false,
+     "pe": "auto",
+     "op": "1",
+     "childBtns": 0,
+     "inThisNode": false
+    }
+   ],
+   "visibleToolbarish": [
+    {
+     "tid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "screen": "1280×720@0,0"
+    },
+    {
+     "tid": "canvas-fixed-toolbar-left-rail",
+     "cls": "pointer-events-none absolute bottom-4 left-workspa",
+     "screen": "160×632@12,72"
+    },
+    {
+     "tid": "canvas-navigation-dock",
+     "cls": "dreamina-canvas-navigation-dock box-border flex h-",
+     "screen": "164×36@12,668"
+    }
+   ],
+   "activeElement": {
+    "tag": "DIV",
+    "aria": "Canvas",
+    "type": null,
+    "inSubject": false
+   }
+  }
+ ],
+ "pt": {
+  "x": 620,
+  "y": 349
+ },
+ "menu": {
+  "screen": "200×332@620,349",
+  "items": [
+   {
+    "text": "复制 ⌘ C",
+    "w": 192,
+    "h": 36,
+    "disabled": null
+   },
+   {
+    "text": "复制副本 ⌘ D",
+    "w": 192,
+    "h": 36,
+    "disabled": null
+   },
+   {
+    "text": "粘贴 ⌘ V",
+    "w": 192,
+    "h": 36,
+    "disabled": null
+   },
+   {
+    "text": "保存到主体库",
+    "w": 192,
+    "h": 36,
+    "disabled": null
+   },
+   {
+    "text": "下载 请选择至少一个组、文本、图片或视频项",
+    "w": 192,
+    "h": 36,
+    "disabled": "true"
+   },
+   {
+    "text": "重做 ⌘ ⇧ Z 无需重做操作",
+    "w": 192,
+    "h": 36,
+    "disabled": "true"
+   },
+   {
+    "text": "撤销 ⌘ Z",
+    "w": 192,
+    "h": 36,
+    "disabled": null
+   },
+   {
+    "text": "删除 ⌫",
+    "w": 192,
+    "h": 36,
+    "disabled": null
+   }
+  ]
+ },
+ "cleanup": {
+  "target": "node_4n43vk37ft",
+  "attempts": [
+   {
+    "attempt": 1,
+    "res": "clicked",
+    "still": false
+   }
+  ]
+ },
+ "selfLeft": false,
+ "missing": null,
+ "idsNowCount": 45,
+ "restore": {
+  "ok": true
+ },
+ "end": {
+  "nodes": "45",
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": "Zoom options, 60%",
+  "scale": 0.6,
+  "tool": "选择工具"
+ }
+}

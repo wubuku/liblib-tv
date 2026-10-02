@@ -1,0 +1,35 @@
+{
+ "at": "2026-10-02T09:26:14.865Z",
+ "start": {
+  "nodes": "45",
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": "Zoom options, 60%",
+  "scale": 0.6,
+  "tool": "选择工具"
+ },
+ "zoom": {
+  "label": "Zoom options, 60%",
+  "a": 0.6,
+  "c": 0.6,
+  "stable": true
+ },
+ "p1": [],
+ "fit": {
+  "label": "Zoom options, 23%",
+  "scale": 0.22669
+ },
+ "cands": [],
+ "pick": null,
+ "restore": {
+  "ok": true
+ },
+ "end": {
+  "nodes": "45",
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": "Zoom options, 60%",
+  "scale": 0.6,
+  "tool": "选择工具"
+ }
+}
