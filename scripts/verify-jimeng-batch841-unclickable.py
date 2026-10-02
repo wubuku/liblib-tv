@@ -3091,6 +3091,80 @@ def main() -> int:
           and "**是同一格**" in _ausrc
           and "**两格都没实现、也没测过**" in _ausrc
           and "先取源样再动手**" in _ausrc)
+    # ══════════ 批 909：真代码改动（严格 wrapper 判据）＋ 复刻侧验收 ══════════
+    p909 = ROOT / "scripts/jimeng_probe909_canvas_root_ck.py"
+    ws = ROOT / "src/components/jimeng/JimengWorkspace.tsx"
+    _p909 = p909.read_text(encoding="utf-8") if p909.exists() else ""
+    _wsrc = ws.read_text(encoding="utf-8") if ws.exists() else ""
+    check("VV.1 ✅ 909 **改了实现**，而且改的是**判据本身**：找指针从 "
+          "**`n === active || n.contains(active)`** 改成**严格的 `n === active`** —— "
+          "依据 906 的**自带对照**（`closest` 全 True / `contains` 全 False，"
+          "而「没布」的按压前焦点正是那四个内层控件）。"
+          "⚠️ 判据要钉在**源码真实字面量**上：宽松口径一旦回来，"
+          "内层控件就会被当成「在节点上」而**多布一次**",
+          "const cur = nodes.findIndex((n) => n === active);" in _wsrc
+          and "n === active || n.contains(active)" not in _wsrc
+          and "**906（源站，各 2/2）：判据必须是严格的 `n === active`。**" in _wsrc
+          and "`n.contains(active)` 会把这四个当成「在节点上」而**多布一次**"
+          in _wsrc
+          and "① 找指针的判据：" in _ausrc)
+    check("VV.2 ✅ 909 在 `cur === -1` 那一支**先**判「焦点是否落在某个节点的"
+          "**内层控件**里」、是就 `return`；并把注释里的规则表从 5 条改成 7 条"
+          "（④ 拆成「撒手（仍成立）」＋「**899 的『绝不绕回』已撤回**」，"
+          "⑤ 新增画布根那一格、⑥ 新增内层控件那一格、⑦ 补记 908 的复核）。"
+          "⚠️ 判据要钉住**注释里那条撤回** —— 代码改了、注释没改，"
+          "下一个人会照着过时注释把「绝不绕回」再写回去",
+          "for (const n of nodes) {" in _wsrc
+          and "if (n.contains(active)) return;" in _wsrc
+          and "**899 当年还断言了「绝不绕回」，908 已撤回**" in _wsrc
+          and "908 4/4：**指针在末尾时这一按就是「绕回」**" in _wsrc
+          and "② `cur === -1` 那一支：" in _ausrc
+          and "③ 注释里的规则表从 5 条改成 **7 条**" in _ausrc)
+    check("VV.3 ✅ 909 的**复刻侧验收逐条对上源站**（5 臂 × 2 轮 = 10 条、"
+          "**两轮逐条一致**，判据**逐字复用** 906/908、臂**逐字对应** "
+          "`F8-fresh`/`F8`/`B8`/`W1`/`W2`）："
+          "① 画布根＋`Tab` ⇒ 要布 `'0'`（三条臂**可见**）；"
+          "② 画布根＋`Shift+Tab` ⇒ **8 次一次都不布**；"
+          "③ **内层控件 5 次全不布**（按压前 `closest=True` 而**本体=False**）"
+          "—— **这五次正是 901 改前会多布的那五次**；"
+          "④ 布与落点错开一位。⚠️ 判据要钉住**这两套口径同时记**"
+          "（`closest` 与 `本体`），不然下一个人又会用宽松口径判读",
+          '{"label": "F8-fresh", "walk_end": False, "back": 0,      "mod": False},'
+          in _p909
+          and '{"label": "B8",       "walk_end": True,  "back": K_BACK, "mod": True},'
+          in _p909
+          and '"pre_in_node_closest": pre["in_node_closest"],' in _p909
+          and '"pre_is_wrapper": pre["is_wrapper"],' in _p909
+          and "**画布根 ＋ `Tab` ⇒ 要布 `'0'`**" in _ausrc
+          and "**画布根 ＋ `Shift+Tab` ⇒ 8 次一次都不布**" in _ausrc
+          and "**而这五次正是 901 改前会多布的那五次**" in _ausrc
+          and "**布与落点错开一位**" in _ausrc)
+    check("VV.4 ⚠️⚠️ 909 **两格没验到，必须钉住、不许含糊过去**（否则下一个人会"
+          "拿「5 臂全过」当「全对齐」）："
+          "① **`F8` 的 press1 不可判定** —— 要布的下标**恰好就是当前 `'0'` "
+          "所在的下标** ⇒ 「被 `oldValue != '0'` 过滤掉」与「位置本来没变」"
+          "**两个现象同时出现** ⇒ **分不出**「调了 `armAll` 且结果相同」与"
+          "「什么都没做」；② **源站 `F8` 与复刻 `F8` 终点不同、不可比** —— "
+          "源站终点 **58**、复刻终点 `[0]`（demo 只有 2 个节点）⇒ "
+          "**不许**拿复刻的 `F8` 说「对上了 906 的 `F8`」。"
+          "⇒ 同时钉住那个**未变的已知差异**（源站 press1 布的是**落点所在节点**、"
+          "复刻固定布 `0`；成因未查明 ⇒ **不许**据此改复刻）",
+          "**`F8` 臂的 press1 不可判定**" in _ausrc
+          and "**两个现象同时出现**" in _ausrc
+          and "**不许拿复刻的 `F8` 说「对上了 906 的 `F8`」**" in _ausrc
+          and "**未变的已知差异（如实记着）**" in _ausrc
+          and "**这一格源站的成因仍未查明**，**不许**据此改复刻" in _ausrc)
+    check("VV.5 ⚠️ **909 第一版自己踩的探针缺陷必须钉住**（904 已经记过这个坑、"
+          "**909 又踩了一次**）：第一版 `press()` **没记 `'0'` 动没动**、只看 "
+          "`armed` ⇒ 被 `oldValue != '0'` 过滤吞掉的读数**根本看不见** ⇒ "
+          "第二版补上 `zero_before`/`zero_after`/`moved`，"
+          "**两条序列一起看才不漏读**。⚠️ 判据要钉在**探针真的记了这三样**上",
+          "**探针缺陷（909 第一版自己踩的）**" in _ausrc
+          and "**904 已经记过这个坑，909 又踩了一次**" in _ausrc
+          and "**两条序列一起看才不漏读**" in _ausrc
+          and '"zero_before": pre["zeros"], "zero_after": post["zeros"],' in _p909
+          and '"moved": pre["zeros"] != post["zeros"],' in _p909
+          and '"after_moved": [s["moved"] for s in after],' in _p909)
 
     check("MM.1 「算下一个」的规则要以**实测读数**写进基线：① 顺序**≈DOM 序**"
           "（按 `data-testid` 换算下标，不钉序号本身）；② **到末尾就停手、"
