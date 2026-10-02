@@ -582,6 +582,29 @@ def m_clean_fleet_not_reported():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+def check_own_ledger_row():
+    """本反验**自己核自己那一行**的「例数」——因为方向十七够不到它。
+
+    **为什么够不到**：方向十六为了防无限递归，把本文件从真跑名单里硬排除了。
+    **而这一行恰恰是全表最容易过期的**：20 → 22 → 24，**两个批次各动一次**。
+    **放在用例列表外面**是有意的——它是**收尾自检**，不占用用例名额，
+    **否则就会变成「例数包含它自己」的自指**。
+    """
+    path = os.path.join(ROOT, "AUDIT-RULES.md")
+    t = read(path)
+    m = re.search(r"###\s*闸\s*→\s*反验的对应关系[^\n]*\n(.*?)(?=\n###|\n##\s)", t, re.S)
+    assert m, "前提失配：找不到「闸 → 反验的对应关系」小节"
+    me = os.path.basename(__file__)
+    for line in m.group(1).split("\n"):
+        c = [x.strip() for x in line.strip().strip("|").split("|")]
+        if len(c) >= 3 and c[1].strip("`") == me:
+            assert c[2].isdigit(), "前提失配：表里本反验那行的例数不是整数 [%s]" % c[2]
+            assert int(c[2]) == len(results), (
+                "对应关系表登记 %s 例，而本轮真跑 %d 例" % (c[2], len(results)))
+            return True
+    raise AssertionError("对应关系表里没有认领 %s 的那一行" % me)
+
+
 def main():
     tests = [m_clean, m_broken_selftest_syntax, m_broken_fixture_syntax,
              m_broken_shell, m_missing_local_module, m_fixture_not_treated_as_selftest,
@@ -615,6 +638,13 @@ def main():
         if status != "通过":
             failed += 1
     print(f"闸 18 反验：{len(results)} 例，通过 {len(results) - failed}，失败/作废 {failed}")
+    # 收尾自检（**不占用例名额**，理由见 check_own_ledger_row 的注释）
+    try:
+        check_own_ledger_row()
+        print("  ✓ 本反验自己那一行的「例数」与本轮真跑数一致")
+    except AssertionError as exc:
+        failed += 1
+        print(f"  ✗ {exc}")
     return 0 if failed == 0 else 1
 
 

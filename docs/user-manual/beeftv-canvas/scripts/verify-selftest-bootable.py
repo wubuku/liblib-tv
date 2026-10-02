@@ -425,6 +425,57 @@ def _deleted_sibling_names():
             if ln.strip() and ln.strip().endswith((".py", ".sh"))}
 
 
+#: 从反验的输出末尾解析「它自己报的合计」。
+#: **四个形态不是四个约定，是实测出来的四种写法**：
+#:   `通过 6 / 失败 0 / 作废 0`（多数）、`6 例，通过 6，失败/作废 0`、
+#:   `✅ 5/5 例通过`、以及**末尾没有「作废」那一段的** `通过 6 / 失败 0 ===`。
+#: 第四种只有 `selftest-tables.sh` 一份——**而它恰好是本批之前例数唯一过期的那一行**，
+#: 所以**漏掉它就等于漏掉唯一需要抓的那一份**。
+#: **每一条都写明「是求和」还是「取第几组」**。
+#: 第一版把这两件事塞进同一个参数（`pick`），于是 `5/5 例通过` 被当成 5+5 = 10——
+#: **上线首跑三份全报「正好 2 倍」的错**（6→12、5→10、6→12）。
+#: **那个「正好 2 倍」就是它的签名**：真值不会集体翻倍，而解析器会。
+#: **一个可疑的整齐数字，先怀疑解析器，再怀疑数据。**
+TALLY_PATS = (
+    (re.compile(r"通过\s*(\d+)\s*[/／]\s*失败\s*(\d+)\s*[/／]\s*作废\s*(\d+)"), "sum", 3),
+    (re.compile(r"结果：通过\s*(\d+)\s*[/／]\s*失败\s*(\d+)\s*===?"), "sum", 2),
+    (re.compile(r"(\d+)\s*例[，,]?\s*通过\s*(\d+)"), "group", 1),
+    (re.compile(r"(\d+)\s*/\s*(\d+)\s*例通过"), "group", 2),
+)
+
+
+def _tally(out):
+    """返回 (合计, 用了第几条) 或 (None, None)：**从后往前找，取第一个认得的**。"""
+    for line in reversed(out.split("\n")):
+        for i, (pat, mode, n) in enumerate(TALLY_PATS):
+            m = pat.search(line)
+            if not m:
+                continue
+            if mode == "sum":
+                return sum(int(x) for x in m.groups()[:n]), i
+            return int(m.group(n)), i
+    return None, None
+
+
+def _claimed_case_counts():
+    """对应关系表里 `反验名 -> 例数`。**核不到就返回 None**（不是空表）。"""
+    path = os.path.join(ROOT, "AUDIT-RULES.md")
+    if not os.path.isfile(path):
+        return None
+    text = open(path, encoding="utf-8").read()
+    m = re.search(r"###\s*闸\s*→\s*反验的对应关系[^\n]*\n(.*?)(?=\n###|\n##\s)", text, re.S)
+    if not m:
+        return None
+    out = {}
+    for line in m.group(1).split("\n"):
+        if not line.startswith("|") or re.match(r"\|\s*:?-", line):
+            continue
+        c = [x.strip() for x in line.strip().strip("|").split("|")]
+        if len(c) >= 3 and c[0] != "闸":
+            out.setdefault(c[1].strip("`"), c[2])
+    return out
+
+
 def is_fixture(fn):
     return bool(FIXTURE_RE.match(fn))
 
@@ -1077,6 +1128,7 @@ def main():
               % ("；".join("%s 缺失（%s）" % (d, w) for d, w in need if d in lack)
                  or "screenshots 下 0 张 .png"))
         fleet = []
+    tally = {}          # fn -> (合计, 形态)；方向十七直接用方向十六真跑出来的输出
     before = _snapshot()
     ran = ok = 0
     fleet_cost = 0.0
@@ -1103,6 +1155,7 @@ def main():
         ran += 1
         if rc == 0:
             ok += 1
+            tally[fn] = _tally(out)
             continue
         tail = " / ".join(l.strip() for l in out.strip().split("\n") if l.strip())[-220:]
         why = (f"**超时**（上限 {per:.0f} 秒，实测 {d:.1f} 秒）" if rc is None
@@ -1126,6 +1179,56 @@ def main():
                 "　→ **反验只该在临时目录里动手脚**；它改了真实手册，"
                 "下一次构建读到的就不是我们以为的那份了"
                 "（`selftest-meta.sh` 会原地改 15 个真实文件，**所以它必须留在 SLOW 里**）")
+    # 方向十七（**Batch 211 新增**）：**对应关系表登记的「例数」必须等于那份反验真跑时自己报的合计**。
+    # **它不额外跑任何东西**——方向十六**已经把输出拿在手里了**，真值就在里面。
+    # **为什么不走「让 27 份反验各自声明一个 CASE_COUNT」那条路**：
+    # 那要给 27 个文件逐个加常量与断言，而**其中一份的基线用例只在失败时计数**
+    # （`selftest-tables.sh`：通过时不计、失败时计），**声明的数会随绿红变化**——
+    # **自断言会在真失败时先炸，把真正的失败信息盖住**。而**直接从输出取**没有这个问题：
+    # 它用的就是那份反验自己对外报的那句话。
+    # **与闸 9 方向十一的关系**：那边核「例数是正整数、闸编号 1..N、认领的文件存在」，
+    # **那边没有真值**（它不跑反验）；这边有真值但核不了慢的那 6 份。**各管一半，合起来才是全覆盖。**
+    if not ran:
+        print("方向十七：[skip] 本轮方向十六一份反验都没跑，"
+              "**没有真值可比**——如实报出，不装作核过了")
+    else:
+        claim = _claimed_case_counts()
+        if claim is None:
+            print("方向十七：[skip] 找不到对应关系表或它的表体，**核不了例数**")
+        else:
+            checked = mismatch = unparsed = 0
+            for fn, (val, _pick) in sorted(tally.items()):
+                if fn not in claim:
+                    problems.append(
+                        f"方向十七：`{fn}` 真跑跑过了，而对应关系表里**没有认领它**"
+                        "　→ 新增反验若不登记，那一行就没人管（方向十一治的是闸侧那一半）")
+                    continue
+                if val is None:
+                    # **解析不到就是核不到，不是核过了**（纪律 203）
+                    unparsed += 1
+                    problems.append(
+                        f"方向十七：`{fn}` 的输出末尾**解析不出合计**，"
+                        "所以它的「例数」这一列**本轮没有核**"
+                        "　→ 改它的汇总行写法，或在 `TALLY_PATS` 里补上那个形态；"
+                        "**别让「解析不到」变成一个没人知道的静默缺口**")
+                    continue
+                checked += 1
+                if str(val) != claim[fn]:
+                    mismatch += 1
+                    problems.append(
+                        f"方向十七：对应关系表里 `{fn}` 登记「例数 {claim[fn]}」，"
+                        f"而它**真跑时自己报的是 {val}**"
+                        "　→ 两种可能：表过期了（照真值改），"
+                        "或者反验真的变了（那就该在备注里说清这次为什么变）")
+            covered = set(tally) & set(claim)
+            uncovered = sorted(set(claim) - set(tally))
+            print("  方向十七：对应关系表 %d 行里，本方向核到 %d 行"
+                  "（%d 处不一致、%d 份解析不出）；"
+                  "**另有 %d 行本方向核不到**（%s）"
+                  % (len(claim), checked, mismatch, unparsed, len(uncovered),
+                     "、".join(uncovered) if uncovered else "无"))
+
+
     print("  方向十六：真跑 %d 份非慢反验，%d 份 rc=0，用时 %.1f 秒%s"
           % (ran, ok, fleet_cost,
              ("；**另有 %d 份按 SLOW 登记没跑**（%s）"
