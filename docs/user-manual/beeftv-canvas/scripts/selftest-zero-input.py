@@ -97,6 +97,15 @@ EXEMPT = {
 }
 
 
+#: 兜底声明里的落点。**只认共用措辞的那一种形态**——Batch 202 之后
+#: 15 道闸都走 `baseline.announce_fallback()`，所以这一行是全项目唯一的形态。
+#: （在那之前还有两道闸手写措辞，而它们能过方向三之三**纯属巧合**：
+#: 判据认的是 `[兜底]` 这个字符串，而它们恰好写了同样的字符串。）
+#: **路径里可能有空格**，所以用 `(.+?)` 松配 + 行尾锚，**不用 `\S+`**——
+#: 用户把仓放在 `/Users/Some One/BeefTV` 下是合法的。
+FALLBACK_PATH_RE = re.compile(r"改用候选表里的 (.+?)\s*$", re.M)
+
+
 def read(p):
     with open(p, encoding="utf-8") as fh:
         return fh.read()
@@ -137,7 +146,7 @@ def run_gates(gates, script_dir, env, skip=()):
         **前者读起来却像好消息**（纪律 156）。
     其余一律不看：`rc == 2`（未能核对）是对的，`rc == 1` 无异常是真的核出了不一致。
     """
-    crashed, found, silent = [], [], []
+    crashed, found, silent, announced = [], [], [], {}
     for gate in gates:
         if gate in skip:
             continue
@@ -164,7 +173,15 @@ def run_gates(gates, script_dir, env, skip=()):
         # **只问「它说了没有」**：说了就一定走了，没说就有可能是静默降级。
         if _touches_upstream(gate) and "[兜底]" not in out:
             silent.append(gate)
-    return crashed, found, silent
+        # 方向三之四的原料：**它读的是哪一份**。原样存字符串，
+        # **不在这里判对错**——对错要跨全部 15 道一起看（`check_announced`）。
+        m = FALLBACK_PATH_RE.search(out)
+        if m:
+            announced[gate] = m.group(1)
+        elif "[兜底]" in out:
+            # **说了却没给出落点**——这比「没说」还糟：它占了说明的位置。
+            announced[gate] = None
+    return crashed, found, silent, announced
 
 
 def _touches_upstream(gate):
@@ -178,6 +195,59 @@ def _touches_upstream(gate):
     src = read(os.path.join(HERE, gate))
     return bool(re.search(r"^\s*(?:import\s+(?:baseline|beefsrc)\b"
                           r"|from\s+(?:baseline|beefsrc)\s+import)", src, re.M))
+
+
+def _is_checkout(path):
+    """这个路径能不能当 git 检出用（**判据自己问 git，不向解析器问答案**）。
+
+    **为什么不直接问 `beefsrc.resolve_src()`**：那等于让被核对象给自己打分——
+    它说「我落在真仓上」，判据再问它「你落在真仓上了吗」，答的一直是同一句话。
+    判据要的是一个**独立**的事实：`git -C <path> rev-parse --git-dir` 成不成立。
+    **用的判真标准与 `beefsrc` 是同一条**（Batch 197），但执行者是判据自己。
+    """
+    if not path:
+        return False
+    try:
+        p = subprocess.run(["git", "-C", path, "rev-parse", "--git-dir"],
+                           capture_output=True, text=True, timeout=30)
+    except (OSError, subprocess.SubprocessError):
+        return False
+    return p.returncode == 0
+
+
+def check_announced(announced):
+    """方向三之四：**说了还不够，说的落点得站得住**（判据两条都不向解析器要答案）。
+
+    方向三之三只问「说了没有」，**而说了的东西本身可能是错的，且错得毫无声响**。
+    两条要查的：
+      · **一致性**：同一个环境下，15 道闸说的落点必须**完全相同**。
+        不相同就说明其中某几道还在自己解析上游——**「BeefTV 在哪」在闸里
+        曾经有 4 种写法**（Batch 197），这里防的是它长出第 5 种；
+      · **真检出**：落点必须**自己就能当 git 检出用**。一道闸报出一个
+        不存在的目录，读者照样会以为它核过了。
+
+    **为什么这两条不能合成一条**：「都不一样」和「都一样但都不存在」
+    是两个长得一样、方向相反的失灵方式（纪律 185）。
+    """
+    problems = []
+    by_path = {}
+    for gate, path in sorted(announced.items()):
+        if path is None:
+            problems.append("%s 打了 `[兜底]` 却没有报出落点 —— **说了等于没说**（纪律 189）"
+                            % gate)
+        else:
+            by_path.setdefault(path, []).append(gate)
+    if len(by_path) > 1:
+        for path, gs in sorted(by_path.items()):
+            problems.append("%s 说自己核的是 `%s`"
+                            % ("、".join("`%s`" % g for g in gs), path))
+        problems.append("    → **同一个环境下各闸读的不是同一份检出**。"
+                        "「BeefTV 在哪」在闸里曾经有 4 种写法（Batch 197），别再长出第 5 种")
+    for path in sorted(by_path):
+        if not _is_checkout(path):
+            problems.append("落点 `%s` 自己就不是一个可用的 git 检出"
+                            "（`git -C <p> rev-parse --git-dir` 失败）" % path)
+    return problems
 
 
 def report(label, crashed, found, scene):
@@ -209,7 +279,7 @@ def direction_one(gates):
         env["BEEFTV_MANUAL_ROOT"] = tmp
         env["PYTHONDONTWRITEBYTECODE"] = "1"
         env["BEEFTV_SRC"] = os.environ.get("BEEFTV_SRC", "")
-        return run_gates(gates, os.path.join(tmp, "scripts"), env, skip=EXEMPT)[:2] + ([],)
+        return run_gates(gates, os.path.join(tmp, "scripts"), env, skip=EXEMPT)[:3]
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -273,7 +343,8 @@ def main():
 
     t0 = time.time()
     c1, f1, _ = direction_one(gates)
-    c3, f3, silent = direction_three(gates)
+    c3, f3, silent, announced = direction_three(gates)
+    wrong = check_announced(announced)
     cost = time.time() - t0
 
     report("零输入体检（方向一/二）", c1, f1, "手册树为空")
@@ -292,7 +363,18 @@ def main():
               "它自己从调用栈认出调用者是哪道闸")
         print()
 
-    if f1 or c1 or f3 or c3 or silent:
+    if wrong:
+        print("零输入体检（方向三之四）：%d 道闸**说了落点，但落点站不住**——" % len(wrong))
+        for line in wrong:
+            print("  · %s" % line)
+        print("    → 方向三之三只问「说了没有」；**说错了同样没人拦**，"
+              "因为一道闸报出一个不存在的目录时，读起来仍然像「它核过了」")
+        print("    → 修法：落点只从 `baseline.announce_fallback()` 出，"
+              "并且**它必须是一个真的 git 检出**——判据自己跑 `git -C <p> rev-parse --git-dir` "
+              "去核，**不向 `beefsrc` 要答案**（那等于让被核对象给自己打分）")
+        print()
+
+    if f1 or c1 or f3 or c3 or silent or wrong:
         return 1
     print("零输入体检：%d 道闸在两个极端下各跑一遍 —— " % len(gates))
     print("  · 方向一/二（手册树为空）：没有一道在零输入下报绿，"
@@ -301,6 +383,8 @@ def main():
     print("  · 方向三（手册树正常、`BEEFTV_SRC` 指向非仓）：没有一道报绿，"
           "也没有一道把异常当成「核出不一致」")
     print("  · 方向三之三：**碰过上游解析的闸，走了兜底都明说了**（纪律 172）")
+    print("  · 方向三之四：**说了的落点跨 %d 道闸完全一致，且它自己就是一个可用的 git 检出**"
+          % len(announced))
     print("  · 实测 %.1fs（含「闸只读」前提自检 %d 处写操作 = 0）" % (cost, len(dirty)))
     return 0
 
