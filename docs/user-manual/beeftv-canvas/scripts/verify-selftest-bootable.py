@@ -50,26 +50,93 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCRIPTS = os.path.join(ROOT, "scripts")
 
-# 慢反验登记表：**超过阈值的必须在这里写明为何不放进构建**。
-# 阈值取自 Batch 179 的实测（见下），不是拍的。
-SLOW_BUDGET_MS = 30000
+# 慢反验登记表。
+#
+# **Batch 180 改的正是这个表**。原样写着「阈值取自实测，不是拍的」——
+# **而那个 `SLOW_BUDGET_MS = 30000` 全文件只出现这一次，从没被任何判据读过**：
+# 方向四只核「登记了的还在不在」，**从不核「有没有该登记的漏登记了」**。
+# **注释在撒谎，而没人发现**——因为注释不产生任何信号。
+# 这是纪律 112（「用会变的量当论据之前，先想清楚谁来看着它」）的完整形态：
+# **量确实存在，但没有任何机制看着它，于是它等于不存在。**
+#
+# 改法不是「把 30 改成别的数」——**任何硬编码的秒数都会重蹈覆辙**。
+# 改成**由事实推导**：每份慢反验**自己声明实测耗时**，判据核
+#  ① 声明的耗时必须真的超过阈值（否则它其实不慢，该从表里删掉）；
+#  ② 阈值本身写在表里、且**必须与实测分档对得上**（见 SLOW_BUDGET_SEC）。
+# **判据锚的是「谁慢、慢多少」这个可测事实，而不是一个我拍出来的数。**
+SLOW_BUDGET_SEC = 30
 SLOW = {
-    "selftest-unreachable.sh":
-        "**实测约 25 分钟**（走 git plumbing 往上游仓库注入 40 个用例并建临时 ref，"
-        "每个用例都要 read-tree / write-tree / commit-tree）。"
-        "**放进构建会让每次构建多花 25 分钟**，而它核的是闸 7 那 33 条断言的判据，"
-        "属于「提交前跑一次」的量级。改为登记 + 人工定期跑。",
-    "selftest-meta.sh":
-        "**实测 97 秒 / 36 例**。本身不算离谱，但它**会原地改 15 个真实文件**"
-        "（含 `AUDIT.md` / `PROGRESS.md` / `build-site.sh`）——"
-        "**构建中途失败就会把它们留在被改状态**，"
-        "而这正是 Batch 178 里「绝不能弄丢他人修改」那条纪律要防的事。"
-        "故不自动跑，改为登记。",
+    "selftest-unreachable.sh": {
+        "seconds": 1500,          # 实测约 25 分钟（Batch 179）
+        "why": "走 git plumbing 往上游仓库注入 40 个用例并建临时 ref，"
+               "每个用例都要 read-tree / write-tree / commit-tree。"
+               "**放进构建会让每次构建多花 25 分钟**。改为登记 + 提交前跑。",
+        "anchor": ("selftest-unreachable.sh", "refs/manual-gate-selftest"),
+    },
+    "selftest-meta.sh": {
+        "seconds": 97,            # 实测 97 秒 / 36 例（Batch 179）
+        "why": "97 秒本身不算离谱，但它**会原地改 15 个真实文件**"
+               "（含 `AUDIT.md` / `PROGRESS.md` / `build-site.sh`）——"
+               "**构建中途失败就会把它们留在被改状态**，"
+               "而这正是「绝不能弄丢他人修改」那条纪律要防的事。"
+               "**注意它的登记理由不是「慢」，是「会写别人的文件」**——"
+               "**理由必须说清真正的原因，否则下一个人会按「慢」去优化它，"
+               "而优化它并不会让它变得安全。**",
+        "anchor": ("selftest-meta.sh", "SNAP_FILES"),
+    },
+    "selftest-exclusions.py": {
+        "seconds": 35.6,          # 实测（Batch 180）
+        "why": "慢的根因**不在反验框架，在被测闸门**：`verify-exclusions.py` 10 秒，"
+               "而它会 `git ls-tree` 列出全部上游文件后**逐个 `git show`**"
+               "（每个文件一次子进程）。**5 个用例 × 10 秒 ≈ 35 秒。**"
+               "**根治办法是让闸门改用 `git grep` 或一次性 checkout**，"
+               "但那属于闸门性能优化，不在本闸职责内——**先如实登记，别假装它不慢**。",
+        "anchor": ("verify-exclusions.py", "git_show(src, ref, f)"),
+    },
+    "selftest-endpoints.py": {
+        "seconds": 43,            # 实测（Batch 180）
+        "why": "同样是被测闸门拖慢：`verify-endpoints.py` 本体 10 秒"
+               "（要核对 28 条端点是否真的注册）。7 个用例各跑一次。",
+        "anchor": ("verify-endpoints.py", "collect_routes"),
+    },
+    "selftest-label-drift.py": {
+        "seconds": 105,           # 实测（Batch 180）
+        "why": "**三份里最慢的**。它的做法是**往上游仓库建合成 ref**（git read-tree/write-tree），"
+               "每个用例一次完整 tree 操作。**105 秒已接近「能不能进构建」的边界**，"
+               "若继续变慢应当考虑拆分用例或改用更轻的注入方式。",
+        "anchor": ("selftest-label-drift.py", "write-tree"),
+    },
 }
-SLOW_ANCHORS = {
-    # 登记理由里点名的判据必须仍然成立，否则登记本身过期了
-    "selftest-unreachable.sh": ("selftest-unreachable.sh", "refs/manual-gate-selftest"),
-    "selftest-meta.sh": ("selftest-meta.sh", "SNAP_FILES"),
+
+
+# **实测耗时登记表**（Batch 180 新增）。单位：秒，单次实测（含进程启动）。
+#
+# **为什么需要这张表**：方向四d 要核「没登记为慢的反验，实测是否真的不超过阈值」。
+# 而**判据在构建期无法知道谁慢**——除非有人把秒数写进来。
+# 于是这里要求：**「我没登记它慢」必须是一个有据的说法，而不是「我没量过它」。**
+# 这正是纪律 112 的正面用法：与其指望「量小到大有人在看」，
+# 不如**让「没量过」本身成为一个可被看见的状态**。
+#
+# **怎么维护**：新增反验时跑一次 `time python3 scripts/selftest-<名>.py`，
+# 把秒数填进来。**故意留空的值会让构建失败**——
+# 因为「空着」和「量过但很快」在账面上长得一模一样，而只有后者是有意义的。
+SELFTEST_COSTS = {
+    "selftest-baseline.py": 1.6,
+    "selftest-deadlinks.py": 0.6,
+    "selftest-endpoints.py": 43,
+    "selftest-error-copy.py": 1.6,
+    "selftest-exclusions.py": 35.6,
+    "selftest-feature-flags.py": 0.4,
+    "selftest-label-drift.py": 105,
+    "selftest-line-counts.py": 11.8,
+    "selftest-runtime-policy.py": 0.7,
+    "selftest-screenshots-literals.py": 23.5,
+    "selftest-screenshots.py": 0.6,
+    "selftest-selftest-bootable.py": 6.4,
+    "selftest-selftest-deps.py": 0.6,
+    "selftest-shortcuts.py": 1.3,
+    "selftest-shot-version.py": 2.0,
+    "selftest-tables.sh": 2.0,
 }
 
 
@@ -101,6 +168,28 @@ def _looks_third_party(mod):
     """
     return mod in ("__future__", "builtins")
 
+
+
+def _build_invokes(fn):
+    """build-site.sh **真的执行**了这份反验吗（注释里提到不算）。
+
+    **只看代码、不看注释**（方向四c 上线首跑就误报，Batch 180）：
+    `build-site.sh` 的注释里正写着 `selftest-unreachable.sh` 与 `selftest-meta.sh`
+    的名字和实测秒数——那是**给人看的说明**，而字面匹配把它们当成了调用。
+    **注释不是调用点**，与闸 7「URL 写出点只看代码不看注释」同源。
+    """
+    path = os.path.join(ROOT, "build-site.sh")
+    try:
+        with open(path, encoding="utf-8") as fh:
+            lines = fh.read().split("\n")
+    except OSError:
+        return False
+    for line in lines:
+        if line.lstrip().startswith("#"):
+            continue
+        if fn in line:
+            return True
+    return False
 
 
 def is_fixture(fn):
@@ -243,24 +332,79 @@ def main():
                 "　→ 它没有指向被测闸门；「反验 ↔ 闸」的对应关系会退化成散文"
                 "（Batch 169 方向十一治的正是这个）")
 
-    # 方向四：慢反验登记的理由必须仍然成立
-    for fn, reason in SLOW.items():
+    # 方向四：慢反验登记表**双向**自证（Batch 180 改）
+    #
+    # **原来只有一个方向**：核「登记了的，理由是否仍成立」。
+    # 漏掉的是「**该登记的没登记**」——于是 `SLOW_BUDGET_MS` 那个阈值
+    # **从来没被读过**，却在上方注释里写着「取自实测，不是拍的」。
+    # **注释在撒谎，而撒谎不产生任何信号。**
+    #
+    # 改成三个方向：
+    #   ④a 登记项确实存在，且**声明的耗时真的超过阈值**（否则它其实不慢，该删）；
+    #   ④b 登记理由点名的判据仍在上游（原有那条，保留）；
+    #   ④c **反向**：每份反验若被 build-site.sh 自动调用，就**不该**出现在慢表里
+    #       （能自动跑还登记成「只能手动跑」，说明登记过期了）。
+    # **④c 是可静态判的**：build-site.sh 里出现了它的名字就是「会自动跑」。
+    for fn, info in SLOW.items():
         path = os.path.join(SCRIPTS, fn)
         if not os.path.isfile(path):
-            problems.append(f"方向四：SLOW 里登记了 {fn}，但它不存在（登记已过期，请删）")
+            problems.append(f"方向四a：SLOW 里登记了 {fn}，但它不存在（登记已过期，请删）")
             continue
-        src, needle = SLOW_ANCHORS[fn]
+        # ④a：声称慢，就得真的超过阈值
+        secs = info.get("seconds")
+        if not isinstance(secs, (int, float)) or secs <= 0:
+            problems.append(
+                f"方向四a：{fn} 的登记里没有正的 seconds 字段"
+                "　→ 判据无法核「它到底慢不慢」，等于这张表不受任何约束")
+        elif secs <= SLOW_BUDGET_SEC:
+            problems.append(
+                f"方向四a：{fn} 登记为慢反验（{secs}s），但没超过阈值 {SLOW_BUDGET_SEC}s"
+                "　→ 它其实不慢（或阈值该调了），请从表里删掉或更新实测值")
+        src, needle = info["anchor"]
         probe = os.path.join(SCRIPTS, src)
         try:
             with open(probe, encoding="utf-8") as fh:
                 body = fh.read()
         except OSError:
-            problems.append(f"方向四：{fn} 的登记理由点名了 {src}，但读不到它")
+            problems.append(f"方向四b：{fn} 的登记理由点名了 {src}，但读不到它")
             continue
         if needle not in body:
             problems.append(
-                f"方向四：{fn} 的登记理由点名了 {src} 里的 {needle!r}，但那里已没有它"
+                f"方向四b：{fn} 的登记理由点名了 {src} 里的 {needle!r}，但那里已没有它"
                 "　→ 登记理由失效，**要么它其实不慢了（该放进构建），要么理由要重写**")
+        # ④c：能被构建自动调用的反验，不该登记成「只能手动跑」
+        # **只认真正执行的代码，不认注释**（上线首跑就误报，Batch 180）：
+        # `build-site.sh` 的注释里**正写着**这两个反验的名字与实测秒数
+        # （那是给人看的说明），而纯字面匹配把它们当成了「已被自动调用」。
+        # **注释不是调用点**——与闸 7「URL 写出点只看代码不看注释」同一条纪律。
+        if _build_invokes(fn):
+            problems.append(
+                f"方向四c：{fn} 已登记为「慢、只能手动跑」，"
+                "但 build-site.sh **真的执行**了它（注释里提到不算）"
+                "　→ 登记与现实脱节；要么去掉登记，要么把它从构建里拿掉，二者必须一致")
+
+    # ④d（**本批新增，也是最重要的一条**）：反向核对**没有漏登记**。
+    # 为什么这条只能靠人工跑：判据无法在构建期知道谁慢——
+    # **除非有人把实测值写进来**。所以本闸要求：
+    # **凡是在 SLOW 里没登记、也没被 build-site.sh 自动调用的反验，
+    # 必须在 `SELFTEST_COSTS` 里留下一条实测耗时**。
+    # 换句话说：**「我没登记它慢」必须是一个有据的说法，而不是「我没量过它」。**
+    # 这正是纪律 112 的正面用法：**与其要求量小到大有人在看，
+    # 不如让「没量过」本身成为一个可被看见的状态。**
+    known = set(SLOW)
+    auto = set(fn for fn in names if _build_invokes(fn))
+    for fn in sorted(set(names) - known - auto):
+        cost = SELFTEST_COSTS.get(fn)
+        if cost is None:
+            problems.append(
+                f"方向四d：反验 {fn} 既没登记为慢、也没被构建自动调用，"
+                "**且 `SELFTEST_COSTS` 里没有它的实测耗时**"
+                "　→ 「我没登记它慢」现在等于「我没量过它」；"
+                "跑一次（多数只需几秒到几十秒）把秒数填进去即可")
+        elif cost > SLOW_BUDGET_SEC:
+            problems.append(
+                f"方向四d：反验 {fn} 实测 {cost}s，**超过阈值 {SLOW_BUDGET_SEC}s 却没登记为慢**"
+                "　→ 这正是原判据漏掉的那一整类：新反验变慢时无人提醒")
 
     checked = py_ok + sh_ok
     if problems:

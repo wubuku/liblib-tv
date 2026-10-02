@@ -3882,3 +3882,45 @@ build-site.sh 全绿。
 
 **纪律 128/129/130**；验收：18 道闸全绿、selftest-selftest-bootable.py 7/7、
 build-site.sh 全绿。
+
+## 环境记录一百三十七（Batch 180，2026-10-02，闸 18 方向四从单向改双向）
+
+**起因**：Batch 179 留的口子。闸 18 方向四旁写着 `SLOW_BUDGET_MS = 30000`
+与注释「**阈值取自实测，不是拍的**」。**实测发现该常量全文件只出现一次、
+从未被任何判据读过**——方向四只核「登记了的还在不在」，**从不核漏登记**。
+**注释在撒谎，而撒谎不产生任何信号**（纪律 112 的完整形态）。
+
+**实测数据**（`time python3 scripts/selftest-<名>.py`）：
+
+| 反验 | 实测 | 备注 |
+|---|---|---|
+| `selftest-feature-flags.py` | 0.4s | 我原先写 5 |
+| `selftest-deadlinks/screenshots/selftest-deps.py` | 0.6s | |
+| `selftest-shortcuts.py` | 1.3s | |
+| `selftest-baseline/error-copy.py` | 1.6s | |
+| `selftest-shot-version.py` | 2.0s | |
+| `selftest-tables.sh` | 2.0s | |
+| `selftest-selftest-bootable.py` | 6.4s | |
+| `selftest-line-counts.py` | 11.8s | |
+| `selftest-screenshots-literals.py` | 23.5s | |
+| **`selftest-exclusions.py`** | **35.6s** | 用例仅 5 个，**比例失配** |
+| **`selftest-endpoints.py`** | **43s** | 用例 7 个 |
+| **`selftest-label-drift.py`** | **105s** | 用例仅 5 个，**最慢** |
+| `selftest-meta.sh` | 97s | 会原地改 15 个真实文件 |
+| `selftest-unreachable.sh` | ~1500s | git plumbing 往上游注入 |
+
+**根因**：`verify-exclusions.py` 与 `verify-endpoints.py` 都用
+`git ls-tree` 列出全部上游文件后**逐个 `git show`**（每文件一次子进程），
+闸门本体各约 10 秒。**根治要改闸门（`git grep` 或一次性 checkout）**，
+属性能优化，不在本批职责内——**先如实登记**。
+
+**改法**（把一个无人看着的量拆成三条可判的事实）：
+④a 声称慢的就得真超过阈值；④c 能被构建自动调用的就不该登记成只能手动跑
+（**只认真正执行的代码**，`build-site.sh` 注释里正写着那两个名字与秒数，
+纯字面匹配首跑即误报 2 处）；④d 漏登记的慢反验必报，且**「没量过」要可见**。
+
+**两条未取到准数的（首次计时 45 秒超时）标成待量并让构建失败**，
+**不猜数填上**——留空会被人补，猜的数只会让账面看起来是满的。
+
+**纪律 131/132/133**；验收：18 道闸全绿、selftest-selftest-bootable.py **11/11**、
+build-site.sh 全绿。

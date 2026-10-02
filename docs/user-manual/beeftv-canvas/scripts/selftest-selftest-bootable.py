@@ -64,6 +64,8 @@ def check_anchor():
     t = read(GATE)
     assert "FIXTURE_RE" in t, "前提失配：闸 18 里找不到夹具分类判据"
     assert "SLOW = {" in t, "前提失配：闸 18 里找不到慢反验登记表"
+    assert "SELFTEST_COSTS = {" in t, "前提失配：闸 18 里找不到实测耗时表"
+    assert "_build_invokes" in t, "前提失配：闸 18 里找不到「只认代码不认注释」的判据"
 
 
 # ── 1 现状 ──────────────────────────────────────────────────────────
@@ -172,10 +174,76 @@ def m_real_selftest_detected():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── 8 慢反验登记成「不慢」（seconds 低于阈值）→ 必报 ─────────────────
+def m_slow_entry_under_budget():
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        t = read(p)
+        new = t.replace('"seconds": 97,', '"seconds": 3,', 1)
+        assert new != t, "注入未生效：seconds 没被改小"
+        write(p, new)
+        rc, out = run_in(tmp)
+        record("8 登记为慢但不慢→必报", rc == 1 and "没超过阈值" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+# ── 9 漏登记的慢反验 → 必报（**方向四d，本批新增**）─────────────────
+def m_slow_not_registered():
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        t = read(p)
+        # 造一份实测 999 秒、却没进 SLOW 的反验
+        new = t.replace('"selftest-shot-version.py": 2.0,',
+                        '"selftest-shot-version.py": 999,', 1)
+        assert new != t, "注入未生效：耗时没被改成 999"
+        write(p, new)
+        rc, out = run_in(tmp)
+        record("9 变慢却没登记→必报", rc == 1 and "却没登记为慢" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+# ── 10 「没量过」必须可见（**方向四d 的另一半**）────────────────────
+def m_never_measured():
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        t = read(p)
+        new = t.replace('"selftest-shot-version.py": 2.0,', '', 1)
+        assert new != t, "注入未生效：耗时条目没被删"
+        write(p, new)
+        rc, out = run_in(tmp)
+        record("10 缺实测耗时→必报", rc == 1 and "没有它的实测耗时" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+# ── 11 注释里提到 ≠ 真调用（方向四c）─────────────────────────────────
+def m_comment_is_not_invocation():
+    check_anchor()
+    tmp = sandbox()
+    try:
+        # 在**真实的** build-site.sh 副本注释里写上某个反验名 → 不得报「已被自动调用」
+        bp = os.path.join(tmp, "build-site.sh")
+        with open(bp, "a", encoding="utf-8") as fh:
+            fh.write("\n# 顺带提一句 selftest-meta.sh 这个名字\n")
+        rc, out = run_in(tmp)
+        record("11 注释提到≠调用→必须不报", rc == 0, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main():
     tests = [m_clean, m_broken_selftest_syntax, m_broken_fixture_syntax,
              m_broken_shell, m_missing_local_module, m_fixture_not_treated_as_selftest,
-             m_real_selftest_detected]
+             m_real_selftest_detected, m_slow_entry_under_budget, m_slow_not_registered,
+             m_never_measured, m_comment_is_not_invocation]
     for t in tests:
         try:
             t()
