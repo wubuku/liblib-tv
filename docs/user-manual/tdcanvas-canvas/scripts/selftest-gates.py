@@ -951,6 +951,50 @@ def mutate_retracted_allowlist_too_broad(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_anchor_exemption_wrong_fragment(root: Path) -> None:
+    """内容锚点豁免的**锚点对不上那一行**时，必须仍然报出（M160）。
+
+    M160 给 `allow_in` 加了「内容锚点」形态（`文件#行内稳定片段`），
+    解决 M152 那条「豁免必须精确到行号」判据的另一半缺陷：
+    **行号精确但不稳定**——在文件上方插入几行，登记的 357 就漂到 360，
+    豁免静默失效，门禁开始报一条根本没变的行（M160 亲历）。
+
+    但新机制必须守住同一条底线：**锚点必须真的指向那一行**。
+    把锚点改成一个该行里并不存在的片段，门禁必须照样抓得到复现，
+    否则「锚点」就退化成了「随便写个字符串就能豁免整页」——
+    那比 M152 修掉的「只写文件名」还宽。
+    """
+
+    import re
+
+    path = root / "scripts/check-retractions.py"
+    text = path.read_text(encoding="utf-8")
+    patched = re.sub(
+        r'"SOURCE_OBSERVATIONS\.md#这一列的像素值已作废"',
+        '"SOURCE_OBSERVATIONS.md#这里放一个该行里根本不存在的锚点片段"',
+        text, count=1)
+    assert patched != text, "注入失败：没找到 R31 的内容锚点豁免"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_anchor_exemption_too_short(root: Path) -> None:
+    """内容锚点**短于 8 字**时必须判非法（M160）。
+
+    没有长度下限的话，锚点可以退化成两三个字，实质等于按内容模糊匹配整页。
+    8 字是 M160 实测挑的：够长到能唯一指认一行，够短到还能手写出来。
+    """
+
+    import re
+
+    path = root / "scripts/check-retractions.py"
+    text = path.read_text(encoding="utf-8")
+    patched = re.sub(
+        r'"SOURCE_OBSERVATIONS\.md#这一列的像素值已作废"',
+        '"SOURCE_OBSERVATIONS.md#像素值"', text, count=1)
+    assert patched != text, "注入失败：没找到 R31 的内容锚点豁免"
+    path.write_text(patched, encoding="utf-8")
+
+
 def mutate_retracted_ledger_repro(root: Path) -> None:
     """已订正的说法复现到**账本**里（正文之外，M153 补的覆盖范围）。
 
@@ -1000,6 +1044,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("M99 撤回的「方向拖反会连上」复现", mutate_retracted_stale_count, "retractions", "R22"),
     ("M132 订正的「Dock 认不出 9 个」复现（M152 补登记）", mutate_retracted_m132_dock, "retractions", "R25"),
     ("订正豁免写成只给文件名（豁免必须窄到无法滥用）", mutate_retracted_allowlist_too_broad, "retractions", "写法不合法"),
+    ("内容锚点豁免指错行时不能放行（锚点必须真的对得上）", mutate_anchor_exemption_wrong_fragment, "retractions", "订正过的错误说法重新出现"),
+    ("内容锚点短于 8 字判非法（锚点不能退化成模糊匹配）", mutate_anchor_exemption_too_short, "retractions", "写法不合法"),
     ("已订正说法复现到**账本**里（正文之外的盲区）", mutate_retracted_ledger_repro, "retractions", "订正过的错误说法重新出现"),
     ("产物里的死链", mutate_dead_dist_link, "distlinks", "指向不存在目标的链接"),
     ("任务评级三处不一致", mutate_rating_drift_inventory, "ratings", "评级漂移"),

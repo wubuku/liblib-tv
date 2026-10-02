@@ -203,7 +203,7 @@ RETRACTIONS: list[dict[str, str]] = [
         "wrong": "三处按钮区",
         "why": "M132 补出**顶栏**这一处按钮区后，两页仍写「三处按钮区」，实际是**四处**（左侧 Dock / 节点悬浮工具条 / 画布视图控制 / 顶栏）。M139 回走时订正为四处并把顶栏列进去。写死数量而不列出处，下批加一处就会漏改（2026-10-02 M139）",
         "fixed_in": "M139",
-        "allow_in": ["task-inventory.yml:126", "SOURCE_OBSERVATIONS.md:357"],
+        "allow_in": ["task-inventory.yml:126", "SOURCE_OBSERVATIONS.md#三处按钮区的顺序固定"],
     },
     {
         "id": "R27",
@@ -230,6 +230,25 @@ RETRACTIONS: list[dict[str, str]] = [
         "wrong": "按钮本身没有状态变化，说明这个功能没有状态",
         "why": "M136 实测 13 个按钮的 `aria-pressed` / `expanded` / `checked` / `current` **全为 null**，点下去信号全不变。但**这是读法边界，不是产品结论**：「隐藏连线」那种开关状态显示在**按钮外观**上、不在这些属性里。**「按钮没有状态变化」≠「这个功能没有状态」**，写进手册时必须把这条边界一起写上（2026-10-02 M136）",
         "fixed_in": "M136",
+    },
+    {
+        "id": "R30",
+        "wrong": "顶栏实际是 56px",
+        "why": "**错在源码引用指到了另一个组件**。M108 写的类名 `h-14` 确实存在于代码里，但长在 `web/src/components/layout/app-top-nav.tsx:101`（`td-app-top-nav`，工作区层顶栏），而**画布页的顶栏是 `web/src/components/canvas/canvas-top-bar.tsx:70` 的 `h-16` = 64px**。2026-10-03 M160 运行时实测顶栏 `y=0`、高 `64`；`git log` 确认 `h-16` 自首个提交 `f7f06b1` 起从未改过——**属当初取错证据，不是版本漂移**。**「源码里找得到」不等于「就是这个东西的」**（2026-10-03 M160）",
+        "fixed_in": "M160",
+    },
+    {
+        "id": "R31",
+        "wrong": "x=963",
+        "why": "「两把剪刀相距 931 像素」是一次**具体会话的读数，不是界面属性**：左侧 Dock 那一列钉死在屏幕上，节点工具条那一列**跟着节点跑**。2026-10-03 M160 实测同一个有图图片节点放在画布左侧时两把只相距 163px。原记录里的 `x=32` 还有个更隐蔽的问题——**那是按钮内 16px 图标的左边缘，不是按钮本身的左边缘**（按钮本身 x=24，32 = 24 + (32−16)/2）。**「同屏且相距很远、不会误点」的结论不变，变的只是不能靠数像素认按钮**",
+        "allow_in": ["SOURCE_OBSERVATIONS.md#这一列的像素值已作废"],
+        "fixed_in": "M160",
+    },
+    {
+        "id": "R32",
+        "wrong": "批量摆放节点时给画布上方留出至少 50px 的空白",
+        "why": "M108 订正后的预防值，而那条订正的**推导前提（顶栏高度）本身就是错的**（见 R30）。2026-10-03 M160 实测：13 按钮工具条顶边恒在**节点顶 − 104**（100% 缩放，8 个拖拽点零偏差坐实），顶栏底边 64，**临界值是节点顶 = 168**，比原值大 3 倍多。**由错数推出的数，错得不随机、错得很整**——所以订正时必须连推导链一起验，不能只验结论那个数",
+        "fixed_in": "M160",
     },
 ]
 
@@ -274,15 +293,30 @@ def main() -> int:
         allowed = set(item.get("allow_in", []))
         # M152：豁免必须精确到「文件:行号」。写全名文件等于整页开豁免，
         # 那这道门禁就形同虚设——**豁免要窄到无法滥用**。
-        # 在这里校验形状，而不是等它悄悄放宽了才发现。
+        # M160 反过来查出它的另一半：**只用行号同样不可用**。
+        # 本批在 SOURCE_OBSERVATIONS.md 上方插了 3 行，R26 登记的 357 行
+        # 静默漂到 360，豁免失效、门禁开始报那条根本没变的行。
+        # 行号精确但**不稳定**——插入即错位，而错位的方向是「豁免失效」，
+        # 表现为一条与本次编辑毫无关系的假阳性。
+        # → 增设「内容锚点」形态 `文件#行内稳定片段`：片段跟着内容走，插入不掉。
+        #   两种形态取并集，任一命中即豁免。**只写文件名仍然判非法。**
         for where in sorted(allowed):
+            if re.fullmatch(r"[^:#]+#\S{8,}", where):
+                continue  # 内容锚点形态
             if not re.fullmatch(r"[^:]+:\d+", where):
                 problems.append(
                     f"[{item['id']}] allow_in 的豁免位置写法不合法：{where!r}。"
-                    "**必须精确到「文件:行号」**（如 `10-tasks/edit-nodes.md:36`）；"
+                    "**必须精确到「文件:行号」或「文件#行内锚点」**"
+                    "（如 `10-tasks/edit-nodes.md:36` 或 `SOURCE_OBSERVATIONS.md#三处按钮区的顺序固定`）；"
                     "只写文件名等于把整页都开豁免，读者再也拦不住这里出错的说法。"
                 )
                 allowed = {w for w in allowed if w != where}
+        # 把内容锚点预解析成「文件 → 锚点片段集合」，供下面逐行匹配
+        anchors: dict[str, set[str]] = {}
+        for where in allowed:
+            if "#" in where:
+                fname, frag = where.split("#", 1)
+                anchors.setdefault(fname, set()).add(frag)
         hits: list[str] = []
         exempted: list[str] = []
         for page in pages:
@@ -290,8 +324,15 @@ def main() -> int:
             for lineno, line in enumerate(page.read_text(encoding="utf-8").splitlines(), 1):
                 if needle in line:
                     where = f"{rel}:{lineno}"
+                    # 行号命中，或本行含本文件登记过的任一锚点片段 → 豁免
+                    hit_anchor = next(
+                        (f"{rel}#{frag}" for frag in anchors.get(rel, ()) if frag in line),
+                        None,
+                    )
                     if where in allowed:
                         exempted.append(where)
+                    elif hit_anchor:
+                        exempted.append(hit_anchor)
                     else:
                         hits.append(where)
         checked += 1
