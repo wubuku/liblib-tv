@@ -53,11 +53,21 @@ EXPECTED_STATES = [
     # 但证据只在探针输出里 —— 不进状态表就没人盯着它会不会再坏）。
     "资产库模态", "项目信息模态",
     # 批 867：探针 867 探到、且**冷启动就能点开**的另外 3 个浮层。
-    # 另 3 个（timeline-fullscreen / text-fullscreen /
-    # subject-metadata-editor）**没进**状态表：冷启动画布上压根没有那几个
-    # 节点（实测 `rf__node-timeline` / `rf__node-text` /
-    # `rf__node-subject` 计数都是 0）⇒ **前置态没成立**，不是「入口没有」。
     "顶栏·节点摘要", "顶栏·项目面板", "AI 侧栏",
+    # 批 868：867 记成「候选没命中」的那三个，**三个**都跑到了。
+    # ⚠️ 顺带**撤回**本文件上一版写在这里的一段话。那段写的是：
+    #   「文本·全屏编辑故意不在契约里 —— 审计上下文里入口压根不在 DOM，
+    #    探针冷启动却能拿到，差异未查清（⚠️ 未验证）」。
+    # **那个结论是错的，而且错在两个地方**：
+    #   ① 「入口不在 DOM」不是环境差异，是**审计自己**把它按掉的 ——
+    #      `select_node()` 第一步就按 Escape，而文本节点在编辑态里把
+    #      Escape 当「取消编辑」；入口 `text-expand` 只在**编辑态**挂载，
+    #      于是「dblclick 进编辑 → 重新选中 → 入口」结构上不可能成立。
+    #      修法是加一版**不按 Escape** 的 `select_node_soft()`。
+    #   ② 「入口不存在」这个更早的结论也不对：按钮的 aria 是 `全屏`，
+    #      `全屏编辑` 是**层**的名字（867 探针把层名当按钮名去找了）。
+    #      §83 那条待办「复刻没有全屏入口」据此关闭。
+    "文本·全屏编辑", "时间线·全屏", "主体·元数据编辑器",
 ]
 
 failures: list[str] = []
@@ -75,7 +85,13 @@ def check(name: str, ok: bool, detail: str = "") -> None:
 
 
 def strip_comments(src: str) -> str:
-    """真正剥掉 JS/TS/Python 注释，供「代码里到底有没有 X」用。
+    """剥掉 **JS/TS** 注释，供「代码里到底有没有 X」用。
+
+    ⚠️⚠️⚠️ 批 868 更正：这段 docstring 原来写着「JS/TS/Python」——
+    **半句是错的**。这个状态机只认 `//` 与 `/* … */`，**不处理 Python 的
+    `#`**；868 判「文本分支里不该再出现 `select_node(`」时照着这句错话用了
+    它，结果被**自己写的注释**判成红的。Python 源码请用下面的
+    `strip_py_comments()`。这句话留着是为了让下一个人别再照着它翻车。
 
     ⚠️⚠️ 批 864 揭穿了前一版的偷懒：按**行首**是不是 `//` / `*` / `/*`
     来过滤，遇到**块注释的续行**就漏 —— 续行不以 `*` 开头，于是注释正文
@@ -157,6 +173,51 @@ def strip_comments(src: str) -> str:
         out.append(c)
         i += 1
     return "".join(out)
+
+
+def strip_py_comments(src: str) -> str:
+    """剥掉 **Python** 的注释（`#` 到行尾），字符串字面量里的 `#` 不算。
+
+    ⚠️⚠️ 批 868：上面那个 `strip_comments` 的 docstring 写着「JS/TS/Python」，
+    **这句话是错的** —— 它的状态机只认 `//` 和 `/* … */`，**根本不处理
+    Python 的 `#`**。于是 868 判「文本分支里不该再出现 `select_node(`」那条
+    断言，明明已经把注释剥了，还是被分支里那句
+    「⚠️ 这里**绝不能**调 `select_node()`」判成红的 —— 撞上**自己写的注释**。
+    教训和 864 那次一模一样：**「我以为我剥干净了」和「真剥干净了」之间，
+    差一次自检**。所以这里老老实实用标准库 `tokenize` 按 token 剥，
+    并且顺手把上面那句错话改掉（留着错话，下一批还会照着它翻车）。
+
+    用 tokenize 的另一个好处：审计里那些装 JS 的三引号字符串会被当成
+    STRING token 原样保留 —— 剥注释**不能**动字符串内容，否则内联 JS
+    会被搅成一团（Q.11b / Q.12 就在钉这件事）。
+    """
+    import io
+    import re
+    import tokenize
+
+    lines = src.splitlines(keepends=True)
+    try:
+        for tok in tokenize.generate_tokens(io.StringIO(src).readline):
+            if tok.type != tokenize.COMMENT:
+                continue
+            (r0, c0), (r1, c1) = tok.start, tok.end
+            # ⚠️⚠️ 第一版把 `lines` 放在**循环体里**、每次都从原始 `src`
+            #    重新切 —— 于是每处理一个注释，前面的抹除全被冲掉，
+            #    最后只剩**最后一个**注释生效。剥注释工具自己「看着在工作、
+            #    实际只剥了一处」，比不剥更坏：它让人以为已经干净了。
+            #    所以 `lines` 必须在循环**外**建一次，全程累积地改。
+            for ln in range(r0 - 1, r1):
+                s = lines[ln]
+                a = c0 if ln == r0 - 1 else 0
+                b = c1 if ln == r1 - 1 else len(s)
+                if a < len(s):
+                    s = s[:a] + re.sub(r"[^\n]", " ", s[a:b]) + s[b:]
+                    lines[ln] = s
+    except (tokenize.TokenError, IndentationError, SyntaxError):
+        # 剥不动就**原样返回**：宁可让断言拿到带注释的原文（可能假红），
+        # 也不让它悄悄返回半截被搅坏的源码（假绿更坏）。
+        return src
+    return "".join(lines)
 
 
 def main() -> int:
@@ -1429,6 +1490,109 @@ def main() -> int:
           f"4 和 8 都是真的；钉条数就是把易变量当契约）",
           len(_pi_bl) >= 1 and not _pi_unc,
           f"by_layer={len(_pi_bl)} 仍留未确认={len(_pi_unc)}")
+
+    # ── T. 批 868：节点内浮层进常驻状态 + **撤回**一条查错的结论 ──────
+    # 867 记的三个「候选没命中」，本批**三个**都跑到了。关键不在「多测到
+    # 一个」，而在于**撤回**：868 第一版把「审计里入口不在 DOM」写成
+    # 「冷启动与审计上下文有差异，⚠️ 未查清」—— 那是**没查**就写成了
+    # 「查不到」。真因是审计自己按的 Escape。下面 T.2–T.6 锁的是**机制**
+    # （代码形态 + 注释里写没写清），不是「这次跑出来了」这种结果 ——
+    # 结果会飘，机制不会；只钉结果的话，下一个人把 `select_node_soft()`
+    # 一删，红的只有运气。
+    print("— T. 批 868 节点内浮层 + 撤回一条查错的结论 —")
+    _ascr = ROOT / "scripts/verify-jimeng-batch841-unclickable.py"
+    _ausrc = (ROOT / "scripts/jimeng_unclickable_audit.py").read_text(
+        encoding="utf-8")
+    check("T.1 三个节点内浮层全进了**常驻状态**（文本 / 时间线 / 主体）",
+          all(s in EXPECTED_STATES for s in
+              ("文本·全屏编辑", "时间线·全屏", "主体·元数据编辑器")))
+    _txr = {r.get("state"): r for r in data.get("keyboard", [])
+            if r.get("layer") == "text-fullscreen"}.get("文本·全屏编辑", {})
+    check("T.2 它**真的量到了**（不是 skipped —— 上一版把它挂在「已知缺口」"
+          "上、结果 A.3「不许静默少跑」一直红；现在 `skipped=[]`）",
+          bool(_txr.get("ok")) and _txr.get("layer") == "text-fullscreen"
+          and not data.get("skipped"),
+          f"ok={_txr.get('ok')} layer={_txr.get('layer')} "
+          f"skipped={len(data.get('skipped') or [])}")
+    check("T.3 审计里有**不按 Escape 的选中** `select_node_soft(`，"
+          "且注释写明它为什么必须存在（Escape 在文本编辑态里 = 取消编辑）",
+          "def select_node_soft(" in _ausrc
+          and "取消编辑" in _ausrc)
+    # 只看**文本分支那一段**，且**用 `strip_py_comments` 剥掉 Python 注释**
+    # 再判（868 自己踩过：分支里那句「⚠️ 这里**绝不能**调 `select_node()`」
+    # 是注释，不剥就会被当成代码 —— 跟 864 那次「按行首过滤注释」是同一个坑，
+    # 只是这次错在「以为 `strip_comments` 也管 Python」）
+    _ausrc_nc = strip_py_comments(_ausrc)
+    _i_txt = _ausrc_nc.index('if kind == "文本":')
+    _i_end = _ausrc_nc.index("if not t.count():", _i_txt)
+    _txtblk = _ausrc_nc[_i_txt:_i_end]
+    check("T.4 文本分支**不再**调会按 Escape 的 `select_node(`"
+          "（868 第一版的病根就在这儿：dblclick 进编辑 → 重新选中 → "
+          "入口被自己按没了，**结构上**不可能成功）",
+          "select_node_soft(" in _txtblk and "select_node(" not in _txtblk,
+          f"soft={'select_node_soft(' in _txtblk} "
+          f"旧版={'select_node(' in _txtblk}")
+    check("T.5 那条错结论在**代码里被撤回**了（J 段写明「结构上不可能成功」，"
+          "并**引用**原结论 + 标「那个结论是错的」）",
+          "结构上不可能成功" in _ausrc
+          and "那个结论是错的" in _ausrc)
+    check("T.6 skipped 时会自动留下**现场** `j_ctx_dump(`，且它是**纯读**"
+          "（诊断动作不许破坏被诊断状态 —— 里面出现 click/fill/press "
+          "就说明它会自己把现场搅掉）",
+          "def j_ctx_dump(" in _ausrc
+          and not any(k in _ausrc[_ausrc.index("def j_ctx_dump("):
+                                 _ausrc.index("def j_ctx_dump(") + 2400]
+                      for k in (".click(", ".fill(", ".press(")))
+    # ⚠️ 判「没有裸 reload」不能只数 `page.reload(` 出现次数 ——
+    #    `hard_reload` **自己内部就该有**，它 docstring 里还会再提一次
+    #    （docstring 是 STRING token，剥注释**剥不掉**，那是文档不是代码）。
+    #    所以判据只钉真正要保证的那件事：**helper 之外一处都不许有**。
+    _h0 = _ausrc_nc.index("def hard_reload(")
+    _h1 = _ausrc_nc.index("def j_ctx_dump(")
+    _hr = _ausrc_nc[_h0:_h1]
+    _outside = _ausrc_nc[:_h0] + _ausrc_nc[_h1:]
+    check("T.7 dev server 掉线不再吃掉整份审计：`hard_reload(` 用在**两处**"
+          "收层点上，且**它之外**没有裸 `page.reload(`（868 实测崩过一次："
+          "`ERR_CONNECTION_REFUSED` 让前面二十几个状态的结果全丢）",
+          _ausrc_nc.count("if not hard_reload(") == 2
+          and _hr.count("page.reload(") >= 1
+          and "page.reload(" not in _outside,
+          f"两处={_ausrc_nc.count('if not hard_reload(')} "
+          f"helper内={_hr.count('page.reload(')} "
+          f"helper外={'page.reload(' in _outside}")
+    _tl = {r.get("state"): r for r in data.get("keyboard", [])
+           if r.get("layer") == "timeline-fullscreen"}
+    _tlr = _tl.get("时间线·全屏", {})
+    check("T.8 时间线全屏被认成**真模态**（`fixed inset-0` + 不透明底 ⇒ "
+          "源站无关那条判据）",
+          (_tlr.get("modalish") or {}).get("modalish") is True,
+          f"modalish={(_tlr or {}).get('modalish')}")
+    check("T.9 它**开层即接管焦点**（修之前焦点留在 `timeline-fullscreen-trigger`"
+          " 上、而那个触发器已被自己盖住，Tab 走过 26 个看不见的焦点位）",
+          (_tlr.get("focus_at_open") or {}).get("inside") is True
+          and _tlr.get("covered_n") == 0,
+          f"at_open_inside="
+          f"{(_tlr.get('focus_at_open') or {}).get('inside')} "
+          f"covered_n={_tlr.get('covered_n')}")
+    check("T.10 「真模态没接管焦点」桶为 **0**"
+          "（865 那条源站无关判据第一次在**真实产品缺陷**上开火，"
+          "修完必须归零）",
+          not data.get("keyboard_modal_no_focus"),
+          f"桶里还有 {len(data.get('keyboard_modal_no_focus') or [])} 条")
+    _tlc = "\n".join(ln for ln in (ROOT / "src/components/jimeng/nodes"
+                                   / "JimengTimelineNode.tsx")
+                     .read_text(encoding="utf-8").splitlines()
+                     if not ln.strip().startswith(("//", "*", "/*")))
+    check("T.11 时间线节点**真的调用**了 `useTakeFocusAtOpen(`"
+          "（判「有没有接」查调用形态，不查裸名字）",
+          "useTakeFocusAtOpen(" in _tlc,
+          f"调用={'useTakeFocusAtOpen(' in _tlc}")
+    p868 = ROOT / "scripts/jimeng_probe868_textbar.py"
+    p868s = p868.read_text(encoding="utf-8") if p868.exists() else ""
+    check("T.12 探针 868 在库里，并**如实标注**了那个未验死的怪癖"
+          "（「根因未验死」/「未验证」不许被删掉 —— 症状确定、机制未知，"
+          "把它写成结论就是下一批的坑）",
+          bool(p868s) and "未验死" in p868s and "未验证" in p868s)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

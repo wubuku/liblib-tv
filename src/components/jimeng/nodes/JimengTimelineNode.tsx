@@ -23,6 +23,7 @@ import {
 import type { NodeProps } from "@xyflow/react";
 
 import { nodeRingShadow } from "@/components/jimeng/nodeChrome";
+import { useTakeFocusAtOpen } from "@/components/jimeng/jimengMenuChrome";
 import type { JimengTimelineNodeData } from "@/types/jimeng";
 import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
@@ -150,6 +151,20 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
   const [muted, setMuted] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
+  const fsLayerRef = useRef<HTMLDivElement>(null);
+
+  /* 批 868：全屏时间线编辑器**开层即接管焦点**。
+     审计 868 抓到实锤（修之前）：这一层 `modalish=True`
+     （`fixed inset-0` + `background: rgb(20,20,22)`，**铺满视口且不透明**
+     ⇒ 865 那条源站无关判据认定的**真模态**），可开层时焦点**留在触发器上**
+     （`timeline-fullscreen-trigger` / aria「全屏编辑」），而那个触发器此刻
+     已经被这一层**自己盖住**（4/4 边）；接着按 Tab 会走过 **26 个全部被盖住**
+     的焦点位（`covered_n=26`，顶到 `top_anchor=tid:timeline-fullscreen`）——
+     焦点环一路落在看不见的地方，键盘用户在这一屏里直接失明。
+     与 863 的全屏预览同一类，本层**已经困 Tab**（`trapped=True`），缺的正是
+     「把焦点先放进来」。依据是模态自身的定义，**不声称**源站也这样
+     （源站时间线全屏的键盘行为未取样）。 */
+  useTakeFocusAtOpen(fsLayerRef, fullscreen);
   // Batch 821：「关闭自动吸附」是源站底栏播放控件里的一个真实开关
   const [fsSnap, setFsSnap] = useState(true);
   // Batch 821：源站底栏播放控件是「关闭自动吸附 / 缩小视图 / Timeline zoom
@@ -871,6 +886,7 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
       {fullscreen
         ? createPortal(
             <div
+              ref={fsLayerRef}
               className="fixed inset-0 z-[300] flex flex-col px-3 pb-3"
               style={{ background: "rgb(20,20,22)" }}
               role="dialog"

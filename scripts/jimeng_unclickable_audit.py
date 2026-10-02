@@ -178,6 +178,60 @@ def main() -> int:
             page.wait_for_timeout(700)
             return page.locator(".react-flow__node.selected").count() == 1
 
+        def select_node_soft(tid: str) -> bool:
+            """选中节点，但**不按 Escape**（探针 868 用的那套：给已选中的节点
+            派发 mousedown 来清选择，再点目标）。
+
+            ⚠️ 为什么必须有这一版：`select_node()` 靠 Escape 清选择，而文本
+            节点在编辑态里把 Escape 当「取消编辑」⇒ 用它「重新选中」会顺手把
+            刚进的编辑态 undo 掉（机制见 J 段注释）。凡是**要保住编辑态**的
+            前置态准备，只能走这一版。
+            """
+            page.evaluate("""() => document.querySelectorAll(
+                '.react-flow__node.selected').forEach(n => n.dispatchEvent(
+                    new MouseEvent('mousedown', {bubbles: true})))""")
+            pt = page.evaluate("""(tid) => {
+              const n = document.querySelector(
+                `.react-flow__node[data-testid="${tid}"]`);
+              if (!n) return null;
+              const r = n.getBoundingClientRect();
+              const CTRL = 'button,[role=button],a,input,select,textarea';
+              for (const [fx, fy] of [[0.5,0.5],[0.5,0.25],[0.25,0.5],[0.75,0.5]]) {
+                const x = r.x + r.width * fx, y = r.y + r.height * fy;
+                const top = document.elementFromPoint(x, y);
+                if (top && n.contains(top) && !top.closest(CTRL))
+                  return [x, y];
+              }
+              return null;
+            }""", tid)
+            if not pt:
+                return False
+            page.mouse.click(pt[0], pt[1])
+            page.wait_for_timeout(700)
+            return page.locator(".react-flow__node.selected").count() == 1
+
+        def hard_reload(why: str) -> bool:
+            """重载页面；dev server 掉了就**重试**，仍不行就**如实记账**返回
+            False —— 绝不让异常冒出去。
+
+            ⚠️ 868 栽过：dev server 掉线时 `page.reload()` 抛
+            `ERR_CONNECTION_REFUSED`，**整份审计**带崩，前面二十几个状态
+            的结果全丢。跟 `insert()` 是同一条原则（不让一次 30s 超时吃掉
+            整份结果），只是当时只给 `insert()` 加了护栏、忘了 reload。
+            ⚠️ 返回 False 之后**继续跑出来的结果不可信**（页面半死不活），
+            调用方要据此退出码 2，而不是若无其事地继续报「通过」。
+            """
+            for i in range(3):
+                try:
+                    page.reload(wait_until="domcontentloaded", timeout=60000)
+                    page.wait_for_timeout(2500)
+                    return True
+                except Exception as e:
+                    print(f"    ⚠ 重载失败（{why}）第 {i + 1} 次："
+                          f"{str(e).splitlines()[0][:70]}")
+                    page.wait_for_timeout(4000)
+            return False
+
         # ⚠️ 别叫 `open` —— 它会把内建 `open` 遮蔽掉，
         #    下面 `with open(OUT, "w")` 会炸成「unexpected keyword 'encoding'」。
         def _scoped(scope: str, sel: str) -> str:
@@ -1244,10 +1298,159 @@ def main() -> int:
                 #    `open_layer()` 认到的还是它（840 栽过同一个坑：
                 #    探完不收层，后面每个状态都在报同一层）。
                 if page.locator(f'[data-testid="{tid}"]').count():
-                    page.reload(wait_until="domcontentloaded", timeout=60000)
-                    page.wait_for_timeout(2500)
+                    if not hard_reload(f"收 {tag} 的层"):
+                        print(f"    ✗ 放弃：dev server 在收 {tag} 的层时"
+                              f"连续 3 次拒连，本次结果**不可信**（退出码 2）")
+                        return 2
             else:
                 skipped.append(f"{tag}（走 {why} 但没找到 {tid}）")
+
+        def j_ctx_dump(nid: str, trig: str) -> dict:
+            """J 段某个状态 skipped 时，把**当时的上下文**原样倒出来。
+
+            ⚠️ 纯读（全是 `querySelectorAll` / `getBoundingClientRect`），
+               **不碰**被诊断的状态 —— 诊断动作不许破坏被诊断对象（§65）。
+            ⚠️ 为什么需要它：868 第一次跑，「文本·全屏编辑」在**这里**跳过、
+               在**冷启动探针**里却点得开，两边上下文不一样但没人知道差在哪。
+               只写一句「入口不在 DOM」等于把「没测到」写成「没发生」——
+               所以必须留下**能自己查**的现场，而不是让人猜。
+            """
+            return page.evaluate("""(a) => {
+              const {nid, trig} = a;
+              const q = (s) => document.querySelectorAll(s).length;
+              const n = document.querySelector(
+                `.react-flow__node[data-testid="${nid}"]`);
+              const sel = [...document.querySelectorAll('.react-flow__node.selected')]
+                .map(x => x.getAttribute('data-testid'));
+              const full = [...document.querySelectorAll('button[aria-label="全屏"]')];
+              const vis = (e) => { const r = e.getBoundingClientRect();
+                return r.width > 1 && r.height > 1; };
+              const at = (x, y) => { const e = document.elementFromPoint(x, y);
+                if (!e) return null;
+                const nn = e.closest('.react-flow__node');
+                return e.tagName + '/' + (nn ? nn.getAttribute('data-testid') : '-'); };
+              const d = {nodes: q('.react-flow__node'),
+                         text_nodes: q('.react-flow__node[data-testid^="rf__node-text"]'),
+                         selected_n: sel.length, selected: sel.slice(0, 6),
+                         editing: q('.react-flow__node.selected [contenteditable]'),
+                         textareas: q('.react-flow__node.selected textarea'),
+                         toolbars: q('.react-flow__node-toolbar'),
+                         trig_n: q(trig),
+                         aria_fullscreen_n: full.length,
+                         aria_fullscreen_vis: full.filter(vis).length,
+                         aria_fullscreen_in_toolbar: full.filter(
+                           b => !!b.closest('.react-flow__node-toolbar')).length};
+              if (n) {
+                const r = n.getBoundingClientRect();
+                d.rect = [Math.round(r.x), Math.round(r.y),
+                          Math.round(r.width), Math.round(r.height)];
+                d.is_selected = n.classList.contains('selected');
+                d.hit_center = at(r.x + r.width * 0.5, r.y + r.height * 0.5);
+                d.hit_quarter = at(r.x + r.width * 0.25, r.y + r.height * 0.5);
+              } else { d.node_gone = true; }
+              return d;
+            }""", {"nid": nid, "trig": trig})
+
+        # ══ J. 批 868：三个**要先插节点**才存在的浮层 ═══════════════════
+        #   867 的探针把这三个记成「候选没命中」，本批查清了：**不是**入口
+        #   没有，是**冷启动画布上压根没有那几种节点**（`rf__node-timeline` /
+        #   `rf__node-text` / `rf__node-subject` 计数都是 0）⇒ 复刻侧的
+        #   `BLOCKED_BY_FIXTURE`。用 `insert()` 把节点插出来，前置态就成立。
+        #
+        #   ⚠️ 顺便**更正 §83 的一条待办**：那条写「源站文本工具条有『全屏』
+        #   入口，复刻没有」。**前提就是错的** —— 复刻有，按钮是
+        #   `aria-label="全屏"` / `data-testid="text-expand"`（源码批 817
+        #   注释逐字写着「源站第 8 个按钮 aria-label 是『全屏』」）。867 的
+        #   探针候选写的是 `aria-label="全屏编辑"`，**候选写错 ≠ 产品没有**。
+        #   这正是 864 记的「静态/文本判断当证据」的又一次发作，只是这次
+        #   连**待办清单**都被它带偏了。
+        for tag, kind, tid, trig, why in [
+            ("文本·全屏编辑", "文本", "text-fullscreen",
+             '[data-testid="text-expand"]', "文本节点工具条第 8 枚（aria=全屏）"),
+            ("时间线·全屏", "时间线", "timeline-fullscreen",
+             'button[aria-label="全屏编辑"]', "时间线顶行右簇"),
+            ("主体·元数据编辑器", "主体", "subject-metadata-editor",
+             '[data-testid="subject-meta-trigger"]', "主体节点「编辑主体」"),
+        ]:
+            nid = insert(kind)
+            if not nid:
+                skipped.append(f"{tag}（插不出 {kind} 节点 —— 前置态没成立，"
+                               f"**不是**「入口没有」）")
+                continue
+            if not select_node(nid):
+                skipped.append(f"{tag}（{kind} 节点插出来了但选不中）")
+                continue
+            # ⚠️⚠️ 文本节点：入口按钮**只在编辑态里存在**。这一条是本批
+            #    查出来的**机制**（不是推测，源码 + 探针 + 现场转储三方对齐）：
+            #      · 源码 `JimengTextNode.tsx:390` 起是 `{editing ? (…格式
+            #        工具条…含第 8 枚 `text-expand`…) : null}` ⇒ 编辑态一
+            #        掉，入口跟着卸。
+            #      · 探针 868 冷启动量到 `editing=True → text_expand=1`
+            #        且 `在工具条内 0`（它挂在编辑面**上方那条格式工具条**里，
+            #        不是 `.react-flow__node-toolbar`）。
+            #      · 审计现场转储（`j_ctx_dump`）：节点选中=True、**编辑面 0**、
+            #        工具条 1、aria=全屏 0 ⇒ 正是「编辑态已经掉了」。
+            #    ⚠️⚠️ 而编辑态是被**本审计自己**按掉的：`select_node()` 第一
+            #    件事是 `clear_selection()` = 按 Escape，而文本节点的
+            #    `onEditorKeyDown` 把 Escape 当「取消编辑」。于是
+            #    「dblclick 进编辑 → select_node 按 Escape → 入口消失」
+            #    **结构上不可能成功**，重试几遍都没用 —— 868 第一版把它记成
+            #    「冷启动与审计上下文有差异，⚠️ 未查清」，**那个结论是错的**：
+            #    不是环境差异，是准备步骤自己把自己 undo 了。
+            if kind == "文本":
+                nl = page.locator(f'.react-flow__node[data-testid="{nid}"]')
+                if nl.count():
+                    try:
+                        nl.first.dblclick(timeout=8000)
+                        page.wait_for_timeout(1200)
+                    except Exception:
+                        pass
+                # ⚠️ 这里**绝不能**调 `select_node()`（它按 Escape = 取消编辑）。
+                #   真要重新选中，用不带 Escape 的那版。
+                if not (page.locator(
+                        f'.react-flow__node[data-testid="{nid}"].selected'
+                ).count() or select_node_soft(nid)):
+                    _d = j_ctx_dump(nid, trig)
+                    skipped.append(
+                        f"{tag}（进了编辑态但节点掉选中："
+                        f"编辑面 {_d.get('editing')}）")
+                    continue
+            # ⚠️ 入口点之前**先问它在不在**：不在就**不点**（点了也没用，
+            #    而且会把「前置态没成立」记成「入口坏了」）。
+            t = page.locator(trig)
+            if not t.count():
+                _d = j_ctx_dump(nid, trig)
+                skipped.append(f"{tag}（{why}：入口按钮**压根不在 DOM 里** —— "
+                               f"前置态没成立，**不是**「入口没有」；现场="
+                               f"节点 {_d.get('nodes')}/文本 "
+                               f"{_d.get('text_nodes')}/选中 "
+                               f"{_d.get('selected_n')} {_d.get('selected')}/"
+                               f"编辑面 {_d.get('editing')}/工具条 "
+                               f"{_d.get('toolbars')}/aria=全屏 "
+                               f"{_d.get('aria_fullscreen_n')}"
+                               f"（可见 {_d.get('aria_fullscreen_vis')}）"
+                               f"/本节点选中={_d.get('is_selected')} 中心落点="
+                               f"{_d.get('hit_center')}）")
+                continue
+            try:
+                t.first.click(timeout=7000)
+            except Exception:
+                pass
+            page.wait_for_timeout(1200)
+            if page.locator(f'[data-testid="{tid}"]').count():
+                measure(tag)
+                page.keyboard.press("Escape")
+                page.wait_for_timeout(700)
+                if page.locator(f'[data-testid="{tid}"]').count():
+                    # ⚠️ 没收干净就**重载**：下一个状态的 `open_layer()`
+                    #    认到的还是它（840 栽过：探完不收层，后面每个状态
+                    #    都在报同一层）。
+                    if not hard_reload(f"收 {tag} 的层"):
+                        print(f"    ✗ 放弃：dev server 在收 {tag} 的层时"
+                              f"连续 3 次拒连，本次结果**不可信**（退出码 2）")
+                        return 2
+            else:
+                skipped.append(f"{tag}（{why} 点不到或点了层没出现）")
 
         # ── 自检：判据必须**能报出 1** ──────────────────────────────
         #     一个报 0 的工具，在证明自己之前什么都不是。第一版没有这一步，
