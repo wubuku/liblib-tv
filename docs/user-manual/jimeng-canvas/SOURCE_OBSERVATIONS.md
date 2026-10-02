@@ -9396,3 +9396,204 @@ audio-node-result → audio-result-gallery → audio-simple-player（铺满整�
 - ⛔ **未能配图**：58 个节点下「时间线 2」（`z-index 22`）始终压在音频卡片上方，
   两档缩放都过不了守卫 ⇒ **宁可不配图，也不放宽守卫**
 - **全程未点任何扣费/生成按钮**（「生成」「保存到主体库」均未碰）
+
+---
+
+## §4.25 批次 105（2026-10-02）·「资源失效态」造不出来，于是改成了「为什么造不出来」
+
+### 4.25.0 选靶与起因
+
+`media-playback.md:201` 挂着该页**最后一项**「未验证」：
+
+> **仍未验证**：资源失效后的「重试播放」与空载态（需要一张会失效的素材，本轮未造）。
+
+而同一页 117-133 行**已经把失效态该长什么样写成了对照表**，
+却只挂着一句「异常态行为部分来自历史观察记录」——
+🔴 **那张表是照着「历史观察」写的，从来没人造出过失效素材去对账。**
+
+按老规矩先问「能不能自己造」：素材这一关，批次 102 刚测出左栏上传有
+**111 条 `accept` 白名单**（含 19 种视频扩展名），**且上传免费**。
+
+### 4.25.1 a 轮：素材造出来了，而且是**第三种状态**
+
+`/tmp/jimeng-b105-garbage.mp4` = 合法 `ftyp` 头（`file` 命令都认它是 `ISO Media, MP4 v2`）
++ 1MB 伪随机字节。走左栏上传，差集恰好 1 个且同时 `.selected` ⇒ `node_p0brqdj8z0`。
+**积分 805 → 805。**
+
+🔴 **重大发现：节点会自报资源账。** `innerText` 逐字：
+
+```text
+jimeng-b105-garbage 1 resource: 0 ready, 1 processing, 0 failed. Selected.
+```
+
+- 对照：空节点是 `No resources: 0 ready, 0 processing, 0 failed.`
+- 正常视频（有资源、处理完）是 `1 resource: 1 ready, 0 processing, 0 failed.`
+- 时间线节点用另一套措辞：`时间线: 1 visual track, 0 audio tracks, 0 clips.`
+
+「处理中」这一档的卡片特征：
+
+| 项 | 读数 |
+|---|---|
+| testid | **`video-node-uploading`** |
+| 中央 aria | `jimeng-b105-garbage.mp4: 正在处理上传内容…` |
+| 节点内 `<video>` | **0** |
+| 节点内 `<img>` | **0** |
+| 节点内按钮 | **只有一个** `Rename jimeng-b105-garbage` |
+| 资源账 | `0 ready, 1 processing, 0 failed` |
+
+⇒ 🔴 **手册 124-133 行的两栏表（空节点 / 资源失效）漏了中间这一档**，
+而中间这档恰恰是**唯一能自然造出来**的那个。
+
+### 4.25.2 b 轮：11 分钟账本逐位不动
+
+连采 6 次、跨 12:57 → 13:08，账本**每次逐位相同**：
+
+```text
+[13:07:48] k=0 账本={"res":1,"ready":0,"processing":1,"failed":0} video=0 img=0 testid=video-node-uploading
+[13:08:02] k=1 账本={"res":1,"ready":0,"processing":1,"failed":0} video=0 img=0 testid=video-node-uploading
+[13:08:16] k=2 账本={"res":1,"ready":0,"processing":1,"failed":0} video=0 img=0 testid=video-node-uploading
+[13:08:30] k=3 账本={"res":1,"ready":0,"processing":1,"failed":0} video=0 img=0 testid=video-node-uploading
+[13:08:44] k=4 账本={"res":1,"ready":0,"processing":1,"failed":0} video=0 img=0 testid=video-node-uploading
+[13:08:58] k=5 账本={"res":1,"ready":0,"processing":1,"failed":0} video=0 img=0 testid=video-node-uploading
+```
+
+⛔ **没有等到它翻面** ⇒ 只能记「11 分钟内没动」，**不能**记「永远不会好」。
+
+🔴 **本轮自己踩的判据坑**：`b105b.mjs` 第一版的停止条件写 `/failed|失败|error/i`，
+被账本里的 **`0 failed`** 误命中，`k=0` 就停了。
+⇒ **判据必须先把数字取出来再比大小，不能拿字面量去 `match`。**
+
+### 4.25.3 c 轮：再造一个能播的靶子（顺带撞见画布被别人堆满）
+
+c 轮上传批次 101 那支 6 秒 H.264（`/tmp/jimeng-b101-test-avc1.mp4`），
+`node_kk93zz7qzx`。**积分仍 805 → 805。**
+
+- 护栏读数：上传前 **58** 个 id → 上传后 **59** 个 ⇒ 差集恰好 1 个且同时 `.selected` ✅
+- 🔴 **画布在我操作期间被别人从 58 堆到 68**（其中 **58 个他人音频节点**）。
+  ⇒ **差集护栏扛住了，纯计数护栏会当场失效。**
+- 资源账：`k=0` 仍是 `0 ready, 1 processing`，`k=1`（约 6 秒后）翻成 `1 ready, 0 processing`。
+  ⇒ 🔴 **正常素材也要 ~6 秒才 ready**，「传完就有封面」是错觉。
+
+### 4.25.4 d/e/f/g 四轮：故障注入**全部落空**，理由逐轮不同
+
+| 轮 | 手法 | 结果 |
+|---|---|---|
+| d | 对 `readyState 4` 的 `<video>` 调 `v.load()` | **不发请求**。`blocked=0`，`rs` 仍 4、`ct` 2.817→3.421 继续走、`err` 仍 `null` |
+| e | `removeAttribute('src')` + `load()` 后**原样挂回** | **仍不发请求**（`blocked=0`） |
+| f | 改用**谓词函数**路由 `u => u.href.includes(<素材 token>)` | ✅ **命中 1 次**（`page.on('request')` 看到真请求），`abort()` 也执行了 —— 可是 `<video>` 仍 `rs:4, ns:1, dur:6, err:null`，节点 testids/arias/时钟**一个字节都没变** |
+| g | CDP `Network.setCacheDisabled(true)` + `Network.clearBrowserCache` 后再来 | **连 `request` 事件都不发了**（媒体元素内部缓冲还在） |
+
+三条能带走的：
+
+1. 🔴 **「我装了拦截」≠「拦截生效」**（d/e：命中 0 且毫无报警）
+2. 🔴 **命中了也 ≠ 生效**（f：命中 1 次、请求真发了、`abort()` 真执行了，媒体照样加载成功
+   —— 因为它早就在浏览器缓存里，`abort()` 打在一次 cache hit 上等于打空气）
+3. 🔴 **`page.route('去掉 query 的字符串')` 匹配不到任何请求** ——
+   Playwright 对**不含通配符**的字符串按**整条 URL 精确匹配**，
+   砍掉 `?a=…&ch=…` 当 glob 用必然落空
+
+⇒ **「重试播放」两分支按三态记「无法验证」**，理由逐条写进手册。
+
+⚠️ 另外：`b105b.mjs` 那次 30 次 × 10s 的轮询**超过了后台 300s 上限**，
+而且 `| tail` 把 stdout **全缓冲**到进程结束 ⇒ 进程被砍、一行都没留下。
+⇒ 长轮询要**每采一次就落盘**，且别用 `| tail` 收长输出。
+
+### 4.25.5 🔴 正向发现：这张资源账是「上传期」的账
+
+对一个已经 `1 ready` 的视频节点，**无论它这一次的媒体加载有没有问题，
+账本始终是 `1 ready, 0 processing, 0 failed`**。
+⇒ **不要拿它当「资源是否还能播」的判据。**
+
+### 4.25.6 正向发现：未播态只有 5 个按钮，静音/全屏是起播后才出现
+
+已选中、还没播过时，节点里**只有 5 个** button：
+
+```text
+Rename <名> ｜ Add tags ｜ Create connected node after <名> ｜ Play <名>（video-simple-player）｜ 替换媒体
+```
+
+`video-node-mute-toggle` / `video-node-fullscreen-toggle` **根本不在 DOM 里**；
+播放起、控件行挂上之后才出现（批次 101 量到的 `16×16` / `36×36` / `36×36` 都是播放态的数）。
+
+播放态 testid 集合：
+`video-node-player-bar` / `video-node-player-controls` / `video-node-playback-toggle` /
+`video-node-player-clock` / `video-node-mute-toggle` / `video-node-fullscreen-toggle` / `slider-track`
+
+🔴 **播放状态有专门的 aria 播报，两态逐字不同**：
+
+```text
+jimeng-b101-test-avc1: Playing video     （播）
+jimeng-b101-test-avc1: Video paused      （停）
+```
+
+封面 `<img alt="<名> poster">`（`naturalWidth 640`）。
+未播态 testid 集合含 `image-primary-preview-viewport` / `video-passive-preview` /
+`video-simple-player` / `video-hover-surface` / `video-node-result`。
+
+### 4.25.7 h 轮 + z 轮：**推翻** `duplicate-delete-history.md:83` 的半句
+
+有资源的视频节点右键菜单（**只读，一个项都没点**）：
+
+```text
+复制 ⌘ C ｜ 复制副本 ⌘ D ｜ 粘贴 ⌘ V ｜ 保存到主体库 ｜ 下载 ｜ 重做 ⌘ ⇧ Z 无需重做操作 ｜ 撤销 ⌘ Z ｜ 删除 ⌫
+```
+
+- 盒子 **`200×332`**、**8 项**、每项 **`192×36`**
+- 与批次 101 在视频侧独立测得的 `200×332` 8 项**逐字吻合**
+- 按 **`Esc`** 关得掉（关完后同款菜单数 = 0）
+
+⇒ 🔴 **推翻**：`duplicate-delete-history.md:83` 写的
+「空视频节点（**无论有无资源**）都没有这一项」中的「无论有无资源」是错的。
+✅「也没有『复制为图片』」这半句**成立**（8 项里没有它）。
+⇒ 归一规则：**「保存到主体库」属于「有可用资源」这个条件，不属于「节点类型」。**
+
+🔴 h 轮自己也踩了一坑：找菜单时用「面积最大的浮层」，
+结果把整个 `body`（`1280×720`）当成菜单，`items` 里混进顶栏、时间线节点、别人的上传 toast。
+读数能蒙对是因为 `innerText` 末尾正好带着菜单那一段 ——
+⇒ **这种「蒙对」绝不能当判据。找浮层要按内容定位，不是按面积猜。**
+
+### 4.25.8 🔴 护栏事故：三重不够，第四道管「动作指向谁」
+
+两个自建节点**部分重叠**（垃圾节点 `469,288 341×192`，视频靶子 `736,360 341×192`，
+重叠区 `x 736–810` / `y 360–480`）。z 轮的去程是
+「点节点中心 → 右键 → 点菜单里的『删除』」，**而那个「中心」从没校验过命中的是谁**：
+
+```text
+node_p0brqdj8z0 删前 selected = false
+🔴 不是选中态，先点一下
+删除项： {"x":739,"y":646,"t":"删除\n⌫"}
+node_p0brqdj8z0 已删除 = false
+```
+
+脚本在 `selected = false` 的情况下**继续往下走**，最后删掉的是 `node_kk93zz7qzx`。
+💥 **如果那两枚不是同一个人建的，这一下就是在删别人的节点。**
+（万幸都是本轮自建的；事后核对「消失的 id」也只有它。）
+
+⇒ 补第四道护栏：**点之前用 `elementFromPoint` 证明最上层元素在目标内部
+（`el === t || t.contains(el)`）且落点不在任何他人节点矩形内；
+点之后必须读到 `selected === true` 才继续，读不到就中止。**
+
+配套两坑：
+
+1. 🔴 **画布变挤会让安全落点归零**：60% 档下画布已有 **66 个他人节点**，
+   逐点扫 `fx 0.08–0.92 × fy 0.10–0.90`，通过两道关卡的落点 **0 个**。
+   ⇒ 老办法仍有效（先缩小让节点散开、每档重扫），但——
+2. ⚠️ **缩小画布这个办法本身会失败**：z3 轮想退到 40% 档，
+   菜单里**根本没有 `40%`**（只有 `缩放至50%` / `缩放至100%`（`⌘1`）/ `缩放至200%`），
+   点完停在 50%。
+
+🔴 **顺带纠正一条测量判据**：`document.body.innerText.match(/(\d+)%/)`
+**不能用来读缩放** —— 菜单打开时页面上第一个 `NN%` 命中的是菜单项文案
+**`缩放至50%`**，60% 被读成 50%（z4 轮因此误判「归位失败」）。
+正确判据：`[data-testid="canvas-zoom-percent"]` 的 `aria-label`，逐字 `Zoom options, 60%`。
+
+⚠️ 垃圾节点最终**是被别人删掉的**（z2 与 z3 之间画布 67 → 66）——
+共享画布上另一套会话正在活跃使用（此刻 58 个他人音频节点）。
+
+### 4.25.9 收尾
+
+- 建：58 → 59（`node_p0brqdj8z0`）、59 → 60（`node_kk93zz7qzx`）
+- 删：68 → 67（`node_kk93zz7qzx`）；**`node_p0brqdj8z0` 由他人删除**
+- 终态：**`66 nodes / 0 selected / 0 edges`**、缩放 **60%**（连读两次 60/60，
+  判据换用 `canvas-zoom-percent` 的 aria）、工具 **选择工具**、积分 **805** 未变
+- **全程未点任何扣费/生成按钮**；h 轮读右键菜单**只读、Esc 关闭**，一个项都没点

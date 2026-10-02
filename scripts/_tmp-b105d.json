@@ -1,0 +1,613 @@
+{
+ "at": "2026-10-02T13:14:46.688Z",
+ "selfId": "node_kk93zz7qzx",
+ "0-注入前": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "arias": [
+   "Rename jimeng-b101-test-avc1",
+   "Add tags",
+   "Create connected node after jimeng-b101-test-avc1",
+   "Play jimeng-b101-test-avc1",
+   "替换媒体"
+  ],
+  "video": null,
+  "imgs": [
+   {
+    "cls": "absolute inset-0 h-full w-full object-cover ",
+    "complete": true,
+    "w": 640,
+    "h": 360,
+    "alt": "jimeng-b101-test-avc1 poster"
+   }
+  ],
+  "btns": [
+   {
+    "t": null,
+    "a": "Rename jimeng-b101-test-avc1",
+    "x": "jimeng-b101-test-avc1"
+   },
+   {
+    "t": "flow-node-selected-tag",
+    "a": "Add tags",
+    "x": ""
+   },
+   {
+    "t": "flow-node-source-connection-menu-button",
+    "a": "Create connected node after jimeng-b101-test-avc1",
+    "x": ""
+   },
+   {
+    "t": "video-simple-player",
+    "a": "Play jimeng-b101-test-avc1",
+    "x": ""
+   },
+   {
+    "t": null,
+    "a": "替换媒体",
+    "x": ""
+   }
+  ]
+ },
+ "step0": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "arias": [
+   "Rename jimeng-b101-test-avc1",
+   "Add tags",
+   "Create connected node after jimeng-b101-test-avc1",
+   "Play jimeng-b101-test-avc1",
+   "替换媒体"
+  ],
+  "video": null,
+  "imgs": [
+   {
+    "cls": "absolute inset-0 h-full w-full object-cover ",
+    "complete": true,
+    "w": 640,
+    "h": 360,
+    "alt": "jimeng-b101-test-avc1 poster"
+   }
+  ],
+  "btns": [
+   {
+    "t": null,
+    "a": "Rename jimeng-b101-test-avc1",
+    "x": "jimeng-b101-test-avc1"
+   },
+   {
+    "t": "flow-node-selected-tag",
+    "a": "Add tags",
+    "x": ""
+   },
+   {
+    "t": "flow-node-source-connection-menu-button",
+    "a": "Create connected node after jimeng-b101-test-avc1",
+    "x": ""
+   },
+   {
+    "t": "video-simple-player",
+    "a": "Play jimeng-b101-test-avc1",
+    "x": ""
+   },
+   {
+    "t": null,
+    "a": "替换媒体",
+    "x": ""
+   }
+  ]
+ },
+ "playBtn": {
+  "aria": "Play jimeng-b101-test-avc1",
+  "x": 735.9957885742188,
+  "y": 408.0000305175781
+ },
+ "1-开播后": {
+  "text": "jimeng-b101-test-avc1 00:02 / 00:06 Seek jimeng-b101-test-avc1 jimeng-b101-test-avc1: Playing video 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-node-player-bar",
+   "video-node-player-controls",
+   "video-node-playback-toggle",
+   "video-node-player-clock",
+   "video-node-mute-toggle",
+   "video-node-fullscreen-toggle",
+   "slider-track"
+  ],
+  "arias": [
+   "Rename jimeng-b101-test-avc1",
+   "Add tags",
+   "Create connected node after jimeng-b101-test-avc1",
+   "jimeng-b101-test-avc1 player",
+   "Pause jimeng-b101-test-avc1",
+   "Unmute video",
+   "Enter browser full screen",
+   "替换媒体"
+  ],
+  "video": {
+   "rs": 4,
+   "ns": 1,
+   "dur": 6,
+   "ct": 2.817865,
+   "paused": false,
+   "err": null,
+   "src": "https://v3-dreamina-de.jianying.com/89042cd972c9d72301dacda1263730b6/6abfbb86/video/tos/cn/tos-cn-v-148450/oUw1dENDqBrmNYZFELi6zSISHAmffv4gxBIWdu/?a=513695&ch=0&cr=0&dr=0&er=0&lr=default&cd=0%7C0%7C0%7C0&br=178&bt=178&cs=0&ds=1&ft=fbbr9YJtBBkq8ZmoHIJhk_vjVQWw&mime_type=video_mp4&qs=13&rc=MzlmcG05cnV0ZDczNDM7M0BpMzlmcG05cnV0ZDczNDM7M0BwbTMxMmRrbnNhLS1kNGFzYSNwbTMxMmRrbnNhLS1kNGFzcw%3D%3D&btag=80000e00008000&dy_q=1790946672&l=2026100221111242DEE96FBAFC994E036B"
+  },
+  "imgs": [
+   {
+    "cls": "absolute inset-0 h-full w-full object-cover ",
+    "complete": true,
+    "w": 640,
+    "h": 360,
+    "alt": "jimeng-b101-test-avc1 poster"
+   }
+  ],
+  "btns": [
+   {
+    "t": null,
+    "a": "Rename jimeng-b101-test-avc1",
+    "x": "jimeng-b101-test-avc1"
+   },
+   {
+    "t": "flow-node-selected-tag",
+    "a": "Add tags",
+    "x": ""
+   },
+   {
+    "t": "flow-node-source-connection-menu-button",
+    "a": "Create connected node after jimeng-b101-test-avc1",
+    "x": ""
+   },
+   {
+    "t": "video-node-playback-toggle",
+    "a": "Pause jimeng-b101-test-avc1",
+    "x": ""
+   },
+   {
+    "t": "video-node-mute-toggle",
+    "a": "Unmute video",
+    "x": ""
+   },
+   {
+    "t": "video-node-fullscreen-toggle",
+    "a": "Enter browser full screen",
+    "x": ""
+   },
+   {
+    "t": null,
+    "a": "替换媒体",
+    "x": ""
+   }
+  ]
+ },
+ "src": "https://v3-dreamina-de.jianying.com/89042cd972c9d72301dacda1263730b6/6abfbb86/video/tos/cn/tos-cn-v-148450/oUw1dENDqBrmNYZFELi6zSISHAmffv4gxBIWdu/?a=513695&ch=0&cr=0&dr=0&er=0&lr=default&cd=0%7C0%7C0%7C0&br=178&bt=178&cs=0&ds=1&ft=fbbr9YJtBBkq8ZmoHIJhk_vjVQWw&mime_type=video_mp4&qs=13&rc=MzlmcG05cnV0ZDczNDM7M0BpMzlmcG05cnV0ZDczNDM7M0BwbTMxMmRrbnNhLS1kNGFzYSNwbTMxMmRrbnNhLS1kNGFzcw%3D%3D&btag=80000e00008000&dy_q=1790946672&l=2026100221111242DEE96FBAFC994E036B",
+ "2-注入失败后": {
+  "text": "jimeng-b101-test-avc1 00:03 / 00:06 Seek jimeng-b101-test-avc1 jimeng-b101-test-avc1: Playing video 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-node-player-bar",
+   "video-node-player-controls",
+   "video-node-playback-toggle",
+   "video-node-player-clock",
+   "video-node-mute-toggle",
+   "video-node-fullscreen-toggle",
+   "slider-track"
+  ],
+  "arias": [
+   "Rename jimeng-b101-test-avc1",
+   "Add tags",
+   "Create connected node after jimeng-b101-test-avc1",
+   "jimeng-b101-test-avc1 player",
+   "Pause jimeng-b101-test-avc1",
+   "Unmute video",
+   "Enter browser full screen",
+   "替换媒体"
+  ],
+  "video": {
+   "rs": 4,
+   "ns": 1,
+   "dur": 6,
+   "ct": 3.421357,
+   "paused": false,
+   "err": null,
+   "src": "https://v3-dreamina-de.jianying.com/89042cd972c9d72301dacda1263730b6/6abfbb86/video/tos/cn/tos-cn-v-148450/oUw1dENDqBrmNYZFELi6zSISHAmffv4gxBIWdu/?a=513695&ch=0&cr=0&dr=0&er=0&lr=default&cd=0%7C0%7C0%7C0&br=178&bt=178&cs=0&ds=1&ft=fbbr9YJtBBkq8ZmoHIJhk_vjVQWw&mime_type=video_mp4&qs=13&rc=MzlmcG05cnV0ZDczNDM7M0BpMzlmcG05cnV0ZDczNDM7M0BwbTMxMmRrbnNhLS1kNGFzYSNwbTMxMmRrbnNhLS1kNGFzcw%3D%3D&btag=80000e00008000&dy_q=1790946672&l=2026100221111242DEE96FBAFC994E036B"
+  },
+  "imgs": [
+   {
+    "cls": "absolute inset-0 h-full w-full object-cover ",
+    "complete": true,
+    "w": 640,
+    "h": 360,
+    "alt": "jimeng-b101-test-avc1 poster"
+   }
+  ],
+  "btns": [
+   {
+    "t": null,
+    "a": "Rename jimeng-b101-test-avc1",
+    "x": "jimeng-b101-test-avc1"
+   },
+   {
+    "t": "flow-node-selected-tag",
+    "a": "Add tags",
+    "x": ""
+   },
+   {
+    "t": "flow-node-source-connection-menu-button",
+    "a": "Create connected node after jimeng-b101-test-avc1",
+    "x": ""
+   },
+   {
+    "t": "video-node-playback-toggle",
+    "a": "Pause jimeng-b101-test-avc1",
+    "x": ""
+   },
+   {
+    "t": "video-node-mute-toggle",
+    "a": "Unmute video",
+    "x": ""
+   },
+   {
+    "t": "video-node-fullscreen-toggle",
+    "a": "Enter browser full screen",
+    "x": ""
+   },
+   {
+    "t": null,
+    "a": "替换媒体",
+    "x": ""
+   }
+  ]
+ },
+ "step2": {
+  "text": "jimeng-b101-test-avc1 00:03 / 00:06 Seek jimeng-b101-test-avc1 jimeng-b101-test-avc1: Playing video 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-node-player-bar",
+   "video-node-player-controls",
+   "video-node-playback-toggle",
+   "video-node-player-clock",
+   "video-node-mute-toggle",
+   "video-node-fullscreen-toggle",
+   "slider-track"
+  ],
+  "arias": [
+   "Rename jimeng-b101-test-avc1",
+   "Add tags",
+   "Create connected node after jimeng-b101-test-avc1",
+   "jimeng-b101-test-avc1 player",
+   "Pause jimeng-b101-test-avc1",
+   "Unmute video",
+   "Enter browser full screen",
+   "替换媒体"
+  ],
+  "video": {
+   "rs": 4,
+   "ns": 1,
+   "dur": 6,
+   "ct": 3.421357,
+   "paused": false,
+   "err": null,
+   "src": "https://v3-dreamina-de.jianying.com/89042cd972c9d72301dacda1263730b6/6abfbb86/video/tos/cn/tos-cn-v-148450/oUw1dENDqBrmNYZFELi6zSISHAmffv4gxBIWdu/?a=513695&ch=0&cr=0&dr=0&er=0&lr=default&cd=0%7C0%7C0%7C0&br=178&bt=178&cs=0&ds=1&ft=fbbr9YJtBBkq8ZmoHIJhk_vjVQWw&mime_type=video_mp4&qs=13&rc=MzlmcG05cnV0ZDczNDM7M0BpMzlmcG05cnV0ZDczNDM7M0BwbTMxMmRrbnNhLS1kNGFzYSNwbTMxMmRrbnNhLS1kNGFzcw%3D%3D&btag=80000e00008000&dy_q=1790946672&l=2026100221111242DEE96FBAFC994E036B"
+  },
+  "imgs": [
+   {
+    "cls": "absolute inset-0 h-full w-full object-cover ",
+    "complete": true,
+    "w": 640,
+    "h": 360,
+    "alt": "jimeng-b101-test-avc1 poster"
+   }
+  ],
+  "btns": [
+   {
+    "t": null,
+    "a": "Rename jimeng-b101-test-avc1",
+    "x": "jimeng-b101-test-avc1"
+   },
+   {
+    "t": "flow-node-selected-tag",
+    "a": "Add tags",
+    "x": ""
+   },
+   {
+    "t": "flow-node-source-connection-menu-button",
+    "a": "Create connected node after jimeng-b101-test-avc1",
+    "x": ""
+   },
+   {
+    "t": "video-node-playback-toggle",
+    "a": "Pause jimeng-b101-test-avc1",
+    "x": ""
+   },
+   {
+    "t": "video-node-mute-toggle",
+    "a": "Unmute video",
+    "x": ""
+   },
+   {
+    "t": "video-node-fullscreen-toggle",
+    "a": "Enter browser full screen",
+    "x": ""
+   },
+   {
+    "t": null,
+    "a": "替换媒体",
+    "x": ""
+   }
+  ]
+ },
+ "retryBtn": {
+  "none": true,
+  "all": [
+   {
+    "a": "Rename jimeng-b101-test-avc1",
+    "t": null,
+    "x": "jimeng-b101-test-avc1"
+   },
+   {
+    "a": "Add tags",
+    "t": "flow-node-selected-tag",
+    "x": ""
+   },
+   {
+    "a": "Create connected node after jimeng-b101-test-avc1",
+    "t": "flow-node-source-connection-menu-button",
+    "x": ""
+   },
+   {
+    "a": "Pause jimeng-b101-test-avc1",
+    "t": "video-node-playback-toggle",
+    "x": ""
+   },
+   {
+    "a": "Unmute video",
+    "t": "video-node-mute-toggle",
+    "x": ""
+   },
+   {
+    "a": "Enter browser full screen",
+    "t": "video-node-fullscreen-toggle",
+    "x": ""
+   },
+   {
+    "a": "替换媒体",
+    "t": null,
+    "x": ""
+   }
+  ]
+ },
+ "3-撤拦截后重试": {
+  "text": "jimeng-b101-test-avc1 00:03 / 00:06 Seek jimeng-b101-test-avc1 jimeng-b101-test-avc1: Playing video 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-node-player-bar",
+   "video-node-player-controls",
+   "video-node-playback-toggle",
+   "video-node-player-clock",
+   "video-node-mute-toggle",
+   "video-node-fullscreen-toggle",
+   "slider-track"
+  ],
+  "arias": [
+   "Rename jimeng-b101-test-avc1",
+   "Add tags",
+   "Create connected node after jimeng-b101-test-avc1",
+   "jimeng-b101-test-avc1 player",
+   "Pause jimeng-b101-test-avc1",
+   "Unmute video",
+   "Enter browser full screen",
+   "替换媒体"
+  ],
+  "video": {
+   "rs": 4,
+   "ns": 1,
+   "dur": 6,
+   "ct": 3.425588,
+   "paused": false,
+   "err": null,
+   "src": "https://v3-dreamina-de.jianying.com/89042cd972c9d72301dacda1263730b6/6abfbb86/video/tos/cn/tos-cn-v-148450/oUw1dENDqBrmNYZFELi6zSISHAmffv4gxBIWdu/?a=513695&ch=0&cr=0&dr=0&er=0&lr=default&cd=0%7C0%7C0%7C0&br=178&bt=178&cs=0&ds=1&ft=fbbr9YJtBBkq8ZmoHIJhk_vjVQWw&mime_type=video_mp4&qs=13&rc=MzlmcG05cnV0ZDczNDM7M0BpMzlmcG05cnV0ZDczNDM7M0BwbTMxMmRrbnNhLS1kNGFzYSNwbTMxMmRrbnNhLS1kNGFzcw%3D%3D&btag=80000e00008000&dy_q=1790946672&l=2026100221111242DEE96FBAFC994E036B"
+  },
+  "imgs": [
+   {
+    "cls": "absolute inset-0 h-full w-full object-cover ",
+    "complete": true,
+    "w": 640,
+    "h": 360,
+    "alt": "jimeng-b101-test-avc1 poster"
+   }
+  ],
+  "btns": [
+   {
+    "t": null,
+    "a": "Rename jimeng-b101-test-avc1",
+    "x": "jimeng-b101-test-avc1"
+   },
+   {
+    "t": "flow-node-selected-tag",
+    "a": "Add tags",
+    "x": ""
+   },
+   {
+    "t": "flow-node-source-connection-menu-button",
+    "a": "Create connected node after jimeng-b101-test-avc1",
+    "x": ""
+   },
+   {
+    "t": "video-node-playback-toggle",
+    "a": "Pause jimeng-b101-test-avc1",
+    "x": ""
+   },
+   {
+    "t": "video-node-mute-toggle",
+    "a": "Unmute video",
+    "x": ""
+   },
+   {
+    "t": "video-node-fullscreen-toggle",
+    "a": "Enter browser full screen",
+    "x": ""
+   },
+   {
+    "t": null,
+    "a": "替换媒体",
+    "x": ""
+   }
+  ]
+ },
+ "step3": {
+  "text": "jimeng-b101-test-avc1 00:03 / 00:06 Seek jimeng-b101-test-avc1 jimeng-b101-test-avc1: Playing video 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-node-player-bar",
+   "video-node-player-controls",
+   "video-node-playback-toggle",
+   "video-node-player-clock",
+   "video-node-mute-toggle",
+   "video-node-fullscreen-toggle",
+   "slider-track"
+  ],
+  "arias": [
+   "Rename jimeng-b101-test-avc1",
+   "Add tags",
+   "Create connected node after jimeng-b101-test-avc1",
+   "jimeng-b101-test-avc1 player",
+   "Pause jimeng-b101-test-avc1",
+   "Unmute video",
+   "Enter browser full screen",
+   "替换媒体"
+  ],
+  "video": {
+   "rs": 4,
+   "ns": 1,
+   "dur": 6,
+   "ct": 3.425588,
+   "paused": false,
+   "err": null,
+   "src": "https://v3-dreamina-de.jianying.com/89042cd972c9d72301dacda1263730b6/6abfbb86/video/tos/cn/tos-cn-v-148450/oUw1dENDqBrmNYZFELi6zSISHAmffv4gxBIWdu/?a=513695&ch=0&cr=0&dr=0&er=0&lr=default&cd=0%7C0%7C0%7C0&br=178&bt=178&cs=0&ds=1&ft=fbbr9YJtBBkq8ZmoHIJhk_vjVQWw&mime_type=video_mp4&qs=13&rc=MzlmcG05cnV0ZDczNDM7M0BpMzlmcG05cnV0ZDczNDM7M0BwbTMxMmRrbnNhLS1kNGFzYSNwbTMxMmRrbnNhLS1kNGFzcw%3D%3D&btag=80000e00008000&dy_q=1790946672&l=2026100221111242DEE96FBAFC994E036B"
+  },
+  "imgs": [
+   {
+    "cls": "absolute inset-0 h-full w-full object-cover ",
+    "complete": true,
+    "w": 640,
+    "h": 360,
+    "alt": "jimeng-b101-test-avc1 poster"
+   }
+  ],
+  "btns": [
+   {
+    "t": null,
+    "a": "Rename jimeng-b101-test-avc1",
+    "x": "jimeng-b101-test-avc1"
+   },
+   {
+    "t": "flow-node-selected-tag",
+    "a": "Add tags",
+    "x": ""
+   },
+   {
+    "t": "flow-node-source-connection-menu-button",
+    "a": "Create connected node after jimeng-b101-test-avc1",
+    "x": ""
+   },
+   {
+    "t": "video-node-playback-toggle",
+    "a": "Pause jimeng-b101-test-avc1",
+    "x": ""
+   },
+   {
+    "t": "video-node-mute-toggle",
+    "a": "Unmute video",
+    "x": ""
+   },
+   {
+    "t": "video-node-fullscreen-toggle",
+    "a": "Enter browser full screen",
+    "x": ""
+   },
+   {
+    "t": null,
+    "a": "替换媒体",
+    "x": ""
+   }
+  ]
+ },
+ "blockedTotal": 0
+}

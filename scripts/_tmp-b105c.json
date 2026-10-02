@@ -1,0 +1,414 @@
+{
+ "at": "2026-10-02T13:11:09.692Z",
+ "start": {
+  "nodes": "67",
+  "sel": "1",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "idsBefore": 67,
+ "creditsBefore": "Credits: 805 · 基础会员",
+ "gotAtMs": 1500,
+ "guard": {
+  "before": 67,
+  "after": 68,
+  "created": [
+   "node_kk93zz7qzx"
+  ],
+  "selIds": [
+   "node_kk93zz7qzx"
+  ],
+  "newSel": [
+   "node_kk93zz7qzx"
+  ]
+ },
+ "creditsAfter": "Credits: 805 · 基础会员",
+ "selfId": "node_kk93zz7qzx",
+ "chooser": {
+  "isMultiple": true
+ },
+ "poll0": {
+  "text": "jimeng-b101-test-avc1 1 resource: 0 ready, 1 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-source-handle",
+   "video-node-uploading"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 0,
+   "processing": 1,
+   "failed": 0
+  }
+ },
+ "poll1": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "poll2": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "poll3": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "poll4": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "poll5": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "poll6": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "poll7": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "poll8": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "poll9": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "poll10": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "poll11": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "poll12": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "poll13": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "poll14": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "poll15": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null,
+  "ledger": {
+   "ready": 1,
+   "processing": 0,
+   "failed": 0
+  }
+ },
+ "final": {
+  "text": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "video": null
+ },
+ "end": {
+  "nodes": "68",
+  "sel": "1",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}

@@ -1061,7 +1061,7 @@ screenshots:
     captured_at: 2026-10-01T15:17:00+08:00
     verified_locator: '在 .react-flow__node-subject 上派发 contextmenu 事件后出现的 [data-testid="canvas-context-menu"][role="menu"][aria-label="Canvas context menu"]，实测 200×332 @674,333，八项 role=menuitem 各 192×36'
     visible_text: 复制 / ⌘ C / 复制副本 / ⌘ D / 粘贴 / ⌘ V / 保存到主体库 / 下载 / 请选择至少一个组、文本、图片或视频项 / 重做 / ⌘ ⇧ Z / 无需重做操作 / 撤销 / ⌘ Z / 删除 / ⌫
-    alt: 主体节点的右键菜单（2026-10-01）：被高亮框标出的 200×332 菜单里，「保存到主体库」是白色可用项且没有右侧快捷键字样，「下载」和「重做」灰显；这一项是该节点类型独有的，空视频与图片节点都没有
+    alt: 主体节点的右键菜单（2026-10-01）：被高亮框标出的 200×332 菜单里，「保存到主体库」是白色可用项且没有右侧快捷键字样，「下载」和「重做」灰显；这一项在空视频与空图片节点上都没有，但有资源的视频节点也有这一项（2026-10-02 批次 105 实测，原写「该节点类型独有」已订正）
     sha256: 08952db86e41f3afb958bc95ad126be11cefb767b2242800193d571bee62f527
 
   - file: screenshots/87-media-image-toolbar.png

@@ -1,0 +1,258 @@
+{
+ "at": "2026-10-02T13:07:48.479Z",
+ "selfId": "node_p0brqdj8z0",
+ "series": [
+  {
+   "t": "13:07:48",
+   "text": "jimeng-b105-garbage 1 resource: 0 ready, 1 processing, 0 failed. Selected.",
+   "testids": [
+    "video-flow-node-surface",
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-source-handle",
+    "video-node-uploading"
+   ],
+   "arias": [
+    "Rename jimeng-b105-garbage",
+    "jimeng-b105-garbage.mp4: 正在处理上传内容…"
+   ],
+   "video": [],
+   "img": 0,
+   "btns": [
+    "Rename jimeng-b105-garbage"
+   ],
+   "k": 0,
+   "ledger": {
+    "res": 1,
+    "ready": 0,
+    "processing": 1,
+    "failed": 0
+   }
+  },
+  {
+   "t": "13:08:02",
+   "text": "jimeng-b105-garbage 1 resource: 0 ready, 1 processing, 0 failed. Selected.",
+   "testids": [
+    "video-flow-node-surface",
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-source-handle",
+    "video-node-uploading"
+   ],
+   "arias": [
+    "Rename jimeng-b105-garbage",
+    "jimeng-b105-garbage.mp4: 正在处理上传内容…"
+   ],
+   "video": [],
+   "img": 0,
+   "btns": [
+    "Rename jimeng-b105-garbage"
+   ],
+   "k": 1,
+   "ledger": {
+    "res": 1,
+    "ready": 0,
+    "processing": 1,
+    "failed": 0
+   }
+  },
+  {
+   "t": "13:08:16",
+   "text": "jimeng-b105-garbage 1 resource: 0 ready, 1 processing, 0 failed. Selected.",
+   "testids": [
+    "video-flow-node-surface",
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-source-handle",
+    "video-node-uploading"
+   ],
+   "arias": [
+    "Rename jimeng-b105-garbage",
+    "jimeng-b105-garbage.mp4: 正在处理上传内容…"
+   ],
+   "video": [],
+   "img": 0,
+   "btns": [
+    "Rename jimeng-b105-garbage"
+   ],
+   "k": 2,
+   "ledger": {
+    "res": 1,
+    "ready": 0,
+    "processing": 1,
+    "failed": 0
+   }
+  },
+  {
+   "t": "13:08:30",
+   "text": "jimeng-b105-garbage 1 resource: 0 ready, 1 processing, 0 failed. Selected.",
+   "testids": [
+    "video-flow-node-surface",
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-source-handle",
+    "video-node-uploading"
+   ],
+   "arias": [
+    "Rename jimeng-b105-garbage",
+    "jimeng-b105-garbage.mp4: 正在处理上传内容…"
+   ],
+   "video": [],
+   "img": 0,
+   "btns": [
+    "Rename jimeng-b105-garbage"
+   ],
+   "k": 3,
+   "ledger": {
+    "res": 1,
+    "ready": 0,
+    "processing": 1,
+    "failed": 0
+   }
+  },
+  {
+   "t": "13:08:44",
+   "text": "jimeng-b105-garbage 1 resource: 0 ready, 1 processing, 0 failed. Selected.",
+   "testids": [
+    "video-flow-node-surface",
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-source-handle",
+    "video-node-uploading"
+   ],
+   "arias": [
+    "Rename jimeng-b105-garbage",
+    "jimeng-b105-garbage.mp4: 正在处理上传内容…"
+   ],
+   "video": [],
+   "img": 0,
+   "btns": [
+    "Rename jimeng-b105-garbage"
+   ],
+   "k": 4,
+   "ledger": {
+    "res": 1,
+    "ready": 0,
+    "processing": 1,
+    "failed": 0
+   }
+  },
+  {
+   "t": "13:08:58",
+   "text": "jimeng-b105-garbage 1 resource: 0 ready, 1 processing, 0 failed. Selected.",
+   "testids": [
+    "video-flow-node-surface",
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-source-handle",
+    "video-node-uploading"
+   ],
+   "arias": [
+    "Rename jimeng-b105-garbage",
+    "jimeng-b105-garbage.mp4: 正在处理上传内容…"
+   ],
+   "video": [],
+   "img": 0,
+   "btns": [
+    "Rename jimeng-b105-garbage"
+   ],
+   "k": 5,
+   "ledger": {
+    "res": 1,
+    "ready": 0,
+    "processing": 1,
+    "failed": 0
+   }
+  },
+  {
+   "t": "13:09:12",
+   "text": "jimeng-b105-garbage 1 resource: 0 ready, 1 processing, 0 failed. Selected.",
+   "testids": [
+    "video-flow-node-surface",
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-source-handle",
+    "video-node-uploading"
+   ],
+   "arias": [
+    "Rename jimeng-b105-garbage",
+    "jimeng-b105-garbage.mp4: 正在处理上传内容…"
+   ],
+   "video": [],
+   "img": 0,
+   "btns": [
+    "Rename jimeng-b105-garbage"
+   ],
+   "k": 6,
+   "ledger": {
+    "res": 1,
+    "ready": 0,
+    "processing": 1,
+    "failed": 0
+   }
+  },
+  {
+   "t": "13:09:26",
+   "text": "jimeng-b105-garbage 1 resource: 0 ready, 1 processing, 0 failed. Selected.",
+   "testids": [
+    "video-flow-node-surface",
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-source-handle",
+    "video-node-uploading"
+   ],
+   "arias": [
+    "Rename jimeng-b105-garbage",
+    "jimeng-b105-garbage.mp4: 正在处理上传内容…"
+   ],
+   "video": [],
+   "img": 0,
+   "btns": [
+    "Rename jimeng-b105-garbage"
+   ],
+   "k": 7,
+   "ledger": {
+    "res": 1,
+    "ready": 0,
+    "processing": 1,
+    "failed": 0
+   }
+  },
+  {
+   "t": "13:09:40",
+   "text": "jimeng-b105-garbage 1 resource: 0 ready, 1 processing, 0 failed. Selected.",
+   "testids": [
+    "video-flow-node-surface",
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-source-handle",
+    "video-node-uploading"
+   ],
+   "arias": [
+    "Rename jimeng-b105-garbage",
+    "jimeng-b105-garbage.mp4: 正在处理上传内容…"
+   ],
+   "video": [],
+   "img": 0,
+   "btns": [
+    "Rename jimeng-b105-garbage"
+   ],
+   "k": 8,
+   "ledger": {
+    "res": 1,
+    "ready": 0,
+    "processing": 1,
+    "failed": 0
+   }
+  }
+ ]
+}
