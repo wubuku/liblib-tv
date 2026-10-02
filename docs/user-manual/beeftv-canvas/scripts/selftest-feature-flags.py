@@ -31,6 +31,12 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 GATE = os.path.join(HERE, "verify-feature-flags.py")
 BASELINE = os.path.join(HERE, "baseline.py")
+# **Batch 205 补第二个本地依赖**：`baseline.py` 自己 `import beefsrc`，
+# **而「被测闸 import 了什么」只看得见一层**（Batch 197 起）。
+# 实测形态：临时仓里只有 `baseline.py` 与被测闸，于是 `baseline.py` 一 import 就
+# `ModuleNotFoundError: No module named 'beefsrc'`，**本反验 0/N 全红**。
+# **闸 17 方向一已升级为依赖闭包**，但搬运这件事本身还得在这儿做。
+BEEFSRC = os.path.join(HERE, "beefsrc.py")
 MANUAL = os.path.join(os.path.dirname(HERE), "20-reference.md")
 
 PASS = VOID = FAIL = 0
@@ -48,6 +54,7 @@ def build(mutate=None):
     # 没人跑反验就发现不了。**「被测对象多了一个依赖，反验就得跟着搬」**——
     # 而这类回归恰好是「反验能抓、构建抓不到」的那一类。
     shutil.copy(BASELINE, os.path.join(tmp, "scripts", "baseline.py"))
+    shutil.copy(BEEFSRC, os.path.join(tmp, "scripts", "beefsrc.py"))
     shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-feature-flags.py"))
     text = open(MANUAL, encoding="utf-8").read()
     if mutate:

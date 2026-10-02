@@ -14,6 +14,8 @@
   9  慢反验夹具没注入特征                → 必报（方向五之二，**与上一条是不同形态**）
   6  **注入夹具不得被当成反验**            → 必须不报（**上线首跑就误报过 58 处**）
   7  真实现状                              → 不报
+  8  shell 里出现 `$var：`（UTF-8 locale 下会炸） → 必报（方向十四，Batch 205）
+  9  shell 里出现 `${var}：`（任何 locale 都安全）  → 必须不报（**不误伤**）
   8  构建出口哑了（少一个 `|| rc=$?`）        → 必报（方向十三，Batch 204）
   9  构建出口能把三种退出码说清楚             → 必须不报（**不误伤**）
   10  `未能核对` 被说成 `核对不一致`          → 必报（方向十三，**第三个形态**）
@@ -403,6 +405,44 @@ def m_run_gate_confuses_codes():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── 19/20 shell 变量展开（方向十四，Batch 205）──────────────────────
+# **判据问的是「这份脚本会不会在某种 locale 下炸掉」，不是「写法好不好」**。
+# 所以反验两支都做：把坏写法放进去必须报，把好写法放进去必须不报。
+_BAD_LINE = '  echo "  ✓ $desc：这一行在 UTF-8 locale 下会炸"\n'
+_GOOD_LINE = '  echo "  ✓ ${desc}：这一行任何 locale 下都安全"\n'
+
+
+def m_shell_unsafe_var():
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "scripts", "selftest-tables.sh")
+        t = read(p)
+        write(p, t + _BAD_LINE)
+        rc, out = run_in(tmp)
+        record("19 shell 里 `$var：` →必报", rc == 1 and "方向十四" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_shell_safe_var():
+    """**不误伤那一半**：`${var}：` 紧跟中文全角标点是安全的，**不许报**。
+
+    **这一支不是凑数**：判据如果分不清「`$var：` 坏」与「`${var}：` 好」，
+    那它要么一直报红、要么只认写法——**两个都不叫判据**。
+    """
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "scripts", "selftest-tables.sh")
+        t = read(p)
+        write(p, t + _GOOD_LINE)
+        rc, out = run_in(tmp)
+        record("20 shell 里 `${var}：` →必须不报", rc == 0, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main():
     tests = [m_clean, m_broken_selftest_syntax, m_broken_fixture_syntax,
              m_broken_shell, m_missing_local_module, m_fixture_not_treated_as_selftest,
@@ -410,7 +450,8 @@ def main():
              m_never_measured, m_comment_is_not_invocation,
              m_fixture_anchor_missed, m_no_fixture_triples,
              m_slow_fixture_crashes, m_slow_feature_missing,
-             m_run_gate_silent, m_run_gate_reports, m_run_gate_confuses_codes]
+             m_run_gate_silent, m_run_gate_reports, m_run_gate_confuses_codes,
+             m_shell_unsafe_var, m_shell_safe_var]
     for t in tests:
         try:
             t()

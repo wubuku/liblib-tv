@@ -15,6 +15,11 @@
 # 这是 `git hash-object -w` 与 `commit-tree` 的固有行为，无法避免；临时 ref 已删除，
 # 悬空对象会被 git gc 自动回收，**不会进入任何分支、不影响工作树**。
 # 退出前会打印 BeefTV 的工作树改动数与 HEAD，供你复核确实没被碰过。
+# **Batch 205：`$var` 一律写成 `${var}`。** macOS 自带的 bash 3.2 在 UTF-8 locale 下
+# 会把 `$var` 后面紧跟的多字节字符（中文全角标点）算进变量名，
+# 于是报「`desc?: unbound variable`」——**而 `desc` 明明刚 `local` 过**。
+# 实测：同一份脚本、同一台机器，`LC_CTYPE=C.UTF-8` 时 0/5 通过，不设时 5/5 通过。
+# **`${var}` 是唯一可靠写法**，而「可靠」这件事在默认环境下看不出来。
 set -uo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # **Batch 197：路径解析收敛到 `beefsrc` 单一来源**——
@@ -52,7 +57,7 @@ run_case() {  # 说明 path 变换脚本 修复特征 期望失效的登记id
   local desc="$1" path="$2" tf="$3" feature="$4" want="$5" c out rc
   CASE=$((CASE+1))
   if ! c=$(build_ref "$path" "$tf"); then
-    echo "  ✗ $desc：合成 ref 失败，前提不成立，**本次验证作废**"; VOID=$((VOID+1))
+    echo "  ✗ ${desc}：合成 ref 失败，前提不成立，**本次验证作废**"; VOID=$((VOID+1))
     git update-ref -d "$TMPREF" >/dev/null 2>&1; return
   fi
   # 注意：这里**不能用 grep -q**。脚本开了 pipefail，而 grep -q 命中即退出、
@@ -60,17 +65,17 @@ run_case() {  # 说明 path 变换脚本 修复特征 期望失效的登记id
   # （第 5 条用例的 project.tsx 最大，于是被前提校验误判成假阴性）。
   # 改用不带 -q 的 grep：它会读完整个输入，不产生 SIGPIPE。
   if ! git show "$TMPREF:$path" 2>/dev/null | grep -F "$feature" >/dev/null; then
-    echo "  ✗ $desc：合成 ref 里找不到修复特征 [$feature] → 前提不成立，**本次验证作废**"
+    echo "  ✗ ${desc}：合成 ref 里找不到修复特征 [$feature] → 前提不成立，**本次验证作废**"
     VOID=$((VOID+1)); git update-ref -d "$TMPREF" >/dev/null 2>&1; return
   fi
   echo "  前提成立：合成 ref 的 $path 已含 [$feature]"
   out=$(BEEFTV_REF="$TMPREF" python3 "$GATE" 2>&1); rc=$?
   if [ "$rc" -eq 0 ]; then
-    echo "  ✗ $desc：闸门**未**报失效（期望退出码 1）→ 反向验证失败"; FAIL=$((FAIL+1))
+    echo "  ✗ ${desc}：闸门**未**报失效（期望退出码 1）→ 反向验证失败"; FAIL=$((FAIL+1))
   elif echo "$out" | grep -F "$want" >/dev/null; then
-    echo "  ✓ $desc：闸门正确报出 [$want] 失效（退出码 $rc）"; PASS=$((PASS+1))
+    echo "  ✓ ${desc}：闸门正确报出 [$want] 失效（退出码 ${rc}）"; PASS=$((PASS+1))
   else
-    echo "  ✗ $desc：报失效但不是 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+    echo "  ✗ ${desc}：报失效但不是 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
   fi
   git update-ref -d "$TMPREF" >/dev/null 2>&1
 }
@@ -83,22 +88,22 @@ run_pass_case() {  # 说明 path 变换脚本 注入特征 期望**仍然成立*
   local desc="$1" path="$2" tf="$3" feature="$4" want="$5" c out rc
   CASE=$((CASE+1))
   if ! c=$(build_ref "$path" "$tf"); then
-    echo "  ✗ $desc：合成 ref 失败，前提不成立，**本次验证作废**"; VOID=$((VOID+1))
+    echo "  ✗ ${desc}：合成 ref 失败，前提不成立，**本次验证作废**"; VOID=$((VOID+1))
     git update-ref -d "$TMPREF" >/dev/null 2>&1; return
   fi
   if ! git show "$TMPREF:$path" 2>/dev/null | grep -F "$feature" >/dev/null; then
-    echo "  ✗ $desc：合成 ref 里找不到注入特征 [$feature] → 前提不成立，**本次验证作废**"
+    echo "  ✗ ${desc}：合成 ref 里找不到注入特征 [$feature] → 前提不成立，**本次验证作废**"
     VOID=$((VOID+1)); git update-ref -d "$TMPREF" >/dev/null 2>&1; return
   fi
   echo "  前提成立：合成 ref 的 $path 已含 [$feature]"
   out=$(BEEFTV_REF="$TMPREF" python3 "$GATE" 2>&1); rc=$?
   if [ "$rc" -ne 0 ]; then
-    echo "  ✗ $desc：闸门**误伤**了（期望照旧通过，却退出码 $rc）；实际："
+    echo "  ✗ ${desc}：闸门**误伤**了（期望照旧通过，却退出码 ${rc}）；实际："
     echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
   elif echo "$out" | grep -F "$want" >/dev/null; then
-    echo "  ✓ $desc：闸门未误伤，[$want] 仍被正确判为成立"; PASS=$((PASS+1))
+    echo "  ✓ ${desc}：闸门未误伤，[$want] 仍被正确判为成立"; PASS=$((PASS+1))
   else
-    echo "  ✗ $desc：虽通过但输出里找不到 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+    echo "  ✗ ${desc}：虽通过但输出里找不到 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
   fi
   git update-ref -d "$TMPREF" >/dev/null 2>&1
 }

@@ -105,14 +105,20 @@ def _is_write_call(node):
 
 
 def write_calls(path):
-    """返回这个文件里所有写操作的行号（**语法坏掉就抛**，不返回空列表）。
+    """返回 `{行号: 那一行的源码}`，只含**判定为写操作的调用点**。
 
-    **语法坏掉必须抛而不是当「没有写操作」**——那会让一道坏掉的闸
+    **返回源码而不只是行号**，是因为豁免表按源码内容认人（见 `READONLY_EXEMPT`）——
+    **行号会被上方任何一次编辑顶掉，源码内容不会。**
+
+    **语法坏掉就抛**，不返回空字典：那会让一道坏掉的闸
     在方向三眼里变成一道干净的闸（纪律 178 的同款：查不了 ≠ 查过了没问题）。
     """
     with open(path, encoding="utf-8") as fh:
-        tree = ast.parse(fh.read(), filename=path)
-    return {n.lineno for n in ast.walk(tree)
+        text = fh.read()
+    lines = text.split("\n")
+    tree = ast.parse(text, filename=path)
+    return {n.lineno: lines[n.lineno - 1].strip()
+            for n in ast.walk(tree)
             if isinstance(n, ast.Call) and _is_write_call(n)}
 
 
@@ -121,15 +127,24 @@ def write_calls(path):
 #: 而方向三跑的正是**真实手册树**；**按行列 = 只放过这几行**，
 #: 同一份闸里**新增任何一行写操作都会立刻重新变红**。
 #: 每条都写清「为什么这一行可以写」——**没有理由的豁免等于没有豁免**。
+#: **键是那一行的源码子串，不是行号**（Batch 205 实测后改的）。
+#: 第一版用行号，结果**在它上方加 3 行注释，4 条豁免就集体错位**——
+#: 症状是「4 处写操作突然没被登记 + 4 条豁免突然失效」，
+#: **读起来像判据坏了，其实只是有人在上方写了几行字。**
+#: **行号不是稳定标识，源码内容才是。**
 READONLY_EXEMPT = {
     "verify-selftest-bootable.py": {
-        236: "方向十三：在 `tempfile.mkdtemp()` 出来的临时目录里建 `scripts/`"
-             "（**不在手册树里**——`mkdtemp` 落在系统临时目录）",
-        237: "方向十三：往那个临时目录写 stub 闸脚本"
-             "（**这一行老正则看不见**——`[^)]?` 跨不过 `os.path.join(...)` 里那个 `)`，"
-             "所以第一版豁免表照着正则的输出建，**漏的正是它**）",
-        242: "方向十三：往那个临时目录写探针脚本",
-        247: "方向十三：删掉那个临时目录",
+        'os.makedirs(os.path.join(tmp, "scripts"), exist_ok=True)':
+            "方向十三：在 `tempfile.mkdtemp()` 出来的临时目录里建 `scripts/`"
+            "（**不在手册树里**——`mkdtemp` 落在系统临时目录）",
+        'os.path.join(tmp, "scripts", "stub.py"), "w"':
+            "方向十三：往那个临时目录写 stub 闸脚本"
+            "（**这一行老正则看不见**——`[^)]?` 跨不过 `os.path.join(...)` 里那个 `)`，"
+            "所以第一版豁免表照着正则的输出建，**漏的正是它**）",
+        'with open(p, "w", encoding="utf-8") as fh:':
+            "方向十三：往那个临时目录写探针脚本",
+        'shutil.rmtree(tmp, ignore_errors=True)':
+            "方向十三：删掉那个临时目录",
     },
 }
 
@@ -165,11 +180,18 @@ def check_readonly(gates):
         path = os.path.join(HERE, gate)
         allow = READONLY_EXEMPT.get(gate, {})
         hit = write_calls(path)
-        for n in sorted(hit - set(allow)):
-            dirty.append("%s:%d 出现了不在豁免表里的写操作" % (gate, n))
-        for n in sorted(set(allow) - hit):
-            dirty.append("%s:%d 的只读豁免**已失效**（那一行不再是写操作）"
-                         "　→ 请删掉这条登记：留着它，下一个人会以为这一行仍然被放过" % (gate, n))
+        used = set()
+        for n, src in sorted(hit.items()):
+            match = next((k for k in allow if k in src), None)
+            if match is None:
+                dirty.append("%s:%d 出现了不在豁免表里的写操作：%s"
+                             % (gate, n, src[:60]))
+            else:
+                used.add(match)
+        for k in sorted(set(allow) - used):
+            dirty.append("%s 的只读豁免**已失效**（源码里已没有含 %r 的写操作行）"
+                         "　→ 请删掉这条登记：留着它，下一个人会以为那一行仍然被放过"
+                         % (gate, k))
     return dirty
 
 #: 这些闸的输入全部在手册树之外（读上游仓库或扫 scripts/），空树对它们没有意义，

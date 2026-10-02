@@ -250,6 +250,56 @@ def _run_gate_probe(stub_rc):
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+#: `$var` 后面**紧跟**一个非 ASCII 字符（Batch 205）。
+#: **为什么要盯这个**：macOS 自带的 bash 3.2 在 UTF-8 locale 下
+#: 会把那些字节算进变量名，于是报「`desc?: unbound variable`」——
+#: **而 `desc` 明明上一行刚 `local` 过**。实测同一份脚本、同一台机器，
+#: `LC_CTYPE=C.UTF-8` 时 0/5 通过，不设时 5/5 通过。
+#: **这不是编码问题，是变量名边界问题**；`${var}` 是唯一可靠写法。
+UNSAFE_VAR_RE = re.compile(r"\$([A-Za-z_][A-Za-z0-9_]*)")
+
+
+def _shell_files():
+    out = [os.path.join(ROOT, "build-site.sh")]
+    for fn in sorted(os.listdir(SCRIPTS)):
+        if fn.endswith(".sh"):
+            out.append(os.path.join(SCRIPTS, fn))
+    return [p for p in out if os.path.isfile(p)]
+
+
+def _locale_breaks_it():
+    """**这个判据在本机真的成立吗**——用一段最小样例自己问一遍 bash。
+
+    **样例必须带 `set -u`**：不设它时 `$desc：` 只是被切成一个不存在的变量名、
+    展开成空串，**照样 rc=0 打印出来**——第一版探针就漏了它，
+    于是它自报「本机实测不复现」，**而真实脚本全都有 `set -u`，一设就炸**。
+    **一个不忠实的探针，会让判据给出「它不存在」这个错误结论**（纪律 176 的变体：
+    结论错，而理由也对不上）。
+
+
+    **不这么做的话，这条判据就是一条 superstition**：
+    它断言「这种写法会炸」，而本批只在一台机器的一个 bash 上量过一次。
+    所以现场跑：设 `LC_CTYPE=C.UTF-8` 执行 `$v：`，**看它是不是真的会报未绑定**。
+    返回 `(会不会坏, bash 版本第一行)`——**两样都写进报红信息里**。
+    """
+    code = ("set -u" + "\n"
+            'f() { local desc="值"; echo "$desc：后面"; }' + "\n"
+            "f" + "\n")
+    try:
+        # **errors="replace" 不是可选的**：这条路径上 bash 吐出来的就是坏字节
+        # （变量名被切坏之后，错误信息里带着切剩的字节），
+        # 而子进程解码失败会让判据自己崩掉——**判据崩了比判据红更难看**。
+        r = subprocess.run(["bash", "-c", code], capture_output=True, text=True,
+                           errors="replace",
+                           env=dict(os.environ, LC_CTYPE="C.UTF-8"), timeout=20)
+    except (OSError, subprocess.SubprocessError):
+        return None, "?"
+    broke = "unbound variable" in ((r.stdout or "") + (r.stderr or ""))
+    ver = subprocess.run(["bash", "--version"], capture_output=True, text=True,
+                         errors="replace")
+    return broke, ((ver.stdout or "").split("\n") or ["?"])[0]
+
+
 def _build_invokes(fn):
     """build-site.sh **真的执行**了这份反验吗（注释里提到不算）。
 
@@ -733,6 +783,32 @@ def main():
             "方向十三：闸 rc=0 时，构建**没有正常收下它的输出**（rc=%d）——"
             "这一支是**不误伤**：修 run_gate 时最容易把成功路径也弄坏" % rc0)
 
+    # 方向十四（**Batch 205 新增**）：**shell 脚本里不得有会在 UTF-8 locale 下炸掉的变量展开**。
+    # 背景是实测事故：三份 shell 反验共 33 处 `$var：`，
+    # 在 `LC_CTYPE=C.UTF-8` 下 `set -u` 直接报「`desc?: unbound variable`」——
+    # **而 `desc` 上一行刚 `local` 过**。同一台机器、不设那个变量时它们全绿，
+    # **所以「默认环境下看不出来」正是它藏了这么久的原因**。
+    broke, bashver = _locale_breaks_it()
+    why = ("**本机实测会坏**（%s，LC_CTYPE=C.UTF-8）" % bashver if broke
+           else "**本机 bash 实测不复现**（%s）——仍然按最坏情况要求写 `${}`，"
+                "因为出事的是别人的机器" % bashver)
+    for path in _shell_files():
+        rel = os.path.relpath(path, ROOT)
+        with open(path, encoding="utf-8") as fh:
+            for n, line in enumerate(fh, 1):
+                if line.lstrip().startswith("#"):
+                    continue
+                for m in UNSAFE_VAR_RE.finditer(line):
+                    j = m.end()
+                    if j < len(line) and ord(line[j]) > 127:
+                        problems.append(
+                            "方向十四：`%s` 第 %d 行的 `$%s` 后面紧跟一个非 ASCII 字符"
+                            "（%r）——%s"
+                            "　→ 改成 `${%s}`：中文全角标点紧跟变量时，"
+                            "UTF-8 locale 下的 bash 会把那些字节算进变量名"
+                            % (rel, n, m.group(1), line[j], why, m.group(1)))
+                        break
+
     checked = py_ok + sh_ok
     if problems:
         print("反验启动核对：%d 份反验中有 %d 处问题" % (len(names), len(problems)))
@@ -748,6 +824,9 @@ def main():
     print("  另有 %d 份注入夹具（selftest-*-fix-*.py）语法可解析" % fx_ok)
     print("  慢反验 %d 份已登记（%s）——提交前手动跑"
           % (len(SLOW), "、".join(sorted(SLOW))))
+    print("  shell 变量展开核对（方向十四）：%d 个 shell 脚本里"
+          "**没有「`$var` 紧跟非 ASCII 字符」**（本机 %s）"
+          % (len(_shell_files()), "实测会坏" if broke else "实测不复现"))
     print("  构建出口核对（方向十三）：闸 rc=0/1/2 三种结局**都被真跑了一遍**"
           "（rc=1 报「不一致」、rc=2 报「未能核对」而不是「不一致」、rc=0 正常收下）")
     print("  慢反验前提核对（方向五/五之二，**只查前提不查结果**）："

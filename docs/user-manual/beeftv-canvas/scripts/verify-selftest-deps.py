@@ -83,6 +83,38 @@ def local_imports(path):
     return out
 
 
+def local_closure(gate_name, _seen=None):
+    """**递归**求出被测闸门及其（本地）依赖的**闭包**。
+
+    **Batch 205 实测出来的洞（第一版只看一层）**：
+    `verify-line-counts.py` 直接 import 的是 `baseline`，
+    而 `baseline.py` 自己 `import beefsrc`——**第二层没人看**。
+    于是 4 份反验的临时仓里只有 `baseline.py` 与被测闸，
+    `baseline.py` 一 import 就 `ModuleNotFoundError: No module named 'beefsrc'`，
+    **这 4 份反验 0/5、0/6、0/5、0/4 全红，而构建全绿**。
+    自 Batch 197 把 `beefsrc` 收成单一来源起就一直是红的，**没人跑它们所以没人知道**。
+
+    **为什么当时那道判据报绿**：它问的是「被测闸 import 了什么」，
+    答案是 `baseline`；反验**确实**搬了 `baseline.py`；于是判据说「齐了」。
+    **它问的层级比它需要回答的浅一层**——**而这正是「判据本身没错」的那类缺陷**（纪律 176）。
+
+    用**递归 + 访问集合**，不递归会死循环（`baseline` ↔ `beefsrc` 之类互相引用）。
+    """
+    seen = set() if _seen is None else _seen
+    if gate_name in seen:
+        return seen
+    seen.add(gate_name)
+    # **入参是不带 `.py` 的模块名**——第一版直接拿它拼路径，
+    # 于是 `os.path.isfile("scripts/verify-line-counts")` 恒假、闭包恒为空集，
+    # **判据升级了却什么都没多查**（第一版注入验证当场抓住，没能蒙混到提交）。
+    path = os.path.join(SCRIPTS, gate_name + ".py")
+    if not os.path.isfile(path):
+        return seen
+    for dep in (local_imports(path) or ()):
+        local_closure(dep, seen)
+    return seen
+
+
 def copies_gate_into_tmp(text):
     """这份反验是否会把闸门脚本复制进临时目录。
 
@@ -221,10 +253,11 @@ def main():
             continue
         checked += 1
         for gname in gate_names:
-            deps = local_imports(os.path.join(SCRIPTS, gname))
-            if deps is None:
+            if local_imports(os.path.join(SCRIPTS, gname)) is None:
                 problems.append(f"方向一：读不了 scripts/{gname}")
                 continue
+            # **闭包，不是第一层**（Batch 205）：被测闸的直接依赖 + 那些依赖自己的依赖
+            deps = local_closure(gname[:-3]) - {gname[:-3]}
             for d in sorted(deps):
                 # **必须核「有真实的搬运动作」，而不是「文本里提到过这个名字」**
                 # （反验用例 2 上线首跑就抓到这个：原判据是 `if d in text: continue`，

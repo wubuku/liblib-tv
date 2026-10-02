@@ -19,6 +19,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 GATE = os.path.join(HERE, "verify-screenshots-literals.py")
 BASELINE = os.path.join(HERE, "baseline.py")
+# **Batch 205 补第二个本地依赖**：`baseline.py` 自己 `import beefsrc`，
+# **而「被测闸 import 了什么」只看得见一层**（Batch 197 起）。
+# 实测形态：临时仓里只有 `baseline.py` 与被测闸，于是 `baseline.py` 一 import 就
+# `ModuleNotFoundError: No module named 'beefsrc'`，**本反验 0/N 全红**。
+# **闸 17 方向一已升级为依赖闭包**，但搬运这件事本身还得在这儿做。
+BEEFSRC = os.path.join(HERE, "beefsrc.py")
 MANIFEST_REL = os.path.join("screenshots", "manifest.yml")
 
 PASS = VOID = FAIL = 0
@@ -41,6 +47,7 @@ def run(manifest_text, desc, want, expect_fail=True):
         # 没人跑反验就发现不了。**「被测对象多了一个依赖，反验就得跟着搬」**——
         # 而这类回归恰好是「反验能抓、构建抓不到」的那一类。
         shutil.copy(BASELINE, os.path.join(tmp, "scripts", "baseline.py"))
+        shutil.copy(BEEFSRC, os.path.join(tmp, "scripts", "beefsrc.py"))
         shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-screenshots-literals.py"))
         with open(os.path.join(tmp, MANIFEST_REL), "w", encoding="utf-8") as fh:
             fh.write(manifest_text)

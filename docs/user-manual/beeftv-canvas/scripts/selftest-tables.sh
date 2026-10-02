@@ -9,6 +9,11 @@
 #      因为代码块里的竖线不是表格分隔符。这一条是防误报的对称验证。
 #
 # 全程只在临时目录里操作手册副本，不碰真实文件；结束即清。
+# **Batch 205：`$var` 一律写成 `${var}`。** macOS 自带的 bash 3.2 在 UTF-8 locale 下
+# 会把 `$var` 后面紧跟的多字节字符（中文全角标点）算进变量名，
+# 于是报「`desc?: unbound variable`」——**而 `desc` 明明刚 `local` 过**。
+# 实测：同一份脚本、同一台机器，`LC_CTYPE=C.UTF-8` 时 0/5 通过，不设时 5/5 通过。
+# **`${var}` 是唯一可靠写法**，而「可靠」这件事在默认环境下看不出来。
 set -uo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(dirname "$HERE")"
@@ -43,18 +48,18 @@ PYEOF
   out=$(python3 "$GATE" "$WORK" 2>&1); rc=$?
   if [ "$expect_fail" = "yes" ]; then
     if [ "$rc" -eq 0 ]; then
-      echo "  ✗ $desc：闸门**未**报出损坏（期望退出码 1）"; FAIL=$((FAIL+1)); return
+      echo "  ✗ ${desc}：闸门**未**报出损坏（期望退出码 1）"; FAIL=$((FAIL+1)); return
     fi
     if echo "$out" | grep -qF "$want"; then
-      echo "  ✓ $desc：闸门正确报出 [$want]（退出码 $rc）"; PASS=$((PASS+1))
+      echo "  ✓ ${desc}：闸门正确报出 [$want]（退出码 ${rc}）"; PASS=$((PASS+1))
     else
-      echo "  ✗ $desc：报错了但不是 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+      echo "  ✗ ${desc}：报错了但不是 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
     fi
   else
     if [ "$rc" -eq 0 ]; then
-      echo "  ✓ $desc：闸门**未误报**（退出码 0）"; PASS=$((PASS+1))
+      echo "  ✓ ${desc}：闸门**未误报**（退出码 0）"; PASS=$((PASS+1))
     else
-      echo "  ✗ $desc：闸门误报了（期望退出码 0）；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+      echo "  ✗ ${desc}：闸门误报了（期望退出码 0）；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
     fi
   fi
 }

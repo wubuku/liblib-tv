@@ -27,6 +27,11 @@
 # `AUDIT-RULES.md:334` 那句「README 写着 25 篇」当成当前声明去报错。
 # **能抓和不误伤在这里是同一件事的两面，缺了第 4 条，闸门会在第一次
 # 有人记录自己的历史错误时就变成噪音。**
+# **Batch 205：`$var` 一律写成 `${var}`。** macOS 自带的 bash 3.2 在 UTF-8 locale 下
+# 会把 `$var` 后面紧跟的多字节字符（中文全角标点）算进变量名，
+# 于是报「`desc?: unbound variable`」——**而 `desc` 明明刚 `local` 过**。
+# 实测：同一份脚本、同一台机器，`LC_CTYPE=C.UTF-8` 时 0/5 通过，不设时 5/5 通过。
+# **`${var}` 是唯一可靠写法**，而「可靠」这件事在默认环境下看不出来。
 
 set -uo pipefail
 
@@ -107,11 +112,11 @@ run_fail_case() {
   local out rc
   out="$(python3 "$GATE" 2>&1)"; rc=$?
   if [ "$rc" -eq 0 ]; then
-    echo "  ✗ $desc：闸门本应报错，却通过了"; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+    echo "  ✗ ${desc}：闸门本应报错，却通过了"; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
   elif echo "$out" | grep -F "$want" >/dev/null; then
-    echo "  ✓ $desc：正确报出 [$want]（退出码 $rc）"; PASS=$((PASS+1))
+    echo "  ✓ ${desc}：正确报出 [$want]（退出码 ${rc}）"; PASS=$((PASS+1))
   else
-    echo "  ✗ $desc：报错了但不是 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+    echo "  ✗ ${desc}：报错了但不是 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
   fi
   restore
 }
@@ -147,11 +152,11 @@ run_file_case() {
   local out rc
   out="$(python3 "$GATE" 2>&1)"; rc=$?
   if [ "$rc" -eq 0 ]; then
-    echo "  ✗ $desc：闸门本应报错，却通过了"; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+    echo "  ✗ ${desc}：闸门本应报错，却通过了"; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
   elif printf '%s' "$out" | grep -F "$want" >/dev/null; then
-    echo "  ✓ $desc：正确报出 [$want]（退出码 $rc）"; PASS=$((PASS+1))
+    echo "  ✓ ${desc}：正确报出 [$want]（退出码 ${rc}）"; PASS=$((PASS+1))
   else
-    echo "  ✗ $desc：报错了但不是 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+    echo "  ✗ ${desc}：报错了但不是 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
   fi
   restore
 }
@@ -163,9 +168,9 @@ run_pass_case() {
   local out rc
   out="$(python3 "$GATE" 2>&1)"; rc=$?
   if [ "$rc" -eq 0 ]; then
-    echo "  ✓ $desc：闸门正确放行"; PASS=$((PASS+1))
+    echo "  ✓ ${desc}：闸门正确放行"; PASS=$((PASS+1))
   else
-    echo "  ✗ $desc：本应放行却报错（误伤）；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+    echo "  ✗ ${desc}：本应放行却报错（误伤）；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
   fi
   restore
 }
@@ -189,9 +194,9 @@ run_file_pass_case() {
   fi
   mv "$target.injected" "$target"
   if python3 "$GATE" >/dev/null 2>&1; then
-    echo "  ✓ $desc：闸门正确放行"; PASS=$((PASS+1))
+    echo "  ✓ ${desc}：闸门正确放行"; PASS=$((PASS+1))
   else
-    echo "  ✗ $desc：本应放行却报错（误伤）；实际："; python3 "$GATE" 2>&1 | sed 's/^/      /'; FAIL=$((FAIL+1))
+    echo "  ✗ ${desc}：本应放行却报错（误伤）；实际："; python3 "$GATE" 2>&1 | sed 's/^/      /'; FAIL=$((FAIL+1))
   fi
   restore
 }
@@ -354,7 +359,7 @@ else
     echo "  ✗ 16) 模式非法却报「全部通过」——工具失败被当成了干净的否定结果"
     FAIL=$((FAIL+1))
   elif printf '%s' "$out6" | grep -F "判据执行异常" >/dev/null; then
-    echo "  ✓ 16) 模式非法：闸门正确报出 [判据执行异常]（退出码 $rc6）"; PASS=$((PASS+1))
+    echo "  ✓ 16) 模式非法：闸门正确报出 [判据执行异常]（退出码 ${rc6}）"; PASS=$((PASS+1))
   else
     echo "  ✗ 16) 报错了但不是「判据执行异常」；实际："; printf '%s' "$out6" | tail -5 | sed 's/^/      /'
     FAIL=$((FAIL+1))
@@ -396,7 +401,7 @@ if [ "$ok19" -eq 1 ]; then
   if [ "$rc19" -eq 0 ]; then
     echo "  ✗ 19) 索引已无入链却报通过——孤儿检测没在工作"; FAIL=$((FAIL+1))
   elif printf '%s' "$out19" | grep -F "10-tasks/README.md 没有任何入链" >/dev/null; then
-    echo "  ✓ 19) 正确报出 [10-tasks/README.md 没有任何入链]（退出码 $rc19）"; PASS=$((PASS+1))
+    echo "  ✓ 19) 正确报出 [10-tasks/README.md 没有任何入链]（退出码 ${rc19}）"; PASS=$((PASS+1))
   else
     echo "  ✗ 19) 报错了但不是孤儿页；实际："; printf '%s' "$out19" | grep '✗' | head -3 | sed 's/^/      /'
     FAIL=$((FAIL+1))
@@ -422,7 +427,7 @@ else
     echo "  ✗ 20) 去掉首页豁免后仍报通过——孤儿检测对真实页面不工作，19 只是空壳"
     FAIL=$((FAIL+1))
   elif printf '%s' "$out20" | grep -F "README.md 没有任何入链" >/dev/null; then
-    echo "  ✓ 20) 去掉豁免后正确报出 [README.md 没有任何入链]（退出码 $rc20）——"
+    echo "  ✓ 20) 去掉豁免后正确报出 [README.md 没有任何入链]（退出码 ${rc20}）——"
     echo "      证明孤儿检测有效，且豁免是真正承重的"
     PASS=$((PASS+1))
   else
