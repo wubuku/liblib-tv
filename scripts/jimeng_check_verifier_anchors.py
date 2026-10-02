@@ -57,6 +57,7 @@ PROBE_VARS = {
     "_p903": "scripts/jimeng_probe903_carried_state_src.py",
     "_p904": "scripts/jimeng_probe904_endpoint_condition_src.py",
     "_p905": "scripts/jimeng_probe905_reentry_focus_src.py",
+    "_p906": "scripts/jimeng_probe906_direction_asymmetry_src.py",
 }
 
 
