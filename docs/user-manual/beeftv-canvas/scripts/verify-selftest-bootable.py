@@ -210,6 +210,10 @@ SELFTEST_COSTS = {
     "selftest-query-params.py": 0.8,
     "selftest-container-closers.py": 1.13,
     "selftest-heading-uniqueness.py": 1.10,
+    #: **Batch 233 新增**：三次实测 2.80 / 2.37 / 2.34 秒，**按纪律 204 取最大 2.8**。
+    #: 它每例都起一个临时目录、跑一遍被测闸门，而闸门每次要 `git show` + `git grep`
+    #: **全树**——9 例 2.8 秒，与闸 13 反验同量级。
+    "selftest-quota-tables.py": 2.8,
     "selftest-quote-punct.py": 37.1,
     "selftest-runtime-policy.py": 1.0,
     "selftest-scope.py": 0.4,

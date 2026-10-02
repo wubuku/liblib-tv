@@ -309,8 +309,8 @@ def t_downgrade_already_told(inv, _gate):
 def t_benign_page(inv, gate):
     """只往页面上插一句与证据等级无关的正文 → 必须放行。"""
     def edit(body):
-        anchor = "## 账号有九项配额"
-        assert body.count(anchor) == 1, "锚点未命中：找不到「## 账号有九项配额」"
+        anchor = "## 账号有十项配额"
+        assert body.count(anchor) == 1, "锚点未命中：找不到「## 账号有十项配额」"
         return body.replace(anchor, anchor + "\n\n（反验注入：与证据等级无关的一句正文。）", 1)
 
     return inv, gate, {"10-tasks/storage-quota.md": edit}

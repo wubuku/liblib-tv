@@ -114,7 +114,7 @@ tasks:
     manual_pages:
       - 10-tasks/manage-canvases.md
   - id: storage-quota
-    title: 账号存储、容量与配额（侧栏容量条 + 九项服务端配额）
+    title: 账号存储、容量与配额（侧栏容量条 + 十项服务端配额）
     role: beeftv-creator
     frequency: common
     impact: high
@@ -124,10 +124,11 @@ tasks:
         note: >-
           backend/internal/platform/runtime_policy.go DefaultRuntimePolicy() 默认值：StoredFileGB 20、
           StructuredDataMB 256、ResourceUploadMB 50、GeneratedFileMB 64、DailyUploadMB 2048、
-          AssetCount 2000、CanvasCount 1000、TaskCount 20000、APICallLogCount 100000、
+          TaskDataGB 1、AssetCount 2000、CanvasCount 1000、TaskCount 20000、APICallLogCount 100000、
           RecycleBinRetentionDays 30、ActiveTaskLimit 5；Request 段 TaskCreate/ResourceUpload/
           ResourceImport 30 每分钟、AssetWrite/CanvasWrite 120 每分钟。报错文案逐条取自
-          storage_quota.go / upload_quota.go / task_creation.go / handler/security.go。
+          storage_quota.go / upload_quota.go / task_creation.go / handler/security.go；
+          GeneratedFileMB 另有第二条文案「单个生成资源超过 NMB」在 resource.go 的 decodeDataURL。
           前端侧：account-storage-usage.ts 阈值 percent>=90 或已满=critical、>=70=warn、
           percentLabel <0.1% 特例；formatBytes 仅当 value<10 且非字节时保留一位小数。
           素材归档 30 天由 resource_deletion_worker.go cleanupExpiredArchivedAssets 走与手动删除
