@@ -1,0 +1,99 @@
+{
+ "at": "2026-10-02T14:17:11.226Z",
+ "start": {
+  "tool": {
+   "aria": "选择工具",
+   "pressed": "false",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "true",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 40%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  },
+  "inputPresent": false,
+  "inputValue": null,
+  "status": "74 nodes, 0 selected"
+ },
+ "menu": {
+  "zoomIn": {
+   "label": "放大视图",
+   "hit": null,
+   "toolAria": "抓手工具",
+   "zoomBefore": "Zoom options, 40%",
+   "zoomAfter": "Zoom options, 40%",
+   "inputPresentAfter": true,
+   "resp": false
+  },
+  "zoomOut": {
+   "label": "缩小视图",
+   "hit": null,
+   "toolAria": "抓手工具",
+   "zoomBefore": "Zoom options, 40%",
+   "zoomAfter": "Zoom options, 40%",
+   "inputPresentAfter": true,
+   "resp": false
+  }
+ },
+ "restoreZoom": "Zoom options, 60%",
+ "end": {
+  "tool": {
+   "aria": "选择工具",
+   "pressed": "false",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "true",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  },
+  "inputPresent": false,
+  "inputValue": null,
+  "status": "74 nodes, 0 selected"
+ },
+ "clean": true
+}

@@ -1,0 +1,186 @@
+{
+ "at": "2026-10-02T14:13:44.755Z",
+ "start": {
+  "state": {
+   "tool": {
+    "aria": "抓手工具",
+    "pressed": "true",
+    "x": 16,
+    "y": 672,
+    "w": 28,
+    "h": 28
+   },
+   "mini": {
+    "aria": "小地图",
+    "pressed": "false",
+    "x": 48,
+    "y": 672,
+    "w": 28,
+    "h": 28
+   },
+   "conn": {
+    "aria": "显示连线",
+    "pressed": "true",
+    "x": 80,
+    "y": 672,
+    "w": 28,
+    "h": 28
+   },
+   "zoom": {
+    "aria": "Zoom options, 60%",
+    "pressed": null,
+    "x": 124,
+    "y": 672,
+    "w": 48,
+    "h": 28
+   }
+  },
+  "menu": {
+   "inputPresent": true,
+   "inputBox": {
+    "v": "60",
+    "type": "text",
+    "tag": "INPUT",
+    "w": 48,
+    "h": 28,
+    "x": 124,
+    "y": 672
+   },
+   "layerFound": false,
+   "layerText": null,
+   "btnText": "",
+   "btnAria": "Zoom options, 60%",
+   "btnBox": {
+    "w": 48,
+    "h": 28
+   }
+  }
+ },
+ "ab": {
+  "选择工具": {
+   "toolAria": "选择工具",
+   "toolPressed": "false",
+   "before": {
+    "inputPresent": false,
+    "layerFound": false
+   },
+   "after": {
+    "inputPresent": true,
+    "layerFound": false,
+    "btnText": "",
+    "layerText": null,
+    "inputBox": {
+     "v": "60",
+     "type": "text",
+     "tag": "INPUT",
+     "w": 48,
+     "h": 28,
+     "x": 124,
+     "y": 672
+    }
+   },
+   "opened": true
+  },
+  "抓手工具": {
+   "toolAria": "抓手工具",
+   "toolPressed": "true",
+   "before": {
+    "inputPresent": false,
+    "layerFound": false
+   },
+   "after": {
+    "inputPresent": true,
+    "layerFound": false,
+    "btnText": "",
+    "layerText": null,
+    "inputBox": {
+     "v": "60",
+     "type": "text",
+     "tag": "INPUT",
+     "w": 48,
+     "h": 28,
+     "x": 124,
+     "y": 672
+    }
+   },
+   "opened": true
+  }
+ },
+ "beforeInput": {
+  "zoomAria": "Zoom options, 60%",
+  "menu": {
+   "inputPresent": true,
+   "inputBox": {
+    "v": "60",
+    "type": "text",
+    "tag": "INPUT",
+    "w": 48,
+    "h": 28,
+    "x": 124,
+    "y": 672
+   },
+   "layerFound": false,
+   "layerText": null,
+   "btnText": "",
+   "btnAria": "Zoom options, 60%",
+   "btnBox": {
+    "w": 48,
+    "h": 28
+   }
+  }
+ },
+ "typedNoEnter": {
+  "inputBox": {
+   "v": "40",
+   "type": "text",
+   "tag": "INPUT",
+   "w": 48,
+   "h": 28,
+   "x": 124,
+   "y": 672
+  },
+  "zoomAria": "Zoom options, 60%"
+ },
+ "afterEnter": {
+  "menu": {
+   "inputPresent": false,
+   "layerFound": false
+  },
+  "zoomAria": "Zoom options, 40%",
+  "zoomAria2": "Zoom options, 40%"
+ },
+ "endState": {
+  "tool": {
+   "aria": "选择工具",
+   "pressed": "false",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "true",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 40%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ }
+}

@@ -1,0 +1,557 @@
+{
+ "at": "2026-10-02T14:11:07.350Z",
+ "0-a轮结束时的当前状态": {
+  "n": 4,
+  "tool": {
+   "aria": "抓手工具",
+   "pressed": "true",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "false",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "s0": {
+  "n": 4,
+  "tool": {
+   "aria": "抓手工具",
+   "pressed": "true",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "false",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "1-工具已归位": {
+  "n": 4,
+  "tool": {
+   "aria": "选择工具",
+   "pressed": "false",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "false",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "2-小地图已归位": {
+  "n": 4,
+  "tool": {
+   "aria": "选择工具",
+   "pressed": "false",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "false",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "3-三颗都回到起点状态": {
+  "n": 4,
+  "tool": {
+   "aria": "选择工具",
+   "pressed": "false",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "true",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "4-抓手态-点之前": {
+  "n": 4,
+  "tool": {
+   "aria": "抓手工具",
+   "pressed": "true",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "true",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "pan0": {
+  "n": 4,
+  "tool": {
+   "aria": "抓手工具",
+   "pressed": "true",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "true",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "trials": [
+  {
+   "name": "小地图",
+   "tid": "canvas-display-toggle-minimap",
+   "pressedBefore": "false",
+   "pressedAfter": "true",
+   "resp": true,
+   "toolStayedPan": true,
+   "toolNow": "抓手工具",
+   "restored": true
+  },
+  {
+   "name": "显示连线",
+   "tid": "canvas-display-toggle-connections",
+   "pressedBefore": "true",
+   "pressedAfter": "false",
+   "resp": true,
+   "toolStayedPan": true,
+   "toolNow": "抓手工具",
+   "restored": true
+  },
+  {
+   "name": "缩放值按钮",
+   "tid": "canvas-zoom-percent",
+   "ariaBefore": "Zoom options, 60%",
+   "pressedBefore": null,
+   "menuOpened": false
+  }
+ ],
+ "t1-抓手态点完小地图": {
+  "n": 4,
+  "tool": {
+   "aria": "抓手工具",
+   "pressed": "true",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "true",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "true",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "t1b-撤回": {
+  "n": 4,
+  "tool": {
+   "aria": "抓手工具",
+   "pressed": "true",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "true",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "t2-前": {
+  "n": 4,
+  "tool": {
+   "aria": "抓手工具",
+   "pressed": "true",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "true",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "t2-抓手态点完显示连线": {
+  "n": 4,
+  "tool": {
+   "aria": "抓手工具",
+   "pressed": "true",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "false",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "t2b-撤回": {
+  "n": 4,
+  "tool": {
+   "aria": "抓手工具",
+   "pressed": "true",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "true",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "t3-前": {
+  "n": 4,
+  "tool": {
+   "aria": "抓手工具",
+   "pressed": "true",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "true",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "5-终点": {
+  "n": 4,
+  "tool": {
+   "aria": "抓手工具",
+   "pressed": "true",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "true",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "endState": {
+  "n": 4,
+  "tool": {
+   "aria": "抓手工具",
+   "pressed": "true",
+   "x": 16,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "mini": {
+   "aria": "小地图",
+   "pressed": "false",
+   "x": 48,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "conn": {
+   "aria": "显示连线",
+   "pressed": "true",
+   "x": 80,
+   "y": 672,
+   "w": 28,
+   "h": 28
+  },
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "pressed": null,
+   "x": 124,
+   "y": 672,
+   "w": 48,
+   "h": 28
+  }
+ }
+}
