@@ -1,0 +1,859 @@
+{
+  "batch": 648,
+  "question": "626 named 16 uncovered markers; what are they, and can each be opened from the clone's own controls?",
+  "markers": [
+    {
+      "batch": "626",
+      "name": "crowd-panel",
+      "selector": "[data-director-crowd-panel]",
+      "kind": "overlay"
+    },
+    {
+      "batch": "626",
+      "name": "model-library-panel",
+      "selector": "[data-director-model-library-panel]",
+      "kind": "overlay"
+    },
+    {
+      "batch": "626",
+      "name": "model-library-preview-panel",
+      "selector": "[data-director-model-library-preview-panel]",
+      "kind": "overlay"
+    },
+    {
+      "batch": "626",
+      "name": "phone-vcam-panel",
+      "selector": "[data-director-phone-vcam-panel]",
+      "kind": "overlay"
+    },
+    {
+      "batch": "626",
+      "name": "pose-panel",
+      "selector": "[data-director-pose-panel]",
+      "kind": "inspector-content"
+    },
+    {
+      "batch": "626",
+      "name": "panel",
+      "selector": "[data-director-panels-toggle]",
+      "kind": "control"
+    },
+    {
+      "batch": "626",
+      "name": "mobile-panel",
+      "selector": "[data-director-mobile-panel-state]",
+      "kind": "state-attribute"
+    },
+    {
+      "batch": "626",
+      "name": "flyout",
+      "selector": "[data-director-flyout-title]",
+      "kind": "per-instance-attribute"
+    },
+    {
+      "batch": "626",
+      "name": "zoom-menu",
+      "selector": "[data-liblib-overlay='zoom-menu']",
+      "kind": "overlay"
+    },
+    {
+      "batch": "626",
+      "name": "canvas-dropdown",
+      "selector": "[data-liblib-overlay='canvas-dropdown']",
+      "kind": "overlay"
+    },
+    {
+      "batch": "626",
+      "name": "asset",
+      "selector": "[data-liblib-overlay='asset']",
+      "kind": "overlay"
+    },
+    {
+      "batch": "626",
+      "name": "add-node",
+      "selector": "[data-liblib-overlay='add-node']",
+      "kind": "overlay"
+    },
+    {
+      "batch": "626",
+      "name": "agent",
+      "selector": "[data-liblib-overlay='agent']",
+      "kind": "overlay"
+    },
+    {
+      "batch": "626",
+      "name": "shortcuts",
+      "selector": "[data-liblib-overlay='shortcuts']",
+      "kind": "overlay"
+    },
+    {
+      "batch": "626",
+      "name": "share",
+      "selector": "[data-liblib-overlay='share']",
+      "kind": "overlay"
+    }
+  ],
+  "canvasOpenPaths": {
+    "zoom-menu": "toggleZoomMenu",
+    "canvas-dropdown": "toggleCanvasDropdown",
+    "asset": "toggleAssetPanel",
+    "add-node": "toggleAddNodePanel",
+    "agent": "toggleAgent",
+    "shortcuts": "toggleShortcutsPanel",
+    "share": "toggleSharePanel"
+  },
+  "canvasNotMeasured": {
+    "why": "626's PANELS competitor set is six director-desk selectors; applied to a canvas-page overlay every one of them misses, so structBad is vacuously empty. An empty structBad is a green that measures nothing, so these are recorded with their open path and deferred rather than run against a ruler that cannot see them.",
+    "deferredTo": "batch 649"
+  },
+  "probe": {
+    "[data-director-crowd-panel]": {
+      "count": 0,
+      "inDesk": 0,
+      "firstBox": null
+    },
+    "[data-director-model-library-panel]": {
+      "count": 0,
+      "inDesk": 0,
+      "firstBox": null
+    },
+    "[data-director-model-library-preview-panel]": {
+      "count": 0,
+      "inDesk": 0,
+      "firstBox": null
+    },
+    "[data-director-phone-vcam-panel]": {
+      "count": 0,
+      "inDesk": 0,
+      "firstBox": null
+    },
+    "[data-director-pose-panel]": {
+      "count": 0,
+      "inDesk": 0,
+      "firstBox": null
+    },
+    "[data-director-panels-toggle]": {
+      "count": 1,
+      "inDesk": 1,
+      "firstBox": [
+        240,
+        6,
+        40,
+        40
+      ]
+    },
+    "[data-director-mobile-panel-state]": {
+      "count": 2,
+      "inDesk": 2,
+      "firstBox": [
+        48,
+        52,
+        233,
+        848
+      ]
+    },
+    "[data-director-flyout-title]": {
+      "count": 0,
+      "inDesk": 0,
+      "firstBox": null
+    },
+    "[data-liblib-overlay='zoom-menu']": {
+      "count": 0,
+      "inDesk": 0,
+      "firstBox": null
+    },
+    "[data-liblib-overlay='canvas-dropdown']": {
+      "count": 0,
+      "inDesk": 0,
+      "firstBox": null
+    },
+    "[data-liblib-overlay='asset']": {
+      "count": 0,
+      "inDesk": 0,
+      "firstBox": null
+    },
+    "[data-liblib-overlay='add-node']": {
+      "count": 0,
+      "inDesk": 0,
+      "firstBox": null
+    },
+    "[data-liblib-overlay='agent']": {
+      "count": 0,
+      "inDesk": 0,
+      "firstBox": null
+    },
+    "[data-liblib-overlay='shortcuts']": {
+      "count": 0,
+      "inDesk": 0,
+      "firstBox": null
+    },
+    "[data-liblib-overlay='share']": {
+      "count": 0,
+      "inDesk": 0,
+      "firstBox": null
+    }
+  },
+  "matrix": {
+    "crowd-panel@1920x1150": {
+      "box": [
+        824,
+        688,
+        272,
+        208
+      ],
+      "bottom": 896,
+      "ownZ": "20",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -816,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true
+    },
+    "phone-vcam-panel@1920x1150": {
+      "box": [
+        1287,
+        574,
+        340,
+        322
+      ],
+      "bottom": 896,
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -285,
+      "structBad": [],
+      "liveCount": 2,
+      "blocked": [],
+      "present": true
+    },
+    "model-library-panel@1920x1150": {
+      "box": [
+        710,
+        536,
+        500,
+        360
+      ],
+      "bottom": 896,
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -702,
+      "structBad": [],
+      "liveCount": 15,
+      "blocked": [
+        {
+          "label": "",
+          "why": "occluded",
+          "by": "div.absolute"
+        }
+      ],
+      "present": true,
+      "blockedDetail": [
+        {
+          "tag": "input",
+          "type": "file",
+          "ariaLabel": null,
+          "className": "sr-only",
+          "data": "directorModelLibraryLocalInput",
+          "w": 1,
+          "h": 1,
+          "clip": "auto",
+          "clipPath": "inset(50%)",
+          "position": "absolute",
+          "overflow": "clip",
+          "opacity": "1",
+          "excludedByZeroSizeGuard": false
+        }
+      ]
+    },
+    "model-library-preview-panel@1920x1150": {
+      "box": [
+        711,
+        653,
+        498,
+        72
+      ],
+      "bottom": 725,
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "overflowBottom": -417,
+      "overflowRight": -703,
+      "structBad": [],
+      "liveCount": 1,
+      "blocked": [],
+      "present": true
+    },
+    "crowd-panel@1440x900": {
+      "box": [
+        584,
+        438,
+        272,
+        208
+      ],
+      "bottom": 646,
+      "ownZ": "20",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -576,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true
+    },
+    "phone-vcam-panel@1440x900": {
+      "box": [
+        807,
+        324,
+        340,
+        322
+      ],
+      "bottom": 646,
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -285,
+      "structBad": [],
+      "liveCount": 2,
+      "blocked": [],
+      "present": true
+    },
+    "model-library-panel@1440x900": {
+      "box": [
+        470,
+        286,
+        500,
+        360
+      ],
+      "bottom": 646,
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -462,
+      "structBad": [],
+      "liveCount": 15,
+      "blocked": [
+        {
+          "label": "",
+          "why": "occluded",
+          "by": "div.absolute"
+        }
+      ],
+      "present": true,
+      "blockedDetail": [
+        {
+          "tag": "input",
+          "type": "file",
+          "ariaLabel": null,
+          "className": "sr-only",
+          "data": "directorModelLibraryLocalInput",
+          "w": 1,
+          "h": 1,
+          "clip": "auto",
+          "clipPath": "inset(50%)",
+          "position": "absolute",
+          "overflow": "clip",
+          "opacity": "1",
+          "excludedByZeroSizeGuard": false
+        }
+      ]
+    },
+    "model-library-preview-panel@1440x900": {
+      "box": [
+        471,
+        403,
+        498,
+        72
+      ],
+      "bottom": 475,
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "overflowBottom": -417,
+      "overflowRight": -463,
+      "structBad": [],
+      "liveCount": 1,
+      "blocked": [],
+      "present": true
+    },
+    "crowd-panel@1280x720": {
+      "box": [
+        504,
+        258,
+        272,
+        208
+      ],
+      "bottom": 466,
+      "ownZ": "20",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -496,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true
+    },
+    "phone-vcam-panel@1280x720": {
+      "box": [
+        647,
+        144,
+        340,
+        322
+      ],
+      "bottom": 466,
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -285,
+      "structBad": [],
+      "liveCount": 2,
+      "blocked": [],
+      "present": true
+    },
+    "model-library-panel@1280x720": {
+      "box": [
+        390,
+        136,
+        500,
+        330
+      ],
+      "bottom": 466,
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -382,
+      "structBad": [],
+      "liveCount": 15,
+      "blocked": [
+        {
+          "label": "",
+          "why": "occluded",
+          "by": "div.absolute"
+        }
+      ],
+      "present": true,
+      "blockedDetail": [
+        {
+          "tag": "input",
+          "type": "file",
+          "ariaLabel": null,
+          "className": "sr-only",
+          "data": "directorModelLibraryLocalInput",
+          "w": 1,
+          "h": 1,
+          "clip": "auto",
+          "clipPath": "inset(50%)",
+          "position": "absolute",
+          "overflow": "clip",
+          "opacity": "1",
+          "excludedByZeroSizeGuard": false
+        }
+      ]
+    },
+    "model-library-preview-panel@1280x720": {
+      "box": [
+        391,
+        253,
+        498,
+        72
+      ],
+      "bottom": 325,
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "overflowBottom": -387,
+      "overflowRight": -383,
+      "structBad": [],
+      "liveCount": 1,
+      "blocked": [],
+      "present": true
+    }
+  },
+  "checks": {
+    "every-marker-626-named-is-resolved-to-a-real-selector": {
+      "ok": true,
+      "detail": {
+        "count": 15,
+        "names": [
+          "crowd-panel",
+          "model-library-panel",
+          "model-library-preview-panel",
+          "phone-vcam-panel",
+          "pose-panel",
+          "panel",
+          "mobile-panel",
+          "flyout",
+          "zoom-menu",
+          "canvas-dropdown",
+          "asset",
+          "add-node",
+          "agent",
+          "shortcuts",
+          "share"
+        ],
+        "note": "resolved against the source tree, not from memory",
+        "discrepancy": "626 section 8's headline says 9 director markers + 7 canvas markers = 16, but it lists only 8 director names. 15 is the list's real length; the headline is wrong, not the list."
+      },
+      "note": null
+    },
+    "626s-own-headline-count-does-not-match-its-own-list": {
+      "ok": true,
+      "detail": {
+        "headline": "9 director + 7 canvas = 16",
+        "listed": "8 director + 7 canvas = 15",
+        "directorNamesListed": [
+          "crowd-panel",
+          "model-library-panel",
+          "model-library-preview-panel",
+          "phone-vcam-panel",
+          "pose-panel",
+          "panel",
+          "mobile-panel",
+          "flyout"
+        ],
+        "reading": "the 9th director marker was never named, so it cannot be opened, classified or measured. This is an OPEN ITEM inherited from 626, not something this batch can close by guessing."
+      },
+      "note": "recorded as a named gap rather than resolved by inference"
+    },
+    "four-of-626s-nine-director-markers-are-not-overlays-at-all": {
+      "ok": true,
+      "detail": {
+        "directorMarkers": 8,
+        "classifiedNotOverlay": {
+          "pose-panel": "inspector-content",
+          "panel": "control",
+          "mobile-panel": "state-attribute",
+          "flyout": "per-instance-attribute"
+        },
+        "why": "`pose-panel` is a div.space-y-4.px-4.py-3 inside the inspector; `panel` is a button; `mobile-panel` is an open/closed state attribute; `flyout` is a per-instance attribute — and 626's OWN covered list already contains three of those flyouts, so the two lists contradict each other"
+      },
+      "note": null
+    },
+    "each-classification-is-pinned-to-the-source-line-that-made-it": {
+      "ok": true,
+      "detail": {
+        "pose-panel": "className=\"space-y-4 px-4 py-3\" — content",
+        "panels-toggle": "inside a <button>",
+        "mobile-panel-state": "state={... ? \"open\" : \"closed\"}",
+        "flyout-title": "occurs on 3 rail entries",
+        "phone-vcam-panel": "absolute bottom-[72px] right-3 z-30, gated by `if (!open) return null`"
+      },
+      "note": null
+    },
+    "all-seven-canvas-markers-have-a-first-class-store-action": {
+      "ok": true,
+      "detail": {
+        "paths": {
+          "zoom-menu": "toggleZoomMenu",
+          "canvas-dropdown": "toggleCanvasDropdown",
+          "asset": "toggleAssetPanel",
+          "add-node": "toggleAddNodePanel",
+          "agent": "toggleAgent",
+          "shortcuts": "toggleShortcutsPanel",
+          "share": "toggleSharePanel"
+        },
+        "reading": "626 recorded these as 'no open path could be found from the clone's own controls'. The path is a first-class store action; it was not looked for, not absent.",
+        "caveat": "a store action is an internal shortcut. Whether the real control also flips it is a separate question this batch does not answer."
+      },
+      "note": null
+    },
+    "every-one-of-the-four-desk-overlays-actually-opens": {
+      "ok": true,
+      "detail": {
+        "cells": 12,
+        "absent": {},
+        "paths": {
+          "crowd-panel": "[data-director-crowd-trigger]",
+          "phone-vcam-panel": "[data-director-phone-vcam-trigger]",
+          "model-library-panel": "[data-director-model-library-trigger]",
+          "model-library-preview-panel": "open the panel, then hover a card — the source gates it on previewModelLibraryItem"
+        }
+      },
+      "note": null
+    },
+    "every-opened-overlay-contains-at-least-one-live-control": {
+      "ok": true,
+      "detail": {
+        "liveCounts": {
+          "crowd-panel@1920x1150": 5,
+          "phone-vcam-panel@1920x1150": 2,
+          "model-library-panel@1920x1150": 15,
+          "model-library-preview-panel@1920x1150": 1,
+          "crowd-panel@1440x900": 5,
+          "phone-vcam-panel@1440x900": 2,
+          "model-library-panel@1440x900": 15,
+          "model-library-preview-panel@1440x900": 1,
+          "crowd-panel@1280x720": 5,
+          "phone-vcam-panel@1280x720": 2,
+          "model-library-panel@1280x720": 15,
+          "model-library-preview-panel@1280x720": 1
+        }
+      },
+      "note": "a ruler run over an overlay with no controls reports zero casualties and zero structBad and looks perfect"
+    },
+    "no-desk-panel-paints-above-any-of-the-four-new-overlays": {
+      "ok": true,
+      "detail": {
+        "bad": {},
+        "ruler": "626's CENSUS_JS, unchanged — the two halves and the 8px safe margin are its own",
+        "viewports": [
+          [
+            1920,
+            1150
+          ],
+          [
+            1440,
+            900
+          ],
+          [
+            1280,
+            720
+          ]
+        ]
+      },
+      "note": null
+    },
+    "every-casualty-is-a-designed-non-control-not-a-clone-defect": {
+      "ok": true,
+      "detail": {
+        "designedNonControls": [
+          {
+            "cell": "model-library-panel@1920x1150",
+            "control": "directorModelLibraryLocalInput",
+            "type": "file",
+            "w": 1,
+            "h": 1,
+            "clip": "auto",
+            "clipPath": "inset(50%)"
+          },
+          {
+            "cell": "model-library-panel@1440x900",
+            "control": "directorModelLibraryLocalInput",
+            "type": "file",
+            "w": 1,
+            "h": 1,
+            "clip": "auto",
+            "clipPath": "inset(50%)"
+          },
+          {
+            "cell": "model-library-panel@1280x720",
+            "control": "directorModelLibraryLocalInput",
+            "type": "file",
+            "w": 1,
+            "h": 1,
+            "clip": "auto",
+            "clipPath": "inset(50%)"
+          }
+        ],
+        "unexplainedCasualties": [],
+        "cellsMissingDetail": {},
+        "reading": "the one casualty in the model library panel is an `sr-only` `type=file` input — the standard pattern for a file picker driven by a visible button. Its 1x1 centre sitting under the panel's scrim is by design, not a defect.",
+        "whyItStillMatters": "626's casualty half would have reported it, and it has no way to tell this case from a real one. The ruler needs the gap closed before its greens mean anything."
+      },
+      "note": "the casualty is recorded, classified and NOT hidden"
+    },
+    "the-zero-size-guard-is-one-pixel-short-of-the-right-predicate": {
+      "ok": true,
+      "detail": {
+        "guards": [
+          {
+            "w": 1,
+            "h": 1,
+            "clip": "auto",
+            "clipPath": "inset(50%)",
+            "excludedBy626sGuard": false
+          },
+          {
+            "w": 1,
+            "h": 1,
+            "clip": "auto",
+            "clipPath": "inset(50%)",
+            "excludedBy626sGuard": false
+          },
+          {
+            "w": 1,
+            "h": 1,
+            "clip": "auto",
+            "clipPath": "inset(50%)",
+            "excludedBy626sGuard": false
+          }
+        ],
+        "theTwoGuards": {
+          "626sCensusJs": "if (cb.width <= 0 || cb.height <= 0) continue;  // zero-size: not a casualty",
+          "rightPredicate": "a control is visually absent when it is clipped to nothing (clip / clip-path) OR <= 1px, not when it is merely <= 0"
+        },
+        "andTheGapIsTwoLayersDeep": "the measured computed style is clip: auto with clip-path: inset(50%) — Tailwind v4's sr-only, not the legacy clip: rect(0,0,0,0). A fix that only tested the `clip` property would have missed it too.",
+        "family": "623 found the zero-size shape; 648 finds the 1x1 `sr-only` shape, which is the same blind spot one pixel away from being caught"
+      },
+      "note": null
+    },
+    "the-exempted-control-is-an-sr-only-file-input-in-the-source": {
+      "ok": true,
+      "detail": {
+        "source": "src/components/director/DirectorViewport.tsx",
+        "why": "the exemption is a regex on the source, so a later refactor that gives the input a real box would make this check go red instead of silently excusing it"
+      },
+      "note": null
+    },
+    "none-of-the-four-is-a-pointer-events-none-overlay": {
+      "ok": true,
+      "detail": {
+        "cellsWithPointerEventsNone": {},
+        "why": "626 had to exclude camera-fov-help-tooltip for exactly this: a pointer-events:none overlay has no clickable controls to lose, so the casualty half is vacuously satisfied"
+      },
+      "note": null
+    },
+    "each-of-the-four-is-measured-at-all-three-viewports": {
+      "ok": true,
+      "detail": {
+        "crowd-panel": {
+          "viewports": 3,
+          "box": {
+            "1920x1150": [
+              824,
+              688,
+              272,
+              208
+            ],
+            "1440x900": [
+              584,
+              438,
+              272,
+              208
+            ],
+            "1280x720": [
+              504,
+              258,
+              272,
+              208
+            ]
+          },
+          "ownZ": {
+            "1920x1150": "20",
+            "1440x900": "20",
+            "1280x720": "20"
+          },
+          "liveCount": {
+            "1920x1150": 5,
+            "1440x900": 5,
+            "1280x720": 5
+          },
+          "allClean": true
+        },
+        "phone-vcam-panel": {
+          "viewports": 3,
+          "box": {
+            "1920x1150": [
+              1287,
+              574,
+              340,
+              322
+            ],
+            "1440x900": [
+              807,
+              324,
+              340,
+              322
+            ],
+            "1280x720": [
+              647,
+              144,
+              340,
+              322
+            ]
+          },
+          "ownZ": {
+            "1920x1150": "30",
+            "1440x900": "30",
+            "1280x720": "30"
+          },
+          "liveCount": {
+            "1920x1150": 2,
+            "1440x900": 2,
+            "1280x720": 2
+          },
+          "allClean": true
+        },
+        "model-library-panel": {
+          "viewports": 3,
+          "box": {
+            "1920x1150": [
+              710,
+              536,
+              500,
+              360
+            ],
+            "1440x900": [
+              470,
+              286,
+              500,
+              360
+            ],
+            "1280x720": [
+              390,
+              136,
+              500,
+              330
+            ]
+          },
+          "ownZ": {
+            "1920x1150": "30",
+            "1440x900": "30",
+            "1280x720": "30"
+          },
+          "liveCount": {
+            "1920x1150": 15,
+            "1440x900": 15,
+            "1280x720": 15
+          },
+          "allClean": false
+        },
+        "model-library-preview-panel": {
+          "viewports": 3,
+          "box": {
+            "1920x1150": [
+              711,
+              653,
+              498,
+              72
+            ],
+            "1440x900": [
+              471,
+              403,
+              498,
+              72
+            ],
+            "1280x720": [
+              391,
+              253,
+              498,
+              72
+            ]
+          },
+          "ownZ": {
+            "1920x1150": "auto",
+            "1440x900": "auto",
+            "1280x720": "auto"
+          },
+          "liveCount": {
+            "1920x1150": 1,
+            "1440x900": 1,
+            "1280x720": 1
+          },
+          "allClean": true
+        }
+      },
+      "note": null
+    }
+  },
+  "ok": true,
+  "checkCount": 13,
+  "failures": [],
+  "totals": {
+    "cells": 12,
+    "markersResolved": 15,
+    "markersNotOverlays": 4,
+    "overlaysOpenedWithARealClick": 4,
+    "canvasPathsRecordedNotMeasured": 7,
+    "totalLiveControlsChecked": 69
+  }
+}
