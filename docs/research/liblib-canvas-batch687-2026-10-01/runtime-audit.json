@@ -1,0 +1,1297 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 720,
+  "defaultHeight": 182,
+  "minHeight": 88,
+  "engageThreshold": 270,
+  "minBitesThreshold": 176,
+  "legs": {
+   "noEngage300": {
+    "shrinkTo": 300,
+    "steps": [
+     {
+      "name": "fresh",
+      "vw": 1280,
+      "vh": 720,
+      "tlAttr": 182,
+      "overflowBy": 0,
+      "gapBelow": 0,
+      "timelineBox": [
+       0,
+       538,
+       1280,
+       182
+      ],
+      "handle": [
+       0,
+       539,
+       1280,
+       8
+      ],
+      "viewport": [
+       281,
+       88,
+       718,
+       450
+      ],
+      "viewportH": 450
+     },
+     {
+      "name": "to300",
+      "vw": 1280,
+      "vh": 300,
+      "tlAttr": 182,
+      "overflowBy": 0,
+      "gapBelow": 0,
+      "timelineBox": [
+       0,
+       118,
+       1280,
+       182
+      ],
+      "handle": [
+       0,
+       119,
+       1280,
+       8
+      ],
+      "viewport": [
+       281,
+       88,
+       718,
+       30
+      ],
+      "viewportH": 30
+     },
+     {
+      "name": "to720",
+      "vw": 1280,
+      "vh": 720,
+      "tlAttr": 182,
+      "overflowBy": 0,
+      "gapBelow": 0,
+      "timelineBox": [
+       0,
+       538,
+       1280,
+       182
+      ],
+      "handle": [
+       0,
+       539,
+       1280,
+       8
+      ],
+      "viewport": [
+       281,
+       88,
+       718,
+       450
+      ],
+      "viewportH": 450
+     }
+    ],
+    "afterDragUp120": {
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 302,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      418,
+      1280,
+      302
+     ],
+     "handle": [
+      0,
+      419,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      330
+     ],
+     "viewportH": 330
+    },
+    "afterReload": {
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 182,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      538,
+      1280,
+      182
+     ],
+     "handle": [
+      0,
+      539,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      450
+     ],
+     "viewportH": 450
+    }
+   },
+   "engageNoMin200": {
+    "shrinkTo": 200,
+    "steps": [
+     {
+      "name": "fresh",
+      "vw": 1280,
+      "vh": 720,
+      "tlAttr": 182,
+      "overflowBy": 0,
+      "gapBelow": 0,
+      "timelineBox": [
+       0,
+       538,
+       1280,
+       182
+      ],
+      "handle": [
+       0,
+       539,
+       1280,
+       8
+      ],
+      "viewport": [
+       281,
+       88,
+       718,
+       450
+      ],
+      "viewportH": 450
+     },
+     {
+      "name": "to200",
+      "vw": 1280,
+      "vh": 200,
+      "tlAttr": 112,
+      "overflowBy": 0,
+      "gapBelow": 0,
+      "timelineBox": [
+       0,
+       88,
+       1280,
+       112
+      ],
+      "handle": [
+       0,
+       89,
+       1280,
+       8
+      ],
+      "viewport": [
+       281,
+       88,
+       718,
+       0
+      ],
+      "viewportH": 0
+     },
+     {
+      "name": "to720",
+      "vw": 1280,
+      "vh": 720,
+      "tlAttr": 112,
+      "overflowBy": 0,
+      "gapBelow": 0,
+      "timelineBox": [
+       0,
+       608,
+       1280,
+       112
+      ],
+      "handle": [
+       0,
+       609,
+       1280,
+       8
+      ],
+      "viewport": [
+       281,
+       88,
+       718,
+       520
+      ],
+      "viewportH": 520
+     }
+    ],
+    "afterDragUp120": {
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 232,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      488,
+      1280,
+      232
+     ],
+     "handle": [
+      0,
+      489,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      400
+     ],
+     "viewportH": 400
+    },
+    "afterReload": {
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 182,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      538,
+      1280,
+      182
+     ],
+     "handle": [
+      0,
+      539,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      450
+     ],
+     "viewportH": 450
+    }
+   },
+   "engageHitsMin150": {
+    "shrinkTo": 150,
+    "steps": [
+     {
+      "name": "fresh",
+      "vw": 1280,
+      "vh": 720,
+      "tlAttr": 182,
+      "overflowBy": 0,
+      "gapBelow": 0,
+      "timelineBox": [
+       0,
+       538,
+       1280,
+       182
+      ],
+      "handle": [
+       0,
+       539,
+       1280,
+       8
+      ],
+      "viewport": [
+       281,
+       88,
+       718,
+       450
+      ],
+      "viewportH": 450
+     },
+     {
+      "name": "to150",
+      "vw": 1280,
+      "vh": 150,
+      "tlAttr": 88,
+      "overflowBy": 26,
+      "gapBelow": -26,
+      "timelineBox": [
+       0,
+       88,
+       1280,
+       88
+      ],
+      "handle": [
+       0,
+       89,
+       1280,
+       8
+      ],
+      "viewport": [
+       281,
+       88,
+       718,
+       0
+      ],
+      "viewportH": 0
+     },
+     {
+      "name": "to720",
+      "vw": 1280,
+      "vh": 720,
+      "tlAttr": 88,
+      "overflowBy": 0,
+      "gapBelow": 0,
+      "timelineBox": [
+       0,
+       632,
+       1280,
+       88
+      ],
+      "handle": [
+       0,
+       633,
+       1280,
+       8
+      ],
+      "viewport": [
+       281,
+       88,
+       718,
+       544
+      ],
+      "viewportH": 544
+     }
+    ],
+    "afterDragUp120": {
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 208,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      512,
+      1280,
+      208
+     ],
+     "handle": [
+      0,
+      513,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      424
+     ],
+     "viewportH": 424
+    },
+    "afterReload": {
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 182,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      538,
+      1280,
+      182
+     ],
+     "handle": [
+      0,
+      539,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      450
+     ],
+     "viewportH": 450
+    }
+   },
+   "userPreference": {
+    "shrinkTo": 200,
+    "steps": [
+     {
+      "name": "fresh",
+      "vw": 1280,
+      "vh": 720,
+      "tlAttr": 182,
+      "overflowBy": 0,
+      "gapBelow": 0,
+      "timelineBox": [
+       0,
+       538,
+       1280,
+       182
+      ],
+      "handle": [
+       0,
+       539,
+       1280,
+       8
+      ],
+      "viewport": [
+       281,
+       88,
+       718,
+       450
+      ],
+      "viewportH": 450
+     },
+     {
+      "name": "dragUp138",
+      "vw": 1280,
+      "vh": 720,
+      "tlAttr": 320,
+      "overflowBy": 0,
+      "gapBelow": 0,
+      "timelineBox": [
+       0,
+       400,
+       1280,
+       320
+      ],
+      "handle": [
+       0,
+       401,
+       1280,
+       8
+      ],
+      "viewport": [
+       281,
+       88,
+       718,
+       312
+      ],
+      "viewportH": 312
+     },
+     {
+      "name": "to200",
+      "vw": 1280,
+      "vh": 200,
+      "tlAttr": 112,
+      "overflowBy": 0,
+      "gapBelow": 0,
+      "timelineBox": [
+       0,
+       88,
+       1280,
+       112
+      ],
+      "handle": [
+       0,
+       89,
+       1280,
+       8
+      ],
+      "viewport": [
+       281,
+       88,
+       718,
+       0
+      ],
+      "viewportH": 0
+     },
+     {
+      "name": "to720",
+      "vw": 1280,
+      "vh": 720,
+      "tlAttr": 112,
+      "overflowBy": 0,
+      "gapBelow": 0,
+      "timelineBox": [
+       0,
+       608,
+       1280,
+       112
+      ],
+      "handle": [
+       0,
+       609,
+       1280,
+       8
+      ],
+      "viewport": [
+       281,
+       88,
+       718,
+       520
+      ],
+      "viewportH": 520
+     },
+     {
+      "name": "dragUp70",
+      "vw": 1280,
+      "vh": 720,
+      "tlAttr": 182,
+      "overflowBy": 0,
+      "gapBelow": 0,
+      "timelineBox": [
+       0,
+       538,
+       1280,
+       182
+      ],
+      "handle": [
+       0,
+       539,
+       1280,
+       8
+      ],
+      "viewport": [
+       281,
+       88,
+       718,
+       450
+      ],
+      "viewportH": 450
+     }
+    ]
+   }
+  },
+  "openProductQuestion": {
+   "conflict": "630's goal 'the default 182 stays identical pixel for pixel' is met, but the same one-way rule lets a transient window shrink silently destroy a value the USER chose.",
+   "optionA": "restore automatically when the window grows -- then 630's protection is undone (if the user never dragged, 182 would be written back, so 'pixel for pixel' no longer holds)",
+   "optionB": "keep never-restoring (status quo) -- the user must drag, and both routes lose their value",
+   "optionC": "remember the pre-clamp value and only auto-restore when the user never dragged -- keeps 630's goal, costs one extra state bit ('is this value the user's or the auto-fit's?')",
+   "whyItIsAProductDecision": "same discipline as 628/630 on the minimum viewport height: what the window may be dragged to is not derivable from geometry",
+   "notTakenHere": "this batch changes no src/ file"
+  },
+  "hypothesisNotClaim": "Every reading is from our own clone. The source site was not used and no source-site behaviour is claimed. The handle drag was performed on the clone, not on the source site."
+ },
+ "legs": {
+  "noEngage300": {
+   "shrinkTo": 300,
+   "steps": [
+    {
+     "name": "fresh",
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 182,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      538,
+      1280,
+      182
+     ],
+     "handle": [
+      0,
+      539,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      450
+     ],
+     "viewportH": 450
+    },
+    {
+     "name": "to300",
+     "vw": 1280,
+     "vh": 300,
+     "tlAttr": 182,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      118,
+      1280,
+      182
+     ],
+     "handle": [
+      0,
+      119,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      30
+     ],
+     "viewportH": 30
+    },
+    {
+     "name": "to720",
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 182,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      538,
+      1280,
+      182
+     ],
+     "handle": [
+      0,
+      539,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      450
+     ],
+     "viewportH": 450
+    }
+   ],
+   "afterDragUp120": {
+    "vw": 1280,
+    "vh": 720,
+    "tlAttr": 302,
+    "overflowBy": 0,
+    "gapBelow": 0,
+    "timelineBox": [
+     0,
+     418,
+     1280,
+     302
+    ],
+    "handle": [
+     0,
+     419,
+     1280,
+     8
+    ],
+    "viewport": [
+     281,
+     88,
+     718,
+     330
+    ],
+    "viewportH": 330
+   },
+   "afterReload": {
+    "vw": 1280,
+    "vh": 720,
+    "tlAttr": 182,
+    "overflowBy": 0,
+    "gapBelow": 0,
+    "timelineBox": [
+     0,
+     538,
+     1280,
+     182
+    ],
+    "handle": [
+     0,
+     539,
+     1280,
+     8
+    ],
+    "viewport": [
+     281,
+     88,
+     718,
+     450
+    ],
+    "viewportH": 450
+   }
+  },
+  "engageNoMin200": {
+   "shrinkTo": 200,
+   "steps": [
+    {
+     "name": "fresh",
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 182,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      538,
+      1280,
+      182
+     ],
+     "handle": [
+      0,
+      539,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      450
+     ],
+     "viewportH": 450
+    },
+    {
+     "name": "to200",
+     "vw": 1280,
+     "vh": 200,
+     "tlAttr": 112,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      88,
+      1280,
+      112
+     ],
+     "handle": [
+      0,
+      89,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      0
+     ],
+     "viewportH": 0
+    },
+    {
+     "name": "to720",
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 112,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      608,
+      1280,
+      112
+     ],
+     "handle": [
+      0,
+      609,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      520
+     ],
+     "viewportH": 520
+    }
+   ],
+   "afterDragUp120": {
+    "vw": 1280,
+    "vh": 720,
+    "tlAttr": 232,
+    "overflowBy": 0,
+    "gapBelow": 0,
+    "timelineBox": [
+     0,
+     488,
+     1280,
+     232
+    ],
+    "handle": [
+     0,
+     489,
+     1280,
+     8
+    ],
+    "viewport": [
+     281,
+     88,
+     718,
+     400
+    ],
+    "viewportH": 400
+   },
+   "afterReload": {
+    "vw": 1280,
+    "vh": 720,
+    "tlAttr": 182,
+    "overflowBy": 0,
+    "gapBelow": 0,
+    "timelineBox": [
+     0,
+     538,
+     1280,
+     182
+    ],
+    "handle": [
+     0,
+     539,
+     1280,
+     8
+    ],
+    "viewport": [
+     281,
+     88,
+     718,
+     450
+    ],
+    "viewportH": 450
+   }
+  },
+  "engageHitsMin150": {
+   "shrinkTo": 150,
+   "steps": [
+    {
+     "name": "fresh",
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 182,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      538,
+      1280,
+      182
+     ],
+     "handle": [
+      0,
+      539,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      450
+     ],
+     "viewportH": 450
+    },
+    {
+     "name": "to150",
+     "vw": 1280,
+     "vh": 150,
+     "tlAttr": 88,
+     "overflowBy": 26,
+     "gapBelow": -26,
+     "timelineBox": [
+      0,
+      88,
+      1280,
+      88
+     ],
+     "handle": [
+      0,
+      89,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      0
+     ],
+     "viewportH": 0
+    },
+    {
+     "name": "to720",
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 88,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      632,
+      1280,
+      88
+     ],
+     "handle": [
+      0,
+      633,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      544
+     ],
+     "viewportH": 544
+    }
+   ],
+   "afterDragUp120": {
+    "vw": 1280,
+    "vh": 720,
+    "tlAttr": 208,
+    "overflowBy": 0,
+    "gapBelow": 0,
+    "timelineBox": [
+     0,
+     512,
+     1280,
+     208
+    ],
+    "handle": [
+     0,
+     513,
+     1280,
+     8
+    ],
+    "viewport": [
+     281,
+     88,
+     718,
+     424
+    ],
+    "viewportH": 424
+   },
+   "afterReload": {
+    "vw": 1280,
+    "vh": 720,
+    "tlAttr": 182,
+    "overflowBy": 0,
+    "gapBelow": 0,
+    "timelineBox": [
+     0,
+     538,
+     1280,
+     182
+    ],
+    "handle": [
+     0,
+     539,
+     1280,
+     8
+    ],
+    "viewport": [
+     281,
+     88,
+     718,
+     450
+    ],
+    "viewportH": 450
+   }
+  },
+  "userPreference": {
+   "shrinkTo": 200,
+   "steps": [
+    {
+     "name": "fresh",
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 182,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      538,
+      1280,
+      182
+     ],
+     "handle": [
+      0,
+      539,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      450
+     ],
+     "viewportH": 450
+    },
+    {
+     "name": "dragUp138",
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 320,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      400,
+      1280,
+      320
+     ],
+     "handle": [
+      0,
+      401,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      312
+     ],
+     "viewportH": 312
+    },
+    {
+     "name": "to200",
+     "vw": 1280,
+     "vh": 200,
+     "tlAttr": 112,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      88,
+      1280,
+      112
+     ],
+     "handle": [
+      0,
+      89,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      0
+     ],
+     "viewportH": 0
+    },
+    {
+     "name": "to720",
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 112,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      608,
+      1280,
+      112
+     ],
+     "handle": [
+      0,
+      609,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      520
+     ],
+     "viewportH": 520
+    },
+    {
+     "name": "dragUp70",
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 182,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "timelineBox": [
+      0,
+      538,
+      1280,
+      182
+     ],
+     "handle": [
+      0,
+      539,
+      1280,
+      8
+     ],
+     "viewport": [
+      281,
+      88,
+      718,
+      450
+     ],
+     "viewportH": 450
+    }
+   ]
+  }
+ },
+ "checks": {
+  "the-autofit-engages-below-270-while-the-store-min-bites-below-176": {
+   "ok": true,
+   "detail": {
+    "engageThreshold": 270,
+    "minBitesThreshold": 176,
+    "gapBetweenThem": 94,
+    "why270": "the panel's top is pinned at 88 and its height is 182, so it only overflows when 88 + 182 > H",
+    "why176": "the store MIN is 88, so it can only bind when 88 + 88 > H",
+    "readings": {
+     "noEngage300": {
+      "fresh": 182,
+      "to300": 182,
+      "to720": 182
+     },
+     "engageNoMin200": {
+      "fresh": 182,
+      "to200": 112,
+      "to720": 112
+     },
+     "engageHitsMin150": {
+      "fresh": 182,
+      "to150": 88,
+      "to720": 88
+     },
+     "userPreference": {
+      "fresh": 182,
+      "dragUp138": 320,
+      "to200": 112,
+      "to720": 112,
+      "dragUp70": 182
+     }
+    },
+    "what630Recorded": "630 recorded only the 176 line ('below 88 + MIN(88) = 176'). The 270 line is the same code's own consequence and is what decides whether the fit runs at all."
+   },
+   "note": "two thresholds 94px apart; measuring only the one in the comment misses the one that decides whether anything happens"
+  },
+  "the-round-trip-loss-equals-exactly-the-overflow-that-triggered-it": {
+   "ok": true,
+   "detail": {
+    "fitCode": "setTimelineHeight(timelineHeight - overflow)",
+    "noMinLeg": {
+     "overflowAt200": 70,
+     "valueAt200": 112,
+     "valueBackAt720": 112
+    },
+    "minLeg": {
+     "overflowAt150": 208,
+     "rawSubtractionWouldBe": 62,
+     "valueActuallyRead": 88,
+     "overflowByStillPositive": 26,
+     "independentRecheck": "630 recorded 'the panel still overflows' below 176. Measured overflowBy at H=150 is exactly 26, and 150 < 176, so the store MIN genuinely cannot save it."
+    }
+   },
+   "note": "the loss is not a side effect, it IS the clamp's arithmetic"
+  },
+  "the-loss-does-not-require-hitting-the-store-minimum": {
+   "ok": true,
+   "detail": {
+    "valuesSeenInThatLeg": [
+     182,
+     112,
+     112
+    ],
+    "neverTouchedTheMin": true,
+    "stillLost": 70,
+    "conclusion": "so stickiness is a property of the ONE-WAY rule, not of the store minimum. Any window below 270 permanently demotes the height, however briefly it was visited."
+   },
+   "note": "attributing the behaviour to the MIN would have been a plausible wrong explanation"
+  },
+  "growing-the-window-back-never-restores-the-height": {
+   "ok": true,
+   "detail": {
+    "backAt720": {
+     "engageNoMin200": 112,
+     "engageHitsMin150": 88
+    },
+    "default": 182,
+    "sourceFact": "DirectorTimeline.tsx:686 -- if (overflow > 0) setTimelineHeight(timelineHeight - overflow). There is no upward branch, and the comment states the intent: 'not one pixel moves when it does not overflow -- the default 182 stays identical pixel for pixel'.",
+    "soThisIsByDesign": "630's goal is met. What 630 never covered is the round trip."
+   },
+   "note": "the one-way rule is the intent, not an oversight"
+  },
+  "after-the-round-trip-nothing-looks-broken-because-the-loss-became-canvas": {
+   "ok": true,
+   "detail": {
+    "afterRoundTrip": {
+     "tlAttr": 112,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "viewportH": 520
+    },
+    "before": {
+     "tlAttr": 182,
+     "overflowBy": 0,
+     "gapBelow": 0,
+     "viewportH": 450
+    },
+    "theReallocation": "the 70px the timeline lost went to the 3D canvas (450 -> 520), and the panel neither overflows nor leaves a gap",
+    "whyItWentUnnoticed": "a defect that looks like 'the canvas got bigger' does not get reported"
+   },
+   "note": "a loss that improves something else is the hardest kind to notice"
+  },
+  "a-user-set-height-is-destroyed-by-one-window-shrink": {
+   "ok": true,
+   "detail": {
+    "sequence": {
+     "fresh": {
+      "tlAttr": 182,
+      "viewportH": 450
+     },
+     "dragUp138": {
+      "tlAttr": 320,
+      "viewportH": 312
+     },
+     "to200": {
+      "tlAttr": 112,
+      "viewportH": 0
+     },
+     "to720": {
+      "tlAttr": 112,
+      "viewportH": 520
+     },
+     "dragUp70": {
+      "tlAttr": 182,
+      "viewportH": 450
+     }
+    },
+    "theReading": "after one shrink the value is a function of the WINDOW height (112 = 200 - 88) and has nothing to do with the user's 320",
+    "userSetValue": 320,
+    "valueAfterRoundTrip": 112,
+    "thisIsTheSharpestForm": "686 read the clamp as a store artefact. This leg shows what it costs a user: not the default, which 630 deliberately protects, but a value the user chose."
+   },
+   "note": "630 protects the default; nothing protects the user's choice"
+  },
+  "both-recovery-routes-destroy-the-user-preference-too": {
+   "ok": true,
+   "detail": {
+    "reloadGives": {
+     "engageNoMin200": 182,
+     "engageHitsMin150": 182
+    },
+    "dragStartsFrom": {
+     "engageNoMin200": 112,
+     "engageHitsMin150": 88
+    },
+    "dragUp120Gives": 232,
+    "theUserPreferenceLeg": {
+     "afterReloadWouldBe": 182,
+     "userWanted": 320,
+     "andEvenTheDragStartsFrom": 112,
+     "note": "the final dragUp70 lands on 182 purely by arithmetic (112 + 70). It is not a restore."
+    },
+    "stateMachine": {
+     "openOrReload": 182,
+     "drag": "the dragged value, 88..420",
+     "resizeWithOverflow(H<270)": "minus exactly that overflow, floor 88",
+     "windowGrows": "nothing",
+     "reload": "back to the DEFAULT, not the clamped value and not the user's value"
+    },
+    "conclusion": "the timeline height is not a durable preference: it survives neither a window shrink nor a reload",
+    "sourceFact": "timelineHeight is not in the persistence schema (599's conclusion: view state is deliberately absent), so a reload always yields DIRECTOR_TIMELINE_DEFAULT_HEIGHT"
+   },
+   "note": "a value that cannot survive a resize is not a preference, it is a cache"
+  }
+ }
+}
