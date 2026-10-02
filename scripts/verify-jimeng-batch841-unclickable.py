@@ -2305,8 +2305,14 @@ def main() -> int:
           # 「preventDefault 已有答案」就把矛盾一起删掉。
           and "891 已把这条「浏览器规则」假设证伪" in _ausrc
           and "空白页**证不了**源站自己的行为" in _ausrc
-          and '"contradiction_891_vs_source_still_open"' in _ausrc
-          and "**不可能同时成立**" in _ausrc)
+          # ⚠️⚠️ 第五版（893 把矛盾**解开**了）：锚点从 `..._still_open` 换成
+          # `..._RESOLVED_893` —— 基线里**不许**留一条「仍未解决」跟结论打架。
+          # 判据要跟上事实，但**不许**因为矛盾解决了就把「为什么 tabindex 是
+          # None **仍未查清**」一起删掉。
+          and '"contradiction_891_vs_source_RESOLVED_893"' in _ausrc
+          and "contradiction_891_vs_source_still_open" not in _ausrc
+          and "**仍未查清**" in _ausrc
+          and "不许**简化成「源站未选中节点一律不可聚焦」" in _ausrc)
     # ══════════ 批 890：DD.8 那条差异的机制，查到一层就**停** ══════════
     p890 = ROOT / "scripts/jimeng_probe890_nodefocus_why_src.py"
     p890b = ROOT / "scripts/jimeng_probe890b_nodefocus_why2_src.py"
@@ -2458,18 +2464,80 @@ def main() -> int:
           "**会**移动焦点」，而源站结构与 C1 **完全一样**却 `focusin` **0** 次，"
           "892 又证明源站**没**被 preventDefault ⇒ 「会移动」与「没移动且没被"
           "阻止」**不可能同时成立**。⇒ 说明源站在**那一刻**做了空白页复现里"
-          "没有的事。净进展是**排除了两个候选**（浏览器规则、preventDefault）",
-          '"contradiction_891_vs_source_still_open"' in _ausrc
-          and "**不可能同时成立**" in _ausrc
-          and "排除了两个候选" in _ausrc
-          and "浏览器规则" in _ausrc)
-    check("GG.4 下一个假设**必须标未测**（典型：点击那一刻节点的 `tabindex` "
-          "被移除 ⇒ 那一刻不可聚焦），而且要点明 **890b 记的 `tabindex='0'` "
-          "是点击**之前**读的、**不覆盖**那个时刻** —— 不许拿旧读数当"
-          "「那一刻也一样」",
-          "最可能的下一步假设（**未测**）" in _ausrc
-          and "tabindex` 被移除" in _ausrc
-          and "**不覆盖**这个时刻" in _ausrc)
+          "没有的事。净进展是**排除了两个候选**（浏览器规则、preventDefault）。"
+          "⚠️⚠️ **本条第二版（893 已把它解开）**：锚点从 `..._still_open` 改成 "
+          "`..._RESOLVED_893`，并要求基线里**不许**再出现旧名字 —— "
+          "留一条「仍未解决」跟结论打架，比没有还糟。"
+          "**不许**因为矛盾解开就把「为什么 tabindex 是 None **仍未查清**」删掉",
+          '"contradiction_891_vs_source_RESOLVED_893"' in _ausrc
+          and "contradiction_891_vs_source_still_open" not in _ausrc
+          and "排除法的净进展：排除了两个" in _ausrc
+          and "**仍未查清**" in _ausrc)
+    check("GG.4 ⚠️ **本条第二版（893 把 §103 那条假设测出来了）**："
+          "§103 猜的是「点击那一刻节点还没有 `tabindex`」⇒ **成立**。"
+          "所以判据改成钉 **893 的实测读数**（不是钉那条假设的措辞 —— "
+          "假设一旦被验死，钉它的措辞就会把判据锁死在过时状态）："
+          "A 序列 mousedown 那一刻 `isConnected=False` + `tabIndexProp=-1` + "
+          "`focusin` 0 次；B 序列 `tabIndexProp=0` + `focusin` 2 次。"
+          "⚠️ 同时**不许**顺势把它推广成「源站未选中节点一律不可聚焦」"
+          "（与 889d 的 Tab 走查**不一致**，**未查清**），更**不许**据此改复刻的 "
+          "`nodesFocusable`",
+          '"click_moment_node_not_focusable_893"' in _ausrc
+          and "isConnected=False" in _ausrc
+          and "tabIndexProp=-1" in _ausrc
+          and '"source_node_tabindex_is_conditional_893"' in _ausrc
+          and "**未测**" in _ausrc
+          and "**不许**写成「源站未选中节点一律不可聚焦」" in _ausrc
+          and "更**不许**据此改复刻的 `nodesFocusable`" in _ausrc)
+    # ══════════ 批 893：矛盾解开（机制钉死） ══════════
+    p893 = ROOT / "scripts/jimeng_probe893_clickmoment_src.py"
+    _p893 = p893.read_text(encoding="utf-8") if p893.exists() else ""
+    check("HH.1 893 的取证方式必须钉住：**捕获阶段只存引用**（落点 target、"
+          "最近的节点、那一刻的 `tabindex`），值一律**派发结束后**再读"
+          "（与 892 同款取法）；并在节点上挂 **`MutationObserver`** 记 "
+          "`attributes`/`childList` 变化并带**相对 mousedown 的时间差**。"
+          "⚠️ 诊断动作（监听 + observer）**不许留痕**",
+          bool(_p893)
+          and "w.onCap = (e) => {" in _p893
+          and "w.savedTarget = e.target;" in _p893
+          and "target_is_connected: t ? t.isConnected : null" in _p893
+          and "new MutationObserver" in _p893
+          and "dt: Date.now() - w.t0" in _p893
+          and "finally:" in _p893 and "RESTORE_JS" in _p893)
+    check("HH.2 893 的结论是**机制**、不是落点：A 序列（先点空白再点节点）"
+          "mousedown 那一刻 **落点 target `isConnected=False`**、"
+          "**节点 `tabindex=None` / `tabIndexProp=-1`**（不可聚焦）、"
+          "`focusin` **0** 次；B 序列（直接点节点）**已经是** `tabIndexProp=0`、"
+          "MutationObserver **0 条**、`focusin` **2** 次。"
+          "⇒ 浏览器的默认动作「把焦点移到 target 的最近可聚焦祖先」"
+          "**无处可移** —— 这**同时**满足 891 的 C1、892 的「没有 preventDefault」"
+          "和源站的 `focusin=0`，三者不再冲突",
+          '"click_moment_node_not_focusable_893"' in _ausrc
+          and "isConnected=False" in _ausrc
+          and "tabIndexProp=-1" in _ausrc
+          and "**无处可移**" in _ausrc
+          and "三者不再冲突" in _ausrc
+          # ⚠️ `tabindex` 是**事后**才有的，不许写成「源站节点没有 tabindex」
+          and "别写成「源站节点没有 tabindex」" in _ausrc)
+    check("HH.3 893 顺带撞出的**不一致**必须留账：点空白之后，893 那个"
+          "**刚创建的音频**节点 `tabindex=None`，而 889d 的 Tab 走查里"
+          "**点空白之后**页面自带节点**全都是** `tabindex='0'` 且**能被 Tab 到**。"
+          "⚠️ 原因**未测**（节点类型 / 是否刚创建 / 走查里是否被选中）⇒ "
+          "**不许**推广成「源站未选中节点一律不可聚焦」，"
+          "更**不许**据此改复刻的 `nodesFocusable`（那会动整个画布的 Tab 顺序）",
+          '"source_node_tabindex_is_conditional_893"' in _ausrc
+          and "**未测**" in _ausrc
+          and "**不许**写成「源站未选中节点一律不可聚焦」" in _ausrc
+          and "更**不许**据此改复刻的 `nodesFocusable`" in _ausrc)
+    check("HH.4 基线里**不许**留一条「仍未解决」跟结论打架：矛盾条目已改名 "
+          "`..._RESOLVED_893`，且旧名字**必须已经不在**基线里。"
+          "⚠️ 判据要跟上事实（钉假设的措辞会把判据锁死在过时状态），"
+          "但**不许**因为矛盾解开就把「为什么 tabindex 是 None **仍未查清**」"
+          "一起删掉",
+          '"contradiction_891_vs_source_RESOLVED_893"' in _ausrc
+          and "contradiction_891_vs_source_still_open" not in _ausrc
+          and "**仍未查清**" in _ausrc
+          and "不许**简化成「源站未选中节点一律不可聚焦」" in _ausrc)
     check("CC.7 886 的教训落地：**组件内凡是要复用，就该提到模块级，"
           "别复制第二份** —— 886 第一版把实现抽成组件内闭包，结果它和 Clear "
           "内联那段是**复制粘贴关系**，按内容替换**匹配到了自己**、把文件改坏"

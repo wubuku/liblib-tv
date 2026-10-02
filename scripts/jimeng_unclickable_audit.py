@@ -2414,6 +2414,46 @@ def main() -> int:
                 "**False / False**。⇒ **源站那次 `mousedown` 没有被 "
                 "`preventDefault()`**。"
                 "⇒ 891 收窄出的「唯一候选」**被否掉了**。"),
+            "click_moment_node_not_focusable_893": (
+                "✅ **893 把 §103 那个矛盾解开了**（A/B 各 2/2，两序列读数"
+                "**内部一致**：同一个节点、同一状态，**只差点过空白**）："
+                "· A（先点空白再点节点）：落点 target 的 **`isConnected=False`**"
+                "（那个 `path` 元素已被 React 重渲染**摘掉**）、"
+                "节点 **`tabindex=None` / `tabIndexProp=-1`**（**那一刻不可聚焦**）、"
+                "MutationObserver 记到 **22 条**变化（class 加 `selected`、"
+                "`data-node-selected-visible`、childList 增删）、**`focusin` 0 次**；"
+                "派发**之后**节点 `tabindex` 变成 `'0'`。"
+                "· B（直接点节点）：target `isConnected=True`、节点在 mousedown 时"
+                "**已经是** `tabindex='0'`、MutationObserver **0 条**、"
+                "**`focusin` 2 次**。"
+                "⇒ **机制**：浏览器的默认动作是「把焦点移到 **mousedown 目标**的"
+                "最近可聚焦祖先」；A 里它面对的是一个**已脱离文档的 target**"
+                "**加一个**那一刻还没有 `tabindex` 的节点 ⇒ **无处可移**。"
+                "⇒ 这**同时**满足 891 的 C1（那里节点**一直** `tabindex=0`）、"
+                "892 的「没有 preventDefault」、和源站的 `focusin=0` —— "
+                "三者不再冲突。⚠️ 注意 `tabindex` 是**事后**才变成 `'0'` 的，"
+                "所以别写成「源站节点没有 tabindex」。"),
+            "source_node_tabindex_is_conditional_893": (
+                "⚠️⚠️ 893 顺带撞出一个**必须单独查**的问题，**不许**顺手推广："
+                "在 A 序列里（**点空白之后**）那个音频节点的 `tabindex` 是 "
+                "`None`/`-1`；而 889d 的 Tab 走查里，**点空白之后**页面自带的"
+                "节点（视频/文本/时间线/音频…）**全都是** `tabindex='0'` 且"
+                "**能被 Tab 到**。"
+                "⇒ 两者不一致，可能是「**节点类型**」「**是否刚被创建**」"
+                "或「**那套 Tab 走查里节点被选中了**」造成的。"
+                "⚠️ **未测**，所以现在**只能说**：在 893 那一跑的那个状态下"
+                "（点空白之后、刚创建的音频节点）不可聚焦；"
+                "**不许**写成「源站未选中节点一律不可聚焦」，"
+                "更**不许**据此改复刻的 `nodesFocusable`。"),
+            "replica_node_always_focusable": (
+                "复刻侧（890c，各 2/2）：A/B **两序列**都是 `focusin` **1** 次、"
+                "直接落到节点，**JS 调 `focus()` 次数 0**。"
+                "机制上的差异方向很清楚：复刻用 `@xyflow/react`，它的节点 wrapper "
+                "**默认就带 `tabindex='0'`**（`nodesFocusable` 默认 true）"
+                "⇒ 节点**任何时候**可聚焦 ⇒ 浏览器**总能**移动焦点。"
+                "⚠️ 但「复刻的节点**任何时候**都有 tabindex=0」这句"
+                "**本身还没单独测过**（只测了 890c 那两序列），"
+                "**不许**拿它当已证的机制。"),
             "cancelbubble_unreliable_after_dispatch": (
                 "⚠️ `cancelBubble` **派发结束后会被重置** ⇒ 它**不能**用来证明"
                 "「有没有人调过 `stopPropagation()`」。892 实测到的是一组**互相"
@@ -2421,23 +2461,24 @@ def main() -> int:
                 "但 **`document` 冒泡阶段收到 0 次** ⇒ 事件本该冒泡却没到。"
                 "⇒ 强烈指向**有人调了 `stopPropagation()`**，"
                 "但**这一步仍未测到**，**不许**拿 `cancelBubble=False` 当证据。"),
-            "contradiction_891_vs_source_still_open": (
-                "⚠️⚠️ **892 之后剩下的真矛盾（这是当前最有价值的线索）**："
-                "· 891 的 C1（空白页最小复现，2/2）：焦点在落点的**可聚焦祖先**上、"
-                "点一个**不可聚焦后代** ⇒ 浏览器**会**把焦点移到可聚焦子元素。"
-                "· 源站的**结构与 C1 完全一样**（焦点=画布根 `tabindex='0'`、"
-                "落点=节点里的 `svg`/tabIndex=-1、节点 `tabindex='0'`），"
-                "A 序列却 `focusin` **0 次**（焦点**从头到尾没动**）。"
-                "· 而 892 又证明源站**没有** `preventDefault`。"
-                "⇒ 「浏览器会移动」与「源站没移动且没被阻止」**不可能同时成立**。"
-                "⇒ 也就是说：**源站在那一刻做了一件空白页最小复现里没有的事**，"
-                "而它既不是 `preventDefault`。"
-                "⇒ **排除法的净进展：排除了两个候选**（「浏览器规则」与 "
-                "`preventDefault`），范围压到「点击那一刻的节点属性」。"
-                "⇒ 最可能的下一步假设（**未测**）：源站在**点击那一刻**改变了"
-                "节点的属性（典型是 `tabindex` 被移除 ⇒ 那一刻节点不可聚焦）。"
-                "⚠️ 890b 记的节点 `tabindex='0'` 是**点击之前**读的，"
-                "**不覆盖**这个时刻。**机制仍未钉死**，不许下结论。"),
+            "contradiction_891_vs_source_RESOLVED_893": (
+                "✅ **893 已把这个矛盾解开**（本条**第二版**：原来叫 "
+                "`..._still_open`；事实推进后改名，免得基线里留一条"
+                "「仍未解决」跟结论打架）。"
+                "矛盾原样：891 的 C1（空白页 2/2）说浏览器**会**把焦点移到"
+                "可聚焦子元素；源站结构与 C1 **完全一样**却 `focusin` **0** 次；"
+                "892 又证明源站**没有** `preventDefault` ⇒ 三者不可能同时成立。"
+                "**893 的答案（各 2/2）**：A 序列里 mousedown 那一刻，"
+                "**落点 target 已 `isConnected=False`**（被 React 重渲染摘掉）、"
+                "**节点 `tabindex=None` / `tabIndexProp=-1`**（**不可聚焦**），"
+                "而 `tabindex` 是**事后**才变成 `'0'` 的 ⇒ 默认动作"
+                "**无处可移** ⇒ `focusin` 0 次。"
+                "⇒ 三者**同时**成立，矛盾消失。**排除法的净进展：排除了两个"
+                "候选**（「浏览器规则」与「preventDefault`）。"
+                "⚠️ 但「**为什么**点空白后那个节点 tabindex 是 None」"
+                "**仍未查清**（与 889d 的 Tab 走查**不一致**，见 "
+                "`source_node_tabindex_is_conditional_893`）—— "
+                "**不许**简化成「源站未选中节点一律不可聚焦」。"),
             "preventdefault_judgement_defect_890": (
                 "890 第一版把 `defaultPrevented` 挂在 `document` 的**捕获阶段**读，"
                 "两条序列都读到 `False` —— 那个读法**恒真为假**（捕获阶段是最早跑的，"
@@ -2501,7 +2542,10 @@ def main() -> int:
                     "六格各 2/2）+ "
                     "jimeng_probe892_preventdefault_src.py"
                     "（**派发结束后**再读 `defaultPrevented` ⇒ 源站**没**"
-                    "preventDefault，各 2/2）")},
+                    "preventDefault，各 2/2）+ "
+                    "jimeng_probe893_clickmoment_src.py"
+                    "（**点击那一刻**节点发生了什么：target `isConnected=False` + "
+                    "节点 `tabindex=None` ⇒ **机制钉死**，各 2/2）")},
         # ══ 批 855：生成历史层（**按名字**找，不是按位置）════════════════
         # 这条 why 原来写「前置态没成立：点**第 2 个** `canvas-panel-launcher`
         # 开出的是『积分明细』」—— 那是**按位置猜名字**。855a 把顶栏 9 个按钮
