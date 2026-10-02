@@ -1,0 +1,991 @@
+{
+  "batch": 652,
+  "question": "is 651's probe-side-effect contamination confined to the one open path it found, or does it reach the other ten?",
+  "criterion": {
+    "step1": "did the probe move any scrollable container at all?",
+    "step2": "if it did, is the offset the SAME at every viewport height?",
+    "why": "a reproducible offset is a state a user can also reach; an offset that drifts with the viewport, inherited by an overlay anchored to the scrolled element, is the probe's implementation detail — which is what 651 retracted"
+  },
+  "grid": {
+    "width": 1280,
+    "heights": [
+      720,
+      900,
+      1150
+    ]
+  },
+  "perOverlay": {
+    "export-panel": {
+      "scrolledAtAll": false,
+      "scrollers": [],
+      "scrollAmountsByHeight": {
+        "720": [],
+        "900": [],
+        "1150": []
+      },
+      "amountVariesWithHeight": false,
+      "boxes": {
+        "720": [
+          986,
+          272,
+          286,
+          267
+        ],
+        "900": [
+          986,
+          452,
+          286,
+          267
+        ],
+        "1150": [
+          986,
+          702,
+          286,
+          267
+        ]
+      },
+      "boxXConstant": true,
+      "anyError": {}
+    },
+    "tree-context-menu": {
+      "scrolledAtAll": false,
+      "scrollers": [],
+      "scrollAmountsByHeight": {
+        "720": [],
+        "900": [],
+        "1150": []
+      },
+      "amountVariesWithHeight": false,
+      "boxes": {
+        "720": [
+          164,
+          216,
+          128,
+          170
+        ],
+        "900": [
+          164,
+          216,
+          128,
+          170
+        ],
+        "1150": [
+          164,
+          216,
+          128,
+          170
+        ]
+      },
+      "boxXConstant": true,
+      "anyError": {}
+    },
+    "panorama-flyout": {
+      "scrolledAtAll": false,
+      "scrollers": [],
+      "scrollAmountsByHeight": {
+        "720": [],
+        "900": [],
+        "1150": []
+      },
+      "amountVariesWithHeight": false,
+      "boxes": {
+        "720": [
+          48,
+          196,
+          232,
+          134
+        ],
+        "900": [
+          48,
+          196,
+          232,
+          134
+        ],
+        "1150": [
+          48,
+          196,
+          232,
+          134
+        ]
+      },
+      "boxXConstant": true,
+      "anyError": {}
+    },
+    "aspect-flyout": {
+      "scrolledAtAll": false,
+      "scrollers": [],
+      "scrollAmountsByHeight": {
+        "720": [],
+        "900": [],
+        "1150": []
+      },
+      "amountVariesWithHeight": false,
+      "boxes": {
+        "720": [
+          48,
+          236,
+          232,
+          350
+        ],
+        "900": [
+          48,
+          236,
+          232,
+          350
+        ],
+        "1150": [
+          48,
+          236,
+          232,
+          350
+        ]
+      },
+      "boxXConstant": true,
+      "anyError": {}
+    },
+    "add-character-flyout": {
+      "scrolledAtAll": false,
+      "scrollers": [],
+      "scrollAmountsByHeight": {
+        "720": [],
+        "900": [],
+        "1150": []
+      },
+      "amountVariesWithHeight": false,
+      "boxes": {
+        "720": [
+          48,
+          116,
+          232,
+          390
+        ],
+        "900": [
+          48,
+          116,
+          232,
+          390
+        ],
+        "1150": [
+          48,
+          116,
+          232,
+          390
+        ]
+      },
+      "boxXConstant": true,
+      "anyError": {}
+    },
+    "ai-import-modal": {
+      "scrolledAtAll": false,
+      "scrollers": [],
+      "scrollAmountsByHeight": {
+        "720": [],
+        "900": [],
+        "1150": []
+      },
+      "amountVariesWithHeight": false,
+      "boxes": {
+        "720": [
+          360,
+          91,
+          560,
+          539
+        ],
+        "900": [
+          360,
+          181,
+          560,
+          539
+        ],
+        "1150": [
+          360,
+          306,
+          560,
+          539
+        ]
+      },
+      "boxXConstant": true,
+      "anyError": {}
+    },
+    "geometry-submenu": {
+      "scrolledAtAll": false,
+      "scrollers": [],
+      "scrollAmountsByHeight": {
+        "720": [],
+        "900": [],
+        "1150": []
+      },
+      "amountVariesWithHeight": false,
+      "boxes": {
+        "720": [
+          52,
+          442,
+          204,
+          270
+        ],
+        "900": [
+          52,
+          508,
+          204,
+          270
+        ],
+        "1150": [
+          52,
+          508,
+          204,
+          270
+        ]
+      },
+      "boxXConstant": true,
+      "anyError": {}
+    },
+    "crowd-dialog": {
+      "scrolledAtAll": false,
+      "scrollers": [],
+      "scrollAmountsByHeight": {
+        "720": [],
+        "900": [],
+        "1150": []
+      },
+      "amountVariesWithHeight": false,
+      "boxes": {
+        "720": [
+          294,
+          52,
+          220,
+          208
+        ],
+        "900": [
+          294,
+          52,
+          220,
+          208
+        ],
+        "1150": [
+          294,
+          52,
+          220,
+          208
+        ]
+      },
+      "boxXConstant": true,
+      "anyError": {}
+    },
+    "camera-fov-help-tooltip": {
+      "scrolledAtAll": true,
+      "scrollers": [
+        "min-h-0"
+      ],
+      "scrollAmountsByHeight": {
+        "720": [
+          {
+            "to": 779,
+            "of": 804,
+            "key": "min-h-0"
+          }
+        ],
+        "900": [
+          {
+            "to": 624,
+            "of": 624,
+            "key": "min-h-0"
+          }
+        ],
+        "1150": [
+          {
+            "to": 374,
+            "of": 374,
+            "key": "min-h-0"
+          }
+        ]
+      },
+      "amountVariesWithHeight": true,
+      "boxes": {
+        "720": [
+          1016,
+          263,
+          208,
+          68
+        ],
+        "900": [
+          1016,
+          418,
+          208,
+          68
+        ],
+        "1150": [
+          1016,
+          668,
+          208,
+          68
+        ]
+      },
+      "boxXConstant": true,
+      "anyError": {}
+    },
+    "camera-preset-panel": {
+      "scrolledAtAll": true,
+      "scrollers": [
+        "directorTimelineTrackList"
+      ],
+      "scrollAmountsByHeight": {
+        "720": [
+          {
+            "to": 12,
+            "of": 19,
+            "key": "directorTimelineTrackList"
+          }
+        ],
+        "900": [
+          {
+            "to": 12,
+            "of": 19,
+            "key": "directorTimelineTrackList"
+          }
+        ],
+        "1150": [
+          {
+            "to": 12,
+            "of": 19,
+            "key": "directorTimelineTrackList"
+          }
+        ]
+      },
+      "amountVariesWithHeight": false,
+      "boxes": {
+        "720": [
+          312,
+          247,
+          304,
+          292
+        ],
+        "900": [
+          312,
+          427,
+          304,
+          292
+        ],
+        "1150": [
+          312,
+          677,
+          304,
+          292
+        ]
+      },
+      "boxXConstant": true,
+      "anyError": {}
+    },
+    "motion-path-menu": {
+      "scrolledAtAll": false,
+      "scrollers": [],
+      "scrollAmountsByHeight": {
+        "720": [],
+        "900": [],
+        "1150": []
+      },
+      "amountVariesWithHeight": false,
+      "boxes": {
+        "720": [
+          389,
+          508,
+          176,
+          204
+        ],
+        "900": [
+          389,
+          688,
+          176,
+          204
+        ],
+        "1150": [
+          389,
+          938,
+          176,
+          204
+        ]
+      },
+      "boxXConstant": true,
+      "anyError": {}
+    }
+  },
+  "cells": {
+    "export-panel@720": {
+      "box": [
+        986,
+        272,
+        286,
+        267
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "tree-context-menu@720": {
+      "box": [
+        164,
+        216,
+        128,
+        170
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "panorama-flyout@720": {
+      "box": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "aspect-flyout@720": {
+      "box": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "add-character-flyout@720": {
+      "box": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "ai-import-modal@720": {
+      "box": [
+        360,
+        91,
+        560,
+        539
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "geometry-submenu@720": {
+      "box": [
+        52,
+        442,
+        204,
+        270
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "crowd-dialog@720": {
+      "box": [
+        294,
+        52,
+        220,
+        208
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "camera-fov-help-tooltip@720": {
+      "box": [
+        1016,
+        263,
+        208,
+        68
+      ],
+      "scrolled": [
+        {
+          "key": "min-h-0",
+          "from": 0,
+          "to": 779,
+          "of": 804
+        }
+      ],
+      "err": null
+    },
+    "camera-preset-panel@720": {
+      "box": [
+        312,
+        247,
+        304,
+        292
+      ],
+      "scrolled": [
+        {
+          "key": "directorTimelineTrackList",
+          "from": 0,
+          "to": 12,
+          "of": 19
+        }
+      ],
+      "err": null
+    },
+    "motion-path-menu@720": {
+      "box": [
+        389,
+        508,
+        176,
+        204
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "export-panel@900": {
+      "box": [
+        986,
+        452,
+        286,
+        267
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "tree-context-menu@900": {
+      "box": [
+        164,
+        216,
+        128,
+        170
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "panorama-flyout@900": {
+      "box": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "aspect-flyout@900": {
+      "box": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "add-character-flyout@900": {
+      "box": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "ai-import-modal@900": {
+      "box": [
+        360,
+        181,
+        560,
+        539
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "geometry-submenu@900": {
+      "box": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "crowd-dialog@900": {
+      "box": [
+        294,
+        52,
+        220,
+        208
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "camera-fov-help-tooltip@900": {
+      "box": [
+        1016,
+        418,
+        208,
+        68
+      ],
+      "scrolled": [
+        {
+          "key": "min-h-0",
+          "from": 0,
+          "to": 624,
+          "of": 624
+        }
+      ],
+      "err": null
+    },
+    "camera-preset-panel@900": {
+      "box": [
+        312,
+        427,
+        304,
+        292
+      ],
+      "scrolled": [
+        {
+          "key": "directorTimelineTrackList",
+          "from": 0,
+          "to": 12,
+          "of": 19
+        }
+      ],
+      "err": null
+    },
+    "motion-path-menu@900": {
+      "box": [
+        389,
+        688,
+        176,
+        204
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "export-panel@1150": {
+      "box": [
+        986,
+        702,
+        286,
+        267
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "tree-context-menu@1150": {
+      "box": [
+        164,
+        216,
+        128,
+        170
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "panorama-flyout@1150": {
+      "box": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "aspect-flyout@1150": {
+      "box": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "add-character-flyout@1150": {
+      "box": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "ai-import-modal@1150": {
+      "box": [
+        360,
+        306,
+        560,
+        539
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "geometry-submenu@1150": {
+      "box": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "crowd-dialog@1150": {
+      "box": [
+        294,
+        52,
+        220,
+        208
+      ],
+      "scrolled": [],
+      "err": null
+    },
+    "camera-fov-help-tooltip@1150": {
+      "box": [
+        1016,
+        668,
+        208,
+        68
+      ],
+      "scrolled": [
+        {
+          "key": "min-h-0",
+          "from": 0,
+          "to": 374,
+          "of": 374
+        }
+      ],
+      "err": null
+    },
+    "camera-preset-panel@1150": {
+      "box": [
+        312,
+        677,
+        304,
+        292
+      ],
+      "scrolled": [
+        {
+          "key": "directorTimelineTrackList",
+          "from": 0,
+          "to": 12,
+          "of": 19
+        }
+      ],
+      "err": null
+    },
+    "motion-path-menu@1150": {
+      "box": [
+        389,
+        938,
+        176,
+        204
+      ],
+      "scrolled": [],
+      "err": null
+    }
+  },
+  "openPathErrors": {},
+  "checks": {
+    "exactly-two-of-the-eleven-open-paths-make-the-probe-scroll": {
+      "ok": true,
+      "detail": {
+        "pathsThatScroll": [
+          "camera-fov-help-tooltip",
+          "camera-preset-panel"
+        ],
+        "pathsThatDoNot": [
+          "add-character-flyout",
+          "ai-import-modal",
+          "aspect-flyout",
+          "crowd-dialog",
+          "export-panel",
+          "geometry-submenu",
+          "motion-path-menu",
+          "panorama-flyout",
+          "tree-context-menu"
+        ],
+        "note": "nine of eleven never move a scroll offset, so their readings cannot inherit one"
+      },
+      "note": null
+    },
+    "the-two-scrolling-paths-split-on-whether-the-offset-is-reproducible": {
+      "ok": true,
+      "detail": {
+        "offsetsVaryWithViewport": {
+          "camera-fov-help-tooltip": {
+            "720": [
+              {
+                "to": 779,
+                "of": 804,
+                "key": "min-h-0"
+              }
+            ],
+            "900": [
+              {
+                "to": 624,
+                "of": 624,
+                "key": "min-h-0"
+              }
+            ],
+            "1150": [
+              {
+                "to": 374,
+                "of": 374,
+                "key": "min-h-0"
+              }
+            ]
+          }
+        },
+        "offsetsIdenticalAtEveryHeight": {
+          "camera-preset-panel": {
+            "720": [
+              {
+                "to": 12,
+                "of": 19,
+                "key": "directorTimelineTrackList"
+              }
+            ],
+            "900": [
+              {
+                "to": 12,
+                "of": 19,
+                "key": "directorTimelineTrackList"
+              }
+            ],
+            "1150": [
+              {
+                "to": 12,
+                "of": 19,
+                "key": "directorTimelineTrackList"
+              }
+            ]
+          }
+        },
+        "theDiscriminator": "`camera-fov-help-tooltip`'s offset moves with the viewport, which is 651's signature and the reason 650's cell was retracted. `camera-preset-panel`'s offset is the same number at all three heights, so the state it produces is one a user can also reach — recorded, not retracted.",
+        "theInstrument": "a scrollable container sitting anywhere but its natural origin, found by walking the DOM rather than by a selector list, so no name can go stale"
+      },
+      "note": "this is the batch's deliverable: the class is bounded to 1 of 11"
+    },
+    "the-reproducible-offset-is-the-same-partial-scroll-every-time": {
+      "ok": true,
+      "detail": {
+        "rows": [
+          {
+            "to": 12,
+            "of": 19,
+            "key": "directorTimelineTrackList"
+          },
+          {
+            "to": 12,
+            "of": 19,
+            "key": "directorTimelineTrackList"
+          },
+          {
+            "to": 12,
+            "of": 19,
+            "key": "directorTimelineTrackList"
+          }
+        ],
+        "theReading": "one offset, one scroller, three viewport heights, and it is a PARTIAL scroll — the container is not parked at either end, which is what a minimal scroll-to-visible looks like. A probe that had grabbed the last pixel, as `hover()` does for the FOV badge, would land on `of` instead.",
+        "contrast": {
+          "720": [
+            {
+              "to": 779,
+              "of": 804,
+              "key": "min-h-0"
+            }
+          ],
+          "900": [
+            {
+              "to": 624,
+              "of": 624,
+              "key": "min-h-0"
+            }
+          ],
+          "1150": [
+            {
+              "to": 374,
+              "of": 374,
+              "key": "min-h-0"
+            }
+          ]
+        },
+        "note": "the first version of this check compared against a field I never stored and crashed; the values it was reaching for are in `rows` now"
+      },
+      "note": "measured at all three heights, not assumed"
+    },
+    "the-nine-untouched-paths-keep-a-height-invariant-horizontal-box": {
+      "ok": true,
+      "detail": {
+        "paths": [
+          "add-character-flyout",
+          "ai-import-modal",
+          "aspect-flyout",
+          "crowd-dialog",
+          "export-panel",
+          "geometry-submenu",
+          "motion-path-menu",
+          "panorama-flyout",
+          "tree-context-menu"
+        ],
+        "pathsWhoseXMoved": {},
+        "whyX": "nothing scrolled, so the overlay's horizontal placement must not depend on the viewport height. A violation would mean something else is moving and this check would be measuring the wrong thing."
+      },
+      "note": null
+    },
+    "every-path-opened-in-every-cell": {
+      "ok": true,
+      "detail": {
+        "cellsWithNoBox": {},
+        "openPathErrors": {},
+        "note": "a path that failed to open would be silently excluded from the 'did not scroll' set, which would make check 1 look cleaner than it is"
+      },
+      "note": null
+    },
+    "650s-readings-outside-the-retracted-cell-are-untouched-by-652": {
+      "ok": true,
+      "detail": {
+        "batch650Totals": {
+          "cells": 33,
+          "heightSweepCells": 6,
+          "overlays": 11,
+          "neverCalibratedBefore": 11,
+          "structBadTotalDerived": 4,
+          "structBadTotal626": 0,
+          "blockedTotalDerived": 0,
+          "blockedTotal626": 0,
+          "liveTotalDerived": 195,
+          "liveTotal626": 195
+        },
+        "theRetractedCell": "camera-fov-help-tooltip@1280x720",
+        "theOther32Cells": "box identity 33/33, live controls 195 = 195, casualties 0 = 0 — none of which 652 can touch, because none of those paths scrolls at all",
+        "theBlastRadius": "1 cell of 33"
+      },
+      "note": null
+    },
+    "no-open-path-threw-in-this-run": {
+      "ok": true,
+      "detail": {
+        "errors": {},
+        "why": "651 found that hover() can throw while the overlay is actually mounted. If a path throws here, its cell would carry no box and check 5 is the thing that catches it — this check states the expectation explicitly so a future throw is not read as a pass"
+      },
+      "note": null
+    }
+  },
+  "ok": true,
+  "checkCount": 7,
+  "failures": [],
+  "totals": {
+    "openPaths": 11,
+    "pathsThatScroll": [
+      "camera-fov-help-tooltip",
+      "camera-preset-panel"
+    ],
+    "pathsWithVaryingOffset": [
+      "camera-fov-help-tooltip"
+    ],
+    "pathsWithFixedOffset": [
+      "camera-preset-panel"
+    ],
+    "pathsNeverScrolled": 9,
+    "cells": 33
+  }
+}
