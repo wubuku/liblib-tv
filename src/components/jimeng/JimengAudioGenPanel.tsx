@@ -597,15 +597,39 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                 onClick={() =>
                                   setFilterSel((m) => ({
                                     ...m,
-                                    [label]: m[label] === undefined ? null : m[label],
+                                    /* ⚠️⚠️ 批 870：这一行原来是
+                                       `[label]: m[label] === undefined
+                                        ? null : m[label]` —— 后半支把值
+                                        **原样写回去**，于是这个钮**只能开、
+                                        关不掉**。改成 `undefined` 才成
+                                       「开 ↔ 关」的切换。
+                                       探针 870 实测：连点两回，筛选面板
+                                       一直是 4 个（见 §87）。 */
+                                    [label]: m[label] === undefined
+                                      ? null : undefined,
                                   }))
                                 }
+                                aria-expanded={filterSel[label] !== undefined}
                                 className="flex h-7 items-center gap-1 rounded-md bg-white/[0.06] px-2 text-[12px] text-white/70"
                               >
                                 {filterSel[label] ?? label}
                                 <ChevronDown size={10} className="text-white/50" />
                               </button>
-                              {options ? (
+                              {/* ⚠️⚠️ 批 870：渲染条件原来只有 `options ?`
+                                  —— 而 `options` 是 FILTERS 里写死的**非空
+                                  数组**，等于**没有开合状态**：「全音色」一
+                                  打开，**四个筛选面板同时渲染**，而且位置是
+                                  `bottom-full` 叠在已经抬起来的音色库之上 ⇒
+                                  实测 y 坐标 -56 / -92 / -164 / -164，
+                                  **整个跑到视口外**，看得见、点不着、也关不掉。
+                                  探针 870 量完才动手（先探再判）；这里补上
+                                  真正的开合判据。
+                                  ⚠️ 源站这几个筛选面板**没取样** —— 本条
+                                  修的是「四个面板无条件常驻 + 点不到」这件
+                                  在任何源站行为下都说不通的事；至于源站点开
+                                  之后面板**长什么样、落在哪**，仍然**未取样**，
+                                  本批不猜、不改版式。 */}
+                              {options && filterSel[label] !== undefined ? (
                                 <div
                                   className="absolute bottom-[calc(100%+6px)] left-0 z-[150] w-[150px] rounded-xl p-1.5"
                                   style={{ background: "rgb(38,38,38)" }}

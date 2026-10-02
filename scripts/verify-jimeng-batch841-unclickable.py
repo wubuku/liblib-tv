@@ -68,7 +68,23 @@ EXPECTED_STATES = [
     #      `全屏编辑` 是**层**的名字（867 探针把层名当按钮名去找了）。
     #      §83 那条待办「复刻没有全屏入口」据此关闭。
     "文本·全屏编辑", "时间线·全屏", "主体·元数据编辑器",
+    # 批 869：AI 抽屉里那两个**冷启动就能点开**的内层面板。
+    "AI 侧栏·搜索技能", "AI 侧栏·添加参考",
 ]
+
+# 契约里**声明**的、前置态在复刻侧**无法成立**的状态 → 必须出现在 skip 理由里的片段。
+#
+# ⚠️ 为什么要有这张表：A.3 原本一刀切「skipped 必须为空」，本意是
+#   **不许静默少跑**。但复刻侧有一条前置态**永远**成立不了：AI 抽屉的
+#   「会话列表」要求 `hasSession`（`disabled={!hasSession}`），而建出第一条
+#   会话的**唯一** UI 路径是**发消息** —— 那是**计费动作**，探针/审计**绝不点**。
+#   于是只剩两条路：把这条永久记成红，或者**声明**它。
+#   声明**不是放水**，它比原来更严：
+#     · 每条声明都必须带**原因片段**（对不上就是红的）；
+#     · 一旦它**不再**skip，A.3c 立刻报错 —— 表会自己烂掉，不许烂着。
+EXPECTED_SKIPS = {
+    "AI 侧栏·会话列表": "入口**在 DOM 但 disabled**",
+}
 
 failures: list[str] = []
 checks = 0
@@ -300,8 +316,26 @@ def main() -> int:
           str(data.get("_parse_error"))[:70])
     check(f"A.2 跑了 {len(states)} 个状态（覆盖面下限 {len(EXPECTED_STATES)}）",
           len(states) >= len(EXPECTED_STATES))
-    check("A.3 skipped（前置态没成立）= 0 —— 不许静默少跑",
-          not data.get("skipped"), "; ".join(data.get("skipped", [])[:2]))
+    _sk = data.get("skipped") or []
+    _unexpected = [s for s in _sk
+                   if not any(s.startswith(k + "（") for k in EXPECTED_SKIPS)]
+    check(f"A.3 skipped（前置态没成立）只剩**已声明**的 "
+          f"{len(EXPECTED_SKIPS)} 条 —— 不许静默少跑",
+          not _unexpected,
+          ("多出来的=" + str(_unexpected[:2])[:120]) if _unexpected
+          else f"共 {len(_sk)} 条，全在声明里")
+    check("A.3b 每条声明的 skip 理由里都**带着原因片段**"
+          "（只写状态名不算数 —— 「没测到」必须说清是没测到还是没成立）",
+          all(any(s.startswith(k + "（") and frag in s for s in _sk)
+              for k, frag in EXPECTED_SKIPS.items()),
+          "; ".join(k for k, frag in EXPECTED_SKIPS.items()
+                    if not any(s.startswith(k + "（") and frag in s
+                               for s in _sk)))
+    _stale = [k for k in EXPECTED_SKIPS
+              if not any(s.startswith(k + "（") for s in _sk)]
+    check("A.3c 没有**过期**的声明（某个已声明的状态这轮跑到了 ⇒ "
+          "该把声明收窄，否则这张表会变成空话）",
+          not _stale, f"过期={_stale}")
 
     # ── B. 覆盖面：每个已知状态都真的跑到了 ────────────────────────
     print("\n— B. 覆盖面下限（工具自己无法保证的那部分）—")
@@ -1509,11 +1543,11 @@ def main() -> int:
     _txr = {r.get("state"): r for r in data.get("keyboard", [])
             if r.get("layer") == "text-fullscreen"}.get("文本·全屏编辑", {})
     check("T.2 它**真的量到了**（不是 skipped —— 上一版把它挂在「已知缺口」"
-          "上、结果 A.3「不许静默少跑」一直红；现在 `skipped=[]`）",
+          "上、结果 A.3「不许静默少跑」一直红）",
           bool(_txr.get("ok")) and _txr.get("layer") == "text-fullscreen"
-          and not data.get("skipped"),
-          f"ok={_txr.get('ok')} layer={_txr.get('layer')} "
-          f"skipped={len(data.get('skipped') or [])}")
+          and not any(s.startswith("文本·全屏编辑")
+                      for s in (data.get("skipped") or [])),
+          f"ok={_txr.get('ok')} layer={_txr.get('layer')}")
     check("T.3 审计里有**不按 Escape 的选中** `select_node_soft(`，"
           "且注释写明它为什么必须存在（Escape 在文本编辑态里 = 取消编辑）",
           "def select_node_soft(" in _ausrc
@@ -1548,16 +1582,23 @@ def main() -> int:
     #    （docstring 是 STRING token，剥注释**剥不掉**，那是文档不是代码）。
     #    所以判据只钉真正要保证的那件事：**helper 之外一处都不许有**。
     _h0 = _ausrc_nc.index("def hard_reload(")
-    _h1 = _ausrc_nc.index("def j_ctx_dump(")
+    # ⚠️ 区间只包 `hard_reload` **自己**（869 又在它后面加了 `page_alive` /
+    #    `bail_if_dead`，把区间画到 `j_ctx_dump` 就把它们也装进来了 ——
+    #    判据的区间要跟着代码走，不能靠「反正它们也不 reload」蒙对）
+    _h1 = _ausrc_nc.index("def page_alive(")
     _hr = _ausrc_nc[_h0:_h1]
     _outside = _ausrc_nc[:_h0] + _ausrc_nc[_h1:]
-    check("T.7 dev server 掉线不再吃掉整份审计：`hard_reload(` 用在**两处**"
-          "收层点上，且**它之外**没有裸 `page.reload(`（868 实测崩过一次："
-          "`ERR_CONNECTION_REFUSED` 让前面二十几个状态的结果全丢）",
-          _ausrc_nc.count("if not hard_reload(") == 2
+    check("T.7 dev server 掉线不再吃掉整份审计：每一处收层都走 "
+          "`hard_reload(`，且**它之外**没有裸 `page.reload(`"
+          "（868 实测崩过一次：`ERR_CONNECTION_REFUSED` 让前面二十几个"
+          "状态的结果全丢）",
+          # ⚠️ **不钉条数**：869 加了 K 段，收层点从 2 变 3。钉 `== 2` 就是
+          #   §84 S.8 那条教训的复发（demo 逐轮变、条数逐轮变）——
+          #   该钉的是「一处都不许漏」这条不变量。
+          _ausrc_nc.count("if not hard_reload(") >= 2
           and _hr.count("page.reload(") >= 1
           and "page.reload(" not in _outside,
-          f"两处={_ausrc_nc.count('if not hard_reload(')} "
+          f"收层点={_ausrc_nc.count('if not hard_reload(')} "
           f"helper内={_hr.count('page.reload(')} "
           f"helper外={'page.reload(' in _outside}")
     _tl = {r.get("state"): r for r in data.get("keyboard", [])
@@ -1593,6 +1634,77 @@ def main() -> int:
           "（「根因未验死」/「未验证」不许被删掉 —— 症状确定、机制未知，"
           "把它写成结论就是下一批的坑）",
           bool(p868s) and "未验死" in p868s and "未验证" in p868s)
+
+    # ── U. 批 869：判据「取栈顶」的实现修正 + 音色库筛选面板的真缺陷 ────
+    print("— U. 批 869 浮层套浮层 + 筛选面板「四个同时展开」—")
+    # ⚠️ U.1/U.2 查的是 **verifier 自己**的源码：`strip_py_comments` 是本
+    #   文件里的工具（868 加的），不在审计里。第一版把它判到 `_ausrc_nc`
+    #   头上 —— 判据查错了文件，绿/red 都毫无意义。
+    _vsrc = _ascr.read_text(encoding="utf-8")
+    _vnc = strip_py_comments(_vsrc)
+    check("U.1 `strip_py_comments` 是**按 token** 剥的（用标准库 `tokenize`）"
+          " —— 869 第一版把行列表建在循环体里、每次从原文重切，"
+          "于是每处理一个注释就把前面的抹除冲掉，只剩最后一个生效",
+          "import tokenize" in _vnc
+          and "lines = src.splitlines(keepends=True)" in _vnc)
+    check("U.2 `strip_py_comments` 剥得掉注释但**不动字符串**"
+          "（审计把内联 JS 装在三引号里，剥坏了就是判据自己失明）"
+          "，且剥不动时**原样返回**而不是给半截",
+          "return src" in _vnc
+          and "getBoundingClientRect" in _vnc
+          and _vnc.count("getBoundingClientRect")
+          == _vsrc.count("getBoundingClientRect"))
+    check("U.3 `open_layer()` 现在取的是**最里层**（不是第一个命中）—— "
+          "探针 869 实测：AI 抽屉里两个内层面板开着时，"
+          "旧实现两次都返回外层 `canvas-agent-drawer`",
+          "!hit.some(o => o !== e && e.contains(o))" in _ausrc_nc
+          and "const top = hit.filter(" in _ausrc_nc)
+    _sk_layer = {r.get("state"): r.get("layer")
+                 for r in data.get("keyboard", [])}
+    check("U.4 嵌套那层**认对了**：「搜索技能」归到内层 "
+          "`agent-skills-panel`，不是外层抽屉",
+          _sk_layer.get("AI 侧栏·搜索技能") == "agent-skills-panel",
+          f"layer={_sk_layer.get('AI 侧栏·搜索技能')}")
+    _drawer_states = [s for s, l in _sk_layer.items()
+                      if l == "canvas-agent-drawer"]
+    check("U.5 **只有**「AI 侧栏」那一态该归到抽屉本身"
+          "（抽屉开着的时候它内层的浮层也要能被认到，否则改判据就白改了）",
+          _drawer_states == ["AI 侧栏"],
+          f"归到抽屉的={_drawer_states}")
+    check("U.6 「全音色」那态重新归到**音色库本体**"
+          "（筛选面板不再无条件常驻，栈顶自然回到外层）",
+          _sk_layer.get("音频生成面板·全音色") == "audio-all-voices-listbox",
+          f"layer={_sk_layer.get('音频生成面板·全音色')}")
+    _agp = strip_py_comments(
+        (ROOT / "src/components/jimeng/JimengAudioGenPanel.tsx")
+        .read_text(encoding="utf-8"))
+    check("U.7 筛选面板的渲染条件**真的带开合判据**了"
+          "（原来只有 `options ?`，而 `options` 是写死的非空数组 ⇒ "
+          "「全音色」一打开四个面板同时展开、y 全为负、点不到也关不掉；"
+          "探针 870 量完才动的手）",
+          "options && filterSel[label] !== undefined" in _agp,
+          f"带判据={'options && filterSel[label] !== undefined' in _agp}")
+    check("U.8 筛选钮的 `onClick` **能关上**了"
+          "（原来 `? null : m[label]` 把值原样写回去，只能开关不了 —— "
+          "探针 870 实测连点两回，面板数一直是 4）",
+          "? null : undefined" in _agp
+          and "aria-expanded={filterSel[label] !== undefined}" in _agp)
+    p869 = ROOT / "scripts/jimeng_probe869_drawerpanels.py"
+    p870 = ROOT / "scripts/jimeng_probe870_voicefilter.py"
+    p869s = p869.read_text(encoding="utf-8") if p869.exists() else ""
+    p870s = p870.read_text(encoding="utf-8") if p870.exists() else ""
+    check("U.9 探针 869/870 在库里，且判据**直接从审计源码取**"
+          "（`open_layer()` 的 JS 不许抄第二份 —— 抄一份就是让同一判据分叉；"
+          "两个探针都写明取不到就抛、不返回空串）",
+          bool(p869s) and bool(p870s)
+          and "def _extract_js(" in p869s and "def _extract_js(" in p870s
+          and "不返回空串" in p869s and "不返回空串" in p870s)
+    check("U.10 页面死了要**当场退出码 2**，不许把「跑不动了」拆成 20 条"
+          "「前置态没成立」（869 实测：dev server 中途掉线，"
+          "后面 20 个状态全记成前置态问题，看着像结论）",
+          _ausrc_nc.count("if bail_if_dead(") == 3
+          and "def bail_if_dead(" in _ausrc_nc
+          and "def page_alive(" in _ausrc_nc)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

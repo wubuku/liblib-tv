@@ -232,6 +232,39 @@ def main() -> int:
                     page.wait_for_timeout(4000)
             return False
 
+        def page_alive() -> bool:
+            """画布页**此刻**还是不是活的（不是 Next 的报错页/空壳）。
+
+            ⚠️ 869 栽过：dev server 在跑到一半时掉线，页面变成报错页，
+            后面 20 个状态于是**一个都没跑成**，可它们被逐条记成
+            「前置态没成立」—— 读起来像 20 个各不相干的前置态问题，
+            实际上只有**一个**原因：页面早就不在了。**一份 20 条 skip 的
+            结果，比没有结果更坏**：它看着像结论。
+            所以每段开始前验一次页面还活着，不活就**当场退出码 2**，
+            把「跑不动了」和「前置态没成立」这两件事分开记账。
+            """
+            try:
+                return bool(page.evaluate("""() => {
+                  const shell = document.querySelector('.react-flow');
+                  if (!shell) return false;
+                  // Next 开发期的报错覆盖层：有它就说明这一页根本不是应用
+                  const ov = [...document.querySelectorAll('nextjs-portal')]
+                    .some(p => (p.innerText || '').includes('Error')
+                               || p.querySelector('[data-nextjs-dialog]'));
+                  return !ov;
+                }"""))
+            except Exception:
+                return False
+
+        def bail_if_dead(seg: str) -> bool:
+            """页面死了就打印 + 返回 True（调用方据此 `return 2`）。"""
+            if page_alive():
+                return False
+            print(f"    ✗ 放弃：进入「{seg}」前页面**已经不是画布页了**"
+                  f"（dev server 掉线或编译报错）。此前量到的结果**不可信**"
+                  f"（退出码 2）")
+            return True
+
         # ⚠️ 别叫 `open` —— 它会把内建 `open` 遮蔽掉，
         #    下面 `with open(OUT, "w")` 会炸成「unexpected keyword 'encoding'」。
         def _scoped(scope: str, sel: str) -> str:
@@ -394,6 +427,13 @@ def main() -> int:
             根本无从谈起（那不是浮层的责任）。
             判"开着"靠几何 + role 两路：既要脱离文档流，又要在 DOM 里靠后
             （后出现的盖住先出现的），并且**不是**画布自己的壳。
+
+            ⚠️⚠️ 批 869 改了一处：取「栈顶」的实现从「第一个命中」改成
+            「**最里层**的那个命中」。第一版那句「后出现的盖住先出现的」
+            写的是意图，实现返回的却是 DOM 顺序第一个 —— 浮层套浮层时
+            那是**外层**。探针 869 实测两次（AI 抽屉里的技能面板 / 引用参考
+            面板），它都返回 `canvas-agent-drawer`。改完按 §80 逐态对比过
+            29 个状态的 layer 归属（见 README §87）。
             """
             return page.evaluate("""() => {
               const SHELL = 'react-flow__renderer, react-flow__pane, '
@@ -403,6 +443,7 @@ def main() -> int:
                           + '[role=dialog], [role=popover], [data-testid$="-listbox"], '
                           + '[data-testid$="-menu"], [data-testid$="-panel"], '
                           + '[data-testid$="-palette"]';
+              const hit = [];
               for (const e of document.querySelectorAll(LAYER)) {
                 const s = getComputedStyle(e);
                 if (s.display === 'none' || s.visibility === 'hidden') continue;
@@ -414,10 +455,23 @@ def main() -> int:
                   'button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"]),'
                   + '[role=menuitem],[role=option]');
                 if (!hasFocusable) continue;
-                return e.getAttribute('data-testid')
-                    || e.getAttribute('aria-label') || e.getAttribute('role') || '?';
+                hit.push(e);
               }
-              return '';
+              // ⚠️⚠️ 批 869：返回**最里层**那个，不是第一个。
+              //   docstring 一直写着「后出现的盖住先出现的」= 取栈顶，可第一版
+              //   实现是 `return` 第一个命中的 —— DOM 顺序上**祖先在子孙之前**，
+              //   于是浮层**套浮层**时它返回的是**外层**。
+              //   探针 869 实测（`scripts/jimeng_probe869_drawerpanels.py`）：
+              //   AI 抽屉里的 `agent-skills-panel` / `agent-mention-panel`
+              //   两个内层面板开着时，它两次都返回 `canvas-agent-drawer` ——
+              //   量的是**抽屉**，不是刚打开的那块面板。840/849 记的
+              //   「后面每个状态都在报同一层」就是这个。
+              //   判据：命中集合里**没有别的命中元素是它的后代**的那些，才算栈顶。
+              if (!hit.length) return '';
+              const top = hit.filter(e => !hit.some(o => o !== e && e.contains(o)));
+              const win = top.length ? top[top.length - 1] : hit[hit.length - 1];
+              return win.getAttribute('data-testid')
+                  || win.getAttribute('aria-label') || win.getAttribute('role') || '?';
             }""")
 
         def escape_probe(layer_tid: str, max_n: int = 6) -> dict:
@@ -1259,6 +1313,8 @@ def main() -> int:
         #   ⚠️ 它们在源站基线表外，所以**不参与**「源站怎么做」的对照，
         #      会落进 `keyboard_not_sampled`；真正盯着它们的是 865 新加的
         #      **源站无关**的模态语义桶（`modal_no_focus` / `modal_no_trap`）。
+        if bail_if_dead("I（顶栏/工具条那一串）"):
+            return 2
         for tag, path, tid, why in [
             ("资产库模态", [('button[aria-label="资产库"]', None)],
              "jimeng-assets-modal", "工具条「资产库」"),
@@ -1364,6 +1420,8 @@ def main() -> int:
         #   探针候选写的是 `aria-label="全屏编辑"`，**候选写错 ≠ 产品没有**。
         #   这正是 864 记的「静态/文本判断当证据」的又一次发作，只是这次
         #   连**待办清单**都被它带偏了。
+        if bail_if_dead("J（要先插节点的那三个）"):
+            return 2
         for tag, kind, tid, trig, why in [
             ("文本·全屏编辑", "文本", "text-fullscreen",
              '[data-testid="text-expand"]', "文本节点工具条第 8 枚（aria=全屏）"),
@@ -1451,6 +1509,86 @@ def main() -> int:
                         return 2
             else:
                 skipped.append(f"{tag}（{why} 点不到或点了层没出现）")
+
+        # ══ K. 批 869：AI 抽屉里的 3 个 `role="dialog"` ═══════════════
+        #   867 把这三个记成「本批没逐个探」。本批探了，**三种结果各一个** ——
+        #   这本身就是这批的收获：「没探到」至少有三种长得不一样的样子。
+        #
+        #   ① 会话列表 `canvas-agent-session-menu`：**入口 disabled，进不去**。
+        #      源码 `disabled={!hasSession}`、`hasSession = sessions.length > 0`，
+        #      而 store 初始 `aiSessions: []`（`jimengStore.ts:913`）⇒ 冷启动
+        #      两条会话入口（列表 / 新建）**都** disabled。复刻侧**没有 UI 路径**
+        #      建出第一条会话 —— 另一个建会话的入口是 `appendAiMessage`，也就是
+        #      **发消息**，那是计费动作，探针/审计**绝不点**。
+        #      ⚠️ 所以这是**第三种「没结果」**：入口在 DOM 里、可见、但此刻按不动。
+        #      它既不是「入口没有」，也不是「前置态没成立」——
+        #      分不开记账，就会有人把 disabled 读成「没接交互」。
+        #      ⚠️ 那个 `sessions.length === 0` 的空态分支因此**走不到**
+        #      （列表进不去 ⇒ 永远进不了那个 if）。**本批只记录，不删**：
+        #      源站无会话时什么样没取样，删掉就是把「没量到」当「不存在」。
+        if bail_if_dead("K（AI 抽屉里那三个）"):
+            return 2
+        for tag, trig, tid, why in [
+            ("AI 侧栏·会话列表",
+             '[data-testid="canvas-agent-session-menu-trigger"]',
+             "canvas-agent-session-menu", "抽屉顶栏「会话列表」"),
+            ("AI 侧栏·搜索技能",
+             '[data-testid="canvas-agent-skill-trigger"]',
+             "agent-skills-panel", "底行「使用技能」"),
+            ("AI 侧栏·添加参考",
+             '[data-testid="canvas-agent-composer-mention"]',
+             "agent-mention-panel", "底行「引用参考」"),
+        ]:
+            # ⚠️⚠️ 顺序：**先开抽屉，再问入口在不在**。这三个入口都渲染在抽屉
+            #   内部（`mx-3 mb-2`），抽屉没开时它们**压根不在 DOM 里**。
+            #   869 第一版把这两步写反了，于是三个状态**全部**记成
+            #   「入口不在 DOM」—— 看着像三条各自独立的前置态问题，
+            #   实际上只是抽屉没开。
+            #   这就是「我没检测到」必须先确认「我够得着」那条：
+            #   够不着的时候，**不能**把「没够着」写成「它没有」。
+            if not page.locator('[data-testid="canvas-agent-drawer"]').count():
+                dr = page.locator('button[aria-label="与 AI 对话"]').first
+                if dr.count():
+                    try:
+                        dr.click(timeout=7000)
+                    except Exception:
+                        pass
+                    page.wait_for_timeout(1200)
+            t = page.locator(trig)
+            if not t.count():
+                skipped.append(f"{tag}（{why}：**抽屉已开**而入口仍**不在 DOM "
+                               f"里** —— 前置态没成立，**不是**「入口没有」）")
+                continue
+            if t.first.is_disabled():
+                skipped.append(f"{tag}（{why}：入口**在 DOM 但 disabled** —— "
+                               f"`hasSession=false`、冷启动无会话，复刻侧没有"
+                               f"UI 路径建出第一条；**不是**「入口没有」，"
+                               f"也**不是**「没接交互」）")
+                continue
+            try:
+                t.first.click(timeout=7000)
+            except Exception:
+                pass
+            page.wait_for_timeout(1200)
+            if page.locator(f'[data-testid="{tid}"]').count():
+                measure(tag)
+                page.keyboard.press("Escape")
+                page.wait_for_timeout(700)
+                if page.locator(f'[data-testid="{tid}"]').count():
+                    if not hard_reload(f"收 {tag} 的层"):
+                        print(f"    ✗ 放弃：dev server 在收 {tag} 的层时"
+                              f"连续 3 次拒连，本次结果**不可信**（退出码 2）")
+                        return 2
+            else:
+                skipped.append(f"{tag}（{why} 点不到或点了层没出现）")
+        # ⚠️ 抽屉自己**不吃 Escape**（批 839 接的 Escape 只关抽屉里开着的
+        #    浮层，关抽屉得点外面/启动器）。留着不收，后面自检的
+        #    `open_layer()` 认到的就是它 —— 探针 869 实测「最后抽屉还开着」。
+        if page.locator('[data-testid="canvas-agent-drawer"]').count():
+            if not hard_reload("收 AI 抽屉"):
+                print("    ✗ 放弃：dev server 收 AI 抽屉时连续 3 次拒连，"
+                      "本次结果**不可信**（退出码 2）")
+                return 2
 
         # ── 自检：判据必须**能报出 1** ──────────────────────────────
         #     一个报 0 的工具，在证明自己之前什么都不是。第一版没有这一步，
