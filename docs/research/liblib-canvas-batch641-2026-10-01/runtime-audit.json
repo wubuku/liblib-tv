@@ -1,0 +1,8159 @@
+{
+  "batch": 641,
+  "title": "all 111 of 640's so-called false negatives are the corners of round buttons: blockedOf9 = 4 + (1 if a sibling axis circle intersects) — none of them is a broken control",
+  "date": "2026-10-01",
+  "widths": [
+    339,
+    350,
+    359,
+    360,
+    370,
+    377,
+    380,
+    400,
+    620,
+    780,
+    898,
+    899,
+    1024,
+    1440
+  ],
+  "windowHeight": 900,
+  "lattice": [
+    0.08,
+    0.5,
+    0.92
+  ],
+  "box": 15.0,
+  "radius": 7.5,
+  "predictedLatticeGeometry": {
+    "cornerDistanceFromCentre": 8.91,
+    "edgeDistanceFromCentre": 6.3,
+    "cornerIsOutsideCircle": true,
+    "edgeIsInsideCircle": true,
+    "predictedCornerCount": 4
+  },
+  "cells": {
+    "339": {
+      "container": {
+        "x": 239,
+        "y": 108,
+        "w": 80,
+        "h": 80,
+        "b": 188,
+        "r": 319
+      },
+      "buttons": [
+        {
+          "id": "x-positive",
+          "label": "X 正向",
+          "box": {
+            "x": 293.72,
+            "y": 146.44,
+            "w": 15,
+            "h": 15,
+            "b": 161.44,
+            "r": 308.72
+          },
+          "borderRadius": 33554400,
+          "zIndex": "171",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "z-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "x-negative",
+          "label": "X 反向",
+          "box": {
+            "x": 249.27,
+            "y": 134.55,
+            "w": 15,
+            "h": 15,
+            "b": 149.55,
+            "r": 264.27
+          },
+          "borderRadius": 33554400,
+          "zIndex": "49",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "z-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "Z 正向",
+              "gizmoBtn": "z-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-positive",
+          "label": "Y 正向",
+          "box": {
+            "x": 271.5,
+            "y": 113.02,
+            "w": 15,
+            "h": 15,
+            "b": 128.02,
+            "r": 286.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "142",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-negative",
+          "label": "Y 反向",
+          "box": {
+            "x": 271.5,
+            "y": 167.97,
+            "w": 15,
+            "h": 15,
+            "b": 182.97,
+            "r": 286.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "78",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-positive",
+          "label": "Z 正向",
+          "box": {
+            "x": 252.88,
+            "y": 147.58,
+            "w": 15,
+            "h": 15,
+            "b": 162.58,
+            "r": 267.88
+          },
+          "borderRadius": 33554400,
+          "zIndex": "183",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "x-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-negative",
+          "label": "Z 反向",
+          "box": {
+            "x": 290.11,
+            "y": 133.41,
+            "w": 15,
+            "h": 15,
+            "b": 148.41,
+            "r": 305.11
+          },
+          "borderRadius": 33554400,
+          "zIndex": "37",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "x-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "X 正向",
+              "gizmoBtn": "x-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        }
+      ],
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": [
+        [
+          "收起",
+          "导演视角机位视角",
+          [
+            64,
+            5.5,
+            40,
+            40
+          ]
+        ]
+      ]
+    },
+    "350": {
+      "container": {
+        "x": 250,
+        "y": 108,
+        "w": 80,
+        "h": 80,
+        "b": 188,
+        "r": 330
+      },
+      "buttons": [
+        {
+          "id": "x-positive",
+          "label": "X 正向",
+          "box": {
+            "x": 304.72,
+            "y": 146.44,
+            "w": 15,
+            "h": 15,
+            "b": 161.44,
+            "r": 319.72
+          },
+          "borderRadius": 33554400,
+          "zIndex": "171",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "z-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "x-negative",
+          "label": "X 反向",
+          "box": {
+            "x": 260.27,
+            "y": 134.55,
+            "w": 15,
+            "h": 15,
+            "b": 149.55,
+            "r": 275.27
+          },
+          "borderRadius": 33554400,
+          "zIndex": "49",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "z-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "Z 正向",
+              "gizmoBtn": "z-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-positive",
+          "label": "Y 正向",
+          "box": {
+            "x": 282.5,
+            "y": 113.02,
+            "w": 15,
+            "h": 15,
+            "b": 128.02,
+            "r": 297.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "142",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-negative",
+          "label": "Y 反向",
+          "box": {
+            "x": 282.5,
+            "y": 167.97,
+            "w": 15,
+            "h": 15,
+            "b": 182.97,
+            "r": 297.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "78",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-positive",
+          "label": "Z 正向",
+          "box": {
+            "x": 263.88,
+            "y": 147.58,
+            "w": 15,
+            "h": 15,
+            "b": 162.58,
+            "r": 278.88
+          },
+          "borderRadius": 33554400,
+          "zIndex": "183",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "x-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-negative",
+          "label": "Z 反向",
+          "box": {
+            "x": 301.11,
+            "y": 133.41,
+            "w": 15,
+            "h": 15,
+            "b": 148.41,
+            "r": 316.11
+          },
+          "borderRadius": 33554400,
+          "zIndex": "37",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "x-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "X 正向",
+              "gizmoBtn": "x-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        }
+      ],
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": []
+    },
+    "359": {
+      "container": {
+        "x": 259,
+        "y": 108,
+        "w": 80,
+        "h": 80,
+        "b": 188,
+        "r": 339
+      },
+      "buttons": [
+        {
+          "id": "x-positive",
+          "label": "X 正向",
+          "box": {
+            "x": 313.72,
+            "y": 146.44,
+            "w": 15,
+            "h": 15,
+            "b": 161.44,
+            "r": 328.72
+          },
+          "borderRadius": 33554400,
+          "zIndex": "171",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "z-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "x-negative",
+          "label": "X 反向",
+          "box": {
+            "x": 269.27,
+            "y": 134.55,
+            "w": 15,
+            "h": 15,
+            "b": 149.55,
+            "r": 284.27
+          },
+          "borderRadius": 33554400,
+          "zIndex": "49",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "z-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "Z 正向",
+              "gizmoBtn": "z-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-positive",
+          "label": "Y 正向",
+          "box": {
+            "x": 291.5,
+            "y": 113.02,
+            "w": 15,
+            "h": 15,
+            "b": 128.02,
+            "r": 306.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "142",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-negative",
+          "label": "Y 反向",
+          "box": {
+            "x": 291.5,
+            "y": 167.97,
+            "w": 15,
+            "h": 15,
+            "b": 182.97,
+            "r": 306.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "78",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-positive",
+          "label": "Z 正向",
+          "box": {
+            "x": 272.88,
+            "y": 147.58,
+            "w": 15,
+            "h": 15,
+            "b": 162.58,
+            "r": 287.88
+          },
+          "borderRadius": 33554400,
+          "zIndex": "183",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "x-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-negative",
+          "label": "Z 反向",
+          "box": {
+            "x": 310.11,
+            "y": 133.41,
+            "w": 15,
+            "h": 15,
+            "b": 148.41,
+            "r": 325.11
+          },
+          "borderRadius": 33554400,
+          "zIndex": "37",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "x-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "X 正向",
+              "gizmoBtn": "x-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        }
+      ],
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": []
+    },
+    "360": {
+      "container": {
+        "x": 260,
+        "y": 108,
+        "w": 80,
+        "h": 80,
+        "b": 188,
+        "r": 340
+      },
+      "buttons": [
+        {
+          "id": "x-positive",
+          "label": "X 正向",
+          "box": {
+            "x": 314.72,
+            "y": 146.44,
+            "w": 15,
+            "h": 15,
+            "b": 161.44,
+            "r": 329.72
+          },
+          "borderRadius": 33554400,
+          "zIndex": "171",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "z-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "x-negative",
+          "label": "X 反向",
+          "box": {
+            "x": 270.27,
+            "y": 134.55,
+            "w": 15,
+            "h": 15,
+            "b": 149.55,
+            "r": 285.27
+          },
+          "borderRadius": 33554400,
+          "zIndex": "49",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "z-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "Z 正向",
+              "gizmoBtn": "z-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-positive",
+          "label": "Y 正向",
+          "box": {
+            "x": 292.5,
+            "y": 113.02,
+            "w": 15,
+            "h": 15,
+            "b": 128.02,
+            "r": 307.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "142",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-negative",
+          "label": "Y 反向",
+          "box": {
+            "x": 292.5,
+            "y": 167.97,
+            "w": 15,
+            "h": 15,
+            "b": 182.97,
+            "r": 307.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "78",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-positive",
+          "label": "Z 正向",
+          "box": {
+            "x": 273.88,
+            "y": 147.58,
+            "w": 15,
+            "h": 15,
+            "b": 162.58,
+            "r": 288.88
+          },
+          "borderRadius": 33554400,
+          "zIndex": "183",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "x-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-negative",
+          "label": "Z 反向",
+          "box": {
+            "x": 311.11,
+            "y": 133.41,
+            "w": 15,
+            "h": 15,
+            "b": 148.41,
+            "r": 326.11
+          },
+          "borderRadius": 33554400,
+          "zIndex": "37",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "x-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "X 正向",
+              "gizmoBtn": "x-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        }
+      ],
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": []
+    },
+    "370": {
+      "container": {
+        "x": 270,
+        "y": 108,
+        "w": 80,
+        "h": 80,
+        "b": 188,
+        "r": 350
+      },
+      "buttons": [
+        {
+          "id": "x-positive",
+          "label": "X 正向",
+          "box": {
+            "x": 324.72,
+            "y": 146.44,
+            "w": 15,
+            "h": 15,
+            "b": 161.44,
+            "r": 339.72
+          },
+          "borderRadius": 33554400,
+          "zIndex": "171",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "z-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "x-negative",
+          "label": "X 反向",
+          "box": {
+            "x": 280.27,
+            "y": 134.55,
+            "w": 15,
+            "h": 15,
+            "b": 149.55,
+            "r": 295.27
+          },
+          "borderRadius": 33554400,
+          "zIndex": "49",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "z-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "Z 正向",
+              "gizmoBtn": "z-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-positive",
+          "label": "Y 正向",
+          "box": {
+            "x": 302.5,
+            "y": 113.02,
+            "w": 15,
+            "h": 15,
+            "b": 128.02,
+            "r": 317.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "142",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-negative",
+          "label": "Y 反向",
+          "box": {
+            "x": 302.5,
+            "y": 167.97,
+            "w": 15,
+            "h": 15,
+            "b": 182.97,
+            "r": 317.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "78",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-positive",
+          "label": "Z 正向",
+          "box": {
+            "x": 283.88,
+            "y": 147.58,
+            "w": 15,
+            "h": 15,
+            "b": 162.58,
+            "r": 298.88
+          },
+          "borderRadius": 33554400,
+          "zIndex": "183",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "x-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-negative",
+          "label": "Z 反向",
+          "box": {
+            "x": 321.11,
+            "y": 133.41,
+            "w": 15,
+            "h": 15,
+            "b": 148.41,
+            "r": 336.11
+          },
+          "borderRadius": 33554400,
+          "zIndex": "37",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "x-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "X 正向",
+              "gizmoBtn": "x-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        }
+      ],
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": []
+    },
+    "377": {
+      "container": {
+        "x": 277,
+        "y": 108,
+        "w": 80,
+        "h": 80,
+        "b": 188,
+        "r": 357
+      },
+      "buttons": [
+        {
+          "id": "x-positive",
+          "label": "X 正向",
+          "box": {
+            "x": 331.72,
+            "y": 146.44,
+            "w": 15,
+            "h": 15,
+            "b": 161.44,
+            "r": 346.72
+          },
+          "borderRadius": 33554400,
+          "zIndex": "171",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "z-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "x-negative",
+          "label": "X 反向",
+          "box": {
+            "x": 287.27,
+            "y": 134.55,
+            "w": 15,
+            "h": 15,
+            "b": 149.55,
+            "r": 302.27
+          },
+          "borderRadius": 33554400,
+          "zIndex": "49",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "z-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "Z 正向",
+              "gizmoBtn": "z-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-positive",
+          "label": "Y 正向",
+          "box": {
+            "x": 309.5,
+            "y": 113.02,
+            "w": 15,
+            "h": 15,
+            "b": 128.02,
+            "r": 324.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "142",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-negative",
+          "label": "Y 反向",
+          "box": {
+            "x": 309.5,
+            "y": 167.97,
+            "w": 15,
+            "h": 15,
+            "b": 182.97,
+            "r": 324.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "78",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-positive",
+          "label": "Z 正向",
+          "box": {
+            "x": 290.88,
+            "y": 147.58,
+            "w": 15,
+            "h": 15,
+            "b": 162.58,
+            "r": 305.88
+          },
+          "borderRadius": 33554400,
+          "zIndex": "183",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "x-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-negative",
+          "label": "Z 反向",
+          "box": {
+            "x": 328.11,
+            "y": 133.41,
+            "w": 15,
+            "h": 15,
+            "b": 148.41,
+            "r": 343.11
+          },
+          "borderRadius": 33554400,
+          "zIndex": "37",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "x-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "X 正向",
+              "gizmoBtn": "x-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        }
+      ],
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": []
+    },
+    "380": {
+      "container": {
+        "x": 280,
+        "y": 108,
+        "w": 80,
+        "h": 80,
+        "b": 188,
+        "r": 360
+      },
+      "buttons": [
+        {
+          "id": "x-positive",
+          "label": "X 正向",
+          "box": {
+            "x": 334.72,
+            "y": 146.44,
+            "w": 15,
+            "h": 15,
+            "b": 161.44,
+            "r": 349.72
+          },
+          "borderRadius": 33554400,
+          "zIndex": "171",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "z-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "x-negative",
+          "label": "X 反向",
+          "box": {
+            "x": 290.27,
+            "y": 134.55,
+            "w": 15,
+            "h": 15,
+            "b": 149.55,
+            "r": 305.27
+          },
+          "borderRadius": 33554400,
+          "zIndex": "49",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "z-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "Z 正向",
+              "gizmoBtn": "z-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-positive",
+          "label": "Y 正向",
+          "box": {
+            "x": 312.5,
+            "y": 113.02,
+            "w": 15,
+            "h": 15,
+            "b": 128.02,
+            "r": 327.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "142",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-negative",
+          "label": "Y 反向",
+          "box": {
+            "x": 312.5,
+            "y": 167.97,
+            "w": 15,
+            "h": 15,
+            "b": 182.97,
+            "r": 327.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "78",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-positive",
+          "label": "Z 正向",
+          "box": {
+            "x": 293.88,
+            "y": 147.58,
+            "w": 15,
+            "h": 15,
+            "b": 162.58,
+            "r": 308.88
+          },
+          "borderRadius": 33554400,
+          "zIndex": "183",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "x-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-negative",
+          "label": "Z 反向",
+          "box": {
+            "x": 331.11,
+            "y": 133.41,
+            "w": 15,
+            "h": 15,
+            "b": 148.41,
+            "r": 346.11
+          },
+          "borderRadius": 33554400,
+          "zIndex": "37",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "x-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "X 正向",
+              "gizmoBtn": "x-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        }
+      ],
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": []
+    },
+    "400": {
+      "container": {
+        "x": 300,
+        "y": 108,
+        "w": 80,
+        "h": 80,
+        "b": 188,
+        "r": 380
+      },
+      "buttons": [
+        {
+          "id": "x-positive",
+          "label": "X 正向",
+          "box": {
+            "x": 354.72,
+            "y": 146.44,
+            "w": 15,
+            "h": 15,
+            "b": 161.44,
+            "r": 369.72
+          },
+          "borderRadius": 33554400,
+          "zIndex": "171",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "z-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "x-negative",
+          "label": "X 反向",
+          "box": {
+            "x": 310.27,
+            "y": 134.55,
+            "w": 15,
+            "h": 15,
+            "b": 149.55,
+            "r": 325.27
+          },
+          "borderRadius": 33554400,
+          "zIndex": "49",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "z-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "Z 正向",
+              "gizmoBtn": "z-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-positive",
+          "label": "Y 正向",
+          "box": {
+            "x": 332.5,
+            "y": 113.02,
+            "w": 15,
+            "h": 15,
+            "b": 128.02,
+            "r": 347.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "142",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-negative",
+          "label": "Y 反向",
+          "box": {
+            "x": 332.5,
+            "y": 167.97,
+            "w": 15,
+            "h": 15,
+            "b": 182.97,
+            "r": 347.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "78",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-positive",
+          "label": "Z 正向",
+          "box": {
+            "x": 313.88,
+            "y": 147.58,
+            "w": 15,
+            "h": 15,
+            "b": 162.58,
+            "r": 328.88
+          },
+          "borderRadius": 33554400,
+          "zIndex": "183",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "x-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-negative",
+          "label": "Z 反向",
+          "box": {
+            "x": 351.11,
+            "y": 133.41,
+            "w": 15,
+            "h": 15,
+            "b": 148.41,
+            "r": 366.11
+          },
+          "borderRadius": 33554400,
+          "zIndex": "37",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "x-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "X 正向",
+              "gizmoBtn": "x-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        }
+      ],
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": []
+    },
+    "620": {
+      "container": {
+        "x": 520,
+        "y": 108,
+        "w": 80,
+        "h": 80,
+        "b": 188,
+        "r": 600
+      },
+      "buttons": [
+        {
+          "id": "x-positive",
+          "label": "X 正向",
+          "box": {
+            "x": 574.72,
+            "y": 146.44,
+            "w": 15,
+            "h": 15,
+            "b": 161.44,
+            "r": 589.72
+          },
+          "borderRadius": 33554400,
+          "zIndex": "171",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "z-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "x-negative",
+          "label": "X 反向",
+          "box": {
+            "x": 530.27,
+            "y": 134.55,
+            "w": 15,
+            "h": 15,
+            "b": 149.55,
+            "r": 545.27
+          },
+          "borderRadius": 33554400,
+          "zIndex": "49",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "z-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "Z 正向",
+              "gizmoBtn": "z-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-positive",
+          "label": "Y 正向",
+          "box": {
+            "x": 552.5,
+            "y": 113.02,
+            "w": 15,
+            "h": 15,
+            "b": 128.02,
+            "r": 567.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "142",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-negative",
+          "label": "Y 反向",
+          "box": {
+            "x": 552.5,
+            "y": 167.97,
+            "w": 15,
+            "h": 15,
+            "b": 182.97,
+            "r": 567.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "78",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-positive",
+          "label": "Z 正向",
+          "box": {
+            "x": 533.88,
+            "y": 147.58,
+            "w": 15,
+            "h": 15,
+            "b": 162.58,
+            "r": 548.88
+          },
+          "borderRadius": 33554400,
+          "zIndex": "183",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "x-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-negative",
+          "label": "Z 反向",
+          "box": {
+            "x": 571.11,
+            "y": 133.41,
+            "w": 15,
+            "h": 15,
+            "b": 148.41,
+            "r": 586.11
+          },
+          "borderRadius": 33554400,
+          "zIndex": "37",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "x-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "X 正向",
+              "gizmoBtn": "x-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        }
+      ],
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": []
+    },
+    "780": {
+      "container": {
+        "x": 680,
+        "y": 108,
+        "w": 80,
+        "h": 80,
+        "b": 188,
+        "r": 760
+      },
+      "buttons": [
+        {
+          "id": "x-positive",
+          "label": "X 正向",
+          "box": {
+            "x": 734.72,
+            "y": 146.44,
+            "w": 15,
+            "h": 15,
+            "b": 161.44,
+            "r": 749.72
+          },
+          "borderRadius": 33554400,
+          "zIndex": "171",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "z-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "x-negative",
+          "label": "X 反向",
+          "box": {
+            "x": 690.27,
+            "y": 134.55,
+            "w": 15,
+            "h": 15,
+            "b": 149.55,
+            "r": 705.27
+          },
+          "borderRadius": 33554400,
+          "zIndex": "49",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "z-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "Z 正向",
+              "gizmoBtn": "z-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-positive",
+          "label": "Y 正向",
+          "box": {
+            "x": 712.5,
+            "y": 113.02,
+            "w": 15,
+            "h": 15,
+            "b": 128.02,
+            "r": 727.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "142",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-negative",
+          "label": "Y 反向",
+          "box": {
+            "x": 712.5,
+            "y": 167.97,
+            "w": 15,
+            "h": 15,
+            "b": 182.97,
+            "r": 727.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "78",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-positive",
+          "label": "Z 正向",
+          "box": {
+            "x": 693.88,
+            "y": 147.58,
+            "w": 15,
+            "h": 15,
+            "b": 162.58,
+            "r": 708.88
+          },
+          "borderRadius": 33554400,
+          "zIndex": "183",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "x-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-negative",
+          "label": "Z 反向",
+          "box": {
+            "x": 731.11,
+            "y": 133.41,
+            "w": 15,
+            "h": 15,
+            "b": 148.41,
+            "r": 746.11
+          },
+          "borderRadius": 33554400,
+          "zIndex": "37",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "x-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "X 正向",
+              "gizmoBtn": "x-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        }
+      ],
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": []
+    },
+    "898": {
+      "container": {
+        "x": 798,
+        "y": 108,
+        "w": 80,
+        "h": 80,
+        "b": 188,
+        "r": 878
+      },
+      "buttons": [
+        {
+          "id": "x-positive",
+          "label": "X 正向",
+          "box": {
+            "x": 852.72,
+            "y": 146.44,
+            "w": 15,
+            "h": 15,
+            "b": 161.44,
+            "r": 867.72
+          },
+          "borderRadius": 33554400,
+          "zIndex": "171",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "z-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "x-negative",
+          "label": "X 反向",
+          "box": {
+            "x": 808.27,
+            "y": 134.55,
+            "w": 15,
+            "h": 15,
+            "b": 149.55,
+            "r": 823.27
+          },
+          "borderRadius": 33554400,
+          "zIndex": "49",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "z-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "Z 正向",
+              "gizmoBtn": "z-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-positive",
+          "label": "Y 正向",
+          "box": {
+            "x": 830.5,
+            "y": 113.02,
+            "w": 15,
+            "h": 15,
+            "b": 128.02,
+            "r": 845.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "142",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-negative",
+          "label": "Y 反向",
+          "box": {
+            "x": 830.5,
+            "y": 167.97,
+            "w": 15,
+            "h": 15,
+            "b": 182.97,
+            "r": 845.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "78",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-positive",
+          "label": "Z 正向",
+          "box": {
+            "x": 811.88,
+            "y": 147.58,
+            "w": 15,
+            "h": 15,
+            "b": 162.58,
+            "r": 826.88
+          },
+          "borderRadius": 33554400,
+          "zIndex": "183",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "x-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-negative",
+          "label": "Z 反向",
+          "box": {
+            "x": 849.11,
+            "y": 133.41,
+            "w": 15,
+            "h": 15,
+            "b": 148.41,
+            "r": 864.11
+          },
+          "borderRadius": 33554400,
+          "zIndex": "37",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "x-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "X 正向",
+              "gizmoBtn": "x-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        }
+      ],
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": []
+    },
+    "899": {
+      "container": {
+        "x": 518,
+        "y": 108,
+        "w": 80,
+        "h": 80,
+        "b": 188,
+        "r": 598
+      },
+      "buttons": [
+        {
+          "id": "x-positive",
+          "label": "X 正向",
+          "box": {
+            "x": 572.72,
+            "y": 146.44,
+            "w": 15,
+            "h": 15,
+            "b": 161.44,
+            "r": 587.72
+          },
+          "borderRadius": 33554400,
+          "zIndex": "171",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "z-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "x-negative",
+          "label": "X 反向",
+          "box": {
+            "x": 528.27,
+            "y": 134.55,
+            "w": 15,
+            "h": 15,
+            "b": 149.55,
+            "r": 543.27
+          },
+          "borderRadius": 33554400,
+          "zIndex": "49",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "z-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "Z 正向",
+              "gizmoBtn": "z-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-positive",
+          "label": "Y 正向",
+          "box": {
+            "x": 550.5,
+            "y": 113.02,
+            "w": 15,
+            "h": 15,
+            "b": 128.02,
+            "r": 565.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "142",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-negative",
+          "label": "Y 反向",
+          "box": {
+            "x": 550.5,
+            "y": 167.97,
+            "w": 15,
+            "h": 15,
+            "b": 182.97,
+            "r": 565.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "78",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-positive",
+          "label": "Z 正向",
+          "box": {
+            "x": 531.88,
+            "y": 147.58,
+            "w": 15,
+            "h": 15,
+            "b": 162.58,
+            "r": 546.88
+          },
+          "borderRadius": 33554400,
+          "zIndex": "183",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "x-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-negative",
+          "label": "Z 反向",
+          "box": {
+            "x": 569.11,
+            "y": 133.41,
+            "w": 15,
+            "h": 15,
+            "b": 148.41,
+            "r": 584.11
+          },
+          "borderRadius": 33554400,
+          "zIndex": "37",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "x-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "X 正向",
+              "gizmoBtn": "x-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        }
+      ],
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": []
+    },
+    "1024": {
+      "container": {
+        "x": 643,
+        "y": 108,
+        "w": 80,
+        "h": 80,
+        "b": 188,
+        "r": 723
+      },
+      "buttons": [
+        {
+          "id": "x-positive",
+          "label": "X 正向",
+          "box": {
+            "x": 697.72,
+            "y": 146.44,
+            "w": 15,
+            "h": 15,
+            "b": 161.44,
+            "r": 712.72
+          },
+          "borderRadius": 33554400,
+          "zIndex": "171",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "z-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "x-negative",
+          "label": "X 反向",
+          "box": {
+            "x": 653.27,
+            "y": 134.55,
+            "w": 15,
+            "h": 15,
+            "b": 149.55,
+            "r": 668.27
+          },
+          "borderRadius": 33554400,
+          "zIndex": "49",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "z-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "Z 正向",
+              "gizmoBtn": "z-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-positive",
+          "label": "Y 正向",
+          "box": {
+            "x": 675.5,
+            "y": 113.02,
+            "w": 15,
+            "h": 15,
+            "b": 128.02,
+            "r": 690.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "142",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-negative",
+          "label": "Y 反向",
+          "box": {
+            "x": 675.5,
+            "y": 167.97,
+            "w": 15,
+            "h": 15,
+            "b": 182.97,
+            "r": 690.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "78",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-positive",
+          "label": "Z 正向",
+          "box": {
+            "x": 656.88,
+            "y": 147.58,
+            "w": 15,
+            "h": 15,
+            "b": 162.58,
+            "r": 671.88
+          },
+          "borderRadius": 33554400,
+          "zIndex": "183",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "x-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-negative",
+          "label": "Z 反向",
+          "box": {
+            "x": 694.11,
+            "y": 133.41,
+            "w": 15,
+            "h": 15,
+            "b": 148.41,
+            "r": 709.11
+          },
+          "borderRadius": 33554400,
+          "zIndex": "37",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "x-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "X 正向",
+              "gizmoBtn": "x-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        }
+      ],
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": []
+    },
+    "1440": {
+      "container": {
+        "x": 1059,
+        "y": 108,
+        "w": 80,
+        "h": 80,
+        "b": 188,
+        "r": 1139
+      },
+      "buttons": [
+        {
+          "id": "x-positive",
+          "label": "X 正向",
+          "box": {
+            "x": 1113.72,
+            "y": 146.44,
+            "w": 15,
+            "h": 15,
+            "b": 161.44,
+            "r": 1128.72
+          },
+          "borderRadius": 33554400,
+          "zIndex": "171",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "z-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "x-negative",
+          "label": "X 反向",
+          "box": {
+            "x": 1069.27,
+            "y": 134.55,
+            "w": 15,
+            "h": 15,
+            "b": 149.55,
+            "r": 1084.27
+          },
+          "borderRadius": 33554400,
+          "zIndex": "49",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "z-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "Z 正向",
+              "gizmoBtn": "z-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-positive",
+          "label": "Y 正向",
+          "box": {
+            "x": 1091.5,
+            "y": 113.02,
+            "w": 15,
+            "h": 15,
+            "b": 128.02,
+            "r": 1106.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "142",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "y-negative",
+          "label": "Y 反向",
+          "box": {
+            "x": 1091.5,
+            "y": 167.97,
+            "w": 15,
+            "h": 15,
+            "b": 182.97,
+            "r": 1106.5
+          },
+          "borderRadius": 33554400,
+          "zIndex": "78",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [],
+          "predictedBlocked": 4,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-positive",
+          "label": "Z 正向",
+          "box": {
+            "x": 1072.88,
+            "y": 147.58,
+            "w": 15,
+            "h": 15,
+            "b": 162.58,
+            "r": 1087.88
+          },
+          "borderRadius": 33554400,
+          "zIndex": "183",
+          "blocked": 4,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            7.4,
+            7.5,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": true,
+          "overlappingSiblings": [
+            {
+              "id": "x-negative",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [],
+          "nonCornerBlockersAreSiblings": true
+        },
+        {
+          "id": "z-negative",
+          "label": "Z 反向",
+          "box": {
+            "x": 1110.11,
+            "y": 133.41,
+            "w": 15,
+            "h": 15,
+            "b": 148.41,
+            "r": 1125.11
+          },
+          "borderRadius": 33554400,
+          "zIndex": "37",
+          "blocked": 5,
+          "probes": [
+            {
+              "fx": 0.08,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.08,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.08,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.5,
+              "dist": 0,
+              "self": true
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.5,
+              "dist": 6.3,
+              "self": true
+            },
+            {
+              "fx": 0.08,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            },
+            {
+              "fx": 0.5,
+              "fy": 0.92,
+              "dist": 6.3,
+              "self": false
+            },
+            {
+              "fx": 0.92,
+              "fy": 0.92,
+              "dist": 8.91,
+              "self": false
+            }
+          ],
+          "effectiveRadius": [
+            4.9,
+            6.5,
+            7.4,
+            8.1,
+            8.4,
+            8.9
+          ],
+          "centreSelf": true,
+          "cornersBlocked": true,
+          "edgeMidpointsClear": false,
+          "overlappingSiblings": [
+            {
+              "id": "x-positive",
+              "centreDistance": 13.52,
+              "circlesIntersect": true
+            }
+          ],
+          "predictedBlocked": 5,
+          "nonCornerBlockers": [
+            {
+              "what": "element",
+              "tag": "button",
+              "aria": "X 正向",
+              "gizmoBtn": "x-positive",
+              "isGizmoButton": true
+            }
+          ],
+          "nonCornerBlockersAreSiblings": true
+        }
+      ],
+      "unreachable": [],
+      "zeroSize": [],
+      "unexplained": []
+    }
+  },
+  "checks": {
+    "the-grid-runs-14widths-x-6buttons": {
+      "ok": true,
+      "detail": 84
+    },
+    "every-axis-button-is-at-least-a-half-circle": {
+      "ok": true,
+      "detail": {
+        "notRound": {},
+        "radii": [
+          33554400
+        ],
+        "threshold": ">= 7.5px, i.e. rounded-full on a 15.0px box"
+      }
+    },
+    "no-probe-inside-the-measured-shape-was-reported-blocked": {
+      "ok": true,
+      "detail": {
+        "violations": []
+      }
+    },
+    "no-probe-outside-the-measured-shape-was-reported-clear": {
+      "ok": true,
+      "detail": {
+        "violations": []
+      }
+    },
+    "the-lattice-corner-margin-is-sub-pixel-on-a-round-control": {
+      "ok": true,
+      "detail": {
+        "tightestCornerMarginPx": 0.01,
+        "effectiveRadiiSeen": [
+          4.9,
+          6.5,
+          7.4,
+          7.5,
+          8.1,
+          8.4,
+          8.9
+        ],
+        "cornerDistance": 8.91,
+        "cssBoxImpliedRadius": 7.5,
+        "reading": "the lattice corner sits 8.91px out while the effective radius tops out at 8.9px — a 0.01px margin. Whether a corner counts as blocked is decided by sub-pixel rounding, so a lattice probe cannot give a stable verdict on a rounded-full control. Two harnesses on the SAME page measured 4/9 and 6/9 for these buttons; that disagreement is the result, not noise to be averaged away."
+      }
+    },
+    "the-corner-margin-is-never-negative-so-corners-are-always-outside": {
+      "ok": true,
+      "detail": {
+        "negativeMargins": []
+      }
+    },
+    "the-edge-midpoints-are-also-unstable-not-reliably-inside": {
+      "ok": true,
+      "detail": {
+        "buttonsWhoseEdgeMidpointFallsOutside": 28,
+        "of": 84,
+        "minRadiusSeen": 4.9,
+        "edgeDistance": 6.3,
+        "reading": "so on a rounded-full control even the edge midpoints are not a safe sample point. Note the sweep measures the OCCLUSION radius, not the painted shape: a neighbouring dot truncates it, which is why 4.9px shows up at all"
+      }
+    },
+    "the-overlapping-axis-pairs-are-a-fixed-constant-set": {
+      "ok": true,
+      "detail": {
+        "pairs": {
+          "x-positive+z-negative": [
+            13.52
+          ],
+          "x-negative+z-positive": [
+            13.52
+          ]
+        },
+        "widthsMeasured": 14
+      }
+    },
+    "the-overlap-is-sub-two-pixels-of-centre-distance": {
+      "ok": true,
+      "detail": {
+        "centreDistances": [
+          13.52
+        ],
+        "intersectionOfCentreDistance": [
+          1.48
+        ],
+        "reading": "two radius-7.5 circles whose centres are 13.52px apart intersect by 1.48px — the lens is 1.5px on a 15px dot"
+      }
+    },
+    "the-centre-point-is-the-one-guaranteed-unique-point-on-every-circle": {
+      "ok": true,
+      "detail": {
+        "buttonsWhoseCentreWasBlocked": [],
+        "reading": "a 3x3 lattice has no business judging a rounded-full control: its corners are outside the circle BY DESIGN, so the centre is the correct instrument here"
+      }
+    },
+    "no-cell-has-an-off-viewport-unreachable-control": {
+      "ok": true,
+      "detail": {}
+    },
+    "no-cell-has-a-control-collapsed-to-nothing": {
+      "ok": true,
+      "detail": {}
+    },
+    "the-only-real-unexplained-cover-is-still-632s-170px-group-defect": {
+      "ok": true,
+      "detail": {
+        "unexplained": [
+          {
+            "width": "339",
+            "label": "收起",
+            "coveredBy": "导演视角机位视角",
+            "box": [
+              64,
+              5.5,
+              40,
+              40
+            ],
+            "is632sDefect": true
+          }
+        ],
+        "status": "clone-only, unfixed, awaiting a source reading; this is the ONLY genuine cover the 14-width sweep found, once the round corners are accounted for"
+      }
+    }
+  },
+  "ok": true,
+  "checkCount": 13,
+  "failures": [],
+  "totals": {
+    "buttons": 84,
+    "blockedHistogram": {
+      "4": 56,
+      "5": 28
+    },
+    "tightestCornerMargin": 0.01,
+    "effectiveRadiiSeen": [
+      4.9,
+      6.5,
+      7.4,
+      7.5,
+      8.1,
+      8.4,
+      8.9
+    ],
+    "latticeGeometry": {
+      "cornerDistanceFromCentre": 8.91,
+      "edgeDistanceFromCentre": 6.3,
+      "cornerIsOutsideCircle": true,
+      "edgeIsInsideCircle": true,
+      "predictedCornerCount": 4
+    },
+    "overlapPairs": {
+      "x-positive+z-negative": [
+        13.52
+      ],
+      "x-negative+z-positive": [
+        13.52
+      ]
+    },
+    "unexplained": [
+      {
+        "width": "339",
+        "label": "收起",
+        "coveredBy": "导演视角机位视角",
+        "box": [
+          64,
+          5.5,
+          40,
+          40
+        ],
+        "is632sDefect": true
+      }
+    ]
+  }
+}
