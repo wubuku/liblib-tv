@@ -30,6 +30,11 @@
  *
  *     node scripts/probe-absolute-coords.js --canvas http://localhost:3000/canvas/<id>
  *
+ * 画布打不开时（M172）：本机工作区的画布会被删，写死的 ID 不保质。
+ * 探针会**自动新建一个空画布**接着跑，并在日志里打出新 ID；
+ * 不想让它动工作区就传 `--no-create`，此时它只报错并说清现场。
+ * `--profile` 与 `--canvas` 要对上——画布存在浏览器本地，换 profile 就没了。
+ *
  * 退出码：0 = 探针跑完（**不代表断言通过，判读在报告里**）；非 0 = 探针自身失败。
  */
 
@@ -50,6 +55,8 @@ function arg(name, fallback) {
 const PROFILE = arg('profile', '/tmp/m160-profile');
 const CANVAS = arg('canvas', 'http://localhost:3000/canvas/Spmw8QhXdYPPR1TtsbOFM');
 const REPORT = arg('out', path.join('/tmp', 'm160-coords.json'));
+/** 画布不存在时是否自动新建（M172）。传 --no-create 则只报错、不动工作区。 */
+const NO_CREATE = process.argv.includes('--no-create');
 
 /** 在页面里量一组矩形。参数用第二个 argument 传，**不引用 Node 作用域变量**（第 4 条纪律）。 */
 async function measure(page, tag) {
@@ -179,7 +186,64 @@ async function main() {
   await page.goto(CANVAS, { waitUntil: 'networkidle' });
   await page.waitForTimeout(2500);
 
-  const report = { canvas: CANVAS, viewports: [], scissorsDistance: null };
+  // ---- M172：画布可能已经被删掉，必须先自检 ----
+  // 画布存在与否是**外部状态**：本机工作区的画布会被清空、会被删，
+  // 而探针的默认 ID 是写死的字符串。M172 实测两件事：
+  //   ① 默认画布 Spmw8QhXdYPPR1TtsbOFM 已从列表页消失，页面被**静默重定向**
+  //      到 /canvas 列表页——**探针不报错，它会对着空列表页继续往下量，
+  //      把一堆没有意义的读数写进报告**。这比直接失败更糟：报告看起来是跑完了的。
+  //   ② 默认 profile 是 /tmp/m160-profile，而画布是别的 profile 建的——
+  //      **profile 与画布 ID 是两套独立状态，谁都可能不存在**。
+  // 所以改成：先自检，不通就自己建一个（走真实 UI），建完用新建的那个跑。
+  // 新建出来的空画布反而是最干净的状态，没有跨轮残留。
+  const alive = await page.evaluate(() => ({
+    url: location.href,
+    redirected: !/\/canvas\/[A-Za-z0-9_-]{6,}/.test(location.pathname),
+    hasCanvasRoot: !!document.querySelector('input[type="file"]'),
+    cards: document.querySelectorAll('[data-canvas-project-card]').length,
+  }));
+
+  let canvasUrl = CANVAS;
+  if (alive.redirected || !alive.hasCanvasRoot) {
+    if (NO_CREATE) {
+      console.error('[探针失败] 画布打不开，且传了 --no-create，探针已停——'
+        + '否则会把空列表页的读数当成结果写进报告。');
+      console.error('  请求的地址：' + CANVAS);
+      console.error('  实际停在  ：' + alive.url + '（重定向=' + alive.redirected
+        + '，画布页标志 input[type=file]=' + alive.hasCanvasRoot + '）');
+      console.error('  列表页卡片：' + alive.cards + ' 张（0 = 这个 profile 下根本没有画布）');
+      console.error('  多半是这个画布已被删除——本机工作区的画布不是永久的；'
+        + '也可能是画布建在别的 profile 里，--profile 与 --canvas 要对上。');
+      process.exit(2);
+    }
+    console.log('[画布自检] ' + CANVAS + ' 打不开（停在 ' + alive.url
+      + '，列表页 ' + alive.cards + ' 张卡）——自动新建一个空画布接着跑。');
+    await page.goto('http://localhost:3000/canvas', { waitUntil: 'networkidle' });
+    await page.waitForTimeout(1500);
+    const hit = await page.evaluate(() => {
+      const b = Array.from(document.querySelectorAll('button, a'))
+        .find((x) => /^新建画布$/.test((x.textContent || '').replace(/\s+/g, ' ').trim()));
+      if (!b) return null;
+      const r = b.getBoundingClientRect();
+      return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+    });
+    if (!hit) { console.error('[探针失败] 列表页找不到「新建画布」按钮'); process.exit(2); }
+    await page.mouse.click(hit.x, hit.y);
+    for (let i = 0; i < 20; i++) {
+      const u = page.url();
+      if (/\/canvas\/[A-Za-z0-9_-]{6,}/.test(new URL(u).pathname)) { canvasUrl = u; break; }
+      await page.waitForTimeout(500);
+    }
+    if (canvasUrl === CANVAS) { console.error('[探针失败] 新建后没跳到画布页'); process.exit(2); }
+    const made = canvasUrl.match(/\/canvas\/([A-Za-z0-9_-]{6,})/);
+    console.log('[已新建画布] ' + (made ? made[1] : canvasUrl)
+      + '\n  ⚠️ 这是探针在你的本机工作区里新建的画布，用完可在 /canvas 列表页删掉。');
+    await page.waitForTimeout(2000);
+  } else {
+    console.log('[画布自检通过] ' + alive.url);
+  }
+
+  const report = { canvas: canvasUrl, viewports: [], scissorsDistance: null };
 
   for (const vp of VIEWPORTS) {
     await page.setViewportSize({ width: vp.width, height: vp.height });

@@ -95,14 +95,14 @@ RETRACTIONS: list[dict[str, str]] = [
         "wrong": "导出是唯一能带走项目的方式",
         "why": "画布 zip 没有导入功能，带不走项目（2026-10-01 三重取证：i18n 三条文案零引用、首页无文件选择器、喂给导入资产报格式错）",
         "fixed_in": "M47",
-        "allow_in": ["task-inventory.yml:259"],
+        "allow_in": ["task-inventory.yml#首页卡片悬停操作（下载/重命名/删除）与多选、封面预览运行时取证"],
     },
     {
         "id": "R2",
         "wrong": "可以整体拷到另一台机器导入",
         "why": "同 R1，画布侧只实现了导出、从未实现读回",
         "fixed_in": "M47",
-        "allow_in": ["task-inventory.yml:259"],
+        "allow_in": ["task-inventory.yml#首页卡片悬停操作（下载/重命名/删除）与多选、封面预览运行时取证"],
     },
     {
         "id": "R3",
@@ -133,7 +133,7 @@ RETRACTIONS: list[dict[str, str]] = [
         "wrong": "用首页的批量导出得到 zip",
         "why": "同 R1。M47 漏改了 undo-persistence 这一处，M52 才发现",
         "fixed_in": "M52",
-        "allow_in": ["task-inventory.yml:239"],
+        "allow_in": ["task-inventory.yml#（撤销/重做/画布更改会自动保存）与刷新持久化多次实测"],
     },
     {
         "id": "R8",
@@ -196,14 +196,14 @@ RETRACTIONS: list[dict[str, str]] = [
         "wrong": "Dock 认不出 9 个",
         "why": "M125–M129 连续四批据「按 class 名找悬停浮层」写下「左侧 Dock 16 个按钮里有 9 个认不出、悬停无任何提示」，M129 还把它写进了探针的结论。**M132 第 63 次否证整组作废**：Dock 用的是自研浮层，类名 `pointer-events-none absolute left-[calc(100%+8px)]`，**不含 tooltip / tip 任何字样**；按类名找只抓得到同区域的 antd `div.ant-tooltip`。实测 Dock 8 个按钮悬停提示**逐字齐全**，「删除选中」也有浮层。正确判据是**悬停前后全页可见文本取差集**，不依赖类名（2026-10-02 M132）",
         "fixed_in": "M132",
-        "allow_in": ["task-inventory.yml:47"],
+        "allow_in": ["task-inventory.yml#运行时走查完成（清数据首启→新建→空画布→首页项目卡）"],
     },
     {
         "id": "R26",
         "wrong": "三处按钮区",
         "why": "M132 补出**顶栏**这一处按钮区后，两页仍写「三处按钮区」，实际是**四处**（左侧 Dock / 节点悬浮工具条 / 画布视图控制 / 顶栏）。M139 回走时订正为四处并把顶栏列进去。写死数量而不列出处，下批加一处就会漏改（2026-10-02 M139）",
         "fixed_in": "M139",
-        "allow_in": ["task-inventory.yml:128", "SOURCE_OBSERVATIONS.md#三处按钮区的顺序固定"],
+        "allow_in": ["task-inventory.yml#手工撞见的剪刀复用做成全应用扫描", "SOURCE_OBSERVATIONS.md#三处按钮区的顺序固定"],
     },
     {
         "id": "R27",
@@ -215,7 +215,7 @@ RETRACTIONS: list[dict[str, str]] = [
         # 读者正是靠这句引述才知道原文错在哪。改写措辞反而会毁掉这段说明的价值。
         # **豁免必须精确到「文件:行号」**，只写文件名等于把整页都开豁免，
         # 那和 M140 查出的「文档可以比源码写得细」正是反面：**豁免要窄到无法滥用。**
-        "allow_in": ["10-tasks/edit-nodes.md:36", "task-inventory.yml:133"],
+        "allow_in": ["10-tasks/edit-nodes.md:36", "task-inventory.yml#运行时走查完成（双击标题重命名、双击编辑文字追加"],
         # ↑ 第二处是 M154 补登记 M137 取证时写进账本的——账本同样会引述原错误说法，
         #   而 M153 已把账本纳入扫描范围。**扩了覆盖范围，就要补齐对应的豁免。**
     },
@@ -314,6 +314,9 @@ def main() -> int:
                     f"[{item['id']}] allow_in 的豁免位置写法不合法：{where!r}。"
                     "**必须精确到「文件:行号」或「文件#行内锚点」**"
                     "（如 `10-tasks/edit-nodes.md:36` 或 `SOURCE_OBSERVATIONS.md#三处按钮区的顺序固定`）；"
+                    "**锚点那一段不得含任何空白**（含空格）且须满 8 个字符——"
+                    "中文行文里英文术语前后常有空格，随手挑的片段多半不合法；"
+                    "行号精确但插入即错位，能用锚点就别用行号。"
                     "只写文件名等于把整页都开豁免，读者再也拦不住这里出错的说法。"
                 )
                 allowed = {w for w in allowed if w != where}
