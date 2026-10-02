@@ -1864,3 +1864,80 @@ screenshots:
     visible_text: 小蜜蜂运镜 商用 vibe fckuing 3500 穿云而入 商用 管芬工作台 1500
     alt: **点完那枚 `•••` 之后**：卡片网格**原样**，没有任何菜单、浮层或提示；每张卡左上角的 `•••` 都还在，右下角仍是漏斗图标加数字（3500 / 1500）。配合「面板内可见文字块数 174 → 174」这条读数，可以确认它**不弹任何东西**。⚠️ 另附一条**差点被骗**的记录：点前点后同一块像素体积从 `147KB` 涨到 `579KB`，看着像弹出了一张大图 —— **其实那是图片懒加载完成**（点前截到点阵图、点后截到真图，前后构图完全一样）。⭐ **体积变化不等于出现了新东西**。⛔ 顺带量出一件要紧事：**特效广场没有 `⤢ 详情` 按钮**（面板内 32 个按钮逐个点名，12 枚 `收藏`、**0 枚 `详情`**）—— 所以那边连「先看清一张卡是什么再决定用不用」的路都没有
     sha256: 77eb150f701f3ef539941850dbef0df0b0823f79d0c06eaef960ade3da4ed16e
+  - file: screenshots/M-252-资产页-初始态.png
+    task_id: organize-canvas
+    step: 38
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 进「资产」标签 → 点一次 `创建默认资产分类`（`executed=true`）→ 重新进页面复核：空状态 `暂无资产` 变成了一行 `› 📁 待分类资产`。⚠️ 判据是**重开页面后再读一次**，不是复用点击前的快照 —— 「点击后抽屉文案变了」不足以证明写了账户，要能区分「写了」和「只是展开了」
+    visible_text: 建过分类之后的「资产」页：工具行五枚 🔍 ⚟ ≔ ＋ 📁管理；主体是一行 `› 📁 待分类资产`，行末右端一枚 `•••`；底部左侧收起箭头条，右侧「共 11 节点」。⚠️ 这枚分类是取证时建出来的，创建日期 `2026-10-02`；本手册**打开过它的删除确认框但只点了取消**，所以它现在还在这张图里
+    alt: 画布 2 画布 资产 管理 待分类资产 共 11 节点
+    sha256: e532e36d2ead349b62ce8ba9414c21fea020c734e4d6122e23035e1388a7af94
+  - file: screenshots/M-255-资产管理弹窗-从管理进入.png
+    task_id: organize-canvas
+    step: 39
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点抽屉头部 `管理`（`aria-label="资产管理"`）→ 守卫三条独立证据：① 标题「资产管理」在可见 DOM 里 **0 → 2**；② `elementFromPoint(219,162)` 的命中链从抽屉里的 `SPAN.flex > BUTTON.flex` 变成 `DIV.rounded-xl > DIV.z-201`（被盖住了）；③ 弹窗根 rect `[72,80,1296,650]`。⭐ 内容从**标题「资产管理」向上锚定**读 —— 早先按「面积最大的 >800×500 的 div」读，拿到的是画布背景，读出来全是「音频节点 6 尝试：音频生视频」这种噪声
+    visible_text: 「资产管理」弹窗：左上角标题「资产管理」；左侧栏 `个人资产库`（选中态，浅灰圆角底）/ `可灵主体库`；右侧主区标题「个人资产库」，右上四枚控件 🔍 / ⚟ / ≡ / 白底「+ 新建」；主体是一张文件夹卡片 `待分类资产`，卡片下方是**创建日期 `2026-10-02`**。⭐ 卡片上带日期，是确认「那个分类确实是今天建出来的」的独立证据，不用去猜抽屉文案的变化到底是不是写入
+    alt: 资产管理 个人资产库 可灵主体库 个人资产库 新建 待分类资产 2026-10-02
+    sha256: 0e264b8f510c63268c9af3b134070661596cb96512b28691dfe148f5100fd740
+  - file: screenshots/M-256-资产页-创建下拉.png
+    task_id: organize-canvas
+    step: 40
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 按 `aria-label="创建"` 点开 → 用 `fingerprint()` 的 DOM 差集读新浮层，不设任何 x/y 边界（早先按边界过滤又把菜单滤掉了）
+    visible_text: `+ 创建` 下拉展开的样子：浮层里只有**两项** `新建文件夹` / `上传资产`，压在按钮左下方，抽屉其余部分不变
+    alt: 创建下拉两项：新建文件夹 / 上传资产
+    sha256: a81e00cbc0bc7a4bb7124053931cee99dd7c51487b1f49480a856b82114b83eb
+  - file: screenshots/M-259-待分类资产卡片-hover.png
+    task_id: organize-canvas
+    step: 41
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点 `aria-label="更多操作"` → **不按几何找「行」**，而是直接按 aria 点名按钮，再验证**八项文字同时可见**（`allSeen=true`）才算菜单开成；每项读 `getComputedStyle().color`。⭐⭐ 这张图推翻了此前的结论「资产页没有删除入口」—— 那个判据要求「行自己带 aria 属性」，而 `更多操作` 是**行的兄弟节点**，被自己的判据挡在了门外（同类错误第四次）
+    visible_text: 悬停资产行 / 点开 `•••` 之后的**八项菜单**：`添加到Agent` `添加到画布` `更改图标 ›` `新建子文件夹` `移动到 ›` `下载` `重命名` `删除`。⭐ `删除` 是整份菜单**唯一的红字**（`rgb(245,63,63)`），其余七项都是 `rgb(247,247,247)` —— 扫颜色就能认出它，不用逐个点。⭐⭐ `更改图标` 和 `移动到` 右端各带一个 `›`，会展开第二层
+    alt: 添加到Agent 添加到画布 更改图标 新建子文件夹 移动到 下载 重命名 删除（红字）
+    sha256: 7ce50d251a2c2bd699ed95e9d1cd9334dbc32fc3d681ebffa14f34acf2c6eb39
+  - file: screenshots/M-261-资产菜单-更改图标子菜单.png
+    task_id: organize-canvas
+    step: 42
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 打开菜单 → 把鼠标移到 `更改图标` 上（只悬停，**不点**）→ 读新冒出来的短文本
+    visible_text: `更改图标` 的第二层：标题「图标选择」，上面是当前大图标预览，下面是 6 列 × 4 行共 24 枚图标，底部 `清除`（半透明）/ `应用`（白底实心）。⛔ 没选过任何图标，所以「选完之后图标会怎么变」还是 📖
+    alt: 图标选择面板：24 枚图标 + 清除 / 应用
+    sha256: f9eed67b2e497632c2ca7c363622ceec89193d1d9b3ac454a78cbaffdd264ad5
+  - file: screenshots/M-262-删除文件夹-确认框.png
+    task_id: organize-canvas
+    step: 43
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 打开菜单 → 点 `删除` → 读框里每一个按钮的 `color` / `backgroundColor` → **只点 `取消`** → 点完**重新打开抽屉复核**分类还在。⛔ 红字那枚 `删除` 没点，所以那枚 `待分类资产` 现在还在截图里
+    visible_text: `删除` 之后的确认框：红色圆形感叹号 + 标题「删除文件夹」，正文**逐字**是「确定删除「待分类资产」吗？删除后不可恢复。」，右下 `取消`（半透明 `rgba(255,255,255,0.1)`）/ `删除`（**实心红 `rgb(203,39,45)`**）。✅ 点过 `取消`，点完复核分类原样还在。⚠️ 正文写的是「不可恢复」，动手前先确认分类里没有要留的素材
+    alt: 删除文件夹 确定删除「待分类资产」吗？删除后不可恢复。 取消 删除
+    sha256: 5f79c4dc3c347bb222def82ec1668717788e10c0a5c85ee91bea5f9f386369c0
+  - file: screenshots/M-263-点上传资产之后.png
+    task_id: organize-canvas
+    step: 44
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: `+ 创建` → `上传资产` → 用 `fingerprint()` DOM 差集读新浮层。⭐ 判据一改就结了案：早先一直等 `filechooser` 事件、等 `<input type=file>` 收到 click，**两轮都是 0 命中**（BP1、BP2d），差点判成「没有上传功能」；实际是**根本没弹文件框**，它先弹了一个表单。⭐⭐ 于是不必再纠结「哪个 file input 属于上传」——**面板正文自己写着答案**，而且与 DOM 里那个 `accept=".jpg,.jpeg,.png,.mp4,.mp3"` 逐字吻合
+    visible_text: `上传资产` 打开的**不是系统选文件框，而是一整个面板**：左侧虚线投放区 `[385,219,410,430]`，下方 `支持的文件格式 🖼 jpg/jpeg/png ▶ mp4 🔊 mp3` 与 `单个文件大小不超过 20MB`；右侧 `保存位置 *`（必填）/ `请选择文件夹`、`设置标签` / `请选择标签`；右下 `取消` / `保存`，其中 **`保存` 的 `disabled=true`**（必填项没填就是灰的）。⭐ 所以流程是：先定「保存到哪个文件夹」，再在虚线框里放文件。⛔ 没选过真文件、没点过保存
+    alt: 上传资产 支持的文件格式 jpg/jpeg/png mp4 mp3 单个文件大小不超过 20MB 保存位置 请选择文件夹 设置标签 请选择标签 取消 保存
+    sha256: 6b8af88d7e71c994d265ea18816b804f6d86ab1304ffab5bad377e2416dbcc5b
