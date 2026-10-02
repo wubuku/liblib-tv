@@ -1358,3 +1358,58 @@ screenshots:
     visible_text: 运镜广场 我的收藏 我的运镜 固定镜头 跟随拍摄 盘旋抬升 盘旋下降 镜头上摇 镜头下摇 镜头左摇 镜头右摇 镜头上升 镜头下降 镜头左移 镜头右移 镜头前推 镜头后移 变焦推进 变焦拉远 柯克变焦 环绕拍摄 滚筒旋转 第一视角 无人机 高空航拍 手持拍摄
     alt: **`运镜` 打开的是运镜广场**：`fixed inset-0 z-[calc(var(--z-overlay)+2)] flex items-center` 全屏浮层 `[0,0,1440,810]` z=602。顶部三标签 `运镜广场`（当前）`我的收藏` `我的运镜`，下面是**22 个内置运镜预设**（从固定/跟随/盘旋/摇移/推拉/变焦，到柯克变焦、环绕拍摄、滚筒旋转、第一视角、无人机、高空航拍、手持拍摄）
     sha256: a5169c58111b35b4f28e6b1340354cc327c7c7b76627b44d8b43febee33f2dc5
+  - file: screenshots/M-158-图片-参考.png
+    task_id: create-nodes
+    step: 76
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: **把图片节点同时拖到 (720, 150)** —— AX1 只管了 y、没管 x，而参数面板以节点为中心居中、宽 660，节点一偏左整块面板左移出视口（AX1 实测面板 rect `[-127,306,660,192]`、「参考」在 x=-114，**点击坐标整个落在视口外**），于是读出 `nAdded: 0`
+    visible_text: 从画布或资产管理选择参考 返回节点 图片节点 2 参考 标记 风格 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15
+    alt: 图片节点的「参考」与视频节点**同一套**点选模式。读数特征：点击后**新增 13 个元素，全是画布节点重排**（`react-flow__node-*` 的 z 从 0 跳到 1000），而不是浮出一个新面板 —— **「画布节点整体进入可选状态」就是「切模式」的指纹**
+    sha256: f3834882a40cd465ad12afaea3608ee0b940f01eb1ef405d33eb223a057ea4f9
+  - file: screenshots/M-159-图片-标记.png
+    task_id: create-nodes
+    step: 77
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 同上起点，点第二枚「标记」
+    visible_text: 元素选择模式 点击图片选择局部元素 返回节点 参考 标记 风格 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15
+    alt: 图片节点的「标记」与视频节点**完全同一套**「元素选择模式 / 点击图片选择局部元素」：顶部蓝条 +「返回节点」+×，画布整体变暗、节点浮到最前、「标记」按钮高亮。本图同时展示图片面板底部那两枚图标 —— **带蓝点的 ⚙（高级设置）** 和 **📷（摄像机）**
+    sha256: 193d7809d66c26425ffd4f6643aaccb7f3d80a8f1114eed01c7f346714123fb4
+  - file: screenshots/M-161-图片-预设.png
+    task_id: create-nodes
+    step: 78
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点底部参数条上那枚**带 aria="预设"** 的 32×32 图标按钮
+    visible_text: 分镜叙事 调度故事板 故事板 25宫格连贯分镜 剧情推演四宫格 画面推演 - 3秒后 画面推演 - 5秒前 质感调节 人像质感调节 电影级光影校正 空间与机位 720全景 多机位九宫格 设定图 角色脸部三视图 角色设定图 角色三视图 场景设定图 产品设定图
+    alt: **手册此前完全没有的一整块功能**：`border-hair fixed z-[calc(var(--z-overlay)+2)] overflow` 浮层 `[260,62,754×387]` z=602，**四列 11 个开箱即用的工作流** —— 分镜叙事（调度故事板/故事板/25宫格连贯分镜/剧情推演四宫格/画面推演-3秒后/-5秒前）、质感调节（人像质感调节/电影级光影校正）、空间与机位（720全景/多机位九宫格）、设定图（角色脸部三视图/角色设定图/角色三视图/场景设定图/产品设定图）。`调度故事板`/`故事板`/`人像质感调节` 三个图标右上角带**蓝点**。⚠️ **点其中任意一条会发生什么没验** —— 看起来会往画布加节点或改参数，属写数据操作，本轮不碰
+    sha256: f6aaa957395e69c1f290dee710db45ffba8df89fef6d50713c356217efe42e0b
+  - file: screenshots/M-162-图片-空按钮.png
+    task_id: create-nodes
+    step: 79
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点底部参数条上那枚**无文字、无 aria、连 SVG 都没有**的 32×32 按钮（靠 AV1 清点时的 `fp = nosvg` 指纹认出来）
+    visible_text: 摄像机 相机 Panavision DXL2 镜头 Arri Signature Prime 焦距 35 mm 光圈 ƒ/4 关闭
+    alt: **手册此前完全没有的第二块**：`mantine-Popover-dropdown` 浮层 `[5,109,642×347]` z=300，标题「摄像机」，四列可切换 —— **相机**（当前 `Panavision DXL2`）、**镜头**（当前 `Arri Signature Prime`）、**焦距**（当前 `35` mm，可选 `8/14/24/35/50/75/125`）、**光圈**（当前 `ƒ/4`）；底部一个 **`关闭` 开关**（本轮为关）。模拟真实拍摄器材。**「关闭」开关的实际影响没验** 📖
+    sha256: 9467a2092ec4b646d1240fd1a6c4801c5949cbb3b39068e84d3208d2ce926efb
+  - file: screenshots/M-164-文本节点-参数面板.png
+    task_id: create-nodes
+    step: 80
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 选中文本节点后按「宽 ≥500 且 ≥3 个可点元素」定位面板（文本节点没有「参考」字样，用旧的 innerText 判据会选错容器）
+    visible_text: 写下你想讲的故事、场景或角色设定。例如：一个来自未来的机器人，在城市屋顶看星星。 GVLM 3.1 6
+    alt: **文本节点是唯一没有顶部工具条的节点** —— 面板里 `参考`/`标记`/`风格` 一枚都没有（图片 3 枚、视频 5 枚、音频 1 枚），也不带 `⚙`、**没有「高级设置」分区**。面板 `[660×150]`，可点元素只有 `GVLM 3.1` 加三枚无文字图标
+    sha256: 32456a2a0baaa959b93b3c923a064b8eb7b8e89a2430cb5dcc331655e2aaaedf
