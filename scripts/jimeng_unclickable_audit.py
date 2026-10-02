@@ -2460,7 +2460,8 @@ def main() -> int:
                 "⇒ 与复刻（`@xyflow/react` 默认 `nodesFocusable=true` ⇒ 节点"
                 "**任何时候** `tabindex=0`）是**方向明确的产品差异**。"
                 "⚠️ 但**先别改**：`@xyflow/react` 有 `nodesFocusable` / "
-                "`nodeFocusable` 这类开关，而源站那个动态策略的**确切规则未测** —— "
+                "`nodeFocusable` 这类开关（**895 已量**：复刻侧现状是**恒定 "
+                "`tabindex='0'`**），而源站那个动态策略的**确切规则未测** —— "
                 "照着「中性态 -1」硬设会把 Tab 走查整个改掉，"
                 "必须**先测清策略**再动（§77）。"
                 "⇒ **不许**写成「源站未选中节点一律不可聚焦」这种**过度概括**"
@@ -2471,14 +2472,19 @@ def main() -> int:
                 "带自己的验证做。"),
 
             "replica_node_always_focusable": (
-                "复刻侧（890c，各 2/2）：A/B **两序列**都是 `focusin` **1** 次、"
-                "直接落到节点，**JS 调 `focus()` 次数 0**。"
-                "机制上的差异方向很清楚：复刻用 `@xyflow/react`，它的节点 wrapper "
-                "**默认就带 `tabindex='0'`**（`nodesFocusable` 默认 true）"
-                "⇒ 节点**任何时候**可聚焦 ⇒ 浏览器**总能**移动焦点。"
-                "⚠️ 但「复刻的节点**任何时候**都有 tabindex=0」这句"
-                "**本身还没单独测过**（只测了 890c 那两序列），"
-                "**不许**拿它当已证的机制。"),
+                "✅ **895 量出来了**（不是从库默认值**推**的）：复刻侧**所有**"
+                "条件、**所有**状态的节点 **`tabindex='0'` / `tabIndexProp=0`**，"
+                "**恒定**（`fresh_load` / `after_blank` / 连按 Tab 之后 / "
+                "插入后 / 插入后点空白 / 选中，各 2 轮两轮一致）。"
+                "机制方向：`@xyflow/react` 的 `nodesFocusable` 默认 true ⇒ "
+                "节点 wrapper 静态带 `tabindex=0`。"
+                "⇒ 与源站**方向明确相反**：源站中性态是 `-1`、只有被 Tab 命中时"
+                "才出现 `0`（看着像 roving）。"
+                "⚠️⚠️ **但复刻这一侧的「所有类型」没测全**：复刻 demo 画布**只有** "
+                "video 节点（n=2）**加**探针插入的 1 个 audio；而源站矩阵里还有 "
+                "text / timeline / image / external。⇒ "
+                "**不许**把复刻侧写成「所有类型节点都恒为 0」，"
+                "只能说「**在 demo 画布实测到的类型上**恒为 0」。"),
             "cancelbubble_unreliable_after_dispatch": (
                 "⚠️ `cancelBubble` **派发结束后会被重置** ⇒ 它**不能**用来证明"
                 "「有没有人调过 `stopPropagation()`」。892 实测到的是一组**互相"
@@ -2574,7 +2580,10 @@ def main() -> int:
                     "jimeng_probe894_node_tabindex_matrix_src.py"
                     "（节点 `tabindex` 的**条件矩阵**（刚载完/点空白/连按 Tab 后/"
                     "插入/插入后点空白/选中），**推翻**了 889d 那句读数，"
-                    "各 2 轮）")},
+                    "各 2 轮）+ "
+                    "jimeng_probe895_node_tabindex_matrix_ck.py"
+                    "（**同一张表**在复刻侧，判据**逐字复用** 894 ⇒ "
+                    "复刻 `tabindex` **恒为 0**，各 2 轮）")},
         # ══ 批 855：生成历史层（**按名字**找，不是按位置）════════════════
         # 这条 why 原来写「前置态没成立：点**第 2 个** `canvas-panel-launcher`
         # 开出的是『积分明细』」—— 那是**按位置猜名字**。855a 把顶栏 9 个按钮

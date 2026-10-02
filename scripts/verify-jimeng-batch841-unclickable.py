@@ -2550,6 +2550,54 @@ def main() -> int:
           and "**确切规则未测**" in _ausrc
           and "更**不许**据此改复刻的 `nodesFocusable`" in _ausrc
           and "整个画布 Tab 顺序" in _ausrc)
+    # ══════════ 批 895：复刻侧那张表（差异两侧都有据） ══════════
+    p895 = ROOT / "scripts/jimeng_probe895_node_tabindex_matrix_ck.py"
+    p894 = ROOT / "scripts/jimeng_probe894_node_tabindex_matrix_src.py"
+    _p895 = p895.read_text(encoding="utf-8") if p895.exists() else ""
+    _p894 = p894.read_text(encoding="utf-8") if p894.exists() else ""
+    check("JJ.1 895 的判据必须**逐字复用** 894（`NODES_JS` / `BLANK_JS` / "
+          "`FOCUS_JS` / `summarize` 四段都要能在 894 里**原样找到**）—— "
+          "否则量出「不同」可能只是**两边各量各的**（890c 栽过一次，已记基线）。"
+          "⚠️ 空白点若用了 894 同一组候选坐标**落空**而回落到 pane 矩形角，"
+          "**必须记录用的是哪一种**（坐标不同是次要变量，但必须可追溯）",
+          bool(_p895) and bool(_p894)
+          and all(block in _p894 for block in (
+              'NODES_JS = """', 'BLANK_JS = """', 'FOCUS_JS = """',
+              "def summarize("))
+          and all(block in _p895 for block in (
+              'NODES_JS = """', 'BLANK_JS = """', 'FOCUS_JS = """',
+              "def summarize("))
+          and "逐字来自 894 源站探针" in _p895
+          and "blank_from" in _p895 and "pane_rect" in _p895)
+    check("JJ.2 895 的结论是**量出来的**，不是从库默认值**推**的：复刻侧所有"
+          "条件、所有状态的节点 **`tabindex='0'` 恒定**（各 2 轮两轮一致）。"
+          "⇒ 差异**两侧都有据**：源站中性态全 `-1`、被 Tab 命中时才出现 `'0'`"
+          "（像 roving）；复刻**恒 `'0'`**",
+          '"replica_node_always_focusable"' in _ausrc
+          and "**895 量出来了**" in _ausrc
+          and "不是从库默认值**推**的" in _ausrc
+          and "**恒定**" in _ausrc)
+    check("JJ.3 ⚠️ 复刻这一侧的「所有类型」**没测全**：demo 画布**只有** 2 个 "
+          "video **加**探针插入的 1 个 audio，而源站矩阵里还有 "
+          "text / timeline / image / external ⇒ **不许**写成「复刻所有类型"
+          "节点都恒为 0」，只能说「**在 demo 画布实测到的类型上**恒为 0」",
+          "**但复刻这一侧的「所有类型」没测全**" in _ausrc
+          and "**只有**" in _ausrc
+          and "不许**把复刻侧写成「所有类型节点都恒为 0」" in _ausrc
+          and "在 demo 画布实测到的类型上" in _ausrc)
+    check("JJ.4 895 自己踩的坑必须留痕：判据平移时把 Playwright 的 "
+          "`wait_for_timeout(140)`（**毫秒**）写成 Python 的 `time.sleep(140)`"
+          "（**秒**）⇒ 一次循环睡 140 秒、16 次 ≈ **37 分钟**；现象是进程 "
+          "**0% CPU 一直睡**，**看起来像「复刻页面按 Tab 卡死」**。"
+          "⇒ 教训两条：判据平移**连单位一起平移**；「0% CPU 一直睡」是"
+          "**挂住**的信号、不是「慢」，而**挂住**第一嫌疑是**自己的代码**、"
+          "不是被测对象",
+          "**单位**" in _p895
+          and "wait_for_timeout" in _p895
+          and "time.sleep(140)" in _p895
+          and "37 分钟" in _p895
+          and "0% CPU" in _p895
+          and "判据平移必须连单位一起平移" in _p895)
     check("HH.4 基线里**不许**留一条「仍未解决」跟结论打架：矛盾条目已改名 "
           "`..._RESOLVED_893`，且旧名字**必须已经不在**基线里。"
           "⚠️ 判据要跟上事实（钉假设的措辞会把判据锁死在过时状态），"
