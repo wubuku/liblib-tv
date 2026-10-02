@@ -67,6 +67,11 @@ CANDIDATES = [
 PAGES = ["README.md", "00-quickstart.md", "20-reference.md", "30-concepts.md",
          "90-troubleshooting.md", "PUBLISH.md"]
 
+# **Batch 186 扩进来的**：30 个任务页。实测它们含 **662 段**引号引用，
+# 而 Batch 185 的范围只有 6 个文件 237 段——**读者最先读的就是任务页，而它们当时完全没进扫描**。
+# 扩进来之后实测只多报 1 条（「视频处理 ∨」），**任务页的引用纪律比主干页还好**。
+TASK_GLOB = "10-tasks/*.md"
+
 # 去标点：只保留文字类字符（中文、字母、数字）。
 STRIP_RE = re.compile(r"[^\w一-鿿]+", re.UNICODE)
 QUOTE_RE = re.compile(r"「([^」]{2,60})」")
@@ -140,7 +145,10 @@ def main():
     print("  语料字符串字面量 %d 个" % len(literals))
     problems = []
     checked = 0
-    for page in PAGES:
+    import glob as _glob
+    pages = list(PAGES) + sorted(
+        os.path.relpath(x, ROOT) for x in _glob.glob(os.path.join(ROOT, TASK_GLOB)))
+    for page in pages:
         p = os.path.join(ROOT, page)
         if not os.path.isfile(p):
             print("[未能核对] 手册里没有 %s" % page)
@@ -163,7 +171,7 @@ def main():
                             f"{page} 第 {i} 行：引号文案「{part}」**文字在上游存在、逐字却对不上**"
                             f"——疑似标点漂移，读者拿它和屏幕上的字比对会失败")
 
-    print(f"标点漂移核对：{len(PAGES)} 个页面、{checked} 段引号文案"
+    print(f"标点漂移核对：{len(pages)} 个页面、{checked} 段引号文案"
           f"（语料 {len(corpus)} 字符，ref {ref}）")
     if problems:
         for x in problems:

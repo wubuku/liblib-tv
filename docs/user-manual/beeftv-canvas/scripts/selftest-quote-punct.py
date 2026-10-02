@@ -8,7 +8,8 @@
   3  **不误伤**：手册自己的术语（「画布文件夹」这类两词撞出来的）→ 不得报
   4  **不误伤**：`/` 与 `→` 并列两个独立文案的写法    → 不得报
   5  自检探针失配（ref 指到没有该文案的版本）        → 必须 rc=2「未能核对」
-  6  真实现状                                        → 不报
+  6  **任务页也在扫描范围内**（Batch 186 扩进来的）  → 往任务页注入漂移必须报
+  7  真实现状                                        → 不报
 
 **用例 3 是本闸第一版真实误报过的一条**：第一版把**整份语料**归一化后做子串匹配，
 于是「画布文件夹」也能在上游对上（某处「画布」后面紧接着出现「文件夹」）——
@@ -31,6 +32,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GATE = os.path.join(ROOT, "scripts", "verify-quote-punct.py")
 README = os.path.join(ROOT, "README.md")
 CONCEPTS = os.path.join(ROOT, "30-concepts.md")
+TASKPAGE = os.path.join(ROOT, "10-tasks", "timeline-export.md")
 DRIFT_BASE = "视频已生成，但暂时无法取回"     # 上游逐字原文
 INJECTED = "视频已生成但暂时无法取回"        # 少一个逗号 —— 本闸要抓的形态
 
@@ -129,17 +131,37 @@ def m_probe_mismatch_must_be_rc2():
     record("5 自检探针失配 → 必须 rc=2 未能核对", ok, f"rc={rc}")
 
 
-# ── 6 真实现状 ──────────────────────────────────────────────────────
+# ── 6 任务页也在扫描范围内（Batch 186 把范围从 6 个文件扩到 36 个）──
+def m_task_page_in_scope():
+    check_anchor()
+    t = read(TASKPAGE)
+    assert "视频处理" in t, "前提失配：任务页里找不到「视频处理」样本"
+    orig = t
+    try:
+        # **注入必须是标点漂移，不能是首尾空白**——第一版我在引号尾部塞了个空格，
+        # 而判据本来就会 strip() 首尾空白，于是它理直气壮地没报。
+        # **用例自己挑了一个判据本来就该忽略的形态，那这一例测的是判据的 strip，不是它。**
+        write(TASKPAGE, orig.replace("点「视频处理」下拉", "点「视频处理：」下拉"))
+        after = read(TASKPAGE)
+        assert "点「视频处理：」下拉" in after, "前提失配：注入没生效"
+        rc, out = run()
+        ok = rc == 1 and "timeline-export.md" in out and "标点漂移" in out
+        record("6 任务页在扫描范围内 → 注入漂移必报", ok, f"rc={rc}")
+    finally:
+        write(TASKPAGE, orig)
+
+
+# ── 7 真实现状 ──────────────────────────────────────────────────────
 def m_clean_pass():
     check_anchor()
     rc, out = run()
-    record("6 真实现状 → 不报", rc == 0, f"rc={rc}")
+    record("7 真实现状 → 不报", rc == 0, f"rc={rc}")
 
 
 def main():
     tests = [m_missing_comma_must_report, m_extra_paren_must_report,
              m_own_term_must_not_report, m_joined_writing_must_not_report,
-             m_probe_mismatch_must_be_rc2, m_clean_pass]
+             m_probe_mismatch_must_be_rc2, m_task_page_in_scope, m_clean_pass]
     for t in tests:
         try:
             t()
