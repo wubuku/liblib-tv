@@ -1,0 +1,2034 @@
+{
+ "at": "2026-10-02T17:24:01.878Z",
+ "round": "f",
+ "start": {
+  "nodes": "78",
+  "sel": "1",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "idsStart": 78,
+ "liveStart": [
+  {
+   "role": null,
+   "live": "polite",
+   "testid": "canvas-title-save-status",
+   "tag": "OUTPUT",
+   "text": "已保存"
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "78 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": "audio-duration-accessible",
+   "tag": "SPAN",
+   "text": "00:00:04"
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "1 resource: 1 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": "polite",
+   "testid": null,
+   "tag": "OUTPUT",
+   "text": "当前视窗没有内容"
+  },
+  {
+   "role": "status",
+   "live": "polite",
+   "testid": null,
+   "tag": "DIV",
+   "text": "b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload complete"
+  }
+ ],
+ "md": {
+  "file": "/tmp/jimeng-b107-h3.md",
+  "ok": true,
+  "before": 26,
+  "after": 26,
+  "samples": [
+   {
+    "k": 1,
+    "ms": 1816,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 2,
+    "ms": 3020,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 3,
+    "ms": 4223,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 4,
+    "ms": 5427,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 5,
+    "ms": 6631,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 6,
+    "ms": 7868,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 7,
+    "ms": 9076,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 8,
+    "ms": 10281,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 9,
+    "ms": 11486,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 10,
+    "ms": 12689,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 11,
+    "ms": 13893,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 12,
+    "ms": 15098,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 13,
+    "ms": 16302,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 14,
+    "ms": 17506,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 15,
+    "ms": 18710,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 16,
+    "ms": 19915,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 17,
+    "ms": 21119,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 18,
+    "ms": 22324,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 19,
+    "ms": 23537,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 20,
+    "ms": 24828,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 21,
+    "ms": 26045,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 22,
+    "ms": 27250,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 23,
+    "ms": 28456,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 24,
+    "ms": 29663,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 25,
+    "ms": 30868,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   },
+   {
+    "k": 26,
+    "ms": 32073,
+    "n": 26,
+    "diff": [
+     "node_2zjg6dzhqw"
+    ],
+    "delta": []
+   }
+  ],
+  "diff": [
+   "node_2zjg6dzhqw"
+  ],
+  "selIds": [
+   "node_2zjg6dzhqw"
+  ],
+  "entriesAfter": [
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "b22-upload.png: Upload complete",
+   "jimeng-b101-test-avc1.mp4: Upload complete",
+   "jimeng-b104-test.wav: Upload complete",
+   "jimeng-b101-test-avc1.mp4: Upload complete",
+   "jimeng-b104-test.wav: Upload complete"
+  ]
+ },
+ "mdNoEntry": true,
+ "liveAfterMd": [
+  {
+   "role": null,
+   "live": "polite",
+   "testid": "canvas-title-save-status",
+   "tag": "OUTPUT",
+   "text": "已保存"
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "79 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": "audio-duration-accessible",
+   "tag": "SPAN",
+   "text": "00:00:04"
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "1 resource: 1 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": "polite",
+   "testid": null,
+   "tag": "OUTPUT",
+   "text": "当前视窗没有内容"
+  },
+  {
+   "role": "status",
+   "live": "polite",
+   "testid": null,
+   "tag": "DIV",
+   "text": "b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload complete"
+  }
+ ],
+ "liveNewAfterMd": [
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "79 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存."
+  }
+ ],
+ "wav": {
+  "file": "/tmp/jimeng-b104-test.wav",
+  "ok": true,
+  "before": 26,
+  "after": 1,
+  "samples": [
+   {
+    "k": 1,
+    "ms": 1819,
+    "n": 1,
+    "diff": [
+     "node_3ht5tnv5m9"
+    ],
+    "delta": [
+     {
+      "t": "正在上传音频 0%",
+      "delta": 1
+     }
+    ]
+   }
+  ],
+  "diff": [
+   "node_3ht5tnv5m9"
+  ],
+  "selIds": [
+   "node_3ht5tnv5m9"
+  ],
+  "entriesAfter": [
+   "正在上传音频 0%"
+  ]
+ },
+ "wavGotEntry": false,
+ "liveEnd": [
+  {
+   "role": null,
+   "live": "polite",
+   "testid": "canvas-title-save-status",
+   "tag": "OUTPUT",
+   "text": "已保存"
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "80 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": "audio-duration-accessible",
+   "tag": "SPAN",
+   "text": "00:00:04"
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "1 resource: 1 ready, 0 processing, 0 failed. Not selected."
+  },
+  {
+   "role": "status",
+   "live": null,
+   "testid": "audio-node-uploading",
+   "tag": "DIV",
+   "text": "正在上传音频 0%"
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "P",
+   "text": "正在上传音频 0%"
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "1 resource: 0 ready, 1 processing, 0 failed. Selected."
+  },
+  {
+   "role": null,
+   "live": "polite",
+   "testid": null,
+   "tag": "OUTPUT",
+   "text": "当前视窗没有内容"
+  },
+  {
+   "role": "status",
+   "live": "polite",
+   "testid": null,
+   "tag": "DIV",
+   "text": "b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload complete"
+  }
+ ],
+ "liveNewEnd": [
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "80 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存."
+  },
+  {
+   "role": "status",
+   "live": null,
+   "testid": "audio-node-uploading",
+   "tag": "DIV",
+   "text": "正在上传音频 0%"
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "P",
+   "text": "正在上传音频 0%"
+  },
+  {
+   "role": null,
+   "live": null,
+   "testid": null,
+   "tag": "SPAN",
+   "text": "1 resource: 0 ready, 1 processing, 0 failed. Selected."
+  }
+ ],
+ "verdict": {
+  "md_added_entry": false,
+  "wav_added_entry": false,
+  "text_types_produce_status_string": false,
+  "control_valid": false
+ },
+ "end": {
+  "nodes": "80",
+  "sel": "1",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}

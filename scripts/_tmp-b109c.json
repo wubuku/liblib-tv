@@ -1,0 +1,92 @@
+{
+ "at": "2026-10-02T17:17:01.339Z",
+ "round": "c",
+ "file": "/tmp/jimeng-b104-test.wav",
+ "start": {
+  "nodes": "76",
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "liveBefore": [
+  "已保存",
+  "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+  "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+  "当前视窗没有内容",
+  "b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b101-test-avc1.mp4: Upload complete"
+ ],
+ "idsBefore": 76,
+ "samples": [
+  {
+   "k": 1,
+   "ms": 1834,
+   "live": [
+    "已保存",
+    "77 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+    "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+    "正在上传音频 0%",
+    "1 resource: 0 ready, 1 processing, 0 failed. Selected.",
+    "当前视窗没有内容",
+    "b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b101-test-avc1.mp4: Upload complete"
+   ],
+   "st": {
+    "nodes": "77",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "diff": [
+    "node_n62gwfa97f"
+   ],
+   "selNew": [
+    "node_n62gwfa97f"
+   ]
+  }
+ ],
+ "hitAtMs": 1834,
+ "idsAfter": 77,
+ "diff": [
+  "node_n62gwfa97f"
+ ],
+ "selIds": [
+  "node_n62gwfa97f"
+ ],
+ "guardrail2": {
+  "diffN": 1,
+  "diffIsSelected": true
+ },
+ "selfCandidates": [
+  {
+   "id": "node_n62gwfa97f",
+   "cls": "react-flow__node react-flow__node-audio nopan selected selectable draggable",
+   "aria": "音频 node: jimeng-b104-test.wav",
+   "box": "544,288 192×192",
+   "selected": true,
+   "innerText": "jimeng-b104-test 正在上传音频 0% 1 resource: 0 ready, 1 processing, 0 failed. Selected."
+  }
+ ],
+ "selfId": "node_n62gwfa97f",
+ "liveAfter": [
+  "已保存",
+  "77 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+  "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+  "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+  "正在上传音频 0%",
+  "1 resource: 0 ready, 1 processing, 0 failed. Selected.",
+  "当前视窗没有内容",
+  "b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b101-test-avc1.mp4: Upload complete"
+ ],
+ "liveNew": [
+  "77 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+  "正在上传音频 0%",
+  "1 resource: 0 ready, 1 processing, 0 failed. Selected."
+ ],
+ "liveGone": [
+  "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+ ],
+ "end": {
+  "nodes": "77",
+  "sel": "1",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}

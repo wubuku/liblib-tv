@@ -1,0 +1,57 @@
+{
+ "at": "2026-10-02T17:39:23.585Z",
+ "round": "y",
+ "target": "Zoom options, 60%",
+ "before": {
+  "aria": "Zoom options, 59%",
+  "btnText": "59%",
+  "inputPresent": false,
+  "inputValue": null,
+  "nodes": "76",
+  "sel": "0",
+  "tool": "选择工具",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "menuOpen": {
+  "aria": "Zoom options, 59%",
+  "btnText": "",
+  "inputPresent": true,
+  "inputValue": "59",
+  "nodes": "76",
+  "sel": "0",
+  "tool": "选择工具",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "beforeEnter": {
+  "aria": "Zoom options, 59%",
+  "btnText": "",
+  "inputPresent": true,
+  "inputValue": "60",
+  "nodes": "76",
+  "sel": "0",
+  "tool": "选择工具",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "afterEnter": {
+  "aria": "Zoom options, 60%",
+  "btnText": "60%",
+  "inputPresent": false,
+  "inputValue": null,
+  "nodes": "76",
+  "sel": "0",
+  "tool": "选择工具",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "read2": {
+  "aria": "Zoom options, 60%",
+  "btnText": "60%",
+  "inputPresent": false,
+  "inputValue": null,
+  "nodes": "76",
+  "sel": "0",
+  "tool": "选择工具",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "ok": true,
+ "stable": true
+}

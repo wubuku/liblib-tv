@@ -1,0 +1,196 @@
+{
+ "at": "2026-10-02T17:12:35.056Z",
+ "round": "b",
+ "readonly": true,
+ "start": {
+  "nodes": "76",
+  "sel": "0",
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "q1": {
+  "n": 2,
+  "rows": [
+   {
+    "text": "b22-upload.png: Upload completeb22-upload.png: Upload comple",
+    "cls": "sr-only",
+    "box": "-1,-1 1×1",
+    "kids": 25,
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "position": "absolute",
+    "overflow": "hidden",
+    "zIndex": "auto",
+    "kidBoxes": [
+     {
+      "box": "-1,0 256×23",
+      "display": "inline",
+      "visibility": "visible",
+      "opacity": "1",
+      "position": "static",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "box": "255,0 256×23",
+      "display": "inline",
+      "visibility": "visible",
+      "opacity": "1",
+      "position": "static",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "box": "510,0 256×23",
+      "display": "inline",
+      "visibility": "visible",
+      "opacity": "1",
+      "position": "static",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "box": "766,0 256×23",
+      "display": "inline",
+      "visibility": "visible",
+      "opacity": "1",
+      "position": "static",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   },
+   {
+    "text": "",
+    "cls": "sr-only",
+    "box": "123,699 1×1",
+    "kids": 0,
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "position": "absolute",
+    "overflow": "hidden",
+    "zIndex": "auto",
+    "kidBoxes": []
+   }
+  ]
+ },
+ "q2a": {
+  "n": 25,
+  "first": {
+   "x": -1,
+   "y": 0,
+   "w": 256
+  },
+  "last": {
+   "x": 6264.8,
+   "y": 0,
+   "w": 343
+  },
+  "span": 255.6,
+  "parentBox": "-1,-1 1×1",
+  "parentOverflow": "hidden",
+  "parentTransform": "none",
+  "parentLeft": "0px",
+  "parentW": "1px",
+  "onScreen": 6
+ },
+ "q2b": {
+  "n": 25,
+  "first": {
+   "x": -1,
+   "y": 0,
+   "w": 256
+  },
+  "last": {
+   "x": 6264.8,
+   "y": 0,
+   "w": 343
+  },
+  "span": 255.6,
+  "parentBox": "-1,-1 1×1",
+  "parentOverflow": "hidden",
+  "parentTransform": "none",
+  "parentLeft": "0px",
+  "parentW": "1px",
+  "onScreen": 6
+ },
+ "q2moved": false,
+ "q3": [
+  {
+   "text": "已保存",
+   "role": null,
+   "live": "polite",
+   "atomic": "true",
+   "kids": 0,
+   "box": "206,21 30×18",
+   "path": "OUTPUT#canvas-title-save-status < DIV#canvas-title-metadata < DIV#canvas-title-details < DIV#workspace-canvas-title"
+  },
+  {
+   "text": "当前视窗没有内容",
+   "role": null,
+   "live": "polite",
+   "atomic": null,
+   "kids": 0,
+   "box": "0,0 0×0",
+   "path": "OUTPUT < DIV#back-to-content-overlay < DIV#rf__wrapper < DIV"
+  },
+  {
+   "text": "",
+   "role": null,
+   "live": "polite",
+   "atomic": "true",
+   "kids": 0,
+   "box": "-1,-1 1×1",
+   "path": "SPAN < DIV#rf__wrapper < DIV < DIV"
+  },
+  {
+   "text": "b22-upload.png: Upload completeb22-upload.png: Upload completeb22-uplo",
+   "role": "status",
+   "live": "polite",
+   "atomic": "false",
+   "kids": 25,
+   "box": "-1,-1 1×1",
+   "path": "DIV < DIV#rf__wrapper < DIV < DIV"
+  },
+  {
+   "text": "",
+   "role": null,
+   "live": "polite",
+   "atomic": "true",
+   "kids": 1,
+   "box": "-1,719 1×1",
+   "path": "DIV#canvas-context-menu-terminal-feedback < DIV < SECTION#canvas-main-region < DIV#canvas-workbench-shell"
+  },
+  {
+   "text": "",
+   "role": null,
+   "live": "polite",
+   "atomic": "true",
+   "kids": 0,
+   "box": "-1,-1 1×1",
+   "path": "DIV#canvas-creation-entry-feedback < DIV#canvas-workbench-shell < DIV < DIV"
+  },
+  {
+   "text": "",
+   "role": null,
+   "live": "polite",
+   "atomic": null,
+   "kids": 0,
+   "box": "36,388 1×1",
+   "path": "SPAN < DIV#canvas-fixed-toolbar < DIV#canvas-navigation-scroll-viewport < DIV#canvas-navigation-shell"
+  },
+  {
+   "text": "",
+   "role": "status",
+   "live": "polite",
+   "atomic": null,
+   "kids": 0,
+   "box": "123,699 1×1",
+   "path": "P < DIV < DIV < DIV#canvas-bottom-dock"
+  }
+ ],
+ "end": {
+  "nodes": "76",
+  "sel": "0",
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}

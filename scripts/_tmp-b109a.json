@@ -1,0 +1,2495 @@
+{
+ "at": "2026-10-02T17:10:21.576Z",
+ "round": "a",
+ "readonly": true,
+ "start": {
+  "nodes": "76",
+  "sel": "0",
+  "edges": "0",
+  "zoom": "Zoom options, 60%",
+  "tool": "选择工具",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "scan": {
+  "matched": 81,
+  "rows": [
+   {
+    "t": "已保存",
+    "len": 3,
+    "testid": "canvas-title-save-status",
+    "role": null,
+    "tag": "OUTPUT",
+    "cls": "text-center font-dreamina-cn text-dreamina-cn-10 font-dreami",
+    "kids": 0,
+    "box": "206,21 30×18"
+   },
+   {
+    "t": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+    "len": 61,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "-1,-1 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "-185,-93 1×1"
+   },
+   {
+    "t": "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+    "len": 59,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "-681,-111 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "-321,-69 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "-348,8 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "-300,32 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "-276,80 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "-252,20 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "-228,-55 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "150,56 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "293,442 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "473,580 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "497,604 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "521,628 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "545,652 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "569,676 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "585,698 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "593,724 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "617,748 1×1"
+   },
+   {
+    "t": "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+    "len": 59,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "65,265 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "641,772 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "665,796 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "689,820 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "713,844 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "737,868 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "641,562 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "665,586 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "689,610 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "713,634 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "737,658 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "761,682 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "785,706 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "809,730 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "833,754 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "857,778 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "881,802 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "905,826 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "929,850 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "953,874 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "977,901 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "761,891 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "785,915 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1001,921 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1025,949 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "809,939 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "833,963 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1049,969 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1073,997 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "857,987 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "881,1011 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1097,1017 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1121,1045 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "905,1035 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "929,1059 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1145,1065 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "819,270 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "569,462 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "510,442 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "617,510 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1036,519 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1169,894 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1193,942 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1217,990 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1241,1038 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1265,1086 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "174,510 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "833,484 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "819,56 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1036,294 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "617,56 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "1025,56 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "65,442 1×1"
+   },
+   {
+    "t": "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+    "len": 60,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "366,56 1×1"
+   },
+   {
+    "t": "当前视窗没有内容",
+    "len": 8,
+    "testid": null,
+    "role": null,
+    "tag": "OUTPUT",
+    "cls": "",
+    "kids": 0,
+    "box": "0,0 0×0"
+   },
+   {
+    "t": "",
+    "len": 0,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "-1,-1 1×1"
+   },
+   {
+    "t": "b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload comp",
+    "len": 803,
+    "testid": null,
+    "role": "status",
+    "tag": "DIV",
+    "cls": "sr-only",
+    "kids": 25,
+    "box": "-1,-1 1×1"
+   },
+   {
+    "t": "",
+    "len": 0,
+    "testid": "canvas-context-menu-terminal-feedback",
+    "role": null,
+    "tag": "DIV",
+    "cls": "sr-only",
+    "kids": 1,
+    "box": "-1,719 1×1"
+   },
+   {
+    "t": "",
+    "len": 0,
+    "testid": "canvas-creation-entry-feedback",
+    "role": null,
+    "tag": "DIV",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "-1,-1 1×1"
+   },
+   {
+    "t": "",
+    "len": 0,
+    "testid": null,
+    "role": null,
+    "tag": "SPAN",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "36,388 1×1"
+   },
+   {
+    "t": "",
+    "len": 0,
+    "testid": null,
+    "role": "status",
+    "tag": "P",
+    "cls": "sr-only",
+    "kids": 0,
+    "box": "123,699 1×1"
+   }
+  ]
+ },
+ "uploadRows": [
+  {
+   "t": "b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload comp",
+   "len": 803,
+   "testid": null,
+   "role": "status",
+   "tag": "DIV",
+   "cls": "sr-only",
+   "kids": 25,
+   "box": "-1,-1 1×1"
+  }
+ ],
+ "known": [
+  {
+   "want": "b22-upload.png: Upload complete",
+   "found": true,
+   "via": {
+    "tag": "DIV",
+    "role": "status",
+    "testid": null,
+    "kids": 25,
+    "box": "-1,-1 1×1",
+    "cls": "sr-only"
+   }
+  },
+  {
+   "want": "jimeng-b101-test-avc1.mp4: Upload complete",
+   "found": false,
+   "via": null
+  }
+ ],
+ "predicateWorks": true,
+ "allTexts": [
+  "已保存",
+  "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+  "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+  "当前视窗没有内容",
+  "b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload comp"
+ ],
+ "phrase": [
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "-1,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "255,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "510,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "766,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "1021,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "1277,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "1532,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "1788,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "2044,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "2299,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "2555,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "2810,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "3066,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "3321,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "3577,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "3833,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "4088,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "4344,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "4599,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "4855,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "5110,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "b22-upload.png: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "5366,0 256×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "jimeng-b101-test-avc1.mp4: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "5622,0 343×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "jimeng-b104-test.wav: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "5964,0 300×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  },
+  {
+   "text": "jimeng-b101-test-avc1.mp4: Upload complete",
+   "chain": [
+    {
+     "d": 0,
+     "tag": "SPAN",
+     "role": null,
+     "testid": null,
+     "cls": "",
+     "srOnly": false,
+     "box": "6265,0 343×23",
+     "ownMatches": true
+    },
+    {
+     "d": 1,
+     "tag": "DIV",
+     "role": "status",
+     "testid": null,
+     "cls": "sr-only",
+     "srOnly": true,
+     "box": "-1,-1 1×1",
+     "ownMatches": false
+    },
+    {
+     "d": 2,
+     "tag": "DIV",
+     "role": "application",
+     "testid": "rf__wrapper",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg ",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 3,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "w-full h-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 4,
+     "tag": "DIV",
+     "role": null,
+     "testid": null,
+     "cls": "relative h-full w-full",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    },
+    {
+     "d": 5,
+     "tag": "SECTION",
+     "role": null,
+     "testid": "canvas-main-region",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "srOnly": false,
+     "box": "0,0 1280×720",
+     "ownMatches": false
+    }
+   ]
+  }
+ ]
+}

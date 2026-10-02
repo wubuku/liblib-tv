@@ -1,0 +1,434 @@
+{
+ "at": "2026-10-02T17:21:33.223Z",
+ "round": "e",
+ "file": "/tmp/jimeng-b102-doc.txt",
+ "start": {
+  "nodes": "77",
+  "sel": "1",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "entriesBefore": [
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "jimeng-b101-test-avc1.mp4: Upload complete",
+  "jimeng-b104-test.wav: Upload complete",
+  "jimeng-b101-test-avc1.mp4: Upload complete",
+  "jimeng-b104-test.wav: Upload complete"
+ ],
+ "idsBefore": 77,
+ "nEntriesBefore": 26,
+ "samples": [
+  {
+   "k": 1,
+   "ms": 1921,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 2,
+   "ms": 3168,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 3,
+   "ms": 4486,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 4,
+   "ms": 5760,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 5,
+   "ms": 6987,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 6,
+   "ms": 8217,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 7,
+   "ms": 9457,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 8,
+   "ms": 10692,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 9,
+   "ms": 11916,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 10,
+   "ms": 13157,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 11,
+   "ms": 14479,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 12,
+   "ms": 15850,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 13,
+   "ms": 17177,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 14,
+   "ms": 18457,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 15,
+   "ms": 19683,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 16,
+   "ms": 20904,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 17,
+   "ms": 22119,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 18,
+   "ms": 23338,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 19,
+   "ms": 24560,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 20,
+   "ms": 25814,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 21,
+   "ms": 27026,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 22,
+   "ms": 28282,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 23,
+   "ms": 29522,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  },
+  {
+   "k": 24,
+   "ms": 30790,
+   "n": 26,
+   "diff": [
+    "node_5g8wzx4f2k"
+   ],
+   "st": {
+    "nodes": "78",
+    "sel": "1",
+    "credits": "Credits: 805 · 基础会员"
+   },
+   "newOnes": []
+  }
+ ],
+ "diff": [
+  "node_5g8wzx4f2k"
+ ],
+ "selIds": [
+  "node_5g8wzx4f2k"
+ ],
+ "guardrail2": {
+  "diffN": 1,
+  "diffIsSelected": true
+ },
+ "selfCandidates": [
+  {
+   "id": "node_5g8wzx4f2k",
+   "cls": "react-flow__node react-flow__node-text nopan selected selectable draggable",
+   "aria": "文本 node: jimeng-b102-doc",
+   "box": "616,312 192×192",
+   "selected": true,
+   "innerText": "JIMENG B102 DOC TEST line two line three jimeng-b102-doc"
+  }
+ ],
+ "selfId": "node_5g8wzx4f2k",
+ "entriesAfter": [
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "b22-upload.png: Upload complete",
+  "jimeng-b101-test-avc1.mp4: Upload complete",
+  "jimeng-b104-test.wav: Upload complete",
+  "jimeng-b101-test-avc1.mp4: Upload complete",
+  "jimeng-b104-test.wav: Upload complete"
+ ],
+ "nEntriesAfter": 26,
+ "appended": 0,
+ "end": {
+  "nodes": "78",
+  "sel": "1",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}
