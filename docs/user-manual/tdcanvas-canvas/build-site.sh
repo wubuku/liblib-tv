@@ -153,6 +153,16 @@ INVEVID_OUT="$(python3 scripts/check-inventory-evidence.py . 2>&1)" || fail "账
 $INVEVID_OUT"
 echo "$INVEVID_OUT" | sed 's/^/  /'
 
+# 探针契约一致性（第十八道门禁，M144 新增）：同一批探针教训被写进四个地方
+# （账本 / 两个 .js 文件头 / PUBLISH.md），副本一多必然漂移。M143 已查出一处真实漂移：
+# PUBLISH.md 的纪律表只写「白名单四项」却不列出是哪四项，**读者查手册查不到清单**。
+# 本门禁把源码里 `DESTRUCTIVE` 集合逐项与文档比对，**只守「文档不能漏项」**——
+# 文档可以比源码写得细，但不能漏掉源码里的硬约束。
+# 边界如实说清：只校验这一项常量，其余纪律是自然语言、无法机械判定，不碰。
+PROBECONTRACT_OUT="$(python3 scripts/check-probe-contracts.py . 2>&1)" || fail "探针契约校验未通过（源码里的不可逆按钮白名单与 PUBLISH.md 纪律表对不上）：
+$PROBECONTRACT_OUT"
+echo "$PROBECONTRACT_OUT" | sed 's/^/  /'
+
 # 源码引用：手册里每处 `文件.ts:行号` 必须指向应用仓里真实存在的那一行。
 # 2026-10-02 M109 新增。账本锁定门禁只在应用仓 HEAD 变化时报错，可一旦有人把
 # 账本 sha 一起更新到新提交，那道门禁重新变绿，正文里那几十处行号却可能早已

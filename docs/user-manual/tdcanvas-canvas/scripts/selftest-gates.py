@@ -799,6 +799,49 @@ def mutate_encoding_mojibake(root: Path) -> None:
 # 原来的框架表达不了，所以补上这一类。
 EXPECT_PASS = "__expect_pass__"
 
+def mutate_probe_contract_drift(root: Path) -> None:
+    """探针源码的白名单在 PUBLISH 纪律表里被删成「见脚本源码」（M144）。
+
+    M144 查出的真实漂移：M143 新写的纪律表只写「白名单四项」而**没列出是哪四项**，
+    维护者在这张表里查不到清单，必须去翻 `.js`。读者查手册查不到清单，
+    就等于没有这道闸——所以新立 `check-probe-contracts.py` 守住「文档不能漏项」。
+    """
+
+    path = root / "PUBLISH.md"
+    text = path.read_text(encoding="utf-8")
+    path.write_text(
+        text.replace(
+            "**移除节点 / 清空画布 / 删除当前画布 / 删除选中**",
+            "**（清单见脚本源码）**",
+            1,
+        ),
+        encoding="utf-8",
+    )
+
+
+def mutate_probe_contract_extra_context(root: Path) -> None:
+    """文档比源码写得**更细**（多写背景）**不该被误报**（M144 的判据边界）。
+
+    本门禁只守「文档不能漏项」，**不做双向全等**：文档的职责是「让人看懂」，
+    源码的职责是「让机器跑」，两者本就该有详略。若误判「文档多写了就是不一致」，
+    这道门禁会逼着维护者把文档删成源码的复述——反而更难读。
+
+    阴性形态与 M133 的「未实测」是同一类：不加限制的判据必然误报。
+    """
+
+    path = root / "PUBLISH.md"
+    text = path.read_text(encoding="utf-8")
+    path.write_text(
+        text.replace(
+            "**移除节点 / 清空画布 / 删除当前画布 / 删除选中**",
+            "**移除节点 / 清空画布 / 删除当前画布 / 删除选中**"
+            "（这四个都在画布工具条或顶栏上，前两个 M136 亲历过误删）",
+            1,
+        ),
+        encoding="utf-8",
+    )
+
+
 CASES: list[tuple[str, object, str, str]] = [
     ("图片字节被改动", mutate_image_bytes, "gate", "sha256 mismatch"),
     ("manifest 删掉一条记录", mutate_manifest_drop_record, "gate", "image missing from manifest"),
@@ -845,6 +888,8 @@ CASES: list[tuple[str, object, str, str]] = [
 ("正文里有多字节中文被截断（U+FFFD）", mutate_encoding_mojibake, "encoding", "替换字符"),
     ("账本运行时结论只写在 review_note 里（记账漂移）", mutate_inventory_evidence_drift, "inventoryevid", "记账漂移"),
     ("写「未实测」不该被当成声称实测（否定形态不得误报）", mutate_inventory_evidence_negation, "inventoryevid", EXPECT_PASS),
+    ("探针白名单在文档里被删成「见源码」（文档查不到清单）", mutate_probe_contract_drift, "probecontracts", "漏列了不可逆按钮"),
+    ("文档比源码写得更细不该被误报（不做双向全等）", mutate_probe_contract_extra_context, "probecontracts", EXPECT_PASS),
 ]
 
 
@@ -881,6 +926,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-encoding.py"), str(root)]
     elif which == "inventoryevid":
         cmd = [sys.executable, str(root / "scripts/check-inventory-evidence.py"), str(root)]
+    elif which == "probecontracts":
+        cmd = [sys.executable, str(root / "scripts/check-probe-contracts.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)
