@@ -20,6 +20,12 @@ i = idx[0]
 lines[i] = lines[i].replace("selftest-label-drift.py", "selftest-label-drift-v2.py", 1)
 out = "\n".join(lines)
 # 纪律：断言**改完之后锚点真的不见了**——`assert 原文里有 X` 只证明改之前在
-assert "selftest-label-drift.py" not in out, "空转：原锚点没被替换掉"
-assert "selftest-label-drift-v2.py" in out, "空转：注入特征未出现"
+# **Batch 198 修**：同样把判定限定在**表行**上（原式是全文匹配，
+# 而散文里出现过这个反验名，于是这条用例同样早就作废了）。
+_rows = out.split("\n")
+def _claims(name):
+    return [r for r in _rows if r.startswith("|") and name in r and
+            re.match(r"^\|\s*\d", r)]
+assert not _claims("selftest-label-drift.py"), "空转：原锚点那行没被换掉"
+assert _claims("selftest-label-drift-v2.py"), "空转：注入特征未出现在表行里"
 sys.stdout.write(out)

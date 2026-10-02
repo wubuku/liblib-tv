@@ -640,8 +640,29 @@ def _selftest_code_only(path):
             tree = ast.parse(src)
         except SyntaxError:
             return src
+        # **Batch 198 修两处**（原式：`isinstance(n, ast.Constant) and isinstance(n, str)`——
+        #  `n` 是 **AST 节点**，不是字符串，**所以这个判断永远为假**，
+        #  于是一份 `.py` 反验的 body 恒为空串）：
+        #   ① `isinstance(n.value, str)`——原来那个判断让它什么都收不到；
+        #   ② **显式排除文档字符串**——docstring 在 AST 里就是一个 `ast.Constant`，
+        #      「剥掉注释」不等于「剥掉 docstring」。
+        # **为什么今天没出事（必须写下来，否则下一个人会以为它一直是对的）**：
+        # 实测 84 份 `.py` 反验的 body 全是空串，`.py → .py` 的引用**一个都看不见**；
+        # 60 个夹具之所以没被误判成「驱动」，**全靠 3 份 shell 反验恰好在命令行里引用了它们**。
+        # **结论是对的，理由是错的**——加一份「只被 .py 引用」的夹具，它立刻会被误判成驱动，
+        # 而闸会要求对应关系表为它单开一行。
+        docs = set()
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.Module, ast.FunctionDef,
+                                 ast.AsyncFunctionDef, ast.ClassDef)):
+                b = getattr(node, "body", None)
+                if b and isinstance(b[0], ast.Expr) and \
+                        isinstance(b[0].value, ast.Constant) and \
+                        isinstance(b[0].value.value, str):
+                    docs.add(id(b[0].value))
         return "\n".join(n.value for n in ast.walk(tree)
-                         if isinstance(n, ast.Constant) and isinstance(n, str))
+                         if isinstance(n, ast.Constant) and isinstance(n.value, str)
+                         and id(n) not in docs)
     return "\n".join(re.sub(r"#.*$", "", ln) for ln in src.split("\n"))
 
 

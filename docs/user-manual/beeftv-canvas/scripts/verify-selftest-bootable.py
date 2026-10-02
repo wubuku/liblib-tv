@@ -107,6 +107,8 @@ SLOW = {
 # 因为「空着」和「量过但很快」在账面上长得一模一样，而只有后者是有意义的。
 SELFTEST_COSTS = {
     "selftest-baseline.py": 1.6,
+    # Batch 198：`beefsrc` 反验（6 例），实测 0.29s——临时树里现造仓与 worktree
+    "selftest-beefsrc.py": 0.4,
     "selftest-batch-rows.py": 0.4,  # Batch 183：闸 19，实测 0.39/0.39/0.45s
     "selftest-deadlinks.py": 0.6,
     "selftest-encoding.py": 0.4,    # Batch 183：闸 20，实测 0.42/0.39/0.42s
@@ -206,6 +208,62 @@ def selftests():
 def fixture_count():
     return sum(1 for fn in os.listdir(SCRIPTS)
                if fn.startswith("selftest-") and is_fixture(fn))
+
+
+def _imported_modules(path):
+    """这份反验**真的 import 了**哪些顶层模块名。
+
+    **为什么是 import 而不是「文本里出现过这个名字」**（Batch 198 实测的两次假阴性）：
+    第一版按文本匹配，**模块 docstring 与 `print()` 里的一句说明就足以骗过它**——
+    实测把 `import beefsrc` 整行删掉、文档一字不改，判据照样报绿。
+    收窄到「剥掉注释与文档字符串后，**AST 里真的有一条 import 语句**」才抓得住。
+    这与方向三原有的闸名判据是同一类收紧：**认事实，不认写法**。
+    """
+    try:
+        with open(path, encoding="utf-8", errors="ignore") as fh:
+            tree = ast.parse(fh.read())
+    except (OSError, SyntaxError):
+        return set()
+    out = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for a in node.names:
+                out.add(a.name.split(".")[0])
+        elif isinstance(node, ast.ImportFrom) and node.module and node.level == 0:
+            out.add(node.module.split(".")[0])
+    return out
+
+
+def _shared_modules():
+    """`scripts/` 下**不是闸、也不是反验**，且**至少被一道闸 import 过**的本地模块。
+
+    **为什么要现算而不是列名单**：名单是人维护的，会与现实脱节，
+    而脱节的方向永远是「多了一条没人管的名字」或「少了一条真被依赖的模块」。
+    事实判据只有一条：**它被某道闸 import**——
+    **被闸依赖的模块坏掉，影响面就是它依赖它的那些闸**，这个影响面是算得出来的。
+    """
+    out = set()
+    try:
+        files = os.listdir(SCRIPTS)
+    except OSError:
+        return out
+    gates = [f for f in files if f.startswith("verify-") and f.endswith(".py")]
+    bodies = []
+    for g in gates:
+        try:
+            with open(os.path.join(SCRIPTS, g), encoding="utf-8") as fh:
+                bodies.append(fh.read())
+        except OSError:
+            continue
+    for f in files:
+        if not f.endswith(".py") or f.startswith(("verify-", "selftest-")):
+            continue
+        mod = f[:-3]
+        pat = re.compile(r"^\s*(?:import\s+%s\b|from\s+%s\s+import)" % (re.escape(mod), re.escape(mod)),
+                         re.M)
+        if any(pat.search(b) for b in bodies):
+            out.add(mod)
+    return out
 
 
 def main():
@@ -311,7 +369,17 @@ def main():
                         f"方向二之二：闸门 {gate_fn} 依赖的本地模块 {mod} import 不了："
                         f"{(r.stderr or '').strip().splitlines()[-1][:90]}")
 
-    # 方向三：每份反验都要能说出自己测的是哪道闸，且那道闸真实存在
+    # 方向三：每份反验都要能说出自己测的是哪道闸（或哪个被闸依赖的共享模块）
+    #
+    # **Batch 198 扩了「或哪个共享模块」**：本批给 `beefsrc.py` 配反验时撞上的——
+    # `beefsrc` 是 13 道闸共同依赖的路径解析模块，**它不是闸，也不对应任何一道闸**，
+    # 而原判据只认 `verify-*.py`，于是它报「找不到被测闸门」。
+    # 扩法的关键是**那个集合是算出来的、不是名单**：
+    # 「`scripts/` 下不是 verify-/selftest- 的 .py，且**至少被一道闸 import 过**」——
+    # **`beefsrc` 改坏时 13 道闸一起失效，这就是「它值得有反验」的事实依据**，
+    # 而不是一个我随手维护的白名单（那正是纪律 101 的形态）。
+    # 认闸名、认模块名都是「按写法判定」的老毛病；**判据认的仍然是事实**。
+    shared = _shared_modules()
     for fn in names:
         p = os.path.join(SCRIPTS, fn)
         try:
@@ -319,11 +387,15 @@ def main():
                 text = fh.read()
         except OSError:
             continue
-        if not re.search(r"verify-[a-z0-9-]+\.py", text):
-            problems.append(
-                f"方向三：{fn} 里找不到任何 verify-*.py 的引用"
-                "　→ 它没有指向被测闸门；「反验 ↔ 闸」的对应关系会退化成散文"
-                "（Batch 169 方向十一治的正是这个）")
+        if re.search(r"verify-[a-z0-9-]+\.py", text):
+            continue
+        if shared & _imported_modules(p):
+            continue
+        problems.append(
+            f"方向三：{fn} 里找不到任何 verify-*.py 的引用，"
+            f"也没有提到被闸依赖的共享模块（现有：{'、'.join(sorted(shared)) or '无'}）"
+            "　→ 它没有指向被测对象；「反验 ↔ 闸」的对应关系会退化成散文"
+            "（Batch 169 方向十一治的正是这个）")
 
     # 方向四：慢反验登记表**双向**自证（Batch 180 改）
     #
