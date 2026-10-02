@@ -28,8 +28,8 @@
 （Batch 142 闸 8 第一版把 40+ 行正常历史行全报成异常，同一条教训）。
 只扫两种**带结构标记、不会被散文冒充**的写法：
 
-  · 方向一：`## 环境记录…（Batch N，…）`——**全角括号 + 全角逗号**紧跟在「Batch N」后面，
-    这是 AUDIT.md 自己的标题格式，散文里不会出现；
+  · 方向一：**任何 markdown 标题行里**的「（Batch N，…）」——全角括号 + 全角逗号
+    紧跟在「Batch N」后面，这是本项目登记批次的标准写法，散文里不会出现；
   · 方向二：`纪律 N` 出现在 .md 全文——**数字是 ASCII**，而中文行文里说纪律一律带
     汉字（「纪律 128/129/130」「纪律一百四十」），所以 `纪律 \\d+` 命中的一定是
     **编号引用**而不是叙述。
@@ -51,8 +51,24 @@ PROGRESS = os.path.join(ROOT, "PROGRESS.md")
 AUDIT = os.path.join(ROOT, "AUDIT.md")
 RULES = os.path.join(ROOT, "AUDIT-RULES.md")
 
-# 方向一：环境记录标题里的 Batch N（全角括号 + 全角逗号，散文里不会出现）
-REC_RE = re.compile(r"^##\s*环境记录[^\n]*?（Batch\s*(\d+[a-z]?)\s*[，,]")
+# 方向一：任何标题行里的 Batch N（全角括号 + 全角逗号，散文里不会出现）
+#
+# **Batch 216 把这条的扫描面从「AUDIT.md 里以『环境记录』三字开头的标题」放开成
+# 「全手册任意标题」。原写法抓不到两处真缺陷**：
+#   · `AUDIT.md:18`  `## Gate B 回走记录（Batch 7，2026-09-29，本地 vite :3001 + Go :8080）`
+#   · `SOURCE_OBSERVATIONS.md:29` `## v1.5.9 → v1.6.6 增量审计（Batch 9，2026-09-29）`
+# **两处都是货真价实的环境记录**——只是标题没写「环境记录」三个字。
+# **判据的输入若匹配不到，它就等于不存在**（纪律 166 的近亲）：把「环境记录」
+# 当成关键词，等于让「写得不像标准标题的那一批」永远免检。
+#
+# **范围是量过假阳性率才放开的**：放开后全手册命中 337 处，**不在批次表的只有那 2 处**，
+# 零假阳性。**为什么不顺手也扫正文行**：形态收成「任意位置的 Batch N」之后，
+# 立刻进来 4 个假的——`Batch 299`/`Batch 288` 是**别的仓**（jimeng）的编号，
+# `Batch 999` 是 Batch 215 记叙「把某条纪律的标注改成 Batch 999」时**谈论一个字符串**，
+# 而 `Batch 55` 那条倒是真的（后续三个批次反复写「替代 Batch 55 未遂的视觉取证」，
+# 批次表里确实没有它）——**1 真 3 假，按 3:1 的假阳性率这就是不能上**。
+# **那半条真缺陷另行处理**（见闸 19：它是「批次表漏登记」而不是「悬空引用」）。
+REC_RE = re.compile(r"^#{2,4}\s[^\n]*?（Batch\s*(\d+[a-z]?)\s*[，,]")
 # 方向二：纪律编号引用（ASCII 数字；中文叙述里说纪律带汉字，不会命中）
 DISC_RE = re.compile(r"纪律\s*(\d+)")
 # 批次表的行首形态
@@ -244,18 +260,25 @@ def main():
     problems = []
     scanned = 0
 
-    # 方向一：环境记录里的 Batch N 必须已登记
+    # 方向一：标题里声明的 Batch N 必须已登记（**全手册**，Batch 216 放开）
     recs = 0
-    for i, line in enumerate(read(AUDIT).split("\n"), 1):
-        m = REC_RE.match(line)
-        if not m:
+    for p in md_files():
+        try:
+            text = read(p)
+        except (OSError, UnicodeDecodeError) as exc:
+            problems.append(f"[未能核对] 读不到 {os.path.relpath(p, ROOT)}：{exc}")
             continue
-        recs += 1
-        n = m.group(1)
-        if n not in batches:
-            problems.append(f"方向一：AUDIT.md 第 {i} 行的环境记录声明「Batch {n}」，"
-                            f"而批次表里没有这一行——**这一批发生过，只是没登记**")
-    print(f"方向一：{recs} 条环境记录，批次表 {len(batches)} 个编号")
+        rel = os.path.relpath(p, ROOT)
+        for i, line in enumerate(text.split("\n"), 1):
+            m = REC_RE.match(line)
+            if not m:
+                continue
+            recs += 1
+            n = m.group(1)
+            if n not in batches:
+                problems.append(f"方向一：{rel} 第 {i} 行的标题声明「Batch {n}」，"
+                                f"而批次表里没有这一行——**这一批发生过，只是没登记**")
+    print(f"方向一：{recs} 处标题声明批次，批次表 {len(batches)} 个编号")
 
     # 方向二：纪律编号引用必须已定义
     refs = 0

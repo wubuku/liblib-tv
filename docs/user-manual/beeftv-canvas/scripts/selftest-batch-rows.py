@@ -8,12 +8,27 @@
   3  批次号形态非法                    → 必报（方向二）
   4  读不到批次表（删掉小节标题）      → 必须 rc=2「未能核对」，不得当成通过
   5  真实现状                          → 不报
+  6  数据行少一列（删掉状态格）        → 必报（方向三，Batch 216 新增）
+  7  数据行多一列                      → **不得**报（多列归闸 8，钉住分工边界）
+  8  表头自己少一列                    → 必报（表头缺列会让所有「少列」判断失去参照）
 
 **用例 2 是本文件最要紧的一条，而且它不需要注入**：
 `PROGRESS.md` 里**批次表之外**还有一张表，它有一行编号 `18`，而批次表里也有
 `| 18 |`（Batch 18「可达升级两例」）。**闸 19 第一版就是全文件扫 `| 数字 |` 行，
 于是它把这个天然样本报成了重复**——而那正是判据作者（我）自己写反了作用域。
 现在这一例直接吃真实文件：**只要闸 19 的作用域又扩大到全文件，它立刻就会红。**
+
+**用例 7 单独存在的理由**：它钉的是一道**分工边界**。批次表一行少列归本闸、
+多列归闸 8（`verify-tables.py`）——两边合起来才覆盖「列数不对」的全部方向。
+用例 6 保证本闸不是「什么都没查」，用例 7 保证它也**不是把闸 8 的活抢过来做**：
+抢活不会立刻出错，但会让同一条缺陷在两处各报一次，而**两处报的行号与措辞不一样**，
+下一个来查的人得先判断该信哪个。**分工没人守，半年后就只剩一个判据、另一半覆盖悄悄没了。**
+
+**用例 8 单独存在的理由**：本闸的「少列」判据拿表头列数当参照，而表头列数是
+**算出来的**（这样这张表哪天加一列也不会误报）。可一旦表头自己被删成一列，
+判据会安静地拿 1 当参照、于是每一行都「不缺列」——**判据不会错，它只是再也不成立**。
+这类自检不能省：Batch 215 的同款是纪律的批次标注整个删掉，判据当时报绿，
+后来靠成对验证才发现「没写」和「写错」被混为一谈。
 
 **用例 4 单独存在的理由**：`0 一致 / 1 不一致 / 2 未能核对` 三段退出码里，
 「读不到」若返回 0，就等于**把手册删坏这件事报成一切正常**（Batch 168 起立的底线）。
@@ -30,6 +45,10 @@ GATE = os.path.join(ROOT, "scripts", "verify-batch-rows.py")
 PROGRESS = os.path.join(ROOT, "PROGRESS.md")
 SECTION = "## Batch 计划与状态"
 ROW_RE = re.compile(r"^\|\s*([^|]*?)\s*\|")
+# **必须与被验的闸用同一套切分**（Batch 216）：Batch 143 那行内容里有 `\\|\\|`
+# 与带竖线的代码片段，用朴素 split("|") 数出来的列数与闸不一致，
+# 于是「注入没生效」的断言会给出与真相相反的结论——**用例自己量错就等于没量**。
+SPLIT = re.compile(r"(?<!\\)\|")
 
 results = []
 
@@ -150,9 +169,68 @@ def m_clean_pass():
     record("5 真实现状 → 不报", rc == 0, f"rc={rc}")
 
 
+# ── 6 数据行少一列 → 必报（Batch 216 新方向）─────────────────────────
+def m_short_row_must_report():
+    check_anchor()
+    orig = read()
+    try:
+        lines = orig.split("\n")
+        start, end = locate_batch_table_lines(lines)
+        i = next(i for i in range(start + 2, end) if lines[i].startswith("| 181 |"))
+        cells = SPLIT.split(lines[i].strip()[1:-1])
+        assert len(cells) == 3, f"前提失配：181 行是 {len(cells)} 列，不是 3（账本结构变了）"
+        lines[i] = "|" + "|".join(c[:] for c in cells[:2]) + "|"
+        write("\n".join(lines))
+        after = read().split("\n")[i]
+        assert len(SPLIT.split(after.strip()[1:-1])) == 2, "前提失配：注入没生效"
+        rc, out = run()
+        ok = rc == 1 and "只有 2 列" in out and "181" in out
+        record("6 数据行少一列 → 必报", ok, f"rc={rc}")
+    finally:
+        write(orig)
+
+
+# ── 7 数据行多一列 → **不得**报（分工边界：多列归闸 8）────────────────
+def m_extra_col_must_not_report():
+    check_anchor()
+    orig = read()
+    try:
+        lines = orig.split("\n")
+        start, end = locate_batch_table_lines(lines)
+        i = next(i for i in range(start + 2, end) if lines[i].startswith("| 181 |"))
+        lines[i] = lines[i].rstrip() + " 多余的一格 |"
+        write("\n".join(lines))
+        after = read().split("\n")[i]
+        assert len(SPLIT.split(after.strip()[1:-1])) == 4, "前提失配：注入没生效"
+        rc, out = run()
+        ok = rc == 0 and "只有" not in out
+        record("7 数据行多一列 → 不得报（多列归闸 8）", ok, f"rc={rc}")
+    finally:
+        write(orig)
+
+
+# ── 8 表头自己少一列 → 必报（参照没了，判据静悄悄失效）──────────────
+def m_short_header_must_report():
+    check_anchor()
+    orig = read()
+    try:
+        lines = orig.split("\n")
+        start, end = locate_batch_table_lines(lines)
+        assert lines[start] == "| Batch | 内容 | 状态 |", "前提失配：表头不是预期的三列"
+        lines[start] = "| Batch | 内容 |"
+        write("\n".join(lines))
+        rc, out = run()
+        ok = rc == 1 and "表头" in out
+        record("8 表头少一列 → 必报", ok, f"rc={rc}")
+    finally:
+        write(orig)
+
+
 def main():
     tests = [m_duplicate_must_report, m_cross_table_must_not_report,
-             m_bad_shape_must_report, m_unreadable_must_be_rc2, m_clean_pass]
+             m_bad_shape_must_report, m_unreadable_must_be_rc2, m_clean_pass,
+             m_short_row_must_report, m_extra_col_must_not_report,
+             m_short_header_must_report]
     for t in tests:
         try:
             t()
