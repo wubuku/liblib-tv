@@ -2299,9 +2299,13 @@ def main() -> int:
           # 890 自己就把两条「仍未验证」留在了基线里。
           and "机制已定位到一层、但未钉死" in _ausrc
           and "仍然存在的差异" in _ausrc
-          and "别把上面那两句机制描述当成因果证明" in _ausrc
           and "**至今没测到**" in _ausrc
-          and "的确切规则**未验死**" in _ausrc)
+          # ⚠️⚠️ 第三版（891 推进了事实）：「确切规则**未验死**」那句被
+          # **891 证伪**换掉了 ⇒ 锚点跟着改成「**已证伪**」。但**不许**因此
+          # 把「源站有没有 preventDefault **至今没测到**」一起删掉 ——
+          # 891 证伪的是**通用假设**，**证不了源站自己的行为**。
+          and "891 已把这条「浏览器规则」假设证伪" in _ausrc
+          and "空白页**证不了**源站自己的行为" in _ausrc)
     # ══════════ 批 890：DD.8 那条差异的机制，查到一层就**停** ══════════
     p890 = ROOT / "scripts/jimeng_probe890_nodefocus_why_src.py"
     p890b = ROOT / "scripts/jimeng_probe890b_nodefocus_why2_src.py"
@@ -2347,8 +2351,12 @@ def main() -> int:
           and "纯浏览器原生" in _ausrc
           and "有没有被 `preventDefault()`" in _ausrc
           and "**至今没测到**" in _ausrc
-          and "的确切规则**未验死**" in _ausrc
-          and "不许当结论" in _ausrc)
+          # ⚠️ 第二版（891 证伪了那条「浏览器规则」假设）：
+          # 原锚点「确切规则**未验死**」已被 891 换成「**已证伪**」——
+          # **判据要跟上事实**，但**不许**顺势把「源站自己有没有 preventDefault
+          # 至今没测到」这条删掉（891 只否掉了**通用**假设）。
+          and "891 已把这条「浏览器规则」假设证伪" in _ausrc
+          and "读不到不代表没有" in _ausrc)
     check("EE.5 「点节点中心那个坐标落到了谁」只**说明落点是谁**，"
           "**不许**据此推出「所以焦点会/不会移动」—— 那一步**没测**"
           "（落点是不可聚焦后代：源站 `svg`/tabIndex=-1、复刻 `SPAN`/tabIndex=-1；"
@@ -2357,6 +2365,63 @@ def main() -> int:
           and "**不许**据此推出" in _ausrc
           and "那一步**没测**" in _ausrc
           and "elementFromPoint" in _ausrc)
+    # ══════════ 批 891：一条「看起来很合理」的规则，被最小复现证伪 ══════════
+    p891 = ROOT / "scripts/jimeng_probe891_mousedown_rule_ck.py"
+    _p891 = p891.read_text(encoding="utf-8") if p891.exists() else ""
+    check("FF.1 891 用**最小复现**（空白页 `set_content`、**不跑源站**）把 §101 "
+          "那条「mousedown 落点在当前焦点子树内 ⇒ 浏览器不移动焦点」"
+          "**证伪**了 —— C1 格子（焦点在落点的可聚焦祖先上）**照样移动**。"
+          "六格（基线 / 焦点在外面 / preventDefault / stopPropagation / "
+          "祖先不可聚焦 / 落点自己可聚焦）**都列全**、每格 2 次",
+          bool(_p891) and "REPS = 2" in _p891
+          and all(f"C{i}_" in _p891 for i in (1, 2, 3, 4, 5, 6))
+          and '"mousedown_focus_rule_refuted_891"' in _ausrc
+          and "**证伪了**" in _ausrc
+          and "这就是那条假设的直接反例" in _ausrc
+          # 两条「是不是前提」也**排除**掉了，不许只说 C1
+          and "不是前提" in _ausrc
+          and "「祖先可聚焦」不是前提" in _ausrc
+          and "「落点不可聚焦」不是前提" in _ausrc)
+    check("FF.2 证伪**收窄**出唯一候选：只有 **`preventDefault()`** 能阻止"
+          "浏览器移动焦点（**`stopPropagation` 挡不住** —— 只停冒泡、"
+          "**不**阻止默认）。⚠️ 而「源站到底有没有 preventDefault」"
+          "**仍未测到**（890b 挂在 document 冒泡阶段，事件**没冒泡到** document，"
+          "读数空数组 ⇒ 读不到**不代表没有**），下一批的取法也写在基线里",
+          "**只有 `preventDefault()` 能阻止浏览器移动焦点**" in _ausrc
+          and "`stopPropagation` 挡不住" in _ausrc
+          and '"src_site_preventdefault_still_unmeasured"' in _ausrc
+          and "**仍未测到**" in _ausrc
+          and "读不到不代表没有" in _ausrc
+          and "派发**结束**后再读那个对象的 `defaultPrevented`" in _ausrc)
+    check("FF.3 方法论：**「读数能这么解释」不等于「这条规则成立」** —— 一条"
+          "机制假设要能被采信得满足两条：① 能解释**全部**相关读数；"
+          "② **扛得住**一个专门为证伪它设计的**最小复现**。第 ② 条是新的，"
+          "而且**在空白页上就能验**，不必每次回源站。"
+          "⚠️ 反过来也要说清：空白页**证不了**源站自己的行为，"
+          "它只否掉「这是浏览器规则」这类**通用**假设",
+          '"mechanism_hypothesis_must_survive_minimal_repro"' in _ausrc
+          and "**「读数能这么解释」不等于「这条规则成立」。**" in _ausrc
+          and "扛得住" in _ausrc
+          and "**验机制不必每次回源站**" in _ausrc
+          and "空白页**证不了**源站自己的行为" in _ausrc)
+    check("FF.4 最小复现本身守纪律：每格**重新 `set_content`**（互不污染）、"
+          "**真鼠标事件**（`dispatchEvent` 的合成事件**不会**触发焦点默认行为）、"
+          "落点**量出来**再点（`elementFromPoint`）、捕获与冒泡**两个阶段**"
+          "都读 `defaultPrevented`（890 的教训：只在捕获阶段读**恒真为假**）",
+          "每个格子**重新 set_content**" in _p891
+          and "pg.mouse.click" in _p891
+          and "合成事件**不会**触发焦点默认行为" in _p891
+          and "落点**量出来**再点" in _p891
+          and "elementFromPoint" in _p891
+          and "onCap" in _p891 and "onBub" in _p891
+          and "**恒真为假**" in _p891)
+    check("FF.5 891 第一跑**炸在**自己写的代码上（数组名 `cap` 又被赋成 handler "
+          "函数 ⇒ READ 回来是函数、序列化后 None ⇒ `for m in None`），"
+          "这条**留痕**在探针里 —— 教训是「读数取不到时要认得出是**变量写重了**，"
+          "别当成「浏览器没触发」」",
+          "数组名与 handler 名**必须分开**" in _p891
+          and "别当成" in _p891
+          and "「浏览器没触发」" in _p891)
     check("CC.7 886 的教训落地：**组件内凡是要复用，就该提到模块级，"
           "别复制第二份** —— 886 第一版把实现抽成组件内闭包，结果它和 Clear "
           "内联那段是**复制粘贴关系**，按内容替换**匹配到了自己**、把文件改坏"
