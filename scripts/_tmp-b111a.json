@@ -1,0 +1,441 @@
+{
+ "at": "2026-10-02T18:57:26.602Z",
+ "round": "a",
+ "start": {
+  "nodes": "76",
+  "sel": "0",
+  "edges": "0",
+  "zoom": "Zoom options, 60%",
+  "tool": "选择工具",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "idsBefore": 76,
+ "blank": {
+  "n": 266,
+  "first": [
+   788,
+   280
+  ]
+ },
+ "menus": [
+  {
+   "aria": "Canvas context menu",
+   "rect": "788,280 240×172",
+   "vis": "visible",
+   "items": [
+    "新建节点",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "粘贴\n⌘ V",
+    "重做\n⌘ ⇧ Z\n无需重做操作"
+   ]
+  },
+  {
+   "aria": null,
+   "rect": "1036,280 200×404",
+   "vis": "hidden",
+   "items": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ]
+  }
+ ],
+ "nj": {
+  "x": 908,
+  "y": 302,
+  "rect": "792,284 232×36",
+  "expanded": "false"
+ },
+ "njAfter": "true",
+ "tl": [
+  {
+   "t": "新建节点",
+   "vis": "visible",
+   "rect": "792,284 232×36",
+   "x": 908,
+   "y": 302,
+   "menuRect": "788,280 240×172"
+  },
+  {
+   "t": "文本",
+   "vis": "visible",
+   "rect": "1040,316 192×36",
+   "x": 1136,
+   "y": 334,
+   "menuRect": "788,280 240×172"
+  },
+  {
+   "t": "图片",
+   "vis": "visible",
+   "rect": "1040,356 192×36",
+   "x": 1136,
+   "y": 374,
+   "menuRect": "788,280 240×172"
+  },
+  {
+   "t": "视频",
+   "vis": "visible",
+   "rect": "1040,396 192×36",
+   "x": 1136,
+   "y": 414,
+   "menuRect": "788,280 240×172"
+  },
+  {
+   "t": "音频",
+   "vis": "visible",
+   "rect": "1040,436 192×36",
+   "x": 1136,
+   "y": 454,
+   "menuRect": "788,280 240×172"
+  },
+  {
+   "t": "时间线",
+   "vis": "visible",
+   "rect": "1040,476 192×36",
+   "x": 1136,
+   "y": 494,
+   "menuRect": "788,280 240×172"
+  },
+  {
+   "t": "主体",
+   "vis": "visible",
+   "rect": "1040,516 192×36",
+   "x": 1136,
+   "y": 534,
+   "menuRect": "788,280 240×172"
+  },
+  {
+   "t": "导演台",
+   "vis": "visible",
+   "rect": "1040,556 192×36",
+   "x": 1136,
+   "y": 574,
+   "menuRect": "788,280 240×172"
+  },
+  {
+   "t": "从资产库添加",
+   "vis": "visible",
+   "rect": "1040,604 192×36",
+   "x": 1136,
+   "y": 622,
+   "menuRect": "788,280 240×172"
+  },
+  {
+   "t": "本地上传",
+   "vis": "visible",
+   "rect": "1040,644 192×36",
+   "x": 1136,
+   "y": 662,
+   "menuRect": "788,280 240×172"
+  },
+  {
+   "t": "粘贴 ⌘ V",
+   "vis": "visible",
+   "rect": "792,332 232×36",
+   "x": 908,
+   "y": 350,
+   "menuRect": "788,280 240×172"
+  },
+  {
+   "t": "重做 ⌘ ⇧ Z 无需重做操作",
+   "vis": "visible",
+   "rect": "792,372 232×36",
+   "x": 908,
+   "y": 390,
+   "menuRect": "788,280 240×172"
+  },
+  {
+   "t": "撤销 ⌘ Z",
+   "vis": "visible",
+   "rect": "792,412 232×36",
+   "x": 908,
+   "y": 430,
+   "menuRect": "788,280 240×172"
+  },
+  {
+   "t": "文本",
+   "vis": "visible",
+   "rect": "1040,316 192×36",
+   "x": 1136,
+   "y": 334,
+   "menuRect": "1036,280 200×404"
+  },
+  {
+   "t": "图片",
+   "vis": "visible",
+   "rect": "1040,356 192×36",
+   "x": 1136,
+   "y": 374,
+   "menuRect": "1036,280 200×404"
+  },
+  {
+   "t": "视频",
+   "vis": "visible",
+   "rect": "1040,396 192×36",
+   "x": 1136,
+   "y": 414,
+   "menuRect": "1036,280 200×404"
+  },
+  {
+   "t": "音频",
+   "vis": "visible",
+   "rect": "1040,436 192×36",
+   "x": 1136,
+   "y": 454,
+   "menuRect": "1036,280 200×404"
+  },
+  {
+   "t": "时间线",
+   "vis": "visible",
+   "rect": "1040,476 192×36",
+   "x": 1136,
+   "y": 494,
+   "menuRect": "1036,280 200×404"
+  },
+  {
+   "t": "主体",
+   "vis": "visible",
+   "rect": "1040,516 192×36",
+   "x": 1136,
+   "y": 534,
+   "menuRect": "1036,280 200×404"
+  },
+  {
+   "t": "导演台",
+   "vis": "visible",
+   "rect": "1040,556 192×36",
+   "x": 1136,
+   "y": 574,
+   "menuRect": "1036,280 200×404"
+  },
+  {
+   "t": "从资产库添加",
+   "vis": "visible",
+   "rect": "1040,604 192×36",
+   "x": 1136,
+   "y": 622,
+   "menuRect": "1036,280 200×404"
+  },
+  {
+   "t": "本地上传",
+   "vis": "visible",
+   "rect": "1040,644 192×36",
+   "x": 1136,
+   "y": 662,
+   "menuRect": "1036,280 200×404"
+  }
+ ],
+ "hitCheck": {
+  "ok": true,
+  "text": "时间线",
+  "inMenu": true
+ },
+ "diff": [
+  "node_egh7n0acaw"
+ ],
+ "selIds": [
+  "node_egh7n0acaw"
+ ],
+ "guardrail2": {
+  "diffN": 1,
+  "ok": true
+ },
+ "selfId": "node_egh7n0acaw",
+ "selfInfo": {
+  "id": "node_egh7n0acaw",
+  "cls": "react-flow__node react-flow__node-timeline nopan selected selectable draggable",
+  "aria": "时间线 node: 时间线 3",
+  "innerText": "时间线 3 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 Drag clips to reorder them. With the keyboard, press Shift + Left or Right Arrow. 时间线: 1 visual track, 0 audio tracks, 0 clips. Selected.",
+  "screen": "628,233 552×95",
+  "transform": "translate(2500.13px, 1028.55px)",
+  "testids": [
+   "timeline-flow-node",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-target-connection-menu-button",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "timeline-flow-node-main-track",
+   "timeline-toolbar",
+   "timeline-playback-clock",
+   "timeline-visual-track",
+   "timeline-track-gutter",
+   "timeline-mute-button",
+   "timeline-node-track-divider",
+   "timeline-track-scroll",
+   "timeline-track-canvas",
+   "timeline-ruler",
+   "timeline-ruler-interaction-extension",
+   "timeline-clip-track",
+   "timeline-source-picker-slot",
+   "timeline-empty-track-label",
+   "timeline-node-resize-handle"
+  ],
+  "arias": [
+   "Create connected node before 时间线 3",
+   "Rename 时间线 3",
+   "Add tags",
+   "分割",
+   "删除",
+   "导出时间线",
+   "全屏编辑",
+   "静音",
+   "添加素材到时间线",
+   "Resize timeline"
+  ],
+  "buttons": [
+   {
+    "aria": "Create connected node before 时间线 3",
+    "testid": "flow-node-target-connection-menu-button",
+    "box": "583,256 33×33"
+   },
+   {
+    "aria": "Rename 时间线 3",
+    "testid": null,
+    "box": "646,204 47×29"
+   },
+   {
+    "aria": "Add tags",
+    "testid": "flow-node-selected-tag",
+    "box": "1158,204 22×22"
+   },
+   {
+    "aria": "分割",
+    "testid": null,
+    "box": "634,240 19×19"
+   },
+   {
+    "aria": "删除",
+    "testid": null,
+    "box": "656,240 19×19"
+   },
+   {
+    "aria": "导出时间线",
+    "testid": null,
+    "box": "1094,240 19×19"
+   },
+   {
+    "aria": "全屏编辑",
+    "testid": null,
+    "box": "1116,240 58×19"
+   },
+   {
+    "aria": "静音",
+    "testid": "timeline-mute-button",
+    "box": "634,289 19×19"
+   },
+   {
+    "aria": "添加素材到时间线",
+    "testid": null,
+    "box": "662,280 512×39"
+   },
+   {
+    "aria": "Resize timeline",
+    "testid": "timeline-node-resize-handle",
+    "box": "1177,233 6×95"
+   }
+  ],
+  "roles": [
+   "separator"
+  ],
+  "leaves": [
+   {
+    "tag": "SPAN",
+    "text": "时间线 3",
+    "box": "646,204 47×22"
+   },
+   {
+    "tag": "SPAN",
+    "text": "00:00",
+    "box": "888,244 24×11"
+   },
+   {
+    "tag": "SPAN",
+    "text": "/",
+    "box": "915,244 3×11"
+   },
+   {
+    "tag": "SPAN",
+    "text": "00:00",
+    "box": "921,244 24×11"
+   },
+   {
+    "tag": "SPAN",
+    "text": "全屏编辑",
+    "box": "1134,242 36×15"
+   },
+   {
+    "tag": "SPAN",
+    "text": "00:00",
+    "box": "662,266 25×7"
+   },
+   {
+    "tag": "SPAN",
+    "text": "00:05",
+    "box": "736,266 24×7"
+   },
+   {
+    "tag": "SPAN",
+    "text": "00:10",
+    "box": "810,266 23×7"
+   },
+   {
+    "tag": "SPAN",
+    "text": "00:15",
+    "box": "884,266 22×7"
+   },
+   {
+    "tag": "SPAN",
+    "text": "00:20",
+    "box": "958,266 24×7"
+   },
+   {
+    "tag": "SPAN",
+    "text": "00:25",
+    "box": "1032,266 24×7"
+   },
+   {
+    "tag": "SPAN",
+    "text": "00:30",
+    "box": "1105,266 24×7"
+   },
+   {
+    "tag": "SPAN",
+    "text": "添加素材到时间线",
+    "box": "889,291 72×15"
+   },
+   {
+    "tag": "SPAN",
+    "text": "Drag clips to reorder them. With the keyboard, pre",
+    "box": "628,328 0×0"
+   },
+   {
+    "tag": "SPAN",
+    "text": "时间线: 1 visual track, 0 audio tracks, 0 clips. Sele",
+    "box": "627,233 0×0"
+   }
+  ]
+ },
+ "end": {
+  "nodes": "77",
+  "sel": "1",
+  "edges": "0",
+  "zoom": "Zoom options, 46%",
+  "tool": "选择工具",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}

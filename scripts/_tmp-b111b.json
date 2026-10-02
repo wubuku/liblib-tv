@@ -1,0 +1,394 @@
+{
+ "at": "2026-10-02T19:01:32.963Z",
+ "round": "b",
+ "self": "node_egh7n0acaw",
+ "start": {
+  "nodes": "77",
+  "sel": "1",
+  "zoom": "Zoom options, 46%"
+ },
+ "r0": {
+  "innerText": "时间线 3 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 Drag clips to reorder them. With the keyboard, press Shift + Left or Right Arrow. 时间线: 1 visual track, 0 audio tracks, 0 clips. Selected.",
+  "rulerBox": "662,264 518×12",
+  "ticks": [
+   {
+    "text": "00:00",
+    "x": 662.2,
+    "w": 25
+   },
+   {
+    "text": "00:05",
+    "x": 736.1,
+    "w": 24
+   },
+   {
+    "text": "00:10",
+    "x": 810,
+    "w": 23
+   },
+   {
+    "text": "00:15",
+    "x": 883.8,
+    "w": 22
+   },
+   {
+    "text": "00:20",
+    "x": 957.7,
+    "w": 24
+   },
+   {
+    "text": "00:25",
+    "x": 1031.6,
+    "w": 24
+   },
+   {
+    "text": "00:30",
+    "x": 1105.4,
+    "w": 24
+   }
+  ],
+  "gaps": [
+   73.9,
+   73.9,
+   73.8,
+   73.9,
+   73.9,
+   73.8
+  ],
+  "clock": "00:00 / 00:00",
+  "scrollBox": "659,259 521×69",
+  "scrollLeft": 0,
+  "scrollTop": 0,
+  "scrollW": 1131,
+  "scrollH": 150,
+  "canvasZoom": "Zoom options, 46%"
+ },
+ "tp": {
+  "x": 665,
+  "y": 263,
+  "box": "659,259 521×69"
+ },
+ "act1": {
+  "before": {
+   "innerText": "时间线 3 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 Drag clips to reorder them. With the keyboard, press Shift + Left or Right Arrow. 时间线: 1 visual track, 0 audio tracks, 0 clips. Selected.",
+   "rulerBox": "662,264 518×12",
+   "ticks": [
+    {
+     "text": "00:00",
+     "x": 662.2,
+     "w": 25
+    },
+    {
+     "text": "00:05",
+     "x": 736.1,
+     "w": 24
+    },
+    {
+     "text": "00:10",
+     "x": 810,
+     "w": 23
+    },
+    {
+     "text": "00:15",
+     "x": 883.8,
+     "w": 22
+    },
+    {
+     "text": "00:20",
+     "x": 957.7,
+     "w": 24
+    },
+    {
+     "text": "00:25",
+     "x": 1031.6,
+     "w": 24
+    },
+    {
+     "text": "00:30",
+     "x": 1105.4,
+     "w": 24
+    }
+   ],
+   "gaps": [
+    73.9,
+    73.9,
+    73.8,
+    73.9,
+    73.9,
+    73.8
+   ],
+   "clock": "00:00 / 00:00",
+   "scrollBox": "659,259 521×69",
+   "scrollLeft": 0,
+   "scrollTop": 0,
+   "scrollW": 1131,
+   "scrollH": 150,
+   "canvasZoom": "Zoom options, 46%"
+  }
+ },
+ "r1": {
+  "innerText": "时间线 3 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 Drag clips to reorder them. With the keyboard, press Shift + Left or Right Arrow. 时间线: 1 visual track, 0 audio tracks, 0 clips. Selected.",
+  "rulerBox": "663,264 250×6",
+  "ticks": [
+   {
+    "text": "00:00",
+    "x": 663.7,
+    "w": 12
+   },
+   {
+    "text": "00:05",
+    "x": 699.3,
+    "w": 12
+   },
+   {
+    "text": "00:10",
+    "x": 734.9,
+    "w": 11
+   },
+   {
+    "text": "00:15",
+    "x": 770.5,
+    "w": 11
+   },
+   {
+    "text": "00:20",
+    "x": 806.2,
+    "w": 12
+   },
+   {
+    "text": "00:25",
+    "x": 841.8,
+    "w": 11
+   },
+   {
+    "text": "00:30",
+    "x": 877.4,
+    "w": 12
+   }
+  ],
+  "gaps": [
+   35.6,
+   35.6,
+   35.6,
+   35.7,
+   35.6,
+   35.6
+  ],
+  "clock": "00:00 / 00:00",
+  "scrollBox": "662,261 251×33",
+  "scrollLeft": 0,
+  "scrollTop": 0,
+  "scrollW": 1131,
+  "scrollH": 150,
+  "canvasZoom": "Zoom options, 22%"
+ },
+ "r2": {
+  "innerText": "时间线 3 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 Drag clips to reorder them. With the keyboard, press Shift + Left or Right Arrow. 时间线: 1 visual track, 0 audio tracks, 0 clips. Selected.",
+  "rulerBox": "662,264 518×12",
+  "ticks": [
+   {
+    "text": "00:00",
+    "x": 662.2,
+    "w": 25
+   },
+   {
+    "text": "00:05",
+    "x": 736.1,
+    "w": 24
+   },
+   {
+    "text": "00:10",
+    "x": 810,
+    "w": 23
+   },
+   {
+    "text": "00:15",
+    "x": 883.8,
+    "w": 22
+   },
+   {
+    "text": "00:20",
+    "x": 957.7,
+    "w": 24
+   },
+   {
+    "text": "00:25",
+    "x": 1031.6,
+    "w": 24
+   },
+   {
+    "text": "00:30",
+    "x": 1105.4,
+    "w": 24
+   }
+  ],
+  "gaps": [
+   73.9,
+   73.9,
+   73.8,
+   73.9,
+   73.9,
+   73.8
+  ],
+  "clock": "00:00 / 00:00",
+  "scrollBox": "659,259 521×69",
+  "scrollLeft": 0,
+  "scrollTop": 0,
+  "scrollW": 1131,
+  "scrollH": 150,
+  "canvasZoom": "Zoom options, 46%"
+ },
+ "r3": {
+  "innerText": "时间线 3 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 Drag clips to reorder them. With the keyboard, press Shift + Left or Right Arrow. 时间线: 1 visual track, 0 audio tracks, 0 clips. Selected.",
+  "rulerBox": "662,-216 518×12",
+  "ticks": [
+   {
+    "text": "00:00",
+    "x": 662.2,
+    "w": 25
+   },
+   {
+    "text": "00:05",
+    "x": 736.1,
+    "w": 24
+   },
+   {
+    "text": "00:10",
+    "x": 810,
+    "w": 23
+   },
+   {
+    "text": "00:15",
+    "x": 883.8,
+    "w": 22
+   },
+   {
+    "text": "00:20",
+    "x": 957.7,
+    "w": 24
+   },
+   {
+    "text": "00:25",
+    "x": 1031.6,
+    "w": 24
+   },
+   {
+    "text": "00:30",
+    "x": 1105.4,
+    "w": 24
+   }
+  ],
+  "gaps": [
+   73.9,
+   73.9,
+   73.8,
+   73.9,
+   73.9,
+   73.8
+  ],
+  "clock": "00:00 / 00:00",
+  "scrollBox": "659,-221 521×69",
+  "scrollLeft": 0,
+  "scrollTop": 0,
+  "scrollW": 1131,
+  "scrollH": 150,
+  "canvasZoom": "Zoom options, 46%"
+ },
+ "r4": {
+  "innerText": "时间线 3 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 Drag clips to reorder them. With the keyboard, press Shift + Left or Right Arrow. 时间线: 1 visual track, 0 audio tracks, 0 clips. Selected.",
+  "rulerBox": "474,51 250×6",
+  "ticks": [
+   {
+    "text": "00:00",
+    "x": 474.7,
+    "w": 12
+   },
+   {
+    "text": "00:05",
+    "x": 510.3,
+    "w": 12
+   },
+   {
+    "text": "00:10",
+    "x": 545.9,
+    "w": 11
+   },
+   {
+    "text": "00:15",
+    "x": 581.6,
+    "w": 11
+   },
+   {
+    "text": "00:20",
+    "x": 617.2,
+    "w": 12
+   },
+   {
+    "text": "00:25",
+    "x": 652.8,
+    "w": 11
+   },
+   {
+    "text": "00:30",
+    "x": 688.4,
+    "w": 12
+   }
+  ],
+  "gaps": [
+   35.6,
+   35.6,
+   35.7,
+   35.6,
+   35.6,
+   35.6
+  ],
+  "clock": "00:00 / 00:00",
+  "scrollBox": "473,49 251×33",
+  "scrollLeft": 0,
+  "scrollTop": 0,
+  "scrollW": 1131,
+  "scrollH": 150,
+  "canvasZoom": "Zoom options, 22%"
+ },
+ "summary": {
+  "base_gaps": [
+   73.9,
+   73.9,
+   73.8,
+   73.9,
+   73.9,
+   73.8
+  ],
+  "meta_down_gaps": [
+   35.6,
+   35.6,
+   35.6,
+   35.7,
+   35.6,
+   35.6
+  ],
+  "meta_up_gaps": [
+   73.9,
+   73.9,
+   73.8,
+   73.9,
+   73.9,
+   73.8
+  ],
+  "plain_wheel_gaps": [
+   73.9,
+   73.9,
+   73.8,
+   73.9,
+   73.9,
+   73.8
+  ],
+  "canvas_zoom_throughout": [
+   "Zoom options, 46%",
+   "Zoom options, 22%",
+   "Zoom options, 46%",
+   "Zoom options, 46%",
+   "Zoom options, 22%"
+  ]
+ }
+}

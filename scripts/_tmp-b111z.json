@@ -1,0 +1,51 @@
+{
+ "at": "2026-10-02T19:12:01.246Z",
+ "round": "z",
+ "self": "node_egh7n0acaw",
+ "start": {
+  "nodes": "77",
+  "sel": "1",
+  "edges": "0",
+  "zoom": "Zoom options, 60%",
+  "tool": "选择工具",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "selfBefore": {
+  "box": "350,-558 720×124",
+  "onScreen": false,
+  "transform": "translate(2500.13px, 1028.55px)"
+ },
+ "zoomForFind": true,
+ "at20": {
+  "box": "543,54 240×41",
+  "onScreen": true,
+  "transform": "translate(2500.13px, 1028.55px)"
+ },
+ "menuText": "复制 ⌘ C 复制副本 ⌘ D 粘贴 ⌘ V 下载 请选择至少一个组、文本、图片或视频项 重做 ⌘ ⇧ Z 无需重做操作 撤销 ⌘ Z 删除 ⌫",
+ "deleted": {
+  "gone": [
+   "node_egh7n0acaw"
+  ],
+  "onlySelf": true
+ },
+ "end": {
+  "nodes": "76",
+  "sel": "0",
+  "edges": "0",
+  "zoom": "Zoom options, 60%",
+  "tool": "选择工具",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "read2": {
+  "nodes": "76",
+  "sel": "0",
+  "edges": "0",
+  "zoom": "Zoom options, 60%",
+  "tool": "选择工具",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "idsEnd": 76,
+ "leftover": [],
+ "clean": true,
+ "zoomStable": true
+}

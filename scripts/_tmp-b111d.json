@@ -1,0 +1,193 @@
+{
+ "at": "2026-10-02T19:07:38.260Z",
+ "round": "d",
+ "timelines": [
+  {
+   "id": "node_cdwf8x6fbj",
+   "aria": "时间线 node: 时间线 1"
+  },
+  {
+   "id": "node_d4tjtpnatq",
+   "aria": "时间线 node: 时间线 2"
+  },
+  {
+   "id": "node_egh7n0acaw",
+   "aria": "时间线 node: 时间线 3"
+  }
+ ],
+ "ids": [
+  "node_cdwf8x6fbj",
+  "node_d4tjtpnatq",
+  "node_egh7n0acaw"
+ ],
+ "z0": "Zoom options, 60%",
+ "base": {
+  "zoom": "Zoom options, 60%",
+  "rulers": {
+   "node_cdwf8x6fbj": {
+    "title": "时间线 node: 时间线 1",
+    "nTicks": 7,
+    "gaps": [
+     96.3,
+     96.3,
+     96.3,
+     96.3,
+     96.3,
+     96.3
+    ],
+    "nodeBox": "-1328,-910 720×124",
+    "rulerBox": "-1284,-869 675×16",
+    "mean": 96.3,
+    "inner": "时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio track"
+   },
+   "node_d4tjtpnatq": {
+    "title": "时间线 node: 时间线 2",
+    "nTicks": 7,
+    "gaps": [
+     96.3,
+     96.3,
+     96.3,
+     96.3,
+     96.3,
+     96.3
+    ],
+    "nodeBox": "-582,-533 720×124",
+    "rulerBox": "-538,-492 675×16",
+    "mean": 96.3,
+    "inner": "时间线 2 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio track"
+   },
+   "node_egh7n0acaw": {
+    "title": "时间线 node: 时间线 3",
+    "nTicks": 7,
+    "gaps": [
+     96.3,
+     96.3,
+     96.3,
+     96.3,
+     96.3,
+     96.3
+    ],
+    "nodeBox": "148,-515 720×124",
+    "rulerBox": "192,-474 675×16",
+    "mean": 96.3,
+    "inner": "时间线 3 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 Drag clips to reorder them. With t"
+   }
+  }
+ },
+ "cpt": {
+  "x": 828,
+  "y": 320
+ },
+ "afterA": {
+  "zoom": "Zoom options, 29%",
+  "rulers": {
+   "node_cdwf8x6fbj": {
+    "title": "时间线 node: 时间线 1",
+    "nTicks": 7,
+    "gaps": [
+     46.4,
+     46.5,
+     46.4,
+     46.5,
+     46.4,
+     46.4
+    ],
+    "nodeBox": "-212,-273 347×60",
+    "rulerBox": "-190,-253 326×8",
+    "mean": 46.43,
+    "inner": "时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio track"
+   },
+   "node_d4tjtpnatq": {
+    "title": "时间线 node: 时间线 2",
+    "nTicks": 7,
+    "gaps": [
+     46.4,
+     46.5,
+     46.4,
+     46.4,
+     46.5,
+     46.4
+    ],
+    "nodeBox": "148,-91 347×60",
+    "rulerBox": "169,-72 326×8",
+    "mean": 46.43,
+    "inner": "时间线 2 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio track"
+   },
+   "node_egh7n0acaw": {
+    "title": "时间线 node: 时间线 3",
+    "nTicks": 7,
+    "gaps": [
+     46.5,
+     46.4,
+     46.4,
+     46.5,
+     46.4,
+     46.5
+    ],
+    "nodeBox": "500,-83 347×60",
+    "rulerBox": "521,-63 326×8",
+    "mean": 46.45,
+    "inner": "时间线 3 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 Drag clips to reorder them. With t"
+   }
+  }
+ },
+ "zBack": "Zoom options, 60%",
+ "self": "node_egh7n0acaw",
+ "baseB": {
+  "zoom": "Zoom options, 60%",
+  "ruler": {
+   "title": "时间线 node: 时间线 3",
+   "nTicks": 7,
+   "gaps": [
+    96.3,
+    96.3,
+    96.3,
+    96.3,
+    96.3,
+    96.3
+   ],
+   "nodeBox": "350,-558 720×124",
+   "rulerBox": "394,-517 675×16",
+   "mean": 96.3,
+   "inner": "时间线 3 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 Drag clips to reorder them. With t"
+  }
+ },
+ "tp": {
+  "none": true,
+  "box": "390,-524 679×90",
+  "tried": []
+ },
+ "stepB": "skipped: landing point not available",
+ "zEnd": "Zoom options, 60%",
+ "zEnd2": "Zoom options, 60%",
+ "zStable": true,
+ "verdict": {
+  "same_zoom_all_rulers_equal": true,
+  "base_mean": 96.3,
+  "afterA": {
+   "zoom": "Zoom options, 29%",
+   "ratios": [
+    {
+     "id": "node_cdwf8x6fbj",
+     "base": 96.3,
+     "after": 46.43,
+     "ratio": 2.074
+    },
+    {
+     "id": "node_d4tjtpnatq",
+     "base": 96.3,
+     "after": 46.43,
+     "ratio": 2.074
+    },
+    {
+     "id": "node_egh7n0acaw",
+     "base": 96.3,
+     "after": 46.45,
+     "ratio": 2.073
+    }
+   ]
+  },
+  "afterB": null,
+  "zoomFinal": "Zoom options, 60%"
+ }
+}

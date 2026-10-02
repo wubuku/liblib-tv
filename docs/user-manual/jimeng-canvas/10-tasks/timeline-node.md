@@ -167,7 +167,7 @@
 
 ### 8. 缩放时间线
 
-- 快捷键面板列出 **⌘ + 滚轮** 缩放时间线；
+- 快捷键面板列出 **⌘ + 滚轮** 缩放时间线；🔧 **此条结论已被批次 111 推翻，见下。**
 - 节点还有 `Resize timeline` 控件用于调整时间线长度。
 - 时间线上的片段快捷键（面板声明）：**分割片段 ⌘B**、**向左裁剪 Q**、
   **向右裁剪 W**。
@@ -176,6 +176,69 @@
   （`[role="dialog"]` `timeline-fullscreen-editor` 1280×720，
   关闭键 aria 逐字 `Close timeline editor` **36×36@1232,12**）。
   **前提是先选中时间线节点**；未选中时按 F 完全静默。**Esc 一次即关。**
+
+#### 🔴🔴 2026-10-03 批次 111：「缩放时间线」**不是独立功能，它就是「缩放画布」**
+
+上面第一条要改写。面板把 `⌘ scroll` 列在**「视图」组叫「缩放画布」**、
+在**「时间线」组叫「缩放时间线」** —— 但**功能上只有一个**。
+
+| 动作 | 打在哪儿 | 画布缩放 aria | 自建时间线标尺间距 | 别人的时间线标尺间距 |
+|---|---|---|---|---|
+| `⌘ scroll` ↓×4 | **自建时间线轨道上** | `46% → 22%` | `73.9 → 35.6`（比 2.076） | — |
+| `⌘ scroll` ↓×4 | **画布空白处** | `60% → 29%` | `96.3 → 46.45`（比 **2.073**） | `96.3 → 46.43`（比 **2.074**） |
+| **普通滚轮**（不带 Meta） | 自建时间线轨道上 | `46%`（**不变**） | `73.9`（**不变**） | — |
+
+三条硬读数：
+
+1. **同一画布缩放下，画布上三个时间线节点的标尺间距逐字相同（都 `96.3`）**
+   ⇒ **时间线节点没有自己的缩放**，它的标尺间距只是画布缩放的副产物。
+2. 间距变化比值（`2.07`）与画布缩放比值（`60/29 = 2.07`）**一致**
+   ⇒ 是**整个节点跟着画布一起缩**，不是「时间线自己缩了」。
+3. **普通滚轮在时间线上什么也不发生** —— 间距、画布缩放、轨道 `scrollLeft` **全部不动**。
+   ⇒ 时间线**也不能用滚轮横向滚动**。
+
+📌 **用户侧只需记一条：`⌘` + 滚轮 = 缩放画布，打哪儿都一样。**
+📌 节点上那个 `Resize timeline`（`6×95` 竖把手，右侧）调的是**时间线长度**，
+**不是缩放** —— 两者别混。
+
+#### 🆕 自建时间线节点的完整读数（批次 111，此前全册缺这一档）
+
+入口：**空白右键 → 新建节点 → 时间线**（🔴 **左栏那个「时间线」按钮本轮仍未走通**，
+批次 107 记过「点 24 轮无新节点」；**走右键这条一定成**）。
+
+- aria 逐字 **`时间线 node: 时间线 3`**；class `react-flow__node-timeline`
+- 选中时屏上 **`552×95`**（canvas 缩放 46% 时）／`266×46`（60% 时）
+- `innerText` 逐字：
+  `时间线 3 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线
+   Drag clips to reorder them. With the keyboard, press Shift + Left or Right Arrow.
+   时间线: 1 visual track, 0 audio tracks, 0 clips. Selected.`
+  （空时间线带一句**英文**拖拽提示；本轮三个时间线节点里**只有自建那个**带这句）
+- **20 个 testid**：`timeline-flow-node` / `flow-node-media-stroke` / `flow-node-target-handle`
+  / `flow-node-target-connection-menu-button` / `flow-node-title` / `flow-node-selected-tag`
+  / `timeline-flow-node-main-track` / `timeline-toolbar` / `timeline-playback-clock`
+  / `timeline-visual-track` / `timeline-track-gutter` / `timeline-mute-button`
+  / `timeline-node-track-divider` / `timeline-track-scroll` / `timeline-track-canvas`
+  / `timeline-ruler` / `timeline-ruler-interaction-extension` / `timeline-clip-track`
+  / `timeline-source-picker-slot` / `timeline-empty-track-label` / `timeline-node-resize-handle`
+- **9 个 aria**（除公共几个外的专有项）：
+  `分割` `删除` `导出时间线` `全屏编辑` `静音` `添加素材到时间线` `Resize timeline`
+- 按钮尺寸逐个：`分割 19×19`｜`删除 19×19`｜`导出时间线 19×19`｜`全屏编辑 58×19`｜
+  `静音 19×19`（testid `timeline-mute-button`）｜`添加素材到时间线 512×39`｜
+  `Resize timeline 6×95`（testid `timeline-node-resize-handle`）
+- 标尺 `timeline-ruler` 逐字 7 格 `00:00 00:05 00:10 00:15 00:20 00:25 00:30`（每 5 秒一格），
+  60% 下相邻间距 **`96.3`**
+- ⛔ **节点里没有任何「缩放 %」控件** —— 这也是「时间线没有自己的缩放」的结构性证据
+
+#### 🆕 时间线节点的右键菜单（批次 111 独立复核，`200×292` **7 项**）
+
+```text
+复制 ⌘ C ｜ 复制副本 ⌘ D ｜ 粘贴 ⌘ V ｜ 下载 ｜ 请选择至少一个组、文本、图片或视频项
+｜ 重做 ⌘ ⇧ Z 无需重做操作 ｜ 撤销 ⌘ Z ｜ 删除 ⌫
+```
+
+与手册既有表「时间线 7 / 200×292 /「下载」禁用，原因文案不同」**逐字吻合** ✅，
+本轮把那句原因文案补全为 **`请选择至少一个组、文本、图片或视频项`**
+（此前只记了「原因文案不同」，没写下原文）。
 
 ## 与其它节点的关系
 
