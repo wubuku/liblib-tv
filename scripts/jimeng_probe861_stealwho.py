@@ -129,6 +129,24 @@ def run(pg):
     out["layer_open"] = True
     res = {}
 
+    # ⚠️ 批 861b：直接量审计的**那一次** Tab（blur 之后立刻按，不做任何别的）。
+    #    §79 查出的「tabs:1」 mystery 就在这里 —— 探针之前每次都是先 Tab 很多
+    #    次找锚点，把起点冲掉了；审计是 blur 后**第一次**就按键。
+    print("\n-- T0：blur() 之后**第一次** Tab 落在哪（复刻审计口径）--")
+    arm(pg)
+    pg.evaluate("() => { const a = document.activeElement;"
+                " if (a && a.blur) a.blur(); }")
+    pg.wait_for_timeout(120)
+    b0 = who(pg)
+    pg.keyboard.press("Tab")
+    pg.wait_for_timeout(200)
+    a0 = who(pg)
+    res["T0_first_tab"] = {"before": b0, "after": a0,
+                           "first_tab_inside": bool(a0.get("in_layer")),
+                           "reRender": re_render(pg)}
+    print(f"  T0 第一次 Tab: before={b0['who']!r} → after={a0['who']!r} "
+          f"in_layer={a0.get('in_layer')}")
+
     print("\n-- T3 对照：什么都不做，只等 600ms --")
     step(pg, "T3_no_op", lambda p: None, res)
 
