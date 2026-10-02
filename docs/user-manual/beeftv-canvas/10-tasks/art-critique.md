@@ -140,6 +140,6 @@
 
 ## 相关页面
 
-- 插件页与六个内置插件：[plugins-management.md](plugins-management.md)
-- 连接到图片的方法：[connect-references.md](connect-references.md)
-- 生成类报错怎么读：[../90-troubleshooting.md](../90-troubleshooting.md)
+- 插件页与六个内置插件：[插件管理](plugins-management.md)
+- 连接到图片的方法：[连线引用](connect-references.md)
+- 生成类报错怎么读：[故障排查](../90-troubleshooting.md)

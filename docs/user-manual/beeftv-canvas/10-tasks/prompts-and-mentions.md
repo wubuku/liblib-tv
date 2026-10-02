@@ -59,10 +59,10 @@
 - **为什么我的参考没有生效？** → 检查是否误写了 @mention：一旦进入 composer 模式，连线引用会被整体忽略；
 - **提示词里的「图片1」字样失效了？** → 富引用依赖 mention 语法，直接手改文字不会更新引用，请用 mention 或重新连线；
 - **打错 @ 名字会不会被悄悄跳过？** → 不会，无法解析的 mention 会直接报错；
-- **想换掉某个参考又不想删线？** → 把线拖进提示词面板，松手在某个参考 chip 上即替换（见 [connect-references.md](connect-references.md)）。
+- **想换掉某个参考又不想删线？** → 把线拖进提示词面板，松手在某个参考 chip 上即替换（见 [连线引用](connect-references.md)）。
 
 ## 相关页面
 
-- 连线与引用：[connect-references.md](connect-references.md)
-- 图片生成：[generate-images.md](generate-images.md)
-- 视频生成：[generate-video.md](generate-video.md)
+- [连线引用](connect-references.md)
+- [发起图片生成](generate-images.md)
+- [发起视频生成与素材限制](generate-video.md)

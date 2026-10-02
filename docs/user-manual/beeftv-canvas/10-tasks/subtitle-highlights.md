@@ -21,7 +21,7 @@
 
 ![多轨时间线：V/A/S 三轨，点选 S 轨字幕片段后底部出现字幕编辑面板与精细编辑按钮](../screenshots/48-subtitle-clip-edit-panel.png)
 
-进入剪辑的工具条与弹窗布局见 [timeline-editing.md](timeline-editing.md)。
+进入剪辑的工具条与弹窗布局见 [时间线剪辑器](timeline-editing.md)。
 
 ::: tip 字幕片段从哪来
 S 轨片段是视频节点 `subtitleEntries` 的**只读快照**：时间线里改时间轴或文本后保存，会按视频节点回写 `subtitleEntries`；反之在字幕编辑器里保存，也会同步到时间线。删除全部字幕片段会把节点字幕一并清空。

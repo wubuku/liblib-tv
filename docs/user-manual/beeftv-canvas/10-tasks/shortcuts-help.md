@@ -73,11 +73,11 @@
 
 ## 完整键位表
 
-全表（含导演台键位、路由与端点）见 [20-reference.md](../20-reference.md)。
+全表（含导演台键位、路由与端点）见 [参考：快捷键全表、路由与端点](../20-reference.md)。
 
-画布视图相关的按钮（自动整理、适合屏幕、网格吸附、切换小地图、画布外观等）见 [organize-canvas.md](organize-canvas.md)。
+画布视图相关的按钮（自动整理、适合屏幕、网格吸附、切换小地图、画布外观等）见 [整理画布、Frame 分组与外观](organize-canvas.md)。
 
 ## 相关页面
 
-- 撤销与版本记录：[undo-history-versions.md](undo-history-versions.md)
-- 连线与批量连接：[connect-references.md](connect-references.md)
+- 撤销与版本记录：[撤销重做、版本历史与回收站](undo-history-versions.md)
+- 连线与批量连接：[连线引用](connect-references.md)

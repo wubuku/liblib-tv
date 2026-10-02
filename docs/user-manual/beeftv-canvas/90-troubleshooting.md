@@ -18,20 +18,20 @@
 | 「自动同步可信素材」开关亮着，素材好像没上传 | 它**默认就是开的**，且真正同步要同时满足四个条件 | [generate-video.md](10-tasks/generate-video.md) |
 | 批量表某一行显示「已停用」 | 那是**该行的启用开关被关了**，不是出错；重开开关**不会**重新扣费 | [generate-images.md](10-tasks/generate-images.md) |
 | 一批里几行成功几行失败 | 批量存在「部分失败」这一档，**成功的行照样出结果节点** | [generate-images.md](10-tasks/generate-images.md) |
-| 找不到短剧/小说、任务中心、技能广场 | 这些入口当前**已退场**，访问会静默跳回首页 | [00-quickstart.md](00-quickstart.md) |
+| 找不到短剧/小说、任务中心、技能广场 | 这些入口当前**已退场**，访问会静默跳回首页 | [快速开始](00-quickstart.md) |
 | 找不到「简易模式 / simple 模式」开关 | 工作台模式被**硬编码**，当前版本没有这个切换 | [create-nodes.md](10-tasks/create-nodes.md) |
 | 导演台摄影机模式下少了两个输入框 | 机位面板已提供「切换机位」，下层**故意隐藏**重复的机位下拉与坐标 | [director-basics.md](10-tasks/director-basics.md) |
 | FOV 视口里能用，滑杆却拖不到 | 面板限制 15–90、视口渲染接受 10–120，**两套边界** | [director-basics.md](10-tasks/director-basics.md) |
 | 「俯拍」和「仰拍」容易选反 | 界面文字没问题，但其**内部标识与界面名相反**，以界面文字为准 | [director-basics.md](10-tasks/director-basics.md) |
-| 菜单叫「工作流」，节点却叫「生成配置」 | **是同一个东西**，只是标题不同 | [30-concepts.md](30-concepts.md) |
+| 菜单叫「工作流」，节点却叫「生成配置」 | **是同一个东西**，只是标题不同 | [概念：BeefTV 是怎么工作的](30-concepts.md) |
 | 画布库里找不到「按名称排序」「按项目筛选」 | 这两个控件**当前版本不存在**——排序恒为「最近更新」；筛选能力写了但没接界面 | [manage-canvases.md](10-tasks/manage-canvases.md) |
 | 画布库里找不到「导入」 | **你的版本偏旧**。v1.6.22 补上了「导入画布」按钮（此前整套导入代码都在，但打开文件选择框的那次点击没接到任何控件上）。**先确认版本再当成功能不存在** | [manage-canvases.md](10-tasks/manage-canvases.md) |
 | 插件页有「AI 审美批改」，画布上却建不出这个节点 | 插件与节点**都已注册**，但没有任何界面读取注册表来提供创建；菜单搜索「批改」零结果 | [art-critique.md](10-tasks/art-critique.md) |
 | 批量表并发选了 10，却没见 10 个任务在跑 | 账号**同时只跑得下 5 个**，超出的行停在「等待中」自动补位 | [storage-quota.md](10-tasks/storage-quota.md) |
 | 素材删掉后在画布库回收站里找不到 | 那是**画布**的回收站；素材进的是另一套**素材归档**，默认 30 天后自动清除 | [storage-quota.md](10-tasks/storage-quota.md) |
 | 画布库多选后没有「加入项目」「移出项目」 | 这两个按钮**只在云端项目模式渲染**，该模式恒不开启，不是被禁用 | [manage-canvases.md](10-tasks/manage-canvases.md) |
-| 敲 `/projects/xxx/chapters/yyy` 被弹回画布 | 章节/工作流路由**已注册但恒被改写**，是「进不去」不是「没有」 | [20-reference.md](20-reference.md) |
-| 开着两个标签，我改的东西不见了 | 改到**同一个字段**时先落盘的赢，后改的**静默让位且不提示**；改到不同角落则两边都保住 | [30-concepts.md](30-concepts.md) |
+| 敲 `/projects/xxx/chapters/yyy` 被弹回画布 | 章节/工作流路由**已注册但恒被改写**，是「进不去」不是「没有」 | [参考：快捷键全表、路由与端点](20-reference.md) |
+| 开着两个标签，我改的东西不见了 | 改到**同一个字段**时先落盘的赢，后改的**静默让位且不提示**；改到不同角落则两边都保住 | [概念：BeefTV 是怎么工作的](30-concepts.md) |
 
 ## 打开与加载
 
@@ -305,7 +305,7 @@ v1.6.9 前企业 Seedance 配置可能存了包名而非已安装的视频提供
 
 **处理办法**：要可靠副本，去**画布库**里用卡片菜单的「创建副本」——那条路径会把副本真正存到服务端（实测服务端列表会新增一项）。若只是想让人看看、不打算改，用截图或导出更省事。
 
-完整机制与只读模式的进入方式见 [readonly-canvas.md](10-tasks/readonly-canvas.md) 与 [30-concepts.md](30-concepts.md)。
+完整机制与只读模式的进入方式见 [readonly-canvas.md](10-tasks/readonly-canvas.md) 与 [概念：BeefTV 是怎么工作的](30-concepts.md)。
 
 ### 画布的文件夹、归类、封面换台电脑就没了
 
@@ -325,7 +325,7 @@ v1.6.9 前企业 Seedance 配置可能存了包名而非已安装的视频提供
 | **画布封面** | **没** |
 | **导演台场景** | **没** |
 
-**要留底就导出 ZIP**（见 [manage-canvases.md](10-tasks/manage-canvases.md)），完整的两张对照表在 [30-concepts.md](30-concepts.md)。
+**要留底就导出 ZIP**（见 [manage-canvases.md](10-tasks/manage-canvases.md)），完整的两张对照表在 [概念：BeefTV 是怎么工作的](30-concepts.md)。
 
 ### 改了画布的名字，另一个地方还是旧名
 **当前版本有两套互不相通的名字，这是既定行为，不是你记错了。**
@@ -337,7 +337,7 @@ v1.6.9 前企业 Seedance 配置可能存了包名而非已安装的视频提供
 
 **该在哪改**：在**画布库**改。改完如果马上要关电脑，**顺手在画布里做一次任意编辑**（加个节点、拖动一下位置都行）——实测只有画布库改的名会跟着这次编辑一起存到服务器；顶栏改的名**无论之后编辑多少次都存不上去**。
 
-同名不同物、两个「回收站」、三条「复制画布」都属于同一族，详见 [manage-canvases.md](10-tasks/manage-canvases.md) 与 [30-concepts.md](30-concepts.md)。
+同名不同物、两个「回收站」、三条「复制画布」都属于同一族，详见 [manage-canvases.md](10-tasks/manage-canvases.md) 与 [概念：BeefTV 是怎么工作的](30-concepts.md)。
 
 ### 画布是只读的，但界面上找不到切换按钮
 
@@ -361,7 +361,7 @@ v1.6.9 前企业 Seedance 配置可能存了包名而非已安装的视频提供
 - **普通编辑撞车**：两个标签改到同一个字段时，先落盘的赢，**后改的那个静默丢失且不提示**；
 - **本地或后端同步失败**：只在浏览器控制台留一行日志，界面上什么都不显示。
 
-真正稳妥的做法是**同一时间只开一个标签页编辑同一张画布**。合并规则见 [30-concepts.md](30-concepts.md) 的「多标签同时编辑」节。
+真正稳妥的做法是**同一时间只开一个标签页编辑同一张画布**。合并规则见 [概念：BeefTV 是怎么工作的](30-concepts.md) 的「多标签同时编辑」节。
 :::
 
 ## 连接与会话
@@ -394,7 +394,7 @@ v1.6.9 前企业 Seedance 配置可能存了包名而非已安装的视频提供
 2. 后端进程的环境变量 `CANVAS_WHISPER_BASE_URL` 是否指向该服务（含 `/inference` 的基址，如 `http://127.0.0.1:8082`）——**改完要重启后端**；
 3. 仓库自带的 `scripts/start-whisper-local.sh` 会检查 `whisper-server` 是否在 PATH、模型文件是否已下载到 `.local/whisper-models/`，缺哪项会直接告诉你。
 
-细节见 [20-reference.md](20-reference.md) 的「本地转写服务」节。
+细节见 [参考：快捷键全表、路由与端点](20-reference.md) 的「本地转写服务」节。
 
 ### 转写完成却提示「没有识别出可用字幕」
 

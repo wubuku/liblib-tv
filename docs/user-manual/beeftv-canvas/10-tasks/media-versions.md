@@ -35,7 +35,7 @@
 | **重试** | 失败任务上的「重试」按钮 | 不额外计费（走幂等 id） | 同一个节点 |
 | **重新生成** | 在节点上再次提交生成 | **按量计费**，可能弹「可能再次消耗积分」确认 | 新兄弟节点，组成版本族 |
 
-重试会重建上下文：从最初生成的节点恢复引用；引用已丢失时会拒绝并提示。详见 [generate-images.md](generate-images.md)。
+重试会重建上下文：从最初生成的节点恢复引用；引用已丢失时会拒绝并提示。详见 [发起图片生成](generate-images.md)。
 
 ## 现在就能用的替代做法
 
@@ -48,12 +48,12 @@
 | 误操作后反悔 | **⌘Z** 撤销 / **⇧⌘Z** 或 **⌘Y** 重做 |
 | 复用以前生成的素材 | 底栏「**生成历史**」→ 从历史结果里重新插入 |
 | 失败的生成再试一次 | 失败节点上的「**重试**」（不额外计费） |
-| 任务卡住了想确认结果 | 任务详情 / 失败提示里的「复制排查信息」，见 [90-troubleshooting.md](../90-troubleshooting.md) |
+| 任务卡住了想确认结果 | 任务详情 / 失败提示里的「复制排查信息」，见 [故障排查](../90-troubleshooting.md) |
 
-以上操作见 [undo-history-versions.md](undo-history-versions.md) 与 [generate-images.md](generate-images.md)。
+以上操作见 [撤销重做、版本历史与回收站](undo-history-versions.md) 与 [发起图片生成](generate-images.md)。
 
 ## 相关页面
 
-- 发起生成：[generate-images.md](generate-images.md)
-- 撤销与版本历史：[undo-history-versions.md](undo-history-versions.md)
+- [发起图片生成](generate-images.md)
+- 撤销与版本历史：[撤销重做、版本历史与回收站](undo-history-versions.md)
 - 节点版本对比弹窗：`CanvasVersionCompareModal` 已在 v1.6.16 源码中挂载于画布页，但同样**未走查验证**，本页不对其操作做描述

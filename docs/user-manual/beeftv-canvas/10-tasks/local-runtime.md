@@ -68,11 +68,11 @@ Web 自托管模式仍走本机伴随进程 / 服务端 `depthruntime` 域，行
 | 你想做的事 | 用这个（已验证） |
 |---|---|
 | 本地/离线一点的处理 | 视频节点的「**深度动作捕捉**」——本地生成深度参考视频 |
-| 提取视频素材 | 「**关键帧截取**」（当前帧 / 首帧 / 尾帧）、「**音视频分离**」，见 [generate-video.md](generate-video.md) |
+| 提取视频素材 | 「**关键帧截取**」（当前帧 / 首帧 / 尾帧）、「**音视频分离**」，见 [发起视频生成与素材限制](generate-video.md) |
 | 修剪视频 | 视频节点的「**视频剪辑**」内联时间轴 |
-| 配乐 | 上传音频后进入时间线剪辑，见 [timeline-editing.md](timeline-editing.md) |
+| 配乐 | 上传音频后进入时间线剪辑，见 [时间线剪辑器](timeline-editing.md) |
 
 ## 相关页面
 
-- 视频节点工具条：[generate-video.md](generate-video.md)
-- 故障排查：[90-troubleshooting.md](../90-troubleshooting.md)
+- 视频节点工具条：[发起视频生成与素材限制](generate-video.md)
+- [故障排查](../90-troubleshooting.md)

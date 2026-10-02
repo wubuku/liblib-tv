@@ -41,7 +41,7 @@
 
 另有 5 项默认收起，可在工具栏设置里开启：横向排列、纵向排列、宫格排列、按连线整理、创建引用组。
 
-> 批量连接的完整操作与连线规划预览见 [connect-references.md](connect-references.md)。
+> 批量连接的完整操作与连线规划预览见 [连线引用](connect-references.md)。
 
 ## 自动整理
 
@@ -156,11 +156,11 @@
 ## 找东西
 
 - **切换小地图**：左下角开关，打开后画布一角显示缩略图，节点密集时用来定位；
-- **画布快捷键**：底部工具条进入快捷键中心，完整键位表见 [shortcuts-help.md](shortcuts-help.md) 与 [20-reference.md](../20-reference.md)；
+- **画布快捷键**：底部工具条进入快捷键中心，完整键位表见 [快捷键与帮助中心](shortcuts-help.md) 与 [参考：快捷键全表、路由与端点](../20-reference.md)；
 - **搜索画布节点**：按 **⌘F**（Windows 为 Ctrl+F）打开，按名称或内容搜索并定位节点；
-- **素材管理**：底部工具条「资产管理」打开抽屉，可按媒体类型浏览与插入（见 [upload-materials.md](upload-materials.md)）。
+- **素材管理**：底部工具条「资产管理」打开抽屉，可按媒体类型浏览与插入（见 [上传本地图片、视频、音频](upload-materials.md)）。
 
 ## 相关页面
 
-- 撤销与版本记录：[undo-history-versions.md](undo-history-versions.md)
-- 连线与引用：[connect-references.md](connect-references.md)
+- 撤销与版本记录：[撤销重做、版本历史与回收站](undo-history-versions.md)
+- [连线引用](connect-references.md)

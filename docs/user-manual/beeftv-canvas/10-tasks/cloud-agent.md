@@ -41,15 +41,15 @@
 
 | 你想做的事 | 用这个（已验证） |
 |---|---|
-| 让系统帮你写提示词 | 提示词面板的**提示词优化器**——返回正向/负向提示词、关键变化、待确认假设与候选变体，见 [prompts-and-mentions.md](prompts-and-mentions.md) |
+| 让系统帮你写提示词 | 提示词面板的**提示词优化器**——返回正向/负向提示词、关键变化、待确认假设与候选变体，见 [提示词与 @mention](prompts-and-mentions.md) |
 | 调整生成结果 | 失败任务的「**重试**」不额外计费；满意后再决定是否重新生成（会按量计费） |
 | 批量处理素材 | 画布上的**批量连接**（选中 ≥2 个节点后按 ⌥L） |
-| 找回误操作 | 顶栏「**版本记录**」恢复，或 ⌘Z 撤销，见 [undo-history-versions.md](undo-history-versions.md) |
-| 排查问题 | 失败提示里的「**复制排查信息**」，见 [90-troubleshooting.md](../90-troubleshooting.md) |
+| 找回误操作 | 顶栏「**版本记录**」恢复，或 ⌘Z 撤销，见 [撤销重做、版本历史与回收站](undo-history-versions.md) |
+| 排查问题 | 失败提示里的「**复制排查信息**」，见 [故障排查](../90-troubleshooting.md) |
 
 入口开放后，本页会补上完整的操作步骤与截图。
 
 ## 相关页面
 
-- 记忆与技能：[agent-memory-skills.md](agent-memory-skills.md)
-- 提示词与优化器：[prompts-and-mentions.md](prompts-and-mentions.md)
+- [Agent 记忆与技能](agent-memory-skills.md)
+- 提示词与优化器：[提示词与 @mention](prompts-and-mentions.md)

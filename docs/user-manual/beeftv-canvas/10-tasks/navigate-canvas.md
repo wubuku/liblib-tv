@@ -48,7 +48,7 @@
 
 ## 相关页面
 
-- 节点操作：[create-nodes.md](create-nodes.md)
+- 节点操作：[创建各类节点](create-nodes.md)
 
 ## 画布菜单（左上角）
 

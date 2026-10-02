@@ -27,7 +27,7 @@
 ## 点选字幕片段（S 轨）
 
 - **点选 S 轨字幕片段**，底部面板由「此处无字幕，点选字幕片段后在下方编辑」切换为「**字幕编辑**」面板：显示字幕文本、起止毫秒数（实测 4096 → 6296）与「修改后保存将同步写回对应视频节点的字幕数据」提示；
-- 面板上的「**精细编辑（SRT/高亮/样式）**」按钮打开完整的字幕编辑器（导入/导出 SRT、AI 关键词高亮、字幕样式）——完整操作见 [subtitle-highlights.md](subtitle-highlights.md)；
+- 面板上的「**精细编辑（SRT/高亮/样式）**」按钮打开完整的字幕编辑器（导入/导出 SRT、AI 关键词高亮、字幕样式）——完整操作见 [字幕关键词高亮与 SRT 导入导出](subtitle-highlights.md)；
 - S 轨片段来自视频节点的字幕数据，视频节点没有字幕数据时 S 轨为空。
 
 ![点选 S 轨字幕片段后的字幕编辑面板与精细编辑入口](../screenshots/48-subtitle-clip-edit-panel.png)
@@ -51,13 +51,13 @@
 - 拖动片段改变时间位置（可跨轨）；拖边缘裁剪时长与源内起点；
 - 放置时有**碰撞检测**：重叠会被拒绝或提示，可列出冲突项；
 - **吸附**：拖动时按距离吸附到附近片段边缘，同一毫秒的多个吸附点会全部参与候选；
-- 撤销/重做的**键位**与画布一致（Ctrl/Cmd+Z / Ctrl/Cmd+Shift+Z / Ctrl/Cmd+Y），但**深度不同**：时间线有界 **200 层**（`lib/timeline/editor-history.ts` 的 `HISTORY_LIMIT`），画布只有 **50 层**（见 [undo-history-versions.md](undo-history-versions.md)）。**别把 200 当成通用值**——导演台工作台同样是 50 层。
+- 撤销/重做的**键位**与画布一致（Ctrl/Cmd+Z / Ctrl/Cmd+Shift+Z / Ctrl/Cmd+Y），但**深度不同**：时间线有界 **200 层**（`lib/timeline/editor-history.ts` 的 `HISTORY_LIMIT`），画布只有 **50 层**（见 [撤销重做、版本历史与回收站](undo-history-versions.md)）。**别把 200 当成通用值**——导演台工作台同样是 50 层。
 
 ## 预览与播放
 
 - 播放头跟着**预览视频的播放进度**走（读的是浏览器 `<video>` 的当前时间），所以流畅度取决于视频本身与浏览器，没有独立的「帧率上限」设置；
 - 播到当前片段末尾会自动**衔接到下一个片段**；没有下一段就自动停；
-- **时间线没有关键帧，也就没有「吸附值写入」那套机制**——那属于导演台（见 [director-keyframes-record.md](director-keyframes-record.md)）。两者播放头来源不同，别互相套用。
+- **时间线没有关键帧，也就没有「吸附值写入」那套机制**——那属于导演台（见 [关键帧动画与白膜视频录制](director-keyframes-record.md)）。两者播放头来源不同，别互相套用。
 
 ## AI 编辑
 
@@ -74,5 +74,5 @@ AI 编辑面板一次最多接受 **8 条**编辑命令（防止一次模型输�
 
 ## 相关页面
 
-- 字幕高亮与 SRT：[subtitle-highlights.md](subtitle-highlights.md)
-- 导出成片：[timeline-export.md](timeline-export.md)
+- [字幕关键词高亮与 SRT 导入导出](subtitle-highlights.md)
+- 导出成片：[时间线导出 MP4 与白膜视频录制](timeline-export.md)

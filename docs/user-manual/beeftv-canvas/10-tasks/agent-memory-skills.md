@@ -26,7 +26,7 @@
 
 ## 相关页面
 
-- 插件与渠道：[plugins-management.md](plugins-management.md)
+- 插件与渠道：[插件管理](plugins-management.md)
 
 ## 现在能做什么
 
@@ -34,13 +34,13 @@
 
 | 你想做的事 | 用这个（已验证） |
 |---|---|
-| 沉淀常用提示词 | 把常用提示词存成**文本节点**或复用 **提示词优化器**的候选变体，见 [prompts-and-mentions.md](prompts-and-mentions.md) |
-| 固定一套操作习惯 | 记下快捷键并用底部「画布快捷键」随时查，见 [shortcuts-help.md](shortcuts-help.md) |
-| 让操作更省事 | 选区工具条的**批量连接**、**对齐/分布**，见 [connect-references.md](connect-references.md) |
-| 固定模型与渠道 | 设置页的**渠道 / 默认模型 / 提示词偏好**三个分区，见 [plugins-management.md](plugins-management.md) |
+| 沉淀常用提示词 | 把常用提示词存成**文本节点**或复用 **提示词优化器**的候选变体，见 [提示词与 @mention](prompts-and-mentions.md) |
+| 固定一套操作习惯 | 记下快捷键并用底部「画布快捷键」随时查，见 [快捷键与帮助中心](shortcuts-help.md) |
+| 让操作更省事 | 选区工具条的**批量连接**、**对齐/分布**，见 [连线引用](connect-references.md) |
+| 固定模型与渠道 | 设置页的**渠道 / 默认模型 / 提示词偏好**三个分区，见 [插件管理](plugins-management.md) |
 
 分区开放后，本页会补上完整的操作步骤与截图。
 
 ## 相关页面
 
-- 插件与渠道：[plugins-management.md](plugins-management.md)
+- 插件与渠道：[插件管理](plugins-management.md)

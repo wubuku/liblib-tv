@@ -119,7 +119,7 @@
 
 ## 相关页面
 
-- 生成结果在画布里怎么用：[generate-video.md](generate-video.md) · [generate-images.md](generate-images.md)
-- 模型与渠道怎么配：[../20-reference.md](../20-reference.md) · [storage-quota.md](storage-quota.md)
-- 素材（参考图）从哪来：[asset-library.md](asset-library.md)
-- 首页的三张能力卡：[../00-quickstart.md](../00-quickstart.md)
+- 生成结果在画布里怎么用：[发起视频生成与素材限制](generate-video.md) · [发起图片生成](generate-images.md)
+- 模型与渠道怎么配：[参考：快捷键全表、路由与端点](../20-reference.md) · [账号存储、容量与配额](storage-quota.md)
+- 素材（参考图）从哪来：[素材库（资产页）](asset-library.md)
+- 首页的三张能力卡：[快速开始](../00-quickstart.md)
