@@ -34,6 +34,7 @@ import re
 import sys
 import subprocess
 from baseline import resolve_ref, BaselineError
+from batchread import read_many
 
 CANDIDATES = [
     os.environ.get("BEEFTV_SRC", ""),
@@ -108,9 +109,13 @@ def main():
 
     labels = {}   # value -> set(label)
     files = {}    # value -> set(文件名)
-    for f in web_files:
-        s = subprocess.run(["git", "show", f"{ref}:{f}"],
-                           cwd=src, capture_output=True, text=True).stdout
+    # **Batch 182 改**：原先每个 web 文件一次 `git show` 子进程——
+    # **实测 754 个 .ts/.tsx**，单次约 25ms → **闸门本体 15.7 秒**
+    #（与 Batch 181 治的闸 5/闸 3 是同一种病，只是文件数从 347 涨到 754）。
+    # 改成 `batchread.read_many`：**两次进程调用取代 754 次**。
+    # 只改读取方式，`PAIR_RE` 与后面的判据逻辑一步没动。
+    for f, body in read_many(src, ref, web_files).items():
+        s = body.decode("utf-8", "replace")
         if not s:
             continue
         base = f.split("/")[-1]

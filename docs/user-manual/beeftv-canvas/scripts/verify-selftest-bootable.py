@@ -74,25 +74,23 @@ SLOW = {
         "anchor": ("selftest-unreachable.sh", "refs/manual-gate-selftest"),
     },
     "selftest-meta.sh": {
-        "seconds": 97,            # 实测 97 秒 / 36 例（Batch 179）
-        "why": "97 秒本身不算离谱，但它**会原地改 15 个真实文件**"
-               "（含 `AUDIT.md` / `PROGRESS.md` / `build-site.sh`）——"
-               "**构建中途失败就会把它们留在被改状态**，"
-               "而这正是「绝不能弄丢他人修改」那条纪律要防的事。"
-               "**注意它的登记理由不是「慢」，是「会写别人的文件」**——"
-               "**理由必须说清真正的原因，否则下一个人会按「慢」去优化它，"
-               "而优化它并不会让它变得安全。**",
+        "seconds": 97,            # 实测（Batch 179）
+        # **Batch 182 修正了它的登记理由**。原理由写「97 秒 + 会原地改 15 个文件」，
+        # 把**风险**当成了**原因**——而实测下来它的安全机制其实是齐的：
+        #   · 每例前 `restore`
+        #   · `trap 'restore' EXIT`
+        #   · 每例核对 15 个文件的 md5 未变（注入空转即作废）
+        # **它真的必须原地跑**：它核的是**真实仓**的登记表与侧栏配置，
+        # 搬到副本仓就核不到真东西了。**所以 97 秒是必要成本，不是可以优化掉的浪费。**
+        "why": "**必须原地跑**——它核的是真实仓的登记表/侧栏/索引，"
+               "搬到副本仓就核不到真东西。97 秒是**必要成本**。"
+               "安全机制已齐（每例前 restore + trap EXIT + md5 核对），"
+               "中途被打断也会还原，不存在「留下脏文件」的实际风险。",
         "anchor": ("selftest-meta.sh", "SNAP_FILES"),
     },
 
 
-    "selftest-label-drift.py": {
-        "seconds": 105,           # 实测（Batch 180）
-        "why": "**三份里最慢的**。它的做法是**往上游仓库建合成 ref**（git read-tree/write-tree），"
-               "每个用例一次完整 tree 操作。**105 秒已接近「能不能进构建」的边界**，"
-               "若继续变慢应当考虑拆分用例或改用更轻的注入方式。",
-        "anchor": ("selftest-label-drift.py", "write-tree"),
-    },
+
 }
 
 
@@ -114,7 +112,7 @@ SELFTEST_COSTS = {
     "selftest-error-copy.py": 1.6,
     "selftest-exclusions.py": 2, # Batch 181：闸 5 改批量读后 35.6s → 2s
     "selftest-feature-flags.py": 0.4,
-    "selftest-label-drift.py": 105,
+    "selftest-label-drift.py": 4,  # Batch 182：闸 6 改批量读后 105s → 4s
     "selftest-line-counts.py": 11.8,
     "selftest-runtime-policy.py": 0.7,
     "selftest-screenshots-literals.py": 23.5,
