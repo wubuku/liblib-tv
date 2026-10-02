@@ -2829,6 +2829,61 @@ def main() -> int:
           and "摘出去" in _ausrc
           and "**节点总数是易变量**" in _ausrc
           and "按**身份**（`data-testid`）记 DOM 序" in _ausrc)
+    # ══════════ 批 900：那 2 个节点 —— 排除一个方向 ══════════
+    p900 = ROOT / "scripts/jimeng_probe900_unarmed_nodes_src.py"
+    _p900 = p900.read_text(encoding="utf-8") if p900.exists() else ""
+    check("NN.1 ✅ **900 把「那 2 个节点为什么整轮没被布上 `'0'`」推到了"
+          "**能推的边界**并**排除了一个方向**（各 2/2）：① **它们在应用的"
+          "节点表里** —— 第一次 Tab 时应用给**全部 76 个**都写了 `tabindex`、"
+          "`not_written` **为空** ⇒ **不是**「压根不在表里」；"
+          "② **它们在 DOM 层毫无特殊之处** —— 76 个节点**属性集完全相同**、"
+          "**离群 0 个**，父链 / `in_another_node` / 可聚焦子孙数 / 尺寸都相同。"
+          "⇒ **「DOM 上有特殊标记」这个方向被排除了**",
+          '"unarmed_nodes_have_no_dom_reason_900"' in _ausrc
+          and "**它们在应用的节点表里**" in _ausrc
+          and "`not_written` **为空**" in _ausrc
+          and "**离群节点 0 个**" in _ausrc
+          and "这个方向被排除了" in _ausrc
+          and "FINGERPRINT_JS" in _p900
+          and "attr_set_outliers" in _p900
+          and "not_written" in _p900)
+    check("NN.2 ⚠️⚠️ 由此得到一条**实现层的硬约束**：这一条是「**仍未查明**」、"
+          "而且是**原理上不可从 DOM 查明**的那一种（原因在**应用自己的节点表"
+          "顺序/指针**里）⇒ 复刻**没法**复刻这个「跳过 2 个节点」的行为，"
+          "实现时**只能按纯 DOM 序**并把差异**如实记为已知差异**。"
+          "⚠️ **不许**为了「看起来一致」去**编**一个 DOM 层判据"
+          "（如「跳过 aria 含 upload 的节点」「跳过倒数第 N 个」）—— "
+          "那是**把未查明的东西伪装成已知**",
+          "**实现层的硬约束**" in _ausrc
+          and "**原理上不可从 DOM 查明**" in _ausrc
+          and "**只能按纯 DOM 序**" in _ausrc
+          and "**如实记为已知差异**" in _ausrc
+          and "**把未查明的东西伪装成已知**" in _ausrc
+          and "**不许**为了「看起来一致」" in _ausrc)
+    check("NN.3 📌 顺带一条**对 896 规则②的修正**（900 实测 2/2）："
+          "「**每次 keydown 都布 `'0'`」不是无条件的** —— 从画布**中途**"
+          "连按 30 次 `Shift+Tab`，**只有第 1 次**布了 `'0'`、其余 29 次"
+          "**一次都没布** ⇒ **焦点一旦不在节点本体上，应用就不再布**。"
+          "⇒ 896 那条「唯一触发是 keydown」**仍然成立**，但要补"
+          "**还要求那一刻焦点在某个节点上**",
+          "对 896 规则②的修正" in _ausrc
+          and "**不是无条件的**" in _ausrc
+          and "焦点一旦不在节点本体上，应用就**不再布**" in _ausrc
+          and "**还要求那一刻焦点在某个节点上**" in _ausrc
+          and "**仍然成立**" in _ausrc
+          and "BACK_STEPS = 30" in _p900)
+    check("NN.4 ⚠️ **900 第一版自己踩的坑**：结尾把一大坨 `json.dumps(summary)` "
+          "**打到 stdout**，而输出**管道给 `tail`** ⇒ `tail` 早退出、管道写不进"
+          "⇒ `BlockingIOError` ⇒ **探针在最后一步炸掉、连文件都没写**"
+          "（写文件排在打印**之后**）⇒ 教训：**① 落盘必须排在打印之前**、"
+          "**② 长输出要么落盘、要么别进管道**。⚠️ 判据要钉在**探针源码的"
+          "真实顺序**上（写文件那句在 `print` 之前）",
+          "**900 第一版自己踩的坑**" in _ausrc
+          and "BlockingIOError" in _ausrc
+          and "① 落盘必须排在打印之前" in _ausrc
+          and "② 长输出要么落盘、要么别进管道" in _ausrc
+          and "**先落盘、再打印**" in _p900
+          and _p900.index("json.dump(out") < _p900.index("== 汇总（紧凑版"))
     check("KK.4 896 必须把 894 判据里那个**洞**留痕：`summarize()` 用 "
           "`v[\"tabindex\"].add(...)` **只收集合、丢掉计数**，而「各有几个 `0`」"
           "恰好是区分 roving 的**唯一**判据 ⇒ 894 **读到了**却被**抹平**了。"
