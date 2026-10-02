@@ -347,11 +347,38 @@ AUDIT_JS = """(overlays) => {
     const hitInShotBar = !own && !!(hit && hit.closest
       && hit.closest('[data-director-shot-bar]'));
     const viewportSqueeze = !own && !clipped && !panel && victimInViewport;
+    // Batch 642: declare the sampling policy per control, because a lattice
+    // probe and a centre probe are NOT interchangeable.
+    //
+    // `border-radius` clips hit testing, so for a round control the corners of
+    // its own box are outside the shape BY DESIGN.  Batch 640 used a 3x3
+    // lattice and reported 111 gizmo axis buttons as "centre clear, body
+    // blocked"; batch 641 then measured the real hit shape and found it is an
+    // anisotropic 4.9..8.9px blob (border-radius snaps to device pixels), with
+    // the lattice corner at 8.91px against a maximum radius of 8.9px — a
+    // 0.01px margin.  Two harnesses on the same page answered 4/9 and 6/9.
+    //
+    // So for a round control the CENTRE is the only valid sample point, and the
+    // centre probe this census already uses is exactly the right instrument.
+    // Recorded per control so a later batch can find the round ones instead of
+    // re-deriving this.  Purely additive: no existing verdict changes.
+    // NB: `cs` is already bound at the top of this loop as the zIndex helper
+    // (`const s = cs(el)`), so this must not reuse the name — shadowing it
+    // turned every `cs(el)` call above into a TDZ ReferenceError.
+    const elcs = getComputedStyle(el);
+    const radiusPx = parseFloat(elcs.borderTopLeftRadius) || 0;
+    const round = radiusPx >= Math.min(b[2], b[3]) / 2;
     items.push({label: label(el), tag: el.tagName.toLowerCase(),
       box: b, z: s.zIndex, own, clipped, offViewport,
       panel: panel, timelineOverlay, hitInTimeline, victimInColumn,
       viewportSqueeze, hitInBottomBar, hitInBottomBand, hitInShotBar,
       victimInViewport, viewportH,
+      round: round, borderRadiusPx: radiusPx,
+      samplePoint: "centre",
+      sampleNote: round
+        ? "rounded control: the centre is the only valid sample; a lattice "
+          + "probe reports its own corners as blocked by design (batch 641)"
+        : null,
       hitLabel: hit ? label(hit) : null,
       hitTag: hit ? hit.tagName.toLowerCase() : null,
       data: Object.keys(el.dataset).slice(0, 3).join(',')});
@@ -364,6 +391,11 @@ AUDIT_JS = """(overlays) => {
     && !i.timelineOverlay && !i.viewportSqueeze);
   return {vw: innerWidth, vh: innerHeight, total: items.length,
           scrims,
+          // Batch 642: the round controls, so a later batch can enumerate them
+          // without re-deriving why a lattice probe misreads them.
+          roundControls: items.filter((i) => i.round)
+            .map((i) => ({label: i.label, box: i.box,
+                          borderRadiusPx: i.borderRadiusPx, own: i.own})),
           openOverlays: overlayRoots.map(pkey),
           blocked: failed,
           // `covered` keeps its batch-617 meaning: a real defect.  Batch 619

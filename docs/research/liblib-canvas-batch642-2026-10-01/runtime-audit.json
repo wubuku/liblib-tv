@@ -1,0 +1,1139 @@
+{
+  "batch": 642,
+  "title": "the round-control sampling policy now lives in the shared criterion, with a mechanical zero-regression proof",
+  "date": "2026-10-01",
+  "widths": [
+    339,
+    480,
+    620,
+    898,
+    899,
+    1440,
+    1920
+  ],
+  "windowHeight": 900,
+  "sharedConstants": {
+    "occlusionRadiiSeen": [
+      4.9,
+      6.5,
+      7.4,
+      7.5,
+      8.1,
+      8.4,
+      8.9
+    ],
+    "latticeCornerDistance": 8.91,
+    "origin": "batch 641"
+  },
+  "cells": {
+    "339": {
+      "total": 123,
+      "roundControls": [
+        {
+          "label": "X 正向",
+          "box": [
+            293.7,
+            146.4,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "X 反向",
+          "box": [
+            249.3,
+            134.5,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Y 正向",
+          "box": [
+            271.5,
+            113,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Y 反向",
+          "box": [
+            271.5,
+            168,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Z 正向",
+          "box": [
+            252.9,
+            147.6,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Z 反向",
+          "box": [
+            290.1,
+            133.4,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "上传图片",
+          "box": [
+            320,
+            685,
+            32,
+            32
+          ],
+          "borderRadiusPx": 33554400,
+          "own": false
+        },
+        {
+          "label": "发送",
+          "box": [
+            499,
+            685,
+            32,
+            32
+          ],
+          "borderRadiusPx": 33554400,
+          "own": false
+        }
+      ],
+      "roundCount": 8,
+      "roundLabels": [
+        "X 反向",
+        "X 正向",
+        "Y 反向",
+        "Y 正向",
+        "Z 反向",
+        "Z 正向",
+        "上传图片",
+        "发送"
+      ],
+      "radii": [
+        33554400
+      ],
+      "roundAllOwn": false,
+      "roundCoveredLabels": [
+        "上传图片",
+        "发送"
+      ],
+      "unexplained": [
+        [
+          "收起",
+          "导演视角机位视角",
+          [
+            64,
+            5.5,
+            40,
+            40
+          ]
+        ]
+      ],
+      "unreachable": [],
+      "blockedCount": 89
+    },
+    "480": {
+      "total": 123,
+      "roundControls": [
+        {
+          "label": "X 正向",
+          "box": [
+            434.7,
+            146.4,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "X 反向",
+          "box": [
+            390.3,
+            134.5,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Y 正向",
+          "box": [
+            412.5,
+            113,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Y 反向",
+          "box": [
+            412.5,
+            168,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Z 正向",
+          "box": [
+            393.9,
+            147.6,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Z 反向",
+          "box": [
+            431.1,
+            133.4,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "上传图片",
+          "box": [
+            461,
+            685,
+            32,
+            32
+          ],
+          "borderRadiusPx": 33554400,
+          "own": false
+        },
+        {
+          "label": "发送",
+          "box": [
+            640,
+            685,
+            32,
+            32
+          ],
+          "borderRadiusPx": 33554400,
+          "own": false
+        }
+      ],
+      "roundCount": 8,
+      "roundLabels": [
+        "X 反向",
+        "X 正向",
+        "Y 反向",
+        "Y 正向",
+        "Z 反向",
+        "Z 正向",
+        "上传图片",
+        "发送"
+      ],
+      "radii": [
+        33554400
+      ],
+      "roundAllOwn": false,
+      "roundCoveredLabels": [
+        "上传图片",
+        "发送"
+      ],
+      "unexplained": [],
+      "unreachable": [],
+      "blockedCount": 83
+    },
+    "620": {
+      "total": 123,
+      "roundControls": [
+        {
+          "label": "X 正向",
+          "box": [
+            574.7,
+            146.4,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "X 反向",
+          "box": [
+            530.3,
+            134.5,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Y 正向",
+          "box": [
+            552.5,
+            113,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Y 反向",
+          "box": [
+            552.5,
+            168,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Z 正向",
+          "box": [
+            533.9,
+            147.6,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Z 反向",
+          "box": [
+            571.1,
+            133.4,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "上传图片",
+          "box": [
+            601,
+            685,
+            32,
+            32
+          ],
+          "borderRadiusPx": 33554400,
+          "own": false
+        },
+        {
+          "label": "发送",
+          "box": [
+            780,
+            685,
+            32,
+            32
+          ],
+          "borderRadiusPx": 33554400,
+          "own": false
+        }
+      ],
+      "roundCount": 8,
+      "roundLabels": [
+        "X 反向",
+        "X 正向",
+        "Y 反向",
+        "Y 正向",
+        "Z 反向",
+        "Z 正向",
+        "上传图片",
+        "发送"
+      ],
+      "radii": [
+        33554400
+      ],
+      "roundAllOwn": false,
+      "roundCoveredLabels": [
+        "上传图片",
+        "发送"
+      ],
+      "unexplained": [],
+      "unreachable": [],
+      "blockedCount": 77
+    },
+    "898": {
+      "total": 123,
+      "roundControls": [
+        {
+          "label": "X 正向",
+          "box": [
+            852.7,
+            146.4,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "X 反向",
+          "box": [
+            808.3,
+            134.5,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Y 正向",
+          "box": [
+            830.5,
+            113,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Y 反向",
+          "box": [
+            830.5,
+            168,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Z 正向",
+          "box": [
+            811.9,
+            147.6,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Z 反向",
+          "box": [
+            849.1,
+            133.4,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "上传图片",
+          "box": [
+            740,
+            685,
+            32,
+            32
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "发送",
+          "box": [
+            919,
+            685,
+            32,
+            32
+          ],
+          "borderRadiusPx": 33554400,
+          "own": false
+        }
+      ],
+      "roundCount": 8,
+      "roundLabels": [
+        "X 反向",
+        "X 正向",
+        "Y 反向",
+        "Y 正向",
+        "Z 反向",
+        "Z 正向",
+        "上传图片",
+        "发送"
+      ],
+      "radii": [
+        33554400
+      ],
+      "roundAllOwn": false,
+      "roundCoveredLabels": [
+        "发送"
+      ],
+      "unexplained": [],
+      "unreachable": [],
+      "blockedCount": 71
+    },
+    "899": {
+      "total": 130,
+      "roundControls": [
+        {
+          "label": "X 正向",
+          "box": [
+            572.7,
+            146.4,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "X 反向",
+          "box": [
+            528.3,
+            134.5,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Y 正向",
+          "box": [
+            550.5,
+            113,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Y 反向",
+          "box": [
+            550.5,
+            168,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Z 正向",
+          "box": [
+            531.9,
+            147.6,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Z 反向",
+          "box": [
+            569.1,
+            133.4,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "上传图片",
+          "box": [
+            1021,
+            679,
+            32,
+            32
+          ],
+          "borderRadiusPx": 33554400,
+          "own": false
+        },
+        {
+          "label": "发送",
+          "box": [
+            1200,
+            679,
+            32,
+            32
+          ],
+          "borderRadiusPx": 33554400,
+          "own": false
+        }
+      ],
+      "roundCount": 8,
+      "roundLabels": [
+        "X 反向",
+        "X 正向",
+        "Y 反向",
+        "Y 正向",
+        "Z 反向",
+        "Z 正向",
+        "上传图片",
+        "发送"
+      ],
+      "radii": [
+        33554400
+      ],
+      "roundAllOwn": false,
+      "roundCoveredLabels": [
+        "上传图片",
+        "发送"
+      ],
+      "unexplained": [],
+      "unreachable": [],
+      "blockedCount": 24
+    },
+    "1440": {
+      "total": 130,
+      "roundControls": [
+        {
+          "label": "X 正向",
+          "box": [
+            1113.7,
+            146.4,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "X 反向",
+          "box": [
+            1069.3,
+            134.5,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Y 正向",
+          "box": [
+            1091.5,
+            113,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Y 反向",
+          "box": [
+            1091.5,
+            168,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Z 正向",
+          "box": [
+            1072.9,
+            147.6,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Z 反向",
+          "box": [
+            1110.1,
+            133.4,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "上传图片",
+          "box": [
+            1021,
+            679,
+            32,
+            32
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "发送",
+          "box": [
+            1200,
+            679,
+            32,
+            32
+          ],
+          "borderRadiusPx": 33554400,
+          "own": false
+        }
+      ],
+      "roundCount": 8,
+      "roundLabels": [
+        "X 反向",
+        "X 正向",
+        "Y 反向",
+        "Y 正向",
+        "Z 反向",
+        "Z 正向",
+        "上传图片",
+        "发送"
+      ],
+      "radii": [
+        33554400
+      ],
+      "roundAllOwn": false,
+      "roundCoveredLabels": [
+        "发送"
+      ],
+      "unexplained": [],
+      "unreachable": [],
+      "blockedCount": 12
+    },
+    "1920": {
+      "total": 130,
+      "roundControls": [
+        {
+          "label": "X 正向",
+          "box": [
+            1593.7,
+            146.4,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "X 反向",
+          "box": [
+            1549.3,
+            134.5,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Y 正向",
+          "box": [
+            1571.5,
+            113,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Y 反向",
+          "box": [
+            1571.5,
+            168,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Z 正向",
+          "box": [
+            1552.9,
+            147.6,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "Z 反向",
+          "box": [
+            1590.1,
+            133.4,
+            15,
+            15
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "上传图片",
+          "box": [
+            1216,
+            679,
+            32,
+            32
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        },
+        {
+          "label": "发送",
+          "box": [
+            1395,
+            679,
+            32,
+            32
+          ],
+          "borderRadiusPx": 33554400,
+          "own": true
+        }
+      ],
+      "roundCount": 8,
+      "roundLabels": [
+        "X 反向",
+        "X 正向",
+        "Y 反向",
+        "Y 正向",
+        "Z 反向",
+        "Z 正向",
+        "上传图片",
+        "发送"
+      ],
+      "radii": [
+        33554400
+      ],
+      "roundAllOwn": true,
+      "roundCoveredLabels": [],
+      "unexplained": [],
+      "unreachable": [],
+      "blockedCount": 11
+    }
+  },
+  "checks": {
+    "the-grid-runs-7widths": {
+      "ok": true,
+      "detail": 7
+    },
+    "roundControls-is-populated-at-every-width": {
+      "ok": true,
+      "detail": {
+        "widthsWithNoRoundControl": [],
+        "perWidth": {
+          "339": 8,
+          "480": 8,
+          "620": 8,
+          "898": 8,
+          "899": 8,
+          "1440": 8,
+          "1920": 8
+        }
+      }
+    },
+    "the-census-finds-the-six-gizmo-axis-buttons-among-the-round-controls": {
+      "ok": true,
+      "detail": {
+        "gizmoLabelsFoundPerWidth": {
+          "339": [
+            "X 反向",
+            "X 正向",
+            "Y 反向",
+            "Y 正向",
+            "Z 反向",
+            "Z 正向"
+          ],
+          "480": [
+            "X 反向",
+            "X 正向",
+            "Y 反向",
+            "Y 正向",
+            "Z 反向",
+            "Z 正向"
+          ],
+          "620": [
+            "X 反向",
+            "X 正向",
+            "Y 反向",
+            "Y 正向",
+            "Z 反向",
+            "Z 正向"
+          ],
+          "898": [
+            "X 反向",
+            "X 正向",
+            "Y 反向",
+            "Y 正向",
+            "Z 反向",
+            "Z 正向"
+          ],
+          "899": [
+            "X 反向",
+            "X 正向",
+            "Y 反向",
+            "Y 正向",
+            "Z 反向",
+            "Z 正向"
+          ],
+          "1440": [
+            "X 反向",
+            "X 正向",
+            "Y 反向",
+            "Y 正向",
+            "Z 反向",
+            "Z 正向"
+          ],
+          "1920": [
+            "X 反向",
+            "X 正向",
+            "Y 反向",
+            "Y 正向",
+            "Z 反向",
+            "Z 正向"
+          ]
+        },
+        "expected": [
+          "X 反向",
+          "X 正向",
+          "Y 反向",
+          "Y 正向",
+          "Z 反向",
+          "Z 正向"
+        ],
+        "origin": "640 named them; this batch checks the SHARED criterion finds them without anyone retyping the list"
+      }
+    },
+    "the-round-controls-radius-is-the-clamped-rounded-full-value": {
+      "ok": true,
+      "detail": {
+        "radiiSeen": [
+          33554400
+        ],
+        "threshold": ">= half the 15px short side, i.e. rounded-full",
+        "note": "the computed value is the clamped 9999px, not 7.5 — which is exactly why batch 641 had to MEASURE the hit shape instead of deriving it from the box"
+      }
+    },
+    "the-round-policy-surfaces-centre-covered-round-controls-too": {
+      "ok": true,
+      "detail": {
+        "widthsWhereARoundControlIsCoveredAtItsCentre": [
+          "339",
+          "480",
+          "620",
+          "898",
+          "899",
+          "1440"
+        ],
+        "labels": [
+          "上传图片",
+          "发送"
+        ],
+        "reading": "640 could never have found these: its search criterion was 'centre clear AND body blocked'. A control covered AT its centre is a different class and the census files it under clipped."
+      }
+    },
+    "the-six-gizmo-axis-buttons-are-never-covered-at-their-centre": {
+      "ok": true,
+      "detail": {
+        "widthsWhereAGizmoButtonIsCovered": {},
+        "reading": "the six that 640 named are clean at the centre in all seven widths — which is why 641's centre probe was the right instrument for them"
+      }
+    },
+    "adding-the-round-policy-did-not-hide-632s-known-defect": {
+      "ok": true,
+      "detail": {
+        "unexplained": [
+          {
+            "width": "339",
+            "label": "收起",
+            "coveredBy": "导演视角机位视角",
+            "box": [
+              64,
+              5.5,
+              40,
+              40
+            ],
+            "is632sDefect": true
+          }
+        ],
+        "status": "still exactly the 170px centred group at 339; the new fields are additive so it cannot be suppressed"
+      }
+    },
+    "no-cell-has-an-off-viewport-unreachable-control": {
+      "ok": true,
+      "detail": {}
+    },
+    "the-shared-occlusion-radii-match-641s-measurement": {
+      "ok": true,
+      "detail": {
+        "occlusionRadiiSeen": [
+          4.9,
+          6.5,
+          7.4,
+          7.5,
+          8.1,
+          8.4,
+          8.9
+        ],
+        "latticeCornerDistance": 8.91,
+        "tightestMargin": 0.01,
+        "whyItMatters": "this is why the rule exists: the lattice corner clears the largest measured radius by 0.01px, so a lattice verdict on a round control is decided by sub-pixel rounding"
+      }
+    }
+  },
+  "ok": true,
+  "checkCount": 9,
+  "failures": [],
+  "totals": {
+    "perWidth": {
+      "339": {
+        "total": 123,
+        "roundCount": 8,
+        "roundLabels": [
+          "X 反向",
+          "X 正向",
+          "Y 反向",
+          "Y 正向",
+          "Z 反向",
+          "Z 正向",
+          "上传图片",
+          "发送"
+        ],
+        "blockedCount": 89
+      },
+      "480": {
+        "total": 123,
+        "roundCount": 8,
+        "roundLabels": [
+          "X 反向",
+          "X 正向",
+          "Y 反向",
+          "Y 正向",
+          "Z 反向",
+          "Z 正向",
+          "上传图片",
+          "发送"
+        ],
+        "blockedCount": 83
+      },
+      "620": {
+        "total": 123,
+        "roundCount": 8,
+        "roundLabels": [
+          "X 反向",
+          "X 正向",
+          "Y 反向",
+          "Y 正向",
+          "Z 反向",
+          "Z 正向",
+          "上传图片",
+          "发送"
+        ],
+        "blockedCount": 77
+      },
+      "898": {
+        "total": 123,
+        "roundCount": 8,
+        "roundLabels": [
+          "X 反向",
+          "X 正向",
+          "Y 反向",
+          "Y 正向",
+          "Z 反向",
+          "Z 正向",
+          "上传图片",
+          "发送"
+        ],
+        "blockedCount": 71
+      },
+      "899": {
+        "total": 130,
+        "roundCount": 8,
+        "roundLabels": [
+          "X 反向",
+          "X 正向",
+          "Y 反向",
+          "Y 正向",
+          "Z 反向",
+          "Z 正向",
+          "上传图片",
+          "发送"
+        ],
+        "blockedCount": 24
+      },
+      "1440": {
+        "total": 130,
+        "roundCount": 8,
+        "roundLabels": [
+          "X 反向",
+          "X 正向",
+          "Y 反向",
+          "Y 正向",
+          "Z 反向",
+          "Z 正向",
+          "上传图片",
+          "发送"
+        ],
+        "blockedCount": 12
+      },
+      "1920": {
+        "total": 130,
+        "roundCount": 8,
+        "roundLabels": [
+          "X 反向",
+          "X 正向",
+          "Y 反向",
+          "Y 正向",
+          "Z 反向",
+          "Z 正向",
+          "上传图片",
+          "发送"
+        ],
+        "blockedCount": 11
+      }
+    },
+    "radiiSeen": [
+      33554400
+    ],
+    "unexplained": [
+      {
+        "width": "339",
+        "label": "收起",
+        "coveredBy": "导演视角机位视角",
+        "box": [
+          64,
+          5.5,
+          40,
+          40
+        ],
+        "is632sDefect": true
+      }
+    ]
+  }
+}
