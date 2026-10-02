@@ -484,6 +484,153 @@ def check_downgrade_reaches_page(root):
     return (problems, notes, False)
 
 
+# ── 逐节祈使句（Batch 226 新增，方向七）────────────────────────────────
+# **纪律 129 说「分层要逐节做」，而本方向是它的最后一道**：页首那句
+# 「下面写的是历史机制」只能护住**从上往下读**的人。
+# **读者从浏览器 Ctrl+F 搜到「打开云 Agent 面板」、或从右侧页内目录点进
+# 「## 发起与对话」时，那一句会被单独送到眼前，页首声明不会跟着出现。**
+# 实测 4 个 excluded 页面里命中 2 处：
+#   · `cloud-agent.md`「## 发起与对话」四条全是祈使句（打开/执行/插话/状态）
+#   · `agent-memory-skills.md`「## 技能（Skills）」首句是「1. 安装技能：…」
+# 而 `media-versions.md` 全部小节首句都是陈述句、**不误导**——
+# **所以这不是「所有 excluded 页都要加提示」，是「祈使句才需要就地提示」。**
+#
+# **不查的**：①不是 excluded 的页（判据要的是「不可用页里的祈使句」这个组合）；
+# ②小节内**已有**任何提示词的情形（就地提示已经写过了，再报就是逼人写第二遍）。
+SECTION_IMPERATIVE = re.compile(
+    r"^\s*(?:[-*]\s*|\d+[.、]\s*)?"
+    r"(打开|点击|点选|按|选择|勾选|新建|创建|上传|下载|导出|导入|复制|拖出|拖|输入|进入|切到|切换|双击|右键"
+    r"|安装|卸载|添加|移除|保存|取消|确定|重试|刷新|编辑|移动|排序|过滤|筛选|定位|展开|收起|设置|绑定|解绑)"
+    r"(?!后|前|时|完|了|成功|失败)"
+)
+#: **上面那个否定前瞻是实测逼出来的，不是一开始想到的。**
+#: 首跑把 `00-quickstart.md` 的「**创建后**画布中间是空的」判成了祈使句——
+#: 「创建后」是**完成态描述**，而这一页根本不是不可用页。上线首跑就误报，
+#: **又一次是判据自己喊出来的**（纪律 230 的那个模式，隔了几批又重演）。
+#: 全库这类措辞实测 **8 处**（创建后 / 上传后 / 导入后 / 进入后 / 导出失败 / 导入成功 / 上传完 / 下载失败），
+#: **全部是描述句，没有一处是命令。**
+SECTION_HINT = re.compile(
+    r"(历史|曾|已退场|已下线|不存在|不可用|当前未开放|正在开发|没开放|未开放|"
+    r"机制[，,]?\s*不是|不是你现在|请以|无法|走查过)")
+SECTION_HEAD = re.compile(r"^##\s+(.+?)\s*$")
+#: **这一页是不是「不可用页」**：页首（h1 之后 8 行）有没有自己声明状态。
+#: 判据的输入是「不可用页里的祈使句小节」这个**组合**——
+#: 少了「不可用页」这一半，它会开始要求正常页写免责话术。
+PAGE_UNAVAILABLE_RE = re.compile(
+    r"(已退场|已下线|不存在|不可用|未开放|没开放|正在开发|历史机制|当前不可用|未能走查|未在真实)")
+
+
+def _strip_containers(lines):
+    """整块剔除 VitePress 容器（`::: warning … :::`）。
+
+    **为什么必须整块剔而不是只剔 `:::` 那一行**：容器块**内部**还有正文行，
+    只剔标记行的话，块内第一句就成了「小节首句」——而它恰恰是提示本身，
+    于是首句永远不是祈使句，`checked_sections` 恒为 0，**notes 会报「共核 0 个」
+    而实际核了 2 个**。更糟的是它**看不见提示被移走**：
+    只要容器还在那个位置，计数就一直停在 0，**看着像「这一节本来就干净」**。
+    """
+    out, depth, in_cont = [], 0, False
+    for l in lines:
+        t = l.strip()
+        if t == ":::":
+            if in_cont:
+                depth -= 1
+                if depth == 0:
+                    in_cont = False
+            continue
+        if t.startswith(":::"):
+            in_cont, depth = True, 1
+            continue
+        if in_cont:
+            continue
+        out.append(l)
+    return out
+
+
+def _page_sections(lines):
+    """逐小节切成 (标题, 标题行号, 小节正文行列表)。"""
+    out, cur = [], None
+    for i, line in enumerate(lines):
+        m = SECTION_HEAD.match(line)
+        if m:
+            if cur:
+                out.append(cur)
+            cur = (m.group(1), i, [])
+        elif cur:
+            cur[2].append(line)
+    if cur:
+        out.append(cur)
+    return out
+
+
+def check_imperative_sections(root):
+    """excluded 页的小节若以祈使句开头、而小节内没有任何就地提示，就报。
+
+    返回 (problems, notes, unverifiable)。
+    **页面集合动态取自账本的 `status: excluded`**，不硬编码 task id——
+    硬编码就是「新增 excluded 任务时忘了把页面加进来」，而那正是
+    纪律 164 记过的 art-critique 腐烂三十个批次那种形态。
+    """
+    # **只读一次账本**：`excluded_ids()` 会把账本再解析一遍，
+    # 而本方向要的不只是 id、还有每个 id 的 `manual_pages`——
+    # **两个函数各读一遍，账本在两次读取之间被改过就会得出互相矛盾的结论。**
+    items = _inventory_items(root)
+    if items is None:
+        return ([], [], True)
+
+    problems, notes = [], []
+    seen_pages, shared, checked_sections = set(), [], 0
+    for it in items:
+        if str(it.get("status", "")) != "excluded":
+            continue
+        tid = it.get("id") or "?"
+        for rel in (it.get("manual_pages") or []):
+            path = os.path.join(root, rel)
+            if not os.path.isfile(path):
+                return ([], [], True)
+            with open(path, encoding="utf-8") as f:
+                lines = f.read().split("\n")
+            # **页面本身必须自己声明「不可用」才纳入**——excluded 任务的
+            # `manual_pages` **不一定指向它的专属页**：
+            # `short-drama-project-workbench`（excluded）指向的
+            # `00-quickstart.md` 是一张**正常的共享页**，
+            # `art-critique` 指向的页也只是「一部分不可用」。
+            # **不设这道门槛，首跑就把 quickstart 报成了「历史机制页的祈使句」**，
+            # 而那句话说 quickstart 根本不成立。
+            h1 = next((i for i, l in enumerate(lines) if l.startswith("# ")), 0)
+            if not PAGE_UNAVAILABLE_RE.search("\n".join(lines[h1:h1 + 9])):
+                shared.append(f"{rel}（{tid} 的 manual_pages，但页面本身未声明不可用）")
+                continue
+            seen_pages.add(rel)
+            for title, idx, body in _page_sections(lines):
+                # **首句必须跳过 VitePress 容器标记**（`::: warning` / `:::`）。
+                # 这是**实测出来的统计失真**：加上就地提示后，小节的第一行变成了
+                # `::: warning …`，于是首句不再以祈使句开头 → `continue` 掉，
+                # **notes 报「共核 0 个祈使句小节」而实际核了 2 个**。
+                # 更糟的是判据会因此**看不见提示被删掉的那一刻**——
+                # 删掉容器后首句变回祈使句，它又抓得到；可只要提示**换了个位置**，
+                # 计数就一直停在 0，**看着像「这一节本来就干净」**。
+                first = next((l for l in _strip_containers(body) if l.strip()), "")
+                if not SECTION_IMPERATIVE.match(first):
+                    continue
+                checked_sections += 1
+                if any(SECTION_HINT.search(l) for l in body):
+                    continue
+                problems.append(
+                    f"{rel} 的「## {title}」以祈使句开头"
+                    f"（{first.strip()[:28]}…）**而本小节内没有任何就地提示** → "
+                    f"页首那句「这是历史机制/当前不可用」只护得住从上往下读的人；"
+                    f"**Ctrl+F 搜到这一句、或从页内目录点进来的人看不到它**"
+                )
+    notes.append(
+        f"逐节祈使句：{len(seen_pages)} 个「不可用页」共核 {checked_sections} 个祈使句小节，"
+        f"全部有就地提示或本就不该用祈使句"
+        + (f"；另跳过 {len(shared)} 个 shared 目标（{'; '.join(shared)}）"
+           f"——**excluded 任务的 manual_pages 不一定是它的专属页**" if shared else "")
+    )
+    return (problems, notes, False)
+
+
 @baseline_guard
 def main():
     src = find_source()
@@ -519,6 +666,14 @@ def main():
     if dg_unverifiable:
         unverifiable = True
         print("[skip] 未能读取账本或手册页面，证据降级告知本轮未能核对")
+
+    # —— 逐节祈使句（Batch 226，方向七）：页首声明护不住「跳进来的人」——
+    imp_problems, imp_notes, imp_unver = check_imperative_sections(ROOT)
+    problems += imp_problems
+    notes += imp_notes
+    if imp_unver:
+        unverifiable = True
+        print("[skip] 未能读取账本或手册页面，逐节祈使句本轮未能核对")
 
     # —— 条件 1：/agent/* 路由仍未注册 ——
     # **Batch 181 改**：原先是 `for f in git_ls(...): git_show(src, ref, f)`，

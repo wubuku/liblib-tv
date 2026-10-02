@@ -13,6 +13,16 @@
     不误伤 1 条：
     4) 只改 excluded 任务的其他字段（不动 id、不动 status）→ 必须照旧通过
 
+Batch 226 再加 2 例（14→16），钉的是方向七（逐节祈使句）：
+  能抓 1 条：
+    15) 把不可用页里的就地提示删掉 → 必须报
+  不误伤 1 条：
+    16) 提示块**挪到小节末尾**（首句变回祈使句、但小节内仍有提示）→ 必须放行
+  **16 钉的是本批踩到的一个统计失真**：判据若拿「第一行」当首句，
+  提示一加上去那一节就成了「本来不是祈使句」——
+  **notes 报「共核 0 个」而实际核了 2 个**；再往后只要提示**换个位置**，
+  计数就一直停在 0，**看着像「这一节本来就干净」**。
+
 Batch 224 再加 3 例（11→14），钉的是**判据分不分得清两种相反的意思**：
   能抓 2 条：
     12) 注入「页面基于源码静态证据」（某一部分只有源码）→ 必须报
@@ -405,6 +415,61 @@ def t_excluded_page_silent_must_report(inv, gate):
     return inv, gate, {"10-tasks/cloud-agent.md": edit}
 
 
+def _strip_hint_block(body):
+    """删掉 cloud-agent.md「## 发起与对话」小节里的 ::: warning 提示块。"""
+    lines = body.split("\n")
+    i = next((j for j, l in enumerate(lines)
+              if l.strip().startswith("::: warning 这一节写的是")), None)
+    assert i is not None, "锚点未命中：找不到该提示块"
+    j = next((k for k in range(i, len(lines)) if lines[k].strip() == ":::"), None)
+    assert j is not None, "提示块没有闭合的 :::"
+    del lines[i - 1:j + 2]
+    out = "\n".join(lines)
+    assert out != body, "前提失配：删除空转"
+    return out
+
+
+def t_imperative_must_report(inv, gate):
+    """把不可用页里的就地提示删掉 → 判据必须报。
+
+    **钉的是 Batch 226 的方向七**：页首那句「这是历史机制」只护得住
+    **从上往下读**的人；读者用 Ctrl+F 搜到「打开云 Agent 面板」，
+    或从右侧页内目录点进「## 发起与对话」时，那一句会被单独送到眼前，
+    **而页首声明不会跟着出现**。
+    """
+    return inv, gate, {"10-tasks/cloud-agent.md": _strip_hint_block}
+
+
+def t_hint_moved_must_not_report(inv, gate):
+    """提示块**挪到小节末尾**（首句变回祈使句，但小节内仍有提示）→ 必须放行。
+
+    **这一例钉的是本批踩到的一个统计失真**：加上提示后，小节的第一行
+    变成了 `::: warning …`，若判据拿「第一行」当首句，它会把这一节
+    当成「本来就不是祈使句」跳过——**notes 于是报「共核 0 个」，
+    而实际核了 2 个**；再往后，只要提示**换个位置**，计数就一直停在 0，
+    **看着像「这一节本来就干净」**。
+
+    正确修法是**整块剔除容器**再取首句。本例证明剔除生效：
+    提示挪到末尾后，首句重新变成祈使句，**而判据仍放行**——
+    因为它看的是「**本小节内有没有提示**」，不是「提示在第几行」。
+    """
+    def move(body):
+        lines = body.split("\n")
+        i = next((j for j, l in enumerate(lines)
+                  if l.strip().startswith("::: warning 这一节写的是")), None)
+        assert i is not None, "锚点未命中：找不到该提示块"
+        j = next(k for k in range(i, len(lines)) if lines[k].strip() == ":::")
+        block = lines[i - 1:j + 2]
+        del lines[i - 1:j + 2]
+        k = next(m for m, l in enumerate(lines) if l.startswith("## 审批"))
+        lines[k:k] = ["", ""] + block
+        out = "\n".join(lines)
+        assert out != body, "前提失配：移动空转"
+        return out
+
+    return inv, gate, {"10-tasks/cloud-agent.md": move}
+
+
 def main():
     r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
     if r.returncode == 0:
@@ -438,6 +503,10 @@ def main():
         expect_fail=False, transform=t_all_claims_must_not_report)
     run("14) excluded 页面（靠本族词入面）上的告知被抹掉（必须报）", "找不到任何已登记的告知措辞",
         transform=t_excluded_page_silent_must_report)
+    run("15) 不可用页的就地提示被删掉（必须报）", "以祈使句开头",
+        transform=t_imperative_must_report)
+    run("16) 不误伤：提示块挪到小节末尾、首句变回祈使句（必须放行）", "证据降级告知",
+        expect_fail=False, transform=t_hint_moved_must_not_report)
 
     print("=== 结果：通过 %d / 失败 %d / 作废 %d ===" % (PASS, FAIL, VOID))
     return 1 if (FAIL or VOID) else 0
