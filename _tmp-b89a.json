@@ -1,0 +1,165 @@
+{
+  "at": "2026-10-02T05:35:22.356Z",
+  "start": {
+    "scale": 0.6,
+    "zoom": 60,
+    "sel": "0",
+    "credits": "Credits: 805 · 基础会员",
+    "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+  },
+  "p1": {
+    "panel": {
+      "found": false
+    }
+  },
+  "p2": {
+    "total": 31,
+    "shadow": 31,
+    "shadowUniq": 31,
+    "sample": [
+      {
+        "tag": "HEADER",
+        "tid": "canvas-top-bar",
+        "cls": "pointer-events-none absolute left-3 top-[10p",
+        "inner": "测试项目 节点 20 已保存 分享 805 基础会员",
+        "aria": "Canvas top bar"
+      },
+      {
+        "tag": "BUTTON",
+        "tid": "canvas-project-title-trigger",
+        "cls": "inline-flex items-center gap-1 whitespace-no",
+        "inner": "测试项目",
+        "aria": "Canvas title: 测试项目"
+      },
+      {
+        "tag": "BUTTON",
+        "tid": "canvas-node-summary-trigger",
+        "cls": "inline-flex items-center justify-center gap-",
+        "inner": "节点 20",
+        "aria": "Canvas node summary: 节点 20"
+      },
+      {
+        "tag": "BUTTON",
+        "tid": "canvas-commerce-entry",
+        "cls": "justify-center gap-1 whitespace-nowrap borde",
+        "inner": "805 基础会员",
+        "aria": "Credits: 805 · 基础会员"
+      },
+      {
+        "tag": "MAIN",
+        "tid": null,
+        "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hi",
+        "inner": "20 nodes, 0 edges, 0 selected. Editable. Roo",
+        "aria": "Canvas workspace"
+      },
+      {
+        "tag": "SECTION",
+        "tid": "canvas-main-region",
+        "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hi",
+        "inner": "20 nodes, 0 edges, 0 selected. Editable. Roo",
+        "aria": "Canvas editing area"
+      },
+      {
+        "tag": "DIV",
+        "tid": "rf__wrapper",
+        "cls": "react-flow octo-canvas-flow bg-dreamina-canv",
+        "inner": "视频 1 No resources: 0 ready, 0 processing, 0 ",
+        "aria": "Canvas"
+      },
+      {
+        "tag": "DIV",
+        "tid": "rf__node-node_236ctpehgg",
+        "cls": "react-flow__node react-flow__node-video nopa",
+        "inner": "视频 1 No resources: 0 ready, 0 processing, 0 ",
+        "aria": "视频 node: 视频 1"
+      },
+      {
+        "tag": "DIV",
+        "tid": "rf__node-node_3bfb9r79qe",
+        "cls": "react-flow__node react-flow__node-text nopan",
+        "inner": "文本 1",
+        "aria": "文本 node: 文本 1"
+      },
+      {
+        "tag": "DIV",
+        "tid": "rf__node-node_cdwf8x6fbj",
+        "cls": "react-flow__node react-flow__node-timeline n",
+        "inner": "时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 0",
+        "aria": "时间线 node: 时间线 1"
+      },
+      {
+        "tag": "DIV",
+        "tid": "rf__node-node_aw29cp094x",
+        "cls": "react-flow__node react-flow__node-text nopan",
+        "inner": "文本 2",
+        "aria": "文本 node: 文本 2"
+      },
+      {
+        "tag": "DIV",
+        "tid": "rf__node-node_5gftn3dnt1",
+        "cls": "react-flow__node react-flow__node-text nopan",
+        "inner": "文本 3",
+        "aria": "文本 node: 文本 3"
+      },
+      {
+        "tag": "DIV",
+        "tid": "rf__node-node_pxvkay973v",
+        "cls": "react-flow__node react-flow__node-external n",
+        "inner": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0",
+        "aria": "外部 node: 导演台"
+      },
+      {
+        "tag": "DIV",
+        "tid": "rf__node-node_ay7f1jn45r",
+        "cls": "react-flow__node react-flow__node-audio nopa",
+        "inner": "音频 1 No resources: 0 ready, 0 processing, 0 ",
+        "aria": "音频 node: 音频 1"
+      }
+    ]
+  },
+  "p3": {
+    "totalTestids": 115,
+    "multiCount": 3,
+    "multi": [
+      {
+        "tid": "flow-node-title",
+        "sigs": [
+          "DIV|absolute z-[10] flex text-left font-|64x37",
+          "DIV|absolute z-[10] flex text-left font-|67x29",
+          "DIV|absolute z-[10] flex text-left font-|80x37",
+          "DIV|absolute z-[10] flex text-left font-|70x29",
+          "DIV|absolute z-[10] flex text-left font-|71x38",
+          "DIV|absolute z-[10] flex text-left font-|67x38",
+          "DIV|absolute z-[10] flex text-left font-|70x38",
+          "DIV|absolute z-[10] flex text-left font-|67x37",
+          "DIV|absolute z-[10] flex text-left font-|58x32",
+          "DIV|absolute z-[10] flex text-left font-|92x32",
+          "DIV|absolute z-[10] flex text-left font-|57x32",
+          "DIV|absolute z-[10] flex text-left font-|63x32",
+          "DIV|absolute z-[10] flex text-left font-|61x32"
+        ]
+      },
+      {
+        "tid": "flow-node-selected-tag",
+        "sigs": [
+          "BUTTON|inline-flex items-center justify-cen|28x28",
+          "BUTTON|inline-flex items-center justify-cen|29x29",
+          "BUTTON|inline-flex items-center justify-cen|24x24"
+        ]
+      },
+      {
+        "tid": "workspace-account-summary-content",
+        "sigs": [
+          "SPAN|flex h-full items-center gap-workspa|0x0",
+          "SPAN|flex h-full items-center gap-workspa|93x18"
+        ]
+      }
+    ]
+  },
+  "end": {
+    "sel": "0",
+    "credits": "Credits: 805 · 基础会员",
+    "zoom": 60,
+    "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+  }
+}

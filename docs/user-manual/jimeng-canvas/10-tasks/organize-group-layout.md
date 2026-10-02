@@ -234,7 +234,7 @@
 | 内容命中环 | `group-content-operation-hit-ring` | 同尺寸，`pointer-events-none` |
 | **标题命中区** | **`group-title-hit-area`** | `552×14`，文字「编组 1」 |
 | 标题外观 | `group-title-chrome` | `56×24` |
-| 标签钮 | `flow-node-selected-tag` | `24×24`，aria `Add tags` |
+| 标签钮 | `flow-node-selected-tag` | 🔴 批次 89 订正：原写 `24×24` **不是契约**，aria `Add tags`；屏上边长 = `24px × 视口 scale × 逐节点的 counter-scale`，同画布 60% 下就有 `24×24`/`28×28`/`29×29` 三种 |
 | 朗读文本 | `sr-only` | 逐字 `Group 编组 1, 2 members. Not selected.` |
 | **可点边带** | 无 testid | 上/下 `580×24`、左/右 `24×493`，`pointer-events-auto` |
 

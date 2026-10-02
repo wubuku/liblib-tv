@@ -1,0 +1,363 @@
+{
+ "at": "2026-10-02T05:45:03.574Z",
+ "start": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "sel": "0"
+ },
+ "tags": [
+  {
+   "id": "node_236ctpehgg",
+   "typeCls": "video",
+   "aria": "视频 node: 视频 1",
+   "tag": "28×28",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_3bfb9r79qe",
+   "typeCls": "text",
+   "aria": "文本 node: 文本 1",
+   "tag": "29×29",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "react-flow__node react-flow__node-text nopan selec"
+  },
+  {
+   "id": "node_cdwf8x6fbj",
+   "typeCls": "timeline",
+   "aria": "时间线 node: 时间线 1",
+   "tag": "28×28",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_aw29cp094x",
+   "typeCls": "text",
+   "aria": "文本 node: 文本 2",
+   "tag": "29×29",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "react-flow__node react-flow__node-text nopan selec"
+  },
+  {
+   "id": "node_5gftn3dnt1",
+   "typeCls": "text",
+   "aria": "文本 node: 文本 3",
+   "tag": "29×29",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "react-flow__node react-flow__node-text nopan selec"
+  },
+  {
+   "id": "node_pxvkay973v",
+   "typeCls": "external",
+   "aria": "外部 node: 导演台",
+   "tag": "29×29",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_ay7f1jn45r",
+   "typeCls": "audio",
+   "aria": "音频 node: 音频 1",
+   "tag": "29×29",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_w6b1h9fvzw",
+   "typeCls": "audio",
+   "aria": "音频 node: 音频 2",
+   "tag": "29×29",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_dt0wpmba0d",
+   "typeCls": "audio",
+   "aria": "音频 node: 音频 3",
+   "tag": "29×29",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_kdgnjkfng2",
+   "typeCls": "audio",
+   "aria": "音频 node: 音频 4",
+   "tag": "28×28",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_gp499g9p3m",
+   "typeCls": "audio",
+   "aria": "音频 node: 音频 5",
+   "tag": "28×28",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_9y4j9jf0qv",
+   "typeCls": "audio",
+   "aria": "音频 node: 音频 6",
+   "tag": "24×24",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_gref4sw056",
+   "typeCls": "image",
+   "aria": "图片 node: b22-upload",
+   "tag": "24×24",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "data-[connection-receiving=true]:border-transparen"
+  },
+  {
+   "id": "node_20sb5adarj",
+   "typeCls": "audio",
+   "aria": "音频 node: 音频 7",
+   "tag": "24×24",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_y2n170za3z",
+   "typeCls": "audio",
+   "aria": "音频 node: 音频 8",
+   "tag": "24×24",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_1c5zafa3zk",
+   "typeCls": "audio",
+   "aria": "音频 node: 音频 9",
+   "tag": "24×24",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_fg4h8gry6x",
+   "typeCls": "audio",
+   "aria": "音频 node: 音频 10",
+   "tag": "24×24",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_kx0gzwzf7a",
+   "typeCls": "audio",
+   "aria": "音频 node: 音频 11",
+   "tag": "24×24",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_97x9w2s8dc",
+   "typeCls": "audio",
+   "aria": "音频 node: 音频 12",
+   "tag": "24×24",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "id": "node_gnykygt88s",
+   "typeCls": "audio",
+   "aria": "音频 node: 音频 13",
+   "tag": "24×24",
+   "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+   "fontSize": "13px",
+   "pad": "0px 4px",
+   "cls": "inline-flex items-center justify-center whitespace",
+   "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+  }
+ ],
+ "bySize": {
+  "28×28": {
+   "n": 4,
+   "types": [
+    "video",
+    "timeline",
+    "audio"
+   ],
+   "sample": [
+    {
+     "id": "node_236ctpehgg",
+     "typeCls": "video",
+     "aria": "视频 node: 视频 1",
+     "tag": "28×28",
+     "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+     "fontSize": "13px",
+     "pad": "0px 4px",
+     "cls": "inline-flex items-center justify-center whitespace",
+     "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+    },
+    {
+     "id": "node_cdwf8x6fbj",
+     "typeCls": "timeline",
+     "aria": "时间线 node: 时间线 1",
+     "tag": "28×28",
+     "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+     "fontSize": "13px",
+     "pad": "0px 4px",
+     "cls": "inline-flex items-center justify-center whitespace",
+     "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+    },
+    {
+     "id": "node_kdgnjkfng2",
+     "typeCls": "audio",
+     "aria": "音频 node: 音频 4",
+     "tag": "28×28",
+     "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+     "fontSize": "13px",
+     "pad": "0px 4px",
+     "cls": "inline-flex items-center justify-center whitespace",
+     "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+    }
+   ]
+  },
+  "29×29": {
+   "n": 7,
+   "types": [
+    "text",
+    "external",
+    "audio"
+   ],
+   "sample": [
+    {
+     "id": "node_3bfb9r79qe",
+     "typeCls": "text",
+     "aria": "文本 node: 文本 1",
+     "tag": "29×29",
+     "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+     "fontSize": "13px",
+     "pad": "0px 4px",
+     "cls": "inline-flex items-center justify-center whitespace",
+     "parent": "react-flow__node react-flow__node-text nopan selec"
+    },
+    {
+     "id": "node_aw29cp094x",
+     "typeCls": "text",
+     "aria": "文本 node: 文本 2",
+     "tag": "29×29",
+     "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+     "fontSize": "13px",
+     "pad": "0px 4px",
+     "cls": "inline-flex items-center justify-center whitespace",
+     "parent": "react-flow__node react-flow__node-text nopan selec"
+    },
+    {
+     "id": "node_5gftn3dnt1",
+     "typeCls": "text",
+     "aria": "文本 node: 文本 3",
+     "tag": "29×29",
+     "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+     "fontSize": "13px",
+     "pad": "0px 4px",
+     "cls": "inline-flex items-center justify-center whitespace",
+     "parent": "react-flow__node react-flow__node-text nopan selec"
+    }
+   ]
+  },
+  "24×24": {
+   "n": 9,
+   "types": [
+    "audio",
+    "image"
+   ],
+   "sample": [
+    {
+     "id": "node_9y4j9jf0qv",
+     "typeCls": "audio",
+     "aria": "音频 node: 音频 6",
+     "tag": "24×24",
+     "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+     "fontSize": "13px",
+     "pad": "0px 4px",
+     "cls": "inline-flex items-center justify-center whitespace",
+     "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+    },
+    {
+     "id": "node_gref4sw056",
+     "typeCls": "image",
+     "aria": "图片 node: b22-upload",
+     "tag": "24×24",
+     "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+     "fontSize": "13px",
+     "pad": "0px 4px",
+     "cls": "inline-flex items-center justify-center whitespace",
+     "parent": "data-[connection-receiving=true]:border-transparen"
+    },
+    {
+     "id": "node_20sb5adarj",
+     "typeCls": "audio",
+     "aria": "音频 node: 音频 7",
+     "tag": "24×24",
+     "inline": "height: 24px; padding-bottom: 0px; padding-top: 0px; top: -32px; transform-origin: 100% 32px; --octo-canvas-node-title-row-center: -20; scale: var(--octo-canvas-node-chrome-counter-scale, 1); width: 24px;",
+     "fontSize": "13px",
+     "pad": "0px 4px",
+     "cls": "inline-flex items-center justify-center whitespace",
+     "parent": "group relative flex min-h-32 min-w-40 flex-col ove"
+    }
+   ]
+  }
+ },
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "sel": "0"
+ }
+}

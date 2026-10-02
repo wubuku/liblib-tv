@@ -276,6 +276,24 @@
    ],
    "refuted_in": "批次 88（SOURCE_OBSERVATIONS.md §4.07.3）",
    "reason": "40/60/100% 三档屏上 dy 为 −26/−32/−32、canvas dy 为 −64/−53/−32，两个口径都不恒定。顺带说明批次 78 的「31–33 canvas px」也只在某缩放下成立"
+  },
+  {
+   "id": "addtags-24x24",
+   "label": "「`Add tags` 是 24×24」（批次 28 / 批次 88）",
+   "patterns": [
+    "Add tags.{0,40}24×24|24×24.{0,40}Add tags"
+   ],
+   "refuted_in": "批次 89（30-concepts.md「拿尺寸当身份会认错人」）",
+   "reason": "同一 testid+class+aria 的 20 个元素在 60% 下有 24×24/28×28/29×29 三种。真契约是乘法式：屏上 = 24px × 视口 scale × 该节点各自的 --octo-canvas-node-chrome-counter-scale（本批 20/20 预测命中）。批次 88 那个 24×24 反推对应 50% 缩放"
+  },
+  {
+   "id": "counter-scale-is-1-over-scale",
+   "label": "「counter-scale 逐字等于 1/scale」（批次 78，且被当作全局机制）",
+   "patterns": [
+    "counter-scale.{0,60}1/scale|1/scale.{0,60}counter-scale"
+   ],
+   "refuted_in": "批次 89（SOURCE_OBSERVATIONS.md §4.09.4）",
+   "reason": "那只在「同一个节点换缩放」时成立。缩放不变、换一批节点，20 个节点上同时有 1.66666（=1/0.6）/1.93435/2 三个取值，且与节点类型无关（audio 同时出现在三组）。该变量是逐节点的，机制未查明，记为待查"
   }
  ]
 }

@@ -1,0 +1,228 @@
+{
+  "at": "2026-10-02T05:39:36.014Z",
+  "start": {
+    "sel": "0",
+    "credits": "Credits: 805 · 基础会员",
+    "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+  },
+  "d1": {
+    "trigger": {
+      "found": true,
+      "tag": "BUTTON",
+      "tid": "canvas-node-summary-trigger",
+      "aria": "Canvas node summary: 节点 20",
+      "box": "34×28@156,16",
+      "pe": "auto",
+      "vis": "visible",
+      "disabled": false
+    },
+    "after1600": {
+      "summaryPopover": true,
+      "popoverLikeTestids": [
+        "canvas-node-summary-trigger",
+        "canvas-node-summary-label",
+        "canvas-node-summary-count",
+        "canvas-panel-workspace-top-bar-launchers",
+        "canvas-panel-launcher",
+        "canvas-panel-workspace-top-bar-launchers",
+        "canvas-panel-launcher",
+        "workspace-preparing-account-summary",
+        "workspace-account-summary-content",
+        "workspace-account-summary-content",
+        "canvas-node-summary-popover"
+      ],
+      "roles": [
+        {
+          "role": "dialog",
+          "tid": "canvas-node-summary-popover",
+          "aria": null,
+          "box": "200×292@73,47"
+        }
+      ],
+      "byAria": [
+        {
+          "tag": "BUTTON",
+          "tid": "canvas-node-summary-trigger",
+          "aria": "Canvas node summary: 节点 20",
+          "box": "34×28@156,16"
+        },
+        {
+          "tag": "DL",
+          "tid": null,
+          "aria": "Canvas node summary",
+          "box": "192×236@77,51"
+        }
+      ]
+    }
+  },
+  "d2": {
+    "total": 20,
+    "groups": {
+      "视频 node": {
+        "n": 1,
+        "sample": [
+          {
+            "id": "node_236ctpehgg",
+            "inner": "视频 1 No resources: 0 ready, 0 ",
+            "cls": "react-flow__node react-flow__node-video nopan sele"
+          }
+        ]
+      },
+      "文本 node": {
+        "n": 3,
+        "sample": [
+          {
+            "id": "node_3bfb9r79qe",
+            "inner": "文本 1",
+            "cls": "react-flow__node react-flow__node-text nopan selec"
+          },
+          {
+            "id": "node_aw29cp094x",
+            "inner": "文本 2",
+            "cls": "react-flow__node react-flow__node-text nopan selec"
+          },
+          {
+            "id": "node_5gftn3dnt1",
+            "inner": "文本 3",
+            "cls": "react-flow__node react-flow__node-text nopan selec"
+          }
+        ]
+      },
+      "时间线 node": {
+        "n": 1,
+        "sample": [
+          {
+            "id": "node_cdwf8x6fbj",
+            "inner": "时间线 1 00:00 / 00:00 全屏编辑 00:00",
+            "cls": "react-flow__node react-flow__node-timeline nopan s"
+          }
+        ]
+      },
+      "外部 node": {
+        "n": 1,
+        "sample": [
+          {
+            "id": "node_pxvkay973v",
+            "inner": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 N",
+            "cls": "react-flow__node react-flow__node-external nopan s"
+          }
+        ]
+      },
+      "音频 node": {
+        "n": 13,
+        "sample": [
+          {
+            "id": "node_ay7f1jn45r",
+            "inner": "音频 1 No resources: 0 ready, 0 ",
+            "cls": "react-flow__node react-flow__node-audio nopan sele"
+          },
+          {
+            "id": "node_w6b1h9fvzw",
+            "inner": "音频 2 No resources: 0 ready, 0 ",
+            "cls": "react-flow__node react-flow__node-audio nopan sele"
+          },
+          {
+            "id": "node_dt0wpmba0d",
+            "inner": "音频 3 No resources: 0 ready, 0 ",
+            "cls": "react-flow__node react-flow__node-audio nopan sele"
+          }
+        ]
+      },
+      "图片 node": {
+        "n": 1,
+        "sample": [
+          {
+            "id": "node_gref4sw056",
+            "inner": "b22-upload",
+            "cls": "react-flow__node react-flow__node-image nopan sele"
+          }
+        ]
+      }
+    }
+  },
+  "d3": {
+    "totalTestids": 115,
+    "multiSig": [
+      {
+        "tid": "flow-node-target-handle",
+        "n": 20,
+        "sigN": 2,
+        "sigs": [
+          "DIV|react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 before:absolute before:top-1/2 before:h-canvas-connection-handle-hotspot before:w-canvas-connection-handle-hotspot before:-translate-y-1/2 before:content-[''] after:pointer-events-none after:absolute after:left-[--octo-flow-node-handle-glyph-x] after:top-[--octo-flow-node-handle-glyph-y] after:size-5 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-[linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor)] after:bg-canvas-connection-handle-glyph after:bg-center after:bg-no-repeat after:content-[''] before:origin-top-left after:origin-top-left before:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] after:[scale:calc(var(--octo-canvas-node-chrome-counter-scale,1)*0.5)] after:opacity-dreamina-media-action-hidden [.react-flow\\_\\_node:hover_&]:after:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] [.react-flow\\_\\_node:hover_&]:after:[translate:0_0] [.react-flow\\_\\_node:hover_&]:after:opacity-dreamina-media-action-visible data-[node-selected-visible=true]:after:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] data-[node-selected-visible=true]:after:[translate:0_0] data-[node-selected-visible=true]:after:opacity-dreamina-media-action-visible after:[translate:20px_0] text-canvas-connection-handle-default after:border-canvas-connection-handle after:border-current after:bg-dreamina-block-secondary-default [.react-flow\\_\\_node:hover_&]:after:backdrop-blur-dreamina-floating-control data-[node-selected-visible=true]:after:backdrop-blur-dreamina-floating-control hover:opacity-100 hover:text-dreamina-on-media-text-primary hover:after:border-dreamina-on-media-text-primary active:text-dreamina-on-media-text-placeholder active:after:border-dreamina-on-media-text-placeholder before:pointer-events-auto before:left-1/2 before:-translate-x-full !left-0 !-translate-x-1/2 !-translate-y-1/2 opacity-0 target connectable connectablestart connectableend connectionindicator",
+          "DIV|react-flow__handle react-flow__handle-left nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 before:absolute before:top-1/2 before:h-canvas-connection-handle-hotspot before:w-canvas-connection-handle-hotspot before:-translate-y-1/2 before:content-[''] after:pointer-events-none after:absolute after:left-[--octo-flow-node-handle-glyph-x] after:top-[--octo-flow-node-handle-glyph-y] after:size-5 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-[linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor)] after:bg-canvas-connection-handle-glyph after:bg-center after:bg-no-repeat after:content-[''] before:origin-top-left after:origin-top-left before:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] after:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] text-canvas-connection-handle-default after:border-canvas-connection-handle after:border-current after:bg-dreamina-block-secondary-default before:pointer-events-none before:left-1/2 before:-translate-x-full !left-0 !-translate-x-1/2 !-translate-y-1/2 !opacity-0 target connectableend"
+        ],
+        "sizes": [
+          "36×72"
+        ]
+      },
+      {
+        "tid": "flow-node-title",
+        "n": 20,
+        "sigN": 2,
+        "sigs": [
+          "DIV|absolute z-[10] flex text-left font-dreamina-cn text-dreamina-cn-13 font-dreamina-regular items-start h-canvas-node-title-icon-hit text-dreamina-on-media-text-placeholder [&:hover:not(:active):not([data-node-title-selected=true]):not([data-node-title-dragging=true])]:text-dreamina-text-tertiary [.react-flow\\_\\_node:hover_&:not(:active):not([data-node-title-selected=true]):not([data-node-title-dragging=true])]:text-dreamina-text-tertiary active:text-dreamina-text-secondary [.react-flow\\_\\_node:active_&]:text-dreamina-text-secondary data-[node-title-selected=true]:text-dreamina-text-secondary data-[node-title-dragging=true]:text-dreamina-text-secondary octo-media-result-chrome-motion opacity-[1] gap-[4px] left-0 top-[-32px]",
+          "DIV|absolute z-[10] flex text-left font-dreamina-cn text-dreamina-cn-13 font-dreamina-regular items-center h-[24px] text-dreamina-on-media-text-placeholder [&:hover:not(:active):not([data-node-title-selected=true]):not([data-node-title-dragging=true])]:text-dreamina-text-tertiary [.react-flow\\_\\_node:hover_&:not(:active):not([data-node-title-selected=true]):not([data-node-title-dragging=true])]:text-dreamina-text-tertiary active:text-dreamina-text-secondary [.react-flow\\_\\_node:active_&]:text-dreamina-text-secondary data-[node-title-selected=true]:text-dreamina-text-secondary data-[node-title-dragging=true]:text-dreamina-text-secondary octo-media-result-chrome-motion opacity-[1] gap-[4px] left-0 top-[-32px]"
+        ],
+        "sizes": [
+          "64×37",
+          "67×29",
+          "80×37",
+          "70×29",
+          "71×38",
+          "67×38",
+          "70×38",
+          "67×37",
+          "58×32",
+          "92×32",
+          "57×32",
+          "63×32",
+          "61×32"
+        ]
+      },
+      {
+        "tid": "flow-node-source-handle",
+        "n": 19,
+        "sigN": 2,
+        "sigs": [
+          "DIV|react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 before:absolute before:top-1/2 before:h-canvas-connection-handle-hotspot before:w-canvas-connection-handle-hotspot before:-translate-y-1/2 before:content-[''] after:pointer-events-none after:absolute after:left-[--octo-flow-node-handle-glyph-x] after:top-[--octo-flow-node-handle-glyph-y] after:size-5 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-[linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor)] after:bg-canvas-connection-handle-glyph after:bg-center after:bg-no-repeat after:content-[''] before:origin-top-left after:origin-top-left before:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] after:[scale:calc(var(--octo-canvas-node-chrome-counter-scale,1)*0.5)] after:opacity-dreamina-media-action-hidden [.react-flow\\_\\_node:hover_&]:after:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] [.react-flow\\_\\_node:hover_&]:after:[translate:0_0] [.react-flow\\_\\_node:hover_&]:after:opacity-dreamina-media-action-visible data-[node-selected-visible=true]:after:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] data-[node-selected-visible=true]:after:[translate:0_0] data-[node-selected-visible=true]:after:opacity-dreamina-media-action-visible after:[translate:-20px_0] text-canvas-connection-handle-default after:border-canvas-connection-handle after:border-current after:bg-dreamina-block-secondary-default [.react-flow\\_\\_node:hover_&]:after:backdrop-blur-dreamina-floating-control data-[node-selected-visible=true]:after:backdrop-blur-dreamina-floating-control hover:opacity-100 hover:text-dreamina-on-media-text-primary hover:after:border-dreamina-on-media-text-primary active:text-dreamina-on-media-text-placeholder active:after:border-dreamina-on-media-text-placeholder before:pointer-events-auto before:left-1/2 !right-0 !translate-x-1/2 !-translate-y-1/2 opacity-0 source connectable connectablestart connectableend connectionindicator",
+          "DIV|react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !border-0 !bg-transparent !p-0 before:absolute before:top-1/2 before:h-canvas-connection-handle-hotspot before:w-canvas-connection-handle-hotspot before:-translate-y-1/2 before:content-[''] after:pointer-events-none after:absolute after:left-[--octo-flow-node-handle-glyph-x] after:top-[--octo-flow-node-handle-glyph-y] after:size-5 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-[linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor)] after:bg-canvas-connection-handle-glyph after:bg-center after:bg-no-repeat after:content-[''] before:origin-top-left after:origin-top-left before:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] after:[scale:var(--octo-canvas-node-chrome-counter-scale,1)] text-canvas-connection-handle-default after:border-canvas-connection-handle after:border-current after:bg-dreamina-block-secondary-default [.react-flow\\_\\_node:hover_&]:after:backdrop-blur-dreamina-floating-control data-[node-selected-visible=true]:after:backdrop-blur-dreamina-floating-control before:pointer-events-none before:left-1/2 !right-0 !translate-x-1/2 !-translate-y-1/2 opacity-0 source connectableend"
+        ],
+        "sizes": [
+          "36×72"
+        ]
+      },
+      {
+        "tid": "text-flow-node-full",
+        "n": 3,
+        "sigN": 2,
+        "sigs": [
+          "DIV|data-[connection-receiving=true]:border-transparent data-[connection-receiving=true]:outline data-[connection-receiving=true]:outline-2 data-[connection-receiving=true]:outline-offset-0 data-[connection-receiving=true]:outline-dreamina-canvas-media-frame-stroke-selected data-[canvas-source-picker-hover=true]:border-transparent data-[canvas-source-picker-hover=true]:outline data-[canvas-source-picker-hover=true]:outline-2 data-[canvas-source-picker-hover=true]:outline-offset-0 data-[canvas-source-picker-hover=true]:outline-dreamina-canvas-media-frame-stroke-selected data-[canvas-source-picker-pressed=true]:border-transparent data-[canvas-source-picker-pressed=true]:outline data-[canvas-source-picker-pressed=true]:outline-2 data-[canvas-source-picker-pressed=true]:outline-offset-0 data-[canvas-source-picker-pressed=true]:outline-dreamina-canvas-media-frame-stroke-selected [scrollbar-width:none] [&::-webkit-scrollbar]:hidden octo-text-node-surface bg-gradient-to-br from-dreamina-canvas-empty-start to-dreamina-canvas-empty-end relative box-border flex h-full w-full flex-col gap-octo-4 overflow-x-hidden overflow-y-hidden rounded-octo-ui-control px-canvas-text-node-content-inline py-canvas-text-node-content-block font-dreamina-cn shadow-canvas-node-surface-stroke after:mt-auto after:shrink-0 after:font-dreamina-cn after:text-dreamina-cn-12 after:leading-dreamina-cn-12 after:text-dreamina-text-tertiary after:content-[attr(data-compliance-label)]",
+          "DIV|data-[connection-receiving=true]:border-transparent data-[connection-receiving=true]:outline data-[connection-receiving=true]:outline-2 data-[connection-receiving=true]:outline-offset-0 data-[connection-receiving=true]:outline-dreamina-canvas-media-frame-stroke-selected data-[canvas-source-picker-hover=true]:border-transparent data-[canvas-source-picker-hover=true]:outline data-[canvas-source-picker-hover=true]:outline-2 data-[canvas-source-picker-hover=true]:outline-offset-0 data-[canvas-source-picker-hover=true]:outline-dreamina-canvas-media-frame-stroke-selected data-[canvas-source-picker-pressed=true]:border-transparent data-[canvas-source-picker-pressed=true]:outline data-[canvas-source-picker-pressed=true]:outline-2 data-[canvas-source-picker-pressed=true]:outline-offset-0 data-[canvas-source-picker-pressed=true]:outline-dreamina-canvas-media-frame-stroke-selected [scrollbar-width:none] [&::-webkit-scrollbar]:hidden octo-text-node-surface bg-gradient-to-br from-dreamina-canvas-frame to-dreamina-bg-surface [[data-dreamina-theme=light]_&]:from-dreamina-bg-surface [[data-dreamina-theme=light]_&]:to-dreamina-bg-surface relative box-border flex h-full w-full flex-col gap-octo-4 overflow-x-hidden overflow-y-hidden rounded-octo-ui-control px-canvas-text-node-content-inline py-canvas-text-node-content-block font-dreamina-cn shadow-canvas-node-surface-stroke after:mt-auto after:shrink-0 after:font-dreamina-cn after:text-dreamina-cn-12 after:leading-dreamina-cn-12 after:text-dreamina-text-tertiary after:content-[attr(data-compliance-label)]"
+        ],
+        "sizes": [
+          "192×192"
+        ]
+      }
+    ],
+    "multiSizeSameSig": [
+      {
+        "tid": "flow-node-selected-tag",
+        "n": 20,
+        "sigN": 1,
+        "sigs": [
+          "BUTTON|inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn font-dreamina-medium motion-safe:ease-dreamina-soft disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled=true]:cursor-not-allowed [&_svg]:shrink-0 bg-transparent disabled:bg-transparent disabled:text-dreamina-button-secondary-text-disabled aria-disabled:bg-transparent aria-disabled:text-dreamina-button-secondary-text-disabled aria-disabled:hover:bg-transparent aria-disabled:active:bg-transparent aria-disabled:hover:text-dreamina-button-secondary-text-disabled aria-disabled:active:text-dreamina-button-secondary-text-disabled size-9 rounded-lg p-2 text-dreamina-cn-13 nodrag w-auto min-w-canvas-tag-trigger gap-canvas-zero overflow-visible px-canvas-tag-trigger-inline text-dreamina-on-media-text-placeholder opacity-canvas-tag-visible z-canvas-tag-trigger hover:bg-transparent hover:text-dreamina-text-primary active:bg-transparent focus-visible:visible aria-expanded:text-dreamina-text-primary motion-safe:transition-[color,background-color,border-color,text-decoration-color,fill,stroke] motion-safe:duration-dreamina-element motion-safe:ease-dreamina-soft motion-reduce:transition-none h-canvas-tag-trigger-anchor pt-canvas-zero pb-canvas-tag-trigger-anchor-gap invisible pointer-events-none [.react-flow\\_\\_node:hover_&]:visible [.react-flow\\_\\_node:hover_&]:pointer-events-auto [.react-flow\\_\\_node:focus-within_&]:visible [.react-flow\\_\\_node:focus-within_&]:pointer-events-auto absolute right-0 origin-bottom-right octo-media-result-chrome-rest focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:[box-shadow:none] focus-visible:[&::before]:[box-shadow:none] focus-visible:[&::after]:[box-shadow:none]"
+        ],
+        "sizes": [
+          "28×28",
+          "29×29",
+          "24×24"
+        ]
+      }
+    ]
+  },
+  "end": {
+    "sel": "0",
+    "credits": "Credits: 805 · 基础会员",
+    "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+  }
+}

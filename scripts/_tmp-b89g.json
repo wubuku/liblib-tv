@@ -1,0 +1,62 @@
+{
+ "at": "2026-10-02T05:50:00.456Z",
+ "start": {
+  "sel": "0",
+  "zoom": 60,
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "fitView": {
+  "scale": 0.236148,
+  "stable": true,
+  "zoom": 24
+ },
+ "box": {
+  "x": 339,
+  "y": 238,
+  "rect": "76×76@301,200",
+  "inViewport": true
+ },
+ "rest": {
+  "sel": "0",
+  "found": true,
+  "tag": "11×11",
+  "counter": "2",
+  "nodeSelected": false,
+  "nodeBox": "76×76",
+  "inViewport": true
+ },
+ "selState": {
+  "sel": "1"
+ },
+ "selected": {
+  "sel": "1",
+  "found": true,
+  "tag": "11×11",
+  "counter": "2",
+  "nodeSelected": false,
+  "nodeBox": "76×76",
+  "inViewport": true
+ },
+ "back": {
+  "sel": "0",
+  "found": true,
+  "tag": "11×11",
+  "counter": "2",
+  "nodeSelected": false,
+  "nodeBox": "76×76",
+  "inViewport": true
+ },
+ "verdict": {
+  "rest": "11×11",
+  "selected": "11×11",
+  "back": "11×11",
+  "twoState": false,
+  "restored": true
+ },
+ "end": {
+  "sel": "0",
+  "zoom": 60,
+  "zoomStable": true,
+  "credits": "Credits: 805 · 基础会员"
+ }
+}
