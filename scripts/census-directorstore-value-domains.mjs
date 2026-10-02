@@ -108,6 +108,75 @@ if (process.argv.includes("--geometry")) {
   process.exit(0);
 }
 
+// ---------------------------------------------------------------- readout
+// 读数一致性普查：数出每个字段被**显式取整**了几档。
+//
+// 两条本批自己踩到的坑，都写在下面：
+//  1. `aria-valuenow={Math.round(x)}` 既是 CallExpression 又是包着它的
+//     JsxExpression ⟹ 不去重就会数成两处（第一版 yaw 报 6 处，grep 只有 5 处）。
+//  2. **本普查只数显式取整调用，看不见「不带取整的隐式面」** —— 691 量到的圆点
+//     位置就是隐式面。所以这个表衡量的是「代码里写了几档」，**不是**
+//     「用户能看到几个不同的数」。后者要量，见 verify-liblib-batch692.py。
+if (process.argv.includes("--readout")) {
+  const rows = [];
+  const seen = new Set();
+  const dir = path.join(REPO, "src/components/director");
+  const norm = (s) => s.replace(/\s+/g, " ").replace(/,\s*\)/g, ")").trim();
+  for (const f of fs.readdirSync(dir).filter((x) => /\.tsx?$/.test(x)).sort()) {
+    const text = fs.readFileSync(path.join(dir, f), "utf8");
+    const sf = ts.createSourceFile(f, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+    const add = (node, kind, arg) => {
+      const key = `${f}:${node.getStart(sf)}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      rows.push({
+        file: f, line: sf.getLineAndCharacterOfPosition(node.getStart(sf)).line + 1,
+        kind, arg: norm(arg).slice(0, 90),
+      });
+    };
+    (function w(nd) {
+      if (ts.isCallExpression(nd)) {
+        const e = nd.expression;
+        if (ts.isPropertyAccessExpression(e) && e.name.text === "toFixed" &&
+            ts.isPropertyAccessExpression(e.expression)) {
+          add(nd, `toFixed(${nd.arguments[0] ? nd.arguments[0].getText(sf) : "?"})`,
+              e.expression.getText(sf));
+        } else if (ts.isPropertyAccessExpression(e) &&
+                   ts.isIdentifier(e.expression) && e.expression.text === "Math" &&
+                   ["round", "floor", "ceil"].includes(e.name.text)) {
+          add(nd, `Math.${e.name.text}`,
+              nd.arguments[0] ? nd.arguments[0].getText(sf) : "");
+        }
+      }
+      ts.forEachChild(nd, w);
+    })(sf);
+  }
+  const byField = new Map();
+  for (const r of rows) {
+    if (!byField.has(r.arg)) byField.set(r.arg, []);
+    byField.get(r.arg).push(r);
+  }
+  const table = [...byField.entries()].map(([arg, sites]) => ({
+    expression: arg,
+    sites: sites.length,
+    tiers: [...new Set(sites.map((s) => s.kind))].sort(),
+    where: sites.map((s) => `${s.file}:${s.line}`),
+  })).sort((a, b) => b.tiers.length - a.tiers.length || b.sites - a.sites);
+  const multi = table.filter((t) => t.tiers.length >= 2);
+  const out = { totalRoundingSites: rows.length, distinctExpressions: table.length,
+                multiTierFields: multi.length, table, multi };
+  console.log(`显式取整点 ${out.totalRoundingSites} 处 · 去重后表达式 ${out.distinctExpressions} 个`);
+  console.log(`精度档 ≥2 的表达式 ${out.multiTierFields} 个：`);
+  for (const t of multi) {
+    console.log(`  ${t.expression}  ← ${t.sites} 处, 档 ${JSON.stringify(t.tiers)}`);
+    console.log(`      ${t.where.join("  ")}`);
+  }
+  if (process.argv.includes("--json")) {
+    fs.writeFileSync("/tmp/census-readout.json", JSON.stringify(out, null, 1));
+  }
+  process.exit(0);
+}
+
 const text = fs.readFileSync(SRC, "utf8");
 const file = ts.createSourceFile(
   "directorStore.ts", text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS
