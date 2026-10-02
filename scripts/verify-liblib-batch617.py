@@ -479,6 +479,105 @@ AUDIT_JS = """(overlays) => {
     const elcs = getComputedStyle(el);
     const radiusPx = parseFloat(elcs.borderTopLeftRadius) || 0;
     const round = radiusPx >= Math.min(b[2], b[3]) / 2;
+    // ================================================================= 647
+    // (A) THE COUNTERFACTUAL.  Batch 646 measured that `own` reads a control
+    // which is NOT painted at its own centre as clean, because `own` accepts
+    // `hit.contains(el)`.  The obvious repair is to replace `own` with the
+    // ground truth 646 added: `own := paintedAtCentre`.  This block does NOT
+    // make that change.  It re-derives the entire verdict chain under the
+    // repair and records where every control would land, so the repair can be
+    // PRICED before anyone makes it.  `own` and every existing verdict stay
+    // exactly as they are.
+    //
+    // `paintedAtCentre` already carries the `!offViewport` half: the probe is
+    // skipped off-window and the stack comes back empty.  That half is
+    // load-bearing in exactly the way 643's missing `hit !== null` was —
+    // without it every control scrolled outside the window would be swept in
+    // as a "repair candidate" and the whole exercise would be meaningless.
+    //
+    // THE MEASUREMENT OVERTURNED THE REPAIR, so there are THREE columns here
+    // and not two.  `paintedAtCentre` answers "am I in the hit-test stack",
+    // which is a VISIBILITY question; `own` answers "did I take the click",
+    // which is a CLICKABILITY question.  They part company in the other
+    // direction too: a control can be painted at its centre and still have
+    // something on top of it, and swapping `own` for `paintedAtCentre` would
+    // file that control as CLEAN.  So the sound repair is the conjunction —
+    // present in the stack AND on top of it — which is `ownTop` below.  All
+    // three are recorded per control so the choice stays a decision rather
+    // than a habit.
+    const topAtCentre = !offViewport && paintStack.length > 0
+      && (paintStack[0] === el || el.contains(paintStack[0]));
+    const ownTight = paintedAtCentre;   // 646's implied repair: visibility only
+    const ownTop = topAtCentre;          // visibility AND clickability
+    const panelTight = ownTight ? null : covering(el, hit);
+    const clipTight = !ownTight && !panelTight && isClipped(el);
+    const ovlTight = !ownTight && !clipTight && !panelTight
+      && inTimeline(hit) && victimInColumn;
+    const sqzTight = !ownTight && !clipTight && !panelTight && victimInViewport;
+    const covTight = !ownTight && !clipTight && !panelTight
+      && !ovlTight && !sqzTight;
+    const panelTop = ownTop ? null : covering(el, hit);
+    const clipTop = !ownTop && !panelTop && isClipped(el);
+    const ovlTop = !ownTop && !clipTop && !panelTop
+      && inTimeline(hit) && victimInColumn;
+    const sqzTop = !ownTop && !clipTop && !panelTop && victimInViewport;
+    const covTop = !ownTop && !clipTop && !panelTop && !ovlTop && !sqzTop;
+    // The six buckets are a strict partition under all three criteria, in the
+    // same order the existing code already implies.  Naming them is what makes
+    // the three columns comparable at all.
+    const bucketNow = own ? "clean"
+      : panel ? "panel"
+      : clipped ? "clipped"
+      : timelineOverlay ? "timelineOverlay"
+      : viewportSqueeze ? "viewportSqueeze"
+      : "covered";
+    const bucketTight = ownTight ? "clean"
+      : panelTight ? "panel"
+      : clipTight ? "clipped"
+      : ovlTight ? "timelineOverlay"
+      : sqzTight ? "viewportSqueeze"
+      : "covered";
+    const bucketTop = ownTop ? "clean"
+      : panelTop ? "panel"
+      : clipTop ? "clipped"
+      : ovlTop ? "timelineOverlay"
+      : sqzTop ? "viewportSqueeze"
+      : "covered";
+    // The move that costs something.  `covered` is the census's only DEFECT
+    // claim, so a control arriving there under a repair is a new accusation
+    // against the clone.  The one that costs something ELSE is the reverse
+    // move, out of `covered` / `timelineOverlay` / `viewportSqueeze` and into
+    // `clean`: that is a REPAIR SILENCING A FINDING, which is how a measuring
+    // instrument quietly starts lying in the other direction.
+    const newDefectClaim = bucketNow !== "covered" && bucketTight === "covered";
+    const newDefectClaimTop = bucketNow !== "covered"
+      && bucketTop === "covered";
+    const silencedNow = bucketNow !== "clean" && bucketTight === "clean";
+    const silencedTop = bucketNow !== "clean" && bucketTop === "clean";
+    // ================================================================= 647
+    // (B) A SECOND, INDEPENDENT FALSIFICATION CHANNEL.  646 falsified `own`
+    // through CLIPPING.  One mechanism is not the same as the only mechanism,
+    // and the other way for a control to be clickable-but-invisible is
+    // COMPOSITING: `opacity` does not inherit, so a `opacity: 0` wrapper is
+    // invisible while every hit-testable child inside it still takes clicks.
+    // (`visibility` DOES inherit, so `getComputedStyle(el).visibility` above
+    // already sees an ancestor's value; `display: none` on an ancestor removes
+    // the subtree from hit testing entirely.  Only compositing is left.)
+    //
+    // This also corrects 646's field NAME: `paintedAtCentre` does not measure
+    // visible pixels, it measures membership in the hit-test stack.  The two
+    // differ for exactly the case below, and conflating them is what would let
+    // a genuinely invisible control be filed as "painted".
+    let minAncOpacity = parseFloat(elcs.opacity);
+    let fadeNode = null;
+    if (fadeNode === null && minAncOpacity < 1) fadeNode = el;
+    for (let a2 = el.parentElement; a2 && a2 !== document.body;
+         a2 = a2.parentElement) {
+      const o2 = parseFloat(getComputedStyle(a2).opacity);
+      if (o2 < minAncOpacity) { minAncOpacity = o2; fadeNode = a2; }
+    }
+    const invisibleButOwn = own && minAncOpacity < 0.004;
+    const paintedButFaded = paintedAtCentre && minAncOpacity < 0.999;
     items.push({label: label(el), tag: el.tagName.toLowerCase(),
       box: b, z: s.zIndex, own, clipped, offViewport,
       panel: panel, timelineOverlay, hitInTimeline, victimInColumn,
@@ -499,6 +598,19 @@ AUDIT_JS = """(overlays) => {
       // own centre: the blind spot batch 646 found.  Kept as its own bucket so
       // later batches do not each rediscover it.
       ownButNotPainted: own && !paintedAtCentre,
+      // Batch 647 (A): where this control would land if `own` were the ground
+      // truth.  Additive — `own` above is untouched, and so is every verdict
+      // derived from it.  Only these four names describe the counterfactual.
+      ownTight: ownTight, bucketNow: bucketNow, bucketTight: bucketTight,
+      newDefectClaim: newDefectClaim,
+      ownTop: ownTop, topAtCentre: topAtCentre, bucketTop: bucketTop,
+      newDefectClaimTop: newDefectClaimTop,
+      silencedNow: silencedNow, silencedTop: silencedTop,
+      // Batch 647 (B): the compositing channel, measured independently of the
+      // clipping channel 646 used.
+      minAncestorOpacity: Math.round(minAncOpacity * 1000) / 1000,
+      invisibleButOwn: invisibleButOwn, paintedButFaded: paintedButFaded,
+      faderSurface: fadeNode ? surfaceOf(fadeNode) : null,
       clipperCanScroll: clipperCanScroll, covererInClipper: covererInClipper,
       covererSurface: covererSurface, covererSurfaceBox: covererSurfaceBox,
       victimSurface: victimSurface,
@@ -549,6 +661,94 @@ AUDIT_JS = """(overlays) => {
           // painting without touching the DOM tree, so a scrolled-out control
           // reads clean whenever its own container is painted there.
           ownButNotPainted: items.filter((i) => i.ownButNotPainted),
+          // Batch 647: the counterfactual, priced.  Nothing downstream consumes
+          // this yet; it exists so that the decision "should `own` be repaired"
+          // is made against a number rather than against an intuition.
+          counterfactual: {
+            // moves: controls whose bucket differs between the two criteria.
+            moves: items.filter((i) => i.bucketNow !== i.bucketTight),
+            movesTop: items.filter((i) => i.bucketNow !== i.bucketTop),
+            movesHistogram: (function () {
+              const m = new Map();
+              for (const i of items) {
+                if (i.bucketNow === i.bucketTight) continue;
+                const k = i.bucketNow + ' -> ' + i.bucketTight;
+                m.set(k, (m.get(k) || 0) + 1);
+              }
+              return Array.from(m.entries()).sort();
+            })(),
+            movesTopHistogram: (function () {
+              const m = new Map();
+              for (const i of items) {
+                if (i.bucketNow === i.bucketTop) continue;
+                const k = i.bucketNow + ' -> ' + i.bucketTop;
+                m.set(k, (m.get(k) || 0) + 1);
+              }
+              return Array.from(m.entries()).sort();
+            })(),
+            newDefectClaim: items.filter((i) => i.newDefectClaim),
+            newDefectClaimTop: items.filter((i) => i.newDefectClaimTop),
+            // A finding the repair would SILENCE.  Not a defect claim, the
+            // other failure: an instrument that stops reporting.
+            silencedByPaintRepair: items.filter((i) => i.silencedNow),
+            silencedByTopRepair: items.filter((i) => i.silencedTop),
+            silencedByPaintRepairSurfaces: (function () {
+              const m = new Map();
+              for (const i of items) {
+                if (!i.silencedNow) continue;
+                const k = (i.bucketNow + '@' + (i.covererSurface || '(none)'));
+                m.set(k, (m.get(k) || 0) + 1);
+              }
+              return Array.from(m.entries()).sort();
+            })(),
+            silencedByTopRepairSurfaces: (function () {
+              const m = new Map();
+              for (const i of items) {
+                if (!i.silencedTop) continue;
+                const k = (i.bucketNow + '@' + (i.covererSurface || '(none)'));
+                m.set(k, (m.get(k) || 0) + 1);
+              }
+              return Array.from(m.entries()).sort();
+            })(),
+            newDefectClaimSurfaces: (function () {
+              const m = new Map();
+              for (const i of items) {
+                if (!i.newDefectClaim) continue;
+                const k = i.covererSurface || '(none)';
+                m.set(k, (m.get(k) || 0) + 1);
+              }
+              return Array.from(m.entries()).sort();
+            })(),
+            // The blind bucket under the counterfactual: a control that the
+            // repair would file as `clipped` — i.e. "scroll the row and it
+            // comes back" — which is the benign half of the repair.
+            tightClipped: items.filter((i) => i.bucketNow === "clean"
+                                         && i.bucketTight === "clipped"),
+            topClipped: items.filter((i) => i.bucketNow === "clean"
+                                       && i.bucketTop === "clipped"),
+            bucketCountsNow: (function () {
+              const m = new Map();
+              for (const i of items) m.set(i.bucketNow, (m.get(i.bucketNow) || 0) + 1);
+              return Array.from(m.entries()).sort();
+            })(),
+            bucketCountsTight: (function () {
+              const m = new Map();
+              for (const i of items) m.set(i.bucketTight, (m.get(i.bucketTight) || 0) + 1);
+              return Array.from(m.entries()).sort();
+            })(),
+            bucketCountsTop: (function () {
+              const m = new Map();
+              for (const i of items) m.set(i.bucketTop, (m.get(i.bucketTop) || 0) + 1);
+              return Array.from(m.entries()).sort();
+            })(),
+          },
+          // Batch 647 (B): the compositing channel.  A control the census
+          // calls clean, that is in the hit-test stack, and that has an
+          // effectively transparent ancestor.  `invisibleButOwn` is the case
+          // that matters; `paintedButFaded` is the audit trail for "how close
+          // did anything get".
+          invisibleButOwn: items.filter((i) => i.invisibleButOwn),
+          paintedButFaded: items.filter((i) => i.paintedButFaded),
           // Batch 643: the state that used to have no home at all — covered AND
           // clipped at the same time.  It is NOT in `covered` (the `clipped`
           // veto excludes it) and NOT in either exemption family (the same veto

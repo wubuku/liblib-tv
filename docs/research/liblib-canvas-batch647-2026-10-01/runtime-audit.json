@@ -1,0 +1,4547 @@
+{
+  "batch": 647,
+  "question": "price the two candidate repairs of `own` before making one",
+  "criteria": {
+    "own": "status quo: hit===el || el.contains(hit) || hit.contains(el)",
+    "ownTight": "646's implied repair: paintedAtCentre (in the hit stack)",
+    "ownTop": "this batch's candidate: el or a descendant of el is the TOP of the hit stack"
+  },
+  "grid": {
+    "widths": [
+      339,
+      620,
+      768,
+      899,
+      1020,
+      1152,
+      1440,
+      1920
+    ],
+    "heights": [
+      400,
+      560,
+      720,
+      900,
+      1150
+    ]
+  },
+  "cells": {
+    "339x400": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 32,
+        "clipped": 88,
+        "covered": 1,
+        "viewportSqueeze": 2
+      },
+      "bucketPaint": {
+        "clean": 35,
+        "clipped": 88
+      },
+      "bucketTop": {
+        "clean": 32,
+        "clipped": 88,
+        "covered": 1,
+        "viewportSqueeze": 2
+      },
+      "movesPaint": {
+        "covered -> clean": 1,
+        "viewportSqueeze -> clean": 2
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 3,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "covered@directorHeader": 1,
+        "viewportSqueeze@directorViewportToolbar": 2
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [
+        [
+          "收起",
+          "导演视角机位视角",
+          [
+            64,
+            5.5,
+            40,
+            40
+          ]
+        ]
+      ],
+      "coveredTop": [
+        [
+          "收起",
+          "导演视角机位视角",
+          [
+            64,
+            5.5,
+            40,
+            40
+          ]
+        ]
+      ],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 2,
+      "family": "narrow",
+      "viewportH": 136
+    },
+    "339x560": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 34,
+        "clipped": 88,
+        "covered": 1
+      },
+      "bucketPaint": {
+        "clean": 35,
+        "clipped": 88
+      },
+      "bucketTop": {
+        "clean": 34,
+        "clipped": 88,
+        "covered": 1
+      },
+      "movesPaint": {
+        "covered -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "covered@directorHeader": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [
+        [
+          "收起",
+          "导演视角机位视角",
+          [
+            64,
+            5.5,
+            40,
+            40
+          ]
+        ]
+      ],
+      "coveredTop": [
+        [
+          "收起",
+          "导演视角机位视角",
+          [
+            64,
+            5.5,
+            40,
+            40
+          ]
+        ]
+      ],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 2,
+      "family": "narrow",
+      "viewportH": 296
+    },
+    "339x720": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 34,
+        "clipped": 88,
+        "covered": 1
+      },
+      "bucketPaint": {
+        "clean": 35,
+        "clipped": 88
+      },
+      "bucketTop": {
+        "clean": 34,
+        "clipped": 88,
+        "covered": 1
+      },
+      "movesPaint": {
+        "covered -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "covered@directorHeader": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [
+        [
+          "收起",
+          "导演视角机位视角",
+          [
+            64,
+            5.5,
+            40,
+            40
+          ]
+        ]
+      ],
+      "coveredTop": [
+        [
+          "收起",
+          "导演视角机位视角",
+          [
+            64,
+            5.5,
+            40,
+            40
+          ]
+        ]
+      ],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 2,
+      "family": "narrow",
+      "viewportH": 456
+    },
+    "339x900": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 34,
+        "clipped": 88,
+        "covered": 1
+      },
+      "bucketPaint": {
+        "clean": 35,
+        "clipped": 88
+      },
+      "bucketTop": {
+        "clean": 34,
+        "clipped": 88,
+        "covered": 1
+      },
+      "movesPaint": {
+        "covered -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "covered@directorHeader": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [
+        [
+          "收起",
+          "导演视角机位视角",
+          [
+            64,
+            5.5,
+            40,
+            40
+          ]
+        ]
+      ],
+      "coveredTop": [
+        [
+          "收起",
+          "导演视角机位视角",
+          [
+            64,
+            5.5,
+            40,
+            40
+          ]
+        ]
+      ],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 2,
+      "family": "narrow",
+      "viewportH": 636
+    },
+    "339x1150": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 34,
+        "clipped": 88,
+        "covered": 1
+      },
+      "bucketPaint": {
+        "clean": 35,
+        "clipped": 88
+      },
+      "bucketTop": {
+        "clean": 34,
+        "clipped": 88,
+        "covered": 1
+      },
+      "movesPaint": {
+        "covered -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "covered@directorHeader": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [
+        [
+          "收起",
+          "导演视角机位视角",
+          [
+            64,
+            5.5,
+            40,
+            40
+          ]
+        ]
+      ],
+      "coveredTop": [
+        [
+          "收起",
+          "导演视角机位视角",
+          [
+            64,
+            5.5,
+            40,
+            40
+          ]
+        ]
+      ],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 2,
+      "family": "narrow",
+      "viewportH": 886
+    },
+    "620x400": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 44,
+        "clipped": 77,
+        "viewportSqueeze": 2
+      },
+      "bucketPaint": {
+        "clean": 45,
+        "clipped": 78
+      },
+      "bucketTop": {
+        "clean": 43,
+        "clipped": 78,
+        "viewportSqueeze": 2
+      },
+      "movesPaint": {
+        "clean -> clipped": 1,
+        "viewportSqueeze -> clean": 2
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 2,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "viewportSqueeze@directorViewportToolbar": 2
+      },
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "模型库"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "模型库"
+      ],
+      "tightClippedLabels": [
+        "模型库"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 1,
+      "family": "narrow",
+      "viewportH": 136
+    },
+    "620x560": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 46,
+        "clipped": 77
+      },
+      "bucketPaint": {
+        "clean": 45,
+        "clipped": 78
+      },
+      "bucketTop": {
+        "clean": 45,
+        "clipped": 78
+      },
+      "movesPaint": {
+        "clean -> clipped": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 0,
+      "silencedTop": 0,
+      "silencedPaintBy": {},
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "模型库"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "模型库"
+      ],
+      "tightClippedLabels": [
+        "模型库"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 1,
+      "family": "narrow",
+      "viewportH": 296
+    },
+    "620x720": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 46,
+        "clipped": 77
+      },
+      "bucketPaint": {
+        "clean": 45,
+        "clipped": 78
+      },
+      "bucketTop": {
+        "clean": 45,
+        "clipped": 78
+      },
+      "movesPaint": {
+        "clean -> clipped": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 0,
+      "silencedTop": 0,
+      "silencedPaintBy": {},
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "模型库"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "模型库"
+      ],
+      "tightClippedLabels": [
+        "模型库"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 1,
+      "family": "narrow",
+      "viewportH": 456
+    },
+    "620x900": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 46,
+        "clipped": 77
+      },
+      "bucketPaint": {
+        "clean": 45,
+        "clipped": 78
+      },
+      "bucketTop": {
+        "clean": 45,
+        "clipped": 78
+      },
+      "movesPaint": {
+        "clean -> clipped": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 0,
+      "silencedTop": 0,
+      "silencedPaintBy": {},
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "模型库"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "模型库"
+      ],
+      "tightClippedLabels": [
+        "模型库"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 1,
+      "family": "narrow",
+      "viewportH": 636
+    },
+    "620x1150": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 46,
+        "clipped": 77
+      },
+      "bucketPaint": {
+        "clean": 45,
+        "clipped": 78
+      },
+      "bucketTop": {
+        "clean": 45,
+        "clipped": 78
+      },
+      "movesPaint": {
+        "clean -> clipped": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 0,
+      "silencedTop": 0,
+      "silencedPaintBy": {},
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "模型库"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "模型库"
+      ],
+      "tightClippedLabels": [
+        "模型库"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 1,
+      "family": "narrow",
+      "viewportH": 886
+    },
+    "768x400": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 48,
+        "clipped": 73,
+        "viewportSqueeze": 2
+      },
+      "bucketPaint": {
+        "clean": 49,
+        "clipped": 74
+      },
+      "bucketTop": {
+        "clean": 47,
+        "clipped": 74,
+        "viewportSqueeze": 2
+      },
+      "movesPaint": {
+        "clean -> clipped": 1,
+        "viewportSqueeze -> clean": 2
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 2,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "viewportSqueeze@directorBottomBar": 1,
+        "viewportSqueeze@directorViewportToolbar": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "删除关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "删除关键帧"
+      ],
+      "tightClippedLabels": [
+        "删除关键帧"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 1,
+      "family": "narrow",
+      "viewportH": 136
+    },
+    "768x560": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 50,
+        "clipped": 73
+      },
+      "bucketPaint": {
+        "clean": 49,
+        "clipped": 74
+      },
+      "bucketTop": {
+        "clean": 49,
+        "clipped": 74
+      },
+      "movesPaint": {
+        "clean -> clipped": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 0,
+      "silencedTop": 0,
+      "silencedPaintBy": {},
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "删除关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "删除关键帧"
+      ],
+      "tightClippedLabels": [
+        "删除关键帧"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 1,
+      "family": "narrow",
+      "viewportH": 296
+    },
+    "768x720": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 50,
+        "clipped": 73
+      },
+      "bucketPaint": {
+        "clean": 49,
+        "clipped": 74
+      },
+      "bucketTop": {
+        "clean": 49,
+        "clipped": 74
+      },
+      "movesPaint": {
+        "clean -> clipped": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 0,
+      "silencedTop": 0,
+      "silencedPaintBy": {},
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "删除关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "删除关键帧"
+      ],
+      "tightClippedLabels": [
+        "删除关键帧"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 1,
+      "family": "narrow",
+      "viewportH": 456
+    },
+    "768x900": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 50,
+        "clipped": 73
+      },
+      "bucketPaint": {
+        "clean": 49,
+        "clipped": 74
+      },
+      "bucketTop": {
+        "clean": 49,
+        "clipped": 74
+      },
+      "movesPaint": {
+        "clean -> clipped": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 0,
+      "silencedTop": 0,
+      "silencedPaintBy": {},
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "删除关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "删除关键帧"
+      ],
+      "tightClippedLabels": [
+        "删除关键帧"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 1,
+      "family": "narrow",
+      "viewportH": 636
+    },
+    "768x1150": {
+      "total": 123,
+      "bucketNow": {
+        "clean": 50,
+        "clipped": 73
+      },
+      "bucketPaint": {
+        "clean": 49,
+        "clipped": 74
+      },
+      "bucketTop": {
+        "clean": 49,
+        "clipped": 74
+      },
+      "movesPaint": {
+        "clean -> clipped": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 0,
+      "silencedTop": 0,
+      "silencedPaintBy": {},
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "删除关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "删除关键帧"
+      ],
+      "tightClippedLabels": [
+        "删除关键帧"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 1,
+      "family": "narrow",
+      "viewportH": 886
+    },
+    "899x400": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 58,
+        "clipped": 59,
+        "timelineOverlay": 12,
+        "viewportSqueeze": 1
+      },
+      "bucketPaint": {
+        "clean": 71,
+        "clipped": 59
+      },
+      "bucketTop": {
+        "clean": 57,
+        "clipped": 60,
+        "timelineOverlay": 12,
+        "viewportSqueeze": 1
+      },
+      "movesPaint": {
+        "clean -> clipped": 1,
+        "clipped -> clean": 1,
+        "timelineOverlay -> clean": 12,
+        "viewportSqueeze -> clean": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 14,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "clipped@directorViewportToolbar": 1,
+        "timelineOverlay@directorTimelineControls": 1,
+        "timelineOverlay@directorTimelineObjectRow": 5,
+        "timelineOverlay@directorTimelineTrackList": 3,
+        "timelineOverlay@directorTrackLabel": 3,
+        "viewportSqueeze@directorViewportToolbar": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "tightClippedLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 20,
+      "family": "desktop",
+      "viewportH": 130
+    },
+    "899x560": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 82,
+        "clipped": 44,
+        "timelineOverlay": 4
+      },
+      "bucketPaint": {
+        "clean": 85,
+        "clipped": 45
+      },
+      "bucketTop": {
+        "clean": 81,
+        "clipped": 45,
+        "timelineOverlay": 4
+      },
+      "movesPaint": {
+        "clean -> clipped": 1,
+        "timelineOverlay -> clean": 4
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 4,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1,
+        "timelineOverlay@directorTimelineTrackList": 3
+      },
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "tightClippedLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 27,
+      "family": "desktop",
+      "viewportH": 290
+    },
+    "899x720": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 104,
+        "clipped": 25,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 104,
+        "clipped": 26
+      },
+      "bucketTop": {
+        "clean": 103,
+        "clipped": 26,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "clean -> clipped": 1,
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "tightClippedLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 10,
+      "family": "desktop",
+      "viewportH": 450
+    },
+    "899x900": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 106,
+        "clipped": 23,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 106,
+        "clipped": 24
+      },
+      "bucketTop": {
+        "clean": 105,
+        "clipped": 24,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "clean -> clipped": 1,
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "tightClippedLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 8,
+      "family": "desktop",
+      "viewportH": 630
+    },
+    "899x1150": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 106,
+        "clipped": 23,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 106,
+        "clipped": 24
+      },
+      "bucketTop": {
+        "clean": 105,
+        "clipped": 24,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "clean -> clipped": 1,
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "tightClippedLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 8,
+      "family": "desktop",
+      "viewportH": 880
+    },
+    "1020x400": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 62,
+        "clipped": 55,
+        "timelineOverlay": 12,
+        "viewportSqueeze": 1
+      },
+      "bucketPaint": {
+        "clean": 75,
+        "clipped": 55
+      },
+      "bucketTop": {
+        "clean": 61,
+        "clipped": 56,
+        "timelineOverlay": 12,
+        "viewportSqueeze": 1
+      },
+      "movesPaint": {
+        "clean -> clipped": 1,
+        "clipped -> clean": 1,
+        "timelineOverlay -> clean": 12,
+        "viewportSqueeze -> clean": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 14,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "clipped@directorAspect": 1,
+        "timelineOverlay@directorTimelineControls": 1,
+        "timelineOverlay@directorTimelineObjectRow": 5,
+        "timelineOverlay@directorTimelineTrackList": 3,
+        "timelineOverlay@directorTrackLabel": 3,
+        "viewportSqueeze@directorViewportToolbar": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "删除关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "删除关键帧"
+      ],
+      "tightClippedLabels": [
+        "删除关键帧"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 17,
+      "family": "desktop",
+      "viewportH": 130
+    },
+    "1020x560": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 86,
+        "clipped": 40,
+        "timelineOverlay": 4
+      },
+      "bucketPaint": {
+        "clean": 89,
+        "clipped": 41
+      },
+      "bucketTop": {
+        "clean": 85,
+        "clipped": 41,
+        "timelineOverlay": 4
+      },
+      "movesPaint": {
+        "clean -> clipped": 1,
+        "timelineOverlay -> clean": 4
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 4,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1,
+        "timelineOverlay@directorTimelineTrackList": 3
+      },
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "删除关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "删除关键帧"
+      ],
+      "tightClippedLabels": [
+        "删除关键帧"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 24,
+      "family": "desktop",
+      "viewportH": 290
+    },
+    "1020x720": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 108,
+        "clipped": 21,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 108,
+        "clipped": 22
+      },
+      "bucketTop": {
+        "clean": 107,
+        "clipped": 22,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "clean -> clipped": 1,
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "删除关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "删除关键帧"
+      ],
+      "tightClippedLabels": [
+        "删除关键帧"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 7,
+      "family": "desktop",
+      "viewportH": 450
+    },
+    "1020x900": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 110,
+        "clipped": 19,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 110,
+        "clipped": 20
+      },
+      "bucketTop": {
+        "clean": 109,
+        "clipped": 20,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "clean -> clipped": 1,
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "删除关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "删除关键帧"
+      ],
+      "tightClippedLabels": [
+        "删除关键帧"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 5,
+      "family": "desktop",
+      "viewportH": 630
+    },
+    "1020x1150": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 110,
+        "clipped": 19,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 110,
+        "clipped": 20
+      },
+      "bucketTop": {
+        "clean": 109,
+        "clipped": 20,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "clean -> clipped": 1,
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {
+        "clean -> clipped": 1
+      },
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 1,
+      "blindLabels": [
+        "删除关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestor": true,
+      "topClippedLabels": [
+        "删除关键帧"
+      ],
+      "tightClippedLabels": [
+        "删除关键帧"
+      ],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 5,
+      "family": "desktop",
+      "viewportH": 880
+    },
+    "1152x400": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 65,
+        "clipped": 52,
+        "timelineOverlay": 12,
+        "viewportSqueeze": 1
+      },
+      "bucketPaint": {
+        "clean": 79,
+        "clipped": 51
+      },
+      "bucketTop": {
+        "clean": 65,
+        "clipped": 52,
+        "timelineOverlay": 12,
+        "viewportSqueeze": 1
+      },
+      "movesPaint": {
+        "clipped -> clean": 1,
+        "timelineOverlay -> clean": 12,
+        "viewportSqueeze -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 14,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "clipped@directorViewportToolbar": 1,
+        "timelineOverlay@directorTimelineControls": 1,
+        "timelineOverlay@directorTimelineObjectRow": 5,
+        "timelineOverlay@directorTimelineTrackList": 3,
+        "timelineOverlay@directorTrackLabel": 3,
+        "viewportSqueeze@directorViewportToolbar": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 16,
+      "family": "desktop",
+      "viewportH": 130
+    },
+    "1152x560": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 89,
+        "clipped": 37,
+        "timelineOverlay": 4
+      },
+      "bucketPaint": {
+        "clean": 93,
+        "clipped": 37
+      },
+      "bucketTop": {
+        "clean": 89,
+        "clipped": 37,
+        "timelineOverlay": 4
+      },
+      "movesPaint": {
+        "timelineOverlay -> clean": 4
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 4,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1,
+        "timelineOverlay@directorTimelineTrackList": 3
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 23,
+      "family": "desktop",
+      "viewportH": 290
+    },
+    "1152x720": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 111,
+        "clipped": 18,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 112,
+        "clipped": 18
+      },
+      "bucketTop": {
+        "clean": 111,
+        "clipped": 18,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 6,
+      "family": "desktop",
+      "viewportH": 450
+    },
+    "1152x900": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 113,
+        "clipped": 16,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 114,
+        "clipped": 16
+      },
+      "bucketTop": {
+        "clean": 113,
+        "clipped": 16,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 4,
+      "family": "desktop",
+      "viewportH": 630
+    },
+    "1152x1150": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 113,
+        "clipped": 16,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 114,
+        "clipped": 16
+      },
+      "bucketTop": {
+        "clean": 113,
+        "clipped": 16,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 4,
+      "family": "desktop",
+      "viewportH": 880
+    },
+    "1440x400": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 70,
+        "clipped": 47,
+        "timelineOverlay": 12,
+        "viewportSqueeze": 1
+      },
+      "bucketPaint": {
+        "clean": 84,
+        "clipped": 46
+      },
+      "bucketTop": {
+        "clean": 70,
+        "clipped": 47,
+        "timelineOverlay": 12,
+        "viewportSqueeze": 1
+      },
+      "movesPaint": {
+        "clipped -> clean": 1,
+        "timelineOverlay -> clean": 12,
+        "viewportSqueeze -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 14,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "clipped@directorScenePromptBar": 1,
+        "timelineOverlay@directorTimelineControls": 1,
+        "timelineOverlay@directorTimelineObjectRow": 5,
+        "timelineOverlay@directorTimelineTrackList": 3,
+        "timelineOverlay@directorTrackLabel": 3,
+        "viewportSqueeze@directorScenePromptBar": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 13,
+      "family": "desktop",
+      "viewportH": 130
+    },
+    "1440x560": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 94,
+        "clipped": 32,
+        "timelineOverlay": 4
+      },
+      "bucketPaint": {
+        "clean": 98,
+        "clipped": 32
+      },
+      "bucketTop": {
+        "clean": 94,
+        "clipped": 32,
+        "timelineOverlay": 4
+      },
+      "movesPaint": {
+        "timelineOverlay -> clean": 4
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 4,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1,
+        "timelineOverlay@directorTimelineTrackList": 3
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 20,
+      "family": "desktop",
+      "viewportH": 290
+    },
+    "1440x720": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 116,
+        "clipped": 13,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 117,
+        "clipped": 13
+      },
+      "bucketTop": {
+        "clean": 116,
+        "clipped": 13,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 3,
+      "family": "desktop",
+      "viewportH": 450
+    },
+    "1440x900": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 118,
+        "clipped": 11,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 119,
+        "clipped": 11
+      },
+      "bucketTop": {
+        "clean": 118,
+        "clipped": 11,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 1,
+      "family": "desktop",
+      "viewportH": 630
+    },
+    "1440x1150": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 118,
+        "clipped": 11,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 119,
+        "clipped": 11
+      },
+      "bucketTop": {
+        "clean": 118,
+        "clipped": 11,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 1,
+      "family": "desktop",
+      "viewportH": 880
+    },
+    "1920x400": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 71,
+        "clipped": 46,
+        "timelineOverlay": 12,
+        "viewportSqueeze": 1
+      },
+      "bucketPaint": {
+        "clean": 85,
+        "clipped": 45
+      },
+      "bucketTop": {
+        "clean": 71,
+        "clipped": 46,
+        "timelineOverlay": 12,
+        "viewportSqueeze": 1
+      },
+      "movesPaint": {
+        "clipped -> clean": 1,
+        "timelineOverlay -> clean": 12,
+        "viewportSqueeze -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 14,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "clipped@directorBottomBar": 1,
+        "timelineOverlay@directorTimelineControls": 1,
+        "timelineOverlay@directorTimelineObjectRow": 5,
+        "timelineOverlay@directorTimelineTrackList": 3,
+        "timelineOverlay@directorTrackLabel": 3,
+        "viewportSqueeze@directorBottomBar": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 12,
+      "family": "desktop",
+      "viewportH": 130
+    },
+    "1920x560": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 95,
+        "clipped": 31,
+        "timelineOverlay": 4
+      },
+      "bucketPaint": {
+        "clean": 99,
+        "clipped": 31
+      },
+      "bucketTop": {
+        "clean": 95,
+        "clipped": 31,
+        "timelineOverlay": 4
+      },
+      "movesPaint": {
+        "timelineOverlay -> clean": 4
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 4,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1,
+        "timelineOverlay@directorTimelineTrackList": 3
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 19,
+      "family": "desktop",
+      "viewportH": 290
+    },
+    "1920x720": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 117,
+        "clipped": 12,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 118,
+        "clipped": 12
+      },
+      "bucketTop": {
+        "clean": 117,
+        "clipped": 12,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 2,
+      "family": "desktop",
+      "viewportH": 450
+    },
+    "1920x900": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 119,
+        "clipped": 10,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 120,
+        "clipped": 10
+      },
+      "bucketTop": {
+        "clean": 119,
+        "clipped": 10,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 0,
+      "family": "desktop",
+      "viewportH": 630
+    },
+    "1920x1150": {
+      "total": 130,
+      "bucketNow": {
+        "clean": 119,
+        "clipped": 10,
+        "timelineOverlay": 1
+      },
+      "bucketPaint": {
+        "clean": 120,
+        "clipped": 10
+      },
+      "bucketTop": {
+        "clean": 119,
+        "clipped": 10,
+        "timelineOverlay": 1
+      },
+      "movesPaint": {
+        "timelineOverlay -> clean": 1
+      },
+      "movesTop": {},
+      "newDefectPaint": 0,
+      "newDefectTop": 0,
+      "silencedPaint": 1,
+      "silencedTop": 0,
+      "silencedPaintBy": {
+        "timelineOverlay@directorTimelineObjectRow": 1
+      },
+      "silencedTopBy": {},
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestor": null,
+      "topClippedLabels": [],
+      "tightClippedLabels": [],
+      "coveredNow": [],
+      "coveredTop": [],
+      "invisibleButOwn": 0,
+      "paintedButFaded": 0,
+      "roundCount": 8,
+      "unreachable": 0,
+      "jointCount": 0,
+      "family": "desktop",
+      "viewportH": 880
+    }
+  },
+  "silencedCases": [
+    {
+      "cell": "339x400",
+      "items": [
+        {
+          "label": "收起",
+          "from": "covered",
+          "painted": true,
+          "top": false,
+          "hit": "导演视角机位视角",
+          "clip": false,
+          "box": [
+            64,
+            5.5,
+            40,
+            40
+          ],
+          "covererSurface": "directorHeader"
+        },
+        {
+          "label": "重置视角",
+          "from": "viewportSqueeze",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默可拖动三轴控件16:99:161:1保",
+          "clip": false,
+          "box": [
+            257,
+            196,
+            62,
+            26.5
+          ],
+          "covererSurface": "directorViewportToolbar"
+        },
+        {
+          "label": "Y 反向",
+          "from": "viewportSqueeze",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默可拖动三轴控件16:99:161:1保",
+          "clip": false,
+          "box": [
+            271.5,
+            168,
+            15,
+            15
+          ],
+          "covererSurface": "directorViewportToolbar"
+        }
+      ]
+    },
+    {
+      "cell": "339x560",
+      "items": [
+        {
+          "label": "收起",
+          "from": "covered",
+          "painted": true,
+          "top": false,
+          "hit": "导演视角机位视角",
+          "clip": false,
+          "box": [
+            64,
+            5.5,
+            40,
+            40
+          ],
+          "covererSurface": "directorHeader"
+        }
+      ]
+    },
+    {
+      "cell": "339x720",
+      "items": [
+        {
+          "label": "收起",
+          "from": "covered",
+          "painted": true,
+          "top": false,
+          "hit": "导演视角机位视角",
+          "clip": false,
+          "box": [
+            64,
+            5.5,
+            40,
+            40
+          ],
+          "covererSurface": "directorHeader"
+        }
+      ]
+    },
+    {
+      "cell": "339x900",
+      "items": [
+        {
+          "label": "收起",
+          "from": "covered",
+          "painted": true,
+          "top": false,
+          "hit": "导演视角机位视角",
+          "clip": false,
+          "box": [
+            64,
+            5.5,
+            40,
+            40
+          ],
+          "covererSurface": "directorHeader"
+        }
+      ]
+    },
+    {
+      "cell": "339x1150",
+      "items": [
+        {
+          "label": "收起",
+          "from": "covered",
+          "painted": true,
+          "top": false,
+          "hit": "导演视角机位视角",
+          "clip": false,
+          "box": [
+            64,
+            5.5,
+            40,
+            40
+          ],
+          "covererSurface": "directorHeader"
+        }
+      ]
+    },
+    {
+      "cell": "620x400",
+      "items": [
+        {
+          "label": "重置视角",
+          "from": "viewportSqueeze",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默可拖动三轴控件16:99:161:1保",
+          "clip": false,
+          "box": [
+            538,
+            196,
+            62,
+            26.5
+          ],
+          "covererSurface": "directorViewportToolbar"
+        },
+        {
+          "label": "Y 反向",
+          "from": "viewportSqueeze",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默可拖动三轴控件16:99:161:1保",
+          "clip": false,
+          "box": [
+            552.5,
+            168,
+            15,
+            15
+          ],
+          "covererSurface": "directorViewportToolbar"
+        }
+      ]
+    },
+    {
+      "cell": "768x400",
+      "items": [
+        {
+          "label": "重置视角",
+          "from": "viewportSqueeze",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默可拖动三轴控件16:99:161:1保",
+          "clip": false,
+          "box": [
+            686,
+            196,
+            62,
+            26.5
+          ],
+          "covererSurface": "directorViewportToolbar"
+        },
+        {
+          "label": "Y 反向",
+          "from": "viewportSqueeze",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默可拖动三轴控件16:99:161:1保",
+          "clip": false,
+          "box": [
+            700.5,
+            168,
+            15,
+            15
+          ],
+          "covererSurface": "directorBottomBar"
+        }
+      ]
+    },
+    {
+      "cell": "899x400",
+      "items": [
+        {
+          "label": "隐藏咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            176,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "锁定咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            208,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "删除咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            240,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "隐藏冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            176,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "锁定冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            208,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "删除冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            240,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "隐藏咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            176,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "锁定咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            208,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "删除咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            240,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "选择画幅比例",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "ms新建轨道预设运镜创建运动轨迹曲线编辑器轨道添加关键帧",
+          "clip": false,
+          "box": [
+            7.5,
+            236,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineControls"
+        },
+        {
+          "label": "AI 识图导入",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            7.5,
+            276,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            360,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "重置视角",
+          "from": "clipped",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默可拖动三轴控件16:99:161:1保",
+          "clip": true,
+          "box": [
+            536,
+            196,
+            62,
+            26.5
+          ],
+          "covererSurface": "directorViewportToolbar"
+        },
+        {
+          "label": "Y 反向",
+          "from": "viewportSqueeze",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默可拖动三轴控件16:99:161:1保",
+          "clip": false,
+          "box": [
+            550.5,
+            168,
+            15,
+            15
+          ],
+          "covererSurface": "directorViewportToolbar"
+        }
+      ]
+    },
+    {
+      "cell": "899x560",
+      "items": [
+        {
+          "label": "隐藏机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            176,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "锁定机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            208,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "删除机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            240,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            520,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "899x720",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            680,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "899x900",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            860,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "899x1150",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            1110,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1020x400",
+      "items": [
+        {
+          "label": "隐藏咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            176,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "锁定咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            208,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "删除咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            240,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "隐藏冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            176,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "锁定冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            208,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "删除冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            240,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "隐藏咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            176,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "锁定咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            208,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "删除咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            240,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "选择画幅比例",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "ms新建轨道预设运镜创建运动轨迹曲线编辑器轨道添加关键帧",
+          "clip": false,
+          "box": [
+            7.5,
+            236,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineControls"
+        },
+        {
+          "label": "AI 识图导入",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            7.5,
+            276,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            360,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "重置视角",
+          "from": "clipped",
+          "painted": true,
+          "top": false,
+          "hit": "1:1",
+          "clip": true,
+          "box": [
+            657,
+            196,
+            62,
+            26.5
+          ],
+          "covererSurface": "directorAspect"
+        },
+        {
+          "label": "Y 反向",
+          "from": "viewportSqueeze",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默可拖动三轴控件16:99:161:1保",
+          "clip": false,
+          "box": [
+            671.5,
+            168,
+            15,
+            15
+          ],
+          "covererSurface": "directorViewportToolbar"
+        }
+      ]
+    },
+    {
+      "cell": "1020x560",
+      "items": [
+        {
+          "label": "隐藏机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            176,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "锁定机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            208,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "删除机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            240,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            520,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1020x720",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            680,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1020x900",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            860,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1020x1150",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            1110,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1152x400",
+      "items": [
+        {
+          "label": "隐藏咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            176,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "锁定咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            208,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "删除咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            240,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "隐藏冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            176,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "锁定冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            208,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "删除冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            240,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "隐藏咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            176,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "锁定咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            208,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "删除咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            240,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "选择画幅比例",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "ms新建轨道预设运镜创建运动轨迹曲线编辑器轨道添加关键帧",
+          "clip": false,
+          "box": [
+            7.5,
+            236,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineControls"
+        },
+        {
+          "label": "AI 识图导入",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            7.5,
+            276,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            360,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "重置视角",
+          "from": "clipped",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默可拖动三轴控件16:99:161:1保",
+          "clip": true,
+          "box": [
+            789,
+            196,
+            62,
+            26.5
+          ],
+          "covererSurface": "directorViewportToolbar"
+        },
+        {
+          "label": "Y 反向",
+          "from": "viewportSqueeze",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默可拖动三轴控件16:99:161:1保",
+          "clip": false,
+          "box": [
+            803.5,
+            168,
+            15,
+            15
+          ],
+          "covererSurface": "directorViewportToolbar"
+        }
+      ]
+    },
+    {
+      "cell": "1152x560",
+      "items": [
+        {
+          "label": "隐藏机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            176,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "锁定机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            208,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "删除机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            240,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            520,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1152x720",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            680,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1152x900",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            860,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1152x1150",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            1110,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1440x400",
+      "items": [
+        {
+          "label": "隐藏咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            176,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "锁定咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            208,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "删除咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            240,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "隐藏冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            176,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "锁定冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            208,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "删除冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            240,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "隐藏咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            176,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "锁定咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            208,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "删除咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            240,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "选择画幅比例",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "ms新建轨道预设运镜创建运动轨迹曲线编辑器轨道添加关键帧",
+          "clip": false,
+          "box": [
+            7.5,
+            236,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineControls"
+        },
+        {
+          "label": "AI 识图导入",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            7.5,
+            276,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            360,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "重置视角",
+          "from": "clipped",
+          "painted": true,
+          "top": false,
+          "hit": "场景描述已记录（本地草稿）",
+          "clip": true,
+          "box": [
+            1077,
+            196,
+            62,
+            26.5
+          ],
+          "covererSurface": "directorScenePromptBar"
+        },
+        {
+          "label": "Y 反向",
+          "from": "viewportSqueeze",
+          "painted": true,
+          "top": false,
+          "hit": "场景描述已记录（本地草稿）",
+          "clip": false,
+          "box": [
+            1091.5,
+            168,
+            15,
+            15
+          ],
+          "covererSurface": "directorScenePromptBar"
+        }
+      ]
+    },
+    {
+      "cell": "1440x560",
+      "items": [
+        {
+          "label": "隐藏机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            176,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "锁定机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            208,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "删除机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            240,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            520,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1440x720",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            680,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1440x900",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            860,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1440x1150",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            1110,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1920x400",
+      "items": [
+        {
+          "label": "隐藏咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            176,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "锁定咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            208,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "删除咖啡桌",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            240,
+            276,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "隐藏冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            176,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "锁定冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            208,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "删除冷掉的咖啡",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            240,
+            308,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "隐藏咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            176,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "锁定咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            208,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "删除咖啡馆背景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "变换-1.25,0,0.2",
+          "clip": false,
+          "box": [
+            240,
+            340,
+            24,
+            24
+          ],
+          "covererSurface": "directorTrackLabel"
+        },
+        {
+          "label": "选择画幅比例",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "ms新建轨道预设运镜创建运动轨迹曲线编辑器轨道添加关键帧",
+          "clip": false,
+          "box": [
+            7.5,
+            236,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineControls"
+        },
+        {
+          "label": "AI 识图导入",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默",
+          "clip": false,
+          "box": [
+            7.5,
+            276,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            360,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        },
+        {
+          "label": "重置视角",
+          "from": "clipped",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默可拖动三轴控件16:99:161:1保",
+          "clip": true,
+          "box": [
+            1557,
+            196,
+            62,
+            26.5
+          ],
+          "covererSurface": "directorBottomBar"
+        },
+        {
+          "label": "Y 反向",
+          "from": "viewportSqueeze",
+          "painted": true,
+          "top": false,
+          "hit": "角色01 · 陈默可拖动三轴控件16:99:161:1保",
+          "clip": false,
+          "box": [
+            1571.5,
+            168,
+            15,
+            15
+          ],
+          "covererSurface": "directorBottomBar"
+        }
+      ]
+    },
+    {
+      "cell": "1920x560",
+      "items": [
+        {
+          "label": "隐藏机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            176,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "锁定机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            208,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "删除机位01 · 对峙中景",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "<div>",
+          "clip": false,
+          "box": [
+            240,
+            412,
+            24,
+            24
+          ],
+          "covererSurface": "directorTimelineTrackList"
+        },
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            520,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1920x720",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            680,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1920x900",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            860,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    },
+    {
+      "cell": "1920x1150",
+      "items": [
+        {
+          "label": "帮助",
+          "from": "timelineOverlay",
+          "painted": true,
+          "top": false,
+          "hit": "收起属性",
+          "clip": false,
+          "box": [
+            7.5,
+            1110,
+            32,
+            32
+          ],
+          "covererSurface": "directorTimelineObjectRow"
+        }
+      ]
+    }
+  ],
+  "compositingSelfTest": {
+    "probesInjected": 3,
+    "probes": {
+      "P647-bare": {
+        "own": true,
+        "painted": true,
+        "top": true,
+        "invisibleButOwn": false,
+        "paintedButFaded": false,
+        "minAncestorOpacity": 1,
+        "faderSurface": null,
+        "bucketNow": "clean",
+        "bucketPaint": "clean",
+        "bucketTop": "clean"
+      },
+      "P647-faded": {
+        "own": true,
+        "painted": true,
+        "top": true,
+        "invisibleButOwn": false,
+        "paintedButFaded": true,
+        "minAncestorOpacity": 0.5,
+        "faderSurface": "directorWorkspace",
+        "bucketNow": "clean",
+        "bucketPaint": "clean",
+        "bucketTop": "clean"
+      },
+      "P647-fader": {
+        "own": true,
+        "painted": true,
+        "top": true,
+        "invisibleButOwn": true,
+        "paintedButFaded": true,
+        "minAncestorOpacity": 0,
+        "faderSurface": "directorWorkspace",
+        "bucketNow": "clean",
+        "bucketPaint": "clean",
+        "bucketTop": "clean"
+      }
+    },
+    "naturalInvisibleBeforeInjection": 0,
+    "naturalFadedBeforeInjection": 0
+  },
+  "checks": {
+    "the-grid-runs-8w-x-5h-both-families": {
+      "ok": true,
+      "detail": {
+        "cells": 40,
+        "widths": [
+          339,
+          620,
+          768,
+          899,
+          1020,
+          1152,
+          1440,
+          1920
+        ],
+        "heights": [
+          400,
+          560,
+          720,
+          900,
+          1150
+        ],
+        "whyTheHeightAxis": "646 swept 23 widths at ONE height, so its 'every blind case is clipped' is a statement about a single row of this grid"
+      }
+    },
+    "the-six-buckets-are-a-strict-partition-under-all-three-criteria": {
+      "ok": true,
+      "detail": {
+        "holes": {},
+        "note": "the chain is own -> panel -> clipped -> timelineOverlay -> viewportSqueeze -> covered"
+      }
+    },
+    "646s-implied-repair-never-creates-a-defect-claim-and-does-silence": {
+      "ok": true,
+      "detail": {
+        "newDefectClaimsTotal": 0,
+        "silencedVerdictsTotal": 116,
+        "cellsWithSilencing": 32,
+        "reading": "a criterion that only ever moves controls toward `clean`, never toward `covered`, is the signature of an instrument being told to shut up, not of an instrument being repaired"
+      }
+    },
+    "the-silence-grows-as-the-viewport-shrinks-in-every-width": {
+      "ok": true,
+      "detail": {
+        "matrix": {
+          "339": {
+            "400": 3,
+            "560": 1,
+            "720": 1,
+            "900": 1,
+            "1150": 1
+          },
+          "620": {
+            "400": 2,
+            "560": 0,
+            "720": 0,
+            "900": 0,
+            "1150": 0
+          },
+          "768": {
+            "400": 2,
+            "560": 0,
+            "720": 0,
+            "900": 0,
+            "1150": 0
+          },
+          "899": {
+            "400": 14,
+            "560": 4,
+            "720": 1,
+            "900": 1,
+            "1150": 1
+          },
+          "1020": {
+            "400": 14,
+            "560": 4,
+            "720": 1,
+            "900": 1,
+            "1150": 1
+          },
+          "1152": {
+            "400": 14,
+            "560": 4,
+            "720": 1,
+            "900": 1,
+            "1150": 1
+          },
+          "1440": {
+            "400": 14,
+            "560": 4,
+            "720": 1,
+            "900": 1,
+            "1150": 1
+          },
+          "1920": {
+            "400": 14,
+            "560": 4,
+            "720": 1,
+            "900": 1,
+            "1150": 1
+          }
+        },
+        "widthsWhereItDoesNotGrow": {},
+        "reading": "the damage scales exactly where the census does its most work: `timelineOverlay` grows as the viewport shortens, and every one of those verdicts is a source-fact exemption from 628"
+      }
+    },
+    "the-paint-repair-would-retire-632s-standing-defect-the-top-one-would-not": {
+      "ok": true,
+      "detail": {
+        "retiredByTopRepair": [],
+        "theCaseNow": [
+          [
+            "收起",
+            "导演视角机位视角",
+            [
+              64,
+              5.5,
+              40,
+              40
+            ]
+          ]
+        ],
+        "theCaseUnderTopRepair": [
+          [
+            "收起",
+            "导演视角机位视角",
+            [
+              64,
+              5.5,
+              40,
+              40
+            ]
+          ]
+        ],
+        "coveredCountDroppedByPaintRepair": [
+          {
+            "cell": "339x400",
+            "now": 1,
+            "paint": 0
+          },
+          {
+            "cell": "339x560",
+            "now": 1,
+            "paint": 0
+          },
+          {
+            "cell": "339x720",
+            "now": 1,
+            "paint": 0
+          },
+          {
+            "cell": "339x900",
+            "now": 1,
+            "paint": 0
+          },
+          {
+            "cell": "339x1150",
+            "now": 1,
+            "paint": 0
+          }
+        ],
+        "origin": "632: DirectorDesk.tsx:1029-1031 places a 170px centred group absolutely; at 339 it lands on the top bar's `收起`. 640 asserts this in every run.",
+        "reading": "`收起` IS painted at its centre — it is visible — and is still not on top of the stack. The paint repair files that as clean; the top repair keeps the finding. The defect is real either way."
+      }
+    },
+    "the-top-repair-only-ever-moves-clean-to-clipped": {
+      "ok": true,
+      "detail": {
+        "cellsWithAnyOtherMove": {},
+        "distinctTopMoves": [
+          "clean -> clipped"
+        ],
+        "whyThisIsTheShapeYouWant": "a repair that can only move a control from 'clean' into the 'scroll to reach it' bucket cannot be hiding a finding"
+      }
+    },
+    "both-repairs-file-the-same-646-blind-set": {
+      "ok": true,
+      "detail": {
+        "mismatches": {},
+        "reading": "the two candidates agree on WHICH controls are missed; they differ only on what to do about a control that is painted but not on top, and the top repair is the one that keeps reporting it"
+      }
+    },
+    "646s-mechanism-assertions-survive-the-height-axis": {
+      "ok": true,
+      "detail": {
+        "blindCasesNotClipped": {},
+        "blindCasesNotThroughTheAncestorBranch": {},
+        "blindCountPerCell": {
+          "339x400": 0,
+          "339x560": 0,
+          "339x720": 0,
+          "339x900": 0,
+          "339x1150": 0,
+          "620x400": 1,
+          "620x560": 1,
+          "620x720": 1,
+          "620x900": 1,
+          "620x1150": 1,
+          "768x400": 1,
+          "768x560": 1,
+          "768x720": 1,
+          "768x900": 1,
+          "768x1150": 1,
+          "899x400": 1,
+          "899x560": 1,
+          "899x720": 1,
+          "899x900": 1,
+          "899x1150": 1,
+          "1020x400": 1,
+          "1020x560": 1,
+          "1020x720": 1,
+          "1020x900": 1,
+          "1020x1150": 1,
+          "1152x400": 0,
+          "1152x560": 0,
+          "1152x720": 0,
+          "1152x900": 0,
+          "1152x1150": 0,
+          "1440x400": 0,
+          "1440x560": 0,
+          "1440x720": 0,
+          "1440x900": 0,
+          "1440x1150": 0,
+          "1920x400": 0,
+          "1920x560": 0,
+          "1920x720": 0,
+          "1920x900": 0,
+          "1920x1150": 0
+        },
+        "labelsSeen": [
+          "删除关键帧",
+          "模型库",
+          "移除角色01 · 陈默 · 变换轨道"
+        ],
+        "reading": "clipping really is the only reason a control is in the hit stack's neighbourhood without being in it, across 40 cells and both families"
+      }
+    },
+    "the-top-repair-accuses-nothing-and-silences-nothing": {
+      "ok": true,
+      "detail": {
+        "newDefectClaims": 0,
+        "silencedVerdicts": 0,
+        "verdict": "safe in BOTH directions — it neither invents a defect nor retires one"
+      }
+    },
+    "the-compositing-probe-fires-on-an-injected-target": {
+      "ok": true,
+      "detail": {
+        "wrong": {},
+        "probesInjected": 3,
+        "probes": {
+          "P647-bare": {
+            "own": true,
+            "painted": true,
+            "top": true,
+            "invisibleButOwn": false,
+            "paintedButFaded": false,
+            "minAncestorOpacity": 1,
+            "faderSurface": null,
+            "bucketNow": "clean",
+            "bucketPaint": "clean",
+            "bucketTop": "clean"
+          },
+          "P647-faded": {
+            "own": true,
+            "painted": true,
+            "top": true,
+            "invisibleButOwn": false,
+            "paintedButFaded": true,
+            "minAncestorOpacity": 0.5,
+            "faderSurface": "directorWorkspace",
+            "bucketNow": "clean",
+            "bucketPaint": "clean",
+            "bucketTop": "clean"
+          },
+          "P647-fader": {
+            "own": true,
+            "painted": true,
+            "top": true,
+            "invisibleButOwn": true,
+            "paintedButFaded": true,
+            "minAncestorOpacity": 0,
+            "faderSurface": "directorWorkspace",
+            "bucketNow": "clean",
+            "bucketPaint": "clean",
+            "bucketTop": "clean"
+          }
+        },
+        "theDiscrimination": "faded 0.5 must set paintedButFaded and NOT invisibleButOwn; fader 0 must set both. A probe that only tested the 0.5 case could not tell the two apart."
+      }
+    },
+    "paintedAtCentre-does-not-mean-painted-and-the-probe-shows-it": {
+      "ok": true,
+      "detail": {
+        "faderProbe": {
+          "own": true,
+          "painted": true,
+          "top": true,
+          "invisibleButOwn": true,
+          "paintedButFaded": true,
+          "minAncestorOpacity": 0,
+          "faderSurface": "directorWorkspace",
+          "bucketNow": "clean",
+          "bucketPaint": "clean",
+          "bucketTop": "clean"
+        },
+        "correction": "646 named the field `paintedAtCentre`. It measures membership in the hit-test stack. An invisible control satisfies it. The name is kept — renaming a committed contract is not this batch's business — but it is corrected here, and the counterexample is on the record."
+      }
+    },
+    "the-compositing-channel-is-empty-across-the-whole-corner": {
+      "ok": true,
+      "detail": {
+        "invisibleButOwnTotal": 0,
+        "paintedButFadedTotal": 0,
+        "beforeInjection": {
+          "probesInjected": 3,
+          "probes": {
+            "P647-bare": {
+              "own": true,
+              "painted": true,
+              "top": true,
+              "invisibleButOwn": false,
+              "paintedButFaded": false,
+              "minAncestorOpacity": 1,
+              "faderSurface": null,
+              "bucketNow": "clean",
+              "bucketPaint": "clean",
+              "bucketTop": "clean"
+            },
+            "P647-faded": {
+              "own": true,
+              "painted": true,
+              "top": true,
+              "invisibleButOwn": false,
+              "paintedButFaded": true,
+              "minAncestorOpacity": 0.5,
+              "faderSurface": "directorWorkspace",
+              "bucketNow": "clean",
+              "bucketPaint": "clean",
+              "bucketTop": "clean"
+            },
+            "P647-fader": {
+              "own": true,
+              "painted": true,
+              "top": true,
+              "invisibleButOwn": true,
+              "paintedButFaded": true,
+              "minAncestorOpacity": 0,
+              "faderSurface": "directorWorkspace",
+              "bucketNow": "clean",
+              "bucketPaint": "clean",
+              "bucketTop": "clean"
+            }
+          },
+          "naturalInvisibleBeforeInjection": 0,
+          "naturalFadedBeforeInjection": 0
+        },
+        "reading": "with the instrument proven able to fire, zero natural occurrences is a result: 646's clipping mechanism is the only one this corner can reach",
+        "boundary": "only `opacity` is covered. `filter: opacity(0)`, `mix-blend-mode` and `content-visibility: hidden` are NOT tested and remain open."
+      }
+    },
+    "no-cell-has-an-off-viewport-unreachable-control": {
+      "ok": true,
+      "detail": {}
+    },
+    "642s-eight-round-controls-are-still-eight": {
+      "ok": true,
+      "detail": {}
+    },
+    "the-only-unexplained-cover-is-still-632s-known-defect": {
+      "ok": true,
+      "detail": {
+        "cells": {
+          "339x400": [
+            [
+              "收起",
+              "导演视角机位视角",
+              [
+                64,
+                5.5,
+                40,
+                40
+              ]
+            ]
+          ],
+          "339x560": [
+            [
+              "收起",
+              "导演视角机位视角",
+              [
+                64,
+                5.5,
+                40,
+                40
+              ]
+            ]
+          ],
+          "339x720": [
+            [
+              "收起",
+              "导演视角机位视角",
+              [
+                64,
+                5.5,
+                40,
+                40
+              ]
+            ]
+          ],
+          "339x900": [
+            [
+              "收起",
+              "导演视角机位视角",
+              [
+                64,
+                5.5,
+                40,
+                40
+              ]
+            ]
+          ],
+          "339x1150": [
+            [
+              "收起",
+              "导演视角机位视角",
+              [
+                64,
+                5.5,
+                40,
+                40
+              ]
+            ]
+          ]
+        },
+        "status": "clone-only, unfixed, awaiting a source reading"
+      }
+    }
+  },
+  "ok": true,
+  "checkCount": 15,
+  "failures": [],
+  "totals": {
+    "newDefectClaimsPaint": 0,
+    "newDefectClaimsTop": 0,
+    "silencedByPaint": 116,
+    "silencedByTop": 0,
+    "movedByTop": 20,
+    "blindCases": 20,
+    "silenceMatrix": {
+      "339": {
+        "400": 3,
+        "560": 1,
+        "720": 1,
+        "900": 1,
+        "1150": 1
+      },
+      "620": {
+        "400": 2,
+        "560": 0,
+        "720": 0,
+        "900": 0,
+        "1150": 0
+      },
+      "768": {
+        "400": 2,
+        "560": 0,
+        "720": 0,
+        "900": 0,
+        "1150": 0
+      },
+      "899": {
+        "400": 14,
+        "560": 4,
+        "720": 1,
+        "900": 1,
+        "1150": 1
+      },
+      "1020": {
+        "400": 14,
+        "560": 4,
+        "720": 1,
+        "900": 1,
+        "1150": 1
+      },
+      "1152": {
+        "400": 14,
+        "560": 4,
+        "720": 1,
+        "900": 1,
+        "1150": 1
+      },
+      "1440": {
+        "400": 14,
+        "560": 4,
+        "720": 1,
+        "900": 1,
+        "1150": 1
+      },
+      "1920": {
+        "400": 14,
+        "560": 4,
+        "720": 1,
+        "900": 1,
+        "1150": 1
+      }
+    }
+  }
+}
