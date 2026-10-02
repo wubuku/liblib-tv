@@ -78,7 +78,7 @@
 
 不能。上传只是把素材放进画布，**还需要连线**才能参与生成：
 
-![拖线到空白处弹出「利用画布节点生成」菜单（当前版本该菜单名为「引用该节点生成」，四项相同）](../screenshots/07-connect-references-drop-menu.png)
+![拖线到空白处弹出「引用该节点生成」菜单，四项为文本生成、图片生成、视频生成、音频参考](../screenshots/07-connect-references-drop-menu.png)
 
 把素材节点的右侧输出口连到图片/视频/音频节点，它就会出现在对方的参考素材区。**注意「出现在参考素材区」不等于「一定参与生成」**——未被点名的素材会标着「不参与生成」，详见 [connect-references.md](connect-references.md) 与 [30-concepts.md](../30-concepts.md#连线不等于自动生效)。
 

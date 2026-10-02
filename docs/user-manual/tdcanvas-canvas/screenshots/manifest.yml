@@ -267,15 +267,16 @@ screenshots:
 
   - file: screenshots/07-connect-references-drop-menu.png
     task_id: connect-references
-    step: 从视频节点输出口拖线到空白处松手，弹出上下文菜单（拍摄时该菜单标题为「利用画布节点生成」；当前 v0.14.0 已改名为「引用该节点生成」，四项不变）
+    step: 从图片节点输出口拖线到空白处松手，弹出上下文菜单，菜单标题为当前 v0.14.0 的「引用该节点生成」，四项为文本生成、图片生成、视频生成、音频参考
     route: '/canvas/:id'
-    viewport: 1280x720
+    viewport: 1600x700
     locale: zh-CN
-    captured_at: '2026-09-27'
-    verified_locator: '菜单标题 利用画布节点生成（旧文案，当前版本为 引用该节点生成，见 i18n canvas.createMenu.fromNode 与 dist/assets/app-Djk_0pPR.js）/ 选项 文本生成(提示词·广告词·品牌文案) 图片生成 视频生成 音频参考'
-    visible_text: '利用画布节点生成'
-    alt: 拖线到空白处松手后弹出的引用生成菜单，含文本生成、图片生成、视频生成、音频参考四项（截图拍摄时菜单名为「利用画布节点生成」，当前版本已改名）
-    sha256: b0612c2f532c0c6228bdf106483c05a91f9ccfeee5592057ae71c0513cf5e10b
+    captured_at: '2026-10-03'
+    m166_note: 'M166 重拍。原图（M20，2026-09-27）拍的是旧文案「利用画布节点生成」，全仓源码与 i18n 里该串已 0 次命中，本图换成当前名并把旧名从 alt 里去掉。视口从 1280x720 改成 1600x700：有内容图片节点的工具条恒为 1285px 宽且不随缩放变，1280 视口下**永远放不下**（安全区 [642.5, 957.5] 在 1600 下才有解），M163 已实测该工具条不缩放。拍摄前把缩放从「重置视图」的 44% 拉到 100%、多轮平移把源节点中心挪到 (800,300)。'
+    verified_locator: '菜单容器 absolute z-[120] w-[300px]（实测 190,190 300x330，完整在视口内），标题 SPAN「引用该节点生成」；四项 文本生成(脚本、广告词、品牌文案) 图片生成 视频生成 音频参考；源节点 image-1790941317841-kus2p（690,180 220x220，完整在视口内），输出端口 [data-port-direction="output"] 命中检测 dir=output；工具条 157,86 1285x48 完整在视口内且与菜单重叠 0 处；松手前后连线数 0/0'
+    visible_text: '引用该节点生成'
+    alt: 从图片节点的输出端口拖出一条虚线到画布空白处松手，弹出的菜单标题为「引用该节点生成」，下面依次是文本生成（副标题为脚本、广告词、品牌文案）、图片生成、视频生成、音频参考四项
+    sha256: 596c838936651225a92e97ba9e5ea61cca54fc28693cdd9f546c960569adb3be
 
   - file: screenshots/07-connect-references-connection-menu.png
     task_id: connect-references
