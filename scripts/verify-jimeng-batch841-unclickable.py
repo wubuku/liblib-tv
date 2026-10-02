@@ -2765,6 +2765,70 @@ def main() -> int:
           and "相邻字面量拼接" in _anchsrc
           and "WOULD-FAIL" in _anchsrc
           and "MISSING" in _anchsrc)
+    # ══════════ 批 899：「算下一个」的规则 ══════════
+    p899 = ROOT / "scripts/jimeng_probe899_roving_next_rule_src.py"
+    _p899 = p899.read_text(encoding="utf-8") if p899.exists() else ""
+    check("MM.1 「算下一个」的规则要以**实测读数**写进基线：① 顺序**≈DOM 序**"
+          "（按 `data-testid` 换算下标，不钉序号本身）；② **到末尾就停手、"
+          "绝不绕回**（`max_dom_idx_armed=75`＝最后一个、`revisited={}`）；"
+          "③ 途中 **27 次**「原地没布」；④ 复核 `n_zero` 恒 1、"
+          "`defaultPrevented` 全 False。⚠️ 仪器 `INSTALL_JS`/`STATE_JS` "
+          "**逐字复用 896**，起点也**同为点空白**；按 Tab **节点数 + 25** 次、"
+          "**故意走过一圈**（按 +5 **不够**，见 MM.3）",
+          '"source_roving_next_rule_899"' in _ausrc
+          and "顺序 ≈ DOM 序" in _ausrc
+          and "**到末尾就停手、绝不绕回**" in _ausrc
+          and "max_dom_idx_armed = 75" in _ausrc
+          and "revisited = {}" in _ausrc
+          and "**27 次按压「原地没布」**" in _ausrc
+          and "**彻底撒手**" in _ausrc
+          and "逐字复用" in _p899
+          and "OVERRUN = 25" in _p899
+          and "故意**走过一圈**" in _p899)
+    check("MM.2 ⚠️⚠️ **两条未解释，不许编机制**：① 76 个节点里有 **2 个整轮"
+          "从没被布上 `'0'`** —— `图片 node: b22-upload`（焦点**第 17 步走到过**"
+          "它、但它从没被布上 `'0'`）与 `音频 node: 音频 61`；"
+          "**两轮完全一致 ⇒ 不是随机**、但**原因未查明**；"
+          "② **有 1 个节点被布上 `'0'`、而焦点从没到达它**。"
+          "⚠️ 由此钉死两条不许：复刻按「**纯 DOM 序**」实现**会**在那 2 个节点上"
+          "和源站不一致 ⇒ **不许**把这个差异当 bug **顺手抹平**，"
+          "**更不许**反过来**猜**一个原因去「对齐」它",
+          "**两条未解释，不许编机制**" in _ausrc
+          and "76 个节点里有 2 个整轮从没被布上 `'0'`" in _ausrc
+          and "图片 node: b22-upload" in _ausrc
+          and "音频 node: 音频 61" in _ausrc
+          and "**原因未查明**" in _ausrc
+          and "**更不许**反过来**猜**一个原因去「对齐」它" in _ausrc)
+    check("MM.3 ⚠️ 899 第一版自己踩的两个坑必须留痕：① `OVERRUN=5` **不够** —— "
+          "81 次按压里只有 72 次真正推进指针（其余是「原地重写同一个已有 `'0'` 的"
+          "节点」），指针只走到下标 72、**根本没到末尾** ⇒ 「怎么绕」"
+          "**其实没测到**，**差点**把「不绕回」建立在没测到的数据上；"
+          "② ⚠️⚠️ `focus_is_wrapper` **写错了、而且恒为真** —— 它比的是"
+          "「focusin 的 target 是否等于 `activeElement`」，而拿到焦点的元素"
+          "**按定义**就成了 `activeElement`（896 那边 18/18 全 True 就是这个"
+          "原因，看着像证据、其实**什么也没测**）⇒ 899 改成真判据"
+          "（**落点自己带不带 `react-flow__node` 类**）。"
+          "⇒ 教训：**一个恒真的字段比没有字段更坏**",
+          "`OVERRUN=5` **不够**" in _ausrc
+          and "**根本没到末尾**" in _ausrc
+          and "**差点**" in _ausrc
+          and "写错了、而且恒为真" in _ausrc
+          and "按定义" in _ausrc
+          and "看着像证据、" in _ausrc
+          and "**一个恒真的字段比没有字段更坏**" in _ausrc
+          and "target_is_node_wrapper" in _p899
+          and "OVERRUN = 25" in _p899)
+    check("MM.4 ⚠️ 899 汇总代码第一版还会**崩**：`seq` 里可能有 `None`"
+          "（布 `'0'` 的目标**不在**本轮记录的 DOM 序里 —— 走查途中节点被 "
+          "React 重建就会这样，本轮实测到 **1 次**）⇒ 排序/比较前**必须**先把 "
+          "`None` 摘出去。⚠️ 顺带钉住**不许钉**的东西：节点总数是**易变量**"
+          "（同 URL 逐轮 74→75→76→77），按**身份**（`data-testid`）记 DOM 序",
+          "汇总代码第一版还会**崩**" in _ausrc
+          and "本轮实测到 1 次" in _ausrc
+          and "**必须**先把 " in _ausrc
+          and "摘出去" in _ausrc
+          and "**节点总数是易变量**" in _ausrc
+          and "按**身份**（`data-testid`）记 DOM 序" in _ausrc)
     check("KK.4 896 必须把 894 判据里那个**洞**留痕：`summarize()` 用 "
           "`v[\"tabindex\"].add(...)` **只收集合、丢掉计数**，而「各有几个 `0`」"
           "恰好是区分 roving 的**唯一**判据 ⇒ 894 **读到了**却被**抹平**了。"
