@@ -1,0 +1,610 @@
+{
+  "batch": 656,
+  "question": "is there a conditional surface outside the 15 open paths 655 measured?  derived by enumerating the rail entries out of the live DOM rather than by guessing at more panels",
+  "method": {
+    "instrument": "655's diff, pointed at the ENTRANCE rather than at a panel — and made TWO-SIDED, because a one-sided diff reports a collapse as an empty result",
+    "entryListSource": "read out of the live DOM ([data-director-rail-entry] attribute values) — not hand-written",
+    "knownSurfaceSource": "batch655 runtime-audit.json conditionalSurface.members, read from the file",
+    "prediction": [
+      "data-director-scene-settings-section",
+      "data-director-scene-display-settings",
+      "data-director-scene-camera-actions",
+      "data-director-scene-toggle"
+    ],
+    "predictionOutcome": "FALSIFIED — see the check named the-scene-prediction-was-wrong"
+  },
+  "enumerated": {
+    "railEntries": [
+      "add-camera",
+      "add-character",
+      "ai-import",
+      "aspect-ratio",
+      "help",
+      "panorama",
+      "scene"
+    ],
+    "railEntryCount": 7,
+    "togglesPresentInTheDom": [
+      true,
+      true
+    ],
+    "notUsedByThe15MeasuredPaths": [
+      "add-camera",
+      "help",
+      "scene"
+    ]
+  },
+  "knownSurfaceSize": 95,
+  "perEntry": {
+    "rail:add-camera": {
+      "err": null,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      },
+      "addedMarkers": [
+        "data-director-camera-follow-state",
+        "data-director-camera-follow-target",
+        "data-director-camera-fov",
+        "data-director-camera-fov-field",
+        "data-director-camera-fov-fill",
+        "data-director-camera-fov-help",
+        "data-director-camera-fov-help-badge",
+        "data-director-camera-fov-help-tooltip",
+        "data-director-camera-fov-knob",
+        "data-director-camera-fov-number",
+        "data-director-camera-fov-readout",
+        "data-director-camera-fov-slider",
+        "data-director-camera-look-at-mode",
+        "data-director-camera-look-at-object",
+        "data-director-camera-motion-new",
+        "data-director-camera-preview",
+        "data-director-camera-preview-canvas",
+        "data-director-camera-preview-expand",
+        "data-director-camera-preview-fov",
+        "data-director-camera-preview-state",
+        "data-director-camera-switch",
+        "data-director-camera-tab",
+        "data-director-camera-tabs",
+        "data-director-camera-target-coordinates",
+        "data-director-camera-target-derived",
+        "data-director-shot-end",
+        "data-director-shot-id",
+        "data-director-shot-inspector",
+        "data-director-shot-name",
+        "data-director-shot-range",
+        "data-director-shot-start"
+      ],
+      "removedMarkers": [
+        "data-director-character-tab",
+        "data-director-character-tabs"
+      ],
+      "addedCount": 31,
+      "removedCount": 2,
+      "addedSignatures": 29,
+      "removedSignatures": 0,
+      "geometryChanged": 529,
+      "elementsBefore": 1390,
+      "elementsAfter": 1534,
+      "markersBefore": 175,
+      "markersAfter": 204,
+      "outcome": "opened"
+    },
+    "rail:add-character": {
+      "err": null,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      },
+      "addedMarkers": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-flyout-title"
+      ],
+      "removedMarkers": [],
+      "addedCount": 3,
+      "removedCount": 0,
+      "addedSignatures": 5,
+      "removedSignatures": 0,
+      "geometryChanged": 27,
+      "elementsBefore": 1390,
+      "elementsAfter": 1418,
+      "markersBefore": 175,
+      "markersAfter": 178,
+      "outcome": "opened"
+    },
+    "rail:ai-import": {
+      "err": null,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      },
+      "addedMarkers": [
+        "data-director-ai-import-backdrop",
+        "data-director-ai-import-close",
+        "data-director-ai-import-dropzone",
+        "data-director-ai-import-generate",
+        "data-director-ai-import-modal",
+        "data-director-ai-import-tab",
+        "data-director-coverage-option"
+      ],
+      "removedMarkers": [],
+      "addedCount": 7,
+      "removedCount": 0,
+      "addedSignatures": 20,
+      "removedSignatures": 0,
+      "geometryChanged": 28,
+      "elementsBefore": 1390,
+      "elementsAfter": 1421,
+      "markersBefore": 175,
+      "markersAfter": 182,
+      "outcome": "opened"
+    },
+    "rail:aspect-ratio": {
+      "err": null,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      },
+      "addedMarkers": [
+        "data-director-aspect-flyout",
+        "data-director-aspect-glyph",
+        "data-director-aspect-grid",
+        "data-director-aspect-option",
+        "data-director-flyout-title"
+      ],
+      "removedMarkers": [],
+      "addedCount": 5,
+      "removedCount": 0,
+      "addedSignatures": 5,
+      "removedSignatures": 0,
+      "geometryChanged": 17,
+      "elementsBefore": 1390,
+      "elementsAfter": 1408,
+      "markersBefore": 175,
+      "markersAfter": 180,
+      "outcome": "opened"
+    },
+    "rail:help": {
+      "err": "TimeoutError: Locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"[dat",
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      },
+      "addedMarkers": [],
+      "removedMarkers": [],
+      "addedCount": 0,
+      "removedCount": 0,
+      "addedSignatures": 0,
+      "removedSignatures": 0,
+      "geometryChanged": 1446,
+      "elementsBefore": 1390,
+      "elementsAfter": 1390,
+      "markersBefore": 175,
+      "markersAfter": 175,
+      "outcome": "probe-failed"
+    },
+    "rail:panorama": {
+      "err": null,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      },
+      "addedMarkers": [
+        "data-director-flyout-title",
+        "data-director-panorama-flyout",
+        "data-director-panorama-option"
+      ],
+      "removedMarkers": [],
+      "addedCount": 3,
+      "removedCount": 0,
+      "addedSignatures": 7,
+      "removedSignatures": 0,
+      "geometryChanged": 22,
+      "elementsBefore": 1390,
+      "elementsAfter": 1413,
+      "markersBefore": 175,
+      "markersAfter": 178,
+      "outcome": "opened"
+    },
+    "rail:scene": {
+      "err": null,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      },
+      "addedMarkers": [],
+      "removedMarkers": [],
+      "addedCount": 0,
+      "removedCount": 0,
+      "addedSignatures": 0,
+      "removedSignatures": 0,
+      "geometryChanged": 0,
+      "elementsBefore": 1390,
+      "elementsAfter": 1390,
+      "markersBefore": 175,
+      "markersAfter": 175,
+      "outcome": "noop"
+    },
+    "toggle:data-director-panels-toggle": {
+      "err": null,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      },
+      "addedMarkers": [],
+      "removedMarkers": [
+        "data-director-panels-toggle"
+      ],
+      "addedCount": 0,
+      "removedCount": 1,
+      "addedSignatures": 0,
+      "removedSignatures": 0,
+      "geometryChanged": 397,
+      "elementsBefore": 1390,
+      "elementsAfter": 1385,
+      "markersBefore": 175,
+      "markersAfter": 174,
+      "outcome": "closed"
+    },
+    "toggle:data-director-timeline-toggle": {
+      "err": null,
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      },
+      "addedMarkers": [],
+      "removedMarkers": [
+        "data-director-add-keyframe",
+        "data-director-add-track",
+        "data-director-add-track-manual",
+        "data-director-auto-keyframe",
+        "data-director-camera-preset-trigger",
+        "data-director-coachmark-next",
+        "data-director-coachmark-skip",
+        "data-director-create-motion-path",
+        "data-director-delete-keyframe",
+        "data-director-export-trigger",
+        "data-director-keyframe-id",
+        "data-director-keyframe-time",
+        "data-director-lane-group",
+        "data-director-loop",
+        "data-director-object-group",
+        "data-director-open-curve-editor",
+        "data-director-playback",
+        "data-director-playhead",
+        "data-director-playhead-time",
+        "data-director-remove-track",
+        "data-director-ruler-tick",
+        "data-director-time-field",
+        "data-director-time-field-unit",
+        "data-director-time-unit",
+        "data-director-timeline",
+        "data-director-timeline-canvas",
+        "data-director-timeline-coachmark",
+        "data-director-timeline-collapse",
+        "data-director-timeline-collapsed",
+        "data-director-timeline-controls",
+        "data-director-timeline-controls-scroll",
+        "data-director-timeline-duration",
+        "data-director-timeline-height",
+        "data-director-timeline-mode",
+        "data-director-timeline-object-lane",
+        "data-director-timeline-object-lane-selected",
+        "data-director-timeline-object-name",
+        "data-director-timeline-object-row",
+        "data-director-timeline-object-selected",
+        "data-director-timeline-resize-handle",
+        "data-director-timeline-ruler",
+        "data-director-timeline-strip-right",
+        "data-director-timeline-tick-count",
+        "data-director-timeline-time",
+        "data-director-timeline-track-list",
+        "data-director-timeline-zoom",
+        "data-director-timeline-zoom-cluster",
+        "data-director-track-draw-trail",
+        "data-director-track-id",
+        "data-director-track-kind",
+        "data-director-track-label",
+        "data-director-track-object-id",
+        "data-director-track-row",
+        "data-director-track-row-kind",
+        "data-director-track-row-selected",
+        "data-director-track-selected",
+        "data-director-track-value"
+      ],
+      "addedCount": 0,
+      "removedCount": 57,
+      "addedSignatures": 0,
+      "removedSignatures": 55,
+      "geometryChanged": 472,
+      "elementsBefore": 1390,
+      "elementsAfter": 1052,
+      "markersBefore": 175,
+      "markersAfter": 118,
+      "outcome": "closed"
+    }
+  },
+  "beyondTheKnown95": {},
+  "removedFromTheKnown95": {},
+  "checks": {
+    "the-entry-list-is-derived-from-the-dom-not-written-down": {
+      "ok": true,
+      "detail": {
+        "railEntries": [
+          "add-camera",
+          "add-character",
+          "ai-import",
+          "aspect-ratio",
+          "help",
+          "panorama",
+          "scene"
+        ],
+        "railEntryCount": 7,
+        "togglesPresent": [
+          true,
+          true
+        ],
+        "whyItMatters": "a census whose list is written by hand has no way to notice when the product grows a control. 643's surfaceOf, 626's PANELS, and the 258-in-654 are all that failure."
+      },
+      "note": "if a new rail entry is added to the product, this count moves"
+    },
+    "every-derived-entry-got-a-real-reading-and-no-failure-became-a-zero": {
+      "ok": true,
+      "detail": {
+        "entriesDriven": [
+          "rail:add-camera",
+          "rail:add-character",
+          "rail:ai-import",
+          "rail:aspect-ratio",
+          "rail:help",
+          "rail:panorama",
+          "rail:scene",
+          "toggle:data-director-panels-toggle",
+          "toggle:data-director-timeline-toggle"
+        ],
+        "count": 9,
+        "outcomes": {
+          "rail:add-camera": "opened",
+          "rail:add-character": "opened",
+          "rail:ai-import": "opened",
+          "rail:aspect-ratio": "opened",
+          "rail:help": "probe-failed",
+          "rail:panorama": "opened",
+          "rail:scene": "noop",
+          "toggle:data-director-panels-toggle": "closed",
+          "toggle:data-director-timeline-toggle": "closed"
+        },
+        "errors": {
+          "rail:help": "TimeoutError: Locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"[dat"
+        },
+        "failuresFiledAsSomethingElse": {},
+        "detailPerEntry": {
+          "rail:add-camera": {
+            "added": 31,
+            "removed": 2,
+            "sigAdded": 29,
+            "sigRemoved": 0,
+            "geometryChanged": 529,
+            "elements": "1390->1534",
+            "markers": "175->204"
+          },
+          "rail:add-character": {
+            "added": 3,
+            "removed": 0,
+            "sigAdded": 5,
+            "sigRemoved": 0,
+            "geometryChanged": 27,
+            "elements": "1390->1418",
+            "markers": "175->178"
+          },
+          "rail:ai-import": {
+            "added": 7,
+            "removed": 0,
+            "sigAdded": 20,
+            "sigRemoved": 0,
+            "geometryChanged": 28,
+            "elements": "1390->1421",
+            "markers": "175->182"
+          },
+          "rail:aspect-ratio": {
+            "added": 5,
+            "removed": 0,
+            "sigAdded": 5,
+            "sigRemoved": 0,
+            "geometryChanged": 17,
+            "elements": "1390->1408",
+            "markers": "175->180"
+          },
+          "rail:help": {
+            "added": 0,
+            "removed": 0,
+            "sigAdded": 0,
+            "sigRemoved": 0,
+            "geometryChanged": 1446,
+            "elements": "1390->1390",
+            "markers": "175->175"
+          },
+          "rail:panorama": {
+            "added": 3,
+            "removed": 0,
+            "sigAdded": 7,
+            "sigRemoved": 0,
+            "geometryChanged": 22,
+            "elements": "1390->1413",
+            "markers": "175->178"
+          },
+          "rail:scene": {
+            "added": 0,
+            "removed": 0,
+            "sigAdded": 0,
+            "sigRemoved": 0,
+            "geometryChanged": 0,
+            "elements": "1390->1390",
+            "markers": "175->175"
+          },
+          "toggle:data-director-panels-toggle": {
+            "added": 0,
+            "removed": 1,
+            "sigAdded": 0,
+            "sigRemoved": 0,
+            "geometryChanged": 397,
+            "elements": "1390->1385",
+            "markers": "175->174"
+          },
+          "toggle:data-director-timeline-toggle": {
+            "added": 0,
+            "removed": 57,
+            "sigAdded": 0,
+            "sigRemoved": 55,
+            "geometryChanged": 472,
+            "elements": "1390->1052",
+            "markers": "175->118"
+          }
+        }
+      },
+      "note": "a probe that failed is a fourth reading, not a zero"
+    },
+    "655s-entries-reproduce-under-656s-own-instrument": {
+      "ok": true,
+      "detail": {
+        "compared": 4,
+        "reproducedExactly": [
+          "rail:add-character",
+          "rail:ai-import",
+          "rail:aspect-ratio",
+          "rail:panorama"
+        ],
+        "extraMarkersThisRunBrought": {
+          "rail:add-character": [],
+          "rail:panorama": [],
+          "rail:aspect-ratio": [],
+          "rail:ai-import": []
+        },
+        "why": "two different batches, two different runs, one diff instrument — and here the instrument was also made two-sided. If the rail entries that 655 already used brought back anything different, the diff would not be reproducible and every number in this family would be soft."
+      },
+      "note": "reproducibility across batches, not just within one"
+    },
+    "the-uncovered-rail-entries-are-named-by-derivation": {
+      "ok": true,
+      "detail": {
+        "allRailEntries": [
+          "add-camera",
+          "add-character",
+          "ai-import",
+          "aspect-ratio",
+          "help",
+          "panorama",
+          "scene"
+        ],
+        "alreadyUsedByThe15Paths": [
+          "add-character",
+          "ai-import",
+          "aspect-ratio",
+          "panorama"
+        ],
+        "neverDrivenByAnyBatch": [
+          "add-camera",
+          "help",
+          "scene"
+        ],
+        "howThisWasDerived": "enumerate the rail entries out of the DOM, then subtract the entries the 15 measured paths are known to go through. The subtraction is the finding.",
+        "toggledSeparately": [
+          "data-director-panels-toggle",
+          "data-director-timeline-toggle"
+        ]
+      },
+      "note": "these three are not in any prior batch's open path"
+    },
+    "the-scene-prediction-was-wrong-and-scene-is-a-dom-level-no-op": {
+      "ok": true,
+      "detail": {
+        "predicted": [
+          "data-director-scene-settings-section",
+          "data-director-scene-display-settings",
+          "data-director-scene-camera-actions",
+          "data-director-scene-toggle"
+        ],
+        "howThePredictionWasMade": "a static scan of src/ found four data-director-scene-* markers referenced by NO verifier, so the scene rail entry was the obvious suspect. Written down before the run.",
+        "howManyOfThemAppeared": 0,
+        "sceneAdded": [],
+        "sceneRemoved": [],
+        "sceneGeometryChanged": 0,
+        "sceneElements": "1390->1390",
+        "sceneMarkers": "175->175",
+        "whatThisDoesNotSay": "it does not say the scene entry is dead code. It says that in the DEFAULT desk state, one click changes no markers, no elements and no rectangle. What it would do with a different selection is untested."
+      },
+      "note": "a falsified prediction kept in the ledger is worth more than a pattern noticed afterwards and forgotten"
+    },
+    "655s-open-question-now-has-a-number-in-both-directions": {
+      "ok": true,
+      "detail": {
+        "knownSurfaceSize": 95,
+        "beyondTheKnown95": 0,
+        "beyondTheKnown95Members": [],
+        "removedFromTheKnown95By": {},
+        "theAnswer": "no rail entry brings in a marker the 15 paths do not already bring in — the one entry nobody had driven (add-camera) brings 31, and all 31 are already in the 95. The other two are a no-op and a failed probe.",
+        "theOtherDirection": "the two toggles REMOVE surface: 0 known markers in total, dominated by the timeline collapse. A one-sided diff could not have seen this at all.",
+        "howToReadThis": "none of this is a defect. The 95 are a ratchet, and now they are known to be reachable from the rail as well as from the 15 paths."
+      },
+      "note": "the gap is recorded in both directions, not asserted away"
+    },
+    "none-of-these-new-paths-moves-the-scroll": {
+      "ok": true,
+      "detail": {
+        "gateFiredOn": {},
+        "note": "none of these entries is one of 654's known positives, so the gate is expected to be silent. If it fires here, a new contaminated path exists and 654's ratchet has to move."
+      },
+      "note": "654's gate, now watching entries it was never shown"
+    }
+  },
+  "ok": true,
+  "checkCount": 7,
+  "failures": [],
+  "totals": {
+    "railEntriesEnumerated": 7,
+    "entriesDriven": 9,
+    "neverDrivenBefore": 3,
+    "knownSurfaceFrom655": 95,
+    "beyondTheKnown95": 0,
+    "removedFromTheKnown95": 0,
+    "outcomes": {
+      "rail:add-camera": "opened",
+      "rail:add-character": "opened",
+      "rail:ai-import": "opened",
+      "rail:aspect-ratio": "opened",
+      "rail:help": "probe-failed",
+      "rail:panorama": "opened",
+      "rail:scene": "noop",
+      "toggle:data-director-panels-toggle": "closed",
+      "toggle:data-director-timeline-toggle": "closed"
+    }
+  }
+}
