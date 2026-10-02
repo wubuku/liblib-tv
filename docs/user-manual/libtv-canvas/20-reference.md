@@ -150,8 +150,8 @@
 | 端口（入口） | `[data-handleid="target"]` | 贴节点**左边界**，class 含 `react-flow__handle-left` `connectable`，光标 `crosshair` |
 | 端口（出口） | `[data-handleid="source"]` | 贴节点**右边界**，class 含 `react-flow__handle-right` `connectable`，光标 `crosshair` —— ⚠️ **`逐帧拉片` 的出口是 `grab`** |
 | 端口数量 | 每个节点 2 个 | 11/11 个节点都是 |
-| ⭐ 端口的可见标记 | **默认 `opacity: 0`（看不见）** | 完整 `innerHTML`（684 字）：外层 0×0 → 内层 **`80×80` 圆形**（`pointer-events:auto`，就是可点区）→ 再内层 **`20×20` 图标**（一个 `circle` + 一个加号 `path d="M10 6.5v7M6.5 10h7"`），**该图标 `opacity:0`**，且被 `transform: translate(25px,0)` 从圆心往外推 |
-| ⭐ 端口什么时候看得见 | **节点被选中时** | 选中的节点左右两侧会出现一个 **`⊕` 圆圈**（圆圈里一个加号），从它按下拖动就能连线 |
+| ⭐ 端口的可见标记 | **默认 `opacity: 0`（看不见）** | 完整 `innerHTML`（684 字）：外层 0×0 → 内层 **`80×80` 圆形**（`pointer-events:auto`，就是可点区）→ 再内层 **`20×20` 图标**（一个 `circle` + 一个加号 `path d="M10 6.5v7M6.5 10h7"`），**该图标 `opacity:0`**，且被 `transform: translate(25px,0)` 从圆心往外推。⚠️ **`opacity` 不继承** —— 读 `<svg>` 自己的 `getComputedStyle().opacity` 恒为 `1`，要读**它父级那个 `20×20` 的 DIV** |
+| ⭐ 端口什么时候看得见 | **鼠标指到它那一带，或节点被选中** | 亮起来时是个 **`⊕` 圆圈**（圆圈里一个加号）。四态实测：鼠标停画布角落 `0` / 悬停**别的**节点的口 `0` / **悬停本节点的口**（没点）`1` / 已选中 `1` —— **逐节点点亮**，不是全局开关 |
 | ⭐ 端口的真实可点范围 | 端口元素**本身 `0×0`**，真正能点的是**套在里面的 `80×80` 透明圆形** | 所以节点左右边缘往外一带的 80 像素都起得了线，不必精确对准小圆点 |
 | ⭐ **连线的两端** | **`aria-label="Edge from <源id> to <目标id>"`** | ⚠️ `.react-flow__edge` 上**没有** `data-source` / `data-target`；`data-id` 是随机串（`e-5U2jB82fuL`），**从 path 的 `d` 坐标反推距离 969~1325 全错** |
 | 连线其他属性 | `data-testid="rf__edge-<id>"` · `role="group"` · `aria-roledescription="edge"` · `tabindex="0"` | class `react-flow__edge react-flow__edge-default nopan selectable` |
