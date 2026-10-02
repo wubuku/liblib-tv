@@ -1941,3 +1941,47 @@ screenshots:
     visible_text: `上传资产` 打开的**不是系统选文件框，而是一整个面板**：左侧虚线投放区 `[385,219,410,430]`，下方 `支持的文件格式 🖼 jpg/jpeg/png ▶ mp4 🔊 mp3` 与 `单个文件大小不超过 20MB`；右侧 `保存位置 *`（必填）/ `请选择文件夹`、`设置标签` / `请选择标签`；右下 `取消` / `保存`，其中 **`保存` 的 `disabled=true`**（必填项没填就是灰的）。⭐ 所以流程是：先定「保存到哪个文件夹」，再在虚线框里放文件。⛔ 没选过真文件、没点过保存
     alt: 上传资产 支持的文件格式 jpg/jpeg/png mp4 mp3 单个文件大小不超过 20MB 保存位置 请选择文件夹 设置标签 请选择标签 取消 保存
     sha256: 6b8af88d7e71c994d265ea18816b804f6d86ab1304ffab5bad377e2416dbcc5b
+  - file: screenshots/M-267-上传-选择文件夹下拉.png
+    task_id: organize-canvas
+    step: 45
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点 `请选择文件夹` → 用 `fingerprint()` DOM 差集读新浮层 + 直接读面板下方冒出来的叶子文本
+    visible_text: 「请选择文件夹」展开后，目录树**就地长在面板里**、长在 `保存位置` 那一栏的正下方，不是浮在上面的菜单；左侧投放区与底部格式说明原样不动。第一行 `个人资产库`（顶格）右端一枚 `+`，第二行 `待分类资产`（缩进一格）右端一枚 `+`
+    alt: 个人资产库 + 待分类资产 目录树，每行末尾一枚加号
+    sha256: 0c15d4fb716f55526abe7a067c779ab4c0fa49be46d71136e04e4788f431afe2
+  - file: screenshots/M-268-可灵主体库-点标签之后.png
+    task_id: organize-canvas
+    step: 46
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: ⭐⭐ **判别式换掉了**：BQ 用「正文变没变」，在这个**空库**上必然失效；改成「**点完回读每个标签自己的 `backgroundColor`，看选中态有没有转移**」。⭐ 而且**先把绝对 x 边界去掉** —— BQ 的 `r.x > 弹窗左边界 + 340` 把 `全部`(354) 和 `人物`(416) 滤掉了，6 个只读到 4 个却照样判「✅ 4/4」。本轮改成「按 y 带圈定 + 先报覆盖率」，**6/6 全部读到、6/6 全部转移**
+    visible_text: 「可灵主体库」页：标题行下方一排六个标签 `全部 人物 场景 道具 特效 其他`，每个 50×28、间距 62（x = 329/391/453/515/577/639，y 都在 200）。选中态 = 背景色 `rgba(255,255,255,0.15)`，未选中是透明 —— 点哪个哪一格就亮起来，6/6 都转移到了自己
+    alt: 全部 人物 场景 道具 特效 其他，全部选中态可逐一转移
+    sha256: 5cc72653a69ba6bc5007e85fa22e931af0b4151d4df077c011669d78034b2f62
+  - file: screenshots/M-270-批量操作-勾选模式.png
+    task_id: organize-canvas
+    step: 47
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点 `aria-label="批量操作"` → 比抽屉全文（找「已选择」四字）+ 数可见 `role=checkbox`
+    visible_text: 「批量操作」勾选模式：工具行不变，主体是那枚 `待分类资产` 行、行内多出可勾选的复选框；底部左侧收起箭头条，右侧从「共 11 节点」变成「**已选择 0 项** 共 11 节点」。有分类之后能数到 1 个可见复选框
+    alt: 待分类资产 行内出现复选框；底部写着「已选择 0 项 共 11 节点」
+    sha256: 9d78053751baf79f1cbefedb1704a70fff2514d8191a5123f88cae485bc5399d
+  - file: screenshots/M-271-上传-选择标签下拉.png
+    task_id: organize-canvas
+    step: 48
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: ⚠️ BQ 那轮 `esc()` 把**整个上传面板**一起关掉了，所以「请选择标签」压根没点到；本轮每点一个下拉之前**重新确认面板还在**（标题「上传资产」在可见 DOM 里的计数 > 0）
+    visible_text: 「请选择标签」展开后，面板下方浮出标签列表：`角色` `场景` `物品` `风格` `音效` 五枚，底部仍留着「取消」「保存」；左侧投放区与格式说明不动。浮层里另有 `新建标签` 入口 —— 与 `筛选` 面板那六个胶囊是**同一套**（多一个新建入口）
+    alt: 上传资产 角色 场景 物品 风格 音效 新建标签 取消 保存
+    sha256: f5979ad909100be53d995de92f37c79d463aef2c1ea152e628d5f8d453d1c533
