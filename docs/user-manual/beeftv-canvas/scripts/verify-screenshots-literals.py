@@ -6,8 +6,15 @@
 `AUDIT-RULES.md` 的覆盖度表里，「截图内容是否仍对得上界面」原被记为
 「无人覆盖，且**不可机械覆盖**」。本闸**部分**关掉了这一条：
 
-- **能核的**：`screenshots/manifest.yml` 每条记录的 `visible_text` / `alt` 里
-  **录下来的界面文案**，是否仍能在上游 `web/src` 找到。**这一项 Batch 161 查实
+- **能核的**：`screenshots/manifest.yml` 每条记录的 `visible_text` 里
+  **录下来的界面文案**，是否仍能在上游 `web/src` 找到。
+  **Batch 214 订正**：这一段原来写的是「`visible_text` / `alt` **两个字段**」，
+  **而代码只读 `visible_text`**（唯一那条抽取正则是
+  `visible_text:\s*'([^']*)'`）——**文档比代码多承诺了一件**。
+  **`alt` 的内容至今没有任何判据读过**；
+  **Batch 214 起只有它的「在不在」被闸 2 的 `[缺字段]` 核到，内容仍然无人核。**
+  **「文档声称检查了什么」本身也要能被核对**，否则它就是 Batch 180 那个
+  `SLOW_BUDGET_MS` 的翻版——注释在撒谎，而撒谎不产生任何信号。**这一项 Batch 161 查实
   是「误指派」——`verify-meta.py` 声明把它让给了 `verify-screenshots.py`，
   而后者只做四方对账、零内容判据。**
 - **核不了的**：PNG **像素里画的**是什么。本闸读的是 manifest 的文本登记，

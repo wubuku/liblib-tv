@@ -57,7 +57,8 @@ def manifest_entry(name):
             "    sha256: 0\n" % name)
 
 
-def build(manifest_names, library, page_refs, dist_names, extra_pages=None):
+def build(manifest_names=None, library=(), page_refs=(), dist_names=(),
+          extra_pages=None, manifest_body=None):
     """搭一个最小的临时手册仓，返回路径。"""
     tmp = tempfile.mkdtemp(prefix="beef-shot-selftest.")
     os.makedirs(os.path.join(tmp, "scripts"))
@@ -67,9 +68,14 @@ def build(manifest_names, library, page_refs, dist_names, extra_pages=None):
     for n in library:
         open(os.path.join(tmp, "screenshots", n), "wb").write(b"\x89PNG\r\n\x1a\n")
     with open(os.path.join(tmp, "screenshots", "manifest.yml"), "w", encoding="utf-8") as fh:
-        fh.write("screenshots:\n")
-        for n in manifest_names:
-            fh.write(manifest_entry(n))
+        if manifest_body is not None:
+            # **Batch 214 加的直写通道**：缺字段、共用 alt 这两类注入没法用
+            # 「文件名单」表达——它们改的是**记录的内容**，不是**记录的数量**。
+            fh.write(manifest_body)
+        else:
+            fh.write("screenshots:\n")
+            for n in manifest_names:
+                fh.write(manifest_entry(n))
     with open(os.path.join(tmp, "00-page.md"), "w", encoding="utf-8") as fh:
         fh.write("# 页面\n\n" + "".join(f"![x](../screenshots/{n})\n" for n in page_refs))
     for path, body in (extra_pages or {}).items():
@@ -119,6 +125,28 @@ def main():
         want="四方一致",
         manifest_names=[A, B], library=[A, B], page_refs=[A, B], dist_names=[A, B],
         extra_pages={"PROGRESS.md": f"# 台账\n\n![x](screenshots/{A})\n![x](screenshots/{B})\n"})
+    # 8–10 是 Batch 213/214 加的：闸 2 的两条新判据 + 它们各自的鉴别力验证。
+    run("8) manifest 同一条登记两次（集合看不见重复，必须报）",
+        want="[重复登记]", manifest_names=["a.png", "a.png", "b.png"],
+        library=["a.png", "b.png"], page_refs=["a.png", "b.png"],
+        dist_names=["a.png", "b.png"])
+
+    run("9) 某条记录缺 visible_text（闸 10 的唯一输入，必须报）",
+        want="[缺字段]", manifest_body="screenshots:\n"
+        + manifest_entry("a.png").replace("    visible_text: '反验注入'\n", "")
+        + manifest_entry("b.png"),
+        library=["a.png", "b.png"], page_refs=["a.png", "b.png"],
+        dist_names=["a.png", "b.png"])
+
+    # **不误伤那一半**：两张**不同的**图共用同一句 alt 是合法的（说得就是同一件事），
+    # 而判据若按「alt 重复」去报，它会逼着人把说明写得更不通顺——
+    # **判据过宽的代价是把话越说越含糊**（Batch 168 用例 36 的同一个教训）。
+    run("10) 不误伤：两张不同的图共用同一句 alt（必须放行）", expect_fail=False,
+        manifest_body="screenshots:\n"
+        + manifest_entry("a.png").replace("反验注入用图", "同一句话")
+        + manifest_entry("b.png").replace("反验注入用图", "同一句话"),
+        library=["a.png", "b.png"], page_refs=["a.png", "b.png"],
+        dist_names=["a.png", "b.png"])
 
     print("=== 结果：通过 %d / 失败 %d / 作废 %d ===" % (PASS, FAIL, VOID))
     return 1 if (FAIL or VOID) else 0

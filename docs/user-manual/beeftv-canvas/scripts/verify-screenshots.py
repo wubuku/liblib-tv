@@ -47,9 +47,14 @@ def collect():
     }
 
     with open(MANIFEST, encoding="utf-8") as fh:
-        man = set(
-            re.findall(r"-\s*file:\s*screenshots/([^\s]+\.png)", fh.read())
-        )
+        raw = fh.read()
+    man = set(re.findall(r"-\s*file:\s*screenshots/([^\s]+\.png)", raw))
+    # **Batch 214 新增两样**。原先 `man` 是 `set(...)`，**而集合会把重复折叠**——
+    # 于是「同一条登记两次」在四方对账里**根本不是一个概念**：
+    # 实测两种形态（整条重复 / 重复但 visible_text 写成别的）闸门**都报绿**。
+    man_list = re.findall(r"-\s*file:\s*screenshots/([^\s]+\.png)", raw)
+    # 逐条记录拆出来，才能问「这条的取证字段齐不齐」
+    recs = re.findall(r"-\s+file:\s*(\S+)(.*?)(?=\n\s*-\s+file:|\Z)", raw, re.S)
 
     referenced = set()
     for p in glob.glob(os.path.join(ROOT, "**", "*.md"), recursive=True):
@@ -71,7 +76,7 @@ def collect():
                 # 产物文件名带内容哈希，还原原名后比对
                 dist.add(re.sub(r"\.[A-Za-z0-9_-]{8}\.png$", ".png", f))
 
-    return files, man, referenced, dist
+    return files, man, referenced, dist, man_list, recs
 
 
 def main():
@@ -82,7 +87,7 @@ def main():
         print(f"[skip] 未找到 {DIST}/（尚未构建），跳过截图对账")
         return 2
 
-    files, man, referenced, dist = collect()
+    files, man, referenced, dist, man_list, recs = collect()
     problems = []
 
     def report(label, items, hint):
@@ -97,14 +102,38 @@ def main():
     report("缺图", referenced - files, "← 页面引用了但库内没有该文件")
     report("未打包", files - dist, "← 库内有图但构建产物里没有")
 
+    # **Batch 214：重复登记**。四方对账其余五条全是**集合差**，
+    # **而集合天生看不见重复**——这一条不属于那五类，只能另问。
+    dups = {n for n in man_list if man_list.count(n) > 1}
+    for n in sorted(dups):
+        report_dup = "← **同一张图在 manifest 里登记了 %d 次**" % man_list.count(n)
+        problems.append(f"[重复登记] {n}  {report_dup}")
+
+    # **Batch 214：取证字段齐全**。实测删掉任一条记录的 `visible_text` 或 `alt`，
+    # 闸 2 报绿——**而 `visible_text` 正是闸 10 唯一的判据输入**：
+    # 它的正则 `visible_text:\s*'([^']*)'` 匹配不到就**什么都不查**，
+    # **于是一条没有该字段的记录，对闸 10 而言等于不存在**。
+    # **这七个别处声明过的字段**（`AUDIT.md` 那句「全部带 …」），**从来没有任何闸核过**。
+    NEED = ("task_id", "step", "route", "captured_at", "verified_locator",
+            "visible_text", "alt", "sha256")
+    for path_name, body in recs:
+        miss = [f for f in NEED
+                if not re.search(r"^\s*%s:\s*'?.+?'?\s*$" % f, body, re.M)]
+        if miss:
+            problems.append(
+                f"[缺字段] {path_name}  ← 这条记录没有 {'、'.join(miss)}"
+                "　→ `visible_text` 是闸 10 唯一的判据输入，缺了它这条记录等于不存在")
+
     if problems:
-        print(f"截图四方对账不一致：库内 {len(files)} 张 / manifest {len(man)} 条 / "
-              f"发布页引用 {len(referenced)} 张 / dist {len(dist)} 张")
+        print(f"截图四方对账不一致：库内 {len(files)} 张 / manifest {len(man_list)} 条"
+              f"（唯一 {len(man)} 个）/ 发布页引用 {len(referenced)} 张 / dist {len(dist)} 张")
         for p in problems:
             print("  " + p)
         return 1
 
-    print(f"截图四方一致：库内 / manifest / 发布页引用 / dist 均为 {len(files)} 张")
+    print(f"截图四方一致：库内 {len(files)} 张 / manifest {len(man_list)} 条"
+          f"（**唯一 {len(man)} 个、无重复**）/ 发布页引用 {len(referenced)} 张 / dist {len(dist)} 张；"
+          f"{len(recs)} 条记录的 8 个取证字段齐全")
     return 0
 
 
