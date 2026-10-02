@@ -995,6 +995,63 @@ def mutate_anchor_exemption_too_short(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_coverage_drop_body_page(root: Path) -> None:
+    """从某道声明式门禁的 `BODY_PAGES` 里删掉一页，该页必须被判为漏网（M162）。
+
+    这是 M162 那个**真实穿透**的最小复现：根目录新增页面、或有人从清单里删掉一页，
+    **21 道门禁会全绿**。本门禁存在的全部理由就是把这种静默变成 exit=1。
+    """
+
+    # ★ 三道门禁**都要**删：本门禁的判据是**并集**——一页被任意一道内容门禁扫到就算覆盖。
+    #   M162 第一版只删了 check-claims 一道，README.md 仍被另外两道扫着，用例红了。
+    #   **这是用例写错了，不是门禁坏了**（M151 的老教训：先问是工具坏了还是用例写错了）。
+    import re
+
+    for name in ("check-claims.py", "check-retractions.py", "check-source-refs.py"):
+        path = root / "scripts" / name
+        text = path.read_text(encoding="utf-8")
+        # 三个门禁的 BODY_PAGES 排版不同：有的多行、有的单行——**按格式写死会漏**。
+        patched = re.sub(r'"README\.md",\s*', "", text, count=1)
+        assert patched != text, f"注入失败：{name} 的 BODY_PAGES 里没找到 README.md"
+        path.write_text(patched, encoding="utf-8")
+
+
+def mutate_coverage_reason_too_short(root: Path) -> None:
+    """`KNOWN_EXCLUDED` 里的排除理由过短时必须判非法（M162）。
+
+    没有理由的排除等于漏网——所以「排除」这件事本身也必须被守。
+    少了这一条，加排除的人就会写一个 `AUDIT.md` 光秃秃地躺在表里。
+    """
+
+    import re
+
+    path = root / "scripts/check-page-coverage.py"
+    text = path.read_text(encoding="utf-8")
+    patched = re.sub(
+        r'"AUDIT\.md": "[^"]{12,}"', '"AUDIT.md": "不用扫"', text, count=1)
+    assert patched != text, "注入失败：没找到 KNOWN_EXCLUDED 里 AUDIT.md 那条理由"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_coverage_stale_exclusion(root: Path) -> None:
+    """`KNOWN_EXCLUDED` 里登记了已不存在的文件时必须报过期（M162）。
+
+    排除表会随手册演进而失真：文件被删了、登记还留着，
+    于是**那一行看起来像一个正当的排除，其实什么也没排除**。
+    """
+
+    import re
+
+    path = root / "scripts/check-page-coverage.py"
+    text = path.read_text(encoding="utf-8")
+    patched = re.sub(
+        r'KNOWN_EXCLUDED: dict\[str, str\] = \{',
+        'KNOWN_EXCLUDED: dict[str, str] = {\n    "99-ghost.md": "这一页早就不存在了，登记留着",',
+        text, count=1)
+    assert patched != text, "注入失败：没找到 KNOWN_EXCLUDED 的定义行"
+    path.write_text(patched, encoding="utf-8")
+
+
 def mutate_retracted_ledger_repro(root: Path) -> None:
     """已订正的说法复现到**账本**里（正文之外，M153 补的覆盖范围）。
 
@@ -1074,6 +1131,9 @@ CASES: list[tuple[str, object, str, str]] = [
     ("账本运行时结论只写在 review_note 里（记账漂移）", mutate_inventory_evidence_drift, "inventoryevid", "记账漂移"),
     ("写「未实测」不该被当成声称实测（否定形态不得误报）", mutate_inventory_evidence_negation, "inventoryevid", EXPECT_PASS),
     ("探针白名单在文档里被删成「见源码」（文档查不到清单）", mutate_probe_contract_drift, "probecontracts", "漏列了不可逆按钮"),
+    ("顶层页面从内容门禁清单里被删掉（于是谁都不扫它）", mutate_coverage_drop_body_page, "pagecoverage", "漏网"),
+    ("页面排除表里的理由写得过短（等于没写理由）", mutate_coverage_reason_too_short, "pagecoverage", "豁免过宽"),
+    ("页面排除表里留着已不存在的文件（表会失真）", mutate_coverage_stale_exclusion, "pagecoverage", "过期"),
     ("文档比源码写得更细不该被误报（不做双向全等）", mutate_probe_contract_extra_context, "probecontracts", EXPECT_PASS),
     ("出口行挂到章节标题下（位置错但门禁全绿过）", mutate_ownership_wrong, "ownership", "归属错误"),
     ("出口行挂在正确条目下不该被误报（不判该不该有）", mutate_ownership_ok, "ownership", EXPECT_PASS),
@@ -1119,6 +1179,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-probe-contracts.py"), str(root)]
     elif which == "ownership":
         cmd = [sys.executable, str(root / "scripts/check-section-ownership.py"), str(root)]
+    elif which == "pagecoverage":
+        cmd = [sys.executable, str(root / "scripts/check-page-coverage.py"), str(root)]
     elif which == "gatesilence":
         cmd = [sys.executable, str(root / "scripts/check-gate-silence.py"), str(root)]
     else:
