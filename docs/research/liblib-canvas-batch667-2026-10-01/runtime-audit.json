@@ -1,0 +1,572 @@
+{
+ "verifier": {
+  "batch": 667,
+  "question": "665's four-channel table still had two cells with no subject: CH3b and CH4. 666 closed CH3.  This batch closes both -- and finds that CH4's own criterion is misnamed.",
+  "ch3bCounts": {
+   "1280x720": 2,
+   "1280x1150": 2,
+   "1366x1150": 2,
+   "1440x1150": 1,
+   "1600x1150": 1,
+   "1920x1150": 1
+  },
+  "ch4Counts": {
+   "1280x720": 4,
+   "1280x1150": 4,
+   "1366x1150": 3,
+   "1440x1150": 2,
+   "1600x1150": 1,
+   "1920x1150": 1
+  },
+  "ch3b": {
+   "help": {
+    "presentEverywhere": true,
+    "peNoneLayer": {
+     "1280x720": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+     "1280x1150": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+     "1366x1150": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+     "1440x1150": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+     "1600x1150": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+     "1920x1150": "pointer-events-none.absolute.inset-x-0.inset-y-0"
+    },
+    "box": {
+     "1280x720": [
+      0,
+      675,
+      320,
+      32
+     ],
+     "1280x1150": [
+      0,
+      1105,
+      320,
+      32
+     ],
+     "1366x1150": [
+      0,
+      1105,
+      320,
+      32
+     ],
+     "1440x1150": [
+      0,
+      1105,
+      320,
+      32
+     ],
+     "1600x1150": [
+      0,
+      1105,
+      320,
+      32
+     ],
+     "1920x1150": [
+      0,
+      1105,
+      320,
+      32
+     ]
+    },
+    "hit": {
+     "1280x720": "收起属性",
+     "1280x1150": "收起属性",
+     "1366x1150": "收起属性",
+     "1440x1150": "收起属性",
+     "1600x1150": "收起属性",
+     "1920x1150": "收起属性"
+    }
+   },
+   "statusLine": {
+    "presentIn": {
+     "1280x720": 1,
+     "1280x1150": 1,
+     "1366x1150": 1,
+     "1440x1150": 0,
+     "1600x1150": 0,
+     "1920x1150": 0
+    },
+    "geometry": {
+     "1280x720": [
+      {
+       "controlRect": [
+        1053,
+        507,
+        143,
+        16
+       ],
+       "peNoneBox": [
+        1053,
+        507,
+        143,
+        17
+       ]
+      }
+     ],
+     "1280x1150": [
+      {
+       "controlRect": [
+        1053,
+        937,
+        143,
+        16
+       ],
+       "peNoneBox": [
+        1053,
+        937,
+        143,
+        17
+       ]
+      }
+     ],
+     "1366x1150": [
+      {
+       "controlRect": [
+        1053,
+        937,
+        143,
+        16
+       ],
+       "peNoneBox": [
+        1053,
+        937,
+        143,
+        17
+       ]
+      }
+     ],
+     "1440x1150": [],
+     "1600x1150": [],
+     "1920x1150": []
+    },
+    "boxMinusControlRect": {
+     "1280x720": [
+      {
+       "dx": 0,
+       "dy": 0,
+       "dw": 0,
+       "dh": 1
+      }
+     ],
+     "1280x1150": [
+      {
+       "dx": 0,
+       "dy": 0,
+       "dw": 0,
+       "dh": 1
+      }
+     ],
+     "1366x1150": [
+      {
+       "dx": 0,
+       "dy": 0,
+       "dw": 0,
+       "dh": 1
+      }
+     ],
+     "1440x1150": [],
+     "1600x1150": [],
+     "1920x1150": []
+    }
+   }
+  },
+  "ch4": {
+   "criterionUnderReview": "alpha(backgroundColor) === 0 — i.e. 'the thing that took the hit has no background of its own'",
+   "allHitsHaveAlphaZero": true,
+   "splitByPaints": {
+    "nothing": {
+     "n": 6,
+     "hitIds": [
+      "group.relative.z-[1].flex"
+     ],
+     "areas": [
+      400
+     ],
+     "controls": [
+      "帮助"
+     ]
+    },
+    "descendant-svg-fill": {
+     "n": 9,
+     "hitIds": [
+      "min-h-0.flex-1.overflow-y-auto",
+      "space-y-3.border-t.border-white/[0.07].pt-4"
+     ],
+     "areas": [
+      70804,
+      227080
+     ],
+     "controls": [
+      "上传图片",
+      "发送",
+      "描述想搭建的场景"
+     ]
+    }
+   },
+   "whyTheSplitIsTheRightOne": "a 20x20 icon button with no background is VISIBLE, and a 280x811 container with no background but 88 painted descendants is a different thing entirely. Both have alpha 0."
+  },
+  "theOnePixelSeam": {
+   "viewportLayerRight": {
+    "1280x720": 999,
+    "1280x1150": 999,
+    "1366x1150": 1085,
+    "1440x1150": 1159,
+    "1600x1150": 1319,
+    "1920x1150": 1639
+   },
+   "inspectorColumnLeft": {
+    "1280x720": null,
+    "1280x1150": 1000,
+    "1366x1150": 1086,
+    "1440x1150": 1160,
+    "1600x1150": null,
+    "1920x1150": null
+   },
+   "gap": {
+    "1280x720": null,
+    "1280x1150": 1,
+    "1366x1150": 1,
+    "1440x1150": 1,
+    "1600x1150": null,
+    "1920x1150": null
+   }
+  }
+ },
+ "checks": {
+  "ch3b-has-two-mechanisms-and-the-first-is-the-layer-666-already-named": {
+   "ok": true,
+   "detail": {
+    "counts": {
+     "1280x720": 2,
+     "1280x1150": 2,
+     "1366x1150": 2,
+     "1440x1150": 1,
+     "1600x1150": 1,
+     "1920x1150": 1
+    },
+    "peNoneLayer": {
+     "1280x720": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+     "1280x1150": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+     "1366x1150": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+     "1440x1150": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+     "1600x1150": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+     "1920x1150": "pointer-events-none.absolute.inset-x-0.inset-y-0"
+    },
+    "box": {
+     "1280x720": [
+      0,
+      675,
+      320,
+      32
+     ],
+     "1280x1150": [
+      0,
+      1105,
+      320,
+      32
+     ],
+     "1366x1150": [
+      0,
+      1105,
+      320,
+      32
+     ],
+     "1440x1150": [
+      0,
+      1105,
+      320,
+      32
+     ],
+     "1600x1150": [
+      0,
+      1105,
+      320,
+      32
+     ],
+     "1920x1150": [
+      0,
+      1105,
+      320,
+      32
+     ]
+    },
+    "hit": {
+     "1280x720": "收起属性",
+     "1280x1150": "收起属性",
+     "1366x1150": "收起属性",
+     "1440x1150": "收起属性",
+     "1600x1150": "收起属性",
+     "1920x1150": "收起属性"
+    },
+    "thePoint": "666 already named this exact layer (the object row's `span[aria-hidden]` highlight) while closing CH3.  CH3b's first member is swallowed by the SAME layer, and what actually takes the click is 662's in-case `收起属性`.",
+    "whyNotANewName": "naming a member where a mechanism already exists is how 661 got its answer demoted; this batch reuses the name instead"
+   },
+   "note": "one layer, two cells — the mechanism outlives the cell it was found in"
+  },
+  "the-second-ch3b-mechanism-is-the-prompt-status-line-whose-box-sits-on-the-input": {
+   "ok": true,
+   "detail": {
+    "presentInCells": {
+     "1280x720": 1,
+     "1280x1150": 1,
+     "1366x1150": 1,
+     "1440x1150": 0,
+     "1600x1150": 0,
+     "1920x1150": 0
+    },
+    "geometry": {
+     "1280x720": [
+      {
+       "controlRect": [
+        1053,
+        507,
+        143,
+        16
+       ],
+       "peNoneBox": [
+        1053,
+        507,
+        143,
+        17
+       ]
+      }
+     ],
+     "1280x1150": [
+      {
+       "controlRect": [
+        1053,
+        937,
+        143,
+        16
+       ],
+       "peNoneBox": [
+        1053,
+        937,
+        143,
+        17
+       ]
+      }
+     ],
+     "1366x1150": [
+      {
+       "controlRect": [
+        1053,
+        937,
+        143,
+        16
+       ],
+       "peNoneBox": [
+        1053,
+        937,
+        143,
+        17
+       ]
+      }
+     ],
+     "1440x1150": [],
+     "1600x1150": [],
+     "1920x1150": []
+    },
+    "statusBoxMinusInputRect": {
+     "1280x720": [
+      {
+       "dx": 0,
+       "dy": 0,
+       "dw": 0,
+       "dh": 1
+      }
+     ],
+     "1280x1150": [
+      {
+       "dx": 0,
+       "dy": 0,
+       "dw": 0,
+       "dh": 1
+      }
+     ],
+     "1366x1150": [
+      {
+       "dx": 0,
+       "dy": 0,
+       "dw": 0,
+       "dh": 1
+      }
+     ],
+     "1440x1150": [],
+     "1600x1150": [],
+     "1920x1150": []
+    },
+    "reading": "the status line's box starts at exactly the input's x (dx = 0 in every cell) and is one pixel taller, so 'something is lying on the input' is geometrically the status line itself",
+    "itLeavesAt1440": "present at 1280/1366, gone at 1440 and wider — the same seam as the rest of this batch",
+    "alreadyAttributed": "the click still goes to the inspector's transparent column, i.e. 664's finding; this batch only names the pe:none layer that also sits there"
+   },
+   "note": "the coverer and the victim share a left edge exactly"
+  },
+  "ch4s-criterion-mixes-a-visible-icon-button-with-a-big-transparent-container": {
+   "ok": true,
+   "detail": {
+    "splitByPaints": {
+     "nothing": {
+      "n": 6,
+      "hitIds": [
+       "group.relative.z-[1].flex"
+      ],
+      "areas": [
+       400
+      ],
+      "controls": [
+       "帮助"
+      ]
+     },
+     "descendant-svg-fill": {
+      "n": 9,
+      "hitIds": [
+       "min-h-0.flex-1.overflow-y-auto",
+       "space-y-3.border-t.border-white/[0.07].pt-4"
+      ],
+      "areas": [
+       70804,
+       227080
+      ],
+      "controls": [
+       "上传图片",
+       "发送",
+       "描述想搭建的场景"
+      ]
+     }
+    },
+    "allHitsHaveAlphaZero": true,
+    "theIconButton": {
+     "hitId": "group.relative.z-[1].flex",
+     "area": 400,
+     "paints": "nothing",
+     "childCount": 3,
+     "textLen": 0,
+     "border": false,
+     "what": "收起属性 — 662's in-case coverer, a 20x20 chevron button that is plainly visible"
+    },
+    "theContainer": {
+     "hitId": "min-h-0.flex-1.overflow-y-auto",
+     "area": 227080,
+     "paints": "descendant-svg-fill",
+     "childCount": 88,
+     "textLen": 32,
+     "what": "the inspector's own scroll column: transparent itself, painted by 88 descendants"
+    },
+    "theCorrection": "665's CH4 test asked 'does the hitter have a background of its own'.  Both answers were yes-less, so both landed in one cell, and the cell was named 'a fully transparent element took the hit'.  The first member is not transparent — it is a visible control. The criterion measures the wrong property."
+   },
+   "note": "a criterion that fires on a visible button has already told you it is measuring the wrong thing"
+  },
+  "paints-separates-the-visible-button-that-alpha-cannot": {
+   "ok": true,
+   "detail": {
+    "groupsByPaints": {
+     "nothing": {
+      "hitIds": [
+       "group.relative.z-[1].flex"
+      ],
+      "areas": [
+       400
+      ],
+      "n": 6
+     },
+     "descendant-svg-fill": {
+      "hitIds": [
+       "min-h-0.flex-1.overflow-y-auto",
+       "space-y-3.border-t.border-white/[0.07].pt-4"
+      ],
+      "areas": [
+       70804,
+       227080
+      ],
+      "n": 9
+     }
+    },
+    "groupsByAlpha": {
+     "rgba(0, 0, 0, 0)": [
+      "group.relative.z-[1].flex",
+      "min-h-0.flex-1.overflow-y-auto",
+      "space-y-3.border-t.border-white/[0.07].pt-4"
+     ],
+     "areas": [
+      400,
+      70804,
+      227080
+     ]
+    },
+    "whatIsTrue": "the `nothing` group is a SINGLE element: the 20x20 chevron button, 400px^2, in all six cells. The alpha group cannot tell it apart from a 227080px^2 column — a spread of 567x.",
+    "whatIsFALSEandWasRefutedHere": "I first wrote that `paints` splits the cell HOMOGENEOUSLY. It does not: the `descendant-svg-fill` group still contains two identities — the inspector's outer scroll column (227080px^2) and an inner `space-y-3 border-t p` section (70808px^2, seen at 1280x720). So `paints` splits two ways, not three, and the second way is not homogeneous either.",
+    "theClaimIsWeakerThanIFirstWrote": "`paints` separates the visible button from the transparent containers. It does NOT cleanly partition the whole cell.",
+    "notClaimed": "that `paints` is a correct visibility test — it looks at backgrounds and SVG fills only, so a stroke-drawn icon would read as `nothing`. Better than alpha, not final.",
+    "sameShapeAs647": "647 corrected `paintedAtCentre`'s field name on the spot. This is the same operation, one batch later, aimed at this batch's own instrument — and like 647's, it stopped at 'this name is wrong' rather than installing a replacement."
+   },
+   "note": "a field name is a claim; check the claim — and check your own replacement's claim too"
+  },
+  "the-viewport-layer-and-the-inspector-column-are-one-pixel-apart": {
+   "ok": true,
+   "detail": {
+    "viewportLayerRight": {
+     "1280x720": 999,
+     "1280x1150": 999,
+     "1366x1150": 1085,
+     "1440x1150": 1159,
+     "1600x1150": 1319,
+     "1920x1150": 1639
+    },
+    "inspectorColumnLeft": {
+     "1280x720": null,
+     "1280x1150": 1000,
+     "1366x1150": 1086,
+     "1440x1150": 1160,
+     "1600x1150": null,
+     "1920x1150": null
+    },
+    "gap": {
+     "1280x720": null,
+     "1280x1150": 1,
+     "1366x1150": 1,
+     "1440x1150": 1,
+     "1600x1150": null,
+     "1920x1150": null
+    },
+    "theNumbers": "the viewport's pe:none layer ends at W-281 and the inspector's transparent column starts at W-280 — they OVERLAP by one pixel, so together they tile the whole band right of x=281",
+    "whyThatMatters": "the scene prompt bar lives in exactly that band. Once the viewport layer's right edge reaches a prompt control there is no gap left to escape through: 666's staircase (19->22, growing) and this batch's (4->1, shrinking) are the two sides of one seam.",
+    "notADefectClaim": "the two edges are each computed from their own layout; whether a gap should exist is a product decision"
+   },
+   "note": "one pixel is the width of this whole seam"
+  },
+  "both-staircases-are-monotone-in-width-and-each-control-leaves-once": {
+   "ok": true,
+   "detail": {
+    "cells": [
+     "1280x720",
+     "1280x1150",
+     "1366x1150",
+     "1440x1150",
+     "1600x1150",
+     "1920x1150"
+    ],
+    "ch3bCounts": {
+     "1280x720": 2,
+     "1280x1150": 2,
+     "1366x1150": 2,
+     "1440x1150": 1,
+     "1600x1150": 1,
+     "1920x1150": 1
+    },
+    "ch4Counts": {
+     "1280x720": 4,
+     "1280x1150": 4,
+     "1366x1150": 3,
+     "1440x1150": 2,
+     "1600x1150": 1,
+     "1920x1150": 1
+    },
+    "ch3b": "2/2/2/1/1/1 — 描述想搭建的场景 leaves at 1440",
+    "ch4": "4/4/3/2/1/1 — 上传图片 and 描述想搭建的场景 leave first, then 发送; 帮助 never leaves (it is the constant)",
+    "direction": "CH3b and CH4 both SHRINK with width while 666's CH3 GROWS with width — the two sides of the same 1px seam",
+    "scope": "6 cells at these widths only"
+   },
+   "note": "one seam, two staircases, opposite directions"
+  }
+ }
+}
