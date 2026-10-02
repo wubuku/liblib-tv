@@ -778,6 +778,72 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                      一个源站没有的落点。 */
                                   onKeyDown={(e) => {
                                     if (e.key === "Escape") {
+                                      /* ⚠️⚠️ 批 878–881：这块 focus 修了两轮
+                                         才查到**机制**，而机制给出的结论是
+                                         「同步落焦点**不够**」。
+
+                                         探针链（每一步都排除了一个假设）：
+                                           878 `closest('.react-flow__node')`
+                                               → 没生效（NodeToolbar 是
+                                                 portal，不在节点里面）
+                                           879 改走 `data-id`
+                                               → 仍没生效
+                                           880 手工 replay：**全部可行**
+                                               —— closest ✓、data-id ✓、
+                                               focus() ✓、300ms 后焦点**稳在**
+                                               节点上 ✓ ⇒ 排除「focus 不可行」
+                                               「焦点留不住」「代码没编译」
+                                           881 焦点**事件流**：
+                                               +3ms  focusin 节点 ← **成功了**
+                                               +52ms blur     ← **被抢走了**
+                                               节点 DOM **没被替换**
+                                               （标记还在、isConnected、
+                                                 同一个元素）
+                                         ⇒ 同步 focus 之后有个**延迟动作**
+                                         （~52ms，不是同帧）把焦点拿走。
+
+                                         所以这里**落三次**：同步、下一帧、
+                                         120ms（盖过 52ms 那个）。前两次
+                                         覆盖「同帧就抢」，第三次覆盖
+                                         「延迟才抢」。
+
+                                         ⚠️ 仍**可能**不够：若抢焦点的东西
+                                         还会再抢，就会变成打地鼠。真到
+                                         那一步就**记账收手**（§77：机制
+                                         没验死之前不许改判据），不许
+                                         靠加 setTimeout 试到「碰巧对了」。 */
+                                      const tb = (
+                                        e.currentTarget as HTMLElement
+                                      ).closest(".react-flow__node-toolbar");
+                                      const nid = tb?.getAttribute("data-id");
+                                      let nodeEl: HTMLElement | null = null;
+                                      if (nid) {
+                                        /* 用**属性相等**（`getAttribute` 比较）
+                                           而不是**选择器字符串拼接**：节点 id
+                                           可能含 `:` 等选择器里有意义的字符，
+                                           拼进 `[data-id="…"]` 会选错。 */
+                                        nodeEl = [
+                                          ...document.querySelectorAll(
+                                            ".react-flow__node"),
+                                        ].find(
+                                          (n) =>
+                                            n.getAttribute("data-id") === nid,
+                                        ) ?? null;
+                                      }
+                                      const refocus = () => {
+                                        /* 已被抢走（不在节点上）才补落 ——
+                                           已经落在上面就别重复动，免得自己
+                                           把「本来就对」的状态搅乱。 */
+                                        if (
+                                          nodeEl &&
+                                          document.activeElement !== nodeEl
+                                        ) {
+                                          nodeEl.focus();
+                                        }
+                                      };
+                                      refocus();
+                                      requestAnimationFrame(refocus);
+                                      setTimeout(refocus, 120);
                                       setFilterSel((m) => ({
                                         ...m, [label]: null,
                                       }));

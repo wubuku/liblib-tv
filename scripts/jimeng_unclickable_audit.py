@@ -2204,7 +2204,15 @@ def main() -> int:
                 "点它 ⇒ 值回落到「全部 {筛选名}」→ 它自己消失 → "
                 "焦点回到芯片（aria 变回 `{label}: 全部 {label}`）"),
             # 876：清除钮的**键盘**行为（探针 876/876b/876c，876c **三次复现**一致）
+            # 877：把这四条**四个筛选钮逐个**重测（6/6 项全中），从
+            # 「只测过性别」升格为「四钮的共同结论」。§69：按同类推测
+            # 不许当结论 —— 不补测就得把基线降级，这批选了补测。
+            # 探针里**一次只让一个钮有值**：都选中时 Tab 序列是
+            # 芯片→Clear→年龄→年龄的Clear→…，分不清哪个 Clear 是谁的。
+            # 逐钮实测的 Tab 轨迹（4/4 一致的规律）：
+            #   **Clear 紧跟本钮芯片** → **后面**的筛选钮（无值态）→ 音色网格
             "clear_in_tab_order": True,
+            "clear_sampled_on": "**四个筛选钮逐个**（877，6/6 项全中）",
             "clear_tab_after_chip": True,
             "clear_enter_fires": True,
             "clear_space_fires": True,
@@ -2217,6 +2225,29 @@ def main() -> int:
             "clear_esc_fires": True,
             "clear_esc_also_closes_voices": True,
             "esc_depends_on_focus": True,
+            # 877/878：Clear 上 Esc 之后焦点落在**该音频节点本体**
+            # （源站 `BUTTON/音频 node: 音频 NN`）。
+            # ⚠️ 这里**不能**照抄 `38` / `NN` —— 那是**节点序号**，
+            # 逐轮插节点就变，是**易变量**（§70）。只记「落在该节点本体」。
+            "clear_esc_focus": "该音频节点本体（BUTTON/音频 node: 音频 {序号}）",
+            "clear_esc_focus_note": (
+                "序号是易变量，不许钉。复刻侧节点**可以**被聚焦"
+                "（878 实测 tabindex=0、5/5 程序化 focus 成功、Tab 能进）"
+                "⇒ 焦点掉 body 不是必然，是实现疏忽。"),
+            # 880/881 复刻侧的机制链（**记在基线里**，免得半年后重查一遍）：
+            #   878 `closest('.react-flow__node')` → 无效（NodeToolbar 是 portal）
+            #   879 改走 `data-id`               → 仍无效
+            #   880 手工 replay 全可行          ⇒ 排除「focus 不可行」
+            #   881 焦点**事件流**：+3~6ms focusin 节点（**同步 focus 成功**）
+            #       → +46~56ms blur（**被某个延迟动作抢走**）
+            #       → 节点 DOM **没被替换**（标记还在、isConnected、同一个元素）
+            #   ⇒ 同步落焦点**不够**，必须在那个动作**之后**补落。
+            # ⚠️⚠️ 那个「延迟动作」是**哪个 handler 仍未查明**（⚠️ 未验证）。
+            #   复刻现修法是**补落**（rAF + 120ms setTimeout），属于**绕过**
+            #   不是**根修** —— 它若改了时间或顺序，这里就失效。
+            "clear_esc_focus_mechanism": (
+                "复刻：同步 focus 成功(+6ms) → +46~56ms 被**未知延迟动作**抢走"
+                " → rAF/120ms 补落回节点。抢焦点者身份**未查明**（未验证）。"),
             # 875：外层格子**恒定 153×28**，选中前后都不变；变的是格子里
             # 装什么：未选中 芯片 135（=153−左右 padding 9×2），
             # 选中 芯片 111 + gap 8 + Clear 16 = 135（正好填满）。
@@ -2230,7 +2261,9 @@ def main() -> int:
                     "jimeng_probe874_escvalue.py（焦点落点身份 / Esc 保留值）+ "
                     "jimeng_probe875_clearfilter.py（**清除钮**，四钮逐个）+ "
                     "jimeng_probe876c_clearfilter_kb2.py"
-                    "（**清除钮的键盘**，三次复现）")},
+                    "（**清除钮的键盘**，三次复现）+ "
+                    "jimeng_probe877_clearfilter_kb_all.py"
+                    "（键盘行为**四钮逐个**重测，6/6 项全中）")},
         # ══ 批 855：生成历史层（**按名字**找，不是按位置）════════════════
         # 这条 why 原来写「前置态没成立：点**第 2 个** `canvas-panel-launcher`
         # 开出的是『积分明细』」—— 那是**按位置猜名字**。855a 把顶栏 9 个按钮

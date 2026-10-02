@@ -2011,6 +2011,70 @@ def main() -> int:
           and "def reselect_node():" in _p876c
           and "重新选中节点 → 面板回来 → 再开音色库" in _p876c)
 
+    # ── BB. 批 877/878：键盘行为四钮逐个 + 「掉 body」是疏忽不是夹具 ──
+    print("— BB. 批 877/878：四钮逐个重测（6/6）+ Clear 上 Esc 的焦点落点 —")
+    p877 = ROOT / "scripts/jimeng_probe877_clearfilter_kb_all.py"
+    p878 = ROOT / "scripts/jimeng_probe878_nodefocus_ck.py"
+    _p877 = p877.read_text(encoding="utf-8") if p877.exists() else ""
+    p881 = ROOT / "scripts/jimeng_probe881_domreplace_ck.py"
+    _p878 = p878.read_text(encoding="utf-8") if p878.exists() else ""
+    _p881 = p881.read_text(encoding="utf-8") if p881.exists() else ""
+    check("BB.1 877 探针在库里，且**四个筛选钮都列全了**（少一个就等于有一个"
+          "没取样，却看着像「都测过了」）；选项名用的是 **875 从层里读到的真名**"
+          "（普通话 / 适合旁白…），不是照筛选名猜的",
+          all(f'("{lb}"' in _p877 for lb in ("性别", "年龄", "语言", "声音特点"))
+          and "普通话" in _p877 and "适合旁白" in _p877)
+    check("BB.2 877 **一次只让一个钮有值**（每轮先清空全部四个）——"
+          "都选中时 Tab 序列是 芯片→Clear→年龄→年龄的Clear→…，"
+          "根本分不清哪个 Clear 是谁的",
+          "def clear_all():" in _p877
+          and "一次只让**一个**钮有值" in _p877
+          and "n_tab1_clear" in _p877)
+    check("BB.3 基线把键盘行为**标注成「四个钮逐个」**，并把 Tab 轨迹的规律"
+          "写进去（Clear 紧跟本钮芯片 → 后续筛选钮 → 音色网格）——"
+          "876 只测过「性别」，§69 说按同类推测不许当结论",
+          '"clear_sampled_on": "**四个筛选钮逐个**（877，6/6 项全中）"' in _ausrc
+          and "**Clear 紧跟本钮芯片**" in _ausrc)
+    check("BB.4 877 **主动缩了量**（Space 不单测，与 Enter 同一浏览器行为路径）"
+          "并把这条缩量**写在明处** + 给出了「什么情况下该改回来」的条件"
+          "—— 主动缩量必须留痕，否则半年后看成「漏测」",
+          "Space 不单测" in _p877
+          and "不增加信息量" in _p877
+          and "不是漏测" in _p877)
+    check("BB.5 878 探针在库里，且它**只量机制、不下产品结论**"
+          "（「节点能不能被聚焦」是判定的**必要前提**——能聚焦 ⇒ body 是疏忽，"
+          "不能聚焦 ⇒ body 是必然；§77 机制未验死之前不许改判据）",
+          "缺陷还是夹具" in _p878
+          and "先量再判" in _p878
+          and "n_focusable" in _p878 and "n_tab_into_node" in _p878)
+    check("BB.6 复刻 Clear 的 Esc 把焦点送到该音频节点**并在它被抢走之后补落**"
+          "（881 焦点**事件流**实测：同步 focus **成功** +3~6ms，"
+          "但 +46~56ms 被某个**延迟动作**抢走 ⇒ 同步落焦点**不够**）。"
+          "定位走 `closest('.react-flow__node-toolbar')` → 读 `data-id` →"
+          "**属性相等**找节点（⚠️ 不是选择器字符串拼接：节点 id 可能含 `:`）",
+          'closest(".react-flow__node-toolbar")' in _agp2
+          and 'n.getAttribute("data-id") === nid' in _agp2
+          and "requestAnimationFrame(refocus)" in _agp2
+          and "setTimeout(refocus, 120)" in _agp2)
+    check("BB.7 基线里的焦点落点**不许照抄节点序号**（`音频 node: 音频 38` 里的"
+          "`38` 逐轮插节点就变，是**易变量**）—— 只记「落在该节点本体」",
+          '"clear_esc_focus": "该音频节点本体' in _ausrc
+          and "序号是易变量，不许钉" in _ausrc)
+    check("BB.8 880/881 的**机制链**记进基线（每一步排除了什么、结论停在哪）"
+          "——半年后不用重查一遍；且**抢焦点那个动作的身份明确标为"
+          "「未查明 / 未验证」**，现修法（rAF + 120ms 补落）写明是"
+          "**绕过**不是**根修**，不许写成「已解决」",
+          '"clear_esc_focus_mechanism"' in _ausrc
+          and "未查明" in _ausrc and "属于**绕过**" in _ausrc
+          and "不是**根修**" in _ausrc)
+    check("BB.9 881 探针的**判据跟着事实一起改过**（第一版只看「DOM 有没有被"
+          "替换」，于是修好之后仍然打出「机制仍未查清」—— 方向相反的同族错误："
+          "**修好了还说没查清**）。现在按「焦点最终在不在节点上」分两条互斥判据，"
+          "并把「仍未查明」单列一栏",
+          "判据**跟着事实一起改过**" in _p881
+          and "修好了还说没查清" in _p881
+          and "res[\"why_still_unknown\"]" in _p881)
+
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))
