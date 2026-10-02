@@ -666,6 +666,22 @@ def _selftest_code_only(path):
     return "\n".join(re.sub(r"#.*$", "", ln) for ln in src.split("\n"))
 
 
+#: 注入夹具的判据：**文件名里的 `fix-` 中段**。
+#: **与闸 18 的 `FIXTURE_RE` 逐字相同，但故意复制而不共用**——
+#: 闸之间互相 import 会让任一方坏掉时另一方跟着起不来，
+#: **而那正是 Batch 178 记下的那次失效**。
+FIXTURE_RE = re.compile(r"^selftest-(?:[a-z0-9]+-)?fix-[a-z0-9]+-")
+
+
+def selftest_entries(root):
+    """`scripts/` 下**不是夹具**的反验（判据 = 文件名里的 `fix-`）。"""
+    scripts = os.path.join(root, "scripts")
+    return sorted(n for n in os.listdir(scripts)
+                  if n.startswith("selftest-")
+                  and n.endswith((".py", ".sh"))
+                  and not FIXTURE_RE.match(n))
+
+
 def selftest_drivers(root):
     """返回 (入口列表, 全部 selftest-* 列表)。入口 = 剥注释后无人引用的那个。"""
     scripts = os.path.join(root, "scripts")
@@ -711,6 +727,29 @@ def selftest_coverage_check(root):
         if n_cases is None or n_cases <= 0:
             problems.append(f"「{cells[0]}」的例数写 [{cells[2] or '(空)'}]，**必须是正整数**"
                             f"——空格与 0 看起来像有人管，其实没有")
+
+    # 方向十一之二（**Batch 212 新增**）：**每一份非夹具反验都必须被认领**，
+    # 而不只是「每一个驱动」。
+    # **为什么原式不够**：原判据把「被别的反验引用过」当成了「是夹具」，
+    # 于是**一份被当数据引用的真入口反验可以悄悄不登记**——
+    # 实测现场就有 **7 份**（`selftest-endpoints.py`、`feature-flags`、`label-drift`、
+    # `line-counts`、`meta.sh`、`shot-version`、`tables.sh`）**被引用却仍是真入口**：
+    # 它们被引用的方式是**出现在别人的字符串里**（登记表、台账表格），
+    # **不是被调用**。「被引用」与「是夹具」根本不是一回事。
+    # **认领的判据因此改成可观测的事实：文件名里的 `fix-` 中段**（纪律 109），
+    # **与闸 18 的 `FIXTURE_RE` 同一套**。
+    # **如实说明覆盖缺口**：这条**没有自动反验用例**——
+    # `selftest-meta.sh` 的注入机制只能改**一个**文件（`AUDIT-RULES.md`），
+    # 而验这个洞需要**两处**改动（新建一份被引用的反验 + 不登记它）。
+    # 本批用临时树手工验过它的鉴别力，**但「手工验过」不等于「构建期会报」**——
+    # 缺口写在这里，不留给下一个人去猜（纪律 196）。
+    for e in selftest_entries(root):
+        if e not in claimed:
+            problems.append(
+                f"方向十一之二：非夹具反验 `{e}` **没有被对应关系表认领**"
+                "　→ 它之所以躲过原来那条「每个驱动都要被认领」，"
+                "是因为**别的反验在字符串里提到过它**——"
+                "**被引用不等于被调用，也不等于它是夹具**")
 
     drivers, _all = selftest_drivers(root)
     for d in drivers:
@@ -1181,7 +1220,10 @@ def main():
         fail(f"反验对应关系表与现场脱节：{why}")
     if not st_problems and not st_void:
         drivers, allst = selftest_drivers(root)
-        print(f"  ✓ 反验对应关系表双向一致：{len(drivers)} 个驱动全部被认领、"
+        _ent = selftest_entries(root)
+        print(f"  ✓ 反验对应关系表双向一致：{len(_ent)} 份非夹具反验全部被认领"
+              f"（其中 {len(drivers)} 份是无人引用的驱动，"
+              f"另 {len(_ent) - len(drivers)} 份被别的反验当数据引用过、**但仍是真入口**）、"
               f"认领的文件全部存在、闸编号 1..{gate_inventory(root)[1]} 无缺漏，"
               f"例数均为正整数（`scripts/` 下 {len(allst)} 个 selftest-* 里，"
               f"其余是注入夹具）")
@@ -1191,7 +1233,7 @@ def main():
               f"（{count_fails} 条不一致）；另有 {len(_FAILS) - count_fails} 处属方向三/四/四之二/五/六/七/八/九/十")
         return 1
     print(f"元数据核对：登记表 {total} 条计数全部与现场重数一致，"
-          f"且方向三/四/四之二/五/六/七/八/九/十/十一亦全部通过")
+          f"且方向三/四/四之二/五/六/七/八/九/十/十一/十一之二亦全部通过")
     return 0
 
 
