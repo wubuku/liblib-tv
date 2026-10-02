@@ -2183,7 +2183,17 @@ def main() -> int:
             # 874：选完值按 Esc，**选中值保留**（复开层读 `aria-selected`，
             # 仍是 `男: true`）—— 收层 ≠ 取消选择。这条把 873 留下的
             # **唯一一个自选行为**（源站未取样）变成了实测。
+            # ⚠️⚠️⚠️ 887 **限定了适用范围**（第一版这里写得太宽，是错的）：
+            #   874 那一跑**层是开着的**（为了读 `aria-selected` 特意重开过层）。
+            #   887 在**层收着**时测同样条件 ⇒ **值被清**（重开音色库读芯片
+            #   文案 `'男' → '性别'`、Clear 重开后不在）。
+            #   ⇒ **层开着 ⇒ 保留；层收着 ⇒ 被清**。两条并存。
+            #     Esc 的行为由**两个**变量决定：**焦点在哪**（§95/§96）
+            #     **和层开没开**。只测其中一条就会测反 —— 874 就测反了。
             "esc_keeps_value": True,
+            "esc_keeps_value_仅在层开着": True,
+            "esc_keeps_value_when_layer_closed": False,
+            "esc_depends_on_layer_open_too": True,
             # 875：「没设值」在源站**不是**「什么都不选中」，而是
             # **`全部 {筛选名}` 那一项 aria-selected=true**（4/4 实测：
             # 刚开层时、以及点完 Clear 之后都是）。
@@ -2274,11 +2284,14 @@ def main() -> int:
             #   节点**也**取消选中（工具条 True→False）。
             #   ⇒ 复刻原先落 `body` 是**真差异**，已修（芯片也接同一个
             #     模块级 `refocusToNodeFromToolbar`）。
-            #   ⚠️ 差别：Clear 那条还要**额外清除**选中值，芯片这条**不碰**
-            #     `filterSel`/`filterOpen`（关面板那半继续冒泡）。
+            # ⚠️⚠️ 887 **证伪了**第一版写的「芯片那条**不**清值」：在**层收着**
+            #   时（芯片能拿到焦点的唯一情形）Esc **清值**。
+            #   ⇒ 两条路径现在**完全一致**：都清值、都关层、焦点都落该节点本体。
+            #   「不碰 filterSel」那句只对**层开着**成立，而那时芯片这个
+            #   handler **压根不会触发**（焦点在层内）。
             "chip_esc_focus": "该音频节点本体（同 Clear 那条落点，886 实测）",
             "chip_esc_node_unselected_too": True,
-            "chip_esc_does_not_clear_value": True,
+            "chip_esc_clears_value_when_layer_closed": True,
             "clear_esc_focus_mechanism": (
                 "源站也取消选中、也会 blur，但**blur 之后焦点仍落在节点本体**"
                 "（工具条 True→False + 焦点 `音频 node: 音频 NN`，885 实测）。"

@@ -2129,8 +2129,82 @@ def main() -> int:
           "同一个落点**（源站首次取样 ⇒ 复刻落 body 是**真差异**，已修）",
           bool(_p886)
           and '"chip_esc_focus": "该音频节点本体' in _ausrc
-          and '"chip_esc_does_not_clear_value": True' in _ausrc
           and "「落点」和「值」是**两件事**" in _p886)
+    p888 = ROOT / "scripts/jimeng_probe888_reopen_src.py"
+    p887 = ROOT / "scripts/jimeng_probe887_esconchip_val_src.py"
+    _p888 = p888.read_text(encoding="utf-8") if p888.exists() else ""
+    _p887 = p887.read_text(encoding="utf-8") if p887.exists() else ""
+    check("CC.10 888 查清了那个挡了**四跑**的前置问题：Esc 之后面板**真卸载**"
+          "（`voice_btn`/`node_form`/`toolbar` 全不在 DOM）但**回得来** ——"
+          "五种重开手段**各 2/2**；而且**源站节点 class 没有 `selected` 标记**"
+          "（`node_has_selected_class=False`、无 `aria-selected`/`aria-pressed`）"
+          "⇒ 「选中态」**不能**靠 class 判",
+          bool(_p888) and "reliable_reopen" in _p888
+          and "node_has_selected_class" in _p888
+          and "不在 DOM 里" in _p888)
+    check("CC.11 888 的根因落到**探针模板**上：`select_node()` 原来**先点空白"
+          "再点节点** —— Esc 之后节点本已取消选中，那一下多余的「点空白」"
+          "若落在节点上就变成「选中→立刻取消」⇒ 净效果把面板关掉。"
+          "886/887 已改成**先验旁证**、绝不先点空白；"
+          "885 的**策略备胎**版**刻意保留** `click_blank()`（那里它有正当用途）",
+          "先验旁证" in _p886 and "先验旁证" in _p887
+          and "绝不**先点空白" in _p886
+          # ⚠️ 判「有没有再点空白」**不能只 grep 到 `click_blank` 这个词**：
+          # 「定义了但从没调用」和「调用了」在文本上长得一模一样。必须数
+          # **出现次数**：886/887 = 1（只剩 `def`，是死代码）；885 = def + 调用。
+          and _p886.count("click_blank") == 1
+          and _p887.count("click_blank") == 1
+          and "def click_blank" in _p886 and "def click_blank" in _p887
+          # ⚠️⚠️ 888 第一版这里**正文说了 885 刻意保留，却一个条件都没查**
+          # —— 又一次「该被钉的地方没钉」（第三次同族错误，见 CC.8）。
+          # 885 是**策略备胎**版，`click_blank()` 在那里有正当用途：把起点
+          # 统一为「未选中」，否则分不清命中的是本次点击还是上一轮残留。
+          and _p885.count("click_blank") >= 2
+          and "起点统一为「未选中」" in _p885
+          # 888 自己记的是**重开路径**那件事（真卸载 + 重复 2 次的纪律），
+          # 不是探针模板缺陷 —— 模板缺陷写在 886 的 `select_node` docstring 里。
+          and "**不在 DOM 里**" in _p888
+          and "重复 2 次" in _p888)
+    check("CC.12 887 在**同一次运行**里读到「芯片上 Esc 的落点 + 值」，"
+          "**证伪了** 886 第一版写的「芯片那条不清值」：层**收着**时值**被清**"
+          "（`男 → 性别`、Clear 重开后不在）"
+          " ⇒ 两条路径现在**完全一致**（都清值/都关层/都落该节点本体）",
+          '"chip_esc_clears_value_when_layer_closed": True' in _ausrc
+          and "**证伪了**" in _ausrc
+          and "值被清" in _ausrc)
+    check("CC.13 887 **修正了 874 的适用范围**：`esc_keeps_value` 只在"
+          "**层开着**时成立；层**收着**时被清。Esc 的行为由**两个**变量决定："
+          "**焦点在哪**（§95/§96）**和层开没开** —— 只测一条就会测反"
+          "（874 就测反了），所以基线里那条字段**必须带条件**",
+          '"esc_keeps_value_仅在层开着": True' in _ausrc
+          and '"esc_keeps_value_when_layer_closed": False' in _ausrc
+          and '"esc_depends_on_layer_open_too": True' in _ausrc
+          and "第一版这里写得太宽，是错的" in _ausrc)
+    check("CC.14 888 收尾：复刻探针 876c_ck 第 ④ 段（芯片上按 Esc）的**结论"
+          "措辞**按 887 改正 —— 第一版把「值没了」写成「与源站相反」，"
+          "而 887 证明**层收着时源站正是清值**，**措辞正好说反了**"
+          "（把一条被限定过适用范围的 874 读数当成了普适结论）。"
+          "同时把「层开没开」**显式记进结果**（`layer_open_before_esc`）——"
+          "874 就是在隐式起点上读错的；反向告警（值还在 = 与源站相反）"
+          "也**必须留着**，否则改回错的方向也没人拦",
+          "888 更正" in _p876k and "它**层是开着的**" in _p876k
+          and '"layer_open_before_esc": layer_open()' in _p876k
+          and "LAYER_OPEN_JS" in _p876k
+          and "与 887 源站一致：层收着时清值" in _p876k
+          and "与 887 源站相反：层收着时该清" in _p876k
+          # 旧的错措辞**必须已经不在**（只加新的不够：错的还留着 =
+          # 半年后有人照着错的那句读）
+          and "没了（与源站相反）" not in _p876k)
+    check("CC.15 读数的**呈现**本身也会骗人：复刻侧两段都打印成 `焦点=''`"
+          "（像「焦点丢了」），实际是 `DIV`/`text='音频 1'` = **正落在该音频"
+          "节点本体**（886 定的落点）。根因：**源站**节点带 "
+          "`aria-label='音频 node: 音频 N'` 而**复刻节点不带**，只印 aria "
+          "就把「落对了」**显示成「没落」**。⇒ 焦点读数一律印 "
+          "tag+aria+text 三样",
+          "def focus_desc(" in _p876k
+          and "aria={a!r}/text={t!r}" in _p876k
+          and "读数的**呈现**本身也会骗人" in _p876k
+          and "显示成「没落」" in _p876k)
     check("CC.7 886 的教训落地：**组件内凡是要复用，就该提到模块级，"
           "别复制第二份** —— 886 第一版把实现抽成组件内闭包，结果它和 Clear "
           "内联那段是**复制粘贴关系**，按内容替换**匹配到了自己**、把文件改坏"

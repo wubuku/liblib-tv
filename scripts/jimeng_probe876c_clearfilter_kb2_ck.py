@@ -119,6 +119,20 @@ FILTER_JS = """(label) => {
 VOICES_JS = """() => !!document.querySelector(
   '[data-testid="audio-all-voices-listbox"]')"""
 
+# ⚠️⚠️ 批 888 补：Esc 的行为由**两个**变量决定（887 实测）——
+#   **焦点在哪**（§95/§96）**和层开没开**。874 那一跑**层是开着的**
+#   （为了读 `aria-selected` 特意重开过层），所以它读到的「值保留」
+#   **只对「层开着」成立**。
+#   芯片的 onKeyDown 只在**焦点在芯片上**时触发，而**层开着时焦点在层内**
+#   （871 实测开层接管焦点）⇒ 芯片 handler 那条路径上**层必然是收着的**，
+#   而那时源站是**清值**（887：`男 → 性别`、Clear 重开后不在）。
+#   所以这里把「层开没开」**显式记进结果**，别再让它隐在探针的起点里 ——
+#   874 就是在隐式起点上读错了结论。
+LAYER_OPEN_JS = """(label) => !!(
+  document.querySelector(
+    `[role-testid] [role=listbox][aria-label="${label} options"]`)
+  || document.querySelector(`[role=listbox][aria-label="${label} options"]`))"""
+
 
 def main() -> int:
     url = os.environ.get("SNAP_URL", URL)
@@ -169,6 +183,24 @@ def main() -> int:
 
         def voices_open() -> bool:
             return pg.evaluate(VOICES_JS)
+
+        def layer_open() -> bool:
+            return pg.evaluate(LAYER_OPEN_JS, LABEL)
+
+        def focus_desc(d: dict) -> str:
+            """把焦点读数**渲染成人能判**的一句话。
+
+            ⚠️⚠️ 888 补：第一版这几处都只印 `aria`，于是复刻侧的落点
+            （`DIV` / `text='音频 1'` / `aria` 为**空**）打出来是
+            `焦点=''` —— 看着像「焦点丢了」，其实**正落在该音频节点本体**
+            上（886 定的落点）。源站节点带
+            `aria-label='音频 node: 音频 N'`，**复刻节点不带**，只印
+            aria 就把「落对了」**显示成「没落」**。
+            ⇒ 读数的**呈现**本身也会骗人：先证「到底读到了什么」再下结论。
+            """
+            a = d.get("aria") or ""
+            t = (d.get("text") or "").strip()
+            return f"{d.get('tag')}/aria={a!r}/text={t!r}"
 
         def reselect() -> bool:
             if pg.locator('[aria-label^="音色"]').count():
@@ -343,7 +375,7 @@ def main() -> int:
                 rec["value_survived"] = None
                 print(f"\n③ Clear 上按 Esc：面板还开="
                       f"{rec['voices_open_after']} 焦点="
-                      f"{rec['focus_after']['aria']!r}")
+                      f"{focus_desc(rec['focus_after'])}")
                 print(f"   !! {rec['verdict']}")
             else:
                 rec["clear_after_reopen"] = pg.evaluate(CLEAR_JS, LABEL)
@@ -351,22 +383,31 @@ def main() -> int:
                 rec["value_survived"] = (rec["val_after_reopen"] == before_val)
                 print(f"\n③ Clear 上按 Esc：起焦点={rec['focus']['aria']!r}")
                 print(f"   按下后：面板还开={rec['voices_open_after']} "
-                      f"焦点={rec['focus_after']['aria']!r}")
+                      f"焦点={focus_desc(rec['focus_after'])}")
                 print(f"   重开：{reopened}  值 {before_val!r} → "
                       f"{rec['val_after_reopen']!r}  "
                       f"Clear 又出现={bool(rec['clear_after_reopen'])}")
                 print(f"   ⇒ 值{'还在' if rec['value_survived'] else '没了'}")
             res["esc"] = rec
 
-        # ── ④ 焦点在**芯片**上按 Esc（874 源站：只收层、值保留）──
-        #    用来确认「Esc 语义由焦点位置决定」在复刻侧是否同样成立
+        # ── ④ 焦点在**芯片**上按 Esc ──
+        #    ⚠️⚠️ 888 更正：这段原来写着「874 源站：只收层、值保留」，
+        #    那是 874 那一跑的**读数**，而它**层是开着的**。887 在**同一次
+        #    运行**里读到芯片这条路径上**值被清**（`男 → 性别`、Clear 重开后
+        #    不在）⇒ 层**收着**时源站是**清值**。
+        #    ⇒ 结论措辞按 887 改回来：「值**没了**」才是**与源站一致**；
+        #      「还在」反而是**与源站相反**（第一版的措辞正好说反了 ——
+        #      探针把一条被限定过适用范围的读数当成了普适结论）。
         why = ensure_clear()
         if why:
             res["esc_on_chip"] = {"verdict": f"前置态没成立：{why}"}
         else:
             before_val = value_text()
             pg.evaluate(FOCUS_CHIP_JS, LABEL)
-            rec = {"before_val": before_val, "focus": pg.evaluate(FOCUS_JS)}
+            rec = {"before_val": before_val,
+                   "focus": pg.evaluate(FOCUS_JS),
+                   # 第三个变量**显式**记下来：层开没开（874 就栽在这）
+                   "layer_open_before_esc": layer_open()}
             pg.keyboard.press("Escape")
             time.sleep(0.9)
             rec["voices_open_after"] = voices_open()
@@ -381,11 +422,16 @@ def main() -> int:
             else:
                 rec["val_after"] = value_text()
                 rec["value_survived"] = (rec["val_after"] == before_val)
+                verdict = (
+                    "值被清了（与 887 源站一致：层收着时清值）"
+                    if not rec["value_survived"] else
+                    "值还在（⚠️ 与 887 源站相反：层收着时该清）")
                 print(f"\n④ 芯片上按 Esc：起焦点={rec['focus']['aria']!r}  "
+                      f"层开着={rec['layer_open_before_esc']}  "
                       f"面板还开={rec['voices_open_after']}  "
-                      f"焦点={rec['focus_after']['aria']!r}")
+                      f"焦点={focus_desc(rec['focus_after'])}")
                 print(f"   值 {before_val!r} → {rec['val_after']!r}  "
-                      f"⇒ {'还在（与 874 源站一致）' if rec['value_survived'] else '没了（与源站相反）'}")
+                      f"⇒ {verdict}")
             res["esc_on_chip"] = rec
 
         b.close()
