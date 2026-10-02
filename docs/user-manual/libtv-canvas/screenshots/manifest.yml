@@ -1512,3 +1512,25 @@ screenshots:
     visible_text: 分镜叙事 调度故事板 故事板 25宫格连贯分镜 剧情推演四宫格 画面推演 - 3秒后 画面推演 - 5秒前 质感调节 人像质感调节 电影级光影校正 空间与机位 720全景 多机位九宫格 设定图 角色脸部三视图 角色设定图 角色三视图 场景设定图 产品设定图
     alt: ⭐ **把正文里那条自己写的建议验掉了**：原模型 `Lib Image 2.5 Pro` 下 **15 条可点 0 条**，换成 `Lib Image` 后 **15 条全部变亮**（`cursor: pointer`、`aria-disabled` 消失），换回原模型后**可点条数回到 0，已复原**。⚠️ **换模型会改价格** —— 同一节点 `⚡15` → `⚡18`。📖 点其中任意一条会发生什么仍未验（会写数据）
     sha256: 5b0b5e49e7e6af6720e5250d455a3cf678ea67d654640e89786f009b7d96ee41
+  - file: screenshots/M-177-摄像机面板-全部元素.png
+    task_id: create-nodes
+    step: 91
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点开摄像机面板后，把面板里**每个**可交互元素全量 dump（不按文字筛）—— 上一轮按「innerText 含关闭/开启/启用」找开关，读数是空数组：Mantine Switch 的可见文字在旁边的 label 里，开关本体 `innerText` 为空
+    visible_text: 摄像机 相机 Panavision DXL2 镜头 Arri Signature Prime 焦距 8 14 24 35 50 75 125 mm 光圈 ƒ/4 关闭
+    alt: 摄像机面板容器 `640×345`，实测**共 44 个可交互元素**；焦距是**七个独立按钮** `8/14/24/35/50/75/125`，相机/镜头/光圈各有上下箭头。⭐ **开关没有 `aria-label`、`innerText` 也为空**，状态只写在旁边那两个字上：关时写 **`关闭`**、开时写 **`开启`**（`data-checked` `false`/`true`）。本轮**开了一次又关回去，复原读数与初始逐字一致**。⚠️ 顺带更正：BC1 用 `body.innerText.match(/摄像机…/)` 取文案时，把面板**后面**的「正在跟随 / 取消 / 按 ESC 退出」一起截了进来 —— 那三段**不属于摄像机面板**
+    sha256: 6ebd6eaa3d01fd7b05e954bc65db4da67bd1eb7e90c6ce46b6ab2392694d935f
+  - file: screenshots/M-178-摄像机-开关打开后.png
+    task_id: create-nodes
+    step: 92
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 把摄像机面板底部的开关点开（`mantine-Switch-root`，38×20），读面板文字与 `data-checked`，再**点回去**并确认复原读数与初始逐字一致
+    visible_text: 摄像机 相机 Panavision DXL2 镜头 Arri Signature Prime 焦距 8 14 24 35 50 75 125 mm 光圈 ƒ/4 开启
+    alt: ⭐ **开关状态只写在旁边那两个字上** —— 同一块面板，关时底部写 **`关闭`**、开时写 **`开启`**（`M-177` vs 本图），而开关本体 `innerText` 为空、无 `aria-label`。所以判断虚拟摄影机开没开，看那两个字就行。本轮**开了一次又关回去**，`data-checked` 走完 `false → true → false`，复原一致。📖 打开之后摄影机参数会不会真的送进生成，仍未验（那要真实提交一次生成，会扣积分）
+    sha256: 7a3e55e11ed53af0e3f5f3543e7b11932e40eb192a8410d5236bf3412e994ac3
