@@ -1,0 +1,995 @@
+{
+ "at": "2026-10-02T03:31:15.191Z",
+ "mark": [
+  {
+   "tag": "A",
+   "testid": "canvas-project-logo",
+   "aria": "返回首页",
+   "box": "40x40@12,10",
+   "inTopBar": true,
+   "cls": "inline-flex items-center justify-center gap-1 whit"
+  },
+  {
+   "tag": "DIV",
+   "testid": null,
+   "aria": null,
+   "box": "88x28@52,16",
+   "inTopBar": true,
+   "cls": "relative flex min-w-canvas-zero items-center round"
+  },
+  {
+   "tag": "BUTTON",
+   "testid": "canvas-project-title-trigger",
+   "aria": "Canvas title: 测试项目",
+   "box": "68x28@52,16",
+   "inTopBar": true,
+   "cls": "inline-flex items-center gap-1 whitespace-nowrap b"
+  },
+  {
+   "tag": "BUTTON",
+   "testid": "canvas-project-trigger",
+   "aria": "项目",
+   "box": "20x28@120,16",
+   "inTopBar": true,
+   "cls": "inline-flex items-center justify-center gap-1 whit"
+  },
+  {
+   "tag": "BUTTON",
+   "testid": "canvas-node-summary-trigger",
+   "aria": "Canvas node summary: 节点 20",
+   "box": "34x28@156,16",
+   "inTopBar": true,
+   "cls": "inline-flex items-center justify-center gap-1 whit"
+  },
+  {
+   "tag": "SPAN",
+   "testid": "canvas-node-summary-label",
+   "aria": null,
+   "box": "34x18@156,21",
+   "inTopBar": true,
+   "cls": "inline-flex items-center font-dreamina-cn"
+  },
+  {
+   "tag": "BUTTON",
+   "testid": "canvas-panel-launcher",
+   "aria": "搜索",
+   "box": "28x28@911,16",
+   "inTopBar": true,
+   "cls": "inline-flex items-center justify-center gap-1 whit"
+  },
+  {
+   "tag": "BUTTON",
+   "testid": "canvas-panel-launcher",
+   "aria": "生成历史",
+   "box": "28x28@943,16",
+   "inTopBar": true,
+   "cls": "inline-flex items-center justify-center gap-1 whit"
+  },
+  {
+   "tag": "BUTTON",
+   "testid": "canvas-share-trigger",
+   "aria": "分享",
+   "box": "60x28@988,16",
+   "inTopBar": true,
+   "cls": "inline-flex items-center justify-center whitespace"
+  },
+  {
+   "tag": "SPAN",
+   "testid": null,
+   "aria": null,
+   "box": "24x20@1015,20",
+   "inTopBar": true,
+   "cls": "w-workspace-share-entry-label text-dreamina-cn-12 "
+  },
+  {
+   "tag": "BUTTON",
+   "testid": null,
+   "aria": "更多",
+   "box": "28x28@1065,16",
+   "inTopBar": true,
+   "cls": "inline-flex items-center justify-center gap-1 whit"
+  },
+  {
+   "tag": "BUTTON",
+   "testid": "canvas-commerce-entry",
+   "aria": "Credits: 805 · 基础会员",
+   "box": "111x28@1109,16",
+   "inTopBar": true,
+   "cls": "justify-center gap-1 whitespace-nowrap border-soli"
+  },
+  {
+   "tag": "SPAN",
+   "testid": "workspace-account-summary-content",
+   "aria": null,
+   "box": "93x18@1118,21",
+   "inTopBar": true,
+   "cls": "flex h-full items-center gap-workspace-chrome-labe"
+  },
+  {
+   "tag": "BUTTON",
+   "testid": "canvas-user-menu-trigger",
+   "aria": "用户菜单",
+   "box": "28x28@1236,16",
+   "inTopBar": true,
+   "cls": "inline-flex items-center justify-center gap-1 whit"
+  },
+  {
+   "tag": "DIV",
+   "testid": "rf__wrapper",
+   "aria": "Canvas",
+   "box": "1280x720@0,0",
+   "inTopBar": false,
+   "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg "
+  },
+  {
+   "tag": "DIV",
+   "testid": null,
+   "aria": null,
+   "box": "768x432@-728,-317",
+   "inTopBar": false,
+   "cls": "react-flow__edgelabel-renderer"
+  },
+  {
+   "tag": "DIV",
+   "testid": "video-flow-node-surface",
+   "aria": null,
+   "box": "192x341@-209,-77",
+   "inTopBar": false,
+   "cls": "group relative flex min-h-32 min-w-40 flex-col ove"
+  },
+  {
+   "tag": "DIV",
+   "testid": "flow-node-target-handle",
+   "aria": null,
+   "box": "36x72@-227,57",
+   "inTopBar": false,
+   "cls": "react-flow__handle react-flow__handle-left nodrag "
+  }
+ ],
+ "panels": {
+  "project": {
+   "click": {
+    "ok": true,
+    "at": "86,30"
+   },
+   "added": 11,
+   "sample": [
+    {
+     "k": "HTML|overscroll-x-none|1280x720|||节点",
+     "tag": "HTML",
+     "cls": "overscroll-x-none",
+     "w": 1280,
+     "h": 720,
+     "x": 0,
+     "y": 0,
+     "testid": null,
+     "aria": null,
+     "role": null,
+     "t": "节点"
+    },
+    {
+     "k": "BODY||1280x720|||节点",
+     "tag": "BODY",
+     "cls": "",
+     "w": 1280,
+     "h": 720,
+     "x": 0,
+     "y": 0,
+     "testid": null,
+     "aria": null,
+     "role": null,
+     "t": "节点"
+    },
+    {
+     "k": "DIV||1280x720|||节点",
+     "tag": "DIV",
+     "cls": "",
+     "w": 1280,
+     "h": 720,
+     "x": 0,
+     "y": 0,
+     "testid": null,
+     "aria": null,
+     "role": null,
+     "t": "节点"
+    },
+    {
+     "k": "DIV|relative|1280x720|workspace-workbench-shell||节点",
+     "tag": "DIV",
+     "cls": "relative",
+     "w": 1280,
+     "h": 720,
+     "x": 0,
+     "y": 0,
+     "testid": "workspace-workbench-shell",
+     "aria": null,
+     "role": null,
+     "t": "节点"
+    },
+    {
+     "k": "HEADER|pointer-events-none|1256x40|canvas-top-bar|Canvas top bar|节点",
+     "tag": "HEADER",
+     "cls": "pointer-events-none",
+     "w": 1256,
+     "h": 40,
+     "x": 12,
+     "y": 10,
+     "testid": "canvas-top-bar",
+     "aria": "Canvas top bar",
+     "role": null,
+     "t": "节点"
+    },
+    {
+     "k": "DIV|flex|871x40|canvas-top-bar-left||节点",
+     "tag": "DIV",
+     "cls": "flex",
+     "w": 871,
+     "h": 40,
+     "x": 12,
+     "y": 10,
+     "testid": "canvas-top-bar-left",
+     "aria": null,
+     "role": null,
+     "t": "节点"
+    },
+    {
+     "k": "DIV|min-w-canvas-zero|871x40|workspace-title-responsive-surface||节点",
+     "tag": "DIV",
+     "cls": "min-w-canvas-zero",
+     "w": 871,
+     "h": 40,
+     "x": 12,
+     "y": 10,
+     "testid": "workspace-title-responsive-surface",
+     "aria": null,
+     "role": null,
+     "t": "节点"
+    },
+    {
+     "k": "DIV|pointer-events-auto|236x40|workspace-canvas-title||节点",
+     "tag": "DIV",
+     "cls": "pointer-events-auto",
+     "w": 236,
+     "h": 40,
+     "x": 12,
+     "y": 10,
+     "testid": "workspace-canvas-title",
+     "aria": null,
+     "role": null,
+     "t": "节点"
+    },
+    {
+     "k": "DIV|-ml-workspace-title-details-overlap|200x36|canvas-title-details||节点",
+     "tag": "DIV",
+     "cls": "-ml-workspace-title-details-overlap",
+     "w": 200,
+     "h": 36,
+     "x": 48,
+     "y": 12,
+     "testid": "canvas-title-details",
+     "aria": null,
+     "role": null,
+     "t": "节点"
+    },
+    {
+     "k": "DIV|relative|88x28|||",
+     "tag": "DIV",
+     "cls": "relative",
+     "w": 88,
+     "h": 28,
+     "x": 52,
+     "y": 16,
+     "testid": null,
+     "aria": null,
+     "role": null,
+     "t": ""
+    }
+   ],
+   "outer": {
+    "k": "HTML|overscroll-x-none|1280x720|||节点",
+    "tag": "HTML",
+    "cls": "overscroll-x-none",
+    "w": 1280,
+    "h": 720,
+    "x": 0,
+    "y": 0,
+    "testid": null,
+    "aria": null,
+    "role": null,
+    "t": "节点"
+   },
+   "containers": [
+    {
+     "testid": "workspace-workbench-shell",
+     "role": null,
+     "aria": null,
+     "box": "1280x720@0,0",
+     "lines": [
+      "节点",
+      "20",
+      "已保存",
+      "分享",
+      "805",
+      "基础会员",
+      "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+      "视频 1",
+      "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+      "文本 1",
+      "时间线 1",
+      "00:00",
+      "/",
+      "00:00",
+      "全屏编辑",
+      "00:00",
+      "00:05",
+      "00:10",
+      "00:15",
+      "00:20"
+     ]
+    },
+    {
+     "testid": "workspace-hydrated-canvas-frame",
+     "role": null,
+     "aria": null,
+     "box": "1280x720@0,0",
+     "lines": [
+      "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+      "视频 1",
+      "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+      "文本 1",
+      "时间线 1",
+      "00:00",
+      "/",
+      "00:00",
+      "全屏编辑",
+      "00:00",
+      "00:05",
+      "00:10",
+      "00:15",
+      "00:20",
+      "00:25",
+      "00:30",
+      "添加素材到时间线",
+      "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+      "文本 2",
+      "文本 3"
+     ]
+    },
+    {
+     "testid": "canvas-workbench-shell",
+     "role": null,
+     "aria": null,
+     "box": "1280x720@0,0",
+     "lines": [
+      "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+      "视频 1",
+      "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+      "文本 1",
+      "时间线 1",
+      "00:00",
+      "/",
+      "00:00",
+      "全屏编辑",
+      "00:00",
+      "00:05",
+      "00:10",
+      "00:15",
+      "00:20",
+      "00:25",
+      "00:30",
+      "添加素材到时间线",
+      "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+      "文本 2",
+      "文本 3"
+     ]
+    },
+    {
+     "testid": "canvas-main-region",
+     "role": null,
+     "aria": "Canvas editing area",
+     "box": "1280x720@0,0",
+     "lines": [
+      "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+      "视频 1",
+      "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+      "文本 1",
+      "时间线 1",
+      "00:00",
+      "/",
+      "00:00",
+      "全屏编辑",
+      "00:00",
+      "00:05",
+      "00:10",
+      "00:15",
+      "00:20",
+      "00:25",
+      "00:30",
+      "添加素材到时间线",
+      "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+      "文本 2",
+      "文本 3"
+     ]
+    },
+    {
+     "testid": "rf__wrapper",
+     "role": "application",
+     "aria": "Canvas",
+     "box": "1280x720@0,0",
+     "lines": [
+      "视频 1",
+      "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+      "文本 1",
+      "时间线 1",
+      "00:00",
+      "/",
+      "00:00",
+      "全屏编辑",
+      "00:00",
+      "00:05",
+      "00:10",
+      "00:15",
+      "00:20",
+      "00:25",
+      "00:30",
+      "添加素材到时间线",
+      "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+      "文本 2",
+      "文本 3",
+      "导演台"
+     ]
+    },
+    {
+     "testid": "rf__node-node_236ctpehgg",
+     "role": "group",
+     "aria": "视频 node: 视频 1",
+     "box": "192x341@-209,-77",
+     "lines": [
+      "视频 1",
+      "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+     ]
+    },
+    {
+     "testid": "video-flow-node-surface",
+     "role": null,
+     "aria": null,
+     "box": "192x341@-209,-77",
+     "lines": [
+      "视频 1",
+      "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+     ]
+    },
+    {
+     "testid": "video-node-empty",
+     "role": "img",
+     "aria": "暂无视频",
+     "box": "191x340@-209,-77",
+     "lines": []
+    },
+    {
+     "testid": "rf__node-node_3bfb9r79qe",
+     "role": "group",
+     "aria": "文本 node: 文本 1",
+     "box": "192x192@-440,-173",
+     "lines": [
+      "文本 1"
+     ]
+    },
+    {
+     "testid": "text-flow-node-full",
+     "role": "group",
+     "aria": "双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+     "box": "192x192@-440,-173",
+     "lines": []
+    },
+    {
+     "testid": "rf__node-node_cdwf8x6fbj",
+     "role": "group",
+     "aria": "时间线 node: 时间线 1",
+     "box": "720x124@-704,-95",
+     "lines": [
+      "时间线 1",
+      "00:00",
+      "/",
+      "00:00",
+      "全屏编辑",
+      "00:00",
+      "00:05",
+      "00:10",
+      "00:15",
+      "00:20",
+      "00:25",
+      "00:30",
+      "添加素材到时间线",
+      "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected."
+     ]
+    },
+    {
+     "testid": "timeline-flow-node",
+     "role": null,
+     "aria": null,
+     "box": "720x124@-704,-95",
+     "lines": [
+      "时间线 1",
+      "00:00",
+      "/",
+      "00:00",
+      "全屏编辑",
+      "00:00",
+      "00:05",
+      "00:10",
+      "00:15",
+      "00:20",
+      "00:25",
+      "00:30",
+      "添加素材到时间线",
+      "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected."
+     ]
+    }
+   ]
+  },
+  "share": {
+   "click": {
+    "ok": true,
+    "at": "1018,30"
+   },
+   "added": 24,
+   "sample": [
+    {
+     "k": "DIV|fixed|400x251|canvas-share-panel-surface||分享画布",
+     "tag": "DIV",
+     "cls": "fixed",
+     "w": 400,
+     "h": 251,
+     "x": 868,
+     "y": 56,
+     "testid": "canvas-share-panel-surface",
+     "aria": null,
+     "role": null,
+     "t": "分享画布"
+    },
+    {
+     "k": "SECTION|flex|400x251|canvas-share-panel|分享画布|分享画布",
+     "tag": "SECTION",
+     "cls": "flex",
+     "w": 400,
+     "h": 251,
+     "x": 868,
+     "y": 56,
+     "testid": "canvas-share-panel",
+     "aria": "分享画布",
+     "role": null,
+     "t": "分享画布"
+    },
+    {
+     "k": "DIV|flex|400x52|||分享画布",
+     "tag": "DIV",
+     "cls": "flex",
+     "w": 400,
+     "h": 52,
+     "x": 868,
+     "y": 56,
+     "testid": null,
+     "aria": null,
+     "role": null,
+     "t": "分享画布"
+    },
+    {
+     "k": "H2|text-dreamina-cn-14|56x22|||分享画布",
+     "tag": "H2",
+     "cls": "text-dreamina-cn-14",
+     "w": 56,
+     "h": 22,
+     "x": 884,
+     "y": 75,
+     "testid": null,
+     "aria": null,
+     "role": null,
+     "t": "分享画布"
+    },
+    {
+     "k": "DIV|flex|400x199|||https://jimeng.j",
+     "tag": "DIV",
+     "cls": "flex",
+     "w": 400,
+     "h": 199,
+     "x": 868,
+     "y": 108,
+     "testid": null,
+     "aria": null,
+     "role": null,
+     "t": "https://jimeng.jiany"
+    },
+    {
+     "k": "DIV|flex|400x122|||https://jimeng.j",
+     "tag": "DIV",
+     "cls": "flex",
+     "w": 400,
+     "h": 122,
+     "x": 868,
+     "y": 108,
+     "testid": null,
+     "aria": null,
+     "role": null,
+     "t": "https://jimeng.jiany"
+    },
+    {
+     "k": "DIV|flex|368x40||画布分享链接|https://jimeng.j",
+     "tag": "DIV",
+     "cls": "flex",
+     "w": 368,
+     "h": 40,
+     "x": 884,
+     "y": 120,
+     "testid": null,
+     "aria": "画布分享链接",
+     "role": "group",
+     "t": "https://jimeng.jiany"
+    },
+    {
+     "k": "SPAN|min-w-workspace-title-shrinkable|245x22|||https://jimeng.j",
+     "tag": "SPAN",
+     "cls": "min-w-workspace-title-shrinkable",
+     "w": 245,
+     "h": 22,
+     "x": 896,
+     "y": 129,
+     "testid": null,
+     "aria": null,
+     "role": null,
+     "t": "https://jimeng.jiany"
+    },
+    {
+     "k": "SPAN|ml-workspace-share-footer-outset|1x10|||",
+     "tag": "SPAN",
+     "cls": "ml-workspace-share-footer-outset",
+     "w": 1,
+     "h": 10,
+     "x": 1145,
+     "y": 135,
+     "testid": null,
+     "aria": null,
+     "role": null,
+     "t": ""
+    },
+    {
+     "k": "BUTTON|inline-flex|100x36|||复制链接",
+     "tag": "BUTTON",
+     "cls": "inline-flex",
+     "w": 100,
+     "h": 36,
+     "x": 1150,
+     "y": 122,
+     "testid": null,
+     "aria": null,
+     "role": null,
+     "t": "复制链接"
+    }
+   ],
+   "outer": {
+    "k": "DIV|fixed|400x251|canvas-share-panel-surface||分享画布",
+    "tag": "DIV",
+    "cls": "fixed",
+    "w": 400,
+    "h": 251,
+    "x": 868,
+    "y": 56,
+    "testid": "canvas-share-panel-surface",
+    "aria": null,
+    "role": null,
+    "t": "分享画布"
+   },
+   "containers": [
+    {
+     "testid": "workspace-workbench-shell",
+     "role": null,
+     "aria": null,
+     "box": "1280x720@0,0",
+     "lines": [
+      "测试项目",
+      "节点",
+      "20",
+      "已保存",
+      "分享",
+      "805",
+      "基础会员",
+      "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+      "视频 1",
+      "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+      "文本 1",
+      "时间线 1",
+      "00:00",
+      "/",
+      "00:00",
+      "全屏编辑",
+      "00:00",
+      "00:05",
+      "00:10",
+      "00:15"
+     ]
+    },
+    {
+     "testid": "workspace-hydrated-canvas-frame",
+     "role": null,
+     "aria": null,
+     "box": "1280x720@0,0",
+     "lines": [
+      "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+      "视频 1",
+      "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+      "文本 1",
+      "时间线 1",
+      "00:00",
+      "/",
+      "00:00",
+      "全屏编辑",
+      "00:00",
+      "00:05",
+      "00:10",
+      "00:15",
+      "00:20",
+      "00:25",
+      "00:30",
+      "添加素材到时间线",
+      "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+      "文本 2",
+      "文本 3"
+     ]
+    },
+    {
+     "testid": "canvas-workbench-shell",
+     "role": null,
+     "aria": null,
+     "box": "1280x720@0,0",
+     "lines": [
+      "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+      "视频 1",
+      "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+      "文本 1",
+      "时间线 1",
+      "00:00",
+      "/",
+      "00:00",
+      "全屏编辑",
+      "00:00",
+      "00:05",
+      "00:10",
+      "00:15",
+      "00:20",
+      "00:25",
+      "00:30",
+      "添加素材到时间线",
+      "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+      "文本 2",
+      "文本 3"
+     ]
+    },
+    {
+     "testid": "canvas-main-region",
+     "role": null,
+     "aria": "Canvas editing area",
+     "box": "1280x720@0,0",
+     "lines": [
+      "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+      "视频 1",
+      "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+      "文本 1",
+      "时间线 1",
+      "00:00",
+      "/",
+      "00:00",
+      "全屏编辑",
+      "00:00",
+      "00:05",
+      "00:10",
+      "00:15",
+      "00:20",
+      "00:25",
+      "00:30",
+      "添加素材到时间线",
+      "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+      "文本 2",
+      "文本 3"
+     ]
+    },
+    {
+     "testid": "rf__wrapper",
+     "role": "application",
+     "aria": "Canvas",
+     "box": "1280x720@0,0",
+     "lines": [
+      "视频 1",
+      "No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+      "文本 1",
+      "时间线 1",
+      "00:00",
+      "/",
+      "00:00",
+      "全屏编辑",
+      "00:00",
+      "00:05",
+      "00:10",
+      "00:15",
+      "00:20",
+      "00:25",
+      "00:30",
+      "添加素材到时间线",
+      "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+      "文本 2",
+      "文本 3",
+      "导演台"
+     ]
+    },
+    {
+     "testid": "rf__node-node_236ctpehgg",
+     "role": "group",
+     "aria": "视频 node: 视频 1",
+     "box": "192x341@-209,-77",
+     "lines": [
+      "视频 1",
+      "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+     ]
+    },
+    {
+     "testid": "video-flow-node-surface",
+     "role": null,
+     "aria": null,
+     "box": "192x341@-209,-77",
+     "lines": [
+      "视频 1",
+      "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+     ]
+    },
+    {
+     "testid": "video-node-empty",
+     "role": "img",
+     "aria": "暂无视频",
+     "box": "191x340@-209,-77",
+     "lines": []
+    },
+    {
+     "testid": "rf__node-node_3bfb9r79qe",
+     "role": "group",
+     "aria": "文本 node: 文本 1",
+     "box": "192x192@-440,-173",
+     "lines": [
+      "文本 1"
+     ]
+    },
+    {
+     "testid": "text-flow-node-full",
+     "role": "group",
+     "aria": "双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+     "box": "192x192@-440,-173",
+     "lines": []
+    },
+    {
+     "testid": "rf__node-node_cdwf8x6fbj",
+     "role": "group",
+     "aria": "时间线 node: 时间线 1",
+     "box": "720x124@-704,-95",
+     "lines": [
+      "时间线 1",
+      "00:00",
+      "/",
+      "00:00",
+      "全屏编辑",
+      "00:00",
+      "00:05",
+      "00:10",
+      "00:15",
+      "00:20",
+      "00:25",
+      "00:30",
+      "添加素材到时间线",
+      "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected."
+     ]
+    },
+    {
+     "testid": "timeline-flow-node",
+     "role": null,
+     "aria": null,
+     "box": "720x124@-704,-95",
+     "lines": [
+      "时间线 1",
+      "00:00",
+      "/",
+      "00:00",
+      "全屏编辑",
+      "00:00",
+      "00:05",
+      "00:10",
+      "00:15",
+      "00:20",
+      "00:25",
+      "00:30",
+      "添加素材到时间线",
+      "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected."
+     ]
+    }
+   ]
+  }
+ },
+ "nodeSummary": {
+  "found": true,
+  "popBox": "200x292@73,47",
+  "rows": [
+   {
+    "t": "图片 1",
+    "w": 192,
+    "h": 36,
+    "y": 51,
+    "tag": "DIV",
+    "cls": "flex",
+    "aria": null,
+    "testid": null
+   },
+   {
+    "t": "视频 1",
+    "w": 192,
+    "h": 36,
+    "y": 91,
+    "tag": "DIV",
+    "cls": "flex",
+    "aria": null,
+    "testid": null
+   },
+   {
+    "t": "文本 3",
+    "w": 192,
+    "h": 36,
+    "y": 131,
+    "tag": "DIV",
+    "cls": "flex",
+    "aria": null,
+    "testid": null
+   },
+   {
+    "t": "音频 13",
+    "w": 192,
+    "h": 36,
+    "y": 171,
+    "tag": "DIV",
+    "cls": "flex",
+    "aria": null,
+    "testid": null
+   },
+   {
+    "t": "时间线 1",
+    "w": 192,
+    "h": 36,
+    "y": 211,
+    "tag": "DIV",
+    "cls": "flex",
+    "aria": null,
+    "testid": null
+   },
+   {
+    "t": "外部 1",
+    "w": 192,
+    "h": 36,
+    "y": 251,
+    "tag": "DIV",
+    "cls": "flex",
+    "aria": null,
+    "testid": null
+   },
+   {
+    "t": "查看项目信息",
+    "w": 192,
+    "h": 36,
+    "y": 299,
+    "tag": "BUTTON",
+    "cls": "inline-flex",
+    "aria": null,
+    "testid": null
+   }
+  ],
+  "nRows": 7,
+  "triggerAria": "Canvas node summary: 节点 20",
+  "formula": {
+   "40*rows+12": 292,
+   "actual": 292
+  }
+ }
+}

@@ -1,0 +1,220 @@
+{
+ "at": "2026-10-02T03:35:33.447Z",
+ "gapScan": {
+  "inGap": [
+   {
+    "tag": "SPAN",
+    "x": 194,
+    "y": 24,
+    "w": 8,
+    "h": 12,
+    "testid": "canvas-title-separator",
+    "aria": null,
+    "cls": "flex",
+    "t": ""
+   },
+   {
+    "tag": "SPAN",
+    "x": 198,
+    "y": 26,
+    "w": 1,
+    "h": 8,
+    "testid": null,
+    "aria": null,
+    "cls": "bg-dreamina-stroke-primary",
+    "t": ""
+   },
+   {
+    "tag": "OUTPUT",
+    "x": 206,
+    "y": 21,
+    "w": 30,
+    "h": 18,
+    "testid": "canvas-title-save-status",
+    "aria": null,
+    "cls": "text-center",
+    "t": "已保存"
+   },
+   {
+    "tag": "DIV",
+    "x": 907,
+    "y": 10,
+    "w": 361,
+    "h": 40,
+    "testid": "canvas-top-bar-actions",
+    "aria": null,
+    "cls": "pointer-events-auto",
+    "t": "分享"
+   },
+   {
+    "tag": "DIV",
+    "x": 907,
+    "y": 12,
+    "w": 68,
+    "h": 36,
+    "testid": "canvas-agent-history-surface",
+    "aria": null,
+    "cls": "flex",
+    "t": ""
+   }
+  ],
+  "n": 5,
+  "topBarLeft": "871x40@12,10",
+  "barAria": "Canvas top bar",
+  "barTag": "HEADER"
+ },
+ "project": {
+  "click": {
+   "ok": true,
+   "at": "130,30"
+  },
+  "added": 38,
+  "outer": {
+   "k": "DIV|z-40|240x280|||项目",
+   "tag": "DIV",
+   "w": 240,
+   "h": 280,
+   "x": 12,
+   "y": 52,
+   "testid": null,
+   "aria": null,
+   "role": null,
+   "t": "项目"
+  },
+  "detail": {
+   "found": true,
+   "popBox": "240x280@12,52",
+   "popAria": "Project panel",
+   "lines": [
+    "项目",
+    "测试项目",
+    "测试项目2",
+    "测试项目1",
+    "未命名项目",
+    "视频创作",
+    "新建画布项目"
+   ],
+   "buttons": [
+    {
+     "t": "测试项目",
+     "box": "198x36",
+     "testid": null
+    },
+    {
+     "t": "",
+     "box": "28x28",
+     "testid": "project-more-ordinary-64b58cd5-7b04-4312-890a-09f2d1d3399f"
+    },
+    {
+     "t": "测试项目2",
+     "box": "198x36",
+     "testid": null
+    },
+    {
+     "t": "",
+     "box": "28x28",
+     "testid": "project-more-ordinary-9ab44395-796c-47aa-a406-6648aa9cb2f9"
+    },
+    {
+     "t": "测试项目1",
+     "box": "198x36",
+     "testid": null
+    },
+    {
+     "t": "",
+     "box": "28x28",
+     "testid": "project-more-ordinary-b86a99b5-6fb3-4340-8476-6b28497a4126"
+    },
+    {
+     "t": "未命名项目",
+     "box": "198x36",
+     "testid": null
+    },
+    {
+     "t": "",
+     "box": "28x28",
+     "testid": "project-more-ordinary-c0d5b446-6cad-4859-9c9c-fd61336c0afc"
+    },
+    {
+     "t": "视频创作",
+     "box": "198x36",
+     "testid": null
+    },
+    {
+     "t": "",
+     "box": "28x28",
+     "testid": "project-more-ordinary-83d7f8ad-b997-4c58-8d20-4ff510ed0164"
+    },
+    {
+     "t": "新建画布项目",
+     "box": "232x36",
+     "testid": null
+    }
+   ],
+   "lists": [
+    {
+     "tag": "NAV",
+     "role": null,
+     "aria": "项目",
+     "box": "240x200@12,88",
+     "items": [
+      "测试项目 198x36",
+      " 28x28",
+      "测试项目2 198x36",
+      " 28x28",
+      "测试项目1 198x36",
+      " 28x28",
+      "未命名项目 198x36",
+      " 28x28",
+      "视频创作 198x36",
+      " 28x28"
+     ]
+    }
+   ]
+  }
+ },
+ "share": {
+  "surface": "400x251@868,56",
+  "panel": "400x251@868,56",
+  "panelTag": "SECTION",
+  "panelAria": "分享画布",
+  "lines": [
+   "分享画布",
+   "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=noew_canvas_shared_link",
+   "复制链接",
+   "仅自己可访问",
+   "只有你可以通过此链接访问画布",
+   "创建团队，与成员在画布实时协作",
+   "创建团队"
+  ],
+  "buttons": [
+   {
+    "tag": "BUTTON",
+    "t": "复制链接",
+    "aria": null,
+    "role": null,
+    "testid": null,
+    "box": "100x36@1150,122"
+   },
+   {
+    "tag": "BUTTON",
+    "t": "仅自己可访问",
+    "aria": null,
+    "role": null,
+    "testid": null,
+    "box": "106x26@928,172"
+   },
+   {
+    "tag": "BUTTON",
+    "t": "创建团队",
+    "aria": null,
+    "role": null,
+    "testid": null,
+    "box": "80x36@1172,253"
+   }
+  ],
+  "inputs": [],
+  "hasUrlText": true
+ },
+ "after": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+}
