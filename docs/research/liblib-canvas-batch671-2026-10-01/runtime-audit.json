@@ -1,0 +1,801 @@
+{
+ "verifier": {
+  "widths": [
+   1280,
+   1405,
+   1600
+  ],
+  "targets": [
+   "描述想搭建的场景",
+   "上传图片",
+   "发送"
+  ],
+  "step": 0.01,
+  "boxesSampled": [
+   "absolute.-top-9.bottom-0.right-0.z-30",
+   "flex.h-full.min-h-0.flex-col.border-l",
+   "min-h-0.flex-1.overflow-y-auto"
+  ],
+  "totalSamples": 2673,
+  "totalSamplesWhereBoxIsInStack": 2646,
+  "falseNegativeSamples": 0,
+  "rescuedByIntersection": {
+   "absolute.-top-9.bottom-0.right-0.z-30": [
+    "absolute.inset-0",
+    "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+    "flex.min-h-0.flex-1.flex-col",
+    "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+    "relative.min-h-0.flex-1"
+   ],
+   "flex.h-full.min-h-0.flex-col.border-l": [
+    "absolute.inset-0",
+    "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+    "flex.min-h-0.flex-1.flex-col",
+    "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+    "relative.min-h-0.flex-1"
+   ],
+   "min-h-0.flex-1.overflow-y-auto": [
+    "absolute.-top-9.bottom-0.right-0.z-30",
+    "flex.h-full.min-h-0.flex-col.border-l",
+    "flex.min-h-0.flex-1.flex-col",
+    "relative.min-h-0.flex-1"
+   ]
+  }
+ },
+ "cells": {
+  "1280:描述想搭建的场景": {
+   "W": 1280,
+   "found": true,
+   "target": "描述想搭建的场景",
+   "cy": 945,
+   "cx": 1124.5,
+   "surfaceRect": [
+    281,
+    999
+   ],
+   "surfaceIdent": "absolute.inset-0",
+   "step": 0.01,
+   "rows": [
+    {
+     "box": "absolute.-top-9.bottom-0.right-0.z-30",
+     "rectLeft": 999,
+     "rectRight": 1280,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "relative.flex.h-12.max-w-[calc(100vw-48px)].shrink-0",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 998.01,
+     "lastXWithBoxInStack": 998.99
+    },
+    {
+     "box": "flex.h-full.min-h-0.flex-col.border-l",
+     "rectLeft": 999,
+     "rectRight": 1280,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "relative.flex.h-12.max-w-[calc(100vw-48px)].shrink-0",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 998.01,
+     "lastXWithBoxInStack": 998.99
+    },
+    {
+     "box": "min-h-0.flex-1.overflow-y-auto",
+     "rectLeft": 1000,
+     "rectRight": 1280,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.-top-9.bottom-0.right-0.z-30",
+      "flex.h-full.min-h-0.flex-col.border-l",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "relative.flex.h-12.max-w-[calc(100vw-48px)].shrink-0",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 999.01,
+     "lastXWithBoxInStack": 999.99
+    }
+   ]
+  },
+  "1280:上传图片": {
+   "W": 1280,
+   "found": true,
+   "target": "上传图片",
+   "cy": 945,
+   "cx": 1037,
+   "surfaceRect": [
+    281,
+    999
+   ],
+   "surfaceIdent": "absolute.inset-0",
+   "step": 0.01,
+   "rows": [
+    {
+     "box": "absolute.-top-9.bottom-0.right-0.z-30",
+     "rectLeft": 999,
+     "rectRight": 1280,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "relative.flex.h-12.max-w-[calc(100vw-48px)].shrink-0",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 998.01,
+     "lastXWithBoxInStack": 998.99
+    },
+    {
+     "box": "flex.h-full.min-h-0.flex-col.border-l",
+     "rectLeft": 999,
+     "rectRight": 1280,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "relative.flex.h-12.max-w-[calc(100vw-48px)].shrink-0",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 998.01,
+     "lastXWithBoxInStack": 998.99
+    },
+    {
+     "box": "min-h-0.flex-1.overflow-y-auto",
+     "rectLeft": 1000,
+     "rectRight": 1280,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.-top-9.bottom-0.right-0.z-30",
+      "flex.h-full.min-h-0.flex-col.border-l",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "relative.flex.h-12.max-w-[calc(100vw-48px)].shrink-0",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 999.01,
+     "lastXWithBoxInStack": 999.99
+    }
+   ]
+  },
+  "1280:发送": {
+   "W": 1280,
+   "found": true,
+   "target": "发送",
+   "cy": 945,
+   "cx": 1216,
+   "surfaceRect": [
+    281,
+    999
+   ],
+   "surfaceIdent": "absolute.inset-0",
+   "step": 0.01,
+   "rows": [
+    {
+     "box": "absolute.-top-9.bottom-0.right-0.z-30",
+     "rectLeft": 999,
+     "rectRight": 1280,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "relative.flex.h-12.max-w-[calc(100vw-48px)].shrink-0",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 998.01,
+     "lastXWithBoxInStack": 998.99
+    },
+    {
+     "box": "flex.h-full.min-h-0.flex-col.border-l",
+     "rectLeft": 999,
+     "rectRight": 1280,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "relative.flex.h-12.max-w-[calc(100vw-48px)].shrink-0",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 998.01,
+     "lastXWithBoxInStack": 998.99
+    },
+    {
+     "box": "min-h-0.flex-1.overflow-y-auto",
+     "rectLeft": 1000,
+     "rectRight": 1280,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.-top-9.bottom-0.right-0.z-30",
+      "flex.h-full.min-h-0.flex-col.border-l",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "relative.flex.h-12.max-w-[calc(100vw-48px)].shrink-0",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 999.01,
+     "lastXWithBoxInStack": 999.99
+    }
+   ]
+  },
+  "1405:描述想搭建的场景": {
+   "W": 1405,
+   "found": true,
+   "target": "描述想搭建的场景",
+   "cy": 945,
+   "cx": 1124.5,
+   "surfaceRect": [
+    281,
+    1124
+   ],
+   "surfaceIdent": "absolute.inset-0",
+   "step": 0.01,
+   "rows": [
+    {
+     "box": "absolute.-top-9.bottom-0.right-0.z-30",
+     "rectLeft": 1124,
+     "rectRight": 1405,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "col-start-2.row-start-1.min-w-0.bg-transparent.text-center",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "pointer-events-auto.relative.z-10.grid.h-12",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1123.01,
+     "lastXWithBoxInStack": 1123.99
+    },
+    {
+     "box": "flex.h-full.min-h-0.flex-col.border-l",
+     "rectLeft": 1124,
+     "rectRight": 1405,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "col-start-2.row-start-1.min-w-0.bg-transparent.text-center",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "pointer-events-auto.relative.z-10.grid.h-12",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1123.01,
+     "lastXWithBoxInStack": 1123.99
+    },
+    {
+     "box": "min-h-0.flex-1.overflow-y-auto",
+     "rectLeft": 1125,
+     "rectRight": 1405,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.-top-9.bottom-0.right-0.z-30",
+      "col-start-2.row-start-1.min-w-0.bg-transparent.text-center",
+      "flex.h-full.min-h-0.flex-col.border-l",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "pointer-events-auto.relative.z-10.grid.h-12",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1124.01,
+     "lastXWithBoxInStack": 1124.99
+    }
+   ]
+  },
+  "1405:上传图片": {
+   "W": 1405,
+   "found": true,
+   "target": "上传图片",
+   "cy": 945,
+   "cx": 1037,
+   "surfaceRect": [
+    281,
+    1124
+   ],
+   "surfaceIdent": "absolute.inset-0",
+   "step": 0.01,
+   "rows": [
+    {
+     "box": "absolute.-top-9.bottom-0.right-0.z-30",
+     "rectLeft": 1124,
+     "rectRight": 1405,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "col-start-2.row-start-1.min-w-0.bg-transparent.text-center",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "pointer-events-auto.relative.z-10.grid.h-12",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1123.01,
+     "lastXWithBoxInStack": 1123.99
+    },
+    {
+     "box": "flex.h-full.min-h-0.flex-col.border-l",
+     "rectLeft": 1124,
+     "rectRight": 1405,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "col-start-2.row-start-1.min-w-0.bg-transparent.text-center",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "pointer-events-auto.relative.z-10.grid.h-12",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1123.01,
+     "lastXWithBoxInStack": 1123.99
+    },
+    {
+     "box": "min-h-0.flex-1.overflow-y-auto",
+     "rectLeft": 1125,
+     "rectRight": 1405,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.-top-9.bottom-0.right-0.z-30",
+      "col-start-2.row-start-1.min-w-0.bg-transparent.text-center",
+      "flex.h-full.min-h-0.flex-col.border-l",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "pointer-events-auto.relative.z-10.grid.h-12",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1124.01,
+     "lastXWithBoxInStack": 1124.99
+    }
+   ]
+  },
+  "1405:发送": {
+   "W": 1405,
+   "found": true,
+   "target": "发送",
+   "cy": 945,
+   "cx": 1216,
+   "surfaceRect": [
+    281,
+    1124
+   ],
+   "surfaceIdent": "absolute.inset-0",
+   "step": 0.01,
+   "rows": [
+    {
+     "box": "absolute.-top-9.bottom-0.right-0.z-30",
+     "rectLeft": 1124,
+     "rectRight": 1405,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "col-start-2.row-start-1.min-w-0.bg-transparent.text-center",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "pointer-events-auto.relative.z-10.grid.h-12",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1123.01,
+     "lastXWithBoxInStack": 1123.99
+    },
+    {
+     "box": "flex.h-full.min-h-0.flex-col.border-l",
+     "rectLeft": 1124,
+     "rectRight": 1405,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "col-start-2.row-start-1.min-w-0.bg-transparent.text-center",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "pointer-events-auto.relative.z-10.grid.h-12",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1123.01,
+     "lastXWithBoxInStack": 1123.99
+    },
+    {
+     "box": "min-h-0.flex-1.overflow-y-auto",
+     "rectLeft": 1125,
+     "rectRight": 1405,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.-top-9.bottom-0.right-0.z-30",
+      "col-start-2.row-start-1.min-w-0.bg-transparent.text-center",
+      "flex.h-full.min-h-0.flex-col.border-l",
+      "flex.min-h-0.flex-1.flex-col",
+      "mx-auto.flex.shrink-0.items-center.gap-2",
+      "pointer-events-auto.relative.z-10.grid.h-12",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1124.01,
+     "lastXWithBoxInStack": 1124.99
+    }
+   ]
+  },
+  "1600:描述想搭建的场景": {
+   "W": 1600,
+   "found": true,
+   "target": "描述想搭建的场景",
+   "cy": 945,
+   "cx": 1159.5,
+   "surfaceRect": [
+    281,
+    1319
+   ],
+   "surfaceIdent": "absolute.inset-0",
+   "step": 0.01,
+   "rows": [
+    {
+     "box": "absolute.-top-9.bottom-0.right-0.z-30",
+     "rectLeft": 1319,
+     "rectRight": 1600,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1318.01,
+     "lastXWithBoxInStack": 1318.99
+    },
+    {
+     "box": "flex.h-full.min-h-0.flex-col.border-l",
+     "rectLeft": 1319,
+     "rectRight": 1600,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1318.01,
+     "lastXWithBoxInStack": 1318.99
+    },
+    {
+     "box": "min-h-0.flex-1.overflow-y-auto",
+     "rectLeft": 1320,
+     "rectRight": 1600,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.-top-9.bottom-0.right-0.z-30",
+      "flex.h-full.min-h-0.flex-col.border-l",
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1319.01,
+     "lastXWithBoxInStack": 1319.99
+    }
+   ]
+  },
+  "1600:上传图片": {
+   "W": 1600,
+   "found": true,
+   "target": "上传图片",
+   "cy": 945,
+   "cx": 1072,
+   "surfaceRect": [
+    281,
+    1319
+   ],
+   "surfaceIdent": "absolute.inset-0",
+   "step": 0.01,
+   "rows": [
+    {
+     "box": "absolute.-top-9.bottom-0.right-0.z-30",
+     "rectLeft": 1319,
+     "rectRight": 1600,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1318.01,
+     "lastXWithBoxInStack": 1318.99
+    },
+    {
+     "box": "flex.h-full.min-h-0.flex-col.border-l",
+     "rectLeft": 1319,
+     "rectRight": 1600,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1318.01,
+     "lastXWithBoxInStack": 1318.99
+    },
+    {
+     "box": "min-h-0.flex-1.overflow-y-auto",
+     "rectLeft": 1320,
+     "rectRight": 1600,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.-top-9.bottom-0.right-0.z-30",
+      "flex.h-full.min-h-0.flex-col.border-l",
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1319.01,
+     "lastXWithBoxInStack": 1319.99
+    }
+   ]
+  },
+  "1600:发送": {
+   "W": 1600,
+   "found": true,
+   "target": "发送",
+   "cy": 945,
+   "cx": 1251,
+   "surfaceRect": [
+    281,
+    1319
+   ],
+   "surfaceIdent": "absolute.inset-0",
+   "step": 0.01,
+   "rows": [
+    {
+     "box": "absolute.-top-9.bottom-0.right-0.z-30",
+     "rectLeft": 1319,
+     "rectRight": 1600,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1318.01,
+     "lastXWithBoxInStack": 1318.99
+    },
+    {
+     "box": "flex.h-full.min-h-0.flex-col.border-l",
+     "rectLeft": 1319,
+     "rectRight": 1600,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1318.01,
+     "lastXWithBoxInStack": 1318.99
+    },
+    {
+     "box": "min-h-0.flex-1.overflow-y-auto",
+     "rectLeft": 1320,
+     "rectRight": 1600,
+     "n": 99,
+     "inStackCount": 98,
+     "falseNegatives": [],
+     "rescuedBy": [
+      "absolute.-top-9.bottom-0.right-0.z-30",
+      "flex.h-full.min-h-0.flex-col.border-l",
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ],
+     "firstXWithCover": 1319.01,
+     "lastXWithBoxInStack": 1319.99
+    }
+   ]
+  }
+ },
+ "checks": {
+  "every-sample-in-the-one-pixel-strip-is-still-covered-by-some-rect": {
+   "ok": true,
+   "detail": {
+    "sampledBoxes": 27,
+    "samplesPerBox": 0.01,
+    "falseNegativeSamples": [],
+    "totalSamples": 2673,
+    "totalSamplesWhereBoxIsInStack": 2646
+   },
+   "note": "the falsification attempt: if any sample had the box in the hit stack and NO pe:auto rect covering it, 670's zero was luck"
+  },
+  "the-rescuer-differs-by-box-the-two-outer-ones-are-rescued-by-the-surface": {
+   "ok": true,
+   "detail": {
+    "rescuedByIntersection": {
+     "absolute.-top-9.bottom-0.right-0.z-30": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "flex.h-full.min-h-0.flex-col.border-l": [
+      "absolute.inset-0",
+      "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+      "relative.min-h-0.flex-1"
+     ],
+     "min-h-0.flex-1.overflow-y-auto": [
+      "absolute.-top-9.bottom-0.right-0.z-30",
+      "flex.h-full.min-h-0.flex-col.border-l",
+      "flex.min-h-0.flex-1.flex-col",
+      "relative.min-h-0.flex-1"
+     ]
+    },
+    "surfaceRightMinusTrioLeft": {
+     "absolute.-top-9.bottom-0.right-0.z-30": [
+      0
+     ],
+     "flex.h-full.min-h-0.flex-col.border-l": [
+      0
+     ],
+     "min-h-0.flex-1.overflow-y-auto": [
+      -1
+     ]
+    },
+    "boxes": {
+     "aside": "absolute.-top-9.bottom-0.right-0.z-30",
+     "section": "flex.h-full.min-h-0.flex-col.border-l",
+     "column": "min-h-0.flex-1.overflow-y-auto"
+    },
+    "surfaceIdent": [
+     "absolute.inset-0"
+    ]
+   },
+   "note": "the column's strip is NOT covered by the surface (its rect starts 1px to the right of the surface's) — it is covered by the aside, whose rect starts exactly 1px to the column's left"
+  },
+  "the-strip-is-actually-walked-at-every-width": {
+   "ok": true,
+   "detail": {
+    "bands": 27,
+    "minInStackSamples": 98,
+    "samplesPerBand": [
+     99
+    ],
+    "perBand": {
+     "1280:描述想搭建的场景|absolute.-top-9.bottom-0.right-0.z-30": [
+      98,
+      99
+     ],
+     "1280:描述想搭建的场景|flex.h-full.min-h-0.flex-col.border-l": [
+      98,
+      99
+     ],
+     "1280:描述想搭建的场景|min-h-0.flex-1.overflow-y-auto": [
+      98,
+      99
+     ],
+     "1280:上传图片|absolute.-top-9.bottom-0.right-0.z-30": [
+      98,
+      99
+     ],
+     "1280:上传图片|flex.h-full.min-h-0.flex-col.border-l": [
+      98,
+      99
+     ],
+     "1280:上传图片|min-h-0.flex-1.overflow-y-auto": [
+      98,
+      99
+     ]
+    }
+   },
+   "note": "an empty strip would make the check above vacuous — prove the strip is non-empty before claiming the containment holds on it"
+  },
+  "the-rescuer-is-the-viewport-surface-not-an-inspector-box": {
+   "ok": true,
+   "detail": {
+    "surfaceIdent": [
+     "absolute.inset-0"
+    ],
+    "boxesSampled": [
+     "absolute.-top-9.bottom-0.right-0.z-30",
+     "flex.h-full.min-h-0.flex-col.border-l",
+     "min-h-0.flex-1.overflow-y-auto"
+    ],
+    "rescuedBy": [
+     "absolute.-top-9.bottom-0.right-0.z-30",
+     "absolute.inset-0",
+     "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0.left-[281px]",
+     "col-start-2.row-start-1.min-w-0.bg-transparent.text-center",
+     "flex.h-full.min-h-0.flex-col.border-l",
+     "flex.min-h-0.flex-1.flex-col",
+     "mx-auto.flex.shrink-0.items-center.gap-2",
+     "pointer-events-auto.relative.z-10.grid.h-12",
+     "relative.flex.h-12.max-w-[calc(100vw-48px)].shrink-0",
+     "relative.h-full.min-h-0.min-w-0.overflow-hidden",
+     "relative.min-h-0.flex-1"
+    ]
+   },
+   "note": "670 attributed the rescue to this element; confirm it and confirm it is not one of the boxes that needed rescuing"
+  }
+ }
+}
