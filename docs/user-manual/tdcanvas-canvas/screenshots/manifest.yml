@@ -1177,6 +1177,30 @@ screenshots:
     alt: 画布上唯一的组节点被选中，蓝色虚线边框外浮出一条只有信息和删除两个按钮的悬浮工具条，直接证明组节点并非没有工具条
     sha256: 70569bdecb2bca088c1cdfef94ff996ee48748b5fdd0b8f91318dce3536678c0
 
+  - file: screenshots/04-edit-nodes-toolbar-labels-on.png
+    task_id: edit-nodes
+    step: 选中一个已上传图片的节点，在默认设置下（localStorage 未写 tdcanvas:image-quick-tools-v6）读悬浮工具条——每个按钮都是「图标 + 文字」，整条 1285 宽
+    route: '/canvas/:id'
+    viewport: 1600x950
+    locale: zh-CN
+    captured_at: '2026-10-02'
+    verified_locator: '点选节点后出现 [data-canvas-node-hover-toolbar]，实测 13 个 [data-canvas-node-toolbar-action]，边界框 1285x48 位于节点上方（x=123, y=235）；逐个读按钮内 span 文本得「信息 删除 存资产 下载 编辑 复制提示词 反推提示词 替换图片 裁剪 切图 放大 查看大图 更多」，与手册按钮表逐字吻合'
+    visible_text: '信息 删除 存资产 下载 编辑 复制提示词 反推提示词 替换图片 裁剪 切图 放大 查看大图 更多'
+    alt: 图片节点上方浮出的悬浮工具条，每个按钮都由一个图标和一段中文组成，从左到右是信息、删除、存资产、下载、编辑、复制提示词、反推提示词、替换图片、裁剪、切图、放大、查看大图、更多
+    sha256: 4a171927b63fe732f9fc99783dcdab3f6796e576d0507a37057b5f649ad6c93f
+
+  - file: screenshots/04-edit-nodes-toolbar-labels-off.png
+    task_id: edit-nodes
+    step: 把 localStorage 的 tdcanvas:image-quick-tools-v6 写成 {showLabels:false} 后刷新，同一个节点的工具条变成 13 个纯图标按钮、整条缩到 574 宽
+    route: '/canvas/:id'
+    viewport: 1600x950
+    locale: zh-CN
+    captured_at: '2026-10-02'
+    verified_locator: '同上一张的判据，[data-canvas-node-hover-toolbar-action] 仍为 13 个（按钮数不变），但边界框由 1285 缩到 574；逐个读按钮内 span 文本全部为空串，单个按钮宽由 86 降到 44；aria-label 仍完整保留（查看节点信息 / 移除节点 / 加入我的资产…）。测毕已删除该 localStorage key 并复测回到 1285，确认无残留'
+    visible_text: ''
+    alt: 同一个图片节点的工具条在关闭显示文字之后的样子，十三个按钮只剩图标、一个字的标注也没有，其中切图与替换图片、裁剪与查看大图两组的图标非常相似，只能靠悬停辨认
+    sha256: bc04818df24905bae4a96e195c5d0e2d6847ef2fa518c7454422e153c68526da
+
   - file: screenshots/09-generate-images-video-resolutions.png
     task_id: generate-images
     step: 空视频节点选中后，下方「文生视频」面板的参数行与底部价格区
