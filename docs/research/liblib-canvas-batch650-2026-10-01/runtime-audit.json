@@ -1,0 +1,1879 @@
+{
+  "batch": 650,
+  "question": "does the DERIVED competitor set, run over the 11 director overlays 626 measured with a HAND-WRITTEN list, agree with 626 — and on the 8 that 649 never calibrated?",
+  "viewports": [
+    [
+      1920,
+      1150
+    ],
+    [
+      1440,
+      900
+    ],
+    [
+      1280,
+      720
+    ]
+  ],
+  "cells": {
+    "export-panel@1920x1150": {
+      "box": [
+        1626,
+        702,
+        286,
+        267
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 773,
+      "kind": "menu",
+      "heightRatio": 0.232,
+      "overflowBottom": -173,
+      "overflowRight": 0,
+      "candidateCount": 13,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1920,
+        "vh": 1150,
+        "overlay": "export-panel",
+        "box": [
+          1626,
+          702,
+          286,
+          267
+        ],
+        "ownZ": "50",
+        "pointerEvents": "auto",
+        "liveCount": 5,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "tree-context-menu@1920x1150": {
+      "box": [
+        164,
+        216,
+        128,
+        170
+      ],
+      "ownZ": "120",
+      "pointerEvents": "auto",
+      "topmostContentTop": 221,
+      "kind": "menu",
+      "heightRatio": 0.148,
+      "overflowBottom": -756,
+      "overflowRight": -1620,
+      "candidateCount": 20,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1920,
+        "vh": 1150,
+        "overlay": "tree-context-menu",
+        "box": [
+          164,
+          216,
+          128,
+          170
+        ],
+        "ownZ": "120",
+        "pointerEvents": "auto",
+        "liveCount": 5,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "panorama-flyout@1920x1150": {
+      "box": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "topmostContentTop": 227,
+      "kind": "menu",
+      "heightRatio": 0.117,
+      "overflowBottom": -812,
+      "overflowRight": -1632,
+      "candidateCount": 27,
+      "structBad": [],
+      "liveCount": 3,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1920,
+        "vh": 1150,
+        "overlay": "panorama-flyout",
+        "box": [
+          48,
+          196,
+          232,
+          134
+        ],
+        "ownZ": "160",
+        "pointerEvents": "auto",
+        "liveCount": 3,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "aspect-flyout@1920x1150": {
+      "box": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "topmostContentTop": 261,
+      "kind": "menu",
+      "heightRatio": 0.304,
+      "overflowBottom": -556,
+      "overflowRight": -1632,
+      "candidateCount": 26,
+      "structBad": [],
+      "liveCount": 7,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1920,
+        "vh": 1150,
+        "overlay": "aspect-flyout",
+        "box": [
+          48,
+          236,
+          232,
+          350
+        ],
+        "ownZ": "160",
+        "pointerEvents": "auto",
+        "liveCount": 7,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "add-character-flyout@1920x1150": {
+      "box": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "topmostContentTop": 147,
+      "kind": "menu",
+      "heightRatio": 0.339,
+      "overflowBottom": -636,
+      "overflowRight": -1632,
+      "candidateCount": 30,
+      "structBad": [],
+      "liveCount": 11,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1920,
+        "vh": 1150,
+        "overlay": "add-character-flyout",
+        "box": [
+          48,
+          116,
+          232,
+          390
+        ],
+        "ownZ": "160",
+        "pointerEvents": "auto",
+        "liveCount": 11,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "ai-import-modal@1920x1150": {
+      "box": [
+        680,
+        306,
+        560,
+        539
+      ],
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "topmostContentTop": 321,
+      "kind": "menu",
+      "heightRatio": 0.469,
+      "overflowBottom": -297,
+      "overflowRight": -672,
+      "candidateCount": 34,
+      "structBad": [],
+      "liveCount": 6,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1920,
+        "vh": 1150,
+        "overlay": "ai-import-modal",
+        "box": [
+          680,
+          306,
+          560,
+          539
+        ],
+        "ownZ": "auto",
+        "pointerEvents": "auto",
+        "liveCount": 6,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "geometry-submenu@1920x1150": {
+      "box": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 515,
+      "kind": "menu",
+      "heightRatio": 0.235,
+      "overflowBottom": -364,
+      "overflowRight": -1656,
+      "candidateCount": 16,
+      "structBad": [],
+      "liveCount": 8,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1920,
+        "vh": 1150,
+        "overlay": "geometry-submenu",
+        "box": [
+          52,
+          508,
+          204,
+          270
+        ],
+        "ownZ": "50",
+        "pointerEvents": "auto",
+        "liveCount": 8,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "crowd-dialog@1920x1150": {
+      "box": [
+        294,
+        52,
+        220,
+        208
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "topmostContentTop": 114,
+      "kind": "menu",
+      "heightRatio": 0.18,
+      "overflowBottom": -882,
+      "overflowRight": -1398,
+      "candidateCount": 20,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1920,
+        "vh": 1150,
+        "overlay": "crowd-dialog",
+        "box": [
+          294,
+          52,
+          220,
+          208
+        ],
+        "ownZ": "160",
+        "pointerEvents": "auto",
+        "liveCount": 5,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "camera-fov-help-tooltip@1920x1150": {
+      "box": [
+        1656,
+        668,
+        208,
+        68
+      ],
+      "ownZ": "1700",
+      "pointerEvents": "none",
+      "topmostContentTop": null,
+      "kind": "menu",
+      "heightRatio": 0.059,
+      "overflowBottom": -406,
+      "overflowRight": -48,
+      "candidateCount": 7,
+      "structBad": [],
+      "liveCount": 0,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1920,
+        "vh": 1150,
+        "overlay": "camera-fov-help-tooltip",
+        "box": [
+          1656,
+          668,
+          208,
+          68
+        ],
+        "ownZ": "1700",
+        "pointerEvents": "none",
+        "liveCount": 0,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "camera-preset-panel@1920x1150": {
+      "box": [
+        312,
+        677,
+        304,
+        292
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 684,
+      "kind": "menu",
+      "heightRatio": 0.254,
+      "overflowBottom": -173,
+      "overflowRight": -1296,
+      "candidateCount": 23,
+      "structBad": [],
+      "liveCount": 10,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1920,
+        "vh": 1150,
+        "overlay": "camera-preset-panel",
+        "box": [
+          312,
+          677,
+          304,
+          292
+        ],
+        "ownZ": "50",
+        "pointerEvents": "auto",
+        "liveCount": 10,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "motion-path-menu@1920x1150": {
+      "box": [
+        389,
+        938,
+        176,
+        204
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 968,
+      "kind": "menu",
+      "heightRatio": 0.177,
+      "overflowBottom": 0,
+      "overflowRight": -1347,
+      "candidateCount": 29,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1920,
+        "vh": 1150,
+        "overlay": "motion-path-menu",
+        "box": [
+          389,
+          938,
+          176,
+          204
+        ],
+        "ownZ": "50",
+        "pointerEvents": "auto",
+        "liveCount": 5,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "export-panel@1440x900": {
+      "box": [
+        1146,
+        452,
+        286,
+        267
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 523,
+      "kind": "menu",
+      "heightRatio": 0.297,
+      "overflowBottom": -173,
+      "overflowRight": 0,
+      "candidateCount": 28,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1440,
+        "vh": 900,
+        "overlay": "export-panel",
+        "box": [
+          1146,
+          452,
+          286,
+          267
+        ],
+        "ownZ": "50",
+        "pointerEvents": "auto",
+        "liveCount": 5,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "tree-context-menu@1440x900": {
+      "box": [
+        164,
+        216,
+        128,
+        170
+      ],
+      "ownZ": "120",
+      "pointerEvents": "auto",
+      "topmostContentTop": 221,
+      "kind": "menu",
+      "heightRatio": 0.189,
+      "overflowBottom": -506,
+      "overflowRight": -1140,
+      "candidateCount": 20,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1440,
+        "vh": 900,
+        "overlay": "tree-context-menu",
+        "box": [
+          164,
+          216,
+          128,
+          170
+        ],
+        "ownZ": "120",
+        "pointerEvents": "auto",
+        "liveCount": 5,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "panorama-flyout@1440x900": {
+      "box": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "topmostContentTop": 227,
+      "kind": "menu",
+      "heightRatio": 0.149,
+      "overflowBottom": -562,
+      "overflowRight": -1152,
+      "candidateCount": 27,
+      "structBad": [],
+      "liveCount": 3,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1440,
+        "vh": 900,
+        "overlay": "panorama-flyout",
+        "box": [
+          48,
+          196,
+          232,
+          134
+        ],
+        "ownZ": "160",
+        "pointerEvents": "auto",
+        "liveCount": 3,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "aspect-flyout@1440x900": {
+      "box": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "topmostContentTop": 261,
+      "kind": "menu",
+      "heightRatio": 0.389,
+      "overflowBottom": -306,
+      "overflowRight": -1152,
+      "candidateCount": 26,
+      "structBad": [],
+      "liveCount": 7,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1440,
+        "vh": 900,
+        "overlay": "aspect-flyout",
+        "box": [
+          48,
+          236,
+          232,
+          350
+        ],
+        "ownZ": "160",
+        "pointerEvents": "auto",
+        "liveCount": 7,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "add-character-flyout@1440x900": {
+      "box": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "topmostContentTop": 147,
+      "kind": "menu",
+      "heightRatio": 0.433,
+      "overflowBottom": -386,
+      "overflowRight": -1152,
+      "candidateCount": 30,
+      "structBad": [],
+      "liveCount": 11,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1440,
+        "vh": 900,
+        "overlay": "add-character-flyout",
+        "box": [
+          48,
+          116,
+          232,
+          390
+        ],
+        "ownZ": "160",
+        "pointerEvents": "auto",
+        "liveCount": 11,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "ai-import-modal@1440x900": {
+      "box": [
+        440,
+        181,
+        560,
+        539
+      ],
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "topmostContentTop": 196,
+      "kind": "menu",
+      "heightRatio": 0.599,
+      "overflowBottom": -172,
+      "overflowRight": -432,
+      "candidateCount": 60,
+      "structBad": [],
+      "liveCount": 6,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1440,
+        "vh": 900,
+        "overlay": "ai-import-modal",
+        "box": [
+          440,
+          181,
+          560,
+          539
+        ],
+        "ownZ": "auto",
+        "pointerEvents": "auto",
+        "liveCount": 6,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "geometry-submenu@1440x900": {
+      "box": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 515,
+      "kind": "menu",
+      "heightRatio": 0.3,
+      "overflowBottom": -114,
+      "overflowRight": -1176,
+      "candidateCount": 25,
+      "structBad": [],
+      "liveCount": 8,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1440,
+        "vh": 900,
+        "overlay": "geometry-submenu",
+        "box": [
+          52,
+          508,
+          204,
+          270
+        ],
+        "ownZ": "50",
+        "pointerEvents": "auto",
+        "liveCount": 8,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "crowd-dialog@1440x900": {
+      "box": [
+        294,
+        52,
+        220,
+        208
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "topmostContentTop": 114,
+      "kind": "menu",
+      "heightRatio": 0.231,
+      "overflowBottom": -632,
+      "overflowRight": -918,
+      "candidateCount": 20,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1440,
+        "vh": 900,
+        "overlay": "crowd-dialog",
+        "box": [
+          294,
+          52,
+          220,
+          208
+        ],
+        "ownZ": "160",
+        "pointerEvents": "auto",
+        "liveCount": 5,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "camera-fov-help-tooltip@1440x900": {
+      "box": [
+        1176,
+        418,
+        208,
+        68
+      ],
+      "ownZ": "1700",
+      "pointerEvents": "none",
+      "topmostContentTop": null,
+      "kind": "menu",
+      "heightRatio": 0.076,
+      "overflowBottom": -406,
+      "overflowRight": -48,
+      "candidateCount": 7,
+      "structBad": [],
+      "liveCount": 0,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1440,
+        "vh": 900,
+        "overlay": "camera-fov-help-tooltip",
+        "box": [
+          1176,
+          418,
+          208,
+          68
+        ],
+        "ownZ": "1700",
+        "pointerEvents": "none",
+        "liveCount": 0,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "camera-preset-panel@1440x900": {
+      "box": [
+        312,
+        427,
+        304,
+        292
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 434,
+      "kind": "menu",
+      "heightRatio": 0.324,
+      "overflowBottom": -173,
+      "overflowRight": -816,
+      "candidateCount": 26,
+      "structBad": [],
+      "liveCount": 10,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1440,
+        "vh": 900,
+        "overlay": "camera-preset-panel",
+        "box": [
+          312,
+          427,
+          304,
+          292
+        ],
+        "ownZ": "50",
+        "pointerEvents": "auto",
+        "liveCount": 10,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "motion-path-menu@1440x900": {
+      "box": [
+        389,
+        688,
+        176,
+        204
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 718,
+      "kind": "menu",
+      "heightRatio": 0.227,
+      "overflowBottom": 0,
+      "overflowRight": -867,
+      "candidateCount": 38,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1440,
+        "vh": 900,
+        "overlay": "motion-path-menu",
+        "box": [
+          389,
+          688,
+          176,
+          204
+        ],
+        "ownZ": "50",
+        "pointerEvents": "auto",
+        "liveCount": 5,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "export-panel@1280x720": {
+      "box": [
+        986,
+        272,
+        286,
+        267
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 343,
+      "kind": "menu",
+      "heightRatio": 0.371,
+      "overflowBottom": -173,
+      "overflowRight": 0,
+      "candidateCount": 63,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1280,
+        "vh": 720,
+        "overlay": "export-panel",
+        "box": [
+          986,
+          272,
+          286,
+          267
+        ],
+        "ownZ": "50",
+        "pointerEvents": "auto",
+        "liveCount": 5,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "tree-context-menu@1280x720": {
+      "box": [
+        164,
+        216,
+        128,
+        170
+      ],
+      "ownZ": "120",
+      "pointerEvents": "auto",
+      "topmostContentTop": 221,
+      "kind": "menu",
+      "heightRatio": 0.236,
+      "overflowBottom": -326,
+      "overflowRight": -980,
+      "candidateCount": 16,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1280,
+        "vh": 720,
+        "overlay": "tree-context-menu",
+        "box": [
+          164,
+          216,
+          128,
+          170
+        ],
+        "ownZ": "120",
+        "pointerEvents": "auto",
+        "liveCount": 5,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "panorama-flyout@1280x720": {
+      "box": [
+        48,
+        196,
+        232,
+        134
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "topmostContentTop": 227,
+      "kind": "menu",
+      "heightRatio": 0.186,
+      "overflowBottom": -382,
+      "overflowRight": -992,
+      "candidateCount": 27,
+      "structBad": [],
+      "liveCount": 3,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1280,
+        "vh": 720,
+        "overlay": "panorama-flyout",
+        "box": [
+          48,
+          196,
+          232,
+          134
+        ],
+        "ownZ": "160",
+        "pointerEvents": "auto",
+        "liveCount": 3,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "aspect-flyout@1280x720": {
+      "box": [
+        48,
+        236,
+        232,
+        350
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "topmostContentTop": 261,
+      "kind": "menu",
+      "heightRatio": 0.486,
+      "overflowBottom": -126,
+      "overflowRight": -992,
+      "candidateCount": 35,
+      "structBad": [],
+      "liveCount": 7,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1280,
+        "vh": 720,
+        "overlay": "aspect-flyout",
+        "box": [
+          48,
+          236,
+          232,
+          350
+        ],
+        "ownZ": "160",
+        "pointerEvents": "auto",
+        "liveCount": 7,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "add-character-flyout@1280x720": {
+      "box": [
+        48,
+        116,
+        232,
+        390
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "topmostContentTop": 147,
+      "kind": "menu",
+      "heightRatio": 0.542,
+      "overflowBottom": -206,
+      "overflowRight": -992,
+      "candidateCount": 30,
+      "structBad": [],
+      "liveCount": 11,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1280,
+        "vh": 720,
+        "overlay": "add-character-flyout",
+        "box": [
+          48,
+          116,
+          232,
+          390
+        ],
+        "ownZ": "160",
+        "pointerEvents": "auto",
+        "liveCount": 11,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "ai-import-modal@1280x720": {
+      "box": [
+        360,
+        91,
+        560,
+        539
+      ],
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "topmostContentTop": 106,
+      "kind": "menu",
+      "heightRatio": 0.749,
+      "overflowBottom": -82,
+      "overflowRight": -352,
+      "candidateCount": 101,
+      "structBad": [],
+      "liveCount": 6,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1280,
+        "vh": 720,
+        "overlay": "ai-import-modal",
+        "box": [
+          360,
+          91,
+          560,
+          539
+        ],
+        "ownZ": "auto",
+        "pointerEvents": "auto",
+        "liveCount": 6,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "geometry-submenu@1280x720": {
+      "box": [
+        52,
+        442,
+        204,
+        270
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 449,
+      "kind": "menu",
+      "heightRatio": 0.375,
+      "overflowBottom": 0,
+      "overflowRight": -1016,
+      "candidateCount": 50,
+      "structBad": [],
+      "liveCount": 8,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1280,
+        "vh": 720,
+        "overlay": "geometry-submenu",
+        "box": [
+          52,
+          442,
+          204,
+          270
+        ],
+        "ownZ": "50",
+        "pointerEvents": "auto",
+        "liveCount": 8,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "crowd-dialog@1280x720": {
+      "box": [
+        294,
+        52,
+        220,
+        208
+      ],
+      "ownZ": "160",
+      "pointerEvents": "auto",
+      "topmostContentTop": 114,
+      "kind": "menu",
+      "heightRatio": 0.288,
+      "overflowBottom": -452,
+      "overflowRight": -758,
+      "candidateCount": 20,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1280,
+        "vh": 720,
+        "overlay": "crowd-dialog",
+        "box": [
+          294,
+          52,
+          220,
+          208
+        ],
+        "ownZ": "160",
+        "pointerEvents": "auto",
+        "liveCount": 5,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "camera-fov-help-tooltip@1280x720": {
+      "box": [
+        1016,
+        263,
+        208,
+        68
+      ],
+      "ownZ": "1700",
+      "pointerEvents": "none",
+      "topmostContentTop": null,
+      "kind": "menu",
+      "heightRatio": 0.094,
+      "overflowBottom": -381,
+      "overflowRight": -48,
+      "candidateCount": 17,
+      "structBad": [
+        {
+          "who": "section.sticky.top-0",
+          "z": 20,
+          "pos": "sticky",
+          "opacity": "1",
+          "bg": "rgba(33, 33, 33, 0.98)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            1120,
+            294
+          ],
+          "overlapBox": [
+            1016,
+            263,
+            208,
+            62
+          ],
+          "overlapDepthY": 62,
+          "overlapDepthX": 208,
+          "opaque": true,
+          "stackTop": "canvas.absolute.left-0",
+          "stackIndex": 2
+        },
+        {
+          "who": "div.relative.h-[135px]",
+          "z": 0,
+          "pos": "relative",
+          "opacity": "1",
+          "bg": "rgba(8, 8, 16, 0.95)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            1120,
+            286
+          ],
+          "overlapBox": [
+            1016,
+            263,
+            208,
+            45
+          ],
+          "overlapDepthY": 45,
+          "overlapDepthX": 208,
+          "opaque": true,
+          "stackTop": "canvas.absolute.left-0",
+          "stackIndex": 1
+        },
+        {
+          "who": "canvas.absolute.left-0",
+          "z": 0,
+          "pos": "absolute",
+          "opacity": "1",
+          "bg": "rgba(0, 0, 0, 0)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            1120,
+            286
+          ],
+          "overlapBox": [
+            1017,
+            263,
+            207,
+            46
+          ],
+          "overlapDepthY": 46,
+          "overlapDepthX": 207,
+          "opaque": false,
+          "stackTop": "canvas.absolute.left-0",
+          "stackIndex": 0
+        },
+        {
+          "who": "button.absolute.bottom-3",
+          "z": 0,
+          "pos": "absolute",
+          "opacity": "1",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            1221,
+            283
+          ],
+          "overlapBox": [
+            1219,
+            271,
+            5,
+            24
+          ],
+          "overlapDepthY": 24,
+          "overlapDepthX": 5,
+          "opaque": true,
+          "stackTop": "button.absolute.bottom-3",
+          "stackIndex": 0
+        }
+      ],
+      "liveCount": 0,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1280,
+        "vh": 720,
+        "overlay": "camera-fov-help-tooltip",
+        "box": [
+          1016,
+          263,
+          208,
+          68
+        ],
+        "ownZ": "1700",
+        "pointerEvents": "none",
+        "liveCount": 0,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "camera-preset-panel@1280x720": {
+      "box": [
+        312,
+        247,
+        304,
+        292
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 254,
+      "kind": "menu",
+      "heightRatio": 0.406,
+      "overflowBottom": -173,
+      "overflowRight": -656,
+      "candidateCount": 32,
+      "structBad": [],
+      "liveCount": 10,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1280,
+        "vh": 720,
+        "overlay": "camera-preset-panel",
+        "box": [
+          312,
+          247,
+          304,
+          292
+        ],
+        "ownZ": "50",
+        "pointerEvents": "auto",
+        "liveCount": 10,
+        "structBad": [],
+        "blocked": []
+      }
+    },
+    "motion-path-menu@1280x720": {
+      "box": [
+        389,
+        508,
+        176,
+        204
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 538,
+      "kind": "menu",
+      "heightRatio": 0.283,
+      "overflowBottom": 0,
+      "overflowRight": -707,
+      "candidateCount": 40,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1280,
+        "vh": 720,
+        "overlay": "motion-path-menu",
+        "box": [
+          389,
+          508,
+          176,
+          204
+        ],
+        "ownZ": "50",
+        "pointerEvents": "auto",
+        "liveCount": 5,
+        "structBad": [],
+        "blocked": []
+      }
+    }
+  },
+  "heightSweep": {
+    "motion-path-menu@1920x900": {
+      "box": [
+        389,
+        688,
+        176,
+        204
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 718,
+      "kind": "menu",
+      "heightRatio": 0.227,
+      "overflowBottom": 0,
+      "overflowRight": -1347,
+      "candidateCount": 36,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1920,
+        "vh": 900,
+        "overlay": "motion-path-menu",
+        "box": [
+          389,
+          688,
+          176,
+          204
+        ],
+        "overflowBottom": 0,
+        "overflowRight": -1347,
+        "liveCount": 5,
+        "blocked": []
+      }
+    },
+    "motion-path-menu@1920x540": {
+      "box": [
+        389,
+        328,
+        176,
+        204
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 358,
+      "kind": "menu",
+      "heightRatio": 0.378,
+      "overflowBottom": 0,
+      "overflowRight": -1347,
+      "candidateCount": 33,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1920,
+        "vh": 540,
+        "overlay": "motion-path-menu",
+        "box": [
+          389,
+          328,
+          176,
+          204
+        ],
+        "overflowBottom": 0,
+        "overflowRight": -1347,
+        "liveCount": 5,
+        "blocked": []
+      }
+    },
+    "motion-path-menu@1280x640": {
+      "box": [
+        389,
+        428,
+        176,
+        204
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 458,
+      "kind": "menu",
+      "heightRatio": 0.319,
+      "overflowBottom": 0,
+      "overflowRight": -707,
+      "candidateCount": 40,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1280,
+        "vh": 640,
+        "overlay": "motion-path-menu",
+        "box": [
+          389,
+          428,
+          176,
+          204
+        ],
+        "overflowBottom": 0,
+        "overflowRight": -707,
+        "liveCount": 5,
+        "blocked": []
+      }
+    },
+    "geometry-submenu@1440x800": {
+      "box": [
+        52,
+        508,
+        204,
+        270
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 515,
+      "kind": "menu",
+      "heightRatio": 0.338,
+      "overflowBottom": -14,
+      "overflowRight": -1176,
+      "candidateCount": 44,
+      "structBad": [],
+      "liveCount": 8,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1440,
+        "vh": 800,
+        "overlay": "geometry-submenu",
+        "box": [
+          52,
+          508,
+          204,
+          270
+        ],
+        "overflowBottom": -14,
+        "overflowRight": -1176,
+        "liveCount": 8,
+        "blocked": []
+      }
+    },
+    "geometry-submenu@1440x640": {
+      "box": [
+        52,
+        362,
+        204,
+        270
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 369,
+      "kind": "menu",
+      "heightRatio": 0.422,
+      "overflowBottom": 0,
+      "overflowRight": -1176,
+      "candidateCount": 50,
+      "structBad": [],
+      "liveCount": 8,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1440,
+        "vh": 640,
+        "overlay": "geometry-submenu",
+        "box": [
+          52,
+          362,
+          204,
+          270
+        ],
+        "overflowBottom": 0,
+        "overflowRight": -1176,
+        "liveCount": 8,
+        "blocked": []
+      }
+    },
+    "geometry-submenu@1280x540": {
+      "box": [
+        52,
+        262,
+        204,
+        270
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 269,
+      "kind": "menu",
+      "heightRatio": 0.5,
+      "overflowBottom": 0,
+      "overflowRight": -1016,
+      "candidateCount": 56,
+      "structBad": [],
+      "liveCount": 8,
+      "blocked": [],
+      "present": true,
+      "old": {
+        "vw": 1280,
+        "vh": 540,
+        "overlay": "geometry-submenu",
+        "box": [
+          52,
+          262,
+          204,
+          270
+        ],
+        "overflowBottom": 0,
+        "overflowRight": -1016,
+        "liveCount": 8,
+        "blocked": []
+      }
+    }
+  },
+  "checks": {
+    "all-33-cells-ran-and-every-overlay-actually-opened": {
+      "ok": true,
+      "detail": {
+        "cells": 33,
+        "overlays": [
+          "export-panel",
+          "tree-context-menu",
+          "panorama-flyout",
+          "aspect-flyout",
+          "add-character-flyout",
+          "ai-import-modal",
+          "geometry-submenu",
+          "crowd-dialog",
+          "camera-fov-help-tooltip",
+          "camera-preset-panel",
+          "motion-path-menu"
+        ],
+        "absent": {},
+        "noPrior": {},
+        "note": "`overlay-present` non-empty is 626's own anti-vacuity guard; an overlay that failed to open would make both of its checks pass for free"
+      },
+      "note": null
+    },
+    "all-eleven-of-626s-overlays-are-covered-by-a-derived-ruler-for-the-first-time": {
+      "ok": true,
+      "detail": {
+        "theEleven": [
+          "add-character-flyout",
+          "ai-import-modal",
+          "aspect-flyout",
+          "camera-fov-help-tooltip",
+          "camera-preset-panel",
+          "crowd-dialog",
+          "export-panel",
+          "geometry-submenu",
+          "motion-path-menu",
+          "panorama-flyout",
+          "tree-context-menu"
+        ],
+        "calibratedBy649": [
+          "crowd-panel",
+          "phone-vcam-panel",
+          "model-library-panel"
+        ],
+        "noneOf649sThreeAreAmong626sEleven": true,
+        "reading": "649's calibration sample came from 648's desk overlays, not from 626's matrix. So this batch is not a top-up — every one of 626's eleven is being measured by a derived competitor set for the FIRST time, and 626's own hand-written list has no say in any of them."
+      },
+      "note": null
+    },
+    "the-only-overlay-the-derived-ruler-flags-is-the-one-626-declared-out-of-scope": {
+      "ok": true,
+      "detail": {
+        "cellsTheDerivedRulerFlagsAnd626DidNot": {
+          "camera-fov-help-tooltip@1280x720": [
+            {
+              "who": "section.sticky.top-0",
+              "z": 20,
+              "pos": "sticky",
+              "opacity": "1",
+              "bg": "rgba(33, 33, 33, 0.98)",
+              "pointerEvents": "auto",
+              "sampleAt": [
+                1120,
+                294
+              ],
+              "overlapBox": [
+                1016,
+                263,
+                208,
+                62
+              ],
+              "overlapDepthY": 62,
+              "overlapDepthX": 208,
+              "opaque": true,
+              "stackTop": "canvas.absolute.left-0",
+              "stackIndex": 2
+            },
+            {
+              "who": "div.relative.h-[135px]",
+              "z": 0,
+              "pos": "relative",
+              "opacity": "1",
+              "bg": "rgba(8, 8, 16, 0.95)",
+              "pointerEvents": "auto",
+              "sampleAt": [
+                1120,
+                286
+              ],
+              "overlapBox": [
+                1016,
+                263,
+                208,
+                45
+              ],
+              "overlapDepthY": 45,
+              "overlapDepthX": 208,
+              "opaque": true,
+              "stackTop": "canvas.absolute.left-0",
+              "stackIndex": 1
+            },
+            {
+              "who": "canvas.absolute.left-0",
+              "z": 0,
+              "pos": "absolute",
+              "opacity": "1",
+              "bg": "rgba(0, 0, 0, 0)",
+              "pointerEvents": "auto",
+              "sampleAt": [
+                1120,
+                286
+              ],
+              "overlapBox": [
+                1017,
+                263,
+                207,
+                46
+              ],
+              "overlapDepthY": 46,
+              "overlapDepthX": 207,
+              "opaque": false,
+              "stackTop": "canvas.absolute.left-0",
+              "stackIndex": 0
+            },
+            {
+              "who": "button.absolute.bottom-3",
+              "z": 0,
+              "pos": "absolute",
+              "opacity": "1",
+              "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+              "pointerEvents": "auto",
+              "sampleAt": [
+                1221,
+                283
+              ],
+              "overlapBox": [
+                1219,
+                271,
+                5,
+                24
+              ],
+              "overlapDepthY": 24,
+              "overlapDepthX": 5,
+              "opaque": true,
+              "stackTop": "button.absolute.bottom-3",
+              "stackIndex": 0
+            }
+          ]
+        },
+        "cells626FlaggedAndTheDerivedRulerDoesNot": {},
+        "theFinding": "`camera-fov-help-tooltip` is painted over by `section.sticky.top-0` (z 20, sticky, opaque background). 626's own README says of it: '`camera-fov-help-tooltip` 的可点击性：它是 `pointer-events:none` 的 hover 提示… 这不代表它的可读性或定位被验证过' — it explicitly declined to claim the tooltip's readability or placement. That is exactly the gap the derived set walks into, and 626's hand-written six never saw it because the coverer is not one of its six.",
+        "whatItIsNot": "NOT a clickability defect. The tooltip is pointer-events:none with zero live controls, so the casualty half is 0 and always will be. The claim is strictly about PAINTING: a sticky section covers part of it.",
+        "derivedIsStrictlyNarrower": true,
+        "theCoverer": {
+          "camera-fov-help-tooltip@1280x720": [
+            {
+              "who": "section.sticky.top-0",
+              "z": 20,
+              "pos": "sticky",
+              "opacity": "1",
+              "bg": "rgba(33, 33, 33, 0.98)",
+              "pointerEvents": "auto",
+              "sampleAt": [
+                1120,
+                294
+              ],
+              "overlapBox": [
+                1016,
+                263,
+                208,
+                62
+              ],
+              "overlapDepthY": 62,
+              "overlapDepthX": 208,
+              "opaque": true,
+              "stackTop": "canvas.absolute.left-0",
+              "stackIndex": 2
+            },
+            {
+              "who": "div.relative.h-[135px]",
+              "z": 0,
+              "pos": "relative",
+              "opacity": "1",
+              "bg": "rgba(8, 8, 16, 0.95)",
+              "pointerEvents": "auto",
+              "sampleAt": [
+                1120,
+                286
+              ],
+              "overlapBox": [
+                1016,
+                263,
+                208,
+                45
+              ],
+              "overlapDepthY": 45,
+              "overlapDepthX": 208,
+              "opaque": true,
+              "stackTop": "canvas.absolute.left-0",
+              "stackIndex": 1
+            },
+            {
+              "who": "canvas.absolute.left-0",
+              "z": 0,
+              "pos": "absolute",
+              "opacity": "1",
+              "bg": "rgba(0, 0, 0, 0)",
+              "pointerEvents": "auto",
+              "sampleAt": [
+                1120,
+                286
+              ],
+              "overlapBox": [
+                1017,
+                263,
+                207,
+                46
+              ],
+              "overlapDepthY": 46,
+              "overlapDepthX": 207,
+              "opaque": false,
+              "stackTop": "canvas.absolute.left-0",
+              "stackIndex": 0
+            },
+            {
+              "who": "button.absolute.bottom-3",
+              "z": 0,
+              "pos": "absolute",
+              "opacity": "1",
+              "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+              "pointerEvents": "auto",
+              "sampleAt": [
+                1221,
+                283
+              ],
+              "overlapBox": [
+                1219,
+                271,
+                5,
+                24
+              ],
+              "overlapDepthY": 24,
+              "overlapDepthX": 5,
+              "opaque": true,
+              "stackTop": "button.absolute.bottom-3",
+              "stackIndex": 0
+            }
+          ]
+        }
+      },
+      "note": null
+    },
+    "every-one-of-the-eleven-carries-its-own-626-answer-for-comparison": {
+      "ok": true,
+      "detail": {
+        "cells": 33,
+        "distinctPriorCells": 33,
+        "priorSource": "docs/research/liblib-canvas-batch626-2026-10-01/runtime-audit.json .measurements",
+        "why": "a comparison is only worth anything if both sides pointed at the same cell; distinct keys prove the join was 1:1 and not accidentally many-to-one"
+      },
+      "note": null
+    },
+    "the-derivation-never-invents-a-control-or-a-casualty": {
+      "ok": true,
+      "detail": {
+        "cellsWhereLiveCountGrew": {},
+        "cellsWhereCasualtiesGrew": {},
+        "theTwoGuards": {
+          "649structural": "cross-check the z claim against elementsFromPoint at the overlap",
+          "649casualty": "626's `w<=0||h<=0`, PLUS `<=1px`, PLUS clip / clip-path"
+        },
+        "reading": "both guards only ever REMOVE. A cell where the derived ruler counts MORE is a bug in the derived ruler, not a new finding."
+      },
+      "note": null
+    },
+    "every-casualty-difference-is-648s-sr-only-finding-and-nothing-else": {
+      "ok": true,
+      "detail": {
+        "cellsThatDiffer": {},
+        "theRule": "the derived set must be a SUBSET of 626's, and the live count must not grow",
+        "why": "648 measured exactly one such control (the sr-only 1x1 file input) across the whole model library panel. Any other casualty appearing or disappearing here would be an unexplained move."
+      },
+      "note": null
+    },
+    "every-overlay-measures-the-same-box-as-626": {
+      "ok": true,
+      "detail": {
+        "cells": {},
+        "why": "box identity is the strongest available proof that the two rulers were pointed at the same thing. A box mismatch would mean an overlay opened differently, not that the criterion disagrees."
+      },
+      "note": null
+    },
+    "626s-no-op-geometry-contract-still-holds-under-the-derived-ruler": {
+      "ok": true,
+      "detail": {
+        "rows": [
+          {
+            "cell": "geometry-submenu@1440x800",
+            "expected": [
+              52,
+              508,
+              204,
+              270
+            ],
+            "measured": [
+              52,
+              508,
+              204,
+              270
+            ]
+          },
+          {
+            "cell": "geometry-submenu@1440x900",
+            "expected": [
+              52,
+              508,
+              204,
+              270
+            ],
+            "measured": [
+              52,
+              508,
+              204,
+              270
+            ]
+          }
+        ],
+        "theContract": "the geometry submenu's clamp must be a no-op where nothing overflows — @52,508 204x270 at both viewports",
+        "why": "a clamp that touched geometry it has no business touching would be a silent regression, and 626 pinned the box to make that enforceable"
+      },
+      "note": null
+    },
+    "the-8px-margin-contract-holds-in-every-cell-and-matches-626s-post-fix-numbers": {
+      "ok": true,
+      "detail": {
+        "cellsChecked": 39,
+        "cellsWithAComparableNumberFrom626": 6,
+        "whyOnlySix": "626's `measurements` rows carry no `overflowBottom` field at all — the matrix was about stacking, the height sweep was the height contract. So the numeric cross-check exists for the 6 sweep cells; the other 33 are covered by the no-break half of the assertion.",
+        "menusCurrentlyBreakingTheMargin": {},
+        "cellsWhereTheOverflowNumberDiffersFrom626": {},
+        "theTwoGuardsAgainstThisCheckGoingGreenForFree": [
+          "it requires all 39 cells to have run",
+          "it requires the derived overflow number to equal 626's post-fix number in all 6 cells where 626 recorded one, so a silent drift in either ruler turns it red",
+          "it requires exactly 6 comparable cells, so a future run that silently loses the field goes red too"
+        ],
+        "theHistoricalPair": "626's `baseline` (the PRE-fix run) recorded `fit-in-viewport/1920x900/motion-path-menu`, `.../1920x540/motion-path-menu`, `.../1280x640/motion-path-menu` and three geometry-submenu cells failing. 111 checks, 15 failures. Those menus were fixed by 626; this batch confirms the fix under a ruler that never saw them.",
+        "menuPanelSplit": "649 showed the 8px margin is a MENU invariant; full-bleed panels are measured separately and not held to it"
+      },
+      "note": "the empty set is asserted as a CONTRACT, cross-checked against 626 cell by cell — not waved through"
+    }
+  },
+  "ok": true,
+  "checkCount": 9,
+  "failures": [],
+  "totals": {
+    "cells": 33,
+    "heightSweepCells": 6,
+    "overlays": 11,
+    "neverCalibratedBefore": 11,
+    "structBadTotalDerived": 4,
+    "structBadTotal626": 0,
+    "blockedTotalDerived": 0,
+    "blockedTotal626": 0,
+    "liveTotalDerived": 195,
+    "liveTotal626": 195
+  }
+}
