@@ -13,6 +13,17 @@
     不误伤 1 条：
     4) 只改 excluded 任务的其他字段（不动 id、不动 status）→ 必须照旧通过
 
+Batch 224 再加 3 例（11→14），钉的是**判据分不分得清两种相反的意思**：
+  能抓 2 条：
+    12) 注入「页面基于源码静态证据」（某一部分只有源码）→ 必须报
+    14) 把一个**靠这一族词才入面**的 excluded 页面告知抹掉 → 必须报
+  不误伤 1 条：
+    13) **同一个任务、同一个位置**，只把主语换成「所有断言均有运行时**或**源码证据」
+        → 必须放行
+  **12/13 是全份反验里最要紧的一对**：只因主语从「本页的一部分」变成
+  「本页所有断言」，结论就该相反。**少 13 的话，12 可能只是「逢源码必报」**——
+  那种判据把「全覆盖声明」也当降级后，就会开始要求页面写没必要的免责话术。
+
 Batch 223 再加 2 例（9→11），钉的是**读取范围**：
   能抓 1 条：
     10) 降级自述**只**写在 `finding` 字段 → 必须报
@@ -332,6 +343,68 @@ def t_finding_downgrade_already_told(inv, _gate):
             _gate)
 
 
+def _nav_block(inv):
+    m = re.search(r"  - id: navigate-canvas\n(.*?)(?=\n  - id: )", inv, re.S)
+    assert m, "锚点未命中：找不到 navigate-canvas 任务块"
+    block = m.group(0)
+    assert "review_note:" not in block, \
+        "前提失配：navigate-canvas 已有 review_note，注入的不是同一个位置"
+    return block
+
+
+def t_statement_source_must_report(inv, _gate):
+    """注入「**页面基于源码静态证据**」→ 必须报。
+
+    **这一例钉的是 Batch 224 补的那一族词**：全库 5 处真降级长这样
+    （`media-versions` / `cloud-agent` / `agent-memory-skills` / `local-runtime`），
+    **而否定式词表一条都认不出**——它们说的是「这一部分基于源码」，
+    不是「某一部分没有运行时证据」。不钉住这一族，
+    下一个人精简词表时会以为它没有用。
+    """
+    block = _nav_block(inv)
+    return (inv.replace(block, block + "\n    review_note: 反验注入：本页**页面基于源码静态证据**。\n", 1),
+            _gate)
+
+
+def t_all_claims_must_not_report(inv, _gate):
+    """**同一个任务、同一个位置**，只把主语从「页面的一部分」换成
+    「页面**所有断言**」并接一个「或」→ **必须放行**。
+
+    这是全份反验里最要紧的一条。它证明的不只是「排除式规则没坏」，
+    而是**判据分得清两种相反的意思**：
+
+      · 「本页**基于源码静态证据**」= 有一部分只有源码 → 降级，要盯
+      · 「本页**所有断言均有**运行时**或**源码证据」= 每一部分都有证据 → 不是降级
+
+    **少这一对，用例 12 就可能只是「逢『源码』必报」**——
+    那样的判据一样绿，但把「全覆盖声明」也当降级后，
+    它就会开始要求页面写没必要的免责话术。
+    """
+    block = _nav_block(inv)
+    return (inv.replace(block, block + "\n    review_note: 反验注入：本页所有断言均有运行时或源码证据。\n", 1),
+            _gate)
+
+
+def t_excluded_page_silent_must_report(inv, gate):
+    """把一个 **excluded 页面**上的告知逐词抹掉 → 必须报。
+
+    **这一例钉的是覆盖面本身**：Batch 224 之后判据认领 **14 个任务**，
+    其中 8 个是本批新入面的 excluded 页面（它们的账本写「页面基于源码静态证据」）。
+    **这 8 个在 Batch 223 结束时判据是看不见的**——
+    「4 个 excluded 页面都有告知」那句结论当时是**人工核对**出来的，
+    本批把它变成了会自己喊的东西。**钉住它，才不会有人日后把词表收窄回去。**
+    """
+    terms = _tell_terms(gate)
+
+    def edit(body):
+        out = body
+        for w in terms:
+            out = out.replace(w, "")
+        return out
+
+    return inv, gate, {"10-tasks/cloud-agent.md": edit}
+
+
 def main():
     r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
     if r.returncode == 0:
@@ -359,6 +432,12 @@ def main():
         transform=t_finding_only_downgrade)
     run("11) 不误伤：finding 里的降级自述 + 页面已告知（必须放行）", "证据降级告知",
         expect_fail=False, transform=t_finding_downgrade_already_told)
+    run("12) 「页面基于源码静态证据」类降级（必须报）", "找不到任何已登记的告知措辞",
+        transform=t_statement_source_must_report)
+    run("13) 不误伤：「所有断言均有运行时或源码证据」是全覆盖声明（必须放行）", "证据降级告知",
+        expect_fail=False, transform=t_all_claims_must_not_report)
+    run("14) excluded 页面（靠本族词入面）上的告知被抹掉（必须报）", "找不到任何已登记的告知措辞",
+        transform=t_excluded_page_silent_must_report)
 
     print("=== 结果：通过 %d / 失败 %d / 作废 %d ===" % (PASS, FAIL, VOID))
     return 1 if (FAIL or VOID) else 0

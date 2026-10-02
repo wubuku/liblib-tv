@@ -35,6 +35,12 @@ Batch 222 再加第 6 条方向：**账本自述的证据降级，读者必须�
 它与本闸已有的「理由完整性」同族而不同层——后者核「理由**写没写**」，
 本条核「理由**有没有到达读者眼前**」。理由写在账本里、而页面通篇是确定结论，
 **读者会把证据最弱的部分和已截图的部分当成同一种可信度**（纪律 229）。
+**Batch 223/224 两度扩面**：Batch 223 补上第五个自述字段 `finding`
+（两处「付费红线」只写在它里）与「动作没发生」这一类降级词；
+Batch 224 补上「基于 / 为 / 维持 源码证据」这一族，并用**排除式规则**
+把「所有断言均有…或…」这种**全覆盖声明**挡在门外——
+**因为那两句话意思相反，而它们在账本里只差主语一个词**。
+**判据认领的任务因此从 4 条增到 14 条。**
 
 退出码：0 条件全部仍成立；1 有条件已失效。
 
@@ -290,7 +296,21 @@ DOWNGRADE_TERMS = (
     # 逐个量过：全库「未触发」「未发起」「未执行」「未配置」**各只出现 1 处**，
     # 且全部是「本手册的取证边界」用法，**没有一处是「用户还没配模型」那种歧义义**。
     "未触发", "未发起", "未执行", "未配置",
+    # Batch 224 补的这一族是**「陈述某一部分的证据来源」**：主语是
+    # 「页面 / 某小节 / 某清单 / 某组参数」，谓语是「基于 / 为 / 维持 源码证据」。
+    # **它们是货真价实的降级声明，而否定式词表一条都认不出**
+    # ——全库 5 处真降级长这样，一处都没进过判据的视野。
+    "页面基于源码", "为源码静态证据", "为源码证据", "维持源码证据",
 )
+
+# **排除式规则**：与上面那族配套，缺了它这族就会带进 2 个假阳性。
+# 实测（Batch 224）全库 16 处「源码证据」类表述里，**8 处是真降级**
+# （主语是某一部分），**2 处是假阳性**：
+#   · `readonly-canvas`：「页面**所有断言均有**运行时**或**源码证据」——全覆盖声明
+#   · `concepts-architecture`：「回走等价于内容**与**源码证据**一致性审查**」——审查方式
+# **区别是可机械的**：假阳性那两句都带「全部/所有/均」并接「或」或「一致性审查」。
+# 所以本正则**只放过真正的「有一部分只有源码」**，不放过「所有部分都有证据」。
+DOWNGRADE_ABSOLUTE_RE = re.compile(r"(?:全部|所有|均)[^。；\n]{0,40}?或|一致性审查|一致性对账")
 
 # 页面侧词表取**宽**——宁可漏检不可误报。
 # **而「宽」在这一侧有实测代价，必须记下来**：第一版把「受限」「空」这类泛词
@@ -376,6 +396,29 @@ def _task_selftext(item):
     return "\n".join(parts)
 
 
+def _task_sentences(item):
+    """作者自述**按句拆开**——Batch 224 起降级判定是句级的，不是整段级的。
+
+    **为什么必须是句级**：排除式规则要挡的是「**这一句**是全覆盖声明」，
+    而同一个字段里完全可能上一句在声明降级、下一句在写「均已覆盖」。
+    整段判定会让排除规则误伤同段里真正的降级声明。
+    """
+    text = _task_selftext(item)
+    return [t.strip() for t in re.split(r"[。；\n]", text) if t.strip()]
+
+
+def _downgrade_hits(item):
+    """这个任务的账本里，作者**声明了哪些部分的证据降级**。返回命中词列表。"""
+    hits = set()
+    for sent in _task_sentences(item):
+        if DOWNGRADE_ABSOLUTE_RE.search(sent):
+            continue
+        for t in DOWNGRADE_TERMS:
+            if t in sent:
+                hits.add(t)
+    return sorted(hits)
+
+
 def check_downgrade_reaches_page(root):
     """账本自述的证据降级，读者必须能在那一页上看到它。返回 (problems, notes, unverifiable)。
 
@@ -396,7 +439,7 @@ def check_downgrade_reaches_page(root):
     downgraded = told = 0
     for item in items:
         tid = item.get("id") or "?"
-        hits = sorted({t for t in DOWNGRADE_TERMS if t in _task_selftext(item)})
+        hits = _downgrade_hits(item)
         if not hits:
             continue
         downgraded += 1
