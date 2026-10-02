@@ -1,18 +1,35 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTakeFocusAtOpen } from "@/components/jimeng/jimengMenuChrome";
 
 /**
  * 顶栏 ⌕ 按钮 → 「生成历史」下拉 (Batch 13)。
  *
  * 证据 (SOURCE_FACT): 点击后搜索图标下方弹出 ≈380px 面板 rgb(38,38,38):
  * 标题「生成历史」+ tabs 全部(选中下划线)/图片/视频/音频 + 空态「暂无生成历史」。
+ *
+ * 批 855 SOURCE_FACT（探针 855a/855b 实测，登录态视口 1512×1200）：
+ * 源站这一层是 **320×211 `role=dialog` `canvas-feature-panel`**，四项行为 ——
+ *   · **开层即接管焦点**（焦点落在顶部 tab 按钮上）
+ *   · **不困 Tab**（第 2 次逃出，层还在）
+ *   · 方向键 **不动**（4 次 ArrowDown 全停在同一个 tab 按钮上 ——
+ *     源站**没接**方向键漫游，不是「内容只有 1 项」）
+ *   · **Esc 归位**（焦点回 `生成历史` 触发器）
+ * ⚠️ 源站层内还有第二个 tab「积分明细」+ 筛选行
+ *   `全部 图片 视频 音频 文本`。**847c/847d 当年点「第 2 个 launcher」
+ *   开出来的就是它，于是认不出层 ⇒ 记成「前置态没成立」。**
  */
 const TABS = ["全部", "图片", "视频", "音频"] as const;
 
 export function JimengHistoryMenu({ onClose }: { onClose: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const [tab, setTab] = useState<(typeof TABS)[number]>("全部");
+  /* 批 855：源站开层即接管焦点（实测焦点落在顶部 tab 按钮上）⇒ 接上。
+     ⚠️ **刻意不接 `useArrowKeys`**：源站这一层方向键**不动**
+     （4 次 ArrowDown 轨迹全是同一个 tab 按钮）—— 源站没接方向键漫游，
+     接了就是照抄一个源站没有的行为。 */
+  useTakeFocusAtOpen(ref, true);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

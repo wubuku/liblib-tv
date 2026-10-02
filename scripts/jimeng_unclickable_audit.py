@@ -1451,6 +1451,30 @@ def main() -> int:
                 "是测到了「源站这一层开层不接管焦点」这个事实本身。"),
             "esc_returns_to_trigger": True,
             "src": "jimeng_probe853b_audiostruct_kb.py（登录态，视口 1512×1200）"},
+        # ══ 批 855：生成历史层（**按名字**找，不是按位置）════════════════
+        # 这条 why 原来写「前置态没成立：点**第 2 个** `canvas-panel-launcher`
+        # 开出的是『积分明细』」—— 那是**按位置猜名字**。855a 把顶栏 9 个按钮
+        # 逐个点了一遍，证明**位置和功能没有对应关系**：
+        #   [3] 搜索 28×28 → 320×1084 dialog canvas-feature-panel
+        #   [4] **生成历史** 28×28 → 320×211 dialog canvas-feature-panel ← 就是它
+        #   [5] 分享 → 400×251 canvas-share-panel-surface
+        #   [6] 更多 → 200×84
+        #   [7] Credits → 1512×2801
+        # ⚠️ 「积分明细」其实是**生成历史层里的一个 tab**
+        #   （层内文本实测 `生成历史\n积分明细` / `全部 图片 视频 音频 文本`），
+        #   847 点「第 2 个」点进了同一层的另一个 tab，于是认不出层 ⇒ 记成
+        #   「前置态没成立」。**不是夹具不具备，也不是源站没这个入口。**
+        "topbar-history-menu": {
+            "src_tid": "canvas-feature-panel", "src_kind": "dialog",
+            "src_identified_by": (
+                "testid + **按 aria-label=\\\"生成历史\\\" 找**（不是按位置）"
+                " + 矩形 320×211 @[1029,56]（探针 855a/855b）"),
+            "takes_focus_at_open": True, "traps_tab": False,
+            # False 的原因：开层焦点落在**顶部 tab 按钮**（生成历史/积分明细/
+            # 全部/图片/视频/音频/文本）上，实测 4 次 ArrowDown 轨迹**全是同一个
+            # 按钮** ⇒ 这一层**没接方向键漫游**，不是「内容只有 1 项」。
+            "arrows_move": False, "esc_returns_to_trigger": True,
+            "src": "jimeng_probe855b_history_kb.py（登录态，视口 1512×1200）"},
         "jimeng-search-overlay": {
             "src_tid": "canvas-feature-panel", "src_kind": "dialog",
             "src_identified_by": "testid",
@@ -1521,10 +1545,12 @@ def main() -> int:
             "**压根没有全屏入口**；全页唯一的 `全屏编辑` 属于**时间线**节点"
             "（探针 847 实测逐节点 dump）。所以复刻这一层的源站行为"
             "**未知** ⇒ 不下结论，也不拿时间线全屏的行为替它判。",
-        "topbar-history-menu":
-            "**前置态没成立**：点第 2 个 `canvas-panel-launcher` 开出来的是"
-            "「积分明细」（焦点落在 al='' 的 BUTTON 上），**0 个新的 fixed 层**"
-            "（探针 847c/847d）。源站的生成历史入口这一版画布上取不到样。",
+        # ⚠️⚠️ `topbar-history-menu` **不在** NOT_SAMPLED 里了 —— 855b 取到样了，
+        #    已进 SOURCE_BASELINE。**必须删掉这条**：循环是「先查
+        #    NOT_SAMPLED、再查 SOURCE_BASELINE」，只要它还留在这儿就会被
+        #    打回 `kb_not_sampled`，**永远进不了基线表**。
+        #    留着旧文案就是**假病历**：它说「前置态没成立 / 这一版画布取不到样」，
+        #    而事实是「**按位置猜名字猜错了**，按名字一找一个准」。
         "video-toolbar-capture-menu":
             "**BLOCKED_BY_FIXTURE**：源站这一版画布上的**视频节点是生成结果**，"
             "不是挂在时间线上的可编辑片段 —— 选中后浮出来的是**生成面板**"

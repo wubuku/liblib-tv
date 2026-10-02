@@ -855,6 +855,65 @@ def main() -> int:
           and "焦点" in awhy and "层内" in awhy,
           f"arrows_move={av2.get('arrows_move', 'MISSING')!r} why={awhy[:40]!r}")
 
+    # ── N. 批 855：**按名字**找，不按位置猜 ───────────────────────────────
+    #    847c/847d 记的「生成历史层前置态没成立」里，藏着一个从没验证过的前提：
+    #    *「生成历史」是顶栏**第 2 个** launcher*。855a 把顶栏 9 个按钮逐个点
+    #    了一遍 —— **位置和功能没有对应关系**，第 2 个其实是「Credits」。
+    print("\n— N. 855：按名字找，不按位置猜 —")
+    p855a = ROOT / "scripts/jimeng_probe855_topbar_recon.py"
+    q855a = p855a.read_text(encoding="utf-8") if p855a.exists() else ""
+    check("N.1 侦察探针**把顶栏每个按钮都点一遍**并逐个记下开出什么"
+          "（按位置猜名字是不可靠的指针：855a 实测第 2 个是「Credits」"
+          "而不是「生成历史」）",
+          p855a.exists() and "逐个点开" in q855a
+          and "for i, b in enumerate(bars)" in q855a)
+    check("N.2 探针点坐标**之前先 `elementFromPoint` 验落点**"
+          "（843 同病：点坐标前必须验落点，否则点到的不是你想点的那个）",
+          "elementFromPoint" in q855a and "hit" in q855a)
+    check("N.3 「里面写着」**限定在层内**读，不是从整页抓"
+          "（第一版的选择器从 `document` 开始，抓回来的是全页文本 —— "
+          "判据量错对象的老毛病，这次量错的是「读的文本」而不是「认的层」）",
+          "const root = best || document.body" in q855a
+          and "r.x < x - 4 || r.y < y - 4" in q855a)
+    hb = base.get("topbar-history-menu", {})
+    check("N.4 生成历史层**已进基线表**（855b 实测 320×211 dialog："
+          "接管焦点 / 不困 Tab@2 / 方向键不动 / Esc 归位）",
+          hb.get("takes_focus_at_open") is True
+          and hb.get("traps_tab") is False
+          and hb.get("esc_returns_to_trigger") is True
+          and hb.get("arrows_move") is False,
+          f"{ {k: hb.get(k, 'MISSING') for k in ('takes_focus_at_open', 'traps_tab', 'arrows_move', 'esc_returns_to_trigger')} }")
+    check("N.5 它**不在** `kb_not_sampled` 里了"
+          "（循环先查 NOT_SAMPLED 再查基线表 —— 留着就会被永远打回去，"
+          "而旧文案「前置态没成立」是**假病历**）",
+          "topbar-history-menu" not in {n.get("layer") for n in kb_ns},
+          f"仍在 not_sampled: "
+          f"{'topbar-history-menu' in {n.get('layer') for n in kb_ns}}")
+    check("N.6 基线表里写明层是**按 aria-label 找**的、不是按位置"
+          "（`按 aria-label=... 找`）",
+          "aria-label" in hb.get("src_identified_by", ""))
+    check("N.7 方向键 False 的理由写明是「**源站没接方向键漫游**」"
+          "（实测 4 次 ArrowDown 全停在同一个 tab 按钮），"
+          "**不是**「内容只有 1 项」—— 两者不能混",
+          "没接" in (ROOT / "scripts/jimeng_unclickable_audit.py").read_text(
+              encoding="utf-8"))
+    hm = ROOT / "src/components/jimeng/JimengHistoryMenu.tsx"
+    hsrc = hm.read_text(encoding="utf-8") if hm.exists() else ""
+    # ⚠️ 又一次「拿字符串在不在当判据」：源文件注释里就写着「刻意不接
+    #    `useArrowKeys`」，于是 `"useArrowKeys" not in hsrc` 永远为假。
+    #    判「**有没有真的调用**」要查调用形态 `useArrowKeys(`，
+    #    而且**必须排除注释行** —— 注释里提到它是**应该的**（写明取舍）。
+    hsrc_code = "\n".join(ln for ln in hsrc.splitlines()
+                           if not ln.strip().startswith(("*", "//", "/*")))
+    check("N.8 复刻接了 `useTakeFocusAtOpen`（源站开层即接管焦点）"
+          "**且代码里没有** `useArrowKeys(` 调用（源站方向键不动）"
+          "—— 注释里**可以**写明「刻意不接」，那是要记录的取舍",
+          "useTakeFocusAtOpen(" in hsrc_code
+          and "useArrowKeys(" not in hsrc_code,
+          f"接了 useTakeFocusAtOpen="
+          f"{'useTakeFocusAtOpen(' in hsrc_code} "
+          f"误接 useArrowKeys={'useArrowKeys(' in hsrc_code}")
+
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))
