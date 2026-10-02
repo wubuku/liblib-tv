@@ -2560,9 +2560,11 @@ def main() -> int:
           and "整个画布 Tab 顺序" in _ausrc
           # ⚠️ 反向：894 那句「策略未测」的**理由**已被 896 取代
           and "而源站那个动态策略的**确切规则未测**" not in _ausrc
-          # ⚠️ 但「先别改」不许被顺手删掉
-          and "**复刻侧类型覆盖仍不全**" in _ausrc
-          and "**这条还没销号**" in _ausrc)
+          # ⚠️ 897 补齐了类型覆盖 ⇒ 旧理由（覆盖不全）必须**不在**了
+          and "**复刻侧类型覆盖仍不全**" not in _ausrc
+          # ⚠️ 但「先别改」不许被顺手删掉：理由换成「行为改动、单独一批」
+          and "「**先别改**」这条**仍然成立**" in _ausrc
+          and "**必须单独一批、" in _ausrc)
     # ══════════ 批 895：复刻侧那张表（差异两侧都有据） ══════════
     p895 = ROOT / "scripts/jimeng_probe895_node_tabindex_matrix_ck.py"
     p894 = ROOT / "scripts/jimeng_probe894_node_tabindex_matrix_src.py"
@@ -2661,6 +2663,33 @@ def main() -> int:
           and "keydown 布 0/-1 且**不** preventDefault" in _ausrc
           # ⚠️ 反向：894 那条**不许**还留着「策略未测」的旧措辞
           and "而源站那个动态策略的**确切规则未测**" not in _ausrc)
+    check("KK.5 ✅ **897 把复刻侧的类型覆盖补齐了**（895 留下的最后一个缺口，"
+          "各 2/2）：左栏 `aria-label` 就是类型名，逐个插入 "
+          "`文本`/`图片`/`时间线`/`主体`/`导演台` ⇒ **7 种类型全测**，"
+          "每种**插入后**/**点空白后**都是 `'0'`，**整轮 16 步 Tab 走查全程** "
+          "`n_zero == n_nodes` ⇒ **复刻侧根本没有 roving**"
+          "（源站任一时刻**恰好 1 个** `0`）。⚠️ 但**不许**写成「8 种类型都"
+          "有直接读数」—— ⚠️⚠️ **4 种类型的「点本体」读数没取到**："
+          "左栏 `insertAtCenter` 把五个新节点**全叠在画布中心**，中心点"
+          "**落在最上层那个身上** ⇒ 探针按纪律**跳过**（落点对不上就**不点**），"
+          "**没把那 4 个读数猜出来**。⚠️ 另钉两条：① 两侧**类型集不对称**"
+          "（复刻有 `subject`、源站 894 矩阵里**没有**）；② 复刻 16 步走查里"
+          "**没有**一步落点是 wrapper 自身，但 `node_ti` **分不出**"
+          "「焦点在 wrapper」还是「在它内层」⇒ **不许**据此下「wrapper Tab 不到」"
+          "的结论",
+          '"replica_type_coverage_closed_897"' in _ausrc
+          and "7 种类型全部覆盖" in _ausrc
+          and "n_zero == n_nodes" in _ausrc
+          and "**复刻侧根本没有 roving**" in _ausrc
+          and "4 种类型的「点本体」读数没取到" in _ausrc
+          and "**没有**把那 4 个读数**猜**出来" in _ausrc
+          and "insertAtCenter" in _ausrc
+          and "**两侧类型集不对称**" in _ausrc
+          and "**分不出**焦点在 wrapper 自身还是在它内层" in _ausrc
+          and "**不许**据此下结论" in _ausrc
+          # ⚠️ 反向：895 那句「没测全」的**旧缺口**已被 897 销号
+          and "**不许**把复刻侧写成「所有类型节点都恒为 0」" in _ausrc
+          and "已被 897 补齐" in _ausrc)
     check("KK.4 896 必须把 894 判据里那个**洞**留痕：`summarize()` 用 "
           "`v[\"tabindex\"].add(...)` **只收集合、丢掉计数**，而「各有几个 `0`」"
           "恰好是区分 roving 的**唯一**判据 ⇒ 894 **读到了**却被**抹平**了。"
