@@ -48,6 +48,15 @@ PROBE_VARS = {
     "_p896": "scripts/jimeng_probe896_roving_tabindex_policy_src.py",
     "_p897": "scripts/jimeng_probe897_ck_type_coverage.py",
     "_p898": "scripts/jimeng_probe898_ck_focus_lands_on_wrapper.py",
+    # ⚠️ 900–905 这几条**曾经漏登记** ⇒ 它们的锚点自查**一直没收过**
+    #（是 905 的 SS.4 FAIL 顺带发现的：判据引的句子在探针里根本没有，
+    #  与 CC.8 同一个坑）。**探针一多就必须补登记**，否则自查是假绿。
+    "_p900": "scripts/jimeng_probe900_unarmed_nodes_src.py",
+    "_p901": "scripts/jimeng_probe901_roving_impl_ck.py",
+    "_p902": "scripts/jimeng_probe902_unmeasured_cells_src.py",
+    "_p903": "scripts/jimeng_probe903_carried_state_src.py",
+    "_p904": "scripts/jimeng_probe904_endpoint_condition_src.py",
+    "_p905": "scripts/jimeng_probe905_reentry_focus_src.py",
 }
 
 
