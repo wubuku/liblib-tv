@@ -157,6 +157,8 @@
 | 连线其他属性 | `data-testid="rf__edge-<id>"` · `role="group"` · `aria-roledescription="edge"` · `tabindex="0"` | class `react-flow__edge react-flow__edge-default nopan selectable` |
 | 连线的可点范围 | `stroke: rgba(0,0,0,0)`（**透明**）+ `stroke-width: 20px` | 线条本身看不见，是靠 **20 像素宽的透明描边**撑出可点区域 |
 | 拖动中的临时连线 | `data-id="__temp_connection_edge__"` | 松手成功变正式连线；**失败会自己消失，不落盘**（本轮 DOM 数到 2 条、刷新后仍是 1 条） |
+| 智能剪辑连上视频之后 | 面板**多出一枚 `1` 号小卡片**（`48×48`），**卡片上那句「空空如也，请连接视频节点后操作」一字不变** | ⭐ 连线本身**确实落盘**（刷新后 `Edge from v-v2hlWY4Br3 to v-oZNpH99MtM` 仍在）。⚠️ 那枚卡片与连线的关系**只观察到同时出现** —— 用 `⌘L` 断线的对照**失败了**（按完连线数不变），所以「由连线引起」是推断 📖 |
+| 智能剪辑参数面板 | `[660×248]`，逐字：`参考` · `1` · `描述想剪成什么效果` · `默认模式` · `16:9 · 720P · 30s` | ⭐ **不连线也能打开、也能编辑**。`16:9 · 720P · 30s` 那枚带 `data-practice-anchor="gen.params.count"`；生成按钮 **`aria-label="发送"`**（五类节点里唯一给生成按钮写了这个名的） |
 
 ### 组操作条（成组后浮出）
 
