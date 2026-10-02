@@ -1,0 +1,5261 @@
+{
+  "batch": 655,
+  "question": "derive the director desk's conditional marker surface from structure, and measure how much of it the 15 measured open paths actually account for",
+  "method": {
+    "instrument": "walk the DOM for data-director-* in the same cell, before and after the open path; the difference is what the path brought in",
+    "whyNotAList": "643's surfaceOf and 626's PANELS are the failure mode: a hand-written list of what to measure is the one thing guaranteed to expire",
+    "gateAsPrecondition": "654's scroll_gate, so the diff is not measured through a scrolled lens"
+  },
+  "defaultSurface": {
+    "distinctMarkers": {
+      "720": 175,
+      "1150": 175
+    },
+    "identicalAtBothHeights": true,
+    "triggers": [
+      "data-director-camera-preset-trigger",
+      "data-director-crowd-trigger",
+      "data-director-export-trigger",
+      "data-director-model-library-trigger",
+      "data-director-phone-vcam-trigger"
+    ],
+    "triggerPanelPairs": []
+  },
+  "census": {
+    "verifierScripts": 353,
+    "clickSites": 1401,
+    "hoverSites": 33,
+    "dispatchedClickSites": 5,
+    "totalOpenPathSites": 1439,
+    "byTextInstead": {
+      "note": "same pattern, counted on raw text: it also matches code quoted inside docstrings, and it is what a quick grep gives",
+      "clickSites": 1475,
+      "hoverSites": 36,
+      "filesContainingAClick": 260,
+      "clickSitesInsideDocstrings": 74,
+      "hoverSitesInsideDocstrings": 3
+    },
+    "receivers": [
+      "add_track",
+      "agent.get_by_role('button', name='关闭', exact=True)",
+      "agent.locator('[data-agent-notification-enable]')",
+      "agent.locator('[data-agent-refresh]')",
+      "agent.locator('[data-agent-send]')",
+      "ann.first",
+      "aspect.locator(\"[data-director-aspect-option='16:9']\")",
+      "attach",
+      "attempts.locator(\"[data-video-attempt='5分钟超长视频']\")",
+      "attempts.locator(\"[data-video-attempt='首尾帧生成视频']\")",
+      "attempts.locator(\"[data-video-attempt='首帧生成视频']\")",
+      "backdrop",
+      "badge",
+      "banner.locator('[data-follow-cancel]')",
+      "bar.locator('[data-director-scene-prompt-submit]')",
+      "bar.locator('[data-director-selection-action=\"clear\"]')",
+      "btn",
+      "btn.first",
+      "button",
+      "camera",
+      "camera_mode",
+      "camera_row",
+      "camera_track",
+      "canvas_menu.locator('[data-canvas-row=\"canvas-1\"] button').first",
+      "capture_button",
+      "captures_tab",
+      "card",
+      "card.locator('[data-storyboard-play]')",
+      "cards.first",
+      "cards.nth(0)",
+      "cell",
+      "character_rows.nth(0)",
+      "character_rows.nth(1)",
+      "chip",
+      "chip.locator('[data-agent-skill-chip-remove]')",
+      "chips.first",
+      "coach.locator('[data-director-coachmark-skip]')",
+      "collapse",
+      "color",
+      "confirm.get_by_text('取消', exact=True)",
+      "confirm.get_by_text('确认', exact=True)",
+      "confirmation.get_by_role('button', name='还原')",
+      "confirmation.locator('[data-director-capture-clear-cancel]')",
+      "connect",
+      "copy_bar.locator('[data-director-selection-action=\"copy\"]')",
+      "current",
+      "dd.get_by_text('删除画布', exact=True)",
+      "dd.get_by_text('复制画布', exact=True)",
+      "dd.get_by_text('重命名画布', exact=True)",
+      "dd.locator(\"button[aria-label='新建画布']\")",
+      "delete_button",
+      "destroy",
+      "dialog",
+      "diamond",
+      "display",
+      "drawer.locator(\"[data-asset-manager-rating-option='all']\")",
+      "drawer.locator(\"[data-asset-manager-type-option='全部']\")",
+      "drawer.locator('[data-asset-manager-canvas]')",
+      "drawer.locator('[data-asset-manager-collapse]')",
+      "drawer.locator('[data-asset-manager-filter]')",
+      "edge.locator('path[stroke=\"transparent\"]')",
+      "editor",
+      "editor.locator(\"[data-storyboard-next='assets']\")",
+      "editor.locator(\"[data-storyboard-next='prompts']\")",
+      "editor.locator('[data-storyboard-add-shot]')",
+      "editor.locator('[data-storyboard-close]')",
+      "effects.locator(\"[data-library-empty-tab='最近使用']\")",
+      "empty",
+      "empty_state.locator(\"[data-canvas-empty-chip='audio-to-video']\")",
+      "enabled",
+      "entry",
+      "entry.first",
+      "filter_btn",
+      "filter_panel.locator(\"[data-character-filter-chip='华语']\")",
+      "filter_panel.locator('[data-character-filter-clear]')",
+      "filter_toggle",
+      "first",
+      "first_skill",
+      "flyout.locator(\"[data-director-character-option='crowd-3x3']\")",
+      "flyout.locator(\"[data-director-character-option='local-upload']\")",
+      "flyout.locator(\"[data-director-character-option='standard-male']\")",
+      "gate.locator('[data-clib-consent-decline]')",
+      "generate",
+      "grid",
+      "group_action",
+      "group_row.locator(\"[data-director-group-action='toggle']\")",
+      "help_btn",
+      "help_button",
+      "hold",
+      "huan",
+      "image",
+      "image(page, node_id)",
+      "image_card",
+      "image_expand",
+      "image_node",
+      "inspector_trigger",
+      "item",
+      "item.locator(\"[data-recycle-restore='canvas-2']\")",
+      "items.nth(0)",
+      "lib_image_toggle",
+      "loc.first",
+      "locator",
+      "lock",
+      "lock_row",
+      "loop_button",
+      "material.get_by_role('button', name='特效库')",
+      "material.get_by_role('button', name='风格库')",
+      "material_menu.get_by_role('button', name='风格库')",
+      "media",
+      "menu.get_by_role('button', name='删除画布', exact=True)",
+      "menu.get_by_role('button', name='复制画布', exact=True)",
+      "menu.get_by_role('button', name='未命名工作区', exact=True)",
+      "menu.get_by_role('button', name='重命名画布', exact=True)",
+      "menu.locator(\"[data-asset-manager-rating-option='3']\")",
+      "menu.locator(\"[data-director-tree-context-action='visibility']\")",
+      "menu.locator(\"[data-history-rating-option='favorited']\")",
+      "menu.locator(\"[data-image-model-option='general-image-pro']\")",
+      "menu.locator(\"[data-image-model-option='lib-image-2-5-pro']\")",
+      "menu.locator(\"[data-project-menu-item='创建新项目']\")",
+      "menu.locator(\"[data-yunjing-option='movement-01']\")",
+      "menu.locator('[data-agent-model-tab=\"video\"]')",
+      "menu.locator('[data-canvas-new]')",
+      "menu.locator('[data-canvas-row=\"canvas-1\"] button').first",
+      "menu.locator('[data-storyboard-filter-option=\"all\"]')",
+      "menu.locator('[data-storyboard-filter-option=\"pending\"]')",
+      "menu.locator('[data-video-audio-mode=\"av\"]')",
+      "menu.locator('[data-video-frame-kind=\"first\"]')",
+      "menu.locator('[data-video-frame-kind=\"last\"]')",
+      "menu.locator('[data-video-picture-edit-action=\"matting\"]')",
+      "menu.locator('[data-video-player-frame-kind=\"first\"]')",
+      "menu.locator('[data-zoom-action=\"100\"]')",
+      "menu.locator('[data-zoom-action=\"50\"]')",
+      "menu.locator('[data-zoom-action=\"800\"]')",
+      "menu.locator('[data-zoom-action=\"fit\"]')",
+      "menu.locator('[data-zoom-action=\"in\"]')",
+      "menu.locator('[data-zoom-action=\"out\"]')",
+      "menu.locator(f'[data-canvas-row=\"{canvas_id}\"] button').first",
+      "menu.locator(f'[data-video-audio-mode=\"{mode}\"]')",
+      "menu.locator(f'[data-video-picture-edit-action=\"{action}\"]')",
+      "menu.locator(f'[data-video-subtitle-mode=\"{mode}\"]')",
+      "modal.get_by_role('button', name='close', exact=True)",
+      "modal.locator(\"[data-director-ai-import-tab='history']\")",
+      "modal.locator(\"[data-director-coverage-option='override']\")",
+      "modal.locator('[data-character-filter-toggle]')",
+      "modal.locator('[data-director-ai-import-close]')",
+      "modal.locator('[data-director-ai-import-dropzone]')",
+      "mode_button",
+      "mode_menu.locator('[data-agent-mode=\"manual\"]')",
+      "model_button",
+      "model_trigger",
+      "mug_row",
+      "mug_row.get_by_role('button', name='显示冷掉的咖啡')",
+      "multi_bar.locator('[data-director-selection-action=\"delete\"]')",
+      "net",
+      "new_entry",
+      "node",
+      "node(page)",
+      "node(page, LEFT_IMAGE_ID)",
+      "node(page, STORYBOARD_IMAGE_ID)",
+      "node(page, VIDEO_GROUP_ID)",
+      "node(page, VIDEO_ID)",
+      "node(page, node_id)",
+      "node.locator('[data-open-director]')",
+      "node.locator('[data-script-generator-open-storyboard]')",
+      "node.locator('[data-script-v2-open]')",
+      "node.locator(f\"[data-script-generator-attempt='{GEN_ENTRY}']\")",
+      "node.locator(f\"[data-script-generator-attempt='{SELF_WRITE}']\")",
+      "node_first.locator(\"[data-script-generator-attempt='剧本生成分镜脚本']\")",
+      "open_button",
+      "options.nth(0)",
+      "orient",
+      "overlay.get_by_role('button', name='视频', exact=True)",
+      "page.get_by_label('生成图片')",
+      "page.get_by_role('button', name='Agent')",
+      "page.get_by_role('button', name='Agent', exact=True)",
+      "page.get_by_role('button', name='close', exact=True)",
+      "page.get_by_role('button', name='从画布选择', exact=True)",
+      "page.get_by_role('button', name='关闭快捷键面板')",
+      "page.get_by_role('button', name='关闭移动端面板')",
+      "page.get_by_role('button', name='关闭虚拟相机')",
+      "page.get_by_role('button', name='关闭资产管理')",
+      "page.get_by_role('button', name='发布与分享')",
+      "page.get_by_role('button', name='展开智能剪辑编辑器')",
+      "page.get_by_role('button', name='工作流')",
+      "page.get_by_role('button', name='工作流', exact=True)",
+      "page.get_by_role('button', name='开启九宫格辅助线')",
+      "page.get_by_role('button', name='快捷键')",
+      "page.get_by_role('button', name='打开场景对象')",
+      "page.get_by_role('button', name='打开属性面板')",
+      "page.get_by_role('button', name='打开工具箱')",
+      "page.get_by_role('button', name='故事板')",
+      "page.get_by_role('button', name='故事板', exact=True)",
+      "page.get_by_role('button', name='教程', exact=True)",
+      "page.get_by_role('button', name='智能续写', exact=True)",
+      "page.get_by_role('button', name='暂停')",
+      "page.get_by_role('button', name='查看过程')",
+      "page.get_by_role('button', name='添加节点')",
+      "page.get_by_role('button', name='添加节点', exact=True)",
+      "page.get_by_role('button', name='生成历史')",
+      "page.get_by_role('button', name='画布 2')",
+      "page.get_by_role('button', name='画布 2', exact=True).first",
+      "page.get_by_role('button', name='移动', exact=True)",
+      "page.get_by_role('button', name='素材库', exact=True)",
+      "page.get_by_role('button', name='缩放至50%', exact=True)",
+      "page.get_by_role('button', name='缩放选项')",
+      "page.get_by_role('button', name='角色库')",
+      "page.get_by_role('button', name='角色库').first",
+      "page.get_by_role('button', name='资产管理')",
+      "page.get_by_role('button', name='资产管理', exact=True)",
+      "page.get_by_role('button', name='返回 Prompt')",
+      "page.get_by_role('button', name=label, exact=True)",
+      "page.get_by_role('button', name=trigger_name, exact=True).first",
+      "page.get_by_text('资产管理', exact=True)",
+      "page.get_by_text('预设 - 图片高清', exact=False).first",
+      "page.locator(\"[data-add-node-resource='history']\")",
+      "page.locator(\"[data-add-node-resource='upload']\")",
+      "page.locator(\"[data-canvas-context-item='创建副本']\")",
+      "page.locator(\"[data-canvas-context-item='删除']\")",
+      "page.locator(\"[data-canvas-context-item='撤销']\")",
+      "page.locator(\"[data-canvas-context-item='添加节点']\")",
+      "page.locator(\"[data-canvas-row='canvas-1']\").get_by_role('button').first",
+      "page.locator(\"[data-clib-tab='library']\")",
+      "page.locator(\"[data-director-camera-tab='motion']\")",
+      "page.locator(\"[data-director-character-option='crowd-3x3']\")",
+      "page.locator(\"[data-director-character-option='crowd-3x3']\").first",
+      "page.locator(\"[data-director-character-option='geometry']\")",
+      "page.locator(\"[data-director-character-option='geometry']\").first",
+      "page.locator(\"[data-director-character-option='local-upload']\")",
+      "page.locator(\"[data-director-character-tab='pose']\")",
+      "page.locator(\"[data-director-crowd-action='add']\")",
+      "page.locator(\"[data-director-group-action='ungroup']\")",
+      "page.locator(\"[data-director-model-library-tab='home']\")",
+      "page.locator(\"[data-director-model-library-tab='my-models']\")",
+      "page.locator(\"[data-director-model-library-tab='tools']\")",
+      "page.locator(\"[data-director-object-id='director-prop-mug']\")",
+      "page.locator(\"[data-director-rail-entry='add-character']\")",
+      "page.locator(\"[data-director-rail-entry='add-character']\").first",
+      "page.locator(\"[data-director-rail-entry='ai-import']\")",
+      "page.locator(\"[data-director-rail-entry='scene']\")",
+      "page.locator(\"[data-director-selection-action='clear']\")",
+      "page.locator(\"[data-director-tree-context-action='duplicate']\")",
+      "page.locator(\"[data-director-tree-context-action='lock']\")",
+      "page.locator(\"[data-director-view-mode='camera']\")",
+      "page.locator(\"[data-effects-card='试妆特写']\")",
+      "page.locator(\"[data-history-tab='video']\")",
+      "page.locator(\"[data-liblib-overlay='add-node']\").get_by_role('button', name='图片', exact=True)",
+      "page.locator(\"[data-liblib-overlay='add-node']\").get_by_role('button', name='视频', exact=True)",
+      "page.locator(\"button[aria-label='关闭移动端面板']\")",
+      "page.locator(\"button[aria-label='打开场景对象']\")",
+      "page.locator(\"button[aria-label='打开属性面板']\")",
+      "page.locator(\"button[aria-label='角色库']\")",
+      "page.locator('.react-flow__node-video').first",
+      "page.locator('.react-flow__node-video').last",
+      "page.locator('.react-flow__node[data-id=\"v-UGQZzZOpbv\"]')",
+      "page.locator('.react-flow__pane')",
+      "page.locator('[aria-label=\"快捷键\"]')",
+      "page.locator('[aria-label=\"打开属性面板\"]').first",
+      "page.locator('[aria-label=\"添加节点\"]')",
+      "page.locator('[aria-label=\"缩放选项\"]')",
+      "page.locator('[data-add-node-entry=\"shot-breakdown\"]')",
+      "page.locator('[data-add-node-entry=\"text\"]')",
+      "page.locator('[data-add-node-entry=\"video\"]')",
+      "page.locator('[data-add-node-entry=\"video-clip\"]')",
+      "page.locator('[data-asset-manager-collapse-groups]')",
+      "page.locator('[data-asset-manager-expand-groups]')",
+      "page.locator('[data-asset-manager-filter]')",
+      "page.locator('[data-asset-manager-item=\"i-YDfWhFlthe\"]')",
+      "page.locator('[data-asset-manager-tab=\"assets\"]')",
+      "page.locator('[data-asset-manager-tab=\"canvas\"]')",
+      "page.locator('[data-asset-manager-view-option=\"grid\"]')",
+      "page.locator('[data-canvas-delete-confirm]').get_by_text('确认', exact=True)",
+      "page.locator('[data-canvas-empty-chip=\"character-turnaround\"]')",
+      "page.locator('[data-canvas-empty-chip=\"story-script\"]')",
+      "page.locator('[data-canvas-row=\"canvas-1\"] button').first",
+      "page.locator('[data-canvas-trigger]')",
+      "page.locator('[data-clib-consent-accept]')",
+      "page.locator('[data-clib-trigger]')",
+      "page.locator('[data-close-director]')",
+      "page.locator('[data-close-director]').first",
+      "page.locator('[data-depth-motion-resolution-option=\"1080P\"]')",
+      "page.locator('[data-director-add-keyframe]')",
+      "page.locator('[data-director-ai-import-backdrop]')",
+      "page.locator('[data-director-aspect=\"16:9\"]')",
+      "page.locator('[data-director-aspect=\"9:16\"]')",
+      "page.locator('[data-director-auto-keyframe]')",
+      "page.locator('[data-director-back-to-timeline]')",
+      "page.locator('[data-director-camera-follow-view-option=\"first-person\"]')",
+      "page.locator('[data-director-camera-fov-help-badge]')",
+      "page.locator('[data-director-camera-preset-mode-option=\"append\"]')",
+      "page.locator('[data-director-camera-preset-option=\"orbit\"]')",
+      "page.locator('[data-director-camera-preset-option=\"pull-out\"]')",
+      "page.locator('[data-director-camera-preset-option=\"push-in\"]')",
+      "page.locator('[data-director-camera-preset-trigger]').first",
+      "page.locator('[data-director-camera-preview-expand]')",
+      "page.locator('[data-director-camera-tab=\"captures\"]')",
+      "page.locator('[data-director-camera-tab=\"motion\"]')",
+      "page.locator('[data-director-capture-clear-all]')",
+      "page.locator('[data-director-capture-clear-confirm-submit]')",
+      "page.locator('[data-director-capture-item=\"batch75-capture\"] [data-director-capture-view]')",
+      "page.locator('[data-director-capture-send-all]')",
+      "page.locator('[data-director-capture-viewer-close]')",
+      "page.locator('[data-director-capture]')",
+      "page.locator('[data-director-character-tab=\"pose\"]')",
+      "page.locator('[data-director-character-tab=\"properties\"]')",
+      "page.locator('[data-director-create-motion-path]')",
+      "page.locator('[data-director-create-motion-path]').first",
+      "page.locator('[data-director-crowd-cancel]')",
+      "page.locator('[data-director-crowd-confirm]')",
+      "page.locator('[data-director-crowd-trigger]')",
+      "page.locator('[data-director-curve-preset=\"ease-in\"]')",
+      "page.locator('[data-director-curve-preset=\"ease-out\"]')",
+      "page.locator('[data-director-delete-keyframe]')",
+      "page.locator('[data-director-delete-motion-path]')",
+      "page.locator('[data-director-delete-object=\"director-camera-main\"]')",
+      "page.locator('[data-director-delete-path-anchor]')",
+      "page.locator('[data-director-export-aspect=\"1:1\"]')",
+      "page.locator('[data-director-export-aspect=\"9:16\"]')",
+      "page.locator('[data-director-export-submit]')",
+      "page.locator('[data-director-export-trigger]')",
+      "page.locator('[data-director-export-trigger]').first",
+      "page.locator('[data-director-follow-cancel]')",
+      "page.locator('[data-director-icon-rail] [aria-label=\"场景\"]')",
+      "page.locator('[data-director-icon-rail] [aria-label=\"添加角色\"]')",
+      "page.locator('[data-director-icon-rail] button[aria-label=\"全景图\"]')",
+      "page.locator('[data-director-icon-rail] button[aria-label=\"场景\"]')",
+      "page.locator('[data-director-insert-path-anchor]')",
+      "page.locator('[data-director-keyframe-id=\"director-keyframe-camera-8\"]')",
+      "page.locator('[data-director-keyframe-id=\"director-keyframe-character-4\"]')",
+      "page.locator('[data-director-keyframe-toggle=\"fov\"]')",
+      "page.locator('[data-director-keyframe-toggle=\"position-X\"]')",
+      "page.locator('[data-director-keyframe-toggle=\"position-Z\"]')",
+      "page.locator('[data-director-keyframe-toggle=\"rotation-Y\"]')",
+      "page.locator('[data-director-keyframe-toggle=\"scale-X\"]')",
+      "page.locator('[data-director-model-library-card]').first",
+      "page.locator('[data-director-model-library-tab=\"my-models\"]')",
+      "page.locator('[data-director-model-library-trigger]')",
+      "page.locator('[data-director-model-library-trigger]').first",
+      "page.locator('[data-director-motion-path-draw-tool=\"pencil\"]')",
+      "page.locator('[data-director-motion-path-preset=\"rectangle\"]')",
+      "page.locator('[data-director-motion-path-preset=\"ring\"]')",
+      "page.locator('[data-director-motion-qr]')",
+      "page.locator('[data-director-object-id=\"director-camera-main\"]')",
+      "page.locator('[data-director-object-id=\"director-character-lead\"] button[aria-label^=\"隐藏\"],[data-director-object-id=\"director-character-lead\"] button[aria-label^=\"显示\"]').first",
+      "page.locator('[data-director-object-id=\"director-character-lead\"]')",
+      "page.locator('[data-director-object-id=\"director-prop-mug\"]')",
+      "page.locator('[data-director-object-id]').first",
+      "page.locator('[data-director-object-kind=\"camera\"]').first",
+      "page.locator('[data-director-open-curve-editor]')",
+      "page.locator('[data-director-panels-toggle]')",
+      "page.locator('[data-director-panorama-clear]')",
+      "page.locator('[data-director-path-anchor-type-option=\"asymmetric\"]')",
+      "page.locator('[data-director-path-anchor-type-option=\"symmetric\"]')",
+      "page.locator('[data-director-path-drawing-complete]')",
+      "page.locator('[data-director-path-name]')",
+      "page.locator('[data-director-path-reset-offset]')",
+      "page.locator('[data-director-path-reset]')",
+      "page.locator('[data-director-phone-vcam-calibrate]')",
+      "page.locator('[data-director-phone-vcam-connect]')",
+      "page.locator('[data-director-phone-vcam-elevate=\"up\"]')",
+      "page.locator('[data-director-phone-vcam-keep-level]')",
+      "page.locator('[data-director-phone-vcam-record]')",
+      "page.locator('[data-director-phone-vcam-trigger]')",
+      "page.locator('[data-director-playback]')",
+      "page.locator('[data-director-pose-preset=\"crouch\"]')",
+      "page.locator('[data-director-pose-preset=\"kick\"]')",
+      "page.locator('[data-director-pose-preset=\"phone\"]')",
+      "page.locator('[data-director-pose-preset=\"stand\"]')",
+      "page.locator('[data-director-pose-preset=\"wave\"]')",
+      "page.locator('[data-director-project-export]')",
+      "page.locator('[data-director-scene-snap-to-grid]')",
+      "page.locator('[data-director-send-capture]')",
+      "page.locator('[data-director-shot-option]').first",
+      "page.locator('[data-director-timeline-collapse]')",
+      "page.locator('[data-director-timeline-collapse]').first",
+      "page.locator('[data-director-timeline-object-row]').first",
+      "page.locator('[data-director-timeline-object-row]').first.locator('button[aria-expanded]')",
+      "page.locator('[data-director-timeline-toggle]')",
+      "page.locator('[data-director-toggle-path-closed]')",
+      "page.locator('[data-director-track-label=\"director-track-camera-main\"] [role=\"button\"]')",
+      "page.locator('[data-director-track-label=\"director-track-character-lead-transform\"] [role=\"button\"]')",
+      "page.locator('[data-director-tree] [data-director-add-camera]')",
+      "page.locator('[data-director-tree] [data-director-object-id]').first",
+      "page.locator('[data-director-view-mode=\"camera\"]')",
+      "page.locator('[data-director-view-mode=\"director\"]')",
+      "page.locator('[data-effects-trigger]')",
+      "page.locator('[data-history-scope-chip=\"all\"]')",
+      "page.locator('[data-history-scope-chip=\"canvas\"]')",
+      "page.locator('[data-image-attempt=\"图片高清\"]')",
+      "page.locator('[data-image-attempt=\"图生图\"]')",
+      "page.locator('[data-image-editor-autolink]')",
+      "page.locator('[data-image-preview-close]')",
+      "page.locator('[data-liblib-overlay=\"canvas-dropdown\"]').get_by_role('button', name='画布 1')",
+      "page.locator('[data-mark-select-trigger]')",
+      "page.locator('[data-open-director]')",
+      "page.locator('[data-open-director]').first",
+      "page.locator('[data-organize-confirmation] button').first",
+      "page.locator('[data-organize-confirmation]').get_by_role('button', name='保留')",
+      "page.locator('[data-picture-edit-history=\"redo\"]')",
+      "page.locator('[data-picture-edit-history=\"undo\"]')",
+      "page.locator('[data-picture-edit-replacement=\"upload\"]')",
+      "page.locator('[data-picture-edit-reset]')",
+      "page.locator('[data-picture-edit-submit]')",
+      "page.locator('[data-project-menu-item=\"全部项目\"]')",
+      "page.locator('[data-project-menu-item=\"创建新项目\"]')",
+      "page.locator('[data-project-menu-item=\"回到主页\"]')",
+      "page.locator('[data-project-menu-trigger]')",
+      "page.locator('[data-reference-select-trigger]')",
+      "page.locator('[data-segment-option=\"20-24\"]')",
+      "page.locator('[data-segment-submit]')",
+      "page.locator('[data-share-action=\"link\"]')",
+      "page.locator('[data-share-action=\"publish\"]')",
+      "page.locator('[data-shot-breakdown-dimension=\"music\"]')",
+      "page.locator('[data-smart-matting-close]')",
+      "page.locator('[data-smart-matting-generate]')",
+      "page.locator('[data-storyboard-cell]').first",
+      "page.locator('[data-storyboard-close]')",
+      "page.locator('[data-storyboard-editor]')",
+      "page.locator('[data-storyboard-lightbox-close]')",
+      "page.locator('[data-storyboard-lightbox]')",
+      "page.locator('[data-subtitle-erase-close]')",
+      "page.locator('[data-subtitle-erase-submit]')",
+      "page.locator('[data-subtitle-region-reset]')",
+      "page.locator('[data-subtitle-region-toggle]')",
+      "page.locator('[data-testid=\"image-toolbar-annotate\"]')",
+      "page.locator('[data-testid=\"image-toolbar-interactive-edit\"]')",
+      "page.locator('[data-video-attempt=\"5分钟超长视频\"]')",
+      "page.locator('[data-video-attempt=\"首尾帧生成视频\"]')",
+      "page.locator('[data-video-attempt=\"首帧生成视频\"]')",
+      "page.locator('[data-video-attempts]').locator(\"[data-video-attempt='5分钟超长视频']\")",
+      "page.locator('[data-video-clip-mode=\"素材混剪\"]')",
+      "page.locator('[data-video-clip-reference]')",
+      "page.locator('[data-video-continuation-close]')",
+      "page.locator('[data-video-continuation-confirm]')",
+      "page.locator('[data-video-continuation-exit]')",
+      "page.locator('[data-video-count-option=\"1个\"]')",
+      "page.locator('[data-video-count-option=\"4个\"]')",
+      "page.locator('[data-video-firstframe-destroy]')",
+      "page.locator('[data-video-firstframe-slot]')",
+      "page.locator('[data-video-generate-submit]')",
+      "page.locator('[data-video-mode-option=\"text\"]')",
+      "page.locator('[data-video-mode-trigger]')",
+      "page.locator('[data-video-model-option=\"2.0 Fast VIP\"]')",
+      "page.locator('[data-video-model-option=\"2.0 Mini\"]')",
+      "page.locator('[data-video-model-option=\"2.0 VIP\"]')",
+      "page.locator('[data-video-model-option=\"2.5\"]')",
+      "page.locator('[data-video-model-option=\"OmniHuman 1.5\"]')",
+      "page.locator('[data-video-model-trigger]')",
+      "page.locator('[data-video-params-trigger]')",
+      "page.locator('[data-video-ratio-option=\"16:9\"]')",
+      "page.locator('[data-video-ratio-option=\"21:9\"]')",
+      "page.locator('[data-video-resolution-option=\"1080P\"]')",
+      "page.locator('[data-video-resolution-option=\"480P\"]')",
+      "page.locator('[data-video-resolution-option=\"4K\"]')",
+      "page.locator('[data-video-resolution-option=\"720P\"]')",
+      "page.locator('[data-video-subtitle-menu-trigger]')",
+      "page.locator('[data-video-subtitle-mode=\"region\"]')",
+      "page.locator('[data-video-subtitle-mode=\"smart\"]')",
+      "page.locator('[data-viewport-menu-trigger=\"zoom\"]')",
+      "page.locator('[data-yunjing-trigger]')",
+      "page.locator('[data-zoom-action=\"in\"]')",
+      "page.locator('[data-zoom-action=\"out\"]')",
+      "page.locator('button:has-text(\"逐帧拉片\")').first",
+      "page.locator('button[aria-label=\"展开时间线\"]')",
+      "page.locator('button[aria-label=\"工作流\"]')",
+      "page.locator('button[aria-label=\"时间线最小化\"]')",
+      "page.locator('button[aria-label=\"添加节点\"]').first",
+      "page.locator('button[aria-label=\"生成历史\"]')",
+      "page.locator('button[data-picture-edit-tool=\"eraser\"]')",
+      "page.locator('button[data-picture-edit-tool=\"point\"]')",
+      "page.locator('h1').first",
+      "page.locator(f\"[data-canvas-row='{canvas_id}']\").get_by_role('button').first",
+      "page.locator(f\"[data-director-group-id='{crowd_group['id']}']\")",
+      "page.locator(f\"[data-director-model-library-local-delete][data-director-model-library-local-asset-id='{remaining_asset_id}']\")",
+      "page.locator(f\"[data-director-model-library-tab='{category_id}']\")",
+      "page.locator(f\"[data-director-object-id='{object_id}']\")",
+      "page.locator(f\"[data-storyboard-pending-cancel='{video_id}']\")",
+      "page.locator(f\"[data-storyboard-pending-confirm='{video_id}']\")",
+      "page.locator(f'''[data-director-keyframe-id=\"{mug_track['keyframeId']}\"]''')",
+      "page.locator(f'''[data-director-model-library-local-retry][data-director-model-library-local-asset-id=\"{invalid_item['id']}\"]''')",
+      "page.locator(f'''[data-director-object-id=\"{second_shot['cameraId']}\"]''')",
+      "page.locator(f'''[data-director-shot-option=\"{second_shot['id']}\"]''')",
+      "page.locator(f'''[data-director-track-id=\"{group_track['id']}\"]''')",
+      "page.locator(f'''[data-director-track-id=\"{mug_track['id']}\"]''')",
+      "page.locator(f'.react-flow__node[data-id=\"{IMAGE_ID}\"]')",
+      "page.locator(f'[aria-label=\"{label}\"]').first",
+      "page.locator(f'[data-director-camera-tab=\"{tab}\"]')",
+      "page.locator(f'[data-director-motion-path-draw-tool=\"{tool}\"]')",
+      "page.locator(f'[data-director-motion-path-preset=\"{preset}\"]')",
+      "page.locator(f'[data-director-path-anchor-option=\"{anchor_id}\"]')",
+      "page.locator(f'[data-director-scene-{data_key}]')",
+      "page.locator(f'[data-id=\"{IMAGE_ID}\"]')",
+      "page.locator(f'[data-id=\"{VIDEO_ID}\"]')",
+      "page.locator(f'[data-segment-option=\"{segment_id}\"]')",
+      "page.locator(f'[data-video-model-option=\"{option}\"]')",
+      "page.locator(f'button[data-picture-edit-tool=\"{tool}\"]')",
+      "page.locator(f'{row_sel}').get_by_role('button', name='展开属性')",
+      "page.locator(f'{row_sel}').get_by_role('button', name='当前帧无关键帧')",
+      "page.locator(f'{row_sel}').get_by_role('button', name='当前帧有关键帧')",
+      "page.locator(f'{row_sel}').get_by_role('button', name='收起属性')",
+      "page.locator(how).first",
+      "page.locator(option).first",
+      "page.locator(setup)",
+      "page.locator(setup).first",
+      "page.locator(trig).first",
+      "page.mouse",
+      "page_root.locator('[data-project-create-card]')",
+      "page_root.locator('[data-project-recycle]')",
+      "pane",
+      "panel.get_by_role('button', name='关闭资产管理')",
+      "panel.get_by_role('button', name='应用至画布')",
+      "panel.get_by_role('button', name='画布', exact=True)",
+      "panel.get_by_role('button', name='视频', exact=True)",
+      "panel.get_by_role('button', name='资产', exact=True)",
+      "panel.locator(\"[data-add-node-entry='script']\")",
+      "panel.locator(\"[data-add-node-entry='script-new']\")",
+      "panel.locator(\"[data-asset-manager-rating-option='all']\")",
+      "panel.locator(\"[data-character-filter-chip='男']\")",
+      "panel.locator(\"[data-history-rating-option='all']\")",
+      "panel.locator(\"[data-history-tab='video']\")",
+      "panel.locator('[data-add-node-entry=\"audio\"]')",
+      "panel.locator('[data-add-node-entry=\"image\"]')",
+      "panel.locator('[data-add-node-entry=\"material\"]')",
+      "panel.locator('[data-add-node-entry=\"script\"]')",
+      "panel.locator('[data-add-node-resource=\"history\"]')",
+      "panel.locator('[data-add-node-resource=\"upload\"]')",
+      "panel.locator('[data-add-node-search-toggle]')",
+      "panel.locator('[data-asset-manager-canvas]')",
+      "panel.locator('[data-asset-manager-filter]')",
+      "panel.locator('[data-asset-manager-item=\"i-YDfWhFlthe\"]')",
+      "panel.locator('[data-asset-manager-rating]')",
+      "panel.locator('[data-asset-manager-search]')",
+      "panel.locator('[data-asset-manager-sort]')",
+      "panel.locator('[data-asset-manager-tab=\"assets\"]')",
+      "panel.locator('[data-asset-manager-type-option=\"全部\"]')",
+      "panel.locator('[data-asset-manager-type-option=\"图片\"]')",
+      "panel.locator('[data-character-filter-clear]')",
+      "panel.locator('[data-depth-motion-submit]')",
+      "panel.locator('[data-effects-trigger]')",
+      "panel.locator('[data-history-rating]')",
+      "panel.locator(f\"[data-asset-manager-type-option='{label}']\")",
+      "panel.locator(f'[data-add-node-entry=\"{node_type}\"]')",
+      "params_trigger",
+      "pg.locator(\"[data-director-rail-entry='ai-import']\").first",
+      "pill",
+      "pixar",
+      "popover.get_by_role('button', name='引用', exact=True)",
+      "prev.first",
+      "preview_add",
+      "preview_trigger",
+      "prop_row",
+      "rail.locator(\"[data-director-rail-entry='add-camera']\")",
+      "rail.locator(\"[data-director-rail-entry='add-character']\")",
+      "rail.locator(\"[data-director-rail-entry='aspect-ratio']\")",
+      "rail.locator(\"[data-director-rail-entry='panorama']\")",
+      "rail.locator(\"[data-director-rail-entry='scene']\")",
+      "rating",
+      "record",
+      "redo",
+      "reset",
+      "restore_selected",
+      "row",
+      "row2",
+      "row2.locator(\"button[aria-label='更多操作']\")",
+      "row2_check",
+      "row3",
+      "row3.locator(\"button[aria-label='更多操作']\")",
+      "row4",
+      "row4.locator(\"button[aria-label='更多操作']\")",
+      "row_a",
+      "row_a.locator(\"button[aria-label='更多操作']\")",
+      "row_dup",
+      "row_dup.locator(\"button[aria-label='更多操作']\")",
+      "row_extra",
+      "row_extra.locator(\"button[aria-label='更多操作']\")",
+      "script_menu.locator('[data-add-node-entry=\"script-legacy\"]')",
+      "script_menu.locator('[data-add-node-entry=\"script-new\"]')",
+      "search",
+      "second",
+      "second_item.get_by_role('button', name='选择截图 {} · 镜头-截图01'.format(camera_name))",
+      "second_item.locator('[data-director-capture-send]')",
+      "second_item.locator('[data-director-capture-view]')",
+      "seek_row.get_by_role('button', name='上一关键帧')",
+      "seek_row.get_by_role('button', name='下一关键帧')",
+      "self_write",
+      "share.locator('[data-share-action=\"link\"]')",
+      "share.locator('[data-share-action=\"publish\"]')",
+      "shot_bar.locator('[data-director-shot-option]').first",
+      "silent",
+      "skip_button.first",
+      "slot",
+      "source",
+      "start",
+      "storyboard",
+      "style.locator(\"[data-library-empty-tab='我的收藏']\")",
+      "style.locator('[data-library-close]')",
+      "submenu.get_by_role('button', name='特效库')",
+      "submenu.locator('[data-history-asset]').nth(index)",
+      "submit",
+      "synth",
+      "ta",
+      "target",
+      "textarea",
+      "tg",
+      "toggle",
+      "tree.locator('[data-director-add-camera]')",
+      "tree_trigger",
+      "trigger",
+      "tutorial",
+      "undo",
+      "unit_btn",
+      "v.page.mouse",
+      "video",
+      "video_expand",
+      "viewer.get_by_role('button', name='放大图片')",
+      "visibility_button",
+      "workflow",
+      "workspace.locator('[data-close-director]').first"
+    ],
+    "hoverFiles": [
+      "verify-liblib-batch114.py",
+      "verify-liblib-batch124.py",
+      "verify-liblib-batch125.py",
+      "verify-liblib-batch136.py",
+      "verify-liblib-batch147.py",
+      "verify-liblib-batch148.py",
+      "verify-liblib-batch16.py",
+      "verify-liblib-batch174.py",
+      "verify-liblib-batch177.py",
+      "verify-liblib-batch179.py",
+      "verify-liblib-batch244.py",
+      "verify-liblib-batch255.py",
+      "verify-liblib-batch264.py",
+      "verify-liblib-batch27.py",
+      "verify-liblib-batch29.py",
+      "verify-liblib-batch30.py",
+      "verify-liblib-batch364.py",
+      "verify-liblib-batch581.py",
+      "verify-liblib-batch610.py",
+      "verify-liblib-batch626.py",
+      "verify-liblib-batch648.py",
+      "verify-liblib-batch653.py",
+      "verify-liblib-batch655.py"
+    ],
+    "clickFilesWithTheMostSites": [
+      {
+        "file": "verify-liblib-batch27.py",
+        "count": 26
+      },
+      {
+        "file": "verify-liblib-batch31.py",
+        "count": 24
+      },
+      {
+        "file": "verify-liblib-batch37.py",
+        "count": 22
+      },
+      {
+        "file": "verify-liblib-batch36.py",
+        "count": 21
+      },
+      {
+        "file": "verify-liblib-batch46.py",
+        "count": 21
+      },
+      {
+        "file": "verify-liblib-batch236.py",
+        "count": 18
+      },
+      {
+        "file": "verify-liblib-batch26.py",
+        "count": 17
+      },
+      {
+        "file": "verify-liblib-batch30.py",
+        "count": 17
+      }
+    ],
+    "scriptsThatDidNotParse": [],
+    "howCounted": "ast.Call on an .Attribute named click/hover, plus dispatch_event('click'); docstrings and comments are NOT counted"
+  },
+  "perPath": {
+    "export-panel": {
+      "panelSelector": "[data-director-export-panel]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-export-aspect",
+        "data-director-export-duration",
+        "data-director-export-panel",
+        "data-director-export-progress",
+        "data-director-export-status",
+        "data-director-export-submit"
+      ],
+      "newMarkersAt1150": [
+        "data-director-export-aspect",
+        "data-director-export-duration",
+        "data-director-export-panel",
+        "data-director-export-progress",
+        "data-director-export-status",
+        "data-director-export-submit"
+      ],
+      "newMarkerCount": {
+        "720": 6,
+        "1150": 6
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": false,
+        "1150": false
+      },
+      "gateVerdict": {
+        "720": "clean",
+        "1150": "clean"
+      }
+    },
+    "tree-context-menu": {
+      "panelSelector": "[data-director-tree-context-menu]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-tree-context-action",
+        "data-director-tree-context-menu"
+      ],
+      "newMarkersAt1150": [
+        "data-director-tree-context-action",
+        "data-director-tree-context-menu"
+      ],
+      "newMarkerCount": {
+        "720": 2,
+        "1150": 2
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": false,
+        "1150": false
+      },
+      "gateVerdict": {
+        "720": "clean",
+        "1150": "clean"
+      }
+    },
+    "panorama-flyout": {
+      "panelSelector": "[data-director-panorama-flyout]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-flyout-title",
+        "data-director-panorama-flyout",
+        "data-director-panorama-option"
+      ],
+      "newMarkersAt1150": [
+        "data-director-flyout-title",
+        "data-director-panorama-flyout",
+        "data-director-panorama-option"
+      ],
+      "newMarkerCount": {
+        "720": 3,
+        "1150": 3
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": false,
+        "1150": false
+      },
+      "gateVerdict": {
+        "720": "clean",
+        "1150": "clean"
+      }
+    },
+    "aspect-flyout": {
+      "panelSelector": "[data-director-aspect-flyout]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-aspect-flyout",
+        "data-director-aspect-glyph",
+        "data-director-aspect-grid",
+        "data-director-aspect-option",
+        "data-director-flyout-title"
+      ],
+      "newMarkersAt1150": [
+        "data-director-aspect-flyout",
+        "data-director-aspect-glyph",
+        "data-director-aspect-grid",
+        "data-director-aspect-option",
+        "data-director-flyout-title"
+      ],
+      "newMarkerCount": {
+        "720": 5,
+        "1150": 5
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": false,
+        "1150": false
+      },
+      "gateVerdict": {
+        "720": "clean",
+        "1150": "clean"
+      }
+    },
+    "add-character-flyout": {
+      "panelSelector": "[data-director-character-flyout]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-flyout-title"
+      ],
+      "newMarkersAt1150": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-flyout-title"
+      ],
+      "newMarkerCount": {
+        "720": 3,
+        "1150": 3
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": false,
+        "1150": false
+      },
+      "gateVerdict": {
+        "720": "clean",
+        "1150": "clean"
+      }
+    },
+    "ai-import-modal": {
+      "panelSelector": "[data-director-ai-import-modal]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-ai-import-backdrop",
+        "data-director-ai-import-close",
+        "data-director-ai-import-dropzone",
+        "data-director-ai-import-generate",
+        "data-director-ai-import-modal",
+        "data-director-ai-import-tab",
+        "data-director-coverage-option"
+      ],
+      "newMarkersAt1150": [
+        "data-director-ai-import-backdrop",
+        "data-director-ai-import-close",
+        "data-director-ai-import-dropzone",
+        "data-director-ai-import-generate",
+        "data-director-ai-import-modal",
+        "data-director-ai-import-tab",
+        "data-director-coverage-option"
+      ],
+      "newMarkerCount": {
+        "720": 7,
+        "1150": 7
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": false,
+        "1150": false
+      },
+      "gateVerdict": {
+        "720": "clean",
+        "1150": "clean"
+      }
+    },
+    "geometry-submenu": {
+      "panelSelector": "[data-director-geometry-submenu]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-flyout-title",
+        "data-director-geometry-option",
+        "data-director-geometry-submenu"
+      ],
+      "newMarkersAt1150": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-flyout-title",
+        "data-director-geometry-option",
+        "data-director-geometry-submenu"
+      ],
+      "newMarkerCount": {
+        "720": 5,
+        "1150": 5
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": false,
+        "1150": false
+      },
+      "gateVerdict": {
+        "720": "clean",
+        "1150": "clean"
+      }
+    },
+    "crowd-dialog": {
+      "panelSelector": "[data-director-crowd-dialog]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-crowd-cancel",
+        "data-director-crowd-confirm",
+        "data-director-crowd-count",
+        "data-director-crowd-dialog",
+        "data-director-crowd-input",
+        "data-director-flyout-title"
+      ],
+      "newMarkersAt1150": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-crowd-cancel",
+        "data-director-crowd-confirm",
+        "data-director-crowd-count",
+        "data-director-crowd-dialog",
+        "data-director-crowd-input",
+        "data-director-flyout-title"
+      ],
+      "newMarkerCount": {
+        "720": 8,
+        "1150": 8
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": false,
+        "1150": false
+      },
+      "gateVerdict": {
+        "720": "clean",
+        "1150": "clean"
+      }
+    },
+    "camera-fov-help-tooltip": {
+      "panelSelector": "[data-director-camera-fov-help-tooltip]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-camera-follow-state",
+        "data-director-camera-follow-target",
+        "data-director-camera-fov",
+        "data-director-camera-fov-field",
+        "data-director-camera-fov-fill",
+        "data-director-camera-fov-help",
+        "data-director-camera-fov-help-badge",
+        "data-director-camera-fov-help-tooltip",
+        "data-director-camera-fov-knob",
+        "data-director-camera-fov-number",
+        "data-director-camera-fov-readout",
+        "data-director-camera-fov-slider",
+        "data-director-camera-look-at-mode",
+        "data-director-camera-look-at-object",
+        "data-director-camera-motion-new",
+        "data-director-camera-preview",
+        "data-director-camera-preview-canvas",
+        "data-director-camera-preview-expand",
+        "data-director-camera-preview-fov",
+        "data-director-camera-preview-state",
+        "data-director-camera-switch",
+        "data-director-camera-tab",
+        "data-director-camera-tabs",
+        "data-director-camera-target-coordinates",
+        "data-director-camera-target-derived",
+        "data-director-shot-end",
+        "data-director-shot-id",
+        "data-director-shot-inspector",
+        "data-director-shot-name",
+        "data-director-shot-range",
+        "data-director-shot-start"
+      ],
+      "newMarkersAt1150": [
+        "data-director-camera-follow-state",
+        "data-director-camera-follow-target",
+        "data-director-camera-fov",
+        "data-director-camera-fov-field",
+        "data-director-camera-fov-fill",
+        "data-director-camera-fov-help",
+        "data-director-camera-fov-help-badge",
+        "data-director-camera-fov-help-tooltip",
+        "data-director-camera-fov-knob",
+        "data-director-camera-fov-number",
+        "data-director-camera-fov-readout",
+        "data-director-camera-fov-slider",
+        "data-director-camera-look-at-mode",
+        "data-director-camera-look-at-object",
+        "data-director-camera-motion-new",
+        "data-director-camera-preview",
+        "data-director-camera-preview-canvas",
+        "data-director-camera-preview-expand",
+        "data-director-camera-preview-fov",
+        "data-director-camera-preview-state",
+        "data-director-camera-switch",
+        "data-director-camera-tab",
+        "data-director-camera-tabs",
+        "data-director-camera-target-coordinates",
+        "data-director-camera-target-derived",
+        "data-director-shot-end",
+        "data-director-shot-id",
+        "data-director-shot-inspector",
+        "data-director-shot-name",
+        "data-director-shot-range",
+        "data-director-shot-start"
+      ],
+      "newMarkerCount": {
+        "720": 31,
+        "1150": 31
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": true,
+        "1150": true
+      },
+      "gateVerdict": {
+        "720": "partial-scroll",
+        "1150": "scrolled-to-end"
+      }
+    },
+    "camera-preset-panel": {
+      "panelSelector": "[data-director-camera-preset-panel]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-camera-follow-state",
+        "data-director-camera-follow-target",
+        "data-director-camera-fov",
+        "data-director-camera-fov-field",
+        "data-director-camera-fov-fill",
+        "data-director-camera-fov-help",
+        "data-director-camera-fov-help-badge",
+        "data-director-camera-fov-help-tooltip",
+        "data-director-camera-fov-knob",
+        "data-director-camera-fov-number",
+        "data-director-camera-fov-readout",
+        "data-director-camera-fov-slider",
+        "data-director-camera-look-at-mode",
+        "data-director-camera-look-at-object",
+        "data-director-camera-motion-new",
+        "data-director-camera-preset-mode",
+        "data-director-camera-preset-mode-option",
+        "data-director-camera-preset-option",
+        "data-director-camera-preset-panel",
+        "data-director-camera-preset-panel-mode",
+        "data-director-camera-preview",
+        "data-director-camera-preview-canvas",
+        "data-director-camera-preview-expand",
+        "data-director-camera-preview-fov",
+        "data-director-camera-preview-state",
+        "data-director-camera-switch",
+        "data-director-camera-tab",
+        "data-director-camera-tabs",
+        "data-director-camera-target-coordinates",
+        "data-director-camera-target-derived",
+        "data-director-shot-end",
+        "data-director-shot-id",
+        "data-director-shot-inspector",
+        "data-director-shot-name",
+        "data-director-shot-range",
+        "data-director-shot-start"
+      ],
+      "newMarkersAt1150": [
+        "data-director-camera-follow-state",
+        "data-director-camera-follow-target",
+        "data-director-camera-fov",
+        "data-director-camera-fov-field",
+        "data-director-camera-fov-fill",
+        "data-director-camera-fov-help",
+        "data-director-camera-fov-help-badge",
+        "data-director-camera-fov-help-tooltip",
+        "data-director-camera-fov-knob",
+        "data-director-camera-fov-number",
+        "data-director-camera-fov-readout",
+        "data-director-camera-fov-slider",
+        "data-director-camera-look-at-mode",
+        "data-director-camera-look-at-object",
+        "data-director-camera-motion-new",
+        "data-director-camera-preset-mode",
+        "data-director-camera-preset-mode-option",
+        "data-director-camera-preset-option",
+        "data-director-camera-preset-panel",
+        "data-director-camera-preset-panel-mode",
+        "data-director-camera-preview",
+        "data-director-camera-preview-canvas",
+        "data-director-camera-preview-expand",
+        "data-director-camera-preview-fov",
+        "data-director-camera-preview-state",
+        "data-director-camera-switch",
+        "data-director-camera-tab",
+        "data-director-camera-tabs",
+        "data-director-camera-target-coordinates",
+        "data-director-camera-target-derived",
+        "data-director-shot-end",
+        "data-director-shot-id",
+        "data-director-shot-inspector",
+        "data-director-shot-name",
+        "data-director-shot-range",
+        "data-director-shot-start"
+      ],
+      "newMarkerCount": {
+        "720": 36,
+        "1150": 36
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": true,
+        "1150": true
+      },
+      "gateVerdict": {
+        "720": "partial-scroll",
+        "1150": "partial-scroll"
+      }
+    },
+    "motion-path-menu": {
+      "panelSelector": "[data-director-motion-path-menu]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-motion-path-draw-tool",
+        "data-director-motion-path-free-draw",
+        "data-director-motion-path-menu",
+        "data-director-motion-path-preset"
+      ],
+      "newMarkersAt1150": [
+        "data-director-motion-path-draw-tool",
+        "data-director-motion-path-free-draw",
+        "data-director-motion-path-menu",
+        "data-director-motion-path-preset"
+      ],
+      "newMarkerCount": {
+        "720": 4,
+        "1150": 4
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": false,
+        "1150": false
+      },
+      "gateVerdict": {
+        "720": "clean",
+        "1150": "clean"
+      }
+    },
+    "crowd-panel": {
+      "panelSelector": "[data-director-crowd-panel]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-crowd-action",
+        "data-director-crowd-columns",
+        "data-director-crowd-count",
+        "data-director-crowd-panel",
+        "data-director-crowd-rows",
+        "data-director-crowd-spacing"
+      ],
+      "newMarkersAt1150": [
+        "data-director-crowd-action",
+        "data-director-crowd-columns",
+        "data-director-crowd-count",
+        "data-director-crowd-panel",
+        "data-director-crowd-rows",
+        "data-director-crowd-spacing"
+      ],
+      "newMarkerCount": {
+        "720": 6,
+        "1150": 6
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": false,
+        "1150": false
+      },
+      "gateVerdict": {
+        "720": "clean",
+        "1150": "clean"
+      }
+    },
+    "phone-vcam-panel": {
+      "panelSelector": "[data-director-phone-vcam-panel]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-phone-vcam-connect",
+        "data-director-phone-vcam-local-preview",
+        "data-director-phone-vcam-mode",
+        "data-director-phone-vcam-panel",
+        "data-director-phone-vcam-status"
+      ],
+      "newMarkersAt1150": [
+        "data-director-phone-vcam-connect",
+        "data-director-phone-vcam-local-preview",
+        "data-director-phone-vcam-mode",
+        "data-director-phone-vcam-panel",
+        "data-director-phone-vcam-status"
+      ],
+      "newMarkerCount": {
+        "720": 5,
+        "1150": 5
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": false,
+        "1150": false
+      },
+      "gateVerdict": {
+        "720": "clean",
+        "1150": "clean"
+      }
+    },
+    "model-library-panel": {
+      "panelSelector": "[data-director-model-library-panel]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-model-library-add",
+        "data-director-model-library-asset-id",
+        "data-director-model-library-card",
+        "data-director-model-library-local-input",
+        "data-director-model-library-panel",
+        "data-director-model-library-preview",
+        "data-director-model-library-preview-add",
+        "data-director-model-library-preview-asset-id",
+        "data-director-model-library-preview-name",
+        "data-director-model-library-preview-name-value",
+        "data-director-model-library-preview-panel",
+        "data-director-model-library-preview-trigger",
+        "data-director-model-library-search",
+        "data-director-model-library-tab"
+      ],
+      "newMarkersAt1150": [
+        "data-director-model-library-add",
+        "data-director-model-library-asset-id",
+        "data-director-model-library-card",
+        "data-director-model-library-local-input",
+        "data-director-model-library-panel",
+        "data-director-model-library-preview",
+        "data-director-model-library-preview-add",
+        "data-director-model-library-preview-asset-id",
+        "data-director-model-library-preview-name",
+        "data-director-model-library-preview-name-value",
+        "data-director-model-library-preview-panel",
+        "data-director-model-library-preview-trigger",
+        "data-director-model-library-search",
+        "data-director-model-library-tab"
+      ],
+      "newMarkerCount": {
+        "720": 14,
+        "1150": 14
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": false,
+        "1150": false
+      },
+      "gateVerdict": {
+        "720": "clean",
+        "1150": "clean"
+      }
+    },
+    "model-library-preview-panel": {
+      "panelSelector": "[data-director-model-library-preview-panel]",
+      "panelSelectorMatchedAtEveryHeight": true,
+      "panelSelectorMatched": {
+        "720": 1,
+        "1150": 1
+      },
+      "newMarkersAt720": [
+        "data-director-model-library-add",
+        "data-director-model-library-asset-id",
+        "data-director-model-library-card",
+        "data-director-model-library-local-input",
+        "data-director-model-library-panel",
+        "data-director-model-library-preview",
+        "data-director-model-library-preview-add",
+        "data-director-model-library-preview-asset-id",
+        "data-director-model-library-preview-name",
+        "data-director-model-library-preview-name-value",
+        "data-director-model-library-preview-panel",
+        "data-director-model-library-preview-trigger",
+        "data-director-model-library-search",
+        "data-director-model-library-tab"
+      ],
+      "newMarkersAt1150": [
+        "data-director-model-library-add",
+        "data-director-model-library-asset-id",
+        "data-director-model-library-card",
+        "data-director-model-library-local-input",
+        "data-director-model-library-panel",
+        "data-director-model-library-preview",
+        "data-director-model-library-preview-add",
+        "data-director-model-library-preview-asset-id",
+        "data-director-model-library-preview-name",
+        "data-director-model-library-preview-name-value",
+        "data-director-model-library-preview-panel",
+        "data-director-model-library-preview-trigger",
+        "data-director-model-library-search",
+        "data-director-model-library-tab"
+      ],
+      "newMarkerCount": {
+        "720": 14,
+        "1150": 14
+      },
+      "sameAtBothHeights": true,
+      "err": {
+        "720": null,
+        "1150": null
+      },
+      "gateFired": {
+        "720": false,
+        "1150": false
+      },
+      "gateVerdict": {
+        "720": "clean",
+        "1150": "clean"
+      }
+    }
+  },
+  "conditionalSurface": {
+    "size": 95,
+    "members": [
+      "data-director-ai-import-backdrop",
+      "data-director-ai-import-close",
+      "data-director-ai-import-dropzone",
+      "data-director-ai-import-generate",
+      "data-director-ai-import-modal",
+      "data-director-ai-import-tab",
+      "data-director-aspect-flyout",
+      "data-director-aspect-glyph",
+      "data-director-aspect-grid",
+      "data-director-aspect-option",
+      "data-director-camera-follow-state",
+      "data-director-camera-follow-target",
+      "data-director-camera-fov",
+      "data-director-camera-fov-field",
+      "data-director-camera-fov-fill",
+      "data-director-camera-fov-help",
+      "data-director-camera-fov-help-badge",
+      "data-director-camera-fov-help-tooltip",
+      "data-director-camera-fov-knob",
+      "data-director-camera-fov-number",
+      "data-director-camera-fov-readout",
+      "data-director-camera-fov-slider",
+      "data-director-camera-look-at-mode",
+      "data-director-camera-look-at-object",
+      "data-director-camera-motion-new",
+      "data-director-camera-preset-mode",
+      "data-director-camera-preset-mode-option",
+      "data-director-camera-preset-option",
+      "data-director-camera-preset-panel",
+      "data-director-camera-preset-panel-mode",
+      "data-director-camera-preview",
+      "data-director-camera-preview-canvas",
+      "data-director-camera-preview-expand",
+      "data-director-camera-preview-fov",
+      "data-director-camera-preview-state",
+      "data-director-camera-switch",
+      "data-director-camera-tab",
+      "data-director-camera-tabs",
+      "data-director-camera-target-coordinates",
+      "data-director-camera-target-derived",
+      "data-director-character-flyout",
+      "data-director-character-option",
+      "data-director-coverage-option",
+      "data-director-crowd-action",
+      "data-director-crowd-cancel",
+      "data-director-crowd-columns",
+      "data-director-crowd-confirm",
+      "data-director-crowd-count",
+      "data-director-crowd-dialog",
+      "data-director-crowd-input",
+      "data-director-crowd-panel",
+      "data-director-crowd-rows",
+      "data-director-crowd-spacing",
+      "data-director-export-aspect",
+      "data-director-export-duration",
+      "data-director-export-panel",
+      "data-director-export-progress",
+      "data-director-export-status",
+      "data-director-export-submit",
+      "data-director-flyout-title",
+      "data-director-geometry-option",
+      "data-director-geometry-submenu",
+      "data-director-model-library-add",
+      "data-director-model-library-asset-id",
+      "data-director-model-library-card",
+      "data-director-model-library-local-input",
+      "data-director-model-library-panel",
+      "data-director-model-library-preview",
+      "data-director-model-library-preview-add",
+      "data-director-model-library-preview-asset-id",
+      "data-director-model-library-preview-name",
+      "data-director-model-library-preview-name-value",
+      "data-director-model-library-preview-panel",
+      "data-director-model-library-preview-trigger",
+      "data-director-model-library-search",
+      "data-director-model-library-tab",
+      "data-director-motion-path-draw-tool",
+      "data-director-motion-path-free-draw",
+      "data-director-motion-path-menu",
+      "data-director-motion-path-preset",
+      "data-director-panorama-flyout",
+      "data-director-panorama-option",
+      "data-director-phone-vcam-connect",
+      "data-director-phone-vcam-local-preview",
+      "data-director-phone-vcam-mode",
+      "data-director-phone-vcam-panel",
+      "data-director-phone-vcam-status",
+      "data-director-shot-end",
+      "data-director-shot-id",
+      "data-director-shot-inspector",
+      "data-director-shot-name",
+      "data-director-shot-range",
+      "data-director-shot-start",
+      "data-director-tree-context-action",
+      "data-director-tree-context-menu"
+    ],
+    "panelRoots": [
+      "data-director-ai-import-modal",
+      "data-director-aspect-flyout",
+      "data-director-camera-fov-help-tooltip",
+      "data-director-camera-preset-panel",
+      "data-director-character-flyout",
+      "data-director-crowd-dialog",
+      "data-director-crowd-panel",
+      "data-director-export-panel",
+      "data-director-geometry-submenu",
+      "data-director-model-library-panel",
+      "data-director-model-library-preview-panel",
+      "data-director-motion-path-menu",
+      "data-director-panorama-flyout",
+      "data-director-phone-vcam-panel",
+      "data-director-tree-context-menu"
+    ],
+    "interiorsOfThosePanels": [
+      "data-director-ai-import-backdrop",
+      "data-director-ai-import-close",
+      "data-director-ai-import-dropzone",
+      "data-director-ai-import-generate",
+      "data-director-ai-import-tab",
+      "data-director-aspect-glyph",
+      "data-director-aspect-grid",
+      "data-director-aspect-option",
+      "data-director-camera-follow-state",
+      "data-director-camera-follow-target",
+      "data-director-camera-fov",
+      "data-director-camera-fov-field",
+      "data-director-camera-fov-fill",
+      "data-director-camera-fov-help",
+      "data-director-camera-fov-help-badge",
+      "data-director-camera-fov-knob",
+      "data-director-camera-fov-number",
+      "data-director-camera-fov-readout",
+      "data-director-camera-fov-slider",
+      "data-director-camera-look-at-mode",
+      "data-director-camera-look-at-object",
+      "data-director-camera-motion-new",
+      "data-director-camera-preset-mode",
+      "data-director-camera-preset-mode-option",
+      "data-director-camera-preset-option",
+      "data-director-camera-preset-panel-mode",
+      "data-director-camera-preview",
+      "data-director-camera-preview-canvas",
+      "data-director-camera-preview-expand",
+      "data-director-camera-preview-fov",
+      "data-director-camera-preview-state",
+      "data-director-camera-switch",
+      "data-director-camera-tab",
+      "data-director-camera-tabs",
+      "data-director-camera-target-coordinates",
+      "data-director-camera-target-derived",
+      "data-director-character-option",
+      "data-director-coverage-option",
+      "data-director-crowd-action",
+      "data-director-crowd-cancel",
+      "data-director-crowd-columns",
+      "data-director-crowd-confirm",
+      "data-director-crowd-count",
+      "data-director-crowd-input",
+      "data-director-crowd-rows",
+      "data-director-crowd-spacing",
+      "data-director-export-aspect",
+      "data-director-export-duration",
+      "data-director-export-progress",
+      "data-director-export-status",
+      "data-director-export-submit",
+      "data-director-flyout-title",
+      "data-director-geometry-option",
+      "data-director-model-library-add",
+      "data-director-model-library-asset-id",
+      "data-director-model-library-card",
+      "data-director-model-library-local-input",
+      "data-director-model-library-preview",
+      "data-director-model-library-preview-add",
+      "data-director-model-library-preview-asset-id",
+      "data-director-model-library-preview-name",
+      "data-director-model-library-preview-name-value",
+      "data-director-model-library-preview-trigger",
+      "data-director-model-library-search",
+      "data-director-model-library-tab",
+      "data-director-motion-path-draw-tool",
+      "data-director-motion-path-free-draw",
+      "data-director-motion-path-preset",
+      "data-director-panorama-option",
+      "data-director-phone-vcam-connect",
+      "data-director-phone-vcam-local-preview",
+      "data-director-phone-vcam-mode",
+      "data-director-phone-vcam-status",
+      "data-director-shot-end",
+      "data-director-shot-id",
+      "data-director-shot-inspector",
+      "data-director-shot-name",
+      "data-director-shot-range",
+      "data-director-shot-start",
+      "data-director-tree-context-action"
+    ],
+    "ownerMap": {
+      "export-panel": [
+        "data-director-export-aspect",
+        "data-director-export-duration",
+        "data-director-export-panel",
+        "data-director-export-progress",
+        "data-director-export-status",
+        "data-director-export-submit"
+      ],
+      "tree-context-menu": [
+        "data-director-tree-context-action",
+        "data-director-tree-context-menu"
+      ],
+      "panorama-flyout": [
+        "data-director-flyout-title",
+        "data-director-panorama-flyout",
+        "data-director-panorama-option"
+      ],
+      "aspect-flyout": [
+        "data-director-aspect-flyout",
+        "data-director-aspect-glyph",
+        "data-director-aspect-grid",
+        "data-director-aspect-option",
+        "data-director-flyout-title"
+      ],
+      "add-character-flyout": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-flyout-title"
+      ],
+      "ai-import-modal": [
+        "data-director-ai-import-backdrop",
+        "data-director-ai-import-close",
+        "data-director-ai-import-dropzone",
+        "data-director-ai-import-generate",
+        "data-director-ai-import-modal",
+        "data-director-ai-import-tab",
+        "data-director-coverage-option"
+      ],
+      "geometry-submenu": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-flyout-title",
+        "data-director-geometry-option",
+        "data-director-geometry-submenu"
+      ],
+      "crowd-dialog": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-crowd-cancel",
+        "data-director-crowd-confirm",
+        "data-director-crowd-count",
+        "data-director-crowd-dialog",
+        "data-director-crowd-input",
+        "data-director-flyout-title"
+      ],
+      "camera-fov-help-tooltip": [
+        "data-director-camera-follow-state",
+        "data-director-camera-follow-target",
+        "data-director-camera-fov",
+        "data-director-camera-fov-field",
+        "data-director-camera-fov-fill",
+        "data-director-camera-fov-help",
+        "data-director-camera-fov-help-badge",
+        "data-director-camera-fov-help-tooltip",
+        "data-director-camera-fov-knob",
+        "data-director-camera-fov-number",
+        "data-director-camera-fov-readout",
+        "data-director-camera-fov-slider",
+        "data-director-camera-look-at-mode",
+        "data-director-camera-look-at-object",
+        "data-director-camera-motion-new",
+        "data-director-camera-preview",
+        "data-director-camera-preview-canvas",
+        "data-director-camera-preview-expand",
+        "data-director-camera-preview-fov",
+        "data-director-camera-preview-state",
+        "data-director-camera-switch",
+        "data-director-camera-tab",
+        "data-director-camera-tabs",
+        "data-director-camera-target-coordinates",
+        "data-director-camera-target-derived",
+        "data-director-shot-end",
+        "data-director-shot-id",
+        "data-director-shot-inspector",
+        "data-director-shot-name",
+        "data-director-shot-range",
+        "data-director-shot-start"
+      ],
+      "camera-preset-panel": [
+        "data-director-camera-follow-state",
+        "data-director-camera-follow-target",
+        "data-director-camera-fov",
+        "data-director-camera-fov-field",
+        "data-director-camera-fov-fill",
+        "data-director-camera-fov-help",
+        "data-director-camera-fov-help-badge",
+        "data-director-camera-fov-help-tooltip",
+        "data-director-camera-fov-knob",
+        "data-director-camera-fov-number",
+        "data-director-camera-fov-readout",
+        "data-director-camera-fov-slider",
+        "data-director-camera-look-at-mode",
+        "data-director-camera-look-at-object",
+        "data-director-camera-motion-new",
+        "data-director-camera-preset-mode",
+        "data-director-camera-preset-mode-option",
+        "data-director-camera-preset-option",
+        "data-director-camera-preset-panel",
+        "data-director-camera-preset-panel-mode",
+        "data-director-camera-preview",
+        "data-director-camera-preview-canvas",
+        "data-director-camera-preview-expand",
+        "data-director-camera-preview-fov",
+        "data-director-camera-preview-state",
+        "data-director-camera-switch",
+        "data-director-camera-tab",
+        "data-director-camera-tabs",
+        "data-director-camera-target-coordinates",
+        "data-director-camera-target-derived",
+        "data-director-shot-end",
+        "data-director-shot-id",
+        "data-director-shot-inspector",
+        "data-director-shot-name",
+        "data-director-shot-range",
+        "data-director-shot-start"
+      ],
+      "motion-path-menu": [
+        "data-director-motion-path-draw-tool",
+        "data-director-motion-path-free-draw",
+        "data-director-motion-path-menu",
+        "data-director-motion-path-preset"
+      ],
+      "crowd-panel": [
+        "data-director-crowd-action",
+        "data-director-crowd-columns",
+        "data-director-crowd-count",
+        "data-director-crowd-panel",
+        "data-director-crowd-rows",
+        "data-director-crowd-spacing"
+      ],
+      "phone-vcam-panel": [
+        "data-director-phone-vcam-connect",
+        "data-director-phone-vcam-local-preview",
+        "data-director-phone-vcam-mode",
+        "data-director-phone-vcam-panel",
+        "data-director-phone-vcam-status"
+      ],
+      "model-library-panel": [
+        "data-director-model-library-add",
+        "data-director-model-library-asset-id",
+        "data-director-model-library-card",
+        "data-director-model-library-local-input",
+        "data-director-model-library-panel",
+        "data-director-model-library-preview",
+        "data-director-model-library-preview-add",
+        "data-director-model-library-preview-asset-id",
+        "data-director-model-library-preview-name",
+        "data-director-model-library-preview-name-value",
+        "data-director-model-library-preview-panel",
+        "data-director-model-library-preview-trigger",
+        "data-director-model-library-search",
+        "data-director-model-library-tab"
+      ],
+      "model-library-preview-panel": [
+        "data-director-model-library-add",
+        "data-director-model-library-asset-id",
+        "data-director-model-library-card",
+        "data-director-model-library-local-input",
+        "data-director-model-library-panel",
+        "data-director-model-library-preview",
+        "data-director-model-library-preview-add",
+        "data-director-model-library-preview-asset-id",
+        "data-director-model-library-preview-name",
+        "data-director-model-library-preview-name-value",
+        "data-director-model-library-preview-panel",
+        "data-director-model-library-preview-trigger",
+        "data-director-model-library-search",
+        "data-director-model-library-tab"
+      ]
+    }
+  },
+  "cells": {
+    "export-panel@720": {
+      "err": null,
+      "panelSelector": "[data-director-export-panel]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-export-panel": {
+          "attr": "data-director-export-panel",
+          "count": 1,
+          "tag": "section",
+          "w": 286,
+          "h": 267
+        },
+        "data-director-export-status": {
+          "attr": "data-director-export-status",
+          "count": 1,
+          "tag": "section",
+          "w": 286,
+          "h": 267
+        },
+        "data-director-export-duration": {
+          "attr": "data-director-export-duration",
+          "count": 1,
+          "tag": "input",
+          "w": 228,
+          "h": 17
+        },
+        "data-director-export-aspect": {
+          "attr": "data-director-export-aspect",
+          "count": 3,
+          "tag": "button",
+          "w": 84,
+          "h": 32
+        },
+        "data-director-export-progress": {
+          "attr": "data-director-export-progress",
+          "count": 1,
+          "tag": "div",
+          "w": 260,
+          "h": 4
+        },
+        "data-director-export-submit": {
+          "attr": "data-director-export-submit",
+          "count": 1,
+          "tag": "button",
+          "w": 260,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-export-aspect",
+        "data-director-export-duration",
+        "data-director-export-panel",
+        "data-director-export-progress",
+        "data-director-export-status",
+        "data-director-export-submit"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "tree-context-menu@720": {
+      "err": null,
+      "panelSelector": "[data-director-tree-context-menu]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-tree-context-menu": {
+          "attr": "data-director-tree-context-menu",
+          "count": 1,
+          "tag": "div",
+          "w": 128,
+          "h": 170
+        },
+        "data-director-tree-context-action": {
+          "attr": "data-director-tree-context-action",
+          "count": 5,
+          "tag": "button",
+          "w": 126,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-tree-context-action",
+        "data-director-tree-context-menu"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "panorama-flyout@720": {
+      "err": null,
+      "panelSelector": "[data-director-panorama-flyout]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-panorama-flyout": {
+          "attr": "data-director-panorama-flyout",
+          "count": 1,
+          "tag": "div",
+          "w": 232,
+          "h": 134
+        },
+        "data-director-flyout-title": {
+          "attr": "data-director-flyout-title",
+          "count": 1,
+          "tag": "span",
+          "w": 232,
+          "h": 24
+        },
+        "data-director-panorama-option": {
+          "attr": "data-director-panorama-option",
+          "count": 3,
+          "tag": "button",
+          "w": 218,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-flyout-title",
+        "data-director-panorama-flyout",
+        "data-director-panorama-option"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "aspect-flyout@720": {
+      "err": null,
+      "panelSelector": "[data-director-aspect-flyout]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-aspect-flyout": {
+          "attr": "data-director-aspect-flyout",
+          "count": 1,
+          "tag": "div",
+          "w": 232,
+          "h": 350
+        },
+        "data-director-flyout-title": {
+          "attr": "data-director-flyout-title",
+          "count": 1,
+          "tag": "span",
+          "w": 232,
+          "h": 24
+        },
+        "data-director-aspect-grid": {
+          "attr": "data-director-aspect-grid",
+          "count": 1,
+          "tag": "div",
+          "w": 232,
+          "h": 326
+        },
+        "data-director-aspect-option": {
+          "attr": "data-director-aspect-option",
+          "count": 7,
+          "tag": "button",
+          "w": 103,
+          "h": 72
+        },
+        "data-director-aspect-glyph": {
+          "attr": "data-director-aspect-glyph",
+          "count": 7,
+          "tag": "span",
+          "w": 16,
+          "h": 11
+        }
+      },
+      "newMarkerNames": [
+        "data-director-aspect-flyout",
+        "data-director-aspect-glyph",
+        "data-director-aspect-grid",
+        "data-director-aspect-option",
+        "data-director-flyout-title"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "add-character-flyout@720": {
+      "err": null,
+      "panelSelector": "[data-director-character-flyout]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-character-flyout": {
+          "attr": "data-director-character-flyout",
+          "count": 1,
+          "tag": "div",
+          "w": 232,
+          "h": 390
+        },
+        "data-director-flyout-title": {
+          "attr": "data-director-flyout-title",
+          "count": 1,
+          "tag": "span",
+          "w": 232,
+          "h": 24
+        },
+        "data-director-character-option": {
+          "attr": "data-director-character-option",
+          "count": 11,
+          "tag": "button",
+          "w": 218,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-flyout-title"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "ai-import-modal@720": {
+      "err": null,
+      "panelSelector": "[data-director-ai-import-modal]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-ai-import-backdrop": {
+          "attr": "data-director-ai-import-backdrop",
+          "count": 1,
+          "tag": "div",
+          "w": 1280,
+          "h": 720
+        },
+        "data-director-ai-import-modal": {
+          "attr": "data-director-ai-import-modal",
+          "count": 1,
+          "tag": "div",
+          "w": 560,
+          "h": 539
+        },
+        "data-director-ai-import-close": {
+          "attr": "data-director-ai-import-close",
+          "count": 1,
+          "tag": "button",
+          "w": 24,
+          "h": 24
+        },
+        "data-director-ai-import-tab": {
+          "attr": "data-director-ai-import-tab",
+          "count": 2,
+          "tag": "button",
+          "w": 48,
+          "h": 21
+        },
+        "data-director-ai-import-dropzone": {
+          "attr": "data-director-ai-import-dropzone",
+          "count": 1,
+          "tag": "div",
+          "w": 518,
+          "h": 240
+        },
+        "data-director-coverage-option": {
+          "attr": "data-director-coverage-option",
+          "count": 2,
+          "tag": "button",
+          "w": 255,
+          "h": 74
+        },
+        "data-director-ai-import-generate": {
+          "attr": "data-director-ai-import-generate",
+          "count": 1,
+          "tag": "button",
+          "w": 96,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-ai-import-backdrop",
+        "data-director-ai-import-close",
+        "data-director-ai-import-dropzone",
+        "data-director-ai-import-generate",
+        "data-director-ai-import-modal",
+        "data-director-ai-import-tab",
+        "data-director-coverage-option"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "geometry-submenu@720": {
+      "err": null,
+      "panelSelector": "[data-director-geometry-submenu]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-character-flyout": {
+          "attr": "data-director-character-flyout",
+          "count": 1,
+          "tag": "div",
+          "w": 232,
+          "h": 390
+        },
+        "data-director-flyout-title": {
+          "attr": "data-director-flyout-title",
+          "count": 1,
+          "tag": "span",
+          "w": 232,
+          "h": 24
+        },
+        "data-director-character-option": {
+          "attr": "data-director-character-option",
+          "count": 11,
+          "tag": "button",
+          "w": 218,
+          "h": 32
+        },
+        "data-director-geometry-submenu": {
+          "attr": "data-director-geometry-submenu",
+          "count": 1,
+          "tag": "div",
+          "w": 204,
+          "h": 270
+        },
+        "data-director-geometry-option": {
+          "attr": "data-director-geometry-option",
+          "count": 8,
+          "tag": "button",
+          "w": 190,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-flyout-title",
+        "data-director-geometry-option",
+        "data-director-geometry-submenu"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "crowd-dialog@720": {
+      "err": null,
+      "panelSelector": "[data-director-crowd-dialog]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-character-flyout": {
+          "attr": "data-director-character-flyout",
+          "count": 1,
+          "tag": "div",
+          "w": 232,
+          "h": 390
+        },
+        "data-director-flyout-title": {
+          "attr": "data-director-flyout-title",
+          "count": 1,
+          "tag": "span",
+          "w": 232,
+          "h": 24
+        },
+        "data-director-character-option": {
+          "attr": "data-director-character-option",
+          "count": 11,
+          "tag": "button",
+          "w": 218,
+          "h": 32
+        },
+        "data-director-crowd-dialog": {
+          "attr": "data-director-crowd-dialog",
+          "count": 1,
+          "tag": "div",
+          "w": 220,
+          "h": 208
+        },
+        "data-director-crowd-count": {
+          "attr": "data-director-crowd-count",
+          "count": 1,
+          "tag": "span",
+          "w": 29,
+          "h": 17
+        },
+        "data-director-crowd-input": {
+          "attr": "data-director-crowd-input",
+          "count": 3,
+          "tag": "input",
+          "w": 93,
+          "h": 28
+        },
+        "data-director-crowd-cancel": {
+          "attr": "data-director-crowd-cancel",
+          "count": 1,
+          "tag": "button",
+          "w": 48,
+          "h": 28
+        },
+        "data-director-crowd-confirm": {
+          "attr": "data-director-crowd-confirm",
+          "count": 1,
+          "tag": "button",
+          "w": 48,
+          "h": 28
+        }
+      },
+      "newMarkerNames": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-crowd-cancel",
+        "data-director-crowd-confirm",
+        "data-director-crowd-count",
+        "data-director-crowd-dialog",
+        "data-director-crowd-input",
+        "data-director-flyout-title"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "camera-fov-help-tooltip@720": {
+      "err": null,
+      "panelSelector": "[data-director-camera-fov-help-tooltip]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-camera-tabs": {
+          "attr": "data-director-camera-tabs",
+          "count": 1,
+          "tag": "nav",
+          "w": 280,
+          "h": 57
+        },
+        "data-director-camera-tab": {
+          "attr": "data-director-camera-tab",
+          "count": 3,
+          "tag": "button",
+          "w": 50,
+          "h": 28
+        },
+        "data-director-camera-motion-new": {
+          "attr": "data-director-camera-motion-new",
+          "count": 1,
+          "tag": "span",
+          "w": 38,
+          "h": 20
+        },
+        "data-director-camera-preview": {
+          "attr": "data-director-camera-preview",
+          "count": 1,
+          "tag": "section",
+          "w": 280,
+          "h": 168
+        },
+        "data-director-camera-preview-canvas": {
+          "attr": "data-director-camera-preview-canvas",
+          "count": 1,
+          "tag": "canvas",
+          "w": 240,
+          "h": 135
+        },
+        "data-director-camera-preview-fov": {
+          "attr": "data-director-camera-preview-fov",
+          "count": 1,
+          "tag": "div",
+          "w": 52,
+          "h": 13
+        },
+        "data-director-camera-preview-expand": {
+          "attr": "data-director-camera-preview-expand",
+          "count": 1,
+          "tag": "button",
+          "w": 24,
+          "h": 24
+        },
+        "data-director-camera-preview-state": {
+          "attr": "data-director-camera-preview-state",
+          "count": 1,
+          "tag": "span",
+          "w": 1,
+          "h": 1
+        },
+        "data-director-camera-switch": {
+          "attr": "data-director-camera-switch",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-camera-follow-target": {
+          "attr": "data-director-camera-follow-target",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-shot-inspector": {
+          "attr": "data-director-shot-inspector",
+          "count": 1,
+          "tag": "section",
+          "w": 248,
+          "h": 175
+        },
+        "data-director-shot-range": {
+          "attr": "data-director-shot-range",
+          "count": 1,
+          "tag": "span",
+          "w": 42,
+          "h": 15
+        },
+        "data-director-shot-id": {
+          "attr": "data-director-shot-id",
+          "count": 1,
+          "tag": "span",
+          "w": 42,
+          "h": 15
+        },
+        "data-director-shot-name": {
+          "attr": "data-director-shot-name",
+          "count": 1,
+          "tag": "input",
+          "w": 224,
+          "h": 32
+        },
+        "data-director-shot-start": {
+          "attr": "data-director-shot-start",
+          "count": 1,
+          "tag": "input",
+          "w": 109,
+          "h": 32
+        },
+        "data-director-shot-end": {
+          "attr": "data-director-shot-end",
+          "count": 1,
+          "tag": "input",
+          "w": 109,
+          "h": 32
+        },
+        "data-director-camera-fov-field": {
+          "attr": "data-director-camera-fov-field",
+          "count": 1,
+          "tag": "div",
+          "w": 248,
+          "h": 56
+        },
+        "data-director-camera-fov-help": {
+          "attr": "data-director-camera-fov-help",
+          "count": 1,
+          "tag": "span",
+          "w": 16,
+          "h": 16
+        },
+        "data-director-camera-fov-help-badge": {
+          "attr": "data-director-camera-fov-help-badge",
+          "count": 1,
+          "tag": "span",
+          "w": 16,
+          "h": 16
+        },
+        "data-director-camera-fov-help-tooltip": {
+          "attr": "data-director-camera-fov-help-tooltip",
+          "count": 1,
+          "tag": "span",
+          "w": 208,
+          "h": 68
+        },
+        "data-director-camera-fov-slider": {
+          "attr": "data-director-camera-fov-slider",
+          "count": 1,
+          "tag": "div",
+          "w": 170,
+          "h": 20
+        },
+        "data-director-camera-fov-fill": {
+          "attr": "data-director-camera-fov-fill",
+          "count": 1,
+          "tag": "div",
+          "w": 63,
+          "h": 4
+        },
+        "data-director-camera-fov-knob": {
+          "attr": "data-director-camera-fov-knob",
+          "count": 1,
+          "tag": "div",
+          "w": 12,
+          "h": 12
+        },
+        "data-director-camera-fov": {
+          "attr": "data-director-camera-fov",
+          "count": 1,
+          "tag": "input",
+          "w": 170,
+          "h": 20
+        },
+        "data-director-camera-fov-number": {
+          "attr": "data-director-camera-fov-number",
+          "count": 1,
+          "tag": "input",
+          "w": 49,
+          "h": 28
+        },
+        "data-director-camera-fov-readout": {
+          "attr": "data-director-camera-fov-readout",
+          "count": 1,
+          "tag": "input",
+          "w": 49,
+          "h": 28
+        },
+        "data-director-camera-look-at-mode": {
+          "attr": "data-director-camera-look-at-mode",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-camera-look-at-object": {
+          "attr": "data-director-camera-look-at-object",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-camera-target-coordinates": {
+          "attr": "data-director-camera-target-coordinates",
+          "count": 1,
+          "tag": "div",
+          "w": 248,
+          "h": 60
+        },
+        "data-director-camera-target-derived": {
+          "attr": "data-director-camera-target-derived",
+          "count": 1,
+          "tag": "div",
+          "w": 248,
+          "h": 60
+        },
+        "data-director-camera-follow-state": {
+          "attr": "data-director-camera-follow-state",
+          "count": 1,
+          "tag": "span",
+          "w": 1,
+          "h": 1
+        }
+      },
+      "newMarkerNames": [
+        "data-director-camera-follow-state",
+        "data-director-camera-follow-target",
+        "data-director-camera-fov",
+        "data-director-camera-fov-field",
+        "data-director-camera-fov-fill",
+        "data-director-camera-fov-help",
+        "data-director-camera-fov-help-badge",
+        "data-director-camera-fov-help-tooltip",
+        "data-director-camera-fov-knob",
+        "data-director-camera-fov-number",
+        "data-director-camera-fov-readout",
+        "data-director-camera-fov-slider",
+        "data-director-camera-look-at-mode",
+        "data-director-camera-look-at-object",
+        "data-director-camera-motion-new",
+        "data-director-camera-preview",
+        "data-director-camera-preview-canvas",
+        "data-director-camera-preview-expand",
+        "data-director-camera-preview-fov",
+        "data-director-camera-preview-state",
+        "data-director-camera-switch",
+        "data-director-camera-tab",
+        "data-director-camera-tabs",
+        "data-director-camera-target-coordinates",
+        "data-director-camera-target-derived",
+        "data-director-shot-end",
+        "data-director-shot-id",
+        "data-director-shot-inspector",
+        "data-director-shot-name",
+        "data-director-shot-range",
+        "data-director-shot-start"
+      ],
+      "markersThatDisappeared": [
+        "data-director-character-tab",
+        "data-director-character-tabs"
+      ],
+      "gate": {
+        "moved": [
+          {
+            "key": "min-h-0",
+            "top": 779,
+            "left": 0,
+            "maxTop": 804
+          }
+        ],
+        "fired": true,
+        "partial": [
+          {
+            "key": "min-h-0",
+            "top": 779,
+            "left": 0,
+            "maxTop": 804
+          }
+        ],
+        "toEnd": [],
+        "verdict": "partial-scroll"
+      }
+    },
+    "camera-preset-panel@720": {
+      "err": null,
+      "panelSelector": "[data-director-camera-preset-panel]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-camera-tabs": {
+          "attr": "data-director-camera-tabs",
+          "count": 1,
+          "tag": "nav",
+          "w": 280,
+          "h": 57
+        },
+        "data-director-camera-tab": {
+          "attr": "data-director-camera-tab",
+          "count": 3,
+          "tag": "button",
+          "w": 50,
+          "h": 28
+        },
+        "data-director-camera-motion-new": {
+          "attr": "data-director-camera-motion-new",
+          "count": 1,
+          "tag": "span",
+          "w": 38,
+          "h": 20
+        },
+        "data-director-camera-preview": {
+          "attr": "data-director-camera-preview",
+          "count": 1,
+          "tag": "section",
+          "w": 280,
+          "h": 168
+        },
+        "data-director-camera-preview-canvas": {
+          "attr": "data-director-camera-preview-canvas",
+          "count": 1,
+          "tag": "canvas",
+          "w": 240,
+          "h": 135
+        },
+        "data-director-camera-preview-fov": {
+          "attr": "data-director-camera-preview-fov",
+          "count": 1,
+          "tag": "div",
+          "w": 52,
+          "h": 13
+        },
+        "data-director-camera-preview-expand": {
+          "attr": "data-director-camera-preview-expand",
+          "count": 1,
+          "tag": "button",
+          "w": 24,
+          "h": 24
+        },
+        "data-director-camera-preview-state": {
+          "attr": "data-director-camera-preview-state",
+          "count": 1,
+          "tag": "span",
+          "w": 1,
+          "h": 1
+        },
+        "data-director-camera-switch": {
+          "attr": "data-director-camera-switch",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-camera-follow-target": {
+          "attr": "data-director-camera-follow-target",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-shot-inspector": {
+          "attr": "data-director-shot-inspector",
+          "count": 1,
+          "tag": "section",
+          "w": 248,
+          "h": 175
+        },
+        "data-director-shot-range": {
+          "attr": "data-director-shot-range",
+          "count": 1,
+          "tag": "span",
+          "w": 42,
+          "h": 15
+        },
+        "data-director-shot-id": {
+          "attr": "data-director-shot-id",
+          "count": 1,
+          "tag": "span",
+          "w": 42,
+          "h": 15
+        },
+        "data-director-shot-name": {
+          "attr": "data-director-shot-name",
+          "count": 1,
+          "tag": "input",
+          "w": 224,
+          "h": 32
+        },
+        "data-director-shot-start": {
+          "attr": "data-director-shot-start",
+          "count": 1,
+          "tag": "input",
+          "w": 109,
+          "h": 32
+        },
+        "data-director-shot-end": {
+          "attr": "data-director-shot-end",
+          "count": 1,
+          "tag": "input",
+          "w": 109,
+          "h": 32
+        },
+        "data-director-camera-fov-field": {
+          "attr": "data-director-camera-fov-field",
+          "count": 1,
+          "tag": "div",
+          "w": 248,
+          "h": 56
+        },
+        "data-director-camera-fov-help": {
+          "attr": "data-director-camera-fov-help",
+          "count": 1,
+          "tag": "span",
+          "w": 16,
+          "h": 16
+        },
+        "data-director-camera-fov-help-badge": {
+          "attr": "data-director-camera-fov-help-badge",
+          "count": 1,
+          "tag": "span",
+          "w": 16,
+          "h": 16
+        },
+        "data-director-camera-fov-help-tooltip": {
+          "attr": "data-director-camera-fov-help-tooltip",
+          "count": 1,
+          "tag": "span",
+          "w": 208,
+          "h": 68
+        },
+        "data-director-camera-fov-slider": {
+          "attr": "data-director-camera-fov-slider",
+          "count": 1,
+          "tag": "div",
+          "w": 170,
+          "h": 20
+        },
+        "data-director-camera-fov-fill": {
+          "attr": "data-director-camera-fov-fill",
+          "count": 1,
+          "tag": "div",
+          "w": 63,
+          "h": 4
+        },
+        "data-director-camera-fov-knob": {
+          "attr": "data-director-camera-fov-knob",
+          "count": 1,
+          "tag": "div",
+          "w": 12,
+          "h": 12
+        },
+        "data-director-camera-fov": {
+          "attr": "data-director-camera-fov",
+          "count": 1,
+          "tag": "input",
+          "w": 170,
+          "h": 20
+        },
+        "data-director-camera-fov-number": {
+          "attr": "data-director-camera-fov-number",
+          "count": 1,
+          "tag": "input",
+          "w": 49,
+          "h": 28
+        },
+        "data-director-camera-fov-readout": {
+          "attr": "data-director-camera-fov-readout",
+          "count": 1,
+          "tag": "input",
+          "w": 49,
+          "h": 28
+        },
+        "data-director-camera-look-at-mode": {
+          "attr": "data-director-camera-look-at-mode",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-camera-look-at-object": {
+          "attr": "data-director-camera-look-at-object",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-camera-target-coordinates": {
+          "attr": "data-director-camera-target-coordinates",
+          "count": 1,
+          "tag": "div",
+          "w": 248,
+          "h": 60
+        },
+        "data-director-camera-target-derived": {
+          "attr": "data-director-camera-target-derived",
+          "count": 1,
+          "tag": "div",
+          "w": 248,
+          "h": 60
+        },
+        "data-director-camera-follow-state": {
+          "attr": "data-director-camera-follow-state",
+          "count": 1,
+          "tag": "span",
+          "w": 1,
+          "h": 1
+        },
+        "data-director-camera-preset-panel": {
+          "attr": "data-director-camera-preset-panel",
+          "count": 1,
+          "tag": "div",
+          "w": 304,
+          "h": 292
+        },
+        "data-director-camera-preset-panel-mode": {
+          "attr": "data-director-camera-preset-panel-mode",
+          "count": 1,
+          "tag": "div",
+          "w": 304,
+          "h": 292
+        },
+        "data-director-camera-preset-mode": {
+          "attr": "data-director-camera-preset-mode",
+          "count": 1,
+          "tag": "div",
+          "w": 278,
+          "h": 32
+        },
+        "data-director-camera-preset-mode-option": {
+          "attr": "data-director-camera-preset-mode-option",
+          "count": 2,
+          "tag": "button",
+          "w": 134,
+          "h": 26
+        },
+        "data-director-camera-preset-option": {
+          "attr": "data-director-camera-preset-option",
+          "count": 7,
+          "tag": "button",
+          "w": 136,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-camera-follow-state",
+        "data-director-camera-follow-target",
+        "data-director-camera-fov",
+        "data-director-camera-fov-field",
+        "data-director-camera-fov-fill",
+        "data-director-camera-fov-help",
+        "data-director-camera-fov-help-badge",
+        "data-director-camera-fov-help-tooltip",
+        "data-director-camera-fov-knob",
+        "data-director-camera-fov-number",
+        "data-director-camera-fov-readout",
+        "data-director-camera-fov-slider",
+        "data-director-camera-look-at-mode",
+        "data-director-camera-look-at-object",
+        "data-director-camera-motion-new",
+        "data-director-camera-preset-mode",
+        "data-director-camera-preset-mode-option",
+        "data-director-camera-preset-option",
+        "data-director-camera-preset-panel",
+        "data-director-camera-preset-panel-mode",
+        "data-director-camera-preview",
+        "data-director-camera-preview-canvas",
+        "data-director-camera-preview-expand",
+        "data-director-camera-preview-fov",
+        "data-director-camera-preview-state",
+        "data-director-camera-switch",
+        "data-director-camera-tab",
+        "data-director-camera-tabs",
+        "data-director-camera-target-coordinates",
+        "data-director-camera-target-derived",
+        "data-director-shot-end",
+        "data-director-shot-id",
+        "data-director-shot-inspector",
+        "data-director-shot-name",
+        "data-director-shot-range",
+        "data-director-shot-start"
+      ],
+      "markersThatDisappeared": [
+        "data-director-character-tab",
+        "data-director-character-tabs"
+      ],
+      "gate": {
+        "moved": [
+          {
+            "key": "directorTimelineTrackList",
+            "top": 12,
+            "left": 0,
+            "maxTop": 19
+          }
+        ],
+        "fired": true,
+        "partial": [
+          {
+            "key": "directorTimelineTrackList",
+            "top": 12,
+            "left": 0,
+            "maxTop": 19
+          }
+        ],
+        "toEnd": [],
+        "verdict": "partial-scroll"
+      }
+    },
+    "motion-path-menu@720": {
+      "err": null,
+      "panelSelector": "[data-director-motion-path-menu]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-motion-path-menu": {
+          "attr": "data-director-motion-path-menu",
+          "count": 1,
+          "tag": "div",
+          "w": 176,
+          "h": 204
+        },
+        "data-director-motion-path-free-draw": {
+          "attr": "data-director-motion-path-free-draw",
+          "count": 1,
+          "tag": "div",
+          "w": 166,
+          "h": 25
+        },
+        "data-director-motion-path-draw-tool": {
+          "attr": "data-director-motion-path-draw-tool",
+          "count": 2,
+          "tag": "button",
+          "w": 166,
+          "h": 32
+        },
+        "data-director-motion-path-preset": {
+          "attr": "data-director-motion-path-preset",
+          "count": 3,
+          "tag": "button",
+          "w": 166,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-motion-path-draw-tool",
+        "data-director-motion-path-free-draw",
+        "data-director-motion-path-menu",
+        "data-director-motion-path-preset"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "crowd-panel@720": {
+      "err": null,
+      "panelSelector": "[data-director-crowd-panel]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-crowd-panel": {
+          "attr": "data-director-crowd-panel",
+          "count": 1,
+          "tag": "div",
+          "w": 272,
+          "h": 208
+        },
+        "data-director-crowd-count": {
+          "attr": "data-director-crowd-count",
+          "count": 1,
+          "tag": "span",
+          "w": 26,
+          "h": 15
+        },
+        "data-director-crowd-rows": {
+          "attr": "data-director-crowd-rows",
+          "count": 1,
+          "tag": "input",
+          "w": 111,
+          "h": 32
+        },
+        "data-director-crowd-columns": {
+          "attr": "data-director-crowd-columns",
+          "count": 1,
+          "tag": "input",
+          "w": 111,
+          "h": 32
+        },
+        "data-director-crowd-spacing": {
+          "attr": "data-director-crowd-spacing",
+          "count": 1,
+          "tag": "input",
+          "w": 246,
+          "h": 32
+        },
+        "data-director-crowd-action": {
+          "attr": "data-director-crowd-action",
+          "count": 2,
+          "tag": "button",
+          "w": 46,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-crowd-action",
+        "data-director-crowd-columns",
+        "data-director-crowd-count",
+        "data-director-crowd-panel",
+        "data-director-crowd-rows",
+        "data-director-crowd-spacing"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "phone-vcam-panel@720": {
+      "err": null,
+      "panelSelector": "[data-director-phone-vcam-panel]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-phone-vcam-panel": {
+          "attr": "data-director-phone-vcam-panel",
+          "count": 1,
+          "tag": "section",
+          "w": 340,
+          "h": 322
+        },
+        "data-director-phone-vcam-status": {
+          "attr": "data-director-phone-vcam-status",
+          "count": 1,
+          "tag": "section",
+          "w": 340,
+          "h": 322
+        },
+        "data-director-phone-vcam-mode": {
+          "attr": "data-director-phone-vcam-mode",
+          "count": 1,
+          "tag": "section",
+          "w": 340,
+          "h": 322
+        },
+        "data-director-phone-vcam-local-preview": {
+          "attr": "data-director-phone-vcam-local-preview",
+          "count": 1,
+          "tag": "span",
+          "w": 50,
+          "h": 20
+        },
+        "data-director-phone-vcam-connect": {
+          "attr": "data-director-phone-vcam-connect",
+          "count": 1,
+          "tag": "button",
+          "w": 109,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-phone-vcam-connect",
+        "data-director-phone-vcam-local-preview",
+        "data-director-phone-vcam-mode",
+        "data-director-phone-vcam-panel",
+        "data-director-phone-vcam-status"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "model-library-panel@720": {
+      "err": null,
+      "panelSelector": "[data-director-model-library-panel]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-model-library-panel": {
+          "attr": "data-director-model-library-panel",
+          "count": 1,
+          "tag": "div",
+          "w": 500,
+          "h": 330
+        },
+        "data-director-model-library-local-input": {
+          "attr": "data-director-model-library-local-input",
+          "count": 1,
+          "tag": "input",
+          "w": 1,
+          "h": 1
+        },
+        "data-director-model-library-tab": {
+          "attr": "data-director-model-library-tab",
+          "count": 5,
+          "tag": "button",
+          "w": 100,
+          "h": 39
+        },
+        "data-director-model-library-search": {
+          "attr": "data-director-model-library-search",
+          "count": 1,
+          "tag": "input",
+          "w": 453,
+          "h": 17
+        },
+        "data-director-model-library-preview-panel": {
+          "attr": "data-director-model-library-preview-panel",
+          "count": 1,
+          "tag": "div",
+          "w": 498,
+          "h": 72
+        },
+        "data-director-model-library-preview-asset-id": {
+          "attr": "data-director-model-library-preview-asset-id",
+          "count": 7,
+          "tag": "div",
+          "w": 498,
+          "h": 72
+        },
+        "data-director-model-library-preview-name": {
+          "attr": "data-director-model-library-preview-name",
+          "count": 1,
+          "tag": "p",
+          "w": 322,
+          "h": 17
+        },
+        "data-director-model-library-preview-name-value": {
+          "attr": "data-director-model-library-preview-name-value",
+          "count": 1,
+          "tag": "p",
+          "w": 322,
+          "h": 17
+        },
+        "data-director-model-library-preview-add": {
+          "attr": "data-director-model-library-preview-add",
+          "count": 1,
+          "tag": "button",
+          "w": 72,
+          "h": 28
+        },
+        "data-director-model-library-card": {
+          "attr": "data-director-model-library-card",
+          "count": 3,
+          "tag": "article",
+          "w": 85,
+          "h": 95
+        },
+        "data-director-model-library-add": {
+          "attr": "data-director-model-library-add",
+          "count": 3,
+          "tag": "article",
+          "w": 85,
+          "h": 95
+        },
+        "data-director-model-library-asset-id": {
+          "attr": "data-director-model-library-asset-id",
+          "count": 3,
+          "tag": "article",
+          "w": 85,
+          "h": 95
+        },
+        "data-director-model-library-preview": {
+          "attr": "data-director-model-library-preview",
+          "count": 3,
+          "tag": "span",
+          "w": 64,
+          "h": 64
+        },
+        "data-director-model-library-preview-trigger": {
+          "attr": "data-director-model-library-preview-trigger",
+          "count": 3,
+          "tag": "button",
+          "w": 20,
+          "h": 20
+        }
+      },
+      "newMarkerNames": [
+        "data-director-model-library-add",
+        "data-director-model-library-asset-id",
+        "data-director-model-library-card",
+        "data-director-model-library-local-input",
+        "data-director-model-library-panel",
+        "data-director-model-library-preview",
+        "data-director-model-library-preview-add",
+        "data-director-model-library-preview-asset-id",
+        "data-director-model-library-preview-name",
+        "data-director-model-library-preview-name-value",
+        "data-director-model-library-preview-panel",
+        "data-director-model-library-preview-trigger",
+        "data-director-model-library-search",
+        "data-director-model-library-tab"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "model-library-preview-panel@720": {
+      "err": null,
+      "panelSelector": "[data-director-model-library-preview-panel]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-model-library-panel": {
+          "attr": "data-director-model-library-panel",
+          "count": 1,
+          "tag": "div",
+          "w": 500,
+          "h": 330
+        },
+        "data-director-model-library-local-input": {
+          "attr": "data-director-model-library-local-input",
+          "count": 1,
+          "tag": "input",
+          "w": 1,
+          "h": 1
+        },
+        "data-director-model-library-tab": {
+          "attr": "data-director-model-library-tab",
+          "count": 5,
+          "tag": "button",
+          "w": 100,
+          "h": 39
+        },
+        "data-director-model-library-search": {
+          "attr": "data-director-model-library-search",
+          "count": 1,
+          "tag": "input",
+          "w": 453,
+          "h": 17
+        },
+        "data-director-model-library-preview-panel": {
+          "attr": "data-director-model-library-preview-panel",
+          "count": 1,
+          "tag": "div",
+          "w": 498,
+          "h": 72
+        },
+        "data-director-model-library-preview-asset-id": {
+          "attr": "data-director-model-library-preview-asset-id",
+          "count": 7,
+          "tag": "div",
+          "w": 498,
+          "h": 72
+        },
+        "data-director-model-library-preview-name": {
+          "attr": "data-director-model-library-preview-name",
+          "count": 1,
+          "tag": "p",
+          "w": 322,
+          "h": 17
+        },
+        "data-director-model-library-preview-name-value": {
+          "attr": "data-director-model-library-preview-name-value",
+          "count": 1,
+          "tag": "p",
+          "w": 322,
+          "h": 17
+        },
+        "data-director-model-library-preview-add": {
+          "attr": "data-director-model-library-preview-add",
+          "count": 1,
+          "tag": "button",
+          "w": 72,
+          "h": 28
+        },
+        "data-director-model-library-card": {
+          "attr": "data-director-model-library-card",
+          "count": 3,
+          "tag": "article",
+          "w": 85,
+          "h": 95
+        },
+        "data-director-model-library-add": {
+          "attr": "data-director-model-library-add",
+          "count": 3,
+          "tag": "article",
+          "w": 85,
+          "h": 95
+        },
+        "data-director-model-library-asset-id": {
+          "attr": "data-director-model-library-asset-id",
+          "count": 3,
+          "tag": "article",
+          "w": 85,
+          "h": 95
+        },
+        "data-director-model-library-preview": {
+          "attr": "data-director-model-library-preview",
+          "count": 3,
+          "tag": "span",
+          "w": 64,
+          "h": 64
+        },
+        "data-director-model-library-preview-trigger": {
+          "attr": "data-director-model-library-preview-trigger",
+          "count": 3,
+          "tag": "button",
+          "w": 20,
+          "h": 20
+        }
+      },
+      "newMarkerNames": [
+        "data-director-model-library-add",
+        "data-director-model-library-asset-id",
+        "data-director-model-library-card",
+        "data-director-model-library-local-input",
+        "data-director-model-library-panel",
+        "data-director-model-library-preview",
+        "data-director-model-library-preview-add",
+        "data-director-model-library-preview-asset-id",
+        "data-director-model-library-preview-name",
+        "data-director-model-library-preview-name-value",
+        "data-director-model-library-preview-panel",
+        "data-director-model-library-preview-trigger",
+        "data-director-model-library-search",
+        "data-director-model-library-tab"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "export-panel@1150": {
+      "err": null,
+      "panelSelector": "[data-director-export-panel]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-export-panel": {
+          "attr": "data-director-export-panel",
+          "count": 1,
+          "tag": "section",
+          "w": 286,
+          "h": 267
+        },
+        "data-director-export-status": {
+          "attr": "data-director-export-status",
+          "count": 1,
+          "tag": "section",
+          "w": 286,
+          "h": 267
+        },
+        "data-director-export-duration": {
+          "attr": "data-director-export-duration",
+          "count": 1,
+          "tag": "input",
+          "w": 228,
+          "h": 17
+        },
+        "data-director-export-aspect": {
+          "attr": "data-director-export-aspect",
+          "count": 3,
+          "tag": "button",
+          "w": 84,
+          "h": 32
+        },
+        "data-director-export-progress": {
+          "attr": "data-director-export-progress",
+          "count": 1,
+          "tag": "div",
+          "w": 260,
+          "h": 4
+        },
+        "data-director-export-submit": {
+          "attr": "data-director-export-submit",
+          "count": 1,
+          "tag": "button",
+          "w": 260,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-export-aspect",
+        "data-director-export-duration",
+        "data-director-export-panel",
+        "data-director-export-progress",
+        "data-director-export-status",
+        "data-director-export-submit"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "tree-context-menu@1150": {
+      "err": null,
+      "panelSelector": "[data-director-tree-context-menu]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-tree-context-menu": {
+          "attr": "data-director-tree-context-menu",
+          "count": 1,
+          "tag": "div",
+          "w": 128,
+          "h": 170
+        },
+        "data-director-tree-context-action": {
+          "attr": "data-director-tree-context-action",
+          "count": 5,
+          "tag": "button",
+          "w": 126,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-tree-context-action",
+        "data-director-tree-context-menu"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "panorama-flyout@1150": {
+      "err": null,
+      "panelSelector": "[data-director-panorama-flyout]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-panorama-flyout": {
+          "attr": "data-director-panorama-flyout",
+          "count": 1,
+          "tag": "div",
+          "w": 232,
+          "h": 134
+        },
+        "data-director-flyout-title": {
+          "attr": "data-director-flyout-title",
+          "count": 1,
+          "tag": "span",
+          "w": 232,
+          "h": 24
+        },
+        "data-director-panorama-option": {
+          "attr": "data-director-panorama-option",
+          "count": 3,
+          "tag": "button",
+          "w": 218,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-flyout-title",
+        "data-director-panorama-flyout",
+        "data-director-panorama-option"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "aspect-flyout@1150": {
+      "err": null,
+      "panelSelector": "[data-director-aspect-flyout]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-aspect-flyout": {
+          "attr": "data-director-aspect-flyout",
+          "count": 1,
+          "tag": "div",
+          "w": 232,
+          "h": 350
+        },
+        "data-director-flyout-title": {
+          "attr": "data-director-flyout-title",
+          "count": 1,
+          "tag": "span",
+          "w": 232,
+          "h": 24
+        },
+        "data-director-aspect-grid": {
+          "attr": "data-director-aspect-grid",
+          "count": 1,
+          "tag": "div",
+          "w": 232,
+          "h": 326
+        },
+        "data-director-aspect-option": {
+          "attr": "data-director-aspect-option",
+          "count": 7,
+          "tag": "button",
+          "w": 103,
+          "h": 72
+        },
+        "data-director-aspect-glyph": {
+          "attr": "data-director-aspect-glyph",
+          "count": 7,
+          "tag": "span",
+          "w": 16,
+          "h": 11
+        }
+      },
+      "newMarkerNames": [
+        "data-director-aspect-flyout",
+        "data-director-aspect-glyph",
+        "data-director-aspect-grid",
+        "data-director-aspect-option",
+        "data-director-flyout-title"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "add-character-flyout@1150": {
+      "err": null,
+      "panelSelector": "[data-director-character-flyout]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-character-flyout": {
+          "attr": "data-director-character-flyout",
+          "count": 1,
+          "tag": "div",
+          "w": 232,
+          "h": 390
+        },
+        "data-director-flyout-title": {
+          "attr": "data-director-flyout-title",
+          "count": 1,
+          "tag": "span",
+          "w": 232,
+          "h": 24
+        },
+        "data-director-character-option": {
+          "attr": "data-director-character-option",
+          "count": 11,
+          "tag": "button",
+          "w": 218,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-flyout-title"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "ai-import-modal@1150": {
+      "err": null,
+      "panelSelector": "[data-director-ai-import-modal]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-ai-import-backdrop": {
+          "attr": "data-director-ai-import-backdrop",
+          "count": 1,
+          "tag": "div",
+          "w": 1280,
+          "h": 1150
+        },
+        "data-director-ai-import-modal": {
+          "attr": "data-director-ai-import-modal",
+          "count": 1,
+          "tag": "div",
+          "w": 560,
+          "h": 539
+        },
+        "data-director-ai-import-close": {
+          "attr": "data-director-ai-import-close",
+          "count": 1,
+          "tag": "button",
+          "w": 24,
+          "h": 24
+        },
+        "data-director-ai-import-tab": {
+          "attr": "data-director-ai-import-tab",
+          "count": 2,
+          "tag": "button",
+          "w": 48,
+          "h": 21
+        },
+        "data-director-ai-import-dropzone": {
+          "attr": "data-director-ai-import-dropzone",
+          "count": 1,
+          "tag": "div",
+          "w": 518,
+          "h": 240
+        },
+        "data-director-coverage-option": {
+          "attr": "data-director-coverage-option",
+          "count": 2,
+          "tag": "button",
+          "w": 255,
+          "h": 74
+        },
+        "data-director-ai-import-generate": {
+          "attr": "data-director-ai-import-generate",
+          "count": 1,
+          "tag": "button",
+          "w": 96,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-ai-import-backdrop",
+        "data-director-ai-import-close",
+        "data-director-ai-import-dropzone",
+        "data-director-ai-import-generate",
+        "data-director-ai-import-modal",
+        "data-director-ai-import-tab",
+        "data-director-coverage-option"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "geometry-submenu@1150": {
+      "err": null,
+      "panelSelector": "[data-director-geometry-submenu]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-character-flyout": {
+          "attr": "data-director-character-flyout",
+          "count": 1,
+          "tag": "div",
+          "w": 232,
+          "h": 390
+        },
+        "data-director-flyout-title": {
+          "attr": "data-director-flyout-title",
+          "count": 1,
+          "tag": "span",
+          "w": 232,
+          "h": 24
+        },
+        "data-director-character-option": {
+          "attr": "data-director-character-option",
+          "count": 11,
+          "tag": "button",
+          "w": 218,
+          "h": 32
+        },
+        "data-director-geometry-submenu": {
+          "attr": "data-director-geometry-submenu",
+          "count": 1,
+          "tag": "div",
+          "w": 204,
+          "h": 270
+        },
+        "data-director-geometry-option": {
+          "attr": "data-director-geometry-option",
+          "count": 8,
+          "tag": "button",
+          "w": 190,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-flyout-title",
+        "data-director-geometry-option",
+        "data-director-geometry-submenu"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "crowd-dialog@1150": {
+      "err": null,
+      "panelSelector": "[data-director-crowd-dialog]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-character-flyout": {
+          "attr": "data-director-character-flyout",
+          "count": 1,
+          "tag": "div",
+          "w": 232,
+          "h": 390
+        },
+        "data-director-flyout-title": {
+          "attr": "data-director-flyout-title",
+          "count": 1,
+          "tag": "span",
+          "w": 232,
+          "h": 24
+        },
+        "data-director-character-option": {
+          "attr": "data-director-character-option",
+          "count": 11,
+          "tag": "button",
+          "w": 218,
+          "h": 32
+        },
+        "data-director-crowd-dialog": {
+          "attr": "data-director-crowd-dialog",
+          "count": 1,
+          "tag": "div",
+          "w": 220,
+          "h": 208
+        },
+        "data-director-crowd-count": {
+          "attr": "data-director-crowd-count",
+          "count": 1,
+          "tag": "span",
+          "w": 29,
+          "h": 17
+        },
+        "data-director-crowd-input": {
+          "attr": "data-director-crowd-input",
+          "count": 3,
+          "tag": "input",
+          "w": 93,
+          "h": 28
+        },
+        "data-director-crowd-cancel": {
+          "attr": "data-director-crowd-cancel",
+          "count": 1,
+          "tag": "button",
+          "w": 48,
+          "h": 28
+        },
+        "data-director-crowd-confirm": {
+          "attr": "data-director-crowd-confirm",
+          "count": 1,
+          "tag": "button",
+          "w": 48,
+          "h": 28
+        }
+      },
+      "newMarkerNames": [
+        "data-director-character-flyout",
+        "data-director-character-option",
+        "data-director-crowd-cancel",
+        "data-director-crowd-confirm",
+        "data-director-crowd-count",
+        "data-director-crowd-dialog",
+        "data-director-crowd-input",
+        "data-director-flyout-title"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "camera-fov-help-tooltip@1150": {
+      "err": null,
+      "panelSelector": "[data-director-camera-fov-help-tooltip]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-camera-tabs": {
+          "attr": "data-director-camera-tabs",
+          "count": 1,
+          "tag": "nav",
+          "w": 280,
+          "h": 57
+        },
+        "data-director-camera-tab": {
+          "attr": "data-director-camera-tab",
+          "count": 3,
+          "tag": "button",
+          "w": 50,
+          "h": 28
+        },
+        "data-director-camera-motion-new": {
+          "attr": "data-director-camera-motion-new",
+          "count": 1,
+          "tag": "span",
+          "w": 38,
+          "h": 20
+        },
+        "data-director-camera-preview": {
+          "attr": "data-director-camera-preview",
+          "count": 1,
+          "tag": "section",
+          "w": 280,
+          "h": 168
+        },
+        "data-director-camera-preview-canvas": {
+          "attr": "data-director-camera-preview-canvas",
+          "count": 1,
+          "tag": "canvas",
+          "w": 240,
+          "h": 135
+        },
+        "data-director-camera-preview-fov": {
+          "attr": "data-director-camera-preview-fov",
+          "count": 1,
+          "tag": "div",
+          "w": 52,
+          "h": 13
+        },
+        "data-director-camera-preview-expand": {
+          "attr": "data-director-camera-preview-expand",
+          "count": 1,
+          "tag": "button",
+          "w": 24,
+          "h": 24
+        },
+        "data-director-camera-preview-state": {
+          "attr": "data-director-camera-preview-state",
+          "count": 1,
+          "tag": "span",
+          "w": 1,
+          "h": 1
+        },
+        "data-director-camera-switch": {
+          "attr": "data-director-camera-switch",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-camera-follow-target": {
+          "attr": "data-director-camera-follow-target",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-shot-inspector": {
+          "attr": "data-director-shot-inspector",
+          "count": 1,
+          "tag": "section",
+          "w": 248,
+          "h": 175
+        },
+        "data-director-shot-range": {
+          "attr": "data-director-shot-range",
+          "count": 1,
+          "tag": "span",
+          "w": 42,
+          "h": 15
+        },
+        "data-director-shot-id": {
+          "attr": "data-director-shot-id",
+          "count": 1,
+          "tag": "span",
+          "w": 42,
+          "h": 15
+        },
+        "data-director-shot-name": {
+          "attr": "data-director-shot-name",
+          "count": 1,
+          "tag": "input",
+          "w": 224,
+          "h": 32
+        },
+        "data-director-shot-start": {
+          "attr": "data-director-shot-start",
+          "count": 1,
+          "tag": "input",
+          "w": 109,
+          "h": 32
+        },
+        "data-director-shot-end": {
+          "attr": "data-director-shot-end",
+          "count": 1,
+          "tag": "input",
+          "w": 109,
+          "h": 32
+        },
+        "data-director-camera-fov-field": {
+          "attr": "data-director-camera-fov-field",
+          "count": 1,
+          "tag": "div",
+          "w": 248,
+          "h": 56
+        },
+        "data-director-camera-fov-help": {
+          "attr": "data-director-camera-fov-help",
+          "count": 1,
+          "tag": "span",
+          "w": 16,
+          "h": 16
+        },
+        "data-director-camera-fov-help-badge": {
+          "attr": "data-director-camera-fov-help-badge",
+          "count": 1,
+          "tag": "span",
+          "w": 16,
+          "h": 16
+        },
+        "data-director-camera-fov-help-tooltip": {
+          "attr": "data-director-camera-fov-help-tooltip",
+          "count": 1,
+          "tag": "span",
+          "w": 208,
+          "h": 68
+        },
+        "data-director-camera-fov-slider": {
+          "attr": "data-director-camera-fov-slider",
+          "count": 1,
+          "tag": "div",
+          "w": 170,
+          "h": 20
+        },
+        "data-director-camera-fov-fill": {
+          "attr": "data-director-camera-fov-fill",
+          "count": 1,
+          "tag": "div",
+          "w": 63,
+          "h": 4
+        },
+        "data-director-camera-fov-knob": {
+          "attr": "data-director-camera-fov-knob",
+          "count": 1,
+          "tag": "div",
+          "w": 12,
+          "h": 12
+        },
+        "data-director-camera-fov": {
+          "attr": "data-director-camera-fov",
+          "count": 1,
+          "tag": "input",
+          "w": 170,
+          "h": 20
+        },
+        "data-director-camera-fov-number": {
+          "attr": "data-director-camera-fov-number",
+          "count": 1,
+          "tag": "input",
+          "w": 49,
+          "h": 28
+        },
+        "data-director-camera-fov-readout": {
+          "attr": "data-director-camera-fov-readout",
+          "count": 1,
+          "tag": "input",
+          "w": 49,
+          "h": 28
+        },
+        "data-director-camera-look-at-mode": {
+          "attr": "data-director-camera-look-at-mode",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-camera-look-at-object": {
+          "attr": "data-director-camera-look-at-object",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-camera-target-coordinates": {
+          "attr": "data-director-camera-target-coordinates",
+          "count": 1,
+          "tag": "div",
+          "w": 248,
+          "h": 60
+        },
+        "data-director-camera-target-derived": {
+          "attr": "data-director-camera-target-derived",
+          "count": 1,
+          "tag": "div",
+          "w": 248,
+          "h": 60
+        },
+        "data-director-camera-follow-state": {
+          "attr": "data-director-camera-follow-state",
+          "count": 1,
+          "tag": "span",
+          "w": 1,
+          "h": 1
+        }
+      },
+      "newMarkerNames": [
+        "data-director-camera-follow-state",
+        "data-director-camera-follow-target",
+        "data-director-camera-fov",
+        "data-director-camera-fov-field",
+        "data-director-camera-fov-fill",
+        "data-director-camera-fov-help",
+        "data-director-camera-fov-help-badge",
+        "data-director-camera-fov-help-tooltip",
+        "data-director-camera-fov-knob",
+        "data-director-camera-fov-number",
+        "data-director-camera-fov-readout",
+        "data-director-camera-fov-slider",
+        "data-director-camera-look-at-mode",
+        "data-director-camera-look-at-object",
+        "data-director-camera-motion-new",
+        "data-director-camera-preview",
+        "data-director-camera-preview-canvas",
+        "data-director-camera-preview-expand",
+        "data-director-camera-preview-fov",
+        "data-director-camera-preview-state",
+        "data-director-camera-switch",
+        "data-director-camera-tab",
+        "data-director-camera-tabs",
+        "data-director-camera-target-coordinates",
+        "data-director-camera-target-derived",
+        "data-director-shot-end",
+        "data-director-shot-id",
+        "data-director-shot-inspector",
+        "data-director-shot-name",
+        "data-director-shot-range",
+        "data-director-shot-start"
+      ],
+      "markersThatDisappeared": [
+        "data-director-character-tab",
+        "data-director-character-tabs"
+      ],
+      "gate": {
+        "moved": [
+          {
+            "key": "min-h-0",
+            "top": 374,
+            "left": 0,
+            "maxTop": 374
+          }
+        ],
+        "fired": true,
+        "partial": [],
+        "toEnd": [
+          {
+            "key": "min-h-0",
+            "top": 374,
+            "left": 0,
+            "maxTop": 374
+          }
+        ],
+        "verdict": "scrolled-to-end"
+      }
+    },
+    "camera-preset-panel@1150": {
+      "err": null,
+      "panelSelector": "[data-director-camera-preset-panel]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-camera-tabs": {
+          "attr": "data-director-camera-tabs",
+          "count": 1,
+          "tag": "nav",
+          "w": 280,
+          "h": 57
+        },
+        "data-director-camera-tab": {
+          "attr": "data-director-camera-tab",
+          "count": 3,
+          "tag": "button",
+          "w": 50,
+          "h": 28
+        },
+        "data-director-camera-motion-new": {
+          "attr": "data-director-camera-motion-new",
+          "count": 1,
+          "tag": "span",
+          "w": 38,
+          "h": 20
+        },
+        "data-director-camera-preview": {
+          "attr": "data-director-camera-preview",
+          "count": 1,
+          "tag": "section",
+          "w": 280,
+          "h": 168
+        },
+        "data-director-camera-preview-canvas": {
+          "attr": "data-director-camera-preview-canvas",
+          "count": 1,
+          "tag": "canvas",
+          "w": 240,
+          "h": 135
+        },
+        "data-director-camera-preview-fov": {
+          "attr": "data-director-camera-preview-fov",
+          "count": 1,
+          "tag": "div",
+          "w": 52,
+          "h": 13
+        },
+        "data-director-camera-preview-expand": {
+          "attr": "data-director-camera-preview-expand",
+          "count": 1,
+          "tag": "button",
+          "w": 24,
+          "h": 24
+        },
+        "data-director-camera-preview-state": {
+          "attr": "data-director-camera-preview-state",
+          "count": 1,
+          "tag": "span",
+          "w": 1,
+          "h": 1
+        },
+        "data-director-camera-switch": {
+          "attr": "data-director-camera-switch",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-camera-follow-target": {
+          "attr": "data-director-camera-follow-target",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-shot-inspector": {
+          "attr": "data-director-shot-inspector",
+          "count": 1,
+          "tag": "section",
+          "w": 248,
+          "h": 175
+        },
+        "data-director-shot-range": {
+          "attr": "data-director-shot-range",
+          "count": 1,
+          "tag": "span",
+          "w": 42,
+          "h": 15
+        },
+        "data-director-shot-id": {
+          "attr": "data-director-shot-id",
+          "count": 1,
+          "tag": "span",
+          "w": 42,
+          "h": 15
+        },
+        "data-director-shot-name": {
+          "attr": "data-director-shot-name",
+          "count": 1,
+          "tag": "input",
+          "w": 224,
+          "h": 32
+        },
+        "data-director-shot-start": {
+          "attr": "data-director-shot-start",
+          "count": 1,
+          "tag": "input",
+          "w": 109,
+          "h": 32
+        },
+        "data-director-shot-end": {
+          "attr": "data-director-shot-end",
+          "count": 1,
+          "tag": "input",
+          "w": 109,
+          "h": 32
+        },
+        "data-director-camera-fov-field": {
+          "attr": "data-director-camera-fov-field",
+          "count": 1,
+          "tag": "div",
+          "w": 248,
+          "h": 56
+        },
+        "data-director-camera-fov-help": {
+          "attr": "data-director-camera-fov-help",
+          "count": 1,
+          "tag": "span",
+          "w": 16,
+          "h": 16
+        },
+        "data-director-camera-fov-help-badge": {
+          "attr": "data-director-camera-fov-help-badge",
+          "count": 1,
+          "tag": "span",
+          "w": 16,
+          "h": 16
+        },
+        "data-director-camera-fov-help-tooltip": {
+          "attr": "data-director-camera-fov-help-tooltip",
+          "count": 1,
+          "tag": "span",
+          "w": 208,
+          "h": 68
+        },
+        "data-director-camera-fov-slider": {
+          "attr": "data-director-camera-fov-slider",
+          "count": 1,
+          "tag": "div",
+          "w": 170,
+          "h": 20
+        },
+        "data-director-camera-fov-fill": {
+          "attr": "data-director-camera-fov-fill",
+          "count": 1,
+          "tag": "div",
+          "w": 63,
+          "h": 4
+        },
+        "data-director-camera-fov-knob": {
+          "attr": "data-director-camera-fov-knob",
+          "count": 1,
+          "tag": "div",
+          "w": 12,
+          "h": 12
+        },
+        "data-director-camera-fov": {
+          "attr": "data-director-camera-fov",
+          "count": 1,
+          "tag": "input",
+          "w": 170,
+          "h": 20
+        },
+        "data-director-camera-fov-number": {
+          "attr": "data-director-camera-fov-number",
+          "count": 1,
+          "tag": "input",
+          "w": 49,
+          "h": 28
+        },
+        "data-director-camera-fov-readout": {
+          "attr": "data-director-camera-fov-readout",
+          "count": 1,
+          "tag": "input",
+          "w": 49,
+          "h": 28
+        },
+        "data-director-camera-look-at-mode": {
+          "attr": "data-director-camera-look-at-mode",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-camera-look-at-object": {
+          "attr": "data-director-camera-look-at-object",
+          "count": 1,
+          "tag": "select",
+          "w": 248,
+          "h": 28
+        },
+        "data-director-camera-target-coordinates": {
+          "attr": "data-director-camera-target-coordinates",
+          "count": 1,
+          "tag": "div",
+          "w": 248,
+          "h": 60
+        },
+        "data-director-camera-target-derived": {
+          "attr": "data-director-camera-target-derived",
+          "count": 1,
+          "tag": "div",
+          "w": 248,
+          "h": 60
+        },
+        "data-director-camera-follow-state": {
+          "attr": "data-director-camera-follow-state",
+          "count": 1,
+          "tag": "span",
+          "w": 1,
+          "h": 1
+        },
+        "data-director-camera-preset-panel": {
+          "attr": "data-director-camera-preset-panel",
+          "count": 1,
+          "tag": "div",
+          "w": 304,
+          "h": 292
+        },
+        "data-director-camera-preset-panel-mode": {
+          "attr": "data-director-camera-preset-panel-mode",
+          "count": 1,
+          "tag": "div",
+          "w": 304,
+          "h": 292
+        },
+        "data-director-camera-preset-mode": {
+          "attr": "data-director-camera-preset-mode",
+          "count": 1,
+          "tag": "div",
+          "w": 278,
+          "h": 32
+        },
+        "data-director-camera-preset-mode-option": {
+          "attr": "data-director-camera-preset-mode-option",
+          "count": 2,
+          "tag": "button",
+          "w": 134,
+          "h": 26
+        },
+        "data-director-camera-preset-option": {
+          "attr": "data-director-camera-preset-option",
+          "count": 7,
+          "tag": "button",
+          "w": 136,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-camera-follow-state",
+        "data-director-camera-follow-target",
+        "data-director-camera-fov",
+        "data-director-camera-fov-field",
+        "data-director-camera-fov-fill",
+        "data-director-camera-fov-help",
+        "data-director-camera-fov-help-badge",
+        "data-director-camera-fov-help-tooltip",
+        "data-director-camera-fov-knob",
+        "data-director-camera-fov-number",
+        "data-director-camera-fov-readout",
+        "data-director-camera-fov-slider",
+        "data-director-camera-look-at-mode",
+        "data-director-camera-look-at-object",
+        "data-director-camera-motion-new",
+        "data-director-camera-preset-mode",
+        "data-director-camera-preset-mode-option",
+        "data-director-camera-preset-option",
+        "data-director-camera-preset-panel",
+        "data-director-camera-preset-panel-mode",
+        "data-director-camera-preview",
+        "data-director-camera-preview-canvas",
+        "data-director-camera-preview-expand",
+        "data-director-camera-preview-fov",
+        "data-director-camera-preview-state",
+        "data-director-camera-switch",
+        "data-director-camera-tab",
+        "data-director-camera-tabs",
+        "data-director-camera-target-coordinates",
+        "data-director-camera-target-derived",
+        "data-director-shot-end",
+        "data-director-shot-id",
+        "data-director-shot-inspector",
+        "data-director-shot-name",
+        "data-director-shot-range",
+        "data-director-shot-start"
+      ],
+      "markersThatDisappeared": [
+        "data-director-character-tab",
+        "data-director-character-tabs"
+      ],
+      "gate": {
+        "moved": [
+          {
+            "key": "directorTimelineTrackList",
+            "top": 12,
+            "left": 0,
+            "maxTop": 19
+          }
+        ],
+        "fired": true,
+        "partial": [
+          {
+            "key": "directorTimelineTrackList",
+            "top": 12,
+            "left": 0,
+            "maxTop": 19
+          }
+        ],
+        "toEnd": [],
+        "verdict": "partial-scroll"
+      }
+    },
+    "motion-path-menu@1150": {
+      "err": null,
+      "panelSelector": "[data-director-motion-path-menu]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-motion-path-menu": {
+          "attr": "data-director-motion-path-menu",
+          "count": 1,
+          "tag": "div",
+          "w": 176,
+          "h": 204
+        },
+        "data-director-motion-path-free-draw": {
+          "attr": "data-director-motion-path-free-draw",
+          "count": 1,
+          "tag": "div",
+          "w": 166,
+          "h": 25
+        },
+        "data-director-motion-path-draw-tool": {
+          "attr": "data-director-motion-path-draw-tool",
+          "count": 2,
+          "tag": "button",
+          "w": 166,
+          "h": 32
+        },
+        "data-director-motion-path-preset": {
+          "attr": "data-director-motion-path-preset",
+          "count": 3,
+          "tag": "button",
+          "w": 166,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-motion-path-draw-tool",
+        "data-director-motion-path-free-draw",
+        "data-director-motion-path-menu",
+        "data-director-motion-path-preset"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "crowd-panel@1150": {
+      "err": null,
+      "panelSelector": "[data-director-crowd-panel]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-crowd-panel": {
+          "attr": "data-director-crowd-panel",
+          "count": 1,
+          "tag": "div",
+          "w": 272,
+          "h": 208
+        },
+        "data-director-crowd-count": {
+          "attr": "data-director-crowd-count",
+          "count": 1,
+          "tag": "span",
+          "w": 26,
+          "h": 15
+        },
+        "data-director-crowd-rows": {
+          "attr": "data-director-crowd-rows",
+          "count": 1,
+          "tag": "input",
+          "w": 111,
+          "h": 32
+        },
+        "data-director-crowd-columns": {
+          "attr": "data-director-crowd-columns",
+          "count": 1,
+          "tag": "input",
+          "w": 111,
+          "h": 32
+        },
+        "data-director-crowd-spacing": {
+          "attr": "data-director-crowd-spacing",
+          "count": 1,
+          "tag": "input",
+          "w": 246,
+          "h": 32
+        },
+        "data-director-crowd-action": {
+          "attr": "data-director-crowd-action",
+          "count": 2,
+          "tag": "button",
+          "w": 46,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-crowd-action",
+        "data-director-crowd-columns",
+        "data-director-crowd-count",
+        "data-director-crowd-panel",
+        "data-director-crowd-rows",
+        "data-director-crowd-spacing"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "phone-vcam-panel@1150": {
+      "err": null,
+      "panelSelector": "[data-director-phone-vcam-panel]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-phone-vcam-panel": {
+          "attr": "data-director-phone-vcam-panel",
+          "count": 1,
+          "tag": "section",
+          "w": 340,
+          "h": 322
+        },
+        "data-director-phone-vcam-status": {
+          "attr": "data-director-phone-vcam-status",
+          "count": 1,
+          "tag": "section",
+          "w": 340,
+          "h": 322
+        },
+        "data-director-phone-vcam-mode": {
+          "attr": "data-director-phone-vcam-mode",
+          "count": 1,
+          "tag": "section",
+          "w": 340,
+          "h": 322
+        },
+        "data-director-phone-vcam-local-preview": {
+          "attr": "data-director-phone-vcam-local-preview",
+          "count": 1,
+          "tag": "span",
+          "w": 50,
+          "h": 20
+        },
+        "data-director-phone-vcam-connect": {
+          "attr": "data-director-phone-vcam-connect",
+          "count": 1,
+          "tag": "button",
+          "w": 109,
+          "h": 32
+        }
+      },
+      "newMarkerNames": [
+        "data-director-phone-vcam-connect",
+        "data-director-phone-vcam-local-preview",
+        "data-director-phone-vcam-mode",
+        "data-director-phone-vcam-panel",
+        "data-director-phone-vcam-status"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "model-library-panel@1150": {
+      "err": null,
+      "panelSelector": "[data-director-model-library-panel]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-model-library-panel": {
+          "attr": "data-director-model-library-panel",
+          "count": 1,
+          "tag": "div",
+          "w": 500,
+          "h": 360
+        },
+        "data-director-model-library-local-input": {
+          "attr": "data-director-model-library-local-input",
+          "count": 1,
+          "tag": "input",
+          "w": 1,
+          "h": 1
+        },
+        "data-director-model-library-tab": {
+          "attr": "data-director-model-library-tab",
+          "count": 5,
+          "tag": "button",
+          "w": 100,
+          "h": 39
+        },
+        "data-director-model-library-search": {
+          "attr": "data-director-model-library-search",
+          "count": 1,
+          "tag": "input",
+          "w": 453,
+          "h": 17
+        },
+        "data-director-model-library-preview-panel": {
+          "attr": "data-director-model-library-preview-panel",
+          "count": 1,
+          "tag": "div",
+          "w": 498,
+          "h": 72
+        },
+        "data-director-model-library-preview-asset-id": {
+          "attr": "data-director-model-library-preview-asset-id",
+          "count": 7,
+          "tag": "div",
+          "w": 498,
+          "h": 72
+        },
+        "data-director-model-library-preview-name": {
+          "attr": "data-director-model-library-preview-name",
+          "count": 1,
+          "tag": "p",
+          "w": 322,
+          "h": 17
+        },
+        "data-director-model-library-preview-name-value": {
+          "attr": "data-director-model-library-preview-name-value",
+          "count": 1,
+          "tag": "p",
+          "w": 322,
+          "h": 17
+        },
+        "data-director-model-library-preview-add": {
+          "attr": "data-director-model-library-preview-add",
+          "count": 1,
+          "tag": "button",
+          "w": 72,
+          "h": 28
+        },
+        "data-director-model-library-card": {
+          "attr": "data-director-model-library-card",
+          "count": 3,
+          "tag": "article",
+          "w": 85,
+          "h": 95
+        },
+        "data-director-model-library-add": {
+          "attr": "data-director-model-library-add",
+          "count": 3,
+          "tag": "article",
+          "w": 85,
+          "h": 95
+        },
+        "data-director-model-library-asset-id": {
+          "attr": "data-director-model-library-asset-id",
+          "count": 3,
+          "tag": "article",
+          "w": 85,
+          "h": 95
+        },
+        "data-director-model-library-preview": {
+          "attr": "data-director-model-library-preview",
+          "count": 3,
+          "tag": "span",
+          "w": 64,
+          "h": 64
+        },
+        "data-director-model-library-preview-trigger": {
+          "attr": "data-director-model-library-preview-trigger",
+          "count": 3,
+          "tag": "button",
+          "w": 20,
+          "h": 20
+        }
+      },
+      "newMarkerNames": [
+        "data-director-model-library-add",
+        "data-director-model-library-asset-id",
+        "data-director-model-library-card",
+        "data-director-model-library-local-input",
+        "data-director-model-library-panel",
+        "data-director-model-library-preview",
+        "data-director-model-library-preview-add",
+        "data-director-model-library-preview-asset-id",
+        "data-director-model-library-preview-name",
+        "data-director-model-library-preview-name-value",
+        "data-director-model-library-preview-panel",
+        "data-director-model-library-preview-trigger",
+        "data-director-model-library-search",
+        "data-director-model-library-tab"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "model-library-preview-panel@1150": {
+      "err": null,
+      "panelSelector": "[data-director-model-library-preview-panel]",
+      "panelSelectorMatched": 1,
+      "newMarkers": {
+        "data-director-model-library-panel": {
+          "attr": "data-director-model-library-panel",
+          "count": 1,
+          "tag": "div",
+          "w": 500,
+          "h": 360
+        },
+        "data-director-model-library-local-input": {
+          "attr": "data-director-model-library-local-input",
+          "count": 1,
+          "tag": "input",
+          "w": 1,
+          "h": 1
+        },
+        "data-director-model-library-tab": {
+          "attr": "data-director-model-library-tab",
+          "count": 5,
+          "tag": "button",
+          "w": 100,
+          "h": 39
+        },
+        "data-director-model-library-search": {
+          "attr": "data-director-model-library-search",
+          "count": 1,
+          "tag": "input",
+          "w": 453,
+          "h": 17
+        },
+        "data-director-model-library-preview-panel": {
+          "attr": "data-director-model-library-preview-panel",
+          "count": 1,
+          "tag": "div",
+          "w": 498,
+          "h": 72
+        },
+        "data-director-model-library-preview-asset-id": {
+          "attr": "data-director-model-library-preview-asset-id",
+          "count": 7,
+          "tag": "div",
+          "w": 498,
+          "h": 72
+        },
+        "data-director-model-library-preview-name": {
+          "attr": "data-director-model-library-preview-name",
+          "count": 1,
+          "tag": "p",
+          "w": 322,
+          "h": 17
+        },
+        "data-director-model-library-preview-name-value": {
+          "attr": "data-director-model-library-preview-name-value",
+          "count": 1,
+          "tag": "p",
+          "w": 322,
+          "h": 17
+        },
+        "data-director-model-library-preview-add": {
+          "attr": "data-director-model-library-preview-add",
+          "count": 1,
+          "tag": "button",
+          "w": 72,
+          "h": 28
+        },
+        "data-director-model-library-card": {
+          "attr": "data-director-model-library-card",
+          "count": 3,
+          "tag": "article",
+          "w": 85,
+          "h": 95
+        },
+        "data-director-model-library-add": {
+          "attr": "data-director-model-library-add",
+          "count": 3,
+          "tag": "article",
+          "w": 85,
+          "h": 95
+        },
+        "data-director-model-library-asset-id": {
+          "attr": "data-director-model-library-asset-id",
+          "count": 3,
+          "tag": "article",
+          "w": 85,
+          "h": 95
+        },
+        "data-director-model-library-preview": {
+          "attr": "data-director-model-library-preview",
+          "count": 3,
+          "tag": "span",
+          "w": 64,
+          "h": 64
+        },
+        "data-director-model-library-preview-trigger": {
+          "attr": "data-director-model-library-preview-trigger",
+          "count": 3,
+          "tag": "button",
+          "w": 20,
+          "h": 20
+        }
+      },
+      "newMarkerNames": [
+        "data-director-model-library-add",
+        "data-director-model-library-asset-id",
+        "data-director-model-library-card",
+        "data-director-model-library-local-input",
+        "data-director-model-library-panel",
+        "data-director-model-library-preview",
+        "data-director-model-library-preview-add",
+        "data-director-model-library-preview-asset-id",
+        "data-director-model-library-preview-name",
+        "data-director-model-library-preview-name-value",
+        "data-director-model-library-preview-panel",
+        "data-director-model-library-preview-trigger",
+        "data-director-model-library-search",
+        "data-director-model-library-tab"
+      ],
+      "markersThatDisappeared": [],
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    }
+  },
+  "checks": {
+    "the-default-marker-surface-is-derived-and-viewport-invariant": {
+      "ok": true,
+      "detail": {
+        "distinctMarkers": {
+          "720": 175,
+          "1150": 175
+        },
+        "triggers": [
+          "data-director-camera-preset-trigger",
+          "data-director-crowd-trigger",
+          "data-director-export-trigger",
+          "data-director-model-library-trigger",
+          "data-director-phone-vcam-trigger"
+        ],
+        "sampleOfTheSurface": [
+          "data-director-active-gesture",
+          "data-director-active-shot-id",
+          "data-director-add-camera",
+          "data-director-add-keyframe",
+          "data-director-add-track",
+          "data-director-add-track-manual",
+          "data-director-aspect",
+          "data-director-aspect-frame",
+          "data-director-aspect-ratio",
+          "data-director-auto-keyframe",
+          "data-director-bottom-bar",
+          "data-director-camera-preset-trigger"
+        ]
+      },
+      "note": "derived by walking the DOM, not by reading a list"
+    },
+    "the-trigger-panel-pairing-heuristic-is-falsy": {
+      "ok": true,
+      "detail": {
+        "triggersInTheDefaultState": [
+          "data-director-camera-preset-trigger",
+          "data-director-crowd-trigger",
+          "data-director-export-trigger",
+          "data-director-model-library-trigger",
+          "data-director-phone-vcam-trigger"
+        ],
+        "pairsFound": [],
+        "why": "the panels are not in the DOM until something is opened, so at the default state the pairing has nothing to pair with. This is why the census has to be a before/after diff, not a static list."
+      },
+      "note": "recorded so the next batch does not spend a run rediscovering it"
+    },
+    "every-open-path-actually-brings-in-at-least-one-marker": {
+      "ok": true,
+      "detail": {
+        "pathsThatBroughtInNothing": {},
+        "counts": {
+          "add-character-flyout": {
+            "720": 3,
+            "1150": 3
+          },
+          "ai-import-modal": {
+            "720": 7,
+            "1150": 7
+          },
+          "aspect-flyout": {
+            "720": 5,
+            "1150": 5
+          },
+          "camera-fov-help-tooltip": {
+            "720": 31,
+            "1150": 31
+          },
+          "camera-preset-panel": {
+            "720": 36,
+            "1150": 36
+          },
+          "crowd-dialog": {
+            "720": 8,
+            "1150": 8
+          },
+          "crowd-panel": {
+            "720": 6,
+            "1150": 6
+          },
+          "export-panel": {
+            "720": 6,
+            "1150": 6
+          },
+          "geometry-submenu": {
+            "720": 5,
+            "1150": 5
+          },
+          "model-library-panel": {
+            "720": 14,
+            "1150": 14
+          },
+          "model-library-preview-panel": {
+            "720": 14,
+            "1150": 14
+          },
+          "motion-path-menu": {
+            "720": 4,
+            "1150": 4
+          },
+          "panorama-flyout": {
+            "720": 3,
+            "1150": 3
+          },
+          "phone-vcam-panel": {
+            "720": 5,
+            "1150": 5
+          },
+          "tree-context-menu": {
+            "720": 2,
+            "1150": 2
+          }
+        },
+        "errs": {}
+      },
+      "note": "an empty set is not evidence — it is the signature of a probe that did not do anything"
+    },
+    "the-conditional-surface-does-not-depend-on-the-viewport": {
+      "ok": true,
+      "detail": {
+        "pathsWhoseDiffChangedWithHeight": {},
+        "surfaceSize": 95
+      },
+      "note": "if the diff moved with the viewport, the surface would be a layout artefact rather than a set of things being brought in"
+    },
+    "no-hand-written-panel-selector-is-stale": {
+      "ok": true,
+      "detail": {
+        "selectorsThatMatchedNothing": {},
+        "selectorsChecked": 15,
+        "coveredByTheDerivedSurface": [
+          "data-director-ai-import-modal",
+          "data-director-aspect-flyout",
+          "data-director-camera-fov-help-tooltip",
+          "data-director-camera-preset-panel",
+          "data-director-character-flyout",
+          "data-director-crowd-dialog",
+          "data-director-crowd-panel",
+          "data-director-export-panel",
+          "data-director-geometry-submenu",
+          "data-director-model-library-panel",
+          "data-director-model-library-preview-panel",
+          "data-director-motion-path-menu",
+          "data-director-panorama-flyout",
+          "data-director-phone-vcam-panel",
+          "data-director-tree-context-menu"
+        ]
+      },
+      "note": "626's PANELS/OVERLAYS is the one hand-written list left; this is the test that would catch it going stale"
+    },
+    "every-conditional-marker-is-owned-by-a-measured-path": {
+      "ok": true,
+      "detail": {
+        "conditionalSurfaceSize": 95,
+        "panelRootsFound": 15,
+        "panelRootsExpected": 15,
+        "panelRoots": [
+          "data-director-ai-import-modal",
+          "data-director-aspect-flyout",
+          "data-director-camera-fov-help-tooltip",
+          "data-director-camera-preset-panel",
+          "data-director-character-flyout",
+          "data-director-crowd-dialog",
+          "data-director-crowd-panel",
+          "data-director-export-panel",
+          "data-director-geometry-submenu",
+          "data-director-model-library-panel",
+          "data-director-model-library-preview-panel",
+          "data-director-motion-path-menu",
+          "data-director-panorama-flyout",
+          "data-director-phone-vcam-panel",
+          "data-director-tree-context-menu"
+        ],
+        "interiorsOfThosePanels": 80,
+        "interiorsWithMoreThanOneOwningPath": [
+          "data-director-camera-follow-state  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-follow-target  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-fov  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-fov-field  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-fov-fill  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-fov-help  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-fov-help-badge  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-fov-knob  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-fov-number  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-fov-readout  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-fov-slider  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-look-at-mode  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-look-at-object  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-motion-new  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-preview  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-preview-canvas  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-preview-expand  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-preview-fov  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-preview-state  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-switch  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-tab  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-tabs  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-target-coordinates  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-camera-target-derived  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-character-option  <- ['add-character-flyout', 'crowd-dialog', 'geometry-submenu']",
+          "data-director-crowd-count  <- ['crowd-dialog', 'crowd-panel']",
+          "data-director-flyout-title  <- ['add-character-flyout', 'aspect-flyout', 'crowd-dialog', 'geometry-submenu', 'panorama-flyout']",
+          "data-director-model-library-add  <- ['model-library-panel', 'model-library-preview-panel']",
+          "data-director-model-library-asset-id  <- ['model-library-panel', 'model-library-preview-panel']",
+          "data-director-model-library-card  <- ['model-library-panel', 'model-library-preview-panel']",
+          "data-director-model-library-local-input  <- ['model-library-panel', 'model-library-preview-panel']",
+          "data-director-model-library-preview  <- ['model-library-panel', 'model-library-preview-panel']",
+          "data-director-model-library-preview-add  <- ['model-library-panel', 'model-library-preview-panel']",
+          "data-director-model-library-preview-asset-id  <- ['model-library-panel', 'model-library-preview-panel']",
+          "data-director-model-library-preview-name  <- ['model-library-panel', 'model-library-preview-panel']",
+          "data-director-model-library-preview-name-value  <- ['model-library-panel', 'model-library-preview-panel']",
+          "data-director-model-library-preview-trigger  <- ['model-library-panel', 'model-library-preview-panel']",
+          "data-director-model-library-search  <- ['model-library-panel', 'model-library-preview-panel']",
+          "data-director-model-library-tab  <- ['model-library-panel', 'model-library-preview-panel']",
+          "data-director-shot-end  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-shot-id  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-shot-inspector  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-shot-name  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-shot-range  <- ['camera-fov-help-tooltip', 'camera-preset-panel']",
+          "data-director-shot-start  <- ['camera-fov-help-tooltip', 'camera-preset-panel']"
+        ],
+        "orphans": [],
+        "theMisreadingThatWasCorrected": "the first draft called these 80 a 'coverage gap' and the fraction 0.158 read like a score. They are the INSIDE of the 15 panels 626/648 already censused — 648 counted live controls, not panel elements, so a marker that is not a panel root is not an untested thing.",
+        "whatIsActuallyLeftOpen": "nothing here. The real open question is whether some conditional surface exists OUTSIDE these 15 open paths, and this batch cannot answer that without trying more paths — which is the next batch, not a finding.",
+        "theDeliverable": {
+          "export-panel": [
+            "data-director-export-aspect",
+            "data-director-export-duration",
+            "data-director-export-panel",
+            "data-director-export-progress",
+            "data-director-export-status",
+            "data-director-export-submit"
+          ],
+          "tree-context-menu": [
+            "data-director-tree-context-action",
+            "data-director-tree-context-menu"
+          ],
+          "panorama-flyout": [
+            "data-director-flyout-title",
+            "data-director-panorama-flyout",
+            "data-director-panorama-option"
+          ],
+          "aspect-flyout": [
+            "data-director-aspect-flyout",
+            "data-director-aspect-glyph",
+            "data-director-aspect-grid",
+            "data-director-aspect-option",
+            "data-director-flyout-title"
+          ],
+          "add-character-flyout": [
+            "data-director-character-flyout",
+            "data-director-character-option",
+            "data-director-flyout-title"
+          ],
+          "ai-import-modal": [
+            "data-director-ai-import-backdrop",
+            "data-director-ai-import-close",
+            "data-director-ai-import-dropzone",
+            "data-director-ai-import-generate",
+            "data-director-ai-import-modal",
+            "data-director-ai-import-tab",
+            "data-director-coverage-option"
+          ],
+          "geometry-submenu": [
+            "data-director-character-flyout",
+            "data-director-character-option",
+            "data-director-flyout-title",
+            "data-director-geometry-option",
+            "data-director-geometry-submenu"
+          ],
+          "crowd-dialog": [
+            "data-director-character-flyout",
+            "data-director-character-option",
+            "data-director-crowd-cancel",
+            "data-director-crowd-confirm",
+            "data-director-crowd-count",
+            "data-director-crowd-dialog",
+            "data-director-crowd-input",
+            "data-director-flyout-title"
+          ],
+          "camera-fov-help-tooltip": [
+            "data-director-camera-follow-state",
+            "data-director-camera-follow-target",
+            "data-director-camera-fov",
+            "data-director-camera-fov-field",
+            "data-director-camera-fov-fill",
+            "data-director-camera-fov-help",
+            "data-director-camera-fov-help-badge",
+            "data-director-camera-fov-help-tooltip",
+            "data-director-camera-fov-knob",
+            "data-director-camera-fov-number",
+            "data-director-camera-fov-readout",
+            "data-director-camera-fov-slider",
+            "data-director-camera-look-at-mode",
+            "data-director-camera-look-at-object",
+            "data-director-camera-motion-new",
+            "data-director-camera-preview",
+            "data-director-camera-preview-canvas",
+            "data-director-camera-preview-expand",
+            "data-director-camera-preview-fov",
+            "data-director-camera-preview-state",
+            "data-director-camera-switch",
+            "data-director-camera-tab",
+            "data-director-camera-tabs",
+            "data-director-camera-target-coordinates",
+            "data-director-camera-target-derived",
+            "data-director-shot-end",
+            "data-director-shot-id",
+            "data-director-shot-inspector",
+            "data-director-shot-name",
+            "data-director-shot-range",
+            "data-director-shot-start"
+          ],
+          "camera-preset-panel": [
+            "data-director-camera-follow-state",
+            "data-director-camera-follow-target",
+            "data-director-camera-fov",
+            "data-director-camera-fov-field",
+            "data-director-camera-fov-fill",
+            "data-director-camera-fov-help",
+            "data-director-camera-fov-help-badge",
+            "data-director-camera-fov-help-tooltip",
+            "data-director-camera-fov-knob",
+            "data-director-camera-fov-number",
+            "data-director-camera-fov-readout",
+            "data-director-camera-fov-slider",
+            "data-director-camera-look-at-mode",
+            "data-director-camera-look-at-object",
+            "data-director-camera-motion-new",
+            "data-director-camera-preset-mode",
+            "data-director-camera-preset-mode-option",
+            "data-director-camera-preset-option",
+            "data-director-camera-preset-panel",
+            "data-director-camera-preset-panel-mode",
+            "data-director-camera-preview",
+            "data-director-camera-preview-canvas",
+            "data-director-camera-preview-expand",
+            "data-director-camera-preview-fov",
+            "data-director-camera-preview-state",
+            "data-director-camera-switch",
+            "data-director-camera-tab",
+            "data-director-camera-tabs",
+            "data-director-camera-target-coordinates",
+            "data-director-camera-target-derived",
+            "data-director-shot-end",
+            "data-director-shot-id",
+            "data-director-shot-inspector",
+            "data-director-shot-name",
+            "data-director-shot-range",
+            "data-director-shot-start"
+          ],
+          "motion-path-menu": [
+            "data-director-motion-path-draw-tool",
+            "data-director-motion-path-free-draw",
+            "data-director-motion-path-menu",
+            "data-director-motion-path-preset"
+          ],
+          "crowd-panel": [
+            "data-director-crowd-action",
+            "data-director-crowd-columns",
+            "data-director-crowd-count",
+            "data-director-crowd-panel",
+            "data-director-crowd-rows",
+            "data-director-crowd-spacing"
+          ],
+          "phone-vcam-panel": [
+            "data-director-phone-vcam-connect",
+            "data-director-phone-vcam-local-preview",
+            "data-director-phone-vcam-mode",
+            "data-director-phone-vcam-panel",
+            "data-director-phone-vcam-status"
+          ],
+          "model-library-panel": [
+            "data-director-model-library-add",
+            "data-director-model-library-asset-id",
+            "data-director-model-library-card",
+            "data-director-model-library-local-input",
+            "data-director-model-library-panel",
+            "data-director-model-library-preview",
+            "data-director-model-library-preview-add",
+            "data-director-model-library-preview-asset-id",
+            "data-director-model-library-preview-name",
+            "data-director-model-library-preview-name-value",
+            "data-director-model-library-preview-panel",
+            "data-director-model-library-preview-trigger",
+            "data-director-model-library-search",
+            "data-director-model-library-tab"
+          ],
+          "model-library-preview-panel": [
+            "data-director-model-library-add",
+            "data-director-model-library-asset-id",
+            "data-director-model-library-card",
+            "data-director-model-library-local-input",
+            "data-director-model-library-panel",
+            "data-director-model-library-preview",
+            "data-director-model-library-preview-add",
+            "data-director-model-library-preview-asset-id",
+            "data-director-model-library-preview-name",
+            "data-director-model-library-preview-name-value",
+            "data-director-model-library-preview-panel",
+            "data-director-model-library-preview-trigger",
+            "data-director-model-library-search",
+            "data-director-model-library-tab"
+          ]
+        }
+      },
+      "note": "the owner map is what the next batch needs: it says which measured panel each un-named marker lives in"
+    },
+    "654s-gate-re-names-exactly-its-own-two-positives-on-fifteen-new-paths": {
+      "ok": true,
+      "detail": {
+        "gateFiredOn": [
+          "camera-fov-help-tooltip",
+          "camera-preset-panel"
+        ],
+        "654sKnownPositives": [
+          "camera-fov-help-tooltip",
+          "camera-preset-panel"
+        ],
+        "pathsItStayedSilentOn": [
+          "add-character-flyout",
+          "ai-import-modal",
+          "aspect-flyout",
+          "crowd-dialog",
+          "crowd-panel",
+          "export-panel",
+          "geometry-submenu",
+          "model-library-panel",
+          "model-library-preview-panel",
+          "motion-path-menu",
+          "panorama-flyout",
+          "phone-vcam-panel",
+          "tree-context-menu"
+        ],
+        "verdicts": {
+          "camera-fov-help-tooltip": {
+            "720": "partial-scroll",
+            "1150": "scrolled-to-end"
+          },
+          "camera-preset-panel": {
+            "720": "partial-scroll",
+            "1150": "partial-scroll"
+          }
+        },
+        "note": "the first version of this check asked the gate to stay silent on all fifteen. Two of them are 654's positives — a gate that stayed silent there would be broken, so the demand itself was wrong.",
+        "whatTheGateCannotContaminateHere": "this census reads WHICH attributes exist, not where anything is, so the scroll does not touch the reading. It would touch any geometry read taken after the same path — which is why the gate is still worth running."
+      },
+      "note": "a gate re-confirmed on a batch it was not built for is worth more than a gate re-run on its own set"
+    }
+  },
+  "ok": true,
+  "checkCount": 7,
+  "failures": [],
+  "totals": {
+    "openPaths": 15,
+    "cells": 30,
+    "defaultSurface": 175,
+    "triggersInDefaultState": 5,
+    "triggerPanelPairs": 0,
+    "conditionalSurface": 95,
+    "panelRoots": 15,
+    "interiorsOfThosePanels": 80
+  }
+}
