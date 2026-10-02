@@ -2563,8 +2563,8 @@ def main() -> int:
           # ⚠️ 897 补齐了类型覆盖 ⇒ 旧理由（覆盖不全）必须**不在**了
           and "**复刻侧类型覆盖仍不全**" not in _ausrc
           # ⚠️ 但「先别改」不许被顺手删掉：理由换成「行为改动、单独一批」
-          and "「**先别改**」这条**仍然成立**" in _ausrc
-          and "**必须单独一批、" in _ausrc)
+          and "「**先别改**」仍然成立" in _ausrc
+          and "**必须单独一批、带自己的验证**做（§77）" in _ausrc)
     # ══════════ 批 895：复刻侧那张表（差异两侧都有据） ══════════
     p895 = ROOT / "scripts/jimeng_probe895_node_tabindex_matrix_ck.py"
     p894 = ROOT / "scripts/jimeng_probe894_node_tabindex_matrix_src.py"
@@ -2651,15 +2651,19 @@ def main() -> int:
           and "**不**回撤" in _ausrc
           and "**选中不布 `0`**" in _ausrc
           and "按 Tab 才把画布装进 Tab 序列" in _ausrc)
-    check("KK.3 ⚠️⚠️ 896 钉出来的**最重要**结论：`nodesFocusable={false}` 是"
-          "**错的杠杆** —— 它让节点**永远**不在 Tab 序列里 ⇒ 画布**再也 Tab "
-          "不到**，而源站是**第一次按 Tab 就进得去** ⇒ 照着「中性态不可达」去翻"
-          "那个开关，做出来的是**另一个产品**。894 当初写「先别改」时只有一句"
-          "原则，现在**必须钉住这个具体形状**，否则下一个人会顺手去翻那个开关",
-          "翻 `nodesFocusable` 开关是错的杠杆" in _ausrc
+    check("KK.3 ⚠️⚠️ 896 钉出来、**898 又更正过**的一条：`nodesFocusable="
+          "{false}` **单独上线**是错的 —— 它让节点**永远**不在 Tab 序列里 ⇒ "
+          "画布**再也 Tab 不到**。⚠️⚠️ 但**898 已把 896 那句「错的杠杆」"
+          "收窄成「错的**单方**方案」**：源站的机制**本身就是**"
+          "「库不接管 `tabindex` + 应用自己 keydown 布」⇒ **`{false}` 正是"
+          "忠实实现的**前半段**，配后半段（布 `0`/`-1` 且**不** preventDefault）"
+          "才成立。⚠️ **不许**把这条读成「这个开关不许碰」—— 那会否掉正确的"
+          "前半段；**也不许**只钉前半段就宣称「已对齐源站」",
+          "错的**单方**方案" in _ausrc
           and "再也 Tab 不到" in _ausrc
-          and "第一次按 Tab 就进得去" in _ausrc
-          and "另一个产品" in _ausrc
+          and "**绝不许单独上线**" in _ausrc
+          and "**`{false}` 正是它的前半段**" in _ausrc
+          and "**不许**把这条读成「这个开关不许碰」" in _ausrc
           and "keydown 布 0/-1 且**不** preventDefault" in _ausrc
           # ⚠️ 反向：894 那条**不许**还留着「策略未测」的旧措辞
           and "而源站那个动态策略的**确切规则未测**" not in _ausrc)
@@ -2690,6 +2694,77 @@ def main() -> int:
           # ⚠️ 反向：895 那句「没测全」的**旧缺口**已被 897 销号
           and "**不许**把复刻侧写成「所有类型节点都恒为 0」" in _ausrc
           and "已被 897 补齐" in _ausrc)
+    check("LL.1 ✅ **898 分清了 897 留下的坑**（各 2/2）：**复刻的节点 wrapper "
+          "确实在 Tab 序列里**。三条独立读法：① **直接读序列**（不靠走查去撞）"
+          "—— 中性态 `wrapper 下标 = [1, 7]`，插 5 个节点后 "
+          "`= [1, 7, 8, 12, 16, 27, 37]`（**7 个 wrapper 对 7 个节点**）；"
+          "② **从空白起走**（= 源站 896 的**同一起点**）—— Tab 第 "
+          "**1/7/8/9/10** 步**就落在 wrapper 上**；③ **点节点本体** —— "
+          "`text`/`image`/`director` 落点**就是** wrapper 本身",
+          '"replica_wrapper_is_in_tab_sequence_898"' in _ausrc
+          and "wrapper 下标 = [1, 7]" in _ausrc
+          and "= [1, 7, 8, 12, 16, 27, 37]" in _ausrc
+          and "7 个 wrapper 对 7 个节点" in _ausrc
+          and "从空白起走" in _ausrc
+          and "源站 896 的**同一起点**" in _ausrc
+          and "**就落在 wrapper 上**" in _ausrc
+          and "activeElement === wrapper" in _ausrc)
+    check("LL.2 ⚠️ `timeline` / `subject` 的**几何中心正好是一个内层 BUTTON** ⇒ "
+          "点中心落点是那个按钮、**不是** wrapper。⚠️ **不许**把它读成"
+          "「这两种节点不可聚焦」—— 它们照样在序列里、Tab 也照样能到"
+          "（走查② 第 10 步就落在 timeline 的 wrapper 上）",
+          "几何中心正好是一个内层 "
+          "BUTTON" in _ausrc
+          and "**不是**「这两种节点不可聚焦」" in _ausrc
+          and "Tab 也照样能到" in _ausrc)
+    check("LL.3 ⚠️⚠️ **898 第一版自己踩的坑必须留痕**：第一版只做"
+          "「**从刚点过的那个节点内部**起走」的 12 步走查，读数 **24/24 全 "
+          "False**，看着**像**「wrapper Tab 不到」—— **那是取样假象**"
+          "（起点在**最后一个节点内部**，往前走只会越过前面那些 wrapper）。"
+          "⇒ 教训：**「走查没走到」≠「走不到」**；要证「走不到」得"
+          "**直接读序列**，或者**从画布外起走**。"
+          "⚠️ 而且 897 当时写下的「**不许**据此下结论」**正好**挡住了这个坑 "
+          "⇒ 判据里「**禁止过度概括**」这一条是**真在起作用的**，"
+          "不是形式条款",
+          "24/24 全 False" in _ausrc
+          and "**那是取样假象**" in _ausrc
+          and "**「走查没走到」≠「走不到」**" in _ausrc
+          and "**直接读序列**" in _ausrc
+          and "**从画布外起走**" in _ausrc
+          and "**正好**挡住了这个坑" in _ausrc)
+    check("LL.4 ⇒ **两侧的差别因此收窄**：**源站和复刻都能用 Tab 走到节点 "
+          "wrapper**。真正的差别**只剩 `tabindex` 的记账**：源站中性态"
+          "**无属性**、按 Tab 才现场布「目标 `0`/其余 `-1`」、**恰好一个** "
+          "`0`；复刻**恒定全部 `0`**。⚠️ 由此**不许**把差异概括成"
+          "「复刻的节点 Tab 不到」（那是**错的**），只许说「**`tabindex` "
+          "记账方式不同**」",
+          "**两侧的差别因此收窄**" in _ausrc
+          and "**源站和复刻都能用 Tab 走到节点 "
+          "wrapper**" in _ausrc
+          and "**只剩 `tabindex` 的记账**" in _ausrc
+          and "**复刻的节点 Tab 不到**" in _ausrc
+          and "**`tabindex` "
+          "记账方式不同**" in _ausrc)
+    # ══════════ 批 898 附带：把「锚点自查」固化成脚本（这个坑踩了两次）══════
+    _anch = ROOT / "scripts/jimeng_check_verifier_anchors.py"
+    _anchsrc = _anch.read_text(encoding="utf-8") if _anch.exists() else ""
+    check("LL.5 ⚠️ 898 把「verifier 锚点自查」**固化成脚本**了"
+          "（`jimeng_check_verifier_anchors.py`）—— 这个坑**踩过两次**，"
+          "而且都是**假绿**（自查说没问题、门禁其实已经红了）。两个成因必须钉住："
+          "① `_ausrc` 是**原始文件文本**，判据里的锚点常写成**相邻字面量拼接**，"
+          "用正则去找 `\"foo \"` 会**找到** ⇒ 必须用 `ast`（解析期就把相邻字面量"
+          "合并成**一个** `Constant`）；② `X not in Y` 的运算符是 **`NotIn`**、"
+          "**不是** `Not`（`Not` 只出现在一元 `not` 上）—— 漏了它会把**反向断言"
+          "当成正向**，那些专门钉「旧措辞不许留在基线里」的判据就会**悄悄失效**",
+          bool(_anchsrc)
+          and "ast.parse" in _anchsrc
+          and "ast.Constant" in _anchsrc
+          and "ast.In" in _anchsrc
+          and "ast.NotIn" in _anchsrc
+          and "**不是** `Not`" in _anchsrc
+          and "相邻字面量拼接" in _anchsrc
+          and "WOULD-FAIL" in _anchsrc
+          and "MISSING" in _anchsrc)
     check("KK.4 896 必须把 894 判据里那个**洞**留痕：`summarize()` 用 "
           "`v[\"tabindex\"].add(...)` **只收集合、丢掉计数**，而「各有几个 `0`」"
           "恰好是区分 roving 的**唯一**判据 ⇒ 894 **读到了**却被**抹平**了。"
