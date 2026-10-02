@@ -21,7 +21,10 @@
 - 顶栏「回到节点」提示条（**仅在视窗内一个节点都没有时出现**，
   详见下方「回到节点」）。
 
-📋 **底部 dock 一共 5 个控件**（2026-10-02 批次 96 逐个读数，屏上坐标随视口固定）：
+📋 ~~**底部 dock 一共 5 个控件**~~
+🔴 **批次 99 订正：dock 是 4 个，不是 5 个**。本表原先把右下角那颗
+**「与 AI 对话」也算进了 dock** —— 那是**取数太粗**（当时用 `y > 640` 筛）造成的，
+**本手册的《快速上手》页一直是写对的**。
 
 | 逐字 | testid | 屏上 | 备注 |
 |---|---|---|---|
@@ -29,7 +32,15 @@
 | **小地图** | `canvas-display-toggle-minimap` | `28×28@48,672` | 按下态开/关 |
 | **显示连线** | `canvas-display-toggle-connections` | `28×28@80,672` | 默认**按下**（连线是开的） |
 | `Zoom options, 60%` | `canvas-zoom-percent` | `48×28@124,672` | 缩放值 |
-| **与 AI 对话** | `canvas-sidecar-launcher` | `118×34@1149,673` | 打开 AI 侧栏 |
+
+**判定 dock 有几个的正解是「查容器的后代按钮」，不是按坐标筛**（批次 99 实测）：
+容器 `[data-testid="canvas-navigation-dock"]` 与 `[data-testid="workspace-bottom-dock-frame"]`
+**同一矩形 `164×36@12,668`**，两者的按钮后代**都是这 4 个**，且 4 个**全部落在该矩形内**。
+
+⚠️ **「与 AI 对话」不属于 dock**，它在右下角、是**独立的一颗**：
+`[data-testid="canvas-sidecar-launcher"]` `118×34@1149,673`，
+父链是 `DIV#canvas-sidecar-launchers` → `DIV#workspace-hydrated-canvas-frame`，
+**不在 dock、不在 dock frame、也不在顶栏**（三个 `contains` 判定全为 `false`）。
 
 ⚠️ **dock 里没有「选择工具」和「抓手工具」两个按钮**，只有**一个**切换钮 ——
 它的 `aria-label` 在两个词之间翻。看到 dock 最左边那个钮写着「抓手工具」，

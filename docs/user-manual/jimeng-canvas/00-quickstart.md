@@ -26,28 +26,60 @@
 上图的分区示意图里，每个分区**实际可点的元素**如下（`data-testid` 一并给出，方便你在
 开发者工具里核对）：
 
-**左栏** `[data-testid="canvas-fixed-toolbar-left-rail"]` —— **9 项**，顺序如下，每项 `40×40`：
+**左栏** `[data-testid="canvas-fixed-toolbar-left-rail"]`（`160×632@12,72`）—— **9 项**，
+顺序如下，**每项 `40×40`、都在 x=16**：
 `文本` ｜ `图片` ｜ `视频` ｜ `音频` ｜ `时间线` ｜ `主体` ｜ `导演台` ｜ `资产库` ｜ `上传`
 
-**底部 dock** `[data-testid="workspace-bottom-dock-frame"]` —— **4 项**：
+📍 9 项的 y 坐标依次是 `193 / 235 / 277 / 319 / 361 / 403 / 445 / 501 / 543`
+—— 注意**第 7 项与第 8 项之间跳了 56**（其余步长都是 42），
+**那里有一条分组缝隙**：前 7 项是「新建节点」，后 2 项是「资产库 / 上传」。
 
-| 逐字 | `data-testid` | 尺寸 |
-|---|---|---|
-| 选择工具（**名字就是当前模式**） | `canvas-pointer-tool-toggle` | `28×28` |
-| 小地图 | `canvas-display-toggle-minimap` | `28×28` |
-| 显示连线 | `canvas-display-toggle-connections` | `28×28` |
-| `Zoom options, 60%` | `canvas-zoom-percent` | `48×28` |
+⚠️ **左栏这 9 个按钮都没有 `data-testid`**（实测 9/9 为 `null`），
+自动化或读屏定位只能**按 `aria-label` 找**（`文本`、`主体`、`上传` …）。
 
-**顶栏** `[data-testid="canvas-top-bar"]` —— **10 个可点元素**，从左到右：
-返回首页（`<a>`）｜ 画布标题 ｜ 项目 ｜ 节点 N ｜ 搜索 ｜ 生成历史 ｜ **分享** ｜ **更多** ｜ 积分 ｜ 用户菜单
+**底部 dock** —— **4 项**（**不是 5 项**）。容器有两个 testid 指同一个矩形：
+`[data-testid="canvas-navigation-dock"]` 与 `[data-testid="workspace-bottom-dock-frame"]`，
+都是 **`164×36@12,668`**：
+
+| 逐字 | `data-testid` | 屏上 | 尺寸 |
+|---|---|---|---|
+| 选择工具（**名字就是当前模式**） | `canvas-pointer-tool-toggle` | `28×28@16,672` | `28×28` |
+| 小地图 | `canvas-display-toggle-minimap` | `28×28@48,672` | `28×28` |
+| 显示连线 | `canvas-display-toggle-connections` | `28×28@80,672` | `28×28` |
+| `Zoom options, 60%` | `canvas-zoom-percent` | `48×28@124,672` | `48×28` |
+
+**顶栏** `[data-testid="canvas-top-bar"]`（`1256×40@12,10`）—— **10 个可点元素**，从左到右：
+
+| # | 逐字 | `data-testid` | 屏上 |
+|---|---|---|---|
+| 1 | 返回首页（`<a>`） | `canvas-project-logo` | `40×40@12,10` |
+| 2 | 画布标题（aria 逐字 `Canvas title: 测试项目`） | `canvas-project-title-trigger` | `68×28@52,16` |
+| 3 | 项目 | `canvas-project-trigger` | `20×28@120,16` |
+| 4 | 节点 N（aria 逐字 `Canvas node summary: 节点 45`） | `canvas-node-summary-trigger` | `34×28@156,16` |
+| 5 | 搜索 | `canvas-panel-launcher` | `28×28@911,16` |
+| 6 | 生成历史 | `canvas-panel-launcher` ⚠️ **与上一项同 testid** | `28×28@943,16` |
+| 7 | **分享** | `canvas-share-trigger` | `60×28@988,16` |
+| 8 | **更多** | `null` | `28×28@1065,16` |
+| 9 | 积分（aria 逐字 `Credits: 805 · 基础会员`） | `canvas-commerce-entry` | `111×28@1109,16` |
+| 10 | 用户菜单 | `canvas-user-menu-trigger` | `28×28@1236,16` |
+
+⚠️ **「搜索」和「生成历史」共用 `canvas-panel-launcher` 这个 testid** ⇒
+按 testid 定位会拿到 **2 个**，必须再按 `aria-label` 或位置区分。
+「更多」则**完全没有** testid。
 
 > ⚠️ **「已保存」不是按钮**，它是画布的保存状态标签（出现在底部状态行里）。
 > 🔴 **批次 81 订正**：上方示意图此前**漏画了「分享」和「更多」**两个按钮，现已补上。
 
 **右下角**：`与 AI 对话`，外层 `120×36`，里面那颗按钮
-`[data-testid="canvas-sidecar-launcher"]` `118×34`。
+`[data-testid="canvas-sidecar-launcher"]` `118×34@1149,673`。
 
-**缩放值按钮的菜单** —— **7 项** `200×292`（每项 `192×36`），逐字：
+⚠️ **它不属于底部 dock、也不属于顶栏**（三个容器的 `contains` 判定都是 `false`）——
+它自己有一层容器 `DIV#canvas-sidecar-launchers`。
+**底部 dock 就是 4 项**，别把这颗算进去。
+
+**缩放值按钮的菜单** —— testid **`canvas-zoom-menu`**（⚠️ **不是** `canvas-context-menu`，
+用后者查会拿到空），`role="menu"`、`200×292@16,368`，
+**7 项** `192×36`（每项 `192×36@20,372…`），逐字：
 放大视图 ⌘+ ｜ 缩小视图 ⌘- ｜ **适配画布 ⇧1** ｜ 缩放至选中项 ⇧2（**未选中任何元素时禁用**）｜
 缩放至50% ｜ 缩放至100% ⌘1 ｜ 缩放至200%
 
@@ -90,6 +122,11 @@
 - 节点选中了却**删不掉**：按的是 **Delete** 吗？请改按 **⌫（Backspace）** ——
   实测按 Delete 完全没反应。见
   [复制、删除与撤销](10-tasks/duplicate-delete-history.md)。
+- **左键点节点完全没反应**（而且**看起来根本没选中**）：先看 dock 第一个按钮写的是
+  「选择工具」还是「**抓手工具**」。写着「抓手工具」就是**现在处于抓手态** ——
+  **左键点节点不选中**（实测单击、双击都不选中），而**右键一切照常**。
+  点一次那个按钮切回「选择工具」即可。见
+  [平移缩放与视图](10-tasks/navigate-canvas.md)。
 - 空白处怎么拖都**框不出选框**：dock 第一个按钮现在是 **抓手工具**（拖动=平移）。
   点一次切回 **选择工具**。见 [平移缩放与视图](10-tasks/navigate-canvas.md)。
 - 误建了节点：**⌘Z** 撤销。见

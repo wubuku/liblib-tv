@@ -352,6 +352,16 @@
    ],
    "refuted_in": "批次 98（SOURCE_OBSERVATIONS.md §4.18.3，**收窄而非推翻**）",
    "reason": "主体节点实测 200×332、**8 项**各 192×36，第 4 位多一个独有的「保存到主体库」（高度正好差一个条目 40）。且「下载」项的禁用原因文案随类型不同：音频=「没有可用的就绪资源」、主体=「请选择至少一个组、文本、图片或视频项」。准确说法是「7 项基础 + 按节点类型插入额外项」；前 3 项与后 3 项仍逐字相同，所以「不用重新找菜单结构」那半句成立"
+  },
+  {
+   "id": "bottom-dock-has-5-controls",
+   "label": "「底部 dock 一共 5 个控件」（批次 96 写在 navigate-canvas.md「入口」一节的 dock 表格，末行把「与 AI 对话」也列了进去）",
+   "patterns": [
+    "底部 dock 一共 5 个控件",
+    "canvas-sidecar-launcher` \\| `118×34@1149,673` \\| 打开 AI 侧栏"
+   ],
+   "refuted_in": "批次 99（SOURCE_OBSERVATIONS.md §4.19.2）",
+   "reason": "dock 是 **4 个**。容器 canvas-navigation-dock 与 workspace-bottom-dock-frame 是同一矩形 164×36@12,668，按钮后代恰好 4 个且全部落在该矩形内（宽 164 装不下 x=1149 的那颗）。canvas-sidecar-launcher（与 AI 对话）118×34@1149,673 的父链是 DIV#canvas-sidecar-launchers，dock/frame/topBar 三个 contains 判定全为 false ⇒ 独立的一颗。批次 96 的取数是 r.y>640 粗筛，同一轮因此还捞进 15 个 Add tags。立规：判断某面板有几个控件要查容器后代，别按坐标筛"
   }
  ]
 }
