@@ -1,0 +1,244 @@
+{
+ "at": "2026-10-02T00:57:35.183Z",
+ "points": [
+  {
+   "asked": 50,
+   "S": 0.5,
+   "label": "Zoom options, 50%",
+   "counterVar": "2",
+   "node": {
+    "screen": [
+     284.44,
+     160
+    ],
+    "canvas": [
+     568.88,
+     320
+    ]
+   },
+   "handleBefore": {
+    "screen": [
+     30,
+     60
+    ],
+    "canvas": [
+     60,
+     120
+    ]
+   },
+   "handleAfter": {
+    "screen": [
+     30,
+     60
+    ],
+    "canvas": [
+     60,
+     120
+    ]
+   },
+   "plusBefore": {
+    "screen": [
+     36,
+     36
+    ],
+    "canvas": [
+     72,
+     72
+    ]
+   },
+   "plusAfter": {
+    "screen": [
+     36,
+     36
+    ],
+    "canvas": [
+     72,
+     72
+    ]
+   },
+   "handleInline": {
+    "left": "0px",
+    "width": "60px",
+    "height": "120px",
+    "inlineStyle": "overflow: visible; pointer-events: none; height: 120px; width: 60px; --octo-flow-node-handle-glyph-x: calc(50% - 22px * var(--octo-canvas-node-chrome-counter-scale, 1)); --octo-flow-node-handle-glyph-y: 50%;"
+   }
+  },
+  {
+   "asked": 100,
+   "S": 1,
+   "label": "Zoom options, 100%",
+   "counterVar": "1",
+   "node": {
+    "screen": [
+     568.88,
+     320
+    ],
+    "canvas": [
+     568.88,
+     320
+    ]
+   },
+   "handleBefore": {
+    "screen": [
+     60,
+     120
+    ],
+    "canvas": [
+     60,
+     120
+    ]
+   },
+   "handleAfter": {
+    "screen": [
+     60,
+     120
+    ],
+    "canvas": [
+     60,
+     120
+    ]
+   },
+   "plusBefore": {
+    "screen": [
+     36,
+     36
+    ],
+    "canvas": [
+     36,
+     36
+    ]
+   },
+   "plusAfter": {
+    "screen": [
+     36,
+     36
+    ],
+    "canvas": [
+     36,
+     36
+    ]
+   },
+   "handleInline": {
+    "left": "0px",
+    "width": "60px",
+    "height": "120px",
+    "inlineStyle": "overflow: visible; pointer-events: none; height: 120px; width: 60px; --octo-flow-node-handle-glyph-x: calc(50% - 22px * var(--octo-canvas-node-chrome-counter-scale, 1)); --octo-flow-node-handle-glyph-y: 50%;"
+   }
+  },
+  {
+   "asked": 60,
+   "S": 0.6,
+   "label": "Zoom options, 60%",
+   "counterVar": "1.6666666666666667",
+   "node": {
+    "screen": [
+     341.33,
+     192
+    ],
+    "canvas": [
+     568.88,
+     320
+    ]
+   },
+   "handleBefore": {
+    "screen": [
+     36,
+     72
+    ],
+    "canvas": [
+     60,
+     120
+    ]
+   },
+   "handleAfter": {
+    "screen": [
+     36,
+     72
+    ],
+    "canvas": [
+     60,
+     120
+    ]
+   },
+   "plusBefore": {
+    "screen": [
+     36,
+     36
+    ],
+    "canvas": [
+     60,
+     60
+    ]
+   },
+   "plusAfter": {
+    "screen": [
+     36,
+     36
+    ],
+    "canvas": [
+     60,
+     60
+    ]
+   },
+   "handleInline": {
+    "left": "0px",
+    "width": "60px",
+    "height": "120px",
+    "inlineStyle": "overflow: visible; pointer-events: none; height: 120px; width: 60px; --octo-flow-node-handle-glyph-x: calc(50% - 22px * var(--octo-canvas-node-chrome-counter-scale, 1)); --octo-flow-node-handle-glyph-y: 50%;"
+   }
+  }
+ ],
+ "verdict": {
+  "handleCanvasAll": [
+   [
+    60,
+    120
+   ],
+   [
+    60,
+    120
+   ],
+   [
+    60,
+    120
+   ]
+  ],
+  "handleCanvasConstant": true,
+  "plusScreenAll": [
+   [
+    36,
+    36
+   ],
+   [
+    36,
+    36
+   ],
+   [
+    36,
+    36
+   ]
+  ],
+  "plusScreenConstant": true,
+  "plusCanvasAll": [
+   [
+    72,
+    72
+   ],
+   [
+    36,
+    36
+   ],
+   [
+    60,
+    60
+   ]
+  ],
+  "counterIsReciprocalAll": true
+ },
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoomLabel": "Zoom options, 60%",
+  "scale": 0.6,
+  "deviation": []
+ }
+}

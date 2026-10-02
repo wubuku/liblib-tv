@@ -1,0 +1,321 @@
+{
+ "at": "2026-10-02T00:51:16.390Z",
+ "z0": {
+  "stable": true,
+  "scale": 0.6,
+  "tries": 1,
+  "label": "Zoom options, 60%"
+ },
+ "zv": {
+  "stable": true,
+  "scale": 0.568085,
+  "tries": 1,
+  "label": "Zoom options, 57%"
+ },
+ "video": {
+  "kind": "视频",
+  "scale": 0.568085,
+  "counterVar": "1.7602995576074039",
+  "counterIsReciprocal": true,
+  "nodeRect": {
+   "screen": [
+    323.17,
+    181.79
+   ],
+   "canvas": [
+    568.88,
+    320
+   ],
+   "at": [
+    0,
+    0
+   ]
+  },
+  "surface": {
+   "screen": [
+    323.17,
+    181.79
+   ],
+   "canvas": [
+    568.88,
+    320
+   ],
+   "at": [
+    0,
+    0
+   ]
+  },
+  "handleDivBefore": {
+   "screen": [
+    34.08,
+    68.17
+   ],
+   "canvas": [
+    60,
+    120
+   ],
+   "at": [
+    -16,
+    57
+   ]
+  },
+  "handleDivAfter": {
+   "screen": [
+    34.09,
+    68.17
+   ],
+   "canvas": [
+    60,
+    120
+   ],
+   "at": [
+    306,
+    57
+   ]
+  },
+  "plusBefore": {
+   "screen": [
+    36,
+    36
+   ],
+   "canvas": [
+    63.37,
+    63.37
+   ],
+   "at": [
+    -47,
+    65
+   ]
+  },
+  "plusAfter": {
+   "screen": [
+    36,
+    36
+   ],
+   "canvas": [
+    63.37,
+    63.37
+   ],
+   "at": [
+    334,
+    65
+   ]
+  },
+  "title": {
+   "screen": [
+    58.13,
+    32
+   ],
+   "canvas": [
+    102.33,
+    56.33
+   ],
+   "at": [
+    0,
+    -31
+   ]
+  },
+  "rename": {
+   "screen": [
+    38.13,
+    32
+   ],
+   "canvas": [
+    67.13,
+    56.33
+   ],
+   "at": [
+    20,
+    -31
+   ]
+  },
+  "tagBtn": {
+   "screen": [
+    24,
+    24
+   ],
+   "canvas": [
+    42.25,
+    42.25
+   ],
+   "at": [
+    299,
+    -31
+   ]
+  }
+ },
+ "shot": {
+  "pad": 10,
+  "clip": {
+   "x": 392,
+   "y": 213,
+   "width": 438,
+   "height": 237
+  },
+  "intruding": [],
+  "bad": [],
+  "outside": [],
+  "wantCount": 4,
+  "union": [
+   402,
+   223,
+   418,
+   217
+  ],
+  "node": [
+   450,
+   254,
+   323,
+   182
+  ]
+ },
+ "zt": {
+  "stable": true,
+  "scale": 0.568085,
+  "tries": 1,
+  "label": "Zoom options, 57%"
+ },
+ "text": {
+  "kind": "文本",
+  "scale": 0.568085,
+  "counterVar": "1.7602995576074039",
+  "counterIsReciprocal": true,
+  "nodeRect": {
+   "screen": [
+    181.79,
+    181.79
+   ],
+   "canvas": [
+    320,
+    320
+   ],
+   "at": [
+    0,
+    0
+   ]
+  },
+  "surface": {
+   "screen": [
+    181.79,
+    181.79
+   ],
+   "canvas": [
+    320,
+    320
+   ],
+   "at": [
+    0,
+    0
+   ]
+  },
+  "handleDivBefore": {
+   "screen": [
+    34.09,
+    68.17
+   ],
+   "canvas": [
+    60,
+    120
+   ],
+   "at": [
+    -17,
+    57
+   ]
+  },
+  "handleDivAfter": {
+   "screen": [
+    34.08,
+    68.17
+   ],
+   "canvas": [
+    60,
+    120
+   ],
+   "at": [
+    165,
+    57
+   ]
+  },
+  "plusBefore": null,
+  "plusAfter": {
+   "screen": [
+    36,
+    36
+   ],
+   "canvas": [
+    63.37,
+    63.37
+   ],
+   "at": [
+    194,
+    65
+   ]
+  },
+  "title": {
+   "screen": [
+    58.13,
+    24
+   ],
+   "canvas": [
+    102.33,
+    42.25
+   ],
+   "at": [
+    0,
+    -32
+   ]
+  },
+  "rename": {
+   "screen": [
+    38.13,
+    24
+   ],
+   "canvas": [
+    67.12,
+    42.25
+   ],
+   "at": [
+    20,
+    -32
+   ]
+  },
+  "tagBtn": {
+   "screen": [
+    24,
+    24
+   ],
+   "canvas": [
+    42.25,
+    42.25
+   ],
+   "at": [
+    158,
+    -32
+   ]
+  }
+ },
+ "compare": {
+  "videoHandleCanvas": [
+   60,
+   120
+  ],
+  "textHandleCanvas": [
+   60,
+   120
+  ],
+  "same": true,
+  "videoScale": 0.568085,
+  "textScale": 0.568085,
+  "legacyDivBy06": [
+   56.8,
+   113.6
+  ],
+  "plusSame": false
+ },
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoomLabel": "Zoom options, 60%",
+  "scale": 0.6,
+  "deviation": []
+ }
+}

@@ -1423,3 +1423,15 @@ screenshots:
     visible_text: 添加节点
     alt: **同一个「主体 1」节点**，改点它**右边**的 ⊕ 弹出的菜单，标题逐字变成「添加节点」；可点项从刚才的「只有音频」变成「图片 / 视频 / 音频」三项（白色），文本 / 时间线 / 主体 / 导演台仍是灰暗禁用态；左下角能看到节点左侧那个 ⊕ 按钮
     sha256: 713c6a9e051c4ff74d167cda0e1ed154e540686eed892e5feb0faa25068583a3
+
+  - file: screenshots/78-empty-video-node-card.png
+    task_id: media-playback
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T08:36:00+08:00
+    verified_locator: 左栏点「视频」新建**自建**视频节点 → 断言 `selected===true` → 连读两次 scale 相同（真实 `0.568085`，标签 `57%`，**不是写死 0.6**）→ 读数 → 裁切 clip={x:392,y:213,w:438,h:237}（按**可见后代并集** `418×217` 再留 10px，**不是** `.react-flow__node` 矩形 `323×182`，后者会把上方 31px 的标题裁掉）→ 守卫：clip 内他人节点 `0`、带语义的非节点 UI（`BUTTON/INPUT/FORM/TEXTAREA/A` 或非空 `aria-label`）`0`、目标元素 `4` 个（标题 / `video-node-empty` / 两个 ⊕）全在 clip 内。**只读观察，没有点那个像播放键的图标** —— 它的 `aria-hidden="true"`、`cursor:grab` 都是读出来的。节点已按 id 精确删除。积分 805 未变。详见 SOURCE_OBSERVATIONS §3.97'
+    visible_text: 视频 2
+    alt: 空视频节点：标题行「视频 2」与标签按钮，卡片内只有一个居中的占位图标，左右各一个 ⊕ 连接按钮，整张卡片没有任何播放、进度或音量控件，底部也没有时间读数
+    sha256: 62aef6e188719c58adbe88501b0951d360d16018042212bd2ebb8c09ad21f901

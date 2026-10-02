@@ -1,0 +1,101 @@
+{
+ "startedAt": "2026-10-02T00:37:04.353Z",
+ "plan": {
+  "x": 640,
+  "y": 260,
+  "top": 153
+ },
+ "probe": {
+  "zoom": 0.568085,
+  "surfaceBox": "568.9x320.0 canvas",
+  "emptyFound": true,
+  "emptyTag": "DIV",
+  "emptyClass": "absolute inset-0 flex items-center justify-center overflow-hidden rounded-canvas-media-node-preview shadow-canvas-node-surface-stroke bg-gradient-to-br from-dreamina-canvas-empty-start to-dreamina-canvas-empty-end",
+  "emptyAria": "暂无视频",
+  "emptyInnerText": "\"\"",
+  "emptyInnerHTML": "<svg class=\"text-dreamina-on-media-text-placeholder\" data-icon=\"canvas-navigation-video\" aria-hidden=\"true\" color=\"currentColor\" fill=\"none\" focusable=\"false\" height=\"24\" viewBox=\"0 0 20 20\" width=\"24\" xmlns=\"http://www.",
+  "emptyBox": "566.9x318.0 canvas",
+  "svgIconBox": "24.0x24.0 canvas",
+  "iconChain": [
+   "path.|cursor=grab|pe=all",
+   "g.|cursor=grab|pe=all",
+   "svg.text-dreamina-on-media-text-pl|cursor=grab|pe=all",
+   "DIV#video-node-empty.absolute inset-0 flex items-ce|cursor=grab|pe=all",
+   "DIV#video-flow-node-surface.group relative flex min-h-32 m|cursor=grab|pe=all",
+   "DIV#rf__node-node_81j1qtdydg.react-flow__node react-flow__n|cursor=grab|pe=all",
+   "DIV.react-flow__nodes|cursor=default|pe=none"
+  ],
+  "paintedText": [
+   {
+    "txt": "视频 2",
+    "paintedW": 38.13,
+    "color": "rgba(255, 255, 255, 0.698)"
+   },
+   {
+    "txt": "No resources: 0 ready, 0 processing, 0 f",
+    "paintedW": 176.1,
+    "color": "rgb(255, 255, 255)"
+   }
+  ],
+  "ariaOnlyText": [],
+  "srOnlyText": [
+   "No resources: 0 ready, 0 processing, 0 failed. Selected."
+  ]
+ },
+ "clip": {
+  "pad": 40,
+  "clip": {
+   "x": 517,
+   "y": 143,
+   "width": 403,
+   "height": 262
+  },
+  "intruding": [],
+  "chrome": [
+   {
+    "t": "DIV视频 2",
+    "at": "562,153"
+   },
+   {
+    "t": "SPAN视频 2",
+    "at": "583,153"
+   },
+   {
+    "t": "SPAN",
+    "at": "856,153"
+   },
+   {
+    "t": "svg",
+    "at": "562,160"
+   },
+   {
+    "t": "path",
+    "at": "569,160"
+   },
+   {
+    "t": "BUTTONRename 视频 2",
+    "at": "583,181"
+   },
+   {
+    "t": "DIV",
+    "at": "520,237"
+   },
+   {
+    "t": "FORM视频",
+    "at": "520,391"
+   }
+  ],
+  "outside": [
+   "[data-testid=flow-node-target-connection-menu-button]",
+   "[data-testid=flow-node-source-connection-menu-button]"
+  ],
+  "wantCount": 4
+ },
+ "error": "clip 内有非节点 UI：DIV视频 2@562,153 / SPAN视频 2@583,153 / SPAN@856,153 / svg@562,160 / path@569,160 / BUTTONRename 视频 2@583,181 / DIV@520,237 / FORM视频@520,391",
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%",
+  "deviation": [],
+  "credits": null
+ }
+}

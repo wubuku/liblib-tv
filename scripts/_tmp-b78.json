@@ -1,0 +1,82 @@
+{
+ "startedAt": "2026-10-02T00:18:25.392Z",
+ "created": [
+  "node_bg1h0cmnze"
+ ],
+ "idle": {
+  "box": "323x182@450,254",
+  "text": "视频 2 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+  "timeLike": null,
+  "playish": [],
+  "visibleItems": [
+   "DIV|video-flow-node-surface|||视频 2|323x182|",
+   "DIV|flow-node-media-stroke||||331x190|",
+   "DIV|flow-node-target-handle||||34x68|",
+   "BUTTON|flow-node-target-connection-menu-button||Create connected node before 视频 2||36x36|",
+   "DIV|flow-node-title|||视频 2|58x32|",
+   "BUTTON|||Rename 视频 2|视频 2|38x32|",
+   "BUTTON|flow-node-selected-tag||Add tags||24x24|",
+   "DIV|flow-node-source-handle||||34x68|",
+   "BUTTON|flow-node-source-connection-menu-button||Create connected node after 视频 2||36x36|",
+   "DIV|video-node-empty|img|暂无视频||322x181|"
+  ],
+  "allItems": 10
+ },
+ "selected": {
+  "box": "323x182@450,254",
+  "text": "视频 2 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+  "timeLike": null,
+  "playish": [],
+  "visibleItems": [
+   "DIV|video-flow-node-surface|||视频 2|323x182|",
+   "DIV|flow-node-media-stroke||||331x190|",
+   "DIV|flow-node-target-handle||||34x68|",
+   "BUTTON|flow-node-target-connection-menu-button||Create connected node before 视频 2||36x36|",
+   "DIV|flow-node-title|||视频 2|58x32|",
+   "BUTTON|||Rename 视频 2|视频 2|38x32|",
+   "BUTTON|flow-node-selected-tag||Add tags||24x24|",
+   "DIV|flow-node-source-handle||||34x68|",
+   "BUTTON|flow-node-source-connection-menu-button||Create connected node after 视频 2||36x36|",
+   "DIV|video-node-empty|img|暂无视频||322x181|"
+  ],
+  "allItems": 10
+ },
+ "hover": {
+  "box": "323x182@450,254",
+  "text": "视频 2 No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+  "timeLike": null,
+  "playish": [],
+  "visibleItems": [
+   "DIV|video-flow-node-surface|||视频 2|323x182|",
+   "DIV|flow-node-media-stroke||||331x190|",
+   "DIV|flow-node-target-handle||||34x68|",
+   "DIV|flow-node-title|||视频 2|58x32|",
+   "BUTTON|flow-node-selected-tag||Add tags||24x24|",
+   "DIV|flow-node-source-handle||||34x68|",
+   "DIV|video-node-empty|img|暂无视频||322x181|"
+  ],
+  "allItems": 7
+ },
+ "end": {
+  "status": "19 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%",
+  "credit": 805,
+  "nodes": 19,
+  "dev": [],
+  "extra": [
+   "node_ay7f1jn45r",
+   "node_w6b1h9fvzw",
+   "node_dt0wpmba0d",
+   "node_kdgnjkfng2",
+   "node_gp499g9p3m",
+   "node_9y4j9jf0qv",
+   "node_gref4sw056",
+   "node_20sb5adarj",
+   "node_y2n170za3z",
+   "node_1c5zafa3zk",
+   "node_fg4h8gry6x",
+   "node_kx0gzwzf7a",
+   "node_97x9w2s8dc"
+  ]
+ }
+}

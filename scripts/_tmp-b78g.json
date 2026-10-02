@@ -1,0 +1,18 @@
+{
+ "startedAt": "2026-10-02T00:41:49.668Z",
+ "plan": {
+  "x": 660,
+  "y": 300
+ },
+ "error": "缩放未静止 ⇒ VOID",
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%",
+  "scaleSettled": {
+   "ok": true,
+   "scale": 0.6,
+   "tries": 1
+  },
+  "deviation": []
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "startedAt": "2026-10-02T00:33:51.612Z",
+ "probe": {
+  "found": false
+ },
+ "clip": {
+  "pad": 16,
+  "clip": {
+   "x": 577,
+   "y": 35,
+   "width": 355,
+   "height": 214
+  },
+  "intruding": [],
+  "outside": [],
+  "wantCount": 0
+ },
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 60%",
+  "deviation": []
+ }
+}
