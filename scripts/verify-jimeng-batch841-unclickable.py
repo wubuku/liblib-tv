@@ -2541,15 +2541,28 @@ def main() -> int:
           and "不许**写成「源站未选中节点一律不可聚焦」" in _ausrc)
     check("HH.4 由此得到的**产品差异**要写进基线（源站中性态节点**不可 Tab "
           "到达** vs 复刻 `nodesFocusable` 默认 true ⇒ **任何时候**可达），"
-          "同时**必须钉住两条不许**：① 源站那个动态策略看着像 roving "
-          "tabindex，但**确切规则未测** ⇒ **不许**照着「中性态 -1」硬设"
+          "同时**必须钉住两条不许**：① **不许**照着「中性态 -1」硬设"
           "（会把 Tab 走查整个改掉，§77）；② 更**不许**据此改复刻的 "
-          "`nodesFocusable`（那是**整个画布 Tab 顺序**的改动）",
+          "`nodesFocusable`（那是**整个画布 Tab 顺序**的改动）。"
+          "⚠️⚠️ **本条第二版（896 把 ① 的理由从「未知」换成了「已知的反例」）**："
+          "894 当初的理由是「策略**确切规则未测**」——**896 测出来了**（"
+          "见 `source_roving_tabindex_policy_896`），所以 ① 的理由**必须跟着"
+          "事实改**成**具体的**那条：`nodesFocusable={false}` 会让画布"
+          "**再也 Tab 不到**，而源站是**第一次按 Tab 就进得去** ⇒ "
+          "**翻这个开关做出来的是另一个产品**。"
+          "⚠️ 但**不许**因为「策略测清了」就把**先别改**这条一起删掉 —— "
+          "**复刻侧类型覆盖仍不全**，且这仍是**整个画布 Tab 顺序**的改动、"
+          "必须单独一批带自己的验证（§77）",
           '"source_nodes_not_tabreachable_in_neutral_state_894"' in _ausrc
           and "不可 Tab 到达" in _ausrc
-          and "**确切规则未测**" in _ausrc
           and "更**不许**据此改复刻的 `nodesFocusable`" in _ausrc
-          and "整个画布 Tab 顺序" in _ausrc)
+          and "整个画布 Tab 顺序" in _ausrc
+          and "整个画布 Tab 顺序" in _ausrc
+          # ⚠️ 反向：894 那句「策略未测」的**理由**已被 896 取代
+          and "而源站那个动态策略的**确切规则未测**" not in _ausrc
+          # ⚠️ 但「先别改」不许被顺手删掉
+          and "**复刻侧类型覆盖仍不全**" in _ausrc
+          and "**这条还没销号**" in _ausrc)
     # ══════════ 批 895：复刻侧那张表（差异两侧都有据） ══════════
     p895 = ROOT / "scripts/jimeng_probe895_node_tabindex_matrix_ck.py"
     p894 = ROOT / "scripts/jimeng_probe894_node_tabindex_matrix_src.py"
@@ -2598,6 +2611,69 @@ def main() -> int:
           and "37 分钟" in _p895
           and "0% CPU" in _p895
           and "判据平移必须连单位一起平移" in _p895)
+    # ══════════ 批 896：roving 策略测出来了（含「开关选错比不改更糟」） ══════════
+    p896 = ROOT / "scripts/jimeng_probe896_roving_tabindex_policy_src.py"
+    _p896 = p896.read_text(encoding="utf-8") if p896.exists() else ""
+    check("KK.1 896 的取证方式必须钉住：仪器 = `MutationObserver(attributes, "
+          "attributeOldValue, attributeFilter:['tabindex'], subtree)` 挂在 "
+          "`.react-flow` 上、**任何交互之前**就挂（否则读不到第一次 Tab 之前"
+          "发生了什么），**外加** `focusin`/`focusout`/`keydown` 监听往**同一个**"
+          "有序日志里记。⚠️ `defaultPrevented` 必须用 892 的取法（**捕获阶段存引用、"
+          "派发结束后再读**）；⚠️ 诊断动作**必须还原**（`finally` 里 "
+          "`disconnect()` + 摘监听）；⚠️ 这一批**刻意不劫持 prototype**",
+          bool(_p896)
+          and "attributeOldValue: true" in _p896
+          and "attributeFilter: ['tabindex']" in _p896
+          and "subtree: true" in _p896
+          and "任何交互之前" in _p896
+          and "mo.disconnect()" in _p896
+          and "finally:" in _p896
+          and "不劫持 prototype" in _p896
+          # 892 的取法要**两样都在**：文档写了 + 代码**真的**存了引用
+          and "捕获阶段只存事件对象的引用" in _p896
+          and "ref: e" in _p896
+          and "派发结束" in _p896)
+    check("KK.2 策略必须以**实测读数**写进基线（不是钉假设措辞）：中性态"
+          "**根本没有 `tabindex` 属性**（`getAttribute`→`None`，`el.tabIndex` "
+          "属性读 DOM 默认 `-1`）；**唯一**触发是 Tab/Shift+Tab 的 **keydown**，"
+          "按下后**先**给目标写 `'0'`、**再**给**其余每个**写 `'-1'`（全画布"
+          "重写）；**不** preventDefault（焦点移动是浏览器原生的）；"
+          "**先布 0 再移焦点**（`focusin` **捕获阶段**已读到 `'0'`）；"
+          "**此后不回撤**（点空白后那个 `0` 仍留在最后 rove 过的节点上）；"
+          "**选中不布 `0`**",
+          '"source_roving_tabindex_policy_896"' in _ausrc
+          and "中性态：所有节点根本没有 `tabindex` 属性" in _ausrc
+          and "布 `0` 的触发只有 Tab / Shift+Tab 的 `keydown`" in _ausrc
+          and "不 preventDefault" in _ausrc
+          and "先布 `0`、再移焦点" in _ausrc
+          and "**不**回撤" in _ausrc
+          and "**选中不布 `0`**" in _ausrc
+          and "按 Tab 才把画布装进 Tab 序列" in _ausrc)
+    check("KK.3 ⚠️⚠️ 896 钉出来的**最重要**结论：`nodesFocusable={false}` 是"
+          "**错的杠杆** —— 它让节点**永远**不在 Tab 序列里 ⇒ 画布**再也 Tab "
+          "不到**，而源站是**第一次按 Tab 就进得去** ⇒ 照着「中性态不可达」去翻"
+          "那个开关，做出来的是**另一个产品**。894 当初写「先别改」时只有一句"
+          "原则，现在**必须钉住这个具体形状**，否则下一个人会顺手去翻那个开关",
+          "翻 `nodesFocusable` 开关是错的杠杆" in _ausrc
+          and "再也 Tab 不到" in _ausrc
+          and "第一次按 Tab 就进得去" in _ausrc
+          and "另一个产品" in _ausrc
+          and "keydown 布 0/-1 且**不** preventDefault" in _ausrc
+          # ⚠️ 反向：894 那条**不许**还留着「策略未测」的旧措辞
+          and "而源站那个动态策略的**确切规则未测**" not in _ausrc)
+    check("KK.4 896 必须把 894 判据里那个**洞**留痕：`summarize()` 用 "
+          "`v[\"tabindex\"].add(...)` **只收集合、丢掉计数**，而「各有几个 `0`」"
+          "恰好是区分 roving 的**唯一**判据 ⇒ 894 **读到了**却被**抹平**了。"
+          "⚠️ 同时钉住两条不许：① 894 的 `after_insert` / `after_insert_blank` / "
+          "`after_select` **跑在 Tab 走查之后**、**不是中性态**，不许当中性读数；"
+          "② **节点总数是易变量**（同 URL 逐轮 74→75→76→77），只钉**关系**",
+          "只收集合、丢掉计数" in _ausrc
+          and "各有几个 0" in _ausrc
+          and "读到了**却被 summarize **抹平**" in _ausrc
+          and "跑在 Tab 走查之后" in _ausrc
+          and "74→75→76→77" in _ausrc
+          and "不许**钉 `n_nodes` 或节点序号" in _ausrc)
+
     check("HH.4 基线里**不许**留一条「仍未解决」跟结论打架：矛盾条目已改名 "
           "`..._RESOLVED_893`，且旧名字**必须已经不在**基线里。"
           "⚠️ 判据要跟上事实（钉假设的措辞会把判据锁死在过时状态），"
