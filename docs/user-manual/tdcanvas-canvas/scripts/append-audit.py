@@ -110,9 +110,25 @@ def main() -> int:
             return 1
 
     target.write_text(merged, encoding="utf-8")
+
+    # M149 新增：写盘后**回读确认**。脚本此前对 `merged`（内存里的字符串）做完语法复查
+    # 就直接写盘、然后打印成功——**中间没有任何一步验证磁盘上真的写成了它**。
+    # 这正是 PUBLISH.md「第一条判据」说的：不假定「命令执行了就等于生效」。
+    # 实测本脚本在只读文件上会抛 PermissionError、exit=1，**失败并不静默**；
+    # 写盘往返一致性也验过（含全角、反斜杠、弯引号、emoji、组合字符，全部一致）。
+    # 所以这层断言不是修 bug，是**把「可靠」变成「可观测」**——成本一行，收益是不用再猜。
+    written = target.read_text(encoding="utf-8")
+    if written != merged:
+        print(
+            f"[FAIL] 写盘后回读不一致：{target.name} 的磁盘内容与预期不符，"
+            f"（磁盘 {len(written)} 字符 / 预期 {len(merged)} 字符）。请检查文件是否被并发改动。",
+            file=sys.stderr,
+        )
+        return 1
+
     if fixed:
         print(f"[fix] 自动为 {fixed} 行补上了收尾竖线（长表格行末尾最容易漏）")
-    print(f"[ ok ] 已追加 {len(fixed_lines)} 行到 {target.name}，表格语法复查通过")
+    print(f"[ ok ] 已追加 {len(fixed_lines)} 行到 {target.name}，表格语法复查通过，写盘后回读一致")
     return 0
 
 
