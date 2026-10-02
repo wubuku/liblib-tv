@@ -808,17 +808,6 @@ screenshots:
     visible_text: 视频节点 1 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频 参考 标记 特效 角色库 运镜 描述你想要生成的画面内容，@引用素材 2.0 文生视频 16:9 · 720P · 5s · 1个 135
     alt: 视频节点本体在上（尝试：5分钟超长视频 / 首尾帧生成视频 / 首帧生成视频），整块参数面板挂在它下面且中间有明显间隙：面板里有「+参考 标记 特效 角色库 运镜」一排按钮、描述输入框，底部一行是「2.0」「文生视频」「16:9 · 720P · 5s · 1个」「135」和提交箭头
     sha256: 1ce5a754aac6c8101bf1497d9fb3c5d8119afd2816f9786fa591a7b2d3066df1
-  - file: screenshots/M-22-音频节点-完整面板.png
-    task_id: create-nodes
-    step: 23
-    route: /canvas?spaceId=…&projectId=…
-    viewport: 1440x810@2x
-    locale: zh-CN
-    captured_at: 2026-10-02T03:01:00+08:00
-    verified_locator: 只放一个音频节点，缩到能看全，量「节点本体」与「参数面板」两个框
-    visible_text: 音频节点 1 尝试： 音频生视频 参考 描述你想要的音频效果，可用 @ 引用音频 Seed Audio 1.0 中文 · 24k · wav 0/2000 1 高级设置 语速 声调 音量
-    alt: 音频节点本体在上（尝试：音频生视频），参数面板是下面另一张卡片：左上「+参考」、右上「⤢」展开图标，中间是描述输入框，底部一行是「Seed Audio 1.0」「中文 · 24k · wav」「0/2000」「1」和提交箭头
-    sha256: 7e89cf337a63d6eee143c3e53190d53d78f7e03a27336252b6220afbf814efa2
   - file: screenshots/M-29-故事板模式-有内容.png
     task_id: storyboard-mode
     step: 24
@@ -830,17 +819,6 @@ screenshots:
     visible_text: 文本 文本节点 1 图片 图片节点 2 待确认后生成 Lib Image 2.5 Pro 视频 全部 视频节点 3 对话 待确认后生成 2.0 TV Director
     alt: 故事板有内容时的三列：文本列只有一行「文本节点 1」；图片列是「图片节点 2」加一个灰色占位框（框内写「待确认后生成」）和下面的「Lib Image 2.5 Pro」模型标签；视频列右上角有「全部」筛选下拉，「视频节点 3」右侧挂一枚「对话」按钮，下面同样是占位框和「2.0」标签
     sha256: 0de75766375ef8b650a934620f9dbec6e1ccbcac1470d5f320a6ac924fbddf1b
-  - file: screenshots/M-32-从生成历史选择.png
-    task_id: asset-library
-    step: 26
-    route: /canvas?spaceId=…&projectId=…
-    viewport: 1440x810@2x
-    locale: zh-CN
-    captured_at: 2026-10-02T03:01:00+08:00
-    verified_locator: 双击画布 →「添加节点」面板底部「添加资源」分区 → 点「从生成历史选择」
-    visible_text: 选择图片 LibTV Lib生成器 WebUI ComfyUI AI应用 已选 0/10 张 图片 视频 音频 暂无数据 确定
-    alt: 「选择图片」弹窗：顶部一排来源标签 LibTV / Lib生成器 / WebUI / ComfyUI / AI应用，右上角「已选 0/10 张」；下面是 图片/视频/音频 三个分类标签；主体因为没生成过东西而显示「暂无数据」；右下角是「确定」
-    sha256: bb78ba2a71eaa7297ee2fa115adb92fbb4034a92ff1a2c7fd673a86c60b3d8de
   - file: screenshots/M-33-TV-Director-面板.png
     task_id: agent-director
     step: 27
@@ -1259,3 +1237,36 @@ screenshots:
     visible_text: 创作 成组 G 合并分镜组 ⌥ G 解组 ⇧ G 连线 L 复制节点和连线 D 生成 Enter 新建节点 Tab 节点复制 Option +拖动节点 创建副本 Option +拖动 缩放 放大 缩小 适应画布 0 触控板 鼠标 移动画布 键盘 Space 触控板 鼠标 移动 V 抓手工具 H 整理画布 ⌥ ⇧ F 其他 撤销 Z 重做 ⇧ Z 画布节点搜索 F 删除
     alt: 面板 `[144,299,1152×437]`，`z-(--z-dropdown) absolute left-1/2 max-w-[1152px]`，**锚在底栏「快捷键」按钮正上方**（下方有一个指向它的小三角），分**四列**、列间有竖线、组标题是蓝色：`创作` / `缩放` / `移动画布` / `其他`。**「整理画布 ⌥⇧F」在第三列最后一行，不单独成组**。**三处读不到文字**：`删除` 的键帽是 ⌫ 图标、`缩放→触控板` 是捏合手势图标、`移动画布→触控板/鼠标` 是带 ✥ 的图标。面板内只有一枚按钮：`关闭快捷键面板`(1255,312,28×28)
     sha256: 30b0f78274eca30f4bf584ca3d9eb7675acc3f6ae54ebca3a7f238cb43eb226d
+  - file: screenshots/M-138-从生成历史选择-弹窗.png
+    task_id: asset-library
+    step: 65
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点底栏「+」→「从生成历史选择」，等弹窗出来后**逐个点开五个来源标签**，每次都读一遍该来源下方的分类标签
+    visible_text: 选择图片 LibTV Lib生成器 WebUI ComfyUI AI应用 已选 0/10 张 图片 视频 音频 暂无数据 确定
+    alt: **五个来源的分类标签并不一样**（此前手册只写了一组）：`LibTV` = 图片/视频/**音频**；`Lib生成器` = 图片/视频；`WebUI` = 图片/视频；`ComfyUI` = 图片/**音视频**；`AI应用` = 图片/**音视频**。后两者把音频和视频合在一类，不是同一个东西。五个来源本轮**全部「暂无数据」**
+    sha256: a7805645ce3b75ef41e9a8a739fb24d2ecb21ef7cada91e0e1330c1ab33c5955
+  - file: screenshots/M-139-视频节点-参数面板.png
+    task_id: create-nodes
+    step: 66
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: **先按 Esc 关掉右侧 TV Director 对话抽屉**（点画布空白关不掉，实测两次），再点视频节点，等 4 秒后按 `getBoundingClientRect` 量面板并实拍
+    visible_text: 参考 标记 特效 角色库 运镜 描述你想要生成的画面内容，@引用素材 2.0 全能参考 16:9 · 720P · 5s · 1个 135
+    alt: **视频参数面板完整实拍**。顶部一排五枚 `+参考 / 标记 / 特效 / 角色库 / 运镜`，右上角另有一枚 `⤢`；中间描述框占位「描述你想要生成的画面内容，@引用素材」；底部参数条从左到右 `2.0` `全能参考` `16:9 · 720P · 5s · 1个` **三枚纯图标按钮**（无文字）`⚡135` 圆形提交箭头。**正文此前写底部是「文生视频」，实拍是「全能参考」**。**面板底边就是提交按钮，从描述框到提交箭头之间没有「高级设置」那一行**
+    sha256: 5e7332b7ad72dbca4585a4e9fffabdbd54958cd81a6a1514a952c8d1944c12a3
+  - file: screenshots/M-140-音频节点-参数面板.png
+    task_id: create-nodes
+    step: 67
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 同上（Esc 关抽屉 → 点音频节点 → 等 4 秒 → 实拍）
+    visible_text: 参考 描述你想要的音频效果，可用 @ 引用音频 Seed Audio 1.0 中文 · 24k · wav 0/2000 1
+    alt: **音频参数面板完整实拍**。顶部工具条**只有 `+参考` 一枚**（视频那五枚里的 标记/特效/角色库/运镜 音频都没有），右上角同样有 `⤢`；描述框占位「描述你想要的音频效果，可用 @ 引用音频」；底部参数条 `Seed Audio 1.0` `中文 · 24k · wav` **两枚**纯图标按钮 `0/2000` `⚡1` 圆形提交箭头。**面板底边同样就是提交按钮 —— DOM 里读得到的「高级设置」「语速 声调 音量」在画面上一个都没有**
+    sha256: a601205aca5f1e9c1a40a627e8005f1457845d5f5d51bd1dd5ea8c60f7c6dd8d
