@@ -419,7 +419,30 @@ def _unreachable_cases():
             continue
         argv = _shlex.split(st)
         if len(argv) >= 5:
-            out.append((argv[1], argv[2], argv[3].replace("$HERE", SCRIPTS), argv[4]))
+            # **第 6 个实参是这条用例指向的断言 id**（Batch 207 补取）——
+            # 它本来就在命令行上，只是没人取，于是「用例指向的断言还在不在闸里」无从问起。
+            out.append((argv[1], argv[2], argv[3].replace("$HERE", SCRIPTS), argv[4],
+                        argv[5] if len(argv) >= 6 else ""))
+    return out
+
+
+def _registered_assertions():
+    """闸 7 的登记表里**真正登记着**的断言 id 集合。
+
+    **只认代码，不认注释**（与方向四c 同一纪律）：`canvas-library-no-import-entry`
+    在 `verify-unreachable.py` 里**只剩一行注释**——
+    上游修好之后断言被删了，**可那条注释还留着**。
+    纯字面匹配会把它算成「还在」，于是 Batch 207 这条判据第一次跑就报绿。
+    """
+    path = os.path.join(SCRIPTS, "verify-unreachable.py")
+    out = set()
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            st = line.strip()
+            if not st or st.startswith("#"):
+                continue
+            for m in re.finditer(r'"([a-z0-9][a-z0-9-]*)"', st):
+                out.add(m.group(1))
     return out
 
 
@@ -724,7 +747,33 @@ def main():
     if _up is None:
         ur_skipped = len(_cases)
     else:
-        for desc, path, fixer, feature in _cases:
+        registered = _registered_assertions()
+        _gone = 0
+        _labels = 0
+        for desc, path, fixer, feature, assertion in _cases:
+            # **第四个参数不一定是指向登记表的 id**（Batch 207 实测）：
+            # 34 条里有若干条写的是**闸 7 输出里那句中文标签**（如「9 个参数零写出」，
+            # 它来自扫描型检查，根本不在 REGISTRY 里）。**把它们一律当成 id 去核，
+            # 就会造出 3 条假阳性**——而假阳性会让人学会忽略这条判据（纪律 166）。
+            # 所以：**形态不是 id 的就跳过，并如实报出跳过了几条**——
+            # **判据核不了的东西必须说出来，而不是装作核过了。**
+            if not re.fullmatch(r"[a-z0-9][a-z0-9-]*", assertion or ""):
+                _labels += 1
+                # **必须计入「跳过」**（Batch 207 当场修的记账漏洞）：
+                # 不计的话汇总行会写成「30/33 成立、**0 个跳过**」，
+                # **读起来像 3 条前提不成立**——而它们只是本判据核不了。
+                # **一个不记账的跳过，会让「没查」看起来像「查了没成」。**
+                ur_skipped += 1
+                continue
+            if assertion not in registered:
+                # **前提成立、夹具跑得通，可这条用例永远不可能过**——
+                # 因为它指向的断言**已经不在闸的登记表里了**。
+                # 症状是「闸门**未**报失效」，**读起来像闸坏了**，
+                # 而真相是「被测的东西被删了，而用例没跟着删」。
+                _gone += 1
+                ur_void.append((desc[:26],
+                                "它指向的断言 `%s` 已不在 `verify-unreachable.py` 的登记表里" % assertion))
+                continue
             if not os.path.isfile(fixer):
                 ur_void.append((desc[:26], "夹具文件不存在"))
                 continue
@@ -745,6 +794,14 @@ def main():
             if feature not in r.stdout:
                 ur_void.append((desc[:26],
                                 "变换结果里找不到「修复特征」[%s]" % feature[:24]))
+    if _gone:
+        print("方向五之二：%d 条用例指向的断言**已从闸里删掉**——"
+              "前提成立、夹具跑得通，而它们永远不可能过。" % _gone)
+        print("  → **删用例，别改闸**：断言没了是因为上游真的修了，"
+              "把它加回闸等于把一条已经失效的声明重新立起来。")
+    if _labels:
+        print("  （另有 %d 条用例的第四个参数是**中文标签**而不是登记表 id，"
+              "本判据核不了它们——**如实报出，不装作核过了**）" % _labels)
     for desc, why in ur_void:
         problems.append(
             f"方向五之二：慢反验 `{desc}` 的前提已不成立（{why}）——"

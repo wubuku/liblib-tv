@@ -109,7 +109,12 @@ run_pass_case() {  # 说明 path 变换脚本 注入特征 期望**仍然成立*
 }
 
 run_case "1) setSort 补上调用" web/src/pages/canvas/index.tsx "$HERE/selftest-fix-1-setsort.py" "void setSort" "canvas-library-no-sort-filter"
-run_case "2) 画布库导入补上入口点击" web/src/pages/canvas/index.tsx "$HERE/selftest-fix-2-import-entry.py" "inputRef.current?.click()" "canvas-library-no-import-entry"
+# 用例 2 已于 Batch 207 删除：它指向的断言 `canvas-library-no-import-entry`
+# **已不在 `verify-unreachable.py` 的登记表里**——上游 `522cd03`「恢复画布备份导入入口」
+# 真的把入口加回来了，断言随之作废，而**这条用例没跟着删**。
+# 症状是「闸门**未**报失效」，**读起来像闸坏了**，而真相是被测的东西没了。
+# **删用例，别改闸**：把断言加回闸等于把一条已经失效的声明重新立起来。
+# 夹具 `selftest-fix-2-import-entry.py` 一并删除（它只被这一条用）。
 run_case "3a) 动态插件入口被从菜单合并里摘掉" web/src/lib/canvas/tool-registry/tool-registry.ts "$HERE/selftest-fix-3a-artcritique-dynamic-chain.py" "反验注入：摘掉动态插件入口" "art-critique-dynamic-entry"
 run_pass_case "3b) 审美批改进「添加节点」写死清单（不该判失效）" web/src/lib/canvas/tool-registry/definitions/add-node-menu-tools.tsx "$HERE/selftest-fix-3b-artcritique-hardcoded.py" "ai-art-critique" "art-critique-dynamic-entry"
 run_case "4) isLocalWorkspaceMode 改为可配置" web/src/services/workspace-mode.ts "$HERE/selftest-fix-4-workspace-mode.py" "__hosted" "canvas-library-no-join-project"
