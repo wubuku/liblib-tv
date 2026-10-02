@@ -1809,3 +1809,36 @@ screenshots:
     visible_text: Group 2 逐帧拉片 文本节点 1 Group 1
     alt: 抽屉列表的**特写**（只裁组名那几行）。点完「Group 2」行左侧那枚箭头之后：上面「**⌄ Group 2**」箭头已经**朝下**，它的两个成员「**逐帧拉片**」「**文本节点 1**」各带一枚类型图标、**缩进**排在它下面（行内 x 从 78 变成 102）；而再往下的「**› Group 1**」箭头**仍然是朝右的**，它的成员一个都没回来。⭐ 这就是「这枚箭头只管它自己那一个组」的像素证据 —— 如果它等价于「展开全部」，上面那个也该展开。再点一次同一枚会把 Group 2 收回（开关，不是单向动作）。⚠️ 转向的**机制没定位**：那枚图标的 `<path d>` 点前点后逐字相同，`svg` 与外层 `span` 的 `computed transform` 都是 `none`
     sha256: 7cc2a5f3217f535e8610429a8c68abbd21ee6c91b591fcc0a3ed9ec90c0738d9
+  - file: screenshots/M-231-风格卡片-悬停显形.png
+    task_id: asset-library
+    step: 33
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 从 `button[aria-label="详情"]` 反推卡片 → 悬停卡 1 中心 → 读卡内 `收藏`/`详情` 两枚按钮的 `opacity`（悬停前 0、悬停后 1，**矩形位置不变**）→ 裁 `cardRect` 再往下 76px 把文字行一起框进来。⭐ BN3 那版只裁到预览图，看不出「一张卡由什么组成」，这版补上
+    visible_text: Seedream 5.0 Seedream 5.0 pro 热点推荐官 533.1w
+    alt: **一张风格卡的完整解剖**（悬停态）。预览图左上角一枚 `📊 Seedream 5.0` 的**模型徽标**；右上角一枚 ☆（`aria-label=收藏`）、预览图右下角一枚对角箭头 ⤢（`aria-label=详情`）—— 这两枚**鼠标移上去才显形**（`opacity` 0 → 1）。预览图下方是名称 `Seedream 5.0 pro`，再下一行左边 `🔥 热点推荐官` 徽标、右边**一枚漏斗图标 + 数字 `533.1w`**。⚠️ 左上角那枚徽标是**模型名不是风格名** —— 同类的还有 `Qwen Image` / `Z Image` / `Lib Image`
+    sha256: 54324fa0bd8bb436451787a119fa89facd15b3bbd6de7f374afe9acc28585fd2
+  - file: screenshots/M-237-风格详情面板.png
+    task_id: asset-library
+    step: 34
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 悬停卡 1 → 点右下角 `button[aria-label="详情"]`（**不是点卡片**）→ 用**集合差分**（身份 = class|rect|z）读新出现的浮层：点前 3 个顶层、点后 5 个，新增 `z=800` 的遮罩 + `z=801` 的 `mantine-Modal-inner`。⭐ BN3 用「顶层浮层**数目**」判变化，3→3 判成「没变」—— 数目一样但多了一层。⛔ 面板里那枚 `使用` **没点**
+    visible_text: 风格详情 Seedream 5.0 pro 热点推荐官 首选推荐模型 Seedream 5.0 取消收藏 使用
+    alt: **点 ⤢「详情」打开的是详情浮层，不会建节点。** 逐字读出来是 `风格详情 │ <风格名> │ <作者> │ 首选推荐模型 │ <模型名> │ [★ 取消收藏] [使用]`。⭐ 每张风格都有一个**「首选推荐模型」**字段（这张是 `Seedream 5.0`）—— 它就是卡面左上角那枚模型徽标的来源。⭐ 收藏态下按钮写的是**「取消收藏」**而不是「收藏」；点它弹「**取消收藏成功**」，本轮据此把测试收藏清回 0 张并**独立复核**过（收藏页 `0` 张、空态提示「暂无素材」）。⛔ 右下角那枚 `使用` 本手册**没点**
+    sha256: 14459c5f01df18f41deb30070e0038bab6fa9a8dac73beb44b3d7e00b365de66
+  - file: screenshots/M-240-风格广场-电商营销分类.png
+    task_id: asset-library
+    step: 35
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点分类标签 `电商营销`（`executed=true`，锚点=面板内 `width>=40` 的同名元素）→ 数面板内 `button[aria-label="详情"]` → 读前 4 张卡的文字行。⭐ 判别式是**每类第一张卡的风格名**，不是「张数」—— 广场是滚动网格，张数只是视口内渲染行数（本轮 6 / 12 轮读出不同的数，**不一致、没查清**）
+    visible_text: 一键全套电商主图主 饭盒 7800 Qwen-夸张透视 3 yuhong126 5900 3D电商渲染级KV 大唐像素_Xr 22.5w 创意电商 大唐像素_Xr 23.7w 全品类促销海报模板 蛋彩 6600 工业设计产品设计 Joe 14.8w 仅看可商用 全部
+    alt: 切到「**电商营销**」分类之后：十个分类标签里「电商营销」变成高亮态，卡片换成了电商题材 —— 「一键全套电商主图主…」（作者「饭盒」·7800）、「Qwen-夸张透视 3…」（yuhong126·5900）、「3D电商渲染级KV」（大唐像素_Xr·22.5w）、「创意电商…」（23.7w）、「全品类促销海报模板」（蛋彩·6600）、「工业设计产品设计…」（Joe·14.8w），每张右下角都带漏斗图标和数字。⭐ 名字以「**一键**…」开头的是**成套模板**，它们预览图左上角那枚徽标是一整块文字而不是模型图标。⚠️ 屏幕上只渲染前几行，**数不出这个分类一共有多少条**
+    sha256: eed7fd855ea82a3d0d3a91df052e3e299fbe9bb238038823ef0388ea29ff4bca
