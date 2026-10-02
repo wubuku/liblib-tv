@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import type { RefObject } from "react";
 import {
   ArrowUp,
   ChevronDown,
@@ -189,6 +190,34 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   const [voice, setVoice] = useState("直爽女大");
   // 批 254/255/257: 筛选下拉选项与选中态；批 282: 性别筛选真实过滤网格
   const [filterSel, setFilterSel] = useState<Record<string, string | null>>({});
+
+  /* 批 871：四个筛选面板各接一次「开层接管焦点」。
+     ⚠️ 为什么是**四组显式 ref + 四次 hook 调用**，而不是
+        `FILTERS.map((f) => useTakeFocusAtOpen(...))` —— 在 map / 回调里调
+        hook 违反 Hooks 规则（数量会随渲染变），eslint 会拦。四组写死虽然
+        啰嗦，但**数量固定、顺序固定**，且和 FILTERS 的四项一一对应
+        （批 871 核对过：性别/年龄/语言/声音特点）。
+
+     依据是**源站实测**（`jimeng_probe871_voicefilter_kb.py`，登录态、
+     视口 1512×1200）：打开筛选层时焦点落在**第一项** option
+     （`全部 性别`，idx=0），复刻原先**开层完全不接管焦点**。
+     `useTakeFocusAtOpen` 聚焦层内第一个可聚焦项，对这个 listbox
+     正好就是第一项 ⇒ 与源站等价。
+
+     ⚠️ 刻意**不接** `useModalFocusTrap`：源站实测从层内**第 1 次** Tab
+     就逃到下一个筛选 chip（不困 Tab），困了反而与源站相反（§82 分流）。 */
+  const filterGenderBox = useRef<HTMLDivElement>(null);
+  const filterAgeBox = useRef<HTMLDivElement>(null);
+  const filterLangBox = useRef<HTMLDivElement>(null);
+  const filterToneBox = useRef<HTMLDivElement>(null);
+  useTakeFocusAtOpen(filterGenderBox, filterSel["性别"] !== undefined);
+  useTakeFocusAtOpen(filterAgeBox, filterSel["年龄"] !== undefined);
+  useTakeFocusAtOpen(filterLangBox, filterSel["语言"] !== undefined);
+  useTakeFocusAtOpen(filterToneBox, filterSel["声音特点"] !== undefined);
+  const filterBoxRef: Record<string, RefObject<HTMLDivElement | null>> = {
+    "性别": filterGenderBox, "年龄": filterAgeBox,
+    "语言": filterLangBox, "声音特点": filterToneBox,
+  };
 
   const visibleVoices = VOICES.filter(
     (v) =>
@@ -643,6 +672,64 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                      此前复刻写的是「筛选 性别」—— 那是**复刻
                                      自造**的名字，源站没有。 */
                                   aria-label={`${label} options`}
+                                  /* 批 871：三条键盘行为，全部按**源站实测**接上
+                                     （`jimeng_probe871_voicefilter_kb.py`，
+                                     登录态、视口 1512×1200，每项都单独验过
+                                     前置态）：
+
+                                       ① 开层**接管焦点到第一项**（实测焦点落在
+                                          `全部 性别`，idx=0）⇒ 接
+                                          `useTakeFocusAtOpen`（它聚焦层内第一个
+                                          可聚焦元素，对这个 listbox 正好是第一项）。
+                                       ② **不困 Tab**：实测从层内**第 1 次** Tab
+                                          就逃到下一个筛选 chip ⇒ 刻意**不接**
+                                          `useModalFocusTrap`（§82 的分流）。
+                                       ③ **方向键在层内逐格移动**：实测
+                                          idx 0 → 1 → 2（3 个选项）⇒ 下面这个
+                                          `onKeyDown`。
+                                       ④ **Esc 收层且焦点回筛选钮**（实测焦点
+                                          落到 `BUTTON/性别`）⇒ 同一个 handler。
+
+                                     ⚠️ 复刻原先这四条**一条都没有**：开层不接管
+                                     焦点、方向键不动、Esc 关不掉。 */
+                                  onKeyDown={(e) => {
+                                    // 找到这一块筛选自己的容器（chip 的下一个兄弟）
+                                    const box = (e.currentTarget as HTMLElement);
+                                    const chip: HTMLElement | null =
+                                      box.previousElementSibling;
+                                    if (e.key === "Escape") {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      setFilterSel((m) => ({
+                                        ...m, [label]: undefined,
+                                      }));
+                                      // 焦点回筛选钮（源站实测就是回到它）
+                                      chip?.focus();
+                                      return;
+                                    }
+                                    if (e.key !== "ArrowDown"
+                                        && e.key !== "ArrowUp"
+                                        && e.key !== "Home" && e.key !== "End") {
+                                      return;
+                                    }
+                                    const opts = [
+                                      ...box.querySelectorAll<HTMLButtonElement>(
+                                        '[role="option"]'),
+                                    ];
+                                    if (!opts.length) return;
+                                    e.preventDefault();
+                                    const cur = opts.indexOf(
+                                      document.activeElement as HTMLButtonElement);
+                                    const next = e.key === "Home" ? 0
+                                      : e.key === "End" ? opts.length - 1
+                                      : e.key === "ArrowDown"
+                                        ? (cur < 0 ? 0
+                                          : Math.min(cur + 1, opts.length - 1))
+                                        : (cur < 0 ? opts.length - 1
+                                          : Math.max(cur - 1, 0));
+                                    opts[next]?.focus();
+                                  }}
+                                  ref={filterBoxRef[label]}
                                   // 批 832：只补锚点，不动名字 —— 名字是源站的，加了就成了「复刻自有」
                                   data-testid="audio-voice-filter-listbox"
                                 >

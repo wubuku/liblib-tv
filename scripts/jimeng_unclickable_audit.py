@@ -2136,6 +2136,38 @@ def main() -> int:
                 "是测到了「源站这一层开层不接管焦点」这个事实本身。"),
             "esc_returns_to_trigger": True,
             "src": "jimeng_probe853b_audiostruct_kb.py（登录态，视口 1512×1200）"},
+        # ══ 批 871：音色库的**筛选下拉**（`性别 options`）══════════════
+        #   870 把版式按源站实测对齐了，**键盘行为**当时一概没取 ⇒ 复刻那一层
+        #   一直挂在 `kb_not_sampled` 里，不受任何判据管。871 取完样入表。
+        #   ⚠️ 每一项都**单独验过前置态**才记（探针 871 头两版栽在这儿：
+        #   ② 连按 40 次 Tab 途中层**已经被关掉**，导致 ③④ 的读数全是
+        #   「层不存在」——长得跟真结论一模一样。修法是 `reopen_filter()`
+        #   + 每项先验证前置态成立）。
+        "audio-voice-filter-listbox": {
+            "src_tid": "(无 testid)", "src_kind": "listbox",
+            "src_identified_by": (
+                "role=listbox + aria-label=`{label} options`（如 `性别 options`）"
+                "+ 矩形 **161×124** + 3 个 `role=option`"
+                "（探针 870/871，登录态，视口 1512×1200）"),
+            # 871 ①：开层**那一刻**焦点就落在**第一项** option
+            #（`全部 性别`，idx=0）。复刻原先开层完全不接管焦点。
+            "takes_focus_at_open": True,
+            # 871 ③：从层内**第 1 次** Tab 就逃到下一个筛选 chip（`年龄`）
+            # ⇒ 源站**不困** Tab。所以复刻**刻意不接** `useModalFocusTrap`。
+            "traps_tab": False,
+            # 871 ④：方向键在层内**逐格移动**（idx 0 → 1 → 2，共 3 项）。
+            "arrows_move": True,
+            # 871 ⑤：Esc **收层**，焦点回到那个筛选钮（实测落点
+            # `BUTTON/性别`）。
+            "esc_returns_to_trigger": True,
+            # 871 ②：Tab **压根不经过**这一层（40 次上限内没走到，轨迹全程
+            # 在音色库 chip 上）。⚠️ 这**不是**「Tab 进不去」——是「Tab 序列
+            # 里没有它」：开层即把焦点放进来，用不着 Tab 进来。
+            # 记成字段而不是注释：否则半年后有人读到 `walk=None` 会当成缺陷。
+            "walk_note": (
+                "源站这一层**不靠 Tab 进出**（40 次 Tab 全程在音色库 chip 上，"
+                "capped=True）。与 `traps_tab=False` 是同一件事的两面。"),
+            "src": "jimeng_probe871_voicefilter_kb.py（登录态，视口 1512×1200）"},
         # ══ 批 855：生成历史层（**按名字**找，不是按位置）════════════════
         # 这条 why 原来写「前置态没成立：点**第 2 个** `canvas-panel-launcher`
         # 开出的是『积分明细』」—— 那是**按位置猜名字**。855a 把顶栏 9 个按钮

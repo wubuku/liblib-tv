@@ -1749,6 +1749,59 @@ def main() -> int:
           bool(_p870s) and "logged_in" in _p870s
           and "不是**「源站没有筛选钮」" in _p870s)
 
+    # ── W. 批 871：筛选下拉的**键盘行为**取样入表 + 复刻对齐 ────────────
+    print("— W. 批 871 筛选下拉的键盘基线 + 复刻对齐 —")
+    # ⚠️ 条目的结束是 `…src": "…"},`（**收尾和 src 同一行**），不是单独一行
+    #   `},` —— 第一版按后者写正则，一个都没匹配上，W.1/W.2 直接假红。
+    #   边界改成「到下一个同缩进的条目键为止」，别猜收尾长什么样。
+    _sb = re.search(r'"audio-voice-filter-listbox":\s*\{(.*?)\n        "',
+                    _ausrc, re.S)
+    _sbtxt = _sb.group(1) if _sb else ""
+    check("W.1 源站基线表里有这一层，且三项键盘行为**都记了实测值**"
+          "（870 只对齐了版式，键盘一概没取 ⇒ 一直挂 `kb_not_sampled`，"
+          "不受任何判据管）",
+          bool(_sbtxt) and '"takes_focus_at_open": True' in _sbtxt
+          and '"traps_tab": False' in _sbtxt
+          and '"arrows_move": True' in _sbtxt
+          and "jimeng_probe871_voicefilter_kb.py" in _sbtxt)
+    check("W.2 「Tab 不经过这一层」被记成**字段**（`walk_note`）而不是注释"
+          " —— 否则半年后有人读到 `walk=None` 会当成缺陷去修",
+          '"walk_note"' in _sbtxt and "capped=True" in _sbtxt)
+    _not_sampled = [b for b in (data.get("keyboard_not_sampled") or [])
+                    if isinstance(b, dict)
+                    and b.get("layer") == "audio-voice-filter-listbox"]
+    check("W.3 复刻这一层**已经不在**「源站没取过样」名单里"
+          "（进表 = 从此受判据管，坏了会报出来）",
+          not _not_sampled, f"仍在名单={len(_not_sampled)}")
+    _w = _vf.get("音频生成面板·音色筛选", {})
+    check("W.4 复刻侧三项与源站基线**逐项相符**"
+          "（开层接管焦点 / 不困 Tab / 方向键逐格移动）",
+          (_w.get("focus_at_open") or {}).get("inside") is True
+          and (_w.get("arrow_down") or {}).get("moved") is True
+          and (_w.get("escape") or {}).get("trapped") is False,
+          f"at_open={(_w.get('focus_at_open') or {}).get('inside')} "
+          f"arrow={(_w.get('arrow_down') or {}).get('moved')} "
+          f"trapped={(_w.get('escape') or {}).get('trapped')}")
+    _agp2 = strip_comments(_agp_raw)
+    check("W.5 复刻**真的接了**那三件事（判调用形态，不查裸名字）："
+          "四个 `useTakeFocusAtOpen(` + 方向键 handler + Esc 收层并把焦点"
+          "还给筛选钮",
+          _agp2.count("useTakeFocusAtOpen(filter") == 4
+          and 'e.key === "ArrowDown"' in _agp2
+          and 'e.key === "Escape"' in _agp2
+          and "chip?.focus()" in _agp2,
+          f"hook×{_agp2.count('useTakeFocusAtOpen(filter')} "
+          f"方向键={'e.key === \"ArrowDown\"' in _agp2} "
+          f"Esc={'e.key === \"Escape\"' in _agp2}")
+    p871 = ROOT / "scripts/jimeng_probe871_voicefilter_kb.py"
+    _p871 = p871.read_text(encoding="utf-8") if p871.exists() else ""
+    check("W.6 源站键盘探针在库里，且**每项测量各自建立前置态**"
+          "（`reopen_filter()`）—— 头两版栽在这儿：Tab 途中层已经被关掉，"
+          "于是 ③④ 读到的全是「层不存在」，长得跟真结论一模一样",
+          bool(_p871) and "def reopen_filter(" in _p871
+          and _p871.count("reopen_filter()") >= 3
+          and "前置态没成立" in _p871)
+
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))
