@@ -2300,6 +2300,51 @@ def main() -> int:
                 "复刻侧根因是 `@xyflow/react` 的 `useNodesSelection` —— "
                 "节点失去选中时它在 `requestAnimationFrame` 里 "
                 "`nodeRef.blur()`，而我们的 rAF 注册得**更晚/更早**导致排队输了。"),
+            # ══════ 889：把「Esc 落点」从**两次互不相干的读数**变成**一条规则** ══════
+            # 888 读到落点 `Canvas`，885/887 读到「节点本体」。889 第一版把
+            # 前者写成「第四条 Esc 路径」—— **没量就下的结论**，已收回。
+            # 889/889b/889c 逐个前置态各 2/2 之后，规则是：
+            #   **落点 = 按 Esc 之前焦点在哪**（唯一的自变量）。
+            "esc_landing_rule": (
+                "**落点由「按 Esc 之前焦点在哪」决定**（889/889b/889c 各 2/2）："
+                "焦点在芯片/Clear/节点本体 ⇒ 落**该音频节点本体**（工具条 True→False）；"
+                "焦点在**筛选层内**的选项 ⇒ **回到筛选芯片**、工具条**仍 True**、"
+                "**只关层不收面板**；焦点在**画布**上 ⇒ **原地不动**。"
+                "⇒ 888 那个 `Canvas` 不是「第四条路径」，是它那跑按 Esc 前"
+                "**焦点本来就在画布上**（889c 隔离出变量 = 那次 `blank()`，2/2）。"),
+            "esc_landing_by_precondition": {
+                "芯片": "节点本体", "Clear": "节点本体", "节点本体": "节点本体",
+                "筛选层内": "回到筛选芯片（工具条 True、只关层）",
+                "画布": "原地不动（仍在画布）",
+            },
+            "esc_landing_n": "每档 2/2（889 源站 4 档 + 889b 2 档 + 889c 1 档）",
+            "layer_open_esc_keeps_value": (
+                "889b 实测（2/2，**同一次运行**里读落点和值）：层开着、焦点在层内 "
+                "按 Esc ⇒ 落点=芯片、工具条 True、层关、**值 `'男' → '男'` 保留**。"
+                "⇒ **874 那条「值保留」在它自己的前置态里复核通过**，§98/§99 记的"
+                "「没有同一次运行的证据」这条缺口**闭合**；"
+                "而 887 的「层收着时被清」是**另一档**，两条**并存不冲突**。"),
+            "canvas_root_is_focusable": (
+                "889d 实测：源站画布**根容器** `.react-flow` 带 "
+                "`role='application'` + `aria-label='Canvas'` + **`tabindex='0'`**，"
+                "class 里有 `focus:outline-none`（作者明确为「它会获得焦点」写的）。"
+                "⇒ 点画布空白时焦点落在**这个根容器**上（实测），"
+                "**不是** `.react-flow__pane`（它 `tabindex=None`、点了没焦点）。"),
+            "replica_canvas_root_tabindex_FIXED_889": (
+                "复刻 801 抄了 `role`/`aria` 却**漏了 `tabindex`** ⇒ 复刻画布根"
+                "**不可聚焦**，点空白时焦点掉到 `body`。889 已补 "
+                "`if (!hasAttribute('tabindex')) setAttribute('tabindex','0')`，"
+                "补后复刻点空白 ⇒ 焦点 `'Canvas'`（2/2）、"
+                "「焦点在画布上按 Esc ⇒ 落 `Canvas` 原地不动」2/2，**与源站一致**；"
+                "verifier 251/251 未被打破。"),
+            "open_diff_node_click_takes_focus": (
+                "⚠️ **仍然存在的差异，机制未查明**：源站「点空白 → 再点节点中心」之后"
+                "焦点**留在画布**（889c 2/2），复刻**被节点抢走**"
+                "（889b_ck `click_focus` 2/2 `node_took_focus=True`）。"
+                "⚠️ 但源站**不**点空白、直接点节点时焦点**会**到节点上"
+                "（889b `pure_mouse` 2/2）⇒ 「点节点抢不抢焦点」在源站**取决于"
+                "之前有没有点过空白**，机制**未验证**，不许下结论。"),
+
             # 875：外层格子**恒定 153×28**，选中前后都不变；变的是格子里
             # 装什么：未选中 芯片 135（=153−左右 padding 9×2），
             # 选中 芯片 111 + gap 8 + Clear 16 = 135（正好填满）。
@@ -2321,7 +2366,19 @@ def main() -> int:
                     "jimeng_probe885_escselect2_src.py"
                     "（**Esc 之后节点也取消选中**、焦点仍在节点上）+ "
                     "jimeng_probe886_esconchip_src.py"
-                    "（**芯片**上按 Esc 同一落点，源站首次取样）")},
+                    "（**芯片**上按 Esc 同一落点，源站首次取样）+ "
+                    "jimeng_probe887_esconchip_val_src.py"
+                    "（同一次运行读落点+值，**证伪**「芯片不清值」）+ "
+                    "jimeng_probe888_reopen_src.py"
+                    "（Esc 后**真卸载**、五种重开手段各 2/2）+ "
+                    "jimeng_probe889_esclanding_src.py"
+                    "（**逐个前置态**测落点，4 档各 2/2）+ "
+                    "jimeng_probe889b_esclanding2_src.py"
+                    "（`pure_mouse` 2/2 + **层开着时同一次运行读值** 2/2）+ "
+                    "jimeng_probe889c_blankvar_src.py"
+                    "（**只隔离** `blank()` 这一个变量 ⇒ 2/2 复现出 `Canvas`）+ "
+                    "jimeng_probe889d_canvasfocus_src.py"
+                    "（画布根容器的 **role/aria/tabindex** 身份 + Tab 轨迹）")},
         # ══ 批 855：生成历史层（**按名字**找，不是按位置）════════════════
         # 这条 why 原来写「前置态没成立：点**第 2 个** `canvas-panel-launcher`
         # 开出的是『积分明细』」—— 那是**按位置猜名字**。855a 把顶栏 9 个按钮

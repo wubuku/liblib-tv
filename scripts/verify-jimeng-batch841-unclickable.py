@@ -2205,6 +2205,94 @@ def main() -> int:
           and "aria={a!r}/text={t!r}" in _p876k
           and "读数的**呈现**本身也会骗人" in _p876k
           and "显示成「没落」" in _p876k)
+    # ══════════ 批 889：Esc 落点从「两次读数」变成「一条规则」 ══════════
+    p889 = ROOT / "scripts/jimeng_probe889_esclanding_src.py"
+    p889b = ROOT / "scripts/jimeng_probe889b_esclanding2_src.py"
+    p889c = ROOT / "scripts/jimeng_probe889c_blankvar_src.py"
+    p889d = ROOT / "scripts/jimeng_probe889d_canvasfocus_src.py"
+    p889ck = ROOT / "scripts/jimeng_probe889_esclanding_ck.py"
+    p889bck = ROOT / "scripts/jimeng_probe889b_esclanding_ck.py"
+    _p889 = p889.read_text(encoding="utf-8") if p889.exists() else ""
+    _p889b = p889b.read_text(encoding="utf-8") if p889b.exists() else ""
+    _p889c = p889c.read_text(encoding="utf-8") if p889c.exists() else ""
+    _p889d = p889d.read_text(encoding="utf-8") if p889d.exists() else ""
+    _p889ck = p889ck.read_text(encoding="utf-8") if p889ck.exists() else ""
+    _p889bck = p889bck.read_text(encoding="utf-8") if p889bck.exists() else ""
+    p_jws = ROOT / "src/components/jimeng/JimengWorkspace.tsx"
+    _jws_raw = p_jws.read_text(encoding="utf-8") if p_jws.exists() else ""
+    check("DD.1 889 把 Esc 落点**逐个前置态**测（chip / clear / nofocus / "
+          "layer_open **四档都列全**，少一档就等于有一个没取样却看着像「都测过」），"
+          "每档**重复 2 次**，而且**每次都把「按 Esc 之前的焦点」记进结果** —— "
+          "888 漏掉的正是这一行，所以它的 `Canvas` 当时**无法与 885/887 比较**",
+          bool(_p889) and "REPS = 2" in _p889
+          and all(k in _p889 for k in ('"chip"', '"clear"', '"nofocus"',
+                                      '"layer_open"'))
+          and 'rec["focus_before"] = ev(FOCUS_JS)' in _p889
+          and "**按 Esc 之前**的焦点读数" in _p889
+          # 落点分类**钉身份**（in_audio_node）不钉 aria 字面量
+          and "不许**用 aria 字符串相等" in _p889)
+    check("DD.2 §99 第一版把 888 的 `Canvas` 写成「第四条 Esc 路径」是"
+          "**没量就下的结论**（888 没记按 Esc 前焦点）—— 基线里那条必须写成"
+          "**已查明**的规则「落点 = 按 Esc 前焦点在哪」，**不许**保留"
+          "「第四条路径」这种把**两次读数不同**当「找到原因」的说法",
+          '"esc_landing_rule"' in _ausrc
+          and "落点由「按 Esc 之前焦点在哪」决定" in _ausrc
+          and "不是「第四条路径」" in _ausrc
+          and '"esc_landing_by_precondition"' in _ausrc
+          and '"esc_landing_n"' in _ausrc)
+    check("DD.3 889c **只隔离一个变量**（按 Esc 前那次 `blank()`）就把 888 的 "
+          "`Canvas` 复现出来 2/2 ⇒ 差异的**成因**有实测支撑；⚠️ 而且它"
+          "**不许**倒过来说「888 记错了」、**也不许**说那是 flake —— "
+          "那两件都还没测，只能说「仍解释不了」就记账",
+          "blank_then_center" in _p889c and "BLANK_JS" in _p889c
+          and "倒过来说 888 记错了" in _p889c
+          and "flake" in _p889c)
+    check("DD.4 889b 在**层开着**这个前置态下**同一次运行**读值（2/2 "
+          "值 `'男' → '男'` 保留）⇒ **874 那条读数在它自己的前置态里复核通过**，"
+          "§98/§99 记的「没有同一次运行的证据」这条缺口**闭合**；"
+          "而 887 的「层收着时被清」是**另一档**，两条**并存不冲突**",
+          '"layer_open_esc_keeps_value"' in _ausrc
+          and "874 那条「值保留」在它自己的前置态里复核通过" in _ausrc
+          and '"value_survived"' in _p889b
+          # 读不到必须记账，不许写成「值没了」（876c 栽过）
+          and "「值还在不在」测不到" in _p889b
+          and "**不是**「值没了」" in _p889b)
+    check("DD.5 889d 把源站画布根容器钉死：`.react-flow` = `role='application'` "
+          "+ `aria-label='Canvas'` + **`tabindex='0'`**，class 里有 "
+          "`focus:outline-none`；且 **Tab 能不能到它是独立读数**，"
+          "**不许**用「它有焦点」推出来",
+          "role=application" in _p889d
+          and "tabindex" in _p889d
+          and "**独立**一条读数，不许用「它有焦点」推出来" in _p889d
+          and '"canvas_root_is_focusable"' in _ausrc
+          and "tabindex='0'" in _ausrc)
+    check("DD.6 复刻 801 抄了画布根的 `role`/`aria` 却**漏了 `tabindex`** ⇒ "
+          "复刻画布根不可聚焦、点空白时焦点掉到 `body`。889 已补（`hasAttribute` "
+          "守卫，不踩 xyflow 哪天自己给的值），补后点空白 ⇒ 焦点 `'Canvas'` 2/2、"
+          "「焦点在画布上按 Esc ⇒ 落 `Canvas` 原地不动」2/2，**与源站一致**，"
+          "且 verifier 251/251 未被打破",
+          'el.setAttribute("tabindex", "0")' in _jws_raw
+          and "801 只抄了 role/aria，**漏了 tabindex**" in _jws_raw
+          and 'if (!el.hasAttribute("tabindex"))' in _jws_raw
+          and '"replica_canvas_root_tabindex_FIXED_889"' in _ausrc)
+    check("DD.7 探针**没取**的属性**不许**出现在结论里 —— 889b_ck 第一版的 "
+          "`FOCUSABLE_JS` **只取 `tabindex`**，我却据此写下「复刻 "
+          "role=None/aria=None」（现场复核：复刻其实 `role='application'` + "
+          "`aria='Canvas'`，**与源站一样**）。⇒ 该 JS 现在把 role/aria/"
+          "testid 一并取回，且这条教训写在探针里",
+          "role: e.getAttribute('role')" in _p889bck
+          and "aria: e.getAttribute('aria-label')" in _p889bck
+          and "testid: e.getAttribute('data-testid')" in _p889bck
+          and "探针没取的属性，不许出现在结论里" in _p889bck
+          # 程序化聚焦要指向**源站真正被聚焦的那个元素**（根容器，不是 pane）
+          and "document.querySelector('.react-flow')" in _p889bck)
+    check("DD.8 仍然存在的那条差异**如实留在基线里**（源站点空白后点节点**不**"
+          "抢焦点、复刻**抢**；但源站不点空白直接点节点**会**到节点上 ⇒ "
+          "「抢不抢」取决于之前有没有点过空白），**机制未验证**不许下结论 —— "
+          "889 **不许**把它当「已治」",
+          '"open_diff_node_click_takes_focus"' in _ausrc
+          and "机制**未验证**，不许下结论" in _ausrc
+          and "仍然存在的差异" in _ausrc)
     check("CC.7 886 的教训落地：**组件内凡是要复用，就该提到模块级，"
           "别复制第二份** —— 886 第一版把实现抽成组件内闭包，结果它和 Clear "
           "内联那段是**复制粘贴关系**，按内容替换**匹配到了自己**、把文件改坏"

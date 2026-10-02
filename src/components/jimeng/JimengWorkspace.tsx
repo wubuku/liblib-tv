@@ -73,12 +73,24 @@ function JimengFlow() {
   // + role="application"（testid=rf__wrapper）。xyflow v12 未开放这两个属性的 prop：
   // <ReactFlow ref> 拿到的是 ReactFlowInstance（fitView 等实例 API），**不是 DOM
   // 节点**，不能直接 setAttribute。故挂外层真实容器 ref，再从中查 .react-flow。
+  //
+  // ⚠️⚠️ SOURCE_FACT (batch 889d)：源站同一个根容器**还带 `tabindex="0"`**
+  // —— class 里有 `focus:outline-none`，说明作者明确知道它会获得焦点。
+  // 801 只抄了 role/aria，**漏了 tabindex** ⇒ 复刻画布根**不可聚焦**。
+  // 实测后果（889b_ck 2/2）：点画布空白时
+  //   源站 ⇒ 焦点落到画布根（`aria='Canvas'`）
+  //   复刻 ⇒ 焦点落到 `body`
+  // 而这会**连锁**决定 Esc 的落点（889 规则：落点 = 按 Esc 前焦点在哪）：
+  // 焦点在画布上时源站 Esc **原地不动**，复刻焦点已经掉了。
   const canvasBoxRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const el = canvasBoxRef.current?.querySelector(".react-flow");
     if (!el) return;
     el.setAttribute("aria-label", "Canvas");
     if (!el.getAttribute("role")) el.setAttribute("role", "application");
+    // 889d：源站 `tabindex="0"`。用 `if (!hasAttribute)` 而不是直接覆盖 ——
+    // 万一 xyflow 哪天自己给了值，别把它踩掉。
+    if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "0");
   }, []);
 
   const nodes = useJimengStore((s) => s.nodes);
