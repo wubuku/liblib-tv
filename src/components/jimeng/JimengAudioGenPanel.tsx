@@ -131,6 +131,48 @@ const FILTERS: { label: string; options: string[] }[] = [
   },
 ];
 
+/* ⚠️ 批 886：把「Esc 之后把焦点送回**该音频节点本体**」提到**模块级**共享。
+   882 原本只写在 **Clear** 的 onKeyDown 里；886 实测源站在**芯片**上按 Esc
+   **也是同一个落点**（`音频 node: 音频 NN`，且节点**也**取消选中、
+   工具条 `True → False`）⇒ 复刻芯片上落 `body` 是**真差异**。
+
+   ⚠️ 为什么放**模块级**而不是组件里：886 第一版想抽成组件内的闭包，
+   结果它和 Clear 里那段**内联实现是复制粘贴关系**（同样的
+   `closest(".react-flow__node-toolbar')` + `data-id` 比较 + 三层落焦点），
+   用脚本按内容替换时**匹配到了自己**、把文件改坏了两回。
+   ⇒ 组件内凡是要复用，就该提到**模块级**，别复制第二份。
+
+   ⚠️ 三层落焦点，缺一不可（882/885 查实）：
+     · 同步     —— 抢在面板卸载之前
+     · 双层 rAF —— 排在 `@xyflow/react` 那个 `rAF(blur)` **之后**（882 抓
+                   chunk 定位：`useNodesSelection` 在节点失去选中时
+                   `requestAnimationFrame(() => ref.blur())`，它注册得比
+                   事件处理里的 rAF **更晚** ⇒ blur 赢）
+     · 120ms   —— 兜底（**注册顺序不是契约**，前两层万一都不够）
+
+   ⚠️ 定位靠 `NodeToolbar` 的 `data-id`（879 实测它与画布节点的 `data-id`
+   **完全相同**），**不是** `closest('.react-flow__node')` —— `NodeToolbar`
+   是 portal，不在节点里面（`closest` 返回 null）。 */
+function refocusToNodeFromToolbar(from: HTMLElement | null): void {
+  const tb = from?.closest(".react-flow__node-toolbar");
+  const nid = tb?.getAttribute("data-id");
+  if (!nid) return;
+  /* 用**属性相等**（`getAttribute` 比较）而不是**选择器字符串拼接**：
+     节点 id 可能含 `:` 等选择器里有意义的字符。 */
+  const nodeEl = ([...document.querySelectorAll(".react-flow__node")].find(
+    (n) => n.getAttribute("data-id") === nid,
+  ) as HTMLElement | undefined) ?? null;
+  if (!nodeEl) return;
+  const refocus = () => {
+    /* 已经在节点上就别重复动 —— 免得自己把「本来就对」的状态搅乱。 */
+    if (document.activeElement !== nodeEl) nodeEl.focus();
+  };
+  refocus();
+  requestAnimationFrame(() => requestAnimationFrame(refocus));
+  requestAnimationFrame(refocus);
+  setTimeout(refocus, 120);
+}
+
 export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   /* 批 835 SOURCE_FACT：音频面板里这 6 个下拉在源站上**互斥**（开下一个 ⇒
      上一个自动关闭）。复刻此前是 6 个独立 boolean，于是能同时开着：
@@ -190,7 +232,15 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   };
   const [voice, setVoice] = useState("直爽女大");
   // 批 254/255/257: 筛选下拉选项与选中态；批 282: 性别筛选真实过滤网格
-  const [filterSel, setFilterSel] = useState<Record<string, string | null>>({});
+  /* ⚠️ 值域里**含** `undefined`：批 870 那个「开 ↔ 关」的切换
+     （`m[label] === undefined ? null : undefined`）会写进 `undefined`。
+     所以类型必须写 `string | null | undefined` —— 早先只写
+     `string | null`，`tsc` 报 TS2345。**`npm run check` 是 eslint、
+     不跑 tsc**，所以这条错误在门禁里一直绿着，只在 `tsc --noEmit`
+     里露出来 —— 886 顺手最小修掉。 */
+  const [filterSel, setFilterSel] = useState<
+    Record<string, string | null | undefined>
+  >({});
   /* 批 873：把「**开着没有**」和「**选了什么**」拆成**两个**状态。
 
      原来只有一个 `filterSel`，它同时承担两件事：既是选中值，又是开合标志
@@ -701,6 +751,30 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                   setFilterOpen((o) => ({ ...o, [label]: !o[label] }));
                                 }}
                                 aria-expanded={filterOpen[label] === true}
+                                /* ⚠️⚠️ 批 886 SOURCE_FACT：焦点在**芯片**上按
+                                   Esc，源站焦点落在**该音频节点本体**
+                                   （实测 `'音频 node: 音频 44'`，且节点**也**
+                                   取消选中 —— 工具条 `True → False`）。
+                                   复刻原先落 **`body`** ⇒ **真差异**。
+
+                                   ⚠️ 与「Clear 上按 Esc」是**两条路径**、
+                                   **同一落点**（886 实测）。差别：Clear 那条
+                                   还要**额外清除**选中值；芯片这条**不碰**
+                                   `filterSel` / `filterOpen` —— 关面板那半
+                                   **继续冒泡**给上层 handler（源站 Esc 是
+                                   多个动作同时发生的）。
+
+                                   ⚠️ 「芯片上按 Esc **值还在不在**」源站
+                                   **未取样**（886 只记了 `Clear 还在=False`，
+                                   而那只是**层关了**导致控件消失，**推不出**
+                                   值被清了）—— **不许**推测。 */
+                                onKeyDown={(e) => {
+                                  if (e.key === "Escape") {
+                                    refocusToNodeFromToolbar(
+                                      e.currentTarget as HTMLElement,
+                                    );
+                                  }
+                                }}
                                 /* 批 873：源站这个钮的 `aria-label` 是
                                    **`{筛选名}: {当前值}`**（探针 873 实测焦点落点
                                    读作 `BUTTON/性别: 男`）。
@@ -812,71 +886,16 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                          那一步就**记账收手**（§77：机制
                                          没验死之前不许改判据），不许
                                          靠加 setTimeout 试到「碰巧对了」。 */
-                                      const tb = (
-                                        e.currentTarget as HTMLElement
-                                      ).closest(".react-flow__node-toolbar");
-                                      const nid = tb?.getAttribute("data-id");
-                                      let nodeEl: HTMLElement | null = null;
-                                      if (nid) {
-                                        /* 用**属性相等**（`getAttribute` 比较）
-                                           而不是**选择器字符串拼接**：节点 id
-                                           可能含 `:` 等选择器里有意义的字符，
-                                           拼进 `[data-id="…"]` 会选错。 */
-                                        nodeEl = [
-                                          ...document.querySelectorAll(
-                                            ".react-flow__node"),
-                                        ].find(
-                                          (n) =>
-                                            n.getAttribute("data-id") === nid,
-                                        ) ?? null;
-                                      }
-                                      const refocus = () => {
-                                        /* 已被抢走（不在节点上）才补落 ——
-                                           已经落在上面就别重复动，免得自己
-                                           把「本来就对」的状态搅乱。 */
-                                        if (
-                                          nodeEl &&
-                                          document.activeElement !== nodeEl
-                                        ) {
-                                          nodeEl.focus();
-                                        }
-                                      };
-                                      refocus();
-                                      /* ⚠️ 批 882：**根因找到了**。抓 chunk 定位到
-                                         `@xyflow/react` 的 `useNodesSelection`：
-
-                                           } else if (unselect || node.selected
-                                                      && multiSelectionActive) {
-                                             unselectNodesAndEdges(...);
-                                             requestAnimationFrame(() =>
-                                               nodeRef?.current?.blur());
-                                           }
-
-                                         Esc ⇒ 面板关 ⇒ 节点**失去选中态**
-                                         ⇒ 这个分支触发 ⇒ 它在自己的 rAF 里
-                                         `blur()` 掉节点。
-
-                                         而我这里注册 rAF 是**同步**的（事件处理
-                                         里），它注册 rAF 是**状态更新后那次渲染
-                                         里** —— **同一个 rAF 队列里它排在我后面**
-                                         ⇒ blur 赢 ⇒ 这就是「同步 focus 成功、
-                                         ~50ms 后被抢走」的**全部原因**（881）。
-
-                                         所以用**双层 rAF**：第一层排在 React Flow
-                                         之后（它先跑），第二层再落焦点 ⇒ 不必
-                                         等 120ms 那种「取整出来的数」。
-
-                                         ⚠️ 仍**未验证**：双 rAF 能否**保证**排在
-                                         React Flow 之后 —— 那是**注册顺序**的
-                                         性质，不是契约。React Flow 哪天改成
-                                         `setTimeout` 或 `useEffect` 就又失效。
-                                         所以 120ms 补落**保留**（它是对
-                                         「万一双 rAF 也不够」的兜底）。 */
-                                      requestAnimationFrame(() =>
-                                        requestAnimationFrame(refocus),
+                                      /* ⚠️ 批 886：整段实现搬到**模块级**的
+                                         `refocusToNodeFromToolbar()` —— 芯片上
+                                         的 Esc 要**同一个落点**（886 实测源站
+                                         两个入口落点相同）。
+                                         为什么是模块级而不是组件内闭包、以及
+                                         三层落焦点为什么缺一不可，都写在那个
+                                         函数上面。 */
+                                      refocusToNodeFromToolbar(
+                                        e.currentTarget as HTMLElement,
                                       );
-                                      requestAnimationFrame(refocus);
-                                      setTimeout(refocus, 120);
                                       setFilterSel((m) => ({
                                         ...m, [label]: null,
                                       }));
@@ -941,8 +960,14 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                   onKeyDown={(e) => {
                                     // 找到这一块筛选自己的容器（chip 的下一个兄弟）
                                     const box = (e.currentTarget as HTMLElement);
+                                    /* `previousElementSibling` 返回 `Element`，
+                                       这里断言成 `HTMLElement`（芯片就是
+                                       `<button>`）。886 补 —— `npm run check`
+                                       不跑 tsc，所以这类错误门禁看不见。 */
                                     const chip: HTMLElement | null =
-                                      box.previousElementSibling;
+                                      box.previousElementSibling as
+                                        | HTMLElement
+                                        | null;
                                     if (e.key === "Escape") {
                                       e.preventDefault();
                                       e.stopPropagation();

@@ -41,17 +41,31 @@ LABEL = "性别"
 PICK = "男"
 
 # 节点的一切可观察属性（**两种状态都 dump**，靠差分找「选中」的标记）
-NODE_DUMP_JS = """() => {
-  const n = [...document.querySelectorAll('[aria-label^="音频 node"]')][0]
-    || [...document.querySelectorAll('*')].find(e =>
-         /node/.test((e.getAttribute('aria-label') || ''))
-         && /音频/.test((e.getAttribute('aria-label') || '')));
-  if (!n) return {no_node: true};
+#
+# ⚠️⚠️⚠️ 884 查清了这个函数**前两跑差分恒为 0 的真正原因**：它按
+#   `[aria-label^="音频 node"]` 取**第一个**匹配，而点选那一段用的是
+#   `data-testid="rf__node-node_xxx"`。**示例画布里本来就有音频节点**，
+#   于是 dump 的是**示例那个**、点的是**新插那个** —— 同一份探针里
+#   **两种找法指向不同元素**。
+#   而且它连 dump 了两次（阶段 A、阶段 C 各一次）都是同一个示例节点，
+#   差分自然是 0。
+#   ⇒ 第五次「量错对象」，形状是**同一个探针里 key 不统一**。
+#   844 实测：节点内部可点区域是 `absolute inset-0 flex items-center`
+#   （**铺满整个节点**），5 种落点策略 2/2 可靠 —— 所以**点得中**，
+#   883 的失败与「点不中」无关，就是这个 key 不一致。
+NODE_DUMP_JS = """(tid) => {
+  // ⚠️ 只认 `tid`（data-testid）。**不**按 aria 找第一个 ——
+  //   示例画布里本来就有音频节点，按 aria 找会拿到**另一个**。
+  const n = tid
+    ? document.querySelector(`.react-flow__node[data-testid="${tid}"]`)
+    : null;
+  if (!n) return {no_node: true, looked_by: 'data-testid', tid: tid || null};
   const r = n.getBoundingClientRect();
   const cs = getComputedStyle(n);
   const attrs = {};
   for (const a of n.attributes) attrs[a.name] = (a.value || '').slice(0, 80);
   return {
+    looked_by: 'data-testid', tid,
     tag: n.tagName,
     aria: n.getAttribute('aria-label') || '',
     className: ((n.className || '') + ''),
@@ -214,12 +228,14 @@ else:
                           "**不是**「源站没有选中态」")
         print("  !! " + out["verdict"])
     else:
-        d_unsel = ev(NODE_DUMP_JS)
+        d_unsel = ev(NODE_DUMP_JS, tid)
         out["dump_unselected"] = d_unsel
         print("\n== 阶段 A：未选中时的节点 ==")
         if d_unsel.get("no_node"):
             print("  !! 找不到节点 ⇒ 判据盲区（不是「没有节点」）")
         else:
+            print(f"   looked_by={d_unsel.get('looked_by')} "
+                  f"tid={d_unsel.get('tid')!r}")
             print(f"   tag={d_unsel['tag']} aria={d_unsel['aria']!r}")
             print(f"   class={d_unsel['className'][:90]!r}")
             print(f"   border={d_unsel['border']}  "
@@ -228,18 +244,16 @@ else:
 
     # ── 阶段 B：**选中**时的节点 dump ────────────────────────
     if tid and not out.get("verdict"):
+        # ⚠️ 884 实测：节点内部可点区域是 `absolute inset-0 flex items-center`
+        #   （**铺满整个节点**），**矩形中心**就是可点的，5 种策略 2/2 可靠。
+        #   这里直接用中心，并把**旁证当返回值**（不成立就记账退出）。
         pt2 = ev("""(tid) => {
           const n = document.querySelector(
             `.react-flow__node[data-testid="${tid}"]`);
           if (!n) return null;
           const r = n.getBoundingClientRect();
-          const CTRL = 'button,[role=button],a,input,select,textarea';
-          for (const [fx,fy] of [[0.5,0.5],[0.5,0.25],[0.25,0.5],[0.75,0.5]]) {
-            const x = r.x + r.width*fx, y = r.y + r.height*fy;
-            const t = document.elementFromPoint(x, y);
-            if (t && n.contains(t) && !t.closest(CTRL)) return [x, y];
-          }
-          return null;
+          return [Math.round(r.x + r.width / 2),
+                  Math.round(r.y + r.height / 2)];
         }""", tid)
         if pt2:
             page.mouse.click(pt2[0], pt2[1])
@@ -261,7 +275,7 @@ else:
                               "不许靠换落点反复硬试（§77 机制未验死之前"
                               "不许改判据）")
             print("  !! " + out["verdict"])
-        d_sel = ev(NODE_DUMP_JS)
+        d_sel = ev(NODE_DUMP_JS, tid)
         out["dump_selected"] = d_sel
         print(f"\n== 阶段 B：选中时的节点（工具条在吗 "
               f"{out['toolbar_present_when_selected']}，应为 True）==")
@@ -336,7 +350,7 @@ else:
         rec["clear_shown"] = bool(ev(
             """(label) => !!document.querySelector(
                  `[aria-label="Clear ${label} filter"]`)""", LABEL))
-        rec["dump_before_esc"] = ev(NODE_DUMP_JS)
+        rec["dump_before_esc"] = ev(NODE_DUMP_JS, tid)
         rec["focus_before"] = ev(FOCUS_JS)
         if rec["clear_shown"]:
             ev("""(label) => {
@@ -346,7 +360,7 @@ else:
             }""", LABEL)
             page.keyboard.press("Escape")
             page.wait_for_timeout(1000)
-        rec["dump_after_esc"] = ev(NODE_DUMP_JS)
+        rec["dump_after_esc"] = ev(NODE_DUMP_JS, tid)
         rec["focus_after"] = ev(FOCUS_JS)
         d_after = rec["dump_after_esc"]
         if d_after.get("no_node"):

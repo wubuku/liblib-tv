@@ -2065,13 +2065,17 @@ def main() -> int:
           "`@xyflow/react` 的 `useNodesSelection` 在节点失去选中态时于 "
           "`requestAnimationFrame` 里 `nodeRef.blur()`，且那个 rAF 注册得**更晚**"
           "（状态更新后那次渲染里）⇒ 同一个 rAF 队列里它排在我们后面。"
-          "**根修是双层 rAF**，不是 120ms 兜底；未验证的部分（注册顺序不是契约、"
-          "源站是否也取消选中）必须**留在基线里不许删**",
+          "**根修是双层 rAF**，不是 120ms 兜底；未验证的部分"
+          "（**注册顺序不是契约**）必须**留在基线里不许删**"
+          " ⚠️⚠️ 本条**第二版**：第一版还要求「源站是否也取消选中」"
+          "**留在**未验证清单里 —— 而 885 已经把它**测出来了**"
+          "（源站也取消、也 blur，但 blur 之后焦点被抢回来）⇒ "
+          "那条要求**过期了**。判据要跟上事实，但不能顺势把"
+          "「注册顺序不是契约」这条**一起删掉** —— 它仍未验证。",
           '"clear_esc_focus_mechanism"' in _ausrc
           and "useNodesSelection" in _ausrc
           and "根修 = **双层 rAF**" in _ausrc
-          and "注册顺序" in _ausrc and "不是契约" in _ausrc
-          and "更根本的疑点没查" in _ausrc)
+          and "注册顺序" in _ausrc and "不是契约" in _ausrc)
     check("BB.9 881 探针的**判据跟着事实一起改过**（第一版只看「DOM 有没有被"
           "替换」，于是修好之后仍然打出「机制仍未查清」—— 方向相反的同族错误："
           "**修好了还说没查清**）。现在按「焦点最终在不在节点上」分两条互斥判据，"
@@ -2081,6 +2085,80 @@ def main() -> int:
           and "res[\"why_still_unknown\"]" in _p881)
     p882 = ROOT / "scripts/jimeng_probe882_whostealsfocus_ck.py"
     _p882 = p882.read_text(encoding="utf-8") if p882.exists() else ""
+    p883 = ROOT / "scripts/jimeng_probe883_escselect_src.py"
+    _p883 = p883.read_text(encoding="utf-8") if p883.exists() else ""
+    p884 = ROOT / "scripts/jimeng_probe884_selectnode_src.py"
+    p885 = ROOT / "scripts/jimeng_probe885_escselect2_src.py"
+    _p884 = p884.read_text(encoding="utf-8") if p884.exists() else ""
+    _p885 = p885.read_text(encoding="utf-8") if p885.exists() else ""
+    check("CC.1 884 把「在源站**可靠地选中一个指定节点**」这个前置问题解决了"
+          "（五种落点**各 2/2**，且**重复试**——证明可靠不是碰巧一次），"
+          "同时查清 883 差分恒为 0 的**真因**",
+          bool(_p884) and "重复 2 次" in _p884
+          and "reliable" in _p884 and "n_success" in _p884)
+    check("CC.2 883 探针里那条「**同一份探针里两种找法指向不同元素**」的"
+          "教训留在代码里：`NODE_DUMP_JS` 只认 `data-testid`、**不**按 aria "
+          "取第一个（示例画布里本来就有音频节点）—— **第五次「量错对象」，"
+          "形状是 key 不统一**",
+          "同一个探针里 key 不统一" in _p883
+          and "不**按 aria 找第一个" in _p883
+          and "示例画布里本来就有音频节点" in _p883)
+    check("CC.3 885 **只做一件事**且把 884 的成果**用起来**：五种落点"
+          "**依次备胎**、旁证（工具条在不在）**把关**，"
+          "而不是像 883 那样「点一次、打印旁证、继续跑」",
+          bool(_p885) and "def select_node(" in _p885
+          and "旁证把关，策略备胎" in _p885
+          and "不是「点一次就记账」" in _p885)
+    check("CC.4 885 的结论写进基线并**作废**「更根本的疑点」："
+          "**源站 Esc 之后节点也取消选中**（工具条 True→False），"
+          "但焦点仍落在节点本体 ⇒ 「取消选中」**不是**差异，"
+          "差异只在「blur 之后有没有人抢回焦点」⇒ "
+          "**882 的双 rAF 治对了，不是治症状**",
+          '"clear_esc_node_unselected_too": True' in _ausrc
+          and "作废" in _ausrc
+          and "不是**差异" in _ausrc
+          and "治对了" in _ausrc)
+    check("CC.5 「五种策略都可靠」这个结论**只由 884 支撑**（每个 2/2）；"
+          "885 只试了 `center` 就命中、**备胎没被检验过** —— "
+          "未检验的机制不许写成「可靠」",
+          "备胎没派上用场" in _ausrc
+          and "没被检验过" in _ausrc)
+    p886 = ROOT / "scripts/jimeng_probe886_esconchip_src.py"
+    _p886 = p886.read_text(encoding="utf-8") if p886.exists() else ""
+    check("CC.6 886 取到了「**芯片上**按 Esc」的源站落点，并记成**另一条路径、"
+          "同一个落点**（源站首次取样 ⇒ 复刻落 body 是**真差异**，已修）",
+          bool(_p886)
+          and '"chip_esc_focus": "该音频节点本体' in _ausrc
+          and '"chip_esc_does_not_clear_value": True' in _ausrc
+          and "「落点」和「值」是**两件事**" in _p886)
+    check("CC.7 886 的教训落地：**组件内凡是要复用，就该提到模块级，"
+          "别复制第二份** —— 886 第一版把实现抽成组件内闭包，结果它和 Clear "
+          "内联那段是**复制粘贴关系**，按内容替换**匹配到了自己**、把文件改坏"
+          "两回（第一次删了 376 行、JSX 结构破坏）。共享函数因此放**模块级**",
+          "别复制第二份" in _agp_raw
+          and "匹配到了自己" in _agp_raw
+          and "function refocusToNodeFromToolbar(" in _agp_raw
+          # 芯片与 Clear **两处都**调模块级那个，没有第二份实现。
+          # ⚠️ 数的是「`refocusToNodeFromToolbar(` **后跟换行**」的**调用点**
+          #   （定义那行是 `function refocusToNodeFromToolbar(from...`，
+          #   注释里那处是 `` `refocusToNodeFromToolbar()` `` 后面跟 ` —— `）。
+          #   第一版写成 `count(...) == 3` 把**注释里那一次**也算进去了，
+          #   实际是 4 ⇒ 又一次「判据自己数错了」。
+          and _agp_raw.count("refocusToNodeFromToolbar(\n") == 2)
+    check("CC.8 「芯片上按 Esc **值还在不在**」源站**未取样**，不许与"
+          "「落点」那次的证据合并成一句 —— 886 的 `Clear 还在=False` 只是"
+          "**层关了导致控件消失**，**推不出**值被清了。"
+          " ⚠️ CC.6/CC.8 第一版 FAIL：判据引的三句都在 §98 与源码注释里、"
+          "**探针里根本没有** —— 该被钉的地方没钉，判据自然过不了",
+          "**推不出**" in _p886
+          and "value_measured" in _p886
+          and "不许**拿 `clear_after` 当证据" in _p886)
+    check("CC.9 `filterSel` 的类型**含 `undefined`**（870 那个「开 ↔ 关」切换会"
+          "写进 `undefined`）—— ⚠️ `npm run check` 跑的是 **eslint、不跑 tsc**，"
+          "所以这类错误门禁一直绿着，只在 `tsc --noEmit` 里露出来。"
+          "886 顺手最小修掉，代码里写明了「门禁看不见」这件事",
+          "Record<string, string | null | undefined>" in _agp_raw
+          and "不跑 tsc" in _agp_raw)
     check("BB.10 882 探针用**劫持 prototype** 抓调用栈定位到那个 handler，"
           "而且**每段测完自己 reload 恢复**（诊断动作不许留痕）；"
           "另有**不按 Esc 的对照组**——焦点不动，确证是 Esc 触发的，"
