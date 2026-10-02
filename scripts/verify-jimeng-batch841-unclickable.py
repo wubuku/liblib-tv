@@ -49,6 +49,9 @@ EXPECTED_STATES = [
     "画布右键菜单", "缩放菜单",
     "顶栏·分享面板", "顶栏·账号菜单", "顶栏·更多菜单",
     "顶栏·搜索", "顶栏·生成历史",
+    # 批 865：从「一次性测量」提升为**常驻状态**（§82 探到、864 修好，
+    # 但证据只在探针输出里 —— 不进状态表就没人盯着它会不会再坏）。
+    "资产库模态", "项目信息模态",
 ]
 
 failures: list[str] = []
@@ -202,7 +205,15 @@ def main() -> int:
     #       自检过了且没缺陷 ⇒ 0
     #     三种都能两个方向失败：把 kb_covered 从退出码里漏掉（缺陷当通过放行）、
     #     写死 0、或自检红着却退 0，都会被抓住。
-    any_bad = bool(real or kb_bad or kb_cov or kb_ni or kb_esc or kb_arr)
+    # ⚠️ 批 865：新增两个**源站无关**的模态语义桶。退出码公式**必须**
+    #    跟审计那一行同步 —— 审计已经把它们算进 `return 1 if (...)`，
+    #    verifier 这边不跟，就会在「模态真出缺陷」时拿 rc=1 去撞 want_rc=0，
+    #    报出一条「审计与自检不一致」的**假**告警。一致性检查自己不一致，
+    #    比没有检查更坏。
+    kb_mnf = data.get("keyboard_modal_no_focus", [])
+    kb_mnt = data.get("keyboard_modal_no_trap", [])
+    any_bad = bool(real or kb_bad or kb_cov or kb_ni or kb_esc or kb_arr
+                   or kb_mnf or kb_mnt)
     self_ok = (
         kbst.get("reachable_before") is True
         and kbst.get("unreachable_when_stripped") is True
@@ -1270,6 +1281,80 @@ def main() -> int:
           "SECRET4" in _sc_out and "SECRET5" in _sc_out,
           f"SECRET4={'SECRET4' in _sc_out} "
           f"SECRET5={'SECRET5' in _sc_out}")
+
+    # ── R. 批 865：两个模态进**常驻状态** + 源站无关的模态语义判据 ────
+    # §82 修好的两处，证据只在探针 864 的输出里 —— 那是一次性测量。
+    # 865 做了两件事把它们变成契约：① 加进审计的状态表，从此每次都量；
+    # ② 加一条**不依赖源站**的判据，因为「开层没接管焦点 / 不困 Tab」
+    # 这两个桶是**基线门控**的，而这两个模态正好在基线表外。
+    print("— R. 批 865 常驻模态状态 + 源站无关模态语义判据 —")
+    check("R.1 两个模态进了**常驻状态表**"
+          "（不进表就只是一次性测量，坏了没人知道）",
+          "资产库模态" in EXPECTED_STATES
+          and "项目信息模态" in EXPECTED_STATES,
+          f"状态表里有没有={('资产库模态' in EXPECTED_STATES, '项目信息模态' in EXPECTED_STATES)}")
+    _kbm = {r.get("state"): r for r in data.get("keyboard", [])}
+    _am = _kbm.get("资产库模态", {})
+    _pi = _kbm.get("项目信息模态", {})
+    check("R.2 两个模态**真的量到了**（不是 skipped、也不是键盘栏空白）",
+          bool(_am) and bool(_pi) and _am.get("ok") is True
+          and _pi.get("ok") is True,
+          f"资产库 ok={_am.get('ok')!r} 项目信息 ok={_pi.get('ok')!r}")
+    # ⚠️ 这是 865 最要紧的一条：第一版把 `modal_self_test` 直接写进结果
+    #    字典的**字面量**里，跑出来是 **null** —— 字面量在**建的时候**
+    #    就把当时的 None 拷进去了，而自检在那**之后**才跑。判据看着
+    #    接上了、值是空的。钉住「四项输入同时成立」，null 过不了。
+    _ms = kbst.get("modal_self_test") or {}
+    check("R.3 模态语义判据的**自检能红**（合成阳性夹具的四个条件同时成立："
+          "是模态 + 铺满 + 不透明 + **焦点确实不在层内**）",
+          _ms.get("ok") is True and _ms.get("is_modal") is True
+          and _ms.get("covers") is True and _ms.get("opaque") is True
+          and _ms.get("focus_inside") is False,
+          f"modal_self_test="
+          f"{json.dumps(kbst.get('modal_self_test'), ensure_ascii=False)[:150]}")
+    check("R.4 `modal_self_test` **不是 null**"
+          "（第一版把它写进字典字面量、自检在其后跑，值恒为 null ——"
+          "「看着接上了」不等于「接上了」）",
+          kbst.get("modal_self_test") is not None)
+    check("R.5 结果里**回填**而不是字面量（源码里是 "
+          "`kb_self[\"modal_self_test\"] =`）",
+          'kb_self["modal_self_test"]' in asrc)
+    check("R.6 两个源站无关的桶**接进了退出码**"
+          "（审计那行 `return 1 if (...)` 里真的有它们）"
+          "—— 定义了不进退出码 = 「写了但没人看」，下一批就会当死代码删",
+          "or kb_modal_no_focus or kb_modal_no_trap" in asrc)
+    check("R.7 两个桶在结果里**存在**（不是缺键当成 0）",
+          "keyboard_modal_no_focus" in data
+          and "keyboard_modal_no_trap" in data,
+          f"缺键={[k for k in ('keyboard_modal_no_focus', 'keyboard_modal_no_trap') if k not in data]}")
+    # 谓词的两个分支**各有样本守着**，少一条判据就恒真
+    check("R.8 谓词要求 `position: fixed|absolute`"
+          "（实测：项目信息的祖先里有个 `pos=static 1680×1050 自身不透明`"
+          "的页面根；少了这条约束，**每个**层都会被算成模态、判据恒真）",
+          "positioned" in asrc and "'fixed' ||" in asrc
+          and "p === 'fixed' || p === 'absolute'" in asrc)
+    check("R.9 谓词有「**不透明的铺满孩子**」分支"
+          "（资产库是 wrapper 无底 + 内含 `bg-black/55` 遮罩，"
+          "只看祖先自身不透明会认不出来）",
+          "不透明孩子" in asrc and "n.children" in asrc)
+    # 产品侧：三个层被判成三种不同的结论，且都不是「全判成模态」
+    _mod = sorted({r.get("layer") for r in data.get("keyboard", [])
+                   if (r.get("modalish") or {}).get("modalish") is True})
+    check("R.10 复刻侧认出的真模态里**包含**全屏预览与资产库"
+          "（这两个实测确实有全屏不透明遮罩）",
+          "video-fullscreen-preview" in _mod
+          and "jimeng-assets-modal" in _mod,
+          f"真模态={_mod}")
+    check("R.11 项目信息**没有被**算成模态"
+          "（它没有全屏遮罩、实测 `covered_n=0`；把它算成模态就会逼出一个"
+          "「它该困 Tab」的过度结论）",
+          "project-info-modal" not in _mod,
+          f"真模态里有没有它={'project-info-modal' in _mod}")
+    check("R.12 判据没把**所有**层都算成模态（恒真检查：认出的真模态数"
+          f"必须**少于**被量的层数，实测 {len(_mod)} vs "
+          f"{len(data.get('keyboard', []))}）",
+          0 < len(_mod) < len(data.get("keyboard", [])),
+          f"真模态 {len(_mod)} / 被量 {len(data.get('keyboard', []))}")
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

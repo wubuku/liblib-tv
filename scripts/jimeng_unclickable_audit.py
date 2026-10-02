@@ -78,6 +78,42 @@ SELF_HIDDEN = ('.react-flow__node-toolbar', '.react-flow__node-panel',
                '.react-flow__viewport-portal', '.react-flow__nodes')
 
 
+MODALISH_JS = """(tid) => {
+              const el = document.querySelector(`[data-testid="${tid}"]`);
+              if (!el) return {modalish: false, why: '层不存在'};
+              const vw = innerWidth, vh = innerHeight;
+              const opaque = (n) => {
+                const bg = getComputedStyle(n).backgroundColor || '';
+                return bg !== 'rgba(0, 0, 0, 0)'
+                    && !bg.startsWith('rgba(0, 0, 0, 0)');
+              };
+              const covers = (r) => r.width >= vw * 0.9 && r.height >= vh * 0.9;
+              const positioned = (n) => {
+                const p = getComputedStyle(n).position;
+                return p === 'fixed' || p === 'absolute';
+              };
+              for (let n = el; n && n !== document.body; n = n.parentElement) {
+                const r = n.getBoundingClientRect();
+                if (!positioned(n) || !covers(r)) continue;
+                if (opaque(n)) {
+                  return {modalish: true, via: '自身不透明',
+                          why: n.tagName + ' 定位且铺满视口、自身不透明'};
+                }
+                for (const c of n.children) {
+                  const cr = c.getBoundingClientRect();
+                  if (covers(cr) && opaque(c)) {
+                    return {modalish: true, via: '不透明孩子',
+                            why: n.tagName + ' 定位且铺满视口，其中一个孩子'
+                                  + '（' + ((c.className || '').toString()
+                                            .slice(0, 28)) + '）铺满且不透明'};
+                  }
+                }
+              }
+              return {modalish: false,
+                      why: '没有「定位 + 铺满视口 + 不透明」的祖先'};
+}"""
+
+
 def main() -> int:
     rows: list[dict] = []
     skipped: list[str] = []
@@ -456,6 +492,15 @@ def main() -> int:
                       txt: (a.innerText || a.getAttribute('placeholder') || '')
                             .trim().replace(/\\s+/g, ' ').slice(0, 24)};
             }""", layer_tid)
+            # ══ 批 865：这一层算不算**真模态**？════════════════════════
+            #   谓词提到模块级 `MODALISH_JS`（单一来源：键盘探针和指针普查
+            #   都用它，两处各写一份就是第四次让同一判据分叉）。
+            #   ⚠️ 谓词**不是猜的**：探针 865 拿 4 个已知答案的层实测过
+            #   （资产库 True / 项目信息 False / 更多菜单 False / 缩放菜单
+            #   False，零判错）。`position: fixed|absolute` 这条约束是
+            #   **必需**的 —— 项目信息的祖先里就有个 `pos=static 1680×1050
+            #   自身不透明` 的页面根，少了它每个层都会被算成模态、判据恒真。
+            modalish = page.evaluate(MODALISH_JS, layer_tid)
             page.evaluate("""() => { const a = document.activeElement;
                 if (a && a.blur) a.blur(); return true; }""")
             covered = None
@@ -649,6 +694,7 @@ def main() -> int:
                     return {"ok": True, "tabs": i, "covered": covered,
                             "covered_n": covered_n, "skin_top_n": skin_top_n,
                             "focus_at_open": at_open, "trace": trace,
+                            "modalish": modalish,
                             "escape": esc, "arrow_down": arr,
                             "arrow_up": arr_up}
                 if step.get("skin_top"):
@@ -673,6 +719,7 @@ def main() -> int:
             return {"ok": False, "tabs": max_tabs, "covered": covered,
                     "covered_n": covered_n, "skin_top_n": skin_top_n,
                     "focus_at_open": at_open, "trace": trace,
+                    "modalish": modalish,
                     "capped": True,
                     "why": f"按满 {max_tabs} 次 Tab 上限仍未进到 {layer_tid} 里"
                            f"（是上限不够还是真进不去，看 trace）"}
@@ -721,8 +768,19 @@ def main() -> int:
                             "判决：缺口 4/4 全认得出来），所以是脚本没把层点开，"
                             "不是判据盲区"),
                 })
+            # ⚠️ 普查跑在 `close_open()` **之后**。资产库是「点外面关掉」，
+            #    Esc 关不掉，所以它会被普查撞见（865 实测：8 条画布控件因此
+            #    掉进「活页面确认没通过」—— 采样到的栈顶元素是视频节点自己的
+            #    wrapper，不是那层 `bg-black/55` 遮罩，`scrim` 判假）。
+            #    所以 `modal_open` 必须**在普查这一刻**重新问，**不能**复用
+            #    键盘探针里那个值 —— 那是 `close_open()` 之前的另一个瞬间。
+            modal_open = False
+            _ml_now = open_layer()
+            if _ml_now:
+                _mres = page.evaluate(MODALISH_JS, _ml_now) or {}
+                modal_open = bool(_mres.get("modalish"))
             raw = page.evaluate("""(args) => {
-              const [CONTROL, SAMPLES, VH] = args;
+              const [CONTROL, SAMPLES, VH, MODAL_OPEN] = args;
               const out = [];
               // ⚠️ `nextjs-portal` 是 **Next 开发态**注入的调试浮层，恰好压在
               //    左下角那枚「选择工具」(28×28 @16,1002) 上。第一版把它当成
@@ -779,6 +837,22 @@ def main() -> int:
                   const scrim = blockers.some(bk =>
                     bk.w >= window.innerWidth * 0.85 &&
                     bk.h >= window.innerHeight * 0.85);
+                  // ══ 批 865 补：开着**真模态**时，层外控件按定义就被盖住 ══
+                  //   上面那条 `scrim` 判的是「**遮挡物自己**的矩形够不够大」。
+                  //   本批加了两个模态状态后实测：资产库开着时，画布上
+                  //   9×9 的「取消静音」这类控件采样到的**栈顶元素**是
+                  //   **视频节点自己的 wrapper**（752×428），不是那层
+                  //   `bg-black/55` 遮罩 ⇒ `scrim=false` ⇒ 掉进
+                  //   「活页面确认没通过」（实测 8 条，全是模态背后的
+                  //   画布控件：取消静音 / 全屏预览 / 播放 / Add tags /
+                  //   文本节点 / 音频节点）。
+                  //   可审计**自己已经知道**此刻开着真模态（`args[2]` 传进来
+                  //   的 `modalOpen`）：模态盖住页面是它的定义，不是需要
+                  //   再量一遍的巧合。所以层外控件直接判「被模态盖住」。
+                  //   ⚠️ 只在**真模态**时用这条 —— 下拉菜单不算，它小，
+                  //      盖住画布控件是别的判据在管。
+                  // （`scrimByModal` 的定义放在 `inLayer` 之后 —— 它要用到
+                  //  `inLayer`，写在前面就只能去引用一个还不存在的名字。）
                   // ⚠️ 这条分界是本工具最要紧的一条判据，抄的是批 835 的结论：
                   //    **浮层盖住静态控件是覆盖层的正常行为，不该判失败。**
                   //    全屏模态开着的时候左栏点不到；下拉开着的时候画布上的
@@ -792,6 +866,8 @@ def main() -> int:
                     + '[role=menu], [role=listbox], [role=dialog], [role=popover], '
                     + '[data-testid$="-listbox"], [data-testid$="-menu"], '
                     + '[data-testid$="-panel"], [data-testid$="-palette"]');
+                  // ⚠️ `scrimByModal` 必须写在 `inLayer` **之后**（见上）。
+                  const scrimByModal = !!MODAL_OPEN && !inLayer;
                   // ⚠️ 第三档（批 843 加）：**同一层里自己压自己**才是布局 bug。
                   //    跨层遮挡一律 INFO —— 一个菜单盖住画布右下角的会员浮窗，
                   //    用户关掉菜单就能点，那不是缺陷，是覆盖层的本职工作。
@@ -824,12 +900,12 @@ def main() -> int:
                             w: Math.round(r.width), h: Math.round(r.height),
                             x: Math.round(r.x), y: Math.round(r.y),
                             in_layer: inLayer,
-                            covered_by_modal: scrim,
+                            covered_by_modal: scrim || scrimByModal,
                             blockers: blockers});
                 }
               }
               return out;
-            }""", [CONTROL, SAMPLES, VIEWPORT["height"]])
+            }""", [CONTROL, SAMPLES, VIEWPORT["height"], modal_open])
 
             for r in raw:
                 # 活页面确认：把挡在上面的那个元素藏掉，必须立刻变得可点。
@@ -1090,6 +1166,43 @@ def main() -> int:
             page.keyboard.press("Escape")
             page.wait_for_timeout(450)
 
+        # ══ I. 批 865：两个**视口级模态** ══════════════════════════════
+        #   §82 把它们探出来了、也修好了，但那时它们的证据是**一次性测量**
+        #   （探针 864 跑一次记一次）。这里把它们提升为**常驻状态** ——
+        #   从此这两个层的焦点行为由审计**每次都量**，坏了会自己报出来。
+        #   ⚠️ 它们在源站基线表外，所以**不参与**「源站怎么做」的对照，
+        #      会落进 `keyboard_not_sampled`；真正盯着它们的是 865 新加的
+        #      **源站无关**的模态语义桶（`modal_no_focus` / `modal_no_trap`）。
+        for tag, path, tid, why in [
+            ("资产库模态", [('button[aria-label="资产库"]', None)],
+             "jimeng-assets-modal", "工具条「资产库」"),
+            ("项目信息模态",
+             [('[data-testid="canvas-more-trigger"]', None),
+              ('[role="menuitem"]:text-is("项目信息")', None)],
+             "project-info-modal", "顶栏「更多」→「项目信息」"),
+        ]:
+            for sel, _ in path:
+                el = page.locator(sel).first
+                if el.count():
+                    try:
+                        el.click(timeout=6000)
+                    except Exception:
+                        pass
+                page.wait_for_timeout(700)
+            if page.locator(f'[data-testid="{tid}"]').count():
+                measure(tag)
+                page.keyboard.press("Escape")
+                page.wait_for_timeout(600)
+                # ⚠️ 资产库的遮罩是「点外面关掉」，Esc **不一定**管用；
+                #    这里再点一下工具条把状态清干净，否则下一个状态的
+                #    `open_layer()` 认到的还是它（840 栽过同一个坑：
+                #    探完不收层，后面每个状态都在报同一层）。
+                if page.locator(f'[data-testid="{tid}"]').count():
+                    page.reload(wait_until="domcontentloaded", timeout=60000)
+                    page.wait_for_timeout(2500)
+            else:
+                skipped.append(f"{tag}（走 {why} 但没找到 {tid}）")
+
         # ── 自检：判据必须**能报出 1** ──────────────────────────────
         #     一个报 0 的工具，在证明自己之前什么都不是。第一版没有这一步，
         #     于是「0 个点不着」和「判据瞎了」在输出里长得一模一样。
@@ -1253,6 +1366,11 @@ def main() -> int:
                 skin_n = 0
             page.keyboard.press("Escape")
             page.wait_for_timeout(400)
+            # ⚠️ 批 865 踩过一次：把 `modal_self_test` 直接写进下面这个字典
+            #    字面量里。第一版跑出来是 **null** —— 字面量在**建的时候**
+            #    就把当时的 `None` 拷进去了，而自检是在这**之后**才跑的。
+            #    看着接上了、值是空的，比没接更坏（它会让下一个人以为
+            #    「自检跑过了」）。所以改成：先不写，自检跑完再**回填**。
             kb_self = {"layer": probe_layer,
                        "reachable_before": before_kb.get("ok"),
                        "unreachable_when_stripped": after_kb.get("ok") is False,
@@ -1284,6 +1402,58 @@ def main() -> int:
         close_open()
         page.keyboard.press("Escape")
         page.wait_for_timeout(500)
+
+        # ══ 批 865 自检：模态语义判据**能红**吗？════════════════════════
+        #   上面那套自检管的是 covered/skin。这一条新判据必须有**自己的**
+        #   自检，否则「模态却没接管焦点」可能就是一句恒真的空话。
+        #   做法与夹具一/二同款：**注入一个合成的阳性夹具** —— 一层
+        #   `position:fixed; inset:0` + 不透明底 + 带一枚可聚焦按钮的
+        #   `role=dialog`，**刻意不给它焦点**。判据若真的在干活，就必须
+        #   同时认出「它是模态」且「开层焦点不在层内」—— 这正是它报缺陷
+        #   的那组输入。
+        #   ⚠️ 只验判据的**输入**成立；「它会不会被列进 kb_modal_no_focus」
+        #     由退出码那一行的桶名保证（verifier R 组钉住桶名接进退出码）。
+        page.evaluate("""() => {
+          const d = document.createElement('div');
+          d.setAttribute('data-testid', 'kb-self-test-modal');
+          d.setAttribute('role', 'dialog');
+          d.setAttribute('aria-label', '自检合成模态');
+          d.style.cssText = 'position:fixed;inset:0;z-index:99997;'
+                          + 'background:rgb(20,20,20);display:flex;'
+                          + 'align-items:center;justify-content:center';
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.textContent = '自检按钮';
+          d.appendChild(b);
+          document.body.appendChild(d);
+        }""")
+        page.wait_for_timeout(400)
+        # 刻意**不** focus：焦点此刻还在页面上别处
+        modal_self = page.evaluate("""(tid) => {
+          const el = document.querySelector(`[data-testid="${tid}"]`);
+          if (!el) return {ok: false, why: '合成模态没插进去'};
+          const vw = innerWidth, vh = innerHeight;
+          const opaque = (n) => {
+            const bg = getComputedStyle(n).backgroundColor || '';
+            return bg !== 'rgba(0, 0, 0, 0)'
+                && !bg.startsWith('rgba(0, 0, 0, 0)');
+          };
+          const r = el.getBoundingClientRect();
+          const pos = getComputedStyle(el).position;
+          const is_modal = (pos === 'fixed' || pos === 'absolute')
+                           && r.width >= vw * 0.9 && r.height >= vh * 0.9
+                           && opaque(el);
+          const a = document.activeElement;
+          return {ok: true, is_modal: is_modal,
+                  pos: pos, opaque: opaque(el),
+                  covers: r.width >= vw * 0.9 && r.height >= vh * 0.9,
+                  focus_inside: !!(a && el.contains(a)),
+                  al: a ? (a.getAttribute('aria-label') || a.tagName) : 'body'};
+        }""", "kb-self-test-modal")
+        page.evaluate("""() => document.querySelectorAll(
+            '[data-testid="kb-self-test-modal"]').forEach(e => e.remove())""")
+        page.wait_for_timeout(300)
+        kb_self["modal_self_test"] = modal_self
 
         self_test: dict = {}
         if page.locator(probe_sel).count() >= 1:
@@ -1334,7 +1504,17 @@ def main() -> int:
             and not r.get("covered_by_modal")]
     by_modal = [r for r in rows if r.get("covered_by_modal")
                 or (r["confirmed"] and not r.get("same_layer"))]
-    unconfirmed = [r for r in rows if not r["confirmed"]]
+    # ⚠️⚠️ 批 865：三个桶必须**互斥**，否则汇总那一行在骗人。
+    #   `unconfirmed` 原来是「没通过活页面确认」的**全部**行，可 `by_modal`
+    #   里的行同样没通过确认（把记录到的那个遮挡物藏掉并不会让控件可点 ——
+    #   真正挡着的是模态遮罩，而那条根本不在 `blockers` 里）。于是同一行
+    #   被数了两遍：实测 `确认 0 + 被模态盖住 120 + 未确认 8 = 128`，
+    #   而候选只有 **124** 条。
+    #   「已被模态盖住」本身就是解释，没法通过藏遮挡物翻转**不构成**新信息。
+    #   所以 `unconfirmed` 只收「既不是确认缺陷、也没被模态解释掉」的行 ——
+    #   它是一个**剩下的桶**，不是「没数清的桶」。
+    unconfirmed = [r for r in rows
+                   if not r["confirmed"] and not r.get("covered_by_modal")]
     # 键盘那一路：`ok is False` 才是缺陷；`ok is None` 是"那一刻没有打开的
     # 浮层"，**不计也不当通过** —— 与指针那条 skipped/empty 的分档同一个道理。
     #
@@ -1669,11 +1849,38 @@ def main() -> int:
     #    这正是 851b「不许放宽判据、要重新认层」的理由：放宽只会把伪像洗成
     #    结论，而重新认层才知道这次的「不接管焦点」是真的。
     kb_no_initial, kb_escaped, kb_arrow_dead = [], [], []
+    # ══ 批 865：源站**无关**的模态语义桶 ══════════════════════════════
+    #   上面三个桶全部基线门控。865 给「铺满视口且不透明」的层单开两条：
+    #     · 模态却**没接管焦点**（焦点停在被自己遮住的触发器上，或掉到 body）
+    #     · 模态却**不困 Tab**（焦点从层内漏回被遮住的页面）
+    #   依据是「模态盖住了页面，就不该把焦点漏给页面」—— 模态自身的定义，
+    #   与源站怎么实现无关。**刻意不查源站**：源站没取过样的层照样受管。
+    #   ⚠️ 这两条**必须能红**，否则就是恒真的空话 —— 自检见 G 组。
+    kb_modal_no_focus, kb_modal_no_trap = [], []
     kb_judged, kb_not_sampled = [], []
     for r in kb_rows:
         if r.get("ok") is not True:
             continue
         tid = r.get("layer")
+        mi = r.get("modalish") or {}
+        if mi.get("modalish") is True:
+            at = r.get("focus_at_open") or {}
+            if not at.get("inside"):
+                kb_modal_no_focus.append({
+                    "state": r.get("state"), "layer": tid,
+                    "at_open": at.get("al") or at.get("state"),
+                    "modalish_why": mi.get("why"),
+                    "why": "这一层铺满视口且不透明（真模态），开层却没把焦点"
+                           "放进层内 —— 焦点停在被自己遮住的地方，或掉到 body"})
+            esc = r.get("escape") or {}
+            if esc.get("trapped") is False:
+                kb_modal_no_trap.append({
+                    "state": r.get("state"), "layer": tid,
+                    "escaped_at": esc.get("escaped_at"),
+                    "landed": esc.get("landed"),
+                    "modalish_why": mi.get("why"),
+                    "why": "真模态却没有焦点陷阱：第 "
+                           f"{esc.get('escaped_at')} 次 Tab 就跑回被遮住的页面"})
         if tid in NOT_SAMPLED:
             kb_not_sampled.append({"state": r.get("state"), "layer": tid,
                                    "why": NOT_SAMPLED[tid]})
@@ -1721,6 +1928,8 @@ def main() -> int:
                    "keyboard_no_initial_focus": kb_no_initial,
                    "keyboard_escaped": kb_escaped,
                    "keyboard_arrow_dead": kb_arrow_dead,
+                   "keyboard_modal_no_focus": kb_modal_no_focus,
+                   "keyboard_modal_no_trap": kb_modal_no_trap,
                    "keyboard_judged_layers": sorted(set(kb_judged)),
                    "keyboard_not_sampled": kb_not_sampled,
                    "keyboard_no_layer": kb_no_layer,
@@ -1803,6 +2012,28 @@ def main() -> int:
           f"**Tab 逃出层 {len(kb_escaped)}**、"
           f"**方向键不动 {len(kb_arrow_dead)}**；"
           f"源站**没取过样**因而**不下结论**的 {len(kb_not_sampled)} 个")
+    # ══ 批 865：模态语义（**源站无关**）══════════════════════════════
+    #   上面那三项是**基线门控**的 —— 源站没取过样的层不受管。§82 抓到的
+    #   两个模态正好在基线表外，所以它们的焦点行为当时只是一次性测量。
+    #   下面这条按**层自己的形状**判：铺满视口且不透明 = 真模态 ⇒ 必须
+    #   接管焦点 + 困 Tab。依据是模态自身的定义，不依赖源站。
+    #   ⚠️ 必须**打印**出来：定义了却不印，等于「写了但没人看」，
+    #   下一批就会当死代码删掉（verifier R.5 钉住它在源码里）。
+    _mod_layers = sorted({r.get("layer") for r in kb_rows
+                          if (r.get("modalish") or {}).get("modalish") is True})
+    print(f"模态语义（源站无关）：认出的真模态 {len(_mod_layers)} 个"
+          f"（{', '.join(_mod_layers) or '—'}） → "
+          f"**没接管焦点 {len(kb_modal_no_focus)}**、"
+          f"**不困 Tab {len(kb_modal_no_trap)}**")
+    for k in kb_modal_no_focus:
+        print(f"  ★ 真模态却**没接管焦点** [{k['state']}] 浮层={k['layer']!r}："
+              f"开层时焦点在 {k.get('at_open')!r} —— {k.get('modalish_why')}；"
+              f"模态盖住了页面，就不该把焦点漏给页面（{k['why']}）")
+    for k in kb_modal_no_trap:
+        print(f"  ★ 真模态却**不困 Tab** [{k['state']}] 浮层={k['layer']!r}："
+              f"第 {k.get('escaped_at')} 次 Tab 跑回 "
+              f"al={(k.get('landed') or {}).get('al')!r} "
+              f"tid={(k.get('landed') or {}).get('tid')!r} —— {k['why']}")
     for k in kb_no_initial:
         print(f"  ★ 开层**没把焦点移进层里** [{k['state']}] 浮层={k['layer']!r}："
               f"焦点还停在 {k.get('at_open')!r} —— 源站 {k['src_tid']!r} "
@@ -1896,7 +2127,10 @@ def main() -> int:
               f" ⇒ 键盘那一栏不完整，本轮结果**不可信**（退出码 2）")
         return 2
     return 1 if (real or kb_bad or kb_covered
-                 or kb_no_initial or kb_escaped or kb_arrow_dead) else 0
+                 or kb_no_initial or kb_escaped or kb_arrow_dead
+                 # 批 865：模态语义桶也参与判缺陷 —— 写了却不进退出码，
+                 # 等于「定义了但没人看」，下一批就会把它当死代码删掉。
+                 or kb_modal_no_focus or kb_modal_no_trap) else 0
 
 
 if __name__ == "__main__":
