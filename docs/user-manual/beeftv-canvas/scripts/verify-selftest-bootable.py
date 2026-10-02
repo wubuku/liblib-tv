@@ -123,7 +123,7 @@ SELFTEST_COSTS = {
     "selftest-quote-punct.py": 11,  # Batch 185：闸 22，实测 9.4/11.0s（6 例各跑一遍全量核对）
     "selftest-screenshots-literals.py": 23.5,
     "selftest-screenshots.py": 0.6,
-    "selftest-selftest-bootable.py": 6.4,
+    "selftest-selftest-bootable.py": 21,  # Batch 200：加方向五的 2 例后实测 20.8/20.8s
     "selftest-selftest-deps.py": 0.6,
     "selftest-scope.py": 0.3,   # Batch 190：闸 24，实测 0.23/0.21/0.27s（5 例，各起一棵临时树）
     "selftest-shortcuts.py": 1.3,
@@ -264,6 +264,21 @@ def _shared_modules():
         if any(pat.search(b) for b in bodies):
             out.add(mod)
     return out
+
+
+def _slow_fixture_triples(script_name):
+    """从慢反验脚本里抽出 `(目标文件, 夹具)` 三元组。
+
+    **刻意只抽注入夹具这一步，不跑闸**：一个用例会不会作废，
+    取决于「夹具能不能命中它的锚点」，而这一步**不跑任何闸**——
+    实测 23 个三元组重放一遍只要 **0.6 秒**，而整个慢反验要 97 秒（快 160 倍）。
+    """
+    import re as _re
+    text = open(os.path.join(SCRIPTS, script_name), encoding="utf-8").read()
+    return [(_t.replace("$HERE", SCRIPTS), _f.replace("$HERE", SCRIPTS))
+            for _t, _f in _re.findall(
+                r'run_file_(?:case|pass_case)\s+"[^"]*"\s*\\?\s*\n?\s*"([^"]+)"\s+"([^"]+)"',
+                text)]
 
 
 def main():
@@ -471,6 +486,53 @@ def main():
                 f"方向四d：反验 {fn} 实测 {cost}s，**超过阈值 {SLOW_BUDGET_SEC}s 却没登记为慢**"
                 "　→ 这正是原判据漏掉的那一整类：新反验变慢时无人提醒")
 
+    # ── 方向五（Batch 200）：慢反验的注入夹具**必须还能命中它的锚点** ──
+    #
+    # **为什么需要它**（Batch 198 实测到的形态）：
+    # `selftest-meta.sh` 跑出来是「通过 34 / 失败 0 / **作废 2**」——
+    # 而作废的两条是**方向十一最要紧的两条**。作废的成因是夹具的锚点断言失配，
+    # 而那一步**不跑闸、只要 0.6 秒**。**没人跑慢反验，于是没人知道那两条用例
+    # 早就在「什么都不验」的状态里待了很久**（纪律 178）。
+    # 本方向让这件事进构建：**97 秒的东西里，只有 0.6 秒那一段与「有没有在验」有关。**
+    #
+    # **边界必须写清楚**：
+    #   · **只查前提，不查结果**——「夹具能不能命中锚点」≠「用例会不会通过」；
+    #   · **只覆盖 `selftest-meta.sh`**——`selftest-unreachable.sh` 的注入目标是
+    #     **上游仓里那个 ref 上的文件**（它先走 git plumbing 造合成 ref），
+    #     重放成本与 97 秒那一段同量级，**本方向不覆盖，如实记在这里**。
+    # **目标文件不在场就跳过，而不是报问题**——前提无法评估 ≠ 判为失败
+    # （闸 9 方向一已经负责「基本输入存在性」）。这一条也是反验沙箱能用的前提：
+    # 沙箱只搬 `scripts/`，根目录的 `AUDIT-RULES.md` 本来就不在里面。
+    fx_checked, fx_skipped, fx_void = 0, 0, []
+    for target, fixer in _slow_fixture_triples("selftest-meta.sh"):
+        if not os.path.isfile(fixer) or not os.path.isfile(target):
+            fx_skipped += 1
+            continue
+        try:
+            with open(target, encoding="utf-8") as fh:
+                r = subprocess.run([sys.executable, fixer], stdin=fh,
+                                   capture_output=True, text=True, timeout=30)
+        except OSError as exc:
+            fx_void.append((os.path.basename(fixer), str(exc)[:60]))
+            continue
+        fx_checked += 1
+        if r.returncode != 0:
+            tail = (r.stderr or "").strip().splitlines()
+            fx_void.append((os.path.basename(fixer),
+                            (tail[-1] if tail else "无输出")[:70]))
+    if not _slow_fixture_triples("selftest-meta.sh"):
+        problems.append(
+            "方向五：**从 `selftest-meta.sh` 里抽不出任何注入夹具三元组**——"
+            "要么它的用例调用格式变了，要么整份脚本被清空"
+            "　→ **「一个都没检查」与「全部都检查了」必须长得不一样**（纪律 156/159）")
+    for fixer, why in fx_void:
+        problems.append(
+            f"方向五：慢反验的夹具 `{fixer}` **已经打不中它的锚点**（{why}）——"
+            "用到它的用例会**作废**，而作废的输出说的是「前提不成立」，"
+            "**它不算通过也不算失败**"
+            "　→ 用例正在「什么都不验」：锚点多半是文件里某段被改写的文本，"
+            "**要么改夹具的锚，要么改那段文本**")
+
     checked = py_ok + sh_ok
     if problems:
         print("反验启动核对：%d 份反验中有 %d 处问题" % (len(names), len(problems)))
@@ -486,6 +548,9 @@ def main():
     print("  另有 %d 份注入夹具（selftest-*-fix-*.py）语法可解析" % fx_ok)
     print("  慢反验 %d 份已登记（%s）——提交前手动跑"
           % (len(SLOW), "、".join(sorted(SLOW))))
+    print("  慢反验注入夹具锚点：%d 个全部命中、%d 个因目标文件不在场而跳过"
+          "（方向五；**只查前提不查结果**，且只覆盖 `selftest-meta.sh`）"
+          % (fx_checked, fx_skipped))
     return 0
 
 
