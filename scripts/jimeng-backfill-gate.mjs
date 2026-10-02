@@ -28,15 +28,21 @@ const WINDOW = 3;                 // 命中的上下文窗口（行）
  *      这一条很关键：像 §3.93「找到机制了」这种**专门记录订正过程**的小节，
  *      它当然会逐字复述被推翻的说法，若只按窗口判定就会把它误判成「没回填」。
  */
-const MARKER = /~~|已被[^。\n]{0,8}推翻|已被批次|已被第|推翻|订正|已关闭|不成立|已删除|过时|作废|口径|实为|漏了|原写|排除|机制|改成|历史记录|原文不改写|原文保留/;
-const SECTION_OK = /推翻|订正|口径|机制|已被|新契约|取证|复现/;
+const MARKER = /~~|已被[^。\n]{0,8}推翻|已被批次|已被第|推翻|订正|已关闭|不成立|已改为|已删除|过时|作废|口径|实为|漏了|原写|排除|机制|改成|历史记录|原文不改写|原文保留/;
+const SECTION_OK = /推翻|订正|口径|机制|已被|新契约|取证|复现|回填/;
 
-/** 该行所属小节的标题（向上找最近的 markdown 标题行） */
-function headingOf(lines, i) {
-  for (let j = i; j >= 0 && j > i - 400; j--) {
-    if (/^#{1,6}\s/.test(lines[j])) return lines[j];
+/**
+ * 该行**所属小节的标题链**（向上最多取 3 层：`###` 小节 → `##` 章 → 更上层）。
+ * 为什么是「链」而不是「最近的一个标题」：订正常常写在一章里的某个小节下
+ * （例如 §3.94 的 §3.94.4 标题里没有「订正」二字，但它所属的 §3.94 有），
+ * 只看最近标题会把这种子节里的订正误判成「没回填」。
+ */
+function headingChain(lines, i) {
+  const out = [];
+  for (let j = i; j >= 0 && j > i - 400 && out.length < 3; j--) {
+    if (/^#{1,6}\s/.test(lines[j])) out.push(lines[j]);
   }
-  return '';
+  return out;
 }
 
 const walk = (d, out = []) => {
@@ -60,11 +66,12 @@ function scan(claims) {
           if (!re.test(L)) return;
           const lo = Math.max(0, i - WINDOW), hi = Math.min(lines.length, i + WINDOW + 1);
           const ctx = lines.slice(lo, hi);
-          const head = headingOf(lines, i);
+          const heads = headingChain(lines, i);
+          const head = heads[0] || '';
           hits.push({
             id: c.id, label: c.label, file: path.relative(DIR, f), line: i + 1,
-            text: L.trim(), section: head.trim().slice(0, 60),
-            marked: ctx.some((x) => MARKER.test(x)) || SECTION_OK.test(head),
+            text: L.trim(), section: heads.map((h) => h.trim().slice(0, 48)).join(' ⟵ '),
+            marked: ctx.some((x) => MARKER.test(x)) || heads.some((h) => SECTION_OK.test(h)),
           });
         });
       }
