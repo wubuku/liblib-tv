@@ -431,6 +431,17 @@
       ],
       "refuted_in": "批次 108（SOURCE_OBSERVATIONS.md §4.28.2）",
       "reason": "**这条条件是假阴性，必须删掉。** 实测甲节点 2209 个采样点中命中自身或后代的有 1615 个，其中 594 个仅因与 node_d4tjtpnatq（时间线 2，216 点）、node_9y4j9jf0qv（音频 6，378 点）**矩形相交**而被杀掉，可用落点因此读成 0。可那两个节点**在甲下面** —— elementFromPoint 在这 594 个点上返回的确实是甲的后代，那些点本来完全可点。**elementFromPoint 返回的就是最上层元素，层叠已经算进去了**，再叠矩形条件只会把「别人在下面」误判成「被挡住」。删掉后可用落点 0 → 594。同时新增一条要求：**落点必须按「动作即将发生的那一刻」现算**（前一步会改变层叠）。"
+    },
+    {
+      "id": "resource-failure-shows-0000-duration",
+      "label": "「资源已彻底失效则进入无时长空载态（时间显示 00:00 / 00:00，无法播放）」—— 原写在 media-playback.md 的「重试播放」小节，并被同一页三栏表的「资源失效」列复述为「时间读数 00:00 / 00:00」",
+      "patterns": [
+        "时间显示 00:00 / 00:00",
+        "无时长空载态",
+        "无法播放"
+      ],
+      "refuted_in": "批次 110（SOURCE_OBSERVATIONS.md §4.30）",
+      "reason": "**失效态根本不渲染时间那一行。** 2026-10-03 批次 110 用 CDP Network.setBlockedURLs + setCacheDisabled 拦下播放取流 key，首次自然复现失效态：`[data-testid^=\"audio-duration\"]` 与 `audio-duration-accessible` **两个元素都不在 DOM 里**（读出 0 个），不是显示成 00:00 / 00:00。`00:00 / 00:00` 那个样子是**时间线节点**的播放条。正确的判据是「卡片中央有没有 `音频播放失败` 那行红字」（testid `audio-playback-error`，内含 `role=\"alert\"` 的 DIV + 按钮 `重试播放音频`）。同时确认 `<audio>` 元素是**整个从 DOM 里消失**（不是 error 非空），且**资源账纹丝不动**仍为 `1 resource: 1 ready, 0 processing, 0 failed.`。"
     }
   ]
 }

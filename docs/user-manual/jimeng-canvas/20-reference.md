@@ -946,6 +946,35 @@ aria 逐字 `Create connected node before <节点名>`）—— **批次 71 新�
   图片 ✅、视频 ✅、音频 ✅、**文档（`.md` / `.txt`）❌**。
   逐字读数与采样时长见[使用资产库并上传素材](10-tasks/assets-and-upload.md#upload-complete-那条状态串追加式日志屏幕上根本看不到)。
 
+### 播放取流与上传存储不是同一个 key
+
+（2026-10-03 批次 110 实测）
+
+要复现「资源失效」或做故障注入，**必须知道拦哪条 URL**。而画布上有两个长得像、其实不同的 key：
+
+| 环节 | 出现在 | 逐字样例（同一个 4 秒 WAV） |
+|---|---|---|
+| **上传存储 key** | 上传 POST 的路径里（`tos-d-ct-lf.snssdk.com/upload/v1/tos-cn-v-148450/<key>`） | `ooHx1IfRMfIKm8GlcVBdIOFE9UxdJqfdDnCfEL` |
+| **播放取流 key** | `<audio>` / `<video>` 的 `src` 里 | **`oERcOtFfdQDiV1DIHmFBfRExqfYiGndCM8df8E`** |
+
+🔴 **两者不是同一个值。** 拿上传日志里的 key 去拦播放，会得到
+「**拦截报了命中、媒体却完好无损**」的假注入（`readyState 4`、`error null`、`duration 4.032`）——
+本轮 b 轮就是这么白跑的。**正确做法：从 `<audio>` / `<video>` 的 `src` 里取 key。**
+
+**取流 URL 的形状**（逐字，注意**没有扩展名**）：
+
+```text
+https://v3-dreamina-de.jianying.com/<hash>/6ac00098/video/tos/cn/tos-cn-v-148450/<key>/?a=513695&ch=0&…
+```
+
+- 同一素材的请求会在**多个 CDN 节点**之间跳（`v3-dreamina-de` / `v26-dreamina-de`），
+  换节点时前一个请求会 `net::ERR_ABORTED` —— **那是正常的，别当成失败**
+- 🔑 **服务端会转码**：源文件是 **WAV**，取流 URL 上却带 **`mime_type=audio_mpeg`**
+  （时长 `4.032` 与源文件一致）⇒ 播的**不是**你上传的那个字节流
+- `<audio>` 元素带 **`preload="none"`**，且**未播时它根本不在节点 DOM 里**
+  （`audio: null`）⇒ 要读 `src` 得先点一次播放
+- 资源账**不会**因为取流失败而变（批次 105 首测、批次 110 复测，两次独立）
+
 ### 📏 缩放档位只有三档（2026-10-02 批次 105 订正）
 
 `[data-testid="canvas-zoom-percent"]`（aria `Zoom options, <当前>%`）点开后，

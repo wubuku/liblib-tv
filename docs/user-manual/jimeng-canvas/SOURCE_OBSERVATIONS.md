@@ -10049,3 +10049,106 @@ HTML 逐字：`<p>普通正文行。</p>` → `<h1>…</h1>` → `<h2>…</h2>` 
   读数 `Zoom options, 60%` **连读两次相同**
 - 终态：**`76 nodes / 0 selected / 0 edges`**、`Zoom options, 60%`、选择工具、**积分 805** 未变
 - **全程未点任何扣费/生成按钮**；只动本轮自建的 8 个节点
+
+---
+
+## §4.30 批次 110（2026-10-03）· 「资源失效」态**第一次自然复现**，「重试播放」两分支结清
+
+### 4.30.0 选靶与起因
+
+`media-playback.md:198` 挂着「重试播放」两分支，批次 105 四轮故障注入全空后记「无法验证」。
+批次 105 留了明确线索：「换一个**从没播过**的节点，或换 `Network.setBlockedURLs` 这种更靠底层的手段」。
+**本轮两样都用。** 顺带能碰 `20-reference.md` 那行「`2 resources: 1 ready, 0 processing, 1 failed.` ← 抄写，未实测」。
+
+a 轮上传自造的 4 秒 WAV，**积分 805 → 805** ✅，差集**恰好 1 个**（`node_pp3bhjpexx`）且**同时 `.selected`** ✅。
+
+### 4.30.1 a 轮：三条前提
+
+- 该节点是**从没播过**的 ⇒ 节点里 **`audio: null`、`nVideo: 0`、`nImg: 0`**
+  ⇒ 📌 **`<audio>` 元素是点播放之后才插进来的**
+- 媒体 URL **没有扩展名**：`https://v3-dreamina-de.jianying.com/<hash>/…/tos-cn-v-148450/<key>/?a=513695&…`
+- ⚠️ 画布上 68 个他人的音频节点也一直在发 `type=Media`
+  ⇒ **拦截必须按 key 精确匹配，不能按 `/audio|video|media/` 这类宽 pattern**
+
+### 4.30.2 🔴 b 轮：拦截**报了命中**，媒体却完好无损（假注入）
+
+我按**上传存储 key** `ooHx1IfRMfIKm8GlcVBdIOFE9UxdJqfdDnCfEL` 设了拦截。
+结果：
+
+- `Network.loadingFailed` 里**确实**有一条 `blockedReason: "inspector"`、类型 `Media` ⇒ **拦截触发了**
+- 可是媒体**照常加载**：`readyState 4`、`error null`、`duration 4.032`
+- 节点里 `<audio src>` 用的是**另一个 key**：`oERcOtFfdQDiV1DIHmFBfRExqfYiGndCM8df8E`
+
+⇒ 🔑 **上传时的存储 key 与播放时的取流 key 不是同一个。**
+🔑 而且那个取流 URL 上带 **`mime_type=audio_mpeg`** —— 源文件是 **WAV**，
+说明**服务端转码成了 MPEG 容器**再分发（时长 `4.032` 与源文件一致）。
+
+⇒ 📌 这是批次 105「**拦截命中 ≠ 注入生效**」的**升级版**：
+批次 105 的失败轮至少**报了 0 命中**；本轮**报了命中、媒体却完好无损**。
+**「命中」只说明 URL 匹配上了，不说明被注入对象的状态变了。**
+
+### 4.30.3 c 轮：换真 key ＋ 关缓存 ⇒ **失效态第一次复现**
+
+- 换 `*oERcOtFfdQDiV1DIHmFBfRExqfYiGndCM8df8E*` ＋ `Network.setCacheDisabled {cacheDisabled:true}`
+- 强制 `a.load()` ⇒ `readyState 0`、`networkState 3`
+- **1.2 秒内**卡片变成：
+
+  | 观测量 | 逐字 |
+  |---|---|
+  | `innerText` | `<名> 音频播放失败 重试播放音频 1 resource: 1 ready, 0 processing, 0 failed. Selected.` |
+  | 关键 testid | **`audio-playback-error`**，`192×192`（铺满整张卡） |
+  | 其内 | `<div aria-atomic="true" role="alert">音频播放失败</div>` ＋ `<button aria-label="重试播放音频">` |
+  | 按钮 | `重试播放音频` `66×19 @607,383`（顶替 `Play <名>` `22×22 @701,446`） |
+  | `<audio>` | **整个从 DOM 里消失** |
+  | 时间读数 | **0 个**（`[data-testid^="audio-duration"]` 空） |
+  | **资源账** | ⚠️ **纹丝不动**：`1 resource: 1 ready, 0 processing, 0 failed.` |
+
+- 拦截命中 **2 次**（`blockedReason: "inspector"`）
+- ✅ 批次 105「播放期失败不会改那张资源账」**第二次独立应验**
+
+### 4.30.4 🔴 c 轮的「重试」是**假的**
+
+我调的 `audio.load()` 在那时已经 `__err: "no-audio"`（元素都被摘了）⇒ **什么都没发生**，
+解除拦截后连采 12 次账都不动。
+**如果我不写清这一点，这条「解除后没反应」会被读成「重试无效」。**
+
+### 4.30.5 ✅ d 轮：点**按钮本身** ⇒ 可恢复分支
+
+点 `重试播放音频`（拦截已解除）：
+
+- **1.2 秒内**恢复：`<audio>` 回来，`readyState 4`、`duration 4.032`、`paused:false`、`currentTime` 在走
+- 按钮从 `重试播放音频` 直接变 **`Pause <名>`** ⇒ **恢复后是「已经在播」，不是「回到暂停」**
+- **确实重新发了请求**（同一 key 换 CDN 节点；前一个 `net::ERR_ABORTED` 是切 CDN 的正常放弃）
+- 🆕 播放态 testid 与暂停态**不同**：暂停 `audio-simple-player`、播放 **`audio-simple-player-active`**；
+  `<audio>` 元素本身是 **`audio-playback-media`**
+
+### 4.30.6 ✅ e 轮：拦截仍在时点重试 ⇒ 不可恢复分支
+
+- 确实**又发了两次请求**（都撞在同一条 `blockedReason: "inspector"` 上）
+- 连采 **12 次 / 14.4 秒**，界面**逐字不动** —— 仍是 `音频播放失败 重试播放音频`
+- 解除拦截后再点一次 ⇒ 立刻恢复并开始播放
+
+⇒ 📌 **「重试播放」不是刷新按钮，它只是重新取一次流。**
+取到就播；取不到就**连文案都不换**（无转圈、无倒计时、无「重试中」）。
+
+### 4.30.7 🔧 订正一处原文
+
+> **原文**：「资源已彻底失效则进入无时长空载态（**时间显示 00:00 / 00:00**，无法播放）」
+
+**不成立**：失效态**根本不渲染时间那一行**（读出 `0 个`），
+`00:00 / 00:00` 那个样子是**时间线节点**的播放条。
+已就地加内联订正，并登记进 `jimeng-refuted-claims.json`（第 47 条）。
+
+📌 **截图独立复核**（不共享同一套假设）：`/tmp/b110-e-failed.png` 里卡片中央
+确实是红色 `音频播放失败` ＋ 白底按钮 `重试播放音频`，**整张卡没有时长那一行**
+（画面左侧那个 `00:00 / 00:00` 属于**时间线 2**，不是音频节点）。
+
+### 4.30.8 收尾
+
+- z 轮**第一件事**就是再解除一次 `setBlockedURLs` 与 `setCacheDisabled`
+  （共享浏览器上残留的拦截会连累别人的节点）⇒ 都读回 `true`
+- 删掉 `node_pp3bhjpexx`：**消失的 id 恰好只有它** ✅
+- 落点可用 **2209** 个（批次 108 删掉矩形条件后的正常量级）
+- 终态：**`76 nodes / 0 selected / 0 edges`**、`Zoom options, 60%`、选择工具、**积分 805** 未变
+- ⛔ **未能配图**：76 个节点同框、卡片周围全是他人内容 ⇒ 宁可不配图也不放宽守卫
+- **全程未点任何扣费/生成按钮**
