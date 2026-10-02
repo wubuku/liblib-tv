@@ -169,23 +169,65 @@ else:
             page.wait_for_timeout(1200)
 
     # ── 阶段 A：**未选中**时的节点 dump（基线）────────────────
-    page.keyboard.press("Escape")          # 先取消选中
-    page.wait_for_timeout(900)
-    page.keyboard.press("Escape")
-    page.wait_for_timeout(900)
-    d_unsel = ev(NODE_DUMP_JS)
-    out["dump_unselected"] = d_unsel
-    print("\n== 阶段 A：未选中时的节点 ==")
-    if d_unsel.get("no_node"):
-        print("  !! 找不到节点 ⇒ 判据盲区（不是「没有节点」）")
+    # ⚠️⚠️ 第一版这里按 **Escape** 取消选中，结果阶段 A 与阶段 B 的 dump
+    #    **完全相同**（差分 0 处），于是打出了「判据盲区」。
+    #    查下去发现是**前置态没成立**：源站 Escape 很可能**根本不取消节点选中**
+    #    —— 也就是这批本来要查的那件事。于是「未选中」那一档压根没建起来，
+    #    两档都是选中态，差分自然是 0。
+    #    ⇒ 第四次「前置态没成立被当成数据」。而且它伪装成「判据盲区」——
+    #    差分 0 既可能是「没有选中态这个维度」，也可能是「两档一样」。
+    #
+    # 第二版改用**旁证**判「未选中」，不再靠读 class 猜：
+    #   节点**选中**时音频生成面板（NodeToolbar）在 DOM 里；
+    #   **未选中**时它不在。
+    # 每次切换之后都**验一遍**这个旁证，不成立就记账，不往下走。
+    def toolbar_present():
+        return bool(page.locator('button[aria-label^="音色"]').count())
+
+    def click_blank():
+        """点**空白画布**取消选中（Escape 在源站不管用，见上）。"""
+        spot = ev("""() => {
+          for (const [x, y] of [[1180, 980], [1240, 900], [1100, 1050],
+                                [1280, 820], [300, 1000]]) {
+            const t = document.elementFromPoint(x, y);
+            if (t && t.closest('.react-flow__pane')
+                && !t.closest('.react-flow__node')) return [x, y];
+          }
+          return null;
+        }""")
+        if not spot:
+            return "找不到空白画布落点"
+        page.mouse.click(spot[0], spot[1])
+        page.wait_for_timeout(900)
+        return None
+
+    # 先确认「点空白能取消选中」这件事**本身**成立
+    why_a = click_blank()
+    sel_after_blank = toolbar_present()
+    out["probe_blank_clears_selection"] = {
+        "why": why_a, "toolbar_present_after_blank": sel_after_blank}
+    print(f"\n== 阶段 A 前置校验：点空白后工具条还在吗 "
+          f"{sel_after_blank}（应为 False 才算取消成功）==")
+    if sel_after_blank:
+        out["verdict"] = ("前置态没成立：点空白**没能**取消选中"
+                          "（工具条还在）⇒ 整个 A/B/C 三阶段都测不了，"
+                          "**不是**「源站没有选中态」")
+        print("  !! " + out["verdict"])
     else:
-        print(f"   tag={d_unsel['tag']} aria={d_unsel['aria']!r}")
-        print(f"   class={d_unsel['className'][:90]!r}")
-        print(f"   border={d_unsel['border']}  outline={d_unsel['outline']}")
-        print(f"   boxShadow={d_unsel['boxShadow'][:80]!r}")
+        d_unsel = ev(NODE_DUMP_JS)
+        out["dump_unselected"] = d_unsel
+        print("\n== 阶段 A：未选中时的节点 ==")
+        if d_unsel.get("no_node"):
+            print("  !! 找不到节点 ⇒ 判据盲区（不是「没有节点」）")
+        else:
+            print(f"   tag={d_unsel['tag']} aria={d_unsel['aria']!r}")
+            print(f"   class={d_unsel['className'][:90]!r}")
+            print(f"   border={d_unsel['border']}  "
+                  f"outline={d_unsel['outline']}")
+            print(f"   boxShadow={d_unsel['boxShadow'][:80]!r}")
 
     # ── 阶段 B：**选中**时的节点 dump ────────────────────────
-    if tid:
+    if tid and not out.get("verdict"):
         pt2 = ev("""(tid) => {
           const n = document.querySelector(
             `.react-flow__node[data-testid="${tid}"]`);
@@ -202,26 +244,48 @@ else:
         if pt2:
             page.mouse.click(pt2[0], pt2[1])
             page.wait_for_timeout(1200)
-    d_sel = ev(NODE_DUMP_JS)
-    out["dump_selected"] = d_sel
-    print(f"\n== 阶段 B：选中时的节点 ==")
-    if d_sel.get("no_node"):
-        print("  !! 找不到节点")
-    else:
-        print(f"   class={d_sel['className'][:90]!r}")
-        print(f"   border={d_sel['border']}  outline={d_sel['outline']}")
-        print(f"   boxShadow={d_sel['boxShadow'][:80]!r}")
+        out["toolbar_present_when_selected"] = toolbar_present()
+        # ⚠️⚠️ 第二跑栽在这：第一版**只是把旁证打印出来**（`工具条在吗 False`），
+        #   然后**照样往下跑**，于是阶段 B 拿到的其实还是**未选中**那一档
+        #   ⇒ 差分又是 0 ⇒ 又打出一句「判据盲区」。
+        #   旁证既然已经拿到了，就该**拿来把关**：不成立就**记账退出**，
+        #   不许把「没选中」的状态当成「选中态的数据」往下传。
+        #   （这跟 876c 那个 `reopened=False` 记成「值没了」同族。）
+        if not out["toolbar_present_when_selected"]:
+            out["verdict"] = ("前置态没成立：点节点**没能选中**"
+                              "（工具条不在）⇒ 阶段 B 的 dump 还是**未选中**"
+                              "那一档 ⇒ 差分必然是 0。"
+                              "**不是**「源站没有选中态」，也不是「判据盲区」。"
+                              "根子在「怎么在源站可靠地选中一个节点」"
+                              "这个**前置问题**本身还没解决 —— "
+                              "不许靠换落点反复硬试（§77 机制未验死之前"
+                              "不许改判据）")
+            print("  !! " + out["verdict"])
+        d_sel = ev(NODE_DUMP_JS)
+        out["dump_selected"] = d_sel
+        print(f"\n== 阶段 B：选中时的节点（工具条在吗 "
+              f"{out['toolbar_present_when_selected']}，应为 True）==")
+        if d_sel.get("no_node"):
+            print("  !! 找不到节点")
+        else:
+            print(f"   class={d_sel['className'][:90]!r}")
+            print(f"   border={d_sel['border']}  "
+                  f"outline={d_sel['outline']}")
+            print(f"   boxShadow={d_sel['boxShadow'][:80]!r}")
 
-    dd = diff(d_unsel, d_sel) if not (d_unsel.get("no_node")
-                                      or d_sel.get("no_node")) else {}
-    out["diff_unselected_vs_selected"] = dd
-    print(f"\n== 差分（未选中 vs 选中）{len(dd)} 处 ==")
-    for k, v in dd.items():
-        print(f"   {k}:\n      未选中={str(v['未选中时'])[:70]!r}"
-              f"\n      选中  ={str(v['Esc之后'])[:70]!r}")
+    dd = {}
+    if out.get("verdict"):
+        pass                       # 前置态没成立 ⇒ **不许**算差分
+    elif out.get("dump_unselected") and out.get("dump_selected"):
+        dd = diff(out["dump_unselected"], out["dump_selected"])
+        out["diff_unselected_vs_selected"] = dd
+        print(f"\n== 差分（未选中 vs 选中）{len(dd)} 处 ==")
+        for k, v in dd.items():
+            print(f"   {k}:\n      未选中={str(v['未选中时'])[:70]!r}"
+                  f"\n      选中  ={str(v['Esc之后'])[:70]!r}")
 
     # ── 阶段 C：开音色库 → 选值 → Clear 上按 Esc → 再 dump ──────
-    if tid and not d_sel.get("no_node"):
+    if tid and dd is not None and not out.get("verdict"):
         def reselect():
             p = ev("""(tid) => {
               const n = document.querySelector(
@@ -324,7 +388,16 @@ else:
                     "不是「源站没有选中态」。要换个标记维度（截图/伪元素）重测。")
             print(f"\n== {rec['verdict']}")
         out["esc"] = rec
-    out["verdict"] = "sampled"
+    # ⚠️⚠️ 第一版这里是**无条件** `out["verdict"] = "sampled"` ——
+    #   前面记的「前置态没成立」会被**这一行冲掉**，读 JSON 的人只看到
+    #   `verdict: sampled`，以为整批跑成了。这跟 876c 那个
+    #   `reopened=False` 记成「值没了」是同一种病：**成功的标签盖掉了
+    #   失败的记录**。改成**已经有记账就不覆盖**。
+    if not out.get("verdict"):
+        out["verdict"] = "sampled"
+    else:
+        print(f"\n（本批**不**标 sampled —— 已有前置态记账："
+              f"{out['verdict'][:60]}…）")
 
 with open(OUT, "w", encoding="utf-8") as f:
     json.dump(out, f, ensure_ascii=False, indent=2)
