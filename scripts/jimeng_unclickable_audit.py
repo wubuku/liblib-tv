@@ -1428,7 +1428,15 @@ def main() -> int:
             "src_tid": "(无 testid)", "src_kind": "面板（既非 listbox 也非 dialog）",
             "src_identified_by": (
                 "标题「全音色」+ ≥8 个 `min-w-canvas-audio-voice-shrinkable` "
-                "chip + 面积<半视口的最小祖先 ⇒ 680×96（探针 853b/c）"),
+                "chip + 面积<半视口的最小祖先 ⇒ **680×96**（探针 853b/c，"
+                "探针 854 连续 8 次采样恒为 96、scrollH==clientH 无内部滚动 "
+                "⇒ 96 是**稳定态**）"),
+            # ⚠️ 854 更正：853b 曾在 `ensure_open` 重开时量到 **680×328**，
+            #    一度以为这一层会变形。**不是** —— 328 是 `mark_layer` 的
+            #    role/class 启发式**认错了元素**（音色库既非 listbox 也非
+            #    dialog，被它匹配到别的块去了）。修法：`measure_kb()` 新增
+            #    `remark=` 参数，**用当初认出这一层的同一个认法**重开。
+            #    记在这里，免得半年后有人量到 328 以为判据坏了。
             # ⚠️ **这是 15 层里唯一开层不接管焦点的**：焦点自始至终停在
             #    触发器 `BUTTON/音色: 音色库` 上，**从没进过面板**。
             "takes_focus_at_open": False, "traps_tab": False,

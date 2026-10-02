@@ -327,9 +327,14 @@ else:
                 rec["marked"] = marked
                 if marked.get("ok"):
                     rec["layer"] = {"rect": marked["rect"], "role": "voice-library"}
+                    # ⚠️ 854：把**当初认出这一层的认法**传进去 —— 默认的
+                    #    mark_layer 是 role/class 启发式，对音色库这种
+                    #    既非 listbox 也非 dialog 的层会**认错元素**
+                    #    （量到 680×328，真实面板是 680×96）。
                     rec.update(measure_kb(page, marked,
                                           (pt[0] + pt[2] // 2, pt[1] + pt[3] // 2),
-                                          note="（音色库）"))
+                                          note="（音色库）",
+                                          remark=mark_voice_panel))
                 else:
                     rec["why"] = f"按 class 认不出层：{marked.get('why')}"
             else:

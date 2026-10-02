@@ -342,14 +342,24 @@ FOCUSABLE_JS = """() => {
 
 
 def measure_kb(page, marked, trigger_pt, max_tabs=12, max_keys=4,
-               note=""):
+               note="", remark=None):
     """在一个**已打开并打好标记**的层上量四项，返回可直接进基线表的 rec。
 
-    口径（与 850/851/852 逐字同款）：
+    口径（与 850/851/852/853 逐字同款）：
       ① 开层是否接管焦点
+      ③ 方向键动不动（**排在 ② 之前**，853c；`moved` 含起点，852）
       ② 层内 Tab 会不会逃出（**并查层还在不在** —— 源站这些下拉失焦即关）
-      ③ 方向键动不动（**moved 把起点算进去**，852 修正）
       ④ Esc 关层后焦点回哪
+
+    ⚠️⚠️ `remark`（854 补的第三个参数）：③ 在「① 焦点不在层内」时要用
+    `ensure_open` **重开并重新打标记**。而 `ensure_open` 默认走 `mark_layer`
+    —— 那是个 **role/class 启发式**（取面积最大的 `role=listbox/dialog` 或
+    `[class*="animate-none"]`）。**对「音色库」这种既非 listbox 也非 dialog
+    的层，它会认到别的元素**：853b 量到 680×328，而真实面板是 **680×96**
+    （探针 854 连续 8 次采样恒为 96，`scrollH==clientH` 无内部滚动 ⇒
+    96 是稳定态，328 是**认错元素**量出来的）。
+    ⇒ 调用方**必须把当初认出这一层用的那个认法传进来**（音色库传
+    `mark_voice_panel`），这样「重开」与「首次识别」用的是**同一把尺**。
     """
     rec = {}
     lay = marked["rect"]
@@ -387,8 +397,21 @@ def measure_kb(page, marked, trigger_pt, max_tabs=12, max_keys=4,
         # ① 焦点**不在**层内（这一层开层不接管焦点）⇒ 起点得自己建立，
         # 而建立起点 = **重开层**（回到「刚打开」），不是 `focus()` 试探。
         print(f"   ③ ① 焦点不在层内（{start_who!r}）⇒ 重开层建立起点")
-        reopened = ensure_open(page, {"role": "arrow-restart"},
-                               trigger_pt, note="测方向键前重开")
+        # ⚠️ 用**调用方给的同一个认法**重开（854）：默认的 mark_layer 是
+        #    role/class 启发式，对音色库这种层会认错元素（328 vs 96）。
+        if remark is not None:
+            def _re_mark(_page, _layer, _xy, note="", tries=4):
+                for i in range(tries):
+                    m = remark(page, note=f"{note}试{i + 1}")
+                    if m.get("ok"):
+                        return m
+                    page.mouse.click(_xy[0], _xy[1])
+                    page.wait_for_timeout(900)
+                return remark(page, note=f"{note}（{tries} 次都没打开）")
+            reopened = _re_mark(page, None, trigger_pt, note="测方向键前重开")
+        else:
+            reopened = ensure_open(page, {"role": "arrow-restart"},
+                                   trigger_pt, note="测方向键前重开")
         if not reopened.get("ok"):
             rec["arrow_down"] = {"measured": False,
                                  "why": "测方向键前重开层失败 ⇒ 没测到（不硬测中间态）"}
