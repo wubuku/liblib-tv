@@ -1862,8 +1862,86 @@ def main() -> int:
           and "closest('[role=\"listbox\"]')" in _agp2)
     check("Y.5 芯片的 `aria-label` 按源站实测的 **`{筛选名}: {当前值}`** 对齐"
           "（复刻原先没有 aria-label，选中之后可访问名会从「性别」变成「男」，"
-          "筛选维度就丢了）",
-          "aria-label={`${label}: ${filterSel[label] ?? label}`}" in _agp2)
+          "筛选维度就丢了）"
+          " ⚠️ 875 改判据：原来这里钉的是字面量 "
+          "`${label}: ${filterSel[label] ?? label}`，而 875 查清**那个写法"
+          "本身就是半抄**（见 Z.4），按 U.7/U.8 的同一条规矩改成钉**意图**："
+          "可访问名里必须同时出现筛选名和当前值，未选中时当前值取「全部 X」。",
+          "${label}: ${curFilterVal(label)}" in _agp2
+          and "const curFilterVal" in _agp2)
+
+    # ── Z. 批 874/875：873 留下的自选行为被证伪/证实 + 挖出清除钮 ─────
+    print("— Z. 批 874/875：焦点落点身份、Esc 保留值、清除钮、「全部」语义 —")
+    p874 = ROOT / "scripts/jimeng_probe874_escvalue.py"
+    p875 = ROOT / "scripts/jimeng_probe875_clearfilter.py"
+    p875c = ROOT / "scripts/jimeng_probe875_clearfilter_ck.py"
+    _p874 = p874.read_text(encoding="utf-8") if p874.exists() else ""
+    _p875 = p875.read_text(encoding="utf-8") if p875.exists() else ""
+    _p875c = p875c.read_text(encoding="utf-8") if p875c.exists() else ""
+    check("Z.1 874 探针在库里，且**两问都在**：① 焦点落点那个 BUTTON 到底是什么"
+          "（873 只读到 `BUTTON/性别: 男` 就照抄了形式，来路没查清）；"
+          "② 选完值按 Esc，值还在不在（873 留下的**唯一一个自选行为**）",
+          "焦点落点那个 BUTTON 到底是什么" in _p874
+          and "选完一个值之后按 Esc" in _p874
+          and "WHO_JS" in _p874)
+    check("Z.2 875 源站探针**四个筛选钮逐个**取样，不是拿「性别」外推"
+          "（4/4 一致才敢写进基线）；且第一跑的两个自身错误"
+          "（选项名照着筛选名**猜**、判据拿 1 个 option 比 1 整列）"
+          "在探针里**留了痕**——错判据不许悄悄改掉",
+          all(f'("{lb}"' in _p875 for lb in ("性别", "年龄", "语言", "声音特点"))
+          and "是我**照着筛选名猜**的" in _p875
+          and "第五次「量错对象」" in _p875
+          and "seld == [allopt]" in _p875)
+    check("Z.3 清除钮进了 `SOURCE_BASELINE`（五项实测：aria 形式 / 尺寸 /"
+          "「未选中时不存在」/ 点了之后值回落且自己消失且焦点回芯片 /"
+          "「没设值」= 全部项选中），且**逐条注明了探针来源**",
+          '"has_clear_button": True' in _ausrc
+          and '"clear_aria": "Clear {筛选名} filter"' in _ausrc
+          and '"no_value_means_all_selected": True' in _ausrc
+          and '"esc_keeps_value": True' in _ausrc
+          and "jimeng_probe875_clearfilter.py" in _ausrc
+          and "jimeng_probe874_escvalue.py" in _ausrc)
+    check("Z.4 「没设值」= **`全部 {筛选名}` 那一项被选中**，哨兵统一成 `null`"
+          "（复刻原先拿筛选名当哨兵，清掉之后层里 `seld=[]` 一个都不选中，"
+          "与源站相反；873 抄 aria 时**只抄了一半** —— 注释里记着未选中时读作"
+          "`BUTTON/性别: 全部 性别`，代码却写成 `?? label`）",
+          "const curFilterVal = (label: string): string =>" in _agp2
+          and "filterSel[label] ?? `全部 ${label}`" in _agp2
+          and "aria-selected={curFilterVal(label) === opt}" in _agp2
+          and "? null : opt" in _agp2
+          # 旧哨兵不许回来：`?? label` 当可访问名
+          and "${label}: ${filterSel[label] ?? label}" not in _agp2)
+    check("Z.5 清除钮**逐字照抄**源站的英文 aria，且**有值才渲染**"
+          "（源站 4/4：未选中时压根不存在；复刻原先没有这个控件 ⇒ "
+          "选中之后没法退回「全部」，只能再点开层再点「全部 X」）",
+          "aria-label={`Clear ${label} filter`}" in _agp2
+          and "X," in _agp2
+          # 渲染条件必须跟着「有没有值」，不能无条件
+          and "{filterSel[label] ? (" in _agp2)
+    check("Z.6 清除钮**先收焦点再改状态**（层若开着会在同一帧被卸载）"
+          "，且清了之后**顺手把层也关上**",
+          _agp2.count("chipRefs.current[label]?.focus();") >= 1
+          and "setFilterSel((m) => ({ ...m, [label]: null }))" in _agp2
+          and "setFilterOpen((o) => ({ ...o, [label]: false }))" in _agp2)
+    check("Z.7 外层格子**锁宽 153**（源站 `row_dom_after` 实测：选中前后"
+          "外层都是 153×28，变的只是格子里装什么）。不锁的话复刻选中后"
+          "缩到 135 ⇒ 整行左移、后面三个筛选钮全部错位",
+          'className="relative flex h-7 w-[153px] shrink-0 items-center gap-2 px-[9px]"'
+          in _agp2
+          and "w-[135px]" in _agp2 and "w-[111px]" in _agp2
+          and "size-4" in _agp2)
+    check("Z.8 复刻探针的判据跟**源站探针同构**（两边 JSON 可直接对账），"
+          "且**刻意不钉会漂的绝对坐标**（Clear 的 [814,689] 随面板位置变，"
+          "只断言它与芯片的相对关系）",
+          bool(_p875c) and "源站 875" in _p875c
+          and "不**断言「Clear 的坐标是" in _p875c
+          and "n_value_cleared" in _p875c and "n_row_unchanged" in _p875c)
+    check("Z.9 清除钮**没有**被塞进审计的 `measure()` 状态表"
+          "（它不是浮层，塞进去会让状态语义不对）；运行时证据由复刻探针"
+          "**真的点下去**给出（4/4 `hit_ok` + 值真的回落），"
+          "代码形态由 Z.4–Z.7 钉住 —— 两边都要，不靠一处",
+          "audio-voice-filter-clear" not in _ausrc
+          and "hit_ok" in _p875c and "value_cleared" in _p875c)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

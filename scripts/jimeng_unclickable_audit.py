@@ -2180,9 +2180,41 @@ def main() -> int:
             "walk_note": (
                 "源站这一层**不靠 Tab 进出**（40 次 Tab 全程在音色库 chip 上，"
                 "capped=True）。与 `traps_tab=False` 是同一件事的两面。"),
+            # 874：选完值按 Esc，**选中值保留**（复开层读 `aria-selected`，
+            # 仍是 `男: true`）—— 收层 ≠ 取消选择。这条把 873 留下的
+            # **唯一一个自选行为**（源站未取样）变成了实测。
+            "esc_keeps_value": True,
+            # 875：「没设值」在源站**不是**「什么都不选中」，而是
+            # **`全部 {筛选名}` 那一项 aria-selected=true**（4/4 实测：
+            # 刚开层时、以及点完 Clear 之后都是）。
+            # ⚠️ 873 抄 `aria-label` 时**只抄了一半**：注释里记着未选中时
+            # 读作 `BUTTON/性别: 全部 性别`，代码却写成 `?? label` ⇒ 读出
+            # `性别: 性别`。875 复测 4/4 并改正。
+            "no_value_means_all_selected": True,
+            "trigger_aria_when_unset": "{label}: 全部 {label}",
+            "trigger_aria_when_set": "{label}: {值}",
+            "trigger_text_when_unset": "{label}",
+            # 875：选中之后芯片右边冒出一个 16×16 的清除钮，
+            # `aria-label="Clear {筛选名} filter"`（**英文**，逐字照抄）。
+            # 四个筛选钮**逐个**量，4/4 一致。未选中时不存在。
+            "has_clear_button": True,
+            "clear_aria": "Clear {筛选名} filter",
+            "clear_rect_when_shown": "16×16，垂直居中，横向在芯片右侧 8",
+            "clear_behavior": (
+                "点它 ⇒ 值回落到「全部 {筛选名}」→ 它自己消失 → "
+                "焦点回到芯片（aria 变回 `{label}: 全部 {label}`）"),
+            # 875：外层格子**恒定 153×28**，选中前后都不变；变的是格子里
+            # 装什么：未选中 芯片 135（=153−左右 padding 9×2），
+            # 选中 芯片 111 + gap 8 + Clear 16 = 135（正好填满）。
+            "trigger_row_rect": "153×28，选中前后不变",
+            "chip_rect_when_unset": "135×28",
+            "chip_rect_when_set": "111×26（四个不同值文案量出来都一样 ⇒ 非内容驱动）",
             "src": ("jimeng_probe871_voicefilter_kb.py（性别）+ "
                     "jimeng_probe872_voicefilters_kb.py（**四个钮逐个**，"
-                    "登录态，视口 1512×1200）")},
+                    "登录态，视口 1512×1200）+ "
+                    "jimeng_probe873_voiceselect.py（选完之后）+ "
+                    "jimeng_probe874_escvalue.py（焦点落点身份 / Esc 保留值）+ "
+                    "jimeng_probe875_clearfilter.py（**清除钮**，四钮逐个）")},
         # ══ 批 855：生成历史层（**按名字**找，不是按位置）════════════════
         # 这条 why 原来写「前置态没成立：点**第 2 个** `canvas-panel-launcher`
         # 开出的是『积分明细』」—— 那是**按位置猜名字**。855a 把顶栏 9 个按钮

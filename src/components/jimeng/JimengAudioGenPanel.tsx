@@ -9,6 +9,7 @@ import {
   Plus,
   Quote,
   Sparkle,
+  X,
 } from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
 import { useArrowKeys, useTakeFocusAtOpen } from "@/components/jimeng/jimengMenuChrome";
@@ -202,6 +203,12 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
      两个选项**都**收 ⇒ 拆状态是唯一能同时表达「值留着、层收了」的写法。 */
   const [filterOpen, setFilterOpen] = useState<Record<string, boolean>>({});
 
+  /* 批 875：四个筛选**芯片**的 ref，点「清除」后要把焦点送回芯片
+     （源站实测点完 Clear 焦点落回 `BUTTON/{label}: 全部 {label}`）。
+     这里是 ref 而不是 hook，所以 `FILTERS.map` 里访问 `chipRefs.current[label]`
+     不违反 Hooks 规则 —— 上面 871 那条约束针对的是 `useXxx()` 调用。 */
+  const chipRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+
   /* 批 871：四个筛选面板各接一次「开层接管焦点」。
      ⚠️ 为什么是**四组显式 ref + 四次 hook 调用**，而不是
         `FILTERS.map((f) => useTakeFocusAtOpen(...))` —— 在 map / 回调里调
@@ -230,13 +237,22 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
     "语言": filterLangBox, "声音特点": filterToneBox,
   };
 
+  /* ⚠️⚠️ 批 875：「没设值」在源站**不是**「什么都不选中」，而是
+     **`全部 {筛选名}` 那一项处于选中态**。探针 875 实测（4/4）：
+       · 刚开层：`全部 性别` 的 `aria-selected="true"`
+       · 选「男」再点 Clear：回到 `全部 性别` = true
+     复刻原先把「没设值」写成 `filterSel[label] ?? label`（拿**筛选名**
+     当哨兵），于是清掉之后层里 `seld=[]` —— 一个都不选中，与源站相反。
+
+     所以哨兵统一成 **`null`**：可见文案仍然显示筛选名（源站 chip 上写的
+     是「性别」不是「全部 性别」），但**可访问名和选中态**按「全部 {筛选名}」算。 */
+  const curFilterVal = (label: string): string =>
+    filterSel[label] ?? `全部 ${label}`;
+
   const visibleVoices = VOICES.filter(
     (v) =>
-      (!filterSel["性别"] ||
-        filterSel["性别"] === "性别" ||
-        v.gender === filterSel["性别"]) &&
+      (!filterSel["性别"] || v.gender === filterSel["性别"]) &&
       (!filterSel["语言"] ||
-        filterSel["语言"] === "语言" ||
         (filterSel["语言"] === "英文"
           ? v.lang === "英文"
           : filterSel["语言"] === "中文方言"
@@ -631,9 +647,27 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                         <p className="pb-2 text-[13px] text-white/80">全音色</p>
                         <div className="flex gap-1.5 pb-2">
                           {FILTERS.map(({ label, options }) => (
-                            <div key={label} className="relative">
+                            /* ⚠️⚠️ 批 875 SOURCE_FACT：外层格子**恒定 153×28**
+                               —— 选中与否都不变。变的是**格子里装什么**：
+                                 · 未选中：一个 153 宽的筛选钮
+                                 · 已选中：芯片 111 + gap 8 + Clear 16 = 135
+                                   （外层左右各 9 padding ⇒ 135+18 = 153 ✓）
+                               探针 875 实测 `row_dom_after`：外层
+                               `w-canvas-audio-voice-filter-control` 选中前后
+                               都是 153×28，只有内层从 1 个元素变成 2 个。
+                               所以 Clear 是**格子里并排的第二个元素**，
+                               不是浮在上面 —— 也就不会盖住芯片。
+
+                               ⚠️ 第一版这里没锁宽，于是复刻的格子选中后
+                               **缩到 135**（探针：格子宽高不变 0/4，
+                               源站 4/4）—— 整行跟着左移，后面三个筛选钮
+                               全部错位。锁 `w-[153px]` 即可。 */
+                            <div key={label} className="relative flex h-7 w-[153px] shrink-0 items-center gap-2 px-[9px]">
                               <button
                                 type="button"
+                                ref={(el) => {
+                                  chipRefs.current[label] = el;
+                                }}
                                 onClick={() => {
                                   /* ⚠️⚠️ 批 873：箭头**必须改成块体**
                                      `{ … }` —— 原来它是**表达式体**
@@ -669,17 +703,66 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                 aria-expanded={filterOpen[label] === true}
                                 /* 批 873：源站这个钮的 `aria-label` 是
                                    **`{筛选名}: {当前值}`**（探针 873 实测焦点落点
-                                   读作 `BUTTON/性别: 男` 与
-                                   `BUTTON/性别: 全部 性别`）。复刻原先**没有**
-                                   aria-label，只靠可见文案 —— 选中之后文案变成
-                                   「男」，可访问名就从「性别」变成了「男」，
-                                   筛选维度丢了。逐字对齐。 */
-                                aria-label={`${label}: ${filterSel[label] ?? label}`}
-                                className="flex h-7 items-center gap-1 rounded-md bg-white/[0.06] px-2 text-[12px] text-white/70"
+                                   读作 `BUTTON/性别: 男`）。
+                                   ⚠️⚠️ 批 875 补：873 **只抄了一半** ——
+                                   同一个注释里其实记着另一个读数
+                                   `BUTTON/性别: 全部 性别`（未选中时），
+                                   但代码写的是 `?? label`，读出来是
+                                   `性别: 性别`。探针 875 在源站复测
+                                   **4/4** 都读到 `全部 {筛选名}`，已改正。
+                                   可见文案**仍然**是筛选名（源站 chip 上
+                                   写「性别」），只有可访问名用「全部」。 */
+                                aria-label={`${label}: ${curFilterVal(label)}`}
+                                /* 批 875：外层格子 153 宽里扣掉左右各 9 的
+                                   padding ⇒ 内部可用 **135**。选中时排成
+                                   芯片 111 + gap 8 + Clear 16 = 135（满）；
+                                   未选中时芯片独占 135。外层宽高选中前后
+                                   不变，变的只有这里。 */
+                                className={
+                                  filterSel[label]
+                                    ? "flex h-[26px] w-[111px] items-center gap-1 rounded-md bg-white/[0.06] px-2 text-[12px] text-white/70"
+                                    : "flex h-7 w-[135px] items-center gap-1 rounded-md bg-white/[0.06] px-2 text-[12px] text-white/70"
+                                }
                               >
                                 {filterSel[label] ?? label}
                                 <ChevronDown size={10} className="text-white/50" />
                               </button>
+                              {/* ⚠️⚠️ 批 875 SOURCE_FACT：源站选中一个值之后，
+                                 芯片**右边**会冒出���个 16×16 的清除钮，
+                                 `aria-label="Clear {筛选名} filter"`（英文，
+                                 逐字照抄；探针 875 四个筛选钮**逐个**量到，
+                                 4/4 一致，不是拿性别外推的）。
+
+                                 复刻原先**没有**这个控件 ⇒ 选中之后
+                                 **没法退回「全部」**，只能逐个点开层再点
+                                 「全部 X」—— 这是功能缺失，不是样式差异。
+
+                                 实测行为（4/4 一致）：
+                                   · 未选中时**不存在**
+                                   · 选中后出现，垂直居中
+                                   · 点它 ⇒ 值回落到「全部 {筛选名}」
+                                     （复开层读 `aria-selected`：全部=true）
+                                   · 它自己同时消失
+                                   · 焦点回到芯片（aria 变成
+                                     `{label}: 全部 {label}`）
+                                 因此这里必须**先 focus 芯片再 setState**
+                                 ——与 873 选完值那次的顺序同因。 */}
+                              {filterSel[label] ? (
+                                <button
+                                  type="button"
+                                  aria-label={`Clear ${label} filter`}
+                                  onClick={() => {
+                                    /* 先收焦点再改状态：层若正开着，
+                                       收焦点会让它在同一帧被卸载。 */
+                                    chipRefs.current[label]?.focus();
+                                    setFilterSel((m) => ({ ...m, [label]: null }));
+                                    setFilterOpen((o) => ({ ...o, [label]: false }));
+                                  }}
+                                  className="flex size-4 items-center justify-center rounded-full text-white/50 hover:text-white/80"
+                                >
+                                  <X size={10} />
+                                </button>
+                              ) : null}
                               {/* ⚠️⚠️ 批 870：渲染条件原来只有 `options ?`
                                   —— 而 `options` 是 FILTERS 里写死的**非空
                                   数组**，等于**没有开合状态**：「全音色」一
@@ -792,7 +875,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                       key={opt}
                                       type="button"
                                       role="option"
-                                      aria-selected={(filterSel[label] ?? label) === opt}
+                                      aria-selected={curFilterVal(label) === opt}
                                       onClick={(e) => {
                                         /* 块体，理由同上（一条 JSX 属性里
                                            要三条语句 ⇒ 必须是块体）。 */
@@ -810,7 +893,12 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                                         chipBtn?.focus();
                                         setFilterSel((m) => ({
                                           ...m,
-                                          [label]: opt.startsWith("全部") ? label : opt,
+                                          /* ⚠️ 批 875：选「全部 X」= **没设值**。
+                                             原来这里写的是 `? label : opt`，
+                                             拿筛选名当哨兵；现在哨兵统一
+                                             成 `null`（见 curFilterVal）。 */
+                                          [label]: opt.startsWith("全部")
+                                            ? null : opt,
                                         }));
                                         /* 批 873：源站实测**选完自动收层**
                                            （选「男」和选「全部 性别」都收，
