@@ -1,0 +1,127 @@
+{
+ "at": "2026-10-02T08:22:07.202Z",
+ "locked": "node_3bfb9r79qe",
+ "zooms": [
+  {
+   "target": 40,
+   "label": "40%",
+   "ok": true,
+   "scale": 0.4,
+   "still": true,
+   "tries": 1,
+   "aria": "文本 node: 文本 1",
+   "selected": false,
+   "editable": 0,
+   "inView": true,
+   "node": {
+    "w": 128,
+    "h": 128
+   },
+   "nodeCanvas": {
+    "w": 320,
+    "h": 320
+   },
+   "corner": null,
+   "cornerCanvas": null,
+   "edgeTop": null,
+   "edgeTopCanvas": null,
+   "controls": null,
+   "controlsCanvas": null,
+   "outline": null,
+   "outlineCanvas": null,
+   "affordance": null,
+   "affordanceCanvas": null,
+   "selSurface": null,
+   "selSurfaceCanvas": null,
+   "selToolbar": null,
+   "selToolbarCanvas": null,
+   "nodeToolbar": null,
+   "nodeToolbarCanvas": null
+  },
+  {
+   "target": 60,
+   "label": "60%",
+   "ok": true,
+   "scale": 0.6,
+   "still": true,
+   "tries": 1,
+   "aria": "文本 node: 文本 1",
+   "selected": false,
+   "editable": 0,
+   "inView": false,
+   "node": {
+    "w": 192,
+    "h": 192
+   },
+   "nodeCanvas": {
+    "w": 320,
+    "h": 320
+   },
+   "corner": null,
+   "cornerCanvas": null,
+   "edgeTop": null,
+   "edgeTopCanvas": null,
+   "controls": null,
+   "controlsCanvas": null,
+   "outline": null,
+   "outlineCanvas": null,
+   "affordance": null,
+   "affordanceCanvas": null,
+   "selSurface": null,
+   "selSurfaceCanvas": null,
+   "selToolbar": null,
+   "selToolbarCanvas": null,
+   "nodeToolbar": null,
+   "nodeToolbarCanvas": null
+  },
+  {
+   "target": 100,
+   "label": "100%",
+   "ok": true,
+   "scale": 1,
+   "still": true,
+   "tries": 1,
+   "aria": "文本 node: 文本 1",
+   "selected": false,
+   "editable": 0,
+   "inView": false,
+   "node": {
+    "w": 320,
+    "h": 320
+   },
+   "nodeCanvas": {
+    "w": 320,
+    "h": 320
+   },
+   "corner": null,
+   "cornerCanvas": null,
+   "edgeTop": null,
+   "edgeTopCanvas": null,
+   "controls": null,
+   "controlsCanvas": null,
+   "outline": null,
+   "outlineCanvas": null,
+   "affordance": null,
+   "affordanceCanvas": null,
+   "selSurface": null,
+   "selSurfaceCanvas": null,
+   "selToolbar": null,
+   "selToolbarCanvas": null,
+   "nodeToolbar": null,
+   "nodeToolbarCanvas": null
+  }
+ ],
+ "start": {
+  "zoom": 60,
+  "scale": 0.6,
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "end": {
+  "zoom": 60,
+  "scale": 0.6,
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "nodes": "33"
+ }
+}

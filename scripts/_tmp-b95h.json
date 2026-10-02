@@ -1,0 +1,481 @@
+{
+ "at": "2026-10-02T08:18:05.135Z",
+ "cells": [
+  {
+   "label": "A0-起点",
+   "present": true,
+   "aria": "文本 node: 文本 1",
+   "selected": false,
+   "inView": true,
+   "centerOwner": "node_pxvkay973v",
+   "editable": 0,
+   "proseMirror": 0,
+   "node": {
+    "w": 75,
+    "h": 75
+   },
+   "menuOpen": false,
+   "tids": {
+    "resize": 0,
+    "outline": 0,
+    "nodeToolbar": 0,
+    "selToolbar": 0,
+    "selSurface": 0,
+    "featureHost": 0,
+    "chromeHost": 0,
+    "editorMenu": 1
+   },
+   "geo": {
+    "resize": null,
+    "outline": null,
+    "corner": null,
+    "edgeTop": null,
+    "edgeLeft": null,
+    "affordance": null,
+    "selSurface": null,
+    "selToolbar": null,
+    "nodeToolbar": null,
+    "editorMenu": {
+     "w": 36,
+     "h": 36,
+     "x": 1061,
+     "y": 12
+    }
+   }
+  },
+  {
+   "label": "A1-单击",
+   "present": true,
+   "aria": "文本 node: 文本 1",
+   "selected": true,
+   "inView": true,
+   "centerOwner": "node_3bfb9r79qe",
+   "editable": 0,
+   "proseMirror": 0,
+   "node": {
+    "w": 75,
+    "h": 75
+   },
+   "menuOpen": false,
+   "tids": {
+    "resize": 1,
+    "outline": 1,
+    "nodeToolbar": 2,
+    "selToolbar": 1,
+    "selSurface": 1,
+    "featureHost": 1,
+    "chromeHost": 1,
+    "editorMenu": 1
+   },
+   "geo": {
+    "resize": {
+     "w": 75,
+     "h": 75,
+     "x": 266,
+     "y": 152
+    },
+    "outline": {
+     "w": 79,
+     "h": 79,
+     "x": 264,
+     "y": 151
+    },
+    "corner": {
+     "w": 11,
+     "h": 11,
+     "x": 259,
+     "y": 145
+    },
+    "edgeTop": {
+     "w": 69,
+     "h": 5,
+     "x": 269,
+     "y": 148
+    },
+    "edgeLeft": {
+     "w": 5,
+     "h": 69,
+     "x": 262,
+     "y": 155
+    },
+    "affordance": {
+     "w": 7,
+     "h": 7,
+     "x": 333,
+     "y": 219
+    },
+    "selSurface": {
+     "w": 160,
+     "h": 40,
+     "x": 224,
+     "y": 76
+    },
+    "selToolbar": {
+     "w": 160,
+     "h": 40,
+     "x": 224,
+     "y": 76
+    },
+    "nodeToolbar": {
+     "w": 0,
+     "h": 0,
+     "x": 304,
+     "y": 247
+    },
+    "editorMenu": {
+     "w": 36,
+     "h": 36,
+     "x": 1061,
+     "y": 12
+    }
+   }
+  },
+  {
+   "label": "A2-Esc到底",
+   "present": true,
+   "aria": "文本 node: 文本 1",
+   "selected": false,
+   "inView": true,
+   "centerOwner": "node_pxvkay973v",
+   "editable": 0,
+   "proseMirror": 0,
+   "node": {
+    "w": 75,
+    "h": 75
+   },
+   "menuOpen": false,
+   "tids": {
+    "resize": 0,
+    "outline": 0,
+    "nodeToolbar": 0,
+    "selToolbar": 0,
+    "selSurface": 0,
+    "featureHost": 0,
+    "chromeHost": 0,
+    "editorMenu": 1
+   },
+   "geo": {
+    "resize": null,
+    "outline": null,
+    "corner": null,
+    "edgeTop": null,
+    "edgeLeft": null,
+    "affordance": null,
+    "selSurface": null,
+    "selToolbar": null,
+    "nodeToolbar": null,
+    "editorMenu": {
+     "w": 36,
+     "h": 36,
+     "x": 1061,
+     "y": 12
+    }
+   }
+  },
+  {
+   "label": "A3-纯双击",
+   "present": true,
+   "aria": "文本 node: 文本 1",
+   "selected": true,
+   "inView": true,
+   "centerOwner": "null",
+   "editable": 1,
+   "proseMirror": 1,
+   "node": {
+    "w": 75,
+    "h": 75
+   },
+   "menuOpen": false,
+   "tids": {
+    "resize": 0,
+    "outline": 0,
+    "nodeToolbar": 0,
+    "selToolbar": 0,
+    "selSurface": 0,
+    "featureHost": 0,
+    "chromeHost": 0,
+    "editorMenu": 1
+   },
+   "geo": {
+    "resize": null,
+    "outline": null,
+    "corner": null,
+    "edgeTop": null,
+    "edgeLeft": null,
+    "affordance": null,
+    "selSurface": null,
+    "selToolbar": null,
+    "nodeToolbar": null,
+    "editorMenu": {
+     "w": 36,
+     "h": 36,
+     "x": 1061,
+     "y": 12
+    }
+   }
+  },
+  {
+   "label": "A4-Esc一次",
+   "present": true,
+   "aria": "文本 node: 文本 1",
+   "selected": true,
+   "inView": true,
+   "centerOwner": "node_3bfb9r79qe",
+   "editable": 0,
+   "proseMirror": 0,
+   "node": {
+    "w": 75,
+    "h": 75
+   },
+   "menuOpen": false,
+   "tids": {
+    "resize": 1,
+    "outline": 1,
+    "nodeToolbar": 2,
+    "selToolbar": 1,
+    "selSurface": 1,
+    "featureHost": 1,
+    "chromeHost": 1,
+    "editorMenu": 1
+   },
+   "geo": {
+    "resize": {
+     "w": 75,
+     "h": 75,
+     "x": 266,
+     "y": 152
+    },
+    "outline": {
+     "w": 79,
+     "h": 79,
+     "x": 264,
+     "y": 151
+    },
+    "corner": {
+     "w": 11,
+     "h": 11,
+     "x": 259,
+     "y": 145
+    },
+    "edgeTop": {
+     "w": 69,
+     "h": 5,
+     "x": 269,
+     "y": 148
+    },
+    "edgeLeft": {
+     "w": 5,
+     "h": 69,
+     "x": 262,
+     "y": 155
+    },
+    "affordance": {
+     "w": 7,
+     "h": 7,
+     "x": 333,
+     "y": 219
+    },
+    "selSurface": {
+     "w": 160,
+     "h": 40,
+     "x": 224,
+     "y": 76
+    },
+    "selToolbar": {
+     "w": 160,
+     "h": 40,
+     "x": 224,
+     "y": 76
+    },
+    "nodeToolbar": {
+     "w": 0,
+     "h": 0,
+     "x": 304,
+     "y": 247
+    },
+    "editorMenu": {
+     "w": 36,
+     "h": 36,
+     "x": 1061,
+     "y": 12
+    }
+   }
+  },
+  {
+   "label": "A5-Esc两次",
+   "present": true,
+   "aria": "文本 node: 文本 1",
+   "selected": false,
+   "inView": true,
+   "centerOwner": "node_pxvkay973v",
+   "editable": 0,
+   "proseMirror": 0,
+   "node": {
+    "w": 75,
+    "h": 75
+   },
+   "menuOpen": false,
+   "tids": {
+    "resize": 0,
+    "outline": 0,
+    "nodeToolbar": 0,
+    "selToolbar": 0,
+    "selSurface": 0,
+    "featureHost": 0,
+    "chromeHost": 0,
+    "editorMenu": 1
+   },
+   "geo": {
+    "resize": null,
+    "outline": null,
+    "corner": null,
+    "edgeTop": null,
+    "edgeLeft": null,
+    "affordance": null,
+    "selSurface": null,
+    "selToolbar": null,
+    "nodeToolbar": null,
+    "editorMenu": {
+     "w": 36,
+     "h": 36,
+     "x": 1061,
+     "y": 12
+    }
+   }
+  },
+  {
+   "label": "A6-单击后120ms双击(批次93序列)",
+   "present": true,
+   "aria": "文本 node: 文本 1",
+   "selected": true,
+   "inView": true,
+   "centerOwner": "null",
+   "editable": 1,
+   "proseMirror": 1,
+   "node": {
+    "w": 75,
+    "h": 75
+   },
+   "menuOpen": false,
+   "tids": {
+    "resize": 0,
+    "outline": 0,
+    "nodeToolbar": 0,
+    "selToolbar": 0,
+    "selSurface": 0,
+    "featureHost": 0,
+    "chromeHost": 0,
+    "editorMenu": 1
+   },
+   "geo": {
+    "resize": null,
+    "outline": null,
+    "corner": null,
+    "edgeTop": null,
+    "edgeLeft": null,
+    "affordance": null,
+    "selSurface": null,
+    "selToolbar": null,
+    "nodeToolbar": null,
+    "editorMenu": {
+     "w": 36,
+     "h": 36,
+     "x": 1061,
+     "y": 12
+    }
+   }
+  }
+ ],
+ "zooms": [
+  {
+   "z": 40,
+   "ok": true,
+   "scale": {
+    "a": 0.4,
+    "c": 0.4,
+    "stable": true,
+    "usable": 0.4
+   },
+   "lockedId": "node_3bfb9r79qe",
+   "aria": "文本 node: 文本 1",
+   "why": "单击后 selected=false",
+   "measured": null
+  },
+  {
+   "z": 60,
+   "ok": true,
+   "scale": {
+    "a": 0.6,
+    "c": 0.6,
+    "stable": true,
+    "usable": 0.6
+   },
+   "lockedId": "node_3bfb9r79qe",
+   "aria": "文本 node: 文本 1",
+   "why": "节点不在视口内",
+   "measured": null
+  },
+  {
+   "z": 100,
+   "ok": true,
+   "scale": {
+    "a": 1,
+    "c": 1,
+    "stable": true,
+    "usable": 1
+   },
+   "lockedId": "node_3bfb9r79qe",
+   "aria": "文本 node: 文本 1",
+   "why": "节点不在视口内",
+   "measured": null
+  }
+ ],
+ "start": {
+  "nodes": "33",
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": 60
+ },
+ "afterFit": {
+  "zoom": 23,
+  "scale": 0.234098,
+  "nodes": "33"
+ },
+ "allTextNodes": [
+  {
+   "id": "node_3bfb9r79qe",
+   "aria": "文本 node: 文本 1",
+   "sel": false,
+   "w": 75
+  },
+  {
+   "id": "node_aw29cp094x",
+   "aria": "文本 node: 文本 2",
+   "sel": false,
+   "w": 75
+  },
+  {
+   "id": "node_5gftn3dnt1",
+   "aria": "文本 node: 文本 3",
+   "sel": false,
+   "w": 75
+  }
+ ],
+ "locked": "node_3bfb9r79qe",
+ "expA": {
+  "A0_pt": {
+   "x": 274,
+   "y": 160
+  },
+  "singleClickEntersEdit": false,
+  "dblclickEntersEdit": true,
+  "batch93SequenceEntersEdit": true
+ },
+ "end": {
+  "nodes": "33",
+  "sel": "0",
+  "zoom": 23,
+  "credits": "Credits: 805 · 基础会员",
+  "scale": 0.234098
+ }
+}

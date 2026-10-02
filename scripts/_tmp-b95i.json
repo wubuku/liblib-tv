@@ -1,0 +1,119 @@
+{
+ "at": "2026-10-02T08:20:07.293Z",
+ "zooms": [
+  {
+   "z": 40,
+   "zoomLabel": 40,
+   "scale": 0.4,
+   "scaleStable": true,
+   "consistent": true,
+   "measured": {
+    "aria": "文本 node: 文本 1",
+    "w": 128,
+    "h": 128,
+    "x": 1,
+    "y": 5,
+    "inView": true,
+    "transform": "translate(480.055px, 240px)"
+   },
+   "canvasW": 320,
+   "canvasH": 320
+  },
+  {
+   "z": 60,
+   "zoomLabel": 40,
+   "scale": 0.4,
+   "scaleStable": true,
+   "consistent": true,
+   "measured": {
+    "aria": "文本 node: 文本 1",
+    "w": 128,
+    "h": 128,
+    "x": 1,
+    "y": 5,
+    "inView": true,
+    "transform": "translate(480.055px, 240px)"
+   },
+   "canvasW": 320,
+   "canvasH": 320
+  },
+  {
+   "z": 100,
+   "zoomLabel": 100,
+   "scale": 1,
+   "scaleStable": true,
+   "consistent": true,
+   "measured": {
+    "aria": "文本 node: 文本 1",
+    "w": 320,
+    "h": 320,
+    "x": -957,
+    "y": -526,
+    "inView": false,
+    "transform": "translate(480.055px, 240px)"
+   },
+   "canvasW": 320,
+   "canvasH": 320
+  }
+ ],
+ "attempts": [
+  {
+   "try": 1,
+   "from": 23,
+   "hasInput": true,
+   "to": 60
+  },
+  {
+   "try": 1,
+   "from": 60,
+   "hasInput": true,
+   "to": 40
+  },
+  {
+   "try": 1,
+   "from": 40,
+   "hasInput": true,
+   "to": 100
+  },
+  {
+   "try": 1,
+   "from": 100,
+   "hasInput": true,
+   "to": 60
+  }
+ ],
+ "diag": {
+  "zoomBtnAria": "Zoom options, 23%",
+  "zoomPctInputs": [
+   {
+    "tid": null,
+    "type": "file",
+    "value": "",
+    "aria": "替换媒体",
+    "min": "",
+    "max": "",
+    "step": ""
+   },
+   {
+    "tid": null,
+    "type": "file",
+    "value": "",
+    "aria": null,
+    "min": "",
+    "max": "",
+    "step": ""
+   }
+  ]
+ },
+ "restore": {
+  "ok": true,
+  "tries": 1
+ },
+ "zoomAfter": 60,
+ "end": {
+  "zoom": 60,
+  "scale": 0.6,
+  "sel": "0",
+  "nodes": "33"
+ }
+}

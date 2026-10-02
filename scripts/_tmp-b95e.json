@@ -1,0 +1,163 @@
+{
+ "at": "2026-10-02T08:10:54.208Z",
+ "target": "node_ce47a7tnzq",
+ "cells": [
+  {
+   "cell": "g0-baseline(点之前)",
+   "nodePresent": true,
+   "hasSelectedClass": true,
+   "selectedIds": [
+    "node_ce47a7tnzq"
+   ],
+   "menuOpen": false,
+   "menuItems": 0,
+   "editable": 0,
+   "pointerTool": {
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "tids": {
+    "resizeControls": 1,
+    "outline": 1,
+    "chromeHost": 1,
+    "nodeToolbar": 2,
+    "featureHost": 1,
+    "selToolbar": 1,
+    "selSurface": 1,
+    "popupHost": 1,
+    "editorMenu": 1,
+    "srcConnBtn": 1
+   },
+   "geo": {
+    "resizeControls": "192×192@544,264",
+    "outline": "200×200@540,260",
+    "selSurface": "192×40@544,188",
+    "selToolbar": "160×40@560,188",
+    "nodeToolbar": "0×0@640,476",
+    "editorMenu": "36×36@1061,12"
+   }
+  },
+  {
+   "cell": "g1-hover-only",
+   "nodePresent": true,
+   "hasSelectedClass": true,
+   "selectedIds": [
+    "node_ce47a7tnzq"
+   ],
+   "menuOpen": false,
+   "menuItems": 0,
+   "editable": 0,
+   "pointerTool": {
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "tids": {
+    "resizeControls": 1,
+    "outline": 1,
+    "chromeHost": 1,
+    "nodeToolbar": 2,
+    "featureHost": 1,
+    "selToolbar": 1,
+    "selSurface": 1,
+    "popupHost": 1,
+    "editorMenu": 1,
+    "srcConnBtn": 1
+   },
+   "geo": {
+    "resizeControls": "192×192@544,264",
+    "outline": "200×200@540,260",
+    "selSurface": "192×40@544,188",
+    "selToolbar": "160×40@560,188",
+    "nodeToolbar": "0×0@640,476",
+    "editorMenu": "36×36@1061,12"
+   }
+  },
+  {
+   "cell": "g2-hover+click(selected)",
+   "nodePresent": true,
+   "hasSelectedClass": true,
+   "selectedIds": [
+    "node_ce47a7tnzq"
+   ],
+   "menuOpen": false,
+   "menuItems": 0,
+   "editable": 1,
+   "pointerTool": {
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "tids": {
+    "resizeControls": 0,
+    "outline": 0,
+    "chromeHost": 0,
+    "nodeToolbar": 0,
+    "featureHost": 0,
+    "selToolbar": 0,
+    "selSurface": 0,
+    "popupHost": 0,
+    "editorMenu": 1,
+    "srcConnBtn": 0
+   },
+   "geo": {
+    "resizeControls": null,
+    "outline": null,
+    "selSurface": null,
+    "selToolbar": null,
+    "nodeToolbar": null,
+    "editorMenu": "36×36@1061,12"
+   }
+  },
+  {
+   "cell": "g3-hover+rightclick(menu)",
+   "nodePresent": true,
+   "hasSelectedClass": true,
+   "selectedIds": [
+    "node_ce47a7tnzq"
+   ],
+   "menuOpen": false,
+   "menuItems": 0,
+   "editable": 1,
+   "pointerTool": {
+    "aria": "选择工具",
+    "pressed": "false"
+   },
+   "tids": {
+    "resizeControls": 0,
+    "outline": 0,
+    "chromeHost": 0,
+    "nodeToolbar": 0,
+    "featureHost": 0,
+    "selToolbar": 0,
+    "selSurface": 0,
+    "popupHost": 0,
+    "editorMenu": 1,
+    "srcConnBtn": 0
+   },
+   "geo": {
+    "resizeControls": null,
+    "outline": null,
+    "selSurface": null,
+    "selToolbar": null,
+    "nodeToolbar": null,
+    "editorMenu": "36×36@1061,12"
+   }
+  }
+ ],
+ "pt": {
+  "x": 554,
+  "y": 274
+ },
+ "pointerToolAtStart": {
+  "aria": "选择工具",
+  "pressed": "false",
+  "cls": "inline-flex items-center justify-center gap-1 whitespace-now"
+ },
+ "menuAtG3": null,
+ "end": {
+  "nodes": "30",
+  "sel": "1",
+  "left": [
+   "node_ce47a7tnzq"
+  ]
+ }
+}
