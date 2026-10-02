@@ -2291,8 +2291,72 @@ def main() -> int:
           "「抢不抢」取决于之前有没有点过空白），**机制未验证**不许下结论 —— "
           "889 **不许**把它当「已治」",
           '"open_diff_node_click_takes_focus"' in _ausrc
-          and "机制**未验证**，不许下结论" in _ausrc
-          and "仍然存在的差异" in _ausrc)
+          # ⚠️⚠️ 本条**第二版**（890 推进了事实，所以措辞跟着改）：
+          # 第一版要求基线里写「机制**未验证**」，而 890 把机制**定位到一层**
+          # 了，那句被改写 ⇒ 判据不跟着改就会永远红（CC.6 的教训：
+          # **错判据不许悄悄改掉**，但**判据要跟上事实**）。
+          # ⚠️ 改归改，**不许**顺势把「未验死」那条一起删掉 ——
+          # 890 自己就把两条「仍未验证」留在了基线里。
+          and "机制已定位到一层、但未钉死" in _ausrc
+          and "仍然存在的差异" in _ausrc
+          and "别把上面那两句机制描述当成因果证明" in _ausrc
+          and "**至今没测到**" in _ausrc
+          and "的确切规则**未验死**" in _ausrc)
+    # ══════════ 批 890：DD.8 那条差异的机制，查到一层就**停** ══════════
+    p890 = ROOT / "scripts/jimeng_probe890_nodefocus_why_src.py"
+    p890b = ROOT / "scripts/jimeng_probe890b_nodefocus_why2_src.py"
+    p890c = ROOT / "scripts/jimeng_probe890c_nodefocus_why_ck.py"
+    _p890 = p890.read_text(encoding="utf-8") if p890.exists() else ""
+    _p890b = p890b.read_text(encoding="utf-8") if p890b.exists() else ""
+    _p890c = p890c.read_text(encoding="utf-8") if p890c.exists() else ""
+    check("EE.1 890 那条 `defaultPrevented` 读数**作废**且**打了横幅**（不许把"
+          "坏判据的读数悄悄留在库里当证据）：它挂在 `document` **捕获阶段**读，"
+          "那一刻还没有任何 handler 跑过 ⇒ **恒真为假**。⚠️ 横幅还必须说清"
+          "**890b 也没读到**（事件没冒泡到 document）⇒「源站有没有 "
+          "preventDefault」**至今没测到**，890/890b 两边都不能用来下结论。"
+          "同时列出**不依赖那条坏判据、仍然有效**的读数",
+          "⛔⛔⛔" in _p890
+          and "判定：本探针的 `defaultPrevented` 读数作废" in _p890
+          and "**恒真为假**" in _p890
+          and "890b 也没读到" in _p890
+          and "**这个探针仍然有效的读数**" in _p890
+          and "不许先有结论再找证据" in _p890)
+    check("EE.2 890b 把判据**修到冒泡阶段**（而不是把坏判据的结果解释成"
+          "「源站没 preventDefault」），并补上 890 缺的三样：`focus()` 的"
+          "**目标身份**（含「当时已是焦点吗」）、`focusin` 目标的完整身份、"
+          "以及**那个坐标点中的到底是谁**（落点常常不是 tabindex=0 的节点本身）",
+          "890 的**判据缺陷**" in _p890b
+          and "addEventListener('mousedown', w.onMdBubble, false)" in _p890b
+          and "already_active" in _p890b
+          and "那个坐标**落点是谁**" in _p890b
+          and "HIT_JS" in _p890b)
+    check("EE.3 890c 在复刻侧**逐字复用** 890b 的判据（不许两边各量各的 —— "
+          "量出「不同」其实可能只是**判据不同**）；且诊断动作（劫持 "
+          "`HTMLElement.prototype.focus`/`blur` + 事件监听）**每段都自己还原**"
+          "，不许在产品页面上留痕（882 的规矩）",
+          "判据逐字复用 890b 的 JS" in _p890c
+          and "md_bubble" in _p890c and "在**冒泡阶段**读" in _p890c
+          and all("RESTORE_JS" in s and "finally" in s
+                  for s in (_p890, _p890b, _p890c)))
+    check("EE.4 机制只查到**一层**就**停**：基线里写清「源站有一次应用主动 "
+          "`focus()` 到画布根、复刻 `focus()` 次数是 0（纯浏览器原生）」，"
+          "同时**两条未验证必须留着** —— ① 源站 mousedown 有没有 "
+          "`preventDefault()`（**至今没测到**）②「浏览器为什么不移动」的"
+          "确切规则**未验死**。⚠️ 那两句机制描述**不许**被当成因果证明",
+          "复刻侧 JS 调 `focus()` 的次数是 0" in _ausrc
+          and "纯浏览器原生" in _ausrc
+          and "有没有被 `preventDefault()`" in _ausrc
+          and "**至今没测到**" in _ausrc
+          and "的确切规则**未验死**" in _ausrc
+          and "不许当结论" in _ausrc)
+    check("EE.5 「点节点中心那个坐标落到了谁」只**说明落点是谁**，"
+          "**不许**据此推出「所以焦点会/不会移动」—— 那一步**没测**"
+          "（落点是不可聚焦后代：源站 `svg`/tabIndex=-1、复刻 `SPAN`/tabIndex=-1；"
+          "而节点本身两边都是 `tabindex='0'`）",
+          '"node_click_lands_on_nonfocusable_child"' in _ausrc
+          and "**不许**据此推出" in _ausrc
+          and "那一步**没测**" in _ausrc
+          and "elementFromPoint" in _ausrc)
     check("CC.7 886 的教训落地：**组件内凡是要复用，就该提到模块级，"
           "别复制第二份** —— 886 第一版把实现抽成组件内闭包，结果它和 Clear "
           "内联那段是**复制粘贴关系**，按内容替换**匹配到了自己**、把文件改坏"
