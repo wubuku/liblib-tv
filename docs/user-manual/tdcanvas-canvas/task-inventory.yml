@@ -142,6 +142,8 @@ tasks:
     coverage: flagship
     evidence:
       - type: runtime
+        note: '2026-10-03 M177 查清「连线点不中」的真实机制，**并订正手册对它的归因**（R36）。手册原写：连线的可点范围等同于那条贝塞尔曲线本身、不存在加粗命中层——**被证伪**：连线的 path 本身就是 stroke=transparent、stroke-width=16，加上 pointer-events: stroke，**那条「细线」底下就压着一条 16px 的透明命中带**。实测沿法线偏移 d=0~7 命中、d>=8 落空，**命中半宽 7~8 屏幕像素**，是视觉线宽（1~2px）的 4~8 倍；画布缩放实测 100%（CTM 的 a、d 分量均为 1.0、缩放滑块 value=100、节点 220 屏幕像素对 220 世界像素、正文里的 100%，四条读数互证）。★**归因也随之改了**：点不中不是「线太细」，而是**节点盖在上面**——实测节点的 node-element 是 z-10，而连线层是 z-2；41 点采样里 33 点落在节点矩形内，elementFromPoint 命中的正是那个节点。手册的绕法（拖开节点 / Delete）**结论对、理由错**，已改正文。★同批验证手册另外两条**成立**：右键连线弹出 data-canvas-context-menu=connection 的菜单、内容仅「删除」、212px 宽；**不需要先选中**（直接右键与点选后右键结果相同）；点选后按 Delete 实测连线 1 条 -> 0 条，真删掉了。★另记两条探针教训：(a) getPointAtLength 返回的是 **SVG 用户坐标**，而 elementFromPoint 要**屏幕坐标**，混用两套坐标系会让**每个点都落在画布空白上**（d=0 也命中 DIV.h-full），必须先过 getScreenCTM()；(b) 菜单根标记是 **data-canvas-context-menu** 这个 data 属性，按 class 里的 context-menu 找会**一个都找不到**——「按 class 找菜单」读出「右键没反应」，差点当成产品缺陷。'
+      - type: runtime
         note: 2026-09-26 端口拖拽连线（贝塞尔即时生成、related 高亮）实测成功。
       - type: static
         note: 拖线到空白弹创建菜单、@mention chip 序列化、objects 模式清空连线、pinned 版本引用。
