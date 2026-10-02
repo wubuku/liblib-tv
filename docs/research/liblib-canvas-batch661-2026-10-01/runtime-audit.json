@@ -1,0 +1,1852 @@
+{
+  "batch": 661,
+  "question": "close the two families 659 did not, and correct the attribution 657/659 gave for `help`",
+  "familyA_help": {
+    "cells": {
+      "720": {
+        "found": true,
+        "rect": {
+          "y": 680,
+          "b": 712,
+          "x": 8,
+          "r": 40
+        },
+        "centre": [
+          24,
+          696
+        ],
+        "stackDepth": 21,
+        "indexInStack": 8,
+        "inStack": true,
+        "topIsSelf": false,
+        "topLabel": "收起属性",
+        "topClass": "group.relative.z-[1].flex",
+        "topRect": {
+          "y": 681,
+          "b": 701,
+          "x": 8,
+          "r": 28
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 543,
+            "b": 571,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            557
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 551,
+            "b": 563,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      },
+      "900": {
+        "found": true,
+        "rect": {
+          "y": 860,
+          "b": 892,
+          "x": 8,
+          "r": 40
+        },
+        "centre": [
+          24,
+          876
+        ],
+        "stackDepth": 21,
+        "indexInStack": 8,
+        "inStack": true,
+        "topIsSelf": false,
+        "topLabel": "收起属性",
+        "topClass": "group.relative.z-[1].flex",
+        "topRect": {
+          "y": 861,
+          "b": 881,
+          "x": 8,
+          "r": 28
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 723,
+            "b": 751,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            737
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 731,
+            "b": 743,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      },
+      "1150": {
+        "found": true,
+        "rect": {
+          "y": 1110,
+          "b": 1142,
+          "x": 8,
+          "r": 40
+        },
+        "centre": [
+          24,
+          1126
+        ],
+        "stackDepth": 21,
+        "indexInStack": 8,
+        "inStack": true,
+        "topIsSelf": false,
+        "topLabel": "收起属性",
+        "topClass": "group.relative.z-[1].flex",
+        "topRect": {
+          "y": 1111,
+          "b": 1131,
+          "x": 8,
+          "r": 28
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 973,
+            "b": 1001,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            987
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 981,
+            "b": 993,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      }
+    },
+    "topLabelAtEveryHeight": {
+      "720": "收起属性",
+      "900": "收起属性",
+      "1150": "收起属性"
+    },
+    "inStackAtEveryHeight": {
+      "720": true,
+      "900": true,
+      "1150": true
+    },
+    "topIsSelfAtEveryHeight": {
+      "720": false,
+      "900": false,
+      "1150": false
+    },
+    "indexInStack": {
+      "720": 8,
+      "900": 8,
+      "1150": 8
+    },
+    "theCorrection": "657 and 659 both wrote 'covered by a timeline object row'. 658's own audit recorded the label `收起属性` all along; I read the class prefix `button.group.relative.z-[1]` and let z-[1] pass for a row. It is 632's defect, and its blast radius now reaches the icon rail.",
+    "theTwoReadings": {
+      "inStack": "is the target anywhere in the hit stack? True for help at every height, at index 8.",
+      "topIsSelf": "is the target what a click reaches? False.",
+      "whichIsRight": "for CLICKING, topIsSelf. `help` is in the stack and is not clickable — both statements are true and only one of them is operational."
+    }
+  },
+  "familyB_colour": {
+    "cells": {
+      "700": {
+        "found": true,
+        "rect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "centre": [
+          1246,
+          567
+        ],
+        "stackDepth": 15,
+        "indexInStack": -1,
+        "inStack": false,
+        "topIsSelf": false,
+        "topLabel": "0s1s2s3s4s5s6s7s8s",
+        "topClass": "relative.shrink-0.cursor-ew-resize.bg-[#212121]",
+        "topRect": {
+          "y": 555,
+          "b": 591,
+          "x": 322,
+          "r": 2101
+        },
+        "hex": {
+          "found": true,
+          "rect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          },
+          "centre": [
+            1188,
+            567
+          ],
+          "stackDepth": 15,
+          "indexInStack": -1,
+          "inStack": false,
+          "topIsSelf": false,
+          "topLabel": "0s1s2s3s4s5s6s7s8s",
+          "topClass": "relative.shrink-0.cursor-ew-resize.bg-[#212121]",
+          "topRect": {
+            "y": 555,
+            "b": 591,
+            "x": 322,
+            "r": 2101
+          }
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 523,
+            "b": 551,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            537
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 531,
+            "b": 543,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "timeline": {
+          "found": true,
+          "rect": {
+            "y": 518,
+            "b": 700,
+            "x": 0,
+            "r": 1280
+          },
+          "centre": [
+            640,
+            609
+          ],
+          "stackDepth": 18,
+          "indexInStack": 6,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "",
+          "topClass": "relative.h-8.cursor-ew-resize.rounded-[4px]",
+          "topRect": {
+            "y": 591,
+            "b": 623,
+            "x": 322,
+            "r": 2101
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      },
+      "715": {
+        "found": true,
+        "rect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "centre": [
+          1246,
+          567
+        ],
+        "stackDepth": 12,
+        "indexInStack": -1,
+        "inStack": false,
+        "topIsSelf": false,
+        "topLabel": "导出视频到画布",
+        "topClass": "absolute.right-0.top-0.z-30",
+        "topRect": {
+          "y": 534,
+          "b": 570,
+          "x": 1036,
+          "r": 1280
+        },
+        "hex": {
+          "found": true,
+          "rect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          },
+          "centre": [
+            1188,
+            567
+          ],
+          "stackDepth": 12,
+          "indexInStack": -1,
+          "inStack": false,
+          "topIsSelf": false,
+          "topLabel": "导出视频到画布",
+          "topClass": "absolute.right-0.top-0.z-30",
+          "topRect": {
+            "y": 534,
+            "b": 570,
+            "x": 1036,
+            "r": 1280
+          }
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 538,
+            "b": 566,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            552
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 546,
+            "b": 558,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "timeline": {
+          "found": true,
+          "rect": {
+            "y": 533,
+            "b": 715,
+            "x": 0,
+            "r": 1280
+          },
+          "centre": [
+            640,
+            624
+          ],
+          "stackDepth": 18,
+          "indexInStack": 6,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "",
+          "topClass": "relative.h-8.cursor-ew-resize.rounded-[4px]",
+          "topRect": {
+            "y": 606,
+            "b": 638,
+            "x": 322,
+            "r": 2101
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      },
+      "716": {
+        "found": true,
+        "rect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "centre": [
+          1246,
+          567
+        ],
+        "stackDepth": 14,
+        "indexInStack": -1,
+        "inStack": false,
+        "topIsSelf": false,
+        "topLabel": "导出视频到画布",
+        "topClass": "relative.flex.h-7.shrink-0",
+        "topRect": {
+          "y": 539,
+          "b": 567,
+          "x": 1164,
+          "r": 1272
+        },
+        "hex": {
+          "found": true,
+          "rect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          },
+          "centre": [
+            1188,
+            567
+          ],
+          "stackDepth": 14,
+          "indexInStack": -1,
+          "inStack": false,
+          "topIsSelf": false,
+          "topLabel": "导出视频到画布",
+          "topClass": "relative.flex.h-7.shrink-0",
+          "topRect": {
+            "y": 539,
+            "b": 567,
+            "x": 1164,
+            "r": 1272
+          }
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 539,
+            "b": 567,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            553
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 547,
+            "b": 559,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "timeline": {
+          "found": true,
+          "rect": {
+            "y": 534,
+            "b": 716,
+            "x": 0,
+            "r": 1280
+          },
+          "centre": [
+            640,
+            625
+          ],
+          "stackDepth": 18,
+          "indexInStack": 6,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "",
+          "topClass": "relative.h-8.cursor-ew-resize.rounded-[4px]",
+          "topRect": {
+            "y": 607,
+            "b": 639,
+            "x": 322,
+            "r": 2101
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      },
+      "720": {
+        "found": true,
+        "rect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "centre": [
+          1246,
+          567
+        ],
+        "stackDepth": 14,
+        "indexInStack": -1,
+        "inStack": false,
+        "topIsSelf": false,
+        "topLabel": "导出视频到画布",
+        "topClass": "relative.flex.h-7.shrink-0",
+        "topRect": {
+          "y": 543,
+          "b": 571,
+          "x": 1164,
+          "r": 1272
+        },
+        "hex": {
+          "found": true,
+          "rect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          },
+          "centre": [
+            1188,
+            567
+          ],
+          "stackDepth": 14,
+          "indexInStack": -1,
+          "inStack": false,
+          "topIsSelf": false,
+          "topLabel": "导出视频到画布",
+          "topClass": "relative.flex.h-7.shrink-0",
+          "topRect": {
+            "y": 543,
+            "b": 571,
+            "x": 1164,
+            "r": 1272
+          }
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 543,
+            "b": 571,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            557
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 551,
+            "b": 563,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "timeline": {
+          "found": true,
+          "rect": {
+            "y": 538,
+            "b": 720,
+            "x": 0,
+            "r": 1280
+          },
+          "centre": [
+            640,
+            629
+          ],
+          "stackDepth": 18,
+          "indexInStack": 6,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "",
+          "topClass": "relative.h-8.cursor-ew-resize.rounded-[4px]",
+          "topRect": {
+            "y": 611,
+            "b": 643,
+            "x": 322,
+            "r": 2101
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      },
+      "744": {
+        "found": true,
+        "rect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "centre": [
+          1246,
+          567
+        ],
+        "stackDepth": 15,
+        "indexInStack": -1,
+        "inStack": false,
+        "topIsSelf": false,
+        "topLabel": "拖动调整时间轴高度",
+        "topClass": "absolute.inset-x-0.top-0.z-40",
+        "topRect": {
+          "y": 563,
+          "b": 571,
+          "x": 0,
+          "r": 1280
+        },
+        "hex": {
+          "found": true,
+          "rect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          },
+          "centre": [
+            1188,
+            567
+          ],
+          "stackDepth": 15,
+          "indexInStack": -1,
+          "inStack": false,
+          "topIsSelf": false,
+          "topLabel": "拖动调整时间轴高度",
+          "topClass": "absolute.inset-x-0.top-0.z-40",
+          "topRect": {
+            "y": 563,
+            "b": 571,
+            "x": 0,
+            "r": 1280
+          }
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 567,
+            "b": 595,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            581
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 575,
+            "b": 587,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "timeline": {
+          "found": true,
+          "rect": {
+            "y": 562,
+            "b": 744,
+            "x": 0,
+            "r": 1280
+          },
+          "centre": [
+            640,
+            653
+          ],
+          "stackDepth": 18,
+          "indexInStack": 6,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "",
+          "topClass": "relative.h-8.cursor-ew-resize.rounded-[4px]",
+          "topRect": {
+            "y": 635,
+            "b": 667,
+            "x": 322,
+            "r": 2101
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      },
+      "745": {
+        "found": true,
+        "rect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "centre": [
+          1246,
+          567
+        ],
+        "stackDepth": 13,
+        "indexInStack": -1,
+        "inStack": false,
+        "topIsSelf": false,
+        "topLabel": "拖动调整时间轴高度",
+        "topClass": "absolute.inset-x-0.top-0.z-40",
+        "topRect": {
+          "y": 564,
+          "b": 572,
+          "x": 0,
+          "r": 1280
+        },
+        "hex": {
+          "found": true,
+          "rect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          },
+          "centre": [
+            1188,
+            567
+          ],
+          "stackDepth": 13,
+          "indexInStack": -1,
+          "inStack": false,
+          "topIsSelf": false,
+          "topLabel": "拖动调整时间轴高度",
+          "topClass": "absolute.inset-x-0.top-0.z-40",
+          "topRect": {
+            "y": 564,
+            "b": 572,
+            "x": 0,
+            "r": 1280
+          }
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 568,
+            "b": 596,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            582
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 576,
+            "b": 588,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "timeline": {
+          "found": true,
+          "rect": {
+            "y": 563,
+            "b": 745,
+            "x": 0,
+            "r": 1280
+          },
+          "centre": [
+            640,
+            654
+          ],
+          "stackDepth": 18,
+          "indexInStack": 6,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "",
+          "topClass": "relative.h-8.cursor-ew-resize.rounded-[4px]",
+          "topRect": {
+            "y": 636,
+            "b": 668,
+            "x": 322,
+            "r": 2101
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      },
+      "748": {
+        "found": true,
+        "rect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "centre": [
+          1246,
+          567
+        ],
+        "stackDepth": 13,
+        "indexInStack": -1,
+        "inStack": false,
+        "topIsSelf": false,
+        "topLabel": "拖动调整时间轴高度",
+        "topClass": "absolute.inset-x-0.top-0.z-40",
+        "topRect": {
+          "y": 567,
+          "b": 575,
+          "x": 0,
+          "r": 1280
+        },
+        "hex": {
+          "found": true,
+          "rect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          },
+          "centre": [
+            1188,
+            567
+          ],
+          "stackDepth": 13,
+          "indexInStack": -1,
+          "inStack": false,
+          "topIsSelf": false,
+          "topLabel": "拖动调整时间轴高度",
+          "topClass": "absolute.inset-x-0.top-0.z-40",
+          "topRect": {
+            "y": 567,
+            "b": 575,
+            "x": 0,
+            "r": 1280
+          }
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 571,
+            "b": 599,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            585
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 579,
+            "b": 591,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "timeline": {
+          "found": true,
+          "rect": {
+            "y": 566,
+            "b": 748,
+            "x": 0,
+            "r": 1280
+          },
+          "centre": [
+            640,
+            657
+          ],
+          "stackDepth": 18,
+          "indexInStack": 6,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "",
+          "topClass": "relative.h-8.cursor-ew-resize.rounded-[4px]",
+          "topRect": {
+            "y": 639,
+            "b": 671,
+            "x": 322,
+            "r": 2101
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      },
+      "749": {
+        "found": true,
+        "rect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "centre": [
+          1246,
+          567
+        ],
+        "stackDepth": 19,
+        "indexInStack": 1,
+        "inStack": true,
+        "topIsSelf": false,
+        "topLabel": "请选择一个角色或者摄像机后，可新建轨道1",
+        "topClass": "z-40.pointer-events-auto.relative.flex",
+        "topRect": {
+          "y": 567,
+          "b": 749,
+          "x": 0,
+          "r": 1280
+        },
+        "hex": {
+          "found": true,
+          "rect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          },
+          "centre": [
+            1188,
+            567
+          ],
+          "stackDepth": 19,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": false,
+          "topLabel": "请选择一个角色或者摄像机后，可新建轨道1",
+          "topClass": "z-40.pointer-events-auto.relative.flex",
+          "topRect": {
+            "y": 567,
+            "b": 749,
+            "x": 0,
+            "r": 1280
+          }
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 572,
+            "b": 600,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            586
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 580,
+            "b": 592,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "timeline": {
+          "found": true,
+          "rect": {
+            "y": 567,
+            "b": 749,
+            "x": 0,
+            "r": 1280
+          },
+          "centre": [
+            640,
+            658
+          ],
+          "stackDepth": 18,
+          "indexInStack": 6,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "",
+          "topClass": "relative.h-8.cursor-ew-resize.rounded-[4px]",
+          "topRect": {
+            "y": 640,
+            "b": 672,
+            "x": 322,
+            "r": 2101
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      },
+      "750": {
+        "found": true,
+        "rect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "centre": [
+          1246,
+          567
+        ],
+        "stackDepth": 18,
+        "indexInStack": 0,
+        "inStack": true,
+        "topIsSelf": true,
+        "topLabel": "颜色",
+        "topClass": "h-6.w-9.rounded.border-0",
+        "topRect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "hex": {
+          "found": true,
+          "rect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          },
+          "centre": [
+            1188,
+            567
+          ],
+          "stackDepth": 18,
+          "indexInStack": 0,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "颜色 hex 值",
+          "topClass": "h-6.w-[68px].rounded.border",
+          "topRect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          }
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 573,
+            "b": 601,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            587
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 581,
+            "b": 593,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "timeline": {
+          "found": true,
+          "rect": {
+            "y": 568,
+            "b": 750,
+            "x": 0,
+            "r": 1280
+          },
+          "centre": [
+            640,
+            659
+          ],
+          "stackDepth": 18,
+          "indexInStack": 6,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "",
+          "topClass": "relative.h-8.cursor-ew-resize.rounded-[4px]",
+          "topRect": {
+            "y": 641,
+            "b": 673,
+            "x": 322,
+            "r": 2101
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      },
+      "751": {
+        "found": true,
+        "rect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "centre": [
+          1246,
+          567
+        ],
+        "stackDepth": 18,
+        "indexInStack": 0,
+        "inStack": true,
+        "topIsSelf": true,
+        "topLabel": "颜色",
+        "topClass": "h-6.w-9.rounded.border-0",
+        "topRect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "hex": {
+          "found": true,
+          "rect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          },
+          "centre": [
+            1188,
+            567
+          ],
+          "stackDepth": 18,
+          "indexInStack": 0,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "颜色 hex 值",
+          "topClass": "h-6.w-[68px].rounded.border",
+          "topRect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          }
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 574,
+            "b": 602,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            588
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 582,
+            "b": 594,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "timeline": {
+          "found": true,
+          "rect": {
+            "y": 569,
+            "b": 751,
+            "x": 0,
+            "r": 1280
+          },
+          "centre": [
+            640,
+            660
+          ],
+          "stackDepth": 18,
+          "indexInStack": 6,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "",
+          "topClass": "relative.h-8.cursor-ew-resize.rounded-[4px]",
+          "topRect": {
+            "y": 642,
+            "b": 674,
+            "x": 322,
+            "r": 2101
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      },
+      "760": {
+        "found": true,
+        "rect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "centre": [
+          1246,
+          567
+        ],
+        "stackDepth": 18,
+        "indexInStack": 0,
+        "inStack": true,
+        "topIsSelf": true,
+        "topLabel": "颜色",
+        "topClass": "h-6.w-9.rounded.border-0",
+        "topRect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "hex": {
+          "found": true,
+          "rect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          },
+          "centre": [
+            1188,
+            567
+          ],
+          "stackDepth": 18,
+          "indexInStack": 0,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "颜色 hex 值",
+          "topClass": "h-6.w-[68px].rounded.border",
+          "topRect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          }
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 583,
+            "b": 611,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            597
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 591,
+            "b": 603,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "timeline": {
+          "found": true,
+          "rect": {
+            "y": 578,
+            "b": 760,
+            "x": 0,
+            "r": 1280
+          },
+          "centre": [
+            640,
+            669
+          ],
+          "stackDepth": 18,
+          "indexInStack": 6,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "",
+          "topClass": "relative.h-8.cursor-ew-resize.rounded-[4px]",
+          "topRect": {
+            "y": 651,
+            "b": 683,
+            "x": 322,
+            "r": 2101
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      },
+      "900": {
+        "found": true,
+        "rect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "centre": [
+          1246,
+          567
+        ],
+        "stackDepth": 18,
+        "indexInStack": 0,
+        "inStack": true,
+        "topIsSelf": true,
+        "topLabel": "颜色",
+        "topClass": "h-6.w-9.rounded.border-0",
+        "topRect": {
+          "y": 555,
+          "b": 579,
+          "x": 1228,
+          "r": 1264
+        },
+        "hex": {
+          "found": true,
+          "rect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          },
+          "centre": [
+            1188,
+            567
+          ],
+          "stackDepth": 18,
+          "indexInStack": 0,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "颜色 hex 值",
+          "topClass": "h-6.w-[68px].rounded.border",
+          "topRect": {
+            "y": 555,
+            "b": 579,
+            "x": 1154,
+            "r": 1222
+          }
+        },
+        "exportTrigger": {
+          "found": true,
+          "rect": {
+            "y": 723,
+            "b": 751,
+            "x": 1164,
+            "r": 1272
+          },
+          "centre": [
+            1218,
+            737
+          ],
+          "stackDepth": 15,
+          "indexInStack": 1,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "导出视频到画布",
+          "topClass": "",
+          "topRect": {
+            "y": 731,
+            "b": 743,
+            "x": 1176,
+            "r": 1260
+          }
+        },
+        "timeline": {
+          "found": true,
+          "rect": {
+            "y": 718,
+            "b": 900,
+            "x": 0,
+            "r": 1280
+          },
+          "centre": [
+            640,
+            809
+          ],
+          "stackDepth": 18,
+          "indexInStack": 6,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": "",
+          "topClass": "relative.h-8.cursor-ew-resize.rounded-[4px]",
+          "topRect": {
+            "y": 791,
+            "b": 823,
+            "x": 322,
+            "r": 2101
+          }
+        },
+        "gate": {
+          "moved": [],
+          "fired": false,
+          "partial": [],
+          "toEnd": [],
+          "verdict": "clean"
+        }
+      }
+    },
+    "closedForm": "unreachable  <=>  the control's own centre is covered, by EITHER the export trigger OR the timeline",
+    "centreY": {
+      "700": 567,
+      "715": 567,
+      "716": 567,
+      "720": 567,
+      "744": 567,
+      "745": 567,
+      "748": 567,
+      "749": 567,
+      "750": 567,
+      "751": 567,
+      "760": 567,
+      "900": 567
+    },
+    "centreYIsConstant": true,
+    "exportTop": {
+      "700": 523,
+      "715": 538,
+      "716": 539,
+      "720": 543,
+      "744": 567,
+      "745": 568,
+      "748": 571,
+      "749": 572,
+      "750": 573,
+      "751": 574,
+      "760": 583,
+      "900": 723
+    },
+    "exportTopIsHminus177": true,
+    "timelineTop": {
+      "700": 518,
+      "715": 533,
+      "716": 534,
+      "720": 538,
+      "744": 562,
+      "745": 563,
+      "748": 566,
+      "749": 567,
+      "750": 568,
+      "751": 569,
+      "760": 578,
+      "900": 718
+    },
+    "timelineTopIsHminus182": true,
+    "therefore": "unreachable  <=>  H <= 749,  i.e. reachable  <=>  H >= 750",
+    "whoSetsTheBoundary": "the TIMELINE, not the export trigger",
+    "theExportWindows": [
+      "700",
+      "715",
+      "716",
+      "720",
+      "744"
+    ],
+    "theExportWindowIsEntirelyInsideTheBlockedRegion": true,
+    "lastUnreachableHeight": 749,
+    "firstReachableHeight": 750,
+    "mismatches": {},
+    "theFirstGuessAndWhyItWasWrong": {
+      "guessed": "unreachable <=> exportTop < colourBottom, i.e. H < 756",
+      "wrongBecause1": "rectangle overlap does not decide it — at H=750 the two rects overlap by 6px and the control IS reachable, because its centre is above the export trigger's top edge",
+      "wrongBecause2": "there is a second coverer the first version forgot: the timeline is full-width and reaches the inspector's lower part at short heights, so H=700 is blocked by a mechanism the export rule says should be clear"
+    }
+  },
+  "widthProbe1531": {
+    "1531": {
+      "found": true,
+      "rect": {
+        "y": 929,
+        "b": 961,
+        "x": 1201,
+        "r": 1233
+      },
+      "centre": [
+        1217,
+        945
+      ],
+      "stackDepth": 19,
+      "indexInStack": 2,
+      "inStack": true,
+      "topIsSelf": true,
+      "topLabel": "",
+      "topClass": "",
+      "topRect": {
+        "y": 938,
+        "b": 952,
+        "x": 1217,
+        "r": 1217
+      },
+      "bar": {
+        "found": true,
+        "rect": {
+          "y": 920,
+          "b": 968,
+          "x": 1013,
+          "r": 1238
+        },
+        "centre": [
+          1125,
+          944
+        ],
+        "stackDepth": 17,
+        "indexInStack": 1,
+        "inStack": true,
+        "topIsSelf": true,
+        "topLabel": "描述想搭建的场景",
+        "topClass": "col-start-2.row-start-1.min-w-0.bg-transparent",
+        "topRect": {
+          "y": 937,
+          "b": 953,
+          "x": 1054,
+          "r": 1197
+        }
+      }
+    }
+  },
+  "from658": {
+    "helpKey": [
+      "data-director-rail-entry|帮助"
+    ]
+  },
+  "checks": {
+    "the-coverer-of-help-is-收起属性-and-not-a-timeline-row": {
+      "ok": true,
+      "detail": {
+        "topLabelAtEveryHeight": {
+          "720": "收起属性",
+          "900": "收起属性",
+          "1150": "收起属性"
+        },
+        "topClass": {
+          "1150": "group.relative.z-[1].flex",
+          "720": "group.relative.z-[1].flex",
+          "900": "group.relative.z-[1].flex"
+        },
+        "what657And659Wrote": "「被时间轴轨道行盖住」",
+        "whatTheDataHasAlwaysSaid": "658's occludedDetail carried coveredBy.label = 收起属性 from the first run",
+        "howTheErrorHappened": "I read the class prefix and treated z-[1] as evidence for a row. The label was in the file the whole time.",
+        "connectionTo632": "收起 is 632's in-case defect — the 170px centred perspective group. Its blast radius now reaches the icon rail, which is new information about a known case."
+      },
+      "note": "a label in the data beats a class prefix in your head"
+    },
+    "help-is-in-the-stack-and-is-not-the-top-of-it": {
+      "ok": true,
+      "detail": {
+        "inStack": {
+          "720": true,
+          "900": true,
+          "1150": true
+        },
+        "topIsSelf": {
+          "720": false,
+          "900": false,
+          "1150": false
+        },
+        "indexInStack": {
+          "720": 8,
+          "900": 8,
+          "1150": 8
+        },
+        "theTwoQuestions": "658 asks 'is the top the target'. The probe that started this batch asked 'is the target in the stack' and answered True. Both are correct readings of the same stack; only the first one is about clicking.",
+        "whyItMatters": "reporting 'in the stack' as 'reachable' would have turned a blocked control into a clean one, and reporting 'not topmost' as 'not rendered' would have repeated 659's clipping error."
+      },
+      "note": "one API, two questions; only one of them is operational"
+    },
+    "the-colour-family-closed-form-holds-and-the-timeline-sets-756s-real-edge": {
+      "ok": true,
+      "detail": {
+        "centreY": {
+          "700": 567,
+          "715": 567,
+          "716": 567,
+          "720": 567,
+          "744": 567,
+          "745": 567,
+          "748": 567,
+          "749": 567,
+          "750": 567,
+          "751": 567,
+          "760": 567,
+          "900": 567
+        },
+        "centreYIsConstant": true,
+        "exportTop": {
+          "700": 523,
+          "715": 538,
+          "716": 539,
+          "720": 543,
+          "744": 567,
+          "745": 568,
+          "748": 571,
+          "749": 572,
+          "750": 573,
+          "751": 574,
+          "760": 583,
+          "900": 723
+        },
+        "exportTopIsHminus177": true,
+        "timelineTop": {
+          "700": 518,
+          "715": 533,
+          "716": 534,
+          "720": 538,
+          "744": 562,
+          "745": 563,
+          "748": 566,
+          "749": 567,
+          "750": 568,
+          "751": 569,
+          "760": 578,
+          "900": 718
+        },
+        "timelineTopIsHminus182": true,
+        "predictedUnreachable": {
+          "700": true,
+          "715": true,
+          "716": true,
+          "720": true,
+          "744": true,
+          "745": true,
+          "748": true,
+          "749": true,
+          "750": false,
+          "751": false,
+          "760": false,
+          "900": false
+        },
+        "measuredReachable": {
+          "700": false,
+          "715": false,
+          "716": false,
+          "720": false,
+          "744": false,
+          "745": false,
+          "748": false,
+          "749": false,
+          "750": true,
+          "751": true,
+          "760": true,
+          "900": true
+        },
+        "mismatches": {},
+        "lastUnreachable": 749,
+        "firstReachable": 750,
+        "whoSetsTheBoundary": "the timeline. The export trigger's window (H-177 <= 567, i.e. 716..744) sits ENTIRELY inside the blocked region, so it never decides anything on its own.",
+        "theForm": "the export trigger rides the bottom bar, so its top is H-177; the timeline is pinned to the bottom, so its top is H-182; the colour picker hangs in the inspector, so its centre is pinned at 567 whatever the height. The timeline crosses 567 at H = 749 and that is the only edge that changes an answer.",
+        "theFirstGuessAndWhyItWasWrong": {
+          "guessed": "unreachable <=> exportTop < colourBottom, i.e. H < 756",
+          "wrongBecause1": "rectangle overlap does not decide it — at H=750 the rects overlap by 6px and the control IS reachable, because its centre is above the trigger's top edge",
+          "wrongBecause2": "a second coverer the first version forgot: the timeline is full-width and reaches the inspector's lower part at short heights, so H=700 is blocked by a mechanism the export rule says is clear"
+        },
+        "theAnchors": "720 blocked and 900 reachable were already in 658's record; the sweep brackets them at 749/750."
+      },
+      "note": "the two members of the comparison move differently, and the one that moves faster is the one that decides"
+    },
+    "both-colour-controls-share-the-one-boundary": {
+      "ok": true,
+      "detail": {
+        "colourPicker": {
+          "700": false,
+          "715": false,
+          "716": false,
+          "720": false,
+          "744": false,
+          "745": false,
+          "748": false,
+          "749": false,
+          "750": true,
+          "751": true,
+          "760": true,
+          "900": true
+        },
+        "hexInput": {
+          "700": false,
+          "715": false,
+          "716": false,
+          "720": false,
+          "744": false,
+          "745": false,
+          "748": false,
+          "749": false,
+          "750": true,
+          "751": true,
+          "760": true,
+          "900": true
+        },
+        "whyWorthAsserting": "two controls covered by one trigger usually means one rule, but 'usually' is not a measurement. If they ever split, this goes red."
+      },
+      "note": "one rule for two controls is a claim until it is tested twice"
+    },
+    "660s-third-ladder-rung-is-now-bracketed-on-both-sides": {
+      "ok": true,
+      "detail": {
+        "at1531": {
+          "rect": {
+            "y": 929,
+            "b": 961,
+            "x": 1201,
+            "r": 1233
+          },
+          "centre": [
+            1217,
+            945
+          ],
+          "indexInStack": 2,
+          "inStack": true,
+          "topIsSelf": true,
+          "topLabel": ""
+        },
+        "what660Left": "660 derived rowFullyInside's first true width as 1532 and said the true edge might sit between 1531 and 1532 because 1531 had not been swept.",
+        "whatThisAdds": "1531 has now been swept. The prompt bar's row is inside its clip from 1532, and the submit button has been reachable since 1510 — so the reachable ladder's bottom rung was never in doubt; only the row's was."
+      },
+      "note": "closing a gap a previous batch left open, rather than opening a new one"
+    }
+  },
+  "ok": true,
+  "checkCount": 5,
+  "failures": [],
+  "totals": {
+    "helpHeights": [
+      720,
+      900,
+      1150
+    ],
+    "helpTopLabel": [
+      "收起属性"
+    ],
+    "helpInStack": {
+      "720": true,
+      "900": true,
+      "1150": true
+    },
+    "helpTopIsSelf": {
+      "720": false,
+      "900": false,
+      "1150": false
+    },
+    "colourHeights": [
+      700,
+      715,
+      716,
+      720,
+      744,
+      745,
+      748,
+      749,
+      750,
+      751,
+      760,
+      900
+    ],
+    "colourCentreY": [
+      567
+    ],
+    "colourLastUnreachable": 749,
+    "colourFirstReachable": 750,
+    "whoSetsTheBoundary": "timeline",
+    "correctionsMade": 2
+  }
+}
