@@ -162,6 +162,14 @@
     - 源码双向定界：`project.tsx:406` 的 `if (!projectLoaded || applyingHistoryRef.current || historyPausedRef.current) return;`、`:420` 的 `clearTimeout` + `setTimeout(..., 180)`、`:425` 的 `past = [...past.slice(-49), last]`（+1 条 = 上限 50）；拖拽期间 `historyPausedRef` 置 true（`:1362`）、拖拽结束置回（`:1391`），读取点 `:406` 与 `:441`——**所以拖拽过程中的每一次 nodes 变化都不提交历史，只有 mouseup 后那一次才提交一条**，这就是「合并为一条」的实现。
   - **M116 的方法论教训（本批最值得记的一条）**：第一版探针的判据 2 是「再撤一次位置应纹丝不动」，据此把「撤 2 次后位置变了」写成「拖拽被拆成多条」，实际那个位置 **正是节点刚被创建时的坐标**（第二版把 Q0 单独测出来就是 (590, 350)，与第一版的 P3 逐字相同）。**判据 2 依赖了「撤完拖拽后栈里应该只剩建节点那一条」这个从未验证的假设**——实际 `addNode` 里还有一次定位拖拽，栈里是 3 条。**与 M114/M115「读数恰好印证原判断」那类脏读数同源但方向相反：那次是读数脏，这次是判据的前提没验证。**教训：**判据里每一个「应该是什么」都要单独取证，不能因为前半条判据成立就默认后半条的前提也成立。**
 - 持久化：全自动三级漏斗（页面 effect → 400ms 防抖 → localforage IndexedDB），无手动保存；viewport 属项目文档（500ms 防抖）。[静态]
+  - **2026-10-02 M120 升级为运行时实证，并且这次不是「看界面还在不在」，而是把 IndexedDB 里的东西直接读出来核对**。
+    - **落盘位置与结构（直读 `indexedDB.open('tdcanvas')` → `app_state` → key `tdcanvas:canvas_store`）**：顶层 `{state, version}`；`state` **只有 `projects` 一个键** —— 正是 `partialize`（`use-canvas-store.ts:129-133`）只保留 projects 的结果，`hydrated` 等运行时字段确实没落盘。项目对象 **12 个字段**：`id/title/createdAt/updatedAt/nodes/connections/chatSessions/activeChatId/inputMode/backgroundMode/showImageInfo/viewport`。
+    - **viewport 确实随项目持久化**（账本这条 `[静态]` 升级为运行时）：实测最新项目落盘 `k = 0.6329`，而画布上由「节点世界宽 520 → 屏幕宽 329」反推 `k ≈ 0.6327`，**吻合到小数第三位**；且 `viewport` 里 `x=550.69 / y=91.78` 说明**平移量与缩放一起存**，不只是缩放。
+    - **刷新恢复坐实**：刷新前后两个节点的屏幕位置与宽度逐字一致（`829,263` / `1177,440`，宽 329）。
+    - ★ **400ms 防抖窗的边界被实测钉死，且与源码常量互证**：每档做一次「新建节点 → 等 N ms → 立刻刷新 → 数节点」，判据是**行为**不是读 storage。结果 **0/150/300 ms 全丢，420/550/800 ms 全保住**，分界落在 **300–420 ms 之间**，而源码写的正是 **400**（`use-canvas-store.ts:59`）。
+    - ★ **改完之后没有任何「已保存」反馈**：改动后连盯 **6 秒**，toast **0 条**；整页可见文本里「已保存/保存成功/已存/自动保存/正在保存」**一个都没有**；带 `title` 或 `aria-label` 的保存类元素**也是空**。**所以读者没有任何界面信号判断「存好了没有」**——这是 400ms 窗口值得写进手册的直接原因。
+    - **一条被自己否证的读数**：第一版用 `projects[length-1]` 当「最新项目」，读到的却是 `TDCanvas 1 / nodes=1 / 640x320 / updatedAt 2026-10-01`——**数组末位并不等于 updatedAt 最大的那条**。改为显式按 `updatedAt` 求最大后拿到 `TDCanvas 157 / nodes=2 / 节点世界尺寸 520x300,520x300`，与画布对得上。**IndexedDB 读取本身自始至终是成功的（projects 数读得出、项目字段列得出），错的只是「用哪个元素代表最新项目」这个假设。**
+    - **本机边界（配合源码，未单独实测）**：`lib/localforage-storage.ts:15-20` 在 IndexedDB 异常时**降级写入 localStorage**；数据全部在本机，无任何同步入口（M111/排障页已取证），故换设备或清站点数据即全部丢失。
 - 快捷键全集（project.tsx:1735-1807）：Cmd/Ctrl+Z(+Shift)/Y、A、C、V、Delete/Backspace、Escape（清 13 项状态）；无缩放类键盘快捷键；官方快捷键文档与源码一致。[静态+官方文档]
 
 ## 9. 官方文档与实际 UI 的差异（重要）

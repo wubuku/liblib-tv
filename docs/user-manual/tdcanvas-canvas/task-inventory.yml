@@ -211,7 +211,9 @@ tasks:
     coverage: full
     evidence:
       - type: static
-        note: 三级持久化漏斗；viewport 属项目文档；刷新后恢复管线。
+        note: 三级持久化漏斗；刷新后恢复管线。
+      - type: runtime
+        note: 2026-10-02 M120 把「三级漏斗 / viewport 属项目文档」升级为运行时，**且这批不满足于「刷新后看起来还在」，而是把 IndexedDB 里的东西直接读出来核对**。落盘位置：indexedDB.open('tdcanvas') → objectStore app_state → key tdcanvas:canvas_store；顶层 {state,version}，**state 只有 projects 一个键**（正是 partialize 只保留 projects 的结果，hydrated 等运行时字段确实未落盘）；项目对象 12 个字段 id/title/createdAt/updatedAt/nodes/connections/chatSessions/activeChatId/inputMode/backgroundMode/showImageInfo/viewport。★**viewport 确实随项目持久化**：落盘 k=0.6329，画布由「节点世界宽 520 → 屏幕宽 329」反推 k≈0.6327，**吻合到小数第三位**；viewport 里 x=550.69/y=91.78 说明**平移量与缩放一起存**。刷新前后两节点屏幕位置与宽度逐字一致（829,263 / 1177,440，宽 329）。★**400ms 防抖窗边界实测钉死且与源码常量互证**：每档做一次「新建节点 → 等 N ms → 立刻刷新 → 数节点」，判据用行为不用 storage，结果 **0/150/300ms 全丢、420/550/800ms 全保住**，分界落在 300–420ms 之间，源码写的正是 400ms（use-canvas-store.ts:59）。★**改完后没有任何「已保存」反馈**：连盯 6 秒 toast 0 条，整页文本里「已保存/保存成功/已存/自动保存/正在保存」一个都没有，带 title 或 aria-label 的保存类元素也为空——**读者没有任何界面信号判断存好了没有**，这是把 400ms 窗口写进手册的直接原因。另记一条自我否证：第一版用 projects[length-1] 当「最新项目」，读到的是 TDCanvas 1/nodes=1/updatedAt 昨天那条，**数组末位并不等于 updatedAt 最大**；改为显式按 updatedAt 求最大后拿到 TDCanvas 157/nodes=2/节点世界尺寸 520x300,520x300，与画布对得上——IndexedDB 读取本身始终成功，错的只是「用哪个元素代表最新项目」这个假设。本机边界：lib/localforage-storage.ts:15-20 在 IndexedDB 异常时降级写 localStorage，数据全在本机且无任何同步入口。
       - type: runtime
         note: 2026-10-02 M116 把「180ms 合并 / 拖拽合并 / 上限 50」三条全部从静态升级为运行时。① **上限正是 50，精确**：连做 55 次上传（每次间隔 >180ms 防抖窗口以保证各自成一条）得 55 个节点，连按撤销到撤不动为止**剩 5 个 = 55−50，实际可撤销条数 = 50**；redo 全部走回 55，重做栈不受上限影响。② **拖拽整段合并为一条，精确**：14 帧拖拽位移 Δ=(448,−144)，撤一次**残差 (0,0)**——若每帧各成一条，残差应为 Δ×13/14≈(416,−134)；再撤一次节点直接消失，证明栈里正好是「创建」+「拖拽」两条。源码定界 project.tsx:406/420/425（clearTimeout+setTimeout 180ms；past=[...past.slice(-49),last]）、拖拽期间 historyPausedRef=true（:1362/:1391，:406/:441 读取）。同批记一条方法论：第一版探针把「撤 2 次后位置变了」当成「拖拽被拆成多条」，实际那正是**节点的创建位置**——判据 2 依赖了「撤完拖拽栈里应只剩 1 条」这个未经验证的假设。
     preconditions:
