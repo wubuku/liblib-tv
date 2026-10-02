@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Maximize2, Pause, Play, Volume2, VolumeX } from "lucide-react";
 
 import type { JimengVideoNodeData } from "@/types/jimeng";
 import { useJimengStore } from "@/store/jimengStore";
+import { useModalFocusTrap } from "./jimengMenuChrome";
 
 /**
  * 视频全屏播放器 (Batch 27/80)。
@@ -38,6 +39,15 @@ export function JimengVideoPreview({
   const togglePlay = useJimengStore((s) => s.togglePlay);
   const toggleMute = useJimengStore((s) => s.toggleMute);
   const seek = useJimengStore((s) => s.seek);
+  const layerRef = useRef<HTMLDivElement>(null);
+
+  /* 批 863：开层即接管焦点 + Tab 困在层内。
+     判据在复刻上抓到实锤：此前焦点留在触发器上（`focus_at_open.state='other'`），
+     按 Tab 会走过 22 个**被这个模态自己盖住**的控件（`covered_n=22`）——
+     焦点环落在看不见的地方。⚠️ 源站这一层是 `BLOCKED_BY_FIXTURE`（NOT_SAMPLED，
+     源站这一版画布没有全屏入口），所以这个修法**不声称**源站也这样；
+     依据是「模态盖住了页面就不该把焦点漏给页面」这条模态自身的定义。 */
+  useModalFocusTrap(layerRef, true);
 
   // Batch 80 (SOURCE_FACT): 进入全屏即自动静音播放，退出暂停
   // (仅进入/退出时执行，依赖保持为空)
@@ -64,6 +74,7 @@ export function JimengVideoPreview({
 
   return createPortal(
     <div
+      ref={layerRef}
       className="fixed inset-0 z-[400] bg-black/60"
       role="dialog"
       aria-label="视频全屏预览"

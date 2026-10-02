@@ -479,7 +479,25 @@ def main() -> int:
                   const a = document.activeElement;
                   if (!a || a === document.body) return {state: 'body'};
                   const inside = !!(layer && layer.contains(a));
-                  if (inside) return {state: 'inside'};
+                  // ⚠️⚠️ 批 863 改这里（**四个自检条件一并逐个验过**才动的手）。
+                  // 原来 `if (inside) return` —— 焦点一进层就返回，后面的采样全不做。
+                  // §79 已查清后果：新版搜索面板**层内可聚焦控件 1 → 15**，第一次
+                  // Tab 就落在输入框的下一个兄弟（分类 tab，**层内**）⇒ `tabs=1`
+                  // ⇒ 层外步 0 ⇒ **两个自检同时塌**：
+                  //   · `skin_top_n = 0`（反向自检判「恒真」）
+                  //   · `covered_n = 0`（正向自检 0→0）
+                  // 现在进层也往下走照常采样。
+                  //
+                  // ⚠️⚠️ 863 **推翻了 862 那句「covered_n 只统计层外，判据没被
+                  // 放松」——那句话是错的。层内控件被**别的**浮层盖住时，焦点环
+                  // 一样看不见，这跟它在不在本层内毫无关系。层内控件**只**对
+                  // 「自己的浮层」免疫（那是 `paintsOver` 里 `n.contains(a)`
+                  // 那条在管的事），不是对任何浮层都免疫。
+                  // 「自己的浮层」这件事判据本来就已经正确处理了 —— 所以把层内
+                  // 也纳入统计**不是**放松判据，是把漏掉的一半补回来。
+                  // 补完实测：正向 `covered_n_when_shut` 0 → 1 活；反向
+                  // `covered_n_when_skin` 仍为 0（53 个控件各盖一层「自己的皮」
+                  // 不多报），`skin_top_n` 1 > 0（皮确实当过栈顶）⇒ 双向都活。
                   // ⚠️ 焦点停在**被这个浮层遮住**的控件上 —— 鼠标看不见无所谓，
                   //    可焦点环也看不见：用户不知道自己停在哪，继续 Tab 只是在
                   //    一片看不见的控件里走。这是"浮层开了却没接管焦点"，
@@ -561,7 +579,16 @@ def main() -> int:
                     return null;
                   };
                   const occluded = edges === EDGE.length;
-                  return {state: occluded ? 'covered' : 'other',
+                  // 批 863：进层也照常采样，但 `state` 仍标 `inside` —— 这个字段
+                  // 说的是「焦点在不在本层里」，跟「焦点环看不看得见」是**两件事**，
+                  // 不该混用一个字段。`occluded`（4 条边全被不透明外人盖住）另算，
+                  // Python 侧两个都收。
+                  // ⚠️ 「自己的浮层」已经被 `paintsOver` 正确豁免了（走到 a 的祖先
+                  //    就停 —— 祖先的背景画在下面，不算遮挡），所以层内控件被
+                  //    **自己的**层盖住时 `edges` 仍然是 0。
+                  return {state: inside ? 'inside'
+                                       : (occluded ? 'covered' : 'other'),
+                          inside: inside,
                           edges_covered: edges, edges_total: EDGE.length,
                           skin_top: skinTop,
                           top: firstName,
@@ -581,6 +608,12 @@ def main() -> int:
                         f":tid={_a.get('tid') or '-'}"
                         f":txt={(_a.get('txt') or '-')[:12]}")
                 if step.get("state") == "inside":
+                    # 批 863：JS 现在进层也采样皮了，但这个分支下面**直接
+                    # return**，会跳过后面 `if step.get('skin_top')` 的累加
+                    # ⇒ 进层那一步的皮「采到了却被丢掉」（§62 版实测：
+                    # 旧版皮当栈顶因此少 1 次）。这里补上。
+                    if step.get("skin_top"):
+                        skin_top_n += 1
                     # 焦点**已经在层里**了 —— 正好就是「用户刚 Tab 进来」那一刻。
                     # 就在这个状态上问「再按 Tab 会不会跑出去」，零准备，且测的
                     # 正是真实路径。§63 留下的范围限制就是这条：冷启动量的是
@@ -593,6 +626,26 @@ def main() -> int:
                     arr = arrow_probe(layer_tid, "ArrowDown")
                     arr_up = arrow_probe(layer_tid, "ArrowUp")
                     refocus_inside(layer_tid)
+                    # ⚠️⚠️ 批 863 补的最后一处：层内控件**也要**计入
+                    # `covered_n`。它们被**别的**浮层盖住时同样该报 ——
+                    # 「看不见的焦点环」这件事跟控件在不在层内无关。
+                    # 之前这里直接 return，层内一步都没统计 ⇒ 新版搜索面板
+                    # （第一次 Tab 就在层内）正向自检恒为 `0 → 0`。
+                    # ⚠️ 上面 JS 把 state 标成了 `inside`，所以这里不能只判
+                    #    `state == 'covered'`（那条永远进不来），得直接用
+                    #    `edges` 判据：4 条边全被不透明外人盖住。
+                    if (step.get("edges_covered") == step.get("edges_total")
+                            and step.get("edges_total")):
+                        covered_n += 1
+                        if covered is None:
+                            covered = {"at_tab": i, "al": step.get("al"),
+                                       "tid": step.get("tid"),
+                                       "top": step.get("top"),
+                                       "top_anchor": step.get("top_anchor"),
+                                       "focus_anchor": step.get("focus_anchor"),
+                                       "edges": f"{step.get('edges_covered')}"
+                                                f"/{step.get('edges_total')}",
+                                       "size": f"{step.get('w')}x{step.get('h')}"}
                     return {"ok": True, "tabs": i, "covered": covered,
                             "covered_n": covered_n, "skin_top_n": skin_top_n,
                             "focus_at_open": at_open, "trace": trace,
@@ -1194,8 +1247,8 @@ def main() -> int:
                 page.wait_for_timeout(300)
                 covered_when_clear = keyboard_probe(deep_layer)
             else:
-                covered_when_shut = {"covered": None}
-                covered_when_clear = {"covered": None}
+                covered_when_shut = {"covered": None, "tabs": None}
+                covered_when_clear = {"covered": None, "tabs": None}
                 skin_when_skin = {"covered": None}
                 skin_n = 0
             page.keyboard.press("Escape")
@@ -1208,6 +1261,20 @@ def main() -> int:
                        "skin_n": skin_n,
                        "skin_top_n": skin_top_when_skin,
                        "clear_covered": covered_when_clear.get("covered"),
+                       # ⚠️ 批 863 补：`shut_covered` 之前**没记进结果**。于是
+                       #    「每条 finding 指名了被谁盖住」这条契约（verifier G.3b）
+                       #    只能拿**产品当下真有的缺陷**来验 —— 缺陷一修好，契约
+                       #    自己就红了。阳性夹具明明保证这里一定有 finding，
+                       #    却没把它记下来，白白让一条断言绑在产品状态上。
+                       "shut_covered": covered_when_shut.get("covered"),
+                       # ⚠️ 同批补：自检**灵敏度**要看得见。正向夹具实测
+                       #    `covered_n_when_shut` 只有 1（旧版搜索面板同一夹具
+                       #    是 32）—— 因为新面板第一次 Tab 就在层内（§79 的定论），
+                       #    整趟只采了 1 个焦点位。这不是缺陷，但「自检从 32 个
+                       #    焦点位缩到 1 个」是**判据覆盖面缩小**，必须记在案，
+                       #    不许只写在结论段的散文里。
+                       "walked_when_shut": covered_when_shut.get("tabs"),
+                       "walked_when_clear": covered_when_clear.get("tabs"),
                        "skin_covered": skin_when_skin.get("covered"),
                        "covered_n_when_skin": skin_when_skin.get("covered_n"),
                        "covered_n_when_shut": covered_when_shut.get("covered_n"),

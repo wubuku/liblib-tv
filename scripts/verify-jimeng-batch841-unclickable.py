@@ -279,12 +279,30 @@ def main() -> int:
           f"缺 covered_n 的 {sum(1 for k in kb_cov if 'covered_n' not in k)} 条")
     # 只报「焦点停在了看不见的地方」是**现象**，不是**病因**：修的人第一句就会问
     # 「被谁盖住的」。所以每条 finding 必须同时指名盖住它的是哪个浮层锚。
-    check("G.3b 每条 finding 指名**被哪个浮层盖住**（浮层锚的对照，不是光说看不见）",
-          bool(kb_cov) and all(
-              (k.get("covered") or {}).get("top")
-              and (k.get("covered") or {}).get("top_anchor")
-                  != (k.get("covered") or {}).get("focus_anchor")
-              and (k.get("covered") or {}).get("edges")
+    #
+    # ⚠️⚠️ 批 863 改这里：第一版拿 `kb_cov`（产品当下真有的缺陷）当验钞机。
+    #    863 把全屏预览那个**真缺陷修好**之后，`kb_cov` 变空，这条断言自己
+    #    红了 —— 契约被绑在**产品状态**上，而不是绑在判据的**能力**上。
+    #    「修好了」被判成「判据坏了」。
+    #    改成拿**自检的阳性夹具**验：`covered_when_shut` 那一趟**保证**盖了
+    #    一层 `inset:0` 的不透明模态，finding 必然存在。形状与产品无关，
+    #    缺陷修不修都成立 —— 这才是这条断言本来要问的东西。
+    #    两边都查：夹具里必须有，产品里**有的话**也必须合格。
+    _shut_cov = kbst.get("shut_covered") or {}
+    check("G.3b 每条 finding 指名**被哪个浮层盖住**（浮层锚的对照，不是光说看不见）"
+          "—— 验的是判据的**能力**，拿自检阳性夹具（必然有 finding）当样本，"
+          "不再绑在产品当下有没有缺陷上",
+          bool(_shut_cov.get("top"))
+          and _shut_cov.get("top_anchor") is not None
+          and _shut_cov.get("top_anchor") != _shut_cov.get("focus_anchor")
+          and bool(_shut_cov.get("edges")),
+          f"夹具 finding={json.dumps(_shut_cov, ensure_ascii=False)[:150]}")
+    check("G.3c 产品**当下**若有 covered finding，每一条也都得指名浮层锚"
+          "（实测 {n} 条）".format(n=len(kb_cov)),
+          all(((k.get("covered") or {}).get("top")
+               and (k.get("covered") or {}).get("top_anchor")
+                   != (k.get("covered") or {}).get("focus_anchor")
+               and (k.get("covered") or {}).get("edges"))
               for k in kb_cov),
           "; ".join(
               f"{k.get('state')}←{(k.get('covered') or {}).get('top_anchor')}"
@@ -335,11 +353,30 @@ def main() -> int:
           f"ok_kb_self 块 {len(_ok_blk)} 字符，"
           f"含反向比较={'covered_n_when_skin' in _ok_blk} "
           f"含夹具自证={'skin_top_n' in _ok_blk}")
-    check("G.5 自检用的层必须是**深**的（Tab 1 就进去的层照不到被遮住的控件）",
-          kbst.get("covered_probe_layer") == "jimeng-search-overlay",
-          f"实际={kbst.get('covered_probe_layer')!r}")
+    # ⚠️⚠️ 批 863 改这里，而且改的是这条断言的**理由**，不是它的结论。
+    #    老理由写的是「层必须深，因为 Tab 1 就进去的层**照不到**被遮住的控件」。
+    #    863 第④处改动之后这句话**不成立了**：层内控件被**别的**浮层盖住照样
+    #    该报，层内照样算 `covered_n`。新搜索面板第一次 Tab 就在层内
+    #    （§79 的定论），深度已经是 1，而 `covered_n_when_shut` 实测 0 → 1 照活。
+    #    所以真正该钉的是**灵敏度有没有被记在案** —— 那个夹具现在只采到
+    #    `walked_when_shut` 个焦点位（老面板同一夹具是 39 步 / 32 个被遮），
+    #    判据覆盖面确实缩小了。缩小是事实，不是不存在；不记下来才是问题。
+    check("G.5 自检用的层仍是搜索面板夹具，**且灵敏度记在案**"
+          "（老理由「必须深」已被 863 第④处推翻：层内控件也算 covered_n，"
+          "深度不再是前提；真正要盯的是这趟采了几个焦点位）",
+          kbst.get("covered_probe_layer") == "jimeng-search-overlay"
+          and kbst.get("walked_when_shut") is not None
+          and (kbst.get("walked_when_shut") or 0) >= 1,
+          f"夹具={kbst.get('covered_probe_layer')!r} "
+          f"正向夹具采了 {kbst.get('walked_when_shut')!r} 个焦点位"
+          f"（老面板同一夹具 39 步）")
+    # ⚠️ 批 863 改这里：判定的**字面量**跟着返回形态一起变了。863 让采样 JS
+    #    进层也往下走，返回时 `state` 变成三态 `inside / covered / other`
+    #    （原来只有两态，且进层直接早退）。判的是「`occluded` 这个判据还在
+    #    算、且被 `covered` 这个名字收着」，不是某一行具体怎么写。
     check("G.6 键盘探针在每一步都判「焦点是否被遮住」（源码里真有这一步）",
-          "state: occluded ? 'covered' : 'other'" in asrc)
+          "occluded ?" in asrc and "'covered'" in asrc,
+          "返回里找不到 occluded/'covered' 的判据")
     # 判据的**形状**本身就是断言对象：前两版都被证伪过，而且错的方向相反
     # （第 1 版太松、第 2 版太严），病根都是拿 DOM 包含关系回答视觉问题。
     # 第 3 版只问「栈顶是不是**另一个浮层**」。
@@ -913,6 +950,128 @@ def main() -> int:
           f"接了 useTakeFocusAtOpen="
           f"{'useTakeFocusAtOpen(' in hsrc_code} "
           f"误接 useArrowKeys={'useArrowKeys(' in hsrc_code}")
+
+    # ── P. 批 863：判据补齐「层内」那半 + 全屏模态焦点陷阱 ──────────
+    # 862 栽在**只盯 `skin_top_n`** 上：把采样早退拆掉、只验了 skin 那一条，
+    # 改动就上了桌。863 把剩下三条**逐个**验过才敢留在代码里。P 组把它们
+    # 钉死 —— 以后谁再动这四处，会在这里被挡住。
+    print("— P. 批 863 判据四改 + 全屏层焦点陷阱 —")
+    asrc = AUDIT.read_text(encoding="utf-8")
+    # ⚠️ 又一次「拿字符串在不在当判据」：这几处的**注释里就原样写着被删掉的
+    #    旧代码**（`原来 \`if (inside) return\``）。判「代码还在不在」必须
+    #    **先剥注释行**，否则断言恒为假、看着像回归其实是自己写的注释。
+    acode = "\n".join(ln for ln in asrc.splitlines()
+                      if not ln.strip().startswith(("//", "*", "/*")))
+    check("P.1 采样 JS 里 `if (inside) return` 早退**已删**"
+          "（焦点一进层就返回 ⇒ 后面全不采样 ⇒ 层内一步都不统计）",
+          "if (inside) return" not in acode,
+          f"仍存在={'if (inside) return' in acode}")
+    check("P.2 层内分支用 `edges_covered == edges_total` 计入 `covered_n`"
+          "（**不能**只判 `state == 'covered'` —— JS 已把层内标成 `inside`，"
+          "那条分支在层内永远进不来，正是 862 卡住的原因）",
+          'if (step.get("edges_covered") == step.get("edges_total")' in acode)
+    # skin_top 的累加现在有**两处**（层内分支 + 层外分支）。早退拆掉之后
+    # 层内那步的皮「采到了却被丢掉」，只留一处会少算。
+    check("P.3 `skin_top_n += 1` 有**两处**（层内 + 层外各一）"
+          "—— 少一处就等于把进层那一步的皮扔了（§62 版旧版因此少 1 次）",
+          acode.count("skin_top_n += 1") == 2,
+          f"实测 {acode.count('skin_top_n += 1')} 处")
+    # A.0 已经隐含断言了自检，但它是**间接**的（混在退出码公式里）。
+    # 863 的教训是「只验自己关心的那一条等于没验」，所以这里把四个条件
+    # **摊开逐条**再钉一遍，且**必须双向**：只活正向 = 判据只会报，
+    # 只会报不活反向的判据 = 「盖了自己的皮也多报」的坑没人守。
+    _shut = kbst.get("covered_n_when_shut")
+    _clear = kbst.get("covered_n_when_clear")
+    _skin = kbst.get("covered_n_when_skin")
+    _skin_top = kbst.get("skin_top_n")
+    check("P.4 正向自检活：盖上遮挡物后 `covered_n` 必须涨"
+          "（`when_shut > when_clear`）—— 这是 862 塌掉的那一半",
+          (_shut or 0) > (_clear or 0), f"shut={_shut} clear={_clear}")
+    check("P.5 反向自检活：给每个控件各盖一层「**自己的皮**」后 `covered_n` "
+          "必须**回到 clear 的水平**（不多报）",
+          _skin is not None and _clear is not None and _skin == _clear,
+          f"skin={_skin} clear={_clear}")
+    check("P.6 皮必须**真当过栈顶**（`skin_top_n > 0`）"
+          "—— 否则「盖了自己的皮也不多报」是恒真的空话",
+          (_skin_top or 0) > 0, f"skin_top_n={_skin_top}")
+    check("P.7 夹具成色记在案（`skin_n` 真的盖了足够多的控件，不是 1 个）",
+          (kbst.get("skin_n") or 0) >= 10, f"skin_n={kbst.get('skin_n')}")
+    # 863 把新面板换成第一次 Tab 就在层内（§79 定论），阳性夹具因此从
+    # 「39 步里 32 个被遮」缩到「1 步里 1 个被遮」。判据**仍然能失败**
+    # （P.4 绿），但覆盖面确实小了 —— 这是缩小，不是缺陷。把它记在结果里，
+    # 是为了让下一个人不必重新发现它。
+    check("P.7b 自检**灵敏度**记在案（`walked_when_shut` / `walked_when_clear`）"
+          "—— 判据覆盖面缩小是事实，不许只写在散文里",
+          kbst.get("walked_when_shut") is not None
+          and kbst.get("walked_when_clear") is not None
+          and (kbst.get("walked_when_shut") or 0) >= 1,
+          f"shut={kbst.get('walked_when_shut')!r} "
+          f"clear={kbst.get('walked_when_clear')!r}")
+    check("P.7c 阳性夹具那条 finding **记下来了**（`shut_covered`）"
+          "—— 没有它，「finding 指名被谁盖住」这条契约就只能绑在产品当下"
+          "有没有缺陷上，缺陷一修好契约自己就红（863 亲身踩过）",
+          bool((kbst.get("shut_covered") or {}).get("top")),
+          f"shut_covered="
+          f"{json.dumps(kbst.get('shut_covered'), ensure_ascii=False)[:120]}")
+
+    krows = {r.get("layer"): r for r in data.get("keyboard", [])}
+    fsr = krows.get("video-fullscreen-preview", {})
+    check("P.8 复刻全屏预览层**开层即接管焦点**"
+          "（修之前 `focus_at_open.state='other'`，焦点还留在触发器上）",
+          (fsr.get("focus_at_open") or {}).get("inside") is True,
+          f"focus_at_open="
+          f"{json.dumps(fsr.get('focus_at_open'), ensure_ascii=False)[:90]}")
+    check("P.9 它**不再**有焦点被自己盖住的控件（实测 22 → 0）"
+          "—— ⚠️ 不能写 `covered_n or 0 == 0`：审计没跑出数据时 `None` 会被"
+          "当成 0 **假通过**，那正是「没测到写成没发生」",
+          bool(fsr) and fsr.get("covered_n") == 0,
+          f"covered_n={fsr.get('covered_n')!r} 行存在={bool(fsr)}")
+    check("P.10 全屏层按 Tab **进得去**且 `covered` 为空",
+          (fsr.get("tabs") or 0) == 1 and fsr.get("covered") is None,
+          f"tabs={fsr.get('tabs')} covered={fsr.get('covered')}")
+
+    chrome = ROOT / "src/components/jimeng/jimengMenuChrome.tsx"
+    csrc = chrome.read_text(encoding="utf-8") if chrome.exists() else ""
+    ccode = "\n".join(ln for ln in csrc.splitlines()
+                      if not ln.strip().startswith(("//", "*", "/*")))
+    vpsrc = (ROOT / "src/components/jimeng/JimengVideoPreview.tsx")
+    vcode = "\n".join(ln for ln in vpsrc.read_text(encoding="utf-8").splitlines()
+                      if not ln.strip().startswith(("//", "*", "/*"))) \
+        if vpsrc.exists() else ""
+    check("P.11 复刻全屏层**真的调用**了 `useModalFocusTrap(`"
+          "（判「有没有接」查调用形态，不查裸名字 —— 注释里提到它是应该的）"
+          "；定义侧匹配 `useModalFocusTrap<...>(` 的泛型形态，"
+          "直接找 `useModalFocusTrap(` 会**永远匹配不上**",
+          "useModalFocusTrap(" in vcode
+          and "export function useModalFocusTrap" in ccode,
+          f"调用={'useModalFocusTrap(' in vcode} "
+          f"定义={'export function useModalFocusTrap' in ccode}")
+    # 截出 hook 自己的函数体：只查它接了什么，别把整个文件算进来
+    _h = re.search(r"export function useModalFocusTrap.*?\n}\n",
+                   csrc, re.S)
+    hbody = _h.group(0) if _h else ""
+    check("P.12 `useModalFocusTrap` **不接 Esc**"
+          "（全屏播放器自己已有一个捕获阶段的 Esc 监听 —— 再接一个只会"
+          "双触发 `onClose`）。⚠️ 顺带钉住「函数体**切到了**」："
+          "空串里当然没有 `Escape`，切空了就变成假通过",
+          bool(hbody.strip()) and "Escape" not in hbody,
+          f"函数体 {len(hbody)} 字符，出现 Escape={'Escape' in hbody}")
+    check("P.13 它接了 **Tab 陷阱**（`preventDefault` + 认 `shiftKey` 做反向环绕）"
+          "—— 只接管焦点不困 Tab 的话，焦点仍会从最后一个按钮漏回页面",
+          bool(hbody.strip()) and "preventDefault" in hbody
+          and "shiftKey" in hbody)
+    # 搜索面板：863 顺手修的高度溢出（硬编码 1084px 会盖住顶栏其余层）
+    so = ROOT / "src/components/jimeng/JimengSearchOverlay.tsx"
+    ssrc = so.read_text(encoding="utf-8") if so.exists() else ""
+    check("P.14 搜索面板高度**不是**硬编码 `1084px`"
+          "（源站那个值是「20 个节点撑出来的实测值」，不是布局常量；"
+          "照抄会溢出视口、盖掉顶栏其余浮层 —— 实测可开层 13 → 16）",
+          "maxHeight: '1084px'" not in ssrc
+          and "100vh - 72px" in ssrc)
+    check("P.15 分类 tab 有**右翻按钮**且 tablist 右侧留了位"
+          "（9 个 tab 在 320px 里放不下，源站靠「Next search categories」；"
+          "不留 paddingRight 的话最后一个 tab 被按钮压住）",
+          "paddingRight" in ssrc and "分类" in ssrc)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

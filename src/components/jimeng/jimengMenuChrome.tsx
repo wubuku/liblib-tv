@@ -265,6 +265,71 @@ export function useArrowKeys<T extends HTMLElement = HTMLDivElement>(
   }, [active, itemSelector, ref]);
 }
 
+/**
+ * **全屏模态**的焦点接管 + Tab 陷阱（batch 863）。
+ *
+ * 为什么和 `useMenuKeyboard` 分开：那只 hook 是**菜单**的 —— 漫游 tabindex、
+ * ↑↓ 漫游、Home/End。给全屏播放器接整只 = 顺手塞进一堆**没有源站依据**的行为
+ * （视频全屏层在源站基线表里是 `BLOCKED_BY_FIXTURE`：`NOT_SAMPLED`，§71 记
+ * 「源站这一版画布上压根没有全屏入口」，源站行为**未知**）。这一只**只**做两件
+ * 判据抓到过的事，不多做一步。
+ *
+ * ⚠️ **这个修法没有源站背书，凭的是模态自己的定义** —— 判据 863 在复刻上抓到：
+ * 开了全屏预览，焦点还留在触发器上（`focus_at_open.state='other'`），按 Tab 会
+ * 依次走过 22 个**被这个模态自己盖住**的控件（`covered_n=22`，4/4 边全被
+ * `absolute inset-0 h-full w-full object-contain` 盖住）⇒ 焦点环落在看不见的
+ * 地方。键盘用户在这一屏里直接失明。**模态盖住了页面，就不该把焦点漏给页面**，
+ * 这一条不需要源站来背书。
+ *
+ * 刻意**不**接 Esc：全屏播放器自己已经有一个捕获阶段的 Esc 监听
+ * （`JimengVideoPreview.tsx`，batch 794 为「重渲染把监听标 removed、导致 Esc
+ * 失灵」专门挪到 capture）。这里再接一个只会双触发 `onClose`。Esc 归位
+ * 属另一件事，判据没量过，不在本次修法里顺手加。
+ */
+export function useModalFocusTrap<T extends HTMLElement = HTMLDivElement>(
+  ref: RefObject<T | null>,
+  active: boolean,
+  itemSelector = 'button:not([disabled]),[role="menuitem"],'
+    + 'a[href],input:not([disabled]),[tabindex]:not([tabindex="-1"])',
+) {
+  useEffect(() => {
+    if (!active) return;
+    const el = ref.current;
+    if (!el) return;
+    const items = () =>
+      Array.from(el.querySelectorAll<HTMLElement>(itemSelector)).filter((x) => {
+        if (x.hasAttribute('disabled')) return false;
+        if (x.getAttribute('aria-disabled') === 'true') return false;
+        // 尺寸为 0 的（隐藏的）按钮不进 tab 序 —— 与 useMenuKeyboard 同一把尺
+        const r = x.getBoundingClientRect();
+        return r.width >= 1 && r.height >= 1;
+      });
+    /* 开层即接管焦点。层里一个可聚焦项都没有时**不动**：把焦点丢给 body
+       比留在触发器上更糟（同 useTakeFocusAtOpen 的理由）。 */
+    const first = items()[0];
+    if (first) first.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      const list = items();
+      if (list.length === 0) { e.preventDefault(); return; }
+      e.preventDefault();
+      e.stopPropagation();
+      const cur = list.indexOf(document.activeElement as HTMLElement);
+      const dir = e.shiftKey ? -1 : 1;
+      const next = ((cur === -1 ? 0 : cur) + dir + list.length) % list.length;
+      list[next].focus();
+    };
+    /* 捕获阶段：和全屏播放器自己的 Esc 监听同相位，先于画布的全局键盘处理。 */
+    window.addEventListener('keydown', onKey, true);
+    return () => window.removeEventListener('keydown', onKey, true);
+    /* 只在 active 翻转时起落：这个模态是一次性浮层，重渲染时重挂监听会把
+       焦点抢回首项。依赖里没有闭包变量漏掉的东西（`itemSelector` / `ref` 都
+       在列），所以**不需要** eslint 豁免 —— 留一条用不上的
+       `eslint-disable` 比不留更坏，它会让下一个人以为这里确实有必要豁免
+       （同 §847 记的那次教训）。 */
+  }, [active, itemSelector, ref]);
+}
+
 export function useMenuKeyboard<T extends HTMLElement = HTMLDivElement>(
   opts: MenuKeyboardOpts = {},
 ) {
