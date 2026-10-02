@@ -1,0 +1,902 @@
+{
+ "verifier": {
+  "batch": 663,
+  "question": "626 judges occlusion with a hand-written 6-item panel list. Derive the competitor set from the ground truth instead, and see whether the hand list has a hole.",
+  "theTwoReadings": {
+   "handWritten626": "a global 6-item guess at which panels an overlay might compete with, never measured, never per-overlay",
+   "derived662": "for each overlay, the elements the hit stack puts above it at a 5x5 lattice of its own box, reduced to an antichain"
+  },
+  "theRefusalState": {
+   "why": "elementsFromPoint never returns a pointer-events:none element, so for one the derived set silently degrades into 'whatever else was at that point'",
+   "states": [
+    "missing",
+    "zero-sized",
+    "not-measurable",
+    "measured-empty",
+    "measured-nonempty",
+    "error"
+   ],
+   "whyItMatters": "reporting a refusal as an empty set would be the mirror image of 656's 'a throwing probe read as a negative'"
+  },
+  "counts": {
+   "cells": 33,
+   "measuredEmpty": 27,
+   "measuredNonEmpty": 3,
+   "notMeasurable": 3,
+   "errored": 0,
+   "states": {
+    "1920x1150/export-panel": "measured-empty",
+    "1920x1150/tree-context-menu": "measured-empty",
+    "1920x1150/panorama-flyout": "measured-empty",
+    "1920x1150/aspect-flyout": "measured-empty",
+    "1920x1150/add-character-flyout": "measured-empty",
+    "1920x1150/ai-import-modal": "measured-empty",
+    "1920x1150/geometry-submenu": "measured-empty",
+    "1920x1150/crowd-dialog": "measured-empty",
+    "1920x1150/camera-fov-help-tooltip": "not-measurable",
+    "1920x1150/camera-preset-panel": "measured-nonempty",
+    "1920x1150/motion-path-menu": "measured-empty",
+    "1440x900/export-panel": "measured-empty",
+    "1440x900/tree-context-menu": "measured-empty",
+    "1440x900/panorama-flyout": "measured-empty",
+    "1440x900/aspect-flyout": "measured-empty",
+    "1440x900/add-character-flyout": "measured-empty",
+    "1440x900/ai-import-modal": "measured-empty",
+    "1440x900/geometry-submenu": "measured-empty",
+    "1440x900/crowd-dialog": "measured-empty",
+    "1440x900/camera-fov-help-tooltip": "not-measurable",
+    "1440x900/camera-preset-panel": "measured-nonempty",
+    "1440x900/motion-path-menu": "measured-empty",
+    "1280x720/export-panel": "measured-empty",
+    "1280x720/tree-context-menu": "measured-empty",
+    "1280x720/panorama-flyout": "measured-empty",
+    "1280x720/aspect-flyout": "measured-empty",
+    "1280x720/add-character-flyout": "measured-empty",
+    "1280x720/ai-import-modal": "measured-empty",
+    "1280x720/geometry-submenu": "measured-empty",
+    "1280x720/crowd-dialog": "measured-empty",
+    "1280x720/camera-fov-help-tooltip": "not-measurable",
+    "1280x720/camera-preset-panel": "measured-nonempty",
+    "1280x720/motion-path-menu": "measured-empty"
+   }
+  },
+  "agreementWithTheHandList": {
+   "rule": "on every cell whose derived set is EMPTY, 626's structBad is empty too; the non-empty cells are the hand list's hole and are check 2's subject, not a disagreement here",
+   "emptyCellsChecked": [
+    "1280x720/add-character-flyout",
+    "1280x720/ai-import-modal",
+    "1280x720/aspect-flyout",
+    "1280x720/crowd-dialog",
+    "1280x720/export-panel",
+    "1280x720/geometry-submenu",
+    "1280x720/motion-path-menu",
+    "1280x720/panorama-flyout",
+    "1280x720/tree-context-menu",
+    "1440x900/add-character-flyout",
+    "1440x900/ai-import-modal",
+    "1440x900/aspect-flyout",
+    "1440x900/crowd-dialog",
+    "1440x900/export-panel",
+    "1440x900/geometry-submenu",
+    "1440x900/motion-path-menu",
+    "1440x900/panorama-flyout",
+    "1440x900/tree-context-menu",
+    "1920x1150/add-character-flyout",
+    "1920x1150/ai-import-modal",
+    "1920x1150/aspect-flyout",
+    "1920x1150/crowd-dialog",
+    "1920x1150/export-panel",
+    "1920x1150/geometry-submenu",
+    "1920x1150/motion-path-menu",
+    "1920x1150/panorama-flyout",
+    "1920x1150/tree-context-menu"
+   ],
+   "disagreements": {},
+   "erroredCells": {}
+  },
+  "handListHole": {
+   "cells": [
+    "1280x720/camera-preset-panel",
+    "1440x900/camera-preset-panel",
+    "1920x1150/camera-preset-panel"
+   ],
+   "theCompetitor": {
+    "1920x1150/camera-preset-panel": [
+     {
+      "tag": "div",
+      "data": null,
+      "cls": "pointer-events-auto.flex.w-full.overflow-x-auto",
+      "z": "auto",
+      "pos": "static",
+      "pointerEvents": "auto",
+      "rect": [
+       293,
+       920,
+       1334,
+       48
+      ],
+      "overlapPxY": 48,
+      "overlapPxX": 304,
+      "inHandList": false
+     }
+    ],
+    "1440x900/camera-preset-panel": [
+     {
+      "tag": "div",
+      "data": null,
+      "cls": "pointer-events-auto.flex.w-full.overflow-x-auto",
+      "z": "auto",
+      "pos": "static",
+      "pointerEvents": "auto",
+      "rect": [
+       293,
+       670,
+       854,
+       48
+      ],
+      "overlapPxY": 48,
+      "overlapPxX": 304,
+      "inHandList": false
+     }
+    ],
+    "1280x720/camera-preset-panel": [
+     {
+      "tag": "div",
+      "data": null,
+      "cls": "pointer-events-auto.flex.w-full.overflow-x-auto",
+      "z": "auto",
+      "pos": "static",
+      "pointerEvents": "auto",
+      "rect": [
+       293,
+       490,
+       694,
+       48
+      ],
+      "overlapPxY": 48,
+      "overlapPxX": 304,
+      "inHandList": false
+     }
+    ]
+   },
+   "noCasualty": "626's own audit records liveCount=10 / blocked=[] for camera-preset-panel at all three viewports, so the 48px overlap band contains no live control: this is an attribution gap, not a missed defect"
+  },
+  "refutations": {
+   "1920x1150/camera-fov-help-tooltip": {
+    "pointerEvents": "none",
+    "selfHits": 0,
+    "samples": 25,
+    "overlayZ": "1700",
+    "overlayRect": [
+     1656,
+     668,
+     208,
+     68
+    ],
+    "fabricated": [
+     {
+      "tag": "section",
+      "data": "data-director-shot-inspector=true",
+      "cls": "space-y-3.border-b.border-white/[0.07].px-3",
+      "z": "auto",
+      "pos": "static",
+      "pointerEvents": "auto",
+      "rect": [
+       1656,
+       558,
+       248,
+       175
+      ],
+      "overlapPxY": 64,
+      "overlapPxX": 208,
+      "inHandList": false
+     },
+     {
+      "tag": "main",
+      "data": null,
+      "cls": "relative.min-w-0.flex-1.overflow-hidden",
+      "z": "auto",
+      "pos": "relative",
+      "pointerEvents": "auto",
+      "rect": [
+       0,
+       0,
+       1920,
+       1150
+      ],
+      "overlapPxY": 68,
+      "overlapPxX": 208,
+      "inHandList": false
+     }
+    ],
+    "theirZ": [
+     "auto",
+     "auto"
+    ],
+    "anyFabricatedIsAnAncestor": [
+     false
+    ],
+    "ancestorChain": [
+     "data-director-camera-fov-help-tooltip=true",
+     "data-director-camera-fov-help=true",
+     "data-director-camera-fov-field=true",
+     "data-director-inspector=true data-director-inspector-kind=camera data-director-inspector-track-id=director-track-camera-main",
+     "data-director-mobile-panel-state=closed",
+     "data-director-workspace=true data-director-workspace-focus-owner=true data-director-canvas-id=canvas-2 data-director-source-node-id=script-execution-1790938558349-v69fry data-director-project-id=director-project-1790938558676-1 data-director-session-id=director-session-1790938558677-2 data-director-generation=1 data-director-project-lifecycle=ACTIVE data-director-session-disposition=FOCUSED data-director-session-reason= data-director-session-previous-owner=[\"libtv\",\"canvas-2\",\"script-execution-1790938558349-v69fry\"] data-director-history-past=0 data-director-history-future=0 data-director-active-gesture= data-director-last-command= data-director-last-disposition= data-director-last-reason= data-director-project-io-status=idle data-director-project-io-message= data-director-panels-collapsed=false data-director-focus-scope=workspace data-director-focus-return=canvas-root data-director-focus-state=workspace"
+    ],
+    "shotInspectors": [
+     {
+      "data": "data-director-shot-inspector=true",
+      "z": "auto",
+      "pos": "static",
+      "rect": [
+       1656,
+       558,
+       248,
+       175
+      ],
+      "containsOverlay": false
+     }
+    ],
+    "verdict": "the fabricated set is the inspector's sibling columns; the overlay's z is above theirs and none of them is an ancestor, so the set names things the overlay paints over, not things that cover it"
+   },
+   "1440x900/camera-fov-help-tooltip": {
+    "pointerEvents": "none",
+    "selfHits": 0,
+    "samples": 25,
+    "overlayZ": "1700",
+    "overlayRect": [
+     1176,
+     418,
+     208,
+     68
+    ],
+    "fabricated": [
+     {
+      "tag": "section",
+      "data": "data-director-shot-inspector=true",
+      "cls": "space-y-3.border-b.border-white/[0.07].px-3",
+      "z": "auto",
+      "pos": "static",
+      "pointerEvents": "auto",
+      "rect": [
+       1176,
+       308,
+       248,
+       175
+      ],
+      "overlapPxY": 64,
+      "overlapPxX": 208,
+      "inHandList": false
+     },
+     {
+      "tag": "main",
+      "data": null,
+      "cls": "relative.min-w-0.flex-1.overflow-hidden",
+      "z": "auto",
+      "pos": "relative",
+      "pointerEvents": "auto",
+      "rect": [
+       0,
+       0,
+       1440,
+       900
+      ],
+      "overlapPxY": 68,
+      "overlapPxX": 208,
+      "inHandList": false
+     }
+    ],
+    "theirZ": [
+     "auto",
+     "auto"
+    ],
+    "anyFabricatedIsAnAncestor": [
+     false
+    ],
+    "ancestorChain": [
+     "data-director-camera-fov-help-tooltip=true",
+     "data-director-camera-fov-help=true",
+     "data-director-camera-fov-field=true",
+     "data-director-inspector=true data-director-inspector-kind=camera data-director-inspector-track-id=director-track-camera-main",
+     "data-director-mobile-panel-state=closed",
+     "data-director-workspace=true data-director-workspace-focus-owner=true data-director-canvas-id=canvas-2 data-director-source-node-id=script-execution-1790938595919-h7rv5x data-director-project-id=director-project-1790938596248-1 data-director-session-id=director-session-1790938596249-2 data-director-generation=1 data-director-project-lifecycle=ACTIVE data-director-session-disposition=FOCUSED data-director-session-reason= data-director-session-previous-owner=[\"libtv\",\"canvas-2\",\"script-execution-1790938595919-h7rv5x\"] data-director-history-past=0 data-director-history-future=0 data-director-active-gesture= data-director-last-command= data-director-last-disposition= data-director-last-reason= data-director-project-io-status=idle data-director-project-io-message= data-director-panels-collapsed=false data-director-focus-scope=workspace data-director-focus-return=canvas-root data-director-focus-state=workspace"
+    ],
+    "shotInspectors": [
+     {
+      "data": "data-director-shot-inspector=true",
+      "z": "auto",
+      "pos": "static",
+      "rect": [
+       1176,
+       308,
+       248,
+       175
+      ],
+      "containsOverlay": false
+     }
+    ],
+    "verdict": "the fabricated set is the inspector's sibling columns; the overlay's z is above theirs and none of them is an ancestor, so the set names things the overlay paints over, not things that cover it"
+   },
+   "1280x720/camera-fov-help-tooltip": {
+    "pointerEvents": "none",
+    "selfHits": 0,
+    "samples": 25,
+    "overlayZ": "1700",
+    "overlayRect": [
+     1016,
+     263,
+     208,
+     68
+    ],
+    "fabricated": [
+     {
+      "tag": "section",
+      "data": "data-director-camera-preview=true",
+      "cls": "sticky.top-0.z-20.-mx-4",
+      "z": "20",
+      "pos": "sticky",
+      "pointerEvents": "auto",
+      "rect": [
+       1000,
+       157,
+       280,
+       168
+      ],
+      "overlapPxY": 62,
+      "overlapPxX": 208,
+      "inHandList": false
+     },
+     {
+      "tag": "section",
+      "data": "data-director-shot-inspector=true",
+      "cls": "space-y-3.border-b.border-white/[0.07].px-3",
+      "z": "auto",
+      "pos": "static",
+      "pointerEvents": "auto",
+      "rect": [
+       1016,
+       153,
+       248,
+       175
+      ],
+      "overlapPxY": 64,
+      "overlapPxX": 208,
+      "inHandList": false
+     },
+     {
+      "tag": "main",
+      "data": null,
+      "cls": "relative.min-w-0.flex-1.overflow-hidden",
+      "z": "auto",
+      "pos": "relative",
+      "pointerEvents": "auto",
+      "rect": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "overlapPxY": 68,
+      "overlapPxX": 208,
+      "inHandList": false
+     }
+    ],
+    "theirZ": [
+     "20",
+     "auto",
+     "auto"
+    ],
+    "anyFabricatedIsAnAncestor": [
+     false
+    ],
+    "ancestorChain": [
+     "data-director-camera-fov-help-tooltip=true",
+     "data-director-camera-fov-help=true",
+     "data-director-camera-fov-field=true",
+     "data-director-inspector=true data-director-inspector-kind=camera data-director-inspector-track-id=director-track-camera-main",
+     "data-director-mobile-panel-state=closed",
+     "data-director-workspace=true data-director-workspace-focus-owner=true data-director-canvas-id=canvas-2 data-director-source-node-id=script-execution-1790938636664-2bx0pf data-director-project-id=director-project-1790938636994-1 data-director-session-id=director-session-1790938636996-2 data-director-generation=1 data-director-project-lifecycle=ACTIVE data-director-session-disposition=FOCUSED data-director-session-reason= data-director-session-previous-owner=[\"libtv\",\"canvas-2\",\"script-execution-1790938636664-2bx0pf\"] data-director-history-past=0 data-director-history-future=0 data-director-active-gesture= data-director-last-command= data-director-last-disposition= data-director-last-reason= data-director-project-io-status=idle data-director-project-io-message= data-director-panels-collapsed=false data-director-focus-scope=workspace data-director-focus-return=canvas-root data-director-focus-state=workspace"
+    ],
+    "shotInspectors": [
+     {
+      "data": "data-director-shot-inspector=true",
+      "z": "auto",
+      "pos": "static",
+      "rect": [
+       1016,
+       153,
+       248,
+       175
+      ],
+      "containsOverlay": false
+     }
+    ],
+    "verdict": "the fabricated set is the inspector's sibling columns; the overlay's z is above theirs and none of them is an ancestor, so the set names things the overlay paints over, not things that cover it"
+   }
+  },
+  "crossBatch626Boxes": {
+   "compared": 33,
+   "mismatches": {}
+  }
+ },
+ "checks": {
+  "the-hand-list-and-the-derived-set-agree-in-every-measurable-cell": {
+   "ok": true,
+   "detail": {
+    "cells": 33,
+    "measuredEmpty": 27,
+    "measuredNonEmpty": 3,
+    "notMeasurable": 3,
+    "errored": 0,
+    "erroredCells": {},
+    "rule": "derived set empty  <=>  626 structBad empty",
+    "emptyCellsChecked": [
+     "1280x720/add-character-flyout",
+     "1280x720/ai-import-modal",
+     "1280x720/aspect-flyout",
+     "1280x720/crowd-dialog",
+     "1280x720/export-panel",
+     "1280x720/geometry-submenu",
+     "1280x720/motion-path-menu",
+     "1280x720/panorama-flyout",
+     "1280x720/tree-context-menu",
+     "1440x900/add-character-flyout",
+     "1440x900/ai-import-modal",
+     "1440x900/aspect-flyout",
+     "1440x900/crowd-dialog",
+     "1440x900/export-panel",
+     "1440x900/geometry-submenu",
+     "1440x900/motion-path-menu",
+     "1440x900/panorama-flyout",
+     "1440x900/tree-context-menu",
+     "1920x1150/add-character-flyout",
+     "1920x1150/ai-import-modal",
+     "1920x1150/aspect-flyout",
+     "1920x1150/crowd-dialog",
+     "1920x1150/export-panel",
+     "1920x1150/geometry-submenu",
+     "1920x1150/motion-path-menu",
+     "1920x1150/panorama-flyout",
+     "1920x1150/tree-context-menu"
+    ],
+    "disagreements": {},
+    "whatThisEstablishes": "626's hand list does not over-report on any cell where the derived set is empty",
+    "honestReading": "agreement on empty answers is weak evidence -- a list that is simply too short to fire looks identical to a correct one.  The next check is the one that bites, and it is why this check does not claim more.",
+    "setupRetry": "626's precedent: a retry may re-run page setup, never an assertion.  4317 is shared and cells can time out for infra reasons."
+   },
+   "note": "agreement on empty sets is the weakest kind of agreement, and it is reported as such"
+  },
+  "the-derived-set-finds-one-competitor-the-hand-list-cannot-name": {
+   "ok": true,
+   "detail": {
+    "cells": [
+     "1280x720/camera-preset-panel",
+     "1440x900/camera-preset-panel",
+     "1920x1150/camera-preset-panel"
+    ],
+    "theCompetitor": {
+     "1920x1150/camera-preset-panel": [
+      {
+       "tag": "div",
+       "data": null,
+       "cls": "pointer-events-auto.flex.w-full.overflow-x-auto",
+       "z": "auto",
+       "pos": "static",
+       "pointerEvents": "auto",
+       "rect": [
+        293,
+        920,
+        1334,
+        48
+       ],
+       "overlapPxY": 48,
+       "overlapPxX": 304,
+       "inHandList": false
+      }
+     ],
+     "1440x900/camera-preset-panel": [
+      {
+       "tag": "div",
+       "data": null,
+       "cls": "pointer-events-auto.flex.w-full.overflow-x-auto",
+       "z": "auto",
+       "pos": "static",
+       "pointerEvents": "auto",
+       "rect": [
+        293,
+        670,
+        854,
+        48
+       ],
+       "overlapPxY": 48,
+       "overlapPxX": 304,
+       "inHandList": false
+      }
+     ],
+     "1280x720/camera-preset-panel": [
+      {
+       "tag": "div",
+       "data": null,
+       "cls": "pointer-events-auto.flex.w-full.overflow-x-auto",
+       "z": "auto",
+       "pos": "static",
+       "pointerEvents": "auto",
+       "rect": [
+        293,
+        490,
+        694,
+        48
+       ],
+       "overlapPxY": 48,
+       "overlapPxX": 304,
+       "inHandList": false
+      }
+     ]
+    },
+    "handListWouldSay": {
+     "1920x1150/camera-preset-panel": [],
+     "1440x900/camera-preset-panel": [],
+     "1280x720/camera-preset-panel": []
+    },
+    "theHost": "div.pointer-events-auto.flex.w-full.overflow-x-auto -- the 48px horizontal scroll host; at W=1280 it is 694 wide, which is the same host 659 and 660 closed-formed as the scene prompt bar's",
+    "noCasualty": {
+     "from626sAudit": "liveCount=10, blocked=[] at all three viewports",
+     "why": "the 48px overlap band is the panel's padding, so the structural gap has no victim",
+     "scoped": "this batch claims an attribution gap, NOT a missed defect"
+    },
+    "what626GotRight": "its verdict. 626 is not wrong in 33 of 33 cells; it is incomplete in its explanation."
+   },
+   "note": "a short list and a correct list look identical until one case needs the missing item"
+  },
+  "a-pointer-events-none-overlay-is-not-measurable-and-the-instrument-says-so": {
+   "ok": true,
+   "detail": {
+    "cells": [
+     "1280x720/camera-fov-help-tooltip",
+     "1440x900/camera-fov-help-tooltip",
+     "1920x1150/camera-fov-help-tooltip"
+    ],
+    "pointerEvents": {
+     "1920x1150/camera-fov-help-tooltip": "none",
+     "1440x900/camera-fov-help-tooltip": "none",
+     "1280x720/camera-fov-help-tooltip": "none"
+    },
+    "selfHits": {
+     "1920x1150/camera-fov-help-tooltip": "0/25",
+     "1440x900/camera-fov-help-tooltip": "0/25",
+     "1280x720/camera-fov-help-tooltip": "0/25"
+    },
+    "states": {
+     "1920x1150/camera-fov-help-tooltip": "not-measurable",
+     "1440x900/camera-fov-help-tooltip": "not-measurable",
+     "1280x720/camera-fov-help-tooltip": "not-measurable"
+    },
+    "sourceFact": "DirectorInspector.tsx:1621 -- the tooltip's className contains pointer-events-none, and the source comment records that the site treats it as a hover layer",
+    "mechanism": "elementsFromPoint skips pointer-events:none elements entirely, so the overlay is at index -1 in every stack and 'what is above it' degenerates to 'whatever else was at that point'",
+    "theFabricatedAnswer": {
+     "1920x1150/camera-fov-help-tooltip": 2,
+     "1440x900/camera-fov-help-tooltip": 2,
+     "1280x720/camera-fov-help-tooltip": 3
+    },
+    "priorWork": "639, 641 and 646 all record elementsFromPoint as blind on pointer-events:none.  None of them drew the consequence: an instrument built on it does not fail, it answers."
+   },
+   "note": "the ninth blind-spot shape: an instrument that answers, confidently, a question it cannot see"
+  },
+  "the-fabricated-competitors-are-provably-below-the-overlay": {
+   "ok": true,
+   "detail": {
+    "1920x1150/camera-fov-help-tooltip": {
+     "pointerEvents": "none",
+     "selfHits": 0,
+     "samples": 25,
+     "overlayZ": "1700",
+     "overlayRect": [
+      1656,
+      668,
+      208,
+      68
+     ],
+     "fabricated": [
+      {
+       "tag": "section",
+       "data": "data-director-shot-inspector=true",
+       "cls": "space-y-3.border-b.border-white/[0.07].px-3",
+       "z": "auto",
+       "pos": "static",
+       "pointerEvents": "auto",
+       "rect": [
+        1656,
+        558,
+        248,
+        175
+       ],
+       "overlapPxY": 64,
+       "overlapPxX": 208,
+       "inHandList": false
+      },
+      {
+       "tag": "main",
+       "data": null,
+       "cls": "relative.min-w-0.flex-1.overflow-hidden",
+       "z": "auto",
+       "pos": "relative",
+       "pointerEvents": "auto",
+       "rect": [
+        0,
+        0,
+        1920,
+        1150
+       ],
+       "overlapPxY": 68,
+       "overlapPxX": 208,
+       "inHandList": false
+      }
+     ],
+     "theirZ": [
+      "auto",
+      "auto"
+     ],
+     "anyFabricatedIsAnAncestor": [
+      false
+     ],
+     "ancestorChain": [
+      "data-director-camera-fov-help-tooltip=true",
+      "data-director-camera-fov-help=true",
+      "data-director-camera-fov-field=true",
+      "data-director-inspector=true data-director-inspector-kind=camera data-director-inspector-track-id=director-track-camera-main",
+      "data-director-mobile-panel-state=closed",
+      "data-director-workspace=true data-director-workspace-focus-owner=true data-director-canvas-id=canvas-2 data-director-source-node-id=script-execution-1790938558349-v69fry data-director-project-id=director-project-1790938558676-1 data-director-session-id=director-session-1790938558677-2 data-director-generation=1 data-director-project-lifecycle=ACTIVE data-director-session-disposition=FOCUSED data-director-session-reason= data-director-session-previous-owner=[\"libtv\",\"canvas-2\",\"script-execution-1790938558349-v69fry\"] data-director-history-past=0 data-director-history-future=0 data-director-active-gesture= data-director-last-command= data-director-last-disposition= data-director-last-reason= data-director-project-io-status=idle data-director-project-io-message= data-director-panels-collapsed=false data-director-focus-scope=workspace data-director-focus-return=canvas-root data-director-focus-state=workspace"
+     ],
+     "shotInspectors": [
+      {
+       "data": "data-director-shot-inspector=true",
+       "z": "auto",
+       "pos": "static",
+       "rect": [
+        1656,
+        558,
+        248,
+        175
+       ],
+       "containsOverlay": false
+      }
+     ],
+     "verdict": "the fabricated set is the inspector's sibling columns; the overlay's z is above theirs and none of them is an ancestor, so the set names things the overlay paints over, not things that cover it"
+    },
+    "1440x900/camera-fov-help-tooltip": {
+     "pointerEvents": "none",
+     "selfHits": 0,
+     "samples": 25,
+     "overlayZ": "1700",
+     "overlayRect": [
+      1176,
+      418,
+      208,
+      68
+     ],
+     "fabricated": [
+      {
+       "tag": "section",
+       "data": "data-director-shot-inspector=true",
+       "cls": "space-y-3.border-b.border-white/[0.07].px-3",
+       "z": "auto",
+       "pos": "static",
+       "pointerEvents": "auto",
+       "rect": [
+        1176,
+        308,
+        248,
+        175
+       ],
+       "overlapPxY": 64,
+       "overlapPxX": 208,
+       "inHandList": false
+      },
+      {
+       "tag": "main",
+       "data": null,
+       "cls": "relative.min-w-0.flex-1.overflow-hidden",
+       "z": "auto",
+       "pos": "relative",
+       "pointerEvents": "auto",
+       "rect": [
+        0,
+        0,
+        1440,
+        900
+       ],
+       "overlapPxY": 68,
+       "overlapPxX": 208,
+       "inHandList": false
+      }
+     ],
+     "theirZ": [
+      "auto",
+      "auto"
+     ],
+     "anyFabricatedIsAnAncestor": [
+      false
+     ],
+     "ancestorChain": [
+      "data-director-camera-fov-help-tooltip=true",
+      "data-director-camera-fov-help=true",
+      "data-director-camera-fov-field=true",
+      "data-director-inspector=true data-director-inspector-kind=camera data-director-inspector-track-id=director-track-camera-main",
+      "data-director-mobile-panel-state=closed",
+      "data-director-workspace=true data-director-workspace-focus-owner=true data-director-canvas-id=canvas-2 data-director-source-node-id=script-execution-1790938595919-h7rv5x data-director-project-id=director-project-1790938596248-1 data-director-session-id=director-session-1790938596249-2 data-director-generation=1 data-director-project-lifecycle=ACTIVE data-director-session-disposition=FOCUSED data-director-session-reason= data-director-session-previous-owner=[\"libtv\",\"canvas-2\",\"script-execution-1790938595919-h7rv5x\"] data-director-history-past=0 data-director-history-future=0 data-director-active-gesture= data-director-last-command= data-director-last-disposition= data-director-last-reason= data-director-project-io-status=idle data-director-project-io-message= data-director-panels-collapsed=false data-director-focus-scope=workspace data-director-focus-return=canvas-root data-director-focus-state=workspace"
+     ],
+     "shotInspectors": [
+      {
+       "data": "data-director-shot-inspector=true",
+       "z": "auto",
+       "pos": "static",
+       "rect": [
+        1176,
+        308,
+        248,
+        175
+       ],
+       "containsOverlay": false
+      }
+     ],
+     "verdict": "the fabricated set is the inspector's sibling columns; the overlay's z is above theirs and none of them is an ancestor, so the set names things the overlay paints over, not things that cover it"
+    },
+    "1280x720/camera-fov-help-tooltip": {
+     "pointerEvents": "none",
+     "selfHits": 0,
+     "samples": 25,
+     "overlayZ": "1700",
+     "overlayRect": [
+      1016,
+      263,
+      208,
+      68
+     ],
+     "fabricated": [
+      {
+       "tag": "section",
+       "data": "data-director-camera-preview=true",
+       "cls": "sticky.top-0.z-20.-mx-4",
+       "z": "20",
+       "pos": "sticky",
+       "pointerEvents": "auto",
+       "rect": [
+        1000,
+        157,
+        280,
+        168
+       ],
+       "overlapPxY": 62,
+       "overlapPxX": 208,
+       "inHandList": false
+      },
+      {
+       "tag": "section",
+       "data": "data-director-shot-inspector=true",
+       "cls": "space-y-3.border-b.border-white/[0.07].px-3",
+       "z": "auto",
+       "pos": "static",
+       "pointerEvents": "auto",
+       "rect": [
+        1016,
+        153,
+        248,
+        175
+       ],
+       "overlapPxY": 64,
+       "overlapPxX": 208,
+       "inHandList": false
+      },
+      {
+       "tag": "main",
+       "data": null,
+       "cls": "relative.min-w-0.flex-1.overflow-hidden",
+       "z": "auto",
+       "pos": "relative",
+       "pointerEvents": "auto",
+       "rect": [
+        0,
+        0,
+        1280,
+        720
+       ],
+       "overlapPxY": 68,
+       "overlapPxX": 208,
+       "inHandList": false
+      }
+     ],
+     "theirZ": [
+      "20",
+      "auto",
+      "auto"
+     ],
+     "anyFabricatedIsAnAncestor": [
+      false
+     ],
+     "ancestorChain": [
+      "data-director-camera-fov-help-tooltip=true",
+      "data-director-camera-fov-help=true",
+      "data-director-camera-fov-field=true",
+      "data-director-inspector=true data-director-inspector-kind=camera data-director-inspector-track-id=director-track-camera-main",
+      "data-director-mobile-panel-state=closed",
+      "data-director-workspace=true data-director-workspace-focus-owner=true data-director-canvas-id=canvas-2 data-director-source-node-id=script-execution-1790938636664-2bx0pf data-director-project-id=director-project-1790938636994-1 data-director-session-id=director-session-1790938636996-2 data-director-generation=1 data-director-project-lifecycle=ACTIVE data-director-session-disposition=FOCUSED data-director-session-reason= data-director-session-previous-owner=[\"libtv\",\"canvas-2\",\"script-execution-1790938636664-2bx0pf\"] data-director-history-past=0 data-director-history-future=0 data-director-active-gesture= data-director-last-command= data-director-last-disposition= data-director-last-reason= data-director-project-io-status=idle data-director-project-io-message= data-director-panels-collapsed=false data-director-focus-scope=workspace data-director-focus-return=canvas-root data-director-focus-state=workspace"
+     ],
+     "shotInspectors": [
+      {
+       "data": "data-director-shot-inspector=true",
+       "z": "auto",
+       "pos": "static",
+       "rect": [
+        1016,
+        153,
+        248,
+        175
+       ],
+       "containsOverlay": false
+      }
+     ],
+     "verdict": "the fabricated set is the inspector's sibling columns; the overlay's z is above theirs and none of them is an ancestor, so the set names things the overlay paints over, not things that cover it"
+    }
+   },
+   "note": "an independent route to the same conclusion: z-order, which the hit stack could not give us, is what shows the fabricated set is upside down"
+  },
+  "the-overlay-boxes-read-here-match-626s-own-audit-bit-for-bit": {
+   "ok": true,
+   "detail": {
+    "compared": 33,
+    "cells": 33,
+    "mismatches": {},
+    "why": "this batch re-opens all 11 overlays at all three viewports from scratch, so its boxes are an independent re-measurement of 626's",
+    "sample": {
+     "1280x720/add-character-flyout": {
+      "prior626": [
+       48,
+       116,
+       232,
+       390
+      ],
+      "here": [
+       48,
+       116,
+       232,
+       390
+      ],
+      "same": true
+     },
+     "1280x720/ai-import-modal": {
+      "prior626": [
+       360,
+       91,
+       560,
+       539
+      ],
+      "here": [
+       360,
+       91,
+       560,
+       539
+      ],
+      "same": true
+     },
+     "1280x720/aspect-flyout": {
+      "prior626": [
+       48,
+       236,
+       232,
+       350
+      ],
+      "here": [
+       48,
+       236,
+       232,
+       350
+      ],
+      "same": true
+     }
+    }
+   },
+   "note": "the two batches agree before either is compared to a theory"
+  }
+ }
+}
