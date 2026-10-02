@@ -1,0 +1,249 @@
+{
+ "at": "2026-10-02T04:53:56.412Z",
+ "zoom0": {
+  "ok": true,
+  "how": "already"
+ },
+ "credits0": "Credits: 805 · 基础会员",
+ "grids": [
+  {
+   "tag": "静息@60%",
+   "sel": "1",
+   "nodeBox": "192x192@544,264",
+   "nodeCanvas": "320x320",
+   "scale": 0.6,
+   "nodeClass": "react-flow__node react-flow__node-external nopan selected selectable draggable",
+   "nodeAria": null,
+   "enter": {
+    "tag": "BUTTON",
+    "box": "58x19@611,369",
+    "canvas": "97x32",
+    "aria": null,
+    "testid": null,
+    "cls": "inline-flex.items-center",
+    "cursor": "pointer",
+    "t": "进入导演台"
+   },
+   "rename": null,
+   "title": {
+    "tag": "DIV",
+    "box": "59x32@544,232",
+    "canvas": "98x53",
+    "aria": null,
+    "testid": "flow-node-title",
+    "cls": "absolute.z-[10]",
+    "cursor": "grab",
+    "t": "导演台"
+   },
+   "addTags": {
+    "tag": "BUTTON",
+    "box": "24x24@712,232",
+    "canvas": "40x40",
+    "aria": "Add tags",
+    "testid": "flow-node-selected-tag",
+    "cls": "inline-flex.items-center",
+    "cursor": "pointer",
+    "t": ""
+   },
+   "handleCount": 2,
+   "handles": [
+    {
+     "cls": "react-flow__handle.react-flow__handle-left",
+     "testid": "flow-node-target-handle",
+     "box": "36x72@526,324"
+    },
+    {
+     "cls": "react-flow__handle.react-flow__handle-right",
+     "testid": "flow-node-source-handle",
+     "box": "36x72@718,324"
+    }
+   ],
+   "renameOffset": null,
+   "nodeToolbars": [
+    "0x0",
+    "192x0"
+   ],
+   "outerFloat": 2
+  },
+  {
+   "tag": "选中@60%",
+   "sel": "1",
+   "titlePoint": {
+    "scale": 0.6,
+    "nodeBox": "192x192@544,264",
+    "pick": {
+     "k": -52,
+     "f": 0.25,
+     "x": 592,
+     "y": 233,
+     "txt": "导演台"
+    }
+   },
+   "nodeBox": "192x192@544,264",
+   "nodeCanvas": "320x320",
+   "scale": 0.6,
+   "nodeClass": "react-flow__node react-flow__node-external nopan selected selectable draggable",
+   "nodeAria": null,
+   "enter": {
+    "tag": "BUTTON",
+    "box": "58x19@611,369",
+    "canvas": "97x32",
+    "aria": null,
+    "testid": null,
+    "cls": "inline-flex.items-center",
+    "cursor": "pointer",
+    "t": "进入导演台"
+   },
+   "rename": null,
+   "title": {
+    "tag": "DIV",
+    "box": "59x32@544,232",
+    "canvas": "98x53",
+    "aria": null,
+    "testid": "flow-node-title",
+    "cls": "absolute.z-[10]",
+    "cursor": "grab",
+    "t": "导演台"
+   },
+   "addTags": {
+    "tag": "BUTTON",
+    "box": "24x24@712,232",
+    "canvas": "40x40",
+    "aria": "Add tags",
+    "testid": "flow-node-selected-tag",
+    "cls": "inline-flex.items-center",
+    "cursor": "pointer",
+    "t": ""
+   },
+   "handleCount": 2,
+   "handles": [
+    {
+     "cls": "react-flow__handle.react-flow__handle-left",
+     "testid": "flow-node-target-handle",
+     "box": "36x72@526,324"
+    },
+    {
+     "cls": "react-flow__handle.react-flow__handle-right",
+     "testid": "flow-node-source-handle",
+     "box": "36x72@718,324"
+    }
+   ],
+   "renameOffset": null,
+   "nodeToolbars": [
+    "0x0",
+    "192x0"
+   ],
+   "outerFloat": 2
+  },
+  {
+   "tag": "选中@100%",
+   "sel": "1",
+   "titlePoint": {
+    "scale": 1,
+    "nodeBox": "320x320@480,200",
+    "pick": {
+     "k": 2,
+     "f": 0.25,
+     "x": 560,
+     "y": 202,
+     "txt": "在 3D 空间中设计角色、机位与"
+    }
+   },
+   "nodeBox": "320x320@480,200",
+   "nodeCanvas": "320x320",
+   "scale": 1,
+   "nodeClass": "react-flow__node react-flow__node-external nopan selected selectable draggable",
+   "nodeAria": null,
+   "enter": {
+    "tag": "BUTTON",
+    "box": "97x32@591,375",
+    "canvas": "97x32",
+    "aria": null,
+    "testid": null,
+    "cls": "inline-flex.items-center",
+    "cursor": "pointer",
+    "t": "进入导演台"
+   },
+   "rename": null,
+   "title": {
+    "tag": "DIV",
+    "box": "59x32@480,168",
+    "canvas": "59x32",
+    "aria": null,
+    "testid": "flow-node-title",
+    "cls": "absolute.z-[10]",
+    "cursor": "grab",
+    "t": "导演台"
+   },
+   "addTags": {
+    "tag": "BUTTON",
+    "box": "24x24@776,168",
+    "canvas": "24x24",
+    "aria": "Add tags",
+    "testid": "flow-node-selected-tag",
+    "cls": "inline-flex.items-center",
+    "cursor": "pointer",
+    "t": ""
+   },
+   "handleCount": 2,
+   "handles": [
+    {
+     "cls": "react-flow__handle.react-flow__handle-left",
+     "testid": "flow-node-target-handle",
+     "box": "60x120@450,300"
+    },
+    {
+     "cls": "react-flow__handle.react-flow__handle-right",
+     "testid": "flow-node-source-handle",
+     "box": "60x120@770,300"
+    }
+   ],
+   "renameOffset": null,
+   "nodeToolbars": [
+    "0x0",
+    "320x0"
+   ],
+   "outerFloat": 2
+  }
+ ],
+ "diff60": [],
+ "zoom1": {
+  "ok": true,
+  "how": "input",
+  "pct": 100
+ },
+ "verdict": {
+  "P1_noToolbar": {
+   "idle": [
+    "0x0",
+    "192x0"
+   ],
+   "selected": [
+    "0x0",
+    "192x0"
+   ],
+   "ok": true
+  },
+  "P2_renameOffset": {
+   "at60": null,
+   "at100": null,
+   "pageSays": "顶边在卡片顶边上方 32px"
+  },
+  "nodeCanvas": {
+   "at60": "320x320",
+   "at100": "320x320",
+   "pageSays": "canvas 恒 320×320"
+  }
+ },
+ "credits1": "Credits: 805 · 基础会员",
+ "zoomFinal": {
+  "ok": true,
+  "how": "input",
+  "pct": 60
+ },
+ "end": {
+  "status": "20 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "credits": "Credits: 805 · 基础会员",
+  "leftover": []
+ }
+}
