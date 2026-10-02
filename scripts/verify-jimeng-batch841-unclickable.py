@@ -1356,6 +1356,74 @@ def main() -> int:
           0 < len(_mod) < len(data.get("keyboard", [])),
           f"真模态 {len(_mod)} / 被量 {len(data.get('keyboard', []))}")
 
+    # ── S. 批 866：「非全屏浮层盖住画布控件」分档 + 分桶**互斥** ────────
+    # §83 记下 4 条「未确认」说「按 §77 没查清就没动判据」。本批查清了：
+    # 根因是遮挡物是浮层内部的文本 span / 内容区（**自己没背景**，底色来自
+    # 浮层根）⇒ 既不是「铺满视口的遮罩」，也认不出属于浮层。判据缺的就是
+    # 「遮挡物属于某个浮层」这一项。
+    print("— S. 批 866 跨层分档 + 分桶互斥恒等式 —")
+    _rows = data.get("rows", [])
+    _real = data.get("confirmed", [])
+    _bmod = data.get("by_modal", [])
+    _blay = data.get("by_layer", [])
+    _unc = [r for r in _rows
+            if not r.get("confirmed") and not r.get("covered_by_modal")
+            and not r.get("covered_by_layer")]
+    check("S.1 四个桶**互斥且完备**（缺陷 + 被模态盖 + 被浮层盖 + 未确认 "
+          f"== 候选数，实测 {len(_real)}+{len(_bmod)}+{len(_blay)}"
+          f"+{len(_unc)} vs {len(_rows)}）",
+          len(_real) + len(_bmod) + len(_blay) + len(_unc) == len(_rows)
+          and len(_rows) > 0,
+          f"和={len(_real) + len(_bmod) + len(_blay) + len(_unc)} "
+          f"候选={len(_rows)}")
+    check("S.2 分桶是**一次性互斥划分**（源码里有 `def _bucket(`，四个桶都走它）"
+          "—— 原来四个独立的列表推导各算各的，重叠了两次都没人管："
+          "865 `124 ≠ 0+116+8`、866 `124 ≠ 0+120+9`",
+          "def _bucket(" in asrc
+          and asrc.count('if _bucket(r) == "defect"') == 1
+          and asrc.count('if _bucket(r) == "by_modal"') == 1
+          and asrc.count('if _bucket(r) == "by_layer"') == 1
+          and asrc.count('if _bucket(r) == "unconfirmed"') == 1)
+    check("S.3 `by_layer` 在结果里**存在**（不是缺键当成 0）",
+          "by_layer" in data, f"缺键={'by_layer' not in data}")
+    # 判据必须**两侧**都要：控件不在层里 **且** 遮挡物在层里。
+    # 只判一侧 ⇒ 要么把「层内控件被跨层遮挡」（835 的真缺陷）误降级，
+    # 要么把「认不出归属的遮挡物」塞进 INFO 藏起真缺陷。
+    check("S.4 `covered_by_layer` 判据要**两侧**都在"
+          "（`!inLayer` 且 `blockers.some(bk => bk.in_layer)`）",
+          "!inLayer" in asrc and "blockers.some(bk => bk.in_layer)" in asrc
+          and "const coveredByLayer = !inLayer" in asrc)
+    check("S.5 遮挡物**认不出归属**就不许进 `by_layer`"
+          "（判据是「阻塞物 `in_layer` 为真」的**正向**认定，"
+          "不是「有阻塞物就算」—— 后者会把真缺陷藏进 INFO）",
+          "blockers.some(bk => bk.in_layer)" in asrc
+          and "bk.in_layer === true" not in acode)
+    # 单一来源：控件侧 `inLayer` 与阻塞物侧 `blocker.in_layer` 必须同一份选择器
+    check("S.6 `LAYER_SEL` 是**单一来源**（控件侧 `el.closest(LAYER_SEL)` 与"
+          "阻塞物侧 `t.closest(LAYER_SEL)` 共用；两处各写一份就是第四次"
+          "让同一判据分叉）",
+          "LAYER_SEL" in asrc and acode.count("closest(LAYER_SEL)") == 2
+          and "p === 'fixed' || p === 'absolute'" in asrc)
+    check("S.7 835 的**降级条款**仍在（已确认的**跨层**遮挡算 INFO，"
+          "不是缺陷）—— 866 自己在这行翻过一次车：补丁只匹配到多行模式的"
+          "**第一行**，把这条落下，py_compile 也没抓到",
+          'if r["confirmed"]:          # 835 降级条款' in asrc
+          or ("835 降级条款" in asrc and 'return "by_modal"' in asrc),
+          "降级条款疑似丢失")
+    # §83 记的 4 条确实归位了
+    # ⚠️ 第一版这里断言「== 4」，红了（实测 8）。**不是代码错了，是我把一个
+    #    易变量写成了断言**：demo 画布每次加载都会**动态插入**音频/文本节点
+    #    （testid 形如 `rf__node-audio-<时间戳>`），节点数逐轮不同 ⇒ 被浮层
+    #    盖住的画布控件数也跟着变。4 和 8 都是真的。
+    #    该断言的是**分类有没有生效**，不是**条数是多少**。
+    _pi_bl = [r for r in _blay if r.get("state") == "项目信息模态"]
+    _pi_unc = [r for r in _unc if r.get("state") == "项目信息模态"]
+    check("S.8 §83 记的那批「未确认」**已归位**到 `by_layer`"
+          f"（实测 {len(_pi_bl)} 条，**不钉条数** —— demo 画布逐轮动态插节点，"
+          f"4 和 8 都是真的；钉条数就是把易变量当契约）",
+          len(_pi_bl) >= 1 and not _pi_unc,
+          f"by_layer={len(_pi_bl)} 仍留未确认={len(_pi_unc)}")
+
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

@@ -78,6 +78,12 @@ SELF_HIDDEN = ('.react-flow__node-toolbar', '.react-flow__node-panel',
                '.react-flow__viewport-portal', '.react-flow__nodes')
 
 
+LAYER_SEL = (
+    '.react-flow__node-toolbar, .react-flow__node-panel, '
+    '[role=menu], [role=listbox], [role=dialog], [role=popover], '
+    '[data-testid$="-listbox"], [data-testid$="-menu"], '
+    '[data-testid$="-panel"], [data-testid$="-palette"]')
+
 MODALISH_JS = """(tid) => {
               const el = document.querySelector(`[data-testid="${tid}"]`);
               if (!el) return {modalish: false, why: '层不存在'};
@@ -780,7 +786,7 @@ def main() -> int:
                 _mres = page.evaluate(MODALISH_JS, _ml_now) or {}
                 modal_open = bool(_mres.get("modalish"))
             raw = page.evaluate("""(args) => {
-              const [CONTROL, SAMPLES, VH, MODAL_OPEN] = args;
+              const [CONTROL, SAMPLES, VH, MODAL_OPEN, LAYER_SEL] = args;
               const out = [];
               // ⚠️ `nextjs-portal` 是 **Next 开发态**注入的调试浮层，恰好压在
               //    左下角那枚「选择工具」(28×28 @16,1002) 上。第一版把它当成
@@ -824,7 +830,17 @@ def main() -> int:
                                    cls: (t.className||'').toString()
                                         .replace(/\\s+/g,' ').slice(0,50),
                                    z: getComputedStyle(t).zIndex,
-                                   w: Math.round(tb.width), h: Math.round(tb.height)});
+                                   w: Math.round(tb.width), h: Math.round(tb.height),
+                                   // ══ 批 866：记下这个遮挡物**自己是不是浮层的一部分** ══
+                                   //   §83 记下的 4 条「未确认」根因查清了：项目信息浮层
+                                   //   （800×546，**非全屏**）盖住画布控件，而采样到的
+                                   //   栈顶元素是浮层内部的**文本 span**（`text-white/85`
+                                   //   662×20）或**内容区**（`flex-1 overflow-y-auto
+                                   //   px-6 py-4` 798×452）—— 它们**自己没背景**
+                                   //   （底色来自浮层根），所以既不是「铺满视口的
+                                   //   遮罩」，也认不出是浮层 ⇒ 掉进「未确认」。
+                                   //   判据缺的是「**遮挡物属于某个浮层**」这一项。
+                                   in_layer: !!t.closest(LAYER_SEL)});
                 }
                 // 全部采样点都被挡 ⇒ 判为点不着（一个点被挡不算，用户可以点别处）
                 if (blockers.length && hitCount === 0) {
@@ -861,13 +877,27 @@ def main() -> int:
                   //    那种情形里用户正处在"从菜单里挑一个"的流程中，
                   //    被埋掉的选项**没有任何办法露出来**（关掉菜单等于放弃
                   //    整个流程）—— 判据的落点必须是"控件自己在不在浮层里"。
-                  const inLayer = !!el.closest(
-                    '.react-flow__node-toolbar, .react-flow__node-panel, '
-                    + '[role=menu], [role=listbox], [role=dialog], [role=popover], '
-                    + '[data-testid$="-listbox"], [data-testid$="-menu"], '
-                    + '[data-testid$="-panel"], [data-testid$="-palette"]');
+                  // ⚠️ 选择器提到模块级 `LAYER_SEL`：批 866 要在**遮挡物**上
+                  //    用同一个定义（`blocker.in_layer`），两处各写一份就是
+                  //    第四次让同一判据分叉 —— 而分叉出来的分叉最难查。
+                  const inLayer = !!el.closest(LAYER_SEL);
                   // ⚠️ `scrimByModal` 必须写在 `inLayer` **之后**（见上）。
                   const scrimByModal = !!MODAL_OPEN && !inLayer;
+                  // ══ 批 866：遮挡物**自己属于某个浮层** ══════════════
+                  //   §83 剩下那 4 条「未确认」的根因：项目信息浮层（800×546，
+                  //   **非全屏**）盖住画布控件，栈顶是浮层内部的文本 span 或内容
+                  //   区（它们**自己没背景**，底色来自浮层根）⇒ 既不是「铺满视口
+                  //   的遮罩」，也认不出是浮层 ⇒ 掉进「未确认」。
+                  //   判据缺的就是这一项。
+                  //   ⚠️ 条件是「**控件不在任何浮层里**，而遮挡物**在**某个浮层
+                  //   里」—— 两侧都要。不是「有遮挡物就算」：认不出归属的遮挡物
+                  //   必须**继续留在未确认**，把它顺手算成 INFO 才是把真缺陷
+                  //   藏起来。
+                  //   ⚠️ 也不碰缺陷桶：缺陷桶要求 `same_layer`（同一层自己压
+                  //   自己），本条只对 `same_layer=false` 的行生效，所以 835
+                  //   「盖住另一个下拉的选项」那类**跨层**缺陷的判定路径不变。
+                  const coveredByLayer = !inLayer
+                    && blockers.some(bk => bk.in_layer);
                   // ⚠️ 第三档（批 843 加）：**同一层里自己压自己**才是布局 bug。
                   //    跨层遮挡一律 INFO —— 一个菜单盖住画布右下角的会员浮窗，
                   //    用户关掉菜单就能点，那不是缺陷，是覆盖层的本职工作。
@@ -901,11 +931,13 @@ def main() -> int:
                             x: Math.round(r.x), y: Math.round(r.y),
                             in_layer: inLayer,
                             covered_by_modal: scrim || scrimByModal,
+                            covered_by_layer: coveredByLayer,
                             blockers: blockers});
                 }
               }
               return out;
-            }""", [CONTROL, SAMPLES, VIEWPORT["height"], modal_open])
+            }""", [CONTROL, SAMPLES, VIEWPORT["height"], modal_open,
+                   LAYER_SEL])
 
             for r in raw:
                 # 活页面确认：把挡在上面的那个元素藏掉，必须立刻变得可点。
@@ -1498,23 +1530,47 @@ def main() -> int:
 
         b.close()
 
-    # 「点不着」只算 `covered_by_modal=false` 的那些：全屏模态盖住画布 chrome
-    # 是覆盖层的**正常**行为（835 已定过这条），记进来只会稀释真缺陷。
-    real = [r for r in rows if r["confirmed"] and r.get("same_layer")
-            and not r.get("covered_by_modal")]
-    by_modal = [r for r in rows if r.get("covered_by_modal")
-                or (r["confirmed"] and not r.get("same_layer"))]
-    # ⚠️⚠️ 批 865：三个桶必须**互斥**，否则汇总那一行在骗人。
-    #   `unconfirmed` 原来是「没通过活页面确认」的**全部**行，可 `by_modal`
-    #   里的行同样没通过确认（把记录到的那个遮挡物藏掉并不会让控件可点 ——
-    #   真正挡着的是模态遮罩，而那条根本不在 `blockers` 里）。于是同一行
-    #   被数了两遍：实测 `确认 0 + 被模态盖住 120 + 未确认 8 = 128`，
-    #   而候选只有 **124** 条。
-    #   「已被模态盖住」本身就是解释，没法通过藏遮挡物翻转**不构成**新信息。
-    #   所以 `unconfirmed` 只收「既不是确认缺陷、也没被模态解释掉」的行 ——
-    #   它是一个**剩下的桶**，不是「没数清的桶」。
-    unconfirmed = [r for r in rows
-                   if not r["confirmed"] and not r.get("covered_by_modal")]
+    # ══ 批 866：分桶改成**一次性互斥划分** ═══════════════════════════
+    #   原来四个桶是四个独立的列表推导，**没有任何机制保证它们不重叠** ——
+    #   于是 865 发现 `by_modal` 里的行也被 `unconfirmed` 数了一遍
+    #   （124 ≠ 0+116+8），866 加 `by_layer` 之后又重叠一次
+    #   （124 ≠ 0+120+9+0）。两次都是同一根病：**各算各的，没人管总和**。
+    #   改成一行分派：每行**有且只有一个**桶，「各桶之和 == 候选数」从此是
+    #   **结构保证**，不是希望。verifier S 组钉住这条恒等式。
+    #
+    #   判定顺序就是严重程度顺序，且**逐条保留旧语义**：
+    #     1) 缺陷：已确认 + **同一层自己压自己**（`same_layer`）—— 835 定的
+    #     2) 被**全屏模态遮罩**盖住（INFO）—— 关掉模态就能点
+    #     3) 被**非全屏浮层的内容**盖住（INFO，866 新增）—— 画布其余部分
+    #        还看得见、还点得着
+    #     4) 已确认的**跨层**遮挡（INFO）—— **835 的降级条款**，原封不动
+    #     5) 剩下的：既没确认、也没被任何浮层解释掉 ⇒ 认不出归属，**不瞎分**
+    def _bucket(r: dict) -> str:
+        if r["confirmed"] and r.get("same_layer") \
+                and not r.get("covered_by_modal"):
+            return "defect"
+        if r.get("covered_by_modal"):
+            return "by_modal"
+        if r.get("covered_by_layer"):
+            return "by_layer"
+        if r["confirmed"]:          # 835 降级条款：确认过的跨层遮挡是 INFO
+            return "by_modal"
+        return "unconfirmed"
+
+    real = [r for r in rows if _bucket(r) == "defect"]
+    by_modal = [r for r in rows if _bucket(r) == "by_modal"]
+    # 批 866：与 `by_modal` **分开**记，不塞进去 —— 前者是「被**全屏模态的
+    # 遮罩**盖住」/「已确认的**跨层**遮挡」（835 的降级条款），后者是「被某个
+    # **非全屏浮层的内容**盖住、而且还没被活页面确认」。三者严重程度不同，
+    # 混成一栏就看不出是哪一种。
+    #
+    # ⚠️ 866 自己在这行翻过一次车：补丁只匹配到 `by_modal = [...]` 的**第一
+    #    行**，把续行 `or (r["confirmed"] and not r.get("same_layer"))` 落下
+    #    了 —— 那是 835 的**降级条款**，掉了就等于「确认过的跨层遮挡」重新
+    #    变成未确认。**只匹配到一半的多行模式，比不匹配更危险**：它不报错，
+    #    只是悄悄改了判据。py_compile 也没抓到（孤立的续行恰好合法）。
+    by_layer = [r for r in rows if _bucket(r) == "by_layer"]
+    unconfirmed = [r for r in rows if _bucket(r) == "unconfirmed"]
     # 键盘那一路：`ok is False` 才是缺陷；`ok is None` 是"那一刻没有打开的
     # 浮层"，**不计也不当通过** —— 与指针那条 skipped/empty 的分档同一个道理。
     #
@@ -1920,6 +1976,7 @@ def main() -> int:
         json.dump({"rows": rows, "skipped": skipped, "states": states_done,
                    "confirmed": real,
                    "by_modal": by_modal,
+                   "by_layer": by_layer,
                    "keyboard": kb_rows,
                    "keyboard_bad": kb_bad,
                    "keyboard_covered": kb_covered,
@@ -1943,6 +2000,7 @@ def main() -> int:
     print(f"跑了 {len(states_done)} 个状态；候选 {len(rows)} 条 → "
           f"**确认点不着（同一层自己压自己）{len(real)}**、"
           f"被全屏模态盖住（正常，INFO）{len(by_modal)}、"
+          f"被非全屏浮层盖住（正常，INFO）{len(by_layer)}、"
           f"活页面确认没通过 {len(unconfirmed)}")
     for st in states_done:
         print(f"  {st}")
