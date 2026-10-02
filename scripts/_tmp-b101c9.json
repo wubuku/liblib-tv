@@ -1,0 +1,126 @@
+{
+ "at": "2026-10-02T10:38:04.953Z",
+ "selfId": "node_fxhrsbbfrz",
+ "r0": {
+  "inFs": true,
+  "ct": 3,
+  "paused": true,
+  "vol": 1,
+  "muted": false,
+  "playAria": "Play jimeng-b101-test-avc1",
+  "muteAria": "Mute video",
+  "clock": "0:03 / 0:06",
+  "volThumb": {
+   "cx": 1172,
+   "cy": 692,
+   "w": 8,
+   "h": 8,
+   "now": "1"
+  },
+  "seekThumb": {
+   "cx": 640,
+   "cy": 660,
+   "w": 8,
+   "h": 8,
+   "now": "3"
+  }
+ },
+ "volLand": {
+  "hitTag": "SPAN",
+  "hitRole": "slider",
+  "hitVmax": "1",
+  "cls": "group/thumb relative block cursor-pointer bord",
+  "wantVmax": "1"
+ },
+ "volMid": {
+  "inFs": true,
+  "ct": 3,
+  "paused": true,
+  "vol": 0,
+  "muted": true,
+  "playAria": "Play jimeng-b101-test-avc1",
+  "muteAria": "Unmute video",
+  "clock": "0:03 / 0:06",
+  "volThumb": {
+   "cx": 1128,
+   "cy": 692,
+   "w": 8,
+   "h": 8,
+   "now": "0"
+  },
+  "seekThumb": {
+   "cx": 640,
+   "cy": 660,
+   "w": 8,
+   "h": 8,
+   "now": "3"
+  }
+ },
+ "volAfter": {
+  "inFs": true,
+  "ct": 3,
+  "paused": true,
+  "vol": 0,
+  "muted": false,
+  "playAria": "Play jimeng-b101-test-avc1",
+  "muteAria": "Mute video",
+  "clock": "0:03 / 0:06",
+  "volThumb": {
+   "cx": 1128,
+   "cy": 692,
+   "w": 8,
+   "h": 8,
+   "now": "0"
+  },
+  "seekThumb": {
+   "cx": 640,
+   "cy": 660,
+   "w": 8,
+   "h": 8,
+   "now": "3"
+  }
+ },
+ "drag": {
+  "before": {
+   "now": "1",
+   "vol": 1
+  },
+  "mid": {
+   "now": "0",
+   "vol": 0
+  },
+  "after": {
+   "now": "0",
+   "vol": 0
+  },
+  "targetX": 390,
+  "trackX": 16,
+  "trackW": 1248,
+  "wantNow": "0.3",
+  "thumbMoved": true,
+  "videoFollows": true
+ },
+ "fsButtons": {
+  "fsRect": "0,0 1280×720",
+  "fsTid": null,
+  "fsCls": "absolute inset-0 [&:fullscreen>video]:object-contain",
+  "buttons": [
+   {
+    "tid": "video-fullscreen-playback-toggle",
+    "aria": "Play jimeng-b101-test-avc1",
+    "rect": "16,676 20×32"
+   },
+   {
+    "tid": "video-fullscreen-mute-toggle",
+    "aria": "Mute video",
+    "rect": "1188,676 32×32"
+   },
+   {
+    "tid": "video-fullscreen-browser-toggle",
+    "aria": "Enter browser full screen",
+    "rect": "1232,676 32×32"
+   }
+  ]
+ },
+ "shotFsBytes": 293075
+}

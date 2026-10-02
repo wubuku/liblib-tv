@@ -1,0 +1,69 @@
+{
+ "at": "2026-10-02T10:18:20.874Z",
+ "selfId": "node_fxhrsbbfrz",
+ "state": {
+  "nodes": "47",
+  "sel": "1",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": "Zoom options, 60%",
+  "scale": 0.6,
+  "tool": "选择工具"
+ },
+ "self": {
+  "present": true,
+  "cls": "react-flow__node react-flow__node-video nopan selected selectable draggable",
+  "aria": "视频 node: jimeng-b101-test-avc1",
+  "translate": "translate(1792.13px, 1045.58px)",
+  "screen": "469,288 341×192",
+  "inViewport": true,
+  "canvasSize": "569×320",
+  "innerText": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "arias": [
+   "Rename jimeng-b101-test-avc1",
+   "Add tags",
+   "Create connected node after jimeng-b101-test-avc1",
+   "Play jimeng-b101-test-avc1",
+   "替换媒体"
+  ],
+  "media": [],
+  "imgs": [
+   {
+    "nw": 640,
+    "nh": 360,
+    "complete": true
+   }
+  ]
+ },
+ "videoNodes": [
+  {
+   "id": "node_236ctpehgg",
+   "aria": "视频 node: 视频 1",
+   "hasImg": false,
+   "nw": 0,
+   "nVideos": 0,
+   "hasPlayAria": false
+  },
+  {
+   "id": "node_fxhrsbbfrz",
+   "aria": "视频 node: jimeng-b101-test-avc1",
+   "hasImg": true,
+   "nw": 640,
+   "nVideos": 0,
+   "hasPlayAria": true
+  }
+ ]
+}

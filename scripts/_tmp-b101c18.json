@@ -1,0 +1,61 @@
+{
+ "at": "2026-10-02T11:04:32.642Z",
+ "selfId": "node_fxhrsbbfrz",
+ "z40": [
+  0.4,
+  0.4,
+  true
+ ],
+ "plan": {
+  "W": 228,
+  "H": 128,
+  "TITLE": 26,
+  "cur": {
+   "x": 526,
+   "y": 316
+  },
+  "card": "526,316 228×128",
+  "best": {
+   "x": 526,
+   "y": 157,
+   "d": 159,
+   "box": [
+    514,
+    131,
+    766,
+    297
+   ]
+  },
+  "othersCount": 52
+ },
+ "after": {
+  "surf": "526,164",
+  "transform": "translate(1792.07px, 665.582px)"
+ },
+ "st": {
+  "ct": 6,
+  "paused": true,
+  "clock": "00:06 / 00:06",
+  "toggle": "Play jimeng-b101-test-avc1",
+  "mute": "Unmute video"
+ },
+ "crop": {
+  "clip": {
+   "x": 514,
+   "y": 138,
+   "width": 252,
+   "height": 166
+  },
+  "union": "526,138 228×154",
+  "nodeHits": [
+   {
+    "id": "node_d4tjtpnatq",
+    "aria": "时间线 node: 时间线 2",
+    "z": "22"
+   }
+  ],
+  "chrome": [],
+  "missing": []
+ },
+ "guardPass": false
+}

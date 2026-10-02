@@ -1,0 +1,87 @@
+{
+ "at": "2026-10-02T10:12:52.971Z",
+ "start": {
+  "nodes": "46",
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": "Zoom options, 60%",
+  "scale": 0.6,
+  "tool": "选择工具"
+ },
+ "idsBefore": 46,
+ "creditsBefore": "Credits: 805 · 基础会员",
+ "rail": [
+  {
+   "aria": "上传",
+   "x": 16,
+   "y": 543,
+   "w": 40,
+   "h": 40
+  }
+ ],
+ "chooser": {
+  "multiple": true
+ },
+ "gotAtMs": 1500,
+ "created": [
+  "node_fxhrsbbfrz"
+ ],
+ "guard": {
+  "before": 46,
+  "after": 47,
+  "created": [
+   "node_fxhrsbbfrz"
+  ],
+  "selIds": [
+   "node_fxhrsbbfrz"
+  ],
+  "newSel": [
+   "node_fxhrsbbfrz"
+  ]
+ },
+ "creditsAfterUpload": "Credits: 805 · 基础会员",
+ "selfId": "node_fxhrsbbfrz",
+ "selfInfo": {
+  "aria": "视频 node: jimeng-b101-test-avc1",
+  "cls": "react-flow__node react-flow__node-video nopan selected selectable draggable",
+  "translate": "translate(1792.13px, 1045.58px)",
+  "screen": "341.33×192@469,288",
+  "innerText": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "innerTestids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "innerAria": [
+   "Rename jimeng-b101-test-avc1",
+   "Add tags",
+   "Create connected node after jimeng-b101-test-avc1",
+   "Play jimeng-b101-test-avc1",
+   "替换媒体"
+  ],
+  "media": [],
+  "imgs": [
+   {
+    "src": "https://p5-ex-gddgtc-sign.douyinpic.com/tos-cn-p-148450/o0EArAfEsgv6qoUNnQBOBASn",
+    "nw": 640,
+    "nh": 360
+   }
+  ]
+ },
+ "end": {
+  "nodes": "47",
+  "sel": "1",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": "Zoom options, 60%",
+  "scale": 0.6
+ }
+}

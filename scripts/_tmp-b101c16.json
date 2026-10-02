@@ -1,0 +1,610 @@
+{
+ "at": "2026-10-02T10:52:38.670Z",
+ "selfId": "node_fxhrsbbfrz",
+ "ghost": {
+  "at": [
+   {
+    "pt": [
+     500,
+     262
+    ],
+    "stack": [
+     {
+      "tag": "SPAN",
+      "tid": null,
+      "aria": null,
+      "cls": "min-w-canvas-zero max-w-full whitespace-nowr",
+      "inSelf": true,
+      "node": "node_fxhrsbbfrz",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "BUTTON",
+      "tid": null,
+      "aria": "Rename jimeng-b101-test-avc1",
+      "cls": "gap-1 border-solid font-dreamina-cn motion-s",
+      "inSelf": true,
+      "node": "node_fxhrsbbfrz",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "flow-node-title",
+      "aria": null,
+      "cls": "absolute z-[10] flex text-left font-dreamina",
+      "inSelf": true,
+      "node": "node_fxhrsbbfrz",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": null,
+      "aria": null,
+      "cls": "react-flow__pane",
+      "inSelf": false,
+      "node": null,
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": null,
+      "aria": null,
+      "cls": "react-flow__renderer",
+      "inSelf": false,
+      "node": null,
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "rf__wrapper",
+      "aria": "Canvas",
+      "cls": "react-flow octo-canvas-flow bg-dreamina-canv",
+      "inSelf": false,
+      "node": null,
+      "op": "1",
+      "bg": "rgb(13, 13, 13)"
+     }
+    ]
+   },
+   {
+    "pt": [
+     560,
+     280
+    ],
+    "stack": [
+     {
+      "tag": "SPAN",
+      "tid": null,
+      "aria": null,
+      "cls": "min-w-canvas-zero max-w-full whitespace-nowr",
+      "inSelf": true,
+      "node": "node_fxhrsbbfrz",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "BUTTON",
+      "tid": null,
+      "aria": "Rename jimeng-b101-test-avc1",
+      "cls": "gap-1 border-solid font-dreamina-cn motion-s",
+      "inSelf": true,
+      "node": "node_fxhrsbbfrz",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "flow-node-title",
+      "aria": null,
+      "cls": "absolute z-[10] flex text-left font-dreamina",
+      "inSelf": true,
+      "node": "node_fxhrsbbfrz",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "timeline-toolbar",
+      "aria": null,
+      "cls": "relative flex flex-none items-center justify",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "timeline-flow-node-main-track",
+      "aria": null,
+      "cls": "flex flex-col w-full min-h-0 h-full overflow",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "color(srgb 0.12549 0.12549 0.12549)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "timeline-flow-node",
+      "aria": null,
+      "cls": "group relative flex min-h-32 min-w-40 flex-c",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "color(srgb 0.12549 0.12549 0.12549)"
+     }
+    ]
+   },
+   {
+    "pt": [
+     582,
+     285
+    ],
+    "stack": [
+     {
+      "tag": "SPAN",
+      "tid": null,
+      "aria": null,
+      "cls": "min-w-canvas-zero max-w-full whitespace-nowr",
+      "inSelf": true,
+      "node": "node_fxhrsbbfrz",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "BUTTON",
+      "tid": null,
+      "aria": "Rename jimeng-b101-test-avc1",
+      "cls": "gap-1 border-solid font-dreamina-cn motion-s",
+      "inSelf": true,
+      "node": "node_fxhrsbbfrz",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "flow-node-title",
+      "aria": null,
+      "cls": "absolute z-[10] flex text-left font-dreamina",
+      "inSelf": true,
+      "node": "node_fxhrsbbfrz",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "timeline-toolbar",
+      "aria": null,
+      "cls": "relative flex flex-none items-center justify",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "timeline-flow-node-main-track",
+      "aria": null,
+      "cls": "flex flex-col w-full min-h-0 h-full overflow",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "color(srgb 0.12549 0.12549 0.12549)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "timeline-flow-node",
+      "aria": null,
+      "cls": "group relative flex min-h-32 min-w-40 flex-c",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "color(srgb 0.12549 0.12549 0.12549)"
+     }
+    ]
+   },
+   {
+    "pt": [
+     600,
+     288
+    ],
+    "stack": [
+     {
+      "tag": "BUTTON",
+      "tid": null,
+      "aria": "Rename jimeng-b101-test-avc1",
+      "cls": "gap-1 border-solid font-dreamina-cn motion-s",
+      "inSelf": true,
+      "node": "node_fxhrsbbfrz",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "flow-node-title",
+      "aria": null,
+      "cls": "absolute z-[10] flex text-left font-dreamina",
+      "inSelf": true,
+      "node": "node_fxhrsbbfrz",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "path",
+      "tid": null,
+      "aria": null,
+      "cls": "[object SVGAnimatedString]",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "svg",
+      "tid": null,
+      "aria": null,
+      "cls": "[object SVGAnimatedString]",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "SPAN",
+      "tid": null,
+      "aria": null,
+      "cls": "flex items-center justify-center w-canvas-ti",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": null,
+      "aria": null,
+      "cls": "absolute top-[50%] left-[50%] flex items-cen",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   },
+   {
+    "pt": [
+     620,
+     285
+    ],
+    "stack": [
+     {
+      "tag": "SPAN",
+      "tid": null,
+      "aria": null,
+      "cls": "min-w-canvas-zero max-w-full whitespace-nowr",
+      "inSelf": true,
+      "node": "node_fxhrsbbfrz",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "BUTTON",
+      "tid": null,
+      "aria": "Rename jimeng-b101-test-avc1",
+      "cls": "gap-1 border-solid font-dreamina-cn motion-s",
+      "inSelf": true,
+      "node": "node_fxhrsbbfrz",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "flow-node-title",
+      "aria": null,
+      "cls": "absolute z-[10] flex text-left font-dreamina",
+      "inSelf": true,
+      "node": "node_fxhrsbbfrz",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "SPAN",
+      "tid": null,
+      "aria": null,
+      "cls": "",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "SPAN",
+      "tid": "timeline-playback-clock",
+      "aria": null,
+      "cls": "octo-timeline-playback-clock--node flex item",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": null,
+      "aria": null,
+      "cls": "absolute top-[50%] left-[50%] flex items-cen",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   },
+   {
+    "pt": [
+     660,
+     284
+    ],
+    "stack": [
+     {
+      "tag": "SPAN",
+      "tid": "timeline-playback-clock",
+      "aria": null,
+      "cls": "octo-timeline-playback-clock--node flex item",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": null,
+      "aria": null,
+      "cls": "absolute top-[50%] left-[50%] flex items-cen",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "timeline-toolbar",
+      "aria": null,
+      "cls": "relative flex flex-none items-center justify",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "timeline-flow-node-main-track",
+      "aria": null,
+      "cls": "flex flex-col w-full min-h-0 h-full overflow",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "color(srgb 0.12549 0.12549 0.12549)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "timeline-flow-node",
+      "aria": null,
+      "cls": "group relative flex min-h-32 min-w-40 flex-c",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "color(srgb 0.12549 0.12549 0.12549)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "rf__node-node_d4tjtpnatq",
+      "aria": "时间线 node: 时间线 2",
+      "cls": "react-flow__node react-flow__node-timeline n",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   },
+   {
+    "pt": [
+     700,
+     283
+    ],
+    "stack": [
+     {
+      "tag": "DIV",
+      "tid": "timeline-toolbar",
+      "aria": null,
+      "cls": "relative flex flex-none items-center justify",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "timeline-flow-node-main-track",
+      "aria": null,
+      "cls": "flex flex-col w-full min-h-0 h-full overflow",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "color(srgb 0.12549 0.12549 0.12549)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "timeline-flow-node",
+      "aria": null,
+      "cls": "group relative flex min-h-32 min-w-40 flex-c",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "color(srgb 0.12549 0.12549 0.12549)"
+     },
+     {
+      "tag": "DIV",
+      "tid": "rf__node-node_d4tjtpnatq",
+      "aria": "时间线 node: 时间线 2",
+      "cls": "react-flow__node react-flow__node-timeline n",
+      "inSelf": false,
+      "node": "node_d4tjtpnatq",
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": null,
+      "aria": null,
+      "cls": "react-flow__pane",
+      "inSelf": false,
+      "node": null,
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "tag": "DIV",
+      "tid": null,
+      "aria": null,
+      "cls": "react-flow__renderer",
+      "inSelf": false,
+      "node": null,
+      "op": "1",
+      "bg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   }
+  ],
+  "selfStyles": [
+   {
+    "tid": "video-flow-node-surface",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "469,294 341×192"
+   },
+   {
+    "tid": "flow-node-media-stroke",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "465,290 349×200"
+   },
+   {
+    "tid": "flow-node-target-handle",
+    "op": "0",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "451,354 36×72"
+   },
+   {
+    "tid": "flow-node-title",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "469,262 158×32"
+   },
+   {
+    "tid": "flow-node-selected-tag",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "787,262 24×24"
+   },
+   {
+    "tid": "flow-node-source-handle",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "793,354 36×72"
+   },
+   {
+    "tid": "flow-node-source-connection-menu-button",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "822,365 36×36"
+   },
+   {
+    "tid": "image-primary-preview-viewport",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "469,294 341×192"
+   },
+   {
+    "tid": "video-passive-preview",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "469,294 341×192"
+   },
+   {
+    "tid": "video-node-result",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "469,294 341×192"
+   },
+   {
+    "tid": "video-hover-surface",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "469,294 341×192"
+   },
+   {
+    "tid": "video-node-player-bar",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "469,433 341×53"
+   },
+   {
+    "tid": "video-node-player-controls",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "477,458 327×22"
+   },
+   {
+    "tid": "video-node-playback-toggle",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "484,464 10×10"
+   },
+   {
+    "tid": "video-node-player-clock",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0)",
+    "rect": "499,463 50×12"
+   },
+   {
+    "tid": "video-node-mute-toggle",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0.6)",
+    "rect": "755,458 22×22"
+   },
+   {
+    "tid": "video-node-fullscreen-toggle",
+    "op": "1",
+    "bg": "rgba(0, 0, 0, 0.6)",
+    "rect": "782,458 22×22"
+   },
+   {
+    "tid": "slider-track",
+    "op": "1",
+    "bg": "rgba(255, 255, 255, 0.16)",
+    "rect": "469,483 341×3"
+   }
+  ],
+  "underClip": [
+   {
+    "id": "node_9y4j9jf0qv",
+    "aria": "音频 node: 音频 6",
+    "z": "11",
+    "op": "1",
+    "rect": "483,319 192×192"
+   },
+   {
+    "id": "node_d4tjtpnatq",
+    "aria": "时间线 node: 时间线 2",
+    "z": "22",
+    "op": "1",
+    "rect": "280,266 720×124"
+   }
+  ]
+ }
+}

@@ -1,0 +1,46 @@
+{
+ "at": "2026-10-02T11:07:32.443Z",
+ "selfId": "node_fxhrsbbfrz",
+ "attempts": [
+  {
+   "pan": [
+    0,
+    0
+   ],
+   "dx": 0,
+   "dy": -8,
+   "st": {
+    "ct": 1.958495,
+    "paused": false,
+    "clock": "00:01 / 00:06"
+   },
+   "hits": [],
+   "ok": true
+  }
+ ],
+ "win": {
+  "clip": {
+   "x": 514,
+   "y": 131,
+   "width": 252,
+   "height": 166
+  },
+  "st": {
+   "ct": 1.958495,
+   "paused": false,
+   "clock": "00:01 / 00:06"
+  }
+ },
+ "shot": {
+  "file": "/Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/user-manual/jimeng-canvas/screenshots/102-video-card-player-bar.png",
+  "bytes": 29648,
+  "sha256": "870183f52add43a7d7e137d0acddc2872c7109852cea3d91b01c1be8e5ed7371",
+  "clip": {
+   "x": 514,
+   "y": 131,
+   "width": 252,
+   "height": 166
+  }
+ },
+ "shotTaken": true
+}

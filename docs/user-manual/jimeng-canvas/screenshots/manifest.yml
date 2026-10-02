@@ -1447,3 +1447,27 @@ screenshots:
     visible_text: 复制
     alt: 文本节点右键菜单：节点上方浮着三项工具条（背景色、全屏、下载），节点标题为「T 文本 4」、正文区显示占位「双击编辑文本」；右下方弹出的菜单共七项，依次为复制 ⌘C、复制副本 ⌘D、粘贴 ⌘V、下载、（一条分隔线）、灰色禁用的重做 ⇧⌘Z、撤销 ⌘Z、删除 ⌫，其中「重做」是本页此前漏记的那一项
     sha256: 187212e6d30da3b018f2f74339f70563ef00489d3ab1b833cb71252985186b12
+
+  - file: screenshots/101-video-fullscreen-player.png
+    task_id: media-playback
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T20:40:00+08:00
+    verified_locator: 自建**带媒体**视频节点 `node_fxhrsbbfrz`（走左栏上传通道建出，素材是脚本自造的 6 秒 H.264 测试片，**上传不耗积分** 805→805）→ 选中起播 → 点 `[data-testid="video-node-fullscreen-toggle"]`（落点先验 `elementFromPoint` 落在按钮内）→ 断言 `document.fullscreenElement !== null` → 读 `video-fullscreen-player-bar` 全量后代 34 个并按 **`aria-valuemax` 区分两条 slider**（音量 `1` / 进度 `6`=素材时长）→ **取消静音**（`Unmute video`→`Mute video`，`video.muted` 跟着变）→ **按住音量 thumb 逐步拖到 80/60/40/20%**，每步回读 `aria-valuenow` 与 `video.volume` = 0.81/0.60/0.40/0.19（近似线性）→ 整屏截图（**全屏态下画布被浏览器全屏接管，无裁切、无他人节点**）→ 点 `[data-testid="video-fullscreen-browser-toggle"]` 退出（**`Esc` 连按三次无效，已受控复测**）。节点已按 id 精确删除，消失的 id 恰好只有它。详见 SOURCE_OBSERVATIONS §4.21'
+    visible_text: 0:03 / 0:06
+    alt: 全屏播放器：视频铺满画面，底部一条控件条，左侧是播放钮与时间读数「0:03 / 0:06」，右侧是音量滑杆、扬声器图标和全屏按钮，右上角没有关闭按钮
+    sha256: 50f4793b9b8ada1e9fc52c9ba711767e282f6523d90d941cf3dbdcd1a4b25cec
+
+  - file: screenshots/102-video-card-player-bar.png
+    task_id: media-playback
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T21:05:00+08:00
+    verified_locator: 自建**带媒体**视频节点 `node_fxhrsbbfrz` → 换到 **40% 档**（连读两次 scale 相同 = 0.4/0.4，**不是写死**）→ 遍历视口内 52 个他人节点矩形，算出**位移最小的无遮挡落点** → 抓 `flow-node-title` 子树内**不在 button 内**的点拖过去（标题 DIV 内部还有一层标题文字 SPAN，命中它才是常态）→ 重新选中（**「选中即播」⇒ 不再多点播放钮**，这是第 3 版脚本才纠正的顺序错误）→ 等 2.4 秒让读数走到 `00:01` → 裁切 clip={x:514,y:131,w:252,h:166}（**非对称余量：上边 0**，因为选中态浮动工具条 `node-toolbar` 底边 258 必然切进来；其余三边 12）→ 守卫：clip 内他人节点 `0`、外来浮层 `0`、7 个目标 testid 齐。**为什么必须降到 40% 档**：60% 档视口里有 52 个他人节点，把「卡片+标题+12px 余量」=366×248 穷举 4px 步长**一个空位都没有**；且「时间线 2」`z-index=22` 比本卡 `z-index=11` **更高**，9×9 撒点判据从它上面跨过去了。详见 SOURCE_OBSERVATIONS §4.21'
+    visible_text: 00:01 / 00:06
+    alt: 带媒体的视频卡片正在播放：标题行是节点名，卡片里是视频画面，底部一条控件行，左侧为播放/暂停钮与时间读数「00:01 / 00:06」，右侧为静音钮与全屏钮，卡片最下方是细进度条
+    sha256: 870183f52add43a7d7e137d0acddc2872c7109852cea3d91b01c1be8e5ed7371

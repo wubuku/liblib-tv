@@ -1,0 +1,296 @@
+{
+ "at": "2026-10-02T10:26:50.909Z",
+ "selfId": "node_fxhrsbbfrz",
+ "s0": {
+  "hasBar": true,
+  "pauseAria": "Play jimeng-b101-test-avc1",
+  "playAria": null,
+  "muteAria": "Unmute video",
+  "fullAria": "Enter browser full screen",
+  "clock": "00:06 / 00:06",
+  "paused": true,
+  "ct": 6,
+  "dur": 6,
+  "muted": true,
+  "vol": 1,
+  "ended": true,
+  "vRect": {
+   "x": 469,
+   "y": 288,
+   "w": 341,
+   "h": 192
+  },
+  "toggleRect": {
+   "x": 484,
+   "y": 458,
+   "w": 10,
+   "h": 10
+  },
+  "muteRect": {
+   "x": 755,
+   "y": 452,
+   "w": 22,
+   "h": 22
+  },
+  "trackRect": {
+   "x": 469,
+   "y": 477,
+   "w": 341,
+   "h": 3
+  },
+  "trackCls": "relative grow cursor-pointer overflow-hidden data-[disabled]:cursor-not-allowed h-canvas-v",
+  "seekAria": [],
+  "innerText": "jimeng-b101-test-avc1 00:06 / 00:06 Seek jimeng-b101-test-avc1 jimeng-b101-test-avc1: Video paused 1 resource: 1 ready, 0 processing, 0 failed. Selected."
+ },
+ "s1": {
+  "hasBar": true,
+  "pauseAria": "Pause jimeng-b101-test-avc1",
+  "playAria": null,
+  "muteAria": "Unmute video",
+  "fullAria": "Enter browser full screen",
+  "clock": "00:01 / 00:06",
+  "paused": false,
+  "ct": 1.318886,
+  "dur": 6,
+  "muted": true,
+  "vol": 1,
+  "ended": false,
+  "vRect": {
+   "x": 469,
+   "y": 288,
+   "w": 341,
+   "h": 192
+  },
+  "toggleRect": {
+   "x": 484,
+   "y": 458,
+   "w": 10,
+   "h": 10
+  },
+  "muteRect": {
+   "x": 755,
+   "y": 452,
+   "w": 22,
+   "h": 22
+  },
+  "trackRect": {
+   "x": 469,
+   "y": 477,
+   "w": 341,
+   "h": 3
+  },
+  "trackCls": "relative grow cursor-pointer overflow-hidden data-[disabled]:cursor-not-allowed h-canvas-v",
+  "seekAria": [],
+  "innerText": "jimeng-b101-test-avc1 00:01 / 00:06 Seek jimeng-b101-test-avc1 jimeng-b101-test-avc1: Playing video 1 resource: 1 ready, 0 processing, 0 failed. Selected."
+ },
+ "replayFromEnd": false,
+ "A1": {
+  "hasBar": true,
+  "pauseAria": "Play jimeng-b101-test-avc1",
+  "playAria": null,
+  "muteAria": "Unmute video",
+  "fullAria": "Enter browser full screen",
+  "clock": "00:01 / 00:06",
+  "paused": true,
+  "ct": 1.777884,
+  "dur": 6,
+  "muted": true,
+  "vol": 1,
+  "ended": false,
+  "vRect": {
+   "x": 469,
+   "y": 288,
+   "w": 341,
+   "h": 192
+  },
+  "toggleRect": {
+   "x": 484,
+   "y": 458,
+   "w": 10,
+   "h": 10
+  },
+  "muteRect": {
+   "x": 755,
+   "y": 452,
+   "w": 22,
+   "h": 22
+  },
+  "trackRect": {
+   "x": 469,
+   "y": 477,
+   "w": 341,
+   "h": 3
+  },
+  "trackCls": "relative grow cursor-pointer overflow-hidden data-[disabled]:cursor-not-allowed h-canvas-v",
+  "seekAria": [],
+  "innerText": "jimeng-b101-test-avc1 00:01 / 00:06 Seek jimeng-b101-test-avc1 jimeng-b101-test-avc1: Video paused 1 resource: 1 ready, 0 processing, 0 failed. Selected."
+ },
+ "A2": {
+  "hasBar": true,
+  "pauseAria": "Play jimeng-b101-test-avc1",
+  "playAria": null,
+  "muteAria": "Unmute video",
+  "fullAria": "Enter browser full screen",
+  "clock": "00:01 / 00:06",
+  "paused": true,
+  "ct": 1.777884,
+  "dur": 6,
+  "muted": true,
+  "vol": 1,
+  "ended": false,
+  "vRect": {
+   "x": 469,
+   "y": 288,
+   "w": 341,
+   "h": 192
+  },
+  "toggleRect": {
+   "x": 484,
+   "y": 458,
+   "w": 10,
+   "h": 10
+  },
+  "muteRect": {
+   "x": 755,
+   "y": 452,
+   "w": 22,
+   "h": 22
+  },
+  "trackRect": {
+   "x": 469,
+   "y": 477,
+   "w": 341,
+   "h": 3
+  },
+  "trackCls": "relative grow cursor-pointer overflow-hidden data-[disabled]:cursor-not-allowed h-canvas-v",
+  "seekAria": [],
+  "innerText": "jimeng-b101-test-avc1 00:01 / 00:06 Seek jimeng-b101-test-avc1 jimeng-b101-test-avc1: Video paused 1 resource: 1 ready, 0 processing, 0 failed. Selected."
+ },
+ "A_frozen": true,
+ "A_ariaFlips": true,
+ "B0": {
+  "hasBar": true,
+  "pauseAria": "Play jimeng-b101-test-avc1",
+  "playAria": null,
+  "muteAria": "Unmute video",
+  "fullAria": "Enter browser full screen",
+  "clock": "00:01 / 00:06",
+  "paused": true,
+  "ct": 1.777884,
+  "dur": 6,
+  "muted": true,
+  "vol": 1,
+  "ended": false,
+  "vRect": {
+   "x": 469,
+   "y": 288,
+   "w": 341,
+   "h": 192
+  },
+  "toggleRect": {
+   "x": 484,
+   "y": 458,
+   "w": 10,
+   "h": 10
+  },
+  "muteRect": {
+   "x": 755,
+   "y": 452,
+   "w": 22,
+   "h": 22
+  },
+  "trackRect": {
+   "x": 469,
+   "y": 477,
+   "w": 341,
+   "h": 3
+  },
+  "trackCls": "relative grow cursor-pointer overflow-hidden data-[disabled]:cursor-not-allowed h-canvas-v",
+  "seekAria": [],
+  "innerText": "jimeng-b101-test-avc1 00:01 / 00:06 Seek jimeng-b101-test-avc1 jimeng-b101-test-avc1: Video paused 1 resource: 1 ready, 0 processing, 0 failed. Selected."
+ },
+ "B1": {
+  "hasBar": true,
+  "pauseAria": "Play jimeng-b101-test-avc1",
+  "playAria": null,
+  "muteAria": "Mute video",
+  "fullAria": "Enter browser full screen",
+  "clock": "00:01 / 00:06",
+  "paused": true,
+  "ct": 1.777884,
+  "dur": 6,
+  "muted": false,
+  "vol": 1,
+  "ended": false,
+  "vRect": {
+   "x": 469,
+   "y": 288,
+   "w": 341,
+   "h": 192
+  },
+  "toggleRect": {
+   "x": 484,
+   "y": 458,
+   "w": 10,
+   "h": 10
+  },
+  "muteRect": {
+   "x": 755,
+   "y": 452,
+   "w": 22,
+   "h": 22
+  },
+  "trackRect": {
+   "x": 469,
+   "y": 477,
+   "w": 341,
+   "h": 3
+  },
+  "trackCls": "relative grow cursor-pointer overflow-hidden data-[disabled]:cursor-not-allowed h-canvas-v",
+  "seekAria": [],
+  "innerText": "jimeng-b101-test-avc1 00:01 / 00:06 Seek jimeng-b101-test-avc1 jimeng-b101-test-avc1: Video paused 1 resource: 1 ready, 0 processing, 0 failed. Selected."
+ },
+ "B_flips": true,
+ "B_follows": true,
+ "B2": {
+  "hasBar": true,
+  "pauseAria": "Play jimeng-b101-test-avc1",
+  "playAria": null,
+  "muteAria": "Unmute video",
+  "fullAria": "Enter browser full screen",
+  "clock": "00:01 / 00:06",
+  "paused": true,
+  "ct": 1.777884,
+  "dur": 6,
+  "muted": true,
+  "vol": 1,
+  "ended": false,
+  "vRect": {
+   "x": 469,
+   "y": 288,
+   "w": 341,
+   "h": 192
+  },
+  "toggleRect": {
+   "x": 484,
+   "y": 458,
+   "w": 10,
+   "h": 10
+  },
+  "muteRect": {
+   "x": 755,
+   "y": 452,
+   "w": 22,
+   "h": 22
+  },
+  "trackRect": {
+   "x": 469,
+   "y": 477,
+   "w": 341,
+   "h": 3
+  },
+  "trackCls": "relative grow cursor-pointer overflow-hidden data-[disabled]:cursor-not-allowed h-canvas-v",
+  "seekAria": [],
+  "innerText": "jimeng-b101-test-avc1 00:01 / 00:06 Seek jimeng-b101-test-avc1 jimeng-b101-test-avc1: Video paused 1 resource: 1 ready, 0 processing, 0 failed. Selected."
+ }
+}

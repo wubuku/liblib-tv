@@ -1,0 +1,589 @@
+{
+ "at": "2026-10-02T10:23:44.275Z",
+ "selfId": "node_fxhrsbbfrz",
+ "landing": {
+  "point": [
+   640,
+   384
+  ],
+  "rect": "627,371 26×26",
+  "hitTestid": null,
+  "hitAria": null,
+  "hitTag": "path",
+  "insideSelfNode": true,
+  "insideTargetBtn": true,
+  "selCount": "1"
+ },
+ "baseline": {
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-simple-player"
+  ],
+  "playerAria": "Play jimeng-b101-test-avc1",
+  "playerTag": "BUTTON",
+  "playerHTML": "<svg class=\"size-[22px] shrink-0\" data-icon=\"canvas-video-play\" aria-hidden=\"true\" color=\"currentColor\" fill=\"none\" focusable=\"false\" height=\"22\" viewBox=\"0 0 22 22\" width=\"22\" xmlns=\"http://www.w3.or",
+  "videos": [],
+  "times": [],
+  "btns": [
+   {
+    "aria": "Rename jimeng-b101-test-avc1",
+    "tid": null,
+    "cv": "230.65×53.33@1825,992"
+   },
+   {
+    "aria": "Add tags",
+    "tid": "flow-node-selected-tag",
+    "cv": "40×40@2321,992"
+   },
+   {
+    "aria": "Create connected node after jimeng-b101-test-avc1",
+    "tid": "flow-node-source-connection-menu-button",
+    "cv": "60×60@2380,1164"
+   },
+   {
+    "aria": "Play jimeng-b101-test-avc1",
+    "tid": "video-simple-player",
+    "cv": "44×44@2055,1184"
+   },
+   {
+    "aria": "替换媒体",
+    "tid": null,
+    "cv": "36×36@2317,1054"
+   }
+  ],
+  "bars": [],
+  "innerText": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 failed. Selected."
+ },
+ "series": [
+  {
+   "t": 350,
+   "playerAria": null,
+   "vids": [
+    {
+     "paused": false,
+     "ct": 0.820108,
+     "dur": 6,
+     "muted": true,
+     "vol": 1,
+     "loop": false,
+     "readyState": 4,
+     "w": 640,
+     "h": 360,
+     "rect": "469,288 341×192"
+    }
+   ],
+   "times": [
+    {
+     "txt": "00:00",
+     "cv": "36×20@1841,1327"
+    },
+    {
+     "txt": "00:06",
+     "cv": "36×20@1889,1327"
+    }
+   ],
+   "bars": [
+    {
+     "role": "slider",
+     "tag": "SPAN",
+     "aria": null,
+     "cv": "0×0@1867,1366"
+    }
+   ],
+   "nBtn": 7
+  },
+  {
+   "t": 700,
+   "playerAria": null,
+   "vids": [
+    {
+     "paused": false,
+     "ct": 1.174848,
+     "dur": 6,
+     "muted": true,
+     "vol": 1,
+     "loop": false,
+     "readyState": 4,
+     "w": 640,
+     "h": 360,
+     "rect": "469,288 341×192"
+    }
+   ],
+   "times": [
+    {
+     "txt": "00:01",
+     "cv": "36×20@1841,1327"
+    },
+    {
+     "txt": "00:06",
+     "cv": "36×20@1889,1327"
+    }
+   ],
+   "bars": [
+    {
+     "role": "slider",
+     "tag": "SPAN",
+     "aria": null,
+     "cv": "0×0@1892,1366"
+    }
+   ],
+   "nBtn": 7
+  },
+  {
+   "t": 1050,
+   "playerAria": null,
+   "vids": [
+    {
+     "paused": false,
+     "ct": 1.530131,
+     "dur": 6,
+     "muted": true,
+     "vol": 1,
+     "loop": false,
+     "readyState": 4,
+     "w": 640,
+     "h": 360,
+     "rect": "469,288 341×192"
+    }
+   ],
+   "times": [
+    {
+     "txt": "00:01",
+     "cv": "36×20@1841,1327"
+    },
+    {
+     "txt": "00:06",
+     "cv": "36×20@1889,1327"
+    }
+   ],
+   "bars": [
+    {
+     "role": "slider",
+     "tag": "SPAN",
+     "aria": null,
+     "cv": "0×0@1917,1366"
+    }
+   ],
+   "nBtn": 7
+  },
+  {
+   "t": 1400,
+   "playerAria": null,
+   "vids": [
+    {
+     "paused": false,
+     "ct": 1.889155,
+     "dur": 6,
+     "muted": true,
+     "vol": 1,
+     "loop": false,
+     "readyState": 4,
+     "w": 640,
+     "h": 360,
+     "rect": "469,288 341×192"
+    }
+   ],
+   "times": [
+    {
+     "txt": "00:01",
+     "cv": "36×20@1841,1327"
+    },
+    {
+     "txt": "00:06",
+     "cv": "36×20@1889,1327"
+    }
+   ],
+   "bars": [
+    {
+     "role": "slider",
+     "tag": "SPAN",
+     "aria": null,
+     "cv": "0×0@1967,1366"
+    }
+   ],
+   "nBtn": 7
+  },
+  {
+   "t": 1750,
+   "playerAria": null,
+   "vids": [
+    {
+     "paused": false,
+     "ct": 2.249143,
+     "dur": 6,
+     "muted": true,
+     "vol": 1,
+     "loop": false,
+     "readyState": 4,
+     "w": 640,
+     "h": 360,
+     "rect": "469,288 341×192"
+    }
+   ],
+   "times": [
+    {
+     "txt": "00:02",
+     "cv": "36×20@1841,1327"
+    },
+    {
+     "txt": "00:06",
+     "cv": "36×20@1889,1327"
+    }
+   ],
+   "bars": [
+    {
+     "role": "slider",
+     "tag": "SPAN",
+     "aria": null,
+     "cv": "0×0@1993,1366"
+    }
+   ],
+   "nBtn": 7
+  },
+  {
+   "t": 2100,
+   "playerAria": null,
+   "vids": [
+    {
+     "paused": false,
+     "ct": 2.606099,
+     "dur": 6,
+     "muted": true,
+     "vol": 1,
+     "loop": false,
+     "readyState": 4,
+     "w": 640,
+     "h": 360,
+     "rect": "469,288 341×192"
+    }
+   ],
+   "times": [
+    {
+     "txt": "00:02",
+     "cv": "36×20@1841,1327"
+    },
+    {
+     "txt": "00:06",
+     "cv": "36×20@1889,1327"
+    }
+   ],
+   "bars": [
+    {
+     "role": "slider",
+     "tag": "SPAN",
+     "aria": null,
+     "cv": "0×0@2018,1366"
+    }
+   ],
+   "nBtn": 7
+  },
+  {
+   "t": 2450,
+   "playerAria": null,
+   "vids": [
+    {
+     "paused": false,
+     "ct": 2.968005,
+     "dur": 6,
+     "muted": true,
+     "vol": 1,
+     "loop": false,
+     "readyState": 4,
+     "w": 640,
+     "h": 360,
+     "rect": "469,288 341×192"
+    }
+   ],
+   "times": [
+    {
+     "txt": "00:02",
+     "cv": "36×20@1841,1327"
+    },
+    {
+     "txt": "00:06",
+     "cv": "36×20@1889,1327"
+    }
+   ],
+   "bars": [
+    {
+     "role": "slider",
+     "tag": "SPAN",
+     "aria": null,
+     "cv": "0×0@2068,1366"
+    }
+   ],
+   "nBtn": 7
+  },
+  {
+   "t": 2800,
+   "playerAria": null,
+   "vids": [
+    {
+     "paused": false,
+     "ct": 3.322489,
+     "dur": 6,
+     "muted": true,
+     "vol": 1,
+     "loop": false,
+     "readyState": 4,
+     "w": 640,
+     "h": 360,
+     "rect": "469,288 341×192"
+    }
+   ],
+   "times": [
+    {
+     "txt": "00:03",
+     "cv": "36×20@1841,1327"
+    },
+    {
+     "txt": "00:06",
+     "cv": "36×20@1889,1327"
+    }
+   ],
+   "bars": [
+    {
+     "role": "slider",
+     "tag": "SPAN",
+     "aria": null,
+     "cv": "0×0@2093,1366"
+    }
+   ],
+   "nBtn": 7
+  },
+  {
+   "t": 3150,
+   "playerAria": null,
+   "vids": [
+    {
+     "paused": false,
+     "ct": 3.686457,
+     "dur": 6,
+     "muted": true,
+     "vol": 1,
+     "loop": false,
+     "readyState": 4,
+     "w": 640,
+     "h": 360,
+     "rect": "469,288 341×192"
+    }
+   ],
+   "times": [
+    {
+     "txt": "00:03",
+     "cv": "36×20@1841,1327"
+    },
+    {
+     "txt": "00:06",
+     "cv": "36×20@1889,1327"
+    }
+   ],
+   "bars": [
+    {
+     "role": "slider",
+     "tag": "SPAN",
+     "aria": null,
+     "cv": "0×0@2118,1366"
+    }
+   ],
+   "nBtn": 7
+  },
+  {
+   "t": 3500,
+   "playerAria": null,
+   "vids": [
+    {
+     "paused": false,
+     "ct": 4.061729,
+     "dur": 6,
+     "muted": true,
+     "vol": 1,
+     "loop": false,
+     "readyState": 4,
+     "w": 640,
+     "h": 360,
+     "rect": "469,288 341×192"
+    }
+   ],
+   "times": [
+    {
+     "txt": "00:03",
+     "cv": "36×20@1841,1327"
+    },
+    {
+     "txt": "00:06",
+     "cv": "36×20@1889,1327"
+    }
+   ],
+   "bars": [
+    {
+     "role": "slider",
+     "tag": "SPAN",
+     "aria": null,
+     "cv": "0×0@2169,1366"
+    }
+   ],
+   "nBtn": 7
+  }
+ ],
+ "during": {
+  "testids": [
+   "video-flow-node-surface",
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-node-player-bar",
+   "video-node-player-controls",
+   "video-node-playback-toggle",
+   "video-node-player-clock",
+   "video-node-mute-toggle",
+   "video-node-fullscreen-toggle",
+   "slider-track"
+  ],
+  "playerAria": null,
+  "playerTag": null,
+  "playerHTML": null,
+  "videos": [
+   {
+    "paused": false,
+    "ct": 4.068774,
+    "dur": 6,
+    "muted": true,
+    "vol": 1,
+    "loop": false,
+    "readyState": 4,
+    "w": 640,
+    "h": 360,
+    "rect": "469,288 341×192"
+   }
+  ],
+  "times": [
+   {
+    "txt": "00:03",
+    "cv": "36×20@1841,1327"
+   },
+   {
+    "txt": "00:06",
+    "cv": "36×20@1889,1327"
+   }
+  ],
+  "btns": [
+   {
+    "aria": "Rename jimeng-b101-test-avc1",
+    "tid": null,
+    "cv": "230.65×53.33@1825,992"
+   },
+   {
+    "aria": "Add tags",
+    "tid": "flow-node-selected-tag",
+    "cv": "40×40@2321,992"
+   },
+   {
+    "aria": "Create connected node after jimeng-b101-test-avc1",
+    "tid": "flow-node-source-connection-menu-button",
+    "cv": "60×60@2380,1164"
+   },
+   {
+    "aria": "Pause jimeng-b101-test-avc1",
+    "tid": "video-node-playback-toggle",
+    "cv": "16×16@1817,1329"
+   },
+   {
+    "aria": "Unmute video",
+    "tid": "video-node-mute-toggle",
+    "cv": "36×36@2269,1319"
+   },
+   {
+    "aria": "Enter browser full screen",
+    "tid": "video-node-fullscreen-toggle",
+    "cv": "36×36@2313,1319"
+   },
+   {
+    "aria": "替换媒体",
+    "tid": null,
+    "cv": "36×36@2317,1054"
+   }
+  ],
+  "bars": [
+   {
+    "role": "slider",
+    "tag": "SPAN",
+    "aria": null,
+    "cv": "0×0@2169,1366"
+   }
+  ],
+  "innerText": "jimeng-b101-test-avc1 00:03 / 00:06 Seek jimeng-b101-test-avc1 jimeng-b101-test-avc1: Playing video 1 resource: 1 ready, 0 processing, 0 failed. Selected."
+ },
+ "mo": {
+  "added": [
+   "+VIDEO[jimeng-b101-test-avc1 player]",
+   "+DIV#video-node-player-bar",
+   "+SPAN",
+   "+svg"
+  ],
+  "removed": [
+   "-SPAN",
+   "-INPUT",
+   "-svg"
+  ],
+  "attrs": [
+   "~SPAN:style=",
+   "~slider-track:class=relative grow cursor-pointer overflow-hidden data-[disabled]:cursor-not-allowed h-canvas-video-node-player-progress rounded-canvas-video-node-player-progress border-0 bg-no-repeat [background-size:48%_100%,100%_100%] shadow-canvas-video-node-player-none bg-canvas-video-node-player-progress-track",
+   "~SPAN:class=absolute h-full bg-canvas-video-progress-buffering-shimmer bg-no-repeat [background-size:48%_100%,100%_100%] motion-safe:animate-canvas-video-progress-shimmer motion-reduce:animate-none",
+   "~video-node-playback-toggle:aria-label=Pause jimeng-b101-test-avc1",
+   "~SPAN:style=left: 0%; right: 99.9789%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(0.0211167% + 0px);",
+   "~SPAN:class=absolute h-full bg-canvas-video-node-player-progress-fill",
+   "~SPAN:style=left: 0%; right: 99.9625%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(0.0375167% + 0px);",
+   "~VIDEO:class=h-full w-full rounded-canvas-media-node-preview object-cover [&:fullscreen]:object-contain visible",
+   "~SPAN:style=left: 0%; right: 95.7652%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(4.23475% + 0px);",
+   "~SPAN:style=left: 0%; right: 91.3476%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(8.65237% + 0px);",
+   "~SPAN:style=left: 0%; right: 86.9201%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(13.0799% + 0px);",
+   "~SPAN:style=left: 0%; right: 82.4753%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(17.5248% + 0px);",
+   "~SPAN:style=left: 0%; right: 78.0648%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(21.9352% + 0px);",
+   "~SPAN:style=left: 0%; right: 73.6221%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(26.3779% + 0px);",
+   "~SPAN:style=left: 0%; right: 69.2096%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(30.7904% + 0px);",
+   "~SPAN:style=left: 0%; right: 64.7768%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(35.2232% + 0px);",
+   "~SPAN:style=left: 0%; right: 60.3573%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(39.6427% + 0px);",
+   "~SPAN:style=left: 0%; right: 55.9243%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(44.0757% + 0px);",
+   "~SPAN:style=left: 0%; right: 51.485%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(48.515% + 0px);",
+   "~SPAN:style=left: 0%; right: 47.069%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(52.931% + 0px);",
+   "~SPAN:style=left: 0%; right: 42.6414%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(57.3586% + 0px);",
+   "~SPAN:style=left: 0%; right: 38.2182%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(61.7818% + 0px);",
+   "~SPAN:style=left: 0%; right: 33.7926%;",
+   "~SPAN:style=transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(66.2074% + 0px);"
+  ]
+ }
+}

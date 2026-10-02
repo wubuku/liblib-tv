@@ -1,0 +1,80 @@
+{
+ "at": "2026-10-02T10:44:44.230Z",
+ "selfId": "node_fxhrsbbfrz",
+ "scalePair": [
+  0.6,
+  0.6
+ ],
+ "z0": {
+  "a": 0.6,
+  "b": 0.6,
+  "same": true
+ },
+ "z1": {
+  "a": 1,
+  "b": 1,
+  "same": true
+ },
+ "nodeLoc": {
+  "screen": "356,250 569×320",
+  "inViewport": true,
+  "sel": false
+ },
+ "playing": {
+  "ct": 6,
+  "paused": true,
+  "clock": null,
+  "inViewport": true
+ },
+ "crop": {
+  "clip": {
+   "x": 315,
+   "y": 208,
+   "width": 649,
+   "height": 372
+  },
+  "nodeRect": "356,250 569×320",
+  "union": "326,218 629×352",
+  "otherNodes": [
+   "node_9y4j9jf0qv",
+   "node_d4tjtpnatq"
+  ],
+  "semantic": [
+   "DIV[时间线 node: 时间线 2]",
+   "DIV[暂无音频. No resources: 0 ready, 0 processing, 0 failed. Not selected.]",
+   "DIV[音频 node: 音频 6]",
+   "DIV[Canvas]",
+   "SECTION[Canvas editing area]",
+   "MAIN[Canvas workspace]"
+  ],
+  "present": [
+   "flow-node-title"
+  ],
+  "targets": [
+   "video-flow-node-surface",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "image-primary-preview-viewport",
+   "video-passive-preview",
+   "video-node-result",
+   "video-hover-surface",
+   "video-play-overlay-indicator",
+   "jimeng-b101-test-avc1 player",
+   "替换媒体"
+  ]
+ },
+ "guardPass": false,
+ "restore": [
+  {
+   "k": 0,
+   "pair": [
+    0.6,
+    0.6
+   ],
+   "same": true,
+   "label": "Zoom options, 60%"
+  }
+ ]
+}

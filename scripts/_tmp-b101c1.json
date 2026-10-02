@@ -1,0 +1,246 @@
+{
+ "at": "2026-10-02T10:21:16.911Z",
+ "selfId": "node_fxhrsbbfrz",
+ "deep": {
+  "present": true,
+  "scale": 0.6,
+  "canvasOrigin": [
+   1792.13,
+   1045.58
+  ],
+  "rows": [
+   {
+    "tag": "DIV",
+    "depth": 0,
+    "tid": "video-flow-node-surface",
+    "txt": "jimeng-b101-test-avc1 1 resource: 1 ready, 0 processing, 0 f",
+    "cls": "group relative flex min-h-32 min-w-40 flex-col overflow-visi",
+    "rect": "469,288 341×192",
+    "cv": {
+     "w": 568.88,
+     "h": 320,
+     "x": 1792,
+     "y": 1046
+    }
+   },
+   {
+    "tag": "DIV",
+    "depth": 0,
+    "tid": "flow-node-media-stroke",
+    "cls": "pointer-events-none absolute z-canvas-node-interaction-strok",
+    "rect": "465,284 349×200",
+    "cv": {
+     "w": 582.21,
+     "h": 333.33,
+     "x": 1785,
+     "y": 1039
+    }
+   },
+   {
+    "tag": "DIV",
+    "depth": 0,
+    "tid": "flow-node-target-handle",
+    "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top",
+    "rect": "451,348 36×72",
+    "cv": {
+     "w": 60,
+     "h": 120,
+     "x": 1762,
+     "y": 1146
+    }
+   },
+   {
+    "tag": "DIV",
+    "depth": 0,
+    "tid": "flow-node-title",
+    "txt": "jimeng-b101-test-avc1",
+    "cls": "absolute z-[10] flex text-left font-dreamina-cn text-dreamin",
+    "rect": "469,256 158×32",
+    "cv": {
+     "w": 263.98,
+     "h": 53.33,
+     "x": 1792,
+     "y": 992
+    }
+   },
+   {
+    "tag": "BUTTON",
+    "depth": 0,
+    "aria": "Rename jimeng-b101-test-avc1",
+    "txt": "jimeng-b101-test-avc1",
+    "cls": "gap-1 border-solid font-dreamina-cn motion-safe:transition-c",
+    "rect": "489,256 138×32",
+    "cv": {
+     "w": 230.65,
+     "h": 53.33,
+     "x": 1825,
+     "y": 992
+    }
+   },
+   {
+    "tag": "SPAN",
+    "depth": 0,
+    "txt": "jimeng-b101-test-avc1",
+    "cls": "min-w-canvas-zero max-w-full whitespace-nowrap text-[13px] l",
+    "rect": "489,256 138×24",
+    "cv": {
+     "w": 230.65,
+     "h": 40,
+     "x": 1825,
+     "y": 992
+    }
+   },
+   {
+    "tag": "BUTTON",
+    "depth": 0,
+    "tid": "flow-node-selected-tag",
+    "aria": "Add tags",
+    "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+    "rect": "787,256 24×24",
+    "cv": {
+     "w": 40,
+     "h": 40,
+     "x": 2321,
+     "y": 992
+    }
+   },
+   {
+    "tag": "DIV",
+    "depth": 0,
+    "tid": "flow-node-source-handle",
+    "cls": "react-flow__handle react-flow__handle-right nodrag nopan !to",
+    "rect": "793,348 36×72",
+    "cv": {
+     "w": 60,
+     "h": 120,
+     "x": 2331,
+     "y": 1146
+    }
+   },
+   {
+    "tag": "BUTTON",
+    "depth": 0,
+    "tid": "flow-node-source-connection-menu-button",
+    "aria": "Create connected node after jimeng-b101-test-avc1",
+    "cls": "inline-flex size-9 shrink-0 items-center justify-center roun",
+    "rect": "822,359 36×36",
+    "cv": {
+     "w": 60,
+     "h": 60,
+     "x": 2380,
+     "y": 1164
+    }
+   },
+   {
+    "tag": "DIV",
+    "depth": 0,
+    "tid": "image-primary-preview-viewport",
+    "cls": "absolute inset-0 h-full w-full overflow-hidden rounded-canva",
+    "rect": "469,288 341×192",
+    "cv": {
+     "w": 568.88,
+     "h": 320,
+     "x": 1792,
+     "y": 1046
+    }
+   },
+   {
+    "tag": "IMG",
+    "depth": 0,
+    "tid": "video-passive-preview",
+    "cls": "absolute inset-0 h-full w-full object-cover ",
+    "rect": "469,288 341×192",
+    "cv": {
+     "w": 568.88,
+     "h": 320,
+     "x": 1792,
+     "y": 1046
+    }
+   },
+   {
+    "tag": "DIV",
+    "depth": 0,
+    "tid": "video-node-result",
+    "cls": "group/media-result relative flex shrink-0 h-full w-full",
+    "rect": "469,288 341×192",
+    "cv": {
+     "w": 568.88,
+     "h": 320,
+     "x": 1792,
+     "y": 1046
+    }
+   },
+   {
+    "tag": "DIV",
+    "depth": 0,
+    "tid": "video-hover-surface",
+    "cls": "relative h-full w-full overflow-hidden",
+    "rect": "469,288 341×192",
+    "cv": {
+     "w": 568.88,
+     "h": 320,
+     "x": 1792,
+     "y": 1046
+    }
+   },
+   {
+    "tag": "BUTTON",
+    "depth": 0,
+    "tid": "video-simple-player",
+    "aria": "Play jimeng-b101-test-avc1",
+    "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+    "rect": "627,371 26×26",
+    "cv": {
+     "w": 44,
+     "h": 44,
+     "x": 2055,
+     "y": 1184
+    }
+   },
+   {
+    "tag": "BUTTON",
+    "depth": 0,
+    "aria": "替换媒体",
+    "cls": "inline-flex size-9 shrink-0 items-center justify-center roun",
+    "rect": "784,293 22×22",
+    "cv": {
+     "w": 36,
+     "h": 36,
+     "x": 2317,
+     "y": 1054
+    }
+   },
+   {
+    "tag": "SPAN",
+    "depth": 0,
+    "txt": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+    "cls": "sr-only",
+    "rect": "469,287 1×1",
+    "cv": {
+     "w": 1,
+     "h": 1,
+     "x": 1791,
+     "y": 1045
+    }
+   }
+  ]
+ },
+ "findings": {
+  "timeish": [],
+  "bars": [],
+  "canvasEls": [],
+  "player": {
+   "rect": "627,371 26×26",
+   "childTags": [
+    "svg",
+    "path"
+   ],
+   "hasVideo": false,
+   "hasImg": false
+  },
+  "preview": {
+   "tag": "IMG",
+   "children": []
+  }
+ }
+}
