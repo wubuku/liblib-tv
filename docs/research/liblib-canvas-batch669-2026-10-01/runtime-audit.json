@@ -1,0 +1,3239 @@
+{
+ "verifier": {
+  "cells": [
+   "1280x1150",
+   "1440x1150",
+   "1920x1150"
+  ],
+  "groupCounts": {
+   "1280x1150": 26,
+   "1440x1150": 26,
+   "1920x1150": 26
+  },
+  "mixedCounts": {
+   "1280x1150": 4,
+   "1440x1150": 4,
+   "1920x1150": 4
+  },
+  "controlCounts": {
+   "1280x1150": 130,
+   "1440x1150": 130,
+   "1920x1150": 130
+  },
+  "nonInteger": {
+   "1280x1150": 60,
+   "1440x1150": 60,
+   "1920x1150": 60
+  },
+  "exactHalf": {
+   "1280x1150": 52,
+   "1440x1150": 52,
+   "1920x1150": 52
+  },
+  "leftGapValues": [
+   0,
+   0.48,
+   0.98
+  ],
+  "gapRows": 21,
+  "rowsWithAbout1px": 6,
+  "hitWidthMismatch": 15,
+  "mixedMembers": [
+   "<canvas>",
+   "<div>",
+   "absolute.inset-0",
+   "absolute.inset-0.pointer-events-auto",
+   "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0",
+   "absolute.right-5.top-5.z-20",
+   "group.relative.grid.h-8",
+   "pointer-events-none.absolute.inset-0.drop-shadow-[0_2px_5px_rgba(0,0,0,0.48)]",
+   "pointer-events-none.absolute.inset-x-0.inset-y-0",
+   "relative.h-full.min-h-0.min-w-0"
+  ]
+ },
+ "cells": {
+  "1280x1150": {
+   "W": 1280,
+   "H": 1150,
+   "sameBoxGroups": 26,
+   "mixedPeGroups": 4,
+   "mixed": [
+    {
+     "box": "281,88,718,880",
+     "n": 6,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 631840,
+     "members": [
+      {
+       "ident": "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0",
+       "pe": "auto",
+       "pos": "absolute",
+       "z": "auto"
+      },
+      {
+       "ident": "relative.h-full.min-h-0.min-w-0",
+       "pe": "auto",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "absolute.inset-0",
+       "pe": "auto",
+       "pos": "absolute",
+       "z": "auto"
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "pos": "static",
+       "z": "auto"
+      },
+      {
+       "ident": "<canvas>",
+       "pe": "none",
+       "pos": "static",
+       "z": "auto"
+      }
+     ],
+     "edges": [
+      {
+       "ident": "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0",
+       "pe": "auto",
+       "leftGap": 0,
+       "rightGap": 1,
+       "hitWidth": 717,
+       "rectWidth": 718
+      },
+      {
+       "ident": "relative.h-full.min-h-0.min-w-0",
+       "pe": "auto",
+       "leftGap": 0,
+       "rightGap": 1,
+       "hitWidth": 717,
+       "rectWidth": 718
+      },
+      {
+       "ident": "absolute.inset-0",
+       "pe": "auto",
+       "leftGap": 0,
+       "rightGap": 1,
+       "hitWidth": 717,
+       "rectWidth": 718
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 718
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 718
+      },
+      {
+       "ident": "<canvas>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 718
+      }
+     ]
+    },
+    {
+     "box": "899,108,80,80",
+     "n": 6,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 6400,
+     "members": [
+      {
+       "ident": "absolute.right-5.top-5.z-20",
+       "pe": "auto",
+       "pos": "absolute",
+       "z": "20"
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-0.drop-shadow-[0_2px_5px_rgba(0,0,0,0.48)]",
+       "pe": "none",
+       "pos": "absolute",
+       "z": "auto"
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "pos": "static",
+       "z": "auto"
+      },
+      {
+       "ident": "<canvas>",
+       "pe": "none",
+       "pos": "static",
+       "z": "auto"
+      },
+      {
+       "ident": "absolute.inset-0.pointer-events-auto",
+       "pe": "auto",
+       "pos": "absolute",
+       "z": "auto"
+      }
+     ],
+     "edges": [
+      {
+       "ident": "absolute.right-5.top-5.z-20",
+       "pe": "auto",
+       "leftGap": 0.98,
+       "rightGap": 0.02,
+       "hitWidth": 80.96,
+       "rectWidth": 80
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-0.drop-shadow-[0_2px_5px_rgba(0,0,0,0.48)]",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 80
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 80
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 80
+      },
+      {
+       "ident": "<canvas>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 80
+      },
+      {
+       "ident": "absolute.inset-0.pointer-events-auto",
+       "pe": "auto",
+       "leftGap": 0.98,
+       "rightGap": 0.02,
+       "hitWidth": 80.96,
+       "rectWidth": 80
+      }
+     ]
+    },
+    {
+     "box": "0,1041,320,32",
+     "n": 2,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 10240,
+     "members": [
+      {
+       "ident": "group.relative.grid.h-8",
+       "pe": "auto",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+       "pe": "none",
+       "pos": "absolute",
+       "z": "auto"
+      }
+     ],
+     "edges": [
+      {
+       "ident": "group.relative.grid.h-8",
+       "pe": "auto",
+       "leftGap": 0.48,
+       "rightGap": 0.02,
+       "hitWidth": 320.46,
+       "rectWidth": 320
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 320
+      }
+     ]
+    },
+    {
+     "box": "0,1105,320,32",
+     "n": 2,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 10240,
+     "members": [
+      {
+       "ident": "group.relative.grid.h-8",
+       "pe": "auto",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+       "pe": "none",
+       "pos": "absolute",
+       "z": "auto"
+      }
+     ],
+     "edges": [
+      {
+       "ident": "group.relative.grid.h-8",
+       "pe": "auto",
+       "leftGap": 0.48,
+       "rightGap": 0.02,
+       "hitWidth": 320.46,
+       "rectWidth": 320
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 320
+      }
+     ]
+    }
+   ],
+   "all": [
+    {
+     "box": "281,88,718,880",
+     "n": 6,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 631840
+    },
+    {
+     "box": "899,108,80,80",
+     "n": 6,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 6400
+    },
+    {
+     "box": "280,87,1,1",
+     "n": 3,
+     "pes": [
+      "auto"
+     ],
+     "area": 1
+    },
+    {
+     "box": "999,52,281,916",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 257396
+    },
+    {
+     "box": "322,1005,958,145",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 138910
+    },
+    {
+     "box": "0,1041,320,32",
+     "n": 2,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 10240
+    },
+    {
+     "box": "0,1105,320,32",
+     "n": 2,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 10240
+    },
+    {
+     "box": "56,200,216,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 6912
+    },
+    {
+     "box": "56,408,216,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 6912
+    },
+    {
+     "box": "555,8,170,36",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 6120
+    },
+    {
+     "box": "323,56,177,28",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 4956
+    },
+    {
+     "box": "1164,973,108,28",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 3024
+    },
+    {
+     "box": "1178,10,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,116,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,156,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,196,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,236,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,276,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,60,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "66,209,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "66,281,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "66,313,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "66,345,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "66,417,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "16,22,8,8",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 64
+    },
+    {
+     "box": "255,150,7,7",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 49
+    }
+   ],
+   "controlCount": 130,
+   "nonIntegerCenters": 60,
+   "exactHalf": 52,
+   "fracPairs": {
+    "0/0.5": 21,
+    "0.5/0": 20,
+    "0.33/0.5": 1,
+    "0.16/0.5": 2,
+    "0/0.25": 2,
+    "0.22/0.06": 1,
+    "0.23/0.05": 1,
+    "0/0.48": 1,
+    "0/0.47": 1,
+    "0.38/0.08": 1,
+    "0.39/0.09": 1,
+    "0.5/0.5": 4,
+    "0.44/0.5": 2,
+    "0.13/0.5": 2
+   },
+   "nonIntegerList": [
+    {
+     "name": "关闭",
+     "ident": "flex.size-10.shrink-0.items-center",
+     "cx": 20,
+     "cy": 25.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "收起",
+     "ident": "flex.size-10.shrink-0.items-center",
+     "cx": 260,
+     "cy": 25.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "导演视角",
+     "ident": "flex.h-8.min-w-0.flex-1",
+     "cx": 598.5,
+     "cy": 26,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "机位视角",
+     "ident": "flex.h-8.min-w-0.flex-1",
+     "cx": 681.5,
+     "cy": 26,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "导出导演台项目",
+     "ident": "flex.h-8.w-8.items-center",
+     "cx": 1194.33,
+     "cy": 25.5,
+     "fracX": 0.33,
+     "fracY": 0.5
+    },
+    {
+     "name": "导入导演台项目",
+     "ident": "flex.h-8.w-8.items-center",
+     "cx": 1235.16,
+     "cy": 25.5,
+     "fracX": 0.16,
+     "fracY": 0.5
+    },
+    {
+     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 411.16,
+     "cy": 69.5,
+     "fracX": 0.16,
+     "fracY": 0.5
+    },
+    {
+     "name": "打组",
+     "ident": "flex.h-7.flex-1.items-center",
+     "cx": 109,
+     "cy": 117.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "解组",
+     "ident": "flex.h-7.flex-1.items-center",
+     "cx": 219,
+     "cy": 117.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "复制当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 194,
+     "cy": 153.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "删除当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 226,
+     "cy": 153.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "清除当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 258,
+     "cy": 153.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "场景",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 76,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "添加角色",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 132,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "添加机位",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 172,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "全景图",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 212,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "选择画幅比例",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 252,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "AI 识图导入",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 292,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "帮助",
+     "ident": "mt-auto.flex.size-8.items-center",
+     "cx": 23.5,
+     "cy": 1126,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "重置视角",
+     "ident": "absolute.right-0.top-[calc(100%+8px)].whitespace-nowrap",
+     "cx": 948,
+     "cy": 209.25,
+     "fracX": 0,
+     "fracY": 0.25
+    },
+    {
+     "name": "X 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 961.22,
+     "cy": 153.94,
+     "fracX": 0.22,
+     "fracY": 0.06
+    },
+    {
+     "name": "X 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 916.77,
+     "cy": 142.05,
+     "fracX": 0.23,
+     "fracY": 0.05
+    },
+    {
+     "name": "Y 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 939,
+     "cy": 120.52,
+     "fracX": 0,
+     "fracY": 0.48
+    },
+    {
+     "name": "Y 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 939,
+     "cy": 175.47,
+     "fracX": 0,
+     "fracY": 0.47
+    },
+    {
+     "name": "Z 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 920.38,
+     "cy": 155.08,
+     "fracX": 0.38,
+     "fracY": 0.08
+    },
+    {
+     "name": "Z 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 957.61,
+     "cy": 140.91,
+     "fracX": 0.39,
+     "fracY": 0.09
+    },
+    {
+     "name": "描述想搭建的场景",
+     "ident": "col-start-2.row-start-1.min-w-0.bg-transparent",
+     "cx": 1124.5,
+     "cy": 945,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1045.5,
+     "cy": 356,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1129.5,
+     "cy": 356,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1213.5,
+     "cy": 356,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1045.5,
+     "cy": 428,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1129.5,
+     "cy": 428,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1213.5,
+     "cy": 428,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1045.5,
+     "cy": 500,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1129.5,
+     "cy": 500,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1213.5,
+     "cy": 500,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "统一缩放",
+     "ident": "w-24.accent-[#09caf5]",
+     "cx": 1176,
+     "cy": 534.25,
+     "fracX": 0,
+     "fracY": 0.25
+    },
+    {
+     "name": "颜色 hex 值",
+     "ident": "h-6.w-[68px].rounded.border",
+     "cx": 1188,
+     "cy": 566.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "颜色",
+     "ident": "h-6.w-9.rounded.border-0",
+     "cx": 1246,
+     "cy": 566.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "下一步",
+     "ident": "pointer-events-auto.h-7.rounded-lg.bg-white/10",
+     "cx": 374.5,
+     "cy": 1972,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "播放",
+     "ident": "flex.h-6.w-[26px].shrink-0",
+     "cx": 21,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "自动帧",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "cx": 46,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "循环播放",
+     "ident": "flex.h-6.w-[26px].shrink-0",
+     "cx": 71,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "播放头位置",
+     "ident": "h-6.w-[46px].shrink-0.border-0",
+     "cx": 111,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "总时长",
+     "ident": "h-6.w-[46px].shrink-0.border-0",
+     "cx": 158,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "切换时间单位为 s",
+     "ident": "flex.h-6.w-[33px].shrink-0",
+     "cx": 198.5,
+     "cy": 986.5,
+     "fracX": 0.5,
+     "fracY": 0.5
+    },
+    {
+     "name": "选中角色、道具或分组后建立轨道",
+     "ident": "ml-[15px].flex.h-6.w-[82px]",
+     "cx": 271,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "预设运镜",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 350.5,
+     "cy": 986.5,
+     "fracX": 0.5,
+     "fracY": 0.5
+    },
+    {
+     "name": "创建运动轨迹",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 438.5,
+     "cy": 986.5,
+     "fracX": 0.5,
+     "fracY": 0.5
+    },
+    {
+     "name": "曲线编辑器",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 532,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "轨道",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 603.5,
+     "cy": 986.5,
+     "fracX": 0.5,
+     "fracY": 0.5
+    },
+    {
+     "name": "移除角色01 · 陈默 · 变换轨道",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 645,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "添加关键帧",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 703,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "删除关键帧",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 761,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 331,
+     "cy": 1088.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 1211.56,
+     "cy": 1088.5,
+     "fracX": 0.44,
+     "fracY": 0.5
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 2092.13,
+     "cy": 1088.5,
+     "fracX": 0.13,
+     "fracY": 0.5
+    },
+    {
+     "name": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 331,
+     "cy": 1152.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 1211.56,
+     "cy": 1152.5,
+     "fracX": 0.44,
+     "fracY": 0.5
+    },
+    {
+     "name": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 2092.13,
+     "cy": 1152.5,
+     "fracX": 0.13,
+     "fracY": 0.5
+    }
+   ]
+  },
+  "1440x1150": {
+   "W": 1440,
+   "H": 1150,
+   "sameBoxGroups": 26,
+   "mixedPeGroups": 4,
+   "mixed": [
+    {
+     "box": "281,88,878,880",
+     "n": 6,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 772640,
+     "members": [
+      {
+       "ident": "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0",
+       "pe": "auto",
+       "pos": "absolute",
+       "z": "auto"
+      },
+      {
+       "ident": "relative.h-full.min-h-0.min-w-0",
+       "pe": "auto",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "absolute.inset-0",
+       "pe": "auto",
+       "pos": "absolute",
+       "z": "auto"
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "pos": "static",
+       "z": "auto"
+      },
+      {
+       "ident": "<canvas>",
+       "pe": "none",
+       "pos": "static",
+       "z": "auto"
+      }
+     ],
+     "edges": [
+      {
+       "ident": "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0",
+       "pe": "auto",
+       "leftGap": 0,
+       "rightGap": 1,
+       "hitWidth": 877,
+       "rectWidth": 878
+      },
+      {
+       "ident": "relative.h-full.min-h-0.min-w-0",
+       "pe": "auto",
+       "leftGap": 0,
+       "rightGap": 1,
+       "hitWidth": 877,
+       "rectWidth": 878
+      },
+      {
+       "ident": "absolute.inset-0",
+       "pe": "auto",
+       "leftGap": 0,
+       "rightGap": 1,
+       "hitWidth": 877,
+       "rectWidth": 878
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 878
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 878
+      },
+      {
+       "ident": "<canvas>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 878
+      }
+     ]
+    },
+    {
+     "box": "1059,108,80,80",
+     "n": 6,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 6400,
+     "members": [
+      {
+       "ident": "absolute.right-5.top-5.z-20",
+       "pe": "auto",
+       "pos": "absolute",
+       "z": "20"
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-0.drop-shadow-[0_2px_5px_rgba(0,0,0,0.48)]",
+       "pe": "none",
+       "pos": "absolute",
+       "z": "auto"
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "pos": "static",
+       "z": "auto"
+      },
+      {
+       "ident": "<canvas>",
+       "pe": "none",
+       "pos": "static",
+       "z": "auto"
+      },
+      {
+       "ident": "absolute.inset-0.pointer-events-auto",
+       "pe": "auto",
+       "pos": "absolute",
+       "z": "auto"
+      }
+     ],
+     "edges": [
+      {
+       "ident": "absolute.right-5.top-5.z-20",
+       "pe": "auto",
+       "leftGap": 0.98,
+       "rightGap": 0.02,
+       "hitWidth": 80.96,
+       "rectWidth": 80
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-0.drop-shadow-[0_2px_5px_rgba(0,0,0,0.48)]",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 80
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 80
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 80
+      },
+      {
+       "ident": "<canvas>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 80
+      },
+      {
+       "ident": "absolute.inset-0.pointer-events-auto",
+       "pe": "auto",
+       "leftGap": 0.98,
+       "rightGap": 0.02,
+       "hitWidth": 80.96,
+       "rectWidth": 80
+      }
+     ]
+    },
+    {
+     "box": "0,1041,320,32",
+     "n": 2,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 10240,
+     "members": [
+      {
+       "ident": "group.relative.grid.h-8",
+       "pe": "auto",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+       "pe": "none",
+       "pos": "absolute",
+       "z": "auto"
+      }
+     ],
+     "edges": [
+      {
+       "ident": "group.relative.grid.h-8",
+       "pe": "auto",
+       "leftGap": 0.48,
+       "rightGap": 0.02,
+       "hitWidth": 320.46,
+       "rectWidth": 320
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 320
+      }
+     ]
+    },
+    {
+     "box": "0,1105,320,32",
+     "n": 2,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 10240,
+     "members": [
+      {
+       "ident": "group.relative.grid.h-8",
+       "pe": "auto",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+       "pe": "none",
+       "pos": "absolute",
+       "z": "auto"
+      }
+     ],
+     "edges": [
+      {
+       "ident": "group.relative.grid.h-8",
+       "pe": "auto",
+       "leftGap": 0.48,
+       "rightGap": 0.02,
+       "hitWidth": 320.46,
+       "rectWidth": 320
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 320
+      }
+     ]
+    }
+   ],
+   "all": [
+    {
+     "box": "281,88,878,880",
+     "n": 6,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 772640
+    },
+    {
+     "box": "1059,108,80,80",
+     "n": 6,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 6400
+    },
+    {
+     "box": "280,87,1,1",
+     "n": 3,
+     "pes": [
+      "auto"
+     ],
+     "area": 1
+    },
+    {
+     "box": "1159,52,281,916",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 257396
+    },
+    {
+     "box": "322,1005,1118,145",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 162110
+    },
+    {
+     "box": "0,1041,320,32",
+     "n": 2,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 10240
+    },
+    {
+     "box": "0,1105,320,32",
+     "n": 2,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 10240
+    },
+    {
+     "box": "56,200,216,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 6912
+    },
+    {
+     "box": "56,408,216,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 6912
+    },
+    {
+     "box": "635,8,170,36",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 6120
+    },
+    {
+     "box": "323,56,177,28",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 4956
+    },
+    {
+     "box": "1324,973,108,28",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 3024
+    },
+    {
+     "box": "1338,10,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,116,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,156,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,196,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,236,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,276,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,60,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "66,209,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "66,281,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "66,313,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "66,345,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "66,417,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "16,22,8,8",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 64
+    },
+    {
+     "box": "255,150,7,7",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 49
+    }
+   ],
+   "controlCount": 130,
+   "nonIntegerCenters": 60,
+   "exactHalf": 52,
+   "fracPairs": {
+    "0/0.5": 21,
+    "0.5/0": 20,
+    "0.33/0.5": 1,
+    "0.16/0.5": 2,
+    "0/0.25": 2,
+    "0.22/0.06": 1,
+    "0.23/0.05": 1,
+    "0/0.48": 1,
+    "0/0.47": 1,
+    "0.38/0.08": 1,
+    "0.39/0.09": 1,
+    "0.5/0.5": 4,
+    "0.44/0.5": 2,
+    "0.13/0.5": 2
+   },
+   "nonIntegerList": [
+    {
+     "name": "关闭",
+     "ident": "flex.size-10.shrink-0.items-center",
+     "cx": 20,
+     "cy": 25.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "收起",
+     "ident": "flex.size-10.shrink-0.items-center",
+     "cx": 260,
+     "cy": 25.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "导演视角",
+     "ident": "flex.h-8.min-w-0.flex-1",
+     "cx": 678.5,
+     "cy": 26,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "机位视角",
+     "ident": "flex.h-8.min-w-0.flex-1",
+     "cx": 761.5,
+     "cy": 26,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "导出导演台项目",
+     "ident": "flex.h-8.w-8.items-center",
+     "cx": 1354.33,
+     "cy": 25.5,
+     "fracX": 0.33,
+     "fracY": 0.5
+    },
+    {
+     "name": "导入导演台项目",
+     "ident": "flex.h-8.w-8.items-center",
+     "cx": 1395.16,
+     "cy": 25.5,
+     "fracX": 0.16,
+     "fracY": 0.5
+    },
+    {
+     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 411.16,
+     "cy": 69.5,
+     "fracX": 0.16,
+     "fracY": 0.5
+    },
+    {
+     "name": "打组",
+     "ident": "flex.h-7.flex-1.items-center",
+     "cx": 109,
+     "cy": 117.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "解组",
+     "ident": "flex.h-7.flex-1.items-center",
+     "cx": 219,
+     "cy": 117.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "复制当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 194,
+     "cy": 153.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "删除当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 226,
+     "cy": 153.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "清除当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 258,
+     "cy": 153.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "场景",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 76,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "添加角色",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 132,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "添加机位",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 172,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "全景图",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 212,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "选择画幅比例",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 252,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "AI 识图导入",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 292,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "帮助",
+     "ident": "mt-auto.flex.size-8.items-center",
+     "cx": 23.5,
+     "cy": 1126,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "重置视角",
+     "ident": "absolute.right-0.top-[calc(100%+8px)].whitespace-nowrap",
+     "cx": 1108,
+     "cy": 209.25,
+     "fracX": 0,
+     "fracY": 0.25
+    },
+    {
+     "name": "X 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 1121.22,
+     "cy": 153.94,
+     "fracX": 0.22,
+     "fracY": 0.06
+    },
+    {
+     "name": "X 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 1076.77,
+     "cy": 142.05,
+     "fracX": 0.23,
+     "fracY": 0.05
+    },
+    {
+     "name": "Y 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 1099,
+     "cy": 120.52,
+     "fracX": 0,
+     "fracY": 0.48
+    },
+    {
+     "name": "Y 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 1099,
+     "cy": 175.47,
+     "fracX": 0,
+     "fracY": 0.47
+    },
+    {
+     "name": "Z 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 1080.38,
+     "cy": 155.08,
+     "fracX": 0.38,
+     "fracY": 0.08
+    },
+    {
+     "name": "Z 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 1117.61,
+     "cy": 140.91,
+     "fracX": 0.39,
+     "fracY": 0.09
+    },
+    {
+     "name": "描述想搭建的场景",
+     "ident": "col-start-2.row-start-1.min-w-0.bg-transparent",
+     "cx": 1124.5,
+     "cy": 945,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1205.5,
+     "cy": 356,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1289.5,
+     "cy": 356,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1373.5,
+     "cy": 356,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1205.5,
+     "cy": 428,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1289.5,
+     "cy": 428,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1373.5,
+     "cy": 428,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1205.5,
+     "cy": 500,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1289.5,
+     "cy": 500,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1373.5,
+     "cy": 500,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "统一缩放",
+     "ident": "w-24.accent-[#09caf5]",
+     "cx": 1336,
+     "cy": 534.25,
+     "fracX": 0,
+     "fracY": 0.25
+    },
+    {
+     "name": "颜色 hex 值",
+     "ident": "h-6.w-[68px].rounded.border",
+     "cx": 1348,
+     "cy": 566.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "颜色",
+     "ident": "h-6.w-9.rounded.border-0",
+     "cx": 1406,
+     "cy": 566.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "下一步",
+     "ident": "pointer-events-auto.h-7.rounded-lg.bg-white/10",
+     "cx": 374.5,
+     "cy": 1972,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "播放",
+     "ident": "flex.h-6.w-[26px].shrink-0",
+     "cx": 21,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "自动帧",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "cx": 46,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "循环播放",
+     "ident": "flex.h-6.w-[26px].shrink-0",
+     "cx": 71,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "播放头位置",
+     "ident": "h-6.w-[46px].shrink-0.border-0",
+     "cx": 111,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "总时长",
+     "ident": "h-6.w-[46px].shrink-0.border-0",
+     "cx": 158,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "切换时间单位为 s",
+     "ident": "flex.h-6.w-[33px].shrink-0",
+     "cx": 198.5,
+     "cy": 986.5,
+     "fracX": 0.5,
+     "fracY": 0.5
+    },
+    {
+     "name": "选中角色、道具或分组后建立轨道",
+     "ident": "ml-[15px].flex.h-6.w-[82px]",
+     "cx": 271,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "预设运镜",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 350.5,
+     "cy": 986.5,
+     "fracX": 0.5,
+     "fracY": 0.5
+    },
+    {
+     "name": "创建运动轨迹",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 438.5,
+     "cy": 986.5,
+     "fracX": 0.5,
+     "fracY": 0.5
+    },
+    {
+     "name": "曲线编辑器",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 532,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "轨道",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 603.5,
+     "cy": 986.5,
+     "fracX": 0.5,
+     "fracY": 0.5
+    },
+    {
+     "name": "移除角色01 · 陈默 · 变换轨道",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 645,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "添加关键帧",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 703,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "删除关键帧",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 761,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 331,
+     "cy": 1088.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 1211.56,
+     "cy": 1088.5,
+     "fracX": 0.44,
+     "fracY": 0.5
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 2092.13,
+     "cy": 1088.5,
+     "fracX": 0.13,
+     "fracY": 0.5
+    },
+    {
+     "name": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 331,
+     "cy": 1152.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 1211.56,
+     "cy": 1152.5,
+     "fracX": 0.44,
+     "fracY": 0.5
+    },
+    {
+     "name": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 2092.13,
+     "cy": 1152.5,
+     "fracX": 0.13,
+     "fracY": 0.5
+    }
+   ]
+  },
+  "1920x1150": {
+   "W": 1920,
+   "H": 1150,
+   "sameBoxGroups": 26,
+   "mixedPeGroups": 4,
+   "mixed": [
+    {
+     "box": "281,88,1358,880",
+     "n": 6,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 1195040,
+     "members": [
+      {
+       "ident": "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0",
+       "pe": "auto",
+       "pos": "absolute",
+       "z": "auto"
+      },
+      {
+       "ident": "relative.h-full.min-h-0.min-w-0",
+       "pe": "auto",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "absolute.inset-0",
+       "pe": "auto",
+       "pos": "absolute",
+       "z": "auto"
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "pos": "static",
+       "z": "auto"
+      },
+      {
+       "ident": "<canvas>",
+       "pe": "none",
+       "pos": "static",
+       "z": "auto"
+      }
+     ],
+     "edges": [
+      {
+       "ident": "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0",
+       "pe": "auto",
+       "leftGap": 0,
+       "rightGap": 1,
+       "hitWidth": 1357,
+       "rectWidth": 1358
+      },
+      {
+       "ident": "relative.h-full.min-h-0.min-w-0",
+       "pe": "auto",
+       "leftGap": 0,
+       "rightGap": 1,
+       "hitWidth": 1357,
+       "rectWidth": 1358
+      },
+      {
+       "ident": "absolute.inset-0",
+       "pe": "auto",
+       "leftGap": 0,
+       "rightGap": 1,
+       "hitWidth": 1357,
+       "rectWidth": 1358
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 1358
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 1358
+      },
+      {
+       "ident": "<canvas>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 1358
+      }
+     ]
+    },
+    {
+     "box": "1539,108,80,80",
+     "n": 6,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 6400,
+     "members": [
+      {
+       "ident": "absolute.right-5.top-5.z-20",
+       "pe": "auto",
+       "pos": "absolute",
+       "z": "20"
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-0.drop-shadow-[0_2px_5px_rgba(0,0,0,0.48)]",
+       "pe": "none",
+       "pos": "absolute",
+       "z": "auto"
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "pos": "static",
+       "z": "auto"
+      },
+      {
+       "ident": "<canvas>",
+       "pe": "none",
+       "pos": "static",
+       "z": "auto"
+      },
+      {
+       "ident": "absolute.inset-0.pointer-events-auto",
+       "pe": "auto",
+       "pos": "absolute",
+       "z": "auto"
+      }
+     ],
+     "edges": [
+      {
+       "ident": "absolute.right-5.top-5.z-20",
+       "pe": "auto",
+       "leftGap": 0.98,
+       "rightGap": 0.02,
+       "hitWidth": 80.96,
+       "rectWidth": 80
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-0.drop-shadow-[0_2px_5px_rgba(0,0,0,0.48)]",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 80
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 80
+      },
+      {
+       "ident": "<div>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 80
+      },
+      {
+       "ident": "<canvas>",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 80
+      },
+      {
+       "ident": "absolute.inset-0.pointer-events-auto",
+       "pe": "auto",
+       "leftGap": 0.98,
+       "rightGap": 0.02,
+       "hitWidth": 80.96,
+       "rectWidth": 80
+      }
+     ]
+    },
+    {
+     "box": "0,1041,320,32",
+     "n": 2,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 10240,
+     "members": [
+      {
+       "ident": "group.relative.grid.h-8",
+       "pe": "auto",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+       "pe": "none",
+       "pos": "absolute",
+       "z": "auto"
+      }
+     ],
+     "edges": [
+      {
+       "ident": "group.relative.grid.h-8",
+       "pe": "auto",
+       "leftGap": 0.48,
+       "rightGap": 0.02,
+       "hitWidth": 320.46,
+       "rectWidth": 320
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 320
+      }
+     ]
+    },
+    {
+     "box": "0,1105,320,32",
+     "n": 2,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 10240,
+     "members": [
+      {
+       "ident": "group.relative.grid.h-8",
+       "pe": "auto",
+       "pos": "relative",
+       "z": "auto"
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+       "pe": "none",
+       "pos": "absolute",
+       "z": "auto"
+      }
+     ],
+     "edges": [
+      {
+       "ident": "group.relative.grid.h-8",
+       "pe": "auto",
+       "leftGap": 0.48,
+       "rightGap": 0.02,
+       "hitWidth": 320.46,
+       "rectWidth": 320
+      },
+      {
+       "ident": "pointer-events-none.absolute.inset-x-0.inset-y-0",
+       "pe": "none",
+       "leftGap": null,
+       "rightGap": null,
+       "hitWidth": null,
+       "rectWidth": 320
+      }
+     ]
+    }
+   ],
+   "all": [
+    {
+     "box": "281,88,1358,880",
+     "n": 6,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 1195040
+    },
+    {
+     "box": "1539,108,80,80",
+     "n": 6,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 6400
+    },
+    {
+     "box": "280,87,1,1",
+     "n": 3,
+     "pes": [
+      "auto"
+     ],
+     "area": 1
+    },
+    {
+     "box": "1639,52,281,916",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 257396
+    },
+    {
+     "box": "322,1005,1598,145",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 231710
+    },
+    {
+     "box": "0,1041,320,32",
+     "n": 2,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 10240
+    },
+    {
+     "box": "0,1105,320,32",
+     "n": 2,
+     "pes": [
+      "auto",
+      "none"
+     ],
+     "area": 10240
+    },
+    {
+     "box": "56,200,216,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 6912
+    },
+    {
+     "box": "56,408,216,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 6912
+    },
+    {
+     "box": "875,8,170,36",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 6120
+    },
+    {
+     "box": "323,56,177,28",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 4956
+    },
+    {
+     "box": "1804,973,108,28",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 3024
+    },
+    {
+     "box": "1818,10,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,116,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,156,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,196,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,236,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,276,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "8,60,32,32",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 1024
+    },
+    {
+     "box": "66,209,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "66,281,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "66,313,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "66,345,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "66,417,14,14",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 196
+    },
+    {
+     "box": "16,22,8,8",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 64
+    },
+    {
+     "box": "255,150,7,7",
+     "n": 2,
+     "pes": [
+      "auto"
+     ],
+     "area": 49
+    }
+   ],
+   "controlCount": 130,
+   "nonIntegerCenters": 60,
+   "exactHalf": 52,
+   "fracPairs": {
+    "0/0.5": 21,
+    "0.5/0": 20,
+    "0.33/0.5": 1,
+    "0.16/0.5": 2,
+    "0/0.25": 2,
+    "0.22/0.06": 1,
+    "0.23/0.05": 1,
+    "0/0.48": 1,
+    "0/0.47": 1,
+    "0.38/0.08": 1,
+    "0.39/0.09": 1,
+    "0.5/0.5": 4,
+    "0.44/0.5": 2,
+    "0.13/0.5": 2
+   },
+   "nonIntegerList": [
+    {
+     "name": "关闭",
+     "ident": "flex.size-10.shrink-0.items-center",
+     "cx": 20,
+     "cy": 25.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "收起",
+     "ident": "flex.size-10.shrink-0.items-center",
+     "cx": 260,
+     "cy": 25.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "导演视角",
+     "ident": "flex.h-8.min-w-0.flex-1",
+     "cx": 918.5,
+     "cy": 26,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "机位视角",
+     "ident": "flex.h-8.min-w-0.flex-1",
+     "cx": 1001.5,
+     "cy": 26,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "导出导演台项目",
+     "ident": "flex.h-8.w-8.items-center",
+     "cx": 1834.33,
+     "cy": 25.5,
+     "fracX": 0.33,
+     "fracY": 0.5
+    },
+    {
+     "name": "导入导演台项目",
+     "ident": "flex.h-8.w-8.items-center",
+     "cx": 1875.16,
+     "cy": 25.5,
+     "fracX": 0.16,
+     "fracY": 0.5
+    },
+    {
+     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 411.16,
+     "cy": 69.5,
+     "fracX": 0.16,
+     "fracY": 0.5
+    },
+    {
+     "name": "打组",
+     "ident": "flex.h-7.flex-1.items-center",
+     "cx": 109,
+     "cy": 117.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "解组",
+     "ident": "flex.h-7.flex-1.items-center",
+     "cx": 219,
+     "cy": 117.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "复制当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 194,
+     "cy": 153.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "删除当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 226,
+     "cy": 153.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "清除当前选择",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 258,
+     "cy": 153.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "场景",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 76,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "添加角色",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 132,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "添加机位",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 172,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "全景图",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 212,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "选择画幅比例",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 252,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "AI 识图导入",
+     "ident": "flex.size-8.items-center.justify-center",
+     "cx": 23.5,
+     "cy": 292,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "帮助",
+     "ident": "mt-auto.flex.size-8.items-center",
+     "cx": 23.5,
+     "cy": 1126,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "重置视角",
+     "ident": "absolute.right-0.top-[calc(100%+8px)].whitespace-nowrap",
+     "cx": 1588,
+     "cy": 209.25,
+     "fracX": 0,
+     "fracY": 0.25
+    },
+    {
+     "name": "X 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 1601.22,
+     "cy": 153.94,
+     "fracX": 0.22,
+     "fracY": 0.06
+    },
+    {
+     "name": "X 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 1556.77,
+     "cy": 142.05,
+     "fracX": 0.23,
+     "fracY": 0.05
+    },
+    {
+     "name": "Y 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 1579,
+     "cy": 120.52,
+     "fracX": 0,
+     "fracY": 0.48
+    },
+    {
+     "name": "Y 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 1579,
+     "cy": 175.47,
+     "fracX": 0,
+     "fracY": 0.47
+    },
+    {
+     "name": "Z 正向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 1560.38,
+     "cy": 155.08,
+     "fracX": 0.38,
+     "fracY": 0.08
+    },
+    {
+     "name": "Z 反向",
+     "ident": "absolute.h-[15px].w-[15px].-translate-x-1/2",
+     "cx": 1597.61,
+     "cy": 140.91,
+     "fracX": 0.39,
+     "fracY": 0.09
+    },
+    {
+     "name": "描述想搭建的场景",
+     "ident": "col-start-2.row-start-1.min-w-0.bg-transparent",
+     "cx": 1319.5,
+     "cy": 945,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1685.5,
+     "cy": 356,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1769.5,
+     "cy": 356,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1853.5,
+     "cy": 356,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1685.5,
+     "cy": 428,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1769.5,
+     "cy": 428,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1853.5,
+     "cy": 428,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1685.5,
+     "cy": 500,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1769.5,
+     "cy": 500,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "<input>",
+     "ident": "h-full.min-w-0.flex-1.appearance-none",
+     "cx": 1853.5,
+     "cy": 500,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "统一缩放",
+     "ident": "w-24.accent-[#09caf5]",
+     "cx": 1816,
+     "cy": 534.25,
+     "fracX": 0,
+     "fracY": 0.25
+    },
+    {
+     "name": "颜色 hex 值",
+     "ident": "h-6.w-[68px].rounded.border",
+     "cx": 1828,
+     "cy": 566.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "颜色",
+     "ident": "h-6.w-9.rounded.border-0",
+     "cx": 1886,
+     "cy": 566.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "下一步",
+     "ident": "pointer-events-auto.h-7.rounded-lg.bg-white/10",
+     "cx": 374.5,
+     "cy": 1972,
+     "fracX": 0.5,
+     "fracY": 0
+    },
+    {
+     "name": "播放",
+     "ident": "flex.h-6.w-[26px].shrink-0",
+     "cx": 21,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "自动帧",
+     "ident": "flex.h-6.w-6.shrink-0",
+     "cx": 46,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "循环播放",
+     "ident": "flex.h-6.w-[26px].shrink-0",
+     "cx": 71,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "播放头位置",
+     "ident": "h-6.w-[46px].shrink-0.border-0",
+     "cx": 111,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "总时长",
+     "ident": "h-6.w-[46px].shrink-0.border-0",
+     "cx": 158,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "切换时间单位为 s",
+     "ident": "flex.h-6.w-[33px].shrink-0",
+     "cx": 198.5,
+     "cy": 986.5,
+     "fracX": 0.5,
+     "fracY": 0.5
+    },
+    {
+     "name": "选中角色、道具或分组后建立轨道",
+     "ident": "ml-[15px].flex.h-6.w-[82px]",
+     "cx": 271,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "预设运镜",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 350.5,
+     "cy": 986.5,
+     "fracX": 0.5,
+     "fracY": 0.5
+    },
+    {
+     "name": "创建运动轨迹",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 438.5,
+     "cy": 986.5,
+     "fracX": 0.5,
+     "fracY": 0.5
+    },
+    {
+     "name": "曲线编辑器",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 532,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "轨道",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 603.5,
+     "cy": 986.5,
+     "fracX": 0.5,
+     "fracY": 0.5
+    },
+    {
+     "name": "移除角色01 · 陈默 · 变换轨道",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 645,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "添加关键帧",
+     "ident": "flex.h-7.shrink-0.items-center",
+     "cx": 703,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "删除关键帧",
+     "ident": "flex.h-7.w-7.shrink-0",
+     "cx": 761,
+     "cy": 986.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 331,
+     "cy": 1088.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 1211.56,
+     "cy": 1088.5,
+     "fracX": 0.44,
+     "fracY": 0.5
+    },
+    {
+     "name": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 2092.13,
+     "cy": 1088.5,
+     "fracX": 0.13,
+     "fracY": 0.5
+    },
+    {
+     "name": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 331,
+     "cy": 1152.5,
+     "fracX": 0,
+     "fracY": 0.5
+    },
+    {
+     "name": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 1211.56,
+     "cy": 1152.5,
+     "fracX": 0.44,
+     "fracY": 0.5
+    },
+    {
+     "name": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+     "ident": "absolute.top-1/2.z-10.-translate-x-1/2",
+     "cx": 2092.13,
+     "cy": 1152.5,
+     "fracX": 0.13,
+     "fracY": 0.5
+    }
+   ]
+  }
+ },
+ "checks": {
+  "the-control-population-matches-617s-total-130": {
+   "ok": true,
+   "detail": {
+    "1280x1150": 130,
+    "1440x1150": 130,
+    "1920x1150": 130
+   },
+   "note": "cross-batch: 617 reported total=130 blocked=16 at these heights"
+  },
+  "the-samebox-census-is-stable-across-three-viewports": {
+   "ok": true,
+   "detail": {
+    "sameBoxGroups": {
+     "1280x1150": 26,
+     "1440x1150": 26,
+     "1920x1150": 26
+    },
+    "mixedPeGroups": {
+     "1280x1150": 4,
+     "1440x1150": 4,
+     "1920x1150": 4
+    },
+    "distinctFingerprints": 1
+   },
+   "note": "26 same-box groups, 4 of them pe-mixed, identical at all three"
+  },
+  "exactly-four-mixed-groups-and-one-of-them-is-the-80x80-corner": {
+   "ok": true,
+   "detail": [
+    {
+     "box": "281,88,718,880",
+     "n": 6,
+     "area": 631840
+    },
+    {
+     "box": "899,108,80,80",
+     "n": 6,
+     "area": 6400
+    },
+    {
+     "box": "0,1041,320,32",
+     "n": 2,
+     "area": 10240
+    },
+    {
+     "box": "0,1105,320,32",
+     "n": 2,
+     "area": 10240
+    }
+   ],
+   "note": "viewport cell + viewport corner (new) + two 320x32 timeline rows (667)"
+  },
+  "nearly-half-the-population-has-a-non-integer-centre": {
+   "ok": true,
+   "detail": {
+    "nonInteger": {
+     "1280x1150": 60,
+     "1440x1150": 60,
+     "1920x1150": 60
+    },
+    "exactHalf": {
+     "1280x1150": 52,
+     "1440x1150": 52,
+     "1920x1150": 52
+    },
+    "controls": {
+     "1280x1150": 130,
+     "1440x1150": 130,
+     "1920x1150": 130
+    },
+    "fracPairs": {
+     "0/0.5": 21,
+     "0.5/0": 20,
+     "0.33/0.5": 1,
+     "0.16/0.5": 2,
+     "0/0.25": 2,
+     "0.22/0.06": 1,
+     "0.23/0.05": 1,
+     "0/0.48": 1,
+     "0/0.47": 1,
+     "0.38/0.08": 1,
+     "0.39/0.09": 1,
+     "0.5/0.5": 4,
+     "0.44/0.5": 2,
+     "0.13/0.5": 2
+    }
+   },
+   "note": "45% — so 668's 1.0px correction is not a corner case"
+  },
+  "the-frac-distribution-is-identical-at-all-three-viewports": {
+   "ok": true,
+   "detail": {
+    "fracPairs@1280": {
+     "0/0.5": 21,
+     "0.5/0": 20,
+     "0.33/0.5": 1,
+     "0.16/0.5": 2,
+     "0/0.25": 2,
+     "0.22/0.06": 1,
+     "0.23/0.05": 1,
+     "0/0.48": 1,
+     "0/0.47": 1,
+     "0.38/0.08": 1,
+     "0.39/0.09": 1,
+     "0.5/0.5": 4,
+     "0.44/0.5": 2,
+     "0.13/0.5": 2
+    }
+   },
+   "note": "counts and fractions do not move with width; the y term is the constant one"
+  },
+  "the-one-pixel-left-gap-is-not-universal": {
+   "ok": true,
+   "detail": {
+    "rows": 21,
+    "rowsWithAbout1px": 6,
+    "leftGapValues": [
+     0,
+     0.48,
+     0.98
+    ],
+    "the1pxOnes": [
+     [
+      "1059,108,80,80",
+      "absolute.inset-0.pointer-events-auto"
+     ],
+     [
+      "1059,108,80,80",
+      "absolute.right-5.top-5.z-20"
+     ],
+     [
+      "1539,108,80,80",
+      "absolute.inset-0.pointer-events-auto"
+     ],
+     [
+      "1539,108,80,80",
+      "absolute.right-5.top-5.z-20"
+     ],
+     [
+      "899,108,80,80",
+      "absolute.inset-0.pointer-events-auto"
+     ],
+     [
+      "899,108,80,80",
+      "absolute.right-5.top-5.z-20"
+     ]
+    ],
+    "neverHitAtAll": []
+   },
+   "note": "if every row were ~1.0 this check would fail — the finding is narrower than 'rects lie about hit edges' in general"
+  },
+  "the-hit-width-differs-from-the-rect-width-on-some-rows": {
+   "ok": true,
+   "detail": {
+    "rowsWhereHitWidthIsNotRectWidth": 15,
+    "examples": [
+     {
+      "box": "281,88,718,880",
+      "ident": "absolute.inset-y-0.min-w-0.max-[899px]:inset-x-0",
+      "rectWidth": 718,
+      "hitWidth": 717
+     },
+     {
+      "box": "281,88,718,880",
+      "ident": "relative.h-full.min-h-0.min-w-0",
+      "rectWidth": 718,
+      "hitWidth": 717
+     },
+     {
+      "box": "281,88,718,880",
+      "ident": "absolute.inset-0",
+      "rectWidth": 718,
+      "hitWidth": 717
+     },
+     {
+      "box": "899,108,80,80",
+      "ident": "absolute.right-5.top-5.z-20",
+      "rectWidth": 80,
+      "hitWidth": 80.96
+     }
+    ]
+   },
+   "note": "668 measured one such row (the inspector column, -0.52 on the right)"
+  }
+ }
+}
