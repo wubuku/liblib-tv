@@ -68,6 +68,24 @@ def is_separator(line):
     return bool(s) and set(s) <= set("|-: ") and "-" in s
 
 
+#: GFM 分隔行的**每一格**必须长这样（Batch 213）。
+#: **与上面那个宽松版 `is_separator` 的区别要说清楚**：
+#: 宽松版问的是「这一行看起来像不像分隔行」（字符集 + 至少一个 `-`），
+#: 它是 Batch 174 判「单行块」用的；**本条问的是「GFM 会不会真的把它当分隔行」**——
+#: 而 GFM 要求**每格都匹配 `^:?-+:?$`，且格的个数与表头相同**。
+#: **两种问法都留着，因为它们回答的不是同一个问题。**
+_DELIM_CELL = re.compile(r"^:?-{1,}:?$")
+
+
+def is_real_delimiter(line, header_n):
+    """这一行是不是 GFM 意义上的分隔行（且列数与表头相同）。"""
+    t = line.strip()
+    if not t or unescaped_pipes(t) != header_n:
+        return False
+    return all(_DELIM_CELL.match(c.strip())
+               for c in t.strip("|").split("|"))
+
+
 def scan(path):
     """返回 [(行号, 该行未转义竖线数, 表头列数, 行首摘录)]。"""
     try:
@@ -78,6 +96,7 @@ def scan(path):
 
     problems = []
     tail_problems = []          # **行尾缺竖线**（Batch 206，与列数分开记）
+    sep_problems = []           # **第二行不是合法分隔行**（Batch 213，再单列一处）
     fence = None
     block = []  # [(行号, 原始行)]
 
@@ -98,6 +117,23 @@ def scan(path):
                              block[0][1].strip()[:70] + "  ← 单行且不是分隔行"))
             block.clear()
             return
+        # **Batch 213：块有两行以上时，第二行必须是 GFM 意义上的分隔行。**
+        # **实测漏报面**（量出来的，不是推的）：在 PROGRESS.md 那张批次表上注入五种损坏，
+        # **五种里有五种闸 8 报绿**——删掉整条分隔行 / 分隔行少一列 / 分隔行写成 `| |` /
+        # 分隔行缺首尾竖线 / 分隔行被空行隔开。
+        # **五种是同一个根因**：本闸把「连续的 `|` 行」当成表，
+        # **却从不问第二行是不是分隔行**——
+        # 而 **GFM 里没有分隔行的 `|` 行块根本不是表格，它会被原样当普通文本显示**。
+        # **这正是本闸存在的意义那一类**（Batch 142 的原话）：
+        # 不让构建失败，只让人看到错位的内容。
+        # **假阳性实测**：全树 253 段非围栏的 `|` 行块里 **252 段是真表格**，
+        # **被这条判据报出来的只有 1 段——而那一段是真缺陷**（见下）。
+        if len(block) >= 2 and not is_real_delimiter(block[1][1], header_n):
+            sep_problems.append(
+                (block[1][0], unescaped_pipes(block[1][1]), header_n,
+                 block[1][1].strip()[:70]
+                 + "  ← 它的上一行是表头，而**它不是分隔行**："
+                   "GFM 不会把这块当表格，整块会被原样显示成普通文本"))
         for lineno, raw in block:
             n = unescaped_pipes(raw)
             # 多于表头 = 真的多切出一列 = 损坏；少于表头会被 GFM 补空，不算
@@ -128,7 +164,7 @@ def scan(path):
         else:
             flush()
     flush()
-    return tail_problems + problems
+    return tail_problems + sep_problems + problems
 
 
 def main():

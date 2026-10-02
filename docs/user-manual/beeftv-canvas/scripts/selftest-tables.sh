@@ -6,6 +6,9 @@
 #   1) 在表格单元格里注入代码 `a || b`（Batch 122/124/135/136 的真实损坏形态）
 #   2) 在表格单元格里注入一个含裸竖线的 URL（20-reference.md 的真实损坏形态）
 #   3) 在**围栏代码块内**注入同样的 `||` —— 必须**不报**，
+#
+# Batch 213 补 7/8：**第二行不是 GFM 分隔行**（删掉 / 少一列 / 写成 `| |`
+# / 缺首尾竖线 —— 实测五种全部漏过去，而它们是同一个根因）。
 #      因为代码块里的竖线不是表格分隔符。这一条是防误报的对称验证。
 #
 # 全程只在临时目录里操作手册副本，不碰真实文件；结束即清。
@@ -100,6 +103,30 @@ for i, l in enumerate(L):
         L[i] = "|" + "|".join(cells[:-1]) + "| " + head + " | " + tail
         break
 s = "\n".join(L)' 20-reference.md yes
+
+# 7/8 是 Batch 213 加的：**块有两行以上时，第二行必须是 GFM 意义上的分隔行**。
+# 7 是「能抓」，8 是「不误伤」——而 8 更要紧：
+# **判据若把「本来正常的表」也报成缺分隔行，它会逼着人到处加空行**，
+# 而那正是判据过宽的真正代价（Batch 139/141/142 的同一个教训）。
+run_case "7) 删掉整条分隔行（整张表不再渲染，必须报）" 20-reference.md \
+  'L = s.split("\n")
+for i, l in enumerate(L):
+    if l.startswith("|") and i + 1 < len(L) and set(L[i+1].strip()) <= set("|-: ") and "-" in L[i+1]:
+        del L[i+1]
+        break
+else:
+    raise SystemExit("锚点未命中：没找到「表头 + 分隔行」相邻的一处")
+s = "\n".join(L)' 20-reference.md yes
+
+run_case "8) 不误伤：分隔行完全合规的表（必须不报）" 20-reference.md \
+  'L = s.split("\n")
+for i, l in enumerate(L):
+    if l.startswith("|") and i + 1 < len(L) and set(L[i+1].strip()) <= set("|-: ") and "-" in L[i+1]:
+        L[i+1] = L[i+1].replace("---", ":---", 1)   # 对齐标记：GFM 认，列数与形状都不变
+        break
+else:
+    raise SystemExit("锚点未命中：没找到「表头 + 分隔行」相邻的一处")
+s = "\n".join(L)' 20-reference.md no
 
 echo "=== 基线：真实手册应当通过 ==="
 if python3 "$GATE" "$ROOT" >/dev/null 2>&1; then echo "  ✓ 真实手册通过"; else echo "  ✗ 真实手册未通过"; FAIL=$((FAIL+1)); fi
