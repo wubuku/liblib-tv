@@ -2544,27 +2544,23 @@ def main() -> int:
           "同时**必须钉住两条不许**：① **不许**照着「中性态 -1」硬设"
           "（会把 Tab 走查整个改掉，§77）；② 更**不许**据此改复刻的 "
           "`nodesFocusable`（那是**整个画布 Tab 顺序**的改动）。"
-          "⚠️⚠️ **本条第二版（896 把 ① 的理由从「未知」换成了「已知的反例」）**："
-          "894 当初的理由是「策略**确切规则未测**」——**896 测出来了**（"
-          "见 `source_roving_tabindex_policy_896`），所以 ① 的理由**必须跟着"
-          "事实改**成**具体的**那条：`nodesFocusable={false}` 会让画布"
-          "**再也 Tab 不到**，而源站是**第一次按 Tab 就进得去** ⇒ "
-          "**翻这个开关做出来的是另一个产品**。"
-          "⚠️ 但**不许**因为「策略测清了」就把**先别改**这条一起删掉 —— "
-          "**复刻侧类型覆盖仍不全**，且这仍是**整个画布 Tab 顺序**的改动、"
-          "必须单独一批带自己的验证（§77）",
+          "⚠️⚠️ **本条第三版（901 已经改了）**：894 的理由是「策略未测」"
+          "（896 测出来了）、898 又把它收窄成「**错的单方**方案」"
+          "（`{false}` 是配对方案的**前半段**）—— **901 照着这个配对方案"
+          "真的改了**，并带自己的验证。所以「**先别改**」那条**只作历史记录**，"
+          "⚠️ **不许**拿它去阻止后续按**已测规则**做的改动。"
+          "⇒ 但「**只钉前半段就宣称已对齐**」仍然不许",
           '"source_nodes_not_tabreachable_in_neutral_state_894"' in _ausrc
           and "不可 Tab 到达" in _ausrc
           and "更**不许**据此改复刻的 `nodesFocusable`" in _ausrc
           and "整个画布 Tab 顺序" in _ausrc
-          and "整个画布 Tab 顺序" in _ausrc
-          # ⚠️ 反向：894 那句「策略未测」的**理由**已被 896 取代
+          # ⚠️ 反向：旧措辞（未测/覆盖不全）都已被事实取代
           and "而源站那个动态策略的**确切规则未测**" not in _ausrc
-          # ⚠️ 897 补齐了类型覆盖 ⇒ 旧理由（覆盖不全）必须**不在**了
           and "**复刻侧类型覆盖仍不全**" not in _ausrc
-          # ⚠️ 但「先别改」不许被顺手删掉：理由换成「行为改动、单独一批」
-          and "「**先别改**」仍然成立" in _ausrc
-          and "**必须单独一批、带自己的验证**做（§77）" in _ausrc)
+          # ⚠️ 但「先别改」必须**以历史记录的身份**留着
+          and "「**先别改**」**曾经**成立过" in _ausrc
+          and "**只作历史记录**" in _ausrc
+          and "replica_roving_implemented_901" in _ausrc)
     # ══════════ 批 895：复刻侧那张表（差异两侧都有据） ══════════
     p895 = ROOT / "scripts/jimeng_probe895_node_tabindex_matrix_ck.py"
     p894 = ROOT / "scripts/jimeng_probe894_node_tabindex_matrix_src.py"
@@ -2585,21 +2581,27 @@ def main() -> int:
           and "逐字来自 894 源站探针" in _p895
           and "blank_from" in _p895 and "pane_rect" in _p895)
     check("JJ.2 895 的结论是**量出来的**，不是从库默认值**推**的：复刻侧所有"
-          "条件、所有状态的节点 **`tabindex='0'` 恒定**（各 2 轮两轮一致）。"
-          "⇒ 差异**两侧都有据**：源站中性态全 `-1`、被 Tab 命中时才出现 `'0'`"
-          "（像 roving）；复刻**恒 `'0'`**",
+          "条件、所有状态的节点 **`tabindex='0'` 恒定**（各 2 轮两轮一致）"
+          "⚠️⚠️ **本条第二版（901 已把复刻改成 roving）**：这条量的是"
+          "**901 之前**的复刻。**不许**拿它论证「复刻现在恒 `'0'`」—— "
+          "**不成立了**；也**不许回头删掉**它（那是当时**真实测出来**的、"
+          "也是「为什么值得改」的依据）",
           '"replica_node_always_focusable"' in _ausrc
-          and "**895 量出来了**" in _ausrc
-          and "不是从库默认值**推**的" in _ausrc
-          and "**恒定**" in _ausrc)
-    check("JJ.3 ⚠️ 复刻这一侧的「所有类型」**没测全**：demo 画布**只有** 2 个 "
-          "video **加**探针插入的 1 个 audio，而源站矩阵里还有 "
-          "text / timeline / image / external ⇒ **不许**写成「复刻所有类型"
-          "节点都恒为 0」，只能说「**在 demo 画布实测到的类型上**恒为 0」",
-          "**但复刻这一侧的「所有类型」没测全**" in _ausrc
-          and "**只有**" in _ausrc
-          and "不许**把复刻侧写成「所有类型节点都恒为 0」" in _ausrc
-          and "在 demo 画布实测到的类型上" in _ausrc)
+          and "**895 的原测量**" in _ausrc
+          and "**本条已被 901 作废" in _ausrc
+          and "**只作历史记录**" in _ausrc
+          and "replica_roving_implemented_901" in _ausrc)
+    check("JJ.3 ⚠️ 复刻这一侧的「所有类型」**在 895 当时没测全**（demo 只有 "
+          "2 video **加**探针插入的 1 audio，源站矩阵里还有 "
+          "text / timeline / image / external）⚠️⚠️ **本条第二版**："
+          "那个缺口**已由 897 补齐**，而 897 的读数**又被 901 改掉**了。"
+          "⇒ **三代状态各自留痕**：895（恒 `'0'`、覆盖不全）→ 897"
+          "（恒 `'0'`、7 种全测）→ 901（**中性态无属性**、7 种全测）。"
+          "⚠️ **不许**只留最新一代而抹掉前两代",
+          "**在 895 当时没测全**" in _ausrc
+          and "**已由 897 补齐**" in _ausrc
+          and "**又被 901 改掉**" in _ausrc
+          and "**三代状态各自留痕**" in _ausrc)
     check("JJ.4 895 自己踩的坑必须留痕：判据平移时把 Playwright 的 "
           "`wait_for_timeout(140)`（**毫秒**）写成 Python 的 `time.sleep(140)`"
           "（**秒**）⇒ 一次循环睡 140 秒、16 次 ≈ **37 分钟**；现象是进程 "
@@ -2667,104 +2669,121 @@ def main() -> int:
           and "keydown 布 0/-1 且**不** preventDefault" in _ausrc
           # ⚠️ 反向：894 那条**不许**还留着「策略未测」的旧措辞
           and "而源站那个动态策略的**确切规则未测**" not in _ausrc)
-    check("KK.5 ✅ **897 把复刻侧的类型覆盖补齐了**（895 留下的最后一个缺口，"
-          "各 2/2）：左栏 `aria-label` 就是类型名，逐个插入 "
-          "`文本`/`图片`/`时间线`/`主体`/`导演台` ⇒ **7 种类型全测**，"
-          "每种**插入后**/**点空白后**都是 `'0'`，**整轮 16 步 Tab 走查全程** "
-          "`n_zero == n_nodes` ⇒ **复刻侧根本没有 roving**"
-          "（源站任一时刻**恰好 1 个** `0`）。⚠️ 但**不许**写成「8 种类型都"
-          "有直接读数」—— ⚠️⚠️ **4 种类型的「点本体」读数没取到**："
-          "左栏 `insertAtCenter` 把五个新节点**全叠在画布中心**，中心点"
-          "**落在最上层那个身上** ⇒ 探针按纪律**跳过**（落点对不上就**不点**），"
-          "**没把那 4 个读数猜出来**。⚠️ 另钉两条：① 两侧**类型集不对称**"
-          "（复刻有 `subject`、源站 894 矩阵里**没有**）；② 复刻 16 步走查里"
-          "**没有**一步落点是 wrapper 自身，但 `node_ti` **分不出**"
-          "「焦点在 wrapper」还是「在它内层」⇒ **不许**据此下「wrapper Tab 不到」"
-          "的结论",
+    check("KK.5 ✅ **897 补齐了复刻侧的类型覆盖**（7 种类型：文本/图片/时间线/"
+          "主体/导演台 ＋ demo 自带的 video ＋ 895 插的 audio，各 2/2）。"
+          "⚠️⚠️ **本条第二版（901 改了状态）**：897 的读数是**恒 `'0'`**，"
+          "**901 之后**是**中性态无属性**。⇒ **三代状态各自留痕**"
+          "（895 恒 `'0'`/覆盖不全 → 897 恒 `'0'`/7 种全测 → 901 中性态无属性/"
+          "7 种全测），⚠️ **不许**只留最新一代而抹掉前两代。"
+          "⚠️ 且 897 当时那条**诚实记账**继续有效：左栏 `insertAtCenter` 把"
+          "新节点**全叠在画布中心** ⇒ 4 种类型的「点本体」读数**没取到**，"
+          "探针**跳过**而**没有猜**；901 的探针改成**插一个、量一个**才补上",
           '"replica_type_coverage_closed_897"' in _ausrc
-          and "7 种类型全部覆盖" in _ausrc
+          and "**7 种类型全部覆盖**" in _ausrc
           and "n_zero == n_nodes" in _ausrc
-          and "**复刻侧根本没有 roving**" in _ausrc
-          and "4 种类型的「点本体」读数没取到" in _ausrc
+          and "**901 已把这个状态改掉**" in _ausrc
+          and "**4 种类型的「点本体」读数没取到**" in _ausrc
           and "**没有**把那 4 个读数**猜**出来" in _ausrc
-          and "insertAtCenter" in _ausrc
-          and "**两侧类型集不对称**" in _ausrc
-          and "**分不出**焦点在 wrapper 自身还是在它内层" in _ausrc
-          and "**不许**据此下结论" in _ausrc
-          # ⚠️ 反向：895 那句「没测全」的**旧缺口**已被 897 销号
-          and "**不许**把复刻侧写成「所有类型节点都恒为 0」" in _ausrc
-          and "已被 897 补齐" in _ausrc)
-    check("LL.1 ✅ **898 分清了 897 留下的坑**（各 2/2）：**复刻的节点 wrapper "
-          "确实在 Tab 序列里**。三条独立读法：① **直接读序列**（不靠走查去撞）"
-          "—— 中性态 `wrapper 下标 = [1, 7]`，插 5 个节点后 "
-          "`= [1, 7, 8, 12, 16, 27, 37]`（**7 个 wrapper 对 7 个节点**）；"
-          "② **从空白起走**（= 源站 896 的**同一起点**）—— Tab 第 "
-          "**1/7/8/9/10** 步**就落在 wrapper 上**；③ **点节点本体** —— "
-          "`text`/`image`/`director` 落点**就是** wrapper 本身",
+          and "**插一个、量一个、再插下一个**" in _ausrc
+          and "**两侧类型集不对称**" in _ausrc)
+    check("LL.1 ⚠️⚠️ **898 那条的前提已被 901 改掉** —— 它量的是"
+          "**901 之前**的复刻（那时 wrapper **恒** `tabindex='0'`、**一直**"
+          "在 Tab 序列里）。**901 之后**：中性态 wrapper **没有** `tabindex`、"
+          "**不在**序列里，**第一次按 Tab 才被装进去**。"
+          "⇒ 判据必须钉**这个前提已被改掉**这件事，"
+          "**不许**让基线里那条「wrapper 一直在序列里」和实现打架。",
           '"replica_wrapper_is_in_tab_sequence_898"' in _ausrc
+          and "**本条的前提已被 901 改掉**" in _ausrc
+          and "**不在**序列里" in _ausrc
+          and "**第一次按 Tab 才被装进去**" in _ausrc
+          and "replica_roving_implemented_901" in _ausrc
+          # 898 的原测量仍要留着（它是「为什么值得改」的依据）
           and "wrapper 下标 = [1, 7]" in _ausrc
-          and "= [1, 7, 8, 12, 16, 27, 37]" in _ausrc
-          and "7 个 wrapper 对 7 个节点" in _ausrc
-          and "从空白起走" in _ausrc
-          and "源站 896 的**同一起点**" in _ausrc
-          and "**就落在 wrapper 上**" in _ausrc
-          and "activeElement === wrapper" in _ausrc)
-    check("LL.2 ⚠️ `timeline` / `subject` 的**几何中心正好是一个内层 BUTTON** ⇒ "
-          "点中心落点是那个按钮、**不是** wrapper。⚠️ **不许**把它读成"
-          "「这两种节点不可聚焦」—— 它们照样在序列里、Tab 也照样能到"
-          "（走查② 第 10 步就落在 timeline 的 wrapper 上）",
-          "几何中心正好是一个内层 "
-          "BUTTON" in _ausrc
-          and "**不是**「这两种节点不可聚焦」" in _ausrc
-          and "Tab 也照样能到" in _ausrc)
-    check("LL.3 ⚠️⚠️ **898 第一版自己踩的坑必须留痕**：第一版只做"
-          "「**从刚点过的那个节点内部**起走」的 12 步走查，读数 **24/24 全 "
-          "False**，看着**像**「wrapper Tab 不到」—— **那是取样假象**"
-          "（起点在**最后一个节点内部**，往前走只会越过前面那些 wrapper）。"
-          "⇒ 教训：**「走查没走到」≠「走不到」**；要证「走不到」得"
-          "**直接读序列**，或者**从画布外起走**。"
-          "⚠️ 而且 897 当时写下的「**不许**据此下结论」**正好**挡住了这个坑 "
-          "⇒ 判据里「**禁止过度概括**」这一条是**真在起作用的**，"
-          "不是形式条款",
-          "24/24 全 False" in _ausrc
+          and "**24/24 全 False**" in _ausrc
+          and "**「走查没走到」≠「走不到」**" in _ausrc)
+    check("LL.2 ⚠️ 898 留的那条教训**依然有效**、且是它最有价值的部分："
+          "第一版 12 步走查 24/24 全 False 看着像「wrapper Tab 不到」，"
+          "**那是取样假象**（起点在最后一个节点内部）⇒ **「走查没走到」≠"
+          "「走不到」**。⚠️ 而 897 当时写下的「**不许**据此下结论」"
+          "**正好**挡住了这个坑 ⇒ 判据里「**禁止过度概括**」是**真在起作用的**。",
+          "**走查没不到**" not in _ausrc
+          and "**24/24 全 False**" in _ausrc
           and "**那是取样假象**" in _ausrc
-          and "**「走查没走到」≠「走不到」**" in _ausrc
           and "**直接读序列**" in _ausrc
           and "**从画布外起走**" in _ausrc
           and "**正好**挡住了这个坑" in _ausrc)
-    check("LL.4 ⇒ **两侧的差别因此收窄**：**源站和复刻都能用 Tab 走到节点 "
-          "wrapper**。真正的差别**只剩 `tabindex` 的记账**：源站中性态"
-          "**无属性**、按 Tab 才现场布「目标 `0`/其余 `-1`」、**恰好一个** "
-          "`0`；复刻**恒定全部 `0`**。⚠️ 由此**不许**把差异概括成"
-          "「复刻的节点 Tab 不到」（那是**错的**），只许说「**`tabindex` "
-          "记账方式不同**」",
-          "**两侧的差别因此收窄**" in _ausrc
-          and "**源站和复刻都能用 Tab 走到节点 "
-          "wrapper**" in _ausrc
-          and "**只剩 `tabindex` 的记账**" in _ausrc
-          and "**复刻的节点 Tab 不到**" in _ausrc
-          and "**`tabindex` "
-          "记账方式不同**" in _ausrc)
-    # ══════════ 批 898 附带：把「锚点自查」固化成脚本（这个坑踩了两次）══════
-    _anch = ROOT / "scripts/jimeng_check_verifier_anchors.py"
-    _anchsrc = _anch.read_text(encoding="utf-8") if _anch.exists() else ""
-    check("LL.5 ⚠️ 898 把「verifier 锚点自查」**固化成脚本**了"
-          "（`jimeng_check_verifier_anchors.py`）—— 这个坑**踩过两次**，"
-          "而且都是**假绿**（自查说没问题、门禁其实已经红了）。两个成因必须钉住："
-          "① `_ausrc` 是**原始文件文本**，判据里的锚点常写成**相邻字面量拼接**，"
-          "用正则去找 `\"foo \"` 会**找到** ⇒ 必须用 `ast`（解析期就把相邻字面量"
-          "合并成**一个** `Constant`）；② `X not in Y` 的运算符是 **`NotIn`**、"
-          "**不是** `Not`（`Not` 只出现在一元 `not` 上）—— 漏了它会把**反向断言"
-          "当成正向**，那些专门钉「旧措辞不许留在基线里」的判据就会**悄悄失效**",
-          bool(_anchsrc)
-          and "ast.parse" in _anchsrc
-          and "ast.Constant" in _anchsrc
-          and "ast.In" in _anchsrc
-          and "ast.NotIn" in _anchsrc
-          and "**不是** `Not`" in _anchsrc
-          and "相邻字面量拼接" in _anchsrc
-          and "WOULD-FAIL" in _anchsrc
-          and "MISSING" in _anchsrc)
+    check("LL.3 ⚠️ 898 钉的两条**不许**继续有效：① **不许**把差异概括成"
+          "「**复刻的节点 Tab 不到**」（那是**错的** —— 源站和复刻**都能**"
+          "用 Tab 走到节点 wrapper，901 之后也一样）；② 判据**不许**只写"
+          "「wrapper 在不在序列」而不写**它是在哪个状态下**"
+          "（901 证明了：**中性态不在、按 Tab 才在**）",
+          "**复刻的节点 Tab 不到**" in _ausrc
+          and "**源站和复刻都能用 Tab 走到节点 wrapper**" in _ausrc
+          and "**第一次按 Tab 才被装进去**" in _ausrc)
+    check("LL.4 898 顺带修正的那条**不许**继续有效：`timeline`/`subject` 的"
+          "**几何中心正好是一个内层 BUTTON** ⇒ 点中心落点是那个按钮。"
+          "⚠️ **不许**把它读成「这两种节点不可聚焦」—— 它们照样在序列里、"
+          "Tab 也照样能到（走查② 第 10 步就落在 timeline 的 wrapper 上）",
+          "**几何中心正好是一个内层 BUTTON**" in _ausrc
+          and "**不是**「这两种节点不可聚焦」" in _ausrc
+          and "Tab 也照样能到" in _ausrc)
+    # ══════════ 批 901：实现 roving（配对方案，不许只上前半段） ══════════
+    _wsrc = (ROOT / "src/components/jimeng/JimengWorkspace.tsx").read_text(
+        encoding="utf-8")
+    p901 = ROOT / "scripts/jimeng_probe901_roving_impl_ck.py"
+    _p901 = p901.read_text(encoding="utf-8") if p901.exists() else ""
+    check("OO.1 901 的实现必须是**配对**的：`<ReactFlow nodesFocusable={false}>`"
+          "（中性态**无 `tabindex` 属性**）**＋** 模块级 `armRovingTabindex`"
+          "（keydown **捕获阶段**布 `'0'`/`'-1'`）。⚠️⚠️ **只上前半段"
+          "**绝不许单独上线** —— 898 已证明单上它画布**再也 Tab 不到**。"
+          "⇒ 判据要钉**源码里真实存在**这两处，不许只在注释里写",
+          "nodesFocusable={false}" in _wsrc
+          and "function armRovingTabindex(" in _wsrc
+          and 'addEventListener("keydown", onKeyDown, true)' in _wsrc
+          and "**绝不许单独上线**" in _ausrc
+          and "**配对方案的前半段**" in _ausrc
+          and "replica_roving_implemented_901" in _ausrc)
+    check("OO.2 ⚠️ `armRovingTabindex` 里**不许** `preventDefault()`：源站 "
+          "`defaultPrevented` **全 False**（896③/899 各 2/2）⇒ 焦点移动是"
+          "**浏览器原生**的，本函数只负责「先把目标装进 Tab 序列」。"
+          "⚠️ 也**不许**加 `% len` 那套**绕回**：899② 实测源站"
+          "**到末尾就撒手、绝不绕回**。⇒ 判据直接查**函数体里没有** "
+          "`preventDefault`（查源码，不查注释）",
+          "preventDefault" not in _wsrc.split("function armRovingTabindex")[1]
+              .split("\n}")[0]
+          and "**不** `preventDefault()`" in _ausrc
+          and "**没有** `% len` 那套循环" in _ausrc
+          and "**撒手**、**不绕回**" in _ausrc)
+    check("OO.3 验收判据必须**逐字复用源站探针**（896/899/900 的 `STATE_JS` / "
+          "`INSTALL_JS` / `BLANK_JS` / `DOM_ORDER_JS`）—— 改写成「复刻版」"
+          "就等于**两边各量各的**（890c 的教训）。复刻侧**各 2/2** 逐条对上"
+          "源站**七条**：中性态无属性 / `n_zero` 恒 1 且直方图 "
+          "`{'0':1,'-1':n-1}` / 不 preventDefault / 先布 `'0'` 再移焦点 / "
+          "布 `'0'` 下标 = `[0..n-1]`（**纯 DOM 序**）/ 走到最后一个后**再无**"
+          "布 `'0'`（**撒手不绕回**）/ 点空白后那个 `'0'` **仍在**",
+          '"replica_roving_implemented_901"' in _ausrc
+          and "**逐条对上了源站的七条**" in _ausrc
+          and "**纯 DOM 序**" in _ausrc
+          and "**撒手**、**不绕回**" in _ausrc
+          and "**此后不回撤**" in _ausrc
+          and "逐字复用" in _p901
+          and "OVERRUN = 20" in _p901
+          and "**没走到最后一个**" in _p901)
+    check("OO.4 ⚠️ 两条**如实记账**的差异/缺口**不许**抹掉：① 源站那 2 个"
+          "「整轮没被布 `'0'`」的例外**复刻没有**（复刻按**纯 DOM 序**）"
+          "⇒ **刻意保留**这个不一致，**不许编 DOM 层判据去凑**；"
+          "② **`Shift+Tab` 且焦点不在任何节点上**时本实现**什么都不做**，"
+          "而**源站这个组合没测过** ⇒ 按 §77「源站没测到的行为不实现、"
+          "不伪称可用」⇒ 这里**不猜**。⚠️ 另钉 **901 自己的坑**：第一版 "
+          "`OVERRUN=6` **不够**（走查被节点**内层控件**吃掉按压，只推到下标 5 / "
+          "DOM 共 7 个）⇒ **「到末尾撒手」那一问本轮不成立**，"
+          "**差点**拿没测到的数据下结论",
+          "**刻意保留**" in _ausrc
+          and "**不许编 DOM 层判据去抹平**" in _ausrc
+          and "源站没测到的行为不实现、不伪称可用" in _ausrc
+          and "这里**不猜**" in _ausrc
+          and "`OVERRUN=6` **不够**" in _ausrc
+          and "**差点**拿没测到的数据下结论" in _ausrc)
     # ══════════ 批 899：「算下一个」的规则 ══════════
     p899 = ROOT / "scripts/jimeng_probe899_roving_next_rule_src.py"
     _p899 = p899.read_text(encoding="utf-8") if p899.exists() else ""

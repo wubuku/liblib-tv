@@ -68,6 +68,60 @@ const DEFAULT_VIEWPORT = { x: -60.6, y: 1.3, zoom: 0.7299 };
 /** Batch 799 SOURCE_FACT: 源站点阵网格的世界点距 18px（截图逐像素实测）。 */
 const GRID_WORLD_PX = 18;
 
+/**
+ * Batch 901 SOURCE_FACT（896/899/900 实测，各 2/2）：源站那个 roving tabindex
+ * 的规则，逐条照做：
+ *
+ * ① **中性态节点根本没有 `tabindex` 属性** ⇒ 一个节点都不在 Tab 序列里。
+ *    （靠 `<ReactFlow nodesFocusable={false}>` 达成 —— 这是**配对方案的前半段**，
+ *    896 一度把它说成「错的杠杆」，898 已更正：**绝不许单独上线**，必须配着
+ *    本函数这个后半段。）
+ * ② **唯一触发是 Tab / Shift+Tab 的 `keydown`**：按下后给目标节点写 `'0'`、
+ *    给**其余每个**节点写 `'-1'`（全画布重写）。
+ * ③ **不 preventDefault** ⇒ 真正的焦点移动交给**浏览器原生 Tab**。
+ *    本函数只负责「先把目标装进 Tab 序列」。
+ * ④ **到末尾就撒手、绝不绕回**（899）：越界时**什么都不做**，让焦点按浏览器
+ *    原生顺序走出画布。**不**做 `i % len` 那套循环。
+ * ⑤ **此后不回撤**（896）：**不**监听 blur/focusout 去清 `'0'` —— 上一次布上
+ *    的那个 `'0'` 一直留着，哪怕焦点已经离开画布。
+ *
+ * ⚠️ 已知差异（900 查明后**如实记下**，**不许**编 DOM 层判据去抹平）：源站 76 个
+ * 节点里有 **2 个整轮从没被布上 `'0'`**（`图片 node: b22-upload`、
+ * `音频 node: 音频 61`）。那 2 个节点在 **DOM 层毫无特殊之处**（属性集与其余
+ * 76 个**完全相同**、离群 0 个），第一次 Tab 时也**照样被写了 `'-1'`**
+ * ⇒ 它们**在**应用的节点表里，只是**不被选中**；原因在**应用内部**的表序/指针，
+ * **从 DOM 侧不可查明**。⇒ 本实现按**纯 DOM 序**走，这一处**与源站不一致，
+ * 刻意保留并记账**。
+ */
+function armRovingTabindex(flow: HTMLElement | null, dir: 1 | -1): void {
+  if (!flow) return;
+  const nodes = Array.from(flow.querySelectorAll<HTMLElement>(".react-flow__node"));
+  if (!nodes.length) return;
+  const active = document.activeElement;
+  // 焦点落在哪个节点上（含它的**内层控件**）。`=== active` 那半句别省：
+  // 节点 wrapper 自己就是 activeElement 时，`contains` 对**自己**也返回 true，
+  // 但写出来更直白、也不依赖读者记得那个细节。
+  const cur = nodes.findIndex((n) => n === active || n.contains(active));
+  // 焦点不在任何节点上（典型：点空白后焦点在画布根）⇒ 正向从头起算。
+  // ⚠️ 反向（dir === -1）**源站没测过**，按 §77「源站没测到的行为不实现、
+  // 不伪称可用」⇒ 这里**什么都不做**，不猜。
+  if (cur === -1) {
+    if (dir !== 1) return;
+    armAll(nodes, 0);
+    return;
+  }
+  const next = cur + dir;
+  if (next < 0 || next >= nodes.length) return; // ④ 到末尾撒手、绝不绕回
+  armAll(nodes, next);
+}
+
+/** 把第 `keep` 个节点写成 `'0'`、其余全写 `'-1'`（② 的「全画布重写」）。 */
+function armAll(nodes: HTMLElement[], keep: number): void {
+  for (let i = 0; i < nodes.length; i += 1) {
+    nodes[i].setAttribute("tabindex", i === keep ? "0" : "-1");
+  }
+}
+
 function JimengFlow() {
   // SOURCE_FACT (batch 801): 源站画布根 `.react-flow` 带 aria-label="Canvas"
   // + role="application"（testid=rf__wrapper）。xyflow v12 未开放这两个属性的 prop：
@@ -95,6 +149,26 @@ function JimengFlow() {
 
   const nodes = useJimengStore((s) => s.nodes);
   const edges = useJimengStore((s) => s.edges);
+
+  // Batch 901 SOURCE_FACT（896 ②③④ / 899 ④ / 900）：roving tabindex 的**触发**。
+  // 用**捕获阶段**挂 window：源站是在 keydown 里改 tabindex（896 的变更流显示
+  // 写入发生在 keydown 之后 ~0.6ms、focusin 之前），而**默认动作**（浏览器移动
+  // 焦点）在冒泡+默认阶段才发生 ⇒ 捕获阶段改完，原生 Tab 才算得出新顺序。
+  //
+  // ⚠️⚠️ **不许 e.preventDefault()**：源站 `defaultPrevented=False`（896/899
+  // 各 2/2）⇒ 焦点移动是**浏览器原生**的，本函数只负责「先把目标装进序列」。
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      // 只在焦点位于画布内时才布。焦点在输入框/浮层里按 Tab 不该被劫持。
+      const t = e.target as HTMLElement | null;
+      const flow = t?.closest?.(".react-flow") as HTMLElement | null;
+      if (!flow) return;
+      armRovingTabindex(flow, e.shiftKey ? -1 : 1);
+    };
+    window.addEventListener("keydown", onKeyDown, true);
+    return () => window.removeEventListener("keydown", onKeyDown, true);
+  }, []);
   const onNodesChange = useJimengStore((s) => s.onNodesChange);
   const onEdgesChange = useJimengStore((s) => s.onEdgesChange);
   const selectNode = useJimengStore((s) => s.selectNode);
@@ -459,6 +533,13 @@ function JimengFlow() {
         selectionOnDrag
         selectionMode={SelectionMode.Partial}
         elementsSelectable
+        /* Batch 901 SOURCE_FACT（896 ①）：源站**中性态下节点根本没有 `tabindex`
+         * 属性** ⇒ 一个节点都不在 Tab 序列里，**第一次按 Tab 才现场把画布装进去**。
+         * xyflow 的 `nodesFocusable` 默认 true ⇒ 节点 wrapper 静态带 `tabindex=0`
+         * （895/897/898 实测复刻恒 `'0'`）。关掉它只是**配对方案的前半段** ——
+         * 后半段是模块级的 `armRovingTabindex`（keydown 时布 `'0'`/`'-1'`）。
+         * ⚠️ **两者必须同时在**：只关不开 ⇒ 画布**再也 Tab 不到**（898 已证明）。 */
+        nodesFocusable={false}
         panOnDrag={[1]}
         panOnScroll
         panOnScrollMode={PanOnScrollMode.Free}
