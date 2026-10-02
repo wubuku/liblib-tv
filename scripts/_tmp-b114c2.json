@@ -1,0 +1,133 @@
+{
+ "at": "2026-10-02T21:32:37.112Z",
+ "round": "c2",
+ "probes": {
+  "有资源音频": {
+   "id": "node_a9cs17rk60",
+   "selected": true,
+   "title": "jimeng-b104-test",
+   "cls": "audio",
+   "inner": "jimeng-b104-test 00:00:04 00 : 00 : 04 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "inNodeToolbars": [],
+   "inNodeEditor": [],
+   "inNodeFeatureHost": [],
+   "inNodeCtxToolbar": [],
+   "allTids": [
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "flow-node-source-connection-menu-button",
+    "audio-node-result",
+    "audio-result-gallery",
+    "audio-simple-player",
+    "audio-timeline-visual",
+    "audio-playback-waveform",
+    "audio-waveform-base",
+    "audio-waveform-progress",
+    "audio-waveform-playhead",
+    "audio-waveform-playhead-line",
+    "audio-waveform-playhead-cap",
+    "audio-duration",
+    "audio-duration-accessible"
+   ],
+   "docCounts": {
+    "nodeToolbar": 2,
+    "featureHost": 1,
+    "genPromptEditor": 0,
+    "selectionCtx": 1,
+    "audioGenerationForm": 0
+   }
+  },
+  "空音频（对照）": {
+   "id": "node_fnarb6091q",
+   "selected": false,
+   "title": "音频 69",
+   "cls": "audio",
+   "inner": "音频 69 No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+   "inNodeToolbars": [],
+   "inNodeEditor": [],
+   "inNodeFeatureHost": [],
+   "inNodeCtxToolbar": [],
+   "allTids": [
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "audio-node-empty",
+    "audio-node-status-icon"
+   ],
+   "docCounts": {
+    "nodeToolbar": 2,
+    "featureHost": 1,
+    "genPromptEditor": 0,
+    "selectionCtx": 1,
+    "audioGenerationForm": 0
+   }
+  },
+  "空视频（对照）": {
+   "id": "node_57qe0pz31m",
+   "selected": false,
+   "title": "视频 2",
+   "cls": "video",
+   "inner": "视频 2 No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+   "inNodeToolbars": [],
+   "inNodeEditor": [],
+   "inNodeFeatureHost": [],
+   "inNodeCtxToolbar": [],
+   "allTids": [
+    "video-flow-node-surface",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "video-node-empty"
+   ],
+   "docCounts": {
+    "nodeToolbar": 2,
+    "featureHost": 1,
+    "genPromptEditor": 0,
+    "selectionCtx": 1,
+    "audioGenerationForm": 0
+   }
+  }
+ },
+ "toolbars": [
+  {
+   "rect": [
+    640,
+    462,
+    0,
+    0
+   ],
+   "text": "",
+   "btns": [],
+   "hasGenPromptEditor": false,
+   "forms": [],
+   "inputs": []
+  },
+  {
+   "rect": [
+    558,
+    202,
+    165,
+    40
+   ],
+   "text": "音频修剪",
+   "btns": [
+    "下载"
+   ],
+   "hasGenPromptEditor": false,
+   "forms": [],
+   "inputs": []
+  }
+ ],
+ "conclusion": {
+  "withRes_hasToolbar": false,
+  "empty_hasToolbar": false,
+  "withRes_hasGenPromptEditor": false,
+  "toolbarsWithEditor": 0,
+  "toolbarsTotal": 2
+ }
+}

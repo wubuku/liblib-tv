@@ -1,0 +1,202 @@
+{
+ "at": "2026-10-02T21:47:25.758Z",
+ "round": "z",
+ "targets": [
+  {
+   "id": "node_fnarb6091q",
+   "by": "a 轮 · 空白右键 → 新建节点 → 音频（空）"
+  },
+  {
+   "id": "node_57qe0pz31m",
+   "by": "a 轮 · 空白右键 → 新建节点 → 视频（空）"
+  },
+  {
+   "id": "node_a9cs17rk60",
+   "by": "c 轮 · 左栏上传 wav（有资源）"
+  }
+ ],
+ "start": {
+  "nodes": "76",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "rect": [
+    124,
+    672,
+    48,
+    28
+   ]
+  },
+  "tool": {
+   "aria": "选择工具",
+   "pressed": "false",
+   "tid": "canvas-pointer-tool-toggle"
+  }
+ },
+ "ids0": 76,
+ "deletions": [
+  {
+   "id": "node_fnarb6091q",
+   "by": "a 轮 · 空白右键 → 新建节点 → 音频（空）",
+   "sel": {
+    "x": 390,
+    "y": 258
+   },
+   "guard3a": {
+    "present": true,
+    "selected": true
+   },
+   "delItem": {
+    "t": "删除 ⌫",
+    "rect": [
+     470,
+     587,
+     192,
+     36
+    ],
+    "disabled": false,
+    "menuW": 200
+   },
+   "vanished": [
+    "node_fnarb6091q"
+   ],
+   "exactlySelf": true,
+   "nBefore": 79,
+   "nAfter": 78
+  },
+  {
+   "id": "node_57qe0pz31m",
+   "by": "a 轮 · 空白右键 → 新建节点 → 视频（空）",
+   "sel": {
+    "x": 300,
+    "y": 278
+   },
+   "guard3a": {
+    "present": true,
+    "selected": true
+   },
+   "delItem": {
+    "t": "删除 ⌫",
+    "rect": [
+     444,
+     606,
+     192,
+     36
+    ],
+    "disabled": false,
+    "menuW": 200
+   },
+   "vanished": [
+    "node_57qe0pz31m"
+   ],
+   "exactlySelf": true,
+   "nBefore": 78,
+   "nAfter": 77
+  },
+  {
+   "id": "node_a9cs17rk60",
+   "by": "c 轮 · 左栏上传 wav（有资源）",
+   "sel": {
+    "x": 564,
+    "y": 284
+   },
+   "guard3a": {
+    "present": true,
+    "selected": true
+   },
+   "delItem": {
+    "t": "删除 ⌫",
+    "rect": [
+     645,
+     613,
+     192,
+     36
+    ],
+    "disabled": false,
+    "menuW": 200
+   },
+   "vanished": [
+    "node_a9cs17rk60"
+   ],
+   "exactlySelf": true,
+   "nBefore": 77,
+   "nAfter": 76
+  }
+ ],
+ "zoom0": {
+  "aria": "Zoom options, 52%",
+  "rect": [
+   124,
+   672,
+   48,
+   28
+  ]
+ },
+ "zoom1": {
+  "aria": "Zoom options, 60%",
+  "rect": [
+   124,
+   672,
+   48,
+   28
+  ]
+ },
+ "zoom2": {
+  "aria": "Zoom options, 60%",
+  "rect": [
+   124,
+   672,
+   48,
+   28
+  ]
+ },
+ "zoomStable": true,
+ "tool0": {
+  "aria": "选择工具",
+  "pressed": "false",
+  "tid": "canvas-pointer-tool-toggle"
+ },
+ "tool1": {
+  "aria": "选择工具",
+  "pressed": "false",
+  "tid": "canvas-pointer-tool-toggle"
+ },
+ "end": {
+  "nodes": "76",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "rect": [
+    124,
+    672,
+    48,
+    28
+   ]
+  },
+  "tool": {
+   "aria": "选择工具",
+   "pressed": "false",
+   "tid": "canvas-pointer-tool-toggle"
+  },
+  "sel": 0,
+  "edges": 0,
+  "leftovers": []
+ },
+ "zoomInput": {
+  "tag": "INPUT",
+  "type": "text",
+  "value": "52",
+  "rect": [
+   124,
+   672,
+   48,
+   28
+  ]
+ },
+ "zoomTyped": "60",
+ "evidenceNote": {
+  "whyTwoRuns": "第一次 z 轮把证据误写进 _tmp-b113z.json（脚本从批次 113 复制时落盘名没跟着改）。批次 113 的证据已用 `git show HEAD:…` 原样恢复、未动索引；本文件是第一次 z 轮真实读数的补录。",
+  "secondRun": "改对落盘名后重跑了一次，三条目标此时已删除，故 deletions 全为 {skipped:true}；那次运行的终态与本文件 end 一致。",
+  "selfCheck": "三个消失集合各自都只有 SELF；终态 76 nodes / 0 selected / 0 edges / 60% / 选择工具 / 805。"
+ }
+}

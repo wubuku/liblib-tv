@@ -1,0 +1,884 @@
+{
+ "at": "2026-10-02T21:23:12.175Z",
+ "round": "b",
+ "start": {
+  "nodes": "78",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "inventory": {
+  "video": [
+   {
+    "id": "node_236ctpehgg",
+    "title": "视频 1",
+    "hasRes": false
+   },
+   {
+    "id": "node_57qe0pz31m",
+    "title": "视频 2",
+    "hasRes": false
+   }
+  ],
+  "text": [
+   {
+    "id": "node_3bfb9r79qe",
+    "title": "文本 1",
+    "hasRes": false
+   },
+   {
+    "id": "node_aw29cp094x",
+    "title": "文本 2",
+    "hasRes": false
+   },
+   {
+    "id": "node_5gftn3dnt1",
+    "title": "文本 3",
+    "hasRes": false
+   }
+  ],
+  "timeline": [
+   {
+    "id": "node_cdwf8x6fbj",
+    "title": "时间线 1",
+    "hasRes": false
+   },
+   {
+    "id": "node_d4tjtpnatq",
+    "title": "时间线 2",
+    "hasRes": false
+   }
+  ],
+  "external": [
+   {
+    "id": "node_pxvkay973v",
+    "title": "导演台",
+    "hasRes": false
+   }
+  ],
+  "audio": [
+   {
+    "id": "node_ay7f1jn45r",
+    "title": "音频 1",
+    "hasRes": false
+   },
+   {
+    "id": "node_w6b1h9fvzw",
+    "title": "音频 2",
+    "hasRes": false
+   },
+   {
+    "id": "node_dt0wpmba0d",
+    "title": "音频 3",
+    "hasRes": false
+   },
+   {
+    "id": "node_kdgnjkfng2",
+    "title": "音频 4",
+    "hasRes": false
+   },
+   {
+    "id": "node_gp499g9p3m",
+    "title": "音频 5",
+    "hasRes": false
+   },
+   {
+    "id": "node_9y4j9jf0qv",
+    "title": "音频 6",
+    "hasRes": false
+   },
+   {
+    "id": "node_20sb5adarj",
+    "title": "音频 7",
+    "hasRes": false
+   },
+   {
+    "id": "node_y2n170za3z",
+    "title": "音频 8",
+    "hasRes": false
+   },
+   {
+    "id": "node_1c5zafa3zk",
+    "title": "音频 9",
+    "hasRes": false
+   },
+   {
+    "id": "node_fg4h8gry6x",
+    "title": "音频 10",
+    "hasRes": false
+   },
+   {
+    "id": "node_kx0gzwzf7a",
+    "title": "音频 11",
+    "hasRes": false
+   },
+   {
+    "id": "node_97x9w2s8dc",
+    "title": "音频 12",
+    "hasRes": false
+   },
+   {
+    "id": "node_gnykygt88s",
+    "title": "音频 13",
+    "hasRes": false
+   },
+   {
+    "id": "node_52g5ng3hxa",
+    "title": "音频 14",
+    "hasRes": false
+   },
+   {
+    "id": "node_m14qwkmz4p",
+    "title": "音频 15",
+    "hasRes": false
+   },
+   {
+    "id": "node_sc4w9xkaxd",
+    "title": "音频 16",
+    "hasRes": false
+   },
+   {
+    "id": "node_y261jwxjpn",
+    "title": "音频 17",
+    "hasRes": false
+   },
+   {
+    "id": "node_3f44mcptgc",
+    "title": "音频 18",
+    "hasRes": false
+   },
+   {
+    "id": "node_e78c3z4gap",
+    "title": "音频 19",
+    "hasRes": false
+   },
+   {
+    "id": "node_5h8sbgy7pd",
+    "title": "音频 20",
+    "hasRes": false
+   },
+   {
+    "id": "node_zb8pfc1tf6",
+    "title": "音频 21",
+    "hasRes": false
+   },
+   {
+    "id": "node_v1wkbg1mbm",
+    "title": "音频 22",
+    "hasRes": false
+   },
+   {
+    "id": "node_v5ewe33jbw",
+    "title": "音频 23",
+    "hasRes": false
+   },
+   {
+    "id": "node_3rs2xvb3wm",
+    "title": "音频 24",
+    "hasRes": false
+   },
+   {
+    "id": "node_e90a7f1gyf",
+    "title": "音频 25",
+    "hasRes": false
+   },
+   {
+    "id": "node_5g0yrqgc6c",
+    "title": "音频 26",
+    "hasRes": false
+   },
+   {
+    "id": "node_anmp0m801c",
+    "title": "音频 27",
+    "hasRes": false
+   },
+   {
+    "id": "node_tqqd4fedbn",
+    "title": "音频 28",
+    "hasRes": false
+   },
+   {
+    "id": "node_68van5z657",
+    "title": "音频 29",
+    "hasRes": false
+   },
+   {
+    "id": "node_xe755vzsmx",
+    "title": "音频 30",
+    "hasRes": false
+   },
+   {
+    "id": "node_3p3sa1sgsv",
+    "title": "音频 31",
+    "hasRes": false
+   },
+   {
+    "id": "node_jphxcmk27v",
+    "title": "音频 32",
+    "hasRes": false
+   },
+   {
+    "id": "node_9b2ajtyqwj",
+    "title": "音频 33",
+    "hasRes": false
+   },
+   {
+    "id": "node_srx8z3gx8g",
+    "title": "音频 34",
+    "hasRes": false
+   },
+   {
+    "id": "node_qf32ccpxmm",
+    "title": "音频 35",
+    "hasRes": false
+   },
+   {
+    "id": "node_r6dtesbzac",
+    "title": "音频 36",
+    "hasRes": false
+   },
+   {
+    "id": "node_20pw32f1y5",
+    "title": "音频 37",
+    "hasRes": false
+   },
+   {
+    "id": "node_kgsv6w4ach",
+    "title": "音频 38",
+    "hasRes": false
+   },
+   {
+    "id": "node_80vczsczbr",
+    "title": "音频 39",
+    "hasRes": false
+   },
+   {
+    "id": "node_7w0kc2m903",
+    "title": "音频 40",
+    "hasRes": false
+   },
+   {
+    "id": "node_r6qqyk3v98",
+    "title": "音频 41",
+    "hasRes": false
+   },
+   {
+    "id": "node_thtydf4663",
+    "title": "音频 42",
+    "hasRes": false
+   },
+   {
+    "id": "node_5na1wezb9q",
+    "title": "音频 43",
+    "hasRes": false
+   },
+   {
+    "id": "node_ky7dvkppj1",
+    "title": "音频 44",
+    "hasRes": false
+   },
+   {
+    "id": "node_tnh6v3rm7v",
+    "title": "音频 45",
+    "hasRes": false
+   },
+   {
+    "id": "node_mwz4689zqr",
+    "title": "音频 46",
+    "hasRes": false
+   },
+   {
+    "id": "node_7y6fhyn18z",
+    "title": "音频 47",
+    "hasRes": false
+   },
+   {
+    "id": "node_qe1kf9ywek",
+    "title": "音频 48",
+    "hasRes": false
+   },
+   {
+    "id": "node_w7s8mxphwh",
+    "title": "音频 49",
+    "hasRes": false
+   },
+   {
+    "id": "node_p4xg96c73x",
+    "title": "音频 50",
+    "hasRes": false
+   },
+   {
+    "id": "node_rs637eg7me",
+    "title": "音频 51",
+    "hasRes": false
+   },
+   {
+    "id": "node_wdqa2gne4s",
+    "title": "音频 52",
+    "hasRes": false
+   },
+   {
+    "id": "node_fd0p2amd3p",
+    "title": "音频 53",
+    "hasRes": false
+   },
+   {
+    "id": "node_pz48stvt07",
+    "title": "音频 54",
+    "hasRes": false
+   },
+   {
+    "id": "node_2x3hae9jhe",
+    "title": "音频 55",
+    "hasRes": false
+   },
+   {
+    "id": "node_jx5amm7m9j",
+    "title": "音频 56",
+    "hasRes": false
+   },
+   {
+    "id": "node_2vbd2rqk7q",
+    "title": "音频 57",
+    "hasRes": false
+   },
+   {
+    "id": "node_kpfbgmkkr3",
+    "title": "音频 58",
+    "hasRes": false
+   },
+   {
+    "id": "node_1yw4ntm88n",
+    "title": "音频 59",
+    "hasRes": false
+   },
+   {
+    "id": "node_fyy39951ae",
+    "title": "音频 60",
+    "hasRes": false
+   },
+   {
+    "id": "node_jc6t41x8d2",
+    "title": "音频 61",
+    "hasRes": false
+   },
+   {
+    "id": "node_kk2xhkrdtn",
+    "title": "音频 62",
+    "hasRes": false
+   },
+   {
+    "id": "node_qs4x5t988q",
+    "title": "音频 63",
+    "hasRes": false
+   },
+   {
+    "id": "node_9rxgrvfe4y",
+    "title": "音频 64",
+    "hasRes": false
+   },
+   {
+    "id": "node_n0x3zqajjy",
+    "title": "音频 65",
+    "hasRes": false
+   },
+   {
+    "id": "node_3cc0k9cfgb",
+    "title": "音频 66",
+    "hasRes": false
+   },
+   {
+    "id": "node_ae08gp8ke3",
+    "title": "音频 67",
+    "hasRes": false
+   },
+   {
+    "id": "node_tadm1nyykc",
+    "title": "音频 68",
+    "hasRes": false
+   },
+   {
+    "id": "node_fnarb6091q",
+    "title": "音频 69",
+    "hasRes": false
+   }
+  ],
+  "image": [
+   {
+    "id": "node_gref4sw056",
+    "title": "b22-upload",
+    "hasRes": true
+   }
+  ]
+ },
+ "hosts": [
+  {
+   "host": "node_fnarb6091q",
+   "hostType": "audio",
+   "level1": {
+    "rect": [
+     23,
+     316,
+     240,
+     192
+    ],
+    "role": null,
+    "aria": null,
+    "options": [
+     {
+      "t": "主体",
+      "sel": "true",
+      "rect": [
+       27,
+       352,
+       232,
+       48
+      ]
+     },
+     {
+      "t": "图片",
+      "sel": "false",
+      "rect": [
+       27,
+       404,
+       232,
+       48
+      ]
+     },
+     {
+      "t": "音频",
+      "sel": "false",
+      "rect": [
+       27,
+       456,
+       232,
+       48
+      ]
+     }
+    ],
+    "groups": [
+     "添加参考 主体 图片 音频"
+    ]
+   }
+  },
+  {
+   "host": "node_57qe0pz31m",
+   "hostType": "video",
+   "level1": {
+    "rect": [
+     16,
+     283,
+     240,
+     244
+    ],
+    "role": null,
+    "aria": null,
+    "options": [
+     {
+      "t": "主体",
+      "sel": "true",
+      "rect": [
+       20,
+       319,
+       232,
+       48
+      ]
+     },
+     {
+      "t": "图片",
+      "sel": "false",
+      "rect": [
+       20,
+       371,
+       232,
+       48
+      ]
+     },
+     {
+      "t": "视频",
+      "sel": "false",
+      "rect": [
+       20,
+       423,
+       232,
+       48
+      ]
+     },
+     {
+      "t": "音频",
+      "sel": "false",
+      "rect": [
+       20,
+       475,
+       232,
+       48
+      ]
+     }
+    ],
+    "groups": [
+     "添加参考 主体 图片 视频 音频"
+    ]
+   }
+  }
+ ],
+ "results": [
+  {
+   "hostType": "audio",
+   "host": "node_fnarb6091q",
+   "cat": "主体",
+   "invN": 0,
+   "invReady": 0,
+   "level2": {
+    "rect": [
+     267,
+     352,
+     240,
+     76
+    ],
+    "role": null,
+    "aria": null,
+    "text": "暂无相关节点",
+    "options": [
+     {
+      "t": "暂无相关节点",
+      "rect": [
+       271,
+       356,
+       232,
+       68
+      ]
+     }
+    ],
+    "statuses": [
+     {
+      "t": "暂无相关节点",
+      "rect": [
+       271,
+       356,
+       232,
+       68
+      ]
+     }
+    ],
+    "groups": []
+   }
+  },
+  {
+   "hostType": "audio",
+   "host": "node_fnarb6091q",
+   "cat": "图片",
+   "invN": 0,
+   "invReady": 0,
+   "level2": {
+    "rect": [
+     267,
+     404,
+     240,
+     56
+    ],
+    "role": null,
+    "aria": null,
+    "text": "b22-upload",
+    "options": [
+     {
+      "t": "b22-upload",
+      "rect": [
+       271,
+       408,
+       232,
+       48
+      ]
+     }
+    ],
+    "statuses": [],
+    "groups": [
+     "图片"
+    ]
+   }
+  },
+  {
+   "hostType": "audio",
+   "host": "node_fnarb6091q",
+   "cat": "音频",
+   "invN": 0,
+   "invReady": 0,
+   "level2": {
+    "rect": [
+     267,
+     456,
+     240,
+     76
+    ],
+    "role": null,
+    "aria": null,
+    "text": "暂无相关节点",
+    "options": [
+     {
+      "t": "暂无相关节点",
+      "rect": [
+       271,
+       460,
+       232,
+       68
+      ]
+     }
+    ],
+    "statuses": [
+     {
+      "t": "暂无相关节点",
+      "rect": [
+       271,
+       460,
+       232,
+       68
+      ]
+     }
+    ],
+    "groups": [
+     "音频"
+    ]
+   }
+  },
+  {
+   "hostType": "video",
+   "host": "node_57qe0pz31m",
+   "cat": "主体",
+   "invN": 0,
+   "invReady": 0,
+   "level2": {
+    "rect": [
+     260,
+     319,
+     240,
+     76
+    ],
+    "role": null,
+    "aria": null,
+    "text": "暂无相关节点",
+    "options": [
+     {
+      "t": "暂无相关节点",
+      "rect": [
+       264,
+       323,
+       232,
+       68
+      ]
+     }
+    ],
+    "statuses": [
+     {
+      "t": "暂无相关节点",
+      "rect": [
+       264,
+       323,
+       232,
+       68
+      ]
+     }
+    ],
+    "groups": []
+   }
+  },
+  {
+   "hostType": "video",
+   "host": "node_57qe0pz31m",
+   "cat": "图片",
+   "invN": 0,
+   "invReady": 0,
+   "level2": {
+    "rect": [
+     260,
+     371,
+     240,
+     56
+    ],
+    "role": null,
+    "aria": null,
+    "text": "b22-upload",
+    "options": [
+     {
+      "t": "b22-upload",
+      "rect": [
+       264,
+       375,
+       232,
+       48
+      ]
+     }
+    ],
+    "statuses": [],
+    "groups": [
+     "图片"
+    ]
+   }
+  },
+  {
+   "hostType": "video",
+   "host": "node_57qe0pz31m",
+   "cat": "视频",
+   "invN": 0,
+   "invReady": 0,
+   "level2": {
+    "rect": [
+     260,
+     423,
+     240,
+     76
+    ],
+    "role": null,
+    "aria": null,
+    "text": "暂无相关节点",
+    "options": [
+     {
+      "t": "暂无相关节点",
+      "rect": [
+       264,
+       427,
+       232,
+       68
+      ]
+     }
+    ],
+    "statuses": [
+     {
+      "t": "暂无相关节点",
+      "rect": [
+       264,
+       427,
+       232,
+       68
+      ]
+     }
+    ],
+    "groups": [
+     "视频"
+    ]
+   }
+  },
+  {
+   "hostType": "video",
+   "host": "node_57qe0pz31m",
+   "cat": "音频",
+   "invN": 0,
+   "invReady": 0,
+   "level2": {
+    "rect": [
+     260,
+     475,
+     240,
+     76
+    ],
+    "role": null,
+    "aria": null,
+    "text": "暂无相关节点",
+    "options": [
+     {
+      "t": "暂无相关节点",
+      "rect": [
+       264,
+       479,
+       232,
+       68
+      ]
+     }
+    ],
+    "statuses": [
+     {
+      "t": "暂无相关节点",
+      "rect": [
+       264,
+       479,
+       232,
+       68
+      ]
+     }
+    ],
+    "groups": [
+     "音频"
+    ]
+   }
+  }
+ ],
+ "keyGuardWaiver": {
+  "granted": true,
+  "why": "本轮测试前提就是焦点在编辑器内；只往本批自建节点的提示词里打字；不触发任何生成。"
+ },
+ "summary": [
+  {
+   "host": "audio",
+   "cat": "主体",
+   "invN": 0,
+   "invReady": 0,
+   "opts": 1,
+   "status": [
+    "暂无相关节点"
+   ],
+   "text": "暂无相关节点"
+  },
+  {
+   "host": "audio",
+   "cat": "图片",
+   "invN": 0,
+   "invReady": 0,
+   "opts": 1,
+   "status": [],
+   "text": "b22-upload"
+  },
+  {
+   "host": "audio",
+   "cat": "音频",
+   "invN": 0,
+   "invReady": 0,
+   "opts": 1,
+   "status": [
+    "暂无相关节点"
+   ],
+   "text": "暂无相关节点"
+  },
+  {
+   "host": "video",
+   "cat": "主体",
+   "invN": 0,
+   "invReady": 0,
+   "opts": 1,
+   "status": [
+    "暂无相关节点"
+   ],
+   "text": "暂无相关节点"
+  },
+  {
+   "host": "video",
+   "cat": "图片",
+   "invN": 0,
+   "invReady": 0,
+   "opts": 1,
+   "status": [],
+   "text": "b22-upload"
+  },
+  {
+   "host": "video",
+   "cat": "视频",
+   "invN": 0,
+   "invReady": 0,
+   "opts": 1,
+   "status": [
+    "暂无相关节点"
+   ],
+   "text": "暂无相关节点"
+  },
+  {
+   "host": "video",
+   "cat": "音频",
+   "invN": 0,
+   "invReady": 0,
+   "opts": 1,
+   "status": [
+    "暂无相关节点"
+   ],
+   "text": "暂无相关节点"
+  }
+ ],
+ "end": {
+  "nodes": "78",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}

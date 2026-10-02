@@ -1,0 +1,84 @@
+{
+ "at": "2026-10-02T21:21:01.193Z",
+ "round": "a",
+ "start": {
+  "nodes": "76",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "made": [
+  {
+   "type": "音频",
+   "self": "node_fnarb6091q",
+   "guard": {
+    "diff": [
+     "node_fnarb6091q"
+    ],
+    "sel": [
+     "node_fnarb6091q"
+    ],
+    "ok": true
+   },
+   "idsBeforeN": 76,
+   "state": {
+    "cls": "audio",
+    "inner": "音频 69 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+    "tids": [
+     "flow-node-media-stroke",
+     "flow-node-target-handle",
+     "flow-node-target-connection-menu-button",
+     "flow-node-title",
+     "flow-node-selected-tag",
+     "flow-node-source-handle",
+     "flow-node-source-connection-menu-button",
+     "audio-node-empty",
+     "audio-node-status-icon"
+    ],
+    "rect": [
+     354,
+     260,
+     172,
+     172
+    ]
+   }
+  },
+  {
+   "type": "视频",
+   "self": "node_57qe0pz31m",
+   "guard": {
+    "diff": [
+     "node_57qe0pz31m"
+    ],
+    "sel": [
+     "node_57qe0pz31m"
+    ],
+    "ok": true
+   },
+   "idsBeforeN": 77,
+   "state": {
+    "cls": "video",
+    "inner": "视频 2 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+    "tids": [
+     "video-flow-node-surface",
+     "flow-node-media-stroke",
+     "flow-node-target-handle",
+     "flow-node-target-connection-menu-button",
+     "flow-node-title",
+     "flow-node-selected-tag",
+     "flow-node-source-handle",
+     "flow-node-source-connection-menu-button",
+     "video-node-empty"
+    ],
+    "rect": [
+     293,
+     271,
+     293,
+     165
+    ]
+   }
+  }
+ ],
+ "end": {
+  "nodes": "78",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}
