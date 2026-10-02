@@ -1,0 +1,2614 @@
+{
+  "batch": 645,
+  "title": "the joint state's margin has a closed form; five boundaries fall out of four measured constants, and the 899 breakpoint is a discontinuity rather than a continuation",
+  "date": "2026-10-01",
+  "widths": [
+    339,
+    480,
+    495,
+    620,
+    767,
+    768,
+    780,
+    898,
+    899,
+    1152,
+    1280,
+    1330,
+    1331,
+    1440,
+    1500,
+    1509,
+    1510,
+    1600,
+    1920
+  ],
+  "windowHeight": 900,
+  "claims": {
+    "structure": "the prompt bar and the viewport toolbar are two flex SIBLINGS in one `mx-auto shrink-0` row; that row is toolbarWidth + 8 + 225 wide, and the pill is flush to its right end",
+    "constants": {
+      "toolbarWidth": {
+        "narrow": "min(711, W - 48)",
+        "desktop": "711"
+      },
+      "rowBoxWidth": {
+        "narrow": "W - 24",
+        "desktop": "W - 586"
+      },
+      "rowLeft": {
+        "narrow": "12",
+        "desktop": "293"
+      },
+      "promptBarWidth": 225
+    },
+    "margin": "cx comes from the four constants; margin = cx - rowRight; while the toolbar is uncapped in the narrow family the pill's margin is a CONSTANT because both edges advance one pixel per pixel of width",
+    "boundaries": {
+      "开启九宫格辅助线": {
+        "narrow": 495,
+        "desktop": 1747
+      },
+      "上传图片": {
+        "narrow": 768,
+        "desktop": 1330
+      },
+      "发送": {
+        "narrow": 947,
+        "desktop": 1509
+      }
+    },
+    "notClaimed": "the boundaries are BRACKETED by the grid, not interpolated; no defect is claimed (643/644: these scroll back into reach); zero source-site assertions"
+  },
+  "cells": {
+    "339": {
+      "innerWidth": 339,
+      "family": "narrow",
+      "geo": {
+        "innerWidth": 339,
+        "innerHeight": 900,
+        "row": {
+          "left": 12,
+          "right": 327,
+          "width": 315,
+          "clientWidth": 315,
+          "scrollWidth": 524,
+          "top": 676
+        },
+        "shared": {
+          "left": 12,
+          "right": 536,
+          "width": 524,
+          "clientWidth": 524,
+          "scrollWidth": 524,
+          "top": 676
+        },
+        "toolbar": {
+          "left": 12,
+          "right": 303,
+          "width": 291,
+          "clientWidth": 289,
+          "scrollWidth": 656,
+          "top": 676
+        },
+        "promptBar": {
+          "left": 311,
+          "right": 536,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 676
+        },
+        "inspectorLeft": 339,
+        "inspectorBottom": 724,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 459,
+            "rect": [
+              443,
+              684,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 336,
+            "rect": [
+              320,
+              685,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 515,
+            "rect": [
+              499,
+              685,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 2,
+      "jointLabels": [
+        "16:9",
+        "上传图片"
+      ],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 459,
+          "rect": [
+            443,
+            684,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 459.0,
+          "predictedMargin": 132.0
+        },
+        "上传图片": {
+          "cx": 336,
+          "rect": [
+            320,
+            685,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 336.0,
+          "predictedMargin": 9.0
+        },
+        "发送": {
+          "cx": 515,
+          "rect": [
+            499,
+            685,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 515.0,
+          "predictedMargin": 188.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [
+        [
+          "收起",
+          "导演视角机位视角",
+          [
+            64,
+            5.5,
+            40,
+            40
+          ]
+        ]
+      ],
+      "unreachable": 0
+    },
+    "480": {
+      "innerWidth": 480,
+      "family": "narrow",
+      "geo": {
+        "innerWidth": 480,
+        "innerHeight": 900,
+        "row": {
+          "left": 12,
+          "right": 468,
+          "width": 456,
+          "clientWidth": 456,
+          "scrollWidth": 665,
+          "top": 676
+        },
+        "shared": {
+          "left": 12,
+          "right": 677,
+          "width": 665,
+          "clientWidth": 665,
+          "scrollWidth": 665,
+          "top": 676
+        },
+        "toolbar": {
+          "left": 12,
+          "right": 444,
+          "width": 432,
+          "clientWidth": 430,
+          "scrollWidth": 656,
+          "top": 676
+        },
+        "promptBar": {
+          "left": 452,
+          "right": 677,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 676
+        },
+        "inspectorLeft": 480,
+        "inspectorBottom": 724,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 459,
+            "rect": [
+              443,
+              684,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 477,
+            "rect": [
+              461,
+              685,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 656,
+            "rect": [
+              640,
+              685,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 2,
+      "jointLabels": [
+        "上传图片",
+        "开启九宫格辅助线"
+      ],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 459,
+          "rect": [
+            443,
+            684,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 459.0,
+          "predictedMargin": -9.0
+        },
+        "上传图片": {
+          "cx": 477,
+          "rect": [
+            461,
+            685,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 477.0,
+          "predictedMargin": 9.0
+        },
+        "发送": {
+          "cx": 656,
+          "rect": [
+            640,
+            685,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 656.0,
+          "predictedMargin": 188.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "495": {
+      "innerWidth": 495,
+      "family": "narrow",
+      "geo": {
+        "innerWidth": 495,
+        "innerHeight": 900,
+        "row": {
+          "left": 12,
+          "right": 483,
+          "width": 471,
+          "clientWidth": 471,
+          "scrollWidth": 680,
+          "top": 676
+        },
+        "shared": {
+          "left": 12,
+          "right": 692,
+          "width": 680,
+          "clientWidth": 680,
+          "scrollWidth": 680,
+          "top": 676
+        },
+        "toolbar": {
+          "left": 12,
+          "right": 459,
+          "width": 447,
+          "clientWidth": 445,
+          "scrollWidth": 656,
+          "top": 676
+        },
+        "promptBar": {
+          "left": 467,
+          "right": 692,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 676
+        },
+        "inspectorLeft": 495,
+        "inspectorBottom": 724,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 459,
+            "rect": [
+              443,
+              684,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 492,
+            "rect": [
+              476,
+              685,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 671,
+            "rect": [
+              655,
+              685,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 1,
+      "jointLabels": [
+        "上传图片"
+      ],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 459,
+          "rect": [
+            443,
+            684,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 459.0,
+          "predictedMargin": -24.0
+        },
+        "上传图片": {
+          "cx": 492,
+          "rect": [
+            476,
+            685,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 492.0,
+          "predictedMargin": 9.0
+        },
+        "发送": {
+          "cx": 671,
+          "rect": [
+            655,
+            685,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 671.0,
+          "predictedMargin": 188.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "620": {
+      "innerWidth": 620,
+      "family": "narrow",
+      "geo": {
+        "innerWidth": 620,
+        "innerHeight": 900,
+        "row": {
+          "left": 12,
+          "right": 608,
+          "width": 596,
+          "clientWidth": 596,
+          "scrollWidth": 805,
+          "top": 676
+        },
+        "shared": {
+          "left": 12,
+          "right": 817,
+          "width": 805,
+          "clientWidth": 805,
+          "scrollWidth": 805,
+          "top": 676
+        },
+        "toolbar": {
+          "left": 12,
+          "right": 584,
+          "width": 572,
+          "clientWidth": 570,
+          "scrollWidth": 673,
+          "top": 676
+        },
+        "promptBar": {
+          "left": 592,
+          "right": 817,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 676
+        },
+        "inspectorLeft": 620,
+        "inspectorBottom": 724,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 459,
+            "rect": [
+              443,
+              684,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 617,
+            "rect": [
+              601,
+              685,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 796,
+            "rect": [
+              780,
+              685,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 1,
+      "jointLabels": [
+        "上传图片"
+      ],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 459,
+          "rect": [
+            443,
+            684,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 459.0,
+          "predictedMargin": -149.0
+        },
+        "上传图片": {
+          "cx": 617,
+          "rect": [
+            601,
+            685,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 617.0,
+          "predictedMargin": 9.0
+        },
+        "发送": {
+          "cx": 796,
+          "rect": [
+            780,
+            685,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 796.0,
+          "predictedMargin": 188.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "767": {
+      "innerWidth": 767,
+      "family": "narrow",
+      "geo": {
+        "innerWidth": 767,
+        "innerHeight": 900,
+        "row": {
+          "left": 12,
+          "right": 755,
+          "width": 743,
+          "clientWidth": 743,
+          "scrollWidth": 944,
+          "top": 676
+        },
+        "shared": {
+          "left": 12,
+          "right": 956,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 676
+        },
+        "toolbar": {
+          "left": 12,
+          "right": 723,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 676
+        },
+        "promptBar": {
+          "left": 731,
+          "right": 956,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 676
+        },
+        "inspectorLeft": 767,
+        "inspectorBottom": 724,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 460,
+            "rect": [
+              444,
+              684,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 756,
+            "rect": [
+              740,
+              685,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 935,
+            "rect": [
+              919,
+              685,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 1,
+      "jointLabels": [
+        "上传图片"
+      ],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 460,
+          "rect": [
+            444,
+            684,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 459.0,
+          "predictedMargin": -296.0
+        },
+        "上传图片": {
+          "cx": 756,
+          "rect": [
+            740,
+            685,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 756.0,
+          "predictedMargin": 1.0
+        },
+        "发送": {
+          "cx": 935,
+          "rect": [
+            919,
+            685,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 935.0,
+          "predictedMargin": 180.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "768": {
+      "innerWidth": 768,
+      "family": "narrow",
+      "geo": {
+        "innerWidth": 768,
+        "innerHeight": 900,
+        "row": {
+          "left": 12,
+          "right": 756,
+          "width": 744,
+          "clientWidth": 744,
+          "scrollWidth": 944,
+          "top": 676
+        },
+        "shared": {
+          "left": 12,
+          "right": 956,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 676
+        },
+        "toolbar": {
+          "left": 12,
+          "right": 723,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 676
+        },
+        "promptBar": {
+          "left": 731,
+          "right": 956,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 676
+        },
+        "inspectorLeft": 768,
+        "inspectorBottom": 724,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 460,
+            "rect": [
+              444,
+              684,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 756,
+            "rect": [
+              740,
+              685,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 935,
+            "rect": [
+              919,
+              685,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 1,
+      "jointLabels": [
+        "上传图片"
+      ],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 460,
+          "rect": [
+            444,
+            684,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 459.0,
+          "predictedMargin": -297.0
+        },
+        "上传图片": {
+          "cx": 756,
+          "rect": [
+            740,
+            685,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 756.0,
+          "predictedMargin": 0.0
+        },
+        "发送": {
+          "cx": 935,
+          "rect": [
+            919,
+            685,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 935.0,
+          "predictedMargin": 179.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "780": {
+      "innerWidth": 780,
+      "family": "narrow",
+      "geo": {
+        "innerWidth": 780,
+        "innerHeight": 900,
+        "row": {
+          "left": 12,
+          "right": 768,
+          "width": 756,
+          "clientWidth": 756,
+          "scrollWidth": 944,
+          "top": 676
+        },
+        "shared": {
+          "left": 12,
+          "right": 956,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 676
+        },
+        "toolbar": {
+          "left": 12,
+          "right": 723,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 676
+        },
+        "promptBar": {
+          "left": 731,
+          "right": 956,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 676
+        },
+        "inspectorLeft": 780,
+        "inspectorBottom": 724,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 460,
+            "rect": [
+              444,
+              684,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 756,
+            "rect": [
+              740,
+              685,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 935,
+            "rect": [
+              919,
+              685,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 0,
+      "jointLabels": [],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 460,
+          "rect": [
+            444,
+            684,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 459.0,
+          "predictedMargin": -309.0
+        },
+        "上传图片": {
+          "cx": 756,
+          "rect": [
+            740,
+            685,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 756.0,
+          "predictedMargin": -12.0
+        },
+        "发送": {
+          "cx": 935,
+          "rect": [
+            919,
+            685,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 935.0,
+          "predictedMargin": 167.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "898": {
+      "innerWidth": 898,
+      "family": "narrow",
+      "geo": {
+        "innerWidth": 898,
+        "innerHeight": 900,
+        "row": {
+          "left": 12,
+          "right": 886,
+          "width": 874,
+          "clientWidth": 874,
+          "scrollWidth": 944,
+          "top": 676
+        },
+        "shared": {
+          "left": 12,
+          "right": 956,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 676
+        },
+        "toolbar": {
+          "left": 12,
+          "right": 723,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 676
+        },
+        "promptBar": {
+          "left": 731,
+          "right": 956,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 676
+        },
+        "inspectorLeft": 898,
+        "inspectorBottom": 724,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 460,
+            "rect": [
+              444,
+              684,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 756,
+            "rect": [
+              740,
+              685,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 935,
+            "rect": [
+              919,
+              685,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 0,
+      "jointLabels": [],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 460,
+          "rect": [
+            444,
+            684,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 459.0,
+          "predictedMargin": -427.0
+        },
+        "上传图片": {
+          "cx": 756,
+          "rect": [
+            740,
+            685,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 756.0,
+          "predictedMargin": -130.0
+        },
+        "发送": {
+          "cx": 935,
+          "rect": [
+            919,
+            685,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 935.0,
+          "predictedMargin": 49.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "899": {
+      "innerWidth": 899,
+      "family": "desktop",
+      "geo": {
+        "innerWidth": 899,
+        "innerHeight": 900,
+        "row": {
+          "left": 293,
+          "right": 606,
+          "width": 313,
+          "clientWidth": 313,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "shared": {
+          "left": 293,
+          "right": 1237,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "toolbar": {
+          "left": 293,
+          "right": 1004,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 670
+        },
+        "promptBar": {
+          "left": 1012,
+          "right": 1237,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 670
+        },
+        "inspectorLeft": 618,
+        "inspectorBottom": 718,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 741,
+            "rect": [
+              725,
+              678,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 1037,
+            "rect": [
+              1021,
+              679,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 1216,
+            "rect": [
+              1200,
+              679,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 8,
+      "jointLabels": [
+        "1:1",
+        "9:16",
+        "删除关键帧",
+        "开启九宫格辅助线",
+        "模型库",
+        "添加关键帧",
+        "添加群众阵列",
+        "虚拟相机"
+      ],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 741,
+          "rect": [
+            725,
+            678,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 740.0,
+          "predictedMargin": 134.0
+        },
+        "上传图片": {
+          "cx": 1037,
+          "rect": [
+            1021,
+            679,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 1037.0,
+          "predictedMargin": 431.0
+        },
+        "发送": {
+          "cx": 1216,
+          "rect": [
+            1200,
+            679,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 1216.0,
+          "predictedMargin": 610.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "1152": {
+      "innerWidth": 1152,
+      "family": "desktop",
+      "geo": {
+        "innerWidth": 1152,
+        "innerHeight": 900,
+        "row": {
+          "left": 293,
+          "right": 859,
+          "width": 566,
+          "clientWidth": 566,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "shared": {
+          "left": 293,
+          "right": 1237,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "toolbar": {
+          "left": 293,
+          "right": 1004,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 670
+        },
+        "promptBar": {
+          "left": 1012,
+          "right": 1237,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 670
+        },
+        "inspectorLeft": 871,
+        "inspectorBottom": 718,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 741,
+            "rect": [
+              725,
+              678,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 1037,
+            "rect": [
+              1021,
+              679,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 1216,
+            "rect": [
+              1200,
+              679,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 4,
+      "jointLabels": [
+        "上传图片",
+        "保存构图",
+        "描述想搭建的场景",
+        "模型库"
+      ],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 741,
+          "rect": [
+            725,
+            678,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 740.0,
+          "predictedMargin": -119.0
+        },
+        "上传图片": {
+          "cx": 1037,
+          "rect": [
+            1021,
+            679,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 1037.0,
+          "predictedMargin": 178.0
+        },
+        "发送": {
+          "cx": 1216,
+          "rect": [
+            1200,
+            679,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 1216.0,
+          "predictedMargin": 357.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "1280": {
+      "innerWidth": 1280,
+      "family": "desktop",
+      "geo": {
+        "innerWidth": 1280,
+        "innerHeight": 900,
+        "row": {
+          "left": 293,
+          "right": 987,
+          "width": 694,
+          "clientWidth": 694,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "shared": {
+          "left": 293,
+          "right": 1237,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "toolbar": {
+          "left": 293,
+          "right": 1004,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 670
+        },
+        "promptBar": {
+          "left": 1012,
+          "right": 1237,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 670
+        },
+        "inspectorLeft": 999,
+        "inspectorBottom": 718,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 741,
+            "rect": [
+              725,
+              678,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 1037,
+            "rect": [
+              1021,
+              679,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 1216,
+            "rect": [
+              1200,
+              679,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 3,
+      "jointLabels": [
+        "上传图片",
+        "发送",
+        "描述想搭建的场景"
+      ],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 741,
+          "rect": [
+            725,
+            678,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 740.0,
+          "predictedMargin": -247.0
+        },
+        "上传图片": {
+          "cx": 1037,
+          "rect": [
+            1021,
+            679,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 1037.0,
+          "predictedMargin": 50.0
+        },
+        "发送": {
+          "cx": 1216,
+          "rect": [
+            1200,
+            679,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 1216.0,
+          "predictedMargin": 229.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "1330": {
+      "innerWidth": 1330,
+      "family": "desktop",
+      "geo": {
+        "innerWidth": 1330,
+        "innerHeight": 900,
+        "row": {
+          "left": 293,
+          "right": 1037,
+          "width": 744,
+          "clientWidth": 744,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "shared": {
+          "left": 293,
+          "right": 1237,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "toolbar": {
+          "left": 293,
+          "right": 1004,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 670
+        },
+        "promptBar": {
+          "left": 1012,
+          "right": 1237,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 670
+        },
+        "inspectorLeft": 1049,
+        "inspectorBottom": 718,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 741,
+            "rect": [
+              725,
+              678,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 1037,
+            "rect": [
+              1021,
+              679,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 1216,
+            "rect": [
+              1200,
+              679,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 3,
+      "jointLabels": [
+        "上传图片",
+        "发送",
+        "描述想搭建的场景"
+      ],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 741,
+          "rect": [
+            725,
+            678,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 740.0,
+          "predictedMargin": -297.0
+        },
+        "上传图片": {
+          "cx": 1037,
+          "rect": [
+            1021,
+            679,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 1037.0,
+          "predictedMargin": 0.0
+        },
+        "发送": {
+          "cx": 1216,
+          "rect": [
+            1200,
+            679,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 1216.0,
+          "predictedMargin": 179.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "1331": {
+      "innerWidth": 1331,
+      "family": "desktop",
+      "geo": {
+        "innerWidth": 1331,
+        "innerHeight": 900,
+        "row": {
+          "left": 293,
+          "right": 1038,
+          "width": 745,
+          "clientWidth": 745,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "shared": {
+          "left": 293,
+          "right": 1237,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "toolbar": {
+          "left": 293,
+          "right": 1004,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 670
+        },
+        "promptBar": {
+          "left": 1012,
+          "right": 1237,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 670
+        },
+        "inspectorLeft": 1050,
+        "inspectorBottom": 718,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 741,
+            "rect": [
+              725,
+              678,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 1037,
+            "rect": [
+              1021,
+              679,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 1216,
+            "rect": [
+              1200,
+              679,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 2,
+      "jointLabels": [
+        "发送",
+        "描述想搭建的场景"
+      ],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 741,
+          "rect": [
+            725,
+            678,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 740.0,
+          "predictedMargin": -298.0
+        },
+        "上传图片": {
+          "cx": 1037,
+          "rect": [
+            1021,
+            679,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 1037.0,
+          "predictedMargin": -1.0
+        },
+        "发送": {
+          "cx": 1216,
+          "rect": [
+            1200,
+            679,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 1216.0,
+          "predictedMargin": 178.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "1440": {
+      "innerWidth": 1440,
+      "family": "desktop",
+      "geo": {
+        "innerWidth": 1440,
+        "innerHeight": 900,
+        "row": {
+          "left": 293,
+          "right": 1147,
+          "width": 854,
+          "clientWidth": 854,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "shared": {
+          "left": 293,
+          "right": 1237,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "toolbar": {
+          "left": 293,
+          "right": 1004,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 670
+        },
+        "promptBar": {
+          "left": 1012,
+          "right": 1237,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 670
+        },
+        "inspectorLeft": 1159,
+        "inspectorBottom": 718,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 741,
+            "rect": [
+              725,
+              678,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 1037,
+            "rect": [
+              1021,
+              679,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 1216,
+            "rect": [
+              1200,
+              679,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 1,
+      "jointLabels": [
+        "发送"
+      ],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 741,
+          "rect": [
+            725,
+            678,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 740.0,
+          "predictedMargin": -407.0
+        },
+        "上传图片": {
+          "cx": 1037,
+          "rect": [
+            1021,
+            679,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 1037.0,
+          "predictedMargin": -110.0
+        },
+        "发送": {
+          "cx": 1216,
+          "rect": [
+            1200,
+            679,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 1216.0,
+          "predictedMargin": 69.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "1500": {
+      "innerWidth": 1500,
+      "family": "desktop",
+      "geo": {
+        "innerWidth": 1500,
+        "innerHeight": 900,
+        "row": {
+          "left": 293,
+          "right": 1207,
+          "width": 914,
+          "clientWidth": 914,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "shared": {
+          "left": 293,
+          "right": 1237,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "toolbar": {
+          "left": 293,
+          "right": 1004,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 670
+        },
+        "promptBar": {
+          "left": 1012,
+          "right": 1237,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 670
+        },
+        "inspectorLeft": 1219,
+        "inspectorBottom": 718,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 741,
+            "rect": [
+              725,
+              678,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 1037,
+            "rect": [
+              1021,
+              679,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 1216,
+            "rect": [
+              1200,
+              679,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 1,
+      "jointLabels": [
+        "发送"
+      ],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 741,
+          "rect": [
+            725,
+            678,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 740.0,
+          "predictedMargin": -467.0
+        },
+        "上传图片": {
+          "cx": 1037,
+          "rect": [
+            1021,
+            679,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 1037.0,
+          "predictedMargin": -170.0
+        },
+        "发送": {
+          "cx": 1216,
+          "rect": [
+            1200,
+            679,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 1216.0,
+          "predictedMargin": 9.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "1509": {
+      "innerWidth": 1509,
+      "family": "desktop",
+      "geo": {
+        "innerWidth": 1509,
+        "innerHeight": 900,
+        "row": {
+          "left": 293,
+          "right": 1216,
+          "width": 923,
+          "clientWidth": 923,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "shared": {
+          "left": 293,
+          "right": 1237,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "toolbar": {
+          "left": 293,
+          "right": 1004,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 670
+        },
+        "promptBar": {
+          "left": 1012,
+          "right": 1237,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 670
+        },
+        "inspectorLeft": 1228,
+        "inspectorBottom": 718,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 741,
+            "rect": [
+              725,
+              678,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 1037,
+            "rect": [
+              1021,
+              679,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 1216,
+            "rect": [
+              1200,
+              679,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 1,
+      "jointLabels": [
+        "发送"
+      ],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 741,
+          "rect": [
+            725,
+            678,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 740.0,
+          "predictedMargin": -476.0
+        },
+        "上传图片": {
+          "cx": 1037,
+          "rect": [
+            1021,
+            679,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 1037.0,
+          "predictedMargin": -179.0
+        },
+        "发送": {
+          "cx": 1216,
+          "rect": [
+            1200,
+            679,
+            32,
+            32
+          ],
+          "joint": true,
+          "predictedCx": 1216.0,
+          "predictedMargin": 0.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "1510": {
+      "innerWidth": 1510,
+      "family": "desktop",
+      "geo": {
+        "innerWidth": 1510,
+        "innerHeight": 900,
+        "row": {
+          "left": 293,
+          "right": 1217,
+          "width": 924,
+          "clientWidth": 924,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "shared": {
+          "left": 293,
+          "right": 1237,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "toolbar": {
+          "left": 293,
+          "right": 1004,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 670
+        },
+        "promptBar": {
+          "left": 1012,
+          "right": 1237,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 670
+        },
+        "inspectorLeft": 1229,
+        "inspectorBottom": 718,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 741,
+            "rect": [
+              725,
+              678,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 1037,
+            "rect": [
+              1021,
+              679,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 1216,
+            "rect": [
+              1200,
+              679,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 0,
+      "jointLabels": [],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 741,
+          "rect": [
+            725,
+            678,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 740.0,
+          "predictedMargin": -477.0
+        },
+        "上传图片": {
+          "cx": 1037,
+          "rect": [
+            1021,
+            679,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 1037.0,
+          "predictedMargin": -180.0
+        },
+        "发送": {
+          "cx": 1216,
+          "rect": [
+            1200,
+            679,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 1216.0,
+          "predictedMargin": -1.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "1600": {
+      "innerWidth": 1600,
+      "family": "desktop",
+      "geo": {
+        "innerWidth": 1600,
+        "innerHeight": 900,
+        "row": {
+          "left": 293,
+          "right": 1307,
+          "width": 1014,
+          "clientWidth": 1014,
+          "scrollWidth": 1014,
+          "top": 670
+        },
+        "shared": {
+          "left": 328,
+          "right": 1272,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "toolbar": {
+          "left": 328,
+          "right": 1039,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 670
+        },
+        "promptBar": {
+          "left": 1047,
+          "right": 1272,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 670
+        },
+        "inspectorLeft": 1319,
+        "inspectorBottom": 718,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 776,
+            "rect": [
+              760,
+              678,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 1072,
+            "rect": [
+              1056,
+              679,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 1251,
+            "rect": [
+              1235,
+              679,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 0,
+      "jointLabels": [],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 776,
+          "rect": [
+            760,
+            678,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 775.0,
+          "predictedMargin": -532.0
+        },
+        "上传图片": {
+          "cx": 1072,
+          "rect": [
+            1056,
+            679,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 1072.0,
+          "predictedMargin": -235.0
+        },
+        "发送": {
+          "cx": 1251,
+          "rect": [
+            1235,
+            679,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 1251.0,
+          "predictedMargin": -56.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "1920": {
+      "innerWidth": 1920,
+      "family": "desktop",
+      "geo": {
+        "innerWidth": 1920,
+        "innerHeight": 900,
+        "row": {
+          "left": 293,
+          "right": 1627,
+          "width": 1334,
+          "clientWidth": 1334,
+          "scrollWidth": 1334,
+          "top": 670
+        },
+        "shared": {
+          "left": 488,
+          "right": 1432,
+          "width": 944,
+          "clientWidth": 944,
+          "scrollWidth": 944,
+          "top": 670
+        },
+        "toolbar": {
+          "left": 488,
+          "right": 1199,
+          "width": 711,
+          "clientWidth": 709,
+          "scrollWidth": 709,
+          "top": 670
+        },
+        "promptBar": {
+          "left": 1207,
+          "right": 1432,
+          "width": 225,
+          "clientWidth": 223,
+          "scrollWidth": 223,
+          "top": 670
+        },
+        "inspectorLeft": 1639,
+        "inspectorBottom": 718,
+        "controls": {
+          "开启九宫格辅助线": {
+            "cx": 936,
+            "rect": [
+              920,
+              678,
+              32,
+              32
+            ]
+          },
+          "上传图片": {
+            "cx": 1232,
+            "rect": [
+              1216,
+              679,
+              32,
+              32
+            ]
+          },
+          "发送": {
+            "cx": 1411,
+            "rect": [
+              1395,
+              679,
+              32,
+              32
+            ]
+          }
+        }
+      },
+      "jointCount": 0,
+      "jointLabels": [],
+      "targets": {
+        "开启九宫格辅助线": {
+          "cx": 936,
+          "rect": [
+            920,
+            678,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 935.0,
+          "predictedMargin": -692.0
+        },
+        "上传图片": {
+          "cx": 1232,
+          "rect": [
+            1216,
+            679,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 1232.0,
+          "predictedMargin": -395.0
+        },
+        "发送": {
+          "cx": 1411,
+          "rect": [
+            1395,
+            679,
+            32,
+            32
+          ],
+          "joint": false,
+          "predictedCx": 1411.0,
+          "predictedMargin": -216.0
+        }
+      },
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    }
+  },
+  "checks": {
+    "the-grid-runs-19-widths-both-families": {
+      "ok": true,
+      "detail": {
+        "widths": [
+          339,
+          480,
+          495,
+          620,
+          767,
+          768,
+          780,
+          898,
+          899,
+          1152,
+          1280,
+          1330,
+          1331,
+          1440,
+          1500,
+          1509,
+          1510,
+          1600,
+          1920
+        ]
+      }
+    },
+    "the-four-constants-hold-at-every-width": {
+      "ok": true,
+      "detail": {
+        "contradictions": [],
+        "constants": {
+          "toolbarWidth": {
+            "narrow": "min(711, W - 48)",
+            "desktop": "711"
+          },
+          "rowBoxWidth": {
+            "narrow": "W - 24",
+            "desktop": "W - 586"
+          },
+          "rowLeft": {
+            "narrow": "12",
+            "desktop": "293"
+          },
+          "promptBarWidth": 225
+        },
+        "reading": "the pill is 225 wide in every cell, and the row and the toolbar both grow with the width — the toolbar stops at 711 while the row does not"
+      }
+    },
+    "the-toolbar-and-the-prompt-bar-are-siblings-in-one-shared-row": {
+      "ok": true,
+      "detail": {
+        "contradictions": [],
+        "theFormula": "sharedRowWidth = toolbarWidth + 8 + 225",
+        "whyItMatters": "this is why batch 643 saw a toolbar item 'covered by the prompt bar': the two pills share one row and their x ranges intersect when the toolbar overflows its own box. It is not one row painting over another."
+      }
+    },
+    "each-controls-margin-equals-the-closed-form": {
+      "ok": true,
+      "detail": {
+        "contradictions": [],
+        "observedMarginsOnJointWidths": {
+          "开启九宫格辅助线": {
+            "480": -9,
+            "899": 135
+          },
+          "上传图片": {
+            "339": 9,
+            "480": 9,
+            "495": 9,
+            "620": 9,
+            "767": 1,
+            "768": 0,
+            "1152": 178,
+            "1280": 50,
+            "1330": 0
+          },
+          "发送": {
+            "1280": 229,
+            "1330": 179,
+            "1331": 178,
+            "1440": 69,
+            "1500": 9,
+            "1509": 0
+          }
+        },
+        "theFormula": "cx comes from the four constants; margin = cx - (rowLeft + rowBoxWidth)"
+      }
+    },
+    "while-the-toolbar-still-grows-the-pills-margin-is-constant": {
+      "ok": true,
+      "detail": {
+        "margins": {
+          "339": 9,
+          "480": 9,
+          "495": 9,
+          "620": 9
+        },
+        "toolbarSaturatedAt": {
+          "339": false,
+          "480": false,
+          "495": false,
+          "620": false,
+          "767": true,
+          "768": true,
+          "780": true,
+          "898": true
+        },
+        "theReason": "the pill sits at the row's right end, so it moves with the row; while the toolbar is not yet capped its own growth is invisible to the pill's position, and both edges advance one pixel per pixel of width"
+      }
+    },
+    "the-899-breakpoint-jumps-the-margin-by-hundreds-of-pixels": {
+      "ok": true,
+      "detail": {
+        "perControl": [
+          {
+            "control": "上传图片",
+            "marginAt898": -130,
+            "marginAt899": 431,
+            "rowBoxWidthAt898": 874,
+            "rowBoxWidthAt899": 313
+          },
+          {
+            "control": "发送",
+            "marginAt898": 49,
+            "marginAt899": 610,
+            "rowBoxWidthAt898": 874,
+            "rowBoxWidthAt899": 313
+          }
+        ],
+        "jumps": [
+          561,
+          561
+        ],
+        "mechanism": "at the family break the row's left inset jumps 12 -> 293 and its width jumps W-24 -> W-586, so the row narrows by ~562 while the pills stay where they are; the margin does not continue, it restarts"
+      }
+    },
+    "the-joint-set-is-not-monotonic-in-width": {
+      "ok": true,
+      "detail": {
+        "perWidth": {
+          "339": 2,
+          "480": 2,
+          "495": 1,
+          "620": 1,
+          "767": 1,
+          "768": 1,
+          "780": 0,
+          "898": 0,
+          "899": 8,
+          "1152": 4,
+          "1280": 3,
+          "1330": 3,
+          "1331": 2,
+          "1440": 1,
+          "1500": 1,
+          "1509": 1,
+          "1510": 0,
+          "1600": 0,
+          "1920": 0
+        },
+        "valleys": [
+          {
+            "bottomWidths": [
+              780,
+              898,
+              1510,
+              1600,
+              1920
+            ],
+            "at": 780,
+            "joint": 0,
+            "higherToTheLeft": 2,
+            "higherToTheRight": 8
+          },
+          {
+            "bottomWidths": [
+              780,
+              898,
+              1510,
+              1600,
+              1920
+            ],
+            "at": 898,
+            "joint": 0,
+            "higherToTheLeft": 2,
+            "higherToTheRight": 8
+          }
+        ],
+        "reading": "a single monotone decay law would be easier to assert and would also be WRONG: the joint set empties out inside the narrow family and comes back at the family break"
+      }
+    },
+    "the-898-boundary-and-899-first-desktop-cell-are-both-in-the-grid": {
+      "ok": true,
+      "detail": {
+        "grid": [
+          339,
+          480,
+          495,
+          620,
+          767,
+          768,
+          780,
+          898,
+          899,
+          1152,
+          1280,
+          1330,
+          1331,
+          1440,
+          1500,
+          1509,
+          1510,
+          1600,
+          1920
+        ]
+      }
+    },
+    "no-cell-has-an-off-viewport-unreachable-control": {
+      "ok": true,
+      "detail": {
+        "339": 0,
+        "480": 0,
+        "495": 0,
+        "620": 0,
+        "767": 0,
+        "768": 0,
+        "780": 0,
+        "898": 0,
+        "899": 0,
+        "1152": 0,
+        "1280": 0,
+        "1330": 0,
+        "1331": 0,
+        "1440": 0,
+        "1500": 0,
+        "1509": 0,
+        "1510": 0,
+        "1600": 0,
+        "1920": 0
+      }
+    },
+    "642s-eight-round-controls-are-still-eight": {
+      "ok": true,
+      "detail": {
+        "339": 8,
+        "480": 8,
+        "495": 8,
+        "620": 8,
+        "767": 8,
+        "768": 8,
+        "780": 8,
+        "898": 8,
+        "899": 8,
+        "1152": 8,
+        "1280": 8,
+        "1330": 8,
+        "1331": 8,
+        "1440": 8,
+        "1500": 8,
+        "1509": 8,
+        "1510": 8,
+        "1600": 8,
+        "1920": 8
+      }
+    },
+    "the-only-covered-control-is-still-632s-defect": {
+      "ok": true,
+      "detail": {
+        "covered": [
+          {
+            "width": "339",
+            "label": "收起"
+          }
+        ]
+      }
+    }
+  },
+  "ok": true,
+  "checkCount": 11,
+  "failures": [],
+  "totals": {
+    "perWidth": {
+      "339": 2,
+      "480": 2,
+      "495": 1,
+      "620": 1,
+      "767": 1,
+      "768": 1,
+      "780": 0,
+      "898": 0,
+      "899": 8,
+      "1152": 4,
+      "1280": 3,
+      "1330": 3,
+      "1331": 2,
+      "1440": 1,
+      "1500": 1,
+      "1509": 1,
+      "1510": 0,
+      "1600": 0,
+      "1920": 0
+    },
+    "observedMargins": {
+      "开启九宫格辅助线": {
+        "480": -9,
+        "899": 135
+      },
+      "上传图片": {
+        "339": 9,
+        "480": 9,
+        "495": 9,
+        "620": 9,
+        "767": 1,
+        "768": 0,
+        "1152": 178,
+        "1280": 50,
+        "1330": 0
+      },
+      "发送": {
+        "1280": 229,
+        "1330": 179,
+        "1331": 178,
+        "1440": 69,
+        "1500": 9,
+        "1509": 0
+      }
+    }
+  }
+}
