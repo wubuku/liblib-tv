@@ -207,6 +207,7 @@ SELFTEST_COSTS = {
     "selftest-ledger-refs.py": 0.3,
     "selftest-line-counts.py": 4.8,
     "selftest-link-labels.sh": 2.4,
+    "selftest-query-params.py": 0.8,
     "selftest-quote-punct.py": 37.1,
     "selftest-runtime-policy.py": 1.0,
     "selftest-scope.py": 0.4,

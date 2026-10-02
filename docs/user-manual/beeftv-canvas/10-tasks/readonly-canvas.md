@@ -44,7 +44,7 @@
   <figcaption>只读模式：右上角是只读横幅与「复制项目」，底部编辑坞与空态提示都不在</figcaption>
 </figure>
 
-还有一处容易踩：**只读模式下，所有演示数据都不会注入。** 网址里带 `?fixture=xxx`（`libtv-text`、`libtv-video`、`libtv-audio` 等十种）本应自动摆出示例画布，但只要同时是只读，这些数据**一个都不会加载**——你会看到一张空画布。原因在源码里写得很直接：十个注入函数开头都是 `if (!projectLoaded || readOnly || ...) return`。
+还有一处容易踩：**只读模式下，所有演示数据都不会注入。** 网址里带 `?fixture=xxx`（`libtv-text`、`libtv-video`、`libtv-audio` 等十种）本应自动摆出示例画布，但只要同时是只读，这些数据**一个都不会加载**——你会看到一张空画布。原因在源码里写得很直接：**注入数据统一由 `web/src/pages/canvas/project.tsx` 里的 `useEffect` 入口把守，入口第一行就是 `if (!projectLoaded || readOnly || searchParams.get("fixture") !== "…") return`。**（守卫在**调用方**而不是注入函数内部——`canvas-libtv-fixture.ts` 里那 10 个 `createLibTv*Fixture` 函数通篇没有 `readOnly` 字样，只负责造节点。）这样的入口共 **9** 处，其中一处用数组同时管住 `libtv-video` 与 `libtv-video-subtitle` 两个取值，所以 9 处入口正好覆盖全部 **10** 个注入函数，**一个都不例外**。
 
 ::: tip 另一种只读顶栏长什么样
 如果网址同时带 `?fixture=libtv-readonly-dense`，顶栏会换成另一种只读样式：左边是画布标题，中间两个图标按钮，右侧除了同样的提示与「复制项目」，还多一个 **✕ 关闭按钮**（点它回到画布库）。不带这个参数时是本文截图里的普通样式，**没有关闭按钮**——退出只读只能改网址或直接跳走。
