@@ -64,8 +64,14 @@ CANDIDATES = [
     "/Users/yangjiefeng/Documents/glanderness/BeefTV",
 ]
 
+# **这五个必须都是会被发布的页面**（Batch 190 加了守卫，见 `verify-scope.py` 方向一）。
+# 本清单原先有第六个 `PUBLISH.md`——而它被 `config.mjs` 的 `srcExclude` 排除，
+# **根本不会出现在站点上**。它能躺着是因为：本闸「扫过了」这件事是真的，
+# 只是它扫的东西里有一份读者读不到；而 `PUBLISH.md` 全篇只有 1 段引号，
+# 归一化后匹配不上任何上游文案——**扫了等于没扫**。
+# 现在这类混装由闸 24 拦着：清单里只要混进一个被排除的文件，闸就红。
 PAGES = ["README.md", "00-quickstart.md", "20-reference.md", "30-concepts.md",
-         "90-troubleshooting.md", "PUBLISH.md"]
+         "90-troubleshooting.md"]
 
 # **Batch 186 扩进来的**：30 个任务页。实测它们含 **662 段**引号引用，
 # 而 Batch 185 的范围只有 6 个文件 237 段——**读者最先读的就是任务页，而它们当时完全没进扫描**。

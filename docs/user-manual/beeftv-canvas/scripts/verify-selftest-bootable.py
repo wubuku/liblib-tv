@@ -123,6 +123,7 @@ SELFTEST_COSTS = {
     "selftest-screenshots.py": 0.6,
     "selftest-selftest-bootable.py": 6.4,
     "selftest-selftest-deps.py": 0.6,
+    "selftest-scope.py": 0.3,   # Batch 190：闸 24，实测 0.23/0.21/0.27s（5 例，各起一棵临时树）
     "selftest-shortcuts.py": 1.3,
     "selftest-shot-version.py": 2.0,
     "selftest-shot-drift.py": 23,   # Batch 189：闸 23，实测 19.4/23.1s（7 例，每例两棵树）

@@ -84,9 +84,96 @@ def local_imports(path):
 
 
 def copies_gate_into_tmp(text):
-    """这份反验是否会把闸门脚本复制进临时目录。"""
-    return bool(re.search(r"shutil\.copy\w*\(\s*\w+\s*,", text)) and \
+    """这份反验是否会把闸门脚本复制进临时目录。
+
+    **Batch 190 修第二处按写法判定**：原式是
+    `re.search(r"shutil\.copy\w*\(\s*\w+\s*,", text)`——要求 `shutil.copy(` 后面
+    **紧跟一个单词再跟逗号**。于是一份写成
+    `shutil.copy(os.path.join(HERE, name), …)`（**循环搬运多份文件**）的反验
+    **整份被静悄悄跳过**。本批的 `selftest-scope.py` 正是这个写法：
+    改完上面那处之后闸 17 仍报「12 份」，比实际少一份，而它报得**很绿**。
+
+    **判据认的必须是动作而不是写法**：「用了 `shutil.copy*` 且建了临时目录」
+    才是它想问的那件事，**参数写成单个变量还是表达式，与它无关**。
+    这与本闸方向一里那句老话同源——**判据要认事实，不要认写法**。
+    """
+    return bool(re.search(r"shutil\.copy\w*\(", text)) and \
         bool(re.search(r"tempfile\.mkdtemp", text))
+
+
+def independent_gate_names(text, scripts_dir):
+    """这份反验**作为独立字符串常量**引用了哪些 `verify-*.py`，且它们真实存在。
+
+    **为什么要用 AST 而不是正则**（Batch 190 实测的反面）：
+    正则扫全文会把**注入夹具里伪造的闸门名**一并算进来。实测三处假阳性全是这个形状：
+
+      · `selftest-selftest-deps.py` 的用例 3 在**一个大字符串常量**里写
+        `GATE = os.path.join(HERE, 'verify-newfangled.py')`，那是要**注入给假反验看的文本**；
+      · 同一份反验的用例 4 在大字符串里提到 `verify-baseline.py`，测的是「不搬闸门的反验不该被扫」；
+      · `selftest-selftest-bootable.py` 真的 `os.path.join(tmp, "scripts", "verify-feature-flags.py")`，
+        但它读那个文件是为了断言内容，**不是搬运它**。
+
+    AST 能把前两类分开：**值恰好等于 `"verify-xxx.py"` 的独立常量**才算，
+    作为更大字符串的一部分出现的不算。**判据要认的是「这个闸门被搬了」，
+    不是「这几个字符出现在文件里」**——与方向一的 `moved` 判据同一条纪律。
+    """
+    names = set()
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return names
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Constant) and isinstance(node.value, str):
+            v = node.value
+            if re.fullmatch(r"verify-[a-z0-9-]+\.py", v) and \
+                    os.path.exists(os.path.join(scripts_dir, v)):
+                names.add(v)
+    return names
+
+
+def copies_whole_scripts(text):
+    """这份反验是不是 `copytree` 搬了**整个** `scripts/` 目录。
+
+    搬整目录时，被测闸门的每一个本地依赖**必然都在**临时目录里——
+    **而按闸门逐个去核搬运语句会把它报成「没搬」**。实测
+    `selftest-selftest-bootable.py` 就是这个形态：它 `copytree(SCRIPTS, tmp/scripts)`，
+    于是 `baseline.py` 早就在那儿了，可按文件核的判据报它没搬。
+    **判据必须能说出「它已经整体搬过了」这句话，而不只是「某个文件搬过了」。**
+    """
+    return bool(re.search(r"copytree\w*\(\s*\w+\s*,\s*[^)]*scripts", text))
+
+
+def copies_module_into_scripts(text, module):
+    """这个本地模块有没有被搬进某次 `shutil.copy*` 调用的目标里。
+
+    **Batch 190 修第三处按写法判定**：原式用正则找
+    `copy(单词, …含 scripts… 且以 "xxx.py" 结尾)`——**要求模块名以字面量出现在目标路径中**。
+    于是 `shutil.copy(os.path.join(HERE, name), os.path.join(tmp, "scripts", name))`
+    （**循环搬多份文件**）被报成「没搬」。实测本批的 `selftest-scope.py` 正撞在这上面。
+
+    修法：**解析每个 `shutil.copy*` 调用的实参**，看模块名在不在这条搬运动作里。
+    **「这个文件有没有被搬」是行为，「目标路径里有没有写着它的名字」是写法**——
+    循环搬运时名字写在变量里，而搬运照样发生了。
+    """
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return False
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        f = node.func
+        if not (isinstance(f, ast.Attribute) and f.attr.startswith("copy")
+                and isinstance(f.value, ast.Name) and f.value.id == "shutil"):
+            continue
+        args = list(node.args) + [k.value for k in node.keywords]
+        for a in args:
+            try:
+                if module + ".py" in ast.unparse(a):
+                    return True
+            except Exception:
+                pass
+    return False
 
 
 def main():
@@ -107,20 +194,14 @@ def main():
             continue
         if not copies_gate_into_tmp(text):
             continue
-        # 这份反验复制了哪些闸门脚本
-        copied = re.findall(r"shutil\.copy\w*\(\s*(\w+)\s*,", text)
-        gate_names = []
-        for c in set(copied):
-            # **刻意不依赖引号风格**（反验用例 3 上线首跑就抓到）：
-            # 原式用 `[^)]*?"(verify-…\.py)"` 只认**双引号**，
-            # 于是一份用单引号写路径的反验会被**整份跳过**——
-            # 而它恰恰是新加的、最需要被看住的那一份。
-            # **判据不能因为一个标点风格不同就静悄悄查不到**（纪律 101）。
-            m = re.search(re.escape(c) + r'\s*=\s*os\.path\.join\([^)]*?([\'"])(verify-[a-z0-9-]+\.py)\1',
-                          text)
-            if m:
-                gate_names.append(m.group(2))
+        # 这份反验搬了哪些闸门脚本——见 independent_gate_names 的 docstring：
+        # **只用 AST 认独立字符串常量**，否则注入夹具里伪造的闸门名会被当成真搬运。
+        gate_names = sorted(independent_gate_names(text, SCRIPTS))
         if not gate_names:
+            continue
+        # 整目录搬运：依赖必然齐备，不逐个核（否则会误报）
+        if copies_whole_scripts(text):
+            checked += 1
             continue
         checked += 1
         for gname in gate_names:
@@ -134,11 +215,19 @@ def main():
                 #  而反验里那行 `BASELINE = os.path.join(HERE, "baseline.py")`
                 #  **本身就含有 "baseline" 这个子串**——于是把搬运语句删掉，
                 #  判据照样说「搬过了」。**判据把自己的准备工作当成了证据。**
-                # 收紧成：必须存在一条**把该模块复制进临时 scripts/ 的语句**。
-                moved = re.search(
-                    r"copy\w*\(\s*\w+\s*,\s*[^)]*scripts[^)]*[\"']" + re.escape(d) + r"\.py[\"']",
-                    text)
-                if moved:
+                #
+                # **Batch 190 修第三处「按写法判定」**：收紧后的正则要求模块名
+                # 以**字面量**出现在搬运语句的目标路径里，于是
+                # `shutil.copy(os.path.join(HERE, name), os.path.join(tmp,"scripts",name))`
+                # 这种**循环搬多份文件**的写法被报成「没搬」——而它搬得清清楚楚。
+                # **「搬没搬」是行为，「目标路径里有没有写着它的名字」是写法**。
+                # 改用 AST 解析每条 `shutil.copy*` 的实参（见 copies_module_into_scripts）。
+                #
+                # 本闸 Batch 190 一共修掉**三处同源**的写法依赖：
+                # ①认定「被测闸门是谁」靠变量赋值链；②认定「会不会复制」靠参数形状；
+                # ③认定「搬没搬」靠目标路径里的字面量。**三处都是同一个病：
+                # 判据认的是写法，而它该认的是事实。**
+                if copies_module_into_scripts(text, d):
                     continue
                 problems.append(
                     f"方向一：{fn} 把 {gname} 复制进临时目录跑，"

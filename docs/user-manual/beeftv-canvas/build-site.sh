@@ -82,14 +82,17 @@ ok "vitepress 版本: $VP_VERSION"
 
 # ---------- 步骤 3/6 内容清单 ----------
 log "步骤 3/6 统计手册内容"
-MD_COUNT="$(find . -maxdepth 2 -name '*.md' \
-  ! -path './node_modules/*' ! -path './.vitepress/*' \
-  ! -name 'AUDIT.md' ! -name 'PROGRESS.md' \
-  ! -name 'TEST_MEDIA_ASSETS.md' ! -name 'SOURCE_OBSERVATIONS.md' | wc -l | tr -d ' ')"
+# **页面数从 `.vitepress/config.mjs` 的 `srcExclude` 派生**（Batch 190）：
+# 这里是手写的第二份排除名单（`! -name 'AUDIT.md' ! -name 'PROGRESS.md' …`），
+# 与 srcExclude 慢慢分家——实测它漏排 AUDIT-RULES / PUBLISH / FINAL-REPORT 三个，
+# **报出来的页面数比站点实际发布的多 3**，而且没有任何机制提示这两个数应该相等。
+# 同一份手写名单里还留着一个 `TEST_MEDIA_ASSETS.md`，而那文件在本手册树里根本不存在。
+MD_COUNT="$(python3 -c 'import sys; sys.path.insert(0,"scripts"); import scope; print(len(scope.published_paths()))' 2>&1)" \
+  || fail "**未能核对**：读不到发布范围（.vitepress/config.mjs 的 srcExclude）：$MD_COUNT"
 PNG_COUNT="$(find screenshots -name '*.png' 2>/dev/null | wc -l | tr -d ' ')"
-[ "$MD_COUNT" -ge 20 ] || fail "Markdown 页面数异常（$MD_COUNT < 15），内容可能缺失"
+[ "$MD_COUNT" -ge 20 ] || fail "Markdown 页面数异常（$MD_COUNT < 20），内容可能缺失"
 [ "$PNG_COUNT" -ge 10 ] || fail "screenshots/ 下没有截图"
-ok "将发布 $MD_COUNT 个页面、$PNG_COUNT 张截图（内部资料已排除）"
+ok "将发布 $MD_COUNT 个页面、$PNG_COUNT 张截图（发布范围按 config.mjs 的 srcExclude 派生）"
 
 # ---------- 步骤 4/6 清理旧产物 ----------
 log "步骤 4/6 清理旧构建产物"
@@ -287,6 +290,18 @@ run_gate verify-quote-punct.py 引号文案标点漂移
 # **用全页搜来核「就地说明在不在」，恰好会犯纪律 121 要防的错并且恒真**，
 # 而反验用例 3/5 首跑就抓到了这个恒真。
 run_gate verify-shot-drift.py 截图布局漂移
+
+# 第二十四道闸（Batch 190 新增）：**发布范围只有一个来源**。
+# 背景：闸 22 的文件头写着「判据的输入范围必须等于发布范围」，而它的 `PAGES` 里
+# 躺着 `PUBLISH.md`——被 `config.mjs` 的 `srcExclude` 排除、**根本不会出现在站点上**
+# 的内部资料。那句话在代码里是假的，而它能躺着是因为**发布面被手写了两遍**。
+# 判据的形状是被两版假阳性的探针逼出来的：核「所有闸源码里出现的 .md 文件名」
+# → 11 个闸里 8 个「越界」，**全是假的**（账本闸本来就该扫账本）；
+# 收窄到「md 列表字面量」→ 又会误伤 `EXTRA_SCAN_FILES` 这种子集用途。
+# 所以判断降到一句不可能有歧义的话：**一份清单不可能既装「不发布的」又装「发布的」**。
+# 同一批还从 build-site.sh 步骤 3 挖出手写的第二份排除名单（漏排 3 个内部资料，
+# 页面数报 38 而站点实际发 35），一并改为从 `srcExclude` 派生。
+run_gate verify-scope.py 发布范围单一来源
 
 # 第七道闸：markdown 表格结构核对。前面六道查的都是**内容对不对**，
 # 这一道查**结构坏没坏**——单元格里的裸竖线（最常见就是代码里的 `||` 和带竖线的 URL）

@@ -7,7 +7,7 @@ Web 服务器（nginx / 对象存储静态托管 / GitHub Pages）即可发布�
 ## 一键构建（推荐）
 
 ```bash
-cd docs/user-manual/tdcanvas-canvas
+cd docs/user-manual/beeftv-canvas
 ./build-site.sh
 ```
 
@@ -15,7 +15,7 @@ cd docs/user-manual/tdcanvas-canvas
 |---|---|---|
 | 1/6 | 环境检查 | node ≥ 18、npm 可用、站点配置与首页内容存在 |
 | 2/6 | 依赖安装 | `node_modules/vitepress` 缺失时自动 `npm install`（已装则跳过并打印 vitepress 版本） |
-| 3/6 | 内容清单 | 统计将发布的页面数与截图数（自动排除 AUDIT/PROGRESS/TEST_MEDIA_ASSETS/SOURCE_OBSERVATIONS 等内部资料），数量异常直接报错 |
+| 3/6 | 内容清单 | 统计将发布的页面数与截图数。**页面数按 `.vitepress/config.mjs` 的 `srcExclude` 派生**（不是另写一份排除名单），数量异常直接报错 |
 | 4/6 | 清理旧产物 | 删除 `.vitepress/dist` 与 `.vitepress/cache`，保证产物干净 |
 | 5/6 | 构建 | `npx vitepress build`（client + server 双端打包、页面渲染） |
 | 6/6 | 产物校验 | 校验 dist 页面数、截图数（与源截图逐一比对）、总体积、是否有未改写的 `.md` 残留链接 |
@@ -49,30 +49,32 @@ rsync -av --delete .vitepress/dist/ user@server:/var/www/html/manual/
 ## 站点包含什么
 
 - 侧边栏四组导航 + 右侧「本页目录」+ **中文全文搜索**（`⌘K`，本地索引，无外部服务）。
-- 站点只输出面向用户的页面（README 为首页）；`AUDIT.md`、`PROGRESS.md`、
-  `TEST_MEDIA_ASSETS.md`、`SOURCE_OBSERVATIONS.md`、`task-inventory.yml` 等内部
-  维护资料通过 `srcExclude` 排除，不会发布。
+- 站点只输出面向用户的页面（README 为首页，**共 35 页**）；内部维护资料由
+  `srcExclude` 排除，不会发布——`AUDIT.md`、`AUDIT-RULES.md`、`PROGRESS.md`、
+  `FINAL-REPORT.md`、`SOURCE_OBSERVATIONS.md`、`PUBLISH.md`、`task-inventory.yml`。
+  **这一份列表是唯一来源**：`build-site.sh` 步骤 3 的页面数由它派生，
+  闸 24（`scripts/verify-scope.py`）核任何闸门手写的清单都没混进这里面的文件。
 - 站点结构与标题、侧边栏、搜索文案均在 `.vitepress/config.mjs` 配置
   （含 `rewrites: README.md → 站点首页`）。
 
 ## 手动命令（不用脚本时）
 
 ```bash
-cd docs/user-manual/tdcanvas-canvas
+cd docs/user-manual/beeftv-canvas
 npm install          # 首次
 npx vitepress build  # 产物 .vitepress/dist/
 ```
 
 ## 目录结构与文件职责
 
-`docs/user-manual/tdcanvas-canvas/` 内与本站点有关的文件分四类：
+`docs/user-manual/beeftv-canvas/` 内与本站点有关的文件分四类：
 
 | 类别 | 文件 | 说明 |
 |---|---|---|
-| 站点工具（入库） | `build-site.sh`、`.vitepress/config.mjs`、`package.json`、`package-lock.json`、`.gitignore` | 一键构建脚本；站点配置（侧边栏、搜索、rewrites、srcExclude）；依赖锁定 |
+| 站点工具（入库） | `build-site.sh`、`.vitepress/config.mjs`、`package.json`、`package-lock.json` | 一键构建脚本；站点配置（侧边栏、搜索、rewrites、**srcExclude = 发布范围的唯一来源**）；依赖锁定。**本目录没有自己的 `.gitignore`**，忽略规则在仓库根 |
 | 手册内容（入库） | `README.md`、`00-quickstart.md`、`10-tasks/*.md`、`20-reference.md`、`30-concepts.md`、`90-troubleshooting.md`、`screenshots/*.png` | 面向最终用户的正文与截图 |
-| 内部账本（入库，不发布） | `AUDIT.md`、`PROGRESS.md`、`task-inventory.yml`、`TEST_MEDIA_ASSETS.md`、`SOURCE_OBSERVATIONS.md` | 回走审计结论、任务清单、素材登记；由 `srcExclude` 保证不进 dist |
-| 构建产物（不入库） | `.vitepress/dist/`、`.vitepress/cache/`、`node_modules/` | 已在本目录 `.gitignore` 忽略；dist 可随时由脚本从源重建 |
+| 内部账本（入库，不发布） | `AUDIT.md`、`AUDIT-RULES.md`、`PROGRESS.md`、`FINAL-REPORT.md`、`SOURCE_OBSERVATIONS.md`、`PUBLISH.md`、`task-inventory.yml` | 回走审计结论、纪律、批次表、任务清单；由 `srcExclude` 保证不进 dist（**本文件自己也在这一列里**） |
+| 构建产物（不入库） | `.vitepress/dist/`、`.vitepress/cache/`、`node_modules/`、`screenshots/.DS_Store` | 由**仓库根**的 `.gitignore` 忽略（本目录没有 `.gitignore`）；dist 可随时由脚本从源重建 |
 
 ## 内容更新流程
 
@@ -83,7 +85,7 @@ npx vitepress build  # 产物 .vitepress/dist/
 
 ## 手册验收（审计）流程
 
-- 机械审计：`python3 .agents/skills/web-studio-user-manual/scripts/audit_manual.py docs/user-manual/tdcanvas-canvas --phase gate-a`（内容完成后）与 `--phase final`（发布前；要求任务全部 `verified` 或 `excluded`）。校验点：截图↔manifest 双向一致、sha256 一致、本地链接可达、标题层级、占位文本、core/flagship 任务必须有登记截图。
+- 机械审计：`python3 .agents/skills/web-studio-user-manual/scripts/audit_manual.py docs/user-manual/beeftv-canvas --phase gate-a`（内容完成后）与 `--phase final`（发布前；要求任务全部 `verified` 或 `excluded`）。校验点：截图↔manifest 双向一致、sha256 一致、本地链接可达、标题层级、占位文本、core/flagship 任务必须有登记截图。
 - 内容审计：按 `AUDIT.md` 记录的 Gate B 方法在真实浏览器逐任务回走（标签逐字核对、提交类动作止于按钮态验证），结论与修复记录进 `AUDIT.md`。
 - 手册内容的事实源：真实运行界面。UI 标签变化后以浏览器 DOM 为准修正文档，不以记忆或旧文档为准。
 
