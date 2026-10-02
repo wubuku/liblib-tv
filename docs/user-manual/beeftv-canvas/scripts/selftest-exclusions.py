@@ -13,7 +13,15 @@
     不误伤 1 条：
     4) 只改 excluded 任务的其他字段（不动 id、不动 status）→ 必须照旧通过
 
-Batch 222 又加了「证据降级告知」方向，于是这里从 4 例变 9 例。
+Batch 223 再加 2 例（9→11），钉的是**读取范围**：
+  能抓 1 条：
+    10) 降级自述**只**写在 `finding` 字段 → 必须报
+  不误伤 1 条：
+    11) 同一个注入，但目标页面**已经告知**取证边界 → 必须放行
+  **10/11 的起因是一个真缺陷**：两处「付费红线」自述只存在于 `finding` 里，
+  **而判据当时只读另外四个字段**——**读不到字段的判据，与不存在的判据在账面上完全一样。**
+
+Batch 222 又加了「证据降级告知」方向，于是那时从 4 例变 9 例。
 **新加的 4 例成对，验的是同一件事的两侧**：
   能抓 2 条：
     6) 把某一页上的告知**逐词抹掉** → 必须报「读者看不到」
@@ -287,6 +295,43 @@ def t_benign_page(inv, gate):
     return inv, gate, {"10-tasks/storage-quota.md": edit}
 
 
+def t_finding_only_downgrade(inv, _gate):
+    """把降级自述**只**写进 `finding` 字段 → 判据必须报。
+
+    **这一例钉的是 Batch 223 的真缺陷形态**：两处「付费红线」自述
+    （`create-workspace` 的「未触发任何真实生成」、`model-channels` 的
+    「未配置任何 Provider Key」）**只存在于 `finding` 里**，
+    而判据当时只读 `exclusion_reason` / `review_note` / `review_condition` /
+    `evidence.note` 四个字段。
+    **读不到字段的判据，与不存在的判据在账面上完全一样**——
+    所以必须钉住「`finding` 也在读取范围里」，否则加回去没人知道。
+
+    靶子 `navigate-canvas`：实测它的页面不含任何已登记的告知措辞，
+    且账本里此刻**没有** `finding` 字段（**不误伤**由用例 12 保证）。
+    """
+    m = re.search(r"  - id: navigate-canvas\n(.*?)(?=\n  - id: )", inv, re.S)
+    assert m, "锚点未命中：找不到 navigate-canvas 任务块"
+    block = m.group(0)
+    assert "finding:" not in block, \
+        "前提失配：navigate-canvas 已有 finding 字段，注入的不是同一个位置"
+    return (inv.replace(block, block + "\n    finding: 反验注入：付费红线——未触发任何真实生成。\n", 1),
+            _gate)
+
+
+def t_finding_downgrade_already_told(inv, _gate):
+    """同一个注入，但目标页面**已经告知**取证边界 → 必须放行。
+
+    与上一例成对。**少了它，「能抓」可能只是「逢 `finding` 必报」**。
+    """
+    m = re.search(r"  - id: generate-audio\n(.*?)(?=\n  - id: )", inv, re.S)
+    assert m, "锚点未命中：找不到 generate-audio 任务块"
+    block = m.group(0)
+    assert "finding:" not in block, \
+        "前提失配：generate-audio 已有 finding 字段，注入的不是同一个位置"
+    return (inv.replace(block, block + "\n    finding: 反验注入：付费红线——未触发任何真实生成。\n", 1),
+            _gate)
+
+
 def main():
     r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
     if r.returncode == 0:
@@ -310,6 +355,10 @@ def main():
         expect_fail=False, transform=t_downgrade_already_told)
     run("9) 不误伤：只改页面无关正文（必须放行）", "证据降级告知",
         expect_fail=False, transform=t_benign_page)
+    run("10) 降级自述只写在 finding 字段 + 页面无告知（必须报）", "找不到任何已登记的告知措辞",
+        transform=t_finding_only_downgrade)
+    run("11) 不误伤：finding 里的降级自述 + 页面已告知（必须放行）", "证据降级告知",
+        expect_fail=False, transform=t_finding_downgrade_already_told)
 
     print("=== 结果：通过 %d / 失败 %d / 作废 %d ===" % (PASS, FAIL, VOID))
     return 1 if (FAIL or VOID) else 0
