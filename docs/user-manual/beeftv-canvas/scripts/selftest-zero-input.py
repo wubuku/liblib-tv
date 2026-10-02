@@ -104,6 +104,14 @@ def empty_tree(tmp):
     for name in sorted(os.listdir(HERE)):
         if name.endswith(".py") and not name.startswith("selftest-"):
             shutil.copy(os.path.join(HERE, name), os.path.join(tmp, "scripts", name))
+    # **显式再搬一次 `beefsrc`**（Batch 201，闸 17 方向一抓到的）：
+    # 上面那个循环其实已经把所有非反验的 `.py` 都搬了，**但闸 17 判的是
+    # 「有没有一条看得见的搬运动作」**——循环写法静态不可判定，
+    # 它会把「搬过了」报成「没搬」（Batch 190/194 同款：判据认写法不认事实）。
+    # **这里不改成新契约机制**（那本身是腐烂点），而是照 Batch 197 的规矩
+    # **把写法改成可判定的**：显式一条、目标路径写死文件名。
+    shutil.copy(os.path.join(HERE, "beefsrc.py"),
+                os.path.join(tmp, "scripts", "beefsrc.py"))
     return tmp
 
 
@@ -178,7 +186,21 @@ def direction_one(gates):
 
 
 def direction_three(gates):
-    """**手册树正常，上游 BeefTV 仓不可用**（`BEEFTV_SRC` 指向不存在的路径）。
+    """**手册树正常，`BEEFTV_SRC` 指向一个不是仓的路径**。
+
+    ── **Batch 201 更正这个方向的自我描述**（原来写的是「上游仓不可用」）──
+    **Batch 197 把「BeefTV 在哪」收敛成 `beefsrc` 单一来源、并给它加了可用的兜底之后，
+    「上游不可用」这个场景就不存在了**：`BEEFTV_SRC` 指向垃圾路径时，
+    各闸会**回落到候选表里的真仓、把它整个跑完、并报 rc=0**。
+    实测后果有两条，都得记下来：
+      · **它测的东西变了**：不再是「上游没了会怎样」，
+        而是「**`BEEFTV_SRC` 指向非仓时会回落到真仓并继续核**」——
+        **这恰好是纪律 172 关心的那件事**（静默降级 vs 明确说明）；
+      · **它慢了 3.5 倍**：实测 **9.4s → 33.2s**。原因是 7 道自带 `CANDIDATES` 的闸
+        **不再快速 rc=2**，而是真跑一遍——单 `verify-unreachable.py` 就占 **16.8s**。
+        **这不是回归，是它终于在真的做事**；代价是它已越过 30 秒阈值、
+        必须登记为慢反验（闸 18 方向四d 当场拦过一次）。
+    **原描述（保留作为它被写下来时的样子）**：
 
     这是方向一的**另一个极端**，与 Batch 193 同源而**至今没被测过**：
     方向一测的是「手册这边什么都没有」，方向三测的是「手册这边什么都有，
@@ -234,7 +256,7 @@ def main():
     print("  · 方向一/二（手册树为空）：没有一道在零输入下报绿，"
           "也没有一道把异常当成「核出不一致」；%d 道豁免，其输入不在手册树内"
           % len(EXEMPT))
-    print("  · 方向三（手册树正常、上游不可用）：没有一道报绿，"
+    print("  · 方向三（手册树正常、`BEEFTV_SRC` 指向非仓）：没有一道报绿，"
           "也没有一道把异常当成「核出不一致」")
     print("  · 实测 %.1fs（含「闸只读」前提自检 %d 处写操作 = 0）" % (cost, len(dirty)))
     return 0

@@ -66,6 +66,16 @@ SCRIPTS = os.path.join(ROOT, "scripts")
 # **判据锚的是「谁慢、慢多少」这个可测事实，而不是一个我拍出来的数。**
 SLOW_BUDGET_SEC = 30
 SLOW = {
+    "selftest-zero-input.py": {
+        "seconds": 33,           # 实测（Batch 201：9.4s → 33.2s）
+        "why": "**它变慢不是因为多了检查，是因为各闸不再秒退**——Batch 197 给 `beefsrc` 加了可用的兜底之后，方向三里 `BEEFTV_SRC` 指向非仓的闸**会回落到真仓把整道闸跑完**（单 `verify-unreachable.py` 就 16.8s）。33 秒已越过 30 秒阈值，**放进构建会让每次构建多花三分之一时间**。登记 + 提交前跑——**与 `selftest-meta.sh`、`selftest-unreachable.sh` 同一类必要成本**：它核的是「全部闸在两个极端下各自会说什么」，而那只能靠逐道真跑。",
+        "anchor": ("selftest-zero-input.py", "def direction_three"),
+    },
+    "selftest-selftest-bootable.py": {
+        "seconds": 34,           # 实测（Batch 201：13 例时 20.8s，加 2 例后 33.6s）
+        "why": "每一例都要 `copytree` 整份 `scripts/`（87 个文件）进沙箱再跑一遍闸 18，**而闸 18 现在还会在沙箱里重放慢反验的夹具前提**。33.6 秒已越过 30 秒阈值，**放进构建会让每次构建多花三分之一时间**。登记 + 提交前跑——**这与 `selftest-meta.sh` 是同一类必要成本**：它核的是「反验本身还能不能用」，而反验不在构建路径上。",
+        "anchor": ("selftest-selftest-bootable.py", "m_slow_feature_missing"),
+    },
     "selftest-unreachable.sh": {
         "seconds": 1500,          # 实测约 25 分钟（Batch 179）
         "why": "走 git plumbing 往上游仓库注入 40 个用例并建临时 ref，"
@@ -123,7 +133,7 @@ SELFTEST_COSTS = {
     "selftest-quote-punct.py": 11,  # Batch 185：闸 22，实测 9.4/11.0s（6 例各跑一遍全量核对）
     "selftest-screenshots-literals.py": 23.5,
     "selftest-screenshots.py": 0.6,
-    "selftest-selftest-bootable.py": 21,  # Batch 200：加方向五的 2 例后实测 20.8/20.8s
+    "selftest-selftest-bootable.py": 34,  # Batch 201：再加方向五之二的 2 例后实测 33.6s
     "selftest-selftest-deps.py": 0.6,
     "selftest-scope.py": 0.3,   # Batch 190：闸 24，实测 0.23/0.21/0.27s（5 例，各起一棵临时树）
     "selftest-shortcuts.py": 1.3,
@@ -263,6 +273,28 @@ def _shared_modules():
                          re.M)
         if any(pat.search(b) for b in bodies):
             out.add(mod)
+    return out
+
+
+def _unreachable_cases():
+    """`selftest-unreachable.sh` 的 `(说明, 上游路径, 夹具, 特征)` 四元组。
+
+    **用 `shlex` 而不是正则**（Batch 201 实测）：那个脚本里
+    `feature` 参数**单双引号混用**（用例 21/23 写的是 `'inGroup("more")'`），
+    正则只能认出 20 个用例，而实际有 34 个——
+    **少认 14 个还报得很绿，正是判据认写法而不认事实的形态**。
+    `shlex` 走的是 shell 自己的词法，两种引号一视同仁。
+    """
+    import shlex as _shlex
+    out = []
+    for line in open(os.path.join(SCRIPTS, "selftest-unreachable.sh"),
+                     encoding="utf-8"):
+        st = line.strip()
+        if not (st.startswith("run_case ") or st.startswith("run_pass_case ")):
+            continue
+        argv = _shlex.split(st)
+        if len(argv) >= 5:
+            out.append((argv[1], argv[2], argv[3].replace("$HERE", SCRIPTS), argv[4]))
     return out
 
 
@@ -533,6 +565,67 @@ def main():
             "　→ 用例正在「什么都不验」：锚点多半是文件里某段被改写的文本，"
             "**要么改夹具的锚，要么改那段文本**")
 
+    # ── 方向五之二（Batch 201）：第二份慢反验的两个作废条件 ──────────────
+    #
+    # **它比方向五多一个条件**：`selftest-unreachable.sh` 的每条用例有
+    # **两个**会作废的点（脚本里各有一行 `VOID=$((VOID+1))`）：
+    #   ① **合成 ref 失败**——夹具处理不了目标文件；
+    #   ② **合成 ref 里找不到「修复特征」**——夹具跑了，但它没真的注入那个特征。
+    # **两个都不需要那套 git plumbing**：`build_ref` 的内容来自
+    # `git show origin/main:<path> | python3 <夹具>`，
+    # **而 plumbing 只是为了产出一个 commit**——前提校验用不到它。
+    # 实测 34 个用例重放一遍 **2.1 秒**，而整个慢反验约 25 分钟（快 700 倍）。
+    #
+    # **刻意用 `origin/main` 而不是手册声明的基线**：慢反验自己就是从
+    # `origin/main` 造合成 ref 的，**用别的 ref 重放就答不上
+    # 「我下次真跑它会不会作废」这个问题**。代价是上游一动这条方向就可能变红，
+    # **而那正是它该说的话**（上游改了路径 → 那条用例会作废 → 去改夹具）。
+    # **上游取不到就跳过，不是失败**——前提无法评估 ≠ 判为失败。
+    ur_checked, ur_skipped, ur_void = 0, 0, []
+    _cases = _unreachable_cases()
+    if not _cases:
+        problems.append(
+            "方向五之二：**从 `selftest-unreachable.sh` 里一个用例都解析不出来**——"
+            "要么调用格式变了，要么脚本被清空"
+            "　→ **「一个都没检查」与「全部都检查了」必须长得不一样**（纪律 156/159）")
+    _up = None
+    try:
+        sys.path.insert(0, SCRIPTS)
+        import beefsrc
+        _up, _ = beefsrc.resolve_src()
+    except Exception:                                    # noqa: BLE001
+        _up = None
+    if _up is None:
+        ur_skipped = len(_cases)
+    else:
+        for desc, path, fixer, feature in _cases:
+            if not os.path.isfile(fixer):
+                ur_void.append((desc[:26], "夹具文件不存在"))
+                continue
+            show = subprocess.run(["git", "-C", _up, "show", "origin/main:" + path],
+                                 capture_output=True, text=True, errors="replace")
+            if show.returncode != 0:
+                ur_void.append((desc[:26], "读不到 origin/main:%s" % path))
+                continue
+            r = subprocess.run([sys.executable, fixer], input=show.stdout,
+                               capture_output=True, text=True, errors="replace",
+                               timeout=30)
+            if r.returncode != 0:
+                tail = (r.stderr or "").strip().splitlines()
+                ur_void.append((desc[:26],
+                                "夹具失败：" + (tail[-1] if tail else "?")[:50]))
+                continue
+            ur_checked += 1
+            if feature not in r.stdout:
+                ur_void.append((desc[:26],
+                                "变换结果里找不到「修复特征」[%s]" % feature[:24]))
+    for desc, why in ur_void:
+        problems.append(
+            f"方向五之二：慢反验 `{desc}` 的前提已不成立（{why}）——"
+            "**这条用例会作废，而作废的用例什么都不验却不算失败**（纪律 178）"
+            "　→ 上游 `origin/main` 改了这段内容或路径：要么改夹具的锚，"
+            "要么把该用例移到不再成立的位置")
+
     checked = py_ok + sh_ok
     if problems:
         print("反验启动核对：%d 份反验中有 %d 处问题" % (len(names), len(problems)))
@@ -548,9 +641,10 @@ def main():
     print("  另有 %d 份注入夹具（selftest-*-fix-*.py）语法可解析" % fx_ok)
     print("  慢反验 %d 份已登记（%s）——提交前手动跑"
           % (len(SLOW), "、".join(sorted(SLOW))))
-    print("  慢反验注入夹具锚点：%d 个全部命中、%d 个因目标文件不在场而跳过"
-          "（方向五；**只查前提不查结果**，且只覆盖 `selftest-meta.sh`）"
-          % (fx_checked, fx_skipped))
+    print("  慢反验前提核对（方向五/五之二，**只查前提不查结果**）："
+          "`selftest-meta.sh` %d 个夹具锚点、%d 个因目标不在场跳过；"
+          "`selftest-unreachable.sh` %d/%d 个用例前提成立、%d 个跳过"
+          % (fx_checked, fx_skipped, ur_checked, len(_cases), ur_skipped))
     return 0
 
 

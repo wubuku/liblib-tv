@@ -10,6 +10,8 @@
   5  反验 import 一个不存在的本地模块      → 必报（方向二）
   6  慢反验夹具打不中锚点                → 必报（方向五，Batch 200）
   7  一个夹具都抽不出来                  → 必报（方向五，**「没检查」≠「全通过」**）
+  8  慢反验夹具跑不通                    → 必报（方向五之二，合成 ref 失败那一支）
+  9  慢反验夹具没注入特征                → 必报（方向五之二，**与上一条是不同形态**）
   6  **注入夹具不得被当成反验**            → 必须不报（**上线首跑就误报过 58 处**）
   7  真实现状                              → 不报
 
@@ -308,12 +310,48 @@ def m_no_fixture_triples():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── 14 慢反验夹具处理不了目标 → 必报（方向五之二，**合成 ref 失败那一支**）──
+def m_slow_fixture_crashes():
+    check_anchor()
+    assert "_unreachable_cases" in read(GATE), "前提失配：闸 18 里找不到方向五之二的解析器"
+    tmp = sandbox()
+    try:
+        fx = os.path.join(tmp, "scripts", "selftest-fix-1-setsort.py")
+        t = read(fx)
+        with open(fx, "w", encoding="utf-8") as fh:
+            fh.write("import sys\nraise SystemExit(3)\n" + t)
+        rc, out = run_in(tmp)
+        record("14 慢反验夹具跑不通→必报", rc == 1 and "方向五之二" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+# ── 15 夹具没注入特征 → 必报（方向五之二，**找不到修复特征那一支**）───────
+def m_slow_feature_missing():
+    check_anchor()
+    tmp = sandbox()
+    try:
+        fx = os.path.join(tmp, "scripts", "selftest-fix-2-import-entry.py")
+        t = read(fx)
+        i = t.index("sys.stdout.write")
+        # 改成**恒等变换**：它跑得动，却什么也没注入。
+        # **这一支与上一支是不同的形态**——只测「夹具会崩」的话，
+        # 「夹具安静地什么都不做」照样能混过去。
+        with open(fx, "w", encoding="utf-8") as fh:
+            fh.write(t[:i] + "sys.stdout.write(text)\n")
+        rc, out = run_in(tmp)
+        record("15 慢反验夹具没注入特征→必报", rc == 1 and "方向五之二" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main():
     tests = [m_clean, m_broken_selftest_syntax, m_broken_fixture_syntax,
              m_broken_shell, m_missing_local_module, m_fixture_not_treated_as_selftest,
              m_real_selftest_detected, m_slow_entry_under_budget, m_slow_not_registered,
              m_never_measured, m_comment_is_not_invocation,
-             m_fixture_anchor_missed, m_no_fixture_triples]
+             m_fixture_anchor_missed, m_no_fixture_triples,
+             m_slow_fixture_crashes, m_slow_feature_missing]
     for t in tests:
         try:
             t()
