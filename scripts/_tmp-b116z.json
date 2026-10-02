@@ -1,0 +1,112 @@
+{
+ "at": "2026-10-02T22:36:23.531Z",
+ "round": "z",
+ "targets": [
+  {
+   "id": "node_vf5y2jzwrg",
+   "by": "a 轮 · 空白右键 → 新建节点 → 视频（空）"
+  }
+ ],
+ "start": {
+  "nodes": "77",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": {
+   "aria": "Zoom options, 54%",
+   "rect": [
+    124,
+    672,
+    48,
+    28
+   ]
+  },
+  "tool": {
+   "aria": "选择工具",
+   "pressed": "false",
+   "tid": "canvas-pointer-tool-toggle"
+  }
+ },
+ "ids0": 77,
+ "deletions": [
+  {
+   "id": "node_vf5y2jzwrg",
+   "vanished": [
+    "node_vf5y2jzwrg"
+   ],
+   "exactlySelf": true,
+   "stillThere": false,
+   "nBefore": 77,
+   "nAfter": 76,
+   "del": {
+    "t": "删除 ⌫",
+    "rect": [
+     444,
+     601,
+     192,
+     36
+    ],
+    "disabled": false,
+    "menuW": 200
+   }
+  }
+ ],
+ "zoom0": {
+  "aria": "Zoom options, 54%",
+  "rect": [
+   124,
+   672,
+   48,
+   28
+  ]
+ },
+ "zoomTyped": "60",
+ "zoom1": {
+  "aria": "Zoom options, 60%",
+  "rect": [
+   124,
+   672,
+   48,
+   28
+  ]
+ },
+ "zoom2": {
+  "aria": "Zoom options, 60%",
+  "rect": [
+   124,
+   672,
+   48,
+   28
+  ]
+ },
+ "zoomStable": true,
+ "tool0": {
+  "aria": "选择工具",
+  "pressed": "false",
+  "tid": "canvas-pointer-tool-toggle"
+ },
+ "tool1": {
+  "aria": "选择工具",
+  "pressed": "false",
+  "tid": "canvas-pointer-tool-toggle"
+ },
+ "end": {
+  "nodes": "76",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": {
+   "aria": "Zoom options, 60%",
+   "rect": [
+    124,
+    672,
+    48,
+    28
+   ]
+  },
+  "tool": {
+   "aria": "选择工具",
+   "pressed": "false",
+   "tid": "canvas-pointer-tool-toggle"
+  },
+  "sel": 0,
+  "edges": 0,
+  "leftovers": []
+ }
+}
