@@ -1,0 +1,209 @@
+{
+ "at": "2026-10-02T07:38:21.442Z",
+ "start": {
+  "nodes": 25,
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": 60
+ },
+ "shapes": [
+  {
+   "asked": 60,
+   "actual": 60,
+   "scale": 0.6,
+   "inViewport": true,
+   "classN": 3,
+   "tidN": 2,
+   "classWithTid": 2,
+   "classWithOtherTid": [
+    {
+     "tid": "selection-context-toolbar-popup-host",
+     "box": "0×0@640,228",
+     "n": 0,
+     "inNode": false,
+     "nodeId": null
+    }
+   ],
+   "classWithoutTid": 0,
+   "class": [
+    {
+     "tid": "selection-context-toolbar-popup-host",
+     "box": "0×0@640,228",
+     "n": 0,
+     "inNode": false,
+     "nodeId": null
+    },
+    {
+     "tid": "node-toolbar",
+     "box": "192×40@544,188",
+     "n": 3,
+     "inNode": false,
+     "nodeId": null
+    },
+    {
+     "tid": "node-toolbar",
+     "box": "0×0@640,476",
+     "n": 0,
+     "inNode": false,
+     "nodeId": null
+    }
+   ],
+   "realBoxes": [
+    {
+     "box": "192×40@544,188",
+     "n": 3,
+     "tid": "node-toolbar",
+     "nodeId": null
+    }
+   ]
+  },
+  {
+   "asked": 100,
+   "actual": 100,
+   "scale": 1,
+   "inViewport": true,
+   "classN": 3,
+   "tidN": 2,
+   "classWithTid": 2,
+   "classWithOtherTid": [
+    {
+     "tid": "selection-context-toolbar-popup-host",
+     "box": "0×0@640,164",
+     "n": 0,
+     "inNode": false,
+     "nodeId": null
+    }
+   ],
+   "classWithoutTid": 0,
+   "class": [
+    {
+     "tid": "node-toolbar",
+     "box": "0×0@640,540",
+     "n": 0,
+     "inNode": false,
+     "nodeId": null
+    },
+    {
+     "tid": "selection-context-toolbar-popup-host",
+     "box": "0×0@640,164",
+     "n": 0,
+     "inNode": false,
+     "nodeId": null
+    },
+    {
+     "tid": "node-toolbar",
+     "box": "320×40@480,124",
+     "n": 3,
+     "inNode": false,
+     "nodeId": null
+    }
+   ],
+   "realBoxes": [
+    {
+     "box": "320×40@480,124",
+     "n": 3,
+     "tid": "node-toolbar",
+     "nodeId": null
+    }
+   ]
+  },
+  {
+   "asked": 40,
+   "actual": 40,
+   "scale": 0.4,
+   "inViewport": true,
+   "classN": 3,
+   "tidN": 2,
+   "classWithTid": 2,
+   "classWithOtherTid": [
+    {
+     "tid": "selection-context-toolbar-popup-host",
+     "box": "0×0@640,260",
+     "n": 0,
+     "inNode": false,
+     "nodeId": null
+    }
+   ],
+   "classWithoutTid": 0,
+   "class": [
+    {
+     "tid": "node-toolbar",
+     "box": "0×0@640,444",
+     "n": 0,
+     "inNode": false,
+     "nodeId": null
+    },
+    {
+     "tid": "selection-context-toolbar-popup-host",
+     "box": "0×0@640,260",
+     "n": 0,
+     "inNode": false,
+     "nodeId": null
+    },
+    {
+     "tid": "node-toolbar",
+     "box": "160×40@560,220",
+     "n": 3,
+     "inNode": false,
+     "nodeId": null
+    }
+   ],
+   "realBoxes": [
+    {
+     "box": "160×40@560,220",
+     "n": 3,
+     "tid": "node-toolbar",
+     "nodeId": null
+    }
+   ]
+  }
+ ],
+ "verdict": {
+  "page185": false,
+  "page192": true,
+  "boxesByZoom": [
+   {
+    "z": 60,
+    "scale": 0.6,
+    "boxes": [
+     "192×40@544,188"
+    ]
+   },
+   {
+    "z": 100,
+    "scale": 1,
+    "boxes": [
+     "320×40@480,124"
+    ]
+   },
+   {
+    "z": 40,
+    "scale": 0.4,
+    "boxes": [
+     "160×40@560,220"
+    ]
+   }
+  ],
+  "classN": [
+   3,
+   3,
+   3
+  ],
+  "tidN": [
+   2,
+   2,
+   2
+  ]
+ },
+ "cleanup": {
+  "mine": [
+   "node_6bgxe00zn0"
+  ],
+  "leftover": [],
+  "nodes": 25
+ },
+ "end": {
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": 60
+ }
+}

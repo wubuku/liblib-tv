@@ -1,0 +1,295 @@
+{
+ "at": "2026-10-02T07:35:35.685Z",
+ "start": {
+  "nodes": 24,
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": 60
+ },
+ "zoomGrids": [
+  {
+   "askedZoom": 60,
+   "actualZoom": 60,
+   "scale": 0.6,
+   "sel": "1",
+   "who": [
+    "node_bb97taj5zb"
+   ],
+   "inViewport": true,
+   "classN": 3,
+   "tidN": 2,
+   "realToolbars": 1,
+   "boxes": [
+    {
+     "box": "192×40@544,188",
+     "n": 3,
+     "hasTid": "node-toolbar"
+    },
+    {
+     "box": "0×0@640,476",
+     "n": 0,
+     "hasTid": "node-toolbar"
+    }
+   ],
+   "classOnly": [],
+   "labels": [
+    "背景色",
+    "全屏",
+    "下载"
+   ],
+   "edit": {
+    "contenteditable": 0,
+    "proseMirror": 0,
+    "inNode": 0
+   }
+  },
+  {
+   "askedZoom": 100,
+   "actualZoom": 60,
+   "scale": 0.6,
+   "sel": "1",
+   "who": [
+    "node_bb97taj5zb"
+   ],
+   "inViewport": true,
+   "classN": 3,
+   "tidN": 2,
+   "realToolbars": 1,
+   "boxes": [
+    {
+     "box": "192×40@544,188",
+     "n": 3,
+     "hasTid": "node-toolbar"
+    },
+    {
+     "box": "0×0@640,476",
+     "n": 0,
+     "hasTid": "node-toolbar"
+    }
+   ],
+   "classOnly": [],
+   "labels": [
+    "背景色",
+    "全屏",
+    "下载"
+   ],
+   "edit": {
+    "contenteditable": 0,
+    "proseMirror": 0,
+    "inNode": 0
+   }
+  },
+  {
+   "askedZoom": 40,
+   "actualZoom": 60,
+   "scale": 0.6,
+   "sel": "1",
+   "who": [
+    "node_bb97taj5zb"
+   ],
+   "inViewport": true,
+   "classN": 3,
+   "tidN": 2,
+   "realToolbars": 1,
+   "boxes": [
+    {
+     "box": "192×40@544,188",
+     "n": 3,
+     "hasTid": "node-toolbar"
+    },
+    {
+     "box": "0×0@640,476",
+     "n": 0,
+     "hasTid": "node-toolbar"
+    }
+   ],
+   "classOnly": [],
+   "labels": [
+    "背景色",
+    "全屏",
+    "下载"
+   ],
+   "edit": {
+    "contenteditable": 0,
+    "proseMirror": 0,
+    "inNode": 0
+   }
+  },
+  {
+   "askedZoom": 60,
+   "actualZoom": 60,
+   "scale": 0.6,
+   "sel": "1",
+   "who": [
+    "node_bb97taj5zb"
+   ],
+   "inViewport": true,
+   "classN": 3,
+   "tidN": 2,
+   "realToolbars": 1,
+   "boxes": [
+    {
+     "box": "192×40@544,188",
+     "n": 3,
+     "hasTid": "node-toolbar"
+    },
+    {
+     "box": "0×0@640,476",
+     "n": 0,
+     "hasTid": "node-toolbar"
+    }
+   ],
+   "classOnly": [],
+   "labels": [
+    "背景色",
+    "全屏",
+    "下载"
+   ],
+   "edit": {
+    "contenteditable": 0,
+    "proseMirror": 0,
+    "inNode": 0
+   }
+  }
+ ],
+ "editTest": {
+  "steps": [
+   {
+    "at": "选中后",
+    "sel": "1",
+    "edit": {
+     "contenteditable": 0,
+     "proseMirror": 0,
+     "inNode": 0
+    },
+    "tid": [
+     {
+      "box": "192×40@544,188",
+      "n": 3,
+      "labels": [
+       "背景色",
+       "全屏",
+       "下载"
+      ]
+     },
+     {
+      "box": "0×0@640,476",
+      "n": 0,
+      "labels": []
+     }
+    ]
+   },
+   {
+    "at": "双击后",
+    "sel": "1",
+    "edit": {
+     "contenteditable": 0,
+     "proseMirror": 0,
+     "inNode": 0
+    },
+    "tid": [
+     {
+      "box": "192×40@544,188",
+      "n": 3,
+      "labels": [
+       "背景色",
+       "全屏",
+       "下载"
+      ]
+     },
+     {
+      "box": "0×0@640,476",
+      "n": 0,
+      "labels": []
+     }
+    ],
+    "classN": 3,
+    "class": [
+     {
+      "box": "0×0@640,228",
+      "n": 0,
+      "labels": []
+     },
+     {
+      "box": "192×40@544,188",
+      "n": 3,
+      "labels": [
+       "背景色",
+       "全屏",
+       "下载"
+      ]
+     },
+     {
+      "box": "0×0@640,476",
+      "n": 0,
+      "labels": []
+     }
+    ]
+   },
+   {
+    "at": "Esc 后",
+    "edit": {
+     "contenteditable": 0,
+     "proseMirror": 0,
+     "inNode": 0
+    },
+    "tid": [
+     {
+      "box": "192×40@544,188",
+      "n": 3
+     },
+     {
+      "box": "0×0@640,476",
+      "n": 0
+     }
+    ]
+   }
+  ]
+ },
+ "verdict": {
+  "page185_reproduced": false,
+  "canvasValues": [
+   {
+    "z": 60,
+    "scale": 0.6,
+    "boxes": [
+     "192×40@544,188"
+    ]
+   },
+   {
+    "z": 60,
+    "scale": 0.6,
+    "boxes": [
+     "192×40@544,188"
+    ]
+   },
+   {
+    "z": 60,
+    "scale": 0.6,
+    "boxes": [
+     "192×40@544,188"
+    ]
+   },
+   {
+    "z": 60,
+    "scale": 0.6,
+    "boxes": [
+     "192×40@544,188"
+    ]
+   }
+  ],
+  "classWiderThanTid": false,
+  "editModeReached": false
+ },
+ "cleanup": {
+  "mine": [
+   "node_bb97taj5zb"
+  ],
+  "leftover": [],
+  "nodes": 24
+ },
+ "end": {
+  "credits": "Credits: 805 · 基础会员",
+  "zoom": 60
+ }
+}
