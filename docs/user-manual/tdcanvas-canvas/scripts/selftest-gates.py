@@ -942,8 +942,11 @@ def mutate_retracted_allowlist_too_broad(root: Path) -> None:
 
     path = root / "scripts/check-retractions.py"
     text = path.read_text(encoding="utf-8")
-    patched = text.replace('"allow_in": ["10-tasks/edit-nodes.md:36"],',
-                           '"allow_in": ["10-tasks/edit-nodes.md"],', 1)
+    # M154 给 R27 的 allow_in 加了第二处（task-inventory.yml:131），
+    # 这一行不再只有一处——注入要按**前缀**匹配，不能写死整行。
+    patched = re.sub(
+        r'"allow_in": \["10-tasks/edit-nodes\.md:\d+"[^\]]*\]',
+        '"allow_in": ["10-tasks/edit-nodes.md"]', text, count=1)
     assert patched != text, "注入失败：没找到 allow_in 那一行"
     path.write_text(patched, encoding="utf-8")
 
