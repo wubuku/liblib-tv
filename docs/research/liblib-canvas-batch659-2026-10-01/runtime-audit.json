@@ -1,0 +1,599 @@
+{
+  "batch": 659,
+  "question": "why is the scene prompt bar unreachable at 1280?  a closed form with a boundary located to the pixel, after three mechanisms were falsified by the data",
+  "closedForm": {
+    "rule": "reachable  <=>  the submit button's centre x is STRICTLY inside the host's clip box",
+    "clipper": "div.pointer-events-auto.flex — overflow: auto, 694 wide at W=1280. One level BELOW the 944-wide row.",
+    "row": "div.mx-auto.flex.shrink-0 — 944 wide, pinned. It overflows the clipper, which puts the prompt bar outside the clip.",
+    "whyStrictly": "an overflow:auto clip's right edge is exclusive, and that exclusivity is what lands the boundary on an exact pixel instead of a range",
+    "arithmetic": "submitCentreX is pinned at 1216; hostRight = W - 293; 1216 < W - 293  <=>  W >= 1510",
+    "equivalentRestatement": "rowRight <= sectionRight + 8 — identical on all six transition cells, but a consequence of the constants, not a separate margin",
+    "safe": 8
+  },
+  "falsified": {
+    "zOrder": "the bottom bar declares z-200 and the inspector aside declares z-30, so z says the bar is on top — and the reading says the opposite. The submit button is not even IN the stack (index -1): it is not painted there, not merely below something.",
+    "pointerEvents": "the bottom bar wrapper is pointer-events:none. An in-page experiment set it to auto and the stack did not change at all.",
+    "rowMustFitInsideTheBottomBar": "at W=1510 the row still overhangs the bottom bar by 20px and the button IS reachable. Fitting inside the bar is not the rule."
+  },
+  "cells": {
+    "w1280": {
+      "found": true,
+      "reachable": false,
+      "submitIndexInStack": -1,
+      "stackDepth": 13,
+      "stackTop3": [
+        "div",
+        "section[data-director-inspector]",
+        "aside[data-director-mobile-panel-state]"
+      ],
+      "rowRight": 1237,
+      "rowWidth": 944,
+      "sectionRight": 999,
+      "bottomBarRight": 999,
+      "hostRight": 987,
+      "hostLeft": 293,
+      "submitCentreX": 1216,
+      "hostOverflow": "auto",
+      "hostScrollW": 944,
+      "hostClientW": 694,
+      "centreInsideHostClip": false,
+      "rowOverSection": 238,
+      "rowOverBottomBar": 238,
+      "bottomBarZ": "200",
+      "bottomBarPointerEvents": "none",
+      "asideZ": "30",
+      "inspectorZ": "auto",
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "w1280-collapsed": {
+      "found": true,
+      "reachable": true,
+      "submitIndexInStack": 2,
+      "stackDepth": 19,
+      "stackTop3": [
+        "path",
+        "svg",
+        "button[data-director-scene-prompt-submit]"
+      ],
+      "rowRight": 1004,
+      "rowWidth": 944,
+      "sectionRight": 999,
+      "bottomBarRight": 999,
+      "hostRight": 987,
+      "hostLeft": 60,
+      "submitCentreX": 983,
+      "hostOverflow": "auto",
+      "hostScrollW": 944,
+      "hostClientW": 927,
+      "centreInsideHostClip": true,
+      "rowOverSection": 5,
+      "rowOverBottomBar": 5,
+      "bottomBarZ": "200",
+      "bottomBarPointerEvents": "none",
+      "asideZ": "30",
+      "inspectorZ": "auto",
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "w1440": {
+      "found": true,
+      "reachable": false,
+      "submitIndexInStack": -1,
+      "stackDepth": 13,
+      "stackTop3": [
+        "div",
+        "section[data-director-inspector]",
+        "aside[data-director-mobile-panel-state]"
+      ],
+      "rowRight": 1237,
+      "rowWidth": 944,
+      "sectionRight": 1159,
+      "bottomBarRight": 1159,
+      "hostRight": 1147,
+      "hostLeft": 293,
+      "submitCentreX": 1216,
+      "hostOverflow": "auto",
+      "hostScrollW": 944,
+      "hostClientW": 854,
+      "centreInsideHostClip": false,
+      "rowOverSection": 78,
+      "rowOverBottomBar": 78,
+      "bottomBarZ": "200",
+      "bottomBarPointerEvents": "none",
+      "asideZ": "30",
+      "inspectorZ": "auto",
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "w1440-collapsed": {
+      "found": true,
+      "reachable": true,
+      "submitIndexInStack": 2,
+      "stackDepth": 19,
+      "stackTop3": [
+        "path",
+        "svg",
+        "button[data-director-scene-prompt-submit]"
+      ],
+      "rowRight": 1076,
+      "rowWidth": 944,
+      "sectionRight": 1159,
+      "bottomBarRight": 1159,
+      "hostRight": 1147,
+      "hostLeft": 60,
+      "submitCentreX": 1055,
+      "hostOverflow": "auto",
+      "hostScrollW": 1087,
+      "hostClientW": 1087,
+      "centreInsideHostClip": true,
+      "rowOverSection": -83,
+      "rowOverBottomBar": -83,
+      "bottomBarZ": "200",
+      "bottomBarPointerEvents": "none",
+      "asideZ": "30",
+      "inspectorZ": "auto",
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "w1510": {
+      "found": true,
+      "reachable": true,
+      "submitIndexInStack": 2,
+      "stackDepth": 19,
+      "stackTop3": [
+        "path",
+        "svg",
+        "button[data-director-scene-prompt-submit]"
+      ],
+      "rowRight": 1237,
+      "rowWidth": 944,
+      "sectionRight": 1229,
+      "bottomBarRight": 1229,
+      "hostRight": 1217,
+      "hostLeft": 293,
+      "submitCentreX": 1216,
+      "hostOverflow": "auto",
+      "hostScrollW": 944,
+      "hostClientW": 924,
+      "centreInsideHostClip": true,
+      "rowOverSection": 8,
+      "rowOverBottomBar": 8,
+      "bottomBarZ": "200",
+      "bottomBarPointerEvents": "none",
+      "asideZ": "30",
+      "inspectorZ": "auto",
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "w1510-collapsed": {
+      "found": true,
+      "reachable": true,
+      "submitIndexInStack": 2,
+      "stackDepth": 19,
+      "stackTop3": [
+        "path",
+        "svg",
+        "button[data-director-scene-prompt-submit]"
+      ],
+      "rowRight": 1111,
+      "rowWidth": 944,
+      "sectionRight": 1229,
+      "bottomBarRight": 1229,
+      "hostRight": 1217,
+      "hostLeft": 60,
+      "submitCentreX": 1090,
+      "hostOverflow": "auto",
+      "hostScrollW": 1157,
+      "hostClientW": 1157,
+      "centreInsideHostClip": true,
+      "rowOverSection": -118,
+      "rowOverBottomBar": -118,
+      "bottomBarZ": "200",
+      "bottomBarPointerEvents": "none",
+      "asideZ": "30",
+      "inspectorZ": "auto",
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    }
+  },
+  "boundary": {
+    "1509": {
+      "found": true,
+      "reachable": false,
+      "submitIndexInStack": -1,
+      "stackDepth": 13,
+      "stackTop3": [
+        "div[data-director-webgl-canvas]",
+        "section[data-director-viewport]",
+        "main"
+      ],
+      "rowRight": 1237,
+      "rowWidth": 944,
+      "sectionRight": 1228,
+      "bottomBarRight": 1228,
+      "hostRight": 1216,
+      "hostLeft": 293,
+      "submitCentreX": 1216,
+      "hostOverflow": "auto",
+      "hostScrollW": 944,
+      "hostClientW": 923,
+      "centreInsideHostClip": false,
+      "rowOverSection": 9,
+      "rowOverBottomBar": 9,
+      "bottomBarZ": "200",
+      "bottomBarPointerEvents": "none",
+      "asideZ": "30",
+      "inspectorZ": "auto",
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    },
+    "1510": {
+      "found": true,
+      "reachable": true,
+      "submitIndexInStack": 2,
+      "stackDepth": 19,
+      "stackTop3": [
+        "path",
+        "svg",
+        "button[data-director-scene-prompt-submit]"
+      ],
+      "rowRight": 1237,
+      "rowWidth": 944,
+      "sectionRight": 1229,
+      "bottomBarRight": 1229,
+      "hostRight": 1217,
+      "hostLeft": 293,
+      "submitCentreX": 1216,
+      "hostOverflow": "auto",
+      "hostScrollW": 944,
+      "hostClientW": 924,
+      "centreInsideHostClip": true,
+      "rowOverSection": 8,
+      "rowOverBottomBar": 8,
+      "bottomBarZ": "200",
+      "bottomBarPointerEvents": "none",
+      "asideZ": "30",
+      "inspectorZ": "auto",
+      "gate": {
+        "moved": [],
+        "fired": false,
+        "partial": [],
+        "toEnd": [],
+        "verdict": "clean"
+      }
+    }
+  },
+  "pointerEventsExperiment": {
+    "computedPointerEventsWas": "none",
+    "before": {
+      "reachable": false,
+      "submitIndexInStack": -1,
+      "stackTop3": [
+        "div",
+        "section[data-director-inspector]",
+        "aside[data-director-mobile-panel-state]"
+      ]
+    },
+    "after": {
+      "reachable": false,
+      "submitIndexInStack": -1,
+      "stackTop3": [
+        "div",
+        "section[data-director-inspector]",
+        "aside[data-director-mobile-panel-state]"
+      ]
+    }
+  },
+  "rowOverSectionTransitions": [
+    -118,
+    -83,
+    5,
+    8,
+    78,
+    238
+  ],
+  "explainedFrom658": [
+    "data-director-scene-prompt-file|",
+    "data-director-scene-prompt-input|描述想搭建的场景",
+    "data-director-scene-prompt-submit|发送",
+    "data-director-scene-prompt-upload|上传图片"
+  ],
+  "checks": {
+    "the-closed-form-holds-on-six-cells-including-a-second-axis": {
+      "ok": true,
+      "detail": {
+        "rows": {
+          "w1280": {
+            "reachable": false,
+            "rowOverSection": 238,
+            "sectionRight": 999,
+            "rowRight": 1237,
+            "rowWidth": 944,
+            "rowOverBottomBar": 238,
+            "topOfStack": [
+              "div",
+              "section[data-director-inspector]"
+            ]
+          },
+          "w1280-collapsed": {
+            "reachable": true,
+            "rowOverSection": 5,
+            "sectionRight": 999,
+            "rowRight": 1004,
+            "rowWidth": 944,
+            "rowOverBottomBar": 5,
+            "topOfStack": [
+              "path",
+              "svg"
+            ]
+          },
+          "w1440": {
+            "reachable": false,
+            "rowOverSection": 78,
+            "sectionRight": 1159,
+            "rowRight": 1237,
+            "rowWidth": 944,
+            "rowOverBottomBar": 78,
+            "topOfStack": [
+              "div",
+              "section[data-director-inspector]"
+            ]
+          },
+          "w1440-collapsed": {
+            "reachable": true,
+            "rowOverSection": -83,
+            "sectionRight": 1159,
+            "rowRight": 1076,
+            "rowWidth": 944,
+            "rowOverBottomBar": -83,
+            "topOfStack": [
+              "path",
+              "svg"
+            ]
+          },
+          "w1510": {
+            "reachable": true,
+            "rowOverSection": 8,
+            "sectionRight": 1229,
+            "rowRight": 1237,
+            "rowWidth": 944,
+            "rowOverBottomBar": 8,
+            "topOfStack": [
+              "path",
+              "svg"
+            ]
+          },
+          "w1510-collapsed": {
+            "reachable": true,
+            "rowOverSection": -118,
+            "sectionRight": 1229,
+            "rowRight": 1111,
+            "rowWidth": 944,
+            "rowOverBottomBar": -118,
+            "topOfStack": [
+              "path",
+              "svg"
+            ]
+          }
+        },
+        "mismatches": {},
+        "transitions": [
+          -118,
+          -83,
+          5,
+          8,
+          78,
+          238
+        ],
+        "whySixCells": "a width sweep alone can only produce ONE transition, and one transition cannot distinguish 'overhang <= 8' from 'overhang <= 0'. Collapsing the panels moves the column width without moving the window, so the same rule gets tested at overhangs 238, 78, 8, 5, -83 and -118."
+      },
+      "note": "the second axis is the difference between a curve and a coincidence"
+    },
+    "the-boundary-is-located-to-the-pixel": {
+      "ok": true,
+      "detail": {
+        "1509": {
+          "reachable": false,
+          "rowOverSection": 9,
+          "submitIndexInStack": -1,
+          "stackTop3": [
+            "div[data-director-webgl-canvas]",
+            "section[data-director-viewport]",
+            "main"
+          ],
+          "sectionRight": 1228,
+          "rowRight": 1237
+        },
+        "1510": {
+          "reachable": true,
+          "rowOverSection": 8,
+          "submitIndexInStack": 2,
+          "stackTop3": [
+            "path",
+            "svg",
+            "button[data-director-scene-prompt-submit]"
+          ],
+          "sectionRight": 1229,
+          "rowRight": 1237
+        }
+      },
+      "note": "1509 overhangs by 9 and fails; 1510 overhangs by 8 and passes. There is no width in between to argue about."
+    },
+    "the-declared-z-indices-do-not-predict-the-hit-order": {
+      "ok": true,
+      "detail": {
+        "bottomBarZ": "200",
+        "bottomBarDeclared": "absolute, z-200 — by z it wins",
+        "inspectorAsideZ": "30",
+        "whatActuallyHappens": {
+          "reachable": false,
+          "submitIndexInStack": -1,
+          "topOfStack": [
+            "div",
+            "section[data-director-inspector]",
+            "aside[data-director-mobile-panel-state]"
+          ]
+        },
+        "theCorrection": "643 already rejected a 'z-200 vs z-30 fight' as the explanation and was right. The bar does outrank the inspector and is still the one that loses — because its content is not painted over the inspector's column at all."
+      },
+      "note": "a z-index that reads 200 and loses is a fact about layout, not about stacking order"
+    },
+    "pointer-events-is-not-the-mechanism-either": {
+      "ok": true,
+      "detail": {
+        "computedPointerEventsWas": "none",
+        "before": {
+          "reachable": false,
+          "submitIndexInStack": -1,
+          "stackTop3": [
+            "div",
+            "section[data-director-inspector]",
+            "aside[data-director-mobile-panel-state]"
+          ]
+        },
+        "after": {
+          "reachable": false,
+          "submitIndexInStack": -1,
+          "stackTop3": [
+            "div",
+            "section[data-director-inspector]",
+            "aside[data-director-mobile-panel-state]"
+          ]
+        }
+      },
+      "note": "one in-page experiment, nothing persisted, nothing written to src/ — and the stack did not move by one element"
+    },
+    "the-clipping-story-is-the-one-that-survives-and-it-is-the-host": {
+      "ok": true,
+      "detail": {
+        "hostOverflow": {
+          "w1280": "auto",
+          "w1280-collapsed": "auto",
+          "w1440": "auto",
+          "w1440-collapsed": "auto",
+          "w1510": "auto",
+          "w1510-collapsed": "auto"
+        },
+        "hostScrollWvsClientW": {
+          "w1280": [
+            944,
+            694
+          ],
+          "w1280-collapsed": [
+            944,
+            927
+          ],
+          "w1440": [
+            944,
+            854
+          ],
+          "w1440-collapsed": [
+            1087,
+            1087
+          ],
+          "w1510": [
+            944,
+            924
+          ],
+          "w1510-collapsed": [
+            1157,
+            1157
+          ]
+        },
+        "theMisread": "the pre-batch probe read `bar.parentElement`, which is the 944-wide row and really is `overflow: visible`. The CLIPPER is one level further down: `div.pointer-events-auto.flex`, `overflow: auto`, 694 wide at W=1280.",
+        "theCorrection": "the row is 944 wide and shrink-0, so it overflows the 694-wide clipping host and the prompt bar falls outside the clip. That is why the button is ABSENT from the stack rather than below something in it.",
+        "the8IsAConsequenceNotAMargin": {
+          "rowWidth": 944,
+          "hostRightAt1509": 1216,
+          "hostRightAt1510": 1217,
+          "submitCentreX": 1216,
+          "why": "the clip's right edge is exclusive, the button centre is pinned at 1216, and hostRight is W - 293. 1216 < W - 293 lands on W = 1510. The '8px safe margin' framing of 659's first draft was a coincidence of those constants wearing the shape of 626's SAFE_MARGIN.",
+          "stillEquivalent": true
+        },
+        "restatementMismatches": {}
+      },
+      "note": "a mechanism invented from a single misread element is the most expensive kind of wrong — and so is throwing one away on the same kind of misread"
+    },
+    "this-closed-form-is-the-explanation-for-658s-four-controls": {
+      "ok": true,
+      "detail": {
+        "theFourControls": [
+          "data-director-scene-prompt-file|",
+          "data-director-scene-prompt-input|描述想搭建的场景",
+          "data-director-scene-prompt-submit|发送",
+          "data-director-scene-prompt-upload|上传图片"
+        ],
+        "at1280Expanded": {
+          "reachable": false,
+          "rowOverSection": 238
+        },
+        "at1280Collapsed": {
+          "reachable": true,
+          "rowOverSection": 5
+        },
+        "whatThisAdds": "658 recorded that four controls are unreachable and said it did not know why. This batch says why, and says which widths and which panel state make them reachable again.",
+        "whatItDoesNotCover": "658 also flagged `help` and, at 720, the two colour controls. Those are different mechanisms and this closed form does not claim them."
+      },
+      "note": "an explanation that cannot be turned off is not an explanation"
+    }
+  },
+  "ok": true,
+  "checkCount": 6,
+  "failures": [],
+  "totals": {
+    "cells": 6,
+    "boundaryCells": 2,
+    "safe": 8,
+    "rowWidth": 944,
+    "rowOverSectionTransitions": [
+      -118,
+      -83,
+      5,
+      8,
+      78,
+      238
+    ],
+    "boundary": {
+      "1509": 9,
+      "1510": 8
+    },
+    "mechanismsFalsified": 4,
+    "controlsExplained": 4
+  }
+}
