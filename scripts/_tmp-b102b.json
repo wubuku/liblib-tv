@@ -1,0 +1,291 @@
+{
+ "at": "2026-10-02T11:36:35.750Z",
+ "accept": {
+  "total": 23,
+  "uniqExt": 10,
+  "byPrefix": {
+   "image": {
+    "count": 13,
+    "exts": [],
+    "mimes": [
+     "image/jpeg",
+     "image/jpg",
+     "image/png",
+     "image/webp",
+     "image/bmp",
+     "image/x-ms-bmp",
+     "image/tiff",
+     "image/x-tiff",
+     "image/gif",
+     "image/heif",
+     "image/heif-sequence",
+     "image/heic",
+     "image/heic-sequence"
+    ]
+   },
+   "(ext)": {
+    "count": 10,
+    "exts": [
+     "jpg",
+     "jpeg",
+     "png",
+     "webp",
+     "bmp",
+     "tif",
+     "tiff",
+     "gif",
+     "heif",
+     "heic"
+    ],
+    "mimes": []
+   }
+  },
+  "extSorted": [
+   "bmp",
+   "gif",
+   "heic",
+   "heif",
+   "jpeg",
+   "jpg",
+   "png",
+   "tif",
+   "tiff",
+   "webp"
+  ],
+  "dupExt": [],
+  "mimesWithoutExt": []
+ },
+ "beforeHover": [
+  {
+   "rect": "260,280 240×172",
+   "aria": "Canvas context menu",
+   "items": 13,
+   "visible": true
+  },
+  {
+   "rect": "508,280 200×404",
+   "aria": null,
+   "items": 9,
+   "visible": true
+  }
+ ],
+ "afterHover": [
+  {
+   "rect": "260,280 240×172",
+   "aria": "Canvas context menu",
+   "testid": "canvas-context-menu",
+   "n": 13,
+   "items": [
+    {
+     "innerText": "新建节点",
+     "textContent": "新建节点",
+     "aria": "新建节点",
+     "tid": null,
+     "disabled": false,
+     "rect": "264,284 232×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "文本",
+     "textContent": "文本",
+     "aria": "文本",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,316 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "图片",
+     "textContent": "图片",
+     "aria": "图片",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,356 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "视频",
+     "textContent": "视频",
+     "aria": "视频",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,396 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "音频",
+     "textContent": "音频",
+     "aria": "音频",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,436 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "时间线",
+     "textContent": "时间线",
+     "aria": "时间线",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,476 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "主体",
+     "textContent": "主体",
+     "aria": "主体",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,516 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "导演台",
+     "textContent": "导演台",
+     "aria": "导演台",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,556 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "从资产库添加",
+     "textContent": "从资产库添加",
+     "aria": "从资产库添加",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,604 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "本地上传",
+     "textContent": "本地上传",
+     "aria": "本地上传",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,644 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "粘贴 ⌘ V",
+     "textContent": "粘贴⌘ V",
+     "aria": "粘贴",
+     "tid": null,
+     "disabled": false,
+     "rect": "264,332 232×36",
+     "hasImg": false
+    },
+    {
+     "innerText": "重做 ⌘ ⇧ Z 无需重做操作",
+     "textContent": "重做⌘ ⇧ Z无需重做操作",
+     "aria": "重做",
+     "tid": null,
+     "disabled": true,
+     "rect": "264,372 232×36",
+     "hasImg": false
+    },
+    {
+     "innerText": "撤销 ⌘ Z",
+     "textContent": "撤销⌘ Z",
+     "aria": "撤销",
+     "tid": null,
+     "disabled": false,
+     "rect": "264,412 232×36",
+     "hasImg": false
+    }
+   ]
+  },
+  {
+   "rect": "508,280 200×404",
+   "aria": null,
+   "testid": null,
+   "n": 9,
+   "items": [
+    {
+     "innerText": "文本",
+     "textContent": "文本",
+     "aria": "文本",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,316 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "图片",
+     "textContent": "图片",
+     "aria": "图片",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,356 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "视频",
+     "textContent": "视频",
+     "aria": "视频",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,396 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "音频",
+     "textContent": "音频",
+     "aria": "音频",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,436 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "时间线",
+     "textContent": "时间线",
+     "aria": "时间线",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,476 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "主体",
+     "textContent": "主体",
+     "aria": "主体",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,516 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "导演台",
+     "textContent": "导演台",
+     "aria": "导演台",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,556 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "从资产库添加",
+     "textContent": "从资产库添加",
+     "aria": "从资产库添加",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,604 192×36",
+     "hasImg": true
+    },
+    {
+     "innerText": "本地上传",
+     "textContent": "本地上传",
+     "aria": "本地上传",
+     "tid": null,
+     "disabled": false,
+     "rect": "512,644 192×36",
+     "hasImg": true
+    }
+   ]
+  }
+ ],
+ "end": {
+  "nodes": "54"
+ }
+}

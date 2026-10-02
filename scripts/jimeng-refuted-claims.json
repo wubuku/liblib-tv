@@ -390,6 +390,15 @@
       ],
       "refuted_in": "批次 101（SOURCE_OBSERVATIONS.md §4.21.5）",
       "reason": "全屏容器 0,0 1280×720 内**只有 3 个 button**：video-fullscreen-playback-toggle / -mute-toggle / -browser-toggle。没有任何 X/关闭控件。源站采样 batch 218 的这条描述在本站不成立"
+    },
+    {
+      "id": "filechooser-hangs-over-cdp",
+      "label": "「文件选择器在 `connectOverCDP` 下会挂住」—— 原写在 assets-and-upload.md 的「⛔ 本轮未测」一行（批次 86）",
+      "patterns": [
+        "在 `connectOverCDP` 下会挂住"
+      ],
+      "refuted_in": "批次 102（SOURCE_OBSERVATIONS.md §4.22.5，收窄而非推翻）",
+      "reason": "挂住的是 `page.waitForEvent('filechooser')` **那一种等待写法**；换成全局 `page.on('filechooser', …)` 完全正常，批次 101（视频）与批次 102（文本）连续两次成功拉起选择器并完成上传。准确说法：「这条等待写法在 connectOverCDP 下会超时」，不是「这条路上传不了」。📌 判据教训：pattern 只写「挂住」**过宽**，把 §4.22 这段**专门记录订正过程**的小节也命中了 ⇒ 必须带上领域限定词（`connectOverCDP`）"
     }
   ]
 }

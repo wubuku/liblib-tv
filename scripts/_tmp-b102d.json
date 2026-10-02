@@ -1,0 +1,100 @@
+{
+ "at": "2026-10-02T11:43:04.721Z",
+ "start": {
+  "nodes": "55",
+  "sel": "0",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "idsBefore": 55,
+ "creditsBefore": "Credits: 805 · 基础会员",
+ "subOpen": {
+  "expanded": "true",
+  "firstVisible": "visible"
+ },
+ "land": {
+  "point": [
+   608,
+   662
+  ],
+  "rect": "512,644 192×36",
+  "hitTag": "SPAN",
+  "hitText": "本地上传",
+  "hitRole": null,
+  "insideItem": true
+ },
+ "chooser": {
+  "isMultiple": true,
+  "acceptTokens": 111,
+  "multiple": true,
+  "chain": [
+   "DIV",
+   "DIV",
+   "DIV#context-menu-submenu-add-node",
+   "DIV"
+  ]
+ },
+ "gotAtMs": 1500,
+ "guard": {
+  "before": 55,
+  "after": 56,
+  "created": [
+   "node_0gg1c9b3tq"
+  ],
+  "selIds": [
+   "node_0gg1c9b3tq"
+  ],
+  "newSel": [
+   "node_0gg1c9b3tq"
+  ]
+ },
+ "creditsAfter": "Credits: 805 · 基础会员",
+ "selfId": "node_0gg1c9b3tq",
+ "selfInfo": {
+  "aria": "文本 node: jimeng-b102-doc",
+  "cls": "react-flow__node react-flow__node-text nopan selected selectable draggable",
+  "transform": "translate(1283.29px, 862.249px)",
+  "screen": "164,184 192×192",
+  "innerText": "JIMENG B102 DOC TEST line two line three jimeng-b102-doc",
+  "testids": [
+   "text-flow-node-full",
+   "text-node-resize-controls",
+   "text-node-resize-top-left",
+   "text-node-resize-top",
+   "text-node-resize-top-right",
+   "text-node-resize-right",
+   "text-node-resize-bottom-right",
+   "textarea-resize-affordance",
+   "text-node-resize-bottom",
+   "text-node-resize-bottom-left",
+   "text-node-resize-left",
+   "text-node-selection-outline",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button"
+  ],
+  "arias": [
+   "No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "Resize text from top left",
+   "Resize text from top. Press Enter to reset this dimension",
+   "Resize text from top right",
+   "Resize text from right. Press Enter to reset this dimension",
+   "Resize text from bottom right",
+   "Resize text from bottom. Press Enter to reset this dimension",
+   "Resize text from bottom left",
+   "Resize text from left. Press Enter to reset this dimension",
+   "Rename jimeng-b102-doc",
+   "Add tags",
+   "Create connected node after jimeng-b102-doc"
+  ]
+ },
+ "statusStrings": [
+  "b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completejimeng-b101-test-avc1.mp4: Upload complete"
+ ],
+ "end": {
+  "nodes": "56",
+  "sel": "1",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}

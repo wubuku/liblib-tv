@@ -1,0 +1,219 @@
+{
+ "at": "2026-10-02T11:52:54.173Z",
+ "start": {
+  "nodes": "55",
+  "sel": "0"
+ },
+ "rail": [
+  {
+   "aria": "资产库",
+   "x": 16,
+   "y": 501,
+   "w": 40,
+   "h": 40
+  }
+ ],
+ "pass1": {
+  "dialog": {
+   "rect": "240,50 801×620",
+   "role": "dialog",
+   "state": "open"
+  },
+  "layers": [
+   {
+    "t": "canvas-asset-library-dialog",
+    "rect": "240,50 801×620"
+   },
+   {
+    "t": "canvas-asset-library-surface",
+    "rect": "240,50 801×620"
+   },
+   {
+    "t": "canvas-asset-library-operation-area",
+    "rect": "240,50 801×104"
+   },
+   {
+    "t": "canvas-asset-library-navigation-controls",
+    "rect": "264,118 232×36"
+   },
+   {
+    "t": "canvas-asset-library-query-action-group",
+    "rect": "942,118 75×36"
+   },
+   {
+    "t": "canvas-asset-library-viewport",
+    "rect": "240,154 801×440"
+   },
+   {
+    "t": "canvas-asset-library-footer",
+    "rect": "240,594 801×76"
+   },
+   {
+    "t": "canvas-asset-library-import-status",
+    "rect": "357,616 1×1"
+   },
+   {
+    "t": "canvas-asset-library-box-selection",
+    "rect": null
+   }
+  ],
+  "tabs": [
+   {
+    "txt": "资产",
+    "aria": null,
+    "selected": "true",
+    "rect": "264,74 58×36"
+   },
+   {
+    "txt": "主体",
+    "aria": null,
+    "selected": "false",
+    "rect": "326,74 58×36"
+   },
+   {
+    "txt": "图片",
+    "aria": "图片",
+    "selected": "true",
+    "rect": "264,118 58×36"
+   },
+   {
+    "txt": "视频",
+    "aria": "视频",
+    "selected": "false",
+    "rect": "322,118 58×36"
+   },
+   {
+    "txt": "音频",
+    "aria": "音频",
+    "selected": "false",
+    "rect": "380,118 58×36"
+   },
+   {
+    "txt": "文档",
+    "aria": "文档",
+    "selected": "false",
+    "rect": "438,118 58×36"
+   }
+  ],
+  "emptyText": "暂无图片素材",
+  "hasViewportEl": true,
+  "footerText": "已选择 0 个素材 确认 请先选择素材",
+  "confirm": {
+   "rect": "937,610 80×36",
+   "ariaDisabled": "true",
+   "dataDisabled": "true",
+   "cursor": "not-allowed",
+   "color": "rgba(255, 255, 255, 0.2)",
+   "opacity": "1",
+   "nativeDisabled": false
+  },
+  "srOnly": [
+   {
+    "txt": "Import assets",
+    "rect": "263,92 1×1",
+    "parent": "HEADER",
+    "inConfirm": false
+   },
+   {
+    "txt": "Choose assets from Dream",
+    "rect": "263,92 1×1",
+    "parent": "HEADER",
+    "inConfirm": false
+   },
+   {
+    "txt": "时间",
+    "rect": "960,136 1×1",
+    "parent": "BUTTON",
+    "inConfirm": false
+   },
+   {
+    "txt": "筛选",
+    "rect": "997,136 1×1",
+    "parent": "BUTTON",
+    "inConfirm": false
+   },
+   {
+    "txt": "",
+    "rect": "357,616 1×1",
+    "parent": "DIV",
+    "inConfirm": false
+   },
+   {
+    "txt": "请先选择素材",
+    "rect": "263,628 1×1",
+    "parent": "canvas-asset-library-footer",
+    "inConfirm": false
+   }
+  ],
+  "globalSrOnlyCount": 64
+ },
+ "tabs": [
+  {
+   "name": "视频",
+   "emptyText": "暂无视频素材",
+   "viewport": "240,154 801×440",
+   "footer": "已选择 0 个素材 确认 请先选择素材",
+   "confirmRect": "937,610 80×36",
+   "selectedTabs": [
+    "资产",
+    "视频"
+   ]
+  },
+  {
+   "name": "音频",
+   "emptyText": "暂无音频素材",
+   "viewport": "240,154 801×440",
+   "footer": "已选择 0 个素材 确认 请先选择素材",
+   "confirmRect": "937,610 80×36",
+   "selectedTabs": [
+    "资产",
+    "音频"
+   ]
+  },
+  {
+   "name": "文档",
+   "emptyText": "暂无文档素材",
+   "viewport": "240,154 801×440",
+   "footer": "已选择 0 个素材 确认 请先选择素材",
+   "confirmRect": "937,610 80×36",
+   "selectedTabs": [
+    "资产",
+    "文档"
+   ]
+  }
+ ],
+ "subjectTab": {
+  "emptyText": null,
+  "hasViewportEl": false,
+  "tabs": [
+   {
+    "txt": "资产",
+    "aria": null,
+    "selected": "false",
+    "rect": "264,74 58×36"
+   },
+   {
+    "txt": "主体",
+    "aria": null,
+    "selected": "true",
+    "rect": "326,74 58×36"
+   },
+   {
+    "txt": "全部",
+    "aria": "全部",
+    "selected": "true",
+    "rect": "264,118 58×36"
+   }
+  ],
+  "selectedTabs": [
+   "主体",
+   "全部"
+  ],
+  "footerText": "已选择 0 个素材 确认 请先选择素材"
+ },
+ "closed": true,
+ "end": {
+  "nodes": "55",
+  "sel": "0"
+ }
+}

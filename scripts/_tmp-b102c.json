@@ -1,0 +1,129 @@
+{
+ "at": "2026-10-02T11:39:20.056Z",
+ "inputs": [
+  {
+   "i": 0,
+   "tokens": 23,
+   "byPrefix": {
+    "image": 13,
+    "(ext)": 10
+   },
+   "multiple": false,
+   "display": "none",
+   "rect": "0,0 0×0",
+   "acceptHead": "image/jpeg,image/jpg,.jpg,.jpeg,image/png,.png,image/webp,.webp,image/bmp,image/x-ms-bmp,.bmp,image/tiff,image",
+   "chain": [
+    "DIV",
+    "DIV[图片 node: b22-upload]#rf__node-node_gref4sw056",
+    "DIV",
+    "DIV",
+    "DIV",
+    "DIV"
+   ]
+  },
+  {
+   "i": 1,
+   "tokens": 111,
+   "byPrefix": {
+    "image": 13,
+    "(ext)": 48,
+    "video": 20,
+    "application": 5,
+    "audio": 22,
+    "text": 3
+   },
+   "multiple": true,
+   "display": "none",
+   "rect": "0,0 0×0",
+   "acceptHead": "image/jpeg,image/jpg,.jpg,.jpeg,image/png,.png,image/webp,.webp,image/bmp,image/x-ms-bmp,.bmp,image/tiff,image",
+   "chain": [
+    "SPAN",
+    "SPAN",
+    "DIV[Canvas toolbar]#canvas-fixed-toolbar",
+    "DIV#canvas-navigation-scroll-viewport",
+    "DIV#canvas-navigation-shell",
+    "DIV"
+   ]
+  }
+ ],
+ "subBefore": {
+  "trigger": {
+   "rect": "264,284 232×36",
+   "display": "flex",
+   "visibility": "visible",
+   "opacity": "1",
+   "pointerEvents": "auto",
+   "ariaHidden": null,
+   "expanded": "false",
+   "n": 0
+  },
+  "submenu": {
+   "rect": "508,280 200×404",
+   "display": "flex",
+   "visibility": "hidden",
+   "opacity": "0",
+   "pointerEvents": "auto",
+   "ariaHidden": null,
+   "expanded": "false",
+   "n": 9
+  },
+  "firstItem": {
+   "rect": "512,316 192×36",
+   "visibility": "hidden",
+   "opacity": "1",
+   "pointerEvents": "auto"
+  },
+  "hit": {
+   "at": [
+    608,
+    320
+   ],
+   "tag": "DIV",
+   "text": "00:0000:0500:1000:15",
+   "role": null,
+   "inSub": false
+  }
+ },
+ "subAfter": {
+  "trigger": {
+   "rect": "264,284 232×36",
+   "display": "flex",
+   "visibility": "visible",
+   "opacity": "1",
+   "pointerEvents": "auto",
+   "ariaHidden": null,
+   "expanded": "true",
+   "n": 0
+  },
+  "submenu": {
+   "rect": "508,280 200×404",
+   "display": "flex",
+   "visibility": "visible",
+   "opacity": "1",
+   "pointerEvents": "auto",
+   "ariaHidden": null,
+   "expanded": "true",
+   "n": 9
+  },
+  "firstItem": {
+   "rect": "512,316 192×36",
+   "visibility": "visible",
+   "opacity": "1",
+   "pointerEvents": "auto"
+  },
+  "hit": {
+   "at": [
+    608,
+    320
+   ],
+   "tag": "DIV",
+   "text": "文本",
+   "role": "menuitem",
+   "inSub": true
+  }
+ },
+ "trapConfirmed": true,
+ "end": {
+  "nodes": "55"
+ }
+}

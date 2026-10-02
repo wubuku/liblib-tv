@@ -1471,3 +1471,15 @@ screenshots:
     visible_text: 00:01 / 00:06
     alt: 带媒体的视频卡片正在播放：标题行是节点名，卡片里是视频画面，底部一条控件行，左侧为播放/暂停钮与时间读数「00:01 / 00:06」，右侧为静音钮与全屏钮，卡片最下方是细进度条
     sha256: 870183f52add43a7d7e137d0acddc2872c7109852cea3d91b01c1be8e5ed7371
+
+  - file: screenshots/103-upload-txt-becomes-text-node.png
+    task_id: assets-and-upload
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T21:50:00+08:00
+    verified_locator: 空白右键 →「新建节点」子菜单（`aria-expanded` `false`→`true` 才算打开，**几何非零不算**）→「本地上传」（落点双重把关：`innerText` 逐字 `本地上传` **且** `elementFromPoint` 命中元素落在该项内部 —— 该子菜单里另有「文本」「图片」等**一点就建节点**的项）→ `p.on('filechooser')` 全局监听（**`waitForEvent` 在 `connectOverCDP` 下会超时**）→ 读到该 input `accept` **111 条**、`multiple=true`、父链 `DIV#context-menu-submenu-add-node` → `setFiles('/tmp/jimeng-b102-doc.txt')` → **三重护栏**：上传前 id 数 55、上传后 56、**差集恰好 1 个** `node_0gg1c9b3tq` 且**同时是 `.selected`** → 读结构：`react-flow__node-text`、aria 逐字 `文本 node: jimeng-b102-doc`、**正文逐字含文件三行内容** → **积分 805→805** → 换到 **40% 档**（连读两次 0.4/0.4；60% 档下 `224×240` 的空位 `best=null`，视口内已有 **55 个他人节点**）→ 遍历他人节点矩形算出位移最小的无遮挡落点并拖过去 → 重新选中 → 裁切 clip={x:310,y:131,w:152,h:166}（**非对称余量：上边 0**，避开必然切进来的 `node-toolbar`）→ 守卫：clip 内他人节点 `0`、外来浮层 `0`。⚠️ **守卫放行后仍发现右下角有一个被裁掉一半的字形**（邻居元素，落在 12px 右边距带内，节点右边框在 x≈280、字形在 x≈285–295）⇒ 已把成图从 `304×332` **裁到 `283×332`**，节点边框完整保留。节点已按 id 精确删除，消失的 id 恰好只有它。详见 SOURCE_OBSERVATIONS §4.22'
+    visible_text: JIMENG B102 DOC TEST
+    alt: 上传文本文件的结果：生成的是一个「文本」节点，标题为去掉扩展名后的文件名（过长时中间省略），节点正文里逐行显示着刚才那个 .txt 文件的三行内容，右上角是标签按钮
+    sha256: 01b8d2f2dfe91bd461788e77514f93b4884255543e2a58fe3c044e68f9ce0eac

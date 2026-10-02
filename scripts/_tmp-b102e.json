@@ -1,0 +1,39 @@
+{
+ "at": "2026-10-02T11:45:17.723Z",
+ "selfId": "node_0gg1c9b3tq",
+ "status": {
+  "n": 0,
+  "uniq": [],
+  "sample": []
+ },
+ "txtHasStatus": false,
+ "plan": {
+  "W": 192,
+  "H": 192,
+  "TITLE": 32,
+  "cur": {
+   "x": 164,
+   "y": 184
+  },
+  "best": null,
+  "othersCount": 55,
+  "hereClear": false
+ },
+ "crop": {
+  "clip": {
+   "x": 148,
+   "y": 152,
+   "width": 224,
+   "height": 240
+  },
+  "hits": [
+   {
+    "id": "node_d4tjtpnatq",
+    "aria": "时间线 node: 时间线 2"
+   }
+  ],
+  "chrome": [],
+  "innerText": "JIMENG B102 DOC TEST line two line three jimeng-b102-doc"
+ },
+ "guardPass": false
+}
