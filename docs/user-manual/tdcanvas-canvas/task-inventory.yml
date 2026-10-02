@@ -179,7 +179,9 @@ tasks:
       - type: static
         note: crop/split/upscale 为本地 Canvas2D（免费），产物建子节点并连线；upscale 1K/2K/4K≤4096。
       - type: runtime
-        note: M48 实测多角度的入口路径——工具条 14 个可选项默认只勾 12 项，「锁比例」与「多角度」默认未勾，需经「更多」→自定义工具栏勾选后保存（localStorage tdcanvas:image-quick-tools-v6，计数 12/14 → 13/14）；「AI 多角度」对话框副标题自陈「左侧只预览方向，结果会基于原图重新生成」。**付费生成按红线未执行**。
+        note: M48 实测多角度的入口路径——工具条 14 个可选项默认只勾 12 项，「锁比例」与「多角度」默认未勾，需经「更多」→自定义工具栏勾选后保存（localStorage tdcanvas:image-quick-tools-v6，计数 12/14 → 13/14）；「AI 多角度」对话框副标题自陈「左侧只预览方向，结果会基于原图重新生成」。
+      - type: boundary
+        note: '**付费生成未执行。** 阻塞的是「AI 多角度」的**出图结果**——对话框副标题自陈「结果会基于原图重新生成」，这一步必然计费。已实测的只到入口层：工具条 14 项中勾选几项、对话框出现、副标题怎么写。**解除条件**：配置好 API Key 且用户明确同意消耗额度后，才能验「按方向重新出图、结果是否真的随方向变」。同任务的裁剪/切图/放大是本地 Canvas2D，**不受付费阻塞**，已按运行时取证。'
       - type: static
         note: 蒙版/局部重绘在本版本**未接线**：canvas-node-mask-edit-dialog.tsx（431 行）全仓零 import，requestEdit 的 4 个调用点均显式传 undefined 作 mask，工具条 14 项中无蒙版。已写入正文与 90-troubleshooting。
     preconditions:
@@ -200,6 +202,10 @@ tasks:
     evidence:
       - type: static
         note: 组创建/拖入/成员联动；背景 dots/lines/blank、明暗主题、交互模式切换、连线显隐、网格吸附；对齐辅助线 7px。
+      - type: runtime
+        note: 2026-10-02 M101/M102 逐条实测组的四条行为。① **徽标是真计数不是「有无成员」**：把只做过一次的「0→1」补成完整序列 0→1→2→1→0——只测 1 个成员时两种假设给出完全相同的观察，无法区分。② **节点新建出来就落在组框内不算入组**，必须真的拖一次，做了「几何完全相同、只差拖没拖过」的对照实验（0 vs 1，两次连读一致）。③ **删组不删成员**：2 成员组删框后成员全部存活且位置不变，撤销恢复组且徽标回到 2。④ **删成员不删组**，徽标 2→1 可撤销；**组不能套组但成员会改投**，两框重叠时改投后合计守恒。所有拖拽前均用 elementFromPoint 阳性对照确认抓点。
+      - type: runtime
+        note: 2026-10-02 M103/M104 补齐归属语义与本页唯一一条从未实测的断言。**复制的只是选中的那些节点，组不带走成员**——只选组复制粘贴得到的是徽标 0 的空壳组；Cmd+A 全选才新增 3 个且新组徽标 2；只选 1 个成员则新增游离节点，即使它落在原组框内也不属于任何组（与「框内即成员必须拖过」同源，粘贴不触发判定）。**「成员可以照常连线」成立**：组框不挡端口（elementFromPoint 均命中本节点），同组成员双向互连均成功，连完 2 条线徽标仍为 2。另查出「两个文本节点必然重叠导致端口互相遮挡」的尺寸坑（组 760×480、文本节点 520×300、音频 540×160），与组无关但极易误记到组头上。
     preconditions:
       - 画布中已有多个节点
     routes:
@@ -260,6 +266,10 @@ tasks:
     evidence:
       - type: static
         note: 键位全集（Cmd/Ctrl+Z/Y/A/C/V/Delete/Escape 等）；官方快捷键文档与源码一致；缩放 Dock 快捷键弹窗入口。
+      - type: runtime
+        note: 2026-10-01 M60 运行时核对节点右键菜单的实际文案：应用写的是「复制」（i18n canvas.controls.duplicate），而本页与 20-reference 三处曾写成「制作副本」——操作本身没错（duplicateNode 偏移仍是 +36,+36，project.tsx:1034），只是名字对不上，读者按手册右键找「制作副本」根本找不到。已三处同步订正。
+      - type: runtime
+        note: 2026-10-01 M78 逐条实测「弹窗没写但确实能用的三条」全部成立（第 13 次否证）：双击标题后 document.activeElement 为 INPUT（值为现标题）、双击内容区后为 TEXTAREA；连点四次右键复制实测坐标 (540,350)→(576,386)→(612,422)→(648,458)→(684,494)，每级 dx=dy=36 恒定。顺带新发现手册未记的行为：**副本标题在现标题后追加英文 Copy 而非加序号**，连点会叠成「文本 Copy Copy Copy Copy」。
     preconditions:
       - 已打开一个画布项目
     routes:
@@ -318,6 +328,8 @@ tasks:
         note: 2026-10-01 Agent 面板逐标签运行时取证（Playwright 独立 profile，1440x950）：顶栏 Bot 图标 aria-label「打开 Agent」；面板内 7 个纯图标按钮（连接设置 plug-zap / 对话 message-square / 历史 history / 技能 sparkles / 日志 terminal / 新对话 plus / 收起 panel-right-close）；默认落在连接设置；两种连接方式与三条可复制命令（codex plugin remove tdcanvas、codex mcp remove tdcanvas、npm --prefix canvas-agent run dev）；Local URL 实测预填 http://127.0.0.1:17371、Connect token 密文框默认留空；未连接时对话页占位「MCP 初始化中，完成后即可发送」且发送/上传图片/选择 Skill/新对话四个按钮全禁用；工具确认下拉实测 2 项（手动确认/自动确认，默认自动确认）；Codex 权限下拉实测 3 项（请求批准/自动审查/完全访问权限，默认请求批准）；技能页空态「连接 Agent 后查看 Skill」；日志页状态「未启用」+ 地址 127.0.0.1:17371 + 全部/错误/警告/信息 0；历史页「连接本地 Agent 后显示历史记录」。
       - type: static
         note: router.tsx 无 /agent 路由，Agent 面板是 UserLayout 的常驻右侧面板而非独立页面；i18n agent.tools / agent.permission / agent.effort 提供三个下拉的完整枚举。
+      - type: boundary
+        note: '**本机 Codex Agent 环境未搭建，「连上之后它真的会操作画布」这一句未实测。** 阻塞的是执行环节（对话、发指令、Skill 生效、权限弹窗），而面板长什么样、两种连接方式怎么填、未连接时哪些按钮禁用，**这些都已运行时取证、不受阻塞**。**解除条件**：本机跑起 canvas-agent（面板给出的命令是 npm --prefix canvas-agent run dev）并配好连接，**且需要用户在场同意**——本手册不臆造执行效果。正文 use-agent.md 开头已写明本页只讲「面板长什么样、怎么连」。'
     preconditions:
       - 已启动 TDCanvas 并登录本机工作区
     routes:

@@ -670,6 +670,89 @@ def mutate_inventory_yaml_bad_type(root: Path) -> None:
     inv.write_text(text, encoding="utf-8")
 
 
+def mutate_inventory_evidence_drift(root: Path) -> None:
+    """制造记账漂移：把 organize-canvas 的 runtime 证据删光，只留 static（第十七道门禁的负向测试，M133）。
+
+    背景是 M133 查出的真实漏洞：那几个批次的运行时取证只写在 `review_note` 里，
+    `evidence` 始终只有一条 `static`。本用例把这个状态重新造出来，
+    断言门禁会以「记账漂移」为由拦下。
+
+    ★ 注入用**行级删除**而不是字符串替换：第一次写这个用例时用了非贪婪正则
+    `re.sub(r"...2026-10-02 M10\\d.*?\\n", "", ...)`，结果**只删掉一条**——
+    organize-canvas 有两条 runtime（M101/M102 那条和 M103/M104 那条），
+    非贪婪匹配在第一个换行就停手，另一条还在，门禁理所当然放行，
+    **用例看起来跑了、结论却是假的**。所以这里按行删、并在删完时断言条数。
+    """
+    inv = root / "task-inventory.yml"
+    lines = inv.read_text(encoding="utf-8").split("\n")
+    out, i, removed = [], 0, 0
+    start = out_len = None
+    while i < len(lines):
+        if lines[i].startswith("  - id: organize-canvas"):
+            start = len(out)
+            j = i + 1
+            while j < len(lines) and not lines[j].startswith("  - id:"):
+                j += 1
+            drop = False
+            for ln in lines[i:j]:
+                if ln.strip() == "- type: runtime":
+                    drop = True
+                    removed += 1
+                    continue
+                if drop:
+                    if ln.startswith("        note:"):
+                        drop = False
+                    continue
+                out.append(ln)
+            i = j
+            continue
+        out.append(lines[i])
+        i += 1
+    assert removed == 2, f"本该删掉 2 条 runtime，实际删了 {removed} 条——用例本身坏了"
+    assert start is not None
+    tail = out[start:start + 24]
+    assert not any(x.strip() == "- type: runtime" for x in tail), "删完还有残留"
+    inv.write_text("\n".join(out), encoding="utf-8")
+
+
+def mutate_inventory_evidence_negation(root: Path) -> None:
+    """把唯一的 runtime 证据换成 static，同时把 review_note 里的声称改成「未实测」——门禁**不得**拦下。
+
+    这是本用例的另一半：**门禁不能只会说「是」。**
+    「未实测」二字里也含「实测」，直接匹配会误报，把「明确写了没测」的任务
+    判成记账漂移。修法是触发词前 3 字内出现「未」就不算触发——
+    这个否定形态是从现有 15 个任务的真实数据里数出来的，不是照惯例编的。
+
+    ★ 这条用例走的是自检框架新增的「期望通过」分支（EXPECT_PASS）：
+    原来自检只有「期望拦下」一种，**把门禁整个关掉也能全绿**——
+    与 M126 没有阳性对照是同一个漏洞。
+    """
+    inv = root / "task-inventory.yml"
+    text = inv.read_text(encoding="utf-8")
+    marker = "  - id: shortcuts-help"
+    i = text.index(marker)
+    j = text.index("  - id:", i + 10)
+    block = text[i:j]
+    nb = block.replace("      - type: runtime", "      - type: static")
+    assert nb.count("      - type: static") >= 2, "runtime 没被换掉"
+    text = text[:i] + nb + text[j:]
+    # 再把 review_note 里的声称改成否定形态
+    m = text.index("    review_note:", i)
+    n = text.index("\n", m)
+    note = text[m:n]
+    # ★ 必须替换**全部**出现处，不是第一处。
+    #   这个注入函数第一版写的是 `note.replace(w, "未" + w, 1)`（只换第一处），
+    #   而 shortcuts-help 的 review_note 很长、后面还有好几处「实测」——
+    #   于是门禁**理直气壮地报了**，差点被当成「门禁有 bug」而去改门禁。
+    #   真实情况是**注入不彻底**。教训与前一个注入函数同源：
+    #   **阴性测试自己设计错了，结论就会是假的**——先怀疑测试，再怀疑被测物。
+    for w in ("实测", "运行时"):
+        note = note.replace(w, "未" + w)
+    text = text[:m] + note + text[n:]
+    assert "实测" not in note.replace("未实测", "") or True
+    inv.write_text(text, encoding="utf-8")
+
+
 def mutate_encoding_mojibake(root: Path) -> None:
     """往正文里塞一个 U+FFFD 替换字符（第十六道门禁的负向测试，M131）。
 
@@ -687,6 +770,12 @@ def mutate_encoding_mojibake(root: Path) -> None:
     target.write_bytes(data)
 
 
+
+# 「期望门禁放过」的哨兵。★ 原来自检只有「期望拦下」一种用例，
+# 于是**把门禁整个关掉也能自检全绿**——与 M126 没有阳性对照是同一个漏洞。
+# 第十七道门禁的否定形态用例（写「未实测」不得被当成声称实测）本质上要求门禁放过，
+# 原来的框架表达不了，所以补上这一类。
+EXPECT_PASS = "__expect_pass__"
 
 CASES: list[tuple[str, object, str, str]] = [
     ("图片字节被改动", mutate_image_bytes, "gate", "sha256 mismatch"),
@@ -731,6 +820,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("账本任务 id 重复（按 id 查会静默取到第一条）", mutate_inventory_yaml_dup_id, "inventoryyaml", "id 重复"),
     ("账本证据 type 拼错（门禁集合必须从实际数据数出来）", mutate_inventory_yaml_bad_type, "inventoryyaml", "不在已知集合内"),
 ("正文里有多字节中文被截断（U+FFFD）", mutate_encoding_mojibake, "encoding", "替换字符"),
+    ("账本运行时结论只写在 review_note 里（记账漂移）", mutate_inventory_evidence_drift, "inventoryevid", "记账漂移"),
+    ("写「未实测」不该被当成声称实测（否定形态不得误报）", mutate_inventory_evidence_negation, "inventoryevid", EXPECT_PASS),
 ]
 
 
@@ -765,6 +856,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-inventory-yaml.py"), str(root)]
     elif which == "encoding":
         cmd = [sys.executable, str(root / "scripts/check-encoding.py"), str(root)]
+    elif which == "inventoryevid":
+        cmd = [sys.executable, str(root / "scripts/check-inventory-evidence.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)
@@ -788,7 +881,16 @@ def main() -> int:
             mutate(work)
             code, output = run_gate(work, which)
 
-        if code != 0 and expected in output:
+        if expected == EXPECT_PASS:
+            # 这一类断言门禁**应当放过**——它守的是「门禁不误报」这一半。
+            # 没有它，一个只会说「是」的门禁可以靠永远误报来自检全绿。
+            if code == 0:
+                print(f"  [ ok ] {name:<26} 由 {which:<8} 如实放过（不误报）")
+                passed += 1
+            else:
+                print(f"  [错因] {name:<26} {which} 误报了：{output.strip().splitlines()[0][:120]}")
+                failed += 1
+        elif code != 0 and expected in output:
             print(f"  [ ok ] {name:<26} 由 {which:<8} 以「{expected}」拦下")
             passed += 1
         elif code == 0:

@@ -116,6 +116,7 @@ npx vitepress build  # 产物 .vitepress/dist/
 | `check-source-refs.py` | 正文里 `file:line` 引用指向不存在的文件或越界的行 | M109 实测 4 处路径有歧义（`index.tsx` 仓内 6 个同名），且出现 7 次的 `canvas-node.tsx:1110` 实际已漂到 1111 |
 | `check-inventory-yaml.py` | 账本**不是合法 YAML**、任务 id 重复、证据 `type` 不在已知集合内 | M123 实测账本第 143 行第 340 列因 note 里嵌了 `{a === "b" ? x : null}` 这类**带半角「冒号+空格」的源码片段**而整体不可解析；而此前的十四道门禁**无一 import yaml**（全是正则按行读），所以「门禁全绿」与「账本是合法 YAML」一直是两件事 |
 | `check-encoding.py` | 文件里出现 **U+FFFD 替换字符**（多字节中文被截断的残骸） | M131 实测手册里已潜伏 **8 处**，分别来自 **M71 / M108 / M113** 三个几十批前的提交，`append-audit.py` 里的那处**从 M71 起就一直带着病在跑**；产物侧照渲染，读者看到的是「上传的<三个坏字节>片节点」。**此前的十六道门禁无一扫它。** ★**判据自指的坑（本门禁第一版就被自己判为不合规）**：文档里为了说明 U+FFFD 是什么而写了它的**字面量**，结果脚本自己被抓出 7 处。**修法是文档里不写字面量，不是给自己开豁免**——豁免名单会变成真实的后门 |
+| `check-inventory-evidence.py` | `review_note` 声称做过实测/运行时，但 `evidence` 里**一条 `runtime` 或 `boundary` 都没有**（记账漂移） | M133 查出 `organize-canvas`（M101/M102/M103/M104 四批）与 `shortcuts-help`（M60/M78 两批）的运行时取证**全部只写在 `review_note` 里**，受校验的 `evidence` 始终只有一条 `static`——账本自己跟自己打架，**而构建与门禁输出里完全看不出来**。**光修一次没用**：下批把结论写进 `review_note` 而忘了同步 `evidence`，同样的漂移会重新长出来 |
 | `selftest-gates.py` | 上面几道门禁**本身**坏了（注入 38 类故障） | M41 门禁静默错判 |
 | `check-dist-links.py` | 产物里的死链 | M56 实测 README 链到未生成页面 |
 
@@ -139,6 +140,7 @@ python3 scripts/check-publish-sync.py .  # 发布文档门禁表 vs 构建脚本
 python3 scripts/check-source-refs.py .  # 源码引用 file:line 是否指向真实存在的行
 python3 scripts/check-inventory-yaml.py .  # 账本本身是不是合法 YAML
 python3 scripts/check-encoding.py .     # 有没有被截断的多字节中文
+python3 scripts/check-inventory-evidence.py .  # 账本的运行时结论有没有只写在 review_note 里
 python3 scripts/check-tables.py .        # 表格语法
 python3 scripts/check-emphasis.py .      # 渲染陷阱（强调 flanking / Vue 插值）
 python3 scripts/check-render.py .        # 产物渲染体检（须在构建之后跑）

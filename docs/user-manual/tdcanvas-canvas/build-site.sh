@@ -144,6 +144,15 @@ ENCODING_OUT="$(python3 scripts/check-encoding.py . 2>&1)" || fail "编码校验
 $ENCODING_OUT"
 echo "$ENCODING_OUT" | sed 's/^/  /'
 
+# 账本证据一致性（第十七道门禁，M133 新增）：账本每条结论记两处——受校验的
+# `evidence`（带 type）与不受校验的 `review_note`（自由文本）。M133 查出
+# organize-canvas 与 shortcuts-help 四个批次的运行时取证**只写在 review_note 里**，
+# evidence 始终只有一条 static——受校验的字段说「只有源码证据」，不受校验的字段说
+# 「实测过好几轮」，**账本自己跟自己打架**，而构建与门禁输出里完全看不出来。
+INVEVID_OUT="$(python3 scripts/check-inventory-evidence.py . 2>&1)" || fail "账本证据一致性校验未通过（review_note 声称实测/运行时，但 evidence 里一条 runtime 或 boundary 都没有）：
+$INVEVID_OUT"
+echo "$INVEVID_OUT" | sed 's/^/  /'
+
 # 源码引用：手册里每处 `文件.ts:行号` 必须指向应用仓里真实存在的那一行。
 # 2026-10-02 M109 新增。账本锁定门禁只在应用仓 HEAD 变化时报错，可一旦有人把
 # 账本 sha 一起更新到新提交，那道门禁重新变绿，正文里那几十处行号却可能早已
