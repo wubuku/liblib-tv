@@ -1,0 +1,689 @@
+{
+  "batch": 658,
+  "question": "is `help` alone?  census every control for whether it is topmost at its own centre — structurally, without clicking",
+  "method": {
+    "instrument": "elementsFromPoint at each control's own centre. It is a real hit test: it skips pointer-events:none, so the stack it returns is what a click could reach.",
+    "controlSet": "a CSS selector over the live DOM, not a hand-written list of controls",
+    "buckets": "zero-sized / offscreen / occluded are counted separately — collapsing them is how a census lies"
+  },
+  "perHeight": {
+    "720": {
+      "total": 174,
+      "buckets": {
+        "in-desk/occluded": 7,
+        "in-desk/offscreen": 10,
+        "in-desk/reachable": 115,
+        "in-desk/zero-sized": 4,
+        "outside-desk/occluded": 34,
+        "outside-desk/offscreen": 4
+      },
+      "gateVerdict": "clean",
+      "occludedKeys": [
+        "data-director-color-picker|颜色",
+        "data-director-hex-input|颜色 hex 值",
+        "data-director-rail-entry|帮助",
+        "data-director-scene-prompt-file|",
+        "data-director-scene-prompt-input|描述想搭建的场景",
+        "data-director-scene-prompt-submit|发送",
+        "data-director-scene-prompt-upload|上传图片"
+      ],
+      "zeroSizedSample": [
+        "data-director-project-import-input|",
+        "input|导入本地角色模型",
+        "button|打开场景对象",
+        "button|打开属性面板"
+      ]
+    },
+    "900": {
+      "total": 174,
+      "buckets": {
+        "in-desk/occluded": 5,
+        "in-desk/offscreen": 10,
+        "in-desk/reachable": 117,
+        "in-desk/zero-sized": 4,
+        "outside-desk/occluded": 34,
+        "outside-desk/offscreen": 4
+      },
+      "gateVerdict": "clean",
+      "occludedKeys": [
+        "data-director-rail-entry|帮助",
+        "data-director-scene-prompt-file|",
+        "data-director-scene-prompt-input|描述想搭建的场景",
+        "data-director-scene-prompt-submit|发送",
+        "data-director-scene-prompt-upload|上传图片"
+      ],
+      "zeroSizedSample": [
+        "data-director-project-import-input|",
+        "input|导入本地角色模型",
+        "button|打开场景对象",
+        "button|打开属性面板"
+      ]
+    },
+    "1150": {
+      "total": 174,
+      "buckets": {
+        "in-desk/occluded": 5,
+        "in-desk/offscreen": 10,
+        "in-desk/reachable": 117,
+        "in-desk/zero-sized": 4,
+        "outside-desk/occluded": 34,
+        "outside-desk/offscreen": 4
+      },
+      "gateVerdict": "clean",
+      "occludedKeys": [
+        "data-director-rail-entry|帮助",
+        "data-director-scene-prompt-file|",
+        "data-director-scene-prompt-input|描述想搭建的场景",
+        "data-director-scene-prompt-submit|发送",
+        "data-director-scene-prompt-upload|上传图片"
+      ],
+      "zeroSizedSample": [
+        "data-director-project-import-input|",
+        "input|导入本地角色模型",
+        "button|打开场景对象",
+        "button|打开属性面板"
+      ]
+    }
+  },
+  "occludedDetail": {
+    "720": [
+      {
+        "key": "data-director-rail-entry|帮助",
+        "rect": [
+          8,
+          680,
+          32,
+          32
+        ],
+        "center": [
+          24,
+          696
+        ],
+        "stackDepth": 21,
+        "coveredBy": {
+          "tag": "button",
+          "cls": "group.relative.z-[1].flex",
+          "markers": [],
+          "label": "收起属性"
+        }
+      },
+      {
+        "key": "data-director-scene-prompt-upload|上传图片",
+        "rect": [
+          1021,
+          499,
+          32,
+          32
+        ],
+        "center": [
+          1037,
+          515
+        ],
+        "stackDepth": 15,
+        "coveredBy": {
+          "tag": "div",
+          "cls": "space-y-3.border-t.border-white/[0.07].pt-4",
+          "markers": [],
+          "label": "位置xyz旋转xyz缩放xyz统一缩放1.0颜色#"
+        }
+      },
+      {
+        "key": "data-director-scene-prompt-file|",
+        "rect": [
+          1013,
+          514,
+          1,
+          1
+        ],
+        "center": [
+          1014,
+          514
+        ],
+        "stackDepth": 14,
+        "coveredBy": {
+          "tag": "div",
+          "cls": "space-y-4.px-4.py-3",
+          "markers": [],
+          "label": "名称可见未锁定位置xyz旋转xyz缩放xyz统一缩放"
+        }
+      },
+      {
+        "key": "data-director-scene-prompt-input|描述想搭建的场景",
+        "rect": [
+          1053,
+          507,
+          143,
+          16
+        ],
+        "center": [
+          1125,
+          515
+        ],
+        "stackDepth": 15,
+        "coveredBy": {
+          "tag": "div",
+          "cls": "space-y-3.border-t.border-white/[0.07].pt-4",
+          "markers": [],
+          "label": "位置xyz旋转xyz缩放xyz统一缩放1.0颜色#"
+        }
+      },
+      {
+        "key": "data-director-scene-prompt-submit|发送",
+        "rect": [
+          1200,
+          499,
+          32,
+          32
+        ],
+        "center": [
+          1216,
+          515
+        ],
+        "stackDepth": 15,
+        "coveredBy": {
+          "tag": "div",
+          "cls": "space-y-3.border-t.border-white/[0.07].pt-4",
+          "markers": [],
+          "label": "位置xyz旋转xyz缩放xyz统一缩放1.0颜色#"
+        }
+      },
+      {
+        "key": "data-director-hex-input|颜色 hex 值",
+        "rect": [
+          1154,
+          555,
+          68,
+          24
+        ],
+        "center": [
+          1188,
+          567
+        ],
+        "stackDepth": 14,
+        "coveredBy": {
+          "tag": "button",
+          "cls": "relative.flex.h-7.shrink-0",
+          "markers": [
+            "data-director-export-trigger"
+          ],
+          "label": "导出视频到画布"
+        }
+      },
+      {
+        "key": "data-director-color-picker|颜色",
+        "rect": [
+          1228,
+          555,
+          36,
+          24
+        ],
+        "center": [
+          1246,
+          567
+        ],
+        "stackDepth": 14,
+        "coveredBy": {
+          "tag": "button",
+          "cls": "relative.flex.h-7.shrink-0",
+          "markers": [
+            "data-director-export-trigger"
+          ],
+          "label": "导出视频到画布"
+        }
+      }
+    ],
+    "900": [
+      {
+        "key": "data-director-rail-entry|帮助",
+        "rect": [
+          8,
+          860,
+          32,
+          32
+        ],
+        "center": [
+          24,
+          876
+        ],
+        "stackDepth": 21,
+        "coveredBy": {
+          "tag": "button",
+          "cls": "group.relative.z-[1].flex",
+          "markers": [],
+          "label": "收起属性"
+        }
+      },
+      {
+        "key": "data-director-scene-prompt-upload|上传图片",
+        "rect": [
+          1021,
+          679,
+          32,
+          32
+        ],
+        "center": [
+          1037,
+          695
+        ],
+        "stackDepth": 13,
+        "coveredBy": {
+          "tag": "div",
+          "cls": "min-h-0.flex-1.overflow-y-auto",
+          "markers": [],
+          "label": "名称可见未锁定位置xyz旋转xyz缩放xyz统一缩放"
+        }
+      },
+      {
+        "key": "data-director-scene-prompt-file|",
+        "rect": [
+          1013,
+          694,
+          1,
+          1
+        ],
+        "center": [
+          1014,
+          694
+        ],
+        "stackDepth": 13,
+        "coveredBy": {
+          "tag": "div",
+          "cls": "min-h-0.flex-1.overflow-y-auto",
+          "markers": [],
+          "label": "名称可见未锁定位置xyz旋转xyz缩放xyz统一缩放"
+        }
+      },
+      {
+        "key": "data-director-scene-prompt-input|描述想搭建的场景",
+        "rect": [
+          1053,
+          687,
+          143,
+          16
+        ],
+        "center": [
+          1125,
+          695
+        ],
+        "stackDepth": 13,
+        "coveredBy": {
+          "tag": "div",
+          "cls": "min-h-0.flex-1.overflow-y-auto",
+          "markers": [],
+          "label": "名称可见未锁定位置xyz旋转xyz缩放xyz统一缩放"
+        }
+      },
+      {
+        "key": "data-director-scene-prompt-submit|发送",
+        "rect": [
+          1200,
+          679,
+          32,
+          32
+        ],
+        "center": [
+          1216,
+          695
+        ],
+        "stackDepth": 13,
+        "coveredBy": {
+          "tag": "div",
+          "cls": "min-h-0.flex-1.overflow-y-auto",
+          "markers": [],
+          "label": "名称可见未锁定位置xyz旋转xyz缩放xyz统一缩放"
+        }
+      }
+    ],
+    "1150": [
+      {
+        "key": "data-director-rail-entry|帮助",
+        "rect": [
+          8,
+          1110,
+          32,
+          32
+        ],
+        "center": [
+          24,
+          1126
+        ],
+        "stackDepth": 21,
+        "coveredBy": {
+          "tag": "button",
+          "cls": "group.relative.z-[1].flex",
+          "markers": [],
+          "label": "收起属性"
+        }
+      },
+      {
+        "key": "data-director-scene-prompt-upload|上传图片",
+        "rect": [
+          1021,
+          929,
+          32,
+          32
+        ],
+        "center": [
+          1037,
+          945
+        ],
+        "stackDepth": 13,
+        "coveredBy": {
+          "tag": "div",
+          "cls": "min-h-0.flex-1.overflow-y-auto",
+          "markers": [],
+          "label": "名称可见未锁定位置xyz旋转xyz缩放xyz统一缩放"
+        }
+      },
+      {
+        "key": "data-director-scene-prompt-file|",
+        "rect": [
+          1013,
+          944,
+          1,
+          1
+        ],
+        "center": [
+          1014,
+          944
+        ],
+        "stackDepth": 13,
+        "coveredBy": {
+          "tag": "div",
+          "cls": "min-h-0.flex-1.overflow-y-auto",
+          "markers": [],
+          "label": "名称可见未锁定位置xyz旋转xyz缩放xyz统一缩放"
+        }
+      },
+      {
+        "key": "data-director-scene-prompt-input|描述想搭建的场景",
+        "rect": [
+          1053,
+          937,
+          143,
+          16
+        ],
+        "center": [
+          1125,
+          945
+        ],
+        "stackDepth": 13,
+        "coveredBy": {
+          "tag": "div",
+          "cls": "min-h-0.flex-1.overflow-y-auto",
+          "markers": [],
+          "label": "名称可见未锁定位置xyz旋转xyz缩放xyz统一缩放"
+        }
+      },
+      {
+        "key": "data-director-scene-prompt-submit|发送",
+        "rect": [
+          1200,
+          929,
+          32,
+          32
+        ],
+        "center": [
+          1216,
+          945
+        ],
+        "stackDepth": 13,
+        "coveredBy": {
+          "tag": "div",
+          "cls": "min-h-0.flex-1.overflow-y-auto",
+          "markers": [],
+          "label": "名称可见未锁定位置xyz旋转xyz缩放xyz统一缩放"
+        }
+      }
+    ]
+  },
+  "checks": {
+    "the-control-set-is-derived-from-the-dom": {
+      "ok": true,
+      "detail": {
+        "controlsPerHeight": {
+          "720": 174,
+          "900": 174,
+          "1150": 174
+        },
+        "buckets": {
+          "720": {
+            "in-desk/occluded": 7,
+            "in-desk/offscreen": 10,
+            "in-desk/reachable": 115,
+            "in-desk/zero-sized": 4,
+            "outside-desk/occluded": 34,
+            "outside-desk/offscreen": 4
+          },
+          "900": {
+            "in-desk/occluded": 5,
+            "in-desk/offscreen": 10,
+            "in-desk/reachable": 117,
+            "in-desk/zero-sized": 4,
+            "outside-desk/occluded": 34,
+            "outside-desk/offscreen": 4
+          },
+          "1150": {
+            "in-desk/occluded": 5,
+            "in-desk/offscreen": 10,
+            "in-desk/reachable": 117,
+            "in-desk/zero-sized": 4,
+            "outside-desk/occluded": 34,
+            "outside-desk/offscreen": 4
+          }
+        }
+      },
+      "note": "a census whose population is written by hand has no way to notice when the product grows a control"
+    },
+    "the-three-buckets-are-counted-separately-not-merged": {
+      "ok": true,
+      "detail": {
+        "buckets": {
+          "720": {
+            "in-desk/occluded": 7,
+            "in-desk/offscreen": 10,
+            "in-desk/reachable": 115,
+            "in-desk/zero-sized": 4,
+            "outside-desk/occluded": 34,
+            "outside-desk/offscreen": 4
+          },
+          "900": {
+            "in-desk/occluded": 5,
+            "in-desk/offscreen": 10,
+            "in-desk/reachable": 117,
+            "in-desk/zero-sized": 4,
+            "outside-desk/occluded": 34,
+            "outside-desk/offscreen": 4
+          },
+          "1150": {
+            "in-desk/occluded": 5,
+            "in-desk/offscreen": 10,
+            "in-desk/reachable": 117,
+            "in-desk/zero-sized": 4,
+            "outside-desk/occluded": 34,
+            "outside-desk/offscreen": 4
+          }
+        },
+        "inDeskPerHeight": {
+          "720": 136,
+          "900": 136,
+          "1150": 136
+        },
+        "outsideDeskPerHeight": {
+          "720": 38,
+          "900": 38,
+          "1150": 38
+        },
+        "why": "623 established that zero-size controls slip through a census. Folding them into 'occluded' would manufacture findings; folding them into 'reachable' would hide them. They get their own bucket and their own count.",
+        "whyTheSideSplit": "the first run reported 45 occluded and most were the canvas page's own header underneath the open desk. The desk being on top is not a blocked control. 655's 80 was the same mistake — a scary number for a boring fact — and it is now the shape this census is built to avoid."
+      },
+      "note": "an empty bucket is allowed, but only if it is reported as empty rather than dropped"
+    },
+    "657s-help-finding-is-reproduced-by-a-census-that-never-clicked": {
+      "ok": true,
+      "detail": {
+        "helpOccludedAt": {
+          "720": true,
+          "900": true,
+          "1150": true
+        },
+        "howItIsFound": "by the VALUE of data-director-rail-entry, not the name and not the text — seven rail entries share the attribute name and every one of them is an icon button with no text",
+        "thePoint": "657 found this by chasing a click timeout. This census finds it by asking a question of the structure. A finding you can only reach by breaking something is a finding you will not reach again."
+      },
+      "note": "a method that reproduces a known finding is calibrated; one that invents a new one is not"
+    },
+    "help-is-not-alone": {
+      "ok": true,
+      "detail": {
+        "occludedAtEveryHeight": [
+          "data-director-rail-entry|帮助",
+          "data-director-scene-prompt-file|",
+          "data-director-scene-prompt-input|描述想搭建的场景",
+          "data-director-scene-prompt-submit|发送",
+          "data-director-scene-prompt-upload|上传图片"
+        ],
+        "occludedAtSomeHeights": [
+          "data-director-color-picker|颜色",
+          "data-director-hex-input|颜色 hex 值"
+        ],
+        "totalDistinctOccluded": 7,
+        "byHeight": {
+          "720": [
+            "data-director-color-picker|颜色",
+            "data-director-hex-input|颜色 hex 值",
+            "data-director-rail-entry|帮助",
+            "data-director-scene-prompt-file|",
+            "data-director-scene-prompt-input|描述想搭建的场景",
+            "data-director-scene-prompt-submit|发送",
+            "data-director-scene-prompt-upload|上传图片"
+          ],
+          "900": [
+            "data-director-rail-entry|帮助",
+            "data-director-scene-prompt-file|",
+            "data-director-scene-prompt-input|描述想搭建的场景",
+            "data-director-scene-prompt-submit|发送",
+            "data-director-scene-prompt-upload|上传图片"
+          ],
+          "1150": [
+            "data-director-rail-entry|帮助",
+            "data-director-scene-prompt-file|",
+            "data-director-scene-prompt-input|描述想搭建的场景",
+            "data-director-scene-prompt-submit|发送",
+            "data-director-scene-prompt-upload|上传图片"
+          ]
+        },
+        "reading": "a single blocked control is an anecdote; a count is a census"
+      },
+      "note": "this check is the whole reason the batch exists"
+    },
+    "what-is-doing-the-covering-is-classified-not-assumed": {
+      "ok": true,
+      "detail": {
+        "byCoverKind": {
+          "control": [
+            "1150:data-director-rail-entry|帮助",
+            "720:data-director-color-picker|颜色",
+            "720:data-director-hex-input|颜色 hex 值",
+            "720:data-director-rail-entry|帮助",
+            "900:data-director-rail-entry|帮助"
+          ],
+          "non-control": [
+            "1150:data-director-scene-prompt-file|",
+            "1150:data-director-scene-prompt-input|描述想搭建的场景",
+            "1150:data-director-scene-prompt-submit|发送",
+            "1150:data-director-scene-prompt-upload|上传图片",
+            "720:data-director-scene-prompt-file|",
+            "720:data-director-scene-prompt-input|描述想搭建的场景",
+            "720:data-director-scene-prompt-submit|发送",
+            "720:data-director-scene-prompt-upload|上传图片",
+            "900:data-director-scene-prompt-file|",
+            "900:data-director-scene-prompt-input|描述想搭建的场景",
+            "900:data-director-scene-prompt-submit|发送",
+            "900:data-director-scene-prompt-upload|上传图片"
+          ]
+        },
+        "counts": {
+          "control": 5,
+          "non-control": 12
+        },
+        "why": "a control hidden behind another control and a control hidden behind a decorative wrapper are different bugs with different fixes. The census reports which is which rather than counting them together."
+      },
+      "note": "covering by a control is worse than covering by a decoration, and the number should say so"
+    },
+    "whether-occlusion-depends-on-the-viewport-height-is-now-a-fact": {
+      "ok": true,
+      "detail": {
+        "variesWithHeight": true,
+        "perHeight": {
+          "720": [
+            "data-director-color-picker|颜色",
+            "data-director-hex-input|颜色 hex 值",
+            "data-director-rail-entry|帮助",
+            "data-director-scene-prompt-file|",
+            "data-director-scene-prompt-input|描述想搭建的场景",
+            "data-director-scene-prompt-submit|发送",
+            "data-director-scene-prompt-upload|上传图片"
+          ],
+          "900": [
+            "data-director-rail-entry|帮助",
+            "data-director-scene-prompt-file|",
+            "data-director-scene-prompt-input|描述想搭建的场景",
+            "data-director-scene-prompt-submit|发送",
+            "data-director-scene-prompt-upload|上传图片"
+          ],
+          "1150": [
+            "data-director-rail-entry|帮助",
+            "data-director-scene-prompt-file|",
+            "data-director-scene-prompt-input|描述想搭建的场景",
+            "data-director-scene-prompt-submit|发送",
+            "data-director-scene-prompt-upload|上传图片"
+          ]
+        },
+        "heightsSwept": [
+          720,
+          900,
+          1150
+        ],
+        "theMechanism": "the timeline's height lives in the store (default 182, 88..420), and 630 already recorded that below 176 the store's MIN pushes the value back to 88 while the panel still overflows. So the thing doing the covering is itself viewport-dependent."
+      },
+      "note": "a sweep that happens to agree at every height is still a measurement; a sweep that never ran is not"
+    }
+  },
+  "ok": true,
+  "checkCount": 6,
+  "failures": [],
+  "totals": {
+    "heights": [
+      720,
+      900,
+      1150
+    ],
+    "controlsPerHeight": {
+      "720": 174,
+      "900": 174,
+      "1150": 174
+    },
+    "inDeskPerHeight": {
+      "720": 136,
+      "900": 136,
+      "1150": 136
+    },
+    "occludedInDeskPerHeight": {
+      "720": 7,
+      "900": 5,
+      "1150": 5
+    },
+    "occludedOutsideDeskPerHeight": {
+      "720": 34,
+      "900": 34,
+      "1150": 34
+    },
+    "zeroSizedInDeskPerHeight": {
+      "720": 4,
+      "900": 4,
+      "1150": 4
+    },
+    "distinctOccludedInDesk": 7,
+    "occludedAtEveryHeight": 5
+  }
+}
