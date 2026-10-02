@@ -65,6 +65,91 @@ def check(name: str, ok: bool, detail: str = "") -> None:
         failures.append(name)
 
 
+def strip_comments(src: str) -> str:
+    """真正剥掉 JS/TS/Python 注释，供「代码里到底有没有 X」用。
+
+    ⚠️⚠️ 批 864 揭穿了前一版的偷懒：按**行首**是不是 `//` / `*` / `/*`
+    来过滤，遇到**块注释的续行**就漏 —— 续行不以 `*` 开头，于是注释正文
+    被当成代码。实测后果：`JimengProjectInfoModal` 的注释里那句
+    「资产库有 `bg-black/55` 全屏遮罩」漏进了「代码」，把一条断言
+    **判成了红的**（Q.10）。判「有没有接某个 hook」时注释漏进来 = 假阳性，
+    反过来就是假阴性 —— 两个方向都会骗人。
+
+    所以这里老老实实走状态机：`//` 到行尾、`/* … */` 跨行、字符串字面量
+    里的 `//` 不算注释（用引号配对粗略处理，足够本文件这批判据用）。
+
+    ⚠️⚠️ 第一版状态机**漏了 Python 三引号**。被检查的审计脚本和探针都
+    把内联 JS 装在三引号字符串里（`r` 前缀 + 三个引号），状态机把里面
+    第一个引号当成单引号字符串的开头 ⇒ 整段 JS 被搅乱 ⇒ 6 条断言跟着
+    一起红。「改对一件事，顺手弄坏五件」正是这一批在批的毛病，所以三引号
+    必须当**一整个字面量**吞掉 —— 里头的单双引号一律不算边界。这样保留
+    下来的正好是**真代码**。
+
+    ⚠️ 写这段说明时自己又踩了一次同类的坑：在 docstring 里**直接写出
+    三个连续引号**，会当场把 docstring 提前闭合、后面正文全被当成代码
+    （py_compile 直接报 SyntaxError）。所以下面一律用「三个引号」这样的
+    说法指代它，不写出来。
+    """
+    out: list[str] = []
+    i, n = 0, len(src)
+    in_block = False
+    in_s = in_d = False
+    quote = ""          # 三引号定界符（`"""` / `'''`），非空表示在三引号里
+    while i < n:
+        c = src[i]
+        nxt = src[i + 1] if i + 1 < n else ""
+        nxt2 = src[i + 2] if i + 2 < n else ""
+        if quote:
+            if src.startswith(quote, i):
+                out.append(quote)
+                i += 3
+                quote = ""
+                continue
+            out.append(c)
+            i += 1
+            continue
+        if in_block:
+            if c == "*" and nxt == "/":
+                in_block = False
+                i += 2
+                continue
+            i += 1
+            continue
+        if in_s or in_d:
+            if c == "\\":
+                out.append(src[i:i + 2])
+                i += 2
+                continue
+            if (in_s and c == "'") or (in_d and c == '"'):
+                in_s = in_d = False
+            out.append(c)
+            i += 1
+            continue
+        if c == "/" and nxt == "*":
+            in_block = True
+            i += 2
+            continue
+        if c == "/" and nxt == "/":
+            while i < n and src[i] != "\n":
+                i += 1
+            continue
+        # ⚠️ 三引号**必须排在单引号判定之前**：`"""` 开头是三个 `"`，
+        #    先判单引号的话只会吃掉一个，剩下的两个被当成空串边界。
+        if (c == nxt2 and c in "\"'") or (nxt == c and nxt2 == c
+                                          and c in "\"'"):
+            quote = c * 3
+            out.append(quote)
+            i += 3
+            continue
+        if c == "'":
+            in_s = True
+        elif c == '"':
+            in_d = True
+        out.append(c)
+        i += 1
+    return "".join(out)
+
+
 def main() -> int:
     env = dict(os.environ)
     env["SNAP_OUT"] = str(OUT)
@@ -940,8 +1025,7 @@ def main() -> int:
     #    `useArrowKeys`」，于是 `"useArrowKeys" not in hsrc` 永远为假。
     #    判「**有没有真的调用**」要查调用形态 `useArrowKeys(`，
     #    而且**必须排除注释行** —— 注释里提到它是**应该的**（写明取舍）。
-    hsrc_code = "\n".join(ln for ln in hsrc.splitlines()
-                           if not ln.strip().startswith(("*", "//", "/*")))
+    hsrc_code = strip_comments(hsrc)
     check("N.8 复刻接了 `useTakeFocusAtOpen`（源站开层即接管焦点）"
           "**且代码里没有** `useArrowKeys(` 调用（源站方向键不动）"
           "—— 注释里**可以**写明「刻意不接」，那是要记录的取舍",
@@ -960,12 +1044,19 @@ def main() -> int:
     # ⚠️ 又一次「拿字符串在不在当判据」：这几处的**注释里就原样写着被删掉的
     #    旧代码**（`原来 \`if (inside) return\``）。判「代码还在不在」必须
     #    **先剥注释行**，否则断言恒为假、看着像回归其实是自己写的注释。
-    acode = "\n".join(ln for ln in asrc.splitlines()
-                      if not ln.strip().startswith(("//", "*", "/*")))
-    check("P.1 采样 JS 里 `if (inside) return` 早退**已删**"
-          "（焦点一进层就返回 ⇒ 后面全不采样 ⇒ 层内一步都不统计）",
-          "if (inside) return" not in acode,
-          f"仍存在={'if (inside) return' in acode}")
+    acode = strip_comments(asrc)
+    # ⚠️⚠️ 断言必须打**代码形态**，不能打裸 token。
+    # 被检查的审计把内联 JS 装在 Python 三引号字符串里，JS 自己的 `//`
+    # 注释因此对 Python 层的剥注释器**不可见** —— 而 863 为了讲清取舍，
+    # 正好在注释里写了「原来 `if (inside) return`」这句话。
+    # 裸 token 断言会把**自己写的说明**当成**代码还在**。
+    # 办法是打一个注释不会写的形态（带 `{` 的完整返回语句）。
+    check("P.1 采样 JS 里 `if (inside) return {` 早退**已删**"
+          "（焦点一进层就返回 ⇒ 后面全不采样 ⇒ 层内一步都不统计）"
+          "—— 打的是**带 `{` 的代码形态**：说明性注释里写着裸 token，"
+          "裸 token 断言会把自己写的说明当成代码",
+          "if (inside) return {" not in acode,
+          f"仍存在={'if (inside) return {' in acode}")
     check("P.2 层内分支用 `edges_covered == edges_total` 计入 `covered_n`"
           "（**不能**只判 `state == 'covered'` —— JS 已把层内标成 `inside`，"
           "那条分支在层内永远进不来，正是 862 卡住的原因）",
@@ -1032,12 +1123,10 @@ def main() -> int:
 
     chrome = ROOT / "src/components/jimeng/jimengMenuChrome.tsx"
     csrc = chrome.read_text(encoding="utf-8") if chrome.exists() else ""
-    ccode = "\n".join(ln for ln in csrc.splitlines()
-                      if not ln.strip().startswith(("//", "*", "/*")))
+    ccode = strip_comments(csrc)
     vpsrc = (ROOT / "src/components/jimeng/JimengVideoPreview.tsx")
-    vcode = "\n".join(ln for ln in vpsrc.read_text(encoding="utf-8").splitlines()
-                      if not ln.strip().startswith(("//", "*", "/*"))) \
-        if vpsrc.exists() else ""
+    vcode = (strip_comments(vpsrc.read_text(encoding="utf-8"))
+             if vpsrc.exists() else "")
     check("P.11 复刻全屏层**真的调用**了 `useModalFocusTrap(`"
           "（判「有没有接」查调用形态，不查裸名字 —— 注释里提到它是应该的）"
           "；定义侧匹配 `useModalFocusTrap<...>(` 的泛型形态，"
@@ -1072,6 +1161,115 @@ def main() -> int:
           "（9 个 tab 在 320px 里放不下，源站靠「Next search categories」；"
           "不留 paddingRight 的话最后一个 tab 被按钮压住）",
           "paddingRight" in ssrc and "分类" in ssrc)
+
+    # ── Q. 批 864：4 个视口级模态「先探再判」+ 两处**修法不同** ────────
+    # §81 抓到了全屏预览不困焦点的真缺陷，同批在范围限制里记了 4 个
+    # **没探过**的视口级模态，并写下「未测 ≠ 没缺陷」。864 去探了，探完发现
+    # **两类问题**、**两种修法** —— Q 组钉的就是这个分岔不许被抹平。
+    print("— Q. 批 864 模态焦点：先探再判，两类问题两种修法 —")
+    q = ROOT / "scripts/jimeng_probe864_modaltrap.py"
+    qsrc = q.read_text(encoding="utf-8") if q.exists() else ""
+    qcode = strip_comments(qsrc)
+    check("Q.1 探针 864 在库里（§81 记的 4 个模态要有可复跑的取证入口）",
+          bool(qsrc) and q.exists(),
+          f"{q.relative_to(ROOT) if q.exists() else '缺失'}")
+    # 判据**不许**自己另写一份：前三代都是因为各写各的才被证伪三次
+    # ⚠️ 断言的是**机制本身**（`paintsOver` 里「走到焦点自己的祖先就停」
+    #    那条 `return false`），不是某句注释 —— 第一版这里断言的是一句注释
+    #    文本，注释被我自己删掉后断言就红了：把「说明还在不在」当
+    #    「行为还在不在」。括号数也按源码逐字抄（三个 `)`：一个闭
+    #    `n.contains(a)`、一个闭 `(n.contains && …)`、一个闭 `if (`）。
+    _anc = "n.contains(a))) return false"
+    check("Q.2 探针的判据与审计**同款**（`paintsOver` + `EDGE` 边框采样 + "
+          "「走到焦点自己的祖先就停」豁免 + 4 边全被不透明外人盖住才算 covered）"
+          "—— §841 记着这判据被证伪过三次，各写各的等于第四次犯同样的错",
+          "paintsOver" in qsrc and "EDGE" in qsrc
+          and "elementsFromPoint" in qsrc and _anc in strip_comments(qsrc),
+          f"祖先豁免={_anc in strip_comments(qsrc)}")
+    check("Q.3 点之前**先验落点**（843 同病：不验落点，点到的不是你想点的）",
+          "elementFromPoint" in qcode and "落点已验" in qcode)
+    # 「用户点得到吗」不能拿**文本形状**回答。探针前两版都栽在这上面：
+    # 第 1 版假阳性（把 prop 传递当入口）、第 2 版假阴性（把 prop 传递
+    # 一律当不可达）。所以静态分析只准出**提示**，判定权在浏览器。
+    check("Q.4 **浏览器实测才是判定**，静态分析只准当提示"
+          "（前两版分别假阳性、假阴性各一次）",
+          "static_hints" in qcode and "不是判定" in qsrc
+          and "no_ui_path" in qcode and "path_failed" in qcode)
+    check("Q.5 三种「没结果」分开记账：`probed` / `no_ui_path` / `path_failed`"
+          "—— 把三者揉成一栏，就是「没测到」被写成「没发生」的老路",
+          all(k in qcode for k in ("probed", "no_ui_path", "path_failed"))
+          and "前置态没成立" in qsrc)
+    # ⚠️ 这一条是探针自己的教训：`walk()` 一进层就 break，只回答「几步
+    #    进得去」。拿它当「进去之后出不来的」证据 = 用 A 的测量证明 B。
+    check("Q.6 `walk`（几步进得去）与 `traps`（进去之后会不会跑出去）"
+          "是**两个独立测量**"
+          "—— 861 刚被「用 fill() 的实验当焦点证据」坑过，同一类错误不许重犯",
+          "def walk(" in qcode and "def traps(" in qcode
+          and "traps_tab" in qcode and "跑出去" in qsrc)
+    # 两处修法**不同**，而且理由是**测出来的**不是想出来的
+    # ⚠️ 变量名**不许**跟 P 组撞：P 组已经用 `asrc`/`acode` 指**审计脚本**
+    #    的源码，Q 组再拿来指资产库组件 = 悄悄把 P 组的输入换掉。P 组排在
+    #    前面所以这次没出事，可这种复用迟早在某次调换顺序时静默出错 ——
+    #    而静默出错的断言比没有断言更坏。
+    am = ROOT / "src/components/jimeng/JimengAssetsModal.tsx"
+    pi = ROOT / "src/components/jimeng/JimengProjectInfoModal.tsx"
+    amsrc = am.read_text(encoding="utf-8") if am.exists() else ""
+    amcode = strip_comments(amsrc)
+    pisrc = pi.read_text(encoding="utf-8") if pi.exists() else ""
+    picode = strip_comments(pisrc)
+    check("Q.7 资产库接了 `useModalFocusTrap(`（**有**全屏不透明遮罩 ⇒ 该困）",
+          "useModalFocusTrap(" in amcode,
+          f"接了={'useModalFocusTrap(' in amcode}")
+    check("Q.8 资产库**确有**全屏不透明遮罩（`inset-0` + `bg-black/`）"
+          "—— 「该困」的依据要能从代码里核，不能只写在注释里",
+          "absolute inset-0 bg-black/" in amsrc.replace("\n", " ")
+          or ("inset-0" in amsrc and "bg-black/" in amsrc))
+    check("Q.9 项目信息接了 `useTakeFocusAtOpen(`（**开层即接管焦点**）"
+          "但**刻意不接** `useModalFocusTrap(`",
+          "useTakeFocusAtOpen(" in picode
+          and "useModalFocusTrap(" not in picode,
+          f"接管={'useTakeFocusAtOpen(' in picode} "
+          f"误困={'useModalFocusTrap(' in picode}")
+    check("Q.10 项目信息**没有**全屏遮罩（探针实测 `covered_n=0`）"
+          "—— 「不该困」的依据同样要能核。两边依据都在，才能说明这**不是**"
+          "「一处修了一处忘了」",
+          "inset-0" not in picode and "bg-black/" not in picode)
+
+    # ── strip_comments 给**自己**加自检 ────────────────────────────────
+    # 它这一批已经坑了我两次：① 按行首过滤漏掉块注释续行（把注释里那句
+    # `bg-black/55` 当成代码，Q.10 假红）② 第一版状态机漏了三引号（把
+    # 嵌在 Python 字符串里的 JS 搅乱，6 条断言一起红）。一个会把输入搅坏的
+    # 工具，**自己**得先证明它没搅坏 —— 拿合成输入验，不拿真实文件验。
+    _sc_src = (
+        'a = 1  // 行注释里的 SECRET1\n'
+        '/* 块注释第一行\n'
+        '   续行 SECRET2 不以 * 开头 */\n'
+        'b = "字符串里的 // 不是注释 SECRET3"\n'
+        'JS = """\n'
+        '  const x = 1;  // 这里是 JS 注释 SECRET4，但对 Python 是字面量\n'
+        '  SECRET5 = true;\n'
+        '"""\n'
+    )
+    _sc_out = strip_comments(_sc_src)
+    check("Q.11 剥注释器**剥得掉**行注释 / 块注释（含不以 `*` 开头的续行）",
+          all(t not in _sc_out for t in ("SECRET1", "SECRET2")),
+          f"残留={[t for t in ('SECRET1', 'SECRET2') if t in _sc_out]}")
+    # ⚠️ 第一版把 SECRET3 也列进「该剥掉」那一栏，红了。查下来是**断言写反**：
+    #    SECRET3 在**字符串字面量**里，剥注释器本就不该删字符串内容 ——
+    #    删了才是把代码搅坏。它该**在**，而且它的存在恰好证明了
+    #    「字符串里的 `//` 没有触发注释模式、没把后面整行吃掉」。
+    check("Q.11b 字符串字面量里的 `//` **不触发**注释模式"
+          "（SECRET3 必须**在**：它证明整行没被 `//` 之后的内容吃掉；"
+          "剥注释器删字符串内容才是把代码搅坏）",
+          "SECRET3" in _sc_out
+          and "不是注释 SECRET3" in _sc_out,
+          f"SECRET3 在={'SECRET3' in _sc_out}")
+    check("Q.12 剥注释器**保留**三引号里的内容（被检查的审计/探针正是把内联"
+          "JS 装在那儿；连同 JS 自己的 `//` 注释一起保留，因为对 Python 而言"
+          "那是字面量）—— 判据 token 就住在里面，搅坏了就是 6 条断言一起红",
+          "SECRET4" in _sc_out and "SECRET5" in _sc_out,
+          f"SECRET4={'SECRET4' in _sc_out} "
+          f"SECRET5={'SECRET5' in _sc_out}")
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

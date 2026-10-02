@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { X } from "lucide-react";
+
+import { useModalFocusTrap } from "./jimengMenuChrome";
 
 /**
  * 资产库模态框 (Batch 72)。
@@ -34,6 +36,16 @@ export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
   const activeFilter = isSubject ? "全部" : filter;
   const filters: string[] = isSubject ? ["全部"] : [...FILTERS];
   const emptyText = isSubject ? "没有可用主体" : `暂无${filter}素材`;
+  const layerRef = useRef<HTMLDivElement>(null);
+
+  /* 批 864：开层即接管焦点 + Tab 困在层内。
+     探针 864 实测（修之前）：`focus_at_open.state='covered'`（焦点还留在
+     「资产库」触发器上，而触发器此刻已被本模态自己的 `bg-black/55` 遮罩
+     盖住 4/4 边），按 Tab 走过 **11 个**焦点环看不见的位置。
+     ⚠️ 本模态**有**全屏不透明遮罩（`absolute inset-0 bg-black/55`，点击
+     关闭）⇒ 它是货真价实的**模态**：模态盖住了页面，就不该把焦点漏给页面。
+     依据就是模态自身这条定义，不依赖源站是否取到样。 */
+  useModalFocusTrap(layerRef, true);
 
   return (
     <div className="fixed inset-0 z-[210] flex items-center justify-center">
@@ -43,6 +55,7 @@ export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
         aria-hidden
       />
       <div
+        ref={layerRef}
         role="dialog"
         aria-label="资产库"
         data-testid="jimeng-assets-modal"

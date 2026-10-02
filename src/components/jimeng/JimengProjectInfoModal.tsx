@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { useJimengStore } from "@/store/jimengStore";
+import { useTakeFocusAtOpen } from "./jimengMenuChrome";
 
 /**
  * 顶栏「更多」→「项目信息」模态 (Batch 799)。
@@ -41,6 +42,17 @@ export function JimengProjectInfoModal({
   const [tab, setTab] = useState<"basic" | "credits">("basic");
   const project = useJimengStore((s) => s.project);
   const nodes = useJimengStore((s) => s.nodes);
+
+  /* 批 864：开层即接管焦点。
+     探针 864 实测（修之前）：`focus_at_open.state='body'` —— 焦点被丢给
+     `document.body`，**连触发器都没保住**。对话框一开，键盘用户手上一个
+     落点都没有。
+     ⚠️ 这里**只接管焦点、不困 Tab**，和资产库那个不一样，理由要说准：
+     本层是居中 800×546 的浮层，**没有全屏遮罩**（探针实测 `covered_n=0`
+     —— 按 Tab 走出去的顶栏控件全都还看得见），页面上也没有 `aria-modal`
+     ⇒ 它不是「挡着页面」的模态。困 Tab 会让用户凭空出不去，是过度。
+     资产库有 `bg-black/55` 全屏遮罩、实测 11 个焦点位看不见，那边才该困。 */
+  useTakeFocusAtOpen(ref, true);
 
   const counts = DIST.map((d) => ({
     label: d.label,
