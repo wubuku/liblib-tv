@@ -12,6 +12,18 @@ screenshots:
     alt: 画布上已有一个文本节点，内容为「我的第一段画布文字」，右上角有生图按钮
     sha256: 3facd3d79a1fd8109ea06ddf3b9e28faf850e4f4c8040f575eae1cdf28b2661c
 
+  - file: screenshots/00-dock-icon-only.png
+    task_id: create-canvas-project
+    step: 画布里选中一个节点后截取整条左侧 Dock 与左下角那组按钮，用来证明这些按钮全都没有文字标注
+    route: '/canvas/:id'
+    viewport: 1600x950
+    locale: zh-CN
+    captured_at: '2026-10-02'
+    verified_locator: '主列自上而下 8 个按钮 aria-label 依次为 添加节点 / 搜索节点 / 资产 / 提示词库 / 历史 / 上传资产 / 画布外观 / 删除选中（垃圾桶，仅单选时出现） / 清空画布（剪刀），逐个读按钮内 span 文本全部为空串、title 属性全为 null；左下角那组为 打开小地图 / 隐藏连线 / 网格吸附 / 重置视图，外加缩放滑杆与读数 91%，末位是 快捷键。整列唯一可见的文字是「＋」按钮上方的「新建」徽标与滑杆旁的 91%'
+    visible_text: '新建 91%'
+    alt: 画布左侧的悬浮按钮条，从上到下只有一排没有任何文字标注的图标——加号、放大镜、文件夹、星形、时钟、上传箭头、调色板、垃圾桶和一把剪刀，最下面是指南针、眼睛、磁铁、靶心、一条显示 91% 的缩放滑杆和一个问号圆
+    sha256: f5d98b05fca1cbfc244ead8764b25c695773af12869f822422d0478b3078f5ab
+
   - file: screenshots/01-create-canvas-project-empty-home.png
     task_id: create-canvas-project
     step: 打开 /canvas 首页空态（hero + 新建画布按钮 + 最近画布空区）

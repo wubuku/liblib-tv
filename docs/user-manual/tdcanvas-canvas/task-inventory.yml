@@ -32,13 +32,15 @@ tasks:
     evidence:
       - type: runtime
         note: 2026-09-26 ?mode=new 自动创建 /canvas/:id、默认标题 TDCanvas 2、空态引导与 Dock 结构截图核实。
+      - type: runtime
+        note: '2026-10-02 M126 查左侧 Dock 的可发现性：16 个按钮逐个实测，**可见文字 0 个、title 属性仅 1 个、悬停提示只有 6 个**，而**其余 9 个（打开画布菜单、添加节点、搜索节点、资产、提示词库、历史、上传资产、画布外观、清空画布）悬停也没有任何提示**——界面上任何地方都不显示它们叫什么。整列唯一可见文字是「＋」上的「新建」徽标与滑杆读数（实测 91%）。★★**「清空画布」与节点工具条的「裁剪」svg class 逐字相同**（均为 lucide lucide-scissors size-4），**且选中图片节点时二者同屏出现**，而前者不可逆。★**「删除选中」只在单选时出现**：未选中 15 → 单选 16 → Shift 多选后回到 15，故多选删除必须走画布右键菜单；该按钮本身可见文字空、title 为 null、悬停浮层也是 null。另记「＋ 新建」的可见徽标写「新建」而 aria-label 是「添加节点」，为「三套字符串不一致」的第三例。'
     preconditions:
       - 已启动 TDCanvas web（localhost:3000）
     routes:
       - '/canvas'
       - '/canvas/:id'
     status: verified
-    screenshot_count: 3
+    screenshot_count: 4
     manual_pages:
       - 00-quickstart.md
       - 10-tasks/create-canvas-project.md
