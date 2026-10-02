@@ -1,0 +1,665 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 720,
+  "declaredRange": [
+   88,
+   420
+  ],
+  "defaultHeight": 182,
+  "topInset": 88,
+  "fullRangeOnlyFromHeight": 508,
+  "rangeHeights": [
+   150,
+   200,
+   250,
+   300,
+   400,
+   450,
+   507,
+   508,
+   600,
+   720
+  ],
+  "reachableMaxRule": "max(88, min(420, viewportHeight - 88))",
+  "landedByDraggingFarUp": {
+   "150": 88,
+   "200": 112,
+   "250": 162,
+   "300": 212,
+   "400": 312,
+   "450": 362,
+   "507": 419,
+   "508": 420,
+   "600": 420,
+   "720": 420
+  },
+  "escape": [
+   {
+    "step": "fresh",
+    "vw": 1280,
+    "vh": 720,
+    "tlAttr": 182,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 450
+   },
+   {
+    "step": "dragUpFar",
+    "vw": 1280,
+    "vh": 720,
+    "tlAttr": 420,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 212
+   },
+   {
+    "step": "to150",
+    "vw": 1280,
+    "vh": 150,
+    "tlAttr": 88,
+    "collapsed": "false",
+    "overflowBy": 26,
+    "viewportH": 0
+   },
+   {
+    "step": "to720",
+    "vw": 1280,
+    "vh": 720,
+    "tlAttr": 88,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 544
+   },
+   {
+    "step": "dragUpFarAgain",
+    "vw": 1280,
+    "vh": 720,
+    "tlAttr": 420,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 212
+   }
+  ],
+  "collapse": [
+   {
+    "vh": 720,
+    "seq": [
+     {
+      "step": "fresh",
+      "vw": 1280,
+      "vh": 720,
+      "tlAttr": 182,
+      "collapsed": "false",
+      "overflowBy": 0,
+      "viewportH": 450
+     },
+     {
+      "step": "dragUpFar",
+      "vw": 1280,
+      "vh": 720,
+      "tlAttr": 420,
+      "collapsed": "false",
+      "overflowBy": 0,
+      "viewportH": 212
+     },
+     {
+      "step": "collapse",
+      "vw": 1280,
+      "vh": 720,
+      "tlAttr": 88,
+      "collapsed": "true",
+      "overflowBy": 0,
+      "viewportH": 544
+     },
+     {
+      "step": "expand",
+      "vw": 1280,
+      "vh": 720,
+      "tlAttr": 420,
+      "collapsed": "false",
+      "overflowBy": 0,
+      "viewportH": 212
+     }
+    ]
+   },
+   {
+    "vh": 250,
+    "seq": [
+     {
+      "step": "fresh",
+      "vw": 1280,
+      "vh": 250,
+      "tlAttr": 162,
+      "collapsed": "false",
+      "overflowBy": 0,
+      "viewportH": 0
+     },
+     {
+      "step": "dragUpFar",
+      "vw": 1280,
+      "vh": 250,
+      "tlAttr": 162,
+      "collapsed": "false",
+      "overflowBy": 0,
+      "viewportH": 0
+     },
+     {
+      "step": "collapse",
+      "vw": 1280,
+      "vh": 250,
+      "tlAttr": 88,
+      "collapsed": "true",
+      "overflowBy": 0,
+      "viewportH": 74
+     },
+     {
+      "step": "expand",
+      "vw": 1280,
+      "vh": 250,
+      "tlAttr": 162,
+      "collapsed": "false",
+      "overflowBy": 0,
+      "viewportH": 0
+     }
+    ]
+   }
+  ],
+  "stateMachine": {
+   "openOrReload": 182,
+   "drag": "min(420, start + distance), then fit() subtracts the overflow, so it lands at max(88, min(420, H - 88))",
+   "collapseOrExpand": "unchanged",
+   "resizeWithOverflow(H<270)": "minus exactly that overflow, floor 88",
+   "windowGrows": "nothing",
+   "reload": "back to the DEFAULT"
+  },
+  "openProductQuestion": {
+   "question": "should a transient window shrink permanently demote a user-chosen timeline height, given that one drag already restores it and a reload does not restore the user's value at all?",
+   "options": {
+    "A": "auto-restore on grow -- costs 630's 'the default 182 stays identical pixel for pixel'",
+    "B": "status quo -- recoverable by one drag, and the user gets no signal that anything changed",
+    "C": "remember the pre-clamp value and auto-restore only when the user never dragged -- keeps 630's goal, costs one state bit"
+   },
+   "notTakenHere": "this batch changes no src/ file",
+   "newInformationSince687": "recoverability already exists via the drag, so A is not needed for recovery. The real question is whether the recovery should need the user."
+  },
+  "hypothesisNotClaim": "Every reading is from our own clone; the handle drag and the collapse click were performed on the clone. The source site was not used and no source-site behaviour is claimed anywhere in this batch."
+ },
+ "reachableMax": {
+  "150": {
+   "fresh": {
+    "vw": 1280,
+    "vh": 150,
+    "tlAttr": 88,
+    "collapsed": "false",
+    "overflowBy": 26,
+    "viewportH": 0
+   },
+   "afterDragUpFar": {
+    "vw": 1280,
+    "vh": 150,
+    "tlAttr": 88,
+    "collapsed": "false",
+    "overflowBy": 26,
+    "viewportH": 0
+   }
+  },
+  "200": {
+   "fresh": {
+    "vw": 1280,
+    "vh": 200,
+    "tlAttr": 112,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 0
+   },
+   "afterDragUpFar": {
+    "vw": 1280,
+    "vh": 200,
+    "tlAttr": 112,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 0
+   }
+  },
+  "250": {
+   "fresh": {
+    "vw": 1280,
+    "vh": 250,
+    "tlAttr": 162,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 0
+   },
+   "afterDragUpFar": {
+    "vw": 1280,
+    "vh": 250,
+    "tlAttr": 162,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 0
+   }
+  },
+  "300": {
+   "fresh": {
+    "vw": 1280,
+    "vh": 300,
+    "tlAttr": 182,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 30
+   },
+   "afterDragUpFar": {
+    "vw": 1280,
+    "vh": 300,
+    "tlAttr": 212,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 0
+   }
+  },
+  "400": {
+   "fresh": {
+    "vw": 1280,
+    "vh": 400,
+    "tlAttr": 182,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 130
+   },
+   "afterDragUpFar": {
+    "vw": 1280,
+    "vh": 400,
+    "tlAttr": 312,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 0
+   }
+  },
+  "450": {
+   "fresh": {
+    "vw": 1280,
+    "vh": 450,
+    "tlAttr": 182,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 180
+   },
+   "afterDragUpFar": {
+    "vw": 1280,
+    "vh": 450,
+    "tlAttr": 362,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 0
+   }
+  },
+  "507": {
+   "fresh": {
+    "vw": 1280,
+    "vh": 507,
+    "tlAttr": 182,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 237
+   },
+   "afterDragUpFar": {
+    "vw": 1280,
+    "vh": 507,
+    "tlAttr": 419,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 0
+   }
+  },
+  "508": {
+   "fresh": {
+    "vw": 1280,
+    "vh": 508,
+    "tlAttr": 182,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 238
+   },
+   "afterDragUpFar": {
+    "vw": 1280,
+    "vh": 508,
+    "tlAttr": 420,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 0
+   }
+  },
+  "600": {
+   "fresh": {
+    "vw": 1280,
+    "vh": 600,
+    "tlAttr": 182,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 330
+   },
+   "afterDragUpFar": {
+    "vw": 1280,
+    "vh": 600,
+    "tlAttr": 420,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 92
+   }
+  },
+  "720": {
+   "fresh": {
+    "vw": 1280,
+    "vh": 720,
+    "tlAttr": 182,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 450
+   },
+   "afterDragUpFar": {
+    "vw": 1280,
+    "vh": 720,
+    "tlAttr": 420,
+    "collapsed": "false",
+    "overflowBy": 0,
+    "viewportH": 212
+   }
+  }
+ },
+ "escape": [
+  {
+   "step": "fresh",
+   "vw": 1280,
+   "vh": 720,
+   "tlAttr": 182,
+   "collapsed": "false",
+   "overflowBy": 0,
+   "viewportH": 450
+  },
+  {
+   "step": "dragUpFar",
+   "vw": 1280,
+   "vh": 720,
+   "tlAttr": 420,
+   "collapsed": "false",
+   "overflowBy": 0,
+   "viewportH": 212
+  },
+  {
+   "step": "to150",
+   "vw": 1280,
+   "vh": 150,
+   "tlAttr": 88,
+   "collapsed": "false",
+   "overflowBy": 26,
+   "viewportH": 0
+  },
+  {
+   "step": "to720",
+   "vw": 1280,
+   "vh": 720,
+   "tlAttr": 88,
+   "collapsed": "false",
+   "overflowBy": 0,
+   "viewportH": 544
+  },
+  {
+   "step": "dragUpFarAgain",
+   "vw": 1280,
+   "vh": 720,
+   "tlAttr": 420,
+   "collapsed": "false",
+   "overflowBy": 0,
+   "viewportH": 212
+  }
+ ],
+ "collapse": [
+  {
+   "vh": 720,
+   "seq": [
+    {
+     "step": "fresh",
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 182,
+     "collapsed": "false",
+     "overflowBy": 0,
+     "viewportH": 450
+    },
+    {
+     "step": "dragUpFar",
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 420,
+     "collapsed": "false",
+     "overflowBy": 0,
+     "viewportH": 212
+    },
+    {
+     "step": "collapse",
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 88,
+     "collapsed": "true",
+     "overflowBy": 0,
+     "viewportH": 544
+    },
+    {
+     "step": "expand",
+     "vw": 1280,
+     "vh": 720,
+     "tlAttr": 420,
+     "collapsed": "false",
+     "overflowBy": 0,
+     "viewportH": 212
+    }
+   ]
+  },
+  {
+   "vh": 250,
+   "seq": [
+    {
+     "step": "fresh",
+     "vw": 1280,
+     "vh": 250,
+     "tlAttr": 162,
+     "collapsed": "false",
+     "overflowBy": 0,
+     "viewportH": 0
+    },
+    {
+     "step": "dragUpFar",
+     "vw": 1280,
+     "vh": 250,
+     "tlAttr": 162,
+     "collapsed": "false",
+     "overflowBy": 0,
+     "viewportH": 0
+    },
+    {
+     "step": "collapse",
+     "vw": 1280,
+     "vh": 250,
+     "tlAttr": 88,
+     "collapsed": "true",
+     "overflowBy": 0,
+     "viewportH": 74
+    },
+    {
+     "step": "expand",
+     "vw": 1280,
+     "vh": 250,
+     "tlAttr": 162,
+     "collapsed": "false",
+     "overflowBy": 0,
+     "viewportH": 0
+    }
+   ]
+  }
+ ],
+ "checks": {
+  "the-reachable-max-is-clamp(viewportHeightMinus88,88,420)-not-the-declared-range": {
+   "ok": true,
+   "detail": {
+    "rule": "reachableMax = max(88, min(420, viewportHeight - 88))",
+    "landedByDraggingFarUp": {
+     "150": 88,
+     "200": 112,
+     "250": 162,
+     "300": 212,
+     "400": 312,
+     "450": 362,
+     "507": 419,
+     "508": 420,
+     "600": 420,
+     "720": 420
+    },
+    "predicted": {
+     "150": 88,
+     "200": 112,
+     "250": 162,
+     "300": 212,
+     "400": 312,
+     "450": 362,
+     "507": 419,
+     "508": 420,
+     "600": 420,
+     "720": 420
+    },
+    "fullRangeOnlyFromHeight": 508,
+    "why88Plus420": "the panel's top is pinned at 88, so a height of 420 only fits when 88 + 420 <= H",
+    "theDeclaredVsTheEffective": "607 recorded the range as 88..420 and noted the source range is unmeasured. On any window shorter than 508 the EFFECTIVE range is narrower than the declared one, and nothing in the UI says so.",
+    "at150": {
+     "landed": 88,
+     "overflowBy": 26,
+     "note": "below 176 the store MIN wins and the panel still overflows -- 687 re-measured that, and dragging cannot fix it either"
+    }
+   },
+   "note": "the declared range and the reachable range are different quantities"
+  },
+  "the-crossing-is-508-and-is-measured-from-both-sides": {
+   "ok": true,
+   "detail": {
+    "at507": {
+     "landed": 419,
+     "expected": 419,
+     "vhMinus88": 419
+    },
+    "at508": {
+     "landed": 420,
+     "expected": 420,
+     "vhMinus88": 420
+    },
+    "mechanism": "the drag writes min(420, start + distance); at 507 that is 420, then fit() subtracts the 1px overflow (88 + 420 - 507 = 1) and lands on 419. At 508 the overflow is 0 and 420 stands.",
+    "sameShapeAs": "622/623's 898/899 and 685's 620 -- a declared number plus a layout constant, sampled on both sides"
+   },
+   "note": "a boundary derived from a constant deserves a pixel on each side"
+  },
+  "the-drag-writer-has-no-overflow-check-and-is-clamped-only-by-the-dependency-array": {
+   "ok": true,
+   "detail": {
+    "dragWriter": "DirectorTimeline.tsx:294-300 -- moveHeightResize calls setTimelineHeight(drag.startHeight - (clientY - startY)) with NO overflow test at all",
+    "whoStopsIt": "the useLayoutEffect that wraps fit(), whose dependency array includes timelineHeight, so it re-runs after the drag's write and subtracts the overflow",
+    "consequence": "the panel cannot be dragged off-screen today, but that is a property of the DEPENDENCY LIST, not of the writer. Drop timelineHeight from the deps and the drag would put the panel off-screen immediately.",
+    "status": "this is my inference about the arrangement, not a measurement of what happens if the dep is removed -- that was NOT tested",
+    "whyItMatters": "reading this as a design guarantee points the fix in the wrong direction; reading it as a dependency-list accident points it at the right one"
+   },
+   "note": "a property that holds by accident should not be documented as a guarantee"
+  },
+  "a-drag-restores-the-height-while-growing-the-window-does-not": {
+   "ok": true,
+   "detail": {
+    "sequence": {
+     "fresh": {
+      "vh": 720,
+      "tlAttr": 182,
+      "overflowBy": 0,
+      "viewportH": 450
+     },
+     "dragUpFar": {
+      "vh": 720,
+      "tlAttr": 420,
+      "overflowBy": 0,
+      "viewportH": 212
+     },
+     "to150": {
+      "vh": 150,
+      "tlAttr": 88,
+      "overflowBy": 26,
+      "viewportH": 0
+     },
+     "to720": {
+      "vh": 720,
+      "tlAttr": 88,
+      "overflowBy": 0,
+      "viewportH": 544
+     },
+     "dragUpFarAgain": {
+      "vh": 720,
+      "tlAttr": 420,
+      "overflowBy": 0,
+      "viewportH": 212
+     }
+    },
+    "theContrast": "going back up to 720 changes nothing; ONE DRAG writes 420 straight back",
+    "whatThatProves": "the store accepts 420 readily. It is fit() that refuses to write upward. So the one-way property belongs to ONE WRITER, not to the store.",
+    "narrows687sProductQuestion": "687 offered A (auto-restore on grow) / B (status quo) / C (remember the pre-clamp value). This measurement shows recoverability already exists via a drag, so A is not a precondition for recovery -- the question narrows to whether one drag is acceptable UX, i.e. whether auto-restore is worth the extra state bit.",
+    "stillAProductDecision": "this batch does not choose"
+   },
+   "note": "the one-way rule is a property of a writer, not of the data"
+  },
+  "collapse-and-expand-preserve-the-height": {
+   "ok": true,
+   "detail": {
+    "at720": [
+     {
+      "step": "fresh",
+      "tlAttr": 182,
+      "collapsed": "false"
+     },
+     {
+      "step": "dragUpFar",
+      "tlAttr": 420,
+      "collapsed": "false"
+     },
+     {
+      "step": "collapse",
+      "tlAttr": 88,
+      "collapsed": "true"
+     },
+     {
+      "step": "expand",
+      "tlAttr": 420,
+      "collapsed": "false"
+     }
+    ],
+    "at250": [
+     {
+      "step": "fresh",
+      "tlAttr": 162,
+      "collapsed": "false"
+     },
+     {
+      "step": "dragUpFar",
+      "tlAttr": 162,
+      "collapsed": "false"
+     },
+     {
+      "step": "collapse",
+      "tlAttr": 88,
+      "collapsed": "true"
+     },
+     {
+      "step": "expand",
+      "tlAttr": 162,
+      "collapsed": "false"
+     }
+    ],
+    "why": "timelineCollapsed IS a dependency of the fit() effect, but fit() returns early while collapsed, and on expand there is no overflow -- so this path never demotes the value",
+    "andTheDisplayedValue": "while collapsed the attribute reads 88, which is 687's '88 cannot tell you which state you are in' all over again: collapsed shows 88 and the clamped store value also reads 88"
+   },
+   "note": "being a dependency is not the same as being a writer"
+  }
+ }
+}
