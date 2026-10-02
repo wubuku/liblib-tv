@@ -1,0 +1,1729 @@
+{
+  "batch": 649,
+  "question": "can a ruler whose competitor set is DERIVED from structure — rather than named — measure the 7 canvas-page overlays that 626's named list cannot see?",
+  "ruler": {
+    "derivedCompetitors": true,
+    "reusedFrom626": [
+      "paintOrder",
+      "ctxZ",
+      "isCtx",
+      "the casualty loop, with 648's ≤1px + clip/clip-path guard added"
+    ],
+    "viewports": [
+      [
+        1920,
+        1150
+      ],
+      [
+        1440,
+        900
+      ],
+      [
+        1280,
+        720
+      ]
+    ]
+  },
+  "canvasCells": {
+    "zoom-menu@1920x1150": {
+      "box": [
+        88,
+        817,
+        188,
+        279
+      ],
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "topmostContentTop": 864,
+      "kind": "menu",
+      "heightRatio": 0.243,
+      "overflowBottom": -46,
+      "overflowRight": -1636,
+      "candidateCount": 9,
+      "structBad": [],
+      "liveCount": 6,
+      "blocked": [],
+      "present": true,
+      "action": "toggleZoomMenu"
+    },
+    "canvas-dropdown@1920x1150": {
+      "box": [
+        188,
+        52,
+        224,
+        194
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 86,
+      "kind": "menu",
+      "heightRatio": 0.168,
+      "overflowBottom": -896,
+      "overflowRight": -1500,
+      "candidateCount": 12,
+      "structBad": [],
+      "liveCount": 6,
+      "blocked": [],
+      "present": true,
+      "action": "toggleCanvasDropdown"
+    },
+    "asset@1920x1150": {
+      "box": [
+        0,
+        0,
+        320,
+        1150
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 62,
+      "kind": "panel",
+      "heightRatio": 1,
+      "overflowBottom": 8,
+      "overflowRight": -1592,
+      "candidateCount": 41,
+      "structBad": [
+        {
+          "who": "a.flex.h-8",
+          "z": 0,
+          "pos": "static",
+          "opacity": "1",
+          "bg": "rgb(38, 38, 38)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            36,
+            32
+          ],
+          "overlapBox": [
+            16,
+            16,
+            40,
+            32
+          ],
+          "overlapDepthY": 32,
+          "overlapDepthX": 40,
+          "opaque": true,
+          "stackTop": "svg",
+          "stackIndex": 1
+        },
+        {
+          "who": "div.relative",
+          "z": 0,
+          "pos": "relative",
+          "opacity": "1",
+          "bg": "rgba(0, 0, 0, 0)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            70,
+            32
+          ],
+          "overlapBox": [
+            60,
+            16,
+            20,
+            32
+          ],
+          "overlapDepthY": 32,
+          "overlapDepthX": 20,
+          "opaque": false,
+          "stackTop": "svg",
+          "stackIndex": 2
+        },
+        {
+          "who": "div.fixed.bottom-[18px]",
+          "z": 60,
+          "pos": "fixed",
+          "opacity": "1",
+          "bg": "rgba(0, 0, 0, 0)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            288,
+            1112
+          ],
+          "overlapBox": [
+            256,
+            1092,
+            64,
+            40
+          ],
+          "overlapDepthY": 40,
+          "overlapDepthX": 64,
+          "opaque": false,
+          "stackTop": "span",
+          "stackIndex": 2
+        },
+        {
+          "who": "button.flex.h-7",
+          "z": 0,
+          "pos": "static",
+          "opacity": "1",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            288,
+            1118
+          ],
+          "overlapBox": [
+            256,
+            1104,
+            64,
+            28
+          ],
+          "overlapDepthY": 28,
+          "overlapDepthX": 64,
+          "opaque": true,
+          "stackTop": "span",
+          "stackIndex": 1
+        }
+      ],
+      "liveCount": 21,
+      "blocked": [],
+      "present": true,
+      "action": "toggleAssetPanel"
+    },
+    "add-node@1920x1150": {
+      "box": [
+        718,
+        600,
+        196,
+        481
+      ],
+      "ownZ": "62",
+      "pointerEvents": "auto",
+      "topmostContentTop": 613,
+      "kind": "menu",
+      "heightRatio": 0.418,
+      "overflowBottom": -61,
+      "overflowRight": -998,
+      "candidateCount": 8,
+      "structBad": [],
+      "liveCount": 12,
+      "blocked": [],
+      "present": true,
+      "action": "toggleAddNodePanel"
+    },
+    "agent@1920x1150": {
+      "box": [
+        1520,
+        0,
+        400,
+        1150
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 14,
+      "kind": "panel",
+      "heightRatio": 1,
+      "overflowBottom": 8,
+      "overflowRight": 8,
+      "candidateCount": 3,
+      "structBad": [
+        {
+          "who": "button.flex.h-8",
+          "z": 0,
+          "pos": "static",
+          "opacity": "1",
+          "bg": "rgb(38, 38, 38)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            1542,
+            32
+          ],
+          "overlapBox": [
+            1520,
+            16,
+            44,
+            32
+          ],
+          "overlapDepthY": 32,
+          "overlapDepthX": 44,
+          "opaque": true,
+          "stackTop": "span",
+          "stackIndex": 1
+        }
+      ],
+      "liveCount": 16,
+      "blocked": [],
+      "present": true,
+      "action": "toggleAgent"
+    },
+    "shortcuts@1920x1150": {
+      "box": [
+        508,
+        630,
+        905,
+        447
+      ],
+      "ownZ": "62",
+      "pointerEvents": "auto",
+      "topmostContentTop": 643,
+      "kind": "menu",
+      "heightRatio": 0.389,
+      "overflowBottom": -65,
+      "overflowRight": -499,
+      "candidateCount": 9,
+      "structBad": [],
+      "liveCount": 1,
+      "blocked": [],
+      "present": true,
+      "action": "toggleShortcutsPanel"
+    },
+    "share@1920x1150": {
+      "box": [
+        1380,
+        56,
+        360,
+        190
+      ],
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "topmostContentTop": 93,
+      "kind": "menu",
+      "heightRatio": 0.165,
+      "overflowBottom": -896,
+      "overflowRight": -172,
+      "candidateCount": 5,
+      "structBad": [],
+      "liveCount": 2,
+      "blocked": [],
+      "present": true,
+      "action": "toggleSharePanel"
+    },
+    "zoom-menu@1440x900": {
+      "box": [
+        88,
+        567,
+        188,
+        279
+      ],
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "topmostContentTop": 614,
+      "kind": "menu",
+      "heightRatio": 0.31,
+      "overflowBottom": -46,
+      "overflowRight": -1156,
+      "candidateCount": 11,
+      "structBad": [],
+      "liveCount": 6,
+      "blocked": [],
+      "present": true,
+      "action": "toggleZoomMenu"
+    },
+    "canvas-dropdown@1440x900": {
+      "box": [
+        188,
+        52,
+        224,
+        194
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 86,
+      "kind": "menu",
+      "heightRatio": 0.215,
+      "overflowBottom": -646,
+      "overflowRight": -1020,
+      "candidateCount": 12,
+      "structBad": [],
+      "liveCount": 6,
+      "blocked": [],
+      "present": true,
+      "action": "toggleCanvasDropdown"
+    },
+    "asset@1440x900": {
+      "box": [
+        0,
+        0,
+        320,
+        900
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 62,
+      "kind": "panel",
+      "heightRatio": 1,
+      "overflowBottom": 8,
+      "overflowRight": -1112,
+      "candidateCount": 35,
+      "structBad": [
+        {
+          "who": "a.flex.h-8",
+          "z": 0,
+          "pos": "static",
+          "opacity": "1",
+          "bg": "rgb(38, 38, 38)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            36,
+            32
+          ],
+          "overlapBox": [
+            16,
+            16,
+            40,
+            32
+          ],
+          "overlapDepthY": 32,
+          "overlapDepthX": 40,
+          "opaque": true,
+          "stackTop": "svg",
+          "stackIndex": 1
+        },
+        {
+          "who": "div.relative",
+          "z": 0,
+          "pos": "relative",
+          "opacity": "1",
+          "bg": "rgba(0, 0, 0, 0)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            70,
+            32
+          ],
+          "overlapBox": [
+            60,
+            16,
+            20,
+            32
+          ],
+          "overlapDepthY": 32,
+          "overlapDepthX": 20,
+          "opaque": false,
+          "stackTop": "svg",
+          "stackIndex": 2
+        },
+        {
+          "who": "div.fixed.bottom-[18px]",
+          "z": 60,
+          "pos": "fixed",
+          "opacity": "1",
+          "bg": "rgba(0, 0, 0, 0)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            288,
+            862
+          ],
+          "overlapBox": [
+            256,
+            842,
+            64,
+            40
+          ],
+          "overlapDepthY": 40,
+          "overlapDepthX": 64,
+          "opaque": false,
+          "stackTop": "span",
+          "stackIndex": 2
+        },
+        {
+          "who": "button.flex.h-7",
+          "z": 0,
+          "pos": "static",
+          "opacity": "1",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            288,
+            868
+          ],
+          "overlapBox": [
+            256,
+            854,
+            64,
+            28
+          ],
+          "overlapDepthY": 28,
+          "overlapDepthX": 64,
+          "opaque": true,
+          "stackTop": "span",
+          "stackIndex": 1
+        }
+      ],
+      "liveCount": 21,
+      "blocked": [],
+      "present": true,
+      "action": "toggleAssetPanel"
+    },
+    "add-node@1440x900": {
+      "box": [
+        478,
+        350,
+        196,
+        481
+      ],
+      "ownZ": "62",
+      "pointerEvents": "auto",
+      "topmostContentTop": 363,
+      "kind": "menu",
+      "heightRatio": 0.534,
+      "overflowBottom": -61,
+      "overflowRight": -758,
+      "candidateCount": 12,
+      "structBad": [],
+      "liveCount": 12,
+      "blocked": [],
+      "present": true,
+      "action": "toggleAddNodePanel"
+    },
+    "agent@1440x900": {
+      "box": [
+        1040,
+        0,
+        400,
+        900
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 14,
+      "kind": "panel",
+      "heightRatio": 1,
+      "overflowBottom": 8,
+      "overflowRight": 8,
+      "candidateCount": 6,
+      "structBad": [
+        {
+          "who": "button.flex.h-8",
+          "z": 0,
+          "pos": "static",
+          "opacity": "1",
+          "bg": "rgb(38, 38, 38)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            1062,
+            32
+          ],
+          "overlapBox": [
+            1040,
+            16,
+            44,
+            32
+          ],
+          "overlapDepthY": 32,
+          "overlapDepthX": 44,
+          "opaque": true,
+          "stackTop": "span",
+          "stackIndex": 1
+        }
+      ],
+      "liveCount": 16,
+      "blocked": [],
+      "present": true,
+      "action": "toggleAgent"
+    },
+    "shortcuts@1440x900": {
+      "box": [
+        268,
+        380,
+        905,
+        447
+      ],
+      "ownZ": "62",
+      "pointerEvents": "auto",
+      "topmostContentTop": 393,
+      "kind": "menu",
+      "heightRatio": 0.497,
+      "overflowBottom": -65,
+      "overflowRight": -259,
+      "candidateCount": 23,
+      "structBad": [],
+      "liveCount": 1,
+      "blocked": [],
+      "present": true,
+      "action": "toggleShortcutsPanel"
+    },
+    "share@1440x900": {
+      "box": [
+        900,
+        56,
+        360,
+        190
+      ],
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "topmostContentTop": 93,
+      "kind": "menu",
+      "heightRatio": 0.211,
+      "overflowBottom": -646,
+      "overflowRight": -172,
+      "candidateCount": 5,
+      "structBad": [],
+      "liveCount": 2,
+      "blocked": [],
+      "present": true,
+      "action": "toggleSharePanel"
+    },
+    "zoom-menu@1280x720": {
+      "box": [
+        88,
+        387,
+        188,
+        279
+      ],
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "topmostContentTop": 434,
+      "kind": "menu",
+      "heightRatio": 0.388,
+      "overflowBottom": -46,
+      "overflowRight": -996,
+      "candidateCount": 13,
+      "structBad": [],
+      "liveCount": 6,
+      "blocked": [],
+      "present": true,
+      "action": "toggleZoomMenu"
+    },
+    "canvas-dropdown@1280x720": {
+      "box": [
+        188,
+        52,
+        224,
+        194
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 86,
+      "kind": "menu",
+      "heightRatio": 0.269,
+      "overflowBottom": -466,
+      "overflowRight": -860,
+      "candidateCount": 12,
+      "structBad": [],
+      "liveCount": 6,
+      "blocked": [],
+      "present": true,
+      "action": "toggleCanvasDropdown"
+    },
+    "asset@1280x720": {
+      "box": [
+        0,
+        0,
+        320,
+        720
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 62,
+      "kind": "panel",
+      "heightRatio": 1,
+      "overflowBottom": 8,
+      "overflowRight": -952,
+      "candidateCount": 27,
+      "structBad": [
+        {
+          "who": "a.flex.h-8",
+          "z": 0,
+          "pos": "static",
+          "opacity": "1",
+          "bg": "rgb(38, 38, 38)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            36,
+            32
+          ],
+          "overlapBox": [
+            16,
+            16,
+            40,
+            32
+          ],
+          "overlapDepthY": 32,
+          "overlapDepthX": 40,
+          "opaque": true,
+          "stackTop": "svg",
+          "stackIndex": 1
+        },
+        {
+          "who": "div.relative",
+          "z": 0,
+          "pos": "relative",
+          "opacity": "1",
+          "bg": "rgba(0, 0, 0, 0)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            70,
+            32
+          ],
+          "overlapBox": [
+            60,
+            16,
+            20,
+            32
+          ],
+          "overlapDepthY": 32,
+          "overlapDepthX": 20,
+          "opaque": false,
+          "stackTop": "svg",
+          "stackIndex": 2
+        },
+        {
+          "who": "div.fixed.bottom-[18px]",
+          "z": 60,
+          "pos": "fixed",
+          "opacity": "1",
+          "bg": "rgba(0, 0, 0, 0)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            288,
+            682
+          ],
+          "overlapBox": [
+            256,
+            662,
+            64,
+            40
+          ],
+          "overlapDepthY": 40,
+          "overlapDepthX": 64,
+          "opaque": false,
+          "stackTop": "span",
+          "stackIndex": 2
+        },
+        {
+          "who": "button.flex.h-7",
+          "z": 0,
+          "pos": "static",
+          "opacity": "1",
+          "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            288,
+            688
+          ],
+          "overlapBox": [
+            256,
+            674,
+            64,
+            28
+          ],
+          "overlapDepthY": 28,
+          "overlapDepthX": 64,
+          "opaque": true,
+          "stackTop": "span",
+          "stackIndex": 1
+        }
+      ],
+      "liveCount": 21,
+      "blocked": [],
+      "present": true,
+      "action": "toggleAssetPanel"
+    },
+    "add-node@1280x720": {
+      "box": [
+        398,
+        170,
+        196,
+        481
+      ],
+      "ownZ": "62",
+      "pointerEvents": "auto",
+      "topmostContentTop": 183,
+      "kind": "menu",
+      "heightRatio": 0.668,
+      "overflowBottom": -61,
+      "overflowRight": -678,
+      "candidateCount": 15,
+      "structBad": [],
+      "liveCount": 12,
+      "blocked": [],
+      "present": true,
+      "action": "toggleAddNodePanel"
+    },
+    "agent@1280x720": {
+      "box": [
+        880,
+        0,
+        400,
+        720
+      ],
+      "ownZ": "50",
+      "pointerEvents": "auto",
+      "topmostContentTop": 14,
+      "kind": "panel",
+      "heightRatio": 1,
+      "overflowBottom": 8,
+      "overflowRight": 8,
+      "candidateCount": 11,
+      "structBad": [
+        {
+          "who": "button.flex.h-8",
+          "z": 0,
+          "pos": "static",
+          "opacity": "1",
+          "bg": "rgb(38, 38, 38)",
+          "pointerEvents": "auto",
+          "sampleAt": [
+            902,
+            32
+          ],
+          "overlapBox": [
+            880,
+            16,
+            44,
+            32
+          ],
+          "overlapDepthY": 32,
+          "overlapDepthX": 44,
+          "opaque": true,
+          "stackTop": "span",
+          "stackIndex": 1
+        }
+      ],
+      "liveCount": 16,
+      "blocked": [],
+      "present": true,
+      "action": "toggleAgent"
+    },
+    "shortcuts@1280x720": {
+      "box": [
+        188,
+        200,
+        905,
+        447
+      ],
+      "ownZ": "62",
+      "pointerEvents": "auto",
+      "topmostContentTop": 213,
+      "kind": "menu",
+      "heightRatio": 0.621,
+      "overflowBottom": -65,
+      "overflowRight": -179,
+      "candidateCount": 33,
+      "structBad": [],
+      "liveCount": 1,
+      "blocked": [],
+      "present": true,
+      "action": "toggleShortcutsPanel"
+    },
+    "share@1280x720": {
+      "box": [
+        740,
+        56,
+        360,
+        190
+      ],
+      "ownZ": "auto",
+      "pointerEvents": "auto",
+      "topmostContentTop": 93,
+      "kind": "menu",
+      "heightRatio": 0.264,
+      "overflowBottom": -466,
+      "overflowRight": -172,
+      "candidateCount": 6,
+      "structBad": [],
+      "liveCount": 2,
+      "blocked": [],
+      "present": true,
+      "action": "toggleSharePanel"
+    }
+  },
+  "controlCells": {
+    "crowd-panel@1920x1150": {
+      "box": [
+        824,
+        688,
+        272,
+        208
+      ],
+      "ownZ": "20",
+      "pointerEvents": "auto",
+      "topmostContentTop": 748,
+      "kind": "menu",
+      "heightRatio": 0.181,
+      "overflowBottom": -246,
+      "overflowRight": -816,
+      "candidateCount": 8,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true
+    },
+    "phone-vcam-panel@1920x1150": {
+      "box": [
+        1287,
+        574,
+        340,
+        322
+      ],
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "topmostContentTop": 583,
+      "kind": "menu",
+      "heightRatio": 0.28,
+      "overflowBottom": -246,
+      "overflowRight": -285,
+      "candidateCount": 8,
+      "structBad": [],
+      "liveCount": 2,
+      "blocked": [],
+      "present": true
+    },
+    "model-library-panel@1920x1150": {
+      "box": [
+        710,
+        536,
+        500,
+        360
+      ],
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "topmostContentTop": 543,
+      "kind": "menu",
+      "heightRatio": 0.313,
+      "overflowBottom": -246,
+      "overflowRight": -702,
+      "candidateCount": 18,
+      "structBad": [],
+      "liveCount": 14,
+      "blocked": [],
+      "present": true
+    },
+    "crowd-panel@1440x900": {
+      "box": [
+        584,
+        438,
+        272,
+        208
+      ],
+      "ownZ": "20",
+      "pointerEvents": "auto",
+      "topmostContentTop": 498,
+      "kind": "menu",
+      "heightRatio": 0.231,
+      "overflowBottom": -246,
+      "overflowRight": -576,
+      "candidateCount": 22,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true
+    },
+    "phone-vcam-panel@1440x900": {
+      "box": [
+        807,
+        324,
+        340,
+        322
+      ],
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "topmostContentTop": 333,
+      "kind": "menu",
+      "heightRatio": 0.358,
+      "overflowBottom": -246,
+      "overflowRight": -285,
+      "candidateCount": 18,
+      "structBad": [],
+      "liveCount": 2,
+      "blocked": [],
+      "present": true
+    },
+    "model-library-panel@1440x900": {
+      "box": [
+        470,
+        286,
+        500,
+        360
+      ],
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "topmostContentTop": 293,
+      "kind": "menu",
+      "heightRatio": 0.4,
+      "overflowBottom": -246,
+      "overflowRight": -462,
+      "candidateCount": 34,
+      "structBad": [],
+      "liveCount": 14,
+      "blocked": [],
+      "present": true
+    },
+    "crowd-panel@1280x720": {
+      "box": [
+        504,
+        258,
+        272,
+        208
+      ],
+      "ownZ": "20",
+      "pointerEvents": "auto",
+      "topmostContentTop": 318,
+      "kind": "menu",
+      "heightRatio": 0.289,
+      "overflowBottom": -246,
+      "overflowRight": -496,
+      "candidateCount": 30,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": [],
+      "present": true
+    },
+    "phone-vcam-panel@1280x720": {
+      "box": [
+        647,
+        144,
+        340,
+        322
+      ],
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "topmostContentTop": 153,
+      "kind": "menu",
+      "heightRatio": 0.447,
+      "overflowBottom": -246,
+      "overflowRight": -285,
+      "candidateCount": 32,
+      "structBad": [],
+      "liveCount": 2,
+      "blocked": [],
+      "present": true
+    },
+    "model-library-panel@1280x720": {
+      "box": [
+        390,
+        136,
+        500,
+        330
+      ],
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "topmostContentTop": 143,
+      "kind": "menu",
+      "heightRatio": 0.458,
+      "overflowBottom": -246,
+      "overflowRight": -382,
+      "candidateCount": 36,
+      "structBad": [],
+      "liveCount": 14,
+      "blocked": [],
+      "present": true
+    }
+  },
+  "batch626Answer": {
+    "crowd-panel@1920x1150": {
+      "box": [
+        824,
+        688,
+        272,
+        208
+      ],
+      "bottom": 896,
+      "ownZ": "20",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -816,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": []
+    },
+    "phone-vcam-panel@1920x1150": {
+      "box": [
+        1287,
+        574,
+        340,
+        322
+      ],
+      "bottom": 896,
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -285,
+      "structBad": [],
+      "liveCount": 2,
+      "blocked": []
+    },
+    "model-library-panel@1920x1150": {
+      "box": [
+        710,
+        536,
+        500,
+        360
+      ],
+      "bottom": 896,
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -702,
+      "structBad": [],
+      "liveCount": 15,
+      "blocked": [
+        {
+          "label": "",
+          "why": "occluded",
+          "by": "div.absolute"
+        }
+      ]
+    },
+    "crowd-panel@1440x900": {
+      "box": [
+        584,
+        438,
+        272,
+        208
+      ],
+      "bottom": 646,
+      "ownZ": "20",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -576,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": []
+    },
+    "phone-vcam-panel@1440x900": {
+      "box": [
+        807,
+        324,
+        340,
+        322
+      ],
+      "bottom": 646,
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -285,
+      "structBad": [],
+      "liveCount": 2,
+      "blocked": []
+    },
+    "model-library-panel@1440x900": {
+      "box": [
+        470,
+        286,
+        500,
+        360
+      ],
+      "bottom": 646,
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -462,
+      "structBad": [],
+      "liveCount": 15,
+      "blocked": [
+        {
+          "label": "",
+          "why": "occluded",
+          "by": "div.absolute"
+        }
+      ]
+    },
+    "crowd-panel@1280x720": {
+      "box": [
+        504,
+        258,
+        272,
+        208
+      ],
+      "bottom": 466,
+      "ownZ": "20",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -496,
+      "structBad": [],
+      "liveCount": 5,
+      "blocked": []
+    },
+    "phone-vcam-panel@1280x720": {
+      "box": [
+        647,
+        144,
+        340,
+        322
+      ],
+      "bottom": 466,
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -285,
+      "structBad": [],
+      "liveCount": 2,
+      "blocked": []
+    },
+    "model-library-panel@1280x720": {
+      "box": [
+        390,
+        136,
+        500,
+        330
+      ],
+      "bottom": 466,
+      "ownZ": "30",
+      "pointerEvents": "auto",
+      "overflowBottom": -246,
+      "overflowRight": -382,
+      "structBad": [],
+      "liveCount": 15,
+      "blocked": [
+        {
+          "label": "",
+          "why": "occluded",
+          "by": "div.absolute"
+        }
+      ]
+    }
+  },
+  "checks": {
+    "all-21-canvas-cells-were-actually-measured": {
+      "ok": true,
+      "detail": {
+        "cells": 21,
+        "absent": {},
+        "actions": {
+          "zoom-menu": "toggleZoomMenu",
+          "canvas-dropdown": "toggleCanvasDropdown",
+          "asset": "toggleAssetPanel",
+          "add-node": "toggleAddNodePanel",
+          "agent": "toggleAgent",
+          "shortcuts": "toggleShortcutsPanel",
+          "share": "toggleSharePanel"
+        },
+        "note": "648 recorded these paths; this is the first run that actually opens and measures them"
+      },
+      "note": null
+    },
+    "the-derived-ruler-reproduces-626s-STRUCTURAL-answer-on-the-control-group": {
+      "ok": true,
+      "detail": {
+        "cells": 9,
+        "disagreements": [],
+        "why": "626's three desk overlays read structBad=[] at every viewport. A derived competitor set that reported anything here would be looser than the named one.",
+        "boxesAgree": {},
+        "whatChangedOnPurpose": "649 crosses the z-order claim against elementsFromPoint, so it is STRICTLY NARROWER than 626's. It still reproduces 626's empty answer, which is the calibration that matters."
+      },
+      "note": null
+    },
+    "the-casualty-half-differs-from-626-by-exactly-648s-finding": {
+      "ok": true,
+      "detail": {
+        "differences": [
+          {
+            "cell": "model-library-panel@1920x1150",
+            "b626Blocked": [
+              {
+                "label": "",
+                "why": "occluded",
+                "by": "div.absolute"
+              }
+            ],
+            "derivedBlocked": [],
+            "difference": "the sr-only 1x1 file input 626 counted and 649's guard excludes"
+          },
+          {
+            "cell": "model-library-panel@1440x900",
+            "b626Blocked": [
+              {
+                "label": "",
+                "why": "occluded",
+                "by": "div.absolute"
+              }
+            ],
+            "derivedBlocked": [],
+            "difference": "the sr-only 1x1 file input 626 counted and 649's guard excludes"
+          },
+          {
+            "cell": "model-library-panel@1280x720",
+            "b626Blocked": [
+              {
+                "label": "",
+                "why": "occluded",
+                "by": "div.absolute"
+              }
+            ],
+            "derivedBlocked": [],
+            "difference": "the sr-only 1x1 file input 626 counted and 649's guard excludes"
+          }
+        ],
+        "theTwoGuards": {
+          "626": "if (cb.width <= 0 || cb.height <= 0) continue;",
+          "649": "the same, PLUS <= 1px, PLUS clip / clip-path"
+        },
+        "whyThisIsAnAssertionNotAnExcuse": "the difference is pinned to the ONE overlay 648 identified and to nothing else, so a new casualty appearing anywhere else would still turn this red"
+      },
+      "note": "expected, quantified and bounded - not waved through"
+    },
+    "the-derived-competitor-set-is-non-empty-on-the-canvas-page": {
+      "ok": true,
+      "detail": {
+        "cellsWithCandidates": 21,
+        "of": 21,
+        "candidateCounts": {
+          "zoom-menu@1920x1150": 9,
+          "canvas-dropdown@1920x1150": 12,
+          "asset@1920x1150": 41,
+          "add-node@1920x1150": 8,
+          "agent@1920x1150": 3,
+          "shortcuts@1920x1150": 9,
+          "share@1920x1150": 5,
+          "zoom-menu@1440x900": 11,
+          "canvas-dropdown@1440x900": 12,
+          "asset@1440x900": 35,
+          "add-node@1440x900": 12,
+          "agent@1440x900": 6,
+          "shortcuts@1440x900": 23,
+          "share@1440x900": 5,
+          "zoom-menu@1280x720": 13,
+          "canvas-dropdown@1280x720": 12,
+          "asset@1280x720": 27,
+          "add-node@1280x720": 15,
+          "agent@1280x720": 11,
+          "shortcuts@1280x720": 33,
+          "share@1280x720": 6
+        },
+        "reading": "626's named list produced ZERO candidates on this page. The derived one finds structural competitors everywhere, which is the whole point of deriving it."
+      },
+      "note": null
+    },
+    "every-canvas-overlay-holds-at-least-one-live-control": {
+      "ok": true,
+      "detail": {
+        "zeroLiveControl": {},
+        "liveCounts": {
+          "zoom-menu@1920x1150": 6,
+          "canvas-dropdown@1920x1150": 6,
+          "asset@1920x1150": 21,
+          "add-node@1920x1150": 12,
+          "agent@1920x1150": 16,
+          "shortcuts@1920x1150": 1,
+          "share@1920x1150": 2,
+          "zoom-menu@1440x900": 6,
+          "canvas-dropdown@1440x900": 6,
+          "asset@1440x900": 21,
+          "add-node@1440x900": 12,
+          "agent@1440x900": 16,
+          "shortcuts@1440x900": 1,
+          "share@1440x900": 2,
+          "zoom-menu@1280x720": 6,
+          "canvas-dropdown@1280x720": 6,
+          "asset@1280x720": 21,
+          "add-node@1280x720": 12,
+          "agent@1280x720": 16,
+          "shortcuts@1280x720": 1,
+          "share@1280x720": 2
+        }
+      },
+      "note": null
+    },
+    "no-structural-occlusion-hides-a-live-control": {
+      "ok": true,
+      "detail": {
+        "cellsWithAStructuralCover": [
+          "agent@1280x720",
+          "agent@1440x900",
+          "agent@1920x1150",
+          "asset@1280x720",
+          "asset@1440x900",
+          "asset@1920x1150"
+        ],
+        "cellsWhereItAlsoCostACasualty": {},
+        "covers": {
+          "asset@1920x1150": [
+            {
+              "who": "a.flex.h-8",
+              "z": 0,
+              "opaque": true,
+              "overlapBox": [
+                16,
+                16,
+                40,
+                32
+              ],
+              "overlapDepthY": 32,
+              "topmostContentTop": 62
+            },
+            {
+              "who": "div.relative",
+              "z": 0,
+              "opaque": false,
+              "overlapBox": [
+                60,
+                16,
+                20,
+                32
+              ],
+              "overlapDepthY": 32,
+              "topmostContentTop": 62
+            },
+            {
+              "who": "div.fixed.bottom-[18px]",
+              "z": 60,
+              "opaque": false,
+              "overlapBox": [
+                256,
+                1092,
+                64,
+                40
+              ],
+              "overlapDepthY": 40,
+              "topmostContentTop": 62
+            },
+            {
+              "who": "button.flex.h-7",
+              "z": 0,
+              "opaque": true,
+              "overlapBox": [
+                256,
+                1104,
+                64,
+                28
+              ],
+              "overlapDepthY": 28,
+              "topmostContentTop": 62
+            }
+          ],
+          "agent@1920x1150": [
+            {
+              "who": "button.flex.h-8",
+              "z": 0,
+              "opaque": true,
+              "overlapBox": [
+                1520,
+                16,
+                44,
+                32
+              ],
+              "overlapDepthY": 32,
+              "topmostContentTop": 14
+            }
+          ],
+          "asset@1440x900": [
+            {
+              "who": "a.flex.h-8",
+              "z": 0,
+              "opaque": true,
+              "overlapBox": [
+                16,
+                16,
+                40,
+                32
+              ],
+              "overlapDepthY": 32,
+              "topmostContentTop": 62
+            },
+            {
+              "who": "div.relative",
+              "z": 0,
+              "opaque": false,
+              "overlapBox": [
+                60,
+                16,
+                20,
+                32
+              ],
+              "overlapDepthY": 32,
+              "topmostContentTop": 62
+            },
+            {
+              "who": "div.fixed.bottom-[18px]",
+              "z": 60,
+              "opaque": false,
+              "overlapBox": [
+                256,
+                842,
+                64,
+                40
+              ],
+              "overlapDepthY": 40,
+              "topmostContentTop": 62
+            },
+            {
+              "who": "button.flex.h-7",
+              "z": 0,
+              "opaque": true,
+              "overlapBox": [
+                256,
+                854,
+                64,
+                28
+              ],
+              "overlapDepthY": 28,
+              "topmostContentTop": 62
+            }
+          ],
+          "agent@1440x900": [
+            {
+              "who": "button.flex.h-8",
+              "z": 0,
+              "opaque": true,
+              "overlapBox": [
+                1040,
+                16,
+                44,
+                32
+              ],
+              "overlapDepthY": 32,
+              "topmostContentTop": 14
+            }
+          ],
+          "asset@1280x720": [
+            {
+              "who": "a.flex.h-8",
+              "z": 0,
+              "opaque": true,
+              "overlapBox": [
+                16,
+                16,
+                40,
+                32
+              ],
+              "overlapDepthY": 32,
+              "topmostContentTop": 62
+            },
+            {
+              "who": "div.relative",
+              "z": 0,
+              "opaque": false,
+              "overlapBox": [
+                60,
+                16,
+                20,
+                32
+              ],
+              "overlapDepthY": 32,
+              "topmostContentTop": 62
+            },
+            {
+              "who": "div.fixed.bottom-[18px]",
+              "z": 60,
+              "opaque": false,
+              "overlapBox": [
+                256,
+                662,
+                64,
+                40
+              ],
+              "overlapDepthY": 40,
+              "topmostContentTop": 62
+            },
+            {
+              "who": "button.flex.h-7",
+              "z": 0,
+              "opaque": true,
+              "overlapBox": [
+                256,
+                674,
+                64,
+                28
+              ],
+              "overlapDepthY": 28,
+              "topmostContentTop": 62
+            }
+          ],
+          "agent@1280x720": [
+            {
+              "who": "button.flex.h-8",
+              "z": 0,
+              "opaque": true,
+              "overlapBox": [
+                880,
+                16,
+                44,
+                32
+              ],
+              "overlapDepthY": 32,
+              "topmostContentTop": 14
+            }
+          ]
+        },
+        "theFinding": "both full-height drawers really do slide UNDER the top bar: the bar is `fixed left-4 right-4 top-4 z-[70] h-8`, so it covers y 16..48 across the full width, and the coverers are its OPAQUE cluster chips (bg rgb(38,38,38)) — a.flex.h-8 on the asset drawer, button.flex.h-8 on the agent drawer. The asset drawer also loses its bottom-right corner to `div.fixed.bottom-[18px]` z-60.",
+        "whyItIsNotADefect": "casualty half is 0 everywhere. The overlapped strip is drawer padding — each drawer's first live control starts BELOW the cover, which the batch measures as `topmostContentTop` and asserts. So this is a LATENT structural overlap, not a lost control.",
+        "reading": "the derived set is much wider than 626's six, so this is a real result rather than a set that cannot see anything"
+      },
+      "note": "recorded as a measured structural fact, classified latent, NOT filed as a defect"
+    },
+    "every-live-control-inside-the-seven-is-reachable": {
+      "ok": true,
+      "detail": {
+        "bad": {},
+        "census": {},
+        "totalLiveChecked": 192
+      },
+      "note": null
+    },
+    "none-of-the-seven-is-a-pointer-events-none-overlay": {
+      "ok": true,
+      "detail": {
+        "cells": {},
+        "why": "a pointer-events:none overlay has no clickable controls to lose, so the casualty half is vacuously satisfied — 626 had to exclude one"
+      },
+      "note": null
+    },
+    "no-canvas-MENU-breaks-the-8px-safe-margin": {
+      "ok": true,
+      "detail": {
+        "overflowingMenus": {},
+        "menusMeasured": [
+          "add-node@1280x720",
+          "add-node@1440x900",
+          "add-node@1920x1150",
+          "canvas-dropdown@1280x720",
+          "canvas-dropdown@1440x900",
+          "canvas-dropdown@1920x1150",
+          "share@1280x720",
+          "share@1440x900",
+          "share@1920x1150",
+          "shortcuts@1280x720",
+          "shortcuts@1440x900",
+          "shortcuts@1920x1150",
+          "zoom-menu@1280x720",
+          "zoom-menu@1440x900",
+          "zoom-menu@1920x1150"
+        ],
+        "fullBleedPanelsNotHeldToIt": {
+          "asset@1920x1150": {
+            "box": [
+              0,
+              0,
+              320,
+              1150
+            ],
+            "heightRatio": 1,
+            "overflowBottom": 8
+          },
+          "agent@1920x1150": {
+            "box": [
+              1520,
+              0,
+              400,
+              1150
+            ],
+            "heightRatio": 1,
+            "overflowBottom": 8
+          },
+          "asset@1440x900": {
+            "box": [
+              0,
+              0,
+              320,
+              900
+            ],
+            "heightRatio": 1,
+            "overflowBottom": 8
+          },
+          "agent@1440x900": {
+            "box": [
+              1040,
+              0,
+              400,
+              900
+            ],
+            "heightRatio": 1,
+            "overflowBottom": 8
+          },
+          "asset@1280x720": {
+            "box": [
+              0,
+              0,
+              320,
+              720
+            ],
+            "heightRatio": 1,
+            "overflowBottom": 8
+          },
+          "agent@1280x720": {
+            "box": [
+              880,
+              0,
+              400,
+              720
+            ],
+            "heightRatio": 1,
+            "overflowBottom": 8
+          }
+        },
+        "margin": 8,
+        "theCategoryError": "the first version applied 626's menu invariant to the asset drawer and reported it breaking the margin by exactly 8px — i.e. by being flush to the window edge, which is what a full-height drawer is supposed to do",
+        "whyItIsWorthAsking": "626 found TWO director menus that broke it; the canvas page had never been asked"
+      },
+      "note": null
+    },
+    "both-drawers-lose-their-top-48px-strip-to-the-top-bar-and-no-control": {
+      "ok": true,
+      "detail": {
+        "theConstant": "the coverer's BOTTOM EDGE is 48 in every cell: top-4 (16) + h-8 (32). The bar is `fixed left-4 right-4 top-4 z-[70] h-8`, so it spans y 16..48 across the full window width.",
+        "covererBottomEdges": {
+          "asset@1920x1150": [
+            48,
+            1132
+          ],
+          "agent@1920x1150": [
+            48
+          ],
+          "asset@1440x900": [
+            48,
+            882
+          ],
+          "agent@1440x900": [
+            48
+          ],
+          "asset@1280x720": [
+            48,
+            702
+          ],
+          "agent@1280x720": [
+            48
+          ]
+        },
+        "rectClearance": {
+          "asset@1920x1150": {
+            "topmostControlTopEdge": 62,
+            "deepestCoverBottom": 1132,
+            "rectClearance": -1070,
+            "casualties": 0
+          },
+          "agent@1920x1150": {
+            "topmostControlTopEdge": 14,
+            "deepestCoverBottom": 48,
+            "rectClearance": -34,
+            "casualties": 0
+          },
+          "asset@1440x900": {
+            "topmostControlTopEdge": 62,
+            "deepestCoverBottom": 882,
+            "rectClearance": -820,
+            "casualties": 0
+          },
+          "agent@1440x900": {
+            "topmostControlTopEdge": 14,
+            "deepestCoverBottom": 48,
+            "rectClearance": -34,
+            "casualties": 0
+          },
+          "asset@1280x720": {
+            "topmostControlTopEdge": 62,
+            "deepestCoverBottom": 702,
+            "rectClearance": -640,
+            "casualties": 0
+          },
+          "agent@1280x720": {
+            "topmostControlTopEdge": 14,
+            "deepestCoverBottom": 48,
+            "rectClearance": -34,
+            "casualties": 0
+          }
+        },
+        "theNegativeOne": "the agent drawer's first live control has its top edge at y 14, which is 34px INSIDE the cover — yet it has ZERO casualties. The probe is the control's CENTRE, not its top edge. A rect-level reading and a clickability reading are different questions; batch 646 established that, and this is it on the canvas page.",
+        "opaqueChips": [
+          "a.flex.h-8",
+          "button.flex.h-7",
+          "button.flex.h-8"
+        ],
+        "zComparison": "drawers are z-50; the top bar is z-70; the bottom-right cluster is z-60",
+        "verdict": "a real structural overlap with zero casualties. Pinned, classified latent, NOT filed as a defect."
+      },
+      "note": "the constant is the coverer's bottom edge, not the intersection height — the first version got that backwards and the reading caught it"
+    }
+  },
+  "ok": true,
+  "checkCount": 10,
+  "failures": [],
+  "totals": {
+    "canvasCells": 21,
+    "controlCells": 9,
+    "overlaysMeasured": 7,
+    "totalLiveControlsChecked": 192,
+    "derivedCandidateTotal": 308,
+    "competitorCandidatesOnTheNamedList": 0
+  }
+}
