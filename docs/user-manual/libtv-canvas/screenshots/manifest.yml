@@ -2172,3 +2172,14 @@ screenshots:
     visible_text: 顶栏画布名右边并排两枚没有文字的小图标，鼠标停在右边那枚上，下方浮出气泡写着「故事板」
     alt: 顶栏画布名右边并排两枚没有文字的小图标，鼠标停在右边那枚上，下方浮出气泡写着「故事板」
     sha256: 83779b614046c98e6e03ba86989b3dcd9b17c4ce0e9ef033c2079e56266b630a
+  - file: screenshots/M-331-风格卡片-点一下就进了画布.png
+    task_id: asset-library
+    step: 63
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 素材库 → 风格库，点第一张卡的**卡片本体**（落点避开悬停才显形的「收藏」「⤢ 详情」和左上角模型徽标）之后，画布上新出现的那张卡
+    visible_text: 素材-风格-See…
+    alt: 点完一张风格卡片之后，画布上多出来的新节点：标题行是一个立方体图标加被截断的名字「素材-风格-See…」，卡片主体是这张风格自己的预览图（深色底上的抽象流体纹理）。⭐ 读数：画布节点按 data-id 集合 `11 → 12`，新增 `data-id="m-N9X90V3Ttl"`，class `react-flow__node-material-style`，卡片 `113×113`；抽屉「共 12 节点」、首行 `素材-风格-Seedream 5.0 pro`；广场点后 300ms 内关闭。⛔ 本轮 8 次采样一个 toast 都没读到（特效广场那次读到了，同一套脚本在那边有效）。⚠️ 首版这张图拍错了 —— clip 是在开抽屉之前算的，开抽屉让 React Flow 重排了画布；改为「抽屉收干净 → ⌘0 → 立刻读矩形 → 立刻拍」并连读两次确认矩形没动，才拍对
+    sha256: 3c9ef9cb104e068b6b2cbbfd01eede4521c4deb476717c717f89721fe91d76da
