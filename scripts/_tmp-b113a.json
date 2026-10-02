@@ -1,0 +1,1704 @@
+{
+ "at": "2026-10-02T20:19:46.695Z",
+ "round": "a",
+ "start": {
+  "nodes": "76",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "blank": {
+  "n": 1105,
+  "first": [
+   260,
+   280
+  ]
+ },
+ "nj": {
+  "x": 380,
+  "y": 302,
+  "expanded": "false"
+ },
+ "items": [
+  {
+   "t": "新建节点",
+   "vis": "visible",
+   "x": 380,
+   "y": 302
+  },
+  {
+   "t": "文本",
+   "vis": "visible",
+   "x": 608,
+   "y": 334
+  },
+  {
+   "t": "图片",
+   "vis": "visible",
+   "x": 608,
+   "y": 374
+  },
+  {
+   "t": "视频",
+   "vis": "visible",
+   "x": 608,
+   "y": 414
+  },
+  {
+   "t": "音频",
+   "vis": "visible",
+   "x": 608,
+   "y": 454
+  },
+  {
+   "t": "时间线",
+   "vis": "visible",
+   "x": 608,
+   "y": 494
+  },
+  {
+   "t": "主体",
+   "vis": "visible",
+   "x": 608,
+   "y": 534
+  },
+  {
+   "t": "导演台",
+   "vis": "visible",
+   "x": 608,
+   "y": 574
+  },
+  {
+   "t": "从资产库添加",
+   "vis": "visible",
+   "x": 608,
+   "y": 622
+  },
+  {
+   "t": "本地上传",
+   "vis": "visible",
+   "x": 608,
+   "y": 662
+  },
+  {
+   "t": "粘贴 ⌘ V",
+   "vis": "visible",
+   "x": 380,
+   "y": 350
+  },
+  {
+   "t": "重做 ⌘ ⇧ Z 无需重做操作",
+   "vis": "visible",
+   "x": 380,
+   "y": 390
+  },
+  {
+   "t": "撤销 ⌘ Z",
+   "vis": "visible",
+   "x": 380,
+   "y": 430
+  },
+  {
+   "t": "文本",
+   "vis": "visible",
+   "x": 608,
+   "y": 334
+  },
+  {
+   "t": "图片",
+   "vis": "visible",
+   "x": 608,
+   "y": 374
+  },
+  {
+   "t": "视频",
+   "vis": "visible",
+   "x": 608,
+   "y": 414
+  },
+  {
+   "t": "音频",
+   "vis": "visible",
+   "x": 608,
+   "y": 454
+  },
+  {
+   "t": "时间线",
+   "vis": "visible",
+   "x": 608,
+   "y": 494
+  },
+  {
+   "t": "主体",
+   "vis": "visible",
+   "x": 608,
+   "y": 534
+  },
+  {
+   "t": "导演台",
+   "vis": "visible",
+   "x": 608,
+   "y": 574
+  },
+  {
+   "t": "从资产库添加",
+   "vis": "visible",
+   "x": 608,
+   "y": 622
+  },
+  {
+   "t": "本地上传",
+   "vis": "visible",
+   "x": 608,
+   "y": 662
+  }
+ ],
+ "guardrail2": {
+  "diffN": 1,
+  "ok": true
+ },
+ "self": "node_cp2dh7fn7d",
+ "diff": [
+  "node_cp2dh7fn7d"
+ ],
+ "mo": {
+  "installed": true
+ },
+ "unselected": {
+  "rootAria": "音频 node: 音频 69",
+  "selected": false,
+  "innerText": "音频 69 No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+  "descLike": [
+   "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  ],
+  "allAria": [
+   "音频 node: 音频 69",
+   "Add tags",
+   "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  ],
+  "testids": [
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "audio-node-empty",
+   "audio-node-status-icon"
+  ],
+  "screen": "354,260 172×172",
+  "nButtons": 1
+ },
+ "reselected": {
+  "rootAria": "音频 node: 音频 69",
+  "selected": true,
+  "innerText": "音频 69 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+  "descLike": [
+   "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Selected."
+  ],
+  "allAria": [
+   "音频 node: 音频 69",
+   "Create connected node before 音频 69",
+   "Rename 音频 69",
+   "Add tags",
+   "Create connected node after 音频 69",
+   "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Selected."
+  ],
+  "testids": [
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-target-connection-menu-button",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "audio-node-empty",
+   "audio-node-status-icon"
+  ],
+  "screen": "354,260 172×172",
+  "nButtons": 4
+ },
+ "unselected2": {
+  "rootAria": "音频 node: 音频 69",
+  "selected": false,
+  "innerText": "音频 69 No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+  "descLike": [
+   "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  ],
+  "allAria": [
+   "音频 node: 音频 69",
+   "Add tags",
+   "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Not selected."
+  ],
+  "testids": [
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "audio-node-empty",
+   "audio-node-status-icon"
+  ],
+  "screen": "354,260 172×172",
+  "nButtons": 1
+ },
+ "moEvents": [
+  {
+   "t": 17,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "BUTTON#flow-node-target-connection-menu-button[inline-flex size-9 shrin]"
+   ]
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#flow-node-target-handle",
+   "newValue": "react-flow__handle react-flow__handle-left nodrag nopan !top"
+  },
+  {
+   "t": 17,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "BUTTON[gap-1 border-solid font-]"
+   ]
+  },
+  {
+   "t": 17,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "SPAN[min-w-canvas-zero max-w-]"
+   ]
+  },
+  {
+   "t": 17,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "BUTTON#flow-node-source-connection-menu-button[inline-flex size-9 shrin]"
+   ]
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#flow-node-source-handle",
+   "newValue": "react-flow__handle react-flow__handle-right nodrag nopan !to"
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#node-toolbar-feature-host",
+   "newValue": "nodrag nopan transition-none motion-safe:transition-none mot"
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#node-toolbar",
+   "newValue": "react-flow__node-toolbar pointer-events-none"
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#selection-context-toolbar-popup-host",
+   "newValue": "react-flow__node-toolbar pointer-events-none"
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#selection-context-toolbar-surface",
+   "newValue": "nopan relative transition-none motion-safe:transition-none m"
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#node-toolbar",
+   "newValue": "react-flow__node-toolbar pointer-events-none"
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#rf__wrapper",
+   "newValue": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outl"
+  },
+  {
+   "t": 17,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#flow-node-media-stroke[pointer-events-none abso]"
+   ]
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#flow-node-target-handle",
+   "newValue": "react-flow__handle react-flow__handle-left nodrag nopan !top"
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "class",
+   "target": "SPAN",
+   "newValue": "absolute right-0 top-0 flex size-canvas-tag-trigger origin-c"
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "class",
+   "target": "BUTTON#flow-node-selected-tag",
+   "newValue": "inline-flex items-center justify-center whitespace-nowrap bo"
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#flow-node-source-handle",
+   "newValue": "react-flow__handle react-flow__handle-right nodrag nopan !to"
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "aria-label",
+   "target": "DIV#audio-node-empty",
+   "newValue": "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Not sel"
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "group relative flex min-h-32 min-w-40 flex-col overflow-visi"
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#rf__node-node_cp2dh7fn7d",
+   "newValue": "react-flow__node react-flow__node-audio nopan selectable dra"
+  },
+  {
+   "t": 154,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#node-feature-chrome-host[pointer-events-none]"
+   ]
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "aria-label",
+   "target": "DIV",
+   "newValue": "提示词"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 154,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "P[]"
+   ]
+  },
+  {
+   "t": 154,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "P[]"
+   ]
+  },
+  {
+   "t": 154,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV[tiptap ProseMirror outli]"
+   ]
+  },
+  {
+   "t": 154,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#node-toolbar[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 154,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#selection-context-toolbar-popup-host[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 154,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV[]"
+   ]
+  },
+  {
+   "t": 154,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#node-toolbar[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "DIV#node-feature-chrome-host[pointer-events-none]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "DIV#node-toolbar[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "DIV#selection-context-toolbar-popup-host[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "DIV[]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "DIV#node-toolbar[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#rf__wrapper",
+   "newValue": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outl"
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "DIV#flow-node-media-stroke[pointer-events-none abso]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#flow-node-target-handle",
+   "newValue": "react-flow__handle react-flow__handle-left nodrag nopan !top"
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "BUTTON#flow-node-target-connection-menu-button[inline-flex size-9 shrin]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "SPAN[min-w-canvas-zero max-w-]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "BUTTON[gap-1 border-solid font-]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "SPAN",
+   "newValue": "absolute right-0 top-0 flex size-canvas-tag-trigger origin-c"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "BUTTON#flow-node-selected-tag",
+   "newValue": "inline-flex items-center justify-center whitespace-nowrap bo"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#flow-node-source-handle",
+   "newValue": "react-flow__handle react-flow__handle-right nodrag nopan !to"
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "BUTTON#flow-node-source-connection-menu-button[inline-flex size-9 shrin]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "aria-label",
+   "target": "DIV#audio-node-empty",
+   "newValue": "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Selecte"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "group relative flex min-h-32 min-w-40 flex-col overflow-visi"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#rf__node-node_cp2dh7fn7d",
+   "newValue": "react-flow__node react-flow__node-audio nopan selected selec"
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV[col-start-1 row-start-1 ]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "DIV[col-start-1 row-start-1 ]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV[group/scrollbar-overlay ]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "DIV[tiptap ProseMirror outli]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "aria-label",
+   "target": "DIV",
+   "newValue": "提示词"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "P[]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "P[]"
+   ]
+  },
+  {
+   "t": 2017,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#node-toolbar-feature-host",
+   "newValue": "nodrag nopan transition-none motion-safe:transition-none mot"
+  },
+  {
+   "t": 2017,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#selection-context-toolbar-surface",
+   "newValue": "nopan relative transition-none motion-safe:transition-none m"
+  },
+  {
+   "t": 3698,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "BUTTON#flow-node-target-connection-menu-button[inline-flex size-9 shrin]"
+   ]
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#flow-node-target-handle",
+   "newValue": "react-flow__handle react-flow__handle-left nodrag nopan !top"
+  },
+  {
+   "t": 3698,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "BUTTON[gap-1 border-solid font-]"
+   ]
+  },
+  {
+   "t": 3698,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "SPAN[min-w-canvas-zero max-w-]"
+   ]
+  },
+  {
+   "t": 3698,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "BUTTON#flow-node-source-connection-menu-button[inline-flex size-9 shrin]"
+   ]
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#flow-node-source-handle",
+   "newValue": "react-flow__handle react-flow__handle-right nodrag nopan !to"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#node-toolbar-feature-host",
+   "newValue": "nodrag nopan transition-none motion-safe:transition-none mot"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#node-toolbar",
+   "newValue": "react-flow__node-toolbar pointer-events-none"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#selection-context-toolbar-popup-host",
+   "newValue": "react-flow__node-toolbar pointer-events-none"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#selection-context-toolbar-surface",
+   "newValue": "nopan relative transition-none motion-safe:transition-none m"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#node-toolbar",
+   "newValue": "react-flow__node-toolbar pointer-events-none"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#rf__wrapper",
+   "newValue": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outl"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#flow-node-media-stroke",
+   "newValue": "pointer-events-none absolute z-canvas-node-interaction-strok"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#flow-node-target-handle",
+   "newValue": "react-flow__handle react-flow__handle-left nodrag nopan !top"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "SPAN",
+   "newValue": "absolute right-0 top-0 flex size-canvas-tag-trigger origin-c"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "BUTTON#flow-node-selected-tag",
+   "newValue": "inline-flex items-center justify-center whitespace-nowrap bo"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#flow-node-source-handle",
+   "newValue": "react-flow__handle react-flow__handle-right nodrag nopan !to"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "aria-label",
+   "target": "DIV#audio-node-empty",
+   "newValue": "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Not sel"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "group relative flex min-h-32 min-w-40 flex-col overflow-visi"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV#rf__node-node_cp2dh7fn7d",
+   "newValue": "react-flow__node react-flow__node-audio nopan selectable dra"
+  },
+  {
+   "t": 3708,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#flow-node-media-stroke[pointer-events-none abso]"
+   ]
+  },
+  {
+   "t": 3852,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#node-feature-chrome-host[pointer-events-none]"
+   ]
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "aria-label",
+   "target": "DIV",
+   "newValue": "提示词"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "class",
+   "target": "DIV",
+   "newValue": "tiptap ProseMirror outline-none whitespace-pre-wrap [caret-s"
+  },
+  {
+   "t": 3852,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "P[]"
+   ]
+  },
+  {
+   "t": 3852,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "P[]"
+   ]
+  },
+  {
+   "t": 3852,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV[tiptap ProseMirror outli]"
+   ]
+  },
+  {
+   "t": 3852,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#node-toolbar[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 3852,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#selection-context-toolbar-popup-host[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 3852,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV[]"
+   ]
+  },
+  {
+   "t": 3852,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#node-toolbar[react-flow__node-toolbar]"
+   ]
+  }
+ ],
+ "moInteresting": [
+  {
+   "t": 17,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "BUTTON#flow-node-target-connection-menu-button[inline-flex size-9 shrin]"
+   ]
+  },
+  {
+   "t": 17,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "BUTTON#flow-node-source-connection-menu-button[inline-flex size-9 shrin]"
+   ]
+  },
+  {
+   "t": 17,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#flow-node-media-stroke[pointer-events-none abso]"
+   ]
+  },
+  {
+   "t": 154,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#node-feature-chrome-host[pointer-events-none]"
+   ]
+  },
+  {
+   "t": 154,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#node-toolbar[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 154,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#selection-context-toolbar-popup-host[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 154,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#node-toolbar[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "DIV#node-feature-chrome-host[pointer-events-none]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "DIV#node-toolbar[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "DIV#selection-context-toolbar-popup-host[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "DIV#node-toolbar[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "DIV#flow-node-media-stroke[pointer-events-none abso]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "BUTTON#flow-node-target-connection-menu-button[inline-flex size-9 shrin]"
+   ]
+  },
+  {
+   "t": 1879,
+   "type": "childList",
+   "added": 1,
+   "removed": 0,
+   "addedSample": [
+    "BUTTON#flow-node-source-connection-menu-button[inline-flex size-9 shrin]"
+   ]
+  },
+  {
+   "t": 3698,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "BUTTON#flow-node-target-connection-menu-button[inline-flex size-9 shrin]"
+   ]
+  },
+  {
+   "t": 3698,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "BUTTON#flow-node-source-connection-menu-button[inline-flex size-9 shrin]"
+   ]
+  },
+  {
+   "t": 3708,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#flow-node-media-stroke[pointer-events-none abso]"
+   ]
+  },
+  {
+   "t": 3852,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#node-feature-chrome-host[pointer-events-none]"
+   ]
+  },
+  {
+   "t": 3852,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#node-toolbar[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 3852,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#selection-context-toolbar-popup-host[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 3852,
+   "type": "childList",
+   "added": 0,
+   "removed": 1,
+   "removedSample": [
+    "DIV#node-toolbar[react-flow__node-toolbar]"
+   ]
+  },
+  {
+   "t": 17,
+   "type": "attributes",
+   "attr": "aria-label",
+   "target": "DIV#audio-node-empty",
+   "newValue": "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Not sel"
+  },
+  {
+   "t": 154,
+   "type": "attributes",
+   "attr": "aria-label",
+   "target": "DIV",
+   "newValue": "提示词"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "aria-label",
+   "target": "DIV#audio-node-empty",
+   "newValue": "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Selecte"
+  },
+  {
+   "t": 1879,
+   "type": "attributes",
+   "attr": "aria-label",
+   "target": "DIV",
+   "newValue": "提示词"
+  },
+  {
+   "t": 3698,
+   "type": "attributes",
+   "attr": "aria-label",
+   "target": "DIV#audio-node-empty",
+   "newValue": "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Not sel"
+  },
+  {
+   "t": 3852,
+   "type": "attributes",
+   "attr": "aria-label",
+   "target": "DIV",
+   "newValue": "提示词"
+  }
+ ],
+ "threeStates": {
+  "unselected": {
+   "rootAria": "音频 node: 音频 69",
+   "selected": false,
+   "innerText": "音频 69 No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+   "descLike": [
+    "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Not selected."
+   ],
+   "allAria": [
+    "音频 node: 音频 69",
+    "Add tags",
+    "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Not selected."
+   ],
+   "testids": [
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "audio-node-empty",
+    "audio-node-status-icon"
+   ],
+   "screen": "354,260 172×172",
+   "nButtons": 1
+  },
+  "reselected": {
+   "rootAria": "音频 node: 音频 69",
+   "selected": true,
+   "innerText": "音频 69 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "descLike": [
+    "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Selected."
+   ],
+   "allAria": [
+    "音频 node: 音频 69",
+    "Create connected node before 音频 69",
+    "Rename 音频 69",
+    "Add tags",
+    "Create connected node after 音频 69",
+    "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Selected."
+   ],
+   "testids": [
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-target-connection-menu-button",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "flow-node-source-connection-menu-button",
+    "audio-node-empty",
+    "audio-node-status-icon"
+   ],
+   "screen": "354,260 172×172",
+   "nButtons": 4
+  },
+  "unselected2": {
+   "rootAria": "音频 node: 音频 69",
+   "selected": false,
+   "innerText": "音频 69 No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+   "descLike": [
+    "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Not selected."
+   ],
+   "allAria": [
+    "音频 node: 音频 69",
+    "Add tags",
+    "暂无音频. No resources: 0 ready, 0 processing, 0 failed. Not selected."
+   ],
+   "testids": [
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "audio-node-empty",
+    "audio-node-status-icon"
+   ],
+   "screen": "354,260 172×172",
+   "nButtons": 1
+  }
+ },
+ "end": {
+  "nodes": "77",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}

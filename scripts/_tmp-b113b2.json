@@ -1,0 +1,3082 @@
+{
+ "at": "2026-10-02T20:29:38.331Z",
+ "round": "b2",
+ "start": {
+  "nodes": "78",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "selfCheck": {
+  "t1": true,
+  "self": true,
+  "n": 78
+ },
+ "t1State": {
+  "selected": true,
+  "inner": "jimeng-b104-test 00:00:04 00 : 00 : 04 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "tids": [
+   "flow-node-media-stroke",
+   "flow-node-target-handle",
+   "flow-node-title",
+   "flow-node-selected-tag",
+   "flow-node-source-handle",
+   "flow-node-source-connection-menu-button",
+   "audio-node-result",
+   "audio-result-gallery",
+   "audio-simple-player",
+   "audio-timeline-visual",
+   "audio-playback-waveform",
+   "audio-waveform-base",
+   "audio-waveform-progress",
+   "audio-waveform-playhead",
+   "audio-waveform-playhead-line",
+   "audio-waveform-playhead-cap",
+   "audio-duration",
+   "audio-duration-accessible"
+  ],
+  "durs": [
+   {
+    "tid": "audio-duration",
+    "txt": "00:00:04 00 : 00 : 04",
+    "r": [
+     587,
+     440,
+     62,
+     15
+    ]
+   },
+   {
+    "tid": "audio-duration-accessible",
+    "txt": "00:00:04",
+    "r": [
+     587,
+     439,
+     1,
+     1
+    ]
+   }
+  ]
+ },
+ "arm1": {
+  "btn": {
+   "ok": true,
+   "aria": "Play jimeng-b104-test",
+   "tid": null,
+   "rect": [
+    717,
+    438,
+    19,
+    19
+   ],
+   "hitTag": "path",
+   "hitDesc": "path#-",
+   "nCandidates": 1
+  },
+  "before": {
+   "tids": [
+    "audio-simple-player"
+   ],
+   "pp": [
+    "Play jimeng-b104-test#-@node"
+   ],
+   "audios": [],
+   "at": 1790972978349,
+   "lbl": "arm1"
+  },
+  "moInstall": {
+   "tag": "arm1",
+   "channels": [
+    "childList",
+    "attributes",
+    "characterData"
+   ]
+  },
+  "samples": [
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 0,
+      "dur": 0,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972978422,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 0,
+      "dur": 0,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972978686,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 0.02,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972978946,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 0.02,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972979203,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 0.07,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972979461,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 0.32,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972979715,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 0.58,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972979974,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 0.83,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972980226,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 1.09,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972980479,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 1.34,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972980733,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 1.59,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972980986,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 1.85,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972981239,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 2.1,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972981491,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 2.35,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972981743,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 2.6,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972981996,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 2.86,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972982249,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 3.11,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972982502,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 3.36,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972982755,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 3.62,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972983007,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Pause jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": false,
+      "t": "audio-playback-media",
+      "ct": 3.87,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972983260,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972983514,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972983768,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972984021,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972984273,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972984526,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972984780,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972985033,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972985287,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972985539,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972985793,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972986046,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972986299,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972986553,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972986808,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972987061,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972987325,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972987579,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972987832,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972988085,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972988338,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972988591,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972988844,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972989097,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972989351,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972989604,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972989856,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972990109,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972990362,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972990615,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972990868,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972991122,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972991377,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972991634,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972991887,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972992140,
+    "lbl": "w"
+   },
+   {
+    "tids": [
+     "audio-simple-player-active"
+    ],
+    "pp": [
+     "Play jimeng-b104-test#-@node"
+    ],
+    "audios": [
+     {
+      "paused": true,
+      "t": "audio-playback-media",
+      "ct": 4,
+      "dur": 4,
+      "srcTail": "03042531F613FEED499AD9AE287A"
+     }
+    ],
+    "at": 1790972992394,
+    "lbl": "w"
+   }
+  ],
+  "elapsed": 14294,
+  "mo": {
+   "n": 294,
+   "ev": [
+    {
+     "t": 62,
+     "type": "characterData",
+     "txt": "00:00:00"
+    },
+    {
+     "t": 62,
+     "type": "characterData",
+     "txt": "00"
+    },
+    {
+     "t": 62,
+     "type": "attributes",
+     "attr": "aria-label",
+     "on": "BUTTON[Pause jimeng-b104-test]",
+     "new": "Pause jimeng-b104-test"
+    },
+    {
+     "t": 62,
+     "type": "childList",
+     "ch": {
+      "added": [
+       "AUDIO#audio-playback-media"
+      ],
+      "removed": []
+     }
+    },
+    {
+     "t": 62,
+     "type": "attributes",
+     "attr": "data-testid",
+     "on": "DIV#audio-simple-player-active",
+     "new": "audio-simple-player-active"
+    },
+    {
+     "t": 356,
+     "type": "characterData",
+     "txt": "jimeng-b104-test: Playing audio"
+    },
+    {
+     "t": 382,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 382,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 417,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 417,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1079,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1079,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1114,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1114,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1135,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1135,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1147,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1147,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1182,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1182,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1217,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1217,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1247,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1247,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1281,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1281,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1341,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1341,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1348,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1348,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1381,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1381,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1400,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1400,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1421,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1421,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1448,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1448,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1483,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1483,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1515,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1515,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1547,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1547,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1547,
+     "type": "attributes",
+     "attr": "aria-valuenow",
+     "on": "DIV#audio-playback-waveform[Seek jimeng-b104-test]"
+    },
+    {
+     "t": 1580,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1580,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1614,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1614,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1647,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1647,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1667,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1667,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1680,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1680,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1714,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1714,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1747,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1747,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1781,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1781,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1814,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1814,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1847,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1847,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1880,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1880,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1914,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1914,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1933,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1933,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1948,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1948,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 1981,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 1981,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2014,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2014,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2048,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2048,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2048,
+     "type": "characterData",
+     "txt": "00:00:01"
+    },
+    {
+     "t": 2048,
+     "type": "characterData",
+     "txt": "01"
+    },
+    {
+     "t": 2080,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2080,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2114,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2114,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2148,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2148,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2180,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2180,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2198,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2198,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2213,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2213,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2247,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2247,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2280,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2280,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2314,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2314,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2347,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2347,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2380,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2380,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2414,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2414,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2448,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2448,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2463,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2463,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2481,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2481,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2513,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2513,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2546,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2546,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2546,
+     "type": "attributes",
+     "attr": "aria-valuenow",
+     "on": "DIV#audio-playback-waveform[Seek jimeng-b104-test]"
+    },
+    {
+     "t": 2580,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2580,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2613,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2613,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2647,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2647,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2681,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2681,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2714,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2714,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2730,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2730,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2747,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2747,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2781,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2781,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2814,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2814,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2847,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2847,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2880,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2880,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2914,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2914,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2947,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2947,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2980,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2980,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 2995,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 2995,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3014,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3014,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3047,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3047,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3047,
+     "type": "characterData",
+     "txt": "00:00:02"
+    },
+    {
+     "t": 3047,
+     "type": "characterData",
+     "txt": "02"
+    },
+    {
+     "t": 3081,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3081,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3114,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3114,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3147,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3147,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3181,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3181,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3213,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3213,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3247,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3247,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3261,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3261,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3280,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3280,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3313,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3313,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3347,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3347,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3380,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3380,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3414,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3414,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3448,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3448,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3481,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3481,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3513,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3513,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3525,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3525,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3547,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3547,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3547,
+     "type": "attributes",
+     "attr": "aria-valuenow",
+     "on": "DIV#audio-playback-waveform[Seek jimeng-b104-test]"
+    },
+    {
+     "t": 3580,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3580,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3614,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3614,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3647,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3647,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3680,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3680,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3713,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3713,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3747,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3747,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3780,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3780,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3791,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3791,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3814,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3814,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3846,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3846,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3880,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3881,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3913,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3913,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3947,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3947,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 3981,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 3981,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4014,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4014,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4047,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4047,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4047,
+     "type": "characterData",
+     "txt": "00:00:03"
+    },
+    {
+     "t": 4047,
+     "type": "characterData",
+     "txt": "03"
+    },
+    {
+     "t": 4057,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4057,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4081,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4081,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4113,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4113,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4147,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4147,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4180,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4180,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4214,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4214,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4247,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4247,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4280,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4280,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4314,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4314,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4322,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4322,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4347,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4347,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4380,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4380,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4414,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4414,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4447,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4447,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4482,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4482,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4514,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4514,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4546,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4546,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4546,
+     "type": "attributes",
+     "attr": "aria-valuenow",
+     "on": "DIV#audio-playback-waveform[Seek jimeng-b104-test]"
+    },
+    {
+     "t": 4580,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4580,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4589,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4589,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4614,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4614,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4646,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4646,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4681,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4681,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4714,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4714,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4746,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4746,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4780,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4780,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4814,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4814,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4848,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4848,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4853,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4853,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4881,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4881,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4914,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4914,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4947,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4947,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 4981,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 4981,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 5014,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 5014,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 5047,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN"
+    },
+    {
+     "t": 5047,
+     "type": "attributes",
+     "attr": "style",
+     "on": "SPAN#audio-waveform-playhead"
+    },
+    {
+     "t": 5047,
+     "type": "characterData",
+     "txt": "00:00:04"
+    },
+    {
+     "t": 5047,
+     "type": "characterData",
+     "txt": "04"
+    },
+    {
+     "t": 5048,
+     "type": "attributes",
+     "attr": "aria-label",
+     "on": "BUTTON[Play jimeng-b104-test]",
+     "new": "Play jimeng-b104-test"
+    },
+    {
+     "t": 5048,
+     "type": "characterData",
+     "txt": "jimeng-b104-test: Audio paused"
+    }
+   ]
+  },
+  "seq": [
+   {
+    "t": 1790972978422,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,0]]"
+   },
+   {
+    "t": 1790972978946,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,0.02]]"
+   },
+   {
+    "t": 1790972979461,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,0.07]]"
+   },
+   {
+    "t": 1790972979715,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,0.32]]"
+   },
+   {
+    "t": 1790972979974,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,0.58]]"
+   },
+   {
+    "t": 1790972980226,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,0.83]]"
+   },
+   {
+    "t": 1790972980479,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,1.09]]"
+   },
+   {
+    "t": 1790972980733,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,1.34]]"
+   },
+   {
+    "t": 1790972980986,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,1.59]]"
+   },
+   {
+    "t": 1790972981239,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,1.85]]"
+   },
+   {
+    "t": 1790972981491,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,2.1]]"
+   },
+   {
+    "t": 1790972981743,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,2.35]]"
+   },
+   {
+    "t": 1790972981996,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,2.6]]"
+   },
+   {
+    "t": 1790972982249,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,2.86]]"
+   },
+   {
+    "t": 1790972982502,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,3.11]]"
+   },
+   {
+    "t": 1790972982755,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,3.36]]"
+   },
+   {
+    "t": 1790972983007,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,3.62]]"
+   },
+   {
+    "t": 1790972983260,
+    "tids": "audio-simple-player-active",
+    "pp": "Pause jimeng-b104-test#-@node",
+    "au": "[[false,3.87]]"
+   },
+   {
+    "t": 1790972983514,
+    "tids": "audio-simple-player-active",
+    "pp": "Play jimeng-b104-test#-@node",
+    "au": "[[true,4]]"
+   }
+  ]
+ },
+ "selfState": {
+  "selected": true,
+  "inner": "音频 69 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+  "toolbar": {
+   "present": true,
+   "txt": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 Current price 12. Original price 24. Discount 12. 积分5折. 生成 请输入提示词",
+   "btns": [
+    "展开音频生成器",
+    "添加参考",
+    "引用参考",
+    "创作类型: 音频生成",
+    "选择模型: SeedAudio 1.0, New",
+    "音频生成: 全能配音",
+    "音色: 音色库",
+    "引用参考",
+    "显示折扣详情",
+    "生成"
+   ]
+  }
+ },
+ "libBtn": {
+  "__err": "not-found"
+ },
+ "libExpanded": null,
+ "arm2": {
+  "fail": {
+   "__err": "not-found"
+  }
+ },
+ "compare": {
+  "arm1": {
+   "flips": 18,
+   "mo": 294,
+   "secs": 14
+  },
+  "arm2": null
+ },
+ "end": {
+  "nodes": "78",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}

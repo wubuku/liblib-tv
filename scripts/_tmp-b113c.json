@@ -1,0 +1,1015 @@
+{
+ "at": "2026-10-02T20:44:15.800Z",
+ "round": "c",
+ "start": {
+  "nodes": "78",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "voiceBtn0": {
+  "aria": "音色: 音色库",
+  "exp": "true",
+  "x": 452,
+  "y": 623
+ },
+ "voiceNamesRaw": [
+  "tags",
+  "生动解说",
+  "精品有声书",
+  "桃花庵主",
+  "猪猪侠",
+  "灵动女声",
+  "苏感低音",
+  "乌萨七",
+  "唐僧",
+  "厚实男声",
+  "阳光美眉",
+  "和蔼奶奶",
+  "派星星",
+  "佩奇猪",
+  "萌娃百科",
+  "磁性男主播",
+  "清醒语录",
+  "甜美软妹",
+  "小八酱"
+ ],
+ "voiceNames": [
+  "生动解说",
+  "精品有声书",
+  "桃花庵主",
+  "猪猪侠",
+  "灵动女声",
+  "苏感低音",
+  "乌萨七",
+  "唐僧",
+  "厚实男声",
+  "阳光美眉",
+  "和蔼奶奶",
+  "派星星",
+  "佩奇猪",
+  "萌娃百科",
+  "磁性男主播",
+  "清醒语录",
+  "甜美软妹",
+  "小八酱"
+ ],
+ "voiceNameFalsePositives": [
+  "tags"
+ ],
+ "exampleNamesInLib": {
+  "父亲": false,
+  "女儿": false,
+  "生动解说": true
+ },
+ "pick": "生动解说",
+ "pickIsReal": true,
+ "voiceBtnCollapse": {
+  "aria": "音色: 音色库",
+  "exp": "true",
+  "x": 452,
+  "y": 623
+ },
+ "voiceBtnAfter": "false",
+ "libOpenNow": false,
+ "editors": [
+  {
+   "inTb": true,
+   "inLib": false,
+   "rect": [
+    117,
+    529,
+    646,
+    28
+   ],
+   "vis": true
+  }
+ ],
+ "keyGuard": {
+  "safe": false,
+  "where": "DIV aria=\"提示词\"",
+  "reason": "焦点在输入面（DIV aria=\"提示词\"）——按字母键会变成打字，禁止"
+ },
+ "keyGuardWaiver": {
+  "granted": true,
+  "why": "本轮测试的前提就是焦点在编辑器里；守卫报 unsafe 恰是期望状态。焦点由本脚本自己点进去；只往本批次自建的空节点提示词里打字；不触发任何扣费/生成动作。（批次 107 已有同类放行先例）"
+ },
+ "steps": [
+  {
+   "label": "S1-普通字",
+   "typed": "灯塔熄灭了",
+   "before": {
+    "at": 1790973858566,
+    "lbl": "S1-普通字-before",
+    "scoped": true,
+    "nProseMirror": 1,
+    "html": "<p><br class=\"ProseMirror-trailingBreak\"></p>",
+    "text": "",
+    "childTags": [
+     "P",
+     "BR"
+    ],
+    "mentions": [],
+    "atomCount": 0,
+    "completions": [],
+    "panelChips": [
+     "生成历史",
+     "Add tags",
+     "引用参考",
+     "生成"
+    ],
+    "panelTop": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 Current price 12. Original price 24. Discount 12. 积分5折. 生成 请输入提示词"
+   },
+   "after": {
+    "at": 1790973860343,
+    "lbl": "S1-普通字-after",
+    "scoped": true,
+    "nProseMirror": 1,
+    "html": "<p>灯塔熄灭了</p>",
+    "text": "灯塔熄灭了",
+    "childTags": [
+     "P"
+    ],
+    "mentions": [],
+    "atomCount": 0,
+    "completions": [],
+    "panelChips": [
+     "生成历史",
+     "Add tags",
+     "引用参考",
+     "生成"
+    ],
+    "panelTop": "灯塔熄灭了 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 Current price 12. Original price 24. Discount 12. 积分5折. 生成"
+   }
+  },
+  {
+   "label": "S2-只打at",
+   "typed": "@",
+   "before": {
+    "at": 1790973860360,
+    "lbl": "S2-只打at-before",
+    "scoped": true,
+    "nProseMirror": 1,
+    "html": "<p>灯塔熄灭了</p>",
+    "text": "灯塔熄灭了",
+    "childTags": [
+     "P"
+    ],
+    "mentions": [],
+    "atomCount": 0,
+    "completions": [],
+    "panelChips": [
+     "生成历史",
+     "Add tags",
+     "引用参考",
+     "生成"
+    ],
+    "panelTop": "灯塔熄灭了 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 Current price 12. Original price 24. Discount 12. 积分5折. 生成"
+   },
+   "after": {
+    "at": 1790973861899,
+    "lbl": "S2-只打at-after",
+    "scoped": true,
+    "nProseMirror": 1,
+    "html": "<p>灯塔熄灭了@</p>",
+    "text": "灯塔熄灭了@",
+    "childTags": [
+     "P"
+    ],
+    "mentions": [],
+    "atomCount": 0,
+    "completions": [
+     {
+      "sel": "[role=listbox]",
+      "txt": "添加参考 主体 图片 音频",
+      "rect": [
+       67,
+       315,
+       240,
+       192
+      ]
+     },
+     {
+      "sel": "[role=option]",
+      "txt": "主体",
+      "rect": [
+       71,
+       351,
+       232,
+       48
+      ]
+     },
+     {
+      "sel": "[role=option]",
+      "txt": "图片",
+      "rect": [
+       71,
+       403,
+       232,
+       48
+      ]
+     },
+     {
+      "sel": "[role=option]",
+      "txt": "音频",
+      "rect": [
+       71,
+       455,
+       232,
+       48
+      ]
+     },
+     {
+      "sel": "[data-testid*=\"mention\" i]",
+      "txt": "添加参考 主体 图片 音频",
+      "rect": [
+       67,
+       315,
+       240,
+       192
+      ]
+     }
+    ],
+    "panelChips": [
+     "生成历史",
+     "Add tags",
+     "引用参考",
+     "生成"
+    ],
+    "panelTop": "灯塔熄灭了@ 添加参考 主体 图片 音频 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 Current price 12. Original price 24. Discount 12. 积分5折. 生成"
+   }
+  },
+  {
+   "label": "S3-补名字",
+   "typed": "生动解说",
+   "before": {
+    "at": 1790973861910,
+    "lbl": "S3-补名字-before",
+    "scoped": true,
+    "nProseMirror": 1,
+    "html": "<p>灯塔熄灭了@</p>",
+    "text": "灯塔熄灭了@",
+    "childTags": [
+     "P"
+    ],
+    "mentions": [],
+    "atomCount": 0,
+    "completions": [
+     {
+      "sel": "[role=listbox]",
+      "txt": "添加参考 主体 图片 音频",
+      "rect": [
+       67,
+       315,
+       240,
+       192
+      ]
+     },
+     {
+      "sel": "[role=option]",
+      "txt": "主体",
+      "rect": [
+       71,
+       351,
+       232,
+       48
+      ]
+     },
+     {
+      "sel": "[role=option]",
+      "txt": "图片",
+      "rect": [
+       71,
+       403,
+       232,
+       48
+      ]
+     },
+     {
+      "sel": "[role=option]",
+      "txt": "音频",
+      "rect": [
+       71,
+       455,
+       232,
+       48
+      ]
+     },
+     {
+      "sel": "[data-testid*=\"mention\" i]",
+      "txt": "添加参考 主体 图片 音频",
+      "rect": [
+       67,
+       315,
+       240,
+       192
+      ]
+     }
+    ],
+    "panelChips": [
+     "生成历史",
+     "Add tags",
+     "引用参考",
+     "生成"
+    ],
+    "panelTop": "灯塔熄灭了@ 添加参考 主体 图片 音频 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 Current price 12. Original price 24. Discount 12. 积分5折. 生成"
+   },
+   "after": {
+    "at": 1790973863995,
+    "lbl": "S3-补名字-after",
+    "scoped": true,
+    "nProseMirror": 1,
+    "html": "<p>灯塔熄灭了@生动解说</p>",
+    "text": "灯塔熄灭了@生动解说",
+    "childTags": [
+     "P"
+    ],
+    "mentions": [],
+    "atomCount": 0,
+    "completions": [],
+    "panelChips": [
+     "生成历史",
+     "Add tags",
+     "引用参考",
+     "生成"
+    ],
+    "panelTop": "灯塔熄灭了@生动解说 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 Current price 12. Original price 24. Discount 12. 积分5折. 生成"
+   }
+  },
+  {
+   "label": "S4-继续打字",
+   "typed": "，你好",
+   "before": {
+    "at": 1790973864017,
+    "lbl": "S4-继续打字-before",
+    "scoped": true,
+    "nProseMirror": 1,
+    "html": "<p>灯塔熄灭了@生动解说</p>",
+    "text": "灯塔熄灭了@生动解说",
+    "childTags": [
+     "P"
+    ],
+    "mentions": [],
+    "atomCount": 0,
+    "completions": [],
+    "panelChips": [
+     "生成历史",
+     "Add tags",
+     "引用参考",
+     "生成"
+    ],
+    "panelTop": "灯塔熄灭了@生动解说 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 Current price 12. Original price 24. Discount 12. 积分5折. 生成"
+   },
+   "after": {
+    "at": 1790973865769,
+    "lbl": "S4-继续打字-after",
+    "scoped": true,
+    "nProseMirror": 1,
+    "html": "<p>灯塔熄灭了@生动解说，你好</p>",
+    "text": "灯塔熄灭了@生动解说，你好",
+    "childTags": [
+     "P"
+    ],
+    "mentions": [],
+    "atomCount": 0,
+    "completions": [],
+    "panelChips": [
+     "生成历史",
+     "Add tags",
+     "引用参考",
+     "生成"
+    ],
+    "panelTop": "灯塔熄灭了@生动解说，你好 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 Current price 12. Original price 24. Discount 12. 积分5折. 生成"
+   }
+  }
+ ],
+ "empty": {
+  "at": 1790973858550,
+  "lbl": "empty",
+  "scoped": true,
+  "nProseMirror": 1,
+  "html": "<p><br class=\"ProseMirror-trailingBreak\"></p>",
+  "text": "",
+  "childTags": [
+   "P",
+   "BR"
+  ],
+  "mentions": [],
+  "atomCount": 0,
+  "completions": [],
+  "panelChips": [
+   "生成历史",
+   "Add tags",
+   "引用参考",
+   "生成"
+  ],
+  "panelTop": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 Current price 12. Original price 24. Discount 12. 积分5折. 生成 请输入提示词"
+ },
+ "moEvents": [
+  {
+   "t": 143,
+   "type": "childList",
+   "added": [
+    "#text(\"灯\")"
+   ],
+   "removed": []
+  },
+  {
+   "t": 143,
+   "type": "childList",
+   "added": [],
+   "removed": [
+    "BR.ProseMirror-trailingBreak"
+   ]
+  },
+  {
+   "t": 143,
+   "type": "characterData",
+   "on": "#text(\"灯\")"
+  },
+  {
+   "t": 143,
+   "type": "childList",
+   "added": [
+    "#text(\"灯\")"
+   ],
+   "removed": []
+  },
+  {
+   "t": 143,
+   "type": "childList",
+   "added": [],
+   "removed": [
+    "#text(\"灯\")"
+   ]
+  },
+  {
+   "t": 143,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 148,
+   "type": "childList",
+   "added": [],
+   "removed": [
+    "DIV.relative.col-start-1"
+   ]
+  },
+  {
+   "t": 149,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.max-w-full.font-dreamina-cn"
+  },
+  {
+   "t": 149,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.relative.w-full"
+  },
+  {
+   "t": 149,
+   "type": "childList",
+   "added": [],
+   "removed": [
+    "SPAN.inline-flex"
+   ]
+  },
+  {
+   "t": 149,
+   "type": "childList",
+   "added": [
+    "BUTTON.inline-flex.items-center"
+   ],
+   "removed": []
+  },
+  {
+   "t": 253,
+   "type": "characterData",
+   "on": "#text(\"灯塔\")"
+  },
+  {
+   "t": 253,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 356,
+   "type": "characterData",
+   "on": "#text(\"灯塔熄\")"
+  },
+  {
+   "t": 356,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 457,
+   "type": "characterData",
+   "on": "#text(\"灯塔熄灭\")"
+  },
+  {
+   "t": 457,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 573,
+   "type": "characterData",
+   "on": "#text(\"灯塔熄灭了\")"
+  },
+  {
+   "t": 573,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 891,
+   "type": "characterData",
+   "on": "#text(\"78 nodes, 0 edges, 1\")"
+  },
+  {
+   "t": 891,
+   "type": "characterData",
+   "on": "#text(\"保存中...\")"
+  },
+  {
+   "t": 1017,
+   "type": "characterData",
+   "on": "#text(\"78 nodes, 0 edges, 1\")"
+  },
+  {
+   "t": 1017,
+   "type": "characterData",
+   "on": "#text(\"已保存\")"
+  },
+  {
+   "t": 1825,
+   "type": "characterData",
+   "on": "#text(\"灯塔熄灭了@\")"
+  },
+  {
+   "t": 1825,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 1836,
+   "type": "childList",
+   "added": [
+    "DIV#generation-mention-panel~mention.z-50.rounded-octo-ui-control"
+   ],
+   "removed": []
+  },
+  {
+   "t": 1836,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 2154,
+   "type": "characterData",
+   "on": "#text(\"78 nodes, 0 edges, 1\")"
+  },
+  {
+   "t": 2154,
+   "type": "characterData",
+   "on": "#text(\"保存中...\")"
+  },
+  {
+   "t": 2291,
+   "type": "characterData",
+   "on": "#text(\"78 nodes, 0 edges, 1\")"
+  },
+  {
+   "t": 2291,
+   "type": "characterData",
+   "on": "#text(\"已保存\")"
+  },
+  {
+   "t": 3490,
+   "type": "characterData",
+   "on": "#text(\"灯塔熄灭了@生\")"
+  },
+  {
+   "t": 3490,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 3495,
+   "type": "childList",
+   "added": [],
+   "removed": [
+    "DIV.flex.flex-col"
+   ]
+  },
+  {
+   "t": 3495,
+   "type": "childList",
+   "added": [
+    "DIV.flex.flex-col"
+   ],
+   "removed": []
+  },
+  {
+   "t": 3495,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 3590,
+   "type": "characterData",
+   "on": "#text(\"灯塔熄灭了@生动\")"
+  },
+  {
+   "t": 3590,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 3693,
+   "type": "characterData",
+   "on": "#text(\"灯塔熄灭了@生动解\")"
+  },
+  {
+   "t": 3693,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 3803,
+   "type": "characterData",
+   "on": "#text(\"灯塔熄灭了@生动解说\")"
+  },
+  {
+   "t": 3803,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 4117,
+   "type": "characterData",
+   "on": "#text(\"78 nodes, 0 edges, 1\")"
+  },
+  {
+   "t": 4117,
+   "type": "characterData",
+   "on": "#text(\"保存中...\")"
+  },
+  {
+   "t": 4180,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV#generation-mention-panel~mention.z-50.rounded-octo-ui-control"
+  },
+  {
+   "t": 4210,
+   "type": "characterData",
+   "on": "#text(\"78 nodes, 0 edges, 1\")"
+  },
+  {
+   "t": 4210,
+   "type": "characterData",
+   "on": "#text(\"已保存\")"
+  },
+  {
+   "t": 4383,
+   "type": "childList",
+   "added": [],
+   "removed": [
+    "DIV#generation-mention-panel~mention.z-50.rounded-octo-ui-control"
+   ]
+  },
+  {
+   "t": 4983,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 5579,
+   "type": "characterData",
+   "on": "#text(\"灯塔熄灭了@生动解说，\")"
+  },
+  {
+   "t": 5579,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 5585,
+   "type": "childList",
+   "added": [
+    "DIV#generation-mention-panel~mention.z-50.rounded-octo-ui-control"
+   ],
+   "removed": []
+  },
+  {
+   "t": 5585,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 5585,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 5700,
+   "type": "characterData",
+   "on": "#text(\"灯塔熄灭了@生动解说，你\")"
+  },
+  {
+   "t": 5700,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 5801,
+   "type": "characterData",
+   "on": "#text(\"灯塔熄灭了@生动解说，你好\")"
+  },
+  {
+   "t": 5801,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 6116,
+   "type": "characterData",
+   "on": "#text(\"78 nodes, 0 edges, 1\")"
+  },
+  {
+   "t": 6116,
+   "type": "characterData",
+   "on": "#text(\"保存中...\")"
+  },
+  {
+   "t": 6133,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV#generation-mention-panel~mention.z-50.rounded-octo-ui-control"
+  },
+  {
+   "t": 6226,
+   "type": "characterData",
+   "on": "#text(\"78 nodes, 0 edges, 1\")"
+  },
+  {
+   "t": 6226,
+   "type": "characterData",
+   "on": "#text(\"已保存\")"
+  },
+  {
+   "t": 6351,
+   "type": "childList",
+   "added": [],
+   "removed": [
+    "DIV#generation-mention-panel~mention.z-50.rounded-octo-ui-control"
+   ]
+  },
+  {
+   "t": 6936,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  }
+ ],
+ "moInteresting": [
+  {
+   "t": 143,
+   "type": "childList",
+   "added": [],
+   "removed": [
+    "BR.ProseMirror-trailingBreak"
+   ]
+  },
+  {
+   "t": 143,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 253,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 356,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 457,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 573,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 1825,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 1836,
+   "type": "childList",
+   "added": [
+    "DIV#generation-mention-panel~mention.z-50.rounded-octo-ui-control"
+   ],
+   "removed": []
+  },
+  {
+   "t": 1836,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 3490,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 3495,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 3590,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 3693,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 3803,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 4180,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV#generation-mention-panel~mention.z-50.rounded-octo-ui-control"
+  },
+  {
+   "t": 4383,
+   "type": "childList",
+   "added": [],
+   "removed": [
+    "DIV#generation-mention-panel~mention.z-50.rounded-octo-ui-control"
+   ]
+  },
+  {
+   "t": 4983,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 5579,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 5585,
+   "type": "childList",
+   "added": [
+    "DIV#generation-mention-panel~mention.z-50.rounded-octo-ui-control"
+   ],
+   "removed": []
+  },
+  {
+   "t": 5585,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 5585,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 5700,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 5801,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  },
+  {
+   "t": 6133,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV#generation-mention-panel~mention.z-50.rounded-octo-ui-control"
+  },
+  {
+   "t": 6351,
+   "type": "childList",
+   "added": [],
+   "removed": [
+    "DIV#generation-mention-panel~mention.z-50.rounded-octo-ui-control"
+   ]
+  },
+  {
+   "t": 6936,
+   "type": "attributes",
+   "attr": "class",
+   "on": "DIV.tiptap.ProseMirror"
+  }
+ ],
+ "verdict": [
+  {
+   "label": "S1-普通字",
+   "typed": "灯塔熄灭了",
+   "text": "灯塔熄灭了",
+   "htmlChanged": true,
+   "mentions": 0,
+   "atom": 0,
+   "completions": 0,
+   "compText": []
+  },
+  {
+   "label": "S2-只打at",
+   "typed": "@",
+   "text": "灯塔熄灭了@",
+   "htmlChanged": true,
+   "mentions": 0,
+   "atom": 0,
+   "completions": 5,
+   "compText": [
+    "添加参考 主体 图片 音频",
+    "主体",
+    "图片",
+    "音频",
+    "添加参考 主体 图片 音频"
+   ]
+  },
+  {
+   "label": "S3-补名字",
+   "typed": "生动解说",
+   "text": "灯塔熄灭了@生动解说",
+   "htmlChanged": true,
+   "mentions": 0,
+   "atom": 0,
+   "completions": 0,
+   "compText": []
+  },
+  {
+   "label": "S4-继续打字",
+   "typed": "，你好",
+   "text": "灯塔熄灭了@生动解说，你好",
+   "htmlChanged": true,
+   "mentions": 0,
+   "atom": 0,
+   "completions": 0,
+   "compText": []
+  }
+ ],
+ "end": {
+  "nodes": "78",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}
