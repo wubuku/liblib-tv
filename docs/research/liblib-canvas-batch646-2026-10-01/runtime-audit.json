@@ -1,0 +1,1716 @@
+{
+  "batch": 646,
+  "title": "`own` accepts an ancestor hit, so a control that is clipped out of its own scroller reads clean — the census's third blind spot, and it is what blocked pinning the timeline row",
+  "date": "2026-10-02",
+  "widths": [
+    339,
+    620,
+    703,
+    710,
+    711,
+    712,
+    754,
+    755,
+    761,
+    768,
+    769,
+    770,
+    782,
+    783,
+    898,
+    899,
+    962,
+    963,
+    964,
+    1020,
+    1021,
+    1022,
+    1152
+  ],
+  "windowHeight": 900,
+  "sharedCriterionChange": {
+    "file": "scripts/verify-liblib-batch617.py",
+    "added": [
+      "items[].paintedAtCentre",
+      "items[].paintStackSize",
+      "items[].paintStackTop",
+      "items[].ownBecauseAncestor",
+      "items[].ownButNotPainted",
+      "return.ownButNotPainted"
+    ],
+    "unchanged": [
+      "own",
+      "clipped",
+      "panel",
+      "timelineOverlay",
+      "viewportSqueeze",
+      "unexplained",
+      "blocked",
+      "covered",
+      "bothCoveredAndClipped"
+    ],
+    "why": "the blind spot has to be visible to every later batch, not rediscovered by each of them — the same reasoning 642 used for round controls"
+  },
+  "claims": {
+    "mechanism": "own = hit===el || el.contains(hit) || hit.contains(el); the third branch is satisfied when the hit is an ANCESTOR, and clipping removes painting without touching the DOM tree",
+    "measuredExample": "@1020 删除关键帧 rect=[747,722.5,28,28] vs row 8..760: clipped true, own true, hit = header[data-director-timeline-controls], absent from its own elementsFromPoint stack",
+    "rectVsCentre": "clipping is a RECT test; the timeline row's boundaries are therefore set by rectRight (747 / 775), not by the centres (703 / 761)",
+    "thirdBlindSpot": "after 640's lattice-corner blindness and 641/642's round-control corners, this is a third and different shape: an error in the instrument's own hit test rather than in the probe",
+    "notClaimed": "no defect is claimed — these controls really do scroll back into reach; `own` was NOT changed, only the ground truth was added; zero source-site assertions"
+  },
+  "cells": {
+    "339": {
+      "innerWidth": 339,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        323,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 323,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestorHit": null,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": false,
+          "centreInWindow": false,
+          "stackTop": null,
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": false,
+          "stackTop": null,
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 2,
+      "roundCount": 8,
+      "covered": [
+        [
+          "收起",
+          "导演视角机位视角",
+          [
+            64,
+            5.5,
+            40,
+            40
+          ]
+        ]
+      ],
+      "unreachable": 0
+    },
+    "620": {
+      "innerWidth": 620,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        604,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 604,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 1,
+      "blindLabels": [
+        "模型库"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestorHit": true,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": false,
+          "centreInWindow": false,
+          "stackTop": null,
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": false,
+          "stackTop": null,
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 1,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "703": {
+      "innerWidth": 703,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        687,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 687,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestorHit": null,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": null,
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": false,
+          "stackTop": null,
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 1,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "710": {
+      "innerWidth": 710,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        694,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 694,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 1,
+      "blindLabels": [
+        "添加关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestorHit": true,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": "directorTimelineControls",
+          "inBlindBucket": true,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": false,
+          "stackTop": null,
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 1,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "711": {
+      "innerWidth": 711,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        695,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 695,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 1,
+      "blindLabels": [
+        "添加关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestorHit": true,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": "directorTimelineControls",
+          "inBlindBucket": true,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": false,
+          "stackTop": null,
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 1,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "712": {
+      "innerWidth": 712,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        696,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 696,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestorHit": null,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": false,
+          "stackTop": null,
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 1,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "754": {
+      "innerWidth": 754,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        738,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 738,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestorHit": null,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": false,
+          "stackTop": null,
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 1,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "755": {
+      "innerWidth": 755,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        739,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 739,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestorHit": null,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": false,
+          "stackTop": null,
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 1,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "761": {
+      "innerWidth": 761,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        745,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 745,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestorHit": null,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": null,
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 1,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "768": {
+      "innerWidth": 768,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        752,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 752,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 1,
+      "blindLabels": [
+        "删除关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestorHit": true,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": "directorTimelineControls",
+          "inBlindBucket": true,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 1,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "769": {
+      "innerWidth": 769,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        753,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 753,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 1,
+      "blindLabels": [
+        "删除关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestorHit": true,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": "directorTimelineControls",
+          "inBlindBucket": true,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 0,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "770": {
+      "innerWidth": 770,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        754,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 754,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestorHit": null,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "svg",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 0,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "782": {
+      "innerWidth": 782,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        766,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 766,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestorHit": null,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "svg",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 0,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "783": {
+      "innerWidth": 783,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        767,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 767,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestorHit": null,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "svg",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 0,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "898": {
+      "innerWidth": 898,
+      "family": "narrow",
+      "row": [
+        8,
+        728.5,
+        882,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 882,
+        "scrollWidth": 882,
+        "scrollLeft": 0
+      },
+      "total": 123,
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestorHit": null,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "svg",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 0,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "899": {
+      "innerWidth": 899,
+      "family": "desktop",
+      "row": [
+        8,
+        722.5,
+        631,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 631,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 130,
+      "blindCount": 1,
+      "blindLabels": [
+        "移除角色01 · 陈默 · 变换轨道"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestorHit": true,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": "directorTimelineZoom",
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": true
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": "svg",
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": true
+        }
+      },
+      "jointCount": 8,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "962": {
+      "innerWidth": 962,
+      "family": "desktop",
+      "row": [
+        8,
+        722.5,
+        694,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 694,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 130,
+      "blindCount": 1,
+      "blindLabels": [
+        "添加关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestorHit": true,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": "directorTimelineControls",
+          "inBlindBucket": true,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": "directorTimelineZoom",
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": true
+        }
+      },
+      "jointCount": 7,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "963": {
+      "innerWidth": 963,
+      "family": "desktop",
+      "row": [
+        8,
+        722.5,
+        695,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 695,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 130,
+      "blindCount": 1,
+      "blindLabels": [
+        "添加关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestorHit": true,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": "directorTimelineControls",
+          "inBlindBucket": true,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": "directorTimelineZoom",
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": true
+        }
+      },
+      "jointCount": 7,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "964": {
+      "innerWidth": 964,
+      "family": "desktop",
+      "row": [
+        8,
+        722.5,
+        696,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 696,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 130,
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestorHit": null,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": "directorTimelineZoom",
+          "inBlindBucket": false,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": true
+        }
+      },
+      "jointCount": 7,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "1020": {
+      "innerWidth": 1020,
+      "family": "desktop",
+      "row": [
+        8,
+        722.5,
+        752,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 752,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 130,
+      "blindCount": 1,
+      "blindLabels": [
+        "删除关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestorHit": true,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": "directorTimelineControls",
+          "inBlindBucket": true,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 5,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "1021": {
+      "innerWidth": 1021,
+      "family": "desktop",
+      "row": [
+        8,
+        722.5,
+        753,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 753,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 130,
+      "blindCount": 1,
+      "blindLabels": [
+        "删除关键帧"
+      ],
+      "blindAllClipped": true,
+      "blindAllAncestorHit": true,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": false,
+          "centreInWindow": true,
+          "stackTop": "directorTimelineControls",
+          "inBlindBucket": true,
+          "predictedPainted": false,
+          "predictedNotPaintedOnWindow": true,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 5,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "1022": {
+      "innerWidth": 1022,
+      "family": "desktop",
+      "row": [
+        8,
+        722.5,
+        754,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 754,
+        "scrollWidth": 776,
+        "scrollLeft": 0
+      },
+      "total": 130,
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestorHit": null,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "svg",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 5,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    },
+    "1152": {
+      "innerWidth": 1152,
+      "family": "desktop",
+      "row": [
+        8,
+        722.5,
+        884,
+        28
+      ],
+      "rowScroll": {
+        "clientWidth": 884,
+        "scrollWidth": 884,
+        "scrollLeft": 0
+      },
+      "total": 130,
+      "blindCount": 0,
+      "blindLabels": [],
+      "blindAllClipped": null,
+      "blindAllAncestorHit": null,
+      "blindTargets": {
+        "添加关键帧": {
+          "rectRight": 747,
+          "cx": 703,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "directorAddKeyframe",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        },
+        "删除关键帧": {
+          "rectRight": 775,
+          "cx": 761,
+          "painted": true,
+          "centreInWindow": true,
+          "stackTop": "svg",
+          "inBlindBucket": false,
+          "predictedPainted": true,
+          "predictedNotPaintedOnWindow": false,
+          "censusJoint": false
+        }
+      },
+      "jointCount": 4,
+      "roundCount": 8,
+      "covered": [],
+      "unreachable": 0
+    }
+  },
+  "checks": {
+    "the-grid-runs-23-widths-both-families": {
+      "ok": true,
+      "detail": {
+        "widths": [
+          339,
+          620,
+          703,
+          710,
+          711,
+          712,
+          754,
+          755,
+          761,
+          768,
+          769,
+          770,
+          782,
+          783,
+          898,
+          899,
+          962,
+          963,
+          964,
+          1020,
+          1021,
+          1022,
+          1152
+        ],
+        "why339IsInTheGrid": "the standing 'only 收起 is unexplained' check needs 339; my first grid omitted it and the check went green on an EMPTY set"
+      }
+    },
+    "the-blind-spot-is-real-and-populated": {
+      "ok": true,
+      "detail": {
+        "ownButNotPaintedPerWidth": {
+          "339": 0,
+          "620": 1,
+          "703": 0,
+          "710": 1,
+          "711": 1,
+          "712": 0,
+          "754": 0,
+          "755": 0,
+          "761": 0,
+          "768": 1,
+          "769": 1,
+          "770": 0,
+          "782": 0,
+          "783": 0,
+          "898": 0,
+          "899": 1,
+          "962": 1,
+          "963": 1,
+          "964": 0,
+          "1020": 1,
+          "1021": 1,
+          "1022": 0,
+          "1152": 0
+        },
+        "widthsWhereItAppears": [
+          "620",
+          "710",
+          "711",
+          "768",
+          "769",
+          "899",
+          "962",
+          "963",
+          "1020",
+          "1021"
+        ],
+        "totalCases": 10,
+        "labelsSeen": [
+          "删除关键帧",
+          "模型库",
+          "添加关键帧",
+          "移除角色01 · 陈默 · 变换轨道"
+        ],
+        "reading": "the census calls these clean while elementsFromPoint says they are not painted at their own centre"
+      }
+    },
+    "every-blind-case-is-a-clipped-control": {
+      "ok": true,
+      "detail": {
+        "widthsWithAnUnclippedBlindCase": {},
+        "reading": "if any blind case were NOT clipped there would be a SECOND mechanism, and 'own accepts an ancestor hit' would not be the whole story"
+      }
+    },
+    "every-blind-case-went-through-the-ancestor-branch-of-own": {
+      "ok": true,
+      "detail": {
+        "widthsWithADifferentBranch": {},
+        "theBranch": "hit.contains(el) — the hit was an ANCESTOR of the control, which is what makes a clipped control read clean"
+      }
+    },
+    "the-blind-spot-is-one-directional": {
+      "ok": true,
+      "detail": {
+        "direction": "own=true & not painted (observed); not painted & own=false never happens, because the census can only be too clean, never too dirty",
+        "perWidth": {
+          "339": 0,
+          "620": 1,
+          "703": 0,
+          "710": 1,
+          "711": 1,
+          "712": 0,
+          "754": 0,
+          "755": 0,
+          "761": 0,
+          "768": 1,
+          "769": 1,
+          "770": 0,
+          "782": 0,
+          "783": 0,
+          "898": 0,
+          "899": 1,
+          "962": 1,
+          "963": 1,
+          "964": 0,
+          "1020": 1,
+          "1021": 1,
+          "1022": 0,
+          "1152": 0
+        },
+        "whyItMatters": "a one-directional error is absorbable by widening the probe; a two-directional one would mean the instrument is unusable"
+      }
+    },
+    "the-timeline-controls-row-geometry-follows-its-two-constants": {
+      "ok": true,
+      "detail": {
+        "contradictions": [],
+        "theLaw": "rowLeft = 8 in both families; rowWidth = W-16 (narrow) / W-268 (desktop); rowRight = W-8 / W-260"
+      }
+    },
+    "the-two-controls-rect-right-edges-are-constant": {
+      "ok": true,
+      "detail": {
+        "contradictions": [],
+        "expected": {
+          "添加关键帧": 747.0,
+          "删除关键帧": 775.0
+        },
+        "whyThisIsNotTheLoadBearingConstant": "the rect edges are recorded but they are NOT what governs painting: a box poking 1px out of its scroller is still painted at its centre. `isClipped` is a rect test; painting at the sample point is a centre test. Conflating them was this batch's second wrong version."
+      }
+    },
+    "painting-is-exactly-what-the-centre-test-predicts": {
+      "ok": true,
+      "detail": {
+        "contradictions": [],
+        "theFormula": "painted <=> the control's CENTRE is strictly inside its scroller's clip, i.e. cx < rowRight, with rowRight = W-8 (narrow) / W-260 (desktop)",
+        "windows": {
+          "添加关键帧/narrow": [
+            703,
+            711
+          ],
+          "添加关键帧/desktop": [
+            899,
+            963
+          ],
+          "删除关键帧/narrow": [
+            761,
+            769
+          ],
+          "删除关键帧/desktop": [
+            899,
+            1021
+          ]
+        }
+      }
+    },
+    "the-census-and-the-ground-truth-disagree-exactly-where-it-is-blind": {
+      "ok": true,
+      "detail": {
+        "disagreements": [
+          {
+            "width": "703",
+            "control": "添加关键帧",
+            "censusJoint": false,
+            "groundTruth": true
+          },
+          {
+            "width": "710",
+            "control": "添加关键帧",
+            "censusJoint": false,
+            "groundTruth": true
+          },
+          {
+            "width": "711",
+            "control": "添加关键帧",
+            "censusJoint": false,
+            "groundTruth": true
+          },
+          {
+            "width": "761",
+            "control": "删除关键帧",
+            "censusJoint": false,
+            "groundTruth": true
+          },
+          {
+            "width": "768",
+            "control": "删除关键帧",
+            "censusJoint": false,
+            "groundTruth": true
+          },
+          {
+            "width": "769",
+            "control": "删除关键帧",
+            "censusJoint": false,
+            "groundTruth": true
+          },
+          {
+            "width": "962",
+            "control": "添加关键帧",
+            "censusJoint": false,
+            "groundTruth": true
+          },
+          {
+            "width": "963",
+            "control": "添加关键帧",
+            "censusJoint": false,
+            "groundTruth": true
+          },
+          {
+            "width": "1020",
+            "control": "删除关键帧",
+            "censusJoint": false,
+            "groundTruth": true
+          },
+          {
+            "width": "1021",
+            "control": "删除关键帧",
+            "censusJoint": false,
+            "groundTruth": true
+          }
+        ],
+        "count": 10,
+        "reading": "the census reports these as clean; they are not painted. This disagreement is why the timeline row's boundaries could not be pinned with the current criterion — the instrument was the limitation, not the geometry"
+      }
+    },
+    "all-four-centre-based-windows-are-pinned-to-one-pixel": {
+      "ok": true,
+      "detail": {
+        "brackets": {
+          "添加关键帧/narrow": {
+            "predictedWindow": [
+              703,
+              711
+            ],
+            "observedNotPaintedWidths": [
+              703,
+              710,
+              711
+            ],
+            "firstPaintedAbove": 712,
+            "pinsToThePixel": true
+          },
+          "添加关键帧/desktop": {
+            "predictedWindow": [
+              899,
+              963
+            ],
+            "observedNotPaintedWidths": [
+              899,
+              962,
+              963
+            ],
+            "firstPaintedAbove": 964,
+            "pinsToThePixel": true
+          },
+          "删除关键帧/narrow": {
+            "predictedWindow": [
+              761,
+              769
+            ],
+            "observedNotPaintedWidths": [
+              761,
+              768,
+              769
+            ],
+            "firstPaintedAbove": 770,
+            "pinsToThePixel": true
+          },
+          "删除关键帧/desktop": {
+            "predictedWindow": [
+              899,
+              1021
+            ],
+            "observedNotPaintedWidths": [
+              899,
+              962,
+              963,
+              964,
+              1020,
+              1021
+            ],
+            "firstPaintedAbove": 1022,
+            "pinsToThePixel": true
+          }
+        },
+        "notTight": [],
+        "note": "predicted from cx >= rowRight; the grid puts both edges of all four windows on adjacent sampled widths"
+      }
+    },
+    "the-grid-exercises-every-blind-window": {
+      "ok": true,
+      "detail": {
+        "perWidthBlindCount": {
+          "339": 0,
+          "620": 1,
+          "703": 0,
+          "710": 1,
+          "711": 1,
+          "712": 0,
+          "754": 0,
+          "755": 0,
+          "761": 0,
+          "768": 1,
+          "769": 1,
+          "770": 0,
+          "782": 0,
+          "783": 0,
+          "898": 0,
+          "899": 1,
+          "962": 1,
+          "963": 1,
+          "964": 0,
+          "1020": 1,
+          "1021": 1,
+          "1022": 0,
+          "1152": 0
+        },
+        "totalJointMeasurements": 59,
+        "perWidthJointCount": {
+          "339": 2,
+          "620": 1,
+          "703": 1,
+          "710": 1,
+          "711": 1,
+          "712": 1,
+          "754": 1,
+          "755": 1,
+          "761": 1,
+          "768": 1,
+          "769": 0,
+          "770": 0,
+          "782": 0,
+          "783": 0,
+          "898": 0,
+          "899": 8,
+          "962": 7,
+          "963": 7,
+          "964": 7,
+          "1020": 5,
+          "1021": 5,
+          "1022": 5,
+          "1152": 4
+        }
+      }
+    },
+    "no-cell-has-an-off-viewport-unreachable-control": {
+      "ok": true,
+      "detail": {
+        "339": 0,
+        "620": 0,
+        "703": 0,
+        "710": 0,
+        "711": 0,
+        "712": 0,
+        "754": 0,
+        "755": 0,
+        "761": 0,
+        "768": 0,
+        "769": 0,
+        "770": 0,
+        "782": 0,
+        "783": 0,
+        "898": 0,
+        "899": 0,
+        "962": 0,
+        "963": 0,
+        "964": 0,
+        "1020": 0,
+        "1021": 0,
+        "1022": 0,
+        "1152": 0
+      }
+    },
+    "642s-eight-round-controls-are-still-eight": {
+      "ok": true,
+      "detail": {
+        "339": 8,
+        "620": 8,
+        "703": 8,
+        "710": 8,
+        "711": 8,
+        "712": 8,
+        "754": 8,
+        "755": 8,
+        "761": 8,
+        "768": 8,
+        "769": 8,
+        "770": 8,
+        "782": 8,
+        "783": 8,
+        "898": 8,
+        "899": 8,
+        "962": 8,
+        "963": 8,
+        "964": 8,
+        "1020": 8,
+        "1021": 8,
+        "1022": 8,
+        "1152": 8
+      }
+    },
+    "the-only-covered-control-is-still-632s-defect": {
+      "ok": true,
+      "detail": {
+        "covered": [
+          {
+            "width": "339",
+            "label": "收起",
+            "coveredBy": "导演视角机位视角"
+          }
+        ],
+        "nonVacuous": true
+      }
+    }
+  },
+  "ok": true,
+  "checkCount": 14,
+  "failures": [],
+  "totals": {
+    "blindPerWidth": {
+      "339": 0,
+      "620": 1,
+      "703": 0,
+      "710": 1,
+      "711": 1,
+      "712": 0,
+      "754": 0,
+      "755": 0,
+      "761": 0,
+      "768": 1,
+      "769": 1,
+      "770": 0,
+      "782": 0,
+      "783": 0,
+      "898": 0,
+      "899": 1,
+      "962": 1,
+      "963": 1,
+      "964": 0,
+      "1020": 1,
+      "1021": 1,
+      "1022": 0,
+      "1152": 0
+    },
+    "brackets": {
+      "添加关键帧/narrow": {
+        "predictedWindow": [
+          703,
+          711
+        ],
+        "observedNotPaintedWidths": [
+          703,
+          710,
+          711
+        ],
+        "firstPaintedAbove": 712,
+        "pinsToThePixel": true
+      },
+      "添加关键帧/desktop": {
+        "predictedWindow": [
+          899,
+          963
+        ],
+        "observedNotPaintedWidths": [
+          899,
+          962,
+          963
+        ],
+        "firstPaintedAbove": 964,
+        "pinsToThePixel": true
+      },
+      "删除关键帧/narrow": {
+        "predictedWindow": [
+          761,
+          769
+        ],
+        "observedNotPaintedWidths": [
+          761,
+          768,
+          769
+        ],
+        "firstPaintedAbove": 770,
+        "pinsToThePixel": true
+      },
+      "删除关键帧/desktop": {
+        "predictedWindow": [
+          899,
+          1021
+        ],
+        "observedNotPaintedWidths": [
+          899,
+          962,
+          963,
+          964,
+          1020,
+          1021
+        ],
+        "firstPaintedAbove": 1022,
+        "pinsToThePixel": true
+      }
+    },
+    "totalJointMeasurements": 59
+  }
+}

@@ -298,6 +298,31 @@ AUDIT_JS = """(overlays) => {
     const offViewport = cx < 0 || cy < 0 || cx > innerWidth || cy > innerHeight;
     const hit = offViewport ? null : document.elementFromPoint(cx, cy);
     const own = !!(hit && (hit === el || el.contains(hit) || hit.contains(el)));
+    // Batch 646: the ground truth for "is this control painted at its own
+    // centre", and it disagrees with `own` in one specific direction.
+    //
+    // `own` accepts `hit.contains(el)`, i.e. it is satisfied when the element
+    // that took the hit is an ANCESTOR of the control.  Clipping changes
+    // PAINTING, not the DOM tree: a control scrolled out of its own scroller
+    // is still a DOM child of that scroller's container, and that container is
+    // usually painted at the sample point.  So a control that is not painted
+    // there at all reads `own = true` — the census calls it clean.
+    //
+    // Measured example (1020px, the timeline controls row): `删除关键帧` spans
+    // 747..775 while the row ends at 760, so it IS clipped; the element that
+    // took the hit is the row's own `<header>`, an ancestor; `own` = true; and
+    // `elementsFromPoint` does not contain the button at all.
+    //
+    // Additive only — `own` and every verdict built on it stay exactly as they
+    // are, and batch 646 re-proves that mechanically against 639/640.
+    const paintStack = offViewport ? [] : (document.elementsFromPoint(cx, cy) || []);
+    const paintedAtCentre = !offViewport && paintStack.indexOf(el) !== -1;
+    const paintStackTop = paintStack.length
+      ? (Object.keys(paintStack[0].dataset || {})
+          .find((d) => d.indexOf('director') === 0)
+          || paintStack[0].tagName.toLowerCase())
+      : null;
+    const ownBecauseAncestor = own && hit !== el && !el.contains(hit);
     const panel = own ? null : covering(el, hit);
     const clipped = !own && !panel && isClipped(el);
     // Batch 643: the JOINT condition.  `clipped` and "covered" are two
@@ -466,6 +491,14 @@ AUDIT_JS = """(overlays) => {
           + "probe reports its own corners as blocked by design (batch 641)"
         : null,
       bothCoveredAndClipped: bothCoveredAndClipped, clipRaw: clipRaw,
+      paintedAtCentre: paintedAtCentre,
+      paintStackSize: paintStack.length,
+      paintStackTop: paintStackTop,
+      ownBecauseAncestor: ownBecauseAncestor,
+      // A control that the census calls clean but that is not painted at its
+      // own centre: the blind spot batch 646 found.  Kept as its own bucket so
+      // later batches do not each rediscover it.
+      ownButNotPainted: own && !paintedAtCentre,
       clipperCanScroll: clipperCanScroll, covererInClipper: covererInClipper,
       covererSurface: covererSurface, covererSurfaceBox: covererSurfaceBox,
       victimSurface: victimSurface,
@@ -510,6 +543,12 @@ AUDIT_JS = """(overlays) => {
           covered: unexplained,
           coveredByTimelineOverlay: failed.filter((i) => i.timelineOverlay),
           coveredByViewportSqueeze: failed.filter((i) => i.viewportSqueeze),
+          // Batch 646: controls the census calls clean that are not painted at
+          // their own centre.  NOT a defect claim — it is a statement about the
+          // instrument: `own` accepts an ancestor hit, and clipping removes
+          // painting without touching the DOM tree, so a scrolled-out control
+          // reads clean whenever its own container is painted there.
+          ownButNotPainted: items.filter((i) => i.ownButNotPainted),
           // Batch 643: the state that used to have no home at all — covered AND
           // clipped at the same time.  It is NOT in `covered` (the `clipped`
           // veto excludes it) and NOT in either exemption family (the same veto
