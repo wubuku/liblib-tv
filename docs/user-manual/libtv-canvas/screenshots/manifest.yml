@@ -1677,3 +1677,25 @@ screenshots:
     visible_text: 文本节点 1 视频节点 3 图片节点 2 资产 管理 53%
     alt: 从节点出口拖出时的画面：一条**发光的蓝色曲线**跟着光标走，起点是一个**十字准星小圆点**（那正是 `cursor: crosshair` 的来源）；画面里那条**已建好的白色横线**是连好的连线。⭐ 关键发现：端口元素本身 `getBoundingClientRect()` 是 **0×0**、伪元素 `content: none`，真正能点能拖的是**套在里面的一个 `80×80` 透明圆形**（`innerHTML` 读出，`border-radius:50%` + `pointer-events:auto`）—— 所以不必精确对准小圆点，节点左右边缘往外 80 像素都起得了线。端口 11/11 个节点都是 `target`(左) + `source`(右) 两个，class 含 `connectable`；光标全是 `crosshair`，**唯一例外是 `逐帧拉片` 的出口为 `grab`**
     sha256: 2679f4f02978c2df5d639ef29dab07777bf01f237d797bc1eaca89ec2d735e2c
+  - file: screenshots/M-198-评级筛选-六档.png
+    task_id: organize-canvas
+    step: 30
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点资产管理抽屉顶栏那枚写着 `所有评级` 的筛选按钮，再**只读最内层**的选项行（去掉容器重复），逐行读出文字与右侧图形 —— 注意星形是图标不是文字，**按文字筛会一个都找不到**
+    visible_text: 所有评级 1 2 3 4 5
+    alt: 评级筛选展开的样子：顶上一行 `所有评级` 右侧带勾表示当前选中，下面 1 到 5 每一行**只有数字**，右边跟着一枚橙色五角星图标（`12×12`，`iconify--libtv`）。⭐ 所以**整个星级 UI 一个文字都没有** —— 想知道这是几星只能数星星，用「找带星字的元素」或正则 `/\d\s*[★☆]/` 去筛，结果必然是 0 命中，那是判据错了，不是这个 UI 不存在。同理，节点上的评级**设置入口**不能用同样的办法找
+    sha256: 03515329bbd45d567f6c1f59492b7ea63388819aad35b4d3b5c733b5dae2418d
+  - file: screenshots/M-199-连接口-选中时可见.png
+    task_id: connect-nodes
+    step: 32
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点选画布上的一个图片节点，等参数条弹出后，读该节点下 `data-handleid` 的每个端口：把它的**三层**元素逐层量 `getBoundingClientRect()`，并读完整 `innerHTML` —— 只量最外层会得到 0×0 而误判「没有可点区」
+    visible_text: 图片节点 2 视频节点 3 参考 标记 风格
+    alt: 选中的图片节点左右两侧各浮出一个**带加号的圆圈**（⊕），右边那个的圆圈上正连着一条发光的蓝线通向视频节点。⭐ 这就是端口平时看不见的真相：那枚 `20×20` 的 ⊕ 图标**默认 `opacity: 0`**，**选中节点**才显形。从外到内共三层：`0×0` 的定位元素 → **`80×80` 的透明圆形**（`pointer-events: auto`，**这才是真正能点的那块**）→ `20×20` 的 ⊕ 图标（一个 `circle` 加一条加号 `path d="M10 6.5v7M6.5 10h7"`，被 `transform: translate(25px,0)` 从圆心往外推，所以它在圆圈的边缘而不是正中）
+    sha256: 9a1249b1164464ffb3f87633465d87951a7947b2d74ca81dc73b2755ed73c368
