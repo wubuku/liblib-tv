@@ -172,6 +172,16 @@ OWNERSHIP_OUT="$(python3 scripts/check-section-ownership.py . 2>&1)" || fail "�
 $OWNERSHIP_OUT"
 echo "$OWNERSHIP_OUT" | sed 's/^/  /'
 
+# 门禁静默放行校验（第二十道门禁，M151 新增）：把 M150/M151 那套「抽走输入 → 观察行为」
+# 的实验固化成常设检查。M150 抓到 check-inventory-evidence 在账本缺失时 exit=0，
+# M151 又抓到 check-ledger-pin 因 collect_pins 的 `continue` 静默少收一份声明。
+# 两者形态相同：**输入没了 → 门禁仍报 ok，而它非但没发现问题，缺的正是它要看的东西**。
+# ★ 配对是人工核实的，不用 grep 猜——M151 第一版实验用 grep 提依赖，
+#   把文档字符串里的文件名也当成依赖，误判出 5 处「静默放行」（经核实全是真豁免）。
+GATESILENCE_OUT="$(python3 scripts/check-gate-silence.py . 2>&1)" || fail "门禁静默放行校验未通过（有门禁在输入被抽走后仍 exit=0）：
+$GATESILENCE_OUT"
+echo "$GATESILENCE_OUT" | sed 's/^/  /'
+
 # 源码引用：手册里每处 `文件.ts:行号` 必须指向应用仓里真实存在的那一行。
 # 2026-10-02 M109 新增。账本锁定门禁只在应用仓 HEAD 变化时报错，可一旦有人把
 # 账本 sha 一起更新到新提交，那道门禁重新变绿，正文里那几十处行号却可能早已

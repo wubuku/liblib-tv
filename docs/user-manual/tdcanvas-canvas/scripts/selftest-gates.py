@@ -877,6 +877,42 @@ def mutate_ownership_ok(root: Path) -> None:
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def mutate_gate_silence_reintroduced(root: Path) -> None:
+    """把 `check-ledger-pin` 退回 M150 的行为（静默少收一份声明，M151）。
+
+    这条用例验的不是「某个门禁坏了」，而是**第二十道门禁本身有没有效**：
+    撤掉修复后，它必须重新抓到 `check-ledger-pin` 的静默放行。
+    **没有这条，第二十道门禁就只是一段没人验证过的新代码。**
+    """
+
+    import re
+
+    path = root / "scripts/check-ledger-pin.py"
+    text = path.read_text(encoding="utf-8")
+    patched = re.sub(r"    # M151 订正：.*?\n        return 1\n\n", "", text, flags=re.S)
+    assert patched != text, "注入失败：没找到 M151 那段修复"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_gate_silence_ledger_evid_reintroduced(root: Path) -> None:
+    """把 `check-inventory-evidence` 退回 M150 的行为（账本缺失时 exit=0）。
+
+    M150 抓到的那一处。**两道一起验**，因为它们形态相同、位置不同：
+    一个是「文件不存在就 continue」，一个是「账本不存在就 return 0」。
+    """
+
+    path = root / "scripts/check-inventory-evidence.py"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace(
+        '        print(\n            f"证据一致性校验未执行：账本不存在（{inv}）。"\n'
+        '            "这不是通过——请确认账本是否被误删或改名。"\n        )\n        return 1',
+        '        print("[skip] 账本不存在，跳过证据一致性校验")\n        return 0',
+        1,
+    )
+    assert patched != text, "注入失败：没找到 M150 修复后的那段"
+    path.write_text(patched, encoding="utf-8")
+
+
 CASES: list[tuple[str, object, str, str]] = [
     ("图片字节被改动", mutate_image_bytes, "gate", "sha256 mismatch"),
     ("manifest 删掉一条记录", mutate_manifest_drop_record, "gate", "image missing from manifest"),
@@ -927,6 +963,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("文档比源码写得更细不该被误报（不做双向全等）", mutate_probe_contract_extra_context, "probecontracts", EXPECT_PASS),
     ("出口行挂到章节标题下（位置错但门禁全绿过）", mutate_ownership_wrong, "ownership", "归属错误"),
     ("出口行挂在正确条目下不该被误报（不判该不该有）", mutate_ownership_ok, "ownership", EXPECT_PASS),
+    ("门禁静默放行：ledger-pin 退回 M150 行为", mutate_gate_silence_reintroduced, "gatesilence", "仍 exit=0"),
+    ("门禁静默放行：inventory-evidence 退回 M150 行为", mutate_gate_silence_ledger_evid_reintroduced, "gatesilence", "仍 exit=0"),
 ]
 
 
@@ -967,6 +1005,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-probe-contracts.py"), str(root)]
     elif which == "ownership":
         cmd = [sys.executable, str(root / "scripts/check-section-ownership.py"), str(root)]
+    elif which == "gatesilence":
+        cmd = [sys.executable, str(root / "scripts/check-gate-silence.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)

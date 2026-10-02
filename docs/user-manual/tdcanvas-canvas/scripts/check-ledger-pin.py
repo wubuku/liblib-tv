@@ -16,6 +16,14 @@
 * **路径不存在时跳过并显式说明**——手册仓会被 clone 到不同机器，硬编码本地路径
   不能变成"在别人机器上必然失败"的门禁。
 
+* ★ **「跳过」与「缺失」是两回事（M151 订正）**：应用仓副本不存在 → 跳过是合理的
+  （环境问题，且已显式说明）；但**锁定声明文件缺失 → 必须报错**。
+  实测（`check-gate-silence.py` 抓出）：抽走 `task-inventory.yml` 后本门禁 exit=0，
+  根因是 `collect_pins` 里 `if not page.is_file(): continue` **静默少收一份声明**——
+  而本门禁存在的意义正是 M110 的「两份锁定声明互相对不上」，
+  **少一份时那个判据自动失效，它非但没发现问题，反而自己绿了。
+  缺的正是它要看的东西。**
+
 用法：
 
     python3 scripts/check-ledger-pin.py .
@@ -78,6 +86,21 @@ def main(argv: list[str]) -> int:
 
     if not ledger.exists():
         print(f"[FAIL] 找不到账本 {LEDGER}")
+        return 1
+
+    # M151 订正：**任一声明文件缺失都必须报错，不能静默少收一份。**
+    # 实测（由 `check-gate-silence.py` 抓出）：抽走 `task-inventory.yml` 后本门禁 exit=0。
+    # 根因在 `collect_pins` 的 `if not page.is_file(): continue` —— 少收一份声明，
+    # 「两份声明互相对不上」这个判据**自动失效**，门禁却照样报 ok。
+    # **这道门禁存在的意义就是 M110 的「两份锁定声明不能互相矛盾」**，
+    # 少一份时它非但没发现问题，反而自己绿了——**缺的正是它要看的东西**。
+    absent = [n for n in PIN_DECLARERS if not (root / n).is_file()]
+    if absent:
+        print(
+            f"[FAIL] 锁定声明文件缺失：{'、'.join(absent)}。"
+            "本门禁守的是「多份声明互相对不上」，少一份这个判据就失效了——"
+            "**缺失不是通过，是没得可比**。"
+        )
         return 1
 
     pins = collect_pins(root)
