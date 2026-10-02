@@ -2018,3 +2018,36 @@ screenshots:
     visible_text: 一张图里同时能看清三件事：① **两级目录树** —— 父级「待分类资产」箭头朝下（展开），子级「手册闭环测试」缩进一格、箭头朝右（收起），两行各自右端各有一枚 `•••`；② 删除确认框正文**插值了文件夹名**：「确定删除「手册闭环测试」吗？删除后不可恢复。」；③ `取消` 半透明 / `删除` 实心红 `rgb(203,39,45)`。⭐⭐ 删除后那张截图与删除前那张 **sha256 逐字节相同**（都是 `e532e36d2ead349b…`）—— 这是账户回到原状最硬的证据；两张图不同时放（构建会去重），用哈希说明
     alt: 两级目录树 + 删除确认框「确定删除「手册闭环测试」吗？删除后不可恢复。」取消 删除
     sha256: 0fa971290d23664cea76ea153e1c7e45760c57a871e0d28cfe13c066251fb982
+  - file: screenshots/M-279-连线中点悬停出的剪刀.png
+    task_id: connect-nodes
+    step: 52
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: ⭐ 断线入口的定位靠**元素链解剖**，不是数按钮：`elementFromPoint` 取中点落点，沿 `parentElement` 逐层上报 tag / class / aria / role / cursor / 尺寸，再在**未选 / 悬停 / 选中**三个状态各做一次。⚠️ BV3 的坐标仪器是坏的（`Object.values(DOMPoint)` 取不到属性，两条连线读出同一个屏幕点 `[916,-90]`），本轮改成沿 path **采样 21 点 + `elementFromPoint` 反查**，让点击点**自证**落在自己身上。⛔ 动手前置条件三条全过才点：自造边 id 不在原有列表、两端 handle 被 `connectionindicator` 罩住、造完边确认 +1
+    visible_text: 指针停在图片节点与视频节点之间的连线上：线被点亮成**浅蓝**，中点浮出一枚**深色圆底的剪刀**。该元素是 `div.scissors-enter`（藏 `foreignObject` 里，48×48 圆、48% 缩放下屏幕 23×23、底 `rgba(30,30,30,0.95)` + `1px solid rgba(255,255,255,0.1)` 边、内含 `svg.iconify.iconify--libtv`），**挂 `onClick`**，⭐ 但**没有** aria-label / title / role，且**只在指针悬停时挂载**（悬停 1 个 / 移开 0 个）
+    alt: 连线被点亮成浅蓝，中点浮出一枚圆形剪刀
+    sha256: 63c01cb3a47f139d3d2035650e028ef5873be6d00f63e49bb2a2741d339cb0d2
+  - file: screenshots/M-280-自造连线中点的剪刀.png
+    task_id: connect-nodes
+    step: 53
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 造一条**自造边**（`i-9nlG6HdjK2 → v-v2hlWY4Br3`）来拍，造线过程中**必须读一次拖到一半的现场**：React Flow 拖拽时会渲染 `.react-flow__connection` 预览线，预览线出现 = 拖拽已启动（问题在落点/类型），没出现 = 手势没被识别（问题在起点）。⭐ 这条判据劈开了两次失败的原因，靠「拖完看计数」是分不开的
+    visible_text: 从图片节点 2 斜着连到上方视频节点 3 的那条线被点亮成浅蓝，中点悬停着一枚剪刀；画面里另外两条原有连线（图片→视频的横线、视频→智能剪辑的横线）**保持灰色**
+    alt: 一条斜向连线被点亮成浅蓝，中点悬停着剪刀按钮
+    sha256: c7d79408096d6b575fe82098f8d53eaebadedad5b24953980ebcee985abc24b5
+  - file: screenshots/M-281-点剪刀之后连线断了.png
+    task_id: connect-nodes
+    step: 54
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点完 M-280 那枚剪刀后拍。⭐ DOM 读数：连线 `3 → 2`，自造边 id 消失，**无二次确认弹窗、无提示条**（读到的那个 dialog 是常驻的 TV Director「让 TV Director 辅助你的无限创意」侧栏，**不是删除确认框**，不能当成确认过）⛔ 断完先移开鼠标再拍，否则连线的悬停高亮会留在画面上，看不出已经断了
+    visible_text: 刚才那条斜向连线**不见了**，画面里只剩原有的两条灰色连线（图片→视频、视频→智能剪辑），节点位置和数量都没动
+    alt: 斜向连线被剪断后消失，只剩原有的两条连线
+    sha256: b74f8fa3c836abab7deac94761d27d87872f789fe25afd587d1bdb3fb3e83b3b
