@@ -1,0 +1,759 @@
+{
+  "读数": {
+    "左下角控件": [
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "添加节点",
+        "testid": "",
+        "cls": "relative flex items-center justify-center rounded-lg transition-colors",
+        "box": [
+          580,
+          757,
+          32,
+          32
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "移动",
+        "testid": "",
+        "cls": "relative flex items-center justify-center rounded-lg transition-colors",
+        "box": [
+          620,
+          757,
+          32,
+          32
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "素材库",
+        "testid": "",
+        "cls": "relative flex items-center justify-center rounded-lg transition-colors",
+        "box": [
+          660,
+          757,
+          32,
+          32
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "角色造型室",
+        "testid": "",
+        "cls": "relative flex items-center justify-center rounded-lg transition-colors",
+        "box": [
+          700,
+          757,
+          32,
+          32
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "生成历史",
+        "testid": "",
+        "cls": "relative flex items-center justify-center rounded-lg transition-colors",
+        "box": [
+          740,
+          757,
+          32,
+          32
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "mx-0 w-px shrink-0",
+        "box": [
+          780,
+          761,
+          1,
+          24
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "快捷键",
+        "testid": "",
+        "cls": "relative flex items-center justify-center rounded-lg transition-colors",
+        "box": [
+          789,
+          757,
+          32,
+          32
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "教程",
+        "testid": "",
+        "cls": "relative flex items-center justify-center rounded-lg transition-colors",
+        "box": [
+          829,
+          757,
+          32,
+          32
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "TV Director",
+        "aria": "TV Director",
+        "testid": "",
+        "cls": "TvDirectorEntry-module__vCoIiq__pill border-hair border-(--topnav-btn-",
+        "box": [
+          875,
+          749,
+          132,
+          48
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "canvas-agent-orb-entry",
+        "cls": "relative z-[2] size-7 shrink-0",
+        "box": [
+          885,
+          759,
+          28,
+          28
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "agent-orb",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__viewport",
+        "box": [
+          885,
+          759,
+          28,
+          28
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__orb ChatAgentLiquidOrb-module__JiGs",
+        "box": [
+          885,
+          759,
+          28,
+          28
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          885,
+          759,
+          28,
+          28
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          882,
+          757,
+          32,
+          32
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          882,
+          757,
+          32,
+          32
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          886,
+          761,
+          25,
+          25
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          886,
+          761,
+          25,
+          25
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          886,
+          761,
+          25,
+          25
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          893,
+          767,
+          16,
+          16
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          889,
+          767,
+          16,
+          16
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          890,
+          771,
+          20,
+          20
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          891,
+          757,
+          20,
+          20
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          887,
+          767,
+          22,
+          11
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          885,
+          759,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          886,
+          760,
+          25,
+          25
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          894,
+          760,
+          16,
+          14
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          885,
+          771,
+          18,
+          17
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          904,
+          765,
+          6,
+          9
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          885,
+          759,
+          28,
+          28
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__Ji",
+        "box": [
+          886,
+          759,
+          21,
+          19
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "下次再说",
+        "aria": "",
+        "testid": "",
+        "cls": "bg-(--canvas-controls-hover) hover:bg-(--canvas-controls-active) flex ",
+        "box": [
+          912,
+          692,
+          80,
+          32
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "去体验",
+        "aria": "",
+        "testid": "",
+        "cls": "bg-(--canvas-primary-btn-bg) hover:bg-(--canvas-primary-btn-bg-hover) ",
+        "box": [
+          996,
+          692,
+          67,
+          32
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "",
+        "box": [
+          253,
+          631,
+          40,
+          40
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "mb-4",
+        "box": [
+          368,
+          619,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "尝试：",
+        "aria": "",
+        "testid": "",
+        "cls": "text-fg-muted mb-2 text-sm",
+        "box": [
+          305,
+          651,
+          150,
+          10
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "音频生视频",
+        "aria": "",
+        "testid": "",
+        "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit it",
+        "box": [
+          305,
+          665,
+          58,
+          18
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "",
+        "box": [
+          467,
+          631,
+          40,
+          40
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "文本节点 1",
+        "aria": "",
+        "testid": "",
+        "cls": "node-floating-ui transition-[transform,opacity] duration-150 ease-out ",
+        "box": [
+          184,
+          598,
+          175,
+          24
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "文本节点 1",
+        "aria": "",
+        "testid": "",
+        "cls": "text-fg-muted flex w-full min-w-0 items-center gap-1 cursor-pointer",
+        "box": [
+          184,
+          598,
+          175,
+          24
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "文本节点 1",
+        "aria": "",
+        "testid": "",
+        "cls": "flex min-w-0 flex-1 items-center gap-1 cursor-pointer",
+        "box": [
+          184,
+          599,
+          175,
+          20
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "",
+        "box": [
+          145,
+          691,
+          40,
+          40
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "mb-4",
+        "box": [
+          249,
+          639,
+          45,
+          45
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "尝试：",
+        "aria": "",
+        "testid": "",
+        "cls": "text-fg-muted mb-2 text-sm",
+        "box": [
+          197,
+          692,
+          150,
+          10
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "自己编写内容",
+        "aria": "",
+        "testid": "",
+        "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit it",
+        "box": [
+          197,
+          706,
+          65,
+          18
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "文生视频",
+        "aria": "",
+        "testid": "",
+        "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit it",
+        "box": [
+          197,
+          726,
+          51,
+          18
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "图片反推提示词",
+        "aria": "",
+        "testid": "",
+        "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit it",
+        "box": [
+          197,
+          746,
+          72,
+          18
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "文字生音乐",
+        "aria": "",
+        "testid": "",
+        "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit it",
+        "box": [
+          197,
+          766,
+          58,
+          18
+        ]
+      },
+      {
+        "tag": "DIV",
+        "text": "",
+        "aria": "",
+        "testid": "",
+        "cls": "",
+        "box": [
+          359,
+          691,
+          40,
+          40
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "资产管理",
+        "aria": "资产管理",
+        "testid": "",
+        "cls": "hover:bg-canvas-controls-hover relative flex items-center rounded-lg t",
+        "box": [
+          14,
+          764,
+          94,
+          28
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "整理画布，Option+Shift+F",
+        "testid": "",
+        "cls": "flex items-center justify-center rounded-lg transition-colors hover:bg",
+        "box": [
+          112,
+          764,
+          28,
+          28
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "切换小地图",
+        "testid": "",
+        "cls": "flex items-center justify-center rounded-lg transition-colors hover:bg",
+        "box": [
+          144,
+          764,
+          28,
+          28
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "隐藏节点连线",
+        "testid": "",
+        "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde",
+        "box": [
+          176,
+          764,
+          28,
+          28
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "网格吸附",
+        "testid": "",
+        "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde",
+        "box": [
+          208,
+          764,
+          28,
+          28
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "50%",
+        "aria": "缩放选项",
+        "testid": "",
+        "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde",
+        "box": [
+          240,
+          764,
+          36,
+          28
+        ]
+      }
+    ],
+    "基线菜单": {
+      "点开成功": true,
+      "个数": 1,
+      "内容": [
+        [
+          "放大\n⌘\n+",
+          "缩小\n⌘\n-",
+          "适合屏幕\n⌘\n0",
+          "缩放至50%",
+          "缩放至100%",
+          "缩放至800%"
+        ]
+      ],
+      "全文": [
+        "%\n放大\n⌘\n+\n缩小\n⌘\n-\n适合屏幕\n⌘\n0\n缩放至50%\n缩放至100%\n缩放至800%"
+      ]
+    },
+    "设137后": {
+      "输入框存在": true,
+      "个数": 1,
+      "内容": [
+        [
+          "放大\n⌘\n+",
+          "缩小\n⌘\n-",
+          "适合屏幕\n⌘\n0",
+          "缩放至50%",
+          "缩放至100%",
+          "缩放至800%"
+        ]
+      ],
+      "全文": [
+        "%\n放大\n⌘\n+\n缩小\n⌘\n-\n适合屏幕\n⌘\n0\n缩放至50%\n缩放至100%\n缩放至800%"
+      ]
+    },
+    "设200后": {
+      "输入框存在": true,
+      "个数": 1,
+      "内容": [
+        [
+          "放大\n⌘\n+",
+          "缩小\n⌘\n-",
+          "适合屏幕\n⌘\n0",
+          "缩放至50%",
+          "缩放至100%",
+          "缩放至800%"
+        ]
+      ],
+      "全文": [
+        "%\n放大\n⌘\n+\n缩小\n⌘\n-\n适合屏幕\n⌘\n0\n缩放至50%\n缩放至100%\n缩放至800%"
+      ]
+    }
+  }
+}

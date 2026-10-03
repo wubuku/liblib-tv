@@ -2392,17 +2392,6 @@ screenshots:
     visible_text: 仅看可商用 Seedream 5.0 pro 热点推荐官 536.9w 商用 JM32 1.1w 简单Ai 6300 sonnet 2.3w 捌陆设计 309 捏捏脸 1.3w
     alt: 勾上「仅看可商用」之后的一屏：右上角勾选框变蓝（蓝底白勾）。⭐ 左起第一张「Seedream 5.0 pro」是另一种卡型——金色大字标题压在预览图上，作者位写着「🔥 热点推荐官」而不是人名，右下角 536.9w，且**没有**「商用」徽标。后面几张是常规卡型：卡名右侧「ⓥ 商用」，下一行左头像+作者名、右漏斗图标+数字（1.1w / 6300 / 2.3w / 309 / 1.3w）。⭐ 勾选后新发出的 feed/stream 请求体多出一个许可筛选项 modelLicense:["1"]，关闭时该参数不出现
     sha256: bf5b88f3d8dc7f18c078279baef7a93b48886a18897740b6fc05a8371351cfd7
-  - file: screenshots/M-351-缩放菜单七行与动态百分比档位.png
-    task_id: organize-canvas
-    step: 14
-    route: /canvas?spaceId=…&projectId=…
-    viewport: 1440x810@2x
-    locale: zh-CN
-    captured_at: 2026-10-02T03:01:00+08:00
-    verified_locator: 底栏「缩放选项」按钮（aria-label=缩放选项）→ 点开菜单后只读、没点任何一项、读完按 ESC
-    visible_text: 47 % 放大 ⌘ + 缩小 ⌘ - 适合屏幕 ⌘ 0 缩放至50% 缩放至100% 缩放至800%
-    alt: 点开底栏的缩放菜单：容器 189×278，浮在画布左下角。顶部是一个输入框，当前值 47（对应画布左下角显示的 47%）；往下依次是 放大/缩小/适合屏幕 三个动作项（各带 ⌘ 快捷键），一条分隔线，然后是三个百分比档位：缩放至50%、缩放至100%、缩放至800%。⭐ 读数：800% 不在源码的字面量里，它由模板 zoomToPercent（缩放至{percent}%）按本画布的缩放历史拼出来；源码里另有两个字面量 zoomTo200（缩放至200%）与 zoomReset（恢复 100%）本轮都没出现
-    sha256: ad15c53979fc29497f6bddbd7c615300ccbe7b0b7d4fb423f093188767c05e70
   - file: screenshots/M-352-风格详情浮层结构.png
     task_id: asset-library
     step: 76
@@ -2436,3 +2425,14 @@ screenshots:
     visible_text: 全部适配模型 Lib Image General image Pro General image V2 Seedream 4.5 Seedream 5.0 一键生成人物多视图 商用 像素农夫DESIGN 4.2w
     alt: 悬停「一键生成人物多视图」卡左上角那枚 ✧ 之后浮出的黑色下拉。⭐ DOM 逐行读数是**五行**：Lib Image / General image Pro / General image V2 / Seedream 4.5 / Seedream 5.0。⭐⭐ 但**画面上只完整看得到前四行**——第五行「Seedream 5.0」被**广场面板的底边**切掉了半截，因为这张卡在第二行、下拉向下展开时越出了面板可视区。⚠️ 这是本轮**如实保留的界面现象**，没有为了拍全而挪位置（Batch DT-6 试过把卡滚到第一行，滚动后 hover 失效、没能重拍）。⭐ 这张卡的 baseType 是 5 个值 [27,40,70,55,68]，**正好对上 5 行** ⇒ baseType 个数 = 下拉行数；对比 M-353 那张 baseType 6 个却只列 5 行，缺口是那张卡特有的。⭐ 两次悬停采样里都没出现「当前使用」
     sha256: 9905f6c400080a1efc6dcbb9a0967a6521f6b8bca93b2e215d0096fe8b89f4ff
+  - file: screenshots/M-351-缩放菜单七行与固定百分比档位.png
+    task_id: organize-canvas
+    step: 14
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 底栏「缩放选项」按钮（aria-label=缩放选项）→ 点开菜单后只读、没点任何一项、读完按 ESC
+    visible_text: 47 % 放大 ⌘ + 缩小 ⌘ - 适合屏幕 ⌘ 0 缩放至50% 缩放至100% 缩放至800%
+    alt: 点开底栏的缩放菜单：容器 189×278，浮在画布左下角。顶部是一个输入框，当前值 47（对应画布左下角显示的 47%）；往下依次是 放大/缩小/适合屏幕 三个动作项（各带 ⌘ 快捷键），一条分隔线，然后是三个百分比档位：缩放至50%、缩放至100%、缩放至800%。⭐ 读数：800% 不在源码的字面量里，它由模板 zoomToPercent（缩放至{percent}%）按本画布的缩放历史拼出来；源码里另有两个字面量 zoomTo200（缩放至200%）与 zoomReset（恢复 100%）本轮都没出现
+    sha256: ad15c53979fc29497f6bddbd7c615300ccbe7b0b7d4fb423f093188767c05e70
