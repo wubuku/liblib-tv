@@ -1,0 +1,1191 @@
+{
+ "predictions": {
+  "P1": "Backspace 在文本框里删一个字符，Delete 在文本框里什么也不做",
+  "P2": "Backspace / Delete 在滑块与下拉里什么也不做",
+  "P3": "Escape 在文本框/下拉里什么也不做，在滑块里取消手势",
+  "P4": "Meta+z 的 hijack 不是滑块特有：三个可编辑焦点都会中招",
+  "P5": "Meta+Shift+z / Meta+y 是 hijack 的镜像",
+  "P6": "hijack 之后 DOM 与 store 不同步，而账上看不出发生过任何事"
+ },
+ "census": [
+  {
+   "variant": "clean",
+   "focus": "text-input",
+   "key": "Meta+z",
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": null,
+   "lastAfter": null,
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "text-input",
+   "key": "Meta+Shift+z",
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": null,
+   "lastAfter": null,
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "text-input",
+   "key": "Meta+y",
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": null,
+   "lastAfter": null,
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "text-input",
+   "key": "Delete",
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": null,
+   "lastAfter": null,
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "text-input",
+   "key": "Backspace",
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": null,
+   "lastAfter": null,
+   "changed": [
+    "nameDom",
+    "nameSel"
+   ],
+   "domReverted": true,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "text-input",
+   "key": "Escape",
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": null,
+   "lastAfter": null,
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "range",
+   "key": "Meta+z",
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "focusMoved": false,
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "GESTURE_BEGIN/COMMITTED",
+   "lastAfter": "GESTURE_BEGIN/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "range",
+   "key": "Meta+Shift+z",
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "focusMoved": false,
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "GESTURE_BEGIN/COMMITTED",
+   "lastAfter": "GESTURE_BEGIN/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "range",
+   "key": "Meta+y",
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "focusMoved": false,
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "GESTURE_BEGIN/COMMITTED",
+   "lastAfter": "GESTURE_BEGIN/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "range",
+   "key": "Delete",
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "focusMoved": false,
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "GESTURE_BEGIN/COMMITTED",
+   "lastAfter": "GESTURE_BEGIN/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "range",
+   "key": "Backspace",
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "focusMoved": false,
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "GESTURE_BEGIN/COMMITTED",
+   "lastAfter": "GESTURE_BEGIN/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "range",
+   "key": "Escape",
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "focusMoved": false,
+   "gestureBefore": "camera-fov",
+   "gestureAfter": null,
+   "gestureClosed": true,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": true,
+   "lastBefore": "GESTURE_BEGIN/COMMITTED",
+   "lastAfter": "GESTURE_CANCEL/NOOP",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "select",
+   "key": "Meta+z",
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": null,
+   "lastAfter": null,
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "select",
+   "key": "Meta+Shift+z",
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": null,
+   "lastAfter": null,
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "select",
+   "key": "Meta+y",
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": null,
+   "lastAfter": null,
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "select",
+   "key": "Delete",
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": null,
+   "lastAfter": null,
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "select",
+   "key": "Backspace",
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": null,
+   "lastAfter": null,
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "clean",
+   "focus": "select",
+   "key": "Escape",
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": null,
+   "lastAfter": null,
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "text-input",
+   "key": "Meta+z",
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "UPDATE_OBJECT/COMMITTED",
+   "lastAfter": "UPDATE_OBJECT/COMMITTED",
+   "changed": [
+    "nameDom",
+    "nameSel",
+    "selectedText"
+   ],
+   "domReverted": true,
+   "nameDom": [
+    "改名试试708AB",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "text-input",
+   "key": "Meta+Shift+z",
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "UPDATE_OBJECT/COMMITTED",
+   "lastAfter": "UPDATE_OBJECT/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "text-input",
+   "key": "Meta+y",
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "UPDATE_OBJECT/COMMITTED",
+   "lastAfter": "UPDATE_OBJECT/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "text-input",
+   "key": "Delete",
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "UPDATE_OBJECT/COMMITTED",
+   "lastAfter": "UPDATE_OBJECT/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "text-input",
+   "key": "Backspace",
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "UPDATE_OBJECT/COMMITTED",
+   "lastAfter": "UPDATE_OBJECT/COMMITTED",
+   "changed": [
+    "nameDom",
+    "nameSel"
+   ],
+   "domReverted": true,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708A"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "text-input",
+   "key": "Escape",
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "UPDATE_OBJECT/COMMITTED",
+   "lastAfter": "UPDATE_OBJECT/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "range",
+   "key": "Meta+z",
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": true,
+   "gestureBefore": "camera-fov",
+   "gestureAfter": null,
+   "gestureClosed": true,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": true,
+   "lastBefore": "GESTURE_BEGIN/COMMITTED",
+   "lastAfter": "GESTURE_COMMIT/NOOP",
+   "changed": [
+    "nameDom",
+    "nameSel",
+    "selectedText"
+   ],
+   "domReverted": true,
+   "nameDom": [
+    "改名试试708AB",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "range",
+   "key": "Meta+Shift+z",
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "focusMoved": false,
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "GESTURE_BEGIN/COMMITTED",
+   "lastAfter": "GESTURE_BEGIN/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "range",
+   "key": "Meta+y",
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "focusMoved": false,
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "GESTURE_BEGIN/COMMITTED",
+   "lastAfter": "GESTURE_BEGIN/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "range",
+   "key": "Delete",
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "focusMoved": false,
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "GESTURE_BEGIN/COMMITTED",
+   "lastAfter": "GESTURE_BEGIN/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "range",
+   "key": "Backspace",
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "focusMoved": false,
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "GESTURE_BEGIN/COMMITTED",
+   "lastAfter": "GESTURE_BEGIN/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "range",
+   "key": "Escape",
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "focusMoved": false,
+   "gestureBefore": "camera-fov",
+   "gestureAfter": null,
+   "gestureClosed": true,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": true,
+   "lastBefore": "GESTURE_BEGIN/COMMITTED",
+   "lastAfter": "GESTURE_CANCEL/NOOP",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "select",
+   "key": "Meta+z",
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": true,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "UPDATE_OBJECT/COMMITTED",
+   "lastAfter": "UPDATE_OBJECT/COMMITTED",
+   "changed": [
+    "nameDom",
+    "nameSel",
+    "selectedText"
+   ],
+   "domReverted": true,
+   "nameDom": [
+    "改名试试708AB",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "select",
+   "key": "Meta+Shift+z",
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "UPDATE_OBJECT/COMMITTED",
+   "lastAfter": "UPDATE_OBJECT/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "select",
+   "key": "Meta+y",
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "UPDATE_OBJECT/COMMITTED",
+   "lastAfter": "UPDATE_OBJECT/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "select",
+   "key": "Delete",
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "UPDATE_OBJECT/COMMITTED",
+   "lastAfter": "UPDATE_OBJECT/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "select",
+   "key": "Backspace",
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "UPDATE_OBJECT/COMMITTED",
+   "lastAfter": "UPDATE_OBJECT/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  },
+  {
+   "variant": "typed-no-canvas",
+   "focus": "select",
+   "key": "Escape",
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "focusMoved": false,
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "gestureClosed": false,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "appCommandRan": false,
+   "lastBefore": "UPDATE_OBJECT/COMMITTED",
+   "lastAfter": "UPDATE_OBJECT/COMMITTED",
+   "changed": [],
+   "domReverted": false,
+   "nameDom": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "nameStore": [
+    "改名试试708AB",
+    "改名试试708AB"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ]
+  }
+ ],
+ "summary": {
+  "backspace-deletes-a-character-in-a-text-field-while-delete-does-nothing": true,
+  "delete-and-backspace-do-nothing-in-a-slider-or-a-select": true,
+  "escape-does-nothing-in-text-and-select-but-cancels-the-gesture-in-a-slider": true,
+  "the-form-undo-hijack-hits-all-three-editable-focus-types-not-just-sliders": true,
+  "neither-redo-key-hijacks-in-any-cell-so-the-trap-is-one-way": true,
+  "after-the-hijack-the-dom-is-out-of-sync-with-the-store-and-no-undo-is-ledgered": true
+ },
+ "failures": []
+}
