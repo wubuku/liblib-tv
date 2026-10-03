@@ -517,6 +517,29 @@ RETRACTIONS: list[dict[str, str]] = [
         "allow_in": ["10-tasks/edit-nodes.md#订正本段**：原文写的是"],
         "fixed_in": "M206",
     },
+    {
+        "id": "R52",
+        "kind": "conclusion",
+        "wrong": "「拖拽你想生成或编辑的画面」",
+        "why": "**这个占位符在代码里根本不存在。** 面板只有一个"
+               "（`web/src/components/canvas/aitudou-native-generation-panel.tsx`），"
+               "它的输入框占位符全部来自 `nativePromptPlaceholder()`，"
+               "对图片节点返回的是 **`描述`你想生成或编辑的画面**——"
+               "**全仓 grep「拖拽你想生成或编辑的画面」是 0 处**。\n"
+               "**「拖拽」是拖放上传那个动作，占位符却是在让人打字**；"
+               "读者照着书去界面上找这句话，一个字都找不到，"
+               "而这行表格的用途正是**教他把两个面板区分开**。\n"
+               "★ **同表另一格也一并订正**：图片面板的**面板标题不是「文生图」而是「图片创作」**——"
+               "标题是 `{nativeKindTitle(kind)}创作` 运行时拼出来的，"
+               "**「文生图」是副标题**（`nativeAutomaticMode()` 在无参考图时返回它，"
+               "挂参考图则是「参考生图」）。原文那一列只写「文生图」，"
+               "**与左边「标题 · 副标题」的写法不一致，读者会默认它是标题**\n"
+               "★ **M207 当场用上了 allow_in**：订正块在正文里**逐字引了那个不存在的占位符**"
+               "（否则读者不知道错在哪），新 needle 立刻把那行点了出来——**再次证明它有牙**",
+        "allow_in": ["10-tasks/generate-images.md#grep「拖拽你想生成或编辑",
+                     "SOURCE_OBSERVATIONS.md#占位符「拖拽你想生成"],
+        "fixed_in": "M207",
+    },
 ]
 
 
