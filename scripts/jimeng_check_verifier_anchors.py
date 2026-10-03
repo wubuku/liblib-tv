@@ -80,6 +80,11 @@ PROBE_VARS = {
     "_p926": "scripts/jimeng_probe926_window_survives_freeze_src.py",
     "_p927": "scripts/jimeng_probe927_early_writeback_repro_src.py",
     "_p928": "scripts/jimeng_probe928_replica_same_ruler.py",
+    "_p929": "scripts/jimeng_probe929_long_tail_wrap_or_not_src.py",
+    # ⚠️⚠️ **929 加的**：**门禁脚本自己**也必须登记 ——
+    #    PPP.3 要钉「第二道 Python 语法门真的加进它了」，
+    #    那道门就**长在这个文件里** ⇒ 不登记它，锚点就查不到。
+    "_syn": "scripts/jimeng_probe_js_syntax_check.py",
     # ⚠️ 909 第一次把判据钉在**组件源码的实现字面量**上（判据写在
     # `armRovingTabindex` 里）⇒ 组件源码**必须登记进 PROBE_VARS**。
     # ⚠️⚠️ 第一次我把它误写进了一个**没人读**的 `SRC_VARS` ⇒

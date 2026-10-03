@@ -32,6 +32,18 @@ NODE_CANDIDATES = [
     "node",
 ]
 
+# ⚠️⚠️⚠️ **929 加的**：**Python 侧的语法门必须用「真跑那个」解释器**。
+# 探针**不是**用跑这个脚本的解释器跑的 —— 源站探针走的是
+# `~/.venvs/liblib-harness/bin/python`（实测 **3.11.6**），
+# 而这个门禁历史上是用 `/opt/miniconda3/bin/python3`（**3.12.9**）跑的。
+# ⇒ **3.12 放行、3.11 崩**：929 第一版把一个**跨行的 f-string 表达式**写进了
+# 打印语句（f-string 表达式里不许换行 —— 那是 **PEP 701 / 3.12** 才放宽的）
+# ⇒ **语法门全绿、一跑就 SyntaxError、整轮读数全丢**。
+# ⇒ 所以这里**显式用 harness 的解释器**再 parse 一遍。
+HARNESS_PY_CANDIDATES = [
+    pathlib.Path.home() / ".venvs/liblib-harness/bin/python",
+]
+
 # `X = """…"""`（顶层常量）与 `page.evaluate("""…""")`（内联）两种形态
 PAT_CONST = re.compile(r"^[A-Z_0-9]+_JS\s*=\s*\"\"\"(.*?)\"\"\"", re.S | re.M)
 PAT_EVAL = re.compile(r"\.evaluate\(\s*\"\"\"(.*?)\"\"\"", re.S)
@@ -47,6 +59,33 @@ def find_node() -> str | None:
         elif pathlib.Path(c).exists():
             return c
     return None
+
+
+def check_py_under_runner(files: list[pathlib.Path]) -> list[str]:
+    """⚠️ **用探针「真跑那个」解释器**把每个探针 parse 一遍（929 加的）。"""
+    runner = next((c for c in HARNESS_PY_CANDIDATES if c.exists()), None)
+    if runner is None:
+        return ["⚠ 找不到 harness 解释器（%s），**Python 侧跨版本语法门没跑成**"
+                % HARNESS_PY_CANDIDATES[0]]
+    import ast  # 只在**本脚本自己的**解释器里用；被判的代码由 runner 去 parse
+    errs: list[str] = []
+    for f in files:
+        try:
+            src = f.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        # 交给 runner 的 `-c` 去 parse（**必须**是那个版本）
+        proc = subprocess.run(
+            [str(runner), "-c",
+             "import ast,sys;ast.parse(open(sys.argv[1],encoding='utf-8').read())",
+             str(f)],
+            capture_output=True, text=True)
+        if proc.returncode != 0:
+            errs.append("✗ %s（用 %s 解析失败）\n    %s"
+                        % (f.name, runner.name,
+                           (proc.stderr or "").strip().splitlines()[-1:]))
+    del ast
+    return errs
 
 
 def check_file(path: pathlib.Path, node: str) -> list[str]:
@@ -103,6 +142,20 @@ def main(argv: list[str]) -> int:
         print("\n⚠ JS 语法错**不会**被 py_compile 抓到，而它会让探针当场崩、"
               "\n  把前面已量好的结果一起带走。改完探针先跑这条。")
         return 1
+    # ⚠️⚠️ **929 加的第二道**：**Python 侧**用**探针真跑那个解释器**再 parse 一遍
+    py_errs = check_py_under_runner([f for f in files if f.exists()])
+    if py_errs:
+        print("\n检查 %d 个探针的 **Python 语法（用 harness 解释器）**：有错 ✗"
+              % len(files))
+        for e in py_errs:
+            print("  " + e)
+        print("\n⚠⚠️ **929 的教训**：门禁历史上跑的是 3.12、探针真跑的是 3.11 "
+              "⇒ **3.12 放行、3.11 崩**"
+              "（f-string 表达式跨行是 PEP 701 / 3.12 才放宽的）"
+              "⇒ **语法门必须用「真跑那个」解释器**。")
+        return 1
+    print("\n检查 %d 个探针的 **Python 语法（用 harness 解释器）**："
+          "全部正确 ✓" % len(files))
     return 0
 
 

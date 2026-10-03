@@ -4400,6 +4400,74 @@ def main() -> int:
           # ⚠️ 而 §134 的「PAST=10 预算不够」必须钉在源码上
           and "PAST = 10" in _p924
           and "n_past_ok = (n_past_fwd >= PAST and n_past_rev >= PAST)" in _p924)
+    p929 = ROOT / "scripts/jimeng_probe929_long_tail_wrap_or_not_src.py"
+    _p929 = p929.read_text(encoding="utf-8") if p929.exists() else ""
+    _syn = ROOT / "scripts/jimeng_probe_js_syntax_check.py"
+    _syn_src = _syn.read_text(encoding="utf-8") if _syn.exists() else ""
+    check("PPP.1 ✅⭐⭐ **929 用足够长的尾巴把这一对矛盾判死了："
+          "§908 对、§134 的「绝不绕回」是错的** —— "
+          "**到末尾 = 第 83 次**、**第 102 次按前焦点 = `Canvas`（画布根）"
+          "⇒ 布 `0`、绕回**（`pre_on_canvas_root = True`）**2/2 逐条一致**。"
+          "越界之后**第 84–101 次共 18 次全是死按压**",
+          "929 用足够长的尾巴把这一对矛盾判死了" in _ausrc
+          and "§908 对、§134（我自己在 924 记的）「绝不绕回」是错的。**" in _ausrc
+          and "**到末尾 = 第 83 次**" in _ausrc
+          and "**第 84–101 次共 18 次全是死按压**" in _ausrc
+          and "**§908 那条触发条件 2/2 复现**" in _ausrc
+          # ⭐⭐ 判据钉在**「那一圈长度本身要先测出来」**这条纪律上
+          and "assert TAIL >= 3 * LOOP_PERIOD" in _p929
+          and "TAIL = 90" in _p929
+          and "**不许拿「按了 N 次没看到」当机制**" in _ausrc
+          # 判别格必须**真的被记下来**（按前焦点是不是画布根）
+          and "on_canvas_root: aOnCanvasRoot," in _p929
+          and "\"pre_on_canvas_root\": p[\"pre\"][\"active\"][\"on_canvas_root\"]," in _p929)
+    check("PPP.2 ⚠️⭐ **顺带把 §908 当年那个「约 19 次」量准、并钉死了「差一按」**："
+          "**到末尾 83、绕回 102 ⇒ 恰好 19 次**；"
+          "而 **896 的预算是 `节点数 + 25 = 101` 次** "
+          "⇒ **`revisited = {}` 真的只差 1 按** ⇒ **它不是机制、是一按之差。**"
+          "⇒ **由此得到一条硬纪律**：**「到边界之后的行为」这类问题，"
+          "预算必须 > 「从边界走回触发点」所需的那一圈** —— "
+          "**而那一圈的长度本身就是要先测出来的东西**",
+          "把 §908 当年那个「约 19 次」量准、并钉死了「差一按」" in _ausrc
+          and "**到末尾 83、绕回 102 ⇒ 恰好 19 次**" in _ausrc
+          and "**`revisited = {}` 真的只差 1 按**" in _ausrc
+          and "**它不是机制、是一按之差。**" in _ausrc
+          and "**而那一圈的长度本身就是要先测出来的东西**" in _ausrc
+          # ⚠️ 896 那条**必须还带着这条订正**（不许悄悄删掉原句）
+          and "**929 把这个「约 19」量准了、并钉死了「差一按」**" in _ausrc
+          and "source_roving_tabindex_policy_896" in _ausrc)
+    check("PPP.3 ⚠️ **929 第一版自己踩的坑（门禁用错了解释器）**："
+          "把一个**跨行的 f-string 表达式**写进了打印语句 —— "
+          "**f-string 表达式里不许换行**（**PEP 701 / Python 3.12** 才放宽）"
+          "⇒ **3.12 的语法门全绿放行**、**而 harness 跑的是 3.11** "
+          "⇒ **一跑就 SyntaxError、整轮读数全丢**。"
+          "⇒ ✅ **第二道语法门已加进 `jimeng_probe_js_syntax_check.py`**："
+          "**用 harness 那个解释器把每个探针 `parse` 一遍** ⇒ "
+          "教训：语法门必须用「真跑那个」解释器**",
+          "929 第一版自己踩的坑（门禁用错了解释器）" in _ausrc
+          and "**f-string 表达式里不许换行**" in _ausrc
+          and "3.12 语法门全绿放行**" in _ausrc
+          and "**一跑就 SyntaxError、整轮读数全丢**" in _ausrc
+          and "教训：语法门必须用「真跑那个」解释器**" in _ausrc
+          # ⭐⭐ 判据钉在**门禁脚本真的加了这道门**上（不许只是写在散文里）
+          and "HARNESS_PY_CANDIDATES" in _syn_src
+          and "def check_py_under_runner(" in _syn_src
+          and "py_errs = check_py_under_runner(" in _syn_src
+          and "py_errs = check_py_under_runner(" in _syn_src
+          and "**929 加的第二道**" in _syn_src)
+    check("PPP.4 ⚠️ **不许**把 §134 那条已判死的「绝不绕回」当已验证 —— "
+          "**收窄批注必须留在 §134 原段落上**（原文一个字不许删），"
+          "**且钉住它的判据 KKK.1 必须同时钉住这条订正**。"
+          "⇒ **「被推翻/被收窄的旧结论要以历史记录身份留着」这条纪律，"
+          "本批是第三次执行**（921 对调 920、928 订正 134、929 判死 134 正向那半）",
+          "**不许**把 §134 那条当已验证" in _ausrc
+          and "**【928 订正 —— 上面那个「不绕回」的一半是回归，" in _ausrc
+          and "**§134 把这两条并存的两分支一刀切成「绝不绕回」，是回归。**" in _ausrc
+          # ⭐ 判据必须钉在**KKK.1 自己也钉了这条订正**上
+          and "**但「正向到末尾也不绕回」那半个是错的**" in _ausrc
+          and "\"source_roving_wraps_at_canvas_root_908\" in _ausrc" in open(
+              ROOT / "scripts/verify-jimeng-batch841-unclickable.py",
+              encoding="utf-8").read())
 
 
 
