@@ -1,0 +1,861 @@
+{
+  "页签候选": [],
+  "分类标签": [
+    {
+      "文字": "推荐",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+      "位置": [
+        117,
+        157,
+        50,
+        28
+      ]
+    },
+    {
+      "文字": "摄影写真",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        175,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "电商营销",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        259,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "动漫游戏",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        343,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "风格插画",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        427,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "平面设计",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        511,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "建筑及室内设计",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        595,
+        157,
+        115,
+        28
+      ]
+    },
+    {
+      "文字": "创意玩法",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        718,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "文创周边",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        802,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "小说推文",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        886,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "全部",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 shrink-0 cursor-pointer items-center justify-center",
+      "背景": "rgba(255, 255, 255, 0.1)",
+      "位置": [
+        1269,
+        157,
+        54,
+        28
+      ]
+    }
+  ],
+  "顶部全部按钮": [
+    {
+      "文字": "音频节点 1 尝试： 音频生视频",
+      "tag": "div",
+      "role": "group",
+      "aria": "",
+      "cls": "react-flow__node react-flow__node-audio nopan selectable dra",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        274,
+        177,
+        164,
+        164
+      ]
+    },
+    {
+      "文字": "音频节点 1 尝试： 音频生视频",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        274,
+        177,
+        164,
+        164
+      ]
+    },
+    {
+      "文字": "音频节点 1 尝试： 音频生视频",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        274,
+        177,
+        164,
+        164
+      ]
+    },
+    {
+      "文字": "音频节点 1 尝试： 音频生视频",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "node-shell relative",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        274,
+        177,
+        164,
+        164
+      ]
+    },
+    {
+      "文字": "音频节点 1",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "node-floating-ui transition-[transform,opacity] duration-150",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        274,
+        152,
+        164,
+        23
+      ]
+    },
+    {
+      "文字": "音频节点 1",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "text-fg-muted flex w-full min-w-0 items-center gap-1 cursor-",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        274,
+        152,
+        164,
+        23
+      ]
+    },
+    {
+      "文字": "音频节点 1",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "flex min-w-0 flex-1 items-center gap-1 cursor-pointer",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        274,
+        154,
+        164,
+        19
+      ]
+    },
+    {
+      "文字": "尝试： 音频生视频",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-full flex-col items-center justify-center px-6",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        274,
+        177,
+        163,
+        163
+      ]
+    },
+    {
+      "文字": "尝试： 音频生视频",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "w-full",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        285,
+        259,
+        141,
+        30
+      ]
+    },
+    {
+      "文字": "尝试：",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "text-fg-muted mb-2 text-sm",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        285,
+        259,
+        141,
+        9
+      ]
+    },
+    {
+      "文字": "音频生视频",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "flex flex-col items-start gap-1",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        285,
+        272,
+        141,
+        17
+      ]
+    },
+    {
+      "文字": "音频生视频",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover fle",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        285,
+        272,
+        54,
+        17
+      ]
+    },
+    {
+      "文字": "拆解维度 分镜 动态 音乐",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "flex w-full flex-col",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        1210,
+        156,
+        145,
+        30
+      ]
+    },
+    {
+      "文字": "拆解维度",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-8 w-full items-center px-3",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        1210,
+        156,
+        145,
+        15
+      ]
+    },
+    {
+      "文字": "分镜",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justi",
+      "背景": "rgba(19, 213, 255, 0.12)",
+      "位置": [
+        1214,
+        171,
+        43,
+        15
+      ]
+    },
+    {
+      "文字": "动态",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justi",
+      "背景": "rgba(19, 213, 255, 0.12)",
+      "位置": [
+        1261,
+        171,
+        43,
+        15
+      ]
+    },
+    {
+      "文字": "音乐",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justi",
+      "背景": "rgba(19, 213, 255, 0.12)",
+      "位置": [
+        1308,
+        171,
+        43,
+        15
+      ]
+    },
+    {
+      "文字": "开始拉片",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "flex w-full flex-col gap-2 p-3 pt-5",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        1208,
+        186,
+        149,
+        32
+      ]
+    },
+    {
+      "文字": "开始拉片",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "nodrag nopan flex h-9 w-full items-center justify-center rou",
+      "背景": "rgba(255, 255, 255, 0.08)",
+      "位置": [
+        1214,
+        195,
+        138,
+        17
+      ]
+    },
+    {
+      "文字": "打开导演台",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-",
+      "背景": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+      "位置": [
+        396,
+        167,
+        43,
+        15
+      ]
+    },
+    {
+      "文字": "批量广告",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        987,
+        131,
+        40,
+        13
+      ]
+    },
+    {
+      "文字": "口播视频",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        987,
+        146,
+        40,
+        13
+      ]
+    },
+    {
+      "文字": "素材混剪",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        987,
+        161,
+        40,
+        13
+      ]
+    },
+    {
+      "文字": "首尾帧生成视频",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover fle",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        595,
+        135,
+        68,
+        17
+      ]
+    },
+    {
+      "文字": "首帧生成视频",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover fle",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        595,
+        154,
+        61,
+        17
+      ]
+    },
+    {
+      "文字": "推荐",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+      "位置": [
+        117,
+        157,
+        50,
+        28
+      ]
+    },
+    {
+      "文字": "摄影写真",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        175,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "电商营销",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        259,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "动漫游戏",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        343,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "风格插画",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        427,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "平面设计",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        511,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "建筑及室内设计",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        595,
+        157,
+        115,
+        28
+      ]
+    },
+    {
+      "文字": "创意玩法",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        718,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "文创周边",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        802,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "小说推文",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        886,
+        157,
+        76,
+        28
+      ]
+    },
+    {
+      "文字": "仅看可商用 全部",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "flex items-center gap-2",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        1181,
+        157,
+        142,
+        28
+      ]
+    },
+    {
+      "文字": "仅看可商用",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "cursor-pointer m_bf2d988c mantine-Checkbox-root m_5f75b09e m",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        1181,
+        163,
+        80,
+        16
+      ]
+    },
+    {
+      "文字": "仅看可商用",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "m_5f6e695e mantine-Checkbox-body",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        1181,
+        163,
+        80,
+        16
+      ]
+    },
+    {
+      "文字": "仅看可商用",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "m_d3ea56bb mantine-Checkbox-labelWrapper",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        1197,
+        163,
+        64,
+        16
+      ]
+    },
+    {
+      "文字": "全部",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-7 shrink-0 cursor-pointer items-center justify-center",
+      "背景": "rgba(255, 255, 255, 0.1)",
+      "位置": [
+        1269,
+        157,
+        54,
+        28
+      ]
+    },
+    {
+      "文字": "Seedream 5.0",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "relative flex w-full items-center justify-between p-2",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        122,
+        202,
+        181,
+        40
+      ]
+    },
+    {
+      "文字": "Seedream 5.0",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-",
+      "背景": "rgba(31, 31, 31, 0.2)",
+      "位置": [
+        130,
+        210,
+        24,
+        24
+      ]
+    },
+    {
+      "文字": "Qwen Image",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "relative flex w-full items-center justify-between p-2",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        528,
+        202,
+        181,
+        40
+      ]
+    },
+    {
+      "文字": "Qwen Image",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-",
+      "背景": "rgba(31, 31, 31, 0.2)",
+      "位置": [
+        536,
+        210,
+        24,
+        24
+      ]
+    },
+    {
+      "文字": "Qwen Image",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "relative flex w-full items-center justify-between p-2",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        731,
+        202,
+        181,
+        40
+      ]
+    },
+    {
+      "文字": "Qwen Image",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-",
+      "背景": "rgba(31, 31, 31, 0.2)",
+      "位置": [
+        739,
+        210,
+        24,
+        24
+      ]
+    },
+    {
+      "文字": "Z Image",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "relative flex w-full items-center justify-between p-2",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        934,
+        202,
+        181,
+        40
+      ]
+    },
+    {
+      "文字": "Z Image",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-",
+      "背景": "rgba(31, 31, 31, 0.2)",
+      "位置": [
+        942,
+        210,
+        24,
+        24
+      ]
+    },
+    {
+      "文字": "Qwen Image",
+      "tag": "div",
+      "role": "",
+      "aria": "",
+      "cls": "relative flex w-full items-center justify-between p-2",
+      "背景": "rgba(0, 0, 0, 0)",
+      "位置": [
+        1137,
+        202,
+        181,
+        40
+      ]
+    },
+    {
+      "文字": "Qwen Image",
+      "tag": "button",
+      "role": "",
+      "aria": "",
+      "cls": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-",
+      "背景": "rgba(31, 31, 31, 0.2)",
+      "位置": [
+        1145,
+        210,
+        24,
+        24
+      ]
+    }
+  ]
+}

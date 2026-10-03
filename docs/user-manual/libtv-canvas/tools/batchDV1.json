@@ -1,0 +1,613 @@
+{
+  "特效": {
+    "标签": "特效广场",
+    "可分析": 31,
+    "符合": 30,
+    "定位失败": 2,
+    "全部符合": false,
+    "样本": [
+      {
+        "卡面文本": "537.6w",
+        "卡面推算": 5376000,
+        "卡名": "Seedream 5.0 pro",
+        "runCount": 5375800,
+        "精确": false,
+        "近似": true,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 171,
+          "commentCount": 12,
+          "imageCount": 65907,
+          "downloadCount": 0,
+          "subscribeCount": 0,
+          "runCount": 5375800,
+          "heat": 26879205,
+          "delay7dDownCount": 0
+        }
+      },
+      {
+        "卡面文本": "5.0",
+        "卡面推算": 5,
+        "卡名": "Seedream 5.0 pro",
+        "runCount": 5375800,
+        "精确": false,
+        "近似": false,
+        "符合": false,
+        "其他计数字段": {
+          "likeCount": 171,
+          "commentCount": 12,
+          "imageCount": 65907,
+          "downloadCount": 0,
+          "subscribeCount": 0,
+          "runCount": 5375800,
+          "heat": 26879205,
+          "delay7dDownCount": 0
+        }
+      },
+      {
+        "卡面文本": "1.1w",
+        "卡面推算": 11000,
+        "卡名": "J_漫剧素材三视图+大头表情+姿势图",
+        "runCount": 10700,
+        "精确": false,
+        "近似": true,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 224,
+          "commentCount": 44,
+          "imageCount": 80,
+          "downloadCount": 0,
+          "subscribeCount": 0,
+          "runCount": 10700,
+          "heat": 53860,
+          "delay7dDownCount": 0
+        }
+      },
+      {
+        "卡面文本": "6300",
+        "卡面推算": 6300,
+        "卡名": "妆造一体博主感写真 LoRA",
+        "runCount": 6300,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 2,
+          "commentCount": 0,
+          "imageCount": 32,
+          "downloadCount": 12,
+          "subscribeCount": 0,
+          "runCount": 6300,
+          "heat": 31895,
+          "delay7dDownCount": 12
+        }
+      },
+      {
+        "卡面文本": "2.4w",
+        "卡面推算": 24000,
+        "卡名": "Qwen-唯美氛围感可爱萌妹女生头像插画",
+        "runCount": 23500,
+        "精确": false,
+        "近似": true,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 4,
+          "commentCount": 0,
+          "imageCount": 0,
+          "downloadCount": 0,
+          "subscribeCount": 0,
+          "runCount": 23500,
+          "heat": 117650,
+          "delay7dDownCount": 0
+        }
+      },
+      {
+        "卡面文本": "312",
+        "卡面推算": 312,
+        "卡名": "【捌陆设计】短剧角色-Ai漫剧资产库人物角色四视图V8.0",
+        "runCount": 312,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 0,
+          "commentCount": 0,
+          "imageCount": 13,
+          "downloadCount": 0,
+          "subscribeCount": 0,
+          "runCount": 312,
+          "heat": 1560,
+          "delay7dDownCount": 0
+        }
+      },
+      {
+        "卡面文本": "1.3w",
+        "卡面推算": 13000,
+        "卡名": "Pan纯手绘男生立绘211-Qimage",
+        "runCount": 13400,
+        "精确": false,
+        "近似": true,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 3,
+          "commentCount": 0,
+          "imageCount": 22,
+          "downloadCount": 0,
+          "subscribeCount": 0,
+          "runCount": 13400,
+          "heat": 64715,
+          "delay7dDownCount": 0
+        }
+      },
+      {
+        "卡面文本": "218",
+        "卡面推算": 218,
+        "卡名": "krea2-超高颜值美女 解封版",
+        "runCount": 218,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 1,
+          "commentCount": 0,
+          "imageCount": 48,
+          "downloadCount": 11,
+          "subscribeCount": 0,
+          "runCount": 218,
+          "heat": 1145,
+          "delay7dDownCount": 10
+        }
+      },
+      {
+        "卡面文本": "4.2w",
+        "卡面推算": 42000,
+        "卡名": "一键生成人物多视图",
+        "runCount": 42300,
+        "精确": false,
+        "近似": true,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 57,
+          "commentCount": 5,
+          "imageCount": 231,
+          "downloadCount": 0,
+          "subscribeCount": 0,
+          "runCount": 42300,
+          "heat": 211565,
+          "delay7dDownCount": 0
+        }
+      },
+      {
+        "卡面文本": "234",
+        "卡面推算": 234,
+        "卡名": "krea2-皮肤雪白，冷白皮 解封版",
+        "runCount": 234,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 8,
+          "commentCount": 0,
+          "imageCount": 38,
+          "downloadCount": 38,
+          "subscribeCount": 0,
+          "runCount": 234,
+          "heat": 1360,
+          "delay7dDownCount": 34
+        }
+      },
+      {
+        "卡面文本": "3700",
+        "卡面推算": 3700,
+        "卡名": "Qwen_厚涂末世赛博朋克",
+        "runCount": 3700,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 1,
+          "commentCount": 0,
+          "imageCount": 0,
+          "downloadCount": 1,
+          "subscribeCount": 0,
+          "runCount": 3700,
+          "heat": 18665,
+          "delay7dDownCount": 1
+        }
+      },
+      {
+        "卡面文本": "66",
+        "卡面推算": 66,
+        "卡名": "krea2-光滑，水润质感 解封版",
+        "runCount": 66,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 1,
+          "commentCount": 0,
+          "imageCount": 43,
+          "downloadCount": 4,
+          "subscribeCount": 0,
+          "runCount": 66,
+          "heat": 350,
+          "delay7dDownCount": 4
+        }
+      },
+      {
+        "卡面文本": "8800",
+        "卡面推算": 8800,
+        "卡名": "电商首页头图商用素材",
+        "runCount": 8800,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 24,
+          "commentCount": 0,
+          "imageCount": 8,
+          "downloadCount": 6,
+          "subscribeCount": 0,
+          "runCount": 8800,
+          "heat": 44500,
+          "delay7dDownCount": 6
+        }
+      },
+      {
+        "卡面文本": "8800",
+        "卡面推算": 8800,
+        "卡名": "音频类硬件产品精细化视觉创作",
+        "runCount": 8800,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 22,
+          "commentCount": 0,
+          "imageCount": 7,
+          "downloadCount": 5,
+          "subscribeCount": 0,
+          "runCount": 8800,
+          "heat": 44135,
+          "delay7dDownCount": 5
+        }
+      },
+      {
+        "卡面文本": "2800",
+        "卡面推算": 2800,
+        "卡名": "分镜脚本故事版分镜",
+        "runCount": 2800,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 42,
+          "commentCount": 2,
+          "imageCount": 21,
+          "downloadCount": 0,
+          "subscribeCount": 0,
+          "runCount": 2800,
+          "heat": 14195,
+          "delay7dDownCount": 0
+        }
+      },
+      {
+        "卡面文本": "9100",
+        "卡面推算": 9100,
+        "卡名": "毛呢粘土微缩梦幻房子场景模型",
+        "runCount": 9100,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 25,
+          "commentCount": 0,
+          "imageCount": 8,
+          "downloadCount": 21,
+          "subscribeCount": 0,
+          "runCount": 9100,
+          "heat": 45790,
+          "delay7dDownCount": 18
+        }
+      },
+      {
+        "卡面文本": "22.5w",
+        "卡面推算": 225000,
+        "卡名": "【摸鱼】3D电商渲染级KV海报_创意视觉表达",
+        "runCount": 224900,
+        "精确": false,
+        "近似": true,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 413,
+          "commentCount": 13,
+          "imageCount": 807,
+          "downloadCount": 139,
+          "subscribeCount": 0,
+          "runCount": 224900,
+          "heat": 1125550,
+          "delay7dDownCount": 138
+        }
+      },
+      {
+        "卡面文本": "7500",
+        "卡面推算": 7500,
+        "卡名": "中式雕刻风西游人物图谱",
+        "runCount": 7500,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 21,
+          "commentCount": 0,
+          "imageCount": 7,
+          "downloadCount": 28,
+          "subscribeCount": 0,
+          "runCount": 7500,
+          "heat": 37925,
+          "delay7dDownCount": 28
+        }
+      },
+      {
+        "卡面文本": "7400",
+        "卡面推算": 7400,
+        "卡名": "多款式家用厨刀多角度静物场景",
+        "runCount": 7400,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 22,
+          "commentCount": 0,
+          "imageCount": 7,
+          "downloadCount": 3,
+          "subscribeCount": 0,
+          "runCount": 7400,
+          "heat": 37140,
+          "delay7dDownCount": 1
+        }
+      },
+      {
+        "卡面文本": "7700",
+        "卡面推算": 7700,
+        "卡名": "以国风笔墨，展城市万象",
+        "runCount": 7700,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 27,
+          "commentCount": 0,
+          "imageCount": 10,
+          "downloadCount": 9,
+          "subscribeCount": 0,
+          "runCount": 7700,
+          "heat": 38650,
+          "delay7dDownCount": 8
+        }
+      },
+      {
+        "卡面文本": "3.1w",
+        "卡面推算": 31000,
+        "卡名": "一键国漫CGV2",
+        "runCount": 30800,
+        "精确": false,
+        "近似": true,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 41,
+          "commentCount": 4,
+          "imageCount": 187,
+          "downloadCount": 0,
+          "subscribeCount": 0,
+          "runCount": 30800,
+          "heat": 154010,
+          "delay7dDownCount": 0
+        }
+      },
+      {
+        "卡面文本": "13.1w",
+        "卡面推算": 131000,
+        "卡名": "东方玄幻武侠修仙世界",
+        "runCount": 131400,
+        "精确": false,
+        "近似": true,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 645,
+          "commentCount": 21,
+          "imageCount": 484,
+          "downloadCount": 5400,
+          "subscribeCount": 0,
+          "runCount": 131400,
+          "heat": 627295,
+          "delay7dDownCount": 5398
+        }
+      },
+      {
+        "卡面文本": "23.7w",
+        "卡面推算": 237000,
+        "卡名": "【摸鱼】创意电商场景_电商产品场景",
+        "runCount": 236600,
+        "精确": false,
+        "近似": true,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 292,
+          "commentCount": 17,
+          "imageCount": 454,
+          "downloadCount": 101,
+          "subscribeCount": 0,
+          "runCount": 236600,
+          "heat": 1182580,
+          "delay7dDownCount": 100
+        }
+      },
+      {
+        "卡面文本": "6.7w",
+        "卡面推算": 67000,
+        "卡名": "1912.5D写实人像",
+        "runCount": 66800,
+        "精确": false,
+        "近似": true,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 52,
+          "commentCount": 0,
+          "imageCount": 390,
+          "downloadCount": 340,
+          "subscribeCount": 0,
+          "runCount": 66800,
+          "heat": 336050,
+          "delay7dDownCount": 340
+        }
+      },
+      {
+        "卡面文本": "62.2w",
+        "卡面推算": 622000,
+        "卡名": "Qwen-Image-Lightning-8steps-V1.1-bf16.safetensors",
+        "runCount": 621900,
+        "精确": false,
+        "近似": true,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 202,
+          "commentCount": 7,
+          "imageCount": 1982,
+          "downloadCount": 3300,
+          "subscribeCount": 0,
+          "runCount": 621900,
+          "heat": 3113365,
+          "delay7dDownCount": 3297
+        }
+      },
+      {
+        "卡面文本": "5.5w",
+        "卡面推算": 55000,
+        "卡名": "Qwen-暗黑哥特风格情侣头像插画",
+        "runCount": 55300,
+        "精确": false,
+        "近似": true,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 41,
+          "commentCount": 0,
+          "imageCount": 0,
+          "downloadCount": 4,
+          "subscribeCount": 0,
+          "runCount": 55300,
+          "heat": 276615,
+          "delay7dDownCount": 4
+        }
+      },
+      {
+        "卡面文本": "3100",
+        "卡面推算": 3100,
+        "卡名": "天宫东方传统美学超现实神话元素奇幻概念艺",
+        "runCount": 3100,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 13,
+          "commentCount": 1,
+          "imageCount": 57,
+          "downloadCount": 0,
+          "subscribeCount": 0,
+          "runCount": 3100,
+          "heat": 15805,
+          "delay7dDownCount": 0
+        }
+      },
+      {
+        "卡面文本": "33.4w",
+        "卡面推算": 334000,
+        "卡名": "Qwen-Image-Lightning-8steps-V2.0",
+        "runCount": 333500,
+        "精确": false,
+        "近似": true,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 129,
+          "commentCount": 4,
+          "imageCount": 2150,
+          "downloadCount": 0,
+          "subscribeCount": 0,
+          "runCount": 333500,
+          "heat": 1666205,
+          "delay7dDownCount": 0
+        }
+      },
+      {
+        "卡面文本": "5500",
+        "卡面推算": 5500,
+        "卡名": "可爱手绘注解美食海报",
+        "runCount": 5500,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 16,
+          "commentCount": 0,
+          "imageCount": 8,
+          "downloadCount": 37,
+          "subscribeCount": 0,
+          "runCount": 5500,
+          "heat": 28085,
+          "delay7dDownCount": 9
+        }
+      },
+      {
+        "卡面文本": "5600",
+        "卡面推算": 5600,
+        "卡名": "月满中秋｜新中式国风节日海报系列",
+        "runCount": 5600,
+        "精确": true,
+        "近似": false,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 18,
+          "commentCount": 0,
+          "imageCount": 7,
+          "downloadCount": 43,
+          "subscribeCount": 0,
+          "runCount": 5600,
+          "heat": 28320,
+          "delay7dDownCount": 15
+        }
+      },
+      {
+        "卡面文本": "3.6w",
+        "卡面推算": 36000,
+        "卡名": "XT日系半厚涂",
+        "runCount": 35900,
+        "精确": false,
+        "近似": true,
+        "符合": true,
+        "其他计数字段": {
+          "likeCount": 54,
+          "commentCount": 0,
+          "imageCount": 18,
+          "downloadCount": 0,
+          "subscribeCount": 0,
+          "runCount": 35900,
+          "heat": 179975,
+          "delay7dDownCount": 0
+        }
+      }
+    ],
+    "字段总数": 63,
+    "有runCount": true
+  },
+  "风格复验": {
+    "标签": "风格广场(复验)",
+    "可分析": 0,
+    "符合": 0,
+    "定位失败": 33,
+    "全部符合": false,
+    "样本": [],
+    "字段总数": 0
+  },
+  "字段名差异": null,
+  "最终节点数": 35
+}
