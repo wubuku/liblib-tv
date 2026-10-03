@@ -541,10 +541,10 @@ grep -rn "<键名片段>" web/src --include="*.tsx" --include="*.ts" \
   - ★ **本批否掉了 M126 的推论**：M126 由"图标相同"推出"读者毫无线索区分"，**坐标实测不支持**——同屏的 4 组最近也相距 815 像素，且分处常驻竖排 / 跟随节点横条 / 右侧固定列三种截然不同的容器。**图标复用是事实，"难以分辨"不是。** M126 的 AUDIT 条目已降级并写明订正依据。[运行时]
   - **由此订正手册里一条方向写反的建议**：`use-agent.md` 原写「认图标比认位置更可靠」，**应当反过来**——三处按钮区的顺序固定，**认位置才是稳的**。这与 M126 已写的"靠位置区分"一致，此处是把同一结论推广到 Agent 面板。[运行时+静态]
 
-## 13. 可数断言台账（M199：把「13 个按钮」这类数字收到一个地方去）
+## 13. 可数断言台账（M199 立；M200 补 ComfyUI 与落盘结构两处）
 
 **为什么要有这张表。** 同一个数字会在好几个页面被重述——「图片节点 13 个按钮」这一条
-事实在四个页面各出现一次，本表 21 条事实合起来占了 **52 处**。
+事实在四个页面各出现一次，本表 23 条事实合起来占了 **56 处**。
 **数字一多，改一处就一定会漏另一处**，而漏掉的那处不会报错，只会安静地变成错的。
 M199 之前，只有截图和 `PROGRESS.md` 里的批次记录能追到某个数字的出处，**正文自己不带索引**。
 
@@ -579,12 +579,12 @@ M199 先试过把「扫描正文里所有可数断言」做成**覆盖率**门�
 | 「左侧竖排 Dock 的第 2/3/4 个图标」 | **反过来是假阳性**——那是序数不是计数 |
 
 所以本表是**手读建立的，不是扫出来的**；**它不保证穷尽正文里所有可数断言**。
-它的作用是给**已经测过**的这 21 条事实一个可维护的索引，**不是**给没测过的数字背书。
+它的作用是给**已经测过**的这 23 条事实一个可维护的索引，**不是**给没测过的数字背书。
 一个数字要进这张表，得先有实测或源码依据。
 
 ### 13.1 台账本体
 
-本表共 **21 条事实、52 处重述位置**。
+本表共 **23 条事实、56 处重述位置**。
 
 | 事实 ID | 陈述与实测值 | 依据 | 重述位置（文件 + 逐字短语） |
 |---|---|---|---|
@@ -596,18 +596,20 @@ M199 先试过把「扫描正文里所有可数断言」做成**覆盖率**门�
 | F06 | 音频节点：空 4 个 / 放上音频后 5 个，且**没有「存资产」** | 运行时实测 M94 / M197（真 WAV 上传后读节点内 audio 计数）；源码条件 `hasImage`、`hasVideo`、`isText` 三者取或，音频不在内 | `20-reference.md`「比图片/视频少一个「存资产」」；`10-tasks/edit-nodes.md`「它放上音频后是 5 个按钮」；`10-tasks/use-prompt-library.md`「音频节点放上音频后是 5 个按钮」；`10-tasks/edit-nodes.md`「确实只有 4 个按钮（信息 / 删除 / 编辑 / 上传）」 |
 | F07 | 视频节点：空 4 个 / 放上视频后 6 个 | 运行时实测 M197（真 MP4 上传后读节点内 video 计数） | `20-reference.md`「有「存资产」和「下载」」；`10-tasks/edit-nodes.md`「视频变 6 个、音频变 5 个」 |
 | F08 | 左下角缩放条 4 个视图控制：小地图 / 连线 / 网格吸附 / 重置视图 | 运行时实测 M196 / M198；`data-canvas-view-control` 四个；`scripts/probe-canvas-chrome.js` | `10-tasks/create-canvas-project.md`「左下角那 4 个视图控制按钮」；`10-tasks/shortcuts-help.md`「缩放条那 4 个按钮的 `visibility` / `opacity` 一律不变」 |
-| F09 | 左侧 Dock：未选中 8 个 / 只要有选中就是 9 个（多选、全选同为 9） | 运行时实测 M196 / M198；容器 `.td-canvas-dock` 按 aria-label 枚举；`scripts/probe-canvas-chrome.js` | `10-tasks/create-canvas-project.md`「未选中 8 个 → 单选 9 个 → Shift 真多选仍是 9 个」；`10-tasks/create-canvas-project.md`「主列 8 个按钮（含单选时出现的「删除选中」）的悬停提示一个都不缺」；`10-tasks/create-canvas-project.md`「读出 8 个按钮」；`10-tasks/shortcuts-help.md`「Dock 那 8 个按钮和缩放条那 4 个按钮」 |
+| F09 | 左侧 Dock：未选中 8 个 / 只要有选中就是 9 个（多选、全选同为 9） | 运行时实测 M196 / M198，M200 复测（无选中时逐个读 aria-label 仍是 8 个）；容器 `.td-canvas-dock`；`scripts/probe-canvas-chrome.js` | `10-tasks/create-canvas-project.md`「未选中 8 个 → 单选 9 个 → Shift 真多选仍是 9 个」；`10-tasks/create-canvas-project.md`「主列 8 个按钮（含单选时出现的「删除选中」）的悬停提示一个都不缺」；`10-tasks/create-canvas-project.md`「读出 8 个按钮」；`10-tasks/shortcuts-help.md`「Dock 那 8 个按钮和缩放条那 4 个按钮」 |
 | F10 | 顶栏 11 个可点物 = 容器 `.td-canvas-topbar` 内 10 个 + 容器外 1 个（右侧面板拖动把手） | 运行时实测 M196；9 个停上去有名字、2 个什么都不给 | `10-tasks/create-canvas-project.md`「顶栏一共 11 个可点的东西」；`10-tasks/create-canvas-project.md`「11 = 容器内 10 + 容器外 1」 |
 | F11 | 全应用 36 个不同可见图标中，9 个被用在了不止一个功能上 | 运行时实测 M128（三种状态各扫一遍 svg，按 lucide 类名分组）；M160 订正像素列 | `10-tasks/create-canvas-project.md`「9 个图标被用在了不止一个功能上」；`10-tasks/create-canvas-project.md`「全应用 36 个可见图标」 |
 | F12 | 「更多 → 自定义工具栏」弹窗列 14 项，默认勾上 12 项（未勾：锁比例、多角度） | 运行时实测 M121 / M197；弹窗自写的 12/14 与工具条 13 分开读数对账 | `90-troubleshooting.md`「14 个工具逐个看过」；`10-tasks/image-operations.md`「弹窗里列的是 **14 项**」 |
 | F13 | 全应用 7 条路由（含 `*` 兜底 404） | 运行时实测 M196 源码 + 运行时双查；`web/src/router.tsx:25-34` | `10-tasks/use-agent.md`「全应用就 7 条路由」；`20-reference.md`「TDCanvas 一共 7 条路由」；`20-reference.md`「7 条路由全部为 0」；`90-troubleshooting.md`「实测 7 条路由**可见残留全为 0**」 |
 | F14 | 英文界面残留中文：可见文字 0；aria-label 层 6 条路由各 1 处，`/canvas/:id` 是 3 处 | 运行时实测 M95；端口 title 没走 i18n，`web/src/components/canvas/canvas-node.tsx:1111` | `20-reference.md`「6 条路由各 **1 处**」；`20-reference.md`「是 3 处」 |
 | F15 | Agent 面板顶端 7 个按钮全是纯图标，中英两语同序同数 | 运行时实测 M197 / M199；限定面板容器内枚举；`scripts/probe-agent-i18n.js` | `10-tasks/use-agent.md`「从左到右共 7 个」；`90-troubleshooting.md`「面板内还有 7 个同样只有图标、没有文字的按钮」；`20-reference.md`「Agent 面板 7 个图标按钮的 `aria-label` **全部已本地化**」 |
-| F16 | 画布项目落库 12 个字段 | 运行时实测 M114 / M188；直接读本机 IndexedDB 的 `tdcanvas` / `app_state`，不是看界面 | `10-tasks/undo-persistence.md`「一个画布项目在数据库里一共 **12 个字段**」；`10-tasks/undo-persistence.md`「项目对象带 **12 个字段**」 |
+| F16 | 画布项目落库 12 个字段 | 运行时实测 M114 / M188；**M200 逐个画布复测：5 个画布全是 12 个字段**（M114 只看了第一个）；直读 IndexedDB 的 `tdcanvas` / `app_state`；`scripts/probe-storage-shape.js` | `10-tasks/undo-persistence.md`「一个画布项目在数据库里一共 **12 个字段**」；`10-tasks/undo-persistence.md`「项目对象带 **12 个字段**」 |
 | F17 | ComfyUI 本地页整页 17 个可见按钮，但落在 `<main>` 内容区内的为 0 | 运行时实测 M57 | `20-reference.md`「实测整页有 **17 个可见按钮**」 |
-| F18 | 界面节点类型 9 种，创建菜单只给 7 项（菜单少了生成配置与 AI 土豆任务，多了 ComfyUI 工作流与上传素材） | 运行时实测 M41 / M75；运行时逐条点名右键菜单与「添加节点」子菜单 | `30-concepts.md`「枚举有 7 种，菜单给 7 项」；`30-concepts.md`「注册表里露出的 5 种 + **ComfyUI 工作流** + **上传素材**」 |
+| F18 | 界面节点类型 9 种，创建菜单只给 7 项（菜单少了生成配置与 AI 土豆任务，多了 ComfyUI 工作流与上传素材） | 运行时实测 M41 / M75，M200 复测（菜单逐项读回仍是 7 项）；运行时逐条点名右键菜单与「添加节点」子菜单 | `30-concepts.md`「枚举有 7 种，菜单给 7 项」；`30-concepts.md`「注册表里露出的 5 种 + **ComfyUI 工作流** + **上传素材**」 |
 | F19 | 文本 / 图片 / 视频 / 音频两两互连 16 组全部连得上，无类型限制 | 运行时实测 M107 全矩阵（每组一张干净画布，连线数取 `path[data-connection-id]`） | `20-reference.md`「两两互连 16 种组合全部连得上」 |
 | F20 | 选中 2 个及以上节点时，悬浮工具条整个消失（单选 8 → 多选 0） | 运行时实测 M194；用节点工具条数量当独立读数区分「真多选」与「点空白取消选中」 | `10-tasks/edit-nodes.md`「悬浮工具条会完全消失」；`90-troubleshooting.md`「工具条整个消失」 |
+| F22 | ComfyUI 工作流空节点工具条 4 个：信息 / 删除 / 运行 / 参数（**没有「编辑」也没有「上传」**） | 运行时实测 M200；**浏览器里不装 ComfyUI 也能建出这个节点**（空状态就是出厂状态），逐个读 id、面上文字与读屏标签；id 读回 `info` / `delete` / `comfy-run` / `comfy-parameters` | `10-tasks/edit-nodes.md`「`comfy-run`「运行」」；`20-reference.md`「这一行原先只到源码级」 |
+| F23 | `app_state` 表里有 2 条记录：`tdcanvas:canvas_store`（state 里是 projects）与 `tdcanvas:asset_store`（state 里是 assets）；没装过插件时不存在第 3 条 | 运行时实测 M200；`scripts/probe-storage-shape.js` 读 `getAllKeys()`（只给值不给键，要另取键名） | `20-reference.md`「这张表里同时躺着 2 条记录」；`10-tasks/undo-persistence.md`「一个画布项目在数据库里一共 **12 个字段**」 |
 | F21 | Agent 面板 7 个读屏名里，只有「连接设置」那一个带连接状态后缀、会变 | 运行时实测 M199；英文 `Connection settings. Current status: Disconnected`／中文「连接设置，当前未连接」；`scripts/probe-agent-i18n.js` | `20-reference.md`「它是七个里唯一会变的那个」 |
 
 ### 13.2 这道门禁真正拦得住的四件事
@@ -618,3 +620,36 @@ M199 先试过把「扫描正文里所有可数断言」做成**覆盖率**门�
 4. **结构坏掉**——ID 重复、依据为空、某条一个重述位置都没有。
 
 **它拦不住的**：没进台账的新数字。这不是漏洞，是本表已写明的边界（见 13.0）。
+
+### 13.3 没有探针的那几条：复现步骤照抄就能走
+
+台账里大部分事实都有已提交探针兜底（`probe-node-toolbars.js` / `probe-canvas-chrome.js` /
+`probe-agent-i18n.js` / `probe-storage-shape.js`）。**下面这几条没有**——
+不是量不了，是量它们的动作会**改变画布内容**，与其提交一支会点删除键的脚本，
+不如把步骤写清楚，让读者自己走一遍（这是 M196 立的规矩：一个只给数字不给方法的断言，
+读者只能选择相信或不相信）。
+
+**F22｜ComfyUI 空节点工具条 4 个**（`20-reference.md`、`10-tasks/edit-nodes.md`）
+
+1. 浏览器打开任意画布，`http://localhost:3000/canvas/<任一画布 id>`；
+2. 点左侧 Dock 第一个按钮（读屏名「添加节点」），菜单展开共 7 项，**第七项是「ComfyUI 工作流」**；
+3. 点它，节点数 +1，新节点落在画布中央，节点正文写着「选择本地工作流」；
+4. 点一下这个节点（**新节点默认和别的节点重叠，按坐标点容易点到别人身上**——
+   认节点根上的 `data-node-id`，实测形如 `comfyui-local:workflow-<时间戳>-<随机串>`）；
+5. 读节点上方工具条里的 `data-canvas-node-toolbar-action`，**逐个**读 id、按钮上的字、读屏标签。
+
+   实测四个：`info`「信息」/ `delete`「删除」/ `comfy-run`「运行」/ `comfy-parameters`「参数」。
+
+★ **本机不需要装 ComfyUI。** 前两批把这一档判成「未测」，理由写的是「要导入本机 ComfyUI 工作流才有那一档」——
+**那个前提不成立**：这个节点的空状态就是它的出厂状态，建出来即可量。
+M200 实测后已按项目惯例**追加订正块**（R48），没有回头改写 M194 / M197 当时的记录。
+
+**归属怎么确认**：页面上可能同时存在别的节点的工具条。**`comfy-run` / `comfy-parameters`
+这两个 id 是 ComfyUI 节点独有的**，别的节点不可能有——所以归属不靠猜，靠第二条独立读数。
+
+**收尾**：量完把刚建的那个节点删掉，删之前**核对 id 前缀是 `comfyui-local:workflow-`**，
+按钮用 `[data-canvas-node-toolbar-action="delete"]` **等值**匹配
+（M192 丢了两张画布，起因就是用 `/删除/` 这种子串先命中了「删除全部」），删完核对节点数已复原。
+
+**F23｜`app_state` 里有 2 条记录**：直接跑 `node scripts/probe-storage-shape.js <画布URL>`，
+或照 `20-reference.md` 那张表在 `F12` 里把**每条记录的键名都点一遍**——只看第一条会以为项目数据不见了。

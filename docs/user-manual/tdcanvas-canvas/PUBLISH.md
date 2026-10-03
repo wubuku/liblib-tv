@@ -325,7 +325,8 @@ python3 scripts/append-audit.py AUDIT.md < /tmp/audit-rows.txt
 
 ### ★ 跑探针前必读：八条判据纪律（M143 汇总；M193 重编第 1 条并补上第 8 行）
 
-五个探针脚本（`probe-discoverability.js` / `probe-toolbar-states.js` / `probe-absolute-coords.js` / `probe-node-toolbars.js` / `probe-canvas-chrome.js`）的文件头各写着自己那条链上的教训，**但那些教训原先只存在于源码里**——维护者不打开 `.js` 就看不到，而它们每一条都是**用一批作废的读数换来的**。本节把脚本头里可迁移的纪律**收拢到一处**（M143 汇总前七条，M160 追加第八条）。
+七支探针脚本（`probe-discoverability.js` / `probe-toolbar-states.js` / `probe-absolute-coords.js` /
+`probe-node-toolbars.js` / `probe-canvas-chrome.js` / `probe-agent-i18n.js` / `probe-storage-shape.js`）的文件头各写着自己那条链上的教训，**但那些教训原先只存在于源码里**——维护者不打开 `.js` 就看不到，而它们每一条都是**用一批作废的读数换来的**。本节把脚本头里可迁移的纪律**收拢到一处**（M143 汇总前七条，M160 追加第八条）。
 
 | # | 纪律 | 代价（真实发生过的） |
 |---|---|---|
@@ -495,6 +496,47 @@ TD_PROBE_PROFILE=/tmp/m124-profile node scripts/probe-canvas-chrome.js http://lo
 ⚠️ **Dock 那四档要求画布上有不互相遮挡的节点**：节点默认全叠在画布中心，
 第一个节点可能被完全盖住，**阳性对照不成立时这支探针会中断整段序列并说明原因**，
 而不是打一行错就继续跑——**顶着错误标签的读数比没有读数更坏**。
+
+### Agent 面板中英双语探针（M199 建立）
+
+```bash
+source ~/.nvm/nvm.sh
+node scripts/probe-agent-i18n.js http://localhost:3000/canvas/<画布id> /tmp/m157-profile
+```
+
+**中英两种语言各量一遍** Agent 面板顶端那 7 个图标按钮。之所以不能并进上一支：
+那支的选择器全是**中文字面量**（`aria-label === 'Agent'`），英文界面下必然全部失配——
+**不是产品变了，是尺子换了单位**。
+
+**收尾会把语言设置还原成调用前的值**，不把共享 profile 的状态留给下一批。
+
+⚠️ **三条坑都写在探针文件头**，这里只点最贵的一条：**空 profile 会伪造出一个「0 个按钮」**。
+M199 第一次跑就用了一个新建的 profile，读回「顶栏找不到 Agent 按钮」——
+真因是那个 profile 的 IndexedDB 里**一张画布都没有**，`/canvas/<id>` 被重定向回列表页。
+**这是量具的毛病，不是产品的毛病。** 探针把「`.td-canvas-dock` 在不在」当成前置对照，
+不成立就**明确报「对照不成立」并中断，绝不报 0**。
+
+⚠️ **别拿「英文界面里正文含中文」判断有没有漏译。** 画布上节点内容是用户自己写的（中文标题等），
+它当然含中文。**一条读数只证明一件事**——只能看 `aria-label` / `title` 这些界面自己生成的文案。
+
+### 落盘结构探针（M200 建立）
+
+```bash
+source ~/.nvm/nvm.sh
+node scripts/probe-storage-shape.js http://localhost:3000/canvas/<画布id> /tmp/m157-profile
+```
+
+**只读**（只开 `readonly` 事务）。它回答「画布数据到底落在哪、长什么样」：
+库里有哪几张表、`app_state` 有哪几个键、**每一个**画布项目的字段清单、`chatSessions` 是不是空的、
+素材字节在哪几张表里。
+
+**逐个画布核字段数**是它存在的理由：M114 当时只看了第一个项目就写下「12 个字段」，
+M200 把本机 5 个画布逐个读了一遍——**全是 12**，这条断言才从「一个样本」升级成「全体一致」。
+
+⚠️ **三个坑写在探针文件头**，这里点最反直觉的一个：**`app_state` 存的是 JSON 字符串，不是对象**。
+直接 `Object.keys(record)` 拿到的是 0..1487 这些**字符下标**——
+**先问「这条记录是什么类型」，再谈它有哪些字段。** 另外 `getAll()` **不给键名**，
+要核对手册里写的键名必须另取 `getAllKeys()`；只看第 0 条记录会得出「项目数据不见了」这种结论。
 
 ### 界面元素可发现性探针（M129 建立）
 
