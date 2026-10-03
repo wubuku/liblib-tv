@@ -1,0 +1,49 @@
+{
+ "predictions": {
+  "P1": "默认缩放下标尺比可见视口宽约 1.86 倍（46% 的时间轴在视口外）",
+  "P2": "冻结开始的 frac 就是可见边缘的 frac",
+  "P3": "横向滚动之后同样的 frac 能点出更大的 t —— 没有 4.24 上限",
+  "P4": "滚轮是有效的横向滚动手势",
+  "P5": "播放头的真实上限是 duration（8s）"
+ },
+ "run": {
+  "geo": {
+   "t": 0,
+   "zoom": 44,
+   "duration": 8,
+   "rulerW": 1779.125,
+   "rulerX": 322,
+   "rulerY": 1005,
+   "scrollerClientW": 958,
+   "scrollerScrollW": 1779,
+   "scrollLeft": 0,
+   "overflowX": "auto"
+  },
+  "unscrolled": {
+   "0.53": 4.240000131736106,
+   "0.75": 4.240000131736106,
+   "0.99": 4.240000131736106
+  },
+  "scrolledLeft": 821,
+  "scrolledHits": {
+   "0.05": 4.240000131736106,
+   "0.5": 4,
+   "0.75": 6,
+   "0.99": 7.919999956087965
+  },
+  "backLeft": 0,
+  "tAfterBack": 7.919999956087965,
+  "visibleEdgeFrac": 0.5384669430197428,
+  "visibleEdgeT": 4.307735544157943,
+  "widthRatio": 1.8571242171189979
+ },
+ "summary": {
+  "at-default-zoom-the-timeline-is-wider-than-its-visible-pane": true,
+  "the-frozen-fraction-is-exactly-the-visible-edge": true,
+  "scrolling-the-timeline-moves-the-playhead-past-four-point-two-four": true,
+  "the-wheel-scrolls-the-timeline-horizontally": true,
+  "the-real-playhead-ceiling-is-the-duration": true,
+  "retraction-of-712-the-4-24-ceiling-is-the-visible-edge-not-a-clamp": true
+ },
+ "failures": []
+}
