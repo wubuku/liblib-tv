@@ -148,7 +148,7 @@
     "生成历史[^。\\n]{0,20}全部 ?/ ?图片"
    ],
    "refuted_in": "批次 31",
-   "reason": "二级页签五个（多一个文本），面板另有���级页签两个：生成历史 ｜ 积分明细"
+   "reason": "二级页签五个（多一个文本），面板另有一级页签两个：生成历史 ｜ 积分明细"
   },
   {
    "id": "handle-hotzone-type-diff",
@@ -511,6 +511,17 @@
    "pattern_note": "（不可用裸的 `Add tags`：它本身是**真实存在**的 testid（`flow-node-selected-tag`）与 aria，本册多处正确记录它。pattern 必须绑上「多选工具条里没有」这个**错误断言**，否则会把正确记录判成「改了结论没回填」。⇒ 与 `search-panel-size-is-not-320x211` 同源：**pattern 要能区分「同一串字的不同归属」。**）",
    "refuted_in": "批次 131（SOURCE_OBSERVATIONS.md §4.52）",
    "reason": "**它就在多选工具条里 —— 当年没数到，是因为用了「逐字核对」这个方法，而 `Add tags` 是图标按钮、`innerText` 逐字为空（只有 `aria-label`）。** 2026-10-03 批次 131 改数 `flow-node-selected-tag` 的**实例数**：0 选中 **76** 个（全在节点内）→ 单选 1 个 **76** 个（工具条内 **0**）→ **框选 8 个：总数掉到 69，其中节点内 68、工具条内 1**（`aria=\"Add tags\"`、`24×24`、紧贴工具条右端）→ 取消后回到 **76**、工具条内 **0**。🔑 **`76 − 68 = 8` 正好等于选中数** ⇒ **多选时选中节点的标记按钮被搬进工具条**，8 个搬上来只留 **1 个**统一入口（即「给这 N 个一起打标签」），完全可逆。精确说法：**基座 `selection-context-toolbar` 里确实没有它**（3 个直接子按钮：编组 / 布局 / 下载），**但外层 `selection-context-toolbar-surface` / `node-toolbar` 里有**（4 个后代按钮）。📌 立规：**核对工具条有几项不能只读 `innerText`**，要并读 `aria-label` / `title` / 子元素 `data-testid`。"
+  },
+  {
+   "id": "multi-select-toolbar-does-not-follow-zoom",
+   "label": "「多选工具条挂在画布 viewport 之外 ⇒ 不随画布缩放」—— 原写在 SOURCE_OBSERVATIONS.md §4.52「e 轮顺带钉死：工具条不在画布坐标系里」与 PROGRESS.md「顺带：工具条不在画布坐标系里」；批次 87 对「宽度由选中集撑开」的归因也只对了一半",
+   "patterns": [
+    "工具条不在画布坐标系里，不随画布缩放",
+    "不在画布坐标系、不随缩放"
+   ],
+   "pattern_note": "（不可用裸的 `不随缩放`：`20-reference.md` / `prepare-generation.md` / `director-node.md` 里「**生成面板**不随缩放」是**正确**记录，拿它当 pattern 会把正确结论判成「改了结论没回填」。⇒ 与 `search-panel-size-is-not-320x211`、`multi-selection-toolbar-has-no-add-tags` 同源：**pattern 要能区分「同一串字的不同归属」**，必须绑上「工具条 + viewport 之外」这个具体语境。）",
+   "refuted_in": "批次 135（SOURCE_OBSERVATIONS.md §4.56）",
+   "reason": "**「`css` 尺寸 = 屏上尺寸」证明的是「没人替它乘 scale」，不等于「没人乘 scale」—— 它可以自己乘。** 2026-10-03 批次 135 做**受控两臂**（此前从未有人做过单自变量实验：批次 87 自述「只改缩放，**选中集跟着变**」，74% 选 7 个 / 60% 选 8 个；批次 131 只取了 60% **单档**）。**第一臂**锁定同一 6 个选中节点、只改缩放四档（40/60/100/200%），外层 `node-toolbar` 屏上宽 = `400 / 600 / 1000 / 2000` = **`1000 × scale`（正比，不是反比）**；**第二臂**锁定 60%、只改选中数（2/3/6 个），外层 canvas 宽 `600/960/1000` 与包围盒 canvas 宽 `520/880/920` **差恒为 `80`**。🔑 **完整公式：屏上宽 = (选中集包围盒 canvas 宽 + 80) × 当前缩放** ⇒ 它**同时**依赖两个变量且**串联**：既随选中集变，**也随缩放变**。祖先链 `react-flow__node-toolbar → react-flow__renderer`（**不含** `.react-flow__viewport`）证实它确实在画布坐标系之外 ⇒ 组件是**自己按 canvas 尺寸算完再手工乘 scale**。📌 因此「viewport 之外」这半句**是硬的**（保留），错的只是从它推出的「不随缩放」；批次 87「511 与 1298 在 canvas 口径下差 1.88 倍所以不自洽」的自查**也不成立** —— 差异来自**那两次选中集不同**。📌 同批附带一条**量纲陷阱**：`20-reference.md` 记的 `flow-node-multi-selection-source-handle` = `60×120` 是「**屏上恒**」（四档 40/60/100/200% 屏上与 `offsetWidth` 逐字相同），而 `AUDIT.md`/`PROGRESS.md` 里被反复确认的「**canvas 恒** `60×120`」指的是 `flow-node-{target,source}-handle`；两者 `offsetWidth` **都是** `60×120`，但前者不在 viewport 内（不被乘，60% 下屏上 `60×120`）、后者在 viewport 内（被乘，60% 下屏上 `36×72`）。📌 **立规：判「某元素跟不跟缩放」要分两问** —— ① 它在不在 `.react-flow__viewport` 里（决定**谁**给它乘）；② 它屏上尺寸随不随 scale 变（决定**结果**）。**两问都要实测，不能从前一步推后一步。**"
   }
  ]
 }

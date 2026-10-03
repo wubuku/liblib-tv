@@ -409,6 +409,15 @@ aria 逐字 `Create connected node before <节点名>`）—— **批次 71 新�
 - **多选工具条**：N 节点（计数，只读）、编组、布局∨（宫格布局/智能布局）、下载。
   2026-10-01 三轮实测**只有这四项，没有「Add tags」**——`Add tags` 是每个节点
   自己的标记按钮，不在顶部工具条。工具条宽度不固定（实测 511×40 与 1298×40 两种）。
+  🔑 **宽度到底跟谁走（批次 135 受控两臂结清）**：
+  **屏上宽 = (选中集包围盒 canvas 宽 + 80) × 当前缩放**。
+  同一 6 个选中节点、只改缩放，外层四档 `40%→400 / 60%→600 / 100%→1000 / 200%→2000`（= `1000 × scale`）；
+  锁定 60%、只改选中数，`2/3/6` 个的外层 canvas 宽是 `600/960/1000`，与包围盒 canvas 宽 `520/880/920` **差恒为 `80`**。
+  ⇒ **它同时依赖两个变量且串联**：既随选中集变，**也随缩放变**（正比）。
+  ⚠️ 同一 testid 下另有四个元素四档**屏上恒定**（不抵消也不放大）：
+  `selection-context-toolbar` `256.1×40`、`-count` `54.1×32`、多选手柄 `60×120`、连接菜单按钮 `36×36`。
+  机制：多选条挂在 `.react-flow__node-toolbar → .react-flow__renderer` 下，
+  **不在 `.react-flow__viewport` 里**，所以是**自己按 canvas 尺寸算完再手工乘 scale**。
 - 🔑 **工具条按钮的 DOM 契约（批次 50/51 实测，选按钮时必看）**：
   - **有的按钮只有 innerText、没有 `aria-label`**：多选工具条的 `编组` / `布局`
     （图片节点工具条前 10 项同理）。只按 `aria-label` 找会**返回 null**，
@@ -1467,8 +1476,8 @@ opacity: 0 ｜pointer-events: none ｜transform: scale(0.5) ｜data-state: "clos
 | testid | 矩形 | 备注 |
 |---|---|---|
 | `flow-node-multi-selection-source-toolbar` | `0×0` | **零面积**，内含 1 个按钮 |
-| `flow-node-multi-selection-source-handle` | `60×120` | 多选集合的出边热区 |
-| `flow-node-multi-selection-source-connection-menu-button` | `36×36` | aria 逐字 **`Create connected node after selected nodes`** |
+| `flow-node-multi-selection-source-handle` | `60×120` | 多选集合的出边热区。🔴 **这是「屏上恒 `60×120`」**（40/60/100/200% 四档屏上与 `offsetWidth` 逐字相同），**不是**每节点连接手柄那条「canvas 恒 `60×120`」—— 两者 `offsetWidth` 都是 `60×120`，但**多选手柄挂在 `.react-flow__node-toolbar` 下、不在 `.react-flow__viewport` 里**（不被 scale 乘），每节点手柄在 viewport 内（被乘，60% 下屏上 `36×72`） |
+| `flow-node-multi-selection-source-connection-menu-button` | `36×36` | aria 逐字 **`Create connected node after selected nodes`**。四档屏上恒 `36×36` |
 
 **只在单选态出现**：两个 `flow-node-{source,target}-connection-menu-button`（各 `36×36`）、
 `node-feature-chrome-host`（与节点本体**同矩形**）。
