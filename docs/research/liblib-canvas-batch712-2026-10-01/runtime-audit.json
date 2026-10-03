@@ -1,0 +1,98 @@
+{
+ "predictions": {
+  "P1": "标尺左侧精确按 t = frac × duration 映射",
+  "P2": "frac 超过某个位置之后是死区，不是夹紧",
+  "P3": "上限是 t = 4.24（不是关键帧所在的 4.0）",
+  "P4": "键盘方向键不移动播放头",
+  "P5": "zoom 控件只能拖不能点，拖拽范围 0..100"
+ },
+ "sweep": {
+  "duration": 8,
+  "linear": [
+   {
+    "frac": 0.02,
+    "t": 0.15999995059896016,
+    "expected": 0.16,
+    "matches": true
+   },
+   {
+    "frac": 0.1,
+    "t": 0.8000000274450221,
+    "expected": 0.8,
+    "matches": true
+   },
+   {
+    "frac": 0.25,
+    "t": 2,
+    "expected": 2.0,
+    "matches": true
+   },
+   {
+    "frac": 0.5,
+    "t": 4,
+    "expected": 4.0,
+    "matches": true
+   },
+   {
+    "frac": 0.51,
+    "t": 4.080000043912035,
+    "expected": 4.08,
+    "matches": true
+   },
+   {
+    "frac": 0.52,
+    "t": 4.160000087824071,
+    "expected": 4.16,
+    "matches": true
+   },
+   {
+    "frac": 0.53,
+    "t": 4.240000131736106,
+    "expected": 4.24,
+    "matches": true
+   }
+  ],
+  "frozen": [
+   {
+    "frac": 0.54,
+    "t": 4.240000131736106
+   },
+   {
+    "frac": 0.6,
+    "t": 4.240000131736106
+   },
+   {
+    "frac": 0.75,
+    "t": 4.240000131736106
+   },
+   {
+    "frac": 0.9,
+    "t": 4.240000131736106
+   },
+   {
+    "frac": 0.99,
+    "t": 4.240000131736106
+   }
+  ],
+  "deadZoneFrom": 2,
+  "deadZoneAfter": 2
+ },
+ "keyboard": {
+  "start": 2,
+  "end": 2
+ },
+ "zoom": {
+  "initial": 44,
+  "afterClick": 44,
+  "afterDragRight": 100,
+  "afterDragLeft": 0
+ },
+ "summary": {
+  "the-ruler-maps-clicks-linearly-up-to-fifty-three-percent": true,
+  "the-right-part-of-the-ruler-is-a-dead-zone-not-a-clamp": true,
+  "the-playhead-ceiling-is-4-24-not-the-keyframe-time": true,
+  "arrow-keys-do-not-move-the-playhead": true,
+  "the-zoom-control-is-drag-only-and-spans-zero-to-one-hundred": true
+ },
+ "failures": []
+}
