@@ -159,9 +159,31 @@ def t_list_zero_change_version(s):
 
 def t_list_floor_mismatch(s):
     assert "之后的增量" in s, "锚点未命中：找不到「之后的增量」"
-    #: **下界与「取证基线」声明的截图版本分家**——此时判据若自己挑一个下界继续跑，
+    #: **下界与清单锚点分家**——此时判据若自己挑一个下界继续跑，
     #: 整个区间就变了，**而换下界这件事在输出上完全看不出来**。
-    return s.replace("v1.6.14 之后的增量", "v1.6.10 之后的增量", 1)
+    #: ⚠️ 锚点字符串是 `v1.6.6 之后的增量`（Batch 242 把清单锚点降到了 manifest 最老那版）。
+    #: **这一条曾经悄悄空转过**：`v1.6.14 之后的增量` 在改锚点之后已不存在，
+    #: 而 `str.replace` 找不到就原样返回——**不 assert 的话，用例会「通过」，
+    #: 因为它注入的那份文件根本没被改过**（纪律 240）。
+    out = s.replace("v1.6.6 之后的增量", "v1.6.10 之后的增量", 1)
+    assert out != s, "注入空转：README 里已没有「v1.6.6 之后的增量」这个锚点"
+    return out
+
+
+def t_declare_newer_shot_version(s):
+    """把「取证基线」小节**声明的**「截图拍于」调成一个比 manifest 最老那张更新的版本。
+
+    **这一条是「下界取 min」这条规则的鉴别力所在**：
+    声明值调新之后，**30 张拍于 v1.6.6 / v1.6.13 的截图并不会因此变成 v1.6.6 之后的图**——
+    下界必须仍然停在 v1.6.6。
+    **改前的判据取声明值，于是「声明调新」能把整个区间缩到 (v1.6.20, v1.6.22]，
+    那 30 张图的读者要撞的变化一个字都不用写。**
+    """
+    old = "截图拍于**：v1.6.14"
+    assert old in s, "锚点未命中：20-reference.md 里找不到声明的「截图拍于 v1.6.14」"
+    out = s.replace(old, "截图拍于**：v1.6.20", 1)
+    assert out != s, "注入空转"
+    return out
 
 
 def main():
@@ -182,8 +204,33 @@ def main():
         expect_fail=False, edits={rd: t_zero_change_stays_unlisted})
     run("4) 不误伤：把 0 增减的版本加进清单并写明「无界面变化」（必须放行）",
         "版本覆盖核对通过", expect_fail=False, edits={rd: t_list_zero_change_version})
-    run("5) 清单下界与取证基线声明的截图版本分家（必须 rc=2）", "两端对不上",
+    run("5) 清单锚点与本闸算出的下界分家（必须 rc=2）", "两端对不上",
         want_rc=2, expect_fail=True, edits={rd: t_list_floor_mismatch})
+
+    # ---- Batch 242：下界改为 min(声明值, manifest 最老那张) 之后的两条 ----
+    # 6 与 7 **必须成对**：它们是同一件事的两端，且**两条都能区分改前/改后**
+    # （改前的下界恒等于声明值，两条的注入都会让它以不同方式失手）。
+    #   6：声明调新、清单不动 → **下界仍应是 v1.6.6**，与清单锚点一致 → 放行
+    #      （改前会取 v1.6.20，与清单锚点 v1.6.6 对不上 → rc=2）
+    #   7：声明调新、清单锚点**跟着声明走** → **下界仍应是 v1.6.6**，
+    #      与锚点 v1.6.20 对不上 → rc=2（改前取 v1.6.20，与锚点一致 → **放行**）
+    # **7 才是那条能抓的**：它精确模拟「有人把声明值调新、清单也跟着调，
+    # 于是 30 张旧截图的变化被静悄悄地移出检查范围」。
+    rf = os.path.join(ROOT, REFERENCE)
+
+    def t_anchor_follows_declaration(rd_text):
+        out = rd_text.replace("v1.6.6 之后的增量", "v1.6.20 之后的增量", 1)
+        assert out != rd_text, "注入空转：清单锚点没换成 v1.6.20"
+        return out
+
+    run("6) 声明的「截图拍于」被调新、清单没动（必须放行——**下界取的是 manifest "
+        "最老那张，不是声明值**）",
+        "版本覆盖核对通过", expect_fail=False, edits={rf: t_declare_newer_shot_version})
+    run("7) 声明的「截图拍于」被调新、清单锚点**跟着声明走**（必须 rc=2——"
+        "**改前的判据在这一例会放行**：它取声明值，于是 30 张 v1.6.6 的截图"
+        "被静悄悄移出了检查范围**）",
+        "两端对不上", want_rc=2, expect_fail=True,
+        edits={rf: t_declare_newer_shot_version, rd: t_anchor_follows_declaration})
 
     print("=== 结果：通过 %d / 失败 %d / 作废 %d ===" % (PASS, FAIL, VOID))
     return 1 if (FAIL or VOID) else 0

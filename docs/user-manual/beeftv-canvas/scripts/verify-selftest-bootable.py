@@ -227,7 +227,9 @@ SELFTEST_COSTS = {
     #: （2.2 秒那次是它 21 次 `git diff` 撞上磁盘抖动——**漂的方向是往上，所以取大**）。
     #: 它每例都要起临时目录并搬 README + 20-reference + manifest；
     #: 被测闸门每例要对上游跑十几次 `git diff`（整个版本区间逐对相邻 tag）。
-    "selftest-version-coverage.py": 2.3,
+    #: **Batch 242 重测**：三次实测 4.37 / 4.17 / 3.12 秒（原 2.3），**按纪律 204 取最大 4.37，登记 5.0**。
+    #: 用例从 6 条加到 8 条，**每条都要重跑一遍 15 个版本区间的 diff**，所以耗时几乎翻倍——**反验变贵是加用例的直接代价，必须如实登记而不是沿用旧值**。
+    "selftest-version-coverage.py": 5.0,
     #: **Batch 236 新增**：三次实测 1.31 / 1.35 / 1.17 秒，**按纪律 204 取最大 1.4**。
     #: 它每例起临时目录并搬 manifest + 账本 + 参考页；被测闸门每例读一次上游 router.tsx。
     "selftest-route-notation.py": 1.4,
