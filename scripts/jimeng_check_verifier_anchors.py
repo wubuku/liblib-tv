@@ -101,6 +101,19 @@ PROBE_VARS = {
     # 批 941：判据开始**钉 940 那个有缺陷的判据仍在源码里**
     #    （供下一个人对照，别删）——「造对一件事、顺手弄坏五件」的反面
     "_p941": "scripts/jimeng_probe941_layer_identity_probe_src.py",
+    # ⚠️⚠️⚠️ 批 946：这张表**停在 `_p941` 就是个真口子** ——
+    #    943 / 944a / 944b / 945 / 946 这五个探针**一个都没登记**，
+    #    于是它们身上的锚文**从来没被自查过**。
+    #    代价当场就付了：HHHH.6 有一条锚文 `**这道门恒绿，等于没有门**`
+    #    在探针里其实是 `—— 这道门恒绿，等于没有门`（**没有加粗标记**），
+    #    而锚点自查报的是「1645 条 / **0 个问题**」⇒
+    #    **一道没登记的锚文，等于一道不存在的锚文**。
+    #    ⇒ 下面每加一个探针，**必须同时在这里登记**，否则自查形同虚设。
+    "_p943": "scripts/jimeng_probe943_arm_relation_src.py",
+    "_p944a": "scripts/jimeng_probe944a_node_inner_scan_src.py",
+    "_p944b": "scripts/jimeng_probe944b_mouse_axes_src.py",
+    "_p945": "scripts/jimeng_probe945_comp_scale_split_src.py",
+    "_p946": "scripts/jimeng_probe946_prestate_src.py",
     # 批 938：判据开始**钉 TS 源码**（槽位是 store 里的单一来源）
     "_wm_s": "src/store/jimengStore.ts",
     # ⚠️⚠️ **929 加的**：**门禁脚本自己**也必须登记 ——

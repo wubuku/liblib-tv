@@ -5644,6 +5644,134 @@ def main() -> int:
           and "**鼠标臂要求「这一下改变了选中态」才咬**（两侧各 2/2）" in _ausrc
           and "**先问「选中态变没变**，别只看落点在哪" in _ausrc)
 
+    # ══ 批 946：拆**第三个**自变量「前置态」—— 含**一道门撤回** ═════════
+    print("— HHHH. 批 946 sham 推翻「第一击 Tab = 补偿」；而 warm 压根没被操控 —")
+    p946 = ROOT / "scripts/jimeng_probe946_prestate_src.py"
+    _p946 = p946.read_text(encoding="utf-8") if p946.exists() else ""
+    # ⚠️ HHHH.7 说的是**锚点自查工具自己**，所以得把它也读进来（照 942 的写法）
+    _anch = ROOT / "scripts/jimeng_check_verifier_anchors.py"
+    _anchs = _anch.read_text(encoding="utf-8") if _anch.exists() else ""
+
+    check("HHHH.1 ⚠️⚠️⚠️ **本批的设计有一处真缺陷，如实记账**：`warm ∈ {0,1,2,6}` "
+          "**全都 ≤ boot 之后的自然值 76** ⇒ 预热循环**一次都没进**"
+          "（`warm_presses = 0`、10 个格次全同）⇒ ⭐ **`warm` 从头到尾没被操控过** "
+          "⇒ 相应地 **`warm_reached` 恒真** ⇒ ⭐ "
+          "**「一个恒真的判据比没有判据更坏」（942）** ⇒ **撤回这道门**",
+          '"warm_never_manipulated_946": (' in _ausrc
+          and "**全都 ≤ boot 之后的自然值 76**" in _ausrc
+          and "**`warm` 这个自变量从头到尾没有被操控过**" in _ausrc
+          and "**`warm_reached` 是恒真的**" in _ausrc
+          and "**「一个恒真的判据比没有判据更坏」（942）**" in _ausrc
+          and "**撤回这道门**" in _ausrc
+          # ⭐ 钉探针：预热循环的**判据**（自然值就 ≥ 任何目标 ⇒ 一次都不进）
+          and 'if pre["n_without_ti"] >= warm:' in _p946
+          and 'c["warm_presses"] = n_press' in _p946)
+
+    check("HHHH.2 ⭐⭐⭐⭐ **sham 格（`scale=0`、**零点击**）推翻了一个隐含前提**："
+          "刚 `boot()` 完按第 1 下 `Tab`，「不带 ti」**76 → 0**、第 2 下 `0 → 1`、"
+          "第 3 下 `1 → 1`（2/2 逐条相同）⇒ ⭐⭐⭐ **这一压根本不需要连点来解释**"
+          "⇒ ⇒ **不许**把「第一击 `Tab` 之后 `不带 ti` 变小了」当成"
+          "**补偿已经发生**的证据。⚠️ sham 是**专为证伪这件事**而设计的，不许省",
+          '"sham_refutes_first_tab_means_compensation_946": (' in _ausrc
+          and "**76 → 0**" in _ausrc
+          and "**「第一击 Tab 把「不带 ti」大幅压下去」根本不需要连点来解释**"
+          in _ausrc
+          and "**不许**把「第一击 `Tab` 之后 `不带 ti` 变小了」当成" in _ausrc
+          # ⭐ 钉探针：sham 真的存在、真的零点击、且**每一轮**都真的没点过
+          and '{"warm": 6, "scale": 0}' in _p946
+          and 'sham = (scale == 0)' in _p946
+          and '"sham_ran_every_rep"' in _p946
+          and '"sham_zero_clicks"' in _p946
+          and '"sham_present"' in _p946)
+
+    check("HHHH.3 ⭐⭐⭐ **「前置态」是真的、落差极大**（虽然**不是**按设计操控出来的，"
+          "是 boot 的自然状态替我们动了它）：**刚 boot 完 = 76**（76 个节点全都没有 "
+          "`tabindex`），而 945 在预热里**按了 1 下 `Tab`** 之后 = **0** "
+          "⇒ 同一段连点代码跑在 **76** 与 **0** 两种前置态上、读数**不可比** "
+          "⇒ ⚠️ 945 与 946 的读数**必须分开记**，不许当成同一个实验的两批数据",
+          '"front_state_is_real_and_huge_946": (' in _ausrc
+          and "**刚 boot 完 = 76（76 个节点全都没有 `tabindex`）**" in _ausrc
+          and "**必须分开记**" in _ausrc
+          # ⭐ 钉探针：预热循环上限 14 下（不是「按到够就停」的假说法）
+          and 'WARM_MAX = 14' in _p946
+          and "for _ in range(WARM_MAX):" in _p946)
+
+    check("HHHH.4 ⭐⭐⭐⭐⭐ **944 那个矛盾在 946 原样重现**：格 0 **两轮不一致** —— "
+          "rep1 第 1 击 `Tab` **75 → 1**、rep2 **75 → 8**（**停在 8、不补**），"
+          "而**这两轮跑的是同一段代码**（`warm` 没起作用 ⇒ 唯一变量都没动）"
+          "⇒ ⇒ **成因不在 `warm`、也不在 `scale`、也不在 `mode`**（945 已排除后两个）"
+          "⇒ ⚠️ **944 那个矛盾成因仍未查明**，且它**不是** 945 以为的"
+          "「第三个自变量」那么简单",
+          '"944_contradiction_reproduced_946": (' in _ausrc
+          and "**75 → 1**" in _ausrc and "**75 → 8**" in _ausrc
+          and "**这两轮跑的是同一段代码**" in _ausrc
+          and "**成因不在 `warm`、也不在 `scale`、也不在 `mode`**" in _ausrc
+          and "**成因仍未查明**" in _ausrc
+          # ⭐ 钉探针：逐格 2/2 比较**真被算出来**、且**不许**把不一致当一致
+          and "out[\"reps_identical\"] = _ident" in _p946
+          and 'def stable_key(cell):' in _p946
+          and "got[0] == got[1]" in _p946)
+
+    check("HHHH.5 ⚠️⚠️ **`added=0` 在这一批是 `delta()` 的**构造性产物**、不是现象**："
+          "`delta()` 在 `identity_stable=False` 时**按构造**返回空三元组 "
+          "⇒ 于是出现「`不带 ti` **75 → 1** 而 `added=0`」⇒ ⭐ "
+          "**不许**把它读成「没写回」⇒ ⚠️ 这是 944 那个「`is_arm` 太松」的**同族**病，"
+          "但这次在 `delta()` 里 ⇒ **凡是身份不稳的那一段，三元组一律不许当读数用**",
+          '"added_zero_is_constructive_946": (' in _ausrc
+          and "**构造性产物**" in _ausrc
+          and "**不许**把它读成「没写回」" in _ausrc
+          and "**同族**病" in _ausrc
+          # ⭐ 钉探针：delta 的**早退分支**就是这条判据的对象
+          and 'return {"identity_stable": False, "removed": [], "added": [],' in _p946
+          and "**凡是身份不稳的那一段，" in _ausrc)
+
+    check("HHHH.6 ⭐⭐ **两处「门等于没有」被自己抓住**（不是被别人抓的）："
+          "① 945 只把 `reps_identical` **声明**进 `DERIVED_KEYS` 却**从没赋值** "
+          "⇒ 那道门等于没有 ⇒ 946 **真算**；"
+          "② 946 第一版把守卫常量 `SLICE_STR` 写成 `\"|| '').slice(0 \"`"
+          "（**漏了一个逗号**）⇒ `count()` 恒为 0 ⇒ 「非字符串切片」那道门"
+          "**永远不会红** ⇒ 自己跑了一次才撞上 ⇒ 加了**自证**"
+          "⇒ ⭐ **一个恒真的判据比没有判据更坏**",
+          '"identity_churn_on_this_canvas_946": (' in _ausrc
+          and "**不可信地归属**" in _ausrc
+          # ⭐ 钉探针：reps_identical 是**真算**的
+          and "_ident.append(bool(len(got) == REPS and got[0] == got[1]))" in _p946
+          # ⭐⭐ 钉探针：守卫常量**自证**（这正是 946 第一版撞上的那个坑）
+          and 'assert any(SLICE_STR in _js for _js in _JS_ALL), (' in _p946
+          and "—— 这道门恒绿，等于没有门" in _p946
+          and "SLICE_STR = \"|| '').slice(0, \"" in _p946
+          # ⭐ 五段 JS 与 945 逐字相同（防漂移，940 的办法）
+          and 'for _name in ("BLANK_JS", "CENSUS_JS", "POINT_JS", "FOCUS_JS", "ARM_FOCUS_JS"):' in _p946
+          and "与 945 那份**不一致**" in _p946)
+    check("HHHH.7 ⭐⭐⭐ **锚点自查的绑定表停在 `_p941` 就是个真口子** —— "
+          "943 / 944a / 944b / 945 / 946 这五个探针**一个都没登记** ⇒ "
+          "它们身上的锚文**从来没被自查过**。代价当场付了：HHHH.6 有一条锚文"
+          "在探针里**没有加粗标记**，而锚点自查当时报的是「1645 条 / **0 个问题**」"
+          "⇒ ⭐ **一道没登记的锚文，等于一道不存在的锚文**"
+          "⇒ 已补登记（自查读数 1645 → **1691**）。⚠️ 门禁的**覆盖面**"
+          "和门禁的**严格性**是两件事，后者再好也补不了前者的漏。"
+          "⚠️ 本条的锚点**只钉代码**（登记本身 + 跳过机制）；"
+          "「为什么是这道口子」写在判据文案里、**不写进锚文**"
+          "（942 AA.3：判据钉注释散文 = 同一个病）",
+          # ⭐ 钉**登记本身**（代码，不是注释）
+          '"_p943": "scripts/jimeng_probe943_arm_relation_src.py"' in _anchs
+          and '"_p944a": "scripts/jimeng_probe944a_node_inner_scan_src.py"' in _anchs
+          and '"_p944b": "scripts/jimeng_probe944b_mouse_axes_src.py"' in _anchs
+          and '"_p945": "scripts/jimeng_probe945_comp_scale_split_src.py"' in _anchs
+          and '"_p946": "scripts/jimeng_probe946_prestate_src.py"' in _anchs
+          # ⭐⭐ 钉**机制**：绑到未登记变量的锚文是**被静默跳过**的
+          #    （这才是「0 个问题」却漏掉一条坏锚文的直接原因）
+          and 'if name != "_ausrc" and name not in PROBE_VARS:' in _anchs
+          and 'probes = {k: (ROOT / v).read_text(encoding="utf-8")' in _anchs
+          and "for k, v in PROBE_VARS.items()}" in _anchs
+          # ⭐ 钉住那五个探针文件**真的存在**（登记了但文件没了 = 又一种恒绿）
+          and all((ROOT / f).exists() for f in (
+              "scripts/jimeng_probe943_arm_relation_src.py",
+              "scripts/jimeng_probe944a_node_inner_scan_src.py",
+              "scripts/jimeng_probe944b_mouse_axes_src.py",
+              "scripts/jimeng_probe945_comp_scale_split_src.py",
+              "scripts/jimeng_probe946_prestate_src.py")))
+
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
           "§130「roving 是单指针、不是留轨迹」的**源站实证**；"
