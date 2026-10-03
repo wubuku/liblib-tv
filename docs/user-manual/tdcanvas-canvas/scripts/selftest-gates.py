@@ -1092,12 +1092,25 @@ def mutate_table_internal_backlog_grows(root: Path) -> None:
     否则「已知不管」就会变成「谁都往里加」。
     """
 
-    path = root / "scripts/check-tables.py"
+    # 基线是 0（M185 已把四份账本的欠账清零），所以**没法再往下调基线来制造越线**——
+    # 正确做法是**真的制造一处新增欠账**：把两行拼成一行追加到 AUDIT.md 末尾，
+    # 0 → 1 越过基线，门禁必须报「不许增长」。
+    # （早先那版是靠把基线从 48 改成 1 越线，等基线归零后注入就找不到目标、直接崩在 assert 上——
+    #   **注入用例必须随被测系统的真实状态更新**，钉死一个会变字面量的做法迟早自己失效。）
+    import re
+
+    path = root / "AUDIT.md"
     text = path.read_text(encoding="utf-8")
-    patched = text.replace(
-        '"AUDIT.md": 48,', '"AUDIT.md": 1,', 1)
-    assert patched != text, "注入失败：没找到 AUDIT.md 的基线"
-    path.write_text(patched, encoding="utf-8")
+    lines = text.rstrip("\n").split("\n")
+    # 找最后一条合法表格行，复制它并在末尾再接一格
+    last = None
+    for i, line in enumerate(lines):
+        t = line.rstrip()
+        if t.startswith("| ") and t.endswith(" |"):
+            last = i
+    assert last is not None, "注入失败：AUDIT.md 里没有合法表格行"
+    lines.insert(last + 1, lines[last].rstrip() + " 多出来的一格 |")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def mutate_retraction_missing_kind(root: Path) -> None:

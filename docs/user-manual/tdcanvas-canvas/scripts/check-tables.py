@@ -171,7 +171,7 @@ INTERNAL_PAGES = {"AUDIT.md", "PROGRESS.md", "SOURCE_OBSERVATIONS.md", "TEST_MED
 # 基线 = 引入本检查时各内部页的「格子数多于表头」存量条数。
 # **刻意用计数而不是行号**：这些文件天天在追加，行号会漂，计数不会。
 # 有人顺手修掉一处，计数下降是好事；门禁只在**增长**时报错。
-KNOWN_MORE_CELLS_BASELINE = {"AUDIT.md": 48, "PROGRESS.md": 1}
+KNOWN_MORE_CELLS_BASELINE = {"AUDIT.md": 0, "PROGRESS.md": 0, "SOURCE_OBSERVATIONS.md": 0, "TEST_MEDIA_ASSETS.md": 0}
 
 
 def check_file(path: Path, rel: str, known: dict | None = None, short: dict | None = None) -> list[str]:
@@ -274,7 +274,8 @@ def main() -> int:
 
     # M184：内部账本的存量欠账**逐处点名**——不点名就等于「已知不管」，
     # 而点名之后，谁新增了一处一眼就能看见，也就不用等到计数越线才知道。
-    for rel, items in sorted(known.items()):
+    for rel in sorted(INTERNAL_PAGES):
+        items = known.get(rel, [])
         base = KNOWN_MORE_CELLS_BASELINE.get(rel)
         tag = "内部页" if rel in INTERNAL_PAGES else "发布页"
         if base is None:
@@ -291,10 +292,8 @@ def main() -> int:
                 f"新增处见下：\n    " + "\n    ".join(items[base:])
             )
         else:
-            print(
-                f"  [表格欠账·{tag}] {rel}：{len(items)} 处（基线 {base}，"
-                f"{'持平' if len(items) == base else '已修掉 ' + str(base - len(items)) + ' 处'}）"
-            )
+            state = "持平" if len(items) == base else "已修掉 %d 处" % (base - len(items))
+            print(f"  [表格欠账·{tag}] {rel}：{len(items)} 处（基线 {base}，{state}）")
 
     for rel, items in sorted(short.items()):
         print(
