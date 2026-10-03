@@ -71,6 +71,7 @@ PROBE_VARS = {
     "_p917": "scripts/jimeng_probe917_multi_bite_focus_trace_src.py",
     "_p918": "scripts/jimeng_probe918_movedonly_and_taborder_src.py",
     "_p919": "scripts/jimeng_probe919_inner_control_anatomy_src.py",
+    "_p920": "scripts/jimeng_probe920_per_press_wrapper_census_src.py",
     # ⚠️ 909 第一次把判据钉在**组件源码的实现字面量**上（判据写在
     # `armRovingTabindex` 里）⇒ 组件源码**必须登记进 PROBE_VARS**。
     # ⚠️⚠️ 第一次我把它误写进了一个**没人读**的 `SRC_VARS` ⇒

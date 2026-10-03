@@ -3853,6 +3853,81 @@ def main() -> int:
           and ".prototype =" not in _p919
           and "__proto__" not in _p919
           and "（诊断是纯读，没有装任何监听器）" in _p919)
+    # ══════════ 批 920：逐次普查 ⇒ 919 那个缺口的前提是错的 ══════════
+    p920 = ROOT / "scripts/jimeng_probe920_per_press_wrapper_census_src.py"
+    _p920 = p920.read_text(encoding="utf-8") if p920.exists() else ""
+    check("GGG.1 ✅⭐ **920 用「每按一次就普查一次」把 919 那个缺口结掉了 —— "
+          "**而且结论是「那个问题的前提是错的」。**（源站，纯诊断，2 轮 × 每次 "
+          "14 连按，两轮逐条一致）：**焦点是本体的时刻共 38 次，其中"
+          "「焦点所在的下标 == 唯一那个带 `tabindex=\"0\"` 的本体下标」= 38/38**"
+          " ⇒ **焦点从来不会停在一个没有 `tabindex` 的本体上** "
+          "⇒ ⚠️ **919 那个问题本身不成立**（「不存在那一刻」）",
+          "source_focus_always_on_armed_920" in _ausrc
+          and "**920 用「每按一次就普查一次」把 919 那个缺口结掉了**" in _ausrc
+          and "**而且结论是「那个问题的前提是错的」。**" in _ausrc
+          and "**焦点是本体的时刻共 38 次" in _ausrc
+          and "」= 38/38**" in _ausrc
+          and "**焦点从来不会停在一个没有 `tabindex` 的本体上**" in _ausrc
+          and "⚠️ **919 那个问题本身不成立**（「不存在那一刻」）" in _ausrc
+          and "before = ev(CENSUS_JS)" in _p920
+          and "after = ev(CENSUS_JS)" in _p920
+          and '"before": before,' in _p920
+          and '"after": after,' in _p920)
+    check("GGG.2 **⇒ 顺带钉死一条**：整个走查过程中 `n_wrapper_ti0` 与 "
+          "`n_wrapper_idl_focusable` **取值集合都只有 `{0, 1}`** ⇒ "
+          "**任何时刻至多只有一个本体可聚焦**（两轮各 28 次普查全中）"
+          "⇒ **roving 是「单指针」、不是「留轨迹」**。"
+          "⭐ **另有一条重要读数（919 没看到）**："
+          "**归零那一刻 `n_wrapper_any_ti = 0`（一个 `tabindex` 属性都没有）**，"
+          "**按第 1 次之后立刻变成 76**（1 个 `'0'` + 75 个 `'-1'`）⇒ "
+          "**应用第一次就把所有节点都管起来**",
+          "**取值集合都只有 `{0, 1}`**" in _ausrc
+          and "**任何时刻至多只有一个本体可聚焦**" in _ausrc
+          and "**roving 是「单指针」、不是「留轨迹」**" in _ausrc
+          and "⭐ **另有一条重要读数（919 没看到）**" in _ausrc
+          and "**归零那一刻 `n_wrapper_any_ti = 0`（一个 `tabindex` 属性都没有）**"
+          in _ausrc
+          and "**按第 1 次之后立刻变成 76**（**1 个 `'0'` + 75 个 `'-1'`**）"
+          in _ausrc
+          and "⇒ **应用不是只给一个节点打 `tabindex`，而是第一次就把"
+          in _ausrc
+          and "**所有**节点都管起来**" in _ausrc
+          and "n_wrapper_idl_focusable: idlIdx.length," in _p920
+          and "if (n.tabIndex >= 0) idlIdx.push(i);" in _p920
+          and "if (ti !== null) anyTiIdx.push(i);" in _p920)
+    check("GGG.3 ⚠️ **但「为什么按第 2 次之后变成 75」没查明** —— "
+          "样本看起来像「焦点在**两次之前**那个本体的 `tabindex` 属性被移除」，"
+          "但⚠️ **样本只有约 8 个、而且只看的是前 12 个的切片** "
+          "⇒ **这个规律不成立、只是观察** ⇒ **不许**拿它编规则，"
+          "**要重测就得把整张表存下来**。⚠️ 判据要钉**切片这件事本身**"
+          "（它是「不许下结论」的理由）",
+          "⚠️ **但「为什么按第 2 次之后变成 75」我没查明**" in _ausrc
+          and "**样本只有约 8 个、而且只看的是**前 12 个**的切片**" in _ausrc
+          and "**这个规律不成立、只是观察**" in _ausrc
+          and "**不许**拿它编规则，**要重测就得把整张表存下来**" in _ausrc
+          and "any_ti_idx: anyTiIdx.slice(0, 12)," in _p920
+          and "idl_idx: idlIdx.slice(0, 12)," in _p920)
+    check("GGG.4 ✅ **一条纪律**：920 也是**纯诊断** —— 普查**纯读**、"
+          "**不劫持 prototype、不装 MutationObserver** ⇒ "
+          "**诊断不许破坏被诊断状态**。"
+          "⚠️ 判据要钉**代码**（920 的**文档里**就写着这几个字 ⇒ "
+          "**不能拿「全文不含」当证据**）",
+          "✅ **一条纪律**：920 也是**纯诊断**" in _ausrc
+          and "**不劫持 prototype、不装 MutationObserver** ⇒ " in _ausrc
+          and "**诊断不许破坏被诊断状态**" in _ausrc
+          and "new MutationObserver(" not in _p920
+          and ".prototype =" not in _p920
+          and "__proto__" not in _p920)
+    check("GGG.5 ⚠️ **919 那句「焦点可能落在别的节点本体上」的表述要收窄**："
+          "它**本身没错**（焦点确实多次落在本体上），"
+          "但**它总是「当前被布的那个」本体** ⇒ **不是「别的本体」** ⇒ "
+          "**921 起按这个收窄后的说法记**。"
+          "⚠️ 这就是「被推翻的旧结论**要以历史记录身份留着**」那条："
+          "**不许**回头把 919 那句删掉",
+          "⚠️ **919 那句「焦点可能落在别的节点本体上」的表述要收窄**" in _ausrc
+          and "它**本身没错**（焦点确实多次落在本体上），" in _ausrc
+          and "**它总是「当前被布的那个」本体**" in _ausrc
+          and "⇒ 921 起按这个收窄后的说法记" in _ausrc)
 
 
 
