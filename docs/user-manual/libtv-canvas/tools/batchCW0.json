@@ -1,0 +1,1264 @@
+{
+  "steps": [
+    {
+      "label": "① 详情浮层（点「缩小」之前）",
+      "top": {
+        "z": 801,
+        "rect": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "cls": "m_60c222c7 m_1f958f16 mantine-Modal-inner",
+        "可见文字": "风格详情 Seedream 5.0 pro 热点推荐官 首选推荐模型 Seedream 5.0 取消收藏 使用",
+        "按钮": [
+          {
+            "rect": [
+              832,
+              689,
+              121,
+              32
+            ],
+            "aria": null,
+            "text": "取消收藏"
+          },
+          {
+            "rect": [
+              961,
+              689,
+              121,
+              32
+            ],
+            "aria": null,
+            "text": "使用"
+          },
+          {
+            "rect": [
+              1058,
+              78,
+              24,
+              24
+            ],
+            "aria": "缩小",
+            "text": ""
+          }
+        ]
+      },
+      "all": [
+        {
+          "z": 801,
+          "rect": [
+            0,
+            0,
+            1440,
+            810
+          ],
+          "cls": "m_60c222c7 m_1f958f16 mantine-Modal-inner",
+          "text": "风格详情 Seedream 5.0 pro 热点推荐官 首选推荐模型 Seedream 5.0 取消收藏 使用"
+        },
+        {
+          "z": 800,
+          "rect": [
+            0,
+            0,
+            1440,
+            810
+          ],
+          "cls": "mantine-Modal-overlay m_9814e45f mantine-Overl",
+          "text": ""
+        },
+        {
+          "z": 701,
+          "rect": [
+            0,
+            0,
+            1440,
+            810
+          ],
+          "cls": "m_60c222c7 m_1f958f16 mantine-Modal-inner",
+          "text": "风格广场 我的收藏 最近使用 推荐 摄影写真 电商营销 动漫游戏 风格插画 平面设计 建筑及室内设计 创意玩法 文创周边"
+        },
+        {
+          "z": 700,
+          "rect": [
+            0,
+            0,
+            1440,
+            810
+          ],
+          "cls": "mantine-Modal-overlay m_9814e45f mantine-Overl",
+          "text": ""
+        },
+        {
+          "z": 305,
+          "rect": [
+            633,
+            0,
+            174,
+            34
+          ],
+          "cls": "pointer-events-none fixed left-1/2 top-0 z-[30",
+          "text": "正在跟随 取消ESC 按 ESC 退出"
+        }
+      ]
+    },
+    {
+      "label": "② 点「缩小」之后",
+      "top": {
+        "z": 701,
+        "rect": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "cls": "m_60c222c7 m_1f958f16 mantine-Modal-inner",
+        "可见文字": "风格广场 我的收藏 最近使用 推荐 摄影写真 电商营销 动漫游戏 风格插画 平面设计 建筑及室内设计 创意玩法 文创周边 小说推文 仅看可商用 全部 Seedream 5.0 Seedream 5.0 pro 热点推荐官 535.3w J_漫剧素材三视图+大头表情+姿势图 商用 JM32 1.1w ",
+        "按钮": [
+          {
+            "rect": [
+              117,
+              157,
+              50,
+              28
+            ],
+            "aria": null,
+            "text": "推荐"
+          },
+          {
+            "rect": [
+              122,
+              96,
+              92,
+              32
+            ],
+            "aria": null,
+            "text": "风格广场"
+          },
+          {
+            "rect": [
+              130,
+              210,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Seedream 5.0",
+            "气泡": [
+              "Seedream 5.0"
+            ]
+          },
+          {
+            "rect": [
+              130,
+              524,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image",
+            "气泡": [
+              "Qwen Image"
+            ]
+          },
+          {
+            "rect": [
+              130,
+              838,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image"
+          },
+          {
+            "rect": [
+              130,
+              1152,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image"
+          },
+          {
+            "rect": [
+              130,
+              1465,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image"
+          },
+          {
+            "rect": [
+              175,
+              157,
+              76,
+              28
+            ],
+            "aria": null,
+            "text": "摄影写真"
+          },
+          {
+            "rect": [
+              218,
+              96,
+              92,
+              32
+            ],
+            "aria": null,
+            "text": "我的收藏"
+          },
+          {
+            "rect": [
+              259,
+              157,
+              76,
+              28
+            ],
+            "aria": null,
+            "text": "电商营销"
+          },
+          {
+            "rect": [
+              271,
+              210,
+              24,
+              24
+            ],
+            "aria": "取消收藏",
+            "text": "",
+            "气泡": [
+              "取消收藏"
+            ]
+          },
+          {
+            "rect": [
+              314,
+              96,
+              92,
+              32
+            ],
+            "aria": null,
+            "text": "最近使用"
+          },
+          {
+            "rect": [
+              333,
+              210,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": ""
+          },
+          {
+            "rect": [
+              333,
+              524,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": ""
+          },
+          {
+            "rect": [
+              333,
+              838,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Lib Image"
+          },
+          {
+            "rect": [
+              333,
+              1152,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": ""
+          },
+          {
+            "rect": [
+              333,
+              1465,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": ""
+          },
+          {
+            "rect": [
+              343,
+              157,
+              76,
+              28
+            ],
+            "aria": null,
+            "text": "动漫游戏"
+          },
+          {
+            "rect": [
+              427,
+              157,
+              76,
+              28
+            ],
+            "aria": null,
+            "text": "风格插画"
+          },
+          {
+            "rect": [
+              511,
+              157,
+              76,
+              28
+            ],
+            "aria": null,
+            "text": "平面设计"
+          },
+          {
+            "rect": [
+              536,
+              210,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image",
+            "气泡": [
+              "Qwen Image"
+            ]
+          },
+          {
+            "rect": [
+              536,
+              524,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image",
+            "气泡": [
+              "Qwen Image"
+            ]
+          },
+          {
+            "rect": [
+              536,
+              838,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image"
+          },
+          {
+            "rect": [
+              536,
+              1152,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image"
+          },
+          {
+            "rect": [
+              536,
+              1465,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image"
+          },
+          {
+            "rect": [
+              595,
+              157,
+              115,
+              28
+            ],
+            "aria": null,
+            "text": "建筑及室内设计"
+          },
+          {
+            "rect": [
+              718,
+              157,
+              76,
+              28
+            ],
+            "aria": null,
+            "text": "创意玩法"
+          },
+          {
+            "rect": [
+              726,
+              98,
+              28,
+              28
+            ],
+            "aria": "search",
+            "text": ""
+          },
+          {
+            "rect": [
+              739,
+              210,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image",
+            "气泡": [
+              "Qwen Image"
+            ]
+          },
+          {
+            "rect": [
+              739,
+              524,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image",
+            "气泡": [
+              "Qwen Image"
+            ]
+          },
+          {
+            "rect": [
+              739,
+              838,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image"
+          },
+          {
+            "rect": [
+              739,
+              1152,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image"
+          },
+          {
+            "rect": [
+              739,
+              1465,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image"
+          },
+          {
+            "rect": [
+              802,
+              157,
+              76,
+              28
+            ],
+            "aria": null,
+            "text": "文创周边"
+          },
+          {
+            "rect": [
+              886,
+              157,
+              76,
+              28
+            ],
+            "aria": null,
+            "text": "小说推文"
+          },
+          {
+            "rect": [
+              942,
+              210,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Z Image",
+            "气泡": [
+              "Z Image"
+            ]
+          },
+          {
+            "rect": [
+              942,
+              524,
+              102,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image",
+            "气泡": [
+              "Qwen Image"
+            ]
+          },
+          {
+            "rect": [
+              942,
+              838,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image"
+          },
+          {
+            "rect": [
+              942,
+              1152,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": ""
+          },
+          {
+            "rect": [
+              942,
+              1465,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image"
+          },
+          {
+            "rect": [
+              1083,
+              524,
+              24,
+              24
+            ],
+            "aria": "收藏",
+            "text": "",
+            "气泡": [
+              "收藏"
+            ]
+          },
+          {
+            "rect": [
+              1083,
+              727,
+              24,
+              24
+            ],
+            "aria": "详情",
+            "text": ""
+          },
+          {
+            "rect": [
+              1145,
+              210,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image",
+            "气泡": [
+              "Qwen Image"
+            ]
+          },
+          {
+            "rect": [
+              1145,
+              524,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image",
+            "气泡": [
+              "Qwen Image"
+            ]
+          },
+          {
+            "rect": [
+              1145,
+              838,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image"
+          },
+          {
+            "rect": [
+              1145,
+              1152,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image"
+          },
+          {
+            "rect": [
+              1145,
+              1465,
+              24,
+              24
+            ],
+            "aria": null,
+            "text": "Qwen Image"
+          },
+          {
+            "rect": [
+              1227,
+              92,
+              40,
+              40
+            ],
+            "aria": "minimize",
+            "text": ""
+          },
+          {
+            "rect": [
+              1269,
+              157,
+              54,
+              28
+            ],
+            "aria": null,
+            "text": "全部"
+          },
+          {
+            "rect": [
+              1283,
+              92,
+              40,
+              40
+            ],
+            "aria": "close",
+            "text": ""
+          }
+        ]
+      },
+      "all": [
+        {
+          "z": 701,
+          "rect": [
+            0,
+            0,
+            1440,
+            810
+          ],
+          "cls": "m_60c222c7 m_1f958f16 mantine-Modal-inner",
+          "text": "风格广场 我的收藏 最近使用 推荐 摄影写真 电商营销 动漫游戏 风格插画 平面设计 建筑及室内设计 创意玩法 文创周边"
+        },
+        {
+          "z": 700,
+          "rect": [
+            0,
+            0,
+            1440,
+            810
+          ],
+          "cls": "mantine-Modal-overlay m_9814e45f mantine-Overl",
+          "text": ""
+        },
+        {
+          "z": 305,
+          "rect": [
+            633,
+            0,
+            174,
+            34
+          ],
+          "cls": "pointer-events-none fixed left-1/2 top-0 z-[30",
+          "text": "正在跟随 取消ESC 按 ESC 退出"
+        }
+      ]
+    },
+    {
+      "label": "④ 缩小状态下按 ESC",
+      "top": null,
+      "all": [
+        {
+          "z": 305,
+          "rect": [
+            633,
+            0,
+            174,
+            34
+          ],
+          "cls": "pointer-events-none fixed left-1/2 top-0 z-[30",
+          "text": "正在跟随 取消ESC 按 ESC 退出"
+        }
+      ]
+    }
+  ],
+  "还原入口": [
+    {
+      "rect": [
+        117,
+        157,
+        50,
+        28
+      ],
+      "aria": null,
+      "text": "推荐",
+      "像还原": false
+    },
+    {
+      "rect": [
+        122,
+        96,
+        92,
+        32
+      ],
+      "aria": null,
+      "text": "风格广场",
+      "像还原": false
+    },
+    {
+      "rect": [
+        130,
+        210,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Seedream 5.0",
+      "像还原": false
+    },
+    {
+      "rect": [
+        130,
+        524,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        130,
+        838,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        130,
+        1152,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        130,
+        1465,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        175,
+        157,
+        76,
+        28
+      ],
+      "aria": null,
+      "text": "摄影写真",
+      "像还原": false
+    },
+    {
+      "rect": [
+        218,
+        96,
+        92,
+        32
+      ],
+      "aria": null,
+      "text": "我的收藏",
+      "像还原": false
+    },
+    {
+      "rect": [
+        259,
+        157,
+        76,
+        28
+      ],
+      "aria": null,
+      "text": "电商营销",
+      "像还原": false
+    },
+    {
+      "rect": [
+        271,
+        210,
+        24,
+        24
+      ],
+      "aria": "取消收藏",
+      "text": "",
+      "像还原": false
+    },
+    {
+      "rect": [
+        314,
+        96,
+        92,
+        32
+      ],
+      "aria": null,
+      "text": "最近使用",
+      "像还原": false
+    },
+    {
+      "rect": [
+        333,
+        210,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "",
+      "像还原": false
+    },
+    {
+      "rect": [
+        333,
+        524,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "",
+      "像还原": false
+    },
+    {
+      "rect": [
+        333,
+        838,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Lib Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        333,
+        1152,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "",
+      "像还原": false
+    },
+    {
+      "rect": [
+        333,
+        1465,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "",
+      "像还原": false
+    },
+    {
+      "rect": [
+        343,
+        157,
+        76,
+        28
+      ],
+      "aria": null,
+      "text": "动漫游戏",
+      "像还原": false
+    },
+    {
+      "rect": [
+        427,
+        157,
+        76,
+        28
+      ],
+      "aria": null,
+      "text": "风格插画",
+      "像还原": false
+    },
+    {
+      "rect": [
+        511,
+        157,
+        76,
+        28
+      ],
+      "aria": null,
+      "text": "平面设计",
+      "像还原": false
+    },
+    {
+      "rect": [
+        536,
+        210,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        536,
+        524,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        536,
+        838,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        536,
+        1152,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        536,
+        1465,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        595,
+        157,
+        115,
+        28
+      ],
+      "aria": null,
+      "text": "建筑及室内设计",
+      "像还原": false
+    },
+    {
+      "rect": [
+        718,
+        157,
+        76,
+        28
+      ],
+      "aria": null,
+      "text": "创意玩法",
+      "像还原": false
+    },
+    {
+      "rect": [
+        726,
+        98,
+        28,
+        28
+      ],
+      "aria": "search",
+      "text": "",
+      "像还原": false
+    },
+    {
+      "rect": [
+        739,
+        210,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        739,
+        524,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        739,
+        838,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        739,
+        1152,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        739,
+        1465,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        802,
+        157,
+        76,
+        28
+      ],
+      "aria": null,
+      "text": "文创周边",
+      "像还原": false
+    },
+    {
+      "rect": [
+        886,
+        157,
+        76,
+        28
+      ],
+      "aria": null,
+      "text": "小说推文",
+      "像还原": false
+    },
+    {
+      "rect": [
+        942,
+        210,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Z Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        942,
+        524,
+        102,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        942,
+        838,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        942,
+        1152,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "",
+      "像还原": false
+    },
+    {
+      "rect": [
+        942,
+        1465,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        1083,
+        524,
+        24,
+        24
+      ],
+      "aria": "收藏",
+      "text": "",
+      "像还原": false
+    },
+    {
+      "rect": [
+        1083,
+        727,
+        24,
+        24
+      ],
+      "aria": "详情",
+      "text": "",
+      "像还原": false
+    },
+    {
+      "rect": [
+        1145,
+        210,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        1145,
+        524,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        1145,
+        838,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        1145,
+        1152,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        1145,
+        1465,
+        24,
+        24
+      ],
+      "aria": null,
+      "text": "Qwen Image",
+      "像还原": false
+    },
+    {
+      "rect": [
+        1227,
+        92,
+        40,
+        40
+      ],
+      "aria": "minimize",
+      "text": "",
+      "像还原": false
+    },
+    {
+      "rect": [
+        1269,
+        157,
+        54,
+        28
+      ],
+      "aria": null,
+      "text": "全部",
+      "像还原": false
+    },
+    {
+      "rect": [
+        1283,
+        92,
+        40,
+        40
+      ],
+      "aria": "close",
+      "text": "",
+      "像还原": false
+    }
+  ],
+  "ESC后浮层数": 0
+}
