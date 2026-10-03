@@ -1,0 +1,566 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 1150,
+  "depthRows": [
+   {
+    "depth": 0,
+    "actions": [
+     "打开导演台"
+    ],
+    "tracks": 2,
+    "kf": [
+     3,
+     3
+    ],
+    "selKf": "director-keyframe-character-0",
+    "keys": [
+     "data-director-timeline-zoom",
+     "data-director-uniform-scale"
+    ]
+   },
+   {
+    "depth": 1,
+    "actions": [
+     "打开导演台",
+     "点对象树里的机位"
+    ],
+    "picked": {
+     "rowText": "",
+     "selected": {
+      "id": "director-camera-1790998863201-1",
+      "kind": "camera",
+      "name": "机位 02 · 新镜头"
+     }
+    },
+    "tracks": 3,
+    "kf": [
+     3,
+     3,
+     1
+    ],
+    "selKf": "director-track-director-camera-1790998866733-1-keyframe-0",
+    "keys": [
+     "data-director-camera-fov",
+     "data-director-timeline-zoom",
+     "data-director-uniform-scale"
+    ]
+   },
+   {
+    "depth": 2,
+    "actions": [
+     "打开导演台",
+     "点对象树里的机位",
+     "点「运动轨迹」页签"
+    ],
+    "tracks": 3,
+    "kf": [
+     3,
+     3,
+     1
+    ],
+    "selKf": "director-track-director-camera-1790998866733-1-keyframe-0",
+    "keys": [
+     "data-director-motion-slider",
+     "data-director-timeline-zoom"
+    ],
+    "motionSliders": [
+     "duration",
+     "uniform-scale"
+    ]
+   },
+   {
+    "depth": 3,
+    "actions": [
+     "打开导演台",
+     "点对象树里的机位",
+     "点「运动轨迹」页签",
+     "点时间轴「添加关键帧」"
+    ],
+    "tracks": 3,
+    "kf": [
+     3,
+     3,
+     1
+    ],
+    "selKf": "director-track-director-camera-1790998866733-1-keyframe-0",
+    "keys": [
+     "data-director-motion-slider",
+     "data-director-timeline-zoom"
+    ],
+    "motionSliders": [
+     "duration",
+     "uniform-scale"
+    ]
+   }
+  ],
+  "clicks": [
+   {
+    "feature": "创建运动轨迹",
+    "attr": "data-director-motion-create-path",
+    "index": 0,
+    "host": "RIGHT-PANEL",
+    "text": "创建运动轨迹",
+    "rect": [
+     1012,
+     903,
+     256,
+     36
+    ],
+    "disabled": false,
+    "anythingChanged": false,
+    "beforeMotionSliders": [
+     "duration",
+     "uniform-scale"
+    ],
+    "afterMotionSliders": [
+     "duration",
+     "uniform-scale"
+    ],
+    "dialogOrToast": [
+     1,
+     2
+    ]
+   },
+   {
+    "feature": "创建运动轨迹",
+    "attr": "data-director-create-motion-path",
+    "index": 0,
+    "host": "TIMELINE",
+    "text": "创建运动轨迹",
+    "rect": [
+     389,
+     973,
+     99,
+     28
+    ],
+    "disabled": false,
+    "anythingChanged": false,
+    "beforeMotionSliders": [
+     "duration",
+     "uniform-scale"
+    ],
+    "afterMotionSliders": [
+     "duration",
+     "uniform-scale"
+    ],
+    "dialogOrToast": [
+     1,
+     2
+    ]
+   },
+   {
+    "feature": "预设运镜",
+    "attr": "data-director-motion-preset-button",
+    "index": 0,
+    "host": "RIGHT-PANEL",
+    "text": "⟳ 预设运镜",
+    "rect": [
+     1012,
+     851,
+     256,
+     36
+    ],
+    "disabled": false,
+    "anythingChanged": false,
+    "beforeMotionSliders": [
+     "duration",
+     "uniform-scale"
+    ],
+    "afterMotionSliders": [
+     "duration",
+     "uniform-scale"
+    ],
+    "dialogOrToast": [
+     1,
+     2
+    ]
+   },
+   {
+    "feature": "预设运镜",
+    "attr": "data-director-camera-preset-trigger",
+    "index": 0,
+    "host": "TIMELINE",
+    "text": "预设运镜",
+    "rect": [
+     312,
+     973,
+     77,
+     28
+    ],
+    "disabled": false,
+    "anythingChanged": false,
+    "beforeMotionSliders": [
+     "duration",
+     "uniform-scale"
+    ],
+    "afterMotionSliders": [
+     "duration",
+     "uniform-scale"
+    ],
+    "dialogOrToast": [
+     1,
+     2
+    ]
+   }
+  ],
+  "addKeyframeDelta": {
+   "tracks": [
+    3,
+    3
+   ],
+   "keyframesPerTrack": [
+    [
+     3,
+     3,
+     1
+    ],
+    [
+     3,
+     3,
+     1
+    ]
+   ],
+   "selectedKeyframeId": [
+    "director-track-director-camera-1790998866733-1-keyframe-0",
+    "director-track-director-camera-1790998866733-1-keyframe-0"
+   ]
+  },
+  "nothingSelectedProbe": {
+   "objects": 6,
+   "motionSliders": [],
+   "afterAnotherDeselect": []
+  },
+  "theFinding": "创建运动轨迹 and 预设运镜 each render twice -- once in the right panel, once on the timeline -- under different attribute names. All four copies are enabled and none of them changes anything. The motion sliders themselves ARE reachable: the timeline's 添加关键帧 button brings them up in three pure-UI actions, one layer fewer than batch 695 recorded, with no store call.",
+  "whatIsNotClaimed": "Whether the four dead entrances are placeholders or omissions is not claimed. Their titles say 'panel lives on the timeline control cluster', which reads like a deliberate pointer -- but that the click does nothing is a reading, and a reading about dead space is not the same as a judgement about intent.",
+  "storeWritesInThisRun": "none",
+  "relationTo695": "695 is not rewritten. Two of its statements are corrected here: the motion sliders are three layers deep and need no store call, and the 'two buttons without onClick' is true of the source but understates the runtime, where all four copies are inert."
+ },
+ "checks": {
+  "each-step-along-the-main-path-shows-range-controls-with-no-store-call": {
+   "ok": true,
+   "detail": {
+    "depthRows": [
+     {
+      "depth": 0,
+      "actions": [
+       "打开导演台"
+      ],
+      "tracks": 2,
+      "kf": [
+       3,
+       3
+      ],
+      "selKf": "director-keyframe-character-0",
+      "keys": [
+       "data-director-timeline-zoom",
+       "data-director-uniform-scale"
+      ]
+     },
+     {
+      "depth": 1,
+      "actions": [
+       "打开导演台",
+       "点对象树里的机位"
+      ],
+      "picked": {
+       "rowText": "",
+       "selected": {
+        "id": "director-camera-1790998863201-1",
+        "kind": "camera",
+        "name": "机位 02 · 新镜头"
+       }
+      },
+      "tracks": 3,
+      "kf": [
+       3,
+       3,
+       1
+      ],
+      "selKf": "director-track-director-camera-1790998866733-1-keyframe-0",
+      "keys": [
+       "data-director-camera-fov",
+       "data-director-timeline-zoom",
+       "data-director-uniform-scale"
+      ]
+     },
+     {
+      "depth": 2,
+      "actions": [
+       "打开导演台",
+       "点对象树里的机位",
+       "点「运动轨迹」页签"
+      ],
+      "tracks": 3,
+      "kf": [
+       3,
+       3,
+       1
+      ],
+      "selKf": "director-track-director-camera-1790998866733-1-keyframe-0",
+      "keys": [
+       "data-director-motion-slider",
+       "data-director-timeline-zoom"
+      ],
+      "motionSliders": [
+       "duration",
+       "uniform-scale"
+      ]
+     },
+     {
+      "depth": 3,
+      "actions": [
+       "打开导演台",
+       "点对象树里的机位",
+       "点「运动轨迹」页签",
+       "点时间轴「添加关键帧」"
+      ],
+      "tracks": 3,
+      "kf": [
+       3,
+       3,
+       1
+      ],
+      "selKf": "director-track-director-camera-1790998866733-1-keyframe-0",
+      "keys": [
+       "data-director-motion-slider",
+       "data-director-timeline-zoom"
+      ],
+      "motionSliders": [
+       "duration",
+       "uniform-scale"
+      ]
+     }
+    ],
+    "allKeysSeen": [
+     "data-director-camera-fov",
+     "data-director-motion-slider",
+     "data-director-timeline-zoom",
+     "data-director-uniform-scale"
+    ],
+    "whatThisCheckDoesNotClaim": "It does not claim all eleven keys were reached -- that needs every state, and this batch walks one main path. The five scene sliders that appear only when nothing is selected were measured in 695. Keys seen here are what is visible AT that step, not a cumulative list: switching to the 运动轨迹 tab hides the 属性 tab's sliders, which is why camera-fov is visible at depth 1 and gone at depth 2.",
+    "storeCallsInThisRun": "none -- picking the camera, switching the tab and adding the keyframe are all real clicks",
+    "whyNoStoreCalls": "Batch 697 proved that a store call standing in for a click is a claim, not a shortcut. This batch is about reachability, so the reachability has to be walked, not summoned."
+   },
+   "note": "walking a path is the only way to know it exists"
+  },
+  "clicking-a-camera-in-the-tree-already-creates-its-track-and-first-keyframe": {
+   "ok": true,
+   "detail": {
+    "depth0_tracks": 2,
+    "depth1_tracks": 3,
+    "depth1_keyframes": [
+     3,
+     3,
+     1
+    ],
+    "depth1_selectedKeyframeId": "director-track-director-camera-1790998866733-1-keyframe-0",
+    "motionSlidersAtDepth2": [
+     "duration",
+     "uniform-scale"
+    ],
+    "whatHappensOnTheFirstClick": "Clicking the camera row in the object tree does two things at once: it selects the camera, AND it creates a camera track with one keyframe and selects that keyframe. So by the time you switch to the 运动轨迹 tab, the sliders are already there.",
+    "corrects695InTheOppositeDirection": "695 recorded four layers and a store call to make the keyframe. The real count is two, with no store call anywhere. The extra two layers were not a property of the control -- they were a property of the path: selectObject(activeCameraId) changes the selection and nothing else, so the track the real click would have created was never made, and the store call was compensating for a side effect the programmatic path had skipped.",
+    "sameShapeAs697": "Batch 697 found that the store path is worse than the user path. This is the same asymmetry pointing the other way: the store path is less complete, not more broken. A store call is a claim about what the real interaction does, and here the claim was wrong in a direction nobody would have predicted -- it looked like the control needed MORE work, when the real path needed less.",
+    "depthIsNotAPropertyOfTheControl": "The same two sliders take two actions on one camera and four on another, purely because of what state the fixture starts in. Depth is a function of control AND starting state, so 'this control is N layers deep' is not a well-formed claim."
+   },
+   "note": "the extra layers were a property of the path, not of the control"
+  },
+  "each-of-the-two-features-has-two-copies-with-different-attribute-names": {
+   "ok": true,
+   "detail": {
+    "copiesPerFeature": {
+     "创建运动轨迹": 2,
+     "预设运镜": 2
+    },
+    "copies": [
+     {
+      "feature": "创建运动轨迹",
+      "attr": "data-director-motion-create-path",
+      "host": "RIGHT-PANEL",
+      "text": "创建运动轨迹",
+      "rect": [
+       1012,
+       903,
+       256,
+       36
+      ]
+     },
+     {
+      "feature": "创建运动轨迹",
+      "attr": "data-director-create-motion-path",
+      "host": "TIMELINE",
+      "text": "创建运动轨迹",
+      "rect": [
+       389,
+       973,
+       99,
+       28
+      ]
+     },
+     {
+      "feature": "预设运镜",
+      "attr": "data-director-motion-preset-button",
+      "host": "RIGHT-PANEL",
+      "text": "⟳ 预设运镜",
+      "rect": [
+       1012,
+       851,
+       256,
+       36
+      ]
+     },
+     {
+      "feature": "预设运镜",
+      "attr": "data-director-camera-preset-trigger",
+      "host": "TIMELINE",
+      "text": "预设运镜",
+      "rect": [
+       312,
+       973,
+       77,
+       28
+      ]
+     }
+    ],
+    "naming": "创建运动轨迹 is data-director-motion-create-path in the right panel and data-director-create-motion-path on the timeline -- the same two words in a different order. A query for one of them silently returns only the other.",
+    "thisBitMe": "I searched for data-director-create-motion-path, got one hit, and concluded the right-panel button did not exist. It does exist. That is batch 697's lesson in a third costume: a DOM query returning zero is a claim about the query as often as about the DOM."
+   },
+   "note": "the same two words, in a different order"
+  },
+  "all-four-copies-look-enabled-and-none-of-them-does-anything": {
+   "ok": true,
+   "detail": {
+    "clicks": [
+     {
+      "feature": "创建运动轨迹",
+      "attr": "data-director-motion-create-path",
+      "index": 0,
+      "host": "RIGHT-PANEL",
+      "text": "创建运动轨迹",
+      "rect": [
+       1012,
+       903,
+       256,
+       36
+      ],
+      "disabled": false,
+      "anythingChanged": false,
+      "beforeMotionSliders": [
+       "duration",
+       "uniform-scale"
+      ],
+      "afterMotionSliders": [
+       "duration",
+       "uniform-scale"
+      ],
+      "dialogOrToast": [
+       1,
+       2
+      ]
+     },
+     {
+      "feature": "创建运动轨迹",
+      "attr": "data-director-create-motion-path",
+      "index": 0,
+      "host": "TIMELINE",
+      "text": "创建运动轨迹",
+      "rect": [
+       389,
+       973,
+       99,
+       28
+      ],
+      "disabled": false,
+      "anythingChanged": false,
+      "beforeMotionSliders": [
+       "duration",
+       "uniform-scale"
+      ],
+      "afterMotionSliders": [
+       "duration",
+       "uniform-scale"
+      ],
+      "dialogOrToast": [
+       1,
+       2
+      ]
+     },
+     {
+      "feature": "预设运镜",
+      "attr": "data-director-motion-preset-button",
+      "index": 0,
+      "host": "RIGHT-PANEL",
+      "text": "⟳ 预设运镜",
+      "rect": [
+       1012,
+       851,
+       256,
+       36
+      ],
+      "disabled": false,
+      "anythingChanged": false,
+      "beforeMotionSliders": [
+       "duration",
+       "uniform-scale"
+      ],
+      "afterMotionSliders": [
+       "duration",
+       "uniform-scale"
+      ],
+      "dialogOrToast": [
+       1,
+       2
+      ]
+     },
+     {
+      "feature": "预设运镜",
+      "attr": "data-director-camera-preset-trigger",
+      "index": 0,
+      "host": "TIMELINE",
+      "text": "预设运镜",
+      "rect": [
+       312,
+       973,
+       77,
+       28
+      ],
+      "disabled": false,
+      "anythingChanged": false,
+      "beforeMotionSliders": [
+       "duration",
+       "uniform-scale"
+      ],
+      "afterMotionSliders": [
+       "duration",
+       "uniform-scale"
+      ],
+      "dialogOrToast": [
+       1,
+       2
+      ]
+     }
+    ],
+    "enabledCount": 4,
+    "effectiveCount": 0,
+    "whatChangedWasChecked": "timeline track count, keyframes per track, the selected keyframe id, the motion sliders, and whether any dialog or toast appeared.",
+    "strongerThan695": "695 could only say the two right-panel buttons have no onClick -- a source-level fact. This says all four copies, including the two on the timeline that are NOT disabled, produce no observable change at all."
+   },
+   "note": "enabled is not the same as working"
+  },
+  "dead-entrances-do-not-mean-the-feature-is-unreachable": {
+   "ok": true,
+   "detail": {
+    "reachableVia": "点对象树里的机位 → 切「运动轨迹」页签（两步）",
+    "deadEntrances": [
+     "data-director-motion-create-path",
+     "data-director-create-motion-path",
+     "data-director-motion-preset-button",
+     "data-director-camera-preset-trigger"
+    ],
+    "theActualDefect": "Not that the sliders are unreachable -- they are, via one click. The actual problem is that a user who wants to '创建运动轨迹' has four enabled buttons that say exactly that and do nothing, while the button that works is on a different surface and named something else. The mismatch is between the labels and the affordance, not between the app and the capability."
+   },
+   "note": "a user follows the label, not the store schema"
+  }
+ }
+}
