@@ -343,7 +343,60 @@ PAGE_TELL_TERMS = (
     # 换成精确短语后**只有 1 个页面状态变化、零误判**。
     "实测都停在", "实测止于", "取证止于", "止于付费边界",
     "不触发真实生成", "不发真实", "不发起真实请求", "不产生费用",
+    # Batch 238 补的**一个**：`90-troubleshooting.md` 第 3 行写的是
+    # 「症状 → 原因 → 处理。**按真实源码行为整理**」，而账本记的是
+    # 「其余失败分类为源码静态证据」——**那一页确实告知了，只是没登记这个说法**。
+    # **这不是「放宽到能过」**：本条方向自己的报错文案就写着「词表必然不完备」，
+    # 而补进来的措辞必须**本来就写在页面上**。反验用例钉住了这一点。
+    "按真实源码",
 )
+
+
+#: **证据来源词**（Batch 238 新增）。收紧本方向的关键就是它。
+#: 向读者交代本手册证据等级的那句话，**必然同时在说证据是什么**；
+#: 而产品手册里「未验证 / 不可用 / 未确认」绝大多数说的是**产品自己**的状态。
+#: **只收「只用于交代本手册证据等级」的那几个**，一个泛词都不收——
+#: Batch 222 的「受限」「空」、Batch 223 的「停在」都是收泛词收出来的假阳性。
+#: **刻意不收「证据」二字**：`90-troubleshooting.md` 里那句
+#: 「保留错误来源与**请求证据**」说的是产品的错误报告功能，不是本手册的证据。
+EVIDENCE_SOURCE_TERMS = (
+    "源码", "运行时", "实证", "实测", "走查", "取证", "核验", "截图",
+)
+
+#: 表格行与标题行是**产品文案密度最高**的两种行：状态值、字段取值、
+#: 错误分类、报错原文都长这样。Batch 238 实测的假阳性**全部落在这两种行里**。
+TABLE_ROW_RE = re.compile(r"^\s*\|")
+HEADING_RE = re.compile(r"^\s{0,3}#{1,6}\s")
+
+
+def _tell_qualifying_lines(body):
+    """返回这一页里**真正算告知**的行号。
+
+    **本方向量的是「有没有说」，而第一版把「有没有说」算成了
+    「整页正文里有没有出现过某个词」**——这两件事不一样：
+    页面里绝大多数「不可用 / 未确认 / 未验证」说的是**产品**的状态，
+    而 Batch 238 实测到 `organize-canvas` **页面上一个证据告知都没有**，
+    它是被三张产品表格里的「资产当前不可用」「尚未确认」顶替通过的
+    （而那一页第 78 / 80 行就摆着两张实拍截图——纪律 229 的形状）。
+
+    三条限定都能从被核对象自己算出（纪律 242）：
+      1. 不是表格行；2. 不是标题行；
+      3. **同一行还必须出现一个证据来源词**。
+
+    **它仍然分不开的**：一段**恰好同时含证据来源词和产品状态词**的产品文案。
+    本方向量的是位置与共现，不是意图——**能力上限如实写在这里，不装作覆盖了**。
+    """
+    out = []
+    for i, line in enumerate(body.split("\n")):
+        if TABLE_ROW_RE.match(line) or HEADING_RE.match(line):
+            continue
+        if not any(t in line for t in PAGE_TELL_TERMS):
+            continue
+        if not any(w in line for w in EVIDENCE_SOURCE_TERMS):
+            continue
+        out.append(i + 1)
+    return out
+
 
 
 def _inventory_items(root):
@@ -462,7 +515,8 @@ def check_downgrade_reaches_page(root):
             # 页面读不到 = **未能核对**（2），不是「核对不一致」（1）——
             # 后者会让人跑去手册里找根本不存在的问题（Batch 160）。
             return ([], [], True)
-        if any(any(t in b for t in PAGE_TELL_TERMS) for b in bodies):
+        told_lines = [ln for b in bodies for ln in _tell_qualifying_lines(b)]
+        if told_lines:
             told += 1
             continue
         # **措辞必须说清判据知道什么、不知道什么**：词表必然不完备
@@ -479,7 +533,8 @@ def check_downgrade_reaches_page(root):
         )
     notes.append(
         f"证据降级告知：账本自述降级 {downgraded} 条，其中 {told} 条已在手册页面上告知读者"
-        f"（判据只核「有没有说」，不核「说得够不够好」）"
+        f"（判据只核「有没有在交代证据的位置上说」，不核「说得够不够好」；"
+        f"表格行与标题行里的产品文案、以及未与证据来源词同现的词，**都不算**）"
     )
     return (problems, notes, False)
 

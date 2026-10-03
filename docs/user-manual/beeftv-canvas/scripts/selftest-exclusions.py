@@ -13,6 +13,19 @@
     不误伤 1 条：
     4) 只改 excluded 任务的其他字段（不动 id、不动 status）→ 必须照旧通过
 
+Batch 238 再加 3 例（17→20），钉的是**方向六被收紧的那一刀**：
+  能抓 2 条：
+    17) 告知**只存在于表格行**里 → 必须报（**就是本批真修掉的那个缺陷原样**）
+    18) 告知**只存在于标题行**里 → 必须报
+  不误伤 1 条：
+    19) 告知写在**普通段落**里（不是 `:::` 容器、也不是 `>` 引用）→ 必须放行
+  **17/19 是必须成对的一对**：收紧的方向是「非表格行 + 非标题行 + 同行出现
+  证据来源词」，**不是**「只认容器与引用」。`10-tasks/create-workspace.md` 的告知
+  就是普通段落（「本手册的所有实测都停在发送之前」），
+  **一个只认容器与引用的判据会在构建里当场造出一条假阳性**。
+  **17 用的是 `organize-canvas` 而不是随便挑一页**——纪律 259 要求鉴别力验证
+  针对缺陷本身，**拿同类里随便挑一个去注入，判据照样会正确报错**。
+
 Batch 226 再加 2 例（14→16），钉的是方向七（逐节祈使句）：
   能抓 1 条：
     15) 把不可用页里的就地提示删掉 → 必须报
@@ -470,6 +483,68 @@ def t_hint_moved_must_not_report(inv, gate):
     return inv, gate, {"10-tasks/cloud-agent.md": move}
 
 
+#: **Batch 238**：本批新加的那行告知的原文。**三例都以它为锚点**，
+#: 所以页面上少一行、用例就作废——**作废要报出来，不能静悄悄跳过**。
+OC_BANNER = (
+    "> **本页两部分的证据等级不同，别把它们当成同一种**："
+    "下面的「画布外观」是**运行时实证**（紧随其后的两张截图即出自那一节，"
+    "深色与浅色两态都走过）；而**「自动整理」与「Frame 与文件夹」两节只有源码证据**"
+    "——取自上游画布工具条与分组实现，**本手册没有在画布上逐个走过这些操作**。"
+    "所以那两节说的是「代码表明它会这样」，不是「它确实这样」。\n"
+)
+
+#: 被测页。**刻意选 `organize-canvas` 而不是随便挑一页**——
+#: 它就是 Batch 238 真抓到缺陷的那一页，纪律 259 要求鉴别力验证针对缺陷本身。
+OC_PAGE = "10-tasks/organize-canvas.md"
+
+
+def _drop_oc_banner(body):
+    assert OC_BANNER in body, "锚点未命中：organize-canvas 上找不到本批加的那行告知"
+    return body.replace(OC_BANNER, "", 1)
+
+
+def t_tell_only_in_table_row(_inv, gate):
+    """把告知撤掉、只留下**产品表格里**的「不可用 / 未确认」→ 必须报。
+
+    **这就是 Batch 238 抓到的真缺陷原样**：那一页第 101 / 103 / 121 / 143 行
+    分别写着「资产尚未验证」「资产当前不可用」「商业使用（尚未确认 / 允许商用）」
+    与「LoRA / 参考图组不可用时会发生什么」——**全是产品自己的状态**，
+    而第一版判据在整页正文里搜 `PAGE_TELL_TERMS`，于是**判绿**。
+    """
+    return _inv, gate, {OC_PAGE: _drop_oc_banner}
+
+
+def t_tell_only_in_heading(_inv, gate):
+    """告知只写在**标题行**里 → 必须报。
+
+    产品手册里「报『当前模型或接口不可用』但插件明明装了」这种标题满页都是，
+    而 `90-troubleshooting.md` 撤掉别的东西之后正是靠它们活着的。
+    """
+    def edit(body):
+        out = _drop_oc_banner(body)
+        anchor = "## 目标\n"
+        assert anchor in out, "锚点未命中：organize-canvas 上找不到 ## 目标"
+        return out.replace(
+            anchor,
+            "## 素材「未确认」时的源码说明\n\n" + anchor, 1)
+    return _inv, gate, {OC_PAGE: edit}
+
+
+def t_tell_in_plain_paragraph(_inv, gate):
+    """告知写在**普通段落**里 → 必须放行（不误伤）。
+
+    **这一例钉的是判据「有多窄」**：本批实测的收紧是「非表格行 + 非标题行 +
+    同行出现证据来源词」，**不是**「必须是容器或引用」。
+    `10-tasks/create-workspace.md` 的告知就是普通段落
+    （「本手册的所有实测都停在发送之前」）——
+    **一个只认容器与引用的判据会在构建里当场造出一条假阳性**。
+    """
+    def edit(body):
+        assert OC_BANNER in body, "锚点未命中：organize-canvas 上找不到本批加的那行告知"
+        return body.replace(OC_BANNER, OC_BANNER[2:], 1)
+    return _inv, gate, {OC_PAGE: edit}
+
+
 def main():
     r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
     if r.returncode == 0:
@@ -507,6 +582,12 @@ def main():
         transform=t_imperative_must_report)
     run("16) 不误伤：提示块挪到小节末尾、首句变回祈使句（必须放行）", "证据降级告知",
         expect_fail=False, transform=t_hint_moved_must_not_report)
+    run("17) 告知只存在于表格行（必须报：产品状态值不算告知）",
+        "找不到任何已登记的告知措辞", transform=t_tell_only_in_table_row)
+    run("18) 告知只存在于标题行（必须报：产品报错原文不算告知）",
+        "找不到任何已登记的告知措辞", transform=t_tell_only_in_heading)
+    run("19) 不误伤：告知写在普通段落里（必须放行：不是只认容器与引用）",
+        "证据降级告知", expect_fail=False, transform=t_tell_in_plain_paragraph)
 
     print("=== 结果：通过 %d / 失败 %d / 作废 %d ===" % (PASS, FAIL, VOID))
     return 1 if (FAIL or VOID) else 0
