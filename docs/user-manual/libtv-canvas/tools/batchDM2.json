@@ -1,0 +1,203 @@
+{
+  "请求": [
+    {
+      "时刻": 0,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/log/acceptor/f",
+      "postBody前300": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"zh-CN\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1790199025399mwmysako\",\"ct\":1791030079926,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=10354929&projectId=34226ef170f2482",
+      "响应长度": 33,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":null}"
+    },
+    {
+      "时刻": 1,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/log/acceptor/f",
+      "postBody前300": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"zh-CN\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1790199025399mwmysako\",\"ct\":1791030079930,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=10354929&projectId=34226ef170f2482",
+      "响应长度": 33,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":null}"
+    },
+    {
+      "时刻": 2,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/log/acceptor/f",
+      "postBody前300": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"zh-CN\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1790199025399mwmysako\",\"ct\":1791030081949,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=10354929&projectId=34226ef170f2482",
+      "响应长度": 33,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":null}"
+    },
+    {
+      "时刻": 3,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/log/acceptor/f",
+      "postBody前300": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"zh-CN\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1790199025399mwmysako\",\"ct\":1791030081950,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=10354929&projectId=34226ef170f2482",
+      "响应长度": 33,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":null}"
+    },
+    {
+      "时刻": 4,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/public/tag/v3",
+      "postBody前300": "{\"categoryCode\":\"model\"}",
+      "响应长度": 956,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":[{\"name\":\"摄影写真\",\"ids\":[510005,510006,510007,510008]},{\"name\":\"电商营销\",\"ids\":[520014,520015,520027,520056,520057,520058,520059,520060,520061]},{\"name\":\"动漫游戏\",\"ids\":[520034,520"
+    },
+    {
+      "时刻": 5,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/model/feed/stream",
+      "postBody前300": "{\"platform\":\"libtv\",\"page\":1,\"pageSize\":40,\"cid\":\"1790199025399mwmysako\",\"requestId\":\"A4wRbtpGcVhAIdpW\",\"types\":[27,42,43,79,40,70,37,39,53,55,68],\"models\":[21,5],\"sort\":0,\"isTemplate\":\"true\"}",
+      "响应长度": 363779,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":{\"page\":1,\"total\":40,\"pageSize\":40,\"data\":[{\"isLike\":1,\"toolEvaluationAuditStatus\":-1,\"id\":21419665,\"userId\":42381,\"name\":\"Seedream 5.0 pro\",\"description\":\"\",\"modelType\":1,"
+    },
+    {
+      "时刻": 6,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/log/acceptor/f",
+      "postBody前300": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"zh-CN\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1790199025399mwmysako\",\"ct\":1791030082750,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=10354929&projectId=34226ef170f2482",
+      "响应长度": 33,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":null}"
+    },
+    {
+      "时刻": 7,
+      "方法": "POST",
+      "url": "api.liblib.tv/api/canvas/project/heartbeat",
+      "postBody前300": "{\"projectUuid\":\"34226ef170f248248c74f85290228f6b\",\"sessionId\":\"Der4yKhQ68ghJIvf5guW\",\"timestamp\":1791030056665}",
+      "响应长度": 59,
+      "响应前200": "{\"code\":0,\"data\":{},\"msg\":\"\",\"trace_id\":\"GfyRL5fKBnPB8wD6\"}"
+    },
+    {
+      "时刻": 8,
+      "方法": "GET",
+      "url": "api2.liblib.art/api/www/landing-activities/getById?id=217",
+      "postBody前300": "",
+      "响应长度": 311,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":{\"picUrl\":null,\"buttonText\":\"\",\"jumpType\":\"text\",\"comfyModelId\":null,\"comfyVersionId\":null,\"modelId\":null,\"versionId\":null,\"imageBatchId\":null,\"linkUrl\":\"{\\n  \\\"message\\\": "
+    },
+    {
+      "时刻": 9,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/model/feed/stream",
+      "postBody前300": "{\"platform\":\"libtv\",\"page\":2,\"pageSize\":40,\"cid\":\"1790199025399mwmysako\",\"requestId\":\"A4wRbtpGcVhAIdpW\",\"types\":[27,42,43,79,40,70,37,39,53,55,68],\"models\":[21,5],\"sort\":0,\"isTemplate\":\"true\"}",
+      "响应长度": 382828,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":{\"page\":2,\"total\":40,\"pageSize\":40,\"data\":[{\"isLike\":0,\"toolEvaluationAuditStatus\":-1,\"id\":21599346,\"userId\":2069565,\"name\":\"星空特效魔法角色立绘卡牌\",\"description\":\"\",\"modelType\":5,\"m"
+    },
+    {
+      "时刻": 10,
+      "方法": "POST",
+      "url": "api.liblib.tv/api/canvas/project/heartbeat",
+      "postBody前300": "{\"projectUuid\":\"34226ef170f248248c74f85290228f6b\",\"sessionId\":\"Der4yKhQ68ghJIvf5guW\",\"timestamp\":1791030056665}",
+      "响应长度": 59,
+      "响应前200": "{\"code\":0,\"data\":{},\"msg\":\"\",\"trace_id\":\"3hAyu33rThxCzqGx\"}"
+    },
+    {
+      "时刻": 11,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/log/acceptor/f",
+      "postBody前300": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"zh-CN\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1790199025399mwmysako\",\"ct\":1791030088486,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=10354929&projectId=34226ef170f2482",
+      "响应长度": 33,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":null}"
+    },
+    {
+      "时刻": 12,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/model/feed/stream",
+      "postBody前300": "{\"platform\":\"libtv\",\"page\":3,\"pageSize\":40,\"cid\":\"1790199025399mwmysako\",\"requestId\":\"A4wRbtpGcVhAIdpW\",\"types\":[27,42,43,79,40,70,37,39,53,55,68],\"models\":[21,5],\"sort\":0,\"isTemplate\":\"true\"}",
+      "响应长度": 402906,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":{\"page\":3,\"total\":40,\"pageSize\":40,\"data\":[{\"isLike\":0,\"toolEvaluationAuditStatus\":-1,\"id\":21464131,\"userId\":4450265,\"name\":\"超多款气质女包，上身效果一览\",\"description\":\"\",\"modelType\":5,"
+    },
+    {
+      "时刻": 13,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/log/acceptor/f",
+      "postBody前300": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"zh-CN\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1790199025399mwmysako\",\"ct\":1791030091118,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=10354929&projectId=34226ef170f2482",
+      "响应长度": 33,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":null}"
+    },
+    {
+      "时刻": 14,
+      "方法": "POST",
+      "url": "api.liblib.tv/api/canvas/project/heartbeat",
+      "postBody前300": "{\"projectUuid\":\"34226ef170f248248c74f85290228f6b\",\"sessionId\":\"Der4yKhQ68ghJIvf5guW\",\"timestamp\":1791030056665}",
+      "响应长度": 59,
+      "响应前200": "{\"code\":0,\"data\":{},\"msg\":\"\",\"trace_id\":\"a1ivqfscD1GY886l\"}"
+    },
+    {
+      "时刻": 15,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/model/feed/stream",
+      "postBody前300": "{\"platform\":\"libtv\",\"page\":4,\"pageSize\":40,\"cid\":\"1790199025399mwmysako\",\"requestId\":\"A4wRbtpGcVhAIdpW\",\"types\":[27,42,43,79,40,70,37,39,53,55,68],\"models\":[21,5],\"sort\":0,\"isTemplate\":\"true\"}",
+      "响应长度": 392889,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":{\"page\":4,\"total\":40,\"pageSize\":40,\"data\":[{\"isLike\":0,\"toolEvaluationAuditStatus\":-1,\"id\":21536974,\"userId\":3256575,\"name\":\"3d国风漫剧人物\",\"description\":\"\",\"modelType\":21,\"mode"
+    },
+    {
+      "时刻": 16,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/log/acceptor/f",
+      "postBody前300": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"zh-CN\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1790199025399mwmysako\",\"ct\":1791030093693,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=10354929&projectId=34226ef170f2482",
+      "响应长度": 33,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":null}"
+    },
+    {
+      "时刻": 17,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/model/feed/stream",
+      "postBody前300": "{\"platform\":\"libtv\",\"page\":5,\"pageSize\":40,\"cid\":\"1790199025399mwmysako\",\"requestId\":\"A4wRbtpGcVhAIdpW\",\"types\":[27,42,43,79,40,70,37,39,53,55,68],\"models\":[21,5],\"sort\":0,\"isTemplate\":\"true\"}",
+      "响应长度": 370357,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":{\"page\":5,\"total\":40,\"pageSize\":40,\"data\":[{\"isLike\":0,\"toolEvaluationAuditStatus\":-1,\"id\":20456482,\"userId\":424964,\"name\":\"Qwen-image-南音浅浅-时装女生立绘\",\"description\":\"\",\"modelT"
+    },
+    {
+      "时刻": 18,
+      "方法": "POST",
+      "url": "api2.liblib.art/api/www/log/acceptor/f",
+      "postBody前300": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"zh-CN\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1790199025399mwmysako\",\"ct\":1791030096311,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=10354929&projectId=34226ef170f2482",
+      "响应长度": 33,
+      "响应前200": "{\"code\":0,\"msg\":null,\"data\":null}"
+    }
+  ],
+  "轮": [
+    {
+      "轮": 1,
+      "新请求": 3,
+      "DOM卡数": 54,
+      "容器": {
+        "scrollTop": 1748,
+        "scrollHeight": 4462
+      },
+      "首卡": "Qwen Image"
+    },
+    {
+      "轮": 2,
+      "新请求": 2,
+      "DOM卡数": 54,
+      "容器": {
+        "scrollTop": 3945,
+        "scrollHeight": 6659
+      },
+      "首卡": "Qwen Image"
+    },
+    {
+      "轮": 3,
+      "新请求": 3,
+      "DOM卡数": 54,
+      "容器": {
+        "scrollTop": 6142,
+        "scrollHeight": 8542
+      },
+      "首卡": "Qwen Image"
+    },
+    {
+      "轮": 4,
+      "新请求": 2,
+      "DOM卡数": 54,
+      "容器": {
+        "scrollTop": 8025,
+        "scrollHeight": 10739
+      },
+      "首卡": "Qwen Image"
+    }
+  ],
+  "当前分类": {
+    "有推荐按钮": true,
+    "高亮": null,
+    "class含active": false
+  }
+}
