@@ -186,13 +186,33 @@ def main() -> int:
     # 若某个探针在正则字面量或 includes/indexOf 里用了这个前缀，
     # **而该探针里又没出现过完整文案**，判为「模糊选中危险按钮」并报错。
     # **出现完整文案即放行**——那是精确匹配，正是这条纪律要的做法。
+    #
+    # ★ **扫之前必须先剥注释**（M194 实测的假阳性，M106 的同一个陷阱）：
+    #   判据一上线就把我自己的 `probe-node-toolbars.js` 判成违规——
+    #   那支探针**根本没选任何删除按钮**，是**文件头的注释在描述这个坑**
+    #   （写着「M192 用 `/删除/` 这类子串匹配」）。注释里的话不是选择器。
+    #   M106 当年在 `check-publish-sync.py` 上撞过一模一样的坑：
+    #   `audit_manual.py` 在 `build-site.sh` 里出现 3 次、**全部在注释里**，
+    #   当年的解法就是剥掉整行注释再比对。**同一个坑，换个门禁又踩一次。**
+    def strip_js_comments(text: str) -> str:
+        """去掉 /* */ 块注释与「整行以 // 开头」的注释。
+
+        **只去整行 // 注释、不做行内截断**，是因为探针里常有 `http://…` 这样的
+        字符串，按 `//` 截到行尾会把 URL 砍成 `http:`。判据只找按钮文案的真前缀，
+        残留的 URL 片段不影响结论。
+        """
+        text = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
+        return "\n".join(
+            line for line in text.splitlines() if not line.lstrip().startswith("//")
+        )
+
     FUZZY_RES = (
         re.compile(r"/[^/\n]*%s[^/\n]*/"),
         re.compile(r"\.(?:includes|indexOf)\(\s*['\"]%s['\"]"),
     )
     fuzzy_hits: list[str] = []
     for pr in probes:
-        body = pr.read_text(encoding="utf-8")
+        body = strip_js_comments(pr.read_text(encoding="utf-8"))
         for label in items:
             if len(label) < 3:
                 continue  # 两字文案没有「真前缀」，写了全名就是精确匹配

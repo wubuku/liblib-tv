@@ -930,6 +930,32 @@ def mutate_probe_fuzzy_destructive(root: Path) -> None:
     )
 
 
+def mutate_probe_comment_fuzzy_destructive(root: Path) -> None:
+    """**注释里**提到子串匹配，不该被判成「用子串去选不可逆按钮」（M194 反向对照）。
+
+    M194 的真实经过：M193 新立的模糊匹配判据一上线，就把我新写的
+    `probe-node-toolbars.js` 判成违规——**而那支探针根本没选任何删除按钮**，
+    是**文件头的注释在描述这个坑**（写着「M192 用 `/删除/` 这类子串匹配」）。
+    **注释里的话不是选择器。**
+
+    根因与 M106 撞的是同一个坑：`audit_manual.py` 在 `build-site.sh` 里出现 3 次、
+    **全部在注释里**，当年的解法就是剥掉注释再比对。**同一个坑，换个门禁又踩一次。**
+
+    判据已改成先剥 `/* */` 块注释与「整行以 // 开头」的注释再扫。
+    这一例守的是**不误报**：注释放进去，门禁必须放行。
+    """
+
+    path = root / "scripts/probe-discoverability.js"
+    text = path.read_text(encoding="utf-8")
+    path.write_text(
+        text
+        + "\n/* 历史教训：M192 曾用 /删除/ 这类子串去匹配按钮，\n"
+          "   先命中了「删除全部」而不是卡片上的「删除」，两张画布一起没了。\n"
+          "   这里只是**记录**这段教训，不是选择器。 */\n",
+        encoding="utf-8",
+    )
+
+
 def mutate_probe_exact_destructive(root: Path) -> None:
     """反向：全名精确匹配**不该被误报**。
 
@@ -1560,6 +1586,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("文档比源码写得更细不该被误报（不做双向全等）", mutate_probe_contract_extra_context, "probecontracts", EXPECT_PASS),
     ("探针用子串/正则去选不可逆按钮（M192 栽在这）", mutate_probe_fuzzy_destructive, "probecontracts", "用子串/正则去选不可逆按钮"),
     ("全名精确匹配不该被误报（这条纪律要的就是写全名）", mutate_probe_exact_destructive, "probecontracts", EXPECT_PASS),
+    ("注释里提到子串匹配不该被判违规（注释不是选择器）", mutate_probe_comment_fuzzy_destructive, "probecontracts", EXPECT_PASS),
     ("出口行挂到章节标题下（位置错但门禁全绿过）", mutate_ownership_wrong, "ownership", "归属错误"),
     ("出口行挂在正确条目下不该被误报（不判该不该有）", mutate_ownership_ok, "ownership", EXPECT_PASS),
     ("门禁静默放行：ledger-pin 退回 M150 行为", mutate_gate_silence_reintroduced, "gatesilence", "仍 exit=0"),
