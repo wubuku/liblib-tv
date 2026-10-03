@@ -1,0 +1,182 @@
+{
+  "时间轴": [
+    {
+      "累计ms": 257,
+      "可见适配面板文字": 1,
+      "文字": [
+        "全部适配模型"
+      ]
+    }
+  ],
+  "面板": {
+    "找到": true,
+    "标题rect": [
+      338,
+      243,
+      140,
+      25
+    ],
+    "面板": {
+      "rect": [
+        324,
+        201,
+        183,
+        245
+      ],
+      "class": "relative flex flex-col items-start justify-between overflow-hidden rounded-lg bo"
+    },
+    "祖先链": [
+      {
+        "tag": "div",
+        "文字": "全部适配模型",
+        "rect": [
+          338,
+          243,
+          140,
+          25
+        ],
+        "pos": "static",
+        "z": "auto",
+        "role": null,
+        "data": {},
+        "class": "px-2 py-1 text-[11px] text-white/60"
+      },
+      {
+        "tag": "div",
+        "文字": "全部适配模型General image V2General image Pro",
+        "rect": [
+          333,
+          238,
+          150,
+          96
+        ],
+        "pos": "absolute",
+        "z": "20",
+        "role": null,
+        "data": {},
+        "class": "absolute left-0 top-full z-20 mt-1 w-max rounded-lg bg-black/85 p-1 backdrop-blu"
+      },
+      {
+        "tag": "div",
+        "文字": "全部适配模型General image V2General image Pro",
+        "rect": [
+          333,
+          210,
+          24,
+          24
+        ],
+        "pos": "relative",
+        "z": "auto",
+        "role": null,
+        "data": {},
+        "class": "relative"
+      },
+      {
+        "tag": "div",
+        "文字": "全部适配模型General image V2General image Pro",
+        "rect": [
+          325,
+          202,
+          181,
+          40
+        ],
+        "pos": "relative",
+        "z": "auto",
+        "role": null,
+        "data": {},
+        "class": "relative flex w-full items-center justify-between p-2"
+      },
+      {
+        "tag": "div",
+        "文字": "全部适配模型General image V2General image Pro",
+        "rect": [
+          324,
+          201,
+          183,
+          245
+        ],
+        "pos": "relative",
+        "z": "auto",
+        "role": null,
+        "data": {},
+        "class": "relative flex flex-col items-start justify-between overflow-hidden rounded-lg bo"
+      },
+      {
+        "tag": "div",
+        "文字": "全部适配模型General image V2General image ProJ_漫剧素材三视图+大",
+        "rect": [
+          320,
+          197,
+          191,
+          302
+        ],
+        "pos": "relative",
+        "z": "auto",
+        "role": null,
+        "data": {},
+        "class": "hover:bg-canvas-controls-hover group relative flex w-full cursor-pointer flex-co"
+      },
+      {
+        "tag": "div",
+        "文字": "Seedream 5.0Seedream 5.0 pro热点推荐官535.7w全部适配模型Gener",
+        "rect": [
+          117,
+          197,
+          1206,
+          302
+        ],
+        "pos": "static",
+        "z": "auto",
+        "role": null,
+        "data": {},
+        "class": ""
+      },
+      {
+        "tag": "div",
+        "文字": "Seedream 5.0Seedream 5.0 pro热点推荐官535.7w全部适配模型Gener",
+        "rect": [
+          117,
+          197,
+          1206,
+          314
+        ],
+        "pos": "absolute",
+        "z": "auto",
+        "role": null,
+        "data": {},
+        "class": ""
+      }
+    ],
+    "面板内条目": [
+      {
+        "文字": "General image V2",
+        "rect": [
+          366,
+          274,
+          100,
+          19
+        ],
+        "svg": 0,
+        "cls": "truncate text-[12px] text-white"
+      },
+      {
+        "文字": "General image Pro",
+        "rect": [
+          366,
+          305,
+          104,
+          19
+        ],
+        "svg": 0,
+        "cls": "truncate text-[12px] text-white"
+      }
+    ],
+    "所有role": [
+      "img",
+      "application",
+      "group",
+      "status",
+      "dialog"
+    ]
+  }
+}

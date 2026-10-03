@@ -2337,3 +2337,14 @@ screenshots:
     visible_text: 风格广场 我的收藏 最近使用
     alt: 广场被最小化成一个居中的窗口（四边露出画布节点），右上角换成斜向对角箭头（还原）和 ×（关闭）；卡片从 6 列重排成 4 列，分类标签末尾多出一个 › 溢出箭头；第二张卡左上角悬停着气泡「新功能：支持真人」。⭐ 读数：最小化后容器是 fixed z-20 rounded-xl 的 [315,77,810×657]（未最小化时是 z=701 铺满 1440×810）；标题栏里两枚 28×28 按钮的 aria 分别是 maximize 和 close；点 maximize 后 z=701 恢复成 1440×810 铺满。⭐⭐ 气泡「新功能：支持真人」结清了卡面蓝点徽标是什么
     sha256: ae78ed39b3cd2cc5e0f41932a46962b91e947e941c52eb9dbf51a680f8ae9a66
+  - file: screenshots/M-346-全部适配模型面板.png
+    task_id: asset-library
+    step: 71
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 底栏点「素材库」→「风格库」进风格广场 → 把鼠标停在第一屏第 2 张卡左上角那枚无文字的「✧」按钮上（等 257ms 以上）
+    visible_text: 全部适配模型 General image V2 General image Pro
+    alt: 悬停卡面左上角那枚无文字的 ✧ 小按钮后，浮出一块 150×96 的黑色浮层：顶部是半透明白字标题「全部适配模型」，下面逐行列出这张风格可用的模型名，实测这张卡是两行「✧ General image V2」「✧ General image Pro」。⭐ 读数：浮层容器 class 尾段 absolute left-0 top-full z-20 mt-1 w-max rounded-lg bg-black/85 p-1 backdrop-blur，标题 140×25（text-[11px] text-white/60），整个浮层**没有任何 role 属性**（所以按 role="tooltip" 找它会读成「没有」）。⚠️ 入口按钮 24×24，**无文字、无 aria、无 title、无任何 data-***，只有一枚 SVG（path 以 M2 0a2 2 0 1 1 0 4 开头）；**点它什么都不会发生**（画布 11 → 11，无浮层无提示）
+    sha256: 733e58dc347b17a937b348f9299b90ebbadfa6611e4778c6a5591fc0f30ae74f
