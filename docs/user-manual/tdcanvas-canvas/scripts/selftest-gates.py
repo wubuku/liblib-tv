@@ -1689,6 +1689,74 @@ def mutate_ledger_rich_phrase_ok(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_duplicate_line_in_prose(root: Path) -> None:
+    """正文里连续两行一模一样时必须被拦下（M201 实测事故）。
+
+    起因不是假想故障：`edit-nodes.md` 里 M137 那段引用块的**同一行真的连续出现了两遍**，
+    而**二十一道门禁全绿**。它躲过了全部既有判据——表格对、链接对、锚点对、
+    强断言有证据、不是已订正说法的复活、也不在可数断言台账里。
+    """
+
+    path = root / "20-reference.md"
+    text = path.read_text(encoding="utf-8")
+    lines = text.split("\n")
+    for i, line in enumerate(lines):
+        t = line.strip()
+        # 拿一行**有实质内容**的散文行来重复，避免重复的是空行或分隔线
+        if t.startswith("TDCanvas 是一个") :
+            lines.insert(i + 1, line)
+            break
+    else:
+        raise AssertionError("注入失败：没找到用来重复的散文行")
+    path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def mutate_duplicate_line_in_code_fence_ok(root: Path) -> None:
+    """反向对照：围栏代码块里连续两行相同**不该**被误报（不误报）。
+
+    示例输出连打两行 `OK` 是完全正常的写法（控制台日志、网络重试日志都长这样）。
+    判据若不排除围栏内部，就是一个「总有一天会误报」的假门禁——
+    **那种闸会把真正的错一起淹掉**（M195）。这一例守的就是别把它改严。
+
+    ★ **锚点现算，且要插在围栏「内部」**：① 第一版把文件写死成 `90-troubleshooting.md`，
+      而那个文件**压根没有围栏代码块**，注入空转、自检报「注入无效」——
+      **写死文件名的锚点会随被测对象变化而静默失效**（这一批第三次撞上同一个病）。
+      ② 第二版用 `replace("```\\n", …)` 插「OK\\nOK」，**插到了收尾那道围栏的后面**——
+      也就是插进了散文里，门禁立刻报重复行。**````` 后面紧跟换行的是「收尾」那道，不是「开头」那道。**
+      现在先按行判定哪一道是开围栏，再插到它**后面一行**。
+    """
+
+    target = None
+    for p in sorted((root).rglob("*.md")):
+        if "node_modules" in str(p) or ".vitepress" in str(p):
+            continue
+        if any(l.strip().startswith("```") for l in p.read_text(encoding="utf-8").split("\n")):
+            target = p
+            break
+    assert target is not None, "注入失败：手册里一个围栏代码块都没有"
+    lines = target.read_text(encoding="utf-8").split("\n")
+    for i, line in enumerate(lines):
+        if line.strip().startswith("```"):
+            lines[i + 1 : i + 1] = ["OK", "OK"]      # 插进围栏内部
+            break
+    else:
+        raise AssertionError("注入失败：没找到围栏开头")
+    target.write_text("\n".join(lines), encoding="utf-8")
+
+
+def mutate_duplicate_blank_lines_ok(root: Path) -> None:
+    """反向对照：连续两个空行**不该**被算成重复行（不误报）。
+
+    Markdown 用空行分段，连续空行是正常的排版；判据只看**非空**行。
+    """
+
+    path = root / "30-concepts.md"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace("\n\n## ", "\n\n\n## ", 1)
+    assert patched != text, "注入失败：没找到可插入空行的小节标题"
+    path.write_text(patched, encoding="utf-8")
+
+
 CASES: list[tuple[str, object, str, str]] = [
     ("图片字节被改动", mutate_image_bytes, "gate", "sha256 mismatch"),
     ("manifest 删掉一条记录", mutate_manifest_drop_record, "gate", "image missing from manifest"),
@@ -1770,6 +1838,9 @@ CASES: list[tuple[str, object, str, str]] = [
     ("重述位置指向内部账本而不是发布页", mutate_ledger_points_to_progress, "factledger", "不是对外发布页"),
     ("重述位置短语里带了字面竖线（列被拆开）", mutate_ledger_pipe_in_phrase, "factledger", "台账行解析不了"),
     ("短语里带加粗、箭头、反引号不该被误报（不误报）", mutate_ledger_rich_phrase_ok, "factledger", EXPECT_PASS),
+    ("正文里连续两行一模一样（M201 实测事故）", mutate_duplicate_line_in_prose, "dupeline", "连续重复行"),
+    ("围栏代码块里两行相同不该被误报（不误报）", mutate_duplicate_line_in_code_fence_ok, "dupeline", EXPECT_PASS),
+    ("连续两个空行不该被算成重复行（不误报）", mutate_duplicate_blank_lines_ok, "dupeline", EXPECT_PASS),
 ]
 
 
@@ -1816,6 +1887,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-gate-silence.py"), str(root)]
     elif which == "factledger":
         cmd = [sys.executable, str(root / "scripts/check-fact-ledger.py"), str(root)]
+    elif which == "dupeline":
+        cmd = [sys.executable, str(root / "scripts/check-duplicate-lines.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)
