@@ -3578,6 +3578,102 @@ def main() -> int:
           and "只排除了三种历史扰动**" in _ausrc
           and "同段内越过+回走 ／ 前置走查+归零 ／ " in _ausrc
           and "前置走查+真回走+归零），**一条新机制都没测到**" in _ausrc)
+    # ══════════ 批 917：死按压的**焦点轨迹**（本批真正的产出） ══════════
+    p917 = ROOT / "scripts/jimeng_probe917_multi_bite_focus_trace_src.py"
+    _p917 = p917.read_text(encoding="utf-8") if p917.exists() else ""
+    check("DDD.1 ✅⭐ **917 第一次把「死按压期间焦点在哪些元素上走」完整记录下来**"
+          "（源站，6 臂 × 2 轮 = 12 条，两轮逐条一致，逐次焦点记录 996 条）—— "
+          "这是 916 记过、但**没跑**的那个缺口。**⭐ 正向：死按压数 = "
+          "刚被布的那个节点自己的内层控件个数**（轨迹里两次都数上了："
+          "落到 `导出时间线` ⇒ **恰好 4 次**；落到 `替换媒体` ⇒ **恰好 1 次**）"
+          "⇒ **正向那侧「被吃掉多少」已被读数完整解释**。"
+          "**⭐ 反向：死按压把焦点带出画布、把整页反向走一遍**"
+          "（`Canvas`→顶栏 `用户菜单`/`Credits`/`更多`/`分享`/`生成历史`/`搜索`"
+          "→`项目`/`Canvas title`/`返回首页`→`Zoom options`/`显示连线`/`小地图`"
+          "→左栏 `选择工具`/`文本`/`全部清空`/`Add tags`→节点本体）"
+          "⇒ **第 29 次按压**按前焦点才落在节点本体上、这时才布（`23→22`）",
+          "source_focus_trace_dead_presses_917" in _ausrc
+          and "**917 第一次把「死按压期间焦点到底在哪些元素上走」" in _ausrc
+          and "逐次焦点记录 996 条" in _ausrc
+          and "✅ **⭐ 正向：死按压数 = 刚被布的那个节点自己的内层控件个数**"
+          in _ausrc
+          and "**恰好 4 次**死按压" in _ausrc
+          and "**恰好 1 次**死按压" in _ausrc
+          and "**正向那侧「被吃掉多少」= " in _ausrc
+          and "✅ **⭐ 反向：死按压把焦点「带出画布」，把整页反向走一遍**"
+          in _ausrc
+          and "`Add tags`→**节点本体**" in _ausrc
+          and "**第 29 次按压**按前焦点才落在节点本体上" in _ausrc
+          # ⚠️ 钉**探针真的铺了逐次焦点轨迹**（否则「完整记录」是空话）
+          and '"per_press_pre": [press_rec(pi, p)' in _p917
+          and 'def press_rec(pi, p):' in _p917
+          and '"pre_is_wrapper": p["pre_is_wrapper"],' in _p917
+          and '"land_aria": p["land_aria"][:1]}' in _p917)
+    check("DDD.2 ⚠️⚠️ **917 那句「一句话」不许当机制**：**路径是实测的、成因不是** —— "
+          "**为什么反向的 tab 序会绕整页**（而不是回到上一个节点的本体）"
+          "**仍然未查明** ⇒ **不许**拿「正向只有内层控件那么多、反向要跨出画布」"
+          "这句话当机制、**不许**据此改实现。"
+          "⚠️ 另钉：917 **前史仍无关**（6/6，与同目标基线臂逐条相同："
+          "终点 40 ⇒ 首布 11、35 ⇒ 0、51 ⇒ 12）⇒ "
+          "**914/915/916/917 合起来只排除了四种历史扰动**，"
+          "**仍然不是全称规则**",
+          "⚠️ 但**为什么反向的 tab 序会绕整页**" in _ausrc
+          and "**仍然未查明** —— 路径是**实测**的，**成因不是**" in _ausrc
+          and "**不许**拿上面那句话当机制、不许据此改实现" in _ausrc
+          and "✅ **前史仍无关（6/6，与同目标基线臂逐条相同）**" in _ausrc
+          and "**914/915/916/917 合起来只排除了四种历史扰动**" in _ausrc
+          and "**仍然不是全称规则**" in _ausrc)
+    check("DDD.3 ✅⚠️ **917 新加的门当场抓到了东西**："
+          "`design_ok` 的「**实测真的退了 `k` 步**」这一条把 **6/6 扰动臂"
+          "全标成设计违规** —— 「咬到 3/3」但**实退只有 1 步** ⇒ "
+          "**「咬到几次 ≠ 退了几步」**。⚠️ **没有这道门，917 会静默地声称"
+          "测了「三步回走」** —— 这是 915/916 同一个错误的**第三次出现、"
+          "**第三次被门挡住**。⚠️ 判据要钉**那道门本身**（探针里那个等式）",
+          "✅⚠️ **本批新加的门当场抓到了东西**" in _ausrc
+          and "**6/6 扰动臂全标成设计违规**" in _ausrc
+          and "**「咬到几次 ≠ 退了几步」**" in _ausrc
+          and "**没有这道门，917 会静默地声称" in _ausrc
+          and "同一个错误的第三次出现，第三次被门挡住。**" in _ausrc
+          and 'and design["n_bites_bitten"] == design["n_bites"]' in _p917
+          and 'and design["n_zero_steps_retreat"] == design["n_bites"]'
+          in _p917
+          and "**实测真的退了 `k` 步**" in _ausrc)
+    check("DDD.4 ⚠️⚠️ **一条方法论更正（比结论更重要）**：**`armed` 会在"
+          "非 `.react-flow__node` 的元素上触发** —— 917 实测到 "
+          "`el:BUTTON.inline-flex.items-center#0` 上 `armed` 响了、"
+          "而**节点里的 `'0'` 根本没动**（`armed_idx` 空、`moved=False`）"
+          "⇒ **`armed` 触发 ≠ `'0'` 移动**。⚠️ **916 用的停止条件正是 "
+          "`moved or armed` ⇒ 那一版的「咬到」可能提前结束** "
+          "⇒ 917 已把停止条件**收紧成只用 `moved`**",
+          "⚠️⚠️ **一条方法论更正（比结论更重要）**" in _ausrc
+          and "**`armed` 这个信号" in _ausrc
+          and "会在非 `.react-flow__node` 的元素上触发**" in _ausrc
+          and "`el:BUTTON.inline-flex.items-center#0` 上 `armed` 响了" in _ausrc
+          and "**`armed` 触发 ≠ `'0'` 移动**" in _ausrc
+          and "**916 用的停止条件正是 " in _ausrc
+          and "那一版的「咬到」可能提前结束" in _ausrc
+          and "917 已把停止条件**收紧成只用 `moved`**" in _ausrc
+          # ⚠️ 钉探针里那行注释 + 收紧后的条件（916 那版还写着 `or p["armed"]`）
+          and "**917 实测出来的更正：停止条件只能用 `moved`，不能带 `armed`。**"
+          in _p917
+          and "**917 实测出来的更正：停止条件只能用 `moved`，不能带 `armed`。**"
+          in _p917
+          and 'if t["moved"]:' in _p917
+          and 'if t["moved"] or t["armed"]:' not in _p917)
+    check("DDD.5 ⚠️ **917 自己的探针缺陷（已修）**：`bite_k` 里 `zero_before` "
+          "原来是在 `one_bite()` **跑完之后**才取的 ⇒ 打印出来是 `[22]→[22]` "
+          "这种**假象**（咬完的状态冒充咬之前的状态）⇒ 真实的 `23→22` 被抹掉。"
+          "⚠️ **判读纪律：前态必须在扰动之前取**，否则「前态 vs 后态」是空话。"
+          "⚠️ 判据要钉**探针里那行注释**（顺序错在注释里写明了）",
+          "⚠️ **917 自己的探针缺陷（已修）**" in _ausrc
+          and "**跑完之后**才取的" in _ausrc
+          and "`[22]→[22]` 这种**假象**" in _ausrc
+          and "真实的 `23→22` 被抹掉" in _ausrc
+          and "⚠️ **判读纪律：前态必须在扰动之前取**" in _ausrc
+          and "**917 第一版这里有顺序错**" in _p917
+          and "zero_before = snap(names)[\"zeros\"]" in _p917
+          and 'one["zero_before"] = zero_before' in _p917)
+
 
 
 
