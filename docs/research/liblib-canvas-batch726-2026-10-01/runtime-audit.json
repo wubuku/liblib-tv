@@ -1,0 +1,301 @@
+{
+ "colors": {
+  "valid": "rgb(100, 217, 89)",
+  "rejected": "rgb(9, 202, 245)"
+ },
+ "run": {
+  "graph0": {
+   "nodes": [
+    "g-245IDFh8sB",
+    "g-EFbbHpwq5w",
+    "t-9j2MoccxBj",
+    "i-1FQ9tErTcC",
+    "i-lBzmo67AHv",
+    "i-dnwoZQ7jsG",
+    "i-vxeeCnxySa",
+    "b-bTLLuU4w5q",
+    "i-YDfWhFlthe",
+    "v-UGQZzZOpbv"
+   ],
+   "edges": [
+    {
+     "id": "e-8IgMkf6Vbj",
+     "source": "i-1FQ9tErTcC",
+     "target": "b-bTLLuU4w5q"
+    },
+    {
+     "id": "e-abKze5c8Ug",
+     "source": "i-1FQ9tErTcC",
+     "target": "i-YDfWhFlthe"
+    },
+    {
+     "id": "e-AQmdIgKtl2",
+     "source": "b-bTLLuU4w5q",
+     "target": "g-245IDFh8sB"
+    },
+    {
+     "id": "e-m2wWA2wIBA",
+     "source": "i-dnwoZQ7jsG",
+     "target": "b-bTLLuU4w5q"
+    },
+    {
+     "id": "e-nlMX3rEjwN",
+     "source": "i-vxeeCnxySa",
+     "target": "b-bTLLuU4w5q"
+    },
+    {
+     "id": "e-OwhsBRzrTz",
+     "source": "i-1FQ9tErTcC",
+     "target": "v-UGQZzZOpbv"
+    },
+    {
+     "id": "e-QzX895ot0u",
+     "source": "i-lBzmo67AHv",
+     "target": "b-bTLLuU4w5q"
+    },
+    {
+     "id": "e-VQACH36eJC",
+     "source": "i-dnwoZQ7jsG",
+     "target": "v-UGQZzZOpbv"
+    },
+    {
+     "id": "e-XmiJkHfFAL",
+     "source": "i-YDfWhFlthe",
+     "target": "v-UGQZzZOpbv"
+    },
+    {
+     "id": "e-xNVTHNFZZl",
+     "source": "i-dnwoZQ7jsG",
+     "target": "i-YDfWhFlthe"
+    },
+    {
+     "id": "e-yEqrTOR2Ya",
+     "source": "b-bTLLuU4w5q",
+     "target": "g-EFbbHpwq5w"
+    }
+   ],
+   "unordered": [
+    "b-bTLLuU4w5q|i-1FQ9tErTcC",
+    "i-1FQ9tErTcC|i-YDfWhFlthe",
+    "b-bTLLuU4w5q|g-245IDFh8sB",
+    "b-bTLLuU4w5q|i-dnwoZQ7jsG",
+    "b-bTLLuU4w5q|i-vxeeCnxySa",
+    "i-1FQ9tErTcC|v-UGQZzZOpbv",
+    "b-bTLLuU4w5q|i-lBzmo67AHv",
+    "i-dnwoZQ7jsG|v-UGQZzZOpbv",
+    "i-YDfWhFlthe|v-UGQZzZOpbv",
+    "i-YDfWhFlthe|i-dnwoZQ7jsG",
+    "b-bTLLuU4w5q|g-EFbbHpwq5w"
+   ],
+   "wouldCycle": [
+    "g-245IDFh8sB|i-1FQ9tErTcC",
+    "g-245IDFh8sB|i-lBzmo67AHv",
+    "g-245IDFh8sB|i-dnwoZQ7jsG",
+    "g-245IDFh8sB|i-vxeeCnxySa",
+    "b-bTLLuU4w5q|g-245IDFh8sB",
+    "g-EFbbHpwq5w|i-1FQ9tErTcC",
+    "g-EFbbHpwq5w|i-lBzmo67AHv",
+    "g-EFbbHpwq5w|i-dnwoZQ7jsG",
+    "g-EFbbHpwq5w|i-vxeeCnxySa",
+    "b-bTLLuU4w5q|g-EFbbHpwq5w",
+    "b-bTLLuU4w5q|i-1FQ9tErTcC",
+    "b-bTLLuU4w5q|i-lBzmo67AHv",
+    "b-bTLLuU4w5q|i-dnwoZQ7jsG",
+    "b-bTLLuU4w5q|i-vxeeCnxySa",
+    "i-1FQ9tErTcC|i-YDfWhFlthe",
+    "i-YDfWhFlthe|i-dnwoZQ7jsG",
+    "i-1FQ9tErTcC|v-UGQZzZOpbv",
+    "i-dnwoZQ7jsG|v-UGQZzZOpbv",
+    "i-YDfWhFlthe|v-UGQZzZOpbv"
+   ]
+  },
+  "A_isolated": true,
+  "steps": {
+   "cycleCase": {
+    "plan": [
+     "g-245IDFh8sB",
+     "right",
+     "i-1FQ9tErTcC",
+     "left"
+    ],
+    "stateBefore": {
+     "nEdges": 11,
+     "lastCommandResult": null,
+     "selection": {
+      "canvasId": "canvas-2",
+      "nodeIds": [],
+      "edgeIds": [],
+      "kind": "none",
+      "primary": null
+     }
+    },
+    "atTarget": [
+     {
+      "nodeId": "g-245IDFh8sB",
+      "id": "source",
+      "extra": [
+       "connectingfrom"
+      ],
+      "bg": "rgb(26, 25, 43)",
+      "border": "rgb(255, 255, 255)",
+      "w": 7.66
+     },
+     {
+      "nodeId": "i-1FQ9tErTcC",
+      "id": "target",
+      "extra": [
+       "connectingto"
+      ],
+      "bg": "rgb(9, 202, 245)",
+      "border": "rgb(9, 202, 245)",
+      "w": 7.66
+     }
+    ],
+    "newEdges": [],
+    "stateAfter": {
+     "nEdges": 11,
+     "lastCommandResult": null,
+     "selection": {
+      "canvasId": "canvas-2",
+      "nodeIds": [],
+      "edgeIds": [],
+      "kind": "none",
+      "primary": null
+     }
+    }
+   },
+   "legalControl": {
+    "plan": [
+     "t-9j2MoccxBj",
+     "right",
+     "g-245IDFh8sB",
+     "left"
+    ],
+    "stateBefore": {
+     "nEdges": 11,
+     "lastCommandResult": null,
+     "selection": {
+      "canvasId": "canvas-2",
+      "nodeIds": [],
+      "edgeIds": [],
+      "kind": "none",
+      "primary": null
+     }
+    },
+    "atTarget": [
+     {
+      "nodeId": "g-245IDFh8sB",
+      "id": "target",
+      "extra": [
+       "connectingto",
+       "valid"
+      ],
+      "bg": "rgb(100, 217, 89)",
+      "border": "rgb(100, 217, 89)",
+      "w": 7.66
+     },
+     {
+      "nodeId": "t-9j2MoccxBj",
+      "id": "source",
+      "extra": [
+       "connectingfrom"
+      ],
+      "bg": "rgb(26, 25, 43)",
+      "border": "rgb(255, 255, 255)",
+      "w": 7.66
+     }
+    ],
+    "newEdges": [
+     {
+      "id": "e-t-9j2MoccxBj-g-245IDFh8sB-1791041730750",
+      "source": "t-9j2MoccxBj",
+      "target": "g-245IDFh8sB"
+     }
+    ],
+    "stateAfter": {
+     "nEdges": 12,
+     "lastCommandResult": null,
+     "selection": {
+      "canvasId": "canvas-2",
+      "nodeIds": [],
+      "edgeIds": [],
+      "kind": "none",
+      "primary": null
+     }
+    }
+   }
+  },
+  "edgesFinal": [
+   {
+    "id": "e-8IgMkf6Vbj",
+    "source": "i-1FQ9tErTcC",
+    "target": "b-bTLLuU4w5q"
+   },
+   {
+    "id": "e-abKze5c8Ug",
+    "source": "i-1FQ9tErTcC",
+    "target": "i-YDfWhFlthe"
+   },
+   {
+    "id": "e-AQmdIgKtl2",
+    "source": "b-bTLLuU4w5q",
+    "target": "g-245IDFh8sB"
+   },
+   {
+    "id": "e-m2wWA2wIBA",
+    "source": "i-dnwoZQ7jsG",
+    "target": "b-bTLLuU4w5q"
+   },
+   {
+    "id": "e-nlMX3rEjwN",
+    "source": "i-vxeeCnxySa",
+    "target": "b-bTLLuU4w5q"
+   },
+   {
+    "id": "e-OwhsBRzrTz",
+    "source": "i-1FQ9tErTcC",
+    "target": "v-UGQZzZOpbv"
+   },
+   {
+    "id": "e-QzX895ot0u",
+    "source": "i-lBzmo67AHv",
+    "target": "b-bTLLuU4w5q"
+   },
+   {
+    "id": "e-VQACH36eJC",
+    "source": "i-dnwoZQ7jsG",
+    "target": "v-UGQZzZOpbv"
+   },
+   {
+    "id": "e-XmiJkHfFAL",
+    "source": "i-YDfWhFlthe",
+    "target": "v-UGQZzZOpbv"
+   },
+   {
+    "id": "e-xNVTHNFZZl",
+    "source": "i-dnwoZQ7jsG",
+    "target": "i-YDfWhFlthe"
+   },
+   {
+    "id": "e-yEqrTOR2Ya",
+    "source": "b-bTLLuU4w5q",
+    "target": "g-EFbbHpwq5w"
+   },
+   {
+    "id": "e-t-9j2MoccxBj-g-245IDFh8sB-1791041730750",
+    "source": "t-9j2MoccxBj",
+    "target": "g-245IDFh8sB"
+   }
+  ]
+ },
+ "summary": {
+  "the-script-node-starts-isolated-and-there-are-eleven-edges": true,
+  "a-legal-control-from-the-isolated-node-creates-one-edge": true,
+  "the-closing-hop-is-never-valid-and-creates-nothing": true,
+  "rejected-drop-targets-change-colour-green-to-cyan-same-size": true,
+  "a-rejected-connection-leaves-no-trace-in-the-store": true,
+  "eight-cycle-forming-pairs-are-not-yet-connected-so-the-rule-is-direct": true,
+  "react-flow-has-no-third-rejected-marker-only-valid-distinguishes": true
+ },
+ "failures": []
+}
