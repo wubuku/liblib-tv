@@ -1,0 +1,905 @@
+{
+ "at": "2026-10-03T05:07:52.524Z",
+ "round": "d",
+ "起点": {
+  "节点": "79 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+  "选中": 1,
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员",
+  "浮层": 0,
+  "夹具残留": 0
+ },
+ "抽屉": {
+  "步骤": [
+   {
+    "步骤": "打开用户菜单",
+    "落点": {
+     "x": 1238,
+     "y": 18,
+     "命中": "BUTTON"
+    }
+   },
+   {
+    "步骤": "点「快捷键」",
+    "落点": {
+     "x": 1034,
+     "y": 210,
+     "命中": "DIV"
+    }
+   }
+  ],
+  "身份": [
+   {
+    "tag": "DIV",
+    "tid": null,
+    "role": null,
+    "aria": null,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "面积": 921600,
+    "cls": "",
+    "孩子数": 2,
+    "文本长度": 5694,
+    "逐字前70": "测试项目 节点 79 已保存 分享 805 基础会员 79 nodes, 0 edges, 1 selected. Editable. Ro"
+   },
+   {
+    "tag": "DIV",
+    "tid": "workspace-workbench-shell",
+    "role": null,
+    "aria": null,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "面积": 921600,
+    "cls": "relative h-screen min-h-0 min-w-0 overfl",
+    "孩子数": 4,
+    "文本长度": 5694,
+    "逐字前70": "测试项目 节点 79 已保存 分享 805 基础会员 79 nodes, 0 edges, 1 selected. Editable. Ro"
+   },
+   {
+    "tag": "MAIN",
+    "tid": null,
+    "role": null,
+    "aria": "Canvas workspace",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "面积": 921600,
+    "cls": "absolute inset-0 min-h-0 min-w-0 overflo",
+    "孩子数": 1,
+    "文本长度": 5470,
+    "逐字前70": "79 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存. 视频 1 No "
+   },
+   {
+    "tag": "DIV",
+    "tid": "workspace-hydrated-canvas-frame",
+    "role": null,
+    "aria": null,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "面积": 921600,
+    "cls": "relative isolate h-full w-full overflow-",
+    "孩子数": 4,
+    "文本长度": 5470,
+    "逐字前70": "79 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存. 视频 1 No "
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "role": null,
+    "aria": null,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "面积": 921600,
+    "cls": "absolute inset-0",
+    "孩子数": 1,
+    "文本长度": 5441,
+    "逐字前70": "79 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存. 视频 1 No "
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "role": null,
+    "aria": null,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "面积": 921600,
+    "cls": "absolute inset-0 opacity-workspace-chrom",
+    "孩子数": 1,
+    "文本长度": 5441,
+    "逐字前70": "79 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存. 视频 1 No "
+   },
+   {
+    "tag": "DIV",
+    "tid": "canvas-workbench-shell",
+    "role": null,
+    "aria": null,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "面积": 921600,
+    "cls": "relative h-full min-h-0 min-w-0 overflow",
+    "孩子数": 4,
+    "文本长度": 5441,
+    "逐字前70": "79 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存. 视频 1 No "
+   },
+   {
+    "tag": "SECTION",
+    "tid": "canvas-main-region",
+    "role": null,
+    "aria": "Canvas editing area",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "面积": 921600,
+    "cls": "absolute inset-0 min-h-0 min-w-0 overflo",
+    "孩子数": 2,
+    "文本长度": 5441,
+    "逐字前70": "79 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存. 视频 1 No "
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "role": null,
+    "aria": null,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "面积": 921600,
+    "cls": "relative h-full w-full",
+    "孩子数": 3,
+    "文本长度": 5441,
+    "逐字前70": "79 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存. 视频 1 No "
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "role": null,
+    "aria": null,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "面积": 921600,
+    "cls": "w-full h-full",
+    "孩子数": 1,
+    "文本长度": 5389,
+    "逐字前70": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1"
+   },
+   {
+    "tag": "DIV",
+    "tid": "rf__wrapper",
+    "role": "application",
+    "aria": "Canvas",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "面积": 921600,
+    "cls": "react-flow octo-canvas-flow bg-dreamina-",
+    "孩子数": 10,
+    "文本长度": 5389,
+    "逐字前70": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1"
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "role": null,
+    "aria": null,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "面积": 921600,
+    "cls": "react-flow__renderer",
+    "孩子数": 5,
+    "文本长度": 4360,
+    "逐字前70": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1"
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "role": null,
+    "aria": null,
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "面积": 921600,
+    "cls": "react-flow__pane",
+    "孩子数": 1,
+    "文本长度": 4360,
+    "逐字前70": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1"
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "role": null,
+    "aria": null,
+    "rect": [
+     -1492,
+     -1466,
+     768,
+     432
+    ],
+    "面积": 331776,
+    "cls": "react-flow__viewport xyflow__viewport re",
+    "孩子数": 4,
+    "文本长度": 4360,
+    "逐字前70": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1"
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "role": null,
+    "aria": null,
+    "rect": [
+     -1492,
+     -1466,
+     768,
+     432
+    ],
+    "面积": 331776,
+    "cls": "react-flow__nodes",
+    "孩子数": 79,
+    "文本长度": 4360,
+    "逐字前70": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1"
+   },
+   {
+    "tag": "DIV",
+    "tid": "shortcut-help-scroll-content",
+    "role": null,
+    "aria": null,
+    "rect": [
+     1032,
+     116,
+     232,
+     1292
+    ],
+    "面积": 299744,
+    "cls": "",
+    "孩子数": 7,
+    "文本长度": 201,
+    "逐字前70": "通用操作 打开/关闭 Agent ⌘ / 撤销 ⌘ Z 还原 ⌘ ⇧ Z ⌘ Y 移动工具 V 预览视图 F 宫格视图 G 创建编组 ⌘ G"
+   }
+  ],
+  "扫描": {
+   "元素总数": 2881,
+   "命中数": 0,
+   "规则": []
+  },
+  "关闭后浮层": 0
+ },
+ "节点差集": [
+  {
+   "id": "node_236ctpehgg",
+   "类型": "video",
+   "aria": "视频 node: 视频 1",
+   "selected": false,
+   "文字": "视频 1 No resources: 0 rea"
+  },
+  {
+   "id": "node_3bfb9r79qe",
+   "类型": "text",
+   "aria": "文本 node: 文本 1",
+   "selected": false,
+   "文字": "文本 1"
+  },
+  {
+   "id": "node_cdwf8x6fbj",
+   "类型": "timeline",
+   "aria": "时间线 node: 时间线 1",
+   "selected": false,
+   "文字": "时间线 1 00:00 / 00:00 全屏编辑"
+  },
+  {
+   "id": "node_aw29cp094x",
+   "类型": "text",
+   "aria": "文本 node: 文本 2",
+   "selected": false,
+   "文字": "文本 2"
+  },
+  {
+   "id": "node_5gftn3dnt1",
+   "类型": "text",
+   "aria": "文本 node: 文本 3",
+   "selected": false,
+   "文字": "文本 3"
+  },
+  {
+   "id": "node_pxvkay973v",
+   "类型": "external",
+   "aria": "外部 node: 导演台",
+   "selected": false,
+   "文字": "导演台 在 3D 空间中设计角色、机位与镜头 进"
+  },
+  {
+   "id": "node_ay7f1jn45r",
+   "类型": "audio",
+   "aria": "音频 node: 音频 1",
+   "selected": false,
+   "文字": "音频 1 No resources: 0 rea"
+  },
+  {
+   "id": "node_w6b1h9fvzw",
+   "类型": "audio",
+   "aria": "音频 node: 音频 2",
+   "selected": false,
+   "文字": "音频 2 No resources: 0 rea"
+  },
+  {
+   "id": "node_dt0wpmba0d",
+   "类型": "audio",
+   "aria": "音频 node: 音频 3",
+   "selected": false,
+   "文字": "音频 3 No resources: 0 rea"
+  },
+  {
+   "id": "node_kdgnjkfng2",
+   "类型": "audio",
+   "aria": "音频 node: 音频 4",
+   "selected": false,
+   "文字": "音频 4 No resources: 0 rea"
+  },
+  {
+   "id": "node_gp499g9p3m",
+   "类型": "audio",
+   "aria": "音频 node: 音频 5",
+   "selected": false,
+   "文字": "音频 5 No resources: 0 rea"
+  },
+  {
+   "id": "node_9y4j9jf0qv",
+   "类型": "audio",
+   "aria": "音频 node: 音频 6",
+   "selected": false,
+   "文字": "音频 6 No resources: 0 rea"
+  },
+  {
+   "id": "node_gref4sw056",
+   "类型": "image",
+   "aria": "图片 node: b22-upload",
+   "selected": false,
+   "文字": "b22-upload"
+  },
+  {
+   "id": "node_20sb5adarj",
+   "类型": "audio",
+   "aria": "音频 node: 音频 7",
+   "selected": false,
+   "文字": "音频 7 No resources: 0 rea"
+  },
+  {
+   "id": "node_y2n170za3z",
+   "类型": "audio",
+   "aria": "音频 node: 音频 8",
+   "selected": false,
+   "文字": "音频 8 No resources: 0 rea"
+  },
+  {
+   "id": "node_1c5zafa3zk",
+   "类型": "audio",
+   "aria": "音频 node: 音频 9",
+   "selected": false,
+   "文字": "音频 9 No resources: 0 rea"
+  },
+  {
+   "id": "node_fg4h8gry6x",
+   "类型": "audio",
+   "aria": "音频 node: 音频 10",
+   "selected": false,
+   "文字": "音频 10 No resources: 0 re"
+  },
+  {
+   "id": "node_kx0gzwzf7a",
+   "类型": "audio",
+   "aria": "音频 node: 音频 11",
+   "selected": false,
+   "文字": "音频 11 No resources: 0 re"
+  },
+  {
+   "id": "node_97x9w2s8dc",
+   "类型": "audio",
+   "aria": "音频 node: 音频 12",
+   "selected": false,
+   "文字": "音频 12 No resources: 0 re"
+  },
+  {
+   "id": "node_gnykygt88s",
+   "类型": "audio",
+   "aria": "音频 node: 音频 13",
+   "selected": false,
+   "文字": "音频 13 No resources: 0 re"
+  },
+  {
+   "id": "node_52g5ng3hxa",
+   "类型": "audio",
+   "aria": "音频 node: 音频 14",
+   "selected": false,
+   "文字": "音频 14 No resources: 0 re"
+  },
+  {
+   "id": "node_m14qwkmz4p",
+   "类型": "audio",
+   "aria": "音频 node: 音频 15",
+   "selected": false,
+   "文字": "音频 15 No resources: 0 re"
+  },
+  {
+   "id": "node_d4tjtpnatq",
+   "类型": "timeline",
+   "aria": "时间线 node: 时间线 2",
+   "selected": false,
+   "文字": "时间线 2 00:00 / 00:00 全屏编辑"
+  },
+  {
+   "id": "node_sc4w9xkaxd",
+   "类型": "audio",
+   "aria": "音频 node: 音频 16",
+   "selected": false,
+   "文字": "音频 16 No resources: 0 re"
+  },
+  {
+   "id": "node_y261jwxjpn",
+   "类型": "audio",
+   "aria": "音频 node: 音频 17",
+   "selected": false,
+   "文字": "音频 17 No resources: 0 re"
+  },
+  {
+   "id": "node_3f44mcptgc",
+   "类型": "audio",
+   "aria": "音频 node: 音频 18",
+   "selected": false,
+   "文字": "音频 18 No resources: 0 re"
+  },
+  {
+   "id": "node_e78c3z4gap",
+   "类型": "audio",
+   "aria": "音频 node: 音频 19",
+   "selected": false,
+   "文字": "音频 19 No resources: 0 re"
+  },
+  {
+   "id": "node_5h8sbgy7pd",
+   "类型": "audio",
+   "aria": "音频 node: 音频 20",
+   "selected": false,
+   "文字": "音频 20 No resources: 0 re"
+  },
+  {
+   "id": "node_zb8pfc1tf6",
+   "类型": "audio",
+   "aria": "音频 node: 音频 21",
+   "selected": false,
+   "文字": "音频 21 No resources: 0 re"
+  },
+  {
+   "id": "node_v1wkbg1mbm",
+   "类型": "audio",
+   "aria": "音频 node: 音频 22",
+   "selected": false,
+   "文字": "音频 22 No resources: 0 re"
+  },
+  {
+   "id": "node_v5ewe33jbw",
+   "类型": "audio",
+   "aria": "音频 node: 音频 23",
+   "selected": false,
+   "文字": "音频 23 No resources: 0 re"
+  },
+  {
+   "id": "node_3rs2xvb3wm",
+   "类型": "audio",
+   "aria": "音频 node: 音频 24",
+   "selected": false,
+   "文字": "音频 24 No resources: 0 re"
+  },
+  {
+   "id": "node_e90a7f1gyf",
+   "类型": "audio",
+   "aria": "音频 node: 音频 25",
+   "selected": false,
+   "文字": "音频 25 No resources: 0 re"
+  },
+  {
+   "id": "node_5g0yrqgc6c",
+   "类型": "audio",
+   "aria": "音频 node: 音频 26",
+   "selected": false,
+   "文字": "音频 26 No resources: 0 re"
+  },
+  {
+   "id": "node_anmp0m801c",
+   "类型": "audio",
+   "aria": "音频 node: 音频 27",
+   "selected": false,
+   "文字": "音频 27 No resources: 0 re"
+  },
+  {
+   "id": "node_tqqd4fedbn",
+   "类型": "audio",
+   "aria": "音频 node: 音频 28",
+   "selected": false,
+   "文字": "音频 28 No resources: 0 re"
+  },
+  {
+   "id": "node_68van5z657",
+   "类型": "audio",
+   "aria": "音频 node: 音频 29",
+   "selected": false,
+   "文字": "音频 29 No resources: 0 re"
+  },
+  {
+   "id": "node_xe755vzsmx",
+   "类型": "audio",
+   "aria": "音频 node: 音频 30",
+   "selected": false,
+   "文字": "音频 30 No resources: 0 re"
+  },
+  {
+   "id": "node_3p3sa1sgsv",
+   "类型": "audio",
+   "aria": "音频 node: 音频 31",
+   "selected": false,
+   "文字": "音频 31 No resources: 0 re"
+  },
+  {
+   "id": "node_jphxcmk27v",
+   "类型": "audio",
+   "aria": "音频 node: 音频 32",
+   "selected": false,
+   "文字": "音频 32 No resources: 0 re"
+  },
+  {
+   "id": "node_9b2ajtyqwj",
+   "类型": "audio",
+   "aria": "音频 node: 音频 33",
+   "selected": false,
+   "文字": "音频 33 No resources: 0 re"
+  },
+  {
+   "id": "node_srx8z3gx8g",
+   "类型": "audio",
+   "aria": "音频 node: 音频 34",
+   "selected": false,
+   "文字": "音频 34 No resources: 0 re"
+  },
+  {
+   "id": "node_qf32ccpxmm",
+   "类型": "audio",
+   "aria": "音频 node: 音频 35",
+   "selected": false,
+   "文字": "音频 35 No resources: 0 re"
+  },
+  {
+   "id": "node_r6dtesbzac",
+   "类型": "audio",
+   "aria": "音频 node: 音频 36",
+   "selected": false,
+   "文字": "音频 36 No resources: 0 re"
+  },
+  {
+   "id": "node_20pw32f1y5",
+   "类型": "audio",
+   "aria": "音频 node: 音频 37",
+   "selected": false,
+   "文字": "音频 37 No resources: 0 re"
+  },
+  {
+   "id": "node_kgsv6w4ach",
+   "类型": "audio",
+   "aria": "音频 node: 音频 38",
+   "selected": false,
+   "文字": "音频 38 No resources: 0 re"
+  },
+  {
+   "id": "node_80vczsczbr",
+   "类型": "audio",
+   "aria": "音频 node: 音频 39",
+   "selected": false,
+   "文字": "音频 39 No resources: 0 re"
+  },
+  {
+   "id": "node_7w0kc2m903",
+   "类型": "audio",
+   "aria": "音频 node: 音频 40",
+   "selected": false,
+   "文字": "音频 40 No resources: 0 re"
+  },
+  {
+   "id": "node_r6qqyk3v98",
+   "类型": "audio",
+   "aria": "音频 node: 音频 41",
+   "selected": false,
+   "文字": "音频 41 No resources: 0 re"
+  },
+  {
+   "id": "node_thtydf4663",
+   "类型": "audio",
+   "aria": "音频 node: 音频 42",
+   "selected": false,
+   "文字": "音频 42 No resources: 0 re"
+  },
+  {
+   "id": "node_5na1wezb9q",
+   "类型": "audio",
+   "aria": "音频 node: 音频 43",
+   "selected": false,
+   "文字": "音频 43 No resources: 0 re"
+  },
+  {
+   "id": "node_ky7dvkppj1",
+   "类型": "audio",
+   "aria": "音频 node: 音频 44",
+   "selected": false,
+   "文字": "音频 44 No resources: 0 re"
+  },
+  {
+   "id": "node_tnh6v3rm7v",
+   "类型": "audio",
+   "aria": "音频 node: 音频 45",
+   "selected": false,
+   "文字": "音频 45 No resources: 0 re"
+  },
+  {
+   "id": "node_mwz4689zqr",
+   "类型": "audio",
+   "aria": "音频 node: 音频 46",
+   "selected": false,
+   "文字": "音频 46 No resources: 0 re"
+  },
+  {
+   "id": "node_7y6fhyn18z",
+   "类型": "audio",
+   "aria": "音频 node: 音频 47",
+   "selected": false,
+   "文字": "音频 47 No resources: 0 re"
+  },
+  {
+   "id": "node_qe1kf9ywek",
+   "类型": "audio",
+   "aria": "音频 node: 音频 48",
+   "selected": false,
+   "文字": "音频 48 No resources: 0 re"
+  },
+  {
+   "id": "node_w7s8mxphwh",
+   "类型": "audio",
+   "aria": "音频 node: 音频 49",
+   "selected": false,
+   "文字": "音频 49 No resources: 0 re"
+  },
+  {
+   "id": "node_p4xg96c73x",
+   "类型": "audio",
+   "aria": "音频 node: 音频 50",
+   "selected": false,
+   "文字": "音频 50 No resources: 0 re"
+  },
+  {
+   "id": "node_rs637eg7me",
+   "类型": "audio",
+   "aria": "音频 node: 音频 51",
+   "selected": false,
+   "文字": "音频 51 No resources: 0 re"
+  },
+  {
+   "id": "node_wdqa2gne4s",
+   "类型": "audio",
+   "aria": "音频 node: 音频 52",
+   "selected": false,
+   "文字": "音频 52 No resources: 0 re"
+  },
+  {
+   "id": "node_fd0p2amd3p",
+   "类型": "audio",
+   "aria": "音频 node: 音频 53",
+   "selected": false,
+   "文字": "音频 53 No resources: 0 re"
+  },
+  {
+   "id": "node_pz48stvt07",
+   "类型": "audio",
+   "aria": "音频 node: 音频 54",
+   "selected": false,
+   "文字": "音频 54 No resources: 0 re"
+  },
+  {
+   "id": "node_2x3hae9jhe",
+   "类型": "audio",
+   "aria": "音频 node: 音频 55",
+   "selected": false,
+   "文字": "音频 55 No resources: 0 re"
+  },
+  {
+   "id": "node_jx5amm7m9j",
+   "类型": "audio",
+   "aria": "音频 node: 音频 56",
+   "selected": false,
+   "文字": "音频 56 No resources: 0 re"
+  },
+  {
+   "id": "node_2vbd2rqk7q",
+   "类型": "audio",
+   "aria": "音频 node: 音频 57",
+   "selected": false,
+   "文字": "音频 57 No resources: 0 re"
+  },
+  {
+   "id": "node_kpfbgmkkr3",
+   "类型": "audio",
+   "aria": "音频 node: 音频 58",
+   "selected": false,
+   "文字": "音频 58 No resources: 0 re"
+  },
+  {
+   "id": "node_1yw4ntm88n",
+   "类型": "audio",
+   "aria": "音频 node: 音频 59",
+   "selected": false,
+   "文字": "音频 59 No resources: 0 re"
+  },
+  {
+   "id": "node_fyy39951ae",
+   "类型": "audio",
+   "aria": "音频 node: 音频 60",
+   "selected": false,
+   "文字": "音频 60 No resources: 0 re"
+  },
+  {
+   "id": "node_jc6t41x8d2",
+   "类型": "audio",
+   "aria": "音频 node: 音频 61",
+   "selected": false,
+   "文字": "音频 61 No resources: 0 re"
+  },
+  {
+   "id": "node_kk2xhkrdtn",
+   "类型": "audio",
+   "aria": "音频 node: 音频 62",
+   "selected": false,
+   "文字": "音频 62 No resources: 0 re"
+  },
+  {
+   "id": "node_qs4x5t988q",
+   "类型": "audio",
+   "aria": "音频 node: 音频 63",
+   "selected": false,
+   "文字": "音频 63 No resources: 0 re"
+  },
+  {
+   "id": "node_9rxgrvfe4y",
+   "类型": "audio",
+   "aria": "音频 node: 音频 64",
+   "selected": false,
+   "文字": "音频 64 No resources: 0 re"
+  },
+  {
+   "id": "node_n0x3zqajjy",
+   "类型": "audio",
+   "aria": "音频 node: 音频 65",
+   "selected": false,
+   "文字": "音频 65 No resources: 0 re"
+  },
+  {
+   "id": "node_3cc0k9cfgb",
+   "类型": "audio",
+   "aria": "音频 node: 音频 66",
+   "selected": false,
+   "文字": "音频 66 No resources: 0 re"
+  },
+  {
+   "id": "node_ae08gp8ke3",
+   "类型": "audio",
+   "aria": "音频 node: 音频 67",
+   "selected": false,
+   "文字": "音频 67 No resources: 0 re"
+  },
+  {
+   "id": "node_tadm1nyykc",
+   "类型": "audio",
+   "aria": "音频 node: 音频 68",
+   "selected": false,
+   "文字": "音频 68 No resources: 0 re"
+  },
+  {
+   "id": "node_4erz156z9n",
+   "类型": "subject",
+   "aria": "主体 node: 主体 1",
+   "selected": false,
+   "文字": "主体 1 主体 1 添加描述... Empty "
+  },
+  {
+   "id": "node_5w5462j2vz",
+   "类型": "timeline",
+   "aria": "时间线 node: 时间线 3",
+   "selected": false,
+   "文字": "时间线 3 00:00 / 00:00 全屏编辑"
+  },
+  {
+   "id": "node_21nf5zy2wk",
+   "类型": "external",
+   "aria": "外部 node: 导演台",
+   "selected": true,
+   "文字": "导演台 在 3D 空间中设计角色、机位与镜头 进"
+  }
+ ],
+ "基线": {
+  "文件": "/tmp/b120-baseline-ids.txt",
+  "基线数": 76
+ },
+ "多出来的": [
+  {
+   "id": "node_4erz156z9n",
+   "类型": "subject",
+   "aria": "主体 node: 主体 1",
+   "selected": false,
+   "文字": "主体 1 主体 1 添加描述... Empty "
+  },
+  {
+   "id": "node_5w5462j2vz",
+   "类型": "timeline",
+   "aria": "时间线 node: 时间线 3",
+   "selected": false,
+   "文字": "时间线 3 00:00 / 00:00 全屏编辑"
+  },
+  {
+   "id": "node_21nf5zy2wk",
+   "类型": "external",
+   "aria": "外部 node: 导演台",
+   "selected": true,
+   "文字": "导演台 在 3D 空间中设计角色、机位与镜头 进"
+  }
+ ],
+ "少掉的": [],
+ "本任务遗留": [],
+ "收尾": {
+  "浮层": 0,
+  "夹具残留": 0,
+  "选中": 1,
+  "zoom1": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员",
+  "status": "79 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+  "zoom2": "Zoom options, 60%"
+ }
+}

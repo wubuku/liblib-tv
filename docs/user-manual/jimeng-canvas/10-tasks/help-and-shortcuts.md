@@ -21,6 +21,25 @@
 **快捷键** 会在右侧滑出一个抽屉面板，标题「快捷键」，右上角 ✕ 关闭。实测 **240×604**，
 内容需**向下滚动**（可滚动高度 1300 > 可见 548）才能看完四组。
 
+### 🔑 抽屉的 DOM 契约（2026-10-03 批次 128 补全，此前只记了滚动区）
+
+批次 82 记下了滚动区 `[data-testid="shortcut-help-scroll-region"]`（可滚动 **1300**、
+可见 **548**）和抽屉本体 **240×604@1028,56**；本批把**其余四层**也读全了：
+
+| 层 | testid / 角色 | 矩形 | 说明 |
+|---|---|---|---|
+| 抽屉本体 | **`shortcut-panel`**，`<ASIDE role="dialog">` | **`240×604@1028,56`** | `overflow-y: hidden`；**它自己不滚** |
+| 滚动区 | `shortcut-help-scroll-region`，`role="region"` | `240×548@1028,112` | **`overflow-y: auto`、`scrollHeight 1300` vs `clientHeight 548` ⇒ 这一层才滚** |
+| 内容 | **`shortcut-help-scroll-content`** | **`232×1292@1032,116`** | `overflow-y: visible`、`scrollHeight === clientHeight` ⇒ **也不滚**（内容比面板高 572px） |
+| 每个条目 | **`shortcut-help-item`**（`<LI>`） | `232×36`，个别 `232×40` | 逐字如 `打开/关闭 Agent ⌘ /`、`还原 ⌘ ⇧ Z ⌘ Y` |
+| 双键位分隔符 | **`shortcut-help-key-separator`**（`<SPAN>`） | `8×12` | 出现在 `⌘ ⇧ Z ⌘ Y` 这类一行两个键位的地方 |
+| 组标题 | `<H3>`（**无 testid**） | `232×32` | 逐字 `通用操作` / `视图` / `时间线` / `文本编辑` |
+
+📌 **别被 `…scroll-content` 这个名字骗了**：**它不滚**（`overflow-y: visible`、
+`scrollHeight === clientHeight`），滚的是它的**父** `…scroll-region`。
+⇒ 与搜索面板那次是**同一个坑的第二次现身**（见
+[概念与判据](../30-concepts.md) 与 [排障](../90-troubleshooting.md)）。
+
 ## 快捷键全表（面板逐字，2026-10-01 复核 / 2026-10-02 重抓）
 
 面板把快捷键分成四组：通用操作 / 视图 / 时间线 / 文本编辑。
