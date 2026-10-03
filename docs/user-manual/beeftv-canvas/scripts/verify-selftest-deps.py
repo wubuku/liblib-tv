@@ -50,69 +50,16 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCRIPTS = os.path.join(ROOT, "scripts")
 
-# 标准库与第三方：出现在这些名单里的 import 不需要被搬进临时仓
-STDLIB = set("""abc argparse ast base64 collections contextlib copy csv dataclasses datetime
-difflib enum errno filecmp fnmatch functools glob hashlib io itertools json logging math mimetypes
-os pathlib platform random re shlex shutil subprocess sys tempfile textwrap time typing unittest
-urllib uuid warnings""".split())
-
-
-def local_imports(path):
-    """返回该脚本 import 的**本地模块名**（即 scripts/ 下真实存在的 .py）。"""
-    try:
-        with open(path, encoding="utf-8") as fh:
-            tree = ast.parse(fh.read())
-    except (OSError, SyntaxError):
-        return None
-    names = set()
-    for node in ast.walk(tree):
-        if isinstance(node, ast.Import):
-            for a in node.names:
-                names.add(a.name.split(".")[0])
-        elif isinstance(node, ast.ImportFrom):
-            if node.level:          # 相对 import
-                continue
-            if node.module:
-                names.add(node.module.split(".")[0])
-    out = set()
-    for n in names:
-        if n in STDLIB:
-            continue
-        if os.path.isfile(os.path.join(SCRIPTS, n + ".py")):
-            out.add(n)
-    return out
-
-
-def local_closure(gate_name, _seen=None):
-    """**递归**求出被测闸门及其（本地）依赖的**闭包**。
-
-    **Batch 205 实测出来的洞（第一版只看一层）**：
-    `verify-line-counts.py` 直接 import 的是 `baseline`，
-    而 `baseline.py` 自己 `import beefsrc`——**第二层没人看**。
-    于是 4 份反验的临时仓里只有 `baseline.py` 与被测闸，
-    `baseline.py` 一 import 就 `ModuleNotFoundError: No module named 'beefsrc'`，
-    **这 4 份反验 0/5、0/6、0/5、0/4 全红，而构建全绿**。
-    自 Batch 197 把 `beefsrc` 收成单一来源起就一直是红的，**没人跑它们所以没人知道**。
-
-    **为什么当时那道判据报绿**：它问的是「被测闸 import 了什么」，
-    答案是 `baseline`；反验**确实**搬了 `baseline.py`；于是判据说「齐了」。
-    **它问的层级比它需要回答的浅一层**——**而这正是「判据本身没错」的那类缺陷**（纪律 176）。
-
-    用**递归 + 访问集合**，不递归会死循环（`baseline` ↔ `beefsrc` 之类互相引用）。
-    """
-    seen = set() if _seen is None else _seen
-    if gate_name in seen:
-        return seen
-    seen.add(gate_name)
-    # **入参是不带 `.py` 的模块名**——第一版直接拿它拼路径，
-    # 于是 `os.path.isfile("scripts/verify-line-counts")` 恒假、闭包恒为空集，
-    # **判据升级了却什么都没多查**（第一版注入验证当场抓住，没能蒙混到提交）。
-    path = os.path.join(SCRIPTS, gate_name + ".py")
-    if not os.path.isfile(path):
-        return seen
-    for dep in (local_imports(path) or ()):
-        local_closure(dep, seen)
-    return seen
+# **Batch 253：`local_imports` / `local_closure` 已搬走，这里改成 import。**
+# 「一个闸门的本地依赖闭包是什么」**是同一个概念在两侧各有一份实现**：
+# 搬运侧是 `stagedeps.stage_gate()`，判据侧是本模块。
+# **纪律 274 推论一：判据之间有共享概念时，那个概念只能有一份实现。**
+# 合成一份的理由不是洁癖：**两边对某一种 import 形态的理解一旦不同，
+# 判据就会判「齐了」而闸在临时目录里起不来**——
+# 而那正是「反验每一例都失败、构建全绿」那条老路（Batch 178）。
+# 合并前实测两份实现对 4 个闸门的闭包**逐条相同**（verify-meta / verify-exclusions /
+# verify-version-coverage / verify-line-counts），**行为一字未变**。
+from stagedeps import local_closure, local_imports
 
 
 def copies_gate_into_tmp(text):
@@ -129,8 +76,17 @@ def copies_gate_into_tmp(text):
     才是它想问的那件事，**参数写成单个变量还是表达式，与它无关**。
     这与本闸方向一里那句老话同源——**判据要认事实，不要认写法**。
     """
-    return bool(re.search(r"shutil\.copy\w*\(", text)) and \
-        bool(re.search(r"tempfile\.mkdtemp", text))
+    # **Batch 253 补第三种搬运方式**：`stagedeps.stage_all()` / `stage_gate()`
+    # **一个 `shutil.copy` 都不写**（搬运藏在被调用的函数里），
+    # 于是只认 `shutil.copy` 的判据会**把这份反验整份跳过**——
+    # 而本闸报出的「N 份反验」会跟着变小、**rc 仍然是 0**。
+    # **实测就发生在本批**：`selftest-zero-input.py` 改用 `stage_all()` 之后，
+    # 本闸的份数从 24 掉到 23，**没有任何一行报错**。
+    # **这正是纪律 156 说的那种失效**：「一个都没检查」与「全部都检查了」长得一样。
+    # **所以判据里凡是「这份反验做了 X」的前提条件，都必须跟着搬运手段一起更新。**
+    has_copy = bool(re.search(r"shutil\.copy\w*\(", text))
+    has_staged = bool(re.search(r"\bstage_(?:all|gate)\s*\(", text))
+    return (has_copy or has_staged) and bool(re.search(r"tempfile\.mkdtemp", text))
 
 
 def independent_gate_names(text, scripts_dir):
@@ -292,6 +248,64 @@ def copies_module_into_scripts(text, module):
     return False
 
 
+def staged_gates(text):
+    """这份反验用 `stage_gate(...)` 搬了**哪些闸**。
+
+    **Batch 253 新增。** `stagedeps.stage_gate(tmp, "verify-foo")` 会解析
+    `verify-foo` 的本地依赖闭包并全搬走——
+    **所以「它搬了那个闸的依赖」这件事，只需要认出实参里写着那个闸名。**
+    **为什么这一条是必需的而不是锦上添花**：
+    `stage_gate()` 本身一个 `shutil.copy` 都不写（它把搬运藏进被调用的函数里），
+    **于是本模块上面那套「解析 copy 调用」的判据会判它「什么都没搬」**——
+    **而它搬得比任何显式写法都全**。**判据比搬运手段窄，闸就误报。**
+
+    **只认实参里的字符串字面量**：变量、拼接、推导出来的闸名一律不认——
+    **判不出来的事不许当通过**（与下面循环搬运那条同一条规矩）。
+    """
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return set()
+    out = set()
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        f = node.func
+        name = f.id if isinstance(f, ast.Name) else (f.attr if isinstance(f, ast.Attribute) else None)
+        if name != "stage_gate":
+            continue
+        for a in node.args:
+            if isinstance(a, ast.Constant) and isinstance(a.value, str) \
+                    and a.value.startswith("verify-"):
+                out.add(a.value)
+    return out
+
+
+def stages_whole_scripts(text):
+    """这份反验有没有用 `stagedeps.stage_all()` 搬**整个** `scripts/`。
+
+    **Batch 253 新增**，与 `staged_gates()` 成对：
+    `stage_all()` 搬的是全部非反验的 `.py`，**依赖必然齐备**，
+    所以对用它的那份反验**不逐个核依赖**——**与 `copies_whole_scripts()` 同等待遇**。
+    **为什么要单独写一个而不是复用 `copies_whole_scripts()`**：
+    后者认的是 `copytree` 实参里有没有 `scripts` 字样（**写法**），
+    前者认的是**一次语义明确的调用**（**事实**）——
+    **Batch 190 在这一处修过三次同源的错，本批不引入第四个写法依赖。**
+    """
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return False
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        f = node.func
+        name = f.id if isinstance(f, ast.Name) else (f.attr if isinstance(f, ast.Attribute) else None)
+        if name == "stage_all":
+            return True
+    return False
+
+
 def main():
     if not os.path.isdir(SCRIPTS):
         print(f"[skip] 找不到 {SCRIPTS}，跳过反验依赖核对")
@@ -332,13 +346,29 @@ def main():
                     "语法本身由闸 18 负责，但**少算的份数只有本闸自己能看见**")
             continue
         # 整目录搬运：依赖必然齐备，不逐个核（否则会误报）
-        if copies_whole_scripts(text):
+        if copies_whole_scripts(text) or stages_whole_scripts(text):
             checked += 1
             continue
         checked += 1
+        # **Batch 253**：`stage_gate()` 搬的是**闭包**，所以对**用 stage_gate 搬过的闸**
+        # 不再逐个核依赖——**它搬得比任何显式写法都全，而逐个核只会误报**。
+        # **但闸名必须对得上**：给 `stage_gate` 写的是 `verify-别的闸` 而被测闸是本闸，
+        # **那它什么都没搬**——**所以判据认的是「实参里写着哪个闸名」，
+        # 不是「文件里出现过 stage_gate 这几个字」**。
+        staged = staged_gates(text)
         for gname in gate_names:
             if local_imports(os.path.join(SCRIPTS, gname)) is None:
                 problems.append(f"方向一：读不了 scripts/{gname}")
+                continue
+            # **两侧必须同一个形式**：`gate_names` 里的名字**带 `.py`**
+            # （它来自 `independent_gate_names`，那边找的是 `"verify-xxx.py"`），
+            # 而 `stage_gate(tmp, "verify-xxx")` 的实参**不带后缀**。
+            # **本条判据第一版直接拿 `gname in staged` 比，于是恒假**——
+            # **反验用例 11 上线首跑就抓到它**（期望放行却报 rc=1）。
+            # **这类「两侧形式不一致」的错误一次都不会自己显形**：
+            # 判据的默认行为是「没认出来 → 继续按老路逐个核 → 报」，
+            # **而那条老路恰好是对的**，所以只有「本该放行」的那一侧才看得出错。
+            if gname[:-3] in staged:
                 continue
             # **闭包，不是第一层**（Batch 205）：被测闸的直接依赖 + 那些依赖自己的依赖
             deps = local_closure(gname[:-3]) - {gname[:-3]}

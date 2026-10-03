@@ -302,11 +302,70 @@ def m_copytree_scripts_dir_passes():
         0, "反验依赖核对通过")
 
 
+def _stage_gate_case(name, stage_line, want_rc, want_in):
+    """Batch 253 新增的一对：`stage_gate(...)` 到底搬的是不是那个闸。
+
+    **为什么必须成对**：`stage_gate()` 把整个闭包都搬走，
+    **所以「实参里写的那个闸名对不对」是它唯一的失手方式**——
+    写 `stage_gate(tmp, "verify-别的闸")` 而被测闸是 `verify-feature-flags`，
+    **它就把另一个闸的依赖搬了，而被测闸自己的依赖一个没搬**。
+    **只测「闸名对得上 → 不报」的话，那条判据写成「凡有 stage_gate 就算」也能全过**，
+    **而那正是本批要消灭的那类假绿**（Batch 190 修过三次同源的错）。
+    **实测的鉴别力在右边那一条，不在左边**——而这与本函数注释第一版写的相反，
+    **第一版把「改前实测 rc=0」当成事实写下来了，实测是 rc=1**：
+    改前的判据**不认识 `stage_gate`**，于是走「没认出来 → 按老路逐个核 `baseline` → 报」，
+    **而那条老路恰好是对的**。**换句话说左边那条在改前是「碰巧报对」的假通过。**
+    **这一条是鉴别力用例设计里最容易搞反的地方**：
+    「能抓」方向看着该有鉴别力，**其实鉴别力在「不误伤」那侧**——
+    因为「漏报」只有在判据**多做**了什么的时候才看得见，
+    而「多认了一种搬运方式」这件事在改前**表现为误报，不表现为漏报**。
+    **注释里写「改前实测 rc=0」而实际是 rc=1，等于给下一个人一条假事实**
+    （Batch 248 的教训：会让人去改不存在的东西，比漏报更贵）。
+    """
+    check_anchor()
+    tmp = tempfile.mkdtemp(prefix="beef-deps-selftest-stage.")
+    try:
+        shutil.copytree(os.path.join(ROOT, "scripts"), os.path.join(tmp, "scripts"))
+        shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-selftest-deps.py"))
+        target = os.path.join(tmp, "scripts", "selftest-feature-flags.py")
+        t = read(target)
+        # 删掉显式的 baseline 搬运（换成 stage_gate 的前提）
+        new = re.sub(r'^\s*shutil\.copy\(BASELINE,[^\n]*\n', "", t, count=1, flags=re.M)
+        assert new != t, "注入未生效：baseline 搬运那行没找到"
+        new = new.replace("def main(", stage_line + "\ndef main(", 1)
+        write(target, new)
+        r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
+                           cwd=tmp, capture_output=True, text=True)
+        out = (r.stdout or "") + (r.stderr or "")
+        record(name, r.returncode == want_rc and want_in in out, f"rc={r.returncode}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_stage_gate_wrong_gate_still_reports():
+    """能抓：`stage_gate` 搬的是**别的闸** → 那个闸的依赖不在 → 必须报。"""
+    _stage_gate_case(
+        "10 stage_gate 搬的是另一个闸→必报（不是「凡有 stage_gate 就算」）",
+        'def _stage():\n    from stagedeps import stage_gate\n'
+        '    stage_gate(tmp, "verify-quota-tables")',
+        1, "baseline")
+
+
+def m_stage_gate_right_gate_passes():
+    """不误伤：`stage_gate` 搬的**就是被测闸** → 闭包全齐 → 不得报。"""
+    _stage_gate_case(
+        "11 stage_gate 搬的就是被测闸→不得报（闭包自动齐备）",
+        'def _stage():\n    from stagedeps import stage_gate\n'
+        '    stage_gate(tmp, "verify-feature-flags")',
+        0, "反验依赖核对通过")
+
+
 def main():
     tests = [m_clean, m_missing_baseline_copy, m_gate_imports_missing_module,
              m_no_false_positive, m_rename_pattern_breaks,
              m_loop_copy_without_the_module, m_loop_copy_with_the_module,
-             m_copytree_other_dir_still_reports, m_copytree_scripts_dir_passes]
+             m_copytree_other_dir_still_reports, m_copytree_scripts_dir_passes,
+             m_stage_gate_wrong_gate_still_reports, m_stage_gate_right_gate_passes]
     for t in tests:
         try:
             t()

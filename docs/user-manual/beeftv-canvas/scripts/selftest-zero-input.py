@@ -53,6 +53,8 @@ import sys
 import tempfile
 import time
 
+from stagedeps import stage_all
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 REAL_ROOT = os.path.dirname(HERE)
 
@@ -221,22 +223,19 @@ def empty_tree(tmp):
     """一棵空手册树：只有闸脚本与共用模块，**没有任何 .md / 截图 / 清单**。"""
     os.makedirs(os.path.join(tmp, "scripts"), exist_ok=True)
     os.makedirs(os.path.join(tmp, ".vitepress"), exist_ok=True)
-    for name in sorted(os.listdir(HERE)):
-        if name.endswith(".py") and not name.startswith("selftest-"):
-            shutil.copy(os.path.join(HERE, name), os.path.join(tmp, "scripts", name))
-    # **显式再搬一次这两个共用模块**（闸 17 方向一两次各抓一次，Batch 201/202）：
-    # 上面那个循环其实已经把所有非反验的 `.py` 都搬了，**但闸 17 判的是
-    # 「有没有一条看得见的搬运动作」**——循环写法静态不可判定，
-    # 它会把「搬过了」报成「没搬」（Batch 190/194 同款：判据认写法不认事实）。
-    # **这里不新造契约机制**（那本身是腐烂点），而是照 Batch 197 的规矩
-    # **把写法改成可判定的**：显式一条、目标路径写死文件名。
-    # **刻意不在注释里点名任何一道闸**：注释会被人 grep 到，
-    # 而闸 17 的方向一要认的是「这份反验搬了哪些闸」——
-    # **一句解释性的话不该凭空造出一条搬运关系来。**
-    shutil.copy(os.path.join(HERE, "beefsrc.py"),
-                os.path.join(tmp, "scripts", "beefsrc.py"))
-    shutil.copy(os.path.join(HERE, "baseline.py"),
-                os.path.join(tmp, "scripts", "baseline.py"))
+    # **Batch 253：这一段搬运用 `stagedeps.stage_all()` 取代。**
+    # 原来是一个 `for name in sorted(os.listdir(HERE))` 的循环搬运，
+    # **而闸 17 判不出循环搬了些什么**（Batch 190 在同一处修过三次
+    # 「判据认写法不认事实」），所以那下面还压着两条**显式**搬运当证据——
+    # **`stage_all()` 把「搬整目录」这件事变成一次可判定的调用，
+    # 那两条证据就自然不需要了，而搬运范围也从「三个写死的模块」变成「全部」。**
+    #
+    # `verify=False` 的理由写在这里而不是留在代码里：
+    # **本反验的常规操作就是故意把闸改坏**（塞 SyntaxError、改坏正则），
+    # **而那不是搬运失败**——真 import 一次会当场抛错，
+    # **于是「用例 3 注入语法错误」会在搬运阶段就崩，用例根本跑不到自己要验的那一步**
+    # （本模块第一版就踩了这一个：它把被测闸也放进 import 列表）。
+    stage_all(tmp, verify=False)
     return tmp
 
 
