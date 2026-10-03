@@ -3989,6 +3989,66 @@ def main() -> int:
           and "zero_idx: zeroIdx.slice(" not in _p921
           and "idl_idx: idlIdx.slice(" not in _p921
           and "any_ti_idx: anyTiIdx.slice(" not in _p921)
+    p922 = ROOT / "scripts/jimeng_probe922_reverse_arm_window_src.py"
+    _p922 = p922.read_text(encoding="utf-8") if p922.exists() else ""
+    check("III.1 ✅⭐ **922 反向臂被自己的设计门挡住**"
+          "（`design_ok = False`、`n_armed = 0`）⇒ **rev 臂读数作废**"
+          "（**不是**「反向不布」！），**但顺手查清一条真事实："
+          "反向从画布根出发、永远进不了画布。**"
+          "**60 次 `Shift+Tab` 构成一个周期恰为 27 的「闭环」**"
+          "（`Canvas` 出现在第 27 次和第 54 次）；"
+          "**`moved` 60/60 全 False**（应用一次都没布）、"
+          "**`is_wrapper` 60/60 全 False**（焦点**从未**落在本体上）",
+          "922 反向臂被自己的设计门挡住" in _ausrc
+          and "**反向从画布根出发、永远进不了画布。**" in _ausrc
+          and "**60 次 `Shift+Tab` 构成一个周期恰为 27 的「闭环」**" in _ausrc
+          and "**`moved` 60/60 全 False**" in _ausrc
+          and "**`is_wrapper` 60/60 全 False**" in _ausrc
+          and "TRIAL_KEYS = ((\"rev\", KEY_REV), (\"fwd\", KEY_FWD))" in _p922
+          # ⚠️ 判据要钉**代码**（不许拿「全文没有某词」当证据）
+          and "if post_l[\"is_wrapper\"]:" in _p922
+          and "entered_ok = (rec[\"n_entry_used\"] < ENTRY_CAP" in _p922
+          and "rec[\"focus_on_body_at_entry\"] = bool(" in _p922)
+    check("III.2 ✅ **顺带钉死两条**：① 闭环里唯一与节点有关的元素是 "
+          "`Canvas node summary: 节`，但它 `is_wrapper = False` ⇒ "
+          "是**汇总元素、不是 `.react-flow__node` 本体**；"
+          "② 闭环里有节点的**内层控件** ⇒ ✅ **内层控件在中性态就已经在 tab 序里**"
+          "（919 已查清是原生 `<BUTTON>`），**而本体不在**",
+          "它是**汇总元素、不是 `.react-flow__node` " in _ausrc
+          and "**内层控件在中性态就已经在 tab 序里**" in _ausrc
+          and "**而本体不在**" in _ausrc
+          and "if (nodes[i].getAttribute('tabindex') === '0') zeroIdx.push(i);"
+          in _p922
+          and "const isW = !!(a && a.classList && "
+              "a.classList.contains('react-flow__node'));" in _p922)
+    check("III.3 ✅ **同 run 的正向对照臂（`fwd`）2/2 逐条复现了 921 的规则**："
+          "初始化 1 次；普通臂事件 9 次 —— `removed` = 上一个 **9/9**、"
+          "`added` = 上上个 **9/9**、`changed` = 本次 **9/9**；"
+          "死按压 4 次且 delta **全空 4/4**；"
+          "不变式「`n_wrapper_any_ti` 第 2 次起恒 75」**全程成立** "
+          "⇒ **921 的结论在全新运行里站住了**",
+          "**同 run 的正向对照臂（`fwd`）2/2 逐条复现了 921 的规则**" in _ausrc
+          and "`removed` = 上一个 **9/9**、`added` = 上上个 **9/9**、" in _ausrc
+          and "**全空 4/4**" in _ausrc
+          and "**921 的结论在全新运行里站住了**" in _ausrc
+          # ⭐ 对照臂必须**同 run 跑**（跨 run 比会混进「机制变没变」）
+          and 'TRIALS = ("rev", "fwd")' in _p922
+          and "for trial, key in TRIAL_KEYS:" in _p922
+          and "KEY_FWD = \"Tab\"" in _p922
+          and "KEY_REV = \"Shift+Tab\"" in _p922)
+    check("III.4 ⚠️❌ **rev 臂作废**（`design_ok = False`、`n_armed = 0`）："
+          "**我的 A 段设计就错了** —— 我以为反向能从画布根走进画布。"
+          "⚠️ **这一批最值钱的是设计门又救了一次场**："
+          "若没有「A 段必须真的落在本体上」这道门，"
+          "这份读数会被当成「**反向不布**」的证据写进基线 ⇒ "
+          "**一个看起来很正常、实际上什么都没测到的结论。**",
+          "**rev 臂作废**" in _ausrc
+          and "**我的 A 段设计就错了**" in _ausrc
+          and "**这一批最值钱的是设计门又救了一次场**" in _ausrc
+          and "**一个看起来很正常、实际上什么都没测到的结论。**" in _ausrc
+          # ⭐ 设计门必须是**会 FAIL 的真门**（不能是恒真的摆设）
+          and "n_armed_ok = rec[\"n_armed\"] >= 3" in _p922
+          and "\"all_ok\": bool(entered_ok and n_armed_ok)," in _p922)
 
 
 
