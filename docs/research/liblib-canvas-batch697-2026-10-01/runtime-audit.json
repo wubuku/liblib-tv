@@ -1,0 +1,255 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 1150,
+  "cases": [
+   {
+    "mode": "click",
+    "pressKey": false,
+    "before": {
+     "selected": "director-character-lead",
+     "sceneRanges": 0
+    },
+    "after": {
+     "selected": null,
+     "sceneRanges": 1
+    },
+    "scene": {
+     "missing": false,
+     "distinct": 11
+    }
+   },
+   {
+    "mode": "click",
+    "pressKey": true,
+    "before": {
+     "selected": "director-character-lead",
+     "sceneRanges": 0
+    },
+    "after": {
+     "selected": null,
+     "sceneRanges": 1
+    },
+    "scene": {
+     "missing": false,
+     "distinct": 11
+    }
+   },
+   {
+    "mode": "click",
+    "pressKey": true,
+    "before": {
+     "selected": "director-character-lead",
+     "sceneRanges": 0
+    },
+    "after": {
+     "selected": null,
+     "sceneRanges": 1
+    },
+    "scene": {
+     "missing": false,
+     "distinct": 11
+    }
+   },
+   {
+    "mode": "store",
+    "pressKey": true,
+    "before": {
+     "selected": "director-character-lead",
+     "sceneRanges": 0
+    },
+    "after": {
+     "selected": null,
+     "sceneRanges": 1
+    },
+    "scene": {
+     "missing": false,
+     "distinct": 1
+    }
+   }
+  ],
+  "blanks": {
+   "probed": 20,
+   "trulyBlank": [
+    [
+     400,
+     300
+    ],
+    [
+     950,
+     300
+    ],
+    [
+     200,
+     500
+    ],
+    [
+     400,
+     500
+    ],
+    [
+     400,
+     700
+    ],
+    [
+     640,
+     700
+    ],
+    [
+     800,
+     700
+    ],
+    [
+     950,
+     700
+    ],
+    [
+     200,
+     900
+    ],
+    [
+     400,
+     900
+    ],
+    [
+     640,
+     900
+    ],
+    [
+     800,
+     900
+    ],
+    [
+     950,
+     900
+    ]
+   ],
+   "pickedUpANode": [],
+   "blankXY": [
+    400,
+    500
+   ],
+   "blankIsTrulyBlank": true,
+   "happyBlankXY": [
+    640,
+    560
+   ],
+   "happyOnNode": false,
+   "happyActuallySelected": "director-prop-table",
+   "happySceneRanges": 0
+  },
+  "theFinding": "Batch 696's dead-input condition reproduces through selectObject(null) and does NOT reproduce when a user clicks empty space. The two deselect paths are not equivalent, so 696's sequence is a property of the test harness rather than something a user can walk into.",
+  "whatIsNotClaimed": "This falsifies reachability, not a mechanism. It also does not claim the user path is safe in every sequence -- only that this one sequence is clean.",
+  "relationTo696": "696 already wrote 'not claimed to be a defect a user can hit'. This batch turns that sentence from a caveat into a measurement. 696 is not rewritten.",
+  "storeWritesInThisRun": [
+   "selectObject(null)  [in the programmatik case only]"
+  ]
+ },
+ "checks": {
+  "blank-space-is-measured-not-assumed": {
+   "ok": true,
+   "detail": {
+    "trulyBlankCount": 13,
+    "trulyBlank": [
+     [
+      400,
+      300
+     ],
+     [
+      950,
+      300
+     ],
+     [
+      200,
+      500
+     ],
+     [
+      400,
+      500
+     ],
+     [
+      400,
+      700
+     ],
+     [
+      640,
+      700
+     ],
+     [
+      800,
+      700
+     ],
+     [
+      950,
+      700
+     ],
+     [
+      200,
+      900
+     ],
+     [
+      400,
+      900
+     ],
+     [
+      640,
+      900
+     ],
+     [
+      800,
+      900
+     ],
+     [
+      950,
+      900
+     ]
+    ],
+    "theCoordinateIAssumedWasBlank": {
+     "xy": [
+      640,
+      560
+     ],
+     "actuallySelected": "director-prop-table",
+     "sceneRangesRendered": 0
+    },
+    "whyThisIsNotATrivialCheck": "My first attempt clicked (640, 560) believing it was empty space. It selected a prop table, so the right panel rendered the prop's properties and the scene sliders were not in the DOM at all. The reading was None -- neither 11 nor 1 -- and a None would have been read as 'not reproduced', which is the wrong conclusion.",
+    "lesson": "The same mistake as batch 695's wrong tab attribute: the path I believed I was taking is not the path I was taking. Both times a silent no-op masqueraded as a negative result."
+   },
+   "note": "assume nothing about where you are standing"
+  },
+  "a-user-clicking-empty-space-does-not-hit-it": {
+   "ok": true,
+   "detail": {
+    "control_noKey": 11,
+    "afterEndKey_repeats": [
+     11,
+     11
+    ],
+    "afterDeselectState": {
+     "selected": null,
+     "sceneRanges": 1
+    }
+   },
+   "note": "the user path is clean"
+  },
+  "the-store-api-path-still-does": {
+   "ok": true,
+   "detail": {
+    "selectObject_null": 1,
+    "batch696SaidThis": "696 measured exactly this and called the cause 'unlocated'. 697 does not locate it either; it removes the possibility that anyone can reach it."
+   },
+   "note": "the two paths are not interchangeable"
+  },
+  "the-programmatic-path-and-the-user-path-are-not-the-same-thing": {
+   "ok": true,
+   "detail": {
+    "storeApi": 1,
+    "userClick": 11,
+    "whatThisMeans": "Calling selectObject(null) through the store bypasses whatever the real interaction path does to reset the panel. Whatever 696 measured is a property of HOW THE TEST DRIVES THE APP, not a property of the app.",
+    "whatItDoesNotMean": "It does not prove the app is correct. A user could still reach a similar state by some other sequence that this batch did not try. What it does mean is that the specific sequence 696 pinned is NOT evidence of a user-visible defect, and batch 696's wording is corrected here to say so without rewriting 696.",
+    "howToAvoidIt": "Prefer driving the real control over the store whenever a store call is standing in for something a user would click. When the store is unavoidable, say so in the check's detail."
+   },
+   "note": "a store call standing in for a click is a claim, not a shortcut"
+  }
+ }
+}
