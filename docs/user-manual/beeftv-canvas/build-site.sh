@@ -15,10 +15,44 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 TS="$(date +%H:%M:%S)"
+# ── Batch 255：三个计数器 ──────────────────────────────────────────────
+# **为什么在这里加**（纪律 280）：Batch 252/253 的构建实测各有一个 `[ FAIL ]`、
+# **都停在闸 18**（闸 19 到 36 与全部文档闸一次都没运行），
+# **而我照常提交并推送了**，批次行里写的验收结论是「构建仍全绿」。
+# `fail()` 是 `exit 1`，**脚本是对的——是我没有把退出码当回事。**
+# **而「有人看了构建的退出码」是整套体系里唯一没有被机械化的一环。**
+#
+# **这三个数由函数自己数自己，而不是事后从日志里正则解析**——
+# 第一版试过解析日志，`^\[\s*ok\s*\]` 与真格式 `[  ok  HH:MM:SS]` 失配，
+# **三段全数成 0 而 rc=0 照常写下了记录**（一个自洽的假数比没有数更坏）。
+# **下面这段话曾经写过「函数里加一行 `((…))` 不可能与真格式失配」——
+# 而那个方案同样错了两次（子 shell 吞自增），所以最终落到文件上。**
+# **教训是「一个方案对了一次，不等于它对」——它先过了 0→45 那一关，
+# **然后在 45→79 那一关又错了。**
+#: **计数器落在文件里而不是 shell 变量**（Batch 255 第三次修同一个数）：
+#: **第一次**用日志正则数 → 与真格式失配，数成 0；
+#: **第二次**改成函数自己加变量 → 5 处 `printf … | while` 的**循环体跑在子 shell**，
+#: 自增消失，**82 行记成 45**；
+#: **第三次**把 5 处改成 herestring → 记成 79，**仍然差 3，而我没能定位到那 3 行的出处**
+#: （查过：命令替换里没有 `ok`、5 处 `while` 全是 herestring、`|| fail` 那一类未触发）。
+#: **所以这次不再逐个追，改成从构造上免疫**：
+#: **子 shell 改得动一个普通变量，改不动一个文件。**
+#: **代价**是每次 `ok` 多一次 append——**实测整轮构建不到 0.1 秒**。
+#: **不写在手册树里**（`mktemp` 在系统临时目录，`trap` 退出时删掉），
+#: **否则每次构建都会弄脏工作区，而闸 18 方向三与 `git status` 都会有话说**。
+BEEF_CNT="$(mktemp -t beef-build-cnt)"
+trap 'rm -f "$BEEF_CNT"' EXIT
+# **三个函数必须自包含**（`${VAR:-0}` 而不是 `$VAR`）——
+# **闸 18 方向十三把 `ok`/`warn`/`fail` 原样抠出来单独跑**，
+# **而抠出来的片段里没有上面那行初始化**：
+# **第一版直接写 `$BEEF_OK` 时，构建实测报出方向十三三条全红**。
+# **修法是让函数自己兜住，而不是让判据多抠一行**——
+# **判据要认的是「闸失败时构建说不说话」，不是我的计数器怎么初始化**
+# （纪律 171：行为可判、写法不可判）。
 log()  { printf '\033[1;34m[build %s]\033[0m %s\n' "$TS" "$*"; }
-ok()   { printf '\033[1;32m[  ok  %s]\033[0m %s\n' "$TS" "$*"; }
-warn() { printf '\033[1;33m[ warn %s]\033[0m %s\n' "$TS" "$*"; }
-fail() { printf '\033[1;31m[ FAIL %s]\033[0m %s\n' "$TS" "$*" >&2; exit 1; }
+ok()   { printf 'ok\n'   >>"${BEEF_CNT:-/dev/null}"; printf '\033[1;32m[  ok  %s]\033[0m %s\n' "$TS" "$*"; }
+warn() { printf 'warn\n' >>"${BEEF_CNT:-/dev/null}"; printf '\033[1;33m[ warn %s]\033[0m %s\n' "$TS" "$*"; }
+fail() { printf 'fail\n' >>"${BEEF_CNT:-/dev/null}"; printf '\033[1;31m[ FAIL %s]\033[0m %s\n' "$TS" "$*" >&2; exit 1; }
 
 
 # ── 「无法核对」专用分支（Batch 160） ─────────────────────────────────
@@ -53,18 +87,20 @@ run_gate() {  # $1=脚本 $2=名称；成功 0 / 不一致 1 / 无法核对 2
     ok "$out"; return 0
   fi
   if [ "$rc" -eq 2 ]; then
-    printf '%s\n' "$out" | while IFS= read -r line; do
+    while IFS= read -r line; do
       [ -n "$line" ] && warn "$name 无法核对：$line"
-    done
+    done <<< "$out"
+
     if [ "${ALLOW_UNVERIFIED:-0}" = "1" ]; then
       warn "$name **未能核对**（已设 ALLOW_UNVERIFIED=1，本次放行）——手册中与该闸相关的断言本次未经复查"
       return 0
     fi
     fail "$name **未能核对**（不是「核对通过」）——手册里与该闸相关的断言本次未经复查。请修复上方 skip 原因；确需在无上游的环境构建，显式设 ALLOW_UNVERIFIED=1"
   fi
-  printf '%s\n' "$out" | while IFS= read -r line; do
+  while IFS= read -r line; do
     [ -n "$line" ] && warn "$name $line"
-  done
+  done <<< "$out"
+
   fail "$name 核对不一致——详见上方"
 }
 
@@ -434,9 +470,10 @@ run_gate verify-retracted-claims.py 被撤回说法的泄漏
 if TB_OUT="$(python3 scripts/verify-tables.py 2>&1)"; then
   ok "$TB_OUT"
 else
-  printf '%s\n' "$TB_OUT" | while IFS= read -r line; do
+  while IFS= read -r line; do
     [ -n "$line" ] && warn "表格结构 $line"
-  done
+  done <<< "$TB_OUT"
+
   fail "表格被未转义的竖线截断——单元格内的 | 要写成 \| （代码段里的 || 写成 \|\|）"
 fi
 
@@ -453,17 +490,26 @@ fi
 # 与 Batch 143 立的「六道闸全绿不等于发布物正确」同源：
 # **七道闸全绿也不等于账本自洽。**
 if MT_OUT="$(python3 scripts/verify-meta.py 2>&1)"; then
-  printf '%s\n' "$MT_OUT" | while IFS= read -r line; do
+  while IFS= read -r line; do
     [ -n "$line" ] && ok "元数据 $line"
-  done
+  done <<< "$MT_OUT"
+
 else
-  printf '%s\n' "$MT_OUT" | while IFS= read -r line; do
+  while IFS= read -r line; do
     [ -n "$line" ] && warn "元数据 $line"
-  done
+  done <<< "$MT_OUT"
+
   fail "手册自报的计数与现场重数不一致（或有未登记的计数表述）——重数后更新对应页面"
 fi
 
 # ---------- 完成 ----------
+# ── Batch 255：把这次构建的结果记进 `.git/beeftv-build-record` ─────────
+# **能走到这一行本身就是 rc=0 的证明**（`fail()` 会 `exit 1`），
+# **所以这里记下的四个数都不需要任何人转述。**
+# **提交前的钩子据此拒绝「新增了批次行却没有为它跑过一次绿构建」的提交**
+# （`.git/hooks/pre-commit`）——**那是纪律 280 指出的唯一未机械化环节。**
+# **记录落在 `.git/` 里**：手册树必须保持「构建跑完还是干净的」，
+# 否则闸 18 方向三（闸只读手册树）与 `git status` 都会有话说。
 log "════════════════════════════════════════════"
 ok "构建成功！发布产物: $SCRIPT_DIR/.vitepress/dist"
 ok "发布方式: 将上述 dist 目录整体拷贝到任意静态 Web 服务器（详见 PUBLISH.md）"
@@ -472,3 +518,20 @@ if [ "${1:-}" = "--preview" ]; then
   exec npx vitepress preview --port 4173
 fi
 ok "本地预览: ./build-site.sh --preview  或  python3 -m http.server 4173 -d .vitepress/dist"
+
+# ── 写构建记录：**必须是脚本的最后一行** ───────────────────────────────
+# **这个位置挪过一次，代价是又一次「差 3」**：
+# **第一版把它放在这三行 `ok`（构建成功 / 发布方式 / 本地预览）之前**，
+# **于是记下 79 而日志里是 82**——**79 + 3 = 82，一行不差**。
+# **而计数器已经是文件实现、子 shell 也免疫了，所以前两次的修法都对这个问题无效。**
+# **教训**：**同一个症状三次都是「数得少」，而三次的根因各不相同**
+# （正则失配 / 子 shell 吞自增 / 测量点不在末尾）。
+# **一个症状第三次出现时，要怀疑的是「我一直在修的那一层」，
+# 而不是「我还没找全的那几处」**（纪律 281 推论一的第三次应验）。
+# **用 awk 数而不是 `grep -c`**——`set -e` 下 `grep -c` 在零匹配时返回 1，
+# **而「warn 0 条」正是正常情况**，用它会让一次全绿构建在最后一步崩掉。
+_BEEF_N_OK=$(awk '$1=="ok"'   "$BEEF_CNT" | wc -l | tr -d " ")
+_BEEF_N_WARN=$(awk '$1=="warn"' "$BEEF_CNT" | wc -l | tr -d " ")
+_BEEF_N_FAIL=$(awk '$1=="fail"' "$BEEF_CNT" | wc -l | tr -d " ")
+python3 scripts/record-build-result.py --counts "$_BEEF_N_OK,$_BEEF_N_WARN,$_BEEF_N_FAIL" \
+  || printf '\033[1;33m[ warn ]\033[0m 构建记录没写成（退出码 %s）——**提交前钩子会因此拒绝新增批次行的提交**\n' "$?"

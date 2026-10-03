@@ -207,6 +207,10 @@ SLOW = {
 # 把秒数填进来。**故意留空的值会让构建失败**——
 # 因为「空着」和「量过但很快」在账面上长得一模一样，而只有后者是有意义的。
 SELFTEST_COSTS = {
+    #: **Batch 255 新增**。11 例里 7 例是纯字符串/集合运算（毫秒级），
+    #: **但用例 9/11 要起 `bash` 子进程**抠出 `build-site.sh` 的真函数真跑——
+    #: **预算按「有子进程」这一侧取，宁大勿小**（纪律 204）。
+    "selftest-build-record.py": 3.0,
     "selftest-baseline.py": 0.7,
     #: **Batch 243 重测**：三次实测 0.62 / 0.53 / 0.44 秒，**而原登记值是 0.1**——低估了六倍。
     #: **`seconds` 是预算上限而不是实测均值，所以低估是危险方向**（纪律 204/136：漂的时候倒向安全那侧）。
@@ -613,6 +617,84 @@ def _shared_modules():
     return out
 
 
+def _build_invoked():
+    """`scripts/` 下**被 `build-site.sh` 直接调用**的本地 `.py`（Batch 255 新增）。
+
+    **为什么需要第三种形态**：方向三原来只认「闸」与「被闸 import 的共享模块」，
+    **而 `selftest-build-record.py` 测的既不是闸、也不是共享模块**——
+    它测的是**提交前的构建记录机制**，而那个机制的两端是
+    `build-site.sh` 末尾调用的 `record-build-result.py`
+    与 `.git/hooks/pre-commit` 调用的 `--check`。
+    **实测后果**：方向三报「找不到任何 `verify-*.py` 的引用」。
+
+    **按什么标准放行**——**和 `_shared_modules()` 同一个纪律：算出来，不列名单**。
+    事实判据只有一条：**`build-site.sh` 的文本里出现了它的文件名**。
+    **被构建调用的脚本坏掉，那次构建的产物就少了一块**，这个影响面算得出来。
+    **它刻意不接受「我在对应关系表里登记了」**——
+    **那张表是人维护的，拿它当通行证就等于「登记过就算数」**，
+    **而纪律 101 说的正是那种自证。**
+    """
+    out = set()
+    try:
+        with open(os.path.join(ROOT, "build-site.sh"), encoding="utf-8") as fh:
+            build = fh.read()
+    except OSError:
+        return out
+    try:
+        files = os.listdir(SCRIPTS)
+    except OSError:
+        return out
+    #: **只看整行不是注释的行**（`lstrip()` 不以 `#` 开头）。
+    #: **实测为什么必须这样**：`baseline` 与 `pngstat` 在 `build-site.sh` 里
+    #: **只出现在注释里**（Batch 175 的背景说明、「判据不能因为装不上 Pillow 而崩」），
+    #: **第一版「文件名出现过就算」把它们也算成了被构建调用的脚本**——
+    #: **而那等于把方向三放宽成「注释里提一句就通过」**。
+    #: 收紧后的实测集合是 `{scope, record-build-result}`：
+    #: `scope` 出现在 `python3 -c '… import scope …'`（**真调用**），
+    #: `record-build-result` 出现在末尾那行（**真调用**）。
+    #: **边界的方向要写清楚**：**行尾注释仍算「出现过」**——
+    #: `python3 scripts/x.py   # 顺带提一句 y.py` 会把 `y` 算进来。
+    #: **这个方向的偏差是「多认一个」，不是「少认一个」**，
+    #: **而多认的代价是方向三变松**——**如实记下，不假装它是严的**。
+    code = "\n".join(l for l in build.split("\n") if not l.lstrip().startswith("#"))
+    for f in files:
+        if not f.endswith(".py") or f.startswith(("verify-", "selftest-")):
+            continue
+        mod = f[:-3]
+        # **两种可接受的形态，都必须是「整词」而不是子串**——
+        #: **实测为什么必须卡整词**：第二版用 `if f in code`（纯子串），
+        #: **而 `run_gate verify-baseline.py` 里含有子串 `baseline.py`**
+        #: ——**于是 `baseline` 被算成「被构建调用的脚本」，而它只出现在注释里**。
+        # ①`… scripts/<name>.py`（被当脚本调）
+        as_script = re.compile(r"(?<![A-Za-z0-9_.-])scripts/%s\b" % re.escape(f))
+        # ②`import <name>` / `from <name> import`（被当模块用）
+        as_module = re.compile(r"(?<![A-Za-z0-9_.-])(?:import|from)\s+%s\b" % re.escape(mod))
+        if as_script.search(code) or as_module.search(code):
+            out.add(mod)
+    #: **再扩一跳**（Batch 255 实测）：`record-build-result.py` 确实被 `build-site.sh` 调用，
+    #: **而它 `import buildrecord`**——**那才是反验真正要测的东西**，
+    #: **只认一跳的话方向三仍会报「找不到被测对象」**。
+    #: **一跳就够，本批不再往下追**：
+    #: **判据的深度要有理由，多追一跳的收益递减而误认的风险递增**
+    #: （「构建调用链上的东西」这个集合会迅速长到半个 `scripts/`）。
+    direct = set(out)
+    for mod in sorted(direct):
+        src_path = os.path.join(SCRIPTS, mod + ".py")
+        if os.path.isfile(src_path):
+            out |= (_imported_modules(src_path) & _local_module_names())
+    return out
+
+
+def _local_module_names():
+    """`scripts/` 下**本地模块名**（不含闸与反验）——集合要现算，不能手写。"""
+    try:
+        files = os.listdir(SCRIPTS)
+    except OSError:
+        return set()
+    return {f[:-3] for f in files
+            if f.endswith(".py") and not f.startswith(("verify-", "selftest-"))}
+
+
 def _unreachable_cases():
     """`selftest-unreachable.sh` 的 `(说明, 上游路径, 夹具, 特征)` 四元组。
 
@@ -787,7 +869,7 @@ def main():
     # **`beefsrc` 改坏时 15 道闸一起失效，这就是「它值得有反验」的事实依据**，
     # 而不是一个我随手维护的白名单（那正是纪律 101 的形态）。
     # 认闸名、认模块名都是「按写法判定」的老毛病；**判据认的仍然是事实**。
-    shared = _shared_modules()
+    shared = _shared_modules() | _build_invoked()
     for fn in names:
         p = os.path.join(SCRIPTS, fn)
         try:
@@ -801,7 +883,7 @@ def main():
             continue
         problems.append(
             f"方向三：{fn} 里找不到任何 verify-*.py 的引用，"
-            f"也没有提到被闸依赖的共享模块（现有：{'、'.join(sorted(shared)) or '无'}）"
+            f"也没有提到被闸依赖的共享模块或被构建调用的脚本（现有：{'、'.join(sorted(shared)) or '无'}）"
             "　→ 它没有指向被测对象；「反验 ↔ 闸」的对应关系会退化成散文"
             "（Batch 169 方向十一治的正是这个）")
 
