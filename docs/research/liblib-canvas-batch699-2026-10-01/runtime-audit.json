@@ -1,0 +1,1059 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 1150,
+  "clusterInFreshState": [
+   {
+    "data": "data-director-playback",
+    "text": "",
+    "disabled": false,
+    "visible": true
+   },
+   {
+    "data": "data-director-auto-keyframe",
+    "text": "",
+    "disabled": false,
+    "visible": true
+   },
+   {
+    "data": "data-director-loop",
+    "text": "",
+    "disabled": false,
+    "visible": true
+   },
+   {
+    "data": "data-director-time-unit",
+    "text": "ms",
+    "disabled": false,
+    "visible": true
+   },
+   {
+    "data": "data-director-add-track",
+    "text": "新建轨道",
+    "disabled": false,
+    "visible": true
+   },
+   {
+    "data": "data-director-camera-preset-trigger",
+    "text": "预设运镜",
+    "disabled": true,
+    "visible": true
+   },
+   {
+    "data": "data-director-create-motion-path",
+    "text": "创建运动轨迹",
+    "disabled": false,
+    "visible": true
+   },
+   {
+    "data": "data-director-open-curve-editor",
+    "text": "曲线编辑器",
+    "disabled": false,
+    "visible": true
+   },
+   {
+    "data": "data-director-add-track-manual",
+    "text": "轨道",
+    "disabled": true,
+    "visible": true
+   },
+   {
+    "data": "data-director-remove-track",
+    "text": "",
+    "disabled": false,
+    "visible": true
+   },
+   {
+    "data": "data-director-add-keyframe",
+    "text": "添加关键帧",
+    "disabled": false,
+    "visible": true
+   },
+   {
+    "data": "data-director-delete-keyframe",
+    "text": "",
+    "disabled": false,
+    "visible": true
+   }
+  ],
+  "dataInertInWorkspace": 0,
+  "nullClickDrift": [],
+  "census": [
+   {
+    "attr": "data-director-playback",
+    "verdict": "live",
+    "before": {
+     "present": true,
+     "text": "",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "播放",
+     "ariaLabel": "播放",
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      8,
+      975,
+      26,
+      24
+     ],
+     "hitAtCenter": "DESCENDANT"
+    },
+    "after": {
+     "present": true,
+     "text": "",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "暂停",
+     "ariaLabel": "暂停",
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      8,
+      975,
+      26,
+      24
+     ],
+     "hitAtCenter": "DESCENDANT"
+    },
+    "changedKeys": [
+     "currentTime",
+     "pressed"
+    ],
+    "selfChanged": [
+     "ariaLabel",
+     "title"
+    ],
+    "surfacesAdded": [],
+    "surfacesRemoved": [
+     "data-director-keyframed-axis",
+     "data-director-keyframed-axis-index"
+    ],
+    "ariaExpanded": [
+     null,
+     null
+    ],
+    "nav": null
+   },
+   {
+    "attr": "data-director-auto-keyframe",
+    "verdict": "live",
+    "before": {
+     "present": true,
+     "text": "",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "自动帧",
+     "ariaLabel": "自动帧",
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      34,
+      975,
+      24,
+      24
+     ],
+     "hitAtCenter": "DESCENDANT"
+    },
+    "after": {
+     "present": true,
+     "text": "",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "自动帧",
+     "ariaLabel": "自动帧",
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      34,
+      975,
+      24,
+      24
+     ],
+     "hitAtCenter": "DESCENDANT"
+    },
+    "changedKeys": [
+     "autoKeyframe",
+     "pressed"
+    ],
+    "selfChanged": [],
+    "surfacesAdded": [],
+    "surfacesRemoved": [],
+    "ariaExpanded": [
+     null,
+     null
+    ],
+    "nav": null
+   },
+   {
+    "attr": "data-director-loop",
+    "verdict": "live",
+    "before": {
+     "present": true,
+     "text": "",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "循环播放",
+     "ariaLabel": "循环播放",
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": false,
+     "rect": [
+      58,
+      975,
+      26,
+      24
+     ],
+     "hitAtCenter": "DESCENDANT"
+    },
+    "after": {
+     "present": true,
+     "text": "",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "循环播放",
+     "ariaLabel": "循环播放",
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      58,
+      975,
+      26,
+      24
+     ],
+     "hitAtCenter": "DESCENDANT"
+    },
+    "changedKeys": [
+     "loop",
+     "pressed"
+    ],
+    "selfChanged": [],
+    "surfacesAdded": [],
+    "surfacesRemoved": [],
+    "ariaExpanded": [
+     null,
+     null
+    ],
+    "nav": null
+   },
+   {
+    "attr": "data-director-time-unit",
+    "verdict": "live",
+    "before": {
+     "present": true,
+     "text": "ms",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "切换时间单位为 s",
+     "ariaLabel": "切换时间单位为 s",
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      182,
+      975,
+      33,
+      24
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "after": {
+     "present": true,
+     "text": "s",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "切换时间单位为 ms",
+     "ariaLabel": "切换时间单位为 ms",
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      182,
+      975,
+      33,
+      24
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "changedKeys": [
+     "labels"
+    ],
+    "selfChanged": [
+     "ariaLabel",
+     "text",
+     "title"
+    ],
+    "surfacesAdded": [],
+    "surfacesRemoved": [],
+    "ariaExpanded": [
+     null,
+     null
+    ],
+    "nav": null
+   },
+   {
+    "attr": "data-director-add-track",
+    "verdict": "inert",
+    "before": {
+     "present": true,
+     "text": "新建轨道",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "新建轨道",
+     "ariaLabel": "选中角色、道具或分组后建立轨道",
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      230,
+      975,
+      82,
+      24
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "after": {
+     "present": true,
+     "text": "新建轨道",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "新建轨道",
+     "ariaLabel": "选中角色、道具或分组后建立轨道",
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      230,
+      975,
+      82,
+      24
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "changedKeys": [],
+    "selfChanged": [],
+    "surfacesAdded": [],
+    "surfacesRemoved": [],
+    "ariaExpanded": [
+     null,
+     null
+    ],
+    "nav": null
+   },
+   {
+    "attr": "data-director-camera-preset-trigger",
+    "verdict": "unclickable",
+    "reason": "disabled",
+    "before": {
+     "present": true,
+     "text": "预设运镜",
+     "disabled": true,
+     "ariaExpanded": "false",
+     "title": null,
+     "ariaLabel": null,
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      312,
+      973,
+      77,
+      28
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "nav": null
+   },
+   {
+    "attr": "data-director-create-motion-path",
+    "verdict": "live",
+    "before": {
+     "present": true,
+     "text": "创建运动轨迹",
+     "disabled": false,
+     "ariaExpanded": "false",
+     "title": null,
+     "ariaLabel": null,
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      389,
+      973,
+      99,
+      28
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "after": {
+     "present": true,
+     "text": "创建运动轨迹",
+     "disabled": false,
+     "ariaExpanded": "true",
+     "title": null,
+     "ariaLabel": null,
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      389,
+      973,
+      99,
+      28
+     ],
+     "hitAtCenter": "COVERED"
+    },
+    "changedKeys": [
+     "expanded",
+     "labels"
+    ],
+    "selfChanged": [
+     "ariaExpanded"
+    ],
+    "surfacesAdded": [
+     "data-director-motion-path-draw-tool",
+     "data-director-motion-path-free-draw",
+     "data-director-motion-path-menu",
+     "data-director-motion-path-preset"
+    ],
+    "surfacesRemoved": [],
+    "ariaExpanded": [
+     "false",
+     "true"
+    ],
+    "nav": null
+   },
+   {
+    "attr": "data-director-open-curve-editor",
+    "verdict": "live",
+    "before": {
+     "present": true,
+     "text": "曲线编辑器",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": null,
+     "ariaLabel": null,
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      488,
+      973,
+      88,
+      28
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "after": {
+     "present": true,
+     "text": "曲线编辑器",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": null,
+     "ariaLabel": null,
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      488,
+      973,
+      88,
+      28
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "changedKeys": [
+     "expanded",
+     "labels",
+     "pressed"
+    ],
+    "selfChanged": [],
+    "surfacesAdded": [
+     "data-director-back-to-timeline",
+     "data-director-curve-editor",
+     "data-director-curve-handle",
+     "data-director-curve-locked",
+     "data-director-curve-preset",
+     "data-director-curve-track-id",
+     "data-director-curve-values",
+     "data-director-speed-curve-path"
+    ],
+    "surfacesRemoved": [
+     "data-director-keyframe-id",
+     "data-director-keyframe-time",
+     "data-director-lane-group",
+     "data-director-object-group",
+     "data-director-playhead",
+     "data-director-playhead-time",
+     "data-director-ruler-tick",
+     "data-director-timeline-canvas",
+     "data-director-timeline-object-lane",
+     "data-director-timeline-object-lane-selected",
+     "data-director-timeline-object-name",
+     "data-director-timeline-object-row",
+     "data-director-timeline-object-selected",
+     "data-director-timeline-ruler",
+     "data-director-timeline-tick-count",
+     "data-director-timeline-track-list",
+     "data-director-track-draw-trail",
+     "data-director-track-id",
+     "data-director-track-kind",
+     "data-director-track-label",
+     "data-director-track-object-id",
+     "data-director-track-row",
+     "data-director-track-row-kind",
+     "data-director-track-row-selected",
+     "data-director-track-selected",
+     "data-director-track-value"
+    ],
+    "ariaExpanded": [
+     null,
+     null
+    ],
+    "nav": null
+   },
+   {
+    "attr": "data-director-add-track-manual",
+    "verdict": "unclickable",
+    "reason": "disabled",
+    "before": {
+     "present": true,
+     "text": "轨道",
+     "disabled": true,
+     "ariaExpanded": null,
+     "title": null,
+     "ariaLabel": null,
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      576,
+      973,
+      55,
+      28
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "nav": null
+   },
+   {
+    "attr": "data-director-remove-track",
+    "verdict": "live",
+    "before": {
+     "present": true,
+     "text": "",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "移除轨道",
+     "ariaLabel": "移除角色01 · 陈默 · 变换轨道",
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      631,
+      973,
+      28,
+      28
+     ],
+     "hitAtCenter": "DESCENDANT"
+    },
+    "after": {
+     "present": true,
+     "text": "",
+     "disabled": true,
+     "ariaExpanded": null,
+     "title": "移除轨道",
+     "ariaLabel": "移除轨道",
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      631,
+      973,
+      28,
+      28
+     ],
+     "hitAtCenter": "DESCENDANT"
+    },
+    "changedKeys": [
+     "kf",
+     "labels",
+     "selectedKeyframeId",
+     "selectedTrackId",
+     "trackOwners",
+     "tracks"
+    ],
+    "selfChanged": [
+     "ariaLabel"
+    ],
+    "surfacesAdded": [],
+    "surfacesRemoved": [
+     "data-director-keyframed-axis",
+     "data-director-keyframed-axis-index"
+    ],
+    "ariaExpanded": [
+     null,
+     null
+    ],
+    "nav": null
+   },
+   {
+    "attr": "data-director-add-keyframe",
+    "verdict": "inert",
+    "before": {
+     "present": true,
+     "text": "添加关键帧",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": null,
+     "ariaLabel": null,
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      659,
+      973,
+      88,
+      28
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "after": {
+     "present": true,
+     "text": "添加关键帧",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": null,
+     "ariaLabel": null,
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      659,
+      973,
+      88,
+      28
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "changedKeys": [],
+    "selfChanged": [],
+    "surfacesAdded": [],
+    "surfacesRemoved": [],
+    "ariaExpanded": [
+     null,
+     null
+    ],
+    "nav": null
+   },
+   {
+    "attr": "data-director-delete-keyframe",
+    "verdict": "live",
+    "before": {
+     "present": true,
+     "text": "",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "删除关键帧",
+     "ariaLabel": "删除关键帧",
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      747,
+      973,
+      28,
+      28
+     ],
+     "hitAtCenter": "DESCENDANT"
+    },
+    "after": {
+     "present": true,
+     "text": "",
+     "disabled": true,
+     "ariaExpanded": null,
+     "title": "删除关键帧",
+     "ariaLabel": "删除关键帧",
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      747,
+      973,
+      28,
+      28
+     ],
+     "hitAtCenter": "DESCENDANT"
+    },
+    "changedKeys": [
+     "kf",
+     "labels",
+     "selectedKeyframeId"
+    ],
+    "selfChanged": [],
+    "surfacesAdded": [],
+    "surfacesRemoved": [
+     "data-director-keyframed-axis",
+     "data-director-keyframed-axis-index"
+    ],
+    "ariaExpanded": [
+     null,
+     null
+    ],
+    "nav": null
+   },
+   {
+    "attr": "data-director-motion-preset-button",
+    "verdict": "inert",
+    "before": {
+     "present": true,
+     "text": "⟳ 预设运镜",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "预设运镜面板位于时间线控制簇",
+     "ariaLabel": null,
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      1012,
+      851,
+      256,
+      36
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "after": {
+     "present": true,
+     "text": "⟳ 预设运镜",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "预设运镜面板位于时间线控制簇",
+     "ariaLabel": null,
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      1012,
+      851,
+      256,
+      36
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "changedKeys": [],
+    "selfChanged": [],
+    "surfacesAdded": [],
+    "surfacesRemoved": [],
+    "ariaExpanded": [
+     null,
+     null
+    ],
+    "nav": {
+     "ok": true,
+     "expected": "director-camera-main",
+     "got": "director-camera-main",
+     "kind": "camera",
+     "name": "机位01 · 对峙中景",
+     "spec": {
+      "kind": "camera"
+     },
+     "tabs": {
+      "seen": [
+       "属性",
+       "运动轨迹NEW",
+       "截图"
+      ],
+      "found": true,
+      "tab": "运动轨迹NEW",
+      "pressed": "false"
+     }
+    }
+   },
+   {
+    "attr": "data-director-motion-create-path",
+    "verdict": "inert",
+    "before": {
+     "present": true,
+     "text": "创建运动轨迹",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "创建运动轨迹面板位于时间线控制簇",
+     "ariaLabel": null,
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      1012,
+      903,
+      256,
+      36
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "after": {
+     "present": true,
+     "text": "创建运动轨迹",
+     "disabled": false,
+     "ariaExpanded": null,
+     "title": "创建运动轨迹面板位于时间线控制簇",
+     "ariaLabel": null,
+     "inert": null,
+     "cursor": "default",
+     "hoverCls": true,
+     "rect": [
+      1012,
+      903,
+      256,
+      36
+     ],
+     "hitAtCenter": "SELF"
+    },
+    "changedKeys": [],
+    "selfChanged": [],
+    "surfacesAdded": [],
+    "surfacesRemoved": [],
+    "ariaExpanded": [
+     null,
+     null
+    ],
+    "nav": {
+     "ok": true,
+     "expected": "director-camera-main",
+     "got": "director-camera-main",
+     "kind": "camera",
+     "name": "机位01 · 对峙中景",
+     "spec": {
+      "kind": "camera"
+     },
+     "tabs": {
+      "seen": [
+       "属性",
+       "运动轨迹NEW",
+       "截图"
+      ],
+      "found": true,
+      "tab": "运动轨迹NEW",
+      "pressed": "false"
+     }
+    }
+   }
+  ],
+  "addKeyframeSameAttrTwoStates": {
+   "freshDesk": "inert",
+   "afterSelectingObject0": "live",
+   "select": {
+    "ok": true,
+    "expected": "director-camera-main",
+    "got": "director-camera-main",
+    "kind": "camera",
+    "name": "机位01 · 对峙中景",
+    "spec": {
+     "kind": "camera"
+    }
+   }
+  },
+  "verdicts": {
+   "live": [
+    "data-director-playback",
+    "data-director-auto-keyframe",
+    "data-director-loop",
+    "data-director-time-unit",
+    "data-director-create-motion-path",
+    "data-director-open-curve-editor",
+    "data-director-remove-track",
+    "data-director-delete-keyframe"
+   ],
+   "inert": [
+    "data-director-add-track",
+    "data-director-add-keyframe",
+    "data-director-motion-preset-button",
+    "data-director-motion-create-path"
+   ],
+   "unclickable": [
+    "data-director-camera-preset-trigger",
+    "data-director-add-track-manual"
+   ],
+   "absentOrUnreached": []
+  },
+  "theFinding": "698 的「四个全部惰性」有两个读数被推翻：时间轴的 create-motion-path 是活控件（aria-expanded false→true，下拉 data-director-motion-path-menu 出现），camera-preset-trigger 在初始态是 disabled。右栏那两枚不是「坏掉的入口」，是**只补了 title 的指路牌** —— 而项目对主画布早有「惰性必须自证四件套」的合同，导演台一处 data-inert 都没有。",
+  "theBrokenCensus": "第一遍普查的 144 是假的：108 条定位失败 + 36 条点击超时，零条真正走完「点击 + 快照比对」。三条根因可复现：(1) 在同一页面上累积点击，后点的按钮被前面打开的面板/浮层挡住（36 次 TimeoutError）；(2) 定位靠「文本+区域+像素 <3px」，任何一次重排都让它失效（108 条 notFound）；(3) 快照里含 body.innerHTML.length，任何重渲染都让前后不等。",
+  "whatIsNotClaimed": "右栏两枚指路牌**是否是故意留白**，本批不判定 —— 只测出它们点了没反应、且只补了四件套里的一件。源站对应位置是否同样如此，需要授权才能回答。",
+  "storeWritesInThisRun": "none",
+  "scopeOfTheCensus": "本批普查 14 枚「入口类」控件（控制簇 12 + 右栏 motion 区 2）。workspace 内共 111 枚 button，其余是逐对象的操作（选中、切模式、给某条轨道加关键帧），不是入口类，不在本批范围内。",
+  "relationTo698": "698 不重写。两条被纠正：时间轴的 create-motion-path 不惰性；初始态下 camera-preset-trigger 是 disabled 而非 enabled。698 的「四层 + 需 store」结论（纯 UI 两层）本批未触及，仍成立。"
+ },
+ "checks": {
+  "timeline-create-motion-path-is-live-not-an-empty-entrance": {
+   "ok": true,
+   "detail": {
+    "verdict": "live",
+    "ariaExpanded": [
+     "false",
+     "true"
+    ],
+    "surfacesAdded": [
+     "data-director-motion-path-draw-tool",
+     "data-director-motion-path-free-draw",
+     "data-director-motion-path-menu",
+     "data-director-motion-path-preset"
+    ],
+    "batch698Said": "四个全部 enabled 且全部点了什么也不发生"
+   },
+   "note": "698 is not rewritten; the correction is recorded here. The snapshot had no aria-expanded face and no 'a new DOM surface appeared' face, so a button that really opens a dropdown read as inert."
+  },
+  "census-classifies-into-three-verdicts-and-the-instrument-is-calibrated": {
+   "ok": true,
+   "detail": {
+    "live": [
+     "data-director-playback",
+     "data-director-auto-keyframe",
+     "data-director-loop",
+     "data-director-time-unit",
+     "data-director-create-motion-path",
+     "data-director-open-curve-editor",
+     "data-director-remove-track",
+     "data-director-delete-keyframe"
+    ],
+    "inert": [
+     "data-director-add-track",
+     "data-director-add-keyframe",
+     "data-director-motion-preset-button",
+     "data-director-motion-create-path"
+    ],
+    "unclickable": [
+     "data-director-camera-preset-trigger",
+     "data-director-add-track-manual"
+    ],
+    "absentOrUnreached": [],
+    "nullClickDrift": [],
+    "calibration": {
+     "knownLive": [
+      "data-director-playback -> live via ['currentTime', 'pressed']"
+     ],
+     "knownUnclickable": [
+      "data-director-camera-preset-trigger -> unclickable (disabled)"
+     ]
+    }
+   },
+   "note": "a census is only worth its verdicts if the instrument gets a known answer right; the null-click drift is the instrument's own false-positive rate and must be empty"
+  },
+  "director-desk-has-no-inert-attestation-at-all": {
+   "ok": true,
+   "detail": {
+    "dataInertInWorkspace": 0,
+    "mainCanvasTopLevelDataInert": 40,
+    "sourceDirectorDirDataInert": 0,
+    "pointerNav": [
+     {
+      "ok": true,
+      "expected": "director-camera-main",
+      "got": "director-camera-main",
+      "kind": "camera",
+      "name": "机位01 · 对峙中景",
+      "spec": {
+       "kind": "camera"
+      },
+      "tabs": {
+       "seen": [
+        "属性",
+        "运动轨迹NEW",
+        "截图"
+       ],
+       "found": true,
+       "tab": "运动轨迹NEW",
+       "pressed": "false"
+      }
+     },
+     {
+      "ok": true,
+      "expected": "director-camera-main",
+      "got": "director-camera-main",
+      "kind": "camera",
+      "name": "机位01 · 对峙中景",
+      "spec": {
+       "kind": "camera"
+      },
+      "tabs": {
+       "seen": [
+        "属性",
+        "运动轨迹NEW",
+        "截图"
+       ],
+       "found": true,
+       "tab": "运动轨迹NEW",
+       "pressed": "false"
+      }
+     }
+    ],
+    "pointerButtons": [
+     {
+      "attr": "data-director-motion-preset-button",
+      "text": "⟳ 预设运镜",
+      "title": "预设运镜面板位于时间线控制簇",
+      "dataInert": null,
+      "cursor": "default",
+      "hoverClass": true,
+      "verdict": "inert"
+     },
+     {
+      "attr": "data-director-motion-create-path",
+      "text": "创建运动轨迹",
+      "title": "创建运动轨迹面板位于时间线控制簇",
+      "dataInert": null,
+      "cursor": "default",
+      "hoverClass": true,
+      "verdict": "inert"
+     }
+    ]
+   },
+   "note": "the project contract (358/359/360/364/366/367) is 四件套 = data-inert + title + cursor:default + no hover feedback; the director desk ships 1 of the 4"
+  },
+  "enabled-is-a-function-of-state-not-a-property-of-a-control": {
+   "ok": true,
+   "detail": {
+    "clusterSize": 12,
+    "disabledInFreshState": [
+     "data-director-camera-preset-trigger",
+     "data-director-add-track-manual"
+    ],
+    "batch698Claim": "四个全部 disabled=false",
+    "sourceDependency": "DirectorTimeline.tsx:1109-1115 — create-motion-path 的 disabled 依赖 selectedTrack / cameraFollowActive / selectedTrackLocked",
+    "rightPanelAbsentInFreshState": []
+   },
+   "note": "698's 'all four enabled' does not hold in the fresh-desk state; and the right-panel pair is not merely disabled, it is not rendered at all"
+  },
+  "inert-or-live-is-a-function-of-control-times-state": {
+   "ok": true,
+   "detail": {
+    "freshDesk": {
+     "verdict": "inert",
+     "selectedObjectId": null
+    },
+    "afterSelectingObject0": {
+     "verdict": "live",
+     "select": {
+      "ok": true,
+      "expected": "director-camera-main",
+      "got": "director-camera-main",
+      "kind": "camera",
+      "name": "机位01 · 对峙中景",
+      "spec": {
+       "kind": "camera"
+      }
+     },
+     "changedKeys": [
+      "selectedKeyframeId"
+     ]
+    },
+    "timeUnitIsComponentLocal": "DirectorTimeline.tsx:260 —— timeUnit 是 useState，不在 store 里，所以任何只读 store 的快照都看不见它翻转"
+   },
+   "note": "the same attribute, the same page, two verdicts — which is also why a census must state its starting state, and why the first version of this batch's own snapshot wrongly called time-unit inert"
+  }
+ }
+}
