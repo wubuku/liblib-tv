@@ -71,6 +71,7 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from baseline import announce_fallback  # noqa: E402
+from selftestnames import FIXTURE_RE  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCRIPTS = os.path.join(ROOT, "scripts")
@@ -297,7 +298,13 @@ SELFTEST_COSTS = {
 # **这正是「把两类同名文件当成一类」的错误**。它们的名字都叫 `selftest-*`，
 # 光看前缀分不出来，**必须靠 `fix-` 这个中段**。
 # （纪律 109：分类判据要锚可观测事实。这里可观测的事实就是文件名里的 `fix-`。）
-FIXTURE_RE = re.compile(r"^selftest-(?:[a-z0-9]+-)?fix-[a-z0-9]+-")
+# **Batch 258 收敛**：本条判据原先在本文件与闸 9 各写一份（**逐字相同**），
+# 而闸 9 那份的注释写着「**故意复制而不共用**——闸之间互相 import 会让任一方
+# 坏掉时另一方跟着起不来，而那正是 Batch 178 记下的那次失效」。
+# **那个理由已经过期**：那次失效的成因是**搬运时漏了模块**，
+# 而 `stagedeps.stage_gate()` 已把「该搬哪些」变成算出来的、闸 17 逐份核闭包——
+# **为了防那次失效而拒绝 import，代价正是让那次失效有可能重演**。
+# 判据本体搬进 `selftestnames.py`，名字 `FIXTURE_RE` 保留不变。
 
 # 标准库：这些 import 不需要在本仓 scripts/ 下存在
 STDLIB = set("""abc argparse ast base64 collections contextlib copy csv dataclasses datetime

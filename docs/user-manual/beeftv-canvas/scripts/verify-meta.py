@@ -71,6 +71,10 @@ import re
 import sys
 
 from headingkey import first_h1, norm_inline, rendered_key
+#: **Batch 258 新增**：与闸 18 共用「是不是注入夹具」这一条判据
+#: （原先两份 `FIXTURE_RE` 逐字相同）。**能直接 import 是因为本行上一条
+#: `from headingkey import …` 已经这么干了**——**这不是新引入的依赖形态**。
+from selftestnames import FIXTURE_RE
 
 try:
     import yaml
@@ -730,11 +734,18 @@ def _selftest_code_only(path):
     return "\n".join(re.sub(r"#.*$", "", ln) for ln in src.split("\n"))
 
 
-#: 注入夹具的判据：**文件名里的 `fix-` 中段**。
-#: **与闸 18 的 `FIXTURE_RE` 逐字相同，但故意复制而不共用**——
-#: 闸之间互相 import 会让任一方坏掉时另一方跟着起不来，
-#: **而那正是 Batch 178 记下的那次失效**。
-FIXTURE_RE = re.compile(r"^selftest-(?:[a-z0-9]+-)?fix-[a-z0-9]+-")
+#: **Batch 258 收敛**：注入夹具的判据原先在本文件与闸 18 各写一份
+#: `FIXTURE_RE`（**逐字相同**），**而这里的注释写着「故意复制而不共用」**，
+#: 理由是「闸之间互相 import 会让任一方坏掉时另一方跟着起不来」。
+#: **那个理由已经过期**：Batch 178 那次失效的成因是**搬运时漏了模块**，
+#: 而 Batch 253 的 `stagedeps.stage_gate()` 已把「该搬哪些」变成算出来的，
+#: **闸 17 则逐份核搬运闭包**——**为了防那次失效而拒绝 import，
+#: 代价正是让那次失效有可能重演**。
+#: **而且本文件第 73 行早就在 `from headingkey import …`**，
+#: **Batch 256 的 `tablerow.py` 也有四份闸在 import**，
+#: **「闸 import 共享模块会出事」在这里已被实测证伪过一次**。
+#: **判据本体搬进 `selftestnames.py`；两处原有的名字 `FIXTURE_RE` 保留不变**，
+#: **收敛的目标是「一份实现」，不是「让 diff 看起来大」**（纪律 274）。
 
 
 def selftest_entries(root):

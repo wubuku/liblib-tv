@@ -8534,3 +8534,67 @@ rc = 0
 **一条恒真的断言和一条恒假的断言一样没有鉴别力**（纪律 286），
 **而恒真的那条更隐蔽：它让一行看起来做了检查**。已换成
 「必须点名那条键」（`"25eecbe17b93" in out`）。
+
+## 环境记录二百二十一（Batch 258，收敛「夹具文件名的形态」；顺带撞到一条早就红的慢反验）
+
+**一、三条待收敛的重复逐条看过，选定这一条**：
+
+| 键 | 概念 | 涉及文件 | 本批处置 |
+|---|---|---|---|
+| `4ca9fa24681d` | 夹具文件名的形态 | `verify-meta.py` / `verify-selftest-bootable.py` | **本批收敛** |
+| `25eecbe17b93` | 找前端 API 调用点 | `verify-endpoints.py` / `verify-exclusions.py` | 仍欠着 |
+| `0ffab7a538d5` | 解析闸输出里的一个块 | `verify-shot-integrity.py` / `verify-shot-version-source.py` | 仍欠着 |
+
+**二、选定它的理由不是「最容易」，是「那份理由已经过期」**——
+而**过期理由正是纪律 288 要防的东西**（详见纪律 288）。
+
+**三、原来那份理由**：闸 9 的 `FIXTURE_RE` 上面写着
+「**与闸 18 的 `FIXTURE_RE` 逐字相同，但故意复制而不共用**——
+闸之间互相 import 会让任一方坏掉时另一方跟着起不来，
+**而那正是 Batch 178 记下的那次失效**」。
+
+**四、它过期在哪**：Batch 178 那次失效的真凶是**搬运时漏了模块**
+（临时目录里 `ModuleNotFoundError`、而 `build-site.sh` 仍然全绿），
+**不是「闸之间有 import」**。而现在：
+① `stagedeps.stage_gate()` 把「该搬哪些」变成算出来的，闸 17 逐份核闭包；
+② `verify-meta.py:73` **本来就 `from headingkey import …`**，
+**Batch 256 的 `tablerow.py` 更有四份闸在 import，输出收敛前后逐字节不变**。
+**「闸 import 共享模块会出事」在这个项目里已被实测证伪过一次。**
+
+**五、收敛做法**：新建 `scripts/selftestnames.py`（`FIXTURE_RE` + `is_fixture()`），
+两个闸改为 `from selftestnames import FIXTURE_RE`。
+**两处原有的名字 `FIXTURE_RE` 一律保留**，调用方那一行不用改——
+**收敛的目标是「一份实现」，不是「让 diff 看起来大」**。
+
+**六、收敛前量等价（纪律 250）**：改前改后各存一份 `verify-meta.py` 与
+`verify-selftest-bootable.py` 的输出，**把「用时 N 秒」归一化之后逐字节比对，
+两个都完全一致**。
+
+**⑦、上一批的反向核对在一天之内就拿到了第一次现场验证**：
+两处本地定义删掉、**登记还没删**的那一刻跑闸 37，立刻得到
+「2 条出现在多个文件里（登记表 2 条… 其中 **1 条对不上现实**）」
+并点名 `4ca9fa24681d（登记名：夹具文件名的形态）`、列出它声称的两个文件。
+**删掉登记后闸 37 回到 rc=0（2 条 / 2 条 / 0 孤儿）。**
+**没有 Batch 257 那个反向核对，这一步会安静地留下一条指向两个已不存在副本的过期登记。**
+
+**⑧、依赖闭包没出问题，但不是因为运气**：
+`verify-meta.py` 已有 `from headingkey import …`，**不是新引入的依赖形态**；
+`selftest-selftest-bootable.py` 搬闸用的是 `shutil.copytree(SCRIPTS, …)`，
+**整份 `scripts/` 自动带上新模块**；`selftest-zero-input.py` 走 `stage_all()`，闭包自动算。
+**慢反验两份都手动跑了**：`selftest-selftest-bootable.py` **26/26 通过**。
+
+**⑨顺带撞到一条早就红的慢反验，如实记下来**：
+`selftest-zero-input.py` rc=1，报
+「`verify-current-version.py` 在 `BEEFTV_SRC` 指向非仓时输出了结果，
+**而它 import 了 `baseline`/`beefsrc`、必然回落到候选表里的真仓**」。
+**本批没碰过那个文件，而「我没碰过」不是证据**——
+**用 `git archive HEAD` 导一份改前的树到 /tmp 实测，得到逐字相同的 rc=1 与同一条消息**，
+**所以这是早就存在的红，不是本批引入的**。
+**它之所以一直没人看见**：慢反验只「提交前手动跑」，**而构建路径上不跑它们**——
+**又一次「我跑过一次」与「构建跑过了」长得一样**（纪律 280）。
+**处置：留证、不在本批顺手改**（`verify-current-version.py` 属另一道闸的取舍，
+**混进「收敛一条正则」这一批里就是纪律 260 说的「为了让闸闭嘴而顺手改东西」**），
+**独立开批处理。**
+
+**十、这批的门面数字**：37 道闸、110 份 `selftest-*`、287 → **288** 条纪律、
+登记的重复 3 → **2** 条、67 张截图。
