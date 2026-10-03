@@ -1,0 +1,37 @@
+{
+ "at": "2026-10-03T00:51:16.151Z",
+ "round": "b3",
+ "承接": "b2 轮 after ⊕ 中心落点被遮挡，护栏④拦下",
+ "start": {
+  "zoom": "Zoom options, 50%",
+  "credits": "Credits: 805 · 基础会员",
+  "status": "78 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+  "节点数": 78
+ },
+ "srcPoint": {
+  "__err": "no-interior-point",
+  "矩形": [
+   770,
+   310,
+   36,
+   36
+  ],
+  "采样": [
+   {
+    "x": 772,
+    "y": 312,
+    "盖住它的": "DIV tid=flow-node-source-handle cls=react-flow__handle react-flow_"
+   },
+   {
+    "x": 775,
+    "y": 312,
+    "盖住它的": "DIV tid=flow-node-source-handle cls=react-flow__handle react-flow_"
+   },
+   {
+    "x": 778,
+    "y": 312,
+    "盖住它的": "DIV tid=flow-node-source-handle cls=react-flow__handle react-flow_"
+   }
+  ]
+ }
+}

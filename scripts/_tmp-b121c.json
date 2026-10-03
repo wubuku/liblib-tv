@@ -1,0 +1,133 @@
+{
+ "at": "2026-10-03T00:53:33.553Z",
+ "round": "c",
+ "start": {
+  "zoom": "Zoom options, 50%",
+  "status": "78 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存."
+ },
+ "diag": {
+  "节点矩形": [
+   473,
+   257,
+   284,
+   160
+  ],
+  "按钮": {
+   "tag": "BUTTON",
+   "tid": "flow-node-source-connection-menu-button",
+   "aria": "Create connected node after 视频 2",
+   "cls": "inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-transpare",
+   "矩形": [
+    770,
+    310,
+    36,
+    36
+   ],
+   "pe本体": "none",
+   "peBefore": "none",
+   "peAfter": "none",
+   "opacity": "1",
+   "z": "auto",
+   "pos": "absolute"
+  },
+  "handle": {
+   "tag": "DIV",
+   "tid": "flow-node-source-handle",
+   "aria": null,
+   "cls": "react-flow__handle react-flow__handle-right nodrag nopan !top-1/2 !z-10 !rounded-none !bor",
+   "矩形": [
+    742,
+    307,
+    30,
+    60
+   ],
+   "pe本体": "none",
+   "peBefore": "auto",
+   "peAfter": "none",
+   "opacity": "1",
+   "z": "10",
+   "pos": "absolute"
+  },
+  "before伪元素盒子": {
+   "content": "\"\"",
+   "w": "40px",
+   "h": "80px",
+   "top": "60px",
+   "left": "30px",
+   "pos": "absolute",
+   "pe": "auto"
+  },
+  "命中链": {
+   "点": [
+    788,
+    328
+   ],
+   "命中": {
+    "tag": "DIV",
+    "tid": "flow-node-source-handle",
+    "cls": "react-flow__handle react-flow__handle-right nodrag nopan !to"
+   },
+   "命中在按钮内": false,
+   "命中在handle内": true
+  },
+  "关系": {
+   "按钮存在": true,
+   "handle存在": true,
+   "按钮在handle内": false,
+   "handle在按钮内": false,
+   "按钮父": "DIV tid=video-flow-node-surface",
+   "handle父": "DIV tid=video-flow-node-surface",
+   "两者共同祖先": "DIV tid=video-flow-node-surface"
+  },
+  "节点内全部handle": [
+   {
+    "tid": "flow-node-target-handle",
+    "矩形": [
+     458,
+     307,
+     30,
+     60
+    ],
+    "pe本体": "none",
+    "peBefore": "auto",
+    "cls": "react-flow__handle react-flow__handle-left nodrag nopan !top"
+   },
+   {
+    "tid": "flow-node-source-handle",
+    "矩形": [
+     742,
+     307,
+     30,
+     60
+    ],
+    "pe本体": "none",
+    "peBefore": "auto",
+    "cls": "react-flow__handle react-flow__handle-right nodrag nopan !to"
+   }
+  ],
+  "节点内全部连接菜单钮": [
+   {
+    "tid": "flow-node-target-connection-menu-button",
+    "aria": "Create connected node before 视频 2",
+    "矩形": [
+     424,
+     310,
+     36,
+     36
+    ],
+    "pe本体": "none"
+   },
+   {
+    "tid": "flow-node-source-connection-menu-button",
+    "aria": "Create connected node after 视频 2",
+    "矩形": [
+     770,
+     310,
+     36,
+     36
+    ],
+    "pe本体": "none"
+   }
+  ]
+ }
+}

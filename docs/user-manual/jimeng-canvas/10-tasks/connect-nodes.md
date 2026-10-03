@@ -390,6 +390,34 @@
 
 ![选中「视频 1」后点其右侧的圆形加号按钮弹出的「添加节点」菜单，被橙色高亮框标出：菜单顶部是灰色标题「添加节点」，下面七项自上而下为 文本、图片、视频、音频、时间线、主体、导演台，每项左侧带类型图标；其中只有「视频」是白色可点，其余六项都是灰暗的禁用态；节点卡片左右两侧各有一个圆形加号按钮，下方还露出该节点的生成面板](../screenshots/77-connected-node-menu.png)
 
+#### 🔑 那个 ⊕ 按钮**自己接不到点击**（批次 121 实测，机制）
+
+上面那张图里「点 ⊕ 弹出菜单」这句话，字面上**不成立**：
+
+| 元素 | `pointer-events`（本体 / `::before` / `::after`） |
+|---|---|
+| `flow-node-source-connection-menu-button`（右 ⊕，`36×36`） | **`none` / `none` / `none`** |
+| `flow-node-target-connection-menu-button`（左 ⊕，`36×36`） | **`none` / `none` / `none`** |
+| `flow-node-source-handle`（右 handle，`30×60` @50%） | **`none`** / **`auto`** / `none` |
+| `flow-node-target-handle`（左 handle） | **`none`** / **`auto`** / `none` |
+
+两个 ⊕ 按钮与 handle 是 `video-flow-node-surface` 下的**兄弟**（`contains` 互为 `false`），
+handle 的 `::before` 盒子是 **`40px × 80px`、`top:60px; left:30px`**（canvas 单位）。
+
+⇒ **⊕ 按钮自己永远不可能成为命中目标**；你点到的其实是**它底下 handle 的 `::before`**。
+这是本页末尾「🔑 有手柄 ≠ 能拖：热区在 `::before` 伪元素上」那一节的延伸：
+**「元素在」不等于「交互在」，「按钮在」也不等于「按钮接事件」。**
+
+📌 两条实用推论：
+
+1. **自动化点 ⊕ 的正确判据**是 `elementFromPoint(点) === 对应的 handle`，
+   **不是**「命中那个 ⊕ 按钮」——后者在 ⊕ 按钮的矩形里**逐点都取不到**。
+2. 菜单会照常弹出：在 handle 热区里**单击**即可。批次 121 实测，
+   菜单 `200×316`、七项各 `192×36`，**只有「视频」可点**，其余六项逐字为
+   `文本/图片/音频/导演台 → 无法连接这些节点`、
+   `时间线 → 素材信息仍在加载中，请稍后重试。`、`主体 → 没有可用的就绪资源`
+   （与本页那张 7×7 表一致，本批再验一次）。点「视频」会**新建一个视频节点并连上**。
+
 ### 建线失败会怎样（三条规则，2026-10-01 批次 27 实测）
 
 **下面三种拖拽都会被拒绝**，而且**拒绝时是有反馈的**（不是悄无声息）：
@@ -434,19 +462,75 @@
 ### 连线的 DOM 结构（实测）
 
 ```
-.react-flow__edge.react-flow__edge-reference.nopan.selectable
+<g class="react-flow__edge react-flow__edge-reference nopan selectable">   ← 是 <g>，不是 div
   data-id     = edge_<hash>
   data-testid = rf__edge-<edgeId>          ← 可靠的 DOM 契约
   aria-label  = Reference connection from 视频 node: 视频 1 to 视频 node: 视频 1 (2)
-  ├─ path.react-flow__edge-path          视觉线，stroke-width 1px
-  └─ path.react-flow__edge-interaction   透明命中区，stroke-width 20px
+  └─ <g>（无 class）
+       ├─ path.react-flow__edge-path          视觉线
+       │     stroke: rgb(0, 142, 229)   stroke-width: 1px   fill: none
+       └─ path.react-flow__edge-interaction   透明命中区
+             stroke: none               stroke-width: 20px  fill: none
 ```
+
+> 🔧 **批次 121（2026-10-03）补的三处**：① 最外层是 **`<g>`** 不是 `div`，
+> 且 `path` 上面还套了一层**无 class 的 `<g>`**（共三层）；
+> ② 视觉线的 `stroke` 逐字是 **`rgb(0, 142, 229)`**；
+> ③ 命中区不是「半透明」，是 **`stroke: none`**（完全不画，只吃事件）。
 
 - 🔍 **每条边是两层 path**：看得见的 1px 细线，外加一条
   **20px 宽的透明命中区**。所以**点线比看着准** —— 反过来说，
   想精确点中一条线并不容易，尤其是两节点挨得近时。
-- **没有控制点/折点**（`.react-flow__edgeupdater` 实测数量为 **0**）——
-  即梦的连线**不能拖弯**，形状由两端位置自动决定。
+- **没有控制点/折点**（`.react-flow__edgeupdater` 实测数量为 **0**，批次 121 再验一次）
+  —— 即梦的连线**不能拖弯**，形状由两端位置自动决定。
+
+⚠️ **两节点贴得近时，SVG 边的读数会「退化」**：批次 121 实测，两个节点卡片边缘
+只差约 2px 时，`.react-flow__edge` 的矩形缩成 **`12×17`**、里面的 `d` **是空字符串**。
+把节点拉开到约 765px 后，同一条边变成 **`758×260`**、`d` 变成真实贝塞尔
+`M2654.8,3189.4 C3902.8,3189.4 3902.8,4046.2 5150.8…`。
+⇒ **别拿「边的 bbox 很小 / `d` 为空」判断这条边存不存在**，那是几何退化，不是没有边
+（同一时刻 `N edges` 仍记着它）。
+
+![两个空视频节点之间的参考连线：一条细蓝线从左侧「视频 2」卡片右缘弯到右侧「视频 4」卡片左缘，曲线中段另有一段更亮的发光高亮](../screenshots/104-edge-two-layers-baseline.png)
+
+### 🔑 连线其实有**两层**在画：SVG 画线，canvas 画发光（批次 121 因果实验）
+
+上一节的结论只说了 SVG。实测发现画布里**还有一整层专门画连线发光的 canvas**，
+此前全册没有记过：
+
+| 元素 | 屏上 | z-index | 说明 |
+|---|---|---|---|
+| `canvas-dot-grid` | `1280×720` | **-1** | 背景点阵 |
+| `.react-flow__pane` | `1280×720` | 1 | 画布底板 |
+| `canvas-connection-flow-layer-host` | `1280×720` | **3** | **连线 canvas 层** |
+| `.react-flow__renderer`（节点） | — | 4 | 节点画在这层 |
+| `.react-flow__selection` | — | 6（`display:none`） | 框选框 |
+
+里面的 `canvas-connection-flow-layer` 是 **`<CANVAS>`**，`width=2560 height=1440`（dpr 2）、
+CSS `100%×100%`、`pointer-events: none`。⇒ **连线画在节点下面**。
+
+🔑 **它的位图页面侧读不到**：`canvas.getContext('2d')` 直接抛
+`InvalidStateError: Cannot get context from a canvas that has transferred its control to offscreen.`
+⇒ 这张画布是 **`OffscreenCanvas` 交给了 worker**，像素不在主线程上。
+
+**因果实验**（同一画面、同一裁剪区，每次只改一个变量，改完立刻恢复）：
+
+| 藏掉哪一层 | 那条线 | 那段发光 |
+|---|---|---|
+| 什么都不藏 | 在 | 在 |
+| 藏 `canvas-connection-flow-layer-host` | **在**（只是变细） | **没了** |
+| 藏 `.react-flow__edges`（SVG 层） | **没了** | **还在** |
+
+![同一画面在隐藏 SVG 连线层之后：整条细蓝线消失，只剩曲线中段那一小段发光高亮](../screenshots/105-edge-svg-layer-hidden.png)
+
+⇒ **线本身是 SVG `path` 画的；canvas 层画的是沿曲线移动的那一小段发光高亮。**
+
+> 🧪 **这个实验第一次做是无效的，记在这里当反面教材**：第一次两节点几乎贴在一起
+> （卡片右缘 `x≈485`、左缘 `x≈483`），**连线净长度约 0，本来就看不见**，
+> 于是「藏 canvas 层」前后两张截图逐像素没差别。
+> ⇒ **立规：做因果实验前，先确认裁剪区里有「足够长、且能确认存在」的被测对象**；
+> 被测对象本来就看不见时，实验无效 —— **先修实验，再下结论**。
+
 
 ### 删节点会连带删掉它的连线（2026-10-01 批次 27 实测，7 次复现）
 

@@ -1,0 +1,177 @@
+{
+ "at": "2026-10-03T01:03:29.965Z",
+ "round": "f",
+ "start": {
+  "zoom": "Zoom options, 30%",
+  "status": "79 nodes, 1 edge, 1 selected. Editable. Room connected. 已保存."
+ },
+ "move": {
+  "grab": {
+   "x": 374,
+   "y": 349
+  },
+  "drop": [
+   1180,
+   640
+  ],
+  "落点命中": "DIV react-flow__pane"
+ },
+ "after": {
+  "zoom": "Zoom options, 30%",
+  "status": "79 nodes, 1 edge, 1 selected. Editable. Room connected. 已保存.",
+  "矩形": [
+   {
+    "id": "node_5k3gf1n51s",
+    "矩形": [
+     191,
+     356,
+     173,
+     97
+    ]
+   },
+   {
+    "id": "node_fs3jetarej",
+    "矩形": [
+     1129,
+     616,
+     173,
+     97
+    ]
+   }
+  ]
+ },
+ "edgeDom": {
+  "容器矩形": [
+   -439,
+   -565,
+   0,
+   0
+  ],
+  "容器样式": {
+   "pe": "none",
+   "op": "1",
+   "vis": "visible",
+   "disp": "block",
+   "stroke": "none",
+   "sw": "1px",
+   "fill": "rgb(0, 0, 0)"
+  },
+  "edge树": [
+   {
+    "tag": "g",
+    "cls": "react-flow__edge react-flow__edge-reference nopan selectable",
+    "d": "",
+    "矩形": [
+     367,
+     404,
+     758,
+     260
+    ],
+    "样式": {
+     "pe": "visiblestroke",
+     "op": "1",
+     "vis": "visible",
+     "disp": "inline",
+     "stroke": "none",
+     "sw": "1px",
+     "fill": "rgb(0, 0, 0)"
+    },
+    "子": [
+     {
+      "tag": "g",
+      "cls": "",
+      "d": "",
+      "矩形": [
+       367,
+       404,
+       758,
+       260
+      ],
+      "样式": {
+       "pe": "visiblestroke",
+       "op": "1",
+       "vis": "visible",
+       "disp": "inline",
+       "stroke": "none",
+       "sw": "1px",
+       "fill": "rgb(0, 0, 0)"
+      },
+      "子": [
+       {
+        "tag": "path",
+        "cls": "react-flow__edge-path transition-[stroke,stroke-opacity] dur",
+        "d": "M2654.8166500339894,3189.4287225210774 C3902.820216813866,3189.4287225210774 3902.820216813866,4046.187335148131 5150.82",
+        "矩形": [
+         367,
+         404,
+         758,
+         260
+        ],
+        "样式": {
+         "pe": "visiblestroke",
+         "op": "1",
+         "vis": "visible",
+         "disp": "inline",
+         "stroke": "rgb(0, 142, 229)",
+         "sw": "1px",
+         "fill": "none"
+        },
+        "子": []
+       },
+       {
+        "tag": "path",
+        "cls": "react-flow__edge-interaction",
+        "d": "M2654.8166500339894,3189.4287225210774 C3902.820216813866,3189.4287225210774 3902.820216813866,4046.187335148131 5150.82",
+        "矩形": [
+         367,
+         404,
+         758,
+         260
+        ],
+        "样式": {
+         "pe": "visiblestroke",
+         "op": "1",
+         "vis": "visible",
+         "disp": "inline",
+         "stroke": "none",
+         "sw": "20px",
+         "fill": "none"
+        },
+        "子": []
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "edgeupdater": 0,
+  "全部path数": 2,
+  "interaction命中区": 1
+ },
+ "causal": {
+  "裁剪": {
+   "x": 141,
+   "y": 306,
+   "width": 1139,
+   "height": 414
+  },
+  "藏canvas层时display": "none",
+  "藏SVG层时display": "none",
+  "恢复校验": {
+   "canvasHost": "block",
+   "svg层": "block",
+   "edge数": 1
+  },
+  "截图": [
+   "10-baseline.png",
+   "11-canvas-hidden.png",
+   "12-svg-hidden.png",
+   "13-restored.png",
+   "14-full.png"
+  ]
+ },
+ "end": {
+  "zoom": "Zoom options, 30%",
+  "status": "79 nodes, 1 edge, 1 selected. Editable. Room connected. 已保存."
+ }
+}

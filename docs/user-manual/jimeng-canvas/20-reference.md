@@ -20,6 +20,7 @@
 | 左栏（悬停展开标签） | **`ASIDE[data-testid="canvas-fixed-toolbar-left-rail"]`**，aria 逐字 `Canvas left toolbar`，`160×632@12,72`（批次 103 首次定位到 testid/aria，此前只有坐标）。**容器后代按钮恰好 9 个**，逐字：文本/图片/视频/音频/时间线/主体/导演台/资产库/上传，各 `40×40@16,y`；y 依次 **193/235/277/319/361/403/445/501/543**（步长 42，第 7→8 跳 **56** 是分组缝隙）。⚠️ **9 个的 `data-testid` 全是 `null`，只能按 `aria-label` 定位。** ⚠️ 里面的 `canvas-navigation-shell` 只是中段 `160×398@12,189`，**不是**整条左栏 |
 | 底部 dock | **工具按钮（aria 即当前模式：`选择工具` ⇄ `抓手工具`；抓手下空白拖拽=平移，选择工具下=框选）**、小地图、显示连线（默认开）、缩放值按钮（**内嵌 `aria="Set zoom percentage"` 输入框**：点它**同时**弹出菜单与输入框并自动全选；可输入区间约 **8%–800%**，越界被钳位。⚠️ **没有取消路径 —— Enter / Esc / 失焦 都会提交**） |
 | 右下 | 与 AI 对话 |
+| 画布内的层序（z-index，实测） | `canvas-dot-grid` **-1** → `.react-flow__pane` **1** → **`canvas-connection-flow-layer-host` 3** → `.react-flow__renderer`（节点）**4** → `.react-flow__selection` **6**（`display:none`）→ `back-to-content-overlay` **30**。**连线画在节点下面**；那一层是 `<CANVAS>`（`2560×1440`，`pointer-events:none`），且位图由 `OffscreenCanvas` 交给 worker（`getContext('2d')` 抛 `InvalidStateError`）—— 它画的是连线上的**发光高亮**，线本身仍是 SVG `path` |
 | 画布状态行 | `N nodes, N edges, N selected. Editable. Room connected. 已保存.` —— 🔴 **批次 120 订正：屏幕上没有这一行**，见下方方框 |
 
 > 状态行的英文会**按数量变形**：只有 1 个时用单数。实测 `1 node, 0 edges, 0 selected`、

@@ -11112,3 +11112,109 @@ a 轮按「归属于本节点 **且在节点上方**」筛，**归属本节点�
 - 终态：**`76 nodes / 0 selected / 0 edges`**、`Zoom options, 60%`、选择工具、**积分 805**
 - ⛔ 全程**只读**：唯一的状态变化是「选中一个既有节点 → 取消选中」的往返，
   未建任何节点（除那次事故，已清除）、未点任何扣费/生成按钮
+
+## §4.41 批次 121（2026-10-03）· 连线其实有**两层**在画：SVG 画线，canvas 画发光；⊕ 按钮自己接不到点击
+
+**靶子**：批次 120 的**全文档 testid 普查**读到两个此前从未被手册记录的 chrome testid ——
+`canvas-connection-flow-layer-host` 与 `canvas-connection-flow-layer`，
+而**后者的标签是 `<CANVAS>`**。而 `connect-nodes.md`「连线的 DOM 结构」写的是**两层 SVG path**。
+⇒ 靶子：**屏幕上那条线，到底是谁画的？**
+
+### a 轮（只读）：天平倾向 canvas，但还不足以下结论
+
+| 读数 | 值 |
+|---|---|
+| `canvas-connection-flow-layer` | **`<CANVAS>`**，`width=2560 height=1440`（dpr 2）、CSS `100%×100%`、`pointer-events:none` |
+| 宿主 `canvas-connection-flow-layer-host` | `1280×720`、`position:absolute`、**`z-index:3`** |
+| **`canvas.getContext('2d')`** | 🔴 抛 **`InvalidStateError: Cannot get context from a canvas that has transferred its control to offscreen.`** |
+| `.react-flow__edges`（0 边时） | 矩形 `[-1019,-1221,0,0]`、**子元素 0**、`pointer-events:none` |
+
+⚠️ **a 轮明确不足以下结论**：「0 条边时 SVG 容器是空的」既可能是「SVG 不负责画」，
+也可能是「没边所以空」。⇒ 造一条边再看。
+
+### b/c/d 轮的三次失败（都记在这里，它们比结论更值钱）
+
+| 轮 | 做了什么 | 结果 | 教训 |
+|---|---|---|---|
+| b | 改缩放时用 `page.evaluate(() => el.click())` **合成点击** | 缩放菜单**没打开**，`canvas-zoom-percent-input` 30s 超时 | **Radix 弹层要用真实鼠标点击**，合成 `.click()` 不行 |
+| b3 | 在 ⊕ 按钮矩形里逐点扫 `elementFromPoint` 想找一个命中它自己的点 | **一个都没有**，每次都返回 `DIV[data-testid="flow-node-source-handle"]` | 护栏④拦下点击（**本批第一次**）。当时以为是遮挡 |
+| d | 从 handle 热区**拖**到目标节点建线 | 拖到中点时 `[class*="connection"]` = **234**（**确实进了连线态**），松手后仍 **`0 edges`** | 连线态 ≠ 建线成功。**不能据此说「拖拽不能建线」**（目标是个空视频节点，可连性另说） |
+| d | 目标节点内部落点 | **`unreachable`** —— 两个自建节点几乎完全重叠（`[473,257,284,160]` vs `[478,270,284,160]`），目标被压在下面 | 自建节点都落在视口中心，**建第二个之前要先挪开第一个** |
+
+### e 轮：单击 handle 热区 → 菜单建边（成功）
+
+按 c 轮查明的机制（见下），**在 handle 热区单击 ≡ 点 ⊕** ⇒ 菜单 `200×316` 正常弹出，
+七项各 `192×36`，**只有「视频」可点**，逐字原因与手册 7×7 表一致：
+
+`文本/图片/音频/导演台 → 无法连接这些节点` ｜
+`时间线 → 素材信息仍在加载中，请稍后重试。` ｜ `主体 → 没有可用的就绪资源`
+
+点「视频」⇒ **新建一个节点并连上**：`78 nodes, 0 edges` → **`79 nodes, 1 edge`**。
+
+### 🔴 发现一：两节点贴太近时，SVG 边的读数会「退化」
+
+刚建出边时（两卡片右缘 `x≈485`、左缘 `x≈483`，**净长约 0**）：
+
+- `.react-flow__edge` 矩形 = **`12×17`**、唯一子元素是个**没有 `d`** 的 `<g>`
+- 截图里**整条线看不见**
+
+把第二个节点拖到右下角、拉开约 **765px** 后，同一条边变成：
+
+- `.react-flow__edge` 矩形 = **`758×260`**
+- 结构变成 **三层**：`<g class="react-flow__edge …">` → `<g>`（无 class）→ 两条 `path`
+- `path.react-flow__edge-path`：`d = M2654.8166500339894,3189.4287225210774 C3902.820216813866,3189.4287225210774 3902.820216813866,4046.187335148131 5150.82…`、
+  `stroke: rgb(0, 142, 229)`、`stroke-width: 1px`、`fill: none`
+- `path.react-flow__edge-interaction`：**同一条 `d`**、`stroke: none`、`stroke-width: 20px`、`fill: none`
+- `.react-flow__edgeupdater` = **0**（再验「连线不能拖弯」）
+
+⇒ 📌 **别拿「边 bbox 很小 / `d` 为空」判断这条边在不在** —— 那是几何退化。
+（这与批次 120 的 `20-reference.md:325`「`N edges` 才是准的」是同一条道理的新证据。）
+
+### 🔑 发现二：因果实验 —— **SVG 画线，canvas 画发光**
+
+同一画面、同一裁剪区、每次只改一个变量、改完立刻恢复（`getComputedStyle` 回读确认）：
+
+| 藏掉哪一层 | 那条细蓝线 | 曲线中段那段发光 |
+|---|---|---|
+| 什么都不藏 | 在 | 在 |
+| 藏 `canvas-connection-flow-layer-host` | **在**（只是变细） | **没了** |
+| 藏 `.react-flow__edges`（SVG 层） | **没了** | **还在** |
+
+⇒ **线本身由 SVG `path` 画；canvas 层画的是沿曲线移动的那一小段发光高亮。**
+
+**层序（实测）**：`canvas-dot-grid` **-1** → `.react-flow__pane` **1** →
+**连线 canvas host 3** → `.react-flow__renderer`（节点）**4** →
+`.react-flow__selection` **6**（`display:none`）→ `back-to-content-overlay` **30**
+⇒ **连线画在节点下面**。
+
+### 🔑 发现三：⊕ 按钮**自己接不到点击**（批次 91 机制的延伸）
+
+| 元素 | `pointer-events`（本体 / `::before` / `::after`） |
+|---|---|
+| `flow-node-source-connection-menu-button`（右 ⊕ `36×36`） | **`none` / `none` / `none`** |
+| `flow-node-target-connection-menu-button`（左 ⊕ `36×36`） | **`none` / `none` / `none`** |
+| `flow-node-source-handle`（右，`30×60` @50%） | **`none`** / **`auto`** / `none` |
+| `flow-node-target-handle`（左） | **`none`** / **`auto`** / `none` |
+
+两个 ⊕ 按钮与 handle 是 `video-flow-node-surface` 下的**兄弟**（`contains` 互为 `false`）；
+handle 的 `::before` 盒子 **`40px × 80px`、`top:60px; left:30px`**（canvas 单位）。
+
+⇒ **⊕ 按钮自己永远不可能成为命中目标**；b3 轮那个「逐点都命中 handle」**不是异常，是必然**。
+⇒ 自动化点 ⊕ 的正确判据是 **`elementFromPoint(点) === 对应的 handle`**，不是「命中那个按钮」。
+
+### 🧪 立规：因果实验先验「被测对象看得见」
+
+第一次做这个实验（三张截图）**无效**：当时两节点几乎贴在一起、连线净长约 0，
+**被测对象本来就看不见** ⇒ 藏任何层都逐像素没差别。
+📌 **立规：因果实验的裁剪区里必须有一段「足够长、且能确认存在」的被测对象；
+被测对象本来就看不见 ⇒ 实验无效，先修实验再下结论。**
+（这也是为什么 f 轮把节点拉开之后重做了一遍，并留下 104/105 两张对照图。）
+
+### 收尾
+
+- 自建 **1 条边**（`edge_kz8dze9vxz`）＋ **3 个节点**
+  （`node_5k3gf1n51s` 视频 2 ／ `node_bm52y0m7hn` 视频 3 ／ `node_fs3jetarej` 视频 4）**全部清除**：
+  边与每个节点的「本轮消失的 id」**各自恰好只有 SELF** ✅
+- 缩放从 30% 归位 **60%**、**连读两次一致** ✅
+- 终态：**`76 nodes / 0 selected / 0 edges`**、`Zoom options, 60%`、选择工具、**积分 805**
+- ⛔ 全程**没碰任何他人的节点**；未点任何扣费/生成按钮

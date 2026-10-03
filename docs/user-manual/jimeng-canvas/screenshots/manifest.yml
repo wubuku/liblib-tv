@@ -1483,3 +1483,27 @@ screenshots:
     visible_text: JIMENG B102 DOC TEST
     alt: 上传文本文件的结果：生成的是一个「文本」节点，标题为去掉扩展名后的文件名（过长时中间省略），节点正文里逐行显示着刚才那个 .txt 文件的三行内容，右上角是标签按钮
     sha256: 01b8d2f2dfe91bd461788e77514f93b4884255543e2a58fe3c044e68f9ce0eac
+
+  - file: screenshots/104-edge-two-layers-baseline.png
+    task_id: connect-nodes
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-03T09:20:00+08:00
+    verified_locator: '2026-10-03 批次 121 因果实验的基准帧。造边过程：左栏「视频」按钮落点现算 + elementFromPoint 自检（命中 BUTTON aria=视频）→ 建两个空视频节点（护栏②差集恰好一个且同时是 .selected）→ 缩放输入框填 50 → 第二个节点与第一个几乎完全重叠（都落在视口中心），先把第一个拖开 → 选中它，在 handle 热区里找一个 elementFromPoint 命中 handle 自身的点（按钮本身 pointer-events 是 none，见正文）→ 单击 → 菜单 200×316 七项，只有「视频」可点 → 点它生成第三个节点并连成一条边 → 把第三个节点拖到右下角拉开约 765px → 截图。裁剪区 x=141 y=306 w=1139 h=414（包住两个节点与整条连线）。同轮另有两帧：藏 canvas 连线层（线在、发光没了）、藏 SVG 连线层（线没了、只剩发光）'
+    visible_text: 视频 2 / 视频 4 / 30%
+    alt: 两个空视频节点之间的参考连线：一条细蓝线从左侧「视频 2」卡片右缘弯到右侧「视频 4」卡片左缘，曲线中段另有一段更亮的发光高亮
+    sha256: 01a156a37cc4ae8cf4e4b2ac3175551ce45d7e62a3202f1a9843b12effe19df0
+
+  - file: screenshots/105-edge-svg-layer-hidden.png
+    task_id: connect-nodes
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-03T09:20:30+08:00
+    verified_locator: '与 104 同一画面、同一裁剪区，差别只有一个变量 —— 把 SVG 连线层 .react-flow__edges 的 display 置为 none（getComputedStyle 回读确认为 none），等 800ms 后截图，随后立刻恢复（回读 block，edge 数仍为 1）。用于回答「线是谁画的」：线整体消失 ⇒ 线由 SVG 画；残留的那小段发光仍在 ⇒ 发光由 canvas 层画。⚠️ 第一次做这个实验时两个节点几乎贴在一起、连线净长度约 0，三张截图逐像素无差别，那个实验无效；本帧是拉开距离后重做的'
+    visible_text: 视频 2 / 视频 4 / 30%
+    alt: 同一画面在隐藏 SVG 连线层之后：整条细蓝线消失，只剩曲线中段那一小段发光高亮
+    sha256: 145415dd8c60b5c19c4a7cded4b0ce217bba855f14761638f4b2631e62b1c415
