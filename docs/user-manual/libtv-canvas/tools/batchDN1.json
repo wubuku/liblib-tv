@@ -1,0 +1,458 @@
+{
+  "页签": [
+    {
+      "页签": "我的收藏",
+      "有弹层": true,
+      "DOM卡数": 0,
+      "卡名": [],
+      "勾选框": null,
+      "页签态": [
+        {
+          "名": "风格广场",
+          "存在": true,
+          "背景": "rgba(0, 0, 0, 0)",
+          "颜色": "rgb(145, 145, 145)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        },
+        {
+          "名": "我的收藏",
+          "存在": true,
+          "背景": "rgba(255, 255, 255, 0.1)",
+          "颜色": "rgb(247, 247, 247)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        },
+        {
+          "名": "最近使用",
+          "存在": true,
+          "背景": "rgba(0, 0, 0, 0)",
+          "颜色": "rgb(145, 145, 145)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        }
+      ],
+      "空态": [
+        "暂无素材"
+      ],
+      "收藏星数": 0
+    },
+    {
+      "页签": "最近使用",
+      "有弹层": true,
+      "DOM卡数": 0,
+      "卡名": [],
+      "勾选框": null,
+      "页签态": [
+        {
+          "名": "风格广场",
+          "存在": true,
+          "背景": "rgba(0, 0, 0, 0)",
+          "颜色": "rgb(145, 145, 145)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        },
+        {
+          "名": "我的收藏",
+          "存在": true,
+          "背景": "rgba(0, 0, 0, 0)",
+          "颜色": "rgb(145, 145, 145)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        },
+        {
+          "名": "最近使用",
+          "存在": true,
+          "背景": "rgba(255, 255, 255, 0.1)",
+          "颜色": "rgb(247, 247, 247)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        }
+      ],
+      "空态": [
+        "暂无素材"
+      ],
+      "收藏星数": 0
+    }
+  ],
+  "勾选": [
+    {
+      "阶段": "关闭",
+      "有弹层": true,
+      "DOM卡数": 30,
+      "卡名": [
+        "赛璐璐光影",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "二次元清新画风",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "小红书风海报手绘涂鸦插画❤丑萌/搞怪封面",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "新中式数字综合媒材国风插画",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "精致手绘头像",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image"
+      ],
+      "勾选框": {
+        "checked": false,
+        "元素": {
+          "w": 16,
+          "h": 16
+        }
+      },
+      "页签态": [
+        {
+          "名": "风格广场",
+          "存在": true,
+          "背景": "rgba(255, 255, 255, 0.1)",
+          "颜色": "rgb(247, 247, 247)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        },
+        {
+          "名": "我的收藏",
+          "存在": true,
+          "背景": "rgba(0, 0, 0, 0)",
+          "颜色": "rgb(145, 145, 145)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        },
+        {
+          "名": "最近使用",
+          "存在": true,
+          "背景": "rgba(0, 0, 0, 0)",
+          "颜色": "rgb(145, 145, 145)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        }
+      ],
+      "空态": [
+        "星空岁月",
+        "星空岁月",
+        "星空岁月"
+      ],
+      "收藏星数": 30,
+      "请求起": 2,
+      "请求止": 2
+    },
+    {
+      "阶段": "打开",
+      "有弹层": true,
+      "DOM卡数": 30,
+      "卡名": [
+        "赛璐璐光影",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "二次元清新画风",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "小红书风海报手绘涂鸦插画❤丑萌/搞怪封面",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "新中式数字综合媒材国风插画",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "精致手绘头像",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image"
+      ],
+      "勾选框": {
+        "checked": true,
+        "元素": {
+          "w": 16,
+          "h": 16
+        }
+      },
+      "页签态": [
+        {
+          "名": "风格广场",
+          "存在": true,
+          "背景": "rgba(255, 255, 255, 0.1)",
+          "颜色": "rgb(247, 247, 247)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        },
+        {
+          "名": "我的收藏",
+          "存在": true,
+          "背景": "rgba(0, 0, 0, 0)",
+          "颜色": "rgb(145, 145, 145)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        },
+        {
+          "名": "最近使用",
+          "存在": true,
+          "背景": "rgba(0, 0, 0, 0)",
+          "颜色": "rgb(145, 145, 145)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        }
+      ],
+      "空态": [
+        "星空岁月",
+        "星空岁月",
+        "星空岁月"
+      ],
+      "收藏星数": 30
+    },
+    {
+      "阶段": "改回关闭",
+      "有弹层": true,
+      "DOM卡数": 30,
+      "卡名": [
+        "赛璐璐光影",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "二次元清新画风",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "小红书风海报手绘涂鸦插画❤丑萌/搞怪封面",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "新中式数字综合媒材国风插画",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "精致手绘头像",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image",
+        "Qwen Image"
+      ],
+      "勾选框": {
+        "checked": false,
+        "元素": {
+          "w": 16,
+          "h": 16
+        }
+      },
+      "页签态": [
+        {
+          "名": "风格广场",
+          "存在": true,
+          "背景": "rgba(255, 255, 255, 0.1)",
+          "颜色": "rgb(247, 247, 247)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        },
+        {
+          "名": "我的收藏",
+          "存在": true,
+          "背景": "rgba(0, 0, 0, 0)",
+          "颜色": "rgb(145, 145, 145)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        },
+        {
+          "名": "最近使用",
+          "存在": true,
+          "背景": "rgba(0, 0, 0, 0)",
+          "颜色": "rgb(145, 145, 145)",
+          "class": "flex min-w-12 items-center justify-center whitespace-nowrap rounded-lg"
+        }
+      ],
+      "空态": [
+        "星空岁月",
+        "星空岁月",
+        "星空岁月"
+      ],
+      "收藏星数": 30
+    }
+  ],
+  "请求": [
+    {
+      "page": 1,
+      "条数": 41,
+      "键": [
+        "platform",
+        "page",
+        "pageSize",
+        "cid",
+        "requestId",
+        "types",
+        "models",
+        "sort",
+        "isTemplate"
+      ],
+      "请求体": {
+        "platform": "libtv",
+        "page": 1,
+        "pageSize": 40,
+        "cid": "1790199025399mwmysako",
+        "requestId": "r2xDLcvQPY8AFbNt",
+        "types": [
+          27,
+          42,
+          43,
+          79,
+          40,
+          70,
+          37,
+          39,
+          53,
+          55,
+          68
+        ],
+        "models": [
+          21,
+          5
+        ],
+        "sort": 0,
+        "isTemplate": "true"
+      }
+    },
+    {
+      "page": 1,
+      "条数": 40,
+      "键": [
+        "platform",
+        "page",
+        "pageSize",
+        "cid",
+        "requestId",
+        "types",
+        "models",
+        "sort",
+        "tagIds",
+        "isTemplate"
+      ],
+      "请求体": {
+        "platform": "libtv",
+        "page": 1,
+        "pageSize": 40,
+        "cid": "1790199025399mwmysako",
+        "requestId": "gZXS0ecsnszO4Pj0",
+        "types": [
+          27,
+          42,
+          43,
+          79,
+          40,
+          70,
+          37,
+          39,
+          53,
+          55,
+          68
+        ],
+        "models": [
+          21,
+          5
+        ],
+        "sort": 0,
+        "tagIds": [
+          520047,
+          520048,
+          520049,
+          520050,
+          520051,
+          520052,
+          520053,
+          510011,
+          510012,
+          510013,
+          510014,
+          510015,
+          510016,
+          510017
+        ],
+        "isTemplate": "true"
+      }
+    },
+    {
+      "page": 1,
+      "条数": 40,
+      "键": [
+        "platform",
+        "page",
+        "pageSize",
+        "cid",
+        "requestId",
+        "types",
+        "models",
+        "sort",
+        "modelLicense",
+        "tagIds",
+        "isTemplate"
+      ],
+      "请求体": {
+        "platform": "libtv",
+        "page": 1,
+        "pageSize": 40,
+        "cid": "1790199025399mwmysako",
+        "requestId": "AI0TKBywXqGDkowm",
+        "types": [
+          27,
+          42,
+          43,
+          79,
+          40,
+          70,
+          37,
+          39,
+          53,
+          55,
+          68
+        ],
+        "models": [
+          21,
+          5
+        ],
+        "sort": 0,
+        "modelLicense": [
+          "1"
+        ],
+        "tagIds": [
+          520047,
+          520048,
+          520049,
+          520050,
+          520051,
+          520052,
+          520053,
+          510011,
+          510012,
+          510013,
+          510014,
+          510015,
+          510016,
+          510017
+        ],
+        "isTemplate": "true"
+      }
+    }
+  ]
+}
