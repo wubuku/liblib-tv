@@ -717,6 +717,20 @@ M203 的做法是——只把 R31 的 needle 换成读者真读到的形态、�
 **两条一起才完整**——只有前者，一个只会说「是」的门禁可以靠永远误报来自检全绿。
 
 
+★ **M209 把这一类逐条核了一遍**（读者页共 16 条，扣掉 M206 自己的订正块后 12 条）：
+
+| 断言 | 核验结果 |
+|---|---|
+| `use-agent.md` 七个按钮的 Lucide 类名清单 | **全对**。`local-agent-panel.tsx:5` 一次性 import 了 `Bot, History, MessageSquare, PanelRightClose, PlugZap, Plus, Sparkles, Terminal`，且 `:1301/1308/1309/1310/1311/1320/1325` 逐个对上手册列的顺序 |
+| `use-agent.md` 「收起」按钮读屏名与悬停名对不上 | **手册已记对**。`aria-label` 取 `agent.panel.collapseLabel`、悬停取另一句，**两句确实不是同一句话** |
+| `organize-canvas.md` 「两个容易混的网格」 | **对，且两半各自都能在源码里定位**。画线那半在 `td-canvas-surface.tsx` 的 `CanvasGrid()`：`let worldGridSize = 16; while (worldGridSize * viewport.k < 8) worldGridSize *= 2;`——**起始 16、屏幕上不足 8px 就翻倍**；吸附那半在 `canvas-alignment-guides.ts` 的 `resolveCanvasNodeDrag(..., gridStep = 16, ...)` 里的 `Math.round(x / gridStep) * gridStep`——**与缩放无关** |
+| `20-reference.md` 「移除手动 MCP 那一行长得一模一样，同样点不动」 | **对，而且比「长得像」更强**：两行**由同一个 `.map()` 渲染**（同一个二元数组、同一段 JSX）。**但同一句里「那个带边框的框……实测它是 `span`」是错的**（框是 `div`，`span` 是里面的标签），**已登记 R54** |
+
+★ **四比零对、一处错。这个比例本身要写清楚：它不代表剩下的都对**，
+  只代表这四条经得起回查。**仍未核**的有 `90-troubleshooting.md` 两处、
+  `upload-materials.md` 两处、`edit-nodes.md:87`、`project-management.md:83`、
+  `shortcuts-help.md:31`、`generate-images.md:73`——**它们仍未经源码核对**。
+
 ### 13.1 台账本体
 
 本表共 **23 条事实、56 处重述位置**。
