@@ -1,0 +1,787 @@
+{
+ "static": {
+  "lines": {
+   "dispatch": 87,
+   "listener": 1433,
+   "keyDeleteCall": 1326,
+   "removeEdgeImpl": 3656,
+   "pushInRemoveEdge": 3668,
+   "undo": 3673,
+   "undoClearsSelection": true
+  }
+ },
+ "run": {
+  "handle": {
+   "s0": {
+    "canvasId": "canvas-2",
+    "nodes": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": [
+     "e-8IgMkf6Vbj",
+     "e-AQmdIgKtl2",
+     "e-OwhsBRzrTz",
+     "e-QzX895ot0u",
+     "e-VQACH36eJC",
+     "e-XmiJkHfFAL",
+     "e-abKze5c8Ug",
+     "e-m2wWA2wIBA",
+     "e-nlMX3rEjwN",
+     "e-xNVTHNFZZl",
+     "e-yEqrTOR2Ya"
+    ],
+    "edgeCount": 11,
+    "nodeCount": 10,
+    "past": 0,
+    "future": 0,
+    "pastEdgeCounts": [],
+    "selectedNodeIds": [],
+    "selectedEdgeIds": [],
+    "allCanvases": [
+     {
+      "id": "canvas-1",
+      "name": "画布 1",
+      "edges": 0,
+      "nodes": 0,
+      "edgeIds": []
+     },
+     {
+      "id": "canvas-2",
+      "name": "画布 2",
+      "edges": 11,
+      "nodes": 10,
+      "edgeIds": [
+       "e-8IgMkf6Vbj",
+       "e-AQmdIgKtl2",
+       "e-OwhsBRzrTz",
+       "e-QzX895ot0u",
+       "e-VQACH36eJC",
+       "e-XmiJkHfFAL",
+       "e-abKze5c8Ug",
+       "e-m2wWA2wIBA",
+       "e-nlMX3rEjwN",
+       "e-xNVTHNFZZl",
+       "e-yEqrTOR2Ya"
+      ]
+     }
+    ],
+    "pastPerCanvas": {}
+   },
+   "s1": {
+    "canvasId": "canvas-2",
+    "nodes": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": [
+     "e-8IgMkf6Vbj",
+     "e-OwhsBRzrTz",
+     "e-QzX895ot0u",
+     "e-VQACH36eJC",
+     "e-XmiJkHfFAL",
+     "e-abKze5c8Ug",
+     "e-m2wWA2wIBA",
+     "e-nlMX3rEjwN",
+     "e-xNVTHNFZZl",
+     "e-yEqrTOR2Ya"
+    ],
+    "edgeCount": 10,
+    "nodeCount": 10,
+    "past": 1,
+    "future": 0,
+    "pastEdgeCounts": [
+     11
+    ],
+    "selectedNodeIds": [],
+    "selectedEdgeIds": [],
+    "allCanvases": [
+     {
+      "id": "canvas-1",
+      "name": "画布 1",
+      "edges": 0,
+      "nodes": 0,
+      "edgeIds": []
+     },
+     {
+      "id": "canvas-2",
+      "name": "画布 2",
+      "edges": 10,
+      "nodes": 10,
+      "edgeIds": [
+       "e-8IgMkf6Vbj",
+       "e-OwhsBRzrTz",
+       "e-QzX895ot0u",
+       "e-VQACH36eJC",
+       "e-XmiJkHfFAL",
+       "e-abKze5c8Ug",
+       "e-m2wWA2wIBA",
+       "e-nlMX3rEjwN",
+       "e-xNVTHNFZZl",
+       "e-yEqrTOR2Ya"
+      ]
+     }
+    ],
+    "pastPerCanvas": {
+     "canvas-2": 1
+    }
+   },
+   "s2": {
+    "canvasId": "canvas-2",
+    "nodes": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": [
+     "e-8IgMkf6Vbj",
+     "e-AQmdIgKtl2",
+     "e-OwhsBRzrTz",
+     "e-QzX895ot0u",
+     "e-VQACH36eJC",
+     "e-XmiJkHfFAL",
+     "e-abKze5c8Ug",
+     "e-m2wWA2wIBA",
+     "e-nlMX3rEjwN",
+     "e-xNVTHNFZZl",
+     "e-yEqrTOR2Ya"
+    ],
+    "edgeCount": 11,
+    "nodeCount": 10,
+    "past": 0,
+    "future": 1,
+    "pastEdgeCounts": [],
+    "selectedNodeIds": [],
+    "selectedEdgeIds": [],
+    "allCanvases": [
+     {
+      "id": "canvas-1",
+      "name": "画布 1",
+      "edges": 0,
+      "nodes": 0,
+      "edgeIds": []
+     },
+     {
+      "id": "canvas-2",
+      "name": "画布 2",
+      "edges": 11,
+      "nodes": 10,
+      "edgeIds": [
+       "e-8IgMkf6Vbj",
+       "e-AQmdIgKtl2",
+       "e-OwhsBRzrTz",
+       "e-QzX895ot0u",
+       "e-VQACH36eJC",
+       "e-XmiJkHfFAL",
+       "e-abKze5c8Ug",
+       "e-m2wWA2wIBA",
+       "e-nlMX3rEjwN",
+       "e-xNVTHNFZZl",
+       "e-yEqrTOR2Ya"
+      ]
+     }
+    ],
+    "pastPerCanvas": {
+     "canvas-2": 0
+    }
+   },
+   "s3": {
+    "canvasId": "canvas-2",
+    "nodes": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": [
+     "e-8IgMkf6Vbj",
+     "e-OwhsBRzrTz",
+     "e-QzX895ot0u",
+     "e-VQACH36eJC",
+     "e-XmiJkHfFAL",
+     "e-abKze5c8Ug",
+     "e-m2wWA2wIBA",
+     "e-nlMX3rEjwN",
+     "e-xNVTHNFZZl",
+     "e-yEqrTOR2Ya"
+    ],
+    "edgeCount": 10,
+    "nodeCount": 10,
+    "past": 1,
+    "future": 0,
+    "pastEdgeCounts": [
+     11
+    ],
+    "selectedNodeIds": [],
+    "selectedEdgeIds": [],
+    "allCanvases": [
+     {
+      "id": "canvas-1",
+      "name": "画布 1",
+      "edges": 0,
+      "nodes": 0,
+      "edgeIds": []
+     },
+     {
+      "id": "canvas-2",
+      "name": "画布 2",
+      "edges": 10,
+      "nodes": 10,
+      "edgeIds": [
+       "e-8IgMkf6Vbj",
+       "e-OwhsBRzrTz",
+       "e-QzX895ot0u",
+       "e-VQACH36eJC",
+       "e-XmiJkHfFAL",
+       "e-abKze5c8Ug",
+       "e-m2wWA2wIBA",
+       "e-nlMX3rEjwN",
+       "e-xNVTHNFZZl",
+       "e-yEqrTOR2Ya"
+      ]
+     }
+    ],
+    "pastPerCanvas": {
+     "canvas-2": 1
+    }
+   }
+  },
+  "key": {
+   "t1": {
+    "canvasId": "canvas-2",
+    "nodes": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": [
+     "e-8IgMkf6Vbj",
+     "e-AQmdIgKtl2",
+     "e-OwhsBRzrTz",
+     "e-QzX895ot0u",
+     "e-VQACH36eJC",
+     "e-XmiJkHfFAL",
+     "e-abKze5c8Ug",
+     "e-m2wWA2wIBA",
+     "e-nlMX3rEjwN",
+     "e-xNVTHNFZZl",
+     "e-yEqrTOR2Ya"
+    ],
+    "edgeCount": 11,
+    "nodeCount": 10,
+    "past": 0,
+    "future": 0,
+    "pastEdgeCounts": [],
+    "selectedNodeIds": [
+     "g-245IDFh8sB"
+    ],
+    "selectedEdgeIds": [],
+    "allCanvases": [
+     {
+      "id": "canvas-1",
+      "name": "画布 1",
+      "edges": 0,
+      "nodes": 0,
+      "edgeIds": []
+     },
+     {
+      "id": "canvas-2",
+      "name": "画布 2",
+      "edges": 11,
+      "nodes": 10,
+      "edgeIds": [
+       "e-8IgMkf6Vbj",
+       "e-AQmdIgKtl2",
+       "e-OwhsBRzrTz",
+       "e-QzX895ot0u",
+       "e-VQACH36eJC",
+       "e-XmiJkHfFAL",
+       "e-abKze5c8Ug",
+       "e-m2wWA2wIBA",
+       "e-nlMX3rEjwN",
+       "e-xNVTHNFZZl",
+       "e-yEqrTOR2Ya"
+      ]
+     }
+    ],
+    "pastPerCanvas": {}
+   },
+   "t2": {
+    "canvasId": "canvas-2",
+    "nodes": [
+     "b-bTLLuU4w5q",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": [
+     "e-8IgMkf6Vbj",
+     "e-OwhsBRzrTz",
+     "e-QzX895ot0u",
+     "e-VQACH36eJC",
+     "e-XmiJkHfFAL",
+     "e-abKze5c8Ug",
+     "e-m2wWA2wIBA",
+     "e-nlMX3rEjwN",
+     "e-xNVTHNFZZl",
+     "e-yEqrTOR2Ya"
+    ],
+    "edgeCount": 10,
+    "nodeCount": 9,
+    "past": 1,
+    "future": 0,
+    "pastEdgeCounts": [
+     11
+    ],
+    "selectedNodeIds": [],
+    "selectedEdgeIds": [],
+    "allCanvases": [
+     {
+      "id": "canvas-1",
+      "name": "画布 1",
+      "edges": 0,
+      "nodes": 0,
+      "edgeIds": []
+     },
+     {
+      "id": "canvas-2",
+      "name": "画布 2",
+      "edges": 10,
+      "nodes": 9,
+      "edgeIds": [
+       "e-8IgMkf6Vbj",
+       "e-OwhsBRzrTz",
+       "e-QzX895ot0u",
+       "e-VQACH36eJC",
+       "e-XmiJkHfFAL",
+       "e-abKze5c8Ug",
+       "e-m2wWA2wIBA",
+       "e-nlMX3rEjwN",
+       "e-xNVTHNFZZl",
+       "e-yEqrTOR2Ya"
+      ]
+     }
+    ],
+    "pastPerCanvas": {
+     "canvas-2": 1
+    }
+   },
+   "t3": {
+    "canvasId": "canvas-2",
+    "nodes": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": [
+     "e-8IgMkf6Vbj",
+     "e-AQmdIgKtl2",
+     "e-OwhsBRzrTz",
+     "e-QzX895ot0u",
+     "e-VQACH36eJC",
+     "e-XmiJkHfFAL",
+     "e-abKze5c8Ug",
+     "e-m2wWA2wIBA",
+     "e-nlMX3rEjwN",
+     "e-xNVTHNFZZl",
+     "e-yEqrTOR2Ya"
+    ],
+    "edgeCount": 11,
+    "nodeCount": 10,
+    "past": 0,
+    "future": 1,
+    "pastEdgeCounts": [],
+    "selectedNodeIds": [],
+    "selectedEdgeIds": [],
+    "allCanvases": [
+     {
+      "id": "canvas-1",
+      "name": "画布 1",
+      "edges": 0,
+      "nodes": 0,
+      "edgeIds": []
+     },
+     {
+      "id": "canvas-2",
+      "name": "画布 2",
+      "edges": 11,
+      "nodes": 10,
+      "edgeIds": [
+       "e-8IgMkf6Vbj",
+       "e-AQmdIgKtl2",
+       "e-OwhsBRzrTz",
+       "e-QzX895ot0u",
+       "e-VQACH36eJC",
+       "e-XmiJkHfFAL",
+       "e-abKze5c8Ug",
+       "e-m2wWA2wIBA",
+       "e-nlMX3rEjwN",
+       "e-xNVTHNFZZl",
+       "e-yEqrTOR2Ya"
+      ]
+     }
+    ],
+    "pastPerCanvas": {
+     "canvas-2": 0
+    }
+   },
+   "picked": "g-245IDFh8sB"
+  },
+  "bucket": {
+   "u1": {
+    "canvasId": "canvas-2",
+    "nodes": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": [
+     "e-8IgMkf6Vbj",
+     "e-OwhsBRzrTz",
+     "e-QzX895ot0u",
+     "e-VQACH36eJC",
+     "e-XmiJkHfFAL",
+     "e-abKze5c8Ug",
+     "e-m2wWA2wIBA",
+     "e-nlMX3rEjwN",
+     "e-xNVTHNFZZl",
+     "e-yEqrTOR2Ya"
+    ],
+    "edgeCount": 10,
+    "nodeCount": 10,
+    "past": 1,
+    "future": 0,
+    "pastEdgeCounts": [
+     11
+    ],
+    "selectedNodeIds": [],
+    "selectedEdgeIds": [],
+    "allCanvases": [
+     {
+      "id": "canvas-1",
+      "name": "画布 1",
+      "edges": 0,
+      "nodes": 0,
+      "edgeIds": []
+     },
+     {
+      "id": "canvas-2",
+      "name": "画布 2",
+      "edges": 10,
+      "nodes": 10,
+      "edgeIds": [
+       "e-8IgMkf6Vbj",
+       "e-OwhsBRzrTz",
+       "e-QzX895ot0u",
+       "e-VQACH36eJC",
+       "e-XmiJkHfFAL",
+       "e-abKze5c8Ug",
+       "e-m2wWA2wIBA",
+       "e-nlMX3rEjwN",
+       "e-xNVTHNFZZl",
+       "e-yEqrTOR2Ya"
+      ]
+     }
+    ],
+    "pastPerCanvas": {
+     "canvas-2": 1
+    }
+   },
+   "u2": {
+    "canvasId": "canvas-1",
+    "nodes": [],
+    "edges": [],
+    "edgeCount": 0,
+    "nodeCount": 0,
+    "past": 0,
+    "future": 0,
+    "pastEdgeCounts": [],
+    "selectedNodeIds": [],
+    "selectedEdgeIds": [],
+    "allCanvases": [
+     {
+      "id": "canvas-1",
+      "name": "画布 1",
+      "edges": 0,
+      "nodes": 0,
+      "edgeIds": []
+     },
+     {
+      "id": "canvas-2",
+      "name": "画布 2",
+      "edges": 10,
+      "nodes": 10,
+      "edgeIds": [
+       "e-8IgMkf6Vbj",
+       "e-OwhsBRzrTz",
+       "e-QzX895ot0u",
+       "e-VQACH36eJC",
+       "e-XmiJkHfFAL",
+       "e-abKze5c8Ug",
+       "e-m2wWA2wIBA",
+       "e-nlMX3rEjwN",
+       "e-xNVTHNFZZl",
+       "e-yEqrTOR2Ya"
+      ]
+     }
+    ],
+    "pastPerCanvas": {
+     "canvas-2": 1
+    }
+   },
+   "other": {
+    "id": "canvas-1",
+    "name": "画布 1",
+    "edges": 0,
+    "nodes": 0,
+    "edgeIds": []
+   }
+  },
+  "reload": {
+   "before": {
+    "canvasId": "canvas-2",
+    "nodes": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": [
+     "e-8IgMkf6Vbj",
+     "e-OwhsBRzrTz",
+     "e-QzX895ot0u",
+     "e-VQACH36eJC",
+     "e-XmiJkHfFAL",
+     "e-abKze5c8Ug",
+     "e-m2wWA2wIBA",
+     "e-nlMX3rEjwN",
+     "e-xNVTHNFZZl",
+     "e-yEqrTOR2Ya"
+    ],
+    "edgeCount": 10,
+    "nodeCount": 10,
+    "past": 1,
+    "future": 0,
+    "pastEdgeCounts": [
+     11
+    ],
+    "selectedNodeIds": [],
+    "selectedEdgeIds": [
+     "e-OwhsBRzrTz"
+    ],
+    "allCanvases": [
+     {
+      "id": "canvas-1",
+      "name": "画布 1",
+      "edges": 0,
+      "nodes": 0,
+      "edgeIds": []
+     },
+     {
+      "id": "canvas-2",
+      "name": "画布 2",
+      "edges": 10,
+      "nodes": 10,
+      "edgeIds": [
+       "e-8IgMkf6Vbj",
+       "e-OwhsBRzrTz",
+       "e-QzX895ot0u",
+       "e-VQACH36eJC",
+       "e-XmiJkHfFAL",
+       "e-abKze5c8Ug",
+       "e-m2wWA2wIBA",
+       "e-nlMX3rEjwN",
+       "e-xNVTHNFZZl",
+       "e-yEqrTOR2Ya"
+      ]
+     }
+    ],
+    "pastPerCanvas": {
+     "canvas-2": 1
+    }
+   },
+   "after": {
+    "canvasId": "canvas-2",
+    "nodes": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": [
+     "e-8IgMkf6Vbj",
+     "e-AQmdIgKtl2",
+     "e-OwhsBRzrTz",
+     "e-QzX895ot0u",
+     "e-VQACH36eJC",
+     "e-XmiJkHfFAL",
+     "e-abKze5c8Ug",
+     "e-m2wWA2wIBA",
+     "e-nlMX3rEjwN",
+     "e-xNVTHNFZZl",
+     "e-yEqrTOR2Ya"
+    ],
+    "edgeCount": 11,
+    "nodeCount": 10,
+    "past": 0,
+    "future": 0,
+    "pastEdgeCounts": [],
+    "selectedNodeIds": [],
+    "selectedEdgeIds": [],
+    "allCanvases": [
+     {
+      "id": "canvas-1",
+      "name": "画布 1",
+      "edges": 0,
+      "nodes": 0,
+      "edgeIds": []
+     },
+     {
+      "id": "canvas-2",
+      "name": "画布 2",
+      "edges": 11,
+      "nodes": 10,
+      "edgeIds": [
+       "e-8IgMkf6Vbj",
+       "e-AQmdIgKtl2",
+       "e-OwhsBRzrTz",
+       "e-QzX895ot0u",
+       "e-VQACH36eJC",
+       "e-XmiJkHfFAL",
+       "e-abKze5c8Ug",
+       "e-m2wWA2wIBA",
+       "e-nlMX3rEjwN",
+       "e-xNVTHNFZZl",
+       "e-yEqrTOR2Ya"
+      ]
+     }
+    ],
+    "pastPerCanvas": {}
+   }
+  }
+ },
+ "summary": {
+  "staticLines": {
+   "dispatch": 87,
+   "listener": 1433,
+   "keyDeleteCall": 1326,
+   "removeEdgeImpl": 3656,
+   "pushInRemoveEdge": 3668,
+   "undo": 3673,
+   "undoClearsSelection": true
+  },
+  "h0nodes": 10,
+  "h0edges": 11,
+  "h0past": 0,
+  "h1nodes": 10,
+  "h1edges": 10,
+  "h1past": 1,
+  "h1pastEdgeCounts": [
+   11
+  ],
+  "handleOnlyOneEdge": [
+   "e-AQmdIgKtl2"
+  ],
+  "handleNodesUnchanged": true,
+  "undoEdgesExact": true,
+  "undoNodesExact": true,
+  "undoFuture": 1,
+  "undoSelNode": [],
+  "undoSelEdge": [],
+  "redoEdgesExact": true,
+  "keyPicked": "g-245IDFh8sB",
+  "k1nodes": 10,
+  "k1edges": 11,
+  "k1past": 0,
+  "k2nodes": 9,
+  "k2edges": 10,
+  "k2past": 1,
+  "keyCascadeEdges": 1,
+  "keyUndoNodesExact": true,
+  "keyUndoEdgesExact": true,
+  "selBeforeUndo": [
+   "g-245IDFh8sB"
+  ],
+  "selAfterUndo": [],
+  "bucketActive": "canvas-2",
+  "bucketPastPerCanvas": {
+   "canvas-2": 1
+  },
+  "otherCanvasEdgesBefore": 0,
+  "otherCanvasEdgesAfter": 0,
+  "otherCanvasExact": true,
+  "sourceEdgesAfterBucketUndo": 10,
+  "reloadPastBefore": 1,
+  "reloadPastAfter": 0,
+  "reloadNodesAfter": 10,
+  "reloadEdgesAfter": 11
+ },
+ "failures": []
+}
