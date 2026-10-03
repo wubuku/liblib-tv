@@ -907,7 +907,7 @@
 > ✅ **所以现在能确定的是**：这个数字 = **`runCount`**（接口字段名），带 `w` 时是「万」。
 >
 > ⭐⭐ **而且它远不止这一个数字**（Batch DL 结案）。把一条卡片记录的字段全导出来：
-> **顶层 58 个字段、连嵌套展开一共 126 个**。跟「计数」沾边的就有一串：
+> ⭐ **顶层 63 个字段、连嵌套展开一共 126 个**（Batch DU/DV/DX 四轮实测；早期记的「58 个」已更正）。跟「计数」沾边的就有一串：
 > `runCount` / `downloadCount` / `likeCount` / `commentCount` / `subscribeCount` /
 > `imageCount` / `heat` / `score` / `delay7dDownCount`。
 > **界面上只显示 `runCount` 一个**，其余八个一个都不露。
