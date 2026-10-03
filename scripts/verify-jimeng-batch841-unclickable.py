@@ -4999,6 +4999,85 @@ def main() -> int:
           and "**那个 3/4 是夹具自己的几何造出来的**" in _p936
           and "**只对同一状态内的序列成立**" in _p936
           and "**「祖先里有」与「自己就是」是两回事**" in _p936)
+    p937 = ROOT / "scripts/jimeng_probe937_layer_exclusivity_src.py"
+    _p937 = p937.read_text(encoding="utf-8") if p937.exists() else ""
+    check("XXX.1 ✅⭐⭐⭐ **937：H936「浮层互斥」一半被证实、一半被证伪 —— "
+          "瞬时浮层 24/24 全部互斥，唯一例外是常驻侧栏 "
+          "`canvas-agent-panel`（4/4 全部存活）⇒ **判据仍然一个字不动**（§77）",
+          "source_transient_layers_exclusive_agent_panel_not_937" in _ausrc
+          and "**「浮层互斥」对瞬时浮层成立、对常驻侧栏不成立。**" in _ausrc
+          and "**10/10 被关**" in _ausrc
+          and "**6/6 被关**" in _ausrc
+          and "**8/8 被关**" in _ausrc
+          and "**4/4 全部存活**" in _ausrc
+          # ⭐ 判据钉在**按 A 的身份分组**上，而不是钉某个总数
+          and "**B 把 A 关掉** 24 次，按 A 的身份分组**没有一个例外**" in _ausrc)
+    check("XXX.2 ⭐⭐ **侧栏的互斥性是**不对称**的** —— 它作为 B 照样收掉 A，"
+          "而它自己作为 A 收不掉 ⇒ **它是「开关式常驻侧栏」**，"
+          "不是普通浮层",
+          "**而且是不对称的**：侧栏作为 **B** 时**照样收掉 A**" in _ausrc
+          and "开关式常驻侧栏」：开它会收掉瞬时浮层，" in _ausrc
+          and "而它自己不被瞬时浮层收掉。**" in _ausrc
+          # ⭐ 钉代码：两个方向**都测了**（有向配对，不是无序对）
+          and "for a in openable:" in _p937
+          and "for b in openable:" in _p937
+          and "if a == b:" in _p937)
+    check("XXX.3 ⭐⭐ **判据的「层」定义里有一个未被记录的例外** —— "
+          "`canvas-agent-panel` 落进 `LAYER_SEL` **只因为 testid 以 `-panel` 结尾**，"
+          "它其实是常驻侧栏；但 936 的 42 个层内步里它**一次都没盖住层内控件** "
+          "⇒ **§77 那一档仍不成立、判据不用动**",
+          "只因为它的 " in _ausrc
+          and "未被记录的例外：常驻侧栏与浮层不是一回事，" in _ausrc
+          and "而 `LAYER_SEL` 把它们混在一起。**" in _ausrc
+          and "**即使侧栏与浮层并存，它也没有盖住层内控件**" in _ausrc
+          # ⭐ 钉代码：判据与探针**同一份** `LAYER_SEL`（含那条 `-panel` 规则）
+          and '[data-testid$="-panel"]' in _ausrc
+          and '[data-testid$="-panel"]' in _p937
+          and "assert LAYER_SEL == (" in _p937)
+    check("XXX.4 ⚠️⚠️⚠️ **937 第一版的汇要与真相**正好相反**（"
+          "`k != base_ids` 拿**字符串和集合**比、`!=` 恒为真 ⇒ 把常驻的 "
+          "`canvas-editor-menu` 当成了 A ⇒ `a_survived` 恒真 ⇒ "
+          "打出「32/32 全部并存、H936 被证伪」）—— **靠原始读数先落盘才捞回来**",
+          "探针自己打出的汇总与真相**正好相反**" in _ausrc
+          and "`!=` **恒为真**" in _ausrc
+          and "最后一个**正是常驻的 " in _ausrc
+          and "**32/32 全部并存 ⇒ H936 被证伪**" in _ausrc
+          and "**而从原始读数重算的真相是「24/28 里 B 关掉 A」—— 结论正好相反。**"
+              in _ausrc
+          # ⚠️⚠️ 「错写法必须不在」这条**不能**拿 `k != base_ids` 不在文件里当证据
+          #    —— 探针的**注释里就写着**这句话（那是在解释这个坑）
+          #    ⇒ 拿「全文不含某词」判红是**自欺**（§「锚点判据不能拿全文不含某词
+          #    当证据」的正反两面）。⇒ 改钉**注释里不会出现的那一行代码**：
+          #    错版本里那行是 `k = ("tid:" + o["tid"]) if o["tid"] else (`。
+          and 'k = ("tid:" + o["tid"]) if o["tid"] else (' not in _p937
+          and "a_new = keys_of(ca) - base" in _p937
+          and "a_survived = bool(a_new & keys_of(cb)) if a_opened else None" in _p937)
+    check("XXX.5 ⭐⭐ **新增仪器自身的阴阳对照门** `instrument_discriminates_ok` —— "
+          "`a_survived` **必须两个答案都出现过**（实测 8 True / 24 False）；"
+          "⚠️ **这道门是冲着「结论看起来整齐」去的：越整齐越要验**",
+          "**新增仪器自身的阴阳对照门**" in _ausrc
+          and "**必须两个答案都出现过**" in _ausrc
+          and "**这道门是冲着「结论看起来整齐」去的：越整齐越要验。**" in _ausrc
+          # ⭐ 钉代码：门真的存在，且要求**两面**都非零
+          and '"instrument_discriminates_ok": (' in _p937
+          and 'out["summary"]["n_survived_true"] > 0' in _p937
+          and 'out["summary"]["n_survived_false"] > 0' in _p937
+          # ⭐ 钉代码：「A 到底是谁」必须进读数（否则读的人无从发现测错了对象）
+          and '"a_new_keys": sorted(a_new), "b_new_keys": sorted(b_new),' in _p937)
+    check("XXX.6 ⚠️ **计费边界做成了**结构性禁令**，不是靠自觉** —— "
+          "`FORBIDDEN_TIDS` 含源站实测存在的积分/会员入口 `canvas-commerce-entry`，"
+          "守卫按 `data-testid` **拦在 `mouse.click` 之前**；"
+          "⚠️ 另外 H936 **只覆盖一半**，「这一类 0 观测、判据不动」是 936+937 **合起来**才够",
+          "边界做成了**结构性禁令**（不是靠自觉" in _ausrc
+          and "**拦在 `mouse.click` 之前**" in _ausrc
+          and "**H936 没有被整体证实**" in _ausrc
+          and "**两批合起来才够，本批自己不够**" in _ausrc
+          and "**不许**说 H936 成立" in _ausrc
+          # ⭐ 钉代码：禁令清单与「拦在 click 之前」的顺序
+          and 'FORBIDDEN_TIDS = ("canvas-commerce-entry"' in _p937
+          and "if tid in FORBIDDEN_TIDS:" in _p937
+          and "blocked = guard(pt.get(\"al\"), tid)" in _p937
+          and "if blocked:" in _p937)
     p935 = ROOT / "scripts/jimeng_probe935_body_stop_sweep_src.py"
     _p935 = p935.read_text(encoding="utf-8") if p935.exists() else ""
     check("VVV.1 ✅⭐⭐⭐ **935 把「原理上不可从 DOM 查明」从**假设**升级成"
