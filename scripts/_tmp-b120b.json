@@ -1,0 +1,1060 @@
+{
+ "at": "2026-10-03T00:04:25.591Z",
+ "round": "b",
+ "start": {
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员"
+ },
+ "bottom": {
+  "总数": 67,
+  "明细": [
+   {
+    "tag": "DIV",
+    "tid": null,
+    "id": "root",
+    "cls": "",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "测试项目 节点 76 已保存 分享 805 基础会员 76 nodes, 0 e",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": "workspace-workbench-shell",
+    "id": null,
+    "cls": "relative h-screen min-h-0 min-w-0 overflow-hidden bg-oct",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "测试项目 节点 76 已保存 分享 805 基础会员 76 nodes, 0 e",
+    "aria": null
+   },
+   {
+    "tag": "MAIN",
+    "tid": null,
+    "id": null,
+    "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "76 nodes, 0 edges, 0 selected. Editable.",
+    "aria": "Canvas workspace"
+   },
+   {
+    "tag": "DIV",
+    "tid": "workspace-hydrated-canvas-frame",
+    "id": null,
+    "cls": "relative isolate h-full w-full overflow-hidden bg-dreami",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "76 nodes, 0 edges, 0 selected. Editable.",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "id": null,
+    "cls": "absolute inset-0",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "76 nodes, 0 edges, 0 selected. Editable.",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "id": null,
+    "cls": "absolute inset-0 opacity-workspace-chrome-visible",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "76 nodes, 0 edges, 0 selected. Editable.",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": "canvas-workbench-shell",
+    "id": null,
+    "cls": "relative h-full min-h-0 min-w-0 overflow-hidden bg-dream",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "76 nodes, 0 edges, 0 selected. Editable.",
+    "aria": null
+   },
+   {
+    "tag": "SECTION",
+    "tid": "canvas-main-region",
+    "id": null,
+    "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "76 nodes, 0 edges, 0 selected. Editable.",
+    "aria": "Canvas editing area"
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "id": null,
+    "cls": "relative h-full w-full",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "76 nodes, 0 edges, 0 selected. Editable.",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "id": null,
+    "cls": "w-full h-full",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "视频 1 No resources: 0 ready, 0 processing",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": "rf__wrapper",
+    "id": null,
+    "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "视频 1 No resources: 0 ready, 0 processing",
+    "aria": "Canvas"
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "id": null,
+    "cls": "react-flow__renderer",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "视频 1 No resources: 0 ready, 0 processing",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "id": null,
+    "cls": "react-flow__pane",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "视频 1 No resources: 0 ready, 0 processing",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": "canvas-dot-grid",
+    "id": null,
+    "cls": "absolute inset-0 z-[-1] block w-full h-full pointer-even",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": "canvas-connection-flow-layer-host",
+    "id": null,
+    "cls": "pointer-events-none absolute z-canvas-connection-flow-su",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "",
+    "aria": null
+   },
+   {
+    "tag": "CANVAS",
+    "tid": "canvas-connection-flow-layer",
+    "id": null,
+    "cls": "",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": "canvas-context-menu-terminal-feedback",
+    "id": null,
+    "cls": "sr-only",
+    "rect": [
+     -1,
+     719,
+     1,
+     1
+    ],
+    "可见": true,
+    "屏外1x1": true,
+    "文字": "",
+    "aria": null
+   },
+   {
+    "tag": "ASIDE",
+    "tid": "canvas-feature-sidecar",
+    "id": "canvas-feature-sidecar-agentSession",
+    "cls": "border border-dreamina-stroke-primary rounded-[20px] bg-",
+    "rect": [
+     1068,
+     360,
+     200,
+     348
+    ],
+    "可见": false,
+    "屏外1x1": false,
+    "文字": "",
+    "aria": "Agent"
+   },
+   {
+    "tag": "ASIDE",
+    "tid": "canvas-fixed-toolbar-left-rail",
+    "id": null,
+    "cls": "pointer-events-none absolute bottom-4 left-workspace-chr",
+    "rect": [
+     12,
+     72,
+     160,
+     632
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "文本 图片 视频 音频 时间线 主体 导演台 资产库 上传",
+    "aria": "Canvas left toolbar"
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "id": null,
+    "cls": "pointer-events-none nodrag flex h-full flex-col justify-",
+    "rect": [
+     12,
+     72,
+     160,
+     632
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "文本 图片 视频 音频 时间线 主体 导演台 资产库 上传",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": "workspace-bottom-dock-frame",
+    "id": null,
+    "cls": "pointer-events-none absolute bottom-4 left-workspace-chr",
+    "rect": [
+     12,
+     668,
+     164,
+     36
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "60%",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": "canvas-navigation-dock",
+    "id": null,
+    "cls": "dreamina-canvas-navigation-dock box-border flex h-worksp",
+    "rect": [
+     12,
+     668,
+     164,
+     36
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "60%",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": "canvas-minimap-portal-target",
+    "id": null,
+    "cls": "flex-none pointer-events-none",
+    "rect": [
+     16,
+     554,
+     156,
+     114
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": "canvas-bottom-dock",
+    "id": null,
+    "cls": "flex h-workspace-chrome-icon-control w-canvas-bottom-doc",
+    "rect": [
+     16,
+     672,
+     156,
+     28
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "60%",
+    "aria": "Canvas viewport controls"
+   },
+   {
+    "tag": "BUTTON",
+    "tid": "canvas-pointer-tool-toggle",
+    "id": null,
+    "cls": "inline-flex items-center justify-center gap-1 whitespace",
+    "rect": [
+     16,
+     672,
+     28,
+     28
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "",
+    "aria": "选择工具"
+   },
+   {
+    "tag": "BUTTON",
+    "tid": "canvas-display-toggle-minimap",
+    "id": null,
+    "cls": "inline-flex items-center justify-center gap-1 whitespace",
+    "rect": [
+     48,
+     672,
+     28,
+     28
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "",
+    "aria": "小地图"
+   },
+   {
+    "tag": "BUTTON",
+    "tid": "canvas-display-toggle-connections",
+    "id": null,
+    "cls": "inline-flex items-center justify-center gap-1 whitespace",
+    "rect": [
+     80,
+     672,
+     28,
+     28
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "",
+    "aria": "显示连线"
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "id": null,
+    "cls": "relative h-canvas-bottom-dock-zoom-percent-block w-canva",
+    "rect": [
+     124,
+     672,
+     48,
+     28
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "60%",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "id": null,
+    "cls": "relative h-canvas-bottom-dock-zoom-percent-block w-canva",
+    "rect": [
+     124,
+     672,
+     48,
+     28
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "60%",
+    "aria": null
+   },
+   {
+    "tag": "BUTTON",
+    "tid": "canvas-zoom-percent",
+    "id": "radix-:modern-js-rg:",
+    "cls": "inline-flex items-center justify-center gap-1 whitespace",
+    "rect": [
+     124,
+     672,
+     48,
+     28
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "60%",
+    "aria": "Zoom options, 60%"
+   },
+   {
+    "tag": "P",
+    "tid": null,
+    "id": null,
+    "cls": "sr-only",
+    "rect": [
+     123,
+     699,
+     1,
+     1
+    ],
+    "可见": true,
+    "屏外1x1": true,
+    "文字": "",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": "canvas-sidecar-launchers",
+    "id": null,
+    "cls": "pointer-events-none absolute bottom-3 right-3 flex flex-",
+    "rect": [
+     1148,
+     672,
+     120,
+     36
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "与 AI 对话",
+    "aria": null
+   },
+   {
+    "tag": "DIV",
+    "tid": "assistant-sidecar-launcher-frame",
+    "id": null,
+    "cls": "inline-flex items-center justify-center gap-workspace-ch",
+    "rect": [
+     1148,
+     672,
+     120,
+     36
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "与 AI 对话",
+    "aria": null
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "id": null,
+    "cls": "relative flex items-center",
+    "rect": [
+     1165,
+     680,
+     84,
+     20
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "与 AI 对话",
+    "aria": null
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "id": null,
+    "cls": "",
+    "rect": [
+     1189,
+     680,
+     60,
+     20
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "与 AI 对话",
+    "aria": null
+   },
+   {
+    "tag": "BUTTON",
+    "tid": "canvas-sidecar-launcher",
+    "id": null,
+    "cls": "inline-flex items-center justify-center gap-1 whitespace",
+    "rect": [
+     1149,
+     673,
+     118,
+     34
+    ],
+    "可见": true,
+    "屏外1x1": false,
+    "文字": "",
+    "aria": "与 AI 对话"
+   }
+  ]
+ },
+ "live": {
+  "r1存在": true,
+  "r1链": [
+   {
+    "tag": "SPAN",
+    "id": ":modern-js-r1:",
+    "tid": null,
+    "cls": "sr-only",
+    "rect": [
+     -1,
+     -1,
+     1,
+     1
+    ],
+    "pos": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+   },
+   {
+    "tag": "DIV",
+    "id": null,
+    "tid": null,
+    "cls": "relative h-full w-full",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "pos": "relative",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.视频 1No resources: 0 ready, 0 processing, 0 failed. Not selected.文本 1时间线 100:00/00:00全屏编辑00:0000:0500:1000:1500:2000:2500:30添加素材到时间线时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.文本 2文本 3导演台在 3D 空间中设计角色、机位与镜头进入导演台No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 1No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 2No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 3No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 4No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 5No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 6No resources: 0 ready, 0 processing, 0 failed. Not selected.b22-upload音频 7No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 8No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 9No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 10No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 11No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 12No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 13No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 14No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 15No resources: 0 ready, 0 processing, 0 failed. Not selected.时间线 200:00/00:00全屏编辑00:0000:0500:1000:1500:2000:2500:30添加素材到时间线时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.音频 16No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 17No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 18No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 19No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 20No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 21No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 22No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 23No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 24No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 25No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 26No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 27No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 28No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 29No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 30No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 31No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 32No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 33No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 34No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 35No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 36No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 37No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 38No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 39No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 40No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 41No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 42No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 43No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 44No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 45No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 46No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 47No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 48No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 49No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 50No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 51No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 52No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 53No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 54No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 55No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 56No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 57No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 58No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 59No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 60No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 61No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 62No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 63No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 64No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 65No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 66No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 67No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 68No resources: 0 ready, 0 processing, 0 failed. Not selected.当前视窗没有内容回到节点b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completejimeng-b102-tiny.png: Upload completejimeng-b104-test.wav: Upload completejimeng-b112-truncated.png: Upload completejimeng-b112-badidat.png: Upload completejimeng-b112-truncated.png: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completePress enter or space to select a node. Press delete to remove it and escape to cancel.Press enter or space to select an edge. You can then press delete to remove it or escape to cancel."
+   },
+   {
+    "tag": "SECTION",
+    "id": null,
+    "tid": "canvas-main-region",
+    "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "pos": "absolute",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": "Canvas editing area",
+    "文字": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.视频 1No resources: 0 ready, 0 processing, 0 failed. Not selected.文本 1时间线 100:00/00:00全屏编辑00:0000:0500:1000:1500:2000:2500:30添加素材到时间线时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.文本 2文本 3导演台在 3D 空间中设计角色、机位与镜头进入导演台No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 1No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 2No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 3No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 4No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 5No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 6No resources: 0 ready, 0 processing, 0 failed. Not selected.b22-upload音频 7No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 8No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 9No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 10No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 11No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 12No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 13No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 14No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 15No resources: 0 ready, 0 processing, 0 failed. Not selected.时间线 200:00/00:00全屏编辑00:0000:0500:1000:1500:2000:2500:30添加素材到时间线时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.音频 16No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 17No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 18No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 19No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 20No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 21No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 22No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 23No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 24No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 25No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 26No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 27No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 28No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 29No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 30No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 31No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 32No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 33No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 34No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 35No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 36No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 37No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 38No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 39No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 40No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 41No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 42No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 43No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 44No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 45No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 46No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 47No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 48No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 49No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 50No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 51No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 52No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 53No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 54No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 55No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 56No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 57No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 58No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 59No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 60No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 61No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 62No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 63No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 64No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 65No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 66No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 67No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 68No resources: 0 ready, 0 processing, 0 failed. Not selected.当前视窗没有内容回到节点b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completejimeng-b102-tiny.png: Upload completejimeng-b104-test.wav: Upload completejimeng-b112-truncated.png: Upload completejimeng-b112-badidat.png: Upload completejimeng-b112-truncated.png: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completePress enter or space to select a node. Press delete to remove it and escape to cancel.Press enter or space to select an edge. You can then press delete to remove it or escape to cancel."
+   },
+   {
+    "tag": "DIV",
+    "id": null,
+    "tid": "canvas-workbench-shell",
+    "cls": "relative h-full min-h-0 min-w-0 overflow-hidden bg-dream",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "pos": "relative",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.视频 1No resources: 0 ready, 0 processing, 0 failed. Not selected.文本 1时间线 100:00/00:00全屏编辑00:0000:0500:1000:1500:2000:2500:30添加素材到时间线时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.文本 2文本 3导演台在 3D 空间中设计角色、机位与镜头进入导演台No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 1No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 2No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 3No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 4No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 5No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 6No resources: 0 ready, 0 processing, 0 failed. Not selected.b22-upload音频 7No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 8No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 9No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 10No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 11No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 12No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 13No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 14No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 15No resources: 0 ready, 0 processing, 0 failed. Not selected.时间线 200:00/00:00全屏编辑00:0000:0500:1000:1500:2000:2500:30添加素材到时间线时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.音频 16No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 17No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 18No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 19No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 20No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 21No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 22No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 23No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 24No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 25No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 26No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 27No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 28No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 29No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 30No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 31No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 32No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 33No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 34No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 35No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 36No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 37No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 38No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 39No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 40No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 41No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 42No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 43No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 44No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 45No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 46No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 47No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 48No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 49No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 50No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 51No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 52No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 53No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 54No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 55No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 56No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 57No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 58No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 59No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 60No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 61No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 62No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 63No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 64No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 65No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 66No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 67No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 68No resources: 0 ready, 0 processing, 0 failed. Not selected.当前视窗没有内容回到节点b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completejimeng-b102-tiny.png: Upload completejimeng-b104-test.wav: Upload completejimeng-b112-truncated.png: Upload completejimeng-b112-badidat.png: Upload completejimeng-b112-truncated.png: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completePress enter or space to select a node. Press delete to remove it and escape to cancel.Press enter or space to select an edge. You can then press delete to remove it or escape to cancel."
+   },
+   {
+    "tag": "DIV",
+    "id": null,
+    "tid": null,
+    "cls": "absolute inset-0 opacity-workspace-chrome-visible",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "pos": "absolute",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.视频 1No resources: 0 ready, 0 processing, 0 failed. Not selected.文本 1时间线 100:00/00:00全屏编辑00:0000:0500:1000:1500:2000:2500:30添加素材到时间线时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.文本 2文本 3导演台在 3D 空间中设计角色、机位与镜头进入导演台No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 1No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 2No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 3No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 4No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 5No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 6No resources: 0 ready, 0 processing, 0 failed. Not selected.b22-upload音频 7No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 8No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 9No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 10No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 11No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 12No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 13No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 14No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 15No resources: 0 ready, 0 processing, 0 failed. Not selected.时间线 200:00/00:00全屏编辑00:0000:0500:1000:1500:2000:2500:30添加素材到时间线时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.音频 16No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 17No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 18No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 19No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 20No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 21No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 22No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 23No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 24No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 25No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 26No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 27No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 28No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 29No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 30No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 31No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 32No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 33No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 34No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 35No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 36No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 37No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 38No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 39No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 40No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 41No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 42No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 43No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 44No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 45No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 46No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 47No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 48No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 49No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 50No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 51No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 52No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 53No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 54No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 55No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 56No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 57No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 58No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 59No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 60No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 61No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 62No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 63No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 64No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 65No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 66No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 67No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 68No resources: 0 ready, 0 processing, 0 failed. Not selected.当前视窗没有内容回到节点b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completejimeng-b102-tiny.png: Upload completejimeng-b104-test.wav: Upload completejimeng-b112-truncated.png: Upload completejimeng-b112-badidat.png: Upload completejimeng-b112-truncated.png: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completePress enter or space to select a node. Press delete to remove it and escape to cancel.Press enter or space to select an edge. You can then press delete to remove it or escape to cancel."
+   },
+   {
+    "tag": "DIV",
+    "id": null,
+    "tid": null,
+    "cls": "absolute inset-0",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "pos": "absolute",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.视频 1No resources: 0 ready, 0 processing, 0 failed. Not selected.文本 1时间线 100:00/00:00全屏编辑00:0000:0500:1000:1500:2000:2500:30添加素材到时间线时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.文本 2文本 3导演台在 3D 空间中设计角色、机位与镜头进入导演台No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 1No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 2No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 3No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 4No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 5No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 6No resources: 0 ready, 0 processing, 0 failed. Not selected.b22-upload音频 7No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 8No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 9No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 10No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 11No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 12No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 13No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 14No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 15No resources: 0 ready, 0 processing, 0 failed. Not selected.时间线 200:00/00:00全屏编辑00:0000:0500:1000:1500:2000:2500:30添加素材到时间线时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.音频 16No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 17No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 18No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 19No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 20No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 21No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 22No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 23No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 24No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 25No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 26No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 27No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 28No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 29No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 30No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 31No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 32No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 33No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 34No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 35No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 36No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 37No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 38No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 39No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 40No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 41No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 42No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 43No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 44No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 45No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 46No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 47No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 48No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 49No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 50No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 51No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 52No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 53No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 54No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 55No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 56No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 57No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 58No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 59No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 60No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 61No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 62No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 63No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 64No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 65No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 66No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 67No resources: 0 ready, 0 processing, 0 failed. Not selected.音频 68No resources: 0 ready, 0 processing, 0 failed. Not selected.当前视窗没有内容回到节点b22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completeb22-upload.png: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b101-test-avc1.mp4: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completejimeng-b102-tiny.png: Upload completejimeng-b104-test.wav: Upload completejimeng-b112-truncated.png: Upload completejimeng-b112-badidat.png: Upload completejimeng-b112-truncated.png: Upload completejimeng-b104-test.wav: Upload completejimeng-b104-test.wav: Upload completePress enter or space to select a node. Press delete to remove it and escape to cancel.Press enter or space to select an edge. You can then press delete to remove it or escape to cancel."
+   }
+  ],
+  "全部modern区": [
+   {
+    "tag": "SPAN",
+    "id": ":modern-js-r1:",
+    "tid": null,
+    "cls": "sr-only",
+    "rect": [
+     -1,
+     -1,
+     1,
+     1
+    ],
+    "pos": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+   },
+   {
+    "tag": "INPUT",
+    "id": ":modern-js-r28:",
+    "tid": null,
+    "cls": "",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": ""
+   }
+  ],
+  "全部1x1屏外testid": [
+   {
+    "tag": "DIV",
+    "id": null,
+    "tid": "canvas-fixed-toolbar-workspace-top-bar-surface",
+    "cls": "contents",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": ""
+   },
+   {
+    "tag": "SPAN",
+    "id": null,
+    "tid": "canvas-panel-workspace-top-bar-launchers",
+    "cls": "contents",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": ""
+   },
+   {
+    "tag": "SPAN",
+    "id": null,
+    "tid": "canvas-panel-workspace-top-bar-launchers",
+    "cls": "contents",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": ""
+   },
+   {
+    "tag": "DIV",
+    "id": null,
+    "tid": "canvas-collaborators-workspace-top-bar-surface",
+    "cls": "contents",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": ""
+   },
+   {
+    "tag": "SPAN",
+    "id": null,
+    "tid": "workspace-preparing-account-summary",
+    "cls": "min-w-canvas-zero flex h-workspace-chrome-icon-control i",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": "--"
+   },
+   {
+    "tag": "SPAN",
+    "id": null,
+    "tid": "workspace-account-summary-content",
+    "cls": "flex h-full items-center gap-workspace-chrome-label-gap",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": "--"
+   },
+   {
+    "tag": "DIV",
+    "id": null,
+    "tid": "canvas-save-failure-anchor",
+    "cls": "pointer-events-none absolute z-canvas-chrome right-4 top",
+    "rect": [
+     1264,
+     72,
+     0,
+     0
+    ],
+    "pos": "absolute",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": ""
+   },
+   {
+    "tag": "DIV",
+    "id": null,
+    "tid": "timeline-node-track-divider",
+    "cls": "absolute top-0 right-0 bottom-0 w-canvas-timeline-node-t",
+    "rect": [
+     -955,
+     -958,
+     0,
+     83
+    ],
+    "pos": "absolute",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": ""
+   },
+   {
+    "tag": "DIV",
+    "id": null,
+    "tid": "timeline-node-track-divider",
+    "cls": "absolute top-0 right-0 bottom-0 w-canvas-timeline-node-t",
+    "rect": [
+     -209,
+     -582,
+     0,
+     83
+    ],
+    "pos": "absolute",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": ""
+   },
+   {
+    "tag": "DIV",
+    "id": null,
+    "tid": "default-feature-overlay-interaction-boundary",
+    "cls": "contents",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "static",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": ""
+   },
+   {
+    "tag": "DIV",
+    "id": null,
+    "tid": "back-to-content-overlay",
+    "cls": "pointer-events-auto absolute top-back-to-content-top lef",
+    "rect": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "pos": "absolute",
+    "clip": "auto",
+    "role": null,
+    "aria-live": null,
+    "aria-atomic": null,
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": "当前视窗没有内容回到节点"
+   },
+   {
+    "tag": "DIV",
+    "id": null,
+    "tid": "canvas-context-menu-terminal-feedback",
+    "cls": "sr-only",
+    "rect": [
+     -1,
+     719,
+     1,
+     1
+    ],
+    "pos": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "role": null,
+    "aria-live": "polite",
+    "aria-atomic": "true",
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": ""
+   },
+   {
+    "tag": "DIV",
+    "id": null,
+    "tid": "canvas-creation-entry-feedback",
+    "cls": "sr-only",
+    "rect": [
+     -1,
+     -1,
+     1,
+     1
+    ],
+    "pos": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "role": null,
+    "aria-live": "polite",
+    "aria-atomic": "true",
+    "aria-relevant": null,
+    "aria-label": null,
+    "文字": ""
+   }
+  ]
+ },
+ "visible": {
+  "顶栏保存状态": {
+   "sel": "[data-testid=\"canvas-title-save-status\"]",
+   "rect": [
+    206,
+    21,
+    30,
+    18
+   ],
+   "文字": "已保存",
+   "可见": true
+  },
+  "顶栏节点计数": {
+   "sel": "[data-testid=\"canvas-node-summary-trigger\"]",
+   "rect": [
+    156,
+    16,
+    34,
+    28
+   ],
+   "文字": "节点 76",
+   "可见": true
+  },
+  "提示条叶子": [
+   {
+    "tag": "OUTPUT",
+    "tid": "canvas-title-save-status",
+    "cls": "text-center font-dreamina-cn text-dreamina-cn-10 f",
+    "rect": [
+     206,
+     21,
+     30,
+     18
+    ],
+    "文字": "已保存"
+   }
+  ]
+ },
+ "end": {
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}
