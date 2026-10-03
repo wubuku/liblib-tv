@@ -1,0 +1,312 @@
+{
+  "特效scrollH": "2338",
+  "特效": [
+    {
+      "序": 0,
+      "徽标": null,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Seedance 2.0",
+        "Kling 3.0",
+        "Kling O3"
+      ]
+    },
+    {
+      "序": 1,
+      "徽标": null,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Seedance 2.0",
+        "Kling 3.0",
+        "Kling O3"
+      ]
+    },
+    {
+      "序": 2,
+      "徽标": null,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Seedance 2.0",
+        "Kling 3.0",
+        "Kling O3"
+      ]
+    },
+    {
+      "序": 3,
+      "徽标": null,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Seedance 2.0",
+        "Kling 3.0",
+        "Kling O3"
+      ]
+    },
+    {
+      "序": 4,
+      "徽标": null,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Seedance 2.0",
+        "Kling 3.0",
+        "Kling O3"
+      ]
+    },
+    {
+      "序": 5,
+      "徽标": null,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Seedance 2.0",
+        "Kling 3.0",
+        "Kling O3"
+      ]
+    },
+    {
+      "序": 6,
+      "徽标": null,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Seedance 2.0",
+        "Kling 3.0",
+        "Kling O3"
+      ]
+    },
+    {
+      "序": 7,
+      "徽标": null,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Seedance 2.0",
+        "Kling 3.0",
+        "Kling O3"
+      ]
+    },
+    {
+      "序": 8,
+      "徽标": null,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Seedance 2.0",
+        "Kling 3.0",
+        "Kling O3"
+      ]
+    },
+    {
+      "序": 9,
+      "徽标": null,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Seedance 2.0",
+        "Kling 3.0",
+        "Kling O3"
+      ]
+    },
+    {
+      "序": 10,
+      "徽标": null,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Seedance 2.0",
+        "Kling 3.0",
+        "Kling O3"
+      ]
+    },
+    {
+      "序": 11,
+      "徽标": null,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Seedance 2.0",
+        "Kling 3.0",
+        "Kling O3"
+      ]
+    }
+  ],
+  "分类": [
+    {
+      "分类": "摄影写真",
+      "scrollH": "2265",
+      "视口卡数": 11,
+      "徽标": 9,
+      "入口": 2,
+      "采样": [
+        {
+          "徽标": null,
+          "有面板": true,
+          "模型数": 5,
+          "模型": [
+            "Lib Image",
+            "General image Pro",
+            "General image V2",
+            "Seedream 4.5",
+            "Seedream 5.0"
+          ]
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": null,
+          "有面板": true,
+          "模型数": 3,
+          "模型": [
+            "Lib Image",
+            "General image V2",
+            "General image Pro"
+          ]
+        }
+      ]
+    },
+    {
+      "分类": "电商营销",
+      "scrollH": "2265",
+      "视口卡数": 12,
+      "徽标": 10,
+      "入口": 2,
+      "采样": [
+        {
+          "徽标": null,
+          "有面板": true,
+          "模型数": 3,
+          "模型": [
+            "Lib Image",
+            "General image V2",
+            "General image Pro"
+          ]
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        }
+      ]
+    },
+    {
+      "分类": "动漫游戏",
+      "scrollH": "2265",
+      "视口卡数": 11,
+      "徽标": 9,
+      "入口": 2,
+      "采样": [
+        {
+          "徽标": "Lib Image",
+          "有面板": false
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": null,
+          "有面板": true,
+          "模型数": 2,
+          "模型": [
+            "Z Image",
+            "Qwen Image"
+          ]
+        },
+        {
+          "徽标": null,
+          "有面板": true,
+          "模型数": 5,
+          "模型": [
+            "General image Pro",
+            "General image V2",
+            "Seedream 5.0",
+            "Seedream 4.5",
+            "Lib Image"
+          ]
+        }
+      ]
+    },
+    {
+      "分类": "风格插画",
+      "scrollH": "2265",
+      "视口卡数": 12,
+      "徽标": 10,
+      "入口": 2,
+      "采样": [
+        {
+          "徽标": null,
+          "有面板": true,
+          "模型数": 5,
+          "模型": [
+            "General image V2",
+            "Seedream 5.0",
+            "Seedream 4.5",
+            "General image Pro",
+            "Lib Image"
+          ]
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        },
+        {
+          "徽标": "Qwen Image",
+          "有面板": false
+        }
+      ]
+    }
+  ]
+}
