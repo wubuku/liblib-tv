@@ -1,0 +1,881 @@
+{
+ "at": "2026-10-03T02:39:33.117Z",
+ "round": "a",
+ "start": {
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员",
+  "status": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "浮层": 0
+ },
+ "launcher_before": {
+  "候选": [
+   {
+    "tag": "BUTTON",
+    "tid": "canvas-panel-launcher",
+    "aria": "搜索",
+    "ariaExpanded": "false",
+    "dataState": "closed",
+    "矩形": [
+     911,
+     16,
+     28,
+     28
+    ]
+   },
+   {
+    "tag": "BUTTON",
+    "tid": "canvas-panel-launcher",
+    "aria": "生成历史",
+    "ariaExpanded": "false",
+    "dataState": "closed",
+    "矩形": [
+     943,
+     16,
+     28,
+     28
+    ]
+   }
+  ],
+  "目标tag": "BUTTON",
+  "目标ariaExpanded": "false",
+  "目标dataState": "closed",
+  "目标矩形": [
+   943,
+   16,
+   28,
+   28
+  ],
+  "目标子元素数": 1,
+  "目标内可点": []
+ },
+ "opened": {
+  "面板存在": true,
+  "启动器ariaExpanded": "true",
+  "启动器dataState": "closed"
+ },
+ "tree": {
+  "面板": {
+   "tag": "ASIDE",
+   "cls": "nodrag nowheel absolute z-canvas-chrome outline-none transit",
+   "role": "dialog",
+   "aria": "生成历史",
+   "矩形": [
+    797,
+    56,
+    320,
+    211
+   ],
+   "孩子数": 1,
+   "position": "absolute",
+   "zIndex": "30",
+   "pointerEvents": "auto",
+   "overflow": "visible"
+  },
+  "逐字": "生成历史 积分明细 全部 图片 视频 音频 文本 暂无生成历史",
+  "有面积元素数": 22,
+  "无面积元素": [],
+  "树": [
+   {
+    "d": 0,
+    "tag": "ASIDE",
+    "cls": "nodrag nowheel absolute z-canvas-chrome ",
+    "role": "dialog",
+    "tid": "canvas-feature-panel",
+    "aria": "生成历史",
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     797,
+     56,
+     320,
+     211
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "生成历史 积分明细 全部 图片 视频 音频 文本 暂无生成历史"
+   },
+   {
+    "d": 1,
+    "tag": "DIV",
+    "cls": "octo-canvas-panel-surface h-full w-full ",
+    "role": null,
+    "tid": "canvas-feature-panel-surface",
+    "aria": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     797,
+     56,
+     320,
+     211
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "生成历史 积分明细 全部 图片 视频 音频 文本 暂无生成历史"
+   },
+   {
+    "d": 2,
+    "tag": "DIV",
+    "cls": "octo-canvas-panel-adaptive-content flex ",
+    "role": null,
+    "tid": "canvas-feature-panel-content",
+    "aria": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     797,
+     56,
+     320,
+     211
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "生成历史 积分明细 全部 图片 视频 音频 文本 暂无生成历史"
+   },
+   {
+    "d": 3,
+    "tag": "SECTION",
+    "cls": "relative flex w-full max-h-full min-h-ge",
+    "role": null,
+    "tid": "generation-history-panel",
+    "aria": "生成历史",
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     797,
+     56,
+     320,
+     211
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "生成历史 积分明细 全部 图片 视频 音频 文本 暂无生成历史"
+   },
+   {
+    "d": 4,
+    "tag": "DIV",
+    "cls": "flex shrink-0 items-center justify-betwe",
+    "role": null,
+    "tid": null,
+    "aria": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     797,
+     56,
+     320,
+     56
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "生成历史 积分明细"
+   },
+   {
+    "d": 5,
+    "tag": "H2",
+    "cls": "flex h-generation-history-panel-title it",
+    "role": null,
+    "tid": null,
+    "aria": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     813,
+     72,
+     56,
+     36
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "生成历史"
+   },
+   {
+    "d": 5,
+    "tag": "BUTTON",
+    "cls": "inline-flex items-center justify-center ",
+    "role": null,
+    "tid": null,
+    "aria": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     1033,
+     72,
+     68,
+     36
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "积分明细"
+   },
+   {
+    "d": 6,
+    "tag": "svg",
+    "cls": "",
+    "role": null,
+    "tid": null,
+    "aria": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     1089,
+     84,
+     12,
+     12
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": ""
+   },
+   {
+    "d": 4,
+    "tag": "DIV",
+    "cls": "flex h-generation-history-filter shrink-",
+    "role": "tablist",
+    "tid": null,
+    "aria": "History categories",
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     797,
+     112,
+     320,
+     36
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "全部 图片 视频 音频 文本"
+   },
+   {
+    "d": 5,
+    "tag": "BUTTON",
+    "cls": "inline-flex items-center justify-center ",
+    "role": "tab",
+    "tid": null,
+    "aria": null,
+    "ariaSelected": "true",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     807,
+     112,
+     42,
+     36
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "全部"
+   },
+   {
+    "d": 6,
+    "tag": "SPAN",
+    "cls": "relative inline-block after:absolute aft",
+    "role": null,
+    "tid": null,
+    "aria": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     815,
+     119,
+     26,
+     22
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "全部"
+   },
+   {
+    "d": 5,
+    "tag": "BUTTON",
+    "cls": "inline-flex items-center justify-center ",
+    "role": "tab",
+    "tid": null,
+    "aria": null,
+    "ariaSelected": "false",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     853,
+     112,
+     42,
+     36
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "图片"
+   },
+   {
+    "d": 6,
+    "tag": "SPAN",
+    "cls": "relative inline-block",
+    "role": null,
+    "tid": null,
+    "aria": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     861,
+     119,
+     26,
+     22
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "图片"
+   },
+   {
+    "d": 5,
+    "tag": "BUTTON",
+    "cls": "inline-flex items-center justify-center ",
+    "role": "tab",
+    "tid": null,
+    "aria": null,
+    "ariaSelected": "false",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     899,
+     112,
+     42,
+     36
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "视频"
+   },
+   {
+    "d": 6,
+    "tag": "SPAN",
+    "cls": "relative inline-block",
+    "role": null,
+    "tid": null,
+    "aria": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     907,
+     119,
+     26,
+     22
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "视频"
+   },
+   {
+    "d": 5,
+    "tag": "BUTTON",
+    "cls": "inline-flex items-center justify-center ",
+    "role": "tab",
+    "tid": null,
+    "aria": null,
+    "ariaSelected": "false",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     945,
+     112,
+     42,
+     36
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "音频"
+   },
+   {
+    "d": 6,
+    "tag": "SPAN",
+    "cls": "relative inline-block",
+    "role": null,
+    "tid": null,
+    "aria": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     953,
+     119,
+     26,
+     22
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "音频"
+   },
+   {
+    "d": 5,
+    "tag": "BUTTON",
+    "cls": "inline-flex items-center justify-center ",
+    "role": "tab",
+    "tid": null,
+    "aria": null,
+    "ariaSelected": "false",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     991,
+     112,
+     42,
+     36
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "文本"
+   },
+   {
+    "d": 6,
+    "tag": "SPAN",
+    "cls": "relative inline-block",
+    "role": null,
+    "tid": null,
+    "aria": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     999,
+     119,
+     26,
+     22
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "文本"
+   },
+   {
+    "d": 4,
+    "tag": "DIV",
+    "cls": "flex flex-1 flex-col overflow-hidden px-",
+    "role": null,
+    "tid": null,
+    "aria": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     797,
+     148,
+     320,
+     119
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "暂无生成历史"
+   },
+   {
+    "d": 5,
+    "tag": "DIV",
+    "cls": "size-full",
+    "role": "tabpanel",
+    "tid": null,
+    "aria": "History items",
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     813,
+     160,
+     288,
+     91
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "暂无生成历史"
+   },
+   {
+    "d": 6,
+    "tag": "DIV",
+    "cls": "relative h-generation-history-empty-body",
+    "role": null,
+    "tid": null,
+    "aria": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "ariaExpanded": null,
+    "rect": [
+     813,
+     160,
+     288,
+     91
+    ],
+    "有面积": true,
+    "pe": "auto",
+    "srOnly": false,
+    "文字": "暂无生成历史"
+   }
+  ]
+ },
+ "tabs": {
+  "roleTab": [
+   {
+    "tag": "BUTTON",
+    "role": "tab",
+    "tid": null,
+    "ariaSelected": "true",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "rect": [
+     807,
+     112,
+     42,
+     36
+    ],
+    "文字": "全部"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "tab",
+    "tid": null,
+    "ariaSelected": "false",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "rect": [
+     853,
+     112,
+     42,
+     36
+    ],
+    "文字": "图片"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "tab",
+    "tid": null,
+    "ariaSelected": "false",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "rect": [
+     899,
+     112,
+     42,
+     36
+    ],
+    "文字": "视频"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "tab",
+    "tid": null,
+    "ariaSelected": "false",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "rect": [
+     945,
+     112,
+     42,
+     36
+    ],
+    "文字": "音频"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "tab",
+    "tid": null,
+    "ariaSelected": "false",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "rect": [
+     991,
+     112,
+     42,
+     36
+    ],
+    "文字": "文本"
+   }
+  ],
+  "tablist": [
+   {
+    "tag": "DIV",
+    "role": "tablist",
+    "tid": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "rect": [
+     797,
+     112,
+     320,
+     36
+    ],
+    "文字": "全部 图片 视频 音频 文本"
+   }
+  ],
+  "tabpanel": [
+   {
+    "tag": "DIV",
+    "role": "tabpanel",
+    "tid": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "rect": [
+     813,
+     160,
+     288,
+     91
+    ],
+    "文字": "暂无生成历史",
+    "逐字": "暂无生成历史"
+   }
+  ],
+  "全部button": [
+   {
+    "tag": "BUTTON",
+    "role": null,
+    "tid": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "rect": [
+     1033,
+     72,
+     68,
+     36
+    ],
+    "文字": "积分明细"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "tab",
+    "tid": null,
+    "ariaSelected": "true",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "rect": [
+     807,
+     112,
+     42,
+     36
+    ],
+    "文字": "全部"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "tab",
+    "tid": null,
+    "ariaSelected": "false",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "rect": [
+     853,
+     112,
+     42,
+     36
+    ],
+    "文字": "图片"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "tab",
+    "tid": null,
+    "ariaSelected": "false",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "rect": [
+     899,
+     112,
+     42,
+     36
+    ],
+    "文字": "视频"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "tab",
+    "tid": null,
+    "ariaSelected": "false",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "rect": [
+     945,
+     112,
+     42,
+     36
+    ],
+    "文字": "音频"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "tab",
+    "tid": null,
+    "ariaSelected": "false",
+    "ariaControls": "generation-history-items",
+    "dataState": null,
+    "rect": [
+     991,
+     112,
+     42,
+     36
+    ],
+    "文字": "文本"
+   }
+  ],
+  "全部可点": [],
+  "内部testid": [
+   "canvas-feature-panel-surface",
+   "canvas-feature-panel-content",
+   "generation-history-panel"
+  ],
+  "内部aria": [
+   "生成历史",
+   "History categories",
+   "History items"
+  ],
+  "内部表格": [],
+  "内部input": []
+ },
+ "host": {
+  "同矩形元素": [
+   {
+    "tag": "ASIDE",
+    "cls": "nodrag nowheel absolute z-canvas-chrome ",
+    "tid": "canvas-feature-panel",
+    "role": "dialog"
+   },
+   {
+    "tag": "DIV",
+    "cls": "octo-canvas-panel-surface h-full w-full ",
+    "tid": "canvas-feature-panel-surface",
+    "role": null
+   },
+   {
+    "tag": "DIV",
+    "cls": "octo-canvas-panel-adaptive-content flex ",
+    "tid": "canvas-feature-panel-content",
+    "role": null
+   },
+   {
+    "tag": "SECTION",
+    "cls": "relative flex w-full max-h-full min-h-ge",
+    "tid": "generation-history-panel",
+    "role": null
+   }
+  ],
+  "祖先链": [
+   {
+    "tag": "DIV",
+    "cls": "relative h-full min-h-0 min-w-0 overflow",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "tag": "DIV",
+    "cls": "absolute inset-0 opacity-workspace-chrom",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "tag": "DIV",
+    "cls": "absolute inset-0",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "tag": "DIV",
+    "cls": "relative isolate h-full w-full overflow-",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   },
+   {
+    "tag": "MAIN",
+    "cls": "absolute inset-0 min-h-0 min-w-0 overflo",
+    "rect": [
+     0,
+     0,
+     1280,
+     720
+    ]
+   }
+  ],
+  "面板父": {
+   "tag": "DIV",
+   "cls": "relative h-full min-h-0 min-w-0 overflow",
+   "tid": "canvas-workbench-shell",
+   "rect": [
+    0,
+    0,
+    1280,
+    720
+   ]
+  }
+ },
+ "收尾": {
+  "浮层": 1,
+  "选中": 0,
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员",
+  "status": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+ }
+}

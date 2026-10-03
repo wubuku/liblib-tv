@@ -475,6 +475,20 @@
       ],
       "refuted_in": "批次 120（SOURCE_OBSERVATIONS.md §4.40）",
       "reason": "**屏幕上根本没有这条横线。** 2026-10-03 批次 120 在 1280×720 @dpr2 上实测：那句逐字文本的**全文档唯一宿主**是 `SPAN#:modern-js-r1:`，class `sr-only`、矩形 `1×1@(-1,-1)`（视口左上角之外）、`position:absolute` + `clip: rect(0px,0px,0px,0px)`，**自己没有 `aria-live`、5 层祖先也都没有、`role` 也不是 `status`** ⇒ 它不是播报区，就是一段屏外隐藏文本。判「全文档唯一」的依据：按「命中且没有更内层命中」筛出的最内层宿主**恰好 1 个**。全文档 171 种 `data-testid` 里**没有任何底部状态行**；底部只有 `workspace-bottom-dock-frame`/`canvas-navigation-dock` `164×36@12,668`、`canvas-bottom-dock` `156×28@16,672`、`canvas-sidecar-launchers` `120×36@1148,672`。**两条不共享假设的旁证**都看不到它：① 本轮实时截图 y 660–720 条带；② 早期批次真实截图 `09-connect-nodes-edge-created.png` 底部 150px（100% 缩放、另一个视口）。⚠️ 它**确实随状态实时更新**（同轮：选中后 `0 selected`→`1 selected`；建节点后 `76 nodes`→`77 nodes`）⇒ **规则本身继续有效，要改的只是「用户能在屏幕上找到它」这个说法**：屏上唯一可见的数量读数是顶栏 `canvas-node-summary-trigger` `34×28@156,16` 逐字「节点 76」，**只有节点数，没有连线数与选中数**。📌 顺带订正：`00-quickstart.md` 原写「已保存」出现在底部状态行里 —— **归属写错**，它在**顶栏** `OUTPUT[data-testid=\"canvas-title-save-status\"]` `30×18@206,21`；屏外那句的末尾**也**有「已保存」，是**另一个东西**。📌 再订正机制：`navigate-canvas.md` 那句「状态行末尾多出两行」是**读容器 innerText 的拼接产物** —— 提示条 `back-to-content-overlay`（平时 `display:none` + `0×0`）与状态行是**兄弟**（共同祖先为无 testid 的 DIV，同挂 `MAIN[aria-label=\"Canvas workspace\"]`），**互不包含**，状态行自身 `textContent` 永远只有那一句。📌 立规：**「屏上有没有」这个问题，截图与 DOM 读数要各给一条不共享假设的旁证**；只读 `innerText`/DOM 会把屏外隐藏文本当成可见内容。"
+    },
+    {
+      "id": "generation-history-panel-has-no-primary-tabs",
+      "label": "「生成历史面板分两层：一级页签两个（生成历史 ｜ 积分明细），二级类型页签五个（全部/图片/视频/音频/文本）」—— 原写在 10-tasks/canvas-context.md「查看生成历史」小节与同文件批次 11 补测记录、SOURCE_OBSERVATIONS.md §2.15 与 §4.xx 台账；20-reference.md 也据此写「生成历史两级页签」",
+      "patterns": [
+        "一级页签两个",
+        "一级页签两项",
+        "生成历史两级页签",
+        "面板分两层",
+        "面板分两级"
+      ],
+      "refuted_in": "批次 126（SOURCE_OBSERVATIONS.md §4.46）",
+      "reason": "**面板里根本没有「一级页签」，只有一层 `role=\"tablist\"` 和 5 个 `role=\"tab\"`。** 2026-10-03 批次 126 把 `canvas-feature-panel` 整棵 DOM 拆开：面板本体是 `<ASIDE role=\"dialog\" aria=\"生成历史\">` `320×211@797,56`，标题行 `320×56@797,56` 里只有两样东西 —— `H2`「生成历史」`56×36@813,72`（是**标题**）和一个 `BUTTON`「积分明细」`68×36@1033,72`（**没有 `role`、没有 `href`、没有 `aria-label`**，只带一个 `12×12` 的右向箭头 svg）。**全面板 `role=\"tab\"` 恰好 5 个、`role=\"tablist\"` 恰好 1 个**，`role=\"tabpanel\"` 恰好 1 个 ⇒ 计数判据直接否掉「两层」。📌 立规：**「一层 / 两级 / 嵌套」这类措辞必须能被一个计数判据支持**（本例即「`role=\"tablist\"` 的个数」）；批次 31 写下那句话时没有这个判据，所以它错了三个月也没人发现。📌 顺带四条：① 面板有 **4 个元素与它同矩形**（本体 + `canvas-feature-panel-surface` + `canvas-feature-panel-content` + `generation-history-panel`）⇒ 按矩形数会多数三次；② 直接父级是 `canvas-workbench-shell`，**没有 portal 到 body**；③ 5 个页签的 **`aria-controls` 全指向同一个** `generation-history-items`，逐个点过后**面板逐字与矩形一个字都没变** ⇒ 空态是共用的「暂无生成历史」，不是按类型各说一句；④ 那个「积分明细」按钮**开的是「项目信息」对话框**（`workspace-project-info-dialog` `800×546@240,87`，与批次 125 同一个组件、内部同样是 `project-consumption-summary`）并**直接落在「积分消耗」页签** —— 与「更多 → 项目信息」是同一个框，差别只在初始页签。",
+      "pattern_note": "（批次 126 建条时留的坑：patterns 一开始写了裸的「一级页签」与「分两层」，结果命中**资产库面板的真·一级页签**（`资产` / `主体`）和别的句式 —— 那不是被推翻的结论，是另一个面板的正确记录。⇒ 立规：**refuted-claims 的 pattern 必须唯一指代那条被推翻的主张**，宁可写长一点、带上下文，也不要写「这类话里常出现的那个词」。）"
     }
   ]
 }

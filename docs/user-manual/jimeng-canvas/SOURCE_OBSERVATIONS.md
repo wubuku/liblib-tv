@@ -11473,3 +11473,133 @@ handle 的 `::before` 盒子 **`40px × 80px`、`top:60px; left:30px`**（canvas
 
 - 本轮**没有建任何节点、没有改任何持久状态**（只开面板、切了一次页签、两次 Esc 关闭）
 - 终态：**`76 nodes / 0 selected / 0 edges`**、`Zoom options, 60%`、选择工具、**积分 805**、浮层数 **0**
+
+## §4.46 批次 126（2026-10-03）· 🔴 订正：「生成历史」面板**没有「一级页签」**；「积分明细」按钮开的是**「项目信息」对话框**
+
+**靶子**：`canvas-feature-panel` 在全册里只被**一句转述**记过（批次 11 / 31 测于 2026-09-23），
+从未有人把它的 DOM 拆开。计划的判据：
+① 面板本体/包装层的 tag、矩形、testid、祖先；② 「一级页签」到底是不是页签；
+③ 五个二级页签各自的内容；④ 「积分明细」按钮点开会开什么。
+
+### a 轮 · 面板解剖（只读 + 一次真实鼠标点击）
+
+启动器（点开**之前**先只读身份）：
+
+| 项 | 读数 |
+|---|---|
+| 同 testid 元素 | **2 个**（`搜索` `28×28@911,16` / `生成历史` `28×28@943,16`）⇒ 靠 `aria-label` 区分 |
+| 目标本体 | `BUTTON`、`aria="生成历史"`、`28×28@943,16`、`子元素数 1`、内无可点元素 |
+| `aria-expanded` | `false` →（点开后）**`true`** |
+| `data-state` | **`closed` → 仍然是 `closed`** |
+
+面板本体：
+
+```
+<ASIDE role="dialog" aria="生成历史" data-testid="canvas-feature-panel"
+      class="nodrag nowheel absolute z-canvas-chrome outline-none transit-…">
+  320×211@797,56   position:absolute   z-index:30   pointer-events:auto   孩子数 1
+  ├─ DIV[data-testid=canvas-feature-panel-surface]  320×211@797,56
+  │   └─ DIV[data-testid=canvas-feature-panel-content] 320×211@797,56
+  │       └─ SECTION[data-testid=generation-history-panel] aria="生成历史" 320×211@797,56
+  │           ├─ DIV 320×56@797,56（标题行）
+  │           │   ├─ H2 「生成历史」 56×36@813,72
+  │           │   └─ BUTTON「积分明细」 68×36@1033,72   ← 无 role / 无 href / 无 aria-label
+  │           │        └─ svg 12×12@1089,84  viewBox="0 0 12 12"  path d="M8.86963 6.42028C9.10061 6.18656 9.10061"
+  │           ├─ DIV[role=tablist][aria="History categories"] 320×36@797,112
+  │           │   └─ BUTTON[role=tab] ×5，各 42×36，x=807/853/899/945/991
+  │           │        文字 全部｜图片｜视频｜音频｜文本
+  │           │        aria-selected: true/false/false/false/false
+  │           │        aria-controls: 五个全是 "generation-history-items"
+  │           │        data-state: null（属性不存在）
+  │           └─ DIV 320×119@797,148
+  │               └─ DIV[role=tabpanel][aria="History items"] 288×91@813,160
+  │                   └─ DIV → DIV → DIV（3 层，文字只有「暂无生成历史」）
+面板逐字：生成历史 积分明细 全部 图片 视频 音频 文本 暂无生成历史
+```
+
+- 子树共 **22 个元素，全部有面积**（无面积为 0）；面板内 **0 个 `<input>`、0 个表格元素**。
+- 内部 testid 只有 3 个：`canvas-feature-panel-surface` / `canvas-feature-panel-content` / `generation-history-panel`。
+- 内部 aria-label 只有 3 个：`生成历史` / `History categories` / `History items`。
+- **同矩形元素恰好 4 个**（本体 ＋ 上面三层）⇒ 按矩形数会多数三次。
+- **直接父级是 `DIV[data-testid="canvas-workbench-shell"]` `1280×720@0,0`**，
+  往上 5 层全是全屏容器 ⇒ **没有 portal 到 `body`**（与批次 122 的「更多」菜单不同）。
+
+### 🔴 订正：「一级页签两个」不成立
+
+旧记录（批次 11 / 31）写「面板分两层：**一级页签两个：生成历史 ｜ 积分明细** ＋ 二级类型页签五个」。
+实测：**`role="tab"` 恰好 5 个、`role="tablist"` 恰好 1 个**。
+标题行里那两样是 `H2` ＋ 一个**没有 `role` 的 `BUTTON`**，**不是页签**。
+
+📌 判据立规：**「一层 / 两级 / 嵌套」这类措辞必须能被一个计数判据支持**
+（本例即「`role="tablist"` 的个数」）。批次 31 写下那句话时没有这个判据，
+所以它错了三个月也没人发现。
+
+### b 轮 · 五个二级页签逐个点过 ＋ 点面板外
+
+落点全部**在动作时刻现算** ＋ `elementFromPoint` 自检（要求 `closest('[role=tab]') === 目标`）：
+
+| 页签 | `aria-selected` 迁移 | tabpanel 矩形 | tabpanel 逐字 |
+|---|---|---|---|
+| 全部 → 图片 → 视频 → 音频 → 文本 | 每次只有当前项 `true`，其余 `false` | **五次全是 `288×91@813,160`** | **五次全是「暂无生成历史」** |
+
+⇒ **五个页签共用一个 tabpanel**（`aria-controls` 全指向同一个 `generation-history-items`），
+面板矩形**五次都是 `320×211@797,56`**，面板逐字**五次逐字相同**。
+**空态是共用的一句「暂无生成历史」，不是按类型各说一句。**
+
+**点面板外**：落点取 `(400,300)`，先自检 `elementFromPoint` **命中 `.react-flow__pane`**
+（点空白必须反着判，见批次 120 规一）⇒ 点一下后面板消失、启动器 `aria-expanded` 回 `false`、浮层数 0。
+
+### c 轮 · 「积分明细」按钮开的是**「项目信息」对话框**
+
+先只读身份：`BUTTON` `68×36@1033,72`、`type="button"`、
+**无** `href` / `target` / `aria-label` / `aria-expanded` / `data-state`，
+`data-*` 只有 `class` / `type` / `style`（`padding-inline: 0px`），
+父级 `DIV.flex shrink-0 items-center justify-between`。带一个 `12×12` 右向箭头 `svg`。
+
+点击（落点现算 ＋ 自检命中该 `BUTTON` 自身）后：
+
+| 观测项 | 读数 |
+|---|---|
+| URL | **不变**（`.../ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f`） |
+| `canvas-feature-panel` | **仍在**，逐字与矩形**一个字都没变** |
+| 浮层计数（`[role=dialog/menu/listbox]` 且有面积） | **1 → 2**，差集**恰好 1 个** |
+| 新浮层 | `<DIV role="dialog" data-testid="workspace-project-info-dialog">` **`800×546@240,87`**、`position:fixed`、`z-index:50`、**portal 到 `BODY`** |
+| 新浮层逐字 | `项目信息 基础信息 积分消耗 总消耗积分 0 任务数 0 暂无数据 查看积分明细` |
+| 落在哪个页签 | **积分消耗**（`基础信息` 的 `aria-selected` 为 `false`） |
+| 内部 testid | `project-consumption-summary`（**与批次 125 读到的是同一个**） |
+| 内部 role | `tablist` / `tab`×2 / `tabpanel` / `region`（`暂无数据`） |
+| 可点元素 4 个 | `关闭项目信息` `36×36@980,111`；`基础信息` `76×36@252,155`；`积分消耗` `76×36@328,155`；`查看积分明细` `94×36@922,573`（**没点**） |
+| 与生成历史面板的关系 | **互不包含**（`包含面板=false`、`面板包含它=false`） |
+
+🔑 **两条入口、同一份数据、同一个组件**：
+「更多 → 项目信息」停在**基础信息**，「生成历史 → 积分明细」停在**积分消耗** ——
+是**同一个 `workspace-project-info-dialog`、同一个 `project-consumption-summary`**，
+差别**只在初始页签**。
+
+📌 判据立规（`30-concepts.md` 已建档）：
+**判「点 A 之后开了什么」，主判据是「浮层清单的前后差集」，不是「URL 变没变」也不是「原面板内容变没变」。**
+本例这两条都会给出「按钮没反应」的错误结论，而**原面板逐字一个字符都没动**。
+差集要靠**身份指纹**（testid/aria/tag ＋ 矩形）才能把「新面板」和「旧面板还在」分开；
+数浮层必须**按「有面积」过滤**，否则卸载未清的节点会被算成还开着。
+
+**Esc 是由内向外逐层关的**：
+第一次 Esc 后浮层清单剩 `["canvas-feature-panel@797,56"]`（**1 个**），
+第二次 Esc 后剩 `[]`。⇒ 「按了一次还剩个框」不是 bug，是该按第二次。
+
+### 🔴 `data-state` 陷阱的**第三次**印证
+
+| 位置 | `data-state` 实测 | 可靠判据 |
+|---|---|---|
+| 「更多」按钮（批次 122） | 恒为 `closed` | `aria-expanded` |
+| 「项目信息」两个页签（批次 125） | **属性不存在**（`null`） | `aria-selected` |
+| **「生成历史」启动器（本批）** | **恒为 `closed`**，面板开着也不变 | **`aria-expanded`（`false`→`true`）** |
+| **「生成历史」5 个类型页签（本批）** | **属性不存在**（`null`） | `aria-selected` |
+
+⇒ **三处独立验证，同一条结论**：这套 Radix 弹层的开关态**只认 `aria-expanded` / `aria-selected`**。
+
+### 收尾
+
+- 本轮**没有建任何节点、没有点任何生成/扣费控件**；点过「积分明细」1 次（只读对话框，实测 URL 不变、积分 805 前后一致）
+- **未点** `查看积分明细`（跳走型；充值/订阅/积分购买不在本手册范围）
+- 终态：**`76 nodes / 0 selected / 0 edges`**、`Zoom options, 60%`（**连读三次逐字相同**）、选择工具、**积分 805**、浮层数 0
+- ✅ **节点 id 集合与批次 120 存的基线（`/tmp/b120-baseline-ids.txt`）逐个比对：76 个，无多、无少** ⇒ 本轮零副作用
