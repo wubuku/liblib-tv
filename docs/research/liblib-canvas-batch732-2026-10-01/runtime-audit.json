@@ -1,0 +1,1183 @@
+{
+ "static": {
+  "nInertInLibraryShowcasePanel": 2,
+  "lines": [
+   134,
+   236
+  ],
+  "openTagLines": [
+   130,
+   236
+  ],
+  "hasVisibleCardsMap": true,
+  "hasFavTitle": true,
+  "favClassOpacity": true,
+  "favClassPointerNone": true,
+  "commentSays": "40 多个"
+ },
+ "run": {
+  "views": {
+   "style": {
+    "view": "style",
+    "rows": [
+     {
+      "i": 0,
+      "overlay": "primary:style-library",
+      "aria": "筛选",
+      "title": "筛选在克隆侧尚未接入",
+      "opacity": "1",
+      "pointerEvents": "auto",
+      "groupHover": false,
+      "rect": [
+       1145,
+       83,
+       32,
+       32
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "筛选",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 1,
+      "overlay": "primary:style-library",
+      "aria": "收藏 Seedream 5.0 pro",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       169,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 Seedream 5.0 pro",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 2,
+      "overlay": "primary:style-library",
+      "aria": "收藏 J-漫剧素材三视…",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       316,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 J-漫剧素材三视…",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 3,
+      "overlay": "primary:style-library",
+      "aria": "收藏 【照顾设计】短剧…",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       462,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 【照顾设计】短剧…",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 4,
+      "overlay": "primary:style-library",
+      "aria": "收藏 Qwen-群体风格",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       608,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 Qwen-群体风格",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 5,
+      "overlay": "primary:style-library",
+      "aria": "收藏 Z-Image-Turbo…",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       754,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 Z-Image-Turbo…",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 6,
+      "overlay": "primary:style-library",
+      "aria": "收藏 Qwen-国风 3D…",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       901,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 Qwen-国风 3D…",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 7,
+      "overlay": "primary:style-library",
+      "aria": "收藏 Qwen-3D都市AI…",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       1047,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 Qwen-3D都市AI…",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 8,
+      "overlay": "primary:style-library",
+      "aria": "收藏 一键生成人物多…",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       1193,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 一键生成人物多…",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 9,
+      "overlay": "primary:style-library",
+      "aria": "收藏 真人角色三视图设计",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       169,
+       397,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 真人角色三视图设计",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 10,
+      "overlay": "primary:style-library",
+      "aria": "收藏 Qwen-Q版卡通…",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       316,
+       397,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 Qwen-Q版卡通…",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 11,
+      "overlay": "primary:style-library",
+      "aria": "收藏 古风-淡彩定普查…",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       462,
+       397,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 古风-淡彩定普查…",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 12,
+      "overlay": "primary:style-library",
+      "aria": "收藏 电商首页头图商…",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       608,
+       397,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 电商首页头图商…",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 13,
+      "overlay": "primary:style-library",
+      "aria": "收藏 音频类硬件产品…",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       754,
+       397,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 音频类硬件产品…",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 14,
+      "overlay": "primary:style-library",
+      "aria": "收藏 分镜剧本故事版…",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       901,
+       397,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 分镜剧本故事版…",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 15,
+      "overlay": "primary:style-library",
+      "aria": "收藏 毛昵黏土微缩梦境…",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       1047,
+       397,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 毛昵黏土微缩梦境…",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 16,
+      "overlay": "primary:style-library",
+      "aria": "收藏 【摸鱼】3D电商…",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       1193,
+       397,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 【摸鱼】3D电商…",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    ]
+   },
+   "effects": {
+    "view": "effects",
+    "rows": [
+     {
+      "i": 0,
+      "overlay": "primary:effects-library",
+      "aria": "筛选",
+      "title": "筛选在克隆侧尚未接入",
+      "opacity": "1",
+      "pointerEvents": "auto",
+      "groupHover": false,
+      "rect": [
+       1145,
+       83,
+       32,
+       32
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "筛选",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 1,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 小蜜蜂运镜",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       169,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 小蜜蜂运镜",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 2,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 穿云而入",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       316,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 穿云而入",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 3,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 飞跃地平线",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       462,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 飞跃地平线",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 4,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 逆转引力",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       608,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 逆转引力",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 5,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 地球缩放",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       754,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 地球缩放",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 6,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 环球缩放",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       901,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 环球缩放",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 7,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 瞳孔推镜",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       1047,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 瞳孔推镜",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 8,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 俯冲地球",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       1193,
+       172,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 俯冲地球",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 9,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 产品扫光",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       169,
+       364,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 产品扫光",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 10,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 普拉达换装",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       316,
+       364,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 普拉达换装",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 11,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 多角度定点",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       462,
+       364,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 多角度定点",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 12,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 水下慢镜头",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       608,
+       364,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 水下慢镜头",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 13,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 试妆特写",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       754,
+       364,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 试妆特写",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 14,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 悬浮深入",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       901,
+       364,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 悬浮深入",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 15,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 微距推镜",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       1047,
+       364,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 微距推镜",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 16,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 直升机揭幕",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       1193,
+       364,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 直升机揭幕",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 17,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 山路追击",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       169,
+       556,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 山路追击",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 18,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 雪地赛车",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       316,
+       556,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 雪地赛车",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 19,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 City Drive",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       462,
+       556,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 City Drive",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 20,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 3D解构",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       608,
+       556,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 3D解构",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 21,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 面部环拍",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       754,
+       556,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 面部环拍",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 22,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 Showroom",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       901,
+       556,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 Showroom",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 23,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 饰品特写",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       1047,
+       556,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 饰品特写",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 24,
+      "overlay": "primary:effects-library",
+      "aria": "收藏 巨人俯瞰",
+      "title": "收藏在克隆侧尚未接入",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "groupHover": false,
+      "rect": [
+       1193,
+       556,
+       20,
+       20
+      ],
+      "focused": true,
+      "outlineAfter": "auto 1px",
+      "ax": {
+       "role": "button",
+       "name": "收藏 巨人俯瞰",
+       "ignored": false,
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    ]
+   }
+  },
+  "tab": {
+   "steps": 260,
+   "favStops": 68,
+   "favSample": [
+    "收藏 3D解构",
+    "收藏 City Drive",
+    "收藏 Showroom",
+    "收藏 产品扫光",
+    "收藏 俯冲地球"
+   ]
+  },
+  "seedVideoStatus": "failed"
+ },
+ "staticSummary": {
+  "nInertInLibraryShowcasePanel": 2,
+  "lines": [
+   134,
+   236
+  ],
+  "openTagLines": [
+   130,
+   236
+  ],
+  "hasVisibleCardsMap": true,
+  "hasFavTitle": true,
+  "favClassOpacity": true,
+  "favClassPointerNone": true,
+  "commentSays": "40 多个"
+ },
+ "instanceTotals": {
+  "style": 17,
+  "effects": 25,
+  "fav": 40,
+  "total": 42
+ },
+ "invisibleButFocusable": {
+  "count": 40,
+  "focusable": 40
+ },
+ "tabAndAx": {
+  "distinctAxNames": 40,
+  "favStops": 68,
+  "steps": 260
+ },
+ "unreachableBySeed": {
+  "seedVideoStatus": "failed",
+  "sites": [
+   "VideoProcessingToolbar.tsx:244",
+   ":245",
+   "SegmentReshootPanel.tsx ×4"
+  ]
+ },
+ "summary": {
+  "library-showcase-panel-has-2-sites-and-the-fav-one-sits-in-a-map": true,
+  "those-2-sites-render-as-42-instances": true,
+  "all-40-fav-buttons-are-invisible-yet-still-focusable": true,
+  "the-40-invisible-buttons-are-still-in-tab-order-and-in-the-ax-tree": true,
+  "seed-canvas-video-status-blocks-two-more-families": true
+ },
+ "failures": []
+}
