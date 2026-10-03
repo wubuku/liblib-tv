@@ -143,10 +143,19 @@ def main():
         dups, jumps, h1, n = check_page(page, rel)
         total += n
         for name, first, second in dups:
+            # **⚠️ Batch 247 订正这条报错文案**：它原先写的是
+            # 「VitePress 给同名标题生成**同一个锚点**，页内目录里后一个的跳转会落到前一个」，
+            # **而那句话在 Batch 245 已被实测证伪**（`slugify` 会去重，第二个拿到 `-1`）。
+            # **Batch 245 订正了脚本头、风险表、清单表和纪律 250，唯独漏了这一处**——
+            # **而这一处恰恰是判据真正打印给用户看的那一句**（纪律 246/247/248：
+            # 判据不只是发现问题的工具，它还是指示动作的说明书）。
+            # **照着旧文案去查「锚点撞车」会查一个不存在的东西。**
             problems.append(
                 f"{rel}:{second} 标题「{name}」与第 {first} 行同名"
-                f"——VitePress 给同名标题生成**同一个锚点**，"
-                f"页内目录里后一个的跳转会落到前一个"
+                f"——**这不是锚点撞车**（VitePress 的 slugify 会去重，后一个拿到 "
+                f"`-1`，href 各自指向自己）；"
+                f"仍然要改的理由有两条：页内目录上会出现**两个逐字相同、无法区分的条目**，"
+                f"而同名标题多半是同一节被复制了两遍"
             )
         for prev, level, name, lineno in jumps:
             problems.append(

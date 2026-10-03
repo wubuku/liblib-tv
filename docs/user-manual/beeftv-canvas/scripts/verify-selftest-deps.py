@@ -171,8 +171,40 @@ def copies_whole_scripts(text):
     `selftest-selftest-bootable.py` 就是这个形态：它 `copytree(SCRIPTS, tmp/scripts)`，
     于是 `baseline.py` 早就在那儿了，可按文件核的判据报它没搬。
     **判据必须能说出「它已经整体搬过了」这句话，而不只是「某个文件搬过了」。**
+
+    **⚠️ Batch 247 修第四处按写法判定——同一个病第四次在同一处复发。**
+    原式是 `copytree\w*\(\s*\w+\s*,\s*[^)]*scripts`：它要求
+      ① 第一个实参是**一个裸单词**（模块级常量名）；
+      ② 第二个实参里**直接出现 `scripts` 这几个字母**。
+    于是 `shutil.copytree(os.path.join(ROOT, "scripts"), dst, ignore=...)`
+    这种同样搬了整份 `scripts/` 的写法被判成「没搬」——
+    **而 `selftest-retracted-claims.py`（Batch 247 新增）正是这个形态**，
+    闸 18 当场把闸 17 的反验判红（4 例失败）。**前三次分别见 Batch 190 的两处
+    与 Batch 239 的一处，四次的病完全一样：判据认的是写法，而它该认的是事实。**
+
+    改法：解析每条 `copytree` 调用的**两个位置实参**，
+    看其中有没有 `"scripts"` 这个**路径末段字面量**——
+    **源或目标任一侧写着它就算**，因为 `copytree(A, B)` 搬的是 A 底下的一切，
+    而 A 是 `…/scripts` 与 B 是 `…/scripts` 都能保证「整份 scripts 到了临时目录」。
+    **仍然不是「凡是有 copytree 就算」**：源与目标都不含 `scripts` 时照样不认
+    （那会把「搬了另一个目录」当成搬了 scripts/，而依赖同样不在）。
     """
-    return bool(re.search(r"copytree\w*\(\s*\w+\s*,\s*[^)]*scripts", text))
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return False
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        fn = node.func
+        fname = fn.attr if isinstance(fn, ast.Attribute) else getattr(fn, "id", "")
+        if not fname.startswith("copytree"):
+            continue
+        for arg in node.args[:2]:
+            for sub in ast.walk(arg):
+                if isinstance(sub, ast.Constant) and sub.value == "scripts":
+                    return True
+    return False
 
 
 def copies_module_into_scripts(text, module):

@@ -250,10 +250,63 @@ def m_loop_copy_with_the_module():
                '"pngstat.py",', 0, "反验依赖核对通过")
 
 
+def _copytree_case(name, copytree_line, want_rc, want_in):
+    """Batch 247 新增的一对：`copytree` 到底搬的是不是 `scripts/`。
+
+    **为什么必须成对**：Batch 247 修的那处判据扩的是「`copytree` 搬了整份
+    `scripts/` 就等于依赖都在」。**如果只测「搬了 scripts/ → 不报」这一侧，
+    那条判据写成「凡是有 copytree 就算」也能全过**——
+    而那会把「搬了另一个目录」当成搬了 scripts/，**依赖照样不在**。
+    **左边那一例是这道判据的鉴别力。**
+    """
+    check_anchor()
+    tmp = tempfile.mkdtemp(prefix="beef-deps-selftest-ctree.")
+    try:
+        shutil.copytree(os.path.join(ROOT, "scripts"), os.path.join(tmp, "scripts"))
+        shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-selftest-deps.py"))
+        target = os.path.join(tmp, "scripts", "selftest-feature-flags.py")
+        t = read(target)
+        new = re.sub(r'^\s*shutil\.copy\(BASELINE,[^\n]*\n', "", t, count=1, flags=re.M)
+        assert new != t, "注入未生效：baseline 搬运那行没找到"
+        new = new.replace("import shutil", "import shutil", 1)
+        new = new.replace("def main(", copytree_line + "\ndef main(", 1)
+        write(target, new)
+        r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
+                           cwd=tmp, capture_output=True, text=True)
+        out = (r.stdout or "") + (r.stderr or "")
+        record(name, r.returncode == want_rc and want_in in out, f"rc={r.returncode}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_copytree_other_dir_still_reports():
+    """能抓：搬的是**别的目录**（`docs/`），不算搬了 `scripts/` → 必须报。"""
+    _copytree_case(
+        "8 copytree 搬的是别的目录→必报（不是「凡有 copytree 就算」）",
+        'def _elsewhere():\n    shutil.copytree(os.path.join(ROOT, "docs"), os.path.join(os.getcwd(), "docs"))',
+        1, "baseline")
+
+
+def m_copytree_scripts_dir_passes():
+    """不误伤：搬的**就是整份 `scripts/`** → 不得报。
+
+    **这正是 Batch 247 的实况**：`selftest-retracted-claims.py` 写的是
+    `shutil.copytree(os.path.join(ROOT, "scripts"), dst, ignore=...)`，
+    旧判据要求第一个实参是裸单词、第二个实参里直接出现 `scripts`，
+    **于是把一份确实搬了整份 scripts/ 的反验报成「没搬」**，
+    闸 18 当场把闸 17 的反验判红（4 例失败）。
+    """
+    _copytree_case(
+        "9 copytree 搬的是整份 scripts/→不得报（Batch 247 实况）",
+        'def _everywhere():\n    shutil.copytree(os.path.join(ROOT, "scripts"), os.path.join(os.getcwd(), "scripts-all"))',
+        0, "反验依赖核对通过")
+
+
 def main():
     tests = [m_clean, m_missing_baseline_copy, m_gate_imports_missing_module,
              m_no_false_positive, m_rename_pattern_breaks,
-             m_loop_copy_without_the_module, m_loop_copy_with_the_module]
+             m_loop_copy_without_the_module, m_loop_copy_with_the_module,
+             m_copytree_other_dir_still_reports, m_copytree_scripts_dir_passes]
     for t in tests:
         try:
             t()

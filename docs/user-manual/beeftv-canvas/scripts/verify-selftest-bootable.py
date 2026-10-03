@@ -222,6 +222,12 @@ SELFTEST_COSTS = {
     #: 它每例都起一个临时目录、跑一遍被测闸门，而闸门每次要 `git show` + `git grep`
     #: **全树**——9 例 2.8 秒，与闸 13 反验同量级。
     "selftest-quota-tables.py": 2.8,
+    #: **Batch 247 新增**：三次实测 2.09 / 2.20 / 1.96 秒，**按纪律 204 取最大 2.2**。
+    #: 7 例里 6 例每例 `shutil.copytree` 一整份 `scripts/`（103 个 selftest-* 加 36 个闸），
+    #: **而每个被测闸又要把这棵树重新 `ast.parse` 一遍**——耗时几乎全在重复解析上。
+    #: **这一条比它的数字更要紧**：新闸的门是**闸脚本自己**，
+    #: 所以它的反验必须整份搬 `scripts/`，**不能只搬一个被测文件**。
+    "selftest-retracted-claims.py": 2.2,
     #: **Batch 234 新增**：三次实测 0.38 / 0.35 / 0.37 秒，**按纪律 204 取最大 0.4**。
     #: 它每例起一个临时目录并搬 `20-reference.md` + `.vitepress/config.mjs`——
     #: **闸门必须能读出「当前该是哪个版本」与「哪些页会被发布」**，少搬一个则 8 例全 rc=2。
@@ -242,7 +248,13 @@ SELFTEST_COSTS = {
     "selftest-screenshots-literals.py": 30.1,
     "selftest-screenshots.py": 0.7,
     "selftest-selftest-bootable.py": 384.0,   # Batch 210 重测：209.3 / 383.7 秒（**两次取大**；**同一天 1.8 倍漂**，纪律 136）
-    "selftest-selftest-deps.py": 0.7,
+    #: **Batch 247 重测**：三次实测 7.33 / 6.95 / 7.11 秒，**而原登记值是 0.7——低估了十倍**。
+    #: 9 例里每例都 `copytree` 一整份 `scripts/`（103 个 selftest-* 加 36 个闸）再起一个子进程跑被测闸，
+    #: **耗时几乎全在重复拷贝上**。**`seconds` 是预算上限而不是实测均值，
+    #: 低估是危险方向**（纪律 204/136：漂的时候倒向安全那侧）——
+    #: **而这条低估在 Batch 247 之前就存在**，本批只是因为给它加了两例才顺手重测。
+    #: **一个「跑得比登记慢十倍却没人发现」的登记，和写错一个数是同一种病。**
+    "selftest-selftest-deps.py": 7.5,
     "selftest-shortcuts.py": 0.7,
     "selftest-shot-drift.py": 10.0,
     "selftest-shot-pixels.py": 7.1,
