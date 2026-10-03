@@ -580,6 +580,30 @@ def t_tell_in_fullwidth_pseudo_heading(_inv, gate):
     return _inv, gate, {OC_PAGE: edit}
 
 
+def t_tell_in_indented_pipe_block(_inv, gate):
+    """不误伤：告知写在一段**前导 4 空格的「表格」**里 → 必须放行。
+
+    **Batch 252 实测**：GFM 表格只认**至多 3 个前导空格**的 `|`，
+    前导 4 个空格的 `    | … |` **渲染成代码块**（实测 `<pre>`），不是表格。
+    而旧判据 `TABLE_ROW_RE = ^\\s*\\|` 的 `\\s*` 不限个数 →
+    把这些行**当成表格行排除**，于是**代码块里的告知被判成「没写」**。
+    改前实测 rc=1（误报「找不到任何已登记的告知措辞」），改后 rc=0。
+
+    **与用例 17 方向相反**：17 钉「顶格表格行不算告知」（必须报），
+    本条钉「4 空格缩进的同类行算告知」（必须放行）——
+    **两者的差别只在行首那几个空格，而那正是渲染器唯一在意的地方。**
+    """
+    def edit(body):
+        out = _drop_oc_banner(body)
+        anchor = "## 目标\n"
+        assert anchor in out, "锚点未命中：organize-canvas 上找不到 ## 目标"
+        block = ("    | 节 | 证据等级 |\n"
+                 "    |---|---|\n"
+                 "    | 自动整理 | 本节基于源码静态证据，资产尚未验证 |\n\n")
+        return out.replace(anchor, block + anchor, 1)
+    return _inv, gate, {OC_PAGE: edit}
+
+
 def main():
     r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
     if r.returncode == 0:
@@ -625,6 +649,8 @@ def main():
         "证据降级告知", expect_fail=False, transform=t_tell_in_plain_paragraph)
     run("20) 不误伤：告知写在「井号 + 全角空格」那一行（真渲染器：那是段落不是标题）",
         "证据降级告知", expect_fail=False, transform=t_tell_in_fullwidth_pseudo_heading)
+    run("21) 不误伤：告知写在前导 4 空格的「表格」里（真渲染器：那是代码块，读者看得见）",
+        "证据降级告知", expect_fail=False, transform=t_tell_in_indented_pipe_block)
 
     print("=== 结果：通过 %d / 失败 %d / 作废 %d ===" % (PASS, FAIL, VOID))
     return 1 if (FAIL or VOID) else 0

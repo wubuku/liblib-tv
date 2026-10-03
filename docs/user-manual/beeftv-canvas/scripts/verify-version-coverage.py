@@ -65,6 +65,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
+from headingkey import atx_level
 from baseline import declared_baseline, BaselineError  # noqa: E402
 from baseline import SRC as _BEEFSRC  # noqa: E402
 from baseline import announce_fallback  # noqa: E402
@@ -166,9 +167,24 @@ def declared_screenshot_version():
     if not m:
         return None, "20-reference.md 里找不到「取证基线」小节"
     body = text[m.end():]
-    nxt = re.search(r"^#{1,6}\s", body, re.M)
-    if nxt:
-        body = body[:nxt.start()]
+    # **Batch 252**：原来这里用 `re.search(r"^#{1,6}\s", body, re.M)` 找小节结尾，
+    # **而那个 `\s` 匹配全角空格**（U+3000）→
+    # `##　下一节`（井号后紧跟全角空格）被当成「下一节」→ **小节提前截断**。
+    # **这个方向只有一个**：锚点 `^` 要求井号紧跟行首，
+    # **所以 4 空格缩进的 `    ## x` 本来就匹配不上**（它渲染成代码块，不是标题）。
+    # **写清楚这一点，是因为本条注释的第一版把缩进也算成缺陷——那是在讲一个不存在的问题**
+    # （Batch 248 的教训：会让人去改不存在的东西，比漏报更贵）。
+    # **后果是可验证的**：截断点之后若还有「截图拍于 vX.Y.Z」那一行，
+    # 判据就会报「『取证基线』小节里没有『截图拍于』这一行」——
+    # **而那句话明明印在 `20-reference.md` 上**（读者看得见，判据看不见）。
+    # 现在逐行走 `headingkey.atx_level`（**「是不是标题」的唯一一份实现**，
+    # 纪律 274 推论一；Batch 251 刚把它量到 30/30 一致）。
+    _off = 0
+    for _line in body.split("\n"):
+        if atx_level(_line) is not None:
+            body = body[:_off]
+            break
+        _off += len(_line) + 1
     s = re.search(r"截图拍于[^\n]*?(v?\d+\.\d+\.\d+)", body)
     if not s:
         return None, "「取证基线」小节里没有「截图拍于」这一行"

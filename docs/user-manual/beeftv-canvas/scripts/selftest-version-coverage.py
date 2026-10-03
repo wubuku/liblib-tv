@@ -41,6 +41,7 @@ ROOT = os.path.dirname(HERE)
 GATE = os.path.join(HERE, "verify-version-coverage.py")
 BASELINE = os.path.join(HERE, "baseline.py")
 BEEFSRC = os.path.join(HERE, "beefsrc.py")
+HEADINGKEY = os.path.join(HERE, "headingkey.py")
 README = "README.md"
 REFERENCE = "20-reference.md"
 MANIFEST = os.path.join("screenshots", "manifest.yml")
@@ -79,6 +80,13 @@ def run(desc, want, expect_fail=True, want_rc=1, edits=None):
         os.makedirs(os.path.join(tmp, "screenshots"), exist_ok=True)
         shutil.copy(BASELINE, os.path.join(tmp, "scripts", "baseline.py"))
         shutil.copy(BEEFSRC, os.path.join(tmp, "scripts", "beefsrc.py"))
+        # **必须连同 headingkey.py 一起复制**（Batch 252 修，闸 17 抓出）：
+        # `verify-version-coverage.py` 原先自己用 `re.search(r"^#{1,6}\s", ...)`
+        # 找「取证基线」小节的结尾，Batch 252 按纪律 274 换成 `headingkey.atx_level`。
+        # **不搬它的话临时目录 import 失败、每一例都红，而 build-site.sh 仍全绿。**
+        # **这已是同一形状的第五次**（178 baseline / 181 batchread / 197 beefsrc /
+        # 251 headingkey→闸5 / 252 headingkey→闸14），**五次都是闸 17 报出来的**。
+        shutil.copy(HEADINGKEY, os.path.join(tmp, "scripts", "headingkey.py"))
         shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-version-coverage.py"))
         for p, t in texts.items():
             rel = os.path.relpath(p, ROOT)
@@ -186,6 +194,26 @@ def t_declare_newer_shot_version(s):
     return out
 
 
+def t_fullwidth_pseudo_heading(s):
+    """不误伤：在「取证基线」小节里插一行**「井号 + 全角空格」**的伪标题。
+
+    **Batch 252 实测**：真渲染器对 `##　下一节` 给出**零个标题**（那是段落），
+    而改前的 `re.search(r"^#{1,6}\\s", body, re.M)` 里那个 `\\s` **匹配全角空格**，
+    于是把这一行当成「下一节」→ **小节在它之前就被截断** →
+    判据报「『取证基线』小节里没有『截图拍于』这一行」，
+    **而那句话明明还印在第 14 行上**（读者看得见，判据看不见）。
+    改前实测 rc=2（未能核对），改后 rc=0。
+
+    **注入位置必须在「截图拍于」之前**，否则截断不影响结果、
+    用例会「通过」而什么也没验到（纪律 240 记过的那个形状）。
+    """
+    old = "- **截图拍于**"
+    assert old in s, "锚点未命中：20-reference.md 里找不到「截图拍于」那一行"
+    out = s.replace(old, "##　这不是标题，是一行普通段落（井号后是全角空格）\n\n" + old, 1)
+    assert out != s, "注入空转"
+    return out
+
+
 def main():
     r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
     if r.returncode == 0:
@@ -231,6 +259,14 @@ def main():
         "被静悄悄移出了检查范围**）",
         "两端对不上", want_rc=2, expect_fail=True,
         edits={rf: t_declare_newer_shot_version, rd: t_anchor_follows_declaration})
+
+    # ---- Batch 252：小节结尾判定改走 `headingkey.atx_level` 之后的一条 ----
+    # 8 钉的是**判据那一行正则**：`^#{1,6}\s` 的 `\s` 匹配全角空格，
+    # 于是伪标题被当成「下一节」、小节提前截断、「截图拍于」看不见了。
+    # **改前实测 rc=2（未能核对）**——而那句话还在第 14 行上。
+    run("8) 不误伤：取证基线小节里有一行「井号 + 全角空格」的伪标题（真渲染器：那是段落，"
+        "不得截断小节）",
+        "版本覆盖核对通过", expect_fail=False, edits={rf: t_fullwidth_pseudo_heading})
 
     print("=== 结果：通过 %d / 失败 %d / 作废 %d ===" % (PASS, FAIL, VOID))
     return 1 if (FAIL or VOID) else 0

@@ -140,6 +140,36 @@ def cells(raw):
     return [c.strip() for c in CELL_SPLIT.split(s)]
 
 
+def truncated_tail(lines, end):
+    """批次表**被空行截断**时，紧跟着却掉出检查范围的那些批次行。
+
+    **Batch 252 新增。起因是本批自己踩了一次**：
+    往表里插一行时多写了一个换行，于是在表体中间留下一行空行——
+    `locate_batch_table()` 遇到第一个不以 `|` 开头的行就 `break`，
+    **于是表在那行空行处结束，后面七十行批次记录全部不再被任何判据读到**，
+    **而本闸照样报「批次账本行核对通过」**。
+    实测：表从 231 行缩到 160 行，**退出码 0，报告里印着一个少 71 行的数字**。
+
+    **为什么只查「只隔空行」的情形**：`PROGRESS.md` 后面还有别的表格
+    （`### excluded 任务开放条件表`，其中有一行 `| 18 |`——
+    正是用例 2 那个「跨表同号」的天然样本）。
+    **判据必须能把「表被截断」与「表结束了、后面是另一个表」分开**，
+    而这两者的区别**只在中间有没有夹着非空内容**：
+    真截断是「表 → 空行 → 批次行」，真结束是「表 → 空行 → 小节标题 → 表」。
+    """
+    out = []
+    for i in range(end, len(lines)):
+        raw = lines[i]
+        if not raw.strip():
+            continue                      # 空行：继续看，可能只是插入时多打的换行
+        m = ROW_RE.match(raw)
+        if m and NUM_RE.match(m.group(1)):
+            out.append(i)                # 批次行：它本该在表里
+            continue
+        break                             # 遇到非空且不是批次行 → 表确实到此为止
+    return out
+
+
 def main():
     try:
         with io.open(PROGRESS, encoding="utf-8") as fh:
@@ -150,6 +180,21 @@ def main():
         return 2
 
     problems = []
+    # ── Batch 252：表被空行截断的检查放在最前面 ──
+    # **因为它是「让下面所有判据读到更少的东西」的那一种失效**：
+    # 别的判据报「通过」不是因为它们对，而是因为**它们没看到那些行**。
+    # **这与本闸其余任何一条都不同类**：重复号、形态、列数都是在**读到的内容**上判，
+    # 而这一条判的是「**有没有读全**」——**读不全时其余判据全部恒真**。
+    tail = truncated_tail(lines, end)
+    if tail:
+        nums = [ROW_RE.match(lines[i]).group(1) for i in tail]
+        problems.append(
+            f"第{end + 1}行之后紧跟着 {len(tail)} 行批次记录（Batch "
+            f"{', '.join(nums[:8])}{' …' if len(nums) > 8 else ''}）——"
+            f"**它们被一行空行挡在表外了**。`locate_batch_table()` 遇到第一个"
+            f"不以 `|` 开头的行就停，**于是这 {len(tail)} 行不受本闸任何判据监管**，"
+            f"**而本闸仍会报「核对通过」**。表体在第{end}行结束，"
+            f"这些行从第{tail[0] + 1}行开始")
     seen = {}
     total = 0
     short = 0

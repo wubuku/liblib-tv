@@ -267,12 +267,74 @@ def m_fully_blank_row_must_not_report():
         write(orig)
 
 
+def m_table_truncated_by_blank_must_report():
+    """能抓：在批次表**表体中间**插一行空行 → 后面七十行批次记录全部脱管 → 必须报。
+
+    **这条用例是本批自己踩出来的**（Batch 252）：往表里插一行时多写了一个换行，
+    `locate_batch_table()` 就在那行空行处 `break`，
+    表从 231 行缩到 160 行，**而闸 19 报 rc=0「批次账本行核对通过」**——
+    **报告里还印着一个少 71 行的数字**（160）。
+    **改前实测：同一个注入 rc=0。**
+
+    **为什么这条与本闸其余九条不同类**：重复号 / 形态 / 列数都是在
+    **读到的内容**上判；**这一条判的是「有没有读全」**——
+    **读不全时其余判据全部恒真**，所以它必须排在最前面。
+    """
+    check_anchor()
+    orig = read()
+    try:
+        lines = orig.split("\n")
+        start, end = locate_batch_table_lines(lines)
+        i = next(i for i in range(start + 2, end) if lines[i].startswith("| 250 |"))
+        lines.insert(i + 1, "")
+        write("\n".join(lines))
+        rc, out = run()
+        ok = rc == 1 and "被一行空行挡在表外" in out
+        record("11 表体中间有空行把表截断（必须报：那些行不受任何判据监管）",
+               ok, f"rc={rc}")
+    finally:
+        write(orig)
+
+
+def m_other_table_after_blank_must_not_report():
+    """不误伤：表**正常结束**、后面隔着标题是**另一张表** → 不得报。
+
+    **与用例 11 必须成对**：只钉 11 的话，判据可能只是
+    「批次表后面还有以 `|` 开头的行就报」——
+    **而 `PROGRESS.md` 的 `### excluded 任务开放条件表` 里就有一行 `| 18 |`**，
+    **那正是用例 2 的天然样本**。两个场景的差别**只在中间有没有夹着非空内容**：
+    真截断是「表 → 空行 → 批次行」，真结束是「表 → 空行 → 标题 → 表」。
+    """
+    check_anchor()
+    orig = read()
+    try:
+        lines = orig.split("\n")
+        start, end = locate_batch_table_lines(lines)
+        # 现场找一处「批次表结束后只隔空行、紧跟批次行」的形态（就是截断）
+        bad = None
+        for i in range(end + 1, min(end + 6, len(lines))):
+            if lines[i].strip():
+                bad = i
+                break
+        assert bad is not None, "前提失配：表后没有非空行可试"
+        # 把它换成另一个小节标题 → 变成「表正常结束、后面是别的章节」
+        lines[bad] = "### 这一节不是批次表的一部分"
+        write("\n".join(lines))
+        rc, out = run()
+        ok = rc == 0 and "被一行空行挡在表外" not in out
+        record("12 表后隔着标题是另一个章节（不得报：不是截断）", ok, f"rc={rc}")
+    finally:
+        write(orig)
+
+
 def main():
     tests = [m_duplicate_must_report, m_cross_table_must_not_report,
              m_bad_shape_must_report, m_unreadable_must_be_rc2, m_clean_pass,
              m_short_row_must_report, m_extra_col_must_not_report,
              m_short_header_must_report,
-             m_blank_batch_no_must_report, m_fully_blank_row_must_not_report]
+             m_blank_batch_no_must_report, m_fully_blank_row_must_not_report,
+             m_table_truncated_by_blank_must_report,
+             m_other_table_after_blank_must_not_report]
     for t in tests:
         try:
             t()
