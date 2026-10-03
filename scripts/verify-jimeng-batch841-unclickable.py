@@ -179,8 +179,18 @@ def strip_comments(src: str) -> str:
             continue
         # ⚠️ 三引号**必须排在单引号判定之前**：`"""` 开头是三个 `"`，
         #    先判单引号的话只会吃掉一个，剩下的两个被当成空串边界。
-        if (c == nxt2 and c in "\"'") or (nxt == c and nxt2 == c
-                                          and c in "\"'"):
+        # ⚠️⚠️⚠️ 【942 修的真 bug】原来这里**第一个条件是错的**：
+        #    `(c == nxt2 and c in "\"'")` 只检查「第 1 个 == 第 3 个」，
+        #    **漏了第 2 个** ⇒ `with open(OUT, "w")` 里的那个双引号
+        #    （`c='"'`、`nxt='w'`、`nxt2='"'`）**当场触发三引号模式**
+        #    ⇒ 从那儿起**整段被当成字符串吞掉**。
+        #    实测代价：审计源码 162 处 `//` 行注释**只剥掉 10 行**、152 行原样留着
+        #    ⇒ 3 条 `acode` 字面量判据数的一直是「**文件里**出现几次」，
+        #    只是**它们要数的字面量恰好只出现在代码里**才碰巧对
+        #    （940 / 941 往基线里各写一次那个字面量就当场变红，就是这个机制）。
+        #    ⇒ 第二个条件（`nxt == c and nxt2 == c`）才是「三个连续引号」的正确写法，
+        #    第一个条件**冗余且有害** ⇒ 删掉。
+        if nxt == c and nxt2 == c and c in "\"'":
             quote = c * 3
             out.append(quote)
             i += 3
@@ -1977,14 +1987,56 @@ def main() -> int:
           and '"clear_esc_fires": True' in _ausrc
           and '"clear_esc_also_closes_voices": True' in _ausrc
           and '"esc_depends_on_focus": True' in _ausrc)
+    # ⚠️⚠️ 批 942 订正：这条判据原来**钉的是注释里的一句散文**（源码注释
+    #   「刻意**不** `stopPropagation()`」）。942 修好 `strip_comments` 之前，
+    #   `.tsx` 的注释**根本没被剥掉** ⇒ 它读的**一直是注释、不是代码** ⇒
+    #   那句注释只要还在就绿，**就算有人往 Clear 的 Esc 分支里真的加上
+    #   `stopPropagation()` 也照样绿**（一个恒真的判据比没有判据更坏）。
+    #   普查读数（942，见 DDDD.3）：473 条判据里对 `strip_comments` 派生变量
+    #   的锚文共 **60** 条，**只有这 1 条**是读注释的，其余 55 条读代码。
+    #   ⇒ 本条改成钉**代码形态**。
+    def _aa3_ok(s):
+        """复刻 Clear 的 Esc 行为：**会清除**、且**不**截断冒泡。
+
+        ⭐ ②「不截断」是否定判据，只看它会被「整个文件从不调用
+        `stopPropagation`」这种空洞写法白送 ⇒ ③ 用**同一个文件里另一个
+        Esc 分支**（音色库列表）当阳性对照。承 940 的纪律：**阴阳对照门
+        的两个答案必须来自两个不同的集合**，而这里是「一个集合里一个
+        取反、一个不取反」，同样要求那一侧**真的存在**。
+        """
+        _head, mark, tail = s.partition(
+            'aria-label={`Clear ${label} filter`}')
+        if not mark:
+            return False
+        kd, kdmark, after = tail.partition("onKeyDown={(e) => {")
+        if not kdmark:
+            return False
+        esc, listboxmark, _rest = after.partition('role="listbox"')
+        if not listboxmark:
+            return False
+        # ① Esc 分支**真的清除**：收焦点 + 清值 + 关层，三个动作都在
+        if not ("refocusToNodeFromToolbar(" in esc
+                and "[label]: null," in esc
+                and "[label]: false," in esc):
+            return False
+        # ② **不** `stopPropagation` —— 清除归这一层，关面板那半必须冒泡
+        if "stopPropagation" in esc:
+            return False
+        # ③ 阳性对照：列表那份 Esc 分支**确实**截断，且全文仅此一处
+        #    ⚠️ 比对前先**空白归一化**：这两句在剥后是**分行**的，
+        #    钉死换行等于把判据锁在排版上（源站某次 reformat 就假红）。
+        _norm = " ".join(s.split())
+        return (s.count("stopPropagation") == 1
+                and "e.preventDefault(); e.stopPropagation();" in _norm)
+
     check("AA.3 复刻的 Clear **响应 Esc**：焦点在它上面按 Esc 会清除"
           "（875 加按钮时漏了；源站 876c 三次复现）。且**刻意不**"
           "`stopPropagation` —— 源站 Esc 是「清除 **+** 关掉整个面板」"
-          "两个动作同时发生，关面板那半必须**继续冒泡**给上层 handler",
-          "onKeyDown={(e) => {" in _agp2
-          and 'if (e.key === "Escape")' in _agp2
-          and "[label]: null," in _agp2
-          and "不** `stopPropagation()`" in _agp2)
+          "两个动作同时发生，关面板那半必须**继续冒泡**给上层 handler"
+          " ⚠️⚠️ 942：**原来这四条锚文里，最后一条锚的是注释里的散文**"
+          "（剥除器修好前 `.tsx` 注释根本没被剥）⇒ 已改成钉**代码形态**"
+          "＋一条**阳性对照**（同文件另一个 Esc 分支确实在截断）",
+          _aa3_ok(_agp2))
     check("AA.4 Clear 的 Esc 分支**不** `focus()` 芯片"
           "（源站实测 Esc 后焦点落在**音频节点本体**，不是芯片 —— 面板要关、"
           "芯片一起卸载；强行聚焦只会多出一个源站没有的落点）",
@@ -5234,6 +5286,125 @@ def main() -> int:
           and assert_bug)
     p940 = ROOT / "scripts/jimeng_probe940_tabindex_rewrite_src.py"
     _p940 = p940.read_text(encoding="utf-8") if p940.exists() else ""
+
+    # ══ 批 942：判据到底读代码还是读注释 ══════════════════════════════
+    # 942 做的事：`strip_comments` 的三引号识别有个**真 bug**（第一个条件
+    # 只查「第 1 个 == 第 3 个」、漏了第 2 个 ⇒ `with open(OUT, "w")` 的
+    # 双引号当场触发三引号模式、整段被吞）。修好之后全套判据里**恰好一条**
+    # 变红：AA.3 —— 它钉的是**源码注释里的一句散文**。
+    print("— DDDD. 批 942 剥除器真修 + 判据锚文普查 —")
+    _v942 = ROOT / "scripts/jimeng_check_strip_comments.py"
+    _c942 = ROOT / "scripts/jimeng_check_comment_anchors.py"
+    _v942s = _v942.read_text(encoding="utf-8") if _v942.exists() else ""
+    _c942s = _c942.read_text(encoding="utf-8") if _c942.exists() else ""
+    # ⚠️ 这一段**刻意用本文件自己的 `strip_py_comments`** 来判「错误形态
+    #   还在不在」—— 940/941 踩的坑反过来成了 942 的判据：
+    #   「原文里有、真代码里没有」才是可查的钉法，光钉「原文里没有」
+    #   既会被注释里的**修复说明**顶红，也分不清到底删没删。
+    # ⚠️⚠️ 而且必须**只数 DDDD 组自己之前的那段源码** ——
+    #   这条判据**自己**就写着那个字面量（`_vsrc.count("c == nxt2 and c in")`），
+    #   那是**真代码里的字符串字面量**、`strip_py_comments` 不会剥它
+    #   ⇒ 实测：原文 3 处、剥后仍 **2** 处（全是判据自己那两处），
+    #   真正该为 0 的「剥后真代码」得**先把判据自己排除掉**才看得见。
+    #   ⭐ 这与「写一条判据就让普查总数 +1」是同一族自指问题：
+    #   **量自己的尺子会把自己也算进去。**
+    _v942_pre = _vsrc.split("# ══ 批 942", 1)[0]
+    _v942_pre_code = strip_py_comments(_v942_pre)
+
+    check("DDDD.1 ⚠️⚠️⚠️ **942 修的是个真 bug，不是整理** —— "
+          "`strip_comments` 的三引号入口原来第一个条件"
+          "「`c == nxt2`（只查第 1 个 == 第 3 个、漏第 2 个）」"
+          "会让 `with open(OUT, \"w\")` 的双引号**当场触发三引号模式**、"
+          "从那儿起整段被吞；现在只剩「三个连续引号」这一条。"
+          "⚠️ 判据钉的是**真代码里那个错误形态已经不在**（用本文件自己的"
+          " `strip_py_comments` 剥掉注释再数）—— 只钉「原文里没有」会被"
+          "注释里那段**修复说明**顶红，也分不清到底删没删；"
+          "⚠️ 且只数 **DDDD 组之前**的源码（这条判据自己就写着那个字面量，"
+          "它是**代码里的字符串**、剥不掉 ⇒ 不排除就会数到自己头上）",
+          'nxt == c and nxt2 == c and c in "\\"\'"' in _v942_pre
+          and _v942_pre.count("c == nxt2 and c in") == 1        # 只在注释里留了痕
+          and _v942_pre_code.count("c == nxt2 and c in") == 0    # 真代码里已删
+          and _v942_pre_code.count(
+              'nxt == c and nxt2 == c and c in') == 1)          # 正确那条还在
+
+    check("DDDD.2 ⭐⭐⭐ **942 量到了修好之后「谁被影响」的完整读数**，"
+          "并把它**记进基线**（基线是唯一可机读来源，README 只做人读叙事）："
+          "对 `strip_comments` 派生变量的锚文共 **56** 条 —— **52 条读代码**、"
+          "**0 条读注释**、4 条是剥除器**自测**的合成用例"
+          "（挂在内联合成用例 `_sc_out` 上、不参与分类）"
+          "⇒ **修好剥除器的爆炸半径 = 恰好 1 条判据（AA.3）**，其余 52 条"
+          "锚的是代码、经得起剥。⚠️ 判据只钉**不变量**（「读注释的必须是 0」），"
+          "**不钉**计数 —— ⚠️ 942 一开始按「AA.3 修完是 56」写死了总数，"
+          "**下一条判据（DDDD.3 自己）就把它推成了 57**："
+          "写一条打在派生变量上的判据，普查总数就 **+1**。"
+          "⇒ 基线**记录**读数、**关系式的门**在工具的 G2/G3，"
+          "判据里**一处只钉一件事**",
+          '"anchors": ' in _ausrc
+          and '"code": ' in _ausrc
+          and '"synth": ' in _ausrc
+          and '"comment_only": 0' in _ausrc        # ← 唯一钉死的不变量
+          and "**不在**判据里钉死计数" in _ausrc
+          and "不钉**「恰好 52/56」" in _ausrc
+          and "总数就 +1" in _ausrc
+          and "一处只钉一件事" in _ausrc)
+
+    check("DDDD.3 ✅⭐⭐⭐ **942 查清 AA.3 为什么是假绿**：它钉的"
+          "「不** `stopPropagation()`」这句话只存在于**源码注释里**，"
+          "而剥除器坏掉时 `.tsx` 注释**根本没被剥** ⇒ 那句注释只要还在就绿，"
+          "**就算有人真往 Clear 的 Esc 分支加上 `stopPropagation()` 也照样绿**"
+          "（一个恒真的判据比没有判据更坏）。已改成钉**代码形态**："
+          "① Esc 分支**真的清除**（收焦点 + 清值 + 关层）"
+          "② 该分支**不**截断冒泡 ③ **阳性对照**：同一个文件里另一个 Esc 分支"
+          "（音色库列表）**确实**截断、且全文**仅此一处**"
+          " —— 只看 ② 会被「整个文件从不调用」这种空洞写法白送",
+          "def _aa3_ok(s):" in _vsrc
+          and "_aa3_ok(_agp2)" in _vsrc
+          and 'refocusToNodeFromToolbar(" in esc' in _vsrc
+          and 'if "stopPropagation" in esc:' in _vsrc
+          and 's.count("stopPropagation") == 1' in _vsrc
+          # ③ 的对照侧必须**真的**在文件里（不然 ② 是空洞）
+          and _agp2.count("stopPropagation") == 1
+          and "e.preventDefault(); e.stopPropagation();" in " ".join(
+              _agp2.split()))
+
+    check("DDDD.4 ⚠️⚠️ **「读注释的锚文必须为 0」被立成了可查的门**，"
+          "而且这道门**自己被证伪过**：把旧版 AA.3 那条锚文塞回副本、"
+          "对副本跑同一道普查，它当场变红（`comment_only` 从 0 变 1）"
+          "⇒ 它不是恒绿的门。工具另外三处自保也得钉住："
+          "① **变异必须真的发生**（第一版三个 `re.sub` 因不跨行**静默没匹配**，"
+          "判据「正确地」保持 True —— 那是**空白对照**，看着像阳性对照通过）"
+          "② **绑定解析不出来必须拒运行**（第一版把 19 条锚文误判成"
+          "「合成用例」、于是「读注释 0 条」对它们**根本没测**，"
+          "是同一道 G4 把它拒了的）③ 两个实现都从 verifier 的 AST 里"
+          "**原样**取，**不复制**",
+          _c942s != ""
+          and "变异没发生" in _c942s
+          and "if want is not True and mutated == s0:" in _c942s
+          and "gate(\"G4 synth_excluded" in _c942s
+          and "exec(ast.unparse(fn), ns)" in _c942s
+          and "MIN_CODE_RATIO" in _c942s
+          and _v942s != ""
+          and "load_strip_comments" in _v942s
+          and "MIN_PROBES_HIT" in _v942s)
+
+    check("DDDD.5 ⚠️ **订正 940 那句过头的话（原文一字未删，只加批注）** —— "
+          "940 写的是「9 处 `acode` 判据数错对象却碰巧对」；"
+          "942 普查后**两处都要收窄**：① 那是 **9 行提到、3 条字面量判据**"
+          "（`skin_top_n += 1` / `closest(LAYER_SEL)` / `p === 'fixed'`），"
+          "不是 9 条；② 这 3 条**数的就是真代码、答案全对**"
+          "（全文计数与剥后计数相同）⇒ 「碰巧对」只对**机制**成立"
+          "（940/941 往基线写字面量就变红），**对读数**不成立。"
+          "⚠️ 另订正 942 自己前两句的过头说法：「剥除器坏了 ⇒ 判据全在读注释」"
+          "**也是过头** —— 坏掉时判据读的是**没剥过的原文**，"
+          "其中多数锚文恰好**本来就只在代码里**，所以它们**一直是对的**",
+          "**9 行提到" in _ausrc          # 9 行提到 acode
+          and "**3 条**字面量判据**" in _ausrc   # …只有 3 条判据
+          and "**数的就是真代码**" in _ausrc
+          and "答案全对**" in _ausrc
+          and "**对读数不成立**" in _ausrc
+          and "多数锚文本来就只出现在代码里" in _ausrc
+          and "**不是恒绿的**" in _ausrc)
+
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
           "§130「roving 是单指针、不是留轨迹」的**源站实证**；"
