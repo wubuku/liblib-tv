@@ -246,6 +246,9 @@ SELFTEST_COSTS = {
     #: **而它不读像素**——本闸只对文件字节做 sha256 与尺寸，所以比 `selftest-shot-pixels.py` 快一个量级。
     "selftest-shot-integrity.py": 1.5,
     "selftest-shot-version.py": 0.8,
+    #: **Batch 241 新增**：三次实测 5.41 / 5.44 / 6.06 秒，**按纪律 204 取最大 6.06，登记 6.5**（偏大安全）。
+    #: 慢在**每个用例都要 `git init` 造一个真仓**——本闸的输入就是提交历史，而「造一段假的历史」比「造一份假的文件」贵得多。
+    "selftest-shot-version-source.py": 6.5,
     "selftest-tables.sh": 0.8,
     "selftest-zero-input.py": 42.1,
 }

@@ -29,7 +29,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'generic 双击画布 · 自由生成节点 / toolbar 画布工具 / button 打开素材空间 共 0 项'
     visible_text: '双击画布 · 自由生成节点'
     alt: '空画布工作区：中央提示「双击画布 · 自由生成节点」，底部工具栏与视图控制，缩放 100%'
@@ -42,7 +42,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'heading 添加节点 / button 文本 / button 智能剪辑 正在开发 / heading 导入资源'
     visible_text: '添加节点'
     alt: '添加节点菜单：创作节点（文本/图片/视频/音频/智能剪辑/导演台/逐帧拉片/脚本均标正在开发）与导入资源（上传/从生成历史选择/素材库）'
@@ -55,7 +55,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'generic 文本节点 1 / button 放大编辑 / 左右圆形加号轨道'
     visible_text: '文本节点 1'
     alt: '画布上的文本节点 1，上方工具栏（文本生成/放大编辑/生图/文本调整），左右两侧加号连接轨道'
@@ -81,7 +81,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'button 切换小地图 / 文本节点 1 色块'
     visible_text: '切换小地图'
     alt: '画布左下角小地图显示当前视口矩形与文本节点色块，工具栏可见「切换小地图」提示'
@@ -107,7 +107,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: '已保存在本地 / 100% / 关闭按钮'
     visible_text: '已保存在本地'
     alt: '放大编辑全屏模式，顶栏显示已保存在本地、历史与缩放控制'
@@ -120,7 +120,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'textbox 描述你想要生成的画面内容，@引用素材 / 720P · 1:1 · 6s'
     visible_text: '描述你想要生成的画面内容，@引用素材'
     alt: '选中视频节点后底部生成 composer：提示词输入、模型 2.0 与 720P·1:1·6s 参数'
@@ -146,7 +146,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'heading 参考内容 / 这个分类还没有素材 / button 插入已选素材'
     visible_text: '参考内容'
     alt: '视频节点的引用素材选择器：左侧媒体类型与分类过滤，空态提示先在素材库添加素材'
@@ -159,7 +159,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'heading 引用该节点生成 / button 视频 / 虚线连线预览'
     visible_text: '引用该节点生成'
     alt: '从文本节点拖出的虚线连线与快速创建菜单：文本/图片/视频/音频/智能剪辑/导演台/脚本'
@@ -173,7 +173,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'button 回收站 / button 新建文件夹 / 开始创作'
     visible_text: '回收站'
     alt: '项目列表页：项目卡片、搜索、回收站与新建文件夹按钮（回收站入口）'
@@ -199,7 +199,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: '视频设置 / 480P 720P 1080P 2K 4K / 16:9 9:16 1:1 4:3 3:4 21:9 / 秒数 6 秒'
     visible_text: '视频设置'
     alt: '视频设置弹层：分辨率 480P/720P(选中)/1080P/2K/4K，尺寸 W720×H720，宽高比六选一(1:1 选中)，秒数滑杆 1-15s 当前 6 秒'
@@ -212,7 +212,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'heading 回收站 / 回收站是空的 / button 全选 / 彻底删除 / 恢复'
     visible_text: '回收站是空的'
     alt: '回收站弹窗空态：标题回收站，中央提示回收站是空的，底部全选复选框与彻底删除、恢复按钮'
@@ -225,7 +225,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'heading 个人资产库 / 当前暂无资产 / button 上传资产 / 生成历史 0'
     visible_text: '个人资产库'
     alt: '浅色模式个人资产库页：类型过滤标签（全部/文本/图片/视频/音频 各0）、当前暂无资产提示与上传资产按钮，右侧生成历史侧栏'
@@ -238,7 +238,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'heading 本地模型渠道 / button 连接 BeefAPI / heading 默认生图模型 / heading 默认视频模型'
     visible_text: '本地模型渠道'
     alt: '模型配置页全貌：顶部拉取全部与新增渠道按钮，BeefAPI 渠道卡片显示 OpenAI 兼容·已保存 0 个模型·未连接，下方默认生图/视频/文本/音频模型四类选择器均尚未配置'
@@ -251,7 +251,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'heading 本地模型渠道 / button 连接 BeefAPI / heading 默认生图模型 / heading 默认音频模型'
     visible_text: '本地模型渠道'
     alt: '设置页渠道区：BeefAPI 渠道（OpenAI 兼容·已保存 0 个模型·未连接）与默认生图/视频/文本/音频模型四类选择器'
@@ -264,7 +264,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'S83-jing2.mp4 / button 音视频分离 / button 关键帧截取 / 视频处理'
     visible_text: 'S83-jing2.mp4'
     alt: '上传完成的视频节点：真实视频首帧画面渲染，顶部视频处理工具条含视频处理下拉、音视频分离、关键帧截取、放大与下载'
@@ -277,7 +277,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.0'
+    captured_version: 'v1.6.6'
     verified_locator: 'menuitem 视频剪辑 / 画面裁切 / 深度动作捕捉'
     visible_text: '视频剪辑'
     alt: '视频处理下拉菜单展开：视频剪辑、画面裁切、深度动作捕捉三个菜单项，背景为上传的视频首帧画面'
@@ -290,7 +290,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'heading 搜索画布节点 / searchbox 搜索节点名称 / 最近编辑 3 个节点 / S83-jing2.mp4 视频节点 864×496 · 4秒'
     visible_text: '搜索画布节点'
     alt: '搜索画布节点弹窗：顶部搜索框，最近编辑 3 个节点（S83-jing2.mp4 视频节点 864×496·4秒带首帧缩略图、文本节点 1、视频节点 1），每条含创建与编辑时间戳'
@@ -303,7 +303,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'S83-jing2.mp4 / 视频处理 / 音视频分离 / 关键帧截取 / 放大 / 下载'
     visible_text: 'S83-jing2.mp4'
     alt: '有内容视频节点选中态：真实视频画面完整渲染，顶部处理工具条含视频处理下拉、音视频分离、关键帧截取、放大与下载按钮'
@@ -316,7 +316,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: '视频节点 1 / 播放按钮 / S83-jing2.mp4 小地图缩略'
     visible_text: '视频节点 1'
     alt: '有内容视频节点完整渲染：真实视频画面带播放按钮覆盖，左下小地图同步显示节点缩略'
@@ -329,7 +329,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'button 打开 / 重命名 / 修改封面 / 创建副本 / 移动至文件夹 / 删除项目'
     visible_text: '重命名'
     alt: '项目卡操作菜单展开：打开、重命名、修改封面、创建副本、移动至文件夹（子菜单）、删除项目六个菜单项'
@@ -342,7 +342,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'dialog 回收站 / checkbox 选择 未命名项目 / button 彻底删除 [disabled] / button 恢复 [disabled]'
     visible_text: '回收站'
     alt: '回收站弹窗含一条被删项目（未命名项目，删除时间），底部全选与禁用态的彻底删除/恢复按钮'
@@ -368,7 +368,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.13'
     verified_locator: 'dialog 选择镜头模板 / button 空场景 摄影机 + 布光'
     visible_text: '选择镜头模板'
     alt: '选择镜头模板弹窗：五款模板卡片各带演员数与机位说明'
@@ -381,7 +381,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.13'
     verified_locator: 'button 打开导演台 / textbox 场景描述'
     visible_text: '在3D空间中搭建场景并进行多视角截图'
     alt: '画布上的镜头 1 节点：空态卡带打开导演台按钮，下方场景描述输入框'
@@ -394,7 +394,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.13'
     verified_locator: 'navigation 导演台模式 摆场 姿态 动画 摄影机 / button 导出白膜 / button 应用到镜头'
     visible_text: '3D导演台'
     alt: '导演工作台：左侧场景树与灯光，中央 3D 视口与引导卡，右侧 3D 场景/全景背景参数'
@@ -407,7 +407,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.13'
     verified_locator: 'generic 摄像机检查器 / tab 属性 / slider 视野角度 (FOV)'
     visible_text: '摄像机检查器'
     alt: '摄影机模式：右侧摄像机检查器含位置、跟随目标、注视坐标与 FOV 滑杆，视口显示主摄影机'
@@ -420,7 +420,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.13'
     verified_locator: 'button 自动关键帧 / button 记录 / button ◈ 镜头总轨 / button ⌾ 主摄影机'
     visible_text: '自动关键帧'
     alt: '动画模式：底部时间轴含轨道区（镜头总轨、Camera Cut、主摄影机）与自动关键帧/吸附/记录控件，0.00s/5.00s·24fps'
@@ -433,7 +433,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.13'
     verified_locator: 'generic 角色绑定 49 根骨骼 / combobox 骨骼控制 / 姿势预设 20 按钮'
     visible_text: '姿势预设'
     alt: '姿态模式：视口中演员白模带骨骼，右侧演员变换与姿势预设面板，时间轴出现演员 1 动作片段轨'
@@ -459,7 +459,7 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-29'
-    captured_version: 'v1.6.14'
+    captured_version: 'v1.6.6'
     verified_locator: 'dialog 从生成历史选择 / textbox 搜索生成历史 / generic 暂无可插入的生成结果'
     visible_text: '从生成历史选择'
     alt: '生成历史弹窗：标题「从生成历史选择」，搜索框占位「搜索提示词或模型」，空态「暂无可插入的生成结果」，背景画布压暗'
