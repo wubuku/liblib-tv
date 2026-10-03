@@ -1,0 +1,529 @@
+{
+ "run": {
+  "graph0": {
+   "nodes": [
+    {
+     "id": "g-245IDFh8sB",
+     "type": "storyboard-group"
+    },
+    {
+     "id": "g-EFbbHpwq5w",
+     "type": "storyboard-group"
+    },
+    {
+     "id": "t-9j2MoccxBj",
+     "type": "script"
+    },
+    {
+     "id": "i-1FQ9tErTcC",
+     "type": "image"
+    },
+    {
+     "id": "i-lBzmo67AHv",
+     "type": "image"
+    },
+    {
+     "id": "i-dnwoZQ7jsG",
+     "type": "image"
+    },
+    {
+     "id": "i-vxeeCnxySa",
+     "type": "image"
+    },
+    {
+     "id": "b-bTLLuU4w5q",
+     "type": "script-execution"
+    },
+    {
+     "id": "i-YDfWhFlthe",
+     "type": "image"
+    },
+    {
+     "id": "v-UGQZzZOpbv",
+     "type": "video"
+    }
+   ],
+   "edges": [
+    {
+     "id": "e-8IgMkf6Vbj",
+     "source": "i-1FQ9tErTcC",
+     "target": "b-bTLLuU4w5q"
+    },
+    {
+     "id": "e-abKze5c8Ug",
+     "source": "i-1FQ9tErTcC",
+     "target": "i-YDfWhFlthe"
+    },
+    {
+     "id": "e-AQmdIgKtl2",
+     "source": "b-bTLLuU4w5q",
+     "target": "g-245IDFh8sB"
+    },
+    {
+     "id": "e-m2wWA2wIBA",
+     "source": "i-dnwoZQ7jsG",
+     "target": "b-bTLLuU4w5q"
+    },
+    {
+     "id": "e-nlMX3rEjwN",
+     "source": "i-vxeeCnxySa",
+     "target": "b-bTLLuU4w5q"
+    },
+    {
+     "id": "e-OwhsBRzrTz",
+     "source": "i-1FQ9tErTcC",
+     "target": "v-UGQZzZOpbv"
+    },
+    {
+     "id": "e-QzX895ot0u",
+     "source": "i-lBzmo67AHv",
+     "target": "b-bTLLuU4w5q"
+    },
+    {
+     "id": "e-VQACH36eJC",
+     "source": "i-dnwoZQ7jsG",
+     "target": "v-UGQZzZOpbv"
+    },
+    {
+     "id": "e-XmiJkHfFAL",
+     "source": "i-YDfWhFlthe",
+     "target": "v-UGQZzZOpbv"
+    },
+    {
+     "id": "e-xNVTHNFZZl",
+     "source": "i-dnwoZQ7jsG",
+     "target": "i-YDfWhFlthe"
+    },
+    {
+     "id": "e-yEqrTOR2Ya",
+     "source": "b-bTLLuU4w5q",
+     "target": "g-EFbbHpwq5w"
+    }
+   ],
+   "unordered": [
+    "b-bTLLuU4w5q|i-1FQ9tErTcC",
+    "i-1FQ9tErTcC|i-YDfWhFlthe",
+    "b-bTLLuU4w5q|g-245IDFh8sB",
+    "b-bTLLuU4w5q|i-dnwoZQ7jsG",
+    "b-bTLLuU4w5q|i-vxeeCnxySa",
+    "i-1FQ9tErTcC|v-UGQZzZOpbv",
+    "b-bTLLuU4w5q|i-lBzmo67AHv",
+    "i-dnwoZQ7jsG|v-UGQZzZOpbv",
+    "i-YDfWhFlthe|v-UGQZzZOpbv",
+    "i-YDfWhFlthe|i-dnwoZQ7jsG",
+    "b-bTLLuU4w5q|g-EFbbHpwq5w"
+   ],
+   "candidates": [
+    {
+     "source": "g-245IDFh8sB",
+     "target": "g-EFbbHpwq5w"
+    },
+    {
+     "source": "g-245IDFh8sB",
+     "target": "t-9j2MoccxBj"
+    },
+    {
+     "source": "g-245IDFh8sB",
+     "target": "i-YDfWhFlthe"
+    },
+    {
+     "source": "g-245IDFh8sB",
+     "target": "v-UGQZzZOpbv"
+    },
+    {
+     "source": "g-EFbbHpwq5w",
+     "target": "g-245IDFh8sB"
+    },
+    {
+     "source": "g-EFbbHpwq5w",
+     "target": "t-9j2MoccxBj"
+    },
+    {
+     "source": "g-EFbbHpwq5w",
+     "target": "i-YDfWhFlthe"
+    },
+    {
+     "source": "g-EFbbHpwq5w",
+     "target": "v-UGQZzZOpbv"
+    },
+    {
+     "source": "t-9j2MoccxBj",
+     "target": "g-245IDFh8sB"
+    },
+    {
+     "source": "t-9j2MoccxBj",
+     "target": "g-EFbbHpwq5w"
+    },
+    {
+     "source": "t-9j2MoccxBj",
+     "target": "i-1FQ9tErTcC"
+    },
+    {
+     "source": "t-9j2MoccxBj",
+     "target": "i-lBzmo67AHv"
+    },
+    {
+     "source": "t-9j2MoccxBj",
+     "target": "i-dnwoZQ7jsG"
+    },
+    {
+     "source": "t-9j2MoccxBj",
+     "target": "i-vxeeCnxySa"
+    },
+    {
+     "source": "t-9j2MoccxBj",
+     "target": "b-bTLLuU4w5q"
+    },
+    {
+     "source": "t-9j2MoccxBj",
+     "target": "i-YDfWhFlthe"
+    },
+    {
+     "source": "t-9j2MoccxBj",
+     "target": "v-UGQZzZOpbv"
+    },
+    {
+     "source": "i-1FQ9tErTcC",
+     "target": "g-245IDFh8sB"
+    },
+    {
+     "source": "i-1FQ9tErTcC",
+     "target": "g-EFbbHpwq5w"
+    },
+    {
+     "source": "i-1FQ9tErTcC",
+     "target": "t-9j2MoccxBj"
+    },
+    {
+     "source": "i-1FQ9tErTcC",
+     "target": "i-lBzmo67AHv"
+    },
+    {
+     "source": "i-1FQ9tErTcC",
+     "target": "i-dnwoZQ7jsG"
+    },
+    {
+     "source": "i-1FQ9tErTcC",
+     "target": "i-vxeeCnxySa"
+    },
+    {
+     "source": "i-lBzmo67AHv",
+     "target": "g-245IDFh8sB"
+    },
+    {
+     "source": "i-lBzmo67AHv",
+     "target": "g-EFbbHpwq5w"
+    },
+    {
+     "source": "i-lBzmo67AHv",
+     "target": "t-9j2MoccxBj"
+    },
+    {
+     "source": "i-lBzmo67AHv",
+     "target": "i-1FQ9tErTcC"
+    },
+    {
+     "source": "i-lBzmo67AHv",
+     "target": "i-dnwoZQ7jsG"
+    },
+    {
+     "source": "i-lBzmo67AHv",
+     "target": "i-vxeeCnxySa"
+    },
+    {
+     "source": "i-lBzmo67AHv",
+     "target": "i-YDfWhFlthe"
+    },
+    {
+     "source": "i-lBzmo67AHv",
+     "target": "v-UGQZzZOpbv"
+    },
+    {
+     "source": "i-dnwoZQ7jsG",
+     "target": "g-245IDFh8sB"
+    },
+    {
+     "source": "i-dnwoZQ7jsG",
+     "target": "g-EFbbHpwq5w"
+    },
+    {
+     "source": "i-dnwoZQ7jsG",
+     "target": "t-9j2MoccxBj"
+    },
+    {
+     "source": "i-dnwoZQ7jsG",
+     "target": "i-1FQ9tErTcC"
+    },
+    {
+     "source": "i-dnwoZQ7jsG",
+     "target": "i-lBzmo67AHv"
+    },
+    {
+     "source": "i-dnwoZQ7jsG",
+     "target": "i-vxeeCnxySa"
+    },
+    {
+     "source": "i-vxeeCnxySa",
+     "target": "g-245IDFh8sB"
+    },
+    {
+     "source": "i-vxeeCnxySa",
+     "target": "g-EFbbHpwq5w"
+    },
+    {
+     "source": "i-vxeeCnxySa",
+     "target": "t-9j2MoccxBj"
+    },
+    {
+     "source": "i-vxeeCnxySa",
+     "target": "i-1FQ9tErTcC"
+    },
+    {
+     "source": "i-vxeeCnxySa",
+     "target": "i-lBzmo67AHv"
+    },
+    {
+     "source": "i-vxeeCnxySa",
+     "target": "i-dnwoZQ7jsG"
+    },
+    {
+     "source": "i-vxeeCnxySa",
+     "target": "i-YDfWhFlthe"
+    },
+    {
+     "source": "i-vxeeCnxySa",
+     "target": "v-UGQZzZOpbv"
+    },
+    {
+     "source": "b-bTLLuU4w5q",
+     "target": "t-9j2MoccxBj"
+    },
+    {
+     "source": "b-bTLLuU4w5q",
+     "target": "i-YDfWhFlthe"
+    },
+    {
+     "source": "b-bTLLuU4w5q",
+     "target": "v-UGQZzZOpbv"
+    },
+    {
+     "source": "i-YDfWhFlthe",
+     "target": "g-245IDFh8sB"
+    },
+    {
+     "source": "i-YDfWhFlthe",
+     "target": "g-EFbbHpwq5w"
+    },
+    {
+     "source": "i-YDfWhFlthe",
+     "target": "t-9j2MoccxBj"
+    },
+    {
+     "source": "i-YDfWhFlthe",
+     "target": "i-lBzmo67AHv"
+    },
+    {
+     "source": "i-YDfWhFlthe",
+     "target": "i-vxeeCnxySa"
+    },
+    {
+     "source": "i-YDfWhFlthe",
+     "target": "b-bTLLuU4w5q"
+    },
+    {
+     "source": "v-UGQZzZOpbv",
+     "target": "g-245IDFh8sB"
+    },
+    {
+     "source": "v-UGQZzZOpbv",
+     "target": "g-EFbbHpwq5w"
+    },
+    {
+     "source": "v-UGQZzZOpbv",
+     "target": "t-9j2MoccxBj"
+    },
+    {
+     "source": "v-UGQZzZOpbv",
+     "target": "i-lBzmo67AHv"
+    },
+    {
+     "source": "v-UGQZzZOpbv",
+     "target": "i-vxeeCnxySa"
+    },
+    {
+     "source": "v-UGQZzZOpbv",
+     "target": "b-bTLLuU4w5q"
+    }
+   ]
+  },
+  "handleCount": 20,
+  "nCandidates": 60,
+  "picked": {
+   "forward1": {
+    "source": "g-245IDFh8sB",
+    "target": "g-EFbbHpwq5w"
+   },
+   "forward2": {
+    "source": "g-245IDFh8sB",
+    "target": "t-9j2MoccxBj"
+   },
+   "reverse": {
+    "source": "g-245IDFh8sB",
+    "target": "i-YDfWhFlthe"
+   },
+   "duplicateControl": {
+    "source": "i-1FQ9tErTcC",
+    "target": "b-bTLLuU4w5q"
+   }
+  },
+  "trials": {
+   "forward1": {
+    "plan": [
+     "g-245IDFh8sB",
+     "right",
+     "g-EFbbHpwq5w",
+     "left"
+    ],
+    "atTarget": [
+     {
+      "nodeId": "g-245IDFh8sB",
+      "id": "source",
+      "extra": [
+       "connectingfrom"
+      ]
+     },
+     {
+      "nodeId": "g-EFbbHpwq5w",
+      "id": "target",
+      "extra": [
+       "connectingto",
+       "valid"
+      ]
+     }
+    ],
+    "connExists": true,
+    "afterUp": [],
+    "newEdges": [
+     {
+      "id": "e-g-245IDFh8sB-g-EFbbHpwq5w-1791041100888",
+      "source": "g-245IDFh8sB",
+      "target": "g-EFbbHpwq5w"
+     }
+    ],
+    "nBefore": 11,
+    "nAfter": 12
+   },
+   "forward2": {
+    "plan": [
+     "g-245IDFh8sB",
+     "right",
+     "t-9j2MoccxBj",
+     "left"
+    ],
+    "atTarget": [
+     {
+      "nodeId": "g-245IDFh8sB",
+      "id": "source",
+      "extra": [
+       "connectingfrom"
+      ]
+     },
+     {
+      "nodeId": "t-9j2MoccxBj",
+      "id": "target",
+      "extra": [
+       "connectingto",
+       "valid"
+      ]
+     }
+    ],
+    "connExists": true,
+    "afterUp": [],
+    "newEdges": [
+     {
+      "id": "e-g-245IDFh8sB-t-9j2MoccxBj-1791041103502",
+      "source": "g-245IDFh8sB",
+      "target": "t-9j2MoccxBj"
+     }
+    ],
+    "nBefore": 12,
+    "nAfter": 13
+   },
+   "reverseFromTargetHandle": {
+    "plan": [
+     "g-245IDFh8sB",
+     "left",
+     "i-YDfWhFlthe",
+     "right"
+    ],
+    "atTarget": [
+     {
+      "nodeId": "g-245IDFh8sB",
+      "id": "target",
+      "extra": [
+       "connectingfrom"
+      ]
+     },
+     {
+      "nodeId": "i-YDfWhFlthe",
+      "id": "source",
+      "extra": [
+       "connectingto",
+       "valid"
+      ]
+     }
+    ],
+    "connExists": true,
+    "afterUp": [],
+    "newEdges": [
+     {
+      "id": "e-i-YDfWhFlthe-g-245IDFh8sB-1791041106041",
+      "source": "i-YDfWhFlthe",
+      "target": "g-245IDFh8sB"
+     }
+    ],
+    "nBefore": 13,
+    "nAfter": 14
+   },
+   "duplicateControl": {
+    "plan": [
+     "i-1FQ9tErTcC",
+     "right",
+     "b-bTLLuU4w5q",
+     "left"
+    ],
+    "atTarget": [
+     {
+      "nodeId": "i-1FQ9tErTcC",
+      "id": "source",
+      "extra": [
+       "connectingfrom"
+      ]
+     },
+     {
+      "nodeId": "b-bTLLuU4w5q",
+      "id": "target",
+      "extra": [
+       "connectingto"
+      ]
+     }
+    ],
+    "connExists": true,
+    "afterUp": [],
+    "newEdges": [],
+    "nBefore": 14,
+    "nAfter": 14
+   }
+  }
+ },
+ "summary": {
+  "the-picked-pairs-are-proven-free-by-recomputing-the-rule-from-store": true,
+  "a-legal-pair-marks-the-drop-target-connectingto-and-valid": true,
+  "a-legal-pair-creates-exactly-one-edge-with-the-documented-id-shape": true,
+  "dragging-from-a-target-handle-works-and-the-direction-is-normalized": true,
+  "a-duplicate-pair-reaches-the-target-but-is-never-marked-valid": true,
+  "connecting-is-never-a-react-flow-class-only-from-and-to-are": true,
+  "valid-is-the-only-discriminator-between-accepted-and-rejected": true
+ },
+ "failures": []
+}
