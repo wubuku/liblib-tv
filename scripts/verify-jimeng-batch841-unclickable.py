@@ -5405,6 +5405,89 @@ def main() -> int:
           and "多数锚文本来就只出现在代码里" in _ausrc
           and "**不是恒绿的**" in _ausrc)
 
+    # ══ 批 943：鼠标臂 vs 键盘臂（源站，纯诊断）══════════════════════
+    print("— EEEE. 批 943 两条臂不是同一条规则 —")
+    p943 = ROOT / "scripts/jimeng_probe943_arm_relation_src.py"
+    _p943 = p943.read_text(encoding="utf-8") if p943.exists() else ""
+
+    check("EEEE.1 ⭐⭐⭐ **943 的判决：两条臂不是同一条规则** —— "
+          "键盘臂每次咬到做**三件事**（删上一个 / **写回上上个** / 改本次）"
+          "⇒ 「不带 `tabindex` 的节点数」**恒为 1**（逐条复现 §131）；"
+          "**鼠标臂的 `added` 恒空**（只删不写回）⇒ 那个数**每咬一次 +1**"
+          "（2 轮 × 5 次咬到：1→2→3→4→5→6，两轮**逐字相同**）"
+          "⇒ ⚠️ **鼠标臂单独跑会破坏 §131 那条不变式**。"
+          "取样在 `CANVAS_BASELINE.canvas_surface`（**不是**层表 —— "
+          "它不属于任何浮层，塞进层表会让 H.1/H.2 变红，942 塞过一次、红了）",
+          '"mouse_arm_added_always_empty": True' in _ausrc
+          and '"mouse_arm_without_ti_grows_monotonic": True' in _ausrc
+          and '"keyboard_arm_without_ti_always_one": True' in _ausrc
+          and '"keyboard_arm_reproduces_131": True' in _ausrc
+          and "CANVAS_BASELINE = {" in _ausrc)
+
+    check("EEEE.2 ⭐⭐ **窗口是全局的、不是按臂分开的** —— 第一次鼠标点击的 "
+          "`removed` **正是键盘臂最后布的那个下标**"
+          "（键盘臂末步 `changed=[8,'-1','0']`，紧接着点 i=0 得 `removed=[8]`）"
+          "⇒ **鼠标臂接着键盘臂的历史走**，不是另起一套。"
+          "⚠️ 这条与 EEEE.1 合起来才是「同一条窗口、**不同**的补偿」"
+          "—— 只说其中一半都会读错",
+          '"removed_is_cross_arm": True' in _ausrc
+          and "**接着键盘臂的历史走**" in _ausrc
+          and "同一条窗口、**不同**的补偿" in _ausrc)
+
+    check("EEEE.3 ✅⭐⭐⭐ **补偿只在键盘臂上** —— 鼠标臂连点之后，键盘臂的"
+          "**第一击**把**两臂删掉的全部**一次性写回（`added` 里同时有鼠标臂删的"
+          "与键盘臂自己早先删的）⇒ 「不带 ti」**一次性**从 6 回到 1、"
+          "**不变式被恢复**，之后键盘臂立刻回到 §131 的老样子。"
+          "⇒ ⭐ **复刻侧若用同一套逻辑处理点击，就会漏掉这半边补偿**",
+          '"keyboard_first_tab_after_mouse_recovers_all": True' in _ausrc
+          and "**补偿只在键盘臂上**" in _ausrc
+          and "**漏掉这半边补偿**" in _ausrc)
+
+    check("EEEE.4 ⚠️⚠️ **先更正 942 留的那个前提错误（原文一字未删）** —— "
+          "942 的待办把 §131 记成「指针臂」、940 记成「键盘臂」，"
+          "说「两臂关系未测」；⚠️ **§131（921）的臂事件用的就是 "
+          "按 `Tab` 键**、§136（923/926）也是 `Tab` / `Shift+Tab` "
+          "⇒ **§131 与 940 测的是同一条键盘臂**，「两臂关系未测」**立不住**；"
+          "真正**从来没测过**的是**鼠标臂**。"
+          "⚠️ 且 **943 没有推翻 §131**，只是补上了它没测的那一半"
+          "（§131 的键盘臂读数被逐条复现）",
+          "**§131 与 940 测的是同一条键盘臂**" in _ausrc
+          and "真正**从来没测过**的是**鼠标臂**" in _ausrc
+          and "测的是同一条键盘臂**，「两臂关系未测」立不住" in _ausrc
+          # ⭐ 顺带钉住**更正的事实本身**（921 用的是 `keyboard.press`），
+          #    免得下一个人只看到「更正」却查不到「原来那个前提错在哪」
+          and "的臂事件用的是 `keyboard.press(" in _ausrc)
+
+    check("EEEE.5 ⚠️⚠️⚠️ **943 探针自己踩的坑与未查项，全部留痕** —— "
+          "**v1/v2/v3 三版各自作废**：① v1 空白点用算出来的矩形点 ⇒ "
+          "**焦点压根没进画布**、键盘臂 delta 全空；② v2 身份串带了 `className`，"
+          "而**点节点会加 `selected` 类** ⇒ **尺子恰好在最有意思的那一下坏掉**"
+          "（指纹极干净：键盘臂 16/16 稳定、**唯独点击那一击为假**）；"
+          "③ v3 按固定分散下标挑目标，而这版画布节点**大量重叠** ⇒ 6 个里只有 1 个点得到。"
+          "还有三处**恒真条件**：`delta()` 身份对不上就**静默返回空列表**"
+          "（把「没测到」写成了「没有」）、计费守卫查的是「页面上**有没有**"
+          "计费入口」（⇒ 第一击就炸）、**等稳定循环先 `prev = cur` 再比较**"
+          "（⇒ 永远相等、必在第 1 下 break，等于没等）。"
+          "⇒ ⭐ 也因此加了两道**尺子自证**门：判据量的是身份串，"
+          "**尺子要先证明自己量的是不变的东西**。"
+          "⚠️ 未查三项如实记在基线：方向未测、增长上限未测、"
+          "身份要 4 下才稳定**成因未查明**",
+          _p943 != ""
+          and '"v1_void"' not in _p943          # 作废横幅走的是 void_runs
+          and '"void_runs": [' in _p943
+          and "第一版这里写成「先 `prev = cur`、再比 `cur == prev`」" in _p943
+          and _p943.count("stable = (cur") == 1   # 等稳那段的比较
+          and "**「页面上有没有 X」的守卫 = 恒为真的守卫 = 没有守卫**" in _p943
+          and "_no_node_slice" in _p943
+          and "处**非字符串**切片" in _p943
+          and "ident_selfcheck_ok" in _p943
+          and _p943.count("landed = bool(f[") == 1   # landed 由**点后**焦点判
+          # ⭐ 三条未查项必须在基线里**成条**存在，不许只写在 README
+          and '"removed_scope_unverified"' in _ausrc
+          and '"without_ti_growth_cap_unverified"' in _ausrc
+          and '"identity_settling_unexplained"' in _ausrc
+          and '"mouse_click_on_inner_control_unverified"' in _ausrc)
+
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
           "§130「roving 是单指针、不是留轨迹」的**源站实证**；"
