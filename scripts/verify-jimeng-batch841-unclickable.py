@@ -5651,6 +5651,8 @@ def main() -> int:
     # ⚠️ HHHH.7 说的是**锚点自查工具自己**，所以得把它也读进来（照 942 的写法）
     _anch = ROOT / "scripts/jimeng_check_verifier_anchors.py"
     _anchs = _anch.read_text(encoding="utf-8") if _anch.exists() else ""
+    p947 = ROOT / "scripts/jimeng_probe947_stablewait_src.py"
+    _p947 = p947.read_text(encoding="utf-8") if p947.exists() else ""
 
     check("HHHH.1 ⚠️⚠️⚠️ **本批的设计有一处真缺陷，如实记账**：`warm ∈ {0,1,2,6}` "
           "**全都 ≤ boot 之后的自然值 76** ⇒ 预热循环**一次都没进**"
@@ -5771,6 +5773,87 @@ def main() -> int:
               "scripts/jimeng_probe944b_mouse_axes_src.py",
               "scripts/jimeng_probe945_comp_scale_split_src.py",
               "scripts/jimeng_probe946_prestate_src.py")))
+
+    # ══ 批 947：944 矛盾**剩下的**那个可疑变量 —— 判为**排除** ═════════
+    print("— IIII. 批 947「等不等身份稳定」被排除；而矛盾只出现在就绪≠0 那侧 —")
+    check("IIII.1 ✅⭐⭐⭐ **「连点期间身份在不在动」被排除**："
+          "`wait_stable=False`（只等 350ms）与 `wait_stable=True`"
+          "（轮询到**连续两次身份表相同**）两格的 `click_rows` 与 `tabs` "
+          "**逐条相同** —— 咬到 **4**、第 1 击 `added=4`、`不带 ti 4→1`、"
+          "第 2 击 `added=1`、第 3 击 `added=0` ⇒ ⭐ **唯一变的是轮询计数**"
+          "（0 vs **5**，5 次**全部等到稳定**）⇒ **「等它稳定」对结果没有影响**。"
+          "⚠️ 结论**限定在「咬到 4 次」这个范围内**",
+          '"wait_stable_changes_nothing_947": (' in _ausrc
+          and "**唯一变的是轮询计数**" in _ausrc
+          and "（0 次 vs **5** 次，5 次**全部等到稳定**）" in _ausrc
+          and "**限定在「咬到 4 次」这个范围内**" in _ausrc
+          # ⭐ 钉探针：受控侧的判据是「**两次读数彼此相同**」，
+          #    **不是**「与点击前相同」—— 点击本来就该改东西
+          and 'if cur["ids"] == prev["ids"]:' in _p947
+          and "**两次读数彼此相同**" in _p947
+          # ⭐ 钉探针：对照侧**只等固定时间**、不轮询（两臂真的只差这一样）
+          and "page.wait_for_timeout(SETTLE)\n                post = ev(CENSUS_JS, [NODE_SEL])" in _p947
+          and "for k in range(SCALE_FIXED):" in _p947)
+
+    check("IIII.2 ⭐⭐⭐ **settle 轨迹本身成了读数**（946 只知道两个端点）："
+          "**刚 `boot()` 完 `不带 ti` = 76，按 1 下 `Tab` 之后 = 0**（轨迹 `[76, 0]`）"
+          "⇒ ⇒ **76 → 0 是「一下」的落差**，而 946 那批**一按都没按**"
+          "⇒ ⭐ 这条轨迹正是 946 想测却**没测到**的那个「前置态」",
+          '"settle_traj_76_to_0_947": (' in _ausrc
+          and "**刚 `boot()` 完 `不带 ti` = 76，按 1 下 `Tab` 之后 = 0**" in _ausrc
+          and "**76 → 0 是「一下」的落差**" in _ausrc
+          # ⭐ 钉探针：settle 循环**照抄 945 的判据**（`<= 1` 为止），
+          #    且**逐次记下轨迹**（这正是 946 缺的）
+          and 'if pre["n_without_ti"] <= 1:' in _p947
+          and 'c["settle_traj"].append(' in _p947
+          and '"settle_side_matches_945"' in _p947)
+
+    check("IIII.3 ⭐⭐⭐⭐⭐ **跨批对照表成形**（`就绪不带 ti` vs 有没有矛盾）："
+          "**945** 就绪 0/咬 8/`added=8` **无矛盾**；**947** 就绪 0/咬 4/"
+          "`added=4` **无矛盾**；**944** 就绪 **1**/连按 6 下恒 0 **有矛盾**；"
+          "**946** 就绪 **76**/`75→1` 与 `75→8` **有矛盾** ⇒ ⭐⭐⭐ "
+          "**矛盾只在「就绪 `不带 ti` ≠ 0」的两侧出现** ⇒ ⚠️ "
+          "**但这仍然是关系式推断、不是受控对照**（那三批 `scale`/落点/咬到数都不同）"
+          "⇒ 按纪律**不结案**；⭐ 但**下一步该测什么已经唯一了**："
+          "让 settle **显式停在 0 和停在 1**，其它一切固定",
+          '"contradiction_only_when_ready_not_zero_947": (' in _ausrc
+          and "**矛盾只在「就绪 `不带 ti` ≠ 0」的两侧出现**" in _ausrc
+          and "**但这仍然是关系式推断、不是受控对照**" in _ausrc
+          and "**下一步该测什么已经唯一了**" in _ausrc
+          and "**显式停在 0 和停在 1**" in _ausrc
+          # ⭐ 钉住「**不结案**」这三个字本身：别让下一个人把关系式推断当结案
+          and "按纪律**不结案**" in _ausrc)
+
+    check("IIII.4 ⭐ **§156 挂的「第一击不咬」答掉了**：每格第 1 击都是 "
+          "`i=0 / bit=False / identity_stable=False`，**12 个格次 2/2 逐条相同**"
+          "（945 的 8 + 947 的 4）⇒ 「`boot()`/预热之后**第一击不咬**、"
+          "而且连身份都没稳」在这个范围内**成立**；⚠️ 946 那侧**不计入**"
+          "（它的前置态是 76）⇒ ⇒ 复刻侧做「连点 N 次」的臂事件实验时，"
+          "**第一击必须单独记、不能混进平均值**",
+          '"first_click_never_bites_947": (' in _ausrc
+          and "**12 个格次 2/2 逐条相同**" in _ausrc
+          and "946 那侧不计入" in _ausrc
+          and "**第一击必须单独记、不能混进平均值**" in _ausrc
+          # ⭐ 钉探针：第 1 击**单独**取出来记（不许混进 click_bites 平均）
+          and 'if k == 0:' in _p946
+          and "first_click_bites" in _p946)
+
+    check("IIII.5 ⭐⭐ **本批自己设计的「反恒绿门」生效了**"
+          "（`manip_moved_something`）：`wait_stable=True` 那一格如果"
+          "**测不出任何差别**，那道门就恒绿了（和 946 被撤回的 `warm_reached` "
+          "同一个病）⇒ 实测 `poll` **0 → 5** ⇒ 操纵**确实动了**、结果**没变** "
+          "⇒ 这才敢下「排除」的结论 ⇒ ⭐ "
+          "**「操纵动了没有」必须自己答，不能默认它动了。**"
+          "⚠️ 而 946 的 `warm_pressed` 门是**恒真**的（已撤回）—— "
+          "**同一种门，一个生效一个恒真，差别就在有没有这一道自证**",
+          '"manip_gate_worked_947": (' in _ausrc
+          and "**「操纵动了没有」必须自己答，不能默认它动了。**" in _ausrc
+          and "**同一种门，一个生效一个恒真" in _ausrc
+          # ⭐ 钉探针：反恒绿门**真的在算**（不是只声明）
+          and 'out["manip_moved_something"] = bool(_wa_t and _wb_t and _wa_t != _wb_t)' in _p947
+          and '"manip_moved_something": out["manip_moved_something"],' in _p947
+          # ⭐⭐ 钉住 947 的五段 JS 与 946 逐字相同（防漂移，940 的办法）
+          and "与 946 那份**不一致**" in _p947)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
