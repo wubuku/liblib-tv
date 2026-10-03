@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Map, MousePointer2, Spline } from "lucide-react";
 
 import { JimengZoomMenu, ZOOM_MENU_TRIGGER_ID } from "@/components/jimeng/JimengZoomMenu";
@@ -19,13 +18,19 @@ import { useJimengStore } from "@/store/jimengStore";
  */
 export function JimengBottomDock() {
   const zoomPercent = useJimengStore((s) => s.zoomPercent);
+  const transientLayer = useJimengStore((s) => s.transientLayer);
+  const openTransientLayer = useJimengStore((s) => s.openTransientLayer);
+  const closeTransientLayer = useJimengStore((s) => s.closeTransientLayer);
   const toolActive = useJimengStore((s) => s.toolActive);
   const toggleToolActive = useJimengStore((s) => s.toggleToolActive);
   const minimapOpen = useJimengStore((s) => s.minimapOpen);
   const setMinimapOpen = useJimengStore((s) => s.setMinimapOpen);
   const edgesVisible = useJimengStore((s) => s.edgesVisible);
   const setEdgesVisible = useJimengStore((s) => s.setEdgesVisible);
-  const [zoomMenuOpen, setZoomMenuOpen] = useState(false);
+  /* 批 938：缩放菜单并入 store 的**互斥槽位** —— 源站实测开搜索/右键会把它关掉
+     （探针 937：`canvas-zoom-menu` 6/6 被对方关掉）。此前它是本地 state，
+     与顶栏三个浮层、右键菜单**互不知情**。 */
+  const zoomMenuOpen = transientLayer === "zoom";
 
   return (
     <div className="absolute bottom-4 left-3 z-30">
@@ -99,12 +104,12 @@ export function JimengBottomDock() {
              但**没有** aria-pressed（实测 None）—— 别给错信号。 */
           aria-expanded={zoomMenuOpen}
           data-testid="canvas-zoom-percent"
-          onClick={() => setZoomMenuOpen((v) => !v)}
+          onClick={() => openTransientLayer("zoom")}
           className="flex h-7 w-12 items-center justify-center rounded-md text-[13px] text-white/85 hover:bg-white/10"
         >
           {zoomPercent}%
         </button>
-        {zoomMenuOpen ? <JimengZoomMenu onClose={() => setZoomMenuOpen(false)} /> : null}
+        {zoomMenuOpen ? <JimengZoomMenu onClose={() => closeTransientLayer("zoom")} /> : null}
       </div>
     </div>
   );

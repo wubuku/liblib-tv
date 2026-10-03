@@ -36,6 +36,17 @@ const MOCK_POSTER =
       `</svg>`,
   );
 
+/** 批 938：走「互斥槽位」的瞬时浮层。
+ *
+ * ⚠️ 只列**源站实测过互斥**的那几个（探针 937）。
+ * 源站的 `canvas-agent-panel`（与 AI 对话侧栏）**不在**这张表里 ——
+ * 它是**开关式常驻侧栏**，语义与瞬时浮层**不对称**（见下面的 `openAiDrawer`）。 */
+export type JimengTransientLayer =
+  | "search"
+  | "history"
+  | "more"
+  | "zoom";
+
 export interface JimengCanvasState {
   /** 画布元信息 (顶栏) */
   project: { name: string; nodeCount: number; saved: boolean };
@@ -126,6 +137,27 @@ export interface JimengCanvasState {
   /** 切换当前会话；id 不存在时不动 */
   selectAiSession: (id: string) => void;
   setAiDrawerDraft: (draft: string) => void;
+  /** 批 938 SOURCE_FACT：**瞬时浮层的互斥槽位**。
+   *
+   * 源站实测（探针 937，2 轮 × 20 个有向配对，两轮逐项完全相同）：
+   * 开 A 再开 B，**B 把 A 关掉 24/24，一个例外都没有** ——
+   * `canvas-feature-panel`（搜索/生成历史）10/10、`canvas-zoom-menu`（缩放）6/6、
+   * `canvas-context-menu`（右键）8/8 全部被对方关掉。
+   *
+   * ⚠️⚠️ 而在此之前，复刻这边**每个层各自一个本地 useState**
+   * （TopBar 的 search/history/more、BottomDock 的 zoomMenu、Workspace 的
+   * contextMenu/paneMenu）⇒ **没有任何一处能实现「开一个关掉另一个」**，
+   * 只有 TopBar 内部手动关掉了 search↔history 一对。
+   * ⇒ 这里给出**单一来源**的槽位，互斥才成为结构保证而不是自觉。
+   *
+   * ⚠️ 复刻**允许**哪些层走这个槽位、源站其余形态（资产库/项目信息/时间线全屏/
+   * 视频全屏）的互斥**本批没测** ⇒ 推广到那些层是**推断、未验证**。
+   * 这里只把**已测到的 4 个**接进来，其余保持原样。 */
+  transientLayer: JimengTransientLayer | null;
+  /** 开一个瞬时层：先关掉当前占着槽位的那个（**同 id 再开 = 关**，源站的 toggle 语义） */
+  openTransientLayer: (id: JimengTransientLayer) => void;
+  /** 关掉瞬时层；不给 id 就无条件清空（Escape / 点击空白走这条） */
+  closeTransientLayer: (id?: JimengTransientLayer) => void;
   /** 资产库模态框 (Batch 72, SOURCE_FACT 左栏 资产库 点击打开) */
   assetsOpen: boolean;
   setAssetsOpen: (open: boolean) => void;
@@ -897,14 +929,42 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       aiDrawerOpen: open,
       aiDrawerPrefill: open ? state.aiDrawerPrefill : null,
       aiDrawerRefChip: open ? state.aiDrawerRefChip : null,
+      // ⚠️⚠️ 批 938 SOURCE_FACT：源站的侧栏与瞬时浮层**不对称** ——
+      //    开侧栏**会**把瞬时浮层收掉（实测：`生成历史→侧栏`、`右键菜单→侧栏`
+      //    两个方向的 A 都没了），**反过来不会**。
+      //    ⇒ 只在**开**的时候清槽位；关侧栏不该动任何瞬时浮层。
+      // ⚠️ 反方向**故意不做**：开搜索/缩放/右键**不关**侧栏。
+      transientLayer: open ? null : state.transientLayer,
     })),
 
   openAiDrawer: (prefill, refChip) =>
-    set({ aiDrawerOpen: true, aiDrawerPrefill: prefill ?? null, aiDrawerRefChip: refChip ?? null }),
+    // ⚠️ 这里**无条件**清槽位：开侧栏收掉瞬时浮层是实测事实（937），
+    //    而这一路不需要读旧 state（侧栏的预填/chip 是**整体替换**不是保留）。
+    set({
+      aiDrawerOpen: true,
+      aiDrawerPrefill: prefill ?? null,
+      aiDrawerRefChip: refChip ?? null,
+      transientLayer: null,
+    }),
 
   aiDrawerDraft: "",
 
   setAiDrawerDraft: (draft) => set({ aiDrawerDraft: draft }),
+
+  // ── 批 938：瞬时浮层的互斥槽位（源站实测 24/24，见类型上的说明）────────
+  transientLayer: null,
+
+  openTransientLayer: (id) =>
+    set((state) => ({
+      // ⭐ **同 id 再开 = 关**（源站的 toggle 语义）：先比再赋值，
+      //    顺序反了就会变成「点了永远关不掉」。
+      transientLayer: state.transientLayer === id ? null : id,
+    })),
+
+  closeTransientLayer: (id) =>
+    set((state) => (id && state.transientLayer !== id
+      ? state                                     // 不是它就**别动**别人的
+      : { transientLayer: null })),
 
   // ── Batch 834：真会话模型 ────────────────────────────────────────────
   // ⚠️ 会话 id 用**模块级计数器**而不是 Date.now()：同毫秒连发两条会撞号，

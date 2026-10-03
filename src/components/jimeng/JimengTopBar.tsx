@@ -85,8 +85,14 @@ export function JimengTopBar() {
   const aiDrawerOpen = useJimengStore((s) => s.aiDrawerOpen);
   const renameProject = useJimengStore((s) => s.renameProject);
   const [helpOpen, setHelpOpen] = useState(false);
-  const [historyOpen, setHistoryOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
+  /* 批 938：这三个瞬时浮层改读 store 的**互斥槽位** —— 源站实测开一个会关掉另一个
+     （探针 937，24/24 有向配对无例外）。此前是三个各自独立的本地 useState，
+     只有 search↔history 这一对被手动互相关掉，缩放/右键等全都各自为政。 */
+  const transientLayer = useJimengStore((s) => s.transientLayer);
+  const openTransientLayer = useJimengStore((s) => s.openTransientLayer);
+  const closeTransientLayer = useJimengStore((s) => s.closeTransientLayer);
+  const historyOpen = transientLayer === "history";
+  const searchOpen = transientLayer === "search";
   /* Batch 846: 搜索触发器 ref —— Esc 关掉搜索面板后把焦点接回它（源站实测） */
   const searchTriggerRef = useRef<HTMLButtonElement>(null);
   const [memberOpen, setMemberOpen] = useState(false);
@@ -95,7 +101,7 @@ export function JimengTopBar() {
   const [helpCenterOpen, setHelpCenterOpen] = useState(false);
   const [watermarkOpen, setWatermarkOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
+  const moreOpen = transientLayer === "more";
   const [projectOpen, setProjectOpen] = useState(false);
   const [nodeSummaryOpen, setNodeSummaryOpen] = useState(false);
   const [projectInfoOpen, setProjectInfoOpen] = useState(false);
@@ -108,7 +114,13 @@ export function JimengTopBar() {
 
   const closeAll = () => {
     setShareOpen(false);
-    setMoreOpen(false);
+    // ⚠️⚠️ 批 938：**这里不能**清 `transientLayer`。`more` 的触发器是
+    //    `closeAll(); openTransientLayer("more")` —— 若 `closeAll` 把槽位清成
+    //    `null`，紧接着的 `openTransientLayer("more")` 看到 `null !== "more"`
+    //    ⇒ **又把它打开** ⇒ 再点一次关不掉，toggle 语义被自己破坏。
+    //    （复刻探针 938 的 `reset_all()` 断言当场抓到了这个：复位后「更多」仍在。）
+    //    ⇒ 槽位的开关**只**由 `openTransientLayer` 管；`closeAll` 只管
+    //    那四个**不在**槽位里的层（分享/项目面板/节点摘要/项目信息）。
     setProjectOpen(false);
     setNodeSummaryOpen(false);
     setProjectInfoOpen(false);
@@ -300,10 +312,7 @@ export function JimengTopBar() {
                  （源站实测如此）。此前复刻 Esc 之后焦点掉到 body，键盘用户
                  按完 Esc 就丢失了位置。ref 在下面那个 <button> 上。 */
               ref={searchTriggerRef}
-              onClick={() => {
-                setHistoryOpen(false);
-                setSearchOpen((v) => !v);
-              }}
+              onClick={() => openTransientLayer("search")}
               /* Batch 816 SOURCE_FACT (2026-10-04 登录态 @1512×950 二次独立取样，
                  默认 / hover / 激活 三态各量一遍)：
                    默认  radius 12px  bg transparent  color rgb(255,255,255)
@@ -327,7 +336,7 @@ export function JimengTopBar() {
             {searchOpen ? (
               <JimengSearchOverlay
                 onClose={(reason) => {
-                  setSearchOpen(false);
+                  closeTransientLayer("search");
                   /* 只在 Escape 关闭时接回焦点：点外面关闭时用户的注意力在
                      鼠标指着的地方，抢回触发器是错的。 */
                   if (reason === "escape") {
@@ -352,10 +361,7 @@ export function JimengTopBar() {
                  `canvas-history-launcher`，沿用 `canvas-*-launcher` 家族
                  命名；台账 §26 与 census 白名单都记了这一条。 */
               data-testid="canvas-history-launcher"
-              onClick={() => {
-                setSearchOpen(false);
-                setHistoryOpen((v) => !v);
-              }}
+              onClick={() => openTransientLayer("history")}
               // 圆角 / 底色 / 字色三态与「搜索」逐项相同（同上 SOURCE_FACT）
               className={`flex size-7 items-center justify-center text-white ${
                 historyOpen
@@ -366,7 +372,7 @@ export function JimengTopBar() {
               <History size={16} />
             </button>
             {historyOpen ? (
-              <JimengHistoryMenu onClose={() => setHistoryOpen(false)} />
+              <JimengHistoryMenu onClose={() => closeTransientLayer("history")} />
             ) : null}
           </div>
         </div>
@@ -418,7 +424,7 @@ export function JimengTopBar() {
             data-testid="canvas-more-trigger"
             onClick={() => {
               closeAll();
-              setMoreOpen((v) => !v);
+              openTransientLayer("more");
             }}
             className="flex size-7 items-center justify-center rounded-md text-[#FAFAFA] hover:bg-white/10"
           >
@@ -426,7 +432,7 @@ export function JimengTopBar() {
           </button>
           {moreOpen ? (
             <JimengMoreMenu
-              onClose={() => setMoreOpen(false)}
+              onClose={() => closeTransientLayer("more")}
               onOpenProjectInfo={() => setProjectInfoOpen(true)}
               onCopyProject={copyProject}
             />

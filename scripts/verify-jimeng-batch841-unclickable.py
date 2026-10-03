@@ -5078,6 +5078,80 @@ def main() -> int:
           and "if tid in FORBIDDEN_TIDS:" in _p937
           and "blocked = guard(pt.get(\"al\"), tid)" in _p937
           and "if blocked:" in _p937)
+    p938 = ROOT / "scripts/jimeng_probe938_replica_layer_exclusivity.py"
+    _p938 = p938.read_text(encoding="utf-8") if p938.exists() else ""
+    _wm = (ROOT / "src/store/jimengStore.ts")
+    _wm_s = _wm.read_text(encoding="utf-8") if _wm.exists() else ""
+    check("YYY.1 ✅⭐⭐⭐ **938：把 937 的源站读数**真正实现进复刻** —— "
+          "互斥从「各自为政」变成**结构保证**（store 里的单一来源槽位），"
+          "复刻侧 28/28 配对全部可用、全部符合预期、2/2 逐项相同",
+          "replica_transient_layers_exclusive_938" in _ausrc
+          and "**没有任何一处能实现「开一个关掉另一个」**" in _ausrc
+          and "**28/28 全部可用、28/28 全部符合预期、2/2 逐项相同**" in _ausrc
+          # ⭐ 钉代码：槽位是**单一来源**，且 toggle 语义在 store 里
+          and "transientLayer: JimengTransientLayer | null;" in _wm_s
+          and "transientLayer: state.transientLayer === id ? null : id," in _wm_s
+          and 'id && state.transientLayer !== id' in _wm_s
+          # ⭐ 钉代码：四个层确实读的是 store 而不是各自的本地 state
+          and 'const searchOpen = transientLayer === "search";' in _wm_s + (
+              ROOT / "src/components/jimeng/JimengTopBar.tsx").read_text(
+                  encoding="utf-8")
+          and "zoomMenuOpen = transientLayer === \"zoom\"" in (
+              ROOT / "src/components/jimeng/JimengBottomDock.tsx").read_text(
+                  encoding="utf-8"))
+    check("YYY.2 ⭐⭐ **侧栏的**不对称**只做了实测的那一半**：**开侧栏清空槽位**，"
+          "而**反方向故意不做** —— 开瞬时浮层**不关**侧栏"
+          "（实测 `agent→search` / `agent→zoom` 侧栏仍在，4/4）",
+          "**开侧栏会清空槽位**" in _ausrc
+          and "**反方向故意不做** —— 开搜索/缩放/右键**不关**侧栏" in _ausrc
+          # ⭐ 钉代码：清槽位**只**出现在开侧栏那两条路上
+          and "transientLayer: open ? null : state.transientLayer," in _wm_s
+          and "openTransientLayer: (id) =>" in _wm_s
+          # ⭐ 钉代码：探针真的把「不该关」那两个方向单列成 expect="open"
+          and '("agent", "search", "open"),' in _p938
+          and '("agent", "zoom", "open"),' in _p938
+          and '"yin_yang_ok": len(closed_cases) >= 1 and len(open_cases) >= 1,' in _p938)
+    check("YYY.3 ⭐⭐ **复刻探针当场抓到 938 自己写出来的一个真交互 bug** —— "
+          "`closeAll()` 若无条件清空 `transientLayer`，"
+          "「更多」菜单**再点一次关不掉**（toggle 语义被自己破坏）",
+          "**再点一次关不掉**" in _ausrc
+          and "toggle 语义被自己破坏" in _ausrc
+          and "当场抓到的" in _ausrc
+          # ⭐ 钉代码：closeAll **不再**碰槽位（那句无条件清空已经不在）
+          and (assert_gone := "closeTransientLayer();" not in (
+              ROOT / "src/components/jimeng/JimengTopBar.tsx").read_text(
+                  encoding="utf-8"))
+          and assert_gone
+          # ⭐ 钉代码：探针的复位**会当场断言**没清干净（这条断言正是抓到 bug 的）
+          and "复位没清干净，仍在场上的层" in _p938
+          and 'assert not leftover["present"], (' in _p938)
+    check("YYY.4 ⚠️⚠️ **探针自己踩的两个坑，都留痕** —— ① zoom 触发器有 "
+          "`id`/`data-testid` **两个身份**，第一版拿错的那个 ⇒ 8 个配对"
+          "**静默不可用**而门照样绿；② **侧栏不能靠点自己的触发器关掉**"
+          "（触发器在侧栏开着时**根本不在 DOM 里**）",
+          "**DOM 里压根没有** " in _ausrc
+          and "**静默不可用**" in _ausrc
+          and "**侧栏开着时触发器根本不在 DOM 里**" in _ausrc
+          and "**假报**「A 没被关」" in _ausrc
+          # ⭐ 钉代码：用的是对的那个 testid，且**不是**错的那个
+          and '"zoom": "canvas-zoom-percent",' in _p938
+          and (assert_no_bad := '"zoom": "jimeng-zoom-menu-trigger",'
+               not in _p938)
+          and assert_no_bad
+          # ⭐ 钉代码：侧栏的关闭走抽屉内部的「收起」键
+          and 'canvas-agent-session-collapse' in _p938
+          # ⭐ 钉代码：门**收紧**成「每个触发器都被点到过」+「可用数 == 配对总数」
+          and '"triggers_all_clicked_ok": (all(v > 0 for v in clicks.values())' in _p938
+          and 'len(usable) == len(out["pairs"])' in _p938)
+    check("YYY.5 ⚠️⚠️ **仍未验证的写清** —— 只接了 4 个层、源站其余浮层的互斥**没测**"
+          "（推广是**推断**）；复刻的 contextMenu/paneMenu **没接**槽位"
+          "（源站右键菜单键盘可达性未解释）；**没测**两个层共存时的焦点行为",
+          "**只接了 4 个层**；源站其余浮层的互斥**没测**（推广是推断）" in _ausrc
+          and "它们在 `JimengWorkspace` 里、且 936 已测出**源站右键菜单 60 次 Tab" in _ausrc
+          and "一步都进不去**" in _ausrc
+          and "本批**不碰**，等那个问题有答案" in _ausrc
+          and "**没有**测「两个层共存时键盘焦点怎么走」" in _ausrc
+          and "槽位保证的是**至多一个瞬时层**，焦点行为是另一件事" in _ausrc)
     p935 = ROOT / "scripts/jimeng_probe935_body_stop_sweep_src.py"
     _p935 = p935.read_text(encoding="utf-8") if p935.exists() else ""
     check("VVV.1 ✅⭐⭐⭐ **935 把「原理上不可从 DOM 查明」从**假设**升级成"
