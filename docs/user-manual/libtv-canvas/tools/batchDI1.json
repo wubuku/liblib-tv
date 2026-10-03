@@ -1,0 +1,1031 @@
+{
+  "顶部": {
+    "标签": "刚进分类（顶部）",
+    "scrollTop": 0,
+    "scrollH": 2265,
+    "clientH": 517,
+    "DOM里详情按钮": 30,
+    "其中可见": 1,
+    "可见按钮的y范围": [
+      727
+    ],
+    "祖先样本": [
+      [
+        {
+          "i": 0,
+          "tag": "button",
+          "rect": [
+            271,
+            413,
+            24,
+            24
+          ],
+          "可见": false,
+          "class": "flex size-6 items-center justify-center roun"
+        },
+        {
+          "i": 1,
+          "tag": "div",
+          "rect": [
+            122,
+            405,
+            181,
+            40
+          ],
+          "可见": true,
+          "class": "relative flex w-full items-end justify-betwe"
+        },
+        {
+          "i": 2,
+          "tag": "div",
+          "rect": [
+            121,
+            201,
+            183,
+            245
+          ],
+          "可见": true,
+          "class": "relative flex flex-col items-start justify-b"
+        },
+        {
+          "i": 3,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            191,
+            302
+          ],
+          "可见": true,
+          "class": "hover:bg-canvas-controls-hover group relativ"
+        },
+        {
+          "i": 4,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            302
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 5,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            314
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 6,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            2197
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 7,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            2265
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 8,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            2265
+          ],
+          "可见": true,
+          "class": "m_b1336c6 mantine-ScrollArea-content"
+        }
+      ],
+      [
+        {
+          "i": 0,
+          "tag": "button",
+          "rect": [
+            474,
+            413,
+            24,
+            24
+          ],
+          "可见": false,
+          "class": "flex size-6 items-center justify-center roun"
+        },
+        {
+          "i": 1,
+          "tag": "div",
+          "rect": [
+            325,
+            405,
+            181,
+            40
+          ],
+          "可见": true,
+          "class": "relative flex w-full items-end justify-betwe"
+        },
+        {
+          "i": 2,
+          "tag": "div",
+          "rect": [
+            324,
+            201,
+            183,
+            245
+          ],
+          "可见": true,
+          "class": "relative flex flex-col items-start justify-b"
+        },
+        {
+          "i": 3,
+          "tag": "div",
+          "rect": [
+            320,
+            197,
+            191,
+            302
+          ],
+          "可见": true,
+          "class": "hover:bg-canvas-controls-hover group relativ"
+        },
+        {
+          "i": 4,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            302
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 5,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            314
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 6,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            2197
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 7,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            2265
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 8,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            2265
+          ],
+          "可见": true,
+          "class": "m_b1336c6 mantine-ScrollArea-content"
+        }
+      ],
+      [
+        {
+          "i": 0,
+          "tag": "button",
+          "rect": [
+            677,
+            413,
+            24,
+            24
+          ],
+          "可见": false,
+          "class": "flex size-6 items-center justify-center roun"
+        },
+        {
+          "i": 1,
+          "tag": "div",
+          "rect": [
+            528,
+            405,
+            181,
+            40
+          ],
+          "可见": true,
+          "class": "relative flex w-full items-end justify-betwe"
+        },
+        {
+          "i": 2,
+          "tag": "div",
+          "rect": [
+            527,
+            201,
+            183,
+            245
+          ],
+          "可见": true,
+          "class": "relative flex flex-col items-start justify-b"
+        },
+        {
+          "i": 3,
+          "tag": "div",
+          "rect": [
+            523,
+            197,
+            191,
+            302
+          ],
+          "可见": true,
+          "class": "hover:bg-canvas-controls-hover group relativ"
+        },
+        {
+          "i": 4,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            302
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 5,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            314
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 6,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            2197
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 7,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            2265
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 8,
+          "tag": "div",
+          "rect": [
+            117,
+            197,
+            1206,
+            2265
+          ],
+          "可见": true,
+          "class": "m_b1336c6 mantine-ScrollArea-content"
+        }
+      ]
+    ]
+  },
+  "中段": {
+    "标签": "中段",
+    "scrollTop": 1132,
+    "scrollH": 4462,
+    "clientH": 517,
+    "DOM里详情按钮": 54,
+    "其中可见": 1,
+    "可见按钮的y范围": [
+      850
+    ],
+    "祖先样本": [
+      [
+        {
+          "i": 0,
+          "tag": "button",
+          "rect": [
+            271,
+            -719,
+            24,
+            24
+          ],
+          "可见": false,
+          "class": "flex size-6 items-center justify-center roun"
+        },
+        {
+          "i": 1,
+          "tag": "div",
+          "rect": [
+            122,
+            -727,
+            181,
+            40
+          ],
+          "可见": true,
+          "class": "relative flex w-full items-end justify-betwe"
+        },
+        {
+          "i": 2,
+          "tag": "div",
+          "rect": [
+            121,
+            -931,
+            183,
+            245
+          ],
+          "可见": true,
+          "class": "relative flex flex-col items-start justify-b"
+        },
+        {
+          "i": 3,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            191,
+            302
+          ],
+          "可见": true,
+          "class": "hover:bg-canvas-controls-hover group relativ"
+        },
+        {
+          "i": 4,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            302
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 5,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            314
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 6,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            4394
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 7,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            4462
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 8,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            4462
+          ],
+          "可见": true,
+          "class": "m_b1336c6 mantine-ScrollArea-content"
+        }
+      ],
+      [
+        {
+          "i": 0,
+          "tag": "button",
+          "rect": [
+            474,
+            -719,
+            24,
+            24
+          ],
+          "可见": false,
+          "class": "flex size-6 items-center justify-center roun"
+        },
+        {
+          "i": 1,
+          "tag": "div",
+          "rect": [
+            325,
+            -727,
+            181,
+            40
+          ],
+          "可见": true,
+          "class": "relative flex w-full items-end justify-betwe"
+        },
+        {
+          "i": 2,
+          "tag": "div",
+          "rect": [
+            324,
+            -931,
+            183,
+            245
+          ],
+          "可见": true,
+          "class": "relative flex flex-col items-start justify-b"
+        },
+        {
+          "i": 3,
+          "tag": "div",
+          "rect": [
+            320,
+            -935,
+            191,
+            302
+          ],
+          "可见": true,
+          "class": "hover:bg-canvas-controls-hover group relativ"
+        },
+        {
+          "i": 4,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            302
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 5,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            314
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 6,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            4394
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 7,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            4462
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 8,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            4462
+          ],
+          "可见": true,
+          "class": "m_b1336c6 mantine-ScrollArea-content"
+        }
+      ],
+      [
+        {
+          "i": 0,
+          "tag": "button",
+          "rect": [
+            677,
+            -719,
+            24,
+            24
+          ],
+          "可见": false,
+          "class": "flex size-6 items-center justify-center roun"
+        },
+        {
+          "i": 1,
+          "tag": "div",
+          "rect": [
+            528,
+            -727,
+            181,
+            40
+          ],
+          "可见": true,
+          "class": "relative flex w-full items-end justify-betwe"
+        },
+        {
+          "i": 2,
+          "tag": "div",
+          "rect": [
+            527,
+            -931,
+            183,
+            245
+          ],
+          "可见": true,
+          "class": "relative flex flex-col items-start justify-b"
+        },
+        {
+          "i": 3,
+          "tag": "div",
+          "rect": [
+            523,
+            -935,
+            191,
+            302
+          ],
+          "可见": true,
+          "class": "hover:bg-canvas-controls-hover group relativ"
+        },
+        {
+          "i": 4,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            302
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 5,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            314
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 6,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            4394
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 7,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            4462
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 8,
+          "tag": "div",
+          "rect": [
+            117,
+            -935,
+            1206,
+            4462
+          ],
+          "可见": true,
+          "class": "m_b1336c6 mantine-ScrollArea-content"
+        }
+      ]
+    ]
+  },
+  "底部": {
+    "标签": "底部",
+    "scrollTop": 3945,
+    "scrollH": 6659,
+    "clientH": 517,
+    "DOM里详情按钮": 54,
+    "其中可见": 1,
+    "可见按钮的y范围": [
+      862
+    ],
+    "祖先样本": [
+      [
+        {
+          "i": 0,
+          "tag": "button",
+          "rect": [
+            271,
+            -708,
+            24,
+            24
+          ],
+          "可见": false,
+          "class": "flex size-6 items-center justify-center roun"
+        },
+        {
+          "i": 1,
+          "tag": "div",
+          "rect": [
+            122,
+            -716,
+            181,
+            40
+          ],
+          "可见": true,
+          "class": "relative flex w-full items-end justify-betwe"
+        },
+        {
+          "i": 2,
+          "tag": "div",
+          "rect": [
+            121,
+            -919,
+            183,
+            245
+          ],
+          "可见": true,
+          "class": "relative flex flex-col items-start justify-b"
+        },
+        {
+          "i": 3,
+          "tag": "div",
+          "rect": [
+            117,
+            -923,
+            191,
+            302
+          ],
+          "可见": true,
+          "class": "hover:bg-canvas-controls-hover group relativ"
+        },
+        {
+          "i": 4,
+          "tag": "div",
+          "rect": [
+            117,
+            -923,
+            1206,
+            302
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 5,
+          "tag": "div",
+          "rect": [
+            117,
+            -923,
+            1206,
+            314
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 6,
+          "tag": "div",
+          "rect": [
+            117,
+            -3748,
+            1206,
+            6591
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 7,
+          "tag": "div",
+          "rect": [
+            117,
+            -3748,
+            1206,
+            6659
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 8,
+          "tag": "div",
+          "rect": [
+            117,
+            -3748,
+            1206,
+            6659
+          ],
+          "可见": true,
+          "class": "m_b1336c6 mantine-ScrollArea-content"
+        }
+      ],
+      [
+        {
+          "i": 0,
+          "tag": "button",
+          "rect": [
+            474,
+            -708,
+            24,
+            24
+          ],
+          "可见": false,
+          "class": "flex size-6 items-center justify-center roun"
+        },
+        {
+          "i": 1,
+          "tag": "div",
+          "rect": [
+            325,
+            -716,
+            181,
+            40
+          ],
+          "可见": true,
+          "class": "relative flex w-full items-end justify-betwe"
+        },
+        {
+          "i": 2,
+          "tag": "div",
+          "rect": [
+            324,
+            -919,
+            183,
+            245
+          ],
+          "可见": true,
+          "class": "relative flex flex-col items-start justify-b"
+        },
+        {
+          "i": 3,
+          "tag": "div",
+          "rect": [
+            320,
+            -923,
+            191,
+            302
+          ],
+          "可见": true,
+          "class": "hover:bg-canvas-controls-hover group relativ"
+        },
+        {
+          "i": 4,
+          "tag": "div",
+          "rect": [
+            117,
+            -923,
+            1206,
+            302
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 5,
+          "tag": "div",
+          "rect": [
+            117,
+            -923,
+            1206,
+            314
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 6,
+          "tag": "div",
+          "rect": [
+            117,
+            -3748,
+            1206,
+            6591
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 7,
+          "tag": "div",
+          "rect": [
+            117,
+            -3748,
+            1206,
+            6659
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 8,
+          "tag": "div",
+          "rect": [
+            117,
+            -3748,
+            1206,
+            6659
+          ],
+          "可见": true,
+          "class": "m_b1336c6 mantine-ScrollArea-content"
+        }
+      ],
+      [
+        {
+          "i": 0,
+          "tag": "button",
+          "rect": [
+            677,
+            -708,
+            24,
+            24
+          ],
+          "可见": false,
+          "class": "flex size-6 items-center justify-center roun"
+        },
+        {
+          "i": 1,
+          "tag": "div",
+          "rect": [
+            528,
+            -716,
+            181,
+            40
+          ],
+          "可见": true,
+          "class": "relative flex w-full items-end justify-betwe"
+        },
+        {
+          "i": 2,
+          "tag": "div",
+          "rect": [
+            527,
+            -919,
+            183,
+            245
+          ],
+          "可见": true,
+          "class": "relative flex flex-col items-start justify-b"
+        },
+        {
+          "i": 3,
+          "tag": "div",
+          "rect": [
+            523,
+            -923,
+            191,
+            302
+          ],
+          "可见": true,
+          "class": "hover:bg-canvas-controls-hover group relativ"
+        },
+        {
+          "i": 4,
+          "tag": "div",
+          "rect": [
+            117,
+            -923,
+            1206,
+            302
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 5,
+          "tag": "div",
+          "rect": [
+            117,
+            -923,
+            1206,
+            314
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 6,
+          "tag": "div",
+          "rect": [
+            117,
+            -3748,
+            1206,
+            6591
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 7,
+          "tag": "div",
+          "rect": [
+            117,
+            -3748,
+            1206,
+            6659
+          ],
+          "可见": true,
+          "class": ""
+        },
+        {
+          "i": 8,
+          "tag": "div",
+          "rect": [
+            117,
+            -3748,
+            1206,
+            6659
+          ],
+          "可见": true,
+          "class": "m_b1336c6 mantine-ScrollArea-content"
+        }
+      ]
+    ]
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "采样": [
+    {
+      "分类": "推荐",
+      "卡名": "J_漫剧素材三视图+大头表情+姿",
+      "重试": false,
+      "有面板": true,
+      "模型数": 2,
+      "模型": [
+        "General image V2",
+        "General image Pro"
+      ]
+    },
+    {
+      "分类": "推荐",
+      "卡名": "一键生成人物多视图",
+      "重试": false,
+      "有面板": true,
+      "模型数": 5,
+      "模型": [
+        "Lib Image",
+        "General image Pro",
+        "General image V2",
+        "Seedream 4.5",
+        "Seedream 5.0"
+      ]
+    },
+    {
+      "分类": "摄影写真",
+      "卡名": "一键生成人物多视图",
+      "重试": false,
+      "有面板": true,
+      "模型数": 5,
+      "模型": [
+        "Lib Image",
+        "General image Pro",
+        "General image V2",
+        "Seedream 4.5",
+        "Seedream 5.0"
+      ]
+    },
+    {
+      "分类": "摄影写真",
+      "卡名": "一键全套版电商主图直通车图卖点图",
+      "重试": false,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Lib Image",
+        "General image V2",
+        "General image Pro"
+      ]
+    },
+    {
+      "分类": "电商营销",
+      "卡名": "一键全套版电商主图直通车图卖点图",
+      "重试": false,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Lib Image",
+        "General image V2",
+        "General image Pro"
+      ]
+    },
+    {
+      "分类": "电商营销",
+      "卡名": "全部适配模型",
+      "重试": false,
+      "有面板": true,
+      "模型数": 3,
+      "模型": [
+        "Lib Image",
+        "General image Pro",
+        "General image V2"
+      ]
+    },
+    {
+      "分类": "动漫游戏",
+      "卡名": "1912.5D写实人像",
+      "重试": false,
+      "有面板": true,
+      "模型数": 2,
+      "模型": [
+        "Z Image",
+        "Qwen Image"
+      ]
+    },
+    {
+      "分类": "动漫游戏",
+      "卡名": "全部适配模型",
+      "重试": false,
+      "有面板": true,
+      "模型数": 5,
+      "模型": [
+        "General image Pro",
+        "General image V2",
+        "Seedream 5.0",
+        "Seedream 4.5",
+        "Lib Image"
+      ]
+    },
+    {
+      "分类": "建筑及室内设计",
+      "卡名": "天宫东方传统美学超现实神话元素奇",
+      "重试": false,
+      "有面板": true,
+      "模型数": 5,
+      "模型": [
+        "General image V2",
+        "Seedream 5.0",
+        "Seedream 4.5",
+        "General image Pro",
+        "Lib Image"
+      ]
+    },
+    {
+      "分类": "建筑及室内设计",
+      "卡名": "全部适配模型",
+      "重试": false,
+      "有面板": true,
+      "模型数": 5,
+      "模型": [
+        "General image V2",
+        "Seedream 5.0",
+        "Seedream 4.5",
+        "General image Pro",
+        "Lib Image"
+      ]
+    }
+  ]
+}
