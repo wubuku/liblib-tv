@@ -3761,6 +3761,99 @@ def main() -> int:
           and "⚠️ **教训：别给新变量起「这一层里已经用过的名字」**" in _ausrc
           and "n_before_first_inner = sum(" in _p918
           and "n_after_last_inner = sum(" in _p918)
+    # ══════════ 批 919：纯诊断——内层控件解剖（纯读，不装任何监听器） ══════════
+    p919 = ROOT / "scripts/jimeng_probe919_inner_control_anatomy_src.py"
+    _p919 = p919.read_text(encoding="utf-8") if p919.exists() else ""
+    check("FFF.1 ⚠️ **919 先纠正了我自己一个误判、并且把误判钉死**："
+          "918 报「画布内可聚焦 **10** 个」、919 报「**163** 个」，"
+          "我一度以为是**两个探针报数矛盾**。❌ **作废** —— "
+          "918 的 `TABORDER_JS` **多了一道过滤器**（「`tabindex` 属性 `< 0` "
+          "就跳过」），919 那道**没加** ⇒ **两个数各自都对、只是口径不同**。"
+          "⇒ ⚠️ **这条本身就是「一次异常读数不足以立机制」的又一次应用**："
+          "**两个数不同 ≠ 有矛盾**，得先查**口径**",
+          "✅⭐ **919（纯诊断）把 918 的「选择器漏了 / 不在子树里」" in _ausrc
+          and "⚠️ **先纠正我自己一个误判**" in _ausrc
+          and "我一度以为是**两个探针报数矛盾**。" in _ausrc
+          and "❌ **作废**：918 的 `TABORDER_JS` **多了一道过滤器**" in _ausrc
+          and "**两个数各自都对、只是口径不同**" in _ausrc
+          and "**这条本身就是「一次异常读数不足以立机制」的又一次应用**" in _ausrc
+          # ⚠️ 钉探针里那两道的**真实差异**（918 有过滤、919 没有）
+          and 'if (ti !== null && Number(ti) < 0) continue;' in _p918
+          and "if (ti !== null && Number(ti) < 0) continue;" not in _p919
+          and "const idl = [...scope.querySelectorAll('*')]"
+          ".filter((e) => e.tabIndex >= 0);" in _p919)
+    check("FFF.2 ✅⭐ **那 5 个内层控件的真实身份**（两轮逐条相同）："
+          "`导出时间线` / `全屏编辑` / `静音` / `添加素材到时间线` / `替换媒体` "
+          "**全都是 `<BUTTON>`**、**都在 `.react-flow` 里**、"
+          "**`shadow_depth = 0`** ⇒ "
+          "⚠️ **918 那句「要么选择器漏了、要么不在子树里」两个都不是**。"
+          "⭐ **最要紧的性质**：它们 `tabindex` **属性是 `None`（压根没这个属性）**、"
+          "而 **IDL `tabIndex = 0`** ⇒ **靠的是「原生 `<button>` 默认可聚焦」**",
+          "✅ **那 5 个内层控件的真实身份**（两轮逐条相同）：" in _ausrc
+          and "**全都是 `<BUTTON>`**、**都在 `.react-flow` 里**" in _ausrc
+          and "**`shadow_depth = 0`**" in _ausrc
+          and "**918 那句「要么选择器漏了、要么不在子树里」两个都不是**" in _ausrc
+          and "`tabindex` **属性是 `None`" in _ausrc
+          and "**IDL `tabIndex = 0`**" in _ausrc
+          and "**它们靠的是「原生 `<button>` 默认可聚焦」，不是靠 `tabindex` 属性。**"
+          in _ausrc
+          # ⚠️ 钉探针真的同时问了这两个口径
+          and "matches_std_sel: el.matches(SEL)," in _p919
+          and "idl_tabindex: el.tabIndex," in _p919
+          and "attr_tabindex: el.getAttribute('tabindex')," in _p919
+          and "shadow_depth: deepest(el)," in _p919)
+    check("FFF.3 ✅ **IDL 口径的普查（顺序焦点导航真正走的口径）**："
+          "**中性态画布内只有 10 个可聚焦元素、整篇 document 只有 27 个**；"
+          "而**属性口径**（含 `tabindex=\"-1\"` 的）画布内有 **163** 个 "
+          "⇒ 两者差 16 倍 ⇒ **口径必须写清楚、不许混用**。"
+          "⭐ **布上之后本体被注入到哪一位（两轮逐条一致）**："
+          "被布的本体 `tabindex` 属性 = `0`、IDL = `0`，**落在 IDL 序第 11 位**："
+          "**紧跟 `Canvas`（画布根）之后、在它自己的第一个内层控件 `导出时间线` 之前**"
+          "⇒ **本体排在自己的内层控件「之前」**，而且它**就是 `activeElement`**",
+          "✅ **IDL 口径的普查（这才是顺序焦点导航真正走的口径）**" in _ausrc
+          and "**中性态画布内只有 10 个可聚焦元素、整篇 document 只有 27 个** "
+          in _ausrc
+          and "**163** 个" in _ausrc
+          and "两者差 16 倍，**口径必须写清楚、不许混用**" in _ausrc
+          and "⭐ **布上之后本体被注入到哪一位（两轮逐条一致）**" in _ausrc
+          and "**落在 IDL 序的第 11 位**" in _ausrc
+          and "**紧跟在 `Canvas`（画布根）之后、" in _ausrc
+          and "**本体排在自己的内层控件「之前」**" in _ausrc
+          and "**就是 `activeElement`**" in _ausrc
+          and "wrapper_pos_in_idl_order: w ? allIdl.indexOf(w) : null,"
+          in _p919
+          and "active_is_wrapper:" in _p919)
+    check("FFF.4 ⚠️❌ **919 撞出一个真缺口、而且本批没有解释**："
+          "中性态普查说**画布内没有任何节点本体是可聚焦的**"
+          "（`n_wrappers_with_ti0 = 0`、IDL 列表里 0 个本体），"
+          "可是 917/918 的**焦点轨迹里按前焦点多次落在「别的节点的本体」上**"
+          "（`pre_is_wrapper = True`，例如 `文本 node: 文本 2`）⇒ "
+          "**焦点怎么会落到一个没有 `tabindex` 的元素上？** ⇒ "
+          "**要么「本体可聚焦」在普查那一刻和走查过程中不是同一回事、"
+          "要么焦点是程序化 `.focus()` 上去的** ⇒ "
+          "⚠️ **本批没有测到、没有解释 ⇒ 不许**拿「动态注入」一句话糊过去。"
+          "⚠️ 另钉一条纪律：919 是**纯诊断**——普查是**纯读**、"
+          "**不劫持 prototype、不装 MutationObserver** ⇒ 诊断不许破坏被诊断状态",
+          "⚠️❌ **但这一批撞出一个真缺口、而且本批没有解释**" in _ausrc
+          and "**焦点怎么会落到一个没有 `tabindex` 的元素上？**" in _ausrc
+          and "**要么「本体可聚焦」这件事在普查那一刻和走查过程中不是同一回事**"
+          in _ausrc
+          and "**要么焦点是程序化 `.focus()` 上去的**" in _ausrc
+          and "**本批没有测到、没有解释 ⇒ 不许**拿「动态注入」一句话糊过去"
+          in _ausrc
+          and "✅ **顺带钉一条纪律：919 是「纯诊断」** —— 普查是**纯读**、"
+          in _ausrc
+          and "**不劫持 prototype、不装 MutationObserver**" in _ausrc
+          # ⚠️ 钉探针确实是纯读（没有 install/cleanup、没有 observer）
+          # ⚠️⚠️ **不能拿「全文不含」当证据** —— 919 的**文档里**就写着
+          # 「不劫持 prototype、不装 MutationObserver」两个字 ⇒ 全文当然含有。
+          # ⇒ 必须钉**代码**里没有：真的没有 `new MutationObserver(`、
+          #    真的没有 `.prototype =` 赋值。
+          and "new MutationObserver(" not in _p919
+          and ".prototype =" not in _p919
+          and "__proto__" not in _p919
+          and "（诊断是纯读，没有装任何监听器）" in _p919)
+
 
 
 
