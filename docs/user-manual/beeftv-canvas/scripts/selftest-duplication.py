@@ -10,7 +10,11 @@
   5  一段**短**字面量（`$want` 那种变量名）在几份文件里都出现 → **不得**报
      （**这一条是首跑当场撞出来的假阳性**，见闸的文件头）
   6  收敛掉一条已登记的重复 → 登记表里那条**变成孤儿** → 必报
-     （**「登记表只能变短」不能只是说说**：收敛了不删，理由就开始替不存在的东西背书）
+     （**「登记表只能变短」从 Batch 257 起是判据而不只是说说**：
+     收敛了不删，理由就开始替不存在的东西背书）
+  7  收敛掉一条**并同步从登记表删掉** → **不得**报
+     （**6/7 必须成对**：只钉 6 的话，那条判据可能只是「凡有收敛就报」，
+     而做完正确动作之后它必须闭嘴）
 """
 
 import hashlib
@@ -176,10 +180,33 @@ def m_short_literal_not_counted():
     record("5 短字面量（变量名形态）在几份文件里 → 不得报", rc == 0, "rc=%d" % rc)
 
 
-# ── 6 收敛掉一条却没从登记表删 → 必报 ───────────────────────────────
+def drop_accepted_key(text, key):
+    """从 `ACCEPTED = {…}` 里**原样**删掉一条登记（不手打内容）。
+
+    **为什么要原样删而不是重新拼一份 dict**：手打会打错内容，
+    **而「打错的内容」造出来的孤儿与真实孤儿长得一模一样**——
+    **那样测的就不是判据了，是我手打的准不准**。
+    """
+    marker = '    "%s": (' % key
+    start = text.index(marker)
+    end = text.index("),\n", start) + len("),\n")
+    out = text[:start] + text[end:]
+    assert marker not in out, "删完还在"
+    assert len(out) < len(text)
+    return out
+
+
+# ── 6 收敛掉一条却没从登记表删 → 必报（登记成了孤儿）────────────────
 def m_orphan_acceptance_reported():
     """**把三个闸之一换成不含那条正则的版本**——
-    登记条目从此指向一个**不存在的重复**。"""
+    登记条目从此指向一个**不存在的重复**。
+
+    **Batch 256 时这一条是「如实记为本闸管不了」的**，
+    **而那句话当时是错的**：闸自己的输出里就打着
+    「2 条出现在多个文件里（登记表已登记 3 条）」这个差，
+    **它把矛盾打出来了却仍然报绿**——
+    **「本闸管不了」与「本闸已经有那个数却没用」是两回事**（纪律 287）。
+    """
     src = io.open(os.path.join(ROOT, "scripts", "verify-endpoints.py"), encoding="utf-8").read()
     lines = [l for l in src.split("\n")
              if "(?:GET|POST|PUT|DELETE|PATCH)" not in l]
@@ -187,18 +214,44 @@ def m_orphan_acceptance_reported():
     assert stripped != src, "前提失配：verify-endpoints.py 里找不到那条正则"
     _, g = probe_root({"verify-endpoints.py": stripped})
     rc, out = run(g)
-    # **孤儿登记本身不报红**——它只是不再匹配任何东西。
-    # **本用例要核的是「它没有把别的判据弄坏」**，
-    # **而真正的登记清理是人做的那一步，本闸管不了**。
-    # **如实记下来，不假装本闸能管这件事。**
-    record("6 收敛掉一条却没删登记 → 本闸不报（如实记为管不了）",
-           rc == 0, "rc=%d（孤儿登记由人清理，本闸只管「新增重复」）" % rc)
+    #: **必须点名那一条**，不能只看 rc——
+    #: **「报了红但没说是哪一条」对人没有任何用处**，
+    #: **而一条判据若只会说「有问题」，下一个人只能自己去数**。
+    key = "25eecbe17b93"
+    ok = rc == 1 and key in out and "对不上现实" in out
+    record("6 收敛掉一条却没从登记表删 → 必报（且要点名是哪一条）", ok, "rc=%d" % rc)
+
+
+# ── 7 收敛掉一条并同步删了登记 → 不得报（做完正确动作必须闭嘴）──────
+def m_converged_and_deregistered_ok():
+    """**6 的配对另一半**：同样收敛掉一条，**但把登记也一起删掉**。
+
+    **为什么必须成对**：只钉 6 的话，那条判据可能只是
+    「凡有 `ACCEPTED` 条目比现实多就报」——
+    **而正确做法（收敛 + 删登记）之后它也照样会报**，
+    **那样的判据会把人逼回去重新登记一条**（纪律 260 的同一形状：
+    **逼它归零的压力会催生「为了让闸闭嘴而做错事」**）。
+    """
+    src = io.open(os.path.join(ROOT, "scripts", "verify-endpoints.py"), encoding="utf-8").read()
+    lines = [l for l in src.split("\n")
+             if "(?:GET|POST|PUT|DELETE|PATCH)" not in l]
+    stripped = "\n".join(lines)
+    assert stripped != src, "前提失配：verify-endpoints.py 里找不到那条正则"
+    key = "25eecbe17b93"
+    gate_src = io.open(GATE_SRC, encoding="utf-8").read()
+    assert ('    "%s": (' % key) in gate_src, "前提失配：登记表里没有 %s 这一条" % key
+    _, g = probe_root({"verify-endpoints.py": stripped,
+                       "verify-duplication.py": drop_accepted_key(gate_src, key)})
+    rc, out = run(g)
+    record("7 收敛掉一条并同步删了登记 → 不得报（做完正确动作闸必须绿）",
+           rc == 0, "rc=%d" % rc)
 
 
 def main():
     tests = [m_clean, m_unregistered_duplicate_reported,
              m_stale_acceptance_reported, m_comment_not_counted,
-             m_short_literal_not_counted, m_orphan_acceptance_reported]
+             m_short_literal_not_counted, m_orphan_acceptance_reported,
+             m_converged_and_deregistered_ok]
     for t in tests:
         try:
             t()
