@@ -175,6 +175,21 @@
 - 模型：静态目录 `AITUDOU_MODEL_PROFILES`（123 文档条目：Seedance/Seedream/Qwen/Wan/Kling/Hailuo/Flux/Vidu/Doubao Audio/Kimi/Whisper/Suno 等）；inputKind 自动匹配变体；价格目录实时拉取并逐模型报价。[静态]
 - 未配置 API Key 时生成不可用（配置页需填 Key）——运行时探索全程未配置，生成入口未点击。[运行时边界]
 
+- **★ 「生成中」这个状态在本地存不住：打开画布即被改写**（2026-10-03 M180，本地注入实测，零付费）。函数是 `web/src/lib/canvas/canvas-generation-helpers.ts:247` 的 `resetInterruptedGeneration`，调用点 `web/src/pages/canvas/project.tsx:375`，在 **`restore()` 里、每次打开项目时**执行。它**只碰 `status === 'loading'` 的节点**：
+  - ① `type === 'aitudou'` 且 `providerTask.taskId` 存在 → 改成 `status: 'idle'`、`phase: 'stopped'`，并写 message「页面已重新载入，本地轮询已停止；远端任务可能仍在执行，可从节点恢复查询。」；
+  - ② 其余一律 → 改成 `status: 'error'`、`errorDetails: '页面刷新后生成已中断，请重新生成。'`。**实测**：把一个图片节点注入 `status:'loading'` 再刷新，store 里变成 `error` + 这句提示，节点上出现「查看完整错误」与「重试」两个按钮。**阳性对照**：注入 `status:'success'` 的节点刷新后原样不动。 [运行时+静态]
+  - **★ ① 这条分支实测走不到，原因值得记**：手写一个 `type:'aitudou'` 的节点注入进去，刷新后它的 `type` **变成了 `video`**（尺寸 660×371，正是 Video 节点规格）。因为 `project.tsx:375` 的调用是 `resetInterruptedGeneration(migrateLegacyGenerationNodes(...))`——**迁移先跑、调和后跑**，而 `migrateLegacyGenerationNodes`（`project.tsx:3988`）会把 `aitudou` 与 `config` 两类节点改写成 image/video/audio/text 中的一类，于是等调和函数去看时已经没有 `aitudou` 节点了。**这与 `90-troubleshooting` 已记的「config 节点被改写成图片节点」是同一族机制。**源码里另有 `resumeAitudouTasks`（`project.tsx:2287`）这样的恢复函数，**需要真实提交过的任务才能验，未实测**。 [运行时+静态]
+- **节点内容的渲染是四条互斥分支，顺序有讲究**（`web/src/components/canvas/canvas-node.tsx:516-524`）：
+  | 条件 | 呈现 | 标记 |
+  |---|---|---|
+  | 图片/视频 + `loading` + **有 content** | 毛玻璃遮罩（`backdrop-filter: blur(18px) saturate(.78)`）盖在原内容上，中间胶囊「生成中」或「生成中 NN%」，**原图仍在玻璃后** | `data-canvas-media-generation-glass`（`components/canvas/canvas-node.tsx:587`，`absolute inset-0 z-20`） |
+  | `loading` + 无 content | 整体大转圈（`size-10 animate-spin`）+「生成中」 | 无标记 |
+  | `error` | 图标 + 摘要（≤3 行）+「重试」；**有 `errorDetails` 时多一个「查看完整错误」** | 无标记 |
+  | 其余 | 按类型走 `nodeContentRenderers` | — |
+  **实测**：`error` 两支都验到了——给 `errorDetails` 时节点内出现「查看完整错误」+「重试」，**把 `errorDetails` 删掉后「查看完整错误」消失、「重试」仍在**（`zh-CN.ts:505` 的 `viewErrorDetails: "查看完整错误"`）。**两个分支都不给 `errorDetails` 时摘要用兜底文案「生成失败」。****「转圈」只在无 content 的那条成立**——手册原先把「生成中」一律描述成节点内转圈，已据此订正。 [运行时+静态]
+  - **进度封顶 99%**：`components/canvas/canvas-node.tsx:592` 是 `Math.min(99, Math.max(0, Math.round(progress)))`，所以**生成快结束时会停在 99% 而不是 100%**。 [静态]
+  - **「查看完整错误」打开的就是节点信息面板里那块红色区域**：`canvas-node-hover-toolbar.tsx:341-355` 在`errorDetails` 存在时渲染红框「错误详情」+「复制错误」按钮，**与节点上的按钮是同一份 `errorDetails`**。排障页已写「复制错误」，但**没写它与「查看完整错误」是同一处内容**。 [运行时+静态]
+
 ## 8. 撤销/持久化/多项目
 
 - undo/redo：页面级全量快照双栈（180ms 防抖合并、拖拽合并为一条、上限 50）；快捷键 Cmd/Ctrl+Z / +Shift / Ctrl+Y。[静态]
