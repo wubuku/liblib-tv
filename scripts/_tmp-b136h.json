@@ -1,0 +1,703 @@
+{
+ "at": "2026-10-03T11:16:21.054Z",
+ "round": "h",
+ "序列": [
+  {
+   "步": "① 从未选中节点的 source 热区拖到目标节点并松手",
+   "前边数": 0,
+   "后边数": 1
+  }
+ ],
+ "基线": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "testid种类": 174
+ },
+ "基线ids": [
+  "node_1c5zafa3zk",
+  "node_1yw4ntm88n",
+  "node_20pw32f1y5",
+  "node_20sb5adarj",
+  "node_236ctpehgg",
+  "node_2vbd2rqk7q",
+  "node_2x3hae9jhe",
+  "node_3bfb9r79qe",
+  "node_3cc0k9cfgb",
+  "node_3f44mcptgc",
+  "node_3p3sa1sgsv",
+  "node_3rs2xvb3wm",
+  "node_52g5ng3hxa",
+  "node_5g0yrqgc6c",
+  "node_5gftn3dnt1",
+  "node_5h8sbgy7pd",
+  "node_5na1wezb9q",
+  "node_68van5z657",
+  "node_7w0kc2m903",
+  "node_7y6fhyn18z",
+  "node_80vczsczbr",
+  "node_97x9w2s8dc",
+  "node_9b2ajtyqwj",
+  "node_9rxgrvfe4y",
+  "node_9y4j9jf0qv",
+  "node_ae08gp8ke3",
+  "node_anmp0m801c",
+  "node_aw29cp094x",
+  "node_ay7f1jn45r",
+  "node_cdwf8x6fbj",
+  "node_d4tjtpnatq",
+  "node_dt0wpmba0d",
+  "node_e78c3z4gap",
+  "node_e90a7f1gyf",
+  "node_fd0p2amd3p",
+  "node_fg4h8gry6x",
+  "node_fyy39951ae",
+  "node_gnykygt88s",
+  "node_gp499g9p3m",
+  "node_gref4sw056",
+  "node_jc6t41x8d2",
+  "node_jphxcmk27v",
+  "node_jx5amm7m9j",
+  "node_kdgnjkfng2",
+  "node_kgsv6w4ach",
+  "node_kk2xhkrdtn",
+  "node_kpfbgmkkr3",
+  "node_kx0gzwzf7a",
+  "node_ky7dvkppj1",
+  "node_m14qwkmz4p",
+  "node_mwz4689zqr",
+  "node_n0x3zqajjy",
+  "node_p4xg96c73x",
+  "node_pxvkay973v",
+  "node_pz48stvt07",
+  "node_qe1kf9ywek",
+  "node_qf32ccpxmm",
+  "node_qs4x5t988q",
+  "node_r6dtesbzac",
+  "node_r6qqyk3v98",
+  "node_rs637eg7me",
+  "node_sc4w9xkaxd",
+  "node_srx8z3gx8g",
+  "node_tadm1nyykc",
+  "node_thtydf4663",
+  "node_tnh6v3rm7v",
+  "node_tqqd4fedbn",
+  "node_v1wkbg1mbm",
+  "node_v5ewe33jbw",
+  "node_w6b1h9fvzw",
+  "node_w7s8mxphwh",
+  "node_wdqa2gne4s",
+  "node_xe755vzsmx",
+  "node_y261jwxjpn",
+  "node_y2n170za3z",
+  "node_zb8pfc1tf6"
+ ],
+ "基线testids": [
+  "workspace-workbench-shell",
+  "canvas-top-bar",
+  "canvas-top-bar-left",
+  "workspace-title-responsive-surface",
+  "workspace-canvas-title",
+  "canvas-project-logo",
+  "canvas-project-logo-gradient-path",
+  "canvas-title-details",
+  "canvas-project-title-trigger",
+  "canvas-project-launcher-shell",
+  "canvas-project-trigger",
+  "canvas-title-metadata",
+  "canvas-node-summary-trigger",
+  "canvas-node-summary-label",
+  "canvas-node-summary-count",
+  "canvas-title-separator",
+  "canvas-title-save-status",
+  "canvas-top-bar-actions",
+  "canvas-agent-history-surface",
+  "canvas-fixed-toolbar-workspace-top-bar-surface",
+  "canvas-panel-workspace-top-bar-launchers",
+  "canvas-panel-launcher",
+  "canvas-share-entry",
+  "canvas-collaborators-workspace-top-bar-surface",
+  "canvas-share-trigger",
+  "canvas-editor-menu",
+  "canvas-account-surface",
+  "workspace-preparing-account-summary",
+  "workspace-account-summary-content",
+  "canvas-commerce-entry-wrapper",
+  "canvas-commerce-entry",
+  "canvas-account-separator",
+  "workspace-preparing-account-avatar",
+  "canvas-user-menu-trigger",
+  "canvas-user-avatar-image",
+  "canvas-user-avatar-hover-mask",
+  "workspace-hydrated-canvas-frame",
+  "canvas-workbench-shell",
+  "canvas-main-region",
+  "canvas-save-failure-anchor",
+  "rf__wrapper",
+  "rf__node-node_236ctpehgg",
+  "video-flow-node-surface",
+  "flow-node-target-handle",
+  "flow-node-title",
+  "flow-node-selected-tag",
+  "flow-node-source-handle",
+  "video-node-empty",
+  "rf__node-node_3bfb9r79qe",
+  "text-flow-node-full",
+  "text-node-content-loading",
+  "rf__node-node_cdwf8x6fbj",
+  "timeline-flow-node",
+  "timeline-flow-node-main-track",
+  "timeline-toolbar",
+  "timeline-playback-clock",
+  "timeline-full-passive-track",
+  "timeline-track-gutter",
+  "timeline-mute-button",
+  "timeline-node-track-divider",
+  "timeline-passive-track-viewport",
+  "timeline-track-canvas",
+  "timeline-ruler",
+  "timeline-ruler-interaction-extension",
+  "timeline-clip-track",
+  "timeline-passive-source-picker-slot",
+  "timeline-empty-track-label",
+  "rf__node-node_aw29cp094x",
+  "rf__node-node_5gftn3dnt1",
+  "rf__node-node_pxvkay973v",
+  "director-stage-flow-node-shell",
+  "rf__node-node_ay7f1jn45r",
+  "audio-node-empty",
+  "audio-node-status-icon",
+  "rf__node-node_w6b1h9fvzw",
+  "rf__node-node_dt0wpmba0d",
+  "rf__node-node_kdgnjkfng2",
+  "rf__node-node_gp499g9p3m",
+  "rf__node-node_9y4j9jf0qv",
+  "rf__node-node_gref4sw056",
+  "image-primary-preview-viewport",
+  "image-node-result",
+  "rf__node-node_20sb5adarj",
+  "rf__node-node_y2n170za3z",
+  "rf__node-node_1c5zafa3zk",
+  "rf__node-node_fg4h8gry6x",
+  "rf__node-node_kx0gzwzf7a",
+  "rf__node-node_97x9w2s8dc",
+  "rf__node-node_gnykygt88s",
+  "rf__node-node_52g5ng3hxa",
+  "rf__node-node_m14qwkmz4p",
+  "rf__node-node_d4tjtpnatq",
+  "rf__node-node_sc4w9xkaxd",
+  "rf__node-node_y261jwxjpn",
+  "rf__node-node_3f44mcptgc",
+  "rf__node-node_e78c3z4gap",
+  "rf__node-node_5h8sbgy7pd",
+  "rf__node-node_zb8pfc1tf6",
+  "rf__node-node_v1wkbg1mbm",
+  "rf__node-node_v5ewe33jbw",
+  "rf__node-node_3rs2xvb3wm",
+  "rf__node-node_e90a7f1gyf",
+  "rf__node-node_5g0yrqgc6c",
+  "rf__node-node_anmp0m801c",
+  "rf__node-node_tqqd4fedbn",
+  "rf__node-node_68van5z657",
+  "rf__node-node_xe755vzsmx",
+  "rf__node-node_3p3sa1sgsv",
+  "rf__node-node_jphxcmk27v",
+  "rf__node-node_9b2ajtyqwj",
+  "rf__node-node_srx8z3gx8g",
+  "rf__node-node_qf32ccpxmm",
+  "rf__node-node_r6dtesbzac",
+  "rf__node-node_20pw32f1y5",
+  "rf__node-node_kgsv6w4ach",
+  "rf__node-node_80vczsczbr",
+  "rf__node-node_7w0kc2m903",
+  "rf__node-node_r6qqyk3v98",
+  "rf__node-node_thtydf4663",
+  "rf__node-node_5na1wezb9q",
+  "rf__node-node_ky7dvkppj1",
+  "rf__node-node_tnh6v3rm7v",
+  "rf__node-node_mwz4689zqr",
+  "rf__node-node_7y6fhyn18z",
+  "rf__node-node_qe1kf9ywek",
+  "rf__node-node_w7s8mxphwh",
+  "rf__node-node_p4xg96c73x",
+  "rf__node-node_rs637eg7me",
+  "rf__node-node_wdqa2gne4s",
+  "rf__node-node_fd0p2amd3p",
+  "rf__node-node_pz48stvt07",
+  "rf__node-node_2x3hae9jhe",
+  "rf__node-node_jx5amm7m9j",
+  "rf__node-node_2vbd2rqk7q",
+  "rf__node-node_kpfbgmkkr3",
+  "rf__node-node_1yw4ntm88n",
+  "rf__node-node_fyy39951ae",
+  "rf__node-node_jc6t41x8d2",
+  "rf__node-node_kk2xhkrdtn",
+  "rf__node-node_qs4x5t988q",
+  "rf__node-node_9rxgrvfe4y",
+  "rf__node-node_n0x3zqajjy",
+  "rf__node-node_3cc0k9cfgb",
+  "rf__node-node_ae08gp8ke3",
+  "rf__node-node_tadm1nyykc",
+  "canvas-dot-grid",
+  "canvas-connection-flow-layer-host",
+  "canvas-connection-flow-layer",
+  "default-feature-overlay-interaction-boundary",
+  "back-to-content-overlay",
+  "canvas-context-menu-terminal-feedback",
+  "canvas-feature-sidecar",
+  "canvas-creation-entry-feedback",
+  "canvas-fixed-toolbar-left-rail",
+  "canvas-navigation-shell",
+  "canvas-navigation-mask",
+  "canvas-navigation-mask-backdrop",
+  "canvas-navigation-mask-gradient",
+  "canvas-navigation-scroll-viewport",
+  "canvas-fixed-toolbar",
+  "workspace-bottom-dock-frame",
+  "canvas-navigation-dock",
+  "canvas-minimap-portal-target",
+  "canvas-minimap-surface",
+  "canvas-minimap-navigation",
+  "rf__minimap",
+  "canvas-bottom-dock",
+  "canvas-pointer-tool-toggle",
+  "canvas-display-toggle-minimap",
+  "canvas-display-toggle-connections",
+  "canvas-zoom-percent",
+  "canvas-sidecar-launchers",
+  "assistant-sidecar-launcher-frame",
+  "canvas-sidecar-launcher"
+ ],
+ "基线canvas": {
+  "node_236ctpehgg": [
+   865,
+   400.11
+  ],
+  "node_3bfb9r79qe": [
+   480.06,
+   240
+  ],
+  "node_cdwf8x6fbj": [
+   40.06,
+   370.5
+  ],
+  "node_aw29cp094x": [
+   520.05,
+   278.75
+  ],
+  "node_5gftn3dnt1": [
+   560.05,
+   319.38
+  ],
+  "node_pxvkay973v": [
+   640.05,
+   440.65
+  ],
+  "node_ay7f1jn45r": [
+   594.8,
+   569.5
+  ],
+  "node_w6b1h9fvzw": [
+   674.81,
+   609.5
+  ],
+  "node_dt0wpmba0d": [
+   714.81,
+   689.5
+  ],
+  "node_kdgnjkfng2": [
+   754.81,
+   589.75
+  ],
+  "node_gp499g9p3m": [
+   794.81,
+   464.75
+  ],
+  "node_9y4j9jf0qv": [
+   1425.48,
+   649.11
+  ],
+  "node_gref4sw056": [
+   3562.42,
+   1981.81
+  ],
+  "node_20sb5adarj": [
+   1662.76,
+   1292.96
+  ],
+  "node_y2n170za3z": [
+   1962.76,
+   1522.58
+  ],
+  "node_1c5zafa3zk": [
+   2002.76,
+   1562.58
+  ],
+  "node_fg4h8gry6x": [
+   2042.76,
+   1602.58
+  ],
+  "node_kx0gzwzf7a": [
+   2082.76,
+   1642.58
+  ],
+  "node_97x9w2s8dc": [
+   2122.76,
+   1682.58
+  ],
+  "node_gnykygt88s": [
+   2149.77,
+   1719.45
+  ],
+  "node_52g5ng3hxa": [
+   2162.76,
+   1762.58
+  ],
+  "node_m14qwkmz4p": [
+   2202.76,
+   1802.58
+  ],
+  "node_d4tjtpnatq": [
+   1282.76,
+   998.61
+  ],
+  "node_sc4w9xkaxd": [
+   2242.76,
+   1842.58
+  ],
+  "node_y261jwxjpn": [
+   2282.76,
+   1882.58
+  ],
+  "node_3f44mcptgc": [
+   2322.76,
+   1922.58
+  ],
+  "node_e78c3z4gap": [
+   2362.76,
+   1962.58
+  ],
+  "node_5h8sbgy7pd": [
+   2402.76,
+   2002.58
+  ],
+  "node_zb8pfc1tf6": [
+   2242.76,
+   1492.96
+  ],
+  "node_v1wkbg1mbm": [
+   2282.76,
+   1532.96
+  ],
+  "node_v5ewe33jbw": [
+   2322.76,
+   1572.96
+  ],
+  "node_3rs2xvb3wm": [
+   2362.76,
+   1612.96
+  ],
+  "node_e90a7f1gyf": [
+   2402.76,
+   1652.96
+  ],
+  "node_5g0yrqgc6c": [
+   2442.76,
+   1692.96
+  ],
+  "node_anmp0m801c": [
+   2482.76,
+   1732.96
+  ],
+  "node_tqqd4fedbn": [
+   2522.76,
+   1772.96
+  ],
+  "node_68van5z657": [
+   2562.76,
+   1812.96
+  ],
+  "node_xe755vzsmx": [
+   2602.76,
+   1852.96
+  ],
+  "node_3p3sa1sgsv": [
+   2642.76,
+   1892.96
+  ],
+  "node_jphxcmk27v": [
+   2682.76,
+   1932.96
+  ],
+  "node_9b2ajtyqwj": [
+   2722.76,
+   1972.96
+  ],
+  "node_srx8z3gx8g": [
+   2762.76,
+   2012.96
+  ],
+  "node_qf32ccpxmm": [
+   2802.76,
+   2058.15
+  ],
+  "node_r6dtesbzac": [
+   2442.76,
+   2040.75
+  ],
+  "node_20pw32f1y5": [
+   2482.76,
+   2080.75
+  ],
+  "node_kgsv6w4ach": [
+   2842.76,
+   2092.05
+  ],
+  "node_80vczsczbr": [
+   2882.76,
+   2137.7
+  ],
+  "node_7w0kc2m903": [
+   2522.76,
+   2120.52
+  ],
+  "node_r6qqyk3v98": [
+   2562.76,
+   2160.52
+  ],
+  "node_thtydf4663": [
+   2922.76,
+   2171.93
+  ],
+  "node_5na1wezb9q": [
+   2962.76,
+   2217.64
+  ],
+  "node_ky7dvkppj1": [
+   2602.76,
+   2200.49
+  ],
+  "node_tnh6v3rm7v": [
+   2642.76,
+   2240.49
+  ],
+  "node_mwz4689zqr": [
+   3002.76,
+   2251.92
+  ],
+  "node_7y6fhyn18z": [
+   3042.76,
+   2297.63
+  ],
+  "node_qe1kf9ywek": [
+   2682.76,
+   2280.49
+  ],
+  "node_w7s8mxphwh": [
+   2722.76,
+   2320.49
+  ],
+  "node_p4xg96c73x": [
+   3082.76,
+   2331.92
+  ],
+  "node_rs637eg7me": [
+   2539.43,
+   1005.96
+  ],
+  "node_wdqa2gne4s": [
+   2122.76,
+   1325.96
+  ],
+  "node_fd0p2amd3p": [
+   2024.43,
+   1292.96
+  ],
+  "node_pz48stvt07": [
+   2202.76,
+   1405.96
+  ],
+  "node_2x3hae9jhe": [
+   2901.37,
+   1421.31
+  ],
+  "node_jx5amm7m9j": [
+   3122.76,
+   2045.96
+  ],
+  "node_2vbd2rqk7q": [
+   3162.76,
+   2125.96
+  ],
+  "node_kpfbgmkkr3": [
+   3202.76,
+   2205.96
+  ],
+  "node_1yw4ntm88n": [
+   3242.76,
+   2285.96
+  ],
+  "node_fyy39951ae": [
+   3282.76,
+   2365.96
+  ],
+  "node_jc6t41x8d2": [
+   1464.13,
+   1405.96
+  ],
+  "node_kk2xhkrdtn": [
+   2562.76,
+   1362.58
+  ],
+  "node_qs4x5t988q": [
+   2539.43,
+   649.11
+  ],
+  "node_9rxgrvfe4y": [
+   2901.37,
+   1045.96
+  ],
+  "node_n0x3zqajjy": [
+   2202.76,
+   649.11
+  ],
+  "node_3cc0k9cfgb": [
+   2883.14,
+   649.11
+  ],
+  "node_ae08gp8ke3": [
+   1282.76,
+   1292.96
+  ],
+  "node_tadm1nyykc": [
+   1784.13,
+   649.11
+  ]
+ },
+ "计划": {
+  "源": {
+   "id": "node_gref4sw056",
+   "x": 863.2789306640625,
+   "y": 463.44268798828125,
+   "right": 1204.6082763671875,
+   "bottom": 655.4426879882812,
+   "手柄中心": [
+    1205,
+    559
+   ]
+  },
+  "落": {
+   "id": "node_zb8pfc1tf6",
+   "面积": 36864.03515625745,
+   "落点": [
+    167,
+    266
+   ]
+  }
+ },
+ "护栏": [
+  {
+   "名": "① 边已建成",
+   "通过": true,
+   "详情": {
+    "边数": 1
+   }
+  },
+  {
+   "名": "② 边被选中（data-state = selected）",
+   "通过": true,
+   "详情": {
+    "dataState": "selected"
+   }
+  },
+  {
+   "名": "③ × 按钮存在",
+   "通过": true,
+   "详情": {
+    "删除钮中心": [
+     626,
+     387
+    ]
+   }
+  },
+  {
+   "名": "点 × 之前按钮仍在且边仍选中",
+   "通过": true,
+   "详情": {
+    "按钮还在": true,
+    "dataState": "selected"
+   }
+  },
+  {
+   "名": "④ 点 删除钮中心后边被删掉",
+   "通过": true,
+   "详情": {
+    "边数": 0
+   }
+  },
+  {
+   "名": "边数 0、节点零位移、与基线逐个一致",
+   "通过": true,
+   "详情": {
+    "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+    "选中": 0,
+    "浮层": 0,
+    "zoom": "Zoom options, 60%",
+    "credits": "Credits: 805 · 基础会员",
+    "minimap": {
+     "ariaPressed": "true",
+     "dataState": "closed"
+    },
+    "节点数": 76,
+    "testid种类": 174,
+    "边数": 0,
+    "节点被移动": [],
+    "节点差集": {
+     "多": [],
+     "少": []
+    },
+    "testid差集": {
+     "多": [],
+     "少": []
+    }
+   }
+  }
+ ],
+ "边中点": [
+  626,
+  387
+ ],
+ "选中态": "selected",
+ "删除钮中心": [
+  626,
+  387
+ ],
+ "点前复查": {
+  "按钮还在": true,
+  "dataState": "selected"
+ },
+ "点后边数": 0,
+ "点后态": null,
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "选中": 0,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员",
+  "minimap": {
+   "ariaPressed": "true",
+   "dataState": "closed"
+  },
+  "节点数": 76,
+  "testid种类": 174,
+  "边数": 0,
+  "节点被移动": [],
+  "节点差集": {
+   "多": [],
+   "少": []
+  },
+  "testid差集": {
+   "多": [],
+   "少": []
+  }
+ }
+}

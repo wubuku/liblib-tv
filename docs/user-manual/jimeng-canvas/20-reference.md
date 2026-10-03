@@ -373,6 +373,13 @@ aria 逐字 `Create connected node before <节点名>`）—— **批次 71 新�
 | **失败反馈** | 顶部 toast 逐字「**无法连接这些节点**」（`DIV` **360×44 @ (460,32)**，含 1 个 ⚠ svg，**无 role/aria/testid**）+ 临时边 `data-id="connection-failure:N"` | 实测（同上） |
 | ⚠️ **失败线不计数** | 状态行仍写 `1 edge` 而 DOM 有 2 个 `.react-flow__edge` → **判断连线数一律看状态行** | 实测（同上） |
 | **删节点连带删边** | 删带 2 条线的节点：`7 nodes, 4 edges` → `6 nodes, 2 edges`；**⌘Z 把节点和两条线一起恢复** | 实测（同上，**7 次阶梯复现**：`4→2→2→2→2→1→0`） |
+| **边有独立选中态** | 单击边后内层 `<g>` 的 `data-state` 从 `default` 变 **`selected`**，而**节点选中数仍是 0** ⇒ 边的选中**不进** `.react-flow__node.selected` | 实测（2026-10-03 批次 136） |
+| **选中边出现 × 删除按钮** | 三个新 testid：`reference-edge-delete-positioner` `0×0@中点`（`pe:none`、`z-index:10`）→ `reference-edge-delete-screen-space` `0×0@中点`（`pe:none`）→ **`reference-edge-delete-control` `<BUTTON 36×36@中点>`，aria 逐字 `Delete connection`** | 实测（同上，**全册首次建档**） |
+| **删除边的四条路径** | ✅ 点 × 按钮 ｜ ✅ 按 **`Backspace`** ｜ ✅ `⌘Z` ｜ ❌ 按 **`Delete`（无效）** ｜ ❌ **右键边不弹任何菜单**（`[role=menu]` 为 `null`、`[role=menuitem]` 0 个） | 实测（同上，每条都在「建线→试路径→归位」的完整循环里验过） |
+| ⚠️ **点 × 以外的地方会取消选中** | 边从 `selected` 退回 `default`、**× 按钮随之消失** ⇒「选中→点 ×」必须一气呵成 | 实测（同上，g 轮） |
+| **× 的几何框 ≠ 全部可点** | 几何 `36×36`，但 **2px 步长扫 324 点，命中按钮及其后代 261 点**，命中区包围盒 **`35×35`**（差最外一圈 1px） | 实测（同上，g 轮） |
+| 🔑 **判「× 被没被挡住」要走祖先链** | 按钮中心 `elementFromPoint` 返回 `path`，但链是 `path → svg.relative → SPAN.contents → **BUTTON.inline-flex** → …` ⇒ 那是 **× 图标本身**（按钮子元素 `SPAN` 带 `display:contents`），**不是遮挡者** | 实测（同上，f 轮；**本批订正了自己写反的断言**） |
+| **边自带两端描述** | 边 `<g>` 的 aria 逐字 **`Reference connection from 图片 node: b22-upload to 音频 node: 音频 54`**；边被悬停/聚焦时它就是 `document.activeElement` | 实测（同上，b/c/d/e/h 轮逐次一致） |
 
 - **空白右键**：新建节点＞（子菜单含 从资产库添加/本地上传）、粘贴 ⌘V、
   重做 ⌘⇧Z、撤销 ⌘Z。

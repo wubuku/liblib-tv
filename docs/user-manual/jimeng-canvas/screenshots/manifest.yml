@@ -1567,3 +1567,14 @@ screenshots:
     visible_text: 全部 76 / 图片 1 / 视频 1 / 音频 68 / 文本
     alt: 页签行特写：「全部 76」带下划线表示当前选中，右边依次是「图片 1」「视频 1」「音频 68」和被右端圆钮压住一半的「文本 3」；圆钮就是那个没有文字、aria 为 Next search categories 的翻页签按钮，作用是把这排放不下的页签往右翻
     sha256: 71296d7e1061e64580d2b312fb47e47936c5684e06f961692f8f64b56332378b
+  - file: screenshots/111-edge-selected-delete-button.png
+    task_id: connect-nodes
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-03T19:33:00+08:00
+    verified_locator: '2026-10-03 批次 136。**本会话第一次真的把连线建出来**（此前 104 行记的是「也没有建出连线」）。步骤：①**不先选中**，鼠标移到节点右缘 source 热区 `flow-node-source-handle`（canvas 恒 60×120，实测屏上 36×72，`::before` 40×80 且 `pe:auto`）→ mousedown → 12 步拖到目标节点**可见部分**的中心 → mouseup ⇒ 状态行 `76 nodes, 1 edge`，**节点选中数仍是 0**（b/c/d/e/h 轮五轮一致）。②单击连线 ⇒ 内层 `<g data-testid="reference-edge-interaction">` 的 `data-state` 从 `default` 翻成 **`selected`**，同时**多出三个 testid**：`reference-edge-delete-positioner` `0×0@边中点`（`pe:none`、`z-index:10`）、`reference-edge-delete-screen-space` `0×0@边中点`（`pe:none`）、**`reference-edge-delete-control` `<BUTTON 36×36@608,369>`、aria 逐字 `Delete connection`**。边 `<g>` 的 aria 逐字 `Reference connection from 图片 node: b22-upload to 音频 node: 音频 54`。③裁剪 clip={x:4,y:187,w:1243,h:398}（边的包围盒 ∪ × 按钮包围盒，各留 26px 余量并夹在视口内）。**拍前复查「按钮还在 + data-state 仍 selected」**，拍完点 × 删除、当场断言边数回到 0、节点 id 与静态 testid 与基线逐个一致、**节点 canvas 坐标零位移**。⚠️ 本图的作用是把**此前全册从未拍过、用户也从未见过**的删除按钮拍成可见证据 —— 只用文字描述它在画布上找不到。**全程没点任何生成/扣费按钮、没输入一个字、没点任何 ⊕ 菜单项**。详见 SOURCE_OBSERVATIONS §4.57'
+    visible_text: 音频 27 / 音频 28 / 音频 29 / 音频 30 / 音频 31 / 音频 32 / 音频 33 / 音频 34 / 音频 35 / 音频 36 / 音频 37 / 音频 38 / 音频 39 / 音频 40 / 音频 41 / 音频 42 / 音频 44 / 音频 56 / 音频 57 / 音频 58 / b22-upload
+    alt: 画布上选中一条参考连线后的样子：一条蓝色连线从左上方的音频节点斜向右下方的图片节点 b22-upload（节点里是一只小狗的照片），连线在选中状态下变成更亮的蓝绿色，线的正中点骑着一个深色圆形按钮，按钮里是一个白色的叉号，这就是删除这条连线的按钮；画布上其余区域是一大片互相压叠的深色音频节点卡片，从左上到右下依次能看到「音频 27」「音频 28」「音频 29」「音频 30」「音频 31」「音频 32」「音频 33」「音频 34」「音频 35」「音频 36」「音频 37」「音频 38」「音频 39」「音频 40」「音频 41」「音频 42」「音频 44」「音频 56」「音频 57」「音频 58」等标题，左边缘是一列竖排的工具图标（文字、图片、视频、音频、时间线、主体、带 Beta 标记的导演台、文件夹）
+    sha256: 5a9ce7335bbeedebddcbc4e0e465cee7b99f9206b7814718629e3fdb37db9c3a
