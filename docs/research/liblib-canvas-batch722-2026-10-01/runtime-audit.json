@@ -1,0 +1,395 @@
+{
+ "source604": {
+  "toolbarW": 360,
+  "promptW": 225,
+  "barW": 1920,
+  "toolbarX": 780,
+  "barY": 968
+ },
+ "run": {
+  "source604": {
+   "toolbarW": 360,
+   "promptW": 225,
+   "barW": 1920,
+   "toolbarX": 780,
+   "barY": 968
+  },
+  "bar1280": {
+   "vw": 1280,
+   "bar": {
+    "x": 281,
+    "y": 920,
+    "w": 718,
+    "h": 48
+   },
+   "padTotal": 24,
+   "scroller": {
+    "x": 293,
+    "w": 694
+   },
+   "clientWidth": 694,
+   "scrollWidth": 944,
+   "row": {
+    "x": 293,
+    "w": 944,
+    "h": 48
+   },
+   "hasTinyScrollbar": false
+  },
+  "toolbar": {
+   "toolbar": {
+    "w": 711,
+    "h": 48
+   },
+   "prompt": {
+    "w": 225,
+    "h": 48
+   },
+   "gap": 8,
+   "padL": 8,
+   "padR": 8,
+   "border": 2,
+   "kids": [
+    {
+     "i": 0,
+     "ariaLabel": "角色01 · 陈默，可拖动三轴控件",
+     "data": {
+      "transform-context": "true",
+      "transform-context-kind": "object",
+      "transform-context-state": "editable",
+      "transform-context-target": "角色01 · 陈默"
+     },
+     "w": 98,
+     "ml": 0,
+     "mr": 0,
+     "btns": []
+    },
+    {
+     "i": 1,
+     "ariaLabel": null,
+     "data": {},
+     "w": 112,
+     "ml": 0,
+     "mr": 0,
+     "btns": [
+      {
+       "label": "移动",
+       "w": 32,
+       "h": 32
+      },
+      {
+       "label": "旋转",
+       "w": 32,
+       "h": 32
+      },
+      {
+       "label": "缩放",
+       "w": 32,
+       "h": 32
+      }
+     ]
+    },
+    {
+     "i": 2,
+     "ariaLabel": "动画时间轴",
+     "data": {
+      "timeline-toggle": "true"
+     },
+     "w": 32,
+     "ml": 0,
+     "mr": 0,
+     "btns": []
+    },
+    {
+     "i": 3,
+     "ariaLabel": null,
+     "data": {},
+     "w": 1,
+     "ml": 2,
+     "mr": 2,
+     "btns": []
+    },
+    {
+     "i": 4,
+     "ariaLabel": "画幅比例",
+     "data": {},
+     "w": 136,
+     "ml": 0,
+     "mr": 0,
+     "btns": [
+      {
+       "label": "16:9",
+       "w": 40,
+       "h": 32
+      },
+      {
+       "label": "9:16",
+       "w": 40,
+       "h": 32
+      },
+      {
+       "label": "1:1",
+       "w": 40,
+       "h": 32
+      }
+     ]
+    },
+    {
+     "i": 5,
+     "ariaLabel": "开启九宫格辅助线",
+     "data": {},
+     "w": 32,
+     "ml": 0,
+     "mr": 0,
+     "btns": []
+    },
+    {
+     "i": 6,
+     "ariaLabel": null,
+     "data": {},
+     "w": 1,
+     "ml": 2,
+     "mr": 2,
+     "btns": []
+    },
+    {
+     "i": 7,
+     "ariaLabel": "虚拟相机",
+     "data": {
+      "phone-vcam-trigger": "true"
+     },
+     "w": 32,
+     "ml": 0,
+     "mr": 0,
+     "btns": []
+    },
+    {
+     "i": 8,
+     "ariaLabel": "添加群众阵列",
+     "data": {
+      "crowd-trigger": "true"
+     },
+     "w": 32,
+     "ml": 0,
+     "mr": 0,
+     "btns": []
+    },
+    {
+     "i": 9,
+     "ariaLabel": "模型库",
+     "data": {
+      "model-library-trigger": "true"
+     },
+     "w": 32,
+     "ml": 0,
+     "mr": 0,
+     "btns": []
+    },
+    {
+     "i": 10,
+     "ariaLabel": null,
+     "data": {},
+     "w": 1,
+     "ml": 2,
+     "mr": 2,
+     "btns": []
+    },
+    {
+     "i": 11,
+     "ariaLabel": null,
+     "data": {
+      "capture": "true"
+     },
+     "w": 84,
+     "ml": 0,
+     "mr": 0,
+     "btns": []
+    }
+   ]
+  },
+  "reconcile": {
+   "n": 12,
+   "sumKids": 593,
+   "gaps": 88,
+   "padL": 8,
+   "padR": 8,
+   "border": 2,
+   "margins": 12,
+   "accounted": 711,
+   "toolbarW": 711,
+   "residual": 0
+  },
+  "scan": [
+   {
+    "vw": 1280,
+    "barW": 718,
+    "barX": 281,
+    "padTotal": 24,
+    "clientWidth": 694,
+    "scrollWidth": 944,
+    "contentW": 944,
+    "windowLevelW": 1256,
+    "fitsNow": false,
+    "fitsIfWindowLevel": true,
+    "slackIfWindowLevel": 312
+   },
+   {
+    "vw": 1024,
+    "barW": 462,
+    "barX": 281,
+    "padTotal": 24,
+    "clientWidth": 438,
+    "scrollWidth": 944,
+    "contentW": 944,
+    "windowLevelW": 1000,
+    "fitsNow": false,
+    "fitsIfWindowLevel": true,
+    "slackIfWindowLevel": 56
+   },
+   {
+    "vw": 968,
+    "barW": 406,
+    "barX": 281,
+    "padTotal": 24,
+    "clientWidth": 382,
+    "scrollWidth": 944,
+    "contentW": 944,
+    "windowLevelW": 944,
+    "fitsNow": false,
+    "fitsIfWindowLevel": true,
+    "slackIfWindowLevel": 0
+   },
+   {
+    "vw": 900,
+    "barW": 338,
+    "barX": 281,
+    "padTotal": 24,
+    "clientWidth": 314,
+    "scrollWidth": 944,
+    "contentW": 944,
+    "windowLevelW": 876,
+    "fitsNow": false,
+    "fitsIfWindowLevel": false,
+    "slackIfWindowLevel": -68
+   },
+   {
+    "vw": 899,
+    "barW": 337,
+    "barX": 281,
+    "padTotal": 24,
+    "clientWidth": 313,
+    "scrollWidth": 944,
+    "contentW": 944,
+    "windowLevelW": 875,
+    "fitsNow": false,
+    "fitsIfWindowLevel": false,
+    "slackIfWindowLevel": -69
+   },
+   {
+    "vw": 880,
+    "barW": 880,
+    "barX": 0,
+    "padTotal": 24,
+    "clientWidth": 856,
+    "scrollWidth": 944,
+    "contentW": 944,
+    "windowLevelW": 856,
+    "fitsNow": false,
+    "fitsIfWindowLevel": false,
+    "slackIfWindowLevel": -88
+   },
+   {
+    "vw": 860,
+    "barW": 860,
+    "barX": 0,
+    "padTotal": 24,
+    "clientWidth": 836,
+    "scrollWidth": 944,
+    "contentW": 944,
+    "windowLevelW": 836,
+    "fitsNow": false,
+    "fitsIfWindowLevel": false,
+    "slackIfWindowLevel": -108
+   },
+   {
+    "vw": 840,
+    "barW": 840,
+    "barX": 0,
+    "padTotal": 24,
+    "clientWidth": 816,
+    "scrollWidth": 944,
+    "contentW": 944,
+    "windowLevelW": 816,
+    "fitsNow": false,
+    "fitsIfWindowLevel": false,
+    "slackIfWindowLevel": -128
+   },
+   {
+    "vw": 820,
+    "barW": 820,
+    "barX": 0,
+    "padTotal": 24,
+    "clientWidth": 796,
+    "scrollWidth": 944,
+    "contentW": 944,
+    "windowLevelW": 796,
+    "fitsNow": false,
+    "fitsIfWindowLevel": false,
+    "slackIfWindowLevel": -148
+   },
+   {
+    "vw": 800,
+    "barW": 800,
+    "barX": 0,
+    "padTotal": 24,
+    "clientWidth": 776,
+    "scrollWidth": 944,
+    "contentW": 944,
+    "windowLevelW": 776,
+    "fitsNow": false,
+    "fitsIfWindowLevel": false,
+    "slackIfWindowLevel": -168
+   },
+   {
+    "vw": 700,
+    "barW": 700,
+    "barX": 0,
+    "padTotal": 24,
+    "clientWidth": 676,
+    "scrollWidth": 885,
+    "contentW": 885,
+    "windowLevelW": 676,
+    "fitsNow": false,
+    "fitsIfWindowLevel": false,
+    "slackIfWindowLevel": -209
+   }
+  ],
+  "narrowBoundary": {
+   "paneLevel": [
+    899,
+    900,
+    968,
+    1024,
+    1280
+   ],
+   "windowLevel": [
+    700,
+    800,
+    820,
+    840,
+    860,
+    880
+   ]
+  }
+ },
+ "summary": {
+  "content-944-splits-into-toolbar-711-plus-prompt-225-over-a-694-box": true,
+  "only-the-tool-capsule-differs-from-source-351-wider-while-prompt-matches": true,
+  "the-tool-capsule-twelve-children-reconcile-to-its-own-width": true,
+  "clone-only-controls-account-for-558-of-711": true,
+  "lifting-the-container-to-window-level-fits-at-every-vw-from-968-up": true,
+  "keeping-the-container-needs-at-least-250-cut-achieved-by-four-controls": true,
+  "the-narrow-side-is-already-window-level-so-option-a-does-not-cover-it": true
+ },
+ "failures": []
+}
