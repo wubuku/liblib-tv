@@ -77,6 +77,9 @@ tasks:
     evidence:
       - type: runtime
         note: 2026-09-26 图片创作芯片→空图片节点+原生面板自动打开；双击空白菜单 文本/图片/视频/音频/组/ComfyUI 工作流/上传素材 逐字核实。
+      - type: static
+        note: >-
+          2026-10-03 M182 穷举「AI 土豆任务（aitudou）」节点的全部创建路径，五条全堵：创建菜单（不在节点注册表）、Agent 建节点（canvas-agent-ops.ts:47 同样查注册表、不过就退回文本节点）、复制粘贴（内存剪贴板，只来自当前画布）、画布导入（本版本无此功能）、旧画布数据（一打开被 migrateLegacyGenerationNodes 改写）。**顺带订正手册一处描述**：它并非「只有一个类型名和一条文案」，constant/canvas.ts 里另有完整的两条规格（380×220、默认元数据带 aitudouOperation video.generate），**是一套齐备却只差注册表那一条的规格**；结论「建不出来」不变。
     preconditions:
       - 已打开一个画布项目
     routes:

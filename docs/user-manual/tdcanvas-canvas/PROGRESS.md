@@ -4569,3 +4569,48 @@ M174 已经证明一件事：**「搜到的」和「属于的」不是一回事*
 - `AUDIT.md` 追加 **7 行**；账本回填 `use-agent` 与 `upload-materials`
 - 手册改动：`README.md`（补实测与例外）、`20-reference.md`（新增整节 + 存储表补一行）、
   `10-tasks/use-agent.md`（已知限制里加醒目警告段）
+
+### M182 — 「AI 土豆任务节点建不出来」：结论对，但手册低估了它有多完整
+
+接着 M180 带出来的问题。手册 `30-concepts.md` 有一张「两种打不开的节点类型」对照表，
+其中「AI 土豆任务（`aitudou`）」那行写的是：**「连注册表都没有，只有一个类型名和一条文案」**。
+
+**结论一个字都没错——它确实建不出来。错的是它有多不完整。**
+
+#### 手册低估的地方
+
+`web/src/constant/canvas.ts` 里它有**两条完整条目**：
+`NODE_DEFAULT_SIZE[Aitudou]`（380×220、默认标题）与 `NODE_SPEC[Aitudou]`
+（同样 380×220，外加 `metadata: { status: "idle", aitudouOperation: "video.generate" }`）。
+**这是一套齐备的节点规格，只差注册表里那一条**——而注册表就是菜单和 Agent 唯一的门。
+说成「一条文案」，会让人以为这是随手留的残骸、删掉即可。
+
+#### 真正有价值的是：把五条路全部穷举了
+
+手册原来只查了创建菜单就下结论，**等于默认只有菜单这一条路**。本批逐条查：
+
+| 路径 | 判据 | 结论 |
+|---|---|---|
+| 创建菜单 | `builtin-nodes.tsx:23-28` 只注册 Text/Image/Video/Audio/**Config**/Group | 不在注册表 → 菜单里不可能有 |
+| **Agent 建节点** | `canvas-agent-ops.ts:47`：`nodeType && isRegisteredNodeType(nodeType) ? … : CanvasNodeType.Text` | **同样查注册表，不过就退回文本节点** |
+| 复制粘贴 | `project.tsx:1076` 读的是 `clipboardRef`（`useRef`），由 `copySelectedNodes` 从当前画布填充 | 画布上没有就粘不出来 |
+| 画布导入 | 本版本无此功能 | 入口不存在 |
+| 旧画布数据 | `migrateLegacyGenerationNodes` 打开即改写 | 能进来，出不来 |
+
+**Agent 那条是「真的建不出来」最硬的证据**：不是某一处把它藏了，
+而是**所有能建节点的路都被同一个注册表挡住**。
+`isRegisteredNodeType` 就是 `definitions.has(type)`（`node-registry.ts:46-48`）——**一道门，六种类型**。
+
+#### 一个跨批的呼应
+
+M180 注入 `aitudou` 节点、发现它被改写成 `video`，当时只当作「那条软分支走不到」的插曲。
+**M182 才看清它的真正含义：那不是巧合，是「aitudou 不可达」在运行时的又一次确认。**
+上一批没被追问的异常读数，往往是下一批的钥匙。
+
+#### 数字
+
+- 门禁 **22 道不变**、自检 **62 例不变**、截图 **112 张不变**、链接 **932 条不变**
+- 源码引用 **95 → 102 处**（39 个源文件）
+- **订正登记仍 38 条**（改的是描述不是结论，**不占订正名额**——这条判断本身值得记：
+  描述性错误与结论性错误要分开计数，否则「订正 N 条」这个数字会失真）
+- `AUDIT.md` 追加 **3 行**；账本回填 `create-nodes`；手册改动 `30-concepts.md` 三处

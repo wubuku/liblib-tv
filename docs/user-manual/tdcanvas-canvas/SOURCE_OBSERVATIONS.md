@@ -209,6 +209,17 @@
     - **本机边界（配合源码，未单独实测）**：`lib/localforage-storage.ts:15-20` 在 IndexedDB 异常时**降级写入 localStorage**；数据全部在本机，无任何同步入口（M111/排障页已取证），故换设备或清站点数据即全部丢失。
 - 快捷键全集（project.tsx:1735-1807）：Cmd/Ctrl+Z(+Shift)/Y、A、C、V、Delete/Backspace、Escape（清 13 项状态）；无缩放类键盘快捷键；官方快捷键文档与源码一致。[静态+官方文档]
 
+- **★ `aitudou`（AI 土豆任务）节点在 v0.14.0 的五条路径上全部不可达**（2026-10-03 M182，静态穷举）。手册结论本来就对（「画布上能存在吗：不能」），本批把**每一条能建节点的路**逐一查清，并订正了它对源码状态的描述：
+  | 路径 | 判据 | 结论 |
+  |---|---|---|
+  | 创建菜单 | `builtin-nodes.tsx:23-28` 只注册 Text/Image/Video/Audio/**Config**(`showInCreateMenu:false`)/Group | 不在注册表 → 菜单里不可能有 |
+  | **Agent 建节点** | `canvas-agent-ops.ts:47`：`op.nodeType && isRegisteredNodeType(op.nodeType) ? … : CanvasNodeType.Text` | **同样查注册表，不过就退回文本节点** |
+  | 复制粘贴 | `project.tsx:1076` `pasteCopiedNodes` 读的是 `clipboardRef`（`useRef`），由 `copySelectedNodes` 从**当前画布**填充 | 画布上没有就粘不出来 |
+  | 画布导入 | 本版本无导入功能 | 入口不存在 |
+  | 旧画布数据 | `migrateLegacyGenerationNodes`（`project.tsx:3988`）打开即改写 | 能进来，出不来 |
+  **Agent 那条是「真的建不出来」最硬的证据**——不是某一处藏了，是**所有建节点的路被同一个注册表挡住**。 [静态]
+  - **★ 订正手册的一处描述（结论不变）**：手册写它「**连注册表都没有，只有一个类型名和一条文案**」。前半句对，**后半句低估了**——`web/src/constant/canvas.ts:50` 的 `NODE_DEFAULT_SIZE` 与 `:107` 的 `NODE_SPEC` 各有一条完整条目：**380×220**、默认标题、以及 `metadata: { status: "idle", aitudouOperation: "video.generate", … }`。**是一套齐备却没接上线的规格，缺的只是注册表里那一条**（`isRegisteredNodeType` 就是 `definitions.has(type)`，`node-registry.ts:46-48`）。说成「一条文案」会让人以为是随手留的残骸。 [静态]
+  - **运行时佐证**：M180 注入一个 `type:'aitudou'` 的节点，打开画布后它的 `type` **变成了 `video`**（660×371，正是 Video 规格）——迁移先跑、调和后跑，Agent 那条软分支因此拿不到 aitudou 节点。 [运行时]
 - **★★「节点内容不上传」这句话，抓包实测成立，但有三个例外**（2026-10-03 M181，全程零付费）。用 Playwright 录下浏览器全部请求，按主机与请求体筛：
   | 操作 | 请求数 | 带请求体 | 非本机主机 |
   |---|---|---|---|
