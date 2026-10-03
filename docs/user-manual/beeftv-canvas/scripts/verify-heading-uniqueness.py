@@ -74,7 +74,8 @@
 
 **改法**：`headingkey.py` 把原始行折成渲染后的文字（剥闭合井号序列、剥行内代码、
 剥链接与图片、剥强调、解转义）。**规则不是照着 CommonMark 抄的，是量出来的**：
-与 vitepress 1.6.4 渲染出的 `<h>` 文字逐条对比，**两批共 45 种形态、一致率 100%**。
+与 vitepress 1.6.4 渲染出的 `<h>` 文字逐条对比，**两批共 45 种形态、一致率 100%**
+（**Batch 251 补测 30 种**：那 45 种里没有缩进标题与空标题，补上后 30/30 一致）。
 **量出来的六条修正**（每一条都对应一批实测里真实存在的分歧）：
 不压内部空白 / 强调会横跨代码段（改用占位符）/ `*` 与 `_` 的词内规则不同 /
 URL 含空白时不算链接 / 反斜杠转义要先解且**解出来的符号不许再被吃一次** /
@@ -109,7 +110,7 @@ import os
 import re
 import sys
 
-from headingkey import is_atx_heading, rendered_key, strip_fenced
+from headingkey import atx_level, rendered_key, strip_fenced
 
 CONTENT_PAGES = ("00-quickstart.md", "20-reference.md", "30-concepts.md", "90-troubleshooting.md")
 
@@ -143,8 +144,18 @@ def check_page(path, rel):
         # **而真渲染器给出的是零个标题**——写两个这样的行，闸会报「同名标题」＋「两个 H1」，
         # **凭空造出两处缺陷，而页面上一个标题都没有。** CommonMark 的 ATX 开头
         # 只认 U+0020 / U+0009，判据也只该认这两个。
-        if is_atx_heading(line):
-            headings.append((len(line) - len(line.lstrip("#")), rendered_key(line), lineno))
+        #
+        # **Batch 251：级别也改由 `atx_level` 给**（Batch 248 只换了「是不是标题」，
+        # 级别还留在 `len(line) - len(line.lstrip("#"))`——**而那正是同一处的第四份实现**）。
+        # 实测它在缩进标题上算出 **0**：`  # 又一个 H1` 的行首是空格，
+        # `lstrip("#")` 一个字符都去不掉，于是 `len(line) - len(line) = 0`。
+        # **后果是两条判据同时失效**：判「唯一 H1」数不到它（0 ≠ 1）、
+        # 判「层级跳级」也因为 `0 > prev + 1` 为假而放行它。
+        # **而渲染器给的是货真价实的 `<h1>`。**
+        lv = atx_level(line)
+        if lv is not None:
+            headings.append((lv, rendered_key(line), lineno))
+
     dups = []
     seen = {}
     for _level, name, lineno in headings:
@@ -155,7 +166,8 @@ def check_page(path, rel):
         #   `## 相关页面 ##` 与 `## 相关页面`；`## [相关页面](x.md)` 与 `## 相关页面`；
         #   `## 用 \`npm\` 安装` 与 `## 用 npm 安装`。
         # **归一化规则与它的一致率是被量过的，不是照着 CommonMark 抄的**——
-        # 见 `headingkey.py` 的文件头：两批共 45 种形态，一致率 100%。
+        # 见 `headingkey.py` 的文件头：两批共 45 种形态一致率 100%（Batch 251 补测 30 种，
+        # **补上了那 45 种里缺的缩进标题与空标题**）。
         if name in seen:
             dups.append((name, seen[name], lineno))
         else:

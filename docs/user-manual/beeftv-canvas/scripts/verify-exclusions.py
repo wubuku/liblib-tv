@@ -57,6 +57,7 @@ import beefsrc
 from baseline import announce_fallback
 from baseline import resolve_ref, BaselineError, baseline_guard
 from batchread import read_many
+from headingkey import is_atx_heading
 
 try:
     import yaml
@@ -366,7 +367,18 @@ EVIDENCE_SOURCE_TERMS = (
 #: 表格行与标题行是**产品文案密度最高**的两种行：状态值、字段取值、
 #: 错误分类、报错原文都长这样。Batch 238 实测的假阳性**全部落在这两种行里**。
 TABLE_ROW_RE = re.compile(r"^\s*\|")
-HEADING_RE = re.compile(r"^\s{0,3}#{1,6}\s")
+#: **Batch 251 删掉了这里原本的 `HEADING_RE = re.compile(r"^\s{0,3}#{1,6}\s")`，
+#: 改用 `headingkey.is_atx_heading`**——那是「什么算标题」的唯一一份实现
+#: （纪律 274 推论一；闸 26 / 29 / 9 都已经在用它了）。
+#: **旧式有两类错，一类朝一个方向、另一类朝另一个方向**（Batch 251 用
+#: vitepress 1.6.4 逐条量过，30 种形态）：
+#:   · `\\s` **匹配全角空格** → `##　标题`、`#　标题`、`　## 标题` 被当成标题行
+#:     **排除**，而**渲染器给的是零个标题**——那是**读者看得见的普通段落**。
+#:   · 前导空白不限 3 个 → `    ## 标题`（4 空格）、`\t## 标题`（制表符）
+#:     也被当成标题行排除，**而渲染器把它们当代码块**。
+#: **方向相反这件事本身就是个提醒**：全角空格那一类在 Batch 248 已经被
+#: `headingkey` 修掉了，**而闸 5 的这份拷贝没跟着改**——
+#: **修好一条规则不等于认全了另一条，也不等于每一处拷贝都修过了。**
 
 
 def _tell_qualifying_lines(body):
@@ -388,7 +400,7 @@ def _tell_qualifying_lines(body):
     """
     out = []
     for i, line in enumerate(body.split("\n")):
-        if TABLE_ROW_RE.match(line) or HEADING_RE.match(line):
+        if TABLE_ROW_RE.match(line) or is_atx_heading(line):
             continue
         if not any(t in line for t in PAGE_TELL_TERMS):
             continue

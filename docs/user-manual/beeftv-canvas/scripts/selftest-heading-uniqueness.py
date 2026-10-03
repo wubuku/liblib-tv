@@ -155,6 +155,33 @@ def t_fullwidth_space(base):
     return base.replace(marker, "#\u3000全角空格标题\n\n#\u3000全角空格标题\n\n" + marker, 1)
 
 
+def t_indented_dup(base):
+    """能抓：**缩进 3 空格的同名标题**与顶格的那个并存。
+
+    **Batch 251 实测**：vitepress 1.6.4 把 `   ## 主要页面路由` 渲染成 `<h2>`，
+    slug 与顶格那个同名（去重成 `-1`）——**页面上真的有两个同名标题**。
+    而改前的 `is_atx_heading` 是 `^#{1,6}[ \\t]+\\S`，**不认前导空白**，
+    **缩进标题一个都不算**，于是这一页看起来只有 1 个「主要页面路由」→ rc=0 静默。
+    **本树 803 个标题里 0 行有前导缩进**，所以真树回归一个数都不会变——
+    **「现场没有」不能当护栏。**
+    """
+    marker = "## 主要页面路由"
+    assert base.count(marker) == 1, f"锚点不唯一: {marker}"
+    return base.replace(marker, "   " + marker + "\n\n" + marker, 1)
+
+
+def t_indented_h1(base):
+    """能抓：`  # 又一个 H1`（缩进）与顶格 H1 并存 → 页面渲染出**两个** H1。
+
+    改前同样静默（`^#[ \\t]+\\S` 不认缩进）。**4 空格缩进与制表符缩进实测渲染成
+    代码块而不是标题**，所以注入只用 1-3 个 ASCII 空格——
+    **边界两侧的形态都在实测表里**（`headingkey.py` 文件头）。
+    """
+    first = base.split("\n")[0]
+    assert first.startswith("# "), f"前提失配：首行不是 H1: {first[:40]}"
+    return base.replace(first, first + "\n\n  # 又一个 H1", 1)
+
+
 def main():
     global PASS, FAIL, VOID
     print("=== 能抓 ===")
@@ -165,6 +192,10 @@ def main():
         "同名", want_rc=1, transform=t_closing_hashes)
     run("3c) 标题里带链接与同名标题并存（真渲染器算同名，必须报）",
         "同名", want_rc=1, transform=t_link_in_heading)
+    run("3d) 缩进 3 空格的同名标题与顶格并存（真渲染器算同名；改前实测 rc=0 静默）",
+        "同名", want_rc=1, transform=t_indented_dup)
+    run("3e) 缩进 2 空格的 H1 与顶格 H1 并存（真渲染器给两个 h1；改前实测 rc=0 静默）",
+        "个 H1", want_rc=1, transform=t_indented_h1)
 
     print("=== 不误伤 ===")
     run("4) 同名的容器标题（本批判定为有意复用，必须放行）", "无同名标题",

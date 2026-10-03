@@ -87,6 +87,7 @@ GATE = os.path.join(HERE, "verify-exclusions.py")
 BATCHREAD = os.path.join(HERE, "batchread.py")
 BASELINE = os.path.join(HERE, "baseline.py")
 BEEFSRC = os.path.join(HERE, "beefsrc.py")
+HEADINGKEY = os.path.join(HERE, "headingkey.py")
 INVENTORY_REL = "task-inventory.yml"
 
 PASS = VOID = FAIL = 0
@@ -124,6 +125,17 @@ def _prepare(tmp, inventory_text, gate_text=None, page_edits=None):
     #: **Batch 197**：`verify-exclusions.py` 现在 import `beefsrc`（路径解析的单一来源），
     #: 临时目录里没有它就会 import 失败，**该反验每一例都会失败而构建仍然全绿**。
     shutil.copy(BEEFSRC, os.path.join(tmp, "scripts", "beefsrc.py"))
+    # **必须连同 headingkey.py 一起复制**（Batch 251 修，闸 17 抓出）：
+    # `verify-exclusions.py` 原先自己写了一份 `HEADING_RE` 来判「这是不是标题行」，
+    # Batch 251 按纪律 274 把它换成 `from headingkey import is_atx_heading`。
+    # **旧式那份有两类方向相反的错**（`\s` 匹配全角空格；前导空白不限 3 个），
+    # 而共享实现是唯一的正确来源。
+    # **闸 17 在我跑这份反验之前就报了它**——这正是它建成的意义：
+    # 改动落地几分钟内被抓到，而不是等反验整批红。
+    # **和上面三次同一个形状**：被测闸门多了一个本地模块，搬运清单没跟着长。
+    # **这已经是第四次**（Batch 178 的 baseline、181 的 batchread、197 的 beefsrc、
+    # 251 的 headingkey），**而四次都是「闸 17 报出来的」，说明这道闸是有牙齿的。**
+    shutil.copy(HEADINGKEY, os.path.join(tmp, "scripts", "headingkey.py"))
     shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-exclusions.py"))
     if gate_text is not None:
         with open(os.path.join(tmp, "scripts", "verify-exclusions.py"), "w", encoding="utf-8") as fh:
@@ -545,6 +557,29 @@ def t_tell_in_plain_paragraph(_inv, gate):
     return _inv, gate, {OC_PAGE: edit}
 
 
+def t_tell_in_fullwidth_pseudo_heading(_inv, gate):
+    """不误伤：告知写在一行**「井号 + 全角空格」**的行里 → 必须放行。
+
+    **Batch 251 实测**：vitepress 1.6.4 对 `#　本页…` 给出**零个标题**——
+    它是**读者看得见的普通段落**。而旧判据 `HEADING_RE = ^\\s{0,3}#{1,6}\\s`
+    的两个 `\\s` **都匹配全角空格**（U+3000），于是把这一行当成标题行**排除**，
+    判据报「找不到任何已登记的告知措辞」——**而那一行明明写着告知、读者也看得见**。
+    改前实测 rc=1（误报），改后 rc=0。
+
+    **方向与用例 18 恰好相反**：18 钉「真标题行不算告知」（必须报），
+    本条钉「伪标题行仍算告知」（必须放行）——
+    **一个把真标题和伪标题分开认的判据，两条用例缺一条就会往错的方向偏。**
+    """
+    def edit(body):
+        out = _drop_oc_banner(body)
+        anchor = "## 目标\n"
+        assert anchor in out, "锚点未命中：organize-canvas 上找不到 ## 目标"
+        return out.replace(
+            anchor,
+            "#　本页「自动整理」一节只有源码证据，资产当前不可用。\n\n" + anchor, 1)
+    return _inv, gate, {OC_PAGE: edit}
+
+
 def main():
     r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
     if r.returncode == 0:
@@ -588,6 +623,8 @@ def main():
         "找不到任何已登记的告知措辞", transform=t_tell_only_in_heading)
     run("19) 不误伤：告知写在普通段落里（必须放行：不是只认容器与引用）",
         "证据降级告知", expect_fail=False, transform=t_tell_in_plain_paragraph)
+    run("20) 不误伤：告知写在「井号 + 全角空格」那一行（真渲染器：那是段落不是标题）",
+        "证据降级告知", expect_fail=False, transform=t_tell_in_fullwidth_pseudo_heading)
 
     print("=== 结果：通过 %d / 失败 %d / 作废 %d ===" % (PASS, FAIL, VOID))
     return 1 if (FAIL or VOID) else 0
