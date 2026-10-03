@@ -18,7 +18,9 @@ import fs from 'node:fs';
 
 const 基线 = fs.readFileSync('/tmp/b120-baseline-ids.txt', 'utf8').split('\n').map((s) => s.trim()).filter(Boolean);
 const 孤儿 = async (p) => p.evaluate(() => Array.from(document.querySelectorAll('.react-flow__node')).map((n) => n.getAttribute('data-id')));
-const 组数 = (p) => p.evaluate(() => document.querySelectorAll('.react-flow__node-group').length);
+// 🔴 与 b139-lib 同款修正：真身组数（滤掉 __group-resize-chrome__ 影子）
+const 组数 = (p) => p.evaluate(() => Array.from(document.querySelectorAll('.react-flow__node-group'))
+  .filter((g) => !/^__group-resize-chrome__/.test(g.getAttribute('data-id') || '')).length);
 
 /** 在一个元素内部找一个真能点到它的点（沿用批次 137 护栏的写法）。 */
 async function 可点落点(p, sel, inset = 3, step = 3) {

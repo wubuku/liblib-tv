@@ -1,0 +1,1341 @@
+{
+ "全部节点": [
+  {
+   "id": "node_236ctpehgg",
+   "aria": "视频 node: 视频 1",
+   "className": "react-flow__node react-flow__node-video nopan selectable draggable",
+   "innerText前20": "视频 1 No resources: 0",
+   "屏上": {
+    "x": -370,
+    "y": -707,
+    "w": 192,
+    "h": 341
+   },
+   "canvas": {
+    "w": 320,
+    "h": 569
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_3bfb9r79qe",
+   "aria": "文本 node: 文本 1",
+   "className": "react-flow__node react-flow__node-text nopan selectable draggable",
+   "innerText前20": "文本 1",
+   "屏上": {
+    "x": -600,
+    "y": -803,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_cdwf8x6fbj",
+   "aria": "时间线 node: 时间线 1",
+   "className": "react-flow__node react-flow__node-timeline nopan selectable draggable",
+   "innerText前20": "时间线 1 00:00 / 00:00 ",
+   "屏上": {
+    "x": -864,
+    "y": -725,
+    "w": 720,
+    "h": 124
+   },
+   "canvas": {
+    "w": 1200,
+    "h": 207
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_aw29cp094x",
+   "aria": "文本 node: 文本 2",
+   "className": "react-flow__node react-flow__node-text nopan selectable draggable",
+   "innerText前20": "文本 2",
+   "屏上": {
+    "x": -576,
+    "y": -780,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_5gftn3dnt1",
+   "aria": "文本 node: 文本 3",
+   "className": "react-flow__node react-flow__node-text nopan selectable draggable",
+   "innerText前20": "文本 3",
+   "屏上": {
+    "x": -552,
+    "y": -756,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_pxvkay973v",
+   "aria": "外部 node: 导演台",
+   "className": "react-flow__node react-flow__node-external nopan selectable draggable",
+   "innerText前20": "导演台 在 3D 空间中设计角色、机位与",
+   "屏上": {
+    "x": -504,
+    "y": -683,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_ay7f1jn45r",
+   "aria": "音频 node: 音频 1",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 1 No resources: 0",
+   "屏上": {
+    "x": -532,
+    "y": -606,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_w6b1h9fvzw",
+   "aria": "音频 node: 音频 2",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 2 No resources: 0",
+   "屏上": {
+    "x": -484,
+    "y": -582,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_dt0wpmba0d",
+   "aria": "音频 node: 音频 3",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 3 No resources: 0",
+   "屏上": {
+    "x": -460,
+    "y": -534,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_kdgnjkfng2",
+   "aria": "音频 node: 音频 4",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 4 No resources: 0",
+   "屏上": {
+    "x": -436,
+    "y": -593,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_gp499g9p3m",
+   "aria": "音频 node: 音频 5",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 5 No resources: 0",
+   "屏上": {
+    "x": -412,
+    "y": -668,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_9y4j9jf0qv",
+   "aria": "音频 node: 音频 6",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 6 No resources: 0",
+   "屏上": {
+    "x": -33,
+    "y": -558,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_gref4sw056",
+   "aria": "图片 node: b22-upload",
+   "className": "react-flow__node react-flow__node-image nopan selectable draggable",
+   "innerText前20": "b22-upload",
+   "屏上": {
+    "x": 1249,
+    "y": 242,
+    "w": 341,
+    "h": 192
+   },
+   "canvas": {
+    "w": 569,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_20sb5adarj",
+   "aria": "音频 node: 音频 7",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 7 No resources: 0",
+   "屏上": {
+    "x": 109,
+    "y": -172,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_y2n170za3z",
+   "aria": "音频 node: 音频 8",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 8 No resources: 0",
+   "屏上": {
+    "x": 289,
+    "y": -34,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_1c5zafa3zk",
+   "aria": "音频 node: 音频 9",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 9 No resources: 0",
+   "屏上": {
+    "x": 313,
+    "y": -10,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_fg4h8gry6x",
+   "aria": "音频 node: 音频 10",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 10 No resources: ",
+   "屏上": {
+    "x": 337,
+    "y": 14,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_kx0gzwzf7a",
+   "aria": "音频 node: 音频 11",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 11 No resources: ",
+   "屏上": {
+    "x": 361,
+    "y": 38,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_97x9w2s8dc",
+   "aria": "音频 node: 音频 12",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 12 No resources: ",
+   "屏上": {
+    "x": 385,
+    "y": 62,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_gnykygt88s",
+   "aria": "音频 node: 音频 13",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 13 No resources: ",
+   "屏上": {
+    "x": 401,
+    "y": 84,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_52g5ng3hxa",
+   "aria": "音频 node: 音频 14",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 14 No resources: ",
+   "屏上": {
+    "x": 409,
+    "y": 110,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_m14qwkmz4p",
+   "aria": "音频 node: 音频 15",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 15 No resources: ",
+   "屏上": {
+    "x": 433,
+    "y": 134,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_d4tjtpnatq",
+   "aria": "时间线 node: 时间线 2",
+   "className": "react-flow__node react-flow__node-timeline nopan selectable draggable",
+   "innerText前20": "时间线 2 00:00 / 00:00 ",
+   "屏上": {
+    "x": -119,
+    "y": -348,
+    "w": 720,
+    "h": 124
+   },
+   "canvas": {
+    "w": 1200,
+    "h": 207
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_sc4w9xkaxd",
+   "aria": "音频 node: 音频 16",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 16 No resources: ",
+   "屏上": {
+    "x": 457,
+    "y": 158,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_y261jwxjpn",
+   "aria": "音频 node: 音频 17",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 17 No resources: ",
+   "屏上": {
+    "x": 481,
+    "y": 182,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_3f44mcptgc",
+   "aria": "音频 node: 音频 18",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 18 No resources: ",
+   "屏上": {
+    "x": 505,
+    "y": 206,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_e78c3z4gap",
+   "aria": "音频 node: 音频 19",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 19 No resources: ",
+   "屏上": {
+    "x": 529,
+    "y": 230,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_5h8sbgy7pd",
+   "aria": "音频 node: 音频 20",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 20 No resources: ",
+   "屏上": {
+    "x": 553,
+    "y": 254,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_zb8pfc1tf6",
+   "aria": "音频 node: 音频 21",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 21 No resources: ",
+   "屏上": {
+    "x": 457,
+    "y": -52,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_v1wkbg1mbm",
+   "aria": "音频 node: 音频 22",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 22 No resources: ",
+   "屏上": {
+    "x": 481,
+    "y": -28,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_v5ewe33jbw",
+   "aria": "音频 node: 音频 23",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 23 No resources: ",
+   "屏上": {
+    "x": 505,
+    "y": -4,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_3rs2xvb3wm",
+   "aria": "音频 node: 音频 24",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 24 No resources: ",
+   "屏上": {
+    "x": 529,
+    "y": 20,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_e90a7f1gyf",
+   "aria": "音频 node: 音频 25",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 25 No resources: ",
+   "屏上": {
+    "x": 553,
+    "y": 44,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_5g0yrqgc6c",
+   "aria": "音频 node: 音频 26",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 26 No resources: ",
+   "屏上": {
+    "x": 577,
+    "y": 68,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_anmp0m801c",
+   "aria": "音频 node: 音频 27",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 27 No resources: ",
+   "屏上": {
+    "x": 601,
+    "y": 92,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_tqqd4fedbn",
+   "aria": "音频 node: 音频 28",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 28 No resources: ",
+   "屏上": {
+    "x": 625,
+    "y": 116,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_68van5z657",
+   "aria": "音频 node: 音频 29",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 29 No resources: ",
+   "屏上": {
+    "x": 649,
+    "y": 140,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_xe755vzsmx",
+   "aria": "音频 node: 音频 30",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 30 No resources: ",
+   "屏上": {
+    "x": 673,
+    "y": 164,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_3p3sa1sgsv",
+   "aria": "音频 node: 音频 31",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 31 No resources: ",
+   "屏上": {
+    "x": 697,
+    "y": 188,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_jphxcmk27v",
+   "aria": "音频 node: 音频 32",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 32 No resources: ",
+   "屏上": {
+    "x": 721,
+    "y": 212,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_9b2ajtyqwj",
+   "aria": "音频 node: 音频 33",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 33 No resources: ",
+   "屏上": {
+    "x": 745,
+    "y": 236,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_srx8z3gx8g",
+   "aria": "音频 node: 音频 34",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 34 No resources: ",
+   "屏上": {
+    "x": 769,
+    "y": 260,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_qf32ccpxmm",
+   "aria": "音频 node: 音频 35",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 35 No resources: ",
+   "屏上": {
+    "x": 793,
+    "y": 288,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_r6dtesbzac",
+   "aria": "音频 node: 音频 36",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 36 No resources: ",
+   "屏上": {
+    "x": 577,
+    "y": 277,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_20pw32f1y5",
+   "aria": "音频 node: 音频 37",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 37 No resources: ",
+   "屏上": {
+    "x": 601,
+    "y": 301,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_kgsv6w4ach",
+   "aria": "音频 node: 音频 38",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 38 No resources: ",
+   "屏上": {
+    "x": 817,
+    "y": 308,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_80vczsczbr",
+   "aria": "音频 node: 音频 39",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 39 No resources: ",
+   "屏上": {
+    "x": 841,
+    "y": 335,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_7w0kc2m903",
+   "aria": "音频 node: 音频 40",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 40 No resources: ",
+   "屏上": {
+    "x": 625,
+    "y": 325,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_r6qqyk3v98",
+   "aria": "音频 node: 音频 41",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 41 No resources: ",
+   "屏上": {
+    "x": 649,
+    "y": 349,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_thtydf4663",
+   "aria": "音频 node: 音频 42",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 42 No resources: ",
+   "屏上": {
+    "x": 865,
+    "y": 356,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_5na1wezb9q",
+   "aria": "音频 node: 音频 43",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 43 No resources: ",
+   "屏上": {
+    "x": 889,
+    "y": 383,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_ky7dvkppj1",
+   "aria": "音频 node: 音频 44",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 44 No resources: ",
+   "屏上": {
+    "x": 673,
+    "y": 373,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_tnh6v3rm7v",
+   "aria": "音频 node: 音频 45",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 45 No resources: ",
+   "屏上": {
+    "x": 697,
+    "y": 397,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_mwz4689zqr",
+   "aria": "音频 node: 音频 46",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 46 No resources: ",
+   "屏上": {
+    "x": 913,
+    "y": 404,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_7y6fhyn18z",
+   "aria": "音频 node: 音频 47",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 47 No resources: ",
+   "屏上": {
+    "x": 937,
+    "y": 431,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_qe1kf9ywek",
+   "aria": "音频 node: 音频 48",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 48 No resources: ",
+   "屏上": {
+    "x": 721,
+    "y": 421,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_w7s8mxphwh",
+   "aria": "音频 node: 音频 49",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 49 No resources: ",
+   "屏上": {
+    "x": 745,
+    "y": 445,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_p4xg96c73x",
+   "aria": "音频 node: 音频 50",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 50 No resources: ",
+   "屏上": {
+    "x": 961,
+    "y": 452,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_rs637eg7me",
+   "aria": "音频 node: 音频 51",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 51 No resources: ",
+   "屏上": {
+    "x": 635,
+    "y": -344,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_wdqa2gne4s",
+   "aria": "音频 node: 音频 52",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 52 No resources: ",
+   "屏上": {
+    "x": 385,
+    "y": -152,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_fd0p2amd3p",
+   "aria": "音频 node: 音频 53",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 53 No resources: ",
+   "屏上": {
+    "x": 326,
+    "y": -172,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_pz48stvt07",
+   "aria": "音频 node: 音频 54",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 54 No resources: ",
+   "屏上": {
+    "x": 109,
+    "y": 517,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_2x3hae9jhe",
+   "aria": "音频 node: 音频 55",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 55 No resources: ",
+   "屏上": {
+    "x": 852,
+    "y": -95,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_jx5amm7m9j",
+   "aria": "音频 node: 音频 56",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 56 No resources: ",
+   "屏上": {
+    "x": 985,
+    "y": 280,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_2vbd2rqk7q",
+   "aria": "音频 node: 音频 57",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 57 No resources: ",
+   "屏上": {
+    "x": 1009,
+    "y": 328,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_kpfbgmkkr3",
+   "aria": "音频 node: 音频 58",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 58 No resources: ",
+   "屏上": {
+    "x": 1033,
+    "y": 376,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_1yw4ntm88n",
+   "aria": "音频 node: 音频 59",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 59 No resources: ",
+   "屏上": {
+    "x": 1057,
+    "y": 424,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_fyy39951ae",
+   "aria": "音频 node: 音频 60",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 60 No resources: ",
+   "屏上": {
+    "x": 1081,
+    "y": 472,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_jc6t41x8d2",
+   "aria": "音频 node: 音频 61",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 61 No resources: ",
+   "屏上": {
+    "x": -10,
+    "y": -104,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": true
+  },
+  {
+   "id": "node_kk2xhkrdtn",
+   "aria": "音频 node: 音频 62",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 62 No resources: ",
+   "屏上": {
+    "x": 649,
+    "y": -130,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_qs4x5t988q",
+   "aria": "音频 node: 音频 63",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 63 No resources: ",
+   "屏上": {
+    "x": 635,
+    "y": -558,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_9rxgrvfe4y",
+   "aria": "音频 node: 音频 64",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 64 No resources: ",
+   "屏上": {
+    "x": 852,
+    "y": -320,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_n0x3zqajjy",
+   "aria": "音频 node: 音频 65",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 65 No resources: ",
+   "屏上": {
+    "x": 433,
+    "y": -558,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_3cc0k9cfgb",
+   "aria": "音频 node: 音频 66",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 66 No resources: ",
+   "屏上": {
+    "x": 841,
+    "y": -558,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_ae08gp8ke3",
+   "aria": "音频 node: 音频 67",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 67 No resources: ",
+   "屏上": {
+    "x": -119,
+    "y": -172,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  },
+  {
+   "id": "node_tadm1nyykc",
+   "aria": "音频 node: 音频 68",
+   "className": "react-flow__node react-flow__node-audio nopan selectable draggable",
+   "innerText前20": "音频 68 No resources: ",
+   "屏上": {
+    "x": 182,
+    "y": -558,
+    "w": 192,
+    "h": 192
+   },
+   "canvas": {
+    "w": 320,
+    "h": 320
+   },
+   "在视口可用区": false
+  }
+ ],
+ "统计": {
+  "总数": 76,
+  "有文本aria": 3,
+  "视口可用区内": 45,
+  "视口可用区且有文本aria": 0,
+  "aria样本": [
+   "视频 node: 视频 1",
+   "文本 node: 文本 1",
+   "时间线 node: 时间线 1",
+   "文本 node: 文本 2",
+   "文本 node: 文本 3",
+   "外部 node: 导演台",
+   "音频 node: 音频 1",
+   "音频 node: 音频 2",
+   "音频 node: 音频 3",
+   "音频 node: 音频 4",
+   "音频 node: 音频 5",
+   "音频 node: 音频 6",
+   "图片 node: b22-upload",
+   "音频 node: 音频 7",
+   "音频 node: 音频 8",
+   "音频 node: 音频 9",
+   "音频 node: 音频 10",
+   "音频 node: 音频 11",
+   "音频 node: 音频 12",
+   "音频 node: 音频 13",
+   "音频 node: 音频 14",
+   "音频 node: 音频 15",
+   "时间线 node: 时间线 2",
+   "音频 node: 音频 16",
+   "音频 node: 音频 17"
+  ],
+  "class样本": [
+   "react-flow__node-video nopan",
+   "react-flow__node-text nopan",
+   "react-flow__node-timeline nopan",
+   "react-flow__node-external nopan",
+   "react-flow__node-audio nopan",
+   "react-flow__node-image nopan"
+  ]
+ },
+ "视口": {
+  "w": 1280,
+  "h": 720
+ }
+}

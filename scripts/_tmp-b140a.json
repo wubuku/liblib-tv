@@ -1,0 +1,1036 @@
+{
+ "轮": "140a",
+ "档位": [
+  40,
+  60,
+  100
+ ],
+ "起点": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "组数": 0,
+  "zoom": "Zoom options, 60%"
+ },
+ "断言": [
+  {
+   "名": "①起始无组卡片",
+   "通过": true,
+   "详情": {
+    "组数": 0
+   }
+  },
+  {
+   "名": "②起始 0 选中",
+   "通过": true,
+   "详情": {
+    "选中": 0
+   }
+  },
+  {
+   "名": "①a 建前节点数 == 预期基线（挡上轮残留）",
+   "通过": true,
+   "详情": {
+    "实际": 76,
+    "预期": 76,
+    "提示": "不等就先跑 jimeng-b139-rescue.mjs 归位"
+   }
+  },
+  {
+   "名": "①建前 0 选中（不能有上次留下的选中态）",
+   "通过": true,
+   "详情": {
+    "选中数": 0
+   }
+  },
+  {
+   "名": "①b 建前无组卡片（本批专属：组会干扰框选与差集）",
+   "通过": true,
+   "详情": {
+    "组数": 0
+   }
+  },
+  {
+   "名": "②第1个建后差集恰好 1 个",
+   "通过": true,
+   "详情": {
+    "新增": [
+     "node_xc488aa1gq"
+    ],
+    "前数": 76,
+    "后数": 77
+   }
+  },
+  {
+   "名": "②b 第1个新节点恰好 .selected",
+   "通过": true,
+   "详情": {
+    "SELF": "node_xc488aa1gq",
+    "选中数": 1
+   }
+  },
+  {
+   "名": "第2个建前清选中：落点不是控件",
+   "通过": true,
+   "详情": {
+    "落点": {
+     "x": 8,
+     "y": 660
+    },
+    "命中判定": 0
+   }
+  },
+  {
+   "名": "第2个建前清选中：选中数归 0",
+   "通过": true,
+   "详情": {
+    "选中数": 0
+   }
+  },
+  {
+   "名": "②第2个建后差集恰好 1 个",
+   "通过": true,
+   "详情": {
+    "新增": [
+     "node_9sft7qgahz"
+    ],
+    "前数": 77,
+    "后数": 78
+   }
+  },
+  {
+   "名": "②b 第2个新节点恰好 .selected",
+   "通过": true,
+   "详情": {
+    "SELF": "node_9sft7qgahz",
+    "选中数": 1
+   }
+  },
+  {
+   "名": "第3个建前清选中：落点不是控件",
+   "通过": true,
+   "详情": {
+    "落点": {
+     "x": 8,
+     "y": 660
+    },
+    "命中判定": 0
+   }
+  },
+  {
+   "名": "第3个建前清选中：选中数归 0",
+   "通过": true,
+   "详情": {
+    "选中数": 0
+   }
+  },
+  {
+   "名": "②第3个建后差集恰好 1 个",
+   "通过": true,
+   "详情": {
+    "新增": [
+     "node_97nvjmdhqp"
+    ],
+    "前数": 78,
+    "后数": 79
+   }
+  },
+  {
+   "名": "②b 第3个新节点恰好 .selected",
+   "通过": true,
+   "详情": {
+    "SELF": "node_97nvjmdhqp",
+    "选中数": 1
+   }
+  },
+  {
+   "名": "③点选后恰好选中这 3 个",
+   "通过": true,
+   "详情": {
+    "选中": [
+     "node_97nvjmdhqp",
+     "node_9sft7qgahz",
+     "node_xc488aa1gq"
+    ]
+   }
+  },
+  {
+   "名": "④编组后恰好 1 个真身组",
+   "通过": true,
+   "详情": {
+    "ok": true,
+    "计划": {
+     "x": 607,
+     "y": 170,
+     "逐字": "编组",
+     "aria": null,
+     "祖先链": [
+      "inline-flex",
+      "nodrag",
+      "relative",
+      "nopan",
+      "react-flow__node-toolbar",
+      "react-flow__renderer",
+      "react-flow",
+      "w-full",
+      "relative",
+      "absolute",
+      "relative",
+      "absolute",
+      "absolute",
+      "relative",
+      "absolute",
+      "relative",
+      "DIV"
+     ]
+    },
+    "前置": {
+     "还在": true,
+     "浮层": 0,
+     "选中数": 3
+    },
+    "之后组数": 1
+   }
+  },
+  {
+   "名": "⑤40% 实测 scale 已追平",
+   "通过": true,
+   "详情": {
+    "z": {
+     "前": "Zoom options, 60%",
+     "目标": 40,
+     "回读": "Zoom options, 40%",
+     "输入框出现过": true,
+     "实测scale": 0.4,
+     "期望scale": 0.4,
+     "scale已追平": true,
+     "等待ms": 1
+    }
+   }
+  },
+  {
+   "名": "⑤60% 实测 scale 已追平",
+   "通过": true,
+   "详情": {
+    "z": {
+     "前": "Zoom options, 40%",
+     "目标": 60,
+     "回读": "Zoom options, 60%",
+     "输入框出现过": true,
+     "实测scale": 0.6,
+     "期望scale": 0.6,
+     "scale已追平": true,
+     "等待ms": 0
+    }
+   }
+  },
+  {
+   "名": "⑤100% 实测 scale 已追平",
+   "通过": true,
+   "详情": {
+    "z": {
+     "前": "Zoom options, 60%",
+     "目标": 100,
+     "回读": "Zoom options, 100%",
+     "输入框出现过": true,
+     "实测scale": 1,
+     "期望scale": 1,
+     "scale已追平": true,
+     "等待ms": 0
+    }
+   }
+  },
+  {
+   "名": "⑥各档把手数一致（应为 8）",
+   "通过": true,
+   "详情": [
+    8,
+    8,
+    8
+   ]
+  }
+ ],
+ "建": {
+  "ids": [
+   "node_xc488aa1gq",
+   "node_9sft7qgahz",
+   "node_97nvjmdhqp"
+  ],
+  "ok": true
+ },
+ "点选ok": true,
+ "编组ok": true,
+ "各档": [
+  {
+   "标称": 40,
+   "追平": true,
+   "scale": 0.4,
+   "组卡片": {
+    "canvas": {
+     "w": 560,
+     "h": 560
+    },
+    "屏上": {
+     "x": 544,
+     "y": 264,
+     "w": 224,
+     "h": 224,
+     "cx": 656,
+     "cy": 376
+    }
+   },
+   "把手数": 8,
+   "把手": [
+    {
+     "aria": "Resize group from bottom",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 544,
+      "y": 487.2,
+      "w": 224,
+      "h": 4,
+      "cx": 656,
+      "cy": 489.2
+     },
+     "offset": {
+      "w": 560,
+      "h": 10
+     },
+     "pe": "auto",
+     "cursor": "ns-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "BUTTON",
+      "aria": "Resize group from bottom",
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from bottom left",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 532,
+      "y": 476,
+      "w": 24,
+      "h": 24,
+      "cx": 544,
+      "cy": 488
+     },
+     "offset": {
+      "w": 24,
+      "h": 24
+     },
+     "pe": "auto",
+     "cursor": "nesw-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "SPAN",
+      "aria": null,
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from bottom right",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 756,
+      "y": 476,
+      "w": 24,
+      "h": 24,
+      "cx": 768,
+      "cy": 488
+     },
+     "offset": {
+      "w": 24,
+      "h": 24
+     },
+     "pe": "auto",
+     "cursor": "nwse-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "SPAN",
+      "aria": null,
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from left",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 542,
+      "y": 264,
+      "w": 4,
+      "h": 224,
+      "cx": 544,
+      "cy": 376
+     },
+     "offset": {
+      "w": 10,
+      "h": 560
+     },
+     "pe": "auto",
+     "cursor": "ew-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "BUTTON",
+      "aria": "Resize group from left",
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from right",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 766,
+      "y": 264,
+      "w": 4,
+      "h": 224,
+      "cx": 768,
+      "cy": 376
+     },
+     "offset": {
+      "w": 10,
+      "h": 560
+     },
+     "pe": "auto",
+     "cursor": "ew-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "BUTTON",
+      "aria": "Resize group from right",
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from top",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 544,
+      "y": 263.2,
+      "w": 224,
+      "h": 4,
+      "cx": 656,
+      "cy": 265.2
+     },
+     "offset": {
+      "w": 560,
+      "h": 10
+     },
+     "pe": "auto",
+     "cursor": "ns-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "BUTTON",
+      "aria": "Resize group from top",
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from top left",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 532,
+      "y": 252,
+      "w": 24,
+      "h": 24,
+      "cx": 544,
+      "cy": 264
+     },
+     "offset": {
+      "w": 24,
+      "h": 24
+     },
+     "pe": "auto",
+     "cursor": "nwse-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "SPAN",
+      "aria": null,
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from top right",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 756,
+      "y": 252,
+      "w": 24,
+      "h": 24,
+      "cx": 768,
+      "cy": 264
+     },
+     "offset": {
+      "w": 24,
+      "h": 24
+     },
+     "pe": "auto",
+     "cursor": "nesw-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "SPAN",
+      "aria": null,
+      "是把手": true
+     }
+    }
+   ]
+  },
+  {
+   "标称": 60,
+   "追平": true,
+   "scale": 0.6,
+   "组卡片": {
+    "canvas": {
+     "w": 560,
+     "h": 560
+    },
+    "屏上": {
+     "x": 496,
+     "y": 216,
+     "w": 336,
+     "h": 336,
+     "cx": 664,
+     "cy": 384
+    }
+   },
+   "把手数": 8,
+   "把手": [
+    {
+     "aria": "Resize group from bottom",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 496,
+      "y": 550.8,
+      "w": 336,
+      "h": 6,
+      "cx": 664,
+      "cy": 553.8
+     },
+     "offset": {
+      "w": 560,
+      "h": 10
+     },
+     "pe": "auto",
+     "cursor": "ns-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "BUTTON",
+      "aria": "Resize group from bottom",
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from bottom left",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 484,
+      "y": 540,
+      "w": 24,
+      "h": 24,
+      "cx": 496,
+      "cy": 552
+     },
+     "offset": {
+      "w": 24,
+      "h": 24
+     },
+     "pe": "auto",
+     "cursor": "nesw-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "SPAN",
+      "aria": null,
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from bottom right",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 820,
+      "y": 540,
+      "w": 24,
+      "h": 24,
+      "cx": 832,
+      "cy": 552
+     },
+     "offset": {
+      "w": 24,
+      "h": 24
+     },
+     "pe": "auto",
+     "cursor": "nwse-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "SPAN",
+      "aria": null,
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from left",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 493,
+      "y": 216,
+      "w": 6,
+      "h": 336,
+      "cx": 496,
+      "cy": 384
+     },
+     "offset": {
+      "w": 10,
+      "h": 560
+     },
+     "pe": "auto",
+     "cursor": "ew-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "BUTTON",
+      "aria": "Resize group from left",
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from right",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 829,
+      "y": 216,
+      "w": 6,
+      "h": 336,
+      "cx": 832,
+      "cy": 384
+     },
+     "offset": {
+      "w": 10,
+      "h": 560
+     },
+     "pe": "auto",
+     "cursor": "ew-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "BUTTON",
+      "aria": "Resize group from right",
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from top",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 496,
+      "y": 214.8,
+      "w": 336,
+      "h": 6,
+      "cx": 664,
+      "cy": 217.8
+     },
+     "offset": {
+      "w": 560,
+      "h": 10
+     },
+     "pe": "auto",
+     "cursor": "ns-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "BUTTON",
+      "aria": "Resize group from top",
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from top left",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 484,
+      "y": 204,
+      "w": 24,
+      "h": 24,
+      "cx": 496,
+      "cy": 216
+     },
+     "offset": {
+      "w": 24,
+      "h": 24
+     },
+     "pe": "auto",
+     "cursor": "nwse-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "SPAN",
+      "aria": null,
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from top right",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 820,
+      "y": 204,
+      "w": 24,
+      "h": 24,
+      "cx": 832,
+      "cy": 216
+     },
+     "offset": {
+      "w": 24,
+      "h": 24
+     },
+     "pe": "auto",
+     "cursor": "nesw-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "SPAN",
+      "aria": null,
+      "是把手": true
+     }
+    }
+   ]
+  },
+  {
+   "标称": 100,
+   "追平": true,
+   "scale": 1,
+   "组卡片": {
+    "canvas": {
+     "w": 560,
+     "h": 560
+    },
+    "屏上": {
+     "x": 400,
+     "y": 120,
+     "w": 560,
+     "h": 560,
+     "cx": 680,
+     "cy": 400
+    }
+   },
+   "把手数": 8,
+   "把手": [
+    {
+     "aria": "Resize group from bottom",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 400,
+      "y": 678,
+      "w": 560,
+      "h": 10,
+      "cx": 680,
+      "cy": 683
+     },
+     "offset": {
+      "w": 560,
+      "h": 10
+     },
+     "pe": "auto",
+     "cursor": "ns-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "BUTTON",
+      "aria": "Resize group from bottom",
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from bottom left",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 388,
+      "y": 668,
+      "w": 24,
+      "h": 24,
+      "cx": 400,
+      "cy": 680
+     },
+     "offset": {
+      "w": 24,
+      "h": 24
+     },
+     "pe": "auto",
+     "cursor": "nesw-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "SPAN",
+      "aria": null,
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from bottom right",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 948,
+      "y": 668,
+      "w": 24,
+      "h": 24,
+      "cx": 960,
+      "cy": 680
+     },
+     "offset": {
+      "w": 24,
+      "h": 24
+     },
+     "pe": "auto",
+     "cursor": "nwse-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "SPAN",
+      "aria": null,
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from left",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 395,
+      "y": 120,
+      "w": 10,
+      "h": 560,
+      "cx": 400,
+      "cy": 400
+     },
+     "offset": {
+      "w": 10,
+      "h": 560
+     },
+     "pe": "auto",
+     "cursor": "ew-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "BUTTON",
+      "aria": "Resize group from left",
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from right",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 955,
+      "y": 120,
+      "w": 10,
+      "h": 560,
+      "cx": 960,
+      "cy": 400
+     },
+     "offset": {
+      "w": 10,
+      "h": 560
+     },
+     "pe": "auto",
+     "cursor": "ew-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "BUTTON",
+      "aria": "Resize group from right",
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from top",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 400,
+      "y": 118,
+      "w": 560,
+      "h": 10,
+      "cx": 680,
+      "cy": 123
+     },
+     "offset": {
+      "w": 560,
+      "h": 10
+     },
+     "pe": "auto",
+     "cursor": "ns-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "BUTTON",
+      "aria": "Resize group from top",
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from top left",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 388,
+      "y": 108,
+      "w": 24,
+      "h": 24,
+      "cx": 400,
+      "cy": 120
+     },
+     "offset": {
+      "w": 24,
+      "h": 24
+     },
+     "pe": "auto",
+     "cursor": "nwse-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "SPAN",
+      "aria": null,
+      "是把手": true
+     }
+    },
+    {
+     "aria": "Resize group from top right",
+     "tag": "BUTTON",
+     "屏上": {
+      "x": 948,
+      "y": 108,
+      "w": 24,
+      "h": 24,
+      "cx": 960,
+      "cy": 120
+     },
+     "offset": {
+      "w": 24,
+      "h": 24
+     },
+     "pe": "auto",
+     "cursor": "nesw-resize",
+     "borderRadius": "0px",
+     "bg": "rgba(0, 0, 0, 0)",
+     "zIndex": "auto",
+     "中心命中": {
+      "tag": "SPAN",
+      "aria": null,
+      "是把手": true
+     }
+    }
+   ]
+  }
+ ],
+ "判定": [
+  {
+   "标称": 40,
+   "scale": 0.4,
+   "把手数": 8,
+   "角把手屏上": [
+    "24×24",
+    "24×24"
+   ],
+   "角把手offset": [
+    "24×24",
+    "24×24"
+   ],
+   "屏上是否恒定": true,
+   "canvas(屏上/scale)": [
+    60,
+    60
+   ]
+  },
+  {
+   "标称": 60,
+   "scale": 0.6,
+   "把手数": 8,
+   "角把手屏上": [
+    "24×24",
+    "24×24"
+   ],
+   "角把手offset": [
+    "24×24",
+    "24×24"
+   ],
+   "屏上是否恒定": true,
+   "canvas(屏上/scale)": [
+    40,
+    40
+   ]
+  },
+  {
+   "标称": 100,
+   "scale": 1,
+   "把手数": 8,
+   "角把手屏上": [
+    "24×24",
+    "24×24"
+   ],
+   "角把手offset": [
+    "24×24",
+    "24×24"
+   ],
+   "屏上是否恒定": true,
+   "canvas(屏上/scale)": [
+    24,
+    24
+   ]
+  }
+ ],
+ "把手总数各档": [
+  8,
+  8,
+  8
+ ],
+ "归位": {
+  "zoom": "Zoom options, 60%",
+  "追平": true
+ },
+ "重开小地图": {
+  "x": 51,
+  "y": 675,
+  "命中": "canvas-display-toggle-minimap"
+ },
+ "收尾": {
+  "状态行": "80 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+  "节点数": 81,
+  "组数": 1,
+  "选中": 2,
+  "zoom": "Zoom options, 60%",
+  "minimap": {
+   "ariaPressed": "true",
+   "dataState": "closed"
+  }
+ },
+ "断言全过": true
+}

@@ -19,7 +19,12 @@ import { findEmptyPane } from './jimeng-b136-lib.mjs';
 const idsOf = (p) => p.evaluate(() => Array.from(document.querySelectorAll('.react-flow__node')).map((n) => n.getAttribute('data-id')).sort());
 const selCount = (p) => p.evaluate(() => document.querySelectorAll('.react-flow__node.selected').length);
 const selIds = (p) => p.evaluate(() => Array.from(document.querySelectorAll('.react-flow__node.selected')).map((n) => n.getAttribute('data-id')).sort());
-const 组数 = (p) => p.evaluate(() => document.querySelectorAll('.react-flow__node-group').length);
+// 🔴 批次 140 a 轮再踩一次影子节点（批次 139 已经栽过）：`.react-flow__node-group`
+//   一个组匹配**2 个**元素（真身 + `__group-resize-chrome__` 影子），
+//   所以「建组后组数 == 1」用裸计数**永远不成立**（真选中时读到 2）。
+//   ⇒ 凡是数组的判据，一律先滤掉 `data-id` 以 `__group-resize-chrome__` 开头的。
+const 组数 = (p) => p.evaluate(() => Array.from(document.querySelectorAll('.react-flow__node-group'))
+  .filter((g) => !/^__group-resize-chrome__/.test(g.getAttribute('data-id') || '')).length);
 const overlays = (p) => p.evaluate(() => Array.from(document.querySelectorAll('[role=dialog],[role=menu],[role=listbox]'))
   .filter((m) => m.getBoundingClientRect().width > 1).length);
 const canvasPos = (p) => p.evaluate(() => Object.fromEntries(Array.from(document.querySelectorAll('.react-flow__node')).map((n) => {
