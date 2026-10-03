@@ -1,0 +1,110 @@
+{
+  "整卡": {
+    "找到": true,
+    "卡片rect": [
+      121,
+      201,
+      183,
+      245
+    ],
+    "叶子数": 6,
+    "leaves": [
+      {
+        "tag": "img",
+        "文字": null,
+        "rect": [
+          122,
+          202,
+          181,
+          243
+        ],
+        "中心y": 323,
+        "aria": null,
+        "title": null,
+        "path": null,
+        "data": {},
+        "class": "absolute inset-0 size-full object-cover transi"
+      },
+      {
+        "tag": "img",
+        "文字": null,
+        "rect": [
+          135,
+          215,
+          14,
+          14
+        ],
+        "中心y": 222,
+        "aria": null,
+        "title": null,
+        "path": null,
+        "data": {},
+        "class": "size-3.5 shrink-0 object-contain"
+      },
+      {
+        "tag": "svg",
+        "文字": null,
+        "rect": [
+          276,
+          215,
+          14,
+          14
+        ],
+        "中心y": 222,
+        "aria": null,
+        "title": null,
+        "path": null,
+        "data": {},
+        "class": "[object SVGAnimatedString]"
+      },
+      {
+        "tag": "path",
+        "文字": null,
+        "rect": [
+          276,
+          215,
+          14,
+          13
+        ],
+        "中心y": 222,
+        "aria": null,
+        "title": null,
+        "path": "M9.66.87a1.58 1.58 0 0 1 2.82 0l2.57 5.14 5.72.8c1",
+        "data": {},
+        "class": "[object SVGAnimatedString]"
+      },
+      {
+        "tag": "svg",
+        "文字": null,
+        "rect": [
+          276,
+          418,
+          14,
+          14
+        ],
+        "中心y": 425,
+        "aria": null,
+        "title": null,
+        "path": null,
+        "data": {},
+        "class": "[object SVGAnimatedString]"
+      },
+      {
+        "tag": "path",
+        "文字": null,
+        "rect": [
+          276,
+          418,
+          14,
+          14
+        ],
+        "中心y": 425,
+        "aria": null,
+        "title": null,
+        "path": "M1.4 8.9c.22 0 .4.18.4.4v5.54l5.26-5.26a.4.4 0 0 1",
+        "data": {},
+        "class": "[object SVGAnimatedString]"
+      }
+    ]
+  }
+}
