@@ -101,6 +101,9 @@ tasks:
         note: '2026-10-03 M171 拒收路径配图（走真实 input[type=file]，非模拟拖拽）：一次投三个文件后实测三条提示并存——成功条 y=8、unsupported 条 y=64、too-large 条 y=120，间距 56px，全部完整在视口内且 elementFromPoint 实测无遮挡；两条错误文案与 i18n 逐字一致且各自点名对应文件；投前归零、投后节点 +1 只建出合规那张。**同时否证了自己一条判据**：原写「提示条必须在顶栏 64px 以下」，等动画落位后 unsupported 条正落在 y=64，当场证伪——antd message 本就浮在最上层，盖住顶栏是它的正常设计，与 M166 那条「工具条不许压住菜单」是同一类越界判据。**探针两处硬伤**：rectOf 用 textContent 反查元素会命中包住整页的 .ant-message 祖先（M168 同病）；等 y >= 0 不等于等动画结束，须等 ant-message-fade-appear 类被摘掉，否则读到的是移动中的假坐标。'
       - type: runtime
         note: 2026-10-02 M115 把「拖放 40px 阶梯错位」从静态升级为运行时（3 文件 Δ=(40,40) 精确，toast 计数逐字），并**订正了此前账本依据的一个错误推断**：拖放与文件选择器是两套代码，`handleDrop`（project.tsx:2772-2788）无条件新建、**没有「落在节点上就替换」的分支**；替换只在 `handleImageInputChange`（project.tsx:2713-2750）的 `target.nodeId` 支（2742 行）。实测拖到节点正中心 → 节点数 1→2、目标节点 blob 地址逐字不变、与拖到空白同形。同批钉死：上限为 50 * 1024 * 1024（canvas-upload-material.ts:3）、判据 `size > MAX` 严格大于（52MiB 拒 / 恰好 50MiB 收）；三条提示文案逐字；混拖两条 toast 并存；判定函数 8/8 全对（MIME 优先、**仅 MIME 为空才回退扩展名**，故陌生非空 MIME + 合法扩展名仍被拒，无扩展名但 MIME 命中则被收）。同批**否证自己的上一轮记录两条**：「拖到节点上会替换」与「白名单外静默丢弃」（后者实有完整提示，上一轮因在节点落定后才翻 DOM 而漏掉 antd message 的约 3 秒存活窗口，改为 drop 后 100ms 间隔轮询 5.5 秒并以「合法文件必须抓到成功 toast」作阳性对照才稳定抓到）。
+      - type: runtime
+        note: >-
+          2026-10-03 M179 复核「可在节点内播放」：上传 2 秒 wav 造出音频节点后全页 audio 恰 1 个，其 closest('[data-node-id]') 就是该节点本身（非浮层、非 portal），带 controls、504×54 落在节点框 540×160 之内，readyState=4、duration=2、paused=true。顺带复录 accept 白名单共 23 项 token（MIME 与扩展名两套并列，故 jpeg 可用、扩展名没写进白名单但 MIME 对的文件也能选中），手册正文的 10 种格式与之不矛盾。
     preconditions:
       - 已准备本地素材（见 TEST_MEDIA_ASSETS.md）
     routes:
@@ -129,6 +132,9 @@ tasks:
       - '/canvas/:id'
       - type: runtime
         note: '2026-10-02 M128 把 M126 手工撞见的剪刀复用做成全应用扫描：在画布空白 / 选中节点 / 打开 Agent 面板三态各扫全部可见 svg，136 次可见图标读数归为 36 个不同 lucide 类名，**其中 9 个被用在了不止一个功能上**——最典型的是 **sparkles 星形同时代表顶栏主页、Dock 提示词库、Agent 面板技能三个功能**。4 组会同屏（scissors 相距 931 px、upload 815 px、trash2、message-square）。★★**本批否掉了 M126 自己的推论**（第 62 次否证）：M126 由图标相同推出「读者毫无线索区分」，**坐标实测不支持**——同屏的最近一对也相距 815 像素且分处常驻竖排 / 跟随节点横条 / 右侧固定列三种容器，**图标复用是事实，「难以分辨」不是**；已把该 AUDIT 条目降级为 Minor(措辞夸大)。★**顺带订正手册一条方向写反的建议**：`use-agent.md` 原写「认图标比认位置更可靠」，**应当反过来**——三处按钮区顺序固定，认位置才稳。'
+      - type: runtime
+        note: >-
+          2026-10-03 M179 把「双击标题重命名」整条钉死（本批否证的是探针自己，不是手册）：标题是节点内的第一个子元素（absolute z-[65] left-2 top-[-40px]）里的 button，原生 title 是「双击修改节点名称」；按钮底边在节点上边缘上方 13px，宽只跟文字走（默认名「文本」56×27，左对齐）；双击后同位置换成 input（166×32）并自动全选，maxlength=64；实测改名「文本」→「开场白」store 与界面同步，再敲 80 字留 64。**警告：node.title 在 canvas-node.tsx 里一次都搜不到，全仓也无 renameNode，只有 renameProject——仅凭 grep 会把这条对的断言判成错的。**
     status: verified
     screenshot_count: 10
     manual_pages:
@@ -277,6 +283,9 @@ tasks:
         note: 2026-10-01 M60 运行时核对节点右键菜单的实际文案：应用写的是「复制」（i18n canvas.controls.duplicate），而本页与 20-reference 三处曾写成「制作副本」——操作本身没错（duplicateNode 偏移仍是 +36,+36，project.tsx:1034），只是名字对不上，读者按手册右键找「制作副本」根本找不到。已三处同步订正。
       - type: runtime
         note: 2026-10-01 M78 逐条实测「弹窗没写但确实能用的三条」全部成立（第 13 次否证）：双击标题后 document.activeElement 为 INPUT（值为现标题）、双击内容区后为 TEXTAREA；连点四次右键复制实测坐标 (540,350)→(576,386)→(612,422)→(648,458)→(684,494)，每级 dx=dy=36 恒定。顺带新发现手册未记的行为：**副本标题在现标题后追加英文 Copy 而非加序号**，连点会叠成「文本 Copy Copy Copy Copy」。
+      - type: runtime
+        note: >-
+          2026-10-03 M179 查清弹窗开着时 Dock 与缩放条的「可见 / 可点」是两回事：antd 弹窗自带一层铺满视口的透明遮罩（.ant-modal-wrap，1440×900，background rgba(0,0,0,0) 全透明，pointer-events auto），Dock 8 个加缩放条 4 个按钮的 visibility/opacity 一律不变（仍可见），但 12 个 elementFromPoint 打点无一命中按钮本身；实点左侧「清空画布」不弹确认框，只是把弹窗关掉。顺带实测弹窗水平居中：1440 宽量到 x=460、1280 宽 x=380，宽高恒为 520×749、y 恒为 76。
     preconditions:
       - 已打开一个画布项目
     routes:
