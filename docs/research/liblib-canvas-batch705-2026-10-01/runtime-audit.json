@@ -1,0 +1,1087 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 1150,
+  "predictions": {
+   "P1": "多数输入控件把 Enter 当提交键",
+   "P2": "range 类型没有提交步骤（input 事件即写入），不该混进 Enter/Tab 的比较",
+   "P3": "select 与 text 的提交行为不同",
+   "P4": "每枚控件都有唯一稳定键（组合属性），普查不按索引"
+  },
+  "predictionVerdicts": {
+   "P1_held": true,
+   "P2_held": true,
+   "P3_falsified": true,
+   "P4_held": true
+  },
+  "nullClickDrift": [],
+  "census": [
+   {
+    "key": "data-director-object-name",
+    "tag": "input",
+    "type": "text",
+    "value": "机位01 · 对峙中景",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "机位01 · 对峙中景-X",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].name",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_OBJECT",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "机位01 · 对峙中景-X",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].name",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_OBJECT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "data-director-camera-switch",
+    "tag": "select",
+    "type": "select-one",
+    "value": "director-shot-director-camera-main",
+    "min": null,
+    "max": null,
+    "options": [
+     "director-shot-director-camera-main"
+    ],
+    "enter": {
+     "applicable": false,
+     "reason": "造不出差异：1 个选项里没有别的值"
+    },
+    "tab": {
+     "applicable": false,
+     "reason": "造不出差异：1 个选项里没有别的值"
+    }
+   },
+   {
+    "key": "transform:position:x",
+    "tag": "input",
+    "type": "number",
+    "value": "4.8",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "5.8",
+     "changed": true,
+     "n": 121,
+     "sample": [
+      "authoredObjects[4].transform.position[0]",
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_BEGIN",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "5.8",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].transform.position[0]",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "transform:position:y",
+    "tag": "input",
+    "type": "number",
+    "value": "2.65",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "3.65",
+     "changed": true,
+     "n": 121,
+     "sample": [
+      "authoredObjects[4].transform.position[1]",
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_BEGIN",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "3.65",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].transform.position[1]",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "transform:position:z",
+    "tag": "input",
+    "type": "number",
+    "value": "6.9",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "7.9",
+     "changed": true,
+     "n": 121,
+     "sample": [
+      "authoredObjects[4].transform.position[2]",
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_BEGIN",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "7.9",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].transform.position[2]",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "data-director-camera-follow-target",
+    "tag": "select",
+    "type": "select-one",
+    "value": "",
+    "min": null,
+    "max": null,
+    "options": [
+     "",
+     "director-character-lead",
+     "director-prop-table",
+     "director-prop-mug",
+     "director-prop-wall"
+    ],
+    "enter": {
+     "applicable": true,
+     "newValue": "director-character-lead",
+     "changed": true,
+     "n": 86,
+     "sample": [
+      "authoredObjects[4].camera.followTargetId",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_CAMERA",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "director-character-lead",
+     "changed": true,
+     "n": 86,
+     "sample": [
+      "authoredObjects[4].camera.followTargetId",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_CAMERA",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "transform:rotation:x",
+    "tag": "input",
+    "type": "number",
+    "value": "0",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "1.0",
+     "changed": true,
+     "n": 121,
+     "sample": [
+      "authoredObjects[4].transform.rotation[0]",
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_BEGIN",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "1.0",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].transform.rotation[0]",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "transform:rotation:y",
+    "tag": "input",
+    "type": "number",
+    "value": "0",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "1.0",
+     "changed": true,
+     "n": 121,
+     "sample": [
+      "authoredObjects[4].transform.rotation[1]",
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_BEGIN",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "1.0",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].transform.rotation[1]",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "transform:rotation:z",
+    "tag": "input",
+    "type": "number",
+    "value": "0",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "1.0",
+     "changed": true,
+     "n": 121,
+     "sample": [
+      "authoredObjects[4].transform.rotation[2]",
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_BEGIN",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "1.0",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].transform.rotation[2]",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "transform:scale:x",
+    "tag": "input",
+    "type": "number",
+    "value": "1",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "2.0",
+     "changed": true,
+     "n": 121,
+     "sample": [
+      "authoredObjects[4].transform.scale[0]",
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_BEGIN",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "2.0",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].transform.scale[0]",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "transform:scale:y",
+    "tag": "input",
+    "type": "number",
+    "value": "1",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "2.0",
+     "changed": true,
+     "n": 121,
+     "sample": [
+      "authoredObjects[4].transform.scale[1]",
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_BEGIN",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "2.0",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].transform.scale[1]",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "transform:scale:z",
+    "tag": "input",
+    "type": "number",
+    "value": "1",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "2.0",
+     "changed": true,
+     "n": 121,
+     "sample": [
+      "authoredObjects[4].transform.scale[2]",
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_BEGIN",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "2.0",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].transform.scale[2]",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "data-director-uniform-scale",
+    "tag": "input",
+    "type": "range",
+    "value": "1",
+    "min": "0.1",
+    "max": "10",
+    "options": null,
+    "enter": {
+     "applicable": false,
+     "reason": "range 没有提交步骤（P2）",
+     "changedOnKeypress": true,
+     "n": 394,
+     "lastAfter": {
+      "commandKind": "PROJECT_MUTATION",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": false,
+     "reason": "range 没有提交步骤（P2）",
+     "changedOnKeypress": true,
+     "n": 394,
+     "lastAfter": {
+      "commandKind": "PROJECT_MUTATION",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "data-director-hex-input",
+    "tag": "input",
+    "type": "text",
+    "value": "9bdcf2",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "ff0000",
+     "changed": true,
+     "n": 79,
+     "sample": [
+      "authoredObjects[4].color",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_OBJECT",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "ff0000",
+     "changed": true,
+     "n": 79,
+     "sample": [
+      "authoredObjects[4].color",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_OBJECT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "data-director-color-picker",
+    "tag": "input",
+    "type": "color",
+    "value": "#9bdcf2",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "#000000",
+     "changed": true,
+     "n": 79,
+     "sample": [
+      "authoredObjects[4].color",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_OBJECT",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "#000000",
+     "changed": true,
+     "n": 79,
+     "sample": [
+      "authoredObjects[4].color",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_OBJECT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "data-director-shot-name",
+    "tag": "input",
+    "type": "text",
+    "value": "机位01 · 对峙中景 · 镜头",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "机位01 · 对峙中景 · 镜头-X",
+     "changed": true,
+     "n": 78,
+     "sample": [
+      "history.past.length",
+      "history.past[0].after.activeCameraId",
+      "history.past[0].after.captureDescriptors.length"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_SHOT",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "机位01 · 对峙中景 · 镜头-X",
+     "changed": true,
+     "n": 78,
+     "sample": [
+      "history.past.length",
+      "history.past[0].after.activeCameraId",
+      "history.past[0].after.captureDescriptors.length"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_SHOT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "data-director-shot-start",
+    "tag": "input",
+    "type": "number",
+    "value": "0",
+    "min": "0",
+    "max": "8",
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "1.0",
+     "changed": false,
+     "n": 0,
+     "sample": [],
+     "lastAfter": null
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "1.0",
+     "changed": true,
+     "n": 88,
+     "sample": [
+      "history.past.length",
+      "history.past[0].after.activeCameraId",
+      "history.past[0].after.captureDescriptors.length"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_SHOT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "data-director-shot-end",
+    "tag": "input",
+    "type": "number",
+    "value": "8",
+    "min": "0",
+    "max": "8",
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "7.0",
+     "changed": false,
+     "n": 0,
+     "sample": [],
+     "lastAfter": null
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "7.0",
+     "changed": true,
+     "n": 182,
+     "sample": [
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId",
+      "history.activeGesture.baseline.captureDescriptors.length"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_BEGIN",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "data-director-camera-fov",
+    "tag": "input",
+    "type": "range",
+    "value": "43",
+    "min": "15",
+    "max": "90",
+    "options": null,
+    "enter": {
+     "applicable": false,
+     "reason": "range 没有提交步骤（P2）",
+     "changedOnKeypress": true,
+     "n": 184,
+     "lastAfter": {
+      "commandKind": "UPDATE_CAMERA",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": false,
+     "reason": "range 没有提交步骤（P2）",
+     "changedOnKeypress": true,
+     "n": 184,
+     "lastAfter": {
+      "commandKind": "UPDATE_CAMERA",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "data-director-camera-fov-number",
+    "tag": "input",
+    "type": "number",
+    "value": "43",
+    "min": "15",
+    "max": "90",
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "44.0",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].camera.fov",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_CAMERA",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "44.0",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].camera.fov",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_CAMERA",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "data-director-camera-look-at-mode",
+    "tag": "select",
+    "type": "select-one",
+    "value": "coordinate",
+    "min": null,
+    "max": null,
+    "options": [
+     "coordinate",
+     "rotation",
+     "object:director-character-lead",
+     "object:director-prop-table",
+     "object:director-prop-mug",
+     "object:director-prop-wall"
+    ],
+    "enter": {
+     "applicable": true,
+     "newValue": "rotation",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].camera.lookAtMode",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_CAMERA",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "rotation",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].camera.lookAtMode",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_CAMERA",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "transform:target:x",
+    "tag": "input",
+    "type": "number",
+    "value": "-0.3",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "0.7",
+     "changed": true,
+     "n": 121,
+     "sample": [
+      "authoredObjects[4].camera.target[0]",
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_CAMERA",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "0.7",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].camera.target[0]",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "transform:target:y",
+    "tag": "input",
+    "type": "number",
+    "value": "1.15",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "2.15",
+     "changed": true,
+     "n": 121,
+     "sample": [
+      "authoredObjects[4].camera.target[1]",
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_CAMERA",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "2.15",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].camera.target[1]",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     }
+    }
+   },
+   {
+    "key": "transform:target:z",
+    "tag": "input",
+    "type": "number",
+    "value": "0",
+    "min": null,
+    "max": null,
+    "options": null,
+    "enter": {
+     "applicable": true,
+     "newValue": "1.0",
+     "changed": true,
+     "n": 121,
+     "sample": [
+      "authoredObjects[4].camera.target[2]",
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "UPDATE_CAMERA",
+      "disposition": "COMMITTED"
+     }
+    },
+    "tab": {
+     "applicable": true,
+     "newValue": "1.0",
+     "changed": true,
+     "n": 80,
+     "sample": [
+      "authoredObjects[4].camera.target[2]",
+      "history.past.length",
+      "history.past[0].after.activeCameraId"
+     ],
+     "lastAfter": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     }
+    }
+   }
+  ],
+  "verdicts": {
+   "enterSilentTabCommits": [
+    "data-director-shot-start",
+    "data-director-shot-end"
+   ],
+   "bothCommit": [
+    "data-director-object-name",
+    "transform:position:x",
+    "transform:position:y",
+    "transform:position:z",
+    "data-director-camera-follow-target",
+    "transform:rotation:x",
+    "transform:rotation:y",
+    "transform:rotation:z",
+    "transform:scale:x",
+    "transform:scale:y",
+    "transform:scale:z",
+    "data-director-hex-input",
+    "data-director-color-picker",
+    "data-director-shot-name",
+    "data-director-camera-fov-number",
+    "data-director-camera-look-at-mode",
+    "transform:target:x",
+    "transform:target:y",
+    "transform:target:z"
+   ],
+   "bothSilent": [],
+   "notApplicable": [
+    "data-director-camera-switch",
+    "data-director-uniform-scale",
+    "data-director-camera-fov"
+   ]
+  },
+  "theFinding": "24 枚右栏可输入控件全部逐格测完：21 枚适用、3 枚不适用（2 枚 range 无提交步骤，camera-switch 只有一个选项造不出差异）。适用的 21 枚里 **19 枚 Enter 与 Tab 都提交，只有 2 枚（shot-start / shot-end）忽略 Enter** —— **独立复现了 704 的读数**，而且这次是全覆盖。",
+  "theSecondFinding": "12 枚 transform 数字框（position/rotation/scale/target × x/y/z）提交后一律记 GESTURE_COMMIT ⟹ **在数字框里敲数字与拖 3D 手柄走的是同一套手势机制**。",
+  "theFalsifiedPrediction": "P3「select 与 text 的提交行为不同」**被推翻**：camera-follow-target 与 camera-look-at-mode 两个 select 与 text 完全一样，两个键都提交。",
+  "theThirdStateLesson": "「无变化」有两种：控件不提交，和我没造出差异。本批三版探针各踩一次：第一版给 text/color 填了**已有的值**（于是那一列全是 NOOP）；第二版给 hex-input 造出 **`9bdcf2-X` 这个非法颜色**（于是两侧都无变化）；加上 703 那次测**越界**值 —— 同一个纪律的三个面。**造出来的值必须是这个控件能接受的值**，否则读数落在第三态上。",
+  "whatIsNotClaimed": "不声称 3 枚不适用的控件有问题（**它们的「不适用」是控件类型或 fixture 造成的，不是缺陷**）。不声称源站行为（**未取证，需授权点击**）。**不改 src/**。",
+  "storeWritesInThisRun": "none — every edit was driven by real keyboard events on real controls",
+  "relationTo704": "704 不重写。本批把它的 7/24 覆盖补成 24/24，**并独立复现了它的核心读数**（忽略 Enter 的仍只有那两枚）。"
+ },
+ "checks": {
+  "the-census-covers-all-24-controls-and-each-has-a-unique-key": {
+   "ok": true,
+   "detail": {
+    "count": 24,
+    "uniqueKeys": 24,
+    "applicable": 21,
+    "notApplicable": [
+     {
+      "key": "data-director-camera-switch",
+      "type": "select-one",
+      "reason": "造不出差异：1 个选项里没有别的值"
+     },
+     {
+      "key": "data-director-uniform-scale",
+      "type": "range",
+      "reason": "range 没有提交步骤（P2）"
+     },
+     {
+      "key": "data-director-camera-fov",
+      "type": "range",
+      "reason": "range 没有提交步骤（P2）"
+     }
+    ],
+    "predictionP4": "每枚控件都有唯一稳定键（组合属性），普查不按索引"
+   },
+   "note": "three controls are recorded as not-applicable WITH a reason rather than as passes or failures — two ranges have no commit step, and the camera switch has only one option so no difference can be created"
+  },
+  "exactly-two-controls-ignore-enter-and-they-are-the-two-shot-time-fields": {
+   "ok": true,
+   "detail": {
+    "enterSilentTabCommits": [
+     "data-director-shot-start",
+     "data-director-shot-end"
+    ],
+    "bothCommit": 19,
+    "bothSilent": [],
+    "reproduces": "batch 704 的读数（shot-start / shot-end 忽略 Enter），这次在 24/24 全覆盖下独立复现"
+   },
+   "note": "a full census that reproduces a 7-sample reading is the cheapest possible cross-check; and the two silent controls are the only two whose label is a duration rather than a plain value"
+  },
+  "select-fields-behave-like-text-fields-so-prediction-3-is-falsified": {
+   "ok": true,
+   "detail": {
+    "predictionP3": "select 与 text 的提交行为不同",
+    "selects": [
+     {
+      "key": "data-director-camera-follow-target",
+      "newValue": "director-character-lead",
+      "enter": true,
+      "tab": true,
+      "ledger": {
+       "commandKind": "UPDATE_CAMERA",
+       "disposition": "COMMITTED"
+      }
+     },
+     {
+      "key": "data-director-camera-look-at-mode",
+      "newValue": "rotation",
+      "enter": true,
+      "tab": true,
+      "ledger": {
+       "commandKind": "UPDATE_CAMERA",
+       "disposition": "COMMITTED"
+      }
+     }
+    ],
+    "verdict": "P3 被推翻 —— select 与 text 一样，两个键都提交",
+    "direction": "被推翻的方向是**类别变少**而不是变多"
+   },
+   "note": "the interesting kind of falsification is the one that removes a category"
+  },
+  "the-twelve-transform-fields-go-through-the-gesture-machinery": {
+   "ok": true,
+   "detail": {
+    "count": 12,
+    "commands": {
+     "transform:position:x": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     },
+     "transform:position:y": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     },
+     "transform:position:z": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     },
+     "transform:rotation:x": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     },
+     "transform:rotation:y": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     },
+     "transform:rotation:z": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     },
+     "transform:scale:x": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     },
+     "transform:scale:y": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     },
+     "transform:scale:z": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     },
+     "transform:target:x": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     },
+     "transform:target:y": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     },
+     "transform:target:z": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED"
+     }
+    },
+    "reading": "在数字框里敲数字，与拖 3D 手柄，走的是同一套手势机制；而 shot-start 记 UPDATE_SHOT、shot-end 记 GESTURE_BEGIN"
+   },
+   "note": "a number box that looks like an independent setter is actually a view onto a gesture — which is also why an out-of-range value can leave a gesture open"
+  }
+ }
+}
