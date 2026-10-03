@@ -1,0 +1,739 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 1150,
+  "nullClickDrift": [],
+  "census": [
+   {
+    "name": "object-name",
+    "selector": "[data-director-object-name]",
+    "value": "改名试试A",
+    "inRange": true,
+    "label": "名称",
+    "enter": {
+     "located": true,
+     "selector": "[data-director-object-name]",
+     "key": "Enter",
+     "typed": "改名试试A",
+     "storeChanged": true,
+     "changedLeaves": [
+      "authoredObjects[4].name",
+      "history.past.length",
+      "history.past[0].after.activeCameraId",
+      "history.past[0].after.captureDescriptors.length",
+      "history.past[0].after.groups.length"
+     ],
+     "inputBefore": "机位01 · 对峙中景",
+     "inputAfter": "改名试试A",
+     "range": [
+      null,
+      null
+     ],
+     "lastBefore": null,
+     "lastAfter": {
+      "commandKind": "UPDATE_OBJECT",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "ledgerMoved": true
+    },
+    "tab": {
+     "located": true,
+     "selector": "[data-director-object-name]",
+     "key": "Tab",
+     "typed": "改名试试A",
+     "storeChanged": true,
+     "changedLeaves": [
+      "authoredObjects[4].name",
+      "history.past.length",
+      "history.past[0].after.activeCameraId",
+      "history.past[0].after.captureDescriptors.length",
+      "history.past[0].after.groups.length"
+     ],
+     "inputBefore": "机位01 · 对峙中景",
+     "inputAfter": "改名试试A",
+     "range": [
+      null,
+      null
+     ],
+     "lastBefore": null,
+     "lastAfter": {
+      "commandKind": "UPDATE_OBJECT",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "ledgerMoved": true
+    },
+    "enterVerdict": "提交",
+    "tabVerdict": "提交"
+   },
+   {
+    "name": "shot-name",
+    "selector": "[data-director-shot-name]",
+    "value": "镜头改名B",
+    "inRange": true,
+    "label": "镜头名称",
+    "enter": {
+     "located": true,
+     "selector": "[data-director-shot-name]",
+     "key": "Enter",
+     "typed": "镜头改名B",
+     "storeChanged": true,
+     "changedLeaves": [
+      "history.past.length",
+      "history.past[0].after.activeCameraId",
+      "history.past[0].after.captureDescriptors.length",
+      "history.past[0].after.groups.length",
+      "history.past[0].after.objects.length"
+     ],
+     "inputBefore": "机位01 · 对峙中景 · 镜头",
+     "inputAfter": "镜头改名B",
+     "range": [
+      null,
+      null
+     ],
+     "lastBefore": null,
+     "lastAfter": {
+      "commandKind": "UPDATE_SHOT",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "ledgerMoved": true
+    },
+    "tab": {
+     "located": true,
+     "selector": "[data-director-shot-name]",
+     "key": "Tab",
+     "typed": "镜头改名B",
+     "storeChanged": true,
+     "changedLeaves": [
+      "history.past.length",
+      "history.past[0].after.activeCameraId",
+      "history.past[0].after.captureDescriptors.length",
+      "history.past[0].after.groups.length",
+      "history.past[0].after.objects.length"
+     ],
+     "inputBefore": "机位01 · 对峙中景 · 镜头",
+     "inputAfter": "镜头改名B",
+     "range": [
+      null,
+      null
+     ],
+     "lastBefore": null,
+     "lastAfter": {
+      "commandKind": "UPDATE_SHOT",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "ledgerMoved": true
+    },
+    "enterVerdict": "提交",
+    "tabVerdict": "提交"
+   },
+   {
+    "name": "shot-start",
+    "selector": "[data-director-shot-start]",
+    "value": "2",
+    "inRange": true,
+    "label": "开始",
+    "enter": {
+     "located": true,
+     "selector": "[data-director-shot-start]",
+     "key": "Enter",
+     "typed": "2",
+     "storeChanged": false,
+     "changedLeaves": [],
+     "inputBefore": "0",
+     "inputAfter": "2",
+     "range": [
+      "0",
+      "8"
+     ],
+     "lastBefore": null,
+     "lastAfter": null,
+     "ledgerMoved": false
+    },
+    "tab": {
+     "located": true,
+     "selector": "[data-director-shot-start]",
+     "key": "Tab",
+     "typed": "2",
+     "storeChanged": true,
+     "changedLeaves": [
+      "history.past.length",
+      "history.past[0].after.activeCameraId",
+      "history.past[0].after.captureDescriptors.length",
+      "history.past[0].after.groups.length",
+      "history.past[0].after.objects.length"
+     ],
+     "inputBefore": "0",
+     "inputAfter": "2",
+     "range": [
+      "0",
+      "8"
+     ],
+     "lastBefore": null,
+     "lastAfter": {
+      "commandKind": "UPDATE_SHOT",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "ledgerMoved": true
+    },
+    "enterVerdict": "留着但不提交('2')",
+    "tabVerdict": "提交"
+   },
+   {
+    "name": "shot-end",
+    "selector": "[data-director-shot-end]",
+    "value": "6",
+    "inRange": true,
+    "label": "结束",
+    "enter": {
+     "located": true,
+     "selector": "[data-director-shot-end]",
+     "key": "Enter",
+     "typed": "6",
+     "storeChanged": false,
+     "changedLeaves": [],
+     "inputBefore": "8",
+     "inputAfter": "6",
+     "range": [
+      "0",
+      "8"
+     ],
+     "lastBefore": null,
+     "lastAfter": null,
+     "ledgerMoved": false
+    },
+    "tab": {
+     "located": true,
+     "selector": "[data-director-shot-end]",
+     "key": "Tab",
+     "typed": "6",
+     "storeChanged": true,
+     "changedLeaves": [
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId",
+      "history.activeGesture.baseline.captureDescriptors.length",
+      "history.activeGesture.baseline.groups.length",
+      "history.activeGesture.baseline.objects.length"
+     ],
+     "inputBefore": "8",
+     "inputAfter": "6",
+     "range": [
+      "0",
+      "8"
+     ],
+     "lastBefore": null,
+     "lastAfter": {
+      "commandKind": "GESTURE_BEGIN",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "ledgerMoved": true
+    },
+    "enterVerdict": "留着但不提交('6')",
+    "tabVerdict": "提交"
+   },
+   {
+    "name": "shot-end(越界 9 > max 8)",
+    "selector": "[data-director-shot-end]",
+    "value": "9",
+    "inRange": false,
+    "label": "结束",
+    "enter": {
+     "located": true,
+     "selector": "[data-director-shot-end]",
+     "key": "Enter",
+     "typed": "9",
+     "storeChanged": false,
+     "changedLeaves": [],
+     "inputBefore": "8",
+     "inputAfter": "9",
+     "range": [
+      "0",
+      "8"
+     ],
+     "lastBefore": null,
+     "lastAfter": null,
+     "ledgerMoved": false
+    },
+    "tab": {
+     "located": true,
+     "selector": "[data-director-shot-end]",
+     "key": "Tab",
+     "typed": "9",
+     "storeChanged": true,
+     "changedLeaves": [
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId",
+      "history.activeGesture.baseline.captureDescriptors.length",
+      "history.activeGesture.baseline.groups.length",
+      "history.activeGesture.baseline.objects.length"
+     ],
+     "inputBefore": "8",
+     "inputAfter": "8",
+     "range": [
+      "0",
+      "8"
+     ],
+     "lastBefore": null,
+     "lastAfter": {
+      "commandKind": "GESTURE_BEGIN",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "ledgerMoved": true
+    },
+    "enterVerdict": "留着但不提交('9')",
+    "tabVerdict": "提交"
+   },
+   {
+    "name": "camera-fov-number",
+    "selector": "[data-director-camera-fov-number]",
+    "value": "50",
+    "inRange": true,
+    "label": "FOV",
+    "enter": {
+     "located": true,
+     "selector": "[data-director-camera-fov-number]",
+     "key": "Enter",
+     "typed": "50",
+     "storeChanged": true,
+     "changedLeaves": [
+      "authoredObjects[4].camera.fov",
+      "history.past.length",
+      "history.past[0].after.activeCameraId",
+      "history.past[0].after.captureDescriptors.length",
+      "history.past[0].after.groups.length"
+     ],
+     "inputBefore": "43",
+     "inputAfter": "50",
+     "range": [
+      "15",
+      "90"
+     ],
+     "lastBefore": null,
+     "lastAfter": {
+      "commandKind": "UPDATE_CAMERA",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "ledgerMoved": true
+    },
+    "tab": {
+     "located": true,
+     "selector": "[data-director-camera-fov-number]",
+     "key": "Tab",
+     "typed": "50",
+     "storeChanged": true,
+     "changedLeaves": [
+      "authoredObjects[4].camera.fov",
+      "history.past.length",
+      "history.past[0].after.activeCameraId",
+      "history.past[0].after.captureDescriptors.length",
+      "history.past[0].after.groups.length"
+     ],
+     "inputBefore": "43",
+     "inputAfter": "50",
+     "range": [
+      "15",
+      "90"
+     ],
+     "lastBefore": null,
+     "lastAfter": {
+      "commandKind": "UPDATE_CAMERA",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "ledgerMoved": true
+    },
+    "enterVerdict": "提交",
+    "tabVerdict": "提交"
+   },
+   {
+    "name": "hex-input",
+    "selector": "[data-director-hex-input]",
+    "value": "ff0000",
+    "inRange": true,
+    "label": "颜色#",
+    "enter": {
+     "located": true,
+     "selector": "[data-director-hex-input]",
+     "key": "Enter",
+     "typed": "ff0000",
+     "storeChanged": true,
+     "changedLeaves": [
+      "authoredObjects[4].color",
+      "history.past.length",
+      "history.past[0].after.activeCameraId",
+      "history.past[0].after.captureDescriptors.length",
+      "history.past[0].after.groups.length"
+     ],
+     "inputBefore": "9bdcf2",
+     "inputAfter": "ff0000",
+     "range": [
+      null,
+      null
+     ],
+     "lastBefore": null,
+     "lastAfter": {
+      "commandKind": "UPDATE_OBJECT",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "ledgerMoved": true
+    },
+    "tab": {
+     "located": true,
+     "selector": "[data-director-hex-input]",
+     "key": "Tab",
+     "typed": "ff0000",
+     "storeChanged": true,
+     "changedLeaves": [
+      "authoredObjects[4].color",
+      "history.past.length",
+      "history.past[0].after.activeCameraId",
+      "history.past[0].after.captureDescriptors.length",
+      "history.past[0].after.groups.length"
+     ],
+     "inputBefore": "9bdcf2",
+     "inputAfter": "ff0000",
+     "range": [
+      null,
+      null
+     ],
+     "lastBefore": null,
+     "lastAfter": {
+      "commandKind": "UPDATE_OBJECT",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "ledgerMoved": true
+    },
+    "enterVerdict": "提交",
+    "tabVerdict": "提交"
+   },
+   {
+    "name": "transform-field position/x",
+    "selector": "[data-director-transform-field=\"position\"][data-director-transform-axis=\"x\"]",
+    "value": "3.5",
+    "inRange": true,
+    "label": "位置 x",
+    "enter": {
+     "located": true,
+     "selector": "[data-director-transform-field=\"position\"][data-director-transform-axis=\"x\"]",
+     "key": "Enter",
+     "typed": "3.5",
+     "storeChanged": true,
+     "changedLeaves": [
+      "authoredObjects[4].transform.position[0]",
+      "history.activeGesture",
+      "history.activeGesture.baseline.activeCameraId",
+      "history.activeGesture.baseline.captureDescriptors.length",
+      "history.activeGesture.baseline.groups.length"
+     ],
+     "inputBefore": "4.8",
+     "inputAfter": "3.5",
+     "range": [
+      null,
+      null
+     ],
+     "lastBefore": null,
+     "lastAfter": {
+      "commandKind": "GESTURE_BEGIN",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "ledgerMoved": true
+    },
+    "tab": {
+     "located": true,
+     "selector": "[data-director-transform-field=\"position\"][data-director-transform-axis=\"x\"]",
+     "key": "Tab",
+     "typed": "3.5",
+     "storeChanged": true,
+     "changedLeaves": [
+      "authoredObjects[4].transform.position[0]",
+      "history.past.length",
+      "history.past[0].after.activeCameraId",
+      "history.past[0].after.captureDescriptors.length",
+      "history.past[0].after.groups.length"
+     ],
+     "inputBefore": "4.8",
+     "inputAfter": "3.5",
+     "range": [
+      null,
+      null
+     ],
+     "lastBefore": null,
+     "lastAfter": {
+      "commandKind": "GESTURE_COMMIT",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "ledgerMoved": true
+    },
+    "enterVerdict": "提交",
+    "tabVerdict": "提交"
+   }
+  ],
+  "verdicts": {
+   "enterCommits": [
+    "object-name",
+    "shot-name",
+    "camera-fov-number",
+    "hex-input",
+    "transform-field position/x"
+   ],
+   "enterKeepsTypingButDoesNotCommit": [
+    "shot-start",
+    "shot-end",
+    "shot-end(越界 9 > max 8)"
+   ],
+   "tabCommits": [
+    "object-name",
+    "shot-name",
+    "shot-start",
+    "shot-end",
+    "shot-end(越界 9 > max 8)",
+    "camera-fov-number",
+    "hex-input",
+    "transform-field position/x"
+   ]
+  },
+  "theFinding": "7 枚右栏输入控件里，只有 shot-start / shot-end 忽略 Enter —— 填进去的值留在输入框里、store 不动、连一条命令都不记。按 Tab（失焦）则提交。703 把这两个字段判成「没有提交路径」，本批撤回了这个说法：路径存在，只是**只有失焦**。而 703 当时填的 12 越界（max=duration=8），所以那条读数虽然为真，解释是错的。",
+  "theSharpestPart": "越界的值（9 > max 8）按 Tab：store 一个叶子都没变、输入框回弹到 8、用户什么也没得到 —— **而命令账记的是 GESTURE_BEGIN / COMMITTED**。⟹ COMMITTED 不蕴含状态改变。",
+  "whatIsNotClaimed": "不声称这是缺陷还是刻意的交互取舍（**源站未取证，需授权点击**）。不声称 GESTURE_BEGIN 这个命令名意味着实现上走了拖拽手势 —— **那只是名字，读数只到「命令名不同」**。不声称其余 17 枚右栏 input/select 都有同样行为 —— 本批只测了 7 枚有代表性的。**不改 src/**。",
+  "storeWritesInThisRun": "none — every edit was driven by real keyboard events on real inputs",
+  "relationTo703": "703 不重写。它的读数（填 12 时三条路径都不进 store、Tab 后回弹）仍然为真；被撤回的是**解释**（「没有提交路径」这个分类）。",
+  "relationTo700And701": "700/701 不重写。本批给命令账补了一个维度：701 测的是「哪些动作不记账」，本批测出「有些动作记了账但等于没做」—— 两个方向都碰到了。"
+ },
+ "checks": {
+  "enter-commits-for-every-input-except-the-two-shot-time-fields": {
+   "ok": true,
+   "detail": {
+    "table": [
+     {
+      "name": "object-name",
+      "typed": "改名试试A",
+      "inRange": true,
+      "enter": "提交",
+      "tab": "提交"
+     },
+     {
+      "name": "shot-name",
+      "typed": "镜头改名B",
+      "inRange": true,
+      "enter": "提交",
+      "tab": "提交"
+     },
+     {
+      "name": "shot-start",
+      "typed": "2",
+      "inRange": true,
+      "enter": "留着但不提交('2')",
+      "tab": "提交"
+     },
+     {
+      "name": "shot-end",
+      "typed": "6",
+      "inRange": true,
+      "enter": "留着但不提交('6')",
+      "tab": "提交"
+     },
+     {
+      "name": "shot-end(越界 9 > max 8)",
+      "typed": "9",
+      "inRange": false,
+      "enter": "留着但不提交('9')",
+      "tab": "提交"
+     },
+     {
+      "name": "camera-fov-number",
+      "typed": "50",
+      "inRange": true,
+      "enter": "提交",
+      "tab": "提交"
+     },
+     {
+      "name": "hex-input",
+      "typed": "ff0000",
+      "inRange": true,
+      "enter": "提交",
+      "tab": "提交"
+     },
+     {
+      "name": "transform-field position/x",
+      "typed": "3.5",
+      "inRange": true,
+      "enter": "提交",
+      "tab": "提交"
+     }
+    ],
+    "enterCommits": [
+     "object-name",
+     "shot-name",
+     "camera-fov-number",
+     "hex-input",
+     "transform-field position/x"
+    ],
+    "enterKeepsTypingButDoesNotCommit": [
+     "shot-start",
+     "shot-end",
+     "shot-end(越界 9 > max 8)"
+    ],
+    "note": "「留在输入框里但 store 不动、连账都不记」—— 这不是拒绝，是什么都没发生"
+   },
+   "note": "six of the seven inputs commit on Enter; the two shot time fields do not, so a keyboard user pressing Enter in them gets silence"
+  },
+  "the-two-shot-time-fields-are-siblings-on-different-command-paths": {
+   "ok": true,
+   "detail": {
+    "shotStart": {
+     "command": {
+      "commandKind": "UPDATE_SHOT",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "verdict": "提交"
+    },
+    "shotEnd": {
+     "command": {
+      "commandKind": "GESTURE_BEGIN",
+      "disposition": "COMMITTED",
+      "reason": null
+     },
+     "verdict": "提交"
+    },
+    "comment": "同一个面板里两个相邻的时间字段，走两条不同的命令路径"
+   },
+   "note": "'GESTURE_BEGIN' reads like a drag gesture, not a field edit — recorded as a reading, not as an explanation"
+  },
+  "a-rejected-edit-is-ledgered-as-committed-and-leaves-an-open-gesture": {
+   "ok": true,
+   "detail": {
+    "lifecycleClosedByCanvasClick": [
+     {
+      "stage": "before",
+      "activeGesture": null,
+      "pastLen": 0,
+      "shotEnd": 8,
+      "shotStart": 0,
+      "inputEnd": "8",
+      "rangeLabel": "0.0-8.0s",
+      "last": null
+     },
+     {
+      "stage": "afterOutOfRangeTab",
+      "activeGesture": "SET",
+      "pastLen": 0,
+      "shotEnd": 8,
+      "shotStart": 0,
+      "inputEnd": "8",
+      "rangeLabel": "0.0-8.0s",
+      "last": {
+       "c": "GESTURE_BEGIN",
+       "d": "COMMITTED"
+      }
+     },
+     {
+      "stage": "plus2500ms",
+      "activeGesture": "SET",
+      "pastLen": 0,
+      "shotEnd": 8,
+      "shotStart": 0,
+      "inputEnd": "8",
+      "rangeLabel": "0.0-8.0s",
+      "last": {
+       "c": "GESTURE_BEGIN",
+       "d": "COMMITTED"
+      }
+     },
+     {
+      "stage": "aftercanvasClick",
+      "activeGesture": null,
+      "pastLen": 0,
+      "shotEnd": 8,
+      "shotStart": 0,
+      "inputEnd": null,
+      "rangeLabel": null,
+      "last": {
+       "c": "GESTURE_COMMIT",
+       "d": "NOOP"
+      }
+     }
+    ],
+    "lifecycleClosedByUnrelatedEdit": [
+     {
+      "stage": "before",
+      "activeGesture": null,
+      "pastLen": 0,
+      "shotEnd": 8,
+      "shotStart": 0,
+      "inputEnd": "8",
+      "rangeLabel": "0.0-8.0s",
+      "last": null
+     },
+     {
+      "stage": "afterOutOfRangeTab",
+      "activeGesture": "SET",
+      "pastLen": 0,
+      "shotEnd": 8,
+      "shotStart": 0,
+      "inputEnd": "8",
+      "rangeLabel": "0.0-8.0s",
+      "last": {
+       "c": "GESTURE_BEGIN",
+       "d": "COMMITTED"
+      }
+     },
+     {
+      "stage": "plus2500ms",
+      "activeGesture": "SET",
+      "pastLen": 0,
+      "shotEnd": 8,
+      "shotStart": 0,
+      "inputEnd": "8",
+      "rangeLabel": "0.0-8.0s",
+      "last": {
+       "c": "GESTURE_BEGIN",
+       "d": "COMMITTED"
+      }
+     },
+     {
+      "stage": "afterunrelatedEdit",
+      "activeGesture": null,
+      "pastLen": 1,
+      "shotEnd": 8,
+      "shotStart": 0,
+      "inputEnd": "8",
+      "rangeLabel": "0.0-8.0s",
+      "last": {
+       "c": "UPDATE_OBJECT",
+       "d": "COMMITTED"
+      }
+     }
+    ],
+    "theReading": "越界值 9（max=8）按 Tab：镜头区间没变（shotEnd 仍 8、标签仍 0.0-8.0s、输入框回弹 8）、历史没长（pastLen 仍 0），**但命令账当场记 GESTURE_BEGIN / COMMITTED**，并且 `history.activeGesture` 一直被置上（+2.5s 复查仍在，不自动收）。",
+    "theTwoClosers": "点画布空白收尾 ⟹ 账上是 GESTURE_COMMIT / **NOOP**，pastLen 仍 0；改另一个字段收尾 ⟹ 账上是**那次编辑自己的** UPDATE_OBJECT / COMMITTED，pastLen 0→1 —— **被拒手势的那句 NOOP 压根没出现过**。",
+    "theConsequence": "同一次被拒绝的编辑，在账本上先是 COMMITTED；那句 NOOP 要等下一个动作触发收尾才补上，**而且补不补得上取决于下一个动作是什么**。"
+   },
+   "note": "the first version of this check said 'nothing changed' — too narrow a face again: only shots[0].endTime was read, and the full projection shows 119 leaves move (the gesture baseline). And the first version also asserted one closing record for both closers, which was wrong: the NOOP is only written when the gesture is closed by a click, not by an unrelated edit"
+  },
+  "correction-to-703-the-commit-path-is-blur-only-and-703-tested-an-out-of-range-value": {
+   "ok": true,
+   "detail": {
+    "inRangeValue": "6",
+    "enterVerdict": "留着但不提交('6')",
+    "tabVerdict": "提交",
+    "batch703Said": "「能聚焦、能打字，但 Enter / ArrowUp / Tab 三条路径全部进不去 store」⟹ 归为「第四类：能输入但没有提交路径」",
+    "whatIsWithdrawn": "「没有提交路径」这个说法整条撤回",
+    "whatSurvives": "703 的**读数**仍然为真 —— 填 12（越界，max=8）时，Enter / ArrowUp / Tab 确实都不进 store，Tab 之后输入框确实弹回 8。本批只是换了解释：不是没有路径，是**路径存在但只认失焦，而且我测的值越界**",
+    "theCategoryCollapsed": "「第四类：能输入但没有提交路径」这个分类是 703 自己造的，本批把它拆成两个具体字段的行为 —— 它不是一类"
+   },
+   "note": "a correct reading with a wrong explanation, found one batch later by testing the same control with a value inside its own min/max"
+  }
+ }
+}
