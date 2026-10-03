@@ -48,6 +48,14 @@ OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'stale-scan.json'
     '没有更多了': 'DP：i18n key = noMore',
     '63 个字段': 'DU/DX：卡记录顶层 63 个字段（早期记的 58 作废）',
     '58 个字段': 'DU/DX：⛔ 这个数是错的，应为 63',
+    # ⭐⭐ EC 批新增：i18n 表里「界面上找不到」的 key —— 去渲染代码数引用数，
+    #    0 处 = 僵尸 key（压根没被用），>0 = 真有 UI（是我找错地方了）。
+    'canvasStoreDelete': 'EC：⛔ 不是菜单文案，是 store 记操作日志时传给 translate 的字符串',
+    'canvasStoreDelete2': 'EC：⛔ 同上（批量版 deleteEdgesBatch）',
+    'zoomTo200': 'EB：僵尸 key，渲染代码 0 处引用，界面永不出现',
+    'zoomReset': 'EB：僵尸 key，渲染代码 0 处引用，界面永不出现',
+    'disconnectEdgeTitle': 'EC：断开连线确认框文案，属另一条代码路径，界面未捕捉到 📖',
+    'disconnectConfirmText': 'EC：确定断开，同上',
 }
 
 # ---------- ⭐⭐ 已被推翻的**具体值**：这些字面本身就该从正文消失 ----------

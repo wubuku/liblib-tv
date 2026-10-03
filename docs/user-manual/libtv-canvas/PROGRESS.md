@@ -8659,3 +8659,88 @@ DQ 批当年在 `20-reference.md` 留了一句「⛔ 两处仍未解释：`缩�
 - `tools/batchEB1.mjs` + `.json`（首轮，阶段 3 因选择器在 200% 下失配而失败）
 - `tools/batchEB2.mjs` + `.json`（找到稳定触发按钮 `button[aria-label="缩放选项"]`；否证 137/200 不进档位）
 - ⭐ `tools/batchEB3.mjs` + `.json`（**三重读数阳性对照**，本批结案依据）
+
+---
+
+## §106 Batch EC — 僵尸 key 方法扫全树 + 清掉「断线入口」的第三份过期副本
+
+### 106.0 起点
+
+EB 批（§105）挖出一个可推广的方法：**文案表里有、界面上找不到的 key，
+先数它在渲染代码里的引用数** —— 0 处引用 = **僵尸 key**（压根没被用），
+有引用 = 真有 UI，找错地方了。
+
+⚠️ 但 EB 只查了缩放菜单那一个模块。本批把**这个方法用到全树的未验条目上**。
+
+### 106.1 ⭐⭐⭐ 查 `canvasStoreDelete`：它**根本不是菜单文案**
+
+手册里 `20-reference.md` 记着一条 ⛔「**断开连线**在状态层存在，但界面上**没找到入口**」，
+并把 `canvasStoreDelete`（`删除边`）列在 i18n key 表里、当成菜单项。
+
+查下去发现**两处都错**：
+
+**① `canvasStoreDelete` 不是 UI 文案，是操作日志字符串。**
+在 `42hg44uh2sjdy.js` 里它的上下文是 store 的 `deleteEdges` 函数体：
+
+```js
+i.edges = i.edges.filter(t => t.id !== e)
+ie({nodes, edges, viewport}, (0,t.translate)("canvas:canvasStoreDelete"), i.projectId)
+```
+
+⇒ 它是**删边之后记一条操作日志时传给 `translate` 的字符串**，
+**不是任何菜单项的文案**。`canvasStoreDelete2` 同理（批量版 `deleteEdgesBatch`）。
+
+**② 真正的界面文案是另一组 key**（`3-mou5v69wxmq.js`）：
+
+| key | 字面 |
+|---|---|
+| `canvas:disconnectEdgeTitle` | `断开连线` |
+| `canvas:disconnectEdgeMessage` | `断开后脚本关联关系将消失…` |
+| `canvas:disconnectConfirmText` | `确定断开` |
+
+它在 `onEdgesChange:cl` 上，`type:"remove"` 时弹**确认框**；
+组件里还有 `requestEditLock`（**请求节点编辑锁**）⇒ 断线在多人编辑时要拿锁。
+
+⭐ 但**实测断线根本没有确认框**（`connect-nodes.md` 两条路都直接断）
+⇒ 这组文案**属于另一条代码路径**（大概率只在「断开脚本关联」时弹）。
+**触发条件没找到，不猜**，正文里如实标 📖。
+
+### 106.2 ⭐⭐⭐ 「断线没找到入口」是**第三份**过期副本
+
+按 §255 全局搜，发现同一个错误结论在手册里**存了三份**：
+
+| 位置 | 状态 |
+|---|---|
+| ✅ `connect-nodes.md:219-255` | **早就结案**：两条断线路（悬停剪刀 / 选中按 `Delete`），还解释了剪刀为什么难找（不是 `<button>`、只在悬停挂载、藏在 `foreignObject`、48% 缩放下只有 23×23），并有 **M-279/280/281 三张截图** |
+| ✅ `AUDIT.md:172` | **早就作废**：「⛔ 作废，入口一直都在」，带**跨两会话复现**（`e-w1H9Qs9Rwx` / `e-H3Qz6hy6nE` 两次都「连线数 −1 + id 消失 + 画布回基线」） |
+| ⛔ `20-reference.md`（两处） | **没跟上**，还记着「没找到入口」 |
+
+⇒ **同一棵树里两个文件已结案、第三个没跟上** —— 和 EA 批的
+「`create-nodes.md` 又躺了 3 个批次」是**同一种病**。
+⭐ 这也说明 `stale-scan.py` 的关键词表**需要补**：`canvasStoreDelete` 这类
+「记在 i18n 表里、但界面上找不到」的 key 名，正是它该盯的对象。
+
+### 106.3 处理方式（按 §262：保留 + 显式标注，不静默删）
+
+- `20-reference.md:358` 那条 ⛔ 改成 ✅ 并写全两条断线路 + 剪刀难找的四条原因，
+  ⭐ **同时保留**「`⌘L` 等 8 种条件都断不了」这个**有价值的反面读数**（它本身没错，
+  错的是把它当「没有入口」）。
+- `20-reference.md` i18n 表里 `canvasStoreDelete` 那行加 ⚠️ 更正（不是菜单文案），
+  ⭐ 并**新增一行**记 `canvas:disconnectEdge*` 三兄弟（界面上没捕捉到，如实标 📖）。
+
+### 106.4 判据缺陷（§270 起续编号）
+
+| 缺陷 270 | ⭐⭐⭐ **把 i18n key 表当成「界面上有的东西」清单** | 手册那张表列了 `canvasStoreDelete`（`删除边`），读者会以为界面上有这个菜单项。实际它**是操作日志字符串**，由 store 调 `translate` 传进去。⇒ **key 在文案表里 ≠ 界面上有这个名字**；必须去**渲染代码**确认它被哪个组件用 |
+| 缺陷 271 | ⭐⭐⭐ **同一错误结论在三个文件里存了两份、只有一份已更正** | `connect-nodes.md` + `AUDIT.md` 早已结案/作废，只有 `20-reference.md` 还写着「没找到入口」。⇒ **改正一处要按关键词搜整棵树**（§255/§260 老规矩，本批又复现一次） |
+| 缺陷 272 | ⭐ **源码里有确认框文案 ⇒ 界面上就该有确认框** | `disconnectEdge*` 三个 key 明确挂在 `onEdgesChange` 上，但实测断线**无确认框**。⇒ **同一份文案可能属于另一条代码路径**；找不到触发条件就标 📖，**不猜** |
+
+### 106.5 验收
+
+`manifest` 221/221、`gate-a` 0、`build-site.sh` 成功、`site-check`「7 页全部干净」。
+
+### 106.6 证据
+
+本批是**纯文档 + 源码核对**，无新增浏览器脚本。
+源码位置：`42hg44uh2sjdy.js`（`deleteEdges` + 日志字符串）、
+`3-mou5v69wxmq.js`（`onEdgesChange` + `disconnectEdge*` 确认框）、
+文案表 `3xjlk8cm1g3m9.js`（中文对照）。

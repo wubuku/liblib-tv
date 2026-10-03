@@ -214,12 +214,20 @@
       "文件": "20-reference.md",
       "行": 1027,
       "命中关键词": [
-        "协作"
+        "协作",
+        "canvasStoreDelete",
+        "canvasStoreDelete2",
+        "disconnectEdgeTitle",
+        "disconnectConfirmText"
       ],
       "对应已结案结论": [
-        "DW：横幅 4 层祖先链，opacity 连乘后为 0 ⇒ 不可见"
+        "DW：横幅 4 层祖先链，opacity 连乘后为 0 ⇒ 不可见",
+        "EC：⛔ 不是菜单文案，是 store 记操作日志时传给 translate 的字符串",
+        "EC：⛔ 同上（批量版 deleteEdgesBatch）",
+        "EC：断开连线确认框文案，属另一条代码路径，界面未捕捉到 📖",
+        "EC：确定断开，同上"
       ],
-      "原文": "| key | 字面 | 手册状态 | |---|---|---| | `canvasContextMenuMaterial` | `素材` | ⛔ 节点右键菜单 —— 无头环境拿不到系统菜单，但**菜单项确实存在** | | `canvasContextMenuText5110a0` | `资产` | 同上 | | `canvasStoreDelete` / `canvasStoreDelete2` | `删除边` / `批量删除边` | ⛔ **断开连线在状态层存在**，但本手册在界面上**没找到入口** | | `canvasStoreCanvas` / `canvasStoreCanv"
+      "原文": "| key | 字面 | 手册状态 | |---|---|---| | `canvasContextMenuMaterial` | `素材` | ⛔ 节点右键菜单 —— 无头环境拿不到系统菜单，但**菜单项确实存在** | | `canvasContextMenuText5110a0` | `资产` | 同上 | | ⚠️ `canvasStoreDelete` / `canvasStoreDelete2` | `删除边` / `批量删除边` | ⛔ **不是菜单文案**（Batch EC 更正）。查渲染代码：它们是 store 里 `deleteEdges` 函数**记操作日志时传给 `tr"
     },
     {
       "类型": "📖旁有已结案关键词",
@@ -281,7 +289,13 @@
     "z-[305]": "DO/DW：= collab-follow-banner，常驻但 opacity:0",
     "没有更多了": "DP：i18n key = noMore",
     "63 个字段": "DU/DX：卡记录顶层 63 个字段（早期记的 58 作废）",
-    "58 个字段": "DU/DX：⛔ 这个数是错的，应为 63"
+    "58 个字段": "DU/DX：⛔ 这个数是错的，应为 63",
+    "canvasStoreDelete": "EC：⛔ 不是菜单文案，是 store 记操作日志时传给 translate 的字符串",
+    "canvasStoreDelete2": "EC：⛔ 同上（批量版 deleteEdgesBatch）",
+    "zoomTo200": "EB：僵尸 key，渲染代码 0 处引用，界面永不出现",
+    "zoomReset": "EB：僵尸 key，渲染代码 0 处引用，界面永不出现",
+    "disconnectEdgeTitle": "EC：断开连线确认框文案，属另一条代码路径，界面未捕捉到 📖",
+    "disconnectConfirmText": "EC：确定断开，同上"
   },
   "作废值表": {
     "runCount = 1100": "DU：⛔ 1.1w 对应 10700，1100 是千字口径（作废）",
