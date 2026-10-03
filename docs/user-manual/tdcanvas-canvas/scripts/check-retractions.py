@@ -594,6 +594,46 @@ def main() -> int:
         needle = item.get("wrong", "")
         if NOTATION_ONLY.fullmatch(needle):
             notation_needles.append(f"{item.get('id', '?')}={needle!r}")
+    # M205 新增：**每个内容锚点必须恰好命中 1 行**。
+    #
+    # ★ 这道判据盯的是一个**正在恶化、还没恶化**的结构性漏洞（M204 量出来的）：
+    #   `allow_in` 的内容锚点形态是「文件#行内片段」，而**匹配用的是逐字子串**。
+    #   一旦同一个片段在该文件里出现两行以上，**豁免会同时罩住那几行**——
+    #   而门禁不会报任何东西。写锚点的人以为只放行了 1 行，实际放行了 N 行。
+    #   **这与 M203 那把从不报警的量具是同一族病：看起来在约束，实际在放宽。**
+    #
+    #   两种坏法方向相反，必须分开报：
+    #     命中 **0 行** = 死配置。锚点已经对不上任何行，**豁免根本没在生效**
+    #       （此时门禁会因为 needle 命中而报红，但报的是「错误说法复现」，
+    #        读者会以为正文出了新错，其实是自己的豁免烂了）；
+    #     命中 **≥2 行** = 偷偷放宽。**这才是危险的那一种，且完全静默。**
+    #
+    # 为什么判据取「恰好 1 行」而不是别的：M204 实测全库 10 个内容锚点**无一例外都是 1 行**，
+    # 判据在现有数据上全对；而任何更宽的判据（例如「不得多于 2 行」）都会放过真正的放宽。
+    # 现有形态里不存在「有意锚定多行」的用法——**要放行多行就多登记几条**。
+    anchor_breadth: list[str] = []
+    for item in RETRACTIONS:
+        for where in sorted(item.get("allow_in", [])):
+            if "#" not in where:
+                continue
+            fname, frag = where.split("#", 1)
+            path = root / fname
+            if not path.is_file():
+                # 文件不在（被改名/删掉）——交给上面的写法校验与扫描时报错，不在这里重复
+                continue
+            n = sum(1 for line in path.read_text(encoding="utf-8").splitlines() if frag in line)
+            if n != 1:
+                kind = "死配置（0 行，豁免根本没生效）" if n == 0 else f"偷偷放宽（罩住 {n} 行）"
+                anchor_breadth.append(f"{item.get('id', '?')} 的 {where} 命中 {n} 行，{kind}")
+    if anchor_breadth:
+        problems.append(
+            f"有 {len(anchor_breadth)} 个内容锚点没有恰好命中 1 行：\n"
+            + "\n".join("      " + b for b in anchor_breadth) + "\n"
+            "  **豁免必须精确到一行。** 0 行是死配置（锚点已对不上，豁免没在生效）；\n"
+            "  2 行以上是**偷偷放宽**——匹配用的是逐字子串，同一片段出现在几行就放行几行，\n"
+            "  而门禁不会报任何东西。**要放行多行就多登记几条，别让一个片段罩住一片。**"
+        )
+
     if notation_needles:
         problems.append(
             f"有 {len(notation_needles)} 条订正的 needle 是**纯「键=数字」的取证记法**："

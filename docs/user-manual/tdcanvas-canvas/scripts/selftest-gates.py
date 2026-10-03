@@ -1814,6 +1814,56 @@ def mutate_retraction_english_needle_ok(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_anchor_exemption_covers_many_lines(root: Path) -> None:
+    """内容锚点**罩住了不止一行**时必须被点名（M205）。
+
+    ★ **盯的是一个「正在恶化、还没恶化」的洞**（M204 量出来的）：
+      全库 10 个内容锚点当时**无一例外都恰好命中 1 行**，所以这道判据上线时
+      是一条**零命中**的判据。**M204 只把它记下来，没立门禁**——
+      理由是「窄不到能全对就不该假装是门禁」，而当时**没有正例可证它能全对**。
+      M205 先补了正例：下面这个片段在 `task-inventory.yml` 的**原始行**里命中 5 行
+      （★ 不是 3 行——第一版候选是在**去掉空白后**滑窗找的，而门禁匹配的是原始行，
+      那个片段在原行里被空格隔开、实际命中 0 行。**候选必须在被测对象上现算。**）
+    """
+    path = root / "scripts/check-retractions.py"
+    text = path.read_text(encoding="utf-8")
+    old = '"task-inventory.yml#运行时走查完成（清数据首启→新建→空画布→首页项目卡）"'
+    assert old in text, "注入失败：没找到 R25 的内容锚点豁免（载具已变？）"
+    path.write_text(text.replace(old, '"task-inventory.yml#从静态升级为运行时"', 1), encoding="utf-8")
+
+
+def mutate_anchor_exemption_dead(root: Path) -> None:
+    """内容锚点**一行都命中不了**（死配置）时必须被点名（M205）。
+
+    死配置与「偷偷放宽」方向相反，但同样有害：豁免根本没在生效，
+    门禁会因为 needle 命中而报红，**报的还是「错误说法复现」**——
+    读者会以为正文出了新错，其实是自己的豁免烂了。**两种坏法必须分开报。**
+    """
+    path = root / "scripts/check-retractions.py"
+    text = path.read_text(encoding="utf-8")
+    old = '"task-inventory.yml#运行时走查完成（清数据首启→新建→空画布→首页项目卡）"'
+    assert old in text, "注入失败：没找到 R25 的内容锚点豁免（载具已变？）"
+    path.write_text(text.replace(old, '"task-inventory.yml#这一行里根本不存在的锚点"', 1), encoding="utf-8")
+
+
+def mutate_anchor_exemption_other_fragment_ok(root: Path) -> None:
+    """反向对照：**换个措辞、但仍恰好命中同一行**不该被误报（M205，不误报）。
+
+    这道判据管的是**豁免的宽度**，不是**豁免该挑哪个词**。
+    同一行里有好几个都能用的片段，只要都只命中那一行，**就都是合法的**。
+    这一例守的是判据没偷偷长成「必须用登记里那个特定的片段」——
+    那种判据会把人逼到「不许改锚点措辞」，而锚点本来就该能随手换。
+    """
+    path = root / "scripts/check-retractions.py"
+    text = path.read_text(encoding="utf-8")
+    old = '"SOURCE_OBSERVATIONS.md#三处按钮区的顺序固定"'
+    assert old in text, "注入失败：没找到 R26 的内容锚点豁免（载具已变？）"
+    path.write_text(
+        text.replace(old, '"SOURCE_OBSERVATIONS.md#由此订正手册里一条方向写反的建议"', 1),
+        encoding="utf-8",
+    )
+
+
 CASES: list[tuple[str, object, str, str]] = [
     ("图片字节被改动", mutate_image_bytes, "gate", "sha256 mismatch"),
     ("manifest 删掉一条记录", mutate_manifest_drop_record, "gate", "image missing from manifest"),
@@ -1844,6 +1894,9 @@ CASES: list[tuple[str, object, str, str]] = [
     ("kind 取值拼错等于没分类（不能安静地少拦一类）", mutate_retraction_bad_kind, "retractions", "不在"),
     ("needle 退化成取证坐标记法（守的从来不是读者会读到的说法）", mutate_retraction_notation_needle, "retractions", "纯「键=数字」的取证记法"),
     ("英文界面文案当 needle 不该被误报（判据不许偷偷放宽）", mutate_retraction_english_needle_ok, "retractions", EXPECT_PASS),
+    ("内容锚点罩住多行（豁免在偷偷放宽）", mutate_anchor_exemption_covers_many_lines, "retractions", "偷偷放宽"),
+    ("内容锚点一行都命中不了（死配置，豁免没在生效）", mutate_anchor_exemption_dead, "retractions", "死配置"),
+    ("换个措辞但仍只命中同一行不该被误报（判据只管宽度）", mutate_anchor_exemption_other_fragment_ok, "retractions", EXPECT_PASS),
     ("已订正说法复现到**截图清单**里（112 条取证读数的盲区）", mutate_retracted_manifest_repro, "retractions", "订正过的错误说法重新出现"),
     ("表格行格子数多于表头（多出来的格子连内容一起被丢弃）", mutate_table_row_too_many_cells, "tables", "这一行有"),
     ("内部账本的表格欠账不许增长（基线口径）", mutate_table_internal_backlog_grows, "tables", "不许增长"),
