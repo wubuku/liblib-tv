@@ -1,0 +1,193 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 1150,
+  "cases": [
+   {
+    "key": null,
+    "waitMs": 0,
+    "mid": null,
+    "midClicks": 0,
+    "scene": {
+     "missing": false,
+     "distinct": 11,
+     "trackPx": 96
+    }
+   },
+   {
+    "key": "End",
+    "waitMs": 0,
+    "mid": null,
+    "midClicks": 0,
+    "scene": {
+     "missing": false,
+     "distinct": 1,
+     "trackPx": 96
+    }
+   },
+   {
+    "key": "End",
+    "waitMs": 300,
+    "mid": null,
+    "midClicks": 0,
+    "scene": {
+     "missing": false,
+     "distinct": 1,
+     "trackPx": 96
+    }
+   },
+   {
+    "key": "End",
+    "waitMs": 1000,
+    "mid": null,
+    "midClicks": 0,
+    "scene": {
+     "missing": false,
+     "distinct": 1,
+     "trackPx": 96
+    }
+   },
+   {
+    "key": "End",
+    "waitMs": 2000,
+    "mid": null,
+    "midClicks": 0,
+    "scene": {
+     "missing": false,
+     "distinct": 1,
+     "trackPx": 96
+    }
+   },
+   {
+    "key": "End",
+    "waitMs": 0,
+    "mid": "[data-director-pose-control=\"torso.roll\"]",
+    "midClicks": 1,
+    "scene": {
+     "missing": false,
+     "distinct": 11,
+     "trackPx": 96
+    }
+   },
+   {
+    "key": "End",
+    "waitMs": 0,
+    "mid": "[data-director-pose-control=\"torso.roll\"]",
+    "midClicks": 1,
+    "scene": {
+     "missing": false,
+     "distinct": 11,
+     "trackPx": 96
+    }
+   },
+   {
+    "key": "End",
+    "waitMs": 0,
+    "mid": "[data-director-pose-control=\"torso.roll\"]",
+    "midClicks": 1,
+    "scene": {
+     "missing": false,
+     "distinct": 11,
+     "trackPx": 96
+    }
+   },
+   {
+    "key": "End",
+    "waitMs": 0,
+    "mid": "[data-director-pose-control=\"torso.roll\"]",
+    "midClicks": 5,
+    "scene": {
+     "missing": false,
+     "distinct": 11,
+     "trackPx": 96
+    }
+   },
+   {
+    "key": "End",
+    "waitMs": 0,
+    "mid": "[data-director-timeline-zoom]",
+    "midClicks": 5,
+    "scene": {
+     "missing": false,
+     "distinct": 11,
+     "trackPx": 96
+    }
+   },
+   {
+    "key": "End",
+    "waitMs": 0,
+    "mid": "NEW PAGE",
+    "midClicks": 1,
+    "scene": {
+     "missing": false,
+     "distinct": 11,
+     "trackPx": 96
+    }
+   }
+  ],
+  "theFinding": "Pressing any key on a range in the right-hand panel leaves that panel's input dead for the next range that renders there. Waiting does not clear it, clicking the same panel does not clear it, operating a range in another panel does, and reloading does.",
+  "whatIsNotClaimed": "This is a behavioural sequence, not a mechanism. No line of source was identified, and the reproduction uses selectObject(null) through the store API rather than the click-empty-space path a real user would take, so it is NOT claimed that a user can hit this. batch 695's 'unlocated' is replaced by 'located to a sequence, mechanism not traced' -- the distinction matters.",
+  "howToRead695": "695 blamed stage-to-stage carry-over in general terms. This batch names the carry-over: it is the keyboard, it is one press, and it survives time, repeated clicking and the same panel.",
+  "storeWritesInThisRun": [
+   "selectObject(activeCameraId)",
+   "selectObject(null)",
+   "recordObjectKeyframe(activeCameraId, true)"
+  ]
+ },
+ "checks": {
+  "the-bogus-reading-reproduces-and-a-clean-session-does-not": {
+   "ok": true,
+   "detail": {
+    "control_noKey": 11,
+    "withEndKey": 1,
+    "whyElevenIsTheTruth": "batch 695 measured this same control in a clean session and got 11 mouse-reachable values, K = 10.67, and two independent instruments agree. Eleven is the reading; one is the artefact.",
+    "whatChanges": "the ONLY difference between the two sessions is that one of them pressed a key on a range in the right-hand panel first."
+   },
+   "note": "one press of one key is worth nine false values"
+  },
+  "waiting-does-not-clear-it": {
+   "ok": true,
+   "detail": {
+    "waitsMs": {
+     "300": 1,
+     "1000": 1,
+     "2000": 1
+    },
+    "whyThisMatters": "'it settles after a while' was my first instinct and it is wrong. A time-based fix would have looked like it worked for four different wait lengths and then failed on the fifth run."
+   },
+   "note": "a lock you can wait out is not a lock; this one is not"
+  },
+  "the-same-panel-recovery-gives-the-same-number-three-times-in-a-row": {
+   "ok": true,
+   "detail": {
+    "oneClickOnPosePanel_repeats": [
+     11,
+     11,
+     11
+    ],
+    "fiveClicksOnPosePanel": 11,
+    "whatHappened": "This check failed on its first run, and the failure is the finding. An earlier run of the identical experiment reported 1 for both the one-click and the five-click case; this run reported 11 for both. Clicking the panel that received the key is therefore NOT a reliable way to clear the condition -- it sometimes works.",
+    "consequence": "The honest claim is 'clicking the same panel is not dependable', not 'clicking the same panel does not help'. Collapsing those two would put a rule in the ledger that the next reader will treat as settled.",
+    "whatThisCheckDoesNotClaim": "It asserts only that three repeats WITHIN one run agree. The cross-run disagreement (an earlier run gave 1 and 1 for the same two cases) is a fact this verifier cannot measure, because it would need the previous run's output as an input. It is recorded in the README and the ledger instead of being hidden in a name.",
+    "whatRemainsReliable": "The two recoveries that DID reproduce every time are the load-bearing ones: operating a range in another panel, and opening a fresh page. 695's fix is the second."
+   },
+   "note": "a behaviour that flips between runs is a weaker fact, and must be recorded as one"
+  },
+  "operating-a-range-in-another-panel-clears-it": {
+   "ok": true,
+   "detail": {
+    "fiveClicksOnTimelineZoom": 11,
+    "whatThisPins": "the condition is scoped to the right-hand panel, not to the page. A range outside that panel still works, and touching it restores the panel."
+   },
+   "note": "the lock is local, and another panel is the key"
+  },
+  "reloading-the-page-clears-it": {
+   "ok": true,
+   "detail": {
+    "afterNewPage": 11,
+    "why695sFixIsEnough": "695's fix -- a fresh page per stage -- clears the condition by construction, which is why 695 ends at 6/6. This check confirms the fix addresses the condition rather than merely hiding it."
+   },
+   "note": "695's per-stage-page fix is sufficient, not a workaround"
+  }
+ }
+}
