@@ -1,0 +1,1482 @@
+{
+ "static": {
+  "nInert": 46,
+  "nInertFiles": 16,
+  "inertByFile": {
+   "src/components/AgentDrawer.tsx": 3,
+   "src/components/HistoryPanel.tsx": 4,
+   "src/components/ImageEditPanel.tsx": 11,
+   "src/components/LeftSidebar.tsx": 1,
+   "src/components/LibraryShowcasePanel.tsx": 2,
+   "src/components/SegmentReshootPanel.tsx": 4,
+   "src/components/StoryboardScriptEditor.tsx": 3,
+   "src/components/ToolboxPanel.tsx": 2,
+   "src/components/TopNavBar.tsx": 2,
+   "src/components/VideoClipEditPanel.tsx": 2,
+   "src/components/VideoGenerationPanel.tsx": 6,
+   "src/components/VideoProcessingToolbar.tsx": 2,
+   "src/components/nodes/AudioNode.tsx": 1,
+   "src/components/nodes/ScriptGeneratorNode.tsx": 1,
+   "src/components/nodes/ShotBreakdownResultNode.tsx": 1,
+   "src/components/nodes/VideoNode.tsx": 1
+  },
+  "nSites": 46,
+  "withAriaLabel": 27,
+  "withoutAriaLabel": 19,
+  "noAriaLabelSites": [
+   {
+    "file": "src/components/HistoryPanel.tsx",
+    "line": 165,
+    "titleAttr": "title=\"时间排序在克隆侧尚未接入\""
+   },
+   {
+    "file": "src/components/HistoryPanel.tsx",
+    "line": 209,
+    "titleAttr": "title=\"使用在克隆侧尚未接入\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 133,
+    "titleAttr": "title={`${label}在克隆侧尚未接入`}"
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 212,
+    "titleAttr": "title=\"生成参数在克隆侧尚未接入\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 293,
+    "titleAttr": "title=\"全景参考图添加暂不可用\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 330,
+    "titleAttr": "title=\"全景模型选择暂不可用\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 335,
+    "titleAttr": "title=\"全景生成参数暂不可用\""
+   },
+   {
+    "file": "src/components/LeftSidebar.tsx",
+    "line": 101,
+    "titleAttr": "title={why}"
+   },
+   {
+    "file": "src/components/SegmentReshootPanel.tsx",
+    "line": 138,
+    "titleAttr": "title={`${item.label}在克隆侧尚未接入`}"
+   },
+   {
+    "file": "src/components/SegmentReshootPanel.tsx",
+    "line": 230,
+    "titleAttr": "title=\"积分选择暂不可用\""
+   },
+   {
+    "file": "src/components/SegmentReshootPanel.tsx",
+    "line": 236,
+    "titleAttr": "title=\"生成参数选择暂不可用\""
+   },
+   {
+    "file": "src/components/StoryboardScriptEditor.tsx",
+    "line": 296,
+    "titleAttr": "title=\"一键合成全部提示词（真实合成为付费"
+   },
+   {
+    "file": "src/components/ToolboxPanel.tsx",
+    "line": 64,
+    "titleAttr": "title=\"模板选择在克隆侧尚未接入\""
+   },
+   {
+    "file": "src/components/VideoClipEditPanel.tsx",
+    "line": 71,
+    "titleAttr": "title=\"剪辑模式设置在克隆侧尚未接入\""
+   },
+   {
+    "file": "src/components/VideoClipEditPanel.tsx",
+    "line": 83,
+    "titleAttr": "title=\"输出设置在克隆侧尚未接入\""
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 597,
+    "titleAttr": "title=\"返回节点暂不可用\""
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 811,
+    "titleAttr": "title=\"该功能在克隆侧尚未接入\""
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 831,
+    "titleAttr": "title=\"该设置在克隆侧尚未接入\""
+   },
+   {
+    "file": "src/components/nodes/ScriptGeneratorNode.tsx",
+    "line": 150,
+    "titleAttr": "title=\"参考图上传暂不可用\""
+   }
+  ]
+ },
+ "run": {
+  "views": {
+   "canvas": {
+    "rows": [
+     {
+      "i": 0,
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "text": "开通会员限时 45 折",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "开通会员 限时 45 折",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 1,
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "text": "100",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "积分余额",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    ],
+    "wired": {
+     "[aria-label=\"教程\"]": {
+      "sel": "[aria-label=\"教程\"]",
+      "tag": "BUTTON",
+      "aria": "教程",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "教程",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[aria-label=\"项目菜单\"]": {
+      "sel": "[aria-label=\"项目菜单\"]",
+      "tag": "BUTTON",
+      "aria": "项目菜单",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "项目菜单",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[data-viewport-menu-trigger=\"zoom\"]": {
+      "sel": "[data-viewport-menu-trigger=\"zoom\"]",
+      "tag": "BUTTON",
+      "aria": "缩放选项",
+      "text": "53%",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "缩放选项",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[aria-label=\"添加节点\"]": {
+      "sel": "[aria-label=\"添加节点\"]",
+      "tag": "BUTTON",
+      "aria": "添加节点",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "添加节点",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    }
+   },
+   "toolbox": {
+    "rows": [
+     {
+      "i": 0,
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "text": "开通会员限时 45 折",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "开通会员 限时 45 折",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 1,
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "text": "100",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "积分余额",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 2,
+      "aria": "工具箱模板说明",
+      "title": "模板说明在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": "primary:toolbox",
+      "ax": {
+       "role": "button",
+       "name": "工具箱模板说明",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 3,
+      "aria": "",
+      "title": "模板选择在克隆侧尚未接入",
+      "text": "周星驰经典名场面",
+      "ownerOverlay": "primary:toolbox",
+      "ax": {
+       "role": "button",
+       "name": "周星驰经典名场面",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    ],
+    "wired": {
+     "[aria-label=\"教程\"]": {
+      "sel": "[aria-label=\"教程\"]",
+      "tag": "BUTTON",
+      "aria": "教程",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "教程",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[aria-label=\"项目菜单\"]": {
+      "sel": "[aria-label=\"项目菜单\"]",
+      "tag": "BUTTON",
+      "aria": "项目菜单",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "项目菜单",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[data-viewport-menu-trigger=\"zoom\"]": {
+      "sel": "[data-viewport-menu-trigger=\"zoom\"]",
+      "tag": "BUTTON",
+      "aria": "缩放选项",
+      "text": "53%",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "缩放选项",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[aria-label=\"添加节点\"]": {
+      "sel": "[aria-label=\"添加节点\"]",
+      "tag": "BUTTON",
+      "aria": "添加节点",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "添加节点",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    }
+   },
+   "history": {
+    "rows": [
+     {
+      "i": 0,
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "text": "开通会员限时 45 折",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "开通会员 限时 45 折",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 1,
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "text": "100",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "积分余额",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 2,
+      "aria": "",
+      "title": "时间排序在克隆侧尚未接入",
+      "text": "时间倒序",
+      "ownerOverlay": "primary:history",
+      "ax": {
+       "role": "button",
+       "name": "时间倒序",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 3,
+      "aria": "查看",
+      "title": "查看在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": "primary:history",
+      "ax": {
+       "role": "button",
+       "name": "查看",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 4,
+      "aria": "",
+      "title": "使用在克隆侧尚未接入",
+      "text": "使用",
+      "ownerOverlay": "primary:history",
+      "ax": {
+       "role": "button",
+       "name": "使用",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 5,
+      "aria": "下载",
+      "title": "下载在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": "primary:history",
+      "ax": {
+       "role": "button",
+       "name": "下载",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 6,
+      "aria": "查看",
+      "title": "查看在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": "primary:history",
+      "ax": {
+       "role": "button",
+       "name": "查看",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 7,
+      "aria": "",
+      "title": "使用在克隆侧尚未接入",
+      "text": "使用",
+      "ownerOverlay": "primary:history",
+      "ax": {
+       "role": "button",
+       "name": "使用",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 8,
+      "aria": "下载",
+      "title": "下载在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": "primary:history",
+      "ax": {
+       "role": "button",
+       "name": "下载",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 9,
+      "aria": "查看",
+      "title": "查看在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": "primary:history",
+      "ax": {
+       "role": "button",
+       "name": "查看",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 10,
+      "aria": "",
+      "title": "使用在克隆侧尚未接入",
+      "text": "使用",
+      "ownerOverlay": "primary:history",
+      "ax": {
+       "role": "button",
+       "name": "使用",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 11,
+      "aria": "下载",
+      "title": "下载在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": "primary:history",
+      "ax": {
+       "role": "button",
+       "name": "下载",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    ],
+    "wired": {
+     "[aria-label=\"教程\"]": {
+      "sel": "[aria-label=\"教程\"]",
+      "tag": "BUTTON",
+      "aria": "教程",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "教程",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[aria-label=\"项目菜单\"]": {
+      "sel": "[aria-label=\"项目菜单\"]",
+      "tag": "BUTTON",
+      "aria": "项目菜单",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "项目菜单",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[data-viewport-menu-trigger=\"zoom\"]": {
+      "sel": "[data-viewport-menu-trigger=\"zoom\"]",
+      "tag": "BUTTON",
+      "aria": "缩放选项",
+      "text": "53%",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "缩放选项",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[aria-label=\"添加节点\"]": {
+      "sel": "[aria-label=\"添加节点\"]",
+      "tag": "BUTTON",
+      "aria": "添加节点",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "添加节点",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    }
+   },
+   "tutorial": {
+    "rows": [
+     {
+      "i": 0,
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "text": "开通会员限时 45 折",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "开通会员 限时 45 折",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 1,
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "text": "100",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "积分余额",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 2,
+      "aria": "",
+      "title": "使用教程在克隆侧尚未接入",
+      "text": "使用教程",
+      "ownerOverlay": "primary:tutorial",
+      "ax": {
+       "role": "button",
+       "name": "使用教程",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 3,
+      "aria": "",
+      "title": "联系客服在克隆侧尚未接入",
+      "text": "联系客服",
+      "ownerOverlay": "primary:tutorial",
+      "ax": {
+       "role": "button",
+       "name": "联系客服",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 4,
+      "aria": "",
+      "title": "联系销售在克隆侧尚未接入",
+      "text": "联系销售",
+      "ownerOverlay": "primary:tutorial",
+      "ax": {
+       "role": "button",
+       "name": "联系销售",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 5,
+      "aria": "",
+      "title": "关注公众号在克隆侧尚未接入",
+      "text": "关注公众号",
+      "ownerOverlay": "primary:tutorial",
+      "ax": {
+       "role": "button",
+       "name": "关注公众号",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    ],
+    "wired": {
+     "[aria-label=\"教程\"]": {
+      "sel": "[aria-label=\"教程\"]",
+      "tag": "BUTTON",
+      "aria": "教程",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "教程",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[aria-label=\"项目菜单\"]": {
+      "sel": "[aria-label=\"项目菜单\"]",
+      "tag": "BUTTON",
+      "aria": "项目菜单",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "项目菜单",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[data-viewport-menu-trigger=\"zoom\"]": {
+      "sel": "[data-viewport-menu-trigger=\"zoom\"]",
+      "tag": "BUTTON",
+      "aria": "缩放选项",
+      "text": "53%",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "缩放选项",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[aria-label=\"添加节点\"]": {
+      "sel": "[aria-label=\"添加节点\"]",
+      "tag": "BUTTON",
+      "aria": "添加节点",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "添加节点",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    }
+   },
+   "agent": {
+    "rows": [
+     {
+      "i": 0,
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "text": "开通会员限时 45 折",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "开通会员 限时 45 折",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 1,
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "text": "100",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "积分余额",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 2,
+      "aria": "历史对话",
+      "title": "历史对话在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": "agent",
+      "ax": {
+       "role": "button",
+       "name": "历史对话",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 3,
+      "aria": "Agent 设置",
+      "title": "Agent 设置在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": "agent",
+      "ax": {
+       "role": "button",
+       "name": "Agent 设置",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 4,
+      "aria": "CLI & Skill",
+      "title": "CLI & Skill 在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": "agent",
+      "ax": {
+       "role": "button",
+       "name": "CLI & Skill",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    ],
+    "wired": {
+     "[aria-label=\"教程\"]": {
+      "sel": "[aria-label=\"教程\"]",
+      "tag": "BUTTON",
+      "aria": "教程",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "教程",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[aria-label=\"项目菜单\"]": {
+      "sel": "[aria-label=\"项目菜单\"]",
+      "tag": "BUTTON",
+      "aria": "项目菜单",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "项目菜单",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[data-viewport-menu-trigger=\"zoom\"]": {
+      "sel": "[data-viewport-menu-trigger=\"zoom\"]",
+      "tag": "BUTTON",
+      "aria": "缩放选项",
+      "text": "53%",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "缩放选项",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[aria-label=\"添加节点\"]": {
+      "sel": "[aria-label=\"添加节点\"]",
+      "tag": "BUTTON",
+      "aria": "添加节点",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "添加节点",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    }
+   },
+   "image-card": {
+    "rows": [
+     {
+      "i": 0,
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "text": "开通会员限时 45 折",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "开通会员 限时 45 折",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 1,
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "text": "100",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "积分余额",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 2,
+      "aria": "展开编辑器",
+      "title": "展开编辑器在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "展开编辑器",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 3,
+      "aria": "",
+      "title": "标记在克隆侧尚未接入",
+      "text": "标记",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "标记",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 4,
+      "aria": "",
+      "title": "风格在克隆侧尚未接入",
+      "text": "风格",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "风格",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 5,
+      "aria": "",
+      "title": "生成参数在克隆侧尚未接入",
+      "text": "16:9 · 标准画质 · 2K · 1张",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "16:9 · 标准画质 · 2K · 1张",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 6,
+      "aria": "高级设置",
+      "title": "高级设置在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "高级设置",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 7,
+      "aria": "翻译",
+      "title": "翻译在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "翻译",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 8,
+      "aria": "撤销",
+      "title": "撤销在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "撤销",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    ],
+    "wired": {
+     "[aria-label=\"教程\"]": {
+      "sel": "[aria-label=\"教程\"]",
+      "tag": "BUTTON",
+      "aria": "教程",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "教程",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[aria-label=\"项目菜单\"]": {
+      "sel": "[aria-label=\"项目菜单\"]",
+      "tag": "BUTTON",
+      "aria": "项目菜单",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "项目菜单",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[data-viewport-menu-trigger=\"zoom\"]": {
+      "sel": "[data-viewport-menu-trigger=\"zoom\"]",
+      "tag": "BUTTON",
+      "aria": "缩放选项",
+      "text": "53%",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "缩放选项",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[aria-label=\"添加节点\"]": {
+      "sel": "[aria-label=\"添加节点\"]",
+      "tag": "BUTTON",
+      "aria": "添加节点",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "添加节点",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    }
+   },
+   "video-card": {
+    "rows": [
+     {
+      "i": 0,
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "text": "开通会员限时 45 折",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "开通会员 限时 45 折",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 1,
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "text": "100",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "积分余额",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 2,
+      "aria": "",
+      "title": "该功能在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "该功能在克隆侧尚未接入",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 3,
+      "aria": "翻译视频提示词",
+      "title": "翻译在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "翻译视频提示词",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     {
+      "i": 4,
+      "aria": "",
+      "title": "该设置在克隆侧尚未接入",
+      "text": "",
+      "ownerOverlay": null,
+      "ax": {
+       "role": "button",
+       "name": "该设置在克隆侧尚未接入",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    ],
+    "wired": {
+     "[aria-label=\"教程\"]": {
+      "sel": "[aria-label=\"教程\"]",
+      "tag": "BUTTON",
+      "aria": "教程",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "教程",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[aria-label=\"项目菜单\"]": {
+      "sel": "[aria-label=\"项目菜单\"]",
+      "tag": "BUTTON",
+      "aria": "项目菜单",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "项目菜单",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[data-viewport-menu-trigger=\"zoom\"]": {
+      "sel": "[data-viewport-menu-trigger=\"zoom\"]",
+      "tag": "BUTTON",
+      "aria": "缩放选项",
+      "text": "53%",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "缩放选项",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     },
+     "[aria-label=\"添加节点\"]": {
+      "sel": "[aria-label=\"添加节点\"]",
+      "tag": "BUTTON",
+      "aria": "添加节点",
+      "text": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "dataInert": null,
+      "ax": {
+       "role": "button",
+       "name": "添加节点",
+       "ignored": false,
+       "ignoredReasons": [],
+       "props": {
+        "invalid": "false",
+        "focusable": true
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "axTotals": {
+  "instances": 43
+ },
+ "propsShared": {
+  "inert": "{\"focusable\": true, \"invalid\": \"false\"}",
+  "wired": {
+   "[aria-label=\"教程\"]": {
+    "invalid": "false",
+    "focusable": true
+   },
+   "[aria-label=\"项目菜单\"]": {
+    "invalid": "false",
+    "focusable": true
+   },
+   "[data-viewport-menu-trigger=\"zoom\"]": {
+    "invalid": "false",
+    "focusable": true
+   },
+   "[aria-label=\"添加节点\"]": {
+    "invalid": "false",
+    "focusable": true
+   }
+  }
+ },
+ "nameFallback": {
+  "identities": 25,
+  "emptyNames": 0,
+  "titleFallback": {
+   "该功能在克隆侧尚未接入": "该功能在克隆侧尚未接入",
+   "该设置在克隆侧尚未接入": "该设置在克隆侧尚未接入"
+  }
+ },
+ "nameSources": {
+  "aria-label": 13,
+  "content": 10,
+  "title": 2
+ },
+ "failureSentenceNames": [
+  "该功能在克隆侧尚未接入",
+  "该设置在克隆侧尚未接入"
+ ],
+ "summary": {
+  "19-of-the-46-data-inert-sites-carry-no-aria-label": true,
+  "ax-tree-reproduces-the-dom-readings-for-all-43-instances": true,
+  "no-disabled-in-the-ax-tree-and-wired-buttons-are-byte-identical": true,
+  "accessible-names-fall-back-to-title-instead-of-being-empty": true,
+  "title-fallback-is-confined-to-two-icon-only-buttons": true
+ },
+ "failures": []
+}
