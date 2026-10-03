@@ -1,0 +1,3235 @@
+{
+ "static": {
+  "nInert": 46,
+  "nInertFiles": 16,
+  "inertByFile": {
+   "src/components/AgentDrawer.tsx": 3,
+   "src/components/HistoryPanel.tsx": 4,
+   "src/components/ImageEditPanel.tsx": 11,
+   "src/components/LeftSidebar.tsx": 1,
+   "src/components/LibraryShowcasePanel.tsx": 2,
+   "src/components/SegmentReshootPanel.tsx": 4,
+   "src/components/StoryboardScriptEditor.tsx": 3,
+   "src/components/ToolboxPanel.tsx": 2,
+   "src/components/TopNavBar.tsx": 2,
+   "src/components/VideoClipEditPanel.tsx": 2,
+   "src/components/VideoGenerationPanel.tsx": 6,
+   "src/components/VideoProcessingToolbar.tsx": 2,
+   "src/components/nodes/AudioNode.tsx": 1,
+   "src/components/nodes/ScriptGeneratorNode.tsx": 1,
+   "src/components/nodes/ShotBreakdownResultNode.tsx": 1,
+   "src/components/nodes/VideoNode.tsx": 1
+  },
+  "nButtonsMasked": 46,
+  "nButtonsNaive": 45,
+  "naiveByFile": {
+   "src/components/AgentDrawer.tsx": 3,
+   "src/components/HistoryPanel.tsx": 4,
+   "src/components/ImageEditPanel.tsx": 11,
+   "src/components/LeftSidebar.tsx": 1,
+   "src/components/LibraryShowcasePanel.tsx": 2,
+   "src/components/SegmentReshootPanel.tsx": 4,
+   "src/components/StoryboardScriptEditor.tsx": 3,
+   "src/components/ToolboxPanel.tsx": 2,
+   "src/components/TopNavBar.tsx": 1,
+   "src/components/VideoClipEditPanel.tsx": 2,
+   "src/components/VideoGenerationPanel.tsx": 6,
+   "src/components/VideoProcessingToolbar.tsx": 2,
+   "src/components/nodes/AudioNode.tsx": 1,
+   "src/components/nodes/ScriptGeneratorNode.tsx": 1,
+   "src/components/nodes/ShotBreakdownResultNode.tsx": 1,
+   "src/components/nodes/VideoNode.tsx": 1
+  },
+  "withTitle": 46,
+  "withAriaLabel": 27,
+  "withCursorDefault": 44,
+  "withTabIndex": 0,
+  "withDisabled": 0,
+  "withAriaDisabled": 0,
+  "withAriaHidden": 0,
+  "sites": [
+   {
+    "file": "src/components/AgentDrawer.tsx",
+    "line": 280,
+    "attrs": "type=\"button\" title=\"历史对话在克隆侧尚未接入\" aria-label=\"历史对话\" data-inert=\"true\" className=\"flex size-7 cursor-default items-center justify-center rounded-md opacity-40\""
+   },
+   {
+    "file": "src/components/AgentDrawer.tsx",
+    "line": 298,
+    "attrs": "type=\"button\" title=\"Agent 设置在克隆侧尚未接入\" aria-label=\"Agent 设置\" data-inert=\"true\" className=\"flex size-7 cursor-default items-center justify-center rounded-md opacity-40\""
+   },
+   {
+    "file": "src/components/AgentDrawer.tsx",
+    "line": 307,
+    "attrs": "type=\"button\" title=\"CLI & Skill 在克隆侧尚未接入\" aria-label=\"CLI & Skill\" data-inert=\"true\" className=\"flex size-7 cursor-default items-center justify-center rounded-md opacity-40\""
+   },
+   {
+    "file": "src/components/HistoryPanel.tsx",
+    "line": 165,
+    "attrs": "type=\"button\" title=\"时间排序在克隆侧尚未接入\" data-inert=\"true\" className=\"ml-2 flex h-8 cursor-default items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm text-[#6f6f6f] max-sm:text-xs\""
+   },
+   {
+    "file": "src/components/HistoryPanel.tsx",
+    "line": 208,
+    "attrs": "type=\"button\" title=\"查看在克隆侧尚未接入\" aria-label=\"查看\" data-inert=\"true\" className=\"flex size-7 cursor-default items-center justify-center rounded-lg bg-white/10 text-white/50\""
+   },
+   {
+    "file": "src/components/HistoryPanel.tsx",
+    "line": 209,
+    "attrs": "type=\"button\" title=\"使用在克隆侧尚未接入\" data-inert=\"true\" className=\"cursor-default rounded-lg bg-white/10 px-2 text-[10px] text-white/50\""
+   },
+   {
+    "file": "src/components/HistoryPanel.tsx",
+    "line": 210,
+    "attrs": "type=\"button\" title=\"下载在克隆侧尚未接入\" aria-label=\"下载\" data-inert=\"true\" className=\"flex size-7 cursor-default items-center justify-center rounded-lg bg-white/10 text-white/50\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 125,
+    "attrs": "type=\"button\" data-inert=\"true\" title=\"展开编辑器在克隆侧尚未接入\" className=\"pointer-events-auto absolute right-3 top-3 flex size-7 cursor-default items-center justify-center rounded-lg text-[#6f6f6f]\" aria-label=\"展开编辑器\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 133,
+    "attrs": "key={label} type=\"button\" data-image-editor-control={label} data-inert=\"true\" title={`${label}在克隆侧尚未接入`} className=\"pointer-events-auto flex h-[26px] w-[54px] cursor-default items-center justify-center gap-1 rounded-full bg-white/[0.06] text-xs text-[#6f6f6f]\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 212,
+    "attrs": "data-image-editor-settings data-inert=\"true\" type=\"button\" title=\"生成参数在克隆侧尚未接入\" className=\"pointer-events-auto flex h-8 cursor-default items-center gap-1 rounded-md px-1.5\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 217,
+    "attrs": "data-image-editor-footer-icon data-inert=\"true\" type=\"button\" title=\"高级设置在克隆侧尚未接入\" className=\"pointer-events-auto flex size-8 cursor-default items-center justify-center rounded-md text-[#7a7a7a]\" aria-label=\"高级设置\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 234,
+    "attrs": "data-image-editor-footer-icon data-inert=\"true\" type=\"button\" title=\"翻译在克隆侧尚未接入\" className=\"pointer-events-auto flex size-8 cursor-default items-center justify-center rounded-md text-[#7a7a7a]\" aria-label=\"翻译\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 236,
+    "attrs": "data-image-editor-footer-icon data-inert=\"true\" type=\"button\" title=\"撤销在克隆侧尚未接入\" className=\"pointer-events-auto flex size-8 cursor-default items-center justify-center rounded-md text-[#777]\" aria-label=\"撤销\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 281,
+    "attrs": "type=\"button\" data-inert=\"true\" title=\"全景编辑器暂不可展开\" className=\"pointer-events-auto absolute right-3 top-3 flex size-7 cursor-default items-center justify-center rounded-lg text-[#8b8b8b]\" aria-label=\"展开全景编辑器\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 293,
+    "attrs": "type=\"button\" data-panorama-add-reference data-inert=\"true\" title=\"全景参考图添加暂不可用\" className=\"pointer-events-auto flex h-[26px] cursor-default items-center gap-1 rounded-full bg-white/[0.06] px-2.5 text-xs text-[#a5a5a5]\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 330,
+    "attrs": "data-image-editor-model data-inert=\"true\" type=\"button\" title=\"全景模型选择暂不可用\" className=\"pointer-events-auto flex h-8 cursor-default items-center gap-1.5 rounded-md px-1.5\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 335,
+    "attrs": "data-image-editor-settings data-inert=\"true\" type=\"button\" title=\"全景生成参数暂不可用\" className=\"pointer-events-auto flex h-8 cursor-default items-center gap-1 rounded-md px-1.5\""
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 340,
+    "attrs": "data-image-editor-footer-icon data-inert=\"true\" type=\"button\" title=\"高级设置在克隆侧尚未接入\" className=\"pointer-events-auto flex size-8 cursor-default items-center justify-center rounded-md text-[#7a7a7a]\" aria-label=\"高级设置\""
+   },
+   {
+    "file": "src/components/LeftSidebar.tsx",
+    "line": 101,
+    "attrs": "key={label} type=\"button\" title={why} data-inert=\"true\" className={inert}"
+   },
+   {
+    "file": "src/components/LibraryShowcasePanel.tsx",
+    "line": 130,
+    "attrs": "type=\"button\" aria-label={`收藏 ${card.title}`} title=\"收藏在克隆侧尚未接入\" data-inert=\"true\" className=\"pointer-events-none absolute right-1.5 top-1.5 rounded-full bg-black/45 p-1 text-[#6f6f6f] opacity-0\""
+   },
+   {
+    "file": "src/components/LibraryShowcasePanel.tsx",
+    "line": 236,
+    "attrs": "type=\"button\" aria-label=\"筛选\" title=\"筛选在克隆侧尚未接入\" data-inert=\"true\" className=\"cursor-default rounded-lg p-2 text-[#6f6f6f]\""
+   },
+   {
+    "file": "src/components/SegmentReshootPanel.tsx",
+    "line": 138,
+    "attrs": "key={item.label} type=\"button\" data-inert=\"true\" title={`${item.label}在克隆侧尚未接入`} className=\"flex h-7 cursor-default items-center gap-1.5 rounded-full bg-white/[0.05] px-2.5 text-xs text-[#aaa]\""
+   },
+   {
+    "file": "src/components/SegmentReshootPanel.tsx",
+    "line": 230,
+    "attrs": "type=\"button\" data-inert=\"true\" title=\"积分选择暂不可用\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg px-2\""
+   },
+   {
+    "file": "src/components/SegmentReshootPanel.tsx",
+    "line": 236,
+    "attrs": "type=\"button\" data-inert=\"true\" title=\"生成参数选择暂不可用\" className=\"flex h-8 cursor-default items-center gap-1 rounded-lg px-2\""
+   },
+   {
+    "file": "src/components/SegmentReshootPanel.tsx",
+    "line": 257,
+    "attrs": "type=\"button\" data-inert=\"true\" title=\"提示词翻译暂不可用\" aria-label=\"翻译片段重拍提示词\" className=\"flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#aaa]\""
+   },
+   {
+    "file": "src/components/StoryboardScriptEditor.tsx",
+    "line": 178,
+    "attrs": "type=\"button\" data-storyboard-asset-add data-inert=\"true\" title=\"资产新增暂不可用\" aria-label={`新增${group}资产`} className=\"mt-2 flex h-[190px] w-[195px] cursor-default flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-white/[0.14] text-[#8c8c8c]\""
+   },
+   {
+    "file": "src/components/StoryboardScriptEditor.tsx",
+    "line": 229,
+    "attrs": "type=\"button\" data-storyboard-row-menu data-inert=\"true\" aria-label={`镜头${row.shot}操作`} title=\"行操作菜单暂不可用\" className=\"cursor-default rounded px-1.5 py-0.5 text-[#8c8c8c]\""
+   },
+   {
+    "file": "src/components/StoryboardScriptEditor.tsx",
+    "line": 296,
+    "attrs": "type=\"button\" data-storyboard-synthesize-all data-inert=\"true\" title=\"一键合成全部提示词（真实合成为付费 AI 动作，clone 不触发）\" className=\"flex cursor-default items-center gap-1.5 rounded-full bg-[#e8e8e8] px-4 py-2 text-sm text-[#1a1a1a]\""
+   },
+   {
+    "file": "src/components/ToolboxPanel.tsx",
+    "line": 61,
+    "attrs": "type=\"button\" title=\"模板说明在克隆侧尚未接入\" aria-label=\"工具箱模板说明\" data-inert=\"true\" className=\"flex size-6 cursor-default items-center justify-center text-[#5f5f5f]\""
+   },
+   {
+    "file": "src/components/ToolboxPanel.tsx",
+    "line": 64,
+    "attrs": "type=\"button\" title=\"模板选择在克隆侧尚未接入\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1 rounded-lg px-1.5 text-sm text-[#6f6f6f]\""
+   },
+   {
+    "file": "src/components/TopNavBar.tsx",
+    "line": 183,
+    "attrs": "type=\"button\" aria-label=\"开通会员 限时 45 折\" title=\"开通会员为付费操作，克隆侧不提供\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\""
+   },
+   {
+    "file": "src/components/TopNavBar.tsx",
+    "line": 200,
+    "attrs": "type=\"button\" aria-label=\"积分余额\" title=\"积分余额（读数，无可点操作）\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\""
+   },
+   {
+    "file": "src/components/VideoClipEditPanel.tsx",
+    "line": 71,
+    "attrs": "type=\"button\" data-video-clip-mode-setting data-inert=\"true\" title=\"剪辑模式设置在克隆侧尚未接入\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-md px-1.5\""
+   },
+   {
+    "file": "src/components/VideoClipEditPanel.tsx",
+    "line": 83,
+    "attrs": "type=\"button\" data-video-clip-output-setting data-inert=\"true\" title=\"输出设置在克隆侧尚未接入\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-md px-1.5\""
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 550,
+    "attrs": "type=\"button\" data-inert=\"true\" title=\"特效收藏暂不可用\" aria-label=\"收藏\" className=\"flex size-6 cursor-default items-center justify-center rounded-lg bg-black/65 text-white\""
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 597,
+    "attrs": "type=\"button\" data-mark-select-return data-inert=\"true\" title=\"返回节点暂不可用\" className=\"shrink-0 cursor-default rounded-lg bg-white/20 px-2.5 py-1 text-[11px] text-white\""
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 613,
+    "attrs": "type=\"button\" data-inert=\"true\" title=\"标记选择模式暂不支持关闭\" aria-label=\"关闭\" className=\"shrink-0 cursor-default text-white/80\""
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 811,
+    "attrs": "type=\"button\" data-footer-icon=\"doc-sparkle\" data-inert=\"true\" title=\"该功能在克隆侧尚未接入\" className=\"flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#7a7a7a]\""
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 821,
+    "attrs": "type=\"button\" aria-label=\"翻译视频提示词\" data-inert=\"true\" title=\"翻译在克隆侧尚未接入\" className=\"flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#7a7a7a]\""
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 831,
+    "attrs": "type=\"button\" data-footer-icon=\"settings2\" data-inert=\"true\" title=\"该设置在克隆侧尚未接入\" className=\"flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#7a7a7a]\""
+   },
+   {
+    "file": "src/components/VideoProcessingToolbar.tsx",
+    "line": 244,
+    "attrs": "type=\"button\" data-inert=\"true\" title=\"视频处理暂不支持撤销\" className=\"flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#777]\" aria-label=\"撤销视频处理\""
+   },
+   {
+    "file": "src/components/VideoProcessingToolbar.tsx",
+    "line": 245,
+    "attrs": "type=\"button\" data-inert=\"true\" title=\"视频处理暂不支持重做\" className=\"flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#777]\" aria-label=\"重做视频处理\""
+   },
+   {
+    "file": "src/components/nodes/AudioNode.tsx",
+    "line": 60,
+    "attrs": "type=\"button\" aria-label=\"播放音频\" data-inert=\"true\" title=\"音频播放在克隆侧尚未接入\" className=\"flex size-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white/70 text-[#202020]\""
+   },
+   {
+    "file": "src/components/nodes/ScriptGeneratorNode.tsx",
+    "line": 150,
+    "attrs": "type=\"button\" data-script-generator-reference data-inert=\"true\" title=\"参考图上传暂不可用\" className=\"mt-2 flex h-8 cursor-default items-center gap-2 rounded-lg border border-dashed border-white/[0.12] px-2 text-[11px] text-[#9a9a9a]\""
+   },
+   {
+    "file": "src/components/nodes/ShotBreakdownResultNode.tsx",
+    "line": 145,
+    "attrs": "type=\"button\" data-inert=\"true\" title=\"BGM 试听暂不可用\" aria-label=\"播放 BGM\" className=\"nodrag nopan flex size-6 cursor-default items-center justify-center rounded-full border border-white/15 bg-[#303030] text-white\""
+   },
+   {
+    "file": "src/components/nodes/VideoNode.tsx",
+    "line": 498,
+    "attrs": "type=\"button\" aria-label=\"播放视频\" data-inert=\"true\" title=\"播放功能暂不可用，请使用分镜板预览\" className=\"relative flex size-14 cursor-default items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-sm\""
+   }
+  ]
+ },
+ "run": {
+  "views": {
+   "canvas": {
+    "view": "canvas",
+    "mounted": [
+     {
+      "i": 0,
+      "ariaLabel": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "text": "开通会员限时 45 折",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 1,
+      "ariaLabel": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "text": "100",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     }
+    ],
+    "focus": [
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     }
+    ],
+    "click": [
+     {
+      "i": 0,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "keyEnter": [
+     {
+      "i": 0,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "keySpace": [
+     {
+      "i": 0,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "tab": {
+     "steps": 73,
+     "truncated": true,
+     "inertStops": 2,
+     "inertCounter": {
+      "开通会员 限时 45 折\u0001开通会员为付费操作，克隆侧不提供\u0001开通会员限时 45 折": 1,
+      "积分余额\u0001积分余额（读数，无可点操作）\u0001100": 1
+     }
+    },
+    "counts": {
+     "nodes": 10,
+     "edges": 11,
+     "sel": 0,
+     "overlays": [
+      "add-node"
+     ]
+    }
+   },
+   "toolbox": {
+    "view": "toolbox",
+    "mounted": [
+     {
+      "i": 0,
+      "ariaLabel": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "text": "开通会员限时 45 折",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 1,
+      "ariaLabel": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "text": "100",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 2,
+      "ariaLabel": "工具箱模板说明",
+      "title": "模板说明在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:toolbox"
+     },
+     {
+      "i": 3,
+      "ariaLabel": null,
+      "title": "模板选择在克隆侧尚未接入",
+      "text": "周星驰经典名场面",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:toolbox"
+     }
+    ],
+    "focus": [
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     }
+    ],
+    "click": [
+     {
+      "i": 0,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "keyEnter": [
+     {
+      "i": 0,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "keySpace": [
+     {
+      "i": 0,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "tab": {
+     "steps": 87,
+     "truncated": true,
+     "inertStops": 4,
+     "inertCounter": {
+      "开通会员 限时 45 折\u0001开通会员为付费操作，克隆侧不提供\u0001开通会员限时 45 折": 1,
+      "积分余额\u0001积分余额（读数，无可点操作）\u0001100": 1,
+      "工具箱模板说明\u0001模板说明在克隆侧尚未接入\u0001": 1,
+      "\u0001模板选择在克隆侧尚未接入\u0001周星驰经典名场面": 1
+     }
+    },
+    "counts": {
+     "nodes": 10,
+     "edges": 11,
+     "sel": 0,
+     "overlays": [
+      "primary:toolbox"
+     ]
+    }
+   },
+   "history": {
+    "view": "history",
+    "mounted": [
+     {
+      "i": 0,
+      "ariaLabel": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "text": "开通会员限时 45 折",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 1,
+      "ariaLabel": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "text": "100",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 2,
+      "ariaLabel": null,
+      "title": "时间排序在克隆侧尚未接入",
+      "text": "时间倒序",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:history"
+     },
+     {
+      "i": 3,
+      "ariaLabel": "查看",
+      "title": "查看在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:history"
+     },
+     {
+      "i": 4,
+      "ariaLabel": null,
+      "title": "使用在克隆侧尚未接入",
+      "text": "使用",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:history"
+     },
+     {
+      "i": 5,
+      "ariaLabel": "下载",
+      "title": "下载在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:history"
+     },
+     {
+      "i": 6,
+      "ariaLabel": "查看",
+      "title": "查看在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:history"
+     },
+     {
+      "i": 7,
+      "ariaLabel": null,
+      "title": "使用在克隆侧尚未接入",
+      "text": "使用",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:history"
+     },
+     {
+      "i": 8,
+      "ariaLabel": "下载",
+      "title": "下载在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:history"
+     },
+     {
+      "i": 9,
+      "ariaLabel": "查看",
+      "title": "查看在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:history"
+     },
+     {
+      "i": 10,
+      "ariaLabel": null,
+      "title": "使用在克隆侧尚未接入",
+      "text": "使用",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:history"
+     },
+     {
+      "i": 11,
+      "ariaLabel": "下载",
+      "title": "下载在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:history"
+     }
+    ],
+    "focus": [
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     }
+    ],
+    "click": [
+     {
+      "i": 0,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 5,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 6,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 7,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 8,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 9,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 10,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 11,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "keyEnter": [
+     {
+      "i": 0,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 5,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 6,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 7,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 8,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 9,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 10,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 11,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "keySpace": [
+     {
+      "i": 0,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 5,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 6,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 7,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 8,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 9,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 10,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 11,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "tab": {
+     "steps": 80,
+     "truncated": true,
+     "inertStops": 12,
+     "inertCounter": {
+      "开通会员 限时 45 折\u0001开通会员为付费操作，克隆侧不提供\u0001开通会员限时 45 折": 1,
+      "积分余额\u0001积分余额（读数，无可点操作）\u0001100": 1,
+      "\u0001时间排序在克隆侧尚未接入\u0001时间倒序": 1,
+      "查看\u0001查看在克隆侧尚未接入\u0001": 3,
+      "\u0001使用在克隆侧尚未接入\u0001使用": 3,
+      "下载\u0001下载在克隆侧尚未接入\u0001": 3
+     }
+    },
+    "counts": {
+     "nodes": 10,
+     "edges": 11,
+     "sel": 0,
+     "overlays": [
+      "primary:history"
+     ]
+    }
+   },
+   "tutorial": {
+    "view": "tutorial",
+    "mounted": [
+     {
+      "i": 0,
+      "ariaLabel": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "text": "开通会员限时 45 折",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 1,
+      "ariaLabel": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "text": "100",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 2,
+      "ariaLabel": null,
+      "title": "使用教程在克隆侧尚未接入",
+      "text": "使用教程",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:tutorial"
+     },
+     {
+      "i": 3,
+      "ariaLabel": null,
+      "title": "联系客服在克隆侧尚未接入",
+      "text": "联系客服",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:tutorial"
+     },
+     {
+      "i": 4,
+      "ariaLabel": null,
+      "title": "联系销售在克隆侧尚未接入",
+      "text": "联系销售",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:tutorial"
+     },
+     {
+      "i": 5,
+      "ariaLabel": null,
+      "title": "关注公众号在克隆侧尚未接入",
+      "text": "关注公众号",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "primary:tutorial"
+     }
+    ],
+    "focus": [
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     }
+    ],
+    "click": [
+     {
+      "i": 0,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 5,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "keyEnter": [
+     {
+      "i": 0,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 5,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "keySpace": [
+     {
+      "i": 0,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 5,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "tab": {
+     "steps": 63,
+     "truncated": true,
+     "inertStops": 6,
+     "inertCounter": {
+      "开通会员 限时 45 折\u0001开通会员为付费操作，克隆侧不提供\u0001开通会员限时 45 折": 1,
+      "积分余额\u0001积分余额（读数，无可点操作）\u0001100": 1,
+      "\u0001使用教程在克隆侧尚未接入\u0001使用教程": 1,
+      "\u0001联系客服在克隆侧尚未接入\u0001联系客服": 1,
+      "\u0001联系销售在克隆侧尚未接入\u0001联系销售": 1,
+      "\u0001关注公众号在克隆侧尚未接入\u0001关注公众号": 1
+     }
+    },
+    "counts": {
+     "nodes": 10,
+     "edges": 11,
+     "sel": 0,
+     "overlays": [
+      "primary:tutorial"
+     ]
+    }
+   },
+   "agent": {
+    "view": "agent",
+    "mounted": [
+     {
+      "i": 0,
+      "ariaLabel": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "text": "开通会员限时 45 折",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 1,
+      "ariaLabel": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "text": "100",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 2,
+      "ariaLabel": "历史对话",
+      "title": "历史对话在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "agent"
+     },
+     {
+      "i": 3,
+      "ariaLabel": "Agent 设置",
+      "title": "Agent 设置在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "agent"
+     },
+     {
+      "i": 4,
+      "ariaLabel": "CLI & Skill",
+      "title": "CLI & Skill 在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": "agent"
+     }
+    ],
+    "focus": [
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     }
+    ],
+    "click": [
+     {
+      "i": 0,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "keyEnter": [
+     {
+      "i": 0,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "keySpace": [
+     {
+      "i": 0,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "tab": {
+     "steps": 179,
+     "truncated": true,
+     "inertStops": 5,
+     "inertCounter": {
+      "开通会员 限时 45 折\u0001开通会员为付费操作，克隆侧不提供\u0001开通会员限时 45 折": 3,
+      "积分余额\u0001积分余额（读数，无可点操作）\u0001100": 2
+     }
+    },
+    "counts": {
+     "nodes": 10,
+     "edges": 11,
+     "sel": 0,
+     "overlays": [
+      "add-node"
+     ]
+    }
+   },
+   "image-card": {
+    "view": "image-card",
+    "mounted": [
+     {
+      "i": 0,
+      "ariaLabel": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "text": "开通会员限时 45 折",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 1,
+      "ariaLabel": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "text": "100",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 2,
+      "ariaLabel": "展开编辑器",
+      "title": "展开编辑器在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 3,
+      "ariaLabel": null,
+      "title": "标记在克隆侧尚未接入",
+      "text": "标记",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 4,
+      "ariaLabel": null,
+      "title": "风格在克隆侧尚未接入",
+      "text": "风格",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 5,
+      "ariaLabel": null,
+      "title": "生成参数在克隆侧尚未接入",
+      "text": "16:9 · 标准画质 · 2K · 1张",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 6,
+      "ariaLabel": "高级设置",
+      "title": "高级设置在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 7,
+      "ariaLabel": "翻译",
+      "title": "翻译在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 8,
+      "ariaLabel": "撤销",
+      "title": "撤销在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     }
+    ],
+    "focus": [
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     }
+    ],
+    "click": [
+     {
+      "i": 0,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 5,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 6,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 7,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 8,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "keyEnter": [
+     {
+      "i": 0,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 5,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 6,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 7,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 8,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "keySpace": [
+     {
+      "i": 0,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 5,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 6,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 7,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 8,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 30,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "tab": {
+     "steps": 93,
+     "truncated": true,
+     "inertStops": 9,
+     "inertCounter": {
+      "开通会员 限时 45 折\u0001开通会员为付费操作，克隆侧不提供\u0001开通会员限时 45 折": 1,
+      "积分余额\u0001积分余额（读数，无可点操作）\u0001100": 1,
+      "展开编辑器\u0001展开编辑器在克隆侧尚未接入\u0001": 1,
+      "\u0001标记在克隆侧尚未接入\u0001标记": 1,
+      "\u0001风格在克隆侧尚未接入\u0001风格": 1,
+      "\u0001生成参数在克隆侧尚未接入\u000116:9 · 标准画质 · 2K · 1张": 1,
+      "高级设置\u0001高级设置在克隆侧尚未接入\u0001": 1,
+      "翻译\u0001翻译在克隆侧尚未接入\u0001": 1,
+      "撤销\u0001撤销在克隆侧尚未接入\u0001": 1
+     }
+    },
+    "counts": {
+     "nodes": 10,
+     "edges": 11,
+     "sel": 1,
+     "overlays": [
+      "add-node"
+     ]
+    }
+   },
+   "video-card": {
+    "view": "video-card",
+    "mounted": [
+     {
+      "i": 0,
+      "ariaLabel": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "text": "开通会员限时 45 折",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 1,
+      "ariaLabel": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "text": "100",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 2,
+      "ariaLabel": null,
+      "title": "该功能在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 3,
+      "ariaLabel": "翻译视频提示词",
+      "title": "翻译在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     },
+     {
+      "i": 4,
+      "ariaLabel": null,
+      "title": "该设置在克隆侧尚未接入",
+      "text": "",
+      "tabIndexAttr": null,
+      "tabIndexProp": 0,
+      "disabledProp": false,
+      "ariaDisabled": null,
+      "cursor": "default",
+      "ownerOverlay": null
+     }
+    ],
+    "focus": [
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     },
+     {
+      "focusable": true,
+      "ringChanged": true
+     }
+    ],
+    "click": [
+     {
+      "i": 0,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": false,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "mut": 0,
+      "added": 0,
+      "removed": 0,
+      "selfAttrsChanged": false,
+      "focusedAfterClick": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "keyEnter": [
+     {
+      "i": 0,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "focusedBeforePress": true,
+      "key": "Enter",
+      "mut": 0,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "keySpace": [
+     {
+      "i": 0,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 48,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 1,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 48,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 2,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 48,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 3,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 48,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     },
+     {
+      "i": 4,
+      "focusedBeforePress": true,
+      "key": " ",
+      "mut": 48,
+      "selfAttrsChanged": false,
+      "paneMoved": false,
+      "scrollMoved": false,
+      "focusStayedOnTarget": true,
+      "nodesDelta": 0,
+      "edgesDelta": 0,
+      "selDelta": 0,
+      "ovlDelta": [],
+      "status": []
+     }
+    ],
+    "tab": {
+     "steps": 92,
+     "truncated": true,
+     "inertStops": 5,
+     "inertCounter": {
+      "开通会员 限时 45 折\u0001开通会员为付费操作，克隆侧不提供\u0001开通会员限时 45 折": 1,
+      "积分余额\u0001积分余额（读数，无可点操作）\u0001100": 1,
+      "\u0001该功能在克隆侧尚未接入\u0001": 1,
+      "翻译视频提示词\u0001翻译在克隆侧尚未接入\u0001": 1,
+      "\u0001该设置在克隆侧尚未接入\u0001": 1
+     }
+    },
+    "counts": {
+     "nodes": 10,
+     "edges": 11,
+     "sel": 1,
+     "overlays": [
+      "add-node"
+     ]
+    }
+   }
+  },
+  "tabKey": {
+   "firstPressMoved": false,
+   "focusBefore": [
+    "BODY",
+    "",
+    "画布 2开通会员限时 4"
+   ],
+   "focusAfter": [
+    "BODY",
+    "",
+    "画布 2开通会员限时 4"
+   ],
+   "panelBefore": false,
+   "panelAfter": true,
+   "srcLine": 1358,
+   "srcHasPreventDefault": true,
+   "srcHasToggle": true,
+   "srcWindow": "if (event.key === \"Tab\") {\n        event.preventDefault();\n        toggleAddNodePanel();\n      }",
+   "shortcutDialogLine": 27,
+   "shortcutDialogLabel": "新建节点"
+  },
+  "tabExcluded": {
+   "agent": {
+    "reason": "未取证，本批只记录不判。两组读数互相矛盾：(a) 隔离复现（只开抽屉、不做任何点击/按键、200 步）三次都读不到抽屉那三枚 header 按钮；正向 Tab 说其后直接绕回、反向 Tab 说其前是「移动」，互不相容。(b) 本验收器自己的 walk 停到 5 次，但重数是 {开通会员:3, 积分余额:2} —— 抽屉那三枚仍然一次没被命中；**总数恰好 5==5 恰好等于挂载数 5**，只有比多重集才发现不对。浏览器自己的可聚焦元素集合里它们是在的（tabIndex=0、未禁用、offsetParent=ASIDE、display:flex），故不是渲染或禁用的问题；成因未取证。另有一版探针因假定抽屉已打开而拿到空列表（querySelectorAll('button[data-inert]') 只返回 2 枚、focus() 静默失败），那次读数整个作废。",
+    "mounted": 5,
+    "observedStops": 5,
+    "observedCounter": {
+     "开通会员 限时 45 折\u0001开通会员为付费操作，克隆侧不提供\u0001开通会员限时 45 折": 3,
+     "积分余额\u0001积分余额（读数，无可点操作）\u0001100": 2
+    }
+   }
+  }
+ },
+ "focusTotals": {
+  "total": 43,
+  "focusable": 43,
+  "perView": {
+   "canvas": [
+    2,
+    2
+   ],
+   "toolbox": [
+    4,
+    4
+   ],
+   "history": [
+    12,
+    12
+   ],
+   "tutorial": [
+    6,
+    6
+   ],
+   "agent": [
+    5,
+    5
+   ],
+   "image-card": [
+    9,
+    9
+   ],
+   "video-card": [
+    5,
+    5
+   ]
+  }
+ },
+ "ringTotals": {
+  "total": 43,
+  "ringChanged": 43
+ },
+ "clickTotals": {
+  "actions": 43,
+  "focusedAfterClick": 7,
+  "mutationsObserved": 0
+ },
+ "keyEnterTotals": {
+  "actions": 43,
+  "paneMoved": 0,
+  "scrollMoved": 0,
+  "focusStayedOnTarget": 43,
+  "mutationsObserved": 0
+ },
+ "keySpaceTotals": {
+  "actions": 43,
+  "paneMoved": 0,
+  "scrollMoved": 0,
+  "focusStayedOnTarget": 43,
+  "mutationsObserved": 720
+ },
+ "siteVsInstance": {
+  "LeftSidebar": [
+   1,
+   4
+  ],
+  "HistoryPanel": [
+   4,
+   10
+  ]
+ },
+ "tabTotals": {
+  "canvas": {
+   "mounted": 2,
+   "stops": 2,
+   "truncated": true,
+   "steps": 73
+  },
+  "toolbox": {
+   "mounted": 4,
+   "stops": 4,
+   "truncated": true,
+   "steps": 87
+  },
+  "history": {
+   "mounted": 12,
+   "stops": 12,
+   "truncated": true,
+   "steps": 80
+  },
+  "tutorial": {
+   "mounted": 6,
+   "stops": 6,
+   "truncated": true,
+   "steps": 63
+  },
+  "agent": {
+   "reason": "未取证，本批只记录不判。两组读数互相矛盾：(a) 隔离复现（只开抽屉、不做任何点击/按键、200 步）三次都读不到抽屉那三枚 header 按钮；正向 Tab 说其后直接绕回、反向 Tab 说其前是「移动」，互不相容。(b) 本验收器自己的 walk 停到 5 次，但重数是 {开通会员:3, 积分余额:2} —— 抽屉那三枚仍然一次没被命中；**总数恰好 5==5 恰好等于挂载数 5**，只有比多重集才发现不对。浏览器自己的可聚焦元素集合里它们是在的（tabIndex=0、未禁用、offsetParent=ASIDE、display:flex），故不是渲染或禁用的问题；成因未取证。另有一版探针因假定抽屉已打开而拿到空列表（querySelectorAll('button[data-inert]') 只返回 2 枚、focus() 静默失败），那次读数整个作废。",
+   "mounted": 5,
+   "observedStops": 5,
+   "observedCounter": {
+    "开通会员 限时 45 折\u0001开通会员为付费操作，克隆侧不提供\u0001开通会员限时 45 折": 3,
+    "积分余额\u0001积分余额（读数，无可点操作）\u0001100": 2
+   },
+   "excluded": true
+  },
+  "image-card": {
+   "mounted": 9,
+   "stops": 9,
+   "truncated": true,
+   "steps": 93
+  },
+  "video-card": {
+   "mounted": 5,
+   "stops": 5,
+   "truncated": true,
+   "steps": 92
+  }
+ },
+ "tabKeySummary": {
+  "firstPressMoved": false,
+  "focusAfter": [
+   "BODY",
+   "",
+   "画布 2开通会员限时 4"
+  ],
+  "focusBefore": [
+   "BODY",
+   "",
+   "画布 2开通会员限时 4"
+  ],
+  "panelAfter": true,
+  "panelBefore": false,
+  "shortcutDialogLabel": "新建节点",
+  "shortcutDialogLine": 27,
+  "srcHasPreventDefault": true,
+  "srcHasToggle": true,
+  "srcLine": 1358,
+  "srcWindow": "if (event.key === \"Tab\") {\n        event.preventDefault();\n        toggleAddNodePanel();\n      }"
+ },
+ "summary": {
+  "data-inert-is-written-46-times-across-16-files": true,
+  "all-46-carrying-tags-are-buttons-and-729s-45-was-a-scanner-artifact": true,
+  "data-inert-never-pairs-with-any-focus-blocking-attribute": true,
+  "every-mounted-instance-is-programmatically-focusable": true,
+  "every-mounted-instance-grows-a-focus-ring-when-focused": true,
+  "clicking-them-changes-nothing-at-all": true,
+  "keyboard-activating-them-changes-nothing-at-all": true,
+  "jsx-sites-are-not-controls-two-map-sites-multiply-them": true,
+  "every-mounted-instance-is-reachable-by-tab": true,
+  "tab-is-hijacked-by-the-canvas-into-a-new-node-shortcut": true
+ },
+ "failures": []
+}
