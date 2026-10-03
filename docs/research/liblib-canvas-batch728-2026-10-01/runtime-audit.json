@@ -1,0 +1,357 @@
+{
+ "run": {
+  "static": {
+   "v2Handles": [
+    "<Handle type=\"target\" position={Position.Left} isConnectable />",
+    "<Handle type=\"source\" position={Position.Right} isConnectable />"
+   ],
+   "textHandles": [
+    "<Handle type=\"target\" position={Position.Left} id=\"target\" isConnectable />",
+    "<Handle type=\"source\" position={Position.Right} id=\"source\" isConnectable />"
+   ],
+   "requiresNamedHandle": true
+  },
+  "nodes0": [
+   {
+    "id": "g-245IDFh8sB",
+    "type": "storyboard-group"
+   },
+   {
+    "id": "g-EFbbHpwq5w",
+    "type": "storyboard-group"
+   },
+   {
+    "id": "t-9j2MoccxBj",
+    "type": "script"
+   },
+   {
+    "id": "i-1FQ9tErTcC",
+    "type": "image"
+   },
+   {
+    "id": "i-lBzmo67AHv",
+    "type": "image"
+   },
+   {
+    "id": "i-dnwoZQ7jsG",
+    "type": "image"
+   },
+   {
+    "id": "i-vxeeCnxySa",
+    "type": "image"
+   },
+   {
+    "id": "b-bTLLuU4w5q",
+    "type": "script-execution"
+   },
+   {
+    "id": "i-YDfWhFlthe",
+    "type": "image"
+   },
+   {
+    "id": "v-UGQZzZOpbv",
+    "type": "video"
+   }
+  ],
+  "edges0": [
+   {
+    "id": "e-8IgMkf6Vbj",
+    "source": "i-1FQ9tErTcC",
+    "target": "b-bTLLuU4w5q"
+   },
+   {
+    "id": "e-abKze5c8Ug",
+    "source": "i-1FQ9tErTcC",
+    "target": "i-YDfWhFlthe"
+   },
+   {
+    "id": "e-AQmdIgKtl2",
+    "source": "b-bTLLuU4w5q",
+    "target": "g-245IDFh8sB"
+   },
+   {
+    "id": "e-m2wWA2wIBA",
+    "source": "i-dnwoZQ7jsG",
+    "target": "b-bTLLuU4w5q"
+   },
+   {
+    "id": "e-nlMX3rEjwN",
+    "source": "i-vxeeCnxySa",
+    "target": "b-bTLLuU4w5q"
+   },
+   {
+    "id": "e-OwhsBRzrTz",
+    "source": "i-1FQ9tErTcC",
+    "target": "v-UGQZzZOpbv"
+   },
+   {
+    "id": "e-QzX895ot0u",
+    "source": "i-lBzmo67AHv",
+    "target": "b-bTLLuU4w5q"
+   },
+   {
+    "id": "e-VQACH36eJC",
+    "source": "i-dnwoZQ7jsG",
+    "target": "v-UGQZzZOpbv"
+   },
+   {
+    "id": "e-XmiJkHfFAL",
+    "source": "i-YDfWhFlthe",
+    "target": "v-UGQZzZOpbv"
+   },
+   {
+    "id": "e-xNVTHNFZZl",
+    "source": "i-dnwoZQ7jsG",
+    "target": "i-YDfWhFlthe"
+   },
+   {
+    "id": "e-yEqrTOR2Ya",
+    "source": "b-bTLLuU4w5q",
+    "target": "g-EFbbHpwq5w"
+   }
+  ],
+  "marqueePlan": {
+   "sx": 38,
+   "sy": 89,
+   "ex": 1243,
+   "ey": 1030,
+   "startIsPane": true
+  },
+  "selection": {
+   "canvasId": "canvas-2",
+   "nodeIds": [
+    "t-9j2MoccxBj",
+    "i-1FQ9tErTcC",
+    "b-bTLLuU4w5q",
+    "i-YDfWhFlthe",
+    "i-lBzmo67AHv",
+    "g-245IDFh8sB",
+    "i-dnwoZQ7jsG",
+    "g-EFbbHpwq5w",
+    "v-UGQZzZOpbv",
+    "i-vxeeCnxySa"
+   ],
+   "edgeIds": [
+    "e-8IgMkf6Vbj",
+    "e-abKze5c8Ug",
+    "e-OwhsBRzrTz",
+    "e-AQmdIgKtl2",
+    "e-m2wWA2wIBA",
+    "e-nlMX3rEjwN",
+    "e-QzX895ot0u",
+    "e-yEqrTOR2Ya",
+    "e-XmiJkHfFAL",
+    "e-xNVTHNFZZl",
+    "e-VQACH36eJC"
+   ],
+   "kind": "mixed",
+   "primary": {
+    "kind": "node",
+    "id": "i-vxeeCnxySa"
+   }
+  },
+  "nodesAfterDelete": [],
+  "edgesAfterDelete": [],
+  "emptyState": {
+   "chipCount": 4,
+   "emptyVisible": true,
+   "hostText": "故事脚本生成角色三视图全能参考生视频SD 2.5音频生视频SD 2.5"
+  },
+  "chips": [
+   {
+    "id": "story-script",
+    "text": "故事脚本生成"
+   },
+   {
+    "id": "character-turnaround",
+    "text": "角色三视图"
+   },
+   {
+    "id": "reference-to-video",
+    "text": "全能参考生视频SD 2.5"
+   },
+   {
+    "id": "audio-to-video",
+    "text": "音频生视频SD 2.5"
+   }
+  ],
+  "chipClicked": true,
+  "nodesAfterChip": [
+   {
+    "id": "text-1791043547428-s2q80o",
+    "type": "text"
+   },
+   {
+    "id": "script-v2-1791043547428-hjwg20",
+    "type": "script-v2"
+   }
+  ],
+  "edgesAfterChip": [],
+  "v2Id": "script-v2-1791043547428-hjwg20",
+  "textId": "text-1791043547428-s2q80o",
+  "v2Handles": [
+   {
+    "id": "script-v2-1791043547428-hjwg20",
+    "nHandles": 2,
+    "handles": [
+     {
+      "handleId": null,
+      "w": 9.81
+     },
+     {
+      "handleId": null,
+      "w": 9.81
+     }
+    ]
+   }
+  ],
+  "dragFromV2": {
+   "plan": [
+    "script-v2-1791043547428-hjwg20",
+    "right",
+    "text-1791043547428-s2q80o",
+    "left"
+   ],
+   "atTarget": [
+    {
+     "nodeId": "text-1791043547428-s2q80o",
+     "id": "target",
+     "extra": [
+      "connectingto"
+     ],
+     "bg": "rgb(9, 202, 245)"
+    },
+    {
+     "nodeId": "script-v2-1791043547428-hjwg20",
+     "id": null,
+     "extra": [
+      "connectingfrom"
+     ],
+     "bg": "rgb(26, 25, 43)"
+    }
+   ],
+   "newEdges": []
+  },
+  "dragTextToV2": {
+   "plan": [
+    "text-1791043547428-s2q80o",
+    "right",
+    "script-v2-1791043547428-hjwg20",
+    "left"
+   ],
+   "atTarget": [],
+   "newEdges": []
+  },
+  "edgesFinal": [],
+  "nodesAfterReload": [
+   {
+    "id": "g-245IDFh8sB",
+    "type": "storyboard-group"
+   },
+   {
+    "id": "g-EFbbHpwq5w",
+    "type": "storyboard-group"
+   },
+   {
+    "id": "t-9j2MoccxBj",
+    "type": "script"
+   },
+   {
+    "id": "i-1FQ9tErTcC",
+    "type": "image"
+   },
+   {
+    "id": "i-lBzmo67AHv",
+    "type": "image"
+   },
+   {
+    "id": "i-dnwoZQ7jsG",
+    "type": "image"
+   },
+   {
+    "id": "i-vxeeCnxySa",
+    "type": "image"
+   },
+   {
+    "id": "b-bTLLuU4w5q",
+    "type": "script-execution"
+   },
+   {
+    "id": "i-YDfWhFlthe",
+    "type": "image"
+   },
+   {
+    "id": "v-UGQZzZOpbv",
+    "type": "video"
+   }
+  ],
+  "edgesAfterReload": [
+   {
+    "id": "e-8IgMkf6Vbj",
+    "source": "i-1FQ9tErTcC",
+    "target": "b-bTLLuU4w5q"
+   },
+   {
+    "id": "e-abKze5c8Ug",
+    "source": "i-1FQ9tErTcC",
+    "target": "i-YDfWhFlthe"
+   },
+   {
+    "id": "e-AQmdIgKtl2",
+    "source": "b-bTLLuU4w5q",
+    "target": "g-245IDFh8sB"
+   },
+   {
+    "id": "e-m2wWA2wIBA",
+    "source": "i-dnwoZQ7jsG",
+    "target": "b-bTLLuU4w5q"
+   },
+   {
+    "id": "e-nlMX3rEjwN",
+    "source": "i-vxeeCnxySa",
+    "target": "b-bTLLuU4w5q"
+   },
+   {
+    "id": "e-OwhsBRzrTz",
+    "source": "i-1FQ9tErTcC",
+    "target": "v-UGQZzZOpbv"
+   },
+   {
+    "id": "e-QzX895ot0u",
+    "source": "i-lBzmo67AHv",
+    "target": "b-bTLLuU4w5q"
+   },
+   {
+    "id": "e-VQACH36eJC",
+    "source": "i-dnwoZQ7jsG",
+    "target": "v-UGQZzZOpbv"
+   },
+   {
+    "id": "e-XmiJkHfFAL",
+    "source": "i-YDfWhFlthe",
+    "target": "v-UGQZzZOpbv"
+   },
+   {
+    "id": "e-xNVTHNFZZl",
+    "source": "i-dnwoZQ7jsG",
+    "target": "i-YDfWhFlthe"
+   },
+   {
+    "id": "e-yEqrTOR2Ya",
+    "source": "b-bTLLuU4w5q",
+    "target": "g-EFbbHpwq5w"
+   }
+  ],
+  "reverseMarksEmpty": true
+ },
+ "summary": {
+  "shift-marquee-then-delete-empties-the-canvas": true,
+  "the-empty-canvas-offers-four-chips": true,
+  "story-script-creates-a-text-plus-script-v2-pair-with-no-edge-between": true,
+  "both-script-v2-handles-are-null-at-runtime": true,
+  "dragging-from-script-v2-registers-but-is-never-valid": true,
+  "the-reverse-attempt-recorded-as-unmeasured-not-as-a-conclusion": true,
+  "the-destruction-is-reversible-by-reload": true
+ },
+ "failures": []
+}
