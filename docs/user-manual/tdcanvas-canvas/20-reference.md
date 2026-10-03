@@ -365,7 +365,7 @@ TDCanvas 一共 7 条路由，其中两条**在浏览器里是"走不到底"的*
 
 ![英文界面的 API 配置页，标题为 API settings，字段标签为 Service credential，第一步按钮为 Join AI Tudou · Get API key，底部为 Verify & check balance 与 Save](screenshots/20-config-en.png)
 
-### 切换后文案与布局一致（实测 6 条路由）
+### 切换后文案与布局一致（实测 7 条路由）
 
 2026-10-01 把界面切到英文后，逐条路由扫描残留中文（**M95 已补测到 7 条**，此前只扫了 6 条）：
 
@@ -381,6 +381,8 @@ TDCanvas 一共 7 条路由，其中两条**在浏览器里是"走不到底"的*
 > **2026-10-01 M95 复测与订正**：本表此前只扫了 **6 条路由**，结论是"全部只剩 4 个字「简体中文」"。**补测第 7 条 `/canvas/:id` 后该结论不成立**——画布页的节点端口悬停提示照样是中文。**这不是翻译漏了词条，是端口提示压根没走 i18n**：`components/canvas/canvas-node.tsx:1111` 的 title 取值是「port.description，为空时用 port.label 拼上 port.dataType」，`port.label` 直接取端口定义里的中文字面量，`en-US.ts` 里**搜不到「输入」「输出」两个词**。所以**只有画布页有这个问题**，其余 6 条确实干净。顺带说明：先前的"4 个字"是把 `aria-label` 也算进去的结果，**可见文字其实是 0**。
 >
 > **顺带否证一条**：英文下的 Agent 面板 7 个图标按钮的 `aria-label` **全部已本地化**（Chat / History / Skills / Logs / New chat / Collapse Agent panel / Connection settings），没有漏译。
+>
+> **2026-10-04 M199 复测（v0.14.0）：结论仍成立，但那一列字面量有一处不准。** 切到英文后逐个读面板容器内的 `aria-label`，**7 个、顺序一致、7 个全是纯图标、中文残留 0 个**——**「没有漏译」这句话站得住**。但手册把其中一个写成 `Connection settings` 属于**截断**：它实际是 **`Connection settings. Current status: Disconnected`**，**尾巴上带着当前连接状态**（中文对应「**连接设置，当前未连接**」），连上之后会变。**所以别拿这一条去做「读屏名逐字比对」的比对项**——它是七个里唯一会变的那个。
 
 英文下的 Agent 面板是检验"长文案会不会撑破布局"的好样本——它的说明段落是全站最长的英文，实测正常换行、无截断：
 

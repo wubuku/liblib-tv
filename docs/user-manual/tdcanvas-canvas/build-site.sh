@@ -204,6 +204,17 @@ pagecov_out="$(python3 scripts/check-page-coverage.py . 2>&1)" || fail "页面�
 $pagecov_out"
 echo "$pagecov_out" | sed 's/^/  /'
 
+# 可数断言台账一致性（第二十二道门禁，M199 新增）：手册把同一个数字在好几个页面
+# 重述——「图片节点 13 个按钮」这一条事实在四个页面各出现一次，21 条事实合起来
+# 占了 52 处。**数字一多，改一处就一定会漏另一处，而漏掉的那处不会报错。**
+# 本门禁守住 SOURCE_OBSERVATIONS.md 13.1 的台账：重述位置是**逐字短语**，
+# 页面上的数字必须和台账里的实测值对得上。
+# ★ **它不保证穷尽正文里所有可数断言**——M199 试过做覆盖率门据，两个设计都被否了
+#   （判据做不出「窄到能全对」），边界写在 SOURCE_OBSERVATIONS.md 的 13.0。
+FACTLEDGER_OUT="$(python3 scripts/check-fact-ledger.py . 2>&1)" || fail "可数断言台账校验未通过（台账与正文对不上）：
+$FACTLEDGER_OUT"
+echo "$FACTLEDGER_OUT" | sed 's/^/  /'
+
 # 源码引用：手册里每处 `文件.ts:行号` 必须指向应用仓里真实存在的那一行。
 # 2026-10-02 M109 新增。账本锁定门禁只在应用仓 HEAD 变化时报错，可一旦有人把
 # 账本 sha 一起更新到新提交，那道门禁重新变绿，正文里那几十处行号却可能早已

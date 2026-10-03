@@ -1014,8 +1014,17 @@ def mutate_publish_gate_count_drift(root: Path) -> None:
 
     path = root / "PUBLISH.md"
     text = path.read_text(encoding="utf-8")
-    patched = text.replace("二十一道门禁", "十六道门禁", 1)
-    assert patched != text, "注入失败：没找到「二十一道门禁」"
+    # ★ **锚点现算，不写死。** M199 把门禁数从二十一道加到二十二道之后，
+    #   这个用例的 `replace("二十一道门禁", …)` 立刻变成空操作、自检报「注入无效」——
+    #   **和 M193 撞的是同一个坑**：写死的锚点会随被测对象一起长大，然后静默失效。
+    #   现在从标题里读出当前数字再改写，以后每加一道门禁都不用回来动这里。
+    import re
+
+    m = re.search(r"### 构建时的门禁：([零一二三四五六七八九十]+)道", text)
+    assert m, "注入失败：PUBLISH.md 里找不到门禁数量标题"
+    current = m.group(1)
+    patched = text.replace(f"{current}道门禁", "十六道门禁", 1)
+    assert patched != text, f"注入失败：正文里没找到「{current}道门禁」"
     path.write_text(patched, encoding="utf-8")
 
 
@@ -1355,26 +1364,42 @@ def mutate_table_internal_backlog_grows(root: Path) -> None:
     一次性清完不现实——所以给它们设了**基线**。
     但基线的意义是「不许再长」：**新增一处必须当场报错**，
     否则「已知不管」就会变成「谁都往里加」。
-    """
 
-    # 基线是 0（M185 已把四份账本的欠账清零），所以**没法再往下调基线来制造越线**——
-    # 正确做法是**真的制造一处新增欠账**：把两行拼成一行追加到 AUDIT.md 末尾，
-    # 0 → 1 越过基线，门禁必须报「不许增长」。
-    # （早先那版是靠把基线从 48 改成 1 越线，等基线归零后注入就找不到目标、直接崩在 assert 上——
-    #   **注入用例必须随被测系统的真实状态更新**，钉死一个会变字面量的做法迟早自己失效。）
-    import re
+    ★★ **这一例栽过两次，两次都是同一个病：注入依赖了会变的字面量。**
+
+    第一次（M185 之后）：基线从 48 清到 0，注入还在靠「把基线改成 1」越线，
+    目标没了、assert 直接崩。改成**真的制造一处新增欠账**。
+
+    第二次（M199）：第一版是「复制 AUDIT.md 最后一条合法表格行、在末尾再接一格」。
+    当时那行有 **4 个格子**（表头也是 4），接一格变成 5 > 4，越线成功。
+    **M199 给 AUDIT 追加的 8 行是 3 格的**（这批内部页的既有常态就是少格），
+    于是「最后一行」变成 3 格、接一格是 4 格，**刚好等于表头、不算欠账**，用例当场漏网。
+    **「最后一行」是个移动靶。** 现在改成**先回溯找到那张表的表头、按表头格子数 +1 现造一行**，
+    无论末尾那行有几格都成立。
+    """
 
     path = root / "AUDIT.md"
     text = path.read_text(encoding="utf-8")
     lines = text.rstrip("\n").split("\n")
-    # 找最后一条合法表格行，复制它并在末尾再接一格
+    # 找最后一条合法表格行
     last = None
     for i, line in enumerate(lines):
         t = line.rstrip()
         if t.startswith("| ") and t.endswith(" |"):
             last = i
     assert last is not None, "注入失败：AUDIT.md 里没有合法表格行"
-    lines.insert(last + 1, lines[last].rstrip() + " 多出来的一格 |")
+    # ★ 回溯到它所属那张表的表头，按**表头**的格子数 +1 现造一行——
+    #   末尾那行有几格与「制造一处超出的欠账」无关，依赖它就是依赖移动靶。
+    sep = None
+    for j in range(last, -1, -1):
+        if lines[j].lstrip().startswith("|---"):
+            sep = j
+            break
+    assert sep is not None and sep > 0, "注入失败：没找到这张表的分隔行与表头"
+    header_cells = lines[sep - 1].count("|") - 1
+    assert header_cells >= 1, "注入失败：表头格子数算不出来"
+    injected = "| " + " | ".join(["注入"] * (header_cells + 1)) + " |"
+    lines.insert(last + 1, injected)
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -1518,6 +1543,152 @@ def mutate_retracted_ledger_repro(root: Path) -> None:
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def mutate_ledger_phrase_rewritten(root: Path) -> None:
+    """台账里的重述位置短语被改写（= 有人改了正文却没同步台账）时必须拦下。
+
+    这是 M199 立这道闸的全部理由：同一句断言散在 52 处，改一处漏一处时
+    **没有任何东西会报错**——图还是对的，链接还是通的，只有那句话悄悄变成了错的。
+    """
+
+    path = root / "SOURCE_OBSERVATIONS.md"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace("`10-tasks/edit-nodes.md`「13 个按钮立刻齐了」",
+                           "`10-tasks/edit-nodes.md`「13 个按钮立刻就齐了」", 1)
+    assert patched != text, "注入失败：没找到 F01 的重述位置短语"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_ledger_number_drift(root: Path) -> None:
+    """正文上的数字被改了、台账里的实测值没跟着改时必须拦下。
+
+    ★★ **这一例写了两遍才对，记下来免得下一个人再栽一遍。**
+
+    第一版只改 `20-reference.md` 长度速查表里组节点那一行的 `**2**` → `**3**`，
+    门禁放行。查下来是：**F05 的第二处重述位置在 `edit-nodes.md` 的对照句上，
+    那一行本来就有「长度从 2 到 13」「（2 / 4 / 5 / 6 / 8 / 13」这些顺带出现的 2**，
+    于是「至少一处所在行含实测值 2」照样成立。**只改一行，会被另一行救回来。**
+
+    第二版把 F05 两处重述位置所在行里的 2 全部换掉。顺带确认过这不会误伤：
+    F02（值 2/4/5/6/8/13）在同一行仍读到 6 与 4/5/8/13，判据照常成立。
+
+    **结论**：这条判据的实际作用面比预想的窄——**只有当某条事实的每一处重述
+    所在行都不含它的值时，它才真正起作用**。这不是缺陷，是「逐字短语」判据
+    的固有性质，写在这里以免有人以为它能覆盖所有数字漂移。
+    """
+
+    ref = root / "20-reference.md"
+    text = ref.read_text(encoding="utf-8")
+    patched = text.replace("| 组 | **2** | 只剩", "| 组 | **3** | 只剩", 1)
+    assert patched != text, "注入失败：没找到长度速查表里组节点那一行"
+    ref.write_text(patched, encoding="utf-8")
+
+    edit = root / "10-tasks/edit-nodes.md"
+    text = edit.read_text(encoding="utf-8")
+    old = "长度从 2 到 13 **共 6 种**（2 / 4 / 5 / 6 / 8 / 13"
+    new = "长度从 3 到 13 **共 6 种**（3 / 4 / 5 / 6 / 8 / 13"
+    patched = text.replace(old, new, 1)
+    assert patched != text, "注入失败：没找到 F05 的第二处重述位置那一行"
+    edit.write_text(patched, encoding="utf-8")
+
+
+def mutate_ledger_count_drift(root: Path) -> None:
+    """表体上方声明的条数与表体行数不一致时必须拦下（M106 门禁表的教训同族）。"""
+
+    import re
+
+    path = root / "SOURCE_OBSERVATIONS.md"
+    text = path.read_text(encoding="utf-8")
+    patched = re.sub(r"本表共 \*\*\d+ 条事实", "本表共 **20 条事实", text, count=1)
+    assert patched != text, "注入失败：没找到条数声明"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_ledger_duplicate_id(root: Path) -> None:
+    """台账里出现重复的事实 ID 时必须拦下——重复 ID 意味着两处声称同一件事。"""
+
+    path = root / "SOURCE_OBSERVATIONS.md"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace("\n| F02 |", "\n| F01 |", 1)
+    assert patched != text, "注入失败：没找到 F02 那一行"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_ledger_evidence_placeholder(root: Path) -> None:
+    """依据被写成占位词时必须拦下。
+
+    M196 立的规矩：**只给数字不给方法的断言，读者只能选择相信或不相信。**
+    「依据」这一列就是方法的落点，把它清空等于把那条断言退回不可复核的状态。
+
+    ★ **整格替换，不是替换其中一段。** 第一版只把依据末尾的探针名换成「待补」，
+      那一格仍然是「运行时实测 M136 / M137 / M194；待补」——**有据可查的批次还在**，
+      门禁放行是对的。**判据没坏，是注入没注入到位**（M193 的老教训换了个马甲）。
+    """
+
+    path = root / "SOURCE_OBSERVATIONS.md"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace(
+        "运行时实测 M136 / M137 / M194；`scripts/probe-node-toolbars.js` 逐项读可见文字",
+        "待补", 1)
+    assert patched != text, "注入失败：没找到 F01 的依据整格"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_ledger_points_to_progress(root: Path) -> None:
+    """重述位置指向内部账本而不是对外发布页时必须拦下。
+
+    本表索引的是**读者能查到的出处**。指到 `PROGRESS.md` 等于把
+    「我在内部账本里写过」当成「读者查得到」——那解决不了它要解决的问题。
+    """
+
+    path = root / "SOURCE_OBSERVATIONS.md"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace("`10-tasks/use-agent.md`「从左到右共 7 个」",
+                           "`PROGRESS.md`「从左到右共 7 个」", 1)
+    assert patched != text, "注入失败：没找到 F15 的重述位置"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_ledger_pipe_in_phrase(root: Path) -> None:
+    """重述位置短语里带了字面竖线时必须被指名报错，而不是安静地少一行。
+
+    表格单元格不能出现 `|`，这是全手册的硬约束；抄进台账的短语若带了竖线，
+    那一行会被拆成两列，**少算一条事实却一声不吭**。
+    """
+
+    path = root / "SOURCE_OBSERVATIONS.md"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace("`10-tasks/use-agent.md`「从左到右共 7 个」",
+                           "`10-tasks/use-agent.md`「从左到右共 7 个 | 面板顶端」", 1)
+    assert patched != text, "注入失败：没找到 F15 的重述位置"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_ledger_rich_phrase_ok(root: Path) -> None:
+    """反向对照：短语里带加粗、箭头、反引号、全角括号，**不该**被误报（不误报）。
+
+    判据用的是**逐字子串**，不是分词也不是正则 token。
+    这条用例守的是「别把它改窄」：手册正文大量使用 `**加粗**`、`→`、反引号，
+    一旦有人把匹配收紧成「纯文字」，**正确的台账会全线变红**——
+    那是把真信号淹掉，比漏网更坏（M195）。
+
+    ★ 两处替换都取**原文中确实存在的连续片段**，不是自己拼的。
+      第一版把 F09 的短语接到了「→ Cmd+A」后面，而原文的 `**` 是在「也是 9 个」
+      之后才闭合的——拼出来的短语根本不存在，门禁当然报错。**注入必须先确认锚点。**
+    """
+
+    path = root / "SOURCE_OBSERVATIONS.md"
+    text = path.read_text(encoding="utf-8")
+    a_old = "`10-tasks/create-canvas-project.md`「未选中 8 个 → 单选 9 个 → Shift 真多选仍是 9 个」"
+    a_new = ("`10-tasks/create-canvas-project.md`「**未选中 8 个 → 单选 9 个 → "
+             "Shift 真多选仍是 9 个 → Cmd+A 全选 3 个也是 9 个**」")
+    b_old = "`10-tasks/shortcuts-help.md`「缩放条那 4 个按钮的 `visibility` / `opacity` 一律不变」"
+    b_new = ("`10-tasks/shortcuts-help.md`「缩放条那 4 个按钮的 `visibility` / `opacity` "
+             "一律不变（仍可见），但逐个用 `elementFromPoint` 打点」")
+    patched = text.replace(a_old, a_new, 1).replace(b_old, b_new, 1)
+    assert patched != text and a_new in patched and b_new in patched, "注入失败：没找到 F08 / F09 的重述位置"
+    path.write_text(patched, encoding="utf-8")
+
+
 CASES: list[tuple[str, object, str, str]] = [
     ("图片字节被改动", mutate_image_bytes, "gate", "sha256 mismatch"),
     ("manifest 删掉一条记录", mutate_manifest_drop_record, "gate", "image missing from manifest"),
@@ -1591,6 +1762,14 @@ CASES: list[tuple[str, object, str, str]] = [
     ("出口行挂在正确条目下不该被误报（不判该不该有）", mutate_ownership_ok, "ownership", EXPECT_PASS),
     ("门禁静默放行：ledger-pin 退回 M150 行为", mutate_gate_silence_reintroduced, "gatesilence", "仍 exit=0"),
     ("门禁静默放行：inventory-evidence 退回 M150 行为", mutate_gate_silence_ledger_evid_reintroduced, "gatesilence", "仍 exit=0"),
+    ("台账重述位置的短语被改写（改正文忘了改台账）", mutate_ledger_phrase_rewritten, "factledger", "重述位置短语在"),
+    ("正文数字改了、台账实测值没改", mutate_ledger_number_drift, "factledger", "和台账里的数字对不上"),
+    ("台账声明的条数与表体行数对不上", mutate_ledger_count_drift, "factledger", "条数与表体行数对不上"),
+    ("台账里出现重复的事实 ID", mutate_ledger_duplicate_id, "factledger", "事实 ID 重复"),
+    ("依据写成占位词（只给数字不给方法）", mutate_ledger_evidence_placeholder, "factledger", "依据为空或写成了占位词"),
+    ("重述位置指向内部账本而不是发布页", mutate_ledger_points_to_progress, "factledger", "不是对外发布页"),
+    ("重述位置短语里带了字面竖线（列被拆开）", mutate_ledger_pipe_in_phrase, "factledger", "台账行解析不了"),
+    ("短语里带加粗、箭头、反引号不该被误报（不误报）", mutate_ledger_rich_phrase_ok, "factledger", EXPECT_PASS),
 ]
 
 
@@ -1635,6 +1814,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-page-coverage.py"), str(root)]
     elif which == "gatesilence":
         cmd = [sys.executable, str(root / "scripts/check-gate-silence.py"), str(root)]
+    elif which == "factledger":
+        cmd = [sys.executable, str(root / "scripts/check-fact-ledger.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)
