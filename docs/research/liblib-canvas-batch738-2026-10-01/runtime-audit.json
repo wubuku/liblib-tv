@@ -1,0 +1,475 @@
+{
+ "static": {
+  "menu": {
+   "geometryOptionIds": [
+    "geometry-upload",
+    "cube",
+    "sphere",
+    "cylinder",
+    "torus",
+    "cone",
+    "pyramid",
+    "empty-object"
+   ],
+   "crowdInputKeys": [
+    "key"
+   ],
+   "railFlyoutZLine": 143,
+   "geometrySubmenuZClass": "z-50"
+  },
+  "railFlyoutZLine": 143
+ },
+ "run": {
+  "large": {
+   "base": {
+    "submenuPresent": false,
+    "submenuBox": null,
+    "options": [],
+    "dialogPresent": false,
+    "dialog": null,
+    "outRootButtons": 47,
+    "aspectOptions": []
+   },
+   "crowd": {
+    "submenuPresent": false,
+    "submenuBox": null,
+    "options": [],
+    "dialogPresent": true,
+    "dialog": {
+     "zIndex": "160",
+     "position": "fixed",
+     "inRoot": false,
+     "inFixedPortal": true,
+     "inputs": [
+      {
+       "key": "rows",
+       "type": "number",
+       "w": 93,
+       "h": 28,
+       "x": 307,
+       "y": 114
+      },
+      {
+       "key": "columns",
+       "type": "number",
+       "w": 93,
+       "h": 28,
+       "x": 408,
+       "y": 114
+      },
+      {
+       "key": "spacing",
+       "type": "number",
+       "w": 194,
+       "h": 28,
+       "x": 307,
+       "y": 175
+      }
+     ],
+     "buttons": [
+      {
+       "label": "取消",
+       "w": 48,
+       "h": 28,
+       "x": 397,
+       "y": 219
+      },
+      {
+       "label": "添加",
+       "w": 48,
+       "h": 28,
+       "x": 453,
+       "y": 219
+      }
+     ]
+    },
+    "outRootButtons": 52,
+    "aspectOptions": []
+   },
+   "geometry": {
+    "submenuPresent": true,
+    "submenuBox": {
+     "w": 204,
+     "h": 270,
+     "x": 52,
+     "y": 508,
+     "zIndex": "50",
+     "position": "absolute",
+     "parentIsFixedPortal": true,
+     "inRoot": false
+    },
+    "options": [
+     {
+      "id": "geometry-upload",
+      "label": "上传文件",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     },
+     {
+      "id": "cube",
+      "label": "立方体",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     },
+     {
+      "id": "sphere",
+      "label": "球体",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     },
+     {
+      "id": "cylinder",
+      "label": "圆柱体",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     },
+     {
+      "id": "torus",
+      "label": "环状体",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     },
+     {
+      "id": "cone",
+      "label": "圆锥",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     },
+     {
+      "id": "pyramid",
+      "label": "棱锥",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     },
+     {
+      "id": "empty-object",
+      "label": "添加空对象",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     }
+    ],
+    "dialogPresent": false,
+    "dialog": null,
+    "outRootButtons": 55,
+    "aspectOptions": []
+   },
+   "handles": [
+    {
+     "w": 8,
+     "h": 8,
+     "pe": "none",
+     "opacity": "0",
+     "hitIsSelf": false,
+     "hitLabel": null
+    },
+    {
+     "w": 8,
+     "h": 8,
+     "pe": "none",
+     "opacity": "0",
+     "hitIsSelf": false,
+     "hitLabel": "导演台资源栏"
+    },
+    {
+     "w": 8,
+     "h": 8,
+     "pe": "none",
+     "opacity": "0",
+     "hitIsSelf": false,
+     "hitLabel": "absolute inset-0"
+    },
+    {
+     "w": 8,
+     "h": 8,
+     "pe": "none",
+     "opacity": "0",
+     "hitIsSelf": false,
+     "hitLabel": null
+    },
+    {
+     "w": 8,
+     "h": 8,
+     "pe": "none",
+     "opacity": "0",
+     "hitIsSelf": false,
+     "hitLabel": null
+    },
+    {
+     "w": 8,
+     "h": 8,
+     "pe": "none",
+     "opacity": "0",
+     "hitIsSelf": false,
+     "hitLabel": "flex h-8 w-full items-center g"
+    },
+    {
+     "w": 8,
+     "h": 8,
+     "pe": "none",
+     "opacity": "0",
+     "hitIsSelf": false,
+     "hitLabel": null
+    },
+    {
+     "w": 8,
+     "h": 8,
+     "pe": "none",
+     "opacity": "0",
+     "hitIsSelf": false,
+     "hitLabel": "absolute inset-0"
+    },
+    {
+     "w": 8,
+     "h": 8,
+     "pe": "none",
+     "opacity": "0",
+     "hitIsSelf": false,
+     "hitLabel": "absolute inset-0"
+    },
+    {
+     "w": 8,
+     "h": 8,
+     "pe": "none",
+     "opacity": "0",
+     "hitIsSelf": false,
+     "hitLabel": "flex h-8 w-full items-center g"
+    },
+    {
+     "w": 8,
+     "h": 8,
+     "pe": "none",
+     "opacity": "0",
+     "hitIsSelf": false,
+     "hitLabel": "absolute inset-0"
+    }
+   ]
+  },
+  "small": {
+   "geometry": {
+    "submenuPresent": true,
+    "submenuBox": {
+     "w": 204,
+     "h": 270,
+     "x": 52,
+     "y": 422,
+     "zIndex": "50",
+     "position": "absolute",
+     "parentIsFixedPortal": true,
+     "inRoot": false
+    },
+    "options": [
+     {
+      "id": "geometry-upload",
+      "label": "上传文件",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     },
+     {
+      "id": "cube",
+      "label": "立方体",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     },
+     {
+      "id": "sphere",
+      "label": "球体",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     },
+     {
+      "id": "cylinder",
+      "label": "圆柱体",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     },
+     {
+      "id": "torus",
+      "label": "环状体",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     },
+     {
+      "id": "cone",
+      "label": "圆锥",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     },
+     {
+      "id": "pyramid",
+      "label": "棱锥",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     },
+     {
+      "id": "empty-object",
+      "label": "添加空对象",
+      "w": 190,
+      "h": 32,
+      "opacity": "1",
+      "pe": "auto",
+      "inViewport": true,
+      "focusOk": true
+     }
+    ],
+    "dialogPresent": false,
+    "dialog": null,
+    "outRootButtons": 55,
+    "aspectOptions": []
+   },
+   "aspect": {
+    "submenuPresent": false,
+    "submenuBox": null,
+    "options": [],
+    "dialogPresent": false,
+    "dialog": null,
+    "outRootButtons": 43,
+    "aspectOptions": [
+     {
+      "label": "自适应",
+      "w": 103,
+      "h": 72,
+      "x": 57,
+      "y": 261,
+      "inViewport": true
+     },
+     {
+      "label": "21:9",
+      "w": 103,
+      "h": 72,
+      "x": 168,
+      "y": 261,
+      "inViewport": true
+     },
+     {
+      "label": "16:9",
+      "w": 103,
+      "h": 72,
+      "x": 57,
+      "y": 341,
+      "inViewport": true
+     },
+     {
+      "label": "4:3",
+      "w": 103,
+      "h": 72,
+      "x": 168,
+      "y": 341,
+      "inViewport": true
+     },
+     {
+      "label": "1:1",
+      "w": 103,
+      "h": 72,
+      "x": 57,
+      "y": 421,
+      "inViewport": true
+     },
+     {
+      "label": "3:4",
+      "w": 103,
+      "h": 72,
+      "x": 168,
+      "y": 421,
+      "inViewport": true
+     },
+     {
+      "label": "9:16",
+      "w": 103,
+      "h": 72,
+      "x": 57,
+      "y": 501,
+      "inViewport": true
+     }
+    ]
+   }
+  }
+ },
+ "summary": {
+  "staticGeometryItems": 8,
+  "crowdInputKeys": 1,
+  "crowdInputs": 3,
+  "crowdButtons": 2,
+  "crowdTotal": 5,
+  "crowdZIndex": "160",
+  "crowdPosition": "fixed",
+  "crowdInRoot": false,
+  "geometryCountLarge": 8,
+  "geometryCountSmall": 8,
+  "geometryAllVisibleLarge": true,
+  "geometryAllVisibleSmall": true,
+  "submenuZIndex": "50",
+  "submenuPosition": "absolute",
+  "submenuParentFixedPortal": true,
+  "submenuInRoot": false,
+  "outRootFlyout": 47,
+  "outRootCrowd": 52,
+  "outRootGeometry": 55,
+  "aspectCount": 7,
+  "aspectAllInViewport": true,
+  "handles": 11,
+  "handlesAllPeNone": true,
+  "handlesAllTiny": true,
+  "handlesSelfHit": 0
+ },
+ "failures": []
+}
