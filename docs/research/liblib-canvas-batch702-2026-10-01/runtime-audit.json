@@ -1,0 +1,293 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 1150,
+  "prediction": "playback 只改派生视图 objects；创作数据 authoredObjects 与历史 history 一个叶子都不变；且 objects 是 (authoredObjects, 播放头) 的纯函数",
+  "predictionHeld": true,
+  "nullClickDrift": [],
+  "onePlayback": {
+   "played": {
+    "played": true
+   },
+   "changedTotal": 10,
+   "authoredObjectsChanged": [],
+   "objectsChanged": [
+    "objects[0].transform.position[0]",
+    "objects[0].transform.position[2]",
+    "objects[0].transform.rotation[1]",
+    "objects[4].camera.fov",
+    "objects[4].camera.target[0]",
+    "objects[4].camera.target[1]",
+    "objects[4].transform.position[0]",
+    "objects[4].transform.position[1]",
+    "objects[4].transform.position[2]"
+   ],
+   "historyChanged": [],
+   "other": [
+    "__currentTime"
+   ],
+   "historyLenBefore": 0,
+   "historyLenAfter": 0,
+   "currentTimeBefore": 0,
+   "currentTimeAfter": 1.5499999999999996
+  },
+  "purityScan": [
+   {
+    "fraction": 0.25,
+    "playheadBothArms": 2,
+    "samePlayhead": true,
+    "identical": {
+     "obj0": true,
+     "rot0": true,
+     "obj4": true,
+     "fov": true,
+     "target": true
+    },
+    "sample": {
+     "t": 2,
+     "obj0": [
+      -0.30000000000000004,
+      0,
+      0.275
+     ],
+     "rot0": [
+      0,
+      3,
+      0
+     ],
+     "obj4": [
+      4.45,
+      2.475,
+      6.15
+     ],
+     "fov": 45,
+     "target": [
+      -0.05,
+      1.175,
+      0
+     ]
+    }
+   },
+   {
+    "fraction": 0.3,
+    "playheadBothArms": 2.399999945109956,
+    "samePlayhead": true,
+    "identical": {
+     "obj0": true,
+     "rot0": true,
+     "obj4": true,
+     "fov": true,
+     "target": true
+    },
+    "sample": {
+     "t": 2.399999945109956,
+     "obj0": [
+      -0.11000002607277093,
+      0,
+      0.28999999794162334
+     ],
+     "rot0": [
+      0,
+      4.116753302696452e-07,
+      0
+     ],
+     "obj4": [
+      4.38,
+      2.44,
+      6
+     ],
+     "fov": 45.399999945109954,
+     "target": [
+      -0.0,
+      1.18,
+      0
+     ]
+    }
+   },
+   {
+    "fraction": 0.4,
+    "playheadBothArms": 3.2000001097800883,
+    "samePlayhead": true,
+    "identical": {
+     "obj0": true,
+     "rot0": true,
+     "obj4": true,
+     "fov": true,
+     "target": true
+    },
+    "sample": {
+     "t": 3.2000001097800883,
+     "obj0": [
+      0.2700000521455419,
+      0,
+      0.3200000041167533
+     ],
+     "rot0": [
+      0,
+      -6.0000008233506605,
+      0
+     ],
+     "obj4": [
+      4.24,
+      2.37,
+      5.7
+     ],
+     "fov": 46.20000010978009,
+     "target": [
+      0.1,
+      1.19,
+      0
+     ]
+    }
+   }
+  ],
+  "invalidFirstControl": {
+   "atLeftEdgePx0": {
+    "playhead": 0,
+    "isZero": true,
+    "armsIdentical": {
+     "obj0": true,
+     "rot0": true,
+     "obj4": true,
+     "fov": true,
+     "target": true
+    },
+    "identicalCount": 5
+   },
+   "atLeftEdgePlus2Px": {
+    "playhead": 0.008993184852104265,
+    "isZero": false,
+    "armsIdentical": {
+     "obj0": true,
+     "rot0": true,
+     "obj4": true,
+     "fov": true,
+     "target": true
+    },
+    "identicalCount": 5
+   },
+   "pixelsToSeconds": 0.004496592426052133,
+   "whatTheFirstVersionCompared": "「播过 → 点左端」 vs 「t=0 的状态」，而它点的是左端 +2px"
+  },
+  "theFinding": "播放只改派生视图：authoredObjects 0 个叶子变、history 0 个叶子变，objects 变 9 个、currentTime 变。更进一步，objects 是 (authoredObjects, 播放头) 的纯函数 —— 三个播放头位置上，「从没播过」与「播过又退回」的派生值 15/15 逐位相同。⟹ 701 记的「playback 把插值结果回写进 objects[*]」不是数据污染。",
+  "theMostValuablePart": "第一版对照是无效的：它拿「播过又点回标尺最左端」去比「t=0 的状态」，而标尺最左端那个像素落在 0.008993184852104265 而不是 0 ⟹ 6 组值全部不复原，看起来像派生视图被破坏。**补上第三臂**（从没播过、只点同一个像素）后，同一个非 0 播放头上两臂 5/5 逐位相同 ⟹ 偏离量完全由播放头偏移解释。**这是 697 那条纪律在我自己的新仪器上第三次生效。**",
+  "whatIsNotClaimed": "不声称 objects 的求值实现「好」或「坏」—— 本批只测出它是纯函数、不污染创作数据。不声称 15/15 覆盖了所有播放头位置（只测了三个，f=0.25/0.30/0.40，**都在标尺可视范围内**；可视范围约 f≤0.54，更后面的位置本批没测）。不声称源站行为（未取证，需授权点击）。**不改 src/**。",
+  "storeWritesInThisRun": "none — the playhead is moved by clicking [data-director-timeline-ruler]",
+  "relationTo701": "701 明确写下「不声称 objects[*] 被回写是 bug，未进一步取证」；本批取到了那份证 —— 不是 bug。701 的读数本身未被推翻。"
+ },
+ "checks": {
+  "playback-changes-only-the-derived-view": {
+   "ok": true,
+   "detail": {
+    "changedTotal": 10,
+    "authoredObjectsChanged": [],
+    "objectsChanged": [
+     "objects[0].transform.position[0]",
+     "objects[0].transform.position[2]",
+     "objects[0].transform.rotation[1]",
+     "objects[4].camera.fov",
+     "objects[4].camera.target[0]",
+     "objects[4].camera.target[1]"
+    ],
+    "historyChanged": [],
+    "currentTime": [
+     0,
+     1.5499999999999996
+    ]
+   },
+   "note": "the prediction named authoredObjects and history as the things that must NOT move; measuring only objects would have looked like proof without ruling out data corruption"
+  },
+  "objects-is-a-pure-function-of-authored-and-playhead": {
+   "ok": true,
+   "detail": {
+    "fractions": [
+     0.25,
+     0.3,
+     0.4
+    ],
+    "perPosition": [
+     {
+      "f": 0.25,
+      "playhead": 2,
+      "samePlayhead": true,
+      "identical": {
+       "obj0": true,
+       "rot0": true,
+       "obj4": true,
+       "fov": true,
+       "target": true
+      }
+     },
+     {
+      "f": 0.3,
+      "playhead": 2.399999945109956,
+      "samePlayhead": true,
+      "identical": {
+       "obj0": true,
+       "rot0": true,
+       "obj4": true,
+       "fov": true,
+       "target": true
+      }
+     },
+     {
+      "f": 0.4,
+      "playhead": 3.2000001097800883,
+      "samePlayhead": true,
+      "identical": {
+       "obj0": true,
+       "rot0": true,
+       "obj4": true,
+       "fov": true,
+       "target": true
+      }
+     }
+    ],
+    "identicalCount": 15,
+    "comparedCount": 15,
+    "theTest": "同一时刻，「从没播过」与「播过又退回」的派生值必须逐位相同"
+   },
+   "note": "'derived view' is a falsifiable claim, and this is the only observation that can falsify it"
+  },
+  "playback-produces-no-undo-entry": {
+   "ok": true,
+   "detail": {
+    "historyLenBefore": 0,
+    "historyLenAfter": 0
+   },
+   "note": "consistent with 'nothing was authored'; an undo entry for a pure playback would be a different claim and was not observed"
+  },
+  "the-first-control-was-invalid-and-the-deviation-is-fully-the-pixel-offset": {
+   "ok": true,
+   "detail": {
+    "atLeftEdgePx0": {
+     "playhead": 0,
+     "isZero": true,
+     "armsIdentical": {
+      "obj0": true,
+      "rot0": true,
+      "obj4": true,
+      "fov": true,
+      "target": true
+     },
+     "identicalCount": 5
+    },
+    "atLeftEdgePlus2Px": {
+     "playhead": 0.008993184852104265,
+     "isZero": false,
+     "armsIdentical": {
+      "obj0": true,
+      "rot0": true,
+      "obj4": true,
+      "fov": true,
+      "target": true
+     },
+     "identicalCount": 5
+    },
+    "pixelsToSeconds": 0.004496592426052133,
+    "whatTheFirstVersionCompared": "「播过 → 点左端」 vs 「t=0 的状态」，而它点的是左端 +2px"
+   },
+   "note": "the first version compared 'played, then clicked the left edge' against the t=0 state and read 6/6 non-restoration as a clobbered derived view. It actually clicked left edge +2px, which lands at t≈0.00899, not 0. At t=0 exactly the two arms are 5/5 bit-identical, and at +2px they are also 5/5 identical — so the non-restoration was the pixel offset alone"
+  }
+ }
+}
