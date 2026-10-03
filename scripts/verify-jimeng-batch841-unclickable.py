@@ -5488,6 +5488,85 @@ def main() -> int:
           and '"identity_settling_unexplained"' in _ausrc
           and '"mouse_click_on_inner_control_unverified"' in _ausrc)
 
+    # ══ 批 944：补 943 挂着的两条「未测」（源站，纯诊断）══════════════
+    print("— FFFF. 批 944 两条未测各推进一步 —— 但**不产出新机制结论** —")
+    p944a = ROOT / "scripts/jimeng_probe944a_node_inner_scan_src.py"
+    p944b = ROOT / "scripts/jimeng_probe944b_mouse_axes_src.py"
+    _p944a = p944a.read_text(encoding="utf-8") if p944a.exists() else ""
+    _p944b = p944b.read_text(encoding="utf-8") if p944b.exists() else ""
+
+    check("FFFF.1 ⭐⭐⭐ **944 先花了��个纯读探针**（零点击）才敢点节点"
+          " —— 探针 944a 实测：节点内部有 **85 个 `BUTTON`**，"
+          "而**可点的内部落点 94 个里 BUTTON 只有 3 个**"
+          "（85 个大多在**选中后才出现**的节点工具条上）、"
+          "**带删除/移除语义的 0 个**。⇒ ⭐ 这不是多余的谨慎："
+          "在源站上真删掉别人的东西、并且让后面所有读数全部作废，代价太高。"
+          "⚠️ 顺带一条对复刻有用的发现：**节点有稳定 id**"
+          "（`data-testid` 形如 `rf__node-node_236ctpehgg`）"
+          "⇒ 跨状态认元素有了正经的锚（943 的 `className` 栽过一次）",
+          '"inner_scan_944a": (' in _ausrc
+          and '"node_ids_are_stable_944a": (' in _ausrc
+          and "**BUTTON 85**" in _ausrc
+          and "纯读发现" in _ausrc
+          and "零点击" in _p944a
+          and "唯一可点的 3 个" not in _p944a)   # 钉死**只读**、不许偷偷点
+
+    check("FFFF.2 ✅⭐⭐ **「点节点内部的控件是不是臂事件」有确切答案了**："
+          "点那个 BUTTON 三元组**全空**（`bit=False`）、**开了 1 个层**"
+          "（层 1→2）、节点数不变（2/2）⇒ ⭐ **内部控件走它自己的 handler，"
+          "完全不碰 `tabindex` 窗口**。"
+          "⇒ **复刻侧的点法必须按「落点角色」分开**：本体与内部后代走臂事件，"
+          "内部控件走自己的 handler —— 把它当臂事件会让 `tabindex` 窗口错位",
+          '"inner_button_not_an_arm_event_944b": (' in _ausrc
+          and "**点节点内部的 BUTTON 不是臂事件**" in _ausrc
+          and "层 1→2" in _ausrc
+          and "内部控件走它自己的 handler，完全不碰 `tabindex` 窗口" in _ausrc
+          and # ⭐ 钉住「BUTTON 那一击放最后」这个**不可逆动作的位置**纪律
+          "internal_button_is_last" in _p944b
+          and '"layers_before"' in _p944b
+          and '"opened"' in _p944b)
+
+    check("FFFF.3 ✅⭐⭐ **「点已选中的节点」也不是臂事件**（第一次点 `bit=True`、"
+          "紧接着再点一次 `bit=False` 且三元组全空，2/2）"
+          "⇒ 鼠标臂**要求「这一下改变了选中态」才咬**。"
+          "⚠️ **反向没测到**（点未选中是不是每次都咬）"
+          "⇒ **记成未测，不许**拿这一条去推「点未选中必然咬」",
+          '"already_selected_not_an_arm_event_944b": (' in _ausrc
+          and "第一次点 `bit=True`" in _ausrc
+          and "**反向**（点未选中的节点是不是每次都咬）" in _ausrc
+          and "本批没测到" in _ausrc
+          and "**不许拿这一条去推**「点未选中必然咬」" in _ausrc)
+
+    check("FFFF.4 ⚠️⚠️⚠️ **944 的设计门有三项红 ⇒ 本批不产出新机制结论**，"
+          "这一条把「不产出结论」本身钉成可查项 —— "
+          "`plateau_or_cap_ok` / `sel_ok` / `inner_ok` 2/2 都不满足。"
+          "⚠️ 顺带记一条**诚实的终止态**：「可点下标耗尽」也是合法的结束理由"
+          "（这一版画布节点大量重叠，全表只有 15–17 个点得到）"
+          "⇒ 漏掉它 ⇒ 门永远红 ⇒ 下一个人会以为探针坏了",
+          '"der_landable_exhausted"' in _p944b
+          and "rec.get(\"der_landable_exhausted\")" in _p944b
+          and "是**测量的边界**，" in _p944b
+          and '"plateau_or_cap_ok": bool(' in _p944b
+          and "本批不产出新的机制结论" in _ausrc)
+
+    check("FFFF.5 ⚠️⚠️⚠️ **两条必须写进基线的「不许下结论」** —— "
+          "① **撤回** 944 v1 的「补偿没来」：它的 `is_arm` 判据**太松**"
+          "（只问「焦点在不在某个节点**内**」），而实测 `active_tag=BUTTON` "
+          "落在节点**内部的按钮**上 ⇒ 那是**死按压**"
+          "⇒ **「应用没写回」与「这一击压根不是臂事件」必须分开**；"
+          "② **补偿的规模阈值两轮不一致**（rep1 连点 7 次后 1 击补完 7 个、"
+          "rep2 连点 13 次后连按 6 下 `added` 恒 0）"
+          "⇒ **不许**写成「补偿有规模阈值」，**不许**说 943 被推翻，"
+          "**成因未查明**",
+          '"retracted_v1_compensation_944b": (' in _ausrc
+          and '"compensation_scale_threshold_unresolved_944b": (' in _ausrc
+          and "已撤回" in _ausrc
+          and "**两轮不一致**，所以**不许**下结论" in _ausrc
+          and "**不许**写成「补偿有规模阈值」" in _ausrc
+          # 探针侧：判据要把「是不是臂事件」问得比焦点**更严**
+          and 'is_arm = bool(f["focus_in_node"]) and f["active_tag"] == "DIV"' in _p944b
+          and "落在节点**内部的按钮**上是**死按压**" in _p944b)
+
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
           "§130「roving 是单指针、不是留轨迹」的**源站实证**；"
