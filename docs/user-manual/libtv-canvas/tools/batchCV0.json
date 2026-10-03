@@ -1,0 +1,2758 @@
+{
+  "steps": [
+    {
+      "label": "初始",
+      "有素材库面板": false,
+      "有风格广场": false,
+      "有详情浮层": false,
+      "分类数": 0,
+      "大层": [
+        {
+          "z": "180",
+          "pos": "fixed",
+          "w": 1440,
+          "h": 810,
+          "cls": "pointer-events-none fixed inset-0 z-[180"
+        }
+      ]
+    },
+    {
+      "label": "点底栏「素材库」",
+      "有素材库面板": true,
+      "有风格广场": false,
+      "有详情浮层": false,
+      "分类数": 0,
+      "大层": [
+        {
+          "z": "180",
+          "pos": "fixed",
+          "w": 1440,
+          "h": 810,
+          "cls": "pointer-events-none fixed inset-0 z-[180"
+        }
+      ]
+    },
+    {
+      "label": "点「风格库」",
+      "有素材库面板": false,
+      "有风格广场": false,
+      "有详情浮层": false,
+      "分类数": 0,
+      "大层": [
+        {
+          "z": "180",
+          "pos": "fixed",
+          "w": 1440,
+          "h": 810,
+          "cls": "pointer-events-none fixed inset-0 z-[180"
+        }
+      ]
+    },
+    {
+      "label": "点卡上「详情」",
+      "有素材库面板": false,
+      "有风格广场": false,
+      "有详情浮层": false,
+      "分类数": 0,
+      "大层": [
+        {
+          "z": "180",
+          "pos": "fixed",
+          "w": 1440,
+          "h": 810,
+          "cls": "pointer-events-none fixed inset-0 z-[180"
+        }
+      ]
+    }
+  ],
+  "卡片": [],
+  "广场控件": [
+    {
+      "rect": [
+        1227,
+        92,
+        40,
+        40
+      ],
+      "text": "",
+      "aria": "minimize",
+      "data": {},
+      "svgPaths": [
+        "M9.76 10.59c.28 0 .5.22.5.5v8a.4.4 0 0 1-.4."
+      ],
+      "cls": "text-fg-default hover:bg-btn-ghost-hover flex item"
+    },
+    {
+      "rect": [
+        1283,
+        92,
+        40,
+        40
+      ],
+      "text": "",
+      "aria": "close",
+      "data": {},
+      "svgPaths": [
+        "M15.8.12a.4.4 0 0 1 .56 0l.7.7a.4.4 0 0 1 0 "
+      ],
+      "cls": "text-fg-default hover:bg-btn-ghost-hover flex item"
+    },
+    {
+      "rect": [
+        726,
+        98,
+        28,
+        28
+      ],
+      "text": "",
+      "aria": "search",
+      "data": {},
+      "svgPaths": [
+        "M9.04 0a9.04 9.04 0 0 1 6.86 14.92l4.6 4.58-"
+      ],
+      "cls": "flex shrink-0 items-center justify-center rounded-"
+    },
+    {
+      "rect": [
+        987,
+        116,
+        40,
+        13
+      ],
+      "text": "讲解视频",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M8.33 1.75c.42 0 .75.34.75.75v15a.75.75 0 0 "
+      ],
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover f"
+    },
+    {
+      "rect": [
+        987,
+        131,
+        40,
+        13
+      ],
+      "text": "批量广告",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M5.63 3.13h8.75",
+        "M3.96 6.04h12.08",
+        "M17.7 8.96H2.3l1.66 7.91h12.08z"
+      ],
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover f"
+    },
+    {
+      "rect": [
+        987,
+        146,
+        40,
+        13
+      ],
+      "text": "口播视频",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M12 19v3m7-12v2a7 7 0 0 1-14 0v-2"
+      ],
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover f"
+    },
+    {
+      "rect": [
+        1269,
+        157,
+        54,
+        28
+      ],
+      "text": "全部",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0"
+      ],
+      "cls": "flex h-7 shrink-0 cursor-pointer items-center just"
+    },
+    {
+      "rect": [
+        987,
+        161,
+        40,
+        13
+      ],
+      "text": "素材混剪",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "m7.7 4.48-.44-1.13a.55.55 0 0 0-1.02 0l-.43 ",
+        "M12.38 2.81c0-.93-.76-1.68-1.7-1.68H2.82c-.9"
+      ],
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover f"
+    },
+    {
+      "rect": [
+        1214,
+        171,
+        43,
+        15
+      ],
+      "text": "分镜",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M6.85 8.74q0-.46-.13-.88h-.05a4 4 0 0 1-3.41"
+      ],
+      "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-ce"
+    },
+    {
+      "rect": [
+        1261,
+        171,
+        43,
+        15
+      ],
+      "text": "动态",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M11 2.5c0-.83-.67-1.5-1.5-1.5h-.17v1.75H11zM"
+      ],
+      "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-ce"
+    },
+    {
+      "rect": [
+        1308,
+        171,
+        43,
+        15
+      ],
+      "text": "音乐",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2.67 11.5V.5a.5.5 0 1 1 1 0v11a.5.5 0 0 1-1"
+      ],
+      "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-ce"
+    },
+    {
+      "rect": [
+        1214,
+        195,
+        138,
+        17
+      ],
+      "text": "开始拉片",
+      "aria": null,
+      "data": {},
+      "svgPaths": [],
+      "cls": "nodrag nopan flex h-9 w-full items-center justify-"
+    },
+    {
+      "rect": [
+        739,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg"
+    },
+    {
+      "rect": [
+        942,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg"
+    },
+    {
+      "rect": [
+        1145,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg"
+    },
+    {
+      "rect": [
+        1202,
+        394,
+        61,
+        17
+      ],
+      "text": "自己编写内容",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 "
+      ],
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls"
+    },
+    {
+      "rect": [
+        842,
+        413,
+        41,
+        17
+      ],
+      "text": "图生图",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M1.8 16.9A1.1 1.1 0 0 0 2.9 18h14a1.1 1.1 0 "
+      ],
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls"
+    },
+    {
+      "rect": [
+        1202,
+        413,
+        48,
+        17
+      ],
+      "text": "文生视频",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 "
+      ],
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls"
+    },
+    {
+      "rect": [
+        842,
+        432,
+        49,
+        17
+      ],
+      "text": "图片高清",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M16.75 0C18.55 0 20 1.45 20 3.25v13.5c0 1.8-"
+      ],
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls"
+    },
+    {
+      "rect": [
+        1202,
+        432,
+        68,
+        17
+      ],
+      "text": "图片反推提示词",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 "
+      ],
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls"
+    },
+    {
+      "rect": [
+        1202,
+        450,
+        54,
+        17
+      ],
+      "text": "文字生音乐",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M11.2.03a1.8 1.8 0 0 1 2.17 1.77v16.32a1.8 1"
+      ],
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls"
+    },
+    {
+      "rect": [
+        739,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg"
+    },
+    {
+      "rect": [
+        942,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg"
+    },
+    {
+      "rect": [
+        1145,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg"
+    },
+    {
+      "rect": [
+        739,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg"
+    },
+    {
+      "rect": [
+        942,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg"
+    },
+    {
+      "rect": [
+        1145,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg"
+    },
+    {
+      "rect": [
+        875,
+        749,
+        48,
+        48
+      ],
+      "text": "TV Director",
+      "aria": "TV Director",
+      "data": {
+        "data-guide-target": "agent-entry"
+      },
+      "svgPaths": [
+        "M 8 45 A 34 34 0 0 1 82 45",
+        "M 82 45 A 34 34 0 0 0 8 45",
+        "M 15 70 A 40 40 0 0 1 75 20",
+        "M 15 20 A 40 40 0 0 0 75 70"
+      ],
+      "cls": "TvDirectorEntry-module__vCoIiq__pill border-hair b"
+    },
+    {
+      "rect": [
+        740,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "生成历史",
+      "data": {
+        "data-sidebar-btn": "history"
+      },
+      "svgPaths": [
+        "M17.08 10a7.08 7.08 0 1 0-14.16 0 7.08 7.08 "
+      ],
+      "cls": "relative flex items-center justify-center rounded-"
+    },
+    {
+      "rect": [
+        789,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "快捷键",
+      "data": {
+        "data-sidebar-btn": "keyboard"
+      },
+      "svgPaths": [
+        "M16.08 3.35c1.72 0 3.12 1.4 3.12 3.13l-.03 7"
+      ],
+      "cls": "relative flex items-center justify-center rounded-"
+    },
+    {
+      "rect": [
+        829,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "教程",
+      "data": {
+        "data-sidebar-btn": "contact"
+      },
+      "svgPaths": [
+        "M10 1.67a8.33 8.33 0 1 1 0 16.66 8.33 8.33 0"
+      ],
+      "cls": "relative flex items-center justify-center rounded-"
+    }
+  ],
+  "广场扫描": [
+    {
+      "rect": [
+        1227,
+        92,
+        40,
+        40
+      ],
+      "text": "",
+      "aria": "minimize",
+      "data": {},
+      "svgPaths": [
+        "M9.76 10.59c.28 0 .5.22.5.5v8a.4.4 0 0 1-.4."
+      ],
+      "cls": "text-fg-default hover:bg-btn-ghost-hover flex item",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1283,
+        92,
+        40,
+        40
+      ],
+      "text": "",
+      "aria": "close",
+      "data": {},
+      "svgPaths": [
+        "M15.8.12a.4.4 0 0 1 .56 0l.7.7a.4.4 0 0 1 0 "
+      ],
+      "cls": "text-fg-default hover:bg-btn-ghost-hover flex item",
+      "气泡": []
+    },
+    {
+      "rect": [
+        726,
+        98,
+        28,
+        28
+      ],
+      "text": "",
+      "aria": "search",
+      "data": {},
+      "svgPaths": [
+        "M9.04 0a9.04 9.04 0 0 1 6.86 14.92l4.6 4.58-"
+      ],
+      "cls": "flex shrink-0 items-center justify-center rounded-",
+      "气泡": []
+    },
+    {
+      "rect": [
+        987,
+        116,
+        40,
+        13
+      ],
+      "text": "讲解视频",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M8.33 1.75c.42 0 .75.34.75.75v15a.75.75 0 0 "
+      ],
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover f",
+      "气泡": [],
+      "跳过": "有文字"
+    },
+    {
+      "rect": [
+        987,
+        131,
+        40,
+        13
+      ],
+      "text": "批量广告",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M5.63 3.13h8.75",
+        "M3.96 6.04h12.08",
+        "M17.7 8.96H2.3l1.66 7.91h12.08z"
+      ],
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover f",
+      "气泡": [],
+      "跳过": "有文字"
+    },
+    {
+      "rect": [
+        987,
+        146,
+        40,
+        13
+      ],
+      "text": "口播视频",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M12 19v3m7-12v2a7 7 0 0 1-14 0v-2"
+      ],
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover f",
+      "气泡": [],
+      "跳过": "有文字"
+    },
+    {
+      "rect": [
+        1269,
+        157,
+        54,
+        28
+      ],
+      "text": "全部",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0"
+      ],
+      "cls": "flex h-7 shrink-0 cursor-pointer items-center just",
+      "气泡": []
+    },
+    {
+      "rect": [
+        987,
+        161,
+        40,
+        13
+      ],
+      "text": "素材混剪",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "m7.7 4.48-.44-1.13a.55.55 0 0 0-1.02 0l-.43 ",
+        "M12.38 2.81c0-.93-.76-1.68-1.7-1.68H2.82c-.9"
+      ],
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover f",
+      "气泡": [],
+      "跳过": "有文字"
+    },
+    {
+      "rect": [
+        1214,
+        171,
+        43,
+        15
+      ],
+      "text": "分镜",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M6.85 8.74q0-.46-.13-.88h-.05a4 4 0 0 1-3.41"
+      ],
+      "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-ce",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1261,
+        171,
+        43,
+        15
+      ],
+      "text": "动态",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M11 2.5c0-.83-.67-1.5-1.5-1.5h-.17v1.75H11zM"
+      ],
+      "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-ce",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1308,
+        171,
+        43,
+        15
+      ],
+      "text": "音乐",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2.67 11.5V.5a.5.5 0 1 1 1 0v11a.5.5 0 0 1-1"
+      ],
+      "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-ce",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1214,
+        195,
+        138,
+        17
+      ],
+      "text": "开始拉片",
+      "aria": null,
+      "data": {},
+      "svgPaths": [],
+      "cls": "nodrag nopan flex h-9 w-full items-center justify-",
+      "气泡": [],
+      "跳过": "有文字"
+    },
+    {
+      "rect": [
+        739,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1202,
+        394,
+        61,
+        17
+      ],
+      "text": "自己编写内容",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 "
+      ],
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "气泡": [],
+      "跳过": "有文字"
+    },
+    {
+      "rect": [
+        842,
+        413,
+        41,
+        17
+      ],
+      "text": "图生图",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M1.8 16.9A1.1 1.1 0 0 0 2.9 18h14a1.1 1.1 0 "
+      ],
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "气泡": [],
+      "跳过": "有文字"
+    },
+    {
+      "rect": [
+        1202,
+        413,
+        48,
+        17
+      ],
+      "text": "文生视频",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 "
+      ],
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "气泡": [],
+      "跳过": "有文字"
+    },
+    {
+      "rect": [
+        842,
+        432,
+        49,
+        17
+      ],
+      "text": "图片高清",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M16.75 0C18.55 0 20 1.45 20 3.25v13.5c0 1.8-"
+      ],
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "气泡": [],
+      "跳过": "有文字"
+    },
+    {
+      "rect": [
+        1202,
+        432,
+        68,
+        17
+      ],
+      "text": "图片反推提示词",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 "
+      ],
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "气泡": [],
+      "跳过": "有文字"
+    },
+    {
+      "rect": [
+        1202,
+        450,
+        54,
+        17
+      ],
+      "text": "文字生音乐",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M11.2.03a1.8 1.8 0 0 1 2.17 1.77v16.32a1.8 1"
+      ],
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "气泡": [],
+      "跳过": "有文字"
+    },
+    {
+      "rect": [
+        739,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg",
+      "气泡": []
+    },
+    {
+      "rect": [
+        875,
+        749,
+        48,
+        48
+      ],
+      "text": "TV Director",
+      "aria": "TV Director",
+      "data": {
+        "data-guide-target": "agent-entry"
+      },
+      "svgPaths": [
+        "M 8 45 A 34 34 0 0 1 82 45",
+        "M 82 45 A 34 34 0 0 0 8 45",
+        "M 15 70 A 40 40 0 0 1 75 20",
+        "M 15 20 A 40 40 0 0 0 75 70"
+      ],
+      "cls": "TvDirectorEntry-module__vCoIiq__pill border-hair b",
+      "气泡": [],
+      "跳过": "有文字"
+    },
+    {
+      "rect": [
+        740,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "生成历史",
+      "data": {
+        "data-sidebar-btn": "history"
+      },
+      "svgPaths": [
+        "M17.08 10a7.08 7.08 0 1 0-14.16 0 7.08 7.08 "
+      ],
+      "cls": "relative flex items-center justify-center rounded-",
+      "气泡": []
+    },
+    {
+      "rect": [
+        789,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "快捷键",
+      "data": {
+        "data-sidebar-btn": "keyboard"
+      },
+      "svgPaths": [
+        "M16.08 3.35c1.72 0 3.12 1.4 3.12 3.13l-.03 7"
+      ],
+      "cls": "relative flex items-center justify-center rounded-",
+      "气泡": []
+    },
+    {
+      "rect": [
+        829,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "教程",
+      "data": {
+        "data-sidebar-btn": "contact"
+      },
+      "svgPaths": [
+        "M10 1.67a8.33 8.33 0 1 1 0 16.66 8.33 8.33 0"
+      ],
+      "cls": "relative flex items-center justify-center rounded-",
+      "气泡": []
+    }
+  ],
+  "详情控件": [
+    {
+      "rect": [
+        117,
+        157,
+        50,
+        28
+      ],
+      "text": "推荐",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [],
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "气泡": []
+    },
+    {
+      "rect": [
+        122,
+        96,
+        92,
+        32
+      ],
+      "text": "特效广场",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [],
+      "cls": "flex min-w-12 items-center justify-center whitespace-nowrap ",
+      "气泡": []
+    },
+    {
+      "rect": [
+        130,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        130,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        130,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        130,
+        967,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        130,
+        1219,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        130,
+        1471,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        130,
+        1723,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        218,
+        96,
+        92,
+        32
+      ],
+      "text": "我的收藏",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [],
+      "cls": "flex min-w-12 items-center justify-center whitespace-nowrap ",
+      "气泡": []
+    },
+    {
+      "rect": [
+        314,
+        96,
+        92,
+        32
+      ],
+      "text": "最近使用",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [],
+      "cls": "flex min-w-12 items-center justify-center whitespace-nowrap ",
+      "气泡": []
+    },
+    {
+      "rect": [
+        333,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        333,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        333,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        333,
+        967,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        333,
+        1219,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        333,
+        1471,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        333,
+        1723,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        536,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        536,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        536,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        536,
+        967,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        536,
+        1219,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        536,
+        1471,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        536,
+        1723,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        726,
+        98,
+        28,
+        28
+      ],
+      "text": "",
+      "aria": "search",
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M9.04 0a9.04 9.04 0 0 1 6.86 14.92l4.6 4.58-1.42 1.4"
+      ],
+      "cls": "flex shrink-0 items-center justify-center rounded-full trans",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        967,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        1219,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        1471,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        1723,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        967,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        1219,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        1471,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        1723,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        967,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        1219,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        1471,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        1723,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1227,
+        92,
+        40,
+        40
+      ],
+      "text": "",
+      "aria": "minimize",
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M9.76 10.59c.28 0 .5.22.5.5v8a.4.4 0 0 1-.4.4h-1a.4."
+      ],
+      "cls": "text-fg-default hover:bg-btn-ghost-hover flex items-center j",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1269,
+        157,
+        54,
+        28
+      ],
+      "text": "全部",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .57L4.1"
+      ],
+      "cls": "flex h-7 shrink-0 cursor-pointer items-center justify-center",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1283,
+        92,
+        40,
+        40
+      ],
+      "text": "",
+      "aria": "close",
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M15.8.12a.4.4 0 0 1 .56 0l.7.7a.4.4 0 0 1 0 .57l-7.2"
+      ],
+      "cls": "text-fg-default hover:bg-btn-ghost-hover flex items-center j",
+      "气泡": []
+    }
+  ],
+  "详情扫描": [
+    {
+      "rect": [
+        117,
+        157,
+        50,
+        28
+      ],
+      "text": "推荐",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [],
+      "cls": "flex h-7 min-w-12 shrink-0 items-center justify-center round",
+      "气泡": []
+    },
+    {
+      "rect": [
+        122,
+        96,
+        92,
+        32
+      ],
+      "text": "特效广场",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [],
+      "cls": "flex min-w-12 items-center justify-center whitespace-nowrap ",
+      "气泡": []
+    },
+    {
+      "rect": [
+        130,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        130,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        130,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        130,
+        967,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        130,
+        1219,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        130,
+        1471,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        130,
+        1723,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        218,
+        96,
+        92,
+        32
+      ],
+      "text": "我的收藏",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [],
+      "cls": "flex min-w-12 items-center justify-center whitespace-nowrap ",
+      "气泡": []
+    },
+    {
+      "rect": [
+        314,
+        96,
+        92,
+        32
+      ],
+      "text": "最近使用",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [],
+      "cls": "flex min-w-12 items-center justify-center whitespace-nowrap ",
+      "气泡": []
+    },
+    {
+      "rect": [
+        333,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        333,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        333,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        333,
+        967,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        333,
+        1219,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        333,
+        1471,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        333,
+        1723,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        536,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        536,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        536,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        536,
+        967,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        536,
+        1219,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        536,
+        1471,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        536,
+        1723,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        726,
+        98,
+        28,
+        28
+      ],
+      "text": "",
+      "aria": "search",
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M9.04 0a9.04 9.04 0 0 1 6.86 14.92l4.6 4.58-1.42 1.4"
+      ],
+      "cls": "flex shrink-0 items-center justify-center rounded-full trans",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        967,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        1219,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        1471,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        739,
+        1723,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        967,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        1219,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        1471,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        942,
+        1723,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        210,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        462,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        714,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        967,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        1219,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        1471,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1145,
+        1723,
+        24,
+        24
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2"
+      ],
+      "cls": "flex size-6 items-center justify-center rounded-lg bg-[rgba(",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1227,
+        92,
+        40,
+        40
+      ],
+      "text": "",
+      "aria": "minimize",
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M9.76 10.59c.28 0 .5.22.5.5v8a.4.4 0 0 1-.4.4h-1a.4."
+      ],
+      "cls": "text-fg-default hover:bg-btn-ghost-hover flex items-center j",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1269,
+        157,
+        54,
+        28
+      ],
+      "text": "全部",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .57L4.1"
+      ],
+      "cls": "flex h-7 shrink-0 cursor-pointer items-center justify-center",
+      "气泡": []
+    },
+    {
+      "rect": [
+        1283,
+        92,
+        40,
+        40
+      ],
+      "text": "",
+      "aria": "close",
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M15.8.12a.4.4 0 0 1 .56 0l.7.7a.4.4 0 0 1 0 .57l-7.2"
+      ],
+      "cls": "text-fg-default hover:bg-btn-ghost-hover flex items-center j",
+      "气泡": []
+    }
+  ]
+}
