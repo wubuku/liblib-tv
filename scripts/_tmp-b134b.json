@@ -1,0 +1,84 @@
+{
+ "at": "2026-10-03T09:06:52.211Z",
+ "round": "b",
+ "start": {
+  "zoom": "Zoom options, 60%",
+  "小地图": {
+   "pressed": "false",
+   "dataState": "closed",
+   "surface在": false,
+   "tids": 171
+  }
+ },
+ "步骤": [
+  {
+   "名": "① 点缩放按钮（只点，不输入）",
+   "前": "true",
+   "后": "false",
+   "变了": true,
+   "前tids": 174,
+   "后tids": 173
+  },
+  {
+   "名": "② 在输入框里 fill(\"60\")（不按 Enter）",
+   "前": "true",
+   "后": "true",
+   "变了": false,
+   "前tids": 174,
+   "后tids": 174
+  },
+  {
+   "名": "③ 按 Enter 提交",
+   "前": "true",
+   "后": "false",
+   "变了": true,
+   "前tids": 174,
+   "后tids": 171
+  },
+  {
+   "名": "④ 按一次 Escape",
+   "前": "false",
+   "后": "false",
+   "变了": false,
+   "前tids": 171,
+   "后tids": 171
+  },
+  {
+   "名": "⑤ 按第二次 Escape",
+   "前": "false",
+   "后": "false",
+   "变了": false,
+   "前tids": 171,
+   "后tids": 171
+  },
+  {
+   "名": "⑥ 移动鼠标到 (1276,716)",
+   "前": "false",
+   "后": "false",
+   "变了": false,
+   "前tids": 171,
+   "后tids": 171
+  }
+ ],
+ "对照组": {
+  "zoom": "Zoom options, 100%",
+  "小地图": {
+   "pressed": "false",
+   "dataState": "closed",
+   "surface在": false,
+   "tids": 173
+  }
+ },
+ "收尾": {
+  "zoom": "Zoom options, 60%",
+  "editing": "false",
+  "minimap": "true",
+  "sidecar": "0",
+  "sel": 0,
+  "ov": 0,
+  "nodes": 76,
+  "tids": 174,
+  "line": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "credits": "Credits: 805 · 基础会员"
+ }
+}

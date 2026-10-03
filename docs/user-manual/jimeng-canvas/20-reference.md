@@ -1601,3 +1601,45 @@ aria 逐字 `说说你的想法或任务，上传参考、输入文字或` 的 `
 | `assistant-sidecar-launcher-frame` | `DIV` | `60×18@1208,690` |
 | **`canvas-sidecar-launcher`** | `BUTTON` | `59×17@1209,691` |
 | `canvas-minimap-portal-target` | `DIV` | `156×114@16,554`（小地图的 **portal 宿主**） |
+
+## 🖼 空图片节点 与 图片生成表单（2026-10-03 批次 134：按护栏建一个再删掉，验成）
+
+画布上那个图片节点**有内容**（`image-node-result` / `image-primary-preview-viewport`），
+所以**空态要新建一个才看得到**。本节是**新建一个图片节点**后的读数，**取证后已删除**。
+
+### 空态
+
+| testid | tag / role | 矩形 | 备注 |
+|---|---|---|---|
+| **`image-node-empty`** | **`DIV` `role="img"`** | **`182×182`（与节点本体同矩形）** | **aria 逐字** `暂无图片. No resources: 0 ready, 0 processing, 0 failed. Selected.` |
+| `flow-node-media-stroke` | `DIV` | 套在节点外 4px | 描边 |
+| `flow-node-target-handle` / `flow-node-source-handle` | `DIV` | `34×68` | 左右外缘 |
+| `flow-node-{target,source}-connection-menu-button` | `BUTTON` | `36×36` | 两侧 |
+| `flow-node-title` | `DIV` | — | 逐字 `图片 1` |
+| `flow-node-selected-tag` | `BUTTON` | `24×24` | 右上角 |
+
+节点逐字仅 **`图片 1`**，内部 `img` 元素 **0** 个。
+
+### 🔑 新建图片节点会**自动弹出生成表单**（不必点「展开图片生成器」）
+
+| testid | 矩形 | 备注 |
+|---|---|---|
+| **`generation-form`** | **`680×208`** | **图片面板用的就是通用名，没有 `image-` 前缀** |
+| `node-toolbar` / `node-toolbar-feature-host` | 同上 `680×208` | 与表单**同矩形** |
+| `node-feature-chrome-host` | 与节点本体同矩形 | |
+
+表单逐字：`上传参考图、输入文字或 主体，描述你想生成的图片 Seedream 5.0 Lite 1:1 2K 1
+Current price 3 / 张. 3 / 张 生成`
+—— 7 个按钮：展开图片生成器 / 添加参考 / 引用参考 / **选择模型 `Seedream 5.0 Lite`** /
+**比例 `1:1`** / **分辨率 `2K 1`** / 引用参考 / **生成**。
+
+📌 **三个面板的 testid 并不统一带类型前缀**：
+视频 `video-generation-form`、**图片 `generation-form`**、音频 `audio-generation-form`。
+
+### 🆑 新建节点会让画布**自动适配缩放**（本例 60% → 57%）
+
+⚠️ **代价：任何缩放操作都会关掉小地图。** 受控实验（3 次独立复现）：
+**「只点缩放按钮」**（根本没改缩放）就足以关掉小地图，
+**走菜单项「缩放至100%」的对照组同样关掉它** ⇒ 与 `Escape`、与输入框都无关。
+（几何证据：缩放菜单 `200×292` 在 dock 上方，与小地图 `156×114@16,554` **正好重叠**。）
+📌 **凡是要改缩放的实验，收尾时必须重新检查并打开小地图。**
