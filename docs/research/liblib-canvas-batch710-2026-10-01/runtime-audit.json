@@ -1,0 +1,257 @@
+{
+ "predictions": {
+  "P1": "全程 sourceNode 相同（本批的前提断言）",
+  "P2": "同节点关台重开保留已提交内容与历史",
+  "P3": "开着手势关台，未提交的改动被丢弃",
+  "P4": "关台后刷新页面再重开，已提交内容丢失"
+ },
+ "same_node": {
+  "nodeId": "b-bTLLuU4w5q",
+  "open": {
+   "deskOpen": true,
+   "sourceNode": "b-bTLLuU4w5q",
+   "projectId": "director-project-1791022216382-1",
+   "buttonOwner": "b-bTLLuU4w5q",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": null,
+   "fov": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ]
+  },
+  "renamed": {
+   "deskOpen": true,
+   "sourceNode": "b-bTLLuU4w5q",
+   "projectId": "director-project-1791022216382-1",
+   "buttonOwner": "b-bTLLuU4w5q",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "active": null,
+   "last": "UPDATE_OBJECT/COMMITTED",
+   "fov": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试710"
+   ]
+  },
+  "closed": {
+   "deskOpen": false,
+   "sourceNode": null,
+   "projectId": null,
+   "buttonOwner": "b-bTLLuU4w5q",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": null,
+   "fov": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试710"
+   ]
+  },
+  "reopened": {
+   "deskOpen": true,
+   "sourceNode": "b-bTLLuU4w5q",
+   "projectId": "director-project-1791022216382-1",
+   "buttonOwner": "b-bTLLuU4w5q",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "active": null,
+   "last": null,
+   "fov": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试710"
+   ]
+  }
+ },
+ "open_gesture": {
+  "nodeId": "b-bTLLuU4w5q",
+  "open": {
+   "deskOpen": true,
+   "sourceNode": "b-bTLLuU4w5q",
+   "projectId": "director-project-1791022225384-1",
+   "buttonOwner": "b-bTLLuU4w5q",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": null,
+   "fov": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ]
+  },
+  "gesture": {
+   "deskOpen": true,
+   "sourceNode": "b-bTLLuU4w5q",
+   "projectId": "director-project-1791022225384-1",
+   "buttonOwner": "b-bTLLuU4w5q",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": "camera-fov",
+   "last": "UPDATE_CAMERA/COMMITTED",
+   "fov": 46,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ]
+  },
+  "reopened": {
+   "deskOpen": true,
+   "sourceNode": "b-bTLLuU4w5q",
+   "projectId": "director-project-1791022225384-1",
+   "buttonOwner": "b-bTLLuU4w5q",
+   "pastLen": 1,
+   "pastKinds": [
+    "camera-fov"
+   ],
+   "active": null,
+   "last": null,
+   "fov": 46,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ]
+  }
+ },
+ "reload": {
+  "nodeId": "b-bTLLuU4w5q",
+  "renamed": {
+   "deskOpen": true,
+   "sourceNode": "b-bTLLuU4w5q",
+   "projectId": "director-project-1791022236344-1",
+   "buttonOwner": "b-bTLLuU4w5q",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "active": null,
+   "last": "UPDATE_OBJECT/COMMITTED",
+   "fov": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试710"
+   ]
+  },
+  "afterReload": {
+   "deskOpen": true,
+   "sourceNode": "b-bTLLuU4w5q",
+   "projectId": "director-project-1791022236344-1",
+   "buttonOwner": "b-bTLLuU4w5q",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": null,
+   "fov": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试710"
+   ]
+  },
+  "cardsAfterReload": [
+   "b-bTLLuU4w5q"
+  ]
+ },
+ "instrument_style": {
+  "openedSourceNode": "script-execution-1791022249221-l5iyyc",
+  "buttonOwnerId": "b-bTLLuU4w5q",
+  "opened": {
+   "deskOpen": true,
+   "sourceNode": "script-execution-1791022249221-l5iyyc",
+   "projectId": "director-project-1791022249554-1",
+   "buttonOwner": "b-bTLLuU4w5q",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": null,
+   "fov": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ]
+  },
+  "closed": {
+   "deskOpen": false,
+   "sourceNode": null,
+   "projectId": null,
+   "buttonOwner": "b-bTLLuU4w5q",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": null,
+   "fov": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ]
+  },
+  "reopened": {
+   "deskOpen": true,
+   "sourceNode": "b-bTLLuU4w5q",
+   "projectId": "director-project-1791022253543-3",
+   "buttonOwner": "b-bTLLuU4w5q",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": null,
+   "fov": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ]
+  },
+  "namesKept": false
+ },
+ "summary": {
+  "every-step-of-this-batch-stays-on-the-same-source-node": true,
+  "closing-and-reopening-the-same-node-keeps-committed-work-and-history": true,
+  "closing-with-an-open-gesture-commits-it-instead-of-discarding-it": true,
+  "a-page-reload-keeps-committed-content-but-drops-the-history": true,
+  "retraction-of-709-the-close-then-button-reopen-switched-nodes": true
+ },
+ "failures": []
+}
