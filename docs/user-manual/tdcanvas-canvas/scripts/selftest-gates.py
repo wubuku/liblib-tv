@@ -1035,6 +1035,71 @@ def mutate_anchor_exemption_too_short(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_table_row_too_many_cells(root: Path) -> None:
+    """表格行**格子数多于表头**时必须被拦下（M184）。
+
+    多出来的格子会被渲染器**连同里面的内容一起丢弃**——
+    源文件里每一行都还在，坏掉的只是产物，**其余门禁一律报 ok**。
+    最常见的成因是**把两行拼成了一行**（相邻两行各以竖线结尾又以竖线开头）。
+    写在**发布页**上才拦（读者看得见），内部账本另有基线口径。
+    """
+
+    import re
+
+    path = root / "20-reference.md"
+    text = path.read_text(encoding="utf-8")
+    lines = text.splitlines()
+
+    def cells(line: str) -> int:
+        return len(re.split(r"(?<!\\)\|", line.strip().strip("|")))
+
+    # 找到第一个表格块的**表头**列数，并记下表头所在行
+    head_cols = None
+    head_at = -1
+    for idx, line in enumerate(lines):
+        if line.strip().startswith("|") and not set(line.strip()) <= set("|-: "):
+            head_cols, head_at = cells(line), idx
+            break
+    if head_cols is None:
+        raise AssertionError("注入失败：20-reference.md 里没有表格")
+
+    # ★ 必须挑一个**正文行**，不能碰表头——
+    # 给表头加一格会让全表正文行都变成「少格」，而少格在 CommonMark 里合法，
+    # 结果这道注入**反而造出了一个不报错的场景**（M184 第一版注入就栽在这儿）。
+    for i, line in enumerate(lines):
+        # ★ 表头本身（head_at）与其下一行的分隔行都要跳过——
+        # 改表头会让整表正文行都变成「少格」，而少格合法，于是**这道注入自己造出了一个不报错的场景**
+        if i <= head_at + 1:
+            continue
+        if not line.strip().startswith("|"):
+            continue
+        if set(line.strip()) <= set("|-: "):
+            continue
+        if cells(line) != head_cols:
+            continue
+        lines[i] = line.rstrip() + " 多出来的一格 |"
+        path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        return
+    raise AssertionError("注入失败：20-reference.md 里没找到列数与表头一致的正文行")
+
+
+def mutate_table_internal_backlog_grows(root: Path) -> None:
+    """**内部账本的表格欠账不许增长**（M184）。
+
+    这四份内部页由 srcExclude 排除、读者看不到，且表里早有 M65 就在册的历史欠账，
+    一次性清完不现实——所以给它们设了**基线**。
+    但基线的意义是「不许再长」：**新增一处必须当场报错**，
+    否则「已知不管」就会变成「谁都往里加」。
+    """
+
+    path = root / "scripts/check-tables.py"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace(
+        '"AUDIT.md": 48,', '"AUDIT.md": 1,', 1)
+    assert patched != text, "注入失败：没找到 AUDIT.md 的基线"
+    path.write_text(patched, encoding="utf-8")
+
+
 def mutate_retraction_missing_kind(root: Path) -> None:
     """新订正**不写 kind** 时必须被拦下（M183）。
 
@@ -1203,6 +1268,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("已订正说法复现到**账本**里（正文之外的盲区）", mutate_retracted_ledger_repro, "retractions", "订正过的错误说法重新出现"),
     ("新订正不写 kind（改了描述却不算订正，计数会失真）", mutate_retraction_missing_kind, "retractions", "没写"),
     ("kind 取值拼错等于没分类（不能安静地少拦一类）", mutate_retraction_bad_kind, "retractions", "不在"),
+    ("表格行格子数多于表头（多出来的格子连内容一起被丢弃）", mutate_table_row_too_many_cells, "tables", "这一行有"),
+    ("内部账本的表格欠账不许增长（基线口径）", mutate_table_internal_backlog_grows, "tables", "不许增长"),
     ("产物里的死链", mutate_dead_dist_link, "distlinks", "指向不存在目标的链接"),
     ("任务评级三处不一致", mutate_rating_drift_inventory, "ratings", "评级漂移"),
     ("账本截图数与 manifest 不符", mutate_inventory_stale_count, "invfresh", "manifest 实为"),

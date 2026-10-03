@@ -43,6 +43,22 @@ def is_table_row(line: str) -> bool:
     return stripped.startswith("|") and stripped.endswith("|")
 
 
+def cell_count(line: str) -> int | None:
+    """数一行的**未转义**竖线分段数；不是表格行时返回 None。
+
+    **转义的竖线（`\|`）不算分隔符**——单元格里出现字面 `|` 时必须写成 `\|`，
+    那是 M175 踩过的坑。`append-audit.py` 追加的表格行全是未转义竖线，
+    所以本函数能如实数出「两行被拼成一行」造成的多余格子。
+    """
+    stripped = line.strip()
+    if not stripped.startswith("|"):
+        return None
+    body = re.split(r"(?<!\\)\|", stripped)
+    # 首尾两个空段对应行首与行尾的竖线，不算内容格子
+    inner = body[1:-1] if len(body) >= 2 else []
+    return len(inner)
+
+
 def is_delimiter_row(line: str) -> bool:
     if not is_table_row(line):
         return False
@@ -146,7 +162,24 @@ def check_code_spans(lines: list[str], code: set[int], rel: str) -> list[str]:
     return problems
 
 
-def check_file(path: Path, rel: str) -> list[str]:
+# M184：这四份是**内部账本**，由 config.mjs 的 srcExclude 排除、读者看不到。
+# 它们的表格欠账是 M65 就在册的历史问题（表被引用块从中间劈开的 61 行），
+# 一次性清完不属于本门禁的职责；**但欠账不许再长**——
+# 超过下面这个基线仍然报错，并在输出里逐处点名。
+INTERNAL_PAGES = {"AUDIT.md", "PROGRESS.md", "SOURCE_OBSERVATIONS.md", "TEST_MEDIA_ASSETS.md"}
+
+# 基线 = 引入本检查时各内部页的「格子数多于表头」存量条数。
+# **刻意用计数而不是行号**：这些文件天天在追加，行号会漂，计数不会。
+# 有人顺手修掉一处，计数下降是好事；门禁只在**增长**时报错。
+KNOWN_MORE_CELLS_BASELINE = {"AUDIT.md": 48, "PROGRESS.md": 1}
+
+
+def check_file(path: Path, rel: str, known: dict | None = None, short: dict | None = None) -> list[str]:
+    # M184 自己踩过的坑：**形参同名局部变量会把传进来的字典整个遮掉**，
+    # 收集器永远填不上、统计恒为 0，而门禁照样报 ok——**静默失效最难发现**。
+    # 这里的两个收集器都必须挂在形参上，任何「再起一个同名变量」的写法都不许回来。
+    known = known if known is not None else {}
+    short_rows = short if short is not None else {}
     lines = path.read_text(encoding="utf-8").splitlines()
     code = fenced_code_lines(lines)
     problems: list[str] = []
@@ -176,6 +209,36 @@ def check_file(path: Path, rel: str) -> list[str]:
                 f"结构，会整体渲染成原始管道文本（多半是被插在中间的引用块或列表劈开的）："
                 f"{head}"
             )
+        # M184：**列数必须与表头一致**。
+        # 此前这道检查不存在，于是 M183 把 4 行拼成 1 行写进 AUDIT（中间 3 个 `||` 产生空单元格），
+        # 整行 21 格混进 4 列表格——**渲染器会把多余的格子连同内容一起丢弃**，
+        # 而 check-tables 报 ok、check-render 也报 ok，**两道门禁同时失明**。
+        # 判据：按未转义的 `|` 切分（`\|` 不算分隔），表头、分隔行与每一行的列数必须全等。
+        head_cols = cell_count(block[0])
+        if head_cols is not None:
+            for offset, row in enumerate(block):
+                cols = cell_count(row)
+                if cols is None or cols == head_cols:
+                    continue
+                if cols < head_cols:
+                    # **少格在 CommonMark 里是合法的**——缺的格子渲染成空单元格，不会丢内容。
+                    # 所以它不算错，只记数（`short_rows`），**不阻断构建**。
+                    # 一律报错会让这道门禁变成噪声源，而噪声源会被无视。
+                    short_rows.setdefault(rel, []).append(f"{rel}:{start + 1 + offset}")
+                    continue
+                detail = (
+                    f"{rel}:{start + 1 + offset}: 这一行有 {cols} 个格子，"
+                    f"而表头是 {head_cols} 列（第 {start + 1 + offset} 行起算于表头）。"
+                    f"**多余的格子连同里面的内容会被渲染器直接丢弃**——"
+                    f"最常见的原因是**把两行拼成了一行**："
+                    f"相邻两行各以竖线结尾又以竖线开头，中间就成了两个相连的竖线"
+                )
+                if rel in INTERNAL_PAGES:
+                    # 内部页：只记进欠账，**但不让它再长**
+                    known.setdefault(rel, []).append(detail)
+                else:
+                    # 发布页：读者看得见，**一律报错**
+                    problems.append(detail)
     problems.extend(check_code_spans(lines, code, rel))
     return problems
 
@@ -192,6 +255,8 @@ def main() -> int:
         return 1
 
     problems: list[str] = []
+    known: dict[str, list[str]] = {}
+    short: dict[str, list[str]] = {}
     table_count = 0
     for path in md_files:
         rel = path.relative_to(root).as_posix()
@@ -205,7 +270,37 @@ def main() -> int:
             table_count += 1
             while index < len(lines) and is_table_row(lines[index]):
                 index += 1
-        problems.extend(check_file(path, rel))
+        problems.extend(check_file(path, rel, known, short))
+
+    # M184：内部账本的存量欠账**逐处点名**——不点名就等于「已知不管」，
+    # 而点名之后，谁新增了一处一眼就能看见，也就不用等到计数越线才知道。
+    for rel, items in sorted(known.items()):
+        base = KNOWN_MORE_CELLS_BASELINE.get(rel)
+        tag = "内部页" if rel in INTERNAL_PAGES else "发布页"
+        if base is None:
+            print(f"  [表格欠账·{tag}] {rel}：{len(items)} 处，但基线未登记（这本身是漏登记）")
+            problems.append(
+                f"{rel} 有 {len(items)} 处「格子数多于表头」的表格行，"
+                f"但 KNOWN_MORE_CELLS_BASELINE 里没有登记它的基线——"
+                f"**欠账必须先有基线才能被守住**，请补登记"
+            )
+        elif len(items) > base:
+            problems.append(
+                f"{rel} 的「格子数多于表头」从基线 {base} 处涨到了 {len(items)} 处"
+                f"（新增 {len(items) - base} 处）。**内部页的表格欠账不许增长**——"
+                f"新增处见下：\n    " + "\n    ".join(items[base:])
+            )
+        else:
+            print(
+                f"  [表格欠账·{tag}] {rel}：{len(items)} 处（基线 {base}，"
+                f"{'持平' if len(items) == base else '已修掉 ' + str(base - len(items)) + ' 处'}）"
+            )
+
+    for rel, items in sorted(short.items()):
+        print(
+            f"  [表格·少格·不算错] {rel}：{len(items)} 行格子数少于表头。"
+            f"CommonMark 里这是合法的（缺格渲染成空），**不阻断构建**"
+        )
 
     for problem in problems:
         print(f"  [表格] {problem}")
