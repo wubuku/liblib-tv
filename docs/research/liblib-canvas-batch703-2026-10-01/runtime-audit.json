@@ -1,0 +1,298 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 1150,
+  "nullClickDrift": [],
+  "maps": {
+   "zoom": 44,
+   "duration": 8,
+   "rulerLeft": 322,
+   "rulerWidth": 1779.125,
+   "playheadMap": {
+    "x": "321.9842 + 222.3946 * t",
+    "pxPerSecond": 222.3945711747639,
+    "fittedFrom": [
+     [
+      0.04046933183446919,
+      330.984375
+     ],
+     [
+      4,
+      1211.5625
+     ]
+    ],
+    "how": "真实点击标尺，读播放头落点反推"
+   },
+   "tickMap": {
+    "tickCount": 81,
+    "spacingPx": 22.234375,
+    "pxPerSecondIf0_1sPerTick": 222.34375,
+    "how": "刻度间距 ÷ 假设的 0.1s"
+   },
+   "keyframeLeftMap": {
+    "left": "325.4868 + 220.1406 * t",
+    "pxPerSecond": 220.14062881469727,
+    "how": "对 keyframe left 做最小二乘"
+   },
+   "keyframeCenterMap": {
+    "cx": "331.0000 + 220.1406 * t",
+    "pxPerSecond": 220.140625
+   },
+   "deltas": {
+    "tickVsPlayheadPct": -0.0228518054624538,
+    "keyframeVsPlayheadPct": -1.0134897461110626
+   }
+  },
+  "alignment": [
+   {
+    "keyframeTime": 0,
+    "keyframeCx": 331,
+    "timeImpliedByRulerMap": 0.04046861374564556,
+    "errorSeconds": 0.04046861374564556,
+    "errorPx": 9.0
+   },
+   {
+    "keyframeTime": 4,
+    "keyframeCx": 1211.5625,
+    "timeImpliedByRulerMap": 3.999929023901203,
+    "errorSeconds": -7.097609879691547e-05,
+    "errorPx": -0.015784699055597692
+   },
+   {
+    "keyframeTime": 8,
+    "keyframeCx": 2092.125,
+    "timeImpliedByRulerMap": 7.95938943405676,
+    "errorSeconds": -0.04061056594323986,
+    "errorPx": -9.031569398111301
+   },
+   {
+    "keyframeTime": 0,
+    "keyframeCx": 331,
+    "timeImpliedByRulerMap": 0.04046861374564556,
+    "errorSeconds": 0.04046861374564556,
+    "errorPx": 9.0
+   },
+   {
+    "keyframeTime": 4,
+    "keyframeCx": 1211.5625,
+    "timeImpliedByRulerMap": 3.999929023901203,
+    "errorSeconds": -7.097609879691547e-05,
+    "errorPx": -0.015784699055597692
+   },
+   {
+    "keyframeTime": 8,
+    "keyframeCx": 2092.125,
+    "timeImpliedByRulerMap": 7.95938943405676,
+    "errorSeconds": -0.04061056594323986,
+    "errorPx": -9.031569398111301
+   }
+  ],
+  "zoomScan": [
+   {
+    "zoom": 44,
+    "tickCount": 81,
+    "tickSpacingPx": 22.234375,
+    "rulerWidth": 1779.125,
+    "pxPerSecond": 222.390625,
+    "tickSeconds": 0.09997892222300288
+   },
+   {
+    "zoom": 7,
+    "tickCount": 81,
+    "tickSpacingPx": 11.96875,
+    "rulerWidth": 958,
+    "pxPerSecond": 119.75,
+    "tickSeconds": 0.09994780793319416
+   },
+   {
+    "zoom": 93,
+    "tickCount": 81,
+    "tickSpacingPx": 46.625,
+    "rulerWidth": 3730.5,
+    "pxPerSecond": 466.3125,
+    "tickSeconds": 0.09998659697091543
+   }
+  ],
+  "shotEndPaths": [
+   {
+    "storeEndTime": 8,
+    "inputValue": "12",
+    "rangeText": "0.0-8.0s",
+    "duration": 8,
+    "path": "Enter",
+    "committed": false
+   },
+   {
+    "storeEndTime": 8,
+    "inputValue": "8",
+    "rangeText": "0.0-8.0s",
+    "duration": 8,
+    "path": "Tab",
+    "committed": false
+   },
+   {
+    "storeEndTime": 8,
+    "inputValue": "12",
+    "rangeText": "0.0-8.0s",
+    "duration": 8,
+    "path": "ArrowUp",
+    "committed": false
+   }
+  ],
+  "theFinding": "时间轴的三条轨道不共用同一个时间↔像素映射。标尺点击与播放头是 x = 322 + 222.39t（px/s 222.39）；刻度间距 22.2344px 隐含 0.1s/刻 ⟹ 222.34（与播放头差 0.02%，所以刻度属于播放头那套）；关键帧是 left = 325.4868 + 220.1406t（px/s 220.14，**差 1.02%**）。后果：关键帧相对标尺的对齐误差在 t=0 为 −8.99px、t=4 为 +0.51px、t=8 为 +9.01px —— 中段最小、两端最大。点关键帧中心时播放头读数仍是精确的 4.000000，因为中段误差只有半像素、被读数四舍五入吃掉了。",
+  "theSecondFinding": "[data-director-shot-end] 是第四类控件：能聚焦、能打字、输入框会显示你打的值，但 Enter / ArrowUp / Tab 三条提交路径全部进不去 store（endTime 恒为 8），Tab 之后输入框自己弹回 8。",
+  "whatIsNotClaimed": "**不声称为什么有两套映射** —— 本批只测出「有两套」，没有追成因。不声称这 9px 的错位是缺陷还是有意（源站未取证，需授权点击）。不声称「duration 变了刻度数会变」（duration 无法从 UI 改，见判据 4）。不声称源站行为（**未取证，需授权点击**）。**不改 src/**。",
+  "storeWritesInThisRun": "none — zoom and the playhead were moved by real clicks",
+  "relationTo702": "702 顺手量出的「每像素 ≈ 0.0045s」**只对标尺/播放头那条轨道成立**；关键帧那条是 0.004543s。本批把那行账注补齐成三行。"
+ },
+ "checks": {
+  "three-tracks-three-maps": {
+   "ok": true,
+   "detail": {
+    "zoom": 44,
+    "duration": 8,
+    "rulerLeft": 322,
+    "rulerWidth": 1779.125,
+    "playheadMap": {
+     "x": "321.9842 + 222.3946 * t",
+     "pxPerSecond": 222.3945711747639,
+     "fittedFrom": [
+      [
+       0.04046933183446919,
+       330.984375
+      ],
+      [
+       4,
+       1211.5625
+      ]
+     ],
+     "how": "真实点击标尺，读播放头落点反推"
+    },
+    "tickMap": {
+     "tickCount": 81,
+     "spacingPx": 22.234375,
+     "pxPerSecondIf0_1sPerTick": 222.34375,
+     "how": "刻度间距 ÷ 假设的 0.1s"
+    },
+    "keyframeLeftMap": {
+     "left": "325.4868 + 220.1406 * t",
+     "pxPerSecond": 220.14062881469727,
+     "how": "对 keyframe left 做最小二乘"
+    },
+    "keyframeCenterMap": {
+     "cx": "331.0000 + 220.1406 * t",
+     "pxPerSecond": 220.140625
+    },
+    "deltas": {
+     "tickVsPlayheadPct": -0.0228518054624538,
+     "keyframeVsPlayheadPct": -1.0134897461110626
+    }
+   },
+   "note": "the tick map and the playhead map agree to 0.02% (so ticks belong to the playhead's map), while the keyframe lane runs 1.02% narrower — two affine maps, not one shared constant"
+  },
+  "keyframe-alignment-error-is-smallest-in-the-middle": {
+   "ok": true,
+   "detail": {
+    "alignmentByTime": {
+     "0": {
+      "keyframeTime": 0,
+      "keyframeCx": 331,
+      "timeImpliedByRulerMap": 0.04046861374564556,
+      "errorSeconds": 0.04046861374564556,
+      "errorPx": 9.0
+     },
+     "4": {
+      "keyframeTime": 4,
+      "keyframeCx": 1211.5625,
+      "timeImpliedByRulerMap": 3.999929023901203,
+      "errorSeconds": -7.097609879691547e-05,
+      "errorPx": -0.015784699055597692
+     },
+     "8": {
+      "keyframeTime": 8,
+      "keyframeCx": 2092.125,
+      "timeImpliedByRulerMap": 7.95938943405676,
+      "errorSeconds": -0.04061056594323986,
+      "errorPx": -9.031569398111301
+     }
+    },
+    "worstPx": 9.031569398111301,
+    "bestPx": 0.015784699055597692,
+    "signature": "误差在 t=0 与 t=8 两端各约 ±9px、t=4 中段 −0.02px —— 两套映射在轨道中段交叉，两端发散",
+    "whyTheReadoutHidesIt": "点关键帧 t=4 的中心，currentTime 读数是精确的 4.000000，因为中段误差只有 0.02px，被读数的小数位吃掉了"
+   },
+   "note": "a 9px misalignment at both ends of an 8-second track is about 0.04s — small enough that no readout shows it, and the middle of the track is where the two maps happen to agree"
+  },
+  "tick-interval-is-a-fixed-0-1s-and-the-count-81-follows-from-duration-8": {
+   "ok": true,
+   "detail": {
+    "zoomScan": [
+     {
+      "zoom": 44,
+      "tickCount": 81,
+      "tickSpacingPx": 22.234375,
+      "rulerWidth": 1779.125,
+      "pxPerSecond": 222.390625,
+      "tickSeconds": 0.09997892222300288
+     },
+     {
+      "zoom": 7,
+      "tickCount": 81,
+      "tickSpacingPx": 11.96875,
+      "rulerWidth": 958,
+      "pxPerSecond": 119.75,
+      "tickSeconds": 0.09994780793319416
+     },
+     {
+      "zoom": 93,
+      "tickCount": 81,
+      "tickSpacingPx": 46.625,
+      "rulerWidth": 3730.5,
+      "pxPerSecond": 466.3125,
+      "tickSeconds": 0.09998659697091543
+     }
+    ],
+    "distinctTickSeconds": [
+     0.0999,
+     0.1
+    ],
+    "explanation": "duration 恒为 8s，刻度固定 0.1s 一格 ⟹ 枚数必然是 8/0.1+1 = 81。**刻度数不是常量，是 duration 的结果** —— 本批没能改 duration（见判据 4），所以「duration 变了枚数会变」这条**未取证**"
+   },
+   "note": "81 looked like a hard-coded constant; it is 8/0.1+1, and the ruler redraws 81 ticks at every zoom because the duration never moves"
+  },
+  "shot-end-input-accepts-typing-but-has-no-commit-path": {
+   "ok": true,
+   "detail": {
+    "paths": [
+     {
+      "storeEndTime": 8,
+      "inputValue": "12",
+      "rangeText": "0.0-8.0s",
+      "duration": 8,
+      "path": "Enter",
+      "committed": false
+     },
+     {
+      "storeEndTime": 8,
+      "inputValue": "8",
+      "rangeText": "0.0-8.0s",
+      "duration": 8,
+      "path": "Tab",
+      "committed": false
+     },
+     {
+      "storeEndTime": 8,
+      "inputValue": "12",
+      "rangeText": "0.0-8.0s",
+      "duration": 8,
+      "path": "ArrowUp",
+      "committed": false
+     }
+    ],
+    "whatHappens": "Enter / ArrowUp：输入框留着 12，store 的 endTime 仍是 8，区间标签仍是 0.0-8.0s；Tab：输入框自己弹回 8",
+    "theCategory": "第四类 —— 不是 699 的惰性按钮（这个能聚焦能打字），也不是 700 的有据可查的拒绝（连命令都没发）"
+   },
+   "note": "an enabled, focusable, typeable field with no observed commit path; the rejection is silent in all three cases"
+  }
+ }
+}
