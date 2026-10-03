@@ -45,33 +45,109 @@ await settle(p, R);
 rec.起点 = { 组数: await 组数(p), 节点数: (await 孤儿(p)).length, 状态行: await R.status() };
 
 // ---- ① 先解组
+//
+// 🔴🔴 **批次 142 连续八版失败后定案的真解法**（本段是**唯一**可靠的路径）。
+//
+//   失败的八版分别栽在（每一条都实测过，不是推测）：
+//   ① 裸 `querySelector('.react-flow__node-group')` 拿到的是**影子**节点（一个组匹配 2 个元素）；
+//   ② 只扫标题 SPAN —— 常被别人的 `.react-flow__handle`（连接手柄）占据（实测命中 `DIV.react-flow__handle`）；
+//   ③ 无预校验直点标题中心 —— 照样选不中（`选中真身组数: 0`）；
+//   ④ `⌘⇧G` 兜底 —— **需要组先选中**，与 ②③ 互为**死锁**；
+//      而且 `keyGuard` 报 `safe: true` 时焦点其实还停在 dock 按钮上，快捷键被吞；
+//   ⑤ `Tab` 循环 —— 按 40 次**全落在 UI chrome 的按钮上**，根本不进画布节点（**已证伪**）；
+//   ⑥ `⇧1` 适配画布 —— 把两个组推到 **20% 缩放且完全重叠**，适得其反；
+//   ⑦ 空白处拖拽平移 —— mousedown 被 React Flow 解释成**框选**，位置一字未变；
+//   ⑧ 滚轮方向搞反 —— `-240` 反而把组**往下**推走。
+//
+//   ✅ **真根因**：组卡片的屏上 `y` 常常**落在视口之外**（实测 `556..892`，视口高 720），
+//   `elementFromPoint` 对越界坐标返回 `null` ⇒ 「点不到」其实是「不在屏幕里」。
+//   🔑 `getBoundingClientRect()` **照样给出完整盒子** —— 于是 DOM 读数「看起来有卡片」，
+//   实际一个像素都点不到。**这是「有盒子 ≠ 在屏上」的又一例**（同批次 130「有面积 ≠ 可见」）。
+//
+//   ✅ **三步归位**（实测两次成功，组 2→1→0）：
+//   ① **滚轮**把组带进视口：`p.mouse.wheel(0, 240)`，**正数往上带**、每格 240px
+//      （实测从 `y=6316` 滚 60 格回到 `316`；且 **canvas 坐标零位移** ⇒ 只改视图）；
+//   ② **逐格扫组卡片矩形**，找 `elementFromPoint` **命中组真身或其后代**的点并点击
+//      （实测命中 972 / 3800 个点，**全在卡片边缘带** —— 中心区域被组自己的
+//      `DIV.absolute` 内层占着，而那层未选中态是 `pointer-events: none`，点它等于点空白）；
+//   ③ 点组工具条上的「解除编组」。
+const 带进视口 = async (p, 判定) => {
+  await p.mouse.move(640, 400);
+  for (let i = 0; i < 60; i++) {
+    if (await 判定()) return true;
+    await p.mouse.wheel(0, 240);
+    await p.waitForTimeout(260);
+  }
+  return await 判定();
+};
+
 rec.解组 = [];
-while (await 组数(p) > 0) {
-  const 标题 = await p.evaluate(() => {
-    const g = document.querySelector('.react-flow__node-group');
-    if (!g) return null;
-    // 组卡片唯一可点的是标题文字本体：扫标题行里「不是卡片也不是空白」的那个小元素
-    const r = g.getBoundingClientRect();
-    for (let y = Math.max(Math.ceil(r.y) - 40, 66); y <= r.y + 4; y += 2)
-      for (let x = Math.ceil(r.x); x <= r.x + r.width - 2; x += 2) {
-        const h = document.elementFromPoint(x, y);
-        if (h && h !== g && g.contains(h) && (h.textContent || '').trim()) return { x, y, 逐字: (h.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 20) };
+let 解组轮 = 0;
+while ((await 组数(p)) > 0 && 解组轮 < 4) {
+  解组轮++;
+  let 解组成功 = false;
+
+  // 策略 0：组**已经**处于选中态 ⇒ 直接点工具条「解除编组」（残留组常常本来就是选中态）
+  const 已选 = await p.evaluate(() => Array.from(document.querySelectorAll('.react-flow__node-group'))
+    .filter((g) => !/^__group-resize-chrome__/.test(g.getAttribute('data-id') || ''))
+    .filter((g) => g.classList.contains('selected')).length);
+  if (已选 > 0) {
+    const 解0 = await 可点落点(p, '[data-toolbar-value="ungroup"]', 3, 3);
+    rec.解组.push({ 轮: 解组轮, 策略: '已选中→直接点解除编组', 落点: 解0 });
+    if (!解0.__err) {
+      await p.mouse.click(解0.x, 解0.y);
+      await p.waitForTimeout(2500);
+      await settle(p, R);
+      解组成功 = (await 组数(p)) === 0;
+      rec.解组.push({ 点按钮后组数: await 组数(p) });
+    }
+  }
+
+  // 策略 1（正路）：带进视口 → 逐格扫组本体 → 点 → 点解除编组
+  if (!解组成功) {
+    const 进 = await 带进视口(p, async () => {
+      const r = await p.evaluate(() => {
+        const g = document.querySelector('.react-flow__node-group:not([data-id^="__group-resize-chrome__"])');
+        if (!g) return null;
+        const rr = g.getBoundingClientRect();
+        return { top: rr.top, bottom: rr.bottom };
+      });
+      return !!r && r.top >= 80 && r.bottom <= 700;
+    });
+    rec.解组.push({ 轮: 解组轮, 策略: '带进视口', 已进: 进 });
+    const 扫 = await p.evaluate(() => {
+      const g = document.querySelector('.react-flow__node-group:not([data-id^="__group-resize-chrome__"])');
+      if (!g) return { __err: 'no-真身' };
+      const r = g.getBoundingClientRect();
+      for (let y = Math.max(Math.ceil(r.y), 66); y <= Math.min(r.bottom, 690); y += 2)
+        for (let x = Math.ceil(r.x); x <= Math.min(r.right, 1270); x += 2) {
+          const h = document.elementFromPoint(x, y);
+          if (h && (h === g || g.contains(h))) return { x, y };
+        }
+      return { __err: 'no-hit-point' };
+    });
+    rec.解组.push({ 扫 });
+    if (!扫.__err) {
+      await p.mouse.click(扫.x, 扫.y);
+      await p.waitForTimeout(1500);
+      const 选中组 = await p.evaluate(() => Array.from(document.querySelectorAll('.react-flow__node-group'))
+        .filter((g) => !/^__group-resize-chrome__/.test(g.getAttribute('data-id') || ''))
+        .filter((g) => g.classList.contains('selected')).length);
+      rec.解组.push({ 点后选中组: 选中组 });
+      if (选中组 > 0) {
+        const 解 = await 可点落点(p, '[data-toolbar-value="ungroup"]', 3, 3);
+        rec.解组.push({ 解除编组落点: 解 });
+        if (!解.__err) {
+          await p.mouse.click(解.x, 解.y);
+          await p.waitForTimeout(2500);
+          await settle(p, R);
+          解组成功 = (await 组数(p)) === 0;
+          rec.解组.push({ 解后组数: await 组数(p) });
+        }
       }
-    return { __err: 'no-title-point', 卡片: { x: Math.round(r.x), y: Math.round(r.y), w: Math.round(r.width), h: Math.round(r.height) } };
-  });
-  rec.解组.push({ 标题落点: 标题 });
-  if (标题.__err) { rec.解组失败 = 标题; break; }
-  await p.mouse.click(标题.x, 标题.y);
-  await p.waitForTimeout(1500);
-  const 选中了组 = await p.evaluate(() => document.querySelectorAll('.react-flow__node-group.selected').length);
-  rec.解组.push({ 选中组数: 选中了组 });
-  if (!选中了组) { rec.解组失败 = '点标题没选中组'; break; }
-  const 解 = await 可点落点(p, '[data-toolbar-value="ungroup"]', 3, 3);
-  rec.解组.push({ 解除编组落点: 解 });
-  if (解.__err) { rec.解组失败 = 解; break; }
-  await p.mouse.click(解.x, 解.y);
-  await p.waitForTimeout(2500);
-  await settle(p, R);
+    }
+  }
+  if (!解组成功) { rec.解组失败 = { 轮: 解组轮 }; break; }
 }
 rec.解组后 = { 组数: await 组数(p), 节点数: (await 孤儿(p)).length };
 

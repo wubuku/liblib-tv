@@ -1,0 +1,115 @@
+{
+ "尝试": [
+  {
+   "id": "node_7zmjayer84",
+   "标题命中": "DIV.react-flow__handle",
+   "点": [
+    701,
+    474
+   ],
+   "点后选中真身组": 0
+  },
+  {
+   "id": "node_9krcd9tn32",
+   "标题命中": "DIV.react-flow__handle",
+   "点": [
+    709,
+    482
+   ],
+   "点后选中真身组": 0
+  }
+ ],
+ "起点": {
+  "状态行": "78 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 78,
+  "组数": 2,
+  "zoom": "Zoom options, 60%"
+ },
+ "适配前": {
+  "组": [
+   {
+    "id": "node_7zmjayer84",
+    "选中": false,
+    "卡片": {
+     "x": 472,
+     "y": 192,
+     "w": 336,
+     "h": 336
+    },
+    "标题点": [
+     510,
+     178
+    ],
+    "标题命中": "DIV.absolute"
+   },
+   {
+    "id": "node_9krcd9tn32",
+    "选中": false,
+    "卡片": {
+     "x": 496,
+     "y": 216,
+     "w": 336,
+     "h": 336
+    },
+    "标题点": [
+     535,
+     202
+    ],
+    "标题命中": "DIV.absolute"
+   }
+  ],
+  "canvas前": 78
+ },
+ "keyGuard": {
+  "safe": true,
+  "where": "DIV[rf__wrapper] aria=\"Canvas\""
+ },
+ "适配后": {
+  "状态行": "78 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "zoom": "Zoom options, 20%",
+  "组": [
+   {
+    "id": "node_7zmjayer84",
+    "选中": false,
+    "卡片": {
+     "x": 686,
+     "y": 480,
+     "w": 111,
+     "h": 111
+    },
+    "标题点": [
+     701,
+     474
+    ],
+    "标题命中": "DIV.react-flow__handle"
+   },
+   {
+    "id": "node_9krcd9tn32",
+    "选中": false,
+    "卡片": {
+     "x": 694,
+     "y": 488,
+     "w": 111,
+     "h": 111
+    },
+    "标题点": [
+     709,
+     482
+    ],
+    "标题命中": "DIV.react-flow__handle"
+   }
+  ]
+ },
+ "canvas位移": 78,
+ "末尾": {
+  "状态行": "79 nodes, 1 edge, 1 selected. Editable. Room connected. 已保存.",
+  "节点数": 79,
+  "组数": 2,
+  "zoom": "Zoom options, 17%"
+ },
+ "多余": [
+  "node_7zmjayer84",
+  "node_9krcd9tn32",
+  "node_ztyv116gzh"
+ ]
+}

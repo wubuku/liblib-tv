@@ -1,0 +1,144 @@
+{
+ "轮": "142b-v3",
+ "档位": [
+  80,
+  100,
+  120,
+  150,
+  200
+ ],
+ "起点": {
+  "状态行": "78 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 78,
+  "组数": 1,
+  "选中": 0,
+  "zoom": "Zoom options, 60%"
+ },
+ "断言": [
+  {
+   "名": "①起始无组、0 选中",
+   "通过": false,
+   "详情": {
+    "组": 1,
+    "选": 0
+   }
+  },
+  {
+   "名": "建后差集恰好 1 个",
+   "通过": true,
+   "详情": {
+    "新增": [
+     "node_6fvy5qby41"
+    ]
+   }
+  },
+  {
+   "名": "新节点恰好 .selected",
+   "通过": true,
+   "详情": {
+    "SELF": "node_6fvy5qby41"
+   }
+  },
+  {
+   "名": "建后差集恰好 1 个",
+   "通过": true,
+   "详情": {
+    "新增": [
+     "node_28ygrhq8t7"
+    ]
+   }
+  },
+  {
+   "名": "新节点恰好 .selected",
+   "通过": true,
+   "详情": {
+    "SELF": "node_28ygrhq8t7"
+   }
+  },
+  {
+   "名": "建后差集恰好 1 个",
+   "通过": true,
+   "详情": {
+    "新增": [
+     "node_x6n79dmwq3"
+    ]
+   }
+  },
+  {
+   "名": "新节点恰好 .selected",
+   "通过": true,
+   "详情": {
+    "SELF": "node_x6n79dmwq3"
+   }
+  },
+  {
+   "名": "②点选恰好选中 3 个",
+   "通过": true,
+   "详情": {
+    "选中": [
+     "node_28ygrhq8t7",
+     "node_6fvy5qby41",
+     "node_x6n79dmwq3"
+    ]
+   }
+  },
+  {
+   "名": "③编组后恰好 1 个真身组",
+   "通过": false,
+   "详情": {
+    "ok": false,
+    "计划": {
+     "x": 631,
+     "y": 194,
+     "逐字": "编组",
+     "aria": null,
+     "祖先链": [
+      "inline-flex",
+      "nodrag",
+      "relative",
+      "nopan",
+      "react-flow__node-toolbar",
+      "react-flow__renderer",
+      "react-flow",
+      "w-full",
+      "relative",
+      "absolute",
+      "relative",
+      "absolute",
+      "absolute",
+      "relative",
+      "absolute",
+      "relative",
+      "DIV"
+     ]
+    },
+    "前置": {
+     "还在": true,
+     "浮层": 0,
+     "选中数": 3
+    },
+    "之后组数": 2
+   }
+  },
+  {
+   "名": "④编组后组自动处于选中态（否则本轮方案不成立）",
+   "通过": true,
+   "详情": {
+    "组选中": 1
+   }
+  }
+ ],
+ "编组后组选中": 1,
+ "归位": {
+  "zoom": "Zoom options, 60%",
+  "追平": true
+ },
+ "收尾": {
+  "状态行": "82 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+  "节点数": 83,
+  "组数": 2,
+  "选中": 2,
+  "zoom": "Zoom options, 60%"
+ },
+ "断言全过": false
+}

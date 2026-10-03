@@ -1,0 +1,96 @@
+{
+ "状态行": "81 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+ "zoom": "Zoom options, 60%",
+ "视口": {
+  "w": 1280,
+  "h": 720
+ },
+ "组元素": [
+  {
+   "id": "node_zacekmc3g9",
+   "是影子": false,
+   "屏上": {
+    "x": 496,
+    "y": 216,
+    "w": 336,
+    "h": 336
+   },
+   "pe": "none",
+   "zIndex": "-2",
+   "逐字": "编组 1 Group 编组 1, 3 members. No"
+  }
+ ],
+ "标题候选": {
+  "卡片": {
+   "x": 496,
+   "y": 216,
+   "w": 336,
+   "h": 336
+  },
+  "在视口内": true,
+  "候选数": 4,
+  "候选": [
+   {
+    "tag": "DIV",
+    "cls": "group relative h-full w-full pointer-events-none ",
+    "逐字": "编组 1Group 编组 1, 3 me",
+    "屏上": {
+     "x": 496,
+     "y": 216,
+     "w": 336,
+     "h": 336
+    },
+    "pe": "none"
+   },
+   {
+    "tag": "DIV",
+    "cls": "absolute left-0 flex w-full max-w-full items-center justify-",
+    "逐字": "编组 1",
+    "屏上": {
+     "x": 496,
+     "y": 199,
+     "w": 336,
+     "h": 14
+    },
+    "pe": "auto"
+   },
+   {
+    "tag": "SPAN",
+    "cls": "flex h-full origin-bottom-left items-center [&>[data-icon]]:",
+    "逐字": "编组 1",
+    "屏上": {
+     "x": 496,
+     "y": 190,
+     "w": 56,
+     "h": 24
+    },
+    "pe": "auto"
+   },
+   {
+    "tag": "SPAN",
+    "cls": "min-w-canvas-zero max-w-full overflow-hidden whitespace-nowr",
+    "逐字": "编组 1",
+    "屏上": {
+     "x": 516,
+     "y": 192,
+     "w": 36,
+     "h": 20
+    },
+    "pe": "auto"
+   }
+  ]
+ },
+ "上方命中扫描": {
+  "DIV.react-flow__handle": 100,
+  "DIV.absolute": 278,
+  "SPAN.min-w-canvas-zero": 109,
+  "svg.[object": 35,
+  "path.[object": 9,
+  "DIV.relative": 42,
+  "DIV.nodrag": 42,
+  "BUTTON.inline-flex": 86,
+  "SPAN.size-canvas-color-choice-trigger-swatch": 8,
+  "SPAN.": 20,
+  "SPAN.flex": 2
+ }
+}
