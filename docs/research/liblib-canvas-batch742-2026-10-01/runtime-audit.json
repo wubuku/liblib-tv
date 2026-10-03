@@ -1,0 +1,558 @@
+{
+  "batch": 742,
+  "title": "命令入口普查：记账 33 × LibTV 有入口 29 / 零入口 4；一条从未被调用过的记账命令",
+  "verdict": "7/7",
+  "summary": {
+    "grid": {
+      "acct_total": 33,
+      "acct_libtv": 29,
+      "acct_dead": [
+        "duplicateNode",
+        "removeNode",
+        "setEdges",
+        "submitLibTVEditorSessionCommit"
+      ],
+      "noacct_total": 21,
+      "noacct_libtv": 17,
+      "noacct_dead": [
+        "purgeRemovedCanvas",
+        "selectEdges",
+        "selectNodeOutput",
+        "selectNodes"
+      ]
+    },
+    "aliases": {
+      "setNodes": [
+        "setStoreNodes"
+      ],
+      "addEdge": [
+        "addStoreEdge"
+      ],
+      "setViewport": [
+        "setStoreViewport"
+      ]
+    },
+    "renames": [
+      [
+        "setNodes",
+        "setStoreNodes",
+        "src/app/page.tsx",
+        366
+      ],
+      [
+        "addEdge",
+        "addStoreEdge",
+        "src/app/page.tsx",
+        368
+      ],
+      [
+        "setViewport",
+        "setStoreViewport",
+        "src/app/page.tsx",
+        381
+      ]
+    ],
+    "acct_dead_others": {
+      "duplicateNode": [
+        "FrameOS",
+        "Jimeng"
+      ],
+      "removeNode": [
+        "FrameOS",
+        "Jimeng"
+      ],
+      "setEdges": [
+        "FrameOS"
+      ],
+      "submitLibTVEditorSessionCommit": []
+    },
+    "libtv_entries": {
+      "ungroupSelectedNodes": [
+        [
+          "src/app/page.tsx",
+          1365
+        ]
+      ],
+      "createDepthMotionCapture": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          296
+        ]
+      ],
+      "addResourceCohort": [
+        [
+          "src/components/AddNodePanel.tsx",
+          140
+        ]
+      ],
+      "createVideoFrameCapture": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          304
+        ]
+      ],
+      "createAudioSplit": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          257
+        ]
+      ],
+      "removeNode": [],
+      "createVideoContinuation": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          219
+        ]
+      ],
+      "removeSelectedNodes": [
+        [
+          "src/app/page.tsx",
+          1326
+        ],
+        [
+          "src/app/page.tsx",
+          1612
+        ]
+      ],
+      "completeShotBreakdown": [
+        [
+          "src/components/nodes/ShotBreakdownNode.tsx",
+          84
+        ]
+      ],
+      "createDirectorCapture": [
+        [
+          "src/components/director/DirectorDesk.tsx",
+          591
+        ],
+        [
+          "src/components/director/DirectorDesk.tsx",
+          608
+        ]
+      ],
+      "addNodeAtPosition": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          714
+        ]
+      ],
+      "createFirstLastFrameReference": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          679
+        ]
+      ],
+      "createSubtitleErase": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          227
+        ]
+      ],
+      "groupSelectedNodes": [
+        [
+          "src/app/page.tsx",
+          1366
+        ]
+      ],
+      "attachAssetReferences": [
+        [
+          "src/components/AddNodePanel.tsx",
+          76
+        ]
+      ],
+      "createLongVideoProcess": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          730
+        ]
+      ],
+      "destroyFirstFrameReference": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          725
+        ]
+      ],
+      "createImageHdPreset": [
+        [
+          "src/components/nodes/ImageNode.tsx",
+          294
+        ]
+      ],
+      "removeEdge": [
+        [
+          "src/app/page.tsx",
+          1431
+        ]
+      ],
+      "clearVideoContinuation": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          733
+        ]
+      ],
+      "setNodes": [
+        [
+          "src/app/page.tsx",
+          1073
+        ],
+        [
+          "src/app/page.tsx",
+          1090
+        ],
+        [
+          "src/app/page.tsx",
+          1522
+        ],
+        [
+          "src/app/page.tsx",
+          1528
+        ]
+      ],
+      "duplicateNode": [],
+      "submitLibTVEditorSessionCommit": [],
+      "createFirstFrameReference": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          677
+        ]
+      ],
+      "updateNodeData": [
+        [
+          "src/components/StoryboardBoard.tsx",
+          113
+        ],
+        [
+          "src/components/nodes/ImageNode.tsx",
+          89
+        ],
+        [
+          "src/components/nodes/ShotBreakdownNode.tsx",
+          56
+        ],
+        [
+          "src/components/nodes/ShotBreakdownNode.tsx",
+          70
+        ],
+        [
+          "src/components/nodes/ShotBreakdownNode.tsx",
+          162
+        ],
+        [
+          "src/components/nodes/VideoNode.tsx",
+          125
+        ]
+      ],
+      "createSmartMatting": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          372
+        ]
+      ],
+      "addEdge": [
+        [
+          "src/app/page.tsx",
+          618
+        ],
+        [
+          "src/components/director/DirectorAiImportModal.tsx",
+          72
+        ],
+        [
+          "src/components/nodes/VideoNode.tsx",
+          721
+        ]
+      ],
+      "createDirectorAnimationExport": [
+        [
+          "src/components/director/DirectorDesk.tsx",
+          740
+        ]
+      ],
+      "duplicateSelectedNodes": [
+        [
+          "src/app/page.tsx",
+          1355
+        ],
+        [
+          "src/app/page.tsx",
+          1608
+        ]
+      ],
+      "createStoryScriptPair": [
+        [
+          "src/components/CanvasEmptyState.tsx",
+          49
+        ]
+      ],
+      "addDerivedNode": [
+        [
+          "src/components/nodes/ImageNode.tsx",
+          142
+        ],
+        [
+          "src/components/nodes/ImageNode.tsx",
+          162
+        ],
+        [
+          "src/components/nodes/ImageNode.tsx",
+          187
+        ],
+        [
+          "src/components/nodes/VideoNode.tsx",
+          201
+        ]
+      ],
+      "createPictureEdit": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          396
+        ]
+      ],
+      "setEdges": []
+    },
+    "gitlog_external_calls": {
+      "duplicateNode": 7,
+      "removeNode": 13,
+      "setEdges": 3,
+      "submitLibTVEditorSessionCommit": 0,
+      "purgeRemovedCanvas": 0,
+      "selectEdges": 0,
+      "selectNodeOutput": 0,
+      "selectNodes": 2
+    },
+    "feedback": {
+      "surfaceCount": 13,
+      "entries": [
+        [
+          "add-node-panel",
+          "AddNodePanel",
+          "status-line"
+        ],
+        [
+          "add-resource-upload",
+          "AddNodePanel",
+          "status-line"
+        ],
+        [
+          "video-clip-panel",
+          "VideoClipEditPanel",
+          "status-line"
+        ],
+        [
+          "subtitle-erase-panel",
+          "SubtitleErasePanel",
+          "node-state"
+        ],
+        [
+          "smart-matting-panel",
+          "VideoNode",
+          "node-state"
+        ],
+        [
+          "shot-breakdown-card",
+          "ShotBreakdownNode",
+          "node-state"
+        ],
+        [
+          "editor-session-commit",
+          "canvasStore.submitLibTVEditorSessionCommit",
+          "none"
+        ],
+        [
+          "asset-reference-attach",
+          "canvasStore.attachAssetReferences",
+          "none"
+        ],
+        [
+          "annotate-toolbar",
+          "ImageAnnotateToolbar",
+          "none"
+        ],
+        [
+          "share-overlay",
+          "TopNavBar.SharePanel",
+          "status-line"
+        ],
+        [
+          "agent-drawer-status",
+          "AgentDrawer",
+          "status-line"
+        ],
+        [
+          "project-menu",
+          "TopNavBar.ProjectMenu",
+          "status-line"
+        ],
+        [
+          "canvas-empty-chips",
+          "CanvasEmptyState",
+          "status-line"
+        ]
+      ],
+      "storeBacked": [
+        [
+          "editor-session-commit",
+          "canvasStore.submitLibTVEditorSessionCommit",
+          "none"
+        ],
+        [
+          "asset-reference-attach",
+          "canvasStore.attachAssetReferences",
+          "none"
+        ]
+      ]
+    },
+    "recycleAttrs": [
+      "data-recycle-check",
+      "data-recycle-empty",
+      "data-recycle-item",
+      "data-recycle-panel",
+      "data-recycle-restore",
+      "data-recycle-restore-selected",
+      "data-recycle-selection"
+    ],
+    "direct_calls": {
+      "duplicateNode": {
+        "p0": 0,
+        "p1": 1,
+        "n0": 10,
+        "n1": 11,
+        "e0": 11,
+        "e1": 12,
+        "ret": "null"
+      },
+      "removeNode": {
+        "p0": 0,
+        "p1": 1,
+        "n0": 10,
+        "n1": 9,
+        "e0": 11,
+        "e1": 10,
+        "ret": "null"
+      },
+      "setEdges（不带 flag）": {
+        "p0": 0,
+        "p1": 0,
+        "n0": 10,
+        "n1": 10,
+        "e0": 11,
+        "e1": 11,
+        "ret": "null"
+      },
+      "setEdges（带 flag）": {
+        "p0": 0,
+        "p1": 1,
+        "n0": 10,
+        "n1": 10,
+        "e0": 11,
+        "e1": 11,
+        "ret": "null"
+      },
+      "submitLibTVEditorSessionCommit": {
+        "p0": 0,
+        "p1": 1,
+        "n0": 10,
+        "n1": 10,
+        "e0": 11,
+        "e1": 11,
+        "ret": "{\"status\": \"accepted\", \"historyPushed\": true, \"normalizedDraft\": \"x\", \"normalizedCurrent\": \"\"}"
+      }
+    },
+    "cmdd": {
+      "n0": 10,
+      "n1": 11,
+      "p0": 0,
+      "p1": 1,
+      "undo_n": 10,
+      "undo_p": 0,
+      "undo_f": 1
+    },
+    "recycle_dom": {
+      "panel": true,
+      "buttons": [
+        {
+          "text": "恢复",
+          "restore": true,
+          "restoreSelected": false
+        }
+      ],
+      "items": [
+        "canvas-1"
+      ],
+      "empty": false
+    },
+    "recycle_empty_first": {
+      "panel": true,
+      "buttons": 0,
+      "items": 0,
+      "empty": true
+    },
+    "recycle_after_restore": {
+      "items": 0,
+      "empty": true
+    },
+    "recycle_removed_before": [
+      "canvas-1"
+    ],
+    "recycle_removed_after": []
+  },
+  "checks": [
+    {
+      "label": "C1 交叉表：记账 33 = LibTV 29 / 零入口 4；不记账 21 = 17 / 4",
+      "pass": true,
+      "detail": "{\"acct_total\": 33, \"acct_libtv\": 29, \"acct_dead\": [\"duplicateNode\", \"removeNode\", \"setEdges\", \"submitLibTVEditorSessionCommit\"], \"noacct_total\": 21, \"noacct_libtv\": 17, \"noacct_dead\": [\"purgeRemovedCanvas\", \"selectEdges\", \"selectNodeOutput\", \"selectNodes\"]}"
+    },
+    {
+      "label": "C2 四个零入口记账命令点名；submitLibTVEditorSessionCommit 全 src/ 零调用且从未调用过",
+      "pass": true,
+      "detail": "{\"dead\": [\"duplicateNode\", \"removeNode\", \"setEdges\", \"submitLibTVEditorSessionCommit\"], \"submitHits\": [], \"gitlog\": 0, \"others\": {\"duplicateNode\": [\"FrameOS\", \"Jimeng\"], \"removeNode\": [\"FrameOS\", \"Jimeng\"], \"setEdges\": [\"FrameOS\"], \"submitLibTVEditorSessionCommit\": []}}"
+    },
+    {
+      "label": "C3 别名映射 3 个；用 741 的运行时事实反证 census（setNodes 必须有 LibTV 入口）",
+      "pass": true,
+      "detail": "{\"aliases\": {\"setNodes\": [\"setStoreNodes\"], \"addEdge\": [\"addStoreEdge\"], \"setViewport\": [\"setStoreViewport\"]}, \"setNodesLibTV\": [[\"src/app/page.tsx\", 1073], [\"src/app/page.tsx\", 1090], [\"src/app/page.tsx\", 1522], [\"src/app/page.tsx\", 1528]]}"
+    },
+    {
+      "label": "C4 零入口命令直调：3 个无条件记账，setEdges 需带 recordHistory 才记（承 741 的条件记账）",
+      "pass": true,
+      "detail": "{\"duplicateNode\": {\"p0\": 0, \"p1\": 1, \"n0\": 10, \"n1\": 11, \"e0\": 11, \"e1\": 12, \"ret\": \"null\"}, \"removeNode\": {\"p0\": 0, \"p1\": 1, \"n0\": 10, \"n1\": 9, \"e0\": 11, \"e1\": 10, \"ret\": \"null\"}, \"setEdges（不带 flag）\": {\"p0\": 0, \"p1\": 0, \"n0\": 10, \"n1\": 10, \"e0\": 11, \"e1\": 11, \"ret\": \"null\"}, \"setEdges（带 flag）\": {\"p0\": 0, \"p1\": 1, \"n0\": 10, \"n1\": 10, \"e0\": 11, \"e1\": 11, \"ret\": \"null\"}, \"submitLibTVEditorSessionCommit\": {\"p0\": 0, \"p1\": 1, \"n0\": 10, \"n1\": 10, \"e0\": 11, \"e1\": 11, \"ret\": \"{\\\"status\\\": \\\"accepted\\\", \\\"historyPushed\\\": true, \\\"normalizedDraft\\\": \\\"x\\\", \\\"normalizedCurrent\\\": \\\"\\\"}\"}}"
+    },
+    {
+      "label": "C5 Cmd+D 走 duplicateSelectedNodes：节点 +1、past +1、Cmd+Z 逐项撤回",
+      "pass": true,
+      "detail": "{\"n0\": 10, \"n1\": 11, \"p0\": 0, \"p1\": 1, \"undo_n\": 10, \"undo_p\": 0, \"undo_f\": 1}"
+    },
+    {
+      "label": "C6 回收站真有内容：每个按钮都是「恢复」、点它真的回来了 ⟹ purgeRemovedCanvas 零入口与 UI 自洽",
+      "pass": true,
+      "detail": "{\"emptyFirst\": {\"panel\": true, \"buttons\": 0, \"items\": 0, \"empty\": true}, \"dom\": {\"panel\": true, \"buttons\": [{\"text\": \"恢复\", \"restore\": true, \"restoreSelected\": false}], \"items\": [\"canvas-1\"], \"empty\": false}, \"removedBefore\": [\"canvas-1\"], \"afterRestore\": {\"items\": 0, \"empty\": true}, \"removedAfter\": [], \"attrs\": [\"data-recycle-check\", \"data-recycle-empty\", \"data-recycle-item\", \"data-recycle-panel\", \"data-recycle-restore\", \"data-recycle-restore-selected\", \"data-recycle-selection\"]}"
+    },
+    {
+      "label": "C7 反馈清单 13 个 surface，登记了那条从不执行的 submitLibTVEditorSessionCommit",
+      "pass": true,
+      "detail": "{\"surfaceCount\": 13, \"entries\": [[\"add-node-panel\", \"AddNodePanel\", \"status-line\"], [\"add-resource-upload\", \"AddNodePanel\", \"status-line\"], [\"video-clip-panel\", \"VideoClipEditPanel\", \"status-line\"], [\"subtitle-erase-panel\", \"SubtitleErasePanel\", \"node-state\"], [\"smart-matting-panel\", \"VideoNode\", \"node-state\"], [\"shot-breakdown-card\", \"ShotBreakdownNode\", \"node-state\"], [\"editor-session-commit\", \"canvasStore.submitLibTVEditorSessionCommit\", \"none\"], [\"asset-reference-attach\", \"canvasStore.attachAssetReferences\", \"none\"], [\"annotate-toolbar\", \"ImageAnnotateToolbar\", \"none\"], [\"share-overlay\", \"TopNavBar.SharePanel\", \"status-line\"], [\"agent-drawer-status\", \"AgentDrawer\", \"status-line\"], [\"project-menu\", \"TopNavBar.ProjectMenu\", \"status-line\"], [\"canvas-empty-chips\", \"CanvasEmptyState\", \"status-line\"]], \"storeBacked\": [[\"editor-session-commit\", \"canvasStore.submitLibTVEditorSessionCommit\", \"none\"], [\"asset-reference-attach\", \"canvasStore.attachAssetReferences\", \"none\"]]}"
+    }
+  ],
+  "conclusions": [
+    "交叉表：记账 33 = LibTV 有入口 29 / 零入口 4；不记账 21 = 17 / 4。",
+    "LibTV 画布用的是复数版 duplicateSelectedNodes / removeSelectedNodes；单数版 duplicateNode / removeNode 只被 FrameOS、Jimeng 调用。",
+    "setEdges 只被 src/app/frameos/canvas/[id]/page.tsx:143 调用；LibTV 改边只用 addEdge / removeEdge（两个都记账）。",
+    "submitLibTVEditorSessionCommit 全 src/ 零调用点，且 git log -S 显示「命令名+左括号」从未在任何提交里出现过 ⟹ 是预留能力，不是回归掉的接线。",
+    "四个零入口命令运行时直调都记账（past +1）⟹ 能力在、入口不在。",
+    "反馈清单 12 个 surface 里有 2 个直接指向 store 方法，其中一条登记的submitLibTVEditorSessionCommit 从不执行 ⟹ 清单登记 ≠ 接线（承 729）。",
+    "purgeRemovedCanvas 零入口与 UI 自洽：回收站只有「恢复」「恢复所选 N 项」两个按钮。",
+    "解构改名有 3 个别名（setNodes→setStoreNodes / addEdge→addStoreEdge / setViewport→setStoreViewport）⟹ 不建别名映射就会把 setNodes 误判成零入口。"
+  ],
+  "retracted": [
+    "**撤回「8 个记账命令零入口」**（第一版正则）：用了 `(?<![\\w.$])name(` 来避开 store 自调用，结果把 `useCanvasStore.getState().name(...)` 这种正常入口全杀了。",
+    "**撤回「setNodes 在 LibTV 零入口」**（第二版正则）：漏了解构改名 —— page.tsx:366 写 `setNodes: setStoreNodes`，调用点从不出现 `setNodes(`。",
+    "**撤回「FrameOS/Jimeng 归属判定第一版」**：只按路径段 `/frameos/` 判，漏了 src/store/frameosStore.ts、src/lib/frameosUpload.ts 这类「只有文件名带 frameos」的文件。"
+  ],
+  "notClaimed": [
+    "不声称 4 个零入口记账命令是缺陷还是有意保留 —— 未取证。",
+    "不声称源站是否有对应的单节点复制/单节点删除能力 —— 未取证。",
+    "「零入口」只覆盖 src/ 内的静态调用点：若有运行时字符串派发或反射调用，本普查读不到（已用 git log -S 交叉查过 4 个命令，仍不能排除一切动态路径）。",
+    "「反馈清单登记 ≠ 接线」只对本批核到的这 1 条成立；其余 11 个 surface 未逐条核接线。",
+    "回收站两个按钮只读了源码 onClick 与 DOM 按钮集合，未实际点击验证恢复行为。"
+  ]
+}
