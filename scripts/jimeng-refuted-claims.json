@@ -1,527 +1,538 @@
 {
- "_doc": "已被推翻的结论清单（批次 75 建）。jimeng-backfill-gate.mjs 据此检查：每条 pattern 的每一处命中，其上下文 ±3 行内必须有「订正标记」（删除线 / 已被推翻 / 订正 / 已关闭 / 不成立 / 口径…）。改一个字就要重新判读 —— 这是刻意的。",
- "_invariant": "① 每条 entry 至少命中一处（否则是幽灵条目 ⇒ 红）；② 每处命中都必须带内联订正标记（否则是「改了结论没回填」⇒ 红）。",
- "_why": "同一形状的错误已犯三次：批次 64 过期括注、批次 70 同文件数字打架、批次 74 订正没回填到原始记录。没有任何机械检查会抓到它，所以把它变成门。",
- "entries": [
-  {
-   "id": "f-media-unavailable",
-   "label": "F 键「媒体类明确报不可用」已被批次 60 推翻（音频不报，是静默）",
-   "patterns": [
-    "明确报不可用"
-   ],
-   "refuted_in": "批次 60（PROGRESS.md:1339 / AUDIT.md:3135）",
-   "reason": "批次 40 那句规律建立在视频、图片**两个样本**上；音频是第 3 个媒体类型，实测无任何反馈"
-  },
-  {
-   "id": "director-281",
-   "label": "导演台节点「281×281」是屏上口径，canvas 恒 320×320（批次 68）",
-   "patterns": [
-    "281×281"
-   ],
-   "refuted_in": "批次 68（SOURCE_OBSERVATIONS.md §3.87.2）",
-   "reason": "281 自洽于 87.8% 缩放（320×0.878≈281），不是记错而是拿屏上像素当契约"
-  },
-  {
-   "id": "timeline-title",
-   "label": "「时间线源的菜单标题是『添加上下文』，其余六种是『添加节点』」已被批次 71 推翻",
-   "patterns": [
-    "唯独.{0,12}时间线.{0,20}添加上下文",
-    "唯独从时间线出发.{0,10}添加上下文"
-   ],
-   "refuted_in": "批次 71（SOURCE_OBSERVATIONS.md §3.90.4）",
-   "reason": "菜单标题只由「点了哪个 ⊕」决定（before＝添加上下文 / after＝添加节点），与源类型无关"
-  },
-  {
-   "id": "video-timeline-subject-connectable",
-   "label": "「视频源：时间线/主体可连」已被批次 28 推翻（两者当时都是灰的）",
-   "patterns": [
-    "时间线/主体可连"
-   ],
-   "refuted_in": "批次 28（SOURCE_OBSERVATIONS.md §3.45 / AUDIT.md:915）",
-   "reason": "空视频源下时间线报「素材信息仍在加载中」、主体报「没有可用的就绪资源」，均为临时态"
-  },
-  {
-   "id": "menu-item-144x22",
-   "label": "「七项各 144×22」量的是文字标签 span，菜单项本身 192×36（批次 74）",
-   "patterns": [
-    "144×22"
-   ],
-   "refuted_in": "批次 74（SOURCE_OBSERVATIONS.md §3.93.2）",
-   "reason": "逐帧采样证明菜单没有尺寸动画；菜单项内的 SPAN.min-w-0.flex-1 恰为 144×22"
-  },
-  {
-   "id": "rename-always-visible",
-   "label": "`Rename` 曾被标成「始终可见」，实为**仅选中时**才有（批次 57）",
-   "patterns": [
-    "Rename.{0,12}始终可见|始终可见.{0,20}Rename"
-   ],
-   "refuted_in": "批次 57（connect-nodes.md「批次 57 订正之一」）",
-   "reason": "静息 0 个、悬停 0 个、选中 1 个，7 种类型全是这样"
-  },
-  {
-   "id": "image-source-miss-director",
-   "label": "「图片源只有文本不可连」漏了导演台（批次 28）",
-   "patterns": [
-    "从图片节点出发[^。\\n]{0,20}文本"
-   ],
-   "refuted_in": "批次 28（SOURCE_OBSERVATIONS.md §3.45 / AUDIT.md:916）",
-   "reason": "实测文本与导演台同为灰、同为「无法连接这些节点」"
-  },
-  {
-   "id": "only-three-as-target",
-   "label": "「作为目标只有 图片/视频/音频 能被连」只在 after ⊕ 下成立（批次 71）",
-   "patterns": [
-    "没有任何一种源能连它们"
-   ],
-   "refuted_in": "批次 71（SOURCE_OBSERVATIONS.md §3.90.4）",
-   "reason": "before ⊕ 下图片源与视频源都能连「文本」"
-  },
-  {
-   "id": "asset-picker-no-hint",
-   "label": "「资产库未选素材时没有任何提示文案」已被批次 52 推翻（原因文案是 sr-only 1×1，肉眼不可见）",
-   "patterns": [
-    "没有任何提示文案(?![^\n]{0,10}空态)",
-    "确认[^。\n]{0,90}没有任何提示文案"
-   ],
-   "refuted_in": "批次 52（SOURCE_OBSERVATIONS.md §3.70.2）",
-   "reason": "沿祖先链打印 tag/class/rect 才找到它：SPAN.sr-only 1×1@(263,628)，是「确认」的兄弟节点 —— 只读可见文本必然读不到，这是**假阴性**不是「不存在」"
-  },
-  {
-   "id": "media-aria-flip",
-   "label": "「播放/暂停 aria 为 Pause/Play 翻转」不成立（批次 ~5 起已订正）",
-   "patterns": [
-    "Pause\\s*/\\s*Play|Pause/Play"
-   ],
-   "refuted_in": "批次 5 起（media-playback 页）",
-   "reason": "§2.11 明确「播放/暂停 aria 文案未随状态翻转（以时间走动为准）」；静音钮才确实翻转"
-  },
-  {
-   "id": "shortcut-f-fullscreen",
-   "label": "快捷键面板把 `F` 标为「全屏」不成立，逐字是「预览视图」",
-   "patterns": [
-    "全屏 F(?![^\\n]{0,24}预览视图)",
-    "标为「全屏」"
-   ],
-   "refuted_in": "批次 11（§2.16 与正文表格已改）",
-   "reason": "面板原文是「预览视图 F」"
-  },
-  {
-   "id": "cmd-b-system-blocked",
-   "label": "「⌘B/I/U 被 macOS 系统层拦截、页面收不到」不成立",
-   "patterns": [
-    "系统层拦截|系统层.{0,10}收不到"
-   ],
-   "refuted_in": "批次 12（edit-text-node.md 三段对照实验）",
-   "reason": "无选区按 ⌘B innerHTML 无变化、全选后按 ⌘B 才生效 ⇒ 是「必须先有选区」不是「收不到」"
-  },
-  {
-   "id": "asset-time-tab",
-   "label": "「资产库的『时间』是第二级页签」不成立，它是右上角独立按钮",
-   "patterns": [
-    "时间[^。\\n]{0,6}第二级页签|第二级页签[^。\\n]{0,10}时间"
-   ],
-   "refuted_in": "批次 13（assets-and-upload.md 已改）",
-   "reason": "实测 28×28 独立按钮（按时间筛选），第二级页签实为 图片/视频/音频/文档"
-  },
-  {
-   "id": "add-ref-six-items",
-   "label": "「添加参考」菜单被数成 6 项（实为 1 标题 + 5 个 role=option）",
-   "patterns": [
-    "添加参考[^。\\n]{0,12}6 ?项|6 ?项[^。\\n]{0,12}添加参考"
-   ],
-   "refuted_in": "批次 45",
-   "reason": "标题不是选项；订正后补测了 aria-selected"
-  },
-  {
-   "id": "ai-agent-chip-opens-guide",
-   "label": "「点技能 chip 会展开对应的输入引导」不成立（不弹任何浮层）",
-   "patterns": [
-    "展开对应的输入引导|会展开[^。\\n]{0,8}输入引导"
-   ],
-   "refuted_in": "批次 62（ai-agent-drawer.md 整节重写）",
-   "reason": "抽屉面板全程 400×696@(868,12) 一格未变，技能被插成输入框内的 inline chip"
-  },
-  {
-   "id": "history-tabs-four",
-   "label": "「生成历史页签是 全部/图片/视频/音频」漏了「文本」，且实际有两级页签",
-   "patterns": [
-    "生成历史[^。\\n]{0,20}全部 ?/ ?图片"
-   ],
-   "refuted_in": "批次 31",
-   "reason": "二级页签五个（多一个文本），面板另有一级页签两个：生成历史 ｜ 积分明细"
-  },
-  {
-   "id": "handle-hotzone-type-diff",
-   "label": "「手柄热区因节点类型而异：320×320 一类 60×120、视频 56.8×113.6」",
-   "patterns": [
-    "56\\.8[×x]113\\.6"
-   ],
-   "refuted_in": "批次 78",
-   "reason": "同会话同 scale（0.568085）下视频与文本热区都是 60.00×120.01 canvas；34.1÷0.568085=60.00。差异来自『新建节点会自动缩小画布』导致的除数不同，不是类型"
-  },
-  {
-   "id": "handle-size-not-a-contract",
-   "label": "「手柄尺寸随缩放变化，不是契约」",
-   "patterns": [
-    "随缩放变化[，、]?不是契约"
-   ],
-   "refuted_in": "批次 78",
-   "reason": "限定为：随缩放变的是屏上读数；canvas 空间恒为 60×120（50%/100%/60% 三档实测逐字相同）。操作建议（看 class 不看像素）仍成立"
-  },
-  {
-   "id": "empty-node-is-dead-resource",
-   "label": "「空视频节点进入『无时长空载态（00:00 / 00:00）』」",
-   "patterns": [
-    "无时长空载态"
-   ],
-   "refuted_in": "批次 78",
-   "reason": "空节点是『还没有素材』，不是素材坏了：空态没有任何播放控件，也**没有**时间读数（时间样式读数为 null）；`00:00 / 00:00` 属于『有素材但资源失效』。批次 78 顺带确认『空节点没有播放控件』这句本身是对的"
-  },
-  {
-   "id": "audio-node-size-222-240",
-   "label": "「音频节点 222×222 / 240×240」",
-   "patterns": [
-    "222×222",
-    "240×240"
-   ],
-   "refuted_in": "批次 79",
-   "reason": "实测 320×320 canvas（他人「音频 1」+ 自建新节点各一次）。两个旧数都是屏上读数：240 来自 75% 缩放（实测 240×240），222 未在任何档位复现"
-  },
-  {
-   "id": "timeline-node-size-1055x182",
-   "label": "「时间线节点 1055×182」被当作 canvas 尺寸",
-   "patterns": [
-    "1055×182"
-   ],
-   "refuted_in": "批次 79",
-   "reason": "实测 1200×207 canvas；1055×182 是 88% 缩放下的屏上读数（实测 1056×182.2）"
-  },
-  {
-   "id": "subject-node-size-310",
-   "label": "「主体节点 310×310」",
-   "patterns": [
-    "310×310"
-   ],
-   "refuted_in": "批次 79",
-   "reason": "实测 352×352 canvas；逐层 dump 全部可见后代（本体 352×352 / header 352×84 / 空态区 320×252）没有一层是 310。旧数未复现"
-  },
-  {
-   "id": "image-node-size-320x427",
-   "label": "「图片节点本身 320×427」",
-   "patterns": [
-    "320×427"
-   ],
-   "refuted_in": "批次 79",
-   "reason": "只读复核画布上那个带内容图片节点：屏上 341.33×192 @0.6 ⇒ canvas 568.88×320（16:9）。320×427 未复现"
-  },
-  {
-   "id": "rename-turns-title-into-input",
-   "label": "「点 Rename 后标题变为输入框，改名后回车提交」",
-   "patterns": [
-    "标题变为输入框"
-   ],
-   "refuted_in": "批次 80",
-   "reason": "三种点法（单击 / 再单击 / 双击标题行）都不产生 input/textarea/contenteditable，焦点仍停在 Rename 钮上；该步骤正文说得比本页「已验证说明」（只测了按钮存在性）更多"
-  },
-  {
-   "id": "fullscreen-dialog-bare-attr",
-   "label": "「`div[text-editor-fullscreen-dialog]`」是裸属性选择器（批次 82）",
-   "patterns": [
-    "div\\[text-editor-fullscreen-dialog\\]"
-   ],
-   "refuted_in": "批次 82（SOURCE_OBSERVATIONS.md §4.01.2）",
-   "reason": "`[text-editor-fullscreen-dialog]` → 无；`[data-testid=\"text-editor-fullscreen-dialog\"]` → 1280×720@0,0。尺寸对、定位方式错，它让本批连续四轮把「F 能用」读成「F 完全失效」"
-  },
-  {
-   "id": "topbar-marker-color",
-   "label": "顶栏有一项「标记色」（批次 83）",
-   "patterns": [
-    "顶栏.{0,30}标记色|标记色.{0,30}顶栏"
-   ],
-   "refuted_in": "批次 83（SOURCE_OBSERVATIONS.md §4.02.5）",
-   "reason": "穷举顶栏 x∈[190,911) 全部有面积元素只有 5 个，无一为它。注意这**不是**节点卡片上的 `Add tags`（那个仍在，见 handle-hotzone-type-diff 一带的标记色板记录）"
-  },
-  {
-   "id": "project-panel-240x200",
-   "label": "项目切换面板本体 240×200（批次 83）",
-   "patterns": [
-    "项目.{0,40}240×200|240×200.{0,40}项目"
-   ],
-   "refuted_in": "批次 83（canvas-context.md 订正三处）",
-   "reason": "240×200 是**内层 `<nav>`** 的高度，面板本体 `[data-testid=\"canvas-project-panel-popover\"]` 是 240×280@12,52；同时项目行 198×36（旧数 232×36 是「新建画布项目」那一行）、项目数三项→五项"
-  },
-  {
-   "id": "summary-panel-200x92",
-   "label": "节点汇总面板 200×92（批次 83）",
-   "patterns": [
-    "200×92"
-   ],
-   "refuted_in": "批次 83（SOURCE_OBSERVATIONS.md §4.02.2）",
-   "reason": "200×92 是画布上只有 2 行类型时的读数；7 行时为 200×292。高度是条公式：高 = 4 + 40×类型行数 + 12 + 36（每行恒 192×36）"
-  },
-  {
-   "id": "node-toolbar-canvas-192x40",
-   "label": "节点浮动工具条「canvas 恒 192×40」（批次 80）",
-   "patterns": [
-    "canvas 恒 `192×40`"
-   ],
-   "refuted_in": "批次 85（SOURCE_OBSERVATIONS.md §4.04.4）",
-   "reason": "60% 下屏上 192×40 ⇒ 192/0.6=320、40/0.6=67，canvas 实为 320×67。批次 80 把屏上值当成了 canvas 值（只看到 192/320=0.6=scale 就没做除法）"
-  },
-  {
-   "id": "title-row-32px-above",
-   "label": "「标题行在节点卡片顶边上方 32px」是契约（批次 88）",
-   "patterns": [
-    "上方 32px"
-   ],
-   "refuted_in": "批次 88（SOURCE_OBSERVATIONS.md §4.07.3）",
-   "reason": "40/60/100% 三档屏上 dy 为 −26/−32/−32、canvas dy 为 −64/−53/−32，两个口径都不恒定。顺带说明批次 78 的「31–33 canvas px」也只在某缩放下成立"
-  },
-  {
-   "id": "addtags-24x24",
-   "label": "「`Add tags` 是 24×24」（批次 28 / 批次 88）",
-   "patterns": [
-    "Add tags.{0,40}24×24|24×24.{0,40}Add tags"
-   ],
-   "refuted_in": "批次 89（30-concepts.md「拿尺寸当身份会认错人」）",
-   "reason": "同一 testid+class+aria 的 20 个元素在 60% 下有 24×24/28×28/29×29 三种。真契约是乘法式：屏上 = 24px × 视口 scale × 该节点各自的 --octo-canvas-node-chrome-counter-scale（本批 20/20 预测命中）。批次 88 那个 24×24 反推对应 50% 缩放"
-  },
-  {
-   "id": "counter-scale-is-1-over-scale",
-   "label": "「counter-scale 逐字等于 1/scale」（批次 78，且被当作全局机制）",
-   "patterns": [
-    "counter-scale.{0,60}1/scale|1/scale.{0,60}counter-scale"
-   ],
-   "refuted_in": "批次 89（SOURCE_OBSERVATIONS.md §4.09.4）",
-   "reason": "那只在「同一个节点换缩放」时成立。缩放不变、换一批节点，20 个节点上同时有 1.66666（=1/0.6）/1.93435/2 三个取值，且与节点类型无关（audio 同时出现在三组）。该变量是逐节点的，机制未查明，记为待查"
-  },
-  {
-   "id": "toolbar-selected-185x40",
-   "label": "「文本节点选中态工具条 185×40」（本页第 38 行 / 已验证说明）",
-   "patterns": [
-    "185×40"
-   ],
-   "refuted_in": "批次 93（use-node-toolbar.md「文本节点工具条的机械契约」）",
-   "reason": "自建文本节点逐档实测（每档断言 sel===1 且节点在视口内）：40%→160×40、60%→192×40、100%→320×40，三档都没有 185。旧读数未复现，作废"
-  },
-  {
-   "id": "node-toolbar-canvas-320x67-height",
-   "label": "「文本浮动工具条 canvas 恒 320×67」（批次 85）",
-   "patterns": [
-    "320×67"
-   ],
-   "refuted_in": "批次 93（同页三档实测）",
-   "reason": "那个 67 是 40÷0.6 算出来的，而**屏上高度三档恒为 40**（canvas 100/67/40）。宽度 canvas 400/320/320 也不恒。稳定的是**按钮**：背景色 75×32、全屏 32×32、下载 32×32 三档逐字相同"
-  },
-  {
-   "id": "text-node-dblclick-no-edit",
-   "label": "「双击空文本节点不产生 contenteditable / .ProseMirror」（批次 93，本项此前以「⚠️ 适用范围提醒」的形式留在 use-node-toolbar.md）",
-   "patterns": [
-    "在\\*\\*空\\*\\*文本节点上不成立",
-    "空文本节点双击不产生 contenteditable",
-    "始终为 0，工具条也\\*\\*一直是选中态那三项\\*\\*"
-   ],
-   "refuted_in": "批次 95（SOURCE_OBSERVATIONS.md §4.15.4）",
-   "reason": "把序列拆开逐格受控复测（锁 node_3bfb9r79qe，每格回读）：未选中 + **纯双击**读到 contenteditable=1 / .ProseMirror=1 ⇒ 双击**确实**进编辑态。要注意「测法有嫌疑」与「结论错误」是两件事：批次 93 的三击序列这次也读到 1，说明当时的 0 另有原因（落点很可能不在文本节点上），改对测法也救不回原结论"
-  },
-  {
-   "id": "zoom-button-itself-is-input",
-   "label": "「缩放按钮本身是一个输入框（aria 逐字 Set zoom percentage，48×28）」（navigate-canvas.md 缩放第 4 步，2026-09-23 批次 24 起沿用）",
-   "patterns": [
-    "缩放按钮本身是一个输入框",
-    "点它\\*\\*自动全选并聚焦\\*\\*"
-   ],
-   "refuted_in": "批次 96（SOURCE_OBSERVATIONS.md §4.16.4）",
-   "reason": "按钮始终是 <button data-testid=\"canvas-zoom-percent\">，内部 0 个 input、0 个子元素、不是 contenteditable。那个 aria=\"Set zoom percentage\" 的 input[data-testid=\"canvas-zoom-percent-input\"] 是**菜单打开时另外渲染的元素**，只是叠在同一坐标(48×28@124,672)上。三个后果：菜单打开期间按钮 innerText 从 \"60%\" 变空串（读按钮文字当判据会失效）；菜单关闭时全页没有这个输入框；min/max/step 全空 ⇒ 8%–800% 钳制是程序做的"
-  },
-  {
-   "id": "voice-play-aria-flips-to-pause",
-   "label": "「试听按钮 aria 由 Play X 就地翻成 Pause X，可再次点击停止」（批次 32，audio-node-voice.md 试听一节）",
-   "patterns": [
-    "播放中 aria 变成 `Pause 生动解说`",
-    "点下后 \\*\\*0.9s 仍是 `Play`\\*\\*"
-   ],
-   "refuted_in": "批次 97（SOURCE_OBSERVATIONS.md §4.17.7，**判 VOID 而非推翻**）",
-   "reason": "本轮用 MutationObserver 逐条记 aria-label 变化（不漏快速翻转）再连采样 30 秒：observer 记到 0 条、轮询也只读到起手一次 Play，Pause 一次都没出现。与批次 32 矛盾。判不了是功能变了、这次没触发、还是环境不允许播放 ⇒ 记 VOID 不下结论。但这条已不能当可靠判据，正文已加「本轮未能复现」标注。留下的强判据：判断这类快速状态翻转要用 MutationObserver 而非轮询"
-  },
-  {
-   "id": "context-menu-one-shared-template",
-   "label": "「不同类型的节点共用同一套右键菜单模板」（批次 97 写在 audio-node-voice.md 右键菜单一节末尾）",
-   "patterns": [
-    "不同类型的节点共用同一套右键菜单模板"
-   ],
-   "refuted_in": "批次 98（SOURCE_OBSERVATIONS.md §4.18.3，**收窄而非推翻**）",
-   "reason": "主体节点实测 200×332、**8 项**各 192×36，第 4 位多一个独有的「保存到主体库」（高度正好差一个条目 40）。且「下载」项的禁用原因文案随类型不同：音频=「没有可用的就绪资源」、主体=「请选择至少一个组、文本、图片或视频项」。准确说法是「7 项基础 + 按节点类型插入额外项」；前 3 项与后 3 项仍逐字相同，所以「不用重新找菜单结构」那半句成立"
-  },
-  {
-   "id": "bottom-dock-has-5-controls",
-   "label": "「底部 dock 一共 5 个控件」（批次 96 写在 navigate-canvas.md「入口」一节的 dock 表格，末行把「与 AI 对话」也列了进去）",
-   "patterns": [
-    "底部 dock 一共 5 个控件",
-    "canvas-sidecar-launcher` \\| `118×34@1149,673` \\| 打开 AI 侧栏"
-   ],
-   "refuted_in": "批次 99（SOURCE_OBSERVATIONS.md §4.19.2）",
-   "reason": "dock 是 **4 个**。容器 canvas-navigation-dock 与 workspace-bottom-dock-frame 是同一矩形 164×36@12,668，按钮后代恰好 4 个且全部落在该矩形内（宽 164 装不下 x=1149 的那颗）。canvas-sidecar-launcher（与 AI 对话）118×34@1149,673 的父链是 DIV#canvas-sidecar-launchers，dock/frame/topBar 三个 contains 判定全为 false ⇒ 独立的一颗。批次 96 的取数是 r.y>640 粗筛，同一轮因此还捞进 15 个 Add tags。立规：判断某面板有几个控件要查容器后代，别按坐标筛"
-  },
-  {
-   "id": "play-pause-aria-does-not-flip",
-   "label": "「播放/暂停按钮的 aria 文案实测不随播放状态翻转（暂停后仍读作 Pause…）」—— 原写在 media-playback.md 的读屏提示块（2026-09-23 观测）",
-   "patterns": [
-    "不随播放状态翻转"
-   ],
-   "refuted_in": "批次 101（SOURCE_OBSERVATIONS.md §4.21.3）",
-   "reason": "aria **确实翻转**。video-node-playback-toggle 在暂停/播完时读 Play <名>、播放中读 Pause <名>，两个状态都实测到。2026-09-23 那次应属误记（很可能暂停后没重新读 aria）。连带影响：手册原本让读屏用户「以时间读数是否走动为准，不要依赖按钮文案」——这条建议本身仍安全，但理由（按钮文案不可信）已经不成立"
-  },
-  {
-   "id": "fullscreen-escape-exits",
-   "label": "「全屏观看：点击卡片右下浏览器全屏钮，或工具条 全屏；按 Esc 退出」—— 原写在 media-playback.md 原子步骤第 4 步",
-   "patterns": [
-    "退出全屏",
-    "按 .?Esc.? 退出全屏"
-   ],
-   "refuted_in": "批次 101（SOURCE_OBSERVATIONS.md §4.21.5）",
-   "reason": "**Esc 退不出全屏**：连按三次，document.fullscreenElement 恒在、播放态也不变（受控复测）。正确做法是**再点一次右下角那个全屏钮**（video-fullscreen-browser-toggle，aria 仍读 Enter browser full screen），点完 inFs 由 true 变 false，且平顺回到卡片。📌 判据教训：pattern 「按 .?Esc. 退出」**过宽**，把 30-concepts.md 里一句「先按 Esc 退出（编辑框）」误命中 ⇒ 订正标记判不到 ⇒ 门红。pattern 必须带上**领域限定词（全屏）**"
-  },
-  {
-   "id": "fullscreen-has-close-x-button",
-   "label": "「全屏播放器的控制条……右上角另有 X 关闭钮」—— 原写在 media-playback.md 原子步骤第 4 步（引自源站采样 batch 218，从未在本站画布复现）",
-   "patterns": [
-    "右上角另有"
-   ],
-   "refuted_in": "批次 101（SOURCE_OBSERVATIONS.md §4.21.5）",
-   "reason": "全屏容器 0,0 1280×720 内**只有 3 个 button**：video-fullscreen-playback-toggle / -mute-toggle / -browser-toggle。没有任何 X/关闭控件。源站采样 batch 218 的这条描述在本站不成立"
-  },
-  {
-   "id": "filechooser-hangs-over-cdp",
-   "label": "「文件选择器在 `connectOverCDP` 下会挂住」—— 原写在 assets-and-upload.md 的「⛔ 本轮未测」一行（批次 86）",
-   "patterns": [
-    "在 `connectOverCDP` 下会挂住"
-   ],
-   "refuted_in": "批次 102（SOURCE_OBSERVATIONS.md §4.22.5，收窄而非推翻）",
-   "reason": "挂住的是 `page.waitForEvent('filechooser')` **那一种等待写法**；换成全局 `page.on('filechooser', …)` 完全正常，批次 101（视频）与批次 102（文本）连续两次成功拉起选择器并完成上传。准确说法：「这条等待写法在 connectOverCDP 下会超时」，不是「这条路上传不了」。📌 判据教训：pattern 只写「挂住」**过宽**，把 §4.22 这段**专门记录订正过程**的小节也命中了 ⇒ 必须带上领域限定词（`connectOverCDP`）"
-  },
-  {
-   "id": "audio-media-node-needs-generation",
-   "label": "「造出带媒体的音频节点需要生成、属扣费边界，本手册未执行」—— 原写在 audio-node-voice.md 的「有内容的音频节点」一节（2026-09-23 记录）",
-   "patterns": [
-    "造出带媒体的音频节点",
-    "需要生成、属扣费边界"
-   ],
-   "refuted_in": "批次 104（SOURCE_OBSERVATIONS.md §4.24.0）",
-   "reason": "**不需要生成。** 左栏「上传」一样能造出带媒体的音频节点，而且**免费**（实测积分 805→805）；批次 102 测出 accept 白名单含 **17 种音频扩展名**（mp3/m4a/wav/flac/aac/wma…）。本轮用自造 4 秒 WAV 一次造出并把播放/暂停/波形跳转全部测完。这与批次 101 在视频侧犯的是同一个错：把「素材限制」写成了「扣费边界」"
-  },
-  {
-   "id": "save-to-subject-library-is-node-type-exclusive",
-   "label": "「『保存到主体库』是该节点类型独有的，空视频与图片节点都没有」—— 原写在 duplicate-delete-history.md 的菜单归属规则与 86-subject-context-menu 截图 alt 上（2026-10-01 记录），并被 20-reference.md 复述为「空视频节点确实没有该项，图片节点有」",
-   "patterns": [
-    "该节点类型独有的",
-    "主体节点独有且可用",
-    "空视频节点确实没有该项，图片节点有",
-    "空视频节点（无论有无资源）都没有这一项"
-   ],
-   "refuted_in": "批次 105（SOURCE_OBSERVATIONS.md §4.25.7）",
-   "reason": "**不是节点类型的专利。** 实测**有资源的视频节点**也有这一项：右键菜单 200×332、8 项，逐字「复制 ⌘ C ｜ 复制副本 ⌘ D ｜ 粘贴 ⌘ V ｜ 保存到主体库 ｜ 下载 ｜ 重做 ⌘ ⇧ Z 无需重做操作 ｜ 撤销 ⌘ Z ｜ 删除 ⌫」（与批次 101 在视频侧独立测得的 200×332 8 项逐字吻合）。归一后的规则是：**该项属于「有可用资源」这个条件，不属于「节点类型」** —— 空视频/空图片/空音频一律没有；主体节点是空态就有的例外。原结论是从一张**缺了「有资源的视频」这一行**的枚举表里读出来的。"
-  },
-  {
-   "id": "safe-landing-point-requires-no-overlap-rect",
-   "label": "「第四道护栏要求落点不得落在任何他人节点矩形内」—— 原写在 30-concepts.md「自建节点的三重护栏还不够」一节（2026-10-01 批次 105 立），并被同一节的配套坑 1「画布变挤会让安全落点归零」当作前提复述",
-   "patterns": [
-    "不在他人矩形内",
-    "不在任何他人节点矩形内"
-   ],
-   "refuted_in": "批次 108（SOURCE_OBSERVATIONS.md §4.28.2）",
-   "reason": "**这条条件是假阴性，必须删掉。** 实测甲节点 2209 个采样点中命中自身或后代的有 1615 个，其中 594 个仅因与 node_d4tjtpnatq（时间线 2，216 点）、node_9y4j9jf0qv（音频 6，378 点）**矩形相交**而被杀掉，可用落点因此读成 0。可那两个节点**在甲下面** —— elementFromPoint 在这 594 个点上返回的确实是甲的后代，那些点本来完全可点。**elementFromPoint 返回的就是最上层元素，层叠已经算进去了**，再叠矩形条件只会把「别人在下面」误判成「被挡住」。删掉后可用落点 0 → 594。同时新增一条要求：**落点必须按「动作即将发生的那一刻」现算**（前一步会改变层叠）。"
-  },
-  {
-   "id": "resource-failure-shows-0000-duration",
-   "label": "「资源已彻底失效则进入无时长空载态（时间显示 00:00 / 00:00，无法播放）」—— 原写在 media-playback.md 的「重试播放」小节，并被同一页三栏表的「资源失效」列复述为「时间读数 00:00 / 00:00」",
-   "patterns": [
-    "时间显示 00:00 / 00:00",
-    "无时长空载态",
-    "无法播放"
-   ],
-   "refuted_in": "批次 110（SOURCE_OBSERVATIONS.md §4.30）",
-   "reason": "**失效态根本不渲染时间那一行。** 2026-10-03 批次 110 用 CDP Network.setBlockedURLs + setCacheDisabled 拦下播放取流 key，首次自然复现失效态：`[data-testid^=\"audio-duration\"]` 与 `audio-duration-accessible` **两个元素都不在 DOM 里**（读出 0 个），不是显示成 00:00 / 00:00。`00:00 / 00:00` 那个样子是**时间线节点**的播放条。正确的判据是「卡片中央有没有 `音频播放失败` 那行红字」（testid `audio-playback-error`，内含 `role=\"alert\"` 的 DIV + 按钮 `重试播放音频`）。同时确认 `<audio>` 元素是**整个从 DOM 里消失**（不是 error 非空），且**资源账纹丝不动**仍为 `1 resource: 1 ready, 0 processing, 0 failed.`。"
-  },
-  {
-   "id": "zoom-timeline-is-a-separate-feature",
-   "label": "「缩放时间线 ⌘ scroll 是与『缩放画布』并列的独立功能，靠『当前焦点在画布还是在时间线』判断」—— 原写在 help-and-shortcuts.md 的快捷键表与批次 82 补注，并被 timeline-node.md「8. 缩放时间线」小节复述为「快捷键面板列出 ⌘ + 滚轮 缩放时间线」",
-   "patterns": [
-    "和「时间线」组的\\*\\*缩放时间线\\*\\*用的是\\*\\*同一个键\\*\\*",
-    "快捷键面板列出 \\*\\*⌘ \\+ 滚轮\\*\\* 缩放时间线"
-   ],
-   "refuted_in": "批次 111（SOURCE_OBSERVATIONS.md §4.31）",
-   "reason": "**它就是「缩放画布」，不是独立功能。** 2026-10-03 批次 111 用自建时间线节点测：(1) 同一画布缩放下画布上**三个**时间线节点的标尺刻度间距**逐字相同**（60% 下都是 96.3）⇒ 时间线没有自己的缩放；(2) `⌘ scroll` 让三者按**同一比值**变化（2.073/2.074/2.073），而画布缩放比值是 60/29=2.069 ⇒ 标尺间距只是画布缩放的副产物；(3) `⌘ scroll` 打在时间线轨道上与打在画布空白处读数完全一致。**普通滚轮（不带 Meta）在时间线上什么也不发生**（间距、缩放、scrollLeft 全部不动）。面板把同一条命令在「视图」组和「时间线」组各写一遍，**是文档分组，不是功能边界**。"
-  },
-  {
-   "id": "handwritten-at-voice-name-is-not-recognized",
-   "label": "「所以「引用音色」的正确用法是照着示例手写 `@<音色名>`」—— 原写在 audio-node-voice.md「选用 `Add`」小节末尾，SOURCE_OBSERVATIONS.md §3.49.5 也复述为「真正要用，得自己照着打 `@<音色名>`」",
-   "patterns": [
-    "照着示例手写",
-    "自己照着打 .{0,3}@<音色名>"
-   ],
-   "refuted_in": "批次 113（SOURCE_OBSERVATIONS.md §4.33.5）",
-   "reason": "**手写 `@<音色名>` 不会被转成结构化引用，落地就是纯文本。** 2026-10-03 批次 113 在音频节点的提示词框里逐段打字并读 `innerHTML`：打完 `@` 会弹出 `[data-testid=\"generation-mention-panel\"]`（`role=\"listbox\"` `240×192`，三个 `role=\"option\"` 各 `232×48`：**主体 / 图片 / 音频**），但**里面没有「音色」这一类**（也没有「视频」）；补上名字后面板消失，`innerHTML` 逐字 `<p>灯塔熄灭了@生动解说</p>`，**mention 元素 0 个、ProseMirror 原子节点 0 个** ⇒ `@` 走的是**引用素材**这条路，与音色库是两套 UI。⚠️ 手册示例里的 `@父亲` / `@女儿` **在音色库里不存在**（首屏 18 个音色逐个核对：生动解说、精品有声书、桃花庵主、猪猪侠、灵动女声、苏感低音、乌萨七、唐僧、厚实男声、阳光美眉、和蔼奶奶、派星星、佩奇猪、萌娃百科、磁性男主播、清醒语录、甜美软妹、小八酱）——照抄示例必须换成库里真实存在的名字。📌 判据立规：**`innerText` 区分不了「纯文本」和「已识别的 chip」**（两者逐字相同），判「有没有被识别」只能落在 `innerHTML` 的**结构**上。"
-  },
-  {
-   "id": "bottom-status-bar-is-not-on-screen",
-   "label": "「画布底部有一条状态行，显示 N nodes, N edges, N selected. Editable. Room connected. 已保存.」—— 原写在 00-quickstart.md 界面清单与分区示意图、20-reference.md 界面速查表；navigate-canvas.md 还据此写「提示条存在时状态行末尾多出两行」",
-   "patterns": [
-    "画布状态行",
-    "底部状态行",
-    "以及底部状态行",
-    "状态行末尾多出",
-    "状态行的判据"
-   ],
-   "refuted_in": "批次 120（SOURCE_OBSERVATIONS.md §4.40）",
-   "reason": "**屏幕上根本没有这条横线。** 2026-10-03 批次 120 在 1280×720 @dpr2 上实测：那句逐字文本的**全文档唯一宿主**是 `SPAN#:modern-js-r1:`，class `sr-only`、矩形 `1×1@(-1,-1)`（视口左上角之外）、`position:absolute` + `clip: rect(0px,0px,0px,0px)`，**自己没有 `aria-live`、5 层祖先也都没有、`role` 也不是 `status`** ⇒ 它不是播报区，就是一段屏外隐藏文本。判「全文档唯一」的依据：按「命中且没有更内层命中」筛出的最内层宿主**恰好 1 个**。全文档 171 种 `data-testid` 里**没有任何底部状态行**；底部只有 `workspace-bottom-dock-frame`/`canvas-navigation-dock` `164×36@12,668`、`canvas-bottom-dock` `156×28@16,672`、`canvas-sidecar-launchers` `120×36@1148,672`。**两条不共享假设的旁证**都看不到它：① 本轮实时截图 y 660–720 条带；② 早期批次真实截图 `09-connect-nodes-edge-created.png` 底部 150px（100% 缩放、另一个视口）。⚠️ 它**确实随状态实时更新**（同轮：选中后 `0 selected`→`1 selected`；建节点后 `76 nodes`→`77 nodes`）⇒ **规则本身继续有效，要改的只是「用户能在屏幕上找到它」这个说法**：屏上唯一可见的数量读数是顶栏 `canvas-node-summary-trigger` `34×28@156,16` 逐字「节点 76」，**只有节点数，没有连线数与选中数**。📌 顺带订正：`00-quickstart.md` 原写「已保存」出现在底部状态行里 —— **归属写错**，它在**顶栏** `OUTPUT[data-testid=\"canvas-title-save-status\"]` `30×18@206,21`；屏外那句的末尾**也**有「已保存」，是**另一个东西**。📌 再订正机制：`navigate-canvas.md` 那句「状态行末尾多出两行」是**读容器 innerText 的拼接产物** —— 提示条 `back-to-content-overlay`（平时 `display:none` + `0×0`）与状态行是**兄弟**（共同祖先为无 testid 的 DIV，同挂 `MAIN[aria-label=\"Canvas workspace\"]`），**互不包含**，状态行自身 `textContent` 永远只有那一句。📌 立规：**「屏上有没有」这个问题，截图与 DOM 读数要各给一条不共享假设的旁证**；只读 `innerText`/DOM 会把屏外隐藏文本当成可见内容。"
-  },
-  {
-   "id": "generation-history-panel-has-no-primary-tabs",
-   "label": "「生成历史面板分两层：一级页签两个（生成历史 ｜ 积分明细），二级类型页签五个（全部/图片/视频/音频/文本）」—— 原写在 10-tasks/canvas-context.md「查看生成历史」小节与同文件批次 11 补测记录、SOURCE_OBSERVATIONS.md §2.15 与 §4.xx 台账；20-reference.md 也据此写「生成历史两级页签」",
-   "patterns": [
-    "一级页签两个",
-    "一级页签两项",
-    "生成历史两级页签",
-    "面板分两层",
-    "面板分两级"
-   ],
-   "refuted_in": "批次 126（SOURCE_OBSERVATIONS.md §4.46）",
-   "reason": "**面板里根本没有「一级页签」，只有一层 `role=\"tablist\"` 和 5 个 `role=\"tab\"`。** 2026-10-03 批次 126 把 `canvas-feature-panel` 整棵 DOM 拆开：面板本体是 `<ASIDE role=\"dialog\" aria=\"生成历史\">` `320×211@797,56`，标题行 `320×56@797,56` 里只有两样东西 —— `H2`「生成历史」`56×36@813,72`（是**标题**）和一个 `BUTTON`「积分明细」`68×36@1033,72`（**没有 `role`、没有 `href`、没有 `aria-label`**，只带一个 `12×12` 的右向箭头 svg）。**全面板 `role=\"tab\"` 恰好 5 个、`role=\"tablist\"` 恰好 1 个**，`role=\"tabpanel\"` 恰好 1 个 ⇒ 计数判据直接否掉「两层」。📌 立规：**「一层 / 两级 / 嵌套」这类措辞必须能被一个计数判据支持**（本例即「`role=\"tablist\"` 的个数」）；批次 31 写下那句话时没有这个判据，所以它错了三个月也没人发现。📌 顺带四条：① 面板有 **4 个元素与它同矩形**（本体 + `canvas-feature-panel-surface` + `canvas-feature-panel-content` + `generation-history-panel`）⇒ 按矩形数会多数三次；② 直接父级是 `canvas-workbench-shell`，**没有 portal 到 body**；③ 5 个页签的 **`aria-controls` 全指向同一个** `generation-history-items`，逐个点过后**面板逐字与矩形一个字都没变** ⇒ 空态是共用的「暂无生成历史」，不是按类型各说一句；④ 那个「积分明细」按钮**开的是「项目信息」对话框**（`workspace-project-info-dialog` `800×546@240,87`，与批次 125 同一个组件、内部同样是 `project-consumption-summary`）并**直接落在「积分消耗」页签** —— 与「更多 → 项目信息」是同一个框，差别只在初始页签。",
-   "pattern_note": "（批次 126 建条时留的坑：patterns 一开始写了裸的「一级页签」与「分两层」，结果命中**资产库面板的真·一级页签**（`资产` / `主体`）和别的句式 —— 那不是被推翻的结论，是另一个面板的正确记录。⇒ 立规：**refuted-claims 的 pattern 必须唯一指代那条被推翻的主张**，宁可写长一点、带上下文，也不要写「这类话里常出现的那个词」。）"
-  },
-  {
-   "id": "search-panel-size-is-not-320x211",
-   "label": "「顶栏『搜索』展开的面板是 `role=\"dialog\"`、`320×211`、位于 (765, 56)」—— 原写在 10-tasks/navigate-canvas.md「搜索节点」小节与同文件批次台账、20-reference.md 顶栏速查行、SOURCE_OBSERVATIONS.md §3.27 与顶栏 testid 对照表、AUDIT.md 与 PROGRESS.md 的批次 2026-10-01 记录",
-   "patterns": [
-    "搜索[^|\\n]{0,80}320×211",
-    "320×211[^|\\n]{0,80}搜索"
-   ],
-   "pattern_note": "（不可用裸的 `320×211`：手册里它多半是「生成历史」面板的**正确**读数，拿它当 pattern 会把 20 处正确记录判成「改了结论没回填」。⇒ 立规：**refuted-claims 的 pattern 要能区分「同一串数字的不同归属」**。）",
-   "refuted_in": "批次 127（SOURCE_OBSERVATIONS.md §4.47）",
-   "reason": "**现行构建的搜索面板是 `320×604@765,56`；`320×211` 只在「输入框有词且一个都没匹配上」时才出现。** 2026-10-03 批次 127 用同一套仪表把搜索面板与生成历史面板各读一遍，搜索面板本体是 `<ASIDE role=\"dialog\" aria=\"搜索\" data-testid=\"canvas-feature-panel\">`，x 坐标 **765**（生成历史是 797，宽度都是 320）。五种状态各测一次：① 全部 76 条 / 输入框空 ⇒ **604**；② 输入「音频」命中 68 条 ⇒ **604**；③ 主体页签（该类型 0 个节点）/ 输入框空 / 0 条 ⇒ **604**；④ 输入「zzz不存在」0 命中 ⇒ **211**；⑤ 同上（主体页签内）⇒ **211**。⇒ 相关量是**「输入框有没有词」＋「有没有命中」**，不是结果条数（③④ 都是 0 条却一个 604 一个 211 在不同条件下）。**604 的构成**：`56`（输入行）＋`36`（页签行）＋`512`（结果区，其中视口 `460` ＋ 分页条 `52`；无分页时视口就是 512）。**211 的构成**与生成历史的空态同形（`56`＋`36`＋`119`）。📌 顺带四条：① 搜索面板**与生成历史面板是同一个组件**（同一个 `ASIDE` ＋ 同样的 `canvas-feature-panel-surface` / `canvas-feature-panel-content` 两层包装 ＋ 同一个父级 `canvas-workbench-shell`），只有最内层 `SECTION` 的 testid 不同（`canvas-search-panel` vs `generation-history-panel`）—— 手册一直把它们写成两个独立面板；② **九个分类页签一行放不下**（`role=\"tablist\"` `320×36`、`scrollWidth 519` vs `clientWidth 320`），只有**横向滚动**或点右端那个 `aria=\"Next search categories\"` 的 `24×24` 圆钮才能看到「时间线 / 组 / 其他」；③ **分页条有 4 个按钮**（首页 / 上一页 / `1 / 6` / 下一页 / 末页），其中首页与末页的 aria 是**没插值的 ICU 占位串** `{num, plural, other {向前 {num} 页}}` / `{num, plural, other {向后 {num} 页}}`；④ 面板**记住了上次选的页签**（关掉再开仍停在「其他 1」）。"
-  },
-  {
-   "id": "multi-selection-toolbar-has-no-add-tags",
-   "label": "「多选工具条里没有 Add tags，逐字核对工具条内容只有四项」—— 原写在 10-tasks/organize-group-layout.md「多选后出现多选工具条」小节",
-   "patterns": [
-    "多选工具条里没有[^|\\n]{0,20}Add",
-    "Add\\s*tags[^|\\n]{0,30}不属于顶部工具条"
-   ],
-   "pattern_note": "（不可用裸的 `Add tags`：它本身是**真实存在**的 testid（`flow-node-selected-tag`）与 aria，本册多处正确记录它。pattern 必须绑上「多选工具条里没有」这个**错误断言**，否则会把正确记录判成「改了结论没回填」。⇒ 与 `search-panel-size-is-not-320x211` 同源：**pattern 要能区分「同一串字的不同归属」。**）",
-   "refuted_in": "批次 131（SOURCE_OBSERVATIONS.md §4.52）",
-   "reason": "**它就在多选工具条里 —— 当年没数到，是因为用了「逐字核对」这个方法，而 `Add tags` 是图标按钮、`innerText` 逐字为空（只有 `aria-label`）。** 2026-10-03 批次 131 改数 `flow-node-selected-tag` 的**实例数**：0 选中 **76** 个（全在节点内）→ 单选 1 个 **76** 个（工具条内 **0**）→ **框选 8 个：总数掉到 69，其中节点内 68、工具条内 1**（`aria=\"Add tags\"`、`24×24`、紧贴工具条右端）→ 取消后回到 **76**、工具条内 **0**。🔑 **`76 − 68 = 8` 正好等于选中数** ⇒ **多选时选中节点的标记按钮被搬进工具条**，8 个搬上来只留 **1 个**统一入口（即「给这 N 个一起打标签」），完全可逆。精确说法：**基座 `selection-context-toolbar` 里确实没有它**（3 个直接子按钮：编组 / 布局 / 下载），**但外层 `selection-context-toolbar-surface` / `node-toolbar` 里有**（4 个后代按钮）。📌 立规：**核对工具条有几项不能只读 `innerText`**，要并读 `aria-label` / `title` / 子元素 `data-testid`。"
-  },
-  {
-   "id": "multi-select-toolbar-does-not-follow-zoom",
-   "label": "「多选工具条挂在画布 viewport 之外 ⇒ 不随画布缩放」—— 原写在 SOURCE_OBSERVATIONS.md §4.52「e 轮顺带钉死：工具条不在画布坐标系里」与 PROGRESS.md「顺带：工具条不在画布坐标系里」；批次 87 对「宽度由选中集撑开」的归因也只对了一半",
-   "patterns": [
-    "工具条不在画布坐标系里，不随画布缩放",
-    "不在画布坐标系、不随缩放"
-   ],
-   "pattern_note": "（不可用裸的 `不随缩放`：`20-reference.md` / `prepare-generation.md` / `director-node.md` 里「**生成面板**不随缩放」是**正确**记录，拿它当 pattern 会把正确结论判成「改了结论没回填」。⇒ 与 `search-panel-size-is-not-320x211`、`multi-selection-toolbar-has-no-add-tags` 同源：**pattern 要能区分「同一串字的不同归属」**，必须绑上「工具条 + viewport 之外」这个具体语境。）",
-   "refuted_in": "批次 135（SOURCE_OBSERVATIONS.md §4.56）",
-   "reason": "**「`css` 尺寸 = 屏上尺寸」证明的是「没人替它乘 scale」，不等于「没人乘 scale」—— 它可以自己乘。** 2026-10-03 批次 135 做**受控两臂**（此前从未有人做过单自变量实验：批次 87 自述「只改缩放，**选中集跟着变**」，74% 选 7 个 / 60% 选 8 个；批次 131 只取了 60% **单档**）。**第一臂**锁定同一 6 个选中节点、只改缩放四档（40/60/100/200%），外层 `node-toolbar` 屏上宽 = `400 / 600 / 1000 / 2000` = **`1000 × scale`（正比，不是反比）**；**第二臂**锁定 60%、只改选中数（2/3/6 个），外层 canvas 宽 `600/960/1000` 与包围盒 canvas 宽 `520/880/920` **差恒为 `80`**。🔑 **完整公式：屏上宽 = (选中集包围盒 canvas 宽 + 80) × 当前缩放** ⇒ 它**同时**依赖两个变量且**串联**：既随选中集变，**也随缩放变**。祖先链 `react-flow__node-toolbar → react-flow__renderer`（**不含** `.react-flow__viewport`）证实它确实在画布坐标系之外 ⇒ 组件是**自己按 canvas 尺寸算完再手工乘 scale**。📌 因此「viewport 之外」这半句**是硬的**（保留），错的只是从它推出的「不随缩放」；批次 87「511 与 1298 在 canvas 口径下差 1.88 倍所以不自洽」的自查**也不成立** —— 差异来自**那两次选中集不同**。📌 同批附带一条**量纲陷阱**：`20-reference.md` 记的 `flow-node-multi-selection-source-handle` = `60×120` 是「**屏上恒**」（四档 40/60/100/200% 屏上与 `offsetWidth` 逐字相同），而 `AUDIT.md`/`PROGRESS.md` 里被反复确认的「**canvas 恒** `60×120`」指的是 `flow-node-{target,source}-handle`；两者 `offsetWidth` **都是** `60×120`，但前者不在 viewport 内（不被乘，60% 下屏上 `60×120`）、后者在 viewport 内（被乘，60% 下屏上 `36×72`）。📌 **立规：判「某元素跟不跟缩放」要分两问** —— ① 它在不在 `.react-flow__viewport` 里（决定**谁**给它乘）；② 它屏上尺寸随不随 scale 变（决定**结果**）。**两问都要实测，不能从前一步推后一步。**"
-  }
- ]
+  "_doc": "已被推翻的结论清单（批次 75 建）。jimeng-backfill-gate.mjs 据此检查：每条 pattern 的每一处命中，其上下文 ±3 行内必须有「订正标记」（删除线 / 已被推翻 / 订正 / 已关闭 / 不成立 / 口径…）。改一个字就要重新判读 —— 这是刻意的。",
+  "_invariant": "① 每条 entry 至少命中一处（否则是幽灵条目 ⇒ 红）；② 每处命中都必须带内联订正标记（否则是「改了结论没回填」⇒ 红）。",
+  "_why": "同一形状的错误已犯三次：批次 64 过期括注、批次 70 同文件数字打架、批次 74 订正没回填到原始记录。没有任何机械检查会抓到它，所以把它变成门。",
+  "entries": [
+    {
+      "id": "f-media-unavailable",
+      "label": "F 键「媒体类明确报不可用」已被批次 60 推翻（音频不报，是静默）",
+      "patterns": [
+        "明确报不可用"
+      ],
+      "refuted_in": "批次 60（PROGRESS.md:1339 / AUDIT.md:3135）",
+      "reason": "批次 40 那句规律建立在视频、图片**两个样本**上；音频是第 3 个媒体类型，实测无任何反馈"
+    },
+    {
+      "id": "director-281",
+      "label": "导演台节点「281×281」是屏上口径，canvas 恒 320×320（批次 68）",
+      "patterns": [
+        "281×281"
+      ],
+      "refuted_in": "批次 68（SOURCE_OBSERVATIONS.md §3.87.2）",
+      "reason": "281 自洽于 87.8% 缩放（320×0.878≈281），不是记错而是拿屏上像素当契约"
+    },
+    {
+      "id": "timeline-title",
+      "label": "「时间线源的菜单标题是『添加上下文』，其余六种是『添加节点』」已被批次 71 推翻",
+      "patterns": [
+        "唯独.{0,12}时间线.{0,20}添加上下文",
+        "唯独从时间线出发.{0,10}添加上下文"
+      ],
+      "refuted_in": "批次 71（SOURCE_OBSERVATIONS.md §3.90.4）",
+      "reason": "菜单标题只由「点了哪个 ⊕」决定（before＝添加上下文 / after＝添加节点），与源类型无关"
+    },
+    {
+      "id": "video-timeline-subject-connectable",
+      "label": "「视频源：时间线/主体可连」已被批次 28 推翻（两者当时都是灰的）",
+      "patterns": [
+        "时间线/主体可连"
+      ],
+      "refuted_in": "批次 28（SOURCE_OBSERVATIONS.md §3.45 / AUDIT.md:915）",
+      "reason": "空视频源下时间线报「素材信息仍在加载中」、主体报「没有可用的就绪资源」，均为临时态"
+    },
+    {
+      "id": "menu-item-144x22",
+      "label": "「七项各 144×22」量的是文字标签 span，菜单项本身 192×36（批次 74）",
+      "patterns": [
+        "144×22"
+      ],
+      "refuted_in": "批次 74（SOURCE_OBSERVATIONS.md §3.93.2）",
+      "reason": "逐帧采样证明菜单没有尺寸动画；菜单项内的 SPAN.min-w-0.flex-1 恰为 144×22"
+    },
+    {
+      "id": "rename-always-visible",
+      "label": "`Rename` 曾被标成「始终可见」，实为**仅选中时**才有（批次 57）",
+      "patterns": [
+        "Rename.{0,12}始终可见|始终可见.{0,20}Rename"
+      ],
+      "refuted_in": "批次 57（connect-nodes.md「批次 57 订正之一」）",
+      "reason": "静息 0 个、悬停 0 个、选中 1 个，7 种类型全是这样"
+    },
+    {
+      "id": "image-source-miss-director",
+      "label": "「图片源只有文本不可连」漏了导演台（批次 28）",
+      "patterns": [
+        "从图片节点出发[^。\\n]{0,20}文本"
+      ],
+      "refuted_in": "批次 28（SOURCE_OBSERVATIONS.md §3.45 / AUDIT.md:916）",
+      "reason": "实测文本与导演台同为灰、同为「无法连接这些节点」"
+    },
+    {
+      "id": "only-three-as-target",
+      "label": "「作为目标只有 图片/视频/音频 能被连」只在 after ⊕ 下成立（批次 71）",
+      "patterns": [
+        "没有任何一种源能连它们"
+      ],
+      "refuted_in": "批次 71（SOURCE_OBSERVATIONS.md §3.90.4）",
+      "reason": "before ⊕ 下图片源与视频源都能连「文本」"
+    },
+    {
+      "id": "asset-picker-no-hint",
+      "label": "「资产库未选素材时没有任何提示文案」已被批次 52 推翻（原因文案是 sr-only 1×1，肉眼不可见）",
+      "patterns": [
+        "没有任何提示文案(?![^\n]{0,10}空态)",
+        "确认[^。\n]{0,90}没有任何提示文案"
+      ],
+      "refuted_in": "批次 52（SOURCE_OBSERVATIONS.md §3.70.2）",
+      "reason": "沿祖先链打印 tag/class/rect 才找到它：SPAN.sr-only 1×1@(263,628)，是「确认」的兄弟节点 —— 只读可见文本必然读不到，这是**假阴性**不是「不存在」"
+    },
+    {
+      "id": "media-aria-flip",
+      "label": "「播放/暂停 aria 为 Pause/Play 翻转」不成立（批次 ~5 起已订正）",
+      "patterns": [
+        "Pause\\s*/\\s*Play|Pause/Play"
+      ],
+      "refuted_in": "批次 5 起（media-playback 页）",
+      "reason": "§2.11 明确「播放/暂停 aria 文案未随状态翻转（以时间走动为准）」；静音钮才确实翻转"
+    },
+    {
+      "id": "shortcut-f-fullscreen",
+      "label": "快捷键面板把 `F` 标为「全屏」不成立，逐字是「预览视图」",
+      "patterns": [
+        "全屏 F(?![^\\n]{0,24}预览视图)",
+        "标为「全屏」"
+      ],
+      "refuted_in": "批次 11（§2.16 与正文表格已改）",
+      "reason": "面板原文是「预览视图 F」"
+    },
+    {
+      "id": "cmd-b-system-blocked",
+      "label": "「⌘B/I/U 被 macOS 系统层拦截、页面收不到」不成立",
+      "patterns": [
+        "系统层拦截|系统层.{0,10}收不到"
+      ],
+      "refuted_in": "批次 12（edit-text-node.md 三段对照实验）",
+      "reason": "无选区按 ⌘B innerHTML 无变化、全选后按 ⌘B 才生效 ⇒ 是「必须先有选区」不是「收不到」"
+    },
+    {
+      "id": "asset-time-tab",
+      "label": "「资产库的『时间』是第二级页签」不成立，它是右上角独立按钮",
+      "patterns": [
+        "时间[^。\\n]{0,6}第二级页签|第二级页签[^。\\n]{0,10}时间"
+      ],
+      "refuted_in": "批次 13（assets-and-upload.md 已改）",
+      "reason": "实测 28×28 独立按钮（按时间筛选），第二级页签实为 图片/视频/音频/文档"
+    },
+    {
+      "id": "add-ref-six-items",
+      "label": "「添加参考」菜单被数成 6 项（实为 1 标题 + 5 个 role=option）",
+      "patterns": [
+        "添加参考[^。\\n]{0,12}6 ?项|6 ?项[^。\\n]{0,12}添加参考"
+      ],
+      "refuted_in": "批次 45",
+      "reason": "标题不是选项；订正后补测了 aria-selected"
+    },
+    {
+      "id": "ai-agent-chip-opens-guide",
+      "label": "「点技能 chip 会展开对应的输入引导」不成立（不弹任何浮层）",
+      "patterns": [
+        "展开对应的输入引导|会展开[^。\\n]{0,8}输入引导"
+      ],
+      "refuted_in": "批次 62（ai-agent-drawer.md 整节重写）",
+      "reason": "抽屉面板全程 400×696@(868,12) 一格未变，技能被插成输入框内的 inline chip"
+    },
+    {
+      "id": "history-tabs-four",
+      "label": "「生成历史页签是 全部/图片/视频/音频」漏了「文本」，且实际有两级页签",
+      "patterns": [
+        "生成历史[^。\\n]{0,20}全部 ?/ ?图片"
+      ],
+      "refuted_in": "批次 31",
+      "reason": "二级页签五个（多一个文本），面板另有一级页签两个：生成历史 ｜ 积分明细"
+    },
+    {
+      "id": "handle-hotzone-type-diff",
+      "label": "「手柄热区因节点类型而异：320×320 一类 60×120、视频 56.8×113.6」",
+      "patterns": [
+        "56\\.8[×x]113\\.6"
+      ],
+      "refuted_in": "批次 78",
+      "reason": "同会话同 scale（0.568085）下视频与文本热区都是 60.00×120.01 canvas；34.1÷0.568085=60.00。差异来自『新建节点会自动缩小画布』导致的除数不同，不是类型"
+    },
+    {
+      "id": "handle-size-not-a-contract",
+      "label": "「手柄尺寸随缩放变化，不是契约」",
+      "patterns": [
+        "随缩放变化[，、]?不是契约"
+      ],
+      "refuted_in": "批次 78",
+      "reason": "限定为：随缩放变的是屏上读数；canvas 空间恒为 60×120（50%/100%/60% 三档实测逐字相同）。操作建议（看 class 不看像素）仍成立"
+    },
+    {
+      "id": "empty-node-is-dead-resource",
+      "label": "「空视频节点进入『无时长空载态（00:00 / 00:00）』」",
+      "patterns": [
+        "无时长空载态"
+      ],
+      "refuted_in": "批次 78",
+      "reason": "空节点是『还没有素材』，不是素材坏了：空态没有任何播放控件，也**没有**时间读数（时间样式读数为 null）；`00:00 / 00:00` 属于『有素材但资源失效』。批次 78 顺带确认『空节点没有播放控件』这句本身是对的"
+    },
+    {
+      "id": "audio-node-size-222-240",
+      "label": "「音频节点 222×222 / 240×240」",
+      "patterns": [
+        "222×222",
+        "240×240"
+      ],
+      "refuted_in": "批次 79",
+      "reason": "实测 320×320 canvas（他人「音频 1」+ 自建新节点各一次）。两个旧数都是屏上读数：240 来自 75% 缩放（实测 240×240），222 未在任何档位复现"
+    },
+    {
+      "id": "timeline-node-size-1055x182",
+      "label": "「时间线节点 1055×182」被当作 canvas 尺寸",
+      "patterns": [
+        "1055×182"
+      ],
+      "refuted_in": "批次 79",
+      "reason": "实测 1200×207 canvas；1055×182 是 88% 缩放下的屏上读数（实测 1056×182.2）"
+    },
+    {
+      "id": "subject-node-size-310",
+      "label": "「主体节点 310×310」",
+      "patterns": [
+        "310×310"
+      ],
+      "refuted_in": "批次 79",
+      "reason": "实测 352×352 canvas；逐层 dump 全部可见后代（本体 352×352 / header 352×84 / 空态区 320×252）没有一层是 310。旧数未复现"
+    },
+    {
+      "id": "image-node-size-320x427",
+      "label": "「图片节点本身 320×427」",
+      "patterns": [
+        "320×427"
+      ],
+      "refuted_in": "批次 79",
+      "reason": "只读复核画布上那个带内容图片节点：屏上 341.33×192 @0.6 ⇒ canvas 568.88×320（16:9）。320×427 未复现"
+    },
+    {
+      "id": "rename-turns-title-into-input",
+      "label": "「点 Rename 后标题变为输入框，改名后回车提交」",
+      "patterns": [
+        "标题变为输入框"
+      ],
+      "refuted_in": "批次 80",
+      "reason": "三种点法（单击 / 再单击 / 双击标题行）都不产生 input/textarea/contenteditable，焦点仍停在 Rename 钮上；该步骤正文说得比本页「已验证说明」（只测了按钮存在性）更多"
+    },
+    {
+      "id": "fullscreen-dialog-bare-attr",
+      "label": "「`div[text-editor-fullscreen-dialog]`」是裸属性选择器（批次 82）",
+      "patterns": [
+        "div\\[text-editor-fullscreen-dialog\\]"
+      ],
+      "refuted_in": "批次 82（SOURCE_OBSERVATIONS.md §4.01.2）",
+      "reason": "`[text-editor-fullscreen-dialog]` → 无；`[data-testid=\"text-editor-fullscreen-dialog\"]` → 1280×720@0,0。尺寸对、定位方式错，它让本批连续四轮把「F 能用」读成「F 完全失效」"
+    },
+    {
+      "id": "topbar-marker-color",
+      "label": "顶栏有一项「标记色」（批次 83）",
+      "patterns": [
+        "顶栏.{0,30}标记色|标记色.{0,30}顶栏"
+      ],
+      "refuted_in": "批次 83（SOURCE_OBSERVATIONS.md §4.02.5）",
+      "reason": "穷举顶栏 x∈[190,911) 全部有面积元素只有 5 个，无一为它。注意这**不是**节点卡片上的 `Add tags`（那个仍在，见 handle-hotzone-type-diff 一带的标记色板记录）"
+    },
+    {
+      "id": "project-panel-240x200",
+      "label": "项目切换面板本体 240×200（批次 83）",
+      "patterns": [
+        "项目.{0,40}240×200|240×200.{0,40}项目"
+      ],
+      "refuted_in": "批次 83（canvas-context.md 订正三处）",
+      "reason": "240×200 是**内层 `<nav>`** 的高度，面板本体 `[data-testid=\"canvas-project-panel-popover\"]` 是 240×280@12,52；同时项目行 198×36（旧数 232×36 是「新建画布项目」那一行）、项目数三项→五项"
+    },
+    {
+      "id": "summary-panel-200x92",
+      "label": "节点汇总面板 200×92（批次 83）",
+      "patterns": [
+        "200×92"
+      ],
+      "refuted_in": "批次 83（SOURCE_OBSERVATIONS.md §4.02.2）",
+      "reason": "200×92 是画布上只有 2 行类型时的读数；7 行时为 200×292。高度是条公式：高 = 4 + 40×类型行数 + 12 + 36（每行恒 192×36）"
+    },
+    {
+      "id": "node-toolbar-canvas-192x40",
+      "label": "节点浮动工具条「canvas 恒 192×40」（批次 80）",
+      "patterns": [
+        "canvas 恒 `192×40`"
+      ],
+      "refuted_in": "批次 85（SOURCE_OBSERVATIONS.md §4.04.4）",
+      "reason": "60% 下屏上 192×40 ⇒ 192/0.6=320、40/0.6=67，canvas 实为 320×67。批次 80 把屏上值当成了 canvas 值（只看到 192/320=0.6=scale 就没做除法）"
+    },
+    {
+      "id": "title-row-32px-above",
+      "label": "「标题行在节点卡片顶边上方 32px」是契约（批次 88）",
+      "patterns": [
+        "上方 32px"
+      ],
+      "refuted_in": "批次 88（SOURCE_OBSERVATIONS.md §4.07.3）",
+      "reason": "40/60/100% 三档屏上 dy 为 −26/−32/−32、canvas dy 为 −64/−53/−32，两个口径都不恒定。顺带说明批次 78 的「31–33 canvas px」也只在某缩放下成立"
+    },
+    {
+      "id": "addtags-24x24",
+      "label": "「`Add tags` 是 24×24」（批次 28 / 批次 88）",
+      "patterns": [
+        "Add tags.{0,40}24×24|24×24.{0,40}Add tags"
+      ],
+      "refuted_in": "批次 89（30-concepts.md「拿尺寸当身份会认错人」）",
+      "reason": "同一 testid+class+aria 的 20 个元素在 60% 下有 24×24/28×28/29×29 三种。真契约是乘法式：屏上 = 24px × 视口 scale × 该节点各自的 --octo-canvas-node-chrome-counter-scale（本批 20/20 预测命中）。批次 88 那个 24×24 反推对应 50% 缩放"
+    },
+    {
+      "id": "counter-scale-is-1-over-scale",
+      "label": "「counter-scale 逐字等于 1/scale」（批次 78，且被当作全局机制）",
+      "patterns": [
+        "counter-scale.{0,60}1/scale|1/scale.{0,60}counter-scale"
+      ],
+      "refuted_in": "批次 89（SOURCE_OBSERVATIONS.md §4.09.4）",
+      "reason": "那只在「同一个节点换缩放」时成立。缩放不变、换一批节点，20 个节点上同时有 1.66666（=1/0.6）/1.93435/2 三个取值，且与节点类型无关（audio 同时出现在三组）。该变量是逐节点的，机制未查明，记为待查"
+    },
+    {
+      "id": "toolbar-selected-185x40",
+      "label": "「文本节点选中态工具条 185×40」（本页第 38 行 / 已验证说明）",
+      "patterns": [
+        "185×40"
+      ],
+      "refuted_in": "批次 93（use-node-toolbar.md「文本节点工具条的机械契约」）",
+      "reason": "自建文本节点逐档实测（每档断言 sel===1 且节点在视口内）：40%→160×40、60%→192×40、100%→320×40，三档都没有 185。旧读数未复现，作废"
+    },
+    {
+      "id": "node-toolbar-canvas-320x67-height",
+      "label": "「文本浮动工具条 canvas 恒 320×67」（批次 85）",
+      "patterns": [
+        "320×67"
+      ],
+      "refuted_in": "批次 93（同页三档实测）",
+      "reason": "那个 67 是 40÷0.6 算出来的，而**屏上高度三档恒为 40**（canvas 100/67/40）。宽度 canvas 400/320/320 也不恒。稳定的是**按钮**：背景色 75×32、全屏 32×32、下载 32×32 三档逐字相同"
+    },
+    {
+      "id": "text-node-dblclick-no-edit",
+      "label": "「双击空文本节点不产生 contenteditable / .ProseMirror」（批次 93，本项此前以「⚠️ 适用范围提醒」的形式留在 use-node-toolbar.md）",
+      "patterns": [
+        "在\\*\\*空\\*\\*文本节点上不成立",
+        "空文本节点双击不产生 contenteditable",
+        "始终为 0，工具条也\\*\\*一直是选中态那三项\\*\\*"
+      ],
+      "refuted_in": "批次 95（SOURCE_OBSERVATIONS.md §4.15.4）",
+      "reason": "把序列拆开逐格受控复测（锁 node_3bfb9r79qe，每格回读）：未选中 + **纯双击**读到 contenteditable=1 / .ProseMirror=1 ⇒ 双击**确实**进编辑态。要注意「测法有嫌疑」与「结论错误」是两件事：批次 93 的三击序列这次也读到 1，说明当时的 0 另有原因（落点很可能不在文本节点上），改对测法也救不回原结论"
+    },
+    {
+      "id": "zoom-button-itself-is-input",
+      "label": "「缩放按钮本身是一个输入框（aria 逐字 Set zoom percentage，48×28）」（navigate-canvas.md 缩放第 4 步，2026-09-23 批次 24 起沿用）",
+      "patterns": [
+        "缩放按钮本身是一个输入框",
+        "点它\\*\\*自动全选并聚焦\\*\\*"
+      ],
+      "refuted_in": "批次 96（SOURCE_OBSERVATIONS.md §4.16.4）",
+      "reason": "按钮始终是 <button data-testid=\"canvas-zoom-percent\">，内部 0 个 input、0 个子元素、不是 contenteditable。那个 aria=\"Set zoom percentage\" 的 input[data-testid=\"canvas-zoom-percent-input\"] 是**菜单打开时另外渲染的元素**，只是叠在同一坐标(48×28@124,672)上。三个后果：菜单打开期间按钮 innerText 从 \"60%\" 变空串（读按钮文字当判据会失效）；菜单关闭时全页没有这个输入框；min/max/step 全空 ⇒ 8%–800% 钳制是程序做的"
+    },
+    {
+      "id": "voice-play-aria-flips-to-pause",
+      "label": "「试听按钮 aria 由 Play X 就地翻成 Pause X，可再次点击停止」（批次 32，audio-node-voice.md 试听一节）",
+      "patterns": [
+        "播放中 aria 变成 `Pause 生动解说`",
+        "点下后 \\*\\*0.9s 仍是 `Play`\\*\\*"
+      ],
+      "refuted_in": "批次 97（SOURCE_OBSERVATIONS.md §4.17.7，**判 VOID 而非推翻**）",
+      "reason": "本轮用 MutationObserver 逐条记 aria-label 变化（不漏快速翻转）再连采样 30 秒：observer 记到 0 条、轮询也只读到起手一次 Play，Pause 一次都没出现。与批次 32 矛盾。判不了是功能变了、这次没触发、还是环境不允许播放 ⇒ 记 VOID 不下结论。但这条已不能当可靠判据，正文已加「本轮未能复现」标注。留下的强判据：判断这类快速状态翻转要用 MutationObserver 而非轮询"
+    },
+    {
+      "id": "context-menu-one-shared-template",
+      "label": "「不同类型的节点共用同一套右键菜单模板」（批次 97 写在 audio-node-voice.md 右键菜单一节末尾）",
+      "patterns": [
+        "不同类型的节点共用同一套右键菜单模板"
+      ],
+      "refuted_in": "批次 98（SOURCE_OBSERVATIONS.md §4.18.3，**收窄而非推翻**）",
+      "reason": "主体节点实测 200×332、**8 项**各 192×36，第 4 位多一个独有的「保存到主体库」（高度正好差一个条目 40）。且「下载」项的禁用原因文案随类型不同：音频=「没有可用的就绪资源」、主体=「请选择至少一个组、文本、图片或视频项」。准确说法是「7 项基础 + 按节点类型插入额外项」；前 3 项与后 3 项仍逐字相同，所以「不用重新找菜单结构」那半句成立"
+    },
+    {
+      "id": "bottom-dock-has-5-controls",
+      "label": "「底部 dock 一共 5 个控件」（批次 96 写在 navigate-canvas.md「入口」一节的 dock 表格，末行把「与 AI 对话」也列了进去）",
+      "patterns": [
+        "底部 dock 一共 5 个控件",
+        "canvas-sidecar-launcher` \\| `118×34@1149,673` \\| 打开 AI 侧栏"
+      ],
+      "refuted_in": "批次 99（SOURCE_OBSERVATIONS.md §4.19.2）",
+      "reason": "dock 是 **4 个**。容器 canvas-navigation-dock 与 workspace-bottom-dock-frame 是同一矩形 164×36@12,668，按钮后代恰好 4 个且全部落在该矩形内（宽 164 装不下 x=1149 的那颗）。canvas-sidecar-launcher（与 AI 对话）118×34@1149,673 的父链是 DIV#canvas-sidecar-launchers，dock/frame/topBar 三个 contains 判定全为 false ⇒ 独立的一颗。批次 96 的取数是 r.y>640 粗筛，同一轮因此还捞进 15 个 Add tags。立规：判断某面板有几个控件要查容器后代，别按坐标筛"
+    },
+    {
+      "id": "play-pause-aria-does-not-flip",
+      "label": "「播放/暂停按钮的 aria 文案实测不随播放状态翻转（暂停后仍读作 Pause…）」—— 原写在 media-playback.md 的读屏提示块（2026-09-23 观测）",
+      "patterns": [
+        "不随播放状态翻转"
+      ],
+      "refuted_in": "批次 101（SOURCE_OBSERVATIONS.md §4.21.3）",
+      "reason": "aria **确实翻转**。video-node-playback-toggle 在暂停/播完时读 Play <名>、播放中读 Pause <名>，两个状态都实测到。2026-09-23 那次应属误记（很可能暂停后没重新读 aria）。连带影响：手册原本让读屏用户「以时间读数是否走动为准，不要依赖按钮文案」——这条建议本身仍安全，但理由（按钮文案不可信）已经不成立"
+    },
+    {
+      "id": "fullscreen-escape-exits",
+      "label": "「全屏观看：点击卡片右下浏览器全屏钮，或工具条 全屏；按 Esc 退出」—— 原写在 media-playback.md 原子步骤第 4 步",
+      "patterns": [
+        "退出全屏",
+        "按 .?Esc.? 退出全屏"
+      ],
+      "refuted_in": "批次 101（SOURCE_OBSERVATIONS.md §4.21.5）",
+      "reason": "**Esc 退不出全屏**：连按三次，document.fullscreenElement 恒在、播放态也不变（受控复测）。正确做法是**再点一次右下角那个全屏钮**（video-fullscreen-browser-toggle，aria 仍读 Enter browser full screen），点完 inFs 由 true 变 false，且平顺回到卡片。📌 判据教训：pattern 「按 .?Esc. 退出」**过宽**，把 30-concepts.md 里一句「先按 Esc 退出（编辑框）」误命中 ⇒ 订正标记判不到 ⇒ 门红。pattern 必须带上**领域限定词（全屏）**"
+    },
+    {
+      "id": "fullscreen-has-close-x-button",
+      "label": "「全屏播放器的控制条……右上角另有 X 关闭钮」—— 原写在 media-playback.md 原子步骤第 4 步（引自源站采样 batch 218，从未在本站画布复现）",
+      "patterns": [
+        "右上角另有"
+      ],
+      "refuted_in": "批次 101（SOURCE_OBSERVATIONS.md §4.21.5）",
+      "reason": "全屏容器 0,0 1280×720 内**只有 3 个 button**：video-fullscreen-playback-toggle / -mute-toggle / -browser-toggle。没有任何 X/关闭控件。源站采样 batch 218 的这条描述在本站不成立"
+    },
+    {
+      "id": "filechooser-hangs-over-cdp",
+      "label": "「文件选择器在 `connectOverCDP` 下会挂住」—— 原写在 assets-and-upload.md 的「⛔ 本轮未测」一行（批次 86）",
+      "patterns": [
+        "在 `connectOverCDP` 下会挂住"
+      ],
+      "refuted_in": "批次 102（SOURCE_OBSERVATIONS.md §4.22.5，收窄而非推翻）",
+      "reason": "挂住的是 `page.waitForEvent('filechooser')` **那一种等待写法**；换成全局 `page.on('filechooser', …)` 完全正常，批次 101（视频）与批次 102（文本）连续两次成功拉起选择器并完成上传。准确说法：「这条等待写法在 connectOverCDP 下会超时」，不是「这条路上传不了」。📌 判据教训：pattern 只写「挂住」**过宽**，把 §4.22 这段**专门记录订正过程**的小节也命中了 ⇒ 必须带上领域限定词（`connectOverCDP`）"
+    },
+    {
+      "id": "audio-media-node-needs-generation",
+      "label": "「造出带媒体的音频节点需要生成、属扣费边界，本手册未执行」—— 原写在 audio-node-voice.md 的「有内容的音频节点」一节（2026-09-23 记录）",
+      "patterns": [
+        "造出带媒体的音频节点",
+        "需要生成、属扣费边界"
+      ],
+      "refuted_in": "批次 104（SOURCE_OBSERVATIONS.md §4.24.0）",
+      "reason": "**不需要生成。** 左栏「上传」一样能造出带媒体的音频节点，而且**免费**（实测积分 805→805）；批次 102 测出 accept 白名单含 **17 种音频扩展名**（mp3/m4a/wav/flac/aac/wma…）。本轮用自造 4 秒 WAV 一次造出并把播放/暂停/波形跳转全部测完。这与批次 101 在视频侧犯的是同一个错：把「素材限制」写成了「扣费边界」"
+    },
+    {
+      "id": "save-to-subject-library-is-node-type-exclusive",
+      "label": "「『保存到主体库』是该节点类型独有的，空视频与图片节点都没有」—— 原写在 duplicate-delete-history.md 的菜单归属规则与 86-subject-context-menu 截图 alt 上（2026-10-01 记录），并被 20-reference.md 复述为「空视频节点确实没有该项，图片节点有」",
+      "patterns": [
+        "该节点类型独有的",
+        "主体节点独有且可用",
+        "空视频节点确实没有该项，图片节点有",
+        "空视频节点（无论有无资源）都没有这一项"
+      ],
+      "refuted_in": "批次 105（SOURCE_OBSERVATIONS.md §4.25.7）",
+      "reason": "**不是节点类型的专利。** 实测**有资源的视频节点**也有这一项：右键菜单 200×332、8 项，逐字「复制 ⌘ C ｜ 复制副本 ⌘ D ｜ 粘贴 ⌘ V ｜ 保存到主体库 ｜ 下载 ｜ 重做 ⌘ ⇧ Z 无需重做操作 ｜ 撤销 ⌘ Z ｜ 删除 ⌫」（与批次 101 在视频侧独立测得的 200×332 8 项逐字吻合）。归一后的规则是：**该项属于「有可用资源」这个条件，不属于「节点类型」** —— 空视频/空图片/空音频一律没有；主体节点是空态就有的例外。原结论是从一张**缺了「有资源的视频」这一行**的枚举表里读出来的。"
+    },
+    {
+      "id": "safe-landing-point-requires-no-overlap-rect",
+      "label": "「第四道护栏要求落点不得落在任何他人节点矩形内」—— 原写在 30-concepts.md「自建节点的三重护栏还不够」一节（2026-10-01 批次 105 立），并被同一节的配套坑 1「画布变挤会让安全落点归零」当作前提复述",
+      "patterns": [
+        "不在他人矩形内",
+        "不在任何他人节点矩形内"
+      ],
+      "refuted_in": "批次 108（SOURCE_OBSERVATIONS.md §4.28.2）",
+      "reason": "**这条条件是假阴性，必须删掉。** 实测甲节点 2209 个采样点中命中自身或后代的有 1615 个，其中 594 个仅因与 node_d4tjtpnatq（时间线 2，216 点）、node_9y4j9jf0qv（音频 6，378 点）**矩形相交**而被杀掉，可用落点因此读成 0。可那两个节点**在甲下面** —— elementFromPoint 在这 594 个点上返回的确实是甲的后代，那些点本来完全可点。**elementFromPoint 返回的就是最上层元素，层叠已经算进去了**，再叠矩形条件只会把「别人在下面」误判成「被挡住」。删掉后可用落点 0 → 594。同时新增一条要求：**落点必须按「动作即将发生的那一刻」现算**（前一步会改变层叠）。"
+    },
+    {
+      "id": "resource-failure-shows-0000-duration",
+      "label": "「资源已彻底失效则进入无时长空载态（时间显示 00:00 / 00:00，无法播放）」—— 原写在 media-playback.md 的「重试播放」小节，并被同一页三栏表的「资源失效」列复述为「时间读数 00:00 / 00:00」",
+      "patterns": [
+        "时间显示 00:00 / 00:00",
+        "无时长空载态",
+        "无法播放"
+      ],
+      "refuted_in": "批次 110（SOURCE_OBSERVATIONS.md §4.30）",
+      "reason": "**失效态根本不渲染时间那一行。** 2026-10-03 批次 110 用 CDP Network.setBlockedURLs + setCacheDisabled 拦下播放取流 key，首次自然复现失效态：`[data-testid^=\"audio-duration\"]` 与 `audio-duration-accessible` **两个元素都不在 DOM 里**（读出 0 个），不是显示成 00:00 / 00:00。`00:00 / 00:00` 那个样子是**时间线节点**的播放条。正确的判据是「卡片中央有没有 `音频播放失败` 那行红字」（testid `audio-playback-error`，内含 `role=\"alert\"` 的 DIV + 按钮 `重试播放音频`）。同时确认 `<audio>` 元素是**整个从 DOM 里消失**（不是 error 非空），且**资源账纹丝不动**仍为 `1 resource: 1 ready, 0 processing, 0 failed.`。"
+    },
+    {
+      "id": "zoom-timeline-is-a-separate-feature",
+      "label": "「缩放时间线 ⌘ scroll 是与『缩放画布』并列的独立功能，靠『当前焦点在画布还是在时间线』判断」—— 原写在 help-and-shortcuts.md 的快捷键表与批次 82 补注，并被 timeline-node.md「8. 缩放时间线」小节复述为「快捷键面板列出 ⌘ + 滚轮 缩放时间线」",
+      "patterns": [
+        "和「时间线」组的\\*\\*缩放时间线\\*\\*用的是\\*\\*同一个键\\*\\*",
+        "快捷键面板列出 \\*\\*⌘ \\+ 滚轮\\*\\* 缩放时间线"
+      ],
+      "refuted_in": "批次 111（SOURCE_OBSERVATIONS.md §4.31）",
+      "reason": "**它就是「缩放画布」，不是独立功能。** 2026-10-03 批次 111 用自建时间线节点测：(1) 同一画布缩放下画布上**三个**时间线节点的标尺刻度间距**逐字相同**（60% 下都是 96.3）⇒ 时间线没有自己的缩放；(2) `⌘ scroll` 让三者按**同一比值**变化（2.073/2.074/2.073），而画布缩放比值是 60/29=2.069 ⇒ 标尺间距只是画布缩放的副产物；(3) `⌘ scroll` 打在时间线轨道上与打在画布空白处读数完全一致。**普通滚轮（不带 Meta）在时间线上什么也不发生**（间距、缩放、scrollLeft 全部不动）。面板把同一条命令在「视图」组和「时间线」组各写一遍，**是文档分组，不是功能边界**。"
+    },
+    {
+      "id": "handwritten-at-voice-name-is-not-recognized",
+      "label": "「所以「引用音色」的正确用法是照着示例手写 `@<音色名>`」—— 原写在 audio-node-voice.md「选用 `Add`」小节末尾，SOURCE_OBSERVATIONS.md §3.49.5 也复述为「真正要用，得自己照着打 `@<音色名>`」",
+      "patterns": [
+        "照着示例手写",
+        "自己照着打 .{0,3}@<音色名>"
+      ],
+      "refuted_in": "批次 113（SOURCE_OBSERVATIONS.md §4.33.5）",
+      "reason": "**手写 `@<音色名>` 不会被转成结构化引用，落地就是纯文本。** 2026-10-03 批次 113 在音频节点的提示词框里逐段打字并读 `innerHTML`：打完 `@` 会弹出 `[data-testid=\"generation-mention-panel\"]`（`role=\"listbox\"` `240×192`，三个 `role=\"option\"` 各 `232×48`：**主体 / 图片 / 音频**），但**里面没有「音色」这一类**（也没有「视频」）；补上名字后面板消失，`innerHTML` 逐字 `<p>灯塔熄灭了@生动解说</p>`，**mention 元素 0 个、ProseMirror 原子节点 0 个** ⇒ `@` 走的是**引用素材**这条路，与音色库是两套 UI。⚠️ 手册示例里的 `@父亲` / `@女儿` **在音色库里不存在**（首屏 18 个音色逐个核对：生动解说、精品有声书、桃花庵主、猪猪侠、灵动女声、苏感低音、乌萨七、唐僧、厚实男声、阳光美眉、和蔼奶奶、派星星、佩奇猪、萌娃百科、磁性男主播、清醒语录、甜美软妹、小八酱）——照抄示例必须换成库里真实存在的名字。📌 判据立规：**`innerText` 区分不了「纯文本」和「已识别的 chip」**（两者逐字相同），判「有没有被识别」只能落在 `innerHTML` 的**结构**上。"
+    },
+    {
+      "id": "bottom-status-bar-is-not-on-screen",
+      "label": "「画布底部有一条状态行，显示 N nodes, N edges, N selected. Editable. Room connected. 已保存.」—— 原写在 00-quickstart.md 界面清单与分区示意图、20-reference.md 界面速查表；navigate-canvas.md 还据此写「提示条存在时状态行末尾多出两行」",
+      "patterns": [
+        "画布状态行",
+        "底部状态行",
+        "以及底部状态行",
+        "状态行末尾多出",
+        "状态行的判据"
+      ],
+      "refuted_in": "批次 120（SOURCE_OBSERVATIONS.md §4.40）",
+      "reason": "**屏幕上根本没有这条横线。** 2026-10-03 批次 120 在 1280×720 @dpr2 上实测：那句逐字文本的**全文档唯一宿主**是 `SPAN#:modern-js-r1:`，class `sr-only`、矩形 `1×1@(-1,-1)`（视口左上角之外）、`position:absolute` + `clip: rect(0px,0px,0px,0px)`，**自己没有 `aria-live`、5 层祖先也都没有、`role` 也不是 `status`** ⇒ 它不是播报区，就是一段屏外隐藏文本。判「全文档唯一」的依据：按「命中且没有更内层命中」筛出的最内层宿主**恰好 1 个**。全文档 171 种 `data-testid` 里**没有任何底部状态行**；底部只有 `workspace-bottom-dock-frame`/`canvas-navigation-dock` `164×36@12,668`、`canvas-bottom-dock` `156×28@16,672`、`canvas-sidecar-launchers` `120×36@1148,672`。**两条不共享假设的旁证**都看不到它：① 本轮实时截图 y 660–720 条带；② 早期批次真实截图 `09-connect-nodes-edge-created.png` 底部 150px（100% 缩放、另一个视口）。⚠️ 它**确实随状态实时更新**（同轮：选中后 `0 selected`→`1 selected`；建节点后 `76 nodes`→`77 nodes`）⇒ **规则本身继续有效，要改的只是「用户能在屏幕上找到它」这个说法**：屏上唯一可见的数量读数是顶栏 `canvas-node-summary-trigger` `34×28@156,16` 逐字「节点 76」，**只有节点数，没有连线数与选中数**。📌 顺带订正：`00-quickstart.md` 原写「已保存」出现在底部状态行里 —— **归属写错**，它在**顶栏** `OUTPUT[data-testid=\"canvas-title-save-status\"]` `30×18@206,21`；屏外那句的末尾**也**有「已保存」，是**另一个东西**。📌 再订正机制：`navigate-canvas.md` 那句「状态行末尾多出两行」是**读容器 innerText 的拼接产物** —— 提示条 `back-to-content-overlay`（平时 `display:none` + `0×0`）与状态行是**兄弟**（共同祖先为无 testid 的 DIV，同挂 `MAIN[aria-label=\"Canvas workspace\"]`），**互不包含**，状态行自身 `textContent` 永远只有那一句。📌 立规：**「屏上有没有」这个问题，截图与 DOM 读数要各给一条不共享假设的旁证**；只读 `innerText`/DOM 会把屏外隐藏文本当成可见内容。"
+    },
+    {
+      "id": "generation-history-panel-has-no-primary-tabs",
+      "label": "「生成历史面板分两层：一级页签两个（生成历史 ｜ 积分明细），二级类型页签五个（全部/图片/视频/音频/文本）」—— 原写在 10-tasks/canvas-context.md「查看生成历史」小节与同文件批次 11 补测记录、SOURCE_OBSERVATIONS.md §2.15 与 §4.xx 台账；20-reference.md 也据此写「生成历史两级页签」",
+      "patterns": [
+        "一级页签两个",
+        "一级页签两项",
+        "生成历史两级页签",
+        "面板分两层",
+        "面板分两级"
+      ],
+      "refuted_in": "批次 126（SOURCE_OBSERVATIONS.md §4.46）",
+      "reason": "**面板里根本没有「一级页签」，只有一层 `role=\"tablist\"` 和 5 个 `role=\"tab\"`。** 2026-10-03 批次 126 把 `canvas-feature-panel` 整棵 DOM 拆开：面板本体是 `<ASIDE role=\"dialog\" aria=\"生成历史\">` `320×211@797,56`，标题行 `320×56@797,56` 里只有两样东西 —— `H2`「生成历史」`56×36@813,72`（是**标题**）和一个 `BUTTON`「积分明细」`68×36@1033,72`（**没有 `role`、没有 `href`、没有 `aria-label`**，只带一个 `12×12` 的右向箭头 svg）。**全面板 `role=\"tab\"` 恰好 5 个、`role=\"tablist\"` 恰好 1 个**，`role=\"tabpanel\"` 恰好 1 个 ⇒ 计数判据直接否掉「两层」。📌 立规：**「一层 / 两级 / 嵌套」这类措辞必须能被一个计数判据支持**（本例即「`role=\"tablist\"` 的个数」）；批次 31 写下那句话时没有这个判据，所以它错了三个月也没人发现。📌 顺带四条：① 面板有 **4 个元素与它同矩形**（本体 + `canvas-feature-panel-surface` + `canvas-feature-panel-content` + `generation-history-panel`）⇒ 按矩形数会多数三次；② 直接父级是 `canvas-workbench-shell`，**没有 portal 到 body**；③ 5 个页签的 **`aria-controls` 全指向同一个** `generation-history-items`，逐个点过后**面板逐字与矩形一个字都没变** ⇒ 空态是共用的「暂无生成历史」，不是按类型各说一句；④ 那个「积分明细」按钮**开的是「项目信息」对话框**（`workspace-project-info-dialog` `800×546@240,87`，与批次 125 同一个组件、内部同样是 `project-consumption-summary`）并**直接落在「积分消耗」页签** —— 与「更多 → 项目信息」是同一个框，差别只在初始页签。",
+      "pattern_note": "（批次 126 建条时留的坑：patterns 一开始写了裸的「一级页签」与「分两层」，结果命中**资产库面板的真·一级页签**（`资产` / `主体`）和别的句式 —— 那不是被推翻的结论，是另一个面板的正确记录。⇒ 立规：**refuted-claims 的 pattern 必须唯一指代那条被推翻的主张**，宁可写长一点、带上下文，也不要写「这类话里常出现的那个词」。）"
+    },
+    {
+      "id": "search-panel-size-is-not-320x211",
+      "label": "「顶栏『搜索』展开的面板是 `role=\"dialog\"`、`320×211`、位于 (765, 56)」—— 原写在 10-tasks/navigate-canvas.md「搜索节点」小节与同文件批次台账、20-reference.md 顶栏速查行、SOURCE_OBSERVATIONS.md §3.27 与顶栏 testid 对照表、AUDIT.md 与 PROGRESS.md 的批次 2026-10-01 记录",
+      "patterns": [
+        "搜索[^|\\n]{0,80}320×211",
+        "320×211[^|\\n]{0,80}搜索"
+      ],
+      "pattern_note": "（不可用裸的 `320×211`：手册里它多半是「生成历史」面板的**正确**读数，拿它当 pattern 会把 20 处正确记录判成「改了结论没回填」。⇒ 立规：**refuted-claims 的 pattern 要能区分「同一串数字的不同归属」**。）",
+      "refuted_in": "批次 127（SOURCE_OBSERVATIONS.md §4.47）",
+      "reason": "**现行构建的搜索面板是 `320×604@765,56`；`320×211` 只在「输入框有词且一个都没匹配上」时才出现。** 2026-10-03 批次 127 用同一套仪表把搜索面板与生成历史面板各读一遍，搜索面板本体是 `<ASIDE role=\"dialog\" aria=\"搜索\" data-testid=\"canvas-feature-panel\">`，x 坐标 **765**（生成历史是 797，宽度都是 320）。五种状态各测一次：① 全部 76 条 / 输入框空 ⇒ **604**；② 输入「音频」命中 68 条 ⇒ **604**；③ 主体页签（该类型 0 个节点）/ 输入框空 / 0 条 ⇒ **604**；④ 输入「zzz不存在」0 命中 ⇒ **211**；⑤ 同上（主体页签内）⇒ **211**。⇒ 相关量是**「输入框有没有词」＋「有没有命中」**，不是结果条数（③④ 都是 0 条却一个 604 一个 211 在不同条件下）。**604 的构成**：`56`（输入行）＋`36`（页签行）＋`512`（结果区，其中视口 `460` ＋ 分页条 `52`；无分页时视口就是 512）。**211 的构成**与生成历史的空态同形（`56`＋`36`＋`119`）。📌 顺带四条：① 搜索面板**与生成历史面板是同一个组件**（同一个 `ASIDE` ＋ 同样的 `canvas-feature-panel-surface` / `canvas-feature-panel-content` 两层包装 ＋ 同一个父级 `canvas-workbench-shell`），只有最内层 `SECTION` 的 testid 不同（`canvas-search-panel` vs `generation-history-panel`）—— 手册一直把它们写成两个独立面板；② **九个分类页签一行放不下**（`role=\"tablist\"` `320×36`、`scrollWidth 519` vs `clientWidth 320`），只有**横向滚动**或点右端那个 `aria=\"Next search categories\"` 的 `24×24` 圆钮才能看到「时间线 / 组 / 其他」；③ **分页条有 4 个按钮**（首页 / 上一页 / `1 / 6` / 下一页 / 末页），其中首页与末页的 aria 是**没插值的 ICU 占位串** `{num, plural, other {向前 {num} 页}}` / `{num, plural, other {向后 {num} 页}}`；④ 面板**记住了上次选的页签**（关掉再开仍停在「其他 1」）。"
+    },
+    {
+      "id": "multi-selection-toolbar-has-no-add-tags",
+      "label": "「多选工具条里没有 Add tags，逐字核对工具条内容只有四项」—— 原写在 10-tasks/organize-group-layout.md「多选后出现多选工具条」小节",
+      "patterns": [
+        "多选工具条里没有[^|\\n]{0,20}Add",
+        "Add\\s*tags[^|\\n]{0,30}不属于顶部工具条"
+      ],
+      "pattern_note": "（不可用裸的 `Add tags`：它本身是**真实存在**的 testid（`flow-node-selected-tag`）与 aria，本册多处正确记录它。pattern 必须绑上「多选工具条里没有」这个**错误断言**，否则会把正确记录判成「改了结论没回填」。⇒ 与 `search-panel-size-is-not-320x211` 同源：**pattern 要能区分「同一串字的不同归属」。**）",
+      "refuted_in": "批次 131（SOURCE_OBSERVATIONS.md §4.52）",
+      "reason": "**它就在多选工具条里 —— 当年没数到，是因为用了「逐字核对」这个方法，而 `Add tags` 是图标按钮、`innerText` 逐字为空（只有 `aria-label`）。** 2026-10-03 批次 131 改数 `flow-node-selected-tag` 的**实例数**：0 选中 **76** 个（全在节点内）→ 单选 1 个 **76** 个（工具条内 **0**）→ **框选 8 个：总数掉到 69，其中节点内 68、工具条内 1**（`aria=\"Add tags\"`、`24×24`、紧贴工具条右端）→ 取消后回到 **76**、工具条内 **0**。🔑 **`76 − 68 = 8` 正好等于选中数** ⇒ **多选时选中节点的标记按钮被搬进工具条**，8 个搬上来只留 **1 个**统一入口（即「给这 N 个一起打标签」），完全可逆。精确说法：**基座 `selection-context-toolbar` 里确实没有它**（3 个直接子按钮：编组 / 布局 / 下载），**但外层 `selection-context-toolbar-surface` / `node-toolbar` 里有**（4 个后代按钮）。📌 立规：**核对工具条有几项不能只读 `innerText`**，要并读 `aria-label` / `title` / 子元素 `data-testid`。"
+    },
+    {
+      "id": "multi-select-toolbar-does-not-follow-zoom",
+      "label": "「多选工具条挂在画布 viewport 之外 ⇒ 不随画布缩放」—— 原写在 SOURCE_OBSERVATIONS.md §4.52「e 轮顺带钉死：工具条不在画布坐标系里」与 PROGRESS.md「顺带：工具条不在画布坐标系里」；批次 87 对「宽度由选中集撑开」的归因也只对了一半",
+      "patterns": [
+        "工具条不在画布坐标系里，不随画布缩放",
+        "不在画布坐标系、不随缩放"
+      ],
+      "pattern_note": "（不可用裸的 `不随缩放`：`20-reference.md` / `prepare-generation.md` / `director-node.md` 里「**生成面板**不随缩放」是**正确**记录，拿它当 pattern 会把正确结论判成「改了结论没回填」。⇒ 与 `search-panel-size-is-not-320x211`、`multi-selection-toolbar-has-no-add-tags` 同源：**pattern 要能区分「同一串字的不同归属」**，必须绑上「工具条 + viewport 之外」这个具体语境。）",
+      "refuted_in": "批次 135（SOURCE_OBSERVATIONS.md §4.56）",
+      "reason": "**「`css` 尺寸 = 屏上尺寸」证明的是「没人替它乘 scale」，不等于「没人乘 scale」—— 它可以自己乘。** 2026-10-03 批次 135 做**受控两臂**（此前从未有人做过单自变量实验：批次 87 自述「只改缩放，**选中集跟着变**」，74% 选 7 个 / 60% 选 8 个；批次 131 只取了 60% **单档**）。**第一臂**锁定同一 6 个选中节点、只改缩放四档（40/60/100/200%），外层 `node-toolbar` 屏上宽 = `400 / 600 / 1000 / 2000` = **`1000 × scale`（正比，不是反比）**；**第二臂**锁定 60%、只改选中数（2/3/6 个），外层 canvas 宽 `600/960/1000` 与包围盒 canvas 宽 `520/880/920` **差恒为 `80`**。🔑 **完整公式：屏上宽 = (选中集包围盒 canvas 宽 + 80) × 当前缩放** ⇒ 它**同时**依赖两个变量且**串联**：既随选中集变，**也随缩放变**。祖先链 `react-flow__node-toolbar → react-flow__renderer`（**不含** `.react-flow__viewport`）证实它确实在画布坐标系之外 ⇒ 组件是**自己按 canvas 尺寸算完再手工乘 scale**。📌 因此「viewport 之外」这半句**是硬的**（保留），错的只是从它推出的「不随缩放」；批次 87「511 与 1298 在 canvas 口径下差 1.88 倍所以不自洽」的自查**也不成立** —— 差异来自**那两次选中集不同**。📌 同批附带一条**量纲陷阱**：`20-reference.md` 记的 `flow-node-multi-selection-source-handle` = `60×120` 是「**屏上恒**」（四档 40/60/100/200% 屏上与 `offsetWidth` 逐字相同），而 `AUDIT.md`/`PROGRESS.md` 里被反复确认的「**canvas 恒** `60×120`」指的是 `flow-node-{target,source}-handle`；两者 `offsetWidth` **都是** `60×120`，但前者不在 viewport 内（不被乘，60% 下屏上 `60×120`）、后者在 viewport 内（被乘，60% 下屏上 `36×72`）。📌 **立规：判「某元素跟不跟缩放」要分两问** —— ① 它在不在 `.react-flow__viewport` 里（决定**谁**给它乘）；② 它屏上尺寸随不随 scale 变（决定**结果**）。**两问都要实测，不能从前一步推后一步。**"
+    },
+    {
+      "id": "group-toolbar-width-blame-card-width",
+      "label": "「组工具条宽度跟随组卡片宽度……（同样 60%/47% 缩放下**卡片宽度不同所致**）」—— 原写在 10-tasks/organize-group-layout.md「组工具条（实测）」小节与 20-reference.md / 30-concepts.md 的同句",
+      "patterns": [
+        "卡片宽度不同所致",
+        "组工具条跟随组卡片宽度"
+      ],
+      "pattern_note": "（不可用裸的 `宽度跟随`：`20-reference.md` 与批次 87/131 里关于**多选工具条**宽度的多段记述是**正确**的（公式是 `(包围盒canvas宽+80)×scale`），拿它当 pattern 会把正确记录判成「改了结论没回填」。⇒ 与 `multi-select-toolbar-does-not-follow-zoom`、`multi-selection-toolbar-has-no-add-tags`、`search-panel-size-is-not-320x211` 同源：**pattern 必须绑上「组工具条 + 卡片宽度不同所致」这个具体归因**，不能只抓关键词。）",
+      "refuted_in": "批次 139（SOURCE_OBSERVATIONS.md §4.60）",
+      "reason": "**「卡片宽度会因换缩放而变」是未经验证的猜测，而且方向反了。** 组卡片是 React Flow 节点，宽是 canvas 口径的 `style.width`（实测八档**恒为 560**）⇒ 换缩放**根本不会**改它。2026-10-03 批次 139 做**单自变量实验**（此前从未有人做过：批次 18 只有 100% 单档、屏上对屏上）：护栏建 3 个文本节点成组，**锁定同一个组只改缩放**，八档（40/45/50/53/55/60/100/200%）逐字复现。🔑 **完整公式：`组工具条屏上宽 = max(组卡片 canvas 宽 × 当前缩放, 296)`**，高度恒 40 —— 60/100/200% 三档 `560×scale` 逐字相等；40/45/50% 三档 `560×scale` 分别为 `224/252/280` **全都小于 296**，读数一律停在 `296`（即 `max` 的第二支）；**53% 是交叉点后第一档**（`560×0.53=296.8`，读数逐字 `296.8`，不是 296 也不是 297）⇒ `max()` 坐实、`296` 是硬下限。`296` 的来源是内层 `selection-context-toolbar` 的固有宽（四个按钮撑出来的，**八档恒定**，与卡片和缩放都无关），交叉点 = `296÷560 = 52.86%`。🔴 **手册那个 47% 的 `296×40` 由此得解**：`560×0.47 = 263.2 < 296` ⇒ **落在下限区**，不是「卡片宽度不同」。（同表 60% 那两行 `336/367` 的差异**是真的**卡片宽度不同，那是另一个自变量，不受影响。）📌 它**不是**批次 135 那个多选公式：多选是 `(包围盒canvas宽+80)×scale` **带 `+80`**，组这个**不带**（同组 60% 时 `(560+80)×0.6=384 ≠ 336`）⇒ **两套工具条同在画布坐标系之外，但各算各的**。📌 立规：**「宽度跟随某个 X」这句话要问三件事** —— ① X 本身是不是自变量（组卡片宽**不是**）；② 宽度与 X 是不是正比（是）；③ **有没有下限**（有，`max` 的第二支）。前两件对、第三件漏了，表格里就会出现「同 X 不同宽」的行，而人最容易把它归因到 X 变了。"
+    }
+  ]
 }

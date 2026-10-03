@@ -1,0 +1,247 @@
+{
+ "起点": {
+  "状态行": "79 nodes, 0 edges, 3 selected. Editable. Room connected. 已保存.",
+  "选中": 3
+ },
+ "清选中落点": {
+  "x": 8,
+  "y": 660
+ },
+ "清选中后": 0,
+ "落点": {
+  "x": 761,
+  "y": 317,
+  "命中": "text-flow-node-full"
+ },
+ "选中态": {
+  "选中": [
+   "node_24njfrersn"
+  ]
+ },
+ "菜单": {
+  "菜单元素数": 8,
+  "逐层": [
+   {
+    "tag": "DIV",
+    "role": "menu",
+    "className": "pointer-events-auto fixed select-none z-50 octo-context-menu--compact octo-conte",
+    "矩形": {
+     "x": 761,
+     "y": 317,
+     "w": 200,
+     "h": 292
+    },
+    "zIndex": "50",
+    "pe": "auto",
+    "vis": "visible",
+    "逐字": "复制 ⌘ C 复制副本 ⌘ D 粘贴 ⌘ V 下载 重做 ⌘ ⇧ Z 无需重做操作 撤销 ⌘ Z 删除 ⌫"
+   },
+   {
+    "tag": "DIV",
+    "role": "menuitem",
+    "className": "justify-center gap-1 whitespace-nowrap border-solid font-dreamina-cn motion-safe",
+    "矩形": {
+     "x": 765,
+     "y": 321,
+     "w": 192,
+     "h": 36
+    },
+    "zIndex": "auto",
+    "pe": "auto",
+    "vis": "visible",
+    "逐字": "复制 ⌘ C"
+   },
+   {
+    "tag": "DIV",
+    "role": "menuitem",
+    "className": "justify-center gap-1 whitespace-nowrap border-solid font-dreamina-cn motion-safe",
+    "矩形": {
+     "x": 765,
+     "y": 361,
+     "w": 192,
+     "h": 36
+    },
+    "zIndex": "auto",
+    "pe": "auto",
+    "vis": "visible",
+    "逐字": "复制副本 ⌘ D"
+   },
+   {
+    "tag": "DIV",
+    "role": "menuitem",
+    "className": "justify-center gap-1 whitespace-nowrap border-solid font-dreamina-cn motion-safe",
+    "矩形": {
+     "x": 765,
+     "y": 401,
+     "w": 192,
+     "h": 36
+    },
+    "zIndex": "auto",
+    "pe": "auto",
+    "vis": "visible",
+    "逐字": "粘贴 ⌘ V"
+   },
+   {
+    "tag": "DIV",
+    "role": "menuitem",
+    "className": "justify-center gap-1 whitespace-nowrap border-solid font-dreamina-cn motion-safe",
+    "矩形": {
+     "x": 765,
+     "y": 449,
+     "w": 192,
+     "h": 36
+    },
+    "zIndex": "auto",
+    "pe": "auto",
+    "vis": "visible",
+    "逐字": "下载"
+   },
+   {
+    "tag": "DIV",
+    "role": "menuitem",
+    "className": "justify-center gap-1 whitespace-nowrap border-solid font-dreamina-cn motion-safe",
+    "矩形": {
+     "x": 765,
+     "y": 489,
+     "w": 192,
+     "h": 36
+    },
+    "zIndex": "auto",
+    "pe": "auto",
+    "vis": "visible",
+    "逐字": "重做 ⌘ ⇧ Z 无需重做操作"
+   }
+  ],
+  "所有项": [
+   {
+    "逐字": "复制 ⌘ C",
+    "矩形": {
+     "x": 765,
+     "y": 321,
+     "w": 192,
+     "h": 36
+    },
+    "中心": [
+     861,
+     339
+    ],
+    "中心命中": "SPAN.min-w-0 role=null",
+    "中心命中是否项": true,
+    "ariaDisabled": null
+   },
+   {
+    "逐字": "复制副本 ⌘ D",
+    "矩形": {
+     "x": 765,
+     "y": 361,
+     "w": 192,
+     "h": 36
+    },
+    "中心": [
+     861,
+     379
+    ],
+    "中心命中": "SPAN.min-w-0 role=null",
+    "中心命中是否项": true,
+    "ariaDisabled": null
+   },
+   {
+    "逐字": "粘贴 ⌘ V",
+    "矩形": {
+     "x": 765,
+     "y": 401,
+     "w": 192,
+     "h": 36
+    },
+    "中心": [
+     861,
+     419
+    ],
+    "中心命中": "SPAN.min-w-0 role=null",
+    "中心命中是否项": true,
+    "ariaDisabled": null
+   },
+   {
+    "逐字": "下载",
+    "矩形": {
+     "x": 765,
+     "y": 449,
+     "w": 192,
+     "h": 36
+    },
+    "中心": [
+     861,
+     467
+    ],
+    "中心命中": "SPAN.min-w-0 role=null",
+    "中心命中是否项": true,
+    "ariaDisabled": null
+   },
+   {
+    "逐字": "重做 ⌘ ⇧ Z 无需重做操作",
+    "矩形": {
+     "x": 765,
+     "y": 489,
+     "w": 192,
+     "h": 36
+    },
+    "中心": [
+     861,
+     507
+    ],
+    "中心命中": "SPAN.min-w-0 role=null",
+    "中心命中是否项": true,
+    "ariaDisabled": "true"
+   },
+   {
+    "逐字": "撤销 ⌘ Z",
+    "矩形": {
+     "x": 765,
+     "y": 529,
+     "w": 192,
+     "h": 36
+    },
+    "中心": [
+     861,
+     547
+    ],
+    "中心命中": "SPAN.min-w-0 role=null",
+    "中心命中是否项": true,
+    "ariaDisabled": null
+   },
+   {
+    "逐字": "删除 ⌫",
+    "矩形": {
+     "x": 765,
+     "y": 569,
+     "w": 192,
+     "h": 36
+    },
+    "中心": [
+     861,
+     587
+    ],
+    "中心命中": "SPAN.min-w-0 role=null",
+    "中心命中是否项": true,
+    "ariaDisabled": null
+   }
+  ]
+ },
+ "原判据": {
+  "命中数": 1,
+  "逐个": [
+   {
+    "tag": "DIV",
+    "role": "menuitem",
+    "className": "justify-center gap-1 whitespace-nowrap border-solid font-dre",
+    "矩形": {
+     "x": 765,
+     "y": 569,
+     "w": 192,
+     "h": 36
+    },
+    "逐字": "删除 ⌫"
+   }
+  ]
+ }
+}

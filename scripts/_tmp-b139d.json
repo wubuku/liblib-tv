@@ -1,0 +1,184 @@
+{
+ "轮": "139d",
+ "成员": [
+  "node_ywws1ng9bk",
+  "node_sbczb38yf9",
+  "node_24njfrersn"
+ ],
+ "起点": {
+  "状态行": "80 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+  "节点数": 81,
+  "组数": 2,
+  "zoom": "Zoom options, 60%",
+  "选中数": 2
+ },
+ "解组前": {
+  "真身数": 1,
+  "组id": "node_nadfpa9gjw",
+  "选中": true
+ },
+ "断言": [
+  {
+   "名": "①起始有 1 个真身组且选中",
+   "通过": true,
+   "详情": {
+    "真身数": 1,
+    "组id": "node_nadfpa9gjw",
+    "选中": true
+   }
+  },
+  {
+   "名": "①b 三个成员 id 此刻都在 DOM 里",
+   "通过": true,
+   "详情": {
+    "成员": [
+     "node_ywws1ng9bk",
+     "node_sbczb38yf9",
+     "node_24njfrersn"
+    ],
+    "找到": [
+     "node_24njfrersn",
+     "node_sbczb38yf9",
+     "node_ywws1ng9bk"
+    ]
+   }
+  },
+  {
+   "名": "②点解除编组后组消失",
+   "通过": true,
+   "详情": {
+    "ok": true,
+    "计划": {
+     "x": 524,
+     "y": 147,
+     "命中": "BUTTON"
+    },
+    "前置": {
+     "真身组数": 1,
+     "真身选中": 1
+    },
+    "之后组数": 0
+   }
+  },
+  {
+   "名": "③解组后 3 个成员 id 逐个回来",
+   "通过": true,
+   "详情": {
+    "成员": [
+     "node_ywws1ng9bk",
+     "node_sbczb38yf9",
+     "node_24njfrersn"
+    ],
+    "缺失": []
+   }
+  },
+  {
+   "名": "④成员 canvas 坐标零位移",
+   "通过": true,
+   "详情": {
+    "位置变了": []
+   }
+  },
+  {
+   "名": "⑤删除后消失集合恰好是那 3 个成员",
+   "通过": false,
+   "详情": {
+    "节点数": 79,
+    "消失": [],
+    "消失数": 0
+   }
+  },
+  {
+   "名": "⑥其余节点 canvas 零位移",
+   "通过": true,
+   "详情": {
+    "被移动": []
+   }
+  }
+ ],
+ "成员canvas前": {
+  "node_24njfrersn": [
+   2467.54,
+   2098.88
+  ],
+  "node_sbczb38yf9": [
+   2427.54,
+   2058.88
+  ],
+  "node_ywws1ng9bk": [
+   2387.54,
+   2018.88
+  ]
+ },
+ "解除编组": {
+  "ok": true,
+  "计划": {
+   "x": 524,
+   "y": 147,
+   "命中": "BUTTON"
+  },
+  "前置": {
+   "真身组数": 1,
+   "真身选中": 1
+  },
+  "之后组数": 0
+ },
+ "解组后": {
+  "状态行": "79 nodes, 0 edges, 3 selected. Editable. Room connected. 已保存.",
+  "节点数": 79,
+  "组数": 0,
+  "选中": [
+   "node_24njfrersn",
+   "node_sbczb38yf9",
+   "node_ywws1ng9bk"
+  ]
+ },
+ "解组后工具条": {
+  "屏上宽": 288,
+  "逐字": "3 节点 编组 布局",
+  "按钮": [
+   "batch-group",
+   "batch-organize",
+   "batch-download",
+   "Add tags"
+  ]
+ },
+ "删除": [
+  {
+   "id": "node_ywws1ng9bk",
+   "失败": {
+    "__err": "no-point"
+   }
+  },
+  {
+   "id": "node_sbczb38yf9",
+   "失败": {
+    "__err": "no-point"
+   }
+  },
+  {
+   "id": "node_24njfrersn",
+   "失败": {
+    "__err": "no-point"
+   }
+  }
+ ],
+ "删后": {
+  "节点数": 79,
+  "消失": [],
+  "消失数": 0
+ },
+ "收尾": {
+  "状态行": "79 nodes, 0 edges, 3 selected. Editable. Room connected. 已保存.",
+  "节点数": 79,
+  "组数": 0,
+  "选中": 3,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "minimap": {
+   "ariaPressed": "true",
+   "dataState": "closed"
+  }
+ },
+ "断言全过": false
+}
