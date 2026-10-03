@@ -1,0 +1,658 @@
+{
+ "at": "2026-10-03T03:40:02.216Z",
+ "round": "b",
+ "start": {
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员",
+  "status": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "浮层": 1
+ },
+ "status元素": {
+  "数量": 12,
+  "明细": [
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "逐字": "",
+    "矩形": [
+     1072,
+     151,
+     1,
+     1
+    ],
+    "有面积": true,
+    "ariaLive": "polite",
+    "role": "status",
+    "屏外": true,
+    "position": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "父": "DIV",
+    "兄弟逐字": "1 音频 68 音频"
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "逐字": "",
+    "矩形": [
+     1072,
+     219,
+     1,
+     1
+    ],
+    "有面积": true,
+    "ariaLive": "polite",
+    "role": "status",
+    "屏外": true,
+    "position": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "父": "DIV",
+    "兄弟逐字": "2 音频 67 音频"
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "逐字": "",
+    "矩形": [
+     1072,
+     287,
+     1,
+     1
+    ],
+    "有面积": true,
+    "ariaLive": "polite",
+    "role": "status",
+    "屏外": true,
+    "position": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "父": "DIV",
+    "兄弟逐字": "3 音频 66 音频"
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "逐字": "",
+    "矩形": [
+     1072,
+     355,
+     1,
+     1
+    ],
+    "有面积": true,
+    "ariaLive": "polite",
+    "role": "status",
+    "屏外": true,
+    "position": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "父": "DIV",
+    "兄弟逐字": "4 音频 65 音频"
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "逐字": "",
+    "矩形": [
+     1072,
+     423,
+     1,
+     1
+    ],
+    "有面积": true,
+    "ariaLive": "polite",
+    "role": "status",
+    "屏外": true,
+    "position": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "父": "DIV",
+    "兄弟逐字": "5 音频 64 音频"
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "逐字": "",
+    "矩形": [
+     1072,
+     491,
+     1,
+     1
+    ],
+    "有面积": true,
+    "ariaLive": "polite",
+    "role": "status",
+    "屏外": true,
+    "position": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "父": "DIV",
+    "兄弟逐字": "6 音频 63 音频"
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "逐字": "",
+    "矩形": [
+     1072,
+     559,
+     1,
+     1
+    ],
+    "有面积": true,
+    "ariaLive": "polite",
+    "role": "status",
+    "屏外": true,
+    "position": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "父": "DIV",
+    "兄弟逐字": "7 音频 62 音频"
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "逐字": "",
+    "矩形": [
+     1072,
+     627,
+     1,
+     1
+    ],
+    "有面积": true,
+    "ariaLive": "polite",
+    "role": "status",
+    "屏外": true,
+    "position": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "父": "DIV",
+    "兄弟逐字": "8 音频 61 音频"
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "逐字": "",
+    "矩形": [
+     1072,
+     695,
+     1,
+     1
+    ],
+    "有面积": true,
+    "ariaLive": "polite",
+    "role": "status",
+    "屏外": true,
+    "position": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "父": "DIV",
+    "兄弟逐字": "9 音频 60 音频"
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "逐字": "",
+    "矩形": [
+     1072,
+     763,
+     1,
+     1
+    ],
+    "有面积": true,
+    "ariaLive": "polite",
+    "role": "status",
+    "屏外": true,
+    "position": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "父": "DIV",
+    "兄弟逐字": "10 音频 59 音频"
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "逐字": "",
+    "矩形": [
+     768,
+     603,
+     1,
+     1
+    ],
+    "有面积": true,
+    "ariaLive": "polite",
+    "role": "status",
+    "屏外": true,
+    "position": "absolute",
+    "clip": "rect(0px, 0px, 0px, 0px)",
+    "父": "DIV[canvas-search-results-viewport]",
+    "兄弟逐字": "1 音频 68 音频 2 音频 67 音频 3 音频 66 音频 4 音频 65 音频 5 音频 6"
+   },
+   {
+    "tag": "SPAN",
+    "tid": null,
+    "逐字": "1 6",
+    "矩形": [
+     845,
+     624,
+     160,
+     22
+    ],
+    "有面积": true,
+    "ariaLive": null,
+    "role": "status",
+    "屏外": false,
+    "position": "static",
+    "clip": "auto",
+    "父": "NAV",
+    "兄弟逐字": "1 6"
+   }
+  ],
+  "上下文": {
+   "自身": {
+    "tag": "SPAN",
+    "逐字": "",
+    "矩形": [
+     1072,
+     151,
+     1,
+     1
+    ],
+    "完整outerHTML": "<span aria-live=\"polite\" class=\"sr-only\" id=\":modern-js-r1u17:\" role=\"status\"></span>"
+   },
+   "祖先链": [
+    {
+     "tag": "SPAN",
+     "tid": null,
+     "role": "status",
+     "rect": [
+      1072,
+      151,
+      1,
+      1
+     ],
+     "逐字": ""
+    },
+    {
+     "tag": "DIV",
+     "tid": null,
+     "role": "listitem",
+     "rect": [
+      769,
+      152,
+      304,
+      68
+     ],
+     "逐字": "1 音频 68 音频"
+    },
+    {
+     "tag": "DIV",
+     "tid": null,
+     "role": null,
+     "rect": [
+      769,
+      152,
+      304,
+      68
+     ],
+     "逐字": "1 音频 68 音频"
+    },
+    {
+     "tag": "DIV",
+     "tid": null,
+     "role": null,
+     "rect": [
+      769,
+      152,
+      304,
+      1020
+     ],
+     "逐字": "1 音频 68 音频 2 音频 67 音频 3 音频 66 音频 4 音频 65"
+    },
+    {
+     "tag": "DIV",
+     "tid": null,
+     "role": "list",
+     "rect": [
+      769,
+      152,
+      316,
+      452
+     ],
+     "逐字": "1 音频 68 音频 2 音频 67 音频 3 音频 66 音频 4 音频 65"
+    }
+   ],
+   "面板内所有status逐字": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "1 6"
+   ]
+  }
+ },
+ "零计数页签": [
+  {
+   "名": "主体",
+   "落点": {
+    "x": 1077,
+    "y": 114,
+    "矩形": [
+     1074,
+     112,
+     42,
+     36
+    ]
+   },
+   "状态": {
+    "面板": [
+     765,
+     56,
+     320,
+     604
+    ],
+    "逐字": "全部 76 图片 1 视频 1 音频 68 文本 3 主体 时间线 2 组 其他 1 未找到匹配节点",
+    "tab": [
+     {
+      "文字": "全部 76",
+      "sel": "false",
+      "rect": [
+       775,
+       112,
+       62,
+       36
+      ]
+     },
+     {
+      "文字": "图片 1",
+      "sel": "false",
+      "rect": [
+       841,
+       112,
+       51,
+       36
+      ]
+     },
+     {
+      "文字": "视频 1",
+      "sel": "false",
+      "rect": [
+       896,
+       112,
+       51,
+       36
+      ]
+     },
+     {
+      "文字": "音频 68",
+      "sel": "false",
+      "rect": [
+       951,
+       112,
+       62,
+       36
+      ]
+     },
+     {
+      "文字": "文本 3",
+      "sel": "false",
+      "rect": [
+       1017,
+       112,
+       53,
+       36
+      ]
+     },
+     {
+      "文字": "主体",
+      "sel": "true",
+      "rect": [
+       1074,
+       112,
+       42,
+       36
+      ]
+     },
+     {
+      "文字": "时间线 2",
+      "sel": "false",
+      "rect": [
+       1120,
+       112,
+       66,
+       36
+      ]
+     },
+     {
+      "文字": "组",
+      "sel": "false",
+      "rect": [
+       1191,
+       112,
+       29,
+       36
+      ]
+     },
+     {
+      "文字": "其他 1",
+      "sel": "false",
+      "rect": [
+       1224,
+       112,
+       51,
+       36
+      ]
+     }
+    ],
+    "结果行": [],
+    "分页": null,
+    "视口": null,
+    "tabs容器": {
+     "rect": [
+      765,
+      112,
+      320,
+      36
+     ],
+     "scrollLeft": 0,
+     "scrollWidth": 320,
+     "clientWidth": 320
+    }
+   }
+  },
+  {
+   "名": "组",
+   "落点": {
+    "__err": "not-visible:组",
+    "矩形": [
+     1191,
+     112,
+     29,
+     36
+    ]
+   }
+  }
+ ],
+ "溢出": {
+  "面板右边界": 1085,
+  "视口右边界": 1280,
+  "tablist": {
+   "rect": [
+    765,
+    112,
+    320,
+    36
+   ],
+   "scrollWidth": 519,
+   "clientWidth": 320,
+   "scrollLeft": 0,
+   "overflowX": "auto"
+  },
+  "容器": {
+   "tid": "canvas-search-tabs",
+   "rect": [
+    765,
+    112,
+    320,
+    36
+   ],
+   "scrollWidth": 320,
+   "clientWidth": 320,
+   "scrollLeft": 0,
+   "overflowX": "visible"
+  },
+  "渐隐遮罩": {
+   "rect": [
+    1029,
+    112,
+    56,
+    36
+   ],
+   "逐字": "",
+   "aria": null,
+   "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box"
+  },
+  "渐变": {
+   "rect": [
+    1029,
+    112,
+    16,
+    36
+   ]
+  },
+  "实底遮罩": {
+   "rect": [
+    1045,
+    112,
+    40,
+    36
+   ]
+  },
+  "各页签": [
+   {
+    "i": 0,
+    "文字": "全部 76",
+    "rect": [
+     775,
+     112,
+     62,
+     36
+    ],
+    "超出面板右边界": false,
+    "命中自身点": [
+     778,
+     114
+    ]
+   },
+   {
+    "i": 1,
+    "文字": "图片 1",
+    "rect": [
+     841,
+     112,
+     51,
+     36
+    ],
+    "超出面板右边界": false,
+    "命中自身点": [
+     843,
+     114
+    ]
+   },
+   {
+    "i": 2,
+    "文字": "视频 1",
+    "rect": [
+     896,
+     112,
+     51,
+     36
+    ],
+    "超出面板右边界": false,
+    "命中自身点": [
+     898,
+     114
+    ]
+   },
+   {
+    "i": 3,
+    "文字": "音频 68",
+    "rect": [
+     951,
+     112,
+     62,
+     36
+    ],
+    "超出面板右边界": false,
+    "命中自身点": [
+     953,
+     114
+    ]
+   },
+   {
+    "i": 4,
+    "文字": "文本 3",
+    "rect": [
+     1017,
+     112,
+     53,
+     36
+    ],
+    "超出面板右边界": false,
+    "命中自身点": [
+     1019,
+     114
+    ]
+   },
+   {
+    "i": 5,
+    "文字": "主体",
+    "rect": [
+     1074,
+     112,
+     42,
+     36
+    ],
+    "超出面板右边界": true,
+    "命中自身点": [
+     1077,
+     114
+    ]
+   },
+   {
+    "i": 6,
+    "文字": "时间线 2",
+    "rect": [
+     1120,
+     112,
+     66,
+     36
+    ],
+    "超出面板右边界": true,
+    "命中自身点": null
+   },
+   {
+    "i": 7,
+    "文字": "组",
+    "rect": [
+     1191,
+     112,
+     29,
+     36
+    ],
+    "超出面板右边界": true,
+    "命中自身点": null
+   },
+   {
+    "i": 8,
+    "文字": "其他 1",
+    "rect": [
+     1224,
+     112,
+     51,
+     36
+    ],
+    "超出面板右边界": true,
+    "命中自身点": null
+   }
+  ]
+ }
+}

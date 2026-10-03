@@ -489,6 +489,17 @@
       "refuted_in": "批次 126（SOURCE_OBSERVATIONS.md §4.46）",
       "reason": "**面板里根本没有「一级页签」，只有一层 `role=\"tablist\"` 和 5 个 `role=\"tab\"`。** 2026-10-03 批次 126 把 `canvas-feature-panel` 整棵 DOM 拆开：面板本体是 `<ASIDE role=\"dialog\" aria=\"生成历史\">` `320×211@797,56`，标题行 `320×56@797,56` 里只有两样东西 —— `H2`「生成历史」`56×36@813,72`（是**标题**）和一个 `BUTTON`「积分明细」`68×36@1033,72`（**没有 `role`、没有 `href`、没有 `aria-label`**，只带一个 `12×12` 的右向箭头 svg）。**全面板 `role=\"tab\"` 恰好 5 个、`role=\"tablist\"` 恰好 1 个**，`role=\"tabpanel\"` 恰好 1 个 ⇒ 计数判据直接否掉「两层」。📌 立规：**「一层 / 两级 / 嵌套」这类措辞必须能被一个计数判据支持**（本例即「`role=\"tablist\"` 的个数」）；批次 31 写下那句话时没有这个判据，所以它错了三个月也没人发现。📌 顺带四条：① 面板有 **4 个元素与它同矩形**（本体 + `canvas-feature-panel-surface` + `canvas-feature-panel-content` + `generation-history-panel`）⇒ 按矩形数会多数三次；② 直接父级是 `canvas-workbench-shell`，**没有 portal 到 body**；③ 5 个页签的 **`aria-controls` 全指向同一个** `generation-history-items`，逐个点过后**面板逐字与矩形一个字都没变** ⇒ 空态是共用的「暂无生成历史」，不是按类型各说一句；④ 那个「积分明细」按钮**开的是「项目信息」对话框**（`workspace-project-info-dialog` `800×546@240,87`，与批次 125 同一个组件、内部同样是 `project-consumption-summary`）并**直接落在「积分消耗」页签** —— 与「更多 → 项目信息」是同一个框，差别只在初始页签。",
       "pattern_note": "（批次 126 建条时留的坑：patterns 一开始写了裸的「一级页签」与「分两层」，结果命中**资产库面板的真·一级页签**（`资产` / `主体`）和别的句式 —— 那不是被推翻的结论，是另一个面板的正确记录。⇒ 立规：**refuted-claims 的 pattern 必须唯一指代那条被推翻的主张**，宁可写长一点、带上下文，也不要写「这类话里常出现的那个词」。）"
+    },
+    {
+      "id": "search-panel-size-is-not-320x211",
+      "label": "「顶栏『搜索』展开的面板是 `role=\"dialog\"`、`320×211`、位于 (765, 56)」—— 原写在 10-tasks/navigate-canvas.md「搜索节点」小节与同文件批次台账、20-reference.md 顶栏速查行、SOURCE_OBSERVATIONS.md §3.27 与顶栏 testid 对照表、AUDIT.md 与 PROGRESS.md 的批次 2026-10-01 记录",
+      "patterns": [
+        "搜索[^|\\n]{0,80}320×211",
+        "320×211[^|\\n]{0,80}搜索"
+      ],
+      "pattern_note": "（不可用裸的 `320×211`：手册里它多半是「生成历史」面板的**正确**读数，拿它当 pattern 会把 20 处正确记录判成「改了结论没回填」。⇒ 立规：**refuted-claims 的 pattern 要能区分「同一串数字的不同归属」**。）",
+      "refuted_in": "批次 127（SOURCE_OBSERVATIONS.md §4.47）",
+      "reason": "**现行构建的搜索面板是 `320×604@765,56`；`320×211` 只在「输入框有词且一个都没匹配上」时才出现。** 2026-10-03 批次 127 用同一套仪表把搜索面板与生成历史面板各读一遍，搜索面板本体是 `<ASIDE role=\"dialog\" aria=\"搜索\" data-testid=\"canvas-feature-panel\">`，x 坐标 **765**（生成历史是 797，宽度都是 320）。五种状态各测一次：① 全部 76 条 / 输入框空 ⇒ **604**；② 输入「音频」命中 68 条 ⇒ **604**；③ 主体页签（该类型 0 个节点）/ 输入框空 / 0 条 ⇒ **604**；④ 输入「zzz不存在」0 命中 ⇒ **211**；⑤ 同上（主体页签内）⇒ **211**。⇒ 相关量是**「输入框有没有词」＋「有没有命中」**，不是结果条数（③④ 都是 0 条却一个 604 一个 211 在不同条件下）。**604 的构成**：`56`（输入行）＋`36`（页签行）＋`512`（结果区，其中视口 `460` ＋ 分页条 `52`；无分页时视口就是 512）。**211 的构成**与生成历史的空态同形（`56`＋`36`＋`119`）。📌 顺带四条：① 搜索面板**与生成历史面板是同一个组件**（同一个 `ASIDE` ＋ 同样的 `canvas-feature-panel-surface` / `canvas-feature-panel-content` 两层包装 ＋ 同一个父级 `canvas-workbench-shell`），只有最内层 `SECTION` 的 testid 不同（`canvas-search-panel` vs `generation-history-panel`）—— 手册一直把它们写成两个独立面板；② **九个分类页签一行放不下**（`role=\"tablist\"` `320×36`、`scrollWidth 519` vs `clientWidth 320`），只有**横向滚动**或点右端那个 `aria=\"Next search categories\"` 的 `24×24` 圆钮才能看到「时间线 / 组 / 其他」；③ **分页条有 4 个按钮**（首页 / 上一页 / `1 / 6` / 下一页 / 末页），其中首页与末页的 aria 是**没插值的 ICU 占位串** `{num, plural, other {向前 {num} 页}}` / `{num, plural, other {向后 {num} 页}}`；④ 面板**记住了上次选的页签**（关掉再开仍停在「其他 1」）。"
     }
   ]
 }
