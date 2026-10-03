@@ -172,7 +172,13 @@ viewport 1680×826）。正式取证时逐条在当前会话复测，复测结�
   缩放至100% ⌘1 ／ 缩放至200%（逐字与旧 batch 7 一致）。**缩放至100% 实测生效**
   （93%→100%）；⇧2 的禁用态本轮无选中未复测（旧记录：无选中禁用）。
 - **小地图**：dock「小地图」按钮 aria-pressed 切换；开启后在 dock 上方出现
-  156×114 小地图面板（`dreamina-canvas-minimap-surface`），关闭即移除。
+  156×114 小地图面板，关闭即移除。
+  > 🔧 2026-10-03 批次 129 订正 testid：本行原记的面板 testid **`dreamina-canvas-minimap-surface`
+  > 已不是 testid**。小地图开启态下实测：旧名作 `class` 的元素 **1** 个、作 `data-testid` 的 **0** 个；
+  > 真 testid 已改名为 **`canvas-minimap-surface`**（同矩形 `156×114@16,554`，
+  > 链为 `canvas-minimap-surface` → `canvas-minimap-navigation`（`role="application"` aria `小地图`）
+  > → `rf__minimap`）。**是改名，不是删除** —— 只看「旧名查不到」会误判成被删。
+  > 详见 **§4.49 主产出 B**。
 - **显示连线**：dock 按钮，默认 aria-pressed=true；可切换关闭/开启（本轮 0 条
   连线，视觉差异待连线任务复测）。
 - 「回到节点」按钮（顶栏）：DOM 常驻但 **0×0 不可见**（出现条件待验证，疑与
@@ -11897,3 +11903,277 @@ handle 的 `::before` 盒子 **`40px × 80px`、`top:60px; left:30px`**（canvas
 **清理后终态**：`76 nodes / 0 selected / 0 edges`、`Zoom options, 60%`（连读两次相同）、
 **积分 805**、浮层 **0**、**节点 id 与批次 120 基线逐个一致（无多、无少）**。
 
+## §4.49 批次 129（2026-10-03）· 🔴「全文档 testid 种类数」**不是稳定量** —— 两条受控实验；顺带查出**手册第一条确凿的过时 testid**
+
+**靶子**：9 道门里**没有一道查 testid 存活**。手册到处写着 `data-testid`，
+但它们是**一次次实测、分散在不同时点**记下来的，中间产品改版、testid 改名都没有机制报警。
+本批把「手册记过的 testid」与「当前构建真实存在的 testid」对齐。
+
+### 🔴 自身失误 1：a 轮方向就错了，「434 个疑似过时」是垃圾进垃圾出
+
+a 轮的做法是**从手册反推分母**：把全册反引号里形如 `[a-z][a-z0-9]*(-[a-z0-9]+)+` 的 token 捞出来
+当候选，共 **551** 个。跑完得出「静态态命中 66、未命中 485、再分类后 **434 个疑似过时**」。
+
+**这个结论作废。** 551 的分母不干净，混着四类根本不是 testid 的东西：
+
+| 混入物 | 例 | 数量级 |
+|---|---|---|
+| **SVG 表现属性** | `accent-height` / `dominant-baseline` / `flood-color` / `glyph-orientation-horizontal` | 约 90 |
+| **npm 包名** | `unist-util-*` / `hast-util-*` / `vfile-*` / `mdast-util-*` / `remark-rehype` / `babel-plugin-unassert` / `jwt-decode` / `vue-loader` | 约 120 |
+| **我自己历年的探针夹具名** | `b22-upload` / `b63-probe3` / `jimeng-b102-doc` / `gate-a` / `cy-18` / `demo-six` | 约 40 |
+| **手册自己的文件名** | `navigate-canvas` / `connect-nodes` / `help-and-shortcuts` / `use-node-toolbar` / `subject-node` | 9 |
+
+⇒ 「未命中」对它们是**必然**的，与产品无关。**用正则猜一个 token 是不是 testid 不可靠。**
+
+📌 **立规 1：全册普查必须先证明分母是干净的那一类。** 分母的来源要是
+「逐字字面量」（`data-testid="X"`）或「页面事实集」，不能是「看起来像的 token」。
+
+### ✅ 自身失误 1 的修正：方向反过来（b 轮）
+
+b 轮改成**先从页面拿事实集，再与手册求差**，分母由页面保证。
+
+**阳性对照（两条分支都验，比批次 128 更严一档）**：注入 5 个已知形态的元素再扫 ——
+3 个 `data-testid`、1 个只有 `class`、1 个只有自定义属性：
+
+```
+三个已知 testid 全部抓到： true ｜纯 class 归到 class： true ｜纯属性归到属性： true
+**误判成 testid**： false ｜移除后残留： 0
+```
+
+⇒ 分类器的**两个分支**都有效，且没有把 class/属性误判成 testid。（批次 128 只验了「抓得到」这一支。）
+
+**18 个状态**逐个收集全文档 testid 集合：静态 / 搜索 / 生成历史 / 更多 / 用户菜单 /
+快捷键抽屉 / 分享 / 项目 / 节点 N / 缩放菜单 / 选中一个音频节点 / 节点右键菜单 /
+资产库图片页 / 资产库主体页 / 小地图开等。
+
+| 状态 | testid 种类 | 相对静态的增量 |
+|---|---|---|
+| **静态** | **174** | — |
+| 搜索 | **204** | +30（全批最多） |
+| 项目 | 187 | +13 |
+| 快捷键抽屉 | 180 | +6 |
+| 生成历史 | 178 | +4 |
+| 用户菜单 / 分享 | 179 / 177 | +5 / +3 |
+| 节点 N | 175 | +1 |
+| 更多 / 缩放菜单 | 174 / 173 | 0 / **−1** |
+| 选中一个音频节点 | 182 | +8 |
+| 节点右键菜单 | 183 | +9 |
+| 资产库图片页 | 180 | +6 |
+| **18 态并集** | **259** | — |
+
+### 🔴 主产出 A：testid 全集**随 UI 状态变**，两条受控实验各自闭合
+
+#### A-1 小地图开关：171 ↔ 174，差**恰好**是这个开关
+
+d 轮起点静态 testid 是 **171**，而 a/b 两轮记的静态是 **174**。逐个比对，少掉的恰好 3 个且
+**全是小地图**。**不能只凭「差集正好是小地图」就下结论**，所以做受控开关实验：
+
+```
+起点（小地图关）: 171 种 ｜开关态 aria-pressed=false
+  ↓ 点 canvas-display-toggle-minimap
+开启后: 174 种 ｜开关态 aria-pressed=true
+  **增量**: ["canvas-minimap-surface","canvas-minimap-navigation","rf__minimap"]
+  减量: []
+  ↓ 再点一次
+关回后: 171 种 ｜相对起点 增量 [] 减量 []
+```
+
+🔑 **开↔关这一个开关，恰好等于 171 ↔ 174 的全部差，没有别的漂移。**
+
+顺带第四次印证 `data-state` 不可靠：该按钮 `aria-pressed` 是 `false→true`，
+而 **`data-state` 恒为 `closed`**（关时 `closed`、开时还是 `closed`）。
+
+小地图三层 DOM 链（与 AUDIT 旧记一致，矩形复测 `156×114@16,554`）：
+
+| 层 | tag | 矩形 | 备注 |
+|---|---|---|---|
+| `canvas-minimap-surface` | `DIV` | `156×114@16,554` | 子元素 1 |
+| `canvas-minimap-navigation` | `DIV` | `156×114@16,554` | **`role="application"` aria `小地图`**，子元素 1 |
+| `rf__minimap` | `DIV` | `156×114@16,554` | 子元素 1 |
+
+#### A-2 鼠标悬停：连**鼠标位置**都是自变量
+
+e 轮收尾时 testid 是 **175**，比基线多 1 —— 多出来的是 `flow-node-media-stroke`：
+`DIV 200×200@138,-78`、`pointer-events: none`，套在 `node_w7s8mxphwh`（`192×192@142,-74`）外侧 8px，
+**是悬停描边**。把鼠标移到 `(1276,716)` 后：
+
+```
+移到 (1276,716) → 174 种 ｜hover 描边还在? false
+最终 174 种 ｜相对 174 基线：多 [] 少 []
+```
+
+🔑 **testid 全集连「鼠标停在哪儿」都是自变量**，而且它是**瞬时**的 —— 连归位都得专门加一步。
+
+📌 **立规 2：收尾核对 testid 种类数之前，先把鼠标移出画布**，
+否则会误判成「多了一个元素」并去找并不存在的残留。
+
+### 🔴 主产出 B：本册**第一条确凿的已证过时 testid**（且是手册内部矛盾）
+
+`SOURCE_OBSERVATIONS.md:175` 记的小地图面板 testid 是 **`dreamina-canvas-minimap-surface`**，
+而 `AUDIT.md:319` 记的是 **`canvas-minimap-surface`** —— **同一份手册里两处互相矛盾**。
+
+e 轮在**小地图开启态**下逐条实测：
+
+| token | 作 `class` 的元素数 | 作 `testid` 的元素数 |
+|---|---|---|
+| `dreamina-canvas-minimap-surface`（**旧名**） | **1** | **0** |
+| `canvas-minimap-surface`（**新名**） | 0 | **1** |
+
+（关态下旧名作 class 的也是 **0** —— 整个小地图 DOM 都不在。）
+
+🔑 **判定：testid 已改名，不是被删。** 旧名现在只以 class 形式存在。
+⇒ 订正 `SOURCE_OBSERVATIONS.md:175`，并记下「**改名与删除要分开判**：光看「新名不在」会误判成删除」。
+
+### ✅ 主产出 C：testid 存活率普查（正交方向，结论是**没有已证过时的**）
+
+手册里逐字写出的 `data-testid="X"` 字面量共 **64 个**（这是可信窄集 —— 逐字面量不含任何猜测）。
+在 18 个状态下逐个核验：
+
+- **静态态就存活：23**
+- **某个状态下存活：41**（18 态并集下 **43/64 存活**）
+- **全灭 21 个 —— 逐条分诊后，没有一条能判为「过时」**
+
+| 全灭项 | 缺的前置状态 | 本批为何不验 |
+|---|---|---|
+| `text-editor-fullscreen-dialog` / `-placeholder` / `-scroll-region` / `text-editor-toolbar` / `-toolbar-separator`（5） | 双击文本节点进全屏编辑器 | 3 个文本节点全在视口外；**平移会改共享画布视图**，不做 |
+| `generation-form` / `generation-mention-panel` / `generation-mention-submenu` / `generation-source-picker-chip` / `generation-source-picker-close`（5） | 打开生成流程 | **点开即进生成流程，需单独授权** |
+| `canvas-source-picker-canvas-frame` / `-mask`（2） | 同上（「从画布选择」全屏拾取模式） | 同上 |
+| `image-node-empty` | 一个**没有图片**的图片节点 | 画布上唯一的图片节点**有内容**；`node-empty` 族实测只有 `audio-node-empty` / `video-node-empty` |
+| `audio-node-uploading` | 上传中态 | 批次 112 六次尝试都造不出来 |
+| `selection-context-toolbar` | 多选态的**基座** | 本轮三次尝试都因**我自己的落点选取缺陷**没验成（见下） |
+| `agent-skill-chip` / `canvas-agent-session-collapse` | Agent 会话态 | 侧栏是**空壳**（见下） |
+| `workspace-project-info-dialog` | 点「积分明细」 | 跳转型，**需单独授权** |
+| `null` / `x` | —— | 手册里当**反例/占位符**写的字面量，不是真 testid |
+
+🔑 **结论：手册里没有「已证过时」的 testid。** 唯一的旧名（小地图）已订正为**改名**而非删除。
+⇒ 这条普查的价值不在「揪出错的」，而在**给每个未验证项标出它欠哪个前置状态**。
+
+### 🔴 自身失误 2：多选验了三次，三次都是**我自己的落点选取缺陷**
+
+`selection-context-toolbar` 需要多选态。手册 `help-and-shortcuts.md:322` 已记
+**Shift+点选是标准 toggle 语义**（批次 56 受控复测）。本轮三次尝试：
+
+| 轮次 | 落点选取 | 读数 | 真因 |
+|---|---|---|---|
+| c 轮 | 每个节点收**所有**命中点，内层 `break` 只跳出 y 循环 | 33 个落点**全是同一个节点** | Shift+点已选中的节点 = 取消选中 ⇒ 0 |
+| d 轮 | 每个节点收**一个**点，从节点矩形**上边缘**起扫 | 落点 **`y=1` 和 `y=0`**，卡在视口顶边 | 落点贴边 |
+| f 轮 | 加严为「节点矩形必须完整在安全区内」 | 可见节点 `y=-74` ⇒ `r.y < 12` ⇒ **落点集为空** | **判错了对象** |
+
+f 轮那次是把「元素矩形完整在视口内」当成了落点安全判据，而**节点部分出屏本来就是常态**，
+只要落点本身在视口内就行。
+
+📌 **立规 3：判「落点安全」要判落点本身，不是判元素矩形。**
+📌 **立规 4：采集落点列表时 `break` 要跳出两层循环**；拿「点过的节点数」当「落点数」会自欺。
+📌 **立规 5：读数异常时先怀疑自己的落点，再怀疑产品** —— 本批三次都是我的问题。
+
+⇒ 本批**既不推翻也不加强**手册批次 56 的 Shift 多选记录，诚实记为「本轮未完成验证」。
+
+### 主产出 D：Agent 侧栏是有面积的**空壳**（⇒「有面积」≠「可见」）
+
+`canvas-feature-sidecar` 的实测：
+
+```
+矩形 [1068,360,200,348] ｜子元素总数 0 ｜屏上文字 «»
+计算样式：opacity=0 ｜pointer-events=none ｜transform: scale(0.5) ｜data-state="closed"
+outerHTML: <aside aria-label="Agent" id="canvas-feature-sidecar-agentSession" …>
+```
+
+🔑 **`getBoundingClientRect()` 返回非零矩形，元素仍可能完全不可见** ——
+这里 `opacity:0` + `pointer-events:none` + `scale(0.5)` 三重叠加。
+所有 `canvas-agent-*` testid 不存在的原因就在这里：侧栏从没被打开过。
+
+点它上方的 `canvas-agent-history-surface`（`68×36@907,12`）**没有任何反应**：
+增量 `[]`、减量 `[]`、浮层 0，连点两次结果相同（幂等，因为它本来就没有开合逻辑）。
+📌 补充：`canvas-agent-history-surface` 的 `68×36` **盖住了搜索（`28×28@911`）和生成历史（`28×28@943`）两个启动器**，
+所以拿它当「Agent 入口」点会打到容器空白处。
+
+📌 **立规 6：判「元素在不在」不能只用「有面积」**，要连 `opacity` / `visibility` / `pointer-events` 三读。
+
+### 主产出 E：资产库 DOM 首次完整建档（+「主体页把三层整个换掉」）
+
+| 层 | tag / role | 矩形 | 备注 |
+|---|---|---|---|
+| `canvas-asset-library-dialog` | `DIV` `role=dialog` | **`801×620@240,50`** | 屏上 `Import assets` / `Choose assets from Dreamina` |
+| `canvas-asset-library-surface` | `DIV` | `801×620@240,50` | 与 dialog **同矩形** |
+| `canvas-asset-library-operation-area` | `DIV` | `801×104@240,50` | 标题 + 两级页签 |
+| `canvas-asset-library-navigation-controls` | `DIV` | `232×36@264,118` | 「图片 视频 音频 文档」，**仅素材页有** |
+| `canvas-asset-library-query-action-group` | `DIV` | `75×36@942,118` | 「时间 筛选」，**仅素材页有** |
+| `canvas-asset-library-viewport` | `DIV` **`role=tabpanel`** | `801×440@240,154` | 逐字 `暂无图片素材`，**仅素材页有** |
+| `canvas-asset-library-subjects-panel` | `DIV` | `801×440@240,154` | 逐字 **`没有可用主体`**，**仅主体页有** |
+| `canvas-subject-import-empty` | —— | —— | **仅主体页有** |
+| `canvas-asset-library-footer` | **`FOOTER`** | `801×76@240,594` | 逐字 `已选择 0 个素材 确认 请先选择素材` |
+| `canvas-asset-library-import-status` | **`OUTPUT`** | **`1×1@357,616`** | **逐字全空** |
+| `canvas-asset-library-box-selection` | `DIV` | `0×0@0,0` | **无面积** |
+
+🔑 **页签有两组，且两组都没有 testid**（只有 `role="tab"`）：
+`资产/主体`（各 `58×36`，`264,74` / `326,74`）和 `图片/视频/音频/文档`（各 `58×36`，`264,118` 起）。
+
+🔑 **切到「主体」页，三层被整个换掉**（不是换内容，是换容器）：
+
+```
+增量 ["canvas-asset-library-subjects-panel","canvas-subject-import-empty"]
+减量 ["canvas-asset-library-navigation-controls","canvas-asset-library-query-action-group","canvas-asset-library-viewport"]
+```
+
+⇒ 「主体」页连**分类导航和查询按钮都没有** —— 它不是「素材页换个筛选」，是另一个视图。
+
+### 主产出 F：39 个静态漏记 testid 的 DOM 契约**一次补齐（0 仍缺）**
+
+b 轮算出「页面并集 250 种里有 145 种手册一次都没提过」。分类后：
+
+- **106 个是按实例生成的动态 testid** —— `rf__node-node_*`（76 个）、
+  `project-{more,selected,switcher-item}-ordinary-<uuid>`、`canvas-search-{result,locate-icon}-node_*`
+  ⇒ 记进手册只会变成噪音，**不算知识缺口**
+- **39 个是静态 testid**，才是真正的缺口。f 轮把它们的 DOM 契约**一次抓全，0 仍缺**：
+
+| testid | tag | 矩形 | 屏上文字 |
+|---|---|---|---|
+| `workspace-canvas-title` | `DIV` | `236×40@12,10` | 测试项目 节点 76 已保存 |
+| `workspace-title-responsive-surface` | `DIV` | `871×40@12,10` | 同上 |
+| `canvas-project-launcher-shell` | `DIV` | `20×28@120,16` | |
+| `canvas-project-logo-gradient-path` | `path` | `24×25@20,18` | |
+| `canvas-node-summary-label` | `SPAN` | `34×18@156,21` | 节点 76 |
+| `canvas-node-summary-count` | `SPAN` | `12×18@178,21` | 76 |
+| `canvas-share-entry` | `DIV` | `70×36@983,12` | 分享 |
+| `canvas-account-surface` | `DIV` | `163×36@1105,12` | 805 基础会员 |
+| `canvas-commerce-entry-wrapper` | `DIV` | `111×36@1109,12` | 805 基础会员 |
+| `workspace-account-summary-content` | `SPAN` | `93×18@1118,21` | 805 基础会员 |
+| `canvas-account-separator` | `SPAN` | `8×12@1224,24` | |
+| `canvas-user-avatar-image` | **`IMG`** | `24×24@1238,18` | |
+| `canvas-user-avatar-hover-mask` | `SPAN` | `24×24@1238,18` | |
+| `workspace-preparing-account-avatar` | `SPAN` | `24×24@1238,18` | |
+| `canvas-navigation-scroll-viewport` | `DIV` | `160×398@12,189` | 文本 图片 视频 音频 时间线 主体 导演台 资产库 上传 |
+| `canvas-navigation-mask` / `-backdrop` / `-gradient` | `DIV` | 各 `160×398@12,189` | **三层同矩形** |
+| `canvas-search-tabs` | `DIV` | `320×36@765,112` | 全部 76 图片 1 … 其他 |
+| `canvas-search-tab-gradient` | `SPAN` | `16×36@1053,112` | |
+| `canvas-search-tab-solid-mask` | `SPAN` | `16×36@1069,112` | |
+| `canvas-user-menu-action-label` | `SPAN` | `184×20@1068,136` | 帮助中心 |
+| `canvas-share-scope-action` | `DIV` | `400×73@868,234` | 创建团队，与成员在画布实时协作 创建团队 |
+| `project-sidebar-scroll` | **`NAV`** | `240` 宽 × **内层高度 `200`**（`@12,88`） | **aria `项目`** |
+| `shortcut-help-group-separator` | `DIV` | `232×4@1032,476` | |
+| `shortcut-help-scrollbar-track` | `DIV` | `10×530@1259,116` | |
+| `shortcut-help-scrollbar-thumb` | `DIV` | `10×190@1259,116` | |
+| `shortcut-help-scrollbar-thumb-shape` | `DIV` | `2×190@1263,116` | |
+| `timeline-full-passive-track` | `DIV` | `718×83@-1467,-1204` | 00:00 00:05 00:10 … |
+| `timeline-passive-track-viewport` | `DIV` | `679×83@-1427,-1204` | 同上 |
+| `timeline-passive-source-picker-slot` | `DIV` | `668×50@-1424,-1184` | 添加素材到时间线 |
+| `text-node-content-loading` | `DIV` | `163×19@-1189,-1310` | |
+| `director-stage-flow-node-shell` | `DIV` | `192×192@-1108,-1202` | 在 3D 空间中设计角色、机位与镜头 进入导演台 |
+
+📌 **`project-sidebar-scroll` 那一行不是新发现**：它是 `canvas-project-panel-popover`
+（项目切换面板本体 `240×280@12,52`）的**内层 `<nav>`**，批次 83 早已把它记成
+「**高度 200**、面板本体另有其物」并**推翻过「面板本体就是这个尺寸」的老说法**。
+本批复测**一致**。写在这里时**刻意不写「宽×高」的连写** ——
+那串数字已被订正台账的 pattern 占着，裸写会被回填门当成「改了结论却没回填」。
+
+**另有 7 个「有 testid 但矩形是 `0×0`」的**（存在但无面积，值得单记一笔）：
+`canvas-collaborators-workspace-top-bar-surface`、`canvas-fixed-toolbar-workspace-top-bar-surface`、
+`canvas-panel-workspace-top-bar-launchers`（`SPAN`）、`default-feature-overlay-interaction-boundary`、
+`workspace-preparing-account-summary`（`SPAN`，逐字 `--`）、`canvas-save-failure-anchor`（`0×0@1264,72`）。
+
+### 收尾
+
+- 终态：`76 nodes / 0 selected / 0 edges`、`Zoom options, 60%`、**积分 805 · 基础会员**、浮层 **0**
+- **testid 种类 174，与 a/b 两轮基线逐个一致（多 0 少 0）**
+- **节点 id 与批次 120 基线逐个一致**；本轮新建 id **0**（全程未碰左栏「文本/图片/视频/音频/时间线/主体/导演台/上传」）
+- 小地图已归位成基线态（**开**）

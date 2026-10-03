@@ -1,0 +1,295 @@
+{
+ "at": "2026-10-03T06:12:45.416Z",
+ "round": "e",
+ "start": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "选中": 0,
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员",
+  "浮层": 0
+ },
+ "起始id": [
+  "node_1c5zafa3zk",
+  "node_1yw4ntm88n",
+  "node_20pw32f1y5",
+  "node_20sb5adarj",
+  "node_236ctpehgg",
+  "node_2vbd2rqk7q",
+  "node_2x3hae9jhe",
+  "node_3bfb9r79qe",
+  "node_3cc0k9cfgb",
+  "node_3f44mcptgc",
+  "node_3p3sa1sgsv",
+  "node_3rs2xvb3wm",
+  "node_52g5ng3hxa",
+  "node_5g0yrqgc6c",
+  "node_5gftn3dnt1",
+  "node_5h8sbgy7pd",
+  "node_5na1wezb9q",
+  "node_68van5z657",
+  "node_7w0kc2m903",
+  "node_7y6fhyn18z",
+  "node_80vczsczbr",
+  "node_97x9w2s8dc",
+  "node_9b2ajtyqwj",
+  "node_9rxgrvfe4y",
+  "node_9y4j9jf0qv",
+  "node_ae08gp8ke3",
+  "node_anmp0m801c",
+  "node_aw29cp094x",
+  "node_ay7f1jn45r",
+  "node_cdwf8x6fbj",
+  "node_d4tjtpnatq",
+  "node_dt0wpmba0d",
+  "node_e78c3z4gap",
+  "node_e90a7f1gyf",
+  "node_fd0p2amd3p",
+  "node_fg4h8gry6x",
+  "node_fyy39951ae",
+  "node_gnykygt88s",
+  "node_gp499g9p3m",
+  "node_gref4sw056",
+  "node_jc6t41x8d2",
+  "node_jphxcmk27v",
+  "node_jx5amm7m9j",
+  "node_kdgnjkfng2",
+  "node_kgsv6w4ach",
+  "node_kk2xhkrdtn",
+  "node_kpfbgmkkr3",
+  "node_kx0gzwzf7a",
+  "node_ky7dvkppj1",
+  "node_m14qwkmz4p",
+  "node_mwz4689zqr",
+  "node_n0x3zqajjy",
+  "node_p4xg96c73x",
+  "node_pxvkay973v",
+  "node_pz48stvt07",
+  "node_qe1kf9ywek",
+  "node_qf32ccpxmm",
+  "node_qs4x5t988q",
+  "node_r6dtesbzac",
+  "node_r6qqyk3v98",
+  "node_rs637eg7me",
+  "node_sc4w9xkaxd",
+  "node_srx8z3gx8g",
+  "node_tadm1nyykc",
+  "node_thtydf4663",
+  "node_tnh6v3rm7v",
+  "node_tqqd4fedbn",
+  "node_v1wkbg1mbm",
+  "node_v5ewe33jbw",
+  "node_w6b1h9fvzw",
+  "node_w7s8mxphwh",
+  "node_wdqa2gne4s",
+  "node_xe755vzsmx",
+  "node_y261jwxjpn",
+  "node_y2n170za3z",
+  "node_zb8pfc1tf6"
+ ],
+ "实验": [
+  {
+   "阶段": "起点",
+   "种类": 171
+  },
+  {
+   "阶段": "开启后",
+   "种类": 174,
+   "开关态": {
+    "ariaPressed": "true",
+    "dataState": "closed"
+   },
+   "增量": [
+    "canvas-minimap-surface",
+    "canvas-minimap-navigation",
+    "rf__minimap"
+   ],
+   "减量": []
+  },
+  {
+   "阶段": "关回后",
+   "种类": 171,
+   "相对起点增量": [],
+   "相对起点减量": []
+  }
+ ],
+ "旧名": {
+  "作class的元素数": 0,
+  "作testid的元素数": 0
+ },
+ "开落点": {
+  "x": 50,
+  "y": 674
+ },
+ "小地图链": {
+  "surface": {
+   "tag": "DIV",
+   "rect": [
+    16,
+    554,
+    156,
+    114
+   ],
+   "role": null,
+   "aria": null,
+   "display": "block",
+   "opacity": "1",
+   "visibility": "visible",
+   "pointerEvents": "auto",
+   "子元素数": 1
+  },
+  "navigation": {
+   "tag": "DIV",
+   "rect": [
+    16,
+    554,
+    156,
+    114
+   ],
+   "role": "application",
+   "aria": "小地图",
+   "display": "block",
+   "opacity": "1",
+   "visibility": "visible",
+   "pointerEvents": "auto",
+   "子元素数": 1
+  },
+  "rfMinimap": {
+   "tag": "DIV",
+   "rect": [
+    16,
+    554,
+    156,
+    114
+   ],
+   "role": null,
+   "aria": null,
+   "display": "block",
+   "opacity": "1",
+   "visibility": "visible",
+   "pointerEvents": "auto",
+   "子元素数": 1
+  },
+  "屏上文字": ""
+ },
+ "旧名开态": {
+  "作class": 1,
+  "作testid": 0,
+  "新名class": 0
+ },
+ "资产库节点数": 76,
+ "主体页签": {
+  "x": 329,
+  "y": 75,
+  "文字": "主体",
+  "矩形": [
+   326,
+   74,
+   58,
+   36
+  ],
+  "选中": "false"
+ },
+ "主体页": {
+  "增量": [
+   "canvas-asset-library-subjects-panel",
+   "canvas-subject-import-empty"
+  ],
+  "减量": [
+   "canvas-asset-library-navigation-controls",
+   "canvas-asset-library-query-action-group",
+   "canvas-asset-library-viewport"
+  ],
+  "tabpanel": null
+ },
+ "主体页时全库元素": [
+  {
+   "tid": "canvas-asset-library-box-selection",
+   "tag": "DIV",
+   "矩形": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "文字": ""
+  },
+  {
+   "tid": "canvas-asset-library-dialog",
+   "tag": "DIV",
+   "矩形": [
+    240,
+    50,
+    801,
+    620
+   ],
+   "文字": "Import assets Choose assets fr"
+  },
+  {
+   "tid": "canvas-asset-library-surface",
+   "tag": "DIV",
+   "矩形": [
+    240,
+    50,
+    801,
+    620
+   ],
+   "文字": "Import assets Choose assets fr"
+  },
+  {
+   "tid": "canvas-asset-library-operation-area",
+   "tag": "DIV",
+   "矩形": [
+    240,
+    50,
+    801,
+    104
+   ],
+   "文字": "Import assets Choose assets fr"
+  },
+  {
+   "tid": "canvas-asset-library-subjects-panel",
+   "tag": "DIV",
+   "矩形": [
+    240,
+    154,
+    801,
+    440
+   ],
+   "文字": "没有可用主体"
+  },
+  {
+   "tid": "canvas-asset-library-footer",
+   "tag": "FOOTER",
+   "矩形": [
+    240,
+    594,
+    801,
+    76
+   ],
+   "文字": "已选择 0 个素材 确认 请先选择素材"
+  },
+  {
+   "tid": "canvas-asset-library-import-status",
+   "tag": "OUTPUT",
+   "矩形": [
+    357,
+    616,
+    1,
+    1
+   ],
+   "文字": ""
+  }
+ ],
+ "收尾": {
+  "选中": 0,
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员",
+  "节点数": 76,
+  "起始节点数": 76,
+  "testid种类": 175
+ },
+ "新增id": [],
+ "丢失id": []
+}

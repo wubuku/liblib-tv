@@ -1273,3 +1273,130 @@ https://v3-dreamina-de.jianying.com/<hash>/6ac00098/video/tos/cn/tos-cn-v-148450
 
 ⚠️ **本节说的是「这一版构建在这个账号的这个画布上」**。
 产品更新后请重跑一次普查，别把「2 处」当成永久结论。
+
+## 🏷️ 元素标识（`data-testid`）速查：一条已知改名 + 一个反直觉事实（2026-10-03 批次 129）
+
+如果你要自己写脚本核验本手册的读数、或做无障碍审计，这一节有两件必须先知道的事。
+
+### 一、「全文档 testid 种类数」**不是稳定量**
+
+它是**当前 UI 状态的函数**。本批用两条受控实验各自闭合：
+
+| 自变量 | 读数 | 验证方式 |
+|---|---|---|
+| **小地图开 / 关** | **174 / 171 种** | 点 `canvas-display-toggle-minimap` 开关两次：增量**恰好**是 `canvas-minimap-surface` / `canvas-minimap-navigation` / `rf__minimap` 三个，减量 0，开关回去精确回到 171 |
+| **鼠标停在节点上 / 移开** | **175 / 174 种** | 悬停时多出 `flow-node-media-stroke`（套在节点外侧 8px、`pointer-events:none`）；鼠标移到 `(1276,716)` 即消失 |
+
+⚠️ **所以写任何「本应用共 N 个 testid」之前，必须先声明状态。**
+📌 收尾核对时**先把鼠标移出画布**，否则会误判成「多了一个元素」。
+📌 完整 18 态读数见 [SOURCE_OBSERVATIONS §4.49](SOURCE_OBSERVATIONS.md#449-批次-1292026-10-03--全文档-testid-种类数不是稳定量--两条受控实验顺带查出手册第一条确凿的过时-testid)。
+
+### 二、已知改名 1 条（**是改名，不是删除**）
+
+| 位置 | 记的 testid | 实际情况（2026-10-03 开启态实测） |
+|---|---|---|
+| 小地图面板 | ~~`dreamina-canvas-minimap-surface`~~ | **已不是 testid**：作 `class` 的元素 **1** 个、作 `data-testid` 的 **0** 个。**真 testid 是 `canvas-minimap-surface`** |
+
+当前小地图三层链（`156×114@16,554`，三层**同矩形**）：
+
+| 层 | tag | 备注 |
+|---|---|---|
+| `canvas-minimap-surface` | `DIV` | 子元素 1 |
+| `canvas-minimap-navigation` | `DIV` | **`role="application"` aria `小地图`**，子元素 1 |
+| `rf__minimap` | `DIV` | 子元素 1 |
+
+📌 **改名与删除要分开判**：光看「旧名查不到」会误判成被删 —— **要去查旧名现在是不是变成了 class**。
+
+### 三、「有面积」**不等于「可见」**
+
+`canvas-feature-sidecar`（Agent 侧栏，`<ASIDE aria="Agent">`）的 `getBoundingClientRect()`
+返回 **`200×348@1068,360`**，但它：
+
+```
+子元素总数 0 ｜屏上文字 «»
+opacity: 0 ｜pointer-events: none ｜transform: scale(0.5) ｜data-state: "closed"
+```
+
+⇒ **完全不可见**。所有 `canvas-agent-*` 的 testid 找不到，原因就在这里。
+📌 判「元素在不在」要连 `opacity` / `visibility` / `pointer-events` **三读**。
+
+### 四、资产库 DOM 契约（首次建档）
+
+`canvas-asset-library-dialog` `<DIV role="dialog">` **`801×620@240,50`**
+（`canvas-asset-library-surface` 与它**同矩形**）。
+
+**页签有两组，而且两组都没有 `data-testid`**（只有 `role="tab"`）：
+
+| 组 | 页签 | 矩形 |
+|---|---|---|
+| 视图级 | `资产` / `主体` | 各 `58×36`，`@264,74` / `@326,74` |
+| 素材级 | `图片` / `视频` / `音频` / `文档` | 各 `58×36`，`264,118` 起 |
+
+🔑 **切到「主体」页会换掉三层容器**（不是换内容）：
+
+| 容器 | 素材页 | 主体页 |
+|---|---|---|
+| `canvas-asset-library-navigation-controls` | `232×36@264,118`「图片 视频 音频 文档」 | **不存在** |
+| `canvas-asset-library-query-action-group` | `75×36@942,118`「时间 筛选」 | **不存在** |
+| `canvas-asset-library-viewport` | `801×440@240,154`（`role=tabpanel`）逐字 `暂无图片素材` | **不存在** |
+| `canvas-asset-library-subjects-panel` | **不存在** | `801×440@240,154` 逐字 **`没有可用主体`** |
+| `canvas-subject-import-empty` | **不存在** | 有 |
+
+⇒ **「主体」页连分类导航和查询按钮都没有** —— 它不是「素材页换个筛选」，是另一个视图。
+
+其余各层：
+
+| testid | tag | 矩形 | 屏上文字 |
+|---|---|---|---|
+| `canvas-asset-library-operation-area` | `DIV` | `801×104@240,50` | 标题 + 两级页签 |
+| `canvas-asset-library-footer` | **`FOOTER`** | `801×76@240,594` | 已选择 0 个素材 确认 请先选择素材 |
+| `canvas-asset-library-import-status` | **`OUTPUT`** | **`1×1@357,616`** | **逐字全空** |
+| `canvas-asset-library-box-selection` | `DIV` | `0×0@0,0` | **无面积** |
+
+### 五、本批补齐的静态 testid（此前全册未记，共 39 个，此处列常用者）
+
+**顶栏 / 账户区**
+
+| testid | tag | 矩形 | 屏上 |
+|---|---|---|---|
+| `workspace-canvas-title` | `DIV` | `236×40@12,10` | 测试项目 节点 76 已保存 |
+| `workspace-title-responsive-surface` | `DIV` | `871×40@12,10` | 同上 |
+| `canvas-project-launcher-shell` | `DIV` | `20×28@120,16` | |
+| `canvas-node-summary-label` | `SPAN` | `34×18@156,21` | 节点 76 |
+| `canvas-node-summary-count` | `SPAN` | `12×18@178,21` | 76 |
+| `canvas-share-entry` | `DIV` | `70×36@983,12` | 分享 |
+| `canvas-account-surface` | `DIV` | `163×36@1105,12` | 805 基础会员 |
+| `canvas-account-separator` | `SPAN` | `8×12@1224,24` | |
+| `canvas-user-avatar-image` | **`IMG`** | `24×24@1238,18` | |
+
+**左栏**
+
+| testid | 矩形 | 屏上 |
+|---|---|---|
+| `canvas-navigation-scroll-viewport` | `160×398@12,189` | 文本 图片 视频 音频 时间线 主体 导演台 资产库 上传 |
+| `canvas-navigation-mask` / `-backdrop` / `-gradient` | 各 `160×398@12,189` | **三层同矩形** |
+
+**搜索面板页签行**（与批次 127 记的 `canvas-search-tab-mask-next` 同层）
+
+| testid | tag | 矩形 |
+|---|---|---|
+| `canvas-search-tabs` | `DIV` | `320×36@765,112` |
+| `canvas-search-tab-gradient` | `SPAN` | `16×36@1053,112` |
+| `canvas-search-tab-solid-mask` | `SPAN` | `16×36@1069,112` |
+
+**快捷键抽屉滚动条**（批次 128 记了 `scroll-region`，这是滚动条本体）
+
+| testid | 矩形 |
+|---|---|
+| `shortcut-help-scrollbar-track` | `10×530@1259,116` |
+| `shortcut-help-scrollbar-thumb` | `10×190@1259,116` |
+| `shortcut-help-scrollbar-thumb-shape` | `2×190@1263,116` |
+| `shortcut-help-group-separator` | `232×4@1032,476` |
+
+⚠️ **另有 7 个 testid 存在但矩形是 `0×0`**（无面积，别当成缺失）：
+`canvas-collaborators-workspace-top-bar-surface`、`canvas-fixed-toolbar-workspace-top-bar-surface`、
+`canvas-panel-workspace-top-bar-launchers`、`default-feature-overlay-interaction-boundary`、
+`workspace-preparing-account-summary`（逐字 `--`）、`canvas-save-failure-anchor`（`0×0@1264,72`）。
+
+⚠️ **本节说的是「这一版构建在这个账号的这个画布上」**。产品更新后请重跑，
+别把「174 种」「改名 1 条」当成永久结论。
