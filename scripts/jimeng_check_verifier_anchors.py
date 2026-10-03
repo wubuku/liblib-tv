@@ -79,6 +79,7 @@ PROBE_VARS = {
     "_p925": "scripts/jimeng_probe925_past_zero_boundary_src.py",
     "_p926": "scripts/jimeng_probe926_window_survives_freeze_src.py",
     "_p927": "scripts/jimeng_probe927_early_writeback_repro_src.py",
+    "_p928": "scripts/jimeng_probe928_replica_same_ruler.py",
     # ⚠️ 909 第一次把判据钉在**组件源码的实现字面量**上（判据写在
     # `armRovingTabindex` 里）⇒ 组件源码**必须登记进 PROBE_VARS**。
     # ⚠️⚠️ 第一次我把它误写进了一个**没人读**的 `SRC_VARS` ⇒

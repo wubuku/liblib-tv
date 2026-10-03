@@ -4119,6 +4119,13 @@ def main() -> int:
           and "**正向**：布到 `n_nodes - 1 = 75` 之后又按 **10 次**、" in _ausrc
           and "**反向**：退到 **0** 之后又按 **10 次**、**一次都没布**" in _ausrc
           and "⚠️ **反向那条下界 0 从来没被测过**" in _ausrc
+          # ⚠️⚠️ **928 订正**：「绝不绕回」那半个是**回归**（10 次预算不够，
+          #    绕回要等约 28 步整页循环）⇒ 判据**必须钉住这条订正**，
+          #    **不许**再把一刀切的错结论当已验证
+          and "**【928 订正 —— 上面那个「不绕回」的一半是回归，" in _ausrc
+          and "**但「正向到末尾也不绕回」那半个是错的**" in _ausrc
+          and "**这正是 899 踩过的同一个「取样假象」**" in _ausrc
+          and "**§134 把这两条并存的两分支一刀切成「绝不绕回」，是回归。**" in _ausrc
           # ⚠️ 节点总数是易变量 ⇒ 边界必须用**当下那一刻的 n_nodes** 算
           and "lambda idx, nn: idx == nn - 1," in _p924
           and "lambda idx, nn: idx == 0," in _p924
@@ -4181,7 +4188,7 @@ def main() -> int:
           "925 消掉了 §134 留下的一处歧义" in _ausrc
           and "焦点每 28 步真的会落回下标 0 的本体上**，\"\n" in _ausrc
           and "**可应用一次都不布。**" in _ausrc
-          and "**所以「到边界停手」不是「因为焦点不在本体上」，" in _ausrc
+          and "**所以「到边界停手」不是「因为焦点不在本体上」\"" in _ausrc
           and "**歧义被消掉。**" in _ausrc
           # ⚠️ 尾巴必须**盖过** §132 那个 27 步闭环，否则消不掉歧义
           and "assert TAIL >= 30" in _p925
@@ -4344,6 +4351,55 @@ def main() -> int:
           # ⭐ 那道门必须**真的会红**（不许改成恒真）
           and "\"frz_clean_ok\": all(x[\"n_frz_armed\"] == 0 for x in ladder)," in _p927
           and "all(x[\"n_frz_armed\"] == 0 for x in ladder)" in _p927)
+    p928 = ROOT / "scripts/jimeng_probe928_replica_same_ruler.py"
+    _p928 = p928.read_text(encoding="utf-8") if p928.exists() else ""
+    check("OOO.1 ✅ **928 第一次用同一把尺子**（919–927 那套 census + 逐次 delta、"
+          "**口径逐字未改**）量了**复刻侧**："
+          "**「没有 `tabindex` 属性」的本体个数** —— "
+          "**源站 §131 实测 = 恒 1**、**复刻 = 恒 0**（`armAll` 天然都写了）；"
+          "**`removed` 累计**源站每次臂事件至少 1 条、**复刻 0 条**；"
+          "⭐ 而 **`n_wrapper_idl_focusable` 两侧都是 1** "
+          "⇒ **顺序焦点位个数是对齐的**",
+          "928 第一次用**同一把尺子**" in _ausrc
+          and "**源站 §131 实测 = 恒 1**" in _ausrc
+          and "**复刻 = 恒 0**" in _ausrc
+          and "**`n_wrapper_idl_focusable` 两侧都是 1**" in _ausrc
+          and "**顺序焦点位个数是对齐的**" in _ausrc
+          # ⭐ 换到复刻侧**不许**改口径（判据钉在代码上）
+          and "换到复刻侧**不许**改口径 —— 口径一换，两边就没法并排比了"
+          in _p928
+          and "assert _f in CENSUS_JS" in _p928
+          and "\"n_wrapper_missing_ti\"" in _p928)
+    check("OOO.2 ⚠️ **928 自己的一处硬限制（如实记账）**："
+          "**复刻 demo 画布只有 2 个节点**（源站同 URL 是 76）⇒ "
+          "**边界那几读数偏弱、不足以判定「复刻的边界行为对不对」** ⇒ "
+          "本批**只**用复刻侧回答了「`missing_ti` 差 0 还是差 1」"
+          "和「三动作形态」这两个问题。⚠️ **节点总数不许被钉成常量**",
+          "928 自己的一处硬限制（如实记账）" in _ausrc
+          and "**复刻 demo 画布只有 " in _ausrc
+          and "**边界那几读数偏弱" in _ausrc
+          and "**只**用复刻侧回答了" in _ausrc
+          and "**节点总数是易变量**（复刻 demo 画布逐轮也会变）⇒ **只记不钉**" in _p928
+          and "n_nodes = 2" not in _p928)
+    check("OOO.3 ⚠️⚠️ **928 撞出的最重要一件事：复刻侧的 `[0, 1, 0, 1]`**"
+          "**正是 §130/908 那条规则在起作用**（末尾 + **按前焦点是画布根** ⇒ "
+          "布 `'0'`、绕回）⇒ **复刻与 §908 一致**；"
+          "**而 §134 那句一刀切的「绝不绕回」是回归**（越界后只按 10 次、"
+          "**绕回要等约 28 步整页循环**）⇒ **这是 899 踩过的同一个「取样假象」。**"
+          "⇒ **不许**在更长预算的读数之前采信 §134 的正向那半个",
+          "928 撞出一件必须马上处理的事：它和 §134 的结论矛盾。" in _ausrc
+          and "**它绕回了 `0`**" in _ausrc
+          and "**但 §134 越界之后只按了 `10` 次**" in _ausrc
+          and "**这正是 899 踩过的同一个「取样假象」**" in _ausrc
+          and "**不许**把 §134 那条当已验证" in _ausrc
+          and "**源站侧本来就有一对互相矛盾的记录**" in _ausrc
+          and "**成因未查明**" in _ausrc
+          # ⭐ §908 那条**已判死**的记录必须**还在**（它是正确的一方）
+          and "source_roving_wraps_at_canvas_root_908" in _ausrc
+          and "**908 推翻了 899 的「绝不绕回」**" in _ausrc
+          # ⚠️ 而 §134 的「PAST=10 预算不够」必须钉在源码上
+          and "PAST = 10" in _p924
+          and "n_past_ok = (n_past_fwd >= PAST and n_past_rev >= PAST)" in _p924)
 
 
 
