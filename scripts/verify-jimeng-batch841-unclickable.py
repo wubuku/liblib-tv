@@ -714,7 +714,7 @@ def main() -> int:
           "（生成面板挂在节点里，不在 NodeToolbar/NodePanel 里）",
           re.search(r"try_measure\(f\"视频生成面板·\{tid\}下拉\".{0,300}?"
                     r"react-flow__node\.selected", asrc, re.S) is not None)
-    # I.5 回归钉子：这 9 个层**必须真的探到**。逗号 bug 活着的时���，它们
+    # I.5 回归钉子：这 9 个层**必须真的探到**。逗号 bug 活着的时候，它们
     #     表现为「键盘栏空白」；改回老写法，这一条立刻红。
     MUST_PROBE = [
         "gen-model-listbox", "gen-video-size-listbox",
@@ -959,7 +959,7 @@ def main() -> int:
           "[class*=" in lsrc.replace("'", '"') or 'class*=' in lsrc)
 
     # ── L. 批 852：方向键从「没测到」变成「测到了」──────────────────────
-    #    850/851 记的 `arrows_move: None` 是**判据缺陷**，不是产品缺��� ——
+    #    850/851 记的 `arrows_move: None` 是**判据缺陷**，不是产品缺陷 ——
     #    两个判据把它盖住了，而两个都是同一类病：**布尔判据不配轨迹**。
     #      ① `moved` 只对「按完之后」的 4 个点去重，**漏掉了按之前的起点**。
     #         源站这六层都是「起点 ≠ 第 1 次之后」：`16:9` → `1` → `1` → `1`
@@ -4916,6 +4916,94 @@ def main() -> int:
           and "**成因仍然未查明、标「未验证」**" in open(
               ROOT / "scripts/verify-jimeng-batch841-unclickable.py",
               encoding="utf-8").read())
+    p935 = ROOT / "scripts/jimeng_probe935_body_stop_sweep_src.py"
+    _p935 = p935.read_text(encoding="utf-8") if p935.exists() else ""
+    check("VVV.1 ✅⭐⭐⭐ **935 把「原理上不可从 DOM 查明」从**假设**升级成"
+          "**测出来的结论**（对这批量而言）** —— "
+          "在「从 BODY 之前那一站出发」那一刻的 `pre` 状态里，"
+          "**17 个可观测量（14 个扫测量 + 3 个 pre 落点字段）逐点全部相同、零差别"
+          "（4/4 臂、60 个圈）** ⇒ **复刻侧由此拿到一条可以写进基线的边界**（§122 的精神）",
+          "source_body_stop_not_in_dom_935" in _ausrc
+          and "**935 把「原理上不可从 DOM 查明」从**假设**升级成**测出来的结论****" in _ausrc
+          and "**`pre` 侧：4/4 臂、60 个圈、逐点全部相同、零差别**" in _ausrc
+          and "这 17 个可观测量没有任何一个能区分「这一圈会不会出现 `BODY` 站」**" in _ausrc
+          and "**「原理上不可从 DOM 查明」不再是假设、而是一条测出来的结论**" in _ausrc
+          # ⭐ 判据钉在**扫测量真的逐次记了、且 pre/post 各比各的**上
+          and "SWEEP_FIELDS = BODY_ATTRS + (" in _p935
+          and "DERIVED_PRE = (\"pre_dom_sig\", \"pre_is_body\", \"pre_on_canvas_root\")" in _p935
+          and "\"n_pre_fields_compared\": len(POINT_FIELDS)," in _p935
+          and "assert len(POINT_FIELDS) >= 12" in _p935)
+    check("VVV.2 ⚠️⚠️⚠️ **935 的定位轴第一版选错了、而且错得「看起来能跑」**："
+          "原本想找「`post.dom_sig` == 参照圈 `BODY` 那一站 `dom_sig`」的那次按压；"
+          "**但 933/934 已测出「缺席圈 == 整圈删掉 `BODY` 那一站」** ⇒ "
+          "**缺席圈的 `sig` 里压根没有 `BODY` 那个 `dom_sig`** ⇒ "
+          "**缺席圈必然 `found=False`，而那恰恰是唯一要看的圈 ⇒ 整批落空**。"
+          "⭐ 改用 **`pre` 落点**之后：**「那一 press」在缺席圈里也找得到、60/60、"
+          "找不到 0 个** ⇒ **顺带独立复核了 933/934 那个「短圈 == 整圈删 `BODY`」**",
+          "**⚠️ 定位轴第一版选错了、而且错得「看起来能跑」**" in _ausrc
+          and "**缺席圈的 `sig` 里压根没有 `BODY` 那个 `dom_sig`**" in _ausrc
+          and "**缺席圈必然 `found=False`**" in _ausrc
+          and "**而那恰恰是唯一要看的那些圈 ⇒ 整批会落空**" in _ausrc
+          and "**「那一 press」在缺席圈里也找得到、" in _ausrc
+          and "60/60 全找到、找不到 0 个**" in _ausrc
+          and "**这是「先读上一批的结论、再设计下一批」的一次正收益**" in _ausrc
+          # ⭐ 判据钉在**定位轴真的是 pre 落点**上
+          and "ref_pre_sig = ref_press[\"pre\"][\"active\"][\"dom_sig\"]" in _p935
+          and "if press_list[q][\"pre\"][\"active\"][\"dom_sig\"] == ref_pre_sig:" in _p935)
+    check("VVV.3 ⚠️⚠️ **`post` 侧那两处差别（`active_rect` / `has_focus`）"
+          "是**必然的因果后果**、不是相关量** —— 因为「焦点有没有落到 `BODY`」"
+          "**本身就是那次按压的结果** ⇒ ⭐ 这正是 §923 那条"
+          "「`post` 是按压的**结果**、不是 keydown 那刻的**原因**」的直接体现 "
+          "⇒ **不许把那两处差别读成线索**。"
+          "⇒ ⭐ 也正因如此，**判决只认 `pre` 侧**（4/4 臂零差别）",
+          "**`post` 侧那两处差别（`active_rect` / `has_focus`）" in _ausrc
+          and "是**必然的因果后果**、不是相关量**" in _ausrc
+          and "**本身就是那次按压的结果**" in _ausrc
+          and "**这正是 §923 那条「`post` 是按压的**结果**、不是 keydown 那刻的" in _ausrc
+          and "**不许把那两处差别读成线索**" in _ausrc
+          and "⇒ ⭐ **也正因如此，判决只认 `pre` 侧**（4/4 臂零差别）" in _ausrc
+          and "**也正因如此，判决只认 `pre` 侧**（4/4 臂零差别）" in _ausrc
+          # ⭐ NN.3 那条「post 是结果」的老教训必须**留在基线里**
+          and "post" in _ausrc
+          and "**`post` 侧那一律不作数**" in _ausrc)
+    check("VVV.4 ⚠️⚠️⚠️ **935 探针自己踩的两个坑都要留痕**："
+          "**（a）`KeyError: 'pre_dom_sig'` ⇒ 整轮 9 分钟读数全丢** —— "
+          "根因是**把「census 原始键」与「派生键」混在同一个元组里**再按原始键去取，"
+          "且**落盘排在后处理之后** ⇒ ✅ 两处都修，并加了**两条 assert 当免疫针**"
+          "（「派生键与 census 原始键**不许重叠**」「pre/post 派生键**不许重名**」—— "
+          "**重叠就说明取法错了**）；"
+          "**（b）汇总行把圈数与臂数虚高了 3 倍** —— 为了「落盘提前」把 `rec` "
+          "每轮 append 了 **3 次** ⇒ 打出「**15/180**」「**12/12**」，"
+          "真实是「**5/60**」「**4/4**」⇒ ⭐ **比值恰好没受影响**、**只错在绝对计数** "
+          "⇒ **「落盘要早」与「每轮只记一次」是两件事，前者不能牺牲后者**",
+          "**④ 935 探针自己踩的两个坑（都要留痕）**" in _ausrc
+          and "**（a）`KeyError: 'pre_dom_sig'` ⇒ 整轮 9 分钟读数全丢**" in _ausrc
+          and "**把「census 原始键」与「派生键」混在同一个元组里**" in _ausrc
+          and "**原始读数一采到就先落盘**" in _ausrc
+          and "派生键与 census 原始键**不许重叠**" in _ausrc
+          and "pre/post 派生键**不许重名**" in _ausrc
+          and "**（b）汇总行把圈数与臂数虚高了 3 倍**" in _ausrc
+          and "**比值恰好没受影响**（8.3% 两边一样）⇒ **只错在绝对计数**" in _ausrc
+          and "**教训：「落盘要早」与「每轮只记一次」是两件事**" in _ausrc
+          # ⭐ 钉住探针里那两条免疫针与「每轮只 append 一次」
+          and "派生键与 census 原始键**不许重叠**（第一版就是重叠 ⇒ KeyError）" in _p935
+          and "pre/post 的派生键**不许重名**" in _p935
+          and "if len(runs) < rep:      # ⚠️ 每轮只 append 一次（落盘要早、runs 不能重计）" in _p935)
+    check("VVV.5 ⚠️⚠️⚠️ **935 只说「这 17 个量查不出来」，"
+          "**没说「任何量都查不出来」** ⇒ **不许**把「这一批查不出来」读成"
+          "「原理上必然查不出来」（那仍然是 §122 那种断言、只是换了个说法）。"
+          "**成因仍然未查明、标「未验证」**；读数 **5/60（8.3%）**、"
+          "落点第 **10/6/1/12/8** 圈 ⇒ 与 933 的 **3/32（9.4%）**、"
+          "934 的 **5/60（8.3%）** 全部一致 ⇒ **频率稳定在 8–9%**",
+          "**⑤ 成因仍然未查明、标「未验证」**" in _ausrc
+          and "**935 只说「这 17 个量查不出来」**" in _ausrc
+          and "**没说「任何量都查不出来」**" in _ausrc
+          and "**不许**把「这一批查不出来」读成「原理上必然查不出来」" in _ausrc
+          and "**③ 读数**：**5/60 圈缺 `document.body`（8.3%）**" in _ausrc
+          and "**频率稳定在 8–9%**" in _ausrc
+          and "落点第 1/6/8/10/12 圈**分散**" in _ausrc
+          # ⚠️ NN.2 那条「不许把未查明伪装成已知」必须仍在基线里
+          and "不许**编一个 DOM 层判据去" in _ausrc)
 
 
 
