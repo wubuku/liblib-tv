@@ -26,6 +26,9 @@ trap cleanup EXIT
 # 复制闸脚本 + 全部正文页（10-tasks/ 下的任务页 + 根目录 4 个内容页）
 mkdir -p "$WORK/10-tasks" "$WORK/scripts"
 cp "$HERE/verify-link-labels.py" "$WORK/scripts/"
+# **Batch 249：闸 26 开始 import `headingkey`。**
+# 不搬它临时目录 import 失败、每一例都红，而 `build-site.sh` 仍然全绿。
+cp "$HERE/headingkey.py" "$WORK/scripts/"
 for f in 00-quickstart.md 20-reference.md 30-concepts.md 90-troubleshooting.md; do
   cp "$ROOT/$f" "$WORK/" 2>/dev/null
 done
@@ -164,6 +167,75 @@ else
   fi
 fi
 
+# ── Batch 249：链接文字与目标页名字**必须同一个口径** ──────────────────────
+# 11/12 是**不误伤**（改前误报），13 是**能抓**（改前漏报）。
+# **11/12 尤其要紧**：它们会让判据逼着人把一条「读者看到的就是页面上那个标题」的
+# 正确链接，改成判据才认的写法——**而改完读者看到的东西一模一样，白改。**
+run_two_file_case() {  # 说明 目标页 链接所在页 注入命令 期望退出码(1=须报,0=须放行)
+  local desc="$1" tgt="$2" src="$3" inject="$4" expect_fail="$5" out rc inj
+  reset_tree
+  inj=$(python3 - "$WORK/10-tasks/$tgt" "$WORK/10-tasks/$src" <<INJEOF 2>&1
+import io, sys
+tgt, src = sys.argv[1], sys.argv[2]
+t = io.open(tgt, encoding="utf-8").read()
+u = io.open(src, encoding="utf-8").read()
+$inject
+io.open(tgt, "w", encoding="utf-8").write(t)
+io.open(src, "w", encoding="utf-8").write(u)
+INJEOF
+)
+  rc=$?
+  if [ "$rc" -ne 0 ] || echo "$inj" | grep -q 'Error\|Traceback\|SystemExit'; then
+    echo "  ✗ ${desc}：**注入失败，用例根本没跑起来**（不能算通过）"
+    echo "$inj" | sed 's/^/      /'; FAIL=$((FAIL+1)); return
+  fi
+  out=$(python3 "$WORK/scripts/verify-link-labels.py" 2>&1); rc=$?
+  if [ "$expect_fail" = "yes" ]; then
+    if [ "$rc" -eq 0 ]; then
+      echo "  ✗ ${desc}：闸门**未**报出（期望退出码 1）；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+    else
+      echo "  ✓ ${desc}：闸门正确报出（退出码 ${rc}）"; PASS=$((PASS+1))
+    fi
+  else
+    if [ "$rc" -eq 0 ]; then
+      echo "  ✓ ${desc}：闸门**未误报**（退出码 0）"; PASS=$((PASS+1))
+    else
+      echo "  ✗ ${desc}：闸门误报了（期望退出码 0）；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+    fi
+  fi
+}
+
+# 11 ATX 的可选闭合序列：`## 侧栏的容量条 ##` 渲染出来就是「侧栏的容量条」，
+#    而原判据把结尾的 `##` 也算进名字，于是链向它的正确链接被判成非法。
+run_two_file_case "11) 目标页标题带 ATX 闭合井号、链接写渲染后的名字（不得误报）" \
+  storage-quota.md asset-library.md 'assert t.count("## 侧栏的容量条") == 1, "目标页锚点不唯一"
+t = t.replace("## 侧栏的容量条", "## 侧栏的容量条 ##", 1)
+old = "[账号存储、容量与配额](storage-quota.md)"
+assert old in u, "链接锚点未命中: " + old
+u = u.replace(old, "[侧栏的容量条](storage-quota.md)", 1)' no
+
+# 12 「：」前的简称必须从**渲染后**的文字上切。
+#    **反引号必须放在冒号【前面】**——第一版写成 `侧栏的容量条：\`localMode\``，
+#    那样切出来的简称本来就是干净的，**用例测不到它想测的东西**
+#    （实测：改前的闸对第一版也放行，而这条例子的意义正是「改前的闸会误报」）。
+#    改成 `\`localMode\`：侧栏的容量条`：渲染出来是「localMode：侧栏的容量条」，
+#    简称是「localMode」，而原判据切出的是带反引号的那个。
+run_two_file_case "12) 标题含行内代码、链接写渲染后的简称（不得误报）" \
+  storage-quota.md asset-library.md 'assert t.count("## 侧栏的容量条") == 1, "目标页锚点不唯一"
+t = t.replace("## 侧栏的容量条", "## `localMode`：侧栏的容量条", 1)
+old = "[账号存储、容量与配额](storage-quota.md)"
+assert old in u, "链接锚点未命中: " + old
+u = u.replace(old, "[localMode](storage-quota.md)", 1)' no
+
+# 13 井号后是全角空格时**那一行根本不是标题**，它不该给页面贡献任何名字；
+#    而原判据认它，于是链向一个页面上不存在的名字反而被放行。
+run_two_file_case "13) 目标页有一个全角空格伪标题、链向它（必须报）" \
+  storage-quota.md asset-library.md 'assert t.count("## 侧栏的容量条") == 1, "目标页锚点不唯一"
+t = t.replace("## 侧栏的容量条", "#　侧栏的容量条", 1)
+old = "[账号存储、容量与配额](storage-quota.md)"
+assert old in u, "链接锚点未命中: " + old
+u = u.replace(old, "[侧栏的容量条](storage-quota.md)", 1)' yes
+
 echo "=== 基线：真实手册应当通过 ==="
 if python3 "$HERE/verify-link-labels.py" >/dev/null 2>&1; then
   echo "  ✓ 真实手册通过"; PASS=$((PASS+1))
@@ -207,6 +279,7 @@ fi
 echo "=== 零输入不许报绿：空手册树必须返回 2（Batch 191/192 纪律 156）==="
 EMPTY="$WORK/empty"; mkdir -p "$EMPTY/scripts"
 cp "$HERE/verify-link-labels.py" "$EMPTY/scripts/"
+cp "$HERE/headingkey.py" "$EMPTY/scripts/"
 EO=$(python3 "$EMPTY/scripts/verify-link-labels.py" 2>&1); ERC=$?
 if [ "$ERC" -eq 2 ]; then
   echo "  ✓ 空树返回 2「未能核对」，没有冒充「全部合规」"; PASS=$((PASS+1))

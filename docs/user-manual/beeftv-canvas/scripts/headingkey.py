@@ -90,6 +90,23 @@ def _transform_plain(s):
     return s
 
 
+def norm_inline(text):
+    """把一段**行内 markdown**（没有 ATX 前缀）折成读者看到的那串文字。
+
+    `rendered_key` 与**链接文字**都必须走它——
+    **两边走同一套规则才叫比较**：链接文字同样会被渲染，
+    而读者是把「链接显示的那几个字」拿去和「标题显示的那几个字」比的。
+    闸 19（`verify-link-labels.py`）原先拿**链接原始文本**比**标题原始文本**，
+    那个方向在**两边都带反引号**时恰好成立（实测本树的
+    `[新建创作（\`/create\`）]` 与 `## 新建创作（\`/create\`）` 就是这样），
+    **但只要有一边带 ATX 闭合井号、或者一边是全角空格那种伪标题，就分岔**。
+    """
+    t = _CLOSING_ATX.sub("", text)
+    masked, bodies = _mask(t)
+    out = _transform_plain(masked)
+    return _PLACEHOLDER.sub(lambda mm: bodies[int(mm.group(1))], out).strip()
+
+
 def rendered_key(raw):
     """把一行 ATX 标题的**标题文字部分**折成与渲染器一致的形态。
 
@@ -98,11 +115,8 @@ def rendered_key(raw):
     """
     m = re.match(r"^(#{1,6})([ \t]+)(.*)$", raw)
     if not m:
-        return raw.strip()
-    text = _CLOSING_ATX.sub("", m.group(3))
-    masked, bodies = _mask(text)
-    out = _transform_plain(masked)
-    return _PLACEHOLDER.sub(lambda mm: bodies[int(mm.group(1))], out).strip()
+        return norm_inline(raw)
+    return norm_inline(m.group(3))
 
 
 def is_atx_heading(line):
