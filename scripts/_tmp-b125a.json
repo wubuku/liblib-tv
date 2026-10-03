@@ -1,0 +1,241 @@
+{
+ "at": "2026-10-03T02:08:32.924Z",
+ "round": "a",
+ "start": {
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员",
+  "status": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+ },
+ "open": {
+  "ok": true
+ },
+ "struct": {
+  "矩形": [
+   240,
+   87,
+   800,
+   546
+  ],
+  "role": "dialog",
+  "页签": [
+   {
+    "tag": "BUTTON",
+    "role": "tab",
+    "tid": null,
+    "ariaSelected": "true",
+    "ariaControls": ":modern-js-r1tuj:-basic-panel",
+    "dataState": null,
+    "aria": null,
+    "文字": "基础信息",
+    "矩形": [
+     252,
+     155,
+     76,
+     36
+    ],
+    "在对话框内": true
+   },
+   {
+    "tag": "BUTTON",
+    "role": "tab",
+    "tid": null,
+    "ariaSelected": "false",
+    "ariaControls": ":modern-js-r1tuj:-credits-panel",
+    "dataState": null,
+    "aria": null,
+    "文字": "积分消耗",
+    "矩形": [
+     328,
+     155,
+     76,
+     36
+    ],
+    "在对话框内": true
+   }
+  ],
+  "页签容器": [
+   {
+    "tag": "DIV",
+    "role": "tablist",
+    "tid": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "aria": "项目信息",
+    "文字": "基础信息 积分消耗",
+    "矩形": [
+     240,
+     155,
+     800,
+     36
+    ],
+    "在对话框内": true
+   },
+   {
+    "tag": "DIV",
+    "role": "tabpanel",
+    "tid": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "aria": null,
+    "文字": "所有者 西卡文案馆 创建时间 2026年9月12日 01:3",
+    "矩形": [
+     240,
+     191,
+     800,
+     372
+    ],
+    "在对话框内": true
+   }
+  ],
+  "全部可点": [
+   {
+    "tag": "BUTTON",
+    "role": null,
+    "tid": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "aria": "关闭项目信息",
+    "文字": "",
+    "矩形": [
+     980,
+     111,
+     36,
+     36
+    ],
+    "在对话框内": true
+   },
+   {
+    "tag": "BUTTON",
+    "role": "tab",
+    "tid": null,
+    "ariaSelected": "true",
+    "ariaControls": ":modern-js-r1tuj:-basic-panel",
+    "dataState": null,
+    "aria": null,
+    "文字": "基础信息",
+    "矩形": [
+     252,
+     155,
+     76,
+     36
+    ],
+    "在对话框内": true
+   },
+   {
+    "tag": "BUTTON",
+    "role": "tab",
+    "tid": null,
+    "ariaSelected": "false",
+    "ariaControls": ":modern-js-r1tuj:-credits-panel",
+    "dataState": null,
+    "aria": null,
+    "文字": "积分消耗",
+    "矩形": [
+     328,
+     155,
+     76,
+     36
+    ],
+    "在对话框内": true
+   },
+   {
+    "tag": "BUTTON",
+    "role": null,
+    "tid": null,
+    "ariaSelected": null,
+    "ariaControls": null,
+    "dataState": null,
+    "aria": null,
+    "文字": "查看积分明细",
+    "矩形": [
+     922,
+     573,
+     94,
+     36
+    ],
+    "在对话框内": true
+   }
+  ],
+  "内部testid": [],
+  "逐字": "项目信息 基础信息 积分消耗 所有者 西卡文案馆 创建时间 2026年9月12日 01:34 最新修改 2026年10月3日 09:59 节点分布 全部节点 全部 76 图片 1 视频 1 音频 68 文本 3 时间线 2 主体 0 其他 1 查看积分明细"
+ },
+ "tab2": {
+  "tag": "BUTTON",
+  "role": "tab",
+  "tid": null,
+  "ariaSelected": "false",
+  "ariaControls": ":modern-js-r1tuj:-credits-panel",
+  "dataState": null,
+  "aria": null,
+  "文字": "积分消耗",
+  "矩形": [
+   328,
+   155,
+   76,
+   36
+  ],
+  "在对话框内": true
+ },
+ "tab2Read": {
+  "矩形": [
+   240,
+   87,
+   800,
+   546
+  ],
+  "逐字": "项目信息 基础信息 积分消耗 总消耗积分 0 任务数 0 暂无数据 查看积分明细",
+  "页签": [
+   {
+    "文字": "基础信息",
+    "ariaSelected": "false",
+    "dataState": null
+   },
+   {
+    "文字": "积分消耗",
+    "ariaSelected": "true",
+    "dataState": null
+   }
+  ],
+  "tabpanel": [
+   {
+    "矩形": [
+     240,
+     191,
+     800,
+     442
+    ],
+    "逐字": "总消耗积分 0 任务数 0 暂无数据 查看积分明细"
+   }
+  ],
+  "表格": [],
+  "内部testid": [
+   "project-consumption-summary"
+  ]
+ },
+ "ledgerBtn": {
+  "tag": "BUTTON",
+  "role": null,
+  "tid": null,
+  "href": null,
+  "target": null,
+  "aria": null,
+  "文字": "查看积分明细",
+  "矩形": [
+   922,
+   573,
+   94,
+   36
+  ],
+  "禁用": false
+ },
+ "收尾": {
+  "浮层": 0,
+  "选中": 0,
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员",
+  "status": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+ }
+}

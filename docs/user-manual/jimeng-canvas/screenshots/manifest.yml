@@ -1507,3 +1507,15 @@ screenshots:
     visible_text: 视频 2 / 视频 4 / 30%
     alt: 同一画面在隐藏 SVG 连线层之后：整条细蓝线消失，只剩曲线中段那一小段发光高亮
     sha256: 145415dd8c60b5c19c4a7cded4b0ce217bba855f14761638f4b2631e62b1c415
+
+  - file: screenshots/106-project-info-credits-tab.png
+    task_id: canvas-context
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-03T10:15:00+08:00
+    verified_locator: '2026-10-03 批次 125。顶栏「更多」按钮落点现算 + elementFromPoint 自检（必须命中 BUTTON[aria=更多] 自身）→ 菜单 200×84 里逐点自检命中 menuitem「项目信息」→ 打开 dialog[data-testid=workspace-project-info-dialog] 800×546@240,87 → 读出两个 role=tab 的 BUTTON（基础信息 76×36@252,155 aria-selected=true；积分消耗 76×36@328,155 aria-selected=false）→ 在「积分消耗」自己的矩形内逐点扫出命中该 tab 的点后点击 → 等 1.7s → 读到 role=tabpanel 800×442@240,191 逐字「总消耗积分 0 任务数 0 暂无数据 查看积分明细」、内部 testid project-consumption-summary、两个页签的 aria-selected 已互换。裁剪 clip={x:240,y:80,w:800,h:560}。⛔ 「查看积分明细」（BUTTON 94×36@922,573）只读身份、**没有点** —— 它带右向箭头、很可能跳出到积分/充值页，而本手册范围不含充值与积分购买'
+    visible_text: 项目信息 / 基础信息 / 积分消耗 / 总消耗积分 0 / 任务数 0 / 暂无数据 / 查看积分明细
+    alt: 项目信息对话框的「积分消耗」页签：页签栏里「积分消耗」下带下划线表示当前选中，下面两张统计卡分别是「总消耗积分 0」和「任务数 0」，卡片下方居中写着「暂无数据」，右下角是带右箭头的「查看积分明细」
+    sha256: 14fce10d4dbf92f22f22696fd9c0e7fb3eacbbd3859c2a237c1c5bb2bc0c74b1
