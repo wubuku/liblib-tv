@@ -1,0 +1,36 @@
+{
+  "命中": [
+    {
+      "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/1_k4whmuzjive.js",
+      "字节": 48889,
+      "是JSON": false
+    },
+    {
+      "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/1blddhgxss0mm.js",
+      "字节": 40490,
+      "是JSON": false
+    },
+    {
+      "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/2nko6splgjkeq.js",
+      "字节": 74810,
+      "是JSON": false
+    },
+    {
+      "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/3-mou5v69wxmq.js",
+      "字节": 970309,
+      "是JSON": false
+    },
+    {
+      "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/1an1x1akb2vnr.js",
+      "字节": 1687293,
+      "是JSON": false
+    },
+    {
+      "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=243",
+      "字节": 4838,
+      "是JSON": true
+    }
+  ],
+  "表": null,
+  "校验": null
+}

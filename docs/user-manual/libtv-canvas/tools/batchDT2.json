@@ -1,0 +1,94 @@
+{
+  "判据": "baseType 到 styleModelList 匹配",
+  "卡": [
+    {
+      "卡名": "赛璐璐光影",
+      "baseType": [
+        81,
+        70,
+        68,
+        55,
+        40,
+        27
+      ],
+      "首选": [
+        "General image V2"
+      ],
+      "其余": [
+        "Seedream 5.0",
+        "Seedream 4.5",
+        "General image Pro",
+        "Lib Image"
+      ],
+      "有其余分区": true,
+      "全文": "风格详情 | 赛璐璐光影 | 星空岁月 | 生成内容可商用 | 首选推荐模型 | General image V2 | 其余适配模型 | Seedream 5.0 | Seedream 4.5 | General image Pro | Lib Image | 收藏 | 使用"
+    },
+    {
+      "卡名": "二次元清新画风",
+      "错": "定位不到卡片盒子"
+    }
+  ],
+  "并集": [
+    {
+      "模型": "General image V2",
+      "出现在": [
+        "赛璐璐光影"
+      ],
+      "次数": 1
+    },
+    {
+      "模型": "Seedream 5.0",
+      "出现在": [
+        "赛璐璐光影"
+      ],
+      "次数": 1
+    },
+    {
+      "模型": "Seedream 4.5",
+      "出现在": [
+        "赛璐璐光影"
+      ],
+      "次数": 1
+    },
+    {
+      "模型": "General image Pro",
+      "出现在": [
+        "赛璐璐光影"
+      ],
+      "次数": 1
+    },
+    {
+      "模型": "Lib Image",
+      "出现在": [
+        "赛璐璐光影"
+      ],
+      "次数": 1
+    }
+  ],
+  "对照": [
+    {
+      "卡名": "赛璐璐光影",
+      "baseType": [
+        81,
+        70,
+        68,
+        55,
+        40,
+        27
+      ],
+      "baseType个数": 6,
+      "浮层列了几个": 5,
+      "首选": [
+        "General image V2"
+      ],
+      "其余": [
+        "Seedream 5.0",
+        "Seedream 4.5",
+        "General image Pro",
+        "Lib Image"
+      ],
+      "缺口": 1
+    }
+  ],
+  "最终节点数": 35
+}

@@ -2425,3 +2425,14 @@ screenshots:
     visible_text: 风格详情 | 赛璐璐光影 | 星空岁月 | 生成内容可商用 | 首选推荐模型 | General image V2 | 其余适配模型 | Seedream 5.0 | Seedream 4.5 | General image Pro | Lib Image | 收藏 | 使用
     alt: 一张**多模型卡**的「风格详情」浮层，1440×810 覆盖画布，节点数 35→35 零残留。⭐ 卡名「赛璐璐光影」右边同行跟着一行 12px 的「生成内容可商用」，下一行是灰色 14px 的作者「星空岁月」。⭐⭐ 两个分区标题都是 12px、宽 250px，y 坐标相差 92px：「首选推荐模型」下挂一条「General image V2」，「其余适配模型」下挂四条 Seedream 5.0 / Seedream 4.5 / General image Pro / Lib Image（每条行距 40px、13px）。⭐ 底部并排两按钮各 121×32：左边「收藏」（这张未收藏）、右边实心黑底白字「使用」。⭐⭐ 对照 M-352 那张单模型卡：它**没有**「生成内容可商用」、**没有**「其余适配模型」，左按钮是「取消收藏」⇒ 浮层内容跟着卡的 baseType 长度和收藏状态变。⚠️ 本卡 baseType 有 6 个值，浮层只列了 5 个模型（有一个在模型表里没匹配上）
     sha256: 8c3455d2d76fe7e861233fc5d64c579f19ea29c4e356bd00b3778eb1d9c298b4
+  - file: screenshots/M-354-五模型下拉与面板裁切.png
+    task_id: asset-library
+    step: 78
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 广场「推荐」分类 → 找到第 2 行第 2 列那张「一键生成人物多视图」卡 → 先悬停整张卡让 ✧ 显形，再把鼠标停在它左上角那枚无文字的 ✧ 按钮上（等 1.8 秒）
+    visible_text: 全部适配模型 Lib Image General image Pro General image V2 Seedream 4.5 Seedream 5.0 一键生成人物多视图 商用 像素农夫DESIGN 4.2w
+    alt: 悬停「一键生成人物多视图」卡左上角那枚 ✧ 之后浮出的黑色下拉。⭐ DOM 逐行读数是**五行**：Lib Image / General image Pro / General image V2 / Seedream 4.5 / Seedream 5.0。⭐⭐ 但**画面上只完整看得到前四行**——第五行「Seedream 5.0」被**广场面板的底边**切掉了半截，因为这张卡在第二行、下拉向下展开时越出了面板可视区。⚠️ 这是本轮**如实保留的界面现象**，没有为了拍全而挪位置（Batch DT-6 试过把卡滚到第一行，滚动后 hover 失效、没能重拍）。⭐ 这张卡的 baseType 是 5 个值 [27,40,70,55,68]，**正好对上 5 行** ⇒ baseType 个数 = 下拉行数；对比 M-353 那张 baseType 6 个却只列 5 行，缺口是那张卡特有的。⭐ 两次悬停采样里都没出现「当前使用」
+    sha256: 9905f6c400080a1efc6dcbb9a0967a6521f6b8bca93b2e215d0096fe8b89f4ff
