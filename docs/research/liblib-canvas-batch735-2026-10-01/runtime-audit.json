@@ -1,0 +1,1822 @@
+{
+ "static": {
+  "sites": [
+   {
+    "file": "src/components/AgentDrawer.tsx",
+    "line": 280,
+    "tag": "<button type=\"button\" title=\"历史对话在克隆侧尚未接入\" aria-label=\"历史对话\" data-inert=\"true\" className=\"flex size-7 cursor-default items-center justify-center rounded-md opacity-40\" >"
+   },
+   {
+    "file": "src/components/AgentDrawer.tsx",
+    "line": 298,
+    "tag": "<button type=\"button\" title=\"Agent 设置在克隆侧尚未接入\" aria-label=\"Agent 设置\" data-inert=\"true\" className=\"flex size-7 cursor-default items-center justify-center rounded-md opacity-40\" >"
+   },
+   {
+    "file": "src/components/AgentDrawer.tsx",
+    "line": 307,
+    "tag": "<button type=\"button\" title=\"CLI & Skill 在克隆侧尚未接入\" aria-label=\"CLI & Skill\" data-inert=\"true\" className=\"flex size-7 cursor-default items-center justify-center rounded-md opacity-40\" >"
+   },
+   {
+    "file": "src/components/HistoryPanel.tsx",
+    "line": 165,
+    "tag": "<button type=\"button\" title=\"时间排序在克隆侧尚未接入\" data-inert=\"true\" className=\"ml-2 flex h-8 cursor-default items-center gap-1.5 whitespace-nowrap rounded-lg px-2 text-sm text-[#6f6f6f] max-sm:text-xs\">"
+   },
+   {
+    "file": "src/components/HistoryPanel.tsx",
+    "line": 208,
+    "tag": "<button type=\"button\" title=\"查看在克隆侧尚未接入\" aria-label=\"查看\" data-inert=\"true\" className=\"flex size-7 cursor-default items-center justify-center rounded-lg bg-white/10 text-white/50\">"
+   },
+   {
+    "file": "src/components/HistoryPanel.tsx",
+    "line": 209,
+    "tag": "<button type=\"button\" title=\"使用在克隆侧尚未接入\" data-inert=\"true\" className=\"cursor-default rounded-lg bg-white/10 px-2 text-[10px] text-white/50\">"
+   },
+   {
+    "file": "src/components/HistoryPanel.tsx",
+    "line": 210,
+    "tag": "<button type=\"button\" title=\"下载在克隆侧尚未接入\" aria-label=\"下载\" data-inert=\"true\" className=\"flex size-7 cursor-default items-center justify-center rounded-lg bg-white/10 text-white/50\">"
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 125,
+    "tag": "<button type=\"button\" data-inert=\"true\" title=\"展开编辑器在克隆侧尚未接入\" className=\"pointer-events-auto absolute right-3 top-3 flex size-7 cursor-default items-center justify-center rounded-lg text-[#6f6f6f]\" aria-label=\"展开编辑器\">"
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 133,
+    "tag": "<button key={label} type=\"button\" data-image-editor-control={label} data-inert=\"true\" title={`${label}在克隆侧尚未接入`} className=\"pointer-events-auto flex h-[26px] w-[54px] cursor-default items-center justify-center gap-1 rounded-full bg-white/[0.06] text-xs text-[#6f6f6f]\" >"
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 212,
+    "tag": "<button data-image-editor-settings data-inert=\"true\" type=\"button\" title=\"生成参数在克隆侧尚未接入\" className=\"pointer-events-auto flex h-8 cursor-default items-center gap-1 rounded-md px-1.5\">"
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 217,
+    "tag": "<button data-image-editor-footer-icon data-inert=\"true\" type=\"button\" title=\"高级设置在克隆侧尚未接入\" className=\"pointer-events-auto flex size-8 cursor-default items-center justify-center rounded-md text-[#7a7a7a]\" aria-label=\"高级设置\">"
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 234,
+    "tag": "<button data-image-editor-footer-icon data-inert=\"true\" type=\"button\" title=\"翻译在克隆侧尚未接入\" className=\"pointer-events-auto flex size-8 cursor-default items-center justify-center rounded-md text-[#7a7a7a]\" aria-label=\"翻译\">"
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 236,
+    "tag": "<button data-image-editor-footer-icon data-inert=\"true\" type=\"button\" title=\"撤销在克隆侧尚未接入\" className=\"pointer-events-auto flex size-8 cursor-default items-center justify-center rounded-md text-[#777]\" aria-label=\"撤销\">"
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 281,
+    "tag": "<button type=\"button\" data-inert=\"true\" title=\"全景编辑器暂不可展开\" className=\"pointer-events-auto absolute right-3 top-3 flex size-7 cursor-default items-center justify-center rounded-lg text-[#8b8b8b]\" aria-label=\"展开全景编辑器\">"
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 293,
+    "tag": "<button type=\"button\" data-panorama-add-reference data-inert=\"true\" title=\"全景参考图添加暂不可用\" className=\"pointer-events-auto flex h-[26px] cursor-default items-center gap-1 rounded-full bg-white/[0.06] px-2.5 text-xs text-[#a5a5a5]\" >"
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 330,
+    "tag": "<button data-image-editor-model data-inert=\"true\" type=\"button\" title=\"全景模型选择暂不可用\" className=\"pointer-events-auto flex h-8 cursor-default items-center gap-1.5 rounded-md px-1.5\">"
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 335,
+    "tag": "<button data-image-editor-settings data-inert=\"true\" type=\"button\" title=\"全景生成参数暂不可用\" className=\"pointer-events-auto flex h-8 cursor-default items-center gap-1 rounded-md px-1.5\">"
+   },
+   {
+    "file": "src/components/ImageEditPanel.tsx",
+    "line": 340,
+    "tag": "<button data-image-editor-footer-icon data-inert=\"true\" type=\"button\" title=\"高级设置在克隆侧尚未接入\" className=\"pointer-events-auto flex size-8 cursor-default items-center justify-center rounded-md text-[#7a7a7a]\" aria-label=\"高级设置\">"
+   },
+   {
+    "file": "src/components/LeftSidebar.tsx",
+    "line": 101,
+    "tag": "<button key={label} type=\"button\" title={why} data-inert=\"true\" className={inert} >"
+   },
+   {
+    "file": "src/components/LibraryShowcasePanel.tsx",
+    "line": 130,
+    "tag": "<button type=\"button\" aria-label={`收藏 ${card.title}`} title=\"收藏在克隆侧尚未接入\" data-inert=\"true\" className=\"pointer-events-none absolute right-1.5 top-1.5 rounded-full bg-black/45 p-1 text-[#6f6f6f] opacity-0\" >"
+   },
+   {
+    "file": "src/components/LibraryShowcasePanel.tsx",
+    "line": 236,
+    "tag": "<button type=\"button\" aria-label=\"筛选\" title=\"筛选在克隆侧尚未接入\" data-inert=\"true\" className=\"cursor-default rounded-lg p-2 text-[#6f6f6f]\">"
+   },
+   {
+    "file": "src/components/SegmentReshootPanel.tsx",
+    "line": 138,
+    "tag": "<button key={item.label} type=\"button\" data-inert=\"true\" title={`${item.label}在克隆侧尚未接入`} className=\"flex h-7 cursor-default items-center gap-1.5 rounded-full bg-white/[0.05] px-2.5 text-xs text-[#aaa]\" >"
+   },
+   {
+    "file": "src/components/SegmentReshootPanel.tsx",
+    "line": 230,
+    "tag": "<button type=\"button\" data-inert=\"true\" title=\"积分选择暂不可用\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg px-2\">"
+   },
+   {
+    "file": "src/components/SegmentReshootPanel.tsx",
+    "line": 236,
+    "tag": "<button type=\"button\" data-inert=\"true\" title=\"生成参数选择暂不可用\" className=\"flex h-8 cursor-default items-center gap-1 rounded-lg px-2\">"
+   },
+   {
+    "file": "src/components/SegmentReshootPanel.tsx",
+    "line": 257,
+    "tag": "<button type=\"button\" data-inert=\"true\" title=\"提示词翻译暂不可用\" aria-label=\"翻译片段重拍提示词\" className=\"flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#aaa]\" >"
+   },
+   {
+    "file": "src/components/StoryboardScriptEditor.tsx",
+    "line": 178,
+    "tag": "<button type=\"button\" data-storyboard-asset-add data-inert=\"true\" title=\"资产新增暂不可用\" aria-label={`新增${group}资产`} className=\"mt-2 flex h-[190px] w-[195px] cursor-default flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-white/[0.14] text-[#8c8c8c]\" >"
+   },
+   {
+    "file": "src/components/StoryboardScriptEditor.tsx",
+    "line": 229,
+    "tag": "<button type=\"button\" data-storyboard-row-menu data-inert=\"true\" aria-label={`镜头${row.shot}操作`} title=\"行操作菜单暂不可用\" className=\"cursor-default rounded px-1.5 py-0.5 text-[#8c8c8c]\">"
+   },
+   {
+    "file": "src/components/StoryboardScriptEditor.tsx",
+    "line": 296,
+    "tag": "<button type=\"button\" data-storyboard-synthesize-all data-inert=\"true\" title=\"一键合成全部提示词（真实合成为付费 AI 动作，clone 不触发）\" className=\"flex cursor-default items-center gap-1.5 rounded-full bg-[#e8e8e8] px-4 py-2 text-sm text-[#1a1a1a]\" >"
+   },
+   {
+    "file": "src/components/ToolboxPanel.tsx",
+    "line": 61,
+    "tag": "<button type=\"button\" title=\"模板说明在克隆侧尚未接入\" aria-label=\"工具箱模板说明\" data-inert=\"true\" className=\"flex size-6 cursor-default items-center justify-center text-[#5f5f5f]\">"
+   },
+   {
+    "file": "src/components/ToolboxPanel.tsx",
+    "line": 64,
+    "tag": "<button type=\"button\" title=\"模板选择在克隆侧尚未接入\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1 rounded-lg px-1.5 text-sm text-[#6f6f6f]\">"
+   },
+   {
+    "file": "src/components/TopNavBar.tsx",
+    "line": 183,
+    "tag": "<button type=\"button\" aria-label=\"开通会员 限时 45 折\" title=\"开通会员为付费操作，克隆侧不提供\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\" >"
+   },
+   {
+    "file": "src/components/TopNavBar.tsx",
+    "line": 200,
+    "tag": "<button type=\"button\" aria-label=\"积分余额\" title=\"积分余额（读数，无可点操作）\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\" >"
+   },
+   {
+    "file": "src/components/VideoClipEditPanel.tsx",
+    "line": 71,
+    "tag": "<button type=\"button\" data-video-clip-mode-setting data-inert=\"true\" title=\"剪辑模式设置在克隆侧尚未接入\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-md px-1.5\" >"
+   },
+   {
+    "file": "src/components/VideoClipEditPanel.tsx",
+    "line": 83,
+    "tag": "<button type=\"button\" data-video-clip-output-setting data-inert=\"true\" title=\"输出设置在克隆侧尚未接入\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-md px-1.5\" >"
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 550,
+    "tag": "<button type=\"button\" data-inert=\"true\" title=\"特效收藏暂不可用\" aria-label=\"收藏\" className=\"flex size-6 cursor-default items-center justify-center rounded-lg bg-black/65 text-white\">"
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 597,
+    "tag": "<button type=\"button\" data-mark-select-return data-inert=\"true\" title=\"返回节点暂不可用\" className=\"shrink-0 cursor-default rounded-lg bg-white/20 px-2.5 py-1 text-[11px] text-white\" >"
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 613,
+    "tag": "<button type=\"button\" data-inert=\"true\" title=\"标记选择模式暂不支持关闭\" aria-label=\"关闭\" className=\"shrink-0 cursor-default text-white/80\" >"
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 811,
+    "tag": "<button type=\"button\" data-footer-icon=\"doc-sparkle\" data-inert=\"true\" title=\"该功能在克隆侧尚未接入\" className=\"flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#7a7a7a]\">"
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 821,
+    "tag": "<button type=\"button\" aria-label=\"翻译视频提示词\" data-inert=\"true\" title=\"翻译在克隆侧尚未接入\" className=\"flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#7a7a7a]\">"
+   },
+   {
+    "file": "src/components/VideoGenerationPanel.tsx",
+    "line": 831,
+    "tag": "<button type=\"button\" data-footer-icon=\"settings2\" data-inert=\"true\" title=\"该设置在克隆侧尚未接入\" className=\"flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#7a7a7a]\">"
+   },
+   {
+    "file": "src/components/VideoProcessingToolbar.tsx",
+    "line": 244,
+    "tag": "<button type=\"button\" data-inert=\"true\" title=\"视频处理暂不支持撤销\" className=\"flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#777]\" aria-label=\"撤销视频处理\">"
+   },
+   {
+    "file": "src/components/VideoProcessingToolbar.tsx",
+    "line": 245,
+    "tag": "<button type=\"button\" data-inert=\"true\" title=\"视频处理暂不支持重做\" className=\"flex size-8 shrink-0 cursor-default items-center justify-center rounded-lg text-[#777]\" aria-label=\"重做视频处理\">"
+   },
+   {
+    "file": "src/components/nodes/AudioNode.tsx",
+    "line": 60,
+    "tag": "<button type=\"button\" aria-label=\"播放音频\" data-inert=\"true\" title=\"音频播放在克隆侧尚未接入\" className=\"flex size-8 shrink-0 cursor-default items-center justify-center rounded-full bg-white/70 text-[#202020]\">"
+   },
+   {
+    "file": "src/components/nodes/ScriptGeneratorNode.tsx",
+    "line": 150,
+    "tag": "<button type=\"button\" data-script-generator-reference data-inert=\"true\" title=\"参考图上传暂不可用\" className=\"mt-2 flex h-8 cursor-default items-center gap-2 rounded-lg border border-dashed border-white/[0.12] px-2 text-[11px] text-[#9a9a9a]\" >"
+   },
+   {
+    "file": "src/components/nodes/ShotBreakdownResultNode.tsx",
+    "line": 145,
+    "tag": "<button type=\"button\" data-inert=\"true\" title=\"BGM 试听暂不可用\" aria-label=\"播放 BGM\" className=\"nodrag nopan flex size-6 cursor-default items-center justify-center rounded-full border border-white/15 bg-[#303030] text-white\" >"
+   },
+   {
+    "file": "src/components/nodes/VideoNode.tsx",
+    "line": 498,
+    "tag": "<button type=\"button\" aria-label=\"播放视频\" data-inert=\"true\" title=\"播放功能暂不可用，请使用分镜板预览\" className=\"relative flex size-14 cursor-default items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-sm\">"
+   }
+  ],
+  "files": [
+   "src/components/AgentDrawer.tsx",
+   "src/components/HistoryPanel.tsx",
+   "src/components/ImageEditPanel.tsx",
+   "src/components/LeftSidebar.tsx",
+   "src/components/LibraryShowcasePanel.tsx",
+   "src/components/SegmentReshootPanel.tsx",
+   "src/components/StoryboardScriptEditor.tsx",
+   "src/components/ToolboxPanel.tsx",
+   "src/components/TopNavBar.tsx",
+   "src/components/VideoClipEditPanel.tsx",
+   "src/components/VideoGenerationPanel.tsx",
+   "src/components/VideoProcessingToolbar.tsx",
+   "src/components/nodes/AudioNode.tsx",
+   "src/components/nodes/ScriptGeneratorNode.tsx",
+   "src/components/nodes/ShotBreakdownResultNode.tsx",
+   "src/components/nodes/VideoNode.tsx"
+  ],
+  "outOfScope": [
+   {
+    "file": "src/components/frameos/FrameosGroupToolbar.tsx",
+    "line": 257
+   }
+  ]
+ },
+ "run": {
+  "states": {
+   "裸画布": {
+    "own": 0,
+    "visible": 0,
+    "rows": [],
+    "axRoles": [],
+    "focusableAll": true
+   },
+   "工具箱": {
+    "own": 2,
+    "visible": 2,
+    "rows": [
+     {
+      "aria": "工具箱模板说明",
+      "title": "模板说明在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "模板选择在克隆侧尚未接入",
+      "text": "周星驰经典名场面",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button",
+     "button"
+    ],
+    "focusableAll": true
+   },
+   "生成历史": {
+    "own": 10,
+    "visible": 10,
+    "rows": [
+     {
+      "aria": "",
+      "title": "时间排序在克隆侧尚未接入",
+      "text": "时间倒序",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "查看",
+      "title": "查看在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "使用在克隆侧尚未接入",
+      "text": "使用",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "下载",
+      "title": "下载在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "查看",
+      "title": "查看在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "使用在克隆侧尚未接入",
+      "text": "使用",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "下载",
+      "title": "下载在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "查看",
+      "title": "查看在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "使用在克隆侧尚未接入",
+      "text": "使用",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "下载",
+      "title": "下载在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button"
+    ],
+    "focusableAll": true
+   },
+   "教程": {
+    "own": 4,
+    "visible": 4,
+    "rows": [
+     {
+      "aria": "",
+      "title": "使用教程在克隆侧尚未接入",
+      "text": "使用教程",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "联系客服在克隆侧尚未接入",
+      "text": "联系客服",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "联系销售在克隆侧尚未接入",
+      "text": "联系销售",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "关注公众号在克隆侧尚未接入",
+      "text": "关注公众号",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button",
+     "button",
+     "button",
+     "button"
+    ],
+    "focusableAll": true
+   },
+   "Agent 抽屉": {
+    "own": 3,
+    "visible": 3,
+    "rows": [
+     {
+      "aria": "历史对话",
+      "title": "历史对话在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0.4",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "Agent 设置",
+      "title": "Agent 设置在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0.4",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "CLI & Skill",
+      "title": "CLI & Skill 在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0.4",
+      "pe": "auto",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button",
+     "button",
+     "button"
+    ],
+    "focusableAll": true
+   },
+   "图片卡·编辑面板": {
+    "own": 7,
+    "visible": 7,
+    "rows": [
+     {
+      "aria": "展开编辑器",
+      "title": "展开编辑器在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "标记在克隆侧尚未接入",
+      "text": "标记",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "风格在克隆侧尚未接入",
+      "text": "风格",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "生成参数在克隆侧尚未接入",
+      "text": "16:9 · 标准画质 · 2K",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "高级设置",
+      "title": "高级设置在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "翻译",
+      "title": "翻译在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "撤销",
+      "title": "撤销在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button"
+    ],
+    "focusableAll": true
+   },
+   "图片卡·全景面板": {
+    "own": 5,
+    "visible": 5,
+    "rows": [
+     {
+      "aria": "展开全景编辑器",
+      "title": "全景编辑器暂不可展开",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "全景参考图添加暂不可用",
+      "text": "+参考",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "全景模型选择暂不可用",
+      "text": "Lib Image",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "全景生成参数暂不可用",
+      "text": "2:1 · 标准画质 · 2K ",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "高级设置",
+      "title": "高级设置在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button",
+     "button",
+     "button",
+     "button",
+     "button"
+    ],
+    "focusableAll": true
+   },
+   "新视频卡·生成面板": {
+    "own": 6,
+    "visible": 6,
+    "rows": [
+     {
+      "aria": "播放视频",
+      "title": "播放功能暂不可用，请使用分镜板预览",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "该功能在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "翻译视频提示词",
+      "title": "翻译在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "该设置在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "撤销视频处理",
+      "title": "视频处理暂不支持撤销",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "重做视频处理",
+      "title": "视频处理暂不支持重做",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button"
+    ],
+    "focusableAll": true
+   },
+   "视频卡·特效菜单": {
+    "own": 10,
+    "visible": 10,
+    "rows": [
+     {
+      "aria": "播放视频",
+      "title": "播放功能暂不可用，请使用分镜板预览",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "该功能在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "翻译视频提示词",
+      "title": "翻译在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "该设置在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "撤销视频处理",
+      "title": "视频处理暂不支持撤销",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "重做视频处理",
+      "title": "视频处理暂不支持重做",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button"
+    ],
+    "focusableAll": true
+   },
+   "视频卡·标记选择": {
+    "own": 12,
+    "visible": 12,
+    "rows": [
+     {
+      "aria": "播放视频",
+      "title": "播放功能暂不可用，请使用分镜板预览",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "该功能在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "翻译视频提示词",
+      "title": "翻译在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "该设置在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "撤销视频处理",
+      "title": "视频处理暂不支持撤销",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "重做视频处理",
+      "title": "视频处理暂不支持重做",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "返回节点暂不可用",
+      "text": "返回节点",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "关闭",
+      "title": "标记选择模式暂不支持关闭",
+      "text": "×",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button"
+    ],
+    "focusableAll": true
+   },
+   "视频卡·片段重拍": {
+    "own": 9,
+    "visible": 9,
+    "rows": [
+     {
+      "aria": "播放视频",
+      "title": "播放功能暂不可用，请使用分镜板预览",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "参考在克隆侧尚未接入",
+      "text": "参考",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "标记在克隆侧尚未接入",
+      "text": "标记",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "角色库在克隆侧尚未接入",
+      "text": "角色库",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "积分选择暂不可用",
+      "text": "2.5",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "生成参数选择暂不可用",
+      "text": "720P · 1个",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "翻译片段重拍提示词",
+      "title": "提示词翻译暂不可用",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "撤销视频处理",
+      "title": "视频处理暂不支持撤销",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "重做视频处理",
+      "title": "视频处理暂不支持重做",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button"
+    ],
+    "focusableAll": true
+   },
+   "音频卡": {
+    "own": 1,
+    "visible": 1,
+    "rows": [
+     {
+      "aria": "播放音频",
+      "title": "音频播放在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button"
+    ],
+    "focusableAll": true
+   },
+   "智能剪辑卡": {
+    "own": 2,
+    "visible": 2,
+    "rows": [
+     {
+      "aria": "",
+      "title": "剪辑模式设置在克隆侧尚未接入",
+      "text": "默认模式",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "输出设置在克隆侧尚未接入",
+      "text": "16:9 · 720P · 30",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button",
+     "button"
+    ],
+    "focusableAll": true
+   },
+   "脚本生成器卡": {
+    "own": 1,
+    "visible": 1,
+    "rows": [
+     {
+      "aria": "",
+      "title": "参考图上传暂不可用",
+      "text": "参考图",
+      "opacity": "1",
+      "pe": "all",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button"
+    ],
+    "focusableAll": true
+   },
+   "风格库": {
+    "own": 17,
+    "visible": 1,
+    "rows": [
+     {
+      "aria": "筛选",
+      "title": "筛选在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 Seedream 5.0 pro",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 J-漫剧素材三视…",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 【照顾设计】短剧…",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 Qwen-群体风格",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 Z-Image-Turbo…",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 Qwen-国风 3D…",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 Qwen-3D都市AI…",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 一键生成人物多…",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 真人角色三视图设计",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 Qwen-Q版卡通…",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 古风-淡彩定普查…",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 电商首页头图商…",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 音频类硬件产品…",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 分镜剧本故事版…",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 毛昵黏土微缩梦境…",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 【摸鱼】3D电商…",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button"
+    ],
+    "focusableAll": true
+   },
+   "特效库": {
+    "own": 25,
+    "visible": 1,
+    "rows": [
+     {
+      "aria": "筛选",
+      "title": "筛选在克隆侧尚未接入",
+      "text": "",
+      "opacity": "1",
+      "pe": "auto",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 小蜜蜂运镜",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 穿云而入",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 飞跃地平线",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 逆转引力",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 地球缩放",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 环球缩放",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 瞳孔推镜",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 俯冲地球",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 产品扫光",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 普拉达换装",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 多角度定点",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 水下慢镜头",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 试妆特写",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 悬浮深入",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 微距推镜",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 直升机揭幕",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 山路追击",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 雪地赛车",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 City Drive",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 3D解构",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 面部环拍",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 Showroom",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 饰品特写",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     },
+     {
+      "aria": "收藏 巨人俯瞰",
+      "title": "收藏在克隆侧尚未接入",
+      "text": "",
+      "opacity": "0",
+      "pe": "none",
+      "focusable": true
+     }
+    ],
+    "axRoles": [
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button",
+     "button"
+    ],
+    "focusableAll": true
+   }
+  },
+  "storeLog": {
+   "裸画布": {
+    "before": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "allowsNewNode": false
+   },
+   "工具箱": {
+    "before": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "allowsNewNode": false
+   },
+   "生成历史": {
+    "before": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "allowsNewNode": false
+   },
+   "教程": {
+    "before": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "allowsNewNode": false
+   },
+   "Agent 抽屉": {
+    "before": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "allowsNewNode": false
+   },
+   "图片卡·编辑面板": {
+    "before": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "allowsNewNode": false
+   },
+   "图片卡·全景面板": {
+    "before": {
+     "nodes": 11,
+     "edges": 12
+    },
+    "after": {
+     "nodes": 11,
+     "edges": 12
+    },
+    "allowsNewNode": true
+   },
+   "新视频卡·生成面板": {
+    "before": {
+     "nodes": 11,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 11,
+     "edges": 11
+    },
+    "allowsNewNode": true
+   },
+   "视频卡·特效菜单": {
+    "before": {
+     "nodes": 11,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 11,
+     "edges": 11
+    },
+    "allowsNewNode": true
+   },
+   "视频卡·标记选择": {
+    "before": {
+     "nodes": 11,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 11,
+     "edges": 11
+    },
+    "allowsNewNode": true
+   },
+   "视频卡·片段重拍": {
+    "before": {
+     "nodes": 11,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 11,
+     "edges": 11
+    },
+    "allowsNewNode": true
+   },
+   "音频卡": {
+    "before": {
+     "nodes": 11,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 11,
+     "edges": 11
+    },
+    "allowsNewNode": true
+   },
+   "智能剪辑卡": {
+    "before": {
+     "nodes": 11,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 11,
+     "edges": 11
+    },
+    "allowsNewNode": true
+   },
+   "脚本生成器卡": {
+    "before": {
+     "nodes": 11,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 11,
+     "edges": 11
+    },
+    "allowsNewNode": true
+   },
+   "风格库": {
+    "before": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "allowsNewNode": false
+   },
+   "特效库": {
+    "before": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "after": {
+     "nodes": 10,
+     "edges": 11
+    },
+    "allowsNewNode": false
+   }
+  },
+  "selectorTruth": {
+   "byTitle": 0,
+   "byText": "clicked"
+  },
+  "reshoot": {
+   "before": 6,
+   "after": 9
+  },
+  "stack": {
+   "markPlusHistory": {
+    "mark": 12,
+    "stacked": 22,
+    "stackedVisible": 22
+   },
+   "docks": {
+    "history": 10,
+    "plusTutorial": 4,
+    "plusToolbox": 4
+   }
+  },
+  "walks": {
+   "effects": {
+    "mounted": 25,
+    "mountedVisible": 1,
+    "steps": 260,
+    "stops": 77,
+    "distinct": 27,
+    "top": [
+     [
+      "开通会员 限时 45 折",
+      3
+     ],
+     [
+      "收藏 3D解构",
+      3
+     ],
+     [
+      "收藏 City Drive",
+      3
+     ],
+     [
+      "收藏 产品扫光",
+      3
+     ],
+     [
+      "收藏 俯冲地球",
+      3
+     ],
+     [
+      "收藏 地球缩放",
+      3
+     ],
+     [
+      "收藏 多角度定点",
+      3
+     ],
+     [
+      "收藏 小蜜蜂运镜",
+      3
+     ],
+     [
+      "收藏 山路追击",
+      3
+     ],
+     [
+      "收藏 微距推镜",
+      3
+     ],
+     [
+      "收藏 悬浮深入",
+      3
+     ],
+     [
+      "收藏 普拉达换装",
+      3
+     ],
+     [
+      "收藏 水下慢镜头",
+      3
+     ],
+     [
+      "收藏 环球缩放",
+      3
+     ],
+     [
+      "收藏 直升机揭幕",
+      3
+     ],
+     [
+      "收藏 瞳孔推镜",
+      3
+     ],
+     [
+      "收藏 穿云而入",
+      3
+     ],
+     [
+      "收藏 试妆特写",
+      3
+     ],
+     [
+      "收藏 逆转引力",
+      3
+     ],
+     [
+      "收藏 雪地赛车",
+      3
+     ],
+     [
+      "收藏 飞跃地平线",
+      3
+     ],
+     [
+      "积分余额",
+      3
+     ],
+     [
+      "筛选",
+      3
+     ],
+     [
+      "收藏 Showroom",
+      2
+     ],
+     [
+      "收藏 巨人俯瞰",
+      2
+     ],
+     [
+      "收藏 面部环拍",
+      2
+     ],
+     [
+      "收藏 饰品特写",
+      2
+     ]
+    ]
+   },
+   "mark": {
+    "mounted": 12,
+    "mountedVisible": 12,
+    "steps": 260,
+    "stops": 31,
+    "distinct": 11,
+    "top": [
+     [
+      "收藏",
+      8
+     ],
+     [
+      "关闭",
+      3
+     ],
+     [
+      "开通会员 限时 45 折",
+      3
+     ],
+     [
+      "积分余额",
+      3
+     ],
+     [
+      "撤销视频处理",
+      2
+     ],
+     [
+      "播放视频",
+      2
+     ],
+     [
+      "翻译视频提示词",
+      2
+     ],
+     [
+      "该功能在克隆侧尚未接入",
+      2
+     ],
+     [
+      "该设置在克隆侧尚未接入",
+      2
+     ],
+     [
+      "返回节点暂不可用",
+      2
+     ],
+     [
+      "重做视频处理",
+      2
+     ]
+    ]
+   }
+  }
+ },
+ "summary": {
+  "staticSites": 46,
+  "staticFiles": 16,
+  "outOfScopeSites": 1,
+  "states": 16,
+  "identities": 83,
+  "nominalTotal": 114,
+  "nominalPeakName": "特效库",
+  "nominalPeak": 25,
+  "nominalPeakVisible": 1,
+  "visiblePeak": 22,
+  "invisibleIdentities": 40,
+  "invisibleInstances": 40,
+  "styleLibraryInvisible": 16,
+  "effectsLibraryInvisible": 24,
+  "nonButtonRoles": 0,
+  "allFocusable": true,
+  "gatedHits": []
+ },
+ "failures": []
+}
