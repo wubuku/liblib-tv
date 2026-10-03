@@ -5152,6 +5152,86 @@ def main() -> int:
           and "本批**不碰**，等那个问题有答案" in _ausrc
           and "**没有**测「两个层共存时键盘焦点怎么走」" in _ausrc
           and "槽位保证的是**至多一个瞬时层**，焦点行为是另一件事" in _ausrc)
+    check("CCCC.5 ⚠️⚠️⚠️ **把「往基线文本里写字面量会污染按字面计数的判据」"
+          "立成一道**可查**的门** —— 这个坑连踩两次（940 写 `LAYER_SEL` 的 `closest`、"
+          "941 引用 936 源码时写同一个），两次都是 S.6 当场变红（467/468、471/472）"
+          "⇒ 说明它**不该只靠记性**，得让门能查",
+          "**⑪ ⚠️ 本批撞到的一个纯技术坑（留痕）**" in _ausrc
+          and "记法纪律：**嵌在 Python 字符串里的 CSS 选择器，一律写成" in _ausrc
+          and "不带引号的形式**。" in _ausrc
+          # ⭐ 钉门本身：基线里**只许**那 2 处**真代码**，不许再多
+          #    （⚠️ 这就是 S.6 数的那个东西 —— 940/941 各往基线里写过一次就变红）
+          and (assert_clean := _ausrc.count("closest(LAYER_SEL)") == 2)
+          and assert_clean
+          # ⭐ 钉根因：strip_comments **早就失配**（第 269 行 `with open(OUT, "w")`
+          #    里的双引号被当成三引号开头 ⇒ 从那儿起整段被当字符串吞掉）
+          and "⇒ 从那儿起**整段被当成字符串吞掉** ⇒ verifier 里 9 处 `acode` 判据" in _ausrc
+          and "**S.6 一直绿只是因为没人往基线文本里写过那个字面量**" in _ausrc
+          and "**修 `strip_comments` 的三引号识别留给下一批**" in _ausrc)
+    p941 = ROOT / "scripts/jimeng_probe941_layer_identity_probe_src.py"
+    _p941 = p941.read_text(encoding="utf-8") if p941.exists() else ""
+    check("CCCC.1 ✅⭐⭐⭐ **941 把 940 的一条结论**当场证伪**了 —— 「搜索层冷启动不可达」"
+          "是**假阴性**：A（最近祖先**恰好等于** target）不命中、"
+          "而 B（`closest` 祖先链**含** it）与 C（打标记）**第 1 次就命中**；"
+          "**936 与 940 之间那条「未解决矛盾」就此消解**",
+          "src_layer_identity_criterion_941" in _ausrc
+          and "**① ⭐ 本批的正题：同一份游走，三个判据并排**" in _ausrc
+          and "**A 与 B 的差别就是本批要量的东西**" in _ausrc
+          and "**与 §146（936）「层内步 20/轮：输入框 + `全部 76` + 分类按钮 " in _ausrc
+          and "**936 与 940 的那条「未解决矛盾」就此消解**" in _ausrc
+          # ⭐ 钉探针：三判据**真的并排**记，且「祖先链」是**全部**祖先不是只取最近
+          and "const chain = [];" in _p941
+          and "chain.push(p.getAttribute('data-testid')" in _p941
+          and "nearest_ancestor_tid: chain.length ? chain[0] : null," in _p941
+          and 'if first["A"] is None and st["nearest_ancestor_tid"] == target_tid:' in _p941
+          and 'if first["B"] is None and st["in_target_closest"]:' in _p941
+          and 'if first["C"] is None and st["in_seed_closest"]:' in _p941)
+    check("CCCC.2 ⭐⭐ **假阴性的确切形状**被读数摆清：搜索层第 1 步 "
+          "`nearest = canvas-search-panel`、而 `chain` 里**有** `canvas-feature-panel` "
+          "⇒ A 要求「恰好等于」而 B 只要求「祖先链里有」；"
+          "⇒ **「把完整祖先链落盘」是本批能一眼看出问题的原因**（承 937 的教训）",
+          "**③ ⭐⭐ 假阴性的**确切形状**（祖先链读数把它摆得一清二楚）**" in _ausrc
+          and "⇒ 最近祖先是**子层** ⇒ A 不命中；祖先链里**有** target ⇒ B 命中。" in _ausrc
+          and "**「把完整祖先链逐步落盘」是本批能一眼看出问题的原因**" in _ausrc
+          # ⭐ 钉探针：链是**由近到远**累积的（不是提前 break）
+          and "for (let p = a; p && p !== document.body; p = p.parentElement) {" in _p941
+          # ⭐ 钉探针：「A 是假阴性」的定义**就是**本批的判别力判据
+          and 'd["a_false_negative"] = (first["A"] is None and first["B"] is not None)' in _p941
+          # ⭐ 钉探针：C 判据真的**打了标记**（936 的口径）
+          and "e.setAttribute(seedAttr, '1');" in _p941
+          and "in_seed_closest: !!a.closest('[' + seedAttr + ']')," in _p941)
+    check("CCCC.3 ⭐ **仪器设计这次先对了**（承 940「门连错四版」的教训）："
+          "`criteria_disagree_ok` 要求**至少一个层上 A 与 B 给出不同答案**"
+          "（若三者处处相同 ⇒ 本批**测不出差别** ⇒ 如实记 False）；"
+          "`positive_control_ok` 带一个**阳性对照**层 ⇒ "
+          "**只有一个判别器时三判据的读数都可能是恒真的**；实测 `design_ok` 全 True",
+          "**⑦ ⭐ 仪器设计（承 940「门连错四版」的教训，这次先设计对）**" in _ausrc
+          and "若三者处处相同 ⇒ 本批**测不出差别**" in _ausrc
+          and "**如实记 `False`，不许调门凑绿**" in _ausrc
+          and "只有一个判别器时，三判据的读数**都可能是恒真的**" in _ausrc
+          # ⭐ 钉探针：判别力门与阳性对照门都**真的**在代码里
+          and '"criteria_disagree_ok": all(any(l["a_false_negative"] for l in rep) for rep in _a),' in _p941
+          and 'any(l["name"] == "顶栏·生成历史" and l["a"] is not None' in _p941
+          and "**全套 design_ok**" not in _p941
+          # ⭐ 钉探针：正对照层**真的在 TARGETS 里**
+          and '("顶栏·生成历史", "canvas-panel-launcher", 1, "generation-history-panel"),' in _p941)
+    check("CCCC.4 ⚠️⚠️ **三条「不可达」结论的最终账 + 第一版漏测的取样缺口**："
+          "搜索层**证伪**、右键菜单**成立**、缩放菜单**成立**（补测）、生成历史**成立**；"
+          "⇒ 区分它们的**不是层本身，是「该层有没有子层结构」**；"
+          "顺带订正 940 把 936 的 `in_seed` 说成 `LAYER_SEL` 那个的**措辞错误**",
+          "**⑩ ⚠️⚠️ 三条「不可达」结论的最终账**（本批之后）**" in _ausrc
+          and "**证伪 —— 第 1 次可达**（假阴性） |" in _ausrc
+          and "**成立**（三判据一致 None，补测） |" in _ausrc
+          and "**不是**层本身，是「**该层有没有子层结构**」。" in _ausrc
+          and "**⑤ ⚠️ 顺带订正 940 的一处措辞错误**" in _ausrc
+          and "940 用「口径宽窄」解释那条矛盾，**方向就错了**" in _ausrc
+          # ⭐ 钉探针：缩放菜单**被补进** TARGETS（取样缺口已补）
+          and '("缩放菜单", "canvas-zoom-percent", 0, "canvas-zoom-menu"),' in _p941
+          # ⭐ 钉探针：940 那个**有缺陷的判据**仍在源码里（供下一个人对照，别删）
+          and (assert_bug := 'if target_layer_tid and st["layer_tid"] == target_layer_tid and first_in is None:'
+               in (ROOT / "scripts/jimeng_probe940_tabindex_rewrite_src.py").read_text(
+                   encoding="utf-8"))
+          and assert_bug)
     p940 = ROOT / "scripts/jimeng_probe940_tabindex_rewrite_src.py"
     _p940 = p940.read_text(encoding="utf-8") if p940.exists() else ""
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："

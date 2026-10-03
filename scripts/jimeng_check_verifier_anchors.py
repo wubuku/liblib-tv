@@ -98,6 +98,9 @@ PROBE_VARS = {
     # 批 940：判据开始**钉探针里的「阴性结构保证」**
     #    （`n_marked_is_node == 0` 是 `B939_SEL` 不选 `div` 推出来的，不是碰巧）
     "_p940": "scripts/jimeng_probe940_tabindex_rewrite_src.py",
+    # 批 941：判据开始**钉 940 那个有缺陷的判据仍在源码里**
+    #    （供下一个人对照，别删）——「造对一件事、顺手弄坏五件」的反面
+    "_p941": "scripts/jimeng_probe941_layer_identity_probe_src.py",
     # 批 938：判据开始**钉 TS 源码**（槽位是 store 里的单一来源）
     "_wm_s": "src/store/jimengStore.ts",
     # ⚠️⚠️ **929 加的**：**门禁脚本自己**也必须登记 ——
