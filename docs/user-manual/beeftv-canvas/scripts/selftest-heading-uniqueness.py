@@ -39,6 +39,11 @@ def build_tree():
     os.makedirs(os.path.join(tmp, "scripts"))
     os.makedirs(os.path.join(tmp, "10-tasks"))
     shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-heading-uniqueness.py"))
+    # **Batch 248：闸 29 开始 import `headingkey`。**
+    # **不搬它的话临时目录 import 失败、每一例都会红，而 `build-site.sh` 仍然全绿**
+    # （闸 17 守的就是这件事，它会在本批的构建里当场报出来）。
+    shutil.copy(os.path.join(HERE, "headingkey.py"),
+                os.path.join(tmp, "scripts", "headingkey.py"))
     for f in ("00-quickstart.md", "20-reference.md", "30-concepts.md", "90-troubleshooting.md"):
         p = os.path.join(ROOT, f)
         if os.path.isfile(p):
@@ -119,18 +124,55 @@ def t_fenced_hash(base):
     return base.replace(marker, "```\n# 这不是标题，是代码注释\n# 也不是\n```\n\n" + marker, 1)
 
 
+def t_closing_hashes(base):
+    """能抓：`## 相关页面 ##` 与 `## 相关页面`。
+
+    **真渲染器把它们算同名**（slug 去重成 `-1`），而改前的判据拿**源码原始行**当键，
+    看到的是「相关页面 ##」与「相关页面」——**判据问的键不是它声称在问的那件事**。
+    改前实测 rc=0（静默）。
+    """
+    marker = "## 主要页面路由"
+    assert base.count(marker) == 1, f"锚点不唯一: {marker}"
+    return base.replace(marker, "## 主要页面路由 ##\n\n" + marker, 1)
+
+
+def t_link_in_heading(base):
+    """能抓：`## [相关页面](x.md)` 与 `## 相关页面`——真渲染器同样算同名。"""
+    marker = "## 主要页面路由"
+    assert base.count(marker) == 1, f"锚点不唯一: {marker}"
+    return base.replace(marker, "## [主要页面路由](x.md)\n\n" + marker, 1)
+
+
+def t_fullwidth_space(base):
+    """不误伤：井号后是**全角空格**时，那一行不是标题。
+
+    **实测改前会凭空造出两处缺陷**：两个 `#　全角空格标题` 被判成两个同名 h1，
+    **而真渲染器给出的是零个标题**——页面上一个标题都没有。
+    Python 的 `\s` 匹配全角空格，CommonMark 的 ATX 开头只认 ASCII 空格与制表符。
+    """
+    marker = "## 主要页面路由"
+    assert base.count(marker) == 1, f"锚点不唯一: {marker}"
+    return base.replace(marker, "#\u3000全角空格标题\n\n#\u3000全角空格标题\n\n" + marker, 1)
+
+
 def main():
     global PASS, FAIL, VOID
     print("=== 能抓 ===")
     run("1) 页内同名标题（必须报，并给两处行号）", "同名", want_rc=1, transform=t_dup_heading)
     run("2) 标题层级跳级 h2→h4（必须报）", "跳到 h4", want_rc=1, transform=t_level_jump)
     run("3) 页内两个 H1（必须报）", "个 H1", want_rc=1, transform=t_two_h1)
+    run("3b) ATX 尾部闭合井号与同名标题并存（真渲染器算同名，必须报）",
+        "同名", want_rc=1, transform=t_closing_hashes)
+    run("3c) 标题里带链接与同名标题并存（真渲染器算同名，必须报）",
+        "同名", want_rc=1, transform=t_link_in_heading)
 
     print("=== 不误伤 ===")
     run("4) 同名的容器标题（本批判定为有意复用，必须放行）", "无同名标题",
         want_rc=0, expect_fail=False, transform=t_dup_container_title, page="30-concepts.md")
     run("5) 围栏代码块里的 # 注释（必须放行）", "无同名标题",
         want_rc=0, expect_fail=False, transform=t_fenced_hash)
+    run("5b) 井号后是全角空格（真渲染器：零个标题，必须放行）", "无同名标题",
+        want_rc=0, expect_fail=False, transform=t_fullwidth_space)
 
     print("=== 基线：真实手册应当通过 ===")
     r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
