@@ -1,0 +1,583 @@
+{
+ "run": {
+  "static": {
+   "registeredNodeTypes": [
+    "script",
+    "image",
+    "text",
+    "video",
+    "script-execution",
+    "script-generator",
+    "script-v2",
+    "storyboard-group",
+    "shot-breakdown",
+    "shot-breakdown-result",
+    "video-clip",
+    "audio",
+    "long-video-process"
+   ],
+   "nRegistered": 13,
+   "unusedRegisteredTypes": [
+    "audio",
+    "long-video-process",
+    "script-generator",
+    "script-v2",
+    "shot-breakdown",
+    "shot-breakdown-result",
+    "text",
+    "video-clip"
+   ]
+  },
+  "store": {
+   "canvasId": "canvas-2",
+   "canvasName": "画布 2",
+   "zoomTopLevel": "ABSENT",
+   "n": 10,
+   "types": {
+    "storyboard-group": 2,
+    "script": 1,
+    "image": 5,
+    "script-execution": 1,
+    "video": 1
+   },
+   "nodes": [
+    {
+     "id": "g-245IDFh8sB",
+     "type": "storyboard-group",
+     "x": 2112,
+     "y": 656,
+     "hasTitle": true
+    },
+    {
+     "id": "g-EFbbHpwq5w",
+     "type": "storyboard-group",
+     "x": 2374,
+     "y": -12,
+     "hasTitle": true
+    },
+    {
+     "id": "t-9j2MoccxBj",
+     "type": "script",
+     "x": 108,
+     "y": -125,
+     "hasTitle": true
+    },
+    {
+     "id": "i-1FQ9tErTcC",
+     "type": "image",
+     "x": 132,
+     "y": 273,
+     "hasTitle": false
+    },
+    {
+     "id": "i-lBzmo67AHv",
+     "type": "image",
+     "x": 410,
+     "y": 932,
+     "hasTitle": false
+    },
+    {
+     "id": "i-dnwoZQ7jsG",
+     "type": "image",
+     "x": 410,
+     "y": 1332,
+     "hasTitle": false
+    },
+    {
+     "id": "i-vxeeCnxySa",
+     "type": "image",
+     "x": 410,
+     "y": 1732,
+     "hasTitle": false
+    },
+    {
+     "id": "b-bTLLuU4w5q",
+     "type": "script-execution",
+     "x": 1068,
+     "y": -187,
+     "hasTitle": true
+    },
+    {
+     "id": "i-YDfWhFlthe",
+     "type": "image",
+     "x": 1580,
+     "y": -300,
+     "hasTitle": false
+    },
+    {
+     "id": "v-UGQZzZOpbv",
+     "type": "video",
+     "x": 62,
+     "y": 62,
+     "hasTitle": false
+    }
+   ],
+   "nEdges": 11
+  },
+  "cards": [
+   {
+    "id": "g-245IDFh8sB",
+    "w": 226,
+    "h": 238,
+    "x": 527,
+    "y": 606,
+    "text": "分镜图 · 第一集：咖啡馆对峙-图片组",
+    "nBtns": 0,
+    "btns": []
+   },
+   {
+    "id": "g-EFbbHpwq5w",
+    "w": 380,
+    "h": 242,
+    "x": 665,
+    "y": 254,
+    "text": "视频组 · 第一集：咖啡馆对峙-视频组",
+    "nBtns": 0,
+    "btns": []
+   },
+   {
+    "id": "t-9j2MoccxBj",
+    "w": 184,
+    "h": 105,
+    "x": -527,
+    "y": 195,
+    "text": "剧本第一集：咖啡馆对峙\n角色：陈默(男主,面容冷",
+    "nBtns": 0,
+    "btns": []
+   },
+   {
+    "id": "i-1FQ9tErTcC",
+    "w": 325,
+    "h": 184,
+    "x": -514,
+    "y": 404,
+    "text": "image_2026-06-15T11-22-0",
+    "nBtns": 0,
+    "btns": []
+   },
+   {
+    "id": "i-lBzmo67AHv",
+    "w": 325,
+    "h": 184,
+    "x": -368,
+    "y": 751,
+    "text": "image_2026-06-15T11-22-1",
+    "nBtns": 0,
+    "btns": []
+   },
+   {
+    "id": "i-dnwoZQ7jsG",
+    "w": 368,
+    "h": 184,
+    "x": -368,
+    "y": 961,
+    "text": "咖啡1152 × 576",
+    "nBtns": 0,
+    "btns": []
+   },
+   {
+    "id": "i-vxeeCnxySa",
+    "w": 368,
+    "h": 184,
+    "x": -368,
+    "y": 1172,
+    "text": "图片41152 × 576",
+    "nBtns": 0,
+    "btns": []
+   },
+   {
+    "id": "b-bTLLuU4w5q",
+    "w": 184,
+    "h": 184,
+    "x": -22,
+    "y": 162,
+    "text": "第一集：咖啡馆对峙导演台在3D空间中搭建场景并进",
+    "nBtns": 1,
+    "btns": [
+     {
+      "label": "打开导演台 →",
+      "w": 166,
+      "h": 19,
+      "x": -13,
+      "y": 319,
+      "onScreen": true,
+      "hitSelf": true,
+      "hitTag": "button"
+     }
+    ]
+   },
+   {
+    "id": "i-YDfWhFlthe",
+    "w": 327,
+    "h": 184,
+    "x": 247,
+    "y": 103,
+    "text": "分镜 #21280 × 720",
+    "nBtns": 0,
+    "btns": []
+   },
+   {
+    "id": "v-UGQZzZOpbv",
+    "w": 327,
+    "h": 184,
+    "x": 698,
+    "y": 287,
+    "text": "分镜视频-#91280 × 720生成失败vip",
+    "nBtns": 0,
+    "btns": []
+   }
+  ],
+  "chrome": [
+   {
+    "label": "项目菜单",
+    "w": 20,
+    "h": 32,
+    "x": 60,
+    "y": 16,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "svg"
+   },
+   {
+    "label": "画布 2",
+    "w": 76,
+    "h": 32,
+    "x": 188,
+    "y": 16,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "span"
+   },
+   {
+    "label": "工作流",
+    "w": 28,
+    "h": 28,
+    "x": 270,
+    "y": 18,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "path"
+   },
+   {
+    "label": "故事板",
+    "w": 28,
+    "h": 28,
+    "x": 298,
+    "y": 18,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "path"
+   },
+   {
+    "label": "发布与分享",
+    "w": 32,
+    "h": 32,
+    "x": 897,
+    "y": 16,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "svg"
+   },
+   {
+    "label": "开通会员 限时 45 折",
+    "w": 157,
+    "h": 32,
+    "x": 937,
+    "y": 16,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "span"
+   },
+   {
+    "label": "积分余额",
+    "w": 67,
+    "h": 32,
+    "x": 1101,
+    "y": 16,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "span"
+   },
+   {
+    "label": "Agent",
+    "w": 88,
+    "h": 32,
+    "x": 1176,
+    "y": 16,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "span"
+   },
+   {
+    "label": "删除连线",
+    "w": 8,
+    "h": 8,
+    "x": -110,
+    "y": 371,
+    "onScreen": false,
+    "hitSelf": null,
+    "hitTag": null
+   },
+   {
+    "label": "删除连线",
+    "w": 8,
+    "h": 8,
+    "x": 25,
+    "y": 342,
+    "onScreen": true,
+    "hitSelf": false,
+    "hitTag": "div"
+   },
+   {
+    "label": "删除连线",
+    "w": 8,
+    "h": 8,
+    "x": 340,
+    "y": 485,
+    "onScreen": true,
+    "hitSelf": false,
+    "hitTag": "path"
+   },
+   {
+    "label": "删除连线",
+    "w": 8,
+    "h": 8,
+    "x": -15,
+    "y": 650,
+    "onScreen": false,
+    "hitSelf": null,
+    "hitTag": null
+   },
+   {
+    "label": "删除连线",
+    "w": 8,
+    "h": 8,
+    "x": -15,
+    "y": 755,
+    "onScreen": false,
+    "hitSelf": null,
+    "hitTag": null
+   },
+   {
+    "label": "删除连线",
+    "w": 8,
+    "h": 8,
+    "x": 250,
+    "y": 434,
+    "onScreen": true,
+    "hitSelf": false,
+    "hitTag": "path"
+   },
+   {
+    "label": "删除连线",
+    "w": 8,
+    "h": 8,
+    "x": -37,
+    "y": 545,
+    "onScreen": false,
+    "hitSelf": null,
+    "hitTag": null
+   },
+   {
+    "label": "删除连线",
+    "w": 8,
+    "h": 8,
+    "x": 345,
+    "y": 712,
+    "onScreen": true,
+    "hitSelf": false,
+    "hitTag": "path"
+   },
+   {
+    "label": "删除连线",
+    "w": 8,
+    "h": 8,
+    "x": 632,
+    "y": 283,
+    "onScreen": true,
+    "hitSelf": false,
+    "hitTag": "path"
+   },
+   {
+    "label": "删除连线",
+    "w": 8,
+    "h": 8,
+    "x": 119,
+    "y": 620,
+    "onScreen": true,
+    "hitSelf": false,
+    "hitTag": "path"
+   },
+   {
+    "label": "删除连线",
+    "w": 8,
+    "h": 8,
+    "x": 409,
+    "y": 311,
+    "onScreen": true,
+    "hitSelf": false,
+    "hitTag": "path"
+   },
+   {
+    "label": "取消 ESC",
+    "w": 55,
+    "h": 16,
+    "x": 645,
+    "y": 9,
+    "onScreen": true,
+    "hitSelf": false,
+    "hitTag": "div"
+   },
+   {
+    "label": "添加节点",
+    "w": 32,
+    "h": 32,
+    "x": 480,
+    "y": 1098,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "path"
+   },
+   {
+    "label": "移动",
+    "w": 32,
+    "h": 32,
+    "x": 520,
+    "y": 1098,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "svg"
+   },
+   {
+    "label": "打开工具箱",
+    "w": 32,
+    "h": 32,
+    "x": 560,
+    "y": 1098,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "svg"
+   },
+   {
+    "label": "素材库",
+    "w": 32,
+    "h": 32,
+    "x": 600,
+    "y": 1098,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "svg"
+   },
+   {
+    "label": "角色库",
+    "w": 32,
+    "h": 32,
+    "x": 640,
+    "y": 1098,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "path"
+   },
+   {
+    "label": "生成历史",
+    "w": 32,
+    "h": 32,
+    "x": 680,
+    "y": 1098,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "path"
+   },
+   {
+    "label": "快捷键",
+    "w": 32,
+    "h": 32,
+    "x": 729,
+    "y": 1098,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "path"
+   },
+   {
+    "label": "教程",
+    "w": 32,
+    "h": 32,
+    "x": 769,
+    "y": 1098,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "path"
+   },
+   {
+    "label": "资产管理",
+    "w": 94,
+    "h": 28,
+    "x": 14,
+    "y": 1104,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "span"
+   },
+   {
+    "label": "整理画布，Option+Shift+F",
+    "w": 28,
+    "h": 28,
+    "x": 112,
+    "y": 1104,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "svg"
+   },
+   {
+    "label": "切换小地图",
+    "w": 28,
+    "h": 28,
+    "x": 144,
+    "y": 1104,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "svg"
+   },
+   {
+    "label": "隐藏节点连线",
+    "w": 28,
+    "h": 28,
+    "x": 176,
+    "y": 1104,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "path"
+   },
+   {
+    "label": "网格吸附",
+    "w": 28,
+    "h": 28,
+    "x": 208,
+    "y": 1104,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "svg"
+   },
+   {
+    "label": "缩放选项",
+    "w": 36,
+    "h": 28,
+    "x": 240,
+    "y": 1104,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "button"
+   }
+  ]
+ },
+ "summary": {
+  "ten-seed-nodes-of-five-types-and-eleven-edges": true,
+  "every-store-node-renders-exactly-one-card": true,
+  "nine-of-ten-cards-carry-no-control-at-all": true,
+  "the-default-viewport-clips-the-only-card-that-has-a-control": true,
+  "thirty-four-shell-buttons-in-five-clusters": true,
+  "all-eleven-edge-delete-handles-are-8x8-and-none-hit-itself": true,
+  "thirteen-node-types-are-registered-but-eight-never-appear": true
+ },
+ "failures": []
+}
