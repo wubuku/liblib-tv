@@ -3385,7 +3385,7 @@ S3 找「编组」按钮返回 `null`，`throw` 中止。诊断 dump 显示**同
 |---|---|---|---|
 | 🔴 **分区示意图漏画「分享」「更多」两个顶栏按钮** | Minor（首屏误导） | 实测顶栏 `[data-testid=canvas-top-bar]` 有 **10** 个可点元素，示意图只画了 8 个可点项。示意图依据 `§2.1` 基线绘制，此后顶栏新增按钮没人回补 | SVG 补两个 `<text>` 并重排 x 坐标；`00-quickstart.md` 的 alt 与 manifest 同步补注 |
 | **`00-quickstart.md` 从未与实测对齐过**（普查里唯一「0 次批次提及」的读者页） | Minor（时效） | 20 个读者页中位数 **77**，该页最大值 **0** | 逐条对账：左栏 9 项、dock 4 项、缩放菜单 7 项、右下「与 AI 对话」**全部逐字一致**；新增「界面清单」小节，含三个 `data-testid` |
-| 「已保存」被画成与可点元素并列 | Minor（语义） | 它是画布保存状态标签，出现在底部状态行，不可点 | alt 补注「是状态标签、不是可点按钮」 |
+| 「已保存」被画成与可点元素并列 | Minor（语义） | 它是画布保存状态标签，出现在底部状态行，不可点 | alt 补注「是状态标签、不是可点按钮」<br>🔴 **批次 120 订正**：中间那格「出现在底部状态行」**不成立** —— 它在**顶栏** `OUTPUT[data-testid="canvas-title-save-status"]` `30×18@206,21`；屏上**没有**底部状态行（那句话是 `SPAN#:modern-js-r1:` 的 `sr-only` 屏外文本）。`20-reference.md` / `00-quickstart.md` 已订正 |
 | 枚举顶栏时用 `querySelectorAll('button')` 会漏掉返回首页 | 判据缺陷（工具） | 返回首页是 **`<a>`**（`data-testid=canvas-project-logo`）不是 `<button>` | 枚举函数同时收 `button,[role="button"],[role="menuitem"],[role="tab"],a,input` |
 
 ### 批次 82（2026-10-02）新增
@@ -3963,3 +3963,26 @@ S3 找「编组」按钮返回 `null`，`throw` 中止。诊断 dump 显示**同
 | 🔴 **本批未点任何未授权按钮** | 合规 | `导出时间线`（对外产出）、`全屏编辑`、`静音` 全部**只读** aria / 尺寸 / 位置 | 积分 805 未变 |
 | ✅ **护栏全程有效** | 正面 | 删除 1 次，「本轮消失的 id」**恰好只有 SELF**；缩放本就 60%、连读两次一致 | 本批 1 个自建节点，**遗留 0 个** |
 | ⛔ **未能配图** | 未完成 | 76 节点同框 | 宁可不配图也不放宽守卫 |
+
+## 批次 120（2026-10-03）· 🔴 订正：屏上没有「底部状态行」——全册被引用 18 处的那串读数是读屏播报
+
+| 缺陷 | 级别 | 证据 | 处置 |
+|---|---|---|---|
+| 🔴 **屏幕底部根本没有「状态行」这条横线** | **Major（本批主产出）** | 那句 `N nodes, N edges, N selected. Editable. Room connected. 已保存.` 的**全文档唯一宿主**是 `SPAN#:modern-js-r1:`，class `sr-only`、矩形 **`1×1@(-1,-1)`**（视口左上角之外）、`position:absolute` ＋ `clip: rect(0px,0px,0px,0px)`。「唯一」的判据：按「命中且没有更内层命中」筛出的最内层宿主**恰好 1 个** | `20-reference.md` 加订正方框；`00-quickstart.md` 界面清单补「底部」一栏；示意图 `canvas-zones.svg` **撤掉画错的那条横条** |
+| 🔴 **它也不是 `aria-live` 播报区** | **Major** | 它自己和往上 **5 层**祖先的 `aria-live` / `role` / `aria-atomic` **全是 `null`**（`role` 既不是 `status` 也不是 `alert`）⇒ 就是一段屏外隐藏文本 | 写进正文与 SOURCE，避免被误当成播报机制 |
+| 🔴 **手册让用户「看状态行」——他找不到** | **Major** | `connect-nodes.md:415`／`90-troubleshooting.md:739`／`organize-group-layout.md:281`／`duplicate-delete-history.md:141`／`create-first-node.md:30`／`00-quickstart.md:99` 共 **6 处**是**指示用户去看**；`20-reference.md:325` 还立了规矩「判断连线数一律看状态行」 | 逐处加订正标记，并给出**肉眼可用的等价判据** |
+| ⚠️ **屏上唯一可见的数量读数只有节点数** | **Major** | 顶栏 `canvas-node-summary-trigger` `34×28@156,16` 逐字 `节点 76`；**没有连线数、没有选中数** | 写进 `00-quickstart.md` 与 `20-reference.md` |
+| 🔴 **「已保存」的归属写错了** | Minor（准确性） | 它在**顶栏** `OUTPUT[data-testid="canvas-title-save-status"]` `30×18@206,21`（`canvas-title-metadata` `80×28@156,16` 内）；`00-quickstart.md` 原写「出现在底部状态行里」。屏外那句读数**末尾也有**「已保存」——**另一个东西** | `00-quickstart.md` 与 `SOURCE_OBSERVATIONS.md:6809` 就地订正 |
+| 🔴 **「状态行末尾多出两行」是 `innerText` 拼接产物** | Minor（机制） | 同轮三条互不相同的读数：`:modern-js-r1:` 自身 `textContent` **不含**提示条；`back-to-content-overlay`（平时 `display:none` ＋ `0×0`）自身 `innerText` 是 `当前视窗没有内容回到节点`；`body.innerText` **不含**它。两者 `r1在hint内=false`、`hint在r1内=false`，是**兄弟** | `navigate-canvas.md` 订正机制（`navigate-canvas.md:299-301` 那条仍成立） |
+| ✅ **规则本身仍然有效** | 正面 | 同轮实测：选中后 `0 selected`→`1 selected`；建节点后 `76 nodes`→`77 nodes` ⇒ 这串读数**确实实时更新** | 明确写成「规则不变，只是用户找不到那一行」，避免过度推翻 |
+| 🆕 **底部区域的完整 testid 面** | Minor（全册缺） | `workspace-bottom-dock-frame`/`canvas-navigation-dock` `164×36@12,668`；`canvas-bottom-dock`（aria `Canvas viewport controls`）`156×28@16,672`；`canvas-sidecar-launchers` `120×36@1148,672`；**`canvas-minimap-portal-target` `156×114@16,554`**（dock 上沿上方，最容易被误认） | 写进 `00-quickstart.md` |
+| 🆕 **全文档 testid 普查基线** | Minor | 本轮测得 **171 种** `data-testid`；「节点外 > 0」的（界面外壳）**没有一个**是状态行 | 写进 SOURCE §4.40 |
+| 🆕 **两条同族的 1×1 屏外 testid** | Minor | `canvas-context-menu-terminal-feedback` `1×1@(-1,719)`、`canvas-creation-entry-feedback` `1×1@(-1,-1)`，逐字都是**空** | 写进 SOURCE（**别把它们当状态行**） |
+| 🔴 **示意图画了一条不存在的线** | Minor（示意图失真） | `canvas-zones.svg` 第 58–61 行的 `status line` 横条与两行说明 | **撤掉横条**、改成如实说明；`alt` 与 `manifest.yml` 的 alt 逐字同步、`sha256` 重算（`c950c114…`） |
+| 🧨 **本批出过一次事故** | 流程 | c 轮「点空白处取消选中」的落点 `(24,400)` **没做落点自检**就点了，实测命中 `inline-flex size-9 shrink-0…` = **左栏按钮** ⇒ 建出「时间线 3」（76→77） | 护栏②当场抓到并清除；**立规一**（见下） |
+| 🧨 **清理时又踩一次 `Backspace` 无效** | 流程 | z 轮落点现算命中节点**内部工具条上的 BUTTON** ⇒ 节点虽 `.selected` 但**键盘焦点不在节点上**，消失的 id = `[]` | 改走**右键 →「删除」**，消失 id 恰好只有 SELF；**立规二**（见下） |
+| 🔑 **立规一：「点空白」与「点控件」的落点判据相反** | 流程 | 批次 105 立的「命中元素落在目标内部」是**点控件**的正路；**点空白**必须反着来：命中**不是** `.react-flow__pane` 就不许点。左栏 `160×632@12,72`、dock `164×36@12,668`、顶栏 `1256×40@12,10` **全贴着视口边** | 写进脚本注释与 PROGRESS |
+| 🔑 **立规二：删节点不走键盘** | 流程 | 有子控件的节点，中心落点会把焦点交给子控件 | 有子控件一律走右键菜单；菜单项落点现算 + `elementFromPoint` 自检放**同一个 `evaluate`** |
+| 🔴 **本批未点任何未授权按钮** | 合规 | 全程只读；唯一状态变化是「选中一个既有节点 → 取消选中」往返 | 积分 805 未变 |
+| ✅ **护栏全程有效** | 正面 | 事故后护栏②抓到差集恰好 1 个且唯一选中；删除后「本轮消失的 id」**恰好只有 SELF**（77→76） | 遗留自建节点 **0** 个 |
+| ⛔ **未能配图** | 未完成 | 76 节点同框，状态行本身又不可见 | 宁可不配图也不放宽守卫；改用**示意图修订 ＋ 两张既有真实截图的底部条带**作旁证 |

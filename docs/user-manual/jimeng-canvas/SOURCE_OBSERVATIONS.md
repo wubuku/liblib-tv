@@ -6806,7 +6806,7 @@ b79a 的数字里冒出一组可疑比例：
 
 ### 4.00.4 一处需要点明的语义
 
-**「已保存」不是按钮**，它是画布的保存状态标签（出现在底部状态行）。
+**「已保存」不是按钮**，它是画布的保存状态标签（出现在底部状态行）。　🔴 **批次 120 订正（2026-10-03）**：「出现在底部状态行」**不成立** —— 「已保存」在**顶栏** `OUTPUT[data-testid="canvas-title-save-status"]` `30×18@206,21`；屏上**没有**底部状态行，那句 `N nodes, N edges, N selected. … 已保存.` 是 `SPAN#:modern-js-r1:`（`sr-only`、`1×1@(-1,-1)`）的屏外隐藏文本。详见 §4.40。
 示意图把它和可点元素画在一起，读者容易以为能点。alt 已补注。
 
 ### 4.00.5 收尾
@@ -10991,3 +10991,124 @@ a 轮按「归属于本节点 **且在节点上方**」筛，**归属本节点�
 - 自建时间线节点 `node_9h82m0mfvr` **z 轮删一次**，「本轮消失的 id」**恰好只有 SELF** ✅
 - 缩放本就 60%，**连读两次一致** ✅
 - 终态：**`76 nodes / 0 selected / 0 edges`**、`Zoom options, 60%`、选择工具、**积分 805**
+
+## §4.40 批次 120（2026-10-03）· 🔴 订正：**屏上没有「底部状态行」** —— 全册用了 40 多次的那串读数是读屏播报
+
+**靶子**：`00-quickstart.md` 界面清单里**没有「底部状态行」这一栏**，可分区示意图画了它；
+而 `20-reference.md` / `navigate-canvas.md` / `connect-nodes.md` / `organize-group-layout.md` /
+`duplicate-delete-history.md` / `90-troubleshooting.md` **合计 18 处**拿它当判据，
+`20-reference.md:325` 甚至立了规矩「**判断连线数一律看状态行**」。
+⇒ 靶子不是「补一栏」，而是**这条被反复引用的规则，它指的东西到底在不在屏上**。
+
+### a 轮：文本反查 —— 唯一宿主是个 1×1 屏外元素
+
+按「命中该正则、且**没有更内层命中**」筛（这样才能保证拿到的是最内层宿主），
+全文档**恰好 1 个**：
+
+| 读数 | 值 |
+|---|---|
+| 标签 / class | `SPAN` ／ `sr-only` |
+| id | **`:modern-js-r1:`** |
+| 屏上矩形 | **`[-1,-1,1,1]`**（视口左上角之外） |
+| `position` / `clip` | `absolute` ／ `rect(0px, 0px, 0px, 0px)` |
+| 逐字 | `76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.` |
+| 祖先链 | `DIV` → `SECTION[data-testid="canvas-main-region"]` → `DIV[canvas-workbench-shell]` → … → `MAIN[aria-label="Canvas workspace"]` |
+
+🔴 **它不是 `aria-live` 播报区**：它自己和往上 5 层祖先的 `aria-live` / `role` / `aria-atomic`
+**全是 `null`**（`role` 不是 `status` 也不是 `alert`）。
+⇒ 就是一段**屏外隐藏文本**，不是「播报」。
+
+⚠️ 另有两个同族的 1×1 屏外 testid（**别把它们当状态行**）：
+`canvas-context-menu-terminal-feedback` `1×1@(-1,719)`、
+`canvas-creation-entry-feedback` `1×1@(-1,-1)` —— 两者逐字都是**空**。
+
+### b 轮：底部条带逐元素枚举 + 两条不共享假设的旁证
+
+**枚举**（`y ≥ 655`、`w>0 && h>0`、非 `visibility:hidden`/`display:none`）共 **67 个**，
+带身份或文字的 **36 个**，**没有一个是状态行**。底部真实存在的：
+
+| testid | 屏上 |
+|---|---|
+| `workspace-bottom-dock-frame` / `canvas-navigation-dock` | `164×36@12,668`（两个 testid 同一矩形） |
+| `canvas-bottom-dock`（aria 逐字 `Canvas viewport controls`） | `156×28@16,672` |
+| `canvas-pointer-tool-toggle` / `-minimap` / `-connections` / `canvas-zoom-percent` | `28×28@16,672` / `48,672` / `80,672` / `48×28@124,672` |
+| `canvas-sidecar-launchers` / `canvas-sidecar-launcher` | `120×36@1148,672` / `118×34@1149,673` |
+| `canvas-minimap-portal-target` | **`156×114@16,554`**（dock 上沿上方，容易被误认成状态行的一部分） |
+
+**全文档 testid 普查**：**171 种**。其中「节点外 > 0」的（= 界面外壳）**没有一个**是状态行。
+
+**旁证（两条不共享同一假设）**：
+
+1. **本轮实时截图** —— `y 660–720` 条带：只有左下 dock 与右下「与 AI 对话」，**中间一片空**；
+2. **早期批次真实截图** `09-connect-nodes-edge-created.png` 的**底部 150px**
+   （另一个视口、100% 缩放、有节点有连线）—— 同样**只有 dock 和「与 AI 对话」**。
+
+⇒ 屏上**没有**这条横线。（第二条旁证尤其重要：它与本轮的 DOM 判据、视口、缩放、
+画布内容**全不相同**，只共享「肉眼看」这一个假设。）
+
+### c 轮：那串读数还准不准？—— 准，而且实时更新
+
+| 时刻 | `:modern-js-r1:` 的 `textContent` |
+|---|---|
+| 初始 | `76 nodes, 0 edges, **0** selected. Editable. Room connected. 已保存.` |
+| 选中「音频 49」后 | `76 nodes, 0 edges, **1** selected. …` |
+| （意外建出一个节点后） | **`77 nodes**`, 0 edges, 1 selected. …` |
+
+⇒ **规则本身继续有效**（`N edges` 确实只算成功连线），要改的只是
+**「用户能在屏幕上找到那一行」** —— 他找不到。
+
+**屏上唯一可见的数量读数**：顶栏 `canvas-node-summary-trigger` `34×28@156,16`，
+逐字 **`节点 76`** —— **只有节点数，没有连线数、没有选中数**。
+
+### 🔑 顺带订正两处
+
+**① 「已保存」有两处，是两个不同的东西。**
+`00-quickstart.md` 原写「已保存」出现在**底部状态行**里 —— 归属写错：
+它在**顶栏** `OUTPUT[data-testid="canvas-title-save-status"]` `30×18@206,21`
+（装在 `canvas-title-metadata` `80×28@156,16` 里、「节点 N」右侧）。
+屏外那句读数的**末尾也有**「已保存」—— 那是 `sr-only` 文本的一部分。
+
+**② 「状态行末尾多出两行」是 `innerText` 的拼接产物。**
+`navigate-canvas.md` 原写「提示条存在时状态行末尾多出 `当前视窗没有内容 / 回到节点` 两行」。
+实测（c 轮同轮三条互不相同的读数）：
+
+| 读数 | 值 |
+|---|---|
+| `:modern-js-r1:` 自身 `textContent` | `… Room connected. 已保存.`（**不含**提示条那两行） |
+| `back-to-content-overlay` 自身 `innerText` | `当前视窗没有内容回到节点`（平时 **`display:none` ＋ `0×0`**） |
+| `document.body.innerText` 是否含提示条 | **false**（因为它 `display:none`） |
+| 包含关系 | `r1在hint内=false`、`hint在r1内=false`；两者**兄弟**，共同祖先是一个**无 testid** 的 `DIV`，同挂 `MAIN[aria-label="Canvas workspace"]` |
+
+⇒ 状态行自己**永远只有那一句**；你读到「末尾多出两行」是因为读了**同时包含这两者**的容器。
+（`navigate-canvas.md:299-301` 那条「提示条 `innerText` 始终是…」**仍然成立** —— 它读的是提示条自己。）
+
+### 🧨 本批的事故与两条新立规
+
+**事故**：c 轮末尾想「点空白处取消选中」，落点取了 `(24, 400)` ——
+**没做落点自检**就点了。实测命中 `inline-flex size-9 shrink-0 items-center justify-c…`
+⇒ 那是**左栏的一个按钮**，于是**建出了一个时间线节点**（76 → 77，标题「时间线 3」）。
+护栏②当场抓到（差集恰好 1 个且它是唯一选中项），走右键 →「删除」清掉，
+消失的 id **恰好只有 SELF**（77 → 76）。
+
+**清理时又踩一次**：z 轮先试 `Backspace` —— **没删掉**（消失的 id = `[]`）。
+落点现算落在节点**中心**，命中的是节点**内部工具条上的一个 `BUTTON`**
+⇒ 节点虽然是 `.selected`，但**键盘焦点不在节点上**。
+
+⇒ **立规一（补上护栏④的另一半）**：「点某个控件」与「点空白」是**两种相反的用法**。
+「点控件」的正路是批次 105 定的「命中元素落在**目标内部**」；
+**「点空白」必须反着来**：落点现算 + `elementFromPoint` 命中**不是**画布空白
+（`.react-flow__pane`）就**不许点**。左栏 `160×632@12,72`、dock `164×36@12,668`、
+顶栏 `1256×40@12,10` **全都贴着视口边**，随手取的「空白点」极易落在它们身上。
+
+⇒ **立规二**：**删除节点不要走键盘**。节点有子控件时，中心落点会把焦点交给子控件，
+`⌫` 无反应。有子控件的节点一律走**右键 → 上下文菜单 →「删除」**，
+菜单项的落点现算 + `elementFromPoint` 自检放在**同一个 `evaluate`** 里。
+
+### 收尾
+
+- 自建时间线节点 `node_dsb6g05h5e`（「时间线 3」）**已清除**，
+  「本轮消失的 id」**恰好只有 SELF** ✅
+- 缩放本就 60%、**连读两次一致** ✅
+- 终态：**`76 nodes / 0 selected / 0 edges`**、`Zoom options, 60%`、选择工具、**积分 805**
+- ⛔ 全程**只读**：唯一的状态变化是「选中一个既有节点 → 取消选中」的往返，
+  未建任何节点（除那次事故，已清除）、未点任何扣费/生成按钮
