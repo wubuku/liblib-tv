@@ -1,0 +1,504 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 1150,
+  "ruler": {
+   "left": 322,
+   "top": 1005,
+   "width": 1779.125,
+   "height": 36,
+   "duration": 8
+  },
+  "cameraSelect": {
+   "ok": true,
+   "expected": "director-camera-main",
+   "got": "director-camera-main",
+   "name": "机位01 · 对峙中景"
+  },
+  "nullClickDrift": [],
+  "addTrackRead": {
+   "before": {
+    "selectedObjectId": "director-character-lead",
+    "currentTime": 0,
+    "autoKeyframe": true,
+    "selectedKeyframeId": "director-keyframe-character-0",
+    "tracks": [
+     {
+      "objectId": "director-character-lead",
+      "kf": [
+       0,
+       4,
+       8
+      ]
+     },
+     {
+      "objectId": "director-camera-main",
+      "kf": [
+       0,
+       4,
+       8
+      ]
+     }
+    ],
+    "last": null,
+    "ws": {
+     "command": "",
+     "disposition": "",
+     "reason": ""
+    },
+    "toasts": 0,
+    "dialogs": 1
+   },
+   "after": {
+    "selectedObjectId": "director-character-lead",
+    "currentTime": 0,
+    "autoKeyframe": true,
+    "selectedKeyframeId": "director-keyframe-character-0",
+    "tracks": [
+     {
+      "objectId": "director-character-lead",
+      "kf": [
+       0,
+       4,
+       8
+      ]
+     },
+     {
+      "objectId": "director-camera-main",
+      "kf": [
+       0,
+       4,
+       8
+      ]
+     }
+    ],
+    "last": {
+     "commandKind": "ADD_TRACK",
+     "disposition": "NOOP",
+     "reason": "DIRECTOR_COMMAND_NO_CHANGE"
+    },
+    "ws": {
+     "command": "ADD_TRACK",
+     "disposition": "NOOP",
+     "reason": "DIRECTOR_COMMAND_NO_CHANGE"
+    },
+    "toasts": 0,
+    "dialogs": 1
+   },
+   "clicked": {
+    "clicked": true,
+    "disabled": false,
+    "cx": 271,
+    "cy": 986.5,
+    "text": "新建轨道"
+   },
+   "kfCountUnchanged": true
+  },
+  "defaultState": {
+   "before": {
+    "selectedObjectId": "director-character-lead",
+    "currentTime": 0,
+    "autoKeyframe": true,
+    "selectedKeyframeId": "director-keyframe-character-0",
+    "tracks": [
+     {
+      "objectId": "director-character-lead",
+      "kf": [
+       0,
+       4,
+       8
+      ]
+     },
+     {
+      "objectId": "director-camera-main",
+      "kf": [
+       0,
+       4,
+       8
+      ]
+     }
+    ],
+    "last": null,
+    "ws": {
+     "command": "",
+     "disposition": "",
+     "reason": ""
+    },
+    "toasts": 0,
+    "dialogs": 1
+   },
+   "after": {
+    "selectedObjectId": "director-character-lead",
+    "currentTime": 0,
+    "autoKeyframe": true,
+    "selectedKeyframeId": "director-keyframe-character-0",
+    "tracks": [
+     {
+      "objectId": "director-character-lead",
+      "kf": [
+       0,
+       4,
+       8
+      ]
+     },
+     {
+      "objectId": "director-camera-main",
+      "kf": [
+       0,
+       4,
+       8
+      ]
+     }
+    ],
+    "last": null,
+    "ws": {
+     "command": "",
+     "disposition": "",
+     "reason": ""
+    },
+    "toasts": 0,
+    "dialogs": 1
+   },
+   "clicked": {
+    "clicked": true,
+    "disabled": false,
+    "cx": 703,
+    "cy": 986.5,
+    "text": "添加关键帧"
+   },
+   "kfCount": [
+    6,
+    6
+   ],
+   "anyFeedback": false
+  },
+  "perTimestepScan": [
+   {
+    "fraction": 0.0,
+    "clickedRuler": true,
+    "x": 322,
+    "timeRead": 0,
+    "cameraKeyframeTimes": [
+     0,
+     4,
+     8
+    ],
+    "hadKeyframeAtTime": true,
+    "predictedDelta": 0,
+    "actualDelta": 0,
+    "recorded": null,
+    "wsAfter": {
+     "command": "",
+     "disposition": "",
+     "reason": ""
+    },
+    "toasts": 0,
+    "selectedKeyframeId": "director-keyframe-camera-0"
+   },
+   {
+    "fraction": 0.05,
+    "clickedRuler": true,
+    "x": 411,
+    "timeRead": 0.39999994510995573,
+    "cameraKeyframeTimes": [
+     0,
+     4,
+     8
+    ],
+    "hadKeyframeAtTime": false,
+    "predictedDelta": 1,
+    "actualDelta": 1,
+    "recorded": {
+     "commandKind": "PROJECT_MUTATION",
+     "disposition": "COMMITTED",
+     "reason": null
+    },
+    "wsAfter": {
+     "command": "PROJECT_MUTATION",
+     "disposition": "COMMITTED",
+     "reason": ""
+    },
+    "toasts": 0,
+    "selectedKeyframeId": "director-track-camera-main-keyframe-400-1791004701496"
+   },
+   {
+    "fraction": 0.125,
+    "clickedRuler": true,
+    "x": 544,
+    "timeRead": 1,
+    "cameraKeyframeTimes": [
+     0,
+     4,
+     8
+    ],
+    "hadKeyframeAtTime": false,
+    "predictedDelta": 1,
+    "actualDelta": 1,
+    "recorded": {
+     "commandKind": "PROJECT_MUTATION",
+     "disposition": "COMMITTED",
+     "reason": null
+    },
+    "wsAfter": {
+     "command": "PROJECT_MUTATION",
+     "disposition": "COMMITTED",
+     "reason": ""
+    },
+    "toasts": 0,
+    "selectedKeyframeId": "director-track-camera-main-keyframe-1000-1791004706464"
+   },
+   {
+    "fraction": 0.25,
+    "clickedRuler": true,
+    "x": 767,
+    "timeRead": 2,
+    "cameraKeyframeTimes": [
+     0,
+     4,
+     8
+    ],
+    "hadKeyframeAtTime": false,
+    "predictedDelta": 1,
+    "actualDelta": 1,
+    "recorded": {
+     "commandKind": "PROJECT_MUTATION",
+     "disposition": "COMMITTED",
+     "reason": null
+    },
+    "wsAfter": {
+     "command": "PROJECT_MUTATION",
+     "disposition": "COMMITTED",
+     "reason": ""
+    },
+    "toasts": 0,
+    "selectedKeyframeId": "director-track-camera-main-keyframe-2000-1791004711460"
+   },
+   {
+    "fraction": 0.375,
+    "clickedRuler": true,
+    "x": 989,
+    "timeRead": 3,
+    "cameraKeyframeTimes": [
+     0,
+     4,
+     8
+    ],
+    "hadKeyframeAtTime": false,
+    "predictedDelta": 1,
+    "actualDelta": 1,
+    "recorded": {
+     "commandKind": "PROJECT_MUTATION",
+     "disposition": "COMMITTED",
+     "reason": null
+    },
+    "wsAfter": {
+     "command": "PROJECT_MUTATION",
+     "disposition": "COMMITTED",
+     "reason": ""
+    },
+    "toasts": 0,
+    "selectedKeyframeId": "director-track-camera-main-keyframe-3000-1791004716693"
+   },
+   {
+    "fraction": 0.5,
+    "clickedRuler": true,
+    "x": 1212,
+    "timeRead": 4,
+    "cameraKeyframeTimes": [
+     0,
+     4,
+     8
+    ],
+    "hadKeyframeAtTime": true,
+    "predictedDelta": 0,
+    "actualDelta": 0,
+    "recorded": null,
+    "wsAfter": {
+     "command": "",
+     "disposition": "",
+     "reason": ""
+    },
+    "toasts": 0,
+    "selectedKeyframeId": "director-keyframe-camera-4"
+   }
+  ],
+  "verdicts": {
+   "added": [
+    0.39999994510995573,
+    1,
+    2,
+    3
+   ],
+   "noOp": [
+    0,
+    4
+   ]
+  },
+  "theFinding": "「点了没反应」不是一个类别。导演台自己在记账（lastCommandResult + 三个 DOM 属性），而 699 的快照从来没读过那一面：add-track 记 NOOP + DIRECTOR_COMMAND_NO_CHANGE，add-keyframe 在等价情形下什么都不记。add-keyframe 本身不是坏按钮 —— 它是幂等插入，播放头处已有关键帧就不重复插；在无关键帧处它真的加（6→7）并记 PROJECT_MUTATION/COMMITTED，且与 autoKeyframe 开关无关。",
+  "theUncomfortablePart": "打开导演台时播放头在 t=0，而 t=0 处本来就有关键帧 —— 用户什么都不做直接点「添加关键帧」，什么都不会发生，也没有任何提示。",
+  "whatIsNotClaimed": "不声称 add-keyframe 应当重复插入同一时刻的关键帧（那多半是错的）；本批只测出「它不插」与「它不记账、不提示」。**要不要补一个 NOOP 记账或轻提示，是产品决定，需要用户拍板才动 src/。** 不声称源站行为（未取证，需授权点击）；不声称 add-track 的 NOOP 是缺陷（它的理由写得比 add-keyframe 清楚）。",
+  "storeWritesInThisRun": "none — the playhead is moved by clicking [data-director-timeline-ruler]",
+  "relationTo699": "699 不重写。它把 add-keyframe 记成「惰（新开态）」并诚实标注成因未测；本批测出了成因（幂等），并把「惰性」这个词劈成三类。699 的普查数字（8 活 / 4 惰 / 2 够不着）本身未被推翻 —— 只是「惰」这一格的含义被细化。"
+ },
+ "checks": {
+  "add-keyframe-no-op-is-idempotence-not-a-broken-wire": {
+   "ok": true,
+   "detail": {
+    "rowsThatAdded": [
+     {
+      "t": 0.39999994510995573,
+      "delta": 1,
+      "recorded": {
+       "commandKind": "PROJECT_MUTATION",
+       "disposition": "COMMITTED",
+       "reason": null
+      }
+     },
+     {
+      "t": 1,
+      "delta": 1,
+      "recorded": {
+       "commandKind": "PROJECT_MUTATION",
+       "disposition": "COMMITTED",
+       "reason": null
+      }
+     },
+     {
+      "t": 2,
+      "delta": 1,
+      "recorded": {
+       "commandKind": "PROJECT_MUTATION",
+       "disposition": "COMMITTED",
+       "reason": null
+      }
+     },
+     {
+      "t": 3,
+      "delta": 1,
+      "recorded": {
+       "commandKind": "PROJECT_MUTATION",
+       "disposition": "COMMITTED",
+       "reason": null
+      }
+     }
+    ],
+    "sourceGuard": "directorStore.ts:7386-7388 —— recordObjectKeyframe 里 !force && !autoKeyframe 的早退；同一时刻不重复插入",
+    "autoKeyframeIrrelevant": "dbg700c 实测 autoKeyframe 开/关对这个按钮无影响（两次都 6→7）"
+   },
+   "note": "699 recorded it as inert in the fresh state and said it did not know why; the answer is that it is an idempotent insert that declines when a keyframe already sits at the playhead"
+  },
+  "per-timestep-scan-matches-the-keyframe-position-prediction": {
+   "ok": true,
+   "detail": {
+    "table": [
+     {
+      "f": 0.0,
+      "t": 0,
+      "hadKeyframe": true,
+      "predicted": 0,
+      "actual": 0
+     },
+     {
+      "f": 0.05,
+      "t": 0.39999994510995573,
+      "hadKeyframe": false,
+      "predicted": 1,
+      "actual": 1
+     },
+     {
+      "f": 0.125,
+      "t": 1,
+      "hadKeyframe": false,
+      "predicted": 1,
+      "actual": 1
+     },
+     {
+      "f": 0.25,
+      "t": 2,
+      "hadKeyframe": false,
+      "predicted": 1,
+      "actual": 1
+     },
+     {
+      "f": 0.375,
+      "t": 3,
+      "hadKeyframe": false,
+      "predicted": 1,
+      "actual": 1
+     },
+     {
+      "f": 0.5,
+      "t": 4,
+      "hadKeyframe": true,
+      "predicted": 0,
+      "actual": 0
+     }
+    ],
+    "rulerMapping": "实测 t = f × duration，duration=8",
+    "noStoreCalls": "播放头是用真实鼠标点 [data-director-timeline-ruler] 挪的，不是 setTimelineTime()"
+   },
+   "note": "the prediction was written before the measurement; a scan whose prediction is fitted after the fact is not a scan"
+  },
+  "rejection-bookkeeping-is-inconsistent-and-both-paths-are-silent-to-the-user": {
+   "ok": true,
+   "detail": {
+    "addTrack": {
+     "last": {
+      "commandKind": "ADD_TRACK",
+      "disposition": "NOOP",
+      "reason": "DIRECTOR_COMMAND_NO_CHANGE"
+     },
+     "ws": {
+      "command": "ADD_TRACK",
+      "disposition": "NOOP",
+      "reason": "DIRECTOR_COMMAND_NO_CHANGE"
+     },
+     "kfCountUnchanged": true
+    },
+    "addKeyframeWhenNoOp": [
+     {
+      "t": 0,
+      "recorded": null,
+      "wsAfter": {
+       "command": "",
+       "disposition": "",
+       "reason": ""
+      },
+      "toasts": 0
+     },
+     {
+      "t": 4,
+      "recorded": null,
+      "wsAfter": {
+       "command": "",
+       "disposition": "",
+       "reason": ""
+      },
+      "toasts": 0
+     }
+    ],
+    "theInconsistency": "同一导演台、同一种「不改变任何东西」：add-track 记 NOOP + 理由并翻到 DOM 属性；add-keyframe 连一条都不记。两者的用户可见反馈都是零。"
+   },
+   "note": "the app has a ledger for one kind of refusal and no ledger for the other; that is a consistency gap, not necessarily a defect"
+  },
+  "the-default-state-is-a-silent-no-op": {
+   "ok": true,
+   "detail": {
+    "playheadOnOpen": 0,
+    "keyframeTimes": [
+     0,
+     4,
+     8
+    ],
+    "kfCount": [
+     6,
+     6
+    ],
+    "lastBefore": null,
+    "lastAfter": null,
+    "anyFeedback": false
+   },
+   "note": "the playhead opens at 0, a position that already carries a keyframe, so the very first click a user makes does nothing and says nothing"
+  }
+ }
+}
