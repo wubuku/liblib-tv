@@ -44,6 +44,17 @@ export async function launch(opts = {}) {
     //    「DOM 里有、屏幕上没有」。要核实某个元素到底显不显示，
     //    用 launch({ reducedMotion: 'no-preference' }) 再量**整条祖先链的 opacity 连乘**
     //    （只看它自己那一层会读出假的稳定值，CI-2 就栽在这儿）。
+    //
+    // ⭐⭐ Batch DH 实测量化了这条的影响（别只当「可能有动画」）：
+    //   无头 Chrome **默认报 `prefers-reduced-motion: reduce`**。
+    //   站点大量使用 Tailwind 的 `motion-safe:` 前缀，它编译成
+    //   `@media (prefers-reduced-motion: no-preference)` ⇒ 在此环境下**整条规则不匹配**。
+    //   实测对照（`z-[180]` 那个全屏层）：
+    //     无头默认          → transition-duration: 0s   transition-property: all
+    //     覆盖 no-preference → transition-duration: 0.2s transition-property: opacity
+    //   ⇒ **凡是要断言「某处有/没有动画 / 淡入淡出读不到」的结论，
+    //     必须用 `reducedMotion: 'no-preference'` 重测**，否则量的是被关掉的规则。
+    //   ⛔ 只量 **opacity 最终值** 的读数不受影响（opacity 不是被这条 media query 管的）。
     reducedMotion: opts.reducedMotion ?? 'reduce',
     colorScheme: 'light',
   });

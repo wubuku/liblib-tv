@@ -1,0 +1,514 @@
+{
+  "层": {
+    "找到": true,
+    "rect": [
+      0,
+      0,
+      1440,
+      810
+    ],
+    "完整class": "pointer-events-none fixed inset-0 z-[180] motion-safe:transition-opacity motion-safe:duration-200",
+    "class段数": 6,
+    "class段": [
+      "pointer-events-none",
+      "fixed",
+      "inset-0",
+      "z-[180]",
+      "motion-safe:transition-opacity",
+      "motion-safe:duration-200"
+    ],
+    "直接子元素": 0,
+    "计算样式": {
+      "position": "fixed",
+      "zIndex": "180",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "background": "rgba(0, 0, 0, 0)",
+      "backdropFilter": "none",
+      "transitionProperty": "all",
+      "transitionDuration": "0s",
+      "transitionTimingFunction": "ease"
+    },
+    "过渡": {
+      "transition": "all",
+      "transitionBehavior": "",
+      "transitionDelay": "",
+      "transitionDuration": "",
+      "transitionProperty": "",
+      "transitionTimingFunction": ""
+    },
+    "动画": {
+      "animation": "none",
+      "animationComposition": "",
+      "animationDelay": "",
+      "animationDirection": "",
+      "animationDuration": "",
+      "animationFillMode": "",
+      "animationIterationCount": "",
+      "animationName": "",
+      "animationPlayState": "",
+      "animationRange": "",
+      "animationRangeEnd": "",
+      "animationRangeStart": "",
+      "animationTimeline": "",
+      "animationTimingFunction": "",
+      "animationTrigger": ""
+    },
+    "自定义属性": {},
+    "动画们": [],
+    "父链": [
+      {
+        "i": 0,
+        "tag": "div",
+        "rect": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "子元素数": 0,
+        "class": "pointer-events-none fixed inset-0 z-[180] motion-safe:transition-opacity motion-safe:durat"
+      },
+      {
+        "i": 1,
+        "tag": "body",
+        "rect": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "子元素数": 22,
+        "class": "antialiased"
+      },
+      {
+        "i": 2,
+        "tag": "html",
+        "rect": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "子元素数": 2,
+        "class": "dark"
+      }
+    ],
+    "兄弟": [
+      {
+        "tag": "script",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": ""
+      },
+      {
+        "tag": "div",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": ""
+      },
+      {
+        "tag": "noscript",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": "<iframe src=\"https://www.googl"
+      },
+      {
+        "tag": "style",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": ":root, :host{--mantine-breakpo"
+      },
+      {
+        "tag": "style",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": "@media (max-width: 35.99375em)"
+      },
+      {
+        "tag": "div",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": "画布 2 开通会员 限时 45 折 20 TV Direct"
+      },
+      {
+        "tag": "script",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": ""
+      },
+      {
+        "tag": "script",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": "(self.__next_f=self.__next_f||"
+      },
+      {
+        "tag": "script",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": "self.__next_f.push([1,\"1:\\\"$Sr"
+      },
+      {
+        "tag": "div",
+        "rect": [
+          0,
+          810,
+          1440,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": ""
+      },
+      {
+        "tag": "script",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": "window._agl = window._agl || ["
+      },
+      {
+        "tag": "script",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": "function _howxm(){_howxmQueue."
+      },
+      {
+        "tag": "iframe",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "absolute",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": ""
+      },
+      {
+        "tag": "next-route-announcer",
+        "rect": [
+          0,
+          810,
+          0,
+          0
+        ],
+        "pos": "absolute",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": ""
+      },
+      {
+        "tag": "div",
+        "rect": [
+          633,
+          0,
+          174,
+          34
+        ],
+        "pos": "fixed",
+        "z": "305",
+        "op": "0",
+        "class": "pointer-events-none fixed left-1/2 top-0 z-[305] -translate-x-1/2 moti",
+        "文字": "正在跟随 取消ESC 按 ESC 退出"
+      },
+      {
+        "tag": "script",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": "(function(c,d,f,g,e){c[e]=c[e]"
+      },
+      {
+        "tag": "iframe",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": ""
+      },
+      {
+        "tag": "div",
+        "rect": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "pos": "absolute",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": ""
+      },
+      {
+        "tag": "div",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "fixed",
+        "z": "9990",
+        "op": "1",
+        "class": "",
+        "文字": ""
+      },
+      {
+        "tag": "div",
+        "rect": [
+          1420,
+          810,
+          0,
+          0
+        ],
+        "pos": "fixed",
+        "z": "99999",
+        "op": "0",
+        "class": "ysf-chat-layer",
+        "文字": ""
+      },
+      {
+        "tag": "div",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto",
+        "op": "1",
+        "class": "",
+        "文字": ""
+      }
+    ]
+  },
+  "样式表": {
+    "命中数": 31,
+    "命中": [
+      {
+        "源": "inline",
+        "片段": ":where(.css-1cj4ms).ant-modal-root .ant-modal-mask { position: fixed; inset: 0px; z-index: 1000; height: 100%; background-color: rgba(0, 0, 0, 0.45); pointer-events: none; }"
+      },
+      {
+        "源": "inline",
+        "片段": ":where(.css-1cj4ms).ant-modal-root .ant-modal-wrap { position: fixed; inset: 0px; z-index: 1000; overflow: auto; outline: 0px; }"
+      },
+      {
+        "源": "ic/_next/static/chunks/21k9k06cj3xrq.css",
+        "片段": ".h5NonMemberPaywall-module-scss-module__OiVaqa__overlay { background: var(--h5-pay-overlay-bg); touch-action: none; align-items: flex-end; display: flex; position: fixed; inset: 0px; }"
+      },
+      {
+        "源": "ic/_next/static/chunks/21k9k06cj3xrq.css",
+        "片段": ".PowerConsumeOrderModal-module-scss-module__nQlEsG__overlay { z-index: 1200; background: rgba(0, 0, 0, 0.45); justify-content: center; align-items: center; display: flex; position: fixed; inset: 0px; }"
+      },
+      {
+        "源": "ic/_next/static/chunks/21k9k06cj3xrq.css",
+        "片段": ".CorporatePay-module-scss-module__O2hgOa__modalMask { z-index: 600; background: var(--corporate-pay-modal-mask); justify-content: center; align-items: center; display: flex; position: fixed; inset: 0px; }"
+      },
+      {
+        "源": "ic/_next/static/chunks/21k9k06cj3xrq.css",
+        "片段": ".InviteDetailModal-module-scss-module__-V9WEG__overlay { z-index: var(--z-modal); background: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center; display: flex; position: fixed; inset: 0px; }"
+      },
+      {
+        "源": "ic/_next/static/chunks/21k9k06cj3xrq.css",
+        "片段": ".index-module-scss-module__OffHcW__libtvPosterHidden { z-index: -1; position: fixed; top: 0px; left: -9999px; }"
+      },
+      {
+        "源": "ic/_next/static/chunks/21k9k06cj3xrq.css",
+        "片段": ".index-module__LGDjeG__bar { z-index: var(--z-critical,800); position: fixed; top: 0px; left: 0px; right: 0px; }"
+      },
+      {
+        "源": "ic/_next/static/chunks/2i0zx3s0wp9uo.css",
+        "片段": "@layer base {\n  *, ::after, ::before, ::backdrop { box-sizing: border-box; border: 0px solid; margin: 0px; padding: 0px; }\n  ::file-selector-button { box-sizing: border-box; border: 0px solid; margin: 0px; padding: 0px; "
+      },
+      {
+        "源": "ic/_next/static/chunks/2i0zx3s0wp9uo.css",
+        "片段": "@layer utilities {\n  .\\@container { container-type: inline-size; }\n  .\\[container-type\\:size\\] { container-type: size; }\n  .pointer-events-auto { pointer-events: auto; }\n  .pointer-events-none { pointer-events: none; }\n "
+      },
+      {
+        "源": "ic/_next/static/chunks/2i0zx3s0wp9uo.css",
+        "片段": ".page-overlay-scrollbar { z-index: var(--z-dropdown); background-image: ; background-position-x: ; background-position-y: ; background-size: ; background-repeat: ; background-attachment: ; background-origin: ; background"
+      },
+      {
+        "源": "ic/_next/static/chunks/25ixrn8zsife0.css",
+        "片段": ".katex .vlist-t { border-collapse: collapse; table-layout: fixed; display: inline-table; }"
+      },
+      {
+        "源": "ic/_next/static/chunks/2xkscrqh09aa5.css",
+        "片段": ".copilotKitPopup { z-index: 30; text-size-adjust: 100%; tab-size: 4; font-feature-settings: normal; font-variation-settings: normal; touch-action: manipulation; font-family: ui-sans-serif, system-ui, -apple-system, Blink"
+      },
+      {
+        "源": "ic/_next/static/chunks/2xkscrqh09aa5.css",
+        "片段": ".copilotKitSidebar { z-index: 30; text-size-adjust: 100%; tab-size: 4; font-feature-settings: normal; font-variation-settings: normal; touch-action: manipulation; font-family: ui-sans-serif, system-ui, -apple-system, Bli"
+      },
+      {
+        "源": "ic/_next/static/chunks/2xkscrqh09aa5.css",
+        "片段": ".copilotKitWindow { transform-origin: center bottom; background-color: var(--copilot-kit-background-color); opacity: 0; pointer-events: none; border-color: rgb(229, 231, 235); border-radius: 0.75rem; flex-direction: colu"
+      },
+      {
+        "源": "ic/_next/static/chunks/0mqleicpnfbrz.css",
+        "片段": "@media (max-width: 1000px) {\n  .animationPreview-module__MGsKJW__header { flex-wrap: wrap; gap: 6px; padding: 8px 12px; }\n  .animationPreview-module__MGsKJW__saveState { display: none; }\n  .animationPreview-module__MGsKJ"
+      },
+      {
+        "源": "ic/_next/static/chunks/29wmog9msv52n.css",
+        "片段": ".angle-editor-camera-3d-pivot.camera-3d-fixed { transition: none; }"
+      },
+      {
+        "源": "ic/_next/static/chunks/29wmog9msv52n.css",
+        "片段": ".unified-scene-fixed-cameras { pointer-events: none; width: 150px; height: 150px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }"
+      },
+      {
+        "源": "ic/_next/static/chunks/28wi3pnq9-ixp.css",
+        "片段": ".mobileCheckout-module-scss-module__19TCea__overlay { background: var(--h5-pay-overlay-bg); align-items: flex-end; display: flex; position: fixed; inset: 0px; }"
+      },
+      {
+        "源": "ic/_next/static/chunks/28wi3pnq9-ixp.css",
+        "片段": ".mobileCheckout-module-scss-module__19TCea__wechatMask { background: var(--h5-pay-overlay-bg); position: fixed; inset: 0px; }"
+      },
+      {
+        "源": "inline",
+        "片段": ".asideButton_asideBtn__l1LRP { display: flex; cursor: pointer; position: fixed; z-index: 999999999; flex-direction: column; align-items: center; padding: 12px 8px; color: var(--background-color); background: var(--primar"
+      },
+      {
+        "源": "inline",
+        "片段": ".modalWidget_widgetWrapper__shri5 { display: flex; align-items: flex-end; position: fixed; z-index: 999999999; overflow: hidden; border-radius: 6px; transition: 0.4s; min-height: 74px; box-shadow: rgba(16, 24, 40, 0.08) "
+      },
+      {
+        "源": "inline",
+        "片段": ".publicModalWidget_backdropBase__b7Rju { position: fixed; inset: 100vh 0px 0px; background-color: rgba(0, 0, 0, 0.5); display: none; opacity: 0; transition: opacity 0.4s; z-index: 999999999; }"
+      },
+      {
+        "源": "inline",
+        "片段": ".index_loading__c3Eal { position: fixed; inset: 0px; background: rgba(0, 0, 0, 0.7); z-index: 2147483647; display: flex; flex-direction: column; justify-content: center; align-items: center; color: rgb(255, 255, 255); li"
+      },
+      {
+        "源": "inline",
+        "片段": ".banner_BOTTOM__-BzRS { position: fixed; bottom: -200px; }"
+      }
+    ]
+  },
+  "大编辑器前": {
+    "opacity": "0",
+    "transitionDuration": "0s",
+    "动画数": 0
+  },
+  "大编辑器中": {
+    "opacity": "0",
+    "transitionDuration": "0s",
+    "动画数": 0
+  },
+  "大编辑器后": {
+    "opacity": "0",
+    "transitionDuration": "0s",
+    "动画数": 0
+  }
+}

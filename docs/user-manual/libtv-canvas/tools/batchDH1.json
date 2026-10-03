@@ -1,0 +1,21 @@
+{
+  "环境": {
+    "prefers-reduced-motion: reduce": true,
+    "prefers-reduced-motion: no-preference": false,
+    "prefers-color-scheme: dark": false,
+    "pointer: fine": true,
+    "UA": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/147.0.77",
+    "webdriver": false
+  },
+  "改前": {
+    "transitionDuration": "0s",
+    "transitionProperty": "all",
+    "class": "pointer-events-none fixed inset-0 z-[180] motion-safe:transition-opacity motion-safe:duration-200"
+  },
+  "改后": {
+    "reduce": false,
+    "transitionDuration": "0.2s",
+    "transitionProperty": "opacity"
+  },
+  "覆盖有效": true
+}
