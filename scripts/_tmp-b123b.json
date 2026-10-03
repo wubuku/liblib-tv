@@ -1,0 +1,79 @@
+{
+ "at": "2026-10-03T01:43:30.714Z",
+ "round": "b",
+ "start": {
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员",
+  "status": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+ },
+ "spot": {
+  "x": 248,
+  "y": 30,
+  "命中": "DIV tid=audio-node-empty",
+  "节点id": "node_w7s8mxphwh",
+  "节点标题": "音频 49",
+  "节点矩形": [
+   142,
+   -74,
+   192,
+   192
+  ],
+  "该点在节点内": true,
+  "该点在顶栏矩形内": true,
+  "该点在顶栏任何可点子元素内": null
+ },
+ "afterBlankClick": {
+  "选中": [
+   {
+    "id": "node_w7s8mxphwh",
+    "标题": "音频 49"
+   }
+  ],
+  "status": "76 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存."
+ },
+ "blank": {
+  "x": 578,
+  "y": 200
+ },
+ "afterUnselect": {
+  "选中": [],
+  "status": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+ },
+ "btnPoint": {
+  "x": 158,
+  "y": 18,
+  "矩形": [
+   156,
+   16,
+   34,
+   28
+  ]
+ },
+ "afterBtnClick": {
+  "选中": [],
+  "浮层": [
+   {
+    "role": "dialog",
+    "tid": "canvas-node-summary-popover",
+    "矩形": [
+     73,
+     47,
+     200,
+     292
+    ],
+    "文字": "图片 1 视频 1 文本 3 音频 68 时间线 2 外部 1 查看项目信息"
+   }
+  ]
+ },
+ "afterEsc": {
+  "浮层数": 0,
+  "选中": 0
+ },
+ "终态": {
+  "zoom": "Zoom options, 60%",
+  "credits": "Credits: 805 · 基础会员",
+  "选中": [],
+  "status": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "浮层数": 0
+ }
+}
