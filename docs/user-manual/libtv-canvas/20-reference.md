@@ -884,6 +884,53 @@
 > （为什么「数出来的张数」和「实际张数」对不上、为什么滚到底会有收尾提示），
 > 但**正常用广场不需要知道这些** —— 日常操作看 [asset-library.md](10-tasks/asset-library.md) 就够了。
 
+### 素材库 / 广场的界面文案，逐字对上了 i18n key
+
+Batch DO 把页面已加载的 **152 个 JS chunk（19 MB）** 只读下载下来之后，
+可以**把界面上的字和它在源码里的 key 一一对上**：
+
+| 界面上的字 | 源码 key | 状态 |
+|---|---|---|
+| `风格广场` | `materialTabStylePlaza` | ✅ 见过 |
+| `特效广场` | `materialTabLensPlaza` | ✅ 见过 |
+| `我的收藏` | `materialTabFavorite` | ✅ 见过 |
+| `最近使用` | `materialTabRecent` | ✅ 见过 |
+| `仅看可商用` | `commercialOnlyFilter` | ✅ 见过 |
+| `搜索风格名称、作者` | `searchStylePlaceholder` | ✅ 见过 |
+| `搜索特效名称、作者` | `searchLensPlaceholder` | ✅ 见过 |
+| `全部适配模型` | `allAdaptedModels` | ✅ 见过 |
+| `商用` | `commercialUsable` | ✅ 见过 |
+| ⭐ `没有更多了` | **`noMore`** | ✅ 见过（滚到底那一句） |
+| `正在加载更多` | `loadingMore` | 📖 界面上没捕捉到 |
+| `已加载全部` | `allLoaded` | 📖 **只存在于文案表，没找到调用点** |
+| ⭐ `生成内容可商用` | `generatedContentCommercialUsable` | 📖 界面上没捕捉到 |
+| `首选推荐模型` | `preferredRecommendedModel` | 📖 界面上没捕捉到 |
+| `其余适配模型` | `otherAdaptedModels` | 📖 界面上没捕捉到 |
+| `当前使用` | `currentlyInUse` | 📖 界面上没捕捉到 |
+| `当前节点已使用风格，模型不可切换` | `modelLockedByStyle` | 📖 界面上没捕捉到 |
+| `该素材缺少版本信息，无法收藏` | `materialMissingVersionCannotFavorite` | 📖 界面上没捕捉到 |
+| `风格详情` / `特效详情` | `styleDetail` / `lensDetail` | 📖 界面上没捕捉到 |
+
+> ⚠️ **这张表最容易读错的地方：key 存在 ≠ 界面上会出现。**
+> 带 📖 的那几条**只查到了文案定义、没找到调用点**，本手册也没在界面上见过。
+> **别把它们当功能说明。**
+>
+> ⭐ 顺带查清了一件差点搞混的事：
+> **`商用`（素材本身可商用）和 `生成内容可商用`（用它生成的东西可商用）是两个不同的 key** ——
+> 界面上一旦同时出现，含义完全不同。⚠️ 本手册**没在界面上见过后者**，标 📖。
+
+### 还有几个只在源码里看得到的名字
+
+| key | 字面 | 手册状态 |
+|---|---|---|
+| `canvasContextMenuMaterial` | `素材` | ⛔ 节点右键菜单 —— 无头环境拿不到系统菜单，但**菜单项确实存在** |
+| `canvasContextMenuText5110a0` | `资产` | 同上 |
+| `canvasStoreDelete` / `canvasStoreDelete2` | `删除边` / `批量删除边` | ⛔ **断开连线在状态层存在**，但本手册在界面上**没找到入口** |
+| `canvasStoreCanvas` / `canvasStoreCanvas2` | `清空画布` / `重置画布` | 📖 界面上没见到这两个入口 |
+| `canvasCapture` | `画布抓取` | 📖 未验证 |
+| `canvasLoadingScreenText061c5b` | `团队版可见` | 📖 与上面协作一节呼应 |
+| `canvasNavbarCollabPortal*` | `已同步` / `同步中` / `待同步` / `已离线` | 📖 协作同步状态在**顶栏**呈现 |
+
 ---
 
 ## 覆盖边界

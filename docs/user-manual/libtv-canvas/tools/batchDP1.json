@@ -1,0 +1,2710 @@
+{
+ "teamRedeemUnsupported": {
+  "文案": "团队版暂不支持课程兑换，请切换到个人账号进行课程兑换和查看",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "practiceTeamAccountBlockedTitle": {
+  "文案": "课程暂不支持团队账号操作",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "practiceTeamAccountBlockedDesc": {
+  "文案": "LibTV学院-AI跟练室暂不支持团队账号操作，请切换个人账号进行操作",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "pictureEditDurationUnsupported": {
+  "文案": "视频大于15秒，暂不支持该功能",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "interactiveImageEditGenerating": {
+  "文案": "生成中...",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copy": {
+  "文案": "复制",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "paste": {
+  "文案": "粘贴",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyNode": {
+  "文案": "复制节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyNodeTip": {
+  "文案": "仅复制当前节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyImage": {
+  "文案": "复制图片",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyText": {
+  "文案": "复制文本",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "createCopyGeneratingTip": {
+  "文案": "生成中的节点也可创建副本；副本不会继承生成任务，需要重新触发生成。仅支持复制上游连线，下游连线需用户根据规则手动连接。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyToClipboard": {
+  "文案": "复制到剪贴板",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyTaskId": {
+  "文案": "复制 TaskId",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyStoryboardGroup": {
+  "文案": "复制分镜组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "pasteStoryboardGroup": {
+  "文案": "粘贴分镜组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNotCopyable": {
+  "文案": "该画布不可复制",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "connectingStatus": {
+  "文案": "连接中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorCameraMotionPresetFollowBlocked": {
+  "文案": "跟随目标时不可使用预设运镜",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorAnimationExportCanvasUnsupported": {
+  "文案": "当前画布暂不支持接收动画视频",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorAnimationExportBrowserUnsupported": {
+  "文案": "当前浏览器不支持导出动画视频",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorAnimationExportMp4Unsupported": {
+  "文案": "当前浏览器不支持 MP4 画布录制",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorAnimationExporting": {
+  "文案": "正在导出动画视频...",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorAnimationExportCanvasRecordUnsupported": {
+  "文案": "当前浏览器无法录制画布视频",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorAnimationExportRecordingFailed": {
+  "文案": "动画视频录制失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorAnimationExportEmptyFrame": {
+  "文案": "导出视频画面为空",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorAnimationExportEmptyVideo": {
+  "文案": "导出视频为空",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorAnimationExportSuccess": {
+  "文案": "动画视频已导出到画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorAnimationExportFailed": {
+  "文案": "动画视频导出失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorAnimationExportReadonly": {
+  "文案": "只读模式无法导出视频到画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorAnimationExportLoginRequired": {
+  "文案": "请先登录",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorAnimationExportUploadFailed": {
+  "文案": "上传动画视频失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorAnimationExportNodeCreateFailed": {
+  "文案": "视频已上传，但画布节点创建失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorTimelineClipUnlock": {
+  "文案": "解锁",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorPhoneVcamPerfExport": {
+  "文案": "导出 JSON",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorPhoneVcamUnsupported": {
+  "文案": "当前环境不支持手机运镜",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorPhoneVcamImported": {
+  "文案": "手机运镜已导入机位时间轴",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorPhoneVcamUnlockCamera": {
+  "文案": "解锁机位",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorMocapUnsupported": {
+  "文案": "当前浏览器不支持动作捕捉",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorMocapTimelinePlaybackBlocked": {
+  "文案": "实时动捕期间无法播放",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "removeScene": {
+  "文案": "移除场景",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "voiceInputUnsupported": {
+  "文案": "当前浏览器不支持录音",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyFailed": {
+  "文案": "复制失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNoData": {
+  "文案": "当前画布并无数据",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyLink": {
+  "文案": "复制链接",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "generating": {
+  "文案": "生成中…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "portraitAgreementTooltip": {
+  "文案": "由于未同意授权，遇到人像时，不会使用Seedance进行生成",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "portraitAgreementPending": {
+  "文案": "待确认人像安全协议",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "generationTaskGenerating": {
+  "文案": "生成中…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockInsufficientCreditsTitle": {
+  "文案": "积分不足",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockInsufficientCreditsNonMemberDesc": {
+  "文案": "您的积分余额不足，请升级会员后继续创作",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockStorageTitle": {
+  "文案": "空间不足",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockStorageDesc": {
+  "文案": "完成此任务所需空间不足，升级空间以继续创作。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockConcurrencyTitle": {
+  "文案": "任务数超过上限",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockConcurrencyDesc": {
+  "文案": "同时进行的任务已达上限，升级后可一次生成更多内容。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockVipModelTitle": {
+  "文案": "会员专属模型",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockUpgrade": {
+  "文案": "升级会员",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockRecharge": {
+  "文案": "充值积分",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockModelFallback": {
+  "文案": "该模型",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockUpgradeSuccessTitle": {
+  "文案": "升级成功",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockUpgradeSuccessDesc": {
+  "文案": "您已经成功升级会员，继续创作吧！",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockRechargeSuccessTitle": {
+  "文案": "充值成功",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockRechargeSuccessDesc": {
+  "文案": "积分已到账，继续创作吧！",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockCreditsUpdatedTitle": {
+  "文案": "积分更新",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamInsufficientCreditsTitle": {
+  "文案": "团队积分额度超限",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamInsufficientCreditsDesc": {
+  "文案": "完成此任务所需积分不足，请升级或充值以继续创作。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamInsufficientCreditsMemberDesc": {
+  "文案": "完成此任务所需积分不足，请联系团队管理员升级或充值以继续创作。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamMemberQuotaDesc": {
+  "文案": "完成此任务所需积分不足，请升级或充值以继续创作。若团队积分充足，请调整你的个人额度。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamStorageTitle": {
+  "文案": "团队空间不足",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamStorageDesc": {
+  "文案": "完成此任务所需空间不足，请升级团队空间以继续创作。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamStorageMemberDesc": {
+  "文案": "完成此任务所需空间不足，请联系团队管理员升级团队空间以继续创作。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamConcurrencyTitle": {
+  "文案": "团队任务数超过上限",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamConcurrencyDesc": {
+  "文案": "团队同时进行的任务已达上限，升级后可一次生成更多内容。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamConcurrencyMemberDesc": {
+  "文案": "团队同时进行的任务已达上限，请联系团队管理员升级以继续创作。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamVipModelTitle": {
+  "文案": "团队会员专属模型",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamCreditsUpdatedTitle": {
+  "文案": "团队积分更新",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamRechargeSuccessDesc": {
+  "文案": "团队积分已到账，继续创作吧！",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamMemberQuotaUpdatedTitle": {
+  "文案": "团队个人积分额度更新",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamMemberQuotaUpdatedDesc": {
+  "文案": "您的积分额度已到账，继续创作吧！",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamUpgradeSuccessTitle": {
+  "文案": "团队升级成功",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockTeamUpgradeSuccessDesc": {
+  "文案": "您的团队已成功升级会员，继续创作吧！",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockContinueHint": {
+  "文案": "或等当前任务完成后继续生成",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockStorageContinueHint": {
+  "文案": "提升存储空间后，可点击“继续生成”。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatCommercialBlockConcurrencyContinueHint": {
+  "文案": "并发数量调整后，可点击“继续生成”。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatBlockingReasonOutputAuditBlocked": {
+  "文案": "目前内容暂不符合平台规范，请重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "chatBlockingReasonFallback": {
+  "文案": "当前任务已中断，请重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodesBatchCreated": {
+  "文案": "已创建节点与连线",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodesBatchUpdated": {
+  "文案": "已更新节点与连线",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodesBatchDeleted": {
+  "文案": "已删除节点与连线",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodesBatchNodeFallback": {
+  "文案": "节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodesBatchConnectionsLabel": {
+  "文案": "连线：",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "generatingShort": {
+  "文案": "生成中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasDeleted": {
+  "文案": "画布已被删除",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasLoadFailed": {
+  "文案": "画布加载失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNotReadyRetry": {
+  "文案": "画布未就绪，请刷新后重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasAutoNamePrefix": {
+  "文案": "画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "historySelectUnsupportedType": {
+  "文案": "不支持选择该类型素材",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "ratingButton": {
+  "文案": "评级",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "ratingClear": {
+  "文案": "取消评级",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "ratingFailed": {
+  "文案": "评级失败，请重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeText": {
+  "文案": "文本",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeImage": {
+  "文案": "图片",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeVideo": {
+  "文案": "视频",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeVideoClip": {
+  "文案": "智能剪辑",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeAudio": {
+  "文案": "音频",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeScript": {
+  "文案": "脚本",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeScriptV2": {
+  "文案": "脚本",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeScriptLegacy": {
+  "文案": "脚本（旧版）",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeVideoGroup": {
+  "文案": "视频组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeReference": {
+  "文案": "参考节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeCustom": {
+  "文案": "自定义",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeTextDesc": {
+  "文案": "剧本、广告词、品牌文案",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeImageDesc": {
+  "文案": "海报、分镜、角色设计",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeVideoDesc": {
+  "文案": "创意广告、动画、电影",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeVideoClipDesc": {
+  "文案": "多个视频片段合为一个",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeDirectorConsole": {
+  "文案": "导演台",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeDirectorConsoleDesc": {
+  "文案": "搭建3D场景，截图作为构图参考",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorStudioEntryModelUnsupported": {
+  "文案": "当前模型不支持 Director Studio",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorStudioEntryDisconnect": {
+  "文案": "取消关联 Director Studio",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeShotBreakdown": {
+  "文案": "逐帧拉片",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeShotBreakdownDesc": {
+  "文案": "拆解视频的风格、运镜与音频",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeAudioDesc": {
+  "文案": "音效、配音、音乐",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeScriptDesc": {
+  "文案": "创意脚本、生成故事板",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeScriptV2Desc": {
+  "文案": "创意脚本、生成故事板",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeReferenceDesc": {
+  "文案": "备忘文本；连线仅为示意",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeGroup": {
+  "文案": "分组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeScriptV2Label": {
+  "文案": "脚本 V2",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeSpaceScene720": {
+  "文案": "720°全景",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeMaterialStyle": {
+  "文案": "风格",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeMaterialLens": {
+  "文案": "特效",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeTemp": {
+  "文案": "临时",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "shareLinkGenerating": {
+  "文案": "链接生成中...",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasMinimap": {
+  "文案": "画布小地图",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "snapToGrid": {
+  "文案": "网格吸附",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeEdges": {
+  "文案": "节点连线",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "styleLibrary": {
+  "文案": "风格库",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "lensLibrary": {
+  "文案": "特效库",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "materialLibraryDesc": {
+  "文案": "海量素材内容",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "smartCompletionRegenerating": {
+  "文案": "重新生成中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "emptyViewportHint": {
+  "文案": "当前视窗没有节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodes": {
+  "文案": "打组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupMenu": {
+  "文案": "打组菜单",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "shortcutLabelUngroup": {
+  "文案": "解组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeLockedCannotCopy": {
+  "文案": "其他成员正在编辑该节点，无法复制",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeLockedCannotCopyImage": {
+  "文案": "其他成员正在编辑该节点，无法复制图片",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyImageFailed": {
+  "文案": "复制图片失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyTextFailed": {
+  "文案": "复制文本失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "storyboardStitchExportFailed": {
+  "文案": "导出拼接图失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupStop": {
+  "文案": "停止",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupRegenerate": {
+  "文案": "重新生成",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupRunAll": {
+  "文案": "整组执行",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupBatchGenerateVideo": {
+  "文案": "批量生成视频",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupUpdateToolbox": {
+  "文案": "更新工具箱",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupAddToTeamToolbox": {
+  "文案": "添加到团队工具箱",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupAddToToolbox": {
+  "文案": "添加到工具箱",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNeedAllImageNodes": {
+  "文案": "组内须全部为图片节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupConvertToStoryboard": {
+  "文案": "转分镜组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupUngroup": {
+  "文案": "解组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupBatchDownload": {
+  "文案": "批量下载",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupRunAllConfirm": {
+  "文案": "开始执行",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupBatchVideoShort": {
+  "文案": "批量视频",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupRunConfirmLoading": {
+  "文案": "正在计算算力消耗…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupRunOnlyGenerators": {
+  "文案": "仅生成节点会被执行，特殊节点需手动执行。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupRunConcurrencyWaitToast": {
+  "文案": "已达并发任务上限，超出的任务将自动排队重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupRunConcurrencyRetryExhausted": {
+  "文案": "等待并发任务额度超时，请稍后重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "refDropTypeUnsupported": {
+  "文案": "仅支持将图片、视频、音频拖入参考",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "refDropModelUnsupported": {
+  "文案": "当前模型不支持该素材作为参考",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "referencePickSendBlocked": {
+  "文案": "正在选择参考，完成选择后可发送",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "referencePickVideoUnsupported": {
+  "文案": "视频暂不支持作为参考",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "referencePickAssetUnsupported": {
+  "文案": "该资产不支持作为参考",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "referencePickGroupPartialUnsupported": {
+  "文案": "部分节点不支持，已跳过",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "referencePickGroupAllUnsupported": {
+  "文案": "当前模型不支持所选节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupContextLabel": {
+  "文案": "分组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "fillFrameGenerating": {
+  "文案": "生成中...",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "separatingLabel": {
+  "文案": "分离中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipDisconnectAgentEditingBusy": {
+  "文案": "智能剪辑进行中，暂时无法断开素材连线",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "panoramaWebglUnsupported": {
+  "文案": "当前环境不支持 WebGL，无法运行全景转 3D",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "scriptModelUnsupportedImage": {
+  "文案": "该模型不支持当前连入的图片素材",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyShotAriaLabel": {
+  "文案": "复制分镜",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "removeRefAriaLabel": {
+  "文案": "移除引用",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "styleLabel": {
+  "文案": "风格",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "removeStyle": {
+  "文案": "移除",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "styleAssetTitle": {
+  "文案": "风格资产",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeViewAngleSuffix": {
+  "文案": " 视角",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeScreenshotSuffix": {
+  "文案": " 截图",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "panoramaGenerating": {
+  "文案": "全景图生成中...",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "generatingLabel": {
+  "文案": "生成中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "otherUserFallback": {
+  "文案": "其他用户",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorGenerating": {
+  "文案": "生成中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorExportToCanvas": {
+  "文案": "导出视频到画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorExportingToCanvas": {
+  "文案": "导出中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorExportSettings": {
+  "文案": "导出设置",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorExportDuration": {
+  "文案": "时长",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorExportDurationHelp": {
+  "文案": "导出视频时长",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorExportAspectRatio": {
+  "文案": "比例",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorExportAspectRatioHelp": {
+  "文案": "导出视频比例",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorShortcutUngroup": {
+  "文案": "解组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportTitle": {
+  "文案": "AI 识图导入",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportTabAi": {
+  "文案": "AI 识图",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportTabJson": {
+  "文案": "粘贴 JSON",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportPreviewAlt": {
+  "文案": "上传图片预览",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportClickUpload": {
+  "文案": "点击上传图片",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportAnalyzing": {
+  "文案": "识图中…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportAnalyzeAction": {
+  "文案": "识图导入场景",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportAnalyzeFailed": {
+  "文案": "识图分析失败，请重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportJsonInvalid": {
+  "文案": "JSON 格式无效，请检查字段是否正确",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportJsonReadFailed": {
+  "文案": "JSON 文件读取失败，请重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportJsonMissingContent": {
+  "文案": "JSON 格式不正确，或缺少可导入的 characters / props",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportJsonFileHint": {
+  "文案": "粘贴 JSON 或选择本地 .json 文件",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportChooseFile": {
+  "文案": "选择文件",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportJsonTextareaPlaceholder": {
+  "文案": "粘贴 director_img_to_scene 返回的场景 JSON",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportCharactersOnly": {
+  "文案": "仅识别人物",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportCharactersOnlyDesc": {
+  "文案": "只调用本地 SAM，生成动作 Mesh",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportPreDirectImportHint": {
+  "文案": "pre 环境可直接导入识图 JSON，不会消耗算力",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportCharactersCloseHint": {
+  "文案": "关闭不会中断 SAM 识别，生成动作 Mesh 后自动导入导演台",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportSceneCloseHint": {
+  "文案": "关闭不会中断识图任务，生成站位参考后自动导入导演台",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportActionImportJson": {
+  "文案": "导入 JSON",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportActionGenerateCharacterMesh": {
+  "文案": "生成动作 Mesh",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportActionGeneratePositionReference": {
+  "文案": "生成站位参考",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportParseSuccess": {
+  "文案": "解析成功：",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportAction": {
+  "文案": "导入场景",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorUnlock": {
+  "文案": "解锁",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorContextMenuUngroup": {
+  "文案": "解组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTitleLabel": {
+  "文案": "节点标题",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "renameFailed": {
+  "文案": "重命名失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyingProject": {
+  "文案": "正在复制项目，请稍候…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyProjectFailedRetry": {
+  "文案": "复制项目失败，请稍后重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasSectionTitle": {
+  "文案": "画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNameLabel": {
+  "文案": "画布名称",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyCanvas": {
+  "文案": "复制画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "renameCanvas": {
+  "文案": "重命名画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sendToCanvasUnsupported": {
+  "文案": "当前不支持添加到画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "renamed": {
+  "文案": "已重命名",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "agentReadOnlyBlockedToast": {
+  "文案": "只读查看模式下不可操作",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "agentSettingsBrowserNotificationUnsupported": {
+  "文案": "当前环境不支持浏览器通知",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "portraitAgreementSigned": {
+  "文案": "已签署人像安全协议",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "other": {
+  "文案": "其他",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "otherInputPlaceholder": {
+  "文案": "其他 请输入",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchContentPlaceholder": {
+  "文案": "请输入搜索内容",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyPrompt": {
+  "文案": "一键复制 prompt",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchAssetPlaceholder": {
+  "文案": "搜索资产",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchNoResultTitle": {
+  "文案": "未找到文件或文件夹",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchNoResultDesc": {
+  "文案": "未找到匹配的资源，请尝试其他搜索词",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchSkill": {
+  "文案": "搜索 Skill",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "unsupportedFileType": {
+  "文案": "不支持的文件类型",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNoNodes": {
+  "文案": "画布暂无节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "notSupportAddToCanvas": {
+  "文案": "当前不支持添加到画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasElements": {
+  "文案": "画布元素",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchCanvasNode": {
+  "文案": "搜索画布节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchNode": {
+  "文案": "搜索节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchCanvasElements": {
+  "文案": "搜索画布元素",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchCanvasNodes": {
+  "文案": "搜索画布节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeName": {
+  "文案": "节点名称",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "personalSubjectImport": {
+  "文案": "个人主体导入",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "rename": {
+  "文案": "重命名",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchPlaceholder": {
+  "文案": "请输入搜索内容",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchEmptyDesc": {
+  "文案": "未找到匹配的资源，请尝试其他搜索词",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "disconnectEdgeTitle": {
+  "文案": "断开连线",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "disconnectEdgeMessage": {
+  "文案": "断开后脚本关联关系将消失，重新生成时将不再关联脚本信息了。确定要断开吗？",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "disconnectConfirmText": {
+  "文案": "确定断开",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorPanoramaGaussianGenerating": {
+  "文案": "正在生成高斯泼溅…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportChangeImage": {
+  "文案": "更换图片",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportCloseHint": {
+  "文案": "退出不会中断生成过程，全景图生成成功后，会自动加载到背景",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportDragUpload": {
+  "文案": "拖拽本地图片至此上传",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportHistoryLoadFailed": {
+  "文案": "历史记录加载失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportHistoryLoadMoreFailed": {
+  "文案": "更多历史记录加载失败，请稍后重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportHistoryLoading": {
+  "文案": "历史记录加载中...",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportInsertTitle": {
+  "文案": "插入当前导演台",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportInsertDesc": {
+  "文案": "作为站位参考层插入，不覆盖当前全景、角色和机位",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportReplaceTitle": {
+  "文案": "覆盖当前导演台",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportReplaceDesc": {
+  "文案": "作为站位参考层插入，覆盖当前全景、角色和机位",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportNoHistory": {
+  "文案": "暂无历史图片",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportOr": {
+  "文案": "或",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportOverrideLabel": {
+  "文案": "选择是否覆盖场景",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportReload": {
+  "文案": "重新加载",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportReupload": {
+  "文案": "重新上传图片",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportTabHistory": {
+  "文案": "历史记录",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportTabLocal": {
+  "文案": "本地上传",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "sceneImportUploadHint": {
+  "文案": "上传后画布将新建一个图片节点并自动替换当前图源",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "materialTabStylePlaza": {
+  "文案": "风格广场",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "materialTabLensPlaza": {
+  "文案": "特效广场",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "materialTabFavorite": {
+  "文案": "我的收藏",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "materialTabRecent": {
+  "文案": "最近使用",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "materialMissingVersionCannotFavorite": {
+  "文案": "该素材缺少版本信息，无法收藏",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchLensPlaceholder": {
+  "文案": "搜索特效名称、作者",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchStylePlaceholder": {
+  "文案": "搜索风格名称、作者",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commercialOnlyFilter": {
+  "文案": "仅看可商用",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "loadingMore": {
+  "文案": "正在加载更多",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "allLoaded": {
+  "文案": "已加载全部",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "currentlyInUse": {
+  "文案": "当前使用",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commercialUsable": {
+  "文案": "商用",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "allAdaptedModels": {
+  "文案": "全部适配模型",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "styleDetail": {
+  "文案": "风格详情",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "lensDetail": {
+  "文案": "特效详情",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "preferredRecommendedModel": {
+  "文案": "首选推荐模型",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "otherAdaptedModels": {
+  "文案": "其余适配模型",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "materialSearchDefaultPlaceholder": {
+  "文案": "搜索风格、模型名称、作者、标签",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "modelLockedByStyle": {
+  "文案": "当前节点已使用风格，模型不可切换",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "addStyleNode": {
+  "文案": "新增风格节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "addLensNode": {
+  "文案": "新增特效节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "lensNodeDefaultLabel": {
+  "文案": "特效节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "styleNodeDefaultLabel": {
+  "文案": "风格节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "selectLens": {
+  "文案": "选择特效",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "replaceLens": {
+  "文案": "更换特效",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "selectStyle": {
+  "文案": "选择风格",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "modelUploading": {
+  "文案": "模型上传中…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "pasteMediaUseShortcutHint": {
+  "文案": "由于系统限制，图片/视频/音频等资源请使用快捷键 Ctrl/Cmd+V 粘贴到画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioGeneratingHint": {
+  "文案": "角色正在生成中，完成后将通知你",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioImportFromLocal": {
+  "文案": "从本地导入",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioImportFromMyAssets": {
+  "文案": "从我的资产导入",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioImportRole": {
+  "文案": "导入已有角色",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioImportFromAssets": {
+  "文案": "从资产库导入素材",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioImportHint": {
+  "文案": "上传已获授权的人物参考图，可补充角色描述后生成角色",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioImportAndReview": {
+  "文案": "导入并创建",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioImportAndCreate": {
+  "文案": "导入并创建",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioLeaveGeneratingTitle": {
+  "文案": "生成尚未完成，确定离开？",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioLeaveGeneratingDescription": {
+  "文案": "离开后本次生成会被取消。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioLeaveGeneratingConfirm": {
+  "文案": "取消生成并离开",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioVoiceGenerating": {
+  "文案": "音色生成中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioStylingNameDreadlocks": {
+  "文案": "脏辫",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioStylingNameSportswear1": {
+  "文案": "运动",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioStylingNameSportswear2": {
+  "文案": "运动",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioStylingNameSportswear3": {
+  "文案": "运动",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioStylingNameSportswear4": {
+  "文案": "运动",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterStudioProgressGenerating": {
+  "文案": "正在生成角色图片…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "characterImportFailed": {
+  "文案": "角色导入失败，请重试。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "slashModelNotSupported": {
+  "文案": "该模型暂不支持slash模式",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyNodeOnlyTip": {
+  "文案": "仅复制节点本身",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "createCopyGeneratingTipShort": {
+  "文案": "复制节点及上游连线；生成中的副本不会继承生成任务，需要重新触发生成。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyAllWithEdges": {
+  "文案": "复制全部，包括连线",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "slashModelNotSupportAbility": {
+  "文案": "当前模型暂不支持该能力",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copySuffix": {
+  "文案": "- 副本",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyNodeAndEdges": {
+  "文案": "复制节点和连线",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreOutpaint": {
+  "文案": "扩图",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreRepaint": {
+  "文案": "重绘",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreErase": {
+  "文案": "擦除",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreMatting": {
+  "文案": "抠图",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreText293caf": {
+  "文案": "裁剪",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreText79b5a6": {
+  "文案": "旋转",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreText77fac3": {
+  "文案": "旋转镜像",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreAnnotation": {
+  "文案": "标注",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreZoomIn": {
+  "文案": "高清放大",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreText9a5e27": {
+  "文案": "增强",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreText332f74": {
+  "文案": "补光",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreLighting": {
+  "文案": "打光",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreMultiAngle": {
+  "文案": "多角度",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreTextGenerate": {
+  "文案": "文本生成器",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreImage": {
+  "文案": "图片增强",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreImageGenerate": {
+  "文案": "图片生成器",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreVideo": {
+  "文案": "视频增强",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreVideoGenerate": {
+  "文案": "视频生成器",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreAudioGenerate": {
+  "文案": "音频生成器",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreCharacterGenerate": {
+  "文案": "角色生成器",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreScriptGenerate": {
+  "文案": "脚本生成器",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStorePlease": {
+  "文案": "若 store 既有 ownerUserId 会被抹掉。请在 patch 显式带 loading 字段，",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreTextf8d83a": {
+  "文案": "或显式传 ownerUserId（含 undefined）。patch=",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStorePlease2": {
+  "文案": "请在 hook 层 W1（useCreateTaskInfo.updateTaskInfo）显式注入发起者 uuid。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreProcessingPlease": {
+  "文案": "若你正在轮询/接收他人任务进度，请显式传入 currentTaskInfo.ownerUserId。patch=",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreText7f0425": {
+  "文案": "未命名",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreAddNode2": {
+  "文案": "添加节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreAddNode": {
+  "文案": "批量添加节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreDeleteNode": {
+  "文案": "删除节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreDeleteNode2": {
+  "文案": "批量删除节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreNode4": {
+  "文案": "更新节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreNode5": {
+  "文案": "更新节点数据",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreNode3": {
+  "文案": "批量更新节点数据",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreNode": {
+  "文案": "[v5.1] updateNodeDataSystem 不应在节点组件内调用。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreNode2": {
+  "文案": "批量更新节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreNodeSettings": {
+  "文案": "设置节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreAdd2": {
+  "文案": "添加边",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreAdd": {
+  "文案": "批量添加边",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreDelete": {
+  "文案": "删除边",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreDelete2": {
+  "文案": "批量删除边",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreText61741e": {
+  "文案": "更新边",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreSettings4": {
+  "文案": "设置边",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreText495658": {
+  "文案": "批量更新边",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreSettings2": {
+  "文案": "设置缩放",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreSettings3": {
+  "文案": "设置视图",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreSettings": {
+  "文案": "设置状态",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreCanvas2": {
+  "文案": "重置画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreCanvas": {
+  "文案": "清空画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasStoreSave": {
+  "文案": "保存超时",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupDefaultNameStoryboard": {
+  "文案": "分镜组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasContextMenuText5110a0": {
+  "文案": "资产",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasContextMenuMaterial": {
+  "文案": "素材",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasLoadingScreenText061c5b": {
+  "文案": "团队版可见",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNavbarCollabPortalText0c55bc": {
+  "文案": "已离线",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNavbarCollabPortalConnect": {
+  "文案": "连接中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNavbarCollabPortalText8bf97a": {
+  "文案": "已同步",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNavbarCollabPortalTexta0bf20": {
+  "文案": "待同步",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNavbarCollabPortalText2b7697": {
+  "文案": "同步中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNavbarCollabPortalRetry": {
+  "文案": "同步冲突，点击重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNavbarCollabPortalRetryFailed": {
+  "文案": "同步失败，点击重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNavbarCollabPortalRetryFailedCanvasCollab": {
+  "文案": "协作画布实时同步，点击重试失败的增量同步",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNavbarCollabPortalSaveCanvasCollab": {
+  "文案": "协作画布会实时同步，无需手动全量保存",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNavbarTitleProject": {
+  "文案": "项目名称",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNavbarTitleCanvas": {
+  "文案": "画布名称",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasSidebarOpen": {
+  "文案": "打开工作流",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasSidebarTextde43bf": {
+  "文案": "我的资产",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasSidebarTextba9dc6": {
+  "文案": "历史记录",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasSidebarMaterial": {
+  "文案": "素材库",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "connectionHandlerNode": {
+  "文案": "新节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "connectionHandlerNode2": {
+  "文案": "源节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "connectionHandlerPromptImageGenerate": {
+  "文案": "根据图片生成提示词",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeMenuStyle": {
+  "文案": "风格库",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeMenuText0024f2": {
+  "文案": "特效库",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "generatingOverlayReferenceImage": {
+  "文案": "参考图可能包含真人形象",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeGenerate": {
+  "文案": "批量生成",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeText9254e7": {
+  "文案": "依次执行",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeText899984": {
+  "文案": "宫格生图组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeScriptStoryboardPlease": {
+  "文案": "当前分镜组已与脚本解除关联或被新组取代，请使用最新分镜组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeVideoStoryboardGenerate": {
+  "文案": "没有可用于生成视频的分镜图",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeRetryStoryboardPlease": {
+  "文案": "人像合规检测未通过，请调整分镜图后重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeRetryFailedVideoGenerate": {
+  "文案": "批量生成视频组失败，请稍后重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeToolbarPromptReferenceimageGenerateConnect": {
+  "文案": "请点击下方的生成器，检查提示词和参考图连接无问题后，点击整组执行开始批量生成",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeToolbarLabelsRegenerateStoryboard": {
+  "文案": "重新生成分镜图",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeToolbarLabelsRegenerateFailedStoryboardGenerate": {
+  "文案": "将对未生成或失败的分镜图重新生成，是否继续？",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeToolbarLabelsStoryboardGenerate": {
+  "文案": "生成分镜图",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeToolbarLabelsStoryboardGenerateResumeNo": {
+  "文案": "将对组内所有分镜图开始生成，是否继续？",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeToolbarLabelsStop": {
+  "文案": "停止",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeToolbarLabelsRegenerate": {
+  "文案": "重新生成",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeToolbarLabelsTextef072a": {
+  "文案": "整组执行",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupNodeToolbarLabelsVideoStoryboardGeneratePlease": {
+  "文案": "请先生成至少 1 张分镜图后再批量生成视频",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupRunConfirmPlanText00d76b": {
+  "文案": "开始执行",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupRunConfirmPlanCancel": {
+  "文案": "取消",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupStopConfirmTitle": {
+  "文案": "停止批量任务？",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupStopConfirmOk": {
+  "文案": "停止",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupRunConfirmPlanGenerate": {
+  "文案": "开始生成",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupRunConfirmPlanRegenerateVideo": {
+  "文案": "重新生成视频",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "groupRunConfirmPlanRegenerateVideoResumeNo": {
+  "文案": "所有视频重新生成，是否继续？",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "assetReplaceImageDialogRetryFailedImportPlease": {
+  "文案": "导入资产失败，请重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "assetReplaceImageDialogImporting": {
+  "文案": "导入中...",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeCreateRejected": {
+  "文案": "节点保存失败，刷新后将移除",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeCreateRejectedBadge": {
+  "文案": "未保存",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasCollabPresenceText68905c": {
+  "文案": "在线",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasCollabPresenceTextd3bba2": {
+  "文案": "重连中…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasCollabPresenceConnect": {
+  "文案": "连接中…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "collabFollowControllerConnectDisconnectStopCollab": {
+  "文案": "协作连接已断开，跟随已停止",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeReadonlyTooltipGenerateProcessing": {
+  "文案": "其他成员正在生成中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeReadonlyTooltipEditProcessing": {
+  "文案": "其他成员正在编辑中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "lockQueryRetryConnectCollabPlease": {
+  "文案": "协作连接异常，请稍候重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "lockQueryNode": {
+  "文案": "目标节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "useBatchDownloadExport": {
+  "文案": "LibTV批量导出",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "scriptModelSwitchGeneratingDisabled": {
+  "文案": "生成中不可切换模型",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "assetBoardVideoClipUnsupported": {
+  "文案": "当前视频不支持剪辑",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "edgesGuideTip": {
+  "文案": "点击可显示/隐藏画布上的连线",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportPremiereAssetPacked": {
+  "文案": "媒体文件已打包在 ZIP 的 Resources 目录；Premiere 提示链接媒体时请选择解压后的 Resources 文件夹。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportPremiereAssetNotPacked": {
+  "文案": "媒体文件未打包；Premiere 会提示链接媒体，请选择本地素材文件。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportDefaultSequenceName": {
+  "文案": "LibLib 剪辑时间轴",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportPremiereReadmeTitle": {
+  "文案": "# LibLib TV Premiere XML 导出",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportPremiereReadmeStep1": {
+  "文案": "1. 解压 ZIP。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportPremiereReadmeStep5": {
+  "文案": "5. asset_manifest.json 保留了原始线上素材 URL，排查重链问题时可以对照。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportJianyingAssetPacked": {
+  "文案": "媒体文件已打包在 ZIP 的 Resources 目录；如果剪映仍提示素材离线，请手动重链到该文件。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportJianyingAssetNotPacked": {
+  "文案": "媒体文件未打包；如果剪映无法读取远程 URL，请下载素材后手动重链。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportJianyingReadmeTitle": {
+  "文案": "# LibLib TV 剪映草稿导出",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportJianyingReadmeAssetPacked": {
+  "文案": "媒体文件已打包在 Resources/ 目录，草稿中的素材路径会优先引用这些解压后的本地相对文件。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportJianyingReadmeAssetNotPacked": {
+  "文案": "媒体文件不会被打包，草稿中的素材路径引用当前时间轴原始 URL。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportJianyingReadmeUsage": {
+  "文案": "使用时请将整个解压后的文件夹放入剪映专业版草稿目录，不要只复制 JSON 文件。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportJianyingReadmeRelink": {
+  "文案": "如果剪映仍无法读取素材，请根据 asset_manifest.json 中的 packedPath 或 src 手动重链。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportJianyingReadmeCompatWarn": {
+  "文案": "剪映草稿格式非官方且版本差异较大；剪映 6+ 曾出现 draft_content.json 加密兼容问题，新版本仍可能无法打开该草稿。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "imgToolbarRotationNotSupported": {
+  "文案": "不支持旋转的图片",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "imgToolbarInChatFrameNotSupported": {
+  "文案": "不支持在聊天框内的图片",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorPluginViewportNotReady": {
+  "文案": "导演台渲染器尚未就绪，请稍后重试。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorMcpDisconnected": {
+  "文案": "MCP 未连接",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeKeyboardA11yDescriptionWithoutNudge": {
+  "文案": "按 Enter 或空格键选择节点。按 Delete 键删除节点，按 Esc 键取消选择。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "skillImportExistingTitle": {
+  "文案": "导入已有Skill",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "skillImportExistingDesc": {
+  "文案": "上传 .md 文件或文件夹",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "videoAttachmentUnsupportedType": {
+  "文案": "不支持该文件格式",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "openingGeneratingMotion": {
+  "文案": "动效生成中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "openingGeneratingMotionExitHint": {
+  "文案": "动效生成中，退出不会中断生成进度",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "openingBlendClipUnsupported": {
+  "文案": "当前浏览器不支持视频截取，无法融入原片",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "openingAdjustUnsupported": {
+  "文案": "当前浏览器不支持 WebGL，无法调色",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "openingReplaceImageGeneratingHint": {
+  "文案": "任务生成中，暂不支持替换参考图",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "ratingMultiConfirmTitle": {
+  "文案": "提示",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "ratingMultiConfirmAll": {
+  "文案": "全部评级",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "ratingMultiConfirmClearMessage": {
+  "文案": "该节点包含多个素材，请选择取消评级的作用范围",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "ratingMultiConfirmClearAll": {
+  "文案": "全部取消",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "ratingMultiConfirmCover": {
+  "文案": "仅封面素材",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "ratingFilterAll": {
+  "文案": "所有评级",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "ratingFilterMulti": {
+  "文案": "多个评级",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "ratingFilterEmpty": {
+  "文案": "该筛选条件下暂无节点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorRoleImportTitle": {
+  "文案": "导入已有的导演角色",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorRoleImportDesc": {
+  "文案": "上传 .md 文件或文件夹",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "directorRoleImportEmptyHint": {
+  "文案": "上传 .md 文件或文件夹作为风格规则",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTypeScreenplay": {
+  "文案": "剧本",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "screenplayGenerating": {
+  "文案": "剧本生成中...",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "optimizedPromptsTargetUnsupported": {
+  "文案": "当前节点不支持应用此提示词",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "guideEditorViewportOffset": {
+  "文案": "视角微调（px）",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "guideEditorViewportOffsetHint": {
+  "文案": "默认本步节点居中。X 正值节点往右挪、Y 正值往下挪；目标在节点一侧时把节点往反方向挪，气泡才不挤在屏幕边缘",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "guideEditorPickUnsupported": {
+  "文案": "该元素暂不支持拾取（纯图标且无文案），需前端先加锚点",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "accountRiskBlockTitle": {
+  "文案": "检测到账号异常活动",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasCapture": {
+  "文案": "画布抓取",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasCreating": {
+  "文案": "正在创建画布…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasNotPublic": {
+  "文案": "用户未公开画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasSaved": {
+  "文案": "画布已保存",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "canvasSaving": {
+  "文案": "保存画布中…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipDefaultExportBaseName": {
+  "文案": "剪辑时间轴",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExport": {
+  "文案": "导出",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportBlockAssetsLoading": {
+  "文案": "时间轴上仍有素材在加载中，请等待全部加载完成后再导出",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportBlockBlobUrl": {
+  "文案": "工程导出不支持浏览器本地 blob 素材，请先上传素材后再导出",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportBlockEmptyTimeline": {
+  "文案": "时间轴为空，无法导出工程文件",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportBlockNoRemoteUrl": {
+  "文案": "没有可导出的远程素材 URL，请先使用线上素材或完成上传",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportBlockPartialRemoteUrl": {
+  "文案": "部分素材缺少可导出的远程 URL，暂不支持导出本地素材工程",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportDisabledAssetsLoading": {
+  "文案": "时间轴上仍有素材在加载中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportDisabledEmptyTimeline": {
+  "文案": "时间轴为空，无法导出工程文件",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportFormat": {
+  "文案": "格式",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportLocation": {
+  "文案": "导出位置",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportPremiere": {
+  "文案": "导出 PR 工程文件",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportResolution": {
+  "文案": "分辨率",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportSelectFormat": {
+  "文案": "选择格式",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportSelectLocation": {
+  "文案": "选择导出位置",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportSelectResolution": {
+  "文案": "选择分辨率",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportSettings": {
+  "文案": "导出设置",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportToCanvas": {
+  "文案": "导出到画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExportToLocal": {
+  "文案": "导出到本地",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipExporting": {
+  "文案": "导出中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipPasteUnsupported": {
+  "文案": "当前模式不支持粘贴到时间轴",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipPremiereExportFailed": {
+  "文案": "PR ZIP 导出失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipPremiereExported": {
+  "文案": "PR ZIP 已导出，请解压后先运行路径补丁脚本",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipSaveLocationUnsupported": {
+  "文案": "当前浏览器不支持选择保存位置，将使用默认下载目录",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "clipVocalSplitUnsupported": {
+  "文案": "当前模式不支持人声分离",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "connectVideoForSubtitleErase": {
+  "文案": "请先连接需要去除字幕的视频",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "contactSupport": {
+  "文案": "联系客服",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyFailedManual": {
+  "文案": "复制失败，请手动复制",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyFailedRetry": {
+  "文案": "复制失败，请重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyInviteLink": {
+  "文案": "复制邀请链接",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyOptimizedPrompt": {
+  "文案": "复制优化后的提示词",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyProjectFetchDetailFailed": {
+  "文案": "获取原项目详情失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyProjectFetchNodeFailed": {
+  "文案": "获取原项目节点数据失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyProjectInfoIncomplete": {
+  "文案": "无法复制：项目信息不完整",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copySuccess": {
+  "文案": "复制成功",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyToTeamFailDetailTitle": {
+  "文案": "导入失败详情",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyToTeamImportSuccess": {
+  "文案": "导入成功",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyToTeamImporting": {
+  "文案": "正在导入中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyToTeamNoFailDetails": {
+  "文案": "暂无失败明细",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyVoiceId": {
+  "文案": "复制音色ID",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyVoiceIdMenu": {
+  "文案": "复制Voice ID",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyWorkspaceFailed": {
+  "文案": "复制工作区失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyWorkspaceFailedRetry": {
+  "文案": "复制工作区失败，请稍后重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyWorkspaceInvalidId": {
+  "文案": "复制失败：工作区 ID 非法",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyWorkspaceNoNewId": {
+  "文案": "复制工作区失败：未返回新工作区 ID",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyingWorkspace": {
+  "文案": "正在复制工作区，请稍候…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "copyrightConcernHint": {
+  "文案": "内容可能涉及版权问题",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "createImportTaskFailed": {
+  "文案": "创建导入任务失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "createSkillFolderOptimizeUnsupported": {
+  "文案": "文件夹模式暂不支持优化",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "createSkillFolderOptimizeUnsupportedOneClick": {
+  "文案": "文件夹模式暂不支持一键优化",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "errorBoundaryErrorImport": {
+  "文案": "组件类型无效（某个导入的组件为 undefined，可能是导入路径错误或循环依赖）",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "folderNoImportableAssets": {
+  "文案": "该文件夹下暂无可导入的素材",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "imageModelUnsupportedForConnectedImages": {
+  "文案": "该模型不支持当前连入的图片素材",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "imgEditorRotateClockwise90": {
+  "文案": "顺时针旋转 90°",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "import": {
+  "文案": "导入",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importAction": {
+  "文案": "导入",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importAssetFolderConflict": {
+  "文案": "不能同时选择素材和文件夹",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importFailed": {
+  "文案": "导入失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importFolderFetchFailed": {
+  "文案": "选中的文件夹拉取失败，请稍后重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importFromPersonalAssetTitle": {
+  "文案": "从个人资产中导入",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importFromPersonalSubjectTitle": {
+  "文案": "从个人主体中导入",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importFromPersonalTitle": {
+  "文案": "从个人项目导入",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importInProgress": {
+  "文案": "导入中…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importNoProjectsInSelection": {
+  "文案": "所选范围内没有可导入的项目",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importPreparing": {
+  "文案": "正在准备…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importShareHint": {
+  "文案": "导入后将共享给团队成员，可在项目内设置访问权限",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importStatusQueryFailed": {
+  "文案": "导入状态查询失败，请稍后刷新页面重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importTaskFailed": {
+  "文案": "导入任务失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importTaskInProgress": {
+  "文案": "已有正在进行的导入任务，请等待完成",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importViewDetail": {
+  "文案": "导入失败详情",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "importing": {
+  "文案": "导入中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "materialLibraryHelp": {
+  "文案": "素材库说明",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "modeTypeUnsupportedMediaCombo": {
+  "文案": "当前模型不支持已连接的媒体组合",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "modelCategorySquare": {
+  "文案": "广场",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "modelRequiresMediaInput": {
+  "文案": "该模型不支持纯文字生成，需要连入素材",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "modelSchemaClose": {
+  "文案": "关闭",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "modelSchemaTextff2eeb": {
+  "文案": "可灵 3.0",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "modelSelectLabel": {
+  "文案": "模型选择",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "modelSelectionDisabledDefault": {
+  "文案": "当前连入的参数不支持该模型",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "modelSwitchUnavailable": {
+  "文案": "当前不可切换模型",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "modelUnsupportedMediaFallback": {
+  "文案": "当前连入的素材类型不被该模型支持",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "newFeaturePortraitSupported": {
+  "文案": "新功能：支持真人",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodePromptStoryboard": {
+  "文案": "分镜提示词",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeReferenceImageVideo": {
+  "文案": "视频参考图",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeText": {
+  "文案": "文本",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeText829abe": {
+  "文案": "分组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeTextde24bf": {
+  "文案": "道具",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeVideo": {
+  "文案": "智能剪辑",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeVideo2": {
+  "文案": "视频故事",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "nodeVideo3": {
+  "文案": "视频组",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "personalAssetImportButton": {
+  "文案": "个人资产导入",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "personalAssetImportModalCategory": {
+  "文案": "待分类资产",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "personalAssetImportNoSelection": {
+  "文案": "请选择要导入的素材",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "personalAssetImportNotReady": {
+  "文案": "个人资产导入暂未开放，后端接口未准备就绪",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "personalSubjectImportButton": {
+  "文案": "个人主体导入",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "personalSubjectImportNoSelection": {
+  "文案": "请选择要导入的主体",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "portraitAssetEntry": {
+  "文案": "真人资产录入",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "portraitAssetNamePlaceholder": {
+  "文案": "请输入人像资产名称",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "portraitUploadFailed": {
+  "文案": "人像上传失败",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "posterGenerating": {
+  "文案": "海报生成中…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "posterGeneratingShort": {
+  "文案": "海报生成中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "promptGenerating": {
+  "文案": "提示词生成中……",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "removeFromFolder": {
+  "文案": "移出文件夹",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "removeFromFolderConfirm": {
+  "文案": "确定要移出文件夹吗？",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "removeFromFolderTitle": {
+  "文案": "移出文件夹",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "removeReferenceImage": {
+  "文案": "移除参考图",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "renameFailedRetry": {
+  "文案": "重命名失败，请重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "search": {
+  "文案": "搜索",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchCameraMovementPlaceholder": {
+  "文案": "搜索运镜名称",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchFavoriteVoices": {
+  "文案": "搜索收藏音色",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchModelPlaceholder": {
+  "文案": "搜索模型名称、作者、标签",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchMyVoices": {
+  "文案": "搜索我的音色",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchProjectPlaceholder": {
+  "文案": "搜索项目",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "searchVoiceLibrary": {
+  "文案": "搜索音色库",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "seedancePromiseAcknowledge": {
+  "文案": "我已阅读并同意上述《Seedance模型使用承诺书》",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "seedanceVerifyReportTitle": {
+  "文案": "火山方舟 · 任务模型核验报告",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "selectAssetsToImport": {
+  "文案": "请选择要导入的素材",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "style": {
+  "文案": "风格",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "styleDefault": {
+  "文案": "风格",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "supportedFileFormats": {
+  "文案": "支持的文件格式",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "supportedPreviewFileTypes": {
+  "文案": "仅支持 PNG、JPG、JPEG 图片或 MP4 视频",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "teamCollabImportHint": {
+  "文案": "你的个人项目可一键导入到团队项目，导入后将与成员共享",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "textModelUnsupportedImage": {
+  "文案": "该模型不支持当前连入的图片素材",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "textModelUnsupportedVideo": {
+  "文案": "该模型不支持当前连入的视频素材",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "assetsMobileUnsupportedTitle": {
+  "文案": "资产管理暂不支持移动端",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "mcpOAuthScopeExportReadTitle": {
+  "文案": "读取导出成品",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "mcpOAuthScopeExportReadDetail": {
+  "文案": "导出就绪状态与成品链接",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewCanvasImportMissing": {
+  "文案": "资源交接信息缺失或已过期，请返回 3D-BOX 重新导出。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewCanvasImportIdentityPending": {
+  "文案": "账号信息尚未就绪，请重试。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewCanvasImportIdentityMismatch": {
+  "文案": "当前账号与导出时不一致，请切回原账号后重试。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewCanvasImportUnsupported": {
+  "文案": "当前浏览器不支持安全创建画布，请使用新版 Chrome 或 Edge。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewCanvasImportFailed": {
+  "文案": "画布暂未准备好",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewCanvasImportCreating": {
+  "文案": "正在创建画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewCanvasImportPreparing": {
+  "文案": "正在创建画布并添加资源，请稍候…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewCanvasImportProjects": {
+  "文案": "查看项目列表",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportSuccess": {
+  "文案": "导出成功",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportCancelled": {
+  "文案": "导出已终止",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportReviewing": {
+  "文案": "审核中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportCancelling": {
+  "文案": "正在终止…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewCancelExport": {
+  "文案": "终止导出",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportSaving": {
+  "文案": "保存中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportRendering": {
+  "文案": "导出中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportUploading": {
+  "文案": "上传中",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewCanvasExportSuccess": {
+  "文案": "导出成功，前往画布查看吧",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewCanvasNewTabBlockedTitle": {
+  "文案": "新页面未能打开",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewCanvasNewTabBlockedDescription": {
+  "文案": "导出已完成，请点击下方链接在新页面打开画布。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExport": {
+  "文案": "导出",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExport3dAsset": {
+  "文案": "3D 资产",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportFailed": {
+  "文案": "导出失败。视频导出需要浏览器支持 WebCodecs，可尝试 GLB 或 PNG。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportFormat": {
+  "文案": "格式",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportHighQuality": {
+  "文案": "高清",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportImage": {
+  "文案": "图片",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportNoAnimation": {
+  "文案": "当前场景没有动画，无法导出视频或转交画布",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportQuality": {
+  "文案": "导出画质",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportResolution": {
+  "文案": "分辨率",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportType": {
+  "文案": "导出类型",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewExportVideo": {
+  "文案": "视频",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewImport": {
+  "文案": "导入 GLB",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewImportFailed": {
+  "文案": "导入失败，请选择有效的 GLB 2 文件（不超过 100 MB）。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewGenerating": {
+  "文案": "正在生成场景…",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewGeneratingBrowseNotice": {
+  "文案": "场景生成中，可继续浏览；元素的平移、旋转和缩放暂不可用。",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "previewAttachmentUnsupported": {
+  "文案": "不支持该文件类型",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReport": {
+  "文案": "举报",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportPending": {
+  "文案": "举报功能即将上线",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportTitle": {
+  "文案": "举报",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportReasonLabel": {
+  "文案": "举报原因",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportReasonPlaceholder": {
+  "文案": "请选择投诉原因",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportReasonIllegal": {
+  "文案": "违法违规",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportReasonVulgar": {
+  "文案": "色情低俗",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportReasonAd": {
+  "文案": "广告引流",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportReasonAbuse": {
+  "文案": "人身攻击",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportReasonOther": {
+  "文案": "其他",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportDetailLabel": {
+  "文案": "举报具体信息",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportDetailPlaceholder": {
+  "文案": "请输入介绍",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportPhoneLabel": {
+  "文案": "联系方式",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportPhonePlaceholder": {
+  "文案": "请输入手机号",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportPhoneInvalid": {
+  "文案": "请输入正确的手机号",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportSubmit": {
+  "文案": "确认举报",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportSuccess": {
+  "文案": "举报成功，我们会尽快处理",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportDuplicated": {
+  "文案": "你已举报过该评论",
+  "chunk": "3xjlk8cm1g3m9.js"
+ },
+ "commentReportFailed": {
+  "文案": "举报失败，请稍后重试",
+  "chunk": "3xjlk8cm1g3m9.js"
+ }
+}
