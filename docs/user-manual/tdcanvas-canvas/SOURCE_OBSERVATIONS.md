@@ -724,7 +724,7 @@ M203 的做法是——只把 R31 的 needle 换成读者真读到的形态、�
 | 事实 ID | 陈述与实测值 | 依据 | 重述位置（文件 + 逐字短语） |
 |---|---|---|---|
 | F01 | 图片节点悬浮工具条：空 4 个 / 有图 13 个，差的那 9 个全都依赖图片内容 | 运行时实测 M136 / M137 / M194；`scripts/probe-node-toolbars.js` 逐项读可见文字 | `10-tasks/edit-nodes.md`「工具条**只有 4 个按钮**」；`10-tasks/edit-nodes.md`「13 个按钮立刻齐了」；`20-reference.md`「空节点上的那 9 个按钮要等真的有一张图才出现」；`10-tasks/create-canvas-project.md`「那时只有 4 个按钮：信息、删除、编辑、上传图片」；`10-tasks/image-operations.md`「有图时是 13 个按钮」；`20-reference.md`「从 **2 个到 13 个不等**」 |
-| F02 | 同一条工具条的按钮长度共 6 档：2 / 4 / 5 / 6 / 8 / 13 | 运行时实测 M194 逐节点点选；`scripts/probe-node-toolbars.js` | `20-reference.md`「按节点变出 6 种长度」；`10-tasks/edit-nodes.md`「按上表逐个数是 6 种」；`10-tasks/edit-nodes.md`「**共 6 种**」 |
+| F02 | 同一条工具条的按钮长度**默认配置下**共 6 档：2 / 4 / 5 / 6 / 8 / 13（★ M208 补：可配置，改「自定义工具栏」会出现第 7 档 14，见 F12） | 运行时实测 M194 逐节点点选；`scripts/probe-node-toolbars.js`；M208 补边界：默认勾 12 项 + 「更多」= 13，勾上多角度即 14 | `20-reference.md`「默认配置下变出 6 种长度」；`10-tasks/edit-nodes.md`「按上表逐个数是 6 种」；`10-tasks/edit-nodes.md`「**默认配置下共 6 种**」 |
 | F03 | 工具条组合共 9 种（类型 × 有无内容展开后） | 运行时实测 M194；由 20-reference 长度速查表 7 行展开得到 | `10-tasks/edit-nodes.md`「穷尽 9 种组合」；`20-reference.md`「完整的 9 种组合」 |
 | F04 | 文本节点悬浮工具条恒为 8 个按钮（唯一有没有内容都一样的一类） | 运行时实测；20-reference 长度速查表 | `20-reference.md`「恒 8 个」；`10-tasks/edit-nodes.md`「单选 1 个时工具条有 8 个按钮」；`90-troubleshooting.md`「单选 1 个时有 8 个按钮」 |
 | F05 | 组节点悬浮工具条只有 2 个按钮（信息、删除） | 运行时实测；20-reference 长度速查表 | `20-reference.md`「只剩「信息 · 删除」，最简的一种」；`10-tasks/edit-nodes.md`「选中组节点则只剩最左边的两个」 |

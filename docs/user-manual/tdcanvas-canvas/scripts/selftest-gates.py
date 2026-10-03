@@ -1600,12 +1600,31 @@ def mutate_ledger_number_drift(root: Path) -> None:
     assert patched != text, "注入失败：没找到长度速查表里组节点那一行"
     ref.write_text(patched, encoding="utf-8")
 
+    # ★ M208 第三次修这一处：这一段原来按**整句字面量**替换，而 M208 把那句
+    #   改成了「默认配置下共 6 种」，字面量当场失效、注入静默变成空操作，
+    #   自检报「注入无效」——**门禁没坏，是用例坏了**（M193、M203 已各犯过一次）。
+    #   现改成**在被测对象上现算**：先找出含那串档位的行，再改行内的 2。
+    #   措辞再怎么变都不会哑，**只有档位本身变了才会**——而那本来就该让用例响。
     edit = root / "10-tasks/edit-nodes.md"
-    text = edit.read_text(encoding="utf-8")
-    old = "长度从 2 到 13 **共 6 种**（2 / 4 / 5 / 6 / 8 / 13"
-    new = "长度从 3 到 13 **共 6 种**（3 / 4 / 5 / 6 / 8 / 13"
-    patched = text.replace(old, new, 1)
-    assert patched != text, "注入失败：没找到 F05 的第二处重述位置那一行"
+    lines = edit.read_text(encoding="utf-8").splitlines()
+    #   ★ 还要再挑一层：那一串档位在**同一页出现两处**（F02 的「按上表逐个数是 6 种」
+    #   与 F05 的「长度从 2 到 13…」），**取第一处会改到 F02 那一行**，
+    #   而 F02 的值里本来就有 2/4/5/8/13，判据照常成立 → 门禁不响、注入白做。
+    #   所以在匹配行里**挑含「长度从 2 」的那一行**（F05 的重述位置）。
+    for i, line in enumerate(lines):
+        if "2 / 4 / 5 / 6 / 8 / 13" in line and "长度从 2 " in line:
+            # ★ 必须把**行内所有的 2** 都换掉，不能只换「长度从 2」。
+            #   这正是该判据已记录的窄面（见本函数 docstring）：只要**任何一处**
+            #   重述所在行还留着值，判据就当没漂。M208 往这行补的说明里
+            #   有一句「默认勾 **12** 项」，那个 2 就足以让整条注入白做。
+            #   F05 的两处重述短语（「只剩「信息 · 删除」，最简的一种」
+            #   与「选中组节点则只剩最左边的两个」）都不含数字，逐字匹配不受影响。
+            lines[i] = line.replace("2", "3")
+            break
+    else:
+        raise AssertionError("注入失败：找不到同时含档位串与「长度从 2 」的那一行（F05 的重述位置）")
+    patched = "\n".join(lines)
+    assert "长度从 3 " in patched and "2" not in lines[i], "注入失败：行内还留着 2"
     edit.write_text(patched, encoding="utf-8")
 
 

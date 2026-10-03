@@ -540,6 +540,24 @@ RETRACTIONS: list[dict[str, str]] = [
                      "SOURCE_OBSERVATIONS.md#占位符「拖拽你想生成"],
         "fixed_in": "M207",
     },
+    {
+        "id": "R53",
+        "kind": "conclusion",
+        "wrong": "同一条工具条、长度从 2 到 13 共 6 种",
+        "why": "**这个「共」是穷举，而它不是——而手册自己就教读者把它打破。**\n"
+               "同一本手册的台账 F12 记着：「更多 → 自定义工具栏」弹窗**列 14 项、默认勾上 12 项**"
+               "（未勾的是**锁比例**与**多角度**）。**默认勾的 12 项 + 末尾那个独立渲染的「更多」= 13**，"
+               "与 M136 / M194 实测的 13 对得上；"
+               "**而一旦在那个弹窗里勾上「多角度」，这条工具条就变成 14 个。**\n"
+               "★ **更糟的是**：图片处理那节明写「**多角度需要先在工具条自选里勾出来**」——"
+               "**照着手册做，就会得到一个这张表说不存在的长度。**\n"
+               "源码侧：`canvas-image-toolbar-tools.tsx` 的 `defaultImageQuickToolIds` = 5 个基础项"
+               " + 7 个 `defaultVisible: true` 的图像工具 = 12；`resize`（锁比例）与 `angle`（多角度）"
+               "都是 `defaultVisible: false`；末尾的「更多」在 `canvas-node-hover-toolbar.tsx:248` "
+               "**独立于 `quickImageToolIdSet` 单独渲染**，所以默认 12 + 1 = 13。\n"
+               "**M208 已把两处正文都限定为「默认配置下」，并写明第 7 档是 14。**",
+        "fixed_in": "M208",
+    },
 ]
 
 
