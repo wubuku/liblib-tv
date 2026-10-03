@@ -4171,3 +4171,16 @@ S3 找「编组」按钮返回 `null`，`throw` 中止。诊断 dump 显示**同
 | ✅ `canvas-agent-session-collapse` 从「全灭 testid」变已验 | 正面 | `36×36@1219,23`、aria `收起` | 批次 129 分诊表剩 **19** 个，§4.49 已就地回填 |
 | 🔴 **a 轮收在开启态** | Minor（收尾疏漏） | a 轮做「开→关→开」三态读取，**读完第三态就退出**，而基线是**关态** ⇒ 收尾时侧栏开着（191 testid） | ✅ 事后补按一次 `⌘/` 归位，**174 逐个一致**、连读两次相同；收尾清单本批**第三版**：加上「Agent 侧栏开/关（关态才是基线）」 |
 | ⛔ **本批零副作用** | 正面 | 只按 `⌘/` 开合、只读 DOM；**没输入一个字、没点「发送消息」、没点任何模式/技能**；没建节点、没点扣费/分享/导出 | 终态 `76 nodes / 0 selected / 0 edges`、`Zoom options, 60%`（连读两次）、浮层 0、**侧栏关态**、**静态 testid 174 与基线一致**、**积分 805**、**节点 id 与批次 120 基线逐个一致**、新建 id **0** |
+
+## 批次 133（2026-10-03）· 技能选择器全层建档（35 testid / 8 技能）；「会话列表」按钮自身不吃点击
+
+| 缺陷 | 级别 | 证据 | 处置 |
+|---|---|---|---|
+| 🔑 **「会话列表」按钮从鼠标上不可达** | **Major（可用性疑点，非缺陷）** | `canvas-agent-session-menu-trigger`（`885,25,58,32`）与 `canvas-agent-session-title`（`893,30,42,22`）**自身 `pointer-events: none`**，**命中自身的采样点分别是 0/304 与 0/154**；其余 7 个按钮全部 `auto`（命中 132～562，不等 100% 是因为命中了**自己的** svg/path 子元素，**那不是遮挡**） | 写进 `20-reference.md` 与 `ai-agent-drawer.md`：**想切会话请用 `⌘/` 或右下角 `与 AI 对话` 按钮**。⚠️ **诚实标注**：「是否有意设计成不可点，本批无法判断」—— 手册从未提过这个按钮，**也没有「它该可点」的依据** ⇒ 记为**待产品侧确认的疑点，不写成缺陷** |
+| 🔴 **我第一轮的诊断是错的：「`elementFromPoint` 返回 `HEADER`」被当成「顶栏挡住了按钮」** | **Major（方法论）** | 顶栏 `pointer-events: none`（两状态读数一致），而 **`pointer-events: none` 的元素不可能遮挡任何东西** —— 它自己就被命中穿透。那 304 次命中只说明「命中穿透了按钮、落到了它后面的元素」 | 立规：**判「A 挡住 B」要两个条件都成立** —— ① `elementFromPoint` 落在 A 上；② **A 的 `pointer-events` 不是 `none`**。与批次 130「有面积 ≠ 可见」、批次 131「逐字核对分不清图标按钮」**同源** |
+| 🆕 **技能选择器全层建档：35 testid / 8 技能 / 每技能 4 层** | Minor（覆盖缺口） | `canvas-agent-skill-picker` `<DIV role="dialog">` **`360×372@896,274`**（**portal 到 BODY**）、`canvas-agent-skill-search` `352×36@900,278`、`canvas-agent-skill-picker-list` **`<UL>`** `356×284@900,318`、`canvas-agent-skill-picker-footer` `352×44@900,602`（逐字「管理技能」）；每技能 `canvas-agent-skill-row/title/official/description-<技能id>`（行 `<LI>` `348×52`）+ `agent-skill-option-more-<技能id>` | 写进 `20-reference.md`；关闭后**完全归零**（增量 0 减量 0） |
+| 🔑 **技能 id 有两种形态** | Minor（易踩坑） | 第一个技能用**纯数字** `22613691738636`，其余 7 个用**语义 slug**（`web_agent_skill_video_reverse` 等） | 写明：**不要假设技能 id 是某一种格式** |
+| 🆑 **侧栏展开时顶栏右侧被压缩** | Minor | 折叠态顶栏 `1256×40@12,10` → **展开态 `844×40@12,10`**；两种状态 `pointer-events` **都是 `none`** | 写进 `20-reference.md` 与 `ai-agent-drawer.md` |
+| 🆕 **侧栏的鼠标入口与 `agent-skill-chip` 的分诊更新** | Minor | `canvas-sidecar-launchers` `120×36@1148,672`、`assistant-sidecar-launcher-frame` `60×18@1208,690`、**`canvas-sidecar-launcher` `BUTTON 59×17@1209,691`**、`canvas-minimap-portal-target` `156×114@16,554`（小地图的 portal 宿主，此前未记） | 建档。⚠️ **`agent-skill-chip` 仍不在** —— 打开会话与技能选择器后仍不存在 ⇒ **它不在技能选择器里**；**本批不再推测**它的前置条件，§4.49 分诊表已就地改写 |
+| 🔴 **把 `role="tooltip"` 算进「浮层」，制造了一次假残留** | Minor（工具坑） | a 轮收尾报「浮层 1」，我一度以为技能选择器有残留 DOM；实际是**鼠标停在 dock「小地图」上的 tooltip**（`68×36@28,624` 逐字「小地图」）—— 因为本轮 `overlays()` 被我加进了 `[role=tooltip]` | 立规：**数浮层不要把 `role=tooltip` 算进去**（它是瞬时悬停态）；**「浮层数」要连判定式一起报**（本批收尾同报了「含 tooltip 1 ／ 不含 0 ✅」） |
+| ⛔ **本批零副作用** | 正面 | 只开面板、只读 DOM、只关面板；**没输入一个字、没点「发送消息」、没点任何技能项/模式、没点「新建会话」**；没建节点、没点扣费/分享/导出 | 终态 `76 nodes / 0 selected / 0 edges`、`Zoom options, 60%`、**真浮层 0**、**侧栏关态**、**静态 testid 174 与基线逐个一致**、**积分 805**、**节点 id 与批次 120 基线逐个一致**、新建 id **0** |

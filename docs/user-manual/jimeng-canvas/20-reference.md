@@ -1540,3 +1540,64 @@ aria 逐字 `说说你的想法或任务，上传参考、输入文字或` 的 `
 📌 **别把 `data-state` 当全局可用的判据。**
 
 ⚠️ **本节说的是「这一版构建在这个账号的这个画布上」**（面板里显示着「新会话」，即**无历史会话**）。
+
+## 🧩 Agent 技能选择器：35 个 testid / 8 个技能 / 每技能 4 层（2026-10-03 批次 133 首次建档）
+
+打开 Agent 侧栏（`⌘/`）→ 点 **`使用技能`**（`canvas-agent-skill-trigger`）
+⇒ 弹出一个 **`360×372@896,274`** 的对话框。
+
+| 层 | tag / role | 矩形 | 备注 |
+|---|---|---|---|
+| `canvas-agent-skill-picker` | `DIV` **`role="dialog"`** | **`360×372@896,274`** | **portal 到 `BODY`** |
+| `canvas-agent-skill-search` | `DIV` | `352×36@900,278` | 搜索框容器 |
+| `canvas-agent-skill-picker-list` | **`<UL>`** | `356×284@900,318` | |
+| `canvas-agent-skill-picker-footer` | `DIV` | `352×44@900,602` | 逐字 `管理技能` |
+
+**每个技能 4 个 testid，testid 里带技能 id**（行均为 `<LI>` `348×52`）：
+`canvas-agent-skill-row-<技能id>`、`-title-<技能id>`、`-description-<技能id>`，
+带 `官方` 标记的还有 `canvas-agent-skill-official-<技能id>`（`26×16`），
+行尾另有 `agent-skill-option-more-<技能id>`（`BUTTON` `16×16`）。
+
+🔑 **技能 id 有两种形态**：第一个技能用**纯数字** `22613691738636`，
+其余 7 个用**语义 slug**（`web_agent_skill_video_reverse` 等）
+⇒ **不要假设技能 id 是某一种格式。**
+
+**8 个技能**：剧本开发 · 视频反解 · 创作分镜 · 全流程广告片导演 · 故事短片 · 电商套图 · 海报设计 · 品牌设计
+（**除「剧本开发」外其余 7 个都带 `官方` 标记**）。
+
+关闭后**完全归零**（相对侧栏态增量 0 / 减量 0）⇒ 这个对话框是**真卸载**。
+
+⚠️ **`agent-skill-chip` 不在这个选择器里** —— 打开会话与技能面板后它仍然不存在。
+
+### ⚠️ 「会话列表」按钮**从鼠标上不可达**
+
+| testid | 矩形 | 自身 `pointer-events` | 命中自身的采样点 |
+|---|---|---|---|
+| **`canvas-agent-session-menu-trigger`** | `885,25,58,32` | **`none`** | **0 / 304** |
+| **`canvas-agent-session-title`** | `893,30,42,22` | **`none`** | **0 / 154** |
+| `canvas-agent-session-create` | `1183,25,32,32` | `auto` | 168 / 176 |
+| `canvas-agent-session-collapse` | `1219,23,36,36` | `auto` | 211 / 216 |
+| `canvas-agent-skill-trigger` | `926,654,90,32` | `auto` | 446 / 450 |
+| `canvas-agent-send` | `1215,654,32,32` | `auto` | 132 / 150 |
+
+⇒ **只有「会话列表」按钮和旁边的「新会话」文字不吃点击**，其余按钮都正常。
+⚠️ **「它是不是有意设计成不可点」本手册无法判断** —— 手册从头到尾没提过「会话列表」这个按钮，
+所以**也没有「它该可点」的依据**。想开侧栏请用 **`⌘/`** 或右下角 **`与 AI 对话`** 按钮。
+
+### 📌 侧栏展开时**顶栏右侧被压缩**
+
+| 侧栏 | 顶栏矩形 |
+|---|---|
+| 折叠 | **`1256×40@12,10`** |
+| 展开 | **`844×40@12,10`** |
+
+顶栏本体两种状态下 `pointer-events` **都是 `none`** ⇒「顶栏 10 个可点」靠的是**它的子元素**。
+
+### 侧栏的鼠标入口（此前只在正文提过「右下角『与 AI 对话』按钮」）
+
+| testid | tag | 矩形 |
+|---|---|---|
+| `canvas-sidecar-launchers` | `DIV` | `120×36@1148,672`（逐字 `与 AI 对话`） |
+| `assistant-sidecar-launcher-frame` | `DIV` | `60×18@1208,690` |
+| **`canvas-sidecar-launcher`** | `BUTTON` | `59×17@1209,691` |
+| `canvas-minimap-portal-target` | `DIV` | `156×114@16,554`（小地图的 **portal 宿主**） |

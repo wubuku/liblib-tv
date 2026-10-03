@@ -146,7 +146,7 @@
 | testid | 矩形 | aria / 逐字 |
 |---|---|---|
 | `canvas-agent-panel` | `398×694@869,13` | 面板本体 |
-| `canvas-agent-session-menu-trigger` | `58×32@885,25` | `会话列表` / `新会话` |
+| `canvas-agent-session-menu-trigger` | `58×32@885,25` | `会话列表` / `新会话`（⚠️ **自身 `pointer-events: none`，鼠标点不到**，见下） |
 | `canvas-agent-session-title` | `42×22@893,30` | 逐字 `新会话` |
 | `canvas-agent-session-create` | `32×32@1183,25` | `新建会话` |
 | `canvas-agent-session-collapse` | `36×36@1219,23` | `收起` |
@@ -174,6 +174,32 @@
 📌 **`data-state` 在侧栏上是可靠的**（本批 5 次读数全部跟随 `closed↔open`），
 **与批次 129/130 的小地图正相反**（小地图的 `data-state` **恒为 `closed`**，
 而 `aria-pressed` 正常翻转）⇒ **同一个属性名、两处可靠性相反**。
+
+### 🆕 2026-10-03 批次 133：技能选择器全层建档 + 「会话列表」按钮**鼠标点不到**
+
+点面板里的 **`使用技能`**（`canvas-agent-skill-trigger`）⇒ 弹出
+**`360×372@896,274`** 的对话框 `canvas-agent-skill-picker`（`role="dialog"`，**portal 到 `BODY`**）。
+里面是 **8 个技能**（剧本开发 / 视频反解 / 创作分镜 / 全流程广告片导演 / 故事短片 / 电商套图 /
+海报设计 / 品牌设计，**除剧本开发外都带 `官方` 标记**），
+**每个技能 4 个带 id 的 testid**（`canvas-agent-skill-row/title/official/description-<技能id>`）。
+逐个 testid 与矩形见 [20-reference](../20-reference.md)。关闭后**完全归零**。
+
+⚠️ **「会话列表」按钮从鼠标上点不到**：
+
+| testid | 自身 `pointer-events` | 命中自身的采样点 |
+|---|---|---|
+| `canvas-agent-session-menu-trigger`（`会话列表`） | **`none`** | **0 / 304** |
+| `canvas-agent-session-title`（`新会话` 文字） | **`none`** | **0 / 154** |
+| `canvas-agent-session-create`（`新建会话`） | `auto` | 168 / 176 |
+| `canvas-agent-session-collapse`（`收起`） | `auto` | 211 / 216 |
+
+👉 **想切换/查看会话，请用 `⌘/` 或右下角 `与 AI 对话` 按钮**（`canvas-sidecar-launcher`
+`59×17@1209,691`），**别去点「会话列表」**。
+⚠️ 「它是不是有意设计成不可点」本手册**无法判断** —— 手册此前从未提过这个按钮，
+所以也没有「它该可点」的依据。**如实记为待产品侧确认的疑点，不写成缺陷。**
+
+🆑 **顺带：侧栏展开时顶栏右侧被压缩** —— 折叠态顶栏 `1256×40@12,10`，
+**展开态变成 `844×40@12,10`**；两种状态下顶栏本体 `pointer-events` **都是 `none`**。
 
 ## 抽屉结构（2026-09-23 实测逐字，2026-10-01 批次 62 补 DOM 契约）
 

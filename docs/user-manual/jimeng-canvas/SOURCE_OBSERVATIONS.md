@@ -12045,7 +12045,7 @@ e 轮在**小地图开启态**下逐条实测：
 | `image-node-empty` | 一个**没有图片**的图片节点 | 画布上唯一的图片节点**有内容**；`node-empty` 族实测只有 `audio-node-empty` / `video-node-empty` |
 | `audio-node-uploading` | 上传中态 | 批次 112 六次尝试都造不出来 |
 | `selection-context-toolbar` | 多选态的**基座** | ~~本轮三次尝试都因**我自己的落点选取缺陷**没验成~~ ✅ **2026-10-03 批次 131 验成了**（换**框选**法，框住 8 个节点）—— `256×40` `role="toolbar"` 3 个直接子按钮，见 **§4.52** |
-| `agent-skill-chip` / `canvas-agent-session-collapse` | Agent 会话态 | 侧栏是**空壳**（见下） |
+| `agent-skill-chip` | Agent 会话态 | ~~侧栏是**空壳**（见下）~~ ⚠️ **批次 132/133 打开会话与技能选择器后它仍然不在** ⇒ **它不在技能选择器里**；**本批不再推测**它的前置条件（见 **§4.54**） |
 | `workspace-project-info-dialog` | 点「积分明细」 | 跳转型，**需单独授权** |
 | `null` / `x` | —— | 手册里当**反例/占位符**写的字面量，不是真 testid |
 
@@ -12558,3 +12558,140 @@ a 轮设计的是「开→关→开」三态读取，**读完第三态就退出�
 - **Agent 侧栏已归位为关态**（`opacity:0` / `data-state: closed` / 子元素 0）
 - **静态 testid 174，与基线逐个一致**
 - **积分 805 · 基础会员**；**节点 id 与批次 120 基线逐个一致**；本轮新建 id **0**
+
+## §4.54 批次 133（2026-10-03）· 技能选择器全层建档（35 个 testid / 8 个技能）；🔑「会话列表」按钮**自身不吃点击**；`elementFromPoint` 返回的元素**不等于**遮挡者
+
+**靶子**：批次 129 的 19 个「全灭 testid」里，能用**纯打开型**入口安全验的那几个。
+Agent 面板里的 `canvas-agent-skill-trigger`「使用技能」与
+`canvas-agent-session-menu-trigger`「会话列表」都是打开型按钮。
+
+### 🆕 主产出 A：技能选择器**全层建档** —— 35 个 testid、8 个技能、每技能 4 层
+
+点「使用技能」后新增 **35** 个 testid，减量 0。面板本体：
+
+| 层 | tag / role | 矩形 | 备注 |
+|---|---|---|---|
+| `canvas-agent-skill-picker` | `DIV` **`role="dialog"`** | **`360×372@896,274`** | **portal 到 `BODY`**（祖先链止于 `body`） |
+| `canvas-agent-skill-search` | `DIV` | `352×36@900,278` | 搜索框容器 |
+| `canvas-agent-skill-picker-list` | **`<UL>`** | `356×284@900,318` | 列表 |
+| `canvas-agent-skill-picker-footer` | `DIV` | `352×44@900,602` | 逐字 `管理技能` |
+
+**每个技能 4 个 testid，且 testid 里带技能 id**（`LI` 均为 `348×52`）：
+
+| testid 后缀 | tag | 矩形 | 逐字 |
+|---|---|---|---|
+| `canvas-agent-skill-row-<技能id>` | **`LI`** | `348×52` | 整行 |
+| `canvas-agent-skill-title-<技能id>` | `SPAN` | `52×20` / `56×22` / `112×22` | 技能名 |
+| `canvas-agent-skill-official-<技能id>` | `SPAN` | `26×16` | 逐字 **`官方`**（7 个技能有，剧本开发没有） |
+| `canvas-agent-skill-description-<技能id>` | `SPAN` | `324×20` | 描述 |
+| `agent-skill-option-more-<技能id>` | **`BUTTON`** | `16×16@1220,330` | 行尾的「更多」 |
+
+🔑 **技能 id 有两种形态**：第一个技能用的是**纯数字** `22613691738636`，
+其余 7 个用**语义 slug**（`web_agent_skill_video_reverse` 等）。
+⇒ **不能假设技能 id 是某一种格式**。
+
+**8 个技能逐字**（`标题` · 描述截断）：
+
+| 技能 id | 标题 | 官方 | 描述（截断） |
+|---|---|---|---|
+| `22613691738636` | 剧本开发 | — | 剧情编剧：将故事想法、图片/视频、场景、大纲、人物或剧本草稿转为剧作要素、单节点或完整分场剧本 |
+| `web_agent_skill_video_reverse` | 视频反解 | ✅ | 拆解参考视频的镜头语言、光影色调与声音节奏，一键生成可用于拉片复刻、元素替换和再创作 |
+| `web_agent_skill_seedance_shot_design` | 创作分镜 | ✅ | 面向 Seedance 视频模型的专业级虚拟导演与提示词工程师 |
+| `web_agent_skill_tvc_director` | 全流程广告片导演 | ✅ | 输入你的广告需求或一份 Brief，即可从创意、脚本、分镜到镜头、配乐分阶段生成 |
+| `web_agent_skill_story` | 故事短片 | ✅ | 帮你自动生成故事大纲、分镜脚本并产出短片 |
+| `web_agent_skill_ecommerce` | 电商套图 | ✅ | 生成风格统一的商品全套视觉素材，适用于各大电商平台 |
+| `web_agent_skill_poster` | 海报设计 | ✅ | 生成更有创意的海报内容，擅长营销场景和节日热点 |
+| `web_agent_skill_brand` | 品牌设计 | ✅ | 根据公司名称、业务与客群，生成品牌 Logo 与视觉方案 |
+
+⚠️ **关闭后完全归零**：testid 回到 **191**（侧栏态），相对侧栏态**增量 0 / 减量 0**。
+
+### 🔑 主产出 B：「会话列表」按钮**自身不吃点击**（我第一轮的诊断是错的）
+
+a 轮点 `canvas-agent-session-menu-trigger`（`885,25,58,32`）报 `no-point`，
+逐点探测发现 `elementFromPoint` **全部命中 `HEADER`**（顶栏）⇒ 我第一反应是「顶栏盖住了它」。
+
+🔴 **那个判断是错的。** b 轮量了顶栏的 `pointer-events`：
+
+```
+顶栏 canvas-top-bar：pointer-events = none   z-index = 30
+```
+
+**`pointer-events: none` 的元素不可能遮挡任何东西** —— 它自己就会被命中穿透。
+所以「`elementFromPoint` 返回 `HEADER`」只说明**命中穿透了按钮、落到了它后面的元素**，
+**不能推出「是顶栏挡的」**。
+
+真正的读数在按钮自己身上：
+
+| testid | 矩形 | 自身 `pointer-events` | **命中自身的采样点** |
+|---|---|---|---|
+| **`canvas-agent-session-menu-trigger`** | `885,25,58,32` | **`none`** | **0 / 304** |
+| **`canvas-agent-session-title`** | `893,30,42,22` | **`none`** | **0 / 154** |
+| `canvas-agent-session-create` | `1183,25,32,32` | `auto` | 168 / 176 |
+| `canvas-agent-session-collapse` | `1219,23,36,36` | `auto` | 211 / 216 |
+| `canvas-agent-skill-trigger` | `926,654,90,32` | `auto` | 446 / 450 |
+| `canvas-agent-send` | `1215,654,32,32` | `auto` | 132 / 150 |
+| `canvas-agent-composer-add` | `890,654,32,32` | `auto` | 148 / 150 |
+| `canvas-agent-composer-mention` | `1020,654,32,32` | `auto` | 150 / 150 |
+| `canvas-agent-mode-action` | `959,260,105,36` | `auto` | 562 / 595 |
+
+⇒ **只有「会话列表」按钮和它旁边的「新会话」标题文字是 `pointer-events: none`**，
+其余按钮全部 `auto` 且可点。
+（可点率没到 100% 的是因为 `elementFromPoint` 常命中按钮**自己的** `svg` / `path` 子元素 ——
+那不是遮挡。）
+
+⚠️ **如实标注边界**：「会话列表」按钮**从鼠标上不可达**是**实测事实**；
+但**它是不是有意设计成不可点，本批无法判断** ——
+本册 `ai-agent-drawer.md` 只写了「点右下角『与 AI 对话』按钮，或按 ⌘/」，
+**从头到尾没有提过「会话列表」这个按钮**，所以**手册里也没有它该可点的依据**。
+⇒ 记为**待产品侧确认的可用性疑点**，不写成缺陷。
+
+### 🆑 附带：侧栏展开时**顶栏右侧被压缩**
+
+| 侧栏状态 | 顶栏矩形 |
+|---|---|
+| 折叠 | **`1256×40@12,10`** |
+| **展开** | **`844×40@12,10`** |
+
+⇒ 侧栏展开时顶栏**宽度从 1256 缩到 844**（右侧让位）。
+而 `pointer-events` **两种状态都是 `none`**（**本批两次读数逐字一致**），
+「顶栏 10 个可点元素」靠的是**它的子元素**。
+
+### 📌 方法论：`elementFromPoint` 返回的元素 ≠ 遮挡者
+
+本批最该留下的一条。判「A 挡住了 B」必须**两个条件都成立**：
+① `elementFromPoint(点)` 落在 A 上；② **A 的 `pointer-events` 不是 `none`**。
+只要 ② 不成立，命中就是**穿透**了 A，A 不构成遮挡。
+📌 这与批次 130「有面积 ≠ 可见」、批次 131「逐字核对分不清图标按钮」**同源**：
+**每一次「看起来是 X 的问题」，先确认是「X 的问题」还是「X 背后的东西长什么样」。**
+
+### 顺带建档：侧栏启动器（此前只在手册正文提过「右下角『与 AI 对话』按钮」）
+
+| testid | tag | 矩形 | 备注 |
+|---|---|---|---|
+| `canvas-sidecar-launchers` | `DIV` | `120×36@1148,672` | 逐字 `与 AI 对话` |
+| `assistant-sidecar-launcher-frame` | `DIV` | `60×18@1208,690` | |
+| **`canvas-sidecar-launcher`** | `BUTTON` | `59×17@1209,691` | 侧栏的**鼠标入口**（与 `⌘/` 等价） |
+| `canvas-minimap-portal-target` | `DIV` | `156×114@16,554` | 小地图的 **portal 宿主**（此前只记了三层子元素，没记宿主） |
+
+### 🔴 自身失误：把 `role="tooltip"` 算进了「浮层」，制造了一次假残留
+
+a 轮收尾报「浮层 1」，我一度以为技能选择器有残留 DOM。
+实际上那是**鼠标停在 dock「小地图」按钮上的 tooltip**（`68×36@28,624`、逐字 `小地图`）——
+因为 `overlays()` 本轮被我加进了 `[role=tooltip]`。
+⇒ **tooltip 是瞬时悬停态，不是需要清理的浮层**。
+⇒ 立规：**数浮层不要把 `role=tooltip` 算进去**；
+**「浮层数」要连判定式一起报**（本批收尾就同时报了「含 tooltip = 1 ／ 不含 = 0 ✅」）。
+
+### 收尾
+
+- 终态：`76 nodes / 0 selected / 0 edges`、`Zoom options, 60%`、**真浮层 0**
+- **Agent 侧栏已归位为关态**（`opacity:0` / `closed` / 子元素 0）
+- **静态 testid 174，与基线逐个一致**；**积分 805 · 基础会员**
+- **节点 id 与批次 120 基线逐个一致**；本轮新建 id **0**
+- ⚠️ `agent-skill-chip` **仍未验到**（技能选择器里没有这个 testid，详见下）
+
+### 📌 `agent-skill-chip` 的分诊更新
+
+批次 129 把它列为「欠一个 Agent 会话态」。**批次 132/133 打开了会话与技能选择器，它仍然不在**
+⇒ 它**不在技能选择器里**，其前置条件另有其物。
+⇒ 如实更新分诊：**不是「还没打开面板」，而是「面板里没有它」**；本批**不再推测**它的前置条件。
