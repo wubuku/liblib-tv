@@ -1,0 +1,513 @@
+{
+ "static": {
+  "panoramaAction": true,
+  "panoramaVariant": true,
+  "panoramaTestId": true,
+  "effectsTrigger": true,
+  "markSelectTrigger": true,
+  "markSelectBanner": true,
+  "reshootButton": true,
+  "seedVideoFailedLine": 940,
+  "newVideoReadyLine": 4209
+ },
+ "run": {
+  "steps": {
+   "pano": {
+    "rows": [
+     {
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "展开全景编辑器",
+      "title": "全景编辑器暂不可展开",
+      "inPano": true,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "全景参考图添加暂不可用",
+      "inPano": true,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "全景模型选择暂不可用",
+      "inPano": true,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "全景生成参数暂不可用",
+      "inPano": true,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "高级设置",
+      "title": "高级设置在克隆侧尚未接入",
+      "inPano": true,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     }
+    ],
+    "panoNodeId": "image-1791055591068"
+   },
+   "newVideo": {
+    "rows": [
+     {
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "播放视频",
+      "title": "播放功能暂不可用，请使用分镜板预览",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "该功能在克隆侧尚未接入",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "翻译视频提示词",
+      "title": "翻译在克隆侧尚未接入",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "该设置在克隆侧尚未接入",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "撤销视频处理",
+      "title": "视频处理暂不支持撤销",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "重做视频处理",
+      "title": "视频处理暂不支持重做",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     }
+    ]
+   },
+   "effects": {
+    "rows": [
+     {
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "播放视频",
+      "title": "播放功能暂不可用，请使用分镜板预览",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "该功能在克隆侧尚未接入",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "翻译视频提示词",
+      "title": "翻译在克隆侧尚未接入",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "该设置在克隆侧尚未接入",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "撤销视频处理",
+      "title": "视频处理暂不支持撤销",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "重做视频处理",
+      "title": "视频处理暂不支持重做",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     }
+    ]
+   },
+   "markSelect": {
+    "rows": [
+     {
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "播放视频",
+      "title": "播放功能暂不可用，请使用分镜板预览",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "该功能在克隆侧尚未接入",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "翻译视频提示词",
+      "title": "翻译在克隆侧尚未接入",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "该设置在克隆侧尚未接入",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "撤销视频处理",
+      "title": "视频处理暂不支持撤销",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "重做视频处理",
+      "title": "视频处理暂不支持重做",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "收藏",
+      "title": "特效收藏暂不可用",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "返回节点暂不可用",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "关闭",
+      "title": "标记选择模式暂不支持关闭",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     }
+    ]
+   },
+   "reshoot": {
+    "rows": [
+     {
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "播放视频",
+      "title": "播放功能暂不可用，请使用分镜板预览",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "参考在克隆侧尚未接入",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "标记在克隆侧尚未接入",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "角色库在克隆侧尚未接入",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "积分选择暂不可用",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "生成参数选择暂不可用",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "翻译片段重拍提示词",
+      "title": "提示词翻译暂不可用",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "撤销视频处理",
+      "title": "视频处理暂不支持撤销",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "重做视频处理",
+      "title": "视频处理暂不支持重做",
+      "inPano": false,
+      "ov": null,
+      "axRole": "button",
+      "focusable": true
+     }
+    ]
+   }
+  },
+  "imageToolbarRendered": true,
+  "panoClicked": true,
+  "seedVideoStatus": "failed",
+  "pickedVideo": "clicked",
+  "newVideoStatus": "ready",
+  "openedEffects": true,
+  "openedMarkSelect": true,
+  "openedReshoot": true
+ },
+ "staticSummary": {
+  "panoramaAction": true,
+  "panoramaVariant": true,
+  "panoramaTestId": true,
+  "effectsTrigger": true,
+  "markSelectTrigger": true,
+  "markSelectBanner": true,
+  "reshootButton": true,
+  "seedVideoFailedLine": 940,
+  "newVideoReadyLine": 4209
+ },
+ "panoSites": 4,
+ "refuted732": {
+  "seedStatus": "failed",
+  "newStatus": "ready",
+  "sitesOpened": [
+   "VideoNode.tsx:498",
+   "VideoProcessingToolbar.tsx:244",
+   "VideoProcessingToolbar.tsx:245"
+  ]
+ },
+ "oneSiteManyInstances": {
+  "VideoGenerationPanel.tsx:550": 4
+ },
+ "reshootSites": 4,
+ "reshootInstances": 9,
+ "coverage": {
+  "total": 46,
+  "opened": 42,
+  "perBatch": {
+   "730": 22,
+   "732": 2,
+   "733": 4,
+   "734": 14
+  },
+  "gatedWithEvidence": 4,
+  "gatedDetail": {
+   "StoryboardScriptEditor.tsx": 3,
+   "ShotBreakdownResultNode.tsx": 1
+  }
+ },
+ "summary": {
+  "stable-entry-attributes-exist-in-source": true,
+  "panorama-branch-opens-4-sites": true,
+  "refutes-732-a-new-video-card-unlocks-3-more-sites": true,
+  "effects-menu-renders-one-site-as-4-instances": true,
+  "mark-select-mode-opens-2-sites": true,
+  "reshoot-opens-4-sites-as-6-instances": true,
+  "coverage-table-closes-at-42-opened-plus-4-gated": true
+ },
+ "failures": []
+}
