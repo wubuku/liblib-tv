@@ -1,0 +1,1048 @@
+{
+ "predictions": {
+  "P1": "6 个全局快捷键在任何可编辑控件聚焦时都到不了",
+  "P2": "6 个在面板聚焦时全部到得了",
+  "P3": "Meta+Shift+z 与 Meta+y 是同一动作的别名",
+  "P4": "Delete 与 Backspace 共用一个分支",
+  "P5": "浏览器表单撤销的触发条件是「文档表单历史里有过键入」（706 的说法）"
+ },
+ "not_applicable": [
+  "Cmd+C / Cmd+V：会写系统剪贴板，属外部可见状态变更，未获授权",
+  "方向键：源码里没有任何方向键绑定 —— 那是「无绑定」不是「到不了」"
+ ],
+ "census": [
+  {
+   "focus": "text-input",
+   "key": "Meta+z",
+   "prep": "rename",
+   "editable": true,
+   "beforeLast": {
+    "commandKind": "UPDATE_OBJECT",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 1
+   },
+   "afterLast": {
+    "commandKind": "UPDATE_OBJECT",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 1
+   },
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "改名试试707",
+    "改名试试707"
+   ],
+   "nameStore": [
+    "改名试试707",
+    "改名试试707"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "text-input",
+   "key": "Meta+Shift+z",
+   "prep": "rename+undo",
+   "editable": true,
+   "beforeLast": {
+    "commandKind": "UNDO",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "afterLast": {
+    "commandKind": "UNDO",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "text-input",
+   "key": "Meta+y",
+   "prep": "rename+undo",
+   "editable": true,
+   "beforeLast": {
+    "commandKind": "UNDO",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "afterLast": {
+    "commandKind": "UNDO",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "text-input",
+   "key": "Delete",
+   "prep": "select-guarded-camera",
+   "editable": true,
+   "beforeLast": null,
+   "afterLast": null,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "text-input",
+   "key": "Backspace",
+   "prep": "select-guarded-camera",
+   "editable": true,
+   "beforeLast": null,
+   "afterLast": null,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "text-input",
+   "key": "Escape",
+   "prep": "none",
+   "editable": true,
+   "beforeLast": null,
+   "afterLast": null,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-object-name",
+   "focusAfter": "data-director-object-name",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "range",
+   "key": "Meta+z",
+   "prep": "rename",
+   "editable": true,
+   "beforeLast": {
+    "commandKind": "GESTURE_BEGIN",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "afterLast": {
+    "commandKind": "GESTURE_BEGIN",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "改名试试707",
+    "改名试试707"
+   ],
+   "nameStore": [
+    "改名试试707",
+    "改名试试707"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "range",
+   "key": "Meta+Shift+z",
+   "prep": "rename+undo",
+   "editable": true,
+   "beforeLast": {
+    "commandKind": "GESTURE_BEGIN",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "afterLast": {
+    "commandKind": "GESTURE_BEGIN",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "range",
+   "key": "Meta+y",
+   "prep": "rename+undo",
+   "editable": true,
+   "beforeLast": {
+    "commandKind": "GESTURE_BEGIN",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "afterLast": {
+    "commandKind": "GESTURE_BEGIN",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "range",
+   "key": "Delete",
+   "prep": "select-guarded-camera",
+   "editable": true,
+   "beforeLast": {
+    "commandKind": "GESTURE_BEGIN",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "afterLast": {
+    "commandKind": "GESTURE_BEGIN",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "range",
+   "key": "Backspace",
+   "prep": "select-guarded-camera",
+   "editable": true,
+   "beforeLast": {
+    "commandKind": "GESTURE_BEGIN",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "afterLast": {
+    "commandKind": "GESTURE_BEGIN",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "range",
+   "key": "Escape",
+   "prep": "none",
+   "editable": true,
+   "beforeLast": {
+    "commandKind": "GESTURE_BEGIN",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "afterLast": {
+    "commandKind": "GESTURE_CANCEL",
+    "disposition": "NOOP",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "gestureBefore": "camera-fov",
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": true
+  },
+  {
+   "focus": "select",
+   "key": "Meta+z",
+   "prep": "rename",
+   "editable": true,
+   "beforeLast": {
+    "commandKind": "UPDATE_OBJECT",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 1
+   },
+   "afterLast": {
+    "commandKind": "UPDATE_OBJECT",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 1
+   },
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "改名试试707",
+    "改名试试707"
+   ],
+   "nameStore": [
+    "改名试试707",
+    "改名试试707"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "select",
+   "key": "Meta+Shift+z",
+   "prep": "rename+undo",
+   "editable": true,
+   "beforeLast": {
+    "commandKind": "UNDO",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "afterLast": {
+    "commandKind": "UNDO",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "select",
+   "key": "Meta+y",
+   "prep": "rename+undo",
+   "editable": true,
+   "beforeLast": {
+    "commandKind": "UNDO",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "afterLast": {
+    "commandKind": "UNDO",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "select",
+   "key": "Delete",
+   "prep": "select-guarded-camera",
+   "editable": true,
+   "beforeLast": null,
+   "afterLast": null,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "select",
+   "key": "Backspace",
+   "prep": "select-guarded-camera",
+   "editable": true,
+   "beforeLast": null,
+   "afterLast": null,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "select",
+   "key": "Escape",
+   "prep": "none",
+   "editable": true,
+   "beforeLast": null,
+   "afterLast": null,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-camera-switch",
+   "focusAfter": "data-director-camera-switch",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": false
+  },
+  {
+   "focus": "panel",
+   "key": "Meta+z",
+   "prep": "rename",
+   "editable": false,
+   "beforeLast": {
+    "commandKind": "UPDATE_OBJECT",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 1
+   },
+   "afterLast": {
+    "commandKind": "UNDO",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    -1,
+    1
+   ],
+   "focusBefore": "data-director-active-gesture,data-director-canvas-id,data-director-focus-return,data-director-focus-scope,data-director-focus-state,data-director-generation,data-director-history-future,data-director-history-past,data-director-last-command,data-director-last-disposition,data-director-last-reason,data-director-panels-collapsed,data-director-project-id,data-director-project-io-message,data-director-project-io-status,data-director-project-lifecycle,data-director-session-disposition,data-director-session-id,data-director-session-previous-owner,data-director-session-reason,data-director-source-node-id,data-director-workspace,data-director-workspace-focus-owner",
+   "focusAfter": "data-director-active-gesture,data-director-canvas-id,data-director-focus-return,data-director-focus-scope,data-director-focus-state,data-director-generation,data-director-history-future,data-director-history-past,data-director-last-command,data-director-last-disposition,data-director-last-reason,data-director-panels-collapsed,data-director-project-id,data-director-project-io-message,data-director-project-io-status,data-director-project-lifecycle,data-director-session-disposition,data-director-session-id,data-director-session-previous-owner,data-director-session-reason,data-director-source-node-id,data-director-workspace,data-director-workspace-focus-owner",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "改名试试707",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "改名试试707",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": true
+  },
+  {
+   "focus": "panel",
+   "key": "Meta+Shift+z",
+   "prep": "rename+undo",
+   "editable": false,
+   "beforeLast": {
+    "commandKind": "UNDO",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "afterLast": {
+    "commandKind": "REDO",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    1,
+    -1
+   ],
+   "focusBefore": "data-director-active-gesture,data-director-canvas-id,data-director-focus-return,data-director-focus-scope,data-director-focus-state,data-director-generation,data-director-history-future,data-director-history-past,data-director-last-command,data-director-last-disposition,data-director-last-reason,data-director-panels-collapsed,data-director-project-id,data-director-project-io-message,data-director-project-io-status,data-director-project-lifecycle,data-director-session-disposition,data-director-session-id,data-director-session-previous-owner,data-director-session-reason,data-director-source-node-id,data-director-workspace,data-director-workspace-focus-owner",
+   "focusAfter": "data-director-active-gesture,data-director-canvas-id,data-director-focus-return,data-director-focus-scope,data-director-focus-state,data-director-generation,data-director-history-future,data-director-history-past,data-director-last-command,data-director-last-disposition,data-director-last-reason,data-director-panels-collapsed,data-director-project-id,data-director-project-io-message,data-director-project-io-status,data-director-project-lifecycle,data-director-session-disposition,data-director-session-id,data-director-session-previous-owner,data-director-session-reason,data-director-source-node-id,data-director-workspace,data-director-workspace-focus-owner",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "改名试试707"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "改名试试707"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": true
+  },
+  {
+   "focus": "panel",
+   "key": "Meta+y",
+   "prep": "rename+undo",
+   "editable": false,
+   "beforeLast": {
+    "commandKind": "UNDO",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "afterLast": {
+    "commandKind": "REDO",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    1,
+    -1
+   ],
+   "focusBefore": "data-director-active-gesture,data-director-canvas-id,data-director-focus-return,data-director-focus-scope,data-director-focus-state,data-director-generation,data-director-history-future,data-director-history-past,data-director-last-command,data-director-last-disposition,data-director-last-reason,data-director-panels-collapsed,data-director-project-id,data-director-project-io-message,data-director-project-io-status,data-director-project-lifecycle,data-director-session-disposition,data-director-session-id,data-director-session-previous-owner,data-director-session-reason,data-director-source-node-id,data-director-workspace,data-director-workspace-focus-owner",
+   "focusAfter": "data-director-active-gesture,data-director-canvas-id,data-director-focus-return,data-director-focus-scope,data-director-focus-state,data-director-generation,data-director-history-future,data-director-history-past,data-director-last-command,data-director-last-disposition,data-director-last-reason,data-director-panels-collapsed,data-director-project-id,data-director-project-io-message,data-director-project-io-status,data-director-project-lifecycle,data-director-session-disposition,data-director-session-id,data-director-session-previous-owner,data-director-session-reason,data-director-source-node-id,data-director-workspace,data-director-workspace-focus-owner",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "改名试试707"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "改名试试707"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": true
+  },
+  {
+   "focus": "panel",
+   "key": "Delete",
+   "prep": "select-guarded-camera",
+   "editable": false,
+   "beforeLast": null,
+   "afterLast": {
+    "commandKind": "DELETE_OBJECTS",
+    "disposition": "REJECTED",
+    "reason": "DIRECTOR_LAST_CAMERA_REQUIRED",
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-active-gesture,data-director-canvas-id,data-director-focus-return,data-director-focus-scope,data-director-focus-state,data-director-generation,data-director-history-future,data-director-history-past,data-director-last-command,data-director-last-disposition,data-director-last-reason,data-director-panels-collapsed,data-director-project-id,data-director-project-io-message,data-director-project-io-status,data-director-project-lifecycle,data-director-session-disposition,data-director-session-id,data-director-session-previous-owner,data-director-session-reason,data-director-source-node-id,data-director-workspace,data-director-workspace-focus-owner",
+   "focusAfter": "data-director-active-gesture,data-director-canvas-id,data-director-focus-return,data-director-focus-scope,data-director-focus-state,data-director-generation,data-director-history-future,data-director-history-past,data-director-last-command,data-director-last-disposition,data-director-last-reason,data-director-panels-collapsed,data-director-project-id,data-director-project-io-message,data-director-project-io-status,data-director-project-lifecycle,data-director-session-disposition,data-director-session-id,data-director-session-previous-owner,data-director-session-reason,data-director-source-node-id,data-director-workspace,data-director-workspace-focus-owner",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": true
+  },
+  {
+   "focus": "panel",
+   "key": "Backspace",
+   "prep": "select-guarded-camera",
+   "editable": false,
+   "beforeLast": null,
+   "afterLast": {
+    "commandKind": "DELETE_OBJECTS",
+    "disposition": "REJECTED",
+    "reason": "DIRECTOR_LAST_CAMERA_REQUIRED",
+    "historyEntries": 0
+   },
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-active-gesture,data-director-canvas-id,data-director-focus-return,data-director-focus-scope,data-director-focus-state,data-director-generation,data-director-history-future,data-director-history-past,data-director-last-command,data-director-last-disposition,data-director-last-reason,data-director-panels-collapsed,data-director-project-id,data-director-project-io-message,data-director-project-io-status,data-director-project-lifecycle,data-director-session-disposition,data-director-session-id,data-director-session-previous-owner,data-director-session-reason,data-director-source-node-id,data-director-workspace,data-director-workspace-focus-owner",
+   "focusAfter": "data-director-active-gesture,data-director-canvas-id,data-director-focus-return,data-director-focus-scope,data-director-focus-state,data-director-generation,data-director-history-future,data-director-history-past,data-director-last-command,data-director-last-disposition,data-director-last-reason,data-director-panels-collapsed,data-director-project-id,data-director-project-io-message,data-director-project-io-status,data-director-project-lifecycle,data-director-session-disposition,data-director-session-id,data-director-session-previous-owner,data-director-session-reason,data-director-source-node-id,data-director-workspace,data-director-workspace-focus-owner",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": true,
+   "commandRan": true
+  },
+  {
+   "focus": "panel",
+   "key": "Escape",
+   "prep": "none",
+   "editable": false,
+   "beforeLast": null,
+   "afterLast": null,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "focusBefore": "data-director-active-gesture,data-director-canvas-id,data-director-focus-return,data-director-focus-scope,data-director-focus-state,data-director-generation,data-director-history-future,data-director-history-past,data-director-last-command,data-director-last-disposition,data-director-last-reason,data-director-panels-collapsed,data-director-project-id,data-director-project-io-message,data-director-project-io-status,data-director-project-lifecycle,data-director-session-disposition,data-director-session-id,data-director-session-previous-owner,data-director-session-reason,data-director-source-node-id,data-director-workspace,data-director-workspace-focus-owner",
+   "focusAfter": "MAIN",
+   "gestureBefore": null,
+   "gestureAfter": null,
+   "objectsBefore": 5,
+   "objectsAfter": 5,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    null
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "deskOpenAfter": false,
+   "commandRan": false
+  }
+ ],
+ "hijack_arms": [
+  {
+   "arm": "rename+arrow+no-canvas",
+   "expectHijack": true,
+   "renamed": true,
+   "arrowed": true,
+   "canvasClickInBetween": false,
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": true,
+   "nameDom": [
+    "改名试试707",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "改名试试707",
+    "改名试试707"
+   ],
+   "fovDom": [
+    "44",
+    "44"
+   ],
+   "gestureBefore": "camera-fov",
+   "gestureAfter": null,
+   "historyDelta": [
+    1,
+    0
+   ],
+   "afterLast": {
+    "commandKind": "GESTURE_COMMIT",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 1
+   }
+  },
+  {
+   "arm": "rename+no-arrow+no-canvas",
+   "expectHijack": true,
+   "renamed": true,
+   "arrowed": false,
+   "canvasClickInBetween": false,
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-object-name",
+   "focusMoved": true,
+   "nameDom": [
+    "改名试试707",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "改名试试707",
+    "改名试试707"
+   ],
+   "fovDom": [
+    "43",
+    "43"
+   ],
+   "gestureBefore": "camera-fov",
+   "gestureAfter": null,
+   "historyDelta": [
+    0,
+    0
+   ],
+   "afterLast": {
+    "commandKind": "GESTURE_COMMIT",
+    "disposition": "NOOP",
+    "reason": "DIRECTOR_COMMAND_NO_CHANGE",
+    "historyEntries": 0
+   }
+  },
+  {
+   "arm": "rename+arrow+canvas-click",
+   "expectHijack": false,
+   "renamed": true,
+   "arrowed": true,
+   "canvasClickInBetween": true,
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "focusMoved": false,
+   "nameDom": [
+    "改名试试707",
+    "改名试试707"
+   ],
+   "nameStore": [
+    "改名试试707",
+    "改名试试707"
+   ],
+   "fovDom": [
+    "44",
+    "44"
+   ],
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "historyDelta": [
+    0,
+    0
+   ],
+   "afterLast": {
+    "commandKind": "UPDATE_CAMERA",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   }
+  },
+  {
+   "arm": "no-rename+arrow+no-canvas",
+   "expectHijack": false,
+   "renamed": false,
+   "arrowed": true,
+   "canvasClickInBetween": false,
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "focusMoved": false,
+   "nameDom": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "nameStore": [
+    "机位01 · 对峙中景",
+    "机位01 · 对峙中景"
+   ],
+   "fovDom": [
+    "44",
+    "44"
+   ],
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "historyDelta": [
+    0,
+    0
+   ],
+   "afterLast": {
+    "commandKind": "UPDATE_CAMERA",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   }
+  },
+  {
+   "arm": "rename+arrow+canvas+back",
+   "expectHijack": false,
+   "renamed": true,
+   "arrowed": true,
+   "canvasClickInBetween": true,
+   "focusBefore": "data-director-camera-fov",
+   "focusAfter": "data-director-camera-fov",
+   "focusMoved": false,
+   "nameDom": [
+    "改名试试707",
+    "改名试试707"
+   ],
+   "nameStore": [
+    "改名试试707",
+    "改名试试707"
+   ],
+   "fovDom": [
+    "44",
+    "44"
+   ],
+   "gestureBefore": "camera-fov",
+   "gestureAfter": "camera-fov",
+   "historyDelta": [
+    0,
+    0
+   ],
+   "afterLast": {
+    "commandKind": "GESTURE_BEGIN",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "historyEntries": 0
+   }
+  }
+ ],
+ "delete_works": {
+  "picked": {
+   "id": "director-character-lead",
+   "name": "角色01 · 陈默",
+   "selected": true
+  },
+  "objectsBefore": 5,
+  "objectsAfter": 4,
+  "afterLast": {
+   "commandKind": "DELETE_OBJECTS",
+   "disposition": "COMMITTED",
+   "reason": null,
+   "historyEntries": 1
+  },
+  "historyDelta": [
+   1,
+   0
+  ]
+ },
+ "summary": {
+  "every-shortcut-is-blocked-while-any-editable-control-has-focus": true,
+  "all-six-shortcuts-reach-the-desk-when-the-focus-is-on-the-panel": true,
+  "delete-and-backspace-share-one-command-branch": true,
+  "the-two-redo-keys-are-aliases": true,
+  "the-browser-form-undo-hijack-needs-a-prior-text-edit-and-no-canvas-click-in-between": true,
+  "escape-reaches-the-gesture-boundary-not-the-desk-while-a-slider-has-focus": true,
+  "delete-on-a-deletable-object-actually-deletes": true
+ },
+ "failures": []
+}
