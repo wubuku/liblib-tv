@@ -1,0 +1,541 @@
+{
+ "static": {
+  "counts": {
+   "button": 141,
+   "input": 50,
+   "select": 4
+  },
+  "portal": {
+   "createPortalLine": 308,
+   "railEntries": [
+    [
+     "scene",
+     "场景",
+     "panel"
+    ],
+    [
+     "add-character",
+     "添加角色",
+     "flyout"
+    ],
+    [
+     "add-camera",
+     "添加机位",
+     "action"
+    ],
+    [
+     "panorama",
+     "全景图",
+     "flyout"
+    ],
+    [
+     "aspect-ratio",
+     "选择画幅比例",
+     "flyout"
+    ],
+    [
+     "ai-import",
+     "AI 识图导入",
+     "modal"
+    ]
+   ],
+   "characterFlyoutItems": 11
+  }
+ },
+ "run": {
+  "closed": {
+   "inRoot": {
+    "data-director-header": 1,
+    "data-director-panels-toggle": 1,
+    "data-director-view-mode": 2,
+    "data-director-project-import-input": 1,
+    "data-director-project-export": 1,
+    "data-director-project-import": 1,
+    "data-director-shot-option": 1,
+    "data-director-tree": 1,
+    "data-director-add-camera": 1,
+    "data-director-group-action": 2,
+    "data-director-selection-action": 3,
+    "data-director-object-id": 10,
+    "data-director-object-lock": 5,
+    "data-director-delete-object": 5,
+    "data-director-rail-entry": 7,
+    "data-director-icon-rail": 1,
+    "data-director-reset-view": 1,
+    "data-director-viewport-gizmo-button": 6,
+    "data-director-viewport": 2,
+    "data-director-transform-mode": 3,
+    "data-director-timeline-toggle": 1,
+    "data-director-aspect": 3,
+    "data-director-viewport-toolbar": 1,
+    "data-director-phone-vcam-trigger": 1,
+    "data-director-crowd-trigger": 1,
+    "data-director-model-library-trigger": 1,
+    "data-director-capture": 1,
+    "data-director-scene-prompt-upload": 1,
+    "data-director-scene-prompt-file": 1,
+    "data-director-scene-prompt-input": 1,
+    "data-director-scene-prompt-submit": 1,
+    "data-director-character-tab": 2,
+    "data-director-object-name": 1,
+    "data-director-inspector": 1,
+    "data-director-inspector-lock": 1,
+    "data-director-scene-axis-scrub": 9,
+    "data-director-transform-field": 9,
+    "data-director-keyframe-toggle": 9,
+    "data-director-uniform-scale": 1,
+    "data-director-hex-input": 1,
+    "data-director-color-picker": 1,
+    "data-director-timeline-resize-handle": 1,
+    "data-director-coachmark-skip": 1,
+    "data-director-coachmark-next": 1,
+    "data-director-playback": 1,
+    "data-director-auto-keyframe": 1,
+    "data-director-loop": 1,
+    "data-director-timeline-time": 1,
+    "data-director-timeline-duration": 1,
+    "data-director-time-unit": 1,
+    "data-director-add-track": 1,
+    "data-director-camera-preset-trigger": 1,
+    "data-director-create-motion-path": 1,
+    "data-director-open-curve-editor": 1,
+    "data-director-add-track-manual": 1,
+    "data-director-remove-track": 1,
+    "data-director-add-keyframe": 1,
+    "data-director-delete-keyframe": 1,
+    "data-director-timeline-zoom": 1,
+    "data-director-timeline-collapse": 1,
+    "data-director-export-trigger": 1,
+    "data-director-timeline-object-row": 2,
+    "data-director-timeline-object-name": 2,
+    "data-director-track-label": 8,
+    "data-director-track-draw-trail": 1,
+    "data-director-keyframe-id": 6
+   },
+   "outRoot": {
+    "root": 35,
+    "data-director-node": 1
+   },
+   "inRootTotal": 142,
+   "outRootTotal": 36,
+   "outNames": [
+    "项目菜单",
+    "工作区名称",
+    "画布 2",
+    "工作流",
+    "故事板",
+    "发布与分享",
+    "开通会员 限时 45 折",
+    "积分余额",
+    "Agent",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "打开导演台 →",
+    "取消 ESC",
+    "添加节点",
+    "移动",
+    "打开工具箱",
+    "素材库",
+    "角色库",
+    "生成历史",
+    "快捷键",
+    "教程",
+    "资产管理",
+    "整理画布，Option+Shift+F",
+    "切换小地图",
+    "隐藏节点连线",
+    "网格吸附",
+    "缩放选项"
+   ]
+  },
+  "flyout": {
+   "inRoot": {
+    "data-director-header": 1,
+    "data-director-panels-toggle": 1,
+    "data-director-view-mode": 2,
+    "data-director-project-import-input": 1,
+    "data-director-project-export": 1,
+    "data-director-project-import": 1,
+    "data-director-shot-option": 1,
+    "data-director-tree": 1,
+    "data-director-add-camera": 1,
+    "data-director-group-action": 2,
+    "data-director-selection-action": 3,
+    "data-director-object-id": 10,
+    "data-director-object-lock": 5,
+    "data-director-delete-object": 5,
+    "data-director-rail-entry": 7,
+    "data-director-icon-rail": 1,
+    "data-director-reset-view": 1,
+    "data-director-viewport-gizmo-button": 6,
+    "data-director-viewport": 2,
+    "data-director-transform-mode": 3,
+    "data-director-timeline-toggle": 1,
+    "data-director-aspect": 3,
+    "data-director-viewport-toolbar": 1,
+    "data-director-phone-vcam-trigger": 1,
+    "data-director-crowd-trigger": 1,
+    "data-director-model-library-trigger": 1,
+    "data-director-capture": 1,
+    "data-director-scene-prompt-upload": 1,
+    "data-director-scene-prompt-file": 1,
+    "data-director-scene-prompt-input": 1,
+    "data-director-scene-prompt-submit": 1,
+    "data-director-character-tab": 2,
+    "data-director-object-name": 1,
+    "data-director-inspector": 1,
+    "data-director-inspector-lock": 1,
+    "data-director-scene-axis-scrub": 9,
+    "data-director-transform-field": 9,
+    "data-director-keyframe-toggle": 9,
+    "data-director-uniform-scale": 1,
+    "data-director-hex-input": 1,
+    "data-director-color-picker": 1,
+    "data-director-timeline-resize-handle": 1,
+    "data-director-coachmark-skip": 1,
+    "data-director-coachmark-next": 1,
+    "data-director-playback": 1,
+    "data-director-auto-keyframe": 1,
+    "data-director-loop": 1,
+    "data-director-timeline-time": 1,
+    "data-director-timeline-duration": 1,
+    "data-director-time-unit": 1,
+    "data-director-add-track": 1,
+    "data-director-camera-preset-trigger": 1,
+    "data-director-create-motion-path": 1,
+    "data-director-open-curve-editor": 1,
+    "data-director-add-track-manual": 1,
+    "data-director-remove-track": 1,
+    "data-director-add-keyframe": 1,
+    "data-director-delete-keyframe": 1,
+    "data-director-timeline-zoom": 1,
+    "data-director-timeline-collapse": 1,
+    "data-director-export-trigger": 1,
+    "data-director-timeline-object-row": 2,
+    "data-director-timeline-object-name": 2,
+    "data-director-track-label": 8,
+    "data-director-track-draw-trail": 1,
+    "data-director-keyframe-id": 6
+   },
+   "outRoot": {
+    "root": 35,
+    "data-director-node": 1,
+    "data-director-character-option": 11
+   },
+   "inRootTotal": 142,
+   "outRootTotal": 47,
+   "outNames": [
+    "项目菜单",
+    "工作区名称",
+    "画布 2",
+    "工作流",
+    "故事板",
+    "发布与分享",
+    "开通会员 限时 45 折",
+    "积分余额",
+    "Agent",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "删除连线",
+    "打开导演台 →",
+    "取消 ESC",
+    "添加节点",
+    "移动",
+    "打开工具箱",
+    "素材库",
+    "角色库",
+    "生成历史",
+    "快捷键",
+    "教程",
+    "资产管理",
+    "整理画布，Option+Shift+F",
+    "切换小地图",
+    "隐藏节点连线",
+    "网格吸附",
+    "缩放选项",
+    "本地上传",
+    "标准男性",
+    "标准女性",
+    "健硕",
+    "纤细",
+    "少年",
+    "儿童",
+    "宽厚",
+    "二头身",
+    "群众 (3x3)›",
+    "几何模型›"
+   ]
+  },
+  "walkInside": {
+   "steps": 20,
+   "shift": false,
+   "capturePrevented": 0,
+   "bubblePrevented": 20,
+   "desk": 20,
+   "flyout": 0,
+   "outside": 0,
+   "body": 0,
+   "firstSix": [
+    {
+     "where": "desk",
+     "label": "收起"
+    },
+    {
+     "where": "desk",
+     "label": "导演视角"
+    },
+    {
+     "where": "desk",
+     "label": "机位视角"
+    },
+    {
+     "where": "desk",
+     "label": "导出导演台项目"
+    },
+    {
+     "where": "desk",
+     "label": "导入导演台项目"
+    },
+    {
+     "where": "desk",
+     "label": "机位01 · 对峙中景 · 镜头0.0-"
+    }
+   ]
+  },
+  "walkOutside": {
+   "steps": 20,
+   "shift": false,
+   "capturePrevented": 0,
+   "bubblePrevented": 0,
+   "desk": 0,
+   "flyout": 0,
+   "outside": 20,
+   "body": 0,
+   "firstSix": [
+    {
+     "where": "outside",
+     "label": "工作区名称"
+    },
+    {
+     "where": "outside",
+     "label": "画布 2"
+    },
+    {
+     "where": "outside",
+     "label": "工作流"
+    },
+    {
+     "where": "outside",
+     "label": "故事板"
+    },
+    {
+     "where": "outside",
+     "label": "发布与分享"
+    },
+    {
+     "where": "outside",
+     "label": "开通会员 限时 45 折"
+    }
+   ]
+  },
+  "walkBack": {
+   "steps": 20,
+   "shift": true,
+   "capturePrevented": 0,
+   "bubblePrevented": 17,
+   "desk": 18,
+   "flyout": 0,
+   "outside": 1,
+   "body": 1,
+   "firstSix": [
+    {
+     "where": "outside",
+     "label": "进入 FrameOS 画布"
+    },
+    {
+     "where": "body",
+     "label": "body"
+    },
+    {
+     "where": "desk",
+     "label": "机位01 · 对峙中景 · 机位 00:"
+    },
+    {
+     "where": "desk",
+     "label": "机位01 · 对峙中景 · 机位 00:"
+    },
+    {
+     "where": "desk",
+     "label": "机位01 · 对峙中景 · 机位 00:"
+    },
+    {
+     "where": "desk",
+     "label": "角色01 · 陈默 · 变换 00:08"
+    }
+   ]
+  },
+  "walkFlyout30": {
+   "steps": 30,
+   "shift": false,
+   "capturePrevented": 0,
+   "bubblePrevented": 30,
+   "desk": 30,
+   "flyout": 0,
+   "outside": 0,
+   "body": 0,
+   "firstSix": [
+    {
+     "where": "desk",
+     "label": "隐藏咖啡馆背景"
+    },
+    {
+     "where": "desk",
+     "label": "锁定咖啡馆背景"
+    },
+    {
+     "where": "desk",
+     "label": "删除咖啡馆背景"
+    },
+    {
+     "where": "desk",
+     "label": "隐藏机位01 · 对峙中景"
+    },
+    {
+     "where": "desk",
+     "label": "锁定机位01 · 对峙中景"
+    },
+    {
+     "where": "desk",
+     "label": "删除机位01 · 对峙中景"
+    }
+   ]
+  },
+  "cycles": [
+   {
+    "afterClick": "desk",
+    "desk": 5,
+    "flyout": 0,
+    "outside": 0
+   },
+   {
+    "afterClick": "desk",
+    "desk": 5,
+    "flyout": 0,
+    "outside": 0
+   },
+   {
+    "afterClick": "desk",
+    "desk": 5,
+    "flyout": 0,
+    "outside": 0
+   },
+   {
+    "afterClick": "desk",
+    "desk": 5,
+    "flyout": 0,
+    "outside": 0
+   },
+   {
+    "afterClick": "desk",
+    "desk": 5,
+    "flyout": 0,
+    "outside": 0
+   },
+   {
+    "afterClick": "desk",
+    "desk": 5,
+    "flyout": 0,
+    "outside": 0
+   },
+   {
+    "afterClick": "desk",
+    "desk": 5,
+    "flyout": 0,
+    "outside": 0
+   },
+   {
+    "afterClick": "desk",
+    "desk": 5,
+    "flyout": 0,
+    "outside": 0
+   }
+  ],
+  "afterFlyoutClick": {
+   "where": "desk",
+   "label": "删除冷掉的咖啡"
+  },
+  "pose": {
+   "base": 142,
+   "selected": 142,
+   "afterTab": 154,
+   "delta": 12,
+   "changedGroups": {
+    "data-director-pose-preset": 20,
+    "data-director-pose-control": 25,
+    "data-director-object-name": -1,
+    "data-director-inspector": -1,
+    "data-director-inspector-lock": -1,
+    "data-director-scene-axis-scrub": -9,
+    "data-director-transform-field": -9,
+    "data-director-keyframe-toggle": -9,
+    "data-director-uniform-scale": -1,
+    "data-director-hex-input": -1,
+    "data-director-color-picker": -1
+   }
+  }
+ },
+ "summary": {
+  "staticSites": 195,
+  "createPortalLine": 308,
+  "railEntries": 6,
+  "inRootClosed": 142,
+  "outRootClosed": 36,
+  "inRootFlyout": 142,
+  "outRootFlyout": 47,
+  "flyoutOutAdded": 11,
+  "flyoutOutNames": 11,
+  "insideCapture": 0,
+  "insideBubble": 20,
+  "insideDeskStops": 20,
+  "insideOutsideStops": 0,
+  "outsideCapture": 0,
+  "outsideBubble": 0,
+  "outsideDeskStops": 0,
+  "outsideOnlyStops": 20,
+  "backBubble": 17,
+  "backDeskStops": 18,
+  "backOutsideStops": 1,
+  "backBodyStops": 1,
+  "firstDeskStep": 2,
+  "fly30Desk": 30,
+  "fly30Flyout": 0,
+  "fly30Outside": 0,
+  "cyclesAllInsideDesk": true,
+  "cyclesOutsideTotal": 0,
+  "poseDelta": 12,
+  "posePreset": 20,
+  "poseControl": 25,
+  "poseAdded": 45,
+  "poseRemoved": 33,
+  "poseReversible": true,
+  "shiftStart": "项目菜单"
+ },
+ "failures": []
+}
