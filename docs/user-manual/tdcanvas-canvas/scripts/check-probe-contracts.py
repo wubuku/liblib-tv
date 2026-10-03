@@ -41,7 +41,7 @@ DESTRUCTIVE_RE = re.compile(
     r"const\s+DESTRUCTIVE\s*=\s*new Set\(\[(?P<body>.*?)\]\)", re.S
 )
 STRING_RE = re.compile(r"'([^']+)'|\"([^\"]+)\"")
-HEADING = "七条判据纪律"
+HEADING = "八条判据纪律"
 
 # M178：第九条纪律的锚点小节，以及标记表的两个方向。
 MARKER_HEADING = "第九条：定位靠"
@@ -171,6 +171,55 @@ def main() -> int:
         f"  [ ok ] 定位标记表：探针用到 {len(used)} 个、表里列了 {len(listed)} 个，"
         f"正向无遗漏"
         + ("，反向逐个核对通过" if APP_REPO.exists() and not stale else "（反向已跳过）")
+    )
+
+    # ---------- 第三项：危险按钮不许用子串/正则去选（M193 新增） ----------
+    #
+    # 前两项守的是「哪些按钮危险」与「怎么定位」，
+    # **都没管「选中它时用的是全名还是子串」**——而 M192 正是栽在这一条上：
+    #   用 `/删除/` 去匹配按钮，先命中了页面上的「删除全部」而不是卡片上的「删除」，
+    #   确认弹窗没读就点了「删除」，**两张画布一起没了、不可恢复**。
+    # 「删除全部」与「删除」只差两个字，实测按钮列表里前者还排得更前——
+    # **子串匹配碰上这种命名，必然先命中更严重的那个。**
+    #
+    # 判据：对每个危险文案取**长度 ≥2 的真前缀**（前缀本身不是完整文案），
+    # 若某个探针在正则字面量或 includes/indexOf 里用了这个前缀，
+    # **而该探针里又没出现过完整文案**，判为「模糊选中危险按钮」并报错。
+    # **出现完整文案即放行**——那是精确匹配，正是这条纪律要的做法。
+    FUZZY_RES = (
+        re.compile(r"/[^/\n]*%s[^/\n]*/"),
+        re.compile(r"\.(?:includes|indexOf)\(\s*['\"]%s['\"]"),
+    )
+    fuzzy_hits: list[str] = []
+    for pr in probes:
+        body = pr.read_text(encoding="utf-8")
+        for label in items:
+            if len(label) < 3:
+                continue  # 两字文案没有「真前缀」，写了全名就是精确匹配
+            for n in range(2, len(label)):
+                prefix = label[:n]
+                hit = False
+                for rx in FUZZY_RES:
+                    rx2 = re.compile(rx.pattern % re.escape(prefix))
+                    if rx2.search(body) and label not in body:
+                        hit = True
+                        break
+                if hit:
+                    fuzzy_hits.append(f"{pr.name}：用「{prefix}」这类子串去选「{label}」")
+    if fuzzy_hits:
+        print("  [探针契约] 探针用子串/正则去选不可逆按钮：")
+        for h in sorted(set(fuzzy_hits)):
+            print(f"    - {h}")
+        print(
+            "    「删除」与「删除全部」只差两个字，而前者排得更前——"
+            "**子串匹配碰上这种命名，必然先命中更严重的那个**（M192 因此丢了两张画布）。\n"
+            "    改用全名精确匹配（=== \"删除全部\"），或改用 data-* 语义标记定位。"
+        )
+        return 1
+
+    print(
+        f"  [ ok ] 危险按钮选择：{len(probes)} 支探针均未用子串/正则去选 "
+        f"{len(items)} 项不可逆按钮"
     )
 
     print(

@@ -24,6 +24,8 @@ config.mjs」，差点被记成「构建抓到了孤儿页」）。两种都是�
 
 from __future__ import annotations
 
+import ast
+import hashlib
 import hashlib
 import re
 import shutil
@@ -35,6 +37,117 @@ from pathlib import Path
 
 REPO_SCRIPTS = Path(__file__).resolve().parents[4] / ".agents/skills/web-studio-user-manual/scripts"
 GATE = REPO_SCRIPTS / "audit_manual.py"
+
+
+# ---------- 注入有效性检测（M193） ----------
+#
+# M193 撞上的真实故障：把不可逆按钮白名单从四项扩到六项之后，
+# `mutate_probe_contract_drift` 仍在按**旧的四项串**做 `text.replace(...)`，
+# 锚点早就没了，`replace` 成了**空操作**——用例等于什么都没注入，
+# 门禁自然放行，于是自检报「门禁漏网」。
+#
+# 这个诊断是**错的**：门禁没坏，坏的是注入。而这两种情况的处置完全相反
+# （前者去改门禁，后者去改用例），混为一谈会让人去调试一道根本没问题的闸。
+#
+# 更要紧的是它**不会自己暴露**：一条永远注入失败的用例，会让门禁少一道考问，
+# 而自检本身看不出少了什么。所以这里在跑门禁**之前**先确认注入真的改动了文件。
+#
+# 判据只看「文件内容变没变」，不关心怎么改的，因此不会误伤任何正当注入。
+#
+# ★ 这道检测**第一版就误伤了 9 条用例**，两类原因都踩了（M194 记）：
+#   一、`dist` 与 `node_modules` 被我当成「不用看」而排除，可渲染类用例改的
+#      正是临时树里的 `dist/index.html`——**排除掉的那部分恰好是它们要改的**；
+#   二、图片用例往 `.png` 尾部追加一个字节，而我只给文本后缀算摘要。
+# 所以规则是：**一律不排除路径**（`dist` 由 `copytree` 自己挡掉），
+# 文本算内容哈希、非文本记「大小 + 修改时间」——追加字节与删除文件都看得见。
+DIGEST_SUFFIXES = {".md", ".py", ".yml", ".yaml", ".sh", ".js", ".json", ".html", ".txt", ".css"}
+DIGEST_SKIP_DIRS = {"node_modules"}
+
+
+def tree_digest(root: Path) -> dict[str, str]:
+    """给手册树算内容摘要：文本文件算哈希，其余记「大小@修改时间」。"""
+    out: dict[str, str] = {}
+    for path in sorted(root.rglob("*")):
+        if not path.is_file():
+            continue
+        rel = path.relative_to(root)
+        if any(part in DIGEST_SKIP_DIRS for part in rel.parts):
+            continue
+        if path.suffix.lower() in DIGEST_SUFFIXES:
+            out[str(rel)] = "h:" + hashlib.sha256(path.read_bytes()).hexdigest()
+        else:
+            stat = path.stat()
+            out[str(rel)] = f"s:{stat.st_size}@{stat.st_mtime_ns}"
+    return out
+
+
+def changed_files(before: dict[str, str], after: dict[str, str]) -> list[str]:
+    return sorted(
+        key
+        for key in set(before) | set(after)
+        if before.get(key) != after.get(key)
+    )
+
+
+def verify_injection_detector() -> tuple[bool, str]:
+    """给「注入有效性检测」本身做自检，两个方向都要成立。
+
+    M140 立过的规矩：**新门禁必须有自检注入用例证明会拦，
+    且要有反向对照证明不误报。** 这道检测自己就是一道判据，同样适用。
+
+    正向：真改动必须被认出来，否则「注入无效」会误伤全部正当用例。
+    阴性：什么都没改时不能被认成「改过」，否则连真漏网也一起放过。
+
+    ★ 正向必须**分四种**试（第一版只试了「改文本」，结果立刻误伤 9 条）：
+    改文本、改二进制（追加字节）、删文件、建新文件。**判据少覆盖一种，
+    就会有整类正当注入被误报成「没注入」**——而这类误报会让人怀疑真正的漏网。
+    """
+    with tempfile.TemporaryDirectory(prefix="m193inject-") as tmp:
+        root = Path(tmp) / "manual"
+        (root / "scripts").mkdir(parents=True)
+        (root / "screenshots").mkdir(parents=True)
+        text_file = root / "scripts/probe-toolbar-states.js"
+        bin_file = root / "screenshots/two-nodes.png"
+        text_file.write_text("const DESTRUCTIVE = new Set(['删除']);\n", encoding="utf-8")
+        bin_file.write_bytes(b"\x89PNG\r\n\x1a\n")
+
+        def probe(action) -> list[str]:
+            before = tree_digest(root)
+            action()
+            return changed_files(before, tree_digest(root))
+
+        edit_text = probe(
+            lambda: text_file.write_text(
+                "const DESTRUCTIVE = new Set(['删除全部']);\n", encoding="utf-8"
+            )
+        )
+        append_bin = probe(lambda: bin_file.open("ab").write(b"x"))
+        drop_file = probe(lambda: bin_file.unlink())
+        def make_artifact() -> None:
+            # 渲染类用例改的正是临时树里的 `dist/index.html`——
+            # 第一版把这层目录当成「不用看」排除掉，正好把它们的注入一起排除了。
+            dist = root / "dist"
+            dist.mkdir()
+            (dist / "index.html").write_text("<p>x</p>", encoding="utf-8")
+
+        add_file = probe(make_artifact)
+        do_nothing = probe(lambda: None)
+
+    blind = [
+        label
+        for label, got in (
+            ("改文本", edit_text),
+            ("追加字节到二进制", append_bin),
+            ("删文件", drop_file),
+            ("新建文件", add_file),
+        )
+        if not got
+    ]
+    if blind:
+        return False, f"正向对照不成立：以下改动没被认出来，会误报成「注入无效」——{'、'.join(blind)}"
+    if do_nothing:
+        return False, f"阴性对照不成立：没改任何东西却报「改过」（{do_nothing}）"
+    return True, "改文本/二进制/删文件/建文件均被认出，未改动时不误报"
 
 
 # ---------- 变异函数：每个只改一处，改完必须能被预期门禁抓到 ----------
@@ -799,6 +912,131 @@ def mutate_encoding_mojibake(root: Path) -> None:
 # 原来的框架表达不了，所以补上这一类。
 EXPECT_PASS = "__expect_pass__"
 
+def mutate_probe_fuzzy_destructive(root: Path) -> None:
+    """M193：探针用 `/删除/` 这种**子串**去选不可逆按钮——M192 正是栽在这一条上。
+
+    当时的真实经过：清理测试画布时用子串匹配找删除按钮，**先命中了页面上的
+    「删除全部」而不是卡片上的「删除」**，确认弹窗没读就点了「删除」，
+    两张画布一起没了、不可恢复。而「删除」此前根本不在白名单里。
+
+    注入的代码里**故意不含完整文案「删除全部」**——
+    门禁的判据是「用了子串且没出现全名」，全名在场就该按精确匹配放行。
+    """
+    path = root / "scripts/probe-discoverability.js"
+    text = path.read_text(encoding="utf-8")
+    path.write_text(
+        text + "\n// 注入的故障：用子串去选不可逆按钮\nif (/删除/.test(label)) { target.click(); }\n",
+        encoding="utf-8",
+    )
+
+
+def mutate_probe_exact_destructive(root: Path) -> None:
+    """反向：全名精确匹配**不该被误报**。
+
+    这条纪律要的就是「写全名」，所以按全名匹配必须是放行的那一种。
+    没有这个反向用例，这道新规则就可能变成「一律拦下子串」的粗暴门禁。
+    """
+    path = root / "scripts/probe-discoverability.js"
+    text = path.read_text(encoding="utf-8")
+    path.write_text(
+        text
+        + "\n// 注入的合规写法：全名精确匹配\n"
+          "if (label === '删除全部') { target.click(); }\n",
+        encoding="utf-8",
+    )
+
+
+DESTRUCTIVE_RE = re.compile(r"const\s+DESTRUCTIVE\s*=\s*new Set\(\[(.*?)\]\)", re.S)
+STRING_RE = re.compile(r"'([^']+)'|\"([^\"]+)\"")
+
+
+def destructive_from_probe(root: Path) -> list[str]:
+    """从探针源码现算不可逆按钮白名单。
+
+    ★ 这一段原来是**手写的四项字面量**（M194 记）。M193 把白名单扩到六项，
+    锚点当场过期、`replace` 静默变成空操作，用例从此不再注入任何东西——
+    而自检把它误报成「门禁漏网」。改成现算，锚点就再也追不上真实状态。
+    """
+    text = (root / "scripts/probe-toolbar-states.js").read_text(encoding="utf-8")
+    match = DESTRUCTIVE_RE.search(text)
+    if not match:
+        raise AssertionError("读不出探针里的 DESTRUCTIVE 集合，用例无法构造注入")
+    return [a or b for a, b in STRING_RE.findall(match.group(1))]
+
+
+def case_count_from(root: Path) -> int:
+    """数出自检自己的用例条数（用 `ast`，不靠数括号）。"""
+    tree = ast.parse((root / "scripts/selftest-gates.py").read_text(encoding="utf-8"))
+    for node in tree.body:
+        targets = (node.targets if isinstance(node, ast.Assign)
+                   else [node.target] if isinstance(node, ast.AnnAssign) else [])
+        if any(getattr(t, "id", None) == "CASES" for t in targets):
+            return len(node.value.elts)
+    raise AssertionError("读不出 CASES，用例无法构造注入")
+
+
+def mutate_publish_gate_count_drift(root: Path) -> None:
+    """文档里「几道门禁」这个数字漂了，必须被拦下（M193）。
+
+    M193 查出的真实漂移：**标题写「十二道」、正文写「十六道」、实际二十一**，
+    而专门守这张表的 `check-publish-sync.py` 一直是绿的——
+    因为它数的是「哪几个门禁」，数不到「几个字」。
+
+    这类漂移比漏一个门禁更隐蔽：门禁表是**维护者排查的唯一索引**，
+    照着「十六道门禁」去理解构建流程的人，拿到的是一份几批之前的快照。
+    """
+
+    path = root / "PUBLISH.md"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace("二十一道门禁", "十六道门禁", 1)
+    assert patched != text, "注入失败：没找到「二十一道门禁」"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_publish_selftest_count_drift(root: Path) -> None:
+    """文档里「注入几类故障」与自检实际用例数对不上，必须被拦下（M193）。
+
+    这个数字此前写的是 38，而实际已经 68 以上——**差几十条用例没人发现**。
+    文档里的自检规模也是排查依据（「自检只考 38 类」会让人以为覆盖面没那么宽）。
+
+    ★ 注入的数字**从被测系统现算**，不写死：这条用例要能在「用例总数本身
+    变了」之后继续成立。写死的话每加一条用例就得改三处，而**其中一处漏改
+    会静默地把这条用例变成假通过**。
+    """
+
+    path = root / "PUBLISH.md"
+    text = path.read_text(encoding="utf-8")
+    n = case_count_from(root)
+    patched = text.replace(f"注入 {n} 类故障", f"注入 {n - 8} 类故障", 1)
+    assert patched != text, f"注入失败：没找到「注入 {n} 类故障」"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_publish_historical_gate_count(root: Path) -> None:
+    """历史陈述里的门禁数不该被当成当前数量而误报（M193 的反向对照，两条路径）。
+
+    **路径一：门禁表的「由来」列。** 那列里满是「七道门禁下全部通过」
+    「此前的十六道门禁无一扫它」这类**描述当时**的话。数量判据若扫到这些，
+    会把整张表的历史全判成错——判据一上线就全线误报。
+
+    **路径二：引号里的举例。** 这条是**判据打回作者自己**之后才发现的：
+    那段专门解释「历史陈述不该被判错」的文字本身要举例，引号里于是也出现了
+    「七道门禁」，判据把作者的说明判成了错。**排除引号是有依据的**——
+    真正声明当前数量的地方（标题、导语、构建步骤表）都不在引号里。
+
+    所以这一例守的是**不误报**：两条路径各注入一个明显不对的当前数量，必须放行。
+    """
+
+    path = root / "PUBLISH.md"
+    text = path.read_text(encoding="utf-8")
+    in_table = "M89 实测孤儿图在七道门禁下全部通过"
+    in_quotes = "满是「七道门禁下全部通过」"
+    assert in_table in text and in_quotes in text, "注入失败：反例锚点已变"
+    text = text.replace(in_table, in_table + "（当时仓库里只有九道门禁）", 1)
+    text = text.replace(in_quotes, "满是「十二道门禁」", 1)
+    path.write_text(text, encoding="utf-8")
+
+
 def mutate_probe_contract_drift(root: Path) -> None:
     """探针源码的白名单在 PUBLISH 纪律表里被删成「见脚本源码」（M144）。
 
@@ -809,12 +1047,11 @@ def mutate_probe_contract_drift(root: Path) -> None:
 
     path = root / "PUBLISH.md"
     text = path.read_text(encoding="utf-8")
+    listed = "**" + " / ".join(destructive_from_probe(root)) + "**"
+    if listed not in text:
+        raise AssertionError(f"PUBLISH.md 里找不到按探针现算的白名单串：{listed}")
     path.write_text(
-        text.replace(
-            "**移除节点 / 清空画布 / 删除当前画布 / 删除选中**",
-            "**（清单见脚本源码）**",
-            1,
-        ),
+        text.replace(listed, "**（清单见脚本源码）**", 1),
         encoding="utf-8",
     )
 
@@ -869,11 +1106,13 @@ def mutate_probe_contract_extra_context(root: Path) -> None:
 
     path = root / "PUBLISH.md"
     text = path.read_text(encoding="utf-8")
+    listed = "**" + " / ".join(destructive_from_probe(root)) + "**"
+    if listed not in text:
+        raise AssertionError(f"PUBLISH.md 里找不到按探针现算的白名单串：{listed}")
     path.write_text(
         text.replace(
-            "**移除节点 / 清空画布 / 删除当前画布 / 删除选中**",
-            "**移除节点 / 清空画布 / 删除当前画布 / 删除选中**"
-            "（这四个都在画布工具条或顶栏上，前两个 M136 亲历过误删）",
+            listed,
+            listed + "（这六项都在画布工具条、顶栏或资产页上，前两项 M136 亲历过误删）",
             1,
         ),
         encoding="utf-8",
@@ -1300,6 +1539,9 @@ CASES: list[tuple[str, object, str, str]] = [
     ("产物里页内锚点悬空", mutate_dangling_anchor_render, "render", "找不到对应 id"),
     ("账本锁定的提交与应用仓漂移", mutate_ledger_pin_drift, "ledgerpin", "与应用仓 HEAD 不一致"),
     ("发布文档的门禁表与脚本对不上", mutate_publish_gate_drift, "publishsync", "build-site.sh 并没有调用"),
+    ("文档里「几道门禁」漂了（集合对得上、数字对不上）", mutate_publish_gate_count_drift, "publishsync", "（不含 selftest-gates.py）"),
+    ("文档里「注入几类故障」与自检实际用例数对不上", mutate_publish_selftest_count_drift, "publishsync", "而 scripts/selftest-gates.py 里实际有"),
+    ("「由来」列里的历史门禁数不该被当成当前数量（不误报）", mutate_publish_historical_gate_count, "publishsync", EXPECT_PASS),
     ("源码引用行号越界（读者点过去没这行）", mutate_source_ref_out_of_range, "sourcerefs", "行号越界"),
     ("两份锁定声明互相对不上", mutate_pin_declarer_disagreement, "ledgerpin", "各声明文件锁定的提交不一致"),
     ("只改一个文件的版本号（并集判据的经典漏网）", mutate_pin_version_drift, "ledgerpin", "各声明文件写的应用版本不一致"),
@@ -1316,6 +1558,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("页面排除表里的理由写得过短（等于没写理由）", mutate_coverage_reason_too_short, "pagecoverage", "豁免过宽"),
     ("页面排除表里留着已不存在的文件（表会失真）", mutate_coverage_stale_exclusion, "pagecoverage", "过期"),
     ("文档比源码写得更细不该被误报（不做双向全等）", mutate_probe_contract_extra_context, "probecontracts", EXPECT_PASS),
+    ("探针用子串/正则去选不可逆按钮（M192 栽在这）", mutate_probe_fuzzy_destructive, "probecontracts", "用子串/正则去选不可逆按钮"),
+    ("全名精确匹配不该被误报（这条纪律要的就是写全名）", mutate_probe_exact_destructive, "probecontracts", EXPECT_PASS),
     ("出口行挂到章节标题下（位置错但门禁全绿过）", mutate_ownership_wrong, "ownership", "归属错误"),
     ("出口行挂在正确条目下不该被误报（不判该不该有）", mutate_ownership_ok, "ownership", EXPECT_PASS),
     ("门禁静默放行：ledger-pin 退回 M150 行为", mutate_gate_silence_reintroduced, "gatesilence", "仍 exit=0"),
@@ -1380,14 +1624,42 @@ def main() -> int:
     started = time.time()
     passed, failed = 0, 0
 
+    # 先给「注入有效性检测」本身做自检。**它若坏了，后面 68 条结论全都不可信**——
+    # 一道坏掉的判据会把「门禁没坏」误报成「门禁漏网」，比没有判据更费时间。
+    detector_ok, detector_note = verify_injection_detector()
+    print(f"  [ {'ok' if detector_ok else '坏'} ] 注入有效性检测自检：{detector_note}")
+    if not detector_ok:
+        return 1
+
+    stale = 0
     for name, mutate, which, expected in CASES:
         with tempfile.TemporaryDirectory(prefix="m42gate-") as tmp:
             work = Path(tmp) / "manual"
             shutil.copytree(source, work, ignore=shutil.ignore_patterns("dist", "cache", "node_modules"))
-            mutate(work)
-            code, output = run_gate(work, which)
+            before = tree_digest(work)
+            # 注入函数自己也可能抛（如锚点找不到）。**抛异常和静默空操作是同一类病**：
+            # 都没能把故障送进门禁。所以这里接住、记成「注入无效」，不让它中断整轮。
+            try:
+                mutate(work)
+                touched = changed_files(before, tree_digest(work))
+            except Exception as exc:  # noqa: BLE001 - 故意兜住：注入失败是本用例的问题
+                touched, inject_error = [], str(exc).strip().splitlines()[0][:110]
+            else:
+                inject_error = ""
+            # 注入没改动任何文件时**根本不跑门禁**：跑出来的「通过」是假的，
+            # 而假通过比失败更坏——它让这道闸在账本上一直是绿的。
+            if touched:
+                code, output = run_gate(work, which)
+            else:
+                code, output = 0, ""
 
-        if expected == EXPECT_PASS:
+        if not touched:
+            print(f"  [注入无效] {name:<26} 注入函数没改到任何文件——门禁压根没被考到")
+            if inject_error:
+                print(f"         注入函数自己抛了：{inject_error}")
+            stale += 1
+            failed += 1
+        elif expected == EXPECT_PASS:
             # 这一类断言门禁**应当放过**——它守的是「门禁不误报」这一半。
             # 没有它，一个只会说「是」的门禁可以靠永远误报来自检全绿。
             if code == 0:
@@ -1410,6 +1682,9 @@ def main() -> int:
     print(f"--- {passed}/{len(CASES)} 用例按预期被拦下，用时 {time.time() - started:.1f}s ---")
     if failed:
         print(f"门禁自检失败：{failed} 个用例没有以正确理由被拦下")
+        if stale:
+            # 两种失败的处置完全相反，分开报是为了不让人去改错地方。
+            print(f"  其中 {stale} 个是「注入无效」——**门禁没坏，是注入没注入到东西**，该改用例。")
         return 1
     print("门禁自检通过：所有注入的故障都被对应门禁以正确理由拦下")
     return 0
