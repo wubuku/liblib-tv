@@ -4049,6 +4049,64 @@ def main() -> int:
           # ⭐ 设计门必须是**会 FAIL 的真门**（不能是恒真的摆设）
           and "n_armed_ok = rec[\"n_armed\"] >= 3" in _p922
           and "\"all_ok\": bool(entered_ok and n_armed_ok)," in _p922)
+    p923 = ROOT / "scripts/jimeng_probe923_continuous_arm_stream_src.py"
+    _p923 = p923.read_text(encoding="utf-8") if p923.exists() else ""
+    check("JJJ.1 ✅⭐ **923 查清了 §131 那条滚动窗口规则是「不分方向」的** —— "
+          "窗口是**一条全局的臂事件流**，不是分方向的。⇒ **方向对称。**"
+          "**判别点**：翻向后**第 1 次**反向臂事件 **`removed = [19]`、"
+          "`added = [18]`** ⇒ **正是正向最后那两个臂事件**；"
+          "若窗口分方向，这两处应当是**空的**。**全程 34 次臂事件、"
+          "`removed` = 上一个臂事件 **34/34 全中**",
+          "923 查清了 §131 那条滚动窗口规则是「不分方向」的" in _ausrc
+          and "**✅ 判别结果（2/2 逐条一致）**" in _ausrc
+          and "**`removed` = 上一个臂事件（不分方向）34/34 全中**" in _ausrc
+          and "**不是**分两段各测一遍，而是**一条连续的臂事件流、中途翻向**" in _ausrc
+          # ⚠️ 判别点要钉在**探针真的把翻向那一次单独存下来**的代码上
+          and "\"first_rev_removed\": rev_presses[0][\"post\"][\"removed\"]" in _p923
+          and "\"last_fwd_armed\": rec[\"arm_seq_fwd\"][-1]" in _p923
+          and "arm_stream.append((phase, post_c[\"zero_idx\"][0]))" in _p923)
+    check("JJJ.2 ✅ **两处「偏离三动作」的地方都有确定解释（不许当例外糊过去）**："
+          "① 正向第 1 次是**初始化**（`added` 是 76 项）；"
+          "② **翻向那一次 `changed` 是空的** ⇒ ⭐ 因为反向这一步"
+          "**恰好落在正向刚腾空的那个节点上**（`19 → 18`，而 18 正是「上上个」、"
+          "并且**没有 `tabindex` 属性**）⇒ `null → '0'` 被记成 **`added`** "
+          "⇒ **不是规则被破坏，是读数分类撞上了巧合。**"
+          "另：死按压 **6 次**且 delta **全空 6/6**、不变式跨方向**全程成立**",
+          "**① 正向第 1 次按压是「初始化」**" in _ausrc
+          and "**② 翻向那一次 `changed` 是空的**" in _ausrc
+          and "**恰好落在正向刚腾空的那个节点上**" in _ausrc
+          and "**不是规则被破坏，是读数分类撞上了巧合。**" in _ausrc
+          and "死按压 **6 次**、`removed`/`added`/`changed` **全空 6/6**" in _ausrc
+          and "不变式「`n_wrapper_any_ti` 恒 75」**跨方向全程成立**" in _ausrc
+          # 「巧合」这个解释必须真的被探针**分开记**（翻向前后各自的下标）
+          and "\"zero_idx_at_flip\": zf," in _p923
+          and "\"armed_idx_at_flip\": (zf[0] if zf else None)," in _p923)
+    check("JJJ.3 ✅ **一条新的一致性证据**：**下标 12 在正反两向都被跳过**"
+          "（正向 `11 → 13`、反向 `13 → 11`）⇒ 此前**只观察到正向**跳过它。"
+          "⚠️ **成因仍未查明** —— §122 已钉：原理上不可从 DOM 查明；"
+          "复刻**只能**按纯 DOM 序实现并把差异**如实记为已知差异**，"
+          "**不许**编一个 DOM 层判据去「对齐」它",
+          "**下标 12 在正反两向都被跳过**" in _ausrc
+          and "此前**只观察到正向**跳过它" in _ausrc
+          and "**成因仍未查明**" in _ausrc
+          and "**不许**编一个 DOM 层判据去「对齐」它" in _ausrc
+          # ⚠️ **不许**把「跳过 12」硬编成实现规则 ⇒ 判据要钉**组件里没有**这种判据
+          and "node 12" not in _wsrc and "skip" not in _wsrc.lower())
+    check("JJJ.4 ⚠️ **一条方法论教训（本批第二条）**："
+          "**`post` 那一侧的焦点是这次按压的「结果」、不是 keydown 那刻的「原因」。**"
+          "实测有 **3 次**按压的 `post` 焦点**确实在本体上、却一次都没布**"
+          "⇒ ⚠️ **不许**拿 `post` 焦点当「这一次 keydown 的落点」"
+          "（§130 那条「内层控件 ⇒ 不布」说的才是 **keydown 那一刻**）。"
+          "⚠️ 923 第一版还踩了另一个坑：`zero_idx` 是**列表**却被拿去和整数比 ⇒ "
+          "`TypeError` **崩在设计门那一行、整轮读数全丢** ⇒ "
+          "**落盘已提前到设计门之前**（§900 那条教训的推广）",
+          "**`post` 那一侧的焦点是这次按压的「结果」、不是 keydown 那刻的「原因」。**"
+          in _ausrc
+          and "**不许**拿 `post` 焦点当「这一次 keydown 的落点」" in _ausrc
+          # ⭐ 落盘必须**排在设计门之前**（钉代码里的真实顺序）
+          and "runs.append(rec)\n        out[\"runs\"] = runs\n        with open(OUT, \"w\", encoding=\"utf-8\") as f:\n            json.dump(out, f, ensure_ascii=False, indent=2)\n\n        # ---------- 设计门" in _p923
+          and "n_armed_fwd + n_armed_rev" not in _p923
+          and "any_ti: anyTiIdx.length," in _p923)
 
 
 
