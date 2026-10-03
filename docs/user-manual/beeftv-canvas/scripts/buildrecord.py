@@ -90,14 +90,24 @@ def read_record():
         return None
 
 
-def write_record(batch, ok, warn, fail, log):
-    """**只有 `fail == 0` 的构建才该调用它**——而 `build-site.sh` 能走到末尾就意味着这一点。"""
+def write_record(batch, ok, warn, fail, source):
+    """**只有 `fail == 0` 的构建才该调用它**——而 `build-site.sh` 能走到末尾就意味着这一点。
+
+    **`source` 这个键名是订正过的**：第一版沿用 `log=`，而传进来的其实是
+    **`--counts` 的那个字符串**（`"82,0,0"`）——
+    **字段叫 log、装的是计数，而 `log` 这个名字会让下一个人去找一个构建日志**
+    **（而构建日志在 `/tmp` 下、早就没了）**。
+    **判据的键必须与它声称在问的那件事是同一个键**（纪律 172）：
+    **一个名字对不上的键，比没有这个键更费时间。**
+    """
     body = (
         "# 由 build-site.sh 在**走到脚本末尾时**写下；能被走到本身就是 rc=0 的证明。\n"
         "# 不要手改：手改它等于把纪律 280 那件事再做一遍。\n"
+        "# **计数由 build-site.sh 末尾的 awk 从一个 mktemp 文件读出**——\n"
+        "# **不是从日志正则解析的**（那条路试过，与真格式失配会数成 0）。\n"
         "batch=%d\nok=%d\nwarn=%d\nfail=%d\n"
-        "log=%s\nat=%s\n" % (int(batch), int(ok), int(warn), int(fail),
-                             log, time.strftime("%Y-%m-%d %H:%M:%S"))
+        "source=%s\nat=%s\n" % (int(batch), int(ok), int(warn), int(fail),
+                                 source, time.strftime("%Y-%m-%d %H:%M:%S"))
     )
     p = record_path()
     with io.open(p, "w", encoding="utf-8") as f:
