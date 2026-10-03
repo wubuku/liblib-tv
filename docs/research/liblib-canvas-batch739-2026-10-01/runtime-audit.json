@@ -1,0 +1,396 @@
+{
+ "static": {
+  "conditions": {
+   "lines": {
+    "isActive": 90,
+    "wrapperPe": 156,
+    "buttonClass": 171,
+    "hitPath": 136
+   },
+   "buttonClassText": true
+  }
+ },
+ "run": {
+  "zoom": 0.526,
+  "default": [
+   {
+    "x": -106,
+    "y": 375,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": false,
+    "hitIsSelf": false,
+    "hitTag": null,
+    "focusable": true
+   },
+   {
+    "x": 29,
+    "y": 346,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": true,
+    "hitIsSelf": false,
+    "hitTag": "div",
+    "focusable": true
+   },
+   {
+    "x": 345,
+    "y": 490,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": true,
+    "hitIsSelf": false,
+    "hitTag": "path",
+    "focusable": true
+   },
+   {
+    "x": -11,
+    "y": 654,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": false,
+    "hitIsSelf": false,
+    "hitTag": null,
+    "focusable": true
+   },
+   {
+    "x": -11,
+    "y": 759,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": false,
+    "hitIsSelf": false,
+    "hitTag": null,
+    "focusable": true
+   },
+   {
+    "x": 254,
+    "y": 438,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": true,
+    "hitIsSelf": false,
+    "hitTag": "path",
+    "focusable": true
+   },
+   {
+    "x": -33,
+    "y": 549,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": false,
+    "hitIsSelf": false,
+    "hitTag": null,
+    "focusable": true
+   },
+   {
+    "x": 349,
+    "y": 716,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": true,
+    "hitIsSelf": false,
+    "hitTag": "path",
+    "focusable": true
+   },
+   {
+    "x": 636,
+    "y": 287,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": true,
+    "hitIsSelf": false,
+    "hitTag": "path",
+    "focusable": true
+   },
+   {
+    "x": 124,
+    "y": 624,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": true,
+    "hitIsSelf": false,
+    "hitTag": "path",
+    "focusable": true
+   },
+   {
+    "x": 413,
+    "y": 315,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": true,
+    "hitIsSelf": false,
+    "hitTag": "path",
+    "focusable": true
+   }
+  ],
+  "hover": {
+   "before": 11,
+   "after": 10,
+   "active": {
+    "x": 345,
+    "y": 490,
+    "w": 16.8,
+    "h": 16.8,
+    "opacity": "1",
+    "pe": "auto",
+    "inViewport": true,
+    "hitIsSelf": false,
+    "hitTag": "path",
+    "focusable": true
+   },
+   "hitTagAtActiveCenter": "path"
+  },
+  "afterClick": [
+   {
+    "x": -106,
+    "y": 375,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": false,
+    "hitIsSelf": false,
+    "hitTag": null,
+    "focusable": true
+   },
+   {
+    "x": 29,
+    "y": 346,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": true,
+    "hitIsSelf": false,
+    "hitTag": "div",
+    "focusable": true
+   },
+   {
+    "x": -11,
+    "y": 654,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": false,
+    "hitIsSelf": false,
+    "hitTag": null,
+    "focusable": true
+   },
+   {
+    "x": -11,
+    "y": 759,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": false,
+    "hitIsSelf": false,
+    "hitTag": null,
+    "focusable": true
+   },
+   {
+    "x": 254,
+    "y": 438,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": true,
+    "hitIsSelf": false,
+    "hitTag": "path",
+    "focusable": true
+   },
+   {
+    "x": -33,
+    "y": 549,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": false,
+    "hitIsSelf": false,
+    "hitTag": null,
+    "focusable": true
+   },
+   {
+    "x": 349,
+    "y": 716,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": true,
+    "hitIsSelf": false,
+    "hitTag": "path",
+    "focusable": true
+   },
+   {
+    "x": 636,
+    "y": 287,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": true,
+    "hitIsSelf": false,
+    "hitTag": "path",
+    "focusable": true
+   },
+   {
+    "x": 124,
+    "y": 624,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": true,
+    "hitIsSelf": false,
+    "hitTag": "path",
+    "focusable": true
+   },
+   {
+    "x": 413,
+    "y": 315,
+    "w": 8.4,
+    "h": 8.4,
+    "opacity": "0",
+    "pe": "none",
+    "inViewport": true,
+    "hitIsSelf": false,
+    "hitTag": "path",
+    "focusable": true
+   }
+  ],
+  "tab": {
+   "steps": 300,
+   "total": 300,
+   "edgeStops": 44,
+   "distinctEdges": 11,
+   "topStops": [
+    [
+     "Edge from i-1FQ9",
+     14
+    ],
+    [
+     "Edge from i-dnwo",
+     13
+    ],
+    [
+     "Edge from b-bTLL",
+     9
+    ],
+    [
+     "image_2026-06-15",
+     8
+    ],
+    [
+     "素材库",
+     8
+    ],
+    [
+     "画布 2开通会员限时 45 折1",
+     5
+    ],
+    [
+     "进入 FrameOS 画布",
+     5
+    ],
+    [
+     "项目菜单",
+     5
+    ],
+    [
+     "工作区名称",
+     5
+    ],
+    [
+     "画布 2",
+     5
+    ],
+    [
+     "工作流",
+     5
+    ],
+    [
+     "故事板",
+     5
+    ]
+   ]
+  },
+  "keys": {
+   "focusTarget": "e-8IgMkf6Vbj",
+   "before": 11,
+   "afterEnter": 10,
+   "afterSpace": 10
+  },
+  "selectEdge": {
+   "selectedEdgeIds": 0
+  }
+ },
+ "summary": {
+  "isActiveLine": 90,
+  "buttonClassLine": 171,
+  "wrapperPeLine": 156,
+  "hitPathLine": 136,
+  "buttonSize32": true,
+  "zoom": 0.526,
+  "handles": 11,
+  "defaultAllPeNone": true,
+  "defaultAllOpacity0": true,
+  "defaultBox": [
+   [
+    8.4,
+    8.4
+   ]
+  ],
+  "defaultSelfHit": 0,
+  "defaultFocusable": 11,
+  "expectedDefaultBox": 8.416,
+  "hoverPoint": [
+   345,
+   490
+  ],
+  "activePe": "auto",
+  "activeOpacity": "1",
+  "activeBox": [
+   16.8,
+   16.8
+  ],
+  "activeHitTag": "path",
+  "edgesBeforeClick": 11,
+  "edgesAfterClick": 10,
+  "tabSteps": 300,
+  "tabTotalStops": 300,
+  "tabEdgeStops": 44,
+  "tabDistinctEdges": 11,
+  "edgesBeforeEnter": 11,
+  "edgesAfterEnter": 10,
+  "edgesAfterSpace": 10,
+  "selectedEdgeIdsAfterClick": 0
+ },
+ "failures": []
+}
