@@ -3578,3 +3578,55 @@ canvas 是 `OffscreenCanvas`（`getContext('2d')` 抛 `InvalidStateError`），
 - 缩放 30% → **60%**、连读两次一致 ✅
 - 终态：**`76 nodes / 0 selected / 0 edges`**、`Zoom options, 60%`、选择工具、**积分 805**
 - ⛔ 全程**没碰任何他人的节点**；未点任何扣费/生成按钮
+
+## 批次 122（2026-10-03）· `canvas-editor-menu` 是「更多」按钮的**壳**，不是按钮
+
+**靶子**：**手册内部的一处直接矛盾** —— 批次 120 的 testid 普查读到 `canvas-editor-menu`
+`[1061,12,36,36]`，而手册里两句话打架：
+`canvas-context.md`「更多是顶栏唯一没有 testid 的按钮」 vs
+`use-node-toolbar.md`「`canvas-editor-menu` ⇒ **顶栏按钮**」。
+
+### 判定
+
+| 读数 | 值 |
+|---|---|
+| `canvas-editor-menu` 标签 / 矩形 / `display` / 孩子数 | **`<DIV>`** ／ `36×36@1061,12` ／ **`flex`** ／ **1** |
+| 那个孩子 | `<BUTTON aria="更多" data-testid="null"> 28×28@1065,16` |
+| 外壳的后代 testid | **空** |
+
+⇒ **`canvas-context.md` 对**；`use-node-toolbar.md` **把壳当成了按钮**
+（它那两条读数「位置在顶栏」「三态不变」仍然成立，**错的只是最后一步推论**）。
+
+### 🔴 最有价值的一条：菜单开合的 `data-state` 是陷阱
+
+| 状态 | `canvas-editor-menu` 数 | `aria-expanded` | `data-state` |
+|---|---|---|---|
+| 关闭 | 1 | `false` | `closed` |
+| **打开** | **1** | **`true`** | **`closed`（没变！）** |
+| Esc 后 | 1 | `false` | `closed` |
+
+⇒ **只读 `data-state` 判「更多菜单开没开」，会永远判成「关着」。只能用 `aria-expanded`。**
+顺带否掉一个自然猜想：**菜单打开时这个 testid 不会变成 2 个**（三态恒为 1）。
+
+**菜单没有 testid**，且由**两个同矩形元素**组成（外层 portal 包装 `class=""`
+＋ 内层 `role="menu"`，都是 `200×84@980,56`）⇒ 按 testid 找不到它，**按矩形数会多数一次**。
+两项逐字 `项目信息` / `复制项目`，各 `192×36`，与原记录一致。
+
+### 🆕 顺带解掉「顶栏右段只数得到 4 个」
+
+外壳的父级是 **`display:contents`** 的 `DIV`（矩形 `0×0`）——
+`display:contents` 不生成盒子，但在 DOM 树里算数 ⇒
+`canvas-top-bar-actions.children.length = 4`，视觉上却有 6 个东西。
+
+### 🔑 立规：拿到 testid 先数孩子与 `tagName`
+
+这是 `30-concepts.md` 那个坑的**第四次现身**，但这次不是「同一 testid 多个宿主」，
+是**「壳冒充本体」**：只有 `tagName=BUTTON` 才谈得上「这是个按钮」；
+`tag=DIV` 且只有一个孩子时，**那个孩子才是要点的东西**。
+
+### 收尾
+
+- 本轮**没建任何节点、没改任何持久状态**（只开了一次菜单并 Esc 关掉）
+- 浮层清空校验 `true`、`canvas-editor-menu` 回到 1 个 ✅
+- 终态：**`76 nodes / 0 selected / 0 edges`**、`Zoom options, 60%`、选择工具、**积分 805**
+- ⛔ **一个菜单项都没点**（「复制项目」会新建项目副本，未授权）

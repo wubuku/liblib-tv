@@ -1,0 +1,379 @@
+{
+ "at": "2026-10-03T01:30:42.102Z",
+ "round": "b",
+ "before": {
+  "canvasEditorMenu数": 1,
+  "canvasEditorMenu": [
+   {
+    "矩形": [
+     1061,
+     12,
+     36,
+     36
+    ],
+    "子元素数": 1,
+    "文字": "",
+    "后代testid": [],
+    "后代aria": [
+     "更多"
+    ],
+    "内含menuitem": 0,
+    "祖先": [
+     "DIV tid=null disp=contents",
+     "DIV tid=canvas-top-bar-actions disp=flex",
+     "HEADER tid=canvas-top-bar disp=flex",
+     "DIV tid=workspace-workbench-shell disp=block"
+    ]
+   }
+  ],
+  "浮层": [],
+  "更多按钮": {
+   "矩形": [
+    1065,
+    16,
+    28,
+    28
+   ],
+   "tid": null,
+   "ariaExpanded": "false",
+   "ariaHaspopup": "menu",
+   "dataState": "closed",
+   "祖先链": [
+    {
+     "tag": "BUTTON",
+     "tid": null,
+     "disp": "flex",
+     "矩形": [
+      1065,
+      16,
+      28,
+      28
+     ]
+    },
+    {
+     "tag": "DIV",
+     "tid": "canvas-editor-menu",
+     "disp": "flex",
+     "矩形": [
+      1061,
+      12,
+      36,
+      36
+     ]
+    },
+    {
+     "tag": "DIV",
+     "tid": null,
+     "disp": "contents",
+     "矩形": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "tag": "DIV",
+     "tid": "canvas-top-bar-actions",
+     "disp": "flex",
+     "矩形": [
+      907,
+      10,
+      361,
+      40
+     ]
+    },
+    {
+     "tag": "HEADER",
+     "tid": "canvas-top-bar",
+     "disp": "flex",
+     "矩形": [
+      12,
+      10,
+      1256,
+      40
+     ]
+    }
+   ]
+  }
+ },
+ "point": {
+  "x": 1068,
+  "y": 18,
+  "矩形": [
+   1065,
+   16,
+   28,
+   28
+  ]
+ },
+ "after": {
+  "canvasEditorMenu数": 1,
+  "canvasEditorMenu": [
+   {
+    "矩形": [
+     1061,
+     12,
+     36,
+     36
+    ],
+    "子元素数": 1,
+    "文字": "",
+    "后代testid": [],
+    "后代aria": [
+     "更多"
+    ],
+    "内含menuitem": 0,
+    "祖先": [
+     "DIV tid=null disp=contents",
+     "DIV tid=canvas-top-bar-actions disp=flex",
+     "HEADER tid=canvas-top-bar disp=flex",
+     "DIV tid=workspace-workbench-shell disp=block"
+    ]
+   }
+  ],
+  "浮层": [
+   {
+    "tag": "DIV",
+    "tid": null,
+    "role": null,
+    "矩形": [
+     980,
+     56,
+     200,
+     84
+    ],
+    "cls": "",
+    "文字": "项目信息 复制项目",
+    "menuitem": [
+     {
+      "逐字": "项目信息",
+      "矩形": [
+       984,
+       60,
+       192,
+       36
+      ],
+      "禁用": false
+     },
+     {
+      "逐字": "复制项目",
+      "矩形": [
+       984,
+       100,
+       192,
+       36
+      ],
+      "禁用": false
+     }
+    ]
+   },
+   {
+    "tag": "DIV",
+    "tid": null,
+    "role": "menu",
+    "矩形": [
+     980,
+     56,
+     200,
+     84
+    ],
+    "cls": "z-[120] overflow-x-hidden overflow-y-auto overscroll-contain p-1 [scro",
+    "文字": "项目信息 复制项目",
+    "menuitem": [
+     {
+      "逐字": "项目信息",
+      "矩形": [
+       984,
+       60,
+       192,
+       36
+      ],
+      "禁用": false
+     },
+     {
+      "逐字": "复制项目",
+      "矩形": [
+       984,
+       100,
+       192,
+       36
+      ],
+      "禁用": false
+     }
+    ]
+   }
+  ],
+  "更多按钮": {
+   "矩形": [
+    1065,
+    16,
+    28,
+    28
+   ],
+   "tid": null,
+   "ariaExpanded": "true",
+   "ariaHaspopup": "menu",
+   "dataState": "closed",
+   "祖先链": [
+    {
+     "tag": "BUTTON",
+     "tid": null,
+     "disp": "flex",
+     "矩形": [
+      1065,
+      16,
+      28,
+      28
+     ]
+    },
+    {
+     "tag": "DIV",
+     "tid": "canvas-editor-menu",
+     "disp": "flex",
+     "矩形": [
+      1061,
+      12,
+      36,
+      36
+     ]
+    },
+    {
+     "tag": "DIV",
+     "tid": null,
+     "disp": "contents",
+     "矩形": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "tag": "DIV",
+     "tid": "canvas-top-bar-actions",
+     "disp": "flex",
+     "矩形": [
+      907,
+      10,
+      361,
+      40
+     ]
+    },
+    {
+     "tag": "HEADER",
+     "tid": "canvas-top-bar",
+     "disp": "flex",
+     "矩形": [
+      12,
+      10,
+      1256,
+      40
+     ]
+    }
+   ]
+  }
+ },
+ "closed": {
+  "canvasEditorMenu数": 1,
+  "canvasEditorMenu": [
+   {
+    "矩形": [
+     1061,
+     12,
+     36,
+     36
+    ],
+    "子元素数": 1,
+    "文字": "",
+    "后代testid": [],
+    "后代aria": [
+     "更多"
+    ],
+    "内含menuitem": 0,
+    "祖先": [
+     "DIV tid=null disp=contents",
+     "DIV tid=canvas-top-bar-actions disp=flex",
+     "HEADER tid=canvas-top-bar disp=flex",
+     "DIV tid=workspace-workbench-shell disp=block"
+    ]
+   }
+  ],
+  "浮层": [],
+  "更多按钮": {
+   "矩形": [
+    1065,
+    16,
+    28,
+    28
+   ],
+   "tid": null,
+   "ariaExpanded": "false",
+   "ariaHaspopup": "menu",
+   "dataState": "closed",
+   "祖先链": [
+    {
+     "tag": "BUTTON",
+     "tid": null,
+     "disp": "flex",
+     "矩形": [
+      1065,
+      16,
+      28,
+      28
+     ]
+    },
+    {
+     "tag": "DIV",
+     "tid": "canvas-editor-menu",
+     "disp": "flex",
+     "矩形": [
+      1061,
+      12,
+      36,
+      36
+     ]
+    },
+    {
+     "tag": "DIV",
+     "tid": null,
+     "disp": "contents",
+     "矩形": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "tag": "DIV",
+     "tid": "canvas-top-bar-actions",
+     "disp": "flex",
+     "矩形": [
+      907,
+      10,
+      361,
+      40
+     ]
+    },
+    {
+     "tag": "HEADER",
+     "tid": "canvas-top-bar",
+     "disp": "flex",
+     "矩形": [
+      12,
+      10,
+      1256,
+      40
+     ]
+    }
+   ]
+  }
+ },
+ "恢复校验": {
+  "浮层清空": true,
+  "testid回到1个": true,
+  "zoom": "Zoom options, 60%",
+  "status": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+ }
+}

@@ -4005,3 +4005,18 @@ S3 找「编组」按钮返回 `null`，`throw` 中止。诊断 dump 显示**同
 | ⚠️ **拖拽建线本轮没成功** | 未完成 | 起点命中 handle 热区、终点命中目标节点内部，拖到中点 `[class*="connection"]` = **234**（确实进了连线态），松手后仍 **`0 edges`** | ⚠️ **只记「这一次没成功」**，不写「拖拽不能建线」—— 目标是**空视频节点**，可连性另说；本批的可靠路径是 ⊕ 菜单「添加节点」 |
 | 🔴 **本批未点任何未授权按钮** | 合规 | 只用了：左栏「视频」（建节点）、handle 热区单击（弹菜单）、菜单「视频」（建节点并连）、右键菜单「删除」、缩放输入框 | 积分 805 未变 |
 | ✅ **护栏全程有效** | 正面 | 边与 3 个节点**逐个**删除，每次「本轮消失的 id」**各自恰好只有 SELF**；终态 76/0/0 | 自建对象遗留 **0** |
+
+## 批次 122（2026-10-03）· `canvas-editor-menu` 是「更多」按钮的**壳**；菜单开合只认 `aria-expanded`
+
+| 缺陷 | 级别 | 证据 | 处置 |
+|---|---|---|---|
+| 🔴 **手册内部直接矛盾** | **Major（本批主产出）** | `canvas-context.md:49,53`「更多是顶栏唯一没有 testid 的按钮」vs `use-node-toolbar.md:515`「`canvas-editor-menu` 恒 1 个 `36×36@1061,12` ⇒ **顶栏按钮**」 | 判定：前者**对**，后者**把壳当成了按钮** |
+| 🔑 **`canvas-editor-menu` 是 36×36 外壳** | **Major** | 它是 `<DIV>`、`display:flex`、**孩子数 1**；那个孩子 = `<BUTTON aria="更多" data-testid="null"> 28×28@1065,16`；外壳后代 testid **为空** | `use-node-toolbar.md` 就地订正；`canvas-context.md` 补一句「按钮没 testid，但有个壳」 |
+| 🔴 **菜单开合的 `data-state` 是陷阱** | **Major** | 三态读数：关闭 `aria-expanded=false` / `data-state=closed`；**打开 `aria-expanded=true` / `data-state` 仍 `closed`**；Esc 后回到 `false` | `canvas-context.md` 新增「怎么判断更多菜单开没开」小节，写明**只能用 `aria-expanded`** |
+| 🆕 **菜单没有 testid，且是两个同矩形元素** | Minor | 外层 portal 包装 `<DIV class="">` 与内层 `<DIV role="menu" class="z-[120] overflow-x-hidden…">`，**都是 `200×84@980,56`** | 同上小节写明：按 testid 找不到它；**按矩形数会多数一次** |
+| 🆕 **这个 testid 不会在菜单打开时变成 2 个** | Minor（正面否证） | 关闭/打开/Esc 后三态，全文档命中数**恒为 1** | 写进 SOURCE（这是「testid 重复」那类坑最自然的猜想，先否掉） |
+| 🆕 **`display:contents` 解释了「顶栏右段只数得到 4 个」** | Minor | 外壳的父级是 `DIV.contents`（矩形 `0×0`）；`display:contents` 不生成盒子但在 DOM 树里算数 ⇒ `canvas-top-bar-actions.children.length = 4`，视觉上却有 6 个东西 | 写进 `canvas-context.md` 脚注与 SOURCE |
+| ✅ **菜单内容复核一致** | 正面 | `项目信息` `192×36@984,60` ／ `复制项目` `192×36@984,100`，均未禁用；菜单 `200×84@980,56` | 与原记录一致，不改 |
+| 🔑 **「壳冒充本体」＝那个坑的第四次现身** | 方法论 | 前三次是「同一个 `role`/`testid` 多个宿主」（批次 105/107/另一次），这次是**一个 testid 挂在壳上** | `30-concepts.md` 立新判据：**拿到 testid 先数孩子与 `tagName`** —— `tag=BUTTON` 才谈得上是按钮；`tag=DIV` 且只有一个孩子时，**那个孩子才是要点的东西** |
+| 🔴 **本轮未点任何未授权按钮** | 合规 | 只点了「更多」把菜单**打开**并读 DOM，**一个菜单项都没点**（「复制项目」会新建项目副本，未授权） | 用 Esc 关闭，浮层清空校验 `true` |
+| ✅ **本轮零副作用** | 正面 | **没有建任何节点、没有改任何持久状态** | 终态 `76 nodes / 0 selected / 0 edges` / 60% / 选择工具 / 805 |

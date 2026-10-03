@@ -11218,3 +11218,76 @@ handle 的 `::before` 盒子 **`40px × 80px`、`top:60px; left:30px`**（canvas
 - 缩放从 30% 归位 **60%**、**连读两次一致** ✅
 - 终态：**`76 nodes / 0 selected / 0 edges`**、`Zoom options, 60%`、选择工具、**积分 805**
 - ⛔ 全程**没碰任何他人的节点**；未点任何扣费/生成按钮
+
+## §4.42 批次 122（2026-10-03）· `canvas-editor-menu` 是「更多」按钮的**壳**，不是按钮；菜单开合只认 `aria-expanded`
+
+**靶子**：**手册内部的一处直接矛盾** —— 批次 120 的 testid 普查读到
+`canvas-editor-menu` `[1061,12,36,36]`，而手册里两句话打架：
+
+- `canvas-context.md:49,53`：「更多」是**顶栏唯一没有 `data-testid` 的按钮**（`28×28@1065`）
+- `use-node-toolbar.md:515` / `SOURCE §…` / `PROGRESS`：「`canvas-editor-menu` 恒 1 个
+  `36×36@1061,12`、在顶栏右侧 ⇒ **顶栏按钮**」
+
+⇒ 两条不可能同时对。**要么「更多」有 testid，要么 `canvas-editor-menu` 不是那个按钮。**
+
+### a 轮（只读）：矛盾解开
+
+| 读数 | 值 |
+|---|---|
+| `[data-testid="canvas-editor-menu"]` 全文档命中 | **1** |
+| 它的标签 / 矩形 | **`<DIV>`** ／ `36×36@1061,12` |
+| `display` / `pointer-events` | **`flex`** ／ `auto` |
+| **孩子数** | **1** |
+| 那个孩子 | `<BUTTON>` `28×28@1065,16`、`aria="更多"`、**`data-testid="null"`** |
+| 二者关系 | 按钮**在** `canvas-editor-menu` 内（`closest` 命中） |
+| 外壳的后代 testid | **空**（它不装任何带 testid 的东西） |
+| 外壳的父级 | `DIV.contents`（**`display:contents`**，矩形 `0×0`）→ `canvas-top-bar-actions` |
+
+⇒ **`canvas-context.md` 是对的**（「更多」按钮自己确实 `testid=null`）；
+**`use-node-toolbar.md` 那句「⇒ 它是顶栏按钮」把壳当成了按钮。**
+两条读数（「位置在顶栏」「三态不变」）仍然成立，**推错的是最后一步**。
+
+📌 顺带解开一个「数不对」的老问题：`canvas-top-bar-actions` 的 `children.length` 只有 **4**，
+而它视觉上装着 6 个东西 —— 因为每个真身外面还套了一层 **`display:contents`** 的壳
+（`display:contents` 的元素**不生成盒子**，在布局里等于不存在，但**在 DOM 树里算数**）。
+
+### b 轮：打开菜单，看这个 testid 会不会变成 2 个
+
+**不会。** 三态各读一次，全文档命中数恒为 **1**：
+
+| 状态 | `canvas-editor-menu` 数 | 浮层 | 按钮 `aria-expanded` | 按钮 `data-state` |
+|---|---|---|---|---|
+| 关闭 | **1** | 0 | `false` | `closed` |
+| **打开** | **1** | 2 | **`true`** | **`closed`（没变！）** |
+| Esc 后 | **1** | 0 | `false` | `closed` |
+
+🔴 **本批最有价值的一条**：
+**菜单打开时按钮的 `data-state` 仍然是 `closed`** —— Radix 那套 `data-state="open"` 在这里**不生效**，
+只有 **`aria-expanded`** 从 `false` 翻成 `true`。
+⇒ **只读 `data-state` 判「更多菜单开没开」，会永远判成「关着」。**
+（按钮另有稳定属性 `aria-haspopup="menu"` 可用来定位它。）
+
+🆕 **菜单没有 `data-testid`，而且由两个同矩形元素组成**：
+
+| 元素 | 标签 / role | 矩形 | class |
+|---|---|---|---|
+| 外层 portal 包装 | `<DIV>`、无 role | `200×84@980,56` | **`""`（空）** |
+| 内层菜单本体 | `<DIV role="menu">` | **`200×84@980,56`**（同上） | `z-[120] overflow-x-hidden overflow-y-auto overscroll-contain p-1 …` |
+
+⇒ 按 testid 找不到它；**按矩形数元素会多数一次**。
+两个 `menuitem` 逐字 **`项目信息`**（`192×36@984,60`）、**`复制项目`**（`192×36@984,100`），
+均未禁用 —— 与 `canvas-context.md` 已记的 `200×84@980,56` 两项**逐字一致**。
+
+⛔ 本轮**只打开菜单并读它**，**没有点任何菜单项**（「复制项目」会新建项目副本，未授权）。
+
+### 🔑 立规：拿到 testid 先数孩子和标签
+
+这是 `30-concepts.md` 那个坑（「同一个 `role`/`testid` 可以有多个宿主」）的**第四次现身**，
+但这次不是「多个宿主」，是**「壳冒充本体」**：
+`tagName=BUTTON` 才谈得上「这是个按钮」；`tag=DIV` 且只有一个孩子时，**那个孩子才是要点的东西**。
+
+### 收尾
+
+- 本轮**没有建任何节点、没有改任何持久状态**（只开了一次菜单并用 Esc 关掉）
+- 终态复核：**`76 nodes / 0 selected / 0 edges`**、`Zoom options, 60%`、选择工具、**积分 805**
+- 浮层清空校验 `true`、`canvas-editor-menu` 回到 **1** 个 ✅
