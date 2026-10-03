@@ -218,7 +218,7 @@
   | 画布导入 | 本版本无导入功能 | 入口不存在 |
   | 旧画布数据 | `migrateLegacyGenerationNodes`（`project.tsx:3988`）打开即改写 | 能进来，出不来 |
   **Agent 那条是「真的建不出来」最硬的证据**——不是某一处藏了，是**所有建节点的路被同一个注册表挡住**。 [静态]
-  - **★ 订正手册的一处描述（结论不变）**：手册写它「**连注册表都没有，只有一个类型名和一条文案**」。前半句对，**后半句低估了**——`web/src/constant/canvas.ts:50` 的 `NODE_DEFAULT_SIZE` 与 `:107` 的 `NODE_SPEC` 各有一条完整条目：**380×220**、默认标题、以及 `metadata: { status: "idle", aitudouOperation: "video.generate", … }`。**是一套齐备却没接上线的规格，缺的只是注册表里那一条**（`isRegisteredNodeType` 就是 `definitions.has(type)`，`node-registry.ts:46-48`）。说成「一条文案」会让人以为是随手留的残骸。 [静态]
+  - **★ 订正手册的一处描述（结论不变）**：手册写它「**不在注册表里，剩下的只有一个类型名和一句文案**」。前半句对，**后半句低估了**——`web/src/constant/canvas.ts:50` 的 `NODE_DEFAULT_SIZE` 与 `:107` 的 `NODE_SPEC` 各有一条完整条目：**380×220**、默认标题、以及 `metadata: { status: "idle", aitudouOperation: "video.generate", … }`。**是一套齐备却没接上线的规格，缺的只是注册表里那一条**（`isRegisteredNodeType` 就是 `definitions.has(type)`，`node-registry.ts:46-48`）。说成「一条文案」会让人以为是随手留的残骸。 [静态]
   - **运行时佐证**：M180 注入一个 `type:'aitudou'` 的节点，打开画布后它的 `type` **变成了 `video`**（660×371，正是 Video 规格）——迁移先跑、调和后跑，Agent 那条软分支因此拿不到 aitudou 节点。 [运行时]
 - **★★「节点内容不上传」这句话，抓包实测成立，但有三个例外**（2026-10-03 M181，全程零付费）。用 Playwright 录下浏览器全部请求，按主机与请求体筛：
   | 操作 | 请求数 | 带请求体 | 非本机主机 |

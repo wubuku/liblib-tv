@@ -1035,6 +1035,39 @@ def mutate_anchor_exemption_too_short(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_retraction_missing_kind(root: Path) -> None:
+    """新订正**不写 kind** 时必须被拦下（M183）。
+
+    M182 出现过「改了事实、计数却没动」：那次订正改的是描述不是结论，
+    按老口径不算「订正」，于是「已订正 N 条」这个数字**没有反映出手册被改过**——
+    审计的人看不出这一批动过什么。
+    所以每条订正都必须声明它改的是 `conclusion` 还是 `wording`。
+    **不写等于没分类，门禁不许它悄悄过。**
+    """
+
+    import re
+
+    path = root / "scripts/check-retractions.py"
+    text = path.read_text(encoding="utf-8")
+    patched = re.sub(r'("id": "R37",\n)\s*"kind": "conclusion",\n', r"\1", text, count=1)
+    assert patched != text, "注入失败：没找到 R37 的 kind 字段"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_retraction_bad_kind(root: Path) -> None:
+    """`kind` 取值写错时必须被拦下（M183）。
+
+    取值拼错等于没分类，而分类失效时门禁只会「安静地少拦一类」——
+    这是最容易被放过的一种坏状态，必须当场报错而不是当没看见。
+    """
+
+    path = root / "scripts/check-retractions.py"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace('"kind": "conclusion",', '"kind": "conclustion",', 1)
+    assert patched != text, "注入失败：没找到 kind 字段"
+    path.write_text(patched, encoding="utf-8")
+
+
 def mutate_anchor_exemption_back_to_lineno(root: Path) -> None:
     """把豁免写回**已退役的行号形态**时，必须被明确拦下（M173）。
 
@@ -1168,6 +1201,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("内容锚点短于 8 字判非法（锚点不能退化成模糊匹配）", mutate_anchor_exemption_too_short, "retractions", "写法不合法"),
     ("行号豁免形态已退役，写回去必须被点名（否则退役形同虚设）", mutate_anchor_exemption_back_to_lineno, "retractions", "已退役的行号写法"),
     ("已订正说法复现到**账本**里（正文之外的盲区）", mutate_retracted_ledger_repro, "retractions", "订正过的错误说法重新出现"),
+    ("新订正不写 kind（改了描述却不算订正，计数会失真）", mutate_retraction_missing_kind, "retractions", "没写"),
+    ("kind 取值拼错等于没分类（不能安静地少拦一类）", mutate_retraction_bad_kind, "retractions", "不在"),
     ("产物里的死链", mutate_dead_dist_link, "distlinks", "指向不存在目标的链接"),
     ("任务评级三处不一致", mutate_rating_drift_inventory, "ratings", "评级漂移"),
     ("账本截图数与 manifest 不符", mutate_inventory_stale_count, "invfresh", "manifest 实为"),
