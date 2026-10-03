@@ -81,7 +81,22 @@ export async function setZoom(p, pct) {
   await p.keyboard.press('Enter');
   await p.waitForTimeout(2000);
   const back = await p.evaluate(() => { const e = document.querySelector('[data-testid="canvas-zoom-percent"]'); return e ? e.getAttribute('aria-label') : null; });
-  return { 前: cur, 目标: pct, 回读: back, 输入框出现过: seenInput };
+
+  // 🔴 批次 137 a 轮实测到的**探针时序缺陷**：改完缩放后，**aria 文字立刻变成目标值，
+  //   但 `.react-flow__viewport` 的 transform 还没跟上** —— 同一轮里同一个元素
+  //   「`node-toolbar` 占位」在标称 60% 的那一档读出的是 40% 档的数值（`227.6` 而不是 `341.4`）。
+  //   ⇒ **aria 文字不是就绪信号**。改成**轮询实测 `scale()`，追平目标才算设成功**。
+  const 实测 = async () => p.evaluate(() => { const vp = document.querySelector('.react-flow__viewport');
+    const m = vp ? /scale\(([-\d.]+)\)/.exec(vp.style.transform || '') : null; return m ? Math.round(parseFloat(m[1]) * 1000) / 1000 : null; });
+  const t0 = Date.now();
+  let got = await 实测();
+  const want = Math.round(pct / 100 * 1000) / 1000;
+  while (got !== null && Math.abs(got - want) > 0.002 && Date.now() - t0 < 6000) {
+    await p.waitForTimeout(200);
+    got = await 实测();
+  }
+  return { 前: cur, 目标: pct, 回读: back, 输入框出现过: seenInput,
+    实测scale: got, 期望scale: want, scale已追平: got !== null && Math.abs(got - want) <= 0.002, 等待ms: Date.now() - t0 };
 }
 
 /**
