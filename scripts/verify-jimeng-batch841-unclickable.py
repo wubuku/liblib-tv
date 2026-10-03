@@ -4916,6 +4916,89 @@ def main() -> int:
           and "**成因仍然未查明、标「未验证」**" in open(
               ROOT / "scripts/verify-jimeng-batch841-unclickable.py",
               encoding="utf-8").read())
+    p936 = ROOT / "scripts/jimeng_probe936_inlayer_occlusion_src.py"
+    _p936 = p936.read_text(encoding="utf-8") if p936.exists() else ""
+    _aus936 = _ausrc
+    check("WWW.1 ✅⭐⭐⭐ **936：§84 起挂着的「非全屏浮层盖住**层内**控件该算什么档」，"
+          "机制查清了 —— 两侧都测出这一类 **0 观测**，所以**判据一个字都不动**（§77）**",
+          "source_inlayer_occlusion_absent_936" in _aus936
+          and "机制查清了 —— 两侧都测出**这一类 0 观测**，所以判据不用改**" in _aus936
+          # ⭐ 判据钉在**两侧的 0 读数**上，而不是钉某个实现字面量
+          and "把 `!inLayer` 拿掉重算分桶，162 行里换桶 0 行**" in _aus936
+          and "**层内四边全被不透明外人盖住 0 步**" in _aus936
+          and "**「层内控件被**非全屏**浮层盖住」0 步**" in _aus936)
+    check("WWW.2 ⭐ **`by_modal` 排在 `by_layer` 前面，才是那 8 行走不到 "
+          "`!inLayer` 守卫的原因** —— 「控件层内 + 遮挡物层内」8 行**全部** "
+          "`covered_by_modal=true`；守卫当前**不承重**（反事实换桶 0 行，2/2）",
+          "**`by_modal` 在 `_bucket()` 里排在 `by_layer` 前面**" in _aus936
+          and "**全部** `covered_by_modal=true`" in _aus936
+          and "**根本走不到那个守卫**" in _aus936
+          and "**反事实：把 `!inLayer` 拿掉重算分桶，162 行里换桶 0 行**" in _aus936
+          # ⭐ 钉**代码**：桶顺序与守卫都还在原处、没被 936 动过
+          and 'if r.get("covered_by_modal"):\n            return "by_modal"'
+              in _ausrc
+          and 'if r.get("covered_by_layer"):\n            return "by_layer"'
+              in _ausrc
+          and "const coveredByLayer = !inLayer" in _ausrc)
+    check("WWW.3 ⚠️ **任意位置全盖 6 步全部落在 `by_modal` 那一路** —— "
+          "都是顶部 `返回首页` 那个链接、遮挡物是**铺满视口**的画布 pane "
+          "（合判据的 `scrim`，系数 0.85）⇒ **与 §77 问的形态无关，不许算进目标类**",
+          "**全部**是顶部 `返回首页` 那个链接" in _aus936
+          and "合判据的 `scrim`，系数 0.85" in _aus936
+          and "**落在 `by_modal` 那一路，与 §77 问的形态无关**" in _aus936
+          # ⭐ 钉代码：探针的 scrim 口径与判据**逐字同系数**（两边都取 0.85）
+          and "r.width >= innerWidth * 0.85 && r.height >= innerHeight * 0.85"
+              in _p936
+          and "bk.w >= window.innerWidth * 0.85 &&" in _ausrc
+          and "bk.h >= window.innerHeight * 0.85);" in _ausrc)
+    check("WWW.4 ⭐⭐ **936 第一次把 845 那把尺子的松度量出来：同一批步上 "
+          "中心口径 154/360 vs 四边口径 6/360（约 25 倍）** —— 845 的读数只作对照、"
+          "不参与判决",
+          "**中心点 + 包含关系**口径报「被遮」**154/360**" in _aus936
+          and "**四边 + 不透明**口径报**6/360**" in _aus936
+          and "**936 第一次把两把尺子的差距量化出来**" in _aus936
+          # ⭐ 钉代码：中心读数**照样记**（`hit_center_*`），但判决只用四边
+          and "hit_center_dom_sig" in _p936
+          and "\"hit_center_covered\"" in _p936
+          and "d[\"occluded\"] = bool(edges) and d[\"edges_covered\"] == len(edges)"
+              in _p936)
+    check("WWW.5 ⚠️⚠️ **阳性对照必须让尺子真的报出四边全盖，0 观测才作数** —— "
+          "夹具**必须比控件大出一圈**：四条探针点按判据是**外扩 1px**，"
+          "夹具若正好等于控件矩形，四个点全落在夹具**外面** ⇒ "
+          "**阳性对照在构造上就不可能通过**",
+          "夹具**必须比控件大出一圈**（`PAD=6`）" in _aus936
+          and "**阳性对照在构造上就不可能通过**" in _aus936
+          and "4/6 层尺子报出**四边全盖**，0 观测因此作数**" in _aus936
+          # ⭐ 钉代码：门禁要求的是 `occluded`（四边全盖），不是「加上了夹具」
+          and "const PAD = 6;" in _p936
+          and 'fired = bool(d.get("occluded"))' in _p936
+          and '"positive_control_ok": any(c.get("ruler_fired") for c in ctrls)'
+              in _p936)
+    check("WWW.6 ⚠️⚠️⚠️ **H936「浮层互斥导致这一类不可能出现」标「未验证」** —— "
+          "源站实测同时最多 2 层，而**那第 2 层是常驻的 `.react-flow__node-toolbar`**、"
+          "**不是**第二个浮层 ⇒ **「2 层」不能读成「两个浮层并存」**；"
+          "本批**没有**测「开一层会不会关掉另一层」这件正事。"
+          "⚠️ **不许**说 H936 已成立，只说「这一类 0 观测、判据不动」",
+          "**未验证、只是与两侧读数相容**" in _aus936
+          and "**不是**第二个浮层" in _aus936
+          and "**「2 层」不能读成「两个浮层并存」**" in _aus936
+          and "**没有**测到「开一层会不会关掉另一层」这件正事" in _aus936
+          and "**所以不许**说 H936 已成立" in _aus936
+          # ⭐ 钉代码：顶层去重与「层」的口径（互为祖先只算一层）
+          and "def topmost(boxes):" in _p936
+          and "互为祖先的只算**一层**" in _p936)
+    check("WWW.7 ⚠️ **936 探针自己踩的坑，全部留痕**（尺子用错 / `dom_sig` 跨状态误用 / "
+          "`modalish` 走祖先致恒真 / 阳性对照恒真 / 夹具盖不到探针点 / 挑错层 / "
+          "标记被清 / 层已被关）—— 语法门当场抓到**少两个右括号**的真语法错。"
+          "⚠️ 另记一条**门禁盲区**：锚点自查对**跨行**锚点不报错（下面这几条第一版"
+          "就栽在这），**跨行锚点只有 verifier 抓得到** ⇒ 锚点必须落在单个源码行内",
+          "**同一判据写两套定义，就是让同一判据分叉**" in _p936
+          and "**拿它跨状态认元素是误用**" in _p936
+          and "外壳**（`fixed` + `inset:0`）把**每一个**遮挡物都算成全屏" in _p936
+          and "**一个恒真的字段比没有字段更坏**" in _aus936
+          and "**那个 3/4 是夹具自己的几何造出来的**" in _p936
+          and "**只对同一状态内的序列成立**" in _p936
+          and "**「祖先里有」与「自己就是」是两回事**" in _p936)
     p935 = ROOT / "scripts/jimeng_probe935_body_stop_sweep_src.py"
     _p935 = p935.read_text(encoding="utf-8") if p935.exists() else ""
     check("VVV.1 ✅⭐⭐⭐ **935 把「原理上不可从 DOM 查明」从**假设**升级成"

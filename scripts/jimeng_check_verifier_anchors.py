@@ -87,6 +87,7 @@ PROBE_VARS = {
     "_p933": "scripts/jimeng_probe933_body_stop_rate_src.py",
     "_p934": "scripts/jimeng_probe934_body_own_attrs_src.py",
     "_p935": "scripts/jimeng_probe935_body_stop_sweep_src.py",
+    "_p936": "scripts/jimeng_probe936_inlayer_occlusion_src.py",
     # ⚠️⚠️ **929 加的**：**门禁脚本自己**也必须登记 ——
     #    PPP.3 要钉「第二道 Python 语法门真的加进它了」，
     #    那道门就**长在这个文件里** ⇒ 不登记它，锚点就查不到。
