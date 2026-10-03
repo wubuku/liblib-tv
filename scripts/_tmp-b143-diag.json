@@ -1,0 +1,1178 @@
+{
+ "批次": 143,
+ "轮": "diag",
+ "起点": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76
+ },
+ "建": {
+  "护栏": [
+   {
+    "名": "①a 建前节点数 == 预期基线（挡上轮残留）",
+    "通过": true,
+    "详情": {
+     "实际": 76,
+     "预期": 76,
+     "提示": "不等就先跑 jimeng-b139-rescue.mjs 归位"
+    }
+   },
+   {
+    "名": "①建前 0 选中（不能有上次留下的选中态）",
+    "通过": true,
+    "详情": {
+     "选中数": 0
+    }
+   },
+   {
+    "名": "①b 建前无组卡片（本批专属：组会干扰框选与差集）",
+    "通过": true,
+    "详情": {
+     "组数": 0
+    }
+   },
+   {
+    "名": "②第1个建后差集恰好 1 个",
+    "通过": true,
+    "详情": {
+     "新增": [
+      "node_9xfgnzs3kt"
+     ],
+     "前数": 76,
+     "后数": 77
+    }
+   },
+   {
+    "名": "②b 第1个新节点恰好 .selected",
+    "通过": true,
+    "详情": {
+     "SELF": "node_9xfgnzs3kt",
+     "选中数": 1
+    }
+   },
+   {
+    "名": "第2个建前清选中：落点不是控件",
+    "通过": true,
+    "详情": {
+     "落点": {
+      "x": 176,
+      "y": 660
+     },
+     "命中判定": 0
+    }
+   },
+   {
+    "名": "第2个建前清选中：选中数归 0",
+    "通过": true,
+    "详情": {
+     "选中数": 0
+    }
+   },
+   {
+    "名": "②第2个建后差集恰好 1 个",
+    "通过": true,
+    "详情": {
+     "新增": [
+      "node_9fwqwqkaxg"
+     ],
+     "前数": 77,
+     "后数": 78
+    }
+   },
+   {
+    "名": "②b 第2个新节点恰好 .selected",
+    "通过": true,
+    "详情": {
+     "SELF": "node_9fwqwqkaxg",
+     "选中数": 1
+    }
+   }
+  ],
+  "左栏aria": "文本",
+  "N": 2,
+  "建前": {
+   "节点数": 76,
+   "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+  },
+  "ids": [
+   "node_9xfgnzs3kt",
+   "node_9fwqwqkaxg"
+  ],
+  "建后canvas": {
+   "node_236ctpehgg": [
+    865,
+    400.11
+   ],
+   "node_3bfb9r79qe": [
+    480.06,
+    240
+   ],
+   "node_cdwf8x6fbj": [
+    40.06,
+    370.5
+   ],
+   "node_aw29cp094x": [
+    520.05,
+    278.75
+   ],
+   "node_5gftn3dnt1": [
+    560.05,
+    319.38
+   ],
+   "node_pxvkay973v": [
+    640.05,
+    440.65
+   ],
+   "node_ay7f1jn45r": [
+    594.8,
+    569.5
+   ],
+   "node_w6b1h9fvzw": [
+    674.81,
+    609.5
+   ],
+   "node_dt0wpmba0d": [
+    714.81,
+    689.5
+   ],
+   "node_kdgnjkfng2": [
+    754.81,
+    589.75
+   ],
+   "node_gp499g9p3m": [
+    794.81,
+    464.75
+   ],
+   "node_9y4j9jf0qv": [
+    1425.48,
+    649.11
+   ],
+   "node_gref4sw056": [
+    3562.42,
+    1981.81
+   ],
+   "node_20sb5adarj": [
+    1662.76,
+    1292.96
+   ],
+   "node_y2n170za3z": [
+    1962.76,
+    1522.58
+   ],
+   "node_1c5zafa3zk": [
+    2002.76,
+    1562.58
+   ],
+   "node_fg4h8gry6x": [
+    2042.76,
+    1602.58
+   ],
+   "node_kx0gzwzf7a": [
+    2082.76,
+    1642.58
+   ],
+   "node_97x9w2s8dc": [
+    2122.76,
+    1682.58
+   ],
+   "node_gnykygt88s": [
+    2149.77,
+    1719.45
+   ],
+   "node_52g5ng3hxa": [
+    2162.76,
+    1762.58
+   ],
+   "node_m14qwkmz4p": [
+    2202.76,
+    1802.58
+   ],
+   "node_d4tjtpnatq": [
+    1282.76,
+    998.61
+   ],
+   "node_sc4w9xkaxd": [
+    2242.76,
+    1842.58
+   ],
+   "node_y261jwxjpn": [
+    2282.76,
+    1882.58
+   ],
+   "node_3f44mcptgc": [
+    2322.76,
+    1922.58
+   ],
+   "node_e78c3z4gap": [
+    2362.76,
+    1962.58
+   ],
+   "node_5h8sbgy7pd": [
+    2402.76,
+    2002.58
+   ],
+   "node_zb8pfc1tf6": [
+    2242.76,
+    1492.96
+   ],
+   "node_v1wkbg1mbm": [
+    2282.76,
+    1532.96
+   ],
+   "node_v5ewe33jbw": [
+    2322.76,
+    1572.96
+   ],
+   "node_3rs2xvb3wm": [
+    2362.76,
+    1612.96
+   ],
+   "node_e90a7f1gyf": [
+    2402.76,
+    1652.96
+   ],
+   "node_5g0yrqgc6c": [
+    2442.76,
+    1692.96
+   ],
+   "node_anmp0m801c": [
+    2482.76,
+    1732.96
+   ],
+   "node_tqqd4fedbn": [
+    2522.76,
+    1772.96
+   ],
+   "node_68van5z657": [
+    2562.76,
+    1812.96
+   ],
+   "node_xe755vzsmx": [
+    2602.76,
+    1852.96
+   ],
+   "node_3p3sa1sgsv": [
+    2642.76,
+    1892.96
+   ],
+   "node_jphxcmk27v": [
+    2682.76,
+    1932.96
+   ],
+   "node_9b2ajtyqwj": [
+    2722.76,
+    1972.96
+   ],
+   "node_srx8z3gx8g": [
+    2762.76,
+    2012.96
+   ],
+   "node_qf32ccpxmm": [
+    2802.76,
+    2058.15
+   ],
+   "node_r6dtesbzac": [
+    2442.76,
+    2040.75
+   ],
+   "node_20pw32f1y5": [
+    2482.76,
+    2080.75
+   ],
+   "node_kgsv6w4ach": [
+    2842.76,
+    2092.05
+   ],
+   "node_80vczsczbr": [
+    2882.76,
+    2137.7
+   ],
+   "node_7w0kc2m903": [
+    2522.76,
+    2120.52
+   ],
+   "node_r6qqyk3v98": [
+    2562.76,
+    2160.52
+   ],
+   "node_thtydf4663": [
+    2922.76,
+    2171.93
+   ],
+   "node_5na1wezb9q": [
+    2962.76,
+    2217.64
+   ],
+   "node_ky7dvkppj1": [
+    2602.76,
+    2200.49
+   ],
+   "node_tnh6v3rm7v": [
+    2642.76,
+    2240.49
+   ],
+   "node_mwz4689zqr": [
+    3002.76,
+    2251.92
+   ],
+   "node_7y6fhyn18z": [
+    3042.76,
+    2297.63
+   ],
+   "node_qe1kf9ywek": [
+    2682.76,
+    2280.49
+   ],
+   "node_w7s8mxphwh": [
+    2722.76,
+    2320.49
+   ],
+   "node_p4xg96c73x": [
+    3082.76,
+    2331.92
+   ],
+   "node_rs637eg7me": [
+    2539.43,
+    1005.96
+   ],
+   "node_wdqa2gne4s": [
+    2122.76,
+    1325.96
+   ],
+   "node_fd0p2amd3p": [
+    2024.43,
+    1292.96
+   ],
+   "node_pz48stvt07": [
+    1662.76,
+    2440.49
+   ],
+   "node_2x3hae9jhe": [
+    2901.37,
+    1421.31
+   ],
+   "node_jx5amm7m9j": [
+    3122.76,
+    2045.96
+   ],
+   "node_2vbd2rqk7q": [
+    3162.76,
+    2125.96
+   ],
+   "node_kpfbgmkkr3": [
+    3202.76,
+    2205.96
+   ],
+   "node_1yw4ntm88n": [
+    3242.76,
+    2285.96
+   ],
+   "node_fyy39951ae": [
+    3282.76,
+    2365.96
+   ],
+   "node_jc6t41x8d2": [
+    1464.13,
+    1405.96
+   ],
+   "node_kk2xhkrdtn": [
+    2562.76,
+    1362.58
+   ],
+   "node_qs4x5t988q": [
+    2539.43,
+    649.11
+   ],
+   "node_9rxgrvfe4y": [
+    2901.37,
+    1045.96
+   ],
+   "node_n0x3zqajjy": [
+    2202.76,
+    649.11
+   ],
+   "node_3cc0k9cfgb": [
+    2883.14,
+    649.11
+   ],
+   "node_ae08gp8ke3": [
+    1282.76,
+    1292.96
+   ],
+   "node_tadm1nyykc": [
+    1784.13,
+    649.11
+   ],
+   "node_9xfgnzs3kt": [
+    2664.74,
+    2029.57
+   ],
+   "node_9fwqwqkaxg": [
+    2704.74,
+    2069.57
+   ]
+  },
+  "ok": true
+ },
+ "叠放": {
+  "A": "node_9xfgnzs3kt",
+  "B": "node_9fwqwqkaxg",
+  "canvas": {
+   "node_236ctpehgg": [
+    865,
+    400.11
+   ],
+   "node_3bfb9r79qe": [
+    480.06,
+    240
+   ],
+   "node_cdwf8x6fbj": [
+    40.06,
+    370.5
+   ],
+   "node_aw29cp094x": [
+    520.05,
+    278.75
+   ],
+   "node_5gftn3dnt1": [
+    560.05,
+    319.38
+   ],
+   "node_pxvkay973v": [
+    640.05,
+    440.65
+   ],
+   "node_ay7f1jn45r": [
+    594.8,
+    569.5
+   ],
+   "node_w6b1h9fvzw": [
+    674.81,
+    609.5
+   ],
+   "node_dt0wpmba0d": [
+    714.81,
+    689.5
+   ],
+   "node_kdgnjkfng2": [
+    754.81,
+    589.75
+   ],
+   "node_gp499g9p3m": [
+    794.81,
+    464.75
+   ],
+   "node_9y4j9jf0qv": [
+    1425.48,
+    649.11
+   ],
+   "node_gref4sw056": [
+    3562.42,
+    1981.81
+   ],
+   "node_20sb5adarj": [
+    1662.76,
+    1292.96
+   ],
+   "node_y2n170za3z": [
+    1962.76,
+    1522.58
+   ],
+   "node_1c5zafa3zk": [
+    2002.76,
+    1562.58
+   ],
+   "node_fg4h8gry6x": [
+    2042.76,
+    1602.58
+   ],
+   "node_kx0gzwzf7a": [
+    2082.76,
+    1642.58
+   ],
+   "node_97x9w2s8dc": [
+    2122.76,
+    1682.58
+   ],
+   "node_gnykygt88s": [
+    2149.77,
+    1719.45
+   ],
+   "node_52g5ng3hxa": [
+    2162.76,
+    1762.58
+   ],
+   "node_m14qwkmz4p": [
+    2202.76,
+    1802.58
+   ],
+   "node_d4tjtpnatq": [
+    1282.76,
+    998.61
+   ],
+   "node_sc4w9xkaxd": [
+    2242.76,
+    1842.58
+   ],
+   "node_y261jwxjpn": [
+    2282.76,
+    1882.58
+   ],
+   "node_3f44mcptgc": [
+    2322.76,
+    1922.58
+   ],
+   "node_e78c3z4gap": [
+    2362.76,
+    1962.58
+   ],
+   "node_5h8sbgy7pd": [
+    2402.76,
+    2002.58
+   ],
+   "node_zb8pfc1tf6": [
+    2242.76,
+    1492.96
+   ],
+   "node_v1wkbg1mbm": [
+    2282.76,
+    1532.96
+   ],
+   "node_v5ewe33jbw": [
+    2322.76,
+    1572.96
+   ],
+   "node_3rs2xvb3wm": [
+    2362.76,
+    1612.96
+   ],
+   "node_e90a7f1gyf": [
+    2402.76,
+    1652.96
+   ],
+   "node_5g0yrqgc6c": [
+    2442.76,
+    1692.96
+   ],
+   "node_anmp0m801c": [
+    2482.76,
+    1732.96
+   ],
+   "node_tqqd4fedbn": [
+    2522.76,
+    1772.96
+   ],
+   "node_68van5z657": [
+    2562.76,
+    1812.96
+   ],
+   "node_xe755vzsmx": [
+    2602.76,
+    1852.96
+   ],
+   "node_3p3sa1sgsv": [
+    2642.76,
+    1892.96
+   ],
+   "node_jphxcmk27v": [
+    2682.76,
+    1932.96
+   ],
+   "node_9b2ajtyqwj": [
+    2722.76,
+    1972.96
+   ],
+   "node_srx8z3gx8g": [
+    2762.76,
+    2012.96
+   ],
+   "node_qf32ccpxmm": [
+    2802.76,
+    2058.15
+   ],
+   "node_r6dtesbzac": [
+    2442.76,
+    2040.75
+   ],
+   "node_20pw32f1y5": [
+    2482.76,
+    2080.75
+   ],
+   "node_kgsv6w4ach": [
+    2842.76,
+    2092.05
+   ],
+   "node_80vczsczbr": [
+    2882.76,
+    2137.7
+   ],
+   "node_7w0kc2m903": [
+    2522.76,
+    2120.52
+   ],
+   "node_r6qqyk3v98": [
+    2562.76,
+    2160.52
+   ],
+   "node_thtydf4663": [
+    2922.76,
+    2171.93
+   ],
+   "node_5na1wezb9q": [
+    2962.76,
+    2217.64
+   ],
+   "node_ky7dvkppj1": [
+    2602.76,
+    2200.49
+   ],
+   "node_tnh6v3rm7v": [
+    2642.76,
+    2240.49
+   ],
+   "node_mwz4689zqr": [
+    3002.76,
+    2251.92
+   ],
+   "node_7y6fhyn18z": [
+    3042.76,
+    2297.63
+   ],
+   "node_qe1kf9ywek": [
+    2682.76,
+    2280.49
+   ],
+   "node_w7s8mxphwh": [
+    2722.76,
+    2320.49
+   ],
+   "node_p4xg96c73x": [
+    3082.76,
+    2331.92
+   ],
+   "node_rs637eg7me": [
+    2539.43,
+    1005.96
+   ],
+   "node_wdqa2gne4s": [
+    2122.76,
+    1325.96
+   ],
+   "node_fd0p2amd3p": [
+    2024.43,
+    1292.96
+   ],
+   "node_pz48stvt07": [
+    1662.76,
+    2440.49
+   ],
+   "node_2x3hae9jhe": [
+    2901.37,
+    1421.31
+   ],
+   "node_jx5amm7m9j": [
+    3122.76,
+    2045.96
+   ],
+   "node_2vbd2rqk7q": [
+    3162.76,
+    2125.96
+   ],
+   "node_kpfbgmkkr3": [
+    3202.76,
+    2205.96
+   ],
+   "node_1yw4ntm88n": [
+    3242.76,
+    2285.96
+   ],
+   "node_fyy39951ae": [
+    3282.76,
+    2365.96
+   ],
+   "node_jc6t41x8d2": [
+    1464.13,
+    1405.96
+   ],
+   "node_kk2xhkrdtn": [
+    2562.76,
+    1362.58
+   ],
+   "node_qs4x5t988q": [
+    2539.43,
+    649.11
+   ],
+   "node_9rxgrvfe4y": [
+    2901.37,
+    1045.96
+   ],
+   "node_n0x3zqajjy": [
+    2202.76,
+    649.11
+   ],
+   "node_3cc0k9cfgb": [
+    2883.14,
+    649.11
+   ],
+   "node_ae08gp8ke3": [
+    1282.76,
+    1292.96
+   ],
+   "node_tadm1nyykc": [
+    1784.13,
+    649.11
+   ],
+   "node_9xfgnzs3kt": [
+    2664.74,
+    2029.57
+   ],
+   "node_9fwqwqkaxg": [
+    2704.74,
+    2069.57
+   ]
+  }
+ },
+ "屏幕": {
+  "node_9xfgnzs3kt": {
+   "x": 544,
+   "y": 264,
+   "w": 192,
+   "h": 192
+  },
+  "node_9fwqwqkaxg": {
+   "x": 568,
+   "y": 288,
+   "w": 192,
+   "h": 192
+  }
+ },
+ "z序": {
+  "node_9xfgnzs3kt": {
+   "z": "76",
+   "computed": "76",
+   "cls": "react-flow__node react-flow__node-text nopan selectable drag"
+  },
+  "node_9fwqwqkaxg": {
+   "z": "171",
+   "computed": "171",
+   "cls": "react-flow__node react-flow__node-text nopan selected select"
+  }
+ },
+ "像素": {
+  "node_9xfgnzs3kt": {
+   "总数": 240,
+   "质心": [
+    592,
+    337
+   ],
+   "盒": {
+    "x": 544,
+    "y": 264,
+    "w": 192,
+    "h": 192
+   },
+   "首5": [
+    [
+     550,
+     271
+    ],
+    [
+     553,
+     271
+    ],
+    [
+     556,
+     271
+    ],
+    [
+     559,
+     271
+    ],
+    [
+     562,
+     271
+    ]
+   ],
+   "末5": [
+    [
+     553,
+     445
+    ],
+    [
+     556,
+     445
+    ],
+    [
+     550,
+     448
+    ],
+    [
+     553,
+     448
+    ],
+    [
+     556,
+     448
+    ]
+   ],
+   "质心处命中归属": {
+    "tag": "DIV",
+    "cls": "data-[connection-receiving=true]:border-transparen",
+    "所属node": "node_9fwqwqkaxg"
+   }
+  },
+  "node_9fwqwqkaxg": {
+   "总数": 3362,
+   "质心": [
+    664,
+    389
+   ],
+   "盒": {
+    "x": 568,
+    "y": 288,
+    "w": 192,
+    "h": 192
+   },
+   "首5": [
+    [
+     577,
+     295
+    ],
+    [
+     580,
+     295
+    ],
+    [
+     583,
+     295
+    ],
+    [
+     586,
+     295
+    ],
+    [
+     589,
+     295
+    ]
+   ],
+   "末5": [
+    [
+     727,
+     472
+    ],
+    [
+     730,
+     472
+    ],
+    [
+     733,
+     472
+    ],
+    [
+     736,
+     472
+    ],
+    [
+     739,
+     472
+    ]
+   ],
+   "质心处命中归属": {
+    "tag": "DIV",
+    "cls": "data-[connection-receiving=true]:border-transparen",
+    "所属node": "node_9fwqwqkaxg"
+   }
+  }
+ },
+ "B落点前": {
+  "命中": "DIV",
+  "链": [
+   {
+    "tag": "DIV",
+    "cls": "data-[connection-receiving=true]:border-transparent data-[connection-r",
+    "nodeid": null,
+    "testid": "text-flow-node-full"
+   },
+   {
+    "tag": "DIV",
+    "cls": "group/canvas-panel-scrollbar relative size-full",
+    "nodeid": null,
+    "testid": null
+   },
+   {
+    "tag": "DIV",
+    "cls": "react-flow__node react-flow__node-text nopan",
+    "nodeid": "node_9fwqwqkaxg",
+    "testid": "rf__node-node_9fwqwqkaxg"
+   },
+   {
+    "tag": "DIV",
+    "cls": "react-flow__nodes",
+    "nodeid": null,
+    "testid": null
+   },
+   {
+    "tag": "DIV",
+    "cls": "react-flow__viewport xyflow__viewport react-flow__container",
+    "nodeid": null,
+    "testid": null
+   },
+   {
+    "tag": "DIV",
+    "cls": "react-flow__pane",
+    "nodeid": null,
+    "testid": null
+   },
+   {
+    "tag": "DIV",
+    "cls": "react-flow__renderer",
+    "nodeid": null,
+    "testid": null
+   },
+   {
+    "tag": "DIV",
+    "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg",
+    "nodeid": null,
+    "testid": "rf__wrapper"
+   }
+  ]
+ },
+ "B点击后": {
+  "选中": 1,
+  "选中的是谁": [
+   "node_9fwqwqkaxg"
+  ],
+  "状态行": "78 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+  "落点处现在": {
+   "命中": "DIV",
+   "链": [
+    {
+     "tag": "DIV",
+     "cls": "nodrag min-h-full [&_.ProseMirror]:caret-dreamina-brand-default",
+     "nodeid": null,
+     "testid": null
+    },
+    {
+     "tag": "DIV",
+     "cls": "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden relative",
+     "nodeid": null,
+     "testid": "text-editor-scroll-region"
+    },
+    {
+     "tag": "DIV",
+     "cls": "contents",
+     "nodeid": null,
+     "testid": null
+    },
+    {
+     "tag": "DIV",
+     "cls": "bg-gradient-to-br from-dreamina-canvas-empty-start to-dreamina-canvas-",
+     "nodeid": null,
+     "testid": null
+    },
+    {
+     "tag": "DIV",
+     "cls": "nodrag relative flex",
+     "nodeid": "node_9fwqwqkaxg",
+     "testid": "text-editor-node-overlay"
+    },
+    {
+     "tag": "DIV",
+     "cls": "react-flow__renderer",
+     "nodeid": null,
+     "testid": null
+    },
+    {
+     "tag": "DIV",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg",
+     "nodeid": null,
+     "testid": "rf__wrapper"
+    },
+    {
+     "tag": "DIV",
+     "cls": "w-full h-full",
+     "nodeid": null,
+     "testid": null
+    }
+   ]
+  },
+  "浮层": [],
+  "contenteditable": [
+   {
+    "tag": "DIV",
+    "cls": "tiptap ProseMirror min-h-full w-full py-canvas-tex",
+    "盒": [
+     568,
+     288,
+     192,
+     37
+    ]
+   }
+  ]
+ },
+ "拖动标定": {
+  "落点": [
+   592,
+   337
+  ],
+  "步数": 14,
+  "目标屏上": [
+   200,
+   120
+  ],
+  "目标canvas": [
+   333,
+   200
+  ],
+  "前": [
+   2664.74,
+   2029.57
+  ],
+  "up前": [
+   2664.74,
+   2029.57
+  ],
+  "后": [
+   2664.74,
+   2029.57
+  ],
+  "轨迹": [
+   {
+    "步": 1,
+    "鼠标x": 606,
+    "实测canvas": [
+     2664.74,
+     2029.57
+    ]
+   },
+   {
+    "步": 2,
+    "鼠标x": 621,
+    "实测canvas": [
+     2664.74,
+     2029.57
+    ]
+   },
+   {
+    "步": 3,
+    "鼠标x": 635,
+    "实测canvas": [
+     2664.74,
+     2029.57
+    ]
+   },
+   {
+    "步": 4,
+    "鼠标x": 649,
+    "实测canvas": [
+     2664.74,
+     2029.57
+    ]
+   },
+   {
+    "步": 5,
+    "鼠标x": 663,
+    "实测canvas": [
+     2664.74,
+     2029.57
+    ]
+   },
+   {
+    "步": 6,
+    "鼠标x": 678,
+    "实测canvas": [
+     2664.74,
+     2029.57
+    ]
+   },
+   {
+    "步": 7,
+    "鼠标x": 692,
+    "实测canvas": [
+     2664.74,
+     2029.57
+    ]
+   },
+   {
+    "步": 8,
+    "鼠标x": 706,
+    "实测canvas": [
+     2664.74,
+     2029.57
+    ]
+   },
+   {
+    "步": 9,
+    "鼠标x": 721,
+    "实测canvas": [
+     2664.74,
+     2029.57
+    ]
+   },
+   {
+    "步": 10,
+    "鼠标x": 735,
+    "实测canvas": [
+     2664.74,
+     2029.57
+    ]
+   },
+   {
+    "步": 11,
+    "鼠标x": 749,
+    "实测canvas": [
+     2664.74,
+     2029.57
+    ]
+   },
+   {
+    "步": 12,
+    "鼠标x": 763,
+    "实测canvas": [
+     2664.74,
+     2029.57
+    ]
+   },
+   {
+    "步": 13,
+    "鼠标x": 778,
+    "实测canvas": [
+     2664.74,
+     2029.57
+    ]
+   },
+   {
+    "步": 14,
+    "鼠标x": 792,
+    "实测canvas": [
+     2664.74,
+     2029.57
+    ]
+   }
+  ],
+  "位移": [
+   0,
+   0
+  ]
+ },
+ "删除": [
+  {
+   "id": "node_9xfgnzs3kt",
+   "消失": [
+    "node_9xfgnzs3kt"
+   ]
+  },
+  {
+   "id": "node_9fwqwqkaxg",
+   "消失": [
+    "node_9fwqwqkaxg"
+   ]
+  }
+ ],
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%"
+ }
+}

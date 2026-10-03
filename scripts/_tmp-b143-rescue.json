@@ -1,0 +1,92 @@
+{
+ "批次": 143,
+ "轮": "rescue",
+ "目标": [
+  "node_35mtmtdg52",
+  "node_p4w8me1pv8"
+ ],
+ "起点": {
+  "状态行": "78 nodes, 0 edges, 2 selected. Editable. Room connected. 已保存.",
+  "节点数": 78,
+  "选中": [
+   "node_35mtmtdg52",
+   "node_p4w8me1pv8"
+  ],
+  "组数": 0
+ },
+ "动作": [
+  {
+   "id": "node_35mtmtdg52",
+   "删除项": {
+    "x": 647,
+    "y": 618,
+    "逐字": "删除 ⌫"
+   },
+   "消失": [
+    "node_35mtmtdg52"
+   ],
+   "新增": []
+  },
+  {
+   "id": "node_p4w8me1pv8",
+   "删除项": {
+    "x": 671,
+    "y": 642,
+    "逐字": "删除 ⌫"
+   },
+   "消失": [
+    "node_p4w8me1pv8"
+   ],
+   "新增": []
+  }
+ ],
+ "空白_0": {
+  "x": 656,
+  "y": 90
+ },
+ "独占_node_35mtmtdg52": {
+  "总数": 1123,
+  "落点": [
+   566,
+   345
+  ]
+ },
+ "前置1_node_35mtmtdg52": {
+  "命中id": "node_35mtmtdg52",
+  "等于目标": true,
+  "浮层": 0,
+  "之后选中": [
+   "node_35mtmtdg52"
+  ]
+ },
+ "独占_node_p4w8me1pv8": {
+  "总数": 7982,
+  "落点": [
+   664,
+   389
+  ]
+ },
+ "前置1_node_p4w8me1pv8": {
+  "命中id": "node_p4w8me1pv8",
+  "等于目标": true,
+  "浮层": 0,
+  "之后选中": [
+   "node_p4w8me1pv8"
+  ]
+ },
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "组数": 0,
+  "选中": 0,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "minimap": {
+   "ariaPressed": "true",
+   "dataState": "closed"
+  },
+  "积分": "Credits: 805 · 基础会员",
+  "剩余目标": []
+ },
+ "是否干净": true
+}

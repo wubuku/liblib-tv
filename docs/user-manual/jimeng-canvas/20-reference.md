@@ -457,6 +457,19 @@ aria 逐字 `Create connected node before <节点名>`）—— **批次 71 新�
   `(包围盒 canvas 宽 + 80) × 缩放`（**带 `+80`**），组这个**不带**。
   ⚠️ 组态的「下载」是 `data-toolbar-value="download"`，与多选态那个
   `batch-download` **是两个不同的按钮**。
+  🔑 **「背景色」是组工具条专有项**（`2026-10-04` 批次 143 补上执行结果）：
+    按钮 `data-toolbar-value="group-color"`，**无 `aria-label`**（逐字「背景色」只在
+    `innerText` 里），定位只能靠 `data-toolbar-value`。取完色的**完整效果**：
+
+    | 选中 | 底色 `[data-testid="group-background"]` | 覆盖层 `::before` | `opacity` |
+    |---|---|---|---|
+    | 无颜色 | `rgb(38, 38, 38)`（`#262626` = `bg-dreamina-bg-menu`） | **不存在** | — |
+    | 任一颜色 | `rgb(13, 13, 13)`（`#0d0d0d` = `--dreamina-color-canvas-bg`） | 所选色**原色** | **`0.16`** |
+
+    即**选色时底色会从菜单灰换成画布黑，再叠一层 16% 的所选色**（`inset: 0` 铺满）；
+    看到的颜色是合成值 `round(13×0.84) + round(所选色×0.16)`。
+    **只染组卡片，不染成员节点**；工具条内 `size-canvas-color-choice-trigger-swatch`
+    同步变成所选色。详见 `10-tasks/organize-group-layout.md` 与 §4.64。
 - 🆕 **一个组在 DOM 里匹配 2 个 `.react-flow__node-group`**（批次 139）：
   真身 + `__group-resize-chrome__<组id>` 影子（带 8 个 `Resize group from …` 把手），
   两者都带 `selected`、几何逐字相同，而顶栏只算 1 个节点。
