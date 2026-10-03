@@ -1,0 +1,146 @@
+{
+ "run": {
+  "static": {
+   "nInert": 46,
+   "nInertFiles": 16,
+   "inertByFile": {
+    "src/components/HistoryPanel.tsx": 4,
+    "src/components/ImageEditPanel.tsx": 11,
+    "src/components/LibraryShowcasePanel.tsx": 2,
+    "src/components/VideoClipEditPanel.tsx": 2,
+    "src/components/SegmentReshootPanel.tsx": 4,
+    "src/components/VideoProcessingToolbar.tsx": 2,
+    "src/components/StoryboardScriptEditor.tsx": 3,
+    "src/components/LeftSidebar.tsx": 1,
+    "src/components/ToolboxPanel.tsx": 2,
+    "src/components/AgentDrawer.tsx": 3,
+    "src/components/TopNavBar.tsx": 2,
+    "src/components/VideoGenerationPanel.tsx": 6,
+    "src/components/nodes/VideoNode.tsx": 1,
+    "src/components/nodes/ScriptGeneratorNode.tsx": 1,
+    "src/components/nodes/AudioNode.tsx": 1,
+    "src/components/nodes/ShotBreakdownResultNode.tsx": 1
+   },
+   "nToastOnly": 12,
+   "nToastFiles": 4,
+   "toastByFile": {
+    "src/app/project/page.tsx": 9,
+    "src/components/CharacterLibraryPanel.tsx": 1,
+    "src/components/CanvasEmptyState.tsx": 1,
+    "src/components/TopNavBar.tsx": 1
+   },
+   "inertWithDisabledOrAriaDisabled": 0,
+   "nInertButtons": 45,
+   "otherFamilyCount": 33
+  },
+  "nodesAfterEmpty": [],
+  "chips": [
+   {
+    "id": "story-script",
+    "text": "故事脚本生成",
+    "dataInert": null,
+    "ariaDisabled": null,
+    "disabled": false,
+    "title": null,
+    "cursor": "default"
+   },
+   {
+    "id": "character-turnaround",
+    "text": "角色三视图",
+    "dataInert": null,
+    "ariaDisabled": null,
+    "disabled": false,
+    "title": null,
+    "cursor": "default"
+   },
+   {
+    "id": "reference-to-video",
+    "text": "全能参考生视频SD 2.5",
+    "dataInert": null,
+    "ariaDisabled": null,
+    "disabled": false,
+    "title": null,
+    "cursor": "default"
+   },
+   {
+    "id": "audio-to-video",
+    "text": "音频生视频SD 2.5",
+    "dataInert": null,
+    "ariaDisabled": null,
+    "disabled": false,
+    "title": null,
+    "cursor": "default"
+   }
+  ],
+  "memberBtn": {
+   "found": true,
+   "dataInert": "true",
+   "ariaDisabled": null,
+   "disabled": false,
+   "title": "开通会员为付费操作，克隆侧不提供",
+   "cursor": "default",
+   "focusable": true
+  },
+  "chipResults": {
+   "character-turnaround": {
+    "status": {
+     "text": "本地原型：快速生成入口未接入",
+     "x": 556,
+     "y": 637,
+     "w": 168,
+     "h": 16,
+     "opacity": "1",
+     "visibility": "visible"
+    },
+    "nodesAfter": []
+   },
+   "reference-to-video": {
+    "status": {
+     "text": "本地原型：快速生成入口未接入",
+     "x": 556,
+     "y": 637,
+     "w": 168,
+     "h": 16,
+     "opacity": "1",
+     "visibility": "visible"
+    },
+    "nodesAfter": []
+   },
+   "audio-to-video": {
+    "status": {
+     "text": "本地原型：快速生成入口未接入",
+     "x": 556,
+     "y": 637,
+     "w": 168,
+     "h": 16,
+     "opacity": "1",
+     "visibility": "visible"
+    },
+    "nodesAfter": []
+   }
+  },
+  "wiredChip": {
+   "nodes": [
+    {
+     "id": "text-1791044375165-eaqar2",
+     "type": "text"
+    },
+    {
+     "id": "script-v2-1791044375165-3qpast",
+     "type": "script-v2"
+    }
+   ],
+   "status": null
+  }
+ },
+ "summary": {
+  "two-contracts-coexist-46-data-inert-and-12-toast-only": true,
+  "one-component-uses-both-contracts": true,
+  "data-inert-never-pairs-with-disabled-or-aria-disabled": true,
+  "the-three-unwired-chips-carry-no-marker-at-all": true,
+  "all-three-unwired-chips-show-the-identical-toast": true,
+  "a-contract-a-button-is-marked-but-still-focusable": true,
+  "the-wired-chip-does-create-nodes-so-the-control-group-is-real": true
+ },
+ "failures": []
+}
