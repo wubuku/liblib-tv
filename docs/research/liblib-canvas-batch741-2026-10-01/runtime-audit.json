@@ -1,0 +1,393 @@
+{
+  "batch": 741,
+  "title": "canvasStore 54 个命令的历史栈记账普查：33 记账 / 17 只 set / 4 皆无；一次拖动 = 多次中间路由零记账 + 停下时 1 条",
+  "verdict": "13/13",
+  "summary": {
+    "static": {
+      "store_range": [
+        1020,
+        4072
+      ],
+      "decl_range": [
+        282,
+        453
+      ],
+      "decl_push_hits": [],
+      "push_history_def": 506,
+      "call_sites": [
+        1311,
+        1384,
+        1472,
+        1518,
+        1572,
+        1603,
+        1658,
+        1759,
+        1892,
+        2025,
+        2136,
+        2237,
+        2501,
+        2608,
+        2768,
+        2853,
+        2967,
+        3007,
+        3099,
+        3145,
+        3182,
+        3218,
+        3254,
+        3323,
+        3363,
+        3384,
+        3409,
+        3433,
+        3650,
+        3668,
+        3869,
+        3976,
+        4042
+      ],
+      "max_history": 50
+    },
+    "buckets": {
+      "fns": 54,
+      "both": 33,
+      "setonly": 17,
+      "neither": 4,
+      "conditional": 2,
+      "call_sites": 33
+    },
+    "both_names": [
+      "createStoryScriptPair",
+      "createFirstFrameReference",
+      "createFirstLastFrameReference",
+      "createImageHdPreset",
+      "destroyFirstFrameReference",
+      "addNodeAtPosition",
+      "addDerivedNode",
+      "createVideoContinuation",
+      "createSubtitleErase",
+      "createAudioSplit",
+      "createVideoFrameCapture",
+      "createDepthMotionCapture",
+      "createLongVideoProcess",
+      "createSmartMatting",
+      "createPictureEdit",
+      "createDirectorCapture",
+      "createDirectorAnimationExport",
+      "clearVideoContinuation",
+      "completeShotBreakdown",
+      "duplicateNode",
+      "duplicateSelectedNodes",
+      "removeNode",
+      "removeSelectedNodes",
+      "groupSelectedNodes",
+      "ungroupSelectedNodes",
+      "updateNodeData",
+      "setNodes",
+      "setEdges",
+      "addEdge",
+      "removeEdge",
+      "addResourceCohort",
+      "attachAssetReferences",
+      "submitLibTVEditorSessionCommit"
+    ],
+    "setonly_names": [
+      "setProjectName",
+      "addCanvas",
+      "restoreCanvas",
+      "purgeRemovedCanvas",
+      "removeCanvas",
+      "renameCanvas",
+      "setActiveCanvas",
+      "duplicateCanvas",
+      "selectNode",
+      "selectNodes",
+      "selectEdges",
+      "selectElements",
+      "routeReactFlowChanges",
+      "undo",
+      "redo",
+      "setViewport",
+      "selectNodeOutput"
+    ],
+    "neither_names": [
+      {
+        "name": "addNode",
+        "range": [
+          1252,
+          1258
+        ],
+        "delegates": [
+          "addNodeAtPosition",
+          "getActiveCanvas"
+        ]
+      },
+      {
+        "name": "addNodeAtFlowCenter",
+        "range": [
+          1260,
+          1269
+        ],
+        "delegates": [
+          "addNodeAtPosition"
+        ]
+      },
+      {
+        "name": "getActiveCanvas",
+        "range": [
+          4053,
+          4056
+        ],
+        "delegates": []
+      },
+      {
+        "name": "getSelectionSnapshot",
+        "range": [
+          4058,
+          4071
+        ],
+        "delegates": []
+      }
+    ],
+    "conditional_names": [
+      "setNodes",
+      "setEdges"
+    ],
+    "addNode": {
+      "name": "addNode",
+      "start": 1252,
+      "end": 1258,
+      "kind": "brace",
+      "calls_set": false,
+      "calls_push": false,
+      "conditional_push": false,
+      "delegates": [
+        "addNodeAtPosition",
+        "getActiveCanvas"
+      ]
+    },
+    "addNodeAtPosition": {
+      "name": "addNodeAtPosition",
+      "start": 1577,
+      "end": 1606,
+      "kind": "brace",
+      "calls_set": true,
+      "calls_push": true,
+      "conditional_push": false,
+      "delegates": []
+    },
+    "forward": {
+      "n0": 10,
+      "n1": 11,
+      "p0": 0,
+      "p1": 1
+    },
+    "select": {
+      "p0": 0,
+      "p1": 0,
+      "sel": [
+        "g-245IDFh8sB"
+      ]
+    },
+    "drag": {
+      "id": "g-245IDFh8sB",
+      "size": [
+        226,
+        238
+      ],
+      "routeCalls": 11,
+      "routeCodes": [
+        "{\"status\":\"applied\",\"code\":\"APPLIED_TRANSPORT\",\"expectedActiveCanvasId\":\"canvas-2\",\"activeCanvasId\":\"canvas-2\",\"nodeChangeCount\":1,\"edgeChan"
+      ],
+      "setNodesCalls": 1,
+      "setNodesArg": "{\"recordHistory\":true,\"historySnapshot\":{\"nodes\":[{\"id\":\"g-245IDFh8sB\",\"type\":\"storyboard-group\",\"position\":{\"x\":2112,\"y\":656},\"width\":430,\"height\":452,\"style\":{\"width\":430,\"height\":452,\"zIndex\":-1001},\"data\":{\"title\":\"分镜图 · 第一集：咖啡馆对峙-图片组\",\"variant\":\"image\"},\"measured\":{\"width\":430,\"height\":452}},{\"",
+      "movedCount": 1,
+      "moved": {
+        "g-245IDFh8sB": [
+          [
+            2112,
+            656
+          ],
+          [
+            2300.212927756654,
+            760.5627376425856
+          ]
+        ]
+      },
+      "p0": 0,
+      "p1": 1,
+      "undoPast": 0,
+      "undoFuture": 1,
+      "undoExact": 10,
+      "undoTotal": 10,
+      "undoMismatched": []
+    },
+    "nodrag": {
+      "stillMoved": 0,
+      "p0": 0,
+      "p1": 0,
+      "roundTripMoved": 10,
+      "roundTripDelta": {
+        "g-245IDFh8sB": true,
+        "g-EFbbHpwq5w": true,
+        "t-9j2MoccxBj": true,
+        "i-1FQ9tErTcC": true,
+        "i-lBzmo67AHv": true,
+        "i-dnwoZQ7jsG": true,
+        "i-vxeeCnxySa": true,
+        "b-bTLLuU4w5q": true,
+        "i-YDfWhFlthe": true,
+        "v-UGQZzZOpbv": true
+      },
+      "roundTripPast": 1,
+      "roundTripCalls": [
+        "setViewport",
+        "routeReactFlowChanges",
+        "routeReactFlowChanges",
+        "routeReactFlowChanges",
+        "routeReactFlowChanges",
+        "routeReactFlowChanges",
+        "routeReactFlowChanges",
+        "routeReactFlowChanges",
+        "setNodes"
+      ]
+    },
+    "multi": {
+      "selected": [
+        "g-245IDFh8sB",
+        "g-EFbbHpwq5w"
+      ],
+      "setNodesArg": "{\"recordHistory\":true,\"historySnapshot\":{\"nodes\":[{\"id\":\"g-245IDFh8sB\",\"type\":\"storyboard-group\",\"position\":{\"x\":2112,\"y\":656},\"width\":430,\"height\":452,\"style\":{\"width\":430,\"height\":452,\"zIndex\":-1001},\"data\":{\"title\":\"分镜图 · 第一集：咖啡馆对峙-图片组\",\"variant\":\"image\"},\"measured\":{\"width\":430,\"height\":452}},{\"",
+      "movedCount": 2,
+      "p0": 0,
+      "p1": 1,
+      "undoExact": 10,
+      "undoTotal": 10,
+      "undoMismatched": []
+    },
+    "update": {
+      "p0": 0,
+      "p1": 1
+    },
+    "cond": {
+      "noFlag": 0,
+      "flag": 1
+    },
+    "rmcanvas": {
+      "newId": "canvas-3",
+      "before": {
+        "canvas-2": 1,
+        "canvas-3": 1
+      },
+      "afterKeys": [
+        "canvas-2"
+      ],
+      "removedIds": [
+        "canvas-3"
+      ]
+    },
+    "rename": {
+      "cid": "canvas-2",
+      "past": 1,
+      "nameAfterRename": "b741 改过的名字",
+      "nameAfterUndo": "b741 改过的名字",
+      "nodesAfterUndo": 10
+    }
+  },
+  "checks": [
+    {
+      "label": "C1 54 命令 = 33 记账 / 17 只 set / 4 皆无；33 个调用点逐个对平；声明区 0 命中",
+      "pass": true,
+      "detail": "{\"fns\": 54, \"both\": 33, \"setonly\": 17, \"neither\": 4, \"conditional\": 2, \"call_sites\": 33}"
+    },
+    {
+      "label": "C2 修正扫描错：addNode 是转发器（无 pushHistory）、setProjectName 被状态字段吞掉后才找回来",
+      "pass": true,
+      "detail": "{\"addNode\": {\"name\": \"addNode\", \"start\": 1252, \"end\": 1258, \"kind\": \"brace\", \"calls_set\": false, \"calls_push\": false, \"conditional_push\": false, \"delegates\": [\"addNodeAtPosition\", \"getActiveCanvas\"]}, \"setProjectName\": {\"name\": \"setProjectName\", \"start\": 1030, \"end\": 1034, \"kind\": \"brace\", \"calls_set\": true, \"calls_push\": false, \"conditional_push\": false, \"delegates\": []}}"
+    },
+    {
+      "label": "C3 setNodes/setEdges 条件记账，其余 31 个无条件",
+      "pass": true,
+      "detail": "{\"conditional\": [\"setNodes\", \"setEdges\"]}"
+    },
+    {
+      "label": "C4 转发器 addNode：节点 +1 且 past 0→1（自己不记账≠用户拿不到条目）",
+      "pass": true,
+      "detail": "{\"n0\": 10, \"n1\": 11, \"p0\": 0, \"p1\": 1}"
+    },
+    {
+      "label": "C5 纯选择 selectNode：past 不变（基线为 0）",
+      "pass": true,
+      "detail": "{\"p0\": 0, \"p1\": 0, \"sel\": [\"g-245IDFh8sB\"]}"
+    },
+    {
+      "label": "C6 一次拖动 = 多次 routeReactFlowChanges（全不记账）+ 1 次 setNodes(recordHistory)",
+      "pass": true,
+      "detail": "{\"id\": \"g-245IDFh8sB\", \"size\": [226, 238], \"routeCalls\": 11, \"routeCodes\": [\"{\\\"status\\\":\\\"applied\\\",\\\"code\\\":\\\"APPLIED_TRANSPORT\\\",\\\"expectedActiveCanvasId\\\":\\\"canvas-2\\\",\\\"activeCanvasId\\\":\\\"canvas-2\\\",\\\"nodeChangeCount\\\":1,\\\"edgeChan\"], \"setNodesCalls\": 1, \"setNodesArg\": \"{\\\"recordHistory\\\":true,\\\"historySnapshot\\\":{\\\"nodes\\\":[{\\\"id\\\":\\\"g-245IDFh8sB\\\",\\\"type\\\":\\\"storyboard-group\\\",\\\"position\\\":{\\\"x\\\":2112,\\\"y\\\":656},\\\"width\\\":430,\\\"height\\\":452,\\\"style\\\":{\\\"width\\\":430,\\\"height\\\":452,\\\"zIndex\\\":-1001},\\\"data\\\":{\\\"title\\\":\\\"分镜图 · 第一集：咖啡馆对峙-图片组\\\",\\\"variant\\\":\\\"image\\\"},\\\"measured\\\":{\\\"width\\\":430,\\\"height\\\":452}},{\\\"\", \"movedCount\": 1, \"moved\": {\"g-245IDFh8sB\": [[2112, 656], [2300.212927756654, 760.5627376425856]]}, \"p0\": 0, \"p1\": 1, \"undoPast\": 0, \"undoFuture\": 1, \"undoExact\": 10, \"undoTotal\": 10, \"undoMismatched\": []}"
+    },
+    {
+      "label": "C6b 拖动后 undo：坐标逐项精确回拖动前",
+      "pass": true,
+      "detail": "{\"undoPast\": 0, \"undoFuture\": 1, \"undoExact\": 10, \"undoTotal\": 10, \"undoMismatched\": []}"
+    },
+    {
+      "label": "C6c 空拖（按下-不动-松手）：一条历史都不留（moved 守卫）",
+      "pass": true,
+      "detail": "{\"stillMoved\": 0, \"p0\": 0, \"p1\": 0, \"roundTripMoved\": 10, \"roundTripDelta\": {\"g-245IDFh8sB\": true, \"g-EFbbHpwq5w\": true, \"t-9j2MoccxBj\": true, \"i-1FQ9tErTcC\": true, \"i-lBzmo67AHv\": true, \"i-dnwoZQ7jsG\": true, \"i-vxeeCnxySa\": true, \"b-bTLLuU4w5q\": true, \"i-YDfWhFlthe\": true, \"v-UGQZzZOpbv\": true}, \"roundTripPast\": 1, \"roundTripCalls\": [\"setViewport\", \"routeReactFlowChanges\", \"routeReactFlowChanges\", \"routeReactFlowChanges\", \"routeReactFlowChanges\", \"routeReactFlowChanges\", \"routeReactFlowChanges\", \"routeReactFlowChanges\", \"setNodes\"]}"
+    },
+    {
+      "label": "C6d 多选拖动：仍只记 1 条，undo 后全部逐项恢复",
+      "pass": true,
+      "detail": "{\"selected\": [\"g-245IDFh8sB\", \"g-EFbbHpwq5w\"], \"setNodesArg\": \"{\\\"recordHistory\\\":true,\\\"historySnapshot\\\":{\\\"nodes\\\":[{\\\"id\\\":\\\"g-245IDFh8sB\\\",\\\"type\\\":\\\"storyboard-group\\\",\\\"position\\\":{\\\"x\\\":2112,\\\"y\\\":656},\\\"width\\\":430,\\\"height\\\":452,\\\"style\\\":{\\\"width\\\":430,\\\"height\\\":452,\\\"zIndex\\\":-1001},\\\"data\\\":{\\\"title\\\":\\\"分镜图 · 第一集：咖啡馆对峙-图片组\\\",\\\"variant\\\":\\\"image\\\"},\\\"measured\\\":{\\\"width\\\":430,\\\"height\\\":452}},{\\\"\", \"movedCount\": 2, \"p0\": 0, \"p1\": 1, \"undoExact\": 10, \"undoTotal\": 10, \"undoMismatched\": []}"
+    },
+    {
+      "label": "C7 updateNodeData：past +1",
+      "pass": true,
+      "detail": "{\"p0\": 0, \"p1\": 1}"
+    },
+    {
+      "label": "C8 setNodes：recordHistory 开关真的分两路",
+      "pass": true,
+      "detail": "{\"noFlag\": 0, \"flag\": 1}"
+    },
+    {
+      "label": "C9 removeCanvas：只删那一桶历史（对照组 canvas-2 不受影响）、画布进回收站",
+      "pass": true,
+      "detail": "{\"newId\": \"canvas-3\", \"before\": {\"canvas-2\": 1, \"canvas-3\": 1}, \"afterKeys\": [\"canvas-2\"], \"removedIds\": [\"canvas-3\"]}"
+    },
+    {
+      "label": "C10 改名 + undo：图撤了、名字没撤回来",
+      "pass": true,
+      "detail": "{\"cid\": \"canvas-2\", \"past\": 1, \"nameAfterRename\": \"b741 改过的名字\", \"nameAfterUndo\": \"b741 改过的名字\", \"nodesAfterUndo\": 10}"
+    }
+  ],
+  "conclusions": [
+    "静态三桶必须分开报：54 个命令 = 33 记账 / 17 改 store 不记账 / 4 既不 set 也不 pushHistory（2 转发器 + 2 纯 getter）。",
+    "pushHistory 调用点 33 处与命令级 33 逐个对平，两个独立口径互证。",
+    "声明区（CanvasState :282-453）0 命中 pushHistory；:506 是模块级函数定义，不是命令。",
+    "「33 个记账」还要再拆：setNodes/setEdges 是 recordHistory 条件记账 ⟹ 31 无条件 + 2 条件。",
+    "addNode/addNodeAtFlowCenter 自己不记账但转发给记账的 addNodeAtPosition ⟹ 静态桶不等于用户可见行为。",
+    "拖动节点**是可撤销的**，但记账的不是搬运的那条路径：拖动途中反复走 routeReactFlowChanges（不记账桶），停下时才由 page.tsx:1501 onNodeDragStop 发一次 setNodes(recordHistory:true, historySnapshot=拖动前快照) ⟹ 整次拖动压成 1 条。",
+    "onNodeDragStop 里的 moved 守卫让「按下-不动-松手」不产生任何历史条目。",
+    "「挪出去再回同一屏幕原点」**不是** no-op：节点坐标仍差 3.8 个流程单位 ⟹ 那次记账是对的。**成因未取证**，不归因 snapToGrid。",
+    "removeCanvas 自己不记账，却把该画布的整桶历史删掉 ⟹ 删画布 = 撤不回来的动作 + 历史一并消失（对照组：别的桶不动）。",
+    "undo() 只恢复 nodes/edges，不恢复画布名 ⟹ renameCanvas 不可撤销。"
+  ],
+  "retracted": [
+    "**撤回「拖动节点不记账 / 移动节点不可撤销」**（第一版的中间推断）：读数是 past 0→1，与推断相反。当时只把结论硬写进 print 文案，没去查谁记的账。探针（给 54 个命令套调用日志）给出真相：记账发生在 setNodes(recordHistory) 上，不发生在 routeReactFlowChanges 上。",
+    "**撤回「53 个命令」**：状态字段 projectName 没有 `=>`，扫描器一路吞到 :1030 第一个 `=>` 才停，把 setProjectName 整个吞掉。命令实为 54 个、不记账 17 个。",
+    "**撤回「多行参数表的函数归错桶」**：第一版把 `addNodeAtFlowCenter: (` 这种参数跨 3 行 的键当成单行函数收尾，于是 addNode 被算成记账（其实它一行 pushHistory 都没有），而真正记账的 12 个多行参数函数一个都没数到。"
+  ],
+  "notClaimed": [
+    "不声称源站对移动/改名/删画布是否记账 —— 未取证。",
+    "不声称拖动记账是缺陷还是有意设计 —— 未取证。",
+    "MAX_HISTORY=50 的上限行为（超过 50 条时截断）未测。",
+    "17 个不记账命令逐个的运行时行为未逐条验，只验了 selectNode / renameCanvas / removeCanvas 三条。",
+    "onNodeDragStop 里 Batch 436 的跨画布守卫（armed 基线画布 ≠ 当前画布 ⟹ 不记账）未测。",
+    "拖动中途切画布、拖动中改尺寸（dimensions 变化走 hasTransport 的另一半）未测。",
+    "「挪出去再回同一屏幕原点」为何留下 3.8 个流程单位的残余 —— 成因未取证。"
+  ]
+}
