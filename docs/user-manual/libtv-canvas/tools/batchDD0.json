@@ -1,0 +1,409 @@
+{
+  "风格": {
+    "卡数": 37,
+    "有左上格的卡": [
+      {
+        "文字": "Seedream 5.0",
+        "rect": [
+          130,
+          210,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": null,
+        "path长度": 0,
+        "svg数": 0,
+        "class": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-[rgba(31,3"
+      },
+      {
+        "文字": null,
+        "rect": [
+          333,
+          210,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+        "path长度": 96,
+        "svg数": 1,
+        "class": "flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0"
+      },
+      {
+        "文字": "Qwen Image",
+        "rect": [
+          536,
+          210,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": null,
+        "path长度": 0,
+        "svg数": 0,
+        "class": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-[rgba(31,3"
+      },
+      {
+        "文字": "Qwen Image",
+        "rect": [
+          739,
+          210,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": null,
+        "path长度": 0,
+        "svg数": 0,
+        "class": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-[rgba(31,3"
+      },
+      {
+        "文字": "Z Image",
+        "rect": [
+          942,
+          210,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": null,
+        "path长度": 0,
+        "svg数": 0,
+        "class": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-[rgba(31,3"
+      },
+      {
+        "文字": "Qwen Image",
+        "rect": [
+          1145,
+          210,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": null,
+        "path长度": 0,
+        "svg数": 0,
+        "class": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-[rgba(31,3"
+      },
+      {
+        "文字": "Qwen Image",
+        "rect": [
+          130,
+          524,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": null,
+        "path长度": 0,
+        "svg数": 0,
+        "class": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-[rgba(31,3"
+      },
+      {
+        "文字": null,
+        "rect": [
+          333,
+          524,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+        "path长度": 96,
+        "svg数": 1,
+        "class": "flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0"
+      },
+      {
+        "文字": "Qwen Image",
+        "rect": [
+          536,
+          524,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": null,
+        "path长度": 0,
+        "svg数": 0,
+        "class": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-[rgba(31,3"
+      },
+      {
+        "文字": "Qwen Image",
+        "rect": [
+          739,
+          524,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": null,
+        "path长度": 0,
+        "svg数": 0,
+        "class": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-[rgba(31,3"
+      },
+      {
+        "文字": "Qwen Image",
+        "rect": [
+          942,
+          524,
+          102,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": null,
+        "path长度": 0,
+        "svg数": 0,
+        "class": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-[rgba(31,3"
+      },
+      {
+        "文字": "Qwen Image",
+        "rect": [
+          1145,
+          524,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": null,
+        "path长度": 0,
+        "svg数": 0,
+        "class": "flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-[rgba(31,3"
+      }
+    ],
+    "详情按钮": 30
+  },
+  "风格面板": {
+    "有面板": true,
+    "面板rect": [
+      324,
+      201,
+      183,
+      245
+    ],
+    "模型数": 2,
+    "模型": [
+      "General image V2",
+      "General image Pro"
+    ]
+  },
+  "特效": {
+    "卡数": 37,
+    "有左上格的卡": [
+      {
+        "文字": null,
+        "rect": [
+          130,
+          210,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+        "path长度": 96,
+        "svg数": 1,
+        "class": "flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0"
+      },
+      {
+        "文字": null,
+        "rect": [
+          333,
+          210,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+        "path长度": 96,
+        "svg数": 1,
+        "class": "flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0"
+      },
+      {
+        "文字": null,
+        "rect": [
+          536,
+          210,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+        "path长度": 96,
+        "svg数": 1,
+        "class": "flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0"
+      },
+      {
+        "文字": null,
+        "rect": [
+          739,
+          210,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+        "path长度": 96,
+        "svg数": 1,
+        "class": "flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0"
+      },
+      {
+        "文字": null,
+        "rect": [
+          942,
+          210,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+        "path长度": 96,
+        "svg数": 1,
+        "class": "flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0"
+      },
+      {
+        "文字": null,
+        "rect": [
+          1145,
+          210,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+        "path长度": 96,
+        "svg数": 1,
+        "class": "flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0"
+      },
+      {
+        "文字": null,
+        "rect": [
+          130,
+          462,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+        "path长度": 96,
+        "svg数": 1,
+        "class": "flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0"
+      },
+      {
+        "文字": null,
+        "rect": [
+          333,
+          462,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+        "path长度": 96,
+        "svg数": 1,
+        "class": "flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0"
+      },
+      {
+        "文字": null,
+        "rect": [
+          536,
+          462,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+        "path长度": 96,
+        "svg数": 1,
+        "class": "flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0"
+      },
+      {
+        "文字": null,
+        "rect": [
+          739,
+          462,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+        "path长度": 96,
+        "svg数": 1,
+        "class": "flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0"
+      },
+      {
+        "文字": null,
+        "rect": [
+          942,
+          462,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+        "path长度": 96,
+        "svg数": 1,
+        "class": "flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0"
+      },
+      {
+        "文字": null,
+        "rect": [
+          1145,
+          462,
+          24,
+          24
+        ],
+        "aria": null,
+        "title": null,
+        "完整path": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+        "path长度": 96,
+        "svg数": 1,
+        "class": "flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0"
+      }
+    ],
+    "详情按钮": 0
+  },
+  "特效面板": {
+    "有面板": true,
+    "面板rect": [
+      121,
+      201,
+      183,
+      183
+    ],
+    "模型数": 3,
+    "模型": [
+      "Seedance 2.0",
+      "Kling 3.0",
+      "Kling O3"
+    ]
+  },
+  "比对": {
+    "风格长度": 96,
+    "特效长度": 96,
+    "逐字相同": true,
+    "行为相同": true
+  }
+}
