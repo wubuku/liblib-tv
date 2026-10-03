@@ -1440,3 +1440,51 @@ opacity: 0 ｜pointer-events: none ｜transform: scale(0.5) ｜data-state: "clos
 | 右下角 Agent 侧栏 | `canvas-feature-sidecar` | `200×348@1068,360` | `opacity: 0` ＋ `pointer-events: none` ＋ `scale(0.5)` ＋ **零子元素** |
 
 ⚠️ **本节说的是「这一版构建在这个账号的这个画布上」**（76 个节点、60% 缩放）。
+
+## 🧰 「工具条」在 DOM 里是**四层**，而且单选 / 多选**语义不同**（2026-10-03 批次 131 首次钉死）
+
+同一个 `data-testid="node-toolbar"`，在**单选一个节点**和**框选多个节点**下
+是**两个完全不同的东西**。核对任何工具条之前，先确认当前是哪种。
+
+| 层 | 单选 1 个音频节点 | 框选 8 个 |
+|---|---|---|
+| `node-toolbar` | **`680×204`**，逐字是**音频生成表单**，**10 个按钮** | **`624×40`**，逐字 `8 节点 编组 布局 …`，**4 个按钮** |
+| `node-toolbar-feature-host` | `680×204`（**与 `node-toolbar` 同矩形**） | 不存在 |
+| `selection-context-toolbar-surface` | `192×0`（**零高度**） | `624×40`（**与 `node-toolbar` 同矩形**） |
+| `selection-context-toolbar` | **不存在** | `256×40`，**`role="toolbar"`**，3 个直接子按钮 |
+| `selection-context-toolbar-count` | **不存在** | `54×32`，逐字 `N 节点` |
+| `selection-context-toolbar-popup-host` | `0×0` | `0×0`（两种状态都**零面积**） |
+
+**单选态的 10 个按钮**：展开音频生成器 `40×40`、添加参考 `48×48`、引用参考 `24×24`、
+创作类型 `80×32`、选择模型 `135×32`、音色库 `68×32`、引用参考 `32×32`、
+显示折扣详情 `46×20`、**生成 `32×32`（`aria="生成"`，`aria-disabled="true"`）**。
+
+⚠️ **单选工具条里就带着「生成」按钮。** 手册的任何取证脚本都**不要点它**
+（会扣费）；要点节点就点节点本体，**并先校验落点不是 `button` / `[role=button]`**。
+
+**多选态另有三个专属层**（此前全册未记，且在此前 18 个状态普查里一次都没出现过）：
+
+| testid | 矩形 | 备注 |
+|---|---|---|
+| `flow-node-multi-selection-source-toolbar` | `0×0` | **零面积**，内含 1 个按钮 |
+| `flow-node-multi-selection-source-handle` | `60×120` | 多选集合的出边热区 |
+| `flow-node-multi-selection-source-connection-menu-button` | `36×36` | aria 逐字 **`Create connected node after selected nodes`** |
+
+**只在单选态出现**：两个 `flow-node-{source,target}-connection-menu-button`（各 `36×36`）、
+`node-feature-chrome-host`（与节点本体**同矩形**）。
+
+### 🔑 核对「工具条有几项」不能只读 `innerText`
+
+`Add tags` 是**图标按钮，`innerText` 逐字为空**，只有 `aria-label`。
+本册早期据此写过「**多选工具条里没有 Add tags**」—— **那是错的**，
+已在 [organize-group-layout](10-tasks/organize-group-layout.md) 就地订正。
+正确读法是**数 `flow-node-selected-tag` 的实例数**：
+
+| 状态 | 总数 | 在节点里 | 在工具条里 |
+|---|---|---|---|
+| 0 选中 | 76 | 76 | **0** |
+| 框选 8 个 | **69** | **68** | **1** |
+
+`76 − 68 = 8` = 选中数 ⇒ **多选时选中节点的标记按钮被搬进工具条**，
+8 个搬上来只留 **1 个**统一入口。取消选中后**回到 76**。
+📌 所以：**并读 `aria-label` / `title` / 子元素 `data-testid`**，别只看屏幕上的字。
