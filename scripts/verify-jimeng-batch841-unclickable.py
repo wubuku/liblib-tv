@@ -4832,6 +4832,90 @@ def main() -> int:
           and "assert BUDGET_PER_CYCLE >= 28, \\" in _p933
           and "assert TAIL_CAP_A >= CYCLES_PER_ARM * BUDGET_PER_CYCLE" in _p933
           and "**「到边界（这里是「到够圈数」）之后」的预算必须 > 圈数 × 真实单圈长度" in _p933)
+    p934 = ROOT / "scripts/jimeng_probe934_body_own_attrs_src.py"
+    _p934 = p934.read_text(encoding="utf-8") if p934.exists() else ""
+    check("UUU.1 ✅ **934 换了一个能被证伪的假设，而不是去堆圈数**："
+          "**堆更多圈只能把频率估得更准、判不了性质** ⇒ "
+          "**H：「那一站的出没，取决于 `document.body` 自己那一下当时是否可被顺序聚焦」** "
+          "⇒ 逐次按压记四个**与焦点走线无关**的页面量。读数 **5/60（8.3%）**、"
+          "落点第 **10/6/1/12/8** 圈、与 933 的 **3/32（9.4%）** 同量级 "
+          "⇒ **频率落在 8–9%**；**短圈 == 整圈删 `BODY`：5/5 逐条全等**"
+          "（**934 独立复核了 933 的结论**）",
+          "source_body_own_attrs_falsified_934" in _ausrc
+          and "**① 934 为什么不去堆圈数**" in _ausrc
+          and "**H：「那一站的出没，取决于 `document.body` 自己那一下当时" in _ausrc
+          and "**5/60 圈缺 `document.body`（8.3%）**" in _ausrc
+          and "**同量级** ⇒ **频率落在 8–9%**" in _ausrc
+          and "**短圈 == 同臂整圈删掉 `BODY` 那一站：5/5 逐条全等**" in _ausrc
+          and "**934 独立复核了 933 的结论**" in _ausrc
+          # ⭐ 判据钉在**四个新字段真的逐次记了**上
+          and "for fld in BODY_ATTRS:" in _p934
+          and "assert fld in CENSUS_JS, f\"934 的新字段 {fld} 没写上\"" in _p934
+          and "BODY_ATTRS = (\"body_tabindex\", \"body_tab_index\"," in _p934
+          and "\"body_n_children\"," in _p934
+          and "\"body_scroll_top\")" in _p934)
+    check("UUU.2 ⭐⭐⭐ **H 被证伪** —— **`body_tabindex` ≡ `null`、"
+          "`body_tab_index` ≡ `-1`、`body_scroll_top` ≡ `0` 全臂恒定**；"
+          "`body_n_children` 在 **12/13** 之间跳而**完整圈之间逐次全同**；"
+          "**一旦按正确的时间对齐（把参照圈在 `BODY` 那一行切开再拼），"
+          "缺席圈与完整圈的四个量逐次全同（5/5）** "
+          "⇒ **`document.body` 自己那一下的任何可测属性，与那一站的出没无关**",
+          "**③ ⭐⭐⭐ H 被证伪**" in _ausrc
+          and "`body_tab_index` ≡ `-1`、`body_scroll_top` ≡ `0` —— 全臂恒定**" in _ausrc
+          and "**一旦按正确的时间对齐（把参照圈在 `BODY` 那一行切开再拼），" in _ausrc
+          and "与「那一站出不出现」无关。**" in _ausrc
+          # ⭐ 判据钉在**探针真的做了「切开再拼」**上（不是按行号硬对）
+          and "ref_cut = ref[:bidx] + ref[bidx + 1:]" in _p934
+          and "def cmp_cut(rows):" in _p934
+          and "\"time_aligned\": {\"cmp_len\": n_cut, \"all_same\": same_cut," in _p934)
+    check("UUU.3 ⚠️⚠️⚠️ **「切片会把规律读反」的**第四种形式**："
+          "**「缺席圈比参照圈少一行」⇒ 按行号对齐就是整体错位一格**。"
+          "**可复算的证据**：完整圈的 `body_n_children` 跳变行号是 "
+          "`[…15, 17, 20, 24, 25]`、缺席圈是 `[…14, 16, 19, 23, 24]` —— "
+          "**每一个都恰好少 1**、而**前 13 行完全相同** "
+          "⇒ 第一版读到的「`all_same = False` ⇒ 它变了」**全是错位**、不是真相关。"
+          "⇒ **这是本轮最容易上当的一处：「找到一个相关的量」这个结论本身，"
+          "也可能是切片对齐造出来的**",
+          "**④ 撞出「切片会把规律读反」的**第四种形式**" in _ausrc
+          and "按行号对齐就是整体错位一格**" in _ausrc
+          and "**每一个都恰好少 1**" in _ausrc
+          and "**前 13 行完全相同**" in _ausrc
+          and "**全是错位**，" in _ausrc
+          and "**不是真相关** ⇒ ⇒ **这是本轮最容易上当的一处**" in _ausrc
+          and "也可能是切片对齐造出来的**" in _ausrc
+          # ⭐⭐ 探针里那条**错位现场**必须留着（不许删掉那处「看起来多余」的读法）
+          and "⚠️⚠️ **「缺席圈比参照圈少一行」⇒ 按行号对齐就是**整体错位一格****" in _p934
+          and "naive_row_align" in _p934
+          and "**保留当历史记录**：它是那处错位的现场" in _p934
+          and "**判决**" in _p934)
+    check("UUU.4 ⚠️⚠️ **处置：两种对齐都算、都记，判决看 `time_aligned`** —— "
+          "`naive_row_align`（那处错位的现场）与 `time_aligned`（判决）；"
+          "**基线与判据都要写明「判决看 `time_aligned`」**。"
+          "⚠️ 另外 934 事先写下的那条纪律正好用上："
+          "**「不许因为找到相关量就宣称它就是成因」** —— 而 H 连「相关」都不是、"
+          "**它连错位都不是**",
+          "✅ **处置：两种对齐都算、都记**" in _ausrc
+          and "**保留当历史记录**" in _ausrc
+          and "**基线与判据都写明「判决看 `time_aligned`」**" in _ausrc
+          and "**「不许因为找到相关量就宣称它就是成因」**" in _ausrc
+          and "**它连错位都不是**" in _ausrc
+          # ⭐ 判据钉在**摘要/打印真的两种都报了**上
+          and "\"body_attrs_naive_all_same\": ba.get(\"naive_all_same\")" in _p934
+          and "**按行号硬对（错位现场）=" in _p934)
+    check("UUU.5 ⚠️⚠️⚠️ **成因仍然未查明、标「未验证」** —— "
+          "**5/60 仍不足以判定**「随机 / 固定周期 / 与某个未观测变量相关」；"
+          "落点第 **1/6/8/10/12** 圈**分散** ⇒ "
+          "**仍然不许把「分散」读成「随机」**（§143 五那条纪律继续有效）。"
+          "⚠️ 另外 933 那三条「已排除的假设」**继续有效**、**不因本批而复活**",
+          "**成因仍然未查明、标「未验证」**" in _ausrc
+          and "**5/60 仍不足以判定**「随机 / 固定周期 / 与某个未观测变量相关」" in _ausrc
+          and "**仍然不许把「分散」读成「随机」**" in _ausrc
+          and "**① 「越界状态才让它消失」——排除**" in _ausrc
+          and "「短圈是少了被布本体」——排除**" in _ausrc
+          # ⭐ 判据文本自己也必须带着「未验证」
+          and "**成因仍然未查明、标「未验证」**" in open(
+              ROOT / "scripts/verify-jimeng-batch841-unclickable.py",
+              encoding="utf-8").read())
 
 
 
