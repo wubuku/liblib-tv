@@ -200,7 +200,10 @@ SLOW = {
 # 因为「空着」和「量过但很快」在账面上长得一模一样，而只有后者是有意义的。
 SELFTEST_COSTS = {
     "selftest-baseline.py": 0.7,
-    "selftest-batch-rows.py": 0.1,
+    #: **Batch 243 重测**：三次实测 0.62 / 0.53 / 0.44 秒，**而原登记值是 0.1**——低估了六倍。
+    #: **`seconds` 是预算上限而不是实测均值，所以低估是危险方向**（纪律 204/136：漂的时候倒向安全那侧）。
+    #: 用例从 8 条加到 10 条，而**每条都要把闸真跑一遍**、闸每次都要重读整份 PROGRESS.md——**反验的耗时几乎全在重复读文件上**。
+    "selftest-batch-rows.py": 0.8,
     "selftest-beefsrc.py": 0.3,
     "selftest-deadlinks.py": 0.2,
     "selftest-encoding.py": 0.2,

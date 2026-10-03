@@ -226,11 +226,53 @@ def m_short_header_must_report():
         write(orig)
 
 
+# ── 9 批次号那格是空的、后面有内容 → 必报（Batch 243）────────────────
+def m_blank_batch_no_must_report():
+    check_anchor()
+    orig = read()
+    try:
+        lines = orig.split("\n")
+        start, end = locate_batch_table_lines(lines)
+        i = next(i for i in range(start + 2, end) if lines[i].startswith("| 181 |"))
+        lines[i] = re.sub(r"^\|\s*181\s*\|", "|  |", lines[i], count=1)
+        assert lines[i].startswith("|  |"), "前提失配：注入没生效"
+        write("\n".join(lines))
+        rc, out = run()
+        ok = rc == 1 and "批次号那格是空的" in out
+        #: **改前的闸在这一例上 rc=0**，而且把 220 行数成 219 行——
+        #: 原代码 `if not num: continue` 判的是**首格**留空，
+        #: 而它自己的注释写的是「**整行**留空」，**代码没有实现自己的注释**。
+        record("9 批次号那格为空、后面有内容 → 必报", ok, f"rc={rc}")
+    finally:
+        write(orig)
+
+
+# ── 10 整行全空 → **不得**报（与 9 成对：那才是注释想豁免的形态）──────
+def m_fully_blank_row_must_not_report():
+    check_anchor()
+    orig = read()
+    try:
+        lines = orig.split("\n")
+        start, end = locate_batch_table_lines(lines)
+        i = next(i for i in range(start + 2, end) if lines[i].startswith("| 181 |"))
+        lines.insert(i + 1, "|  |  |  |")
+        write("\n".join(lines))
+        rc, out = run()
+        ok = rc == 0 and "批次号那格是空的" not in out
+        #: **9 与 10 必须成对**：只钉 9 的话，判据可能只是「首格空就报」，
+        #: **而那会把分隔用的空行也报出来**（Batch 142 闸 8 第一版的教训：
+        #: 逼出一张豁免表的判据，最后靠「我记得它其实也行」维持）。
+        record("10 整行全空（分隔用的空行）→ 不得报", ok, f"rc={rc}")
+    finally:
+        write(orig)
+
+
 def main():
     tests = [m_duplicate_must_report, m_cross_table_must_not_report,
              m_bad_shape_must_report, m_unreadable_must_be_rc2, m_clean_pass,
              m_short_row_must_report, m_extra_col_must_not_report,
-             m_short_header_must_report]
+             m_short_header_must_report,
+             m_blank_batch_no_must_report, m_fully_blank_row_must_not_report]
     for t in tests:
         try:
             t()
