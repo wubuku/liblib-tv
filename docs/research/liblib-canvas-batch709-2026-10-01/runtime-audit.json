@@ -1,0 +1,227 @@
+{
+ "predictions": {
+  "P1": "关台再重开后 history.past 归零，之后 Cmd+Z 记 UNDO/NOOP",
+  "P2": "归零的原因是换了一个 projectId",
+  "P3": "连开关两次会每次都归零",
+  "P4": "开着手势关台，未提交的改动被丢弃",
+  "P5": "已提交的内容在关台重开后保留"
+ },
+ "uncommitted_gesture": {
+  "s0": {
+   "deskOpen": true,
+   "projectId": "director-project-1791021141832-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": null,
+   "lastReason": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "objectsLen": 5
+  },
+  "s1": {
+   "deskOpen": true,
+   "projectId": "director-project-1791021141832-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": "camera-fov",
+   "last": "UPDATE_CAMERA/COMMITTED",
+   "lastReason": null,
+   "fovStore": 46,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "objectsLen": 5
+  },
+  "s2": {
+   "deskOpen": true,
+   "projectId": "director-project-1791021147622-3",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": null,
+   "lastReason": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "objectsLen": 5
+  }
+ },
+ "two_cycles": {
+  "afterRename1": {
+   "deskOpen": true,
+   "projectId": "director-project-1791021151205-1",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "active": null,
+   "last": "UPDATE_OBJECT/COMMITTED",
+   "lastReason": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试709"
+   ],
+   "objectsLen": 5
+  },
+  "afterCycle1": {
+   "deskOpen": true,
+   "projectId": "director-project-1791021155831-3",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": null,
+   "lastReason": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "objectsLen": 5
+  },
+  "afterRename2": {
+   "deskOpen": true,
+   "projectId": "director-project-1791021155831-3",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "active": null,
+   "last": "UPDATE_OBJECT/COMMITTED",
+   "lastReason": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试709"
+   ],
+   "objectsLen": 5
+  },
+  "afterCycle2": {
+   "deskOpen": true,
+   "projectId": "director-project-1791021155831-3",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "active": null,
+   "last": null,
+   "lastReason": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试709"
+   ],
+   "objectsLen": 5
+  }
+ },
+ "reload": {
+  "afterRename": {
+   "deskOpen": true,
+   "projectId": "director-project-1791021165012-1",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "active": null,
+   "last": "UPDATE_OBJECT/COMMITTED",
+   "lastReason": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试709"
+   ],
+   "objectsLen": 5
+  },
+  "afterReloadReopen": {
+   "deskOpen": true,
+   "projectId": "director-project-1791021173034-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": null,
+   "lastReason": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "objectsLen": 5
+  },
+  "afterUndo": {
+   "deskOpen": true,
+   "projectId": "director-project-1791021173034-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": "UNDO/NOOP",
+   "lastReason": "DIRECTOR_HISTORY_EMPTY",
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "objectsLen": 5
+  }
+ },
+ "open_button": {
+  "attempts": [
+   {
+    "attempt": 1,
+    "hasButton": true,
+    "opened": false,
+    "reloadedFirst": false
+   },
+   {
+    "attempt": 2,
+    "hasButton": true,
+    "opened": false,
+    "reloadedFirst": true
+   }
+  ]
+ },
+ "summary": {
+  "closing-the-desk-discards-an-uncommitted-gesture-change": true,
+  "the-first-close-and-reopen-loses-everything-committed-including-history": true,
+  "the-second-close-and-reopen-loses-nothing-not-even-the-history-entry": true,
+  "a-page-reload-then-reopen-behaves-like-the-first-close": true,
+  "the-open-button-does-nothing-on-a-node-that-never-had-a-director-session": true
+ },
+ "failures": []
+}
