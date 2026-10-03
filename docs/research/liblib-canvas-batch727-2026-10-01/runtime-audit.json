@@ -1,0 +1,254 @@
+{
+ "run": {
+  "static": {
+   "registeredNodeTypes": [
+    "script",
+    "image",
+    "text",
+    "video",
+    "script-execution",
+    "script-generator",
+    "script-v2",
+    "storyboard-group",
+    "shot-breakdown",
+    "shot-breakdown-result",
+    "video-clip",
+    "audio",
+    "long-video-process"
+   ],
+   "nRegistered": 13,
+   "handles": {
+    "AudioNode.tsx": {
+     "n": 2,
+     "unnamed": 0,
+     "unnamedTags": []
+    },
+    "ImageNode.tsx": {
+     "n": 2,
+     "unnamed": 0,
+     "unnamedTags": []
+    },
+    "LongVideoProcessNode.tsx": {
+     "n": 2,
+     "unnamed": 0,
+     "unnamedTags": []
+    },
+    "ScriptExecutionNode.tsx": {
+     "n": 2,
+     "unnamed": 0,
+     "unnamedTags": []
+    },
+    "ScriptGeneratorNode.tsx": {
+     "n": 2,
+     "unnamed": 0,
+     "unnamedTags": []
+    },
+    "ScriptNode.tsx": {
+     "n": 2,
+     "unnamed": 0,
+     "unnamedTags": []
+    },
+    "ScriptV2Node.tsx": {
+     "n": 2,
+     "unnamed": 2,
+     "unnamedTags": [
+      "<Handle type=\"target\" position={Position.Left} isConnectable />",
+      "<Handle type=\"source\" position={Position.Right} isConnectable />"
+     ]
+    },
+    "ShotBreakdownNode.tsx": {
+     "n": 2,
+     "unnamed": 0,
+     "unnamedTags": []
+    },
+    "ShotBreakdownResultNode.tsx": {
+     "n": 1,
+     "unnamed": 0,
+     "unnamedTags": []
+    },
+    "StoryboardGroupNode.tsx": {
+     "n": 2,
+     "unnamed": 0,
+     "unnamedTags": []
+    },
+    "TextNode.tsx": {
+     "n": 2,
+     "unnamed": 0,
+     "unnamedTags": []
+    },
+    "VideoClipNode.tsx": {
+     "n": 2,
+     "unnamed": 0,
+     "unnamedTags": []
+    },
+    "VideoNode.tsx": {
+     "n": 2,
+     "unnamed": 0,
+     "unnamedTags": []
+    }
+   },
+   "scriptV2Unnamed": 2,
+   "textNodeUnnamed": 0,
+   "invalidHandleDirectionRule": true,
+   "danglingRule": true,
+   "missingEndpointRule": true,
+   "scriptV2CreatedOnlyIn": [
+    "type: \"script-v2\""
+   ],
+   "storyPairEntry": true
+  },
+  "nodes0": [
+   {
+    "id": "g-245IDFh8sB",
+    "type": "storyboard-group"
+   },
+   {
+    "id": "g-EFbbHpwq5w",
+    "type": "storyboard-group"
+   },
+   {
+    "id": "t-9j2MoccxBj",
+    "type": "script"
+   },
+   {
+    "id": "i-1FQ9tErTcC",
+    "type": "image"
+   },
+   {
+    "id": "i-lBzmo67AHv",
+    "type": "image"
+   },
+   {
+    "id": "i-dnwoZQ7jsG",
+    "type": "image"
+   },
+   {
+    "id": "i-vxeeCnxySa",
+    "type": "image"
+   },
+   {
+    "id": "b-bTLLuU4w5q",
+    "type": "script-execution"
+   },
+   {
+    "id": "i-YDfWhFlthe",
+    "type": "image"
+   },
+   {
+    "id": "v-UGQZzZOpbv",
+    "type": "video"
+   }
+  ],
+  "selfLoop": {
+   "plan": [
+    "t-9j2MoccxBj",
+    "right",
+    "t-9j2MoccxBj",
+    "left"
+   ],
+   "stateBefore": {
+    "nEdges": 11,
+    "lastCommandResult": null,
+    "selection": {
+     "canvasId": "canvas-2",
+     "nodeIds": [],
+     "edgeIds": [],
+     "kind": "none",
+     "primary": null
+    }
+   },
+   "atTarget": [
+    {
+     "nodeId": "t-9j2MoccxBj",
+     "id": "target",
+     "extra": [
+      "connectingto"
+     ],
+     "bg": "rgb(9, 202, 245)"
+    },
+    {
+     "nodeId": "t-9j2MoccxBj",
+     "id": "source",
+     "extra": [
+      "connectingfrom"
+     ],
+     "bg": "rgb(26, 25, 43)"
+    }
+   ],
+   "newEdges": [],
+   "stateAfter": {
+    "nEdges": 11,
+    "lastCommandResult": null,
+    "selection": {
+     "canvasId": "canvas-2",
+     "nodeIds": [
+      "t-9j2MoccxBj"
+     ],
+     "edgeIds": [],
+     "kind": "node",
+     "primary": {
+      "kind": "node",
+      "id": "t-9j2MoccxBj"
+     }
+    }
+   }
+  },
+  "panelOpened": true,
+  "panel": {
+   "entries": [
+    {
+     "type": "text",
+     "text": "文本"
+    },
+    {
+     "type": "image",
+     "text": "图片"
+    },
+    {
+     "type": "video",
+     "text": "视频"
+    },
+    {
+     "type": "video-clip",
+     "text": "智能剪辑Beta"
+    },
+    {
+     "type": "script-execution",
+     "text": "导演台NEW"
+    },
+    {
+     "type": "shot-breakdown",
+     "text": "逐帧拉片SD 2.5"
+    },
+    {
+     "type": "audio",
+     "text": "音频"
+    },
+    {
+     "type": "script",
+     "text": "脚本"
+    },
+    {
+     "type": "material",
+     "text": "素材库"
+    }
+   ],
+   "submenus": []
+  },
+  "scriptSubmenuEntries": [
+   "script-new",
+   "script-legacy"
+  ],
+  "panelCanMakeScriptV2": false
+ },
+ "summary": {
+  "self-loop-is-ui-reachable-and-is-rejected-like-a-cycle": true,
+  "a-self-loop-looks-exactly-like-the-cycle-rejection-of-batch-726": true,
+  "a-self-loop-still-leaves-no-trace-in-the-store": true,
+  "thirteen-registered-nine-offered-five-planted": true,
+  "the-script-submenu-offers-generator-and-legacy-but-never-script-v2": true,
+  "only-script-v2-handles-are-missing-an-id": true,
+  "dangling-and-missing-endpoint-are-unreachable-from-the-ui": true
+ },
+ "failures": []
+}
