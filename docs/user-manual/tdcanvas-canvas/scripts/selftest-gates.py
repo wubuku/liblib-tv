@@ -1284,10 +1284,10 @@ def mutate_anchor_exemption_wrong_fragment(root: Path) -> None:
     path = root / "scripts/check-retractions.py"
     text = path.read_text(encoding="utf-8")
     patched = re.sub(
-        r'"SOURCE_OBSERVATIONS\.md#这一列的像素值已作废"',
+        r'"SOURCE_OBSERVATIONS\.md#三处按钮区的顺序固定"',
         '"SOURCE_OBSERVATIONS.md#这里放一个该行里根本不存在的锚点片段"',
         text, count=1)
-    assert patched != text, "注入失败：没找到 R31 的内容锚点豁免"
+    assert patched != text, "注入失败：没找到内容锚点豁免（载具已从 R31 迁到 R26，见下）"
     path.write_text(patched, encoding="utf-8")
 
 
@@ -1303,9 +1303,9 @@ def mutate_anchor_exemption_too_short(root: Path) -> None:
     path = root / "scripts/check-retractions.py"
     text = path.read_text(encoding="utf-8")
     patched = re.sub(
-        r'"SOURCE_OBSERVATIONS\.md#这一列的像素值已作废"',
+        r'"SOURCE_OBSERVATIONS\.md#三处按钮区的顺序固定"',
         '"SOURCE_OBSERVATIONS.md#像素值"', text, count=1)
-    assert patched != text, "注入失败：没找到 R31 的内容锚点豁免"
+    assert patched != text, "注入失败：没找到内容锚点豁免（载具已从 R31 迁到 R26，见下）"
     path.write_text(patched, encoding="utf-8")
 
 
@@ -1453,9 +1453,9 @@ def mutate_anchor_exemption_back_to_lineno(root: Path) -> None:
     path = root / "scripts/check-retractions.py"
     text = path.read_text(encoding="utf-8")
     patched = re.sub(
-        r'"SOURCE_OBSERVATIONS\.md#这一列的像素值已作废"',
+        r'"SOURCE_OBSERVATIONS\.md#三处按钮区的顺序固定"',
         '"SOURCE_OBSERVATIONS.md:357"', text, count=1)
-    assert patched != text, "注入失败：没找到 R31 的内容锚点豁免"
+    assert patched != text, "注入失败：没找到内容锚点豁免（载具已从 R31 迁到 R26，见下）"
     path.write_text(patched, encoding="utf-8")
 
 
@@ -1541,6 +1541,24 @@ def mutate_retracted_ledger_repro(root: Path) -> None:
     else:
         raise AssertionError("没找到可注入的行")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def mutate_retracted_manifest_repro(root: Path) -> None:
+    """已订正的说法复现到**截图清单**里（M203 补的覆盖范围）。
+
+    `screenshots/manifest.yml` 有 112 条目，每条都带 `verified_locator`（当时量到了什么）、
+    `alt`、`visible_text`。它是**唯一一份逐条记取证读数的清单**，而从前不在订正门禁的
+    扫描面里——**正文改了、清单里那条过期读数不会自己知道**。
+
+    ★ **注入位置从被测对象现算**（本轮已栽过四次锚点事故）：不复用任何写死的行号，
+      直接找 R26 needle「三处按钮区」**当前**不存在的那个字段值并改回去。
+    """
+
+    path = root / "screenshots/manifest.yml"
+    text = path.read_text(encoding="utf-8")
+    needle = "四处按钮区的位置距离"
+    assert needle in text, "注入失败：清单里已找不到该字段值（上一批已经订正过？）"
+    path.write_text(text.replace(needle, "三处按钮区的位置距离", 1), encoding="utf-8")
 
 
 def mutate_ledger_phrase_rewritten(root: Path) -> None:
@@ -1757,6 +1775,45 @@ def mutate_duplicate_blank_lines_ok(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_retraction_notation_needle(root: Path) -> None:
+    """needle 退化成**纯「键=数字」的取证记法**时必须被拦下（M203）。
+
+    ★ **这一例注入的不是虚构的坏数据，是 M160 真实写过的那个值。**
+      R31 当年登记的 needle 就是 `x=963`——`SOURCE_OBSERVATIONS.md` 里一条坐标记录的
+      内部写法，**正文里从来没有这么写过**（正文写「931 px」）。后果不是「拦得不准」，
+      是**压根拦不到**：M160 把 931px 订正掉了，同一张表里的「同屏，相距 931 px」
+      照样活了两批，门禁一路报 ok。
+    """
+    path = root / "scripts/check-retractions.py"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace('"wrong": "同屏，相距 931 px",', '"wrong": "x=963",', 1)
+    assert patched != text, "注入失败：没找到 R31 的 needle（它已被换过形态？）"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_retraction_english_needle_ok(root: Path) -> None:
+    """反向对照：**英文界面文案当 needle 不该被误报**（M203，不误报）。
+
+    「键=数字」判据如果顺手扩成「needle 必须含汉字」或「不得短于 N 字」，
+    就会把 `Frame-level settings` 这类**正当的英文 needle** 判成错。
+    那正是 M195 说过的失败模式：**判据宽到会冤枉好人，就不该叫门禁**。
+    这一例守的就是那道边界不被偷偷放宽。
+
+    ★ **第一版这里写的是 `Connection settings`，用例当场挂了**——
+      那个串**真的存在于扫描面里**（`20-reference.md` 记着 Agent 面板那 7 个英文
+      `aria-label`），于是门禁报「订正过的错误说法重新出现」是**完全正确的行为**，
+      错的是我挑了一个会真命中的串来当阴性对照。
+      **阴性对照的 needle 必须在扫描面里真的不存在**，否则测的是判据、不是对照。
+    """
+    path = root / "scripts/check-retractions.py"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace(
+        '"wrong": "同屏，相距 931 px",', '"wrong": "Frame-level settings",', 1
+    )
+    assert patched != text, "注入失败：没找到 R31 的 needle"
+    path.write_text(patched, encoding="utf-8")
+
+
 CASES: list[tuple[str, object, str, str]] = [
     ("图片字节被改动", mutate_image_bytes, "gate", "sha256 mismatch"),
     ("manifest 删掉一条记录", mutate_manifest_drop_record, "gate", "image missing from manifest"),
@@ -1785,6 +1842,9 @@ CASES: list[tuple[str, object, str, str]] = [
     ("已订正说法复现到**账本**里（正文之外的盲区）", mutate_retracted_ledger_repro, "retractions", "订正过的错误说法重新出现"),
     ("新订正不写 kind（改了描述却不算订正，计数会失真）", mutate_retraction_missing_kind, "retractions", "没写"),
     ("kind 取值拼错等于没分类（不能安静地少拦一类）", mutate_retraction_bad_kind, "retractions", "不在"),
+    ("needle 退化成取证坐标记法（守的从来不是读者会读到的说法）", mutate_retraction_notation_needle, "retractions", "纯「键=数字」的取证记法"),
+    ("英文界面文案当 needle 不该被误报（判据不许偷偷放宽）", mutate_retraction_english_needle_ok, "retractions", EXPECT_PASS),
+    ("已订正说法复现到**截图清单**里（112 条取证读数的盲区）", mutate_retracted_manifest_repro, "retractions", "订正过的错误说法重新出现"),
     ("表格行格子数多于表头（多出来的格子连内容一起被丢弃）", mutate_table_row_too_many_cells, "tables", "这一行有"),
     ("内部账本的表格欠账不许增长（基线口径）", mutate_table_internal_backlog_grows, "tables", "不许增长"),
     ("产物里的死链", mutate_dead_dist_link, "distlinks", "指向不存在目标的链接"),
