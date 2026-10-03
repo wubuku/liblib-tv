@@ -1,0 +1,1531 @@
+{
+  "分类": [
+    {
+      "分类": "推荐",
+      "收到响应": 0
+    },
+    {
+      "分类": "摄影写真",
+      "收到响应": 1,
+      "请求URL": "https://api2.liblib.art/api/www/model/feed/stream",
+      "响应长度": 395638,
+      "分页": [
+        {
+          "键路径": "data.page",
+          "值": "1"
+        },
+        {
+          "键路径": "data.total",
+          "值": "40"
+        },
+        {
+          "键路径": "data.pageSize",
+          "值": "40"
+        },
+        {
+          "键路径": "data.hasMore",
+          "值": "true"
+        }
+      ],
+      "数组": [
+        {
+          "键路径": "data.data",
+          "长度": 40
+        },
+        {
+          "键路径": "data.abtest",
+          "长度": 2
+        }
+      ],
+      "首条字段": [
+        "isLike",
+        "toolEvaluationAuditStatus",
+        "id",
+        "userId",
+        "name",
+        "description",
+        "modelType",
+        "modelTypeName",
+        "auditTime",
+        "checkpointType",
+        "uuid",
+        "versionId",
+        "versionUuid",
+        "versionName",
+        "triggerWord",
+        "displayOrder",
+        "isOriginal",
+        "originalUrl",
+        "baseType",
+        "imageUrl",
+        "webpUrl",
+        "posterUrl",
+        "videoUrl",
+        "imageUuid",
+        "hideGenerateInfo",
+        "width",
+        "height",
+        "userUuid",
+        "nickname",
+        "avatar",
+        "tagsId",
+        "tagsLabel",
+        "createBy",
+        "createTime",
+        "updateBy",
+        "updateTime",
+        "likeCount",
+        "commentCount",
+        "imageCount",
+        "downloadCount",
+        "subscribeCount",
+        "runCount",
+        "heat",
+        "score",
+        "delay7dDownCount",
+        "openAccess",
+        "openMix",
+        "isRunnable",
+        "privilege",
+        "isPackaged",
+        "isEncrypted",
+        "isSelected",
+        "lastVersionCreateTime",
+        "tagsOperateId",
+        "tagsOperateLabel",
+        "tagsV2",
+        "vipUsed",
+        "recommendOtherRes",
+        "attachment",
+        "images",
+        "extraInfo",
+        "templateType",
+        "openRun"
+      ]
+    },
+    {
+      "分类": "电商营销",
+      "收到响应": 1,
+      "请求URL": "https://api2.liblib.art/api/www/model/feed/stream",
+      "响应长度": 452451,
+      "分页": [
+        {
+          "键路径": "data.page",
+          "值": "1"
+        },
+        {
+          "键路径": "data.total",
+          "值": "40"
+        },
+        {
+          "键路径": "data.pageSize",
+          "值": "40"
+        },
+        {
+          "键路径": "data.hasMore",
+          "值": "true"
+        }
+      ],
+      "数组": [
+        {
+          "键路径": "data.data",
+          "长度": 40
+        },
+        {
+          "键路径": "data.abtest",
+          "长度": 2
+        }
+      ],
+      "首条字段": [
+        "isLike",
+        "toolEvaluationAuditStatus",
+        "id",
+        "userId",
+        "name",
+        "description",
+        "modelType",
+        "modelTypeName",
+        "auditTime",
+        "checkpointType",
+        "uuid",
+        "versionId",
+        "versionUuid",
+        "versionName",
+        "triggerWord",
+        "displayOrder",
+        "isOriginal",
+        "originalUrl",
+        "baseType",
+        "imageUrl",
+        "webpUrl",
+        "posterUrl",
+        "videoUrl",
+        "imageUuid",
+        "hideGenerateInfo",
+        "width",
+        "height",
+        "userUuid",
+        "nickname",
+        "avatar",
+        "tagsId",
+        "tagsLabel",
+        "createBy",
+        "createTime",
+        "updateBy",
+        "updateTime",
+        "likeCount",
+        "commentCount",
+        "imageCount",
+        "downloadCount",
+        "subscribeCount",
+        "runCount",
+        "heat",
+        "score",
+        "delay7dDownCount",
+        "openAccess",
+        "openMix",
+        "isRunnable",
+        "privilege",
+        "isPackaged",
+        "isEncrypted",
+        "isSelected",
+        "lastVersionCreateTime",
+        "tagsOperateId",
+        "tagsOperateLabel",
+        "tagsV2",
+        "vipUsed",
+        "recommendOtherRes",
+        "attachment",
+        "images",
+        "extraInfo",
+        "templateType",
+        "openRun"
+      ]
+    },
+    {
+      "分类": "动漫游戏",
+      "收到响应": 1,
+      "请求URL": "https://api2.liblib.art/api/www/model/feed/stream",
+      "响应长度": 379346,
+      "分页": [
+        {
+          "键路径": "data.page",
+          "值": "1"
+        },
+        {
+          "键路径": "data.total",
+          "值": "40"
+        },
+        {
+          "键路径": "data.pageSize",
+          "值": "40"
+        },
+        {
+          "键路径": "data.hasMore",
+          "值": "true"
+        }
+      ],
+      "数组": [
+        {
+          "键路径": "data.data",
+          "长度": 40
+        },
+        {
+          "键路径": "data.abtest",
+          "长度": 2
+        }
+      ],
+      "首条字段": [
+        "isLike",
+        "toolEvaluationAuditStatus",
+        "id",
+        "userId",
+        "name",
+        "description",
+        "modelType",
+        "modelTypeName",
+        "auditTime",
+        "checkpointType",
+        "uuid",
+        "versionId",
+        "versionUuid",
+        "versionName",
+        "triggerWord",
+        "displayOrder",
+        "isOriginal",
+        "originalUrl",
+        "baseType",
+        "imageUrl",
+        "webpUrl",
+        "posterUrl",
+        "videoUrl",
+        "imageUuid",
+        "hideGenerateInfo",
+        "width",
+        "height",
+        "userUuid",
+        "nickname",
+        "avatar",
+        "tagsId",
+        "tagsLabel",
+        "createBy",
+        "createTime",
+        "updateBy",
+        "updateTime",
+        "likeCount",
+        "commentCount",
+        "imageCount",
+        "downloadCount",
+        "subscribeCount",
+        "runCount",
+        "heat",
+        "score",
+        "delay7dDownCount",
+        "openAccess",
+        "openMix",
+        "isRunnable",
+        "privilege",
+        "isPackaged",
+        "isEncrypted",
+        "isSelected",
+        "lastVersionCreateTime",
+        "tagsOperateId",
+        "tagsOperateLabel",
+        "tagsV2",
+        "vipUsed",
+        "recommendOtherRes",
+        "attachment",
+        "images",
+        "extraInfo",
+        "templateType",
+        "openRun"
+      ]
+    },
+    {
+      "分类": "风格插画",
+      "收到响应": 1,
+      "请求URL": "https://api2.liblib.art/api/www/model/feed/stream",
+      "响应长度": 427901,
+      "分页": [
+        {
+          "键路径": "data.page",
+          "值": "1"
+        },
+        {
+          "键路径": "data.total",
+          "值": "40"
+        },
+        {
+          "键路径": "data.pageSize",
+          "值": "40"
+        },
+        {
+          "键路径": "data.hasMore",
+          "值": "true"
+        }
+      ],
+      "数组": [
+        {
+          "键路径": "data.data",
+          "长度": 40
+        },
+        {
+          "键路径": "data.abtest",
+          "长度": 2
+        }
+      ],
+      "首条字段": [
+        "isLike",
+        "toolEvaluationAuditStatus",
+        "id",
+        "userId",
+        "name",
+        "description",
+        "modelType",
+        "modelTypeName",
+        "auditTime",
+        "checkpointType",
+        "uuid",
+        "versionId",
+        "versionUuid",
+        "versionName",
+        "triggerWord",
+        "displayOrder",
+        "isOriginal",
+        "originalUrl",
+        "baseType",
+        "imageUrl",
+        "webpUrl",
+        "posterUrl",
+        "videoUrl",
+        "imageUuid",
+        "hideGenerateInfo",
+        "width",
+        "height",
+        "userUuid",
+        "nickname",
+        "avatar",
+        "tagsId",
+        "tagsLabel",
+        "createBy",
+        "createTime",
+        "updateBy",
+        "updateTime",
+        "likeCount",
+        "commentCount",
+        "imageCount",
+        "downloadCount",
+        "subscribeCount",
+        "runCount",
+        "heat",
+        "score",
+        "delay7dDownCount",
+        "openAccess",
+        "openMix",
+        "isRunnable",
+        "privilege",
+        "isPackaged",
+        "isEncrypted",
+        "isSelected",
+        "lastVersionCreateTime",
+        "tagsOperateId",
+        "tagsOperateLabel",
+        "tagsV2",
+        "vipUsed",
+        "recommendOtherRes",
+        "attachment",
+        "images",
+        "extraInfo",
+        "templateType",
+        "openRun"
+      ]
+    },
+    {
+      "分类": "平面设计",
+      "收到响应": 1,
+      "请求URL": "https://api2.liblib.art/api/www/model/feed/stream",
+      "响应长度": 414827,
+      "分页": [
+        {
+          "键路径": "data.page",
+          "值": "1"
+        },
+        {
+          "键路径": "data.total",
+          "值": "40"
+        },
+        {
+          "键路径": "data.pageSize",
+          "值": "40"
+        },
+        {
+          "键路径": "data.hasMore",
+          "值": "true"
+        }
+      ],
+      "数组": [
+        {
+          "键路径": "data.data",
+          "长度": 40
+        },
+        {
+          "键路径": "data.abtest",
+          "长度": 2
+        }
+      ],
+      "首条字段": [
+        "isLike",
+        "toolEvaluationAuditStatus",
+        "id",
+        "userId",
+        "name",
+        "description",
+        "modelType",
+        "modelTypeName",
+        "auditTime",
+        "checkpointType",
+        "uuid",
+        "versionId",
+        "versionUuid",
+        "versionName",
+        "triggerWord",
+        "displayOrder",
+        "isOriginal",
+        "originalUrl",
+        "baseType",
+        "imageUrl",
+        "webpUrl",
+        "posterUrl",
+        "videoUrl",
+        "imageUuid",
+        "hideGenerateInfo",
+        "width",
+        "height",
+        "userUuid",
+        "nickname",
+        "avatar",
+        "tagsId",
+        "tagsLabel",
+        "createBy",
+        "createTime",
+        "updateBy",
+        "updateTime",
+        "likeCount",
+        "commentCount",
+        "imageCount",
+        "downloadCount",
+        "subscribeCount",
+        "runCount",
+        "heat",
+        "score",
+        "delay7dDownCount",
+        "openAccess",
+        "openMix",
+        "isRunnable",
+        "privilege",
+        "isPackaged",
+        "isEncrypted",
+        "isSelected",
+        "lastVersionCreateTime",
+        "tagsOperateId",
+        "tagsOperateLabel",
+        "tagsV2",
+        "vipUsed",
+        "recommendOtherRes",
+        "attachment",
+        "images",
+        "extraInfo",
+        "templateType",
+        "openRun"
+      ]
+    },
+    {
+      "分类": "建筑及室内设计",
+      "收到响应": 1,
+      "请求URL": "https://api2.liblib.art/api/www/model/feed/stream",
+      "响应长度": 394630,
+      "分页": [
+        {
+          "键路径": "data.page",
+          "值": "1"
+        },
+        {
+          "键路径": "data.total",
+          "值": "40"
+        },
+        {
+          "键路径": "data.pageSize",
+          "值": "40"
+        },
+        {
+          "键路径": "data.hasMore",
+          "值": "true"
+        }
+      ],
+      "数组": [
+        {
+          "键路径": "data.data",
+          "长度": 40
+        },
+        {
+          "键路径": "data.abtest",
+          "长度": 2
+        }
+      ],
+      "首条字段": [
+        "isLike",
+        "toolEvaluationAuditStatus",
+        "id",
+        "userId",
+        "name",
+        "description",
+        "modelType",
+        "modelTypeName",
+        "auditTime",
+        "checkpointType",
+        "uuid",
+        "versionId",
+        "versionUuid",
+        "versionName",
+        "triggerWord",
+        "displayOrder",
+        "isOriginal",
+        "originalUrl",
+        "baseType",
+        "imageUrl",
+        "webpUrl",
+        "posterUrl",
+        "videoUrl",
+        "imageUuid",
+        "hideGenerateInfo",
+        "width",
+        "height",
+        "userUuid",
+        "nickname",
+        "avatar",
+        "tagsId",
+        "tagsLabel",
+        "createBy",
+        "createTime",
+        "updateBy",
+        "updateTime",
+        "likeCount",
+        "commentCount",
+        "imageCount",
+        "downloadCount",
+        "subscribeCount",
+        "runCount",
+        "heat",
+        "score",
+        "delay7dDownCount",
+        "openAccess",
+        "openMix",
+        "isRunnable",
+        "privilege",
+        "isPackaged",
+        "isEncrypted",
+        "isSelected",
+        "lastVersionCreateTime",
+        "tagsOperateId",
+        "tagsOperateLabel",
+        "tagsV2",
+        "vipUsed",
+        "recommendOtherRes",
+        "attachment",
+        "images",
+        "extraInfo",
+        "templateType",
+        "openRun"
+      ]
+    },
+    {
+      "分类": "创意玩法",
+      "收到响应": 1,
+      "请求URL": "https://api2.liblib.art/api/www/model/feed/stream",
+      "响应长度": 414533,
+      "分页": [
+        {
+          "键路径": "data.page",
+          "值": "1"
+        },
+        {
+          "键路径": "data.total",
+          "值": "40"
+        },
+        {
+          "键路径": "data.pageSize",
+          "值": "40"
+        },
+        {
+          "键路径": "data.hasMore",
+          "值": "true"
+        }
+      ],
+      "数组": [
+        {
+          "键路径": "data.data",
+          "长度": 40
+        },
+        {
+          "键路径": "data.abtest",
+          "长度": 2
+        }
+      ],
+      "首条字段": [
+        "isLike",
+        "toolEvaluationAuditStatus",
+        "id",
+        "userId",
+        "name",
+        "description",
+        "modelType",
+        "modelTypeName",
+        "auditTime",
+        "checkpointType",
+        "uuid",
+        "versionId",
+        "versionUuid",
+        "versionName",
+        "triggerWord",
+        "displayOrder",
+        "isOriginal",
+        "originalUrl",
+        "baseType",
+        "imageUrl",
+        "webpUrl",
+        "posterUrl",
+        "videoUrl",
+        "imageUuid",
+        "hideGenerateInfo",
+        "width",
+        "height",
+        "userUuid",
+        "nickname",
+        "avatar",
+        "tagsId",
+        "tagsLabel",
+        "createBy",
+        "createTime",
+        "updateBy",
+        "updateTime",
+        "likeCount",
+        "commentCount",
+        "imageCount",
+        "downloadCount",
+        "subscribeCount",
+        "runCount",
+        "heat",
+        "score",
+        "delay7dDownCount",
+        "openAccess",
+        "openMix",
+        "isRunnable",
+        "privilege",
+        "isPackaged",
+        "isEncrypted",
+        "isSelected",
+        "lastVersionCreateTime",
+        "tagsOperateId",
+        "tagsOperateLabel",
+        "tagsV2",
+        "vipUsed",
+        "recommendOtherRes",
+        "attachment",
+        "images",
+        "extraInfo",
+        "templateType",
+        "openRun"
+      ]
+    },
+    {
+      "分类": "文创周边",
+      "收到响应": 1,
+      "请求URL": "https://api2.liblib.art/api/www/model/feed/stream",
+      "响应长度": 419304,
+      "分页": [
+        {
+          "键路径": "data.page",
+          "值": "1"
+        },
+        {
+          "键路径": "data.total",
+          "值": "40"
+        },
+        {
+          "键路径": "data.pageSize",
+          "值": "40"
+        },
+        {
+          "键路径": "data.hasMore",
+          "值": "true"
+        }
+      ],
+      "数组": [
+        {
+          "键路径": "data.data",
+          "长度": 40
+        },
+        {
+          "键路径": "data.abtest",
+          "长度": 2
+        }
+      ],
+      "首条字段": [
+        "isLike",
+        "toolEvaluationAuditStatus",
+        "id",
+        "userId",
+        "name",
+        "description",
+        "modelType",
+        "modelTypeName",
+        "auditTime",
+        "checkpointType",
+        "uuid",
+        "versionId",
+        "versionUuid",
+        "versionName",
+        "triggerWord",
+        "displayOrder",
+        "isOriginal",
+        "originalUrl",
+        "baseType",
+        "imageUrl",
+        "webpUrl",
+        "posterUrl",
+        "videoUrl",
+        "imageUuid",
+        "hideGenerateInfo",
+        "width",
+        "height",
+        "userUuid",
+        "nickname",
+        "avatar",
+        "tagsId",
+        "tagsLabel",
+        "createBy",
+        "createTime",
+        "updateBy",
+        "updateTime",
+        "likeCount",
+        "commentCount",
+        "imageCount",
+        "downloadCount",
+        "subscribeCount",
+        "runCount",
+        "heat",
+        "score",
+        "delay7dDownCount",
+        "openAccess",
+        "openMix",
+        "isRunnable",
+        "privilege",
+        "isPackaged",
+        "isEncrypted",
+        "isSelected",
+        "lastVersionCreateTime",
+        "tagsOperateId",
+        "tagsOperateLabel",
+        "tagsV2",
+        "vipUsed",
+        "recommendOtherRes",
+        "attachment",
+        "images",
+        "extraInfo",
+        "templateType",
+        "openRun"
+      ]
+    },
+    {
+      "分类": "小说推文",
+      "收到响应": 1,
+      "请求URL": "https://api2.liblib.art/api/www/model/feed/stream",
+      "响应长度": 418309,
+      "分页": [
+        {
+          "键路径": "data.page",
+          "值": "1"
+        },
+        {
+          "键路径": "data.total",
+          "值": "40"
+        },
+        {
+          "键路径": "data.pageSize",
+          "值": "40"
+        },
+        {
+          "键路径": "data.hasMore",
+          "值": "true"
+        }
+      ],
+      "数组": [
+        {
+          "键路径": "data.data",
+          "长度": 40
+        },
+        {
+          "键路径": "data.abtest",
+          "长度": 2
+        }
+      ],
+      "首条字段": [
+        "isLike",
+        "toolEvaluationAuditStatus",
+        "id",
+        "userId",
+        "name",
+        "description",
+        "modelType",
+        "modelTypeName",
+        "auditTime",
+        "checkpointType",
+        "uuid",
+        "versionId",
+        "versionUuid",
+        "versionName",
+        "triggerWord",
+        "displayOrder",
+        "isOriginal",
+        "originalUrl",
+        "baseType",
+        "imageUrl",
+        "webpUrl",
+        "posterUrl",
+        "videoUrl",
+        "imageUuid",
+        "hideGenerateInfo",
+        "width",
+        "height",
+        "userUuid",
+        "nickname",
+        "avatar",
+        "tagsId",
+        "tagsLabel",
+        "createBy",
+        "createTime",
+        "updateBy",
+        "updateTime",
+        "likeCount",
+        "commentCount",
+        "imageCount",
+        "downloadCount",
+        "subscribeCount",
+        "runCount",
+        "heat",
+        "score",
+        "delay7dDownCount",
+        "openAccess",
+        "openMix",
+        "isRunnable",
+        "privilege",
+        "isPackaged",
+        "isEncrypted",
+        "isSelected",
+        "lastVersionCreateTime",
+        "tagsOperateId",
+        "tagsOperateLabel",
+        "tagsV2",
+        "vipUsed",
+        "recommendOtherRes",
+        "attachment",
+        "images",
+        "extraInfo",
+        "templateType",
+        "openRun"
+      ]
+    }
+  ],
+  "字段": [
+    {
+      "键路径": "code",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "msg",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.page",
+      "类型": "number",
+      "样例": "1"
+    },
+    {
+      "键路径": "data.total",
+      "类型": "number",
+      "样例": "40"
+    },
+    {
+      "键路径": "data.pageSize",
+      "类型": "number",
+      "样例": "40"
+    },
+    {
+      "键路径": "data.data[0].isLike",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].toolEvaluationAuditStatus",
+      "类型": "number",
+      "样例": "-1"
+    },
+    {
+      "键路径": "data.data[0].id",
+      "类型": "number",
+      "样例": "21363354"
+    },
+    {
+      "键路径": "data.data[0].userId",
+      "类型": "number",
+      "样例": "936166"
+    },
+    {
+      "键路径": "data.data[0].name",
+      "类型": "string",
+      "样例": "车库女神"
+    },
+    {
+      "键路径": "data.data[0].description",
+      "类型": "string",
+      "样例": ""
+    },
+    {
+      "键路径": "data.data[0].modelType",
+      "类型": "number",
+      "样例": "21"
+    },
+    {
+      "键路径": "data.data[0].modelTypeName",
+      "类型": "string",
+      "样例": "图片模板"
+    },
+    {
+      "键路径": "data.data[0].auditTime",
+      "类型": "string",
+      "样例": "2026-06-17T20:26:19.000+00:00"
+    },
+    {
+      "键路径": "data.data[0].checkpointType",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].uuid",
+      "类型": "string",
+      "样例": "18be0836b385470a8b4d8910fe0b516c"
+    },
+    {
+      "键路径": "data.data[0].versionId",
+      "类型": "number",
+      "样例": "23107515"
+    },
+    {
+      "键路径": "data.data[0].versionUuid",
+      "类型": "string",
+      "样例": "60faabf2d64a4ca3ba14d61b157c1ce3"
+    },
+    {
+      "键路径": "data.data[0].versionName",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].triggerWord",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].displayOrder",
+      "类型": "number",
+      "样例": "5"
+    },
+    {
+      "键路径": "data.data[0].isOriginal",
+      "类型": "number",
+      "样例": "1"
+    },
+    {
+      "键路径": "data.data[0].originalUrl",
+      "类型": "string",
+      "样例": ""
+    },
+    {
+      "键路径": "data.data[0].imageUrl",
+      "类型": "string",
+      "样例": "https://liblibai-online.liblib.cloud"
+    },
+    {
+      "键路径": "data.data[0].webpUrl",
+      "类型": "string",
+      "样例": ""
+    },
+    {
+      "键路径": "data.data[0].posterUrl",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].videoUrl",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].imageUuid",
+      "类型": "string",
+      "样例": "8aedec9e76e54a44bd1f20477e75ea08"
+    },
+    {
+      "键路径": "data.data[0].hideGenerateInfo",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].width",
+      "类型": "number",
+      "样例": "1280"
+    },
+    {
+      "键路径": "data.data[0].height",
+      "类型": "number",
+      "样例": "2376"
+    },
+    {
+      "键路径": "data.data[0].userUuid",
+      "类型": "string",
+      "样例": "6c37af35f3fc4cceaffb4d1044612c2c"
+    },
+    {
+      "键路径": "data.data[0].nickname",
+      "类型": "string",
+      "样例": "忘川狐"
+    },
+    {
+      "键路径": "data.data[0].avatar",
+      "类型": "string",
+      "样例": "https://liblibai-online.liblib.cloud"
+    },
+    {
+      "键路径": "data.data[0].tagsLabel",
+      "类型": "string",
+      "样例": ""
+    },
+    {
+      "键路径": "data.data[0].createBy",
+      "类型": "number",
+      "样例": "936166"
+    },
+    {
+      "键路径": "data.data[0].createTime",
+      "类型": "string",
+      "样例": "2026-06-17T13:54:48.000+00:00"
+    },
+    {
+      "键路径": "data.data[0].updateBy",
+      "类型": "number",
+      "样例": "936166"
+    },
+    {
+      "键路径": "data.data[0].updateTime",
+      "类型": "string",
+      "样例": "2026-06-17T20:26:19.000+00:00"
+    },
+    {
+      "键路径": "data.data[0].likeCount",
+      "类型": "number",
+      "样例": "7"
+    },
+    {
+      "键路径": "data.data[0].commentCount",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].imageCount",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].downloadCount",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].subscribeCount",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].runCount",
+      "类型": "number",
+      "样例": "293"
+    },
+    {
+      "键路径": "data.data[0].heat",
+      "类型": "number",
+      "样例": "1465"
+    },
+    {
+      "键路径": "data.data[0].score",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].delay7dDownCount",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].openAccess",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].openMix",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].isRunnable",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].isPackaged",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].isEncrypted",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].isSelected",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].lastVersionCreateTime",
+      "类型": "string",
+      "样例": "2026-06-17T13:54:48.000+00:00"
+    },
+    {
+      "键路径": "data.data[0].tagsOperateLabel",
+      "类型": "string",
+      "样例": ""
+    },
+    {
+      "键路径": "data.data[0].vipUsed",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].recommendOtherRes.item_id",
+      "类型": "number",
+      "样例": "21363354"
+    },
+    {
+      "键路径": "data.data[0].recommendOtherRes.item_uuid",
+      "类型": "string",
+      "样例": "18be0836b385470a8b4d8910fe0b516c"
+    },
+    {
+      "键路径": "data.data[0].recommendOtherRes.item_type",
+      "类型": "string",
+      "样例": "21"
+    },
+    {
+      "键路径": "data.data[0].recommendOtherRes.sign",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].recommendOtherRes.score",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].recommendOtherRes.sort",
+      "类型": "number",
+      "样例": "9999"
+    },
+    {
+      "键路径": "data.data[0].attachment",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].batchId",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].id",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].uuid",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].showType",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].teamId",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].coverUuid",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].modelId",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].sort",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].modelVersionId",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].mixModel",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].title",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].imageUrl",
+      "类型": "string",
+      "样例": "https://liblibai-online.liblib.cloud"
+    },
+    {
+      "键路径": "data.data[0].images[0].webpUrl",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].originalImageUrl",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].imageThumbnail",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].watermarkImageUrl",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].videoUrl",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].originalVideoUrl",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].flowUrl",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].origImageDownLimit",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].height",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].width",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].originalName",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].status",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].auditStatus",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].remark",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].hideGenerateInfo",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].createBy",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].createTime",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].updateBy",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].updateTime",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].deleteFlag",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].generateInfo",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].versionUuid",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].modelUuid",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].outputId",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].generateId",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].comparisonGroupCode",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].comparisonWeight",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].imageControlInfo",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].models",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].mixModels",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].userName",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].userAvatar",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].imageSource",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].recurrentEnabled",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].showGenerateParamEnabled",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].isXingliu",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].images[0].appRecurrentEnabled",
+      "类型": "number",
+      "样例": "0"
+    },
+    {
+      "键路径": "data.data[0].images[0].duration",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].aiWatermarkUrl",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].images[0].previewUrl",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.data[0].extraInfo",
+      "类型": "string",
+      "样例": "{\"templateType\":1,\"images\":[\"https:/"
+    },
+    {
+      "键路径": "data.data[0].templateType",
+      "类型": "number",
+      "样例": "1"
+    },
+    {
+      "键路径": "data.data[0].openRun",
+      "类型": "number",
+      "样例": "1"
+    },
+    {
+      "键路径": "data.userIp",
+      "类型": "string",
+      "样例": "61.174.129.179"
+    },
+    {
+      "键路径": "data.traceId",
+      "类型": "string",
+      "样例": "9efdf6f2-7e1c-4025-af18-9aff471a92e4"
+    },
+    {
+      "键路径": "data.hasMore",
+      "类型": "boolean",
+      "样例": "true"
+    },
+    {
+      "键路径": "data.rankExpId",
+      "类型": "object",
+      "样例": "null"
+    },
+    {
+      "键路径": "data.abVariant",
+      "类型": "string",
+      "样例": "new_group"
+    },
+    {
+      "键路径": "data.abtest[0].name",
+      "类型": "string",
+      "样例": "image_recommend"
+    },
+    {
+      "键路径": "data.abtest[0].group",
+      "类型": "string",
+      "样例": "PERSONALIZED_RECOMMEND_V13"
+    }
+  ]
+}

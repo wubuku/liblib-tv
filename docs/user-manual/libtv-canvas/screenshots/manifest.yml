@@ -2359,3 +2359,14 @@ screenshots:
     visible_text: 全部适配模型 Seedance 2.0 Kling 3.0 Kling O3 小蜜蜂运镜 商用 vibe fckuing 3500
     alt: 特效广场里悬停卡面左上角那枚「•••」小按钮后，浮出和风格广场一样的黑色浮层：顶部标题「全部适配模型」，下面列 Seedance 2.0 / Kling 3.0 / Kling O3 三行。⭐ 读数：这枚按钮的 SVG d 属性**完整 96 字符**与风格广场那枚逐字相同（M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0… 共三段圆弧），面板结构也相同 ⇒ **两个广场是同一枚按钮**。⚠️ 特效广场**没有**「单模型就显示徽标」这回事，卡上 12/12 张都是这一枚；且特效广场卡上**没有** ⤢ 详情按钮
     sha256: a6ee81344e563453cc01f1f1315d8bdbfd4e5e4975452dd5dd30eb249524bce8
+  - file: screenshots/M-348-风格广场-滚到底出现没有更多了.png
+    task_id: asset-library
+    step: 73
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 广场「风格插画」分类 → 把 .mantine-ScrollArea-viewport 滚到 scrollTop == scrollHeight（终局读到 scrollTop 38156 / scrollHeight 38673 / clientHeight 517，到底 true）→ 停 3 轮
+    visible_text: 没有更多了 墨鱼线稿 838 小河 1000 星空岁月 253 JM32 129 行者也 3200 像素农夫DESIGN 608 仅看可商用 全部
+    alt: 滚到风格插画分类的最底部：最后一屏只有 6 张卡（不满一整行），正下方居中显示一行灰字「没有更多了」。⭐ 读数：这是「没有更多了」唯一一次出现的轮次（第 18 轮起出现，DOM 卡数 48；第 19 轮起 DOM 回落到 30）。⚠️ 这屏卡片的预览图全是灰色占位色 —— 无限滚动把滚过去的卡回收了，不是图加载失败。⭐⭐ 同一批读数：风格插画分类 page 1..19，前 18 页各 40 条、末页 18 条、末页 hasMore=false ⇒ 738 张；DOM 卡片数全程只在 30/48/54 三档里跳，视口内 12~18 张 ⇒ 屏幕上同时存在的张数是「复用池」大小，与 738 的内容量无关
+    sha256: 4ab5a6acb88d1af99f7f6f314a6e6899c443906d4a40b901e221d7f639705503
