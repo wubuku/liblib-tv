@@ -1,0 +1,242 @@
+{
+  "三次读数": [
+    {
+      "阶段": "① 裸画布",
+      "找到": true,
+      "文字": "取消ESC",
+      "背景": "rgb(255, 255, 255)",
+      "颜色": "lab(8.11897 0.811279 -12.254)",
+      "位置": [
+        730,
+        9,
+        64,
+        16
+      ],
+      "z": "auto",
+      "透明度": "1",
+      "ariaHidden": null,
+      "disabled": false,
+      "子节点数": 0,
+      "内部": [],
+      "祖先链": [
+        {
+          "tag": "button",
+          "cls": "peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-non",
+          "z": "auto",
+          "位置": [
+            730,
+            9,
+            64,
+            16
+          ],
+          "透明度": "1",
+          "ariaHidden": null
+        },
+        {
+          "tag": "span",
+          "cls": "relative ml-1 inline-flex",
+          "z": "auto",
+          "位置": [
+            730,
+            9,
+            64,
+            16
+          ],
+          "透明度": "1",
+          "ariaHidden": null
+        },
+        {
+          "tag": "div",
+          "cls": "flex items-center gap-2 rounded-b-xl border px-3 py-1.5 text-white sha",
+          "z": "auto",
+          "位置": [
+            633,
+            0,
+            174,
+            34
+          ],
+          "透明度": "1",
+          "ariaHidden": null
+        },
+        {
+          "tag": "div",
+          "cls": "pointer-events-none fixed left-1/2 top-0 z-[305] -translate-x-1/2 moti",
+          "z": "305",
+          "位置": [
+            633,
+            0,
+            174,
+            34
+          ],
+          "透明度": "0",
+          "ariaHidden": "true"
+        },
+        {
+          "tag": "body",
+          "cls": "antialiased",
+          "z": "auto",
+          "位置": [
+            0,
+            0,
+            1440,
+            810
+          ],
+          "透明度": "1",
+          "ariaHidden": null
+        },
+        {
+          "tag": "html",
+          "cls": "dark",
+          "z": "auto",
+          "位置": [
+            0,
+            0,
+            1440,
+            810
+          ],
+          "透明度": "1",
+          "ariaHidden": null
+        }
+      ]
+    },
+    {
+      "阶段": "② 开了广场",
+      "找到": true,
+      "文字": "取消ESC",
+      "位置": [
+        730,
+        9,
+        64,
+        16
+      ],
+      "背景": "rgb(255, 255, 255)",
+      "z": "auto",
+      "透明度": "1"
+    },
+    {
+      "阶段": "③ 刷新后",
+      "找到": true,
+      "文字": "取消ESC",
+      "位置": [
+        730,
+        9,
+        64,
+        16
+      ],
+      "背景": "rgb(255, 255, 255)",
+      "z": "auto",
+      "透明度": "1"
+    }
+  ],
+  "祖先链": [
+    {
+      "tag": "button",
+      "cls": "peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-non",
+      "z": "auto",
+      "位置": [
+        730,
+        9,
+        64,
+        16
+      ],
+      "透明度": "1",
+      "ariaHidden": null
+    },
+    {
+      "tag": "span",
+      "cls": "relative ml-1 inline-flex",
+      "z": "auto",
+      "位置": [
+        730,
+        9,
+        64,
+        16
+      ],
+      "透明度": "1",
+      "ariaHidden": null
+    },
+    {
+      "tag": "div",
+      "cls": "flex items-center gap-2 rounded-b-xl border px-3 py-1.5 text-white sha",
+      "z": "auto",
+      "位置": [
+        633,
+        0,
+        174,
+        34
+      ],
+      "透明度": "1",
+      "ariaHidden": null
+    },
+    {
+      "tag": "div",
+      "cls": "pointer-events-none fixed left-1/2 top-0 z-[305] -translate-x-1/2 moti",
+      "z": "305",
+      "位置": [
+        633,
+        0,
+        174,
+        34
+      ],
+      "透明度": "0",
+      "ariaHidden": "true"
+    },
+    {
+      "tag": "body",
+      "cls": "antialiased",
+      "z": "auto",
+      "位置": [
+        0,
+        0,
+        1440,
+        810
+      ],
+      "透明度": "1",
+      "ariaHidden": null
+    },
+    {
+      "tag": "html",
+      "cls": "dark",
+      "z": "auto",
+      "位置": [
+        0,
+        0,
+        1440,
+        810
+      ],
+      "透明度": "1",
+      "ariaHidden": null
+    }
+  ],
+  "判同": {
+    "本轮": {
+      "尺寸": [
+        64,
+        16
+      ],
+      "位置": [
+        730,
+        9
+      ],
+      "祖先顶层cls": "dark"
+    },
+    "DO批": {
+      "尺寸": [
+        174,
+        34
+      ],
+      "位置": [
+        633,
+        0
+      ],
+      "类名": "z-[305] collab-follow-banner"
+    },
+    "一致": false
+  },
+  "刷新前后": {
+    "刷新前有": true,
+    "刷新后有": true,
+    "结论": "刷新前后一致"
+  },
+  "最终节点数": 35
+}
