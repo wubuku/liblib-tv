@@ -104,6 +104,9 @@ tasks:
       - type: runtime
         note: >-
           2026-10-03 M179 复核「可在节点内播放」：上传 2 秒 wav 造出音频节点后全页 audio 恰 1 个，其 closest('[data-node-id]') 就是该节点本身（非浮层、非 portal），带 controls、504×54 落在节点框 540×160 之内，readyState=4、duration=2、paused=true。顺带复录 accept 白名单共 23 项 token（MIME 与扩展名两套并列，故 jpeg 可用、扩展名没写进白名单但 MIME 对的文件也能选中），手册正文的 10 种格式与之不矛盾。
+      - type: runtime
+        note: >-
+          2026-10-03 M181 补一条上传侧的隐私事实：上传一张本地 PNG 的全过程只多出 1 条请求、0 条带请求体、0 条指向本机以外，素材字节落 IndexedDB 的 image_files 表（节点里只留 storageKey 与 blob 地址）。**「上传完全在本机完成」成立。**
     preconditions:
       - 已准备本地素材（见 TEST_MEDIA_ASSETS.md）
     routes:
@@ -349,6 +352,9 @@ tasks:
         note: router.tsx 无 /agent 路由，Agent 面板是 UserLayout 的常驻右侧面板而非独立页面；i18n agent.tools / agent.permission / agent.effort 提供三个下拉的完整枚举。
       - type: boundary
         note: '**本机 Codex Agent 环境未搭建，「连上之后它真的会操作画布」这一句未实测。** 阻塞的是执行环节（对话、发指令、Skill 生效、权限弹窗），而面板长什么样、两种连接方式怎么填、未连接时哪些按钮禁用，**这些都已运行时取证、不受阻塞**。**解除条件**：本机跑起 canvas-agent（面板给出的命令是 npm --prefix canvas-agent run dev）并配好连接，**且需要用户在场同意**——本手册不臆造执行效果。正文 use-agent.md 开头已写明本页只讲「面板长什么样、怎么连」。'
+      - type: runtime
+        note: >-
+          2026-10-03 M181 抓包验「节点内容不上传」：全程录浏览器请求，上传本地 PNG 只多出 1 条、逐字打字与改节点名各 0 条，774 条请求按主机统计只有 localhost:3000，带请求体 0 条，非本机主机 0 条。**阳性对照**：打开画布页就记到 258 条，所以「0 条」是「确实没发」不是「没记到」。**顺带量出两件手册没写的**：① 文字边打边存（还没点别处时 store 里已是完整内容），**所以 Esc 撤不回这次输入**，实测按 Esc 内容原样保留；② 素材字节存在 image_files 表（音频等走 media_files），节点里只留 storageKey 加一个 blob 地址指回来，原存储表漏了这一张。
     preconditions:
       - 已启动 TDCanvas 并登录本机工作区
     routes:

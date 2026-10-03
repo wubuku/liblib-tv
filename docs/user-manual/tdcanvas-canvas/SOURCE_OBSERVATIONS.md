@@ -209,6 +209,23 @@
     - **本机边界（配合源码，未单独实测）**：`lib/localforage-storage.ts:15-20` 在 IndexedDB 异常时**降级写入 localStorage**；数据全部在本机，无任何同步入口（M111/排障页已取证），故换设备或清站点数据即全部丢失。
 - 快捷键全集（project.tsx:1735-1807）：Cmd/Ctrl+Z(+Shift)/Y、A、C、V、Delete/Backspace、Escape（清 13 项状态）；无缩放类键盘快捷键；官方快捷键文档与源码一致。[静态+官方文档]
 
+- **★★「节点内容不上传」这句话，抓包实测成立，但有三个例外**（2026-10-03 M181，全程零付费）。用 Playwright 录下浏览器全部请求，按主机与请求体筛：
+  | 操作 | 请求数 | 带请求体 | 非本机主机 |
+  |---|---|---|---|
+  | 打开画布页 | 258 | 0 | 0 |
+  | 上传一张本地 PNG | 1 | 0 | 0 |
+  | 文本节点逐字打字 | 0 | — | 0 |
+  | 改节点名 | 0 | — | 0 |
+  | **全程按主机统计** | 只有 `localhost:3000`（另有 2 条空 host） | **0** | **0** |
+  **阳性对照**：打开画布页就记到 258 条，所以「0 条」是「确实没发」而不是「没记到」。[运行时]
+  - **文字是边打边存的**：在输入框里还没点别处时，本机存储里已经是那串字了（实测读 store 得到完整内容）。**推论：`Esc` 撤不回这次输入**——实测按 `Esc` 之后内容原样保留，`Esc` 只负责退出编辑态。 [运行时]
+  - **素材字节存在另一张表**：`image_files`（音频等走 `media_files`），节点里只留 `storageKey`（形如 `image:QUh4vyiy-Vxw5fWAfu59t`）**和一个 `blob:` 地址**指回来。手册原表只列了 `app_state`，**漏了素材本体那张表**。 [运行时]
+  - **★ 例外一：生成**。点生成会把提示词与参考素材发给你配置的 API——这是计费的那一步。 [静态]
+  - **★ 例外二：本地 Agent 桥接**。`web/src/pages/canvas/hooks/use-agent-bridge.ts:41-42` 把`{ projectId, title, nodes, connections, selectedNodeIds, viewport }` 整份快照发布给 Agent store，**含全部节点内容**。默认走本机 `http://127.0.0.1:17371`（`use-agent-store.ts:98`、`local-agent-panel.tsx:70`），是本机进程间传递。 [静态]
+  - **★ 例外三（最该警惕的一条）：Agent 地址可以改成公网地址**。`use-agent-store.ts:145-150` 的 `connectAgent` **只校验协议是 http/https，不校验主机是否本机**，写进 `localStorage['tdcanvas:agent-url']` **长期生效**；界面上的「本地地址」是一个可编辑 `Input`（`agent-connect-view.tsx:129`），默认预填 `http://127.0.0.1:17371`。**填成公网地址，画布快照就发到那里去。** [静态]
+  - **★ 更该留意：地址还能由网址参数带进来**。`local-agent-panel.tsx:189` 与 `:902-904` 会读**`?agentUrl=…&agentToken=…`** 并直接采用。**别点来路不明、带这种参数的链接。****此条只有源码证据、未做运行时实测**——没有第二个可连的 Agent，也不想把画布真的发到别处去验。 [静态]
+  - **两处路径名不一致，容易看漏**：`use-agent-store.ts` 存的是 `tdcanvas:agent-url`，而 `local-agent-panel.tsx:343` 另存了一个 `canvas-agent-url`。 [静态]
+
 ## 9. 官方文档与实际 UI 的差异（重要）
 
 TDCanvas 仓内 `docs/content/docs/canvas/canvas-node-manual.zh-CN.mdx` 描述的生成流为**旧版语义**：
