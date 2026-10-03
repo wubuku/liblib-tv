@@ -1,0 +1,991 @@
+{
+ "predictions": {
+  "P1": "导演台里有 >=2 个横向滚动容器（时间轴不是唯一的一个）",
+  "P2": "它们互不联动（各自独立，界面不共享滚动位置指示）",
+  "P3": "底部条的内容比它的可见框宽，默认就有控件在框外",
+  "P4": "框外的控件默认打不到，但滚过去之后能打到（不是永久不可达）",
+  "P5": "滚动只是把死掉的控件从一头换到另一头，不存在「全都活着」的位置"
+ },
+ "run": {
+  "v1280": {
+   "scrollers": [
+    {
+     "key": "data-director-shot-bar=true",
+     "clientW": 999,
+     "scrollW": 999,
+     "left": 0,
+     "max": 0,
+     "x": 281,
+     "y": 52,
+     "w": 999,
+     "h": 36,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-tree=true",
+     "clientW": 232,
+     "scrollW": 232,
+     "left": 0,
+     "max": 0,
+     "x": 48,
+     "y": 172,
+     "w": 232,
+     "h": 978,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-bottom-bar=true",
+     "clientW": 694,
+     "scrollW": 944,
+     "left": 0,
+     "max": 250,
+     "x": 293,
+     "y": 920,
+     "w": 694,
+     "h": 48,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-viewport-toolbar=true",
+     "clientW": 709,
+     "scrollW": 709,
+     "left": 0,
+     "max": 0,
+     "x": 293,
+     "y": 920,
+     "w": 711,
+     "h": 48,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-character-tabs=true",
+     "clientW": 248,
+     "scrollW": 248,
+     "left": 0,
+     "max": 0,
+     "x": 1016,
+     "y": 100,
+     "w": 248,
+     "h": 44,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-inspector=true",
+     "clientW": 280,
+     "scrollW": 280,
+     "left": 0,
+     "max": 0,
+     "x": 1000,
+     "y": 157,
+     "w": 280,
+     "h": 811,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-timeline-controls-scroll=true",
+     "clientW": 1012,
+     "scrollW": 1012,
+     "left": 0,
+     "max": 0,
+     "x": 8,
+     "y": 973,
+     "w": 1012,
+     "h": 28,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-timeline-track-list=true",
+     "clientW": 320,
+     "scrollW": 320,
+     "left": 0,
+     "max": 0,
+     "x": 0,
+     "y": 1005,
+     "w": 320,
+     "h": 145,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-timeline=true",
+     "clientW": 958,
+     "scrollW": 1779,
+     "left": 0,
+     "max": 821,
+     "x": 322,
+     "y": 1005,
+     "w": 958,
+     "h": 145,
+     "hasTinyScrollbar": true
+    }
+   ],
+   "scrollable": [
+    "data-director-bottom-bar=true",
+    "data-director-timeline=true"
+   ],
+   "links": [
+    {
+     "key": "data-director-bottom-bar=true",
+     "max": 250,
+     "drove": {
+      "after": 250
+     },
+     "moved": [],
+     "wheelTo": 250
+    },
+    {
+     "key": "data-director-timeline=true",
+     "max": 821,
+     "drove": {
+      "after": 821
+     },
+     "moved": [],
+     "wheelTo": 821
+    }
+   ],
+   "bar0": {
+    "scrollLeft": 0,
+    "clientW": 694,
+    "scrollW": 944,
+    "boxX": 293,
+    "boxRight": 987,
+    "kids": [
+     {
+      "label": "移动",
+      "x": 408,
+      "right": 440,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "旋转",
+      "x": 448,
+      "right": 480,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "缩放",
+      "x": 488,
+      "right": 520,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "动画时间轴",
+      "x": 528,
+      "right": 560,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "16:9",
+      "x": 581,
+      "right": 621,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "9:16",
+      "x": 629,
+      "right": 669,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "1:1",
+      "x": 677,
+      "right": 717,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "开启九宫格辅助线",
+      "x": 725,
+      "right": 757,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "虚拟相机",
+      "x": 778,
+      "right": 810,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "添加群众阵列",
+      "x": 818,
+      "right": 850,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "模型库",
+      "x": 858,
+      "right": 890,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "保存构图",
+      "x": 911,
+      "right": 995,
+      "inBox": false,
+      "hitSelf": true
+     },
+     {
+      "label": "上传图片",
+      "x": 1021,
+      "right": 1053,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "描述想搭建的场景",
+      "x": 1053,
+      "right": 1196,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "发送",
+      "x": 1200,
+      "right": 1232,
+      "inBox": false,
+      "hitSelf": false
+     }
+    ]
+   },
+   "barMax": {
+    "scrollLeft": 250,
+    "clientW": 694,
+    "scrollW": 944,
+    "boxX": 293,
+    "boxRight": 987,
+    "kids": [
+     {
+      "label": "移动",
+      "x": 158,
+      "right": 190,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "旋转",
+      "x": 198,
+      "right": 230,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "缩放",
+      "x": 238,
+      "right": 270,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "动画时间轴",
+      "x": 278,
+      "right": 310,
+      "inBox": false,
+      "hitSelf": true
+     },
+     {
+      "label": "16:9",
+      "x": 331,
+      "right": 371,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "9:16",
+      "x": 379,
+      "right": 419,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "1:1",
+      "x": 427,
+      "right": 467,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "开启九宫格辅助线",
+      "x": 475,
+      "right": 507,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "虚拟相机",
+      "x": 528,
+      "right": 560,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "添加群众阵列",
+      "x": 568,
+      "right": 600,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "模型库",
+      "x": 608,
+      "right": 640,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "保存构图",
+      "x": 661,
+      "right": 745,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "上传图片",
+      "x": 771,
+      "right": 803,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "描述想搭建的场景",
+      "x": 803,
+      "right": 946,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "发送",
+      "x": 950,
+      "right": 982,
+      "inBox": true,
+      "hitSelf": true
+     }
+    ]
+   },
+   "deadAt0": [
+    "上传图片",
+    "发送",
+    "描述想搭建的场景"
+   ],
+   "deadAtMax": [
+    "旋转",
+    "移动",
+    "缩放"
+   ],
+   "sweep": [
+    {
+     "frac": 0.0,
+     "scrollLeft": 0,
+     "dead": [
+      "上传图片",
+      "发送",
+      "描述想搭建的场景"
+     ],
+     "deadCount": 3
+    },
+    {
+     "frac": 0.25,
+     "scrollLeft": 62,
+     "dead": [
+      "发送",
+      "描述想搭建的场景"
+     ],
+     "deadCount": 2
+    },
+    {
+     "frac": 0.5,
+     "scrollLeft": 125,
+     "dead": [
+      "发送",
+      "描述想搭建的场景"
+     ],
+     "deadCount": 2
+    },
+    {
+     "frac": 0.75,
+     "scrollLeft": 187,
+     "dead": [
+      "发送",
+      "旋转",
+      "移动"
+     ],
+     "deadCount": 3
+    },
+    {
+     "frac": 1.0,
+     "scrollLeft": 250,
+     "dead": [
+      "旋转",
+      "移动",
+      "缩放"
+     ],
+     "deadCount": 3
+    }
+   ],
+   "toolbar": {
+    "clientW": 1012,
+    "scrollW": 1012,
+    "boxRight": 1020,
+    "clipped": []
+   },
+   "wheelPoints": [
+    {
+     "f": 0.05,
+     "x": 327,
+     "to": 250
+    },
+    {
+     "f": 0.25,
+     "x": 466,
+     "to": 250
+    },
+    {
+     "f": 0.45,
+     "x": 605,
+     "to": 250
+    },
+    {
+     "f": 0.65,
+     "x": 744,
+     "to": 250
+    },
+    {
+     "f": 0.85,
+     "x": 882,
+     "to": 250
+    }
+   ],
+   "tinyScrollbarKeys": [
+    "data-director-timeline=true"
+   ]
+  },
+  "v1024": {
+   "scrollers": [
+    {
+     "key": "data-director-shot-bar=true",
+     "clientW": 743,
+     "scrollW": 743,
+     "left": 0,
+     "max": 0,
+     "x": 281,
+     "y": 52,
+     "w": 743,
+     "h": 36,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-tree=true",
+     "clientW": 232,
+     "scrollW": 232,
+     "left": 0,
+     "max": 0,
+     "x": 48,
+     "y": 172,
+     "w": 232,
+     "h": 978,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-bottom-bar=true",
+     "clientW": 438,
+     "scrollW": 944,
+     "left": 0,
+     "max": 506,
+     "x": 293,
+     "y": 920,
+     "w": 438,
+     "h": 48,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-viewport-toolbar=true",
+     "clientW": 709,
+     "scrollW": 709,
+     "left": 0,
+     "max": 0,
+     "x": 293,
+     "y": 920,
+     "w": 711,
+     "h": 48,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-character-tabs=true",
+     "clientW": 248,
+     "scrollW": 248,
+     "left": 0,
+     "max": 0,
+     "x": 760,
+     "y": 100,
+     "w": 248,
+     "h": 44,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-inspector=true",
+     "clientW": 280,
+     "scrollW": 280,
+     "left": 0,
+     "max": 0,
+     "x": 744,
+     "y": 157,
+     "w": 280,
+     "h": 811,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-timeline-controls-scroll=true",
+     "clientW": 756,
+     "scrollW": 776,
+     "left": 0,
+     "max": 20,
+     "x": 8,
+     "y": 973,
+     "w": 756,
+     "h": 28,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-timeline-track-list=true",
+     "clientW": 320,
+     "scrollW": 320,
+     "left": 0,
+     "max": 0,
+     "x": 0,
+     "y": 1005,
+     "w": 320,
+     "h": 145,
+     "hasTinyScrollbar": false
+    },
+    {
+     "key": "data-director-timeline=true",
+     "clientW": 702,
+     "scrollW": 1779,
+     "left": 0,
+     "max": 1077,
+     "x": 322,
+     "y": 1005,
+     "w": 702,
+     "h": 145,
+     "hasTinyScrollbar": true
+    }
+   ],
+   "scrollable": [
+    "data-director-bottom-bar=true",
+    "data-director-timeline-controls-scroll=true",
+    "data-director-timeline=true"
+   ],
+   "links": [
+    {
+     "key": "data-director-bottom-bar=true",
+     "max": 506,
+     "drove": {
+      "after": 506
+     },
+     "moved": [],
+     "wheelTo": 506
+    },
+    {
+     "key": "data-director-timeline-controls-scroll=true",
+     "max": 20,
+     "drove": {
+      "after": 20
+     },
+     "moved": [],
+     "wheelTo": 20
+    },
+    {
+     "key": "data-director-timeline=true",
+     "max": 1077,
+     "drove": {
+      "after": 1077
+     },
+     "moved": [],
+     "wheelTo": 1077
+    }
+   ],
+   "bar0": {
+    "scrollLeft": 0,
+    "clientW": 438,
+    "scrollW": 944,
+    "boxX": 293,
+    "boxRight": 731,
+    "kids": [
+     {
+      "label": "移动",
+      "x": 408,
+      "right": 440,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "旋转",
+      "x": 448,
+      "right": 480,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "缩放",
+      "x": 488,
+      "right": 520,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "动画时间轴",
+      "x": 528,
+      "right": 560,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "16:9",
+      "x": 581,
+      "right": 621,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "9:16",
+      "x": 629,
+      "right": 669,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "1:1",
+      "x": 677,
+      "right": 717,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "开启九宫格辅助线",
+      "x": 725,
+      "right": 757,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "虚拟相机",
+      "x": 778,
+      "right": 810,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "添加群众阵列",
+      "x": 818,
+      "right": 850,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "模型库",
+      "x": 858,
+      "right": 890,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "保存构图",
+      "x": 911,
+      "right": 995,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "上传图片",
+      "x": 1021,
+      "right": 1053,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "描述想搭建的场景",
+      "x": 1053,
+      "right": 1196,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "发送",
+      "x": 1200,
+      "right": 1232,
+      "inBox": false,
+      "hitSelf": false
+     }
+    ]
+   },
+   "barMax": {
+    "scrollLeft": 506,
+    "clientW": 438,
+    "scrollW": 944,
+    "boxX": 293,
+    "boxRight": 731,
+    "kids": [
+     {
+      "label": "移动",
+      "x": -98,
+      "right": -66,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "旋转",
+      "x": -58,
+      "right": -26,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "缩放",
+      "x": -18,
+      "right": 14,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "动画时间轴",
+      "x": 22,
+      "right": 54,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "16:9",
+      "x": 75,
+      "right": 115,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "9:16",
+      "x": 123,
+      "right": 163,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "1:1",
+      "x": 171,
+      "right": 211,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "开启九宫格辅助线",
+      "x": 219,
+      "right": 251,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "虚拟相机",
+      "x": 272,
+      "right": 304,
+      "inBox": false,
+      "hitSelf": false
+     },
+     {
+      "label": "添加群众阵列",
+      "x": 312,
+      "right": 344,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "模型库",
+      "x": 352,
+      "right": 384,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "保存构图",
+      "x": 405,
+      "right": 489,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "上传图片",
+      "x": 515,
+      "right": 547,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "描述想搭建的场景",
+      "x": 547,
+      "right": 690,
+      "inBox": true,
+      "hitSelf": true
+     },
+     {
+      "label": "发送",
+      "x": 694,
+      "right": 726,
+      "inBox": true,
+      "hitSelf": true
+     }
+    ]
+   },
+   "deadAt0": [
+    "上传图片",
+    "保存构图",
+    "发送",
+    "开启九宫格辅助线",
+    "描述想搭建的场景",
+    "模型库",
+    "添加群众阵列",
+    "虚拟相机"
+   ],
+   "deadAtMax": [
+    "16:9",
+    "1:1",
+    "9:16",
+    "动画时间轴",
+    "开启九宫格辅助线",
+    "旋转",
+    "移动",
+    "缩放",
+    "虚拟相机"
+   ],
+   "sweep": [
+    {
+     "frac": 0.0,
+     "scrollLeft": 0,
+     "dead": [
+      "上传图片",
+      "保存构图",
+      "发送",
+      "开启九宫格辅助线",
+      "描述想搭建的场景",
+      "模型库",
+      "添加群众阵列",
+      "虚拟相机"
+     ],
+     "deadCount": 8
+    },
+    {
+     "frac": 0.25,
+     "scrollLeft": 126,
+     "dead": [
+      "上传图片",
+      "保存构图",
+      "发送",
+      "描述想搭建的场景",
+      "模型库"
+     ],
+     "deadCount": 5
+    },
+    {
+     "frac": 0.5,
+     "scrollLeft": 253,
+     "dead": [
+      "上传图片",
+      "动画时间轴",
+      "发送",
+      "描述想搭建的场景",
+      "旋转",
+      "移动",
+      "缩放"
+     ],
+     "deadCount": 7
+    },
+    {
+     "frac": 0.75,
+     "scrollLeft": 379,
+     "dead": [
+      "16:9",
+      "9:16",
+      "动画时间轴",
+      "发送",
+      "描述想搭建的场景",
+      "旋转",
+      "移动",
+      "缩放"
+     ],
+     "deadCount": 8
+    },
+    {
+     "frac": 1.0,
+     "scrollLeft": 506,
+     "dead": [
+      "16:9",
+      "1:1",
+      "9:16",
+      "动画时间轴",
+      "开启九宫格辅助线",
+      "旋转",
+      "移动",
+      "缩放",
+      "虚拟相机"
+     ],
+     "deadCount": 9
+    }
+   ],
+   "toolbar": {
+    "clientW": 756,
+    "scrollW": 776,
+    "boxRight": 764,
+    "clipped": [
+     {
+      "label": "删除关键帧",
+      "x": 747,
+      "right": 775
+     }
+    ]
+   },
+   "wheelPoints": [
+    {
+     "f": 0.05,
+     "x": 314,
+     "to": 506
+    },
+    {
+     "f": 0.25,
+     "x": 402,
+     "to": 506
+    },
+    {
+     "f": 0.45,
+     "x": 490,
+     "to": 506
+    },
+    {
+     "f": 0.65,
+     "x": 577,
+     "to": 506
+    },
+    {
+     "f": 0.85,
+     "x": 665,
+     "to": 506
+    }
+   ],
+   "tinyScrollbarKeys": [
+    "data-director-timeline=true"
+   ]
+  }
+ },
+ "summary": {
+  "the-bottom-bar-never-shows-all-of-its-controls": true,
+  "the-wheel-scrolls-the-bottom-bar-everywhere": true,
+  "scrolling-the-bottom-bar-trades-one-set-of-dead-controls-for-another": true,
+  "the-desk-has-two-independent-horizontal-scrollers-at-1280": true,
+  "a-third-scroller-appears-at-1024-and-nothing-cross-links": true,
+  "only-the-timeline-scroller-has-a-styled-scrollbar": true
+ },
+ "failures": []
+}
