@@ -81,6 +81,7 @@ PROBE_VARS = {
     "_p927": "scripts/jimeng_probe927_early_writeback_repro_src.py",
     "_p928": "scripts/jimeng_probe928_replica_same_ruler.py",
     "_p929": "scripts/jimeng_probe929_long_tail_wrap_or_not_src.py",
+    "_p930": "scripts/jimeng_probe930_second_wrap_src.py",
     # ⚠️⚠️ **929 加的**：**门禁脚本自己**也必须登记 ——
     #    PPP.3 要钉「第二道 Python 语法门真的加进它了」，
     #    那道门就**长在这个文件里** ⇒ 不登记它，锚点就查不到。
