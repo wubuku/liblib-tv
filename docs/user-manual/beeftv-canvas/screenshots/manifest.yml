@@ -129,7 +129,7 @@ screenshots:
   - file: screenshots/11-batch-connect.png
     task_id: connect-references
     step: '批量连接：选中两个音频节点（状态栏「已选 2 / 连接 2 个节点」），选区工具条含对齐分布按钮与「批量连接」'
-    route: '/canvas/tPiyJSrJhwfoLvdDf_6qW'
+    route: '/canvas/:id'
     viewport: 1440x900
     locale: zh-CN
     captured_at: '2026-10-01'
@@ -624,7 +624,7 @@ screenshots:
   - file: screenshots/50-batch-connect-plan.png
     task_id: connect-references
     step: '批量连接规划预览：进入批量连接模式后悬停目标节点，虚线显示规划连线'
-    route: '/canvas/tPiyJSrJhwfoLvdDf_6qW'
+    route: '/canvas/:id'
     viewport: 1440x900
     locale: zh-CN
     captured_at: '2026-10-01'
@@ -636,7 +636,7 @@ screenshots:
   - file: screenshots/51-audio-settings-panel.png
     task_id: generate-audio
     step: '在音频节点上点「高级设置」打开音频设置面板：音色 13 项、格式 6 项、语速 4 预设 + 数值直输、声音指令'
-    route: '/canvas/tPiyJSrJhwfoLvdDf_6qW'
+    route: '/canvas/:id'
     viewport: 1440x900
     locale: zh-CN
     captured_at: '2026-10-01'
@@ -672,7 +672,7 @@ screenshots:
   - file: screenshots/54-readonly-mode.png
     task_id: readonly-canvas
     step: '在画布网址后加 ?readonly=1 进入只读模式：右上角出现只读横幅与「复制项目」，底部编辑坞整条消失，中央无「双击画布」空态'
-    route: '/canvas/{id}?readonly=1'
+    route: '/canvas/:id?readonly=1'
     viewport: 1440x900
     locale: zh-CN
     captured_at: '2026-10-01'
@@ -684,7 +684,7 @@ screenshots:
   - file: screenshots/55-readonly-libtv-chrome.png
     task_id: readonly-canvas
     step: '只读模式叠加 ?fixture=libtv-readonly-dense：顶栏换成另一种只读样式，左侧画布标题、右侧只读提示 + 复制项目 + ✕ 关闭；演示数据因只读未注入，画布为空'
-    route: '/canvas/{id}?readonly=1&fixture=libtv-readonly-dense'
+    route: '/canvas/:id?readonly=1&fixture=libtv-readonly-dense'
     viewport: 1440x900
     locale: zh-CN
     captured_at: '2026-10-01'
@@ -696,7 +696,7 @@ screenshots:
   - file: screenshots/56-canvas-copy-switcher.png
     task_id: readonly-canvas
     step: '顶栏画布切换面板展开，「画布 1」下方出现「画布 1 副本」；该副本走 importProject 路径，只写本地缓存，实测对 /api/canvas-projects 写请求数为 0'
-    route: '/canvas/{id}'
+    route: '/canvas/:id'
     viewport: 1440x900
     locale: zh-CN
     captured_at: '2026-10-01'
@@ -708,7 +708,7 @@ screenshots:
   - file: screenshots/57-canvas-two-names.png
     task_id: manage-canvases
     step: '在画布库把卡片改名为「库内改名D」后进入该画布：顶栏左侧显示新名，右侧画布切换器仍显示「画布 1」——两个名字并排出现，因为顶栏切换器读的是另一个字段（canvasTitle，为空时回落成「画布 N」）'
-    route: '/canvas/{id}'
+    route: '/canvas/:id'
     viewport: 1440x900
     locale: zh-CN
     captured_at: '2026-10-01'

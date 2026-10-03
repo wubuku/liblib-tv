@@ -223,6 +223,9 @@ SELFTEST_COSTS = {
     #: 它每例都要起临时目录并搬 README + 20-reference + manifest；
     #: 被测闸门每例要对上游跑十几次 `git diff`（整个版本区间逐对相邻 tag）。
     "selftest-version-coverage.py": 2.3,
+    #: **Batch 236 新增**：三次实测 1.31 / 1.35 / 1.17 秒，**按纪律 204 取最大 1.4**。
+    #: 它每例起临时目录并搬 manifest + 账本 + 参考页；被测闸门每例读一次上游 router.tsx。
+    "selftest-route-notation.py": 1.4,
     "selftest-quote-punct.py": 37.1,
     "selftest-runtime-policy.py": 1.0,
     "selftest-scope.py": 0.4,

@@ -573,7 +573,7 @@ tasks:
     coverage: full
     routes:
       - '/canvas'
-      - '/canvas/{id}'
+      - '/canvas/:id'
     evidence:
       - type: runtime
         note: >-
@@ -621,7 +621,7 @@ tasks:
     coverage: full
     routes:
       - '/canvas'
-      - '/canvas/{id}?readonly=1'
+      - '/canvas/:id?readonly=1'
     evidence:
       - type: runtime
         note: >-
