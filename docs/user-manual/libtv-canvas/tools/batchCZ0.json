@@ -1,0 +1,234 @@
+{
+  "A": {
+    "在": true,
+    "有尝试栏": true,
+    "节点rect": [
+      583,
+      36,
+      292,
+      164
+    ],
+    "节点overflow": "visible",
+    "祖先链": [
+      {
+        "tag": "div",
+        "class": "w-full",
+        "rect": [
+          595,
+          103,
+          268,
+          68
+        ],
+        "overflow": "visible",
+        "overflowY": "visible",
+        "scrollHeight": 144,
+        "clientHeight": 144,
+        "高度不够": false
+      },
+      {
+        "tag": "div",
+        "class": "flex h-full flex-col items-center justify-center px-6",
+        "rect": [
+          584,
+          36,
+          291,
+          163
+        ],
+        "overflow": "visible",
+        "overflowY": "visible",
+        "scrollHeight": 348,
+        "clientHeight": 348,
+        "高度不够": false
+      },
+      {
+        "tag": "div",
+        "class": "group overflow-visible rounded-xl",
+        "rect": [
+          583,
+          36,
+          292,
+          164
+        ],
+        "overflow": "visible",
+        "overflowY": "visible",
+        "scrollHeight": 348,
+        "clientHeight": 348,
+        "高度不够": false
+      },
+      {
+        "tag": "div",
+        "class": "node-shell relative",
+        "rect": [
+          583,
+          36,
+          292,
+          164
+        ],
+        "overflow": "visible",
+        "overflowY": "visible",
+        "scrollHeight": 350,
+        "clientHeight": 350,
+        "高度不够": false
+      },
+      {
+        "tag": "div",
+        "class": "",
+        "rect": [
+          583,
+          36,
+          292,
+          164
+        ],
+        "overflow": "visible",
+        "overflowY": "visible",
+        "scrollHeight": 350,
+        "clientHeight": 350,
+        "高度不够": false
+      },
+      {
+        "tag": "div",
+        "class": "",
+        "rect": [
+          583,
+          36,
+          292,
+          164
+        ],
+        "overflow": "visible",
+        "overflowY": "visible",
+        "scrollHeight": 350,
+        "clientHeight": 350,
+        "高度不够": false
+      }
+    ],
+    "项": [
+      {
+        "文字": "尝试：",
+        "rect": [
+          595,
+          103,
+          268,
+          9
+        ],
+        "opacity": "1",
+        "visibility": "visible",
+        "tag": "div"
+      },
+      {
+        "文字": "5分钟超长视频",
+        "rect": [
+          611,
+          120,
+          43,
+          9
+        ],
+        "opacity": "1",
+        "visibility": "visible",
+        "tag": "span"
+      },
+      {
+        "文字": "首尾帧生成视频",
+        "rect": [
+          611,
+          139,
+          46,
+          9
+        ],
+        "opacity": "1",
+        "visibility": "visible",
+        "tag": "span"
+      },
+      {
+        "文字": "首帧生成视频",
+        "rect": [
+          611,
+          157,
+          39,
+          9
+        ],
+        "opacity": "1",
+        "visibility": "visible",
+        "tag": "span"
+      }
+    ]
+  },
+  "B": {
+    "步骤": [
+      {
+        "label": "① 广场开着，未点",
+        "l": [
+          {
+            "z": 701,
+            "rect": [
+              0,
+              0,
+              1440,
+              810
+            ],
+            "text": "风格广场 我的收藏 最近使用 推荐 摄影写真 电商营销 动漫游戏 风格插画 平面设计 建筑及"
+          },
+          {
+            "z": 700,
+            "rect": [
+              0,
+              0,
+              1440,
+              810
+            ],
+            "text": ""
+          },
+          {
+            "z": 305,
+            "rect": [
+              633,
+              0,
+              174,
+              34
+            ],
+            "text": "正在跟随 取消ESC 按 ESC 退出"
+          }
+        ]
+      },
+      {
+        "label": "② 点广场的 minimize 之后",
+        "l": [
+          {
+            "z": 305,
+            "rect": [
+              633,
+              0,
+              174,
+              34
+            ],
+            "text": "正在跟随 取消ESC 按 ESC 退出"
+          }
+        ]
+      },
+      {
+        "label": "③ 再按 ESC",
+        "l": [
+          {
+            "z": 305,
+            "rect": [
+              633,
+              0,
+              174,
+              34
+            ],
+            "text": "正在跟随 取消ESC 按 ESC 退出"
+          }
+        ]
+      }
+    ],
+    "还原候选": [
+      {
+        "aria": "maximize",
+        "text": ""
+      },
+      {
+        "aria": "close",
+        "text": ""
+      }
+    ]
+  }
+}

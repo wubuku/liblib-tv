@@ -1,0 +1,213 @@
+{
+  "A选中": {
+    "选中": true,
+    "节点rect": [
+      583,
+      36,
+      292,
+      164
+    ],
+    "节点overflow": "visible",
+    "栏rect": [
+      595,
+      103,
+      268,
+      68
+    ],
+    "栏scrollH": 144,
+    "栏clientH": 144,
+    "项": [
+      {
+        "文字": "尝试：",
+        "rect": [
+          595,
+          103,
+          268,
+          9
+        ]
+      },
+      {
+        "文字": "5分钟超长视频",
+        "rect": [
+          611,
+          120,
+          43,
+          9
+        ]
+      },
+      {
+        "文字": "首尾帧生成视频",
+        "rect": [
+          611,
+          139,
+          46,
+          9
+        ]
+      },
+      {
+        "文字": "首帧生成视频",
+        "rect": [
+          611,
+          157,
+          39,
+          9
+        ]
+      }
+    ]
+  },
+  "B": {
+    "找到maximize": true,
+    "maximize": [
+      1036,
+      93,
+      28,
+      28
+    ],
+    "容器链": [
+      {
+        "tag": "div",
+        "class": "flex shrink-0 items-center gap-4",
+        "rect": [
+          1036,
+          93,
+          72,
+          28
+        ],
+        "pos": "static",
+        "z": "auto"
+      },
+      {
+        "tag": "div",
+        "class": "flex shrink-0 items-center gap-4 px-4",
+        "rect": [
+          316,
+          90,
+          808,
+          34
+        ],
+        "pos": "static",
+        "z": "auto"
+      },
+      {
+        "tag": "div",
+        "class": "flex min-h-0 flex-1 flex-col gap-3",
+        "rect": [
+          316,
+          90,
+          808,
+          627
+        ],
+        "pos": "static",
+        "z": "auto"
+      },
+      {
+        "tag": "div",
+        "class": "rounded-xl fixed z-20 flex flex-col gap-3 overflow-hidden pb",
+        "rect": [
+          315,
+          77,
+          810,
+          657
+        ],
+        "pos": "fixed",
+        "z": "20"
+      },
+      {
+        "tag": "div",
+        "class": "relative h-screen w-screen",
+        "rect": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "pos": "relative",
+        "z": "auto"
+      },
+      {
+        "tag": "div",
+        "class": "relative h-screen w-screen",
+        "rect": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "pos": "relative",
+        "z": "auto"
+      },
+      {
+        "tag": "div",
+        "class": "h-screen w-screen",
+        "rect": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "pos": "static",
+        "z": "auto"
+      },
+      {
+        "tag": "div",
+        "class": "",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pos": "static",
+        "z": "auto"
+      }
+    ],
+    "视口内可见文字": [
+      "限时 45 折",
+      "20",
+      "创意玩法",
+      "文创周边",
+      "小说推文",
+      "仅看可商用",
+      "全部",
+      "逐帧拉片",
+      "逐帧拉片",
+      "SD 2.5",
+      "视频素材",
+      "上传视频后开始"
+    ]
+  },
+  "BminShot": true,
+  "B还原": {
+    "大层": [
+      {
+        "z": "9999",
+        "rect": [
+          0,
+          60,
+          1440,
+          0
+        ]
+      },
+      {
+        "z": "700",
+        "rect": [
+          0,
+          0,
+          1440,
+          810
+        ]
+      },
+      {
+        "z": "701",
+        "rect": [
+          0,
+          0,
+          1440,
+          810
+        ]
+      }
+    ],
+    "还有minimize吗": true,
+    "还有maximize吗": false
+  }
+}
