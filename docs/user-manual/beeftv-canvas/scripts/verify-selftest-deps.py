@@ -315,6 +315,15 @@ def main():
                        if f.startswith("selftest-") and f.endswith(".py"))
     problems = []
     checked = 0
+    #: **Batch 254 新增：把「还有几份靠人记搬运清单」变成可数的事。**
+    #: `stagedeps.stage_gate()` / `stage_all()` 之后，「该搬哪些」已经是算出来的，
+    #: **而还在手写 `shutil.copy` 清单的那些份，每加一个本地 import 就得人记一次**——
+    #: Batch 178/181/197/251/252 **五次漏搬全部发生在这一类反验上**。
+    #: **本闸只把数字报出来，不报「必须全部迁移」**：
+    #: 一次性改 20 多份反验的出错面远大于它省下的事，**而「还剩 23 份」这件事
+    #: 一旦写进构建日志，它就从「没人知道」变成「下一个人接手的起点」**
+    #: （纪律 272：把「有几份」变成一件可数的事）。
+    staged_n = 0
     for fn in selftests:
         p = os.path.join(SCRIPTS, fn)
         try:
@@ -324,6 +333,8 @@ def main():
             continue
         if not copies_gate_into_tmp(text):
             continue
+        if staged_gates(text) or stages_whole_scripts(text):
+            staged_n += 1
         # 这份反验搬了哪些闸门脚本——见 independent_gate_names 的 docstring：
         # **只用 AST 认独立字符串常量**，否则注入夹具里伪造的闸门名会被当成真搬运。
         gate_names = sorted(independent_gate_names(text, SCRIPTS))
@@ -410,6 +421,13 @@ def main():
 
     print("反验依赖核对通过：%d 份反验会把闸门复制进临时目录，"
           "其被测闸门的本地依赖均已一并搬运" % checked)
+    print("  搬运方式：**%d 份已用 `stagedeps` 自动算闭包**、"
+          "另有 %d 份仍在手写 `shutil.copy` 清单"
+          "　→ **后者每加一个本地 import 就得人记一次**，"
+          "而 Batch 178/181/197/251/252 **五次漏搬全部发生在这一类上**；"
+          "**本闸不要求它们必须迁移**（一次改 20 多份的出错面更大），"
+          "**但这个数从此写在构建日志里，而不是记在某个人的脑子里**"
+          % (staged_n, checked - staged_n))
     return 0
 
 

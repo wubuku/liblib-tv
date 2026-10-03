@@ -360,12 +360,42 @@ def m_stage_gate_right_gate_passes():
         0, "反验依赖核对通过")
 
 
+def m_transport_count_is_reported():
+    """不误伤：闸 17 必须把「**还有几份靠人记**」这个数报出来。
+
+    **Batch 254 新增。** 这不是一条「抓缺陷」的判据，是一条**把进度变成可数的事**的判据：
+    `stagedeps` 落地之后，24 份反验里只有 1 份真的用上了自动算闭包，
+    **而剩下 23 份每加一个本地 import 就得人记一次**——
+    Batch 178/181/197/251/252 **五次漏搬全部发生在这一类反验上**。
+    **这个事实此前不在任何输出里**，于是「还剩多少」只存在于某个人的记忆里。
+
+    **为什么只报不拦**：一次性改 20 多份反验的出错面远大于它省下的事，
+    **而「还剩 23 份」一旦写进构建日志，它就从「没人知道」变成「下一个人接手的起点」**
+    （纪律 272：把「有几份」变成一件可数的事）。
+    **这条用例钉的是「那个数必须出现」，不是「那个数必须是 0」。**
+    """
+    check_anchor()
+    tmp = tempfile.mkdtemp(prefix="beef-deps-selftest-count.")
+    try:
+        shutil.copytree(os.path.join(ROOT, "scripts"), os.path.join(tmp, "scripts"))
+        shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-selftest-deps.py"))
+        r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
+                           cwd=tmp, capture_output=True, text=True)
+        out = (r.stdout or "") + (r.stderr or "")
+        ok = (r.returncode == 0 and "份已用 `stagedeps` 自动算闭包" in out
+              and "份仍在手写 `shutil.copy` 清单" in out)
+        record("12 「还有几份靠人记搬运」必须被报出来（可数的事）", ok, f"rc={r.returncode}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main():
     tests = [m_clean, m_missing_baseline_copy, m_gate_imports_missing_module,
              m_no_false_positive, m_rename_pattern_breaks,
              m_loop_copy_without_the_module, m_loop_copy_with_the_module,
              m_copytree_other_dir_still_reports, m_copytree_scripts_dir_passes,
-             m_stage_gate_wrong_gate_still_reports, m_stage_gate_right_gate_passes]
+             m_stage_gate_wrong_gate_still_reports, m_stage_gate_right_gate_passes,
+             m_transport_count_is_reported]
     for t in tests:
         try:
             t()

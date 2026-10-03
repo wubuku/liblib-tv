@@ -9,6 +9,8 @@
   4  **非白名单扩展名的二进制不得误报** → 必报的反面：`.DS_Store` 里有 0x80 也**不得**报
   5  判据源码里写着它要找的那个字面量 → 必报（**上线首跑就抓到了闸 20 自己**）
   6  真实现状                          → 不报
+  7  文本文件里塞字面 C0 控制字符      → 必报（方向四，Batch 254 新增）
+  8  换行与制表符                      → **不得**报（7 的不误伤那一半）
 
 **用例 4 是本文件最要紧的一条**：闸 20 第一版想用「试着解码一次」来划定输入范围，
 而真实手册树里就有一个 `screenshots/.DS_Store`，它含 `0x80` 字节——**试解码必然误报**。
@@ -127,9 +129,35 @@ def m_clean_pass():
     record("6 真实现状 → 不报", rc == 0, f"rc={rc}")
 
 
+# ── 7 C0 控制字符 → 必报（Batch 254 方向四）──────────────────────────
+def m_c0_control_must_report():
+    # **这里刻意用 `chr(3)` 而不是写进一个转义**——
+    # 本批最大的一个坑就是：反向引用 `\\1` 穿过两层字符串后被解成了 **U+0001**，
+    # **而文件完全合法、Python 照常编译、闸 20 照常报绿**。
+    # **而这个用例自己就是那个坑的对照组**：
+    # 注入必须靠 `chr()` 现算，**不能让注入代码本身再穿一层字符串**。
+    rc, out = run_in_probe({"e.md": "正常内容\n这里有个控制字符：" + chr(3) + "\n"})
+    ok = rc == 1 and "e.md" in out and "U+0003" in out
+    record("7 文本文件含 C0 控制字符 → 必报（并点名码位）", ok, f"rc={rc}")
+
+
+# ── 8 换行与制表符 → **不得**报（不误伤那一半）────────────────────────
+def m_newline_tab_must_not_report():
+    payload = {"f.md": "第一行\n\t缩进的第二行\n\n\n第四行\n"}
+    rc, out = run_in_probe(payload)
+    # **断言「一条都没报」，而不是断言某个词不出现**——
+    # 第一版写的是 `"C0" not in out`，而**闸的通过语里恰恰写着「无 C0 控制字符」**，
+    # **于是这条用例红在一个与被测行为完全无关的地方**。
+    # **判据的输出里出现了某个词，不等于它判了这件事**——
+    # 与纪律 14 的老教训同形：**要问的是「它判的是什么」，不是「它字面上提了什么」**。
+    ok = rc == 0 and "✗" not in out
+    record("8 换行/制表符 → 不得误报", ok, f"rc={rc}")
+
+
 def main():
     tests = [m_fffd_must_report, m_bad_utf8_must_report, m_nul_must_report,
-             m_binary_must_not_report, m_gate_own_literal_must_report, m_clean_pass]
+             m_binary_must_not_report, m_gate_own_literal_must_report, m_clean_pass,
+             m_c0_control_must_report, m_newline_tab_must_not_report]
     for t in tests:
         try:
             t()
