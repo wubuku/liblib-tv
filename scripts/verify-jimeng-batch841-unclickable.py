@@ -5556,10 +5556,15 @@ def main() -> int:
           "⇒ **「应用没写回」与「这一击压根不是臂事件」必须分开**；"
           "② **补偿的规模阈值两轮不一致**（rep1 连点 7 次后 1 击补完 7 个、"
           "rep2 连点 13 次后连按 6 下 `added` 恒 0）"
-          "⇒ **不许**写成「补偿有规模阈值」，**不许**说 943 被推翻，"
-          "**成因未查明**",
+          "⇒ **不许**写成「补偿有规模阈值」，**不许**说 943 被推翻。"
+          "⚠️ **第 ② 条的矛盾已由 948 结案（是个误读），但「944 自己那次为何不补」"
+          "仍未查明** ⇒ 承 HH.4：判据要跟上事实，"
+          "**不许**因为矛盾解开就把待查项一起删掉 ⇒ 基线键已改名 "
+          "`..._RESOLVED_944b_948`、且旧名字**必须已经不在**基线里",
           '"retracted_v1_compensation_944b": (' in _ausrc
-          and '"compensation_scale_threshold_unresolved_944b": (' in _ausrc
+          and '"compensation_scale_threshold_RESOLVED_944b_948": (' in _ausrc
+          # ⭐ 旧名字必须**已经不在**基线里（不然「未结案」和「已结案」会同时在库）
+          and '"compensation_scale_threshold_unresolved_944b": (' not in _ausrc
           and "已撤回" in _ausrc
           and "**两轮不一致**，所以**不许**下结论" in _ausrc
           and "**不许**写成「补偿有规模阈值」" in _ausrc
@@ -5653,6 +5658,8 @@ def main() -> int:
     _anchs = _anch.read_text(encoding="utf-8") if _anch.exists() else ""
     p947 = ROOT / "scripts/jimeng_probe947_stablewait_src.py"
     _p947 = p947.read_text(encoding="utf-8") if p947.exists() else ""
+    p948 = ROOT / "scripts/jimeng_probe948_settle_landing_src.py"
+    _p948 = p948.read_text(encoding="utf-8") if p948.exists() else ""
 
     check("HHHH.1 ⚠️⚠️⚠️ **本批的设计有一处真缺陷，如实记账**：`warm ∈ {0,1,2,6}` "
           "**全都 ≤ boot 之后的自然值 76** ⇒ 预热循环**一次都没进**"
@@ -5854,6 +5861,91 @@ def main() -> int:
           and '"manip_moved_something": out["manip_moved_something"],' in _p947
           # ⭐⭐ 钉住 947 的五段 JS 与 946 逐字相同（防漂移，940 的办法）
           and "与 946 那份**不一致**" in _p947)
+
+    # ══ 批 948：⭐⭐⭐⭐⭐ **944 那个挂了四批的矛盾结案了 —— 它是一个误读** ═══
+    print("— JJJJ. 批 948 受控落点表 76/0/1 ⇒ 944 的矛盾是「把冷启动铺窗口读成补偿没来」 —")
+    check("JJJJ.1 ⭐⭐⭐⭐⭐ **受控落点对照表**（2/2，别的全固定，只改按压下数）："
+          "`n_settle=0/1/2` ⇒ 就绪 `不带 ti` = **76 / 0 / 1**（逐按落点 "
+          "`[76,0]`、`[76,0,1]`）⇒ ⭐ 这**第一次**是**受控**的："
+          "947 那张表是**关系式**的（三批 `scale`/落点/咬到数都不同）。"
+          "⚠️ 946 栽过的坑**不许再栽**：本批**不用条件循环**，"
+          "改成**显式按固定下数**",
+          '"controlled_landing_table_948": (' in _ausrc
+          and "**受控落点对照表**" in _ausrc
+          and "这**第一次**是**受控**的" in _ausrc
+          and "**不用条件循环**" in _ausrc
+          and "**显式按固定下数**" in _ausrc
+          # ⭐ 钉探针：**显式**按 `ns` 下（不是「按到满足为止」）
+          and "for k in range(1, ns + 1):" in _p948
+          and "NSETTLE_CELLS = [0, 1, 2]" in _p948
+          # ⭐⭐ 钉探针：反恒绿门比的是**格与格之间**（操纵不动就会红，
+          #    这正是 946 那道恒真门缺的性质）
+          and 'out["landed_differently"] = bool(' in _p948
+          and "len({v for _, v in _land}) >= 2" in _p948)
+
+    check("JJJJ.2 ⭐⭐⭐⭐⭐ **944 那个挂了四批的矛盾结案了 —— 它是一个误读**："
+          "947 说「矛盾只在就绪 ≠ 0 那侧」⇒ **本批推翻**：`n_settle=2` 就绪 = **1**"
+          "（正是 944 那一侧的值），而第 1 击 **`added=5`、`5→1`、补回=True**，"
+          "**补偿照常** ⇒ **分界是 76 vs {0,1}**，**不是** 0 vs 1；"
+          "唯一异常的就绪 **76** 那一格，946 的 **sham**（零点击）已证明"
+          "刚 boot 完第 1 击 `Tab` 就是 `76 → 0` ⇒ ⇒ "
+          "**944 把「冷启动铺窗口」读成了「补偿没来」——矛盾根本不存在。**"
+          "⚠️ **但 944 自己那次为何不补，本批没有解释，成因仍未查明**",
+          '"contradiction_resolved_it_was_a_misread_948": (' in _ausrc
+          and "**944 那个挂了四批的矛盾结案了 —— 它是一个误读。**" in _ausrc
+          and "真正的分界是 **76 vs {0, 1}**" in _ausrc
+          and "**方向相反**" in _ausrc
+          and "**944 把「冷启动铺窗口」读成了「补偿没来」——矛盾根本不存在。**"
+          in _ausrc
+          # ⭐⭐ 钉住「仍未查明」那半句**不许**被一起删掉（HH.4）
+          and "**成因仍未查明。**" in _ausrc
+          and "**944 的前置态与 `n_settle=2` 那一格是同一个值**" in _ausrc)
+
+    check("JJJJ.3 ⭐⭐⭐ **`settle_stable_ok = False`** —— settle 那几按的 "
+          "`identity_stable` **全为 `False`** ⇒ **`76 → 0 → 1` 这条路径"
+          "每一按身份都在动** ⇒ 按 948 自己写下的那道门"
+          "（「**一个数看起来像状态不够，得知道它稳不稳**」）⇒ "
+          "**`不带 ti = 1` 不是一个稳定状态，是铺窗口过程中的一个瞬态读数。**"
+          "⇒ ⚠️ 这条**反过来削弱 944 自己的前置态** —— "
+          "「settle 10 下、就绪 1」那个 **1** 也是瞬态",
+          '"settle_readings_are_transient_948": (' in _ausrc
+          and "**`76 → 0 → 1` 这条路径每一按身份都在动**" in _ausrc
+          and "**一个数看起来像状态不够，" in _ausrc
+          and "得知道它稳不稳**」）" in _ausrc
+          and "它是铺窗口过程中的一个瞬态读数。**" in _ausrc
+          and "**944 的连点是在一个瞬态上做的**" in _ausrc
+          # ⭐ 钉探针：**每一按**的身份稳不稳都要记（947 缺这条）
+          and '"identity_stable": d["identity_stable"],' in _p948
+          and 'out["settle_stable_ok"] = bool(_st and all(_st))' in _p948)
+
+    check("JJJJ.4 ⭐ 「第一击咬不咬」**也分 regime**（2/2）：就绪 **0** 与 **1** 两格"
+          "第 1 击都是 `i=0 / bit=False / identity_stable=False`（**不咬**）；"
+          "而就绪 **76** 那一格第 1 击反而 **`bit=True` / `added=[0]`**（**咬了**）"
+          "⇒ ⇒ 「boot/预热之后第一击不咬」那条（945 的 8 + 947 的 4，**12 个格次**）"
+          "**只在这一侧成立**，**不许**外推。"
+          "⚠️ 另有读数：就绪 76 那格只咬到 **2**、另两格咬到 **4** ⇒ "
+          "**落点与咬到的关系也分 regime**；三格 `cell_ok` 全 `False` ⇒ "
+          "结论**限定在「咬到 2~4 次」这个范围内**",
+          '"first_click_regime_dependent_948": (' in _ausrc
+          and "**只在这一侧成立**，**不许**外推" in _ausrc
+          and '"three_cells_not_all_ok_948": (' in _ausrc
+          and "**落点与咬到的关系也分 regime**" in _ausrc
+          and "**本批的结论限定在「咬到 2~4 次」这个范围内**" in _ausrc)
+
+    check("JJJJ.5 ⭐⭐ **基线里不许同时留「未结案」与「已结案」**：944 那条矛盾键已改名 "
+          "`compensation_scale_threshold_RESOLVED_944b_948`、且**旧名字必须已经不在**"
+          "基线里（承 HH.4：矛盾解开**不许**把「为什么那次不补」一起删掉）"
+          "⇒ FFFF.5 的措辞也跟着跟上事实，但**保留**待查项。"
+          "⚠️ 而 946 记的「格 0 两轮 75→1 / 75→8」**不撤回** —— "
+          "它**确实**两轮不一致，只是现在知道那一侧是**另一个 regime**",
+          '"compensation_scale_threshold_RESOLVED_944b_948": (' in _ausrc
+          and '"compensation_scale_threshold_unresolved_944b": (' not in _ausrc
+          and '"contradiction_only_when_ready_not_zero_947": (' in _ausrc
+          and "**本批把它推翻了**" in _ausrc
+          # ⭐ 钉住「946 那条不撤回」这半句：两条读数都要在，别只留好看的
+          and '944_contradiction_reproduced_946' in _ausrc
+          # ⭐ 钉探针：五段 JS 与 947 逐字相同（防漂移，940 的办法）
+          and "与 947 那份**不一致**" in _p948)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
