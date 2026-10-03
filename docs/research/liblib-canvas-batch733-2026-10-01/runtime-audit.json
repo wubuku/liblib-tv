@@ -1,0 +1,173 @@
+{
+ "static": {
+  "addNodePanelHasEntryAttr": true,
+  "scriptNodeGate": true,
+  "scriptNodeOpenBtn": true,
+  "scriptNodeOpenBtnLabel": true,
+  "scriptNodeOtherLabel": true,
+  "shotBreakdownGatedOnUpload": true
+ },
+ "run": {
+  "families": {
+   "AudioNode": {
+    "rows": [
+     {
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "node": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "node": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "播放音频",
+      "title": "音频播放在克隆侧尚未接入",
+      "node": "audio-1791054008416-a4suyj",
+      "axRole": "button",
+      "focusable": true
+     }
+    ],
+    "pick": "clicked",
+    "pickSub": null,
+    "nodeId": "audio-1791054008416-a4suyj",
+    "selected": true
+   },
+   "VideoClipEditPanel": {
+    "rows": [
+     {
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "node": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "node": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "剪辑模式设置在克隆侧尚未接入",
+      "node": "video-clip-1791054013123-lp214v",
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "输出设置在克隆侧尚未接入",
+      "node": "video-clip-1791054013123-lp214v",
+      "axRole": "button",
+      "focusable": true
+     }
+    ],
+    "pick": "clicked",
+    "pickSub": null,
+    "nodeId": "video-clip-1791054013123-lp214v",
+    "selected": true
+   },
+   "ScriptGeneratorNode": {
+    "rows": [
+     {
+      "aria": "开通会员 限时 45 折",
+      "title": "开通会员为付费操作，克隆侧不提供",
+      "node": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "积分余额",
+      "title": "积分余额（读数，无可点操作）",
+      "node": null,
+      "axRole": "button",
+      "focusable": true
+     },
+     {
+      "aria": "",
+      "title": "参考图上传暂不可用",
+      "node": "script-generator-1791054017853-ftb68m",
+      "axRole": "button",
+      "focusable": true
+     }
+    ],
+    "pick": "clicked",
+    "pickSub": "clicked",
+    "nodeId": "script-generator-1791054017853-ftb68m",
+    "selected": true
+   }
+  },
+  "storyboard": {
+   "editor": false,
+   "openStoryboardBtn": false,
+   "types": [
+    "storyboard-group",
+    "storyboard-group",
+    "script",
+    "image",
+    "image",
+    "image",
+    "image",
+    "script-execution",
+    "image",
+    "video",
+    "script-generator"
+   ]
+  },
+  "shotBreakdownPick": "clicked",
+  "shotBreakdown": {
+   "nodeId": "shot-breakdown-1791054022357-twgdqn",
+   "actionLabels": [
+    "打开导演台 →",
+    "上传视频后开始",
+    "上传视频",
+    "从画布选择",
+    "分镜",
+    "动态",
+    "音乐",
+    "开始拉片"
+   ],
+   "types": [
+    "storyboard-group",
+    "storyboard-group",
+    "script",
+    "image",
+    "image",
+    "image",
+    "image",
+    "script-execution",
+    "image",
+    "video",
+    "shot-breakdown"
+   ]
+  }
+ },
+ "staticSummary": {
+  "addNodePanelHasEntryAttr": true,
+  "scriptNodeGate": true,
+  "scriptNodeOpenBtn": true,
+  "scriptNodeOpenBtnLabel": true,
+  "scriptNodeOtherLabel": true,
+  "shotBreakdownGatedOnUpload": true
+ },
+ "gated": {
+  "storyboard": "入口按钮被 inStoryboardSession 门控，未渲染",
+  "shotBreakdown": "动作按钮为「上传视频后开始」，需先上传"
+ },
+ "summary": {
+  "add-node-entries-are-selected-by-attribute-not-label": true,
+  "audio-node-opens-and-its-one-site-is-focusable": true,
+  "video-clip-edit-panel-opens-and-both-sites-are-focusable": true,
+  "script-generator-node-opens-and-its-one-site-is-focusable": true,
+  "storyboard-editor-entry-button-is-absent-by-conditional-gate": true,
+  "shot-breakdown-result-is-gated-on-uploading-a-video": true
+ },
+ "failures": []
+}
