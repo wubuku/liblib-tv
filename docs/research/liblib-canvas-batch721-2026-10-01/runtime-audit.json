@@ -1,0 +1,377 @@
+{
+ "predictions": {
+  "batch": 721,
+  "retracts": "batch 720 的「只加模型关台重开后消失」",
+  "hypothesis": "720 的 reopen() 点的是 DOM 顺序第一枚 [data-open-director]，而 open_desk() 开的是它 addNode 造的另一个节点",
+  "predicted": [
+   "按 nodeId 精确重开：objects 仍是 6，past 回到 2",
+   "DOM 顺序第一枚按钮归属另一个节点（b-…），点它读到 5 个对象与另一个 projectId",
+   "该节点的 localStorage 记录含 6 个对象、primitive 含 library、且没有 history 键",
+   "刷新后记录逐字段不变，但那个节点卡不存在了，台开不起来",
+   "刷新前后画布节点列表 = 10 枚种子节点，addNode 造的节点不在其中"
+  ],
+  "sourceFacts": [
+   "src/store/directorStore.ts:1940 directorHistoryByProject 是模块级 Map",
+   "src/store/directorStore.ts:3289 closeSession 先 rememberDirectorHistory",
+   "src/store/canvasStore.ts 无任何 localStorage / persist / subscribe"
+  ]
+ },
+ "run": {
+  "static": {
+   "canvasStoreTokens": {
+    "localStorage": 0,
+    "sessionStorage": 0,
+    "indexedDB": 0,
+    "\\bpersist\\b": 0,
+    "\\bsubscribe\\b": 0,
+    "STORAGE_KEY": 0
+   },
+   "setItemPerStore": {
+    "frameosStore.ts": 1,
+    "directorStore.ts": 1,
+    "canvasStore.ts": 0
+   },
+   "historyByProjectIsModuleMap": true,
+   "closeSessionRemembersHistory": true
+  },
+  "nodeX": "script-execution-1791036687647-9lj7up",
+  "seedNodeIds": [
+   "g-245IDFh8sB",
+   "g-EFbbHpwq5w",
+   "t-9j2MoccxBj",
+   "i-1FQ9tErTcC",
+   "i-lBzmo67AHv",
+   "i-dnwoZQ7jsG",
+   "i-vxeeCnxySa",
+   "b-bTLLuU4w5q",
+   "i-YDfWhFlthe",
+   "v-UGQZzZOpbv",
+   "script-execution-1791036687647-9lj7up"
+  ],
+  "open1": {
+   "deskOpen": true,
+   "objects": 5,
+   "authored": 5,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "past": 0,
+   "future": 0,
+   "generation": 1,
+   "projectId": "director-project-1791036687980-1",
+   "sessionId": "director-session-1791036687981-2"
+  },
+  "firstBtn": {
+   "nodeId": "b-bTLLuU4w5q",
+   "x": -13,
+   "y": 319,
+   "w": 166,
+   "h": 19
+  },
+  "firstBtnIsNodeX": false,
+  "afterRename": {
+   "deskOpen": true,
+   "objects": 5,
+   "authored": 5,
+   "names": [
+    "改名探针",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "past": 1,
+   "future": 0,
+   "generation": 1,
+   "projectId": "director-project-1791036687980-1",
+   "sessionId": "director-session-1791036687981-2"
+  },
+  "afterAdd": {
+   "deskOpen": true,
+   "objects": 6,
+   "authored": 6,
+   "names": [
+    "改名探针",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景",
+    "饮料瓶"
+   ],
+   "past": 2,
+   "future": 0,
+   "generation": 1,
+   "projectId": "director-project-1791036687980-1",
+   "sessionId": "director-session-1791036687981-2"
+  },
+  "firstNameFieldAfterAdd": "饮料瓶",
+  "closed": {
+   "deskOpen": false,
+   "objects": 6,
+   "authored": 6,
+   "names": [
+    "改名探针",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景",
+    "饮料瓶"
+   ],
+   "past": 0,
+   "future": 0,
+   "generation": null,
+   "projectId": null,
+   "sessionId": null
+  },
+  "recordAfterClose": {
+   "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22script-execution-1791036687647-9lj7up%22%5D",
+   "topKeys": [
+    "storageSchemaVersion",
+    "projectId",
+    "owner",
+    "generation",
+    "savedAt",
+    "documentFingerprint",
+    "document"
+   ],
+   "docKeys": [
+    "schemaVersion",
+    "projectId",
+    "owner",
+    "scene",
+    "objects",
+    "groups",
+    "shots",
+    "activeCameraId",
+    "timeline",
+    "outputPreferences",
+    "resourceRefs",
+    "captureDescriptors"
+   ],
+   "nObjects": 6,
+   "names": [
+    "改名探针",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景",
+    "饮料瓶"
+   ],
+   "primitives": [
+    "character",
+    "table",
+    "mug",
+    "wall",
+    "camera",
+    "library"
+   ],
+   "generation": 1,
+   "projectId": "director-project-1791036687980-1",
+   "savedAt": "2026-10-03T14:11:33.236Z",
+   "hasHistoryKey": false
+  },
+  "reopenSameNode": {
+   "deskOpen": true,
+   "objects": 6,
+   "authored": 6,
+   "names": [
+    "改名探针",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景",
+    "饮料瓶"
+   ],
+   "past": 2,
+   "future": 0,
+   "generation": 2,
+   "projectId": "director-project-1791036687980-1",
+   "sessionId": "director-session-1791036694240-3"
+  },
+  "closedAgain": {
+   "deskOpen": false,
+   "objects": 6,
+   "authored": 6,
+   "names": [
+    "改名探针",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景",
+    "饮料瓶"
+   ],
+   "past": 0,
+   "future": 0,
+   "generation": null,
+   "projectId": null,
+   "sessionId": null
+  },
+  "otherNodeId": "b-bTLLuU4w5q",
+  "openOtherNode": {
+   "deskOpen": true,
+   "objects": 5,
+   "authored": 5,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "past": 0,
+   "future": 0,
+   "generation": 1,
+   "projectId": "director-project-1791036696615-4",
+   "sessionId": "director-session-1791036696615-5"
+  },
+  "closedOther": {
+   "deskOpen": false,
+   "objects": 5,
+   "authored": 5,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "past": 0,
+   "future": 0,
+   "generation": null,
+   "projectId": null,
+   "sessionId": null
+  },
+  "recordAfterOtherClose": {
+   "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D",
+   "topKeys": [
+    "storageSchemaVersion",
+    "projectId",
+    "owner",
+    "generation",
+    "savedAt",
+    "documentFingerprint",
+    "document"
+   ],
+   "docKeys": [
+    "schemaVersion",
+    "projectId",
+    "owner",
+    "scene",
+    "objects",
+    "groups",
+    "shots",
+    "activeCameraId",
+    "timeline",
+    "outputPreferences",
+    "resourceRefs",
+    "captureDescriptors"
+   ],
+   "nObjects": 5,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "primitives": [
+    "character",
+    "table",
+    "mug",
+    "wall",
+    "camera"
+   ],
+   "generation": 1,
+   "projectId": "director-project-1791036696615-4",
+   "savedAt": "2026-10-03T14:11:38.001Z",
+   "hasHistoryKey": false
+  },
+  "nodeIdsAfterReload": [
+   "g-245IDFh8sB",
+   "g-EFbbHpwq5w",
+   "t-9j2MoccxBj",
+   "i-1FQ9tErTcC",
+   "i-lBzmo67AHv",
+   "i-dnwoZQ7jsG",
+   "i-vxeeCnxySa",
+   "b-bTLLuU4w5q",
+   "i-YDfWhFlthe",
+   "v-UGQZzZOpbv"
+  ],
+  "nodeXSurvivedReload": false,
+  "recordAfterReload": {
+   "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22script-execution-1791036687647-9lj7up%22%5D",
+   "topKeys": [
+    "storageSchemaVersion",
+    "projectId",
+    "owner",
+    "generation",
+    "savedAt",
+    "documentFingerprint",
+    "document"
+   ],
+   "docKeys": [
+    "schemaVersion",
+    "projectId",
+    "owner",
+    "scene",
+    "objects",
+    "groups",
+    "shots",
+    "activeCameraId",
+    "timeline",
+    "outputPreferences",
+    "resourceRefs",
+    "captureDescriptors"
+   ],
+   "nObjects": 6,
+   "names": [
+    "改名探针",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景",
+    "饮料瓶"
+   ],
+   "primitives": [
+    "character",
+    "table",
+    "mug",
+    "wall",
+    "camera",
+    "library"
+   ],
+   "generation": 2,
+   "projectId": "director-project-1791036687980-1",
+   "savedAt": "2026-10-03T14:11:35.614Z",
+   "hasHistoryKey": false
+  },
+  "btnsAfterReload": [
+   {
+    "nodeId": "b-bTLLuU4w5q",
+    "x": -13,
+    "y": 319,
+    "w": 166,
+    "h": 19
+   }
+  ],
+  "reopenAfterReload": {
+   "deskOpen": false,
+   "note": "节点卡不在，台没开起来"
+  }
+ },
+ "summary": {
+  "the-model-add-survives-closing-and-reopening-the-same-node": true,
+  "the-button-720-clicked-belongs-to-a-different-node": true,
+  "the-persisted-record-carries-six-objects-and-has-no-history-key": true,
+  "the-persisted-record-is-unchanged-across-a-reload-except-generation-and-saved-at": true,
+  "reopen-comes-in-three-layers-not-one": true,
+  "reopening-keeps-project-id-bumps-generation-and-mints-a-new-session-id": true,
+  "the-canvas-store-never-persists-nodes": true
+ },
+ "failures": []
+}
