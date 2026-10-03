@@ -1,0 +1,1202 @@
+{
+  "判据": "baseType 是长度>=2 的数组 = 多模型卡",
+  "分类": "风格插画",
+  "卡": [
+    {
+      "name": "Seedream 5.0 pro",
+      "uuid": "d0f6bb7b673442f2b0fb5ba483825029",
+      "baseType": [
+        68
+      ]
+    },
+    {
+      "name": "J_漫剧素材三视图+大头表情+姿势图",
+      "uuid": "6104532175e341578918cf6afa01f805",
+      "baseType": [
+        70,
+        40
+      ]
+    },
+    {
+      "name": "妆造一体博主感写真 LoRA",
+      "uuid": "8036bada43f34976aa9614c1176dde3f",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "Qwen-唯美氛围感可爱萌妹女生头像插画",
+      "uuid": "b57ad49b3a3e40029dd398e46dcf30fc",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "【捌陆设计】短剧角色-Ai漫剧资产库人物角色四视图V8.0",
+      "uuid": "2eaf6a7aba444ae8936096d3731f19ea",
+      "baseType": [
+        53
+      ]
+    },
+    {
+      "name": "Pan纯手绘男生立绘211-Qimage",
+      "uuid": "5bc6cf28365c4306add454a0007f1388",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "krea2-超高颜值美女 解封版",
+      "uuid": "517a1d4901114789af13680d4a3b1409",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "一键生成人物多视图",
+      "uuid": "0dca04e8289b481f96399e178ae6c14b",
+      "baseType": [
+        27,
+        40,
+        70,
+        55,
+        68
+      ]
+    },
+    {
+      "name": "krea2-皮肤雪白，冷白皮 解封版",
+      "uuid": "885c4ff8964248a2a07f29bbb6741901",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "Qwen_厚涂末世赛博朋克",
+      "uuid": "d344f51962374984b072b0ee42119164",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "krea2-光滑，水润质感 解封版",
+      "uuid": "c9843c6bd84f4ca184ce2cb4973a998a",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "电商首页头图商用素材",
+      "uuid": "54655cf16ac64a978da1bc5d5556a004",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "音频类硬件产品精细化视觉创作",
+      "uuid": "c76303dd60754d30bb6aea984b983d17",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "分镜脚本故事版分镜",
+      "uuid": "e0bdb686400f45b3a763816536aa6e75",
+      "baseType": [
+        27
+      ]
+    },
+    {
+      "name": "毛呢粘土微缩梦幻房子场景模型",
+      "uuid": "893b502d9e85418982649d8d85337831",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "【摸鱼】3D电商渲染级KV海报_创意视觉表达",
+      "uuid": "b49e2b7361334346ba72a442a6817247",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "中式雕刻风西游人物图谱",
+      "uuid": "126b2d449d6c4c22839234803499144d",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "多款式家用厨刀多角度静物场景",
+      "uuid": "4f20888c6ef746f188674232c9d8d4bf",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "以国风笔墨，展城市万象",
+      "uuid": "41683a2b91ec463aa8d6551a735a5426",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "一键国漫CGV2",
+      "uuid": "b8eac32794fe40e0b50bb7c1ed3b78b6",
+      "baseType": [
+        81,
+        70,
+        68,
+        55,
+        40,
+        27
+      ]
+    },
+    {
+      "name": "东方玄幻武侠修仙世界",
+      "uuid": "4bb11bc9d6aa4f7185fe1a8b985b0f6b",
+      "baseType": [
+        37,
+        19,
+        1
+      ]
+    },
+    {
+      "name": "【摸鱼】创意电商场景_电商产品场景",
+      "uuid": "12b5b8c995cf4b40bf1954aad1937d5b",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "1912.5D写实人像",
+      "uuid": "d2ac0b51dacf40a29e4b69b472303ad1",
+      "baseType": [
+        53,
+        37
+      ]
+    },
+    {
+      "name": "Qwen-Image-Lightning-8steps-V1.1-bf16.safetensors",
+      "uuid": "440e41dfaa2e4c9fa792b8104f749481",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "Qwen-暗黑哥特风格情侣头像插画",
+      "uuid": "d07572f2f9b743ea9a05c255e34acf10",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "天宫东方传统美学超现实神话元素奇幻概念艺",
+      "uuid": "34db9c401c9a4b56b0d0db2c026f4f17",
+      "baseType": [
+        81,
+        70,
+        68,
+        55,
+        40,
+        27
+      ]
+    },
+    {
+      "name": "Qwen-Image-Lightning-8steps-V2.0",
+      "uuid": "6cd3da11201249e385531fa468fd8dc8",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "可爱手绘注解美食海报",
+      "uuid": "e0b7a1fff2404b7998cd9d127fd35497",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "月满中秋｜新中式国风节日海报系列",
+      "uuid": "3aa10e10ab414580a4998e780e04a371",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "XT日系半厚涂",
+      "uuid": "13f18a025bfc4bb1966738630b37a83d",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "刀尖与灵魂｜BLEACH 经典角色人物海报",
+      "uuid": "305a32fb34a840869ee477b012c23425",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "一键全套版电商主图直通车图卖点图小详情页",
+      "uuid": "262ff22ef8a34b61a27a623b5cfb9302",
+      "baseType": [
+        27,
+        70,
+        40
+      ]
+    },
+    {
+      "name": "中秋里的中式浪漫：满月、桂花与月饼",
+      "uuid": "573571b0760e424791b9a8e0eb2f215f",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "ZOZ_厚涂插画",
+      "uuid": "0924cc1cf44c4a9bba3c6fb26ae0fc7b",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "【Dave】清新文艺手写字体｜专辑｜影视｜音乐｜综艺｜Logo等海报标题（♥中文控制）书法艺术创意字",
+      "uuid": "c87c6782a32e4a4da8ecb863b6b9d88d",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "XT古风插画奇幻少女",
+      "uuid": "e9d6b524a24041ccad85018d0fcc354a",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "CG动漫角色-Qwen",
+      "uuid": "f3a7a6ed506d40eb9889c76720e12b84",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "3d伪真人漫剧角色资产",
+      "uuid": "73965276427d46198f575de8aef97014",
+      "baseType": [
+        27
+      ]
+    },
+    {
+      "name": "赛博机甲少女｜炫酷科幻机娘",
+      "uuid": "d29a95881f214d6082bfb4a2dd7c7c54",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "复古雕版城市插画｜国内城市文旅海报",
+      "uuid": "2a6cff30c28547ea89278af860448d02",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "东方古韵｜清冷汉服古风少女写真",
+      "uuid": "4c9fb3589bce4a6bbcbd43c3b47b1d2f",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "赛璐璐光影",
+      "uuid": "73ffaa1a371b407bb3a73a7f1a2018ef",
+      "baseType": [
+        81,
+        70,
+        68,
+        55,
+        40,
+        27
+      ]
+    },
+    {
+      "name": "Qwen-唯美氛围感可爱萌妹女生头像插画",
+      "uuid": "b57ad49b3a3e40029dd398e46dcf30fc",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "刀尖与灵魂｜BLEACH 经典角色人物海报",
+      "uuid": "305a32fb34a840869ee477b012c23425",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "ZOZ_厚涂插画",
+      "uuid": "0924cc1cf44c4a9bba3c6fb26ae0fc7b",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "收藏这份城市通票，奔赴下一场山海",
+      "uuid": "7d50511ddfa4432082f876754d99813d",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "复古做旧国风城市文旅海报模型",
+      "uuid": "8fe6deeea1444c8e8aeee83070db1da5",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "二次元清新画风",
+      "uuid": "0cc51934568646768eb981299c40728c",
+      "baseType": [
+        81,
+        70,
+        68,
+        55,
+        40,
+        27
+      ]
+    },
+    {
+      "name": "手写海报标题字体丨文艺海报标题字体丨手写丨文案 丨治愈丨手机壁纸",
+      "uuid": "1b986da1d1a546a9bef456a1143c4254",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "Qwen-image-梦幻少女插画",
+      "uuid": "77de74df900948e9b080d71477bafae4",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "Qwen-image-南音浅浅-小红书爆火女生头像03",
+      "uuid": "303c7a0de7eb4d00a7fd5dc915c71fa7",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "唯美场景",
+      "uuid": "6c0657c4568a4d42bb982b422f7eae53",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "【Dave】手写书法毛笔字体｜♥适用游戏、文娱、电商等 海报等文字等书法风格强化（风格强烈）",
+      "uuid": "6d01a62d30624a9fb109e786acf4875a",
+      "baseType": [
+        37,
+        3,
+        19
+      ]
+    },
+    {
+      "name": "小红书风海报手绘涂鸦插画❤丑萌/搞怪封面",
+      "uuid": "84c6310d448d4e32afca5677576130a0",
+      "baseType": [
+        27,
+        68,
+        40,
+        70,
+        55,
+        81
+      ]
+    },
+    {
+      "name": "191诗情画意",
+      "uuid": "4313af3aaf4140eda03f69e89babf396",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "【十一】书法字体设计、毛笔字、手写字",
+      "uuid": "9bcc7367db8d45a4a8b4c2f7615174c7",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "美式复古涂鸦插画｜摇滚卡通印花",
+      "uuid": "aa562cd0de334d21b8674f262b5e0eb8",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "赛璐璐风动漫少女，帧帧可做壁纸",
+      "uuid": "fcb1ddb0171c4025975e97ec8e094f77",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "Qwen-image-可爱女孩头像ts",
+      "uuid": "5b8ed211fddd4ae78780137aed5da625",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "新中式数字综合媒材国风插画",
+      "uuid": "d0e9f9bac2754baa8325955c9baeb03d",
+      "baseType": [
+        27,
+        68,
+        70,
+        55,
+        40
+      ]
+    },
+    {
+      "name": "191极致动漫人像—游戏CG",
+      "uuid": "b86a86dd471c4603b74c4c17aaca7331",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "粗狂书法字|手写毛笔字|字体设计|艺术字|标题字|2026马年春节",
+      "uuid": "52d8fe2d13c44cbeb8bb8583da215d66",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "优雅艺术字|手写艺术字|秀丽标题字|字体设计|书法字",
+      "uuid": "a821523109a94badac74cdddede40b35",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "国风水墨描边万能道具图标",
+      "uuid": "5fc91915e3424f7d9b676355dc55388e",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "国潮插画_国潮风格插画",
+      "uuid": "3da2a4d5dbd74f9b87b2622e12ef940b",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "精致手绘头像",
+      "uuid": "f4ead97d849d4bd98cbd50cd14cc64c6",
+      "baseType": [
+        27,
+        68,
+        55,
+        70,
+        40
+      ]
+    },
+    {
+      "name": "日式版画风格|浮世绘",
+      "uuid": "3d7e178b14cd4403b93d5c9e011862a6",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "调节|现代数字插画",
+      "uuid": "53647863d15b48dfbd360a90417d1e66",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "【Qwen】书法字体设计",
+      "uuid": "897c0273d256483f8a44257d6b53cc49",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "经典80年代复古日漫风格赛博朋克",
+      "uuid": "86f205a6f183446a848e394d9ecf5bfc",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "国风武侠—泼墨&水墨江湖_武侠多场景插画",
+      "uuid": "92d3bf9efb1e44bbbfb5d2d97fafbab6",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "软萌卡通 | 治愈系简笔插画",
+      "uuid": "df40ad3cf1e64e1b99c18b09050b9680",
+      "baseType": [
+        27,
+        68,
+        70,
+        55,
+        40
+      ]
+    },
+    {
+      "name": "文艺手写艺术字|毛笔字|书法字|标题字",
+      "uuid": "aa950009a4ce4658817052650fb0b323",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "Niji7-琉光",
+      "uuid": "24783c6e0bda4e49911fc63cecf4a216",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "国风厚涂水墨岩彩鎏金Qwen.uin",
+      "uuid": "6a08b127b7c446c9858ef0e36139f210",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "治愈系手写艺术字体设计|毛笔字|书法|文艺清新",
+      "uuid": "22d3d81c08a04f6c8f77a1f40dd5807b",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "清新治愈纹理感插画",
+      "uuid": "bede93a32adc4d37b47a96620435f38d",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "二次元平涂风格",
+      "uuid": "492b695af33f4532b61b7ce086c41a88",
+      "baseType": [
+        81,
+        70,
+        68,
+        55,
+        40,
+        27
+      ]
+    },
+    {
+      "name": "KRea2二次元国风",
+      "uuid": "1e3d5d455ad14b7099c4e0aad8c4bf0c",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "新中式中秋节日海报｜国潮山水建筑一键生成",
+      "uuid": "f7e65e8a55e9414fb3e4a6f8852245fb",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "丨数字艺术插画",
+      "uuid": "0b28d2cb5e8d45849126bb941e8478e9",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "儿童插画_水彩肌理感儿童插画",
+      "uuid": "b6477be5444d49beb6acc70ed2985052",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "Qwen | Fluorescent painting",
+      "uuid": "d0d69059938c42a2b28120343b1ab35e",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "手书v1.0",
+      "uuid": "b5d11e6173514e1ab62055ac9379af16",
+      "baseType": [
+        68,
+        40,
+        55
+      ]
+    },
+    {
+      "name": "191平涂二次元插画",
+      "uuid": "5eb8d7c5576f43bf8656f62b0e3f797f",
+      "baseType": [
+        37,
+        22
+      ]
+    },
+    {
+      "name": "191现代工笔插画",
+      "uuid": "c355ae1d9af84eafab87807d14202e2e",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "Qwen-玄幻修仙场景插画_插画设计",
+      "uuid": "47383f1b6f4e40fc8082512b55973628",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "清新文艺手写体|手写艺术字|文艺范|小清新|CD封面字体|艺术字|字体设计",
+      "uuid": "881b10a8e6e04a9e81fe9c73ac9bc8a3",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "梦境涟漪_治愈风插画_Qwen&F.1",
+      "uuid": "040b51ff73964cb68d6188eeddc7bab0",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "欧美3D卡通风格角色｜Q版皮克斯/迪士尼",
+      "uuid": "2e9af2b64cb14126ba3f1013d8f7c869",
+      "baseType": [
+        40,
+        27,
+        70,
+        68,
+        81
+      ]
+    },
+    {
+      "name": "Qwen-image 矮粗手写毛笔字",
+      "uuid": "90298238a6a14a7f8fd1938b719f1a60",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "Qwen-3D人物角色运营海报-角色数字人运营电商时尚KV",
+      "uuid": "d4fa6df4a62440f58a87b65cf9c08bfd",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "【书法笔触增强】国潮书法手写体",
+      "uuid": "51af8babbc9e488ca1c7ee5b18ae1d42",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "别墅/自建房/精装修/乡村农村房子",
+      "uuid": "5dec59c2724446329dc928a79324cfc0",
+      "baseType": [
+        53,
+        19
+      ]
+    },
+    {
+      "name": "Qwen千问_直出创意中文字体设计_艺术字体设计",
+      "uuid": "d6f50fec896c40ca91542d1525da4eae",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "手写字体_手写体海报_书法字体_屏幕壁纸",
+      "uuid": "d495e20301994fdfa89548e9e5cdbfea",
+      "baseType": [
+        55
+      ]
+    },
+    {
+      "name": "Qwen国风水墨图标",
+      "uuid": "6a5d39cc752b4f33a0090c14cf12ad75",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "Qwen_JNANX_国风新中式海报设计_CN001",
+      "uuid": "7baeec9093f0446aa91410f6ed9c8b9c",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "MLKBC 千问彩漫",
+      "uuid": "42e36b769fff49e59f4e6bef9b5a79d0",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "Qwen-国风插画山海经异兽-lora",
+      "uuid": "ae6f0ac1011e48b5b4853dc002e8f8ac",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "Qwen_水墨风格",
+      "uuid": "06cdf52a7a04404eb0fbe9a3e71c9893",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "新国风治愈系古风插画",
+      "uuid": "8a55c92c902a4e488d5a396b81d31b27",
+      "baseType": [
+        70,
+        55,
+        27,
+        68,
+        40
+      ]
+    },
+    {
+      "name": "KRea2新中式水墨仙韵插画",
+      "uuid": "594422c7677f4d969faf92151a5b77dd",
+      "baseType": [
+        37,
+        65
+      ]
+    },
+    {
+      "name": "Qwen.简约中国画风格",
+      "uuid": "9a99720aa62a4e988afbd515cbc61dbd",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "Qwen.二月二龙抬头",
+      "uuid": "3718714cce6b4ef4b60fcafa237e1245",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "【一元】Qwen-商业书法字体",
+      "uuid": "2beb745b670a4d5280f83fb57d918f25",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "【胖雪】qwen_粗笔手写书法毛笔字体",
+      "uuid": "7da04361da3c4253b71d1ed2a772f61d",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "非遗文化宣传展板设计",
+      "uuid": "7ce9c7e46f3248078120e3fd433810c4",
+      "baseType": [
+        27,
+        68,
+        55,
+        70,
+        40
+      ]
+    },
+    {
+      "name": "80年代昭和风复古日漫",
+      "uuid": "80f15a1e494946efbf4ffffa4c41c77a",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "壁纸|复古治愈系插画风格",
+      "uuid": "2946825d88e24e4eb859430c37426028",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "ZOZ_游戏动漫插画风格",
+      "uuid": "6d363af30713438ba9efb882091150e7",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "QWEN-西小瓜-手写中文艺术字体「手写汉字集」",
+      "uuid": "45b05b9820244a6fa80ce4310e1e41e3",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "清冷古风水墨头像",
+      "uuid": "7528d01ac33549b7b55da1074ffa806c",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "4x4表情包",
+      "uuid": "dba110550c444f31ba6c9d2bec130261",
+      "baseType": [
+        70,
+        68,
+        55,
+        40
+      ]
+    },
+    {
+      "name": "F.1 国风_古风",
+      "uuid": "1f39831248664dd3bd8d502e9dfd24a0",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "Qwen&F1-​糖霜童话镇-彩铅绘本风格",
+      "uuid": "6f9b7dec5d9242a683a8bbd49cf7e72e",
+      "baseType": [
+        37,
+        19
+      ]
+    },
+    {
+      "name": "新海诚风格治愈清新画风动漫通用场景",
+      "uuid": "e7b2ce1d208846f1bbc039c1b5589b2c",
+      "baseType": [
+        53,
+        19
+      ]
+    },
+    {
+      "name": "手写秀丽字体",
+      "uuid": "f12a45da21b0480dbb0da07ccf4947ef",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "ZOZ_头像壁纸插画",
+      "uuid": "753f45b8576c463d85167d50735ee96c",
+      "baseType": [
+        37
+      ]
+    },
+    {
+      "name": "【JIMU】极简梦幻粉彩插画风",
+      "uuid": "d465f29709e74f83ac36023ec3246e9b",
+      "baseType": [
+        68,
+        55,
+        40
+      ]
+    },
+    {
+      "name": "Qwen-Image狂野毛笔字",
+      "uuid": "a7953dd9e53b42ad934b8cda91cc8f8a",
+      "baseType": [
+        37
+      ]
+    }
+  ],
+  "分布": {
+    "数组(1)": 80,
+    "数组(2)": 22,
+    "数组(5)": 7,
+    "数组(6)": 6,
+    "数组(3)": 5,
+    "数组(4)": 1
+  },
+  "多模型卡": {
+    "数量": 41,
+    "前若干": [
+      {
+        "name": "J_漫剧素材三视图+大头表情+姿势图",
+        "uuid": "6104532175e341578918cf6afa01f805",
+        "baseType": [
+          70,
+          40
+        ]
+      },
+      {
+        "name": "一键生成人物多视图",
+        "uuid": "0dca04e8289b481f96399e178ae6c14b",
+        "baseType": [
+          27,
+          40,
+          70,
+          55,
+          68
+        ]
+      },
+      {
+        "name": "一键国漫CGV2",
+        "uuid": "b8eac32794fe40e0b50bb7c1ed3b78b6",
+        "baseType": [
+          81,
+          70,
+          68,
+          55,
+          40,
+          27
+        ]
+      },
+      {
+        "name": "东方玄幻武侠修仙世界",
+        "uuid": "4bb11bc9d6aa4f7185fe1a8b985b0f6b",
+        "baseType": [
+          37,
+          19,
+          1
+        ]
+      },
+      {
+        "name": "1912.5D写实人像",
+        "uuid": "d2ac0b51dacf40a29e4b69b472303ad1",
+        "baseType": [
+          53,
+          37
+        ]
+      },
+      {
+        "name": "天宫东方传统美学超现实神话元素奇幻概念艺",
+        "uuid": "34db9c401c9a4b56b0d0db2c026f4f17",
+        "baseType": [
+          81,
+          70,
+          68,
+          55,
+          40,
+          27
+        ]
+      },
+      {
+        "name": "一键全套版电商主图直通车图卖点图小详情页",
+        "uuid": "262ff22ef8a34b61a27a623b5cfb9302",
+        "baseType": [
+          27,
+          70,
+          40
+        ]
+      },
+      {
+        "name": "赛璐璐光影",
+        "uuid": "73ffaa1a371b407bb3a73a7f1a2018ef",
+        "baseType": [
+          81,
+          70,
+          68,
+          55,
+          40,
+          27
+        ]
+      },
+      {
+        "name": "二次元清新画风",
+        "uuid": "0cc51934568646768eb981299c40728c",
+        "baseType": [
+          81,
+          70,
+          68,
+          55,
+          40,
+          27
+        ]
+      },
+      {
+        "name": "唯美场景",
+        "uuid": "6c0657c4568a4d42bb982b422f7eae53",
+        "baseType": [
+          37,
+          19
+        ]
+      },
+      {
+        "name": "【Dave】手写书法毛笔字体｜♥适用游戏、文娱、电商等 海报等文字等书法风格强化（风格强烈）",
+        "uuid": "6d01a62d30624a9fb109e786acf4875a",
+        "baseType": [
+          37,
+          3,
+          19
+        ]
+      },
+      {
+        "name": "小红书风海报手绘涂鸦插画❤丑萌/搞怪封面",
+        "uuid": "84c6310d448d4e32afca5677576130a0",
+        "baseType": [
+          27,
+          68,
+          40,
+          70,
+          55,
+          81
+        ]
+      },
+      {
+        "name": "191诗情画意",
+        "uuid": "4313af3aaf4140eda03f69e89babf396",
+        "baseType": [
+          37,
+          19
+        ]
+      },
+      {
+        "name": "新中式数字综合媒材国风插画",
+        "uuid": "d0e9f9bac2754baa8325955c9baeb03d",
+        "baseType": [
+          27,
+          68,
+          70,
+          55,
+          40
+        ]
+      },
+      {
+        "name": "191极致动漫人像—游戏CG",
+        "uuid": "b86a86dd471c4603b74c4c17aaca7331",
+        "baseType": [
+          37,
+          19
+        ]
+      },
+      {
+        "name": "国潮插画_国潮风格插画",
+        "uuid": "3da2a4d5dbd74f9b87b2622e12ef940b",
+        "baseType": [
+          37,
+          19
+        ]
+      },
+      {
+        "name": "精致手绘头像",
+        "uuid": "f4ead97d849d4bd98cbd50cd14cc64c6",
+        "baseType": [
+          27,
+          68,
+          55,
+          70,
+          40
+        ]
+      },
+      {
+        "name": "日式版画风格|浮世绘",
+        "uuid": "3d7e178b14cd4403b93d5c9e011862a6",
+        "baseType": [
+          37,
+          19
+        ]
+      },
+      {
+        "name": "经典80年代复古日漫风格赛博朋克",
+        "uuid": "86f205a6f183446a848e394d9ecf5bfc",
+        "baseType": [
+          37,
+          19
+        ]
+      },
+      {
+        "name": "国风武侠—泼墨&水墨江湖_武侠多场景插画",
+        "uuid": "92d3bf9efb1e44bbbfb5d2d97fafbab6",
+        "baseType": [
+          37,
+          19
+        ]
+      }
+    ]
+  },
+  "样本": [
+    {
+      "name": "Seedream 5.0 pro",
+      "baseType": [
+        68
+      ],
+      "modelNames": null,
+      "models": null,
+      "adaptModels": null,
+      "keys": [
+        "modelType",
+        "modelTypeName",
+        "checkpointType",
+        "baseType",
+        "templateType"
+      ]
+    },
+    {
+      "name": "J_漫剧素材三视图+大头表情+姿势图",
+      "baseType": [
+        70,
+        40
+      ],
+      "modelNames": null,
+      "models": null,
+      "adaptModels": null,
+      "keys": [
+        "modelType",
+        "modelTypeName",
+        "checkpointType",
+        "baseType",
+        "templateType"
+      ]
+    },
+    {
+      "name": "妆造一体博主感写真 LoRA",
+      "baseType": [
+        37
+      ],
+      "modelNames": null,
+      "models": null,
+      "adaptModels": null,
+      "keys": [
+        "modelType",
+        "modelTypeName",
+        "checkpointType",
+        "baseType",
+        "templateType"
+      ]
+    }
+  ]
+}

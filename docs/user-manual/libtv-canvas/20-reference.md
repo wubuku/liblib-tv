@@ -934,11 +934,11 @@ Batch DO 把页面已加载的 **152 个 JS chunk（19 MB）** 只读下载下�
 | `特效详情` | `lensDetail` | 📖 界面上没捕捉到 |
 | `正在加载更多` | `loadingMore` | ⭐ 有调用点，⛔ 没在界面上捕捉到（加载太快，来不及看） |
 | `已加载全部` | `allLoaded` | ⛔ **文案表里有，渲染代码里找不到调用点**（只有定义） |
-| ⭐ `生成内容可商用` | `generatedContentCommercialUsable` | ⭐ 有调用点，⛔ 没在界面上捕捉到（条件：`privilege` 含 `"1"`） |
-| ⭐ `首选推荐模型` | `preferredRecommendedModel` | ✅ **见过**（Batch DR 浮层里的分区标题） |
-| ⭐ `其余适配模型` | `otherAdaptedModels` | ⭐ 有调用点，⛔ 没在界面上捕捉到（条件：该风格适配模型数 > 1） |
-| ⭐ `当前使用` | `currentlyInUse` | ⭐ 有调用点，⛔ 没在界面上捕捉到（白底黑字徽标） |
-| `当前节点已使用风格，模型不可切换` | `modelLockedByStyle` | ⭐ 有调用点，⛔ 没在界面上捕捉到（模型选择器锁定时的 title） |
+| ⭐⭐ `生成内容可商用` | `generatedContentCommercialUsable` | ✅ **见过**（Batch DS 实测，在卡名右边同行） |
+| ⭐ `首选推荐模型` | `preferredRecommendedModel` | ✅ **见过**（浮层里的分区标题） |
+| ⭐⭐ `其余适配模型` | `otherAdaptedModels` | ✅ **见过**（Batch DS 实测，6 模型卡有 4 项） |
+| ⭐ `当前使用` | `currentlyInUse` | ⭐ 有调用点，⛔ 没在界面上捕捉到（**两处**：卡面白底黑字徽标、卡面「全部适配模型」下拉里的对勾） |
+| `当前节点已使用风格，模型不可切换` | `modelLockedByStyle` | ⭐ 有调用点，⛔ 没在界面上捕捉到（模型选择器 `mode==='locked'` 时的 title，⛔ 那时按钮是 28px 高的灰字禁用态） |
 | `该素材缺少版本信息，无法收藏` | `materialMissingVersionCannotFavorite` | ⭐ 有调用点，⛔ 没在界面上捕捉到 |
 
 > ⚠️ **这张表最容易读错的地方：key 存在 ≠ 界面上会出现。**
