@@ -5567,6 +5567,83 @@ def main() -> int:
           and 'is_arm = bool(f["focus_in_node"]) and f["active_tag"] == "DIV"' in _p944b
           and "落在节点**内部的按钮**上是**死按压**" in _p944b)
 
+    # ══ 批 945：把 943/944 之间的分歧拆成两个自变量（源站，纯诊断）══════
+    print("— GGGG. 批 945 规模不是主因；而「不是臂事件」被读数推翻 —")
+    p945 = ROOT / "scripts/jimeng_probe945_comp_scale_split_src.py"
+    _p945 = p945.read_text(encoding="utf-8") if p945.exists() else ""
+
+    check("GGGG.1 ✅⭐⭐ **规模不是主因** —— 连点 **12** 次（实际咬到 8 次）之后，"
+          "键盘臂**第一击** `added=8`、`不带 ti 8→1` **一次性补完**"
+          "（`scale=6` 那格是 `added=2`、`2→1`，同理）；第二击通常 `added=1`"
+          "⇒ **944 记的「13 次连点后连按 6 下 `added` 恒 0」不是规模阈值**。"
+          "2 轮 × 4 格，**每格独立 boot**，逐格读数 **2/2 逐条相同**",
+          '"comp_scale_is_not_the_cause_945": (' in _ausrc
+          and "**944 记的「13 次连点后连按 6 下 `added` 恒 0」不是规模阈值**" in _ausrc
+          and "补偿只在第一击发生" in _ausrc
+          and "每格独立 `boot()`" in _ausrc
+          # ⭐ 钉住「每格独立 boot」这条：**跨格复用状态**就是把上一格带进这一格
+          and "def boot_fn():" in _p945
+          and "n_audio = boot_fn()" in _p945)
+
+    check("GGGG.2 ✅⭐⭐⭐ **944 的另一半假设被读数直接推翻**："
+          "`mode=asis`（**不干预焦点**、就按点击留下的样子）那一格，"
+          "**按 Tab 之前焦点仍然是 `DIV` 且在节点内**"
+          "⇒ ⭐ **点击之后焦点本来就在节点本体上**"
+          "⇒ 944 那次 `active_tag=BUTTON` **不是点击造成的**，"
+          "是**那 6 下 Tab 自己一路 Tab 进**了节点内部的按钮"
+          "⇒ 「那一击压根不是臂事件」这个解释**不成立**。"
+          "⚠️ 这是**读数推翻假设**、不是推理推翻假设（930 的纪律）",
+          '"not_an_arm_event_hypothesis_refuted_945": (' in _ausrc
+          and "**点击之后焦点本来就在节点本体上**" in _ausrc
+          and "而是**那 6 下 Tab 自己一路 Tab 进**了节点内部的按钮" in _ausrc
+          and "这个解释**不成立**" in _ausrc
+          # ⭐ 钉住两个自变量在源码里**真的是两个**，且 `asis` 分支**不干预**
+          and '"scale": 12, "mode": "asis"' in _p945
+          and 'if mode == "body":' in _p945
+          and 'ARM_FOCUS_JS' in _p945)
+
+    check("GGGG.3 ⚠️⚠️⚠️ **但 944 那次「不补」的成因仍然未查明** —— "
+          "本批**没有对照真正的可疑变量**：每格 settle 只按 **1** 下、"
+          "`就绪不带 ti = 0`（初始化刚发生、指针还没走）；"
+          "而 944 settle 了 **10** 下、`就绪不带 ti = 1`（指针已经走过）"
+          "⇒ 剩下没被拆开的自变量是**前置态**"
+          "⇒ ⭐ **不许**把 944 那次读数记成「偶发」或「有别的条件」，"
+          "**成因未查明**。（这也是「拆自变量」只拆了一层的样子："
+          "**你以为只有两个，其实有三个**。）",
+          '"comp_refuted_reading_third_variable_945": (' in _ausrc
+          and "**没有对照真正的可疑变量**" in _ausrc
+          and "剩下没被拆开的自变量是**前置态**" in _ausrc
+          and "**成因未查明**" in _ausrc
+          and "**你以为只有两个，其实有三个**" in _ausrc
+          and 'c["ready_without_ti"] = pre["n_without_ti"]' in _p945
+          and 'c["n_settle"] = n_settle' in _p945)
+
+    check("GGGG.4 ⚠️ **本批不结案**：`cell_ok` **2/2 全 False**"
+          "（12 次那格是 9 次点得到、8 次咬到）⇒ 按纪律只当"
+          "**逐格 2/2 相同的局部读数**。⚠️ 另外把探针 `recovered` 那个"
+          "**两态判据的定义边界**钉住：`scale=2` 那格判成 `False` **不是现象**"
+          "（那一格连点后本来就 `== 1`、**没破坏**不变式）"
+          "⇒ ⭐ **不许**把那格的 `False` 读成「没补回」",
+          '"cell_ok_false_and_why_945": (' in _ausrc
+          and '"recovered_is_two_state_edge_945": (' in _ausrc
+          and "那是定义边界不是现象" in _ausrc
+          and "**不许**把那格的 `False` 读成「没补回」" in _ausrc
+          and 'c["recovered"] = (c["w_after_clicks"] > 1' in _p945
+          and 'c["cell_ok"] = bool(c["n_click"] and c["n_click"] == c["click_bites"]'
+          in _p945)
+
+    check("GGGG.5 ✅⭐ **944 的 S 臂反向由此答掉**（945 只是**引用**、没另设臂）："
+          "944 的 L 臂连点 **13 个不同下标**、每次都是一次臂事件"
+          "⇒ **「点未选中的节点必然咬」**在「本体落点、13 个不同下标」范围内 "
+          "**2/2 成立**；与 944 那条**「点已选中的同一节点不咬」**成对"
+          "⇒ ⭐ **鼠标臂要求「这一下改变了选中态」才咬**（两侧各 2/2）"
+          "⇒ ⇒ 复刻侧判「这一击是不是臂事件」时，"
+          "**先问「选中态变没变」，别只看落点在哪**",
+          '"unselected_node_always_bites_945": (' in _ausrc
+          and "**「点未选中的节点必然咬」**" in _ausrc
+          and "**鼠标臂要求「这一下改变了选中态」才咬**（两侧各 2/2）" in _ausrc
+          and "**先问「选中态变没变**，别只看落点在哪" in _ausrc)
+
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
           "§130「roving 是单指针、不是留轨迹」的**源站实证**；"
