@@ -1,0 +1,510 @@
+{
+ "predictions": {
+  "P1": "排除注释后只有 899 成对，其余 6 个断点单向 —— 无成对空洞",
+  "P2": "min-[900px]: 只存在于注释里，代码是 min-[899px]:flex（623 的修复在位）",
+  "P3": "max-[899px] 实际是 < 899（严格小于），与同名 CSS (max-width: 899px) 相反",
+  "P4": "三个独立探针在 898|899 之间同步翻转，且每个宽度恰好命中一个分支",
+  "P5": "断点换的是 48px 常驻竖条 <-> 68x32 浮动按钮对，两枚切换互补"
+ },
+ "run": {
+  "static": {
+   "counts": {
+    "899": {
+     "min": 15,
+     "max": 22
+    },
+    "850": {
+     "min": 0,
+     "max": 2
+    },
+    "680": {
+     "min": 1,
+     "max": 0
+    },
+    "620": {
+     "min": 0,
+     "max": 1
+    },
+    "520": {
+     "min": 0,
+     "max": 6
+    },
+    "480": {
+     "min": 1,
+     "max": 0
+    },
+    "430": {
+     "min": 0,
+     "max": 1
+    }
+   },
+   "codeTokens": [
+    "max-[430px]:",
+    "max-[520px]:",
+    "max-[620px]:",
+    "max-[850px]:",
+    "max-[899px]:",
+    "min-[480px]:",
+    "min-[680px]:",
+    "min-[899px]:"
+   ],
+   "commentOnlyTokens": [
+    "src/components/director/DirectorIconRail.tsx:max-[899px]",
+    "src/components/director/DirectorIconRail.tsx:min-[900px]"
+   ]
+  },
+  "sweep": [
+   {
+    "vw": 894,
+    "mq": {
+     "cssMax899": true,
+     "lt899": true,
+     "ge899": false,
+     "cssMax900": true,
+     "lt900": true,
+     "ge900": false
+    },
+    "rail": {
+     "display": "none",
+     "w": 0,
+     "h": 0,
+     "y": 0
+    },
+    "pair": {
+     "display": "flex",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "8px",
+    "drawerLeft": "0px"
+   },
+   {
+    "vw": 895,
+    "mq": {
+     "cssMax899": true,
+     "lt899": true,
+     "ge899": false,
+     "cssMax900": true,
+     "lt900": true,
+     "ge900": false
+    },
+    "rail": {
+     "display": "none",
+     "w": 0,
+     "h": 0,
+     "y": 0
+    },
+    "pair": {
+     "display": "flex",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "8px",
+    "drawerLeft": "0px"
+   },
+   {
+    "vw": 896,
+    "mq": {
+     "cssMax899": true,
+     "lt899": true,
+     "ge899": false,
+     "cssMax900": true,
+     "lt900": true,
+     "ge900": false
+    },
+    "rail": {
+     "display": "none",
+     "w": 0,
+     "h": 0,
+     "y": 0
+    },
+    "pair": {
+     "display": "flex",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "8px",
+    "drawerLeft": "0px"
+   },
+   {
+    "vw": 897,
+    "mq": {
+     "cssMax899": true,
+     "lt899": true,
+     "ge899": false,
+     "cssMax900": true,
+     "lt900": true,
+     "ge900": false
+    },
+    "rail": {
+     "display": "none",
+     "w": 0,
+     "h": 0,
+     "y": 0
+    },
+    "pair": {
+     "display": "flex",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "8px",
+    "drawerLeft": "0px"
+   },
+   {
+    "vw": 898,
+    "mq": {
+     "cssMax899": true,
+     "lt899": true,
+     "ge899": false,
+     "cssMax900": true,
+     "lt900": true,
+     "ge900": false
+    },
+    "rail": {
+     "display": "none",
+     "w": 0,
+     "h": 0,
+     "y": 0
+    },
+    "pair": {
+     "display": "flex",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "8px",
+    "drawerLeft": "0px"
+   },
+   {
+    "vw": 899,
+    "mq": {
+     "cssMax899": true,
+     "lt899": false,
+     "ge899": true,
+     "cssMax900": true,
+     "lt900": true,
+     "ge900": false
+    },
+    "rail": {
+     "display": "flex",
+     "w": 48,
+     "h": 1098,
+     "y": 52
+    },
+    "pair": {
+     "display": "none",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "260px",
+    "drawerLeft": "48px"
+   },
+   {
+    "vw": 900,
+    "mq": {
+     "cssMax899": false,
+     "lt899": false,
+     "ge899": true,
+     "cssMax900": true,
+     "lt900": false,
+     "ge900": true
+    },
+    "rail": {
+     "display": "flex",
+     "w": 48,
+     "h": 1098,
+     "y": 52
+    },
+    "pair": {
+     "display": "none",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "260px",
+    "drawerLeft": "48px"
+   },
+   {
+    "vw": 901,
+    "mq": {
+     "cssMax899": false,
+     "lt899": false,
+     "ge899": true,
+     "cssMax900": false,
+     "lt900": false,
+     "ge900": true
+    },
+    "rail": {
+     "display": "flex",
+     "w": 48,
+     "h": 1098,
+     "y": 52
+    },
+    "pair": {
+     "display": "none",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "260px",
+    "drawerLeft": "48px"
+   },
+   {
+    "vw": 902,
+    "mq": {
+     "cssMax899": false,
+     "lt899": false,
+     "ge899": true,
+     "cssMax900": false,
+     "lt900": false,
+     "ge900": true
+    },
+    "rail": {
+     "display": "flex",
+     "w": 48,
+     "h": 1098,
+     "y": 52
+    },
+    "pair": {
+     "display": "none",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "260px",
+    "drawerLeft": "48px"
+   },
+   {
+    "vw": 903,
+    "mq": {
+     "cssMax899": false,
+     "lt899": false,
+     "ge899": true,
+     "cssMax900": false,
+     "lt900": false,
+     "ge900": true
+    },
+    "rail": {
+     "display": "flex",
+     "w": 48,
+     "h": 1098,
+     "y": 52
+    },
+    "pair": {
+     "display": "none",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "260px",
+    "drawerLeft": "48px"
+   },
+   {
+    "vw": 904,
+    "mq": {
+     "cssMax899": false,
+     "lt899": false,
+     "ge899": true,
+     "cssMax900": false,
+     "lt900": false,
+     "ge900": true
+    },
+    "rail": {
+     "display": "flex",
+     "w": 48,
+     "h": 1098,
+     "y": 52
+    },
+    "pair": {
+     "display": "none",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "260px",
+    "drawerLeft": "48px"
+   },
+   {
+    "vw": 905,
+    "mq": {
+     "cssMax899": false,
+     "lt899": false,
+     "ge899": true,
+     "cssMax900": false,
+     "lt900": false,
+     "ge900": true
+    },
+    "rail": {
+     "display": "flex",
+     "w": 48,
+     "h": 1098,
+     "y": 52
+    },
+    "pair": {
+     "display": "none",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "260px",
+    "drawerLeft": "48px"
+   },
+   {
+    "vw": 906,
+    "mq": {
+     "cssMax899": false,
+     "lt899": false,
+     "ge899": true,
+     "cssMax900": false,
+     "lt900": false,
+     "ge900": true
+    },
+    "rail": {
+     "display": "flex",
+     "w": 48,
+     "h": 1098,
+     "y": 52
+    },
+    "pair": {
+     "display": "none",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "260px",
+    "drawerLeft": "48px"
+   },
+   {
+    "vw": 898,
+    "mq": {
+     "cssMax899": true,
+     "lt899": true,
+     "ge899": false,
+     "cssMax900": true,
+     "lt900": true,
+     "ge900": false
+    },
+    "rail": {
+     "display": "none",
+     "w": 0,
+     "h": 0,
+     "y": 0
+    },
+    "pair": {
+     "display": "flex",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "8px",
+    "drawerLeft": "0px"
+   },
+   {
+    "vw": 899,
+    "mq": {
+     "cssMax899": true,
+     "lt899": false,
+     "ge899": true,
+     "cssMax900": true,
+     "lt900": true,
+     "ge900": false
+    },
+    "rail": {
+     "display": "flex",
+     "w": 48,
+     "h": 1098,
+     "y": 52
+    },
+    "pair": {
+     "display": "none",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "260px",
+    "drawerLeft": "48px"
+   },
+   {
+    "vw": 900,
+    "mq": {
+     "cssMax899": false,
+     "lt899": false,
+     "ge899": true,
+     "cssMax900": true,
+     "lt900": false,
+     "ge900": true
+    },
+    "rail": {
+     "display": "flex",
+     "w": 48,
+     "h": 1098,
+     "y": 52
+    },
+    "pair": {
+     "display": "none",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "260px",
+    "drawerLeft": "48px"
+   },
+   {
+    "vw": 1280,
+    "mq": {
+     "cssMax899": false,
+     "lt899": false,
+     "ge899": true,
+     "cssMax900": false,
+     "lt900": false,
+     "ge900": true
+    },
+    "rail": {
+     "display": "flex",
+     "w": 48,
+     "h": 1098,
+     "y": 52
+    },
+    "pair": {
+     "display": "none",
+     "kids": [
+      "打开场景对象",
+      "打开属性面板"
+     ]
+    },
+    "headerPr": "260px",
+    "drawerLeft": "48px"
+   }
+  ]
+ },
+ "summary": {
+  "only-899-is-paired-the-rest-are-one-sided": true,
+  "the-min-900px-pair-only-survives-in-a-comment": true,
+  "max-899px-is-strictly-less-than-while-the-css-query-is-inclusive": true,
+  "the-two-branches-are-mutually-exclusive-and-jointly-exhaustive": true,
+  "the-breakpoint-swaps-a-48px-rail-for-a-68x32-button-pair": true,
+  "retraction-of-717-the-899-boundary-is-by-construction": true
+ },
+ "failures": []
+}
