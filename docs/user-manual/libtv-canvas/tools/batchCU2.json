@@ -1,0 +1,369 @@
+{
+  "大编辑器": [
+    {
+      "在哪": "大编辑器",
+      "rect": [
+        708,
+        664,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "预设",
+      "title": null,
+      "data": {
+        "data-feature-id": "generator:preset-menu"
+      },
+      "svgPaths": [
+        "M5.12 7.8c.74 0 1.34.59 1.34 1.32v3.34c0 .73"
+      ],
+      "cls": "text-canvas-controls-text relative flex size-8 shrink-0 items-ce",
+      "气泡": [
+        "预设"
+      ]
+    },
+    {
+      "在哪": "大编辑器",
+      "rect": [
+        744,
+        664,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [],
+      "cls": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-t",
+      "气泡": [
+        "Panavision DXL2 已关闭 Arri Signature Prime / 35mm / ƒ/4"
+      ]
+    },
+    {
+      "在哪": "大编辑器",
+      "rect": [
+        959,
+        664,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {
+        "data-practice-generator-lock": ""
+      },
+      "svgPaths": [
+        "M15.52 7.2c.16 0 .31.1.37.26l3.8 10a.4.4 0 0"
+      ],
+      "cls": "flex size-8 shrink-0 cursor-pointer items-center justify-center ",
+      "气泡": [
+        "翻译提示词"
+      ]
+    },
+    {
+      "在哪": "大编辑器",
+      "rect": [
+        999,
+        664,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {
+        "data-practice-generator-lock": ""
+      },
+      "svgPaths": [
+        "M14 17H5M19 7h-9"
+      ],
+      "cls": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center",
+      "气泡": []
+    },
+    {
+      "在哪": "大编辑器",
+      "rect": [
+        1079,
+        664,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {
+        "data-quick-guide-anchor": "generator-submit",
+        "data-practice-anchor": "gen.submit"
+      },
+      "svgPaths": [
+        "M8.3.3a1 1 0 0 1 1.4 0l8 8a1 1 0 0 1-1.4 1.4"
+      ],
+      "cls": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-cente",
+      "气泡": [
+        "请输入提示词或添加参考素材"
+      ]
+    },
+    {
+      "在哪": "大编辑器",
+      "rect": [
+        1083,
+        114,
+        28,
+        28
+      ],
+      "text": "",
+      "aria": null,
+      "title": null,
+      "data": {},
+      "svgPaths": [
+        "M9.76 10.59c.28 0 .5.22.5.5v8a.4.4 0 0 1-.4."
+      ],
+      "cls": "bg-panel-background absolute right-2 top-2 z-10 flex size-7 shri",
+      "气泡": []
+    }
+  ],
+  "广场候选": [
+    {
+      "x": 580,
+      "y": 757,
+      "w": 32,
+      "cls": "relative flex items-center justify-center rounded-",
+      "aria": "添加节点",
+      "text": ""
+    },
+    {
+      "x": 620,
+      "y": 757,
+      "w": 32,
+      "cls": "relative flex items-center justify-center rounded-",
+      "aria": "移动",
+      "text": ""
+    },
+    {
+      "x": 660,
+      "y": 757,
+      "w": 32,
+      "cls": "relative flex items-center justify-center rounded-",
+      "aria": "素材库",
+      "text": ""
+    },
+    {
+      "x": 700,
+      "y": 757,
+      "w": 32,
+      "cls": "relative flex items-center justify-center rounded-",
+      "aria": "角色造型室",
+      "text": ""
+    },
+    {
+      "x": 740,
+      "y": 757,
+      "w": 32,
+      "cls": "relative flex items-center justify-center rounded-",
+      "aria": "生成历史",
+      "text": ""
+    },
+    {
+      "x": 789,
+      "y": 757,
+      "w": 32,
+      "cls": "relative flex items-center justify-center rounded-",
+      "aria": "快捷键",
+      "text": ""
+    },
+    {
+      "x": 829,
+      "y": 757,
+      "w": 32,
+      "cls": "relative flex items-center justify-center rounded-",
+      "aria": "教程",
+      "text": ""
+    },
+    {
+      "x": 875,
+      "y": 749,
+      "w": 48,
+      "cls": "TvDirectorEntry-module__vCoIiq__pill border-hair b",
+      "aria": "TV Director",
+      "text": "TV Director"
+    },
+    {
+      "x": 565,
+      "y": 563,
+      "w": 222,
+      "cls": "h-13 group flex w-full items-center gap-2 rounded-",
+      "aria": null,
+      "text": "风格库 新增风格节点 NEW"
+    },
+    {
+      "x": 565,
+      "y": 619,
+      "w": 222,
+      "cls": "h-13 group flex w-full items-center gap-2 rounded-",
+      "aria": null,
+      "text": "特效库 新增特效节点 NEW"
+    },
+    {
+      "x": 565,
+      "y": 675,
+      "w": 222,
+      "cls": "h-13 group flex w-full items-center gap-2 rounded-",
+      "aria": null,
+      "text": "打开工具箱"
+    },
+    {
+      "x": 1214,
+      "y": 171,
+      "w": 43,
+      "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-ce",
+      "aria": null,
+      "text": "分镜"
+    },
+    {
+      "x": 1261,
+      "y": 171,
+      "w": 43,
+      "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-ce",
+      "aria": null,
+      "text": "动态"
+    },
+    {
+      "x": 1308,
+      "y": 171,
+      "w": 43,
+      "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-ce",
+      "aria": null,
+      "text": "音乐"
+    },
+    {
+      "x": 1214,
+      "y": 195,
+      "w": 138,
+      "cls": "nodrag nopan flex h-9 w-full items-center justify-",
+      "aria": null,
+      "text": "开始拉片"
+    },
+    {
+      "x": 517,
+      "y": 640,
+      "w": 32,
+      "cls": "bg-btn-invert-bg flex size-8 shrink-0 cursor-point",
+      "aria": null,
+      "text": ""
+    },
+    {
+      "x": 521,
+      "y": 498,
+      "w": 28,
+      "cls": "bg-panel-background absolute right-2 top-2 z-10 fl",
+      "aria": null,
+      "text": ""
+    },
+    {
+      "x": 842,
+      "y": 413,
+      "w": 41,
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "aria": null,
+      "text": "图生图"
+    },
+    {
+      "x": 842,
+      "y": 432,
+      "w": 49,
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "aria": null,
+      "text": "图片高清"
+    },
+    {
+      "x": 1202,
+      "y": 394,
+      "w": 61,
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "aria": null,
+      "text": "自己编写内容"
+    },
+    {
+      "x": 1202,
+      "y": 413,
+      "w": 48,
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "aria": null,
+      "text": "文生视频"
+    },
+    {
+      "x": 1202,
+      "y": 432,
+      "w": 68,
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "aria": null,
+      "text": "图片反推提示词"
+    },
+    {
+      "x": 1202,
+      "y": 450,
+      "w": 54,
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "aria": null,
+      "text": "文字生音乐"
+    },
+    {
+      "x": 987,
+      "y": 116,
+      "w": 40,
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover f",
+      "aria": null,
+      "text": "讲解视频"
+    },
+    {
+      "x": 987,
+      "y": 131,
+      "w": 40,
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover f",
+      "aria": null,
+      "text": "批量广告"
+    },
+    {
+      "x": 987,
+      "y": 146,
+      "w": 40,
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover f",
+      "aria": null,
+      "text": "口播视频"
+    },
+    {
+      "x": 987,
+      "y": 161,
+      "w": 40,
+      "cls": "text-fg-default hover:enabled:bg-btn-ghost-hover f",
+      "aria": null,
+      "text": "素材混剪"
+    },
+    {
+      "x": 595,
+      "y": 116,
+      "w": 65,
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "aria": null,
+      "text": "5分钟超长视频"
+    },
+    {
+      "x": 595,
+      "y": 135,
+      "w": 68,
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "aria": null,
+      "text": "首尾帧生成视频"
+    },
+    {
+      "x": 595,
+      "y": 154,
+      "w": 61,
+      "cls": "group/btn text-fg-default hover:bg-canvas-controls",
+      "aria": null,
+      "text": "首帧生成视频"
+    }
+  ]
+}

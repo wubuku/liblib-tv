@@ -1,0 +1,1570 @@
+{
+  "all": [
+    {
+      "zone": "顶栏",
+      "节点id": null,
+      "rect": [
+        165,
+        8,
+        69,
+        32
+      ],
+      "text": "画布 2",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none group-data-open/canvas-chip:rotate-180 shrink-0 transition-transform duration-200",
+      "svgPaths": [
+        "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 ."
+      ],
+      "子元素": [
+        "span.text-canvas-controls-text min-w-0 trunca",
+        "svg.[object SVGAnimatedString]"
+      ]
+    },
+    {
+      "zone": "顶栏",
+      "节点id": null,
+      "rect": [
+        244,
+        8,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "工作流",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none size-4",
+      "svgPaths": [
+        "M12.25 11.03a1.22 1.22 0 1 0-2.45 0 1.22 1.22 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ]
+    },
+    {
+      "zone": "顶栏",
+      "节点id": null,
+      "rect": [
+        276,
+        8,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "故事板",
+      "title": null,
+      "dataAttrs": {
+        "data-academy-guide-anchor": "storyboard-mode"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none size-4",
+      "svgPaths": [
+        "M10.5 6.3H6.3v4.2h1.93q.73 0 1.1-.02t.5-.11q.3"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ]
+    },
+    {
+      "zone": "顶栏",
+      "节点id": null,
+      "rect": [
+        1087,
+        8,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "发布与分享",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": null,
+      "svgPaths": [
+        "M10.12.642a2.276 2.276 0 0 1 0 4.55 2.27 2.27 "
+      ],
+      "子元素": [
+        "span.flex size-full items-center justify-cent"
+      ]
+    },
+    {
+      "zone": "顶栏",
+      "节点id": null,
+      "rect": [
+        1127,
+        8,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "积分超市",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none text-nt-icon-brand",
+      "svgPaths": [
+        "M8 1.33a6.67 6.67 0 1 1 0 13.34A6.67 6.67 0 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ]
+    },
+    {
+      "zone": "顶栏",
+      "节点id": null,
+      "rect": [
+        1334,
+        8,
+        58,
+        32
+      ],
+      "text": "20",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M7.3.64A.5.5 0 0 0 7 .05a.6.6 0 0 0-.67.14L.13"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        580,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "添加节点",
+      "title": null,
+      "dataAttrs": {
+        "data-sidebar-btn": "add-node"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none transition-transform duration-200 ",
+      "svgPaths": [
+        "M9.38 16.67v-6.05H3.33a.62.62 0 1 1 0-1.24h6.0"
+      ],
+      "子元素": [
+        "span.bg-canvas-primary-btn hover:bg-canvas-pr"
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        620,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "移动",
+      "title": null,
+      "dataAttrs": {
+        "data-sidebar-btn": "tool-mode"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M2.33 4.72c-.5-1.48.9-2.9 2.39-2.39L17.08 6.6c"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        660,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "素材库",
+      "title": null,
+      "dataAttrs": {
+        "data-sidebar-btn": "open-asset"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M6.94 10.84c1.15 0 2.08.93 2.08 2.08v2.6c0 1.1"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        700,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "角色造型室",
+      "title": null,
+      "dataAttrs": {
+        "data-sidebar-btn": "character-library"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M17.08 10a7.08 7.08 0 1 0-14.16 0 7.08 7.08 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span.border-(--storyboard-group-shell-bg) bg-"
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        740,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "生成历史",
+      "title": null,
+      "dataAttrs": {
+        "data-sidebar-btn": "history"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M17.08 10a7.08 7.08 0 1 0-14.16 0 7.08 7.08 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        789,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "快捷键",
+      "title": null,
+      "dataAttrs": {
+        "data-sidebar-btn": "keyboard"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M16.08 3.35c1.72 0 3.12 1.4 3.12 3.13l-.03 7.0"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        829,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "教程",
+      "title": null,
+      "dataAttrs": {
+        "data-sidebar-btn": "contact"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M10 1.67a8.33 8.33 0 1 1 0 16.66 8.33 8.33 0 0"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        875,
+        749,
+        48,
+        48
+      ],
+      "text": "TV Director",
+      "aria": "TV Director",
+      "title": null,
+      "dataAttrs": {
+        "data-guide-target": "agent-entry"
+      },
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "absolute",
+      "svgPaths": [
+        "M 8 45 A 34 34 0 0 1 82 45",
+        "M 82 45 A 34 34 0 0 0 8 45",
+        "M 15 70 A 40 40 0 0 1 75 20",
+        "M 15 20 A 40 40 0 0 0 75 70"
+      ],
+      "子元素": [
+        "div.relative z-[2] size-7 shrink-0",
+        "span.relative z-[2] block shrink-0 overflow-h"
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "a-CUfJfmKzUJ",
+      "rect": [
+        330,
+        649,
+        54,
+        17
+      ],
+      "text": "音频生视频",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "a-THmbuJXQj4",
+      "rect": [
+        110,
+        164,
+        54,
+        17
+      ],
+      "text": "音频生视频",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "b-mfkcQNULC3",
+      "rect": [
+        1214,
+        75,
+        138,
+        77
+      ],
+      "text": "上传视频后开始",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none text-fg-muted",
+      "svgPaths": [
+        "M16.25 16.25v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span.text-fg-muted text-[12px] leading-[18px]"
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "b-mfkcQNULC3",
+      "rect": [
+        1214,
+        171,
+        43,
+        15
+      ],
+      "text": "分镜",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M6.85 8.74q0-.46-.13-.88h-.05a4 4 0 0 1-3.41-1"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "b-mfkcQNULC3",
+      "rect": [
+        1261,
+        171,
+        43,
+        15
+      ],
+      "text": "动态",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M11 2.5c0-.83-.67-1.5-1.5-1.5h-.17v1.75H11zM9."
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "b-mfkcQNULC3",
+      "rect": [
+        1308,
+        171,
+        43,
+        15
+      ],
+      "text": "音乐",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M2.67 11.5V.5a.5.5 0 1 1 1 0v11a.5.5 0 0 1-1 0"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "b-mfkcQNULC3",
+      "rect": [
+        1214,
+        195,
+        138,
+        17
+      ],
+      "text": "开始拉片",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "not-allowed",
+      "svgClass": null,
+      "svgPaths": [],
+      "子元素": []
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "i-sODTbgLUm1",
+      "rect": [
+        842,
+        413,
+        41,
+        17
+      ],
+      "text": "图生图",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M1.8 16.9A1.1 1.1 0 0 0 2.9 18h14a1.1 1.1 0 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "i-sODTbgLUm1",
+      "rect": [
+        842,
+        432,
+        49,
+        17
+      ],
+      "text": "图片高清",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none h-4 w-4",
+      "svgPaths": [
+        "M16.75 0C18.55 0 20 1.45 20 3.25v13.5c0 1.8-1."
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "n-56F19pXVB4",
+      "rect": [
+        396,
+        167,
+        43,
+        15
+      ],
+      "text": "打开导演台",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {
+        "data-practice-anchor": "director.open"
+      },
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": null,
+      "svgPaths": [],
+      "子元素": []
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "t-2AK3Ukyxj3",
+      "rect": [
+        229,
+        687,
+        61,
+        17
+      ],
+      "text": "自己编写内容",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "t-2AK3Ukyxj3",
+      "rect": [
+        229,
+        706,
+        48,
+        17
+      ],
+      "text": "文生视频",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "t-2AK3Ukyxj3",
+      "rect": [
+        229,
+        724,
+        68,
+        17
+      ],
+      "text": "图片反推提示词",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "t-2AK3Ukyxj3",
+      "rect": [
+        229,
+        743,
+        54,
+        17
+      ],
+      "text": "文字生音乐",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M11.2.03a1.8 1.8 0 0 1 2.17 1.77v16.32a1.8 1.8"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "t-UtVx3lZmrV",
+      "rect": [
+        1202,
+        394,
+        61,
+        17
+      ],
+      "text": "自己编写内容",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "t-UtVx3lZmrV",
+      "rect": [
+        1202,
+        413,
+        48,
+        17
+      ],
+      "text": "文生视频",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "t-UtVx3lZmrV",
+      "rect": [
+        1202,
+        432,
+        68,
+        17
+      ],
+      "text": "图片反推提示词",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M17.4 0A2.6 2.6 0 0 1 20 2.6v14.8a2.6 2.6 0 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "t-UtVx3lZmrV",
+      "rect": [
+        1202,
+        450,
+        54,
+        17
+      ],
+      "text": "文字生音乐",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M11.2.03a1.8 1.8 0 0 1 2.17 1.77v16.32a1.8 1.8"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "v-oZNpH99MtM",
+      "rect": [
+        987,
+        116,
+        40,
+        13
+      ],
+      "text": "讲解视频",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv shrink-0",
+      "svgPaths": [
+        "M8.33 1.75c.42 0 .75.34.75.75v15a.75.75 0 0 1-"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "v-oZNpH99MtM",
+      "rect": [
+        987,
+        131,
+        40,
+        13
+      ],
+      "text": "批量广告",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv shrink-0",
+      "svgPaths": [
+        "M5.63 3.13h8.75",
+        "M3.96 6.04h12.08",
+        "M17.7 8.96H2.3l1.66 7.91h12.08z"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "v-oZNpH99MtM",
+      "rect": [
+        987,
+        146,
+        40,
+        13
+      ],
+      "text": "口播视频",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--lucide shrink-0",
+      "svgPaths": [
+        "M12 19v3m7-12v2a7 7 0 0 1-14 0v-2"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "v-oZNpH99MtM",
+      "rect": [
+        987,
+        161,
+        40,
+        13
+      ],
+      "text": "素材混剪",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv shrink-0",
+      "svgPaths": [
+        "m7.7 4.48-.44-1.13a.55.55 0 0 0-1.02 0l-.43 1.",
+        "M12.38 2.81c0-.93-.76-1.68-1.7-1.68H2.82c-.93 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "v-v2hlWY4Br3",
+      "rect": [
+        595,
+        116,
+        65,
+        17
+      ],
+      "text": "5分钟超长视频",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv",
+      "svgPaths": [
+        "M1.1 4.3a2.94 2.94 0 0 1 4.42.13l1.5 1.7 1.48-"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "v-v2hlWY4Br3",
+      "rect": [
+        595,
+        135,
+        68,
+        17
+      ],
+      "text": "首尾帧生成视频",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M19.49 15c.75.43.75 1.51 0 1.94l-8.36 4.77c-.6"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "节点卡片",
+      "节点id": "v-v2hlWY4Br3",
+      "rect": [
+        595,
+        154,
+        61,
+        17
+      ],
+      "text": "首帧生成视频",
+      "aria": null,
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M11.58 0c0 5.76 4.66 10.42 10.42 10.42v1.16A10"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span."
+      ]
+    },
+    {
+      "zone": "资产管理入口",
+      "节点id": null,
+      "rect": [
+        14,
+        764,
+        94,
+        28
+      ],
+      "text": "资产管理",
+      "aria": "资产管理",
+      "title": null,
+      "dataAttrs": {
+        "data-academy-guide-anchor": "workspace-asset-management"
+      },
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M17.48.01A2.8 2.8 0 0 1 20 2.81V17.2l-.01.28a2"
+      ],
+      "子元素": [
+        "span.flex items-center justify-center overflo",
+        "span.whitespace-nowrap text-[13px] leading-no"
+      ]
+    },
+    {
+      "zone": "资产管理入口",
+      "节点id": null,
+      "rect": [
+        112,
+        764,
+        28,
+        28
+      ],
+      "text": "",
+      "aria": "整理画布，Option+Shift+F",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M5.13 8.34c.87 0 1.58.7 1.58 1.57v1.58c0 .87-."
+      ],
+      "子元素": [
+        "span.flex items-center justify-center overflo"
+      ]
+    },
+    {
+      "zone": "资产管理入口",
+      "节点id": null,
+      "rect": [
+        144,
+        764,
+        28,
+        28
+      ],
+      "text": "",
+      "aria": "切换小地图",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M10.9 0a6.9 6.9 0 0 1 6.9 6.9l-.01.4a10 10 0 0"
+      ],
+      "子元素": [
+        "span.flex items-center justify-center overflo"
+      ]
+    },
+    {
+      "zone": "资产管理入口",
+      "节点id": null,
+      "rect": [
+        176,
+        764,
+        28,
+        28
+      ],
+      "text": "",
+      "aria": "隐藏节点连线",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv",
+      "svgPaths": [
+        "M9.28 0a2.28 2.28 0 1 1-2.22 2.8h-4.5a1.52 1.5"
+      ],
+      "子元素": [
+        "span.flex items-center justify-center overflo"
+      ]
+    },
+    {
+      "zone": "资产管理入口",
+      "节点id": null,
+      "rect": [
+        208,
+        764,
+        28,
+        28
+      ],
+      "text": "",
+      "aria": "网格吸附",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--lucide pointer-events-none ",
+      "svgPaths": [
+        "m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1."
+      ],
+      "子元素": [
+        "span.relative flex items-center justify-cente"
+      ]
+    },
+    {
+      "zone": "资产管理入口",
+      "节点id": null,
+      "rect": [
+        240,
+        764,
+        36,
+        28
+      ],
+      "text": "47%",
+      "aria": "缩放选项",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": null,
+      "svgPaths": [],
+      "子元素": []
+    },
+    {
+      "zone": "其他",
+      "节点id": null,
+      "rect": [
+        730,
+        9,
+        64,
+        16
+      ],
+      "text": "取消ESC",
+      "aria": "退出跟随",
+      "title": null,
+      "dataAttrs": {
+        "data-testid": "collab-follow-banner-close"
+      },
+      "等级": "L1 有文字",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": null,
+      "svgPaths": [],
+      "子元素": []
+    }
+  ],
+  "results": [
+    {
+      "zone": "顶栏",
+      "节点id": null,
+      "rect": [
+        244,
+        8,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "工作流",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none size-4",
+      "svgPaths": [
+        "M12.25 11.03a1.22 1.22 0 1 0-2.45 0 1.22 1.22 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ],
+      "气泡": [
+        "工作流"
+      ]
+    },
+    {
+      "zone": "顶栏",
+      "节点id": null,
+      "rect": [
+        276,
+        8,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "故事板",
+      "title": null,
+      "dataAttrs": {
+        "data-academy-guide-anchor": "storyboard-mode"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none size-4",
+      "svgPaths": [
+        "M10.5 6.3H6.3v4.2h1.93q.73 0 1.1-.02t.5-.11q.3"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ],
+      "气泡": [
+        "故事板"
+      ]
+    },
+    {
+      "zone": "顶栏",
+      "节点id": null,
+      "rect": [
+        1087,
+        8,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "发布与分享",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": null,
+      "svgPaths": [
+        "M10.12.642a2.276 2.276 0 0 1 0 4.55 2.27 2.27 "
+      ],
+      "子元素": [
+        "span.flex size-full items-center justify-cent"
+      ],
+      "气泡": [
+        "发布与分享"
+      ]
+    },
+    {
+      "zone": "顶栏",
+      "节点id": null,
+      "rect": [
+        1127,
+        8,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "积分超市",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none text-nt-icon-brand",
+      "svgPaths": [
+        "M8 1.33a6.67 6.67 0 1 1 0 13.34A6.67 6.67 0 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ],
+      "气泡": [
+        "积分超市"
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        580,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "添加节点",
+      "title": null,
+      "dataAttrs": {
+        "data-sidebar-btn": "add-node"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none transition-transform duration-200 ",
+      "svgPaths": [
+        "M9.38 16.67v-6.05H3.33a.62.62 0 1 1 0-1.24h6.0"
+      ],
+      "子元素": [
+        "span.bg-canvas-primary-btn hover:bg-canvas-pr"
+      ],
+      "气泡": [
+        "添加节点"
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        620,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "移动",
+      "title": null,
+      "dataAttrs": {
+        "data-sidebar-btn": "tool-mode"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M2.33 4.72c-.5-1.48.9-2.9 2.39-2.39L17.08 6.6c"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ],
+      "气泡": [
+        "移动"
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        660,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "素材库",
+      "title": null,
+      "dataAttrs": {
+        "data-sidebar-btn": "open-asset"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M6.94 10.84c1.15 0 2.08.93 2.08 2.08v2.6c0 1.1"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ],
+      "气泡": [
+        "素材库"
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        700,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "角色造型室",
+      "title": null,
+      "dataAttrs": {
+        "data-sidebar-btn": "character-library"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M17.08 10a7.08 7.08 0 1 0-14.16 0 7.08 7.08 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]",
+        "span.border-(--storyboard-group-shell-bg) bg-"
+      ],
+      "气泡": [
+        "角色造型室"
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        740,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "生成历史",
+      "title": null,
+      "dataAttrs": {
+        "data-sidebar-btn": "history"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M17.08 10a7.08 7.08 0 1 0-14.16 0 7.08 7.08 0 "
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ],
+      "气泡": [
+        "生成历史"
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        789,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "快捷键",
+      "title": null,
+      "dataAttrs": {
+        "data-sidebar-btn": "keyboard"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M16.08 3.35c1.72 0 3.12 1.4 3.12 3.13l-.03 7.0"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ],
+      "气泡": [
+        "快捷键"
+      ]
+    },
+    {
+      "zone": "画布左下工具条",
+      "节点id": null,
+      "rect": [
+        829,
+        757,
+        32,
+        32
+      ],
+      "text": "",
+      "aria": "教程",
+      "title": null,
+      "dataAttrs": {
+        "data-sidebar-btn": "contact"
+      },
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M10 1.67a8.33 8.33 0 1 1 0 16.66 8.33 8.33 0 0"
+      ],
+      "子元素": [
+        "svg.[object SVGAnimatedString]"
+      ],
+      "气泡": [
+        "教程"
+      ]
+    },
+    {
+      "zone": "资产管理入口",
+      "节点id": null,
+      "rect": [
+        112,
+        764,
+        28,
+        28
+      ],
+      "text": "",
+      "aria": "整理画布，Option+Shift+F",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M5.13 8.34c.87 0 1.58.7 1.58 1.57v1.58c0 .87-."
+      ],
+      "子元素": [
+        "span.flex items-center justify-center overflo"
+      ],
+      "气泡": [
+        "整理画布 ⌥⇧F"
+      ]
+    },
+    {
+      "zone": "资产管理入口",
+      "节点id": null,
+      "rect": [
+        144,
+        764,
+        28,
+        28
+      ],
+      "text": "",
+      "aria": "切换小地图",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv pointer-events-none ",
+      "svgPaths": [
+        "M10.9 0a6.9 6.9 0 0 1 6.9 6.9l-.01.4a10 10 0 0"
+      ],
+      "子元素": [
+        "span.flex items-center justify-center overflo"
+      ],
+      "气泡": [
+        "画布小地图"
+      ]
+    },
+    {
+      "zone": "资产管理入口",
+      "节点id": null,
+      "rect": [
+        176,
+        764,
+        28,
+        28
+      ],
+      "text": "",
+      "aria": "隐藏节点连线",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--libtv",
+      "svgPaths": [
+        "M9.28 0a2.28 2.28 0 1 1-2.22 2.8h-4.5a1.52 1.5"
+      ],
+      "子元素": [
+        "span.flex items-center justify-center overflo"
+      ],
+      "气泡": [
+        "隐藏节点连线"
+      ]
+    },
+    {
+      "zone": "资产管理入口",
+      "节点id": null,
+      "rect": [
+        208,
+        764,
+        28,
+        28
+      ],
+      "text": "",
+      "aria": "网格吸附",
+      "title": null,
+      "dataAttrs": {},
+      "等级": "L2 有 aria",
+      "tag": "button",
+      "cursor": "pointer",
+      "svgClass": "iconify iconify--lucide pointer-events-none ",
+      "svgPaths": [
+        "m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1."
+      ],
+      "子元素": [
+        "span.relative flex items-center justify-cente"
+      ],
+      "气泡": [
+        "网格吸附"
+      ]
+    }
+  ]
+}

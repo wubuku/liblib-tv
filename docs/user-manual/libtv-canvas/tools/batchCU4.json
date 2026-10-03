@@ -1,0 +1,142 @@
+{
+  "info": {
+    "容器": {
+      "rect": [
+        8,
+        758,
+        274,
+        40
+      ],
+      "全文": "资产管理 47%",
+      "class": "flex items-center gap-1 rounded-xl p-[6px]"
+    },
+    "按钮": [
+      {
+        "rect": [
+          14,
+          764,
+          94,
+          28
+        ],
+        "text": "资产管理",
+        "aria": "资产管理",
+        "title": null,
+        "tag": "button",
+        "data": {
+          "data-academy-guide-anchor": "workspace-asset-management"
+        },
+        "svgPaths": [
+          "M17.48.01A2.8 2.8 0 0 1 20 2.81V17.2l-.01.28a2.8 2.8"
+        ],
+        "svgCircles": [],
+        "cls": "hover:bg-canvas-controls-hover relative flex items-center rounded-lg t"
+      },
+      {
+        "rect": [
+          112,
+          764,
+          28,
+          28
+        ],
+        "text": "",
+        "aria": "整理画布，Option+Shift+F",
+        "title": null,
+        "tag": "button",
+        "data": {},
+        "svgPaths": [
+          "M5.13 8.34c.87 0 1.58.7 1.58 1.57v1.58c0 .87-.7 1.57"
+        ],
+        "svgCircles": [],
+        "cls": "flex items-center justify-center rounded-lg transition-colors hover:bg"
+      },
+      {
+        "rect": [
+          144,
+          764,
+          28,
+          28
+        ],
+        "text": "",
+        "aria": "切换小地图",
+        "title": null,
+        "tag": "button",
+        "data": {},
+        "svgPaths": [
+          "M10.9 0a6.9 6.9 0 0 1 6.9 6.9l-.01.4a10 10 0 0 1-1.8"
+        ],
+        "svgCircles": [],
+        "cls": "flex items-center justify-center rounded-lg transition-colors hover:bg"
+      },
+      {
+        "rect": [
+          176,
+          764,
+          28,
+          28
+        ],
+        "text": "",
+        "aria": "隐藏节点连线",
+        "title": null,
+        "tag": "button",
+        "data": {},
+        "svgPaths": [
+          "M9.28 0a2.28 2.28 0 1 1-2.22 2.8h-4.5a1.52 1.52 0 1 "
+        ],
+        "svgCircles": [],
+        "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+      },
+      {
+        "rect": [
+          208,
+          764,
+          28,
+          28
+        ],
+        "text": "",
+        "aria": "网格吸附",
+        "title": null,
+        "tag": "button",
+        "data": {},
+        "svgPaths": [
+          "m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2."
+        ],
+        "svgCircles": [],
+        "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+      },
+      {
+        "rect": [
+          240,
+          764,
+          36,
+          28
+        ],
+        "text": "47%",
+        "aria": "缩放选项",
+        "title": null,
+        "tag": "button",
+        "data": {},
+        "svgPaths": [],
+        "svgCircles": [],
+        "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+      }
+    ]
+  },
+  "tips": {
+    "14": [],
+    "112": [
+      "整理画布 ⏎ ⌥⇧F"
+    ],
+    "144": [
+      "画布小地图"
+    ],
+    "176": [
+      "隐藏节点连线"
+    ],
+    "208": [
+      "网格吸附"
+    ],
+    "240": [
+      "缩放选项"
+    ]
+  }
+}
