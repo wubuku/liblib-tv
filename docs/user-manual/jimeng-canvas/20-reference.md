@@ -1525,6 +1525,25 @@ opacity: 0 ｜pointer-events: none ｜transform: scale(0.5) ｜data-state: "clos
 | `flow-node-multi-selection-source-handle` | `60×120` | 多选集合的出边热区。🔴 **这是「屏上恒 `60×120`」**（40/60/100/200% 四档屏上与 `offsetWidth` 逐字相同），**不是**每节点连接手柄那条「canvas 恒 `60×120`」—— 两者 `offsetWidth` 都是 `60×120`，但**多选手柄挂在 `.react-flow__node-toolbar` 下、不在 `.react-flow__viewport` 里**（不被 scale 乘），每节点手柄在 viewport 内（被乘，60% 下屏上 `36×72`） |
 | `flow-node-multi-selection-source-connection-menu-button` | `36×36` | aria 逐字 **`Create connected node after selected nodes`**。四档屏上恒 `36×36` |
 
+### 🆕 两个「显示」开关的成对契约（批次 138 首次成对建档）
+
+| | `canvas-display-toggle-connections` | `canvas-display-toggle-minimap` |
+|---|---|---|
+| 屏上矩形 | **`28×28@80,672`** | **`28×28@48,672`** |
+| **aria 逐字** | **`显示连线`** | **`小地图`** |
+| `aria-pressed` | **`true ↔ false` 可靠翻转** | **`true ↔ false` 可靠翻转** |
+| `data-state` | 🔴 **恒 `closed`**（三态逐字相同） | 🔴 **恒 `closed`** |
+| 祖先链 | `inline-flex → contents → relative → flex → dreamina-canvas-navigation-dock → pointer-events-none` | **逐字相同** |
+
+- 两者**同一排、相邻 32px**、**同一个父级** `dreamina-canvas-navigation-dock`。
+- ⚠️ **两个 aria 句式不对称**：一个是**动作名**、一个是**名词** ⇒ 写脚本时不要假设同一排开关句式一致。
+- 🔑 **「显示连线」开关不删边、不改 DOM，只改 `stroke-opacity`**：
+  有边时三态实测 **边 DOM 数恒 `1`、边 id 逐个相同、几何一字不差**，
+  唯一变的是 `path.react-flow__edge-path` 的 **`stroke-opacity` `0.16 ↔ 0`**。
+  ⇒ **数 `.react-flow__edge` 永远测不出这个开关**（`30-concepts.md` 那张表的判据已订正）。
+- ✅ **两个开关互不牵连**；**点缩放按钮（不改缩放）只会关掉小地图，连线开关纹丝不动**
+  —— 批次 134「任何缩放操作都会关掉小地图」的**适用范围只有小地图**。
+
 **只在单选态出现**：两个 `flow-node-{source,target}-connection-menu-button`（各 `36×36`）、
 `node-feature-chrome-host`（与节点本体**同矩形**）。
 
