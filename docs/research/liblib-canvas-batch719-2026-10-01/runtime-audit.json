@@ -1,0 +1,392 @@
+{
+ "predictions": {
+  "P1": "提交是纯本地回显，store 零变化",
+  "P2": "反馈是 2000ms 的视觉替换，草稿不清空",
+  "P3": "四种 Enter 组合全部提交（无修饰键判断）",
+  "P4": "trim() 同时管住 disabled 与早退，纯空格等同空值",
+  "P5": "附件名顶掉提交确认；aria-live 区域内容不变、只有 class 变"
+ },
+ "run": {
+  "reach": {
+   "beforeHit": "other",
+   "beforeScroll": 0,
+   "afterHit": "self",
+   "afterScroll": 250,
+   "barMax": 250,
+   "focused": true,
+   "inputBox": [
+    143,
+    16
+   ],
+   "submitHitBefore": "other"
+  },
+  "base": {
+   "vw": 1280,
+   "barScrollLeft": 250,
+   "barMax": 250,
+   "store": {
+    "objects": 5,
+    "pastLen": 0,
+    "futureLen": 0,
+    "lastCommandResult": null,
+    "selected": null
+   },
+   "input": {
+    "value": "",
+    "focused": true,
+    "opacity": "1",
+    "hit": "self",
+    "w": 143,
+    "h": 16
+   },
+   "submit": {
+    "disabled": true,
+    "hit": "self"
+   },
+   "status": {
+    "text": "场景描述已记录（本地草稿）",
+    "opacity": "0",
+    "ariaLive": "polite",
+    "hit": "other"
+   }
+  },
+  "typed": {
+   "vw": 1280,
+   "barScrollLeft": 250,
+   "barMax": 250,
+   "store": {
+    "objects": 5,
+    "pastLen": 0,
+    "futureLen": 0,
+    "lastCommandResult": null,
+    "selected": null
+   },
+   "input": {
+    "value": "一个雨夜的街道",
+    "focused": true,
+    "opacity": "1",
+    "hit": "self",
+    "w": 143,
+    "h": 16
+   },
+   "submit": {
+    "disabled": false,
+    "hit": "self"
+   },
+   "status": {
+    "text": "场景描述已记录（本地草稿）",
+    "opacity": "0",
+    "ariaLive": "polite",
+    "hit": "other"
+   }
+  },
+  "submitted": {
+   "vw": 1280,
+   "barScrollLeft": 250,
+   "barMax": 250,
+   "store": {
+    "objects": 5,
+    "pastLen": 0,
+    "futureLen": 0,
+    "lastCommandResult": null,
+    "selected": null
+   },
+   "input": {
+    "value": "一个雨夜的街道",
+    "focused": true,
+    "opacity": "0",
+    "hit": "self",
+    "w": 143,
+    "h": 16
+   },
+   "submit": {
+    "disabled": false,
+    "hit": "self"
+   },
+   "status": {
+    "text": "场景描述已记录（本地草稿）",
+    "opacity": "1",
+    "ariaLive": "polite",
+    "hit": "other"
+   }
+  },
+  "after2s": {
+   "vw": 1280,
+   "barScrollLeft": 250,
+   "barMax": 250,
+   "store": {
+    "objects": 5,
+    "pastLen": 0,
+    "futureLen": 0,
+    "lastCommandResult": null,
+    "selected": null
+   },
+   "input": {
+    "value": "一个雨夜的街道",
+    "focused": true,
+    "opacity": "1",
+    "hit": "self",
+    "w": 143,
+    "h": 16
+   },
+   "submit": {
+    "disabled": false,
+    "hit": "self"
+   },
+   "status": {
+    "text": "场景描述已记录（本地草稿）",
+    "opacity": "0",
+    "ariaLive": "polite",
+    "hit": "other"
+   }
+  },
+  "combos": {
+   "Enter": {
+    "statusBefore": "0",
+    "statusAfter": "1",
+    "inputOpacity": "0",
+    "value": "测试 Enter"
+   },
+   "Shift+Enter": {
+    "statusBefore": "0",
+    "statusAfter": "1",
+    "inputOpacity": "0",
+    "value": "测试 Shift+Enter"
+   },
+   "Control+Enter": {
+    "statusBefore": "0",
+    "statusAfter": "1",
+    "inputOpacity": "0",
+    "value": "测试 Control+Enter"
+   },
+   "Meta+Enter": {
+    "statusBefore": "0",
+    "statusAfter": "1",
+    "inputOpacity": "0",
+    "value": "测试 Meta+Enter"
+   }
+  },
+  "cleared": {
+   "vw": 1280,
+   "barScrollLeft": 250,
+   "barMax": 250,
+   "store": {
+    "objects": 5,
+    "pastLen": 0,
+    "futureLen": 0,
+    "lastCommandResult": null,
+    "selected": null
+   },
+   "input": {
+    "value": "",
+    "focused": true,
+    "opacity": "1",
+    "hit": "self",
+    "w": 143,
+    "h": 16
+   },
+   "submit": {
+    "disabled": true,
+    "hit": "self"
+   },
+   "status": {
+    "text": "场景描述已记录（本地草稿）",
+    "opacity": "0",
+    "ariaLive": "polite",
+    "hit": "other"
+   }
+  },
+  "emptyEnter": {
+   "vw": 1280,
+   "barScrollLeft": 250,
+   "barMax": 250,
+   "store": {
+    "objects": 5,
+    "pastLen": 0,
+    "futureLen": 0,
+    "lastCommandResult": null,
+    "selected": null
+   },
+   "input": {
+    "value": "",
+    "focused": true,
+    "opacity": "1",
+    "hit": "self",
+    "w": 143,
+    "h": 16
+   },
+   "submit": {
+    "disabled": true,
+    "hit": "self"
+   },
+   "status": {
+    "text": "场景描述已记录（本地草稿）",
+    "opacity": "0",
+    "ariaLive": "polite",
+    "hit": "other"
+   }
+  },
+  "whitespace": {
+   "before": {
+    "vw": 1280,
+    "barScrollLeft": 250,
+    "barMax": 250,
+    "store": {
+     "objects": 5,
+     "pastLen": 0,
+     "futureLen": 0,
+     "lastCommandResult": null,
+     "selected": null
+    },
+    "input": {
+     "value": "   ",
+     "focused": true,
+     "opacity": "1",
+     "hit": "self",
+     "w": 143,
+     "h": 16
+    },
+    "submit": {
+     "disabled": true,
+     "hit": "self"
+    },
+    "status": {
+     "text": "场景描述已记录（本地草稿）",
+     "opacity": "0",
+     "ariaLive": "polite",
+     "hit": "other"
+    }
+   },
+   "afterEnter": {
+    "vw": 1280,
+    "barScrollLeft": 250,
+    "barMax": 250,
+    "store": {
+     "objects": 5,
+     "pastLen": 0,
+     "futureLen": 0,
+     "lastCommandResult": null,
+     "selected": null
+    },
+    "input": {
+     "value": "   ",
+     "focused": true,
+     "opacity": "1",
+     "hit": "self",
+     "w": 143,
+     "h": 16
+    },
+    "submit": {
+     "disabled": true,
+     "hit": "self"
+    },
+    "status": {
+     "text": "场景描述已记录（本地草稿）",
+     "opacity": "0",
+     "ariaLive": "polite",
+     "hit": "other"
+    }
+   }
+  },
+  "uploaded": {
+   "vw": 1280,
+   "barScrollLeft": 250,
+   "barMax": 356,
+   "store": {
+    "objects": 5,
+    "pastLen": 0,
+    "futureLen": 0,
+    "lastCommandResult": null,
+    "selected": null
+   },
+   "input": {
+    "value": "",
+    "focused": true,
+    "opacity": "1",
+    "hit": "self",
+    "w": 249,
+    "h": 16
+   },
+   "submit": {
+    "disabled": true,
+    "hit": "other"
+   },
+   "status": {
+    "text": "已附上本地图片：dbg719-verify-attachment.png",
+    "opacity": "0",
+    "ariaLive": "polite",
+    "hit": "other"
+   }
+  },
+  "uploadedSubmit": {
+   "vw": 1280,
+   "barScrollLeft": 250,
+   "barMax": 356,
+   "store": {
+    "objects": 5,
+    "pastLen": 0,
+    "futureLen": 0,
+    "lastCommandResult": null,
+    "selected": null
+   },
+   "input": {
+    "value": "配这张图",
+    "focused": true,
+    "opacity": "0",
+    "hit": "self",
+    "w": 249,
+    "h": 16
+   },
+   "submit": {
+    "disabled": false,
+    "hit": "other"
+   },
+   "status": {
+    "text": "已附上本地图片：dbg719-verify-attachment.png",
+    "opacity": "1",
+    "ariaLive": "polite",
+    "hit": "other"
+   }
+  },
+  "uploaded2s": {
+   "vw": 1280,
+   "barScrollLeft": 250,
+   "barMax": 356,
+   "store": {
+    "objects": 5,
+    "pastLen": 0,
+    "futureLen": 0,
+    "lastCommandResult": null,
+    "selected": null
+   },
+   "input": {
+    "value": "配这张图",
+    "focused": true,
+    "opacity": "1",
+    "hit": "self",
+    "w": 249,
+    "h": 16
+   },
+   "submit": {
+    "disabled": false,
+    "hit": "other"
+   },
+   "status": {
+    "text": "已附上本地图片：dbg719-verify-attachment.png",
+    "opacity": "0",
+    "ariaLive": "polite",
+    "hit": "other"
+   }
+  }
+ },
+ "summary": {
+  "submitting-changes-nothing-in-the-store": true,
+  "the-confirmation-is-a-2000ms-visual-swap-and-the-draft-survives": true,
+  "all-four-enter-combinations-submit": true,
+  "trim-governs-both-the-disabled-state-and-the-early-return": true,
+  "the-attachment-name-hides-the-submit-confirmation": true,
+  "the-live-region-text-never-changes-only-opacity-does": true,
+  "reaching-the-prompt-takes-a-scroll-then-a-click": true
+ },
+ "failures": []
+}
