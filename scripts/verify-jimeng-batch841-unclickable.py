@@ -3673,6 +3673,95 @@ def main() -> int:
           and "**917 第一版这里有顺序错**" in _p917
           and "zero_before = snap(names)[\"zeros\"]" in _p917
           and 'one["zero_before"] = zero_before' in _p917)
+    # ══════════ 批 918：收紧后的 moved-only（实退真到 3 步） ══════════
+    p918 = ROOT / "scripts/jimeng_probe918_movedonly_and_taborder_src.py"
+    _p918 = p918.read_text(encoding="utf-8") if p918.exists() else ""
+    check("EEE.1 ✅ **918 用收紧后的「只用 `moved`」停止条件重跑 ⇒ 实退真到 `k` 步**"
+          "（917 只到 1 步）（源站，6 臂 × 2 轮 = 12 条，两轮逐条一致）："
+          "6 条扰动臂**全部** `n_bites_bitten = 3/3` 且 "
+          "`n_zero_steps_retreat = 3`（`design_ok` 全 True）⇒ `'0'` 真的退了 "
+          "**3 步**（`23→22→21→20`）⇒ **917 那道「实退 `k` 步」的门，"
+          "在收紧停止条件之后终于过了**。"
+          "⚠️ 钉法：判据要钉**读数**（`3/3` 与 `3`）＋ 探针里那道**门本身**",
+          "source_movedonly_retreat3_918" in _ausrc
+          and "**918 用收紧后的「只用 `moved`」停止条件重跑多步回走" in _ausrc
+          and "**全部** `n_bites_bitten = 3/3` 且 " in _ausrc
+          and "`n_zero_steps_retreat = 3`（`design_ok` 全 True）" in _ausrc
+          and "`23→22→21→20`" in _ausrc
+          and "**917 那道「实退 `k` 步」的门，在收紧停止条件之后终于过了。**"
+          in _ausrc
+          and 'if t["moved"]:' in _p918
+          and 'if t["moved"] or t["armed"]:' not in _p918
+          and 'and design["n_bites_bitten"] == design["n_bites"]' in _p918
+          and 'and design["n_zero_steps_retreat"] == design["n_bites"]' in _p918)
+    check("EEE.2 ✅ **918 顺带一条可复现读数**：三次咬分别是 **第 29 / 5 / 1 次**"
+          "才咬到，**6 条逐条一致**（两轮 × 三条扰动臂）⇒ "
+          "⚠️ 这个序列**不是**「越往后越难」，而是"
+          "**第一次要把焦点从整页走回画布、后面就只差一个节点内层控件的个数**。"
+          "✅ **前史仍无关（6/6）**：终点 40 ⇒ 首布 11、35 ⇒ 0、51 ⇒ 12 ⇒ "
+          "**914/915/916/917/918 合起来只排除了五种历史扰动**，"
+          "**仍然不是全称规则**",
+          "**咬到次数高度可复现**" in _ausrc
+          and "**第 29 / 5 / 1 次**才咬到" in _ausrc
+          and "**6 条逐条一致**" in _ausrc
+          and "这个序列**不是**「越往后越难」" in _ausrc
+          and "**第一次要把焦点从整页走回画布、后面就只差一个节点内层控件的个数**"
+          in _ausrc
+          and "✅ **前史仍无关（6/6，与同目标基线臂逐条相同）**" in _ausrc
+          and "**914/915/916/917/918 合起来只排除了五种历史扰动**" in _ausrc
+          and "**仍然不是全称规则**" in _ausrc)
+    check("EEE.3 ⚠️❌ **DOM tab 序直读这一半「落空」了 —— 但落空本身就是结果**："
+          "`TABORDER_JS` 在画布根内**只找到 10 个可聚焦元素、"
+          "`n_wrappers = 0`（76 个节点里一个都没匹配上）** ⇒ "
+          "✅ **中性态下节点本体根本没有 `tabindex`、根本不在 tab 序里** ⇒ "
+          "它是**被应用在 keydown 布的那一刻临时注入进去的**"
+          "（这正是 roving tabindex 的定义）⇒ "
+          "**这也反过来否掉了 917 那个候选解释的方向**（「本体相对内层控件的 "
+          "**DOM 位置**」在静态 DOM 里压根没有「本体」可查 ⇒ **问错了地方**）",
+          "⚠️❌ **DOM tab 序直读这一半「落空」了 —— 但落空本身就是结果**"
+          in _ausrc
+          and "**只找到 10 个可聚焦元素、" in _ausrc
+          and "`n_wrappers = 0`（76 个节点里一个都没匹配上）**" in _ausrc
+          and "✅ **中性态下节点本体根本没有 `tabindex`、根本不在 tab 序里**"
+          in _ausrc
+          and "**被应用在 keydown 布的那一刻临时注入进去的**" in _ausrc
+          and "**这反过来否掉了 917 那个候选解释的方向**" in _ausrc
+          and "**那个提法方向就是错的**（不是结论错，是**问错了地方**）" in _ausrc
+          # ⚠️ 钉探针真的做了这次直读（否则「落空」也可能只是没跑）
+          and "TABORDER_JS = " in _p918
+          and "to = ev(TABORDER_JS)" in _p918
+          and '"n_wrapper_with_inner": sum(1 for v in wvi.values()' in _p918)
+    check("EEE.4 ⚠️⚠️ **但「为什么反向仍要 29 次」仍然没查明** —— "
+          "「本体是动态注入的」**解释得了**「它不在静态 tab 序里」、"
+          "**解释不了**「反向要跨出画布把整页走一遍」⇒ "
+          "**不许**把「动态注入」当这个不对称的答案。"
+          "⚠️ 另钉 918 自己的探针缺口：只存了 tab 序的 `summary`、"
+          "**没存那 10 个元素分别是谁**；且**内层控件一个都没被选择器匹配上**"
+          "（917 的焦点轨迹明明能走到那些）⇒ **要么选择器漏了、"
+          "要么那些控件不在 `.react-flow` 子树里** ⇒ **未查明**，**不许**猜",
+          "⚠️ **但「为什么反向仍要 29 次才回到一个本体」仍然没查明**" in _ausrc
+          and "**解释得了**「它不在静态 tab 序里」" in _ausrc
+          and "**解释不了**「反向要跨出画布把整页走一遍」" in _ausrc
+          and "**不许**把「动态注入」当这个不对称的答案" in _ausrc
+          and "**没存那 10 个元素分别是谁**" in _ausrc
+          and "**内层控件一个都没被选择器匹配上**" in _ausrc
+          and "**未查明**，**不许**猜" in _ausrc)
+    check("EEE.5 ⚠️ **918 第一版自己撞了变量名、把整轮跑废**：算 tab 序直方图"
+          "那两个累加器本来叫 `before` / `after` ⇒ **`after` 把「回来后 8 次"
+          "按压的记录列表」覆盖成了整数** ⇒ 紧接着 `\"after_per_press\": [...]` "
+          "报 `TypeError: 'int' object is not iterable`。"
+          "⚠️ **教训：别给新变量起「这一层里已经用过的名字」** —— "
+          "`before` / `after` 在走查代码里是**承载读数的列表**、不是布尔量。"
+          "⚠️ 判据要钉**改名后的真实字面量**",
+          "⚠️ **918 第一版自己撞了变量名**：算 tab 序直方图那两个累加器" in _ausrc
+          and "本来叫 `before` / `after` ⇒ **`after` 把上面那个" in _ausrc
+          and "「回来后 8 次按压的记录列表」覆盖成了整数**" in _ausrc
+          and "`TypeError: 'int' object is not iterable`" in _ausrc
+          and "**整轮跑废**" in _ausrc
+          and "⚠️ **教训：别给新变量起「这一层里已经用过的名字」**" in _ausrc
+          and "n_before_first_inner = sum(" in _p918
+          and "n_after_last_inner = sum(" in _p918)
+
 
 
 
