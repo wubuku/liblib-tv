@@ -1,0 +1,433 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 1150,
+  "prediction": "every-store-changing-control-is-ledgered",
+  "predictionHeld": false,
+  "cameraSelect": {
+   "ok": true,
+   "expected": "director-camera-main",
+   "got": "director-camera-main",
+   "name": "机位01 · 对峙中景"
+  },
+  "nullClickDrift": [],
+  "ledgerSourceCensus": {
+   "dispositionTally": {
+    "REJECTED": 41,
+    "STALE": 21,
+    "NOOP": 20,
+    "COMMITTED": 17,
+    "CONFLICT": 8,
+    "TOMBSTONED": 1,
+    "SAVED": 1
+   },
+   "dispositionTotal": 109,
+   "reasonKinds": 16,
+   "reasons": [
+    "DIRECTOR_CLIPBOARD_EMPTY",
+    "DIRECTOR_COMMAND_NO_CHANGE",
+    "DIRECTOR_GESTURE_NOT_ACTIVE",
+    "DIRECTOR_HISTORY_CONFLICT",
+    "DIRECTOR_HISTORY_EMPTY",
+    "DIRECTOR_IMPORT_BUSY",
+    "DIRECTOR_IMPORT_INVALID",
+    "DIRECTOR_INVALID_VALUE",
+    "DIRECTOR_OWNER_STALE",
+    "DIRECTOR_PROJECT_MISSING",
+    "DIRECTOR_REFERENCE_INVALID",
+    "DIRECTOR_TARGET_LOCKED",
+    "DIRECTOR_TARGET_MISSING",
+    "INVALID_DOCUMENT",
+    "NO_ACTIVE_SESSION",
+    "OWNER_STALE"
+   ],
+   "lastCommandResultMentions": 126
+  },
+  "rows": [
+   {
+    "attr": "data-director-playback",
+    "text": "",
+    "textAfter": "",
+    "present": true,
+    "disabled": false,
+    "clicked": true,
+    "selfChanged": false,
+    "pausedAfterClick": true,
+    "changedLeaves": [
+     "objects[0].transform.position[0]",
+     "objects[0].transform.position[2]",
+     "objects[0].transform.rotation[1]",
+     "objects[4].camera.fov",
+     "objects[4].camera.target[0]",
+     "objects[4].camera.target[1]",
+     "objects[4].transform.position[0]",
+     "objects[4].transform.position[1]",
+     "objects[4].transform.position[2]",
+     "timeline.currentTime"
+    ],
+    "changedLeafCount": 10,
+    "changedStore": true,
+    "playingNow": false,
+    "ledgered": false,
+    "lastAfter": null,
+    "wsDispAfter": "",
+    "ariaExpandedBefore": null,
+    "ariaExpandedAfter": null,
+    "toasts": 0
+   },
+   {
+    "attr": "data-director-auto-keyframe",
+    "text": "",
+    "textAfter": "",
+    "present": true,
+    "disabled": false,
+    "clicked": true,
+    "selfChanged": false,
+    "pausedAfterClick": false,
+    "changedLeaves": [
+     "history.past.length",
+     "history.past[0].after.activeCameraId",
+     "history.past[0].after.captureDescriptors.length",
+     "history.past[0].after.groups.length",
+     "history.past[0].after.objects.length",
+     "history.past[0].after.objects[0]",
+     "history.past[0].after.objects[1]",
+     "history.past[0].after.objects[2]",
+     "history.past[0].after.objects[3]",
+     "history.past[0].after.objects[4]",
+     "history.past[0].after.outputPreferences.aspectRatio",
+     "history.past[0].after.owner.canvasId"
+    ],
+    "changedLeafCount": 64,
+    "changedStore": true,
+    "playingNow": false,
+    "ledgered": true,
+    "lastAfter": {
+     "commandKind": "PROJECT_MUTATION",
+     "disposition": "COMMITTED",
+     "reason": null
+    },
+    "wsDispAfter": "COMMITTED",
+    "ariaExpandedBefore": null,
+    "ariaExpandedAfter": null,
+    "toasts": 0
+   },
+   {
+    "attr": "data-director-loop",
+    "text": "",
+    "textAfter": "",
+    "present": true,
+    "disabled": false,
+    "clicked": true,
+    "selfChanged": false,
+    "pausedAfterClick": false,
+    "changedLeaves": [
+     "history.past.length",
+     "history.past[0].after.activeCameraId",
+     "history.past[0].after.captureDescriptors.length",
+     "history.past[0].after.groups.length",
+     "history.past[0].after.objects.length",
+     "history.past[0].after.objects[0]",
+     "history.past[0].after.objects[1]",
+     "history.past[0].after.objects[2]",
+     "history.past[0].after.objects[3]",
+     "history.past[0].after.objects[4]",
+     "history.past[0].after.outputPreferences.aspectRatio",
+     "history.past[0].after.owner.canvasId"
+    ],
+    "changedLeafCount": 64,
+    "changedStore": true,
+    "playingNow": false,
+    "ledgered": true,
+    "lastAfter": {
+     "commandKind": "PROJECT_MUTATION",
+     "disposition": "COMMITTED",
+     "reason": null
+    },
+    "wsDispAfter": "COMMITTED",
+    "ariaExpandedBefore": null,
+    "ariaExpandedAfter": null,
+    "toasts": 0
+   },
+   {
+    "attr": "data-director-time-unit",
+    "text": "ms",
+    "textAfter": "s",
+    "present": true,
+    "disabled": false,
+    "clicked": true,
+    "selfChanged": true,
+    "pausedAfterClick": false,
+    "changedLeaves": [],
+    "changedLeafCount": 0,
+    "changedStore": false,
+    "playingNow": false,
+    "ledgered": false,
+    "lastAfter": null,
+    "wsDispAfter": "",
+    "ariaExpandedBefore": null,
+    "ariaExpandedAfter": null,
+    "toasts": 0
+   },
+   {
+    "attr": "data-director-create-motion-path",
+    "text": "创建运动轨迹",
+    "textAfter": "创建运动轨迹",
+    "present": true,
+    "disabled": false,
+    "clicked": true,
+    "selfChanged": true,
+    "pausedAfterClick": false,
+    "changedLeaves": [],
+    "changedLeafCount": 0,
+    "changedStore": false,
+    "playingNow": false,
+    "ledgered": false,
+    "lastAfter": null,
+    "wsDispAfter": "",
+    "ariaExpandedBefore": "false",
+    "ariaExpandedAfter": "true",
+    "toasts": 0
+   },
+   {
+    "attr": "data-director-open-curve-editor",
+    "text": "曲线编辑器",
+    "textAfter": "曲线编辑器",
+    "present": true,
+    "disabled": false,
+    "clicked": true,
+    "selfChanged": false,
+    "pausedAfterClick": false,
+    "changedLeaves": [
+     "timeline.editorMode"
+    ],
+    "changedLeafCount": 1,
+    "changedStore": true,
+    "playingNow": false,
+    "ledgered": false,
+    "lastAfter": null,
+    "wsDispAfter": "",
+    "ariaExpandedBefore": null,
+    "ariaExpandedAfter": null,
+    "toasts": 0
+   },
+   {
+    "attr": "data-director-remove-track",
+    "text": "",
+    "textAfter": "",
+    "present": true,
+    "disabled": false,
+    "clicked": true,
+    "selfChanged": false,
+    "pausedAfterClick": false,
+    "changedLeaves": [
+     "history.past.length",
+     "history.past[0].after.activeCameraId",
+     "history.past[0].after.captureDescriptors.length",
+     "history.past[0].after.groups.length",
+     "history.past[0].after.objects.length",
+     "history.past[0].after.objects[0]",
+     "history.past[0].after.objects[1]",
+     "history.past[0].after.objects[2]",
+     "history.past[0].after.objects[3]",
+     "history.past[0].after.objects[4]",
+     "history.past[0].after.outputPreferences.aspectRatio",
+     "history.past[0].after.owner.canvasId"
+    ],
+    "changedLeafCount": 86,
+    "changedStore": true,
+    "playingNow": false,
+    "ledgered": true,
+    "lastAfter": {
+     "commandKind": "DELETE_TRACK",
+     "disposition": "COMMITTED",
+     "reason": null
+    },
+    "wsDispAfter": "COMMITTED",
+    "ariaExpandedBefore": null,
+    "ariaExpandedAfter": null,
+    "toasts": 0
+   },
+   {
+    "attr": "data-director-delete-keyframe",
+    "text": "",
+    "textAfter": "",
+    "present": true,
+    "disabled": true,
+    "clicked": false,
+    "selfChanged": false,
+    "pausedAfterClick": false,
+    "changedLeaves": [],
+    "changedLeafCount": 0,
+    "changedStore": false,
+    "playingNow": false,
+    "ledgered": false,
+    "lastAfter": null,
+    "wsDispAfter": "",
+    "ariaExpandedBefore": null,
+    "ariaExpandedAfter": null,
+    "toasts": 0
+   }
+  ],
+  "verdicts": {
+   "ledgeredAndChangedStore": [
+    "data-director-auto-keyframe",
+    "data-director-loop",
+    "data-director-remove-track"
+   ],
+   "changedStoreButUnledgered": [
+    "data-director-playback",
+    "data-director-open-curve-editor"
+   ],
+   "onlyNonStoreState": [
+    "data-director-time-unit",
+    "data-director-create-motion-path"
+   ],
+   "nothingChanged": [
+    "data-director-delete-keyframe"
+   ]
+  },
+  "theFinding": "700 用「点了之后没有任何命令被记录」把两枚右栏指路牌归为「真没接线」。本批写下预测「凡改 store 状态的控件都记账」并当场推翻它：playback 改了 11 个 store 叶子（timeline.isPlaying false→true、currentTime 0→0.5166，外加把插值结果回写进 objects[*].transform/camera），open-curve-editor 翻了 timeline.editorMode，两者都零记录。**「没记账」推不出「没接线」**。",
+  "whatSurvives": "700 对那两枚指路牌的结论不变，理由换成独立证据：它们的 <button> 上没有 onClick。",
+  "whatIsNotClaimed": "不声称播放/视图切换**应该**进命令账（那是一个设计取舍，不是缺陷）；本批只测出「它们不记账」这一事实，以及「用不记账推断没接线」这个推理形式不成立。不声称 objects[*] 被回写是 bug（那看起来是刻意的求值实现，**未进一步取证**）。不声称源站行为（未取证，需授权点击）。**不改 src/**。",
+  "storeWritesInThisRun": "none — every control was driven by a real mouse click",
+  "relationTo700": "700 不重写。它的两枚指路牌结论仍然成立；被撤回的是**推理形式**（「没记账」⟹「没接线」），不是结论。"
+ },
+ "checks": {
+  "the-ledger-misses-store-changing-controls-and-that-is-stable": {
+   "ok": true,
+   "detail": {
+    "predictionThatWasFalsified": "every-store-changing-control-is-ledgered",
+    "predictionInWords": "凡是把 store 状态改掉的控件，都会留下命令记录",
+    "obeyed": [
+     "data-director-auto-keyframe",
+     "data-director-loop",
+     "data-director-remove-track"
+    ],
+    "broke": [
+     "data-director-playback",
+     "data-director-open-curve-editor"
+    ],
+    "brokeEachRound": [
+     [
+      "data-director-open-curve-editor",
+      "data-director-playback"
+     ]
+    ],
+    "evidence": [
+     {
+      "attr": "data-director-playback",
+      "changedLeafCount": 10,
+      "changedLeaves": [
+       "objects[0].transform.position[0]",
+       "objects[0].transform.position[2]",
+       "objects[0].transform.rotation[1]",
+       "objects[4].camera.fov",
+       "objects[4].camera.target[0]",
+       "objects[4].camera.target[1]",
+       "objects[4].transform.position[0]",
+       "objects[4].transform.position[1]",
+       "objects[4].transform.position[2]",
+       "timeline.currentTime"
+      ],
+      "lastAfter": null
+     },
+     {
+      "attr": "data-director-open-curve-editor",
+      "changedLeafCount": 1,
+      "changedLeaves": [
+       "timeline.editorMode"
+      ],
+      "lastAfter": null
+     }
+    ]
+   },
+   "note": "the check asserts the FALSIFICATION, not the prediction — a verifier that always exits non-zero would be a lie in the ledger. Two rounds are run because 696 established that a behaviour which disagrees with itself across rounds cannot be written as a settled condition."
+  },
+  "no-ledger-entry-does-not-imply-no-wiring": {
+   "ok": true,
+   "detail": {
+    "counterexample": "data-director-playback",
+    "changedLeaves": [
+     "objects[0].transform.position[0]",
+     "objects[0].transform.position[2]",
+     "objects[0].transform.rotation[1]",
+     "objects[4].camera.fov",
+     "objects[4].camera.target[0]",
+     "objects[4].camera.target[1]",
+     "objects[4].transform.position[0]",
+     "objects[4].transform.position[1]",
+     "objects[4].transform.position[2]",
+     "timeline.currentTime"
+    ],
+    "lastAfter": null,
+    "batch700Said": "motion-preset-button / motion-create-path 属于「真没接线」，理由之一是点了之后没有任何命令被记录",
+    "whatSurvives": "那两枚的结论仍然成立，但理由要换成独立证据：src/components/director/DirectorCameraMotionTab.tsx:308/319 两个 <button> 上没有 onClick —— 与记账无关",
+    "whatIsWithdrawn": "「没记账」作为「没接线」的**推理形式**被撤回"
+   },
+   "note": "the conclusion was right and the reason was wrong; only one of those two facts is about the app and the other was about my instrument"
+  },
+  "three-kinds-of-no-ledger-entry-are-different": {
+   "ok": true,
+   "detail": {
+    "A_changedStoreButNoLedger": [
+     "data-director-playback",
+     "data-director-open-curve-editor"
+    ],
+    "B_onlyNonStoreState": [
+     "data-director-time-unit",
+     "data-director-create-motion-path"
+    ],
+    "B_detail": "time-unit 改的是组件局部 useState（DirectorTimeline.tsx:260，不在 store 里）；create-motion-path 只展开一个下拉 —— 它们不是命令，不记账是预期的",
+    "C_nothingChangedAtAll": [
+     "data-director-delete-keyframe"
+    ],
+    "C_detail": "delete-keyframe 在「选中机位」这一态下什么都没改 —— 第三态，不能算进 A"
+   },
+   "note": "counting B and C as A would charge the ledger for debts it does not owe; this is 697's third-state rule applied to 'no ledger entry'"
+  },
+  "ledger-size-is-not-ledger-coverage": {
+   "ok": true,
+   "detail": {
+    "sourceCensus": {
+     "dispositionTally": {
+      "REJECTED": 41,
+      "STALE": 21,
+      "NOOP": 20,
+      "COMMITTED": 17,
+      "CONFLICT": 8,
+      "TOMBSTONED": 1,
+      "SAVED": 1
+     },
+     "dispositionTotal": 109,
+     "reasonKinds": 16,
+     "reasons": [
+      "DIRECTOR_CLIPBOARD_EMPTY",
+      "DIRECTOR_COMMAND_NO_CHANGE",
+      "DIRECTOR_GESTURE_NOT_ACTIVE",
+      "DIRECTOR_HISTORY_CONFLICT",
+      "DIRECTOR_HISTORY_EMPTY",
+      "DIRECTOR_IMPORT_BUSY",
+      "DIRECTOR_IMPORT_INVALID",
+      "DIRECTOR_INVALID_VALUE",
+      "DIRECTOR_OWNER_STALE",
+      "DIRECTOR_PROJECT_MISSING",
+      "DIRECTOR_REFERENCE_INVALID",
+      "DIRECTOR_TARGET_LOCKED",
+      "DIRECTOR_TARGET_MISSING",
+      "INVALID_DOCUMENT",
+      "NO_ACTIVE_SESSION",
+      "OWNER_STALE"
+     ],
+     "lastCommandResultMentions": 126
+    },
+    "runtimeGap": [
+     "data-director-playback",
+     "data-director-open-curve-editor"
+    ],
+    "theGap": "播放（timeline.isPlaying + 逐帧把插值结果回写进 objects[*]）和视图切换（timeline.editorMode）走的是命令层之外的路"
+   },
+   "note": "a big ledger is impressive and tells you nothing about its coverage; coverage can only be measured by finding the holes"
+  }
+ }
+}
