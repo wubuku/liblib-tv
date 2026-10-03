@@ -5152,6 +5152,86 @@ def main() -> int:
           and "本批**不碰**，等那个问题有答案" in _ausrc
           and "**没有**测「两个层共存时键盘焦点怎么走」" in _ausrc
           and "槽位保证的是**至多一个瞬时层**，焦点行为是另一件事" in _ausrc)
+    p940 = ROOT / "scripts/jimeng_probe940_tabindex_rewrite_src.py"
+    _p940 = p940.read_text(encoding="utf-8") if p940.exists() else ""
+    check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
+          "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
+          "§130「roving 是单指针、不是留轨迹」的**源站实证**；"
+          "被标记的 26 个 **unchanged 26/26** ⇒ **应用只动画布**",
+          "src_roving_single_pointer_and_focus_matrix_940" in _ausrc
+          and "**① ✅ 判决：Tab 游走给**节点本体**写 `tabindex`（939 缺的那一格）**" in _ausrc
+          and "**① ✅ 判决：Tab 游走给**节点本体**写 `tabindex`（939 缺的那一格）**" in _ausrc
+          and "**应用只动画布，不动顶栏/侧栏/dock 的元素**" in _ausrc
+          # ⭐ 钉探针：游走**前**后各普查一次，且被标记集合与节点集合分开
+          and "c_before = ev(COUNTS_JS, [B939_SEL])" in _p940
+          and "reread = ev(REREAD_JS, [MARK_ATTR, B939_SEL])" in _p940
+          and "trans = classify(idx[\"ti_before\"], reread[\"ti_after\"])" in _p940
+          # ⭐ 钉探针：「属性被删」与「被设成 -1」是**分开**的类（§131 的 removed）
+          and 'elif b == "-1" and a is None:' in _p940
+          and 'key = "neg1_to_removed"' in _p940)
+    check("BBBB.2 ⭐⭐ **第一张跨层焦点矩阵**（5 个层，两轮逐项相同）—— "
+          "**「开层即接管焦点」与「冷启动可达」是两件完全独立的事**；"
+          "顺带把 939 的「0 命中」**升级**成 `wrapped`（不可达），"
+          "因为 `wrapped` 表示**序列走完一圈仍没到**、而 `capped` 只是「没测出来」",
+          "**② ⭐⭐ 第一张**跳层**焦点矩阵**（5 个层，两轮逐项相同）**" in _ausrc
+          and "**「开层即接管焦点」与「冷启动可达」是两件完全独立的事**" in _ausrc
+          and "**`wrapped` 比 `capped` 强**" in _ausrc
+          and "**940 把 939 的结论从「0 命中」升级成「`wrapped`（不可达）」**" in _ausrc
+          # ⭐ 钉探针：`wrapped` 的判据是「落点**第二次出现**」（不是预算用尽）
+          and "if m in seen:" in _p940
+          and "wrapped = True" in _p940
+          # ⭐ 钉探针：目标层用「开层焦点所在的那个层」（不是「新增层唯一」）
+          and "if f_open.get(\"in_layer\") and f_open.get(\"layer_tid\"):" in _p940
+          and 'tid, tid_src = f_open["layer_tid"], "开层焦点所在层"' in _p940
+          # ⭐ 钉探针：`capped` 与 `wrapped` 是**两个**结局，分别记账
+          and '"capped": first_in is None and not wrapped,' in _p940)
+    check("BBBB.3 ⚠️⚠️ **阴阳对照门连改四版都错** ⇒ 沉淀成一条通用纪律："
+          "**两个答案必须来自两个不同的集合**（同一个集合里的两种答案不构成对照，"
+          "机制可以让它们同向变化）；且 v4 用的 `n_marked_is_node == 0` 是"
+          "**结构保证**的 0（`B939_SEL` 不选 `div`、节点本体就是 `div`）",
+          "**④ ⚠️⚠️ 阴阳对照门**连改四版都错** —— 本批最值钱的一条纪律**" in _ausrc
+          and "**通用纪律：阴阳对照门的两个答案必须来自**两个不同的集合**。**" in _ausrc
+          and "**在节点内**」（9 个，是节点里的 button/a）" in _ausrc
+          and "**结构保证**的 0" in _ausrc
+          # ⭐ 钉探针：把「在节点内」与「就是节点本体」**分成两个读数**（v3 的错就在这）
+          and "out.n_marked_is_node += 1;" in _p940
+          and "out.n_marked_in_node += 1; break;" in _p940
+          # ⭐ 钉探针：门用**后者**，并把它写进判别力
+          and 'marked_is_node_side = (idx["n_marked_is_node"] == 0)' in _p940
+          # ⭐ 钉探针：这条「两个集合不同」是**实测**的，不是声称
+          and '"two_sides_differ": marked_is_node_side,' in _p940)
+    check("BBBB.4 ⚠️⚠️ **订正 939 的两处归因**（原文一字未删，批注写进基线）："
+          "① 方向错 —— 不是「-1 改写成 0」，节点初始是「**根本没有** tabindex」；"
+          "② 「K=26 是假集合」**不准确** —— 26 是真实的初始可聚焦数，"
+          "真正原因是**节点是 `div`、`B939_SEL` 不选 `div`，集合本身在变**",
+          "**③ ⚠️⚠️ 【对 939 的订正批注 —— 939 原文一字未删】**" in _ausrc
+          and "**从来不存在「-1 → 0」这个转换**" in _ausrc
+          and "26 是**真实的初始可聚焦数**" in _ausrc
+          and "**普查对象里根本没有后来才可聚焦的那批**" in _ausrc
+          # ⭐ 钉探针：把三道过滤**逐条计数**进读数，让「哪道吃掉多少」可查
+          and "if (ti !== null && Number(ti) < 0) out.n_neg_ti += 1;" in _p940
+          and "if (e.getClientRects().length === 0) out.n_invisible += 1;" in _p940
+          # ⭐ 钉探针：节点带 ti 的个数被**单独**普查（判决性读数就在这一格）
+          and "k_nodes_ti: document.querySelectorAll('.react-flow__node[tabindex]').length};" in _p940)
+    check("BBBB.5 ⚠️⚠️ **探针踩的坑与未解决项都留痕**："
+          "免疫针**连抓三次**（含「只从 DERIVED 删、忘加 RAW」）＋"
+          "静态复核脚本自己也有盲区（只认对象字面量、不认 `out.key =`）；"
+          "「新增层唯一」判据错（3/5 层新增 2 个）；`der_rewrite` 从不被键检查；"
+          "计费步号**不是常数**（9 / 16）；**936 那 20 个层内步的矛盾未解决**",
+          "**⑤ ⚠️ 探针自己踩的坑（都当场抓到）**" in _ausrc
+          and "**派生键免疫针连抓三次**" in _ausrc
+          and "它只认**对象字面量** `key:`，**不认** `out.key = value` 这种**赋值**形式" in _ausrc
+          and "实测 **3/5 个层新增的是 2 个**" in _ausrc
+          and '**从不被任何键检查**（只有 `walk()` 的 `d` 被查）' in _ausrc
+          and "**⑥ ⚠️ 计费入口的 Tab 步号**不是常数**" in _ausrc
+          and "**不许钉绝对步号**" in _ausrc
+          and "**⑦ ⚠️⚠️ 一条**未解决**的矛盾（如实记，不许调和）**" in _ausrc
+          and "**不许说 936 错了**" in _ausrc
+          # ⭐ 钉探针：计费入口的「路过」被**记成读数**（路过 ≠ 点击）
+          and "if st[\"is_billing\"]:" in _p940
+          and "billing.append(i)" in _p940
+          # ⭐ 钉探针：计费护栏仍在（只拦 click），且 B 段每层后**重置**
+          and "n2 = boot()" in _p940)
     p939 = ROOT / "scripts/jimeng_probe939_tab_distance_src.py"
     _p939 = p939.read_text(encoding="utf-8") if p939.exists() else ""
     p939b = ROOT / "scripts/jimeng_probe939b_tab_constitution_src.py"

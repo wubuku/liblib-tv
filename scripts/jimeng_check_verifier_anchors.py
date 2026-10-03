@@ -95,6 +95,9 @@ PROBE_VARS = {
     #    （937 教训：登记表加了名字 ≠ 名字进了被遍历的那张表）。
     "_p939": "scripts/jimeng_probe939_tab_distance_src.py",
     "_p939b": "scripts/jimeng_probe939b_tab_constitution_src.py",
+    # 批 940：判据开始**钉探针里的「阴性结构保证」**
+    #    （`n_marked_is_node == 0` 是 `B939_SEL` 不选 `div` 推出来的，不是碰巧）
+    "_p940": "scripts/jimeng_probe940_tabindex_rewrite_src.py",
     # 批 938：判据开始**钉 TS 源码**（槽位是 store 里的单一来源）
     "_wm_s": "src/store/jimengStore.ts",
     # ⚠️⚠️ **929 加的**：**门禁脚本自己**也必须登记 ——
