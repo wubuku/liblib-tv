@@ -296,6 +296,14 @@
   - **★ 否证自己：M176 那句「新增资产弹窗保存没生效」是选择器问题，不是产品问题。**M176 当年其实已经写明「标题填进了错误的 input」——**它记录的是一个未完成的动作，被后续读者读成了产品缺陷**。用 placeholder 精确选择器（`input[placeholder="给资产起一个容易检索的名字"]`、`textarea[placeholder*="文本资产"]`）重做：标题框与正文框各命中 1 个，点「保存」后**弹窗关闭、资产数 +1、提示「资产已保存」**。**功能一直好使。** [运行时]
   - **★ 顺带把 zip 命名链的第一级也验了**（此前只有兜底那级的证据）。源码 `assets/index.tsx:174`：`projectTitles.length === 1 ? projectTitles[0] : recentCanvasTitle`。本批的资产是从**画布节点**用工具条「加入资产」存进去的，带 `metadata.projectTitle`，于是走的是**第一级**——实测下载文件名 `改过的项目名.zip`，而那个画布当时正叫「改过的项目名」。**第一级是通的：资产来自画布时，zip 名跟着画布名走，而不是跟着资产标题走。** [运行时+静态]
   - **★ 另一条护栏的功劳**：第一次勾选时我用「小于 40×40 的按钮」去捞，捞到了 `tdcanvas-dark` 那个按钮，**勾选压根没发生**。若不是同时读了页头的「已选 N 项」，那条读数会长成**「勾选后第二态仍然是禁用」**——一个听起来完全合理、实则凭空捏造的「产品结论」。**一个操作之后的状态变化，必须有一处独立于该按钮的佐证。** [方法]
+- **★ 画布项目里那个 `chatSessions` 字段：存是存了，可它一直是空的**（2026-10-03 M190，**M188 自己写错的四个字，本批当场推翻**）**。**
+  M188 把项目的 12 个字段列进手册时，给 `chatSessions` 标了「（对话记录）」——**这会引导读者以为 Agent 面板里的对话跟着画布存。** 它不存。
+  - **静态：全仓没有任何一处往里写消息。** `setChatSessions` 只有 3 处调用，**全是读**——`project.tsx:246` 的 `useState([])` 初始化、`:379` 从项目恢复、`:1228` 撤销时还原。**没有一个写路径。** [静态]
+  - **Agent 面板的消息在另一个 store，而且那个 store 不落盘。** `web/src/stores/use-agent-store.ts:162` 的 `addMessage` 写的是 `state.messages`；该 store **没有 `persist` 中间件**，只有 6 个**设置项**进 localStorage（面板宽度 `tdcanvas:agent-panel-width`、地址 `tdcanvas:agent-url`、token、权限模式、模型、推理强度）。**消息一条都不存。** [静态]
+  - **「新对话」按钮也在 Agent 侧**：它在**历史**页签（`local-agent-panel.tsx:1319-1320`），调 `startNewThread`，且 `disabled={!connected || loadingThreads || sending || waiting || conversationBusy}`——**没连上 Agent 时它是禁用的**（实测 `disabled=true`）。 [运行时+静态]
+  - **运行时：字段确实在，但恒为空。** 存储里的项目对象 **12 个键齐全**（`id/title/createdAt/updatedAt/nodes/connections/chatSessions/activeChatId/inputMode/backgroundMode/showImageInfo/viewport`），**`chatSessions=[]`、`activeChatId=null`，刷新前后一致**。**★ 这里的阳性对照是「字段必须真的存在」**——同一个对象里 `nodes` 有 1 个节点，**证明读到的是真数据而不是空壳**；若字段压根不存在，「空数组」就是我读错了。localStorage 里**没有任何消息/会话类键**，连 `tdcanvas:agent-*` 都是 **0 个**（从没连过 Agent，设置项也就没写过）。 [运行时]
+  **★ 教训比结论更值钱**：M188 那四个字是**顺手写的注解**，写的时候没问「这个字段真有东西吗」。**给一个字段配一句人话解释，等于替它做了一次承诺**——而承诺要能撤回，就得先去查它背后有没有写入路径。**下一批起，列字段清单时每个字段都要问一句「谁往里写」。** [方法]
+  - **对读者的实际影响**：Agent 面板的对话**刷新就没了**。已在 `use-agent.md` 的「已知限制」里写明，并提醒别把重要对话只留在面板里。*「面板对话丢失」这条只有静态与存储读数，**没有真的连 Agent 发过消息再刷新去比对**——本机没有可连的 Agent，如实标明。* [静态+运行时]
 ## 9. 官方文档与实际 UI 的差异（重要）
 
 TDCanvas 仓内 `docs/content/docs/canvas/canvas-node-manual.zh-CN.mdx` 描述的生成流为**旧版语义**：

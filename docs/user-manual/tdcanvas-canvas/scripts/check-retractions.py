@@ -330,6 +330,24 @@ RETRACTIONS: list[dict[str, str]] = [
         "fixed_in": "M180",
     },
     {
+        "id": "R42",
+        "kind": "conclusion",
+        "wrong": "`chatSessions`（对话记录）",
+        "why": "**M188 自己写进去的四个字，M190 当场推翻。** M188 把 12 个字段列进手册时，"
+        "给 `chatSessions` 标了「（对话记录）」——**这会引导读者以为 Agent 面板里的对话跟着画布存**。\n"
+        "真相：**这个字段一直是空数组**。`setChatSessions` 全仓只有 3 处调用，"
+        "全是初始化、从项目恢复、撤销时还原，**没有任何一处写入消息**（`project.tsx:246/379/1228`）。"
+        "Agent 的消息在 `use-agent-store.ts:162` 的 `addMessage`，**那个 store 没有 persist**，"
+        "只有面板宽度、地址、token、权限模式、模型、推理强度 6 个**设置项**进 localStorage。"
+        "「新对话」按钮也在**历史**页签、走 Agent 侧线程，且 `disabled={!connected}`"
+        "（`local-agent-panel.tsx:1320`）。\n"
+        "运行时佐证：存储里 12 个键齐全（阳性对照：同一对象的 `nodes` 有真数据，不是空壳），"
+        "`chatSessions=[]`、`activeChatId=null`，刷新前后一致；"
+        "localStorage 里**没有任何消息/会话类键，连 `tdcanvas:agent-*` 都是 0 个**。"
+        "**订正方向：不能说「对话记录跟着画布存」，要说「这个字段在，但一直是空的；面板对话不落盘」。**",
+        "fixed_in": "M190",
+    },
+    {
         "id": "R41",
         "kind": "conclusion",
         "wrong": "自动保存（写入有 400ms 防抖），无需手动保存",
