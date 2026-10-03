@@ -164,8 +164,13 @@ def _copy_all_modules(tmp):
     **这一条要单独提供，是因为「搬整个目录」与「搬某个闸的闭包」在判据侧
     长得不一样**——而判据比搬运手段窄就会误报
     （Batch 190 修过三次同源的「判据认写法不认事实」，这里不再重复那个错）：
-    **所以凡是「搬整目录」这个事实，都写成一次 `stage_all()` 调用**，
-    判据认这一次调用，**而不是去猜一个 `for … os.listdir(…)` 的循环搬了些什么**。
+    **所以凡是「搬整目录」这个事实，都写成一次调用**——`stage_all()` 或
+    `shutil.copytree` 都算，**而不要写成 `for … os.listdir(…)` 的逐文件循环**：
+    判据认的是那两次调用，**而不是去猜一个循环搬了些什么**。
+    **（Batch 256 订正：原文这里只写了 `stage_all()`，比判据窄。**
+    **`verify-selftest-deps.py` 的 `copies_whole_scripts()` 同时认 `copytree`，**
+    **而本批那份反验用循环搬运，被它报成 7 处「没搬依赖」——**
+    **约定写窄了下一个人会以为只能用那一种，而判据其实两个都认。**）**
     """
     dst = os.path.join(tmp, "scripts")
     os.makedirs(dst, exist_ok=True)

@@ -91,17 +91,24 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROGRESS = os.path.join(ROOT, "PROGRESS.md")
+#: **Batch 256：这一份是收敛来的**——收敛前本文件有自己的一份拷贝。
+#: **理由与边界见 `tablerow.py` 的文件头**（含「刻意不合并的那一个」）。
+from tablerow import ROW_RE, UNESCAPED_SPLIT, BATCH_NUM_RE  # noqa: E402,F401
 
 SECTION = "## Batch 计划与状态"
 # 批次号形态：整数 + 可选小写字母后缀。表内既有形态就是 1 / 6a / 8b / 17c / 17d，
 # **刻意不含别的**——加形态等于加豁免，而豁免表一旦靠「我记得它其实也行」维持，
 # 就等于给判据开后门（Batch 135 的教训）。
-NUM_RE = re.compile(r"^\d+[a-z]?$")
-ROW_RE = re.compile(r"^\|\s*([^|]*?)\s*\|")
+#: **Batch 256：这一份也是收敛来的**——收敛前本文件与
+#: `verify-ledger-refs.py` 各有一份 `NUM_RE`，而 `selftest-batch-rows.py`
+#: 用的是第三种写法 `re.fullmatch(r"\d+[a-z]?", ...)`。
+#: **三种写法语义相同，而「语义相同但写法不同」正是收敛的理由**：
+#: **下一次有人只想改其中一份的时候，三份就会真的不一样了。**
+NUM_RE = BATCH_NUM_RE
 # 未转义竖线——**必须与闸 8 同一套判定**（前一位不是反斜杠），否则同一个单元格
 # 在两道闸里会被数出不同的列数，而「两道闸对同一行给出不同列数」这件事
 # 没有任何人会去追。Batch 143 那行的内容里有大量 `\|\|` 与带竖线的代码片段。
-CELL_SPLIT = re.compile(r"(?<!\\)\|")
+CELL_SPLIT = UNESCAPED_SPLIT
 
 
 def locate_batch_table(lines):

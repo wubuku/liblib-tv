@@ -96,6 +96,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+from tablerow import UNESCAPED_SPLIT  # noqa: E402
 MANUAL = os.path.dirname(ROOT)
 
 
@@ -103,7 +104,9 @@ MANUAL = os.path.dirname(ROOT)
 _DELIM_CELL = re.compile(r"^:?-+:?$")
 
 #: 按**未转义**竖线切。`(?<!\\)` 的意思是「前面不是反斜杠」——转义竖线是单元格内容的一部分。
-_UNESCAPED_SPLIT = re.compile(r"(?<!\\)\|")
+#: **Batch 256：这一份是收敛来的**——收敛前本文件、`verify-batch-rows.py` 与 `selftest-batch-rows.py` 各有一份，
+#: **理由与边界见 `tablerow.py` 的文件头**。
+_UNESCAPED_SPLIT = UNESCAPED_SPLIT
 
 
 def cells(line):

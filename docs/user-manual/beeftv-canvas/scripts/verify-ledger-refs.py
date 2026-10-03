@@ -48,6 +48,9 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROGRESS = os.path.join(ROOT, "PROGRESS.md")
+#: **Batch 256：这一份是收敛来的**——收敛前本文件有自己的一份拷贝。
+#: **理由与边界见 `tablerow.py` 的文件头**（含「刻意不合并的那一个」）。
+from tablerow import ROW_RE, UNESCAPED_SPLIT, BATCH_NUM_RE  # noqa: E402,F401
 AUDIT = os.path.join(ROOT, "AUDIT.md")
 RULES = os.path.join(ROOT, "AUDIT-RULES.md")
 
@@ -72,12 +75,11 @@ REC_RE = re.compile(r"^#{2,4}\s[^\n]*?（Batch\s*(\d+[a-z]?)\s*[，,]")
 # 方向二：纪律编号引用（ASCII 数字；中文叙述里说纪律带汉字，不会命中）
 DISC_RE = re.compile(r"纪律\s*(\d+)")
 # 批次表的行首形态
-ROW_RE = re.compile(r"^\|\s*([^|]*?)\s*\|")
 #: 纪律条目的两个组成部分（Batch 194 拆开，见 defined_disciplines 的 docstring）
 _DISC_DEF_RE = re.compile(r"^(\d+)\.\s+\*\*")
 _BATCH_TAG_RE = re.compile(r"（Batch\s*\d+")
 SECTION = "## Batch 计划与状态"
-NUM_RE = re.compile(r"^\d+[a-z]?$")
+NUM_RE = BATCH_NUM_RE
 
 SKIP_DIRS = {".git", "node_modules", ".vitepress", "dist"}
 

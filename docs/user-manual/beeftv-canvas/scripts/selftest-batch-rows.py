@@ -44,11 +44,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GATE = os.path.join(ROOT, "scripts", "verify-batch-rows.py")
 PROGRESS = os.path.join(ROOT, "PROGRESS.md")
 SECTION = "## Batch 计划与状态"
-ROW_RE = re.compile(r"^\|\s*([^|]*?)\s*\|")
+#: **Batch 256：这一份是收敛来的**——收敛前本文件有自己的一份 `ROW_RE` 与一份 `SPLIT`，
+#: **两者与另两个文件里的拷贝 md5 逐字节相同**。
+#: **理由、以及「刻意不合并的那一个」见 `tablerow.py` 的文件头。**
+from tablerow import (ROW_RE, UNESCAPED_SPLIT, BATCH_NUM_RE,  # noqa: E402,F401
+                      is_batch_number)
 # **必须与被验的闸用同一套切分**（Batch 216）：Batch 143 那行内容里有 `\\|\\|`
 # 与带竖线的代码片段，用朴素 split("|") 数出来的列数与闸不一致，
 # 于是「注入没生效」的断言会给出与真相相反的结论——**用例自己量错就等于没量**。
-SPLIT = re.compile(r"(?<!\\)\|")
+SPLIT = UNESCAPED_SPLIT
 
 results = []
 
@@ -83,9 +87,9 @@ def check_anchor():
                  if ROW_RE.match(lines[i]) and ROW_RE.match(lines[i]).group(1) == "Batch")
     end = next(i for i in range(start + 1, len(lines)) if not lines[i].startswith("|"))
     inside = {ROW_RE.match(l).group(1) for l in lines[start + 2:end]
-              if ROW_RE.match(l) and re.fullmatch(r"\d+[a-z]?", ROW_RE.match(l).group(1))}
+              if ROW_RE.match(l) and is_batch_number(ROW_RE.match(l).group(1))}
     outside = {ROW_RE.match(l).group(1) for l in lines[end:]
-               if ROW_RE.match(l) and re.fullmatch(r"\d+[a-z]?", ROW_RE.match(l).group(1))}
+               if ROW_RE.match(l) and is_batch_number(ROW_RE.match(l).group(1))}
     cross = inside & outside
     assert cross, "前提失配：批次表外已没有与批次表重号的行，用例 2 失去意义"
 
