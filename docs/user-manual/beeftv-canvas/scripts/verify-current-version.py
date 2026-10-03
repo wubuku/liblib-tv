@@ -45,6 +45,13 @@ sys.path.insert(0, HERE)
 
 import scope  # noqa: E402
 from baseline import declared_baseline, BaselineError  # noqa: E402
+#: **Batch 259 补上**：本闸从 `baseline` 取 `SRC`，
+#: **而 19 道碰上游解析的闸里只有它一句都不说走了兜底**——
+#: 实测 `BEEFTV_SRC` 指向非仓时它 rc=0、输出是一句干净的「核对通过」，
+#: **而核的是用户没指定的另一份检出**。
+#: **静默降级比直接失败更坏，因为它还报绿**（纪律 172）。
+#: 措辞与判断都在 `baseline.announce_fallback()` 里，**本闸不用自己写一句**。
+from baseline import announce_fallback  # noqa: E402
 
 ROOT = os.path.dirname(HERE)
 
@@ -87,6 +94,10 @@ def find_current_claims(path, rel):
 
 
 def main():
+    #: **Batch 259 新增，且必须是 `main()` 的第一句**——
+    #: 放在任何 `[skip]` 分支之后，就等于「降级了但读者看不到」，
+    #: **而那正是本闸要防的形态自己**（纪律 172）。
+    announce_fallback()
     try:
         version, _commit = declared_baseline()
     except BaselineError as exc:

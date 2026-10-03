@@ -100,8 +100,19 @@ def run(desc, want, expect_fail=True, edits=None):
             os.makedirs(os.path.dirname(dst), exist_ok=True)
             with open(dst, "w", encoding="utf-8") as fh:
                 fh.write(t)
+        #: **Batch 259 修**：这份反验搭了一个沙箱，却**不传 `env=`**，
+        #: 于是子进程继承调用者的 `BEEFTV_MANUAL_ROOT`——
+        #: **而 `scope.py` 让那个变量优先于 `__file__` 推断**（Batch 178 的第二层教训）。
+        #: 于是闸被指向**另一棵树**：它拿 `scope` 答出来的「有哪些页面」，
+        #: 却从自己所在的沙箱去读那些文件 → `FileNotFoundError` 崩在任意深度。
+        #: **实测四组对照**：`BEEFTV_MANUAL_ROOT` 指向真树 → 通过 1 / 失败 7；
+        #: 指向别处 → 通过 0 / 失败 8；**不设 → 通过 8 / 失败 0**。
+        #: **一个会继承「指向别处」这个变量的沙箱不是沙箱**——
+        #: 而这份反验的**前提就是隔离**，隔离漏了，它测的就不是它声称在测的东西。
+        env = dict(os.environ)
+        env["BEEFTV_MANUAL_ROOT"] = tmp      # **沙箱自己就是这一轮的手册根**
         r = subprocess.run([sys.executable, os.path.join("scripts", "verify-current-version.py")],
-                           cwd=tmp, capture_output=True, text=True)
+                           cwd=tmp, capture_output=True, text=True, env=env)
         out = r.stdout + r.stderr
         if expect_fail and r.returncode == 0:
             print("  ✗ %s：闸门本应报错，却通过了" % desc)
@@ -181,7 +192,15 @@ def t_internal_doc_stale(s):
 
 
 def main():
-    r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
+    #: **Batch 259 同族第二处**：这一条基线跑的是**真树**，
+    #: **而它同样不传 `env=`**——调用者若把 `BEEFTV_MANUAL_ROOT` 指向别处，
+    #: **这一条就会拿一个错误的根去核真树**，实测 rc=2。
+    #: **「跑真树」不等于「环境就是对的」**：
+    #: **上一处修完它仍然红，正是因为只修了沙箱那一处。**
+    env = dict(os.environ)
+    env["BEEFTV_MANUAL_ROOT"] = ROOT        # **这一轮要核的手册根就是真树**
+    r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True,
+                       text=True, env=env)
     if r.returncode == 0:
         print("  ✓ 基线：真实手册通过（%s）" % r.stdout.strip().split("\n")[0][:70])
         globals()["PASS"] = globals()["PASS"] + 1
