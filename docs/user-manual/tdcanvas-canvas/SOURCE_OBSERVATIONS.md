@@ -731,6 +731,22 @@ M203 的做法是——只把 R31 的 needle 换成读者真读到的形态、�
   `upload-materials.md` 两处、`edit-nodes.md:87`、`project-management.md:83`、
   `shortcuts-help.md:31`、`generate-images.md:73`——**它们仍未经源码核对**。
 
+★ **M210 续核（同一类断言的第 5、6 条）**：
+
+| 断言 | 核验结果 |
+|---|---|
+| `project-management.md` 「zip 里的名字是类型前缀 + 一串随机 ID + 扩展名，下载回来认不出哪个是哪张图」 | **对**。`canvas-export.ts` 的 `exportCanvasProjects()` 把路径拼成 `projects/${project.id}/files/${safeFileName(storageKey)}.${ext}`，而 `image-storage.ts:22` 是 `storageKey = \`image:${nanoid()}\``——**类型前缀（image / audio…）+ nanoid + 由 MIME 推出的扩展名**，三样全对。`projects.json` 里 `files[]` 记着 `storageKey / path / mimeType / bytes`，所以「只能靠它对照」也成立 |
+| `90-troubleshooting.md` 「/config 左栏 260 像素宽、整栏 0 个可点元素」 | **对**。`pages/config/index.tsx:12` 是 `lg:grid-cols-[260px_minmax(0,1fr)]`；那个 `<aside>` 里只有一个小标题、一个 `h2`、两个段落和一条分隔线，**零链接零按钮零表单控件**——**「0 个可点」是结构决定的**。★ **M210 补了一条边界**：**260 像素是 `lg` 断点以上的宽度，窄屏下整块变单列、那一栏并不存在** |
+
+★ **M210 自己踩了一次「查错对象」，记在这里**：查上面第一条时，我先读到的是
+  `exportCanvasNodes()`——它按**节点标题**命名（`uniqueName(title, ext)`，重名才加 `-1`），
+  **与手册写的完全对不上**。差一步就把「手册错了」写成 Major。
+  **真正的原因是：这个文件里有两条导出路径，命名规则完全不同**——
+  `exportCanvasProjects()`（项目 zip，带 `projects.json`）按 storageKey，
+  `exportCanvasNodes()`（节点 zip）按标题。**手册那段讲的是前者。**
+  ★ **教训与「grep 不到调用 ≠ 没有调用」同族：查到一个函数 ≠ 就是文档在讲的那条路径。**
+  **动笔判错之前，先确认「我查的对象」和「文档描述的对象」是同一个。**
+
 ### 13.1 台账本体
 
 本表共 **23 条事实、56 处重述位置**。
