@@ -1,0 +1,34 @@
+{
+  "命中": [
+    {
+      "chunk": "3-mou5v69wxmq.js",
+      "键": "z-[180]",
+      "长度": 970309,
+      "出现次数": 1,
+      "处": [
+        {
+          "偏移": 85261,
+          "上下文": "tespace-nowrap rounded-md bg-black/90 px-2 py-1 text-xs font-normal text-white opacity-0 shadow-md transition-opacity peer-hover:opacity-100 peer-focus-visible:opacity-100 motion-safe:duration-150\",children:(0,S.translate)(\"canvas:collabFollowBannerPressEsc\")})]})]})}),document.body)}),t3=(0,y.memo)(function({active:e,colorHex:t}){return\"u\"<typeof document?null:(0,t1.createPortal)((0,v.jsx)(\"div\",{\"data-testid\":\"collab-follow-border\",\"aria-hidden\":!0,className:\"pointer-events-none fixed inset-0 z-[180] motion-safe:transition-opacity motion-safe:duration-200\",style:{opacity:+!!e,boxShadow:`inset 0 0 0 4px ${t}`}}),document.body)});function t5(e){let{peerZoom:t,minZoom:r,maxZoom:a}=e;return Math.max(r,Math.min(a,t))}var t6=e.i(849877);let t4={phase:\"idle\",targetUserId:null},t8={getState:()=>({}),setState:()=>{},subscribe:()=>()=>{}},t9=(0,y.memo)(function(){let{follow:e,setFollow:t,clearFollow:r,remoteCamera:a}=function(){let e=(0,ty.useCollabPresenceContext)(),[t,r]=(0,y.useState)(t4),a"
+        }
+      ]
+    },
+    {
+      "chunk": "3-mou5v69wxmq.js",
+      "键": "z-[305]",
+      "长度": 970309,
+      "出现次数": 1,
+      "处": [
+        {
+          "偏移": 83651,
+          "上下文": "Id)(\"number\"==typeof i?i:null),l=tp.config.tv;return r&&s?(0,v.jsx)(tZ,{projectId:r,storeInstanceId:a,projectGeneration:n,tv:l,onSessionReplaced:t,children:e}):(0,v.jsx)(ty.CollabPresenceContext.Provider,{value:null,children:e})}var t0=e.i(396805),t1=e.i(424788);let t2=(0,y.memo)(function({active:e,prefix:t,nickname:r,colorHex:a,onClose:n}){return\"u\"<typeof document?null:(0,t1.createPortal)((0,v.jsx)(\"div\",{\"data-testid\":\"collab-follow-banner\",className:\"pointer-events-none fixed left-1/2 top-0 z-[305] -translate-x-1/2 motion-safe:transition-opacity motion-safe:duration-200\",style:{opacity:+!!e},\"aria-hidden\":!e,ref:t=>{t?.toggleAttribute(\"inert\",!e)},children:(0,v.jsxs)(\"div\",{className:`flex items-center gap-2 rounded-b-xl border px-3 py-1.5 text-white shadow-md ${e?\"pointer-events-auto\":\"pointer-events-none\"}`,style:{backgroundColor:a,borderColor:a},children:[(0,v.jsx)(\"span\",{className:\"inline-block size-2 shrink-0 rounded-full bg-white\",\"aria-hidden\":!0}),(0,v.jsxs)(\"span\",{classN"
+        }
+      ]
+    }
+  ],
+  "统计": {
+    "资源数": 153,
+    "下载成功": 152,
+    "失败跳过": 1,
+    "命中chunk数": 2
+  }
+}

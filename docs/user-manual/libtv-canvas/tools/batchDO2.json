@@ -1,0 +1,267 @@
+{
+  "testid探测": [
+    {
+      "testid": "collab-follow-border",
+      "存在": true,
+      "尺寸": [
+        1440,
+        810
+      ],
+      "position": "fixed",
+      "zIndex": "180",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "visibility": "visible",
+      "display": "block",
+      "ariaHidden": "true",
+      "ariaLabel": null,
+      "有inert": false,
+      "class名": "pointer-events-none fixed inset-0 z-[180] motion-safe:transition-opacity motion-safe:duration-200",
+      "文字": ""
+    },
+    {
+      "testid": "collab-follow-banner",
+      "存在": true,
+      "尺寸": [
+        174,
+        34
+      ],
+      "position": "fixed",
+      "zIndex": "305",
+      "opacity": "0",
+      "pointerEvents": "none",
+      "visibility": "visible",
+      "display": "block",
+      "ariaHidden": "true",
+      "ariaLabel": null,
+      "有inert": true,
+      "class名": "pointer-events-none fixed left-1/2 top-0 z-[305] -translate-x-1/2 motion-safe:transition-opacity motion-safe:duration-200",
+      "文字": "正在跟随 取消ESC 按 ESC 退出"
+    },
+    {
+      "testid": "collab-follow-member",
+      "存在": false
+    },
+    {
+      "testid": "collab-follow-aria",
+      "存在": false
+    },
+    {
+      "testid": "collab-presence-bar",
+      "存在": false
+    },
+    {
+      "testid": "collab-presence-bar-header",
+      "存在": false
+    },
+    {
+      "testid": "collab-follow-controller",
+      "存在": false
+    }
+  ],
+  "协作入口": [
+    {
+      "文本": "正在跟随\n取消ESC\n按 ESC 退出",
+      "tag": "div",
+      "尺寸": [
+        174,
+        34
+      ],
+      "位置": [
+        633,
+        0
+      ]
+    },
+    {
+      "文本": "正在跟随",
+      "tag": "span",
+      "尺寸": [
+        56,
+        20
+      ],
+      "位置": [
+        662,
+        7
+      ]
+    },
+    {
+      "文本": "取消ESC 退出跟随",
+      "tag": "button",
+      "尺寸": [
+        64,
+        16
+      ],
+      "位置": [
+        730,
+        9
+      ]
+    }
+  ],
+  "团队版文案": [],
+  "全文扫描": null,
+  "按Z": {
+    "z180": [
+      {
+        "tag": "div",
+        "testid": "collab-follow-border",
+        "cls": "pointer-events-none fixed inset-0 z-[180] motion-safe:transition-opacity motion-safe:duration-200",
+        "z": "180",
+        "opacity": "0",
+        "position": "fixed",
+        "尺寸": [
+          1440,
+          810
+        ]
+      }
+    ],
+    "z305": [
+      {
+        "tag": "div",
+        "testid": "collab-follow-banner",
+        "cls": "pointer-events-none fixed left-1/2 top-0 z-[305] -translate-x-1/2 motion-safe:transition-opacity motion-safe:duration-20",
+        "z": "305",
+        "opacity": "0",
+        "position": "fixed",
+        "尺寸": [
+          174,
+          34
+        ]
+      }
+    ]
+  },
+  "视口内aria按钮": [
+    {
+      "label": "工作流",
+      "尺寸": [
+        32,
+        32
+      ]
+    },
+    {
+      "label": "故事板",
+      "尺寸": [
+        32,
+        32
+      ]
+    },
+    {
+      "label": "发布与分享",
+      "尺寸": [
+        32,
+        32
+      ]
+    },
+    {
+      "label": "积分超市",
+      "尺寸": [
+        32,
+        32
+      ]
+    },
+    {
+      "label": "添加节点",
+      "尺寸": [
+        32,
+        32
+      ]
+    },
+    {
+      "label": "移动",
+      "尺寸": [
+        32,
+        32
+      ]
+    },
+    {
+      "label": "素材库",
+      "尺寸": [
+        32,
+        32
+      ]
+    },
+    {
+      "label": "角色造型室",
+      "尺寸": [
+        32,
+        32
+      ]
+    },
+    {
+      "label": "生成历史",
+      "尺寸": [
+        32,
+        32
+      ]
+    },
+    {
+      "label": "快捷键",
+      "尺寸": [
+        32,
+        32
+      ]
+    },
+    {
+      "label": "教程",
+      "尺寸": [
+        32,
+        32
+      ]
+    },
+    {
+      "label": "TV Director",
+      "尺寸": [
+        48,
+        48
+      ]
+    },
+    {
+      "label": "资产管理",
+      "尺寸": [
+        94,
+        28
+      ]
+    },
+    {
+      "label": "整理画布，Option+Shift+F",
+      "尺寸": [
+        28,
+        28
+      ]
+    },
+    {
+      "label": "切换小地图",
+      "尺寸": [
+        28,
+        28
+      ]
+    },
+    {
+      "label": "隐藏节点连线",
+      "尺寸": [
+        28,
+        28
+      ]
+    },
+    {
+      "label": "网格吸附",
+      "尺寸": [
+        28,
+        28
+      ]
+    },
+    {
+      "label": "缩放选项",
+      "尺寸": [
+        36,
+        28
+      ]
+    },
+    {
+      "label": "退出跟随",
+      "尺寸": [
+        64,
+        16
+      ]
+    }
+  ]
+}
