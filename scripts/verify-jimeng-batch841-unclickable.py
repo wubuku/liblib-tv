@@ -3928,6 +3928,68 @@ def main() -> int:
           and "它**本身没错**（焦点确实多次落在本体上），" in _ausrc
           and "**它总是「当前被布的那个」本体**" in _ausrc
           and "⇒ 921 起按这个收窄后的说法记" in _ausrc)
+    p921 = ROOT / "scripts/jimeng_probe921_full_table_and_delta_src.py"
+    _p921 = p921.read_text(encoding="utf-8") if p921.exists() else ""
+    check("HHH.1 ✅⭐ **921 用「整张表 + 逐次 delta」把 920 那个「76 → 75」查清了**"
+          "（源站，纯诊断，2 轮 × 每次 16 连按，两轮逐条一致）。"
+          "**两类事件必须分开看**：**① 初始化（第一次布，只有一次）**"
+          "给**所有**节点写上 `tabindex`（`added = [0…75]`）⇒ 920 读到的 **76 "
+          "就是这个初始化态**；**② 之后每一次「臂事件」恰好做三件事** —— "
+          "`removed` = **上一个臂事件**的下标（属性**整个移除**）、"
+          "`added` = **上上个臂事件**的下标（写回 `'-1'`）、"
+          "`changed` = 本次被布的下标 ⇒ **24/24 逐条成立**",
+          "source_tabindex_rolling_window_921" in _ausrc
+          and "**921 用「整张表 + 逐次 delta」把 920 那个「76 → 75」查清了**"
+          in _ausrc
+          and "**① 初始化（第一次布，只有一次）**" in _ausrc
+          and "920 读到的那个 **76 就是这个初始化态**" in _ausrc
+          and "**② 之后每一次「臂事件」（指针真的移动）**" in _ausrc
+          and "**`removed` = **上一个臂事件**的下标（**`tabindex` 属性被整个移除**"
+          and "`removed` = **上一个臂事件**的下标（**`tabindex` 属性被整个移除**"
+          in _ausrc
+          and "**24/24 逐条成立**" in _ausrc
+          and "const added = [], removed = [], changed = [];" in _p921
+          and "else if (was !== null && cur[i] === null) removed.push(i);"
+          in _p921
+          and "else if (was !== cur[i]) changed.push([i, was, cur[i]]);" in _p921)
+    check("HHH.2 **⇒ 不变式（两轮各 11 次臂事件后逐条成立）**："
+          "**任何时刻恰好有 1 个本体没有 `tabindex` 属性**（就是「上一个臂事件」"
+          "那个）⇒ **`n_wrapper_any_ti` 从第二次布起恒为 75**。"
+          "**✅ 顺带钉死一条**：指针**没有**移动的那些按压（死按压）—— "
+          "`removed` / `added` / `changed` **全空** ⇒ "
+          "**应用完全没碰 `tabindex` 属性**，**8/8 成立**",
+          "**任何时刻恰好有 1 个本体没有 `tabindex` 属性**" in _ausrc
+          and "**`n_wrapper_any_ti` 从第二次布起恒为 75**" in _ausrc
+          and "**✅ 顺带钉死一条**：指针**没有**移动的那些按压（死按压）" in _ausrc
+          and "**应用完全没碰 `tabindex` 属性**，**8/8 成立**" in _ausrc
+          and "n_wrapper_any_ti: anyTiIdx.length," in _p921
+          and '"moved": before["zero_idx"] != after["zero_idx"],' in _p921)
+    check("HHH.3 ⚠️❌ **920 那个猜法正好把两者对调了**（作废、但**不许删** "
+          "920 那段）：920 说「**两次之前**那个被移除」，实际是"
+          "「**上一次**那个被移除、被写回的才是**上上个**」⇒ **两条正好对调**。",
+          "⚠️❌ **920 那个猜法正好把两者对调了**（作废、但**不许删** 920 那段）"
+          in _ausrc
+          and "**两次之前**那个被移除" in _ausrc
+          and "**上一次**那个被移除、被写回的才是**上上个**" in _ausrc
+          and "**两条正好对调**" in _ausrc)
+    check("HHH.4 ⚠️ **一条方法论教训（本批最值钱的一条）**："
+          "**切片会把规律读反。** 920 用 `slice(0, 12)` 只看**前 12 个**，"
+          "而那 12 个里恰好**看不到**「被移除」的那个（它在更靠后的位置）、"
+          "**只看到**「被写回」的那个 ⇒ 于是把两者**对调**了。"
+          "⇒ ⚠️ **要看全貌就别切片**；"
+          "**切片适合「有没有」，不适合「是哪一个」。**"
+          "⚠️ 判据要钉**探针里那两个列表确实没有 `slice`**"
+          "（**文档里提到 `slice(0, 12)` 不算**、要钉代码）",
+          "⚠️ **一条方法论教训（本批最值钱的一条）**" in _ausrc
+          and "**切片会把规律读反。**" in _ausrc
+          and "**切片适合「有没有」，不适合「是哪一个」。**" in _ausrc
+          and "zero_idx: zeroIdx," in _p921
+          and "idl_idx: idlIdx," in _p921
+          and "any_ti_idx: anyTiIdx," in _p921
+          and "zero_idx: zeroIdx.slice(" not in _p921
+          and "idl_idx: idlIdx.slice(" not in _p921
+          and "any_ti_idx: anyTiIdx.slice(" not in _p921)
+
 
 
 
