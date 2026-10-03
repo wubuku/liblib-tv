@@ -109,29 +109,13 @@ import os
 import re
 import sys
 
-from headingkey import is_atx_heading, rendered_key
+from headingkey import is_atx_heading, rendered_key, strip_fenced
 
 CONTENT_PAGES = ("00-quickstart.md", "20-reference.md", "30-concepts.md", "90-troubleshooting.md")
 
 # 扫到的标题数量下限。**低于它就报「未能核对」，不许报「通过」**（纪律 156）。
 # 真实值 379，取 100 留足余量，又足以抓住「页面集合写错 / 扫空」这类整片失效。
 MIN_HEADINGS = 100
-
-
-def strip_fenced(text):
-    """挖空围栏代码块但**保留行数**——报错要带 `:行号`，行号必须对得上原文。"""
-    out, in_fence, fence = [], False, None
-    for line in text.split("\n"):
-        m = re.match(r"^[ \t]*(```|~~~)", line)
-        if m:
-            if not in_fence:
-                in_fence, fence = True, m.group(1)
-            elif m.group(1) == fence:
-                in_fence, fence = False, None
-            out.append("")
-            continue
-        out.append("" if in_fence else line)
-    return "\n".join(out)
 
 
 def content_pages(root):

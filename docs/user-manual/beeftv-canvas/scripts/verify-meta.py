@@ -70,6 +70,8 @@ import os
 import re
 import sys
 
+from headingkey import first_h1, norm_inline, rendered_key
+
 try:
     import yaml
 except ImportError:  # pragma: no cover
@@ -280,19 +282,34 @@ INDEX_FILE = "10-tasks/README.md"
 H1_PAREN = r"^%s（.+）$"
 
 
-def index_check(root):
-    """返回 (漏登记列表, 形态不符列表, 统计行)。"""
-    import os as _os
-    index_path = _os.path.join(root, INDEX_FILE)
-    text = open(index_path, encoding="utf-8").read()
-    h1 = {}
-    for path in glob.glob(_os.path.join(root, "10-tasks", "*.md")):
-        base = _os.path.basename(path)
+def task_pages(root):
+    """任务页清单：`[(文件名, H1 原始整行 or None), …]`，**方向四与四之二共用的唯一一份**。
+
+    **Batch 250 的来龙去脉**：旧代码在 `index_check()` 与 `sidebar_check()` 里
+    **各写了一遍**「读首行、判 `startswith("# ")`、读不出就跳过」。
+    两处各自静默，于是**同一个洞让两个方向一起缩了**。
+    本函数把这件事收成一份，且**读不出 H1 不再等于「不看」**——
+    `None` 会被报出去（`no_h1`），而不是让整页从账上消失。
+    """
+    out = []
+    for path in sorted(glob.glob(os.path.join(root, "10-tasks", "*.md"))):
+        base = os.path.basename(path)
         if base == "README.md":
             continue
-        first = open(path, encoding="utf-8").readline().strip()
-        if first.startswith("# "):
-            h1[base] = first[2:].strip()
+        out.append((base, first_h1(open(path, encoding="utf-8").read())))
+    return out
+
+
+def index_check(root):
+    """返回 (漏登记列表, 形态不符列表, 无 H1 列表, 统计行)。"""
+    index_path = os.path.join(root, INDEX_FILE)
+    text = open(index_path, encoding="utf-8").read()
+    pages = task_pages(root)
+    # **页面名字走 `rendered_key`、链接文字走 `norm_inline`——两边同一个口径**
+    # （纪律 274 推论一，与闸 26 `verify-link-labels.py` 共用 `headingkey`）。
+    # 旧代码两边都取**原始文本**，而读者是拿「链接显示的字」和「标题显示的字」比的。
+    h1 = {base: rendered_key(line) for base, line in pages if line is not None}
+    no_h1 = [base for base, line in pages if line is None]
 
     pairs = re.findall(r"\[([^\]]+)\]\(([a-z0-9-]+\.md)\)", text)
     linked = {t for _l, t in pairs}
@@ -302,14 +319,14 @@ def index_check(root):
     for label, target in pairs:
         if target not in h1:
             continue
-        label = label.strip()
+        label = norm_inline(label)
         want = h1[target]
         if label == want:
             continue
         if re.match(H1_PAREN % re.escape(want), label):
             continue          # 有意的「标题（提示）」形态
         mismatched.append((target, label, want))
-    return missing, mismatched, len(pairs), len(h1)
+    return missing, mismatched, no_h1, len(pairs), len(pages)
 
 
 def sidebar_check(root):
@@ -323,18 +340,15 @@ def sidebar_check(root):
     Batch 154 的实测：4 个页面不在侧栏，其中 `readonly-canvas.md` 从 Batch 135
     建页起就**一直**不在侧栏，而 `asset-library` / `create-workspace` / `model-channels`
     是 Batch 139/140/141 连续三批新建的。**侧栏比 README 索引漏得更久、也更全。**
+
+    **Batch 250**：页面清单改用 `task_pages()`，**不再因为读不出 H1 而整页消失**。
+    本方向查的是「文件有没有被登记进侧栏」，**与 H1 无关**——
+    旧代码却把「能不能读出 H1」当成了「这个页面算不算数」的前置条件。
     """
     cfg_path = os.path.join(root, ".vitepress", "config.mjs")
     cfg = open(cfg_path, encoding="utf-8").read()
     linked = set(re.findall(r"link:\s*['\"]([^'\"]+)['\"]", cfg))
-    pages = []
-    for path in glob.glob(os.path.join(root, "10-tasks", "*.md")):
-        base = os.path.basename(path)
-        if base == "README.md":
-            continue
-        first = open(path, encoding="utf-8").readline().strip()
-        if first.startswith("# "):
-            pages.append(base)
+    pages = [base for base, _line in task_pages(root)]
     missing = sorted(f for f in pages if "/10-tasks/" + f[:-3] not in linked)
     return missing, len(pages)
 
@@ -1281,13 +1295,17 @@ def main():
 
     # ── 方向四：任务索引 ⇄ 页面标题 ──
     print("-" * 62)
-    missing, mismatched, n_pairs, n_pages = index_check(root)
+    missing, mismatched, no_h1, n_pairs, n_pages = index_check(root)
     for f in missing:
         fail(f"  ✗ 任务页 {f} 不在 {INDEX_FILE} 的索引里（建了页面忘了登记）")
     for target, label, want in mismatched:
         fail(f"  ✗ 索引里 {target} 的链接文字「{label}」与页面标题「{want}」既不相同、"
               f"也不是「标题（提示）」形态")
-    if not missing and not mismatched:
+    for f in no_h1:
+        fail(f"  ✗ 任务页 {f} 全文没有任何 H1，索引对账无从做起"
+              f"（**旧判据在这里是静默跳过整页**——那正是它让「28 个任务页全部登记」"
+              f"印在 29 个任务页的树上的方式）")
+    if not missing and not mismatched and not no_h1:
         print(f"  ✓ 任务索引双向一致：{n_pages} 个任务页全部登记，"
               f"{n_pairs} 条链接文字与页面标题一致（含有意的「标题（提示）」形态）")
 

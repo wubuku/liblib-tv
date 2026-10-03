@@ -25,6 +25,13 @@
 # Batch 225 新增方向六之二（页内相对指代不许悬空），加了 2 例，**成对**：
 #  12) 能抓：把被引用的那句「运行时实证」改掉 → 下面那层证据声明悬空，必须报
 #  13) 不误伤：同一处耦合，只把指代方式换成自指的「本节」→ 必须放行
+#
+# Batch 250 给方向四加了 4 条，钉的是**「页面 H1 是怎么取的」**：
+#  43) 能抓：整行删掉 H1（页面真的没有 H1）→ 必须报，**不得静默跳过整页**
+#  44) 能抓：H1 在第 2 行 + 索引链接写错 → 必须报，**证明那一页真的被比了**
+#  45) 不误伤：H1 带 ATX 闭合序列、索引写渲染后的名字 → 必须放行
+#  46) 不误伤：H1 之前有含 `# 注释` 的代码围栏 → 必须放行
+#      （**46 钉的是新判据自己新引入的风险**，前 45 条一条都伤不到它）
 #      （**「本节」恒成立，方向刻意不查**；少了它，12 可能只是「逢那句话就报」）
 #
 # 第 4 条是本闸最关键的一条：Batch 145 之所以能撞见那批过期数字，
@@ -60,7 +67,19 @@ VOID=0
 # **还原的基准必须是「进来时什么样」，而不是「仓库里已提交什么样」**——
 # 否则这个脚本就成了一个会吃掉未提交改动的工具，而它本该是被信任的检查工具。
 SNAP="$(mktemp -d "${TMPDIR:-/tmp}/beef-meta-selftest.XXXXXX")"
-SNAP_FILES=(README.md 10-tasks/README.md 10-tasks/timeline-editing.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md 30-concepts.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py scripts/verify-meta.py scripts/verify-endpoints.py scripts/verify-shortcuts.py scripts/verify-screenshots.py)
+SNAP_FILES=(README.md 10-tasks/README.md 10-tasks/asset-library.md 10-tasks/timeline-editing.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md 30-concepts.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py scripts/verify-meta.py scripts/verify-endpoints.py scripts/verify-shortcuts.py scripts/verify-screenshots.py)
+
+# **Batch 250 往 SNAP_FILES 里加了一行，而加它的理由本身就是一条纪律。**
+# 方向四的 4 条新用例都要改 `10-tasks/asset-library.md`，而它**原本不在快照里**。
+# 后果有两层，第二层比第一层严重：
+#   ① `run_fail_case` 的「注入空转」判定靠 SNAP_FILES 的 md5 —— 文件不在其中，
+#      注入失配也检测不出来，**锚点失配的用例会伪装成一次真实通过**；
+#   ② `restore()` 只还原 SNAP_FILES 里的文件，**没登记的文件还原不了**——
+#      而每条用例前都 `restore`、脚本退出还有 `trap 'restore' EXIT`，
+#      也就是说**用例跑完，那份被改坏的页面就留在真树上了**。
+# **写一条注入之前，先问「它要改的文件在不在快照里」。**
+# 这一条本该在 Batch 168 建 SNAP_FILES 时就想到——**它当时按「已有的用例要改哪些」列的表，
+# 而表是跟着用例长的，所以每加一批用例都要重问一次。**
 
 snapshot() {
   cd "$ROOT" || exit 1
@@ -573,6 +592,50 @@ run_file_pass_case "41) 不误伤：指代改写成自指的「本节」（必�
 run_file_case "42) 删掉一份「被引用但不是驱动」的反验的认领行（必须报：方向十一之二）" \
   "AUDIT-RULES.md" "$HERE/selftest-meta-fix-42-unclaimed-nondriver.py" \
   "非夹具反验"
+
+# ── 方向四（Batch 250 重做）：任务页的 H1 是怎么取的 ──────────────────
+#
+# 旧判据的形状是 `open(path).readline()` 之后判 `startswith("# ")`，
+# **读不到就 `continue`**。本组 4 条用例量的就是这一行的三个后果，
+# 全部在改前的判据上实测过（rc 是同一个注入在改前/改后两个版本上的实测值）：
+#
+#   用例 | 注入形态                       | 改前 | 改后 | 钉的是什么
+#   -----+--------------------------------+------+------+-------------------------------
+#    43  | 整行删掉 H1（页面真的没有 H1） |  0   |  1   | 不再静默
+#    44  | H1 在第 2 行 + 索引链接写错   |  0   |  1   | **真的跨过首行去比了**
+#    45  | H1 带 ATX 闭合序列            |  1   |  0   | 不拿读者看不见的字当标题
+#    46  | H1 之前有含 `# 注释` 的围栏   |  0   |  0   | 新判据自己新引入的风险
+#
+# **43 与 44 不是同一条，缺一不可**：
+# 43 注入之后页面**真的没有 H1**，新判据报「全文没有任何 H1」——
+# 而**只读首行的旧判据在同一个注入上走的也是「读不到 H1」那条分支**。
+# 只钉 43，「全篇扫」这件事其实没被验过。
+# 44 注入之后页面**有 H1，只是不在首行**，旧判据会整页跳过，
+# 索引里那个写错的链接**永远比不到**——**它才是「不再只读首行」的直接证据**。
+#
+# **45 的诊断最坏的地方**：改前报的是「页面标题『素材库（资产页） ##』」，
+# 而**那串字在页面上不存在**（渲染器丢掉 ATX 闭合序列）——
+# 照着它去改的人会把好端端的索引链接改成带 `##` 的形态。
+#
+# **46 钉的不是旧缺陷，是新判据自己带来的风险**：前 45 条没有一条能伤到它
+# （旧判据只读首行、看不见页面中段），**而全篇扫一旦不剥围栏，
+# 「代码块里的井号」就成了页面标题**。本树围栏内 0 处形似标题，
+# **所以真树回归跑不出这个洞——「现场没有」不能当护栏**。
+run_file_case "43) 任务页整行没有 H1（必须报：不得静默跳过整页）" \
+  "10-tasks/asset-library.md" "$HERE/selftest-meta-fix-43-page-no-h1.py" \
+  "全文没有任何 H1"
+
+# 44 改**两个**文件（页面 + 索引），走 `run_fail_case` 直接执行注入脚本。
+# 那条路径的「注入空转」判定看 SNAP_FILES 的 md5，
+# 而 `10-tasks/asset-library.md` 是本批才加进 SNAP_FILES 的（见上面的注释）。
+run_fail_case "44) H1 不在首行时索引链接写错（必须报：那一页真的被比了）" "与页面标题" \
+  "python3 $HERE/selftest-meta-fix-44-h1-not-first.py"
+
+run_file_pass_case "45) H1 带 ATX 闭合序列、索引写渲染后的名字（必须不报）" \
+  "10-tasks/asset-library.md" "$HERE/selftest-meta-fix-45-closing-atx.py"
+
+run_file_pass_case "46) H1 之前有含井号注释的代码围栏（必须不报）" \
+  "10-tasks/asset-library.md" "$HERE/selftest-meta-fix-46-fenced-hash.py"
 
 echo "=== 基线：真实仓库应当通过 ==="
 restore
