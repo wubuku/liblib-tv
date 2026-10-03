@@ -1488,3 +1488,55 @@ opacity: 0 ｜pointer-events: none ｜transform: scale(0.5) ｜data-state: "clos
 `76 − 68 = 8` = 选中数 ⇒ **多选时选中节点的标记按钮被搬进工具条**，
 8 个搬上来只留 **1 个**统一入口。取消选中后**回到 76**。
 📌 所以：**并读 `aria-label` / `title` / 子元素 `data-testid`**，别只看屏幕上的字。
+
+## 🤖 Agent 侧栏（`⌘/` 开关）：**开合时整个换位置**，17 个 testid 全册未记（2026-10-03 批次 132 首次建档）
+
+按 **`⌘/`** 打开右下角的 Agent 侧栏。⚠️ **它不是「同一个盒子显示/隐藏」**：
+
+| 状态 | 矩形 | `data-state` | 子元素数 |
+|---|---|---|---|
+| **关（基线）** | **`200×348@1068,360`**（右下角一小块） | `closed` | **0** |
+| **开** | **`400×696@868,12`**（顶栏下方的**大面板**） | `open` | 1 |
+
+⚠️ **想按「关态矩形」去点开它，点不到；想按「开态矩形」去关它，也点不到。**
+
+开合**不留残留 DOM**（关态子元素数真的回到 0）⇒ 与六个面板「关态浮层节点为 0」同型
+⇒ **这个产品的关闭是真卸载，不是隐藏**。
+
+### 面板里的 17 个 testid（开态实测）
+
+| testid | tag | 矩形 | aria / 逐字 |
+|---|---|---|---|
+| `canvas-agent-panel` | `DIV` | `398×694@869,13` | 面板本体 |
+| `canvas-agent-session-menu-trigger` | `BUTTON` | `58×32@885,25` | aria `会话列表` / 逐字 `新会话` |
+| `canvas-agent-session-title` | `SPAN` | `42×22@893,30` | 逐字 `新会话` |
+| `canvas-agent-session-create` | `BUTTON` | `32×32@1183,25` | aria `新建会话` |
+| **`canvas-agent-session-collapse`** | `BUTTON` | `36×36@1219,23` | aria **`收起`** |
+| `canvas-agent-session-heading` | **`H2`** | `338×27@899,213` | 逐字 `探索更多专业创作模式` |
+| `canvas-agent-session-modes` | `DIV` | `338×140@899,252` | 五个模式所在 |
+| `canvas-agent-mode-action` ×5 | `BUTTON` | `105×36` / `105×36` / `157×36` / `105×36` / `105×36` | 逐字 **`/ 视频反解`**、**`/ 创作分镜`**、**`/ 全流程广告片导演`**、**`/ 剧本开发`**、**`/ 剧情短片`** |
+| `canvas-agent-session-composer` | `DIV` | `390×164@873,539` | 输入区 |
+| `prompt-composer` | `DIV` | `357×84@890,554` | |
+| `canvas-agent-composer-placeholder-mention` | `BUTTON` | `24×24@1196,554` | aria `引用参考`，**逐字是 `@`**（输入框内右上角） |
+| `canvas-agent-composer-action-row` | `DIV` | `357×32@890,654` | 动作行 |
+| `canvas-agent-composer-add` | `BUTTON` | `32×32@890,654` | aria `从本地、画布或资产库添加` |
+| `canvas-agent-skill-trigger` | `BUTTON` | `90×32@926,654` | aria / 逐字 `使用技能` |
+| `canvas-agent-composer-mention` | `BUTTON` | `32×32@1020,654` | aria `引用参考`（**图标，逐字空**） |
+| `canvas-agent-send` | `BUTTON` | `32×32@1215,654` | aria **`发送消息`** |
+| `canvas-sidecar-resize-handle` | —— | —— | 面板缩放手柄 |
+
+⚠️ **两个「引用参考」按钮要靠 testid 与尺寸分清**：输入框**内**那个 `24×24`、逐字 `@`；
+动作行里那个 `32×32`、逐字为空。**aria 逐字都是 `引用参考`**，光看 aria 分不出来。
+
+⚠️ **输入区不是 `input`/`textarea`**，是 `contenteditable="true"` + `role="textbox"` +
+aria 逐字 `说说你的想法或任务，上传参考、输入文字或` 的 `DIV` `357×84@890,554`。
+
+### 📌 `data-state` 在这里**可靠**，在小地图上**不可靠**（正相反）
+
+侧栏的 `data-state` 严格跟随 `closed ↔ open`（本批 **5 次**读数全部一致）；
+而小地图开关 `canvas-display-toggle-minimap` 的 `data-state` **恒为 `closed`**
+（`aria-pressed` 却正常 `false↔true` 翻转）。
+⇒ **同一个属性名、两处可靠性相反**，取决于那处实现有没有跟 Radix 走。
+📌 **别把 `data-state` 当全局可用的判据。**
+
+⚠️ **本节说的是「这一版构建在这个账号的这个画布上」**（面板里显示着「新会话」，即**无历史会话**）。
