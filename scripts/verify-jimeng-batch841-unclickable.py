@@ -4107,6 +4107,69 @@ def main() -> int:
           and "runs.append(rec)\n        out[\"runs\"] = runs\n        with open(OUT, \"w\", encoding=\"utf-8\") as f:\n            json.dump(out, f, ensure_ascii=False, indent=2)\n\n        # ---------- 设计门" in _p923
           and "n_armed_fwd + n_armed_rev" not in _p923
           and "any_ti: anyTiIdx.length," in _p923)
+    p924 = ROOT / "scripts/jimeng_probe924_both_boundaries_src.py"
+    _p924 = p924.read_text(encoding="utf-8") if p924.exists() else ""
+    check("KKK.1 ✅⭐ **924 在同一次运行里把两个边界都穿过去了**："
+          "**正向到末尾、反向到下界，两向都是「到头停手、绝不绕回」。**"
+          "正向布到 `n_nodes - 1 = 75` 之后又按 **10 次**、**一次都没布**；"
+          "反向退到 **0** 之后又按 **10 次**、**一次都没布** ⇒ "
+          "**两向互为对照**（896 只测过正向那条边界）",
+          "924 在同一次运行里把两个边界都穿过去了" in _ausrc
+          and "**正向到末尾、反向到下界，两向都是「到头停手、绝不绕回」。**" in _ausrc
+          and "**正向**：布到 `n_nodes - 1 = 75` 之后又按 **10 次**、" in _ausrc
+          and "**反向**：退到 **0** 之后又按 **10 次**、**一次都没布**" in _ausrc
+          and "⚠️ **反向那条下界 0 从来没被测过**" in _ausrc
+          # ⚠️ 节点总数是易变量 ⇒ 边界必须用**当下那一刻的 n_nodes** 算
+          and "lambda idx, nn: idx == nn - 1," in _p924
+          and "lambda idx, nn: idx == 0," in _p924
+          # 「没绕回」必须有样本 ⇒ 越界后必须真的又按了 PAST 次
+          and "if hit_at is not None and (k + 1) - hit_at >= PAST:" in _p924
+          and "n_past_ok = (n_past_fwd >= PAST and n_past_rev >= PAST)" in _p924)
+    check("KKK.2 ✅ **把 §133 那条规则放到最大样本上再验一遍**："
+          "**全程 144 次臂事件**（正向 74 + 反向 70）—— "
+          "**`removed` = 上一个臂事件（不分方向）、零偏差**；"
+          "`added` = 上上个只有 **1 次**偏差（就是那次**初始化**）；"
+          "死按压 **47 次**且 delta **全空 47/47**；"
+          "不变式「`n_wrapper_any_ti` 恒 75」**全程成立** "
+          "⇒ **那条规则跨两个边界都站得住。**",
+          "**全程 144 次臂事件**（正向 74 + 反向 70）—— " in _ausrc
+          and "**`removed` = 上一个臂事件（不分方向）、零偏差**" in _ausrc
+          and "**全空 47/47**" in _ausrc
+          and "**全程成立** " in _ausrc
+          and "**那条规则跨两个边界都站得住。**" in _ausrc
+          # 「越界之后的每一次」必须被**单独存下来**，不然判据钉的是空话
+          and "rec[\"after_fwd_arm_idx\"] = [" in _p924
+          and "rec[\"after_rev_arm_idx\"] = [" in _p924)
+    check("KKK.3 ✅ **顺带查清一条关于「反向怎么起手」的事实**："
+          "**反向臂事件不是从「正向阶段最后一次按压」起手的** —— "
+          "正向那 **10 次越界按压已把焦点带出画布、绕了半圈页面**；"
+          "**反向第 1–9 次全是死按压**，**第 9 次**焦点才回到"
+          "**正向布到的最后一个下标那个本体**上、**第 10 次**才真的布 "
+          "⇒ **反向是从「正向布到的最后一个下标」那个本体起手的。**",
+          "**反向臂事件不是从「正向阶段最后一次按压」起手的**" in _ausrc
+          and "**反向第 1–9 次全是死按压**" in _ausrc
+          and "**反向是从「正向布到的最后一个下标」那个本体起手的。**" in _ausrc
+          # ⚠️ 判据要钉在**门真的问的是「起手时」而不是「翻向那一刻」**
+          and "\"first_rev_arm_pre_focus_on_body\"" in _p924
+          and "first_rev_arm = next((p for p in rev_presses if p[\"moved\"]), None)" in _p924)
+    check("KKK.4 ⚠️⚠️ **不许**据本轮说 §121「2 个节点整轮没被布」被推翻 —— "
+          "**节点总数在同 URL 逐轮会变**（74→77 都出现过）"
+          "⇒ **跨 run 的下标未必可比** ⇒ 本轮只能记"
+          "「**这一轮** 76 个里 75 个被布过」。"
+          "⚠️ **924 第一版自己踩的坑（读数没错、门放错了）**："
+          "第一版拿「正向阶段最后一次按压之后焦点在不在本体上」当门，"
+          "而正向阶段**故意**在越界之后又按了 10 次 ⇒ 那道门**必然 FAIL**，"
+          "**可它并不是「反向臂事件起手时焦点在不在本体上」** ⇒ "
+          "改成问本来该问的（第一个反向臂事件的 `pre` 焦点）—— "
+          "**不是把门删掉、也不是放宽**",
+          "**不许**据此说 §121「2 个节点整轮没被布」被推翻" in _ausrc
+          and "**节点总数在同 URL 逐轮会变**" in _ausrc
+          and "**跨 run 的下标未必可比**" in _ausrc
+          and "**924 第一版自己踩的坑（读数没错、门放错了）**" in _ausrc
+          and "**不是把门删掉、也不是放宽**" in _ausrc
+          # ⭐ 那道**放错位置**的旧门必须**还留在源码里**（不许悄悄删掉）
+          and "rec[\"focus_on_body_at_flip\"]" in _p924
+          and "\"focus_on_body_ok\":" not in _p924)
 
 
 
