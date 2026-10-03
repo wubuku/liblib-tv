@@ -218,6 +218,11 @@ SELFTEST_COSTS = {
     #: 它每例起一个临时目录并搬 `20-reference.md` + `.vitepress/config.mjs`——
     #: **闸门必须能读出「当前该是哪个版本」与「哪些页会被发布」**，少搬一个则 8 例全 rc=2。
     "selftest-current-version.py": 0.4,
+    #: **Batch 235 新增**：三次实测 1.34 / 2.22 / 1.15 秒，**按纪律 204 取最大 2.3**
+    #: （2.2 秒那次是它 21 次 `git diff` 撞上磁盘抖动——**漂的方向是往上，所以取大**）。
+    #: 它每例都要起临时目录并搬 README + 20-reference + manifest；
+    #: 被测闸门每例要对上游跑十几次 `git diff`（整个版本区间逐对相邻 tag）。
+    "selftest-version-coverage.py": 2.3,
     "selftest-quote-punct.py": 37.1,
     "selftest-runtime-policy.py": 1.0,
     "selftest-scope.py": 0.4,
