@@ -67,6 +67,7 @@ PROBE_VARS = {
     "_p913": "scripts/jimeng_probe913_same_endpoint_two_routes_src.py",
     "_p914": "scripts/jimeng_probe914_two_routes_real_backwalk_src.py",
     "_p915": "scripts/jimeng_probe915_prehistory_irrelevance_src.py",
+    "_p916": "scripts/jimeng_probe916_bite_then_walkback_src.py",
     # ⚠️ 909 第一次把判据钉在**组件源码的实现字面量**上（判据写在
     # `armRovingTabindex` 里）⇒ 组件源码**必须登记进 PROBE_VARS**。
     # ⚠️⚠️ 第一次我把它误写进了一个**没人读**的 `SRC_VARS` ⇒
