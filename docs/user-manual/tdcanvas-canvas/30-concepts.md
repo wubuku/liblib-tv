@@ -210,8 +210,9 @@ TDCanvas 用「节点」统一承载内容，共七种。左侧 Dock 的「+」�
 
 ## 项目与自动保存
 
-- 一个项目 = 一张独立画布（节点 + 连线 + 视口 + 外观 + 会话），数据保存在**本机**（IndexedDB），无需登录与手动保存。
+- 一个项目 = 一张独立画布（节点 + 连线 + 视口 + 外观 + 会话），数据保存在**本机**（IndexedDB），无需登录与手动保存。**源码**里 `CanvasProject` 定义的 12 个字段**一个不少**全都在库里（2026-10-03 M188 按类型定义核对：`id`/`title`/`createdAt`/`updatedAt`/`nodes`/`connections`/`chatSessions`/`activeChatId`/`inputMode`/`backgroundMode`/`showImageInfo`/`viewport`）；**不存的是「你当时正在看什么」**——当前选中、右键菜单、悬停工具条、打开的弹窗、撤销历史，刷新后一律复位。
 - 顶部标题即项目名，首页「最近画布」按最近修改排列。
+- **写盘有延迟，而且不同类的东西延迟不一样**：画布内容停约 0.4 秒就落库，**缩放/平移要停约 0.9 秒**（多一道 500ms 的前置防抖）。所以「刚滚过滚轮就刷新」会丢掉画面位置——内容一条不少（详见 [undo-persistence.md](10-tasks/undo-persistence.md#⚠️-改完立刻刷新-可能丢掉最后一次改动)）。
 - 项目可以导出 zip（`projects.json` + 素材文件），但**这个版本没有「导入画布」**——zip 导得出、导不回，它能帮你抢救素材，救不回节点与连线（见 [project-management.md](10-tasks/project-management.md#导出项目)）；删除项目同样不可恢复。
 
 ### 已知边界

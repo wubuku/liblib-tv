@@ -408,7 +408,7 @@ TDCanvas 是一个**纯本机应用**：没有账号体系，没有服务器，�
 
 | 数据 | 存在哪 | 键名 | 说明 |
 |---|---|---|---|
-| 画布项目（节点/连线/视口/外观） | 浏览器 IndexedDB | 库 `tdcanvas` → 表 `app_state` → 键 `tdcanvas:canvas_store` | 自动保存（写入有 400ms 防抖），无需手动保存 |
+| 画布项目（节点/连线/视口/外观） | 浏览器 IndexedDB | 库 `tdcanvas` → 表 `app_state` → 键 `tdcanvas:canvas_store` | 自动保存（写入有 400ms 防抖；**视口另有一道 500ms 的前置防抖，等于要停约 0.9 秒**），无需手动保存 |
 | **素材文件本体**（上传的图片/视频/音频的字节） | 浏览器 IndexedDB | 同库 → 表 **`image_files`**（音频等走 `media_files`） | 节点里只存一个 `storageKey`（形如 `image:QUh4vyiy-Vxw5fWAfu59t`）**和一个 `blob:` 地址指回来**，字节不塞进 JSON |
 | 「我的资产」条目 | 浏览器 IndexedDB | 同上库表 → 键 `tdcanvas:asset_store` | 提示词文本、参考图片等 |
 | 已安装插件 | 浏览器 IndexedDB | 同上库表 → 键 `tdcanvas:plugin_store` | — |
