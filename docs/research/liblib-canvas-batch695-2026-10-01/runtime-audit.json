@@ -1,0 +1,1146 @@
+{
+ "verifier": {
+  "width": 1280,
+  "deskHeight": 1150,
+  "rows": [
+   {
+    "key": "pose:torso.roll",
+    "selector": "[data-director-pose-control=\"torso.roll\"]",
+    "status": "measured",
+    "trackPx": 248,
+    "opacity": "1",
+    "min": -30,
+    "max": 30,
+    "step": 1,
+    "stepAttr": "1",
+    "declared": 61,
+    "mouseReachable": 31,
+    "mouseValues": [
+     "-10",
+     "-12",
+     "-14",
+     "-16",
+     "-18",
+     "-2",
+     "-20",
+     "-22",
+     "-24",
+     "-26",
+     "-28",
+     "-30",
+     "-4",
+     "-6",
+     "-8",
+     "0",
+     "10",
+     "12",
+     "14",
+     "16",
+     "18",
+     "2",
+     "20",
+     "22",
+     "24",
+     "26",
+     "28",
+     "30",
+     "4",
+     "6",
+     "8"
+    ],
+    "mouseCappedAtDeclared": false,
+    "pxPerValue": 8.551724137931034,
+    "keyboardHome": "-30",
+    "keyboardEnd": "30",
+    "keyboardStepExact": true,
+    "ariaLabel": "躯干 侧倾"
+   },
+   {
+    "key": "pose:leftElbow.bend",
+    "selector": "[data-director-pose-control=\"leftElbow.bend\"]",
+    "status": "measured",
+    "trackPx": 248,
+    "opacity": "1",
+    "min": 0,
+    "max": 150,
+    "step": 1,
+    "stepAttr": "1",
+    "declared": 151,
+    "mouseReachable": 29,
+    "mouseValues": [
+     "0",
+     "10",
+     "103",
+     "109",
+     "114",
+     "120",
+     "125",
+     "131",
+     "136",
+     "142",
+     "147",
+     "150",
+     "16",
+     "21",
+     "27",
+     "32",
+     "38",
+     "43",
+     "48",
+     "5",
+     "54",
+     "59",
+     "65",
+     "70",
+     "76",
+     "81",
+     "87",
+     "92",
+     "98"
+    ],
+    "mouseCappedAtDeclared": false,
+    "pxPerValue": 9.185185185185185,
+    "keyboardHome": "0",
+    "keyboardEnd": "150",
+    "keyboardStepExact": true,
+    "ariaLabel": "肘部 弯曲"
+   },
+   {
+    "key": "pose:leftShoulder.pitch",
+    "selector": "[data-director-pose-control=\"leftShoulder.pitch\"]",
+    "status": "measured",
+    "trackPx": 248,
+    "opacity": "1",
+    "min": -90,
+    "max": 180,
+    "step": 1,
+    "stepAttr": "1",
+    "declared": 271,
+    "mouseReachable": 29,
+    "mouseValues": [
+     "-12",
+     "-2",
+     "-22",
+     "-32",
+     "-42",
+     "-52",
+     "-61",
+     "-71",
+     "-81",
+     "-90",
+     "106",
+     "116",
+     "125",
+     "135",
+     "145",
+     "154",
+     "164",
+     "174",
+     "18",
+     "180",
+     "28",
+     "38",
+     "47",
+     "57",
+     "67",
+     "76",
+     "8",
+     "86",
+     "96"
+    ],
+    "mouseCappedAtDeclared": false,
+    "pxPerValue": 9.185185185185185,
+    "keyboardHome": "-90",
+    "keyboardEnd": "180",
+    "keyboardStepExact": true,
+    "ariaLabel": "手臂 — 肩 前举"
+   },
+   {
+    "key": "motion:duration",
+    "selector": "[data-director-motion-slider=\"duration\"]",
+    "status": "measured",
+    "trackPx": 180,
+    "opacity": "1",
+    "min": 0,
+    "max": 10,
+    "step": 0.01,
+    "stepAttr": "0.01",
+    "declared": 1001,
+    "mouseReachable": 19,
+    "mouseValues": [
+     "0",
+     "0.42",
+     "0.84",
+     "1.27",
+     "1.75",
+     "2.23",
+     "2.71",
+     "3.13",
+     "3.55",
+     "3.98",
+     "4.46",
+     "4.94",
+     "5.36",
+     "5.78",
+     "6.2",
+     "6.63",
+     "7.11",
+     "7.59",
+     "8"
+    ],
+    "mouseCappedAtDeclared": false,
+    "pxPerValue": 10.588235294117647,
+    "keyboardHome": "0",
+    "keyboardEnd": "8",
+    "keyboardStepExact": true,
+    "ariaLabel": "时长"
+   },
+   {
+    "key": "motion:uniform-scale",
+    "selector": "[data-director-motion-slider=\"uniform-scale\"]",
+    "status": "measured",
+    "trackPx": 180,
+    "opacity": "1",
+    "min": 0.1,
+    "max": 10,
+    "step": 0.05,
+    "stepAttr": "0.05",
+    "declared": 199,
+    "mouseReachable": 24,
+    "mouseValues": [
+     "0.1",
+     "0.5",
+     "0.95",
+     "1.4",
+     "1.85",
+     "10",
+     "2.3",
+     "2.7",
+     "3.15",
+     "3.6",
+     "4.05",
+     "4.5",
+     "4.95",
+     "5.4",
+     "5.85",
+     "6.3",
+     "6.7",
+     "7.15",
+     "7.6",
+     "8.05",
+     "8.5",
+     "8.95",
+     "9.4",
+     "9.8"
+    ],
+    "mouseCappedAtDeclared": false,
+    "pxPerValue": 8.181818181818182,
+    "keyboardHome": "0.1",
+    "keyboardEnd": "10",
+    "keyboardStepExact": true,
+    "ariaLabel": "统一缩放"
+   },
+   {
+    "key": "camera-fov",
+    "selector": "[data-director-camera-fov]",
+    "status": "measured",
+    "trackPx": 170,
+    "opacity": "0",
+    "min": 15,
+    "max": 90,
+    "step": 1,
+    "stepAttr": "1",
+    "declared": 76,
+    "mouseReachable": 20,
+    "mouseValues": [
+     "15",
+     "19",
+     "23",
+     "27",
+     "31",
+     "35",
+     "39",
+     "43",
+     "47",
+     "51",
+     "55",
+     "59",
+     "63",
+     "67",
+     "71",
+     "75",
+     "79",
+     "83",
+     "87",
+     "90"
+    ],
+    "mouseCappedAtDeclared": false,
+    "pxPerValue": 9.444444444444445,
+    "keyboardHome": "15",
+    "keyboardEnd": "90",
+    "keyboardStepExact": true,
+    "ariaLabel": "视野角度 (FOV)"
+   },
+   {
+    "key": "uniform-scale",
+    "selector": "[data-director-uniform-scale]",
+    "status": "measured",
+    "trackPx": 96,
+    "opacity": "1",
+    "min": 0.1,
+    "max": 10,
+    "step": 0.05,
+    "stepAttr": "0.05",
+    "declared": 199,
+    "mouseReachable": 11,
+    "mouseValues": [
+     "0.1",
+     "1.1",
+     "10",
+     "2.2",
+     "3.2",
+     "4.3",
+     "5.3",
+     "6.4",
+     "7.4",
+     "8.4",
+     "9.5"
+    ],
+    "mouseCappedAtDeclared": false,
+    "pxPerValue": 10.666666666666666,
+    "keyboardHome": "0.1",
+    "keyboardEnd": "10",
+    "keyboardStepExact": true,
+    "ariaLabel": "统一缩放"
+   },
+   {
+    "key": "phone-vcam-stability",
+    "selector": "[data-director-phone-vcam-stability]",
+    "status": "measured",
+    "trackPx": 314,
+    "opacity": "1",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "stepAttr": "1",
+    "declared": 101,
+    "mouseReachable": 35,
+    "mouseValues": [
+     "0",
+     "100",
+     "12",
+     "15",
+     "18",
+     "21",
+     "24",
+     "27",
+     "3",
+     "30",
+     "33",
+     "36",
+     "39",
+     "42",
+     "45",
+     "48",
+     "51",
+     "54",
+     "57",
+     "6",
+     "60",
+     "63",
+     "66",
+     "69",
+     "72",
+     "75",
+     "78",
+     "81",
+     "84",
+     "87",
+     "9",
+     "90",
+     "93",
+     "96",
+     "99"
+    ],
+    "mouseCappedAtDeclared": false,
+    "pxPerValue": 9.515151515151516,
+    "keyboardHome": "0",
+    "keyboardEnd": "100",
+    "keyboardStepExact": true,
+    "ariaLabel": null
+   },
+   {
+    "key": "scene-scale",
+    "selector": "[data-director-scene-scale]",
+    "status": "measured",
+    "trackPx": 96,
+    "opacity": "1",
+    "min": 0.1,
+    "max": 10,
+    "step": 0.1,
+    "stepAttr": "0.1",
+    "declared": 100,
+    "mouseReachable": 11,
+    "mouseValues": [
+     "0.1",
+     "1.1",
+     "10",
+     "2.2",
+     "3.2",
+     "4.3",
+     "5.3",
+     "6.4",
+     "7.4",
+     "8.4",
+     "9.5"
+    ],
+    "mouseCappedAtDeclared": false,
+    "pxPerValue": 10.666666666666666,
+    "keyboardHome": "0.1",
+    "keyboardEnd": "10",
+    "keyboardStepExact": true,
+    "ariaLabel": "场景缩放"
+   },
+   {
+    "key": "scene-panorama-rotation",
+    "selector": "[data-director-scene-panorama-rotation]",
+    "status": "measured",
+    "trackPx": 96,
+    "opacity": "1",
+    "min": 0,
+    "max": 360,
+    "step": 1,
+    "stepAttr": "1",
+    "declared": 361,
+    "mouseReachable": 11,
+    "mouseValues": [
+     "0",
+     "108",
+     "144",
+     "180",
+     "216",
+     "252",
+     "288",
+     "324",
+     "36",
+     "360",
+     "72"
+    ],
+    "mouseCappedAtDeclared": false,
+    "pxPerValue": 10.666666666666666,
+    "keyboardHome": "0",
+    "keyboardEnd": "360",
+    "keyboardStepExact": true,
+    "ariaLabel": "全景球水平旋转"
+   },
+   {
+    "key": "scene-panorama-radius",
+    "selector": "[data-director-scene-panorama-radius]",
+    "status": "measured",
+    "trackPx": 96,
+    "opacity": "1",
+    "min": 10,
+    "max": 500,
+    "step": 10,
+    "stepAttr": "10",
+    "declared": 50,
+    "mouseReachable": 11,
+    "mouseValues": [
+     "10",
+     "110",
+     "160",
+     "210",
+     "260",
+     "310",
+     "360",
+     "410",
+     "460",
+     "500",
+     "60"
+    ],
+    "mouseCappedAtDeclared": false,
+    "pxPerValue": 10.666666666666666,
+    "keyboardHome": "10",
+    "keyboardEnd": "500",
+    "keyboardStepExact": true,
+    "ariaLabel": "全景球球形半径"
+   },
+   {
+    "key": "scene-ground-opacity",
+    "selector": "[data-director-scene-ground-opacity]",
+    "status": "measured",
+    "trackPx": 96,
+    "opacity": "1",
+    "min": 0,
+    "max": 1,
+    "step": 0.05,
+    "stepAttr": "0.05",
+    "declared": 21,
+    "mouseReachable": 11,
+    "mouseValues": [
+     "0",
+     "0.1",
+     "0.2",
+     "0.3",
+     "0.4",
+     "0.5",
+     "0.6",
+     "0.7",
+     "0.8",
+     "0.9",
+     "1"
+    ],
+    "mouseCappedAtDeclared": false,
+    "pxPerValue": 10.666666666666666,
+    "keyboardHome": "0",
+    "keyboardEnd": "1",
+    "keyboardStepExact": true,
+    "ariaLabel": "地面透明度"
+   },
+   {
+    "key": "scene-ground-height",
+    "selector": "[data-director-scene-ground-height]",
+    "status": "measured",
+    "trackPx": 96,
+    "opacity": "1",
+    "min": -2,
+    "max": 2,
+    "step": 0.05,
+    "stepAttr": "0.05",
+    "declared": 81,
+    "mouseReachable": 11,
+    "mouseValues": [
+     "-0.4",
+     "-0.8",
+     "-1.2",
+     "-1.6",
+     "-2",
+     "0",
+     "0.4",
+     "0.8",
+     "1.2",
+     "1.6",
+     "2"
+    ],
+    "mouseCappedAtDeclared": false,
+    "pxPerValue": 10.666666666666666,
+    "keyboardHome": "-2",
+    "keyboardEnd": "2",
+    "keyboardStepExact": true,
+    "ariaLabel": "地面高度"
+   }
+  ],
+  "familyCounts": {
+   "poseTab": {
+    "total": 26,
+    "counts": {
+     "data-director-pose-control": 25,
+     "data-director-timeline-zoom": 1
+    }
+   },
+   "cameraMotionTab": {
+    "total": 3,
+    "counts": {
+     "data-director-motion-slider": 2,
+     "data-director-timeline-zoom": 1
+    },
+    "tabsSeen": [
+     {
+      "id": "properties",
+      "label": "属性"
+     },
+     {
+      "id": "motion",
+      "label": "运动轨迹NEW"
+     },
+     {
+      "id": "captures",
+      "label": "截图"
+     }
+    ],
+    "motionTabOpened": true
+   },
+   "cameraPropertiesTab": {
+    "total": 3,
+    "counts": {
+     "data-director-uniform-scale": 1,
+     "data-director-camera-fov": 1,
+     "data-director-timeline-zoom": 1
+    }
+   },
+   "phoneVcamReady": {
+    "total": 3,
+    "counts": {
+     "data-director-phone-vcam-stability": 1,
+     "data-director-uniform-scale": 1,
+     "data-director-timeline-zoom": 1
+    }
+   },
+   "nothingSelected": {
+    "total": 6,
+    "counts": {
+     "data-director-scene-scale": 1,
+     "data-director-scene-panorama-rotation": 1,
+     "data-director-scene-panorama-radius": 1,
+     "data-director-scene-ground-opacity": 1,
+     "data-director-scene-ground-height": 1,
+     "data-director-timeline-zoom": 1
+    }
+   }
+  },
+  "stageLog": [
+   {
+    "stage": "character-pose-tab",
+    "poseFamilyCount": 25
+   },
+   {
+    "stage": "camera-motion-tab",
+    "motionIds": [
+     "duration",
+     "uniform-scale"
+    ]
+   },
+   {
+    "stage": "camera-properties-tab",
+    "remeasured": [
+     "camera-fov",
+     "uniform-scale"
+    ]
+   },
+   {
+    "stage": "phone-vcam-ready",
+    "statusBefore": "waiting"
+   },
+   {
+    "stage": "nothing-selected-scene-settings"
+   }
+  ],
+  "citedFrom694": [
+   {
+    "key": "camera-fov",
+    "source": "batch-694",
+    "trackPx": 170,
+    "declared": 76,
+    "mouseReachable": 20,
+    "pxPerValue": null
+   },
+   {
+    "key": "uniform-scale",
+    "source": "batch-694",
+    "trackPx": 96,
+    "declared": 199,
+    "mouseReachable": 11,
+    "pxPerValue": null
+   },
+   {
+    "key": "phone-vcam-stability",
+    "source": "batch-694",
+    "trackPx": 314,
+    "declared": 101,
+    "mouseReachable": 35,
+    "pxPerValue": null
+   },
+   {
+    "key": "timeline-zoom",
+    "source": "batch-694",
+    "trackPx": 71,
+    "declared": 101,
+    "mouseReachable": 8,
+    "pxPerValue": null
+   }
+  ],
+  "keyMax": {
+   "data-director-pose-control": 25,
+   "data-director-timeline-zoom": 1,
+   "data-director-motion-slider": 2,
+   "data-director-uniform-scale": 1,
+   "data-director-camera-fov": 1,
+   "data-director-phone-vcam-stability": 1,
+   "data-director-scene-scale": 1,
+   "data-director-scene-panorama-rotation": 1,
+   "data-director-scene-panorama-radius": 1,
+   "data-director-scene-ground-opacity": 1,
+   "data-director-scene-ground-height": 1
+  },
+  "keysSeen": 11,
+  "runtimeElements": 36,
+  "theHeadline": "694's census counted data-attribute KEYS, not sliders. Two of the eleven keys are families -- pose-control renders 25 and motion-slider renders 2 -- so the class is 11 render sites and 36 runtime sliders. And the sharpest test of the law passed: three pose sliders on the same 248px track, declaring 61, 151 and 271 values, spend the same pixels per reachable value.",
+  "recipesDiscovered": {
+   "pose-control (25)": "character selected + click [data-director-character-tab=pose]",
+   "motion-slider (2)": "camera selected + click [data-director-camera-tab=motion]",
+   "scene-* (5)": "selectObject(null) -- deselect everything",
+   "camera-fov / uniform-scale / phone-vcam-stability": "camera selected, 属性 tab (694)"
+  },
+  "theWrongAttributeNameThatCostMeABatch": "694 listed motion-slider as 'needs a tab'. I reached for [data-director-character-tab] and looked for the text 运动轨迹 -- but that attribute only renders inside the selected.kind === 'character' branch (DirectorInspector.tsx:2250), so on a selected camera the locator matches ZERO elements and the click silently does nothing. The camera strip is a different attribute: data-director-camera-tab (DirectorInspector.tsx:2292).",
+  "storeWritesInThisRun": [
+   "selectObject(activeCameraId)",
+   "selectObject(null)"
+  ],
+  "howTheTabsWereFound": "the inspector tabs are NOT ARIA tabs -- role=tablist returns nothing. They are button[data-director-character-tab] / [data-director-camera-tab] with aria-pressed, and the two strips are rendered from different branches, so a query written for one kind of selection finds nothing in the other.",
+  "relationTo694": "694's four readings stand unchallenged. What was wrong is its COUNT, and the correction is recorded here rather than by rewriting 694.",
+  "instrumentLesson": "The first run of this batch reported five scene sliders with exactly one mouse-reachable value and identical Home/End readings, which produced a pixels-per-value of 96.0 on a 96px track -- a value that can only arise when the denominator collapses to 1. The controls were neither disabled nor occluded (elementFromPoint hit the input itself in five samples). An otherwise identical probe re-run against the same dev server measured 11 reachable values. So measure_one now refuses to report a reading it cannot corroborate, and the shared dev server remains a known source of non-determinism between runs.",
+  "hypothesisNotClaim": "All readings are from our own clone; the source site was not used. The value of K is unexplained by design, and the cap of the law has never been observed."
+ },
+ "checks": {
+  "a-data-attribute-key-renders-a-family-of-sliders-so-the-census-count-is-wrong": {
+   "ok": true,
+   "detail": {
+    "keysSeen": 11,
+    "runtimeElements": 36,
+    "perKey": {
+     "data-director-pose-control": 25,
+     "data-director-timeline-zoom": 1,
+     "data-director-motion-slider": 2,
+     "data-director-uniform-scale": 1,
+     "data-director-camera-fov": 1,
+     "data-director-phone-vcam-stability": 1,
+     "data-director-scene-scale": 1,
+     "data-director-scene-panorama-rotation": 1,
+     "data-director-scene-panorama-radius": 1,
+     "data-director-scene-ground-opacity": 1,
+     "data-director-scene-ground-height": 1
+    },
+    "keysThatRenderMoreThanOne": {
+     "data-director-pose-control": 25,
+     "data-director-motion-slider": 2
+    },
+    "theCorrection": "694 counted 11 NATIVE RANGES. It counted 11 data-attribute KEYS. data-director-pose-control is a .map over a 25-entry pose table (25 sliders) and data-director-motion-slider carries a testId (2 sliders: duration and uniform-scale). Static render sites = 11; runtime sliders = 36 across the class.",
+    "iMadeTheSameMistakeTwice": "pose-control was the first family I missed; motion-slider was the second, and I only found it by grepping the JSX instead of trusting the key count again. A family whose members differ only in an attribute value looks exactly like a family with one member when you only count keys.",
+    "thisIs684sLessonAgain": "684 recorded that 'the nearest data attribute expresses a CONTAINMENT relation, not identity'. Treating one key as one element is that mistake, and I made it again a hundred batches later.",
+    "howItSurfaced": "locator('[data-director-pose-control]') raised a strict-mode violation naming 25 elements -- the instrument caught it, not the census. An element-count census must be told apart from a key census before either is reported.",
+    "nameCollisionWorthFlagging": "data-director-motion-slider=\"uniform-scale\" and data-director-uniform-scale are DIFFERENT controls that share a name. The motion one is 0..10; the inspector one is 0.1..10 by 0.05. Keying a census by display name would have merged them.",
+    "694sReadingsStand": "694 measured four concrete controls; those readings are unaffected. Only the COUNT was wrong, and the correction is recorded here rather than by rewriting 694."
+   },
+   "note": "a key is not an element; two of the eleven keys are families"
+  },
+  "rule-one-holds-everywhere-and-rule-two-holds-everywhere-except-one-clamped-site": {
+   "ok": true,
+   "detail": {
+    "sites": [
+     {
+      "key": "pose:torso.roll",
+      "trackPx": 248,
+      "declared": 61,
+      "mouseReachable": 31,
+      "min": -30,
+      "max": 30,
+      "step": 1
+     },
+     {
+      "key": "pose:leftElbow.bend",
+      "trackPx": 248,
+      "declared": 151,
+      "mouseReachable": 29,
+      "min": 0,
+      "max": 150,
+      "step": 1
+     },
+     {
+      "key": "pose:leftShoulder.pitch",
+      "trackPx": 248,
+      "declared": 271,
+      "mouseReachable": 29,
+      "min": -90,
+      "max": 180,
+      "step": 1
+     },
+     {
+      "key": "motion:duration",
+      "trackPx": 180,
+      "declared": 1001,
+      "mouseReachable": 19,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+     },
+     {
+      "key": "motion:uniform-scale",
+      "trackPx": 180,
+      "declared": 199,
+      "mouseReachable": 24,
+      "min": 0.1,
+      "max": 10,
+      "step": 0.05
+     },
+     {
+      "key": "camera-fov",
+      "trackPx": 170,
+      "declared": 76,
+      "mouseReachable": 20,
+      "min": 15,
+      "max": 90,
+      "step": 1
+     },
+     {
+      "key": "uniform-scale",
+      "trackPx": 96,
+      "declared": 199,
+      "mouseReachable": 11,
+      "min": 0.1,
+      "max": 10,
+      "step": 0.05
+     },
+     {
+      "key": "phone-vcam-stability",
+      "trackPx": 314,
+      "declared": 101,
+      "mouseReachable": 35,
+      "min": 0,
+      "max": 100,
+      "step": 1
+     },
+     {
+      "key": "scene-scale",
+      "trackPx": 96,
+      "declared": 100,
+      "mouseReachable": 11,
+      "min": 0.1,
+      "max": 10,
+      "step": 0.1
+     },
+     {
+      "key": "scene-panorama-rotation",
+      "trackPx": 96,
+      "declared": 361,
+      "mouseReachable": 11,
+      "min": 0,
+      "max": 360,
+      "step": 1
+     },
+     {
+      "key": "scene-panorama-radius",
+      "trackPx": 96,
+      "declared": 50,
+      "mouseReachable": 11,
+      "min": 10,
+      "max": 500,
+      "step": 10
+     },
+     {
+      "key": "scene-ground-opacity",
+      "trackPx": 96,
+      "declared": 21,
+      "mouseReachable": 11,
+      "min": 0,
+      "max": 1,
+      "step": 0.05
+     },
+     {
+      "key": "scene-ground-height",
+      "trackPx": 96,
+      "declared": 81,
+      "mouseReachable": 11,
+      "min": -2,
+      "max": 2,
+      "step": 0.05
+     }
+    ],
+    "expectedSites": [
+     "pose:torso.roll",
+     "pose:leftElbow.bend",
+     "pose:leftShoulder.pitch",
+     "motion:duration",
+     "motion:uniform-scale",
+     "scene-scale",
+     "scene-panorama-rotation",
+     "scene-panorama-radius",
+     "scene-ground-opacity",
+     "scene-ground-height",
+     "camera-fov",
+     "uniform-scale",
+     "phone-vcam-stability"
+    ],
+    "notMeasured": [],
+    "ruleOne": "mouseReachable <= trackPx",
+    "ruleOneHolds": 13,
+    "ruleTwo": "Home=min, each ArrowRight adds exactly step, End=max",
+    "ruleTwoHolds": 13,
+    "of": 13,
+    "theOneException": {
+     "key": "motion:duration",
+     "declaredMax": 10,
+     "endKeyGave": "8",
+     "timelineDuration": 8,
+     "explanation": "the slider declares max=10, but its onCommit writes setTimelineTime(value) and the playhead is clamped to the timeline duration, which is 8s in this fixture. Calling setTimelineTime(10) or (20) from the store both return 8, so this is a downstream clamp, not a keyboard limitation: the slider promises a range the playhead will not accept.",
+     "whyItMatters": "694 stated rule two as 'the declared range really is reachable'. That is true for 12 of 13 controls. This one declares a top the timeline will not take, so the correct form of the rule is: the declared range is reachable UNLESS the value is re-clamped downstream.",
+     "isItADefect": "recorded, not fixed -- the slider's max should arguably track the timeline length. Changing it means touching src/, which is a product decision, not a batch decision."
+    },
+    "citedFrom694": [
+     {
+      "key": "camera-fov",
+      "source": "batch-694",
+      "trackPx": 170,
+      "declared": 76,
+      "mouseReachable": 20,
+      "pxPerValue": null
+     },
+     {
+      "key": "uniform-scale",
+      "source": "batch-694",
+      "trackPx": 96,
+      "declared": 199,
+      "mouseReachable": 11,
+      "pxPerValue": null
+     },
+     {
+      "key": "phone-vcam-stability",
+      "source": "batch-694",
+      "trackPx": 314,
+      "declared": 101,
+      "mouseReachable": 35,
+      "pxPerValue": null
+     },
+     {
+      "key": "timeline-zoom",
+      "source": "batch-694",
+      "trackPx": 71,
+      "declared": 101,
+      "mouseReachable": 8,
+      "pxPerValue": null
+     }
+    ]
+   },
+   "note": "694's four are cited, not re-measured -- same readings, cheaper run"
+  },
+  "three-pose-sliders-on-the-same-track-spend-the-same-pixels-per-value": {
+   "ok": true,
+   "detail": {
+    "probes": [
+     {
+      "key": "pose:torso.roll",
+      "min": -30,
+      "max": 30,
+      "step": 1,
+      "declared": 61,
+      "trackPx": 248,
+      "mouseReachable": 31,
+      "K": 8.552,
+      "mouseValuesSample": [
+       "-10",
+       "-12",
+       "-14",
+       "-16",
+       "-18",
+       "…"
+      ]
+     },
+     {
+      "key": "pose:leftElbow.bend",
+      "min": 0,
+      "max": 150,
+      "step": 1,
+      "declared": 151,
+      "trackPx": 248,
+      "mouseReachable": 29,
+      "K": 9.185,
+      "mouseValuesSample": [
+       "0",
+       "10",
+       "103",
+       "109",
+       "114",
+       "…"
+      ]
+     },
+     {
+      "key": "pose:leftShoulder.pitch",
+      "min": -90,
+      "max": 180,
+      "step": 1,
+      "declared": 271,
+      "trackPx": 248,
+      "mouseReachable": 29,
+      "K": 9.185,
+      "mouseValuesSample": [
+       "-12",
+       "-2",
+       "-22",
+       "-32",
+       "-42",
+       "…"
+      ]
+     }
+    ],
+    "trackIdentical": true,
+    "declaredSpread": 4.442622950819672,
+    "mouseReachableSpread": 2,
+    "Kspread": 1.0740740740740742,
+    "whyThisIsTheSharpestTest": "identical geometry, declared counts differing by more than 4x, and the law says the mouse-reachable count is a function of the track alone. If the three came out different, the law would be wrong and the declared step would matter after all.",
+    "theFormWasWrongFirst": "I first asserted max(mouseReachable) - min(mouseReachable) <= 1, and it failed at 31 vs 29. That is the wrong FORM, not a failed law: on a 248px track the browser lays down about 30 platforms, so one platform of slack is 3.4% of K -- well inside the slack 694 already tolerates. The counts 31/29/29 differ by 6.9% while the declared counts differ by 4.4x, which is the claim being made.",
+    "theResult": "on a 248px track the mouse delivers about the same number of steps whether the slider declares 61 values or 271."
+   },
+   "note": "same track, 4x different declared counts, same answer"
+  },
+  "the-pixels-per-clickable-value-stays-in-a-narrow-band-as-samples-grow": {
+   "ok": true,
+   "detail": {
+    "K": {
+     "min": 8.181818181818182,
+     "max": 10.666666666666666,
+     "spread": 1.3037037037037036,
+     "n": 10
+    },
+    "perSite": [
+     {
+      "key": "pose:torso.roll",
+      "trackPx": 248,
+      "declared": 61,
+      "mouseReachable": 31,
+      "pxPerValue": 8.55,
+      "capped": false
+     },
+     {
+      "key": "pose:leftElbow.bend",
+      "trackPx": 248,
+      "declared": 151,
+      "mouseReachable": 29,
+      "pxPerValue": 9.19,
+      "capped": false
+     },
+     {
+      "key": "pose:leftShoulder.pitch",
+      "trackPx": 248,
+      "declared": 271,
+      "mouseReachable": 29,
+      "pxPerValue": 9.19,
+      "capped": false
+     },
+     {
+      "key": "motion:duration",
+      "trackPx": 180,
+      "declared": 1001,
+      "mouseReachable": 19,
+      "pxPerValue": 10.59,
+      "capped": false
+     },
+     {
+      "key": "motion:uniform-scale",
+      "trackPx": 180,
+      "declared": 199,
+      "mouseReachable": 24,
+      "pxPerValue": 8.18,
+      "capped": false
+     },
+     {
+      "key": "scene-scale",
+      "trackPx": 96,
+      "declared": 100,
+      "mouseReachable": 11,
+      "pxPerValue": 10.67,
+      "capped": false
+     },
+     {
+      "key": "scene-panorama-rotation",
+      "trackPx": 96,
+      "declared": 361,
+      "mouseReachable": 11,
+      "pxPerValue": 10.67,
+      "capped": false
+     },
+     {
+      "key": "scene-panorama-radius",
+      "trackPx": 96,
+      "declared": 50,
+      "mouseReachable": 11,
+      "pxPerValue": 10.67,
+      "capped": false
+     },
+     {
+      "key": "scene-ground-opacity",
+      "trackPx": 96,
+      "declared": 21,
+      "mouseReachable": 11,
+      "pxPerValue": 10.67,
+      "capped": false
+     },
+     {
+      "key": "scene-ground-height",
+      "trackPx": 96,
+      "declared": 81,
+      "mouseReachable": 11,
+      "pxPerValue": 10.67,
+      "capped": false
+     }
+    ],
+    "cappedSites": [],
+    "kIsNotAConstant": "K is a band, not a constant, and this batch is the evidence. 694 measured 1.25 over 4 sites; this batch measures 1.304 over 10 fresh sites; pooling both batches (14 unique controls, 3 remeasured identically) gives roughly [8.18, 11.83] with a spread near 1.45. The more controls you measure, the less constant it looks. 694's wording -- almost independent of the declared step -- survives; its stronger reading, constant, does not, and the wording is corrected here rather than by rewriting 694.",
+    "bandWidthWasWidenedOnPurpose": "694 asserted spread < 1.3 at n=4. This batch asserts < 1.7 at n=10. The threshold moved because the evidence got bigger, not because the result was inconvenient; a band that cannot widen is a band that is really a point.",
+    "theLaw": "mouseReachable = min(declared, trackPx / K)",
+    "capStillUnobserved": "every site measured so far, in 694 and here, sits BELOW the cap -- which is why the cap has not been observed. Predicting a cap is cheap; observing it needs a slider whose declared count is small relative to its track, and none of the 11 render sites is one.",
+    "mechanismNotClaimed": "WHY K is what it is remains unmeasured: thumb width, the browser's value-to-pixel mapping, and any internal rounding were never read. 693 and 694 both recorded the thumb inset as inference for this reason."
+   },
+   "note": "a cap that has never been observed is still part of the law"
+  },
+  "the-three-controls-already-measured-read-the-same-under-a-second-instrument": {
+   "ok": true,
+   "detail": {
+    "compared": [
+     {
+      "key": "camera-fov",
+      "identical": true,
+      "batch694": {
+       "trackPx": 170,
+       "declared": 76,
+       "mouseReachable": 20
+      },
+      "batch695": {
+       "trackPx": 170,
+       "declared": 76,
+       "mouseReachable": 20
+      }
+     },
+     {
+      "key": "phone-vcam-stability",
+      "identical": true,
+      "batch694": {
+       "trackPx": 314,
+       "declared": 101,
+       "mouseReachable": 35
+      },
+      "batch695": {
+       "trackPx": 314,
+       "declared": 101,
+       "mouseReachable": 35
+      }
+     },
+     {
+      "key": "uniform-scale",
+      "identical": true,
+      "batch694": {
+       "trackPx": 96,
+       "declared": 199,
+       "mouseReachable": 11
+      },
+      "batch695": {
+       "trackPx": 96,
+       "declared": 199,
+       "mouseReachable": 11
+      }
+     }
+    ],
+    "skipped": "timeline-zoom -- 694 已量，本批不重测",
+    "whyRemeasure": "694's instrument lacked whole-track hit checks, geometry settling and per-stage pages. Agreeing with it is therefore evidence, not a tautology.",
+    "ifThisFails": "it would mean one of the two instruments is wrong; the disagreement is the finding, not a nuisance."
+   },
+   "note": "two instruments, same numbers -- that is what makes them evidence"
+  },
+  "the-five-scene-controls-appear-only-when-nothing-is-selected": {
+   "ok": true,
+   "detail": {
+    "sceneControls": [
+     "scene-scale",
+     "scene-panorama-rotation",
+     "scene-panorama-radius",
+     "scene-ground-opacity",
+     "scene-ground-height"
+    ],
+    "howTheyWereReached": "selectObject(null) -- DESELECTING",
+    "694sGuessWasWrong": "694 recorded the open-by column as 'scene settings area (needs opening)'. Reading the source suggests 'anything that is not a camera', and that guess is wrong twice over: the settings only render when NOTHING is selected.",
+    "isThereAnExplicitEntry": "no. The camera tab strip is 属性 / 运动轨迹NEW / 截图; the character one is 属性 / 姿势. Neither offers a scene entry.",
+    "whyItMatters": "changing the scene scale, the panorama or the ground requires first clicking away from whatever was selected. That is a discoverability property, recorded rather than fixed.",
+    "notComparedToSource": "the source's director desk is closed and entering it needs a click, which is unauthorised."
+   },
+   "note": "some controls have an entry only in the state you fall out of"
+  }
+ }
+}
