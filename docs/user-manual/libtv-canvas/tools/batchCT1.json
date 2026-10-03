@@ -1,0 +1,292 @@
+{
+  "full": [
+    {
+      "x": 744,
+      "找到": true,
+      "outerHTML": "<button type=\"button\" class=\"flex size-8 shrink-0 items-center justify-center rounded-lg bg-transparent transition-colors hover:bg-btn-ghost-hover cursor-pointer\"><span class=\"relative inline-flex shrink-0 overflow-hidden rounded-full text-fg-default\" style=\"width: 16px; height: 16px;\"><img alt=\"\" draggable=\"false\" class=\"canvas-light:block pointer-events-none absolute inset-0 size-full max-w-none select-none object-contain dark:hidden\" data-camera-control-icon=\"light\" src=\"https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/63bd12567b45f3101c04029d9ece3ba6208d1c65.png?x-oss-process=image/resize,w_48,m_lfit/format,webp/ignore-error,1\"><img alt=\"\" draggable=\"false\" class=\"canvas-light:hidden pointer-events-none absolute inset-0 hidden size-full max-w-none select-none object-contain dark:block\" data-camera-control-icon=\"dark\" src=\"https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/46ee18358b317b84f98396db48342ef8e32ca877.png?x-oss-process=image/resize,w_48,m_lfit/format,webp/ignore-error,1\"></span></button>",
+      "完整class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transparent transition-colors hover:bg-btn-ghost-hover cursor-pointer",
+      "完整title": null,
+      "ariaDescribedby": null,
+      "svgClass": null,
+      "svgAttrs": null,
+      "全部path": [],
+      "伪元素背景": null,
+      "子元素数": 1,
+      "子元素tag": [
+        "span.relative inline-flex shrink-0 overflow-hidden rounded-full t"
+      ]
+    },
+    {
+      "x": 959,
+      "找到": true,
+      "outerHTML": "<button type=\"button\" class=\"flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-transparent transition-colors hover:bg-btn-ghost-hover\" data-practice-generator-lock=\"\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none text-fg-default size-4\" width=\"1.1em\" height=\"1em\" viewBox=\"0 0 19.71 18\"><path d=\"M15.52 7.2c.16 0 .31.1.37.26l3.8 10a.4.4 0 0 1-.38.54h-1.03a.4.4 0 0 1-.37-.27l-.88-2.48h-4.36l-.88 2.48a.4.4 0 0 1-.37.27h-1.03a.4.4 0 0 1-.37-.54l3.79-10a.4.4 0 0 1 .37-.26zM7.7 0c.22 0 .4.18.4.4v1.4H14c.22 0 .4.18.4.4v1a.4.4 0 0 1-.4.4h-2.21a16 16 0 0 1-1.42 3.33A11 11 0 0 1 8.5 9.54l1.99 2.02c.1.11.14.28.09.42l-.43 1.16a.3.3 0 0 1-.5.1l-2.4-2.46-4.27 4.24a.4.4 0 0 1-.56 0l-.7-.7a.4.4 0 0 1 0-.56L6 9.5q-.79-.8-1.43-1.8-.55-.85-1-1.89a.3.3 0 0 1 .27-.41h1.2a.4.4 0 0 1 .35.22q.39.74.79 1.31.45.65 1.08 1.3.73-.73 1.54-2.08.8-1.33 1.2-2.55H.4a.4.4 0 0 1-.4-.4v-1c0-.22.18-.4.4-.4h5.9V.4c0-.22.18-.4.4-.4zm5.53 13.68h3.24l-1.62-4.59z\" fill=\"currentColor\"></path></svg></button>",
+      "完整class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-transparent transition-colors hover:bg-btn-ghost-hover",
+      "完整title": null,
+      "ariaDescribedby": null,
+      "svgClass": "iconify iconify--libtv pointer-events-none text-fg-default size-4",
+      "svgAttrs": {
+        "xmlns": "http://www.w3.org/2000/svg",
+        "xmlns:xlink": "http://www.w3.org/1999/xlink",
+        "aria-hidden": "true",
+        "role": "img",
+        "class": "iconify iconify--libtv pointer-events-none text-fg-default size-4",
+        "width": "1.1em",
+        "height": "1em",
+        "viewBox": "0 0 19.71 18"
+      },
+      "全部path": [
+        "path:M15.52 7.2c.16 0 .31.1.37.26l3.8 10a.4.4 0 0 1-.38.54h-1.03a.4.4 0 0 1-.37-.27l-.88-2.48h-4.36l-.88 2.48a.4.4 0 0 1-.37.27h-1.03a.4.4 0 0 1-.37-.54l3.79-10a.4.4 0 0 1 .37-.26zM7.7 0c.22 0 .4.18.4.4v1.4H14c.22 0 .4.18.4.4v1a.4.4 0 0 1-.4.4h-2.21a16 16 0 0 1-1.42 3.33A11 11 0 0 1 8.5 9.54l1.99 2.02c.1.11.14.28.09.42l-.43 1.16a.3.3 0 0 1-.5.1l-2.4-2.46-4.27 4.24a.4.4 0 0 1-.56 0l-.7-.7a.4.4 0 0 1 0-.56L6 9.5q-.79-.8-1.43-1.8-.55-.85-1-1.89a.3.3 0 0 1 .27-.41h1.2a.4.4 0 0 1 .35.22q.39.74.79 1.31.45.65 1.08 1.3.73-.73 1.54-2.08.8-1.33 1.2-2.55H.4a.4.4 0 0 1-.4-.4v-1c0-.22.18-.4.4-.4h5.9V.4c0-.22.18-.4.4-.4zm5.53 13.68h3.24l-1.62-4.59z"
+      ],
+      "伪元素背景": null,
+      "子元素数": 1,
+      "子元素tag": [
+        "svg.[object SVGAnimatedString]"
+      ]
+    },
+    {
+      "x": 999,
+      "找到": true,
+      "outerHTML": "<button type=\"button\" data-practice-generator-lock=\"\" aria-disabled=\"false\" class=\"text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center rounded-lg transition-colors hover:bg-btn-ghost-hover\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--lucide pointer-events-none size-4\" width=\"1em\" height=\"1em\" viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 17H5M19 7h-9\"></path><circle cx=\"17\" cy=\"17\" r=\"3\"></circle><circle cx=\"7\" cy=\"7\" r=\"3\"></circle></g></svg></button>",
+      "完整class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center rounded-lg transition-colors hover:bg-btn-ghost-hover",
+      "完整title": null,
+      "ariaDescribedby": null,
+      "svgClass": "iconify iconify--lucide pointer-events-none size-4",
+      "svgAttrs": {
+        "xmlns": "http://www.w3.org/2000/svg",
+        "xmlns:xlink": "http://www.w3.org/1999/xlink",
+        "aria-hidden": "true",
+        "role": "img",
+        "class": "iconify iconify--lucide pointer-events-none size-4",
+        "width": "1em",
+        "height": "1em",
+        "viewBox": "0 0 24 24"
+      },
+      "全部path": [
+        "path:M14 17H5M19 7h-9",
+        "circle:",
+        "circle:"
+      ],
+      "伪元素背景": null,
+      "子元素数": 1,
+      "子元素tag": [
+        "svg.[object SVGAnimatedString]"
+      ]
+    }
+  ],
+  "hoverReport": [
+    {
+      "key": "ball-744",
+      "rect": [
+        744,
+        664
+      ],
+      "已知": "彩色球（无 svg / 无 data-*）",
+      "tips": [
+        {
+          "文字": "Panavision DXL2 已关闭 Arri Signature Prime / 35mm / ƒ/4",
+          "id": "_r_9m_",
+          "rect": [
+            631,
+            605,
+            257,
+            54
+          ]
+        }
+      ],
+      "titled": [
+        {
+          "title": "音频节点 6",
+          "tag": "span"
+        },
+        {
+          "title": "音频节点 1",
+          "tag": "span"
+        },
+        {
+          "title": "逐帧拉片",
+          "tag": "span"
+        },
+        {
+          "title": "图片节点 2",
+          "tag": "span"
+        },
+        {
+          "title": "图片节点 2",
+          "tag": "span"
+        },
+        {
+          "title": "导演台 5",
+          "tag": "span"
+        },
+        {
+          "title": "文本节点 1",
+          "tag": "span"
+        },
+        {
+          "title": "文本节点 1",
+          "tag": "span"
+        },
+        {
+          "title": "视频节点 3",
+          "tag": "span"
+        },
+        {
+          "title": "智能剪辑 4",
+          "tag": "span"
+        },
+        {
+          "title": "视频节点 3",
+          "tag": "span"
+        },
+        {
+          "title": "16:9 · 标准画质 · 2K · 1张",
+          "tag": "span"
+        }
+      ],
+      "state": {
+        "cursor": "pointer",
+        "背景": "rgba(255, 255, 255, 0.1)",
+        "class含hover": true
+      }
+    },
+    {
+      "key": "libtv-959",
+      "rect": [
+        959,
+        664
+      ],
+      "已知": "iconify--libtv 斜杆图标 / data-practice-generator-lock",
+      "tips": [
+        {
+          "文字": "翻译提示词",
+          "id": "_r_9q_",
+          "rect": [
+            936,
+            630,
+            78,
+            27
+          ]
+        }
+      ],
+      "titled": [
+        {
+          "title": "音频节点 6",
+          "tag": "span"
+        },
+        {
+          "title": "音频节点 1",
+          "tag": "span"
+        },
+        {
+          "title": "逐帧拉片",
+          "tag": "span"
+        },
+        {
+          "title": "图片节点 2",
+          "tag": "span"
+        },
+        {
+          "title": "图片节点 2",
+          "tag": "span"
+        },
+        {
+          "title": "导演台 5",
+          "tag": "span"
+        },
+        {
+          "title": "文本节点 1",
+          "tag": "span"
+        },
+        {
+          "title": "文本节点 1",
+          "tag": "span"
+        },
+        {
+          "title": "视频节点 3",
+          "tag": "span"
+        },
+        {
+          "title": "智能剪辑 4",
+          "tag": "span"
+        },
+        {
+          "title": "视频节点 3",
+          "tag": "span"
+        },
+        {
+          "title": "16:9 · 标准画质 · 2K · 1张",
+          "tag": "span"
+        }
+      ],
+      "state": {
+        "cursor": "pointer",
+        "背景": "rgba(255, 255, 255, 0.1)",
+        "class含hover": true
+      }
+    },
+    {
+      "key": "lucide-999",
+      "rect": [
+        999,
+        664
+      ],
+      "已知": "iconify--lucide 滑块图标 / 高级设置（阳性对照）",
+      "tips": [],
+      "titled": [
+        {
+          "title": "音频节点 6",
+          "tag": "span"
+        },
+        {
+          "title": "音频节点 1",
+          "tag": "span"
+        },
+        {
+          "title": "逐帧拉片",
+          "tag": "span"
+        },
+        {
+          "title": "图片节点 2",
+          "tag": "span"
+        },
+        {
+          "title": "图片节点 2",
+          "tag": "span"
+        },
+        {
+          "title": "导演台 5",
+          "tag": "span"
+        },
+        {
+          "title": "文本节点 1",
+          "tag": "span"
+        },
+        {
+          "title": "文本节点 1",
+          "tag": "span"
+        },
+        {
+          "title": "视频节点 3",
+          "tag": "span"
+        },
+        {
+          "title": "智能剪辑 4",
+          "tag": "span"
+        },
+        {
+          "title": "视频节点 3",
+          "tag": "span"
+        },
+        {
+          "title": "16:9 · 标准画质 · 2K · 1张",
+          "tag": "span"
+        }
+      ],
+      "state": {
+        "cursor": "pointer",
+        "背景": "rgba(255, 255, 255, 0.1)",
+        "class含hover": true
+      }
+    }
+  ]
+}

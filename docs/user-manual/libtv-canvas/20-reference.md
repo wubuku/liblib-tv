@@ -238,7 +238,11 @@
 | ⭐⭐⭐ **产品自己贴的功能锚点**（画布默认状态下全页枚举所有名字含 `feature` / `practice` / `anchor` 的 `data-*`） | 命中 **14 个元素、去重后只有 5 个取值**，分属**三个不同的属性家族** | ⭐ **认控件的第四招**：此前只靠 `aria-label` / 悬停气泡 / 图标 path，**没看过产品自己的锚点属性**。⭐ 先**全页枚举**再认领 —— 枚举出来才发现属性分三家、其中一家的数量恰好等于节点数 |
 | └ `data-academy-guide-anchor`（教程引导锚点） | `storyboard-mode` ×1（顶栏故事板切换）· `workspace-asset-management` ×1（左下「资产管理」）· **`agent` ×1（只在故事板视图下出现，挂在 TV Director 那张 `398×586` 的引导卡上，卡里逐字写着「让 TV Director 辅助你的无限」）** | 同一个 `agent` 值只在切到故事板后才在 DOM 里 |
 | └ `data-quick-guide-anchor`（快速引导锚点） | `node-add-handle` **×11** —— 每个节点一枚的连接把手，`9×9` 的 `div`，**无文字、无 aria** | ⭐ **11 恰好等于节点数** ⇒ 「每个节点都有出口」有了机械证据 |
-| └ `data-practice-anchor`（练习锚点） | `director.open` ×1（「打开导演台」按钮） | 智能剪辑面板那枚 `16:9 · 720P · 30s` 带的是 `data-practice-anchor="gen.params.count"` |
+| └ `data-practice-anchor`（练习锚点） | `director.open` ×1（「打开导演台」按钮） | 智能剪辑面板那枚 `16:9 · 720P · 30s` 带的是 `data-practice-anchor="gen.params.count"`。⭐ **大编辑器里它成对出现**：`gen.model` ↔ `generator-model-select`、`gen.submit` ↔ `generator-submit`，同一语义两套拼写 |
+| ⛔ **`data-practice-generator-lock` ≠ 「锁定按钮」** | ⭐ 它**同时挂在两枚功能完全不同的按钮上**：大编辑器底栏的 **`文A`（hover 气泡逐字「翻译提示词」）** 和它右边的**滑块**。两枚的值都是空字符串 | ⭐⭐ **属性名会骗人。** 一枚按钮「有某个属性」**不等于**「这个属性描述了它」。属性只能用来**缩小候选范围**，认按钮仍要靠气泡 / 图标 path。⚠️ 滑块那枚点下去本手册**没测出可见变化** —— 只读到**底栏 7 枚整体上移了 85px**，机制没定位 |
+| ⭐ `data-camera-control-icon` | `"light"` / `"dark"` 各 1 —— 就是那枚**镜头球**里的**两枚 `<img>`** | ⭐⭐ **更正**：早先记「那颗球是 CSS 背景画的」**是错的**。它里面是**两枚真图片**（亮 / 暗两套，用 `canvas-light:block … dark:hidden` 切换），产品自己给贴了名字 |
+| ⭐ `data-sidebar-btn` | `add-node` `tool-mode` `open-asset` `character-library` `history` `keyboard` `contact` —— 正好是画布左下工具条那 **7** 枚 | ⭐ 和 `node-add-handle ×11 = 节点数` 同一路证据：**产品自己贴的名字，数量对得上肉眼数得出来的东西**。这 7 枚此前全靠认图标 |
+| ⭐ `data-node-focus-surface` ×11 · `data-handleid` / `data-handlepos` ×22 | `data-node-focus-surface="true"` **11** 个 = 11 个节点；`data-handleid="target"` + `data-handlepos="left"` 各 **11**，`data-handleid="source"` + `="right"` 各 **11** | ⭐⭐ **连线把手有三套身份**：这套 `data-handleid` 的把手实测**宽高都是 0**（在 DOM 里、屏幕上不可见），真正能看见能拖的是另一套 `9×9` 的 `data-quick-guide-anchor="node-add-handle"`。见 [10-tasks/connect-nodes.md](10-tasks/connect-nodes.md) |
 | ⛔ 哪些面板**没有**新锚点 | 资产管理 · 抽屉里的「资产」页 · 角色造型室 · 快捷键面板 · 底栏「帮助」—— **逐个打开后差分，新增都是 0 个** | ⭐ 这个阴性**自带阳性对照**：同一套手法在切故事板时确实新增了 1 个（`agent`），所以「新增 0」是读出来的，不是没扫 |
 | `data-feature-id` | ⛔ **画布默认状态下 0 个**。它**只出现在节点大编辑器里** —— 例如那枚「预设」按钮带 **`data-feature-id="generator:preset-menu"`** | ⇒ 想用这个属性认控件，得先把大编辑器打开 |
 
@@ -558,9 +562,9 @@
 | 节点 | 悬停提示 | 形状 |
 |---|---|---|
 | **视频** | `提示词优化` | `📄` 文档带横线。⛔ **只在视频节点上有这枚**；**有内容时点它会怎样，本手册没试过**（见下方说明） |
-| 视频 / 图片 / 音频 / 文本 | `翻译提示词` | `文A`。⭐⭐⭐ **四种节点全部实点过，译文逐字相同**。**两种前置条件、两种表现**：**提示词为空**时弹顶部提示「提示词为空，请输入内容后点击」（与 `提示词优化` 逐字相同）；**有内容**时**把整句翻译成中文、原地替换掉原文**，约 5–6 秒出结果、**不弹任何提示**、**不扣积分** |
+| 视频 / 图片 / 音频 / 文本 | `翻译提示词` | `文A`。⭐⭐⭐ **四种节点全部实点过，译文逐字相同**。**两种前置条件、两种表现**：**提示词为空**时弹顶部提示「提示词为空，请输入内容后点击」（与 `提示词优化` 逐字相同）；**有内容**时**把整句翻译成中文、原地替换掉原文**，约 5–6 秒出结果、**不弹任何提示**、**不扣积分**。⭐ **卡片上和大编辑器里各有一枚**（同一枚按钮的两种呈现，坐标不同） |
 | 图片 | `预设` | 带 `aria-label="预设"` |
-| 图片 | `Panavision DXL2 / 已关闭 / Arri Signature Prime / 35mm / ƒ/4` | **无文字、无 aria、连 SVG 都没有** |
+| 图片 | `Panavision DXL2 / 已关闭 / Arri Signature Prime / 35mm / ƒ/4` | ⭐ 镜头球。⚠️ 「无文字、无 aria、**连 SVG 都没有**」这句仍然成立 —— 但「那颗球是 CSS 背景画的」**是错的**：球里是**两枚 `<img>`**（`data-camera-control-icon="light"` / `"dark"`，亮暗两套切换） |
 | 图片 / 音频（条件不满足时） | `请输入提示词或添加参考素材` | 生成按钮，**灰色不可点** |
 | 文本（提示词为空时） | `请输入提示词` | 生成按钮，**灰色不可点** |
 | **视频（提示词为空时）** | **什么都不写** | ⭐⭐ **不灰**，`disabled` 仍是关的 |

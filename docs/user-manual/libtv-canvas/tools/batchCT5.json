@@ -1,0 +1,159 @@
+{
+  "scan": {
+    "按钮rect": [
+      999,
+      664,
+      32,
+      32
+    ],
+    "自身命中点数": 224,
+    "落点样例": [
+      [
+        1001,
+        666
+      ],
+      [
+        1001,
+        668
+      ],
+      [
+        1001,
+        670
+      ],
+      [
+        1001,
+        672
+      ],
+      [
+        1001,
+        674
+      ],
+      [
+        1001,
+        676
+      ]
+    ],
+    "固定坐标点上的最上层": {
+      "tag": "button",
+      "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center ",
+      "text": ""
+    },
+    "固定坐标点是否命中它": true
+  },
+  "trials": [
+    {
+      "label": "描述为空",
+      "pt": [
+        1001,
+        672
+      ],
+      "descVal": "",
+      "series": [
+        {
+          "大编辑器": true,
+          "新增": [
+            "Lib Image 2.5 Pro",
+            "16:9 · 标准画质 · 2K · 1张",
+            "15",
+            "高级设置",
+            "智能引用 AutoLink"
+          ]
+        },
+        {
+          "大编辑器": true,
+          "新增": [
+            "Lib Image 2.5 Pro",
+            "16:9 · 标准画质 · 2K · 1张",
+            "15",
+            "高级设置",
+            "智能引用 AutoLink"
+          ]
+        },
+        {
+          "大编辑器": true,
+          "新增": [
+            "Lib Image 2.5 Pro",
+            "16:9 · 标准画质 · 2K · 1张",
+            "15",
+            "高级设置",
+            "智能引用 AutoLink"
+          ]
+        },
+        {
+          "大编辑器": true,
+          "新增": [
+            "Lib Image 2.5 Pro",
+            "16:9 · 标准画质 · 2K · 1张",
+            "15",
+            "高级设置",
+            "智能引用 AutoLink"
+          ]
+        },
+        {
+          "大编辑器": true,
+          "新增": [
+            "Lib Image 2.5 Pro",
+            "16:9 · 标准画质 · 2K · 1张",
+            "15",
+            "高级设置",
+            "智能引用 AutoLink"
+          ]
+        },
+        {
+          "大编辑器": true,
+          "新增": [
+            "Lib Image 2.5 Pro",
+            "16:9 · 标准画质 · 2K · 1张",
+            "15",
+            "高级设置",
+            "智能引用 AutoLink"
+          ]
+        }
+      ],
+      "btnDiff": [
+        "1079,579|bg-btn-invert-bg flex size-8 shrink-0 cursor-point|null|null",
+        "329,579|flex items-center justify-between bg-transparent t|null|null",
+        "497,579|flex h-8 min-w-0 shrink items-center justify-betwe|null|null",
+        "708,579|text-canvas-controls-text relative flex size-8 shr|null|null",
+        "744,579|flex size-8 shrink-0 items-center justify-center r|null|null",
+        "959,579|flex size-8 shrink-0 cursor-pointer items-center j|null|null",
+        "999,579|text-canvas-controls-text mx-1 flex size-8 shrink-|false|null"
+      ]
+    },
+    {
+      "label": "描述有内容",
+      "pt": [
+        1001,
+        672
+      ],
+      "descVal": null,
+      "series": [
+        {
+          "大编辑器": false,
+          "新增": []
+        },
+        {
+          "大编辑器": false,
+          "新增": []
+        },
+        {
+          "大编辑器": false,
+          "新增": []
+        },
+        {
+          "大编辑器": false,
+          "新增": []
+        },
+        {
+          "大编辑器": false,
+          "新增": []
+        },
+        {
+          "大编辑器": false,
+          "新增": []
+        }
+      ],
+      "btnDiff": []
+    }
+  ]
+}
