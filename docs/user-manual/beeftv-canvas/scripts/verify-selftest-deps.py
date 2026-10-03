@@ -187,10 +187,34 @@ def copies_module_into_scripts(text, module):
     **「这个文件有没有被搬」是行为，「目标路径里有没有写着它的名字」是写法**——
     循环搬运时名字写在变量里，而搬运照样发生了。
     """
+    # **Batch 239 补第三条路径：循环搬运。** 上面的实参里若是个变量
+    # （`os.path.join(HERE, dep)`），模块名不在其中，于是
+    # `for dep in DEPS: shutil.copy(..., os.path.join(d, "scripts", dep))`
+    # 这种**搬得清清楚楚**的写法被报成「没搬」——**同一个病第三次在同一处复发**
+    # （前两次见上面 Batch 190 的注释）。
+    # **收紧到只有一种形态算数**：循环的可迭代对象是**模块级常量**，
+    # 且那个常量的元素里**确实写着这个模块名**。
+    # **「凡是循环就算」是错的**——那会让任何 `for x in anything:` 都通过。
     try:
         tree = ast.parse(text)
     except SyntaxError:
         return False
+
+    # 模块级常量：名字 → 元素列表（只认字面量组成的 tuple / list）
+    consts = {}
+    for node in tree.body:
+        if not isinstance(node, ast.Assign) or len(node.targets) != 1:
+            continue
+        tgt = node.targets[0]
+        if not isinstance(tgt, ast.Name):
+            continue
+        try:
+            val = ast.literal_eval(node.value)
+        except Exception:
+            continue
+        if isinstance(val, (tuple, list)) and all(isinstance(x, str) for x in val):
+            consts[tgt.id] = list(val)
+
     for node in ast.walk(tree):
         if not isinstance(node, ast.Call):
             continue
@@ -205,6 +229,34 @@ def copies_module_into_scripts(text, module):
                     return True
             except Exception:
                 pass
+
+    # —— 循环搬运：先认出「这个 copy 调用在哪个 for 循环里」——
+    want = module + ".py"
+    for loop in [n for n in ast.walk(tree) if isinstance(n, ast.For)]:
+        it = loop.iter
+        # **只认「可迭代对象是一个模块级常量的名字」这一种**：
+        # `for dep in DEPS` 认；`for dep in glob("*.py")` 不认——
+        # 后者搬的东西判据无从知道，**判不出来的事不许当通过**。
+        if not (isinstance(it, ast.Name) and it.id in consts):
+            continue
+        if not any(want in s for s in consts[it.id]):
+            continue
+        targets = {n.id for n in ast.walk(loop.target) if isinstance(n, ast.Name)}
+        if not targets:
+            continue
+        for node in ast.walk(loop):
+            if not isinstance(node, ast.Call):
+                continue
+            f = node.func
+            if not (isinstance(f, ast.Attribute) and f.attr.startswith("copy")
+                    and isinstance(f.value, ast.Name) and f.value.id == "shutil"):
+                continue
+            args = list(node.args) + [k.value for k in node.keywords]
+            for a in args:
+                # 实参里出现了循环变量 → 这一次搬运按该常量的元素走
+                if any(isinstance(x, ast.Name) and x.id in targets
+                       for x in ast.walk(a)):
+                    return True
     return False
 
 

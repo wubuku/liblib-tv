@@ -241,6 +241,10 @@ SELFTEST_COSTS = {
     "selftest-shortcuts.py": 0.7,
     "selftest-shot-drift.py": 10.0,
     "selftest-shot-pixels.py": 7.1,
+    #: **Batch 239 新增**：三次实测 1 / <1 / 1 秒，**按纪律 204 取最大 1 秒**，登记 1.5。
+    #: 样本全部由 `pngstat` 现场造（纯色 PNG 只有几 KB），只有第 8 例要复制真实 67 张，
+    #: **而它不读像素**——本闸只对文件字节做 sha256 与尺寸，所以比 `selftest-shot-pixels.py` 快一个量级。
+    "selftest-shot-integrity.py": 1.5,
     "selftest-shot-version.py": 0.8,
     "selftest-tables.sh": 0.8,
     "selftest-zero-input.py": 42.1,

@@ -16,8 +16,17 @@
   3  闸门脚本被改成 import 一个不存在的模块 → 必报（方向一）
   4  判据对「没有复制闸门」的反验**不误报**（只扫该扫的）
   5  把「复制闸门」换成非 shutil.copy 写法  → 必报（判据失配，防静悄悄查不到）
+  6  **循环搬运**、但常量里没有目标模块        → 必报（**钉「凡是循环就算」是错的**）
+  7  **循环搬运**、且常量里确实有目标模块      → 不得报（**本批真修掉的那个假阳性**）
 
 **用例 2 是本文件的核心**：它复现的正是 Batch 178 静悄悄坏了三个批次的那一类回归。
+
+**用例 6/7 是同一个病第三次复发的那一对**（Batch 239）。本批给新闸 34 写反验时用了
+`for dep in DEPS: shutil.copy(...)` 这种循环搬运，闸 17 上线首跑就报
+「没有把 `pngstat` / `scope` 复制进临时 scripts/」——**而它搬得清清楚楚**。
+Batch 190 已经在同一处修过两次（变量赋值链 → 参数形状 → 目标路径里的字面量），
+**第三次复发在「实参里是个循环变量」上**。**6/7 必须成对**：
+只钉 7 的话，修法会滑成「凡是循环就算」，那会让任何 `for x in anything:` 都通过（纪律 260）。
 """
 
 import io
@@ -174,9 +183,77 @@ def m_rename_pattern_breaks():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── 6/7 循环搬运（Batch 239）——收紧与放宽必须成对 ────────────────────
+#: 一份**只搬循环、常量里没有目标模块**的最小反验源码。
+#: 判据对它必须仍然报「没搬」——**「凡是循环就算」是错的**（纪律 260）。
+_LOOP_TPL = '''# -*- coding: utf-8 -*-
+import os, shutil, sys, tempfile
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+DEPS = (%(deps)s)
+
+
+def run():
+    d = tempfile.mkdtemp(prefix="x.")
+    os.makedirs(os.path.join(d, "scripts"), exist_ok=True)
+    shutil.copy(os.path.join(HERE, "verify-shot-pixels.py"),
+                os.path.join(d, "scripts", "verify-shot-pixels.py"))
+    for dep in DEPS:
+        shutil.copy(os.path.join(HERE, dep), os.path.join(d, "scripts", dep))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(run())
+'''
+
+
+def _loop_case(name, deps, want_rc, want_in):
+    """在一棵临时副本仓上放一份循环搬运的反验，再跑闸 17。"""
+    tmp = tempfile.mkdtemp(prefix="beef-deps-selftest-loop.")
+    try:
+        shutil.copytree(os.path.join(ROOT, "scripts"), os.path.join(tmp, "scripts"))
+        shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-selftest-deps.py"))
+        src = _LOOP_TPL % {"deps": deps}
+        write(os.path.join(tmp, "scripts", "selftest-loop-demo.py"), src)
+        r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
+                           cwd=tmp, capture_output=True, text=True)
+        out = (r.stdout or "") + (r.stderr or "")
+        good = (r.returncode == want_rc) and (want_in in out)
+        record(name, good, f"rc={r.returncode}（期望 {want_rc}）")
+        if not good:
+            print("      " + out.strip().replace("\n", "\n      "))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_loop_copy_without_the_module():
+    """能抓：循环搬了，**但常量里没有目标模块** → 必须报。"""
+    check_anchor()
+    # **示例闸选 `verify-shot-pixels.py` 是有理由的**：它的本地依赖闭包**恰好只有
+    # `pngstat` 一个**（`local_closure('verify-shot-pixels') == ['pngstat', ...]`），
+    # **所以这一对用例的成败不会被别的依赖搅浑**。
+    _loop_case("6 循环里没搬那个模块→必报",
+               '"other.py",', 1, "没有把它复制进临时 scripts/")
+
+
+def m_loop_copy_with_the_module():
+    """不误伤：循环搬的常量里**确实有**目标模块 → 不得报。
+
+    **这正是 Batch 239 上线首跑的实况**：`selftest-shot-integrity.py` 写的是
+    `for dep in DEPS: shutil.copy(...)`，判据却报它没搬 `pngstat` / `scope`。
+    **假阳性落在一条刚上线的反验上，而下一个人多半会去改反验而不是改判据。**
+    """
+    check_anchor()
+    _loop_case("7 循环里搬了那个模块→不得报",
+               '"pngstat.py",', 0, "反验依赖核对通过")
+
+
 def main():
     tests = [m_clean, m_missing_baseline_copy, m_gate_imports_missing_module,
-             m_no_false_positive, m_rename_pattern_breaks]
+             m_no_false_positive, m_rename_pattern_breaks,
+             m_loop_copy_without_the_module, m_loop_copy_with_the_module]
     for t in tests:
         try:
             t()
