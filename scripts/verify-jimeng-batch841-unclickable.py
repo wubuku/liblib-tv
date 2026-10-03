@@ -5152,6 +5152,80 @@ def main() -> int:
           and "本批**不碰**，等那个问题有答案" in _ausrc
           and "**没有**测「两个层共存时键盘焦点怎么走」" in _ausrc
           and "槽位保证的是**至多一个瞬时层**，焦点行为是另一件事" in _ausrc)
+    p939 = ROOT / "scripts/jimeng_probe939_tab_distance_src.py"
+    _p939 = p939.read_text(encoding="utf-8") if p939.exists() else ""
+    p939b = ROOT / "scripts/jimeng_probe939b_tab_constitution_src.py"
+    _p939b = p939b.read_text(encoding="utf-8") if p939b.exists() else ""
+    check("ZZZ.1 ✅⭐⭐⭐ **939：源站右键菜单的键盘可达性查清了 —— 答案不是「要按很多次」，"
+          "是「按多少次都到不了」** —— 2 轮 × 150 步冷启动 Tab = **300 步 0 次进菜单**，"
+          "且**分桶两轮逐字相同**（不是 flaky）",
+          "src_context_menu_unreachable_by_tab_939" in _ausrc
+          and "**① ✅ 判决：源站右键菜单**不可 Tab 到达**（2/2）**" in _ausrc
+          and "**没有 `target_ctx` 桶**" in _ausrc
+          # ⭐ 钉探针：真的走满 150 步、两轮，且分桶进了逐字比对
+          and "STEPS = 150" in _p939b
+          and '"bucket_counts_identical_ok": (' in _p939b
+          # ⭐ 钉探针：分桶里**确实**有一个 `target_ctx` 这一类（否则「0 命中」是恒真）
+          and 'if (inTarget) bucket = \'target_ctx\';' in _p939b
+          and "else if (inNode) bucket = 'react_flow_node';" in _p939b
+          # ⭐ 钉探针：菜单开着**之后**才走 Tab（顺序不能反）
+          and "log = walk(STEPS)" in _p939b
+          and "ro = launch_context_menu()" in _p939b)
+    check("ZZZ.2 ⭐⭐ **机制：开菜单后 `role=menuitem` 从 0 → 13，而 300 步 0 命中** ⇒ "
+          "那 13 项**压根不在 Tab 序列里** ⇒ 源站的可达性**完全依赖「开层即接管焦点」**，"
+          "焦点一离开就再也回不去",
+          "**③ ⭐ 机制：开菜单后 `role=menuitem` 从 0 → 13，" in _ausrc
+          and "**一旦焦点离开（`blur` 或冷启动），就再也回不去。**" in _ausrc
+          # ⭐ 钉探针：菜单项数量被**单独**量出来（不是推出来的）
+          and "k_role_menuitem: document.querySelectorAll('[role=menuitem]').length," in _p939b
+          # ⭐ 钉探针：菜单项的**选中**靠祖先 testid 判定，不是靠「在层内」
+          and "if (!inTarget && p.getAttribute && p.getAttribute('data-testid') === targetTid) inTarget = true;" in _p939b
+          # ⭐ 钉探针：开层后**立刻**读一次焦点（「开层即接管」那一下）
+          and "took = ev(FOCUS_JS, [MARK_ATTR, TARGET_TID])" in _p939
+          and 'rec["focus_after_open"] = took' in _p939)
+    check("ZZZ.3 ⚠️⚠️ **订正 §148 待办第 4 条 —— 它的前提就错了**（源站早已取样两轮），"
+          "而 10272 行那句「真要解，得问源站冷启动同样要按几次」**本身问错了**；"
+          "顺带把**源站 / 复刻两侧一直混着的四方读数**分清",
+          "**② ⚠️⚠️ 订正 §148 待办第 4 条 —— 它的**前提**是错的**" in _ausrc
+          and "**「无论按几次都到不了」**" in _ausrc
+          and "**④ ⭐⭐ 顺带把「源站 / 复刻」两侧一直混着的读数分清了**" in _ausrc
+          and "**矛盾的是 936 / §148 把源站和复刻当成了同一侧。**" in _ausrc
+          # ⭐ 钉探针：源站/复刻两侧的 testid **同名**（这正是混起来的原因）
+          and "TARGET_TID = \"canvas-context-menu\"" in _p939b)
+    check("ZZZ.4 ⚠️⚠️ **939 第一版整个作废**（`K=26` 造不出 95+ 个落点）；"
+          "而它的 `reps_identical_ok=True` 是**空门**（比对了全 `null` 的字段，"
+          "真正不一致的 `seq_repeats` 102 vs 104 就在旁边）—— "
+          "「**一个恒真的字段比没有字段更坏**」第四次复发",
+          "**⑦ ⚠️⚠️ 939 第一版整个作废**" in _ausrc
+          and "**26 造不出 95+ 个落点**" in _ausrc
+          and "**门比对了错误的字段集合**" in _ausrc
+          and "**第四次**复发" in _ausrc
+          # ⭐ 钉探针：第一版那个**空门**的形状（比的是全 null 的距离表）
+          and 'rec["distance_by_start"] = dists' in _p939
+          and 'same = (out["summary"]["cold_d"] == [out["summary"]["cold_d"][0]] * 2' in _p939
+          # ⭐ 钉探针：第一版的过滤器**确实**剔了负 tabindex（病根是「多了一道过滤器」）
+          and "if (ti !== null && Number(ti) < 0) continue;" in _p939
+          # ⭐ 钉探针：939b 明确把「尺子」当读数、并且自己认了那个恒真字段
+          and "**自己给自己开了后门**" in _ausrc
+          and "已如实记为不可用字段" in _ausrc)
+    check("ZZZ.5 ⚠️⚠️ **实测撞到计费入口在 Tab 序列第 16 站**（`805\\n基础会员`，2/2 逐字相同；"
+          "本批只按 Tab、零 click ⇒ 未计费）⇒ 暴露一条边界：`FORBIDDEN_TIDS` "
+          "**只拦 click、不拦焦点**；顺带量出**源站 Tab 周期不是常数**（101 / 104），"
+          "并把**判决性缺口**如实留给 940",
+          "**⑤ ⚠️ 实测撞到计费入口：它在 Tab 序列的第 16 站**" in _ausrc
+          and "**只拦 `mouse.click`、不拦焦点**" in _ausrc
+          and "**⑥ ⚠️ 源站的 Tab 周期**不是常数**" in _ausrc
+          and "**「一圈 = 101」不能搬到源站**" in _ausrc
+          and "**⑩ ⚠️⚠️ 判决性缺口（留给 940，本批**没有测**）**" in _ausrc
+          and "**两次读数不足以定机制**" in _ausrc
+          # ⭐ 钉探针：本批**真的零 click**（除右键那一次）⇒ 计费边界是结构性成立的
+          and "if (e.closest('[data-id]')) continue;" in _p939b
+          and "blocked = guard((hit or {}).get(\"al\"), (hit or {}).get(\"tid\"))" in _p939b
+          # ⭐ 钉探针：周期是**从落点间隔算出来的**，不是拍的
+          and '"n_first_ctx_identical_ok": (' in _p939b
+          # ⭐ 钉探针：缺口那一条**没有**被偷偷补上（`[C]` 段后没重跑 COUNTS_JS）
+          and (assert_no_fix := "COUNTS_JS, [B939_SEL, LAYER_SEL]" in _p939b)
+          and assert_no_fix)
     p935 = ROOT / "scripts/jimeng_probe935_body_stop_sweep_src.py"
     _p935 = p935.read_text(encoding="utf-8") if p935.exists() else ""
     check("VVV.1 ✅⭐⭐⭐ **935 把「原理上不可从 DOM 查明」从**假设**升级成"

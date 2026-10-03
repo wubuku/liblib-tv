@@ -90,6 +90,11 @@ PROBE_VARS = {
     "_p936": "scripts/jimeng_probe936_inlayer_occlusion_src.py",
     "_p937": "scripts/jimeng_probe937_layer_exclusivity_src.py",
     "_p938": "scripts/jimeng_probe938_replica_layer_exclusivity.py",
+    # ⚠️ 批 939：**两个**探针都得登记 —— 939 第一版（已作废、留痕不删）
+    #    与 939b（判决版）。⚠️ 登记了还不够，判据得**真的用**这些名字
+    #    （937 教训：登记表加了名字 ≠ 名字进了被遍历的那张表）。
+    "_p939": "scripts/jimeng_probe939_tab_distance_src.py",
+    "_p939b": "scripts/jimeng_probe939b_tab_constitution_src.py",
     # 批 938：判据开始**钉 TS 源码**（槽位是 store 里的单一来源）
     "_wm_s": "src/store/jimengStore.ts",
     # ⚠️⚠️ **929 加的**：**门禁脚本自己**也必须登记 ——
