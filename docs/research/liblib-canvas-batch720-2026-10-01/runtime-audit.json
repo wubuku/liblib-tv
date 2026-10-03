@@ -1,0 +1,506 @@
+{
+ "predictions": {
+  "P1": "加模型写历史（past 0→1、objects 5→6、projectChanged true），台开着时 Meta+z 能撤销",
+  "P2": "关台（Escape 与关闭按钮同结果）令 past 立刻归 0，而 store 的 objects 仍为 6",
+  "P3": "路线 A（只加模型）重开后 objects 回到 5，饮料瓶消失",
+  "P4": "路线 B（只改名）重开后改名保留，且 past 回到 1",
+  "P5": "路线 C（先改名再加模型）重开后两个改动都保留（6 个对象）"
+ },
+ "run": {
+  "static": {
+   "componentHandlers": [
+    {
+     "file": "DirectorAiImportModal.tsx",
+     "line": 180,
+     "checksMods": false,
+     "keys": [
+      " ",
+      "Enter"
+     ]
+    },
+    {
+     "file": "DirectorInspector.tsx",
+     "line": 739,
+     "checksMods": false,
+     "keys": [
+      "Enter"
+     ]
+    },
+    {
+     "file": "DirectorInspector.tsx",
+     "line": 1973,
+     "checksMods": false,
+     "keys": [
+      "Enter"
+     ]
+    },
+    {
+     "file": "DirectorInspector.tsx",
+     "line": 2349,
+     "checksMods": false,
+     "keys": [
+      "Enter"
+     ]
+    },
+    {
+     "file": "DirectorInspector.tsx",
+     "line": 2852,
+     "checksMods": false,
+     "keys": [
+      "Enter"
+     ]
+    },
+    {
+     "file": "DirectorScenePromptBar.tsx",
+     "line": 88,
+     "checksMods": false,
+     "keys": [
+      "Enter"
+     ]
+    },
+    {
+     "file": "DirectorTimeline.tsx",
+     "line": 223,
+     "checksMods": false,
+     "keys": [
+      "Enter"
+     ]
+    },
+    {
+     "file": "DirectorViewport.tsx",
+     "line": 2323,
+     "checksMods": false,
+     "keys": [
+      " ",
+      "Enter"
+     ]
+    }
+   ],
+   "withModifiers": [
+    "DirectorDesk.tsx",
+    "DirectorInspector.tsx",
+    "DirectorObjectTree.tsx",
+    "DirectorPhoneVcamPanel.tsx",
+    "DirectorTimeline.tsx",
+    "DirectorViewport.tsx",
+    "useDirectorFocusContainment.ts",
+    "useDirectorGestureBoundary.ts"
+   ],
+   "formCount": 0
+  },
+  "base": {
+   "deskOpen": true,
+   "objects": 5,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "past": 0,
+   "cmd": null,
+   "cmdProjectChanged": null,
+   "cards": 0,
+   "card": null,
+   "openBtn": {
+    "x": -13,
+    "y": 319,
+    "w": 166,
+    "h": 19
+   },
+   "closeBtn": {
+    "x": 0,
+    "y": 6,
+    "w": 40,
+    "h": 40
+   }
+  },
+  "cardMeta": {
+   "tag": "article",
+   "role": "group",
+   "tabIndex": 0,
+   "aria": "添加模型 饮料瓶"
+  },
+  "cardsBefore": 3,
+  "A": {
+   "add": {
+    "deskOpen": true,
+    "objects": 5,
+    "names": [
+     "角色01 · 陈默",
+     "咖啡桌",
+     "冷掉的咖啡",
+     "咖啡馆背景",
+     "机位01 · 对峙中景"
+    ],
+    "past": 0,
+    "cmd": null,
+    "cmdProjectChanged": null,
+    "cards": 3,
+    "card": {
+     "tag": "article",
+     "role": "group",
+     "tabIndex": 0,
+     "aria": "添加模型 饮料瓶"
+    },
+    "openBtn": {
+     "x": -13,
+     "y": 319,
+     "w": 166,
+     "h": 19
+    },
+    "closeBtn": {
+     "x": 0,
+     "y": 6,
+     "w": 40,
+     "h": 40
+    },
+    "after": {
+     "deskOpen": true,
+     "objects": 6,
+     "names": [
+      "角色01 · 陈默",
+      "咖啡桌",
+      "冷掉的咖啡",
+      "咖啡馆背景",
+      "机位01 · 对峙中景",
+      "饮料瓶"
+     ],
+     "past": 1,
+     "cmd": "SET",
+     "cmdProjectChanged": true,
+     "cards": 0,
+     "card": null,
+     "openBtn": {
+      "x": -13,
+      "y": 319,
+      "w": 166,
+      "h": 19
+     },
+     "closeBtn": {
+      "x": 0,
+      "y": 6,
+      "w": 40,
+      "h": 40
+     }
+    }
+   },
+   "undo": {
+    "deskOpen": true,
+    "objects": 5,
+    "names": [
+     "角色01 · 陈默",
+     "咖啡桌",
+     "冷掉的咖啡",
+     "咖啡馆背景",
+     "机位01 · 对峙中景"
+    ],
+    "past": 0,
+    "cmd": "SET",
+    "cmdProjectChanged": true,
+    "cards": 0,
+    "card": null,
+    "openBtn": {
+     "x": -13,
+     "y": 319,
+     "w": 166,
+     "h": 19
+    },
+    "closeBtn": {
+     "x": 0,
+     "y": 6,
+     "w": 40,
+     "h": 40
+    }
+   },
+   "add2": {
+    "deskOpen": true,
+    "objects": 6,
+    "names": [
+     "角色01 · 陈默",
+     "咖啡桌",
+     "冷掉的咖啡",
+     "咖啡馆背景",
+     "机位01 · 对峙中景",
+     "饮料瓶"
+    ],
+    "past": 1,
+    "cmd": "SET",
+    "cmdProjectChanged": true,
+    "cards": 0,
+    "card": null,
+    "openBtn": {
+     "x": -13,
+     "y": 319,
+     "w": 166,
+     "h": 19
+    },
+    "closeBtn": {
+     "x": 0,
+     "y": 6,
+     "w": 40,
+     "h": 40
+    }
+   },
+   "close": {
+    "deskOpen": false,
+    "objects": 6,
+    "names": [
+     "角色01 · 陈默",
+     "咖啡桌",
+     "冷掉的咖啡",
+     "咖啡馆背景",
+     "机位01 · 对峙中景",
+     "饮料瓶"
+    ],
+    "past": 0,
+    "cmd": null,
+    "cmdProjectChanged": null,
+    "cards": 0,
+    "card": null,
+    "openBtn": {
+     "x": -13,
+     "y": 319,
+     "w": 166,
+     "h": 19
+    },
+    "closeBtn": null,
+    "_method": "Escape"
+   },
+   "reopen": {
+    "deskOpen": true,
+    "objects": 5,
+    "names": [
+     "角色01 · 陈默",
+     "咖啡桌",
+     "冷掉的咖啡",
+     "咖啡馆背景",
+     "机位01 · 对峙中景"
+    ],
+    "past": 0,
+    "cmd": null,
+    "cmdProjectChanged": null,
+    "cards": 0,
+    "card": null,
+    "openBtn": {
+     "x": -13,
+     "y": 319,
+     "w": 166,
+     "h": 19
+    },
+    "closeBtn": {
+     "x": 0,
+     "y": 6,
+     "w": 40,
+     "h": 40
+    }
+   }
+  },
+  "B": {
+   "rename": {
+    "deskOpen": true,
+    "objects": 5,
+    "names": [
+     "改名探针",
+     "咖啡桌",
+     "冷掉的咖啡",
+     "咖啡馆背景",
+     "机位01 · 对峙中景"
+    ],
+    "past": 1,
+    "cmd": "SET",
+    "cmdProjectChanged": true,
+    "cards": 0,
+    "card": null,
+    "openBtn": {
+     "x": -13,
+     "y": 319,
+     "w": 166,
+     "h": 19
+    },
+    "closeBtn": {
+     "x": 0,
+     "y": 6,
+     "w": 40,
+     "h": 40
+    }
+   },
+   "close": {
+    "deskOpen": false,
+    "objects": 5,
+    "names": [
+     "改名探针",
+     "咖啡桌",
+     "冷掉的咖啡",
+     "咖啡馆背景",
+     "机位01 · 对峙中景"
+    ],
+    "past": 0,
+    "cmd": null,
+    "cmdProjectChanged": null,
+    "cards": 0,
+    "card": null,
+    "openBtn": {
+     "x": -13,
+     "y": 319,
+     "w": 166,
+     "h": 19
+    },
+    "closeBtn": null,
+    "_method": "Escape"
+   },
+   "reopen": {
+    "deskOpen": true,
+    "objects": 5,
+    "names": [
+     "改名探针",
+     "咖啡桌",
+     "冷掉的咖啡",
+     "咖啡馆背景",
+     "机位01 · 对峙中景"
+    ],
+    "past": 1,
+    "cmd": null,
+    "cmdProjectChanged": null,
+    "cards": 0,
+    "card": null,
+    "openBtn": {
+     "x": -13,
+     "y": 319,
+     "w": 166,
+     "h": 19
+    },
+    "closeBtn": {
+     "x": 0,
+     "y": 6,
+     "w": 40,
+     "h": 40
+    }
+   }
+  },
+  "C": {
+   "rename": {
+    "deskOpen": true,
+    "objects": 5,
+    "names": [
+     "第二个改名",
+     "咖啡桌",
+     "冷掉的咖啡",
+     "咖啡馆背景",
+     "机位01 · 对峙中景"
+    ],
+    "past": 2,
+    "cmd": "SET",
+    "cmdProjectChanged": true,
+    "cards": 0,
+    "card": null,
+    "openBtn": {
+     "x": -13,
+     "y": 319,
+     "w": 166,
+     "h": 19
+    },
+    "closeBtn": {
+     "x": 0,
+     "y": 6,
+     "w": 40,
+     "h": 40
+    }
+   },
+   "add": {
+    "deskOpen": true,
+    "objects": 6,
+    "names": [
+     "第二个改名",
+     "咖啡桌",
+     "冷掉的咖啡",
+     "咖啡馆背景",
+     "机位01 · 对峙中景",
+     "饮料瓶"
+    ],
+    "past": 3,
+    "cmd": "SET",
+    "cmdProjectChanged": true,
+    "cards": 0,
+    "card": null,
+    "openBtn": {
+     "x": -13,
+     "y": 319,
+     "w": 166,
+     "h": 19
+    },
+    "closeBtn": {
+     "x": 0,
+     "y": 6,
+     "w": 40,
+     "h": 40
+    }
+   },
+   "close": {
+    "deskOpen": false,
+    "objects": 6,
+    "names": [
+     "第二个改名",
+     "咖啡桌",
+     "冷掉的咖啡",
+     "咖啡馆背景",
+     "机位01 · 对峙中景",
+     "饮料瓶"
+    ],
+    "past": 0,
+    "cmd": null,
+    "cmdProjectChanged": null,
+    "cards": 0,
+    "card": null,
+    "openBtn": {
+     "x": -13,
+     "y": 319,
+     "w": 166,
+     "h": 19
+    },
+    "closeBtn": null,
+    "_method": "Escape"
+   },
+   "reopen": {
+    "deskOpen": true,
+    "objects": 6,
+    "names": [
+     "第二个改名",
+     "咖啡桌",
+     "冷掉的咖啡",
+     "咖啡馆背景",
+     "机位01 · 对峙中景",
+     "饮料瓶"
+    ],
+    "past": 3,
+    "cmd": null,
+    "cmdProjectChanged": null,
+    "cards": 0,
+    "card": null,
+    "openBtn": {
+     "x": -13,
+     "y": 319,
+     "w": 166,
+     "h": 19
+    },
+    "closeBtn": {
+     "x": 0,
+     "y": 6,
+     "w": 40,
+     "h": 40
+    }
+   }
+  }
+ },
+ "summary": {
+  "adding-a-model-writes-history-and-is-undoable-while-the-desk-is-open": true,
+  "closing-the-desk-zeroes-history-immediately-and-escape-matches-the-close-button": true,
+  "an-isolated-model-add-does-not-survive-close-and-reopen": true,
+  "a-rename-survives-close-and-reopen-and-its-undo-entry-comes-back": true,
+  "the-same-add-survives-if-a-rename-happened-first": true,
+  "the-model-card-is-focusable-and-activatable-but-its-role-is-group": true,
+  "all-eight-component-keydown-handlers-are-modifier-blind": true
+ },
+ "failures": []
+}
