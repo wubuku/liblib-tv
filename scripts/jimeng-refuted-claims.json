@@ -568,6 +568,17 @@
    "pattern_note": "（第二条 pattern 绑死在「点到正文会直接进入编辑态」这个**具体二分**上，不能用裸的 `编辑态` 或 `正文` —— 手册里大量正确记述都提到正文与编辑态（`edit-text-node.md` 整页、§3.13/§3.15 等），拿它们当 pattern 会把正确记录判成「改了结论没回填」。⇒ 与 `group-toolbar-width-blame-card-width`、`all-ui-clamped-elements-share-one-max-template` 同源：**pattern 必须绑上这条被推翻断言的原话，不能只抓主题词**。）",
    "refuted_in": "批次 143（SOURCE_OBSERVATIONS.md §3.14 就地订正 + §4.65.2）",
    "reason": "**那个二分不成立：单击文本节点的任何位置都会展开编辑覆盖层。** 2026-10-04 批次 143 做像素普查（2px 网格，一个 canvas 恒 320×320、屏上 192×192 的文本节点盒内 2256 个采样点，按「命中元素的 tag + 类名 + 所属节点」归类）：**2106 个点（93%）命中同一个非正文 `DIV`**（类名字面量 `data-[connection-receiving=true]:border-transparent …`，父链 `group/canvas-panel-scrollbar` → `.react-flow__node`），只有 123 个点落在正文 `P.text-octo-ui-copy` 上。⇒ 点那个占 93% 的「非正文 DIV」**同样**展开编辑态，「避开正文才是选中」不成立。🔑 更要紧的机制是：单击展开的是 `[data-testid=\"text-editor-node-overlay\"]`，内含真的 `contenteditable`（tiptap `ProseMirror`），而**这个 overlay 挂在 `.react-flow__renderer` 下、不在 `.react-flow__node` 里** ⇒ 展开之后节点上**每一个像素**的 `closest('.react-flow__node')` 都返回 `null`（实测：同一个落点，单击前命中 `DIV[data-testid=\"text-flow-node-full\"]`（祖先链里有 `.react-flow__node`），单击后命中 `DIV.nodrag.min-h-full[…caret-dreamina-brand-default]`（祖先链里只有 `text-editor-node-overlay` → `.react-flow__renderer`））。且 overlay 是 **`nodrag`** ⇒ 展开状态下拖不动节点（14 步渐进拖动，每一步 canvas 读数纹丝不动，实测位移逐字 `0`）。📌 **立规**：① 「点 A 才是 X、点 B 才是 Y」这种二分必须先做**像素普查**（把盒内每个像素按命中元素归类并计数），不能凭「看起来哪块是正文」推断；② **落点归属判据要问「单击之后」** —— `closest('.react-flow__node')` 这类判据**对会展开覆盖层的组件不封闭**，点完必须重新读一次归属再决定下一步。"
+  },
+  {
+   "id": "text-editor-fullscreen-scroll-region-does-not-exist",
+   "label": "「`text-editor-fullscreen-dialog` / `-placeholder` / `-scroll-region` / `text-editor-toolbar` / `-toolbar-separator`（5）」列为「全灭 testid」，其中隐含 `text-editor-fullscreen-scroll-region` 这个 testid 存在 —— 原写在 SOURCE_OBSERVATIONS.md §4.49「testid 存活率普查」的分诊表第 1 行",
+   "patterns": [
+    "~~`text-editor-fullscreen-dialog`",
+    "批次 144 验成 4 个"
+   ],
+   "pattern_note": "（这是**原文替换型**订正：分诊表那一行被整行改写（保留删除线 + 追加实测结果），所以 pattern 只能匹配**订正标记**（删除线与「批次 144 验成 4 个」），不能去匹配 testid 本身 —— 后者在 edit-text-node.md / 20-reference.md / §4.66 等处是**正确记录**，拿它当 pattern 会把正确记录判成「改了结论没回填」。⇒ 与 `node-resize-handles-are-max-48-24` 同一用法。已验证第一个 pattern 全册**唯一命中**，避免过度判读。）",
+   "refuted_in": "批次 144（SOURCE_OBSERVATIONS.md §4.66 + 分诊表就地订正）",
+   "reason": "**那一行里有一个 testid 根本不存在，而且是「顺推前缀」造出来的。** `text-editor-fullscreen-dialog`、`text-editor-fullscreen-placeholder`、`text-editor-toolbar`、`text-editor-toolbar-separator` 四项实测全部命中 1（`1280×720@0,0` / `80×26@240,145` / `1173.3×40@53,84` 且 aria 逐字 `Text formatting` / `8×16@627,96`）；而 **`text-editor-fullscreen-scroll-region` 命中 0** —— 真身是 **`text-editor-scroll-region`**，**没有 `fullscreen` 前缀**（命中 1、`1173.3×596@53,124`）。对照项 `text-editor-placeholder` 同样命中 0，说明 `fullscreen` 那个占位是唯一带前缀的。🔑 **错因很清楚：分诊表把五个 testid 写成「首个 + 三个 `-后缀` + 一个完整名」的简写形式，而同族元素的前缀并不一致** —— `text-editor-toolbar` 就**没有** `fullscreen` 前缀。📌 **立规：不要从一个 testid 的名字顺推同族的名字**；同族前缀可能一致也可能不一致，**只能逐个实测**。⇒ 顺带结清当年「不验」的理由（「3 个文本节点全在视口外；平移会改共享画布视图，不做」）：批次 143 之后，**护栏建出来的文本节点就落在视口中央**（canvas `(2664,2029)` ↔ 屏上 `(544,264)`），根本不需要平移。"
   }
  ]
 }

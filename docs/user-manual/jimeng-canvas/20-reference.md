@@ -921,13 +921,31 @@ aria 逐字 `Create connected node before <节点名>`）—— **批次 71 新�
 | 容器 | `div[text-editor-fullscreen-dialog]` **1280×720@0,0**（🔴 **尺寸对、定位方式已被批次 82 推翻**：那是裸属性写法，真实 DOM 匹配不到，实为 `[data-testid="text-editor-fullscreen-dialog"]`） |
 | 标题片 | 逐字 **`文本 3.md`**（节点名 + `.md`）**66×22@81,28** |
 | 关闭钮 | aria 逐字 `Close full-screen editor` **36×36@1191,28** |
-| 工具条 | `div[text-editor-toolbar]` **1173×40@53,84** |
-| 分隔片 | `span[text-editor-toolbar-separator]` **8×16@627,96** |
-| 正文区 | `div[text-editor-scroll-region]` **1173×596@53,124** |
+| 工具条 | `[data-testid="text-editor-toolbar"]` **1173.3×40@53,84**，🆕 **aria 逐字 `Text formatting`** |
+| 分隔片 | `[data-testid="text-editor-toolbar-separator"]` **8×16@627,96** |
+| 正文区 | `[data-testid="text-editor-scroll-region"]` **1173.3×596@53,124** |
+| 🆕 占位 | `[data-testid="text-editor-fullscreen-placeholder"]` **80×26@240,145**，逐字 `输入文本…` |
 | 工具条 7 项 | `Text style` 48×32@509,88 ｜ `无序列表` 32×32@559 ｜ `有序列表` 32×32@593 ｜ `加粗` 32×32@637 ｜ `删除线` 32×32@671 ｜ `倾斜` 32×32@705 ｜ `下划线` 32×32@739 |
 | 右上角 | `下载` 80×36@1094,28 |
 | 退出 | **Esc 一次即关**，关闭后画布工具条原样恢复 |
-| 打开时会顶掉 | 画布上的 `node-toolbar` / `selection-context-toolbar`（192×40）与 `node-feature-chrome-host`（192×192） |
+| 打开时 | 🔑 画布上的 `node-toolbar` / `selection-context-toolbar` / `node-feature-chrome-host` / `selection-context-toolbar-popup-host` / `default-feature-overlay-interaction-boundary` **全部变成 0 个实例（真的从 DOM 移除，不是被盖住）**，关闭后**逐字**恢复 |
+
+🔑 **全屏文本编辑器**（`text-editor-fullscreen-dialog`，批次 144 结清 5 个全灭 testid）：
+  容器 `1280×720@0,0`；子树里**只有 4 个 testid** ——
+  `text-editor-toolbar`（**aria `Text formatting`**）、`text-editor-toolbar-separator`、
+  `text-editor-scroll-region`、`text-editor-fullscreen-placeholder`。
+  🔴 **`text-editor-fullscreen-scroll-region` 不存在**（实测命中 0），
+  真身是 `text-editor-scroll-region`（**没有 `fullscreen` 前缀**）。
+  🆕 标题片公式：**<节点标题> + `.md`**。正文区是 tiptap `ProseMirror[contenteditable]`、**无 testid**。
+
+🔑 **节点工具条的宽度也有完整公式**（`2026-10-04` 批次 144 七档实测）：
+  **屏上宽 = `max(320 × 当前缩放, 160)`**、高度恒 `40`、**交叉点 `50%`**
+  （`160 ÷ 320`）。≤50% 四档（30/40/45/50%）读数**逐字恒 `160`**，
+  ≥50% 读 `176 / 192 / 320`。`320` 是**文本节点的 canvas 宽** ⇒
+  高缩放时工具条与节点等宽。**三个按钮自身屏上恒 `75 / 32 / 32`，完全不随缩放变**
+  （批次 93 已记三档，此处补齐为公式）。
+  📌 与组工具条**同模板、不同内层**：组是整块 `selection-context-toolbar` 恒定，
+  节点是逐个按钮恒定、外层只当容器。⚠️ 早前的 `185×40` **三档都没复现**（批次 93 推翻）。
 
 ⚠️ 该契约**只在文本节点上验过**；其它类型见下方「F 逐节点类型」。
 

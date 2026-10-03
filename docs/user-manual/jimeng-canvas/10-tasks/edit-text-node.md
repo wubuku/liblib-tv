@@ -166,20 +166,44 @@
 尺寸 `1280×720@0,0` 本身没错，错的只是定位方式。正确定位器是
 `[data-testid="text-editor-fullscreen-dialog"]`：
 
-| 项 | 实测 |
+| 项 | 实测（2026-10-04 批次 144 复测，**逐字与 2026-10-01 批次 82 一致**） |
 |---|---|
-| 容器 | **1280×720@0,0** |
-| 标题片 | 逐字 **`文本 3.md`**（节点名 + `.md`）**66×22@81,28** |
+| 容器 | `[data-testid="text-editor-fullscreen-dialog"]`（`role="dialog"`）**1280×720@0,0** |
+| 标题片 | 逐字 **`文本 4.md`**，**66×22@81,28** ⇒ 公式：**<节点标题> + `.md`** |
 | 关闭钮 | aria 逐字 `Close full-screen editor` **36×36@1191,28** |
-| 工具条 | `div[text-editor-toolbar]` **1173×40@53,84** |
-| 分隔片 | `span[text-editor-toolbar-separator]` **8×16@627,96** |
-| 正文区 | `div[text-editor-scroll-region]` **1173×596@53,124** |
+| 工具条 | `[data-testid="text-editor-toolbar"]` **1173.3×40@53,84**，**aria 逐字 `Text formatting`** |
+| 分隔片 | `[data-testid="text-editor-toolbar-separator"]` **8×16@627,96** |
+| 正文区 | `[data-testid="text-editor-scroll-region"]` **1173.3×596@53,124** |
+| 🆕 占位 | `[data-testid="text-editor-fullscreen-placeholder"]` **80×26@240,145**，逐字 `输入文本…` |
 | 工具条 7 项 | `Text style` 48×32@509,88 ｜ `无序列表` 32×32@559 ｜ `有序列表` 32×32@593 ｜ `加粗` 32×32@637 ｜ `删除线` 32×32@671 ｜ `倾斜` 32×32@705 ｜ `下划线` 32×32@739 |
 | 右上角 | `下载` 80×36@1094,28 |
-| 退出 | **Esc 一次即关**，关闭后画布工具条原样恢复 |
+| 退出 | **Esc 一次即关**，也可用右上角的 ✕ 按钮（`Close full-screen editor`）；关闭后画布工具条**逐字**恢复 |
 
-- 打开的瞬间，画布上的节点工具条（`node-toolbar` 192×40）与
-  `node-feature-chrome-host`（192×192）**被顶掉**，关闭后恢复原样。
+#### 🔑 编辑器里**只有 4 个 testid**（批次 144 首次数清）
+
+`text-editor-fullscreen-dialog` 子树里的 `[data-testid]` **恰好 4 个**：
+`text-editor-toolbar` / `text-editor-toolbar-separator` / `text-editor-scroll-region` /
+`text-editor-fullscreen-placeholder`。
+正文编辑器本身是 tiptap `ProseMirror` 的 `[contenteditable]`，**没有 testid**。
+
+🔴 **`text-editor-fullscreen-scroll-region` 这个 testid 不存在**（实测命中 **0**）——
+真身是 **`text-editor-scroll-region`**，**没有 `fullscreen` 前缀**。
+（另有一个 `text-editor-placeholder` 也是 0 命中，`fullscreen` 那个才存在。）
+⚠️ 这个错拼法来自 SOURCE_OBSERVATIONS §4.49 的「全灭 testid」分诊表 ——
+它大概是**从 `text-editor-fullscreen-dialog` 顺推前缀**写出来的。
+📌 **别从一个 testid 的名字顺推同族的名字**；同族的另几个（`text-editor-toolbar`）
+就**没有** `fullscreen` 前缀。
+
+![文本节点的全屏编辑器（2026-10-04 批次 144 拍，这是全册第一张文本全屏编辑器的图）。整屏被编辑器占满：左上角一个文档小图标加标题「文本 4.md」，右上角一个「下载」按钮和一个 ✕ 关闭按钮；中间一条横向工具栏，从左到右是带下拉箭头的 T（文字样式）、无序列表、有序列表、竖分隔线、B（加粗）、S（删除线）、I（倾斜）、U（下划线）；工具栏下方是一整块空的深色编辑区，左上角有一行灰色占位文字「输入文本…」](../screenshots/53-text-fullscreen-editor.png)
+
+- 打开的瞬间，画布上的节点 chrome **不是「被顶掉」，而是真的从 DOM 里移除**：
+  批次 144 在**同条件下前后对比**（建节点 → 悬停 → 打开）实测，
+  `node-toolbar` / `node-feature-chrome-host` / `selection-context-toolbar` /
+  `selection-context-toolbar-popup-host` / `default-feature-overlay-interaction-boundary`
+  **全部变成 0 个实例**，编辑器关闭后**逐字**恢复到打开前。
+  ⚠️ 想复现这个对比，**基准必须是「同一个前置状态下」**——
+  批次 144 b 轮把基准取在「建节点之前」，于是这些 testid 被算成「新增」而不是「消失」，
+  一度让人以为 §3.56.2 记错了。
 - ⚠️ **快捷键面板把 F 叫「预览视图」，但它并不是预览，而是全屏编辑。**
 - ✅ **其它节点类型按 F 的行为已于 2026-10-01 批次 40/41 补齐**
   （本表只是文本节点这一格的契约）：
