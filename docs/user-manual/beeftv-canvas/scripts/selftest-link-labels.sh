@@ -79,6 +79,64 @@ if [ "$BASE_RC" -ne 0 ]; then
   grep -E "✗" "$BASE_OUT" | head -5 | sed 's/^/    /'
 fi
 
+# ── 注入护栏（Batch 277 新增，从 `run_case` 里提出来给三条路径共用）────
+#
+# **它治什么（实测的假通过，干净副本树）**：把用例 11 的注入整块换成
+# 「两个都不存在的锚点、无 assert」——**语法合法、不抛异常、文件一个字节没动**——
+# 于是它报「✓ 闸门未误报」，**整份报告是「通过 13 / 失败 0 / 作废 0」、rc=0**。
+# **读者看的是那个总数，而「13 例全过」与「其中一条什么都没验」在报告上完全一样。**
+#
+# **根因不是「少写了一个 assert」，是「护栏只加在了一条路径上」**：
+# `run_case` 有 cksum 前后比对（Batch 249 加的），
+# **而 `run_two_file_case` 与内联的那两条没有**——
+# 挡住它们的是「那几条注入恰好都手写了 `assert`」**这个巧合**，
+# **而 `assert` 恰恰是最容易被下一次编辑删掉的东西**
+# （它不在函数签名里、不在任何清单上，删掉之后脚本照常跑绿）。
+#
+# **为什么护栏不写成「assert 命中」**：`assert` 要人记得写，
+# **而 cksum 比对是「跑完自然会发生的事」**——
+# **护栏应该落在被测性质上（文件真的变了），而不是落在某个具体的失败形态上**
+# （「抛异常」只是空转的其中一种，而且不是唯一一种）。
+#: **两个数组按顺序存，而不是拼动态变量名**——
+#: **`INJ_BEFORE_$k=$(cksum < …)` 在 bash 里行不通，而且失败方式极具误导性**：
+#: **`INJ_BEFORE_$k` 在「解析期」不是合法赋值名**（名字里有个 `$`），
+#: 于是 bash 把它当**命令词**，展开后去找一个叫
+#: `INJ_BEFORE_10_tasks_asset_library_md=…` 的命令——
+#: **实测报 `command not found`，而变量从头到尾没被赋值**，
+#: 紧接着 `set -u` 让下一处读它时报 `unbound variable`、**整份脚本一条用例都没跑**。
+#: **而 `before=$(cksum < …)` 是没问题的**（那是合法名字，走赋值路径，
+#: 且赋值的右边不做词分割，所以 cksum 的两段不会被拆开）——
+#: **同一个文件里两个看起来一样的写法，一个能用一个不能，而差别只在名字是不是字面量。**
+snapshot_injection() {         # $@ = 相对 $WORK 的文件；把 cksum 按顺序存进 INJ_SNAP
+  local f
+  INJ_SNAP=()
+  for f in "$@"; do
+    [ -f "$WORK/$f" ] || { echo "文件不在场：$f"; return 1; }
+    INJ_SNAP+=("$(cksum < "$WORK/$f")")
+  done
+  return 0
+}
+set_after_injection() {        # $@ = 与 snapshot_injection 同一批文件
+  local f
+  INJ_AFTERS=()
+  for f in "$@"; do INJ_AFTERS+=("$(cksum < "$WORK/$f")"); done
+}
+assert_injection_changed() {   # $@ = 与 snapshot_injection 同一批文件
+  local f i n
+  n=${#INJ_SNAP[@]}
+  if [ "$n" -eq 0 ]; then echo "护栏自己没拿到注入前的快照（前提失配）"; return 1; fi
+  i=0
+  for f in "$@"; do
+    if [ "${INJ_SNAP[$i]}" = "${INJ_AFTERS[$i]}" ]; then
+      echo "**$f 的内容一个字节都没变**"
+      return 1
+    fi
+    i=$((i + 1))
+  done
+  [ "$i" -eq "$n" ] || { echo "护栏的文件数对不上（$i vs ${n}）——**别让「比的不是同一批」变成永远通过**"; return 1; }
+  return 0
+}
+
 run_case() {  # 说明 目标文件 注入命令 期望出现在输出里的字串 期望退出码(1=须报,0=须放行)
   local desc="$1" file="$2" inject="$3" want="$4" expect_fail="$5" out rc inj_out before after
   reset_tree
@@ -87,7 +145,7 @@ run_case() {  # 说明 目标文件 注入命令 期望出现在输出里的字�
     echo "  — ${desc}：**作废（基线前提不成立）**——本轮无法评估它是否误报"
     VOID=$((VOID+1)); return
   fi
-  before=$(cksum < "$WORK/$file")
+  snapshot_injection "$file"
   inj_out=$(python3 - "$WORK/$file" <<PYEOF 2>&1
 import io, sys
 p = sys.argv[1]
@@ -97,7 +155,7 @@ io.open(p, "w", encoding="utf-8").write(s)
 PYEOF
 )
   rc=$?
-  after=$(cksum < "$WORK/$file")
+  set_after_injection "$file"
   # **注入失败必须算用例失败**（Batch 225 实测过同一个坑：`selftest-meta.sh` 的
   # `run_file_pass_case()` 在「注入未命中锚点」分支漏了 `VOID++`，
   # 后果是用例静默消失、闸门在干净树上跑绿、报告上却写着 ✓）。
@@ -110,7 +168,7 @@ PYEOF
   #   静默返回原串，文件一个字节都没动，于是闸门在干净树上跑绿、用例照样 ✓。
   #   实测：把用例 2 的锚点改成一个不存在的串，护栏没响，用例改判「闸门未报出」——
   #   报出来的是**症状**，不是**原因**。所以必须独立断言「文件确实变了」。
-  if [ "$before" = "$after" ]; then
+  if ! assert_injection_changed "$file"; then
     echo "  ✗ ${desc}：**注入没有改变文件**（锚点很可能没命中），用例没跑起来（不能算通过）"
     FAIL=$((FAIL+1)); return
   fi
@@ -229,6 +287,9 @@ run_two_file_case() {  # 说明 目标页 链接所在页 注入命令 期望退
     echo "  — ${desc}：**作废（基线前提不成立）**——本轮无法评估它是否误报"
     VOID=$((VOID+1)); return
   fi
+  # **Batch 277：这一条路径此前没有「文件真的变了」的检查**，
+  # **挡住它的是那三条注入恰好都手写了 `assert`——巧合，不是机制**（详见助手上方）。
+  snapshot_injection "10-tasks/$tgt" "10-tasks/$src"
   inj=$(python3 - "$WORK/10-tasks/$tgt" "$WORK/10-tasks/$src" <<INJEOF 2>&1
 import io, sys
 tgt, src = sys.argv[1], sys.argv[2]
@@ -243,6 +304,13 @@ INJEOF
   if [ "$rc" -ne 0 ] || echo "$inj" | grep -q 'Error\|Traceback\|SystemExit'; then
     echo "  ✗ ${desc}：**注入失败，用例根本没跑起来**（不能算通过）"
     echo "$inj" | sed 's/^/      /'; FAIL=$((FAIL+1)); return
+  fi
+  # **两个文件都要比**：只比其中一个的话，**「改了一个没改另一个」会静默通过**——
+  # **而这一族用例的意义恰恰是同时改两处**（小节建在目标页、链接建在别处）。
+  set_after_injection "10-tasks/$tgt" "10-tasks/$src"
+  if ! assert_injection_changed "10-tasks/$tgt" "10-tasks/$src"; then
+    echo "  ✗ ${desc}：**注入没有改变文件**（锚点很可能没命中），用例没跑起来（不能算通过）"
+    FAIL=$((FAIL+1)); return
   fi
   out=$(python3 "$WORK/scripts/verify-link-labels.py" 2>&1); rc=$?
   if [ "$expect_fail" = "yes" ]; then
