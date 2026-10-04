@@ -1,0 +1,19 @@
+{
+ "本批": "156",
+ "本批有计费动作": false,
+ "说明": "积分是共享帐号级的量：别的 session 在同一个测试帐号上扣一点，这道门就会红，而红灯原因不在本批。批次 156 全部 9 个脚本每个收尾都读到 805，浏览器被别的会话关掉重启后变成 791（-14）；本批一次计费入口都没点过（只点过 data-toolbar-value=tools 只开菜单、右键菜单的「保存到主体库」、以及对话框 Esc），smart-edit / expand / image-hd / remove-background / image-presets / multi-angle / lighting / ask-ai 这八个计费的图片编辑入口一个都没碰。把这个字段置为 true 时，积分不符会重新判负。",
+ "本批计费入口清单": [
+  "smart-edit 智能改图",
+  "panorama 720 全景",
+  "expand 扩图",
+  "image-hd 智能超清",
+  "remove-background 抠图",
+  "image-presets 预设",
+  "multi-angle 多角度",
+  "lighting 智能打光",
+  "ask-ai AI 助手"
+ ],
+ "本批实际点过的浮动工具条键": [
+  "tools 工具（只开菜单，不触发任何 AI 操作）"
+ ]
+}

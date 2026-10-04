@@ -1,0 +1,1094 @@
+{
+ "批次": "156l",
+ "目的": "只读：找账号级主体库（Dreamina Subjects）的管理入口",
+ "起点": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "积分": "Credits: 805 · 基础会员"
+ },
+ "chrome": [
+  {
+   "tag": "A",
+   "role": null,
+   "testid": "canvas-project-logo",
+   "aria": "返回首页",
+   "href": "/ai-tool/home",
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    12,
+    10
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": "canvas-project-title-trigger",
+   "aria": "Canvas title: 测试项目",
+   "href": null,
+   "逐字": "测试项目",
+   "盒": [
+    68,
+    28,
+    52,
+    16
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": "canvas-project-trigger",
+   "aria": "项目",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    20,
+    28,
+    120,
+    16
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": "canvas-node-summary-trigger",
+   "aria": "Canvas node summary: 节点 76",
+   "href": null,
+   "逐字": "节点 76",
+   "盒": [
+    34,
+    28,
+    156,
+    16
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": "canvas-panel-launcher",
+   "aria": "搜索",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    911,
+    16
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": "canvas-panel-launcher",
+   "aria": "生成历史",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    943,
+    16
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": "canvas-share-trigger",
+   "aria": "分享",
+   "href": null,
+   "逐字": "分享",
+   "盒": [
+    60,
+    28,
+    988,
+    16
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": null,
+   "aria": "更多",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    1065,
+    16
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": "canvas-commerce-entry",
+   "aria": "Credits: 805 · 基础会员",
+   "href": null,
+   "逐字": "805 基础会员",
+   "盒": [
+    111,
+    28,
+    1109,
+    16
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": "canvas-user-menu-trigger",
+   "aria": "用户菜单",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    1236,
+    16
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": null,
+   "aria": "回到节点",
+   "href": null,
+   "逐字": "回到节点",
+   "盒": [
+    72,
+    20,
+    668,
+    44
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": null,
+   "aria": "文本",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    193
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": null,
+   "aria": "图片",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    235
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": null,
+   "aria": "视频",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    277
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": null,
+   "aria": "音频",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    319
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": null,
+   "aria": "时间线",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    361
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": null,
+   "aria": "主体",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    403
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": null,
+   "aria": "导演台",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    445
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": null,
+   "aria": "资产库",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    501
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": null,
+   "aria": "上传",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    543
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": "canvas-pointer-tool-toggle",
+   "aria": "选择工具",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    16,
+    672
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": "canvas-display-toggle-minimap",
+   "aria": "小地图",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    48,
+    672
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": "canvas-display-toggle-connections",
+   "aria": "显示连线",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    80,
+    672
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": "canvas-zoom-percent",
+   "aria": "Zoom options, 60%",
+   "href": null,
+   "逐字": "60%",
+   "盒": [
+    48,
+    28,
+    124,
+    672
+   ]
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": "canvas-sidecar-launcher",
+   "aria": "与 AI 对话",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    118,
+    34,
+    1149,
+    673
+   ]
+  }
+ ],
+ "chrome数": 25,
+ "命中主体": [
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "testid": null,
+   "aria": "主体",
+   "href": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    403
+   ]
+  }
+ ],
+ "顶栏": [
+  {
+   "testid": "workspace-workbench-shell",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "测试项目 节点 76 已保存 分享 805 基础会员 76 ",
+   "盒": [
+    1280,
+    720,
+    0,
+    0
+   ]
+  },
+  {
+   "testid": "canvas-top-bar",
+   "tag": "HEADER",
+   "role": null,
+   "aria": "Canvas top bar",
+   "逐字": "测试项目 节点 76 已保存 分享 805 基础会员",
+   "盒": [
+    1256,
+    40,
+    12,
+    10
+   ]
+  },
+  {
+   "testid": "canvas-top-bar-left",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "测试项目 节点 76 已保存",
+   "盒": [
+    871,
+    40,
+    12,
+    10
+   ]
+  },
+  {
+   "testid": "workspace-title-responsive-surface",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "测试项目 节点 76 已保存",
+   "盒": [
+    871,
+    40,
+    12,
+    10
+   ]
+  },
+  {
+   "testid": "workspace-canvas-title",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "测试项目 节点 76 已保存",
+   "盒": [
+    236,
+    40,
+    12,
+    10
+   ]
+  },
+  {
+   "testid": "canvas-project-logo",
+   "tag": "A",
+   "role": null,
+   "aria": "返回首页",
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    12,
+    10
+   ]
+  },
+  {
+   "testid": "canvas-project-logo-gradient-path",
+   "tag": "path",
+   "role": null,
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    24,
+    25,
+    20,
+    18
+   ]
+  },
+  {
+   "testid": "canvas-title-details",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "测试项目 节点 76 已保存",
+   "盒": [
+    200,
+    36,
+    48,
+    12
+   ]
+  },
+  {
+   "testid": "canvas-project-title-trigger",
+   "tag": "BUTTON",
+   "role": null,
+   "aria": "Canvas title: 测试项目",
+   "逐字": "测试项目",
+   "盒": [
+    68,
+    28,
+    52,
+    16
+   ]
+  },
+  {
+   "testid": "canvas-project-launcher-shell",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    20,
+    28,
+    120,
+    16
+   ]
+  },
+  {
+   "testid": "canvas-project-trigger",
+   "tag": "BUTTON",
+   "role": null,
+   "aria": "项目",
+   "逐字": "",
+   "盒": [
+    20,
+    28,
+    120,
+    16
+   ]
+  },
+  {
+   "testid": "canvas-title-metadata",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "节点 76 已保存",
+   "盒": [
+    80,
+    28,
+    156,
+    16
+   ]
+  },
+  {
+   "testid": "canvas-node-summary-trigger",
+   "tag": "BUTTON",
+   "role": null,
+   "aria": "Canvas node summary: 节点 76",
+   "逐字": "节点 76",
+   "盒": [
+    34,
+    28,
+    156,
+    16
+   ]
+  },
+  {
+   "testid": "canvas-node-summary-label",
+   "tag": "SPAN",
+   "role": null,
+   "aria": "",
+   "逐字": "节点 76",
+   "盒": [
+    34,
+    18,
+    156,
+    21
+   ]
+  },
+  {
+   "testid": "canvas-node-summary-count",
+   "tag": "SPAN",
+   "role": null,
+   "aria": "",
+   "逐字": "76",
+   "盒": [
+    12,
+    18,
+    178,
+    21
+   ]
+  },
+  {
+   "testid": "canvas-title-separator",
+   "tag": "SPAN",
+   "role": null,
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    8,
+    12,
+    194,
+    24
+   ]
+  },
+  {
+   "testid": "canvas-title-save-status",
+   "tag": "OUTPUT",
+   "role": null,
+   "aria": "",
+   "逐字": "已保存",
+   "盒": [
+    30,
+    18,
+    206,
+    21
+   ]
+  },
+  {
+   "testid": "canvas-top-bar-actions",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "分享 805 基础会员",
+   "盒": [
+    361,
+    40,
+    907,
+    10
+   ]
+  },
+  {
+   "testid": "canvas-agent-history-surface",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    68,
+    36,
+    907,
+    12
+   ]
+  },
+  {
+   "testid": "canvas-panel-launcher",
+   "tag": "BUTTON",
+   "role": null,
+   "aria": "搜索",
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    911,
+    16
+   ]
+  },
+  {
+   "testid": "canvas-panel-launcher",
+   "tag": "BUTTON",
+   "role": null,
+   "aria": "生成历史",
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    943,
+    16
+   ]
+  },
+  {
+   "testid": "canvas-share-entry",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "分享",
+   "盒": [
+    70,
+    36,
+    983,
+    12
+   ]
+  },
+  {
+   "testid": "canvas-share-trigger",
+   "tag": "BUTTON",
+   "role": null,
+   "aria": "分享",
+   "逐字": "分享",
+   "盒": [
+    60,
+    28,
+    988,
+    16
+   ]
+  },
+  {
+   "testid": "canvas-editor-menu",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    36,
+    36,
+    1061,
+    12
+   ]
+  },
+  {
+   "testid": "canvas-account-surface",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "805 基础会员",
+   "盒": [
+    163,
+    36,
+    1105,
+    12
+   ]
+  },
+  {
+   "testid": "canvas-commerce-entry-wrapper",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "805 基础会员",
+   "盒": [
+    111,
+    36,
+    1109,
+    12
+   ]
+  },
+  {
+   "testid": "canvas-commerce-entry",
+   "tag": "BUTTON",
+   "role": null,
+   "aria": "Credits: 805 · 基础会员",
+   "逐字": "805 基础会员",
+   "盒": [
+    111,
+    28,
+    1109,
+    16
+   ]
+  },
+  {
+   "testid": "workspace-account-summary-content",
+   "tag": "SPAN",
+   "role": null,
+   "aria": "",
+   "逐字": "805 基础会员",
+   "盒": [
+    93,
+    18,
+    1118,
+    21
+   ]
+  },
+  {
+   "testid": "canvas-account-separator",
+   "tag": "SPAN",
+   "role": null,
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    8,
+    12,
+    1224,
+    24
+   ]
+  },
+  {
+   "testid": "workspace-preparing-account-avatar",
+   "tag": "SPAN",
+   "role": null,
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    24,
+    24,
+    1238,
+    18
+   ]
+  },
+  {
+   "testid": "canvas-user-menu-trigger",
+   "tag": "BUTTON",
+   "role": null,
+   "aria": "用户菜单",
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    1236,
+    16
+   ]
+  },
+  {
+   "testid": "canvas-user-avatar-image",
+   "tag": "IMG",
+   "role": null,
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    24,
+    24,
+    1238,
+    18
+   ]
+  },
+  {
+   "testid": "canvas-user-avatar-hover-mask",
+   "tag": "SPAN",
+   "role": null,
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    24,
+    24,
+    1238,
+    18
+   ]
+  },
+  {
+   "testid": "workspace-hydrated-canvas-frame",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "76 nodes, 0 edges, 0 selected.",
+   "盒": [
+    1280,
+    720,
+    0,
+    0
+   ]
+  },
+  {
+   "testid": "canvas-workbench-shell",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "76 nodes, 0 edges, 0 selected.",
+   "盒": [
+    1280,
+    720,
+    0,
+    0
+   ]
+  },
+  {
+   "testid": "canvas-main-region",
+   "tag": "SECTION",
+   "role": null,
+   "aria": "Canvas editing area",
+   "逐字": "76 nodes, 0 edges, 0 selected.",
+   "盒": [
+    1280,
+    720,
+    0,
+    0
+   ]
+  },
+  {
+   "testid": "rf__wrapper",
+   "tag": "DIV",
+   "role": "application",
+   "aria": "Canvas",
+   "逐字": "视频 1 No resources: 0 ready, 0 ",
+   "盒": [
+    1280,
+    720,
+    0,
+    0
+   ]
+  },
+  {
+   "testid": "canvas-dot-grid",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    1280,
+    720,
+    0,
+    0
+   ]
+  },
+  {
+   "testid": "canvas-connection-flow-layer-host",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    1280,
+    720,
+    0,
+    0
+   ]
+  },
+  {
+   "testid": "canvas-connection-flow-layer",
+   "tag": "CANVAS",
+   "role": null,
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    1280,
+    720,
+    0,
+    0
+   ]
+  },
+  {
+   "testid": "back-to-content-overlay",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "当前视窗没有内容 回到节点",
+   "盒": [
+    232,
+    44,
+    524,
+    32
+   ]
+  },
+  {
+   "testid": "canvas-creation-entry-feedback",
+   "tag": "DIV",
+   "role": null,
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    1,
+    1,
+    -1,
+    -1
+   ]
+  },
+  {
+   "testid": "canvas-fixed-toolbar-left-rail",
+   "tag": "ASIDE",
+   "role": null,
+   "aria": "Canvas left toolbar",
+   "逐字": "文本 图片 视频 音频 时间线 主体 导演台 资产库 上传",
+   "盒": [
+    160,
+    632,
+    12,
+    72
+   ]
+  }
+ ],
+ "左栏": [
+  {
+   "testid": "canvas-context-menu-terminal-feedback",
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    1,
+    1,
+    -1,
+    719
+   ]
+  },
+  {
+   "testid": "canvas-navigation-shell",
+   "aria": "",
+   "逐字": "文本 图片 视频 音频 时间线 主体 导",
+   "盒": [
+    160,
+    398,
+    12,
+    189
+   ]
+  },
+  {
+   "testid": "canvas-navigation-mask",
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    160,
+    398,
+    12,
+    189
+   ]
+  },
+  {
+   "testid": "canvas-navigation-mask-backdrop",
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    160,
+    398,
+    12,
+    189
+   ]
+  },
+  {
+   "testid": "canvas-navigation-mask-gradient",
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    160,
+    398,
+    12,
+    189
+   ]
+  },
+  {
+   "testid": "canvas-navigation-scroll-viewport",
+   "aria": "",
+   "逐字": "文本 图片 视频 音频 时间线 主体 导",
+   "盒": [
+    160,
+    398,
+    12,
+    189
+   ]
+  },
+  {
+   "testid": "canvas-fixed-toolbar",
+   "aria": "Canvas toolbar",
+   "逐字": "文本 图片 视频 音频 时间线 主体 导",
+   "盒": [
+    48,
+    398,
+    12,
+    189
+   ]
+  },
+  {
+   "testid": "workspace-bottom-dock-frame",
+   "aria": "",
+   "逐字": "60%",
+   "盒": [
+    164,
+    36,
+    12,
+    668
+   ]
+  },
+  {
+   "testid": "canvas-navigation-dock",
+   "aria": "",
+   "逐字": "60%",
+   "盒": [
+    164,
+    36,
+    12,
+    668
+   ]
+  },
+  {
+   "testid": "canvas-minimap-portal-target",
+   "aria": "",
+   "逐字": "",
+   "盒": [
+    156,
+    114,
+    16,
+    554
+   ]
+  },
+  {
+   "testid": "canvas-bottom-dock",
+   "aria": "Canvas viewport controls",
+   "逐字": "60%",
+   "盒": [
+    156,
+    28,
+    16,
+    672
+   ]
+  },
+  {
+   "testid": "canvas-pointer-tool-toggle",
+   "aria": "选择工具",
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    16,
+    672
+   ]
+  },
+  {
+   "testid": "canvas-display-toggle-minimap",
+   "aria": "小地图",
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    48,
+    672
+   ]
+  }
+ ],
+ "主体节点": null,
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 805 · 基础会员"
+ },
+ "断言全过": true
+}

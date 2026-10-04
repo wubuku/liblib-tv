@@ -5927,3 +5927,22 @@ Q1 纯只读；Q2/Q3 建 1 个音频节点并当轮右键删除，**消失集合
 - **收尾**：`76 nodes / 0 edges / 0 selected`、`Zoom options, 60%`、小地图开、**积分 805**、
   三个脚本各建 1 个时间线节点、**三个 id 全部消失**、**其余节点 canvas 坐标零位移**、
   ⛔ **零副作用**（没点导出菜单任何一项、没按任何字母数字键）。
+
+### 批次 156（2026-10-04）· 🔴 结清「保存到主体库」；查出「设置主体」二次确认对话框（14 个新 testid）
+
+| 项 | 内容 |
+|---|---|
+| 靶子 | `subject-node.md` 挂了 3 个批次的「保存到主体库实际结果」；原阻塞理由（要写持久数据、空态、撤不回）因 2026-10-04 新授权**逐字失效** |
+| 🔴 前提被证伪 | 它**不在**浮动工具条的「工具」菜单里 —— 那个菜单 `240×204` 逐字只有 `编辑 消除笔 裁剪 宫格切分 标注`（第一行「编辑」是**分组标题**、数 menuitem 得 4、数 innerText 得 5）。`PROGRESS.md:235/:269` 早有记录，本批**连写三个脚本都按错前提排期且都没报错** |
+| 🔴 它是两步 | ① 右键菜单项（`200×372` 九项，aria 逐字「将 b22-upload 保存到主体库」——**aria 带节点名**）→ ② 弹 `subject-export-confirm-dialog` **`548×688`**，**名称必填**（`maxlength=20`、计数器 `0 / 20`），「保存」空态 `aria-disabled` + `data-disabled` 双 true、附逐字原因「**保存前请输入名称。**」；填名后计数器 `6 / 20`、两个 disabled 双双消失 ⇒ **名称是唯一门槛**。**填名不点保存、按 Esc ⇒ 零残留** |
+| 🆕 14 个新 testid | `subject-export-{dialog-header,dialog-body,dialog-footer,main-slot,reference-surface,reference-rail,remove-main,auxiliary-add-slot,auxiliary-tooltip-trigger,description-scroll-host,name-counter,tips-trigger,voice-editor,voice-tooltip-trigger}` ⇒ 全册 testid 名单 **84 → 98** |
+| 🆕 落地对象订正 | 写的是**账号级 Dreamina Subjects**（对话框英文副标题逐字 `Review the Subject before saving it to Dreamina Subjects.`），**不是**项目资产库那个「主体」页（后者逐字 `Import assets Choose assets from Dreamina and import them into this canvas. …`，是**导入源**）。对账：把对话框走到「保存可点」再重开主体页，**逐字完全等于基线**（「没有可用主体」仍在、`canvas-subject-import-empty` 仍在、零 `<img>`）⇒ **共享数据未动、不需撤回** |
+| 🔴 阻塞理由换掉（不是取消） | 「撤不回」**仍成立**，但归因从「空态」改成「**画布 UI 无管理/删除账号主体的入口**」：全局 chrome 25 个可点物里唯一命中「主体」的是左栏第 6 个（`40×40@16,403`，**它建的是主体节点**）；`canvas-user-menu-trigger`（aria「用户菜单」）打开后**只有 6 项**：帮助中心 / 使用手册 / 快捷键 / AI生成水印设置 / 即梦CLI / 新功能许愿 |
+| 🆕 工具条锚点 | 工具条 `959×40@81,208` vs 节点 `341×192@390,284`（60% 档）⇒ **中心 x 逐位相同 560.5**、底边距顶边 **36px**（canvas 60px）⇒ **正上方居中**，不是「附近」（156-c 量到的 `-627,-591` 是离屏值） |
+| 🆕 零消耗 | 点「保存到主体库」**不扣积分、不增删节点**（805→805、76→76，逐秒轮询 8 次） |
+| 截图 | **4 张**：112 工具条 / 113 工具菜单 / 114 右键九项 / 115 设置主体对话框（manifest 141 → **145**） |
+| 文档 | `SOURCE_OBSERVATIONS` **§4.79**（10 小节）、`subject-node.md` 两处订正 + 新增第 5 小节、`20-reference` / `30-concepts` / `FINAL-REPORT` 五处订正 |
+| 台账 | 第 **70** 条 `subject-save-target-account-level`（回填门 **70 条 / 489 处**全过） |
+| 自身失误 | **8 个**（含 3 个立规：抓手态点节点选中不了 / 抄错 innerText-vs-aria 判据 / Esc 抹掉自己的反馈） |
+| 🔑 立规增补 | **16** 先问前置状态 ｜ **17** 先查手册记在哪一页 ｜ **18** 照抄原脚本判据 ｜ **19** 先排除「反应被收尾动作抹掉」 |
+| 收尾 | 76 / 0 edges / 0 sel / 60% / 小地图开 / **积分 805** / 浮层 0 / **transform 逐字归位** / ⛔ **共享主体库零残留** |

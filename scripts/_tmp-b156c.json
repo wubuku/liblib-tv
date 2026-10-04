@@ -1,0 +1,492 @@
+{
+ "批次": "156c",
+ "目的": "找出图片节点浮动工具条 12 个按钮的标识方式",
+ "落点": {
+  "x": 565,
+  "y": 384,
+  "命中": "image-node-result"
+ },
+ "归属": true,
+ "选中数": 1,
+ "按钮表": {
+  "条盒": [
+   959,
+   40,
+   -632,
+   -595
+  ],
+  "class逐字": "react-flow__node-toolbar",
+  "个数": 12,
+  "按钮": [
+   {
+    "序": 0,
+    "属性": {
+     "data-roving-toolbar-item": "true",
+     "data-toolbar-value": "smart-edit",
+     "class": "inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled=true]:cursor-not-allowed [&_svg]:shrink-0 disabled:bg-transparent disabled:text-dreamina-button-secondary-text-disabled group octo-selection-toolbar-button shrink-0 min-w-canvas-zero gap-canvas-selection-toolbar-control-gap rounded-canvas-selection-toolbar-control bg-transparent px-canvas-selection-toolbar-control-inline py-canvas-selection-toolbar-control-block font-dreamina-regular text-dreamina-cn-13 leading-canvas-selection-toolbar-control text-dreamina-on-media-text-primary transition-none motion-safe:transition-none hover:bg-dreamina-block-secondary-hover hover:text-dreamina-on-media-text-primary active:bg-dreamina-block-secondary-pressed aria-disabled:bg-transparent aria-disabled:text-dreamina-on-media-text-disabled aria-disabled:hover:bg-transparent aria-disabled:hover:text-dreamina-on-media-text-disabled aria-disabled:active:bg-transparent aria-disabled:active:text-dreamina-on-media-text-disabled aria-disabled:[&_[data-commerce-entitlement-mark]]:text-dreamina-brand-bright-default/50 data-[state=open]:bg-dreamina-block-secondary-hover h-canvas-selection-toolbar-control focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:[box-shadow:none] focus-visible:[&::before]:[box-shadow:none] focus-visible:[&::after]:[box-shadow:none]",
+     "tabindex": "0",
+     "type": "button"
+    },
+    "盒": [
+     106,
+     32,
+     -627,
+     -591
+    ],
+    "中心": [
+     -574,
+     -575
+    ],
+    "逐字": "智能改图",
+    "svg": 2,
+    "svgPath": [
+     "M8.52564 3.6033C8.82625 3.56176 9.",
+     "M11.324 3.488c.216-.65 1.136-.65 1"
+    ],
+    "html": "<button data-roving-toolbar-item=\"true\" data-toolbar-value=\"smart-edit\" class=\"inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-"
+   },
+   {
+    "序": 1,
+    "属性": {
+     "data-roving-toolbar-item": "true",
+     "data-toolbar-value": "panorama",
+     "class": "inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled=true]:cursor-not-allowed [&_svg]:shrink-0 disabled:bg-transparent disabled:text-dreamina-button-secondary-text-disabled group octo-selection-toolbar-button shrink-0 min-w-canvas-zero gap-canvas-selection-toolbar-control-gap rounded-canvas-selection-toolbar-control bg-transparent px-canvas-selection-toolbar-control-inline py-canvas-selection-toolbar-control-block font-dreamina-regular text-dreamina-cn-13 leading-canvas-selection-toolbar-control text-dreamina-on-media-text-primary transition-none motion-safe:transition-none hover:bg-dreamina-block-secondary-hover hover:text-dreamina-on-media-text-primary active:bg-dreamina-block-secondary-pressed aria-disabled:bg-transparent aria-disabled:text-dreamina-on-media-text-disabled aria-disabled:hover:bg-transparent aria-disabled:hover:text-dreamina-on-media-text-disabled aria-disabled:active:bg-transparent aria-disabled:active:text-dreamina-on-media-text-disabled aria-disabled:[&_[data-commerce-entitlement-mark]]:text-dreamina-brand-bright-default/50 data-[state=open]:bg-dreamina-block-secondary-hover h-canvas-selection-toolbar-control focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:[box-shadow:none] focus-visible:[&::before]:[box-shadow:none] focus-visible:[&::after]:[box-shadow:none]",
+     "tabindex": "-1",
+     "type": "button"
+    },
+    "盒": [
+     107,
+     32,
+     -519,
+     -591
+    ],
+    "中心": [
+     -466,
+     -575
+    ],
+    "逐字": "720 全景",
+    "svg": 2,
+    "svgPath": [
+     "M3.60059 12.9189C2.58845 13.4035 2",
+     "M11.324 3.488c.216-.65 1.136-.65 1"
+    ],
+    "html": "<button data-roving-toolbar-item=\"true\" data-toolbar-value=\"panorama\" class=\"inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-no"
+   },
+   {
+    "序": 2,
+    "属性": {
+     "data-roving-toolbar-item": "true",
+     "data-toolbar-value": "expand",
+     "class": "inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled=true]:cursor-not-allowed [&_svg]:shrink-0 disabled:bg-transparent disabled:text-dreamina-button-secondary-text-disabled group octo-selection-toolbar-button shrink-0 min-w-canvas-zero gap-canvas-selection-toolbar-control-gap rounded-canvas-selection-toolbar-control bg-transparent px-canvas-selection-toolbar-control-inline py-canvas-selection-toolbar-control-block font-dreamina-regular text-dreamina-cn-13 leading-canvas-selection-toolbar-control text-dreamina-on-media-text-primary transition-none motion-safe:transition-none hover:bg-dreamina-block-secondary-hover hover:text-dreamina-on-media-text-primary active:bg-dreamina-block-secondary-pressed aria-disabled:bg-transparent aria-disabled:text-dreamina-on-media-text-disabled aria-disabled:hover:bg-transparent aria-disabled:hover:text-dreamina-on-media-text-disabled aria-disabled:active:bg-transparent aria-disabled:active:text-dreamina-on-media-text-disabled aria-disabled:[&_[data-commerce-entitlement-mark]]:text-dreamina-brand-bright-default/50 data-[state=open]:bg-dreamina-block-secondary-hover h-canvas-selection-toolbar-control focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:[box-shadow:none] focus-visible:[&::before]:[box-shadow:none] focus-visible:[&::after]:[box-shadow:none]",
+     "tabindex": "-1",
+     "type": "button"
+    },
+    "盒": [
+     62,
+     32,
+     -410,
+     -591
+    ],
+    "中心": [
+     -379,
+     -575
+    ],
+    "逐字": "扩图",
+    "svg": 1,
+    "svgPath": [
+     "M2.07749 1.71709C1.99601 1.75088 1",
+     "M6.66602 4.6665C5.56145 4.6665 4.6",
+     "M14.3327 13.6665C14.3327 14.0347 1",
+     "M3.66602 1.6665L2.33268 1.6665C2.2",
+     "M1.66602 13.6665C1.66602 14.0347 1",
+     "M13.666 1.6665C14.0342 1.6665 14.3"
+    ],
+    "html": "<button data-roving-toolbar-item=\"true\" data-toolbar-value=\"expand\" class=\"inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-none"
+   },
+   {
+    "序": 3,
+    "属性": {
+     "data-roving-toolbar-item": "true",
+     "data-toolbar-value": "image-hd",
+     "class": "inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled=true]:cursor-not-allowed [&_svg]:shrink-0 disabled:bg-transparent disabled:text-dreamina-button-secondary-text-disabled group octo-selection-toolbar-button shrink-0 min-w-canvas-zero gap-canvas-selection-toolbar-control-gap rounded-canvas-selection-toolbar-control bg-transparent px-canvas-selection-toolbar-control-inline py-canvas-selection-toolbar-control-block font-dreamina-regular text-dreamina-cn-13 leading-canvas-selection-toolbar-control text-dreamina-on-media-text-primary transition-none motion-safe:transition-none hover:bg-dreamina-block-secondary-hover hover:text-dreamina-on-media-text-primary active:bg-dreamina-block-secondary-pressed aria-disabled:bg-transparent aria-disabled:text-dreamina-on-media-text-disabled aria-disabled:hover:bg-transparent aria-disabled:hover:text-dreamina-on-media-text-disabled aria-disabled:active:bg-transparent aria-disabled:active:text-dreamina-on-media-text-disabled aria-disabled:[&_[data-commerce-entitlement-mark]]:text-dreamina-brand-bright-default/50 data-[state=open]:bg-dreamina-block-secondary-hover h-canvas-selection-toolbar-control focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:[box-shadow:none] focus-visible:[&::before]:[box-shadow:none] focus-visible:[&::after]:[box-shadow:none]",
+     "tabindex": "-1",
+     "type": "button"
+    },
+    "盒": [
+     88,
+     32,
+     -346,
+     -591
+    ],
+    "中心": [
+     -302,
+     -575
+    ],
+    "逐字": "智能超清",
+    "svg": 1,
+    "svgPath": [
+     "M13.8333 11.3333C14.2015 11.3333 1"
+    ],
+    "html": "<button data-roving-toolbar-item=\"true\" data-toolbar-value=\"image-hd\" class=\"inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-no"
+   },
+   {
+    "序": 4,
+    "属性": {
+     "data-roving-toolbar-item": "true",
+     "data-toolbar-value": "remove-background",
+     "class": "inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled=true]:cursor-not-allowed [&_svg]:shrink-0 disabled:bg-transparent disabled:text-dreamina-button-secondary-text-disabled group octo-selection-toolbar-button shrink-0 min-w-canvas-zero gap-canvas-selection-toolbar-control-gap rounded-canvas-selection-toolbar-control bg-transparent px-canvas-selection-toolbar-control-inline py-canvas-selection-toolbar-control-block font-dreamina-regular text-dreamina-cn-13 leading-canvas-selection-toolbar-control text-dreamina-on-media-text-primary transition-none motion-safe:transition-none hover:bg-dreamina-block-secondary-hover hover:text-dreamina-on-media-text-primary active:bg-dreamina-block-secondary-pressed aria-disabled:bg-transparent aria-disabled:text-dreamina-on-media-text-disabled aria-disabled:hover:bg-transparent aria-disabled:hover:text-dreamina-on-media-text-disabled aria-disabled:active:bg-transparent aria-disabled:active:text-dreamina-on-media-text-disabled aria-disabled:[&_[data-commerce-entitlement-mark]]:text-dreamina-brand-bright-default/50 data-[state=open]:bg-dreamina-block-secondary-hover h-canvas-selection-toolbar-control focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:[box-shadow:none] focus-visible:[&::before]:[box-shadow:none] focus-visible:[&::after]:[box-shadow:none]",
+     "tabindex": "-1",
+     "type": "button"
+    },
+    "盒": [
+     62,
+     32,
+     -256,
+     -591
+    ],
+    "中心": [
+     -225,
+     -575
+    ],
+    "逐字": "抠图",
+    "svg": 1,
+    "svgPath": [
+     "M2.90885 12.0002C2.87068 12.1711 2",
+     "M14.6672 13.3335C14.6671 14.0697 1",
+     "M12.0006 10.2463C11.6506 9.95441 1",
+     "M6.66729 9.48258C5.97334 9.48667 5",
+     "M4.00064 9.3335H1.33398L1.33398 6.",
+     "M9.33394 9.3335H6.66729V8.42334C7.",
+     "M14.6672 9.3335H12.0006V6.66683H14",
+     "M5.62954 4.00016C5.25762 4.49528 5",
+     "M12.0006 6.66683H10.8274C10.9156 6",
+     "M4.00064 4.00016H1.33398V2.66683C1",
+     "M13.3339 1.3335C14.0703 1.3335 14.",
+     "M9.33459 3.13232C8.93348 2.92961 8",
+     "M8.95244 9.48161C10.1343 9.48161 1",
+     "M7.99932 2.81494C9.63577 2.81494 1"
+    ],
+    "html": "<button data-roving-toolbar-item=\"true\" data-toolbar-value=\"remove-background\" class=\"inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-"
+   },
+   {
+    "序": 5,
+    "属性": {
+     "id": "radix-:modern-js-r2kgr:",
+     "aria-haspopup": "menu",
+     "aria-expanded": "false",
+     "data-state": "closed",
+     "data-roving-toolbar-item": "true",
+     "data-toolbar-value": "image-presets",
+     "class": "inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled=true]:cursor-not-allowed [&_svg]:shrink-0 disabled:bg-transparent disabled:text-dreamina-button-secondary-text-disabled group octo-selection-toolbar-button shrink-0 min-w-canvas-zero gap-canvas-selection-toolbar-control-gap rounded-canvas-selection-toolbar-control bg-transparent px-canvas-selection-toolbar-control-inline py-canvas-selection-toolbar-control-block font-dreamina-regular text-dreamina-cn-13 leading-canvas-selection-toolbar-control text-dreamina-on-media-text-primary transition-none motion-safe:transition-none hover:bg-dreamina-block-secondary-hover hover:text-dreamina-on-media-text-primary active:bg-dreamina-block-secondary-pressed aria-disabled:bg-transparent aria-disabled:text-dreamina-on-media-text-disabled aria-disabled:hover:bg-transparent aria-disabled:hover:text-dreamina-on-media-text-disabled aria-disabled:active:bg-transparent aria-disabled:active:text-dreamina-on-media-text-disabled aria-disabled:[&_[data-commerce-entitlement-mark]]:text-dreamina-brand-bright-default/50 data-[state=open]:bg-dreamina-block-secondary-hover h-canvas-selection-toolbar-control focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:[box-shadow:none] focus-visible:[&::before]:[box-shadow:none] focus-visible:[&::after]:[box-shadow:none]",
+     "tabindex": "-1",
+     "type": "button"
+    },
+    "盒": [
+     78,
+     32,
+     -192,
+     -591
+    ],
+    "中心": [
+     -153,
+     -575
+    ],
+    "逐字": "预设",
+    "svg": 2,
+    "svgPath": [
+     "M16.7535 14.1045C16.9212 13.7002 1",
+     "M2.86716 3.43256C3.02337 3.58876 3"
+    ],
+    "html": "<button id=\"radix-:modern-js-r2kgr:\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" data-roving-toolbar-item=\"true\" data-toolbar-value=\"image-presets\" class=\"inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-c"
+   },
+   {
+    "序": 6,
+    "属性": {
+     "data-roving-toolbar-item": "true",
+     "data-toolbar-value": "multi-angle",
+     "class": "inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled=true]:cursor-not-allowed [&_svg]:shrink-0 disabled:bg-transparent disabled:text-dreamina-button-secondary-text-disabled group octo-selection-toolbar-button shrink-0 min-w-canvas-zero gap-canvas-selection-toolbar-control-gap rounded-canvas-selection-toolbar-control bg-transparent px-canvas-selection-toolbar-control-inline py-canvas-selection-toolbar-control-block font-dreamina-regular text-dreamina-cn-13 leading-canvas-selection-toolbar-control text-dreamina-on-media-text-primary transition-none motion-safe:transition-none hover:bg-dreamina-block-secondary-hover hover:text-dreamina-on-media-text-primary active:bg-dreamina-block-secondary-pressed aria-disabled:bg-transparent aria-disabled:text-dreamina-on-media-text-disabled aria-disabled:hover:bg-transparent aria-disabled:hover:text-dreamina-on-media-text-disabled aria-disabled:active:bg-transparent aria-disabled:active:text-dreamina-on-media-text-disabled aria-disabled:[&_[data-commerce-entitlement-mark]]:text-dreamina-brand-bright-default/50 data-[state=open]:bg-dreamina-block-secondary-hover h-canvas-selection-toolbar-control focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:[box-shadow:none] focus-visible:[&::before]:[box-shadow:none] focus-visible:[&::after]:[box-shadow:none]",
+     "tabindex": "-1",
+     "type": "button"
+    },
+    "盒": [
+     75,
+     32,
+     -112,
+     -591
+    ],
+    "中心": [
+     -75,
+     -575
+    ],
+    "逐字": "多角度",
+    "svg": 1,
+    "svgPath": [
+     "M8.14583 1C9.06333 1.00001 9.82627"
+    ],
+    "html": "<button data-roving-toolbar-item=\"true\" data-toolbar-value=\"multi-angle\" class=\"inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events"
+   },
+   {
+    "序": 7,
+    "属性": {
+     "data-roving-toolbar-item": "true",
+     "data-toolbar-value": "lighting",
+     "class": "inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled=true]:cursor-not-allowed [&_svg]:shrink-0 disabled:bg-transparent disabled:text-dreamina-button-secondary-text-disabled group octo-selection-toolbar-button shrink-0 min-w-canvas-zero gap-canvas-selection-toolbar-control-gap rounded-canvas-selection-toolbar-control bg-transparent px-canvas-selection-toolbar-control-inline py-canvas-selection-toolbar-control-block font-dreamina-regular text-dreamina-cn-13 leading-canvas-selection-toolbar-control text-dreamina-on-media-text-primary transition-none motion-safe:transition-none hover:bg-dreamina-block-secondary-hover hover:text-dreamina-on-media-text-primary active:bg-dreamina-block-secondary-pressed aria-disabled:bg-transparent aria-disabled:text-dreamina-on-media-text-disabled aria-disabled:hover:bg-transparent aria-disabled:hover:text-dreamina-on-media-text-disabled aria-disabled:active:bg-transparent aria-disabled:active:text-dreamina-on-media-text-disabled aria-disabled:[&_[data-commerce-entitlement-mark]]:text-dreamina-brand-bright-default/50 data-[state=open]:bg-dreamina-block-secondary-hover h-canvas-selection-toolbar-control focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:[box-shadow:none] focus-visible:[&::before]:[box-shadow:none] focus-visible:[&::after]:[box-shadow:none]",
+     "tabindex": "-1",
+     "type": "button"
+    },
+    "盒": [
+     106,
+     32,
+     -35,
+     -591
+    ],
+    "中心": [
+     18,
+     -575
+    ],
+    "逐字": "智能打光",
+    "svg": 2,
+    "svgPath": [
+     "M22.3945 7.6957C22.3415 7.18156 21",
+     "M18.7314 4.61953C18.7314 4.05557 1",
+     "M16.8955 11.4369C16.8955 10.8734 1",
+     "M5.88672 11.4369C5.88672 10.8734 5",
+     "M7.9707 15.6244C7.5704 15.2279 6.9",
+     "M13.2266 18.7084C13.2263 18.1444 1",
+     "M17.8789 15.6244C17.4785 15.2281 1",
+     "M22.4004 11.4369C22.4004 10.8734 2",
+     "M11.324 3.488c.216-.65 1.136-.65 1"
+    ],
+    "html": "<button data-roving-toolbar-item=\"true\" data-toolbar-value=\"lighting\" class=\"inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-no"
+   },
+   {
+    "序": 8,
+    "属性": {
+     "id": "radix-:modern-js-r2kh5:",
+     "aria-haspopup": "menu",
+     "aria-expanded": "false",
+     "data-state": "closed",
+     "data-roving-toolbar-item": "true",
+     "data-toolbar-value": "tools",
+     "class": "inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled=true]:cursor-not-allowed [&_svg]:shrink-0 disabled:bg-transparent disabled:text-dreamina-button-secondary-text-disabled group octo-selection-toolbar-button shrink-0 min-w-canvas-zero gap-canvas-selection-toolbar-control-gap rounded-canvas-selection-toolbar-control bg-transparent px-canvas-selection-toolbar-control-inline py-canvas-selection-toolbar-control-block font-dreamina-regular text-dreamina-cn-13 leading-canvas-selection-toolbar-control text-dreamina-on-media-text-primary transition-none motion-safe:transition-none hover:bg-dreamina-block-secondary-hover hover:text-dreamina-on-media-text-primary active:bg-dreamina-block-secondary-pressed aria-disabled:bg-transparent aria-disabled:text-dreamina-on-media-text-disabled aria-disabled:hover:bg-transparent aria-disabled:hover:text-dreamina-on-media-text-disabled aria-disabled:active:bg-transparent aria-disabled:active:text-dreamina-on-media-text-disabled aria-disabled:[&_[data-commerce-entitlement-mark]]:text-dreamina-brand-bright-default/50 data-[state=open]:bg-dreamina-block-secondary-hover h-canvas-selection-toolbar-control focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:[box-shadow:none] focus-visible:[&::before]:[box-shadow:none] focus-visible:[&::after]:[box-shadow:none]",
+     "tabindex": "-1",
+     "type": "button"
+    },
+    "盒": [
+     78,
+     32,
+     73,
+     -591
+    ],
+    "中心": [
+     112,
+     -575
+    ],
+    "逐字": "工具",
+    "svg": 2,
+    "svgPath": [
+     "M4.70001 9.41494L3.91551 10.2001C3",
+     "M2.86716 3.43256C3.02337 3.58876 3"
+    ],
+    "html": "<button id=\"radix-:modern-js-r2kh5:\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" data-roving-toolbar-item=\"true\" data-toolbar-value=\"tools\" class=\"inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion"
+   },
+   {
+    "序": 9,
+    "属性": {
+     "id": "radix-:modern-js-r2kh9:",
+     "aria-haspopup": "menu",
+     "aria-expanded": "false",
+     "data-state": "closed",
+     "data-roving-toolbar-item": "true",
+     "data-toolbar-value": "ask-ai",
+     "class": "inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled=true]:cursor-not-allowed [&_svg]:shrink-0 disabled:bg-transparent disabled:text-dreamina-button-secondary-text-disabled group octo-selection-toolbar-button shrink-0 min-w-canvas-zero gap-canvas-selection-toolbar-control-gap rounded-canvas-selection-toolbar-control bg-transparent px-canvas-selection-toolbar-control-inline py-canvas-selection-toolbar-control-block font-dreamina-regular text-dreamina-cn-13 leading-canvas-selection-toolbar-control text-dreamina-on-media-text-primary transition-none motion-safe:transition-none hover:bg-dreamina-block-secondary-hover hover:text-dreamina-on-media-text-primary active:bg-dreamina-block-secondary-pressed aria-disabled:bg-transparent aria-disabled:text-dreamina-on-media-text-disabled aria-disabled:hover:bg-transparent aria-disabled:hover:text-dreamina-on-media-text-disabled aria-disabled:active:bg-transparent aria-disabled:active:text-dreamina-on-media-text-disabled aria-disabled:[&_[data-commerce-entitlement-mark]]:text-dreamina-brand-bright-default/50 data-[state=open]:bg-dreamina-block-secondary-hover h-canvas-selection-toolbar-control focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:[box-shadow:none] focus-visible:[&::before]:[box-shadow:none] focus-visible:[&::after]:[box-shadow:none]",
+     "tabindex": "-1",
+     "type": "button"
+    },
+    "盒": [
+     94,
+     32,
+     153,
+     -591
+    ],
+    "中心": [
+     200,
+     -575
+    ],
+    "逐字": "AI 助手",
+    "svg": 2,
+    "svgPath": [
+     "M12.501 5.7948H6.50098C5.12031 5.7",
+     "M17.9766 2.35242C18.1383 1.96195 1",
+     "M2.86716 3.43256C3.02337 3.58876 3"
+    ],
+    "html": "<button id=\"radix-:modern-js-r2kh9:\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-state=\"closed\" data-roving-toolbar-item=\"true\" data-toolbar-value=\"ask-ai\" class=\"inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motio"
+   },
+   {
+    "序": 10,
+    "属性": {
+     "aria-keyshortcuts": "F",
+     "data-state": "closed",
+     "data-roving-toolbar-item": "true",
+     "data-toolbar-value": "preview",
+     "aria-label": "全屏",
+     "class": "inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled=true]:cursor-not-allowed [&_svg]:shrink-0 disabled:bg-transparent disabled:text-dreamina-button-secondary-text-disabled group octo-selection-toolbar-button shrink-0 gap-canvas-selection-toolbar-control-gap bg-transparent font-dreamina-regular text-dreamina-cn-13 leading-canvas-selection-toolbar-control text-dreamina-on-media-text-primary transition-none motion-safe:transition-none hover:bg-dreamina-block-secondary-hover hover:text-dreamina-on-media-text-primary active:bg-dreamina-block-secondary-pressed aria-disabled:bg-transparent aria-disabled:text-dreamina-on-media-text-disabled aria-disabled:hover:bg-transparent aria-disabled:hover:text-dreamina-on-media-text-disabled aria-disabled:active:bg-transparent aria-disabled:active:text-dreamina-on-media-text-disabled aria-disabled:[&_[data-commerce-entitlement-mark]]:text-dreamina-brand-bright-default/50 data-[state=open]:bg-dreamina-block-secondary-hover octo-selection-toolbar-button--icon size-canvas-selection-toolbar-control min-w-canvas-zero rounded-canvas-selection-toolbar-control p-canvas-zero focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:[box-shadow:none] focus-visible:[&::before]:[box-shadow:none] focus-visible:[&::after]:[box-shadow:none]",
+     "tabindex": "-1",
+     "type": "button"
+    },
+    "盒": [
+     32,
+     32,
+     256,
+     -591
+    ],
+    "中心": [
+     272,
+     -575
+    ],
+    "逐字": "",
+    "svg": 1,
+    "svgPath": [
+     "M8.48007 2.66656C8.48001 2.29837 8"
+    ],
+    "html": "<button aria-keyshortcuts=\"F\" data-state=\"closed\" data-roving-toolbar-item=\"true\" data-toolbar-value=\"preview\" aria-label=\"全屏\" class=\"inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant "
+   },
+   {
+    "序": 11,
+    "属性": {
+     "data-roving-toolbar-item": "true",
+     "data-toolbar-value": "download",
+     "aria-label": "下载",
+     "class": "inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:pointer-events-none aria-disabled:cursor-not-allowed data-[disabled=true]:cursor-not-allowed [&_svg]:shrink-0 disabled:bg-transparent disabled:text-dreamina-button-secondary-text-disabled group octo-selection-toolbar-button shrink-0 gap-canvas-selection-toolbar-control-gap bg-transparent font-dreamina-regular text-dreamina-cn-13 leading-canvas-selection-toolbar-control text-dreamina-on-media-text-primary transition-none motion-safe:transition-none hover:bg-dreamina-block-secondary-hover hover:text-dreamina-on-media-text-primary active:bg-dreamina-block-secondary-pressed aria-disabled:bg-transparent aria-disabled:text-dreamina-on-media-text-disabled aria-disabled:hover:bg-transparent aria-disabled:hover:text-dreamina-on-media-text-disabled aria-disabled:active:bg-transparent aria-disabled:active:text-dreamina-on-media-text-disabled aria-disabled:[&_[data-commerce-entitlement-mark]]:text-dreamina-brand-bright-default/50 data-[state=open]:bg-dreamina-block-secondary-hover octo-selection-toolbar-button--icon size-canvas-selection-toolbar-control min-w-canvas-zero rounded-canvas-selection-toolbar-control p-canvas-zero focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:[box-shadow:none] focus-visible:[&::before]:[box-shadow:none] focus-visible:[&::after]:[box-shadow:none]",
+     "tabindex": "-1",
+     "type": "button"
+    },
+    "盒": [
+     32,
+     32,
+     290,
+     -591
+    ],
+    "中心": [
+     306,
+     -575
+    ],
+    "逐字": "",
+    "svg": 1,
+    "svgPath": [
+     "M8 1.33301C8.36819 1.33301 8.66667"
+    ],
+    "html": "<button data-roving-toolbar-item=\"true\" data-toolbar-value=\"download\" aria-label=\"下载\" class=\"inline-flex items-center justify-center whitespace-nowrap border-solid font-dreamina-cn motion-safe:duration-dreamina-instant motion-safe:ease-dreamina-soft disabled:p"
+   }
+  ]
+ },
+ "悬停": [
+  {
+   "序": 0,
+   "中心": [
+    -574,
+    -575
+   ],
+   "tip": []
+  },
+  {
+   "序": 1,
+   "中心": [
+    -466,
+    -575
+   ],
+   "tip": []
+  },
+  {
+   "序": 2,
+   "中心": [
+    -379,
+    -575
+   ],
+   "tip": []
+  },
+  {
+   "序": 3,
+   "中心": [
+    -302,
+    -575
+   ],
+   "tip": []
+  },
+  {
+   "序": 4,
+   "中心": [
+    -225,
+    -575
+   ],
+   "tip": []
+  },
+  {
+   "序": 5,
+   "中心": [
+    -153,
+    -575
+   ],
+   "tip": []
+  },
+  {
+   "序": 6,
+   "中心": [
+    -75,
+    -575
+   ],
+   "tip": []
+  },
+  {
+   "序": 7,
+   "中心": [
+    18,
+    -575
+   ],
+   "tip": []
+  },
+  {
+   "序": 8,
+   "中心": [
+    112,
+    -575
+   ],
+   "tip": []
+  },
+  {
+   "序": 9,
+   "中心": [
+    200,
+    -575
+   ],
+   "tip": []
+  },
+  {
+   "序": 10,
+   "中心": [
+    272,
+    -575
+   ],
+   "tip": []
+  },
+  {
+   "序": 11,
+   "中心": [
+    306,
+    -575
+   ],
+   "tip": []
+  }
+ ],
+ "还原后transform": "translate(-2460.7px, -1708.06px) scale(0.6)",
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 805 · 基础会员",
+  "边数": 0
+ },
+ "断言全过": true
+}

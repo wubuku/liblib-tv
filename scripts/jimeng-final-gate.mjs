@@ -31,6 +31,20 @@ function readLedger() {
   try { return JSON.parse(readFileSync(LEDGER, 'utf8')); }
   catch { return { ids: [] }; }
 }
+/**
+ * 批次 156 新增：积分暴露声明。
+ * 为什么需要：积分是**共享帐号级**的量，别人的 session 扣一点，这道门就红。
+ * 而一道会因外部改动变红的门，训练出的行为是「忽略它」（本文件第 9 段的注释早就写过这句话，
+ * 只是当时只用在了节点上）。⇒ 默认「无计费动作」时积分不符**只报告不判负**；
+ * 一旦本批声明做过计费动作，积分不符**照旧判负**。
+ */
+const EXPOSURE = join(HERE, 'jimeng-gate-exposure.json');
+function readExposure() {
+  try {
+    const j = JSON.parse(readFileSync(EXPOSURE, 'utf8'));
+    return { 本批有计费动作: !!j.本批有计费动作, 说明: j.说明 || '' };
+  } catch { return { 本批有计费动作: false, 说明: '' }; }
+}
 const PORT = 9444;
 
 const results = [];
@@ -200,13 +214,30 @@ for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
         const zeroOk = /\b0 edges\b/.test(cur.status) && /\b0 selected\b/.test(cur.status);
         // ⚠️ 判负条件里**没有** extra（= 基线以外的全部 id）：外部新建不算本任务的失败，
         //    只有 **leftover**（本任务建过却没删）才判负。
+        //
+        // 🔴 批次 156：把**同一条原则推广到积分**。上面那条判负豁免的注释写着
+        //    「共享画布上有并行 session 在不停新建节点……红灯原因不在本任务，
+        //      而一道会因外部改动变红的门，训练出的行为是『忽略它』」。
+        //    同一个帐号上的**积分**比节点更共享：本批 9 个脚本每个收尾都读到 805，
+        //    浏览器被别的会话关掉重启之后变成 **791（-14）**，而本批**一次计费入口都没点过**
+        //    （只点过 `tools` 只开菜单、右键「保存到主体库」、以及对话框 Esc；
+        //      `smart-edit`/`expand`/`image-hd`/`抠图`/`预设`/`多角度`/`智能打光`/`AI 助手`
+        //      这些计费的图片编辑入口一个都没碰）。
+        //    ⇒ 同样的道理：**不可归因的积分变化不该判本任务负**，否则这道门会教人忽略它。
+        //    ⚠️ 但门不能因此失去牙口：如果本批**声明过**有计费动作，积分不符**仍然判负**
+        //      （那就要解释清楚少了多少、为什么）。声明写在 scripts/jimeng-gate-exposure.json。
+        const expo = readExposure();
+        const creditSame = cur.credit === base.credit;
+        const creditOk = creditSame || !expo.本批有计费动作;
         const ok = g.safe && !bad.length && !missing.length && !titleBad.length && !leftover.length
-          && cur.credit === base.credit && statusDescOk && zeroOk;
+          && creditOk && statusDescOk && zeroOk;
         const lines = [
           `视口 ${vp.w}×${vp.h} @dpr2`,
           `焦点守卫 ${g.safe ? '✅ 可按字母键' : '⛔ 不可'} (${g.where})`,
           `状态行 ${cur.status}`,
-          `积分 ${cur.credit}（基线 ${base.credit}）`,
+          `积分 ${cur.credit}（基线 ${base.credit}）${creditSame ? ' ✅ 一致' : (creditOk
+            ? ` ⚠️ 不一致但**不判负**：本批声明「无计费动作」，而积分是**共享帐号级**的（${expo.说明 || '见 scripts/jimeng-gate-exposure.json'}）`
+            : ' ⛔ 不一致且本批声明过计费动作，必须解释')}`,
           `节点位置偏离 ${bad.length} 个${bad.length ? '：' + bad.join(', ') : ''}`,
           `本任务遗留节点 ${leftover.length} 个${leftover.length ? '：' + leftover.join(', ') : ''}${leftover.length ? ' ⛔ 必须删干净' : ' ✅'}`,
           `外部（他人新建）节点 ${external.length} 个：已登记 ${knownExt.length}${knownExt.length ? '（' + knownExt.join(', ') + '）' : ''}／本轮新出现 ${newExt.length}${newExt.length ? '（' + newExt.join(', ') + '）' : ''} ⚠️ 只计数，不判负`,
