@@ -1,0 +1,6367 @@
+{
+  "读数": {
+    "全": {
+      "基线": [
+        {
+          "场景": "底栏",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "group/logo hover:bg-canvas-controls-hover flex h-8 shrink-0 cursor-pointer items-center gap-1 rounded-lg px-2 transition",
+          "box": [
+            9,
+            8,
+            57,
+            32
+          ],
+          "子数": 2,
+          "svg数": 2,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                25,
+                15
+              ],
+              "pathd": "M5.258 10.803h12.458l-1.064 3.742H0L3.099 3.72",
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                25,
+                15
+              ],
+              "pathd": "M5.258 10.803h12.458l-1.064 3.742H0L3.099 3.72",
+              "位置": [
+                8,
+                9
+              ]
+            },
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "位置": [
+                37,
+                10
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "底栏",
+          "tag": "BUTTON",
+          "文字": "画布 2",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "group/canvas-chip hover:bg-canvas-controls-hover data-open:bg-canvas-controls-active flex h-8 cursor-pointer items-cente",
+          "box": [
+            165,
+            8,
+            69,
+            32
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "text-canvas-controls-text min-w-0 truncate tex",
+              "尺寸": [
+                37,
+                20
+              ],
+              "pathd": null,
+              "文字": "画布 2"
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "位置": [
+                49,
+                10
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "底栏",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "工作流",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgb(54, 54, 54)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex size-8 items-center justify-center rounded-lg bg-clip-content transition-colors bg-[var(--seg-control-active-bg)] t",
+          "box": [
+            244,
+            8,
+            32,
+            32
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M12.25 11.03a1.22 1.22 0 1 0-2.45 0 1.22 1.22 ",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M12.25 11.03a1.22 1.22 0 1 0-2.45 0 1.22 1.22 ",
+              "位置": [
+                8,
+                8
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "底栏",
+          "tag": "DIV",
+          "文字": "开通会员 限时 45 折",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "color(srgb 0.14902 0.14902 0.14902 / 0.8)",
+          "边框": "rgba(255, 255, 255, 0.08)",
+          "边框宽": "1px",
+          "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 min-w-[60px] cursor-pointer items-center justify-center gap-1 rou",
+          "box": [
+            1167,
+            8,
+            159,
+            32
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "bg-nt-brand-surface-l1 text-nt-text-brand inli",
+              "尺寸": [
+                61,
+                16
+              ],
+              "pathd": null,
+              "文字": "限时 45 折"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2",
+              "位置": [
+                11,
+                8
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "底栏",
+          "tag": "DIV",
+          "文字": "智能剪辑 4",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "text-fg-muted flex w-full min-w-0 items-center gap-1 cursor-pointer",
+          "box": [
+            945,
+            20,
+            161,
+            22
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "flex min-w-0 flex-1 items-center gap-1 cursor-",
+              "尺寸": [
+                161,
+                18
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "文字": "智能剪辑 4"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                13,
+                13
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "位置": [
+                0,
+                5
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "底栏",
+          "tag": "DIV",
+          "文字": "智能剪辑 4",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex min-w-0 flex-1 items-center gap-1 cursor-pointer",
+          "box": [
+            945,
+            22,
+            161,
+            18
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "flex shrink-0 items-center",
+              "尺寸": [
+                13,
+                13
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "text-[13px] cursor-text pointer-events-auto",
+              "尺寸": [
+                59,
+                18
+              ],
+              "pathd": null,
+              "文字": "智能剪辑 4"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                13,
+                13
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "位置": [
+                0,
+                3
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "底栏",
+          "tag": "BUTTON",
+          "文字": "上传视频后开始",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(54, 54, 54)",
+          "边框宽": "1px",
+          "cls": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justify-center gap-3 rounded-xl border border-dashed bor",
+          "box": [
+            1182,
+            82,
+            135,
+            76
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                11,
+                11
+              ],
+              "pathd": "M16.25 16.25v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "text-fg-muted text-[12px] leading-[18px]",
+              "尺寸": [
+                39,
+                8
+              ],
+              "pathd": null,
+              "文字": "上传视频后开始"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                11,
+                11
+              ],
+              "pathd": "M16.25 16.25v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v",
+              "位置": [
+                62,
+                25
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "底栏",
+          "tag": "BUTTON",
+          "文字": "打开导演台",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "边框": "lab(100 -0.0000298023 0.0000119209 / 0.08)",
+          "边框宽": "1px",
+          "cls": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg border px-3 py-1 text-[13px] font-normal l",
+          "box": [
+            382,
+            172,
+            42,
+            15
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": true
+        },
+        {
+          "场景": "底栏",
+          "tag": "BUTTON",
+          "文字": "开始拉片",
+          "aria": "",
+          "光标": "not-allowed",
+          "禁用": {
+            "disabled": true,
+            "ariaDisabled": null,
+            "不允许": true
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.08)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14px] leading-[22px] transition-colors tex",
+          "box": [
+            1182,
+            200,
+            135,
+            17
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": true
+        },
+        {
+          "场景": "底栏",
+          "tag": "BUTTON",
+          "文字": "TV Director",
+          "aria": "TV Director",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgb(38, 38, 38)",
+          "边框": "rgb(54, 54, 54)",
+          "边框宽": "1px",
+          "cls": "TvDirectorEntry-module__vCoIiq__pill border-hair border-(--topnav-btn-border) flex h-12 min-w-12 cursor-pointer items-ce",
+          "box": [
+            875,
+            749,
+            48,
+            48
+          ],
+          "子数": 2,
+          "svg数": 3,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "relative z-[2] size-7 shrink-0",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "relative z-[2] block shrink-0 overflow-hidden",
+              "尺寸": [
+                0,
+                20
+              ],
+              "pathd": null,
+              "文字": "TV Director"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "位置": [
+                10,
+                10
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                6,
+                6
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                10,
+                10
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "底栏",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "relative z-[2] size-7 shrink-0",
+          "box": [
+            885,
+            759,
+            28,
+            28
+          ],
+          "子数": 1,
+          "svg数": 3,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__viewport",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "位置": [
+                0,
+                0
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                -4,
+                -4
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                0,
+                0
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "底栏",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__viewport",
+          "box": [
+            885,
+            759,
+            28,
+            28
+          ],
+          "子数": 3,
+          "svg数": 3,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__stateHalo C",
+              "尺寸": [
+                42,
+                42
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__orb ChatAge",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "位置": [
+                0,
+                0
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                -4,
+                -4
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                0,
+                0
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "底栏",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__orb ChatAgentLiquidOrb-module__JiGsiG__animated",
+          "box": [
+            885,
+            759,
+            28,
+            28
+          ],
+          "子数": 29,
+          "svg数": 2,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                32,
+                32
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                32,
+                32
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                20,
+                20
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                20,
+                20
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                22,
+                11
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                16,
+                14
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                18,
+                17
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                6,
+                9
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                21,
+                19
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                -4,
+                -4
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                0,
+                0
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "底栏",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "隐藏节点连线",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors",
+          "box": [
+            176,
+            764,
+            28,
+            28
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "flex items-center justify-center overflow-hidd",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M9.28 0a2.28 2.28 0 1 1-2.22 2.8h-4.5a1.52 1.5",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M9.28 0a2.28 2.28 0 1 1-2.22 2.8h-4.5a1.52 1.5",
+              "位置": [
+                7,
+                7
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "底栏",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "网格吸附",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors",
+          "box": [
+            208,
+            764,
+            28,
+            28
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "relative flex items-center justify-center over",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.",
+              "位置": [
+                7,
+                7
+              ]
+            }
+          ],
+          "在节点内": false
+        }
+      ],
+      "面板": [
+        {
+          "场景": "视频节点参数面板",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "group/logo hover:bg-canvas-controls-hover flex h-8 shrink-0 cursor-pointer items-center gap-1 rounded-lg px-2 transition",
+          "box": [
+            9,
+            8,
+            57,
+            32
+          ],
+          "子数": 2,
+          "svg数": 2,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                25,
+                15
+              ],
+              "pathd": "M5.258 10.803h12.458l-1.064 3.742H0L3.099 3.72",
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                25,
+                15
+              ],
+              "pathd": "M5.258 10.803h12.458l-1.064 3.742H0L3.099 3.72",
+              "位置": [
+                8,
+                9
+              ]
+            },
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "位置": [
+                37,
+                10
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "画布 2",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "group/canvas-chip hover:bg-canvas-controls-hover data-open:bg-canvas-controls-active flex h-8 cursor-pointer items-cente",
+          "box": [
+            165,
+            8,
+            69,
+            32
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "text-canvas-controls-text min-w-0 truncate tex",
+              "尺寸": [
+                37,
+                20
+              ],
+              "pathd": null,
+              "文字": "画布 2"
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "位置": [
+                49,
+                10
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "工作流",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgb(54, 54, 54)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex size-8 items-center justify-center rounded-lg bg-clip-content transition-colors bg-[var(--seg-control-active-bg)] t",
+          "box": [
+            244,
+            8,
+            32,
+            32
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M12.25 11.03a1.22 1.22 0 1 0-2.45 0 1.22 1.22 ",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M12.25 11.03a1.22 1.22 0 1 0-2.45 0 1.22 1.22 ",
+              "位置": [
+                8,
+                8
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "DIV",
+          "文字": "开通会员 限时 45 折",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "color(srgb 0.14902 0.14902 0.14902 / 0.8)",
+          "边框": "rgba(255, 255, 255, 0.08)",
+          "边框宽": "1px",
+          "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 min-w-[60px] cursor-pointer items-center justify-center gap-1 rou",
+          "box": [
+            1167,
+            8,
+            159,
+            32
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "bg-nt-brand-surface-l1 text-nt-text-brand inli",
+              "尺寸": [
+                61,
+                16
+              ],
+              "pathd": null,
+              "文字": "限时 45 折"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2",
+              "位置": [
+                11,
+                8
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "DIV",
+          "文字": "智能剪辑 4",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "text-fg-muted flex w-full min-w-0 items-center gap-1 cursor-pointer",
+          "box": [
+            580,
+            126,
+            161,
+            22
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "flex min-w-0 flex-1 items-center gap-1 cursor-",
+              "尺寸": [
+                161,
+                18
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "文字": "智能剪辑 4"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                13,
+                13
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "位置": [
+                0,
+                5
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "DIV",
+          "文字": "智能剪辑 4",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex min-w-0 flex-1 items-center gap-1 cursor-pointer",
+          "box": [
+            580,
+            128,
+            161,
+            18
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "flex shrink-0 items-center",
+              "尺寸": [
+                13,
+                13
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "text-[13px] cursor-text pointer-events-auto",
+              "尺寸": [
+                59,
+                18
+              ],
+              "pathd": null,
+              "文字": "智能剪辑 4"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                13,
+                13
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "位置": [
+                0,
+                3
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "上传视频后开始",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(54, 54, 54)",
+          "边框宽": "1px",
+          "cls": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justify-center gap-3 rounded-xl border border-dashed bor",
+          "box": [
+            817,
+            188,
+            135,
+            76
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                11,
+                11
+              ],
+              "pathd": "M16.25 16.25v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "text-fg-muted text-[12px] leading-[18px]",
+              "尺寸": [
+                39,
+                8
+              ],
+              "pathd": null,
+              "文字": "上传视频后开始"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                11,
+                11
+              ],
+              "pathd": "M16.25 16.25v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v",
+              "位置": [
+                62,
+                25
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "打开导演台",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "边框": "lab(100 -0.0000298023 0.0000119209 / 0.08)",
+          "边框宽": "1px",
+          "cls": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg border px-3 py-1 text-[13px] font-normal l",
+          "box": [
+            17,
+            278,
+            42,
+            15
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "开始拉片",
+          "aria": "",
+          "光标": "not-allowed",
+          "禁用": {
+            "disabled": true,
+            "ariaDisabled": null,
+            "不允许": true
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.08)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14px] leading-[22px] transition-colors tex",
+          "box": [
+            817,
+            306,
+            135,
+            17
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "参考",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.05)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transition-colors cursor-pointer canvas-light:b",
+          "box": [
+            26,
+            331,
+            54,
+            26
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.5 0c.5 0 .9.48.9 1.06V7.6h6.54c.58 0 1.06.4",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "whitespace-nowrap text-xs leading-normal text-",
+              "尺寸": [
+                24,
+                18
+              ],
+              "pathd": null,
+              "文字": "参考"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.5 0c.5 0 .9.48.9 1.06V7.6h6.54c.58 0 1.06.4",
+              "位置": [
+                8,
+                7
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "标记",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.05)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transition-colors cursor-pointer canvas-light:b",
+          "box": [
+            84,
+            331,
+            54,
+            26
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M5.1 0a5.1 5.1 0 0 1 5.1 5.12v.26a5 5 0 0 1-1.",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "whitespace-nowrap text-xs leading-normal text-",
+              "尺寸": [
+                24,
+                18
+              ],
+              "pathd": null,
+              "文字": "标记"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M5.1 0a5.1 5.1 0 0 1 5.1 5.12v.26a5 5 0 0 1-1.",
+              "位置": [
+                8,
+                7
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "特效",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.05)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transition-colors cursor-pointer canvas-light:b",
+          "box": [
+            142,
+            331,
+            54,
+            26
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 ",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "whitespace-nowrap text-xs leading-normal text-",
+              "尺寸": [
+                24,
+                18
+              ],
+              "pathd": null,
+              "文字": "特效"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 ",
+              "位置": [
+                8,
+                7
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "角色库",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.05)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transition-colors cursor-pointer canvas-light:b",
+          "box": [
+            200,
+            331,
+            66,
+            26
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M7 .64q.39 0 .7.22l.08.07c.97.85 2.3 1.46 3.3 ",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "whitespace-nowrap text-xs leading-normal text-",
+              "尺寸": [
+                36,
+                18
+              ],
+              "pathd": null,
+              "文字": "角色库"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M7 .64q.39 0 .7.22l.08.07c.97.85 2.3 1.46 3.3 ",
+              "位置": [
+                8,
+                7
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "运镜",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.05)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transition-colors cursor-pointer canvas-light:b",
+          "box": [
+            270,
+            331,
+            54,
+            26
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M7.51 0c1 .05 1.8.88 1.8 1.9V2L10.8.7a.88.88 0",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "whitespace-nowrap text-xs leading-normal text-",
+              "尺寸": [
+                24,
+                18
+              ],
+              "pathd": null,
+              "文字": "运镜"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M7.51 0c1 .05 1.8.88 1.8 1.9V2L10.8.7a.88.88 0",
+              "位置": [
+                8,
+                7
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "SPAN",
+          "文字": "特效",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "whitespace-nowrap text-xs leading-normal text-fg-muted canvas-light:text-neutral-700",
+          "box": [
+            164,
+            335,
+            24,
+            18
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "SPAN",
+          "文字": "运镜",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "whitespace-nowrap text-xs leading-normal text-fg-muted canvas-light:text-neutral-700",
+          "box": [
+            292,
+            335,
+            24,
+            18
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "2.0",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex items-center justify-between bg-transparent transition-colors h-8 w-auto gap-1 rounded-lg px-2 py-1 min-w-[88px] sh",
+          "box": [
+            22,
+            469,
+            91,
+            32
+          ],
+          "子数": 2,
+          "svg数": 2,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "flex min-w-0 items-center gap-1",
+              "尺寸": [
+                57,
+                20
+              ],
+              "pathd": "M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2",
+              "文字": "2.0"
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2",
+              "位置": [
+                51,
+                9
+              ]
+            },
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "位置": [
+                69,
+                9
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "文生视频",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex h-8 shrink-0 items-center justify-center gap-1 py-1 pl-2 pr-2.5 transition-colors rounded-lg bg-transparent hover:b",
+          "box": [
+            117,
+            469,
+            108,
+            32
+          ],
+          "子数": 3,
+          "svg数": 2,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M9.99 0c.93.05 1.68.82 1.68 1.77v8.22c-.05.9-.",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "whitespace-nowrap text-[13px] text-fg-default",
+              "尺寸": [
+                52,
+                20
+              ],
+              "pathd": null,
+              "文字": "文生视频"
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M9.99 0c.93.05 1.68.82 1.68 1.77v8.22c-.05.9-.",
+              "位置": [
+                8,
+                8
+              ]
+            },
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "位置": [
+                84,
+                9
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "16:9 · 720P · 5s · 1个 ·",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transparent transition-colors rounded-lg px-2 py-1 hover:b",
+          "box": [
+            234,
+            469,
+            204,
+            32
+          ],
+          "子数": 2,
+          "svg数": 2,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "flex min-w-0 flex-1 items-center gap-1 overflo",
+              "尺寸": [
+                170,
+                20
+              ],
+              "pathd": "M11.2.03a1.8 1.8 0 0 1 2.17 1.77v16.32a1.8 1.8",
+              "文字": "16:9 · 720P · "
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M11.2.03a1.8 1.8 0 0 1 2.17 1.77v16.32a1.8 1.8",
+              "位置": [
+                164,
+                9
+              ]
+            },
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "位置": [
+                182,
+                9
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "",
+          "光标": "not-allowed",
+          "禁用": {
+            "disabled": true,
+            "ariaDisabled": null,
+            "不允许": true
+          },
+          "不透明": "0.5",
+          "背景": "rgb(255, 255, 255)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-xl transition-[filter,opacity] ",
+          "box": [
+            632,
+            469,
+            32,
+            32
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.3.3a1 1 0 0 1 1.4 0l8 8a1 1 0 0 1-1.4 1.4L1",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.3.3a1 1 0 0 1 1.4 0l8 8a1 1 0 0 1-1.4 1.4L1",
+              "位置": [
+                10,
+                10
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "TV Director",
+          "aria": "TV Director",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgb(38, 38, 38)",
+          "边框": "rgb(54, 54, 54)",
+          "边框宽": "1px",
+          "cls": "TvDirectorEntry-module__vCoIiq__pill border-hair border-(--topnav-btn-border) flex h-12 min-w-12 cursor-pointer items-ce",
+          "box": [
+            875,
+            749,
+            48,
+            48
+          ],
+          "子数": 2,
+          "svg数": 3,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "relative z-[2] size-7 shrink-0",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "relative z-[2] block shrink-0 overflow-hidden",
+              "尺寸": [
+                0,
+                20
+              ],
+              "pathd": null,
+              "文字": "TV Director"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "位置": [
+                10,
+                10
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                6,
+                6
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                10,
+                10
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "relative z-[2] size-7 shrink-0",
+          "box": [
+            885,
+            759,
+            28,
+            28
+          ],
+          "子数": 1,
+          "svg数": 3,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__viewport",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "位置": [
+                0,
+                0
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                -4,
+                -4
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                0,
+                0
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__viewport",
+          "box": [
+            885,
+            759,
+            28,
+            28
+          ],
+          "子数": 3,
+          "svg数": 3,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__stateHalo C",
+              "尺寸": [
+                42,
+                42
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__orb ChatAge",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "位置": [
+                0,
+                0
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                -4,
+                -4
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                0,
+                0
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__orb ChatAgentLiquidOrb-module__JiGsiG__animated",
+          "box": [
+            885,
+            759,
+            28,
+            28
+          ],
+          "子数": 29,
+          "svg数": 2,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                32,
+                32
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                32,
+                32
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                20,
+                20
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                20,
+                20
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                22,
+                11
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                16,
+                14
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                18,
+                17
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                6,
+                9
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                21,
+                19
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                -4,
+                -4
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                0,
+                0
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "隐藏节点连线",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors",
+          "box": [
+            176,
+            764,
+            28,
+            28
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "flex items-center justify-center overflow-hidd",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M9.28 0a2.28 2.28 0 1 1-2.22 2.8h-4.5a1.52 1.5",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M9.28 0a2.28 2.28 0 1 1-2.22 2.8h-4.5a1.52 1.5",
+              "位置": [
+                7,
+                7
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频节点参数面板",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "网格吸附",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors",
+          "box": [
+            208,
+            764,
+            28,
+            28
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "relative flex items-center justify-center over",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.",
+              "位置": [
+                7,
+                7
+              ]
+            }
+          ],
+          "在节点内": false
+        }
+      ],
+      "面板开关": [
+        {
+          "场景": "视频参数面板已开",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "group/logo hover:bg-canvas-controls-hover flex h-8 shrink-0 cursor-pointer items-center gap-1 rounded-lg px-2 transition",
+          "box": [
+            9,
+            8,
+            57,
+            32
+          ],
+          "子数": 2,
+          "svg数": 2,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                25,
+                15
+              ],
+              "pathd": "M5.258 10.803h12.458l-1.064 3.742H0L3.099 3.72",
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                25,
+                15
+              ],
+              "pathd": "M5.258 10.803h12.458l-1.064 3.742H0L3.099 3.72",
+              "位置": [
+                8,
+                9
+              ]
+            },
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "位置": [
+                37,
+                10
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "画布 2",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "group/canvas-chip hover:bg-canvas-controls-hover data-open:bg-canvas-controls-active flex h-8 cursor-pointer items-cente",
+          "box": [
+            165,
+            8,
+            69,
+            32
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "text-canvas-controls-text min-w-0 truncate tex",
+              "尺寸": [
+                37,
+                20
+              ],
+              "pathd": null,
+              "文字": "画布 2"
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "位置": [
+                49,
+                10
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "工作流",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgb(54, 54, 54)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex size-8 items-center justify-center rounded-lg bg-clip-content transition-colors bg-[var(--seg-control-active-bg)] t",
+          "box": [
+            244,
+            8,
+            32,
+            32
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M12.25 11.03a1.22 1.22 0 1 0-2.45 0 1.22 1.22 ",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M12.25 11.03a1.22 1.22 0 1 0-2.45 0 1.22 1.22 ",
+              "位置": [
+                8,
+                8
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "DIV",
+          "文字": "开通会员 限时 45 折",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "color(srgb 0.14902 0.14902 0.14902 / 0.8)",
+          "边框": "rgba(255, 255, 255, 0.08)",
+          "边框宽": "1px",
+          "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 min-w-[60px] cursor-pointer items-center justify-center gap-1 rou",
+          "box": [
+            1167,
+            8,
+            159,
+            32
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "bg-nt-brand-surface-l1 text-nt-text-brand inli",
+              "尺寸": [
+                61,
+                16
+              ],
+              "pathd": null,
+              "文字": "限时 45 折"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2",
+              "位置": [
+                11,
+                8
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "DIV",
+          "文字": "智能剪辑 4",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "text-fg-muted flex w-full min-w-0 items-center gap-1 cursor-pointer",
+          "box": [
+            580,
+            126,
+            161,
+            22
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "flex min-w-0 flex-1 items-center gap-1 cursor-",
+              "尺寸": [
+                161,
+                18
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "文字": "智能剪辑 4"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                13,
+                13
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "位置": [
+                0,
+                5
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "DIV",
+          "文字": "智能剪辑 4",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex min-w-0 flex-1 items-center gap-1 cursor-pointer",
+          "box": [
+            580,
+            128,
+            161,
+            18
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "flex shrink-0 items-center",
+              "尺寸": [
+                13,
+                13
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "text-[13px] cursor-text pointer-events-auto",
+              "尺寸": [
+                59,
+                18
+              ],
+              "pathd": null,
+              "文字": "智能剪辑 4"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                13,
+                13
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "位置": [
+                0,
+                3
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "上传视频后开始",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(54, 54, 54)",
+          "边框宽": "1px",
+          "cls": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justify-center gap-3 rounded-xl border border-dashed bor",
+          "box": [
+            817,
+            188,
+            135,
+            76
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                11,
+                11
+              ],
+              "pathd": "M16.25 16.25v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "text-fg-muted text-[12px] leading-[18px]",
+              "尺寸": [
+                39,
+                8
+              ],
+              "pathd": null,
+              "文字": "上传视频后开始"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                11,
+                11
+              ],
+              "pathd": "M16.25 16.25v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v",
+              "位置": [
+                62,
+                25
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "打开导演台",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "边框": "lab(100 -0.0000298023 0.0000119209 / 0.08)",
+          "边框宽": "1px",
+          "cls": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg border px-3 py-1 text-[13px] font-normal l",
+          "box": [
+            17,
+            278,
+            42,
+            15
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgb(255, 255, 255)",
+          "边框": "rgb(38, 38, 38)",
+          "边框宽": "1px",
+          "cls": "mantine-focus-auto m_c9a9a60a mantine-Slider-thumb",
+          "box": [
+            266,
+            304,
+            12,
+            12
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": false
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "开始拉片",
+          "aria": "",
+          "光标": "not-allowed",
+          "禁用": {
+            "disabled": true,
+            "ariaDisabled": null,
+            "不允许": true
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.08)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14px] leading-[22px] transition-colors tex",
+          "box": [
+            817,
+            306,
+            135,
+            17
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "参考",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.05)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transition-colors cursor-pointer canvas-light:b",
+          "box": [
+            26,
+            331,
+            54,
+            26
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.5 0c.5 0 .9.48.9 1.06V7.6h6.54c.58 0 1.06.4",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "whitespace-nowrap text-xs leading-normal text-",
+              "尺寸": [
+                24,
+                18
+              ],
+              "pathd": null,
+              "文字": "参考"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.5 0c.5 0 .9.48.9 1.06V7.6h6.54c.58 0 1.06.4",
+              "位置": [
+                8,
+                7
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "标记",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.05)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transition-colors cursor-pointer canvas-light:b",
+          "box": [
+            84,
+            331,
+            54,
+            26
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M5.1 0a5.1 5.1 0 0 1 5.1 5.12v.26a5 5 0 0 1-1.",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "whitespace-nowrap text-xs leading-normal text-",
+              "尺寸": [
+                24,
+                18
+              ],
+              "pathd": null,
+              "文字": "标记"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M5.1 0a5.1 5.1 0 0 1 5.1 5.12v.26a5 5 0 0 1-1.",
+              "位置": [
+                8,
+                7
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "特效",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.05)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transition-colors cursor-pointer canvas-light:b",
+          "box": [
+            142,
+            331,
+            54,
+            26
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 ",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "whitespace-nowrap text-xs leading-normal text-",
+              "尺寸": [
+                24,
+                18
+              ],
+              "pathd": null,
+              "文字": "特效"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 ",
+              "位置": [
+                8,
+                7
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "角色库",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.05)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transition-colors cursor-pointer canvas-light:b",
+          "box": [
+            200,
+            331,
+            66,
+            26
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M7 .64q.39 0 .7.22l.08.07c.97.85 2.3 1.46 3.3 ",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "whitespace-nowrap text-xs leading-normal text-",
+              "尺寸": [
+                36,
+                18
+              ],
+              "pathd": null,
+              "文字": "角色库"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M7 .64q.39 0 .7.22l.08.07c.97.85 2.3 1.46 3.3 ",
+              "位置": [
+                8,
+                7
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "运镜",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.05)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transition-colors cursor-pointer canvas-light:b",
+          "box": [
+            270,
+            331,
+            54,
+            26
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M7.51 0c1 .05 1.8.88 1.8 1.9V2L10.8.7a.88.88 0",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "whitespace-nowrap text-xs leading-normal text-",
+              "尺寸": [
+                24,
+                18
+              ],
+              "pathd": null,
+              "文字": "运镜"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M7.51 0c1 .05 1.8.88 1.8 1.9V2L10.8.7a.88.88 0",
+              "位置": [
+                8,
+                7
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "SPAN",
+          "文字": "特效",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "whitespace-nowrap text-xs leading-normal text-fg-muted canvas-light:text-neutral-700",
+          "box": [
+            164,
+            335,
+            24,
+            18
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "SPAN",
+          "文字": "运镜",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "whitespace-nowrap text-xs leading-normal text-fg-muted canvas-light:text-neutral-700",
+          "box": [
+            292,
+            335,
+            24,
+            18
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "开启",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.1)",
+          "边框": "rgb(255, 255, 255)",
+          "边框宽": "1px",
+          "cls": "border-hair flex min-w-0 flex-1 items-center justify-center whitespace-normal rounded-lg border-solid px-2 text-[13px] t",
+          "box": [
+            247,
+            356,
+            154,
+            32
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": false
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "关闭",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "1px",
+          "cls": "border-border-default border-hair flex min-w-0 flex-1 items-center justify-center whitespace-normal rounded-lg border-so",
+          "box": [
+            409,
+            356,
+            154,
+            32
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": false
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "2.0",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex items-center justify-between bg-transparent transition-colors h-8 w-auto gap-1 rounded-lg px-2 py-1 min-w-[88px] sh",
+          "box": [
+            22,
+            469,
+            91,
+            32
+          ],
+          "子数": 2,
+          "svg数": 2,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "flex min-w-0 items-center gap-1",
+              "尺寸": [
+                57,
+                20
+              ],
+              "pathd": "M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2",
+              "文字": "2.0"
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2",
+              "位置": [
+                51,
+                9
+              ]
+            },
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "位置": [
+                69,
+                9
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "文生视频",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex h-8 shrink-0 items-center justify-center gap-1 py-1 pl-2 pr-2.5 transition-colors rounded-lg bg-transparent hover:b",
+          "box": [
+            117,
+            469,
+            108,
+            32
+          ],
+          "子数": 3,
+          "svg数": 2,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M9.99 0c.93.05 1.68.82 1.68 1.77v8.22c-.05.9-.",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "whitespace-nowrap text-[13px] text-fg-default",
+              "尺寸": [
+                52,
+                20
+              ],
+              "pathd": null,
+              "文字": "文生视频"
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M9.99 0c.93.05 1.68.82 1.68 1.77v8.22c-.05.9-.",
+              "位置": [
+                8,
+                8
+              ]
+            },
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "位置": [
+                84,
+                9
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "16:9 · 720P · 5s · 1个 ·",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.1)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex h-8 min-w-0 shrink items-center justify-between gap-1 transition-colors rounded-lg px-2 py-1 hover:bg-btn-ghost-hov",
+          "box": [
+            234,
+            469,
+            204,
+            32
+          ],
+          "子数": 2,
+          "svg数": 2,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "flex min-w-0 flex-1 items-center gap-1 overflo",
+              "尺寸": [
+                170,
+                20
+              ],
+              "pathd": "M11.2.03a1.8 1.8 0 0 1 2.17 1.77v16.32a1.8 1.8",
+              "文字": "16:9 · 720P · "
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M11.2.03a1.8 1.8 0 0 1 2.17 1.77v16.32a1.8 1.8",
+              "位置": [
+                164,
+                9
+              ]
+            },
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "位置": [
+                182,
+                9
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "",
+          "光标": "not-allowed",
+          "禁用": {
+            "disabled": true,
+            "ariaDisabled": null,
+            "不允许": true
+          },
+          "不透明": "0.5",
+          "背景": "rgb(255, 255, 255)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-xl transition-[filter,opacity] ",
+          "box": [
+            632,
+            469,
+            32,
+            32
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.3.3a1 1 0 0 1 1.4 0l8 8a1 1 0 0 1-1.4 1.4L1",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.3.3a1 1 0 0 1 1.4 0l8 8a1 1 0 0 1-1.4 1.4L1",
+              "位置": [
+                10,
+                10
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "TV Director",
+          "aria": "TV Director",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgb(38, 38, 38)",
+          "边框": "rgb(54, 54, 54)",
+          "边框宽": "1px",
+          "cls": "TvDirectorEntry-module__vCoIiq__pill border-hair border-(--topnav-btn-border) flex h-12 min-w-12 cursor-pointer items-ce",
+          "box": [
+            875,
+            749,
+            48,
+            48
+          ],
+          "子数": 2,
+          "svg数": 3,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "relative z-[2] size-7 shrink-0",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "relative z-[2] block shrink-0 overflow-hidden",
+              "尺寸": [
+                0,
+                20
+              ],
+              "pathd": null,
+              "文字": "TV Director"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "位置": [
+                10,
+                10
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                6,
+                6
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                10,
+                10
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "relative z-[2] size-7 shrink-0",
+          "box": [
+            885,
+            759,
+            28,
+            28
+          ],
+          "子数": 1,
+          "svg数": 3,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__viewport",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "位置": [
+                0,
+                0
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                -4,
+                -4
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                0,
+                0
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__viewport",
+          "box": [
+            885,
+            759,
+            28,
+            28
+          ],
+          "子数": 3,
+          "svg数": 3,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__stateHalo C",
+              "尺寸": [
+                42,
+                42
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__orb ChatAge",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "位置": [
+                0,
+                0
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                -4,
+                -4
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                0,
+                0
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__orb ChatAgentLiquidOrb-module__JiGsiG__animated",
+          "box": [
+            885,
+            759,
+            28,
+            28
+          ],
+          "子数": 29,
+          "svg数": 2,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                32,
+                32
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                32,
+                32
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                20,
+                20
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                20,
+                20
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                22,
+                11
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                16,
+                14
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                18,
+                17
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                6,
+                9
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                21,
+                19
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                -4,
+                -4
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                0,
+                0
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "隐藏节点连线",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors",
+          "box": [
+            176,
+            764,
+            28,
+            28
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "flex items-center justify-center overflow-hidd",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M9.28 0a2.28 2.28 0 1 1-2.22 2.8h-4.5a1.52 1.5",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M9.28 0a2.28 2.28 0 1 1-2.22 2.8h-4.5a1.52 1.5",
+              "位置": [
+                7,
+                7
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "视频参数面板已开",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "网格吸附",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors",
+          "box": [
+            208,
+            764,
+            28,
+            28
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "relative flex items-center justify-center over",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.",
+              "位置": [
+                7,
+                7
+              ]
+            }
+          ],
+          "在节点内": false
+        }
+      ],
+      "音频": [
+        {
+          "场景": "音频大编辑器",
+          "tag": "DIV",
+          "文字": "智能剪辑 4",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "text-fg-muted flex w-full min-w-0 items-center gap-1 cursor-pointer",
+          "box": [
+            882,
+            -12,
+            161,
+            22
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "flex min-w-0 flex-1 items-center gap-1 cursor-",
+              "尺寸": [
+                161,
+                18
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "文字": "智能剪辑 4"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                13,
+                13
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "位置": [
+                0,
+                5
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "DIV",
+          "文字": "智能剪辑 4",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex min-w-0 flex-1 items-center gap-1 cursor-pointer",
+          "box": [
+            882,
+            -10,
+            161,
+            18
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "flex shrink-0 items-center",
+              "尺寸": [
+                13,
+                13
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "text-[13px] cursor-text pointer-events-auto",
+              "尺寸": [
+                59,
+                18
+              ],
+              "pathd": null,
+              "文字": "智能剪辑 4"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                13,
+                13
+              ],
+              "pathd": "M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 ",
+              "位置": [
+                0,
+                3
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "group/logo hover:bg-canvas-controls-hover flex h-8 shrink-0 cursor-pointer items-center gap-1 rounded-lg px-2 transition",
+          "box": [
+            9,
+            8,
+            57,
+            32
+          ],
+          "子数": 2,
+          "svg数": 2,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                25,
+                15
+              ],
+              "pathd": "M5.258 10.803h12.458l-1.064 3.742H0L3.099 3.72",
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                25,
+                15
+              ],
+              "pathd": "M5.258 10.803h12.458l-1.064 3.742H0L3.099 3.72",
+              "位置": [
+                8,
+                9
+              ]
+            },
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "位置": [
+                37,
+                10
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "BUTTON",
+          "文字": "画布 2",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "group/canvas-chip hover:bg-canvas-controls-hover data-open:bg-canvas-controls-active flex h-8 cursor-pointer items-cente",
+          "box": [
+            165,
+            8,
+            69,
+            32
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "text-canvas-controls-text min-w-0 truncate tex",
+              "尺寸": [
+                37,
+                20
+              ],
+              "pathd": null,
+              "文字": "画布 2"
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .",
+              "位置": [
+                49,
+                10
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "工作流",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgb(54, 54, 54)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex size-8 items-center justify-center rounded-lg bg-clip-content transition-colors bg-[var(--seg-control-active-bg)] t",
+          "box": [
+            244,
+            8,
+            32,
+            32
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M12.25 11.03a1.22 1.22 0 1 0-2.45 0 1.22 1.22 ",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M12.25 11.03a1.22 1.22 0 1 0-2.45 0 1.22 1.22 ",
+              "位置": [
+                8,
+                8
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "DIV",
+          "文字": "开通会员 限时 45 折",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "color(srgb 0.14902 0.14902 0.14902 / 0.8)",
+          "边框": "rgba(255, 255, 255, 0.08)",
+          "边框宽": "1px",
+          "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 min-w-[60px] cursor-pointer items-center justify-center gap-1 rou",
+          "box": [
+            1167,
+            8,
+            159,
+            32
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "bg-nt-brand-surface-l1 text-nt-text-brand inli",
+              "尺寸": [
+                61,
+                16
+              ],
+              "pathd": null,
+              "文字": "限时 45 折"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": "M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2",
+              "位置": [
+                11,
+                8
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "BUTTON",
+          "文字": "上传视频后开始",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(54, 54, 54)",
+          "边框宽": "1px",
+          "cls": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justify-center gap-3 rounded-xl border border-dashed bor",
+          "box": [
+            1119,
+            50,
+            135,
+            76
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                11,
+                11
+              ],
+              "pathd": "M16.25 16.25v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "text-fg-muted text-[12px] leading-[18px]",
+              "尺寸": [
+                39,
+                8
+              ],
+              "pathd": null,
+              "文字": "上传视频后开始"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                11,
+                11
+              ],
+              "pathd": "M16.25 16.25v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v",
+              "位置": [
+                62,
+                25
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "BUTTON",
+          "文字": "打开导演台",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "边框": "lab(100 -0.0000298023 0.0000119209 / 0.08)",
+          "边框宽": "1px",
+          "cls": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg border px-3 py-1 text-[13px] font-normal l",
+          "box": [
+            319,
+            140,
+            42,
+            15
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": true
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "BUTTON",
+          "文字": "开始拉片",
+          "aria": "",
+          "光标": "not-allowed",
+          "禁用": {
+            "disabled": true,
+            "ariaDisabled": null,
+            "不允许": true
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.08)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14px] leading-[22px] transition-colors tex",
+          "box": [
+            1119,
+            168,
+            135,
+            17
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": true
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "BUTTON",
+          "文字": "参考",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(255, 255, 255, 0.05)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transition-colors cursor-pointer canvas-light:b",
+          "box": [
+            -41,
+            327,
+            54,
+            26
+          ],
+          "子数": 2,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.5 0c.5 0 .9.48.9 1.06V7.6h6.54c.58 0 1.06.4",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "whitespace-nowrap text-xs leading-normal text-",
+              "尺寸": [
+                24,
+                18
+              ],
+              "pathd": null,
+              "文字": "参考"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.5 0c.5 0 .9.48.9 1.06V7.6h6.54c.58 0 1.06.4",
+              "位置": [
+                8,
+                7
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "",
+          "光标": "not-allowed",
+          "禁用": {
+            "disabled": true,
+            "ariaDisabled": null,
+            "不允许": true
+          },
+          "不透明": "0.5",
+          "背景": "rgb(255, 255, 255)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-xl transition-[filter,opacity] ",
+          "box": [
+            569,
+            465,
+            32,
+            32
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.3.3a1 1 0 0 1 1.4 0l8 8a1 1 0 0 1-1.4 1.4L1",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                12,
+                12
+              ],
+              "pathd": "M8.3.3a1 1 0 0 1 1.4 0l8 8a1 1 0 0 1-1.4 1.4L1",
+              "位置": [
+                10,
+                10
+              ]
+            }
+          ],
+          "在节点内": true
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgb(255, 255, 255)",
+          "边框": "rgb(38, 38, 38)",
+          "边框宽": "1px",
+          "cls": "mantine-focus-auto m_c9a9a60a mantine-Slider-thumb",
+          "box": [
+            423,
+            584,
+            12,
+            12
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": true
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgb(255, 255, 255)",
+          "边框": "rgb(38, 38, 38)",
+          "边框宽": "1px",
+          "cls": "mantine-focus-auto m_c9a9a60a mantine-Slider-thumb",
+          "box": [
+            443,
+            620,
+            12,
+            12
+          ],
+          "子数": 0,
+          "svg数": 0,
+          "子": [],
+          "paths": [],
+          "在节点内": true
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "BUTTON",
+          "文字": "TV Director",
+          "aria": "TV Director",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgb(38, 38, 38)",
+          "边框": "rgb(54, 54, 54)",
+          "边框宽": "1px",
+          "cls": "TvDirectorEntry-module__vCoIiq__pill border-hair border-(--topnav-btn-border) flex h-12 min-w-12 cursor-pointer items-ce",
+          "box": [
+            875,
+            749,
+            48,
+            48
+          ],
+          "子数": 2,
+          "svg数": 3,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "relative z-[2] size-7 shrink-0",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            },
+            {
+              "tag": "SPAN",
+              "cls": "relative z-[2] block shrink-0 overflow-hidden",
+              "尺寸": [
+                0,
+                20
+              ],
+              "pathd": null,
+              "文字": "TV Director"
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "位置": [
+                10,
+                10
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                6,
+                6
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                10,
+                10
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "relative z-[2] size-7 shrink-0",
+          "box": [
+            885,
+            759,
+            28,
+            28
+          ],
+          "子数": 1,
+          "svg数": 3,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__viewport",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "位置": [
+                0,
+                0
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                -4,
+                -4
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                0,
+                0
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__viewport",
+          "box": [
+            885,
+            759,
+            28,
+            28
+          ],
+          "子数": 3,
+          "svg数": 3,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__stateHalo C",
+              "尺寸": [
+                42,
+                42
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__orb ChatAge",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "位置": [
+                0,
+                0
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                -4,
+                -4
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                0,
+                0
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "DIV",
+          "文字": "",
+          "aria": "",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__orb ChatAgentLiquidOrb-module__JiGsiG__animated",
+          "box": [
+            885,
+            759,
+            28,
+            28
+          ],
+          "子数": 29,
+          "svg数": 2,
+          "子": [
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                32,
+                32
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                32,
+                32
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                16,
+                16
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                20,
+                20
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                20,
+                20
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                22,
+                11
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                25,
+                25
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                16,
+                14
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                18,
+                17
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                6,
+                9
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                28,
+                28
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                21,
+                19
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "DIV",
+              "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatA",
+              "尺寸": [
+                0,
+                0
+              ],
+              "pathd": null,
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "文字": ""
+            },
+            {
+              "tag": "svg",
+              "cls": "[object SVGAnimatedString]",
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 8 45 A 34 34 0 0 1 82 45",
+              "位置": [
+                -4,
+                -4
+              ]
+            },
+            {
+              "尺寸": [
+                31,
+                31
+              ],
+              "pathd": "M 15 70 A 40 40 0 0 1 75 20",
+              "位置": [
+                0,
+                0
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "隐藏节点连线",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors",
+          "box": [
+            176,
+            764,
+            28,
+            28
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "flex items-center justify-center overflow-hidd",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M9.28 0a2.28 2.28 0 1 1-2.22 2.8h-4.5a1.52 1.5",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "M9.28 0a2.28 2.28 0 1 1-2.22 2.8h-4.5a1.52 1.5",
+              "位置": [
+                7,
+                7
+              ]
+            }
+          ],
+          "在节点内": false
+        },
+        {
+          "场景": "音频大编辑器",
+          "tag": "BUTTON",
+          "文字": "",
+          "aria": "网格吸附",
+          "光标": "pointer",
+          "禁用": {
+            "disabled": false,
+            "ariaDisabled": null,
+            "不允许": false
+          },
+          "不透明": "1",
+          "背景": "rgba(0, 0, 0, 0)",
+          "边框": "rgb(82, 82, 82)",
+          "边框宽": "0px",
+          "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors",
+          "box": [
+            208,
+            764,
+            28,
+            28
+          ],
+          "子数": 1,
+          "svg数": 1,
+          "子": [
+            {
+              "tag": "SPAN",
+              "cls": "relative flex items-center justify-center over",
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.",
+              "文字": ""
+            }
+          ],
+          "paths": [
+            {
+              "尺寸": [
+                14,
+                14
+              ],
+              "pathd": "m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.",
+              "位置": [
+                7,
+                7
+              ]
+            }
+          ],
+          "在节点内": false
+        }
+      ]
+    }
+  },
+  "步骤": [
+    "开局坐标偏差：[]",
+    "\n════ ① 底栏与顶栏（未选中任何节点）════",
+    "　候选 15 个",
+    "　　<DIV> 文字「」aria=\"\" box=[9,8,57,32] 子数=2 svg数=2 光标=pointer 禁用={\"disabled\":false,\"ariaDisabled\":null,\"不允许\":false} 不透明=1",
+    "　　<BUTTON> 文字「画布 2」aria=\"\" box=[165,8,69,32] 子数=2 svg数=1 光标=pointer 禁用={\"disabled\":false,\"ariaDisabled\":null,\"不允许\":false} 不透明=1",
+    "　　<BUTTON> 文字「」aria=\"工作流\" box=[244,8,32,32] 子数=1 svg数=1 光标=pointer 禁用={\"disabled\":false,\"ariaDisabled\":null,\"不允许\":false} 不透明=1",
+    "　　<DIV> 文字「开通会员 限时 45 折」aria=\"\" box=[1167,8,159,32] 子数=2 svg数=1 光标=pointer 禁用={\"disabled\":false,\"ariaDisabled\":null,\"不允许\":false} 不透明=1",
+    "　　<DIV> 文字「智能剪辑 4」aria=\"\" box=[945,20,161,22] 子数=1 svg数=1 光标=pointer 禁用={\"disabled\":false,\"ariaDisabled\":null,\"不允许\":false} 不透明=1",
+    "　　<DIV> 文字「智能剪辑 4」aria=\"\" box=[945,22,161,18] 子数=2 svg数=1 光标=pointer 禁用={\"disabled\":false,\"ariaDisabled\":null,\"不允许\":false} 不透明=1",
+    "　　<BUTTON> 文字「上传视频后开始」aria=\"\" box=[1182,82,135,76] 子数=2 svg数=1 光标=pointer 禁用={\"disabled\":false,\"ariaDisabled\":null,\"不允许\":false} 不透明=1",
+    "　　<BUTTON> 文字「打开导演台」aria=\"\" box=[382,172,42,15] 子数=0 svg数=0 光标=pointer 禁用={\"disabled\":false,\"ariaDisabled\":null,\"不允许\":false} 不透明=1",
+    "　　<BUTTON> 文字「开始拉片」aria=\"\" box=[1182,200,135,17] 子数=0 svg数=0 光标=not-allowed 禁用={\"disabled\":true,\"ariaDisabled\":null,\"不允许\":true} 不透明=1",
+    "　　<BUTTON> 文字「TV Director」aria=\"TV Director\" box=[875,749,48,48] 子数=2 svg数=3 光标=pointer 禁用={\"disabled\":false,\"ariaDisabled\":null,\"不允许\":false} 不透明=1",
+    "　　<DIV> 文字「」aria=\"\" box=[885,759,28,28] 子数=1 svg数=3 光标=pointer 禁用={\"disabled\":false,\"ariaDisabled\":null,\"不允许\":false} 不透明=1",
+    "　　<DIV> 文字「」aria=\"\" box=[885,759,28,28] 子数=3 svg数=3 光标=pointer 禁用={\"disabled\":false,\"ariaDisabled\":null,\"不允许\":false} 不透明=1",
+    "　　<DIV> 文字「」aria=\"\" box=[885,759,28,28] 子数=29 svg数=2 光标=pointer 禁用={\"disabled\":false,\"ariaDisabled\":null,\"不允许\":false} 不透明=1",
+    "　　<BUTTON> 文字「」aria=\"隐藏节点连线\" box=[176,764,28,28] 子数=1 svg数=1 光标=pointer 禁用={\"disabled\":false,\"ariaDisabled\":null,\"不允许\":false} 不透明=1",
+    "　　<BUTTON> 文字「」aria=\"网格吸附\" box=[208,764,28,28] 子数=1 svg数=1 光标=pointer 禁用={\"disabled\":false,\"ariaDisabled\":null,\"不允许\":false} 不透明=1",
+    "　　　　└ svg 明细：[{\"尺寸\":[25,15],\"pathd\":\"M5.258 10.803h12.458l-1.064 3.742H0L3.099 3.72\",\"位置\":[8,9]},{\"尺寸\":[12,12],\"pathd\":\"M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .\",\"位置\":[37,10]}]",
+    "　　　　└ svg 明细：[{\"尺寸\":[12,12],\"pathd\":\"M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .\",\"位置\":[49,10]}]",
+    "　　　　└ svg 明细：[{\"尺寸\":[16,16],\"pathd\":\"M12.25 11.03a1.22 1.22 0 1 0-2.45 0 1.22 1.22 \",\"位置\":[8,8]}]",
+    "　　　　└ svg 明细：[{\"尺寸\":[16,16],\"pathd\":\"M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2\",\"位置\":[11,8]}]",
+    "　　　　└ svg 明细：[{\"尺寸\":[13,13],\"pathd\":\"M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 \",\"位置\":[0,5]}]",
+    "　　　　└ svg 明细：[{\"尺寸\":[13,13],\"pathd\":\"M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 \",\"位置\":[0,3]}]",
+    "　　　　└ svg 明细：[{\"尺寸\":[11,11],\"pathd\":\"M16.25 16.25v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v\",\"位置\":[62,25]}]",
+    "　　　　└ svg 明细：[{\"尺寸\":[0,0],\"pathd\":null,\"位置\":[10,10]},{\"尺寸\":[31,31],\"pathd\":\"M 8 45 A 34 34 0 0 1 82 45\",\"位置\":[6,6]},{\"尺寸\":[31,31],\"pathd\":\"M 15 70 A 40 40 0 0 1 75 20\",\"位置\":[10,10]}]",
+    "　　　　└ svg 明细：[{\"尺寸\":[0,0],\"pathd\":null,\"位置\":[0,0]},{\"尺寸\":[31,31],\"pathd\":\"M 8 45 A 34 34 0 0 1 82 45\",\"位置\":[-4,-4]},{\"尺寸\":[31,31],\"pathd\":\"M 15 70 A 40 40 0 0 1 75 20\",\"位置\":[0,0]}]",
+    "　　　　└ svg 明细：[{\"尺寸\":[0,0],\"pathd\":null,\"位置\":[0,0]},{\"尺寸\":[31,31],\"pathd\":\"M 8 45 A 34 34 0 0 1 82 45\",\"位置\":[-4,-4]},{\"尺寸\":[31,31],\"pathd\":\"M 15 70 A 40 40 0 0 1 75 20\",\"位置\":[0,0]}]",
+    "　　　　└ svg 明细：[{\"尺寸\":[31,31],\"pathd\":\"M 8 45 A 34 34 0 0 1 82 45\",\"位置\":[-4,-4]},{\"尺寸\":[31,31],\"pathd\":\"M 15 70 A 40 40 0 0 1 75 20\",\"位置\":[0,0]}]",
+    "　　　　└ svg 明细：[{\"尺寸\":[14,14],\"pathd\":\"M9.28 0a2.28 2.28 0 1 1-2.22 2.8h-4.5a1.52 1.5\",\"位置\":[7,7]}]",
+    "　　　　└ svg 明细：[{\"尺寸\":[14,14],\"pathd\":\"m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.\",\"位置\":[7,7]}]",
+    "\n════ ② 视频节点参数面板（生成音频两段选择器）════",
+    "　平移视频节点：true",
+    "　选中 [\"v-v2hlWY4Br3\"]",
+    "　面板里候选 26 个：",
+    "　　<DIV> 「」 box=[9,8,57,32] 子数=2 svg数=2 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(0, 0, 0, 0)",
+    "　　　└ 子元素：[{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[25,15],\"pathd\":\"M5.258 10.803h12.458l-1.064 3.742H0L3.099 3.72\",\"文字\":\"\"},{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[12,12],\"pathd\":\"M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .\",\"文字\":\"\"}]",
+    "　　<BUTTON> 「画布 2」 box=[165,8,69,32] 子数=2 svg数=1 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(0, 0, 0, 0)",
+    "　　　└ 子元素：[{\"tag\":\"SPAN\",\"cls\":\"text-canvas-controls-text min-w-0 truncate tex\",\"尺寸\":[37,20],\"pathd\":null,\"文字\":\"画布 2\"},{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[12,12],\"pathd\":\"M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .\",\"文字\":\"\"}]",
+    "　　<BUTTON> 「」 box=[244,8,32,32] 子数=1 svg数=1 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgb(54, 54, 54)",
+    "　　　└ 子元素：[{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[16,16],\"pathd\":\"M12.25 11.03a1.22 1.22 0 1 0-2.45 0 1.22 1.22 \",\"文字\":\"\"}]",
+    "　　<DIV> 「开通会员 限时 45 折」 box=[1167,8,159,32] 子数=2 svg数=1 边框=rgba(255, 255, 255, 0.08) 边框宽=1px 背景=color(srgb 0.14902 0.14902 0.14902 / 0.8)",
+    "　　　└ 子元素：[{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[16,16],\"pathd\":\"M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2\",\"文字\":\"\"},{\"tag\":\"SPAN\",\"cls\":\"bg-nt-brand-surface-l1 text-nt-text-brand inli\",\"尺寸\":[61,16],\"pathd\":null,\"文字\":\"限时 45 折\"}]",
+    "　　<DIV> 「智能剪辑 4」 box=[580,126,161,22] 子数=1 svg数=1 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(0, 0, 0, 0)",
+    "　　　└ 子元素：[{\"tag\":\"DIV\",\"cls\":\"flex min-w-0 flex-1 items-center gap-1 cursor-\",\"尺寸\":[161,18],\"pathd\":\"M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 \",\"文字\":\"智能剪辑 4\"}]",
+    "　　<DIV> 「智能剪辑 4」 box=[580,128,161,18] 子数=2 svg数=1 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(0, 0, 0, 0)",
+    "　　　└ 子元素：[{\"tag\":\"SPAN\",\"cls\":\"flex shrink-0 items-center\",\"尺寸\":[13,13],\"pathd\":\"M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 \",\"文字\":\"\"},{\"tag\":\"SPAN\",\"cls\":\"text-[13px] cursor-text pointer-events-auto\",\"尺寸\":[59,18],\"pathd\":null,\"文字\":\"智能剪辑 4\"}]",
+    "　　<BUTTON> 「上传视频后开始」 box=[817,188,135,76] 子数=2 svg数=1 边框=rgb(54, 54, 54) 边框宽=1px 背景=rgba(0, 0, 0, 0)",
+    "　　　└ 子元素：[{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[11,11],\"pathd\":\"M16.25 16.25v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v\",\"文字\":\"\"},{\"tag\":\"SPAN\",\"cls\":\"text-fg-muted text-[12px] leading-[18px]\",\"尺寸\":[39,8],\"pathd\":null,\"文字\":\"上传视频后开始\"}]",
+    "　　<BUTTON> 「打开导演台」 box=[17,278,42,15] 子数=0 svg数=0 边框=lab(100 -0.0000298023 0.0000119209 / 0.08) 边框宽=1px 背景=lab(100 -0.0000298023 0.0000119209 / 0.1)",
+    "　　<BUTTON> 「开始拉片」 box=[817,306,135,17] 子数=0 svg数=0 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(255, 255, 255, 0.08)",
+    "　　<BUTTON> 「参考」 box=[26,331,54,26] 子数=2 svg数=1 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(255, 255, 255, 0.05)",
+    "　　　└ 子元素：[{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[12,12],\"pathd\":\"M8.5 0c.5 0 .9.48.9 1.06V7.6h6.54c.58 0 1.06.4\",\"文字\":\"\"},{\"tag\":\"SPAN\",\"cls\":\"whitespace-nowrap text-xs leading-normal text-\",\"尺寸\":[24,18],\"pathd\":null,\"文字\":\"参考\"}]",
+    "　　<BUTTON> 「标记」 box=[84,331,54,26] 子数=2 svg数=1 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(255, 255, 255, 0.05)",
+    "　　　└ 子元素：[{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[12,12],\"pathd\":\"M5.1 0a5.1 5.1 0 0 1 5.1 5.12v.26a5 5 0 0 1-1.\",\"文字\":\"\"},{\"tag\":\"SPAN\",\"cls\":\"whitespace-nowrap text-xs leading-normal text-\",\"尺寸\":[24,18],\"pathd\":null,\"文字\":\"标记\"}]",
+    "　　<BUTTON> 「特效」 box=[142,331,54,26] 子数=2 svg数=1 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(255, 255, 255, 0.05)",
+    "　　　└ 子元素：[{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[12,12],\"pathd\":\"M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 \",\"文字\":\"\"},{\"tag\":\"SPAN\",\"cls\":\"whitespace-nowrap text-xs leading-normal text-\",\"尺寸\":[24,18],\"pathd\":null,\"文字\":\"特效\"}]",
+    "　　<BUTTON> 「角色库」 box=[200,331,66,26] 子数=2 svg数=1 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(255, 255, 255, 0.05)",
+    "　　　└ 子元素：[{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[12,12],\"pathd\":\"M7 .64q.39 0 .7.22l.08.07c.97.85 2.3 1.46 3.3 \",\"文字\":\"\"},{\"tag\":\"SPAN\",\"cls\":\"whitespace-nowrap text-xs leading-normal text-\",\"尺寸\":[36,18],\"pathd\":null,\"文字\":\"角色库\"}]",
+    "　　<BUTTON> 「运镜」 box=[270,331,54,26] 子数=2 svg数=1 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(255, 255, 255, 0.05)",
+    "　　　└ 子元素：[{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[12,12],\"pathd\":\"M7.51 0c1 .05 1.8.88 1.8 1.9V2L10.8.7a.88.88 0\",\"文字\":\"\"},{\"tag\":\"SPAN\",\"cls\":\"whitespace-nowrap text-xs leading-normal text-\",\"尺寸\":[24,18],\"pathd\":null,\"文字\":\"运镜\"}]",
+    "　　<SPAN> 「特效」 box=[164,335,24,18] 子数=0 svg数=0 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(0, 0, 0, 0)",
+    "　　<SPAN> 「运镜」 box=[292,335,24,18] 子数=0 svg数=0 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(0, 0, 0, 0)",
+    "　　<BUTTON> 「2.0」 box=[22,469,91,32] 子数=2 svg数=2 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(0, 0, 0, 0)",
+    "　　　└ 子元素：[{\"tag\":\"DIV\",\"cls\":\"flex min-w-0 items-center gap-1\",\"尺寸\":[57,20],\"pathd\":\"M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2\",\"文字\":\"2.0\"},{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[14,14],\"pathd\":\"M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .\",\"文字\":\"\"}]",
+    "　　<BUTTON> 「文生视频」 box=[117,469,108,32] 子数=3 svg数=2 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(0, 0, 0, 0)",
+    "　　　└ 子元素：[{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[16,16],\"pathd\":\"M9.99 0c.93.05 1.68.82 1.68 1.77v8.22c-.05.9-.\",\"文字\":\"\"},{\"tag\":\"SPAN\",\"cls\":\"whitespace-nowrap text-[13px] text-fg-default\",\"尺寸\":[52,20],\"pathd\":null,\"文字\":\"文生视频\"},{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[14,14],\"pathd\":\"M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .\",\"文字\":\"\"}]",
+    "　　<BUTTON> 「16:9 · 720P · 5s · 1个 ·」 box=[234,469,204,32] 子数=2 svg数=2 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(0, 0, 0, 0)",
+    "　　　└ 子元素：[{\"tag\":\"DIV\",\"cls\":\"flex min-w-0 flex-1 items-center gap-1 overflo\",\"尺寸\":[170,20],\"pathd\":\"M11.2.03a1.8 1.8 0 0 1 2.17 1.77v16.32a1.8 1.8\",\"文字\":\"16:9 · 720P · \"},{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[14,14],\"pathd\":\"M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .\",\"文字\":\"\"}]",
+    "　　<BUTTON> 「」 box=[632,469,32,32] 子数=1 svg数=1 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgb(255, 255, 255)",
+    "　　　└ 子元素：[{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[12,12],\"pathd\":\"M8.3.3a1 1 0 0 1 1.4 0l8 8a1 1 0 0 1-1.4 1.4L1\",\"文字\":\"\"}]",
+    "　　<BUTTON> 「TV Director」 box=[875,749,48,48] 子数=2 svg数=3 边框=rgb(54, 54, 54) 边框宽=1px 背景=rgb(38, 38, 38)",
+    "　　　└ 子元素：[{\"tag\":\"DIV\",\"cls\":\"relative z-[2] size-7 shrink-0\",\"尺寸\":[28,28],\"pathd\":\"M 8 45 A 34 34 0 0 1 82 45\",\"文字\":\"\"},{\"tag\":\"SPAN\",\"cls\":\"relative z-[2] block shrink-0 overflow-hidden\",\"尺寸\":[0,20],\"pathd\":null,\"文字\":\"TV Director\"}]",
+    "　　<DIV> 「」 box=[885,759,28,28] 子数=1 svg数=3 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(0, 0, 0, 0)",
+    "　　　└ 子元素：[{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__viewport\",\"尺寸\":[28,28],\"pathd\":\"M 8 45 A 34 34 0 0 1 82 45\",\"文字\":\"\"}]",
+    "　　<DIV> 「」 box=[885,759,28,28] 子数=3 svg数=3 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(0, 0, 0, 0)",
+    "　　　└ 子元素：[{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__stateHalo C\",\"尺寸\":[42,42],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[0,0],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__orb ChatAge\",\"尺寸\":[28,28],\"pathd\":\"M 8 45 A 34 34 0 0 1 82 45\",\"文字\":\"\"}]",
+    "　　<DIV> 「」 box=[885,759,28,28] 子数=29 svg数=2 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(0, 0, 0, 0)",
+    "　　　└ 子元素：[{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[28,28],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[32,32],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[32,32],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[25,25],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[25,25],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[25,25],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[16,16],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[16,16],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[20,20],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[20,20],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[22,11],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[14,14],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[0,0],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[25,25],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[16,14],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[18,17],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[6,9],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[28,28],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[21,19],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[0,0],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[0,0],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[0,0],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[0,0],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[0,0],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[0,0],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[0,0],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"DIV\",\"cls\":\"ChatAgentLiquidOrb-module__JiGsiG__layer ChatA\",\"尺寸\":[0,0],\"pathd\":null,\"文字\":\"\"},{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[31,31],\"pathd\":\"M 8 45 A 34 34 0 0 1 82 45\",\"文字\":\"\"},{\"tag\":\"svg\",\"cls\":\"[object SVGAnimatedString]\",\"尺寸\":[31,31],\"pathd\":\"M 15 70 A 40 40 0 0 1 75 20\",\"文字\":\"\"}]",
+    "　　<BUTTON> 「」 box=[176,764,28,28] 子数=1 svg数=1 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(0, 0, 0, 0)",
+    "　　　└ 子元素：[{\"tag\":\"SPAN\",\"cls\":\"flex items-center justify-center overflow-hidd\",\"尺寸\":[14,14],\"pathd\":\"M9.28 0a2.28 2.28 0 1 1-2.22 2.8h-4.5a1.52 1.5\",\"文字\":\"\"}]",
+    "　　<BUTTON> 「」 box=[208,764,28,28] 子数=1 svg数=1 边框=rgb(82, 82, 82) 边框宽=0px 背景=rgba(0, 0, 0, 0)",
+    "　　　└ 子元素：[{\"tag\":\"SPAN\",\"cls\":\"relative flex items-center justify-center over\",\"尺寸\":[14,14],\"pathd\":\"m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.\",\"文字\":\"\"}]",
+    "　面板打开后候选 29 个：",
+    "　　<DIV> 「」aria=\"\" box=[9,8,57,32] 子数=2 svg数=2 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) cls=group/logo hover:bg-canvas-controls-hover flex h-8 shrink-0 ",
+    "　　<BUTTON> 「画布 2」aria=\"\" box=[165,8,69,32] 子数=2 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) cls=group/canvas-chip hover:bg-canvas-controls-hover data-open:b",
+    "　　<BUTTON> 「」aria=\"工作流\" box=[244,8,32,32] 子数=1 svg数=1 边框=rgb(82, 82, 82) 背景=rgb(54, 54, 54) cls=flex size-8 items-center justify-center rounded-lg bg-clip-c",
+    "　　<DIV> 「开通会员 限时 45 折」aria=\"\" box=[1167,8,159,32] 子数=2 svg数=1 边框=rgba(255, 255, 255, 0.08) 背景=color(srgb 0.14902 0.14902 0.14902 / 0.8) cls=border-border-neutral-l1 text-nt-text-default flex h-8 min-w",
+    "　　<DIV> 「智能剪辑 4」aria=\"\" box=[580,126,161,22] 子数=1 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) cls=text-fg-muted flex w-full min-w-0 items-center gap-1 cursor-",
+    "　　<DIV> 「智能剪辑 4」aria=\"\" box=[580,128,161,18] 子数=2 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) cls=flex min-w-0 flex-1 items-center gap-1 cursor-pointer",
+    "　　<BUTTON> 「上传视频后开始」aria=\"\" box=[817,188,135,76] 子数=2 svg数=1 边框=rgb(54, 54, 54) 背景=rgba(0, 0, 0, 0) cls=nodrag nopan flex aspect-[294/165] w-full flex-col items-cen",
+    "　　<BUTTON> 「打开导演台」aria=\"\" box=[17,278,42,15] 子数=0 svg数=0 边框=lab(100 -0.0000298023 0.0000119209 / 0.08) 背景=lab(100 -0.0000298023 0.0000119209 / 0.1) cls=nodrag relative z-10 flex h-8 min-w-12 items-center justify-",
+    "　　<DIV> 「」aria=\"\" box=[266,304,12,12] 子数=0 svg数=0 边框=rgb(38, 38, 38) 背景=rgb(255, 255, 255) cls=mantine-focus-auto m_c9a9a60a mantine-Slider-thumb",
+    "　　<BUTTON> 「开始拉片」aria=\"\" box=[817,306,135,17] 子数=0 svg数=0 边框=rgb(82, 82, 82) 背景=rgba(255, 255, 255, 0.08) cls=nodrag nopan flex h-9 w-full items-center justify-center rou",
+    "　　<BUTTON> 「参考」aria=\"\" box=[26,331,54,26] 子数=2 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(255, 255, 255, 0.05) cls=flex shrink-0 items-center justify-center gap-0.5 rounded-fu",
+    "　　<BUTTON> 「标记」aria=\"\" box=[84,331,54,26] 子数=2 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(255, 255, 255, 0.05) cls=flex shrink-0 items-center justify-center gap-0.5 rounded-fu",
+    "　　<BUTTON> 「特效」aria=\"\" box=[142,331,54,26] 子数=2 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(255, 255, 255, 0.05) cls=flex shrink-0 items-center justify-center gap-0.5 rounded-fu",
+    "　　<BUTTON> 「角色库」aria=\"\" box=[200,331,66,26] 子数=2 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(255, 255, 255, 0.05) cls=flex shrink-0 items-center justify-center gap-0.5 rounded-fu",
+    "　　<BUTTON> 「运镜」aria=\"\" box=[270,331,54,26] 子数=2 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(255, 255, 255, 0.05) cls=flex shrink-0 items-center justify-center gap-0.5 rounded-fu",
+    "　　<SPAN> 「特效」aria=\"\" box=[164,335,24,18] 子数=0 svg数=0 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) cls=whitespace-nowrap text-xs leading-normal text-fg-muted canva",
+    "　　<SPAN> 「运镜」aria=\"\" box=[292,335,24,18] 子数=0 svg数=0 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) cls=whitespace-nowrap text-xs leading-normal text-fg-muted canva",
+    "　　<BUTTON> 「开启」aria=\"\" box=[247,356,154,32] 子数=0 svg数=0 边框=rgb(255, 255, 255) 背景=rgba(255, 255, 255, 0.1) cls=border-hair flex min-w-0 flex-1 items-center justify-center ",
+    "　　<BUTTON> 「关闭」aria=\"\" box=[409,356,154,32] 子数=0 svg数=0 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) cls=border-border-default border-hair flex min-w-0 flex-1 items-",
+    "　　<BUTTON> 「2.0」aria=\"\" box=[22,469,91,32] 子数=2 svg数=2 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) cls=flex items-center justify-between bg-transparent transition-",
+    "　　<BUTTON> 「文生视频」aria=\"\" box=[117,469,108,32] 子数=3 svg数=2 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) cls=flex h-8 shrink-0 items-center justify-center gap-1 py-1 pl-",
+    "　　<BUTTON> 「16:9 · 720P · 5s · 1个 ·」aria=\"\" box=[234,469,204,32] 子数=2 svg数=2 边框=rgb(82, 82, 82) 背景=rgba(255, 255, 255, 0.1) cls=flex h-8 min-w-0 shrink items-center justify-between gap-1 t",
+    "　　<BUTTON> 「」aria=\"\" box=[632,469,32,32] 子数=1 svg数=1 边框=rgb(82, 82, 82) 背景=rgb(255, 255, 255) cls=bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-c",
+    "　　<BUTTON> 「TV Director」aria=\"TV Director\" box=[875,749,48,48] 子数=2 svg数=3 边框=rgb(54, 54, 54) 背景=rgb(38, 38, 38) cls=TvDirectorEntry-module__vCoIiq__pill border-hair border-(--t",
+    "　　<DIV> 「」aria=\"\" box=[885,759,28,28] 子数=1 svg数=3 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) cls=relative z-[2] size-7 shrink-0",
+    "　　<DIV> 「」aria=\"\" box=[885,759,28,28] 子数=3 svg数=3 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) cls=ChatAgentLiquidOrb-module__JiGsiG__viewport",
+    "　　<DIV> 「」aria=\"\" box=[885,759,28,28] 子数=29 svg数=2 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) cls=ChatAgentLiquidOrb-module__JiGsiG__orb ChatAgentLiquidOrb-mo",
+    "　　<BUTTON> 「」aria=\"隐藏节点连线\" box=[176,764,28,28] 子数=1 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) cls=hover:bg-canvas-controls-hover flex items-center justify-cen",
+    "　　<BUTTON> 「」aria=\"网格吸附\" box=[208,764,28,28] 子数=1 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) cls=hover:bg-canvas-controls-hover flex items-center justify-cen",
+    "\n════ ③ 音频大编辑器 ⚙ 里的开关 ════",
+    "　平移音频节点：true",
+    "　选中 [\"a-THmbuJXQj4\"]",
+    "　候选 19 个：",
+    "　　<DIV> 「智能剪辑 4」aria=\"\" box=[882,-12,161,22] 子数=1 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) 光标=pointer cls=text-fg-muted flex w-full min-w-0 items-center gap-1 cursor-pointer",
+    "　　<DIV> 「智能剪辑 4」aria=\"\" box=[882,-10,161,18] 子数=2 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) 光标=pointer cls=flex min-w-0 flex-1 items-center gap-1 cursor-pointer",
+    "　　<DIV> 「」aria=\"\" box=[9,8,57,32] 子数=2 svg数=2 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) 光标=pointer cls=group/logo hover:bg-canvas-controls-hover flex h-8 shrink-0 cursor-poi",
+    "　　<BUTTON> 「画布 2」aria=\"\" box=[165,8,69,32] 子数=2 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) 光标=pointer cls=group/canvas-chip hover:bg-canvas-controls-hover data-open:bg-canvas-c",
+    "　　<BUTTON> 「」aria=\"工作流\" box=[244,8,32,32] 子数=1 svg数=1 边框=rgb(82, 82, 82) 背景=rgb(54, 54, 54) 光标=pointer cls=flex size-8 items-center justify-center rounded-lg bg-clip-content tra",
+    "　　<DIV> 「开通会员 限时 45 折」aria=\"\" box=[1167,8,159,32] 子数=2 svg数=1 边框=rgba(255, 255, 255, 0.08) 背景=color(srgb 0.14902 0.14902 0.14902 / 0.8) 光标=pointer cls=border-border-neutral-l1 text-nt-text-default flex h-8 min-w-[60px] cu",
+    "　　<BUTTON> 「上传视频后开始」aria=\"\" box=[1119,50,135,76] 子数=2 svg数=1 边框=rgb(54, 54, 54) 背景=rgba(0, 0, 0, 0) 光标=pointer cls=nodrag nopan flex aspect-[294/165] w-full flex-col items-center justif",
+    "　　<BUTTON> 「打开导演台」aria=\"\" box=[319,140,42,15] 子数=0 svg数=0 边框=lab(100 -0.0000298023 0.0000119209 / 0.08) 背景=lab(100 -0.0000298023 0.0000119209 / 0.1) 光标=pointer cls=nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rou",
+    "　　<BUTTON> 「开始拉片」aria=\"\" box=[1119,168,135,17] 子数=0 svg数=0 边框=rgb(82, 82, 82) 背景=rgba(255, 255, 255, 0.08) 光标=not-allowed cls=nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px",
+    "　　<BUTTON> 「参考」aria=\"\" box=[-41,327,54,26] 子数=2 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(255, 255, 255, 0.05) 光标=pointer cls=flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py",
+    "　　<BUTTON> 「」aria=\"\" box=[569,465,32,32] 子数=1 svg数=1 边框=rgb(82, 82, 82) 背景=rgb(255, 255, 255) 光标=not-allowed cls=bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center just",
+    "　　<DIV> 「」aria=\"\" box=[423,584,12,12] 子数=0 svg数=0 边框=rgb(38, 38, 38) 背景=rgb(255, 255, 255) 光标=pointer cls=mantine-focus-auto m_c9a9a60a mantine-Slider-thumb",
+    "　　<DIV> 「」aria=\"\" box=[443,620,12,12] 子数=0 svg数=0 边框=rgb(38, 38, 38) 背景=rgb(255, 255, 255) 光标=pointer cls=mantine-focus-auto m_c9a9a60a mantine-Slider-thumb",
+    "　　<BUTTON> 「TV Director」aria=\"TV Director\" box=[875,749,48,48] 子数=2 svg数=3 边框=rgb(54, 54, 54) 背景=rgb(38, 38, 38) 光标=pointer cls=TvDirectorEntry-module__vCoIiq__pill border-hair border-(--topnav-btn-",
+    "　　<DIV> 「」aria=\"\" box=[885,759,28,28] 子数=1 svg数=3 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) 光标=pointer cls=relative z-[2] size-7 shrink-0",
+    "　　<DIV> 「」aria=\"\" box=[885,759,28,28] 子数=3 svg数=3 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) 光标=pointer cls=ChatAgentLiquidOrb-module__JiGsiG__viewport",
+    "　　<DIV> 「」aria=\"\" box=[885,759,28,28] 子数=29 svg数=2 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) 光标=pointer cls=ChatAgentLiquidOrb-module__JiGsiG__orb ChatAgentLiquidOrb-module__JiGs",
+    "　　<BUTTON> 「」aria=\"隐藏节点连线\" box=[176,764,28,28] 子数=1 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) 光标=pointer cls=hover:bg-canvas-controls-hover flex items-center justify-center rounde",
+    "　　<BUTTON> 「」aria=\"网格吸附\" box=[208,764,28,28] 子数=1 svg数=1 边框=rgb(82, 82, 82) 背景=rgba(0, 0, 0, 0) 光标=pointer cls=hover:bg-canvas-controls-hover flex items-center justify-center rounde",
+    "　　　└ svg：[{\"尺寸\":[13,13],\"pathd\":\"M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 \",\"位置\":[0,5]}]",
+    "　　　└ svg：[{\"尺寸\":[13,13],\"pathd\":\"M4.67 2.64a1 1 0 0 1 1.59-.8l7.3 5.36a1 1 0 0 \",\"位置\":[0,3]}]",
+    "　　　└ svg：[{\"尺寸\":[25,15],\"pathd\":\"M5.258 10.803h12.458l-1.064 3.742H0L3.099 3.72\",\"位置\":[8,9]},{\"尺寸\":[12,12],\"pathd\":\"M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .\",\"位置\":[37,10]}]",
+    "　　　└ svg：[{\"尺寸\":[12,12],\"pathd\":\"M6.2.12a.4.4 0 0 1 .56 0l.43.42a.4.4 0 0 1 0 .\",\"位置\":[49,10]}]",
+    "　　　└ svg：[{\"尺寸\":[16,16],\"pathd\":\"M12.25 11.03a1.22 1.22 0 1 0-2.45 0 1.22 1.22 \",\"位置\":[8,8]}]",
+    "　　　└ svg：[{\"尺寸\":[16,16],\"pathd\":\"M3.29.65A2.5 2.5 0 0 1 4.97 0h4.6c.62 0 1.22.2\",\"位置\":[11,8]}]",
+    "　　　└ svg：[{\"尺寸\":[11,11],\"pathd\":\"M16.25 16.25v-2.5h-2.5a.75.75 0 0 1 0-1.5h2.5v\",\"位置\":[62,25]}]",
+    "　　　└ svg：[{\"尺寸\":[12,12],\"pathd\":\"M8.5 0c.5 0 .9.48.9 1.06V7.6h6.54c.58 0 1.06.4\",\"位置\":[8,7]}]",
+    "　　　└ svg：[{\"尺寸\":[12,12],\"pathd\":\"M8.3.3a1 1 0 0 1 1.4 0l8 8a1 1 0 0 1-1.4 1.4L1\",\"位置\":[10,10]}]",
+    "　　　└ svg：[{\"尺寸\":[0,0],\"pathd\":null,\"位置\":[10,10]},{\"尺寸\":[31,31],\"pathd\":\"M 8 45 A 34 34 0 0 1 82 45\",\"位置\":[6,6]},{\"尺寸\":[31,31],\"pathd\":\"M 15 70 A 40 40 0 0 1 75 20\",\"位置\":[10,10]}]",
+    "　　　└ svg：[{\"尺寸\":[0,0],\"pathd\":null,\"位置\":[0,0]},{\"尺寸\":[31,31],\"pathd\":\"M 8 45 A 34 34 0 0 1 82 45\",\"位置\":[-4,-4]},{\"尺寸\":[31,31],\"pathd\":\"M 15 70 A 40 40 0 0 1 75 20\",\"位置\":[0,0]}]",
+    "　　　└ svg：[{\"尺寸\":[0,0],\"pathd\":null,\"位置\":[0,0]},{\"尺寸\":[31,31],\"pathd\":\"M 8 45 A 34 34 0 0 1 82 45\",\"位置\":[-4,-4]},{\"尺寸\":[31,31],\"pathd\":\"M 15 70 A 40 40 0 0 1 75 20\",\"位置\":[0,0]}]",
+    "　　　└ svg：[{\"尺寸\":[31,31],\"pathd\":\"M 8 45 A 34 34 0 0 1 82 45\",\"位置\":[-4,-4]},{\"尺寸\":[31,31],\"pathd\":\"M 15 70 A 40 40 0 0 1 75 20\",\"位置\":[0,0]}]",
+    "　　　└ svg：[{\"尺寸\":[14,14],\"pathd\":\"M9.28 0a2.28 2.28 0 1 1-2.22 2.8h-4.5a1.52 1.5\",\"位置\":[7,7]}]",
+    "　　　└ svg：[{\"尺寸\":[14,14],\"pathd\":\"m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.\",\"位置\":[7,7]}]",
+    "\n⭐ 三处合计候选 89 个",
+    "\n✅ 完成（未点任何开关）",
+    "⏳ ⌘0 复位 + 静置 15s…",
+    "⭐ 真的被移动：0 个 []"
+  ]
+}
