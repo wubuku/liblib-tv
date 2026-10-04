@@ -1,0 +1,368 @@
+{
+  "batch": 747,
+  "title": "把 16 个记账命令里最后两个「从未真跑」的跑通：createVideoContinuation → clearVideoContinuation、createPictureEdit（主体消除第三段）；并撤回 745「主体消除提交按钮无提示」这条待拍板项",
+  "verdict": "7/7",
+  "summary": {
+    "results": {
+      "A2_continuationEntry": {
+        "toolbarClicked": true,
+        "selectorPresent": true,
+        "defaultDurationText": "30.00 秒",
+        "confirmText": "确认续写",
+        "confirmDisabled": null,
+        "regionBox": {
+          "display": "block",
+          "w": 511,
+          "h": 48,
+          "cx": 611,
+          "cy": 683
+        },
+        "sourceFile": "视频节点 5-片段重拍"
+      },
+      "A3_confirm": {
+        "confirmed": true,
+        "past": [
+          1,
+          2
+        ],
+        "nodes": [
+          11,
+          12
+        ],
+        "edges": [
+          11,
+          12
+        ],
+        "selectionBefore": [
+          "video-1791080340121-x4s5fk"
+        ],
+        "selectionAfter": [
+          "video-continuation-1791080341241-9q0655"
+        ],
+        "selectionMovedToNewCard": true,
+        "contNodes": [
+          {
+            "id": "video-continuation-1791080341241-9q0655",
+            "filename": "续写 视频节点 5-片段重拍",
+            "status": "empty",
+            "duration": 6,
+            "start": 0,
+            "end": 30,
+            "edgeId": "e-video-1791080340121-x4s5fk-video-continuation-1791080341241-9q0655",
+            "sourceNodeId": "video-1791080340121-x4s5fk"
+          }
+        ],
+        "sourceNodeId": "video-1791080340121-x4s5fk",
+        "expectedFilename": "续写 视频节点 5-片段重拍",
+        "exitButtonPresent": true
+      },
+      "A4_clear": {
+        "cleared": true,
+        "contCardId": "video-continuation-1791080341241-9q0655",
+        "past": [
+          2,
+          3
+        ],
+        "nodes": [
+          12,
+          12
+        ],
+        "edges": [
+          12,
+          11
+        ],
+        "cardStillOnCanvas": true,
+        "contNodesAfter": [],
+        "continuationCardsAfter": [
+          {
+            "id": "video-continuation-1791080341241-9q0655",
+            "file": "续写 视频节点 5-片段重拍",
+            "status": "empty",
+            "hasCont": false,
+            "duration": 6
+          }
+        ],
+        "exitButtonStillPresent": false
+      },
+      "B1_pictureEditOpen": {
+        "durationBefore": 30,
+        "durationSetter": "updateNodeData",
+        "durationAfter": 10,
+        "menuOpened": true,
+        "actionPicked": true,
+        "panelPresent": true,
+        "submitReason": {
+          "attr": "请先标记主体",
+          "text": "请先标记主体",
+          "colour": "rgb(189, 140, 85)"
+        },
+        "submit": {
+          "disabled": true,
+          "status": "idle",
+          "aria": "提交主体消除",
+          "text": "提交"
+        },
+        "count": "0/4",
+        "overlay": {
+          "display": "block",
+          "w": 268,
+          "h": 150,
+          "cx": 640,
+          "cy": 575
+        },
+        "tool": "point",
+        "marksAtOpen": 0
+      },
+      "B2_pictureEditSubmit": {
+        "marksAtOpen": 0,
+        "marksAfterPointer": 1,
+        "count": [
+          "0/4",
+          "1/4"
+        ],
+        "submitBeforeMark": {
+          "disabled": true,
+          "status": "idle",
+          "aria": "提交主体消除",
+          "text": "提交"
+        },
+        "submitAfterMark": {
+          "disabled": false,
+          "status": "idle"
+        },
+        "submitted": true,
+        "statusAt300ms": "analyzing",
+        "panelAt300ms": true,
+        "statusAt2500ms": null,
+        "panelAt2500ms": false,
+        "past": [
+          2,
+          3
+        ],
+        "nodes": [
+          11,
+          12
+        ],
+        "edges": [
+          11,
+          12
+        ],
+        "newFiles": [
+          "主体消除-视频节点 5-片段重拍"
+        ],
+        "newNodeData": [
+          {
+            "id": "picture-edit-1791080351667-sndzzq",
+            "file": "主体消除-视频节点 5-片段重拍",
+            "status": "pending",
+            "type": "video"
+          }
+        ]
+      },
+      "static": {
+        "decl_createVideoContinuation": [
+          324,
+          1663
+        ],
+        "decl_clearVideoContinuation": [
+          374,
+          2974
+        ],
+        "decl_createPictureEdit": [
+          353,
+          2615
+        ],
+        "uiMinDurationLine": 23,
+        "uiMinDurationSrc": "const MIN_DURATION = 4;",
+        "uiClampLine": 101,
+        "storeGuardLine": 1687,
+        "storeGuardSrc": "if (normalizedEnd - normalizedStart < 4) return null;",
+        "confirmLine": 231,
+        "confirmHasDisabled": false,
+        "contOnTargetLine": 1731,
+        "selectTargetLine": 1756,
+        "clearLine": 2974,
+        "clearDeletesContinuation": true,
+        "clearFiltersEdge": true,
+        "clearTouchesNodes": false,
+        "clearPushesHistory": true,
+        "reasonLine": 534,
+        "reasonReasons": [
+          534,
+          539,
+          545
+        ],
+        "reasonReadLine": 866,
+        "reasonColour": "#bd8c55",
+        "submitLine": 866,
+        "submitDisabledLine": 884,
+        "canSubmitLine": 550,
+        "beginDrawLine": 379,
+        "pointBranchLine": 401,
+        "confirmContinuationLine": 217,
+        "emptyStateLine": 548,
+        "emptyStateText": "等待续写内容"
+      }
+    },
+    "runTable": [
+      {
+        "cmd": "createFirstFrameReference",
+        "tier": "A",
+        "ran": "744",
+        "delta": "past+1、只写 attempt"
+      },
+      {
+        "cmd": "createFirstLastFrameReference",
+        "tier": "A",
+        "ran": "744",
+        "delta": "past+1、只写 attempt"
+      },
+      {
+        "cmd": "updateNodeData（setAttempt）",
+        "tier": "A",
+        "ran": "744/745/746",
+        "delta": "past+1"
+      },
+      {
+        "cmd": "addNodeAtPosition + addEdge（选特效）",
+        "tier": "A",
+        "ran": "746",
+        "delta": "past+2、节点+1、边+1"
+      },
+      {
+        "cmd": "destroyFirstFrameReference",
+        "tier": "A",
+        "ran": "746",
+        "delta": "past+1、节点-1、边-1"
+      },
+      {
+        "cmd": "createLongVideoProcess",
+        "tier": "A",
+        "ran": "746",
+        "delta": "past+1、节点+12、边+22"
+      },
+      {
+        "cmd": "addDerivedNode（逐帧拉片）",
+        "tier": "B",
+        "ran": "745",
+        "delta": "past+1、节点+1、边+1"
+      },
+      {
+        "cmd": "createVideoFrameCapture（抽帧）",
+        "tier": "B",
+        "ran": "745",
+        "delta": "past+1、节点+1、边+1"
+      },
+      {
+        "cmd": "createAudioSplit（音视频分离）",
+        "tier": "B",
+        "ran": "745",
+        "delta": "past+1、节点+2、边+2"
+      },
+      {
+        "cmd": "createSubtitleErase（智能去字幕）",
+        "tier": "B",
+        "ran": "745",
+        "delta": "past+1、节点+1、边+1"
+      },
+      {
+        "cmd": "createSmartMatting（智能抠像）",
+        "tier": "B",
+        "ran": "745",
+        "delta": "past+1、节点+1、边+1"
+      },
+      {
+        "cmd": "createDepthMotionCapture（深度动作捕捉）",
+        "tier": "B",
+        "ran": "745",
+        "delta": "past+1、节点+1（需时长≤15s）"
+      },
+      {
+        "cmd": "createVideoContinuation（智能续写）",
+        "tier": "B",
+        "ran": "747",
+        "delta": "past+1、节点+1、边+1"
+      },
+      {
+        "cmd": "clearVideoContinuation（清除续写）",
+        "tier": "B",
+        "ran": "747",
+        "delta": "past+1、节点±0、边-1"
+      },
+      {
+        "cmd": "createPictureEdit（主体消除）",
+        "tier": "B",
+        "ran": "747",
+        "delta": "past+1、节点+1、边+1（需时长≤15s）"
+      },
+      {
+        "cmd": "submitLibTVEditorSessionCommit",
+        "tier": "A",
+        "ran": "—",
+        "delta": "742 验出零 UI 入口，从未触发"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "label": "C1 静态：三个命令各恰好两处（声明+实现）；UI MIN_DURATION=4 ⟺ store 的 <4 守卫；确认按钮无 disabled；clear 摘元数据+删边但不删节点；submit-reason 读点存在",
+      "pass": true,
+      "detail": "{\"decl_createVideoContinuation\": [324, 1663], \"decl_clearVideoContinuation\": [374, 2974], \"decl_createPictureEdit\": [353, 2615], \"uiMinDurationLine\": 23, \"uiMinDurationSrc\": \"const MIN_DURATION = 4;\", \"uiClampLine\": 101, \"storeGuardLine\": 1687, \"storeGuardSrc\": \"if (normalizedEnd - normalizedStart < 4) return null;\", \"confirmLine\": 231, \"confirmHasDisabled\": false, \"contOnTargetLine\": 1731, \"selectTargetLine\": 1756, \"clearLine\": 2974, \"clearDeletesContinuation\": true, \"clearFiltersEdge\": true, \"clearTouchesNodes\": false, \"clearPushesHistory\": true, \"reasonLine\": 534, \"reasonReasons\": [534, 539, 545], \"reasonReadLine\": 866, \"reasonColour\": \"#bd8c55\", \"submitLine\": 866, \"submitDisabledLine\": 884, \"canSubmitLine\": 550, \"beginDrawLine\": 379, \"pointBranchLine\": 401, \"confirmContinuationLine\": 217, \"emptyStateLine\": 548, \"emptyStateText\": \"等待续写内容\"}"
+    },
+    {
+      "label": "C2 智能续写入口：工具栏「智能续写」文字按钮 ⟹ 选择器面板出现，默认区间 0→30.00 秒",
+      "pass": true,
+      "detail": "{\"toolbarClicked\": true, \"selectorPresent\": true, \"defaultDurationText\": \"30.00 秒\", \"confirmText\": \"确认续写\", \"confirmDisabled\": null, \"regionBox\": {\"display\": \"block\", \"w\": 511, \"h\": 48, \"cx\": 611, \"cy\": 683}, \"sourceFile\": \"视频节点 5-片段重拍\"}"
+    },
+    {
+      "label": "C3 确认续写：past+1、节点+1、边+1；**选中切到新建的续写卡**；卡 filename=「续写 <源卡名>」、status=empty；「退出续写模式」按钮出现",
+      "pass": true,
+      "detail": "{\"confirmed\": true, \"past\": [1, 2], \"nodes\": [11, 12], \"edges\": [11, 12], \"selectionBefore\": [\"video-1791080340121-x4s5fk\"], \"selectionAfter\": [\"video-continuation-1791080341241-9q0655\"], \"selectionMovedToNewCard\": true, \"contNodes\": [{\"id\": \"video-continuation-1791080341241-9q0655\", \"filename\": \"续写 视频节点 5-片段重拍\", \"status\": \"empty\", \"duration\": 6, \"start\": 0, \"end\": 30, \"edgeId\": \"e-video-1791080340121-x4s5fk-video-continuation-1791080341241-9q0655\", \"sourceNodeId\": \"video-1791080340121-x4s5fk\"}], \"sourceNodeId\": \"video-1791080340121-x4s5fk\", \"expectedFilename\": \"续写 视频节点 5-片段重拍\", \"exitButtonPresent\": true}"
+    },
+    {
+      "label": "C4 退出续写：past+1、节点**±0**、边**-1**；续写卡仍在画布上且 continuation 已被摘掉",
+      "pass": true,
+      "detail": "{\"cleared\": true, \"contCardId\": \"video-continuation-1791080341241-9q0655\", \"past\": [2, 3], \"nodes\": [12, 12], \"edges\": [12, 11], \"cardStillOnCanvas\": true, \"contNodesAfter\": [], \"continuationCardsAfter\": [{\"id\": \"video-continuation-1791080341241-9q0655\", \"file\": \"续写 视频节点 5-片段重拍\", \"status\": \"empty\", \"hasCont\": false, \"duration\": 6}], \"exitButtonStillPresent\": false}"
+    },
+    {
+      "label": "C5 主体消除第 1、2 段：改时长到 10 后面板出现；**submit-reason=「请先标记主体」**、提交 disabled、计数 0/4（745 记的「无提示」要在这里被推翻）",
+      "pass": true,
+      "detail": "{\"durationBefore\": 30, \"durationSetter\": \"updateNodeData\", \"durationAfter\": 10, \"menuOpened\": true, \"actionPicked\": true, \"panelPresent\": true, \"submitReason\": {\"attr\": \"请先标记主体\", \"text\": \"请先标记主体\", \"colour\": \"rgb(189, 140, 85)\"}, \"submit\": {\"disabled\": true, \"status\": \"idle\", \"aria\": \"提交主体消除\", \"text\": \"提交\"}, \"count\": \"0/4\", \"overlay\": {\"display\": \"block\", \"w\": 268, \"h\": 150, \"cx\": 640, \"cy\": 575}, \"tool\": \"point\", \"marksAtOpen\": 0}"
+    },
+    {
+      "label": "C6 主体消除第 3 段：落一个 point 标记 ⟹ 计数 0/4→1/4、提交解禁；点提交 ⟹ analyzing → 面板卸载，past+1、节点+1、边+1、新文件名以「主体消除-」开头",
+      "pass": true,
+      "detail": "{\"marksAtOpen\": 0, \"marksAfterPointer\": 1, \"count\": [\"0/4\", \"1/4\"], \"submitBeforeMark\": {\"disabled\": true, \"status\": \"idle\", \"aria\": \"提交主体消除\", \"text\": \"提交\"}, \"submitAfterMark\": {\"disabled\": false, \"status\": \"idle\"}, \"submitted\": true, \"statusAt300ms\": \"analyzing\", \"panelAt300ms\": true, \"statusAt2500ms\": null, \"panelAt2500ms\": false, \"past\": [2, 3], \"nodes\": [11, 12], \"edges\": [11, 12], \"newFiles\": [\"主体消除-视频节点 5-片段重拍\"], \"newNodeData\": [{\"id\": \"picture-edit-1791080351667-sndzzq\", \"file\": \"主体消除-视频节点 5-片段重拍\", \"status\": \"pending\", \"type\": \"video\"}]}"
+    },
+    {
+      "label": "C7 16 个记账命令的「真跑过」汇总表 16 行齐（15 真跑 + 1 零入口）",
+      "pass": true,
+      "detail": "[{\"cmd\": \"createFirstFrameReference\", \"tier\": \"A\", \"ran\": \"744\", \"delta\": \"past+1、只写 attempt\"}, {\"cmd\": \"createFirstLastFrameReference\", \"tier\": \"A\", \"ran\": \"744\", \"delta\": \"past+1、只写 attempt\"}, {\"cmd\": \"updateNodeData（setAttempt）\", \"tier\": \"A\", \"ran\": \"744/745/746\", \"delta\": \"past+1\"}, {\"cmd\": \"addNodeAtPosition + addEdge（选特效）\", \"tier\": \"A\", \"ran\": \"746\", \"delta\": \"past+2、节点+1、边+1\"}, {\"cmd\": \"destroyFirstFrameReference\", \"tier\": \"A\", \"ran\": \"746\", \"delta\": \"past+1、节点-1、边-1\"}, {\"cmd\": \"createLongVideoProcess\", \"tier\": \"A\", \"ran\": \"746\", \"delta\": \"past+1、节点+12、边+22\"}, {\"cmd\": \"addDerivedNode（逐帧拉片）\", \"tier\": \"B\", \"ran\": \"745\", \"delta\": \"past+1、节点+1、边+1\"}, {\"cmd\": \"createVideoFrameCapture（抽帧）\", \"tier\": \"B\", \"ran\": \"745\", \"delta\": \"past+1、节点+1、边+1\"}, {\"cmd\": \"createAudioSplit（音视频分离）\", \"tier\": \"B\", \"ran\": \"745\", \"delta\": \"past+1、节点+2、边+2\"}, {\"cmd\": \"createSubtitleErase（智能去字幕）\", \"tier\": \"B\", \"ran\": \"745\", \"delta\": \"past+1、节点+1、边+1\"}, {\"cmd\": \"createSmartMatting（智能抠像）\", \"tier\": \"B\", \"ran\": \"745\", \"delta\": \"past+1、节点+1、边+1\"}, {\"cmd\": \"createDepthMotionCapture（深度动作捕捉）\", \"tier\": \"B\", \"ran\": \"745\", \"delta\": \"past+1、节点+1（需时长≤15s）\"}, {\"cmd\": \"createVideoContinuation（智能续写）\", \"tier\": \"B\", \"ran\": \"747\", \"delta\": \"past+1、节点+1、边+1\"}, {\"cmd\": \"clearVideoContinuation（清除续写）\", \"tier\": \"B\", \"ran\": \"747\", \"delta\": \"past+1、节点±0、边-1\"}, {\"cmd\": \"createPictureEdit（主体消除）\", \"tier\": \"B\", \"ran\": \"747\", \"delta\": \"past+1、节点+1、边+1（需时长≤15s）\"}, {\"cmd\": \"submitLibTVEditorSessionCommit\", \"tier\": \"A\", \"ran\": \"—\", \"delta\": \"742 验出零 UI 入口，从未触发\"}]"
+    }
+  ],
+  "conclusions": [
+    "**16 个记账命令里最后两个从未触发的，本批都真跑通了** —— `createVideoContinuation`（智能续写确认）`past` +1、节点 +1、边 +1；`clearVideoContinuation`（退出续写模式）`past` +1、节点 **±0**、边 **−1**；`createPictureEdit`（主体消除第三段）`past` +1、节点 +1、边 +1、新文件名「主体消除-<源卡名>」。16 个里 15 个真跑过，只剩 742 验出零 UI 入口的 `submitLibTVEditorSessionCommit`。",
+    "**撤回 745 的待拍板③**：「主体消除提交按钮 disabled 但无提示『要先标记主体』」**事实不成立**。`PictureEditPanel.tsx:865-875` 渲染了这句提示，并挂在 `data-picture-edit-submit-reason` 上；实测属性值与文本都是「请先标记主体」，颜色 `rgb(189, 140, 85)`（`text-[#bd8c55]`，琥珀色警示调）。745 是因为面板开了就直接读 `disabled`，没去读旁边的提示文本。",
+    "**`continuation` 写在新建的续写卡上，不在源卡上** —— `canvasStore.ts:1712-1733` 建的是一张新的 video 卡（`续写 <源卡名>`、`status: \"empty\"`、`durationSeconds: 6`），`data.continuation` 写在这张卡（`:1731`）；`:1756-1757` 紧接着 `selectedNodeIds: [targetId]` ⟹ **确认后面板与选中都切到了续写卡**。",
+    "**「退出续写模式」只降级、不删卡** —— `:2990-3008` 做两件事：`delete nextData.continuation`（从续写卡摘掉元数据）+ `edges.filter(edge => edge.id !== continuation.edgeId)`（删连线），**没有删节点**。实测节点 ±0、边 −1，续写卡留在画布上、`status` 仍是 `\"empty\"` ⟹ `VideoNode.tsx:548` 的 `data-video-continuation-empty` 渲染「**等待续写内容**」。",
+    "**UI 的 4 秒下限与 store 的 4 秒守卫同值** —— `VideoContinuationSelector.tsx:23 const MIN_DURATION = 4`；`:102` 拖动 `end` 时 clamp 下界 = `startSeconds + MIN_DURATION`；`canvasStore.ts:1687 if (normalizedEnd - normalizedStart < 4) return null;`。且 `[data-video-continuation-confirm]` **没有 `disabled` 属性** ⟹ 走 UI 出不了窄区间，store 守卫是**纯纵深防御**、不是可达的拒绝路径。",
+    "**主体消除第三段只需一次 `pointerdown`** —— overlay 的 `beginDraw`（`PictureEditPanel.tsx:379-409`）在 `tool === \"point\"` 时直接建标记；实测一次 `mouse.down/up` ⟹ 标记 0→1、计数 `0/4`→`1/4`、提交按钮 `disabled` 翻转。默认工具就是 `point`（实测 `data-picture-edit-tool=\"point\"`），不用先切工具。",
+    "**提交后走 `analyzing` 再卸载面板** —— 点提交 300ms 时 `data-picture-edit-submit-status=\"analyzing\"`、面板仍在；2.5s 时属性与面板**都已消失**（`submitPictureEdit` 关面板）⟹ 这个异步阶段是「面板关掉」，不是「状态回到 idle」。",
+    "**「智能续写」是「一段面板 + 一次确认」** —— 744/745 记的「两段式」是两次点击（开面板 → 点确认），不是两个面板：`VideoContinuationSelector.tsx:233` 的 `onClick={() => onConfirm(range.start, range.end)}` 直连 `VideoNode.tsx:217` 的 `confirmContinuation` → `createVideoContinuation`，中间没有第二个表单。"
+  ],
+  "probeCorrections": [
+    "**第一版读错了节点**（本批最重要的一次返工）：确认续写后我去读**源卡**的 `data.continuation`，读成 `null`，差点判成「命令没写上」。实际 `continuation` 在**新建的续写卡**上，且 `:1756-1757` 已把选中切过去。改法：快照里加一个`contNodes`（按 `data.continuation` 存在与否筛节点）而不是按 `id` 找。",
+    "**「找那个有 X 的元素」不能按已知 id 找** —— 我手里有的是源卡 id，而要找的字段长在另一个节点上。746 已经栽过一次同类坑（`display:none` 元素按自身盒子 hover），两批的共同教训：**先确认「要找的东西在哪个节点上」，再动手读**。",
+    "**起手式滑杆/手柄要先看它到底是什么** —— 我按「滑杆」写了 `min/max/step/value` 的读法，实测 `[data-video-continuation-start]` / `-end` 是 `<button>` 手柄（16×16，`min/max/step` 全为 `null`）⟹ 读数全空。改成先打 `type`/`tagName` 再决定读法。"
+  ],
+  "notClaimed": [
+    "不声称**续写卡「等待续写内容」空态的视觉与源站是否一致** —— 未取证。",
+    "「退出续写模式」留下空卡**是否有意**（降级 vs 删卡）—— 未取证，不判定为缺陷。",
+    "`createVideoContinuation` 的 `< 4` 秒守卫**未真跑**（UI 走不到该区间）；只证到 UI clamp 与 store 守卫常量同值。",
+    "**续写卡本身的生成**（`status: \"empty\"` → 生成出内容）未跑 —— 那是续写卡的生成按钮，不在本批 3 个命令内。",
+    "`createPictureEdit` 建的节点在 2.5s 时的 `status` 只记了读数，**后续是否会从 `pending` 演进未取证**（745 已记过同一限制）。",
+    "主体消除只验了 `subjectRemove`；`subjectModify` / `subjectReplace` 的另外两条 `reason` 分支（「请补充每个主体的修改描述」/「请为每个主体选择替换图」）**只从源码读到，未跑**。",
+    "16 个命令的汇总表**沿用 744 的 A/B 分档口径**，本批没有重跑前 13 条 —— 「真跑过」是**跨批次累计**的结论，不是本批的独立读数。",
+    "「智能续写」在 failed 卡上不可达（745 已证 L2 `status === \"ready\"` 门控），本批**只在 ready 卡上跑**，未做两态对照。"
+  ]
+}
