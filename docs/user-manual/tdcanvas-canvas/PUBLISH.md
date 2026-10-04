@@ -328,8 +328,9 @@ python3 scripts/append-audit.py AUDIT.md < /tmp/audit-rows.txt
 
 ### ★ 跑探针前必读：八条判据纪律（M143 汇总；M193 重编第 1 条并补上第 8 行）
 
-七支探针脚本（`probe-discoverability.js` / `probe-toolbar-states.js` / `probe-absolute-coords.js` /
-`probe-node-toolbars.js` / `probe-canvas-chrome.js` / `probe-agent-i18n.js` / `probe-storage-shape.js`）的文件头各写着自己那条链上的教训，**但那些教训原先只存在于源码里**——维护者不打开 `.js` 就看不到，而它们每一条都是**用一批作废的读数换来的**。本节把脚本头里可迁移的纪律**收拢到一处**（M143 汇总前七条，M160 追加第八条）。
+九支探针脚本（`probe-discoverability.js` / `probe-toolbar-states.js` / `probe-absolute-coords.js` /
+`probe-node-toolbars.js` / `probe-canvas-chrome.js` / `probe-agent-i18n.js` / `probe-storage-shape.js` /
+`probe-copy-title.js` / `probe-resize-handles.js`）的文件头各写着自己那条链上的教训，**但那些教训原先只存在于源码里**——维护者不打开 `.js` 就看不到，而它们每一条都是**用一批作废的读数换来的**。本节把脚本头里可迁移的纪律**收拢到一处**（M143 汇总前七条，M160 追加第八条）。
 
 | # | 纪律 | 代价（真实发生过的） |
 |---|---|---|
@@ -696,6 +697,50 @@ TD_PROBE_PROFILE=/tmp/m93-profile node scripts/probe-discoverability.js
 >
 > **根因是同一个：过滤器和判据都有两个方向的错误——把该留的滤掉、把不该留的留下，而报告里只写了其中一面。** 教训：**每次改判据，都要同时看两个方向的清单（判为界面文案的、判为散文的），而不是只看最终那份。**
 
+
+### 节点缩放手柄可见性探针（M228 建立）
+
+```bash
+source ~/.nvm/nvm.sh
+node scripts/probe-resize-handles.js [http://localhost:3000] [/tmp/m228-handles-profile]
+```
+
+回答一个手册写错了、**而机器一眼就能验**的问题：**节点四角的缩放手柄，读者到底看不看得见。**
+
+`edit-nodes.md` 原写「选中节点，四角出现圆形缩放手柄」。实测**四角没有任何可见像素**——
+源码 `canvas-node.tsx:1091` 的 `ResizeHandle` 是 `absolute z-50 size-7` 加负偏移，
+**没有背景、没有边框、没有阴影**，连 `border-radius` 都是 `0px`。**它只是一块透明的命中区。**
+
+它量四件事，每一件都对应一条可数断言：
+
+1. **手柄的 DOM 事实**——数量、盒模型、以及 `background` / `border` / `box-shadow` /
+   `border-radius` 四个计算样式。**「DOM 里数得出 4 个」与「读者看得见 4 个」是两件事**，
+   而手册说的恰恰是后者。
+2. **框边圆点作为阳性对照**——源码 `ConnectionHandleDot` 内层是 `size-3 rounded-full border-2`，
+   **带 2px 描边**。**它读不出亮斑，整个像素判据就是坏的，不是产品的问题。**
+3. **截图像素读数**——手柄四角窗口 vs 边框中点对照窗口，各报最大亮度与亮像素数。
+4. **缩放六档**（`input[type=range]` 5..500 逐档设值）下的命中区屏幕尺寸，
+   实测正好 `28 × 缩放%`。
+
+⚠️ **它用一次性 profile，且只建不删**（建一张新画布 + 一个文本节点），
+所以不需要还原，也不会碰到共享 profile 的数据。
+
+⚠️ **三条坑写在探针文件头，这里点两条**：
+
+- **`page.evaluate` 的代码跑在页面上下文里，拿不到 Node 侧的模块作用域。**
+  第一版在里面直接调 `round()`，报 `ReferenceError: round is not defined`。
+- **读数恒定不变，先怀疑事件没送到。** 第二版把鼠标放在画布正中滚滚轮，
+  **5 次读数全是 100%**——**那 5 次滚轮落在节点正中被节点吃掉了，不是产品不能缩放**
+  （零结果先怀疑判据）。改用缩放滑杆才拿到真读数；
+  而滑杆是 **React 受控输入，直接 `el.value = 25` 不会触发 `onChange`**，
+  必须走 `Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set`
+  再派发 `input` / `change`。
+
+★ **本批订正**：**R80 / R81**（正文两处把手柄说成可见的圆形手柄）、
+**R82**（清单里一条假否定声明——声称画面里没有的生成面板就在图上）、
+**R83 / R84 / R85 / R86**（清单四处）。
+★ **一条读数只证明一件事**：**「框上有 4 个 28px 命中区」只证明命中区存在，
+「四角零可见像素 + 端口圆点有 2px 描边」才是不可见的证据，两条都要报。**
 ## 运维常见问题
 
 | 症状 | 原因与处理 |
