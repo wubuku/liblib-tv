@@ -242,6 +242,97 @@ def main() -> int:
         f"{len(items)} 项不可逆按钮"
     )
 
+    # ---------- 第四项：加载 Playwright 的方式必须十支统一，且变量名要写进文档（M239 新增） ----------
+    #
+    # 前三项守的是「哪些按钮危险」「怎么定位」「怎么选中」，
+    # **都没管「探针自己怎么跑起来」**——而这恰恰是最容易悄悄烂掉的一处。
+    #
+    # ★ **M238 实测**：十支探针当时分三套写法：
+    #   6 支读环境变量 PLAYWRIGHT_PATH；2 支读**另一个环境变量名 TD_PW**；
+    #   2 支（absolute-coords / copy-title）**完全裸硬编码、连环境变量都没有**。
+    #   **后果不是「报错」，而是「10 支里有 4 支在换 node 版本时直接废掉、另 6 支还能跑」**
+    #   ——**这是「不一致」最坏的那种形态：它不出错，它只是慢慢变成一半是死的。**
+    #   而**一道门禁都不管这件事**（本文件原先只查 DESTRUCTIVE 与定位标记）。
+    #
+    # ★ **判据只管 PLAYWRIGHT_PATH，不管别的环境变量**：探针里还有
+    #   TD_PROBE_PROFILE（换 profile 目录，4 支在用）与 TD_APP（换被测地址，2 支在用），
+    #   **它们是「可选覆盖」而不是「必须一致」**——十支不必齐，也**不该**强求齐
+    #   （M195：判据必须窄到能全对，误报率过高的判据连分析工具都不该留）。
+    #
+    # ★ **第二半条判据：变量名必须出现在 PUBLISH.md 里**（M144「判据要放在会被读到的地方」）。
+    #   M238 统一完代码之后实测：`PLAYWRIGHT_PATH` 在 PUBLISH.md 里**出现 0 次**——
+    #   换 node 版本的人在这一节找不到任何提示。**代码统一了而文档没跟上，等于没统一。**
+    #
+    # ⚠ **必须先剥注释再判**（M194 实测的同一个假阳性，见上面第三项那段）：
+    #   探针的文件头注释里会**提到**别的环境变量名（描述这段历史），
+    #   **注释里的话不是选择器**，按 M194 的解法整行剥掉。
+    pw_missing: list[str] = []
+    pw_hardcoded: list[str] = []
+    for pr in probes:
+        body = strip_js_comments(pr.read_text(encoding="utf-8"))
+        if "process.env.PLAYWRIGHT_PATH" not in body:
+            pw_missing.append(pr.name)
+        # 剥完注释后仍出现 playwright 的绝对路径 ⇒ 它被写死在代码里
+        hard = re.findall(r"['\"](/[^\n'\"]*node_modules/(?:@playwright/)?playwright)['\"]", body)
+        if hard and "process.env.PLAYWRIGHT_PATH" not in body:
+            pw_hardcoded.append(f"{pr.name}：{hard[0]}")
+
+    if pw_missing or pw_hardcoded:
+        print(f"  [探针契约] 探针加载 Playwright 的方式不统一（应为 {len(probes)}/{len(probes)} 支"
+              f"读环境变量 PLAYWRIGHT_PATH）：")
+        for m in pw_missing:
+            print(f"    - {m} 没读 process.env.PLAYWRIGHT_PATH")
+        for h in pw_hardcoded:
+            print(f"    - {h} 把路径写死在源码里")
+        print(
+            "    **M238 实测的后果不是「报错」，而是「十支里有几支在换 node 版本时直接废掉、"
+            "另几支还能跑」**——它不出错，它只是慢慢变成一半是死的。\n"
+            "    改法：const { chromium } = require(process.env.PLAYWRIGHT_PATH || '<包目录>');"
+            "（默认值写**包目录**而不是 index.js，换版本时不必猜文件名）。"
+        )
+        return 1
+
+    # ★ M239 注入 4 + 两次「判据自身失效」的修正：
+    #   ① 原先只判「PUBLISH.md 全文出现 PLAYWRIGHT_PATH」，于是把它挪到别的章节也照样放行、
+    #      **而输出却宣称「在『跑探针前必读』里查得到」——判据和它自己的报读对不上。**
+    #   ② 收紧时我**先错用了上面那个 marker_section**——它是「第九条：定位靠 data-*」，
+    #      **不是「跑探针前必读」**，于是正常数据也被判失败。
+    #   ③ ★ **第二次错**是我**用子串 `跑探针前必读` 去 find 标题**——
+    #      **而我自己刚在门禁表那一行（PUBLISH.md 第 232 行）写了同一句话**，
+    #      于是 `find` 命中的是**表格行、不是第 330 行那节的标题**，
+    #      **判据安静地判在了错误的那一段上，一声不吭。**
+    #   ★ **三次都是同一个病：判据引用的那段区间，和它在报错里说的那段区间，不是同一段。**
+    #   **判据必须与报读一致**，否则「通过」这两个字就不代表它声称的那件事。
+    #   **而 ③ 正是 M195「判据不够窄」的经典形态**——不是误报率问题，
+    #   **是判错了对象还不吭声**：它拿错误的区间判了一遍，然后报「通过」。
+    #   ★ **正确做法：锚定完整标题**（`### ★ 跑探针前必读`），**绝不用子串去找小节**——
+    #   子串会让你自己写在别处的同一句话劫持这个判据。
+    #   这才是 M144 的原话——**判据要放在会被读到的地方**
+    #   （全文某个角落提到不算，读者会翻的那一节才算）。
+    PROBE_READ_HEADING = "### ★ 跑探针前必读"
+    ri = ms.find(PROBE_READ_HEADING)
+    if ri < 0:
+        print(
+            f"  [探针契约] PUBLISH.md 里找不到「{PROBE_READ_HEADING}」那一节。\n"
+            "  本门禁守的就是那一节（读者跑探针前会翻的地方）；它被改名时请同步修改本门禁。"
+        )
+        return 1
+    rj = ms.find("\n## ", ri)
+    probe_read_section = ms[ri : rj if rj > 0 else len(ms)]
+
+    if "PLAYWRIGHT_PATH" not in probe_read_section:
+        print(
+            f"  [探针契约] PUBLISH.md 的「{PROBE_READ_HEADING}」一节里查不到 `PLAYWRIGHT_PATH` —— "
+            "**代码统一了而读者看不到提示，等于没统一**：换 node 版本的人在这一节找不到任何线索"
+            "（M144：判据要放在会被读到的地方；全文别处提到不算，这一节才是读者会翻的地方）。"
+        )
+        return 1
+
+    print(
+        f"  [ ok ] 探针启动方式：{len(probes)}/{len(probes)} 支均读环境变量 PLAYWRIGHT_PATH"
+        f"（无裸硬编码），且该变量名在 PUBLISH.md「{PROBE_READ_HEADING}」一节里查得到"
+    )
+
     print(
         f"  [ ok ] 探针契约：不可逆按钮白名单 {len(items)} 项"
         f"（{'、'.join(items)}）与文档一致"
