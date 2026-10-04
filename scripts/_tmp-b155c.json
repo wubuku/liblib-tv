@@ -1,0 +1,1729 @@
+{
+ "批次": "155c",
+ "目的": "查「导出时间线」点开后弹出的是哪一层",
+ "起点": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 805 · 基础会员",
+  "选中": 0
+ },
+ "点前快照": {
+  "对话框": [],
+  "菜单": [],
+  "浮层": [],
+  "列表框": []
+ },
+ "点前浮层数": 0,
+ "建": {
+  "ids": [
+   "node_ysgxj6dztp"
+  ],
+  "护栏全过": true
+ },
+ "找点": {
+  "候选数": 3,
+  "全候选": [
+   {
+    "x": -1817,
+    "y": -1465,
+    "宽": 25,
+    "高": 25,
+    "左": -1829,
+    "上": -1478,
+    "aria": "导出时间线",
+    "testid": null,
+    "逐字": "",
+    "在视口内": false,
+    "中心是自己": false
+   },
+   {
+    "x": -1071,
+    "y": -1088,
+    "宽": 25,
+    "高": 25,
+    "左": -1084,
+    "上": -1101,
+    "aria": "导出时间线",
+    "testid": null,
+    "逐字": "",
+    "在视口内": false,
+    "中心是自己": false
+   },
+   {
+    "x": 900,
+    "y": 310,
+    "宽": 25,
+    "高": 25,
+    "左": 888,
+    "上": 298,
+    "aria": "导出时间线",
+    "testid": null,
+    "逐字": "",
+    "在视口内": true,
+    "中心是自己": true
+   }
+  ],
+  "可用": [
+   {
+    "x": 900,
+    "y": 310,
+    "宽": 25,
+    "高": 25,
+    "左": 888,
+    "上": 298,
+    "aria": "导出时间线",
+    "testid": null,
+    "逐字": "",
+    "在视口内": true,
+    "中心是自己": true
+   }
+  ],
+  "可用数": 1
+ },
+ "用的点": {
+  "x": 900,
+  "y": 310,
+  "宽": 25,
+  "高": 25,
+  "左": 888,
+  "上": 298,
+  "aria": "导出时间线",
+  "testid": null,
+  "逐字": "",
+  "在视口内": true,
+  "中心是自己": true
+ },
+ "有无下载事件": false,
+ "点后快照": {
+  "对话框": [],
+  "菜单": [
+   {
+    "testid": null,
+    "aria": "导出时间线",
+    "盒": [
+     200,
+     292,
+     713,
+     331
+    ],
+    "逐字": "导出为 MP4 当前时间线暂不支持此操作 导出为 XML 批量导出时间线素材 请选择至少一个组、文本、图片或视频项 导出到剪映 导出到 DaVinci Resolve 导出到 Premiere 导出到 Final Cut Pro"
+   }
+  ],
+  "浮层": [
+   {
+    "testid": null,
+    "标签": "span",
+    "aria": null,
+    "盒": [
+     25,
+     25,
+     888,
+     298
+    ]
+   },
+   {
+    "testid": null,
+    "标签": "div",
+    "aria": "导出时间线",
+    "盒": [
+     200,
+     292,
+     713,
+     331
+    ]
+   }
+  ],
+  "列表框": []
+ },
+ "点后浮层数": 1,
+ "积分": "Credits: 805 · 基础会员",
+ "新出现的浮层": [
+  {
+   "testid": null,
+   "标签": "span",
+   "aria": null,
+   "盒": [
+    25,
+    25,
+    888,
+    298
+   ]
+  },
+  {
+   "testid": null,
+   "标签": "div",
+   "aria": "导出时间线",
+   "盒": [
+    200,
+    292,
+    713,
+    331
+   ]
+  }
+ ],
+ "新出现的对话框": [],
+ "截图": "screenshots/59-timeline-export-overlay.png",
+ "层内按钮": [
+  {
+   "aria": "Canvas title: 测试项目",
+   "testid": "canvas-project-title-trigger",
+   "逐字": "测试项目",
+   "盒": [
+    68,
+    28,
+    52,
+    16
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "项目",
+   "testid": "canvas-project-trigger",
+   "逐字": "",
+   "盒": [
+    20,
+    28,
+    120,
+    16
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "Canvas node summary: 节点 77",
+   "testid": "canvas-node-summary-trigger",
+   "逐字": "节点 77",
+   "盒": [
+    34,
+    28,
+    156,
+    16
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "搜索",
+   "testid": "canvas-panel-launcher",
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    911,
+    16
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "生成历史",
+   "testid": "canvas-panel-launcher",
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    943,
+    16
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "分享",
+   "testid": "canvas-share-trigger",
+   "逐字": "分享",
+   "盒": [
+    60,
+    28,
+    988,
+    16
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "更多",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    1065,
+    16
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "Credits: 805 · 基础会员",
+   "testid": "canvas-commerce-entry",
+   "逐字": "805 基础会员",
+   "盒": [
+    111,
+    28,
+    1109,
+    16
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "用户菜单",
+   "testid": "canvas-user-menu-trigger",
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    1236,
+    16
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1779,
+    -1506
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -2009,
+    -1602
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1745,
+    -1524
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "导出时间线",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    25,
+    25,
+    -1829,
+    -1478
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "全屏编辑",
+   "testid": null,
+   "逐字": "全屏编辑",
+   "盒": [
+    76,
+    25,
+    -1800,
+    -1478
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "静音",
+   "testid": "timeline-mute-button",
+   "逐字": "",
+   "盒": [
+    25,
+    25,
+    -2429,
+    -1413
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "添加素材到时间线",
+   "testid": null,
+   "逐字": "添加素材到时间线",
+   "盒": [
+    668,
+    50,
+    -2393,
+    -1425
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1985,
+    -1579
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1961,
+    -1555
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1913,
+    -1482
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1941,
+    -1405
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1893,
+    -1381
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1869,
+    -1333
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1845,
+    -1393
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1821,
+    -1468
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1442,
+    -1357
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "替换媒体",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    22,
+    22,
+    -8,
+    -514
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -11,
+    -557
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1300,
+    -971
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1120,
+    -833
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1096,
+    -809
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1072,
+    -785
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1048,
+    -761
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1024,
+    -737
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1008,
+    -715
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1000,
+    -689
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -976,
+    -665
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1000,
+    -1147
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "导出时间线",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    25,
+    25,
+    -1084,
+    -1101
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "全屏编辑",
+   "testid": null,
+   "逐字": "全屏编辑",
+   "盒": [
+    76,
+    25,
+    -1055,
+    -1101
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "静音",
+   "testid": "timeline-mute-button",
+   "逐字": "",
+   "盒": [
+    25,
+    25,
+    -1683,
+    -1036
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "添加素材到时间线",
+   "testid": null,
+   "逐字": "添加素材到时间线",
+   "盒": [
+    668,
+    50,
+    -1647,
+    -1049
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -952,
+    -641
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -928,
+    -617
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -904,
+    -593
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -880,
+    -569
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -856,
+    -545
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -952,
+    -851
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -928,
+    -827
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -904,
+    -803
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -880,
+    -779
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -856,
+    -755
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -832,
+    -731
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -808,
+    -707
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -784,
+    -683
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -760,
+    -659
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -736,
+    -635
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -712,
+    -611
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -688,
+    -587
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -664,
+    -563
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -640,
+    -539
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -616,
+    -512
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -832,
+    -522
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -808,
+    -498
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -592,
+    -491
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -568,
+    -464
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -784,
+    -474
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -760,
+    -450
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -544,
+    -443
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -520,
+    -416
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -736,
+    -426
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -712,
+    -402
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -496,
+    -395
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -472,
+    -368
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -688,
+    -378
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -664,
+    -354
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -448,
+    -347
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -774,
+    -1143
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1024,
+    -951
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1083,
+    -971
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1300,
+    -282
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -557,
+    -894
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -424,
+    -519
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -400,
+    -471
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -376,
+    -423
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    25,
+    25,
+    -348,
+    -370
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    26,
+    26,
+    -325,
+    -324
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1419,
+    -903
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -760,
+    -929
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -774,
+    -1357
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -557,
+    -1119
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -976,
+    -1357
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -568,
+    -1357
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1528,
+    -971
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    29,
+    29,
+    -1227,
+    -1357
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Create connected node before 时间线 3",
+   "testid": "flow-node-target-connection-menu-button",
+   "逐字": "",
+   "盒": [
+    36,
+    36,
+    233,
+    326
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Rename 时间线 3",
+   "testid": null,
+   "逐字": "时间线 3",
+   "盒": [
+    51,
+    32,
+    300,
+    258
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "盒": [
+    24,
+    24,
+    976,
+    258
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "分割",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    25,
+    25,
+    288,
+    298
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "删除",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    25,
+    25,
+    317,
+    298
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "导出时间线",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    25,
+    25,
+    888,
+    298
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "全屏编辑",
+   "testid": null,
+   "逐字": "全屏编辑",
+   "盒": [
+    76,
+    25,
+    916,
+    298
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "静音",
+   "testid": "timeline-mute-button",
+   "逐字": "",
+   "盒": [
+    25,
+    25,
+    288,
+    362
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "添加素材到时间线",
+   "testid": null,
+   "逐字": "添加素材到时间线",
+   "盒": [
+    668,
+    50,
+    324,
+    350
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "Resize timeline",
+   "testid": "timeline-node-resize-handle",
+   "逐字": "",
+   "盒": [
+    8,
+    124,
+    996,
+    290
+   ],
+   "disabled": null,
+   "在节点内": true
+  },
+  {
+   "aria": "文本",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    193
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "图片",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    235
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "视频",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    277
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "音频",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    319
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "时间线",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    361
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "主体",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    403
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "导演台",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    445
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "资产库",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    501
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "上传",
+   "testid": null,
+   "逐字": "",
+   "盒": [
+    40,
+    40,
+    16,
+    543
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "选择工具",
+   "testid": "canvas-pointer-tool-toggle",
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    16,
+    672
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "小地图",
+   "testid": "canvas-display-toggle-minimap",
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    48,
+    672
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "显示连线",
+   "testid": "canvas-display-toggle-connections",
+   "逐字": "",
+   "盒": [
+    28,
+    28,
+    80,
+    672
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "Zoom options, 60%",
+   "testid": "canvas-zoom-percent",
+   "逐字": "60%",
+   "盒": [
+    48,
+    28,
+    124,
+    672
+   ],
+   "disabled": null,
+   "在节点内": false
+  },
+  {
+   "aria": "与 AI 对话",
+   "testid": "canvas-sidecar-launcher",
+   "逐字": "",
+   "盒": [
+    118,
+    34,
+    1149,
+    673
+   ],
+   "disabled": null,
+   "在节点内": false
+  }
+ ],
+ "Esc一次后浮层数": 0,
+ "Esc两次后浮层数": 0,
+ "删除": [
+  {
+   "id": "node_ysgxj6dztp",
+   "消失": [
+    "node_ysgxj6dztp"
+   ]
+  }
+ ],
+ "收尾检查": {
+  "节点数": 76,
+  "位移节点": []
+ },
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 805 · 基础会员",
+  "组数": 0,
+  "边数": 0,
+  "残留自建": []
+ },
+ "断言全过": true
+}
