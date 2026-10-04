@@ -56,6 +56,8 @@ OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'stale-scan.json'
     'zoomReset': 'EB：僵尸 key，渲染代码 0 处引用，界面永不出现',
     'disconnectEdgeTitle': 'EC：断开连线确认框文案，属另一条代码路径，界面未捕捉到 📖',
     'disconnectConfirmText': 'EC：确定断开，同上',
+    'openingDeleteNodeConfirm': 'EE：僵尸 key，删除节点路径用的是 deleteNodeConfirmText，界面永不出现',
+    'openingDeleteNodeCancel': 'EE：僵尸 key，同上（删除节点用的是 common:cancel）',
 }
 
 # ---------- ⭐⭐ 已被推翻的**具体值**：这些字面本身就该从正文消失 ----------

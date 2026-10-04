@@ -1029,8 +1029,12 @@ Batch DO 把页面已加载的 **152 个 JS chunk（19 MB）** 只读下载下�
 | `canvasContextMenuMaterial` | `素材` | ⛔ 节点右键菜单 —— 无头环境拿不到系统菜单，但**菜单项确实存在** |
 | `canvasContextMenuText5110a0` | `资产` | 同上 |
 | ⚠️ `canvasStoreDelete` / `canvasStoreDelete2` | `删除边` / `批量删除边` | ⛔ **不是菜单文案**（Batch EC 更正）。查渲染代码：它们是 store 里 `deleteEdges` 函数**记操作日志时传给 `translate` 的字符串**（`ie(…, (0,t.translate)("canvas:canvasStoreDelete"), …)`），**不是任何 UI 组件的文案**。⚠️ 早先记「断开连线没找到入口」也已作废 —— 入口是**悬停出剪刀点它** / **选中连线按 `Delete`**，见 [connect-nodes.md](10-tasks/connect-nodes.md#断开连线) |
-| ⭐ `canvas:disconnectEdgeTitle` / `disconnectEdgeMessage` / `disconnectConfirmText` | `断开连线` / `断开后脚本关联关系将消失…` / `确定断开` | 📖 **界面上没捕捉到**。源码上它们是 `onEdgesChange` 收到 `type:"remove"` 时弹的**确认框**文案，组件在 `3-mou5v69wxmq.js`。⚠️ 但实测断线**根本没有确认框**（`connect-nodes.md` 两条路都直接断）⇒ **这组文案是另一条代码路径的**（可能只在「断开脚本关联」时弹），**没找到触发条件，不猜** |
+| ⭐ `canvas:disconnectEdgeTitle` / `disconnectEdgeMessage` / `disconnectConfirmText` | `断开连线` / `断开后脚本关联关系将消失…` / `确定断开` | ✅ **触发条件已查清（Batch ED）**：它们挂在 `onEdgesChange` 的 `type:"remove"` 分支上，**但被一个标志挡住** —— `isScriptDeleteConfirmedRef` 为真时**直接删、不弹框**；而这个 ref **只在「删除节点确认框」被点确定时**被置真，且 `setTimeout(…, 0)` 立刻复位。⇒ **它的作用是「这次删边是删除节点的连带结果，别再打扰用户一次」**。⛔ 所以日常断线（悬停剪刀 / 选中按 `Delete`）**永远走不到这个框**，与 `connect-nodes.md` 实测「无确认框」完全吻合 |
 | `canvasStoreCanvas` / `canvasStoreCanvas2` | `清空画布` / `重置画布` | 📖 界面上没见到这两个入口 |
+| ⭐ `canvas:deleteNodeConfirmTitle` / `deleteNodeConfirmMessage` / `deleteNodeConfirmText` | `确认删除` / `删除当前节点后，数据可能会丢失，也可通过 {undoShortcut} 撤销。确定要删除吗？` / `确定删除` | 📖 **界面上没捕捉到**（删的是普通节点，不走这条路）。源码上它服务于**脚本节点**（`SCRIPT` / `SCRIPT_V2`）。⚠️ 正文里那句「可通过 `⌘Z` 撤销」⛔ **实测撤不回来**（Batch ED 连按三次无效）—— 别信这句文案 |
+| 📖 `canvas:openingDeleteNodeTitle` / `Message` | `确认删除该节点？` / `删除该视频节点后，与「创意片头」相关的生成内容也将被永久删除，已发送到画布的内容不受影响` | 📖 界面上没捕捉到。源码分支：`type === VIDEO && data.openingUsed`（**被「创意片头」用过的视频节点**）。⚠️ 注意它的按钮仍走 `deleteNodeConfirmText`/`取消` |
+| ⛔ `canvas:openingDeleteNodeConfirm` / `openingDeleteNodeCancel` | `继续删除` / `放弃` | ⛔ **僵尸 key**（Batch EE 查清）：文案表里有，但删除节点这条路径用的是 `deleteNodeConfirmText` / `common:cancel`，**这两个键没被渲染代码引用过** |
+| 📖 `canvas:storyboardGroupDeletePolicy*`（**6 个**） | `删除分镜图组` / `删除分镜视频组` / `删除分镜组` + 三段「组内节点及其与脚本的关联关系将消失…」正文 | 📖 界面上没捕捉到。源码分支 `pq()`：按组里**有没有非 video 的分镜图**分三种组合选文案 |
 | `canvasCapture` | `画布抓取` | 📖 未验证 |
 | `canvasLoadingScreenText061c5b` | `团队版可见` | 📖 与上面协作一节呼应 |
 | `canvasNavbarCollabPortal*` | `已同步` / `同步中` / `待同步` / `已离线` | 📖 协作同步状态在**顶栏**呈现 |

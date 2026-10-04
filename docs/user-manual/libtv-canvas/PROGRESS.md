@@ -8817,3 +8817,97 @@ ie({nodes, edges, viewport}, (0,t.translate)("canvas:canvasStoreDelete"), i.proj
 `batchED1c.mjs`（⛔ 事故发生轮）、`batchED1d.mjs` + `batchED1e.mjs`（撤销尝试，三次均失败）、
 `batchED0.mjs`（重建，选择器没认出来）+ `batchED0b.mjs`（重建成功，刷新复核），
 各配 `.json`；`tools/canvas-baseline.mjs`（新增的权威基线）。
+
+---
+
+## §108 Batch EE —— 用 ED 事故换来的源码线索，把「删除确认框」四套分支彻底结清
+
+### 108.0 起点
+
+ED 批（§107）虽然是事故，但**从源码里挖到的东西比预期多**：
+删除节点的确认框不是「没有」，而是**有四套分支文案**，只是普通节点走不到。
+而 EC 批留下的那个 📖（`disconnectEdge*` 确认框何时弹）也在这批结清了。
+
+### 108.1 ⭐⭐⭐ 「没有确认框」这句话要加限定 —— 四套分支
+
+源码 `3-mou5v69wxmq.js` 的条件链（压缩后原样）：
+
+```js
+let a = e.some(e => e.type === SCRIPT || e.type === SCRIPT_V2)   // 脚本节点
+let n = pq(e.filter(pV))                                          // 分镜组（各自带文案）
+let o = e.filter(e => e.type === VIDEO && e.data?.openingUsed)     // 创意片头用过的视频
+if (!a && !n && o.length === 0) return          // ⭐ 三者皆无 ⇒ 直接删，不弹框
+```
+
+| 删的是哪类节点 | 有确认框吗 | 框标题 |
+|---|---|---|
+| ⛔ **普通节点**（文本/图片/视频/音频/逐帧拉片/导演台…） | **没有**，点完立刻消失 | — |
+| 脚本节点（`SCRIPT`/`SCRIPT_V2`） | ✅ | `确认删除` |
+| 视频节点且 `data.openingUsed` | ✅ | `确认删除该节点？` |
+| **分镜组** | ✅ | `删除分镜图组` / `删除分镜视频组` / `删除分镜组` |
+
+⇒ ⭐⭐ **正因为「删普通节点不给你任何提示」，它才是真正危险的那一种** ——
+脚本 / 创意片头 / 分镜组至少会弹一次框让你看一眼。
+
+⭐ **无论哪一类，按钮都是同一对** `确定删除` / `取消`
+（`confirmText: tP("canvas:deleteNodeConfirmText")`、`cancelText: tP("common:cancel")`）。
+
+⛔ **两个新的僵尸 key**（EB 方法：渲染 chunk 引用数 0，配阳性对照）：
+`openingDeleteNodeConfirm`（`继续删除`）与 `openingDeleteNodeCancel`（`放弃`）
+在文案表里都有中文，但 `3-mou5v69wxmq.js` 里**各 0 处引用**，
+而同一位置的 `deleteNodeConfirmText` **2 处** ⇒ 判据配齐，不是「搜错文件」。
+
+⚠️⭐ **最反直觉的一条**：确认框正文里**写着「也可通过 `⌘Z` 撤销」**
+（原文：「删除当前节点后，数据可能会丢失，也可通过 `⌘Z` 撤销。确定要删除吗？」），
+⛔ **但 ED 实测删掉后 `⌘Z` 连按三次都撤不回来** ⇒ **别信这句文案**。
+这正是「文案/符号相同 ≠ 功能相同」的另一例：**它是一句承诺，不是一个事实**。
+
+### 108.2 ⭐⭐ EC 批留下的 📖 结清：`disconnectEdge*` 何时弹
+
+`isScriptDeleteConfirmedRef` 的**唯一赋值点**（全 chunk 搜 `oK.current =`）：
+
+```js
+confirm({ title, message, confirmText, cancelText,
+  onConfirm: () => { takeSnapshot(); oK.current = true; oW.current = true; resolve(true);
+                     setTimeout(() => { oW.current = false; oK.current = false }, 0) } })
+```
+
+⇒ 它**只在「删除节点确认框被点确定」时置真，且 `setTimeout(…, 0)` 当帧复位**。
+而断线分支是 `t?.current ? r(!0) : confirm({...disconnectEdgeTitle...})`
+⇒ **标志为真就直接删边、不弹框**。
+
+⭐ 所以这组文案的**真实用途**是：
+「这次删边是删除节点的**连带结果**，别再打扰用户弹一次框」。
+
+⛔ ⇒ **日常断线（悬停剪刀 / 选中按 `Delete`）永远走不到这个框**，
+与 `connect-nodes.md` 实测「无确认框」完全吻合。EC 批的 📖 到此结清。
+
+### 108.3 手册改动（按 §255 全局搜，4 份副本全改）
+
+| 文件 | 改了什么 |
+|---|---|
+| `90-troubleshooting.md` | 「节点删了撤不回来」一节加上**四套分支表** + 按钮说明 + 「别信那句 `⌘Z` 撤销」 |
+| `10-tasks/organize-canvas.md:655` | `⋯ → 删除` 那行补全四套分支 + 僵尸 key 说明 |
+| `10-tasks/organize-canvas.md:715` | 「二次确认弹窗：没有」加上「测的是普通节点」的限定 |
+| `10-tasks/asset-library.md:1034` | 同上，**第四份副本**（§255 全局搜抓到的） |
+| `20-reference.md:1032` | ⛔ **`disconnectEdge*` 的 📖 升级为 ✅ 已结清**，写出 `isScriptDeleteConfirmedRef` 的机制 |
+| `20-reference.md` i18n 表 | 新增 **4 行**：`deleteNodeConfirm*` / `openingDeleteNodeTitle/Message` / 两个僵尸 key / `storyboardGroupDeletePolicy*`（**6 个**） |
+
+⚠️ 顺手更正一处自己写错的数字：`storyboardGroupDeletePolicy*` 起初写成「7 个」，
+回查渲染 chunk 实际是 **6 个**，已改。
+
+### 108.4 判据缺陷（§278 起续编号）
+
+| 缺陷 278 | ⭐⭐⭐ **把「我没触发到」写成「这个功能没有」** | ED 删普通节点没弹框，我一度要落笔「删节点没有确认框」。源码一查：确认框有**四套分支**，普通节点只是**走不到**。⇒ **没触发到 ≠ 不存在**；结论要写成「在什么条件下有」，而不是「有没有」 |
+| 缺陷 279 | ⭐⭐ **界面文案里的承诺不是事实** | 确认框正文写着「可通过 `⌘Z` 撤销」，实测撤不回来。⇒ **文案只证明「产品想让你以为什么」**，不证明「实际行为是什么」 |
+| 缺陷 280 | ⭐ **计数凭印象写，数字就错了** | `storyboardGroupDeletePolicy*` 一度写成「7 个」，实际 6 个。⇒ **凡是带数量的断言，回查一次再落笔** |
+
+### 108.5 验收
+
+`manifest` 221/221、`gate-a` 0、`build-site.sh` 成功、`site-check`「7 页全部干净」。
+
+### 108.6 证据
+
+本批是**纯源码核对**（复用 ED 批已下载的 chunk），无新增浏览器脚本。
+源码位置：`3-mou5v69wxmq.js`（删除分支 + `isScriptDeleteConfirmedRef` + `pq()`）、
+`3xjlk8cm1g3m9.js`（中文文案对照）。
