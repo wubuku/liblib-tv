@@ -1,0 +1,219 @@
+{
+ "batch": 762,
+ "probe": "b",
+ "rounds": [
+  {
+   "B1_list": {
+    "open": true,
+    "total": 128,
+    "reachable": 126,
+    "unreachable": 2,
+    "unreachableList": [
+     {
+      "tag": "INPUT",
+      "ariaLabel": null,
+      "title": null,
+      "tabindex": null,
+      "display": "none",
+      "visibility": "visible",
+      "text": "",
+      "cls": "hidden",
+      "w": 0,
+      "h": 0,
+      "reachable": false
+     },
+     {
+      "tag": "INPUT",
+      "ariaLabel": "导入本地角色模型",
+      "title": null,
+      "tabindex": null,
+      "display": "none",
+      "visibility": "visible",
+      "text": "",
+      "cls": "hidden",
+      "w": 0,
+      "h": 0,
+      "reachable": false
+     }
+    ]
+   },
+   "B1_state": {
+    "open": true,
+    "collapsed": "false",
+    "togglePresent": true,
+    "toggleAriaLabel": "收起",
+    "toggleAriaPressed": "false",
+    "toggleInert": false,
+    "panels": [
+     {
+      "ariaLabel": "场景对象",
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "w": 233
+     },
+     {
+      "ariaLabel": "属性",
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "w": 281
+     }
+    ]
+   },
+   "B1_focusable": {
+    "open": true,
+    "reachable": 126
+   },
+   "B2_hit": {
+    "tag": "svg",
+    "ok": true,
+    "sel": "[data-director-panels-toggle]",
+    "ariaLabel": "收起"
+   },
+   "B2_after": {
+    "open": true,
+    "collapsed": "true",
+    "togglePresent": false,
+    "toggleAriaLabel": null,
+    "toggleAriaPressed": null,
+    "toggleInert": null,
+    "panels": [
+     {
+      "ariaLabel": "场景对象",
+      "inert": true,
+      "ariaHidden": "true",
+      "display": "none",
+      "w": 0
+     },
+     {
+      "ariaLabel": "属性",
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "w": 281
+     }
+    ]
+   },
+   "B2_focusable": {
+    "open": true,
+    "reachable": 125
+   },
+   "B2_tab": {
+    "steps": 14,
+    "escapedCount": 0,
+    "escapedAt": [],
+    "seq": [
+     {
+      "after": 0,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": null
+     },
+     {
+      "after": 1,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": null
+     },
+     {
+      "after": 2,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "导出导演台项目"
+     },
+     {
+      "after": 3,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "导入导演台项目"
+     },
+     {
+      "after": 4,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": null
+     },
+     {
+      "after": 5,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "场景"
+     },
+     {
+      "after": 6,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "添加角色"
+     },
+     {
+      "after": 7,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "添加机位"
+     },
+     {
+      "after": 8,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "全景图"
+     },
+     {
+      "after": 9,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "选择画幅比例"
+     },
+     {
+      "after": 10,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "AI 识图导入"
+     },
+     {
+      "after": 11,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "帮助"
+     },
+     {
+      "after": 12,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": null
+     },
+     {
+      "after": 13,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "X 正向"
+     }
+    ]
+   },
+   "B3_escClosed": true,
+   "B3_focusAfter": {
+    "open": false,
+    "inDialog": false,
+    "tag": "BUTTON",
+    "ariaLabel": null,
+    "text": "打开导演台 →"
+   },
+   "B4_focusBeforeEsc": {
+    "open": true,
+    "inDialog": true,
+    "tag": "BUTTON",
+    "ariaLabel": "导出导演台项目",
+    "text": ""
+   },
+   "B4_afterEsc": {
+    "open": false,
+    "inDialog": false,
+    "tag": "BUTTON",
+    "ariaLabel": null,
+    "text": "打开导演台 →"
+   }
+  }
+ ],
+ "roundDiff": {},
+ "consistent": true
+}

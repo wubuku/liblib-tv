@@ -1,0 +1,435 @@
+{
+ "batch": 762,
+ "date": "2026-10-01",
+ "clone": "http://localhost:4317 (master)",
+ "subject": "导演台的焦点围栏与键盘可达性（748 挂起项的正面结案）",
+ "seed": {
+  "entry": "画布上唯一的 script-execution 节点的 [data-open-director] 按钮",
+  "entryCall": "ScriptExecutionNode.tsx:58 → openDirectorDesk(id, activeCanvasId)",
+  "directorRenderGate": "page.tsx:1654 activeDirectorNodeId && activeDirectorCanvasId"
+ },
+ "twoRound": {
+  "probeA": {
+   "file": "raw/vb762a.json",
+   "rounds": 2,
+   "consistent": true
+  },
+  "probeB": {
+   "file": "raw/vb762b.json",
+   "rounds": 1,
+   "consistent": null,
+   "note": "单轮补格，不适用两轮判定"
+  },
+  "allConsistent": true,
+  "caveat": "762a 两轮一致；762b 是单轮补格（点名那 2 个不可达元素 + 折叠后的 inert 围栏），因此凡只用 762b 支撑的判据都标注了「单轮」。"
+ },
+ "findings": {
+  "dialog": {
+   "open": true,
+   "ariaModal": "true",
+   "focusScope": "workspace",
+   "focusState": "workspace",
+   "focusReturn": "trigger",
+   "zIndex": "100",
+   "position": "fixed",
+   "panelsCollapsed": "false",
+   "isTopmostAtCenter": true,
+   "rect": {
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 1000
+   }
+  },
+  "openFocus": {
+   "inDialog": true,
+   "isBody": false,
+   "tag": "DIV",
+   "role": "dialog",
+   "ariaLabel": "3D导演台工作区",
+   "dialogCount": 1,
+   "inertDialogs": 0
+  },
+  "fence": {
+   "forward": {
+    "steps": 25,
+    "escapedCount": 0,
+    "escapedAt": [],
+    "bodyHits": []
+   },
+   "backward": {
+    "steps": 13,
+    "escapedCount": 0,
+    "escapedAt": [],
+    "bodyHits": []
+   },
+   "totalPresses": 36,
+   "totalEscapes": 0,
+   "totalBodyHits": 0
+  },
+  "escAndReturn": {
+   "dialogStillOpen": false,
+   "closed": true,
+   "focusTag": "BUTTON",
+   "focusIsTrigger": true,
+   "canvasButtonBack": true,
+   "focusAfterSecondClose": {
+    "open": false,
+    "inDialog": false,
+    "tag": "BUTTON",
+    "ariaLabel": null,
+    "text": "打开导演台 →"
+   },
+   "escWorksWhileCollapsed": true,
+   "focusBeforeEscInChild": {
+    "open": true,
+    "inDialog": true,
+    "tag": "BUTTON",
+    "ariaLabel": "导出导演台项目",
+    "text": ""
+   },
+   "afterEscFromChild": {
+    "open": false,
+    "inDialog": false,
+    "tag": "BUTTON",
+    "ariaLabel": null,
+    "text": "打开导演台 →"
+   }
+  },
+  "focusables": {
+   "total": 128,
+   "reachable": 126,
+   "unreachable": 2,
+   "unreachableList": [
+    {
+     "tag": "INPUT",
+     "ariaLabel": null,
+     "display": "none",
+     "visibility": "visible",
+     "box": [
+      0,
+      0
+     ],
+     "cls": "hidden",
+     "isHiddenFileInput": true
+    },
+    {
+     "tag": "INPUT",
+     "ariaLabel": "导入本地角色模型",
+     "display": "none",
+     "visibility": "visible",
+     "box": [
+      0,
+      0
+     ],
+     "cls": "hidden",
+     "isHiddenFileInput": true
+    }
+   ],
+   "allUnreachableAreHiddenFileInputs": true
+  },
+  "collapsedFence": {
+   "collapsedAttr": "true",
+   "togglePresent": false,
+   "toggleAriaPressed": null,
+   "reachableFocusablesBefore": 126,
+   "reachableFocusablesAfter": 125,
+   "tree": {
+    "ariaLabel": "场景对象",
+    "inert": true,
+    "ariaHidden": "true",
+    "display": "none",
+    "w": 0
+   },
+   "inspector": {
+    "ariaLabel": "属性",
+    "inert": false,
+    "ariaHidden": null,
+    "display": "block",
+    "w": 281
+   },
+   "treeInert": true,
+   "treeAriaHidden": "true",
+   "treeDisplay": "none",
+   "treeWidth": 0,
+   "inspectorInert": false,
+   "inspectorWidth": 281,
+   "inertAriaHiddenInSync": true,
+   "tabAfterCollapse": {
+    "steps": 14,
+    "escapedCount": 0,
+    "escapedAt": []
+   }
+  }
+ },
+ "judgeCount": 12,
+ "judgments": [
+  {
+   "no": 1,
+   "text": "导演台确实是一整块 role=dialog + aria-modal=true 的模态框，z-index 100、fixed，且在视口中心是最上层",
+   "evidence": {
+    "open": true,
+    "ariaModal": "true",
+    "focusScope": "workspace",
+    "focusState": "workspace",
+    "focusReturn": "trigger",
+    "zIndex": "100",
+    "position": "fixed",
+    "panelsCollapsed": "false",
+    "isTopmostAtCenter": true,
+    "rect": {
+     "x": 0,
+     "y": 0,
+     "w": 1440,
+     "h": 1000
+    }
+   }
+  },
+  {
+   "no": 2,
+   "text": "三枚焦点读数齐备：focus-scope=workspace、focus-state=workspace、focus-return=trigger",
+   "evidence": {
+    "focusScope": "workspace",
+    "focusState": "workspace",
+    "focusReturn": "trigger"
+   }
+  },
+  {
+   "no": 3,
+   "text": "打开瞬间焦点真的进了 dialog（落在 role=dialog 自身、aria-label=「3D导演台工作区」），没有留在 body 上",
+   "evidence": {
+    "inDialog": true,
+    "isBody": false,
+    "tag": "DIV",
+    "role": "dialog",
+    "ariaLabel": "3D导演台工作区",
+    "dialogCount": 1,
+    "inertDialogs": 0
+   }
+  },
+  {
+   "no": 4,
+   "text": "★ 焦点围栏成立：Tab 24 步正向 + Shift+Tab 12 步反向，**共 36 次按键、0 次焦点逃出 dialog、0 次落到 body**",
+   "evidence": {
+    "forward": {
+     "steps": 25,
+     "escapedCount": 0,
+     "escapedAt": [],
+     "bodyHits": []
+    },
+    "backward": {
+     "steps": 13,
+     "escapedCount": 0,
+     "escapedAt": [],
+     "bodyHits": []
+    },
+    "totalPresses": 36,
+    "totalEscapes": 0,
+    "totalBodyHits": 0
+   }
+  },
+  {
+   "no": 5,
+   "text": "Esc 能关闭整个导演台（不是只关移动端面板）",
+   "evidence": {
+    "dialogStillOpenAfterEsc": false,
+    "closed": true
+   }
+  },
+  {
+   "no": 6,
+   "text": "关闭后焦点真的回到触发按钮 [data-open-director]（「打开导演台 →」），与 focus-return=trigger 吻合",
+   "evidence": {
+    "focusTag": "BUTTON",
+    "focusIsTrigger": true,
+    "secondClose": {
+     "open": false,
+     "inDialog": false,
+     "tag": "BUTTON",
+     "ariaLabel": null,
+     "text": "打开导演台 →"
+    },
+    "fromChildPanel": {
+     "open": false,
+     "inDialog": false,
+     "tag": "BUTTON",
+     "ariaLabel": null,
+     "text": "打开导演台 →"
+    }
+   }
+  },
+  {
+   "no": 7,
+   "text": "焦点在子面板按钮上（aria-label=「导出导演台项目」）时，Esc 同样能关闭 —— 关闭行为不依赖焦点落在 dialog 根上",
+   "evidence": {
+    "beforeEsc": {
+     "open": true,
+     "inDialog": true,
+     "tag": "BUTTON",
+     "ariaLabel": "导出导演台项目",
+     "text": ""
+    },
+    "afterEsc": {
+     "open": false,
+     "inDialog": false,
+     "tag": "BUTTON",
+     "ariaLabel": null,
+     "text": "打开导演台 →"
+    }
+   }
+  },
+  {
+   "no": 8,
+   "text": "折叠态下 Esc 依然能关闭，且关闭后焦点同样回到触发按钮",
+   "evidence": {
+    "escWorksWhileCollapsed": true,
+    "focusAfter": {
+     "open": false,
+     "inDialog": false,
+     "tag": "BUTTON",
+     "ariaLabel": null,
+     "text": "打开导演台 →"
+    }
+   }
+  },
+  {
+   "no": 9,
+   "text": "128 个可聚焦元素里 2 个不可达 —— 逐个点名：两个都是 `<input class=\"hidden\">` 的隐藏 file input（一个带 aria-label=「导入本地角色模型」）",
+   "evidence": {
+    "total": 128,
+    "reachable": 126,
+    "unreachable": 2,
+    "unreachableList": [
+     {
+      "tag": "INPUT",
+      "ariaLabel": null,
+      "display": "none",
+      "visibility": "visible",
+      "box": [
+       0,
+       0
+      ],
+      "cls": "hidden",
+      "isHiddenFileInput": true
+     },
+     {
+      "tag": "INPUT",
+      "ariaLabel": "导入本地角色模型",
+      "display": "none",
+      "visibility": "visible",
+      "box": [
+       0,
+       0
+      ],
+      "cls": "hidden",
+      "isHiddenFileInput": true
+     }
+    ],
+    "allUnreachableAreHiddenFileInputs": true
+   }
+  },
+  {
+   "no": 10,
+   "text": "★ 这 2 个不可达元素**不是缺陷**：隐藏 file input 靠可见元素代理点击是标准做法，且它们 display:none 不可聚焦，屏幕阅读器也到不了",
+   "evidence": {
+    "allUnreachableAreHiddenFileInputs": true,
+    "static": "DirectorDesk.tsx:1108-1112 data-director-project-import-input / DirectorIconRail.tsx:661-665 aria-label=导入本地角色模型"
+   }
+  },
+  {
+   "no": 11,
+   "text": "折叠后场景树面板 inert / aria-hidden / display 三者**同步**（都收起、宽 0），属性面板保持展开 —— 焦点围栏在折叠态仍然成立（Tab 14 步 0 次逃出）",
+   "evidence": {
+    "collapsedAttr": "true",
+    "togglePresent": false,
+    "toggleAriaPressed": null,
+    "reachableFocusablesBefore": 126,
+    "reachableFocusablesAfter": 125,
+    "tree": {
+     "ariaLabel": "场景对象",
+     "inert": true,
+     "ariaHidden": "true",
+     "display": "none",
+     "w": 0
+    },
+    "inspector": {
+     "ariaLabel": "属性",
+     "inert": false,
+     "ariaHidden": null,
+     "display": "block",
+     "w": 281
+    },
+    "treeInert": true,
+    "treeAriaHidden": "true",
+    "treeDisplay": "none",
+    "treeWidth": 0,
+    "inspectorInert": false,
+    "inspectorWidth": 281,
+    "inertAriaHiddenInSync": true,
+    "tabAfterCollapse": {
+     "steps": 14,
+     "escapedCount": 0,
+     "escapedAt": []
+    }
+   }
+  },
+  {
+   "no": 12,
+   "text": "折叠后收起按钮本身消失，但恢复入口存在 —— 点图标栏「场景」即恢复；这是 Batch 587 与源站核对过的刻意设计，**不是缺陷**",
+   "evidence": {
+    "togglePresentWhenCollapsed": false,
+    "static": "DirectorDesk.tsx:963 只在 !collapsed 时渲染收起按钮；DirectorIconRail.tsx:355-359 注释写明「点图标栏的场景条目即恢复」，:359 调 setViewportPanelsCollapsed(false)"
+   }
+  }
+ ],
+ "headline": "导演台的焦点围栏**完整成立**：Tab 与 Shift+Tab 共 36 次按键、0 次焦点逃出模态框，Esc 能关、焦点回到触发按钮，折叠态下 inert / aria-hidden / display 三者同步且围栏仍在。**这一批 0 缺陷** —— 而且有三处「看着像问题、查清都不是」：那 2 个不可达元素是标准的隐藏 file input；折叠后收起按钮消失是 Batch 587 与源站核对过的刻意设计；`viewportPanelsCollapsed` 复数命名却只收左半边，是命名与行为的措辞问题而非行为错误。",
+ "rework": [
+  {
+   "id": "R48",
+   "where": "探针 b（把 HIT 写死成查另一个选择器）",
+   "what": "第一版 b 把命中断言写死成 `e.closest('[data-director-panels-toggle]')`，拿去点「打开导演台」当然永远 ok=false，直接 FATAL 停下。",
+   "lesson": "「命中断言」这个工具自己必须参数化。**当场停是对的 —— 是探针错了，产品没错。**"
+  },
+  {
+   "id": "R49",
+   "where": "探针 a（按文案找折叠开关，必然落空）",
+   "what": "用 `/收起|折叠|展开/` 去 button 的 textContent 里找开关，拿到 null —— 因为那枚按钮是纯图标（`PanelLeftOpen` 且 svg `aria-hidden`），根本没有文本。",
+   "lesson": "**图标按钮只能按钩子找，不能按文案找**。正确钩子是 `data-director-panels-toggle`。「找不到元素」和「元素没有那个字」是两回事。"
+  },
+  {
+   "id": "R50",
+   "where": "探针 a（D7 读错了元素）",
+   "what": "关闭后再去读 `[data-open-director]` 上的 `data-director-focus-return`，拿到 null —— 那个属性长在 dialog 上，dialog 已经卸载了。",
+   "lesson": "属性读数要认准它挂在哪个元素上；挂载/卸载会改变「还能不能读到」。焦点返回的**行为**证据在 B3/B4 里，不依赖这次读取。"
+  },
+  {
+   "id": "R51",
+   "where": "结论纪律（差点把三处报成缺陷）",
+   "what": "「2 个元素不可达」「折叠后收起按钮消失」「viewportPanelsCollapsed 只收一半」三处都先被我当成缺陷候选。",
+   "lesson": "查清机制后全部结案：隐藏 file input 是标准做法；恢复入口是Batch 587 对着源站量过的刻意设计；复数命名是措辞问题。**「看着不对」只是待查项，不是结论。**"
+  },
+  {
+   "id": "R52",
+   "where": "验收器（★ 同一个洞第四次复发）",
+   "what": "首版 34/36 时有 2 条检查自己写错了（用子串 `\"b 是单轮\"` 判断有没有把单轮算进去，结果被 `762b 是单轮` 命中；headline 里写的是「标准的隐藏 file input」而我去找「标准做法」）。把那两条修对之后，**19/21 阴性对照里有 2 发漏放**：改 `findings.dialog.ariaModal` 与 `findings.openFocus.inDialog` 一路通过 —— 因为 `findings` 与 `judgments[].evidence` 在JSON 往返之后是**两份独立副本**，我只守了判据那一份。",
+   "lesson": "759 的 R33、760 的 R38、761 的 R46、**这里是第四次**。同一个洞复发四次，说明「事后补检查」不是办法。所以这次把它写成一条**默认结构检查**：凡是 `findings` 里出现过的键，都必须有一条 `findings.X == J[n].evidence` 的同源断言。补完 **38/38 通过、阴性对照 26/26 全拦**，并新增 5 发「只改 findings 那一份」的注入把这五条同源断言逐条打一遍。"
+  }
+ ],
+ "notClaimed": [
+  "没有与源站对照：全部读数来自 clone（4317）。恢复入口那条只核了代码里的注释与调用点，没有重新回源站复核。",
+  "762b 是**单轮**补格：点名那 2 个不可达元素与折叠后 inert 围栏这两条只跑了一轮。",
+  "只测了 1440×1000 桌面视口；导演台的移动端 focus scope（mobile-tree / mobile-inspector）完全没测。",
+  "只测了 Tab / Shift+Tab / Esc 三个键；导演台自己的快捷键（DirectorDesk.tsx:482/:549 那两个处理器覆盖了哪些键）没测。",
+  "没有测屏幕阅读器实际播报什么，只量了 DOM 属性与焦点落点。",
+  "焦点围栏只压了 36 次按键；128 个可聚焦元素没有逐个走到（走到第 36 个就停了），后半程是否仍不逃逸未测。",
+  "打开导演台会不会触发付费/真实生成任务没有碰；本批只做只读导航与 Tab。",
+  "只开了导演台一个项目，没测多项目切换、导入/导出面板里的焦点行为。"
+ ],
+ "rawProbeFiles": [
+  "raw/vb762a.json",
+  "raw/vb762b.json",
+  "probes/dbg762a.py",
+  "probes/dbg762b.py",
+  "probes/mk762audit.py"
+ ]
+}

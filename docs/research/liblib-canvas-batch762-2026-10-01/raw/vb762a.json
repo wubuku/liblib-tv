@@ -1,0 +1,1560 @@
+{
+ "batch": 762,
+ "probe": "a",
+ "rounds": [
+  {
+   "canvasUp": true,
+   "beforeOpen": {
+    "body": true,
+    "inDialog": false,
+    "el": {
+     "tag": "BODY",
+     "id": null,
+     "ariaLabel": null,
+     "dataDirectorNode": null,
+     "dataOpenDirector": null,
+     "dataRailEntry": null,
+     "role": null,
+     "cls": "min-h-full flex flex-col bg-[#141414] text-[#f7f7f7]",
+     "text": "画布 2开通会员限时 45 折100Agent分"
+    },
+    "dialogCount": 0,
+    "inertDialogs": 0
+   },
+   "clickOpen": {
+    "at": [
+     585,
+     213
+    ],
+    "hit": {
+     "tag": "BUTTON",
+     "cls": "nodrag nopan nowheel flex h-9 w-full items-center justify-center gap-1",
+     "ok": true,
+     "text": "打开导演台 →"
+    }
+   },
+   "D1_desk": {
+    "open": true,
+    "focusScope": "workspace",
+    "focusState": "workspace",
+    "focusReturn": "trigger",
+    "ariaModal": "true",
+    "ariaLabel": "3D导演台工作区",
+    "rect": {
+     "x": 0,
+     "y": 0,
+     "w": 1440,
+     "h": 1000
+    },
+    "zIndex": "100",
+    "position": "fixed",
+    "panelsCollapsed": "false",
+    "isTopmostAtCenter": true
+   },
+   "D1_focusable": {
+    "open": true,
+    "focusableTotal": 128,
+    "reachable": 126,
+    "zeroTabIndex": 4,
+    "positiveTabIndex": 0,
+    "focusScopeCount": 1
+   },
+   "D1_activeOnOpen": {
+    "body": false,
+    "inDialog": true,
+    "el": {
+     "tag": "DIV",
+     "id": null,
+     "ariaLabel": "3D导演台工作区",
+     "dataDirectorNode": null,
+     "dataOpenDirector": null,
+     "dataRailEntry": null,
+     "role": "dialog",
+     "cls": "fixed inset-0 z-[100] flex h-dvh w-screen flex-col overflow-hidden bg-",
+     "text": "3D导演台第一集：咖啡馆对峙无命令反馈导演视角机"
+    },
+    "dialogCount": 1,
+    "inertDialogs": 0
+   },
+   "D1_panels": {
+    "open": true,
+    "panels": [
+     {
+      "tag": "ASIDE",
+      "ariaLabel": "场景对象",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 233,
+       "h": 948
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": null,
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "flex",
+      "visibility": "visible",
+      "rect": {
+       "w": 232,
+       "h": 948
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "角色分组",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 216,
+       "h": 60
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "场景物体分组",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 216,
+       "h": 124
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "摄像机分组",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 216,
+       "h": 60
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "3D导演视口",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 878,
+       "h": 730
+      }
+     },
+     {
+      "tag": "ASIDE",
+      "ariaLabel": "属性",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 281,
+       "h": 766
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": null,
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "flex",
+      "visibility": "visible",
+      "rect": {
+       "w": 281,
+       "h": 766
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": null,
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "flex",
+      "visibility": "visible",
+      "rect": {
+       "w": 1440,
+       "h": 182
+      }
+     }
+    ]
+   },
+   "D2_tabForward": {
+    "steps": 25,
+    "escapedCount": 0,
+    "escapedAt": [],
+    "bodyHits": [],
+    "seq": [
+     {
+      "after": -1,
+      "body": false,
+      "inDialog": true,
+      "el": {
+       "tag": "DIV",
+       "id": null,
+       "ariaLabel": "3D导演台工作区",
+       "dataDirectorNode": null,
+       "dataOpenDirector": null,
+       "dataRailEntry": null,
+       "role": "dialog",
+       "cls": "fixed inset-0 z-[100] flex h-dvh w-screen flex-col overflow-hidden bg-",
+       "text": "3D导演台第一集：咖啡馆对峙无命令反馈导演视角机"
+      },
+      "dialogCount": 1,
+      "inertDialogs": 0
+     },
+     {
+      "after": 0,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "关闭",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 1,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "收起",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 2,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": null,
+      "text": "导演视角",
+      "isBody": false
+     },
+     {
+      "after": 3,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": null,
+      "text": "机位视角",
+      "isBody": false
+     },
+     {
+      "after": 4,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "导出导演台项目",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 5,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "导入导演台项目",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 6,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": null,
+      "text": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+      "isBody": false
+     },
+     {
+      "after": 7,
+      "inDialog": true,
+      "tag": "INPUT",
+      "ariaLabel": "搜索场景内容",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 8,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "新增机位",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 9,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "复制当前选择",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 10,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除当前选择",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 11,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "清除当前选择",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 12,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏角色01 · 陈默",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 13,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定角色01 · 陈默",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 14,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除角色01 · 陈默",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 15,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏咖啡桌",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 16,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定咖啡桌",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 17,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除咖啡桌",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 18,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏冷掉的咖啡",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 19,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定冷掉的咖啡",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 20,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除冷掉的咖啡",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 21,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏咖啡馆背景",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 22,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定咖啡馆背景",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 23,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除咖啡馆背景",
+      "text": "",
+      "isBody": false
+     }
+    ]
+   },
+   "D3_activeAfterTab": {
+    "body": false,
+    "inDialog": true,
+    "el": {
+     "tag": "BUTTON",
+     "id": null,
+     "ariaLabel": "删除咖啡馆背景",
+     "dataDirectorNode": null,
+     "dataOpenDirector": null,
+     "dataRailEntry": null,
+     "role": null,
+     "cls": "flex h-6 w-6 shrink-0 items-center justify-center text-[#686868] hover",
+     "text": ""
+    },
+    "dialogCount": 1,
+    "inertDialogs": 0
+   },
+   "D4_tabBackward": {
+    "steps": 13,
+    "escapedCount": 0,
+    "escapedAt": [],
+    "bodyHits": [],
+    "seq": [
+     {
+      "after": -1,
+      "body": false,
+      "inDialog": true,
+      "el": {
+       "tag": "BUTTON",
+       "id": null,
+       "ariaLabel": "删除咖啡馆背景",
+       "dataDirectorNode": null,
+       "dataOpenDirector": null,
+       "dataRailEntry": null,
+       "role": null,
+       "cls": "flex h-6 w-6 shrink-0 items-center justify-center text-[#686868] hover",
+       "text": ""
+      },
+      "dialogCount": 1,
+      "inertDialogs": 0
+     },
+     {
+      "after": 0,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定咖啡馆背景",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 1,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏咖啡馆背景",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 2,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除冷掉的咖啡",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 3,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定冷掉的咖啡",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 4,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏冷掉的咖啡",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 5,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除咖啡桌",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 6,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定咖啡桌",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 7,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏咖啡桌",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 8,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除角色01 · 陈默",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 9,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定角色01 · 陈默",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 10,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏角色01 · 陈默",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 11,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "清除当前选择",
+      "text": "",
+      "isBody": false
+     }
+    ]
+   },
+   "D5_activeAfterShiftTab": {
+    "body": false,
+    "inDialog": true,
+    "el": {
+     "tag": "BUTTON",
+     "id": null,
+     "ariaLabel": "清除当前选择",
+     "dataDirectorNode": null,
+     "dataOpenDirector": null,
+     "dataRailEntry": null,
+     "role": null,
+     "cls": "flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#999] ",
+     "text": ""
+    },
+    "dialogCount": 1,
+    "inertDialogs": 0
+   },
+   "D6_afterEsc": {
+    "desk": {
+     "open": false
+    },
+    "active": {
+     "body": false,
+     "inDialog": false,
+     "el": {
+      "tag": "BUTTON",
+      "id": null,
+      "ariaLabel": null,
+      "dataDirectorNode": null,
+      "dataOpenDirector": "true",
+      "dataRailEntry": null,
+      "role": null,
+      "cls": "nodrag nopan nowheel flex h-9 w-full items-center justify-center gap-1",
+      "text": "打开导演台 →"
+     },
+     "dialogCount": 0,
+     "inertDialogs": 0
+    },
+    "canvasUp": true
+   },
+   "D7_focusAfterClose": {
+    "body": false,
+    "inDialog": false,
+    "el": {
+     "tag": "BUTTON",
+     "id": null,
+     "ariaLabel": null,
+     "dataDirectorNode": null,
+     "dataOpenDirector": "true",
+     "dataRailEntry": null,
+     "role": null,
+     "cls": "nodrag nopan nowheel flex h-9 w-full items-center justify-center gap-1",
+     "text": "打开导演台 →"
+    },
+    "dialogCount": 0,
+    "inertDialogs": 0
+   },
+   "D7_focusReturnAttr": null,
+   "D8_reopen": {
+    "at": [
+     585,
+     213
+    ],
+    "hit": {
+     "tag": "BUTTON",
+     "cls": "nodrag nopan nowheel flex h-9 w-full items-center justify-center gap-1",
+     "ok": true,
+     "text": "打开导演台 →"
+    }
+   },
+   "D8_desk": {
+    "open": true,
+    "focusScope": "workspace",
+    "focusState": "workspace",
+    "focusReturn": "trigger",
+    "ariaModal": "true",
+    "ariaLabel": "3D导演台工作区",
+    "rect": {
+     "x": 0,
+     "y": 0,
+     "w": 1440,
+     "h": 1000
+    },
+    "zIndex": "100",
+    "position": "fixed",
+    "panelsCollapsed": "false",
+    "isTopmostAtCenter": true
+   },
+   "D8_panels": {
+    "open": true,
+    "panels": [
+     {
+      "tag": "ASIDE",
+      "ariaLabel": "场景对象",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 233,
+       "h": 948
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": null,
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "flex",
+      "visibility": "visible",
+      "rect": {
+       "w": 232,
+       "h": 948
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "角色分组",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 216,
+       "h": 60
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "场景物体分组",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 216,
+       "h": 124
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "摄像机分组",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 216,
+       "h": 60
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "3D导演视口",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 878,
+       "h": 730
+      }
+     },
+     {
+      "tag": "ASIDE",
+      "ariaLabel": "属性",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 281,
+       "h": 766
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": null,
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "flex",
+      "visibility": "visible",
+      "rect": {
+       "w": 281,
+       "h": 766
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": null,
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "flex",
+      "visibility": "visible",
+      "rect": {
+       "w": 1440,
+       "h": 182
+      }
+     }
+    ]
+   },
+   "D8_focusable": {
+    "open": true,
+    "focusableTotal": 128,
+    "reachable": 126,
+    "zeroTabIndex": 4,
+    "positiveTabIndex": 0,
+    "focusScopeCount": 1
+   },
+   "D8_collapse": {
+    "collapsedAttr": "false",
+    "collapseButtonText": null
+   }
+  },
+  {
+   "canvasUp": true,
+   "beforeOpen": {
+    "body": true,
+    "inDialog": false,
+    "el": {
+     "tag": "BODY",
+     "id": null,
+     "ariaLabel": null,
+     "dataDirectorNode": null,
+     "dataOpenDirector": null,
+     "dataRailEntry": null,
+     "role": null,
+     "cls": "min-h-full flex flex-col bg-[#141414] text-[#f7f7f7]",
+     "text": "画布 2开通会员限时 45 折100Agent分"
+    },
+    "dialogCount": 0,
+    "inertDialogs": 0
+   },
+   "clickOpen": {
+    "at": [
+     585,
+     213
+    ],
+    "hit": {
+     "tag": "BUTTON",
+     "cls": "nodrag nopan nowheel flex h-9 w-full items-center justify-center gap-1",
+     "ok": true,
+     "text": "打开导演台 →"
+    }
+   },
+   "D1_desk": {
+    "open": true,
+    "focusScope": "workspace",
+    "focusState": "workspace",
+    "focusReturn": "trigger",
+    "ariaModal": "true",
+    "ariaLabel": "3D导演台工作区",
+    "rect": {
+     "x": 0,
+     "y": 0,
+     "w": 1440,
+     "h": 1000
+    },
+    "zIndex": "100",
+    "position": "fixed",
+    "panelsCollapsed": "false",
+    "isTopmostAtCenter": true
+   },
+   "D1_focusable": {
+    "open": true,
+    "focusableTotal": 128,
+    "reachable": 126,
+    "zeroTabIndex": 4,
+    "positiveTabIndex": 0,
+    "focusScopeCount": 1
+   },
+   "D1_activeOnOpen": {
+    "body": false,
+    "inDialog": true,
+    "el": {
+     "tag": "DIV",
+     "id": null,
+     "ariaLabel": "3D导演台工作区",
+     "dataDirectorNode": null,
+     "dataOpenDirector": null,
+     "dataRailEntry": null,
+     "role": "dialog",
+     "cls": "fixed inset-0 z-[100] flex h-dvh w-screen flex-col overflow-hidden bg-",
+     "text": "3D导演台第一集：咖啡馆对峙无命令反馈导演视角机"
+    },
+    "dialogCount": 1,
+    "inertDialogs": 0
+   },
+   "D1_panels": {
+    "open": true,
+    "panels": [
+     {
+      "tag": "ASIDE",
+      "ariaLabel": "场景对象",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 233,
+       "h": 948
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": null,
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "flex",
+      "visibility": "visible",
+      "rect": {
+       "w": 232,
+       "h": 948
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "角色分组",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 216,
+       "h": 60
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "场景物体分组",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 216,
+       "h": 124
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "摄像机分组",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 216,
+       "h": 60
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "3D导演视口",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 878,
+       "h": 730
+      }
+     },
+     {
+      "tag": "ASIDE",
+      "ariaLabel": "属性",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 281,
+       "h": 766
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": null,
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "flex",
+      "visibility": "visible",
+      "rect": {
+       "w": 281,
+       "h": 766
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": null,
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "flex",
+      "visibility": "visible",
+      "rect": {
+       "w": 1440,
+       "h": 182
+      }
+     }
+    ]
+   },
+   "D2_tabForward": {
+    "steps": 25,
+    "escapedCount": 0,
+    "escapedAt": [],
+    "bodyHits": [],
+    "seq": [
+     {
+      "after": -1,
+      "body": false,
+      "inDialog": true,
+      "el": {
+       "tag": "DIV",
+       "id": null,
+       "ariaLabel": "3D导演台工作区",
+       "dataDirectorNode": null,
+       "dataOpenDirector": null,
+       "dataRailEntry": null,
+       "role": "dialog",
+       "cls": "fixed inset-0 z-[100] flex h-dvh w-screen flex-col overflow-hidden bg-",
+       "text": "3D导演台第一集：咖啡馆对峙无命令反馈导演视角机"
+      },
+      "dialogCount": 1,
+      "inertDialogs": 0
+     },
+     {
+      "after": 0,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "关闭",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 1,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "收起",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 2,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": null,
+      "text": "导演视角",
+      "isBody": false
+     },
+     {
+      "after": 3,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": null,
+      "text": "机位视角",
+      "isBody": false
+     },
+     {
+      "after": 4,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "导出导演台项目",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 5,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "导入导演台项目",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 6,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": null,
+      "text": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+      "isBody": false
+     },
+     {
+      "after": 7,
+      "inDialog": true,
+      "tag": "INPUT",
+      "ariaLabel": "搜索场景内容",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 8,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "新增机位",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 9,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "复制当前选择",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 10,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除当前选择",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 11,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "清除当前选择",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 12,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏角色01 · 陈默",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 13,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定角色01 · 陈默",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 14,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除角色01 · 陈默",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 15,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏咖啡桌",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 16,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定咖啡桌",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 17,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除咖啡桌",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 18,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏冷掉的咖啡",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 19,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定冷掉的咖啡",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 20,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除冷掉的咖啡",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 21,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏咖啡馆背景",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 22,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定咖啡馆背景",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 23,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除咖啡馆背景",
+      "text": "",
+      "isBody": false
+     }
+    ]
+   },
+   "D3_activeAfterTab": {
+    "body": false,
+    "inDialog": true,
+    "el": {
+     "tag": "BUTTON",
+     "id": null,
+     "ariaLabel": "删除咖啡馆背景",
+     "dataDirectorNode": null,
+     "dataOpenDirector": null,
+     "dataRailEntry": null,
+     "role": null,
+     "cls": "flex h-6 w-6 shrink-0 items-center justify-center text-[#686868] hover",
+     "text": ""
+    },
+    "dialogCount": 1,
+    "inertDialogs": 0
+   },
+   "D4_tabBackward": {
+    "steps": 13,
+    "escapedCount": 0,
+    "escapedAt": [],
+    "bodyHits": [],
+    "seq": [
+     {
+      "after": -1,
+      "body": false,
+      "inDialog": true,
+      "el": {
+       "tag": "BUTTON",
+       "id": null,
+       "ariaLabel": "删除咖啡馆背景",
+       "dataDirectorNode": null,
+       "dataOpenDirector": null,
+       "dataRailEntry": null,
+       "role": null,
+       "cls": "flex h-6 w-6 shrink-0 items-center justify-center text-[#686868] hover",
+       "text": ""
+      },
+      "dialogCount": 1,
+      "inertDialogs": 0
+     },
+     {
+      "after": 0,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定咖啡馆背景",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 1,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏咖啡馆背景",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 2,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除冷掉的咖啡",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 3,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定冷掉的咖啡",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 4,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏冷掉的咖啡",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 5,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除咖啡桌",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 6,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定咖啡桌",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 7,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏咖啡桌",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 8,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "删除角色01 · 陈默",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 9,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "锁定角色01 · 陈默",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 10,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "隐藏角色01 · 陈默",
+      "text": "",
+      "isBody": false
+     },
+     {
+      "after": 11,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "清除当前选择",
+      "text": "",
+      "isBody": false
+     }
+    ]
+   },
+   "D5_activeAfterShiftTab": {
+    "body": false,
+    "inDialog": true,
+    "el": {
+     "tag": "BUTTON",
+     "id": null,
+     "ariaLabel": "清除当前选择",
+     "dataDirectorNode": null,
+     "dataOpenDirector": null,
+     "dataRailEntry": null,
+     "role": null,
+     "cls": "flex h-7 w-7 shrink-0 items-center justify-center rounded text-[#999] ",
+     "text": ""
+    },
+    "dialogCount": 1,
+    "inertDialogs": 0
+   },
+   "D6_afterEsc": {
+    "desk": {
+     "open": false
+    },
+    "active": {
+     "body": false,
+     "inDialog": false,
+     "el": {
+      "tag": "BUTTON",
+      "id": null,
+      "ariaLabel": null,
+      "dataDirectorNode": null,
+      "dataOpenDirector": "true",
+      "dataRailEntry": null,
+      "role": null,
+      "cls": "nodrag nopan nowheel flex h-9 w-full items-center justify-center gap-1",
+      "text": "打开导演台 →"
+     },
+     "dialogCount": 0,
+     "inertDialogs": 0
+    },
+    "canvasUp": true
+   },
+   "D7_focusAfterClose": {
+    "body": false,
+    "inDialog": false,
+    "el": {
+     "tag": "BUTTON",
+     "id": null,
+     "ariaLabel": null,
+     "dataDirectorNode": null,
+     "dataOpenDirector": "true",
+     "dataRailEntry": null,
+     "role": null,
+     "cls": "nodrag nopan nowheel flex h-9 w-full items-center justify-center gap-1",
+     "text": "打开导演台 →"
+    },
+    "dialogCount": 0,
+    "inertDialogs": 0
+   },
+   "D7_focusReturnAttr": null,
+   "D8_reopen": {
+    "at": [
+     585,
+     213
+    ],
+    "hit": {
+     "tag": "BUTTON",
+     "cls": "nodrag nopan nowheel flex h-9 w-full items-center justify-center gap-1",
+     "ok": true,
+     "text": "打开导演台 →"
+    }
+   },
+   "D8_desk": {
+    "open": true,
+    "focusScope": "workspace",
+    "focusState": "workspace",
+    "focusReturn": "trigger",
+    "ariaModal": "true",
+    "ariaLabel": "3D导演台工作区",
+    "rect": {
+     "x": 0,
+     "y": 0,
+     "w": 1440,
+     "h": 1000
+    },
+    "zIndex": "100",
+    "position": "fixed",
+    "panelsCollapsed": "false",
+    "isTopmostAtCenter": true
+   },
+   "D8_panels": {
+    "open": true,
+    "panels": [
+     {
+      "tag": "ASIDE",
+      "ariaLabel": "场景对象",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 233,
+       "h": 948
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": null,
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "flex",
+      "visibility": "visible",
+      "rect": {
+       "w": 232,
+       "h": 948
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "角色分组",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 216,
+       "h": 60
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "场景物体分组",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 216,
+       "h": 124
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "摄像机分组",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 216,
+       "h": 60
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": "3D导演视口",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 878,
+       "h": 730
+      }
+     },
+     {
+      "tag": "ASIDE",
+      "ariaLabel": "属性",
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "w": 281,
+       "h": 766
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": null,
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "flex",
+      "visibility": "visible",
+      "rect": {
+       "w": 281,
+       "h": 766
+      }
+     },
+     {
+      "tag": "SECTION",
+      "ariaLabel": null,
+      "scope": null,
+      "inert": false,
+      "ariaHidden": null,
+      "display": "flex",
+      "visibility": "visible",
+      "rect": {
+       "w": 1440,
+       "h": 182
+      }
+     }
+    ]
+   },
+   "D8_focusable": {
+    "open": true,
+    "focusableTotal": 128,
+    "reachable": 126,
+    "zeroTabIndex": 4,
+    "positiveTabIndex": 0,
+    "focusScopeCount": 1
+   },
+   "D8_collapse": {
+    "collapsedAttr": "false",
+    "collapseButtonText": null
+   }
+  }
+ ],
+ "roundDiff": {},
+ "consistent": true
+}

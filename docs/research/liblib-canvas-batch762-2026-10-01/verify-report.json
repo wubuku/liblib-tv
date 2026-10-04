@@ -1,0 +1,360 @@
+{
+ "batch": 762,
+ "checks": [
+  {
+   "label": "静态：导演台是 role=dialog + aria-modal=true 的模态框",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：三枚焦点钩子都在（scope / return / state）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：场景树面板同时挂了 inert 与 aria-hidden",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：挂载时用 rAF 把焦点打到 workspaceRef",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：两个 Escape 处理器都在源码里",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：收起按钮 data-director-panels-toggle 且只在展开态渲染",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：★ 恢复入口存在 —— rail 里 scene 条目调 setViewportPanelsCollapsed(false)，且注释写明与源站核对过",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：入口链路完整（节点按钮 → openDirectorDesk → page 渲染门）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：两个不可达元素在源码里都是 input[type=file] + className=hidden",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：rail 那个 input 有 aria-label、desk 那个没有（记为措辞不一致）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 12 条且编号连续 1..12",
+   "pass": true,
+   "got": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ]
+  },
+  {
+   "label": "产物：★ 如实记录轮次 —— a 两轮且一致、b 单轮且标注不适用两轮判定",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：allConsistent 的取值等于探针 a 自己的结论（不掺单轮的 b）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：返工 5 条（R48 探针工具写死 / R49 按文案找图标按钮 / R50 读错元素 / R51 差点误报 / R52 同一个洞第四次复发）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：不声称 ≥ 8 条，含「没有与源站对照」与「b 是单轮」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：headline 写明「0 缺陷」且点名三处结案的理由（标准做法 / 刻意设计 / 措辞问题）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：dialog 本体读数与重算一致（aria-modal / 三枚焦点 / 最上层）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：打开瞬间焦点在 dialog 内、不是 body",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物判据 3 的打开焦点证据与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：★ 围栏计数与重算一致（36 次按键 / 0 次逃出 / 0 次落 body）",
+   "pass": true,
+   "got": {
+    "forward": {
+     "presses": 24,
+     "escaped": 0,
+     "body": 0
+    },
+    "backward": {
+     "presses": 12,
+     "escaped": 0,
+     "body": 0
+    },
+    "totalPresses": 36,
+    "totalEscapes": 0,
+    "totalBodyHits": 0
+   }
+  },
+  {
+   "label": "原始：正向与反向的 escapedAt 都是空数组（不是只看了总数）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：★ 判据 4 确实写着 36/0/0 的结论",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：Esc 关闭与焦点返回触发按钮，与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：折叠态下 Esc 也能关闭，关闭后焦点回触发按钮",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：焦点在子面板按钮上时 Esc 前后读数都在（前置在 dialog 内、后置关闭）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：可聚焦元素计数（128 / 126 / 2）与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：那两个不可达元素逐个点名，且确实是隐藏 file input",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：★ 判据 10 明确把它判为「不是缺陷」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：折叠后树面板 inert / aria-hidden / display / 宽 0 四项齐全",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：折叠后收起按钮本身不存在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：可达焦点 126 → 125，围栏仍成立（Tab 14 步 0 次逃出）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：★ 判据 12 判为刻意设计而非缺陷",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "结构：findings.dialog 与判据 1 的证据同源",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "结构：findings.openFocus 与判据 3 的证据同源",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "结构：findings.fence 与判据 4 的证据同源",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "结构：findings.focusables 与判据 9 的证据同源",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "结构：findings.collapsedFence 与判据 11 的证据同源",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "结构：findings.escAndReturn 与判据 6 的关键字段一致",
+   "pass": true,
+   "got": null
+  }
+ ],
+ "pass": 38,
+ "total": 38,
+ "negativeControls": [
+  {
+   "name": "★ 把判据 12（恢复入口）从设计改判成缺陷",
+   "caught": true,
+   "firstFail": "原始：★ 判据 12 判为刻意设计而非缺陷"
+  },
+  {
+   "name": "★ 把判据 10（隐藏 file input）从结案改判成缺陷",
+   "caught": true,
+   "firstFail": "原始：★ 判据 10 明确把它判为「不是缺陷」"
+  },
+  {
+   "name": "★ 把 headline 的「0 缺陷」抹掉",
+   "caught": true,
+   "firstFail": "产物：headline 写明「0 缺陷」且点名三处结案的理由（标准做法 / 刻意设计 / 措辞问题）"
+  },
+  {
+   "name": "伪造有焦点逃出了 dialog",
+   "caught": true,
+   "firstFail": "原始：★ 围栏计数与重算一致（36 次按键 / 0 次逃出 / 0 次落 body）"
+  },
+  {
+   "name": "伪造按键次数被少算（24 写成 12）",
+   "caught": true,
+   "firstFail": "原始：★ 围栏计数与重算一致（36 次按键 / 0 次逃出 / 0 次落 body）"
+  },
+  {
+   "name": "伪造正向有 3 次落到 body",
+   "caught": true,
+   "firstFail": "结构：findings.fence 与判据 4 的证据同源"
+  },
+  {
+   "name": "伪造折叠后 Tab 逃出了 dialog",
+   "caught": true,
+   "firstFail": "结构：findings.collapsedFence 与判据 11 的证据同源"
+  },
+  {
+   "name": "伪造折叠后树面板没 inert",
+   "caught": true,
+   "firstFail": "结构：findings.collapsedFence 与判据 11 的证据同源"
+  },
+  {
+   "name": "伪造 inert 与 aria-hidden 不同步",
+   "caught": true,
+   "firstFail": "结构：findings.collapsedFence 与判据 11 的证据同源"
+  },
+  {
+   "name": "伪造 Esc 关不掉导演台",
+   "caught": true,
+   "firstFail": "结构：findings.escAndReturn 与判据 6 的关键字段一致"
+  },
+  {
+   "name": "伪造焦点没回到触发按钮",
+   "caught": true,
+   "firstFail": "结构：findings.escAndReturn 与判据 6 的关键字段一致"
+  },
+  {
+   "name": "伪造打开瞬间焦点停在 body 上",
+   "caught": true,
+   "firstFail": "结构：findings.openFocus 与判据 3 的证据同源"
+  },
+  {
+   "name": "伪造 focus-return 不是 trigger",
+   "caught": true,
+   "firstFail": "原始：dialog 本体读数与重算一致（aria-modal / 三枚焦点 / 最上层）"
+  },
+  {
+   "name": "伪造不可达元素变成 3 个",
+   "caught": true,
+   "firstFail": "原始：可聚焦元素计数（128 / 126 / 2）与重算一致"
+  },
+  {
+   "name": "伪造其中有不可达元素不是隐藏 file input",
+   "caught": true,
+   "firstFail": "结构：findings.focusables 与判据 9 的证据同源"
+  },
+  {
+   "name": "★ 把 b 探针的轮次谎报成两轮",
+   "caught": true,
+   "firstFail": "产物：★ 如实记录轮次 —— a 两轮且一致、b 单轮且标注不适用两轮判定"
+  },
+  {
+   "name": "把 b 的 consistent 从 null 改成 true",
+   "caught": true,
+   "firstFail": "产物：★ 如实记录轮次 —— a 两轮且一致、b 单轮且标注不适用两轮判定"
+  },
+  {
+   "name": "删掉返工 R49（按文案找图标按钮）",
+   "caught": true,
+   "firstFail": "产物：返工 5 条（R48 探针工具写死 / R49 按文案找图标按钮 / R50 读错元素 / R51 差点误报 / R52 同一个洞第四次复发）"
+  },
+  {
+   "name": "清空不声称清单",
+   "caught": true,
+   "firstFail": "产物：不声称 ≥ 8 条，含「没有与源站对照」与「b 是单轮」"
+  },
+  {
+   "name": "删掉判据 4",
+   "caught": true,
+   "firstFail": "产物：判据 12 条且编号连续 1..12"
+  },
+  {
+   "name": "伪造 aria-modal 不是 true",
+   "caught": true,
+   "firstFail": "结构：findings.dialog 与判据 1 的证据同源"
+  },
+  {
+   "name": "只改 findings.dialog 的 ariaModal（判据证据那一份不动）",
+   "caught": true,
+   "firstFail": "结构：findings.dialog 与判据 1 的证据同源"
+  },
+  {
+   "name": "只改 findings.openFocus 的 inDialog（判据证据那一份不动）",
+   "caught": true,
+   "firstFail": "结构：findings.openFocus 与判据 3 的证据同源"
+  },
+  {
+   "name": "只改 findings.fence 的 totalEscapes（判据证据那一份不动）",
+   "caught": true,
+   "firstFail": "结构：findings.fence 与判据 4 的证据同源"
+  },
+  {
+   "name": "只改 findings.focusables 的 unreachable（判据证据那一份不动）",
+   "caught": true,
+   "firstFail": "结构：findings.focusables 与判据 9 的证据同源"
+  },
+  {
+   "name": "只改 findings.collapsedFence 的 treeInert（判据证据那一份不动）",
+   "caught": true,
+   "firstFail": "结构：findings.collapsedFence 与判据 11 的证据同源"
+  }
+ ],
+ "negativeCaught": 26,
+ "negativeTotal": 26,
+ "rawError": null,
+ "ok": true
+}
