@@ -1,0 +1,1837 @@
+{
+ "batch": 767,
+ "probe": "a",
+ "question": "导演台 6 个带 aria-expanded 的 disclosure 浮层的关闭契约普查",
+ "rounds": [
+  {
+   "cleared": {
+    "removed": []
+   },
+   "load": {
+    "opened": true
+   },
+   "results": [
+    {
+     "id": "export",
+     "name": "导出面板",
+     "src": "DirectorDesk.tsx",
+     "ensureDesk": {
+      "alreadyOpen": true
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": null,
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "triggerScan": {
+      "pt": [
+       1333,
+       827
+      ]
+     },
+     "afterOpen": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": null,
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "SECTION",
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "导出设置",
+      "panelFocusables": 5,
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "导出视频到画布",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "outside": {
+      "clicked": [
+       573,
+       420
+      ],
+      "hit": {
+       "tag": "DIV",
+       "text": "角色01 · 陈默",
+       "inDialog": true,
+       "clickable": false
+      },
+      "tried": [
+       {
+        "pt": [
+         573,
+         420
+        ],
+        "hit": {
+         "tag": "DIV",
+         "text": "角色01 · 陈默",
+         "inDialog": true,
+         "clickable": false
+        }
+       }
+      ]
+     },
+     "afterOutside": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": null,
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "SECTION",
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "导出设置",
+      "panelFocusables": 5,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "afterEsc": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": null,
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "deskEnd": {
+      "open": true,
+      "activeTag": "DIV",
+      "activeAria": "3D导演台工作区",
+      "activeText": "3D导演台第一集：咖",
+      "inDialog": true,
+      "isBody": false
+     }
+    },
+    {
+     "id": "preset",
+     "name": "预设运镜面板",
+     "src": "DirectorTimeline.tsx",
+     "ensureDesk": {
+      "alreadyOpen": true
+     },
+     "selCamera": {
+      "clicked": true,
+      "pt": [
+       78,
+       375
+      ]
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": null,
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "triggerScan": {
+      "pt": [
+       318,
+       827
+      ]
+     },
+     "afterOpen": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": null,
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "DIV",
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "预设运镜",
+      "panelFocusables": 10,
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "预设运镜",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "outside": {
+      "clicked": [
+       156,
+       420
+      ],
+      "hit": {
+       "tag": "SPAN",
+       "text": "机位01 · 对峙中景",
+       "inDialog": true,
+       "clickable": false
+      },
+      "tried": [
+       {
+        "pt": [
+         156,
+         420
+        ],
+        "hit": {
+         "tag": "SPAN",
+         "text": "机位01 · 对峙中景",
+         "inDialog": true,
+         "clickable": false
+        }
+       }
+      ]
+     },
+     "afterOutside": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": null,
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "afterEsc": {
+      "skipped": "外点那一下已经关掉了，Esc 无从测起"
+     },
+     "deskEnd": {
+      "open": true,
+      "activeTag": "DIV",
+      "activeAria": "3D导演台工作区",
+      "activeText": "3D导演台第一集：咖",
+      "inDialog": true,
+      "isBody": false
+     }
+    },
+    {
+     "id": "pathmenu",
+     "name": "创建运动轨迹菜单",
+     "src": "DirectorTimeline.tsx",
+     "ensureDesk": {
+      "alreadyOpen": true
+     },
+     "selCamera": {
+      "clicked": true,
+      "pt": [
+       78,
+       411
+      ]
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": null,
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "绘制轨迹",
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "triggerScan": {
+      "pt": [
+       233,
+       961
+      ]
+     },
+     "afterOpen": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": null,
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "绘制轨迹",
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "DIV",
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 5,
+      "active": {
+       "tag": "BUTTON",
+       "aria": "绘制轨迹",
+       "text": "绘制轨迹",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "outside": {
+      "clicked": [
+       129,
+       700
+      ],
+      "hit": {
+       "tag": "DIV",
+       "text": "角色1角色01 · 陈默",
+       "inDialog": true,
+       "clickable": false
+      },
+      "tried": [
+       {
+        "pt": [
+         194,
+         420
+        ],
+        "hit": {
+         "tag": "svg",
+         "text": "",
+         "inDialog": true,
+         "clickable": true
+        }
+       },
+       {
+        "pt": [
+         129,
+         700
+        ],
+        "hit": {
+         "tag": "DIV",
+         "text": "角色1角色01 · 陈默",
+         "inDialog": true,
+         "clickable": false
+        }
+       }
+      ]
+     },
+     "afterOutside": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": null,
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "绘制轨迹",
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "afterEsc": {
+      "skipped": "外点那一下已经关掉了，Esc 无从测起"
+     },
+     "deskEnd": {
+      "open": true,
+      "activeTag": "DIV",
+      "activeAria": "3D导演台工作区",
+      "activeText": "3D导演台第一集：咖",
+      "inDialog": true,
+      "isBody": false
+     }
+    },
+    {
+     "id": "phonevcam",
+     "name": "虚拟相机面板",
+     "src": "DirectorPhoneVcamPanel.tsx",
+     "ensureDesk": {
+      "alreadyOpen": true
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "虚拟相机",
+      "triggerTitle": "虚拟相机",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "triggerScan": {
+      "pt": [
+       798,
+       781
+      ]
+     },
+     "afterOpen": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "虚拟相机",
+      "triggerTitle": "虚拟相机",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "SECTION",
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "虚拟相机",
+      "panelFocusables": 2,
+      "active": {
+       "tag": "BUTTON",
+       "aria": "虚拟相机",
+       "text": "",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "outside": {
+      "clicked": [
+       403,
+       420
+      ],
+      "hit": {
+       "tag": "DIV",
+       "text": "角色01 · 陈默",
+       "inDialog": true,
+       "clickable": false
+      },
+      "tried": [
+       {
+        "pt": [
+         403,
+         420
+        ],
+        "hit": {
+         "tag": "DIV",
+         "text": "角色01 · 陈默",
+         "inDialog": true,
+         "clickable": false
+        }
+       }
+      ]
+     },
+     "afterOutside": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "虚拟相机",
+      "triggerTitle": "虚拟相机",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "SECTION",
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "虚拟相机",
+      "panelFocusables": 2,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "afterEsc": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "虚拟相机",
+      "triggerTitle": "虚拟相机",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "deskEnd": {
+      "open": true,
+      "activeTag": "DIV",
+      "activeAria": "3D导演台工作区",
+      "activeText": "3D导演台第一集：咖",
+      "inDialog": true,
+      "isBody": false
+     }
+    },
+    {
+     "id": "crowd",
+     "name": "添加群众阵列面板",
+     "src": "DirectorViewport.tsx",
+     "ensureDesk": {
+      "alreadyOpen": true
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "添加群众阵列",
+      "triggerTitle": "添加群众阵列",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "triggerScan": {
+      "pt": [
+       830,
+       781
+      ]
+     },
+     "afterOpen": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "添加群众阵列",
+      "triggerTitle": "添加群众阵列",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "DIV",
+      "panelRole": "dialog",
+      "panelAriaLabel": "添加群众阵列",
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "添加群众阵列",
+      "panelFocusables": 5,
+      "active": {
+       "tag": "BUTTON",
+       "aria": "添加群众阵列",
+       "text": "",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "outside": {
+      "clicked": [
+       292,
+       420
+      ],
+      "hit": {
+       "tag": "DIV",
+       "text": "角色01 · 陈默",
+       "inDialog": true,
+       "clickable": false
+      },
+      "tried": [
+       {
+        "pt": [
+         292,
+         420
+        ],
+        "hit": {
+         "tag": "DIV",
+         "text": "角色01 · 陈默",
+         "inDialog": true,
+         "clickable": false
+        }
+       }
+      ]
+     },
+     "afterOutside": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "添加群众阵列",
+      "triggerTitle": "添加群众阵列",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "DIV",
+      "panelRole": "dialog",
+      "panelAriaLabel": "添加群众阵列",
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "添加群众阵列",
+      "panelFocusables": 5,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "afterEsc": {
+      "open": false
+     },
+     "deskEnd": {
+      "open": false
+     }
+    },
+    {
+     "id": "modellib",
+     "name": "模型库面板",
+     "src": "DirectorViewport.tsx",
+     "ensureDesk": {
+      "alreadyOpen": true
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "模型库",
+      "triggerTitle": "模型库",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "triggerScan": {
+      "pt": [
+       861,
+       781
+      ]
+     },
+     "afterOpen": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "模型库",
+      "triggerTitle": "模型库",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "DIV",
+      "panelRole": "dialog",
+      "panelAriaLabel": "模型库",
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "模型库",
+      "panelFocusables": 15,
+      "active": {
+       "tag": "BUTTON",
+       "aria": "模型库",
+       "text": "",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "outside": {
+      "clicked": [
+       235,
+       420
+      ],
+      "hit": {
+       "tag": "DIV",
+       "text": "机位01 · 对峙中景",
+       "inDialog": true,
+       "clickable": false
+      },
+      "tried": [
+       {
+        "pt": [
+         235,
+         420
+        ],
+        "hit": {
+         "tag": "DIV",
+         "text": "机位01 · 对峙中景",
+         "inDialog": true,
+         "clickable": false
+        }
+       }
+      ]
+     },
+     "afterOutside": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "模型库",
+      "triggerTitle": "模型库",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "afterEsc": {
+      "skipped": "外点那一下已经关掉了，Esc 无从测起"
+     },
+     "deskEnd": {
+      "open": true,
+      "activeTag": "DIV",
+      "activeAria": "3D导演台工作区",
+      "activeText": "3D导演台第一集：咖",
+      "inDialog": true,
+      "isBody": false
+     }
+    }
+   ],
+   "reopened": [
+    "crowd"
+   ]
+  },
+  {
+   "cleared": {
+    "removed": [
+     "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+    ]
+   },
+   "load": {
+    "opened": true
+   },
+   "results": [
+    {
+     "id": "export",
+     "name": "导出面板",
+     "src": "DirectorDesk.tsx",
+     "ensureDesk": {
+      "alreadyOpen": true
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": null,
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "triggerScan": {
+      "pt": [
+       1333,
+       827
+      ]
+     },
+     "afterOpen": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": null,
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "SECTION",
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "导出设置",
+      "panelFocusables": 5,
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "导出视频到画布",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "outside": {
+      "clicked": [
+       573,
+       420
+      ],
+      "hit": {
+       "tag": "DIV",
+       "text": "角色01 · 陈默",
+       "inDialog": true,
+       "clickable": false
+      },
+      "tried": [
+       {
+        "pt": [
+         573,
+         420
+        ],
+        "hit": {
+         "tag": "DIV",
+         "text": "角色01 · 陈默",
+         "inDialog": true,
+         "clickable": false
+        }
+       }
+      ]
+     },
+     "afterOutside": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": null,
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "SECTION",
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "导出设置",
+      "panelFocusables": 5,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "afterEsc": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": null,
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "deskEnd": {
+      "open": true,
+      "activeTag": "DIV",
+      "activeAria": "3D导演台工作区",
+      "activeText": "3D导演台第一集：咖",
+      "inDialog": true,
+      "isBody": false
+     }
+    },
+    {
+     "id": "preset",
+     "name": "预设运镜面板",
+     "src": "DirectorTimeline.tsx",
+     "ensureDesk": {
+      "alreadyOpen": true
+     },
+     "selCamera": {
+      "clicked": true,
+      "pt": [
+       78,
+       375
+      ]
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": null,
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "triggerScan": {
+      "pt": [
+       318,
+       827
+      ]
+     },
+     "afterOpen": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": null,
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "DIV",
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "预设运镜",
+      "panelFocusables": 10,
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "预设运镜",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "outside": {
+      "clicked": [
+       156,
+       420
+      ],
+      "hit": {
+       "tag": "SPAN",
+       "text": "机位01 · 对峙中景",
+       "inDialog": true,
+       "clickable": false
+      },
+      "tried": [
+       {
+        "pt": [
+         156,
+         420
+        ],
+        "hit": {
+         "tag": "SPAN",
+         "text": "机位01 · 对峙中景",
+         "inDialog": true,
+         "clickable": false
+        }
+       }
+      ]
+     },
+     "afterOutside": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": null,
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "afterEsc": {
+      "skipped": "外点那一下已经关掉了，Esc 无从测起"
+     },
+     "deskEnd": {
+      "open": true,
+      "activeTag": "DIV",
+      "activeAria": "3D导演台工作区",
+      "activeText": "3D导演台第一集：咖",
+      "inDialog": true,
+      "isBody": false
+     }
+    },
+    {
+     "id": "pathmenu",
+     "name": "创建运动轨迹菜单",
+     "src": "DirectorTimeline.tsx",
+     "ensureDesk": {
+      "alreadyOpen": true
+     },
+     "selCamera": {
+      "clicked": true,
+      "pt": [
+       78,
+       411
+      ]
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": null,
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "绘制轨迹",
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "triggerScan": {
+      "pt": [
+       233,
+       961
+      ]
+     },
+     "afterOpen": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": null,
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "绘制轨迹",
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "DIV",
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 5,
+      "active": {
+       "tag": "BUTTON",
+       "aria": "绘制轨迹",
+       "text": "绘制轨迹",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "outside": {
+      "clicked": [
+       129,
+       700
+      ],
+      "hit": {
+       "tag": "DIV",
+       "text": "角色1角色01 · 陈默",
+       "inDialog": true,
+       "clickable": false
+      },
+      "tried": [
+       {
+        "pt": [
+         194,
+         420
+        ],
+        "hit": {
+         "tag": "svg",
+         "text": "",
+         "inDialog": true,
+         "clickable": true
+        }
+       },
+       {
+        "pt": [
+         129,
+         700
+        ],
+        "hit": {
+         "tag": "DIV",
+         "text": "角色1角色01 · 陈默",
+         "inDialog": true,
+         "clickable": false
+        }
+       }
+      ]
+     },
+     "afterOutside": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": null,
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "绘制轨迹",
+      "triggerTitle": null,
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "afterEsc": {
+      "skipped": "外点那一下已经关掉了，Esc 无从测起"
+     },
+     "deskEnd": {
+      "open": true,
+      "activeTag": "DIV",
+      "activeAria": "3D导演台工作区",
+      "activeText": "3D导演台第一集：咖",
+      "inDialog": true,
+      "isBody": false
+     }
+    },
+    {
+     "id": "phonevcam",
+     "name": "虚拟相机面板",
+     "src": "DirectorPhoneVcamPanel.tsx",
+     "ensureDesk": {
+      "alreadyOpen": true
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "虚拟相机",
+      "triggerTitle": "虚拟相机",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "triggerScan": {
+      "pt": [
+       798,
+       781
+      ]
+     },
+     "afterOpen": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "虚拟相机",
+      "triggerTitle": "虚拟相机",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "SECTION",
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "虚拟相机",
+      "panelFocusables": 2,
+      "active": {
+       "tag": "BUTTON",
+       "aria": "虚拟相机",
+       "text": "",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "outside": {
+      "clicked": [
+       403,
+       420
+      ],
+      "hit": {
+       "tag": "DIV",
+       "text": "角色01 · 陈默",
+       "inDialog": true,
+       "clickable": false
+      },
+      "tried": [
+       {
+        "pt": [
+         403,
+         420
+        ],
+        "hit": {
+         "tag": "DIV",
+         "text": "角色01 · 陈默",
+         "inDialog": true,
+         "clickable": false
+        }
+       }
+      ]
+     },
+     "afterOutside": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "虚拟相机",
+      "triggerTitle": "虚拟相机",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "SECTION",
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "虚拟相机",
+      "panelFocusables": 2,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "afterEsc": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "虚拟相机",
+      "triggerTitle": "虚拟相机",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "deskEnd": {
+      "open": true,
+      "activeTag": "DIV",
+      "activeAria": "3D导演台工作区",
+      "activeText": "3D导演台第一集：咖",
+      "inDialog": true,
+      "isBody": false
+     }
+    },
+    {
+     "id": "crowd",
+     "name": "添加群众阵列面板",
+     "src": "DirectorViewport.tsx",
+     "ensureDesk": {
+      "alreadyOpen": true
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "添加群众阵列",
+      "triggerTitle": "添加群众阵列",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "triggerScan": {
+      "pt": [
+       830,
+       781
+      ]
+     },
+     "afterOpen": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "添加群众阵列",
+      "triggerTitle": "添加群众阵列",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "DIV",
+      "panelRole": "dialog",
+      "panelAriaLabel": "添加群众阵列",
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "添加群众阵列",
+      "panelFocusables": 5,
+      "active": {
+       "tag": "BUTTON",
+       "aria": "添加群众阵列",
+       "text": "",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "outside": {
+      "clicked": [
+       292,
+       420
+      ],
+      "hit": {
+       "tag": "DIV",
+       "text": "角色01 · 陈默",
+       "inDialog": true,
+       "clickable": false
+      },
+      "tried": [
+       {
+        "pt": [
+         292,
+         420
+        ],
+        "hit": {
+         "tag": "DIV",
+         "text": "角色01 · 陈默",
+         "inDialog": true,
+         "clickable": false
+        }
+       }
+      ]
+     },
+     "afterOutside": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "添加群众阵列",
+      "triggerTitle": "添加群众阵列",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "DIV",
+      "panelRole": "dialog",
+      "panelAriaLabel": "添加群众阵列",
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "添加群众阵列",
+      "panelFocusables": 5,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "afterEsc": {
+      "open": false
+     },
+     "deskEnd": {
+      "open": false
+     }
+    },
+    {
+     "id": "modellib",
+     "name": "模型库面板",
+     "src": "DirectorViewport.tsx",
+     "ensureDesk": {
+      "alreadyOpen": true
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "模型库",
+      "triggerTitle": "模型库",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "triggerScan": {
+      "pt": [
+       861,
+       781
+      ]
+     },
+     "afterOpen": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "true",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "模型库",
+      "triggerTitle": "模型库",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": true,
+      "panelTag": "DIV",
+      "panelRole": "dialog",
+      "panelAriaLabel": "模型库",
+      "panelId": null,
+      "panelHasHeading": true,
+      "panelHeading": "模型库",
+      "panelFocusables": 15,
+      "active": {
+       "tag": "BUTTON",
+       "aria": "模型库",
+       "text": "",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "outside": {
+      "clicked": [
+       235,
+       420
+      ],
+      "hit": {
+       "tag": "DIV",
+       "text": "机位01 · 对峙中景",
+       "inDialog": true,
+       "clickable": false
+      },
+      "tried": [
+       {
+        "pt": [
+         235,
+         420
+        ],
+        "hit": {
+         "tag": "DIV",
+         "text": "机位01 · 对峙中景",
+         "inDialog": true,
+         "clickable": false
+        }
+       }
+      ]
+     },
+     "afterOutside": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "triggerAriaExpanded": "false",
+      "triggerAriaControls": null,
+      "triggerAriaHasPopup": null,
+      "triggerAriaLabel": "模型库",
+      "triggerTitle": "模型库",
+      "triggerHasControlsAttr": false,
+      "triggerHasHasPopupAttr": false,
+      "triggerId": null,
+      "panelPresent": false,
+      "panelTag": null,
+      "panelRole": null,
+      "panelAriaLabel": null,
+      "panelId": null,
+      "panelHasHeading": false,
+      "panelHeading": null,
+      "panelFocusables": 0,
+      "active": {
+       "tag": "DIV",
+       "aria": "3D导演台工作区",
+       "text": "3D导演台第一集：咖",
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "afterEsc": {
+      "skipped": "外点那一下已经关掉了，Esc 无从测起"
+     },
+     "deskEnd": {
+      "open": true,
+      "activeTag": "DIV",
+      "activeAria": "3D导演台工作区",
+      "activeText": "3D导演台第一集：咖",
+      "inDialog": true,
+      "isBody": false
+     }
+    }
+   ],
+   "reopened": [
+    "crowd"
+   ]
+  }
+ ]
+}
