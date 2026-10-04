@@ -191,6 +191,7 @@ screenshots:
     visible_text: '选择节点'
     alt: 双击画布空白处后弹出选择节点菜单，列出七种可创建项
     sha256: 5ecf232fdcd69bc5ef61faec57f8453e1b6a0edfbab5f8dae907d0fdd602c840
+    m220_note: '2026-10-04 M220：与 30-concepts-add-node-menu.png 是同一份七项清单，但「组」与「ComfyUI 工作流」两项的先后相反（本图是「组」在前）。差异是源码固化的，不是拍摄时机问题，详见 R67。'
 
   - file: screenshots/04-edit-nodes-info-modal.png
     task_id: edit-nodes
@@ -529,6 +530,7 @@ screenshots:
     visible_text: '添加节点'
     alt: 左侧 Dock 的加号按钮打开添加节点菜单，列出文本、图片、视频、音频、ComfyUI 工作流、组、上传素材七种节点类型
     sha256: a2ff7c56d00aa94ca7194e45b2516638a94370deebdfd4da93b324da28e1eaa2
+    m220_note: '2026-10-04 M220：与 03-create-nodes-double-click-menu.png / 09-generate-images-create-menu.png 是同一份七项清单，但「组」与「ComfyUI 工作流」两项的先后相反（本图是「ComfyUI 工作流」在前）。差异是源码固化的，不是拍摄时机问题，详见 R67。'
 
   - file: screenshots/30-concepts-two-text-nodes.png
     task_id: create-nodes

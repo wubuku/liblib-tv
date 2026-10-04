@@ -88,7 +88,7 @@ tasks:
     screenshot_count: 6
     manual_pages:
       - 10-tasks/create-nodes.md
-    review_note: 2026-09-27 运行时走查完成（双击菜单逐字、文字/视频/音频/组四类空节点创建），截图 2 张入 manifest；Gate B 待全量回走。2026-10-01 M59 对账补：另 3 张（00-quickstart-first-text-node / 30-concepts-add-node-menu / 30-concepts-two-text-nodes）分别由快速上手与概念页复用登记，本任务 manifest 实为 5 张；M53 走查确认空画布中央「双击画布，自由创作」与五芯片（文字/图片/视频/音频/上传素材）、左栏首项可访问名是「添加节点」（纯图标）。
+    review_note: 2026-09-27 运行时走查完成（双击菜单逐字、文字/视频/音频/组四类空节点创建），截图 2 张入 manifest；Gate B 待全量回走。2026-10-01 M59 对账补：另 3 张（00-quickstart-first-text-node / 30-concepts-add-node-menu / 30-concepts-two-text-nodes）分别由快速上手与概念页复用登记，本任务 manifest 实为 5 张；M53 走查确认空画布中央「双击画布，自由创作」与五芯片（文字/图片/视频/音频/上传素材）、左栏首项可访问名是「添加节点」（纯图标）。 2026-10-04 M220 核 alt 抓到 R67：两个创建菜单项数与内容相同，但「组」与「ComfyUI 工作流」两项的先后相反（双击菜单是「组」在前，Dock 加号菜单是 ComfyUI 工作流在前）。三张独立图证；源码坐实两条路径项来源不同——双击侧 canvas-create-menus.tsx:76 遍历整个注册表 listNodeDefinitions()（Map 插入序，「组」在 builtin-nodes.tsx:28 的内置数组里、ComfyUI 由插件后注册故排其后），Dock 侧 canvas-toolbar.tsx:273-280 是写死的四项加扩展节点再加写死的「组」。★ 本页漏改的是那两句概括（正文把两菜单说成完全相同、图注说选项一致），而同页入口一第 2 步、下面那条引注与 30-concepts.md 三处一直是对的；已改为写实顺序并加订正块。判定要点：相邻两项的先后在小图上分辨不出，是把两处菜单各裁出来放大 4 倍才读准的（同 R66）。
   - id: upload-materials
     title: 上传本地图片、音频与视频素材
     role: tdcanvas-creator

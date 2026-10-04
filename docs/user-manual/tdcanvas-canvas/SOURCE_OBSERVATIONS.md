@@ -1018,3 +1018,30 @@ M203 的做法是——只把 R31 的 needle 换成读者真读到的形态、�
 
 **F23｜`app_state` 里有 2 条记录**：直接跑 `node scripts/probe-storage-shape.js <画布URL>`，
 或照 `20-reference.md` 那张表在 `F12` 里把**每条记录的键名都点一遍**——只看第一条会以为项目数据不见了。
+
+**F24｜★ 两个「创建节点」菜单的项来源不是同一份数据，所以「组」和「ComfyUI 工作流」两项的先后是反的**
+（2026-10-04 M220 逐图核对发现，图证三张：[运行时] + [静态]）：
+
+| 入口 | 组件 | 项来源 | 实测顺序 |
+|---|---|---|---|
+| 双击画布空白（标题「选择节点」） | `canvas-create-menus.tsx` `NodeCreateFlyout` | `listNodeDefinitions()` **整个注册表** | 文本 图片 视频 音频 **组** **ComfyUI 工作流** ‖ 上传素材 |
+| Dock「+」（标题「添加节点」） | `canvas-toolbar.tsx:269-296` | **写死**的四项 + 扩展节点 + 写死的「组」 | 文本 图片 视频 音频 **ComfyUI 工作流** **组** ‖ 上传素材 |
+
+- **双击侧为什么是「组」在前**：`canvas-create-menus.tsx:76` 渲染 `listNodeDefinitions()`，
+  而 `node-registry.ts:42` 的实现是 `Array.from(definitions.values())`——**Map 保持插入序**。
+  插入序由 `builtin-nodes.tsx:22-28` 的 `BUILTIN_DEFINITIONS` 决定，顺序是
+  文本 → 图片 → 视频 → 音频 → **Config** → **组**；其中 Config 带 `showInCreateMenu: false`
+  （`builtin-nodes.tsx:27`）被 `:76` 的 filter 滤掉，于是「组」顶到第 5 位。
+  **ComfyUI 工作流根本不在这个数组里**——它由插件调 `registerNodeDefinitions(defs, pluginId)` 后插入
+  （`node-registry.ts:20-24`），Map 里排在「组」之后。
+- **Dock 侧为什么是「ComfyUI 工作流」在前**：`canvas-toolbar.tsx:273-276` 写死文本/图片/视频/音频，
+  `:277-279` 渲染 `primaryExtensionDefs`（ComfyUI 在其中），**`:280` 才渲染写死的「组」**。
+  「组」被刻意放在扩展节点之后。
+- **怎么复现**（本批是读图 + 读源码，没有额外开浏览器）：
+  双击画布空白，把右侧菜单七项从上到下抄一遍；再点左侧 Dock 的「+」，抄一遍。**比第 5、6 项。**
+- **判定陷阱**：小图上这两项是相邻的纯文字，**肉眼分辨不出顺序**。本批是把两处菜单区各裁出来
+  放大 4 倍才读准的——与 R66（manifest `visible_text` 记 45%、图上是 39%）同一类，
+  **凡是「相邻两项的先后」这种断言，都要放大后再读**。
+- **归属确认**：两条路径的菜单项来自**两个不同的 JSX 块**（`canvas-create-menus.tsx:120-126` 与
+  `canvas-toolbar.tsx:272-283`），不是同一组件复用的两种状态——**所以这不是「同一份清单换了排版」**，
+  也就不能靠「它们肯定一样」去推。
