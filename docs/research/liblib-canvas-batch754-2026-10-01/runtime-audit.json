@@ -1,0 +1,852 @@
+{
+  "batch": 754,
+  "date": "2026-10-01",
+  "clone": "http://localhost:4317",
+  "subject": "剩下 5 个可跑的记账命令 + 2 个零入口命令的定性",
+  "seed": {
+    "canvasId": "canvas-2",
+    "nodes": 10,
+    "edges": 11,
+    "emptyCanvas": "canvas-1（0 节点 / 0 边，故事脚本对只在这里）",
+    "confirmedBy": "每轮整页 reload，baseline 两轮逐项相同"
+  },
+  "judgeCount": 16,
+  "twoRound": {
+    "rounds": 2,
+    "independence": "轮间整页 reload ⟹ zustand 回到种子",
+    "filter": "凡匹配 createNodeId() 形态 `<prefix>-<epochMillis>-<rand6>` 的字符串替换为 `<generated-id>`",
+    "filterWhy": "754c 第一版手写易变字段路径表，漏了子节点的 parentId、选中集 ids、结果节点的 sourceBreakdownId 三个，报出假不一致（rework R9）",
+    "diff": {},
+    "consistent": true,
+    "supplement": {
+      "probe": "754e",
+      "why": "754c 的「1 维差分」与「维度门」两格被前一次 run 铺出的 5 张结果卡污染（覆盖后续节点的维度芯片），三次 toggle 的 elementFromPoint 校验全部 hit=false",
+      "cells": {
+        "one-dim": true,
+        "all-dims-off": true
+      },
+      "cellDiff": {
+        "one-dim": {},
+        "all-dims-off": {}
+      }
+    }
+  },
+  "judgments": [
+    {
+      "no": 1,
+      "title": "「图生图/图片高清」芯片依赖空态渲染",
+      "claim": "种子的 5 个 image 节点上 data-image-attempt 芯片 0 枚；加一个空图片节点后出现 2 枚（都 aria-pressed=false）",
+      "evidence": {
+        "chipsOnSeedImageNodes": 0,
+        "chipsAfterAddEmptyImage": [
+          {
+            "id": "图生图",
+            "pressed": "false",
+            "w": 35,
+            "h": 14,
+            "inView": true,
+            "topIsSelf": true
+          },
+          {
+            "id": "图片高清",
+            "pressed": "false",
+            "w": 41,
+            "h": 14,
+            "inView": true,
+            "topIsSelf": true
+          }
+        ],
+        "emptyImageNode": null,
+        "static": "AddNodePanel.tsx Batch 268 注释：新建图片节点为空占位，尝试建议行（图生图/图片高清）依赖空态渲染"
+      },
+      "why": "不是死代码。754a 第一版读到 0 枚时老老实实报了 why:'no element'，没有拿它当产品结论 —— 「先怀疑探针」这条规矩的正面样本。",
+      "twoRound": true
+    },
+    {
+      "no": 2,
+      "title": "createImageHdPreset 的记账",
+      "claim": "点「图片高清」⟹ 节点 +2、边 ±0、past +1，选中集切到新组 id",
+      "evidence": {
+        "deltas": {
+          "nodeD": 2,
+          "edgeD": 0,
+          "pastD": 1
+        },
+        "selectionIsNewGroup": true,
+        "chipsAfterClick": 0
+      },
+      "why": "边不变符合实现（这条命令只造节点不造边）。点完芯片后芯片归 0，因为建议行属于**被选中图片节点**的编辑器，而选中集已经移到新组上。",
+      "twoRound": true
+    },
+    {
+      "no": 3,
+      "title": "高清预设的几何可逐项对账",
+      "claim": "组 storyboard-group 430×452 title=「预设 - 图片高清」；子节点 image 340×330 @组内(40,60) parentId=组 filename=「图片节点」；组相对源节点 +(320, −60)",
+      "evidence": {
+        "geom": {
+          "source": null,
+          "group": {
+            "x": 1666,
+            "y": 687,
+            "w": 430,
+            "h": 452,
+            "title": "预设 - 图片高清"
+          },
+          "child": {
+            "x": 40,
+            "y": 60,
+            "w": 340,
+            "h": 330,
+            "filename": "图片节点",
+            "parentIsGroup": true
+          }
+        },
+        "sourceToGroupOffset": {
+          "dx": 320,
+          "dy": -60,
+          "measuredIn": "754b 单轮（两轮那格 source 读空了）",
+          "source": {
+            "id": "<generated-id>",
+            "type": "image",
+            "x": 1346,
+            "y": 747,
+            "w": 512,
+            "h": 288,
+            "parent": "",
+            "title": "",
+            "filename": "新图片",
+            "content": "",
+            "resultKey": "",
+            "sourceBreakdownId": ""
+          },
+          "group": {
+            "id": "<generated-id>",
+            "type": "storyboard-group",
+            "x": 1666,
+            "y": 687,
+            "w": 430,
+            "h": 452,
+            "parent": "",
+            "title": "预设 - 图片高清",
+            "filename": "",
+            "content": "",
+            "resultKey": "",
+            "sourceBreakdownId": ""
+          }
+        },
+        "static": "canvasStore.ts:1481-1520：position = source + (320, −60)、width/height 430/452；child position (40,60) 340/330"
+      },
+      "why": "754b 读到源节点 (1346, 747) ⟹ 组 (1666, 687) = +320 / −60，逐像素对上。",
+      "twoRound": true
+    },
+    {
+      "no": 4,
+      "title": "attachAssetReferences 记账（第一个 asset）",
+      "claim": "节点 +1、边 ±0、past +1，filename=fixture-hist-0，提示「已从生成历史添加资源」178×16 rgb(143,232,180)",
+      "evidence": {
+        "deltas": {
+          "nodeD": 1,
+          "edgeD": 0,
+          "pastD": 1
+        },
+        "added": [
+          {
+            "id": "<generated-id>",
+            "type": "image",
+            "x": 60,
+            "y": 60,
+            "w": 512,
+            "h": 288,
+            "parent": "",
+            "title": "",
+            "filename": "fixture-hist-0",
+            "content": "",
+            "resultKey": "",
+            "sourceBreakdownId": ""
+          }
+        ],
+        "status": [
+          {
+            "t": "已从生成历史添加资源",
+            "w": 178,
+            "h": 16,
+            "color": "rgb(143, 232, 180)"
+          }
+        ],
+        "menu": [
+          {
+            "id": "0",
+            "t": "咖啡馆漫步 · 成品",
+            "w": 162,
+            "h": 32
+          },
+          {
+            "id": "1",
+            "t": "城市夜景 · 成品",
+            "w": 162,
+            "h": 32
+          }
+        ]
+      },
+      "why": "纯本地 fixture（fixture-hist-0/1 + /images/*.png），不碰后端。",
+      "twoRound": true
+    },
+    {
+      "no": 5,
+      "title": "同一个 asset 重复 attach：提示撒谎（缺陷）",
+      "claim": "第二次点同一个 asset ⟹ 节点 +0、past +0，但提示仍然是绿色「已从生成历史添加资源」",
+      "evidence": {
+        "deltas": {
+          "nodeD": 0,
+          "edgeD": 0,
+          "pastD": 0
+        },
+        "status": [
+          {
+            "t": "已从生成历史添加资源",
+            "w": 178,
+            "h": 16,
+            "color": "rgb(143, 232, 180)"
+          }
+        ],
+        "saysSuccessButZeroChange": true,
+        "rootCause": "canvasStore.ts 的 attachAssetReferences 在 attachedAssets.length === 0 时返回 status:'accepted'（attachedAssetIds: [] / skippedAssetIds: 全量）；AddNodePanel.tsx:78 只按 status === 'rejected' 分支，于是走 else 显示成功文案"
+      },
+      "why": "去重逻辑本身是对的（already-referenced 跳过、零历史），错的是**结果语义与文案对不上**。待拍板。",
+      "twoRound": true
+    },
+    {
+      "no": 6,
+      "title": "去重是按 assetId 逐个判的（对照组）",
+      "claim": "换一个 asset ⟹ 节点 +1",
+      "evidence": {
+        "deltas": {
+          "nodeD": 1,
+          "edgeD": 0,
+          "pastD": 1
+        },
+        "added": [
+          {
+            "id": "<generated-id>",
+            "type": "image",
+            "x": 60,
+            "y": 60,
+            "w": 512,
+            "h": 288,
+            "parent": "",
+            "title": "",
+            "filename": "fixture-hist-1",
+            "content": "",
+            "resultKey": "",
+            "sourceBreakdownId": ""
+          }
+        ]
+      },
+      "why": "证明第 5 条的零变化是「同一个 assetId 被跳过」，不是「菜单坏了」。",
+      "twoRound": true
+    },
+    {
+      "no": 7,
+      "title": "REGISTERED_ASSET_ATTACH 是零入口的第二个 profile",
+      "claim": "attachAssetReferences 的两个 profile 里只有 GENERATED_HISTORY_ATTACH 接了 UI",
+      "evidence": {
+        "grepHits": [
+          "components/AddNodePanel.tsx:76  ← 唯一 UI 调用点",
+          "lib/libtvMediaIngress.ts:11-12  类型联合",
+          "lib/libtvMediaIngress.ts:59/66  profile 表",
+          "store/canvasStore.ts:427  类型声明"
+        ],
+        "registeredCallSites": 0
+      },
+      "why": "与 setEdges / duplicateNode / removeNode 同一族：store 支持、UI 不接。",
+      "twoRound": false
+    },
+    {
+      "no": 8,
+      "title": "addResourceCohort：多文件走单个图事务",
+      "claim": "2 个 PNG ⟹ 节点 +2 但 past 只 +1；两个 filename 不同；位置错开 (60,60) 与 (100,400)；均 512×288；面板自动关闭",
+      "evidence": {
+        "deltas": {
+          "nodeD": 2,
+          "edgeD": 0,
+          "pastD": 1
+        },
+        "added": [
+          {
+            "id": "<generated-id>",
+            "type": "image",
+            "x": 60,
+            "y": 60,
+            "w": 512,
+            "h": 288,
+            "parent": "",
+            "title": "",
+            "filename": "b754-a.png",
+            "content": "",
+            "resultKey": "",
+            "sourceBreakdownId": ""
+          },
+          {
+            "id": "<generated-id>",
+            "type": "image",
+            "x": 100,
+            "y": 400,
+            "w": 512,
+            "h": 288,
+            "parent": "",
+            "title": "",
+            "filename": "b754-b.png",
+            "content": "",
+            "resultKey": "",
+            "sourceBreakdownId": ""
+          }
+        ],
+        "fileInput": {
+          "accept": "image/png,image/jpeg,image/webp",
+          "w": 1,
+          "h": 1
+        },
+        "panelOpenRightAfter": false,
+        "panelOpenAfter900ms": false,
+        "static": "AddNodePanel.tsx Batch 453 注释：create one node per file in a single accepted-success graph transaction"
+      },
+      "why": "「+2 节点 / +1 历史」是这格的关键：整批文件是一个原子事务，可以一次撤销。",
+      "twoRound": true
+    },
+    {
+      "no": 9,
+      "title": "cohort 成功提示只活到面板关闭那一刻",
+      "claim": "「已添加 2 个资源」确实渲染，但与面板一起在 ~500–600ms 消失",
+      "evidence": {
+        "timeline": [
+          {
+            "ms": 0,
+            "elapsedMs": 16,
+            "panelOpen": true,
+            "text": "已添加 2 个资源",
+            "nodes": 12
+          },
+          {
+            "ms": 60,
+            "elapsedMs": 184,
+            "panelOpen": true,
+            "text": "已添加 2 个资源",
+            "nodes": 12
+          },
+          {
+            "ms": 120,
+            "elapsedMs": 350,
+            "panelOpen": true,
+            "text": "已添加 2 个资源",
+            "nodes": 12
+          },
+          {
+            "ms": 200,
+            "elapsedMs": 514,
+            "panelOpen": false,
+            "text": "已添加 2 个资源",
+            "nodes": 12
+          },
+          {
+            "ms": 300,
+            "elapsedMs": 717,
+            "panelOpen": false,
+            "text": "",
+            "nodes": 12
+          },
+          {
+            "ms": 450,
+            "elapsedMs": 922,
+            "panelOpen": false,
+            "text": "",
+            "nodes": 12
+          },
+          {
+            "ms": 600,
+            "elapsedMs": 1249,
+            "panelOpen": false,
+            "text": "",
+            "nodes": 12
+          },
+          {
+            "ms": 800,
+            "elapsedMs": 1528,
+            "panelOpen": false,
+            "text": "",
+            "nodes": 12
+          },
+          {
+            "ms": 1100,
+            "elapsedMs": 2018,
+            "panelOpen": false,
+            "text": "",
+            "nodes": 12
+          },
+          {
+            "ms": 1500,
+            "elapsedMs": 2513,
+            "panelOpen": false,
+            "text": "",
+            "nodes": 12
+          }
+        ],
+        "why": "AddNodePanel.tsx accepted 分支 setStatus(...) 之后 window.setTimeout(closePanel, 600)；状态文案就渲染在面板内"
+      },
+      "why": "754a/754c 都在 700ms 之后才采样，两次都读到空 —— 差点写成「提示不渲染」。**提示类读数必须用时间序列，不能用单点。**",
+      "twoRound": true
+    },
+    {
+      "no": 10,
+      "title": "逐帧拉片的门链",
+      "claim": "初始 3 维度全开且 start disabled；「从画布选择」⟹ enabled；run 中「拉片中」；完成「拉片完成」；start 恒 110×14",
+      "evidence": {
+        "initial": [
+          {
+            "dims": [
+              {
+                "id": "storyboard",
+                "p": "true"
+              },
+              {
+                "id": "motion",
+                "p": "true"
+              },
+              {
+                "id": "music",
+                "p": "true"
+              }
+            ],
+            "startDisabled": true,
+            "startText": "开始拉片",
+            "startW": 110
+          }
+        ],
+        "ready": [
+          {
+            "dims": [
+              {
+                "id": "storyboard",
+                "p": "true"
+              },
+              {
+                "id": "motion",
+                "p": "true"
+              },
+              {
+                "id": "music",
+                "p": "true"
+              }
+            ],
+            "startDisabled": false,
+            "startText": "开始拉片",
+            "startW": 110
+          }
+        ],
+        "during": [
+          {
+            "dims": [
+              {
+                "id": "storyboard",
+                "p": "true"
+              },
+              {
+                "id": "motion",
+                "p": "true"
+              },
+              {
+                "id": "music",
+                "p": "true"
+              }
+            ],
+            "startDisabled": true,
+            "startText": "拉片中",
+            "startW": 110
+          }
+        ],
+        "after": [
+          {
+            "dims": [
+              {
+                "id": "storyboard",
+                "p": "true"
+              },
+              {
+                "id": "motion",
+                "p": "true"
+              },
+              {
+                "id": "music",
+                "p": "true"
+              }
+            ],
+            "startDisabled": true,
+            "startText": "拉片完成",
+            "startW": 110
+          }
+        ],
+        "secondStartNoop": true
+      },
+      "why": "startBreakdown 的四道门逐个验到：status≠empty / ≠complete / !isRunning / activeDimensions.length>0。节点初始 status='empty'，必须先走「从画布选择」置 'ready'。",
+      "twoRound": true
+    },
+    {
+      "no": 11,
+      "title": "维度数 → 结果数差分",
+      "claim": "3 维度 ⟹ 5 个结果节点 + 5 条边；1 维度（只留 music）⟹ 1 个结果 + 1 条边",
+      "evidence": {
+        "threeDims": {
+          "deltas": {
+            "nodeD": 5,
+            "edgeD": 5,
+            "pastD": 1
+          },
+          "keys": [
+            "storyboard-01",
+            "storyboard-02",
+            "storyboard-03",
+            "motion",
+            "music"
+          ],
+          "resultEdges": 5
+        },
+        "oneDim": {
+          "deltas": {
+            "nodeD": 1,
+            "edgeD": 1,
+            "pastD": 1
+          },
+          "keys": [
+            "motion"
+          ],
+          "allHitsOk": true,
+          "measuredIn": "754e（独立页面，754c 那格被结果卡污染没点中）"
+        },
+        "static": "lib/shotBreakdownResults.ts: storyboard 3 + motion 1 + music 1 = 5"
+      },
+      "why": "静态定义表 5 条与运行时 5 条逐项对得上；关掉 storyboard 与 motion 后只剩 music 的 1 条。",
+      "twoRound": true
+    },
+    {
+      "no": 12,
+      "title": "结果节点的几何可对账",
+      "claim": "x 全部相同 = 源绝对x + 宽 + 120；y 逐个 = 上一张 y + 高 + 48",
+      "evidence": {
+        "xAllEqual": true,
+        "yRecurrence": true,
+        "sizes": [
+          [
+            324,
+            220
+          ],
+          [
+            1040,
+            350
+          ],
+          [
+            1040,
+            680
+          ]
+        ],
+        "ySeq": [
+          [
+            617,
+            680
+          ],
+          [
+            1345,
+            680
+          ],
+          [
+            2073,
+            350
+          ],
+          [
+            2471,
+            680
+          ],
+          [
+            3199,
+            220
+          ]
+        ],
+        "keys": [
+          "storyboard-01",
+          "storyboard-02",
+          "storyboard-03",
+          "motion",
+          "music"
+        ],
+        "static": "canvasStore.ts:3012+ resultX = sourceX + nodeWidth + 120；resultY 起 sourceY − 80，每张 resultY += height + 48"
+      },
+      "why": "5 步递推全对，且跨三种高度（1040×680 / 1040×350 / 324×220）—— 如果实现里写死 680 或漏掉 48，这里立刻会跳。",
+      "twoRound": true
+    },
+    {
+      "no": 13,
+      "title": "两条守卫：已有结果不重跑、维度全关按钮锁",
+      "claim": "第二次 start ⟹ 零变化（existingResults.length>0）；全新节点在 run 之前逐个关掉 3 个维度 ⟹ start disabled",
+      "evidence": {
+        "secondStartNoop": true,
+        "allDimsOff": true,
+        "startDisabledAfterAllOff": true,
+        "startTextAfterAllOff": "开始拉片",
+        "allHitsOk": true,
+        "measuredIn": "754e（独立页面；754c 那格三次 toggle 的 hit 全是 false）",
+        "twoRoundsPerCell": {
+          "one-dim": true,
+          "all-dims-off": true
+        }
+      },
+      "why": "754b 那格「维度全关」是**在 run 之后**做的，status 已 complete，按钮早被 complete 门锁了 ⟹ 测的不是维度门。这次用全新节点在 run 之前做。",
+      "twoRound": true
+    },
+    {
+      "no": 14,
+      "title": "createStoryScriptPair：第四条多选生产者",
+      "claim": "切到 canvas-1（空态 4 枚芯片）⟹ 点「故事脚本生成」⟹ 节点 +2、选中集 = 2、past +1、边 ±0",
+      "evidence": {
+        "canvasRows": [
+          {
+            "id": "canvas-2",
+            "active": "true",
+            "w": 222,
+            "h": 40
+          },
+          {
+            "id": "canvas-1",
+            "active": "false",
+            "w": 222,
+            "h": 40
+          }
+        ],
+        "emptyChips": [
+          {
+            "id": "story-script",
+            "t": "故事脚本生成",
+            "w": 126,
+            "h": 48,
+            "inView": true
+          },
+          {
+            "id": "character-turnaround",
+            "t": "角色三视图",
+            "w": 112,
+            "h": 48,
+            "inView": true
+          },
+          {
+            "id": "reference-to-video",
+            "t": "全能参考生视频SD 2.5",
+            "w": 194,
+            "h": 48,
+            "inView": true
+          },
+          {
+            "id": "audio-to-video",
+            "t": "音频生视频SD 2.5",
+            "w": 166,
+            "h": 48,
+            "inView": true
+          }
+        ],
+        "deltas": {
+          "nodeD": 2,
+          "edgeD": 0,
+          "pastD": 1
+        },
+        "selectedN": 2,
+        "added": [
+          {
+            "id": "<generated-id>",
+            "type": "text",
+            "x": 545,
+            "y": 410,
+            "w": 350,
+            "h": 180,
+            "parent": "",
+            "title": "",
+            "filename": "",
+            "content": "剧本",
+            "resultKey": "",
+            "sourceBreakdownId": ""
+          },
+          {
+            "id": "<generated-id>",
+            "type": "script-v2",
+            "x": 895,
+            "y": 325,
+            "w": 350,
+            "h": 350,
+            "parent": "",
+            "title": "脚本生成器",
+            "filename": "",
+            "content": "",
+            "resultKey": "",
+            "sourceBreakdownId": ""
+          }
+        ],
+        "geom": {
+          "text": {
+            "x": 545,
+            "y": 410,
+            "w": 350,
+            "h": 180,
+            "content": "剧本"
+          },
+          "script": {
+            "x": 895,
+            "y": 325,
+            "w": 350,
+            "h": 350,
+            "title": "脚本生成器"
+          },
+          "sameCenterY": true,
+          "scriptXIsTextXPlus350": true
+        },
+        "static": "canvasStore.ts:1273 selectedNodeIds: [textNode.id, scriptNode.id]"
+      },
+      "why": "753 之后发现的第四条多选来源（前三条：Meta+点击 / Shift+框选 / ungroupSelectedNodes 的结果）。两个节点中心 y 相同、script x = text x + 350，与 getViewportCenterPosition + 偏移的实现逐项对上。",
+      "twoRound": true
+    },
+    {
+      "no": 15,
+      "title": "空态另外 3 枚芯片是未接入分支",
+      "claim": "角色三视图 / 全能参考生视频SD 2.5 / 音频生视频SD 2.5 ⟹ 节点 +0 + 「本地原型：快速生成入口未接入」",
+      "evidence": {
+        "otherChips": [
+          {
+            "id": "character-turnaround",
+            "t": "角色三视图",
+            "w": 112,
+            "h": 48,
+            "inView": true
+          },
+          {
+            "id": "reference-to-video",
+            "t": "全能参考生视频SD 2.5",
+            "w": 194,
+            "h": 48,
+            "inView": true
+          },
+          {
+            "id": "audio-to-video",
+            "t": "音频生视频SD 2.5",
+            "w": 166,
+            "h": 48,
+            "inView": true
+          }
+        ],
+        "deltas": {
+          "nodeD": 0,
+          "edgeD": 0,
+          "pastD": 0
+        },
+        "status": [
+          {
+            "t": "Press enter or space to select a node. Y",
+            "w": 1440,
+            "h": 1000,
+            "color": "rgb(247, 247, 247)"
+          },
+          {
+            "t": "本地原型：快速生成入口未接入",
+            "w": 168,
+            "h": 16,
+            "color": "rgb(255, 156, 142)"
+          }
+        ]
+      },
+      "why": "顺带再一次印证「含角标的按钮不能用精确文本匹配」：两枚芯片的 textContent 是「全能参考生视频**SD 2.5**」「音频生视频**SD 2.5**」。",
+      "twoRound": true
+    },
+    {
+      "no": 16,
+      "title": "duplicateNode / removeNode 零入口（本批复核，静态）",
+      "claim": "canvasStore.duplicateNode 与 removeNode 在画布自己的树里零调用点",
+      "evidence": {
+        "concludedIn": "batch 753 的 verify-liblib-batch753.py 静态断言",
+        "hits": []
+      },
+      "why": "14 个未跑清单里这两个不是「没跑」，是**没有入口可跑**。与 setEdges、REGISTERED_ASSET_ATTACH 归为同一族。",
+      "twoRound": false
+    }
+  ],
+  "rework": [
+    {
+      "id": "R8",
+      "batch": "754a",
+      "what": "把 Playwright 引擎选择器传进了 querySelector",
+      "detail": "real_click('text=从生成历史选择') ⟹ 'text=...' is not a valid selector SyntaxError，整轮中止",
+      "rule": "页面内 JS 只吃标准 CSS 选择器；按文本找元素要自己遍历 querySelectorAll('button') 再 filter"
+    },
+    {
+      "id": "R9",
+      "batch": "754c",
+      "what": "两轮比对手写易变字段路径表，漏了 3 个",
+      "detail": "子节点的 parentId（= 新生成的组 id）、pair_selectedIds、结果节点的 sourceBreakdownId 都是 createNodeId() 产物，路径表没覆盖 ⟹ 报出 hd_added / pair_selectedIds / sb3_results 三处假不一致",
+      "rule": "不要维护「哪些字段易变」的路径表；改成按**生成值的形态**识别（正则匹配 createNodeId 的 <prefix>-<epoch>-<rand6>）"
+    },
+    {
+      "id": "R10",
+      "batch": "754d",
+      "what": "想测 accept 拒绝路径，却用 set_input_files 喂了 .txt",
+      "detail": "set_input_files 绕过 accept 过滤 ⟹ 读到「被接受」+1 节点。**这不是产品发现**（原生文件选择器会过滤），该格作废",
+      "rule": "程序化赋 file ≠ 用户选 file；accept 的强制只能由原生选择器验证，本环境无法测 ⟹ 记进不声称，不写进判据"
+    },
+    {
+      "id": "R11",
+      "batch": "754a",
+      "what": "三个维度的 click() 放在同一个 tick",
+      "detail": "toggleDimension 从同一份 render 闭包算 next，三次 updateNodeData 写同一个 key ⟹ 后写覆盖前写，只关掉 1 个维度 ⟹ 「维度全关」那格作废",
+      "rule": "测会改 state 的连续交互要**一次一个、等一拍**；同一个闭包里的多次写会互相覆盖"
+    },
+    {
+      "id": "R12",
+      "batch": "754a",
+      "what": "（正面样本）读到 0 枚芯片没有当成死代码",
+      "detail": "[data-image-attempt] 在种子画布上是 0 个，但探针只报 why:'no element'，随后去找渲染门并找到 Batch 268 注释「依赖空态渲染」⟹ 754b 先加空图片节点再点，跑通了",
+      "rule": "「元素不存在」和「这条路径不存在」是两件事；先去找渲染门（哪些 data.status / data.variant / 空值分支），再决定是不是死代码"
+    },
+    {
+      "id": "R13",
+      "batch": "754a/754c",
+      "what": "cohort 成功提示两次都采样到空",
+      "detail": "两次都在 700ms 之后读，而 accepted 分支 600ms 就 closePanel；若就此下结论就会写成「提示不渲染」",
+      "rule": "提示类读数要用**时间序列**（0/60/120/200/300…ms）而不是单点；「没读到」先怀疑采样时刻，再怀疑渲染"
+    },
+    {
+      "id": "R14",
+      "batch": "754 验收器",
+      "what": "验收器第一版 50 项里 6 个 ❌，其中 3 个是正则写错",
+      "detail": "① 入口断言按 `data-history-asset={index}` 找，但源码里是**字面量** `data-history-asset=\"0\"` / `=\"1\"`；② 排除 REGISTERED_ASSET_ATTACH 的「类型/表/声明」时只排掉了 `profileId: \"...\"` 那一行，漏了 profile 表的**键名行** `REGISTERED_ASSET_ATTACH: {` ⟹ 把一行表项当成了调用点；③ 两轮 diff 断言直接用了 754c 那个**已知有缺陷**的路径表过滤结果（R9 那个），等于拿错的尺子量对错",
+      "rule": "静态断言的正则要先看真实源码字面量再写；验收器内部要复用**同一个**过滤实现，不要一处手写路径表、另一处用正则"
+    },
+    {
+      "id": "R15",
+      "batch": "754c",
+      "what": "测试顺序污染：前面那次 run 铺出的结果卡盖住了后面节点的芯片",
+      "detail": "逐帧拉片跑一次铺 5 张 1040×680 结果卡；之后新建的第二个逐帧拉片节点维度芯片被完全覆盖 ⟹ 三次 toggle 的 elementFromPoint 校验全部 `hit=false`，一次都没点中。后果：「1 维差分」实际以 3 维跑了（读到 +5 节点 / 5 边），「维度全关」从头到尾三维仍全 true。**最险的是我差点把这两格当成读数写进判据**",
+      "rule": "会铺满画布的测试要**每格独立开一页**；点击前断言命中，hit=false 就**当场记失败并停下**，不要带着「没点中」继续往下跑 —— 顺序污染产生的是「看起来合理但其实没测到」的读数，比缺读数危险得多"
+    }
+  ],
+  "notClaimed": [
+    "createImageHdPreset 的「组相对源节点 +(320,−60)」来自 754b **单轮**（两轮那格 source 读空了：加完节点后立刻连拍两次 snap，第一次还没渲染出来）；其余几何两轮逐项一致",
+    "addResourceCohort 的 accept 拒绝路径**没测成**（见 rework R10）",
+    "addResourceCohort 的 rejected 分支（数量超限等）没测",
+    "逐帧拉片只验了 3 维（出 5 条）与 1 维（出 1 条）两档，2 维（应出 4 条）那一档没测",
+    "754c 的「1 维差分」「维度门」两格读数**全部作废**（顺序污染，见 rework R15），判据 11/13 的对应半边由 754e 在**独立页面**上重测并各自两轮一致；754e 只挑「没跑过」的节点（start 文案不含「拉片完成」），所以没有验证「跑完的节点还能不能改维度」",
+    "completeShotBreakdown 的 700ms setTimeout 用固定等待 1.5s 覆盖，**没有量真实耗时**",
+    "结果节点的 data.items 内容没逐条读，只读了 resultKey / 尺寸 / 位置",
+    "REGISTERED_ASSET_ATTACH 零入口是**静态**结论（grep），没做运行时穷举",
+    "duplicateNode / removeNode 零入口是静态结论（沿用 753 验收器的断言）",
+    "canvas-1 只创建了两个节点就撤销；没验多画布各自的视图/历史隔离",
+    "空态另外 3 枚芯片只点了 1 枚（角色三视图），另外 2 枚没点",
+    "本批没有与源站对照这批命令"
+  ],
+  "rawProbeFiles": {
+    "a": "754a 五族首轮：A 相读数无效（空态门），B/C/D 有有效读数",
+    "b": "754b 补 A 相（先加空图片节点）、维度差分、canvas-1 故事脚本对",
+    "c": "754c 两轮判据采集（本文件的判据来源）",
+    "d": "754d cohort 成功提示的时间序列采样"
+  }
+}
