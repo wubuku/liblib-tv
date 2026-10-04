@@ -144,6 +144,16 @@ def check_anchor():
     assert "_build_invokes" in t, "前提失配：闸 18 里找不到「只认代码不认注释」的判据"
     assert "_deleted_sibling_names" in t, "前提失配：闸 18 里找不到方向十五「被删掉的引用」判据"
     assert "方向十六" in t, "前提失配：闸 18 里找不到方向十六「真跑反验」判据"
+    #: **Batch 275 撤掉过一条断言，理由必须留在原地**：
+    #: 本批曾在这里加 `assert "SLOW_COST_RATIO" in t`（断言新方向存在），
+    #: **实测结果是鉴别力对照组彻底作废**——`check_anchor()` 是**所有共用用例**
+    #: 都会走的前置断言，而**改前闸恰恰没有方向四e**，
+    #: 于是 30 例里 28 例「前提失配」、只有 2 例通过。
+    #: **而那个结果什么都没证明**：作废的用例根本没跑到被测行为上，
+    #: **「锚点断言挡住了对照组」与「判据抓到了缺陷」在报告上长得一模一样**。
+    #: **所以这里的规矩是：只允许断言「改前改后都有的东西」——
+    #: 新方向在不在，交给新用例自己的断言去发现**（注入不生效会报「失败」，
+    #: **而「失败」才是鉴别力实验要的那个信号**，「作废」不是）。
 
 
 def check_gap_anchor():
@@ -287,7 +297,11 @@ def m_slow_entry_under_budget():
     try:
         p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
         t = read(p)
-        new = t.replace('"seconds": 97,', '"seconds": 3,', 1)
+        #: **Batch 275 改锚点**：原锚是 `'"seconds": 97,'`，
+        #: 而 Batch 275 把 meta.sh 的登记值据实改成 **101**（实测 100.8，低报要修）——
+        #: **锚点锚着一个会被例行更新的数字，于是这条用例差点又一次静默空跑**
+        #: （`str.replace` 不中时静默返回原串，用例却仍报通过；纪律 107）。
+        new = t.replace('"seconds": 101,', '"seconds": 3,', 1)
         assert new != t, "注入未生效：seconds 没被改小"
         write(p, new)
         rc, out = run_in(tmp)
@@ -735,6 +749,98 @@ def m_upstream_absent_reported():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── 27 只有一个抄本 → 必报（**方向四e 第一支，Batch 275 新增**）───────
+def m_slow_cost_single_copy():
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        t = read(p)
+        #: **锚点必须选在改前改后都存在的那一行**——否则对照组里这条会「作废」
+        #: （`assert k == 1` 失败）而不是「红」，**而作废的用例根本没验到目标性质**
+        #: （Batch 272 记过：注入成功、结果很强、却没测到想测的东西）。
+        #: meta.sh / unreachable.sh 的实测条目是本批新加的，**改前闸里没有**，
+        #: 所以这里用改前就有的 quote-punct。
+        new, k = re.subn(r'^\s*"selftest-quote-punct\.py":\s*37\.1,[^\n]*\n', "", t,
+                         count=1, flags=re.M)
+        assert k == 1, "注入未生效：没找到 quote-punct 的实测条目（k=%d）" % k
+        assert '"selftest-quote-punct.py": 37.1' not in new, \
+            "注入未生效：条目还在（正则吞掉了别的行）"
+        write(p, new)
+        rc, out = run_in(tmp)
+        record("27 慢表只有一个抄本→必报", rc == 1 and "方向四e" in out
+               and "只有一个抄本" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+# ── 28 两个抄本差得说不通 → 必报（方向四e 第二支）────────────────────
+def m_slow_cost_ledger_disagrees():
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        t = read(p)
+        #: **Batch 275 订正注入方向（本条第一版测不到它想测的东西）**：
+        #: 第一版把实测那一份改成 5 秒去拉大比值，**而 5 秒低于 30 秒阈值**，
+        #: 于是判据在比值那一支之前就被「实测已掉到阈值之下」接管并 `continue`——
+        #: **它报的压根不是比值那条**，而用例的输出与真失败**长得一样**。
+        #: **这就是 Batch 249 ⑫ 记过的「用例测不到它想测的东西」。
+        #: **④e-2 只在「实测仍高于阈值、但离声明值差 3 倍以上」时才可达**——
+        #: 因为实测一旦 ≤ 30 就归 ④e-3。**所以要拉大比值，只能把声明值抬上去。**
+        new, k = re.subn(r'"seconds": 38,', '"seconds": 400,', t, count=1)
+        assert k == 1, "注入未生效：没找到 quote-punct 的 seconds（k=%d）" % k
+        write(p, new)
+        rc, out = run_in(tmp)
+        #: **断言必须落在判据真说的那句上**（纪律：判据输出里出现了某个词，
+        #: 不等于它判了这件事）。四e-2 那条报的是「**抄了两遍**」，不是「两个抄本」。
+        record("28 两处登记差 10.8 倍→必报", rc == 1 and "方向四e" in out
+               and "抄了两遍" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+# ── 29 实测那侧掉到阈值以下 → 必报（方向四e 第三支，**最要紧的一支**）──
+def m_slow_but_measured_fast():
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        t = read(p)
+        #: **这条治的正是本批的起因**：SLOW 说它慢，而实测说它不慢。
+        #: **而方向四a 看不见这一支**——它读的是 `seconds`（38 > 30，报绿）。
+        new, k = re.subn(r'"selftest-quote-punct\.py": 37\.1,',
+                         '"selftest-quote-punct.py": 20.0,', t, count=1)
+        assert k == 1, "注入未生效：没找到 quote-punct 的实测条目（k=%d）" % k
+        write(p, new)
+        rc, out = run_in(tmp)
+        record("29 慢表说慢而实测不慢→必报", rc == 1 and "方向四e" in out
+               and "已在阈值之下" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+# ── 30 留余量是合法的（**方向四e 的不误伤那一半**）──────────────────
+def m_slow_cost_margin_allowed():
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        t = read(p)
+        #: 把 `seconds` 从 38 抬到 80（实测仍 37.1）→ **比值 2.16 倍，仍在 3 倍之内**。
+        #: **「预算上限刻意偏大」是这张表写明的用法**（纪律 204：漂的时候倒向安全那侧），
+        #: **而一道会误报的守卫比没有守卫更坏**——它会让人去把合法的余量改小，
+        #: **于是下一次漂就没有余量了。**
+        new, k = re.subn(r'"seconds": 38,', '"seconds": 80,', t, count=1)
+        assert k == 1, "注入未生效：没找到 quote-punct 的 seconds（k=%d）" % k
+        write(p, new)
+        rc, out = run_in(tmp)
+        record("30 差 2.16 倍是合法余量→不许报", rc == 0 and "方向四e" not in out,
+               f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def m_upstream_present_not_reported():
     check_gap_anchor()
     tmp = _env_gap_tree(False)
@@ -787,7 +893,9 @@ def main():
              m_shell_unsafe_var, m_shell_safe_var,
              m_deleted_fixture_ref, m_live_fixture_ref_not_reported,
              m_broken_selftest_caught, m_clean_fleet_not_reported,
-             m_upstream_absent_reported, m_upstream_present_not_reported]
+             m_upstream_absent_reported, m_upstream_present_not_reported,
+             m_slow_cost_single_copy, m_slow_cost_ledger_disagrees,
+             m_slow_but_measured_fast, m_slow_cost_margin_allowed]
     for t in tests:
         try:
             t()
