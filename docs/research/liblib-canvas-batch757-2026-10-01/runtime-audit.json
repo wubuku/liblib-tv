@@ -1,0 +1,665 @@
+{
+ "batch": 757,
+ "date": "2026-10-01",
+ "clone": "http://localhost:4317",
+ "subject": "storyboard-group 的视觉契约：拖子节点出框时分组框不跟随；空组照样画完整框；groupKind 是死字段；平移三路实测",
+ "seed": {
+  "groups": 2,
+  "groupsDetail": [
+   {
+    "id": "g-245IDFh8sB",
+    "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+    "variant": "image",
+    "groupKind": null,
+    "storeWH": [
+     430,
+     452
+    ],
+    "children": []
+   },
+   {
+    "id": "g-EFbbHpwq5w",
+    "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+    "variant": "video",
+    "groupKind": null,
+    "storeWH": [
+     722,
+     460
+    ],
+    "children": [
+     "v-UGQZzZOpbv"
+    ]
+   }
+  ],
+  "zoom": 0.375,
+  "zoomNote": "fitView 后画布整体缩放 0.375 ⟹ getBoundingClientRect() 读到的是变换后尺寸，须用 zoom 换算回未缩放值再与 store 宽高比对",
+  "noPersistence": "store 无持久化，每轮整页 reload 回到种子"
+ },
+ "twoRound": {
+  "rounds": [
+   2,
+   2,
+   2
+  ],
+  "independence": "a/b/c 三个探针各自两轮，轮间整页 reload + Meta+0 fitView",
+  "filter": "id 里的 <prefix>-<epochMillis>-<rand6> 片段替换为 -<gen>",
+  "consistent": {
+   "a": true,
+   "b": true,
+   "c": true
+  },
+  "diffCounts": {
+   "a": 0,
+   "b": 0,
+   "c": 0
+  }
+ },
+ "judgeCount": 17,
+ "judgments": [
+  {
+   "no": 1,
+   "title": "分组 DOM 尺寸 = store 尺寸（zoom 换算后四项全对）",
+   "claim": "空组 430x452、有子节点组 722x460，与 store 完全一致",
+   "evidence": {
+    "empty": {
+     "storeWH": [
+      430,
+      452
+     ],
+     "untransformed": {
+      "w": 430,
+      "h": 452
+     },
+     "domRect": {
+      "w": 161,
+      "h": 170
+     }
+    },
+    "withChild": {
+     "storeWH": [
+      722,
+      460
+     ],
+     "untransformed": {
+      "w": 722,
+      "h": 460
+     },
+     "domRect": {
+      "w": 271,
+      "h": 173
+     }
+    },
+    "zoom": 0.375
+   },
+   "why": "zoom 0.375 是本批最容易读错的一格：不换算就会把 430×452 看成 161×170 而误判「尺寸被 RF 改过」。",
+   "twoRound": true
+  },
+  {
+   "no": 2,
+   "title": "variant 驱动外观",
+   "claim": "image ⟹ radius 20px + 底色 oklab(0.999994 0.0000455678 0.0000200868 / 0.1)；video ⟹ radius 4px + 底色 rgb(33, 33, 33)",
+   "evidence": {
+    "empty": {
+     "variant": "image",
+     "radius": "20px",
+     "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+    },
+    "withChild": {
+     "variant": "video",
+     "radius": "4px",
+     "background": "rgb(33, 33, 33)"
+    },
+    "static": "StoryboardGroupNode.tsx:22"
+   },
+   "why": "20px 圆角 + 半透明白 = 「图片组」；4px 圆角 + #212121 = 「视频组」。",
+   "twoRound": true
+  },
+  {
+   "no": 3,
+   "title": "★ 空组照样画完整框，视觉上与有子节点的组无差别",
+   "claim": "children=[] 的组仍渲染 430x452 的框 + 完整标题 + 两个 handle",
+   "evidence": {
+    "emptyGroup": {
+     "id": "g-245IDFh8sB",
+     "children": [],
+     "untransformed": {
+      "w": 430,
+      "h": 452
+     },
+     "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+     "borderColor": "rgb(9, 202, 245)",
+     "radius": "20px",
+     "background": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)"
+    },
+    "withChildGroup": {
+     "id": "g-EFbbHpwq5w",
+     "children": [
+      "v-UGQZzZOpbv"
+     ],
+     "untransformed": {
+      "w": 722,
+      "h": 460
+     },
+     "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+     "borderColor": "rgb(9, 202, 245)",
+     "radius": "4px",
+     "background": "rgb(33, 33, 33)"
+    },
+    "static": "StoryboardGroupNode.tsx:18-30 组件**从不读 children**；全文件没有一处按成员数分支"
+   },
+   "why": "这是 756 那次「静默掏空」在屏幕上的**最终形态**：用户按完 G 看到的是原位不动的旧框（连同原标题），视觉上完全看不出它已经被掏空了。",
+   "twoRound": true
+  },
+  {
+   "no": 4,
+   "title": "groupKind 是写而不读的死字段",
+   "claim": "全 `src/` 只出现 1 次（canvasStore.ts:3298 写入），无任何读取点",
+   "evidence": {
+    "seedGroupsGroupKind": [
+     null,
+     null
+    ],
+    "grepCount": 1,
+    "grepLocations": [
+     "src/store/canvasStore.ts:3298"
+    ],
+    "static": "StoryboardGroupNode.tsx 只读 data.title 与 data.variant；page.tsx:152 只做 type→组件映射"
+   },
+   "why": "「组合节点」(groupKind=selection) 与种子分组在渲染上**完全同形**，只有 title 不同。也就是说这个字段本可以承载语义差异，但没接上。",
+   "twoRound": true
+  },
+  {
+   "no": 5,
+   "title": "层叠固定在所有节点之下",
+   "claim": "DOM wrapper z-index = -1001，两个来源都写死了 -1001",
+   "evidence": {
+    "wrapperZ_image": "-1001",
+    "wrapperZ_video": "-1001",
+    "static": "种子 canvasStore.ts:787/799 写在 style 里；groupSelectedNodes:3287-3290 顶层与 style 都写",
+    "note": "顶层 n.zIndex 对种子分组是 null（只在 style 里），757c 首轮读成 null 属探针取错路径，DOM 值才是准的"
+   },
+   "why": "分组永远在子节点之下，所以它只可能影响**空白区域**的命中，不会盖住成员。",
+   "twoRound": true
+  },
+  {
+   "no": 6,
+   "title": "标题在框外上方 11px",
+   "claim": "标题底边距框顶 11px（未缩放），父容器 overflow=visible",
+   "evidence": {
+    "titleGapAboveBox": 11,
+    "titleRect": {
+     "w": 86,
+     "h": 8,
+     "x": 912,
+     "y": 400
+    },
+    "overflow": "visible",
+    "static": "StoryboardGroupNode.tsx:28  absolute -top-8 ... whitespace-nowrap text-sm text-[#777]"
+   },
+   "why": "`-top-8` = -32px，标题行高 21px ⟹ 底边落在框顶上方 11px。`overflow: visible` 才是标题能画到框外的原因。",
+   "twoRound": true
+  },
+  {
+   "no": 7,
+   "title": "★ 标题颜色恒定，选中也不变",
+   "claim": "未选中与选中都是 rgb(119, 119, 119)，titleColorChanged=False（两个组都是）",
+   "evidence": {
+    "empty": {
+     "before": "rgb(119, 119, 119)",
+     "after": "rgb(119, 119, 119)",
+     "changed": false
+    },
+    "withChild": {
+     "before": "rgb(119, 119, 119)",
+     "after": "rgb(119, 119, 119)",
+     "changed": false
+    },
+    "static": "StoryboardGroupNode.tsx:23 selected 分支只加 border-[#09caf5] + shadow；:28 的标题那行**没有** selected 条件"
+   },
+   "why": "框变青、标题不变 —— 选中反馈只落在框上，而框在 0.375 缩放下只有 161×170 屏幕像素。",
+   "twoRound": true
+  },
+  {
+   "no": 8,
+   "title": "选中反馈：border 变青 + 新增 box-shadow",
+   "claim": "border oklab(0.999994 0.0000455678 0.0000200868 / 0.1) → rgb(9, 202, 245)，boxShadow 变化=True，两个组一致",
+   "evidence": {
+    "empty": {
+     "beforeBorder": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "afterBorder": "rgb(9, 202, 245)",
+     "beforeShadow": "none",
+     "afterShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(9, 202, 245, 0.18) 0px 0px 0px 2px",
+     "selected": true
+    },
+    "withChild": {
+     "afterBorder": "rgb(9, 202, 245)",
+     "shadowChanged": true
+    },
+    "actuallySelected": {
+     "empty": true,
+     "withChild": true
+    }
+   },
+   "why": "两格都带「点中后真的进了 selected 态」的阳性对照，不是「我没点到所以没变化」。",
+   "twoRound": true
+  },
+  {
+   "no": 9,
+   "title": "★ 标题对比度：两种底色都不过 AA",
+   "claim": "标题 rgb(119, 119, 119) 在视频组底色上 3.6:1，在画布底色 #141414 上 4.11:1（AA 阈值 4.5，两种都不过）",
+   "evidence": {
+    "titleColor": "rgb(119, 119, 119)",
+    "videoGroupBg": "rgb(33, 33, 33)",
+    "videoGroupContrast": 3.6,
+    "canvasBg": "#141414",
+    "canvasContrast": 4.11,
+    "aaThresholdNormalText": 4.5,
+    "formula": "WCAG 2.x 相对亮度比；oklab(...) 形式的颜色解析不出分量，解析失败时返回 null 而不猜"
+   },
+   "why": "两种情形**都不过 AA**（阈值 4.5）：压在 #212121 上 3.6:1、压在画布底 #141414 上 4.11:1。注意标题画在**框外**（判据 6），所以它实际压的是画布底色 —— 但图片组那段的框几乎贴着它，视觉上仍会读成「框上的字」。两格都列出来是因为不确定渲染时哪层底色最终生效，而这本身就是缺陷：**同一段文字的对比度取决于它旁边恰好有没有框**。",
+   "twoRound": true
+  },
+  {
+   "no": 10,
+   "title": "标题 pointer-events:none，点击穿透到画布",
+   "claim": "标题自身中心点命中 react-flow__pane，落在分组内=False",
+   "evidence": {
+    "titleHit_empty": {
+     "tag": "DIV",
+     "cls": "react-flow__pane",
+     "node": null,
+     "pe": "none",
+     "inGroup": false
+    },
+    "titleHit_withChild": {
+     "tag": "DIV",
+     "cls": "react-flow__pane",
+     "node": null,
+     "pe": "none",
+     "inGroup": false
+    },
+    "computedPE": "none"
+   },
+   "why": "⚠ 757a 只测了「标题**上方** 6px」⟹ 命中 pane 是当然的，并不能证明标题本身不吃点击。757c 改测标题**中心**，命中仍是 pane ⟹ 这一格才真的钉住。",
+   "twoRound": true
+  },
+  {
+   "no": 11,
+   "title": "框内空白可点中 ⟹ 分组可被点选",
+   "claim": "两个组的框内空白都能命中自己（insideGroup=True / True）",
+   "evidence": {
+    "emptyBlank": {
+     "x": 1057,
+     "y": 422,
+     "insideGroup": true,
+     "tag": "DIV"
+    },
+    "withChildBlank": {
+     "x": 1254,
+     "y": 171,
+     "insideGroup": true,
+     "tag": "DIV"
+    }
+   },
+   "why": "扫描 0.06..0.94 步长 0.04 的格点，跳过 .nodrag 后仍找到命中点 ⟹ 「点分组选中它」这条路是通的。",
+   "twoRound": true
+  },
+  {
+   "no": 12,
+   "title": "空组仍带左右两个 20×20 handle",
+   "claim": "children=[] 的组也有 target/source 各一，未缩放 8x8",
+   "evidence": {
+    "emptyHandles": [
+     {
+      "cls": "react-flow__handle react-flow__handle-left nodrag nopan targ",
+      "type": "target",
+      "w": 8,
+      "h": 8,
+      "x": 912,
+      "y": 497
+     },
+     {
+      "cls": "react-flow__handle react-flow__handle-right nodrag nopan sou",
+      "type": "source",
+      "w": 8,
+      "h": 8,
+      "x": 1072,
+      "y": 497
+     }
+    ],
+    "withChildHandles": [
+     {
+      "cls": "react-flow__handle react-flow__handle-left nodrag nopan targ",
+      "type": "target",
+      "w": 8,
+      "h": 8,
+      "x": 1010,
+      "y": 247
+     },
+     {
+      "cls": "react-flow__handle react-flow__handle-right nodrag nopan sou",
+      "type": "source",
+      "w": 8,
+      "h": 8,
+      "x": 1280,
+      "y": 247
+     }
+    ],
+    "zoom": 0.375,
+    "static": "StoryboardGroupNode.tsx:26-27 无条件渲染两个 Handle"
+   },
+   "why": "屏幕读数 8x8 是 zoom 0.375 之后的值，换算回 20x20。含义是：**0 成员的分组仍然可以当连线端点**，和判据 3 合起来就是一个可连线的空框。",
+   "twoRound": true
+  },
+  {
+   "no": 13,
+   "title": "★ 拖子节点出框：分组框既不移动也不缩放",
+   "claim": "groupDomMoved=False、groupDomResized=False、groupStoreMoved=False，而 childMoved=True",
+   "evidence": {
+    "plan": {
+     "zoomG": 0.375,
+     "zoomC": 0.375,
+     "needX": 501,
+     "start": {
+      "x": 887,
+      "y": 250
+     },
+     "end": {
+      "x": 1388,
+      "y": 250
+     },
+     "groupRect": {
+      "x": 747,
+      "y": 161,
+      "w": 271,
+      "h": 173
+     },
+     "childRect": {
+      "x": 770,
+      "y": 184,
+      "w": 233,
+      "h": 131
+     },
+     "endInsideViewport": true
+    },
+    "before": {
+     "groupStoreW": 722,
+     "groupStoreH": 460,
+     "groupRel": {
+      "x": 2374,
+      "y": -12
+     },
+     "groupDom": {
+      "x": 747,
+      "y": 161,
+      "w": 271,
+      "h": 173
+     },
+     "childRel": {
+      "x": 62,
+      "y": 62
+     },
+     "childDom": {
+      "x": 770,
+      "y": 184,
+      "w": 233,
+      "h": 131
+     },
+     "childFullyInsideGroup": true,
+     "gapRight": -248,
+     "groupTitleText": "视频组 · 第一集：咖啡馆对峙-视频组",
+     "childrenNow": [
+      "v-UGQZzZOpbv"
+     ],
+     "past": 0
+    },
+    "after": {
+     "groupStoreW": 722,
+     "groupStoreH": 460,
+     "groupRel": {
+      "x": 2374,
+      "y": -12
+     },
+     "groupDom": {
+      "x": 747,
+      "y": 161,
+      "w": 271,
+      "h": 173
+     },
+     "childRel": {
+      "x": 1461,
+      "y": 174
+     },
+     "childDom": {
+      "x": 1295,
+      "y": 226,
+      "w": 233,
+      "h": 131
+     },
+     "childFullyInsideGroup": false,
+     "gapRight": 277,
+     "groupTitleText": "视频组 · 第一集：咖啡馆对峙-视频组",
+     "childrenNow": [
+      "v-UGQZzZOpbv"
+     ],
+     "past": 1
+    },
+    "derived": {
+     "groupDomMoved": false,
+     "groupDomResized": false,
+     "groupStoreMoved": false,
+     "childMoved": true
+    },
+    "needRoomPx": 223,
+    "panFrom": {
+     "x": 24,
+     "y": 504
+    },
+    "static": "全仓库 grep：无 useUpdateNodeInternals、无分组边界重算；groupKind 无人读（判据 4）"
+   },
+   "why": "这是本批最核心的一格。**分组框在这套实现里是「画完就不管」的**：子节点移出后框原地不动、不缩放，成员在语义上仍挂着（判据 14）。",
+   "twoRound": true
+  },
+  {
+   "no": 14,
+   "title": "★ 拖出去之后 parentId 仍然挂着",
+   "claim": "childrenStillLinked=['v-UGQZzZOpbv']，gapRight=277 屏幕像素（子节点左边缘已在框外）",
+   "evidence": {
+    "childrenNow": [
+     "v-UGQZzZOpbv"
+    ],
+    "childFullyInsideGroup": false,
+    "gapRight": 277,
+    "childRelBefore": {
+     "x": 62,
+     "y": 62
+    },
+    "childRelAfter": {
+     "x": 1461,
+     "y": 174
+    }
+   },
+   "why": "于是出现一种状态：**store 说它属于这个组，屏幕说它不在框里**。后续任何按 children 算的逻辑（复制展开、组合掏空、删除级联）都会用一个用户看不见的归属关系。",
+   "twoRound": true
+  },
+  {
+   "no": 15,
+   "title": "撤销复原",
+   "claim": "子节点相对位置 {'x': 62, 'y': 62} → {'x': 1461, 'y': 174} → 复原 {'x': 62, 'y': 62}，past 归零",
+   "evidence": {
+    "before": {
+     "x": 62,
+     "y": 62
+    },
+    "after": {
+     "x": 1461,
+     "y": 174
+    },
+    "afterUndo": {
+     "x": 62,
+     "y": 62
+    },
+    "pastAfterUndo": 0
+   },
+   "why": "拖动本身是可撤销的记账操作 —— 缺的不是撤销，是**跟随**。",
+   "twoRound": true
+  },
+  {
+   "no": 16,
+   "title": "★ 平移三路对照（阳性+阴性都有）",
+   "claim": "左键不按 Space **不**平移（deltaX=0）；Space+左键平移 200；中键平移 200",
+   "evidence": {
+    "b1_leftNoSpace": {
+     "viewportMoved": false,
+     "deltaX": 0
+    },
+    "b2_leftSpace": {
+     "viewportMoved": true,
+     "deltaX": 200
+    },
+    "b3_middleNoSpace": {
+     "viewportMoved": true,
+     "deltaX": 200
+    },
+    "static": "page.tsx:477 effectivePan = canvasTool === 'pan' || isSpacePressed；:1550 panOnDrag={effectivePan ? [0,1] : [1]}"
+   },
+   "why": "三组里有**阴性对照**（左键不按 Space deltaX=0）——只有阳性对照无法区分「能平移」与「我随便拖都有反应」。`[0,1]` 是左键+中键、`[1]` 是仅中键，这就把 753 的静态读法钉成了实测结论。",
+   "twoRound": true
+  },
+  {
+   "no": 17,
+   "title": "Space 抑制节点拖拽 + 画布光标变抓手",
+   "claim": "按住 Space 后拖节点 nodeMoved=False、pastDelta=0；canvas class react-flow cursor-grab bg-[#141414] light",
+   "evidence": {
+    "b4": {
+     "nodeMoved": false,
+     "pastDelta": 0,
+     "hit": true,
+     "canvasClassWithSpace": "react-flow cursor-grab bg-[#141414] light"
+    },
+    "baselineClass": "react-flow bg-[#141414] light",
+    "static": "page.tsx:1554 nodesDraggable={canvasTool === 'select' && !effectivePan}；:1538 className={effectivePan ? 'cursor-grab ...' ...}"
+   },
+   "why": "Space 是「临时切到平移模式」：光标变抓手、节点变不可拖 —— 两个反馈都验到了，不是只看光标。",
+   "twoRound": true
+  }
+ ],
+ "boundary": {
+  "no": 18,
+  "title": "757a 的平移护栏拦下了一次不合法的拖动计划",
+  "claim": "首次计划把子节点完全推出右边界需要 x=1651，超出 1440 宽的视口 ⟹ 拒绝执行，改用「先平移 -263 再拖」",
+  "evidence": {
+   "plan0": {
+    "zoomG": 0.375,
+    "zoomC": 0.375,
+    "needX": 501,
+    "start": {
+     "x": 1150,
+     "y": 250
+    },
+    "end": {
+     "x": 1651,
+     "y": 250
+    },
+    "groupRect": {
+     "x": 1010,
+     "y": 161,
+     "w": 271,
+     "h": 173
+    },
+    "childRect": {
+     "x": 1033,
+     "y": 184,
+     "w": 233,
+     "h": 131
+    },
+    "endInsideViewport": false
+   },
+   "needRoomPx": 223,
+   "panFrom": {
+    "x": 24,
+    "y": 504
+   },
+   "groupRectBefore": {
+    "x": 1010,
+    "y": 161,
+    "w": 271,
+    "h": 173
+   },
+   "groupRectAfterPan": {
+    "x": 747,
+    "y": 161,
+    "w": 271,
+    "h": 173
+   },
+   "panDeltaX": -263
+  },
+  "why": "护栏起作用了（记录 FAILED 而不是硬拖出一个假读数）。顺带把 757a 第一版里「我以为在按 Space 其实机制没验证」的含糊变成 757b 的三路实测（判据 16）。",
+  "twoRound": true
+ },
+ "headline": {
+  "defect": "分组框与它的成员之间**没有任何跟随关系**：把子节点拖出分组，框既不移动也不缩放，而 store 里的 parentId 仍然挂着 —— 「视觉上在框外」与「语义上属于该组」同时成立",
+  "rootCause": "src/components/nodes/StoryboardGroupNode.tsx 只读 data.title 与 data.variant，从不读 children；全仓库没有任何 useUpdateNodeInternals 或分组边界重算逻辑；groupKind 字段（canvasStore.ts:3298 唯一写入点）无任何读取方。",
+  "proofChain": [
+   "拖出：groupDomMoved=False / groupDomResized=False / childMoved=True，gapRight=277 屏幕像素",
+   "归属未断：childrenStillLinked=[\"v-UGQZzZOpbv\"]",
+   "空组同形：children=[] 的组仍渲染 430x452 完整框 + 标题 + 2 个 handle",
+   "无重算逻辑：groupKind 在 src/ 里只出现 1 次（写而不读）",
+   "撤销存在：childRel {'x': 62, 'y': 62} → 复原 {'x': 62, 'y': 62}，past 归零"
+  ],
+  "compounds": "与 756 叠加：那次跨组组合把 g-EFbbHpwq5w 的 children 从 1 变 0，而组件不看 children ⟹ **屏幕上是一个原封不动的旧框**，用户在界面上没有任何线索能看出它已经空了。"
+ },
+ "rework": [
+  {
+   "id": "R19",
+   "batch": "757a",
+   "what": "拖动计划算出终点 x=1651 超出 1440 视口，却没有护栏，直接拖了",
+   "detail": "第一版 `endInsideViewport` 只写进产物没做拦截，本轮 run_round 里加了守卫：超出视口就记 FAILED 并停下。改成先平移再重算。",
+   "rule": "**算出「需要越过边界」的坐标时必须先问它在不在视口内**；越界要么拒绝记录，要么改用合法路径（平移/缩放）后重算，不能硬拖出一个假读数。"
+  },
+  {
+   "id": "R20",
+   "batch": "757a",
+   "what": "把「Space + 左键拖空白 = 平移」当成了已知机制写进代码，没验",
+   "detail": "当时看到 :1550 `panOnDrag={effectivePan ? [0,1] : [1]}` 就觉得 Space 时应该只中键，左键不该平移 —— 与实测矛盾。所以另起 757b 做了三路对照（左键不按/Space+左键/中键），结论是 `[0,1]` 就是「左键+中键」。",
+   "rule": "**鼠标按钮数组要按 DOM 语义读**：`event.button` 0=左 1=中 2=右，`[0,1]` 是左+中而不是「排除 0」。凭直觉解释按钮数组会把结论读反。"
+  },
+  {
+   "id": "R21",
+   "batch": "757c",
+   "what": "groupZ 读了 n.data.zIndex（空路径）⟹ 读到 null",
+   "detail": "-1001 实际写在 seed 的 `style.zIndex` 里，757a 读 data 路径拿不到。757c 改读 DOM 的 wrapperZ（-1001）并把顶层 n.zIndex 记为 null 并注明原因。",
+   "rule": "**属性路径取不到值时先确认路径对不对，再怀疑值不存在**；并在产物里注明「这个 null 是路径问题还是真没有」。"
+  },
+  {
+   "id": "R22",
+   "batch": "757c",
+   "what": "757a 用「标题上方 6px」证明标题不吃点击",
+   "detail": "那个点本来就在 pane 上，命中 pane 是必然的，推不出结论。757c 改成打标题**自身**中心点，命中仍是 pane ⟹ 才是真证据。",
+   "rule": "**证明「某元素不吃事件」必须打在该元素身上**；打它旁边的空白只能证明空白是空白。"
+  },
+  {
+   "id": "R23",
+   "batch": "757 验收器",
+   "what": "阴性对照抓到验收器自己的洞：核心结论**在产物层没有任何断言**",
+   "detail": "把判据 13 的结论文本从「框不移动」改成「框移动了」，53 条检查一条都没挂 —— 因为那一格读数是从 /tmp 原始 JSON 现取的，**根本不经过产物**。等于「只改文案不改读数」可以蒙混过关。补法：把 before/after 现算出四格派生布尔写进 evidence，再加两条检查（派生值本身 + 派生值与读数自洽 + 文案与派生值一致）。补完重跑 8 发注入，全部被拦。",
+   "rule": "**阴性对照要专门试「只改结论不改读数」**。读数层与产物层是两条独立通路，只盯读数层就会出现「读数对、文案错」而无人发现的漏洞。"
+  }
+ ],
+ "notClaimed": [
+  "只测了 fitView 后的 zoom=0.375 一个缩放档位，没测其它 zoom 下的命中与尺寸",
+  "「组合节点」(groupKind=selection) 的视觉与种子分组同形，但**没有实际跑一次组合再测它的 DOM**（756 测了 store，本批测了 seed 分组的 DOM）",
+  "分组框**能不能被拖动**没测（只测了子节点能不能拖出）——canvasTool=pan/select 两态也没分别测",
+  "标题**换行/超长**没测：两个种子标题长度接近，只取到一种宽度读数",
+  "未选中态的 border 与底色是 oklab(...) 形式，探针的对比度解析只处理 rgb() ⟹ 判据 9 的 c_video / c_image 只覆盖**选中后的青色与画布底色**，未选中底色上的对比度没算出来",
+  "handles 的 20×20 是按 zoom 0.375 换算的结论，没有在第二个 zoom 档位复验",
+  "拖出用的是**水平**方向；垂直方向、拖到别的分组里、拖出视口后再平移回来都没测",
+  "**没有与源站对照**：源站的分组是否会跟随成员、是否有 resize 行为，未知",
+  "757b 只测了 pan 三路与 Space 抑制节点拖拽；canvasTool=pan 工具按钮态下的panOnDrag=[0,1] 与 [1] 两分支没有分别单独验证"
+ ],
+ "rawProbeFiles": {
+  "a": "757a 分组视觉普查 + 把子节点拖出分组（本批核心契约）",
+  "b": "757b 平移三路对照 + Space 抑制节点拖拽",
+  "c": "757c 选中两态的视觉反馈 + 标题自身点击穿透"
+ }
+}

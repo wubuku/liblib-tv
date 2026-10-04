@@ -1,0 +1,373 @@
+{
+ "batch": 757,
+ "checks": [
+  {
+   "label": "静态：StoryboardGroupNode 组件体里没有 children（判据 3 的根因）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：groupKind 在 src/ 里只出现 1 次，且是 selection 写入",
+   "pass": true,
+   "got": [
+    "src/store/canvasStore.ts:3298"
+   ]
+  },
+  {
+   "label": "静态：全仓库无 useUpdateNodeInternals（没有跟随机制）",
+   "pass": true,
+   "got": [
+    "src/store/canvasStore.ts:3298"
+   ]
+  },
+  {
+   "label": "静态：page.tsx 里没有分组边界重算逻辑",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：标题 -top-8 + pointer-events-none + text-[#777]，且该行无 selected 条件",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：selected 分支只加 border-[#09caf5] 与 shadow",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：variant 驱动两套外观（20px/white10 与 4px/#212121）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：容器 overflow-visible（标题才能画到框外）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：两个 Handle 无条件渲染（空组也有连线端点）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：分组在 page.tsx 的 type→组件映射里注册",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：层叠 -1001 两处来源都写了（种子 style / groupSelectedNodes 顶层+style）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：effectivePan = canvasTool==='pan' || isSpacePressed",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：panOnDrag 两分支 [0,1] / [1]；nodesDraggable 受 !effectivePan 约束；effectivePan 时光标 cursor-grab",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 18 条（17 judgments + 1 boundary）",
+   "pass": true,
+   "got": 17
+  },
+  {
+   "label": "产物：判据编号连续 1..18",
+   "pass": true,
+   "got": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+   ]
+  },
+  {
+   "label": "产物：三个探针各自两轮一致，roundDiff 全空",
+   "pass": true,
+   "got": {
+    "rounds": [
+     2,
+     2,
+     2
+    ],
+    "independence": "a/b/c 三个探针各自两轮，轮间整页 reload + Meta+0 fitView",
+    "filter": "id 里的 <prefix>-<epochMillis>-<rand6> 片段替换为 -<gen>",
+    "consistent": {
+     "a": true,
+     "b": true,
+     "c": true
+    },
+    "diffCounts": {
+     "a": 0,
+     "b": 0,
+     "c": 0
+    }
+   }
+  },
+  {
+   "label": "产物：两轮独立性交代了整页 reload + fitView",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：zoom 换算被显式交代（0.375 陷阱）",
+   "pass": true,
+   "got": 0.375
+  },
+  {
+   "label": "产物：判据 13 的派生四格 = (框不移动, 框不缩放, store不动, 子节点动了)",
+   "pass": true,
+   "got": {
+    "groupDomMoved": false,
+    "groupDomResized": false,
+    "groupStoreMoved": false,
+    "childMoved": true
+   }
+  },
+  {
+   "label": "产物：判据 13 的派生四格与 before/after 读数自洽（现算复核）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 13 结论文本与派生四格一致（防止只改文案）",
+   "pass": true,
+   "got": "groupDomMoved=False、groupDomResized=False、groupStoreMoved=False，而 childMoved=True"
+  },
+  {
+   "label": "产物：判据 13 附了静态依据（无 useUpdateNodeInternals / groupKind 无人读）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 14 记下 childrenStillLinked 与框外间距",
+   "pass": true,
+   "got": 277
+  },
+  {
+   "label": "产物：判据 3 空组 children=[] 仍渲染完整框 + 标题",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 4 记下 groupKind 的 grep 位置只有 1 条",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 5 记下顶层 zIndex 为 null 是路径问题（style 里才有）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 7 两个组的标题颜色前后都相同",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 8 附了「真的进了 selected 态」的阳性对照",
+   "pass": true,
+   "got": {
+    "empty": true,
+    "withChild": true
+   }
+  },
+  {
+   "label": "产物：判据 9 的两格对比度都由脚本算出且都低于 AA 4.5",
+   "pass": true,
+   "got": [
+    3.6,
+    4.11
+   ]
+  },
+  {
+   "label": "产物：判据 9 的对比度**可复算**（用产物里的颜色与底色重算一致）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 10 命中的是标题自身中心点且落在 pane",
+   "pass": true,
+   "got": {
+    "tag": "DIV",
+    "cls": "react-flow__pane",
+    "node": null,
+    "pe": "none",
+    "inGroup": false
+   }
+  },
+  {
+   "label": "产物：判据 12 记下空组的两个 handle 与 zoom",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 16 三路对照含阴性对照（左键不按 Space deltaX=0）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 17 记下 Space 抑制节点拖拽 + cursor-grab",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 18 记下护栏拦下越界计划并给出平移量",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：缺陷陈述含「不跟随」「parentId 仍挂着」两要素",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：headline 有 compounds 段说明与 756 的叠加关系",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：证据链 5 条且都带具体读数",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：返工 5 条 R19..R23 齐全且各自带 rule",
+   "pass": true,
+   "got": [
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23"
+   ]
+  },
+  {
+   "label": "产物：不声称清单 ≥ 9 条",
+   "pass": true,
+   "got": 9
+  },
+  {
+   "label": "产物：不声称里明确写了「没有与源站对照」与 oklab 解析限制",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：rawProbeFiles 三个探针都有说明",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数叶子级交叉核对 14 项（a/b/c 三份）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始读数：a/b/c 三份各自两轮一致且 roundDiff 为空",
+   "pass": true,
+   "got": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "label": "原始读数：核心读数四格 = (不移动, 不缩放, store不动, 子节点动了)",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：zoom 换算后 DOM 尺寸 == store 尺寸（两组四项）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：两个种子分组 groupKind 都是 None（死字段的运行时侧证）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：空组 DOM 仍在、title 仍在、2 个 handle 仍在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：两个分组的 wrapperZ 都是 -1001",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：variant 两组分别是 image / video 且圆角 20px / 4px",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：选中后 border 变 rgb(9,202,245) 而标题仍是 rgb(119,119,119)",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：平移三路 0 / 200 / 200（阴性对照为 0）",
+   "pass": true,
+   "got": [
+    0,
+    200,
+    200
+   ]
+  },
+  {
+   "label": "原始读数：护栏记录里平移确实把分组 DOM x 往左挪了",
+   "pass": true,
+   "got": -263
+  }
+ ],
+ "passed": 53,
+ "total": 53,
+ "static": {
+  "componentReadsNoChildren": true,
+  "componentReadsNoGroupKind": true,
+  "groupKindHits": [
+   "src/store/canvasStore.ts:3298"
+  ],
+  "groupKindLines": [
+   "groupKind: \"selection\","
+  ],
+  "groupKindOnlyOneWriteNoRead": true,
+  "noUpdateNodeInternals": true,
+  "noGroupBoundsRecompute": true,
+  "titleTopMinus8": true,
+  "titlePointerEventsNone": true,
+  "titleGrey777": true,
+  "titleHasNoSelectedBranch": true,
+  "selectedBranchOnlyBorderAndShadow": true,
+  "variantDrivesLook": true,
+  "isVideoFromVariant": true,
+  "overflowVisible": true,
+  "twoHandlesUnconditional": true,
+  "groupRegisteredInPage": true,
+  "seedStyleZIndex": true,
+  "groupSelectedNodesSetsZIndex": true,
+  "effectivePanExpr": true,
+  "panOnDragBothBranches": true,
+  "nodesDraggableGuarded": true,
+  "cursorGrabWhenEffectivePan": true
+ }
+}
