@@ -750,14 +750,14 @@ screenshots:
 
   - file: screenshots/90-troubleshooting-cover-placeholder.png
     task_id: project-management
-    step: 首页项目卡：项目内只有上传的图片与视频节点、没有 AI 生成素材，封面显示紫色线框占位图
+    step: 首页项目卡：项目内只有上传的图片与视频节点、没有 AI 生成素材，封面显示紫色色块（★ M230 查明：是这两个节点自己的缩略图）
     route: '/canvas'
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-10-01'
-    verified_locator: '项目卡 TDCanvas 1 / 卡片描述 2 个节点 · 0 条连线 / 页面 img 元素数量为 0（封面由 SVG 线框绘制）'
+    verified_locator: '项目卡 TDCanvas 1 / 卡片描述 2 个节点 · 0 条连线 / 页面 img 元素数量为 0。★ M230 订正：封面不是「紫色线框占位图」，**是这张画布自己那两个节点的 SVG 缩略图**——放大后可见两片圆角实心渐变块各带一条浅色标题栏，与卡面「2 个节点 · 0 条连线」逐项吻合（2 块对应 2 个节点、0 条连线对应缩略图里没有一条贝塞尔曲线）。运行时阳性对照：另建一张画布塞 4 个节点（文本/图片/视频/音频），卡面 data-canvas-project-preview 为 nodes、块数 4，填充逐类吻合（图片视频走 td-home-node-accent 渐变、不透明度 0.86，文本 0.42，音频 0.25）；零节点的画布则是 empty，只有那个带十字的小方块——**「占位图」只在画布空着时出现**'
     visible_text: '2 个节点 · 0 条连线'
-    alt: 首页最近画布区只有一个项目卡 TDCanvas 1，卡面是紫色线框占位图而非画布内的图片，卡下标注 2 个节点 0 条连线
+    alt: 首页最近画布区只有一个项目卡 TDCanvas 1，卡面是两片紫色色块——这个项目自己那两个节点的缩略图而不是画布内的照片，卡下标注 2 个节点 0 条连线
     sha256: 489fda1f68c3b239cac3c76db9b5b0a655f4e7f9db2cb63d11e62db5e8261f69
 
   - file: screenshots/20-reference-config-dialog.png
