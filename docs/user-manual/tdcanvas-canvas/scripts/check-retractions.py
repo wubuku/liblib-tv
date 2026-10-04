@@ -646,6 +646,26 @@ RETRACTIONS: list[dict[str, str]] = [
                "**M213 已把表改成 800 分界，并写明 640 / 420 只是取样点、不是断点**",
         "fixed_in": "M213",
     },
+    {
+        "id": "R58",
+        "kind": "conclusion",
+        "wrong": "输入区左下角四个图标",
+        "why": "**又一个「某个状态下的读数」被写成了固定清单**——与 M208 那次同族。\n"
+               "**那 4 个是「还没连上 Agent」时的数。**\n"
+               "对源码 `web/src/components/agent/agent-chat-composer.tsx`：这一排条件渲染，顺序为\n"
+               "上传图片 → 选择 Skill → 工具确认模式 → Codex 权限模式 → **模型选择 → 推理程度**。\n"
+               "**后面两个来自 `AgentModelControls`，只在 `models?.length && model && reasoningEffort` "
+               "时才渲染**，而模型列表**只在 `connected` 为真时才拉**\n"
+               "（`local-agent-panel.tsx:610` 的 `if (!connected) return;`）——\n"
+               "**没连上是 4 个，连上且有可用模型是 6 个。**\n"
+               "★ **「连上了也不一定是六个」**：`if (!models.length) return;` 那道闸说明，\n"
+               "Agent 返回的模型若一个都不支持推理档位，这一排**仍然是 4 个**。\n"
+               "★ **为什么算结论级而不是措辞级**：原文紧接着列了 1-4 的对照，读者会拿它当清单用；\n"
+               "连上 Agent 后看到 6 个，会以为产品坏了或自己认错了——\n"
+               "**而多出来的两个恰恰在权限模式右边，是最容易被数漏的位置。**\n"
+               "**M214 已把该节限定为未连接状态，并写明 4↔6 的来由与「连上也不一定 6」**",
+        "fixed_in": "M214",
+    },
 ]
 
 
