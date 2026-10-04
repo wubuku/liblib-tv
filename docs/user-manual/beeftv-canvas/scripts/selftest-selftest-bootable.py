@@ -944,6 +944,128 @@ def m_upstream_present_not_reported():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── Batch 278：方向四f（`cost_split`）的四例 ──────────────────────────────
+#: **注入形态为什么是「SLOW 字面量之后的一条赋值」而不是「往条目里追加一个键」**：
+#: 见本文件顶部那段说明——**追加会被同名键的「后者覆盖前者」顶掉**，
+#: **而那个失败长得像「判据没生效」**。**赋值在执行顺序上永远晚于字面量，与键的先后无关。**
+_INJ_ANCHOR = r'^(# \*\*实测耗时登记表\*\*（Batch 180 新增）。单位：秒，单次实测（含进程启动）。)$'
+
+
+def _inject_cost_split(t, statement):
+    """在 SLOW 字面量之后插一条赋值，**并 assert 钉死它真的落上了**。
+
+    **为什么用回调而不是替换串**：`re.sub` 的替换串会解释 `\n` 等转义，
+    而这里替换串里全是反斜杠——**用回调就没有第二次解释**（Batch 291 家族）。
+    """
+    new, k = re.subn(
+        _INJ_ANCHOR,
+        lambda m: statement + "\n" + m.group(1),
+        t, count=1, flags=re.M)
+    assert k == 1, "注入未生效：没找到实测耗时登记表那行注释（k=%d）" % k
+    assert statement in new, "注入未生效：插进去的那一行不在改后的源码里"
+    return new
+
+
+def m_cost_split_anchor_absent():
+    """能抓①：`cost_split` 的锚点指向一段**源文件里没有的**步骤 → 必须报。
+
+    **为什么这一支最要紧**：成本归属指向一个不存在的步骤，
+    **等于这个数字没有归属**——而下一个人读到它只会以为「已经量过了」。
+    """
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        new = _inject_cost_split(
+            read(p),
+            'SLOW["selftest-quote-punct.py"]["cost_split"] = '
+            '{"def 这一段根本不存在()": 38.0}  # Batch 278 用例 34 注入')
+        write(p, new)
+        rc, out = run_in(tmp)
+        record("34 `cost_split` 锚点不在场→必报",
+               rc == 1 and "方向四f" in out and "没有这一段" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_cost_split_sum_off():
+    """能抓②：段和与 `seconds` 差 1316 倍 → 必须报。
+
+    **锚点这一支刻意用**存在**的步骤名**（`def run(env=None):` 真在 quote-punct 里），
+    **这样报的只可能是段和那一支**——两支混在一起时用例就测不准自己想测的东西
+    （Batch 275 的用例 28 记过：注入方向选错，判据在另一支先 `continue`，
+    **而输出与真失败长得一样**）。
+    """
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        new = _inject_cost_split(
+            read(p),
+            'SLOW["selftest-quote-punct.py"]["cost_split"] = '
+            '{"def run(env=none)": 50000.0}  # Batch 278 用例 35 注入')
+        write(p, new)
+        rc, out = run_in(tmp)
+        record("35 段和与 `seconds` 差 1316 倍→必报",
+               rc == 1 and "方向四f" in out and "段和" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_cost_split_absent():
+    """能抓③：某条 SLOW **没有** `cost_split` → 必须报。
+
+    **空字典 `{}` 与「键根本不在」在判据里是同一件事**（`if not _split`），
+    **而实测那个键在不在场是读源码——用空字典注入就不用去碰那条源码**，
+    **于是这一支只测判据，不掺任何别的东西**。
+    """
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        new = _inject_cost_split(
+            read(p),
+            'SLOW["selftest-quote-punct.py"]["cost_split"] = {}  # Batch 278 用例 36 注入')
+        write(p, new)
+        rc, out = run_in(tmp)
+        record("36 某条 SLOW 没有 `cost_split`→必报",
+               rc == 1 and "方向四f" in out and "没有 `cost_split`" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_cost_split_clean_not_reported():
+    """**不误伤**：五条登记全部合规时，一条都不许报。
+
+    **这一例与前三例同样重要**：④f 是本批新增的判据，
+    **而一个永远会报的判据比没有判据更坏**——它会让人学会忽略它
+    （本项目的保守侧是「照报」，**但照报的前提是报的东西真的不对**）。
+
+    **⚠️ 前提断言为什么不用「树上有 5 条 `cost_split`」**（本批真踩）：
+    第一版数的是闸源码里 `"cost_split": {` 的出现次数，**而在改前闸上那是 0 条**
+    ——于是本例在对照组里**「作废」而不是「绿」**（Batch 277 踩过：前提失配的用例
+    根本没验到目标性质，而它自己看起来像一条正常的红）。
+    **改成核闸自己的输出**：「慢反验 5 份已登记」那一句由方向五产出，
+    **改前改后逐字相同**，而它成立就说明 `SLOW` 非空、④f 的循环至少走过 5 次
+    ——**这正是「④f 真的跑了」的可观测证据**（纪律 300 推论四：
+    一个因为数据源空掉而永远沉默的判据，同样会 rc=0）。
+    """
+    check_anchor()
+    tmp = sandbox()
+    try:
+        rc, out = run_in(tmp)
+        assert "慢反验 5 份已登记" in out, (
+            "前提失配：闸没走到 SLOW 那一段，④f 根本没被执行——"
+            "**本例会因为「它没跑」而假绿**")
+        n_slow = read(os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+                      ).count('"cost_split": {')
+        record("37 五条登记全合规→一条都不许报",
+               rc == 0 and "方向四f" not in out,
+               f"rc={rc} 闸内 {n_slow} 条 cost_split")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def check_own_ledger_row():
     """本反验**自己核自己那一行**的「例数」——因为方向十七够不到它。
 
@@ -983,7 +1105,9 @@ def main():
              m_fixture_stale_target_not_reported,
              m_fixture_broken_clean_target_reported,
              m_slow_cost_single_copy, m_slow_cost_ledger_disagrees,
-             m_slow_but_measured_fast, m_slow_cost_margin_allowed]
+             m_slow_but_measured_fast, m_slow_cost_margin_allowed,
+             m_cost_split_anchor_absent, m_cost_split_sum_off,
+             m_cost_split_absent, m_cost_split_clean_not_reported]
     for t in tests:
         try:
             t()
