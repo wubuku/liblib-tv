@@ -123,6 +123,7 @@ PROBE_VARS = {
     "_p953": "scripts/jimeng_probe953_roving_ring_ck.py",
     "_p954": "scripts/jimeng_probe954_source_ring_src.py",
     "_p955": "scripts/jimeng_probe955_onekey_inner_src.py",
+    "_p956": "scripts/jimeng_probe956_replica_ring_ck.py",
     # 批 938：判据开始**钉 TS 源码**（槽位是 store 里的单一来源）
     "_wm_s": "src/store/jimengStore.ts",
     # ⚠️⚠️ **929 加的**：**门禁脚本自己**也必须登记 ——

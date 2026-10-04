@@ -5674,6 +5674,8 @@ def main() -> int:
     _p954 = p954.read_text(encoding="utf-8") if p954.exists() else ""
     p955 = ROOT / "scripts/jimeng_probe955_onekey_inner_src.py"
     _p955 = p955.read_text(encoding="utf-8") if p955.exists() else ""
+    p956 = ROOT / "scripts/jimeng_probe956_replica_ring_ck.py"
+    _p956 = p956.read_text(encoding="utf-8") if p956.exists() else ""
 
     check("HHHH.1 ⚠️⚠️⚠️ **本批的设计有一处真缺陷，如实记账**：`warm ∈ {0,1,2,6}` "
           "**全都 ≤ boot 之后的自然值 76** ⇒ 预热循环**一次都没进**"
@@ -6822,6 +6824,107 @@ def main() -> int:
               "            strong_moved, identity, stop_name, walk_stuck, boot_fn):" in _p955
           and "assert _s in _p954src" in _p955
           and '"new_pieces": []' in _p955)
+
+    # ══ 批 956：⭐⭐⭐⭐⭐ **复刻侧加预算走到环尽头** ⇒ 954 那句「回不来」被推翻 ══
+    print("— RRRR. 批 956 复刻侧预算 28→120：环闭合、Shift+Tab 回得来 —")
+
+    check("RRRR.1 ⭐⭐⭐⭐⭐ **954 点名的那个格子：复刻的 `Tab` 环闭合、`Shift+Tab` 回得来** —— "
+          "954 亲手写的「**不许**拿 953 的 28 下断言复刻回不来」是**对的**，"
+          "而 **953 自己那 28 下的结论早该作废**",
+          '"replica_ring_closes_956": (' in _ausrc
+          and "**复刻的 `Tab` 环**闭合** —— 954 那条「复刻回不来」" in _ausrc
+          and "**被彻底推翻**" in _ausrc
+          and "**953 那个 `False` 是预算不够，不是现象**" in _ausrc
+          # ⭐ 钉探针：预算真的从 28 提到 120（954 源站那一侧用的是 102）
+          and "N_PRESS_CAP = 120" in _p956
+          and "28 下连源站环的一半都不到**，据此断言" in _p956
+          and "**同一个量级**" in _p956
+          # ⭐ 钉探针：回卷判据是「同一节点下标**第二次**出现」（不是预算用尽）
+          and 'seen, c["repeat_node_at"] = set(), None' in _p956
+          and 'c["repeat_node_at"] = {"seq": r["seq"], "node_index": ni}' in _p956
+          and 'c["wrap_k"] = (c["repeat_node_at"] or {}).get("seq")' in _p956)
+
+    check("RRRR.2 ⭐⭐⭐⭐ **`Shift+Tab` 按**停靠点**去重、不是按序号** —— "
+          "第一版按序号去重 ⇒ 3 次探针**全落在同一个点上**；"
+          "且 `came_back` **只能**读成「出画布段第一条就回得来」",
+          '"replica_comes_back_956": (' in _ausrc
+          and "按**停靠点**去重（不是按「第几个」" in _ausrc
+          and "3 次探针**全落在 `out:返回首页` 这一个点上**" in _ausrc
+          and "**第一条** `Shift+Tab` 就回得来" in _ausrc
+          and "**反向逐个退**" in _ausrc
+          # ⭐ 钉探针：去重键是 `st`（停靠点名字），**不是** `out_seen` 序号
+          and 'if mode == "back" and st not in c["probed_stops"] \\' in _p956
+          and 'c["probed_stops"] = []' in _p956
+          and 'c["probed_stops"].append(st)' in _p956
+          and 'c["came_back"] = any(p["to_class"] in ("node", "inner")' in _p956
+          and "c[\"first_back_seq\"] = next(" in _p956)
+
+    check("RRRR.3 ⭐⭐⭐⭐ **两边真正的差异是「环的权重」，不是「开环」、"
+          "也不是「回不回得来」**；且 952 那个「差 10 倍」的直觉**对象错了**",
+          '"what_is_the_real_difference_956": (' in _ausrc
+          and "**两边真正的差异不是「开环」也不是「回不回得来」" in _ausrc
+          and "**结构**与环长**量级**" in _ausrc
+          and "**953 的「开环」与 954 的「回不来」两条差异**" in _ausrc
+          and "**都不是**差异" in _ausrc
+          and "源站**节点段占绝对主导**" in _ausrc
+          and "复刻**出画布段占一半**" in _ausrc
+          and "差的不是**环长**（53 vs 102 只差 ~2 倍），" in _ausrc
+          and "是**节点数**（复刻 7 个 vs 源站 ~77 个）" in _ausrc
+          and "**那条直觉该改写成「节点规模差一个量级」**" in _ausrc
+          and "复刻出画布段 27 个停靠点比源站的 18 个多" in _ausrc
+          # ⭐ 钉探针：分段读数（节点段 / 出画布段）是**关系式**的
+          and 'c["leg_node_inner"] = (_legs[0]["from_seq"] - 1) if _legs else None' in _p956
+          and 'c["leg_out"] = ([_lg["len"] for _lg in _legs]' in _p956
+          and 'c["node_inner_stops"] = (c["stop_seq"][:c["leg_node_inner"]]' in _p956)
+
+    check("RRRR.4 ⭐⭐⭐⭐ **第四道门（只比节点段）2/2 逐格相同**，"
+          "而**出画布段逐轮会变** ⇒ **绝对环长不是稳定量，绝不能当「周期」断言**",
+          '"leg_decomposition_956": (' in _ausrc
+          and "**节点段是稳定的**（2/2 逐条相同）⇒ **它才是可复现的读数**" in _ausrc
+          and "**绝对环长不是稳定量，绝不能当「周期」断言**" in _ausrc
+          and "**与 955 的教训同构**" in _ausrc
+          # ⭐ 钉探针：第四道门**真的在算**，且**在 `for rep` 循环之外**
+          and 'out["node_inner_leg_identical"] = _leg_same' in _p956
+          and 'out["node_inner_leg_reproducible"] = bool(all(_leg_same))' in _p956
+          and 'out["node_inner_leg_len"] = _leg_lens' in _p956
+          and 'out["fourth_gate_note"] = (' in _p956
+          and '"node_inner_leg_reproducible": out["node_inner_leg_reproducible"],' in _p956)
+
+    check("RRRR.5 ⚠️⭐⭐⭐ **`curve_key` 的覆盖面只有 4/13，如实数出来**；"
+          "且**第一版的行为门差点恒真**（照抄 955 的 `_BEHAVIOR` 会让 956 整片 `None`）",
+          '"three_gates_replica_956": (' in _ausrc
+          and "**四道门逐字进读数**（不许只报绿的那道）" in _ausrc
+          and "**`curve_key` 的覆盖面只有 4/13**" in _ausrc
+          and "**这个覆盖面已如实数出来记进读数**" in _ausrc
+          and "**第一版的行为门差点恒真**" in _ausrc
+          and "**改用 956 自己的字段表**" in _ausrc
+          # ⭐ 钉探针：覆盖面**真的被数出来**（不是写在注释里）
+          and 'out["curve_key_coverage"] = {' in _p956
+          and '"n_present": sum(1 for k in _CURVE_KEYS' in _p956
+          and '"absent_keys": [k for k in _CURVE_KEYS' in _p956
+          # ⭐⭐ **非恒真门**：`_BEHAVIOR` 是 **956 自己的**、且有「至少一半键真存在」的门
+          and "_BEHAVIOR = (\"mode\", \"n_press\", \"n_lead\", \"n_lead_cap_hit\"," in _p956
+          and '"behavior_gate_non_vacuous": bool(' in _p956
+          and ">= len(_BEHAVIOR) / 2)," in _p956)
+
+    check("RRRR.6 ⚠️⚠️ **写完自查抓到 6 个自身缺陷，`py_compile` 全都抓不到** —— "
+          "其中 ① 根本没有 `sync_playwright` ⇒ `page` 永远 `None` ⇒ **一格都跑不了**",
+          '"first_version_defects_956": (' in _ausrc
+          and "**写完自查抓到 6 个自身缺陷**" in _ausrc
+          and "**根本没有 `sync_playwright`/`launch`**" in _ausrc
+          and "`page` 永远是 " in _ausrc
+          and "`None` ⇒ **一格都跑不了**" in _ausrc
+          and "**语法合法**" in _ausrc
+          and "**docstring 也不许分家**" in _ausrc
+          # ⭐ 钉探针：浏览器**真的**在模块级起（`ev`/`boot_ck` 闭包拿不到局部）
+          and "_pw = sync_playwright().start()" in _p956
+          and "_browser = _pw.chromium.launch()" in _p956
+          and "atexit.register(lambda: (_browser.close(), _pw.stop()))" in _p956
+          # ⭐ 钉探针：`norm_row` **逐字来自 955**（docstring 一并照搬）
+          and "_UNSTABLE_TUPLE = (\"added\", \"removed\", \"changed\", \"bit\", \"diff_ids\")" in _p956
+          and "if r.get(\"identity_stable\") is False:" in _p956
+          and 'assert _s in _p955src' in _p956
+          and "assert _cs in _p954src" in _p956)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
