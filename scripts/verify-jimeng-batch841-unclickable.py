@@ -5696,6 +5696,8 @@ def main() -> int:
     _p963 = p963.read_text(encoding="utf-8") if p963.exists() else ""
     p964 = ROOT / "scripts/jimeng_probe964_skipwhy_src.py"
     _p964 = p964.read_text(encoding="utf-8") if p964.exists() else ""
+    p965 = ROOT / "scripts/jimeng_probe965_focusable_src.py"
+    _p965 = p965.read_text(encoding="utf-8") if p965.exists() else ""
     p892 = ROOT / "scripts/jimeng_probe892_preventdefault_src.py"
     _p892 = p892.read_text(encoding="utf-8") if p892.exists() else ""
     p896 = ROOT / "scripts/jimeng_probe896_roving_tabindex_policy_src.py"
@@ -7779,6 +7781,91 @@ def main() -> int:
           and "cls: (p.className || '').slice(0, 40)," in _p964
           and "cls: (p.className || '').toString().slice(0, 40)," not in _p964
           and '"SKIPANATOMY_JS 里有**非字符串**切片（§131）"' in _p964)
+
+    # ══ 批 965：⭐⭐⭐⭐⭐ DOM 已穷尽 ⇒ 问**机制层**问题：「它能被脚本聚焦吗？」══
+    #    ⇒ **两个候选机制全被否掉** ⇒ **跳过是应用自己的选择** ══
+    print("— AAAA. 批 965：被跳过的那枚**可以被脚本聚焦、且不会被拽走** ⇒ 跳过是选择 —")
+
+    check("AAAA.1 ⭐⭐⭐⭐⭐ **两个候选机制全被否掉**：963 观察到「从 67 按 Tab "
+          "落到 69」，可能是 (a) **根本不可聚焦** 或 (b) **被 `focusin` 拽走**；"
+          "⇒ 实测 `focus()` **同步就落上**、且**四个时点都没被拽走** ⇒ "
+          "**两者皆非** ⇒ **跳过是应用自己的选择**",
+          '"what_965_measures": (' in _ausrc
+          and "963/964 已经把**两条路都走到头**了" in _ausrc
+          and "**「它到底能不能被脚本聚焦？」**" in _ausrc
+          and "(a) **它根本不可聚焦**" in _ausrc
+          and "(b) 它**可以**聚焦，但**应用的 `focusin` 处理器立刻把焦点" in _ausrc
+          and "同步就**没落上去** ⇒ (a)" in _ausrc
+          and "同步**落上了**、微任务后**被拽走** ⇒ (b)" in _ausrc
+          and "**必须带对照组**" in _ausrc
+          # ⭐ 钉探针：四个时点**真的**都读了
+          and "rec.sync = WHO();" in _p965
+          and "queueMicrotask(() => { rec.micro = WHO();" in _p965
+          and "setTimeout(() => { rec.task = WHO(); }, 0);" in _p965
+          and "rec.frame = WHO();" in _p965
+          # ⭐ 钉探针：对照组 = 跳过枚 + **两个邻居**（两个不同的集合）
+          and '"focus_test_has_control": bool(all(' in _p965
+          and 'len(r["cells"][0].get("focus_test_tids") or []) == 3' in _p965
+          and "_targets += [_cset[_si - 1], _cset[_si + 1]]" in _p965
+          # ⭐ 钉探针：只调 `focus()`、**不点任何东西**
+          and "只调 `el.focus()`、**不点任何东西**" in _p965
+          and "try { el.focus(); } catch (err)" in _p965)
+
+    check("AAAA.2 ⚠️⚠️⚠️⭐⭐⭐ **第一版的汇总层把判决整个说反了** —— "
+          "而**原始读数其实是对的**：`READ_FT_JS` 返回的是**整张以 tid 为键的表**，"
+          "我却当单条记录用 ⇒ `sync` 取到 `None` ⇒ 三项全打成「没落上」；"
+          "⇒ ⭐ **一个能把结论说反的汇总层，比没有汇总层更坏**；"
+          "⇒ 纪律：**判词与原始读数矛盾时先怀疑判词**",
+          '"unwrap_inverted_verdict_965": (' in _ausrc
+          and "**第一版的汇总层把判决整个说反了**" in _ausrc
+          and "**原始读数其实是对的**" in _ausrc
+          and "**整张以 tid 为键的表**" in _ausrc
+          and "三项**全打成「没落上」**" in _ausrc
+          and "**真相正好相反**" in _ausrc
+          and "**全是 `is_target = true`**" in _ausrc
+          and "**一个能把结论说反的汇总层，比没有汇总层更坏**" in _ausrc
+          and "**读数到不了**（恒空）" in _ausrc
+          and "**取值层级搞错 ⇒ 读数到了、但被解释成反的**" in _ausrc
+          and "**必须回查原始读数至少一次**" in _ausrc
+          and "先怀疑判词**（本批就是这样查出来的）" in _ausrc
+          # ⭐ 钉探针：显式解包 + 解包漏一个就红的门
+          and "_raw = ev(READ_FT_JS) or {}" in _p965
+          and "_ft[_tid] = _raw.get(_tid)" in _p965
+          and "**判决整个反了**" in _p965
+          and '"focus_test_unwrap_complete": bool(all(' in _p965
+          and '(r["cells"][0].get("n_unwrap_miss") or 0) == 0' in _p965)
+
+    check("AAAA.3 ⚠️⚠️⚠️ **第一版的 `FOCUSTEST_JS` 有结构性错误**：`micro` / `task` / "
+          "`frame` 写成局部变量再 `return` ⇒ 赋值在 **return 之后** ⇒ "
+          "**调用方永远看不到**；⇒ 改挂 `window.__ft` 由第二步读走 ⇒ "
+          "**一个恒空的读数比没有读数更坏**",
+          '"structural_bug_965": (' in _ausrc
+          and "**第一版的 `FOCUSTEST_JS` 有个结构性错误**" in _ausrc
+          and "**调用方永远看不到它们**" in _ausrc
+          and "**结构性不可达**" in _ausrc
+          and "**挂在 `window.__ft` 上**、由第二步 `READ_FT_JS` 读走" in _ausrc
+          and "**先安排、后读**" in _ausrc
+          and "**一个恒空的读数比没有读数更坏**" in _ausrc
+          and 'READ_FT_JS = """() => {' in _p965
+          and "window.__ft = window.__ft || {};" in _p965
+          and "**调用方永远看不到它们**" in _p965
+          # ⭐ 诊断动作必须还原（承 943）
+          and 'FOCUSTEST_JS.count("removeEventListener") == 1' in _p965
+          and "`FOCUSTEST_JS` 没把 `focusin` 监听**摘掉**" in _p965)
+
+    check("AAAA.4 ⭐⭐⭐⭐ **顺带钉住一条机制事实**：被跳过的那枚 "
+          "`el.tabIndex === -1`（**而** `getAttribute('tabindex')` "
+          "⇒ 浏览器**原生 `Tab` 根本不会停在这些 `div` 节点上** ⇒ "
+          "**应用必须自己调 `focus()`**（与 962「节点段 102/140 在派发中搬」吻合）"
+          "⇒ 整条链子闭合",
+          "**本批判决：两个候选机制**全被否掉**" in _ausrc
+          and "`el.tabIndex === -1`" in _ausrc
+          and "浏览器**原生 `Tab` 根本不会停在这些 `div` 节点上**" in _ausrc
+          and "**应用必须自己调 `focus()`**" in _ausrc
+          and "在派发中搬」**吻合**" in _ausrc
+          # ⭐ 钉探针：两个口径**都**读了（属性 vs 计算值）
+          and "tab_index_prop: el.tabIndex," in _p965
+          and "**而** `getAttribute('tabindex')` " in _ausrc)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
