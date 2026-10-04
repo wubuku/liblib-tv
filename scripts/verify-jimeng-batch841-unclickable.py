@@ -5692,6 +5692,8 @@ def main() -> int:
     _p961 = p961.read_text(encoding="utf-8") if p961.exists() else ""
     p962 = ROOT / "scripts/jimeng_probe962_focusmove_src.py"
     _p962 = p962.read_text(encoding="utf-8") if p962.exists() else ""
+    p963 = ROOT / "scripts/jimeng_probe963_nodecensus_src.py"
+    _p963 = p963.read_text(encoding="utf-8") if p963.exists() else ""
     p892 = ROOT / "scripts/jimeng_probe892_preventdefault_src.py"
     _p892 = p892.read_text(encoding="utf-8") if p892.exists() else ""
     p896 = ROOT / "scripts/jimeng_probe896_roving_tabindex_policy_src.py"
@@ -7637,6 +7639,69 @@ def main() -> int:
           and 'OUT = "/tmp/b962-focusmove.json"' in _p962
           and 'out["out"] = "/tmp/b962-focusmove.json"' in _p962
           and '"/tmp/b961-ticensus.json"' not in _p962)
+
+    # ══ 批 963：⭐⭐⭐⭐⭐ 全量节点 DOM 序普查 + 落点**对账** ⇒
+    #    NN.2 的「跳过 2 个节点」被**精确成「恰好 1 个」**，且那一枚**与邻居同构** ══
+    print("— YYYY. 批 963 拿全量节点清单对账：落点 = DOM 序，只少一枚 —")
+
+    check("YYYY.1 ⭐⭐⭐⭐⭐ **落点序列 = 全量 DOM 序，只少一枚** —— "
+          "**NN.2 的「跳过 2 个」被精确成「恰好 1 个」**；"
+          "而**被跳过的那一枚在 DOM 上与邻居完全同构** ⇒ "
+          "「跳过」**不是 DOM 属性能解释的** ⇒ 原因**在应用自己的节点表里**",
+          '"verdict_963": (' in _ausrc
+          and "**落点序列 = 全量 DOM 序，只少一枚**" in _ausrc
+          and "**NN.2 的「跳过 2 个」被精确成「恰好 1 个」**" in _ausrc
+          and "全量节点 **76** 个（DOM 序）" in _ausrc
+          and "**绕了一整圈**（76 + 30）" in _ausrc
+          and "**+1 出现 103 次、" in _ausrc
+          and "**+2 出现 1 次**" in _ausrc
+          and "**除那一枚之外，每一步都是 DOM 序的下一枚**" in _ausrc
+          and "**唯独被跳过的那一枚在 DOM 上与邻居完全同构**" in _ausrc
+          and "全量 76 个 `tabindex` 全是 " in _ausrc
+          and "**不是 DOM 属性决定得了的**" in _ausrc
+          and "**NN.2 那条处置依然正确**" in _ausrc
+          and "**只能按纯 DOM 序实现并把差异如实记为已知差异**" in _ausrc
+          # ⭐ 钉探针：普查与对账都在，且**只比身份**
+          and 'NODECENSUS_JS = """([nodeSel]) => {' in _p963
+          and "if (!el.matches(nodeSel)) return;" in _p963
+          and "`NODECENSUS_JS` 自己就匹配不上它要验的东西" in _p963
+          and 'c["n_nodes_census"] = _nc.get("n_nodes")' in _p963
+          and "c[\"n_nodes_census\"] = _nc.get(\"n_nodes\")" in _p963
+          and "对账只比**身份**（tid），**" in _ausrc
+          and "只比**身份**（tid），**不比绝对下标**" in _p963
+          # ⭐ 钉探针：步长是**一等读数**、门挂在它上面
+          and 'c["n_step_plus1"] = sum(1 for s in _steps if s == 1)' in _p963
+          and 'c["n_step_plus2"] = sum(1 for s in _steps if s == 2)' in _p963
+          and 'c["n_step_gt2"] = sum(1 for s in _steps if s > 2)' in _p963
+          and 'c["n_step_wrap"] = sum(1 for s in _steps if s < 0)' in _p963
+          and '"node_steps_are_dominant_plus1": bool(all(' in _p963
+          and '"exactly_one_node_skipped": bool(all(' in _p963
+          and 'r["cells"][0].get("n_step_plus2") == 1' in _p963
+          and "**恰好一枚**被跳过（NN.2 记的是「2 个」" in _p963)
+
+    check("YYYY.2 ⚠️⚠️⚠️ **第一版的对账判据（「连续前缀」）是错的，被读数否掉** —— "
+          "而那个 `False` **并不代表有 bug**（走查绕了圈 ⇒「前缀」不成立）；"
+          "**门也一起换成独立分母**；第一版的判据与其读数**都留档**",
+          '"criterion_was_wrong_963": (' in _ausrc
+          and "**第一版的对账判据（「连续前缀」）是错的，被读数否掉**" in _ausrc
+          and "**那个 `False` 并不代表有 bug**" in _ausrc
+          and "**绕了一整圈** ⇒ 「前缀」这个说法" in _ausrc
+          and "**正确的判据是「步长」**" in _ausrc
+          and "**门也一起换了**" in _ausrc
+          and "原来那道门挂在「连续前缀」上" in _ausrc
+          and "**都留档**" in _ausrc
+          and "**不许悄悄删掉**（承 HH.4）" in _ausrc
+          # ⭐ 钉探针：错判据**原文保留**、新判据在旁边、门换了
+          and "**第一版的判据（「连续前缀」）是错的，被读数否掉**" in _p963
+          and "那个 `False` **不代表有 bug**" in _p963
+          and 'c["landed_is_census_prefix"] = bool(_pref_ok)   # 留档：第一版判据的结果'
+              in _p963
+          and 'c["landed_first_mismatch"] = _first_bad         # 留档：第一版判据的首个不符点'
+              in _p963
+          and "**第一版这道门用的是「连续前缀」，而那个判据本身是错的**" in _p963
+          and "改挂**独立分母**" in _p963
+          and 'r["cells"][0].get("n_step_gt2") or 0) == 0' in _p963
+          and 'r["cells"][0].get("n_step_wrap") or 0) >= 1' in _p963)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "

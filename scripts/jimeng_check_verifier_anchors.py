@@ -134,6 +134,7 @@ PROBE_VARS = {
     "_p961": "scripts/jimeng_probe961_ticensus_src.py",
     # ⚠️⚠️ 962：**我第一遍忘了登记 `_p962`** ⇒ 整组 `XXXX.*` 的锚文**全被静默跳过**（「0 问题」又一次是假绿）⇒ 同一个坑，**隔一层**又踩一次
     "_p962": "scripts/jimeng_probe962_focusmove_src.py",
+    "_p963": "scripts/jimeng_probe963_nodecensus_src.py",
     # ⚠️ 961 顺带补上 `asrc`（= audit 源码，M 组判据在用；
     #   它的路径是 `ROOT / "scripts" / "…"` 两段写法，自动提取抓不到）
     "asrc": "scripts/jimeng_unclickable_audit.py",
