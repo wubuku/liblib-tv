@@ -1,0 +1,2932 @@
+{
+ "批次": 147,
+ "轮": "a",
+ "目的": "结清「音频节点面板几个按钮」",
+ "起点": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 805 · 基础会员"
+ },
+ "音频清单": [
+  {
+   "id": "node_ay7f1jn45r",
+   "态": "empty",
+   "aria": "音频 node: 音频 1",
+   "canvas": [
+    595,
+    570
+   ]
+  },
+  {
+   "id": "node_w6b1h9fvzw",
+   "态": "empty",
+   "aria": "音频 node: 音频 2",
+   "canvas": [
+    675,
+    610
+   ]
+  },
+  {
+   "id": "node_dt0wpmba0d",
+   "态": "empty",
+   "aria": "音频 node: 音频 3",
+   "canvas": [
+    715,
+    690
+   ]
+  },
+  {
+   "id": "node_kdgnjkfng2",
+   "态": "empty",
+   "aria": "音频 node: 音频 4",
+   "canvas": [
+    755,
+    590
+   ]
+  },
+  {
+   "id": "node_gp499g9p3m",
+   "态": "empty",
+   "aria": "音频 node: 音频 5",
+   "canvas": [
+    795,
+    465
+   ]
+  },
+  {
+   "id": "node_9y4j9jf0qv",
+   "态": "empty",
+   "aria": "音频 node: 音频 6",
+   "canvas": [
+    1425,
+    649
+   ]
+  },
+  {
+   "id": "node_20sb5adarj",
+   "态": "empty",
+   "aria": "音频 node: 音频 7",
+   "canvas": [
+    1663,
+    1293
+   ]
+  },
+  {
+   "id": "node_y2n170za3z",
+   "态": "empty",
+   "aria": "音频 node: 音频 8",
+   "canvas": [
+    1963,
+    1523
+   ]
+  },
+  {
+   "id": "node_1c5zafa3zk",
+   "态": "empty",
+   "aria": "音频 node: 音频 9",
+   "canvas": [
+    2003,
+    1563
+   ]
+  },
+  {
+   "id": "node_fg4h8gry6x",
+   "态": "empty",
+   "aria": "音频 node: 音频 10",
+   "canvas": [
+    2043,
+    1603
+   ]
+  },
+  {
+   "id": "node_kx0gzwzf7a",
+   "态": "empty",
+   "aria": "音频 node: 音频 11",
+   "canvas": [
+    2083,
+    1643
+   ]
+  },
+  {
+   "id": "node_97x9w2s8dc",
+   "态": "empty",
+   "aria": "音频 node: 音频 12",
+   "canvas": [
+    2123,
+    1683
+   ]
+  },
+  {
+   "id": "node_gnykygt88s",
+   "态": "empty",
+   "aria": "音频 node: 音频 13",
+   "canvas": [
+    2150,
+    1719
+   ]
+  },
+  {
+   "id": "node_52g5ng3hxa",
+   "态": "empty",
+   "aria": "音频 node: 音频 14",
+   "canvas": [
+    2163,
+    1763
+   ]
+  },
+  {
+   "id": "node_m14qwkmz4p",
+   "态": "empty",
+   "aria": "音频 node: 音频 15",
+   "canvas": [
+    2203,
+    1803
+   ]
+  },
+  {
+   "id": "node_sc4w9xkaxd",
+   "态": "empty",
+   "aria": "音频 node: 音频 16",
+   "canvas": [
+    2243,
+    1843
+   ]
+  },
+  {
+   "id": "node_y261jwxjpn",
+   "态": "empty",
+   "aria": "音频 node: 音频 17",
+   "canvas": [
+    2283,
+    1883
+   ]
+  },
+  {
+   "id": "node_3f44mcptgc",
+   "态": "empty",
+   "aria": "音频 node: 音频 18",
+   "canvas": [
+    2323,
+    1923
+   ]
+  },
+  {
+   "id": "node_e78c3z4gap",
+   "态": "empty",
+   "aria": "音频 node: 音频 19",
+   "canvas": [
+    2363,
+    1963
+   ]
+  },
+  {
+   "id": "node_5h8sbgy7pd",
+   "态": "empty",
+   "aria": "音频 node: 音频 20",
+   "canvas": [
+    2403,
+    2003
+   ]
+  },
+  {
+   "id": "node_zb8pfc1tf6",
+   "态": "empty",
+   "aria": "音频 node: 音频 21",
+   "canvas": [
+    2243,
+    1493
+   ]
+  },
+  {
+   "id": "node_v1wkbg1mbm",
+   "态": "empty",
+   "aria": "音频 node: 音频 22",
+   "canvas": [
+    2283,
+    1533
+   ]
+  },
+  {
+   "id": "node_v5ewe33jbw",
+   "态": "empty",
+   "aria": "音频 node: 音频 23",
+   "canvas": [
+    2323,
+    1573
+   ]
+  },
+  {
+   "id": "node_3rs2xvb3wm",
+   "态": "empty",
+   "aria": "音频 node: 音频 24",
+   "canvas": [
+    2363,
+    1613
+   ]
+  },
+  {
+   "id": "node_e90a7f1gyf",
+   "态": "empty",
+   "aria": "音频 node: 音频 25",
+   "canvas": [
+    2403,
+    1653
+   ]
+  },
+  {
+   "id": "node_5g0yrqgc6c",
+   "态": "empty",
+   "aria": "音频 node: 音频 26",
+   "canvas": [
+    2443,
+    1693
+   ]
+  },
+  {
+   "id": "node_anmp0m801c",
+   "态": "empty",
+   "aria": "音频 node: 音频 27",
+   "canvas": [
+    2483,
+    1733
+   ]
+  },
+  {
+   "id": "node_tqqd4fedbn",
+   "态": "empty",
+   "aria": "音频 node: 音频 28",
+   "canvas": [
+    2523,
+    1773
+   ]
+  },
+  {
+   "id": "node_68van5z657",
+   "态": "empty",
+   "aria": "音频 node: 音频 29",
+   "canvas": [
+    2563,
+    1813
+   ]
+  },
+  {
+   "id": "node_xe755vzsmx",
+   "态": "empty",
+   "aria": "音频 node: 音频 30",
+   "canvas": [
+    2603,
+    1853
+   ]
+  },
+  {
+   "id": "node_3p3sa1sgsv",
+   "态": "empty",
+   "aria": "音频 node: 音频 31",
+   "canvas": [
+    2643,
+    1893
+   ]
+  },
+  {
+   "id": "node_jphxcmk27v",
+   "态": "empty",
+   "aria": "音频 node: 音频 32",
+   "canvas": [
+    2683,
+    1933
+   ]
+  },
+  {
+   "id": "node_9b2ajtyqwj",
+   "态": "empty",
+   "aria": "音频 node: 音频 33",
+   "canvas": [
+    2723,
+    1973
+   ]
+  },
+  {
+   "id": "node_srx8z3gx8g",
+   "态": "empty",
+   "aria": "音频 node: 音频 34",
+   "canvas": [
+    2763,
+    2013
+   ]
+  },
+  {
+   "id": "node_qf32ccpxmm",
+   "态": "empty",
+   "aria": "音频 node: 音频 35",
+   "canvas": [
+    2803,
+    2058
+   ]
+  },
+  {
+   "id": "node_r6dtesbzac",
+   "态": "empty",
+   "aria": "音频 node: 音频 36",
+   "canvas": [
+    2443,
+    2041
+   ]
+  },
+  {
+   "id": "node_20pw32f1y5",
+   "态": "empty",
+   "aria": "音频 node: 音频 37",
+   "canvas": [
+    2483,
+    2081
+   ]
+  },
+  {
+   "id": "node_kgsv6w4ach",
+   "态": "empty",
+   "aria": "音频 node: 音频 38",
+   "canvas": [
+    2843,
+    2092
+   ]
+  },
+  {
+   "id": "node_80vczsczbr",
+   "态": "empty",
+   "aria": "音频 node: 音频 39",
+   "canvas": [
+    2883,
+    2138
+   ]
+  },
+  {
+   "id": "node_7w0kc2m903",
+   "态": "empty",
+   "aria": "音频 node: 音频 40",
+   "canvas": [
+    2523,
+    2121
+   ]
+  },
+  {
+   "id": "node_r6qqyk3v98",
+   "态": "empty",
+   "aria": "音频 node: 音频 41",
+   "canvas": [
+    2563,
+    2161
+   ]
+  },
+  {
+   "id": "node_thtydf4663",
+   "态": "empty",
+   "aria": "音频 node: 音频 42",
+   "canvas": [
+    2923,
+    2172
+   ]
+  },
+  {
+   "id": "node_5na1wezb9q",
+   "态": "empty",
+   "aria": "音频 node: 音频 43",
+   "canvas": [
+    2963,
+    2218
+   ]
+  },
+  {
+   "id": "node_ky7dvkppj1",
+   "态": "empty",
+   "aria": "音频 node: 音频 44",
+   "canvas": [
+    2603,
+    2200
+   ]
+  },
+  {
+   "id": "node_tnh6v3rm7v",
+   "态": "empty",
+   "aria": "音频 node: 音频 45",
+   "canvas": [
+    2643,
+    2240
+   ]
+  },
+  {
+   "id": "node_mwz4689zqr",
+   "态": "empty",
+   "aria": "音频 node: 音频 46",
+   "canvas": [
+    3003,
+    2252
+   ]
+  },
+  {
+   "id": "node_7y6fhyn18z",
+   "态": "empty",
+   "aria": "音频 node: 音频 47",
+   "canvas": [
+    3043,
+    2298
+   ]
+  },
+  {
+   "id": "node_qe1kf9ywek",
+   "态": "empty",
+   "aria": "音频 node: 音频 48",
+   "canvas": [
+    2683,
+    2280
+   ]
+  },
+  {
+   "id": "node_w7s8mxphwh",
+   "态": "empty",
+   "aria": "音频 node: 音频 49",
+   "canvas": [
+    2723,
+    2320
+   ]
+  },
+  {
+   "id": "node_p4xg96c73x",
+   "态": "empty",
+   "aria": "音频 node: 音频 50",
+   "canvas": [
+    3083,
+    2332
+   ]
+  },
+  {
+   "id": "node_rs637eg7me",
+   "态": "empty",
+   "aria": "音频 node: 音频 51",
+   "canvas": [
+    2539,
+    1006
+   ]
+  },
+  {
+   "id": "node_wdqa2gne4s",
+   "态": "empty",
+   "aria": "音频 node: 音频 52",
+   "canvas": [
+    2123,
+    1326
+   ]
+  },
+  {
+   "id": "node_fd0p2amd3p",
+   "态": "empty",
+   "aria": "音频 node: 音频 53",
+   "canvas": [
+    2024,
+    1293
+   ]
+  },
+  {
+   "id": "node_pz48stvt07",
+   "态": "empty",
+   "aria": "音频 node: 音频 54",
+   "canvas": [
+    1663,
+    2440
+   ]
+  },
+  {
+   "id": "node_2x3hae9jhe",
+   "态": "empty",
+   "aria": "音频 node: 音频 55",
+   "canvas": [
+    2901,
+    1421
+   ]
+  },
+  {
+   "id": "node_jx5amm7m9j",
+   "态": "empty",
+   "aria": "音频 node: 音频 56",
+   "canvas": [
+    3123,
+    2046
+   ]
+  },
+  {
+   "id": "node_2vbd2rqk7q",
+   "态": "empty",
+   "aria": "音频 node: 音频 57",
+   "canvas": [
+    3163,
+    2126
+   ]
+  },
+  {
+   "id": "node_kpfbgmkkr3",
+   "态": "empty",
+   "aria": "音频 node: 音频 58",
+   "canvas": [
+    3203,
+    2206
+   ]
+  },
+  {
+   "id": "node_1yw4ntm88n",
+   "态": "empty",
+   "aria": "音频 node: 音频 59",
+   "canvas": [
+    3243,
+    2286
+   ]
+  },
+  {
+   "id": "node_fyy39951ae",
+   "态": "empty",
+   "aria": "音频 node: 音频 60",
+   "canvas": [
+    3283,
+    2366
+   ]
+  },
+  {
+   "id": "node_jc6t41x8d2",
+   "态": "empty",
+   "aria": "音频 node: 音频 61",
+   "canvas": [
+    1464,
+    1406
+   ]
+  },
+  {
+   "id": "node_kk2xhkrdtn",
+   "态": "empty",
+   "aria": "音频 node: 音频 62",
+   "canvas": [
+    2563,
+    1363
+   ]
+  },
+  {
+   "id": "node_qs4x5t988q",
+   "态": "empty",
+   "aria": "音频 node: 音频 63",
+   "canvas": [
+    2539,
+    649
+   ]
+  },
+  {
+   "id": "node_9rxgrvfe4y",
+   "态": "empty",
+   "aria": "音频 node: 音频 64",
+   "canvas": [
+    2901,
+    1046
+   ]
+  },
+  {
+   "id": "node_n0x3zqajjy",
+   "态": "empty",
+   "aria": "音频 node: 音频 65",
+   "canvas": [
+    2203,
+    649
+   ]
+  },
+  {
+   "id": "node_3cc0k9cfgb",
+   "态": "empty",
+   "aria": "音频 node: 音频 66",
+   "canvas": [
+    2883,
+    649
+   ]
+  },
+  {
+   "id": "node_ae08gp8ke3",
+   "态": "empty",
+   "aria": "音频 node: 音频 67",
+   "canvas": [
+    1283,
+    1293
+   ]
+  },
+  {
+   "id": "node_tadm1nyykc",
+   "态": "empty",
+   "aria": "音频 node: 音频 68",
+   "canvas": [
+    1784,
+    649
+   ]
+  }
+ ],
+ "音频分布": {
+  "empty": 68
+ },
+ "可点普查": [
+  {
+   "id": "node_fyy39951ae",
+   "态": "empty",
+   "独占像素": 2116,
+   "首个可点": [
+    313,
+    156
+   ],
+   "aria": "音频 node: 音频 60",
+   "盒": [
+    308,
+    151,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_w7s8mxphwh",
+   "态": "empty",
+   "独占像素": 1422,
+   "首个可点": [
+    1,
+    128
+   ],
+   "aria": "音频 node: 音频 49",
+   "盒": [
+    -28,
+    124,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_p4xg96c73x",
+   "态": "empty",
+   "独占像素": 650,
+   "首个可点": [
+    193,
+    135
+   ],
+   "aria": "音频 node: 音频 50",
+   "盒": [
+    188,
+    131,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_1yw4ntm88n",
+   "态": "empty",
+   "独占像素": 445,
+   "首个可点": [
+    289,
+    108
+   ],
+   "aria": "音频 node: 音频 59",
+   "盒": [
+    284,
+    103,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_kpfbgmkkr3",
+   "态": "empty",
+   "独占像素": 441,
+   "首个可点": [
+    265,
+    60
+   ],
+   "aria": "音频 node: 音频 58",
+   "盒": [
+    260,
+    55,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_2vbd2rqk7q",
+   "态": "empty",
+   "独占像素": 421,
+   "首个可点": [
+    249,
+    12
+   ],
+   "aria": "音频 node: 音频 57",
+   "盒": [
+    236,
+    7,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_qe1kf9ywek",
+   "态": "empty",
+   "独占像素": 120,
+   "首个可点": [
+    41,
+    104
+   ],
+   "aria": "音频 node: 音频 48",
+   "盒": [
+    -52,
+    100,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_tnh6v3rm7v",
+   "态": "empty",
+   "独占像素": 108,
+   "首个可点": [
+    17,
+    80
+   ],
+   "aria": "音频 node: 音频 45",
+   "盒": [
+    -76,
+    76,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_7y6fhyn18z",
+   "态": "empty",
+   "独占像素": 107,
+   "首个可点": [
+    169,
+    115
+   ],
+   "aria": "音频 node: 音频 47",
+   "盒": [
+    164,
+    110,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_ky7dvkppj1",
+   "态": "empty",
+   "独占像素": 102,
+   "首个可点": [
+    1,
+    56
+   ],
+   "aria": "音频 node: 音频 44",
+   "盒": [
+    -100,
+    52,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_jx5amm7m9j",
+   "态": "empty",
+   "独占像素": 50,
+   "首个可点": [
+    217,
+    4
+   ],
+   "aria": "音频 node: 音频 56",
+   "盒": [
+    212,
+    -41,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_kgsv6w4ach",
+   "态": "empty",
+   "独占像素": 26,
+   "首个可点": [
+    161,
+    3
+   ],
+   "aria": "音频 node: 音频 38",
+   "盒": [
+    44,
+    -13,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_7w0kc2m903",
+   "态": "empty",
+   "独占像素": 22,
+   "首个可点": [
+    1,
+    8
+   ],
+   "aria": "音频 node: 音频 40",
+   "盒": [
+    -148,
+    4,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_r6qqyk3v98",
+   "态": "empty",
+   "独占像素": 15,
+   "首个可点": [
+    1,
+    32
+   ],
+   "aria": "音频 node: 音频 41",
+   "盒": [
+    -124,
+    28,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_mwz4689zqr",
+   "态": "empty",
+   "独占像素": 10,
+   "首个可点": [
+    145,
+    87
+   ],
+   "aria": "音频 node: 音频 46",
+   "盒": [
+    140,
+    83,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_5na1wezb9q",
+   "态": "empty",
+   "独占像素": 5,
+   "首个可点": [
+    121,
+    67
+   ],
+   "aria": "音频 node: 音频 43",
+   "盒": [
+    116,
+    62,
+    192,
+    192
+   ]
+  },
+  {
+   "id": "node_20pw32f1y5",
+   "态": "empty",
+   "独占像素": 4,
+   "首个可点": [
+    1,
+    1
+   ],
+   "aria": "音频 node: 音频 37",
+   "盒": [
+    -172,
+    -20,
+    192,
+    192
+   ]
+  }
+ ],
+ "可点分布": {
+  "音频总数": 68,
+  "有独占像素": 17
+ },
+ "样本": [
+  {
+   "id": "node_fyy39951ae",
+   "态": "empty",
+   "独占像素": 2116,
+   "画布坐标": null,
+   "实例数": 2,
+   "可见实例数": 2,
+   "实例": [
+    {
+     "i": 0,
+     "盒": [
+      64,
+      363,
+      680,
+      204
+     ],
+     "可见": true,
+     "按钮数": 10,
+     "svg数": 11,
+     "所属节点": null,
+     "aria": null,
+     "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 C"
+    },
+    {
+     "i": 1,
+     "盒": [
+      308,
+      115,
+      192,
+      0
+     ],
+     "可见": true,
+     "按钮数": 0,
+     "svg数": 0,
+     "所属节点": null,
+     "aria": null,
+     "逐字": ""
+    }
+   ],
+   "可见实例按钮数": [
+    10,
+    0
+   ],
+   "可见实例svg数": [
+    11,
+    0
+   ],
+   "可见实例盒": [
+    [
+     64,
+     363,
+     680,
+     204
+    ],
+    [
+     308,
+     115,
+     192,
+     0
+    ]
+   ],
+   "折叠词": {
+    "展开音频生成器": [
+     {
+      "tag": "BUTTON",
+      "aria": "展开音频生成器",
+      "testid": null,
+      "在工具条内": true,
+      "盒": [
+       710,
+       357,
+       40,
+       40
+      ]
+     }
+    ],
+    "收起音频生成器": [],
+    "折叠": [],
+    "收起": [],
+    "展开": [
+     {
+      "tag": "BUTTON",
+      "aria": "展开音频生成器",
+      "testid": null,
+      "在工具条内": true,
+      "盒": [
+       710,
+       357,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "按钮明细": [
+    {
+     "序": 0,
+     "tag": "BUTTON",
+     "aria": "展开音频生成器",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      710,
+      357,
+      40,
+      40
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 1,
+     "tag": "BUTTON",
+     "aria": "添加参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "inline-flex",
+     "盒": [
+      81,
+      380,
+      48,
+      48
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 2,
+     "tag": "BUTTON",
+     "aria": "引用参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "inline-flex",
+     "盒": [
+      365,
+      441,
+      24,
+      24
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 3,
+     "tag": "BUTTON",
+     "aria": "创作类型: 音频生成",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      81,
+      518,
+      80,
+      32
+     ],
+     "逐字": "音频生成",
+     "svg数": 1
+    },
+    {
+     "序": 4,
+     "tag": "BUTTON",
+     "aria": "选择模型: SeedAudio 1.0, New",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      163,
+      518,
+      135.3,
+      32
+     ],
+     "逐字": "SeedAudio 1.0",
+     "svg数": 2
+    },
+    {
+     "序": 5,
+     "tag": "BUTTON",
+     "aria": "音频生成: 全能配音",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      300,
+      518,
+      80,
+      32
+     ],
+     "逐字": "全能配音",
+     "svg数": 1
+    },
+    {
+     "序": 6,
+     "tag": "BUTTON",
+     "aria": "音色: 音色库",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      382,
+      518,
+      68,
+      32
+     ],
+     "逐字": "音色库",
+     "svg数": 1
+    },
+    {
+     "序": 7,
+     "tag": "BUTTON",
+     "aria": "引用参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      452,
+      518,
+      32,
+      32
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 8,
+     "tag": "BUTTON",
+     "aria": "显示折扣详情",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      641,
+      524,
+      46,
+      20
+     ],
+     "逐字": "12 24",
+     "svg数": 1
+    },
+    {
+     "序": 9,
+     "tag": "BUTTON",
+     "aria": "生成",
+     "testid": null,
+     "dataDisabled": "true",
+     "ariaDisabled": "true",
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      695,
+      518,
+      32,
+      32
+     ],
+     "逐字": "生成",
+     "svg数": 1
+    }
+   ]
+  },
+  {
+   "id": "node_w7s8mxphwh",
+   "态": "empty",
+   "独占像素": 1422,
+   "画布坐标": null,
+   "实例数": 2,
+   "可见实例数": 2,
+   "实例": [
+    {
+     "i": 0,
+     "盒": [
+      -272,
+      336,
+      680,
+      204
+     ],
+     "可见": true,
+     "按钮数": 10,
+     "svg数": 11,
+     "所属节点": null,
+     "aria": null,
+     "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 C"
+    },
+    {
+     "i": 1,
+     "盒": [
+      -28,
+      88,
+      192,
+      0
+     ],
+     "可见": true,
+     "按钮数": 0,
+     "svg数": 0,
+     "所属节点": null,
+     "aria": null,
+     "逐字": ""
+    }
+   ],
+   "可见实例按钮数": [
+    10,
+    0
+   ],
+   "可见实例svg数": [
+    11,
+    0
+   ],
+   "可见实例盒": [
+    [
+     -272,
+     336,
+     680,
+     204
+    ],
+    [
+     -28,
+     88,
+     192,
+     0
+    ]
+   ],
+   "折叠词": {
+    "展开音频生成器": [
+     {
+      "tag": "BUTTON",
+      "aria": "展开音频生成器",
+      "testid": null,
+      "在工具条内": true,
+      "盒": [
+       374,
+       330,
+       40,
+       40
+      ]
+     }
+    ],
+    "收起音频生成器": [],
+    "折叠": [],
+    "收起": [],
+    "展开": [
+     {
+      "tag": "BUTTON",
+      "aria": "展开音频生成器",
+      "testid": null,
+      "在工具条内": true,
+      "盒": [
+       374,
+       330,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "按钮明细": [
+    {
+     "序": 0,
+     "tag": "BUTTON",
+     "aria": "展开音频生成器",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      374,
+      330,
+      40,
+      40
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 1,
+     "tag": "BUTTON",
+     "aria": "添加参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "inline-flex",
+     "盒": [
+      -255,
+      353,
+      48,
+      48
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 2,
+     "tag": "BUTTON",
+     "aria": "引用参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "inline-flex",
+     "盒": [
+      29,
+      414,
+      24,
+      24
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 3,
+     "tag": "BUTTON",
+     "aria": "创作类型: 音频生成",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      -255,
+      491,
+      80,
+      32
+     ],
+     "逐字": "音频生成",
+     "svg数": 1
+    },
+    {
+     "序": 4,
+     "tag": "BUTTON",
+     "aria": "选择模型: SeedAudio 1.0, New",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      -173,
+      491,
+      135.3,
+      32
+     ],
+     "逐字": "SeedAudio 1.0",
+     "svg数": 2
+    },
+    {
+     "序": 5,
+     "tag": "BUTTON",
+     "aria": "音频生成: 全能配音",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      -36,
+      491,
+      80,
+      32
+     ],
+     "逐字": "全能配音",
+     "svg数": 1
+    },
+    {
+     "序": 6,
+     "tag": "BUTTON",
+     "aria": "音色: 音色库",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      46,
+      491,
+      68,
+      32
+     ],
+     "逐字": "音色库",
+     "svg数": 1
+    },
+    {
+     "序": 7,
+     "tag": "BUTTON",
+     "aria": "引用参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      116,
+      491,
+      32,
+      32
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 8,
+     "tag": "BUTTON",
+     "aria": "显示折扣详情",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      305,
+      497,
+      46,
+      20
+     ],
+     "逐字": "12 24",
+     "svg数": 1
+    },
+    {
+     "序": 9,
+     "tag": "BUTTON",
+     "aria": "生成",
+     "testid": null,
+     "dataDisabled": "true",
+     "ariaDisabled": "true",
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      359,
+      491,
+      32,
+      32
+     ],
+     "逐字": "生成",
+     "svg数": 1
+    }
+   ]
+  },
+  {
+   "id": "node_p4xg96c73x",
+   "态": "empty",
+   "独占像素": 650,
+   "画布坐标": null,
+   "实例数": 2,
+   "可见实例数": 2,
+   "实例": [
+    {
+     "i": 0,
+     "盒": [
+      -56,
+      343,
+      680,
+      204
+     ],
+     "可见": true,
+     "按钮数": 10,
+     "svg数": 11,
+     "所属节点": null,
+     "aria": null,
+     "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 C"
+    },
+    {
+     "i": 1,
+     "盒": [
+      188,
+      95,
+      192,
+      0
+     ],
+     "可见": true,
+     "按钮数": 0,
+     "svg数": 0,
+     "所属节点": null,
+     "aria": null,
+     "逐字": ""
+    }
+   ],
+   "可见实例按钮数": [
+    10,
+    0
+   ],
+   "可见实例svg数": [
+    11,
+    0
+   ],
+   "可见实例盒": [
+    [
+     -56,
+     343,
+     680,
+     204
+    ],
+    [
+     188,
+     95,
+     192,
+     0
+    ]
+   ],
+   "折叠词": {
+    "展开音频生成器": [
+     {
+      "tag": "BUTTON",
+      "aria": "展开音频生成器",
+      "testid": null,
+      "在工具条内": true,
+      "盒": [
+       590,
+       337,
+       40,
+       40
+      ]
+     }
+    ],
+    "收起音频生成器": [],
+    "折叠": [],
+    "收起": [],
+    "展开": [
+     {
+      "tag": "BUTTON",
+      "aria": "展开音频生成器",
+      "testid": null,
+      "在工具条内": true,
+      "盒": [
+       590,
+       337,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "按钮明细": [
+    {
+     "序": 0,
+     "tag": "BUTTON",
+     "aria": "展开音频生成器",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      590,
+      337,
+      40,
+      40
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 1,
+     "tag": "BUTTON",
+     "aria": "添加参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "inline-flex",
+     "盒": [
+      -39,
+      360,
+      48,
+      48
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 2,
+     "tag": "BUTTON",
+     "aria": "引用参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "inline-flex",
+     "盒": [
+      245,
+      421,
+      24,
+      24
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 3,
+     "tag": "BUTTON",
+     "aria": "创作类型: 音频生成",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      -39,
+      498,
+      80,
+      32
+     ],
+     "逐字": "音频生成",
+     "svg数": 1
+    },
+    {
+     "序": 4,
+     "tag": "BUTTON",
+     "aria": "选择模型: SeedAudio 1.0, New",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      43,
+      498,
+      135.3,
+      32
+     ],
+     "逐字": "SeedAudio 1.0",
+     "svg数": 2
+    },
+    {
+     "序": 5,
+     "tag": "BUTTON",
+     "aria": "音频生成: 全能配音",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      180,
+      498,
+      80,
+      32
+     ],
+     "逐字": "全能配音",
+     "svg数": 1
+    },
+    {
+     "序": 6,
+     "tag": "BUTTON",
+     "aria": "音色: 音色库",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      262,
+      498,
+      68,
+      32
+     ],
+     "逐字": "音色库",
+     "svg数": 1
+    },
+    {
+     "序": 7,
+     "tag": "BUTTON",
+     "aria": "引用参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      332,
+      498,
+      32,
+      32
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 8,
+     "tag": "BUTTON",
+     "aria": "显示折扣详情",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      521,
+      504,
+      46,
+      20
+     ],
+     "逐字": "12 24",
+     "svg数": 1
+    },
+    {
+     "序": 9,
+     "tag": "BUTTON",
+     "aria": "生成",
+     "testid": null,
+     "dataDisabled": "true",
+     "ariaDisabled": "true",
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      575,
+      498,
+      32,
+      32
+     ],
+     "逐字": "生成",
+     "svg数": 1
+    }
+   ]
+  },
+  {
+   "id": "node_1yw4ntm88n",
+   "态": "empty",
+   "独占像素": 445,
+   "画布坐标": null,
+   "实例数": 2,
+   "可见实例数": 2,
+   "实例": [
+    {
+     "i": 0,
+     "盒": [
+      40,
+      315,
+      680,
+      204
+     ],
+     "可见": true,
+     "按钮数": 10,
+     "svg数": 11,
+     "所属节点": null,
+     "aria": null,
+     "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 C"
+    },
+    {
+     "i": 1,
+     "盒": [
+      284,
+      67,
+      192,
+      0
+     ],
+     "可见": true,
+     "按钮数": 0,
+     "svg数": 0,
+     "所属节点": null,
+     "aria": null,
+     "逐字": ""
+    }
+   ],
+   "可见实例按钮数": [
+    10,
+    0
+   ],
+   "可见实例svg数": [
+    11,
+    0
+   ],
+   "可见实例盒": [
+    [
+     40,
+     315,
+     680,
+     204
+    ],
+    [
+     284,
+     67,
+     192,
+     0
+    ]
+   ],
+   "折叠词": {
+    "展开音频生成器": [
+     {
+      "tag": "BUTTON",
+      "aria": "展开音频生成器",
+      "testid": null,
+      "在工具条内": true,
+      "盒": [
+       686,
+       309,
+       40,
+       40
+      ]
+     }
+    ],
+    "收起音频生成器": [],
+    "折叠": [],
+    "收起": [],
+    "展开": [
+     {
+      "tag": "BUTTON",
+      "aria": "展开音频生成器",
+      "testid": null,
+      "在工具条内": true,
+      "盒": [
+       686,
+       309,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "按钮明细": [
+    {
+     "序": 0,
+     "tag": "BUTTON",
+     "aria": "展开音频生成器",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      686,
+      309,
+      40,
+      40
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 1,
+     "tag": "BUTTON",
+     "aria": "添加参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "inline-flex",
+     "盒": [
+      57,
+      332,
+      48,
+      48
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 2,
+     "tag": "BUTTON",
+     "aria": "引用参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "inline-flex",
+     "盒": [
+      341,
+      393,
+      24,
+      24
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 3,
+     "tag": "BUTTON",
+     "aria": "创作类型: 音频生成",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      57,
+      470,
+      80,
+      32
+     ],
+     "逐字": "音频生成",
+     "svg数": 1
+    },
+    {
+     "序": 4,
+     "tag": "BUTTON",
+     "aria": "选择模型: SeedAudio 1.0, New",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      139,
+      470,
+      135.3,
+      32
+     ],
+     "逐字": "SeedAudio 1.0",
+     "svg数": 2
+    },
+    {
+     "序": 5,
+     "tag": "BUTTON",
+     "aria": "音频生成: 全能配音",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      276,
+      470,
+      80,
+      32
+     ],
+     "逐字": "全能配音",
+     "svg数": 1
+    },
+    {
+     "序": 6,
+     "tag": "BUTTON",
+     "aria": "音色: 音色库",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      358,
+      470,
+      68,
+      32
+     ],
+     "逐字": "音色库",
+     "svg数": 1
+    },
+    {
+     "序": 7,
+     "tag": "BUTTON",
+     "aria": "引用参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      428,
+      470,
+      32,
+      32
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 8,
+     "tag": "BUTTON",
+     "aria": "显示折扣详情",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      617,
+      476,
+      46,
+      20
+     ],
+     "逐字": "12 24",
+     "svg数": 1
+    },
+    {
+     "序": 9,
+     "tag": "BUTTON",
+     "aria": "生成",
+     "testid": null,
+     "dataDisabled": "true",
+     "ariaDisabled": "true",
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      671,
+      470,
+      32,
+      32
+     ],
+     "逐字": "生成",
+     "svg数": 1
+    }
+   ]
+  },
+  {
+   "id": "node_kpfbgmkkr3",
+   "态": "empty",
+   "独占像素": 441,
+   "画布坐标": null,
+   "实例数": 2,
+   "可见实例数": 2,
+   "实例": [
+    {
+     "i": 0,
+     "盒": [
+      16,
+      267,
+      680,
+      204
+     ],
+     "可见": true,
+     "按钮数": 10,
+     "svg数": 11,
+     "所属节点": null,
+     "aria": null,
+     "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 C"
+    },
+    {
+     "i": 1,
+     "盒": [
+      260,
+      19,
+      192,
+      0
+     ],
+     "可见": true,
+     "按钮数": 0,
+     "svg数": 0,
+     "所属节点": null,
+     "aria": null,
+     "逐字": ""
+    }
+   ],
+   "可见实例按钮数": [
+    10,
+    0
+   ],
+   "可见实例svg数": [
+    11,
+    0
+   ],
+   "可见实例盒": [
+    [
+     16,
+     267,
+     680,
+     204
+    ],
+    [
+     260,
+     19,
+     192,
+     0
+    ]
+   ],
+   "折叠词": {
+    "展开音频生成器": [
+     {
+      "tag": "BUTTON",
+      "aria": "展开音频生成器",
+      "testid": null,
+      "在工具条内": true,
+      "盒": [
+       662,
+       261,
+       40,
+       40
+      ]
+     }
+    ],
+    "收起音频生成器": [],
+    "折叠": [],
+    "收起": [],
+    "展开": [
+     {
+      "tag": "BUTTON",
+      "aria": "展开音频生成器",
+      "testid": null,
+      "在工具条内": true,
+      "盒": [
+       662,
+       261,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "按钮明细": [
+    {
+     "序": 0,
+     "tag": "BUTTON",
+     "aria": "展开音频生成器",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      662,
+      261,
+      40,
+      40
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 1,
+     "tag": "BUTTON",
+     "aria": "添加参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "inline-flex",
+     "盒": [
+      33,
+      284,
+      48,
+      48
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 2,
+     "tag": "BUTTON",
+     "aria": "引用参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "inline-flex",
+     "盒": [
+      317,
+      345,
+      24,
+      24
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 3,
+     "tag": "BUTTON",
+     "aria": "创作类型: 音频生成",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      33,
+      422,
+      80,
+      32
+     ],
+     "逐字": "音频生成",
+     "svg数": 1
+    },
+    {
+     "序": 4,
+     "tag": "BUTTON",
+     "aria": "选择模型: SeedAudio 1.0, New",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      115,
+      422,
+      135.3,
+      32
+     ],
+     "逐字": "SeedAudio 1.0",
+     "svg数": 2
+    },
+    {
+     "序": 5,
+     "tag": "BUTTON",
+     "aria": "音频生成: 全能配音",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      252,
+      422,
+      80,
+      32
+     ],
+     "逐字": "全能配音",
+     "svg数": 1
+    },
+    {
+     "序": 6,
+     "tag": "BUTTON",
+     "aria": "音色: 音色库",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      334,
+      422,
+      68,
+      32
+     ],
+     "逐字": "音色库",
+     "svg数": 1
+    },
+    {
+     "序": 7,
+     "tag": "BUTTON",
+     "aria": "引用参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      404,
+      422,
+      32,
+      32
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 8,
+     "tag": "BUTTON",
+     "aria": "显示折扣详情",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      593,
+      428,
+      46,
+      20
+     ],
+     "逐字": "12 24",
+     "svg数": 1
+    },
+    {
+     "序": 9,
+     "tag": "BUTTON",
+     "aria": "生成",
+     "testid": null,
+     "dataDisabled": "true",
+     "ariaDisabled": "true",
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      647,
+      422,
+      32,
+      32
+     ],
+     "逐字": "生成",
+     "svg数": 1
+    }
+   ]
+  },
+  {
+   "id": "node_2vbd2rqk7q",
+   "态": "empty",
+   "独占像素": 421,
+   "画布坐标": null,
+   "实例数": 2,
+   "可见实例数": 2,
+   "实例": [
+    {
+     "i": 0,
+     "盒": [
+      -8,
+      219,
+      680,
+      204
+     ],
+     "可见": true,
+     "按钮数": 10,
+     "svg数": 11,
+     "所属节点": null,
+     "aria": null,
+     "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 C"
+    },
+    {
+     "i": 1,
+     "盒": [
+      236,
+      -29,
+      192,
+      0
+     ],
+     "可见": true,
+     "按钮数": 0,
+     "svg数": 0,
+     "所属节点": null,
+     "aria": null,
+     "逐字": ""
+    }
+   ],
+   "可见实例按钮数": [
+    10,
+    0
+   ],
+   "可见实例svg数": [
+    11,
+    0
+   ],
+   "可见实例盒": [
+    [
+     -8,
+     219,
+     680,
+     204
+    ],
+    [
+     236,
+     -29,
+     192,
+     0
+    ]
+   ],
+   "折叠词": {
+    "展开音频生成器": [
+     {
+      "tag": "BUTTON",
+      "aria": "展开音频生成器",
+      "testid": null,
+      "在工具条内": true,
+      "盒": [
+       638,
+       213,
+       40,
+       40
+      ]
+     }
+    ],
+    "收起音频生成器": [],
+    "折叠": [],
+    "收起": [],
+    "展开": [
+     {
+      "tag": "BUTTON",
+      "aria": "展开音频生成器",
+      "testid": null,
+      "在工具条内": true,
+      "盒": [
+       638,
+       213,
+       40,
+       40
+      ]
+     }
+    ]
+   },
+   "按钮明细": [
+    {
+     "序": 0,
+     "tag": "BUTTON",
+     "aria": "展开音频生成器",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      638,
+      213,
+      40,
+      40
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 1,
+     "tag": "BUTTON",
+     "aria": "添加参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "inline-flex",
+     "盒": [
+      9,
+      236,
+      48,
+      48
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 2,
+     "tag": "BUTTON",
+     "aria": "引用参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "inline-flex",
+     "盒": [
+      293,
+      297,
+      24,
+      24
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 3,
+     "tag": "BUTTON",
+     "aria": "创作类型: 音频生成",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      9,
+      374,
+      80,
+      32
+     ],
+     "逐字": "音频生成",
+     "svg数": 1
+    },
+    {
+     "序": 4,
+     "tag": "BUTTON",
+     "aria": "选择模型: SeedAudio 1.0, New",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      91,
+      374,
+      135.3,
+      32
+     ],
+     "逐字": "SeedAudio 1.0",
+     "svg数": 2
+    },
+    {
+     "序": 5,
+     "tag": "BUTTON",
+     "aria": "音频生成: 全能配音",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      228,
+      374,
+      80,
+      32
+     ],
+     "逐字": "全能配音",
+     "svg数": 1
+    },
+    {
+     "序": 6,
+     "tag": "BUTTON",
+     "aria": "音色: 音色库",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      310,
+      374,
+      68,
+      32
+     ],
+     "逐字": "音色库",
+     "svg数": 1
+    },
+    {
+     "序": 7,
+     "tag": "BUTTON",
+     "aria": "引用参考",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      380,
+      374,
+      32,
+      32
+     ],
+     "逐字": "",
+     "svg数": 1
+    },
+    {
+     "序": 8,
+     "tag": "BUTTON",
+     "aria": "显示折扣详情",
+     "testid": null,
+     "dataDisabled": null,
+     "ariaDisabled": null,
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      569,
+      380,
+      46,
+      20
+     ],
+     "逐字": "12 24",
+     "svg数": 1
+    },
+    {
+     "序": 9,
+     "tag": "BUTTON",
+     "aria": "生成",
+     "testid": null,
+     "dataDisabled": "true",
+     "ariaDisabled": "true",
+     "disabled": false,
+     "pe": "auto",
+     "display": "flex",
+     "盒": [
+      623,
+      374,
+      32,
+      32
+     ],
+     "逐字": "生成",
+     "svg数": 1
+    }
+   ]
+  }
+ ],
+ "表": [
+  {
+   "id": "node_fyy39951ae",
+   "态": "empty",
+   "实例数": 2,
+   "可见实例数": 2,
+   "可见按钮数": [
+    10,
+    0
+   ],
+   "可见svg数": [
+    11,
+    0
+   ],
+   "可见盒": [
+    [
+     64,
+     363,
+     680,
+     204
+    ],
+    [
+     308,
+     115,
+     192,
+     0
+    ]
+   ],
+   "有展开音频生成器": 1,
+   "有收起音频生成器": 0,
+   "有折叠": 0,
+   "有收起": 0,
+   "aria清单": [
+    "展开音频生成器",
+    "添加参考",
+    "引用参考",
+    "创作类型: 音频生成",
+    "选择模型: SeedAudio 1.0, New",
+    "音频生成: 全能配音",
+    "音色: 音色库",
+    "引用参考",
+    "显示折扣详情",
+    "生成"
+   ]
+  },
+  {
+   "id": "node_w7s8mxphwh",
+   "态": "empty",
+   "实例数": 2,
+   "可见实例数": 2,
+   "可见按钮数": [
+    10,
+    0
+   ],
+   "可见svg数": [
+    11,
+    0
+   ],
+   "可见盒": [
+    [
+     -272,
+     336,
+     680,
+     204
+    ],
+    [
+     -28,
+     88,
+     192,
+     0
+    ]
+   ],
+   "有展开音频生成器": 1,
+   "有收起音频生成器": 0,
+   "有折叠": 0,
+   "有收起": 0,
+   "aria清单": [
+    "展开音频生成器",
+    "添加参考",
+    "引用参考",
+    "创作类型: 音频生成",
+    "选择模型: SeedAudio 1.0, New",
+    "音频生成: 全能配音",
+    "音色: 音色库",
+    "引用参考",
+    "显示折扣详情",
+    "生成"
+   ]
+  },
+  {
+   "id": "node_p4xg96c73x",
+   "态": "empty",
+   "实例数": 2,
+   "可见实例数": 2,
+   "可见按钮数": [
+    10,
+    0
+   ],
+   "可见svg数": [
+    11,
+    0
+   ],
+   "可见盒": [
+    [
+     -56,
+     343,
+     680,
+     204
+    ],
+    [
+     188,
+     95,
+     192,
+     0
+    ]
+   ],
+   "有展开音频生成器": 1,
+   "有收起音频生成器": 0,
+   "有折叠": 0,
+   "有收起": 0,
+   "aria清单": [
+    "展开音频生成器",
+    "添加参考",
+    "引用参考",
+    "创作类型: 音频生成",
+    "选择模型: SeedAudio 1.0, New",
+    "音频生成: 全能配音",
+    "音色: 音色库",
+    "引用参考",
+    "显示折扣详情",
+    "生成"
+   ]
+  },
+  {
+   "id": "node_1yw4ntm88n",
+   "态": "empty",
+   "实例数": 2,
+   "可见实例数": 2,
+   "可见按钮数": [
+    10,
+    0
+   ],
+   "可见svg数": [
+    11,
+    0
+   ],
+   "可见盒": [
+    [
+     40,
+     315,
+     680,
+     204
+    ],
+    [
+     284,
+     67,
+     192,
+     0
+    ]
+   ],
+   "有展开音频生成器": 1,
+   "有收起音频生成器": 0,
+   "有折叠": 0,
+   "有收起": 0,
+   "aria清单": [
+    "展开音频生成器",
+    "添加参考",
+    "引用参考",
+    "创作类型: 音频生成",
+    "选择模型: SeedAudio 1.0, New",
+    "音频生成: 全能配音",
+    "音色: 音色库",
+    "引用参考",
+    "显示折扣详情",
+    "生成"
+   ]
+  },
+  {
+   "id": "node_kpfbgmkkr3",
+   "态": "empty",
+   "实例数": 2,
+   "可见实例数": 2,
+   "可见按钮数": [
+    10,
+    0
+   ],
+   "可见svg数": [
+    11,
+    0
+   ],
+   "可见盒": [
+    [
+     16,
+     267,
+     680,
+     204
+    ],
+    [
+     260,
+     19,
+     192,
+     0
+    ]
+   ],
+   "有展开音频生成器": 1,
+   "有收起音频生成器": 0,
+   "有折叠": 0,
+   "有收起": 0,
+   "aria清单": [
+    "展开音频生成器",
+    "添加参考",
+    "引用参考",
+    "创作类型: 音频生成",
+    "选择模型: SeedAudio 1.0, New",
+    "音频生成: 全能配音",
+    "音色: 音色库",
+    "引用参考",
+    "显示折扣详情",
+    "生成"
+   ]
+  },
+  {
+   "id": "node_2vbd2rqk7q",
+   "态": "empty",
+   "实例数": 2,
+   "可见实例数": 2,
+   "可见按钮数": [
+    10,
+    0
+   ],
+   "可见svg数": [
+    11,
+    0
+   ],
+   "可见盒": [
+    [
+     -8,
+     219,
+     680,
+     204
+    ],
+    [
+     236,
+     -29,
+     192,
+     0
+    ]
+   ],
+   "有展开音频生成器": 1,
+   "有收起音频生成器": 0,
+   "有折叠": 0,
+   "有收起": 0,
+   "aria清单": [
+    "展开音频生成器",
+    "添加参考",
+    "引用参考",
+    "创作类型: 音频生成",
+    "选择模型: SeedAudio 1.0, New",
+    "音频生成: 全能配音",
+    "音色: 音色库",
+    "引用参考",
+    "显示折扣详情",
+    "生成"
+   ]
+  }
+ ],
+ "按钮集": [
+  "[10,0]"
+ ],
+ "形态集": [
+  "[\"展开音频生成器\",\"添加参考\",\"引用参考\",\"创作类型: 音频生成\",\"选择模型: SeedAudio 1.0, New\",\"音频生成: 全能配音\",\"音色: 音色库\",\"引用参考\",\"显示折扣详情\",\"生成\"]"
+ ],
+ "唯一形态": [
+  "展开音频生成器",
+  "添加参考",
+  "引用参考",
+  "创作类型: 音频生成",
+  "选择模型: SeedAudio 1.0, New",
+  "音频生成: 全能配音",
+  "音色: 音色库",
+  "引用参考",
+  "显示折扣详情",
+  "生成"
+ ],
+ "实例总数": [
+  2,
+  2,
+  2,
+  2,
+  2,
+  2
+ ],
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 805 · 基础会员",
+  "边数": 0
+ },
+ "断言全过": false
+}

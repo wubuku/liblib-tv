@@ -1,0 +1,924 @@
+{
+ "批次": 147,
+ "轮": "b",
+ "目的": "音频面板真身容器 + 展开/收起两态 + node-toolbar 归属",
+ "起点": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 805 · 基础会员"
+ },
+ "可点数": {
+  "音频": 17,
+  "文本": 0,
+  "其他": 1
+ },
+ "目标音频": {
+  "id": "node_fyy39951ae",
+  "独占像素": 2116,
+  "态": "audio",
+  "aria": "音频 node: 音频 60"
+ },
+ "选中": {
+  "落": {
+   "x": 313,
+   "y": 156,
+   "命中": "audio-node-empty"
+  },
+  "归属": {
+   "命中": "node_fyy39951ae",
+   "对": true,
+   "是按钮": false
+  }
+ },
+ "收起态": {
+  "普查": {
+   "容器候选": {
+    "node-toolbar": [],
+    "generation-form": [],
+    "react-flow__node-toolbar": [
+     {
+      "盒": [
+       64,
+       363,
+       680,
+       204
+      ],
+      "可见": true,
+      "按钮数": 10,
+      "svg数": 11,
+      "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音",
+      "在节点内": false
+     },
+     {
+      "盒": [
+       404,
+       115,
+       0,
+       0
+      ],
+      "可见": false,
+      "按钮数": 0,
+      "svg数": 0,
+      "逐字": "",
+      "在节点内": false
+     },
+     {
+      "盒": [
+       308,
+       115,
+       192,
+       0
+      ],
+      "可见": true,
+      "按钮数": 0,
+      "svg数": 0,
+      "逐字": "",
+      "在节点内": false
+     }
+    ],
+    "node-feature-chrome-host": [],
+    "selection-context-toolbar": [],
+    "default-feature-overlay-interaction-boundary": []
+   },
+   "面板读": {
+    "tag": "DIV",
+    "cls": "generation-input-panel-shell relative isolate",
+    "testid": null,
+    "role": null,
+    "aria": null,
+    "盒": [
+     64,
+     363,
+     680,
+     204
+    ],
+    "pe": "auto",
+    "z": "auto",
+    "display": "block",
+    "在节点内": false,
+    "按钮数": 10,
+    "svg数": 11,
+    "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 Current price 12. Original pric",
+    "按钮": [
+     {
+      "序": 0,
+      "tag": "BUTTON",
+      "aria": "展开音频生成器",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       710,
+       357,
+       40,
+       40
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 1,
+      "tag": "BUTTON",
+      "aria": "添加参考",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       81,
+       380,
+       48,
+       48
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 2,
+      "tag": "BUTTON",
+      "aria": "引用参考",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       365,
+       441,
+       24,
+       24
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 3,
+      "tag": "BUTTON",
+      "aria": "创作类型: 音频生成",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       81,
+       518,
+       80,
+       32
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 4,
+      "tag": "BUTTON",
+      "aria": "选择模型: SeedAudio 1.0, New",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       163,
+       518,
+       135.3,
+       32
+      ],
+      "svg数": 2
+     },
+     {
+      "序": 5,
+      "tag": "BUTTON",
+      "aria": "音频生成: 全能配音",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       300,
+       518,
+       80,
+       32
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 6,
+      "tag": "BUTTON",
+      "aria": "音色: 音色库",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       382,
+       518,
+       68,
+       32
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 7,
+      "tag": "BUTTON",
+      "aria": "引用参考",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       452,
+       518,
+       32,
+       32
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 8,
+      "tag": "BUTTON",
+      "aria": "显示折扣详情",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       641,
+       524,
+       46,
+       20
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 9,
+      "tag": "BUTTON",
+      "aria": "生成",
+      "testid": null,
+      "ariaDisabled": "true",
+      "dataDisabled": "true",
+      "盒": [
+       695,
+       518,
+       32,
+       32
+      ],
+      "svg数": 1
+     }
+    ]
+   },
+   "浮层数": 0
+  },
+  "祖先链": [
+   {
+    "级": 0,
+    "tag": "BUTTON",
+    "cls": "inline-flex items-center justify-center gap-1 whitespace-nowrap border",
+    "testid": null,
+    "role": null,
+    "aria": "展开音频生成器",
+    "盒": [
+     710,
+     357,
+     40,
+     40
+    ],
+    "可见": true,
+    "pe": "auto",
+    "z": "1"
+   },
+   {
+    "级": 1,
+    "tag": "DIV",
+    "cls": "generation-input-panel-shell relative isolate",
+    "testid": null,
+    "role": null,
+    "aria": null,
+    "盒": [
+     64,
+     363,
+     680,
+     204
+    ],
+    "可见": true,
+    "pe": "auto",
+    "z": "auto"
+   },
+   {
+    "级": 2,
+    "tag": "DIV",
+    "cls": "contents",
+    "testid": null,
+    "role": null,
+    "aria": null,
+    "盒": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "可见": false,
+    "pe": "auto",
+    "z": "auto"
+   },
+   {
+    "级": 3,
+    "tag": "DIV",
+    "cls": "nodrag nopan transition-none motion-safe:transition-none motion-reduce",
+    "testid": "node-toolbar-feature-host",
+    "role": null,
+    "aria": null,
+    "盒": [
+     64,
+     363,
+     680,
+     204
+    ],
+    "可见": true,
+    "pe": "auto",
+    "z": "auto"
+   },
+   {
+    "级": 4,
+    "tag": "DIV",
+    "cls": "react-flow__node-toolbar",
+    "testid": "node-toolbar",
+    "role": null,
+    "aria": null,
+    "盒": [
+     64,
+     363,
+     680,
+     204
+    ],
+    "可见": true,
+    "pe": "auto",
+    "z": "200020"
+   },
+   {
+    "级": 5,
+    "tag": "DIV",
+    "cls": "react-flow__renderer",
+    "testid": null,
+    "role": null,
+    "aria": null,
+    "盒": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "pe": "auto",
+    "z": "4"
+   },
+   {
+    "级": 6,
+    "tag": "DIV",
+    "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:outline-none [",
+    "testid": "rf__wrapper",
+    "role": "application",
+    "aria": "Canvas",
+    "盒": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "pe": "auto",
+    "z": "0"
+   },
+   {
+    "级": 7,
+    "tag": "DIV",
+    "cls": "w-full h-full",
+    "testid": null,
+    "role": null,
+    "aria": null,
+    "盒": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "pe": "auto",
+    "z": "auto"
+   },
+   {
+    "级": 8,
+    "tag": "DIV",
+    "cls": "relative h-full w-full",
+    "testid": null,
+    "role": null,
+    "aria": null,
+    "盒": [
+     0,
+     0,
+     1280,
+     720
+    ],
+    "可见": true,
+    "pe": "auto",
+    "z": "auto"
+   }
+  ]
+ },
+ "钮位": {
+  "tag": "BUTTON",
+  "盒": [
+   710,
+   357,
+   40,
+   40
+  ],
+  "是生成类": false,
+  "逐字": "",
+  "在视口内": true
+ },
+ "展开态": {
+  "普查": {
+   "容器候选": {
+    "node-toolbar": [],
+    "generation-form": [],
+    "react-flow__node-toolbar": [
+     {
+      "盒": [
+       64,
+       363,
+       680,
+       204
+      ],
+      "可见": true,
+      "按钮数": 10,
+      "svg数": 11,
+      "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音",
+      "在节点内": false
+     },
+     {
+      "盒": [
+       404,
+       115,
+       0,
+       0
+      ],
+      "可见": false,
+      "按钮数": 0,
+      "svg数": 0,
+      "逐字": "",
+      "在节点内": false
+     },
+     {
+      "盒": [
+       308,
+       115,
+       192,
+       0
+      ],
+      "可见": true,
+      "按钮数": 0,
+      "svg数": 0,
+      "逐字": "",
+      "在节点内": false
+     }
+    ],
+    "node-feature-chrome-host": [],
+    "selection-context-toolbar": [],
+    "default-feature-overlay-interaction-boundary": []
+   },
+   "面板读": {
+    "tag": "DIV",
+    "cls": "generation-input-panel-shell relative isolate",
+    "testid": null,
+    "role": null,
+    "aria": null,
+    "盒": [
+     64,
+     363,
+     680,
+     204
+    ],
+    "pe": "auto",
+    "z": "auto",
+    "display": "block",
+    "在节点内": false,
+    "按钮数": 10,
+    "svg数": 11,
+    "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 Current price 12. Original pric",
+    "按钮": [
+     {
+      "序": 0,
+      "tag": "BUTTON",
+      "aria": "展开音频生成器",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       710,
+       357,
+       40,
+       40
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 1,
+      "tag": "BUTTON",
+      "aria": "添加参考",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       81,
+       380,
+       48,
+       48
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 2,
+      "tag": "BUTTON",
+      "aria": "引用参考",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       365,
+       441,
+       24,
+       24
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 3,
+      "tag": "BUTTON",
+      "aria": "创作类型: 音频生成",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       81,
+       518,
+       80,
+       32
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 4,
+      "tag": "BUTTON",
+      "aria": "选择模型: SeedAudio 1.0, New",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       163,
+       518,
+       135.3,
+       32
+      ],
+      "svg数": 2
+     },
+     {
+      "序": 5,
+      "tag": "BUTTON",
+      "aria": "音频生成: 全能配音",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       300,
+       518,
+       80,
+       32
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 6,
+      "tag": "BUTTON",
+      "aria": "音色: 音色库",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       382,
+       518,
+       68,
+       32
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 7,
+      "tag": "BUTTON",
+      "aria": "引用参考",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       452,
+       518,
+       32,
+       32
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 8,
+      "tag": "BUTTON",
+      "aria": "显示折扣详情",
+      "testid": null,
+      "ariaDisabled": null,
+      "dataDisabled": null,
+      "盒": [
+       641,
+       524,
+       46,
+       20
+      ],
+      "svg数": 1
+     },
+     {
+      "序": 9,
+      "tag": "BUTTON",
+      "aria": "生成",
+      "testid": null,
+      "ariaDisabled": "true",
+      "dataDisabled": "true",
+      "盒": [
+       695,
+       518,
+       32,
+       32
+      ],
+      "svg数": 1
+     }
+    ]
+   },
+   "浮层数": 0
+  },
+  "状态行": "76 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+  "展开词还在吗": {
+   "展开": 1,
+   "收起": 0,
+   "收起逐字": []
+  }
+ },
+ "再钮": {
+  "命中": "展开音频生成器",
+  "盒": [
+   730,
+   377
+  ]
+ },
+ "复原态": {
+  "容器候选": {
+   "node-toolbar": [],
+   "generation-form": [],
+   "react-flow__node-toolbar": [
+    {
+     "盒": [
+      64,
+      363,
+      680,
+      204
+     ],
+     "可见": true,
+     "按钮数": 10,
+     "svg数": 11,
+     "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音",
+     "在节点内": false
+    },
+    {
+     "盒": [
+      404,
+      115,
+      0,
+      0
+     ],
+     "可见": false,
+     "按钮数": 0,
+     "svg数": 0,
+     "逐字": "",
+     "在节点内": false
+    },
+    {
+     "盒": [
+      308,
+      115,
+      192,
+      0
+     ],
+     "可见": true,
+     "按钮数": 0,
+     "svg数": 0,
+     "逐字": "",
+     "在节点内": false
+    }
+   ],
+   "node-feature-chrome-host": [],
+   "selection-context-toolbar": [],
+   "default-feature-overlay-interaction-boundary": []
+  },
+  "面板读": {
+   "tag": "DIV",
+   "cls": "generation-input-panel-shell relative isolate",
+   "testid": null,
+   "role": null,
+   "aria": null,
+   "盒": [
+    64,
+    363,
+    680,
+    204
+   ],
+   "pe": "auto",
+   "z": "auto",
+   "display": "block",
+   "在节点内": false,
+   "按钮数": 10,
+   "svg数": 11,
+   "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 Current price 12. Original pric",
+   "按钮": [
+    {
+     "序": 0,
+     "tag": "BUTTON",
+     "aria": "展开音频生成器",
+     "testid": null,
+     "ariaDisabled": null,
+     "dataDisabled": null,
+     "盒": [
+      710,
+      357,
+      40,
+      40
+     ],
+     "svg数": 1
+    },
+    {
+     "序": 1,
+     "tag": "BUTTON",
+     "aria": "添加参考",
+     "testid": null,
+     "ariaDisabled": null,
+     "dataDisabled": null,
+     "盒": [
+      81,
+      380,
+      48,
+      48
+     ],
+     "svg数": 1
+    },
+    {
+     "序": 2,
+     "tag": "BUTTON",
+     "aria": "引用参考",
+     "testid": null,
+     "ariaDisabled": null,
+     "dataDisabled": null,
+     "盒": [
+      365,
+      441,
+      24,
+      24
+     ],
+     "svg数": 1
+    },
+    {
+     "序": 3,
+     "tag": "BUTTON",
+     "aria": "创作类型: 音频生成",
+     "testid": null,
+     "ariaDisabled": null,
+     "dataDisabled": null,
+     "盒": [
+      81,
+      518,
+      80,
+      32
+     ],
+     "svg数": 1
+    },
+    {
+     "序": 4,
+     "tag": "BUTTON",
+     "aria": "选择模型: SeedAudio 1.0, New",
+     "testid": null,
+     "ariaDisabled": null,
+     "dataDisabled": null,
+     "盒": [
+      163,
+      518,
+      135.3,
+      32
+     ],
+     "svg数": 2
+    },
+    {
+     "序": 5,
+     "tag": "BUTTON",
+     "aria": "音频生成: 全能配音",
+     "testid": null,
+     "ariaDisabled": null,
+     "dataDisabled": null,
+     "盒": [
+      300,
+      518,
+      80,
+      32
+     ],
+     "svg数": 1
+    },
+    {
+     "序": 6,
+     "tag": "BUTTON",
+     "aria": "音色: 音色库",
+     "testid": null,
+     "ariaDisabled": null,
+     "dataDisabled": null,
+     "盒": [
+      382,
+      518,
+      68,
+      32
+     ],
+     "svg数": 1
+    },
+    {
+     "序": 7,
+     "tag": "BUTTON",
+     "aria": "引用参考",
+     "testid": null,
+     "ariaDisabled": null,
+     "dataDisabled": null,
+     "盒": [
+      452,
+      518,
+      32,
+      32
+     ],
+     "svg数": 1
+    },
+    {
+     "序": 8,
+     "tag": "BUTTON",
+     "aria": "显示折扣详情",
+     "testid": null,
+     "ariaDisabled": null,
+     "dataDisabled": null,
+     "盒": [
+      641,
+      524,
+      46,
+      20
+     ],
+     "svg数": 1
+    },
+    {
+     "序": 9,
+     "tag": "BUTTON",
+     "aria": "生成",
+     "testid": null,
+     "ariaDisabled": "true",
+     "dataDisabled": "true",
+     "盒": [
+      695,
+      518,
+      32,
+      32
+     ],
+     "svg数": 1
+    }
+   ]
+  },
+  "浮层数": 0
+ },
+ "文本对照": "无可点文本节点",
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 805 · 基础会员",
+  "边数": 0
+ },
+ "摘要": {
+  "收起态面板": {
+   "cls": "generation-input-panel-shell relative isolate",
+   "盒": [
+    64,
+    363,
+    680,
+    204
+   ],
+   "按钮数": 10,
+   "svg数": 11
+  },
+  "展开态面板": {
+   "cls": "generation-input-panel-shell relative isolate",
+   "盒": [
+    64,
+    363,
+    680,
+    204
+   ],
+   "按钮数": 10,
+   "svg数": 11
+  },
+  "展开态nodeToolbar实例": 0,
+  "收起态nodeToolbar实例": 0
+ },
+ "断言全过": true
+}
