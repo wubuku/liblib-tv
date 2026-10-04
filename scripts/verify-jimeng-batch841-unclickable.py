@@ -5668,6 +5668,8 @@ def main() -> int:
     _p951 = p951.read_text(encoding="utf-8") if p951.exists() else ""
     p952 = ROOT / "scripts/jimeng_probe952_freeze_who_src.py"
     _p952 = p952.read_text(encoding="utf-8") if p952.exists() else ""
+    p953 = ROOT / "scripts/jimeng_probe953_roving_ring_ck.py"
+    _p953 = p953.read_text(encoding="utf-8") if p953.exists() else ""
 
     check("HHHH.1 ⚠️⚠️⚠️ **本批的设计有一处真缺陷，如实记账**：`warm ∈ {0,1,2,6}` "
           "**全都 ≤ boot 之后的自然值 76** ⇒ 预热循环**一次都没进**"
@@ -6275,34 +6277,61 @@ def main() -> int:
           "才推指针」；**`ArrowDown`** 焦点**没动**、指针**没动**；"
           "**`Escape`** 焦点**没动**、指针**没动** ⇒ ⭐ "
           "**`Escape` 不能把焦点从工具条里弄出来** —— "
-          "**反向臂比 `Shift+Tab` 差一截**",
+          "**反向臂比 `Shift+Tab` 差一截**"
+          "——— ⚠️⚠️ **本条已被 953 部分改写，判据随之改成钉改写横幅**（承 HH.4）———\n"
+          "⚠️ **`Escape` / `ArrowDown` 那两按按下时焦点**已经在节点本体 `DIV` 上、"
+          "**不在工具条里** ⇒ 「`Escape` 不能从工具条里弄出来」**没有对应的那一按**；\n"
+          "⚠️ 「`Shift+Tab` 焦点**立刻**离开工具条」是**位置相关**的（源站那按是从"
+          "**第一个**按钮按的）。**仍然成立**的那条：`Escape` 在**节点本体 `DIV`** 上不动焦点。",
           '"discrimination_952": (' in _ausrc
-          and "**`Shift+Tab`**：焦点**立刻**离开工具条" in _ausrc
-          and "**`ArrowDown`**：焦点**没动**、指针**没动**" in _ausrc
-          and "**`Escape`**：焦点**没动**、指针**没动**" in _ausrc
+          # ⭐⭐ 钉改写横幅（**不钉**已被推翻的那两句 —— 判据不许钉假话）
+          and "**本条已被 953 部分改写**" in _ausrc
+          and "`ArrowDown` 那两按按下时焦点**已经在节点本体上、不在工具条里**" in _ausrc
+          and "**`Shift+Tab` 立刻离开工具条**是**位置相关**的" in _ausrc
+          # ⭐ 原文**必须还在**（撤销结论时原文保留）
           and "**`Escape` 不能把焦点从工具条里弄出来**" in _ausrc
           and "**反向臂比 `Shift+Tab` 差一截**" in _ausrc
+          # ⭐ 钉 953 那条撤回
+          and '"escape_claim_retracted_953": (' in _ausrc
+          and "**按 `Escape` 时焦点压根不在工具条里**" in _ausrc
+          and "「出不来」在**复刻**上成立" in _ausrc
           # ⭐ 钉探针：判别组**不许**预设方向（三条各判各的）
           and 'PROBE_STEPS = [("Shift+Tab", 1), ("Tab", 1), ("ArrowDown", 1),'
               in _p952
           and '"Escape", 1), ("Tab", 3)]' in _p952
           and "**都不许**预设方向" in _p952)
 
-    check("NNNN.4 ⭐⭐⭐⭐ **Tab 周期 = 10**（2/2）：节点 `0..8` 各 1 下（指针 "
-          "`0→1→…→8`）= **9 下** + 时间线工具条 1 段（**4 个按钮、4 下、指针不动**）"
-          "= **1 下** ⇒ **9 + 1 = 10**；从节点 `3` 按一下 `Tab` 指针**直接 `[3]→[0]`**"
-          "（**回卷**，不是 +1 到 4）⇒ 周期闭合。⚠️ 而 943/944 记过「Tab 周期 101/104」"
-          "⇒ **差 10 倍** ⇒ 因为**这一版画布只有 1 个节点带工具条** ⇒ ⭐ "
-          "**周期长度 = 节点数 + 带工具条的节点数**、**逐轮会变** ⇒ "
-          "**周期类断言必须关系式**",
+    check("NNNN.4 ⚠️⚠️⚠️ **本条整条已被 953 撤回**（承 HH.4，判据随之改钉改写横幅）："
+          "**`Tab` 周期 = 10** 与 **「周期长度 = 节点数 + 带工具条的节点数」**\n"
+          "⚠️ 两条**互相独立**的证据：① **952 自己的 14 按读数**就否掉了它 —— "
+          "出现 **10 个不同的节点停靠点**（下标 `0..9`）**且从未回卷**；"
+          "而 952 的算法「9 个节点 + 工具条 1 段 = 1 下 ⇒ 10」**把「4 个按钮 4 下」"
+          "写成了「1 下」**，**它自己的前提和结论互相矛盾**。"
+          "② **复刻侧连「周期」都不成立**（开环、走完 24 个画布内停靠点后"
+          "焦点**离开画布**、进入全局 chrome）。\n"
+          "⇒ **仍然成立**的是它背后的纪律：**周期/规模类断言必须关系式**。"
+          "⚠️⭐⭐ **新增待查**：**源站的 `Tab` 会不会离开画布** —— 14 按**没走到环的尽头**"
+          "⇒ **源站那一侧必须加预算重测**，不许拿复刻的开环替源站下结论。",
           '"tab_cycle_is_10_here_952": (' in _ausrc
-          and "**Tab 周期 = 10**" in _ausrc
-          and "**9 + 1 = 10**" in _ausrc
-          and "**回卷**，不是 +1 到 4" in _ausrc
-          and "**周期长度 = 节点数 + 带工具条的节点数**" in _ausrc
-          and "**周期类断言必须关系式**" in _ausrc
-          # ⭐ 钉探针：够长的按压数（格 0 = 照 950 的 14 下）
-          and "N_PRESS_BASE = 14" in _p952)
+          # ⭐⭐ 钉改写横幅 + 原文仍在
+          and "**本条整条已被 953 撤回**" in _ausrc
+          and "**952 自己的 14 按读数就否掉了它**" in _ausrc
+          and "**把「4 个按钮 4 下」写成了「1 下」**" in _ausrc
+          and "**它自己的前提和它自己的结论互相矛盾**" in _ausrc
+          and "**Tab 周期 = 10**" in _ausrc          # 原文保留
+          and "**周期长度 = 节点数 + 带工具条的节点数**" in _ausrc   # 原文保留
+          # ⭐ 钉 953 那条撤回 + 新增待查
+          and '"cycle_10_retracted_953": (' in _ausrc
+          and "**`Tab 周期 = 10`」与**「周期 = 节点数 + 带工具条的节点数」**" in _ausrc
+          and "**源站那一侧必须加预算重测**" in _ausrc
+          and "**不许**拿复刻的开环去替源站下结论" in _ausrc
+          # ⭐ 钉探针：源站侧的核算**真的在算**
+          and '"cycle_10_supported": bool(' in _p953
+          and '"wrapped_at_press": wrapped_at' in _p953
+          # ⭐ 钉探针：够长的按压数（**不是** 952 的 14 —— 901 的先例：故意走过一圈）
+          and "N_PRESS_BASE = 14" in _p952
+          and "N_PRESS_BASE = 28" in _p953
+          and "**这是补预算，不是改判据" in _p953)
 
     check("NNNN.5 ⚠️⭐⭐⭐ **`active_before == active_after` 并不代表焦点没动** —— "
           "这是 950 那个「被 `Tab` 吞了」说法的**来源**，上一批是**读图说话**："
@@ -6313,7 +6342,14 @@ def main() -> int:
           "**必须比 `aria-label`（或 `type`）** ⇒ ⭐ "
           "**「前标签 == 后标签」是个陷阱**：它让 `focus_moved=False` "
           "**只对 4 次里的 1 次为真**，而我据此写了「吞了 3 下」。"
-          "⇒ 950 那条**原文保留**、**心因模型已标注被改写**（承 HH.4）",
+          "⇒ 950 那条**原文保留**、**心因模型已标注被改写**（承 HH.4）"
+          "——— ⚠️⚠️ **953 又把这条的计数也改写了**（原文保留）———\n"
+          "⚠️ **「按 5 真的没动」是错的**：按 5 是「`导出时间线` → `全屏编辑`」，"
+          "**`aria` 变了、焦点动了**；那个比例**不是 1/4 而是 0/4** ⇒ "
+          "**`swallowed_presses=1` 整条作废** ⇒ 源站那 4 个「指针不动」的按压"
+          "**焦点 4/4 全动了** ⇒ ⭐⭐⭐ **`「指针不动」≠「焦点不动」`**。"
+          "**原理那一半仍然成立**（必须比 `aria-label`/`type`），"
+          "被推翻的只是**那句计数**和**据此写下的「吞了 3 下」**",
           '"active_tag_equal_does_not_mean_focus_stayed_952": (' in _ausrc
           and "`active_before == active_after` 并不代表焦点没动" in _ausrc
           and "我上一批是**读图说话**" in _ausrc
@@ -6323,7 +6359,192 @@ def main() -> int:
           # ⭐⭐ 钉住 950 那条**被加了改写横幅**、且**现象仍标为成立**
           and "**「冻住」这个说法已被 952 改写**" in _ausrc
           and "**现象**（`no_ti` 恒 `[2]`）" in _ausrc
-          and "**被改写的只是「冻住」这个心因模型**" in _ausrc)
+          and "**被改写的只是「冻住」这个心因模型**" in _ausrc
+          # ⭐⭐ 钉 953 的改写横幅（**不钉**「只对 4 次里的 1 次为真」这个已被推翻的数）
+          and "**以下三行已被 953 改写（原文保留，承 HH.4）**" in _ausrc
+          and "**「按 5 真的没动」是错的**" in _ausrc
+          and "那个比例**不是 1/4 而是 0/4**" in _ausrc
+          and "**整条作废**" in _ausrc
+          and "**正确说法是：「指针不动」不等于「焦点不动」**" in _ausrc
+          and "被推翻的只是**那句计数**" in _ausrc
+          # ⭐ 钉 953 那条「本批把 952 自己的仪器判红了」
+          and '"weak_instrument_caught_953": (' in _ausrc
+          and "**正确说法是：「指针不动」不等于「焦点不动」**" in _ausrc
+          and "**另立一条强的并排记**" in _ausrc
+          # ⭐⭐ 钉探针：**强判据**真的在算（比身份，不是比 tag）
+          and 'def strong_moved(row, which_before="before", which_after="after"):'
+              in _p953
+          and 'return identity(row, which_before) != identity(row, which_after)'
+              in _p953
+          and '"swallowed_presses_strong"' in _p953
+          and "**不改 952 那把尺子**" in _ausrc)
+
+    # ══ 批 953：⭐⭐⭐⭐ 把 952 那把尺子搬到**复刻侧**量一遍 ══════════════
+    print("— OOOO. 批 953 同一把尺子量复刻：并排读数 + 三条 952 结论被推翻 —")
+
+    check("OOOO.1 ⭐⭐⭐ 本批**不是**再取一次样，是**拿 952 的尺子量复刻**："
+          "**七段 JS 全部与 952 逐字相同**（本批**零**新件 JS）、"
+          "**七个 Python 助手也逐字相同**（用 `inspect.getsource` 对着 952 的"
+          "**文件内容** assert ⇒ 改一个字就红）；**唯一自变量 = URL**。"
+          "⚠️ 这条纪律**当场救了本批**：第一版往 `press_row` 里塞了 2 行新字段 "
+          "⇒ **自己把自己判红** ⇒ 才发现指针**不用新仪器**"
+          "（`CENSUS_JS` 已经把 `ti` 带回来了）。设计门：`js/py_verbatim` ✅、"
+          "`zero_node_clicks` ✅、`pressed_exactly_n` ✅、`replica_actually_moved` ✅、"
+          "`reached_the_freeze` ✅、`curve_reproducible_norm` ✅。",
+          '"replica_ring_953": {' in _ausrc
+          and '"same_ruler_verbatim_953": (' in _ausrc
+          and "**不是**再取一次样，是**拿 952 的尺子量复刻**" in _ausrc
+          and "**七个 Python 助手也逐字相同**" in _ausrc
+          and "**自己把自己判红**" in _ausrc
+          and "唯一自变量 = **URL**（源站 → 本地复刻）" in _ausrc
+          # ⭐ 钉探针：七段 JS 的逐字 assert **真的在文件里**、且新件不许混进去
+          and 'for _name, _js in zip(("BLANK_JS", "CENSUS_JS", "NO_TI_JS", "POINT_JS",'
+              in _p953
+          and 'assert "READY_JS" not in _p952src' in _p953
+          # ⭐ 钉探针：Python 侧的逐字 assert 也是对着**文件内容**
+          and "for _fn in (ev, dump, guard, guard_point, delta, press_row, curve_key):"
+              in _p953
+          and "_s in _p952src" in _p953
+          # ⭐⭐ 「操纵到底动了没有」必须自己答，且**可红**
+          and 'out["replica_actually_moved"] = bool(' in _p953
+          and '"replica_actually_moved": out["replica_actually_moved"],' in _p953
+          # ⭐ 键免疫针：`seq` 原始键不许漏登记（base 与 probe 的 `k` 会撞号）
+          and '"hit_tag", "focus_ok", "seq",' in _p953
+          and 'assert not (RAW_KEYS & DERIVED_KEYS)' in _p953)
+
+    check("OOOO.2 ⚠️⭐⭐⭐ **指针的定义两边不同，写出来才不许糊过去**："
+          "源站解除布防是**把 `tabindex` 属性摘掉** ⇒ 指针 = **第一个没有 `tabindex` "
+          "的下标**；复刻的 `armAll` 写的是 `'0'`/`'-1'`、**属性一直都在** ⇒ "
+          "`no_ti` 在复刻上**恒为空**、源站那把尺子**读不出复刻的指针**。"
+          "⇒ **不需要另加仪器**：`CENSUS_JS` 已经把 `ti` 带回来了，两个口径"
+          "**从同一份数据派生** ⇒ 「同一件事的两种口径，不是两个现象」。"
+          "⚠️⭐⭐ **但两个口径在序号上差一格**（源站那个是「**刚离开**的节点」、"
+          "复刻那个是「**下一个要落脚**的节点」）⇒ **不能拿「指针落在第几个」"
+          "直接比两边**，该比的是**形状**。",
+          '"pointer_two_calibers_953": (' in _ausrc
+          and "**指针的定义两边不同，这件事必须写出来、不许糊过去**" in _ausrc
+          and "**恒为空**，源站那把尺子**读不出复刻的指针**" in _ausrc
+          and "**不需要另加仪器**" in _ausrc
+          and "**同一件事的两种口径，不是两个现象**" in _ausrc
+          and "两个口径在序号上差一格**" in _ausrc
+          and "**该比的是**形状**" in _ausrc
+          # ⭐ 钉探针：两口径**真的**从同一份 `ti` 派生
+          and 'def armed_of(ti):' in _p953
+          and 'if ti[i] == "0"' in _p953
+          and 'if ti[i] is None' in _p953
+          and "nt, ar = no_ti_of(ti), armed_of(ti)" in _p953
+          # ⭐ 钉探针：统一口径不许把「读不懂」当成 0
+          and "**不许**当成 0" in _p953)
+
+    check("OOOO.3 ⭐⭐⭐⭐ **复刻的 `Tab` 环是开环**：走完画布内**全部 24 个停靠点**"
+          "之后，焦点**离开画布**、进入全局 chrome ⇒ **「周期」这个量在复刻侧"
+          "根本不存在**（`ring_closed = False`、实测从不回卷）。停靠点序列 2/2 逐条相同："
+          "`node#0` + 5 个 video 内层 → `node#1`/`#2`/`#3`/`#4` + 6 个时间线内层 "
+          "→ `node#5` + 6 个主体内层 → `node#6` + `inner:进入导演台` "
+          "→ ⭐ **`out:返回首页` → `out:Canvas title: 测试项目` → `out:项目`**。"
+          "⇒ 画布内 = 7 节点 + 17 内层 = **24 个停靠点**，之后**跑出画布**。"
+          "⇒ ⭐ **形状与源站同形**（进内层 → 指针冻住 → 离开那一按仍不动 → "
+          "下一按才动），**但环的开闭两边不同**。",
+          '"ring_is_open_not_cyclic_953": (' in _ausrc
+          and "**复刻的 `Tab` 环是**开环**" in _ausrc
+          and "**`out:返回首页` → `out:Canvas title: 测试项目` → `out:项目`**"
+              in _ausrc
+          and "**24 个停靠点**，之后**跑出画布**" in _ausrc
+          and "在复刻侧根本不存在**" in _ausrc
+          and "**不许**说源站会回卷" in _ausrc
+          # ⭐ 钉探针：停靠点分类**真的在算**（内层 / 节点本体 / 出画布三分）
+          and 'if w.get("tag") == "DIV" and w.get("in_node_list"):' in _p953
+          and 'inner:' in _p953 and 'out:' in _p953
+          and 'c["stop_seq"] = [stop_name(r) for r in main_rows' in _p953
+          # ⭐ 钉探针：`ring_closed` 这道门**可红**、且红的就是「开环」
+          and '"ring_closed": bool(all(' in _p953
+          and 'run["cells"][0].get("cycle_len") is not None' in _p953
+          # ⭐ 钉探针：强判据下「焦点也没动」= 0（弱判据说 8）
+          and 'c["swallowed_presses_strong"] = sum(' in _p953
+          and "and not strong_moved(r))" in _p953)
+
+    check("OOOO.4 ⚠️⭐⭐ **逐字那道 `curve_reproducible` 在复刻上恒红** —— "
+          "而那**不是**「读数不稳」，是**被测对象**不稳定："
+          "复刻节点 `data-testid` **带时间戳**（`rf__node-text-1791076289857`），"
+          "源站的 id **稳定**（`rf__node-node_236ctpehgg`）⇒ 这是**复刻与源站的"
+          "一处真实差异**。处置**不是**改产品让门变绿、**也不是**放宽门："
+          "逐字那道**照旧如实记红**，另加一道**只把 `tid` 尾部数字归一化**的比较，"
+          "**两道都进读数**（归一化后 `curve_reproducible_norm = True`）。"
+          "⚠️ 与 949 那次对照：门红了先怀疑仪器 —— 这次**仪器是对的**，"
+          "是**被测对象**不稳定，所以正确处置是**并排记两道**。",
+          "**逐字那道 `curve_reproducible` 在复刻上恒红**" in _ausrc
+          and "是**被测对象**不稳定" in _ausrc
+          and "**带时间戳**" in _ausrc
+          and "**这是复刻与源站的一处真实差异**" in _ausrc
+          and "**不是**改产品让门变绿、**也不是**放宽门" in _ausrc
+          and "**照旧如实记红**" in _ausrc
+          and "**只把 `tid` 尾部数字归一化**" in _ausrc
+          and "**两道都进读数**" in _ausrc
+          and "这次**仪器是对的**" in _ausrc
+          # ⭐ 钉探针：归一化**只**动 tid 尾部数字，其余逐字
+          and 'def norm_tid(tid):' in _p953
+          and 're.sub(r"-\\d{6,}$", "", str(tid))' in _p953
+          and "reps_identical_norm" in _p953
+          and "curve_reproducible_norm" in _p953)
+
+    check("OOOO.5 ⭐⭐ 补预算而不是改判据（901 的先例）：第一版 `N_PRESS_BASE=14` "
+          "**走不完一圈**（环 24 个停靠点）⇒ 加到 24 **仍差一按**（第 24 按落在"
+          "**最后一个**停靠点上、还没回卷）⇒ 再加到 **28**。判别组尾部 `Tab` 由 3 下"
+          "改成 **4 下**：952 那组在**源站**上正好停在工具条里，而**复刻**的落点不同"
+          "（第 3 下**已经离开**工具条）⇒ 组结束在「离开的那一按」上、"
+          "**后面没有下一按 ⇒ 滞后根本测不到**（第一版读成 `False`，"
+          "那是**预算不够**、不是「没滞后」）⇒ 补 1 下后 "
+          "`lag_is_one_press_probe = True`。"
+          "⇒ ⭐⭐ **复刻与源站在这一条上同形**：离开内层控件的那一按指针**仍不动**、"
+          "**下一按才动**（滞后 1 下，2/2）。",
+          "left_button_press_probe" in _ausrc
+          and "是**预算不够**、不是「没滞后」" in _ausrc
+          and "**复刻与源站在这一条上同形**" in _ausrc
+          and "**下一按才动**（滞后 1 下，2/2）" in _ausrc
+          # ⭐ 钉探针：预算常量**逐个**钉住（14 → 24 → 28 三档都在）
+          and "N_PRESS_BASE = 28" in _p953
+          and '"Escape", 1), ("Tab", 4)]' in _p953
+          and "**这是补预算，不是改判据" in _p953
+          # ⭐⭐ `seq` 是必需的：base 的 `k` 与 probe 的 `k` **会撞号**
+          and 'row["seq"] = len(c["rows"])' in _p953
+          and 'c["left_button_press_probe"] = next(' in _p953
+          and 'if r["seq"] == _lbp + 1),' in _p953
+          # ⭐ 钉 952 那两个名字在格 1 是**结构性不适用**（不许当读数）
+          and "952 那两个名字在格 1 是**结构性不适用**" in _p953
+          and ' r["phase"] in ("base", "cold")' in _p952)
+
+    check("OOOO.6 ⚠️⭐⭐⭐ **两条要改写成「位置相关」**（原文保留，承 HH.4）：\n"
+          "① **「`Shift+Tab` 焦点立刻离开工具条」是位置相关的** —— "
+          "源站那按是从**第一个**按钮（`导出时间线`）按的才出去；"
+          "复刻从**第二个**按钮（`底部播放`）按 `Shift+Tab` 是**退到第一个**"
+          "（`播放`）—— 弱判据说「没动」、**强判据说动了** ⇒ ⭐ **又一次弱判据漏报**。"
+          "⇒ 两侧是**同一条规则**：**在工具条内反向逐个退，退到第一个再按就离开**。\n"
+          "② **「`Escape` 不能把焦点从工具条里弄出来」没有对应的那一按** —— "
+          "952 判别组的前两步（`Shift+Tab` → `Tab`）**已经把焦点带出工具条**，"
+          "轮到 `Escape` 时按前是 `DIV/视频 node: 视频 1`。"
+          "⚠️ **撤回的理由不是被证伪，是压根没在那个位置测过**。"
+          "⇒ 953 **在复刻侧真的在工具条里按了 `Escape`**（按前按后都是 "
+          "`inner:底部播放`）⇒ **「出不来」在复刻上成立** —— "
+          "⚠️ 但**源站从未在那个位置测过**，**不许**说源站也这样。",
+          '"shift_tab_rule_is_position_dependent_953": (' in _ausrc
+          and "离开工具条」是**位置相关**的" in _ausrc
+          and "**又一次弱判据漏报**" in _ausrc
+          and "**在工具条内反向逐个退" in _ausrc
+          and '"escape_claim_retracted_953": (' in _ausrc
+          and "**理由不是被证伪，是压根没在那个位置测过**" in _ausrc
+          and "**在复刻侧真的在工具条里按了 `Escape`**" in _ausrc
+          and "**不许**说源站也这样" in _ausrc
+          # ⭐ 钉探针：**每一步的按前位置**必须进读数（否则会把「键没反应」
+          #    与「键没在**那个位置**上试」混成一句）
+          and 'c["discrimination_from"] = [' in _p953
+          and '"from": stop_name(r, "before"), "to": stop_name(r, "after"),'
+              in _p953
+          and 'c["shift_tab_moves_strong"] = any(' in _p953
+          and 'c["escape_releases_strong"] = any(' in _p953
+          # ⭐⭐ 源站侧的并排核算**真的在算**（用 952 自己的读数）
+          and '"frozen_presses_all_moved_focus": sum(' in _p953
+          and '"cycle_10_supported": bool(' in _p953
+          and "def _sstrong(row):" in _p953)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "

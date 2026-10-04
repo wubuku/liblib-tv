@@ -120,6 +120,7 @@ PROBE_VARS = {
     "_p950": "scripts/jimeng_probe950_coldwindow_src.py",
     "_p951": "scripts/jimeng_probe951_focus_gate_src.py",
     "_p952": "scripts/jimeng_probe952_freeze_who_src.py",
+    "_p953": "scripts/jimeng_probe953_roving_ring_ck.py",
     # 批 938：判据开始**钉 TS 源码**（槽位是 store 里的单一来源）
     "_wm_s": "src/store/jimengStore.ts",
     # ⚠️⚠️ **929 加的**：**门禁脚本自己**也必须登记 ——
