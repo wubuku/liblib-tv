@@ -219,7 +219,15 @@ def main() -> int:
                     if ds and ds > cdate:
                         shots_deep_bad.append((name, ds, cdate))
         if (repo / ".git").exists() and str((repo / rel)) == str(prog):
-            for m, ds in heads[-max(1, args.deep):]:
+            # ★ M232：`--deep N` 是「只查最近 N 个」的性能妥协，而批次编号与文件顺序都是递增的，
+            #   **中间的老批次排在前面、永远进不了这 N 个**。
+            #   M226 当年正是靠这条抓到 M193–M199 的 7 条；本批实测发现
+            #   **默认 `--deep 6` 只覆盖 M226–M231，剩下 33 个批次一次都没被对账过**。
+            #   而「没查」和「查了没问题」在旧输出里长得一模一样——
+            #   **所以本批把「没查的那些」明确报出来，而不是让它们静默消失。**
+            deep_n = max(1, args.deep)
+            deep_scope = heads[-deep_n:] if deep_n < len(heads) else heads
+            for m, ds in deep_scope:
                 r = subprocess.run(
                     ["git", "log", "--reverse", "--format=%ad", "--date=short",
                      "--pickaxe-regex", "-S", f"^#+ M{m}", "--", rel],
@@ -241,7 +249,8 @@ def main() -> int:
                 f"截图清单有 {shots_git_missing} 张图在 git 历史里查不到，"
                 f"所以这一轮只对账了 {shots_git_covered}/{len(shots)} 张 —— "
                 f"**没被对账到的图不等于没问题**，请先确认路径对不对")
-        deep_note = (f"（深度对账：最近 {min(args.deep, len(heads))} 个批次"
+        deep_note = (f"（深度对账：批次 {len(deep_scope)}/{len(heads)} 个"
+                     f"（{'最近 ' + str(len(deep_scope)) + ' 个' if len(deep_scope) < len(heads) else '全部'}）"
                      f" + 截图清单拍摄日对账 {shots_git_covered}/{len(shots)} 张："
                      f"{'异常 ' + str(len(shots_deep_bad)) + ' 条' if shots_deep_bad else '全部通过'}）")
 
