@@ -812,6 +812,57 @@ def _registered_assertions():
     return out
 
 
+#: **Batch 276 新增**：手册树里**有未提交改动**的文件集合（仓库相对路径）。
+#: **返回 `None` 表示问不到（不是 git 检出）——那与「干净」必须长得不一样**。
+def _dirty_paths():
+    g = subprocess.run(["git", "-C", ROOT, "status", "--porcelain", "--", "."],
+                       capture_output=True, text=True)
+    if g.returncode != 0:
+        return None
+    out = set()
+    for line in g.stdout.split("\n"):
+        if not line.strip():
+            continue
+        # porcelain 的两列是状态与路径；重命名写成 `R  old -> new`，取后者
+        path = line[3:].strip()
+        out.add(path.split(" -> ")[-1])
+    return out
+
+
+def _repo_rel(path):
+    """把手册树内的路径换成**仓库相对路径**，好与 `_dirty_paths()` 对齐。
+
+    **`git rev-parse --show-prefix` 而不是自己拼前缀**——
+    手册树在仓库里的深度是可变的（今天在 `docs/user-manual/beeftv-canvas/`），
+    **拼错前缀的后果是「一个都匹配不上」，而那与「都不脏」在行为上一样。**
+
+    **⚠️ Batch 276 实测到的静默失效（本函数第一版就栽在这里）**：
+    macOS 的 `/var` 是 `/private/var` 的软链，而
+    `os.getcwd()` 返回**解析后**的路径、`ROOT` 由 `__file__` 推得**保持未解析**，
+    于是 `relpath` 算出一串 `..`（实测值：
+    `../../../../../../private/var/.../10-tasks/asset-library.md`），
+    **与脏集合永远匹配不上**。**而那意味着「同事改了 → 报成夹具坏了」——
+    失败方向正好是危险的那一侧，而且一个字节都不响。**
+
+    **两处修法，缺一不可**：
+      ① **两边都 `realpath`**（对齐比较的基准）；
+      ② **算出来的路径一旦以 `..` 开头就返回 `None`**——
+         **让「我算不出来」成为一个能被说出来的状态**，
+         而不是伪装成「这个文件不脏」**（只做 ① 的话，换一条软链就又失效一次）**。
+    """
+    p = subprocess.run(["git", "-C", ROOT, "rev-parse", "--show-prefix"],
+                       capture_output=True, text=True)
+    if p.returncode != 0:
+        return None
+    try:
+        rel = os.path.relpath(os.path.realpath(path), os.path.realpath(ROOT))
+    except ValueError:                      # 跨盘（Windows）——同样算不出来
+        return None
+    if rel.startswith(os.pardir):
+        return None                         # ② 它不在手册树里，不能拿来比
+    return p.stdout.strip() + rel
+
+
 def _slow_fixture_triples(script_name):
     """从慢反验脚本里抽出 `(目标文件, 夹具)` 三元组。
 
@@ -1110,7 +1161,10 @@ def main():
     # **目标文件不在场就跳过，而不是报问题**——前提无法评估 ≠ 判为失败
     # （闸 9 方向一已经负责「基本输入存在性」）。这一条也是反验沙箱能用的前提：
     # 沙箱只搬 `scripts/`，根目录的 `AUDIT-RULES.md` 本来就不在里面。
-    fx_checked, fx_skipped, fx_void = 0, 0, []
+    fx_checked, fx_skipped, fx_void, fx_stale, fx_unknown = 0, 0, [], [], []
+    #: **Batch 276：先问一次「工作区脏不脏」，问不到就当没问**——
+    #: **前提无法评估 ≠ 判为夹具坏了**（与这一族其余各方向同一条理由）。
+    _dirty = _dirty_paths()
     for target, fixer in _slow_fixture_triples("selftest-meta.sh"):
         if not os.path.isfile(fixer) or not os.path.isfile(target):
             fx_skipped += 1
@@ -1125,13 +1179,53 @@ def main():
         fx_checked += 1
         if r.returncode != 0:
             tail = (r.stderr or "").strip().splitlines()
-            fx_void.append((os.path.basename(fixer),
-                            (tail[-1] if tail else "无输出")[:70]))
+            why = (tail[-1] if tail else "无输出")[:70]
+            # **Batch 276：失配时先问「它要改的那个文件自己有未提交改动吗」。**
+            # **只有这时候才不能归咎于夹具**——实测（同事的注入实验让
+            # `asset-library.md` 首行不再是 H1）夹具 46/47 因此报失配，
+            # **而错的是目标文件变了，不是夹具坏了**。
+            # **条件收到文件粒度而不是整棵树**：整树降级的误伤面太大——
+            # **我自己改一句 AUDIT.md 就会把 23 个夹具的真失效一起降级。**
+            _rel = _repo_rel(target) if _dirty is not None else None
+            if _rel is None:
+                # **② 算不出来就说算不出来**——**绝不能当成「不脏」**，
+                # 那会让同事那处改动被报成「夹具坏了」（本函数第一版正是这样）。
+                #
+                # **⚠️ 而这一支的第一版栽在另一侧**：它既不报也不降级，
+                # **等于把一个真的夹具失配吞掉了**——
+                # **实测：既有用例 12（`m_fixture_anchor_missed`）当场变红**
+                # （它用 `sandbox()`，**只搬 `scripts/`、不是 git 检出**，
+                # 于是问不到）。**纪律 311 推论二描述的失效，方向相反地又发生了一次：
+                # 「算不出来」这一次伪装成了「没问题」。**
+                #
+                # **所以这里选保守的一侧：照旧报。**
+                # **本项目的保守侧是「照报」而不是「放过」**（假阴性比误报危险）。
+                # **而这也不会把误诊带回来**：「问不到」只发生在**不是 git 检出**的沙箱里
+                # （`sandbox()` 只搬 `scripts/`），**那里根本没有「同事的 WIP」这回事**，
+                # **所以「照报」在那一侧既安全又是唯一合理的默认**。
+                fx_unknown.append((os.path.basename(fixer), why))
+                fx_void.append((os.path.basename(fixer), why))
+            elif _rel in _dirty:
+                fx_stale.append((os.path.basename(fixer), why))
+            else:
+                fx_void.append((os.path.basename(fixer), why))
     if not _slow_fixture_triples("selftest-meta.sh"):
         problems.append(
             "方向五：**从 `selftest-meta.sh` 里抽不出任何注入夹具三元组**——"
             "要么它的用例调用格式变了，要么整份脚本被清空"
             "　→ **「一个都没检查」与「全部都检查了」必须长得不一样**（纪律 156/159）")
+    if fx_unknown:
+        print("  方向五：%d 个夹具失配，而**本闸算不出目标文件的仓库相对路径**（%s）"
+              "　→ **归因这一轮问不到，所以按保守侧照旧报成「夹具坏了」**"
+              "（**不报才是错的**——实测既有用例 12 就这样被吞掉过一次；"
+              "Batch 276 也实测踩过 macOS `/var` → `/private/var` 软链让本函数恒算错）"
+              % (len(fx_unknown), "、".join(f for f, _ in fx_unknown)))
+    if fx_stale:
+        print("  方向五：%d 个夹具**打不中锚点，而它们要改的那个文件本身有未提交改动**（%s）"
+              "　→ **这一类是「前提不成立」，不是「夹具坏了」**：按三段约定它属于未能核对，"
+              "**不计入不一致**。**丢弃或 stash 别人的改动是被明令禁止的**"
+              "（工作区脏不是缺陷，同事正在改东西是正常状态——闸 38 报的就是这个状态）"
+              % (len(fx_stale), "、".join("%s（%s）" % (f, w[:40]) for f, w in fx_stale)))
     for fixer, why in fx_void:
         problems.append(
             f"方向五：慢反验的夹具 `{fixer}` **已经打不中它的锚点**（{why}）——"
@@ -1441,9 +1535,11 @@ def main():
     # **这不是「现场干不干净」，而是「跑完有没有变」**——
     # 这个仓里别人正在改东西是常态，所以只能比差集，不能比绝对状态。
     def _snapshot():
-        g = subprocess.run(["git", "-C", ROOT, "status", "--porcelain", "--", "."],
-                           capture_output=True, text=True)
-        return None if g.returncode != 0 else {l for l in g.stdout.split("\n") if l.strip()}
+        # **Batch 276：改为复用 `_dirty_paths()`**——**同一条命令、同一套解析**，
+        # 只是搬到了模块级（方向五也要用）。**收敛前量过等价：两边都是
+        # `git status --porcelain -- .`，而新增的那点「重命名取 `->` 之后那一半」
+        # **只会让它更准**（原来重命名项会原样留着 `old -> new`，永远匹配不上路径）。
+        return _dirty_paths()
 
     # **先核前提，再跑**（与 `selftest-zero-input.py` 的方向三同一套理由）：
     # 闸 18 的反验把自己的每一例都放进一个**只有 `scripts/` 与 `build-site.sh` 的沙箱**，
@@ -1473,6 +1569,11 @@ def main():
                  len(fleet)))
         fleet = []
     tally = {}          # fn -> (合计, 形态)；方向十七直接用方向十六真跑出来的输出
+    #: **Batch 276 新增**：退出码 2 = **本轮未能核对**（环境缺口），
+    #: **它与 rc=1「核出不一致」必须分开**——本批给 `selftest-link-labels.sh`
+    #: 加了基线前提，工作区脏时它返回 2，**而方向十六原来把任何非 0 都写成
+    #: 「真跑没跑通」**。**那正是 Batch 275 记下的误诊，本批自己又犯了一次。**
+    unverified = []      # fn 列表；方向十七要把它与「真跑失败」分开报
     before = _snapshot()
     ran = ok = 0
     fleet_cost = 0.0
@@ -1509,6 +1610,16 @@ def main():
         if rc == 0:
             ok += 1
             tally[fn] = _tally(out)
+            continue
+        if rc == 2:
+            # **Batch 276：rc=2 单列，不进 `problems`。**
+            # **理由是本文件自己定的规矩**：rc=2 的含义是「未能核对」，
+            # 而把环境的缺口汇进 `problems` 就是**拿它冒充「反验坏了」**——
+            # **反验文件头把这一种列为判据最坏的一种错**（纪律 156 / 204）。
+            # **代价要说清楚**（与下面 `env_gap` 同一笔账）：一个**真坏**的反验
+            # 若错返回 2，这一轮会被盖住，**而那是可自愈的**——
+            # 前提恢复后重跑，它会以 rc=1 自己现身。
+            unverified.append(fn)
             continue
         tail = " / ".join(l.strip() for l in out.strip().split("\n") if l.strip())[-220:]
         why = (f"**超时**（上限 {per:.0f} 秒，实测 {d:.1f} 秒）" if rc is None
@@ -1616,10 +1727,18 @@ def main():
             #: **「两类加起来必须等于总数」这件事本身要被核，否则下一次又会少一个。**
             not_run = set(names) - set(fleet)                 # SLOW + 防递归排除，恒定
             by_design = sorted(set(claim) & not_run)
-            dropped = sorted((set(claim) & set(fleet)) - set(tally))   # 跑了但没记上
+            allran = set(claim) & set(fleet)
+            #: **`dropped` 必须再拆一次**（Batch 276）：`tally` 只在 `rc == 0` 时记，
+            #: 所以「跑了但没记上」里有**两种**：**真跑失败**与**本轮未能核对（rc=2）**。
+            #: **而这两种要修的东西完全不同**——前者是自己的反验坏了，
+            #: 后者是前提或环境不成立（**后者最常见的原因是工作区有别人的未提交改动，
+            #: 而丢弃它是明令禁止的**）。**把它们并成一个数，就是在教人做那件事。**
+            dropped = sorted(allran - set(tally) - set(unverified))   # 真跑失败
+            unver17 = sorted(allran & set(unverified))                # 本轮未能核对
             #: **完整性守卫**：本条若照实分完，两类之和必须等于总数。
             #: **对不上就报出来，不许安静地少列一个**（纪律 203）。
-            unaccounted = sorted(set(uncovered) - set(by_design) - set(dropped))
+            unaccounted = sorted(set(uncovered) - set(by_design)
+                                - set(dropped) - set(unver17))
             if unaccounted:
                 problems.append(
                     "方向十七：**%d 行「核不到」既没被算进「按设计没跑」也没被算进"
@@ -1634,6 +1753,12 @@ def main():
                 parts.append("**本轮真跑失败而掉出覆盖 %d 份（%s）**——"
                              "**这几种随构建红绿变，不在 SLOW 名单里**"
                              % (len(dropped), "、".join(dropped)))
+            if unver17:
+                parts.append("**本轮未能核对（rc=2）而掉出覆盖 %d 份（%s）**——"
+                             "**这不是「不一致」，也不在自己的反验上**："
+                             "**多半是工作区有未提交的改动让基线前提不成立，"
+                             "而丢弃那些改动是被明令禁止的**"
+                             % (len(unver17), "、".join(unver17)))
             if unaccounted:
                 parts.append("**还有 %d 份两类都没算进去（%s）——**这是判据自己的缺口"
                              % (len(unaccounted), "、".join(unaccounted)))
@@ -1642,12 +1767,19 @@ def main():
                   % (len(claim), checked, mismatch, unparsed, "；".join(parts)))
 
 
-    print("  方向十六：真跑 %d 份非慢反验，%d 份 rc=0，用时 %.1f 秒%s"
+    print("  方向十六：真跑 %d 份非慢反验，%d 份 rc=0，用时 %.1f 秒%s%s"
           % (ran, ok, fleet_cost,
              ("；**另有 %d 份按 SLOW 登记没跑**（%s）"
               % (len(fleet_all) - ran,
                  "、".join(sorted(n for n in fleet_all if n not in fleet)))
-              if fleet else "；**本轮一份都没跑**")))
+              if fleet else "；**本轮一份都没跑**"),
+             ("" if not unverified else
+              "；**%d 份本轮未能核对（rc=2，不是不一致）**（%s）"
+              "　→ **这一类不是「反验坏了」**：按三段约定 2 = 未能核对，"
+              "**多半是前提或环境不成立**（Batch 276：工作区有未提交改动时，"
+              "`selftest-link-labels.sh` 的基线前提不成立）。"
+              "**它不计入不一致，也更不该用「丢弃别人的改动」去消掉**"
+              % (len(unverified), "、".join(sorted(unverified))))))
 
     checked = py_ok + sh_ok
     #: **`env_gap` 优先于 `problems`（Batch 254 实测）**：上游不在场时，

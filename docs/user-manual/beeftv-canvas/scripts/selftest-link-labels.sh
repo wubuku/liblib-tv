@@ -18,7 +18,7 @@ set -uo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(dirname "$HERE")"
 WORK="$(mktemp -d "${TMPDIR:-/tmp}/beef-linklabel-selftest.XXXXXX")"
-PASS=0; FAIL=0
+PASS=0; FAIL=0; VOID=0
 
 cleanup() { rm -rf "$WORK" 2>/dev/null || true; }
 trap cleanup EXIT
@@ -41,9 +41,52 @@ reset_tree() {   # 每个用例都从**全部干净副本**重来
   done
 }
 
+# ── 基线前提（Batch 276 新增）────────────────────────────────────
+#
+# **它治什么**：本脚本每例都 `reset_tree`——**而 `reset_tree` 是从真实手册树
+# 逐个文件复制过去的**，所以**工作区里任何未提交的改动都会成为每一例的起点**。
+# **实测（Batch 275）**：同事一处注入实验让 `asset-library.md` 的首行不再是 H1，
+# 于是基线用例红、13 例里 7 例红，**而那 7 条报的是「闸门误报了」——
+# 一个完全指错方向的诊断**（闸门没误报，它报的是同事那处改动）。
+#
+# **为什么不能靠「把工作区弄干净」来修**：同事正在改东西是正常状态，
+# **丢弃或 stash 别人的改动是被明令禁止的**。
+# **而「让它变绿」的最短路径恰好就是那件事——判据不能教人这么做。**
+#
+# **关键区分（本方向的价值全在这行区分上）**：
+#   · 「期望闸门**保持沉默**」的用例**依赖基线干净**（基线脏 → 闸门本来就要说话）；
+#   · 「期望闸门**报出某句**」的用例**不依赖**（断言查的是 `$want`，噪声再多也不影响）；
+#   · 空树用例**完全不依赖**（它用 `$WORK/empty`）。
+# **所以不是整份放弃**：能抓那一半照跑，依赖基线的那些记「作废」。
+#
+# **退出码取 2 而不是 1**：这一轮它**确实什么都没核**，
+# 而 rc=1 的含义是「核过且核出不一致」——**拿环境的缺口冒充「反验坏了」
+# 是反验文件头列为最坏的一种错**（纪律 156 / 204）。
+BASE_RC=0
+BASE_OUT="$WORK/baseline.out"
+python3 "$HERE/verify-link-labels.py" > "$BASE_OUT" 2>&1 || BASE_RC=$?
+if [ "$BASE_RC" -ne 0 ]; then
+  echo "=== 基线前提不成立：真实手册自己就没过闸（退出码 ${BASE_RC}）==="
+  echo "  下面这些用例本轮**无法评估**，一律记「作废」而不是「失败」："
+  echo "    · 期望闸门保持沉默的那一半（不误伤）——基线脏时闸门本来就要说话；"
+  echo "    · 行号准确性——它取闸门报出的第一行，基线多报一行就会取错。"
+  echo "  能抓的那一半（期望报出某一句）**照跑**：断言查的是那一句，噪声不影响它。"
+  echo "  ============================================================"
+  echo "  **不要靠丢弃这些改动来让本脚本变绿。**"
+  echo "  工作区脏不是缺陷——同事正在改东西是正常状态（闸 38 报的就是这个状态，rc=0）。"
+  echo "  本轮退出码是 **2（未能核对）**，不是 1。"
+  echo "  ============================================================"
+  grep -E "✗" "$BASE_OUT" | head -5 | sed 's/^/    /'
+fi
+
 run_case() {  # 说明 目标文件 注入命令 期望出现在输出里的字串 期望退出码(1=须报,0=须放行)
   local desc="$1" file="$2" inject="$3" want="$4" expect_fail="$5" out rc inj_out before after
   reset_tree
+  # **依赖基线的那一半：基线不成立时先判作废，别把环境的缺口记成「误报」。**
+  if [ "$expect_fail" = "no" ] && [ "$BASE_RC" -ne 0 ]; then
+    echo "  — ${desc}：**作废（基线前提不成立）**——本轮无法评估它是否误报"
+    VOID=$((VOID+1)); return
+  fi
   before=$(cksum < "$WORK/$file")
   inj_out=$(python3 - "$WORK/$file" <<PYEOF 2>&1
 import io, sys
@@ -138,7 +181,12 @@ run_case "6) H1 冒号前的简称（不得误报）" 10-tasks/director-basics.m
 #   **而这类「用例自己写错」和「闸门有 bug」在输出上长得一模一样**（Batch 225 记过）。
 echo "=== 用例 7 需要同时改两个文件（小节建在目标页、链接建在别处）==="
 reset_tree
-if ! INJ7=$(python3 - "$WORK/10-tasks/storage-quota.md" "$WORK/10-tasks/asset-library.md" <<'PYEOF' 2>&1
+# **Batch 276：这一条是内联的，既不走 `run_case` 也不走 `run_two_file_case`，
+# **所以前两处守卫都够不着它**——实测它正是脏树上第 3 条红。
+if [ "$BASE_RC" -ne 0 ]; then
+  echo "  — 7) 链向目标页新造的小节标题：**作废（基线前提不成立）**——本轮无法评估它是否误报"
+  VOID=$((VOID+1))
+elif ! INJ7=$(python3 - "$WORK/10-tasks/storage-quota.md" "$WORK/10-tasks/asset-library.md" <<'PYEOF' 2>&1
 import io, sys
 tgt, src = sys.argv[1], sys.argv[2]
 # 目标页：加一个小节
@@ -174,6 +222,13 @@ fi
 run_two_file_case() {  # 说明 目标页 链接所在页 注入命令 期望退出码(1=须报,0=须放行)
   local desc="$1" tgt="$2" src="$3" inject="$4" expect_fail="$5" out rc inj
   reset_tree
+  # **Batch 276：同一条守卫。`run_case` 那一份覆盖不到这里——
+  # 而「我给公共路径加了守卫」不等于「所有用例都被守住了」，
+  # **漏掉的那几条输出与「守卫根本没写」一模一样。**
+  if [ "$expect_fail" = "no" ] && [ "$BASE_RC" -ne 0 ]; then
+    echo "  — ${desc}：**作废（基线前提不成立）**——本轮无法评估它是否误报"
+    VOID=$((VOID+1)); return
+  fi
   inj=$(python3 - "$WORK/10-tasks/$tgt" "$WORK/10-tasks/$src" <<INJEOF 2>&1
 import io, sys
 tgt, src = sys.argv[1], sys.argv[2]
@@ -237,13 +292,22 @@ assert old in u, "链接锚点未命中: " + old
 u = u.replace(old, "[侧栏的容量条](storage-quota.md)", 1)' yes
 
 echo "=== 基线：真实手册应当通过 ==="
-if python3 "$HERE/verify-link-labels.py" >/dev/null 2>&1; then
+# **Batch 276：基线不成立时记「作废」而不是「失败」**——
+# **工作区脏不是反验的缺陷**（闸 38 的立场），而把环境的缺口记成
+# 「反验坏了」只会把人引去改一份不属于他的文件。
+if [ "$BASE_RC" -eq 0 ]; then
   echo "  ✓ 真实手册通过"; PASS=$((PASS+1))
 else
-  echo "  ✗ 真实手册未通过"; FAIL=$((FAIL+1))
+  echo "  — 真实手册未通过：**作废（工作区状态，不是反验缺陷）**"
+  echo "    **不要靠丢弃同事的未提交改动来让这一行变绿。**"
+  VOID=$((VOID+1))
 fi
 
 echo "=== 行号准确性：代码块之后的注入，报出的行号必须对得上原文 ==="
+if [ "$BASE_RC" -ne 0 ]; then
+  echo "  — 行号准确性：**作废（基线前提不成立）**——闸门多报的行会让它取错第一行"
+  VOID=$((VOID+1))
+else
 reset_tree
 python3 - "$WORK/10-tasks/asset-library.md" <<'PYEOF'
 import io, sys
@@ -276,6 +340,7 @@ else
   echo "  ✗ 行号不符：闸门报的是「${GOT:-无}」，退出码 ${RC}"; echo "$OUT" | sed 's/^/      /'; FAIL=$((FAIL+1))
 fi
 
+fi
 echo "=== 零输入不许报绿：空手册树必须返回 2（Batch 191/192 纪律 156）==="
 EMPTY="$WORK/empty"; mkdir -p "$EMPTY/scripts"
 cp "$HERE/verify-link-labels.py" "$EMPTY/scripts/"
@@ -287,7 +352,17 @@ else
   echo "  ✗ 空树返回 ${ERC}，应为 2；实际：${EO}"; FAIL=$((FAIL+1))
 fi
 
-echo "=== 结果：通过 $PASS / 失败 $FAIL ==="
+# **Batch 276：汇总行带上「作废」**。**口径与表里那一行一致**
+# （合计 = 通过 + 失败 + 作废，Batch 209 写进 AUDIT-RULES.md 的那一条），
+# **而 `TALLY_PATS` 的第一条正好认这个形态**——干净树上跑出
+# `通过 13 / 失败 0 / 作废 0`，合计仍是 **13**，**表里那一行不用改**。
+echo "=== 结果：通过 $PASS / 失败 $FAIL / 作废 $VOID ==="
 echo "=== 清理后状态 ==="
 echo "  临时目录已删除: $WORK"
+# **退出码三段**：`0` 全部通过 / `1` 核出不一致 / **`2` 本轮未能核对**。
+# **基线不成立时给 2 而不是 1**——这一轮它什么都没核，
+# 而 rc=1 会被方向十六读成「反验坏了」，**那正是 Batch 275 记下的那个误诊**。
+if [ "$BASE_RC" -ne 0 ]; then
+  exit 2
+fi
 [ "$FAIL" -eq 0 ] || exit 1

@@ -101,7 +101,7 @@ def sandbox():
     return tmp
 
 
-def sandbox_full(break_selftest=None):
+def sandbox_full(break_selftest=None, exit_code=1):
     """**完整**的手册树副本（外加 git init）——方向十六的真跑前提。
 
     **为什么需要它，而 `sandbox()` 不够**：`sandbox()` 只 copytree `scripts/`，
@@ -132,7 +132,8 @@ def sandbox_full(break_selftest=None):
         anchor = "\nif __name__ =="
         i = t.find(anchor)
         assert i != -1, "前提失配：%s 里找不到 `if __name__` 入口" % break_selftest
-        write(p, t[:i] + "\nraise SystemExit(1)  # Batch 210 用例 23 注入\n" + t[i:])
+        write(p, t[:i] + "\nraise SystemExit(%d)  # Batch 210 用例 23 / Batch 276 用例 31 注入\n"
+              % exit_code + t[i:])
     return tmp
 
 
@@ -750,6 +751,90 @@ def m_upstream_absent_reported():
 
 
 # ── 27 只有一个抄本 → 必报（**方向四e 第一支，Batch 275 新增**）───────
+# ── 31 一份反验返回 2 → 必须报「未能核对」，不得说它坏了（方向十六第三类）──
+def m_unverified_not_reported_as_broken():
+    check_anchor()
+    tmp = sandbox_full(break_selftest="selftest-endpoints.py", exit_code=2)
+    try:
+        rc, out = run_in(tmp)
+        #: **两个断言缺一不可**：只核「报了未能核对」的话，
+        #: 一个**把 rc=2 也塞进 `problems`** 的写法照样能通过（它会两条都印）；
+        #: **而那正是本批要治的误诊**——它把「这一轮没法核它」说成「它坏了」。
+        #: **断言必须指名到注入的那一份**——第一版写的是「输出里不许出现
+        #: 「真跑没跑通」」，**而沙箱里有 3 份反验本来就必然跑不通**
+        #: （`current-version` / `shot-version` / `shot-version-source`，
+        #: 它们要上游的检出），**所以那一句会误伤**——
+        #: **一道会误伤的断言会把人引去改判据，而它测的东西其实是对的**
+        #: （Batch 249 ⑫ 的同一个形态）。
+        record("31 反验 rc=2 → 报未能核对且不得说它坏了",
+               "本轮未能核对（rc=2" in out
+               and "反验 `selftest-endpoints.py` **真跑没跑通**" not in out
+               and "selftest-endpoints.py" in out,
+               f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def _break_asset_library_h1(tmp):
+    """让 `10-tasks/asset-library.md` 的**首行不再是 H1**。
+
+    **形状照抄同事那处注入**（他在首行插了一句 HTML 注释，于是首行不再是 H1），
+    **不是我们编的**——而这正是实测里让夹具 46/47 失配的那个形态。
+
+    **⚠️ Batch 276 实测踩到：第一版写的是「去掉首行的 `# `」，
+    **而那等于假设该页首行就是 H1**——
+    **而那正是同事改掉的那一行，于是这条用例在真工作区上直接作废**。
+    **同一个病第三次从同一个地方长出来：连新写的用例都在假设工作区是干净的。**
+    **改法是「前置一行」而不是「改写首行」**：它对首行原本长什么样没有假设，
+    **而实测两种写法都能让夹具失配**。
+    """
+    p = os.path.join(tmp, "10-tasks", "asset-library.md")
+    s = read(p)
+    before = s
+    s = "<!-- Batch 276 注入：首行不是 H1，真 H1 在第 2 行 -->\n" + s
+    assert s != before, "前提失配：注入没有改变文件"
+    assert not s.split("\n", 1)[0].startswith("# "), "前提失配：注入后首行仍是 H1"
+    write(p, s)
+    return p
+
+
+# ── 32 夹具失配 + 目标文件有未提交改动 → 前提不成立，不是夹具坏了（方向五）──
+def m_fixture_stale_target_not_reported():
+    check_anchor()
+    tmp = sandbox_full()
+    try:
+        _break_asset_library_h1(tmp)          # 改完**不提交** → 那个文件是脏的
+        rc, out = run_in(tmp)
+        #: **判据落在「那条问题有没有出现」上，而不是落在 rc 上**——
+        #: 沙箱里改了手册页，别的地方也可能红，**rc 不是这条性质的证据**。
+        record("32 目标文件脏 → 夹具失配降级为「前提不成立」",
+               "有未提交改动" in out and "已经打不中它的锚点" not in out,
+               f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+# ── 33 夹具失配 + 目标文件干净 → 照旧报「夹具坏了」（**方向五的不误伤那一半**）──
+def m_fixture_broken_clean_target_reported():
+    check_anchor()
+    tmp = sandbox_full()
+    try:
+        _break_asset_library_h1(tmp)
+        #: **与用例 32 同一处注入，唯一的差别是把它提交掉**——
+        #: 于是目标文件干净、夹具是真的坏了，**必须照旧报出来**。
+        #: **没有这一条，「树脏了就全降级」也能让 32 变绿**，
+        #: **而那种写法会把 23 个夹具的真失效一起盖住**。
+        who = ["-c", "user.email=selftest@local", "-c", "user.name=selftest"]
+        for argv in (("add", "-A"), (*who, "commit", "-qm", "h1 removed")):
+            r = _git(tmp, *argv)
+            assert r.returncode == 0, "前提失配：沙箱 git %s 失败" % argv[0]
+        rc, out = run_in(tmp)
+        record("33 目标文件干净 → 夹具失配必须照旧报出",
+               rc == 1 and "已经打不中它的锚点" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def m_slow_cost_single_copy():
     check_anchor()
     tmp = sandbox()
@@ -894,6 +979,9 @@ def main():
              m_deleted_fixture_ref, m_live_fixture_ref_not_reported,
              m_broken_selftest_caught, m_clean_fleet_not_reported,
              m_upstream_absent_reported, m_upstream_present_not_reported,
+             m_unverified_not_reported_as_broken,
+             m_fixture_stale_target_not_reported,
+             m_fixture_broken_clean_target_reported,
              m_slow_cost_single_copy, m_slow_cost_ledger_disagrees,
              m_slow_but_measured_fast, m_slow_cost_margin_allowed]
     for t in tests:
