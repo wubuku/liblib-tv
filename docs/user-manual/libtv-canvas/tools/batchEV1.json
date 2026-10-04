@@ -1,0 +1,819 @@
+{
+  "读数": {
+    "视口": {
+      "找到": true,
+      "class": "react-flow__viewport xyflow__viewport react-flow__container",
+      "transform": "matrix(0.458621, 0, 0, 0.458621, 884.556, -93.5213)",
+      "宽": 660.41455078125,
+      "高": 371.4831848144531,
+      "paneTransform": "none"
+    },
+    "节点屏": [
+      {
+        "id": "v-oZNpH99MtM",
+        "读到了": true,
+        "画布": [
+          132,
+          300
+        ],
+        "屏幕": [
+          945,
+          44
+        ],
+        "宽": 161
+      },
+      {
+        "id": "v-v2hlWY4Br3",
+        "读到了": true,
+        "画布": [
+          -696,
+          300
+        ],
+        "屏幕": [
+          565,
+          44
+        ],
+        "宽": 285
+      },
+      {
+        "id": "b-mfkcQNULC3",
+        "读到了": true,
+        "画布": [
+          636,
+          300
+        ],
+        "屏幕": [
+          1176,
+          44
+        ],
+        "宽": 147
+      },
+      {
+        "id": "a-THmbuJXQj4",
+        "读到了": true,
+        "画布": [
+          -1356,
+          600
+        ],
+        "屏幕": [
+          263,
+          182
+        ],
+        "宽": 161
+      },
+      {
+        "id": "t-UtVx3lZmrV",
+        "读到了": true,
+        "画布": [
+          600,
+          900
+        ],
+        "屏幕": [
+          1160,
+          319
+        ],
+        "宽": 161
+      }
+    ],
+    "图案": {
+      "命中总数": 17,
+      "像图案的": [
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__stateHalo ChatAgentLiquidOrb-module__JiGsiG__animated",
+          "box": [
+            1197,
+            340,
+            54,
+            54
+          ],
+          "backgroundImage": "radial-gradient(circle, color(srgb 0 0.898039 1 / 0.55), rgba(0, 0, 0, 0) 70%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__orb ChatAgentLiquidOrb-module__JiGsiG__animated",
+          "box": [
+            1204,
+            347,
+            40,
+            40
+          ],
+          "backgroundImage": "radial-gradient(circle at 50% 30%, rgb(0, 255, 193) 0%, rgb(0, 125, 255) 70%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "1",
+          "像图案": true,
+          "子数": 29
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__bottomGlow",
+          "box": [
+            1204,
+            347,
+            40,
+            40
+          ],
+          "backgroundImage": "radial-gradient(circle at 50% 90%, rgb(226, 255, 246) 0%, rgba(0, 0, 0, 0) 70%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "1",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__rotatingGlow ChatAgentLiquidOrb-module__JiGs",
+          "box": [
+            1201,
+            344,
+            46,
+            46
+          ],
+          "backgroundImage": "radial-gradient(circle at 50% 22%, color(srgb 0.678824 1 0.957647) 0%, color(srgb 0 0.898039 1 / 0.55) 42%, rgba(0, 0, 0, 0) 70%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.55",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__rotatingGlow ChatAgentLiquidOrb-module__JiGs",
+          "box": [
+            1201,
+            344,
+            46,
+            46
+          ],
+          "backgroundImage": "radial-gradient(circle at 50% 18%, color(srgb 0.2 0.918431 1) 0%, color(srgb 0 1 0.756863 / 0.4) 48%, rgba(0, 0, 0, 0) 72%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.7",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__rotatingGlow ChatAgentLiquidOrb-module__JiGs",
+          "box": [
+            1206,
+            349,
+            35,
+            35
+          ],
+          "backgroundImage": "radial-gradient(circle at 48% 28%, rgb(255, 255, 255) 0%, color(srgb 0.3 0.928627 1) 28%, rgba(0, 0, 0, 0) 62%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.85",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__mainHighlight ChatAgentLiquidOrb-module__JiG",
+          "box": [
+            1206,
+            349,
+            35,
+            35
+          ],
+          "backgroundImage": "radial-gradient(circle at 33% 12%, rgba(254, 245, 254, 0) 0%, rgb(0, 255, 213) 26%, rgba(0, 0, 0, 0) 63%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "1",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__deepLayer",
+          "box": [
+            1206,
+            349,
+            35,
+            35
+          ],
+          "backgroundImage": "radial-gradient(circle at 31% 12%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 31%, rgb(0, 99, 204) 77%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.65",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__blob ChatAgentLiquidOrb-module__JiGsiG__pink",
+          "box": [
+            1216,
+            359,
+            23,
+            23
+          ],
+          "backgroundImage": "linear-gradient(-36deg, rgba(254, 245, 254, 0) 12%, rgb(0, 255, 247) 36%, rgba(0, 0, 0, 0) 54%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.95",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__blob ChatAgentLiquidOrb-module__JiGsiG__cyan",
+          "box": [
+            1210,
+            359,
+            23,
+            23
+          ],
+          "backgroundImage": "linear-gradient(163deg, rgba(254, 245, 254, 0) 0%, rgb(0, 229, 255) 19%, rgba(0, 0, 0, 0) 50%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.95",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__wavyBlob ChatAgentLiquidOrb-module__JiGsiG__",
+          "box": [
+            1211,
+            364,
+            28,
+            28
+          ],
+          "backgroundImage": "radial-gradient(circle at 40% 35%, color(srgb 0.7 0.969412 1) 0%, rgba(0, 0, 0, 0) 68%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.55",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__wavyBlob ChatAgentLiquidOrb-module__JiGsiG__",
+          "box": [
+            1213,
+            344,
+            28,
+            28
+          ],
+          "backgroundImage": "radial-gradient(circle at 55% 40%, color(srgb 0.55 1 0.890588) 0%, rgba(0, 0, 0, 0) 70%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.4",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__wash ChatAgentLiquidOrb-module__JiGsiG__anim",
+          "box": [
+            1206,
+            349,
+            36,
+            36
+          ],
+          "backgroundImage": "linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0))",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.16",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__shine ChatAgentLiquidOrb-module__JiGsiG__shi",
+          "box": [
+            1218,
+            348,
+            24,
+            20
+          ],
+          "backgroundImage": "linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0))",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "1",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__shine ChatAgentLiquidOrb-module__JiGsiG__shi",
+          "box": [
+            1205,
+            364,
+            26,
+            24
+          ],
+          "backgroundImage": "linear-gradient(rgb(0, 255, 193), rgba(0, 0, 0, 0))",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "1",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__shine ChatAgentLiquidOrb-module__JiGsiG__shi",
+          "box": [
+            1232,
+            355,
+            8,
+            13
+          ],
+          "backgroundImage": "linear-gradient(rgb(0, 255, 247), rgba(0, 0, 0, 0))",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.8",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__cap ChatAgentLiquidOrb-module__JiGsiG__anima",
+          "box": [
+            1207,
+            347,
+            30,
+            27
+          ],
+          "backgroundImage": "linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0))",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.32",
+          "像图案": true,
+          "子数": 0
+        }
+      ],
+      "全部": [
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__stateHalo ChatAgentLiquidOrb-module__JiGsiG__animated",
+          "box": [
+            1197,
+            340,
+            54,
+            54
+          ],
+          "backgroundImage": "radial-gradient(circle, color(srgb 0 0.898039 1 / 0.55), rgba(0, 0, 0, 0) 70%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__orb ChatAgentLiquidOrb-module__JiGsiG__animated",
+          "box": [
+            1204,
+            347,
+            40,
+            40
+          ],
+          "backgroundImage": "radial-gradient(circle at 50% 30%, rgb(0, 255, 193) 0%, rgb(0, 125, 255) 70%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "1",
+          "像图案": true,
+          "子数": 29
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__bottomGlow",
+          "box": [
+            1204,
+            347,
+            40,
+            40
+          ],
+          "backgroundImage": "radial-gradient(circle at 50% 90%, rgb(226, 255, 246) 0%, rgba(0, 0, 0, 0) 70%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "1",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__rotatingGlow ChatAgentLiquidOrb-module__JiGs",
+          "box": [
+            1201,
+            344,
+            46,
+            46
+          ],
+          "backgroundImage": "radial-gradient(circle at 50% 22%, color(srgb 0.678824 1 0.957647) 0%, color(srgb 0 0.898039 1 / 0.55) 42%, rgba(0, 0, 0, 0) 70%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.55",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__rotatingGlow ChatAgentLiquidOrb-module__JiGs",
+          "box": [
+            1201,
+            344,
+            46,
+            46
+          ],
+          "backgroundImage": "radial-gradient(circle at 50% 18%, color(srgb 0.2 0.918431 1) 0%, color(srgb 0 1 0.756863 / 0.4) 48%, rgba(0, 0, 0, 0) 72%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.7",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__rotatingGlow ChatAgentLiquidOrb-module__JiGs",
+          "box": [
+            1206,
+            349,
+            35,
+            35
+          ],
+          "backgroundImage": "radial-gradient(circle at 48% 28%, rgb(255, 255, 255) 0%, color(srgb 0.3 0.928627 1) 28%, rgba(0, 0, 0, 0) 62%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.85",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__mainHighlight ChatAgentLiquidOrb-module__JiG",
+          "box": [
+            1206,
+            349,
+            35,
+            35
+          ],
+          "backgroundImage": "radial-gradient(circle at 33% 12%, rgba(254, 245, 254, 0) 0%, rgb(0, 255, 213) 26%, rgba(0, 0, 0, 0) 63%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "1",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__deepLayer",
+          "box": [
+            1206,
+            349,
+            35,
+            35
+          ],
+          "backgroundImage": "radial-gradient(circle at 31% 12%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 31%, rgb(0, 99, 204) 77%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.65",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__blob ChatAgentLiquidOrb-module__JiGsiG__pink",
+          "box": [
+            1216,
+            359,
+            23,
+            23
+          ],
+          "backgroundImage": "linear-gradient(-36deg, rgba(254, 245, 254, 0) 12%, rgb(0, 255, 247) 36%, rgba(0, 0, 0, 0) 54%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.95",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__blob ChatAgentLiquidOrb-module__JiGsiG__cyan",
+          "box": [
+            1210,
+            359,
+            23,
+            23
+          ],
+          "backgroundImage": "linear-gradient(163deg, rgba(254, 245, 254, 0) 0%, rgb(0, 229, 255) 19%, rgba(0, 0, 0, 0) 50%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.95",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__wavyBlob ChatAgentLiquidOrb-module__JiGsiG__",
+          "box": [
+            1211,
+            364,
+            28,
+            28
+          ],
+          "backgroundImage": "radial-gradient(circle at 40% 35%, color(srgb 0.7 0.969412 1) 0%, rgba(0, 0, 0, 0) 68%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.55",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__wavyBlob ChatAgentLiquidOrb-module__JiGsiG__",
+          "box": [
+            1213,
+            344,
+            28,
+            28
+          ],
+          "backgroundImage": "radial-gradient(circle at 55% 40%, color(srgb 0.55 1 0.890588) 0%, rgba(0, 0, 0, 0) 70%)",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.4",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__wash ChatAgentLiquidOrb-module__JiGsiG__anim",
+          "box": [
+            1206,
+            349,
+            36,
+            36
+          ],
+          "backgroundImage": "linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0))",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.16",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__shine ChatAgentLiquidOrb-module__JiGsiG__shi",
+          "box": [
+            1218,
+            348,
+            24,
+            20
+          ],
+          "backgroundImage": "linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0))",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "1",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__shine ChatAgentLiquidOrb-module__JiGsiG__shi",
+          "box": [
+            1205,
+            364,
+            26,
+            24
+          ],
+          "backgroundImage": "linear-gradient(rgb(0, 255, 193), rgba(0, 0, 0, 0))",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "1",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__shine ChatAgentLiquidOrb-module__JiGsiG__shi",
+          "box": [
+            1232,
+            355,
+            8,
+            13
+          ],
+          "backgroundImage": "linear-gradient(rgb(0, 255, 247), rgba(0, 0, 0, 0))",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.8",
+          "像图案": true,
+          "子数": 0
+        },
+        {
+          "tag": "DIV",
+          "cls": "ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__cap ChatAgentLiquidOrb-module__JiGsiG__anima",
+          "box": [
+            1207,
+            347,
+            30,
+            27
+          ],
+          "backgroundImage": "linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0))",
+          "backgroundSize": "auto",
+          "backgroundRepeat": "repeat",
+          "backgroundPosition": "0% 0%",
+          "opacity": "0.32",
+          "像图案": true,
+          "子数": 0
+        }
+      ]
+    },
+    "RF网格": [
+      {
+        "tag": "BUTTON",
+        "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer items-center justify-center gap-1 rounded-lg border text-[13px] font-n",
+        "box": [
+          1127,
+          8,
+          32,
+          32
+        ],
+        "backgroundImage": "none",
+        "backgroundSize": "auto",
+        "子数": 1,
+        "祖先": [
+          "mantine-visible-from-md",
+          "b640:gap-2",
+          "relative",
+          "pointer-events-auto",
+          "pointer-events-none"
+        ]
+      },
+      {
+        "tag": "DIV",
+        "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 min-w-[60px] cursor-pointer items-center justify-center gap-1 rounded-lg border px-2.",
+        "box": [
+          1167,
+          8,
+          159,
+          32
+        ],
+        "backgroundImage": "none",
+        "backgroundSize": "auto",
+        "子数": 2,
+        "祖先": [
+          "flex",
+          "b640:gap-2",
+          "relative",
+          "pointer-events-auto",
+          "pointer-events-none"
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer items-center justify-center gap-1 rounded-lg border px-2.5 text-[13px]",
+        "box": [
+          1334,
+          8,
+          58,
+          32
+        ],
+        "backgroundImage": "none",
+        "backgroundSize": "auto",
+        "子数": 2,
+        "祖先": [
+          "flex",
+          "b640:gap-2",
+          "relative",
+          "pointer-events-auto",
+          "pointer-events-none"
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg border px-3 py-1 text-[13px] font-normal leading-[18px] transi",
+        "box": [
+          382,
+          172,
+          42,
+          15
+        ],
+        "backgroundImage": "none",
+        "backgroundSize": "auto",
+        "子数": 0,
+        "祖先": [
+          "relative",
+          "group",
+          "node-shell",
+          "",
+          ""
+        ]
+      },
+      {
+        "tag": "svg",
+        "cls": "react-flow__background",
+        "box": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "backgroundImage": "none",
+        "backgroundSize": "auto",
+        "子数": 2,
+        "祖先": [
+          "react-flow",
+          "relative",
+          "relative",
+          "h-screen",
+          ""
+        ]
+      },
+      {
+        "tag": "circle",
+        "cls": "react-flow__background-pattern dots",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "backgroundImage": "none",
+        "backgroundSize": "auto",
+        "子数": 0,
+        "祖先": [
+          "[object",
+          "[object",
+          "react-flow",
+          "relative",
+          "relative"
+        ]
+      }
+    ],
+    "文本": [
+      {
+        "文字": "20",
+        "box": [
+          1365,
+          14,
+          16,
+          20
+        ]
+      },
+      {
+        "文字": "46%",
+        "box": [
+          240,
+          764,
+          36,
+          28
+        ]
+      }
+    ]
+  },
+  "步骤": [
+    "开局坐标偏差：[]",
+    "视口：{\"找到\":true,\"class\":\"react-flow__viewport xyflow__viewport react-flow__container\",\"transform\":\"matrix(0.458621, 0, 0, 0.458621, 884.556, -93.5213)\",\"宽\":660.41455078125,\"高\":371.4831848144531,\"paneTransform\":\"none\"}",
+    "节点屏幕位置（与权威画布坐标对照）：[{\"id\":\"v-oZNpH99MtM\",\"读到了\":true,\"画布\":[132,300],\"屏幕\":[945,44],\"宽\":161},{\"id\":\"v-v2hlWY4Br3\",\"读到了\":true,\"画布\":[-696,300],\"屏幕\":[565,44],\"宽\":285},{\"id\":\"b-mfkcQNULC3\",\"读到了\":true,\"画布\":[636,300],\"屏幕\":[1176,44],\"宽\":147},{\"id\":\"a-THmbuJXQj4\",\"读到了\":true,\"画布\":[-1356,600],\"屏幕\":[263,182],\"宽\":161},{\"id\":\"t-UtVx3lZmrV\",\"读到了\":true,\"画布\":[600,900],\"屏幕\":[1160,319],\"宽\":161}]",
+    "图案候选：命中 17 个，其中像重复图案的 17 个",
+    "像图案的逐个：[\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__stateHalo ChatAgentLiquidOrb-module__JiGsiG__animated\",\n  \"box\": [\n   1197,\n   340,\n   54,\n   54\n  ],\n  \"backgroundImage\": \"radial-gradient(circle, color(srgb 0 0.898039 1 / 0.55), rgba(0, 0, 0, 0) 70%)\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"0\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__orb ChatAgentLiquidOrb-module__JiGsiG__animated\",\n  \"box\": [\n   1204,\n   347,\n   40,\n   40\n  ],\n  \"backgroundImage\": \"radial-gradient(circle at 50% 30%, rgb(0, 255, 193) 0%, rgb(0, 125, 255) 70%)\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"1\",\n  \"像图案\": true,\n  \"子数\": 29\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__bottomGlow\",\n  \"box\": [\n   1204,\n   347,\n   40,\n   40\n  ],\n  \"backgroundImage\": \"radial-gradient(circle at 50% 90%, rgb(226, 255, 246) 0%, rgba(0, 0, 0, 0) 70%)\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"1\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__rotatingGlow ChatAgentLiquidOrb-module__JiGs\",\n  \"box\": [\n   1201,\n   344,\n   46,\n   46\n  ],\n  \"backgroundImage\": \"radial-gradient(circle at 50% 22%, color(srgb 0.678824 1 0.957647) 0%, color(srgb 0 0.898039 1 / 0.55) 42%, rgba(0, 0, 0, 0) 70%)\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"0.55\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__rotatingGlow ChatAgentLiquidOrb-module__JiGs\",\n  \"box\": [\n   1201,\n   344,\n   46,\n   46\n  ],\n  \"backgroundImage\": \"radial-gradient(circle at 50% 18%, color(srgb 0.2 0.918431 1) 0%, color(srgb 0 1 0.756863 / 0.4) 48%, rgba(0, 0, 0, 0) 72%)\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"0.7\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__rotatingGlow ChatAgentLiquidOrb-module__JiGs\",\n  \"box\": [\n   1206,\n   349,\n   35,\n   35\n  ],\n  \"backgroundImage\": \"radial-gradient(circle at 48% 28%, rgb(255, 255, 255) 0%, color(srgb 0.3 0.928627 1) 28%, rgba(0, 0, 0, 0) 62%)\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"0.85\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__mainHighlight ChatAgentLiquidOrb-module__JiG\",\n  \"box\": [\n   1206,\n   349,\n   35,\n   35\n  ],\n  \"backgroundImage\": \"radial-gradient(circle at 33% 12%, rgba(254, 245, 254, 0) 0%, rgb(0, 255, 213) 26%, rgba(0, 0, 0, 0) 63%)\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"1\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__deepLayer\",\n  \"box\": [\n   1206,\n   349,\n   35,\n   35\n  ],\n  \"backgroundImage\": \"radial-gradient(circle at 31% 12%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 31%, rgb(0, 99, 204) 77%)\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"0.65\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__blob ChatAgentLiquidOrb-module__JiGsiG__pink\",\n  \"box\": [\n   1216,\n   359,\n   23,\n   23\n  ],\n  \"backgroundImage\": \"linear-gradient(-36deg, rgba(254, 245, 254, 0) 12%, rgb(0, 255, 247) 36%, rgba(0, 0, 0, 0) 54%)\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"0.95\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__blob ChatAgentLiquidOrb-module__JiGsiG__cyan\",\n  \"box\": [\n   1210,\n   359,\n   23,\n   23\n  ],\n  \"backgroundImage\": \"linear-gradient(163deg, rgba(254, 245, 254, 0) 0%, rgb(0, 229, 255) 19%, rgba(0, 0, 0, 0) 50%)\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"0.95\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__wavyBlob ChatAgentLiquidOrb-module__JiGsiG__\",\n  \"box\": [\n   1211,\n   364,\n   28,\n   28\n  ],\n  \"backgroundImage\": \"radial-gradient(circle at 40% 35%, color(srgb 0.7 0.969412 1) 0%, rgba(0, 0, 0, 0) 68%)\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"0.55\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__wavyBlob ChatAgentLiquidOrb-module__JiGsiG__\",\n  \"box\": [\n   1213,\n   344,\n   28,\n   28\n  ],\n  \"backgroundImage\": \"radial-gradient(circle at 55% 40%, color(srgb 0.55 1 0.890588) 0%, rgba(0, 0, 0, 0) 70%)\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"0.4\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__wash ChatAgentLiquidOrb-module__JiGsiG__anim\",\n  \"box\": [\n   1206,\n   349,\n   36,\n   36\n  ],\n  \"backgroundImage\": \"linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0))\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"0.16\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__shine ChatAgentLiquidOrb-module__JiGsiG__shi\",\n  \"box\": [\n   1218,\n   348,\n   24,\n   20\n  ],\n  \"backgroundImage\": \"linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0))\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"1\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__shine ChatAgentLiquidOrb-module__JiGsiG__shi\",\n  \"box\": [\n   1205,\n   364,\n   26,\n   24\n  ],\n  \"backgroundImage\": \"linear-gradient(rgb(0, 255, 193), rgba(0, 0, 0, 0))\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"1\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__shine ChatAgentLiquidOrb-module__JiGsiG__shi\",\n  \"box\": [\n   1232,\n   355,\n   8,\n   13\n  ],\n  \"backgroundImage\": \"linear-gradient(rgb(0, 255, 247), rgba(0, 0, 0, 0))\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"0.8\",\n  \"像图案\": true,\n  \"子数\": 0\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"ChatAgentLiquidOrb-module__JiGsiG__layer ChatAgentLiquidOrb-module__JiGsiG__cap ChatAgentLiquidOrb-module__JiGsiG__anima\",\n  \"box\": [\n   1207,\n   347,\n   30,\n   27\n  ],\n  \"backgroundImage\": \"linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0))\",\n  \"backgroundSize\": \"auto\",\n  \"backgroundRepeat\": \"repeat\",\n  \"backgroundPosition\": \"0% 0%\",\n  \"opacity\": \"0.32\",\n  \"像图案\": true,\n  \"子数\": 0\n }\n]",
+    "react-flow 网格类候选：[\n {\n  \"tag\": \"BUTTON\",\n  \"cls\": \"border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer items-center justify-center gap-1 rounded-lg border text-[13px] font-n\",\n  \"box\": [\n   1127,\n   8,\n   32,\n   32\n  ],\n  \"backgroundImage\": \"none\",\n  \"backgroundSize\": \"auto\",\n  \"子数\": 1,\n  \"祖先\": [\n   \"mantine-visible-from-md\",\n   \"b640:gap-2\",\n   \"relative\",\n   \"pointer-events-auto\",\n   \"pointer-events-none\"\n  ]\n },\n {\n  \"tag\": \"DIV\",\n  \"cls\": \"border-border-neutral-l1 text-nt-text-default flex h-8 min-w-[60px] cursor-pointer items-center justify-center gap-1 rounded-lg border px-2.\",\n  \"box\": [\n   1167,\n   8,\n   159,\n   32\n  ],\n  \"backgroundImage\": \"none\",\n  \"backgroundSize\": \"auto\",\n  \"子数\": 2,\n  \"祖先\": [\n   \"flex\",\n   \"b640:gap-2\",\n   \"relative\",\n   \"pointer-events-auto\",\n   \"pointer-events-none\"\n  ]\n },\n {\n  \"tag\": \"BUTTON\",\n  \"cls\": \"border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer items-center justify-center gap-1 rounded-lg border px-2.5 text-[13px]\",\n  \"box\": [\n   1334,\n   8,\n   58,\n   32\n  ],\n  \"backgroundImage\": \"none\",\n  \"backgroundSize\": \"auto\",\n  \"子数\": 2,\n  \"祖先\": [\n   \"flex\",\n   \"b640:gap-2\",\n   \"relative\",\n   \"pointer-events-auto\",\n   \"pointer-events-none\"\n  ]\n },\n {\n  \"tag\": \"BUTTON\",\n  \"cls\": \"nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg border px-3 py-1 text-[13px] font-normal leading-[18px] transi\",\n  \"box\": [\n   382,\n   172,\n   42,\n   15\n  ],\n  \"backgroundImage\": \"none\",\n  \"backgroundSize\": \"auto\",\n  \"子数\": 0,\n  \"祖先\": [\n   \"relative\",\n   \"group\",\n   \"node-shell\",\n   \"\",\n   \"\"\n  ]\n },\n {\n  \"tag\": \"svg\",\n  \"cls\": \"react-flow__background\",\n  \"box\": [\n   0,\n   0,\n   1440,\n   810\n  ],\n  \"backgroundImage\": \"none\",\n  \"backgroundSize\": \"auto\",\n  \"子数\": 2,\n  \"祖先\": [\n   \"react-flow\",\n   \"relative\",\n   \"relative\",\n   \"h-screen\",\n   \"\"\n  ]\n },\n {\n  \"tag\": \"circle\",\n  \"cls\": \"react-flow__background-pattern dots\",\n  \"box\": [\n   0,\n   0,\n   0,\n   0\n  ],\n  \"backgroundImage\": \"none\",\n  \"backgroundSize\": \"auto\",\n  \"子数\": 0,\n  \"祖先\": [\n   \"[object\",\n   \"[object\",\n   \"react-flow\",\n   \"relative\",\n   \"relative\"\n  ]\n }\n]",
+    "已拍 ev1-画布全景.png",
+    "百分比/网格相关文本：[{\"文字\":\"20\",\"box\":[1365,14,16,20]},{\"文字\":\"46%\",\"box\":[240,764,36,28]}]",
+    "⭐⭐ 收尾坐标复核：[]",
+    "❌ (intermediate value).filter is not a function"
+  ],
+  "错误": "TypeError: (intermediate value).filter is not a function\n    at file:///Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/user-manual/libtv-canvas/tools/batchEV1.mjs:168:40"
+}
