@@ -1,0 +1,953 @@
+{
+ "batch": 763,
+ "probe": "f",
+ "question": "useDirectorGestureBoundary 吞掉 Esc 之后的完整后果",
+ "rounds": [
+  {
+   "cells": {
+    "A_focusOnly": {
+     "open": {
+      "opened": true
+     },
+     "openDrawer": {
+      "clicked": true
+     },
+     "boundaryIdx": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "targetIndex": 6,
+     "targetItem": {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x",
+      "aria": null,
+      "text": ""
+     },
+     "focus": {
+      "focused": true,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x"
+     },
+     "before": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "activeGesture": "",
+      "active": {
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "tf": null,
+       "ta": null
+      }
+     },
+     "afterFocus": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "activeGesture": "director-gesture-1791136064518-1",
+      "active": {
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "tf": "position",
+       "ta": "x"
+      }
+     },
+     "gestureOpenedByFocusOnly": true,
+     "historyPastOnFocus": [
+      "0",
+      "0"
+     ]
+    },
+    "B_esc1": {
+     "open": {
+      "opened": true
+     },
+     "openDrawer": {
+      "clicked": true
+     },
+     "boundaryIdx": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "targetIndex": 6,
+     "targetItem": {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x",
+      "aria": null,
+      "text": ""
+     },
+     "beforeEsc": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "activeGesture": "director-gesture-1791136072791-1",
+      "active": {
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "tf": "position",
+       "ta": "x"
+      }
+     },
+     "afterEsc": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_CANCEL",
+      "activeGesture": "",
+      "active": {
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "tf": "position",
+       "ta": "x"
+      }
+     },
+     "result": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "gestureClearedByEsc": true,
+     "historyPastDelta": [
+      "0",
+      "0"
+     ]
+    },
+    "C_esc2": {
+     "open": {
+      "opened": true
+     },
+     "openDrawer": {
+      "clicked": true
+     },
+     "boundaryIdx": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "targetIndex": 6,
+     "targetItem": {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x",
+      "aria": null,
+      "text": ""
+     },
+     "afterEsc1": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "afterEsc2": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "focusStillInBoundary": true
+    },
+    "D_escapeHatch": {
+     "open": {
+      "opened": true
+     },
+     "openDrawer": {
+      "clicked": true
+     },
+     "boundaryIdx": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "targetIndex": 6,
+     "targetItem": {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x",
+      "aria": null,
+      "text": ""
+     },
+     "afterTab": {
+      "open": true,
+      "inspector": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": 800
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_COMMIT",
+      "activeGesture": "",
+      "active": {
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": "打开属性面板",
+       "tf": null,
+       "ta": null
+      }
+     },
+     "afterTabEsc": {
+      "open": true,
+      "inspector": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": 800
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_COMMIT",
+      "activeGesture": "",
+      "active": {
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": "打开属性面板",
+       "tf": null,
+       "ta": null
+      }
+     },
+     "leftBoundaryOnTab": true,
+     "tabLandedOn": {
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "当前帧有关键帧",
+      "tf": null,
+      "ta": null
+     },
+     "result": {
+      "deskOpen": true,
+      "inspectorState": "closed",
+      "treeState": "closed",
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    },
+    "E_editKey": {
+     "open": {
+      "opened": true
+     },
+     "openDrawer": {
+      "clicked": true
+     },
+     "boundaryIdx": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "targetIndex": 6,
+     "targetItem": {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x",
+      "aria": null,
+      "text": ""
+     },
+     "before": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "activeGesture": "",
+      "active": {
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "tf": null,
+       "ta": null
+      }
+     },
+     "afterFocus": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "activeGesture": "director-gesture-1791136100906-1",
+      "active": {
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "tf": "position",
+       "ta": "x"
+      }
+     },
+     "afterEdit": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "activeGesture": "director-gesture-1791136100906-1",
+      "active": {
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "tf": "position",
+       "ta": "x"
+      }
+     },
+     "afterBlur": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "1",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_COMMIT",
+      "activeGesture": "",
+      "active": {
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": "当前帧有关键帧",
+       "tf": null,
+       "ta": null
+      }
+     },
+     "gestureOpenedByFocusOnly": true,
+     "historyPastDelta": [
+      "0",
+      "0"
+     ],
+     "gestureOnBlur": [
+      "director-gesture-1791136100906-1",
+      ""
+     ],
+     "valueOnBlur": "button"
+    }
+   }
+  },
+  {
+   "cells": {
+    "A_focusOnly": {
+     "open": {
+      "opened": true
+     },
+     "openDrawer": {
+      "clicked": true
+     },
+     "boundaryIdx": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "targetIndex": 6,
+     "targetItem": {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x",
+      "aria": null,
+      "text": ""
+     },
+     "focus": {
+      "focused": true,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x"
+     },
+     "before": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "activeGesture": "",
+      "active": {
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "tf": null,
+       "ta": null
+      }
+     },
+     "afterFocus": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "activeGesture": "director-gesture-1791136110626-1",
+      "active": {
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "tf": "position",
+       "ta": "x"
+      }
+     },
+     "gestureOpenedByFocusOnly": true,
+     "historyPastOnFocus": [
+      "0",
+      "0"
+     ]
+    },
+    "B_esc1": {
+     "open": {
+      "opened": true
+     },
+     "openDrawer": {
+      "clicked": true
+     },
+     "boundaryIdx": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "targetIndex": 6,
+     "targetItem": {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x",
+      "aria": null,
+      "text": ""
+     },
+     "beforeEsc": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "activeGesture": "director-gesture-1791136118929-1",
+      "active": {
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "tf": "position",
+       "ta": "x"
+      }
+     },
+     "afterEsc": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_CANCEL",
+      "activeGesture": "",
+      "active": {
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "tf": "position",
+       "ta": "x"
+      }
+     },
+     "result": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "gestureClearedByEsc": true,
+     "historyPastDelta": [
+      "0",
+      "0"
+     ]
+    },
+    "C_esc2": {
+     "open": {
+      "opened": true
+     },
+     "openDrawer": {
+      "clicked": true
+     },
+     "boundaryIdx": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "targetIndex": 6,
+     "targetItem": {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x",
+      "aria": null,
+      "text": ""
+     },
+     "afterEsc1": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "afterEsc2": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "focusStillInBoundary": true
+    },
+    "D_escapeHatch": {
+     "open": {
+      "opened": true
+     },
+     "openDrawer": {
+      "clicked": true
+     },
+     "boundaryIdx": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "targetIndex": 6,
+     "targetItem": {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x",
+      "aria": null,
+      "text": ""
+     },
+     "afterTab": {
+      "open": true,
+      "inspector": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": 800
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_COMMIT",
+      "activeGesture": "",
+      "active": {
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": "打开属性面板",
+       "tf": null,
+       "ta": null
+      }
+     },
+     "afterTabEsc": {
+      "open": true,
+      "inspector": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": 800
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_COMMIT",
+      "activeGesture": "",
+      "active": {
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": "打开属性面板",
+       "tf": null,
+       "ta": null
+      }
+     },
+     "leftBoundaryOnTab": true,
+     "tabLandedOn": {
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "当前帧有关键帧",
+      "tf": null,
+      "ta": null
+     },
+     "result": {
+      "deskOpen": true,
+      "inspectorState": "closed",
+      "treeState": "closed",
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    },
+    "E_editKey": {
+     "open": {
+      "opened": true
+     },
+     "openDrawer": {
+      "clicked": true
+     },
+     "boundaryIdx": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "targetIndex": 6,
+     "targetItem": {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x",
+      "aria": null,
+      "text": ""
+     },
+     "before": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "activeGesture": "",
+      "active": {
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "tf": null,
+       "ta": null
+      }
+     },
+     "afterFocus": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "activeGesture": "director-gesture-1791136147102-1",
+      "active": {
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "tf": "position",
+       "ta": "x"
+      }
+     },
+     "afterEdit": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "activeGesture": "director-gesture-1791136147102-1",
+      "active": {
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "tf": "position",
+       "ta": "x"
+      }
+     },
+     "afterBlur": {
+      "open": true,
+      "inspector": {
+       "state": "open",
+       "focusScope": "inspector",
+       "inert": false,
+       "x": 519
+      },
+      "tree": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": -220
+      },
+      "historyPast": "1",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_COMMIT",
+      "activeGesture": "",
+      "active": {
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": "当前帧有关键帧",
+       "tf": null,
+       "ta": null
+      }
+     },
+     "gestureOpenedByFocusOnly": true,
+     "historyPastDelta": [
+      "0",
+      "0"
+     ],
+     "gestureOnBlur": [
+      "director-gesture-1791136147102-1",
+      ""
+     ],
+     "valueOnBlur": "button"
+    }
+   }
+  }
+ ]
+}

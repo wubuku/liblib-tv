@@ -1,0 +1,4684 @@
+{
+ "batch": 763,
+ "probe": "d",
+ "question": "移动端抽屉里逐个可聚焦控件按 Esc，抽屉会关吗？",
+ "rounds": [
+  {
+   "open": {
+    "opened": true,
+    "desk": {
+     "open": true,
+     "tree": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": true,
+      "x": -220,
+      "w": 220
+     },
+     "inspector": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": true,
+      "x": 800,
+      "w": 281
+     }
+    }
+   },
+   "tree_sweep": {
+    "panel": "tree",
+    "count": 20,
+    "rows": [
+     {
+      "i": 0,
+      "item": {
+       "i": 0,
+       "tag": "INPUT",
+       "type": null,
+       "ariaLabel": "搜索场景内容",
+       "text": "",
+       "w": 119,
+       "h": 16,
+       "x": -177,
+       "y": 104,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": "搜索场景内容"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "INPUT",
+        "targetAria": "搜索场景内容",
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": "搜索场景内容",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 1,
+      "item": {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "新增机位",
+       "text": "",
+       "w": 32,
+       "h": 32,
+       "x": -45,
+       "y": 96,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "新增机位"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "新增机位",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "新增机位",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 2,
+      "item": {
+       "i": 2,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "复制当前选择",
+       "text": "",
+       "w": 28,
+       "h": 28,
+       "x": -101,
+       "y": 176,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "复制当前选择"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "复制当前选择",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "复制当前选择",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 3,
+      "item": {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除当前选择",
+       "text": "",
+       "w": 28,
+       "h": 28,
+       "x": -69,
+       "y": 176,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "删除当前选择"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "删除当前选择",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "删除当前选择",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 4,
+      "item": {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "清除当前选择",
+       "text": "",
+       "w": 28,
+       "h": 28,
+       "x": -37,
+       "y": 176,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "清除当前选择"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "清除当前选择",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "清除当前选择",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 5,
+      "item": {
+       "i": 5,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏角色01 · 陈默",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -105,
+       "y": 240,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "隐藏角色01 · 陈默"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "隐藏角色01 · 陈默",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "隐藏角色01 · 陈默",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 6,
+      "item": {
+       "i": 6,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定角色01 · 陈默",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -73,
+       "y": 240,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "锁定角色01 · 陈默"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "锁定角色01 · 陈默",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "锁定角色01 · 陈默",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 7,
+      "item": {
+       "i": 7,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除角色01 · 陈默",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -41,
+       "y": 240,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "删除角色01 · 陈默"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "删除角色01 · 陈默",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "删除角色01 · 陈默",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 8,
+      "item": {
+       "i": 8,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏咖啡桌",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -105,
+       "y": 312,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "隐藏咖啡桌"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "隐藏咖啡桌",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "隐藏咖啡桌",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 9,
+      "item": {
+       "i": 9,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定咖啡桌",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -73,
+       "y": 312,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "锁定咖啡桌"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "锁定咖啡桌",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "锁定咖啡桌",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 10,
+      "item": {
+       "i": 10,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除咖啡桌",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -41,
+       "y": 312,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "删除咖啡桌"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "删除咖啡桌",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "删除咖啡桌",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 11,
+      "item": {
+       "i": 11,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏冷掉的咖啡",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -105,
+       "y": 344,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "隐藏冷掉的咖啡"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "隐藏冷掉的咖啡",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "隐藏冷掉的咖啡",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 12,
+      "item": {
+       "i": 12,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定冷掉的咖啡",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -73,
+       "y": 344,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "锁定冷掉的咖啡"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "锁定冷掉的咖啡",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "锁定冷掉的咖啡",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 13,
+      "item": {
+       "i": 13,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除冷掉的咖啡",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -41,
+       "y": 344,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "删除冷掉的咖啡"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "删除冷掉的咖啡",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "删除冷掉的咖啡",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 14,
+      "item": {
+       "i": 14,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏咖啡馆背景",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -105,
+       "y": 376,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "隐藏咖啡馆背景"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "隐藏咖啡馆背景",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "隐藏咖啡馆背景",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 15,
+      "item": {
+       "i": 15,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定咖啡馆背景",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -73,
+       "y": 376,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "锁定咖啡馆背景"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "锁定咖啡馆背景",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "锁定咖啡馆背景",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 16,
+      "item": {
+       "i": 16,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除咖啡馆背景",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -41,
+       "y": 376,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "删除咖啡馆背景"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "删除咖啡馆背景",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "删除咖啡馆背景",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 17,
+      "item": {
+       "i": 17,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏机位01 · 对峙中景",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -105,
+       "y": 448,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "隐藏机位01 · 对峙中景"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "隐藏机位01 · 对峙中景",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "隐藏机位01 · 对峙中景",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 18,
+      "item": {
+       "i": 18,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定机位01 · 对峙中景",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -73,
+       "y": 448,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "锁定机位01 · 对峙中景"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "锁定机位01 · 对峙中景",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "锁定机位01 · 对峙中景",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 19,
+      "item": {
+       "i": 19,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除机位01 · 对峙中景",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -41,
+       "y": 448,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "删除机位01 · 对峙中景"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "删除机位01 · 对峙中景",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "删除机位01 · 对峙中景",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     }
+    ],
+    "notClosed": [],
+    "noEscRecord": []
+   },
+   "inspector_sweep": {
+    "panel": "inspector",
+    "count": 35,
+    "rows": [
+     {
+      "i": 0,
+      "item": {
+       "i": 0,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": null,
+       "text": "属性",
+       "w": 50,
+       "h": 28,
+       "x": 817,
+       "y": 152,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": null,
+        "targetText": "属性",
+        "activeTag": "BUTTON",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 1,
+      "item": {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": null,
+       "text": "姿势",
+       "w": 50,
+       "h": 28,
+       "x": 875,
+       "y": 152,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": null,
+        "targetText": "姿势",
+        "activeTag": "BUTTON",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 2,
+      "item": {
+       "i": 2,
+       "tag": "INPUT",
+       "type": null,
+       "ariaLabel": null,
+       "text": "",
+       "w": 248,
+       "h": 28,
+       "x": 817,
+       "y": 237,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 3,
+      "item": {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏对象",
+       "text": "可见",
+       "w": 120,
+       "h": 32,
+       "x": 817,
+       "y": 281,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "隐藏对象"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "隐藏对象",
+        "targetText": "可见",
+        "activeTag": "BUTTON",
+        "activeAria": "隐藏对象",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 4,
+      "item": {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定对象",
+       "text": "未锁定",
+       "w": 120,
+       "h": 32,
+       "x": 945,
+       "y": 281,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "锁定对象"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "锁定对象",
+        "targetText": "未锁定",
+        "activeTag": "BUTTON",
+        "activeAria": "锁定对象",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 5,
+      "item": {
+       "i": 5,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 X 轴",
+       "text": "x",
+       "w": 20,
+       "h": 28,
+       "x": 817,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 X 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 X 轴",
+        "targetText": "x",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 X 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 6,
+      "item": {
+       "i": 6,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 817,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 7,
+      "item": {
+       "i": 7,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 877,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 8,
+      "item": {
+       "i": 8,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Y 轴",
+       "text": "y",
+       "w": 20,
+       "h": 28,
+       "x": 901,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 Y 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 Y 轴",
+        "targetText": "y",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 Y 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 9,
+      "item": {
+       "i": 9,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 901,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 10,
+      "item": {
+       "i": 10,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 961,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 11,
+      "item": {
+       "i": 11,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Z 轴",
+       "text": "z",
+       "w": 20,
+       "h": 28,
+       "x": 985,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 Z 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 Z 轴",
+        "targetText": "z",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 Z 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 12,
+      "item": {
+       "i": 12,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 985,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 13,
+      "item": {
+       "i": 13,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 1045,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 14,
+      "item": {
+       "i": 14,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 X 轴",
+       "text": "x",
+       "w": 20,
+       "h": 28,
+       "x": 817,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 X 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 X 轴",
+        "targetText": "x",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 X 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 15,
+      "item": {
+       "i": 15,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 817,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 16,
+      "item": {
+       "i": 16,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 877,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 17,
+      "item": {
+       "i": 17,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Y 轴",
+       "text": "y",
+       "w": 20,
+       "h": 28,
+       "x": 901,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 Y 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 Y 轴",
+        "targetText": "y",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 Y 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 18,
+      "item": {
+       "i": 18,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 901,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 19,
+      "item": {
+       "i": 19,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 961,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 20,
+      "item": {
+       "i": 20,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Z 轴",
+       "text": "z",
+       "w": 20,
+       "h": 28,
+       "x": 985,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 Z 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 Z 轴",
+        "targetText": "z",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 Z 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 21,
+      "item": {
+       "i": 21,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 985,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 22,
+      "item": {
+       "i": 22,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 1045,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 23,
+      "item": {
+       "i": 23,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 X 轴",
+       "text": "x",
+       "w": 20,
+       "h": 28,
+       "x": 817,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 X 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 X 轴",
+        "targetText": "x",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 X 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 24,
+      "item": {
+       "i": 24,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 817,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 25,
+      "item": {
+       "i": 25,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 877,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 26,
+      "item": {
+       "i": 26,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Y 轴",
+       "text": "y",
+       "w": 20,
+       "h": 28,
+       "x": 901,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 Y 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 Y 轴",
+        "targetText": "y",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 Y 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 27,
+      "item": {
+       "i": 27,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 901,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 28,
+      "item": {
+       "i": 28,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 961,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 29,
+      "item": {
+       "i": 29,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Z 轴",
+       "text": "z",
+       "w": 20,
+       "h": 28,
+       "x": 985,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 Z 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 Z 轴",
+        "targetText": "z",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 Z 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 30,
+      "item": {
+       "i": 30,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 985,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 31,
+      "item": {
+       "i": 31,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 1045,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 32,
+      "item": {
+       "i": 32,
+       "tag": "INPUT",
+       "type": "range",
+       "ariaLabel": "统一缩放",
+       "text": "",
+       "w": 96,
+       "h": 16,
+       "x": 929,
+       "y": 562,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": "统一缩放"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "INPUT",
+        "targetAria": "统一缩放",
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": "统一缩放",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 33,
+      "item": {
+       "i": 33,
+       "tag": "INPUT",
+       "type": "text",
+       "ariaLabel": "颜色 hex 值",
+       "text": "",
+       "w": 68,
+       "h": 24,
+       "x": 955,
+       "y": 591,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": "颜色 hex 值"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "INPUT",
+        "targetAria": "颜色 hex 值",
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": "颜色 hex 值",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 34,
+      "item": {
+       "i": 34,
+       "tag": "INPUT",
+       "type": "color",
+       "ariaLabel": "颜色",
+       "text": "",
+       "w": 36,
+       "h": 24,
+       "x": 1029,
+       "y": 591,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": "颜色"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "INPUT",
+        "targetAria": "颜色",
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": "颜色",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     }
+    ],
+    "notClosed": [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ],
+    "noEscRecord": []
+   },
+   "deskEnd": {
+    "open": true,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": -220,
+     "w": 220
+    },
+    "inspector": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": 800,
+     "w": 281
+    }
+   }
+  },
+  {
+   "open": {
+    "opened": true,
+    "desk": {
+     "open": true,
+     "tree": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": true,
+      "x": -220,
+      "w": 220
+     },
+     "inspector": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": true,
+      "x": 800,
+      "w": 281
+     }
+    }
+   },
+   "tree_sweep": {
+    "panel": "tree",
+    "count": 20,
+    "rows": [
+     {
+      "i": 0,
+      "item": {
+       "i": 0,
+       "tag": "INPUT",
+       "type": null,
+       "ariaLabel": "搜索场景内容",
+       "text": "",
+       "w": 119,
+       "h": 16,
+       "x": -177,
+       "y": 104,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": "搜索场景内容"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "INPUT",
+        "targetAria": "搜索场景内容",
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": "搜索场景内容",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 1,
+      "item": {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "新增机位",
+       "text": "",
+       "w": 32,
+       "h": 32,
+       "x": -45,
+       "y": 96,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "新增机位"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "新增机位",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "新增机位",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 2,
+      "item": {
+       "i": 2,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "复制当前选择",
+       "text": "",
+       "w": 28,
+       "h": 28,
+       "x": -101,
+       "y": 176,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "复制当前选择"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "复制当前选择",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "复制当前选择",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 3,
+      "item": {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除当前选择",
+       "text": "",
+       "w": 28,
+       "h": 28,
+       "x": -69,
+       "y": 176,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "删除当前选择"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "删除当前选择",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "删除当前选择",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 4,
+      "item": {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "清除当前选择",
+       "text": "",
+       "w": 28,
+       "h": 28,
+       "x": -37,
+       "y": 176,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "清除当前选择"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "清除当前选择",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "清除当前选择",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 5,
+      "item": {
+       "i": 5,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏角色01 · 陈默",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -105,
+       "y": 240,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "隐藏角色01 · 陈默"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "隐藏角色01 · 陈默",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "隐藏角色01 · 陈默",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 6,
+      "item": {
+       "i": 6,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定角色01 · 陈默",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -73,
+       "y": 240,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "锁定角色01 · 陈默"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "锁定角色01 · 陈默",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "锁定角色01 · 陈默",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 7,
+      "item": {
+       "i": 7,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除角色01 · 陈默",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -41,
+       "y": 240,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "删除角色01 · 陈默"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "删除角色01 · 陈默",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "删除角色01 · 陈默",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 8,
+      "item": {
+       "i": 8,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏咖啡桌",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -105,
+       "y": 312,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "隐藏咖啡桌"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "隐藏咖啡桌",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "隐藏咖啡桌",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 9,
+      "item": {
+       "i": 9,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定咖啡桌",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -73,
+       "y": 312,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "锁定咖啡桌"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "锁定咖啡桌",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "锁定咖啡桌",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 10,
+      "item": {
+       "i": 10,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除咖啡桌",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -41,
+       "y": 312,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "删除咖啡桌"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "删除咖啡桌",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "删除咖啡桌",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 11,
+      "item": {
+       "i": 11,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏冷掉的咖啡",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -105,
+       "y": 344,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "隐藏冷掉的咖啡"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "隐藏冷掉的咖啡",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "隐藏冷掉的咖啡",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 12,
+      "item": {
+       "i": 12,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定冷掉的咖啡",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -73,
+       "y": 344,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "锁定冷掉的咖啡"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "锁定冷掉的咖啡",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "锁定冷掉的咖啡",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 13,
+      "item": {
+       "i": 13,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除冷掉的咖啡",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -41,
+       "y": 344,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "删除冷掉的咖啡"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "删除冷掉的咖啡",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "删除冷掉的咖啡",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 14,
+      "item": {
+       "i": 14,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏咖啡馆背景",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -105,
+       "y": 376,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "隐藏咖啡馆背景"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "隐藏咖啡馆背景",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "隐藏咖啡馆背景",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 15,
+      "item": {
+       "i": 15,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定咖啡馆背景",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -73,
+       "y": 376,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "锁定咖啡馆背景"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "锁定咖啡馆背景",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "锁定咖啡馆背景",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 16,
+      "item": {
+       "i": 16,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除咖啡馆背景",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -41,
+       "y": 376,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "删除咖啡馆背景"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "删除咖啡馆背景",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "删除咖啡馆背景",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 17,
+      "item": {
+       "i": 17,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏机位01 · 对峙中景",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -105,
+       "y": 448,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "隐藏机位01 · 对峙中景"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "隐藏机位01 · 对峙中景",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "隐藏机位01 · 对峙中景",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 18,
+      "item": {
+       "i": 18,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定机位01 · 对峙中景",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -73,
+       "y": 448,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "锁定机位01 · 对峙中景"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "锁定机位01 · 对峙中景",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "锁定机位01 · 对峙中景",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     },
+     {
+      "i": 19,
+      "item": {
+       "i": 19,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除机位01 · 对峙中景",
+       "text": "",
+       "w": 24,
+       "h": 24,
+       "x": -41,
+       "y": 448,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "删除机位01 · 对峙中景"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "删除机位01 · 对峙中景",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "删除机位01 · 对峙中景",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开场景对象",
+       "text": ""
+      }
+     }
+    ],
+    "notClosed": [],
+    "noEscRecord": []
+   },
+   "inspector_sweep": {
+    "panel": "inspector",
+    "count": 35,
+    "rows": [
+     {
+      "i": 0,
+      "item": {
+       "i": 0,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": null,
+       "text": "属性",
+       "w": 50,
+       "h": 28,
+       "x": 817,
+       "y": 152,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": null,
+        "targetText": "属性",
+        "activeTag": "BUTTON",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 1,
+      "item": {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": null,
+       "text": "姿势",
+       "w": 50,
+       "h": 28,
+       "x": 875,
+       "y": 152,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": null,
+        "targetText": "姿势",
+        "activeTag": "BUTTON",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 2,
+      "item": {
+       "i": 2,
+       "tag": "INPUT",
+       "type": null,
+       "ariaLabel": null,
+       "text": "",
+       "w": 248,
+       "h": 28,
+       "x": 817,
+       "y": 237,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 3,
+      "item": {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏对象",
+       "text": "可见",
+       "w": 120,
+       "h": 32,
+       "x": 817,
+       "y": 281,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "隐藏对象"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "隐藏对象",
+        "targetText": "可见",
+        "activeTag": "BUTTON",
+        "activeAria": "隐藏对象",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 4,
+      "item": {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定对象",
+       "text": "未锁定",
+       "w": 120,
+       "h": 32,
+       "x": 945,
+       "y": 281,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "锁定对象"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "锁定对象",
+        "targetText": "未锁定",
+        "activeTag": "BUTTON",
+        "activeAria": "锁定对象",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 5,
+      "item": {
+       "i": 5,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 X 轴",
+       "text": "x",
+       "w": 20,
+       "h": 28,
+       "x": 817,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 X 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 X 轴",
+        "targetText": "x",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 X 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 6,
+      "item": {
+       "i": 6,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 817,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 7,
+      "item": {
+       "i": 7,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 877,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 8,
+      "item": {
+       "i": 8,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Y 轴",
+       "text": "y",
+       "w": 20,
+       "h": 28,
+       "x": 901,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 Y 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 Y 轴",
+        "targetText": "y",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 Y 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 9,
+      "item": {
+       "i": 9,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 901,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 10,
+      "item": {
+       "i": 10,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 961,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 11,
+      "item": {
+       "i": 11,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Z 轴",
+       "text": "z",
+       "w": 20,
+       "h": 28,
+       "x": 985,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 Z 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 Z 轴",
+        "targetText": "z",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 Z 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 12,
+      "item": {
+       "i": 12,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 985,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 13,
+      "item": {
+       "i": 13,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 1045,
+       "y": 378,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 14,
+      "item": {
+       "i": 14,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 X 轴",
+       "text": "x",
+       "w": 20,
+       "h": 28,
+       "x": 817,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 X 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 X 轴",
+        "targetText": "x",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 X 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 15,
+      "item": {
+       "i": 15,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 817,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 16,
+      "item": {
+       "i": 16,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 877,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 17,
+      "item": {
+       "i": 17,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Y 轴",
+       "text": "y",
+       "w": 20,
+       "h": 28,
+       "x": 901,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 Y 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 Y 轴",
+        "targetText": "y",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 Y 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 18,
+      "item": {
+       "i": 18,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 901,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 19,
+      "item": {
+       "i": 19,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 961,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 20,
+      "item": {
+       "i": 20,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Z 轴",
+       "text": "z",
+       "w": 20,
+       "h": 28,
+       "x": 985,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 Z 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 Z 轴",
+        "targetText": "z",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 Z 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 21,
+      "item": {
+       "i": 21,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 985,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 22,
+      "item": {
+       "i": 22,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 1045,
+       "y": 450,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 23,
+      "item": {
+       "i": 23,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 X 轴",
+       "text": "x",
+       "w": 20,
+       "h": 28,
+       "x": 817,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 X 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 X 轴",
+        "targetText": "x",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 X 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 24,
+      "item": {
+       "i": 24,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 817,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 25,
+      "item": {
+       "i": 25,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 877,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 26,
+      "item": {
+       "i": 26,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Y 轴",
+       "text": "y",
+       "w": 20,
+       "h": 28,
+       "x": 901,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 Y 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 Y 轴",
+        "targetText": "y",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 Y 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 27,
+      "item": {
+       "i": 27,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 901,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 28,
+      "item": {
+       "i": 28,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 961,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 29,
+      "item": {
+       "i": 29,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Z 轴",
+       "text": "z",
+       "w": 20,
+       "h": 28,
+       "x": 985,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "左右拖动调整 Z 轴"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "左右拖动调整 Z 轴",
+        "targetText": "z",
+        "activeTag": "BUTTON",
+        "activeAria": "左右拖动调整 Z 轴",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 30,
+      "item": {
+       "i": 30,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "w": 59,
+       "h": 28,
+       "x": 985,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": null
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": true,
+        "targetTag": "INPUT",
+        "targetAria": null,
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": null,
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": false,
+      "stateAfter": "open",
+      "focusScopeAfter": "inspector",
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": ""
+      }
+     },
+     {
+      "i": 31,
+      "item": {
+       "i": 31,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "w": 20,
+       "h": 28,
+       "x": 1045,
+       "y": 522,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "activeTag": "BUTTON",
+       "activeAria": "当前帧有关键帧"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "BUTTON",
+        "targetAria": "当前帧有关键帧",
+        "targetText": null,
+        "activeTag": "BUTTON",
+        "activeAria": "当前帧有关键帧",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 32,
+      "item": {
+       "i": 32,
+       "tag": "INPUT",
+       "type": "range",
+       "ariaLabel": "统一缩放",
+       "text": "",
+       "w": 96,
+       "h": 16,
+       "x": 929,
+       "y": 562,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": "统一缩放"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "INPUT",
+        "targetAria": "统一缩放",
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": "统一缩放",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 33,
+      "item": {
+       "i": 33,
+       "tag": "INPUT",
+       "type": "text",
+       "ariaLabel": "颜色 hex 值",
+       "text": "",
+       "w": 68,
+       "h": 24,
+       "x": 955,
+       "y": 591,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": "颜色 hex 值"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "INPUT",
+        "targetAria": "颜色 hex 值",
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": "颜色 hex 值",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     },
+     {
+      "i": 34,
+      "item": {
+       "i": 34,
+       "tag": "INPUT",
+       "type": "color",
+       "ariaLabel": "颜色",
+       "text": "",
+       "w": 36,
+       "h": 24,
+       "x": 1029,
+       "y": 591,
+       "hiddenType": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "activeTag": "INPUT",
+       "activeAria": "颜色"
+      },
+      "esc": [
+       {
+        "dpAtDocBubble": false,
+        "targetTag": "INPUT",
+        "targetAria": "颜色",
+        "targetText": null,
+        "activeTag": "INPUT",
+        "activeAria": "颜色",
+        "dpFinal": true
+       }
+      ],
+      "panelClosed": true,
+      "stateAfter": "closed",
+      "focusScopeAfter": null,
+      "deskOpenAfter": true,
+      "activeAfter": {
+       "tag": "BUTTON",
+       "aria": "打开属性面板",
+       "text": ""
+      }
+     }
+    ],
+    "notClosed": [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ],
+    "noEscRecord": []
+   },
+   "deskEnd": {
+    "open": true,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": -220,
+     "w": 220
+    },
+    "inspector": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": 800,
+     "w": 281
+    }
+   }
+  }
+ ],
+ "treeCount": [
+  20,
+  20
+ ],
+ "inspCount": [
+  35,
+  35
+ ],
+ "treeNotClosed": [
+  [],
+  []
+ ],
+ "inspNotClosed": [
+  [
+   6,
+   9,
+   12,
+   15,
+   18,
+   21,
+   24,
+   27,
+   30
+  ],
+  [
+   6,
+   9,
+   12,
+   15,
+   18,
+   21,
+   24,
+   27,
+   30
+  ]
+ ],
+ "consistent": true
+}

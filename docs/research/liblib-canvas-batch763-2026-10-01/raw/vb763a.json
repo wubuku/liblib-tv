@@ -1,0 +1,834 @@
+{
+ "batch": 763,
+ "probe": "a",
+ "widths": [
+  896,
+  897,
+  898,
+  899,
+  900,
+  901
+ ],
+ "rounds": [
+  {
+   "breakpoint": [
+    {
+     "open": true,
+     "innerWidth": 896,
+     "mq898": true,
+     "mq899": true,
+     "mqWidthLt899": true,
+     "jsSaysMobile": true,
+     "cssSaysMobile": true,
+     "tree": {
+      "inert": true,
+      "ariaHidden": "true",
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": -220,
+       "y": 88,
+       "w": 220,
+       "h": 912
+      },
+      "visibleArea": 200640,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "inspector": {
+      "inert": true,
+      "ariaHidden": "true",
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 896,
+       "y": 88,
+       "w": 281,
+       "h": 736
+      },
+      "visibleArea": 206816,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "treeFirstControl": null
+    },
+    {
+     "open": true,
+     "innerWidth": 897,
+     "mq898": true,
+     "mq899": true,
+     "mqWidthLt899": true,
+     "jsSaysMobile": true,
+     "cssSaysMobile": true,
+     "tree": {
+      "inert": true,
+      "ariaHidden": "true",
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": -220,
+       "y": 88,
+       "w": 220,
+       "h": 912
+      },
+      "visibleArea": 200640,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "inspector": {
+      "inert": true,
+      "ariaHidden": "true",
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 897,
+       "y": 88,
+       "w": 281,
+       "h": 736
+      },
+      "visibleArea": 206816,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "treeFirstControl": null
+    },
+    {
+     "open": true,
+     "innerWidth": 898,
+     "mq898": true,
+     "mq899": true,
+     "mqWidthLt899": true,
+     "jsSaysMobile": true,
+     "cssSaysMobile": true,
+     "tree": {
+      "inert": true,
+      "ariaHidden": "true",
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": -220,
+       "y": 88,
+       "w": 220,
+       "h": 912
+      },
+      "visibleArea": 200640,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "inspector": {
+      "inert": true,
+      "ariaHidden": "true",
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 898,
+       "y": 88,
+       "w": 281,
+       "h": 736
+      },
+      "visibleArea": 206816,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "treeFirstControl": null
+    },
+    {
+     "open": true,
+     "innerWidth": 899,
+     "mq898": false,
+     "mq899": true,
+     "mqWidthLt899": false,
+     "jsSaysMobile": false,
+     "cssSaysMobile": false,
+     "tree": {
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 48,
+       "y": 52,
+       "w": 233,
+       "h": 948
+      },
+      "visibleArea": 220884,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "inspector": {
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 618,
+       "y": 52,
+       "w": 281,
+       "h": 766
+      },
+      "visibleArea": 215246,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "treeFirstControl": {
+      "x": 252,
+      "y": 76,
+      "tag": "svg",
+      "insideTree": true,
+      "topTagInside": true
+     }
+    },
+    {
+     "open": true,
+     "innerWidth": 900,
+     "mq898": false,
+     "mq899": false,
+     "mqWidthLt899": false,
+     "jsSaysMobile": false,
+     "cssSaysMobile": false,
+     "tree": {
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 48,
+       "y": 52,
+       "w": 233,
+       "h": 948
+      },
+      "visibleArea": 220884,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "inspector": {
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 619,
+       "y": 52,
+       "w": 281,
+       "h": 766
+      },
+      "visibleArea": 215246,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "treeFirstControl": {
+      "x": 252,
+      "y": 76,
+      "tag": "svg",
+      "insideTree": true,
+      "topTagInside": true
+     }
+    },
+    {
+     "open": true,
+     "innerWidth": 901,
+     "mq898": false,
+     "mq899": false,
+     "mqWidthLt899": false,
+     "jsSaysMobile": false,
+     "cssSaysMobile": false,
+     "tree": {
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 48,
+       "y": 52,
+       "w": 233,
+       "h": 948
+      },
+      "visibleArea": 220884,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "inspector": {
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 620,
+       "y": 52,
+       "w": 281,
+       "h": 766
+      },
+      "visibleArea": 215246,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "treeFirstControl": {
+      "x": 252,
+      "y": 76,
+      "tag": "svg",
+      "insideTree": true,
+      "topTagInside": true
+     }
+    }
+   ],
+   "editableProbe": {
+    "found": true,
+    "tag": "INPUT",
+    "type": null,
+    "x": 157,
+    "y": 76
+   },
+   "escLadder": [
+    {
+     "step": "baseline-no-panel",
+     "before": {
+      "open": true,
+      "innerWidth": 1440,
+      "focusState": "workspace",
+      "exportTrigger": {
+       "present": true,
+       "ariaExpanded": "false",
+       "disabled": false,
+       "text": "导出视频到画布"
+      },
+      "exportPanel": false,
+      "activeGesture": "",
+      "lastCommand": "",
+      "historyPast": "0",
+      "historyFuture": "0"
+     },
+     "afterEsc": {
+      "open": false
+     },
+     "closed": true,
+     "focusAfter": {
+      "open": false,
+      "inDialog": false,
+      "tag": "BUTTON",
+      "type": "button",
+      "ariaLabel": null,
+      "isContentEditable": false
+     }
+    },
+    {
+     "step": "export-panel-open",
+     "clickHit": {
+      "tag": "SPAN",
+      "ok": true,
+      "ariaLabel": null
+     },
+     "before": {
+      "open": true,
+      "innerWidth": 1440,
+      "focusState": "workspace",
+      "exportTrigger": {
+       "present": true,
+       "ariaExpanded": "true",
+       "disabled": false,
+       "text": "导出视频到画布"
+      },
+      "exportPanel": true,
+      "activeGesture": "",
+      "lastCommand": "",
+      "historyPast": "0",
+      "historyFuture": "0"
+     },
+     "afterEsc": {
+      "open": true,
+      "innerWidth": 1440,
+      "focusState": "workspace",
+      "exportTrigger": {
+       "present": true,
+       "ariaExpanded": "false",
+       "disabled": false,
+       "text": "导出视频到画布"
+      },
+      "exportPanel": false,
+      "activeGesture": "",
+      "lastCommand": "",
+      "historyPast": "0",
+      "historyFuture": "0"
+     },
+     "closedWorkspace": false,
+     "exportClosed": true
+    },
+    {
+     "step": "second-esc",
+     "afterEsc": {
+      "open": false
+     },
+     "closedWorkspace": true,
+     "focusAfter": {
+      "open": false,
+      "inDialog": false,
+      "tag": "BUTTON",
+      "type": "button",
+      "ariaLabel": null,
+      "isContentEditable": false
+     }
+    },
+    {
+     "step": "esc-in-editable",
+     "info": {
+      "found": true,
+      "tag": "INPUT",
+      "type": null,
+      "x": 157,
+      "y": 76
+     },
+     "activeBefore": {
+      "open": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "type": null,
+      "ariaLabel": "搜索场景内容",
+      "isContentEditable": false
+     },
+     "afterEsc": {
+      "open": true,
+      "innerWidth": 1440,
+      "focusState": "workspace",
+      "exportTrigger": {
+       "present": true,
+       "ariaExpanded": "false",
+       "disabled": false,
+       "text": "导出视频到画布"
+      },
+      "exportPanel": false,
+      "activeGesture": "",
+      "lastCommand": "",
+      "historyPast": "0",
+      "historyFuture": "0"
+     },
+     "closedWorkspace": false
+    },
+    {
+     "step": "esc-after-leaving-editable",
+     "afterEsc": {
+      "open": false
+     },
+     "closedWorkspace": true,
+     "focusAfter": {
+      "open": false,
+      "inDialog": false,
+      "tag": "BUTTON",
+      "type": "button",
+      "ariaLabel": null,
+      "isContentEditable": false
+     }
+    }
+   ]
+  },
+  {
+   "breakpoint": [
+    {
+     "open": true,
+     "innerWidth": 896,
+     "mq898": true,
+     "mq899": true,
+     "mqWidthLt899": true,
+     "jsSaysMobile": true,
+     "cssSaysMobile": true,
+     "tree": {
+      "inert": true,
+      "ariaHidden": "true",
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": -220,
+       "y": 88,
+       "w": 220,
+       "h": 912
+      },
+      "visibleArea": 200640,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "inspector": {
+      "inert": true,
+      "ariaHidden": "true",
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 896,
+       "y": 88,
+       "w": 281,
+       "h": 736
+      },
+      "visibleArea": 206816,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "treeFirstControl": null
+    },
+    {
+     "open": true,
+     "innerWidth": 897,
+     "mq898": true,
+     "mq899": true,
+     "mqWidthLt899": true,
+     "jsSaysMobile": true,
+     "cssSaysMobile": true,
+     "tree": {
+      "inert": true,
+      "ariaHidden": "true",
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": -220,
+       "y": 88,
+       "w": 220,
+       "h": 912
+      },
+      "visibleArea": 200640,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "inspector": {
+      "inert": true,
+      "ariaHidden": "true",
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 897,
+       "y": 88,
+       "w": 281,
+       "h": 736
+      },
+      "visibleArea": 206816,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "treeFirstControl": null
+    },
+    {
+     "open": true,
+     "innerWidth": 898,
+     "mq898": true,
+     "mq899": true,
+     "mqWidthLt899": true,
+     "jsSaysMobile": true,
+     "cssSaysMobile": true,
+     "tree": {
+      "inert": true,
+      "ariaHidden": "true",
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": -220,
+       "y": 88,
+       "w": 220,
+       "h": 912
+      },
+      "visibleArea": 200640,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "inspector": {
+      "inert": true,
+      "ariaHidden": "true",
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 898,
+       "y": 88,
+       "w": 281,
+       "h": 736
+      },
+      "visibleArea": 206816,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "treeFirstControl": null
+    },
+    {
+     "open": true,
+     "innerWidth": 899,
+     "mq898": false,
+     "mq899": true,
+     "mqWidthLt899": false,
+     "jsSaysMobile": false,
+     "cssSaysMobile": false,
+     "tree": {
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 48,
+       "y": 52,
+       "w": 233,
+       "h": 948
+      },
+      "visibleArea": 220884,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "inspector": {
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 618,
+       "y": 52,
+       "w": 281,
+       "h": 766
+      },
+      "visibleArea": 215246,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "treeFirstControl": {
+      "x": 252,
+      "y": 76,
+      "tag": "svg",
+      "insideTree": true,
+      "topTagInside": true
+     }
+    },
+    {
+     "open": true,
+     "innerWidth": 900,
+     "mq898": false,
+     "mq899": false,
+     "mqWidthLt899": false,
+     "jsSaysMobile": false,
+     "cssSaysMobile": false,
+     "tree": {
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 48,
+       "y": 52,
+       "w": 233,
+       "h": 948
+      },
+      "visibleArea": 220884,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "inspector": {
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 619,
+       "y": 52,
+       "w": 281,
+       "h": 766
+      },
+      "visibleArea": 215246,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "treeFirstControl": {
+      "x": 252,
+      "y": 76,
+      "tag": "svg",
+      "insideTree": true,
+      "topTagInside": true
+     }
+    },
+    {
+     "open": true,
+     "innerWidth": 901,
+     "mq898": false,
+     "mq899": false,
+     "mqWidthLt899": false,
+     "jsSaysMobile": false,
+     "cssSaysMobile": false,
+     "tree": {
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 48,
+       "y": 52,
+       "w": 233,
+       "h": 948
+      },
+      "visibleArea": 220884,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "inspector": {
+      "inert": false,
+      "ariaHidden": null,
+      "display": "block",
+      "visibility": "visible",
+      "rect": {
+       "x": 620,
+       "y": 52,
+       "w": 281,
+       "h": 766
+      },
+      "visibleArea": 215246,
+      "mobilePanelState": "closed",
+      "focusScope": null
+     },
+     "treeFirstControl": {
+      "x": 252,
+      "y": 76,
+      "tag": "svg",
+      "insideTree": true,
+      "topTagInside": true
+     }
+    }
+   ],
+   "editableProbe": {
+    "found": true,
+    "tag": "INPUT",
+    "type": null,
+    "x": 157,
+    "y": 76
+   },
+   "escLadder": [
+    {
+     "step": "baseline-no-panel",
+     "before": {
+      "open": true,
+      "innerWidth": 1440,
+      "focusState": "workspace",
+      "exportTrigger": {
+       "present": true,
+       "ariaExpanded": "false",
+       "disabled": false,
+       "text": "导出视频到画布"
+      },
+      "exportPanel": false,
+      "activeGesture": "",
+      "lastCommand": "",
+      "historyPast": "0",
+      "historyFuture": "0"
+     },
+     "afterEsc": {
+      "open": false
+     },
+     "closed": true,
+     "focusAfter": {
+      "open": false,
+      "inDialog": false,
+      "tag": "BUTTON",
+      "type": "button",
+      "ariaLabel": null,
+      "isContentEditable": false
+     }
+    },
+    {
+     "step": "export-panel-open",
+     "clickHit": {
+      "tag": "SPAN",
+      "ok": true,
+      "ariaLabel": null
+     },
+     "before": {
+      "open": true,
+      "innerWidth": 1440,
+      "focusState": "workspace",
+      "exportTrigger": {
+       "present": true,
+       "ariaExpanded": "true",
+       "disabled": false,
+       "text": "导出视频到画布"
+      },
+      "exportPanel": true,
+      "activeGesture": "",
+      "lastCommand": "",
+      "historyPast": "0",
+      "historyFuture": "0"
+     },
+     "afterEsc": {
+      "open": true,
+      "innerWidth": 1440,
+      "focusState": "workspace",
+      "exportTrigger": {
+       "present": true,
+       "ariaExpanded": "false",
+       "disabled": false,
+       "text": "导出视频到画布"
+      },
+      "exportPanel": false,
+      "activeGesture": "",
+      "lastCommand": "",
+      "historyPast": "0",
+      "historyFuture": "0"
+     },
+     "closedWorkspace": false,
+     "exportClosed": true
+    },
+    {
+     "step": "second-esc",
+     "afterEsc": {
+      "open": false
+     },
+     "closedWorkspace": true,
+     "focusAfter": {
+      "open": false,
+      "inDialog": false,
+      "tag": "BUTTON",
+      "type": "button",
+      "ariaLabel": null,
+      "isContentEditable": false
+     }
+    },
+    {
+     "step": "esc-in-editable",
+     "info": {
+      "found": true,
+      "tag": "INPUT",
+      "type": null,
+      "x": 157,
+      "y": 76
+     },
+     "activeBefore": {
+      "open": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "type": null,
+      "ariaLabel": "搜索场景内容",
+      "isContentEditable": false
+     },
+     "afterEsc": {
+      "open": true,
+      "innerWidth": 1440,
+      "focusState": "workspace",
+      "exportTrigger": {
+       "present": true,
+       "ariaExpanded": "false",
+       "disabled": false,
+       "text": "导出视频到画布"
+      },
+      "exportPanel": false,
+      "activeGesture": "",
+      "lastCommand": "",
+      "historyPast": "0",
+      "historyFuture": "0"
+     },
+     "closedWorkspace": false
+    },
+    {
+     "step": "esc-after-leaving-editable",
+     "afterEsc": {
+      "open": false
+     },
+     "closedWorkspace": true,
+     "focusAfter": {
+      "open": false,
+      "inDialog": false,
+      "tag": "BUTTON",
+      "type": "button",
+      "ariaLabel": null,
+      "isContentEditable": false
+     }
+    }
+   ]
+  }
+ ],
+ "roundDiff": {},
+ "consistent": true
+}

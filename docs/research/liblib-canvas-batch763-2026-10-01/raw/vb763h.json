@@ -1,0 +1,194 @@
+{
+ "batch": 763,
+ "probe": "h",
+ "question": "导演台里的增删扛不扛得过一次完整页面重载？",
+ "rounds": [
+  {
+   "loadClick": {
+    "pt": [
+     538,
+     208
+    ]
+   },
+   "open1": {
+    "ok": true
+   },
+   "objectsAtOpen1": {
+    "count": 5,
+    "ids": [
+     "director-character-lead",
+     "director-prop-table",
+     "director-prop-mug",
+     "director-prop-wall",
+     "director-camera-main"
+    ]
+   },
+   "addCameraClick": {
+    "pt": [
+     11,
+     159
+    ]
+   },
+   "objectsAfterAdd": {
+    "count": 6,
+    "ids": [
+     "director-character-lead",
+     "director-prop-table",
+     "director-prop-mug",
+     "director-prop-wall",
+     "director-camera-main",
+     "director-camera-1791136634207-1"
+    ]
+   },
+   "storageBeforeReload": {
+    "local": [
+     {
+      "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D",
+      "bytes": 10368,
+      "looksDirector": true
+     }
+    ],
+    "session": [],
+    "localCount": 1,
+    "sessionCount": 0
+   },
+   "reloadClick": {
+    "pt": [
+     538,
+     208
+    ]
+   },
+   "open2": {
+    "ok": true
+   },
+   "objectsAfterReload": {
+    "count": 6,
+    "ids": [
+     "director-character-lead",
+     "director-prop-table",
+     "director-prop-mug",
+     "director-prop-wall",
+     "director-camera-main",
+     "director-camera-1791136634207-1"
+    ]
+   },
+   "storageAfterReload": {
+    "local": [
+     {
+      "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D",
+      "bytes": 10368,
+      "looksDirector": true
+     }
+    ],
+    "session": [],
+    "localCount": 1,
+    "sessionCount": 0
+   },
+   "verdict": {
+    "baseCount": 5,
+    "afterAddCount": 6,
+    "afterReloadCount": 6,
+    "addSurvivedReload": true,
+    "reloadLostAdd": false,
+    "newIdsAfterAdd": [
+     "director-camera-1791136634207-1"
+    ]
+   }
+  },
+  {
+   "loadClick": {
+    "pt": [
+     538,
+     208
+    ]
+   },
+   "open1": {
+    "ok": true
+   },
+   "objectsAtOpen1": {
+    "count": 6,
+    "ids": [
+     "director-character-lead",
+     "director-prop-table",
+     "director-prop-mug",
+     "director-prop-wall",
+     "director-camera-main",
+     "director-camera-1791136634207-1"
+    ]
+   },
+   "addCameraClick": {
+    "pt": [
+     11,
+     159
+    ]
+   },
+   "objectsAfterAdd": {
+    "count": 7,
+    "ids": [
+     "director-character-lead",
+     "director-prop-table",
+     "director-prop-mug",
+     "director-prop-wall",
+     "director-camera-main",
+     "director-camera-1791136634207-1",
+     "director-camera-1791136648294-1"
+    ]
+   },
+   "storageBeforeReload": {
+    "local": [
+     {
+      "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D",
+      "bytes": 12776,
+      "looksDirector": true
+     }
+    ],
+    "session": [],
+    "localCount": 1,
+    "sessionCount": 0
+   },
+   "reloadClick": {
+    "pt": [
+     538,
+     208
+    ]
+   },
+   "open2": {
+    "ok": true
+   },
+   "objectsAfterReload": {
+    "count": 7,
+    "ids": [
+     "director-character-lead",
+     "director-prop-table",
+     "director-prop-mug",
+     "director-prop-wall",
+     "director-camera-main",
+     "director-camera-1791136634207-1",
+     "director-camera-1791136648294-1"
+    ]
+   },
+   "storageAfterReload": {
+    "local": [
+     {
+      "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D",
+      "bytes": 12776,
+      "looksDirector": true
+     }
+    ],
+    "session": [],
+    "localCount": 1,
+    "sessionCount": 0
+   },
+   "verdict": {
+    "baseCount": 6,
+    "afterAddCount": 7,
+    "afterReloadCount": 7,
+    "addSurvivedReload": true,
+    "reloadLostAdd": false,
+    "newIdsAfterAdd": [
+     "director-camera-1791136648294-1"
+    ]
+   }
+  }
+ ]
+}

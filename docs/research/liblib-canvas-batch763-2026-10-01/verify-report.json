@@ -1,0 +1,1336 @@
+{
+ "batch": 763,
+ "checks": [
+  {
+   "label": "静态：边界在 Escape 上 preventDefault",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：边界在 Escape 上 stopPropagation（缺陷的机制）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：边界在 Escape 上 cancel()",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：边界的 onFocus 直接 begin()（为什么只加守卫不够）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：边界目前**没有**「没有待取消手势就放行」的守卫",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：变换数值框 spread 了 gesture",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：那些框确实是 type=number",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：DirectorDesk 的 Esc 阶梯挂在 window 上",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：移动端关抽屉那一档排在 isEditable 早退**之前**",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：useDirectorGestureBoundary 至少 5 处调用（影响面）",
+   "pass": true,
+   "got": 5
+  },
+  {
+   "label": "静态：导演台项目持久化键在 src/ 里",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 14 条",
+   "pass": true,
+   "got": 14
+  },
+  {
+   "label": "产物：判据 id 连号 J1..J14",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：每条判据都有 statement 与 verdict",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 产物：14 条判据的 verdict 全是 PASS（不许偷偷改成 FAIL 蒙混）",
+   "pass": true,
+   "got": [
+    "PASS"
+   ]
+  },
+  {
+   "label": "产物：判据 id 在 README 里都被引用",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：findings 与 judgments[].evidence **逐条**同源",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "产物：每条判据都引用的键真实存在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：缺陷恰好 1 条且是 D1",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 产物：README 里 D1 的严重度与产物一致（不许产物降级、README 还写着中）",
+   "pass": true,
+   "got": "中"
+  },
+  {
+   "label": "产物：D1 标了需要改 src/",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：D1 点了 useDirectorGestureBoundary.ts:92-98",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：D1 给了修法提示",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：观察 2 条（事实更正 + 待拍板）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：探针教训 5 条 R53..R57",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：教训在 README 里都有出处",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：不声称清单非空",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：明说不声称源站对照",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：明说 763b 两轮不可比",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：探针清单 8 个",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 产物：每个探针自报的轮次与原始读数的轮次一致（不许谎报）",
+   "pass": true,
+   "got": [
+    [
+     "763a",
+     2,
+     2
+    ],
+    [
+     "763b",
+     2,
+     2
+    ],
+    [
+     "763c",
+     2,
+     2
+    ],
+    [
+     "763d",
+     2,
+     2
+    ],
+    [
+     "763e",
+     2,
+     2
+    ],
+    [
+     "763f",
+     2,
+     2
+    ],
+    [
+     "763g",
+     2,
+     2
+    ],
+    [
+     "763h",
+     2,
+     2
+    ]
+   ]
+  },
+  {
+   "label": "产物：每个探针都指向存在的 raw 文件",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：每个探针都指向存在的 probes 文件",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：raw/ 下正好 8 份原始读数",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：probes/ 下 8 个探针 + 1 个汇编器",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：8 份原始读数都记了 sha",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：本批 src 未改动",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：存在且非空",
+   "pass": true,
+   "got": 6691
+  },
+  {
+   "label": "README：含章节 ## 判据",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：含章节 ## 缺陷",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：含章节 ## 探针教训",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：含章节 ## 不声称",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：含章节 ## 复现",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：含章节 ## 观察",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：表格首格没有裸数字（pre-commit 钩子的正则）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "README：缺陷章节点名了 useDirectorGestureBoundary",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：写了修法要两处一起改",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：如实写了 763c 0/8 复现",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：如实写了重复 id 是打印截断造成的",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "台账：恰好一行 Batch 763",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "台账：Batch 763 行没有 U+FFFD",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "台账：行数 626（本批只追加一行）",
+   "pass": true,
+   "got": 626
+  },
+  {
+   "label": "台账：历史 U+FFFD 仍只在 522/583/587",
+   "pass": true,
+   "got": [
+    522,
+    583,
+    587
+   ]
+  },
+  {
+   "label": "原始：8 份读数全部可读",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J1 交叉：六档宽度齐全 896..901",
+   "pass": true,
+   "got": [
+    896,
+    897,
+    898,
+    899,
+    900,
+    901
+   ]
+  },
+  {
+   "label": "J1 交叉：重算后六档零错位",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J1：产物 breakpointAllOk 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J1：产物 breakpointZeroMismatch 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J1：产物里的六档 verdict 逐档与重算一致",
+   "pass": true,
+   "got": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "label": "J2 交叉：Esc 阶梯五步都在（无面板/导出面板/第二次/可编辑控件内/离开后）",
+   "pass": true,
+   "got": [
+    "baseline-no-panel",
+    "export-panel-open",
+    "second-esc",
+    "esc-in-editable",
+    "esc-after-leaving-editable"
+   ]
+  },
+  {
+   "label": "J2：产物 escLadderRows 与判据 2 证据一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J3 交叉：两轮焦点相关字段逐字段一致",
+   "pass": true,
+   "got": [
+    {
+     "panel": "tree",
+     "equal": true,
+     "reachableRound1": 20,
+     "reachableRound2": 17
+    },
+    {
+     "panel": "inspector",
+     "equal": true,
+     "reachableRound1": 35,
+     "reachableRound2": 33
+    }
+   ]
+  },
+  {
+   "label": "J3：产物 drawerFocusAllEqual 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J4：两个抽屉都验证了「只关抽屉不关导演台」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J3/J4：两抽屉 Tab 12 步 0 逃出",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 如实标注：reachable 两轮不同（探针自伤），不判等",
+   "pass": true,
+   "got": [
+    {
+     "panel": "tree",
+     "equal": true,
+     "reachableRound1": 20,
+     "reachableRound2": 17
+    },
+    {
+     "panel": "inspector",
+     "equal": true,
+     "reachableRound1": 35,
+     "reachableRound2": 33
+    }
+   ]
+  },
+  {
+   "label": "★ 如实标注：产物里 reachable 也是单列不判等",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J5 交叉：两轮四步都动了历史",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J5 交叉：四键顺序为 ⌘Z/⌘Y/⌘Z/⌘⇧Z",
+   "pass": true,
+   "got": [
+    "Cmd+Z",
+    "Cmd+Y",
+    "Cmd+Z",
+    "Cmd+Shift+Z"
+   ]
+  },
+  {
+   "label": "J5 交叉：每步之后的 lastCommand 依次 UNDO/REDO/UNDO/REDO",
+   "pass": true,
+   "got": [
+    "UNDO",
+    "REDO",
+    "UNDO",
+    "REDO"
+   ]
+  },
+  {
+   "label": "J5：产物 undoRedoAllMoved 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J5：产物两轮读数都在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J6 交叉：Delete/Backspace × 两轮都真删（判效应）",
+   "pass": true,
+   "got": [
+    {
+     "key": "Delete",
+     "pastMoved": true,
+     "pickedCountBefore": 6,
+     "finalCount": 5,
+     "countDroppedByOne": true,
+     "rowGone": true,
+     "labelChanged": true,
+     "hitOk": true
+    },
+    {
+     "key": "Backspace",
+     "pastMoved": true,
+     "pickedCountBefore": 5,
+     "finalCount": 4,
+     "countDroppedByOne": true,
+     "rowGone": true,
+     "labelChanged": false,
+     "hitOk": true
+    },
+    {
+     "key": "Delete",
+     "pastMoved": true,
+     "pickedCountBefore": 5,
+     "finalCount": 4,
+     "countDroppedByOne": true,
+     "rowGone": true,
+     "labelChanged": true,
+     "hitOk": true
+    },
+    {
+     "key": "Backspace",
+     "pastMoved": true,
+     "pickedCountBefore": 4,
+     "finalCount": 3,
+     "countDroppedByOne": true,
+     "rowGone": true,
+     "labelChanged": false,
+     "hitOk": true
+    }
+   ]
+  },
+  {
+   "label": "J6 交叉：四行都在（2 键 × 2 轮）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J6：产物 deleteBothFired 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J6：★ 产物里如实记下「按标签判会看漏」的那一行",
+   "pass": true,
+   "got": [
+    [
+     "Backspace",
+     "Backspace"
+    ],
+    [
+     "Backspace",
+     "Backspace"
+    ]
+   ]
+  },
+  {
+   "label": "J6：产物每一行都带上了「点中时对象数」这个效应证据",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J7 交叉：树面板 20 个控件 0 个关不掉",
+   "pass": true,
+   "got": [
+    {
+     "round": 1,
+     "count": 20,
+     "notClosedIdx": [],
+     "notClosedTypes": [],
+     "bad": [],
+     "goodCount": 20,
+     "closedAllReachedWinBubble": false
+    },
+    {
+     "round": 2,
+     "count": 20,
+     "notClosedIdx": [],
+     "notClosedTypes": [],
+     "bad": [],
+     "goodCount": 20,
+     "closedAllReachedWinBubble": false
+    }
+   ]
+  },
+  {
+   "label": "J7 交叉：失效序号读到了真列表（防「读错键名拿到 null 还判一致」）",
+   "pass": true,
+   "got": [
+    [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ],
+    [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ]
+   ]
+  },
+  {
+   "label": "J7 交叉：属性面板 9 个关不掉",
+   "pass": true,
+   "got": 9
+  },
+  {
+   "label": "J7 交叉：失效序号两轮稳定且是 6/9/12/…/30",
+   "pass": true,
+   "got": [
+    [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ],
+    [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ]
+   ]
+  },
+  {
+   "label": "J7 交叉：失效控件 type 全是 number",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J7：产物 sweepInspectorNotClosedIdx 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J7：产物 sweepTreeZeroNotClosed 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J7：两轮属性面板控件数都是 35",
+   "pass": true,
+   "got": [
+    35,
+    35
+   ]
+  },
+  {
+   "label": "★ 前置：失效控件列表两轮都非空（否则 all([]) 会静默通过）",
+   "pass": true,
+   "got": [
+    9,
+    9
+   ]
+  },
+  {
+   "label": "J8 交叉：失效控件的 Esc 从未到达 window 冒泡",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J8 交叉：但 window 捕获照样触发（事件确实发出去了）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J8 交叉：能关掉的控件全部触发了 window 冒泡",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J8：产物 notClosedNeverReachedWindowBubble 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J8：产物 notClosedReachedWindowCapture 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J8：产物 closedAlwaysReachedWindowBubble 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J9 交叉：注入的 text 与 number 四格都关掉了抽屉",
+   "pass": true,
+   "got": [
+    {
+     "round": 1,
+     "type": "text",
+     "drawerClosed": true,
+     "focused": true,
+     "reachedWinBubble": true
+    },
+    {
+     "round": 2,
+     "type": "text",
+     "drawerClosed": true,
+     "focused": true,
+     "reachedWinBubble": true
+    },
+    {
+     "round": 1,
+     "type": "number",
+     "drawerClosed": true,
+     "focused": true,
+     "reachedWinBubble": true
+    },
+    {
+     "round": 2,
+     "type": "number",
+     "drawerClosed": true,
+     "focused": true,
+     "reachedWinBubble": true
+    }
+   ]
+  },
+  {
+   "label": "J9：产物 injectionRefutesNativeNumber 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J9：★ 注入对照否掉原生假设这件事在 README 里写明了",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J10 交叉：Esc 连按两次都关不掉抽屉、也没关导演台",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J10：产物 escNeverClosesDrawer 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J10：产物 escDidNotCloseWorkspaceEither 为真",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J10 交叉：Tab 离开边界后 Esc 恢复正常（逃生门）",
+   "pass": true,
+   "got": [
+    {
+     "round": 1,
+     "target": {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x",
+      "aria": null,
+      "text": ""
+     },
+     "focusOpensGesture": true,
+     "focusPast": [
+      "0",
+      "0"
+     ],
+     "esc1": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "esc1GestureCleared": true,
+     "esc2First": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "esc2Second": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "focusStillIn": true,
+     "tabLeft": true,
+     "tabLandedAria": "当前帧有关键帧",
+     "tabEsc": {
+      "deskOpen": true,
+      "inspectorState": "closed",
+      "treeState": "closed",
+      "drawerClosed": true,
+      "workspaceClosed": false
+     },
+     "editPastBeforeBlur": "0",
+     "editPastAfterBlur": "1",
+     "gestureOnBlur": [
+      "director-gesture-<gen>",
+      ""
+     ],
+     "lastCommandAfterBlur": "GESTURE_COMMIT"
+    },
+    {
+     "round": 2,
+     "target": {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x",
+      "aria": null,
+      "text": ""
+     },
+     "focusOpensGesture": true,
+     "focusPast": [
+      "0",
+      "0"
+     ],
+     "esc1": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "esc1GestureCleared": true,
+     "esc2First": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "esc2Second": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "focusStillIn": true,
+     "tabLeft": true,
+     "tabLandedAria": "当前帧有关键帧",
+     "tabEsc": {
+      "deskOpen": true,
+      "inspectorState": "closed",
+      "treeState": "closed",
+      "drawerClosed": true,
+      "workspaceClosed": false
+     },
+     "editPastBeforeBlur": "0",
+     "editPastAfterBlur": "1",
+     "gestureOnBlur": [
+      "director-gesture-<gen>",
+      ""
+     ],
+     "lastCommandAfterBlur": "GESTURE_COMMIT"
+    }
+   ]
+  },
+  {
+   "label": "J10：Tab 落点是关键帧按钮（不是数值框）",
+   "pass": true,
+   "got": [
+    "当前帧有关键帧",
+    "当前帧有关键帧"
+   ]
+  },
+  {
+   "label": "J10：产物 tabHatchWorks 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J11 交叉：只聚焦就开 gesture、但不写历史",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J11 交叉：失焦才 commit（past 0→1、GESTURE_COMMIT）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J11：产物 focusAloneOpensGesture / focusAloneNoHistory 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J11：产物 gestureCommitsOnBlur 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J11：因链验的代表控件是 position/x",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J12 交叉：两轮新增的机位都扛过 reload",
+   "pass": true,
+   "got": [
+    {
+     "round": 1,
+     "verdict": {
+      "baseCount": 5,
+      "afterAddCount": 6,
+      "afterReloadCount": 6,
+      "addSurvivedReload": true,
+      "reloadLostAdd": false,
+      "newIdsAfterAdd": [
+       "director-camera-1791136634207-1"
+      ]
+     },
+     "localKeys": [
+      "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+     ],
+     "sameKeyBeforeAfter": true
+    },
+    {
+     "round": 2,
+     "verdict": {
+      "baseCount": 6,
+      "afterAddCount": 7,
+      "afterReloadCount": 7,
+      "addSurvivedReload": true,
+      "reloadLostAdd": false,
+      "newIdsAfterAdd": [
+       "director-camera-1791136648294-1"
+      ]
+     },
+     "localKeys": [
+      "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+     ],
+     "sameKeyBeforeAfter": true
+    }
+   ]
+  },
+  {
+   "label": "J12 交叉：没有任何一轮丢了新增",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J12 交叉：持久化键就是 director-project",
+   "pass": true,
+   "got": [
+    "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+   ]
+  },
+  {
+   "label": "J12 交叉：重载前后是同一个键",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J12：产物 addSurvivesReload / reloadNeverLostAdd 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J12：产物记下了持久化键",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 事实更正：README 明确推翻「两个 store 都无持久化」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J13 交叉：两轮种子都是 5 个对象、一次到位、零重复 id",
+   "pass": true,
+   "got": [
+    [
+     [
+      5,
+      5,
+      5,
+      5
+     ],
+     [
+      5,
+      5,
+      5,
+      5
+     ]
+    ],
+    [
+     false,
+     false
+    ],
+    [
+     [],
+     []
+    ]
+   ]
+  },
+  {
+   "label": "J13：产物 seedDeterministic / seedCount 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J14 交叉：8 次 trial 全部落在期望落点",
+   "pass": true,
+   "got": [
+    276
+   ]
+  },
+  {
+   "label": "J14 交叉：落点只有 276 一个值（没有旧宽度的 596）",
+   "pass": true,
+   "got": [
+    276
+   ]
+  },
+  {
+   "label": "J14：产物 resizeFitViewAllExpected 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J14：产物 resizeFitViewTrials 有 8 行",
+   "pass": true,
+   "got": null
+  }
+ ],
+ "pass": 119,
+ "total": 119,
+ "negativeControls": [
+  {
+   "name": "★ 删掉缺陷 D1",
+   "caught": true,
+   "firstFail": "产物：缺陷恰好 1 条且是 D1"
+  },
+  {
+   "name": "★ 把 D1 的 needsSrcChange 改成 false",
+   "caught": true,
+   "firstFail": "产物：D1 标了需要改 src/"
+  },
+  {
+   "name": "★ 把 D1 的定位行删掉",
+   "caught": true,
+   "firstFail": "产物：D1 点了 useDirectorGestureBoundary.ts:92-98"
+  },
+  {
+   "name": "★ 把 D1 的修法提示抹掉",
+   "caught": true,
+   "firstFail": "产物：D1 给了修法提示"
+  },
+  {
+   "name": "★ 把 D1 降级成「观察」",
+   "caught": true,
+   "firstFail": "产物：缺陷恰好 1 条且是 D1"
+  },
+  {
+   "name": "★ 把观察 O1 的事实更正删掉（等于把错的话又写回去）",
+   "caught": true,
+   "firstFail": "产物：观察 2 条（事实更正 + 待拍板）"
+  },
+  {
+   "name": "★ 把 D1 严重度改成「低」而 README 还写着「中」",
+   "caught": true,
+   "firstFail": "★ 产物：README 里 D1 的严重度与产物一致（不许产物降级、README 还写着中）"
+  },
+  {
+   "name": "只改 findings.escNeverClosesDrawer（判据证据那一份不动）",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence **逐条**同源"
+  },
+  {
+   "name": "只改 findings.sweepInspectorNotClosedIdx[0]",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence **逐条**同源"
+  },
+  {
+   "name": "只改 findings.notClosedNeverReachedWindowBubble",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence **逐条**同源"
+  },
+  {
+   "name": "只改 findings.injectionRefutesNativeNumber",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence **逐条**同源"
+  },
+  {
+   "name": "只改 findings.addSurvivesReload",
+   "caught": true,
+   "firstFail": "J12：产物 addSurvivesReload / reloadNeverLostAdd 与重算一致"
+  },
+  {
+   "name": "只改 findings.persistenceKey",
+   "caught": true,
+   "firstFail": "J12：产物记下了持久化键"
+  },
+  {
+   "name": "只改 findings.seedCount（6 个而不是 5 个）",
+   "caught": true,
+   "firstFail": "J13：产物 seedDeterministic / seedCount 与重算一致"
+  },
+  {
+   "name": "只改 findings.tabHatchWorks",
+   "caught": true,
+   "firstFail": "J10：产物 tabHatchWorks 与重算一致"
+  },
+  {
+   "name": "只改 findings.focusAloneOpensGesture",
+   "caught": true,
+   "firstFail": "J11：产物 focusAloneOpensGesture / focusAloneNoHistory 与重算一致"
+  },
+  {
+   "name": "只改 findings.gestureCommitsOnBlur",
+   "caught": true,
+   "firstFail": "J11：产物 gestureCommitsOnBlur 与重算一致"
+  },
+  {
+   "name": "只改 findings.deleteBothFired",
+   "caught": true,
+   "firstFail": "J6：产物 deleteBothFired 与重算一致"
+  },
+  {
+   "name": "只改 findings.deleteLabelBlindSpot（把看漏的那行抹掉）",
+   "caught": true,
+   "firstFail": "J6：★ 产物里如实记下「按标签判会看漏」的那一行"
+  },
+  {
+   "name": "只改 findings.breakpointRows[3].ok",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence **逐条**同源"
+  },
+  {
+   "name": "只改 findings.breakpointAllOk",
+   "caught": true,
+   "firstFail": "J1：产物 breakpointAllOk 与重算一致"
+  },
+  {
+   "name": "只改 findings.resizeFitViewAllExpected",
+   "caught": true,
+   "firstFail": "J14：产物 resizeFitViewAllExpected 与重算一致"
+  },
+  {
+   "name": "把判据 7 的证据换成树面板的读数",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence **逐条**同源"
+  },
+  {
+   "name": "把判据 8 的 verdict 改成 FAIL",
+   "caught": true,
+   "firstFail": "★ 产物：14 条判据的 verdict 全是 PASS（不许偷偷改成 FAIL 蒙混）"
+  },
+  {
+   "name": "删掉判据 14",
+   "caught": true,
+   "firstFail": "产物：判据 14 条"
+  },
+  {
+   "name": "把判据 id 从 J7 改成 J8（制造重号）",
+   "caught": true,
+   "firstFail": "产物：判据 id 连号 J1..J14"
+  },
+  {
+   "name": "把某条判据的 evidenceKey 指向不存在的键",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence **逐条**同源"
+  },
+  {
+   "name": "把探针轮次从 2 谎报成 3",
+   "caught": true,
+   "firstFail": "★ 产物：每个探针自报的轮次与原始读数的轮次一致（不许谎报）"
+  },
+  {
+   "name": "把 srcModified 改成 true 之外的谎话（谎称没改 src 却改成 true）",
+   "caught": true,
+   "firstFail": "产物：本批 src 未改动"
+  },
+  {
+   "name": "把 rawSha 删掉两份",
+   "caught": true,
+   "firstFail": "产物：8 份原始读数都记了 sha"
+  },
+  {
+   "name": "清空不声称清单",
+   "caught": true,
+   "firstFail": "产物：不声称清单非空"
+  },
+  {
+   "name": "把不声称里的「不可比」那条删掉",
+   "caught": true,
+   "firstFail": "产物：明说 763b 两轮不可比"
+  },
+  {
+   "name": "删掉探针教训 R55（两轮可比性）",
+   "caught": true,
+   "firstFail": "产物：探针教训 5 条 R53..R57"
+  },
+  {
+   "name": "伪造：失效控件全都到达了 window 冒泡",
+   "caught": true,
+   "firstFail": "J8 交叉：失效控件的 Esc 从未到达 window 冒泡"
+  },
+  {
+   "name": "伪造：失效控件只剩 1 个（且序号被改小）",
+   "caught": true,
+   "firstFail": "J7 交叉：属性面板 9 个关不掉"
+  },
+  {
+   "name": "伪造：window 捕获也没触发",
+   "caught": true,
+   "firstFail": "J8 交叉：但 window 捕获照样触发（事件确实发出去了）"
+  },
+  {
+   "name": "伪造：注入的 number 输入框也关不掉抽屉",
+   "caught": true,
+   "firstFail": "J9 交叉：注入的 text 与 number 四格都关掉了抽屉"
+  },
+  {
+   "name": "伪造：Esc 第二次把抽屉关掉了",
+   "caught": true,
+   "firstFail": "J10 交叉：Esc 连按两次都关不掉抽屉、也没关导演台"
+  },
+  {
+   "name": "伪造：Tab 之后 Esc 也关不掉（逃生门没了）",
+   "caught": true,
+   "firstFail": "J10 交叉：Tab 离开边界后 Esc 恢复正常（逃生门）"
+  },
+  {
+   "name": "伪造：只聚焦不再开 gesture",
+   "caught": true,
+   "firstFail": "J11 交叉：只聚焦就开 gesture、但不写历史"
+  },
+  {
+   "name": "伪造：编辑完立刻 commit（不经失焦）",
+   "caught": true,
+   "firstFail": "J11 交叉：失焦才 commit（past 0→1、GESTURE_COMMIT）"
+  },
+  {
+   "name": "伪造：持久化键不是 director-project",
+   "caught": true,
+   "firstFail": "J12 交叉：持久化键就是 director-project"
+  },
+  {
+   "name": "伪造：新增的机位没扛过 reload",
+   "caught": true,
+   "firstFail": "J12 交叉：两轮新增的机位都扛过 reload"
+  },
+  {
+   "name": "伪造：种子变成 6 个对象",
+   "caught": true,
+   "firstFail": "J13 交叉：两轮种子都是 5 个对象、一次到位、零重复 id"
+  },
+  {
+   "name": "伪造：种子随时间增长（异步加载）",
+   "caught": true,
+   "firstFail": "J13 交叉：两轮种子都是 5 个对象、一次到位、零重复 id"
+  },
+  {
+   "name": "伪造：种子出现重复 id",
+   "caught": true,
+   "firstFail": "J13 交叉：两轮种子都是 5 个对象、一次到位、零重复 id"
+  },
+  {
+   "name": "伪造：六档里有一档错位",
+   "caught": true,
+   "firstFail": "J1 交叉：重算后六档零错位"
+  },
+  {
+   "name": "伪造：resize 落点出现旧宽度的 596",
+   "caught": true,
+   "firstFail": "J14 交叉：落点只有 276 一个值（没有旧宽度的 596）"
+  },
+  {
+   "name": "伪造：两轮焦点字段其实不一致（Tab 逃出 2 次）",
+   "caught": true,
+   "firstFail": "J3 交叉：两轮焦点相关字段逐字段一致"
+  },
+  {
+   "name": "伪造：Delete 只删掉了对象但历史没动",
+   "caught": true,
+   "firstFail": "J6 交叉：Delete/Backspace × 两轮都真删（判效应）"
+  },
+  {
+   "name": "伪造：Backspace 的 lastCommand 也变了（标签不再看漏）",
+   "caught": true,
+   "firstFail": "J6：★ 产物里如实记下「按标签判会看漏」的那一行"
+  },
+  {
+   "name": "伪造：⌘Z 没有推动历史",
+   "caught": true,
+   "firstFail": "J5 交叉：两轮四步都动了历史"
+  },
+  {
+   "name": "伪造：边界里已经有「没有手势就放行」的守卫",
+   "caught": true,
+   "firstFail": "静态：边界目前**没有**「没有待取消手势就放行」的守卫"
+  },
+  {
+   "name": "伪造：边界不再 stopPropagation",
+   "caught": true,
+   "firstFail": "静态：边界在 Escape 上 stopPropagation（缺陷的机制）"
+  },
+  {
+   "name": "伪造：onFocus 不再 begin()",
+   "caught": true,
+   "firstFail": "静态：边界的 onFocus 直接 begin()（为什么只加守卫不够）"
+  },
+  {
+   "name": "伪造：移动端关抽屉那一档挪到了 isEditable 之后",
+   "caught": true,
+   "firstFail": "静态：移动端关抽屉那一档排在 isEditable 早退**之前**"
+  },
+  {
+   "name": "伪造：那些框不再是 type=number",
+   "caught": true,
+   "firstFail": "静态：那些框确实是 type=number"
+  },
+  {
+   "name": "伪造：Esc 阶梯不再挂在 window 上",
+   "caught": true,
+   "firstFail": "静态：DirectorDesk 的 Esc 阶梯挂在 window 上"
+  },
+  {
+   "name": "伪造：影响面只剩 1 处",
+   "caught": true,
+   "firstFail": "静态：useDirectorGestureBoundary 至少 5 处调用（影响面）"
+  }
+ ],
+ "negativeCaught": 59,
+ "negativeTotal": 59,
+ "rawError": null,
+ "ok": true
+}

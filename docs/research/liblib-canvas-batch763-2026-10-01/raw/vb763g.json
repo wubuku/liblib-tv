@@ -1,0 +1,441 @@
+{
+ "batch": 763,
+ "probe": "g",
+ "question": "两次加载基础对象数不同：异步加载还是构造不确定？",
+ "timesMs": [
+  600,
+  1600,
+  3200,
+  6000
+ ],
+ "rounds": [
+  {
+   "openClick": {
+    "pt": [
+     538,
+     208
+    ]
+   },
+   "samples": [
+    {
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默"
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌"
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡"
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景"
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景"
+      }
+     ],
+     "duplicateIds": [],
+     "kinds": {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     },
+     "fullLengths": [
+      23,
+      19,
+      17,
+      18,
+      20
+     ],
+     "atMs": 600
+    },
+    {
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默"
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌"
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡"
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景"
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景"
+      }
+     ],
+     "duplicateIds": [],
+     "kinds": {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     },
+     "fullLengths": [
+      23,
+      19,
+      17,
+      18,
+      20
+     ],
+     "atMs": 1600
+    },
+    {
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默"
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌"
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡"
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景"
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景"
+      }
+     ],
+     "duplicateIds": [],
+     "kinds": {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     },
+     "fullLengths": [
+      23,
+      19,
+      17,
+      18,
+      20
+     ],
+     "atMs": 3200
+    },
+    {
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默"
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌"
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡"
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景"
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景"
+      }
+     ],
+     "duplicateIds": [],
+     "kinds": {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     },
+     "fullLengths": [
+      23,
+      19,
+      17,
+      18,
+      20
+     ],
+     "atMs": 6000
+    }
+   ],
+   "countSeries": [
+    5,
+    5,
+    5,
+    5
+   ],
+   "grewOverTime": false,
+   "duplicateIdsFinal": []
+  },
+  {
+   "openClick": {
+    "pt": [
+     538,
+     208
+    ]
+   },
+   "samples": [
+    {
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默"
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌"
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡"
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景"
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景"
+      }
+     ],
+     "duplicateIds": [],
+     "kinds": {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     },
+     "fullLengths": [
+      23,
+      19,
+      17,
+      18,
+      20
+     ],
+     "atMs": 600
+    },
+    {
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默"
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌"
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡"
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景"
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景"
+      }
+     ],
+     "duplicateIds": [],
+     "kinds": {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     },
+     "fullLengths": [
+      23,
+      19,
+      17,
+      18,
+      20
+     ],
+     "atMs": 1600
+    },
+    {
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默"
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌"
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡"
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景"
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景"
+      }
+     ],
+     "duplicateIds": [],
+     "kinds": {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     },
+     "fullLengths": [
+      23,
+      19,
+      17,
+      18,
+      20
+     ],
+     "atMs": 3200
+    },
+    {
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默"
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌"
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡"
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景"
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景"
+      }
+     ],
+     "duplicateIds": [],
+     "kinds": {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     },
+     "fullLengths": [
+      23,
+      19,
+      17,
+      18,
+      20
+     ],
+     "atMs": 6000
+    }
+   ],
+   "countSeries": [
+    5,
+    5,
+    5,
+    5
+   ],
+   "grewOverTime": false,
+   "duplicateIdsFinal": []
+  }
+ ]
+}

@@ -1,0 +1,4364 @@
+{
+ "batch": 763,
+ "probe": "e",
+ "question": "type=number 输入框里 Esc 为什么关不掉移动端抽屉？",
+ "rounds": [
+  {
+   "open": {
+    "opened": true
+   },
+   "tree_sweep": {
+    "panel": "tree",
+    "count": 20,
+    "notClosedIdx": [],
+    "notClosedTypes": [],
+    "closedTypes": [
+     "None",
+     "button"
+    ],
+    "rows": [
+     {
+      "i": 0,
+      "item": {
+       "i": 0,
+       "tag": "INPUT",
+       "type": null,
+       "ariaLabel": "搜索场景内容",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": null
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": null,
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 1,
+      "item": {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "新增机位",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 2,
+      "item": {
+       "i": 2,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "复制当前选择",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 3,
+      "item": {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除当前选择",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 4,
+      "item": {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "清除当前选择",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 5,
+      "item": {
+       "i": 5,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏角色01 · 陈默",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 6,
+      "item": {
+       "i": 6,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定角色01 · 陈默",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 7,
+      "item": {
+       "i": 7,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除角色01 · 陈默",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 8,
+      "item": {
+       "i": 8,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏咖啡桌",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 9,
+      "item": {
+       "i": 9,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定咖啡桌",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 10,
+      "item": {
+       "i": 10,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除咖啡桌",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 11,
+      "item": {
+       "i": 11,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏冷掉的咖啡",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 12,
+      "item": {
+       "i": 12,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定冷掉的咖啡",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 13,
+      "item": {
+       "i": 13,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除冷掉的咖啡",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 14,
+      "item": {
+       "i": 14,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏咖啡馆背景",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 15,
+      "item": {
+       "i": 15,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定咖啡馆背景",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 16,
+      "item": {
+       "i": 16,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除咖啡馆背景",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 17,
+      "item": {
+       "i": 17,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏机位01 · 对峙中景",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 18,
+      "item": {
+       "i": 18,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定机位01 · 对峙中景",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 19,
+      "item": {
+       "i": 19,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除机位01 · 对峙中景",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     }
+    ]
+   },
+   "inspector_sweep": {
+    "panel": "inspector",
+    "count": 35,
+    "notClosedIdx": [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ],
+    "notClosedTypes": [
+     "number",
+     "number",
+     "number",
+     "number",
+     "number",
+     "number",
+     "number",
+     "number",
+     "number"
+    ],
+    "closedTypes": [
+     "None",
+     "button",
+     "color",
+     "range",
+     "text"
+    ],
+    "rows": [
+     {
+      "i": 0,
+      "item": {
+       "i": 0,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": null,
+       "text": "属性",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 1,
+      "item": {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": null,
+       "text": "姿势",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 2,
+      "item": {
+       "i": 2,
+       "tag": "INPUT",
+       "type": null,
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": null
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": null,
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 3,
+      "item": {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏对象",
+       "text": "可见",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 4,
+      "item": {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定对象",
+       "text": "未锁定",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 5,
+      "item": {
+       "i": 5,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 X 轴",
+       "text": "x",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 6,
+      "item": {
+       "i": 6,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "position",
+       "dataTA": "x"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 7,
+      "item": {
+       "i": 7,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 8,
+      "item": {
+       "i": 8,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Y 轴",
+       "text": "y",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 9,
+      "item": {
+       "i": 9,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "position",
+       "dataTA": "y"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 10,
+      "item": {
+       "i": 10,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 11,
+      "item": {
+       "i": 11,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Z 轴",
+       "text": "z",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 12,
+      "item": {
+       "i": 12,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "position",
+       "dataTA": "z"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 13,
+      "item": {
+       "i": 13,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 14,
+      "item": {
+       "i": 14,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 X 轴",
+       "text": "x",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 15,
+      "item": {
+       "i": 15,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "rotation",
+       "dataTA": "x"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 16,
+      "item": {
+       "i": 16,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 17,
+      "item": {
+       "i": 17,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Y 轴",
+       "text": "y",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 18,
+      "item": {
+       "i": 18,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "rotation",
+       "dataTA": "y"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 19,
+      "item": {
+       "i": 19,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 20,
+      "item": {
+       "i": 20,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Z 轴",
+       "text": "z",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 21,
+      "item": {
+       "i": 21,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "rotation",
+       "dataTA": "z"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 22,
+      "item": {
+       "i": 22,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 23,
+      "item": {
+       "i": 23,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 X 轴",
+       "text": "x",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 24,
+      "item": {
+       "i": 24,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "scale",
+       "dataTA": "x"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 25,
+      "item": {
+       "i": 25,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 26,
+      "item": {
+       "i": 26,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Y 轴",
+       "text": "y",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 27,
+      "item": {
+       "i": 27,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "scale",
+       "dataTA": "y"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 28,
+      "item": {
+       "i": 28,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 29,
+      "item": {
+       "i": 29,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Z 轴",
+       "text": "z",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 30,
+      "item": {
+       "i": 30,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "scale",
+       "dataTA": "z"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 31,
+      "item": {
+       "i": 31,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 32,
+      "item": {
+       "i": 32,
+       "tag": "INPUT",
+       "type": "range",
+       "ariaLabel": "统一缩放",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "range"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "range",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 33,
+      "item": {
+       "i": 33,
+       "tag": "INPUT",
+       "type": "text",
+       "ariaLabel": "颜色 hex 值",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "text"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "text",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 34,
+      "item": {
+       "i": 34,
+       "tag": "INPUT",
+       "type": "color",
+       "ariaLabel": "颜色",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "color"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "color",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     }
+    ]
+   },
+   "injectedText": {
+    "type": "text",
+    "inject": {
+     "made": [
+      {
+       "type": "text",
+       "w": 120,
+       "h": 28
+      }
+     ],
+     "count": 1
+    },
+    "focus": {
+     "focused": true,
+     "type": "text",
+     "value": "abc"
+    },
+    "esc": {
+     "events": [
+      {
+       "stage": "winCapture",
+       "dp": false,
+       "dpFinal": true,
+       "targetTag": "INPUT",
+       "targetType": "text",
+       "reachedWinBubble": true
+      }
+     ],
+     "reachedWinBubble": true,
+     "reachedWinCapture": true,
+     "dpAtDocBubble": null,
+     "inspectorState": "closed",
+     "treeState": "closed",
+     "deskOpen": true,
+     "focusScope": null
+    },
+    "drawerClosed": true
+   },
+   "injectedNumber": {
+    "type": "number",
+    "inject": {
+     "made": [
+      {
+       "type": "number",
+       "w": 120,
+       "h": 28
+      }
+     ],
+     "count": 1
+    },
+    "focus": {
+     "focused": true,
+     "type": "number",
+     "value": "1"
+    },
+    "esc": {
+     "events": [
+      {
+       "stage": "winCapture",
+       "dp": false,
+       "dpFinal": true,
+       "targetTag": "INPUT",
+       "targetType": "number",
+       "reachedWinBubble": true
+      }
+     ],
+     "reachedWinBubble": true,
+     "reachedWinCapture": true,
+     "dpAtDocBubble": null,
+     "inspectorState": "closed",
+     "treeState": "closed",
+     "deskOpen": true,
+     "focusScope": null
+    },
+    "drawerClosed": true
+   },
+   "deskEnd": {
+    "open": true,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": -220
+    },
+    "inspector": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": 800
+    }
+   }
+  },
+  {
+   "open": {
+    "opened": true
+   },
+   "tree_sweep": {
+    "panel": "tree",
+    "count": 20,
+    "notClosedIdx": [],
+    "notClosedTypes": [],
+    "closedTypes": [
+     "None",
+     "button"
+    ],
+    "rows": [
+     {
+      "i": 0,
+      "item": {
+       "i": 0,
+       "tag": "INPUT",
+       "type": null,
+       "ariaLabel": "搜索场景内容",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": null
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": null,
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 1,
+      "item": {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "新增机位",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 2,
+      "item": {
+       "i": 2,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "复制当前选择",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 3,
+      "item": {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除当前选择",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 4,
+      "item": {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "清除当前选择",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 5,
+      "item": {
+       "i": 5,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏角色01 · 陈默",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 6,
+      "item": {
+       "i": 6,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定角色01 · 陈默",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 7,
+      "item": {
+       "i": 7,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除角色01 · 陈默",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 8,
+      "item": {
+       "i": 8,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏咖啡桌",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 9,
+      "item": {
+       "i": 9,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定咖啡桌",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 10,
+      "item": {
+       "i": 10,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除咖啡桌",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 11,
+      "item": {
+       "i": 11,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏冷掉的咖啡",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 12,
+      "item": {
+       "i": 12,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定冷掉的咖啡",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 13,
+      "item": {
+       "i": 13,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除冷掉的咖啡",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 14,
+      "item": {
+       "i": 14,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏咖啡馆背景",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 15,
+      "item": {
+       "i": 15,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定咖啡馆背景",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 16,
+      "item": {
+       "i": 16,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除咖啡馆背景",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 17,
+      "item": {
+       "i": 17,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏机位01 · 对峙中景",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 18,
+      "item": {
+       "i": 18,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定机位01 · 对峙中景",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 19,
+      "item": {
+       "i": 19,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "删除机位01 · 对峙中景",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     }
+    ]
+   },
+   "inspector_sweep": {
+    "panel": "inspector",
+    "count": 35,
+    "notClosedIdx": [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ],
+    "notClosedTypes": [
+     "number",
+     "number",
+     "number",
+     "number",
+     "number",
+     "number",
+     "number",
+     "number",
+     "number"
+    ],
+    "closedTypes": [
+     "None",
+     "button",
+     "color",
+     "range",
+     "text"
+    ],
+    "rows": [
+     {
+      "i": 0,
+      "item": {
+       "i": 0,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": null,
+       "text": "属性",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 1,
+      "item": {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": null,
+       "text": "姿势",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 2,
+      "item": {
+       "i": 2,
+       "tag": "INPUT",
+       "type": null,
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": null
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": null,
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 3,
+      "item": {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "隐藏对象",
+       "text": "可见",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 4,
+      "item": {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "锁定对象",
+       "text": "未锁定",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 5,
+      "item": {
+       "i": 5,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 X 轴",
+       "text": "x",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 6,
+      "item": {
+       "i": 6,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "position",
+       "dataTA": "x"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 7,
+      "item": {
+       "i": 7,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 8,
+      "item": {
+       "i": 8,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Y 轴",
+       "text": "y",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 9,
+      "item": {
+       "i": 9,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "position",
+       "dataTA": "y"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 10,
+      "item": {
+       "i": 10,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 11,
+      "item": {
+       "i": 11,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Z 轴",
+       "text": "z",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 12,
+      "item": {
+       "i": 12,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "position",
+       "dataTA": "z"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 13,
+      "item": {
+       "i": 13,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 14,
+      "item": {
+       "i": 14,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 X 轴",
+       "text": "x",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 15,
+      "item": {
+       "i": 15,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "rotation",
+       "dataTA": "x"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 16,
+      "item": {
+       "i": 16,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 17,
+      "item": {
+       "i": 17,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Y 轴",
+       "text": "y",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 18,
+      "item": {
+       "i": 18,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "rotation",
+       "dataTA": "y"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 19,
+      "item": {
+       "i": 19,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 20,
+      "item": {
+       "i": 20,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Z 轴",
+       "text": "z",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 21,
+      "item": {
+       "i": 21,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "rotation",
+       "dataTA": "z"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 22,
+      "item": {
+       "i": 22,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 23,
+      "item": {
+       "i": 23,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 X 轴",
+       "text": "x",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 24,
+      "item": {
+       "i": 24,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "scale",
+       "dataTA": "x"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 25,
+      "item": {
+       "i": 25,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 26,
+      "item": {
+       "i": 26,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Y 轴",
+       "text": "y",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 27,
+      "item": {
+       "i": 27,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "scale",
+       "dataTA": "y"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 28,
+      "item": {
+       "i": 28,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 29,
+      "item": {
+       "i": 29,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "左右拖动调整 Z 轴",
+       "text": "z",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 30,
+      "item": {
+       "i": 30,
+       "tag": "INPUT",
+       "type": "number",
+       "ariaLabel": null,
+       "text": "",
+       "dataTF": "scale",
+       "dataTA": "z"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "number",
+         "reachedWinBubble": false
+        }
+       ],
+       "reachedWinBubble": false,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "open",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": "inspector"
+      },
+      "drawerClosed": false
+     },
+     {
+      "i": 31,
+      "item": {
+       "i": 31,
+       "tag": "BUTTON",
+       "type": "button",
+       "ariaLabel": "当前帧有关键帧",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "BUTTON",
+         "targetType": "button",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 32,
+      "item": {
+       "i": 32,
+       "tag": "INPUT",
+       "type": "range",
+       "ariaLabel": "统一缩放",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "range"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "range",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 33,
+      "item": {
+       "i": 33,
+       "tag": "INPUT",
+       "type": "text",
+       "ariaLabel": "颜色 hex 值",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "text"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "text",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     },
+     {
+      "i": 34,
+      "item": {
+       "i": 34,
+       "tag": "INPUT",
+       "type": "color",
+       "ariaLabel": "颜色",
+       "text": "",
+       "dataTF": null,
+       "dataTA": null
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "color"
+      },
+      "esc": {
+       "events": [
+        {
+         "stage": "winCapture",
+         "dp": false,
+         "dpFinal": true,
+         "targetTag": "INPUT",
+         "targetType": "color",
+         "reachedWinBubble": true
+        }
+       ],
+       "reachedWinBubble": true,
+       "reachedWinCapture": true,
+       "dpAtDocBubble": null,
+       "inspectorState": "closed",
+       "treeState": "closed",
+       "deskOpen": true,
+       "focusScope": null
+      },
+      "drawerClosed": true
+     }
+    ]
+   },
+   "injectedText": {
+    "type": "text",
+    "inject": {
+     "made": [
+      {
+       "type": "text",
+       "w": 120,
+       "h": 28
+      }
+     ],
+     "count": 1
+    },
+    "focus": {
+     "focused": true,
+     "type": "text",
+     "value": "abc"
+    },
+    "esc": {
+     "events": [
+      {
+       "stage": "winCapture",
+       "dp": false,
+       "dpFinal": true,
+       "targetTag": "INPUT",
+       "targetType": "text",
+       "reachedWinBubble": true
+      }
+     ],
+     "reachedWinBubble": true,
+     "reachedWinCapture": true,
+     "dpAtDocBubble": null,
+     "inspectorState": "closed",
+     "treeState": "closed",
+     "deskOpen": true,
+     "focusScope": null
+    },
+    "drawerClosed": true
+   },
+   "injectedNumber": {
+    "type": "number",
+    "inject": {
+     "made": [
+      {
+       "type": "number",
+       "w": 120,
+       "h": 28
+      }
+     ],
+     "count": 1
+    },
+    "focus": {
+     "focused": true,
+     "type": "number",
+     "value": "1"
+    },
+    "esc": {
+     "events": [
+      {
+       "stage": "winCapture",
+       "dp": false,
+       "dpFinal": true,
+       "targetTag": "INPUT",
+       "targetType": "number",
+       "reachedWinBubble": true
+      }
+     ],
+     "reachedWinBubble": true,
+     "reachedWinCapture": true,
+     "dpAtDocBubble": null,
+     "inspectorState": "closed",
+     "treeState": "closed",
+     "deskOpen": true,
+     "focusScope": null
+    },
+    "drawerClosed": true
+   },
+   "deskEnd": {
+    "open": true,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": -220
+    },
+    "inspector": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": 800
+    }
+   }
+  }
+ ],
+ "consistent": true
+}

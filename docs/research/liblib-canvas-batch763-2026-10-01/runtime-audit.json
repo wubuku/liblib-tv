@@ -1,0 +1,2070 @@
+{
+ "batch": 763,
+ "date": "2026-10-01",
+ "scope": "导演台未覆盖面：移动端 focus scope、导演台自己的快捷键、逐控件 Esc 普查、导演台项目的持久化边界",
+ "env": {
+  "base": "http://localhost:4317",
+  "canvas": "canvas-2",
+  "directorNodeId": "b-bTLLuU4w5q",
+  "desktopViewport": "1440x1000",
+  "narrowViewport": "800x1000",
+  "player": "chromium (playwright sync_api)",
+  "srcModified": false
+ },
+ "probes": [
+  {
+   "id": "763a",
+   "file": "probes/dbg763a.py",
+   "raw": "raw/vb763a.json",
+   "rounds": 2,
+   "selfReportedConsistent": true
+  },
+  {
+   "id": "763b",
+   "file": "probes/dbg763b.py",
+   "raw": "raw/vb763b.json",
+   "rounds": 2,
+   "selfReportedConsistent": false
+  },
+  {
+   "id": "763c",
+   "file": "probes/dbg763c.py",
+   "raw": "raw/vb763c.json",
+   "rounds": 2,
+   "trials": 8
+  },
+  {
+   "id": "763d",
+   "file": "probes/dbg763d.py",
+   "raw": "raw/vb763d.json",
+   "rounds": 2,
+   "selfReportedConsistent": true
+  },
+  {
+   "id": "763e",
+   "file": "probes/dbg763e.py",
+   "raw": "raw/vb763e.json",
+   "rounds": 2,
+   "selfReportedConsistent": true
+  },
+  {
+   "id": "763f",
+   "file": "probes/dbg763f.py",
+   "raw": "raw/vb763f.json",
+   "rounds": 2,
+   "selfReportedConsistent": null
+  },
+  {
+   "id": "763g",
+   "file": "probes/dbg763g.py",
+   "raw": "raw/vb763g.json",
+   "rounds": 2
+  },
+  {
+   "id": "763h",
+   "file": "probes/dbg763h.py",
+   "raw": "raw/vb763h.json",
+   "rounds": 2
+  }
+ ],
+ "rawSha": {
+  "vb763a.json": "9df8eb657b529282",
+  "vb763b.json": "0d2317dbadbd87ed",
+  "vb763c.json": "4808535515c8ec52",
+  "vb763d.json": "146f683eefbc1df2",
+  "vb763e.json": "9282fde818d3c687",
+  "vb763f.json": "1bb122e1046c18fb",
+  "vb763g.json": "bcc0946538dd8931",
+  "vb763h.json": "1204ae28898cd168"
+ },
+ "findings": {
+  "breakpointRows": [
+   {
+    "width": 896,
+    "mq898": true,
+    "mq899": true,
+    "jsSaysMobile": true,
+    "cssSaysMobile": true,
+    "treeInert": true,
+    "treeAriaHidden": "true",
+    "treeX": -220,
+    "treeW": 220,
+    "inspectorX": 896,
+    "inspectorInert": true,
+    "treeState": "closed",
+    "inspectorState": "closed",
+    "firstControlInsideTree": null,
+    "firstControlTag": null,
+    "firstControlTopInside": null,
+    "jsCssAgree": true,
+    "jsCssMatchBreakpoint": true,
+    "verdict": true,
+    "ok": true
+   },
+   {
+    "width": 897,
+    "mq898": true,
+    "mq899": true,
+    "jsSaysMobile": true,
+    "cssSaysMobile": true,
+    "treeInert": true,
+    "treeAriaHidden": "true",
+    "treeX": -220,
+    "treeW": 220,
+    "inspectorX": 897,
+    "inspectorInert": true,
+    "treeState": "closed",
+    "inspectorState": "closed",
+    "firstControlInsideTree": null,
+    "firstControlTag": null,
+    "firstControlTopInside": null,
+    "jsCssAgree": true,
+    "jsCssMatchBreakpoint": true,
+    "verdict": true,
+    "ok": true
+   },
+   {
+    "width": 898,
+    "mq898": true,
+    "mq899": true,
+    "jsSaysMobile": true,
+    "cssSaysMobile": true,
+    "treeInert": true,
+    "treeAriaHidden": "true",
+    "treeX": -220,
+    "treeW": 220,
+    "inspectorX": 898,
+    "inspectorInert": true,
+    "treeState": "closed",
+    "inspectorState": "closed",
+    "firstControlInsideTree": null,
+    "firstControlTag": null,
+    "firstControlTopInside": null,
+    "jsCssAgree": true,
+    "jsCssMatchBreakpoint": true,
+    "verdict": true,
+    "ok": true
+   },
+   {
+    "width": 899,
+    "mq898": false,
+    "mq899": true,
+    "jsSaysMobile": false,
+    "cssSaysMobile": false,
+    "treeInert": false,
+    "treeAriaHidden": null,
+    "treeX": 48,
+    "treeW": 233,
+    "inspectorX": 618,
+    "inspectorInert": false,
+    "treeState": "closed",
+    "inspectorState": "closed",
+    "firstControlInsideTree": true,
+    "firstControlTag": "svg",
+    "firstControlTopInside": true,
+    "jsCssAgree": true,
+    "jsCssMatchBreakpoint": true,
+    "verdict": true,
+    "ok": true
+   },
+   {
+    "width": 900,
+    "mq898": false,
+    "mq899": false,
+    "jsSaysMobile": false,
+    "cssSaysMobile": false,
+    "treeInert": false,
+    "treeAriaHidden": null,
+    "treeX": 48,
+    "treeW": 233,
+    "inspectorX": 619,
+    "inspectorInert": false,
+    "treeState": "closed",
+    "inspectorState": "closed",
+    "firstControlInsideTree": true,
+    "firstControlTag": "svg",
+    "firstControlTopInside": true,
+    "jsCssAgree": true,
+    "jsCssMatchBreakpoint": true,
+    "verdict": true,
+    "ok": true
+   },
+   {
+    "width": 901,
+    "mq898": false,
+    "mq899": false,
+    "jsSaysMobile": false,
+    "cssSaysMobile": false,
+    "treeInert": false,
+    "treeAriaHidden": null,
+    "treeX": 48,
+    "treeW": 233,
+    "inspectorX": 620,
+    "inspectorInert": false,
+    "treeState": "closed",
+    "inspectorState": "closed",
+    "firstControlInsideTree": true,
+    "firstControlTag": "svg",
+    "firstControlTopInside": true,
+    "jsCssAgree": true,
+    "jsCssMatchBreakpoint": true,
+    "verdict": true,
+    "ok": true
+   }
+  ],
+  "breakpointAllOk": true,
+  "breakpointZeroMismatch": true,
+  "escLadderRows": [
+   {
+    "step": "baseline-no-panel",
+    "closed": true,
+    "exportClosed": null,
+    "closedWorkspace": null,
+    "focusAfterTag": "BUTTON",
+    "focusAfterAria": null,
+    "focusAfterIsContentEditable": false
+   },
+   {
+    "step": "export-panel-open",
+    "closed": null,
+    "exportClosed": true,
+    "closedWorkspace": false,
+    "focusAfterTag": null,
+    "focusAfterAria": null,
+    "focusAfterIsContentEditable": null
+   },
+   {
+    "step": "second-esc",
+    "closed": null,
+    "exportClosed": null,
+    "closedWorkspace": true,
+    "focusAfterTag": "BUTTON",
+    "focusAfterAria": null,
+    "focusAfterIsContentEditable": false
+   },
+   {
+    "step": "esc-in-editable",
+    "closed": null,
+    "exportClosed": null,
+    "closedWorkspace": false,
+    "focusAfterTag": null,
+    "focusAfterAria": null,
+    "focusAfterIsContentEditable": null
+   },
+   {
+    "step": "esc-after-leaving-editable",
+    "closed": null,
+    "exportClosed": null,
+    "closedWorkspace": true,
+    "focusAfterTag": "BUTTON",
+    "focusAfterAria": null,
+    "focusAfterIsContentEditable": false
+   }
+  ],
+  "drawerFocusRoundEqual": [
+   {
+    "panel": "tree",
+    "round1": {
+     "panel": "tree",
+     "stateAfterOpen": "open",
+     "focusScopeAfterOpen": "tree",
+     "inertAfterOpen": false,
+     "focusOnOpenInDialog": true,
+     "focusOnOpenInPanel": "tree",
+     "tabSteps": 12,
+     "tabEscaped": 0,
+     "drawerClosedByEsc": true,
+     "workspaceClosedByEsc": false
+    },
+    "round2": {
+     "panel": "tree",
+     "stateAfterOpen": "open",
+     "focusScopeAfterOpen": "tree",
+     "inertAfterOpen": false,
+     "focusOnOpenInDialog": true,
+     "focusOnOpenInPanel": "tree",
+     "tabSteps": 12,
+     "tabEscaped": 0,
+     "drawerClosedByEsc": true,
+     "workspaceClosedByEsc": false
+    },
+    "equal": true,
+    "reachableRound1": 20,
+    "reachableRound2": 17,
+    "reachableEqual": false
+   },
+   {
+    "panel": "inspector",
+    "round1": {
+     "panel": "inspector",
+     "stateAfterOpen": "open",
+     "focusScopeAfterOpen": "inspector",
+     "inertAfterOpen": false,
+     "focusOnOpenInDialog": true,
+     "focusOnOpenInPanel": "inspector",
+     "tabSteps": 12,
+     "tabEscaped": 0,
+     "drawerClosedByEsc": true,
+     "workspaceClosedByEsc": false
+    },
+    "round2": {
+     "panel": "inspector",
+     "stateAfterOpen": "open",
+     "focusScopeAfterOpen": "inspector",
+     "inertAfterOpen": false,
+     "focusOnOpenInDialog": true,
+     "focusOnOpenInPanel": "inspector",
+     "tabSteps": 12,
+     "tabEscaped": 0,
+     "drawerClosedByEsc": true,
+     "workspaceClosedByEsc": false
+    },
+    "equal": true,
+    "reachableRound1": 35,
+    "reachableRound2": 33,
+    "reachableEqual": false
+   }
+  ],
+  "drawerFocusAllEqual": true,
+  "drawerTreeRound1": {
+   "panel": "tree",
+   "stateAfterOpen": "open",
+   "focusScopeAfterOpen": "tree",
+   "inertAfterOpen": false,
+   "reachableInPanel": 20,
+   "focusOnOpenInDialog": true,
+   "focusOnOpenInPanel": "tree",
+   "focusOnOpenTag": "INPUT",
+   "tabSteps": 12,
+   "tabEscaped": 0,
+   "drawerClosedByEsc": true,
+   "workspaceClosedByEsc": false,
+   "focusAfterEscTag": "BUTTON",
+   "focusAfterEscAria": "打开场景对象"
+  },
+  "drawerInspectorRound1": {
+   "panel": "inspector",
+   "stateAfterOpen": "open",
+   "focusScopeAfterOpen": "inspector",
+   "inertAfterOpen": false,
+   "reachableInPanel": 35,
+   "focusOnOpenInDialog": true,
+   "focusOnOpenInPanel": "inspector",
+   "focusOnOpenTag": "BUTTON",
+   "tabSteps": 12,
+   "tabEscaped": 0,
+   "drawerClosedByEsc": true,
+   "workspaceClosedByEsc": false,
+   "focusAfterEscTag": "INPUT",
+   "focusAfterEscAria": null
+  },
+  "undoRedoRound1": [
+   {
+    "key": "Cmd+Z",
+    "past": [
+     "1",
+     "0"
+    ],
+    "future": [
+     "0",
+     "1"
+    ],
+    "lastCommand": [
+     "ADD_CAMERA",
+     "UNDO"
+    ],
+    "moved": true
+   },
+   {
+    "key": "Cmd+Y",
+    "past": [
+     "0",
+     "1"
+    ],
+    "future": [
+     "1",
+     "0"
+    ],
+    "lastCommand": [
+     "UNDO",
+     "REDO"
+    ],
+    "moved": true
+   },
+   {
+    "key": "Cmd+Z",
+    "past": [
+     "1",
+     "0"
+    ],
+    "future": [
+     "0",
+     "1"
+    ],
+    "lastCommand": [
+     "REDO",
+     "UNDO"
+    ],
+    "moved": true
+   },
+   {
+    "key": "Cmd+Shift+Z",
+    "past": [
+     "0",
+     "1"
+    ],
+    "future": [
+     "1",
+     "0"
+    ],
+    "lastCommand": [
+     "UNDO",
+     "REDO"
+    ],
+    "moved": true
+   }
+  ],
+  "undoRedoRound2": [
+   {
+    "key": "Cmd+Z",
+    "past": [
+     "1",
+     "0"
+    ],
+    "future": [
+     "0",
+     "1"
+    ],
+    "lastCommand": [
+     "ADD_CAMERA",
+     "UNDO"
+    ],
+    "moved": true
+   },
+   {
+    "key": "Cmd+Y",
+    "past": [
+     "0",
+     "1"
+    ],
+    "future": [
+     "1",
+     "0"
+    ],
+    "lastCommand": [
+     "UNDO",
+     "REDO"
+    ],
+    "moved": true
+   },
+   {
+    "key": "Cmd+Z",
+    "past": [
+     "1",
+     "0"
+    ],
+    "future": [
+     "0",
+     "1"
+    ],
+    "lastCommand": [
+     "REDO",
+     "UNDO"
+    ],
+    "moved": true
+   },
+   {
+    "key": "Cmd+Shift+Z",
+    "past": [
+     "0",
+     "1"
+    ],
+    "future": [
+     "1",
+     "0"
+    ],
+    "lastCommand": [
+     "UNDO",
+     "REDO"
+    ],
+    "moved": true
+   }
+  ],
+  "undoRedoAllMoved": true,
+  "deleteRowsRound1": [
+   {
+    "key": "Delete",
+    "lastCommand": [
+     "REDO",
+     "DELETE_OBJECTS"
+    ],
+    "changedByLabel": true,
+    "past": [
+     "1",
+     "2"
+    ],
+    "objectCount": [
+     6,
+     5
+    ],
+    "pickedCountBefore": 6,
+    "pickedCountAfter": 6,
+    "pickedRowId": "director-character-lead",
+    "pickedRowGone": true,
+    "pickedRowSelected": [
+     "director-character-lead"
+    ],
+    "hitOk": true
+   },
+   {
+    "key": "Backspace",
+    "lastCommand": [
+     "DELETE_OBJECTS",
+     "DELETE_OBJECTS"
+    ],
+    "changedByLabel": false,
+    "past": [
+     "2",
+     "3"
+    ],
+    "objectCount": [
+     6,
+     4
+    ],
+    "pickedCountBefore": 5,
+    "pickedCountAfter": 5,
+    "pickedRowId": "director-prop-table",
+    "pickedRowGone": true,
+    "pickedRowSelected": [
+     "director-prop-table"
+    ],
+    "hitOk": true
+   }
+  ],
+  "deleteRowsRound2": [
+   {
+    "key": "Delete",
+    "lastCommand": [
+     "REDO",
+     "DELETE_OBJECTS"
+    ],
+    "changedByLabel": true,
+    "past": [
+     "1",
+     "2"
+    ],
+    "objectCount": [
+     5,
+     4
+    ],
+    "pickedCountBefore": 5,
+    "pickedCountAfter": 5,
+    "pickedRowId": "director-prop-mug",
+    "pickedRowGone": true,
+    "pickedRowSelected": [
+     "director-prop-mug"
+    ],
+    "hitOk": true
+   },
+   {
+    "key": "Backspace",
+    "lastCommand": [
+     "DELETE_OBJECTS",
+     "DELETE_OBJECTS"
+    ],
+    "changedByLabel": false,
+    "past": [
+     "2",
+     "3"
+    ],
+    "objectCount": [
+     5,
+     3
+    ],
+    "pickedCountBefore": 4,
+    "pickedCountAfter": 4,
+    "pickedRowId": "director-prop-wall",
+    "pickedRowGone": true,
+    "pickedRowSelected": [
+     "director-prop-wall"
+    ],
+    "hitOk": true
+   }
+  ],
+  "deleteBothFired": true,
+  "deleteLabelBlindSpot": [
+   "Backspace",
+   "Backspace"
+  ],
+  "resizeFitViewTrials": [
+   {
+    "delay": 0,
+    "btnX": 276,
+    "zoomOK": true,
+    "centerHit": true,
+    "hitCount": 169,
+    "landed": "expected",
+    "dialogOpen": false
+   },
+   {
+    "delay": 150,
+    "btnX": 276,
+    "zoomOK": true,
+    "centerHit": true,
+    "hitCount": 169,
+    "landed": "expected",
+    "dialogOpen": false
+   },
+   {
+    "delay": 400,
+    "btnX": 276,
+    "zoomOK": true,
+    "centerHit": true,
+    "hitCount": 169,
+    "landed": "expected",
+    "dialogOpen": false
+   },
+   {
+    "delay": 900,
+    "btnX": 276,
+    "zoomOK": true,
+    "centerHit": true,
+    "hitCount": 169,
+    "landed": "expected",
+    "dialogOpen": false
+   },
+   {
+    "delay": 0,
+    "btnX": 276,
+    "zoomOK": true,
+    "centerHit": true,
+    "hitCount": 169,
+    "landed": "expected",
+    "dialogOpen": false
+   },
+   {
+    "delay": 150,
+    "btnX": 276,
+    "zoomOK": true,
+    "centerHit": true,
+    "hitCount": 169,
+    "landed": "expected",
+    "dialogOpen": false
+   },
+   {
+    "delay": 400,
+    "btnX": 276,
+    "zoomOK": true,
+    "centerHit": true,
+    "hitCount": 169,
+    "landed": "expected",
+    "dialogOpen": false
+   },
+   {
+    "delay": 900,
+    "btnX": 276,
+    "zoomOK": true,
+    "centerHit": true,
+    "hitCount": 169,
+    "landed": "expected",
+    "dialogOpen": false
+   }
+  ],
+  "resizeFitViewAllExpected": true,
+  "sweepTree": [
+   {
+    "round": 1,
+    "count": 20,
+    "notClosedIdx": [],
+    "notClosedTypes": null,
+    "closedTypes": null,
+    "notClosedDetail": [],
+    "closedSample": [],
+    "closedWinBubbleAll": null
+   },
+   {
+    "round": 2,
+    "count": 20,
+    "notClosedIdx": [],
+    "notClosedTypes": null,
+    "closedTypes": null,
+    "notClosedDetail": [],
+    "closedSample": [],
+    "closedWinBubbleAll": null
+   }
+  ],
+  "sweepInspector": [
+   {
+    "round": 1,
+    "count": 35,
+    "notClosedIdx": [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ],
+    "notClosedTypes": null,
+    "closedTypes": null,
+    "notClosedDetail": [],
+    "closedSample": [],
+    "closedWinBubbleAll": null
+   },
+   {
+    "round": 2,
+    "count": 35,
+    "notClosedIdx": [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ],
+    "notClosedTypes": null,
+    "closedTypes": null,
+    "notClosedDetail": [],
+    "closedSample": [],
+    "closedWinBubbleAll": null
+   }
+  ],
+  "sweepTreeZeroNotClosed": true,
+  "sweepInspectorNotClosedIdx": [
+   [
+    6,
+    9,
+    12,
+    15,
+    18,
+    21,
+    24,
+    27,
+    30
+   ],
+   [
+    6,
+    9,
+    12,
+    15,
+    18,
+    21,
+    24,
+    27,
+    30
+   ]
+  ],
+  "sweepInspectorNotClosedAllNumber": true,
+  "sweepInspectorIdxStable": true,
+  "sweepEInspectorNotClosed": [
+   [
+    6,
+    9,
+    12,
+    15,
+    18,
+    21,
+    24,
+    27,
+    30
+   ],
+   [
+    6,
+    9,
+    12,
+    15,
+    18,
+    21,
+    24,
+    27,
+    30
+   ]
+  ],
+  "notClosedNeverReachedWindowBubble": true,
+  "notClosedReachedWindowCapture": true,
+  "closedAlwaysReachedWindowBubble": true,
+  "injectedText": [
+   {
+    "round": 1,
+    "type": "text",
+    "focused": true,
+    "drawerClosed": true,
+    "reachedWinBubble": true
+   },
+   {
+    "round": 2,
+    "type": "text",
+    "focused": true,
+    "drawerClosed": true,
+    "reachedWinBubble": true
+   }
+  ],
+  "injectedNumber": [
+   {
+    "round": 1,
+    "type": "number",
+    "focused": true,
+    "drawerClosed": true,
+    "reachedWinBubble": true
+   },
+   {
+    "round": 2,
+    "type": "number",
+    "focused": true,
+    "drawerClosed": true,
+    "reachedWinBubble": true
+   }
+  ],
+  "injectionRefutesNativeNumber": true,
+  "gestureCells": [
+   {
+    "round": 1,
+    "target": {
+     "i": 6,
+     "tag": "INPUT",
+     "type": "number",
+     "tf": "position",
+     "ta": "x",
+     "aria": null,
+     "text": ""
+    },
+    "A_focusOpensGesture": true,
+    "A_historyPastOnFocus": [
+     "0",
+     "0"
+    ],
+    "B_result": {
+     "deskOpen": true,
+     "inspectorState": "open",
+     "treeState": "closed",
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    "B_gestureCleared": true,
+    "B_historyPastDelta": [
+     "0",
+     "0"
+    ],
+    "C_afterEsc1": {
+     "deskOpen": true,
+     "inspectorState": "open",
+     "treeState": "closed",
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    "C_afterEsc2": {
+     "deskOpen": true,
+     "inspectorState": "open",
+     "treeState": "closed",
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    "C_focusStillInBoundary": true,
+    "D_leftBoundaryOnTab": true,
+    "D_tabLandedOn": null,
+    "D_result": {
+     "deskOpen": true,
+     "inspectorState": "closed",
+     "treeState": "closed",
+     "drawerClosed": true,
+     "workspaceClosed": false
+    },
+    "E_historyPastDelta": [
+     "0",
+     "0"
+    ],
+    "E_gestureOnBlur": [
+     "director-gesture-<gen>",
+     ""
+    ],
+    "E_lastCommandAfterBlur": "GESTURE_COMMIT",
+    "E_historyPastAfterEdit": "0",
+    "E_historyPastAfterBlur": "1"
+   },
+   {
+    "round": 2,
+    "target": {
+     "i": 6,
+     "tag": "INPUT",
+     "type": "number",
+     "tf": "position",
+     "ta": "x",
+     "aria": null,
+     "text": ""
+    },
+    "A_focusOpensGesture": true,
+    "A_historyPastOnFocus": [
+     "0",
+     "0"
+    ],
+    "B_result": {
+     "deskOpen": true,
+     "inspectorState": "open",
+     "treeState": "closed",
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    "B_gestureCleared": true,
+    "B_historyPastDelta": [
+     "0",
+     "0"
+    ],
+    "C_afterEsc1": {
+     "deskOpen": true,
+     "inspectorState": "open",
+     "treeState": "closed",
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    "C_afterEsc2": {
+     "deskOpen": true,
+     "inspectorState": "open",
+     "treeState": "closed",
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    "C_focusStillInBoundary": true,
+    "D_leftBoundaryOnTab": true,
+    "D_tabLandedOn": null,
+    "D_result": {
+     "deskOpen": true,
+     "inspectorState": "closed",
+     "treeState": "closed",
+     "drawerClosed": true,
+     "workspaceClosed": false
+    },
+    "E_historyPastDelta": [
+     "0",
+     "0"
+    ],
+    "E_gestureOnBlur": [
+     "director-gesture-<gen>",
+     ""
+    ],
+    "E_lastCommandAfterBlur": "GESTURE_COMMIT",
+    "E_historyPastAfterEdit": "0",
+    "E_historyPastAfterBlur": "1"
+   }
+  ],
+  "focusAloneOpensGesture": true,
+  "focusAloneNoHistory": true,
+  "escNeverClosesDrawer": true,
+  "escDidNotCloseWorkspaceEither": true,
+  "tabEscapeHatch": [
+   {
+    "round": 1,
+    "leftBoundary": true,
+    "landedOn": null,
+    "result": {
+     "deskOpen": true,
+     "inspectorState": "closed",
+     "treeState": "closed",
+     "drawerClosed": true,
+     "workspaceClosed": false
+    }
+   },
+   {
+    "round": 2,
+    "leftBoundary": true,
+    "landedOn": null,
+    "result": {
+     "deskOpen": true,
+     "inspectorState": "closed",
+     "treeState": "closed",
+     "drawerClosed": true,
+     "workspaceClosed": false
+    }
+   }
+  ],
+  "tabHatchWorks": true,
+  "gestureCommitsOnBlur": true,
+  "seedRounds": [
+   {
+    "round": 1,
+    "countSeries": [
+     5,
+     5,
+     5,
+     5
+    ],
+    "grewOverTime": false,
+    "duplicateIds": [],
+    "kinds": [
+     {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     },
+     {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     },
+     {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     },
+     {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     }
+    ],
+    "ids": [
+     [
+      "director-character-lead",
+      "director-prop-table",
+      "director-prop-mug",
+      "director-prop-wall",
+      "director-camera-main"
+     ],
+     [
+      "director-character-lead",
+      "director-prop-table",
+      "director-prop-mug",
+      "director-prop-wall",
+      "director-camera-main"
+     ],
+     [
+      "director-character-lead",
+      "director-prop-table",
+      "director-prop-mug",
+      "director-prop-wall",
+      "director-camera-main"
+     ],
+     [
+      "director-character-lead",
+      "director-prop-table",
+      "director-prop-mug",
+      "director-prop-wall",
+      "director-camera-main"
+     ]
+    ]
+   },
+   {
+    "round": 2,
+    "countSeries": [
+     5,
+     5,
+     5,
+     5
+    ],
+    "grewOverTime": false,
+    "duplicateIds": [],
+    "kinds": [
+     {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     },
+     {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     },
+     {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     },
+     {
+      "character": 1,
+      "prop": 3,
+      "camera": 1
+     }
+    ],
+    "ids": [
+     [
+      "director-character-lead",
+      "director-prop-table",
+      "director-prop-mug",
+      "director-prop-wall",
+      "director-camera-main"
+     ],
+     [
+      "director-character-lead",
+      "director-prop-table",
+      "director-prop-mug",
+      "director-prop-wall",
+      "director-camera-main"
+     ],
+     [
+      "director-character-lead",
+      "director-prop-table",
+      "director-prop-mug",
+      "director-prop-wall",
+      "director-camera-main"
+     ],
+     [
+      "director-character-lead",
+      "director-prop-table",
+      "director-prop-mug",
+      "director-prop-wall",
+      "director-camera-main"
+     ]
+    ]
+   }
+  ],
+  "seedDeterministic": true,
+  "seedCount": 5,
+  "persistenceRounds": [
+   {
+    "round": 1,
+    "verdict": {
+     "baseCount": 5,
+     "afterAddCount": 6,
+     "afterReloadCount": 6,
+     "addSurvivedReload": true,
+     "reloadLostAdd": false,
+     "newIdsAfterAdd": [
+      "director-camera-1791136634207-1"
+     ]
+    },
+    "localKeysBefore": [
+     "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+    ],
+    "localKeysAfter": [
+     "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+    ]
+   },
+   {
+    "round": 2,
+    "verdict": {
+     "baseCount": 6,
+     "afterAddCount": 7,
+     "afterReloadCount": 7,
+     "addSurvivedReload": true,
+     "reloadLostAdd": false,
+     "newIdsAfterAdd": [
+      "director-camera-1791136648294-1"
+     ]
+    },
+    "localKeysBefore": [
+     "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+    ],
+    "localKeysAfter": [
+     "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+    ]
+   }
+  ],
+  "persistenceKey": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D",
+  "addSurvivesReload": true,
+  "reloadNeverLostAdd": true
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "verdict": "PASS",
+   "statement": "Batch 622 那个 1px 断点缝**成立**：896/897/898 三档 JS 与 CSS 都判移动端，899/900/901 三档都判桌面，六档零错位；移动端两列真在屏外（树 x<0、属性 x≥视口宽），桌面端树首控件命中且在树内。",
+   "evidenceKey": "breakpointRows",
+   "evidence": [
+    {
+     "width": 896,
+     "mq898": true,
+     "mq899": true,
+     "jsSaysMobile": true,
+     "cssSaysMobile": true,
+     "treeInert": true,
+     "treeAriaHidden": "true",
+     "treeX": -220,
+     "treeW": 220,
+     "inspectorX": 896,
+     "inspectorInert": true,
+     "treeState": "closed",
+     "inspectorState": "closed",
+     "firstControlInsideTree": null,
+     "firstControlTag": null,
+     "firstControlTopInside": null,
+     "jsCssAgree": true,
+     "jsCssMatchBreakpoint": true,
+     "verdict": true,
+     "ok": true
+    },
+    {
+     "width": 897,
+     "mq898": true,
+     "mq899": true,
+     "jsSaysMobile": true,
+     "cssSaysMobile": true,
+     "treeInert": true,
+     "treeAriaHidden": "true",
+     "treeX": -220,
+     "treeW": 220,
+     "inspectorX": 897,
+     "inspectorInert": true,
+     "treeState": "closed",
+     "inspectorState": "closed",
+     "firstControlInsideTree": null,
+     "firstControlTag": null,
+     "firstControlTopInside": null,
+     "jsCssAgree": true,
+     "jsCssMatchBreakpoint": true,
+     "verdict": true,
+     "ok": true
+    },
+    {
+     "width": 898,
+     "mq898": true,
+     "mq899": true,
+     "jsSaysMobile": true,
+     "cssSaysMobile": true,
+     "treeInert": true,
+     "treeAriaHidden": "true",
+     "treeX": -220,
+     "treeW": 220,
+     "inspectorX": 898,
+     "inspectorInert": true,
+     "treeState": "closed",
+     "inspectorState": "closed",
+     "firstControlInsideTree": null,
+     "firstControlTag": null,
+     "firstControlTopInside": null,
+     "jsCssAgree": true,
+     "jsCssMatchBreakpoint": true,
+     "verdict": true,
+     "ok": true
+    },
+    {
+     "width": 899,
+     "mq898": false,
+     "mq899": true,
+     "jsSaysMobile": false,
+     "cssSaysMobile": false,
+     "treeInert": false,
+     "treeAriaHidden": null,
+     "treeX": 48,
+     "treeW": 233,
+     "inspectorX": 618,
+     "inspectorInert": false,
+     "treeState": "closed",
+     "inspectorState": "closed",
+     "firstControlInsideTree": true,
+     "firstControlTag": "svg",
+     "firstControlTopInside": true,
+     "jsCssAgree": true,
+     "jsCssMatchBreakpoint": true,
+     "verdict": true,
+     "ok": true
+    },
+    {
+     "width": 900,
+     "mq898": false,
+     "mq899": false,
+     "jsSaysMobile": false,
+     "cssSaysMobile": false,
+     "treeInert": false,
+     "treeAriaHidden": null,
+     "treeX": 48,
+     "treeW": 233,
+     "inspectorX": 619,
+     "inspectorInert": false,
+     "treeState": "closed",
+     "inspectorState": "closed",
+     "firstControlInsideTree": true,
+     "firstControlTag": "svg",
+     "firstControlTopInside": true,
+     "jsCssAgree": true,
+     "jsCssMatchBreakpoint": true,
+     "verdict": true,
+     "ok": true
+    },
+    {
+     "width": 901,
+     "mq898": false,
+     "mq899": false,
+     "jsSaysMobile": false,
+     "cssSaysMobile": false,
+     "treeInert": false,
+     "treeAriaHidden": null,
+     "treeX": 48,
+     "treeW": 233,
+     "inspectorX": 620,
+     "inspectorInert": false,
+     "treeState": "closed",
+     "inspectorState": "closed",
+     "firstControlInsideTree": true,
+     "firstControlTag": "svg",
+     "firstControlTopInside": true,
+     "jsCssAgree": true,
+     "jsCssMatchBreakpoint": true,
+     "verdict": true,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "id": "J2",
+   "verdict": "PASS",
+   "statement": "导演台 Esc 优先级阶梯四档全对：无面板时关导演台；导出面板开着时只关面板；焦点在可编辑控件里时不关；离开可编辑控件后能关。",
+   "evidenceKey": "escLadderRows",
+   "evidence": [
+    {
+     "step": "baseline-no-panel",
+     "closed": true,
+     "exportClosed": null,
+     "closedWorkspace": null,
+     "focusAfterTag": "BUTTON",
+     "focusAfterAria": null,
+     "focusAfterIsContentEditable": false
+    },
+    {
+     "step": "export-panel-open",
+     "closed": null,
+     "exportClosed": true,
+     "closedWorkspace": false,
+     "focusAfterTag": null,
+     "focusAfterAria": null,
+     "focusAfterIsContentEditable": null
+    },
+    {
+     "step": "second-esc",
+     "closed": null,
+     "exportClosed": null,
+     "closedWorkspace": true,
+     "focusAfterTag": "BUTTON",
+     "focusAfterAria": null,
+     "focusAfterIsContentEditable": false
+    },
+    {
+     "step": "esc-in-editable",
+     "closed": null,
+     "exportClosed": null,
+     "closedWorkspace": false,
+     "focusAfterTag": null,
+     "focusAfterAria": null,
+     "focusAfterIsContentEditable": null
+    },
+    {
+     "step": "esc-after-leaving-editable",
+     "closed": null,
+     "exportClosed": null,
+     "closedWorkspace": true,
+     "focusAfterTag": "BUTTON",
+     "focusAfterAria": null,
+     "focusAfterIsContentEditable": false
+    }
+   ]
+  },
+  {
+   "id": "J3",
+   "verdict": "PASS",
+   "statement": "窄视口两个抽屉都能开：`data-director-mobile-panel-state` 变 open、`data-director-focus-scope` 分别落 tree/inspector，焦点**进到抽屉里**，Tab 12 步 0 次逃出 dialog。",
+   "evidenceKey": "drawerFocusRoundEqual",
+   "evidence": [
+    {
+     "panel": "tree",
+     "round1": {
+      "panel": "tree",
+      "stateAfterOpen": "open",
+      "focusScopeAfterOpen": "tree",
+      "inertAfterOpen": false,
+      "focusOnOpenInDialog": true,
+      "focusOnOpenInPanel": "tree",
+      "tabSteps": 12,
+      "tabEscaped": 0,
+      "drawerClosedByEsc": true,
+      "workspaceClosedByEsc": false
+     },
+     "round2": {
+      "panel": "tree",
+      "stateAfterOpen": "open",
+      "focusScopeAfterOpen": "tree",
+      "inertAfterOpen": false,
+      "focusOnOpenInDialog": true,
+      "focusOnOpenInPanel": "tree",
+      "tabSteps": 12,
+      "tabEscaped": 0,
+      "drawerClosedByEsc": true,
+      "workspaceClosedByEsc": false
+     },
+     "equal": true,
+     "reachableRound1": 20,
+     "reachableRound2": 17,
+     "reachableEqual": false
+    },
+    {
+     "panel": "inspector",
+     "round1": {
+      "panel": "inspector",
+      "stateAfterOpen": "open",
+      "focusScopeAfterOpen": "inspector",
+      "inertAfterOpen": false,
+      "focusOnOpenInDialog": true,
+      "focusOnOpenInPanel": "inspector",
+      "tabSteps": 12,
+      "tabEscaped": 0,
+      "drawerClosedByEsc": true,
+      "workspaceClosedByEsc": false
+     },
+     "round2": {
+      "panel": "inspector",
+      "stateAfterOpen": "open",
+      "focusScopeAfterOpen": "inspector",
+      "inertAfterOpen": false,
+      "focusOnOpenInDialog": true,
+      "focusOnOpenInPanel": "inspector",
+      "tabSteps": 12,
+      "tabEscaped": 0,
+      "drawerClosedByEsc": true,
+      "workspaceClosedByEsc": false
+     },
+     "equal": true,
+     "reachableRound1": 35,
+     "reachableRound2": 33,
+     "reachableEqual": false
+    }
+   ]
+  },
+  {
+   "id": "J4",
+   "verdict": "PASS",
+   "statement": "Esc **只关抽屉、不关导演台**（`drawerClosed=True` 与 `workspaceClosed=False` 同时成立），且焦点回到对应的触发按钮。",
+   "evidenceKey": "drawerFocusAllEqual",
+   "evidence": true
+  },
+  {
+   "id": "J5",
+   "verdict": "PASS",
+   "statement": "导演台自己的快捷键阶梯四步全对：⌘Z 撤销（past 1→0、future 0→1）、⌘Y 重做（past 0→1、future 1→0）、再 ⌘Z、再 ⌘⇧Z，每步 lastCommand 都跟着变 UNDO/REDO。",
+   "evidenceKey": "undoRedoRound1",
+   "evidence": [
+    {
+     "key": "Cmd+Z",
+     "past": [
+      "1",
+      "0"
+     ],
+     "future": [
+      "0",
+      "1"
+     ],
+     "lastCommand": [
+      "ADD_CAMERA",
+      "UNDO"
+     ],
+     "moved": true
+    },
+    {
+     "key": "Cmd+Y",
+     "past": [
+      "0",
+      "1"
+     ],
+     "future": [
+      "1",
+      "0"
+     ],
+     "lastCommand": [
+      "UNDO",
+      "REDO"
+     ],
+     "moved": true
+    },
+    {
+     "key": "Cmd+Z",
+     "past": [
+      "1",
+      "0"
+     ],
+     "future": [
+      "0",
+      "1"
+     ],
+     "lastCommand": [
+      "REDO",
+      "UNDO"
+     ],
+     "moved": true
+    },
+    {
+     "key": "Cmd+Shift+Z",
+     "past": [
+      "0",
+      "1"
+     ],
+     "future": [
+      "1",
+      "0"
+     ],
+     "lastCommand": [
+      "UNDO",
+      "REDO"
+     ],
+     "moved": true
+    }
+   ]
+  },
+  {
+   "id": "J6",
+   "verdict": "PASS",
+   "statement": "Delete 与 Backspace **都真的删掉了对象**（historyPast 1→2 / 2→3、对象计数 6→5 / 5→4、被点的行消失），两轮同。",
+   "evidenceKey": "deleteRowsRound1",
+   "evidence": [
+    {
+     "key": "Delete",
+     "lastCommand": [
+      "REDO",
+      "DELETE_OBJECTS"
+     ],
+     "changedByLabel": true,
+     "past": [
+      "1",
+      "2"
+     ],
+     "objectCount": [
+      6,
+      5
+     ],
+     "pickedCountBefore": 6,
+     "pickedCountAfter": 6,
+     "pickedRowId": "director-character-lead",
+     "pickedRowGone": true,
+     "pickedRowSelected": [
+      "director-character-lead"
+     ],
+     "hitOk": true
+    },
+    {
+     "key": "Backspace",
+     "lastCommand": [
+      "DELETE_OBJECTS",
+      "DELETE_OBJECTS"
+     ],
+     "changedByLabel": false,
+     "past": [
+      "2",
+      "3"
+     ],
+     "objectCount": [
+      6,
+      4
+     ],
+     "pickedCountBefore": 5,
+     "pickedCountAfter": 5,
+     "pickedRowId": "director-prop-table",
+     "pickedRowGone": true,
+     "pickedRowSelected": [
+      "director-prop-table"
+     ],
+     "hitOk": true
+    }
+   ]
+  },
+  {
+   "id": "J7",
+   "verdict": "PASS",
+   "statement": "**缺陷 D1 的定量**：树面板 20 个控件按 Esc 全部能关抽屉；属性面板 35 个里有 9 个关不掉，两轮完全一致，序号 6/9/12/15/18/21/24/27/30，`type` 全是 number。",
+   "evidenceKey": "sweepInspectorNotClosedIdx",
+   "evidence": [
+    [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ],
+    [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ]
+   ]
+  },
+  {
+   "id": "J8",
+   "verdict": "PASS",
+   "statement": "传播判决：这 9 个控件上的 Esc **从未到达 window 冒泡**（`reachedWinBubble=false`），但 window 捕获阶段照样触发（`reachedWinCapture=true`）；而能关掉的那 26 个全部触发了 window 冒泡。⟹ 导演台那个 Esc 阶梯根本没机会跑。",
+   "evidenceKey": "notClosedNeverReachedWindowBubble",
+   "evidence": true
+  },
+  {
+   "id": "J9",
+   "verdict": "PASS",
+   "statement": "注入对照**否掉**「`type=number` 原生吞 Esc」这个假设：同一个面板里现插的 text 与 number 输入框按 Esc **都能**关抽屉。",
+   "evidenceKey": "injectionRefutesNativeNumber",
+   "evidence": true
+  },
+  {
+   "id": "J10",
+   "verdict": "PASS",
+   "statement": "结构性后果：焦点留在那 9 个框里时，Esc 连按两次都关不掉抽屉，焦点也一直在框内；**Tab 离开该框之后 Esc 立刻恢复正常**（落点变成关键帧按钮，抽屉关、导演台不关）。",
+   "evidenceKey": "escNeverClosesDrawer",
+   "evidence": true
+  },
+  {
+   "id": "J11",
+   "verdict": "PASS",
+   "statement": "**光聚焦**那个框就已经开出一个 gesture（`data-director-active-gesture` 非空）却没有写历史（`historyPast` 仍 0）；真编辑一次（ArrowUp）后gesture 仍挂着、past 仍 0，直到 Tab 失焦才 commit（past=1、`GESTURE_COMMIT`）。⟹ 这个边界对「编辑」是在正常干活的。",
+   "evidenceKey": "gestureCells",
+   "evidence": [
+    {
+     "round": 1,
+     "target": {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x",
+      "aria": null,
+      "text": ""
+     },
+     "A_focusOpensGesture": true,
+     "A_historyPastOnFocus": [
+      "0",
+      "0"
+     ],
+     "B_result": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "B_gestureCleared": true,
+     "B_historyPastDelta": [
+      "0",
+      "0"
+     ],
+     "C_afterEsc1": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "C_afterEsc2": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "C_focusStillInBoundary": true,
+     "D_leftBoundaryOnTab": true,
+     "D_tabLandedOn": null,
+     "D_result": {
+      "deskOpen": true,
+      "inspectorState": "closed",
+      "treeState": "closed",
+      "drawerClosed": true,
+      "workspaceClosed": false
+     },
+     "E_historyPastDelta": [
+      "0",
+      "0"
+     ],
+     "E_gestureOnBlur": [
+      "director-gesture-<gen>",
+      ""
+     ],
+     "E_lastCommandAfterBlur": "GESTURE_COMMIT",
+     "E_historyPastAfterEdit": "0",
+     "E_historyPastAfterBlur": "1"
+    },
+    {
+     "round": 2,
+     "target": {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "tf": "position",
+      "ta": "x",
+      "aria": null,
+      "text": ""
+     },
+     "A_focusOpensGesture": true,
+     "A_historyPastOnFocus": [
+      "0",
+      "0"
+     ],
+     "B_result": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "B_gestureCleared": true,
+     "B_historyPastDelta": [
+      "0",
+      "0"
+     ],
+     "C_afterEsc1": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "C_afterEsc2": {
+      "deskOpen": true,
+      "inspectorState": "open",
+      "treeState": "closed",
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     "C_focusStillInBoundary": true,
+     "D_leftBoundaryOnTab": true,
+     "D_tabLandedOn": null,
+     "D_result": {
+      "deskOpen": true,
+      "inspectorState": "closed",
+      "treeState": "closed",
+      "drawerClosed": true,
+      "workspaceClosed": false
+     },
+     "E_historyPastDelta": [
+      "0",
+      "0"
+     ],
+     "E_gestureOnBlur": [
+      "director-gesture-<gen>",
+      ""
+     ],
+     "E_lastCommandAfterBlur": "GESTURE_COMMIT",
+     "E_historyPastAfterEdit": "0",
+     "E_historyPastAfterBlur": "1"
+    }
+   ]
+  },
+  {
+   "id": "J12",
+   "verdict": "PASS",
+   "statement": "导演台项目**持久化在 localStorage**（键 `liblib-tv-director-project-v1:[owner,canvasId,nodeId]`）：同一浏览器会话内新增的机位扛过一次完整页面 reload（两轮都是 `addSurvivedReload=true`、`reloadLostAdd=false`）。",
+   "evidenceKey": "persistenceRounds",
+   "evidence": [
+    {
+     "round": 1,
+     "verdict": {
+      "baseCount": 5,
+      "afterAddCount": 6,
+      "afterReloadCount": 6,
+      "addSurvivedReload": true,
+      "reloadLostAdd": false,
+      "newIdsAfterAdd": [
+       "director-camera-1791136634207-1"
+      ]
+     },
+     "localKeysBefore": [
+      "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+     ],
+     "localKeysAfter": [
+      "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+     ]
+    },
+    {
+     "round": 2,
+     "verdict": {
+      "baseCount": 6,
+      "afterAddCount": 7,
+      "afterReloadCount": 7,
+      "addSurvivedReload": true,
+      "reloadLostAdd": false,
+      "newIdsAfterAdd": [
+       "director-camera-1791136648294-1"
+      ]
+     },
+     "localKeysBefore": [
+      "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+     ],
+     "localKeysAfter": [
+      "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "J13",
+   "verdict": "PASS",
+   "statement": "种子本身是确定的：两轮都稳定 5 个对象（1 character + 3 prop + 1 camera），t=600ms 一次到位到 6s 不再变，零重复 id。",
+   "evidenceKey": "seedRounds",
+   "evidence": [
+    {
+     "round": 1,
+     "countSeries": [
+      5,
+      5,
+      5,
+      5
+     ],
+     "grewOverTime": false,
+     "duplicateIds": [],
+     "kinds": [
+      {
+       "character": 1,
+       "prop": 3,
+       "camera": 1
+      },
+      {
+       "character": 1,
+       "prop": 3,
+       "camera": 1
+      },
+      {
+       "character": 1,
+       "prop": 3,
+       "camera": 1
+      },
+      {
+       "character": 1,
+       "prop": 3,
+       "camera": 1
+      }
+     ],
+     "ids": [
+      [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ]
+     ]
+    },
+    {
+     "round": 2,
+     "countSeries": [
+      5,
+      5,
+      5,
+      5
+     ],
+     "grewOverTime": false,
+     "duplicateIds": [],
+     "kinds": [
+      {
+       "character": 1,
+       "prop": 3,
+       "camera": 1
+      },
+      {
+       "character": 1,
+       "prop": 3,
+       "camera": 1
+      },
+      {
+       "character": 1,
+       "prop": 3,
+       "camera": 1
+      },
+      {
+       "character": 1,
+       "prop": 3,
+       "camera": 1
+      }
+     ],
+     "ids": [
+      [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "J14",
+   "verdict": "PASS",
+   "statement": "改变视口宽度后立刻 fitView，落点**没有**出现「用旧容器宽度」的偏移：4 档 delay × 2 轮 = 8 次 trial 全部落在期望值 x=276、zoom 正确、命中 169 点。",
+   "evidenceKey": "resizeFitViewTrials",
+   "evidence": [
+    {
+     "delay": 0,
+     "btnX": 276,
+     "zoomOK": true,
+     "centerHit": true,
+     "hitCount": 169,
+     "landed": "expected",
+     "dialogOpen": false
+    },
+    {
+     "delay": 150,
+     "btnX": 276,
+     "zoomOK": true,
+     "centerHit": true,
+     "hitCount": 169,
+     "landed": "expected",
+     "dialogOpen": false
+    },
+    {
+     "delay": 400,
+     "btnX": 276,
+     "zoomOK": true,
+     "centerHit": true,
+     "hitCount": 169,
+     "landed": "expected",
+     "dialogOpen": false
+    },
+    {
+     "delay": 900,
+     "btnX": 276,
+     "zoomOK": true,
+     "centerHit": true,
+     "hitCount": 169,
+     "landed": "expected",
+     "dialogOpen": false
+    },
+    {
+     "delay": 0,
+     "btnX": 276,
+     "zoomOK": true,
+     "centerHit": true,
+     "hitCount": 169,
+     "landed": "expected",
+     "dialogOpen": false
+    },
+    {
+     "delay": 150,
+     "btnX": 276,
+     "zoomOK": true,
+     "centerHit": true,
+     "hitCount": 169,
+     "landed": "expected",
+     "dialogOpen": false
+    },
+    {
+     "delay": 400,
+     "btnX": 276,
+     "zoomOK": true,
+     "centerHit": true,
+     "hitCount": 169,
+     "landed": "expected",
+     "dialogOpen": false
+    },
+    {
+     "delay": 900,
+     "btnX": 276,
+     "zoomOK": true,
+     "centerHit": true,
+     "hitCount": 169,
+     "landed": "expected",
+     "dialogOpen": false
+    }
+   ]
+  }
+ ],
+ "defects": [
+  {
+   "id": "D1",
+   "severity": "中",
+   "title": "`useDirectorGestureBoundary` 无条件吞掉 Escape，窄视口下焦点在变换数值框时 Esc 关不掉属性抽屉",
+   "where": [
+    "src/components/director/useDirectorGestureBoundary.ts:92-98",
+    "src/components/director/DirectorInspector.tsx:182",
+    "src/components/director/DirectorDesk.tsx:475",
+    "src/components/director/DirectorDesk.tsx:481-485"
+   ],
+   "mechanism": "边界在 Escape 上 preventDefault + **stopPropagation**，事件在 React root 冒泡处被掐断，永远到不了挂在 window 冒泡上的 DirectorDesk Esc 阶梯 —— 包括 :481-485 那条「移动端先关抽屉」的分支（该分支本来就排在 isEditable 早退之前，说明作者本意就是让 Esc 从可编辑控件里也能关抽屉）。",
+   "measured": "属性面板 35 个可聚焦控件里 9 个（type=number，X/Y/Z × 位移/旋转/缩放）Esc 无效；树面板 20 个全部有效；两轮一致。",
+   "escapeHatch": "焦点离开该框（Tab/点击）后 Esc 立刻恢复正常。",
+   "fixHint": "两处一起改才有效：① onKeyDown 的 Escape 分支加 `if (!activeRef.current) return;`，没有待取消的手势就放行；② onFocus 不该 begin()（:79）—— 实测「只聚焦」就已经开出一个 activeGesture 却没写历史，聚焦本身不是一次手势起点。",
+   "needsSrcChange": true
+  }
+ ],
+ "observations": [
+  {
+   "id": "O1",
+   "text": "**更正我早前的说法**：此前记的是「两个 store 都无持久化」。导演台项目另有一层 localStorage 持久化（键含 owner/canvasId/nodeId），同会话内**增删都扛过一次完整 reload**。副作用：探针一旦增删对象，同一浏览器会话里的后续轮次就不再可比 —— 763b 两轮 B1 的差异（树可达控件 20 vs 17、属性 35 vs 33）完全由此而来，不是焦点行为差异。",
+   "verdict": "事实更正 + 方法论约束"
+  },
+  {
+   "id": "O2",
+   "text": "导演台里的删除对种子数据是破坏性的，界面没有任何「未保存/重置」提示，唯一恢复路径是同会话内的 ⌘Z。**不声称**源站是否也这样（没做源站对照）。",
+   "verdict": "待拍板，不记缺陷"
+  }
+ ],
+ "notClaimed": [
+  "无源站对照：本批全部结论只针对 clone 自身的行为自洽性。",
+  "763b 的两轮**不可比**（round 1 的增删经 localStorage 带进了 round 2），所以 B1/B3 的两轮一致性只按焦点相关字段断言，`reachableInPanel` 单列。",
+  "只测 800px 一个窄视口（断点 899/898 之间），没测 700/768/850。",
+  "只测了 Escape、Tab、⌘Z/⌘Y/⌘⇧Z、Delete、Backspace；⧠C/⌘V 没测（需要先造出可复制的选择），⌘C/⌘V 留在挂起。",
+  "属性面板另外 8 个 `type=number` 输入框（路径锚点 :825/:887、场景位移 :2811/:2846、FOV :1662、场景读数 :1995/:2009）当前不在渲染态，没逐个测；它们走的是同一个边界 hook，**推测**同样受影响 —— 推测不是读数。",
+  "只测了 X 轴第一个数值框（position/x）作为代表，没有 9 个全测；9 个的失效是 763d 扫出来的，763f 的因果链是在其中一个上验的。",
+  "没测屏幕阅读器实际播报；没测 `workspaceBusy` 与 `capture-viewer` 两档（它们会吞 Delete 与 Esc，但不好主动制造）。",
+  "没碰付费与真实生成；没开第二个导演台项目。"
+ ],
+ "probeLessons": [
+  {
+   "id": "R53",
+   "text": "**派生量要对「效应」敏感，不能对「标签」敏感**。763b 初版用 `changed = lastCommand 前后不同` 判删除是否生效，而连续两次删除的 lastCommand 都是 `DELETE_OBJECTS` ⟹ 派生量恒为 false，差点把「两个键都真删了」读成「Backspace 没用」。真实证据在 historyPast 与对象计数里。"
+  },
+  {
+   "id": "R54",
+   "text": "**打印 id 不许截断**。我按 18 字符打印相机 id，把 `director-camera-main` 与 `director-camera-1791136225444-1` 截成两条一模一样的 `director-camera-17`，看上去像 id 重复 —— 查全量后是 0 重复。"
+  },
+  {
+   "id": "R55",
+   "text": "**宣称「两轮一致」之前先证明两轮可比**。探针自伤（增删对象且改动持久化）会让两轮不可比；763b 的 round 1 删掉的两个种子对象直接带进了 round 2。"
+  },
+  {
+   "id": "R56",
+   "text": "**「抽屉关掉」与「整个导演台关掉」必须分开记**。763f 初版只写 `inspectorState != \"open\"` 就叫「关掉抽屉」，于是连导演台被关掉的那一格也被记成成功。现在固定成 `{deskOpen, drawerClosed, workspaceClosed}` 三个字段。"
+  },
+  {
+   "id": "R57",
+   "text": "**注入对照能否掉看起来很笃定的假设**。我一度认定「`type=number` 的原生 Escape 行为吞掉了键」，源码里也确实找不到 onKeyDown；同位置注入的 number 输入框却能正常关抽屉，假设当场被否，才顺藤摸到 `useDirectorGestureBoundary` 的 stopPropagation。"
+  }
+ ]
+}

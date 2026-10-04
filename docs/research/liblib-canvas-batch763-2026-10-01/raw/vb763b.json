@@ -1,0 +1,2719 @@
+{
+ "batch": 763,
+ "probe": "b",
+ "rounds": [
+  {
+   "B1_load800": {
+    "width": 800,
+    "viewportAfterFit": "16.12048192771084|286.49397590361446|0.23962516733601072"
+   },
+   "B1_narrow_baseline": {
+    "open": true,
+    "innerWidth": 800,
+    "focusState": "workspace",
+    "focusReturn": "trigger",
+    "collapsed": "false",
+    "tree": {
+     "inert": true,
+     "ariaHidden": "true",
+     "state": "closed",
+     "focusScope": null,
+     "rect": {
+      "x": -220,
+      "y": 88,
+      "w": 220,
+      "h": 912
+     }
+    },
+    "inspector": {
+     "inert": true,
+     "ariaHidden": "true",
+     "state": "closed",
+     "focusScope": null,
+     "rect": {
+      "x": 800,
+      "y": 88,
+      "w": 281,
+      "h": 736
+     }
+    },
+    "historyPast": "0",
+    "historyFuture": "0",
+    "lastCommand": "",
+    "lastDisposition": "",
+    "activeGesture": ""
+   },
+   "B1_drawers": [
+    {
+     "panel": "tree",
+     "click": {
+      "point": [
+       15,
+       103
+      ],
+      "rect": {
+       "x": 12,
+       "y": 100,
+       "w": 32,
+       "h": 32
+      },
+      "hitCount": 169,
+      "centerHit": true,
+      "attempts": [
+       {
+        "rect": {
+         "x": 12,
+         "y": 100,
+         "w": 32,
+         "h": 32
+        },
+        "hitCount": 169,
+        "point": [
+         15,
+         103
+        ],
+        "centerHit": true,
+        "centerTag": "svg"
+       }
+      ]
+     },
+     "before": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "mobile-tree",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": false,
+       "ariaHidden": null,
+       "state": "open",
+       "focusScope": "tree",
+       "rect": {
+        "x": 0,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": 800,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "lastDisposition": "",
+      "activeGesture": ""
+     },
+     "focusOnOpen": {
+      "open": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "ariaLabel": "搜索场景内容",
+      "inPanel": "tree",
+      "text": ""
+     },
+     "panelFocusable": {
+      "panelState": "open",
+      "focusScope": "tree",
+      "inert": false,
+      "reachable": 20
+     },
+     "tab": {
+      "steps": 12,
+      "escapedCount": 0,
+      "escapedAt": [],
+      "panelsSeen": [
+       "tree"
+      ]
+     },
+     "afterEsc": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "workspace",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": -220,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": 800,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "lastDisposition": "",
+      "activeGesture": ""
+     },
+     "drawerClosedByEsc": true,
+     "workspaceClosedByEsc": false,
+     "focusAfterEsc": {
+      "open": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "打开场景对象",
+      "inPanel": null,
+      "text": ""
+     }
+    },
+    {
+     "panel": "inspector",
+     "click": {
+      "point": [
+       51,
+       103
+      ],
+      "rect": {
+       "x": 48,
+       "y": 100,
+       "w": 32,
+       "h": 32
+      },
+      "hitCount": 169,
+      "centerHit": true,
+      "attempts": [
+       {
+        "rect": {
+         "x": 48,
+         "y": 100,
+         "w": 32,
+         "h": 32
+        },
+        "hitCount": 169,
+        "point": [
+         51,
+         103
+        ],
+        "centerHit": true,
+        "centerTag": "svg"
+       }
+      ]
+     },
+     "before": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "mobile-inspector",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": -220,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": false,
+       "ariaHidden": null,
+       "state": "open",
+       "focusScope": "inspector",
+       "rect": {
+        "x": 519,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "lastDisposition": "",
+      "activeGesture": ""
+     },
+     "focusOnOpen": {
+      "open": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": null,
+      "inPanel": "inspector",
+      "text": "属性"
+     },
+     "panelFocusable": {
+      "panelState": "open",
+      "focusScope": "inspector",
+      "inert": false,
+      "reachable": 35
+     },
+     "tab": {
+      "steps": 12,
+      "escapedCount": 0,
+      "escapedAt": [],
+      "panelsSeen": [
+       "inspector"
+      ]
+     },
+     "afterEsc": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "mobile-inspector",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": -220,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": false,
+       "ariaHidden": null,
+       "state": "open",
+       "focusScope": "inspector",
+       "rect": {
+        "x": 519,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_CANCEL",
+      "lastDisposition": "NOOP",
+      "activeGesture": ""
+     },
+     "drawerClosedByEsc": true,
+     "workspaceClosedByEsc": false,
+     "focusAfterEsc": {
+      "open": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "ariaLabel": null,
+      "inPanel": "inspector",
+      "text": ""
+     }
+    }
+   ],
+   "B2_load1440": {
+    "width": 1440,
+    "viewportAfterFit": "118.74559193954667|165.59445843828718|0.37531486146095716"
+   },
+   "B2_baseline": {
+    "open": true,
+    "innerWidth": 1440,
+    "focusState": "workspace",
+    "focusReturn": "trigger",
+    "collapsed": "false",
+    "tree": {
+     "inert": false,
+     "ariaHidden": null,
+     "state": "closed",
+     "focusScope": null,
+     "rect": {
+      "x": 48,
+      "y": 52,
+      "w": 233,
+      "h": 948
+     }
+    },
+    "inspector": {
+     "inert": false,
+     "ariaHidden": null,
+     "state": "closed",
+     "focusScope": null,
+     "rect": {
+      "x": 1159,
+      "y": 52,
+      "w": 281,
+      "h": 766
+     }
+    },
+    "historyPast": "0",
+    "historyFuture": "0",
+    "lastCommand": "",
+    "lastDisposition": "",
+    "activeGesture": ""
+   },
+   "B2_addCamera": {
+    "click": {
+     "point": [
+      10,
+      159
+     ],
+     "rect": {
+      "x": 8,
+      "y": 156,
+      "w": 32,
+      "h": 32
+     },
+     "hitCount": 169,
+     "centerHit": true,
+     "attempts": [
+      {
+       "rect": {
+        "x": 8,
+        "y": 156,
+        "w": 32,
+        "h": 32
+       },
+       "hitCount": 169,
+       "point": [
+        10,
+        159
+       ],
+       "centerHit": true,
+       "centerTag": "path"
+      }
+     ]
+    },
+    "after": {
+     "open": true,
+     "innerWidth": 1440,
+     "focusState": "workspace",
+     "focusReturn": "trigger",
+     "collapsed": "false",
+     "tree": {
+      "inert": false,
+      "ariaHidden": null,
+      "state": "closed",
+      "focusScope": null,
+      "rect": {
+       "x": 48,
+       "y": 52,
+       "w": 233,
+       "h": 948
+      }
+     },
+     "inspector": {
+      "inert": false,
+      "ariaHidden": null,
+      "state": "closed",
+      "focusScope": null,
+      "rect": {
+       "x": 1159,
+       "y": 52,
+       "w": 281,
+       "h": 766
+      }
+     },
+     "historyPast": "1",
+     "historyFuture": "0",
+     "lastCommand": "ADD_CAMERA",
+     "lastDisposition": "COMMITTED",
+     "activeGesture": ""
+    }
+   },
+   "B2_undoRedo": [
+    {
+     "key": "Cmd+Z",
+     "note": "撤销刚加的机位：past 1→0、future 0→1",
+     "past": [
+      "1",
+      "0"
+     ],
+     "future": [
+      "0",
+      "1"
+     ],
+     "lastCommand": [
+      "ADD_CAMERA",
+      "UNDO"
+     ],
+     "moved": true
+    },
+    {
+     "key": "Cmd+Y",
+     "note": "重做：此刻 future 非空，格子有效",
+     "past": [
+      "0",
+      "1"
+     ],
+     "future": [
+      "1",
+      "0"
+     ],
+     "lastCommand": [
+      "UNDO",
+      "REDO"
+     ],
+     "moved": true
+    },
+    {
+     "key": "Cmd+Z",
+     "note": "再造一个「有 future 可重做」的状态",
+     "past": [
+      "1",
+      "0"
+     ],
+     "future": [
+      "0",
+      "1"
+     ],
+     "lastCommand": [
+      "REDO",
+      "UNDO"
+     ],
+     "moved": true
+    },
+    {
+     "key": "Cmd+Shift+Z",
+     "note": "重做：此刻 future 非空，格子有效",
+     "past": [
+      "0",
+      "1"
+     ],
+     "future": [
+      "1",
+      "0"
+     ],
+     "lastCommand": [
+      "UNDO",
+      "REDO"
+     ],
+     "moved": true
+    }
+   ],
+   "B3_objectsSeed": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "selected": "true",
+     "role": "treeitem",
+     "text": "角色01 · 陈默",
+     "x": 56,
+     "y": 200,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "咖啡桌",
+     "x": 56,
+     "y": 272,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "冷掉的咖啡",
+     "x": 56,
+     "y": 304,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "咖啡馆背景",
+     "x": 56,
+     "y": 336,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位01 · 对峙中景",
+     "x": 56,
+     "y": 408,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-1791136225444-1",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位 02 · 新镜头",
+     "x": 56,
+     "y": 440,
+     "w": 216,
+     "h": 32
+    }
+   ],
+   "B3_delete": [
+    {
+     "key": "Delete",
+     "pick": {
+      "picked": 0,
+      "target": {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "role": "treeitem",
+       "text": "角色01 · 陈默",
+       "x": 56,
+       "y": 200,
+       "w": 216,
+       "h": 32
+      },
+      "hit": {
+       "tag": "SPAN",
+       "ok": true,
+       "ariaLabel": null
+      },
+      "countBefore": 6,
+      "countAfter": 6,
+      "selectedAfter": [
+       "director-character-lead"
+      ]
+     },
+     "lastCommand": [
+      "REDO",
+      "DELETE_OBJECTS"
+     ],
+     "changed": true,
+     "past": [
+      "1",
+      "2"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "objectCount": [
+      6,
+      5
+     ],
+     "objectsAfter": [
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "咖啡桌",
+       "x": 56,
+       "y": 164,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 196,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 228,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 300,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-1791136225444-1",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位 02 · 新镜头",
+       "x": 56,
+       "y": 332,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "pickedRowNowExists": false
+    },
+    {
+     "key": "Backspace",
+     "pick": {
+      "picked": 0,
+      "target": {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "咖啡桌",
+       "x": 56,
+       "y": 164,
+       "w": 216,
+       "h": 32
+      },
+      "hit": {
+       "tag": "SPAN",
+       "ok": true,
+       "ariaLabel": null
+      },
+      "countBefore": 5,
+      "countAfter": 5,
+      "selectedAfter": [
+       "director-prop-table"
+      ]
+     },
+     "lastCommand": [
+      "DELETE_OBJECTS",
+      "DELETE_OBJECTS"
+     ],
+     "changed": false,
+     "past": [
+      "2",
+      "3"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "objectCount": [
+      6,
+      4
+     ],
+     "objectsAfter": [
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 164,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 196,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 268,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-1791136225444-1",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位 02 · 新镜头",
+       "x": 56,
+       "y": 300,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "pickedRowNowExists": false
+    }
+   ],
+   "B3_objectsAfterAll": [
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "冷掉的咖啡",
+     "x": 56,
+     "y": 164,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "咖啡馆背景",
+     "x": 56,
+     "y": 196,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位01 · 对峙中景",
+     "x": 56,
+     "y": 268,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-1791136225444-1",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位 02 · 新镜头",
+     "x": 56,
+     "y": 300,
+     "w": 216,
+     "h": 32
+    }
+   ]
+  },
+  {
+   "B1_load800": {
+    "width": 800,
+    "viewportAfterFit": "16.12048192771084|286.49397590361446|0.23962516733601072"
+   },
+   "B1_narrow_baseline": {
+    "open": true,
+    "innerWidth": 800,
+    "focusState": "workspace",
+    "focusReturn": "trigger",
+    "collapsed": "false",
+    "tree": {
+     "inert": true,
+     "ariaHidden": "true",
+     "state": "closed",
+     "focusScope": null,
+     "rect": {
+      "x": -220,
+      "y": 88,
+      "w": 220,
+      "h": 912
+     }
+    },
+    "inspector": {
+     "inert": true,
+     "ariaHidden": "true",
+     "state": "closed",
+     "focusScope": null,
+     "rect": {
+      "x": 800,
+      "y": 88,
+      "w": 281,
+      "h": 736
+     }
+    },
+    "historyPast": "0",
+    "historyFuture": "0",
+    "lastCommand": "",
+    "lastDisposition": "",
+    "activeGesture": ""
+   },
+   "B1_drawers": [
+    {
+     "panel": "tree",
+     "click": {
+      "point": [
+       15,
+       103
+      ],
+      "rect": {
+       "x": 12,
+       "y": 100,
+       "w": 32,
+       "h": 32
+      },
+      "hitCount": 169,
+      "centerHit": true,
+      "attempts": [
+       {
+        "rect": {
+         "x": 12,
+         "y": 100,
+         "w": 32,
+         "h": 32
+        },
+        "hitCount": 169,
+        "point": [
+         15,
+         103
+        ],
+        "centerHit": true,
+        "centerTag": "svg"
+       }
+      ]
+     },
+     "before": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "mobile-tree",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": false,
+       "ariaHidden": null,
+       "state": "open",
+       "focusScope": "tree",
+       "rect": {
+        "x": 0,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": 800,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "lastDisposition": "",
+      "activeGesture": ""
+     },
+     "focusOnOpen": {
+      "open": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "ariaLabel": "搜索场景内容",
+      "inPanel": "tree",
+      "text": ""
+     },
+     "panelFocusable": {
+      "panelState": "open",
+      "focusScope": "tree",
+      "inert": false,
+      "reachable": 17
+     },
+     "tab": {
+      "steps": 12,
+      "escapedCount": 0,
+      "escapedAt": [],
+      "panelsSeen": [
+       "tree"
+      ]
+     },
+     "afterEsc": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "workspace",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": -220,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": 800,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "lastDisposition": "",
+      "activeGesture": ""
+     },
+     "drawerClosedByEsc": true,
+     "workspaceClosedByEsc": false,
+     "focusAfterEsc": {
+      "open": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "打开场景对象",
+      "inPanel": null,
+      "text": ""
+     }
+    },
+    {
+     "panel": "inspector",
+     "click": {
+      "point": [
+       51,
+       103
+      ],
+      "rect": {
+       "x": 48,
+       "y": 100,
+       "w": 32,
+       "h": 32
+      },
+      "hitCount": 169,
+      "centerHit": true,
+      "attempts": [
+       {
+        "rect": {
+         "x": 48,
+         "y": 100,
+         "w": 32,
+         "h": 32
+        },
+        "hitCount": 169,
+        "point": [
+         51,
+         103
+        ],
+        "centerHit": true,
+        "centerTag": "svg"
+       }
+      ]
+     },
+     "before": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "mobile-inspector",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": -220,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": false,
+       "ariaHidden": null,
+       "state": "open",
+       "focusScope": "inspector",
+       "rect": {
+        "x": 519,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "lastDisposition": "",
+      "activeGesture": ""
+     },
+     "focusOnOpen": {
+      "open": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "ariaLabel": null,
+      "inPanel": "inspector",
+      "text": ""
+     },
+     "panelFocusable": {
+      "panelState": "open",
+      "focusScope": "inspector",
+      "inert": false,
+      "reachable": 33
+     },
+     "tab": {
+      "steps": 12,
+      "escapedCount": 0,
+      "escapedAt": [],
+      "panelsSeen": [
+       "inspector"
+      ]
+     },
+     "afterEsc": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "workspace",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": -220,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": 800,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_COMMIT",
+      "lastDisposition": "NOOP",
+      "activeGesture": ""
+     },
+     "drawerClosedByEsc": true,
+     "workspaceClosedByEsc": false,
+     "focusAfterEsc": {
+      "open": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "打开属性面板",
+      "inPanel": null,
+      "text": ""
+     }
+    }
+   ],
+   "B2_load1440": {
+    "width": 1440,
+    "viewportAfterFit": "118.74559193954667|165.59445843828718|0.37531486146095716"
+   },
+   "B2_baseline": {
+    "open": true,
+    "innerWidth": 1440,
+    "focusState": "workspace",
+    "focusReturn": "trigger",
+    "collapsed": "false",
+    "tree": {
+     "inert": false,
+     "ariaHidden": null,
+     "state": "closed",
+     "focusScope": null,
+     "rect": {
+      "x": 48,
+      "y": 52,
+      "w": 233,
+      "h": 948
+     }
+    },
+    "inspector": {
+     "inert": false,
+     "ariaHidden": null,
+     "state": "closed",
+     "focusScope": null,
+     "rect": {
+      "x": 1159,
+      "y": 52,
+      "w": 281,
+      "h": 766
+     }
+    },
+    "historyPast": "0",
+    "historyFuture": "0",
+    "lastCommand": "",
+    "lastDisposition": "",
+    "activeGesture": ""
+   },
+   "B2_addCamera": {
+    "click": {
+     "point": [
+      10,
+      159
+     ],
+     "rect": {
+      "x": 8,
+      "y": 156,
+      "w": 32,
+      "h": 32
+     },
+     "hitCount": 169,
+     "centerHit": true,
+     "attempts": [
+      {
+       "rect": {
+        "x": 8,
+        "y": 156,
+        "w": 32,
+        "h": 32
+       },
+       "hitCount": 169,
+       "point": [
+        10,
+        159
+       ],
+       "centerHit": true,
+       "centerTag": "path"
+      }
+     ]
+    },
+    "after": {
+     "open": true,
+     "innerWidth": 1440,
+     "focusState": "workspace",
+     "focusReturn": "trigger",
+     "collapsed": "false",
+     "tree": {
+      "inert": false,
+      "ariaHidden": null,
+      "state": "closed",
+      "focusScope": null,
+      "rect": {
+       "x": 48,
+       "y": 52,
+       "w": 233,
+       "h": 948
+      }
+     },
+     "inspector": {
+      "inert": false,
+      "ariaHidden": null,
+      "state": "closed",
+      "focusScope": null,
+      "rect": {
+       "x": 1159,
+       "y": 52,
+       "w": 281,
+       "h": 766
+      }
+     },
+     "historyPast": "1",
+     "historyFuture": "0",
+     "lastCommand": "ADD_CAMERA",
+     "lastDisposition": "COMMITTED",
+     "activeGesture": ""
+    }
+   },
+   "B2_undoRedo": [
+    {
+     "key": "Cmd+Z",
+     "note": "撤销刚加的机位：past 1→0、future 0→1",
+     "past": [
+      "1",
+      "0"
+     ],
+     "future": [
+      "0",
+      "1"
+     ],
+     "lastCommand": [
+      "ADD_CAMERA",
+      "UNDO"
+     ],
+     "moved": true
+    },
+    {
+     "key": "Cmd+Y",
+     "note": "重做：此刻 future 非空，格子有效",
+     "past": [
+      "0",
+      "1"
+     ],
+     "future": [
+      "1",
+      "0"
+     ],
+     "lastCommand": [
+      "UNDO",
+      "REDO"
+     ],
+     "moved": true
+    },
+    {
+     "key": "Cmd+Z",
+     "note": "再造一个「有 future 可重做」的状态",
+     "past": [
+      "1",
+      "0"
+     ],
+     "future": [
+      "0",
+      "1"
+     ],
+     "lastCommand": [
+      "REDO",
+      "UNDO"
+     ],
+     "moved": true
+    },
+    {
+     "key": "Cmd+Shift+Z",
+     "note": "重做：此刻 future 非空，格子有效",
+     "past": [
+      "0",
+      "1"
+     ],
+     "future": [
+      "1",
+      "0"
+     ],
+     "lastCommand": [
+      "UNDO",
+      "REDO"
+     ],
+     "moved": true
+    }
+   ],
+   "B3_objectsSeed": [
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "selected": "true",
+     "role": "treeitem",
+     "text": "冷掉的咖啡",
+     "x": 56,
+     "y": 200,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "咖啡馆背景",
+     "x": 56,
+     "y": 232,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位01 · 对峙中景",
+     "x": 56,
+     "y": 304,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-1791136225444-1",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位 02 · 新镜头",
+     "x": 56,
+     "y": 336,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-1791136262992-1",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位 03 · 新镜头",
+     "x": 56,
+     "y": 368,
+     "w": 216,
+     "h": 32
+    }
+   ],
+   "B3_delete": [
+    {
+     "key": "Delete",
+     "pick": {
+      "picked": 0,
+      "target": {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "true",
+       "role": "treeitem",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 200,
+       "w": 216,
+       "h": 32
+      },
+      "hit": {
+       "tag": "SPAN",
+       "ok": true,
+       "ariaLabel": null
+      },
+      "countBefore": 5,
+      "countAfter": 5,
+      "selectedAfter": [
+       "director-prop-mug"
+      ]
+     },
+     "lastCommand": [
+      "REDO",
+      "DELETE_OBJECTS"
+     ],
+     "changed": true,
+     "past": [
+      "1",
+      "2"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "objectCount": [
+      5,
+      4
+     ],
+     "objectsAfter": [
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 164,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 236,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-1791136225444-1",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位 02 · 新镜头",
+       "x": 56,
+       "y": 268,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-1791136262992-1",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位 03 · 新镜头",
+       "x": 56,
+       "y": 300,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "pickedRowNowExists": false
+    },
+    {
+     "key": "Backspace",
+     "pick": {
+      "picked": 0,
+      "target": {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 164,
+       "w": 216,
+       "h": 32
+      },
+      "hit": {
+       "tag": "SPAN",
+       "ok": true,
+       "ariaLabel": null
+      },
+      "countBefore": 4,
+      "countAfter": 4,
+      "selectedAfter": [
+       "director-prop-wall"
+      ]
+     },
+     "lastCommand": [
+      "DELETE_OBJECTS",
+      "DELETE_OBJECTS"
+     ],
+     "changed": false,
+     "past": [
+      "2",
+      "3"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "objectCount": [
+      5,
+      3
+     ],
+     "objectsAfter": [
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 164,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-1791136225444-1",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位 02 · 新镜头",
+       "x": 56,
+       "y": 196,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-1791136262992-1",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位 03 · 新镜头",
+       "x": 56,
+       "y": 228,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "pickedRowNowExists": false
+    }
+   ],
+   "B3_objectsAfterAll": [
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位01 · 对峙中景",
+     "x": 56,
+     "y": 164,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-1791136225444-1",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位 02 · 新镜头",
+     "x": 56,
+     "y": 196,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-1791136262992-1",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位 03 · 新镜头",
+     "x": 56,
+     "y": 228,
+     "w": 216,
+     "h": 32
+    }
+   ]
+  }
+ ],
+ "roundDiff": {
+  "B3_objectsAfterAll": {
+   "round1": [
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "冷掉的咖啡",
+     "x": 56,
+     "y": 164,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "咖啡馆背景",
+     "x": 56,
+     "y": 196,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位01 · 对峙中景",
+     "x": 56,
+     "y": 268,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-1791136225444-1",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位 02 · 新镜头",
+     "x": 56,
+     "y": 300,
+     "w": 216,
+     "h": 32
+    }
+   ],
+   "round2": [
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位01 · 对峙中景",
+     "x": 56,
+     "y": 164,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-1791136225444-1",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位 02 · 新镜头",
+     "x": 56,
+     "y": 196,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-1791136262992-1",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位 03 · 新镜头",
+     "x": 56,
+     "y": 228,
+     "w": 216,
+     "h": 32
+    }
+   ]
+  },
+  "B1_drawers": {
+   "round1": [
+    {
+     "panel": "tree",
+     "click": {
+      "point": [
+       15,
+       103
+      ],
+      "rect": {
+       "x": 12,
+       "y": 100,
+       "w": 32,
+       "h": 32
+      },
+      "hitCount": 169,
+      "centerHit": true,
+      "attempts": [
+       {
+        "rect": {
+         "x": 12,
+         "y": 100,
+         "w": 32,
+         "h": 32
+        },
+        "hitCount": 169,
+        "point": [
+         15,
+         103
+        ],
+        "centerHit": true,
+        "centerTag": "svg"
+       }
+      ]
+     },
+     "before": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "mobile-tree",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": false,
+       "ariaHidden": null,
+       "state": "open",
+       "focusScope": "tree",
+       "rect": {
+        "x": 0,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": 800,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "lastDisposition": "",
+      "activeGesture": ""
+     },
+     "focusOnOpen": {
+      "open": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "ariaLabel": "搜索场景内容",
+      "inPanel": "tree",
+      "text": ""
+     },
+     "panelFocusable": {
+      "panelState": "open",
+      "focusScope": "tree",
+      "inert": false,
+      "reachable": 20
+     },
+     "tab": {
+      "steps": 12,
+      "escapedCount": 0,
+      "escapedAt": [],
+      "panelsSeen": [
+       "tree"
+      ]
+     },
+     "afterEsc": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "workspace",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": -220,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": 800,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "lastDisposition": "",
+      "activeGesture": ""
+     },
+     "drawerClosedByEsc": true,
+     "workspaceClosedByEsc": false,
+     "focusAfterEsc": {
+      "open": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "打开场景对象",
+      "inPanel": null,
+      "text": ""
+     }
+    },
+    {
+     "panel": "inspector",
+     "click": {
+      "point": [
+       51,
+       103
+      ],
+      "rect": {
+       "x": 48,
+       "y": 100,
+       "w": 32,
+       "h": 32
+      },
+      "hitCount": 169,
+      "centerHit": true,
+      "attempts": [
+       {
+        "rect": {
+         "x": 48,
+         "y": 100,
+         "w": 32,
+         "h": 32
+        },
+        "hitCount": 169,
+        "point": [
+         51,
+         103
+        ],
+        "centerHit": true,
+        "centerTag": "svg"
+       }
+      ]
+     },
+     "before": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "mobile-inspector",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": -220,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": false,
+       "ariaHidden": null,
+       "state": "open",
+       "focusScope": "inspector",
+       "rect": {
+        "x": 519,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "lastDisposition": "",
+      "activeGesture": ""
+     },
+     "focusOnOpen": {
+      "open": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": null,
+      "inPanel": "inspector",
+      "text": "属性"
+     },
+     "panelFocusable": {
+      "panelState": "open",
+      "focusScope": "inspector",
+      "inert": false,
+      "reachable": 35
+     },
+     "tab": {
+      "steps": 12,
+      "escapedCount": 0,
+      "escapedAt": [],
+      "panelsSeen": [
+       "inspector"
+      ]
+     },
+     "afterEsc": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "mobile-inspector",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": -220,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": false,
+       "ariaHidden": null,
+       "state": "open",
+       "focusScope": "inspector",
+       "rect": {
+        "x": 519,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_CANCEL",
+      "lastDisposition": "NOOP",
+      "activeGesture": ""
+     },
+     "drawerClosedByEsc": true,
+     "workspaceClosedByEsc": false,
+     "focusAfterEsc": {
+      "open": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "ariaLabel": null,
+      "inPanel": "inspector",
+      "text": ""
+     }
+    }
+   ],
+   "round2": [
+    {
+     "panel": "tree",
+     "click": {
+      "point": [
+       15,
+       103
+      ],
+      "rect": {
+       "x": 12,
+       "y": 100,
+       "w": 32,
+       "h": 32
+      },
+      "hitCount": 169,
+      "centerHit": true,
+      "attempts": [
+       {
+        "rect": {
+         "x": 12,
+         "y": 100,
+         "w": 32,
+         "h": 32
+        },
+        "hitCount": 169,
+        "point": [
+         15,
+         103
+        ],
+        "centerHit": true,
+        "centerTag": "svg"
+       }
+      ]
+     },
+     "before": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "mobile-tree",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": false,
+       "ariaHidden": null,
+       "state": "open",
+       "focusScope": "tree",
+       "rect": {
+        "x": 0,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": 800,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "lastDisposition": "",
+      "activeGesture": ""
+     },
+     "focusOnOpen": {
+      "open": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "ariaLabel": "搜索场景内容",
+      "inPanel": "tree",
+      "text": ""
+     },
+     "panelFocusable": {
+      "panelState": "open",
+      "focusScope": "tree",
+      "inert": false,
+      "reachable": 17
+     },
+     "tab": {
+      "steps": 12,
+      "escapedCount": 0,
+      "escapedAt": [],
+      "panelsSeen": [
+       "tree"
+      ]
+     },
+     "afterEsc": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "workspace",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": -220,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": 800,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "lastDisposition": "",
+      "activeGesture": ""
+     },
+     "drawerClosedByEsc": true,
+     "workspaceClosedByEsc": false,
+     "focusAfterEsc": {
+      "open": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "打开场景对象",
+      "inPanel": null,
+      "text": ""
+     }
+    },
+    {
+     "panel": "inspector",
+     "click": {
+      "point": [
+       51,
+       103
+      ],
+      "rect": {
+       "x": 48,
+       "y": 100,
+       "w": 32,
+       "h": 32
+      },
+      "hitCount": 169,
+      "centerHit": true,
+      "attempts": [
+       {
+        "rect": {
+         "x": 48,
+         "y": 100,
+         "w": 32,
+         "h": 32
+        },
+        "hitCount": 169,
+        "point": [
+         51,
+         103
+        ],
+        "centerHit": true,
+        "centerTag": "svg"
+       }
+      ]
+     },
+     "before": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "mobile-inspector",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": -220,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": false,
+       "ariaHidden": null,
+       "state": "open",
+       "focusScope": "inspector",
+       "rect": {
+        "x": 519,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "",
+      "lastDisposition": "",
+      "activeGesture": ""
+     },
+     "focusOnOpen": {
+      "open": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "ariaLabel": null,
+      "inPanel": "inspector",
+      "text": ""
+     },
+     "panelFocusable": {
+      "panelState": "open",
+      "focusScope": "inspector",
+      "inert": false,
+      "reachable": 33
+     },
+     "tab": {
+      "steps": 12,
+      "escapedCount": 0,
+      "escapedAt": [],
+      "panelsSeen": [
+       "inspector"
+      ]
+     },
+     "afterEsc": {
+      "open": true,
+      "innerWidth": 800,
+      "focusState": "workspace",
+      "focusReturn": "trigger",
+      "collapsed": "false",
+      "tree": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": -220,
+        "y": 88,
+        "w": 220,
+        "h": 912
+       }
+      },
+      "inspector": {
+       "inert": true,
+       "ariaHidden": "true",
+       "state": "closed",
+       "focusScope": null,
+       "rect": {
+        "x": 800,
+        "y": 88,
+        "w": 281,
+        "h": 736
+       }
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_COMMIT",
+      "lastDisposition": "NOOP",
+      "activeGesture": ""
+     },
+     "drawerClosedByEsc": true,
+     "workspaceClosedByEsc": false,
+     "focusAfterEsc": {
+      "open": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "ariaLabel": "打开属性面板",
+      "inPanel": null,
+      "text": ""
+     }
+    }
+   ]
+  },
+  "B3_delete": {
+   "round1": [
+    {
+     "key": "Delete",
+     "pick": {
+      "picked": 0,
+      "target": {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "role": "treeitem",
+       "text": "角色01 · 陈默",
+       "x": 56,
+       "y": 200,
+       "w": 216,
+       "h": 32
+      },
+      "hit": {
+       "tag": "SPAN",
+       "ok": true,
+       "ariaLabel": null
+      },
+      "countBefore": 6,
+      "countAfter": 6,
+      "selectedAfter": [
+       "director-character-lead"
+      ]
+     },
+     "lastCommand": [
+      "REDO",
+      "DELETE_OBJECTS"
+     ],
+     "changed": true,
+     "past": [
+      "1",
+      "2"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "objectCount": [
+      6,
+      5
+     ],
+     "objectsAfter": [
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "咖啡桌",
+       "x": 56,
+       "y": 164,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 196,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 228,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 300,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-1791136225444-1",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位 02 · 新镜头",
+       "x": 56,
+       "y": 332,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "pickedRowNowExists": false
+    },
+    {
+     "key": "Backspace",
+     "pick": {
+      "picked": 0,
+      "target": {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "咖啡桌",
+       "x": 56,
+       "y": 164,
+       "w": 216,
+       "h": 32
+      },
+      "hit": {
+       "tag": "SPAN",
+       "ok": true,
+       "ariaLabel": null
+      },
+      "countBefore": 5,
+      "countAfter": 5,
+      "selectedAfter": [
+       "director-prop-table"
+      ]
+     },
+     "lastCommand": [
+      "DELETE_OBJECTS",
+      "DELETE_OBJECTS"
+     ],
+     "changed": false,
+     "past": [
+      "2",
+      "3"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "objectCount": [
+      6,
+      4
+     ],
+     "objectsAfter": [
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 164,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 196,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 268,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-1791136225444-1",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位 02 · 新镜头",
+       "x": 56,
+       "y": 300,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "pickedRowNowExists": false
+    }
+   ],
+   "round2": [
+    {
+     "key": "Delete",
+     "pick": {
+      "picked": 0,
+      "target": {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "true",
+       "role": "treeitem",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 200,
+       "w": 216,
+       "h": 32
+      },
+      "hit": {
+       "tag": "SPAN",
+       "ok": true,
+       "ariaLabel": null
+      },
+      "countBefore": 5,
+      "countAfter": 5,
+      "selectedAfter": [
+       "director-prop-mug"
+      ]
+     },
+     "lastCommand": [
+      "REDO",
+      "DELETE_OBJECTS"
+     ],
+     "changed": true,
+     "past": [
+      "1",
+      "2"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "objectCount": [
+      5,
+      4
+     ],
+     "objectsAfter": [
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 164,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 236,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-1791136225444-1",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位 02 · 新镜头",
+       "x": 56,
+       "y": 268,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-1791136262992-1",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位 03 · 新镜头",
+       "x": 56,
+       "y": 300,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "pickedRowNowExists": false
+    },
+    {
+     "key": "Backspace",
+     "pick": {
+      "picked": 0,
+      "target": {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 164,
+       "w": 216,
+       "h": 32
+      },
+      "hit": {
+       "tag": "SPAN",
+       "ok": true,
+       "ariaLabel": null
+      },
+      "countBefore": 4,
+      "countAfter": 4,
+      "selectedAfter": [
+       "director-prop-wall"
+      ]
+     },
+     "lastCommand": [
+      "DELETE_OBJECTS",
+      "DELETE_OBJECTS"
+     ],
+     "changed": false,
+     "past": [
+      "2",
+      "3"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "objectCount": [
+      5,
+      3
+     ],
+     "objectsAfter": [
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 164,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-1791136225444-1",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位 02 · 新镜头",
+       "x": 56,
+       "y": 196,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-1791136262992-1",
+       "kind": "camera",
+       "selected": "false",
+       "role": "treeitem",
+       "text": "机位 03 · 新镜头",
+       "x": 56,
+       "y": 228,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "pickedRowNowExists": false
+    }
+   ]
+  },
+  "B3_objectsSeed": {
+   "round1": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "selected": "true",
+     "role": "treeitem",
+     "text": "角色01 · 陈默",
+     "x": 56,
+     "y": 200,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "咖啡桌",
+     "x": 56,
+     "y": 272,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "冷掉的咖啡",
+     "x": 56,
+     "y": 304,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "咖啡馆背景",
+     "x": 56,
+     "y": 336,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位01 · 对峙中景",
+     "x": 56,
+     "y": 408,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-1791136225444-1",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位 02 · 新镜头",
+     "x": 56,
+     "y": 440,
+     "w": 216,
+     "h": 32
+    }
+   ],
+   "round2": [
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "selected": "true",
+     "role": "treeitem",
+     "text": "冷掉的咖啡",
+     "x": 56,
+     "y": 200,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "咖啡馆背景",
+     "x": 56,
+     "y": 232,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位01 · 对峙中景",
+     "x": 56,
+     "y": 304,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-1791136225444-1",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位 02 · 新镜头",
+     "x": 56,
+     "y": 336,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-1791136262992-1",
+     "kind": "camera",
+     "selected": "false",
+     "role": "treeitem",
+     "text": "机位 03 · 新镜头",
+     "x": 56,
+     "y": 368,
+     "w": 216,
+     "h": 32
+    }
+   ]
+  }
+ },
+ "consistent": false
+}
