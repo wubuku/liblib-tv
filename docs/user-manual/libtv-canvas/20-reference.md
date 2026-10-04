@@ -998,7 +998,7 @@ Batch DO 把页面已加载的 **152 个 JS chunk（19 MB）** 只读下载下�
 | ⭐⭐ `生成内容可商用` | `generatedContentCommercialUsable` | ✅ **见过**（Batch DS 实测，在卡名右边同行） |
 | ⭐ `首选推荐模型` | `preferredRecommendedModel` | ✅ **见过**（浮层里的分区标题） |
 | ⭐⭐ `其余适配模型` | `otherAdaptedModels` | ✅ **见过**（Batch DS 实测，6 模型卡有 4 项） |
-| ⭐ `当前使用` | `currentlyInUse` | ⭐ 有调用点，⛔ 界面上未捕捉到。**Batch DT 做过可信阴性**：广场里两次成功悬停（分别读出 2 行、5 行模型，阳性对照通过）都没出现 ⇒ 它属于**画布节点参数条**那一侧，广场里没有「当前模型」概念 |
+| ⭐ `当前使用` | `currentlyInUse` | ✅ **已结案（Batch EF），界面上拍到了**。⭐ 它有**两个不同用法**：① 在 `✧` 悬停出的模型清单里，某行右侧画一枚**对勾**，判据是「这行的模型 == 当前选中的模型」（**广场里没有「当前模型」，所以这里永远不出现**）；② ⭐ **卡面左下角一枚白底徽标**（`81×24`、`bg-white`、`rounded-lg`、`13px` 对勾图标），判据是「**这张卡的 uuid == 当前节点正在用的风格 uuid**」⇒ ⭐ **画布上已有素材节点在用这张风格时才出现**。详见 [asset-library.md](10-tasks/asset-library.md) |
 | `当前节点已使用风格，模型不可切换` | `modelLockedByStyle` | ⭐ 有调用点，⛔ 没在界面上捕捉到（模型选择器 `mode==='locked'` 时的 title，⛔ 那时按钮是 28px 高的灰字禁用态） |
 | `该素材缺少版本信息，无法收藏` | `materialMissingVersionCannotFavorite` | ⭐ 有调用点，⛔ 没在界面上捕捉到 |
 

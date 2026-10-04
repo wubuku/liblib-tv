@@ -2436,3 +2436,14 @@ screenshots:
     visible_text: 47 % 放大 ⌘ + 缩小 ⌘ - 适合屏幕 ⌘ 0 缩放至50% 缩放至100% 缩放至800%
     alt: 点开底栏的缩放菜单：容器 189×278，浮在画布左下角。顶部是一个输入框，当前值 47（对应画布左下角显示的 47%）；往下依次是 放大/缩小/适合屏幕 三个动作项（各带 ⌘ 快捷键），一条分隔线，然后是三个百分比档位：缩放至50%、缩放至100%、缩放至800%。⭐ 读数：800% 不在源码的字面量里，它由模板 zoomToPercent（缩放至{percent}%）按本画布的缩放历史拼出来；源码里另有两个字面量 zoomTo200（缩放至200%）与 zoomReset（恢复 100%）本轮都没出现
     sha256: ad15c53979fc29497f6bddbd7c615300ccbe7b0b7d4fb423f093188767c05e70
+  - file: screenshots/M-355-当前使用徽标.png
+    task_id: asset-library
+    step: 78
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 先在图片节点的大编辑器里点「风格」→ 广场 → 点第一张卡（会在画布上建出「素材-风格-Seedream 5.0」节点）→ 关闭广场 → 再次打开风格广场
+    visible_text: Seedream 5.0 pro 当前使用 热点推荐官 538.4w
+    alt: 一张风格卡的左下角多出一枚白底胶囊徽标：白底黑字写着「当前使用」，左边一枚 13×13 的对勾图标。⭐ 精确读数 81×24、bg rgb(255,255,255)、圆角 8px、内边距 4px 8px、class 含 bg-white ring-white。⭐ 它的父容器是 items-end ⇒ 贴在卡片底部，不是顶部。⭐⭐ 判据是「这张卡的 uuid == 当前节点正在用的风格 uuid」⇒ 必须画布上已经有素材节点在用这张风格，单纯浏览广场看不到它
+    sha256: 1eb76c20d70f43854826aa133528b06294fdaa6d5be3096394ca7f0148feaecf

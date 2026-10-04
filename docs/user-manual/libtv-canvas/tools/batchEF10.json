@@ -1,0 +1,175 @@
+{
+  "读数": {
+    "画布节点": [
+      {
+        "id": "a-GgqvrVz0pw",
+        "名": "音频节点 1"
+      },
+      {
+        "id": "a-THmbuJXQj4",
+        "名": "音频节点 1"
+      },
+      {
+        "id": "b-mfkcQNULC3",
+        "名": "逐帧拉片"
+      },
+      {
+        "id": "i-9nlG6HdjK2",
+        "名": "图片节点 2"
+      },
+      {
+        "id": "i-sODTbgLUm1",
+        "名": "图片节点 2"
+      },
+      {
+        "id": "m-LYXQggoOBr",
+        "名": "素材-风格-Seedream 5.0 pro"
+      },
+      {
+        "id": "n-56F19pXVB4",
+        "名": "导演台 5"
+      },
+      {
+        "id": "t-2AK3Ukyxj3",
+        "名": "文本节点 1"
+      },
+      {
+        "id": "t-UtVx3lZmrV",
+        "名": "文本节点 1"
+      },
+      {
+        "id": "v-eMpqKtiLlx",
+        "名": "视频节点 3"
+      },
+      {
+        "id": "v-oZNpH99MtM",
+        "名": "智能剪辑 4"
+      },
+      {
+        "id": "v-v2hlWY4Br3",
+        "名": "视频节点 3"
+      }
+    ],
+    "精确": {
+      "卡名": "Seedream 5.0",
+      "卡box": [
+        117,
+        197,
+        191,
+        302
+      ],
+      "探针": [
+        147,
+        478.859375
+      ],
+      "栈": [
+        {
+          "tag": "SPAN",
+          "text": "热点推荐官",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(168, 168, 168)",
+          "fontSize": "12px",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "box": [
+            145,
+            472,
+            85,
+            19
+          ],
+          "cls": "min-w-0 flex-1 truncate text-[12px] text-[#A8A8A8]",
+          "html": "<span class=\"min-w-0 flex-1 truncate text-[12px] text-[#A8A8A8]\">热点推荐官</span>"
+        },
+        {
+          "tag": "DIV",
+          "text": "热点推荐官",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "box": [
+            125,
+            472,
+            105,
+            19
+          ],
+          "cls": "flex min-w-0 flex-1 items-center gap-1",
+          "html": "<div class=\"flex min-w-0 flex-1 items-center gap-1\"><img alt=\"热点推荐官\" class=\"size-4 shrink-0 rounded-full object-cover\" decoding=\"async\" src=\"https://liblibai-online.liblib.cloud/img/360643a3d8414af8b99664b208bc9302/d3bc508c01b729ed1b302cca48e6351b906f294f633b80cad119556e0cc94a26.jpg\"><span class=\"mi"
+        },
+        {
+          "tag": "DIV",
+          "text": "热点推荐官\n538.4w",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "box": [
+            125,
+            472,
+            175,
+            19
+          ],
+          "cls": "flex items-center gap-3",
+          "html": "<div class=\"flex items-center gap-3\"><div class=\"flex min-w-0 flex-1 items-center gap-1\"><img alt=\"热点推荐官\" class=\"size-4 shrink-0 rounded-full object-cover\" decoding=\"async\" src=\"https://liblibai-online.liblib.cloud/img/360643a3d8414af8b99664b208bc9302/d3bc508c01b729ed1b302cca48e6351b906f294f633b80ca"
+        },
+        {
+          "tag": "DIV",
+          "text": "Seedream 5.0 pro\n\n热点",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "borderRadius": "0px",
+          "padding": "0px 4px",
+          "box": [
+            121,
+            454,
+            183,
+            37
+          ],
+          "cls": "flex w-full flex-col gap-1 px-1",
+          "html": "<div class=\"flex w-full flex-col gap-1 px-1\"><div class=\"flex w-full items-center gap-2\"><p class=\"text-fg-default min-w-0 flex-1 truncate text-[14px] font-medium leading-none\">Seedream 5.0 pro</p></div><div class=\"flex items-center gap-3\"><div class=\"flex min-w-0 flex-1 items-center gap-1\"><img alt"
+        },
+        {
+          "tag": "DIV",
+          "text": "Seedream 5.0\n当前使用\n\nS",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "borderRadius": "12px",
+          "padding": "4px",
+          "box": [
+            117,
+            197,
+            191,
+            302
+          ],
+          "cls": "hover:bg-canvas-controls-hover group relative flex w-full cursor-pointer flex-col gap-2 rounded-xl p-1 transition-colors",
+          "html": "<div class=\"hover:bg-canvas-controls-hover group relative flex w-full cursor-pointer flex-col gap-2 rounded-xl p-1 transition-colors\"><div class=\"relative flex flex-col items-start justify-between overflow-hidden rounded-lg border border-white\" style=\"aspect-ratio: 0.747899 / 1;\"><img alt=\"Seedream "
+        },
+        {
+          "tag": "DIV",
+          "text": "Seedream 5.0\n当前使用\n\nS",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "box": [
+            117,
+            197,
+            1206,
+            302
+          ],
+          "cls": "",
+          "html": "<div style=\"display: grid; grid-template-columns: repeat(6, minmax(0px, 1fr)); column-gap: 12px;\"><div class=\"hover:bg-canvas-controls-hover group relative flex w-full cursor-pointer flex-col gap-2 rounded-xl p-1 transition-colors\"><div class=\"relative flex flex-col items-start justify-between overf"
+        }
+      ]
+    }
+  },
+  "步骤": [
+    "画布 12 个（基线 11）；新增：[\"素材-风格-Seedream 5.0 pro\"]",
+    "已开风格广场"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "快照": {
+    "开跑节点数": 11,
+    "风格格原状态": {
+      "节点选中": true,
+      "顶部按钮": [
+        {
+          "文案": "参考",
+          "box": [
+            659,
+            502,
+            54,
+            26
+          ],
+          "激活": "",
+          "disabled": false,
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py"
+        },
+        {
+          "文案": "标记",
+          "box": [
+            717,
+            502,
+            54,
+            26
+          ],
+          "激活": "",
+          "disabled": false,
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py"
+        },
+        {
+          "文案": "风格",
+          "box": [
+            775,
+            502,
+            54,
+            26
+          ],
+          "激活": "",
+          "disabled": false,
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py"
+        }
+      ]
+    },
+    "操作前徽标": []
+  },
+  "读数": {
+    "开广场后徽标": [],
+    "选中的卡": {
+      "卡名": "Seedream 5.0",
+      "行": [
+        "Seedream 5.0",
+        "Seedream 5.0 pro",
+        "热点推荐官",
+        "538.4w"
+      ],
+      "box": [
+        117,
+        197,
+        191,
+        302
+      ]
+    },
+    "选卡后徽标": [],
+    "广场内徽标": []
+  },
+  "步骤": [
+    "开跑：节点 11（基线 11）",
+    "读原状态：选中=true，顶部按钮=[\"参考\",\"标记\",\"风格\"]",
+    "⭐ 操作前「当前使用」徽标：0 枚",
+    "点「风格」：true",
+    "准备选卡：\"Seedream 5.0\"",
+    "已点卡（改风格）",
+    "⭐⭐ 选卡后「当前使用」徽标：0 枚",
+    "⭐⭐⭐ 广场里「当前使用」徽标：0 枚"
+  ]
+}

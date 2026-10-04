@@ -1,0 +1,309 @@
+{
+  "读数": {
+    "全部": {
+      "命中数": 15,
+      "全部": [
+        {
+          "tag": "DIV",
+          "自身文字": "(1 个子元素)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "圆角": "0px",
+          "padding": "12px 0px 16px",
+          "边框": "none",
+          "box": [
+            101,
+            80,
+            1238,
+            650
+          ],
+          "在卡内": false,
+          "卡名": "",
+          "cls": "m_5df29311 mantine-Modal-body",
+          "html": "<div class=\"m_5df29311 mantine-Modal-body\" id=\"mantine-ojl89us8w-body\" style=\"padding: 12px 0px 16px; display: flex; flex-direction: column; gap: 12px; height: min(-160px + 100vh, 1200px);\"><div class=\"flex min-h-0 flex-1 flex-col gap-3\"><div class=\"flex shrink-0 items-center gap-4 px-4 h-10\"><div class=\"flex flex-1 it"
+        },
+        {
+          "tag": "DIV",
+          "自身文字": "(4 个子元素)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "圆角": "0px",
+          "padding": "0px",
+          "边框": "none",
+          "box": [
+            101,
+            92,
+            1238,
+            622
+          ],
+          "在卡内": false,
+          "卡名": "",
+          "cls": "flex min-h-0 flex-1 flex-col gap-3",
+          "html": "<div class=\"flex min-h-0 flex-1 flex-col gap-3\"><div class=\"flex shrink-0 items-center gap-4 px-4 h-10\"><div class=\"flex flex-1 items-center gap-4\"><div class=\"flex shrink-0 items-center gap-1 rounded-xl h-10 p-1 bg-canvas-controls-hover border-canvas-controls-border border-hair\"><button type=\"button\" class=\"flex min-w"
+        },
+        {
+          "tag": "DIV",
+          "自身文字": "(1 个子元素)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "圆角": "0px",
+          "padding": "0px",
+          "边框": "none",
+          "box": [
+            101,
+            197,
+            1238,
+            517
+          ],
+          "在卡内": false,
+          "卡名": "",
+          "cls": "min-h-0 flex-1",
+          "html": "<div class=\"min-h-0 flex-1\"><div class=\"generator-prompt-scroll-region min-h-0 h-full m_d57069b5 mantine-ScrollArea-root\" style=\"--scrollarea-scrollbar-size: calc(0.1875rem * var(--mantine-scale)); --sa-corner-width: 0px; --sa-corner-height: 0px;\"><div class=\"m_c0783ff9 mantine-ScrollArea-viewport\" data-material-virtua"
+        },
+        {
+          "tag": "DIV",
+          "自身文字": "(2 个子元素)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "圆角": "0px",
+          "padding": "0px",
+          "边框": "none",
+          "box": [
+            101,
+            197,
+            1238,
+            517
+          ],
+          "在卡内": false,
+          "卡名": "",
+          "cls": "generator-prompt-scroll-region min-h-0 h-full m_d57069b5 mantine-ScrollArea-root",
+          "html": "<div class=\"generator-prompt-scroll-region min-h-0 h-full m_d57069b5 mantine-ScrollArea-root\" style=\"--scrollarea-scrollbar-size: calc(0.1875rem * var(--mantine-scale)); --sa-corner-width: 0px; --sa-corner-height: 0px;\"><div class=\"m_c0783ff9 mantine-ScrollArea-viewport\" data-material-virtual-grid-viewport=\"true\" data-"
+        },
+        {
+          "tag": "DIV",
+          "自身文字": "(1 个子元素)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "圆角": "0px",
+          "padding": "0px 16px",
+          "边框": "none",
+          "box": [
+            101,
+            197,
+            1238,
+            517
+          ],
+          "在卡内": false,
+          "卡名": "",
+          "cls": "m_c0783ff9 mantine-ScrollArea-viewport",
+          "html": "<div class=\"m_c0783ff9 mantine-ScrollArea-viewport\" data-material-virtual-grid-viewport=\"true\" data-scrollbars=\"y\" style=\"overflow: hidden scroll; padding-inline: 16px;\"><div class=\"m_b1336c6 mantine-ScrollArea-content\" style=\"min-width: 0px; width: 100%;\"><div><div style=\"position: relative; height: 2197.02px; width: "
+        },
+        {
+          "tag": "DIV",
+          "自身文字": "(1 个子元素)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "圆角": "0px",
+          "padding": "0px",
+          "边框": "none",
+          "box": [
+            117,
+            197,
+            1206,
+            2265
+          ],
+          "在卡内": false,
+          "卡名": "",
+          "cls": "m_b1336c6 mantine-ScrollArea-content",
+          "html": "<div class=\"m_b1336c6 mantine-ScrollArea-content\" style=\"min-width: 0px; width: 100%;\"><div><div style=\"position: relative; height: 2197.02px; width: 100%;\"><div style=\"position: absolute; top: 0px; left: 0px; width: 100%; transform: translateY(0px); padding-bottom: 12px;\"><div style=\"display: grid; grid-template-colum"
+        },
+        {
+          "tag": "DIV",
+          "自身文字": "(2 个子元素)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "圆角": "0px",
+          "padding": "0px",
+          "边框": "none",
+          "box": [
+            117,
+            197,
+            1206,
+            2265
+          ],
+          "在卡内": false,
+          "卡名": "",
+          "cls": "",
+          "html": "<div><div style=\"position: relative; height: 2197.02px; width: 100%;\"><div style=\"position: absolute; top: 0px; left: 0px; width: 100%; transform: translateY(0px); padding-bottom: 12px;\"><div style=\"display: grid; grid-template-columns: repeat(6, minmax(0px, 1fr)); column-gap: 12px;\"><div class=\"hover:bg-canvas-control"
+        },
+        {
+          "tag": "DIV",
+          "自身文字": "(5 个子元素)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "圆角": "0px",
+          "padding": "0px",
+          "边框": "none",
+          "box": [
+            117,
+            197,
+            1206,
+            2197
+          ],
+          "在卡内": false,
+          "卡名": "",
+          "cls": "",
+          "html": "<div style=\"position: relative; height: 2197.02px; width: 100%;\"><div style=\"position: absolute; top: 0px; left: 0px; width: 100%; transform: translateY(0px); padding-bottom: 12px;\"><div style=\"display: grid; grid-template-columns: repeat(6, minmax(0px, 1fr)); column-gap: 12px;\"><div class=\"hover:bg-canvas-controls-hov"
+        },
+        {
+          "tag": "DIV",
+          "自身文字": "(1 个子元素)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "圆角": "0px",
+          "padding": "0px 0px 12px",
+          "边框": "none",
+          "box": [
+            117,
+            197,
+            1206,
+            314
+          ],
+          "在卡内": false,
+          "卡名": "",
+          "cls": "",
+          "html": "<div style=\"position: absolute; top: 0px; left: 0px; width: 100%; transform: translateY(0px); padding-bottom: 12px;\"><div style=\"display: grid; grid-template-columns: repeat(6, minmax(0px, 1fr)); column-gap: 12px;\"><div class=\"hover:bg-canvas-controls-hover group relative flex w-full cursor-pointer flex-col gap-2 round"
+        },
+        {
+          "tag": "DIV",
+          "自身文字": "(6 个子元素)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "圆角": "0px",
+          "padding": "0px",
+          "边框": "none",
+          "box": [
+            117,
+            197,
+            1206,
+            302
+          ],
+          "在卡内": false,
+          "卡名": "",
+          "cls": "",
+          "html": "<div style=\"display: grid; grid-template-columns: repeat(6, minmax(0px, 1fr)); column-gap: 12px;\"><div class=\"hover:bg-canvas-controls-hover group relative flex w-full cursor-pointer flex-col gap-2 rounded-xl p-1 transition-colors\"><div class=\"relative flex flex-col items-start justify-between overflow-hidden rounded-l"
+        },
+        {
+          "tag": "DIV",
+          "自身文字": "(2 个子元素)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "圆角": "12px",
+          "padding": "4px",
+          "边框": "none",
+          "box": [
+            117,
+            197,
+            191,
+            302
+          ],
+          "在卡内": true,
+          "卡名": "Seedream 5.0 / 当前使用",
+          "cls": "hover:bg-canvas-controls-hover group relative flex w-full cursor-pointer flex-col gap-2 rounded-xl p-1 transition-colors",
+          "html": "<div class=\"hover:bg-canvas-controls-hover group relative flex w-full cursor-pointer flex-col gap-2 rounded-xl p-1 transition-colors\"><div class=\"relative flex flex-col items-start justify-between overflow-hidden rounded-lg border border-white\" style=\"aspect-ratio: 0.747899 / 1;\"><img alt=\"Seedream 5.0 pro\" class=\"abso"
+        },
+        {
+          "tag": "DIV",
+          "自身文字": "(4 个子元素)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "圆角": "8px",
+          "padding": "0px",
+          "边框": "none",
+          "box": [
+            121,
+            201,
+            183,
+            245
+          ],
+          "在卡内": true,
+          "卡名": "Seedream 5.0 / 当前使用",
+          "cls": "relative flex flex-col items-start justify-between overflow-hidden rounded-lg border border-white",
+          "html": "<div class=\"relative flex flex-col items-start justify-between overflow-hidden rounded-lg border border-white\" style=\"aspect-ratio: 0.747899 / 1;\"><img alt=\"Seedream 5.0 pro\" class=\"absolute inset-0 size-full object-cover transition-opacity duration-200 opacity-100\" width=\"178\" height=\"238\" decoding=\"async\" loading=\"ea"
+        },
+        {
+          "tag": "DIV",
+          "自身文字": "(2 个子元素)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "圆角": "0px",
+          "padding": "8px",
+          "边框": "none",
+          "box": [
+            122,
+            405,
+            181,
+            40
+          ],
+          "在卡内": true,
+          "卡名": "Seedream 5.0 / 当前使用",
+          "cls": "relative flex w-full items-end justify-between p-2",
+          "html": "<div class=\"relative flex w-full items-end justify-between p-2\"><div class=\"flex h-6 items-center gap-1 rounded-lg bg-white px-2 py-1 ring-1 ring-white\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none size"
+        },
+        {
+          "tag": "DIV",
+          "自身文字": "(2 个子元素)",
+          "bg": "rgb(255, 255, 255)",
+          "color": "rgb(247, 247, 247)",
+          "fontSize": "16px",
+          "圆角": "8px",
+          "padding": "4px 8px",
+          "边框": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0",
+          "box": [
+            130,
+            413,
+            81,
+            24
+          ],
+          "在卡内": true,
+          "卡名": "Seedream 5.0 / 当前使用",
+          "cls": "flex h-6 items-center gap-1 rounded-lg bg-white px-2 py-1 ring-1 ring-white",
+          "html": "<div class=\"flex h-6 items-center gap-1 rounded-lg bg-white px-2 py-1 ring-1 ring-white\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none size-[13px] shrink-0 text-black\" width=\"1em\" height=\"1em\" viewBox=\"0"
+        },
+        {
+          "tag": "SPAN",
+          "自身文字": "当前使用",
+          "bg": "rgba(0, 0, 0, 0)",
+          "color": "rgb(0, 0, 0)",
+          "fontSize": "12px",
+          "圆角": "0px",
+          "padding": "0px",
+          "边框": "none",
+          "box": [
+            155,
+            419,
+            48,
+            12
+          ],
+          "在卡内": true,
+          "卡名": "Seedream 5.0 / 当前使用",
+          "cls": "text-[12px] leading-none text-black",
+          "html": "<span class=\"text-[12px] leading-none text-black\">当前使用</span>"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,559 @@
+{
+  "全面": {
+    "广场box": [
+      100,
+      79,
+      1240,
+      652
+    ],
+    "页签": [
+      "风格广场",
+      "我的收藏",
+      "最近使用",
+      "",
+      ""
+    ],
+    "文本数": 95,
+    "含当前的": [],
+    "前40条文本": [
+      {
+        "t": "风格广场",
+        "tag": "BUTTON",
+        "box": [
+          122,
+          96,
+          92,
+          32
+        ]
+      },
+      {
+        "t": "我的收藏",
+        "tag": "BUTTON",
+        "box": [
+          218,
+          96,
+          92,
+          32
+        ]
+      },
+      {
+        "t": "最近使用",
+        "tag": "BUTTON",
+        "box": [
+          314,
+          96,
+          92,
+          32
+        ]
+      },
+      {
+        "t": "推荐",
+        "tag": "BUTTON",
+        "box": [
+          117,
+          157,
+          50,
+          28
+        ]
+      },
+      {
+        "t": "摄影写真",
+        "tag": "BUTTON",
+        "box": [
+          175,
+          157,
+          76,
+          28
+        ]
+      },
+      {
+        "t": "电商营销",
+        "tag": "BUTTON",
+        "box": [
+          259,
+          157,
+          76,
+          28
+        ]
+      },
+      {
+        "t": "动漫游戏",
+        "tag": "BUTTON",
+        "box": [
+          343,
+          157,
+          76,
+          28
+        ]
+      },
+      {
+        "t": "风格插画",
+        "tag": "BUTTON",
+        "box": [
+          427,
+          157,
+          76,
+          28
+        ]
+      },
+      {
+        "t": "平面设计",
+        "tag": "BUTTON",
+        "box": [
+          511,
+          157,
+          76,
+          28
+        ]
+      },
+      {
+        "t": "建筑及室内设计",
+        "tag": "BUTTON",
+        "box": [
+          595,
+          157,
+          115,
+          28
+        ]
+      },
+      {
+        "t": "创意玩法",
+        "tag": "BUTTON",
+        "box": [
+          718,
+          157,
+          76,
+          28
+        ]
+      },
+      {
+        "t": "文创周边",
+        "tag": "BUTTON",
+        "box": [
+          802,
+          157,
+          76,
+          28
+        ]
+      },
+      {
+        "t": "小说推文",
+        "tag": "BUTTON",
+        "box": [
+          886,
+          157,
+          76,
+          28
+        ]
+      },
+      {
+        "t": "仅看可商用",
+        "tag": "LABEL",
+        "box": [
+          1190,
+          163,
+          64,
+          16
+        ]
+      },
+      {
+        "t": "全部",
+        "tag": "SPAN",
+        "box": [
+          1270,
+          161,
+          26,
+          20
+        ]
+      },
+      {
+        "t": "·",
+        "tag": "SPAN",
+        "box": [
+          1300,
+          163,
+          3,
+          16
+        ]
+      },
+      {
+        "t": "Seedream 5.0 pro",
+        "tag": "P",
+        "box": [
+          125,
+          454,
+          175,
+          14
+        ]
+      },
+      {
+        "t": "热点推荐官",
+        "tag": "SPAN",
+        "box": [
+          145,
+          472,
+          86,
+          19
+        ]
+      },
+      {
+        "t": "537.8w",
+        "tag": "SPAN",
+        "box": [
+          259,
+          472,
+          41,
+          19
+        ]
+      },
+      {
+        "t": "J_漫剧素材三视图+大头表情+姿势图",
+        "tag": "P",
+        "box": [
+          328,
+          456,
+          127,
+          14
+        ]
+      },
+      {
+        "t": "商用",
+        "tag": "SPAN",
+        "box": [
+          479,
+          454,
+          24,
+          19
+        ]
+      },
+      {
+        "t": "JM32",
+        "tag": "SPAN",
+        "box": [
+          348,
+          476,
+          104,
+          19
+        ]
+      },
+      {
+        "t": "1.1w",
+        "tag": "SPAN",
+        "box": [
+          480,
+          476,
+          23,
+          19
+        ]
+      },
+      {
+        "t": "手写书法毛笔字体",
+        "tag": "P",
+        "box": [
+          531,
+          454,
+          175,
+          14
+        ]
+      },
+      {
+        "t": "杰文",
+        "tag": "SPAN",
+        "box": [
+          551,
+          472,
+          105,
+          19
+        ]
+      },
+      {
+        "t": "723",
+        "tag": "SPAN",
+        "box": [
+          684,
+          472,
+          22,
+          19
+        ]
+      },
+      {
+        "t": "【捌陆设计】短剧角色-Ai漫剧资产库人物角色四视",
+        "tag": "P",
+        "box": [
+          734,
+          456,
+          127,
+          14
+        ]
+      },
+      {
+        "t": "捌陆设计",
+        "tag": "SPAN",
+        "box": [
+          754,
+          476,
+          106,
+          19
+        ]
+      },
+      {
+        "t": "314",
+        "tag": "SPAN",
+        "box": [
+          888,
+          476,
+          21,
+          19
+        ]
+      },
+      {
+        "t": "Qwen-电商产品影棚产品摄影",
+        "tag": "P",
+        "box": [
+          937,
+          456,
+          127,
+          14
+        ]
+      },
+      {
+        "t": "yuhong126",
+        "tag": "SPAN",
+        "box": [
+          957,
+          476,
+          97,
+          19
+        ]
+      },
+      {
+        "t": "5600",
+        "tag": "SPAN",
+        "box": [
+          1082,
+          476,
+          30,
+          19
+        ]
+      },
+      {
+        "t": "真人角色三视图设计",
+        "tag": "P",
+        "box": [
+          1140,
+          454,
+          175,
+          14
+        ]
+      },
+      {
+        "t": "JUCY_橘",
+        "tag": "SPAN",
+        "box": [
+          1160,
+          472,
+          97,
+          19
+        ]
+      },
+      {
+        "t": "2200",
+        "tag": "SPAN",
+        "box": [
+          1285,
+          472,
+          30,
+          19
+        ]
+      },
+      {
+        "t": "Z-Image-皮肤细节精致入微，姿态优雅又洋溢",
+        "tag": "P",
+        "box": [
+          125,
+          770,
+          127,
+          14
+        ]
+      },
+      {
+        "t": "虚拟科技",
+        "tag": "SPAN",
+        "box": [
+          145,
+          790,
+          104,
+          19
+        ]
+      },
+      {
+        "t": "536",
+        "tag": "SPAN",
+        "box": [
+          277,
+          790,
+          23,
+          19
+        ]
+      },
+      {
+        "t": "一键生成人物多视图",
+        "tag": "P",
+        "box": [
+          328,
+          770,
+          127,
+          14
+        ]
+      },
+      {
+        "t": "像素农夫DESIGN",
+        "tag": "SPAN",
+        "box": [
+          348,
+          790,
+          100,
+          19
+        ]
+      }
+    ]
+  },
+  "图标": [
+    {
+      "cls": "iconify iconify--libtv pointer-events-none text-current",
+      "box": [
+        1205,
+        171,
+        16,
+        16
+      ],
+      "父链": [
+        "BUTTON.flex size-7 shrink-0 items-center justify-center r",
+        "DIV.flex shrink-0 items-center gap-0.5",
+        "DIV.flex w-full min-w-0 items-center justify-between g",
+        "H2.m_615af6c9 text-[0.8125rem] font-medium pl-0 manti",
+        "HEADER.m_b5489c3c m_5a7c2c9 mantine-Drawer-header"
+      ],
+      "父innerText": ""
+    },
+    {
+      "cls": "iconify iconify--libtv pointer-events-none text-current",
+      "box": [
+        1235,
+        171,
+        16,
+        16
+      ],
+      "父链": [
+        "BUTTON.flex size-7 shrink-0 items-center justify-center r",
+        "DIV.flex shrink-0 items-center gap-0.5",
+        "DIV.flex w-full min-w-0 items-center justify-between g",
+        "H2.m_615af6c9 text-[0.8125rem] font-medium pl-0 manti",
+        "HEADER.m_b5489c3c m_5a7c2c9 mantine-Drawer-header"
+      ],
+      "父innerText": ""
+    },
+    {
+      "cls": "iconify iconify--libtv pointer-events-none text-current",
+      "box": [
+        1266,
+        172,
+        14,
+        14
+      ],
+      "父链": [
+        "SPAN.flex items-center justify-center",
+        "BUTTON.flex size-7 shrink-0 items-center justify-center r",
+        "DIV.flex shrink-0 items-center gap-0.5",
+        "DIV.flex w-full min-w-0 items-center justify-between g",
+        "H2.m_615af6c9 text-[0.8125rem] font-medium pl-0 manti"
+      ],
+      "父innerText": ""
+    },
+    {
+      "cls": "iconify iconify--libtv pointer-events-none text-current",
+      "box": [
+        1295,
+        171,
+        16,
+        16
+      ],
+      "父链": [
+        "BUTTON.hover:bg-canvas-controls-hover flex size-7 shrink-",
+        "DIV.flex shrink-0 items-center gap-0.5",
+        "DIV.flex w-full min-w-0 items-center justify-between g",
+        "H2.m_615af6c9 text-[0.8125rem] font-medium pl-0 manti",
+        "HEADER.m_b5489c3c m_5a7c2c9 mantine-Drawer-header"
+      ],
+      "父innerText": ""
+    },
+    {
+      "cls": "iconify iconify--libtv pointer-events-none text-current",
+      "box": [
+        1326,
+        172,
+        14,
+        14
+      ],
+      "父链": [
+        "BUTTON.installed-app-hidden flex size-7 shrink-0 cursor-p",
+        "DIV.flex shrink-0 items-center gap-0.5",
+        "DIV.flex w-full min-w-0 items-center justify-between g",
+        "H2.m_615af6c9 text-[0.8125rem] font-medium pl-0 manti",
+        "HEADER.m_b5489c3c m_5a7c2c9 mantine-Drawer-header"
+      ],
+      "父innerText": ""
+    },
+    {
+      "cls": "iconify iconify--libtv pointer-events-none text-current",
+      "box": [
+        1355,
+        171,
+        16,
+        16
+      ],
+      "父链": [
+        "BUTTON.flex size-7 shrink-0 cursor-pointer items-center j",
+        "SPAN.inline-flex",
+        "DIV.flex shrink-0 items-center gap-0.5",
+        "DIV.flex w-full min-w-0 items-center justify-between g",
+        "H2.m_615af6c9 text-[0.8125rem] font-medium pl-0 manti"
+      ],
+      "父innerText": ""
+    },
+    {
+      "cls": "iconify iconify--libtv pointer-events-none text-current",
+      "box": [
+        1385,
+        171,
+        16,
+        16
+      ],
+      "父链": [
+        "BUTTON.flex size-7 shrink-0 cursor-pointer items-center j",
+        "DIV.flex shrink-0 items-center gap-0.5",
+        "DIV.flex w-full min-w-0 items-center justify-between g",
+        "H2.m_615af6c9 text-[0.8125rem] font-medium pl-0 manti",
+        "HEADER.m_b5489c3c m_5a7c2c9 mantine-Drawer-header"
+      ],
+      "父innerText": ""
+    },
+    {
+      "cls": "size-[14.625px] animate-spin motion-reduce:animate-none [&_path]:fill-current [&_path]:[fill-opacity",
+      "box": [
+        713,
+        2421,
+        15,
+        15
+      ],
+      "父链": [
+        "SPAN.text-nt-text-secondary flex size-[18px] items-cent",
+        "DIV.flex h-[68px] w-full items-center justify-center",
+        "DIV.",
+        "DIV.m_b1336c6 mantine-ScrollArea-content",
+        "DIV.m_c0783ff9 mantine-ScrollArea-viewport"
+      ],
+      "父innerText": ""
+    }
+  ]
+}
