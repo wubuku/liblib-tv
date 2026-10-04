@@ -1,0 +1,973 @@
+{
+ "batch": 770,
+ "checks": [
+  {
+   "label": "★★ 静态：围栏挂在对话框 root 上、且只有这一个 keydown 监听",
+   "pass": true,
+   "got": {
+    "root": true,
+    "n": 1
+   }
+  },
+  {
+   "label": "★★ 静态：Tab 数组按 root（对话框）取 ⟹ 边界是对话框不是浮层",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★★ 静态：正反两个方向都环绕（所以 Shift+Tab 同样走出去）",
+   "pass": true,
+   "got": {
+    "fwd": true,
+    "back": true
+   }
+  },
+  {
+   "label": "★ 静态：Tab 时 preventDefault（是 hook 接管，不是浏览器原生序）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ 静态：围栏**没有** focusin / focusout 监听（769 的 D11 修法未落地，机制没变）",
+   "pass": true,
+   "got": {
+    "focusin": false,
+    "focusout": false
+   }
+  },
+  {
+   "label": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib",
+   "pass": true,
+   "got": [
+    "crowd",
+    "modellib"
+   ]
+  },
+  {
+   "label": "★ 产物里的声明名单与现算一致",
+   "pass": true,
+   "got": [
+    "crowd",
+    "modellib"
+   ]
+  },
+  {
+   "label": "★ 产物里「声明了却没围栏」的名单与现算一致",
+   "pass": true,
+   "got": [
+    "crowd",
+    "modellib"
+   ]
+  },
+  {
+   "label": "★ 判据 10 条（6 PASS / 4 FAIL）",
+   "pass": true,
+   "got": {
+    "n": 10,
+    "pass": 6,
+    "fail": 4
+   }
+  },
+  {
+   "label": "★ FAIL 的判据恰好是 J5/J6/J8/J10",
+   "pass": true,
+   "got": [
+    "J10",
+    "J5",
+    "J6",
+    "J8"
+   ]
+  },
+  {
+   "label": "★ PASS 的判据恰好是 J1/J2/J3/J4/J7/J9",
+   "pass": true,
+   "got": [
+    "J1",
+    "J2",
+    "J3",
+    "J4",
+    "J7",
+    "J9"
+   ]
+  },
+  {
+   "label": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "★★ 两轮逐字段一致",
+   "pass": true,
+   "got": {}
+  },
+  {
+   "label": "★ 可比性里记了「每格重载页面 + 不点外点」与「起点固定为非输入框」",
+   "pass": true,
+   "got": {
+    "protocol": "★ 每格都从**重新加载的页面**开始（768 的 R73），全程不点外点；只点 6 个 disclosure 触发器。",
+    "start": "★ 起点固定为浮层里第一个**非输入框**控件（769 的协议 v2 落点）—— 769 已证明**焦点类别会改变结论**（`isEditable` 早退），所以跨批必须固定类别。"
+   }
+  },
+  {
+   "label": "★★ 12 格无缺格、无 FAILED、每格两轮",
+   "pass": true,
+   "got": {
+    "missing": [],
+    "failed": []
+   }
+  },
+  {
+   "label": "★ 步数在产物与 raw 上一致且非 0",
+   "pass": true,
+   "got": {
+    "artifact": 12,
+    "raw": [
+     12
+    ]
+   }
+  },
+  {
+   "label": "★★ 起点纪律：起点在浮层内、下标落在对话框数组内、控件存量非 0",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★★ 逃逸步数与公式**逐格**吻合（由 raw 现算，不只信产物）",
+   "pass": true,
+   "got": {
+    "rawMatched": 11,
+    "rawMismatch": [],
+    "artifact": 11
+   }
+  },
+  {
+   "label": "★ 产物里逐格的 predicted / measured 与 raw 现算一致",
+   "pass": true,
+   "got": {
+    "artifact": [
+     [
+      "export/fwd",
+      4,
+      4
+     ],
+     [
+      "export/back",
+      2,
+      2
+     ],
+     [
+      "preset/fwd",
+      10,
+      10
+     ],
+     [
+      "preset/back",
+      1,
+      1
+     ],
+     [
+      "pathmenu/fwd",
+      5,
+      5
+     ],
+     [
+      "pathmenu/back",
+      1,
+      1
+     ],
+     [
+      "phonevcam/fwd",
+      2,
+      2
+     ],
+     [
+      "phonevcam/back",
+      1,
+      1
+     ],
+     [
+      "crowd/fwd",
+      2,
+      2
+     ],
+     [
+      "crowd/back",
+      4,
+      4
+     ],
+     [
+      "modellib/fwd",
+      14,
+      null
+     ],
+     [
+      "modellib/back",
+      2,
+      2
+     ]
+    ],
+    "raw": [
+     [
+      "export/fwd",
+      4,
+      4
+     ],
+     [
+      "export/back",
+      2,
+      2
+     ],
+     [
+      "preset/fwd",
+      10,
+      10
+     ],
+     [
+      "preset/back",
+      1,
+      1
+     ],
+     [
+      "pathmenu/fwd",
+      5,
+      5
+     ],
+     [
+      "pathmenu/back",
+      1,
+      1
+     ],
+     [
+      "phonevcam/fwd",
+      2,
+      2
+     ],
+     [
+      "phonevcam/back",
+      1,
+      1
+     ],
+     [
+      "crowd/fwd",
+      2,
+      2
+     ],
+     [
+      "crowd/back",
+      4,
+      4
+     ],
+     [
+      "modellib/fwd",
+      14,
+      null
+     ],
+     [
+      "modellib/back",
+      2,
+      2
+     ]
+    ]
+   }
+  },
+  {
+   "label": "★★ 「步数不够所以没走出去」恰好 1 格且是 modellib/fwd",
+   "pass": true,
+   "got": {
+    "raw": [
+     "modellib/fwd"
+    ],
+    "artifact": [
+     "modellib/fwd"
+    ]
+   }
+  },
+  {
+   "label": "★★ J10 判据在，且明说「不许把 12 步没走出去当成围栏好」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ 段内下标在**行进方向上**严格单调（12/12 格，方向由行进方向给）",
+   "pass": true,
+   "got": {
+    "nonMonotonic": []
+   }
+  },
+  {
+   "label": "★ 反向的 6 格单独再证一次单调（写死 +1 会在这里露馅）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 产物里逐格记录了 expectedStepPerStep（+1/-1）",
+   "pass": true,
+   "got": [
+    1,
+    -1,
+    1,
+    -1,
+    1,
+    -1,
+    1,
+    -1,
+    1,
+    -1,
+    1,
+    -1
+   ]
+  },
+  {
+   "label": "★ J3 判据在（连续段是 Tab 会走出去的机制）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ 对话框级围栏成立：0/12 格的焦点离开过对话框",
+   "pass": true,
+   "got": {
+    "raw": [],
+    "artifact": []
+   }
+  },
+  {
+   "label": "★ 所有逃逸落点仍在对话框内",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★★ J4 写明与 765 的 J6 不矛盾（参照系不同）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ O1 把「参照系必须写清」记成了方法论",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ D13 在 defects 里，严重度中、标了与 767 的 D10 相关、要改 src",
+   "pass": true,
+   "got": {
+    "id": "D13",
+    "severity": "中",
+    "newInThisBatch": true,
+    "relatedToD10From767": true,
+    "title": "6 个 disclosure 浮层都没有浮层级 Tab 围栏：Tab / Shift+Tab 会从开着的浮层里走出去",
+    "where": [
+     "src/components/director/useDirectorFocusContainment.ts:149-172",
+     "src/components/director/DirectorExportPanel.tsx:42-51",
+     "src/components/director/DirectorTimeline.tsx:1371-1379",
+     "src/components/director/DirectorTimeline.tsx:1502-1509",
+     "src/components/director/DirectorViewport.tsx:3084-3092",
+     "src/components/director/DirectorViewport.tsx:3161-3169"
+    ],
+    "mechanism": "导演台只有**一层**焦点围栏：`useDirectorFocusContainment.ts:149-172` 在对话框 root 上监听 Tab，手算 `getDirectorFocusableElements(root)`（root = **整个对话框**），按 `nextIndex` 环绕后 `preventDefault()` 并 `focus()`。**全仓没有任何一层按浮层算的 Tab 围栏** ⟹ 浮层的控件只是这条数组里**连续的一段**，Tab 走完这一段就到了对话框的别处。实测的逃逸步数与公式逐格吻合，正反两个方向都是。",
+    "measured": "11/12 格实测走出浮层、剩下 1 格按公式也会走（模型库，正向，第 2 步）；6/6 个浮层两个方向都走；逃逸落点全部仍在对话框内（0/12 出对话框）。2/2 轮。",
+    "severityRationale": "**中**：不丢数据、不崩溃，但键盘用户无法把开着的浮层当成一个整体操作，Tab 离开后没有机制带回来；且**声明了 `role=\"dialog\"` 的那 2 个**（群众阵列、模型库）按 ARIA 对话框的约定本应留住焦点，声明与行为直接矛盾。",
+    "relationToD10": "767 的 D10 记了「只有 2/6 有 role+aria-label」，当时当成「契约残缺」记；本批证明**残缺的后果是可测的** —— 那 2 个声明成 dialog 的浮层正好也没有围栏。⟹ 这一族要么统一成 dialog 并补围栏，要么统一成非 dialog 弹层并明确 Tab 走出去是有意的。",
+    "fixDirection": "①在浮层自己的 ref 上加一层 Tab 围栏（与 `useDirectorFocusContainment` 同款，但 root 换成浮层；同仓 `src/hooks/useLayerFocus.ts` 已有带 trap 的实现可照抄）；②或者给浮层补 role/aria 但不承诺 trap —— 那样焦点落在 `role=\"dialog\"` 之外仍不合规，所以 ①更对。★ 注意**两层围栏会互相抢 Tab**：内层必须在事件到达外层之前 `preventDefault` + `stopImmediatePropagation`，与 767/768 量到的 Esc 修法是同一个坑。",
+    "needsSrcChange": true
+   }
+  },
+  {
+   "label": "★★ 6/6 个浮层**两个方向都**没有围栏（产物现算）",
+   "pass": true,
+   "got": {
+    "artifact": [
+     "export",
+     "preset",
+     "pathmenu",
+     "phonevcam",
+     "crowd",
+     "modellib"
+    ],
+    "rawLeftPanel": [
+     "crowd",
+     "export",
+     "modellib",
+     "pathmenu",
+     "phonevcam",
+     "preset"
+    ]
+   }
+  },
+  {
+   "label": "★ D13 的 mechanism 点名「全仓没有任何一层按浮层算的围栏」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ D13 的 where 每一项行号都有效",
+   "pass": true,
+   "got": [
+    "src/components/director/useDirectorFocusContainment.ts:149-172",
+    "src/components/director/DirectorExportPanel.tsx:42-51",
+    "src/components/director/DirectorTimeline.tsx:1371-1379",
+    "src/components/director/DirectorTimeline.tsx:1502-1509",
+    "src/components/director/DirectorViewport.tsx:3084-3092",
+    "src/components/director/DirectorViewport.tsx:3161-3169"
+   ]
+  },
+  {
+   "label": "★ D13 的 fixDirection 写了「两层围栏会互相抢 Tab」这个坑",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ D13 的 relationToD10 说清了 D10 与本批的因果",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ J6：声明 role=dialog 的 2 个恰恰都没有围栏（raw 现算）",
+   "pass": true,
+   "got": {
+    "declares": [
+     "crowd",
+     "modellib"
+    ],
+    "leftPanel": [
+     "export/fwd",
+     "export/back",
+     "preset/fwd",
+     "preset/back",
+     "pathmenu/fwd",
+     "pathmenu/back",
+     "phonevcam/fwd",
+     "phonevcam/back",
+     "crowd/fwd",
+     "crowd/back",
+     "modellib/back"
+    ]
+   }
+  },
+  {
+   "label": "★ J6 给了「要么统一成 dialog 并补围栏、要么明确 Tab 走出去是有意」的二选一",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ Shift+Tab 6/6 都走出去（raw 现算）",
+   "pass": true,
+   "got": [
+    "crowd",
+    "export",
+    "modellib",
+    "pathmenu",
+    "phonevcam",
+    "preset"
+   ]
+  },
+  {
+   "label": "★ J7 点名三个「起点下标为 0、第 1 步就出去」的浮层",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ J8 是不声称，且明说「不声称焦点落到了看不见的控件上」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 不声称里保留了「没测视觉遮挡」与「没测从外部进浮层」",
+   "pass": true,
+   "got": [
+    "无源站对照：本批全部结论只针对 clone 自身的行为自洽性。",
+    "★ **没有测逃逸落点是否被浮层视觉遮挡**（J8）⟹ 不声称「焦点落到",
+    "★ **没有测从浮层外部（对话框别处）按 Tab 能不能进浮层** ——",
+    "★ **只走了 12 步、只从浮层里第一个非输入框控件出发** —— 从",
+    "**没有测焦点在浮层开着时点对话框别处会怎样**（鼠标）。",
+    "**没有测多个浮层同时开着时的 Tab 序**。",
+    "**没有测视觉顺序与 Tab 顺序是否一致**（765 的 O3 提过「",
+    "**只测了 1440 桌面一档视口**。",
+    "**没有改 `src/`**：所有结论都是读数 + 源码现算，修法列在缺"
+   ]
+  },
+  {
+   "label": "★ 观察 5 条、探针教训 3 条（R87/R88/R89）",
+   "pass": true,
+   "got": [
+    "R87",
+    "R88",
+    "R89"
+   ]
+  },
+  {
+   "label": "★ 每条教训都有 whyItMatters",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ R87 写明「参照系必须写进产物」且举了 765 的例子",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ R88 写明「步数不够要给机制公式」且点了模型库那一格",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ R89 写明「判据里的方向不能写死」并点名 crowd/back",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ env.srcModified 为 False",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 原始读数与探针脚本都随产物提交（R43）",
+   "pass": true,
+   "got": {
+    "raw": [],
+    "probes": []
+   }
+  },
+  {
+   "label": "★ rawSha 覆盖本批原始读数",
+   "pass": true,
+   "got": {
+    "vb770a.json": "b353c1e13d42cd91"
+   }
+  },
+  {
+   "label": "★ 探针条目标了 steps 与 rounds",
+   "pass": true,
+   "got": [
+    [
+     "770a",
+     12
+    ]
+   ]
+  },
+  {
+   "label": "★ 三分类的 counts 落在产物里且 12 格铺满",
+   "pass": true,
+   "got": {
+    "artifact": {
+     "left-panel-stayed-in-dialog": 11,
+     "stayed-in-panel": 1
+    },
+    "rawCovered": 12
+   }
+  },
+  {
+   "label": "★ README 判据表 10 行",
+   "pass": true,
+   "got": 10
+  },
+  {
+   "label": "★★ README 判据表首格不许是裸数字（pre-commit 正则会拦）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "★ README 判据表的结论与产物 verdict 逐行一致",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "★ README 有「选题」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「判据」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「读数全景」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「新缺陷」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「与 765 不矛盾」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「方法论」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「探针教训」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「不声称」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「复现」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ README 有 D13 章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 写明「不许把 12 步没走出去当成围栏好」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 写明「两层围栏会互相抢 Tab」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ 台账恰好一行 Batch 770",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "★ 台账首格是 Batch 770（不是裸数字）",
+   "pass": true,
+   "got": "| Batch 770 | **6 个导演台 d"
+  },
+  {
+   "label": "★★ 台账新行 0 个 U+FFFD",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "★ 台账新行是 3 列",
+   "pass": true,
+   "got": 4
+  },
+  {
+   "label": "★ 台账新行提到了 D13 与「与 765 不矛盾」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 台账历史 U+FFFD 仍是 9 个、仍在 522/583/587",
+   "pass": true,
+   "got": {
+    "n": 9,
+    "lines": [
+     522,
+     583,
+     587
+    ]
+   }
+  },
+  {
+   "label": "★ 台账只有 633 行",
+   "pass": true,
+   "got": 633
+  }
+ ],
+ "pass": 73,
+ "total": 73,
+ "negativeControls": [
+  {
+   "name": "★★ 删掉 D13",
+   "caught": true,
+   "firstFail": "★★ D13 在 defects 里，严重度中、标了与 767 的 D10 相关、要改 src"
+  },
+  {
+   "name": "★★ 把 D13 降级成观察",
+   "caught": true,
+   "firstFail": "★★ D13 在 defects 里，严重度中、标了与 767 的 D10 相关、要改 src"
+  },
+  {
+   "name": "★ 把 D13 的严重度从中改成低",
+   "caught": true,
+   "firstFail": "★★ D13 在 defects 里，严重度中、标了与 767 的 D10 相关、要改 src"
+  },
+  {
+   "name": "★ 抹掉 D13 的 relatedToD10From767（与 D10 的因果没了）",
+   "caught": true,
+   "firstFail": "★★ D13 在 defects 里，严重度中、标了与 767 的 D10 相关、要改 src"
+  },
+  {
+   "name": "★ 抹掉 D13 的 relationToD10",
+   "caught": true,
+   "firstFail": "★ D13 的 relationToD10 说清了 D10 与本批的因果"
+  },
+  {
+   "name": "★ 抹掉 D13 的「两层围栏会互相抢 Tab」",
+   "caught": true,
+   "firstFail": "★ D13 的 fixDirection 写了「两层围栏会互相抢 Tab」这个坑"
+  },
+  {
+   "name": "★ D13 的 where 指向不存在的行号",
+   "caught": true,
+   "firstFail": "★ D13 的 where 每一项行号都有效"
+  },
+  {
+   "name": "★ 删掉 J5",
+   "caught": true,
+   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★★ 把 noPanelHasTrap 缩到 4 个（谎称有两个有围栏）",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "★★ 把 stayed-in-panel 那一桶塞进 export",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "★★ 把 counts 改成 12 格都在浮层内",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "★★ 把「步数不够」的格从 cellsBeyondWalk 里抹掉",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "★★ 删掉 J10（不许把步数不够当围栏好）",
+   "caught": true,
+   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 删掉 R88（步数不够要给公式）",
+   "caught": true,
+   "firstFail": "★ 观察 5 条、探针教训 2 条（R87/R88/R89）"
+  },
+  {
+   "name": "★★ 把 J4 里的「不矛盾」抹掉（会被当成推翻 765）",
+   "caught": true,
+   "firstFail": "★★ J4 写明与 765 的 J6 不矛盾（参照系不同）"
+  },
+  {
+   "name": "★ 删掉 O1（参照系这条方法论）",
+   "caught": true,
+   "firstFail": "★ O1 把「参照系必须写清」记成了方法论"
+  },
+  {
+   "name": "★ 删掉 R87",
+   "caught": true,
+   "firstFail": "★ 观察 5 条、探针教训 2 条（R87/R88/R89）"
+  },
+  {
+   "name": "★ 删掉 J4",
+   "caught": true,
+   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★★ 把 declaresDialogButNoTrap 清空（说声明的都守住了焦点）",
+   "caught": true,
+   "firstFail": "★ 产物里「声明了却没围栏」的名单与现算一致"
+  },
+  {
+   "name": "★ 删掉 J6",
+   "caught": true,
+   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 删掉 R89",
+   "caught": true,
+   "firstFail": "★ 观察 5 条、探针教训 2 条（R87/R88/R89）"
+  },
+  {
+   "name": "★ 把 arraySegment 的 expectedStepPerStep 全写成 1",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "★ 把 J5 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 把 J6 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 把 J8 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 把 J10 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 判据全改成 PASS",
+   "caught": true,
+   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 把判据条数从 10 改成 7",
+   "caught": true,
+   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 把 J2 的 matchedCount 从 11 改成 12",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "★ 只改 findings 一份（判据的 evidence 不动）",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "伪造：围栏开始监听 focusin（D11 修法已落地）",
+   "caught": true,
+   "firstFail": "★★ 静态：围栏**没有** focusin / focusout 监听（769 的 D11 修法未落地，机制没变）"
+  },
+  {
+   "name": "伪造：围栏的 keydown 监听变成两个",
+   "caught": true,
+   "firstFail": "★★ 静态：围栏挂在对话框 root 上、且只有这一个 keydown 监听"
+  },
+  {
+   "name": "伪造：Tab 数组不再按 root 取",
+   "caught": true,
+   "firstFail": "★★ 静态：Tab 数组按 root（对话框）取 ⟹ 边界是对话框不是浮层"
+  },
+  {
+   "name": "伪造：反向不再环绕",
+   "caught": true,
+   "firstFail": "★★ 静态：正反两个方向都环绕（所以 Shift+Tab 同样走出去）"
+  },
+  {
+   "name": "伪造：声明 role=dialog 的变成 6 个",
+   "caught": true,
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
+  },
+  {
+   "name": "伪造：Tab 时不 preventDefault（改成浏览器原生序）",
+   "caught": true,
+   "firstFail": "★ 静态：Tab 时 preventDefault（是 hook 接管，不是浏览器原生序）"
+  },
+  {
+   "name": "★★ 原始：把 export/fwd 的第 4 步改成不出浮层（D13 少一格）",
+   "caught": true,
+   "firstFail": "★★ 逃逸步数与公式**逐格**吻合（由 raw 现算，不只信产物）"
+  },
+  {
+   "name": "★★ 原始：把某格的逃逸落点改成出对话框（J4 破）",
+   "caught": true,
+   "firstFail": "★★ 对话框级围栏成立：0/12 格的焦点离开过对话框"
+  },
+  {
+   "name": "★★ 原始：改一个下标打断连续段（J3 破）",
+   "caught": true,
+   "firstFail": "★★ 段内下标在**行进方向上**严格单调（12/12 格，方向由行进方向给）"
+  },
+  {
+   "name": "★★ 原始：反向的下标改成递增（应该递减）",
+   "caught": true,
+   "firstFail": "★★ 段内下标在**行进方向上**严格单调（12/12 格，方向由行进方向给）"
+  },
+  {
+   "name": "★★ 原始：把逃逸步数改得与公式不符（J2 破）",
+   "caught": true,
+   "firstFail": "★★ 逃逸步数与公式**逐格**吻合（由 raw 现算，不只信产物）"
+  },
+  {
+   "name": "★★ 原始：把起点下标改成不在浮层内（起点纪律）",
+   "caught": true,
+   "firstFail": "★★ 起点纪律：起点在浮层内、下标落在对话框数组内、控件存量非 0"
+  },
+  {
+   "name": "★★ 原始：把起点下标改成落在对话框数组之外",
+   "caught": true,
+   "firstFail": "★★ 起点纪律：起点在浮层内、下标落在对话框数组内、控件存量非 0"
+  },
+  {
+   "name": "★ 原始：某格 FAILED",
+   "caught": true,
+   "firstFail": "★★ 12 格无缺格、无 FAILED、每格两轮"
+  },
+  {
+   "name": "★ all([]) 陷阱：把 rows 清空（两轮都清）",
+   "caught": true,
+   "firstFail": "★★ 12 格无缺格、无 FAILED、每格两轮"
+  },
+  {
+   "name": "★ 原始：步数改成 5（与产物不符）",
+   "caught": true,
+   "firstFail": "★ 步数在产物与 raw 上一致且非 0"
+  },
+  {
+   "name": "★ 原始：浮层控件数改成大于对话框控件数",
+   "caught": true,
+   "firstFail": "★★ 起点纪律：起点在浮层内、下标落在对话框数组内、控件存量非 0"
+  },
+  {
+   "name": "★ 台账删掉 Batch 770 行",
+   "caught": true,
+   "firstFail": "★★ 台账恰好一行 Batch 770"
+  },
+  {
+   "name": "★ 台账行首格改成裸数字 770",
+   "caught": true,
+   "firstFail": "★★ 台账恰好一行 Batch 770"
+  },
+  {
+   "name": "★ 台账行首格写成 Batch 0770",
+   "caught": true,
+   "firstFail": "★★ 台账恰好一行 Batch 770"
+  },
+  {
+   "name": "★ 台账新行塞一个 U+FFFD",
+   "caught": true,
+   "firstFail": "★★ 台账新行 0 个 U+FFFD"
+  },
+  {
+   "name": "★ 台账被追加了 Batch 771（行数断言）",
+   "caught": true,
+   "firstFail": "★ 台账新行是 3 列"
+  },
+  {
+   "name": "★ 台账新行不含 D13",
+   "caught": true,
+   "firstFail": "★ 台账新行提到了 D13 与「与 765 不矛盾」"
+  },
+  {
+   "name": "★ README 判据表首格改成裸数字",
+   "caught": true,
+   "firstFail": "★ README 判据表 10 行"
+  },
+  {
+   "name": "★ README 删掉「不声称」章节",
+   "caught": true,
+   "firstFail": "★ README 有「不声称」章节"
+  },
+  {
+   "name": "★ README 删掉 D13 章节",
+   "caught": true,
+   "firstFail": "★★ README 有 D13 章节"
+  },
+  {
+   "name": "★ README 删掉「与 765 不矛盾」章节",
+   "caught": true,
+   "firstFail": "★ README 有「与 765 不矛盾」章节"
+  },
+  {
+   "name": "★ README 删掉「第 14 步」",
+   "caught": true,
+   "firstFail": "★ README 写明「不许把 12 步没走出去当成围栏好」"
+  }
+ ],
+ "negativeCaught": 58,
+ "negativeTotal": 58,
+ "rawError": null,
+ "ok": true
+}
