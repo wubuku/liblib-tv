@@ -32,6 +32,19 @@
      **肉眼的判据就是「新节点带选中描边」**，要数字只能看顶栏「节点 N」。见 [界面速查](../20-reference.md)。
    - 每类节点建一个后，命名按「文本 1、文本 2…」递增。
 4. **图片** 同法：创建「图片 1」并自动弹出图片生成面板（模型 Seedream 5.0 Lite、
+   🔧 **2026-10-05 批次 162 补三个读数**（这一行此前只写了面板，没写节点本身）：
+   建出来的**空图片节点** canvas 恒 **`320×320`**（屏上 `182×182`，@ 缩放 `0.568085`）
+   ⇒ **与文本 / 导演台 / 音频同一档**；旧记录「480 级方形」**未复现**。
+   逐字只有 **`图片 1`**；class 逐字 `react-flow__node react-flow__node-image nopan selected selectable draggable`；
+   内部 testid：`image-node-empty`（与卡片**同盒**）＋ `flow-node-media-stroke`（比卡片**大 8px**，是选中描边）
+   ＋ `flow-node-title` ＋ `flow-node-selected-tag` ＋ 两侧把手与两个连接菜单钮；`img` **0 个**。
+
+![刚建出来的空图片节点（2026-10-05 批次 162 拍）：卡片是空的，正中只有图片节点的空态图标，标题「图片 1」浮在卡片上沿之外，class 里逐字是 react-flow__node react-flow__node-image nopan selected selectable draggable，橙色高亮框标出节点范围](../screenshots/122-empty-image-node.png)
+
+   ⚠️ **建节点会让画布自动适配缩放**，且**落点不固定**：本项目连测两次分别是 `57%` 与 `53%`
+   （起点都是 60%）。⇒ **凡是要换算「屏上尺寸 ÷ 缩放 = canvas 尺寸」，
+   必须在量的那一刻把缩放一起读下来** —— 见
+   [节点 canvas 尺寸速查](../20-reference.md#-节点-canvas-尺寸速查2026-10-02-批次-79-实测在-100--缩放下读)那一节的规矩。
    1:1 · 2K、价格 ✦3 / 张）。
 5. **视频** 同法：创建空视频节点并弹出视频生成面板（默认 即梦 Seedance 2.0 VIP、
    16:9 · 720P、4s、✦56 起）。

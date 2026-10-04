@@ -1,0 +1,588 @@
+{
+ "批次": "162c",
+ "目的": "列全 node-toolbar / generation-form 等 testid 的盒子与归属",
+ "起点": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "未选中时": {
+  "总数": 9,
+  "条": [
+   {
+    "testid": "canvas-fixed-toolbar-workspace-top-bar-surface",
+    "tag": "DIV",
+    "盒": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "挂在节点id": null,
+    "子testid": [],
+    "按钮数": 0,
+    "前四个按钮": [],
+    "逐字": ""
+   },
+   {
+    "testid": "canvas-panel-workspace-top-bar-launchers",
+    "tag": "SPAN",
+    "盒": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "挂在节点id": null,
+    "子testid": [
+     "canvas-panel-launcher"
+    ],
+    "按钮数": 1,
+    "前四个按钮": [
+     "搜索"
+    ],
+    "逐字": ""
+   },
+   {
+    "testid": "canvas-panel-launcher",
+    "tag": "BUTTON",
+    "盒": [
+     28,
+     28,
+     915,
+     16
+    ],
+    "挂在节点id": null,
+    "子testid": [],
+    "按钮数": 0,
+    "前四个按钮": [],
+    "逐字": ""
+   },
+   {
+    "testid": "canvas-panel-workspace-top-bar-launchers",
+    "tag": "SPAN",
+    "盒": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "挂在节点id": null,
+    "子testid": [
+     "canvas-panel-launcher"
+    ],
+    "按钮数": 1,
+    "前四个按钮": [
+     "生成历史"
+    ],
+    "逐字": ""
+   },
+   {
+    "testid": "canvas-panel-launcher",
+    "tag": "BUTTON",
+    "盒": [
+     28,
+     28,
+     947,
+     16
+    ],
+    "挂在节点id": null,
+    "子testid": [],
+    "按钮数": 0,
+    "前四个按钮": [],
+    "逐字": ""
+   },
+   {
+    "testid": "timeline-toolbar",
+    "tag": "DIV",
+    "盒": [
+     718,
+     40,
+     -63,
+     -107
+    ],
+    "挂在节点id": "node_cdwf8x6fbj",
+    "子testid": [
+     "timeline-playback-clock"
+    ],
+    "按钮数": 2,
+    "前四个按钮": [
+     "导出时间线",
+     "全屏编辑"
+    ],
+    "逐字": "00:00 / 00:00 全屏编辑"
+   },
+   {
+    "testid": "timeline-toolbar",
+    "tag": "DIV",
+    "盒": [
+     718,
+     40,
+     682,
+     270
+    ],
+    "挂在节点id": "node_d4tjtpnatq",
+    "子testid": [
+     "timeline-playback-clock"
+    ],
+    "按钮数": 2,
+    "前四个按钮": [
+     "导出时间线",
+     "全屏编辑"
+    ],
+    "逐字": "00:00 / 00:00 全屏编辑"
+   },
+   {
+    "testid": "canvas-fixed-toolbar-left-rail",
+    "tag": "ASIDE",
+    "盒": [
+     160,
+     632,
+     12,
+     72
+    ],
+    "挂在节点id": null,
+    "子testid": [
+     "canvas-navigation-shell",
+     "canvas-navigation-mask",
+     "canvas-navigation-mask-backdrop",
+     "canvas-navigation-mask-gradient",
+     "canvas-navigation-scroll-viewport",
+     "canvas-fixed-toolbar"
+    ],
+    "按钮数": 9,
+    "前四个按钮": [
+     "文本",
+     "图片",
+     "视频",
+     "音频"
+    ],
+    "逐字": "文本 图片 视频 音频 时间线 主体 导演台 资产库 上传"
+   },
+   {
+    "testid": "canvas-fixed-toolbar",
+    "tag": "DIV",
+    "盒": [
+     48,
+     398,
+     12,
+     189
+    ],
+    "挂在节点id": null,
+    "子testid": [],
+    "按钮数": 9,
+    "前四个按钮": [
+     "文本",
+     "图片",
+     "视频",
+     "音频"
+    ],
+    "逐字": "文本 图片 视频 音频 时间线 主体 导演台 资产库 上传"
+   }
+  ],
+  "选中数": 0
+ },
+ "建后": {
+  "差集": [
+   "node_1c2mr1j0kg"
+  ],
+  "SELF": "node_1c2mr1j0kg",
+  "选中": 1,
+  "积分": "Credits: 791 · 基础会员",
+  "缩放": "Zoom options, 53%"
+ },
+ "选中后": {
+  "总数": 17,
+  "条": [
+   {
+    "testid": "canvas-fixed-toolbar-workspace-top-bar-surface",
+    "tag": "DIV",
+    "盒": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "挂在节点id": null,
+    "子testid": [],
+    "按钮数": 0,
+    "前四个按钮": [],
+    "逐字": ""
+   },
+   {
+    "testid": "canvas-panel-workspace-top-bar-launchers",
+    "tag": "SPAN",
+    "盒": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "挂在节点id": null,
+    "子testid": [
+     "canvas-panel-launcher"
+    ],
+    "按钮数": 1,
+    "前四个按钮": [
+     "搜索"
+    ],
+    "逐字": ""
+   },
+   {
+    "testid": "canvas-panel-launcher",
+    "tag": "BUTTON",
+    "盒": [
+     28,
+     28,
+     915,
+     16
+    ],
+    "挂在节点id": null,
+    "子testid": [],
+    "按钮数": 0,
+    "前四个按钮": [],
+    "逐字": ""
+   },
+   {
+    "testid": "canvas-panel-workspace-top-bar-launchers",
+    "tag": "SPAN",
+    "盒": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "挂在节点id": null,
+    "子testid": [
+     "canvas-panel-launcher"
+    ],
+    "按钮数": 1,
+    "前四个按钮": [
+     "生成历史"
+    ],
+    "逐字": ""
+   },
+   {
+    "testid": "canvas-panel-launcher",
+    "tag": "BUTTON",
+    "盒": [
+     28,
+     28,
+     947,
+     16
+    ],
+    "挂在节点id": null,
+    "子testid": [],
+    "按钮数": 0,
+    "前四个按钮": [],
+    "逐字": ""
+   },
+   {
+    "testid": "timeline-toolbar",
+    "tag": "DIV",
+    "盒": [
+     639,
+     35,
+     -45,
+     -86
+    ],
+    "挂在节点id": "node_cdwf8x6fbj",
+    "子testid": [
+     "timeline-playback-clock"
+    ],
+    "按钮数": 2,
+    "前四个按钮": [
+     "导出时间线",
+     "全屏编辑"
+    ],
+    "逐字": "00:00 / 00:00 全屏编辑"
+   },
+   {
+    "testid": "timeline-toolbar",
+    "tag": "DIV",
+    "盒": [
+     639,
+     35,
+     618,
+     249
+    ],
+    "挂在节点id": "node_d4tjtpnatq",
+    "子testid": [
+     "timeline-playback-clock"
+    ],
+    "按钮数": 2,
+    "前四个按钮": [
+     "导出时间线",
+     "全屏编辑"
+    ],
+    "逐字": "00:00 / 00:00 全屏编辑"
+   },
+   {
+    "testid": "node-toolbar",
+    "tag": "DIV",
+    "盒": [
+     680,
+     208,
+     241,
+     456
+    ],
+    "挂在节点id": null,
+    "子testid": [
+     "node-toolbar-feature-host",
+     "generation-form",
+     "generation-prompt-editor",
+     "generation-submit-icon"
+    ],
+    "按钮数": 7,
+    "前四个按钮": [
+     "展开图片生成器",
+     "添加参考",
+     "引用参考",
+     "选择模型: Seedream 5.0 Lite"
+    ],
+    "逐字": "上传参考图、输入文字或 主体，描述你想生成的图片 Seedream 5.0 Lite 1:1 2K 1 Current price 3 / "
+   },
+   {
+    "testid": "node-toolbar-feature-host",
+    "tag": "DIV",
+    "盒": [
+     680,
+     208,
+     241,
+     456
+    ],
+    "挂在节点id": null,
+    "子testid": [
+     "generation-form",
+     "generation-prompt-editor",
+     "generation-submit-icon"
+    ],
+    "按钮数": 7,
+    "前四个按钮": [
+     "展开图片生成器",
+     "添加参考",
+     "引用参考",
+     "选择模型: Seedream 5.0 Lite"
+    ],
+    "逐字": "上传参考图、输入文字或 主体，描述你想生成的图片 Seedream 5.0 Lite 1:1 2K 1 Current price 3 / "
+   },
+   {
+    "testid": "generation-form",
+    "tag": "FORM",
+    "盒": [
+     680,
+     208,
+     241,
+     456
+    ],
+    "挂在节点id": null,
+    "子testid": [
+     "generation-prompt-editor",
+     "generation-submit-icon"
+    ],
+    "按钮数": 6,
+    "前四个按钮": [
+     "添加参考",
+     "引用参考",
+     "选择模型: Seedream 5.0 Lite",
+     "图片尺寸选项: 1:1 · 2K · 1"
+    ],
+    "逐字": "上传参考图、输入文字或 主体，描述你想生成的图片 Seedream 5.0 Lite 1:1 2K 1 Current price 3 / "
+   },
+   {
+    "testid": "generation-prompt-editor",
+    "tag": "DIV",
+    "盒": [
+     646,
+     28,
+     258,
+     533
+    ],
+    "挂在节点id": null,
+    "子testid": [],
+    "按钮数": 1,
+    "前四个按钮": [
+     "引用参考"
+    ],
+    "逐字": "上传参考图、输入文字或 主体，描述你想生成的图片"
+   },
+   {
+    "testid": "generation-submit-icon",
+    "tag": "svg",
+    "盒": [
+     16,
+     16,
+     880,
+     623
+    ],
+    "挂在节点id": null,
+    "子testid": [],
+    "按钮数": 0,
+    "前四个按钮": [],
+    "逐字": ""
+   },
+   {
+    "testid": "selection-context-toolbar-popup-host",
+    "tag": "DIV",
+    "盒": [
+     0,
+     0,
+     581,
+     229
+    ],
+    "挂在节点id": null,
+    "子testid": [],
+    "按钮数": 0,
+    "前四个按钮": [],
+    "逐字": ""
+   },
+   {
+    "testid": "node-toolbar",
+    "tag": "DIV",
+    "盒": [
+     171,
+     0,
+     495,
+     229
+    ],
+    "挂在节点id": null,
+    "子testid": [
+     "selection-context-toolbar-surface"
+    ],
+    "按钮数": 0,
+    "前四个按钮": [],
+    "逐字": ""
+   },
+   {
+    "testid": "selection-context-toolbar-surface",
+    "tag": "DIV",
+    "盒": [
+     171,
+     0,
+     495,
+     229
+    ],
+    "挂在节点id": null,
+    "子testid": [],
+    "按钮数": 0,
+    "前四个按钮": [],
+    "逐字": ""
+   },
+   {
+    "testid": "canvas-fixed-toolbar-left-rail",
+    "tag": "ASIDE",
+    "盒": [
+     160,
+     632,
+     12,
+     72
+    ],
+    "挂在节点id": null,
+    "子testid": [
+     "canvas-navigation-shell",
+     "canvas-navigation-mask",
+     "canvas-navigation-mask-backdrop",
+     "canvas-navigation-mask-gradient",
+     "canvas-navigation-scroll-viewport",
+     "canvas-fixed-toolbar"
+    ],
+    "按钮数": 9,
+    "前四个按钮": [
+     "文本",
+     "图片",
+     "视频",
+     "音频"
+    ],
+    "逐字": "文本 图片 视频 音频 时间线 主体 导演台 资产库 上传"
+   },
+   {
+    "testid": "canvas-fixed-toolbar",
+    "tag": "DIV",
+    "盒": [
+     48,
+     398,
+     12,
+     189
+    ],
+    "挂在节点id": null,
+    "子testid": [],
+    "按钮数": 9,
+    "前四个按钮": [
+     "文本",
+     "图片",
+     "视频",
+     "音频"
+    ],
+    "逐字": "文本 图片 视频 音频 时间线 主体 导演台 资产库 上传"
+   }
+  ],
+  "选中数": 1
+ },
+ "对比": {
+  "node_toolbar": {
+   "testid": "node-toolbar",
+   "tag": "DIV",
+   "盒": [
+    680,
+    208,
+    241,
+    456
+   ],
+   "挂在节点id": null,
+   "子testid": [
+    "node-toolbar-feature-host",
+    "generation-form",
+    "generation-prompt-editor",
+    "generation-submit-icon"
+   ],
+   "按钮数": 7,
+   "前四个按钮": [
+    "展开图片生成器",
+    "添加参考",
+    "引用参考",
+    "选择模型: Seedream 5.0 Lite"
+   ],
+   "逐字": "上传参考图、输入文字或 主体，描述你想生成的图片 Seedream 5.0 Lite 1:1 2K 1 Current price 3 / "
+  },
+  "generation_form": {
+   "testid": "generation-form",
+   "tag": "FORM",
+   "盒": [
+    680,
+    208,
+    241,
+    456
+   ],
+   "挂在节点id": null,
+   "子testid": [
+    "generation-prompt-editor",
+    "generation-submit-icon"
+   ],
+   "按钮数": 6,
+   "前四个按钮": [
+    "添加参考",
+    "引用参考",
+    "选择模型: Seedream 5.0 Lite",
+    "图片尺寸选项: 1:1 · 2K · 1"
+   ],
+   "逐字": "上传参考图、输入文字或 主体，描述你想生成的图片 Seedream 5.0 Lite 1:1 2K 1 Current price 3 / "
+  },
+  "是同一个盒子": true,
+  "node_toolbar挂在节点上": false,
+  "node_toolbar有按钮": 7
+ },
+ "删除落点": [
+  681,
+  661
+ ],
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "断言全过": true
+}
