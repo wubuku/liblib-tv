@@ -1,0 +1,228 @@
+{
+  "读数": {
+    "低处": {
+      "开": true,
+      "容器": [
+        359,
+        185,
+        120,
+        134
+      ],
+      "容器class": "flex flex-col gap-1",
+      "容器style": "padding: 4px; gap: 8px; border-radius: 12px; border: 0.5px solid var(--canvas-controls-border); background: var(--canvas-controls-bg); box-shadow: rgba(0, 0, 0,",
+      "上沿被切": false,
+      "项": [
+        {
+          "文本": "宫格排列",
+          "tag": "DIV",
+          "cls": "text-canvas-controls-text hover:bg-canvas-controls-hover flex cursor-pointer ite",
+          "box": [
+            364,
+            190,
+            110,
+            36
+          ],
+          "opacity": "1",
+          "cursor": "pointer",
+          "svg数": 1
+        },
+        {
+          "文本": "宫格排列",
+          "tag": "SPAN",
+          "cls": "",
+          "box": [
+            400,
+            198,
+            56,
+            20
+          ],
+          "opacity": "1",
+          "cursor": "pointer",
+          "svg数": 0
+        },
+        {
+          "文本": "水平排列",
+          "tag": "DIV",
+          "cls": "text-canvas-controls-text hover:bg-canvas-controls-hover flex cursor-pointer ite",
+          "box": [
+            364,
+            234,
+            110,
+            36
+          ],
+          "opacity": "1",
+          "cursor": "pointer",
+          "svg数": 1
+        },
+        {
+          "文本": "水平排列",
+          "tag": "SPAN",
+          "cls": "",
+          "box": [
+            400,
+            242,
+            56,
+            20
+          ],
+          "opacity": "1",
+          "cursor": "pointer",
+          "svg数": 0
+        },
+        {
+          "文本": "垂直排列",
+          "tag": "DIV",
+          "cls": "text-canvas-controls-text hover:bg-canvas-controls-hover flex cursor-pointer ite",
+          "box": [
+            364,
+            278,
+            110,
+            36
+          ],
+          "opacity": "1",
+          "cursor": "pointer",
+          "svg数": 1
+        },
+        {
+          "文本": "垂直排列",
+          "tag": "SPAN",
+          "cls": "",
+          "box": [
+            400,
+            286,
+            56,
+            20
+          ],
+          "opacity": "1",
+          "cursor": "pointer",
+          "svg数": 0
+        }
+      ]
+    },
+    "高处": {
+      "开": true,
+      "容器": [
+        359,
+        185,
+        120,
+        134
+      ],
+      "容器class": "flex flex-col gap-1",
+      "容器style": "padding: 4px; gap: 8px; border-radius: 12px; border: 0.5px solid var(--canvas-controls-border); background: var(--canvas-controls-bg); box-shadow: rgba(0, 0, 0,",
+      "上沿被切": false,
+      "项": [
+        {
+          "文本": "宫格排列",
+          "tag": "DIV",
+          "cls": "text-canvas-controls-text hover:bg-canvas-controls-hover flex cursor-pointer ite",
+          "box": [
+            364,
+            190,
+            110,
+            36
+          ],
+          "opacity": "1",
+          "cursor": "pointer",
+          "svg数": 1
+        },
+        {
+          "文本": "宫格排列",
+          "tag": "SPAN",
+          "cls": "",
+          "box": [
+            400,
+            198,
+            56,
+            20
+          ],
+          "opacity": "1",
+          "cursor": "pointer",
+          "svg数": 0
+        },
+        {
+          "文本": "水平排列",
+          "tag": "DIV",
+          "cls": "text-canvas-controls-text hover:bg-canvas-controls-hover flex cursor-pointer ite",
+          "box": [
+            364,
+            234,
+            110,
+            36
+          ],
+          "opacity": "1",
+          "cursor": "pointer",
+          "svg数": 1
+        },
+        {
+          "文本": "水平排列",
+          "tag": "SPAN",
+          "cls": "",
+          "box": [
+            400,
+            242,
+            56,
+            20
+          ],
+          "opacity": "1",
+          "cursor": "pointer",
+          "svg数": 0
+        },
+        {
+          "文本": "垂直排列",
+          "tag": "DIV",
+          "cls": "text-canvas-controls-text hover:bg-canvas-controls-hover flex cursor-pointer ite",
+          "box": [
+            364,
+            278,
+            110,
+            36
+          ],
+          "opacity": "1",
+          "cursor": "pointer",
+          "svg数": 1
+        },
+        {
+          "文本": "垂直排列",
+          "tag": "SPAN",
+          "cls": "",
+          "box": [
+            400,
+            286,
+            56,
+            20
+          ],
+          "opacity": "1",
+          "cursor": "pointer",
+          "svg数": 0
+        }
+      ]
+    }
+  },
+  "步骤": [
+    "开局坐标偏差：[]",
+    "\n【低处-菜单完整】选区 [\"a-GgqvrVz0pw\",\"t-2AK3Ukyxj3\"]；工具条 [350,318,643,50]",
+    "　工具条七键的视觉态：[[\"(无名)\",\"1\",\"pointer\"],[\"保存到资产\",\"1\",\"pointer\"],[\"创建副本\",\"1\",\"pointer\"],[\"打组\",\"1\",\"pointer\"],[\"批量下载\",\"0.45\",\"not-allowed\"],[\"添加到Chat\",\"1\",\"pointer\"],[\"创建为Skill\",\"1\",\"pointer\"]]",
+    "　菜单开=true 容器=[359,185,120,134] 上沿被切=false",
+    "　容器 class=flex flex-col gap-1",
+    "　容器 style=padding: 4px; gap: 8px; border-radius: 12px; border: 0.5px solid var(--canvas-controls-border); background: var(--canvas-controls-bg); box-shadow: rgba(0, 0, 0,",
+    "　　项「宫格排列」 <DIV> box=[364,190,110,36] opacity=1 cursor=pointer svg=1",
+    "　　项「宫格排列」 <SPAN> box=[400,198,56,20] opacity=1 cursor=pointer svg=0",
+    "　　项「水平排列」 <DIV> box=[364,234,110,36] opacity=1 cursor=pointer svg=1",
+    "　　项「水平排列」 <SPAN> box=[400,242,56,20] opacity=1 cursor=pointer svg=0",
+    "　　项「垂直排列」 <DIV> box=[364,278,110,36] opacity=1 cursor=pointer svg=1",
+    "　　项「垂直排列」 <SPAN> box=[400,286,56,20] opacity=1 cursor=pointer svg=0",
+    "　✅ 已拍裁图",
+    "\n【高处-菜单被顶出视口】选区 [\"a-GgqvrVz0pw\",\"t-2AK3Ukyxj3\"]；工具条 [350,318,643,50]",
+    "　工具条七键的视觉态：[[\"(无名)\",\"1\",\"pointer\"],[\"保存到资产\",\"1\",\"pointer\"],[\"创建副本\",\"1\",\"pointer\"],[\"打组\",\"1\",\"pointer\"],[\"批量下载\",\"0.45\",\"not-allowed\"],[\"添加到Chat\",\"1\",\"pointer\"],[\"创建为Skill\",\"1\",\"pointer\"]]",
+    "　菜单开=true 容器=[359,185,120,134] 上沿被切=false",
+    "　容器 class=flex flex-col gap-1",
+    "　容器 style=padding: 4px; gap: 8px; border-radius: 12px; border: 0.5px solid var(--canvas-controls-border); background: var(--canvas-controls-bg); box-shadow: rgba(0, 0, 0,",
+    "　　项「宫格排列」 <DIV> box=[364,190,110,36] opacity=1 cursor=pointer svg=1",
+    "　　项「宫格排列」 <SPAN> box=[400,198,56,20] opacity=1 cursor=pointer svg=0",
+    "　　项「水平排列」 <DIV> box=[364,234,110,36] opacity=1 cursor=pointer svg=1",
+    "　　项「水平排列」 <SPAN> box=[400,242,56,20] opacity=1 cursor=pointer svg=0",
+    "　　项「垂直排列」 <DIV> box=[364,278,110,36] opacity=1 cursor=pointer svg=1",
+    "　　项「垂直排列」 <SPAN> box=[400,286,56,20] opacity=1 cursor=pointer svg=0",
+    "　✅ 已拍裁图",
+    "⭐ 收尾坐标偏差：[]"
+  ]
+}
