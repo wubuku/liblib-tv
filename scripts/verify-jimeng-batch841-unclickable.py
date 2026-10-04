@@ -5768,14 +5768,21 @@ def main() -> int:
     #   ⚠️ 判据组 `MMMMM.1` 要钉的是那个**否定结果**（(a) 被否）
     p979 = ROOT / "scripts/jimeng_probe979_dwell_src.py"
     _p979 = p979.read_text(encoding="utf-8") if p979.exists() else ""
-    p979 = ROOT / "scripts/jimeng_probe979_dwell_src.py"
-    _p979 = p979.read_text(encoding="utf-8") if p979.exists() else ""
     # ⭐⭐⭐⭐⭐ 980：**实验室**探针第三支 —— 跑**够多的圈**、数
     #   「有几圈**没走** `BODY`」⇒ 把「通常在、但不是每次都在」
     #   从 2 vs 3 的**印象**变成**比率**
     #   ⚠️ 判据组 `NNNNN.1` 要钉的是**关键前提**（门②：停留都 ≥ 可见下限）
+    # ⚠️⚠️⚠️⭐⭐⭐ **980 那次插入把上面两行**重复插了一遍**（`ins` 把锚点自身
+    #   也带进了 `new`）⇒ Python 无害、verifier 照样绿，**但它是脏的**
+    #   ⇒ 本批已去重；⇒ ⭐⭐ **锚点与新增内容**必须**互不包含**
     p980 = ROOT / "scripts/jimeng_probe980_rate_src.py"
     _p980 = p980.read_text(encoding="utf-8") if p980.exists() else ""
+    # ⭐⭐⭐⭐⭐ 981：**源站**探针第四支 —— 把 980 在实验室里量到的比率
+    #   **量到源站上**（980 的 `skip_note` 写明「实验室的比率不等于源站的比率」）
+    #   ⚠️ 判据组 `OOOOO.1` 要钉的是**那个诚实的否定结果**（**没量到**）
+    #   ⇒ 否定结果**尤其**要钉：它最容易在下一批被悄悄忘掉
+    p981 = ROOT / "scripts/jimeng_probe981_srcrate_src.py"
+    _p981 = p981.read_text(encoding="utf-8") if p981.exists() else ""
     # ⭐ 970 的 CCCC.2 要**反证 816 那条决策真的在仓库里**（钉源码原文，
     #   不钉我自己写的转述）
     p816 = ROOT / "scripts/verify-jimeng-batch816-anchors.py"
@@ -9738,6 +9745,93 @@ def main() -> int:
           and "assert WINDOW_MS >= MIN_VISIBLE_MS" in _p980
           and "窗口门失灵（窗口短于可见下限时仍绿）" in _p980
           and "不许算进 `n_cycles`" in _p980)
+
+    # ══ OOOOO. 批 981 源站：把同一个比率量到源站上 ⇒
+    #    诚实的答案是「没量到」；而**顺带查实 973–977 的「一圈」不是整圈** ══
+    print("— OOOOO. 批 981 源站：240 步 = 1 圈、环长 101 ⇒ n_laps=1 ⇒ "
+          "**没量到比率**；而左栏容器一圈命中约 2 次 ⇒ 973–977 的「一圈」不是整圈 —")
+
+    check("OOOOO.1 ⭐⭐⭐⭐⭐ **本批的答案是「没量到」，而必须这么记** —— "
+          "源站实测（2/2 逐格相同）**240 步 = 1 个完整顺序环、环长 101 格**、"
+          "`BODY` 落 2 次、停留 **132/150** 与 **134/133**、"
+          "`below_floor = 0` ⇒ `n_laps = 1` ⇒ "
+          "⭐⭐⭐ **样本量不足以给源站的比率** ⇒ "
+          "⭐⭐⭐⭐ **实验室那个 7.8% 不许直接套到源站**（980 的 `skip_note` 原话）"
+          "⇒ 要 10 圈至少 **~1100 步**，而「跑这么长」合不合理**是一道产品/成本判断**，"
+          "**不是本批该替他做的决定**；"
+          "⇒ 而 ⭐⭐⭐⭐ 门②在**源站侧同样成立** ⇒ "
+          "**「那一圈没看见 `BODY`」在源站上也不能用「窗口太短」解释**",
+          '"src_rate_not_measured_981"' in _ausrc
+          and "**没量到**" in _ausrc
+          and "**样本量不足以给源站的比率**" in _ausrc
+          and "**实验室那个 7.8% 不许直接套到源站**" in _ausrc
+          and "**不是本批该替他做的决定**" in _ausrc
+          and '"body_dwell_src_981"' in _ausrc
+          and "**门②在源站侧同样成立**" in _ausrc
+          # ⭐⭐ 钉探针：环长、圈数、门②的读数都要真在
+          and '"n_laps"' in _p981
+          and '"laps_without_body"' in _p981
+          and '"n_body_dwell_below_floor"' in _p981
+          and "MIN_VISIBLE_MS = 120" in _p981
+          and "N_STEPS = 240" in _p981
+          and '"_p981": "scripts/jimeng_probe981_srcrate_src.py",' in _anchs)
+
+    check("OOOOO.2 ⭐⭐⭐⭐⭐ **本批最要紧的发现，而且它改的是历史记录**："
+          "**973–977 那个「走满一圈」不是整圈** —— 那一批的切法是"
+          "「`own.closest_tid == canvas-fixed-toolbar` 命中第 2 次就算走满」，"
+          "而**左栏容器在一圈里被命中约 2 次**（三个左栏按钮"
+          "—— `canvas-pointer-tool-toggle`、"
+          "`canvas-display-toggle-minimap`、"
+          "`canvas-display-toggle-connections` —— "
+          "**各自的 `closest_tid` 都是那个容器**）⇒ "
+          "⭐⭐⭐⭐⭐ **那一批的「18 格 out 环」不是整圈** ⇒ "
+          "**973 那句「复刻的环序就是 DOM 序」测的是那一段、不是整圈** ⇒ "
+          "这也解释了它们**140 步里只得到 18 枚 `out`**（**因为在圈内就停了**）；"
+          "⚠️⭐⭐ **这一条不推翻 973/974 的顺序结论**（那一段的顺序关系仍然成立），"
+          "但它**把「一圈」这个词的定义改了** ⇒ "
+          "**任何引用「一圈 = 18 格」的旧结论都要重新看**",
+          '"one_lap_is_not_one_lap_981"' in _ausrc
+          and "**973–977 那个「走满一圈」不是整圈**" in _ausrc
+          and "**左栏容器在一圈里被命中约 2 次**" in _ausrc
+          and "**那一批的「18 格 out 环」不是整圈**" in _ausrc
+          and "测的是那一段、不是整圈" in _ausrc
+          and "**因为它们在圈内就停了**" in _ausrc
+          and "**把「一圈」这个词的定义改了**" in _ausrc
+          and "不推翻 973/974 的顺序结论" in _ausrc
+          # ⭐⭐ 钉探针：三个左栏按钮 + 容器口径的命中数都被读出来
+          and 'LAP_TID = "canvas-project-logo"' in _p981
+          and '"rail_hits_container_kb"' in _p981
+          and "a.closest('[data-testid]')" in _p981
+          and "**974 那条纪律的第四次复发**" in _p981)
+
+    check("OOOOO.3 ⭐⭐⭐⭐⭐ **974 那条纪律的第四次复发**（「同一个东西要比同一个口径」）"
+          "—— 973–977 判「一圈」用的是 `closest('[data-testid]')`（**容器**），"
+          "而本批第一版沿用 `keyOf` 读**元素自己**的 `data-testid` ⇒ "
+          "**同一个名字、两种口径** ⇒ **第一版真跑出来 `rail_hits = 0`** ⇒ "
+          "修法：标记改成**环里唯一、且确实是焦点目标**的那一枚，"
+          "**并把 `closest_tid` 也读出来，让两种口径并排，而不是二选一** ⇒ "
+          "⭐⭐ **二选一是最坏的选择，并排读出来，差异自己会说话**；"
+          "另两条本批自纠：⭐⭐⭐⭐ **汇总层要用的字段，读数层就得留着**"
+          "（我第一版只留了时间线第一枚键 ⇒ `BODY` 的停留时长**根本无从算起**，"
+          "979 的同族）与 ⭐⭐⭐ **自测的期望值本身也要审**（本批又推错两处）；"
+          "⚠️⭐⭐ 顺带记一笔：**源站的 Tab 环里有 `canvas-commerce-entry`** ⇒ "
+          "本轮**只按 `Tab`、从未点击它** ⇒ **零计费**",
+          '"kaliber_mismatch_981"' in _ausrc
+          and "**974 那条纪律的第四次复发**" in _ausrc
+          and "**同一个名字、两种口径**" in _ausrc
+          and "**第一版真跑出来 `rail_hits = 0`**" in _ausrc
+          and "**二选一是最坏的选择**" in _ausrc
+          and "**并排读出来，差异自己会说话**" in _ausrc
+          and '"commerce_in_ring_981"' in _ausrc
+          and "**只按 `Tab`、从未点击它**" in _ausrc
+          and '"discipline_981"' in _ausrc
+          and "**汇总层要用的字段，读数层就得留着**" in _ausrc
+          # ⭐⭐ 钉探针：整段 seq 留着、两种口径并排、守卫拦在 click 之前
+          and '"closest_tid": closest' in _p981
+          and '"seq": seq' in _p981
+          and "残段，不许算进分母" in _p981
+          and "guard_point(sp[0], sp[1])" in _p981
+          and "命中数 − 1 那条对不上了" in _p981)
 
 
     print(f"\n{checks - len(failures)}/{checks}")
