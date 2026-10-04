@@ -5739,6 +5739,13 @@ def main() -> int:
     #   ⚠️ 判据组 `IIIII.1` 要钉的是**否定结果**（H₁ 被否）
     p975 = ROOT / "scripts/jimeng_probe975_scope_src.py"
     _p975 = p975.read_text(encoding="utf-8") if p975.exists() else ""
+    p975 = ROOT / "scripts/jimeng_probe975_scope_src.py"
+    _p975 = p975.read_text(encoding="utf-8") if p975.exists() else ""
+    # ⭐⭐⭐ 976：**源站**反事实干预探针（`GAP_JS` / `INJECT_JS` / `UNINJECT_JS`）
+    #   ⇒ 目的：把 975 留下的 A（开头没有可聚焦元素）与 B（无条件出现）**分开**
+    #   ⚠️ 判据组 `JJJJJ.1` 要钉的是**否定结果**（H₂ 被证伪）⇒ 同样最容易被忘掉
+    p976 = ROOT / "scripts/jimeng_probe976_counterfactual_src.py"
+    _p976 = p976.read_text(encoding="utf-8") if p976.exists() else ""
     # ⭐ 970 的 CCCC.2 要**反证 816 那条决策真的在仓库里**（钉源码原文，
     #   不钉我自己写的转述）
     p816 = ROOT / "scripts/verify-jimeng-batch816-anchors.py"
@@ -9287,6 +9294,99 @@ def main() -> int:
           and "诊断动作**必须**恢复" in _p882
           and "location.reload()" in _p882
           and "没按 Esc（对照）" in _p882)
+    # ══ JJJJJ. 批 976 源站反事实干预：H₂ 被证伪；H₃ 有支撑但**出处未标注** ══
+    print("— JJJJJ. 批 976 源站反事实干预：注入一枚真可聚焦元素，"
+          "BODY 位置一点没变 ⇒ H₂ 被否 —")
+
+    check("JJJJJ.1 ⭐⭐⭐⭐⭐ **H₂ 被判否** —— 而办法是**干预**，不是再测一遍："
+          "975 留下的 A（开头那段没有可聚焦元素）与 B（无条件出现）**读起来一模一样** "
+          "⇒ 往 `<body>` **最前面**注入一枚 `tabindex=0` 的 `div` ⇒ "
+          "实测 **`BODY` 仍在环里、位置一点没变**（`after_n_body = 1`、"
+          "`body_disappeared_after_injection = False`，2/2）⇒ "
+          "**「开头有没有可聚焦元素」不是 `BODY` 出现的条件**；"
+          "⇒ 而整批实验能成立，靠的是**前提也有门**"
+          "（`injection_actually_in_ring` 与 `injection_restored` 2/2 绿）"
+          "—— 注入件若没真进环 / 没被还原，后面全是空谈",
+          '"h2_falsified_976"' in _ausrc
+          and "**观察分不开 A / B**" in _ausrc
+          and "**分不开的时候，正确的动作不是再测一遍，是改实验**" in _ausrc
+          and "**H₂ 被否**" in _ausrc
+          and "**「开头有没有可聚焦元素」" in _ausrc
+          and '"h3_supported_976"' in _ausrc
+          # ⭐⭐ 钉探针：前提门、否定结果、可还原三样都要真在
+          and '"injection_actually_in_ring_both_reps"' in _p976
+          and '"injection_restored_both_reps"' in _p976
+          and '"body_disappeared_after_injection"' in _p976
+          and '"after_n_injected"' in _p976
+          and 'INJECT_JS = """' in _p976
+          and 'UNINJECT_JS = """' in _p976
+          # ⭐⭐⭐ 干预必须**可还原**：幂等 + finally 无条件移除 + 读数里复查
+          and "still_there: !!document.getElementById(probeId)" in _p976
+          and '"restored"' in _p976
+          and '"uninject"' in _p976
+          # ⭐⭐⭐ 同一把尺子不许分叉（974/975/976 都只是 `_grab` 的消费者）
+          and 'DOMRANK_JS = _grab("DOMRANK_JS", _p973)' in _p976
+          and 'SCOPE_JS = _grab("SCOPE_JS", _p975)' in _p976
+          and '"_p976": "scripts/jimeng_probe976_counterfactual_src.py",' in _anchs)
+
+    check("JJJJJ.2 ⭐⭐⭐⭐⭐ **H₃ 的证据来自一道判红的门** —— "
+          "而「门红先判门还是数据」这一族本批**又兑现了一次**："
+          "第一版钉的是「注入件应排在 `BODY` **之前**」⇒ **它真的判红了** ⇒ "
+          "⭐⭐⭐ **门假设的方向错了，而错的方向正好就是 H₃ 的内容**"
+          "（`BODY` 恒站在「DOM 里第一个可聚焦元素」的**前一格**）⇒ "
+          "改成正确方向 `injected_follows_body`，"
+          "⭐⭐⭐⭐ **而且改门要成对**：额外钉一条"
+          "`reversed_injection_relation_stays_false_both_reps` —— "
+          "**旧方向必须一直是红的** ⇒ 不然「改精确」与「放宽」分不开；"
+          "⚠️⚠️ **但 H₃ 仍不是「规范」** —— 实测如此 ≠ 规范如此 ⇒ "
+          "**出处仍未标注**（H₁ 否、H₂ 否、H₃ 有支撑无出处）",
+          '"reversed_injection_relation_stays_false_both_reps"' in _p976
+          and '"injected_follows_body_both_reps"' in _p976
+          and '"after_injected_precedes_body"' in _p976
+          and '"after_injected_follows_body"' in _p976
+          and '"gap_measured_both_reps"' in _p976
+          and 'GAP_JS = """' in _p976
+          and "**改门要成对**" in _ausrc
+          and "**旧方向必须一直是红的**" in _ausrc
+          and "**出处仍未标注**" in _ausrc
+          and "**不许把「实测如此」升级成「规范如此」**" in _ausrc
+          # ⚠️ 975 说「本批不测」的那一项本批测了 —— 探针里要有新件
+          and '"why_gap_js"' in _p976
+          and "「从回绕点到第一个可聚焦元素之间还剩几个不可聚焦元素」" in _p976)
+
+    check("JJJJJ.3 ⭐⭐⭐⭐⭐ **本批自己踩的 4 个坑，全部落进基线** —— "
+          "而其中两个是**反复出现**的那一族："
+          "(a) ⭐⭐⭐ **汇总层取值错了、原始读数里答案一直在**（**第四次**："
+          "965/969/970/974）—— 先 `c[\"rows_before\"] = c[\"rows\"]`、"
+          "后 `c[\"rows\"] = []`、**再**调汇总 ⇒ 读的是**已清空的列表** ⇒ "
+          "`before_n_body` 读成 0 ⇒ **那是 bug、不是页面事实** ⇒ 改成**显式传 `rows`**；"
+          "(b) ⭐⭐ **守卫会命中自己** —— 子串匹配命中了 975 源码里的那一行本身 ⇒ "
+          "报「尺子分叉」是**误报** ⇒ 修法是**行首锚定**（`^` + `re.M`）⇒ "
+          "⭐⭐ **守卫自己会命中自己时，它抓到的不是分叉，是自指**；"
+          "(c) ⭐⭐⭐ **注释与代码必须一致**（说「保留旧字段」却删了计算）；"
+          "(d) ⭐⭐ **求值顺序**（`design_gates` 建在字段算出来之前）",
+          '"selfbugs_976"' in _ausrc
+          and "**汇总层取值错了、原始读数里答案一直在**" in _ausrc
+          and "**那是我的 bug、不是页面事实**" in _ausrc
+          and "**守卫会命中自己**" in _ausrc
+          and "**守卫自己会命中自己时，它抓到的不是分叉，是自指**" in _ausrc
+          and "**注释与代码必须一致**" in _ausrc
+          and "**比注释写错更坏**" in _ausrc
+          # ⭐⭐ 钉探针原文：修法真的写进代码，而不是只写在判词里
+          and 'def summarize(c, tag, rows=None):' in _p976
+          and 'summarize(c, "before", rows=c["rows_before"])' in _p976
+          # ⚠️ 注意：这里**不许**把 `r?"""` 整段塞进双引号串 ——
+          #   `"""` 会提前闭合那个字符串（976 写判据时当场踩到，py_compile 报
+          #   「unterminated string literal」）⇒ 拆成两条不含引号的锚点，
+          #   `^` 照样被钉住。
+          and "assert not re.search(r'^DOMRANK_JS" in _p976
+          and ", _src_, re.M), (" in _p976
+          # ⚠️⭐⭐ `py_compile` 抓不到「名字没绑上」⇒ 运行期 NameError 也要留痕
+          and "NameError" in _p976
+          and '"discipline_976"' in _ausrc
+          and "**注入件是 1×1、opacity 0、pointer-events none**" in _ausrc
+          and "**不回答「那一格用户会看见什么」**" in _ausrc)
+
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
