@@ -5783,6 +5783,15 @@ def main() -> int:
     #   ⇒ 否定结果**尤其**要钉：它最容易在下一批被悄悄忘掉
     p981 = ROOT / "scripts/jimeng_probe981_srcrate_src.py"
     _p981 = p981.read_text(encoding="utf-8") if p981.exists() else ""
+    p981 = ROOT / "scripts/jimeng_probe981_srcrate_src.py"
+    _p981 = p981.read_text(encoding="utf-8") if p981.exists() else ""
+    # ⭐⭐⭐⭐⭐ 982：**源站**探针第五支 —— ⭐⭐⭐⭐⭐ **给「一圈」下一个正式定义**
+    #   （圈长 = **最小重复周期**，**不读任何 testid** ⇒ 没有「同一个名字两种口径」）
+    #   ⇒ 并用它把 973/974 的核心结论**从一个 17.8% 的小段补到 100%**
+    #   ⚠️ 判据组 `PPPPP.1` 要钉的是**这个新定义**；`PPPPP.2` 要钉的是
+    #   **对 `OOOOO.2` 那两处错数的更正**（而**原文保留**、只加改写横幅）
+    p982 = ROOT / "scripts/jimeng_probe982_ringlen_src.py"
+    _p982 = p982.read_text(encoding="utf-8") if p982.exists() else ""
     # ⭐ 970 的 CCCC.2 要**反证 816 那条决策真的在仓库里**（钉源码原文，
     #   不钉我自己写的转述）
     p816 = ROOT / "scripts/verify-jimeng-batch816-anchors.py"
@@ -9832,6 +9841,168 @@ def main() -> int:
           and "残段，不许算进分母" in _p981
           and "guard_point(sp[0], sp[1])" in _p981
           and "命中数 − 1 那条对不上了" in _p981)
+
+    # ══ PPPPP. 批 982 源站：⭐⭐⭐⭐⭐ **给「一圈」下正式定义** ——
+    #    「圈」= 最小重复周期（不读任何 testid ⇒ 没有「两种口径」）；
+    #    并用它把 973/974 的核心结论**从一个 17.8% 的小段补到 100%** ══
+    print("— PPPPP. 批 982 源站：**圈 = 最小重复周期**（源站 101 格，2/2；"
+          "974 的 140 步 / 981 的 240 步 / 982 的 210 步**三份独立数据**复核）"
+          "⇒ 973/974 报的 18/19 格是**「out 弧」不是圈**（覆盖率 **17.8% / 73.1%**）"
+          "⇒ 且**更正 981 挂错的一个数** ⇒ 而整圈上的回绕次数仍是 **1** ⇒ "
+          "**结论被加强** —")
+
+    check("PPPPP.1 ⭐⭐⭐⭐⭐ **本批把「一圈」定义成了一个不变量** —— "
+          "**圈长 p := 满足「∀i: seq[i] == seq[i % p]」的最小 p**："
+          "它是**不变量**（旋转不变、与步数无关、**不读任何 testid**）"
+          "⇒ ⇒ ⭐⭐⭐⭐⭐ 由此**从根上绕开** 974 那条纪律（已复发四次）："
+          "**新定义里根本没有「名字」⇒ 也就没有「同一个名字两种口径」**；"
+          "源站实测（2/2）**`min_period = 101`**、"
+          "`laps_identical = True` ⇒ ⭐⭐⭐⭐ "
+          "**圈长 101 由三份独立数据复核**：974 的 **140** 步、981 的 **240** 步、"
+          "982 的 **210** 步；"
+          "⚠️⚠️⭐⭐⭐ **而 `min_period` 永不失败**（`p == n` 恒成立 ⇒ "
+          "`seq[i % n] == seq[i]` 恒真）⇒ 它**判不出「不是周期序列」**"
+          "⇒ ① 空序列必须**显式**返回 `None`（否则 `p = 1` 靠 `all([])` 恒真）"
+          "② ⭐⭐⭐ **`rem` 必须单独读出来**（980 的纪律："
+          "**切圈残段不许算进分母**）⇒ 982 实测 `rem = 8`；"
+          "⇒ ⇒ ⭐⭐⭐⭐ **`min` 与 `max` 的差恰好就是「残段」**："
+          "6 步的 `['a','b']×3` ⇒ `min = 2`（3 圈）、`max = 6`（1 圈）"
+          "⇒ **`max` 永远整除、永远看不到残段** ⇒ **用它就会把 1.5 圈当成 1 圈**",
+          '"definition_of_lap_982"' in _ausrc
+          and "**圈长 p := 满足「∀i: seq[i] == seq[i % p]」的最小 p**" in _ausrc
+          and "**新定义里根本没有「名字」" in _ausrc
+          and "**`min_period = 101`**" in _ausrc
+          and "`laps_identical = True`" in _ausrc
+          and "974 的 **140** 步、981 的 **240** 步、982 的 **210** 步" in _ausrc
+          and "**`min_period` 永不失败**" in _ausrc
+          and "982 实测 `rem = 8`" in _ausrc
+          and "**`max` 永远整除、永远看不到残段**" in _ausrc
+          and '"arc_is_not_lap_982"' in _ausrc
+          # ⭐⭐⭐⭐⭐ **「arc 从来不是圈」这条要钉住它的源码出处**
+          and "`jimeng_probe973_ringorder_ck.py:311`" in _ausrc
+          and "**复刻侧**：整圈 **26** 格、弧 **19** 格 ⇒ **73.1%**" in _ausrc
+          and "**源站侧**：整圈 **101** 格、弧 **18** 格 ⇒ **17.8%**" in _ausrc
+          and "在源站侧只验了 17.8% 的圈**" in _ausrc
+          and "**`arc` 从此改称「out 弧」**" in _ausrc
+          and "**不是本批新测的** —— **诚实记账**" in _ausrc
+          # ⭐⭐ 钉探针：新件、两条继承来的仪器、空序列那一挡、残段
+          and "def min_period(seq):" in _p982
+          and "if n == 0:" in _p982
+          and '"min_period"' in _p982 and '"rem"' in _p982
+          and "N_STEPS = 210" in _p982
+          and '"arc_covers_whole_lap"' in _p982
+          and '_grab("DOMRANK_JS", _p973)' in _p982
+          and '_grab("POLL_JS", _p979)' in _p982
+          and "def _arc_of(pairs):" in _p982
+          and "def _descents(seq):" in _p982
+          and '_p982": "scripts/jimeng_probe982_ringlen_src.py",' in _anchs)
+
+    check("PPPPP.2 ⭐⭐⭐⭐⭐ **本批更正 981 挂错的一个数（而它是最要紧的一个）**"
+          " —— 981 原话是「左栏容器 `canvas-fixed-toolbar` "
+          "**一圈里被命中约 2 次**（三个左栏按钮各自的 `closest_tid` 都是它）」，"
+          "而**读数把这两半都证伪了**："
+          "① 982 实测 `left_rail_closest_tids` = "
+          "`['canvas-pointer-tool-toggle', 'canvas-display-toggle-minimap', "
+          "'canvas-display-toggle-connections', …]` ⇒ "
+          "⭐⭐⭐⭐ **三个左栏按钮的 `closest_tid` 各不相同**；"
+          "② `rail_closest_hits = 2` / **210 步 = 2 圈 + 8** ⇒ **每圈 1 次** "
+          "⇒ ⇒ ⭐⭐⭐⭐ **错在「跨圈计数漏了除以圈数」**"
+          "（980「切圈残段不许算进分母」的**姊妹条**）—— "
+          "981 把 **2 圈的总数（2）** 当成了**单圈**；"
+          "⚠️⚠️ **而这个错误的方向是「说多了」** ⇒ "
+          "981 据此下的结论「973–977 不是整圈」**理由要换、结论不撤回**："
+          "⭐⭐⭐⭐⭐ **974 从来没走完过一圈** —— 它读数 `n_rail_stops = 1` ⇒ "
+          "`canvas-fixed-toolbar` **只命中 1 次**就**撞上了 `n_lead_cap = 140` 硬上限** "
+          "⇒ ⇒ **140 步 = 1 个整圈（101）+ 39 步残段**；"
+          "⇒ 且它的 `arc_len = 18` 取自 `arc` 提取器（**连续 out 段**）、"
+          "**与 `n_rail_stops` 无关** ⇒ ⇒ "
+          "⭐⭐ **973（复刻侧）`n_rail_stops = 2` ⇒ 它确实走完了**，"
+          "而复刻侧整圈 = 26 格 ⇒ 它的 19 格弧 = **73.1%**；"
+          "⇒ ⇒ ⭐ 顺带厘清**两件事被并成一件**："
+          "「元素自己」口径 `rail_own_hits = 0` ⇒ "
+          "**`canvas-fixed-toolbar` 根本不是焦点目标**"
+          "（⇒ 981 **第一版**的 `rail_hits = 0` 原来是对的）、"
+          "「容器」口径每圈 1 次 ⇒ ⭐⭐⭐⭐ "
+          "**「同一个名字、两种口径」又一次复发，而这次两半都写进了同一句错话里**；"
+          "⇒ ⇒ ⭐⭐⭐⭐ **撤销结论按规矩来：原文保留、只加改写横幅** ⇒ "
+          "本条判据**同时钉住 `OOOOO.2` 那两句错话仍在 `_ausrc` 里**（不许删）",
+          '"correction_to_981_982"' in _ausrc
+          and "**读数直接证伪这两半**" in _ausrc
+          and "**三个左栏按钮的 `closest_tid` 各不相同**" in _ausrc
+          and "**每圈 1 次**" in _ausrc
+          and "**错在「跨圈计数漏了除以圈数」**" in _ausrc
+          and "981 把 **2 圈的总数（2）** 当成了**单圈**" in _ausrc
+          and "**这个错误的方向是「说多了」**" in _ausrc
+          and "**理由要换、结论不撤回**" in _ausrc
+          and '"why_974_never_finished_a_lap_982"' in _ausrc
+          and "`n_rail_stops = 1`" in _ausrc
+          and "**140 步 = 1 个整圈（101）+ 39 步残段**" in _ausrc
+          and "它的 19 格弧 = **73.1%**" in _ausrc
+          and "`rail_own_hits = 0`" in _ausrc
+          and "**「同一个名字、两种口径」又一次复发" in _ausrc
+          # ⭐⭐⭐⭐ **成对钉住「原文保留」**（撤销结论不许偷偷删掉旧话）
+          and '"one_lap_is_not_one_lap_981"' in _ausrc
+          and "**左栏容器在一圈里被命中约 2 次**" in _ausrc
+          # ⭐⭐ 钉探针：左栏三列并排读出 + 974 的上限常量
+          and '"left_rail_closest_tids"' in _p982
+          and '"rail_closest_hits"' in _p982
+          and '"rail_own_hits"' in _p982
+          and "LEFT_RAIL_SELF = (" in _p982
+          and "n_lead_cap = 140" in _ausrc)
+
+    check("PPPPP.3 ⭐⭐⭐⭐⭐ **本批最漂亮的一条：结论是被加强，不是被推翻** —— "
+          "982 实测（2/2，**整圈 101 格**上）**`descents_on_full_lap = 1`**、"
+          "`unknown = 0`；而**同一份读数里、974 的口径**上 "
+          "**`descents_on_arc = 1`** ⇒ ⭐⭐⭐⭐⭐ **两个数相等** ⇒ "
+          "**「环序 = 纯 DOM 序」从一个 17.8% 的小段，升级到 100% 的整圈** ⇒ "
+          "⭐⭐⭐⭐ **新增的 83 格（`self`，占 82.2%）没有引入第二次回绕** ⇒ "
+          "**973/974 的核心结论更稳了，不是更弱了**；"
+          "⇒ 而 ⭐⭐⭐⭐⭐ 顺带查出一个**结构发现**：整圈 101 格的 `dom_rank` "
+          "范围 **60 – 2395**，**最小值 = `BODY`（60）**、"
+          "**最大值 = `canvas-sidecar-launcher`（2395）**，而它们**恰好相邻**"
+          "（圈内第 89、90 格）⇒ **下降 2335**、2/2 逐格相同 ⇒ "
+          "⭐⭐⭐⭐⭐ **这不是巧合，是结构性的** ⇒ "
+          "**「整圈恰好一次回绕」的唯一来源就是 `BODY` 那一格** ⇒ "
+          "⭐⭐⭐⭐⭐ **新可证伪推论：若 `BODY` 那一格不存在"
+          "（臂 A 那种把它跳过的干预），整圈上就会出现「0 次下降」**；"
+          "⇒ 且 ⭐⭐⭐⭐ **H₃ 的位置命题拿到第三份独立数据（在整圈尺度上）**："
+          "`body_i_in_lap = 90`、`marker_i_in_lap = 91`"
+          "（marker = `canvas-project-logo`）⇒ **`BODY` 紧邻"
+          "「DOM 里第一个可聚焦元素」的前一格** ⇒ 与 977 臂 B 完全一致 "
+          "⇒ ⚠️ **但「复现 ≠ 出处」，且 982 不复活 H₃ 里那个「恒」**"
+          "（980 已量成实验室缺失率 ≈ 7.8%）",
+          '"full_lap_dom_order_982"' in _ausrc
+          and "**`descents_on_full_lap = 1`**" in _ausrc
+          and "**`descents_on_arc = 1`**" in _ausrc
+          and "**两个数相等 ⇒ 「环序 = 纯 DOM 序」"
+          "从一个 17.8% 的小段，升级到 100% 的整圈**" in _ausrc
+          and "**新增的 83 格没有引入第二次回绕**" in _ausrc
+          and "973/974 的核心结论**更稳了，不是更弱了**" in _ausrc
+          and '"body_is_the_wrap_982"' in _ausrc
+          and "范围 = **60 – 2395**" in _ausrc
+          and "**最小值 = `BODY`（60）**" in _ausrc
+          and "**最大值 = `canvas-sidecar-launcher`（2395）**" in _ausrc
+          and "而它们**恰好相邻**（圈内第 89、90 格）" in _ausrc
+          and "唯一来源就是 `BODY` 那一格**" in _ausrc
+          and "整圈上就会出现「0 次下降」**" in _ausrc
+          and '"body_precedes_first_focusable_full_lap_982"' in _ausrc
+          and "**`body_i_in_lap = 90`**" in _ausrc
+          and "**`marker_i_in_lap = 91`**" in _ausrc
+          and "**不复活那个「恒」字**" in _ausrc
+          # ⭐⭐ 钉探针：两个口径的下降数都被读出、圈被切出来、BODY 下标
+          and '"descents_on_full_lap"' in _p982
+          and '"descents_on_arc"' in _p982
+          and '"one_lap"' in _p982
+          and '"body_i_in_lap"' in _p982
+          and '"marker_i_in_lap"' in _p982
+          and '"n_rank_unknown_total"' in _p982
+          # ⭐⭐⭐⭐ 本批的三条纪律（自测期望值 / 门红先判门错 / 恒真断言）
+          and '"discipline_982"' in _ausrc
+          and "第六、七次复发" in _ausrc
+          and "**门红先判「门错还是数据错」**" in _ausrc
+          and "本批第一版那道门**错在锚点挑错文件**" in _ausrc
+          and "这种**恒真断言**，它比没有门更坏" in _ausrc
+          and "**本批零计费**：只按 `Tab`；" in _ausrc)
 
 
     print(f"\n{checks - len(failures)}/{checks}")
