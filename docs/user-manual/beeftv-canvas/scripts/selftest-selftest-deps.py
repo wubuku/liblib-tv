@@ -577,6 +577,110 @@ def m_all_pinned_not_reported():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+def _open_write_fixture(tmp, with_deps):
+    """造一份反验：它把一个**闭包会用到 `baseline`** 的闸**用 `open().write()` 搬进临时树**。
+
+    `with_deps=True`  → 依赖用 `shutil.copy` 搬齐
+    `with_deps=False` → **一个 `shutil.copy` 都不写**
+
+    **为什么专门造这种写法**（Batch 264 实测出来的）：
+    `selftest-shot-version-source.py` 的 `copy_gate()` 用
+    `open(…/scripts/<闸名>, "w").write(src)` 搬闸——**因为它要把 `OFF_TASK` 免检表清空**，
+    **而 `shutil.copy` 做不到「搬过去再改」**。
+    **而 `copies_gate_into_tmp()` 只认 `shutil.copy` / `stage_gate` / `stage_all` / `copytree`**，
+    **于是这份反验被整份跳过**——
+    **实测后果**：闸 17 在它 13 例里 11 例转红（`ModuleNotFoundError`）时**一声不吭**。
+    **那是假阴性：坏掉了没人知道，而闸报得很绿。**
+
+    **而夹具自己必须把那个变量钉死**（`env=child_env(d)`）：
+    **方向一之二会在方向一之前报它**，
+    **第一版夹具没钉，用例 17 的「绿」是方向一之二给的绿、不是方向一的**
+    （纪律 262 推论一：**一对用例只差一件事的前提是其余全部合规**）。
+    **这一对用例要钉的正是那个缺口**：
+    17 只差「有没有搬齐依赖」这一件事，**而它们搬闸的方式是全新的**——
+    **所以旧判据下 17 必红（它整份跳过了），新判据下 17 与 18 都绿**。
+    """
+    shutil.copytree(os.path.join(ROOT, "scripts"), os.path.join(tmp, "scripts"))
+    shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-selftest-deps.py"))
+    write(os.path.join(tmp, "scripts", "verify-newfangled.py"),
+          "import os, sys\nfrom baseline import resolve_ref\n"
+          "def main():\n    return resolve_ref() and 0\n"
+          "if __name__ == '__main__':\n    sys.exit(main())\n")
+    #: **两个依赖都要搬**——`baseline` 自己 import `beefsrc`，
+    #: **而闭包不是第一层**（Batch 205 实测：只看第一层，4 份反验 0/5、0/6、0/5、0/4 全红而构建全绿）。
+    #: **第一版只搬了 `baseline`，闸报出两条而不是零条**——
+    #: **用例红在「没搬 beefsrc」上，而它要核的是「有没有搬齐」**（纪律 281 推论四）。
+    deps = (('    shutil.copy(os.path.join(HERE, BASELINE),\n'
+             "                os.path.join(d, 'scripts', 'baseline.py'))\n"
+             '    shutil.copy(os.path.join(HERE, BEEFSRC),\n'
+             "                os.path.join(d, 'scripts', 'beefsrc.py'))\n")
+            if with_deps else "")
+    body = (
+        "import os, sys, shutil, subprocess, tempfile\n"
+        "from stagedeps import child_env\n"
+        "HERE = os.path.dirname(os.path.abspath(__file__))\n"
+        "GATE = os.path.join(HERE, 'verify-newfangled.py')\n"
+        "BASELINE = 'baseline.py'\n"
+        "BEEFSRC = 'beefsrc.py'\n"
+        "def main():\n"
+        "    d = tempfile.mkdtemp()\n"
+        "    os.makedirs(os.path.join(d, 'scripts'))\n"
+        "    src = open(os.path.join(HERE, GATE), encoding='utf-8').read()\n"
+        "    with open(os.path.join(d, 'scripts', 'verify-newfangled.py'), 'w',\n"
+        "              encoding='utf-8') as f:\n"
+        "        f.write(src)\n"                       # **搬闸：写文本**
+        + deps +
+        "    r = subprocess.run([sys.executable, os.path.join(d, 'scripts',\n"
+        "                                            'verify-newfangled.py')],\n"
+        "                       cwd=d, capture_output=True, text=True,\n"
+        "                       env=child_env(d))\n"
+        "    sys.exit(0 if r.returncode == 0 else 1)\n"
+    )
+    write(os.path.join(tmp, "scripts", "selftest-openwrite.py"),
+          body + "if __name__ == '__main__':\n    sys.exit(main())\n")
+
+
+def m_open_write_missing_dep_reported():
+    """**能抓那一侧**：`open().write()` 搬闸、依赖没搬 → 判据必须报出来。
+
+    **旧判据下这一例必红**：`copies_gate_into_tmp()` 认不出这种搬法，
+    **整份反验被跳过 → rc=0 → 而用例期望 rc=1**。
+    **新判据下它绿**——**这一红一绿就是本次升级的全部鉴别力**。
+    """
+    check_anchor()
+    tmp = tempfile.mkdtemp(prefix="beef-deps-openwrite-miss.")
+    try:
+        _open_write_fixture(tmp, with_deps=False)
+        r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
+                           cwd=tmp, capture_output=True, text=True)
+        out = (r.stdout or "") + (r.stderr or "")
+        ok = (r.returncode == 1 and "✗ 方向一" in out
+              and "baseline" in out and "selftest-openwrite.py" in out)
+        record("17 用 open().write() 搬闸、依赖没搬 → 必报（旧判据整份跳过它）",
+               ok, f"rc={r.returncode}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_open_write_with_deps_not_reported():
+    """**不误伤那一侧**：同样用 `open().write()` 搬闸，依赖搬齐了 → 不得报。
+
+    **它钉的是「认得这种搬法之后不要顺手把别的也报出来」**：
+    **一份反验为了搬闸而改用 `open().write()`，不该因此被整份核出新的红**。
+    """
+    check_anchor()
+    tmp = tempfile.mkdtemp(prefix="beef-deps-openwrite-ok.")
+    try:
+        _open_write_fixture(tmp, with_deps=True)
+        r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
+                           cwd=tmp, capture_output=True, text=True)
+        out = (r.stdout or "") + (r.stderr or "")
+        ok = r.returncode == 0 and "selftest-openwrite.py" not in out
+        record("18 用 open().write() 搬闸、依赖搬齐 → 不得报", ok, f"rc={r.returncode}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main():
     tests = [m_clean, m_missing_baseline_copy, m_gate_imports_missing_module,
              m_no_false_positive, m_rename_pattern_breaks,
@@ -585,7 +689,8 @@ def main():
              m_stage_gate_wrong_gate_still_reports, m_stage_gate_right_gate_passes,
              m_transport_count_is_reported,
              m_missing_env_reported, m_text_only_staging_not_reported,
-             m_partial_pins_reported, m_all_pinned_not_reported]
+             m_partial_pins_reported, m_all_pinned_not_reported,
+             m_open_write_missing_dep_reported, m_open_write_with_deps_not_reported]
     for t in tests:
         try:
             t()

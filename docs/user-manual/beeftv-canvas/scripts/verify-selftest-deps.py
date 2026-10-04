@@ -62,6 +62,61 @@ SCRIPTS = os.path.join(ROOT, "scripts")
 from stagedeps import CHILD_ENV_FN, local_closure, local_imports
 
 
+def writes_gate_into_tmp(text):
+    """这份反验有没有用 `open(…, "w").write(…)` 把**闸**写进临时 `scripts/`。
+
+    **Batch 265 新增这一支**，而它是**「判据认写法不认事实」的第 5 次复发**
+    （前四次：Batch 190 的两处、239、247）。
+
+    **实测出来的后果**（Batch 264）：`selftest-shot-version-source.py` 的
+    `copy_gate()` 用 `open(os.path.join(d, "scripts", GATE), "w")` + `f.write(src)` 搬闸
+    ——**因为它要把 `OFF_TASK` 免检表清空，而 `shutil.copy` 做不到「搬过去再改」**——
+    **而 `copies_gate_into_tmp()` 只认 `shutil.copy` / `stage_gate` / `stage_all` / `copytree`**，
+    **于是那份反验被整份跳过**：实测它 **13 例里 11 例转红**（`ModuleNotFoundError`），
+    **而闸一声不吭、报得很绿**。**漏报比误报危险——误报有人去改，漏报一路绿到缺陷真的发作。**
+
+    **判据问的是「目标路径是不是临时 `scripts/` 下那个闸名」，不问写法**：
+    `open().write()` 与 `shutil.copy` 达到**同一个事实**。
+
+    **为什么要求路径里出现真正的闸名**（而不仅是有 `open(…"scripts"…, "w")`）：
+    **反验里往 `scripts/` 写东西的地方很多**——写夹具反验自己、写注入用的假闸。
+    **只按「往 scripts 写」判，会把本闸自己那份反验也算成搬闸**
+    （它的 `_env_fixture` 天天往 `tmp/scripts/` 写夹具文件）。
+    """
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return False
+    consts = _module_consts(tree)
+
+    def is_gate(b):
+        return (isinstance(b, str) and b.startswith("verify-") and b.endswith(".py")
+                and os.path.isfile(os.path.join(SCRIPTS, b)))
+
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call) or not node.args:
+            continue
+        f = node.func
+        if not ((isinstance(f, ast.Name) and f.id == "open")
+                or (isinstance(f, ast.Attribute) and f.attr == "open")):
+            continue
+        path = ast.unparse(node.args[0])
+        if '"scripts"' not in path and "'scripts'" not in path:
+            continue
+        mode = ast.unparse(node.args[1]) if len(node.args) > 1 else ""
+        if '"w' not in mode and "'w" not in mode:
+            continue
+        # ① 路径里直接写着闸名的字面量
+        for sub in ast.walk(node.args[0]):
+            if isinstance(sub, ast.Constant) and is_gate(os.path.basename(sub.value or "")):
+                return True
+        # ② 路径里写的是模块级常量（`os.path.join(d, "scripts", GATE)`）
+        for cn, cv in consts.items():
+            if cn in path and is_gate(os.path.basename(cv)):
+                return True
+    return False
+
+
 def copies_gate_into_tmp(text):
     """这份反验是否会把闸门脚本复制进临时目录。
 
@@ -86,7 +141,13 @@ def copies_gate_into_tmp(text):
     # **所以判据里凡是「这份反验做了 X」的前提条件，都必须跟着搬运手段一起更新。**
     has_copy = bool(re.search(r"shutil\.copy\w*\(", text))
     has_staged = bool(re.search(r"\bstage_(?:all|gate)\s*\(", text))
-    return (has_copy or has_staged) and bool(re.search(r"tempfile\.mkdtemp", text))
+    #: **Batch 265 补的这一支**：`open(…"scripts"…, "w")` 也是搬闸。
+    #: **它不要求同时出现 `tempfile.mkdtemp`**——
+    #: **而 `selftest-shot-version-source.py` 用的是 `tempfile.mkdtemp(prefix=…)`，认得**；
+    #: **但一旦哪天换成别的建目录方式，那一支又会落空**——
+    #: **所以这一支只看「往临时 scripts/ 写了闸」这个事实本身**。
+    return ((has_copy or has_staged or writes_gate_into_tmp(text))
+            and bool(re.search(r"tempfile\.mkdtemp|mkdtemp\w*\(", text)))
 
 
 def independent_gate_names(text, scripts_dir):
