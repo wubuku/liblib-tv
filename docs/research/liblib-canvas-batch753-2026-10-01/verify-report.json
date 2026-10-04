@@ -1,0 +1,292 @@
+{
+ "batch": 753,
+ "checks": [
+  {
+   "label": "静态 includeExternalEdges 表达式在位（N=1/N=2 差分的根据）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 边过滤两分支都在（|| 与 &&）",
+   "pass": true,
+   "got": {
+    "either": true,
+    "both": true
+   }
+  },
+  {
+   "label": "静态 groupSelectedNodes 的 children.length<2 硬门在位",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 ungroupSelectedNodes 把选中集设成全部子节点",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 withDescendantIds 级联在位",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 panOnDrag 是键号数组 [1]/[0,1]",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 nodesDraggable 门在位",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 selectionOnDrag={false} 在位（框选是 Shift+拖 另一条路）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 onNodeClick 带 metaKey/ctrlKey 时短路 selectNode",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 page.tsx 确实没有 onEdgeClick（但边仍可选中 ⟹ 走 onEdgesChange）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 delete-edge 事件桥在位",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 删边按钮的 opacity/pointer-events 真门在位",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 删边按钮 aria-label=删除连线",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 变更路由对 select 走 toggle（多选的活路）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 canvasStore.setEdges 全应用只剩声明+实现（零调用点死 action）",
+   "pass": true,
+   "got": [
+    "src/store/canvasStore.ts:3415",
+    "src/store/canvasStore.ts:387"
+   ]
+  },
+  {
+   "label": "静态 canvasStore.duplicateNode 无 UI 调用点",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "静态 canvasStore.removeNode 无 UI 调用点",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "判据 13 条",
+   "pass": true,
+   "got": 13
+  },
+  {
+   "label": "两轮一致（剔除易变字段后 diff 为空）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "易变字段只有 group_geom.id，且原始比对里只有它跳出来",
+   "pass": true,
+   "got": {
+    "excluded": [
+     "group_geom.id"
+    ],
+    "raw": [
+     "group_geom"
+    ]
+   }
+  },
+  {
+   "label": "轮间独立性写明是整页 reload",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "返工条目 7 条（全是探针/判据/验收器自己的错）",
+   "pass": true,
+   "got": 7
+  },
+  {
+   "label": "返工覆盖 R1 被覆盖元素 / R2 起点落节点 / R3 选框退化 / R4 拖动循环没乘 i / R5 口头数字 / R6 静态死锁 / R7 验收器排除范围",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "不声称清单非空",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "本批明确解掉了多选不可达那条挂起项（判据1/2/3 三条都在讲多选，且判据3 自己声明了两轮一致）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据1 Meta+点击加选 → n=2",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据2 只有 Meta 累加，Ctrl/Shift 都是 1",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据3 Shift+拖框选一次选满 10 个",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据4 Cmd+D 差分 N1 边+3 / N2 边+1（节点 +1 / +2）",
+   "pass": true,
+   "got": {
+    "N1": {
+     "nodeDelta": 1,
+     "edgeDelta": 3
+    },
+    "N2": {
+     "nodeDelta": 2,
+     "edgeDelta": 1
+    },
+    "static": "canvasStore.ts:3166 includeExternalEdges = requestedIds.length === 1 && !includesGroup"
+   }
+  },
+  {
+   "label": "判据5 G 的硬门：N=1 零变化",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据6 组几何 (100,-219,1350,874) 四项与 ±32 包围盒对平",
+   "pass": true,
+   "got": {
+    "id": "group-1791099969609-r1385p",
+    "x": 100,
+    "y": -219,
+    "w": 1350,
+    "h": 874,
+    "title": "组合节点",
+    "kind": "selection",
+    "z": -1001,
+    "children": [
+     "i-1FQ9tErTcC",
+     "b-bTLLuU4w5q"
+    ]
+   }
+  },
+  {
+   "label": "判据7 解组后选中集 = 全部子节点（第三条多选入口）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据8 多选删除存活 3 条边且与静态清单逐项一致",
+   "pass": true,
+   "got": [
+    "e-VQACH36eJC",
+    "e-XmiJkHfFAL",
+    "e-xNVTHNFZZl"
+   ]
+  },
+  {
+   "label": "判据9 级联删分组：节点-2 边-4，另一个分组还在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据10 删边按钮门 opacity 0→1 / pointer-events none→auto / topIsBtn",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据10 删边记账：边-1、past+1、该边从选中集清空",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据11 拖节点 3/3 抓点 moved 且 past+1",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据11 Alt+Shift+F 整理 9/10 节点移位 + 出现「还原」48×32",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据13 中键拖 viewport 变 / 左键拖不变",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数交叉核对 28 项（/tmp/vb753h.json）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始读数：删 N=2 存活边清单逐项一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：撤销后回到种子 10 节点 / 11 边",
+   "pass": true,
+   "got": {
+    "nodes": 10,
+    "edges": 11
+   }
+  },
+  {
+   "label": "原始读数：两轮除 group_geom 外全同",
+   "pass": true,
+   "got": [
+    "group_geom"
+   ]
+  }
+ ],
+ "passed": 43,
+ "total": 43,
+ "static": {
+  "dupIncludeExternal": true,
+  "dupEdgeFilterBoth": true,
+  "dupEdgeFilterEither": true,
+  "groupHardGate": true,
+  "ungroupSelectsChildren": true,
+  "removeSelectedNoHistoryGuard": true,
+  "withDescendantIds": true,
+  "setEdgesHits": [
+   "src/store/canvasStore.ts:3415",
+   "src/store/canvasStore.ts:387"
+  ],
+  "duplicateNodeHits": [],
+  "removeNodeHits": [],
+  "panOnDrag": true,
+  "nodesDraggable": true,
+  "selectionOnDragFalse": true,
+  "noOnNodeClickMeta": true,
+  "noOnEdgeClick": true,
+  "deleteEdgeEvent": true,
+  "edgeBtnGate": true,
+  "edgeBtnAria": true,
+  "routingSelectToggles": true,
+  "routingSelectCase": true
+ }
+}

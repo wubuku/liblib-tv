@@ -1,0 +1,321 @@
+{
+  "batch": 753,
+  "date": "2026-10-01",
+  "clone": "http://localhost:4317",
+  "subject": "画布多选态可达性 + 选择/图记账命令真跑",
+  "seed": {
+    "canvasId": "canvas-2",
+    "nodes": 10,
+    "edges": 11,
+    "confirmedBy": "探针 a 的 seed_match=true（store 无持久化，每轮 reload 回到 initialCanvas2）"
+  },
+  "judgeCount": 13,
+  "twoRound": {
+    "rounds": 2,
+    "independence": "轮间整页 reload ⟹ zustand 回到种子",
+    "volatileExcluded": [
+      "group_geom.id"
+    ],
+    "volatileWhy": "group_geom.id 来自 createNodeId() = `group-${Date.now()}-${random}`，是运行时生成的标识符",
+    "diff": {},
+    "consistent": true,
+    "rawDiffBeforeVolatileFilter": [
+      "group_geom"
+    ]
+  },
+  "judgments": [
+    {
+      "no": 1,
+      "title": "Cmd+点击可以加选",
+      "claim": "先裸点 A 再 Meta+点 B，selectedNodeIds 从 1 变 2",
+      "evidence": {
+        "multi_MetaClick": 2,
+        "ids": 2
+      },
+      "why": "推翻挂了很久的「多选态不可达」：store 的 selectNode 只写单元素、selectNodes/selectEdges 零调用点、selectElements 只传空数组，但 ReactFlow 自己的 select 变更经 routeReactFlowChanges 的 applySelectionDelta 会 toggle 进 selectedNodeIds。声明 vs 实现，只有实跑能分。",
+      "twoRound": true
+    },
+    {
+      "no": 2,
+      "title": "只有 Meta 累加，Ctrl/Shift 都是替换",
+      "claim": "Ctrl+点击 与 Shift+点击 之后 selectedNodeIds 仍为 1",
+      "evidence": {
+        "multi_MetaClick": 2,
+        "multi_CtrlClick": 1,
+        "multi_ShiftClick": 1
+      },
+      "why": "多选手势是平台相关的单点：macOS 的 Meta 能加选，没有第二条加选路径（不是 Shift 也不是 Ctrl）。",
+      "twoRound": true
+    },
+    {
+      "no": 3,
+      "title": "Shift+拖是框选，能一次选满全画布",
+      "claim": "从左上空白点到右下空白点，selectedNodeIds = 10（全画布）",
+      "evidence": {
+        "boxSelect_n": 10,
+        "coversAll": true
+      },
+      "why": "框选与 selectionOnDrag={false} 不矛盾：那是「不按修饰键直接拖也框选」，Shift+拖是另一条路。",
+      "twoRound": true
+    },
+    {
+      "no": 4,
+      "title": "Cmd+D 的 N 分支差分可证伪",
+      "claim": "同一靶点 i-1FQ9tErTcC：N=1 节点+1/边+3；N=2 节点+2/边+1",
+      "evidence": {
+        "N1": {
+          "nodeDelta": 1,
+          "edgeDelta": 3
+        },
+        "N2": {
+          "nodeDelta": 2,
+          "edgeDelta": 1
+        },
+        "static": "canvasStore.ts:3166 includeExternalEdges = requestedIds.length === 1 && !includesGroup"
+      },
+      "why": "duplicateGraphSelection 的边过滤是 includeExternalEdges ? (source||target) : (source&&target)。i-1FQ9tErTcC 的边度数实测 3；N=2 时选区外的边不复制，只有 i-1FQ9tErTcC↔b-bTLLuU4w5q 那一条两端都在选区。差分与实现逐字对平。",
+      "twoRound": true
+    },
+    {
+      "no": 5,
+      "title": "G 的硬门：选 1 个按 G 零变化",
+      "claim": "nodes/edges/past 三项全不变",
+      "evidence": {
+        "group_N1_noop": true,
+        "pastDelta": 0
+      },
+      "why": "canvasStore.ts:3269 `if (children.length < 2) return state`。这是「多选是多选类命令真门槛」的直接证据，也是零入口之外的另一种不可达：入口在、命令在，就是门永远开不了。",
+      "twoRound": true
+    },
+    {
+      "no": 6,
+      "title": "组节点几何可对账",
+      "claim": "x=100 y=-219 w=1350 h=874，title=组合节点，groupKind=selection，zIndex=-1001",
+      "evidence": {
+        "geom": {
+          "id": "group-1791099969609-r1385p",
+          "x": 100,
+          "y": -219,
+          "w": 1350,
+          "h": 874,
+          "title": "组合节点",
+          "kind": "selection",
+          "z": -1001,
+          "children": [
+            "i-1FQ9tErTcC",
+            "b-bTLLuU4w5q"
+          ]
+        },
+        "derivation": "子节点绝对包围盒 x[132,1418] y[-187,623] ± GROUP_PADDING=32"
+      },
+      "why": "minX-32=100、minY-32=-219、(maxX-minX)+64=1350、(maxY-minY)+64=874，四项全对。",
+      "twoRound": true
+    },
+    {
+      "no": 7,
+      "title": "解组是第二条多选入口",
+      "claim": "Shift+G 之后 selectedNodeIds = 全部子节点（2 个），不需要任何修饰键",
+      "evidence": {
+        "ungroup_selectedN": 2,
+        "ids": [
+          "b-bTLLuU4w5q",
+          "i-1FQ9tErTcC"
+        ]
+      },
+      "why": "canvasStore.ts:3360 `selectedNodeIds: childIds`。这意味着多选态有两条独立来源：手势（Meta+点击/框选）与命令自身的结果。",
+      "twoRound": true
+    },
+    {
+      "no": 8,
+      "title": "多选删除的边归属可预判",
+      "claim": "删 A+B 后存活 3 条：e-VQACH36eJC / e-XmiJkHfFAL / e-xNVTHNFZZl",
+      "evidence": {
+        "nodeDelta": -2,
+        "edgeDelta": -8,
+        "kept": [
+          "e-VQACH36eJC",
+          "e-XmiJkHfFAL",
+          "e-xNVTHNFZZl"
+        ],
+        "keptMatchesStaticList": true
+      },
+      "why": "11 条边里 8 条至少一端在选区，逐条数得只剩 3 条。⚠ 我在探针注释里把预判写成「剩 4 条」，清单是 3 条 —— 清单对、口头数字错。",
+      "twoRound": true
+    },
+    {
+      "no": 9,
+      "title": "withDescendantIds 级联删除",
+      "claim": "选含 1 个子节点的分组按 Delete：节点 -2、边 -4，另一个分组还在",
+      "evidence": {
+        "nodeDelta": -2,
+        "edgeDelta": -4,
+        "groupsLeft": [
+          "g-245IDFh8sB"
+        ]
+      },
+      "why": "g-EFbbHpwq5w 自身挂 1 条边 + 子节点 v-UGQZzZOpbv 挂 3 条 = 4，与 -4 逐项对平。",
+      "twoRound": true
+    },
+    {
+      "no": 10,
+      "title": "removeEdge 可达，且删除按钮有一道真门",
+      "claim": "点边 → 按钮 opacity 0→1、pointer-events none→auto、topIsBtn false→true；点击后 边 -1、past +1、该边从选中集清空",
+      "evidence": {
+        "edge_selected": true,
+        "btnBefore": {
+          "opacity": "0",
+          "pe": "none",
+          "w": 6,
+          "h": 6,
+          "topIsBtn": false,
+          "aria": "删除连线"
+        },
+        "btnAfter": {
+          "opacity": "1",
+          "pe": "auto",
+          "w": 12,
+          "h": 12,
+          "topIsBtn": true,
+          "aria": "删除连线"
+        },
+        "edgeDelta": -1,
+        "pastDelta": 1,
+        "stillSelected": false
+      },
+      "why": "静态曾担心死锁：按钮未激活时 pointer-events:none 收不到自己的 mouseenter，而 app/page.tsx 没有 onEdgeClick ⟹ 永远亮不起来。运行时点边真的选中了边（RF 内部 select 变更走 routeReactFlowChanges）⟹ selected=true ⟹ 按钮解禁。静态结论被运行时推翻。",
+      "twoRound": true
+    },
+    {
+      "no": 11,
+      "title": "setNodes 有两个真入口",
+      "claim": "① 拖节点：三个不同抓点 3/3 moved=true 且 past+1；② Alt+Shift+F 整理：9/10 节点位置变、past+1、出现「还原」48×32",
+      "evidence": {
+        "dragNode": [
+          {
+            "moved": true,
+            "pastDelta": 1
+          },
+          {
+            "moved": true,
+            "pastDelta": 1
+          },
+          {
+            "moved": true,
+            "pastDelta": 1
+          }
+        ],
+        "organize_movedCount": 9,
+        "organize_pastDelta": 1,
+        "restoreBtn": [
+          {
+            "t": "还原",
+            "w": 48,
+            "h": 32
+          }
+        ]
+      },
+      "why": "page.tsx:1522/1528（onNodeDragStop，带 historySnapshot）与 :1073（organize）。⚠ 753f 曾把这一格记成「setNodes 走不通」，那是探针缺陷（见 rework R4）。",
+      "twoRound": true
+    },
+    {
+      "no": 12,
+      "title": "setEdges 是零调用点的死 action",
+      "claim": "静态：全应用只剩声明 canvasStore.ts:387 与实现 :3415",
+      "evidence": {
+        "grepHits": [
+          "store/canvasStore.ts:387 (声明)",
+          "store/canvasStore.ts:3415 (实现)"
+        ],
+        "appFrameosHitsAreDifferentStore": true,
+        "runtime": "本批所有操作后边数组只被 duplicateSelectedNodes / removeEdge / removeSelectedNodes 改过，没有任何一条路径走 setEdges",
+        "finalEdges": 11
+      },
+      "why": "与 duplicateNode / removeNode 同族：store 里实现了、UI 里没有入口。待拍板：删掉还是接上（例如把某条路径从 routeReactFlowChanges 改走 setEdges）。",
+      "twoRound": false
+    },
+    {
+      "no": 13,
+      "title": "panOnDrag={[1]} 是中键",
+      "claim": "默认工具下中键拖 pane viewport 变、左键拖不变；按住 Space 后左键才平移",
+      "evidence": {
+        "middleDrag_vpChanged": true,
+        "leftDrag_vpChanged": false,
+        "static": "page.tsx:1550 panOnDrag={effectivePan ? [0,1] : [1]}；ReactFlow 收的是鼠标键号数组（0=左 1=中 2=右）"
+      },
+      "why": "753c 的 D1（裸拖不 pan）/ D3（Space+拖 pan）读数一直是对的，本批补上机制与中键那一格。",
+      "twoRound": true
+    }
+  ],
+  "rework": [
+    {
+      "id": "R1",
+      "batch": "753a",
+      "what": "把被子节点覆盖的分组几何中心当第二个靶子",
+      "detail": "g-EFbbHpwq5w 的中心被子节点 v-UGQZzZOpbv 盖住，Meta+/Ctrl+/Shift+/裸点 四次手势实际命中同一个元素，nodeIds 恒为 ['v-UGQZzZOpbv'] —— 四次手势其实是同一次",
+      "rule": "真实鼠标交互的坐标来源不能是不可见/被覆盖的元素；每个待点坐标先过 document.elementFromPoint 断言 topId === 目标"
+    },
+    {
+      "id": "R2",
+      "batch": "753b",
+      "what": "拖拽起点 (30,30) 落在节点上",
+      "detail": "「框选无效」和「裸拖不平移」两格都作废：起点被节点吃掉，既没触发框选也没触发 pane 平移",
+      "rule": "先扫描出一批经 elementFromPoint 验证确实在 .react-flow__pane 且不在任何 .react-flow__node 内的空白点，再从那里起拖"
+    },
+    {
+      "id": "R3",
+      "batch": "753c",
+      "what": "框选的两个端点 y 都是 50",
+      "detail": "选点规则是 min/max(x+y) 与 max(x+y)，横向跨度大但纵向恰好同值 ⟹ 框高 2px，扫不到任何节点 ⟹ 「框选无效」是伪结论。753d 换成真正的矩形后一次选满 10 个",
+      "rule": "「没变化」必须分层归因：入口没点到 / 面板没开 / 异步没完成；框选这类手势要先验选框本身有面积"
+    },
+    {
+      "id": "R4",
+      "batch": "753f",
+      "what": "拖动循环的目标点没乘 i",
+      "detail": "pg.mouse.move(x+60, y+40) 每次迭代目标相同 ⟹ 指针一次跳到位，ReactFlow 拿不到中间 pointermove，把这次拖动读成了点击 ⟹ 误判「节点拖不动 / setNodes 走不通」。753g 改成 x+70*i//10 后三个抓点全部 moved=true",
+      "rule": "先怀疑探针再怀疑产品（本批第三次用到）；拖动类读数必须打印实际命中元素与逐步轨迹"
+    },
+    {
+      "id": "R5",
+      "batch": "753e",
+      "what": "口头预判写成「剩 4 条边」，清单是 3 条",
+      "detail": "静态逐条数 11 条边里 8 条至少一端在选区 ⟹ 存活 3 条；判据用的是清单（keptMatchesPrediction=true），错的是注释里的数字",
+      "rule": "自己审计里的数字要互相对账；预判清单和口头数字必须一起写"
+    },
+    {
+      "id": "R6",
+      "batch": "753f",
+      "what": "静态认定删边按钮是死代码",
+      "detail": "理由链是「没有 onEdgeClick ⟹ 边选不中 ⟹ selected 永远 false ⟹ 按钮 pointer-events:none 收不到 hover ⟹ 死锁」。运行时点边真的选中了（RF 内部 select 变更被 routeReactFlowChanges 接住）",
+      "rule": "断言「某能力不可达」前先穷举它的全部命名形态与全部中间态；ReactFlow 的内部选择是第二条变更通道，不经过 onXxxClick"
+    },
+    {
+      "id": "R7",
+      "batch": "753 验收器",
+      "what": "验收器自己的 5 个假失败（第一版 43 项里 5 个 ❌）",
+      "detail": "① 静态扫描只按**文件名**排除 frameosStore.ts / jimengStore.ts，漏了 frameos 的路由页 src/app/frameos/canvas/[id]/page.tsx ⟹ setEdges / duplicateNode / removeNode 三条静态断言全部假失败（它们本来就是 frameos 的同名 action）；② 删边按钮门的正则按单行写，源码是三元里的换行字面量；③ 「本批解掉了多选不可达那条挂起项」按我以为的措辞做子串匹配，产物里根本没那句中文",
+      "rule": "静态断言的「排除范围」要按**功能树**排除（frameos / jimeng 各自有 store + 路由页 + 组件一族），不是按文件名；按文本匹配的断言要先看真实源码字面量再写；验收器第一版没全绿是常态，要逐条归因到「探针错 / 判据错 / 产品错」三类之一"
+    }
+  ],
+  "notClaimed": [
+    "只用了 canvas-2 这一张种子画布；另一张空画布（canvas-1）未纳入本批",
+    "多选只验到 N=2 与 N=10 两档；N=3..9 的边归属规则未逐档实测",
+    "框选只验了「覆盖全画布」这一档；部分覆盖（半选）未验",
+    "Meta/Ctrl 的差异只在本机 macOS 上测过；未在 Windows/Linux 复现",
+    "setNodes 的第三个入口 restoreOrganize() 只看到「还原」按钮出现，没有点它验证能否复原",
+    "removeEdge 只验了 1 条边（e-8IgMkf6Vbj），11 条边的按钮几何没逐条取",
+    "deleteNode 与 duplicateNode 的零入口是静态结论（store 内无 UI 调用点），本批没有为它们单独做运行时穷举",
+    "没有与源站对照画布的这批交互（源站本轮只用于 752 的导演台对照）",
+    "「还原」按钮的文案匹配用了 indexOf('还原')，若源站用别的词会漏"
+  ],
+  "rawProbeFiles": {
+    "a": "753a 多选手势首轮（作废，见 R1）",
+    "b": "753b 加命中校验后重跑",
+    "c": "753c 框选/平移（含端点退化，见 R3）",
+    "d": "753d Cmd+D 的 N=1/N=2 差分 + 真矩形框选",
+    "e": "753e group / ungroup / removeSelected",
+    "f": "753f removeEdge + setNodes（拖动格作废，见 R4）",
+    "g": "753g 拖动归因 + 中键平移",
+    "h": "753h 两轮判据采集（本文件的判据来源）"
+  }
+}
