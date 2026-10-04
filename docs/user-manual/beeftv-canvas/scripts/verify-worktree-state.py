@@ -84,6 +84,67 @@ def porcelain_paths(repo):
     return (tracked, untracked), None
 
 
+#: **手册树内一处改动该归到哪一类**。
+#: **分类的依据是「闸怎么读它」，不是「扩展名是什么」**——
+#: **`screenshots/manifest.yml` 与 `20-reference.md` 都是内容，
+#: 而前者被截图族判据读、后者被基线族判据读，受影响的面完全不同**。
+#: **而 `.py` / `.sh` 单独成类**：它们不是内容、**是判据本身**，
+#: **改坏它们的症状与改坏内容完全不同——闸会崩掉，而 rc 可能仍是 0**
+#: （Batch 266 实测两次、Batch 267 实测一次，纪律 301）。
+def _expand_untracked(repo, manual_dir, manual_prefix, untracked):
+    """**把被 git 折叠成目录的未跟踪路径展开成真实文件列表**。
+
+    **这是 Batch 269 实测出来的一个真缺陷，不是设想**：
+    `git status --porcelain` 对**整个未跟踪目录只打一条**——
+    实测建了 `10-tasks/README.md` 与 `10-tasks/asset-library.md` 两个文件，
+    它报的是 `docs/user-manual/beeftv-canvas/10-tasks/`，**末尾带 `/`、没有扩展名**。
+    **后果**：`_classify()` 按扩展名分类，**目录没有扩展名 → 全部落进「未归类」**，
+    **于是「按类别缩小范围」这一步在最常见的情形下失效**——
+    **而同事的注入实验恰好总是落在一个新目录里**（Batch 267/268 两次都是）。
+    **修法**：对以 `/` 结尾的路径**走一遍目录树**，把它下面的真实文件取出来。
+
+    **为什么不在报告里保留目录形式**：**分类要按真实文件**，
+    **而 `git add -A` / `git checkout` 用哪个都能work**——
+    **所以展开只用于分类，点名那几行仍按 git 自己的口径**（纪律 274：
+    **判据照抄 git 的口径，不要自己再发明一套**）。
+    """
+    out = set()
+    for p in untracked:
+        if not p.endswith("/"):
+            out.add(p)
+            continue
+        full = os.path.join(repo, p)
+        for dirpath, _dirnames, filenames in os.walk(full):
+            for fn in filenames:
+                out.add(os.path.relpath(os.path.join(dirpath, fn), repo)
+                        .replace(os.sep, "/"))
+    return out
+
+
+def _classify(path, manual_prefix):
+    rel = path[len(manual_prefix):] if path.startswith(manual_prefix) else path
+    ext = os.path.splitext(rel)[1].lower()
+    if ext in (".py", ".sh"):
+        return "判据脚本"
+    if ext in (".yml", ".yaml"):
+        return "截图登记册"
+    if ext == ".mjs":
+        return "站点配置"
+    if ext == ".md":
+        #: **第一版写的是 `rel.startswith("10-tasks/")`——那是错的**：
+        #: **`10-tasks/` 下 29 页里只有 `README.md` 是索引，其余都是普通内容页**，
+        #: **而把它们全归成「索引」会让读者以为「动了索引」——
+        #: **于是去找索引文字那一族判据，而真正该找的是页内标题那一族**。
+        #: **分类的价值全在「这一步能让人少找一族判据」，归错就正好把价值抵掉。**
+        base = os.path.basename(rel)
+        if base in ("README.md", "index.md") and rel.count("/") >= 1:
+            return "正文页·索引"
+        return "正文页·内容"
+    if ext in (".json", ".txt", ".css"):
+        return "其他资源"
+    return "未归类"
+
+
 def main():
     repo = _repo_root()
     if repo is None:
@@ -124,6 +185,32 @@ def main():
         print("    **最快的分辨办法**：把工作区还原成 HEAD（"
               "`git status --porcelain` 为空）再跑一次构建——"
               "**两次都红的才是真缺陷，只有工作区红的不是**")
+        # ── Batch 269：把「脏在哪一类」也算出来 ────────────────────────
+        # **上一版只说「脏」，而读者真正要回答的是「这几处会不会让我判错归因」**。
+        # **Batch 268 实测的那一组就是最好的例子**：树内 2 处都是 `.md`，
+        # **而它们让 `verify-meta.py`、`verify-link-labels.py`
+        # 与 `selftest-link-labels.sh` 三个入口同时变红**——
+        # **也就是说，判「构建红是不是我的改动」时，能立刻缩小范围的不是那 2 个文件名，
+        # 而是「它们是正文页」这个事实**。
+        by_kind = {}
+        for p in sorted(_expand_untracked(repo, ROOT, manual_prefix, in_manual)):
+            by_kind.setdefault(_classify(p, manual_prefix), []).append(p)
+        print("    **按类别分（这才是缩小范围的那一步）**：")
+        for kind in sorted(by_kind):
+            ps = by_kind[kind]
+            print("      · %-14s %d 处%s"
+                  % (kind, len(ps),
+                     ("：%s" % "、".join(os.path.basename(x) for x in ps[:3]))
+                     if len(ps) <= 3 else "：%s 等" % os.path.basename(ps[0])))
+        print("      **未跟踪的目录已展开成真实文件再分类**——"
+              "`git status --porcelain` 对整个未跟踪目录只打一条、"
+              "**而那一条没有扩展名、按扩展名分类会全部落进「未归类」**"
+              "（Batch 269 实测：同事的注入实验两次都落在新目录里，"
+              "**所以这正是最常见的情形**）")
+        print("      **`.md` 正文页那一类影响面最大**——"
+              "索引文字、页内标题、表格、链接文字四族判据都读它；"
+              "**`.py` / `.sh` 那一类改的是判据本身**，"
+              "**改坏了会让闸崩掉而 rc 仍是 0**（Batch 266/267 实测，纪律 301）")
     else:
         print("  手册树内**没有**未提交改动——"
               "**所以构建读到的就是已提交的那一份，红了一定与已提交内容有关**")

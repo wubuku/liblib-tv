@@ -162,9 +162,59 @@ def m_unreadable_is_rc2():
         shutil.rmtree(repo, ignore_errors=True)
 
 
+def m_classified_by_reader_not_ext():
+    """**Batch 269 新增**：树内改动**必须按「闸怎么读它」分类，而不只是列文件名**。
+
+    **而分类的价值全在「让人少找一族判据」**：
+    改 `10-tasks/README.md`（索引）要找索引文字那一族，
+    改 `10-tasks/asset-library.md`（内容页）要找页内标题那一族，
+    **改 `scripts/verify-x.py` 则是改判据本身——症状完全不同**
+    （闸崩掉而 rc 可能仍是 0，纪律 301）。
+    **列文件名不提供这三者的区别**，**所以这一例钉的是「必须分」而不是「必须列」**。
+    """
+    repo, manual = fixture()
+    try:
+        for rel in ("10-tasks/README.md", "10-tasks/asset-library.md",
+                    "scripts/verify-demo.py"):
+            p = os.path.join(manual, rel)
+            os.makedirs(os.path.dirname(p), exist_ok=True)
+            with open(p, "w", encoding="utf-8") as fh:
+                fh.write("改了一行\n")
+        rc, out = run_gate(manual)
+        ok = (rc == 0 and "按类别分" in out
+              and "正文页·索引" in out and "正文页·内容" in out
+              and "判据脚本" in out)
+        record("6 树内改动必须按「闸怎么读它」分类（列文件名不够）", ok, f"rc={rc}")
+    finally:
+        shutil.rmtree(repo, ignore_errors=True)
+
+
+def m_task_page_not_mislabelled_as_index():
+    """**不许把 `10-tasks/` 下的 29 页全当成索引**。
+
+    **第一版分类条件写的是 `rel.startswith("10-tasks/")`——于是每一页都成了「索引」**，
+    **而这个归错恰好把分类的价值抵掉**：
+    **读者以为「动了索引」，于是去找索引文字那一族判据，
+    而真正该找的是页内标题那一族。**
+    """
+    repo, manual = fixture()
+    try:
+        p = os.path.join(manual, "10-tasks", "asset-library.md")
+        os.makedirs(os.path.dirname(p), exist_ok=True)
+        with open(p, "w", encoding="utf-8") as fh:
+            fh.write("# 普通内容页\n")
+        rc, out = run_gate(manual)
+        ok = (rc == 0 and "正文页·内容" in out
+              and "正文页·索引" not in out)
+        record("7 10-tasks/ 下的普通页不许被归成「索引」", ok, f"rc={rc}")
+    finally:
+        shutil.rmtree(repo, ignore_errors=True)
+
+
 def main():
     for t in (m_clean, m_outside_not_flagged, m_inside_named_and_rc0,
-              m_untracked_separated, m_unreadable_is_rc2):
+              m_untracked_separated, m_unreadable_is_rc2,
+              m_classified_by_reader_not_ext, m_task_page_not_mislabelled_as_index):
         try:
             t()
         except AssertionError as exc:
