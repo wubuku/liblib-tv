@@ -5753,6 +5753,14 @@ def main() -> int:
     #   ⇒ 判据组 `KKKKK.1` 要钉的是「**臂 B 打中了靶子**」这个**前提**
     p977 = ROOT / "scripts/jimeng_probe977_h3anchor_src.py"
     _p977 = p977.read_text(encoding="utf-8") if p977.exists() else ""
+    p977 = ROOT / "scripts/jimeng_probe977_h3anchor_src.py"
+    _p977 = p977.read_text(encoding="utf-8") if p977.exists() else ""
+    # ⭐⭐⭐⭐⭐ 978：**实验室**探针（`about:blank`，**根本不打开源站**）
+    #   ⇒ 零计费、零应用代码 ⇒ 「空白页上能不能复现」把
+    #   **引擎/规范行为**与**源站应用的属性**分开
+    #   ⚠️ 判据组 `LLLLL.1` 要钉的是那个**否定结果**（scroll 假设被否）
+    p978 = ROOT / "scripts/jimeng_probe978_lab_body_stop.py"
+    _p978 = p978.read_text(encoding="utf-8") if p978.exists() else ""
     # ⭐ 970 的 CCCC.2 要**反证 816 那条决策真的在仓库里**（钉源码原文，
     #   不钉我自己写的转述）
     p816 = ROOT / "scripts/verify-jimeng-batch816-anchors.py"
@@ -9464,6 +9472,87 @@ def main() -> int:
           and '"h3_relation_measured_in_all_three_arms_both_reps"' in _p977
           and "本批的干预和 976 是同一件东西" in _p977
           and '"js_verbatim_from_976"' in _p977)
+
+    # ══ LLLLL. 批 978 实验室页：空白页上**完整复现**那枚 BODY 停靠点
+    #    ⇒ 引擎/规范层面，不是源站应用的属性；scroll 假设被否 ══
+    print("— LLLLL. 批 978 实验室：about:blank + 三个 button、零应用代码，"
+          "BODY 停靠点完整复现 ⇒ scroll 假设被否 —")
+
+    check("LLLLL.1 ⭐⭐⭐⭐⭐ **空白页上完整复现了那枚 `BODY` 停靠点** —— "
+          "而这就是「出处」能往前走的那一步：`about:blank` ＋ `set_content`、"
+          "**三个 `<button>`、零应用代码、零 React、零浮层**，周期签名 "
+          "**2/2 × 5 臂逐格相同**（`lab-b1` → `lab-b2` → `lab-b3` → **`BODY`**）⇒ "
+          "⭐⭐⭐⭐⭐ **这是引擎/规范层面的行为，不是源站那个应用的属性** ⇒ "
+          "974/975 花力气排除的「作用域边界」「应用显式干预」**全都对，"
+          "因为根本没有应用**；"
+          "⇒ 而 **H₃ 的位置命题在最小环境里也被复现**"
+          "（L2 注入件在最前时，`BODY` 仍紧贴新第一个的前一格）",
+          '"engine_level_978"' in _ausrc
+          and "**这是引擎/规范层面的行为，" in _ausrc
+          and "不是源站那个应用的属性**" in _ausrc
+          and "**全都对，因为根本没有应用**" in _ausrc
+          and "**H₃ 的位置命题在最小环境里也被复现**" in _ausrc
+          # ⭐⭐ 钉探针：仪器来源、判据形状、实验前提都要真在
+          and '"js_verbatim_from_976"' in _p978
+          and 'STOP_JS = """' in _p978
+          and 'PAGE_JS = """' in _p978
+          and "is_document_body: isBody" in _p978
+          and "document.activeElement === document.body" in _p978
+          and '"cycle_signature_stable_across_reps_both_reps"' in _p978
+          and '"ring_cycled_at_least_twice_both_reps"' in _p978
+          and '"_p978": "scripts/jimeng_probe978_lab_body_stop.py",' in _anchs)
+
+    check("LLLLL.2 ⭐⭐⭐⭐⭐ **「可滚动」这条假设被否** —— 而它本来是本批"
+          "最像样的候选（`tabIndex = -1` 却能接到焦点，**应用层解释不通**）："
+          "实测 `L0` 不可滚 / `L1` 可滚 / `L3` 不可滚动（第二种做法）⇒ "
+          "**三者的周期签名完全一样** ⇒ **能不能滚对它没有任何影响**；"
+          "顺带否掉相邻候选：**滚动容器自己没成为一格**（L4）；"
+          "⚠️⚠️ **但 `n_body_stops` 是抖的，而本批分不开是「读数时序」"
+          "还是「页面真抖」⇒ 在分开之前，计数不许当判据** ⇒ "
+          "⭐⭐⭐⭐ **一次失败不叫「没有」**",
+          '"scroll_hypothesis_falsified_978"' in _ausrc
+          and "**「可滚动」这条假设被否**" in _ausrc
+          and "**应用层解释不通**" in _ausrc
+          and "**能不能滚对它没有任何影响**" in _ausrc
+          and '"count_is_flaky_978"' in _ausrc
+          and "而本批分不开为什么抖" in _ausrc
+          and "**在分开之前，计数不许当判据**" in _ausrc
+          and "**一次失败不叫「没有」**" in _ausrc
+          # ⭐⭐ 钉探针：可滚动是**实测**不是公式、抖动被单独记账
+          and "can_actually_scroll" in _p978
+          and '"scrollable_pair_really_differs_both_reps"' in _p978
+          and '"count_flaky_arms"' in _p978
+          and "**公式是推论、实测是事实**" in _p978)
+
+    check("LLLLL.3 ⭐⭐⭐⭐⭐ **本批的门一共判红四次，四次都是「门错」"
+          "或「那一臂没做到设计意图」** —— 而处置**全部**是"
+          "「改精确 / 改那一臂」，**没有一次是删门或放宽**："
+          "(a) ⭐⭐⭐⭐ **过宽的门**（`||` 那条把**正当的逻辑或**也禁了、"
+          "**逼我写更差的代码**）⇒ 收窄成「只禁 or 兜底成假值」"
+          "**并成对钉住反向**；"
+          "(b) ⭐⭐⭐ **名单写错**（「不许自己定义」把本批**自己新写的**两件也列了进去）"
+          "⇒ **门在禁止本批干活**；"
+          "(c) ⭐⭐ **断言写反**（spacer 那条与 L4 的定义矛盾）；"
+          "(d) ⭐⭐⭐⭐⭐ **公式当事实用** ⇒ L3 的 `body{overflow:hidden}` "
+          "**根本没生效**（`html` 才是 scrolling element）⇒ "
+          "处置是**改那一臂**、**不是放宽门**；"
+          "另：⭐⭐⭐⭐ `reps_agree` 第一版比的是**绝对计数** ⇒ 又是 974 那条",
+          '"gate_misses_978"' in _ausrc
+          and "**没有一次是删门或放宽**" in _ausrc
+          and "**过宽的门和过窄的门一样坏**" in _ausrc
+          and "**门在禁止本批干活**" in _ausrc
+          and "**公式是推论、实测是事实**" in _ausrc
+          and '"reps_agree_mistake_978"' in _ausrc
+          and "比的是 `n_body_stops`（绝对计数）" in _ausrc
+          and "**我在新写的一支探针上又犯了同一个错**" in _ausrc
+          and '"discipline_978"' in _ausrc
+          # ⭐⭐ 钉探针：那几次「改门」在源码里都**成对钉住了反向**
+          and "OR_FALLBACK_TAILS" in _p978
+          and "or-兜底守卫**失灵**了" in _p978
+          and "spacer 门失灵（L0 带 spacer）" in _p978
+          and "分叉守卫**失灵**了" in _p978
+          and "def _cycle_sig" in _p978
+          and "**不是绝对数值**" in _p978)
 
 
     print(f"\n{checks - len(failures)}/{checks}")
