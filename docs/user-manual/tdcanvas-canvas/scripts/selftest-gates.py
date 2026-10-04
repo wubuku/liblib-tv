@@ -1047,6 +1047,40 @@ def mutate_publish_selftest_count_drift(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_batch_date_in_future(root: Path) -> None:
+    """批次标题自述的日期晚于「今天」，必须被拦下（M227）。
+
+    M226 实测过这个病：M193–M199 明明是 10-03 傍晚落库的，标题却写着 10-04，
+    而且同样的错日期另有 9 处漏进了 6 个正文页 —— **没有任何一道门禁会看日期**。
+
+    这道门禁的判据是**单向**的：只报「晚于今天」。所以本例注入的是一个
+    **明显晚于任何一天**的日期（从标题里现算「今天 + 一年」），
+    **不写死具体日子**——写死日期的锚点会随被测对象一起过期然后静默失效
+    （M199 已把 `mutate_publish_gate_count_drift` 的锚点改成现算，正是同一个坑）。
+
+    顺带注入一处**正文内联标注**（`2026-10-04 Mxxx` 那种语序），
+    因为 M226 的 17 处里有 9 处就是这种写法，**只测标题会漏掉一大半**。
+    """
+
+    import datetime as _dt
+    import re as _re
+
+    path = root / "PROGRESS.md"
+    text = path.read_text(encoding="utf-8")
+    future = (_dt.date.today() + _dt.timedelta(days=365)).isoformat()
+    # ★ 注入**最后一个**（最新那个）标题：那才是真实会犯的错——新批次刚写好就填了日期。
+    m = None
+    for cand in _re.finditer(r"^(#{2,4} M\d+（)(\d{4}-\d{2}-\d{2})", text, _re.M):
+        m = cand
+    assert m, "注入失败：PROGRESS.md 里找不到带日期的批次标题"
+    batch = m.group(0).split("（")[0].replace("#", "").strip()
+    text = text.replace(m.group(0), f"{m.group(1)}{future}", 1)
+
+    # 正文内联标注：从「今天 + 一年」造一个不存在的日期，挂在 PROGRESS 末尾
+    tail = f"\n> 自检注入：{future} {batch}\n"
+    path.write_text(text.rstrip("\n") + tail + "\n", encoding="utf-8")
+
+
 def mutate_publish_historical_gate_count(root: Path) -> None:
     """历史陈述里的门禁数不该被当成当前数量而误报（M193 的反向对照，两条路径）。
 
@@ -1939,6 +1973,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("文档里「几道门禁」漂了（集合对得上、数字对不上）", mutate_publish_gate_count_drift, "publishsync", "（不含 selftest-gates.py）"),
     ("文档里「注入几类故障」与自检实际用例数对不上", mutate_publish_selftest_count_drift, "publishsync", "而 scripts/selftest-gates.py 里实际有"),
     ("「由来」列里的历史门禁数不该被当成当前数量（不误报）", mutate_publish_historical_gate_count, "publishsync", EXPECT_PASS),
+    ("批次自述的日期晚于「今天」（标题 + 正文内联两种语序）", mutate_batch_date_in_future, "batchdates", "晚于今天"),
     ("源码引用行号越界（读者点过去没这行）", mutate_source_ref_out_of_range, "sourcerefs", "行号越界"),
     ("两份锁定声明互相对不上", mutate_pin_declarer_disagreement, "ledgerpin", "各声明文件锁定的提交不一致"),
     ("只改一个文件的版本号（并集判据的经典漏网）", mutate_pin_version_drift, "ledgerpin", "各声明文件写的应用版本不一致"),
@@ -1993,6 +2028,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-tables.py"), str(root)]
     elif which == "emphasis":
         cmd = [sys.executable, str(root / "scripts/check-emphasis.py"), str(root)]
+    elif which == "batchdates":
+        cmd = [sys.executable, str(root / "scripts/check-batch-dates.py"), str(root)]
     elif which == "distlinks":
         cmd = [sys.executable, str(root / "scripts/check-dist-links.py"), str(root)]
     elif which == "render":
