@@ -148,6 +148,32 @@ READONLY_EXEMPT = {
         'shutil.rmtree(tmp, ignore_errors=True)':
             "方向十三：删掉那个临时目录",
     },
+    #: **Batch 274 补登的闸 39 三行**——**这三条不是「我看了一眼觉得没事」**，
+    #: **是先把三行的上下文读出来验过的**（纪律 244：不许给没验过的东西写理由）：
+    #:   · `run_injection(g, None)` —— **两处调用都传 `None`**（实测第 260 / 281 行），
+    #:     所以 `tempfile.mkdtemp(prefix="b270-gate.", dir=None)` 落在**系统临时目录**，
+    #:     **不在手册树里**；
+    #:   · `shutil.copytree(HERE, sdir)` —— `HERE` 是**被读的**真 `scripts/`，
+    #:     `sdir = os.path.join(tmp, "scripts")` 是**临时目录里的**副本；
+    #:   · `io.open(p, "w", …).write(new)` —— `p = os.path.join(sdir, gate)`，
+    #:     **写的是临时副本，不是真闸**；注入完 `finally` 里 `rmtree(tmp)` 删掉。
+    #: **为什么这类写操作值得登记、而不是「把闸改成只读」**：
+    #: **「把闸改只读」在这道闸身上做不到**——**它的全部功能就是「复制一份、改坏、跑、删掉」**
+    #:（纪律 305：判据问被测行为，而「把闸注入成坏样子再跑」这个行为必然要写文件）。
+    #: **所以登记是它诚实的形态，而不是绕过**。
+    #: **而它藏了三个批次才报出来（270 → 274）**，因为
+    #: **`selftest-zero-input.py` 本身在 SLOW 里、构建从不跑它**
+    #: ——**那正是「例数这一列的覆盖缺口」第一次真的咬人**（纪律 309）。
+    "verify-gate-alive.py": {
+        'shutil.copytree(HERE, sdir)':
+            "把真 `scripts/` **复制**到临时目录（`HERE` 是被读的）——"
+            "**两处调用都传 `sandbox_root=None`，`mkdtemp` 落在系统临时目录**",
+        'io.open(p, "w", encoding="utf-8").write(new)':
+            "把**注入后的副本**写回临时目录（`p` 在 `tmp` 底下）——"
+            "**这道闸的全部功能就是「复制一份、改坏、跑」**，不写文件做不到",
+        'shutil.rmtree(tmp, ignore_errors=True)':
+            "删掉那个临时目录（`finally` 里）",
+    },
 }
 
 

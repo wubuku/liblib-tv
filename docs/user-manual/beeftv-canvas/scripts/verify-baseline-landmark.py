@@ -95,6 +95,7 @@ sys.path.insert(0, HERE)
 
 from headingkey import atx_level                                    # noqa: E402
 from baseline import declared_baseline, BaselineError, baseline_guard   # noqa: E402
+from baseline import announce_fallback                             # noqa: E402
 from baseline import SRC as _BEEFSRC                                # noqa: E402
 
 ROOT = os.path.dirname(HERE)
@@ -280,6 +281,15 @@ def named_versions(body):
 
 @baseline_guard
 def main():
+    #: **Batch 274 补上的一行**——`selftest-zero-input.py` 方向三之三报出来的：
+    #: **本闸 import 了 `baseline`/`beefsrc` 去解析上游，于是 `BEEFTV_SRC` 指向非仓时
+    #: 它会静悄悄回落到候选表里的真仓、然后照常报绿。**
+    #: **而「静默降级比直接失败更坏，因为它还报绿」正是纪律 172 整条在说的**。
+    #: **它是 Batch 272 建的闸、而这个缺陷躺了两个批次**——
+    #: **因为报出它的那份反验在 SLOW 里，构建从不跑它**（纪律 309）。
+    #: **「本闸读的是哪一份上游」必须留在它的输出里**，
+    #: 否则「核过」与「核的是你指定的那一份」在结果里长得一模一样。
+    announce_fallback()
     if SRC is None:
         print("[skip] 未找到 BeefTV 源码 %s，落点声明核对本轮未能进行" % SRC)
         return 2
