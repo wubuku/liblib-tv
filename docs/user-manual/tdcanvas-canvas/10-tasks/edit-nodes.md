@@ -262,7 +262,7 @@ ComfyUI 空节点 4 这一行**本批仍未测**（要导入本机 ComfyUI 工�
 
 > **为什么这个陷阱难发现**：图里两个节点都带蓝框（框边那圈圆点是选中态的缩放手柄），说明**多选确实生效了**；可菜单里只有两项，**没有任何"当前选中了 2 个"的提示**——它和单选时的菜单长得一模一样。工具条也不出现，所以没有任何一处会提示你"现在是多选"。
 
-![两个节点同时带蓝色选中框，右上角弹出的菜单只有「复制」「删除」两项，节点上方的悬浮工具条整个不见了](../screenshots/04-edit-nodes-multiselect-menu.png)
+![两个节点同时带蓝色选中框，菜单开在右键点上、盖在被选中的文本节点上，只有「复制」「删除」两项，节点上方的悬浮工具条整个不见了](../screenshots/04-edit-nodes-multiselect-menu.png)
 
 **源码为什么是这个行为**：`project.tsx` 里右键菜单的 `onDuplicate` 只取右键那一刻记下的 `contextMenu.nodeId`，然后调用单节点的 `duplicateNode(nodeId)`——这个函数从头到尾只读这一个 id，**没有读过 `selectedNodeIds`**，源码上就不支持批量。同一份源码里另有 `copySelectedNodes` 负责多选复制，它挂在 `Ctrl / Cmd + C / V` 上。
 
