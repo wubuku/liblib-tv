@@ -959,14 +959,15 @@ screenshots:
 
   - file: screenshots/16-comfyui-local-browser.png
     task_id: navigate-canvas
-    step: 浏览器打开 /comfyui-local，整页只有未配置徽标与桌面客户端提示，无任何按钮
+    step: 浏览器打开 /comfyui-local，画面上只有未配置徽标与桌面客户端提示，内容区无按钮（顶部导航栏仍在）
     route: '/comfyui-local'
     viewport: 1280x900
     locale: zh-CN
     captured_at: '2026-10-01'
-    verified_locator: '页面标题 ComfyUI 本地模式 / 右上角徽标 未配置 / 橙色提示 此模式仅在桌面客户端中运行 / 本地环境需要访问电脑目录并管理 ComfyUI 进程 / 页面内容区（<main> 内）button 数量 0；整页可见 button 数量 17，全部位于顶部导航栏与右侧 Agent 面板（导航壳）内'
+    verified_locator: '页面标题 ComfyUI 本地模式 / 右上角徽标 未配置 / 橙色提示 此模式仅在桌面客户端中运行 / 本地环境需要访问电脑目录并管理 ComfyUI 进程 / 页面内容区（<main> 内）button 数量 0；★ M229 订正：本图拍的是**Agent 面板收起态**——图上只有顶栏右侧 5 个按钮（打开 Agent / 配置 / 中英切换 / 浅色主题 / 版本号）与 6 个导航链接，**右侧没有 Agent 面板**；收起的面板本体仍按 440px 排在视口之外（aside rect 1280,0,440,900，而视口宽 1280），所以「整页 17 个按钮」只在点开「打开 Agent」之后成立'
     visible_text: '此模式仅在桌面客户端中运行'
-    alt: 浏览器里的 ComfyUI 本地页面，右上角是未配置徽标，正文只有一条此模式仅在桌面客户端中运行的橙色提示，页面内容区没有任何按钮（顶部导航栏仍在）
+    alt: 浏览器里的 ComfyUI 本地页面，右上角是未配置徽标，正文只有一条此模式仅在桌面客户端中运行的橙色提示，页面内容区没有任何按钮（顶部导航栏仍在，右侧 Agent 面板处于收起状态、没有出现在画面上）
+    m229_note: '★ **M229 顺着「阴性断言」普查查出来的三处**（R88 / R89 及同批的 F17 台账）。**这条 `step` 一直留着 M57 订正前的原话「整页只有未配置徽标与桌面客户端提示，无任何按钮」**——M57 当年把 `90-troubleshooting`、`README`、本条目的 `verified_locator` 与 `alt` 四处都改了，**唯独漏了 `step` 字段自己**。**同一批订正的覆盖面也有盲区，而漏掉的那一处正好是最短的字段。**★ **另一处根因**：M57 那次量的是「整页 17 个可见按钮」，而当时用的判据只查 `getBoundingClientRect` 有几何 + `visibility` + `opacity`，**没查元素是否落在视口内**——收起的 Agent 面板按 440px 排在 x=1280 起，11 个按钮全在视口外，却被算成了「可见」。'
     sha256: 0ce18185e154ff54ceae72715a30ec544b22471a60898ced69aa7a9d7c9aba39
 
   - file: screenshots/16-page-not-found.png

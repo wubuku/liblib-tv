@@ -328,9 +328,9 @@ python3 scripts/append-audit.py AUDIT.md < /tmp/audit-rows.txt
 
 ### ★ 跑探针前必读：八条判据纪律（M143 汇总；M193 重编第 1 条并补上第 8 行）
 
-九支探针脚本（`probe-discoverability.js` / `probe-toolbar-states.js` / `probe-absolute-coords.js` /
+十支探针脚本（`probe-discoverability.js` / `probe-toolbar-states.js` / `probe-absolute-coords.js` /
 `probe-node-toolbars.js` / `probe-canvas-chrome.js` / `probe-agent-i18n.js` / `probe-storage-shape.js` /
-`probe-copy-title.js` / `probe-resize-handles.js`）的文件头各写着自己那条链上的教训，**但那些教训原先只存在于源码里**——维护者不打开 `.js` 就看不到，而它们每一条都是**用一批作废的读数换来的**。本节把脚本头里可迁移的纪律**收拢到一处**（M143 汇总前七条，M160 追加第八条）。
+`probe-copy-title.js` / `probe-resize-handles.js` / `probe-viewport-buttons.js`）的文件头各写着自己那条链上的教训，**但那些教训原先只存在于源码里**——维护者不打开 `.js` 就看不到，而它们每一条都是**用一批作废的读数换来的**。本节把脚本头里可迁移的纪律**收拢到一处**（M143 汇总前七条，M160 追加第八条）。
 
 | # | 纪律 | 代价（真实发生过的） |
 |---|---|---|
@@ -676,7 +676,7 @@ TD_PROBE_PROFILE=/tmp/m93-profile node scripts/probe-discoverability.js
 1. **DOM 里有文字 ≠ 读者看得见**。Agent 面板 7 个按钮里确实有「对话」「历史」这些文字节点，但尺寸全是 **0×0**——`opacity: 1`、`visibility: visible`、祖先链一切正常，**却占不了任何地方**。只判 `textContent` 会得出完全相反的结论。脚本一律读 `getBoundingClientRect()`。
 2. **原生 `title` 提示用 JS 读不到**（浏览器渲染，不是 DOM 元素）。判「有没有提示」= `title` 非空 **OR** 自定义浮层非空。
 3. **读持久化数据必须写死 key 且先 parse**。`getAllKeys()[0]` 取到的是 `asset_store`；**`canvas_store` 的值是 JSON 字符串**，不 parse 就全是 `undefined`。**这三个坑的共同点是失败时返回「空」而不是报错**——空读数长得像「产品没这个功能」。脚本在这三处一律**显式抛错**。
-4. **「元素存在且有几何」≠「用户看得见」**（M117 的 `opacity:0`、M127 的 `0×0` 同族）。
+4. **「元素存在且有几何」≠「用户看得见」**。已知**四种**「不」：`opacity:0`（M117）、`0×0`（M127）、`visibility:hidden`，以及 **M229 新增的「落在视口外」**——**前三种都会在 `getBoundingClientRect()` 或计算样式上留痕，第四种不会**：Agent 面板收起时 `aside` 的 rect 是 `(1280, 0, 440, 900)`，宽高都是正的、`opacity:1`、`visibility:visible`，**只有一条线索是 `left` 恰好等于视口宽度**，而 `scrollWidth == clientWidth`（没有横向滚动条）意味着它够不着。★ **所以凡是报「整页有几个 X」，必须同时报「落在视口内有几个」**；只报前者的读数正常得没人会怀疑它。详见 `SOURCE_OBSERVATIONS.md` F39，配套探针 `scripts/probe-viewport-buttons.js`。
 5. **★ 悬停提示不能按 class 名找**（M132 第 63 次否证，代价最大的一条）。同一个左侧区域里**并存两种浮层实现**：Dock 用自研浮层（类名 `pointer-events-none absolute left-[calc(100%+8px)]`，**不含 tooltip / tip 任何字样**），视图控制与顶栏用 antd 的 `div.ant-tooltip`。**按类名找只抓得到后者**——曾据此把 Dock 全部按钮误读成「悬停无任何提示」，而截图上浮层明明写着「清空画布」。**正确判据是「悬停前后全页可见文本取差集」**，不依赖任何类名。
 6. **★ 自己造的数据会被自己过滤掉**（M132）。判「有没有提示」时写了 `新文本.filter(t => t !== aria)`，把「浮层文字与 `aria-label` 相同」这个**最常见的合法情况**整个删光，8 个有浮层的按钮全被判成「无提示」。**过滤证据前先问：这条证据是不是恰恰因为「与已知值相同」才有意义？**
 7. **★ 阳性对照要证明「指针真的落在目标上」，而且别把自己的对照截断**（M132 第一版）。`:hover` 链在 `length > 8` 时 `break`，而链正好 8 层，**按钮永远落在截断线之外**。且**判「指针命中」要用几何（链末端元素的 `getBoundingClientRect()`），不能用 aria**——首版拿 aria 名字匹配，把 3 个**无 aria** 的按钮全误报成「没悬停到」。**「我的判据有洞」和「产品有问题」要分开查，前者更常见。**
@@ -741,6 +741,36 @@ node scripts/probe-resize-handles.js [http://localhost:3000] [/tmp/m228-handles-
 **R83 / R84 / R85 / R86**（清单四处）。
 ★ **一条读数只证明一件事**：**「框上有 4 个 28px 命中区」只证明命中区存在，
 「四角零可见像素 + 端口圆点有 2px 描边」才是不可见的证据，两条都要报。**
+
+### 视口内元素计数探针（M229 建立）
+
+```bash
+source ~/.nvm/nvm.sh
+node scripts/probe-viewport-buttons.js [http://localhost:3000] [/tmp/m229-viewport-profile]
+```
+
+回答的是纪律表第 4 条升级后的那个问题：**一条路由上，用户真的点得到的按钮有几个。**
+
+它把三条路由各量两遍（**默认态**与**点开 Agent 面板之后**），**两个读数一起报**：
+
+- `predicate-visible`——**老判据**：`getBoundingClientRect()` 有宽高，且
+  `visibility` / `display` / `opacity` 都没把它藏起来；
+- `in-viewport`——**新判据**：逐个比 rect 与 `window.innerWidth`。
+
+★ **差值本身就是结论**：实测收起态下两者相差 **11**——那 11 个按钮
+**不是「隐藏」，是「在视口外」**（`aside` 的 rect 是 `(1280,0,440,900)`，
+而视口宽 1280，`scrollWidth == clientWidth` 所以也够不着）。
+
+⚠️ **三条坑写在探针文件头，这里点最反直觉的一条**：**别按标签名取元素。**
+第一版用 `document.querySelector('aside')` 取 Agent 面板，
+在 `/config` 页报出 `[150,207,260,140]`——**那是配置页自己的 `<aside>`（左栏 260px 宽）**。
+**一把报错的尺子会把人教错**，所以现在按「里面有没有它自己的开关」认。
+
+⚠️ **收尾把面板收回初始态，代码写在 `finally` 里**（M224 F31 立的规矩）。
+它只用一次性 profile、不点任何删除类按钮、不改任何画布数据。
+
+★ **本批订正**：**R87**（「整页 17 个可见按钮」是有状态的数）、
+**R88**（清单把别的状态的读数记在这张图上）、**R89**（M57 那次订正漏了 `step` 字段）。
 ## 运维常见问题
 
 | 症状 | 原因与处理 |
