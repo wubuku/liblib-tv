@@ -107,6 +107,7 @@ screenshots:
     visible_text: '从一张画布开始'
     alt: TDCanvas 首页空态，标题与紫色新建画布按钮，最近画布区显示还没有画布
     sha256: d1ea52d7528a7d51120f981a0a56b0d06ddbab1afb7f18cbbf2a59761eaf53e6
+    m223_note: '2026-10-04 M223 核 4 遍全对：标题「从一张画布开始」、紫色「新建画布」按钮、最近画布区「还没有画布」、「本机工作区 · 0 个画布」四处逐字都在，manifest 与 4 条正文 alt 均无越界断言。'
 
   - file: screenshots/01-create-canvas-project-empty-canvas.png
     task_id: create-canvas-project
@@ -131,6 +132,7 @@ screenshots:
     visible_text: '85%'
     alt: 滚轮缩放后画布放大到 85%，图片节点围绕鼠标位置放大
     sha256: 5beba521e424619b3a87933edd30fbd3b2c8d0b92d6c5ec6aa3340a22bfc1fef
+    m223_note: '2026-10-04 M223 核 1 遍全对：左下角缩放读数逐字为 85%。★ 第 148 次否证——曾怀疑 alt 里的「鼠标锚」是指图上可见的指针，放大 6 倍后看清那是个**空心圆环 + 接上去的白色连线**，是连接端口不是指针；而 SOURCE_OBSERVATIONS.md:48 早已把「鼠标锚」立为滚轮缩放的机制术语（滚轮=鼠标锚、滑杆=视口中心锚），所以该词说的是机制、不是可见元素，措辞正确。'
 
   - file: screenshots/02-navigate-canvas-pan-minimap.png
     task_id: navigate-canvas
@@ -422,6 +424,7 @@ screenshots:
     visible_text: '静物摄影提示词'
     alt: 新增资产弹窗，类型文本，标题静物摄影提示词，标签摄影与产品，文本内容已填写
     sha256: 18597eb1485c4143f89729490359a0de6630ca5d93a75bfc20975416db452697
+    m223_note: '2026-10-04 M223 核 1 遍全对：类型=文本、标题「静物摄影提示词」、标签摄影/产品、来源手动添加、文本内容已填写，五项逐字都在。'
 
   - file: screenshots/14-manage-assets-card.png
     task_id: manage-assets
@@ -442,10 +445,11 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-30'
-    verified_locator: 'dialog 编辑资产 / input 给资产起一个容易检索名字 = 静物摄影提示词（精修版）'
+    verified_locator: 'dialog 编辑资产 / input 给资产起一个容易检索的名字 = 静物摄影提示词（精修版）'
     visible_text: '静物摄影提示词（精修版）'
     alt: 编辑资产弹窗，标题已改为静物摄影提示词（精修版）
     sha256: 8a9b4e5d77c417bc0982c428ebc912d5fdf430bedf4e063cb7a6020b6e3461b8
+    m223_note: '2026-10-04 M223 核 1 遍全对：弹窗标题「编辑资产」，标题框逐字为「静物摄影提示词（精修版）」，标签摄影/产品、来源手动添加、文本内容全文与右侧预览同步。★ 但同批在这条的 verified_locator 里抓到 R71（placeholder 漏了一个「的」），详见该条 R71 登记。'
 
   - file: screenshots/14-manage-assets-detail.png
     task_id: manage-assets
@@ -458,6 +462,7 @@ screenshots:
     visible_text: '资产详情'
     alt: 资产详情抽屉从右侧滑出，显示标题、标签、文本内容全文与复制文本按钮
     sha256: 8a9d02e501e414611835653c982e6b516724aae9497369e8446d31f84bfc5259
+    m223_note: '2026-10-04 M223 核 1 遍全对：抽屉自右侧滑出，标题「资产详情」、资产标题「静物摄影提示词（精修版）」、三个标签（文本/摄影/产品）、文本内容全文、以及「复制文本」按钮，五项逐字都在。'
 
   - file: screenshots/14-manage-assets-search.png
     task_id: manage-assets
@@ -494,6 +499,7 @@ screenshots:
     visible_text: '确定删除「静物摄影提示词」吗？删除后会从我的资产中移除。'
     alt: 删除资产确认框，提示将从我的资产中移除指定名称的资产，提供取消与删除按钮
     sha256: fff224f3a11095c7ed5cb2c540cfcef05e3b3d75caea3b8b3ddd7ee54c560af8
+    m223_note: '2026-10-04 M223 核 2 遍全对：弹窗标题「删除资产」，正文「确定删除「静物摄影提示词」吗？删除后会从我的资产中移除。」逐字，按钮为带空格的「取 消」「删 除」；两条正文 alt 写的「从我的资产中移除」「指定名称」都在图上有据。'
 
   - file: screenshots/15-prompt-library-empty.png
     task_id: use-prompt-library
@@ -711,6 +717,7 @@ screenshots:
     visible_text: '0:00'
     alt: 一个已创建的视频节点，播放器区域全黑，左下角进度条显示 0:00 且无法拖动，右下角音量与全屏按钮正常
     sha256: 6e87c7c009669daee979de5256945c807cd462e54d9cf6d91c310b3263a5c855
+    m223_note: '2026-10-04 M223 核 1 遍全对：播放器区域全黑、左下角 0:00、右下角音量与全屏按钮俱在。★ 本图是**裁剪件**（620x348），与 90-troubleshooting-toolbar-clipped.png 同一次拍摄。'
 
   - file: screenshots/90-troubleshooting-toolbar-clipped.png
     task_id: navigate-canvas
@@ -723,6 +730,7 @@ screenshots:
     visible_text: '55dd39e3-5024-47ec-9971-4d35be848a65.png'
     alt: 画布上一个被选中且顶到最上缘的图片节点，节点悬浮工具条完全落在顶栏之后，屏幕上只露出工具条最下缘一条细边
     sha256: d7246294e1b628672881748682bd724dc79b6b5f4136e9152e32632cb9f7b4b7
+    m223_note: '2026-10-04 M223 核 1 遍全对：图片节点顶到画布最上缘，工具条整体落在顶栏之后、只在屏幕最上缘露出一条细边，与 manifest alt 描述逐字相符。'
 
   - file: screenshots/90-troubleshooting-cover-placeholder.png
     task_id: project-management
@@ -783,6 +791,7 @@ screenshots:
     visible_text: '将删除 1 个画布，里面的节点和连线也会一起移除。'
     alt: 首页删除画布的确认弹窗，标题为删除画布，正文说明节点和连线会一起移除，底部是取消与红色的删除按钮
     sha256: a09e1ebb2ef8315377ffb7256d9d76dc4ae250b493354f181300c4d680ea3c4c
+    m223_note: '2026-10-04 M223 核 1 遍全对：标题「删除画布？」逐字、正文「将删除 1 个画布，里面的节点和连线也会一起移除。」逐字，按钮是带空格的「取 消」「删 除」且删除键确为红色。'
 
   - file: screenshots/04-organize-canvas-side-panel.png
     task_id: organize-canvas
@@ -992,13 +1001,14 @@ screenshots:
     task_id: navigate-canvas
     step: 同一视口分别截取中文与英文两种界面下的顶栏导航，堆叠对比术语
     route: '/canvas'
-    viewport: 1280x48 x2
+    viewport: 1280x108（两条 48px 顶栏 + 12px 间隔带，1× 设备像素比）
     locale: 'zh-CN + en-US'
     captured_at: '2026-10-01'
     verified_locator: '上半 中文 我的画布 ComfyUI 本地 提示词库 我的资产 配置 / 下半 English My Canvases ComfyUI Local Prompt Library My Assets Settings / 两侧语言按钮分别为 中 与 EN'
     visible_text: 'My Canvases'
     alt: 顶栏导航的中英文对照，上半条是中文界面的我的画布、ComfyUI 本地、提示词库、我的资产、配置，下半条是对应的英文 My Canvases、ComfyUI Local、Prompt Library、My Assets、Settings
     sha256: 07f2c3d6b76091fad2205b150ee5062406f61eaafe8ba15be66f764dea5f573e
+    m223_note: '2026-10-04 M223 抓到 R72（M223-R72）：本条 viewport 原登记 1280x48 x2，与实物 1280x108 **在任何一种读法下都对不上**——逐行插桩实测 y=0–47 为上条（48px）、y=48–59 是 12px 纯色间隔带、y=60–107 为下条（48px），48+12+48=108；且 CJK 字形高 16px 对应 1× 设备像素比，**根本没有 x2**。已按实测值改写 viewport。（本图的中英各 5 项早在 M179 批次就逐字核过，本批不动内容结论。）'
 
   - file: screenshots/20-config-en.png
     task_id: generate-images

@@ -869,6 +869,57 @@ RETRACTIONS: list[dict[str, str]] = [
         "fixed_in": "M222",
         "allow_in": ["10-tasks/manage-assets.md#M222复核抓到这三处"],
     },
+    # ★ M223：核 alt 时顺手撞见的第二类「同一份清单里一处对一处错」。
+    #   这次的错处不是**描述**而是**取证配方**——而配方错了一样会让复现失败。
+    {
+        "id": "R71",
+        "kind": "conclusion",
+        "wrong": "给资产起一个容易检索名字",
+        "why": "**资产弹窗标题框的 placeholder 有一个「的」字，截图清单这一条漏了。**\n"
+               "`14-manage-assets-edit` 的 `verified_locator` 把选择器依据写成缺「的」形态，"
+               "而**同一份 manifest 的姊妹条目**（`14-manage-assets-add-form`）写的是带「的」正确形态。\n"
+               "**三条互相独立的读数**：① 源码 `web/src/i18n/locales/zh-CN.ts:248` 的 "
+               "`titlePlaceholder` 字面量就是**带「的」**那个（`en-US.ts:254` 是英文，不构成反证）；"
+               "② 姊妹条目 `14-manage-assets-add-form` 的同名字段写的是正确形态；"
+               "③ `PROGRESS.md` 与 `SOURCE_OBSERVATIONS.md` 两处独立记录都写带「的」，"
+               "**其中 `SOURCE_OBSERVATIONS.md` 那处还把它当 CSS 选择器用**"
+               "（`input[placeholder=\"给资产起一个容易检索的名字\"]`）。\n"
+               "★ **为什么够得上结论级**：`verified_locator` 是**唯一**记录「用什么定位到它」的字段，"
+               "**照着一条错的选择器去复现，会选不中这个输入框**——"
+               "而这正是 `SOURCE_OBSERVATIONS.md` 里 M176 那次「新增资产保存没生效」假缺陷的同款坑"
+               "（那次根因也是选择器写错，产品功能其实好使）。\n"
+               "**注意判据边界**：这条错**只写在清单里，正文与图注从来没写过 placeholder**，"
+               "所以它不进正文、不用改页面；M223 只改了 manifest 这一处。",
+        "fixed_in": "M223",
+    },
+    # ★ M223：字段自述与实物对不上账，且是全库唯一一条「怎么读都对不上」的。
+    {
+        "id": "R72",
+        "kind": "wording",
+        "wrong": "1280x48 x2",
+        "why": "**`20-nav-bilingual` 的 `viewport` 登记在任何一种读法下都算不出图片的真实尺寸。**\n"
+               "登记值声称宽 1280、单条高 48、共 2 条；而 PNG 头 IHDR 实测 **1280×108**。"
+               "**逐行插桩把结构量了出来**（不是目测）：y=0–47 是上条顶栏、"
+               "**y=48–59 是一条 12px 的纯色间隔带**、y=60–107 是下条顶栏，"
+               "**48 + 12 + 48 = 108**。\n"
+               "**两种读法各差多少**：按字面「48 × 2」得 96，**差 12 px——正好就是那条间隔带**；"
+               "按「2 条 × deviceScaleFactor 2」得 192，差得更远。\n"
+               "**而且根本没有 ×2**：上条 CJK 字形实测高 16px（y=20–35），"
+               "对应 **1× 设备像素比**；若是 2× DPR，同字号字形应是两倍高。\n"
+               "★ **归为 wording 而非 conclusion**：这条只影响「怎么读这张图的元数据」，"
+               "**不影响手册里任何一句结论**——本图中英各 5 项早在 M179 批次就逐字核过，"
+               "M223 一步都没动内容，只把 `viewport` 改成实测值。\n"
+               "**顺带记一条更大的缺口**：全库 112 张里有 26 张的实物尺寸与 `viewport` 开头的 `NxM` 对不上，"
+               "其中 **6 条在字段里自述了「裁剪区 / deviceScaleFactor」并精确对账**，"
+               "另 19 条既没对账也没说明它是视口、裁剪区还是设备像素——详见 `SOURCE_OBSERVATIONS.md` F25。",
+        "fixed_in": "M223",
+        "allow_in": ["screenshots/manifest.yml#M223-R72",
+                     "SOURCE_OBSERVATIONS.md#唯一一条在任何读法下都对不上",
+                     # ★ 这条豁免是门禁自己逼出来的：M223 往 task-inventory 里写复核注记时
+                     #   逐字引述了旧值，写完跑门禁当场 exit 1 并点名到行。
+                     #   **新内容也要守同一条**，所以照 R70 的先例登记豁免，而不是改措辞绕开。
+                     "task-inventory.yml#`20-nav-bilingual.png`"],
+    },
 ]
 
 
