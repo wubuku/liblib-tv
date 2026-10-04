@@ -48,6 +48,17 @@ export const readers = (p) => ({
 
 /** 关掉所有浮层（不数 tooltip），并把鼠标移出画布 —— 收尾读 testid 种类数的前置条件。 */
 export async function settle(p, R) {
+  // 🔴🔴 **批次 153 踩到并定位的坑：这个函数会「按 Esc 关掉一切浮层」** ——
+  //   它在 `R.overlays() > 0` 时**连按最多 4 次 Esc**。
+  //   ⇒ 🔴 **凡是「打开某个模态/菜单 → 读它的读数」的批次，都不能在这之间调 settle()**，
+  //     否则读到的一定是「已经被 Esc 关掉之后」的空 DOM。
+  //   实测三连：批次 153 a 轮（点资产库 → settle → 读到 0 个 testid）、
+  //   b 轮（点资产库 → **不调 settle** → 读到 9 个，3/3）、
+  //   c 轮（点资产库 → 轮询 0 秒时 dialog=1 → settle → 再读又是 0）。
+  //   ✅ 正确用法：打开模态后只 `waitForTimeout`，读完之后**自己**按 Esc 关闭。
+  // ⚠️ 另注：画布上**恒有 1 个** `[data-state=open]` 的常驻包装层，
+  //   所以「浮层数应该等于 0」这个前置断言**恒不成立**，别拿它当判据；
+  //   要判就判「自己刚开的那一层在不在」。
   for (let i = 0; i < 4; i++) { if (!(await R.overlays())) break; await p.keyboard.press('Escape'); await p.waitForTimeout(900); }
   await p.mouse.move(1276, 716); await p.waitForTimeout(800);
 }
