@@ -57,11 +57,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import scope  # noqa: E402
 
 import pngstat  # noqa: E402  —— 零外部依赖的 PNG 头读取
+import shotmanifest
 
 ROOT = scope.ROOT
 MANIFEST = os.path.join(ROOT, "screenshots", "manifest.yml")
 
-REC_RE = re.compile(r"^  - file:\s*(\S+)\n(.*?)(?=^  - file:|\Z)", re.S | re.M)
 FIELD_RE = {
     "sha256": re.compile(r"^\s+sha256:\s*([0-9a-fA-F]{64})\s*$", re.M),
     "viewport": re.compile(r"^\s+viewport:\s*'?([0-9]+)\s*[x×]\s*([0-9]+)'?\s*$", re.M),
@@ -72,9 +72,8 @@ def parse_manifest():
     with open(MANIFEST, encoding="utf-8") as f:
         text = f.read()
     out = []
-    for m in REC_RE.finditer(text):
-        block = m.group(2)
-        rec = {"file": m.group(1)}
+    for name, block in shotmanifest.blocks(text):
+        rec = {"file": name}
         for key, rx in FIELD_RE.items():
             hit = rx.search(block)
             rec[key] = hit.groups() if (key == "viewport" and hit) else (

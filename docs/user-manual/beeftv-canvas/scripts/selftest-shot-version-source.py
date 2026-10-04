@@ -71,6 +71,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from stagedeps import stage_gate
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -117,8 +118,31 @@ def copy_gate(d, drop_offtask=False):
         assert n == 1, "没能从闸里找到 OFF_TASK 表——注入空转（纪律 240）"
         assert new_src != src and "761106b9" not in new_src
         src = new_src
+
+    #: **Batch 264：这里原来只写闸自己，于是闸加一个本地 import 就会整份崩**——
+    #: 实测本批把 `REC_RE` 收敛进 `shotmanifest.py` 之后，**12 例里 11 例转红**，
+    #: 症状是子进程里 `ModuleNotFoundError: No module named 'shotmanifest'`。
+    #:
+    #: **修法是 `stage_gate()` 而不是自己写循环**——理由有两条，缺一条都不够：
+    #: **①它自动算闭包，人不用再记**（纪律 279 推论三：手写清单每加一个本地 import 就得人记一次，
+    #: **而 Batch 178/181/197/251/252 五次漏搬全部发生在手写清单这一类上**）。
+    #: **②闸 17 认它**：`copies_gate_into_tmp()` 的第二个分支就是 `stage_(?:all|gate)\s*\(`。
+    #: **第一版改成了 `for dep in sorted(local_closure(…)): shutil.copy(…, dep + ".py", …)`，
+    #: 那是一次「修好了却在闸上更红」的改动**——
+    #: **闸 17 核搬运时认的是「模块级常量的元素里写着这个模块名」**（Batch 239 修的），
+    #: **而 `local_closure(…)` 是一个函数调用，它认不出来**，
+    #: 于是闸从「整份跳过」变成「认出了搬闸、却认为依赖没搬齐」——**漏报变成了误报**。
+    #: **同一个缺口的两面，而两次都是绿的。**
+    #: **闸名写成字面量而不是 `GATE[:-3]`**——`staged_gates()` 的 docstring 写着
+    #: 「**只认实参里的字符串字面量**：变量、拼接、推导出来的闸名一律不认——
+    #: **判不出来的事不许当通过**」。**那是它有意保守，而写死反而是这里能过的那条路。**
+    #: **代价是同一个闸名出现在两处**，所以用 `assert` 机器守住
+    #: （抄一份必然漂移，**而机器守得住的那一份不算抄**，纪律 224）。
+    assert GATE == "verify-shot-version-source.py", \
+        "字面量与 GATE 不一致——**同一个闸名两份真值，而没人会来对**"
+    stage_gate(d, "verify-shot-version-source")   # **闭包自动搬齐（含闸自己）**
     with open(os.path.join(d, "scripts", GATE), "w", encoding="utf-8") as f:
-        f.write(src)
+        f.write(src)   # **覆盖 `stage_gate` 搬来的那份——它没改过内容**
 
 
 def build_repo(d, anchor_ver_in_msg=True, drop_offtask=True):

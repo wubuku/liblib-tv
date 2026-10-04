@@ -49,7 +49,14 @@ from stagedeps import child_env
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 GATE = "verify-shot-integrity.py"
-DEPS = ("pngstat.py", "scope.py")
+#: **Batch 264 加的第三项**：被测闸现在 import `shotmanifest`（`REC_RE` 与切块收敛进去了），
+#: **而闸 17 在本批改完的第一次跑就报出了「没把 shotmanifest 复制进临时 scripts/」**——
+#: **这就是纪律 279 推论三说的那件事的现场**：
+#: **手写搬运清单每加一个本地 import 就得人记一次，而「加」是在闸那边发生的、「记」得在这边。**
+#: **本批只补这一行，不顺手迁移成 `stage_gate`**——
+#: **闸 17 写明「本闸不要求它们必须迁移」（一次改 20 多份的出错面更大）**，
+#: **而「收敛重复」与「迁移搬运清单」是两件事，混在一批里就分不清是哪一件起了作用**（纪律 296 推论一）。
+DEPS = ("pngstat.py", "scope.py", "shotmanifest.py")
 
 
 def write_tree(d, records):

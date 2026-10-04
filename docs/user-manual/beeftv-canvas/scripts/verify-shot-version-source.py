@@ -80,6 +80,7 @@ import os
 import re
 import subprocess
 import sys
+import shotmanifest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MANIFEST = os.path.join(ROOT, "screenshots", "manifest.yml")
@@ -110,7 +111,6 @@ OFF_TASK = {
     },
 }
 
-REC_RE = re.compile(r"^  - file:\s*(\S+)\n(.*?)(?=^  - file:|\Z)", re.S | re.M)
 VER_RE = re.compile(r"v1\.6\.(\d+)")
 
 
@@ -126,10 +126,9 @@ def parse_manifest():
     except OSError:
         return None
     out = []
-    for m in REC_RE.finditer(text):
-        block = m.group(2)
+    for name, block in shotmanifest.blocks(text):
         hit = re.search(r"^\s+captured_version:\s*'?([^'\n]+)'?\s*$", block, re.M)
-        out.append({"file": m.group(1), "ver": hit.group(1).strip() if hit else None,
+        out.append({"file": name, "ver": hit.group(1).strip() if hit else None,
                     "task": (re.search(r"^\s+task_id:\s*(\S+)", block, re.M) or [None, None])[1]})
     return out
 
