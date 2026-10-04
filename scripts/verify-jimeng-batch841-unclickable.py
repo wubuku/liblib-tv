@@ -5783,8 +5783,6 @@ def main() -> int:
     #   ⇒ 否定结果**尤其**要钉：它最容易在下一批被悄悄忘掉
     p981 = ROOT / "scripts/jimeng_probe981_srcrate_src.py"
     _p981 = p981.read_text(encoding="utf-8") if p981.exists() else ""
-    p981 = ROOT / "scripts/jimeng_probe981_srcrate_src.py"
-    _p981 = p981.read_text(encoding="utf-8") if p981.exists() else ""
     # ⭐⭐⭐⭐⭐ 982：**源站**探针第五支 —— ⭐⭐⭐⭐⭐ **给「一圈」下一个正式定义**
     #   （圈长 = **最小重复周期**，**不读任何 testid** ⇒ 没有「同一个名字两种口径」）
     #   ⇒ 并用它把 973/974 的核心结论**从一个 17.8% 的小段补到 100%**
@@ -5792,6 +5790,12 @@ def main() -> int:
     #   **对 `OOOOO.2` 那两处错数的更正**（而**原文保留**、只加改写横幅）
     p982 = ROOT / "scripts/jimeng_probe982_ringlen_src.py"
     _p982 = p982.read_text(encoding="utf-8") if p982.exists() else ""
+    # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
+    #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
+    #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
+    #   （`exec` 跑的是**可执行代码**）⇒ 靠**成对门**补上
+    p983 = ROOT / "scripts/jimeng_probe983_wrapcmp_ck.py"
+    _p983 = p983.read_text(encoding="utf-8") if p983.exists() else ""
     # ⭐ 970 的 CCCC.2 要**反证 816 那条决策真的在仓库里**（钉源码原文，
     #   不钉我自己写的转述）
     p816 = ROOT / "scripts/verify-jimeng-batch816-anchors.py"
@@ -10003,6 +10007,140 @@ def main() -> int:
           and "本批第一版那道门**错在锚点挑错文件**" in _ausrc
           and "这种**恒真断言**，它比没有门更坏" in _ausrc
           and "**本批零计费**：只按 `Tab`；" in _ausrc)
+
+    # ══ QQQQQ. 批 983 复刻侧：⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验 982
+    #    那条结构发现** ⇒ 三条预测全部命中 ⇒ **「下降点 = (最大 ⇢ 最小)、
+    #    最小者是 BODY」是规律，不是源站特有的巧合** ══
+    print("— QQQQQ. 批 983 复刻侧：圈长 **26**、下降 **1**、下降点 **第 24→25 格"
+          "（268→37）**、前驱 = 整圈最大、后继 = 整圈最小且**就是 `BODY`** ⇒ "
+          "**与源站侧（101 格 / 2395→60）逐项同构** ⇒ 982 那条推论**升级为规律** —")
+
+    check("QQQQQ.1 ⭐⭐⭐⭐⭐ **本批的全部三条预测都命中（2/2 逐格相同）** ⇒ "
+          "982 那条推论**在两个被测系统上同构成立** ⇒ "
+          "**它从「一个系统上的一次观察」升级成规律**：\n"
+          "  · ⭐⭐⭐⭐⭐ **预测 ①：整圈上恰好 1 次下降** ⇒ 源站 "
+          "`descents_on_full_lap = 1`、复刻侧 **也是 1**\n"
+          "  · ⭐⭐⭐⭐⭐ **预测 ②：那一格的「前驱 = 整圈 `dom_rank` 最大的那一格、"
+          "后继 = 最小的一格，且最小者就是 `BODY`」** ⇒\n"
+          "    · 源站：**第 89 → 90 格**、**2395 → 60**\n"
+          "    · 复刻侧：**第 24 → 25 格**、**268 → 37**\n"
+          "    · ⇒ ⇒ ⭐⭐⭐⭐ **两个系统的圈长差了近四倍（101 vs 26）、"
+          "格子的身份全不一样**，而**下降点的形状逐项同构**\n"
+          "  · ⭐⭐⭐⭐ **预测 ③：`min_period = 26`** ⇒ 实测 **26**、"
+          "`n_full = 3`、`rem = 12`、`laps_identical = True`、`unknown = 0`\n"
+          "  · ⭐⭐⭐⭐ **`body_is_min_rank` 在两侧都是 `True`** ⇒ "
+          "**「`BODY` 是整圈上 `dom_rank` 最小的那一格」也是规律**",
+          '"wrap_shape_is_a_law_983"' in _ausrc
+          and "**本批的全部三条预测都命中（2/2 逐格相同）**" in _ausrc
+          and "**它从「一个系统上的一次观察」升级成规律**" in _ausrc
+          and "**预测 ①：整圈上恰好 1 次下降**" in _ausrc
+          and "**预测 ②：那一格的「前驱 = 整圈 `dom_rank` " in _ausrc
+          and "**第 89 → 90 格**、**2395 → 60**" in _ausrc
+          and "**第 24 → 25 格**、**268 → 37**" in _ausrc
+          and "**下降点的形状逐项同构**" in _ausrc
+          and "**预测 ③：`min_period = 26`**" in _ausrc
+          and "**三份独立数据（973 的 44 步、983 的 90 步、"
+          "982 的源站侧）都复核了各自的圈长**" in _ausrc
+          and "**`body_is_min_rank` 在两侧都是 `True`**" in _ausrc
+          # ⭐⭐ 钉探针：三条关系式读数都在
+          and '"wrap_shape_ok"' in _p983
+          and '"body_is_min_rank"' in _p983
+          and '"descent_i_in_lap"' in _p983
+          and '"min_rank_i_in_lap"' in _p983
+          and '"max_rank_i_in_lap"' in _p983
+          and "N_STEPS = 90" in _p983
+          and '"_p983": "scripts/jimeng_probe983_wrapcmp_ck.py",' in _anchs)
+
+    check("QQQQQ.2 ⭐⭐⭐⭐⭐ **本批的新件 `_grab_def`，以及它的代价必须说清** —— "
+          "`_grab` 只认**字面量赋值** ⇒ 982 那三个**纯 python** 新件抠不到 ⇒ "
+          "本批按**起止锚点**逐字抠出那段源码、**`exec` 绑定**、"
+          "再 `assert` 抠出来的段确实在 982 文件里；"
+          "⚠️⚠️⭐⭐⭐⭐ **代价：`exec` 跑的是「可执行代码」，而 `_grab` 抠的"
+          "只是「字面量」⇒ 保证更弱** ⇒ ⇒ 补一道**成对**的门："
+          "⭐⭐⭐⭐⭐ **把 982 自己那组自测用例在抠出来的仪器上重跑一遍** ⇒ "
+          "**若 982 改了语义而没同步改用例，这道门就红**；"
+          "⇒ 且 ⭐⭐⭐⭐⭐ **本批在「剥注释」上连踩三坑，而第三坑是成对门抓出来的**：\n"
+          "  · ① ⭐⭐⭐ **混用两套语义**（拿 JS 语义去剥 Python）⇒ **门红、门错**\n"
+          "  · ② ⭐⭐⭐⭐⭐ **更严重**：改成「用空格拼 token」⇒ `open('x')` 变成 "
+          "`open ( 'x'` ⇒ **`\"open(\"` 这个针永远匹配不上** ⇒ "
+          "**正向门恒绿 = 恒真** ⇒ ⭐⭐ **恒真的门比没有门更坏**\n"
+          "  · ③ ⭐⭐⭐⭐⭐ **版本坑**：`tokenize` 在 **Python 3.12 起把行号报成 "
+          "1 基**（3.11 是 0 基）⇒ 按 0 基掩会**掩到空行**上 ⇒ ⇒ "
+          "⭐ **这道坑是成对门抓出来的**（它要求「注释里的 `open(` 必须消失」）\n"
+          "⇒ ⇒ 修法：**只抹掉注释、原文其余部分一字不改**（间距天然保留）"
+          "＋ **先探测基准、再掩** ⇒ ⇒ 成对门钉成**三条**（三个坑各钉一道）",
+          '"grab_def_and_its_price_983"' in _ausrc
+          and "**代价：`exec` 跑的是「可执行代码」" in _ausrc
+          and "**把 982 自己那组自测用例在抠出来的仪器上重跑一遍**" in _ausrc
+          and "**若 982 改了语义而没同步改用例，这道门就红**" in _ausrc
+          and '"three_stripping_caliber_traps_983"' in _ausrc
+          and "**正向门恒绿 = 恒真**" in _ausrc
+          and "**恒真的门比没有门更坏**" in _ausrc
+          and "**这道坑是成对门抓出来的**" in _ausrc
+          and "**Python 3.12 起" in _ausrc
+          and "**只抹掉注释、原文其余部分一字不改**" in _ausrc
+          and "**因此本批把成对门钉成三条**" in _ausrc
+          # ⭐⭐ 钉探针：抠取、exec、成对门、风险面门、基准探测
+          and "def _grab_def(start, end, src=None):" in _p983
+          and 'GRAB_DEF_START = "def min_period(seq):"' in _p983
+          and 'GRAB_DEF_END = "def _code_only(js):"' in _p983
+          and 'exec(compile(INSTR_SRC, "<982-instruments>", "exec"), _INSTR_NS)' in _p983
+          and "assert INSTR_SRC in _p982" in _p983
+          and "**抠出来的仪器与 982 原件行为不一致**" in _p983
+          and "def _py_code_only(src):" in _p983
+          and "**基准探测**" in _p983
+          and '"import " in _py_code_only("import os\\n")' in _p983
+          and "钉住「不会恒绿」" in _p983)
+
+    check("QQQQQ.3 ⭐⭐⭐⭐⭐ **一个直接服务于产品决策的副产品** —— "
+          "**复刻侧也有 `BODY` 那一格**、且它的 `dom_rank` **也是整圈最小**（37）"
+          "⇒ `body_is_min_rank = True` ⇒ ⭐⭐⭐⭐⭐ "
+          "**源站与复刻在这一点上完全一致** ⇒ "
+          "**「`BODY` 那一格」不构成两侧的差异点** ⇒ ⚠️ "
+          "**`rf__wrapper` 的对齐决策不能拿 `BODY` 当理由**；"
+          "⇒ 而 ⭐⭐⭐⭐ **`rf__wrapper` 的 `dom_rank` 相对次序，两侧确实不同**：\n"
+          "  · **源站**：`BODY`(60) ⇢ `canvas-project-logo`(68) ⇢ … ⇢ "
+          "**`rf__wrapper`(177)** ⇒ **在 `logo` _之后_**\n"
+          "  · **复刻侧**：`BODY`(37) ⇢ **`rf__wrapper`(42)** ⇢ … ⇢ "
+          "`canvas-project-logo`(110) ⇒ **在 `logo` _之前_**\n"
+          "⇒ ⇒ ⭐⭐⭐⭐ **这正是 973 那条「位置差异是 DOM 摆放差异（实现差异）」"
+          "的 `dom_rank` 级直接证据** —— ⚠️ 而 972/973 当时只报了**座位与邻居**"
+          "（`flow_seats`）、**没报 `dom_rank` 的相对次序** ⇒ "
+          "**这一格是空的，本批补上** ⇒ ⇒ ⭐⭐⭐⭐ "
+          "982 说的「先量影响面」，**现在这一端已经量出来了** ⇒ "
+          "⚠️⭐⭐ **但本批仍不提出产品改动**（972/973 立的规矩不变）；"
+          "另 ⭐⭐⭐⭐ **两个系统的 arc 覆盖率并排**（**并排读出，不二选一**）："
+          "源站 **18 / 101 = 17.8%**、复刻侧 **19 / 26 = 73.1%** ⇒ "
+          "**两处都与 973/974 存档逐格一致** ⇒ "
+          "**错的是「那叫一圈」这个叫法，不是那些数** ⇒ "
+          "**「out 弧」这个改名在两个系统上都站得住**",
+          '"body_on_both_sides_983"' in _ausrc
+          and "不构成两侧的差异点**" in _ausrc
+          and "**`rf__wrapper` 的对齐决策不能拿 `BODY` 当理由**" in _ausrc
+          and "**它是引擎层给的**" in _ausrc
+          and '"rf_wrapper_dom_rank_order_983"' in _ausrc
+          and "**`rf__wrapper` 在 `logo` _之后_**" in _ausrc
+          and "**`rf__wrapper` 在 `logo` _之前_**" in _ausrc
+          and "**没报 `dom_rank` 的相对次序**" in _ausrc
+          and "**这一格是空的，本批补上**" in _ausrc
+          and "现在这一端已经量出来了**" in _ausrc
+          and "**但本批仍不提出产品改动**" in _ausrc
+          and '"arc_coverage_two_sides_983"' in _ausrc
+          and "**并排读出，不二选一**" in _ausrc
+          and "**18 / 101 = 17.8%**" in _ausrc
+          and "**19 / 26 = 73.1%**" in _ausrc
+          and "**973/974 报的那些数没错，错的是「那叫一圈」这个叫法**" in _ausrc
+          and '"discipline_983"' in _ausrc
+          and "**一个系统的观察不是规律，两个系统才是**" in _ausrc
+          and "本批门红 **4 次**" in _ausrc
+          and "**第四次「锚点挑错文件」**" in _ausrc
+          and "**本批零计费、零插入、零节点点击**" in _ausrc
+          # ⭐⭐ 钉探针：两种口径并排读出、973 口径的弧
+          and 'keys = [("%s/%s" % (r["own_tid"], r["closest_tid"])) for r in rows]'
+          in _p983
+          and '"left_rail_closest_tids"' in _p983
+          and '"arc_cover_num"' in _p983 and '"arc_cover_den"' in _p983
+          and '"descents_on_arc"' in _p983)
 
 
     print(f"\n{checks - len(failures)}/{checks}")
