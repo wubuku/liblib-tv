@@ -1,0 +1,156 @@
+{
+ "批次": "160a",
+ "目的": "导演台节点上按 F：到底会不会跳进 3D 工作台",
+ "起点": {
+  "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "导演台候选": [
+  {
+   "id": "node_pxvkay973v",
+   "逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 proces",
+   "在屏": false,
+   "中心": [
+    -131,
+    -180
+   ],
+   "盒": [
+    192,
+    192
+   ]
+  }
+ ],
+ "SELF": "node_pxvkay973v",
+ "选中后": {
+  "选中数": 0,
+  "逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+  "浮动工具条": null,
+  "浮层": 0
+ },
+ "按F前URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+ "采样": [
+  {
+   "标题": "测试项目 - 即梦AI",
+   "对话框数": 0,
+   "对话框": [],
+   "顶层文字": "测试项目 节点 76 已保存 分享 791 基础会员 76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存. 视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1 时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected. 文本 2",
+   "可点": 109,
+   "开浮层": 0,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+   "采样秒": 450
+  },
+  {
+   "标题": "测试项目 - 即梦AI",
+   "对话框数": 0,
+   "对话框": [],
+   "顶层文字": "测试项目 节点 76 已保存 分享 791 基础会员 76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存. 视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1 时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected. 文本 2",
+   "可点": 109,
+   "开浮层": 0,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+   "采样秒": 900
+  },
+  {
+   "标题": "测试项目 - 即梦AI",
+   "对话框数": 0,
+   "对话框": [],
+   "顶层文字": "测试项目 节点 76 已保存 分享 791 基础会员 76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存. 视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1 时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected. 文本 2",
+   "可点": 109,
+   "开浮层": 0,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+   "采样秒": 1350
+  },
+  {
+   "标题": "测试项目 - 即梦AI",
+   "对话框数": 0,
+   "对话框": [],
+   "顶层文字": "测试项目 节点 76 已保存 分享 791 基础会员 76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存. 视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1 时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected. 文本 2",
+   "可点": 109,
+   "开浮层": 0,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+   "采样秒": 1800
+  },
+  {
+   "标题": "测试项目 - 即梦AI",
+   "对话框数": 0,
+   "对话框": [],
+   "顶层文字": "测试项目 节点 76 已保存 分享 791 基础会员 76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存. 视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1 时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected. 文本 2",
+   "可点": 109,
+   "开浮层": 0,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+   "采样秒": 2250
+  },
+  {
+   "标题": "测试项目 - 即梦AI",
+   "对话框数": 0,
+   "对话框": [],
+   "顶层文字": "测试项目 节点 76 已保存 分享 791 基础会员 76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存. 视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1 时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected. 文本 2",
+   "可点": 109,
+   "开浮层": 0,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+   "采样秒": 2700
+  },
+  {
+   "标题": "测试项目 - 即梦AI",
+   "对话框数": 0,
+   "对话框": [],
+   "顶层文字": "测试项目 节点 76 已保存 分享 791 基础会员 76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存. 视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1 时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected. 文本 2",
+   "可点": 109,
+   "开浮层": 0,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+   "采样秒": 3150
+  },
+  {
+   "标题": "测试项目 - 即梦AI",
+   "对话框数": 0,
+   "对话框": [],
+   "顶层文字": "测试项目 节点 76 已保存 分享 791 基础会员 76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存. 视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1 时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected. 文本 2",
+   "可点": 109,
+   "开浮层": 0,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+   "采样秒": 3600
+  },
+  {
+   "标题": "测试项目 - 即梦AI",
+   "对话框数": 0,
+   "对话框": [],
+   "顶层文字": "测试项目 节点 76 已保存 分享 791 基础会员 76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存. 视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1 时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected. 文本 2",
+   "可点": 109,
+   "开浮层": 0,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+   "采样秒": 4050
+  },
+  {
+   "标题": "测试项目 - 即梦AI",
+   "对话框数": 0,
+   "对话框": [],
+   "顶层文字": "测试项目 节点 76 已保存 分享 791 基础会员 76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存. 视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected. 文本 1 时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected. 文本 2",
+   "可点": 109,
+   "开浮层": 0,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+   "采样秒": 4500
+  }
+ ],
+ "跳走": false,
+ "按F后URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+ "末帧": {
+  "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+  "标题": "测试项目 - 即梦AI",
+  "对话框数": 0,
+  "可点": 109,
+  "开浮层": 0
+ },
+ "图": "screenshots/120-director-f-no-navigation.png",
+ "收尾": {
+  "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "断言全过": false
+}

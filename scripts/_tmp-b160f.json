@@ -1,0 +1,638 @@
+{
+ "批次": "160f",
+ "目的": "确认选中的是导演台节点本身，再判 F 是否导航",
+ "起点": {
+  "状态行": "76 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 1,
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "进场时选中的是谁": {
+  "id": "node_gp499g9p3m",
+  "逐字": "音频 5 No resources: 0 ready, 0 processing, 0 failed. Selected."
+ },
+ "SELF": "node_pxvkay973v",
+ "平移": [
+  {
+   "轮": 0,
+   "中心": [
+    453,
+    62
+   ],
+   "注": "已在视口内"
+  }
+ ],
+ "落点搜索": {
+  "节点盒": [
+   192,
+   192,
+   357,
+   -34
+  ],
+  "候选点": [
+   {
+    "点": [
+     395,
+     24
+    ],
+    "命中id": "node_pxvkay973v",
+    "是本节点": true
+   },
+   {
+    "点": [
+     395,
+     43
+    ],
+    "命中id": "node_w6b1h9fvzw",
+    "是本节点": false
+   },
+   {
+    "点": [
+     395,
+     62
+    ],
+    "命中id": "node_w6b1h9fvzw",
+    "是本节点": false
+   },
+   {
+    "点": [
+     395,
+     81
+    ],
+    "命中id": "node_w6b1h9fvzw",
+    "是本节点": false
+   },
+   {
+    "点": [
+     395,
+     101
+    ],
+    "命中id": "node_w6b1h9fvzw",
+    "是本节点": false
+   },
+   {
+    "点": [
+     395,
+     120
+    ],
+    "命中id": "node_kdgnjkfng2",
+    "是本节点": false
+   },
+   {
+    "点": [
+     414,
+     24
+    ],
+    "命中id": "node_pxvkay973v",
+    "是本节点": true
+   },
+   {
+    "点": [
+     414,
+     43
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     414,
+     62
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     414,
+     81
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     414,
+     101
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     414,
+     120
+    ],
+    "命中id": "node_kdgnjkfng2",
+    "是本节点": false
+   },
+   {
+    "点": [
+     433,
+     24
+    ],
+    "命中id": "node_kdgnjkfng2",
+    "是本节点": false
+   },
+   {
+    "点": [
+     433,
+     43
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     433,
+     62
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     433,
+     81
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     433,
+     101
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     433,
+     120
+    ],
+    "命中id": "node_kdgnjkfng2",
+    "是本节点": false
+   },
+   {
+    "点": [
+     453,
+     24
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     453,
+     43
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     453,
+     62
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     453,
+     81
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     453,
+     101
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     453,
+     120
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     472,
+     24
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     472,
+     43
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     472,
+     62
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     472,
+     81
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     472,
+     101
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     472,
+     120
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     491,
+     24
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     491,
+     43
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     491,
+     62
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     491,
+     81
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     491,
+     101
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     491,
+     120
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     510,
+     24
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     510,
+     43
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     510,
+     62
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     510,
+     81
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     510,
+     101
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   },
+   {
+    "点": [
+     510,
+     120
+    ],
+    "命中id": "node_gp499g9p3m",
+    "是本节点": false
+   }
+  ],
+  "可用落点": [
+   {
+    "点": [
+     395,
+     24
+    ],
+    "命中id": "node_pxvkay973v",
+    "是本节点": true
+   },
+   {
+    "点": [
+     414,
+     24
+    ],
+    "命中id": "node_pxvkay973v",
+    "是本节点": true
+   }
+  ],
+  "被别的节点挡住的点数": 40
+ },
+ "点的是": [
+  395,
+  24
+ ],
+ "点后选中": {
+  "id": "node_pxvkay973v",
+  "逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 fa"
+ },
+ "点后选中数": 1,
+ "选中后工具条": {
+  "有": true,
+  "盒": [
+   0,
+   0,
+   453,
+   178
+  ],
+  "挂在节点id": null,
+  "是本节点": false,
+  "父testid": null,
+  "按钮数": 0,
+  "前六个按钮aria": [],
+  "逐字": ""
+ },
+ "工具条属于本节点": false,
+ "按F前URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f",
+ "按F前": {
+  "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+  "选中数": 1,
+  "开浮层": 0,
+  "对话框": [],
+  "不可用提示": 0,
+  "工具条在": true,
+  "全局元素": 2368
+ },
+ "采样": [
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 300,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 600,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 900,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 1200,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 1500,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 1800,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 2100,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 2400,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 2700,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 3000,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 3300,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 3600,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 3900,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 4200,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 4500,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  },
+  {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368,
+   "毫秒": 4800,
+   "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f"
+  }
+ ],
+ "跳走": false,
+ "有变化的帧": [],
+ "结论": {
+  "按F前": {
+   "节点逐字": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+   "选中数": 1,
+   "开浮层": 0,
+   "对话框": [],
+   "不可用提示": 0,
+   "工具条在": true,
+   "全局元素": 2368
+  },
+  "URL全程相同": true,
+  "跳走": false,
+  "有变化的帧数": 0,
+  "判定": "**完全静默**：URL 不变、节点逐字不变、无对话框、无「不可用」提示、无浮层、全局元素数不变"
+ },
+ "图": "screenshots/120-director-f-inert.png",
+ "清选中成功": true,
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 791 · 基础会员",
+  "工具": {
+   "aria": "选择工具",
+   "落点": [
+    30,
+    686
+   ]
+  }
+ },
+ "断言全过": true
+}
