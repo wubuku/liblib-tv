@@ -5676,6 +5676,8 @@ def main() -> int:
     _p955 = p955.read_text(encoding="utf-8") if p955.exists() else ""
     p956 = ROOT / "scripts/jimeng_probe956_replica_ring_ck.py"
     _p956 = p956.read_text(encoding="utf-8") if p956.exists() else ""
+    p957 = ROOT / "scripts/jimeng_probe957_rail_roving_src.py"
+    _p957 = p957.read_text(encoding="utf-8") if p957.exists() else ""
 
     check("HHHH.1 ⚠️⚠️⚠️ **本批的设计有一处真缺陷，如实记账**：`warm ∈ {0,1,2,6}` "
           "**全都 ≤ boot 之后的自然值 76** ⇒ 预热循环**一次都没进**"
@@ -6930,6 +6932,86 @@ def main() -> int:
           and "if r.get(\"identity_stable\") is False:" in _p956
           and 'assert _s in _p955src' in _p956
           and "assert _cs in _p954src" in _p956)
+
+    # ══ 批 957：⭐⭐⭐⭐⭐ **源站左栏是 ARIA roving tabindex** + 尺子隐含前提被查红 ══
+    print("— SSSS. 批 957 源站左栏是 roving tabindex：ArrowDown 在栏内移动焦点 —")
+
+    check("SSSS.1 ⭐⭐⭐⭐⭐ **源站左栏是标准 ARIA roving tabindex** —— "
+          "956 那个「复刻 9 个 / 源站 1 个」的差异**机制查死了**",
+          '"source_rail_is_roving_tabindex_957": (' in _ausrc
+          and "**源站左栏是标准的 ARIA roving tabindex**" in _ausrc
+          and "**机制查死了**" in _ausrc
+          and "**`0`×1 + `-1`×9**" in _ausrc
+          and "**逐字复刻 WAI-ARIA toolbar 的 roving 模式**" in _ausrc
+          and "**这解释了 956 那个「净多 9」里的 8 个**" in _ausrc
+          and "**954 那个「源站左栏只贡献 1 个停靠点" in _ausrc
+          and "仍然成立，但依据必须换成这一条普查**" in _ausrc
+          # ⭐ 钉探针：普查**只读属性、不调 focus()**（否则会污染格 1 的焦点读数）
+          and "cen = ev(RAIL_JS, [RAIL_TID, NODE_SEL])" in _p957
+          and "**普查用，不是仪器**" in _p957
+          and "ti_hist: tiHist," in _p957
+          and "c[\"n_rail_ti_hist\"] = cen.get(\"ti_hist\")" in _p957
+          # ⭐ 钉探针：三格（普查 / 方向键 / 尺子自检）
+          and 'for ci, mode in enumerate(("census", "arrow", "armcheck")):' in _p957
+          and "n_cells = 3" in _p957)
+
+    check("SSSS.2 ⭐⭐⭐⭐ **`ArrowDown` 在左栏内移动焦点**（roving 的另一半），"
+          "而**弱判据第三次说错**",
+          '"source_rail_arrow_navigates_957": (' in _ausrc
+          and "**方向键在左栏内移动焦点**" in _ausrc
+          and "**只发一个** `ArrowDown`" in _ausrc
+          and "**`BUTTON/图片/canvas-fixed-toolbar`**" in _ausrc
+          and "**强判据 True**、2/2 逐格相同" in _ausrc
+          and "**弱判据又说「没动」" in _ausrc
+          and "这已经是第三次、第三次都是它错**（953/955 各一次）" in _ausrc
+          and "`tabIndex` 出现 **0 次**" in _ausrc
+          # ⭐ 钉探针：判别键**自己发**、**不调 `ARM_FOCUS_JS`**（否则读数被仪器污染）
+          and "**判别键这一按**必须**绕开 `press_row`**" in _p957
+          and "page.keyboard.press(KEY_ARROW)          # ⭐ **只发这一个键**" in _p957
+          and "**不调 `ARM_FOCUS_JS`** ⇒ 读数不被仪器污染" in _p957
+          and '"arrow_read_isolated": bool(all(' in _p957
+          and 'c["one_key_only"] = bool(len(c["pressed_keys"]) == 1' in _p957)
+
+    check("SSSS.3 ⚠️⚠️⚠️⭐⭐ **`ARM_FOCUS_JS` 会把焦点从左栏拽回节点** ⇒ "
+          "954/955/956 那把尺子有一个**从没验过的隐含前提**，在左栏位置是**假的**",
+          '"arm_focus_taints_ruler_957": (' in _ausrc
+          and "**这一格把 954/955/956 那把尺子的一个隐含前提查红了**" in _ausrc
+          and "`ARM_FOCUS_JS`，而它**带 `el.focus()`**" in _ausrc
+          and "**第一版就是这么坏的**" in _ausrc
+          and "**是在 `node#75` 上按的**" in _ausrc
+          and "**那一格什么也没测到**" in _ausrc
+          and "（**不是**「`ArrowDown` 不动焦点」！）" in _ausrc
+          and "**不可逆动作放序列最后**" in _ausrc
+          and "**但**格 2 证明**「恰好没动」并不稳固**" in _ausrc
+          and "可信度依赖一个它从没验过的前提**" in _ausrc
+          and "**尺子自己那一步会改被测对象**这件事，**必须自己查**" in _ausrc
+          # ⭐ 钉探针：`ARM_FOCUS_JS` 那个格**排在最后**且**一个键都不发**
+          and "if mode == \"armcheck\":" in _p957
+          and "**不可逆动作**（`el.focus()` 会永久改焦点状态）" in _p957
+          and "⇒ ⭐ **不可逆动作放序列最后**" in _p957
+          and 'c["one_key_only"] = True      # 这一格**一个键都没发**' in _p957
+          and "c[\"arm_focus_moved_focus\"] = bool(identity(" in _p957)
+
+    check("SSSS.4 ⚠️⚠️ **第一版 4 个坑，其中「读数对、标签错」和「读数错」一样危险**",
+          '"first_version_defects_957": (' in _ausrc
+          and "**第一版自己踩了 4 个坑**" in _ausrc
+          and "⇒ `BLANK_JS` 只抄了前 3 行（箭头函数**没闭合**）" in _ausrc
+          and "**JS 语法门抓到**（`py_compile` 抓不到）" in _ausrc
+          and "**和 956 那次一模一样的错**" in _ausrc
+          and "**「尺子自检」自己污染了它要检查的对象**" in _ausrc
+          and "**`arrow_from` 标签指向错的按**" in _ausrc
+          and "**「读数对、标签错」和「读数错」一样危险**" in _ausrc
+          and "**两者都抓不到「标签指向了错的按」**" in _ausrc
+          # ⚠️ 钉住「锚点自查比门禁弱」这条（SSSS.1 就栽在它上面）
+          and "⇒ 它**分不清**" in _ausrc
+          and "**锚点自查报「问题 0 个」、而门禁真红**" in _ausrc
+          and "**锚点自查是比门禁弱的门，「自查 0 问题」**不等于**判据会过**" in _ausrc
+          # ⭐ 钉探针：真值与旧标签**分开存**（不许只改标签不留痕）
+          and 'c["arrow_from"] = stop_name({"who_after": pos}) or stop_name(row)' in _p957
+          and 'c["walk_who_before"] = stop_name(row, "before")' in _p957
+          and "**标签不许指向错的按**" in _p957
+          # ⭐ 钉探针：`delta` 那个 `int()` —— 954/956 各栽过一次
+          and "changed.append([int(i), was, cur])" in _p957)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
