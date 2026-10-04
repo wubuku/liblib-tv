@@ -5726,6 +5726,11 @@ def main() -> int:
     #   **并排**算一遍（判据要反证「它吃掉的那枚就是 `BODY`」）
     p972 = ROOT / "scripts/jimeng_probe972_seam_src.py"
     _p972 = p972.read_text(encoding="utf-8") if p972.exists() else ""
+    # ⭐ 973：**复刻侧**探针，测「环序 = DOM 序」（新件 `DOMRANK_JS`
+    #   读 `document.querySelectorAll('*')` 里的全文档下标 ⇒
+    #   **不依赖 testid、不依赖「簇」**）
+    p973 = ROOT / "scripts/jimeng_probe973_ringorder_ck.py"
+    _p973 = p973.read_text(encoding="utf-8") if p973.exists() else ""
     # ⭐ 970 的 CCCC.2 要**反证 816 那条决策真的在仓库里**（钉源码原文，
     #   不钉我自己写的转述）
     p816 = ROOT / "scripts/verify-jimeng-batch816-anchors.py"
@@ -8437,6 +8442,116 @@ def main() -> int:
           and "**上面这条「未查明」是个假问题，" in _ausrc
           # ⭐⭐⭐ 第七次预防同一个坑：`_p972` **与判据同一步**登记
           and '"_p972": "scripts/jimeng_probe972_seam_src.py",' in _anchs)
+
+    # ══ 批 973：⭐⭐⭐⭐⭐ 复刻侧「环序 = DOM 序」⇒ 972 悬的问题有答案 ══
+    print("— GGGGG. 批 973 复刻侧测环序：环序就是 DOM 序，BODY 是开发态连带效应 —")
+
+    check("GGGGG.1 ⭐⭐⭐⭐⭐ **复刻的环序就是 DOM 序** —— 而这条是**第一次**"
+          "**直接**被证实（967 当时是**靠步长推**的，步长对得上**不等于**"
+          "顺序的来源被验过）：⭐⭐⭐ 证据取的是 "
+          "`document.querySelectorAll('*')` 里的**全文档下标**"
+          "⇒ **不依赖任何 `data-testid`、不依赖任何「簇」**；"
+          "`arc_ranks` = `[110, 120, 121, 125, 134, 139, 145, 154, 160, 166, 169, "
+          "237, 240, 245, 251, 255, 268, 37, 42]` ⇒ **单调递增、恰好一次回绕**"
+          "（268 → 37），两轮**逐字相同**；⇒ ⇒ 门钉的是**「回绕次数 ≤ 1」这个关系式**、"
+          "**不是**任何绝对下标；⭐⭐ **证据的粒度要匹配断言的粒度** —— "
+          "「环序」是**顺序**命题 ⇒ 证据必须是**顺序**（单调性 + 回绕次数）、"
+          "**不是**「集合相等」",
+          '"ring_is_dom_order_973"' in _ausrc
+          and "**复刻的环序就是 DOM 序** —— 而这条是**第一次**" in _ausrc
+          and "步长对得上**不等于**顺序的来源被验过" in _ausrc
+          and "`document.querySelectorAll('*')` " in _ausrc
+          and "**单调递增、恰好一次回绕**（268 → 37），两轮**逐字相同**" in _ausrc
+          and "**门钉的是「回绕次数 ≤ 1」这个关系式**，" in _ausrc
+          and "**不是**任何绝对下标" in _ausrc
+          and "**证据的粒度要匹配断言的粒度**" in _ausrc
+          and "「环序」是**顺序**命题 ⇒ 证据必须是**顺序**" in _ausrc
+          and "**不是**「集合相等」" in _ausrc
+          # ⭐⭐ 钉探针：新件真的读**全文档**下标、真的**只读**
+          and "document.querySelectorAll('*')" in _p973
+          and "**不依赖任何 testid、不依赖任何「簇」**" in _p973
+          and 'assert "focus(" not in DOMRANK_JS' in _p973
+          and '"ring_follows_dom_order_both_reps"' in _p973
+          and '"at_most_one_wrap_both_reps"' in _p973
+          # ⭐⭐⭐ 哨兵值自证：`dom_rank` 恒 `-1` 会让整条链**安静空转**
+          and '"dom_rank_is_live_both_reps"' in _p973
+          and "**读数恒为一个哨兵值时要判红**" in _ausrc
+          and "自证门（`dom_rank_is_live`）" in _ausrc)
+
+    check("GGGGG.2 ⭐⭐⭐⭐⭐ **972 悬的那件事有答案了：`rf__wrapper` 的位置差异是 "
+          "DOM 摆放差异（**实现差异**），不是口径差异**：复刻侧它的 "
+          "`dom_rank` = **42** ⇒ **它是整个环里 `dom_rank` 最小的真 UI 停靠点**"
+          "（其余全在 **110–268**）⇒ **它是复刻 DOM 序里的第一个可聚焦元素**；"
+          "而 972 实测源站那一枚在 `用户菜单` 与 `文本` **之间** ⇒ "
+          "**它在源站 DOM 序的中间**、不是第一个；⭐⭐⭐⭐ **「实现差异」这个判断"
+          "是从实现里查出来的、不是从数字里猜的** —— `armRovingTabindex` "
+          "**只布 `.react-flow__node`、从不碰 `rf__wrapper`** ⇒ "
+          "它的 `tabindex` 来自 **xyflow 自己的静态属性**、位置完全由 DOM 摆放决定；"
+          "⚠️⚠️ **但源站侧的 `dom_rank` 本批没量** ⇒ 「源站的环**也是** DOM 序」"
+          "**不能**由本批下结论 ⇒ **下一批把同一件仪器搬到源站跑一遍**",
+          '"wrapper_is_first_in_dom_973"' in _ausrc
+          and "**972 悬的那件事有答案了：" in _ausrc
+          and "**它是整个环里 `dom_rank` 最小的真 UI 停靠点**" in _ausrc
+          and "（其余全在 **110–268**）" in _ausrc
+          and "**它是复刻 DOM 序里的第一个可聚焦元素**" in _ausrc
+          and "**它在源站 DOM 序的中间**，不是第一个" in _ausrc
+          and "**「实现差异」这个判断是从实现里查出来的，" in _ausrc
+          and "而 `armRovingTabindex` 只布 `.react-flow__node`、" in _ausrc
+          and "从不碰 `rf__wrapper`**（静态取证" in _ausrc
+          and "**它的 `tabindex` 来自 xyflow 自己的静态属性、" in _ausrc
+          and "**但源站侧的 `dom_rank` 本批没量**" in _ausrc
+          and "**不能**由本批下结论" in _ausrc
+          and "**下一批把同一件仪器搬到源站跑一遍**" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反证**：那条「只布 node、从不碰 wrapper」**真的**在实现里
+          and 'function armRovingTabindex(flow: HTMLElement | null, dir: 1 | -1)' in _wsrc
+          and 'nodes[i].setAttribute("tabindex", i === keep ? "0" : "-1");' in _wsrc
+          and 'function armAll(nodes: HTMLElement[], keep: number)' in _wsrc
+          # ⭐⭐ 钉探针：`flow_tabindex` / `flow_tid` 都被记下来了
+          and '"flow_stop_is_live_both_reps"' in _p973
+          and '"flow_tabindex_is_static_both_reps"' in _p973
+          and "is_flow: !!(el.classList && el.classList.contains('react-flow'))," in _p973)
+
+    check("GGGGG.3 ⭐⭐⭐⭐⭐ **顺手挖到一件更大的：复刻侧那枚 `BODY` 很可能整个是"
+          "开发态产物的连带效应** —— `BODY` 那一格的前一格 = **`NEXTJS-PORTAL`**"
+          "（`dom_rank` = **268**、**环里最大**），而它的 `focusable` = **`false`**"
+          "⇒ ⇒ 从**浏览器无法聚焦**的元素按 `Tab` ⇒ 焦点掉到 `document.body`"
+          "（`dom_rank` = **37**）⇒ 下一按走到 DOM 序里的第一个可聚焦元素 = "
+          "`rf__wrapper`（**42**）⇒ ⇒ **推论：生产构建里没有 `nextjs-portal`、"
+          "那枚 `BODY` 应当整个消失** ⇒ ⇒ **复刻侧有**两枚**开发态产物，"
+          "不是 §182 写的那一枚**；⚠️⚠️ **源站那一侧的 `BODY` 前一格是 "
+          "`与 AI 对话`（一个**能聚焦**的按钮）⇒ 两侧的 `BODY` 很可能不是同一个机制** "
+          "⇒ **不许把复刻的机制直接搬到源站头上**；另记一条纪律："
+          "**一种错重复到第三次就该改数据结构、而不是加断言**"
+          "（`(k, row)` 那一族本批栽到第五次，而 972 加的形状自证**没抓到它**"
+          "—— 因为**错在解包处、不在形状上**）⇒ 本批改成 `out_ks` / `out_rows` "
+          "**两个平行列表**、**元组根本不再存在**",
+          '"body_is_portal_artifact_973"' in _ausrc
+          and "**顺手挖到一件更大的：" in _ausrc
+          and "复刻侧那枚 `BODY` 很可能整个是开发态产物的连带效应**" in _ausrc
+          and "而它的 `focusable` = **`false`**" in _ausrc
+          and "**机制 therefore 说得通了**" in _ausrc
+          and "推论（可验，本批**只测了复刻侧**）**" in _ausrc
+          and "生产构建里**没有** `nextjs-portal` ⇒ " in _ausrc
+          and "**「生产构建里没有这个元素」**" in _ausrc
+          and "**复刻侧的环上有**两枚**开发态产物，" in _ausrc
+          and "**改写 §182 的措辞**（原文保留）" in _ausrc
+          and "**不许把复刻的机制直接搬到源站头上**" in _ausrc
+          and '"tuple_family_fifth_973"' in _ausrc
+          and "当成 `row` 用」这一族栽到第五次，" in _ausrc
+          and "**形状自证只挡「形状错」，挡不住「解包错」**" in _ausrc
+          and "**本批做的是结构性修法**" in _ausrc
+          and "改成 `out_ks` / `out_rows` " in _ausrc
+          and "**这一族的坑从根上被拆掉**（而不是再加一条断言）" in _ausrc
+          and "**当一种错误重复到第三次，" in _ausrc
+          # ⭐⭐ 钉探针：结构性修法**真的**写进探针了
+          and "out_rows 里有不是 row-dict 的元素" in _p973
+          and '"body_predecessor_unfocusable_both_reps"' in _p973
+          and "focusable: (el.tabIndex === undefined) ? null : (el.tabIndex >= 0)," in _p973
+          # ⚠️ 972 那条「复刻只差两处」必须**已挂改写横幅**
+          and "**批 973 改写横幅" in _ausrc
+          and "**上面「复刻只差两处」这句不准确，" in _ausrc
+          # ⭐⭐⭐ 第七次预防同一个坑：`_p973` **与判据同一步**登记
+          and '"_p973": "scripts/jimeng_probe973_ringorder_ck.py",' in _anchs)
 
 
     check("AAAAA.4 ⚠️⚠️ **步长那道门第一版太弱，是干跑当场抓到的**：它只查 "
