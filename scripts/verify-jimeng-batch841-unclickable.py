@@ -5666,6 +5666,8 @@ def main() -> int:
     _p950 = p950.read_text(encoding="utf-8") if p950.exists() else ""
     p951 = ROOT / "scripts/jimeng_probe951_focus_gate_src.py"
     _p951 = p951.read_text(encoding="utf-8") if p951.exists() else ""
+    p952 = ROOT / "scripts/jimeng_probe952_freeze_who_src.py"
+    _p952 = p952.read_text(encoding="utf-8") if p952.exists() else ""
 
     check("HHHH.1 ⚠️⚠️⚠️ **本批的设计有一处真缺陷，如实记账**：`warm ∈ {0,1,2,6}` "
           "**全都 ≤ boot 之后的自然值 76** ⇒ 预热循环**一次都没进**"
@@ -6224,6 +6226,104 @@ def main() -> int:
           and "与 950 那份**不一致**" in _p951
           # ⭐ 钉探针：951 也写下了 948 栽过的那条纪律（表格第一格不写裸数字）
           and "会被 pre-commit 钩子的批次行匹配" in _p951)
+
+    # ══ 批 952：⭐⭐⭐⭐⭐ 「冻住」其实是「`Tab` 走完了工具条」（零点击）═════
+    print("— NNNN. 批 952 那不是卡住，是 Tab 正常走完时间线工具条的 4 个按钮 —")
+    check("NNNN.1 ⭐⭐⭐⭐⭐ **那不是「卡住」，是 `Tab` **正常走完了节点工具条** ——**"
+          "冻结段的 4 个元素身份**逐一取到**（全是**时间线节点** "
+          "`node_index=2`「时间线 node: 时间线 1」的工具条按钮）："
+          "按 4 → `timeline-toolbar`/**`导出时间线`**、按 5 → `timeline-toolbar`/"
+          "**`全屏编辑`**、按 6 → `timeline-mute-button`/**`静音`**、"
+          "按 7 → `timeline-passive-source-picker-slot`/**`添加素材到时间线`**、"
+          "按 8 → 离开工具条落到 `node#3` 的 `DIV` ⇒ ⭐ "
+          "**4 个按钮、4 下按压、指针一步都不动** ⇒ **不是「指针冻住」，"
+          "是「指针在这段里根本不参与」** ⇒ 与 944b 的 "
+          "`inner_button_not_an_arm_event` **完全同形**",
+          '"not_frozen_but_walking_the_toolbar_952": (' in _ausrc
+          and "**正常走完了节点工具条**" in _ausrc
+          and "`tid=timeline-mute-button` / aria **`静音`**" in _ausrc
+          and "`tid=timeline-passive-source-picker-slot` / aria " in _ausrc
+          and "**4 个按钮、4 下按压、指针一步都不动**" in _ausrc
+          and "**不是「指针冻住」，是「指针在这段里根本不参与」**" in _ausrc
+          and "**完全同形**" in _ausrc
+          # ⭐ 钉探针：`WHOAMI_JS` 是**新件**、且必须**不在** 951 里
+          and 'assert "WHOAMI_JS" not in _p951src' in _p952
+          and "WHOAMI_JS = " in _p952
+          and "与 951 那份**不一致**" in _p952)
+
+    check("NNNN.2 ⭐⭐⭐⭐⭐ **指针只在「从节点本体 `DIV` 出发的那一按」上 +1**："
+          "按 1~4 每按 +1；按 5/6/7（**在工具条的 3 个按钮之间**）指针**恒 `[2]`**；"
+          "按 8（**离开**工具条落到 `DIV`）指针**仍 `[2]`**；"
+          "按 9（从 `DIV` 出发）指针**才 `[2]→[3]`** ⇒ ⇒ "
+          "**「一按滞后」是真的**（2/2），**但 950 当时的因果说错了** —— "
+          "不是「离开的那一按不算」，而是「**指针只认 `DIV` 出发的那一按**」"
+          "⇒ ⭐ 这也**顺带解释了 §131 那条不变式为什么对得上**："
+          "指针每次只 +1、工具条那 4 下**一次都不 +** ⇒ `不带 ti` 恒 1",
+          '"pointer_only_moves_on_div_press_952": (' in _ausrc
+          and "**指针只在「从节点本体 `DIV` 出发的那一按」上 +1**" in _ausrc
+          and "**「一按滞后」是真的**" in _ausrc
+          and "**但 950 当时的因果说错了**" in _ausrc
+          and "**指针只认 `DIV` 出发的那一按**" in _ausrc
+          and "**顺带解释了 §131 那条不变式为什么对得上**" in _ausrc
+          # ⭐ 钉探针：滞后的门**真的在算**（不是只声明）
+          and 'c["lag_is_one_press"] = bool(' in _p952
+          and 'c["left_button_press"] = next(' in _p952)
+
+    check("NNNN.3 ⭐⭐ 判别组（2/2 逐条相同）：**`Shift+Tab` 焦点**立刻**离开工具条**"
+          "（落到 `aria='Canvas'`）而指针**仍不动** ⇒ **反向臂有效、且同样不推指针**；"
+          "紧接着的 `Tab` 指针 **`[2]→[3]`** **动了** ⇒ 再次印证「从 `DIV` 出发"
+          "才推指针」；**`ArrowDown`** 焦点**没动**、指针**没动**；"
+          "**`Escape`** 焦点**没动**、指针**没动** ⇒ ⭐ "
+          "**`Escape` 不能把焦点从工具条里弄出来** —— "
+          "**反向臂比 `Shift+Tab` 差一截**",
+          '"discrimination_952": (' in _ausrc
+          and "**`Shift+Tab`**：焦点**立刻**离开工具条" in _ausrc
+          and "**`ArrowDown`**：焦点**没动**、指针**没动**" in _ausrc
+          and "**`Escape`**：焦点**没动**、指针**没动**" in _ausrc
+          and "**`Escape` 不能把焦点从工具条里弄出来**" in _ausrc
+          and "**反向臂比 `Shift+Tab` 差一截**" in _ausrc
+          # ⭐ 钉探针：判别组**不许**预设方向（三条各判各的）
+          and 'PROBE_STEPS = [("Shift+Tab", 1), ("Tab", 1), ("ArrowDown", 1),'
+              in _p952
+          and '"Escape", 1), ("Tab", 3)]' in _p952
+          and "**都不许**预设方向" in _p952)
+
+    check("NNNN.4 ⭐⭐⭐⭐ **Tab 周期 = 10**（2/2）：节点 `0..8` 各 1 下（指针 "
+          "`0→1→…→8`）= **9 下** + 时间线工具条 1 段（**4 个按钮、4 下、指针不动**）"
+          "= **1 下** ⇒ **9 + 1 = 10**；从节点 `3` 按一下 `Tab` 指针**直接 `[3]→[0]`**"
+          "（**回卷**，不是 +1 到 4）⇒ 周期闭合。⚠️ 而 943/944 记过「Tab 周期 101/104」"
+          "⇒ **差 10 倍** ⇒ 因为**这一版画布只有 1 个节点带工具条** ⇒ ⭐ "
+          "**周期长度 = 节点数 + 带工具条的节点数**、**逐轮会变** ⇒ "
+          "**周期类断言必须关系式**",
+          '"tab_cycle_is_10_here_952": (' in _ausrc
+          and "**Tab 周期 = 10**" in _ausrc
+          and "**9 + 1 = 10**" in _ausrc
+          and "**回卷**，不是 +1 到 4" in _ausrc
+          and "**周期长度 = 节点数 + 带工具条的节点数**" in _ausrc
+          and "**周期类断言必须关系式**" in _ausrc
+          # ⭐ 钉探针：够长的按压数（格 0 = 照 950 的 14 下）
+          and "N_PRESS_BASE = 14" in _p952)
+
+    check("NNNN.5 ⚠️⭐⭐⭐ **`active_before == active_after` 并不代表焦点没动** —— "
+          "这是 950 那个「被 `Tab` 吞了」说法的**来源**，上一批是**读图说话**："
+          "按 5 前 `BUTTON` 后 `BUTTON` ⇒ **真的没动**；"
+          "而按 6/7 前 `BUTTON` 后 `BUTTON`、**但 `aria` 与 `tid` 都变了** ⇒ "
+          "**焦点动了** ⇒ ⭐⭐⭐ **光看 `tag` 读不出焦点有没有动** —— "
+          "这些按钮**不自带 `testid`、要靠 `closest('[data-testid]')` 才借到节点的** ⇒ "
+          "**必须比 `aria-label`（或 `type`）** ⇒ ⭐ "
+          "**「前标签 == 后标签」是个陷阱**：它让 `focus_moved=False` "
+          "**只对 4 次里的 1 次为真**，而我据此写了「吞了 3 下」。"
+          "⇒ 950 那条**原文保留**、**心因模型已标注被改写**（承 HH.4）",
+          '"active_tag_equal_does_not_mean_focus_stayed_952": (' in _ausrc
+          and "`active_before == active_after` 并不代表焦点没动" in _ausrc
+          and "我上一批是**读图说话**" in _ausrc
+          and "**光看 `tag` 读不出焦点有没有动**" in _ausrc
+          and "**必须比 `aria-label`（或 `type`）**" in _ausrc
+          and "**「前标签 == 后标签」是个陷阱**" in _ausrc
+          # ⭐⭐ 钉住 950 那条**被加了改写横幅**、且**现象仍标为成立**
+          and "**「冻住」这个说法已被 952 改写**" in _ausrc
+          and "**现象**（`no_ti` 恒 `[2]`）" in _ausrc
+          and "**被改写的只是「冻住」这个心因模型**" in _ausrc)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
