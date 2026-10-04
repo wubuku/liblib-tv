@@ -350,13 +350,21 @@ def _extract_fn(src, name):
     return src[start + 1:end + 3]
 
 
-def _run_gate_probe(stub_rc):
+def _run_gate_probe(stub_rc, silent=False):
     """**把 `build-site.sh` 的真 `run_gate` 抠出来跑一遍**，问它一道指定退出码的闸会怎样。
 
     **为什么不 grep 判写法**：`out="$(...)"` 后面跟不跟 `|| rc=$?` 是写法，
     而「闸失败时构建到底说不说话」是事实（纪律 171）。
     **行为可判、写法不可判**，所以这里用真函数 + stub 闸真跑一遍。
     返回 `(rc, 输出)`；输出含 ANSI 颜色码，判断时只找中文文案。
+
+    **`silent=True`（Batch 267 新增）：造一个 rc=0 却一句话都不说的闸。**
+    **为什么原来测不到**：stub **总是会 print 两行**，
+    **所以「rc=0 且零输出」这个形态从来没被造出来过**——
+    **而它正是「判据崩了却 rc=0」在构建里的样子**
+    （Batch 266 实测两次：占位符 `NameError`、正则 `re.error`，
+    **两次构建都全绿，因为构建只在 rc≠0 时才说话**）。
+    **`silent` 那一支才是本批的真凶**，另三支是「修的时候别把好的弄坏」。
     """
     with open(os.path.join(ROOT, "build-site.sh"), encoding="utf-8") as fh:
         src = fh.read()
@@ -364,9 +372,16 @@ def _run_gate_probe(stub_rc):
     tmp = tempfile.mkdtemp(prefix="run-gate-probe.")
     try:
         os.makedirs(os.path.join(tmp, "scripts"), exist_ok=True)
+        #: **`silent` 时一个字都不 print**——**而 `main()` 第一行就 `return 0`**，
+        #: **所以语法完全合法、`ast.parse` 通过、`rc=0`**：
+        #: **这道闸在所有「核写法」的判据眼里都是健康的**。
+        body = ("import sys\ndef main():\n    return 0\n"
+                "if __name__ == '__main__':\n    sys.exit(main())\n"
+                if silent else
+                "import sys\nprint('闸的输出：某某与手册对不上')\n"
+                "print('第二行')\nsys.exit(%d)\n" % stub_rc)
         with open(os.path.join(tmp, "scripts", "stub.py"), "w", encoding="utf-8") as fh:
-            fh.write("import sys\nprint('闸的输出：某某与手册对不上')\n"
-                     "print('第二行')\nsys.exit(%d)\n" % stub_rc)
+            fh.write(body)
         probe = ('set -euo pipefail\nTS="00:00:00"\n' + fns + 'run_gate "stub.py" "试闸"\n')
         p = os.path.join(tmp, "probe.sh")
         with open(p, "w", encoding="utf-8") as fh:
@@ -1260,6 +1275,25 @@ def main():
             "方向十三：闸 rc=0 时，构建**没有正常收下它的输出**（rc=%d）——"
             "这一支是**不误伤**：修 run_gate 时最容易把成功路径也弄坏" % rc0)
 
+    # **方向十三之四（Batch 267 新增）：rc=0 却一句话都没说，必须报。**
+    # **背景是 Batch 266 的两次实测**：占位符名写错抛 `NameError`、正则 `$$?` 触发
+    # `re.error: nothing to repeat`——**两次脚本都零输出、rc=0，而构建全绿**。
+    # **为什么前面三支测不到**：`stub` **总是会 print 两行**，
+    # **于是「rc=0 且零输出」这个形态从来没被造出来过**。
+    #: **`silent=True` 的 stub 是合法的**：它 `import sys`、`def main(): return 0`、
+    #: **`sys.exit(main())` 正常退出**——**所有核「写法」的判据都看不出它有病**。
+    #: **而它是最坏的一支**：闸声称「26 份已核」，其实一份都没核。
+    rcs, outs = _try(0, silent=True)
+    if rcs == 0 or "一句话都没说" not in outs:
+        problems.append(
+            "方向十三之四：闸 **rc=0 却一句话都没说**时，构建**判它通过**（rc=%d）——"
+            "　→ `run_gate` 的 rc=0 分支只做 `ok \"$out\"`，**而输出为空时它打印的"
+            "就是一个空的 `[ ok ]` 行**；"
+            "**「判据崩了」与「判据核过了」在构建输出上完全一样**（Batch 266 实测两次，"
+            "两次构建全绿）；"
+            "**它属于 rc=2 而不是 rc=1**：这不是「查出问题」，是「根本没查」"
+            "（Batch 160 立 rc=2 的理由）" % rcs)
+
     # 方向十四（**Batch 205 新增**）：**shell 脚本里不得有会在 UTF-8 locale 下炸掉的变量展开**。
     # 背景是实测事故：三份 shell 反验共 33 处 `$var：`，
     # 在 `LC_CTYPE=C.UTF-8` 下 `set -u` 直接报「`desc?: unbound variable`」——
@@ -1488,8 +1522,10 @@ def main():
     print("  shell 变量展开核对（方向十四）：%d 个 shell 脚本里"
           "**没有「`$var` 紧跟非 ASCII 字符」**（本机 %s）"
           % (len(_shell_files()), "实测会坏" if broke else "实测不复现"))
-    print("  构建出口核对（方向十三）：闸 rc=0/1/2 三种结局**都被真跑了一遍**"
-          "（rc=1 报「不一致」、rc=2 报「未能核对」而不是「不一致」、rc=0 正常收下）")
+    print("  构建出口核对（方向十三）：闸 rc=0/1/2 三种结局 + **rc=0 却零输出**"
+          "**都被真跑了一遍**"
+          "（rc=1 报「不一致」、rc=2 报「未能核对」而不是「不一致」、rc=0 正常收下、"
+          "**rc=0 且一句话都没说 → 判未能核对**（Batch 267））")
     print("  慢反验前提核对（方向五/五之二，**只查前提不查结果**）："
           "`selftest-meta.sh` %d 个夹具锚点、%d 个因目标不在场跳过；"
           "`selftest-unreachable.sh` %d/%d 个用例前提成立、%d 个跳过"
