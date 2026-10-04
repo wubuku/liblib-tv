@@ -169,6 +169,7 @@ screenshots:
     visible_text: 'Cropped Image'
     alt: 点击小地图右上方后主画布视野跳转到 Cropped Image 节点区域
     sha256: dc0b1dc1358c9b31be577514d803fbf04bbf6f030d317ac1b05a8d2946048c0e
+    m224_note: '★ 批中第一次把绿色节点块（实测平均 RGB 44,151,112）误读成视口框，放大 4 倍后才看清**视口框确是白色描边**（右上 L 形白框）——**第 150 次否证**，清单正确'
 
   - file: screenshots/03-create-nodes-all-types.png
     task_id: create-nodes
@@ -206,6 +207,7 @@ screenshots:
     visible_text: '节点信息'
     alt: 节点信息弹窗，显示组节点的 ID、名称、类型、尺寸、位置与状态字段
     sha256: 31a82b7df6e2119c0b7f8d11324cf53479ad916e23d97d852ea6dccf73834a52
+    m224_note: '节点信息弹窗：ID group-1790455580577-odgs7、尺寸 760 x 480 逐字一致；★ 顺带在缩放 47% 上得到一份左侧佐证，与 `02-navigate-canvas-wheel-zoom` 的起点值互相印证，M224 核 1 遍全对'
 
   - file: screenshots/04-edit-nodes-resize.png
     task_id: edit-nodes
@@ -230,6 +232,7 @@ screenshots:
     visible_text: '图片信息'
     alt: 画布外观面板展开，显示输入模式、主题模式、网格样式与图片信息开关
     sha256: 67e46aab3775f6a0184f3090c65047489a3b32fdb1dd1b0e8173a1ec32057af5
+    m224_note: 'M224-R75｜2026-10-04 M224 核 1 遍全对（本图自身描述无误），★ 但**同批在引用它的正文图注上抓到 R75**：`20-reference.md` 那条图注写「输入模式、主题、网格与对齐辅助线」，面板上**没有对齐辅助线**、反而**漏了确实存在的图片信息**。三条独立读数：① 图上只有四组（画布输入模式 / 主题模式 / 网格样式 / 图片信息）；② i18n 全库 `辅助线` **0 次命中**；③ 姊妹条目 `04-organize-canvas-appearance-light.png`（浅色主题下的同一面板）同样只有四组。★ **关键区分：对齐辅助线是真功能**（拖动时出现、阈值 7 屏幕像素，见 `organize-canvas.md:189`），**错的只是把它当成面板里的一项开关**。'
 
   - file: screenshots/04-organize-canvas-group-member.png
     task_id: organize-canvas
@@ -254,6 +257,7 @@ screenshots:
     visible_text: '替换音频'
     alt: 画布上同时存在带原生播放器的视频节点与音频节点，音频节点处于选中态
     sha256: d21fddc62b3fa666048bc27c217a7a2a23258708f325bbc3626c7757d0402d64
+    m224_note: '视频 0:00/0:04、音频 0:00/0:12 逐字一致，M224 核 1 遍全对'
 
   - file: screenshots/05-upload-materials-image.png
     task_id: upload-materials
@@ -266,6 +270,7 @@ screenshots:
     visible_text: '已添加 1 个素材节点'
     alt: 新上传的手机图片节点被选中，顶部悬浮工具条展开全部图片操作
     sha256: a26af7050a5991e0681977b675bd7332130cd6907dfc781902cea2c266b3069f
+    m224_note: '上传成功 toast 逐字一致 + 13 个按钮的工具条，M224 核 1 遍全对'
 
   - file: screenshots/06-image-operations-crop-dialog.png
     task_id: image-operations
@@ -278,6 +283,7 @@ screenshots:
     visible_text: '确认裁剪'
     alt: 裁剪图片对话框，图片上叠加 1:1 裁剪框，底部显示裁剪尺寸与比例预设
     sha256: ca937d1099d887b7e72b2ea076c214d4b94572fac139451783551f7cca94977b
+    m224_note: '裁剪对话框：裁剪尺寸 1556 x 1556、原图 2048 x 2048 逐字一致，M224 核 1 遍全对'
 
   - file: screenshots/06-image-operations-crop-result.png
     task_id: image-operations
@@ -290,6 +296,7 @@ screenshots:
     visible_text: 'Cropped Image'
     alt: 裁剪完成后画布上原图右侧出现 Cropped Image 子节点，两者之间有连线
     sha256: a1fb39345fb0df216e9df039a3f1ad98aa97140fb68f75ed4cd247ce5b010da4
+    m224_note: '裁剪结果：Cropped Image 标题 + 连线 + 参考图面板三者都在，M224 核 1 遍全对'
 
   - file: screenshots/07-connect-references-drop-menu.png
     task_id: connect-references
@@ -330,15 +337,16 @@ screenshots:
 
   - file: screenshots/09-generate-images-panel.png
     task_id: generate-images
-    step: 新建空图片节点的生成面板（文生图模式、参数 1K/2K、模型 Seedream V5 Pro、参考素材区）
+    step: 新建空图片节点的生成面板（文生图模式、参数 1k/2k、模型 Seedream V5 Pro、参考素材区）
     route: '/canvas/:id'
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-27'
-    verified_locator: '面板 文生图 自动识别 / 模式 文生图 输入 仅文本输入 参数 1K/2K / 模型下拉 Seedream V5 Pro / 描述框 描述你想生成或编辑的画面'
+    verified_locator: '面板 文生图 自动识别 / 模式 文生图 输入 仅文本输入 参数 1k/2k / 模型下拉 Seedream V5 Pro / 描述框 描述你想生成或编辑的画面'
     visible_text: '描述你想生成或编辑的画面'
     alt: 空图片节点与下方展开的文生图生成面板，含参考素材区、描述输入框与 Seedream V5 Pro 模型选择
     sha256: 78dfb8ae66bc667616b0d1d794e9b5477a021f13c474a713bebb776353ac0f8f
+    m224_note: '2026-10-04 M224 核 1 遍全对：空图片节点 + 生成面板（文生图 / 自动识别 / 未连接素材、模式 文生图、输入 仅文本输入、参考素材区、描述框、底栏 Seedream V5 Pro）逐字都在。★ 同批在这条的 step 与 verified_locator 里抓到 R73（M224-R73）：参数行原登记成大写的 参数 1K/2K，而界面与源码 `aitudou-aspect-dimensions.ts:14` 都是小写 1k/2k。**是同一份清单里另外两张同题材图写小写、这两张写大写，这个自相矛盾撞出来的**。★ 判据边界：本地「放大」的目标长边档位**确实是大写**（`canvas-node-upscale-dialog.tsx:14`、`services/api/image.ts:120,226`），那是**另一个事实**，M224 一处没动。'
 
 
   - file: screenshots/10-undo-persistence-history-flyout.png
@@ -352,6 +360,7 @@ screenshots:
     visible_text: '撤销'
     alt: 历史 flyout 面板显示撤销重做按钮与画布更改会自动保存提示
     sha256: f62d9b162a75202fd2488238e4f8f61f77fc25879ab7b60ac97610b70a6b1bdd
+    m224_note: '历史浮层，M224 核 1 遍全对'
 
   - file: screenshots/11-shortcuts-help-modal.png
     task_id: shortcuts-help
@@ -364,6 +373,7 @@ screenshots:
     visible_text: '快捷键'
     alt: 快捷键帮助弹窗，逐条列出平移缩放框选全选复制粘贴撤销重做删除与取消的键位
     sha256: 303ad9fc2232ba3cdb938a49f88efd01399b5bc6a1dfe2c9d386c6f7db5408c5
+    m224_note: '快捷键弹窗 13 行键位齐全，M224 核 1 遍全对'
 
   - file: screenshots/13-project-card-hover-actions.png
     task_id: project-management
@@ -573,6 +583,7 @@ screenshots:
     visible_text: '节点信息'
     alt: 节点信息面板，显示节点的 ID、名称、类型、尺寸、位置与状态，右侧有信息与 JSON 两个页签
     sha256: 06b25246fd5c032e253f4177733dc9784f3d84c718b7dadf14acc8deb288bc3b
+    m224_note: '节点信息面板：ID / 名称 / 类型 / 尺寸 520 x 300 / 位置 380, 210 / 状态 idle 逐字一致，M224 核 1 遍全对'
 
   - file: screenshots/04-edit-nodes-text-toolbar.png
     task_id: edit-nodes
@@ -693,6 +704,7 @@ screenshots:
     visible_text: 'Seedream V5 Pro'
     alt: 图片节点的完整生成面板，从上到下依次是模式与参数行、参考素材区、描述输入框，底部操作条显示模型 Seedream V5 Pro、比例自适应 2k、数量 1x 与约 0.519 元的价格
     sha256: d66c080853b23b67c3aac85a9163b4ca1f5f8fd6067db46320cdec3af89978fa
+    m224_note: '自适应比例 / 2k / 1x / 约 ¥ 0.519 逐字一致；缩放 71% 与面板上的 step 读数相符，M224 核 1 遍全对'
 
   - file: screenshots/06-image-operations-toolbar.png
     task_id: image-operations
@@ -804,6 +816,7 @@ screenshots:
     visible_text: '画布元素 4'
     alt: 画布左侧展开的侧边面板，画布标签页顶部是画布元素计数与选择按钮和全部筛选，下方按类型图标列出文本、图片、音频、视频四个节点
     sha256: bd80616b0887bf8aa427cc52ef6cb2e64a3a2267e1708b5042983bd46945ea99
+    m224_note: '2026-10-04 M224 **否证一次**（第 151 次否证）：批中一度把 `verified_locator` 里的 `278x600` 判成错（认为实测应为 278x651）。★ **实测证明清单是对的**：`input` 往上第 2 层是 `div.flex.h-full.flex-col`，x=57 / y=107 / **278x600**，DPR=1 —— 与登记值逐位相同；而且清单自己就写着 `面板容器 class=flex h-full flex-col`，**量的就是这一层**。★ 错的那个读数来自外层 `aside.td-canvas-side-panel`（280x652，y=56）。**教训：「面板」这个词在同一页里有外层壳与内层内容区两个候选，量到哪个直接决定结论对错——必须先按清单里写的 class 定位，再量。**'
 
   - file: screenshots/04-organize-canvas-side-panel-select.png
     task_id: organize-canvas
@@ -828,6 +841,7 @@ screenshots:
     visible_text: '暂无资产'
     alt: 侧边面板的资产标签页，顶部是资产搜索框与添加按钮，下方因没有任何资产而显示暂无资产的空态插图
     sha256: be01e035c7a22793c7e9489d32b31534949ff536de2f91d34655b7c02fa3eb12
+    m224_note: '侧边面板资产标签页，M224 核 1 遍全对'
 
   - file: screenshots/09-generate-images-audio-panel.png
     task_id: generate-images
@@ -840,6 +854,7 @@ screenshots:
     visible_text: '约 ¥ 0.004/秒'
     alt: 音频节点及其下方的音频创作面板，面板写明音频生成模式、输入限制与描述框，底部是模型下拉、wav 格式与每秒约四厘的价格
     sha256: 56b20e61792c227f75abec52c1cdbac4b73976da7adfeeadf94a842e1180bc48
+    m224_note: '★ 批中一度把下拉里被截断的 Doubao seed audi… 判成正文写全称是错，**第 149 次否证**：源码 `aitudou-models.ts:260` 的 id 就是 `doubao-seed-audio-1.0`、`aitudou-pricing.ts:412` 连措辞都是「约 ¥0.004/秒」，正文两张表也写全称，**合规**'
 
   - file: screenshots/09-generate-images-text-panel.png
     task_id: generate-images
@@ -924,6 +939,7 @@ screenshots:
     visible_text: '连接 Agent 后查看 Skill'
     alt: Agent 面板的技能视图，顶部为本地 Skill 标题、重新读取与创建 Skill 按钮、搜索框和全部来源筛选，中间空态写明连接 Agent 后查看 Skill
     sha256: 75e2029273e9a601c1ac58f8e7ebeb5a1d174224d8b617caa18ab6e428f3edab
+    m224_note: '技能面板，M224 核 1 遍全对'
 
   - file: screenshots/16-use-agent-permissions.png
     task_id: use-agent
@@ -1045,18 +1061,20 @@ screenshots:
     visible_text: '主题模式'
     alt: 浅色主题下的画布外观面板，主题模式一栏中浅色按钮呈黑色选中态、深色未选中，下方还有网格样式与图片信息开关
     sha256: 3fb0f40607a13285bad1f35fd1ea10d5a0001f88d98cf383abaec1d9179b47ee
+    m224_note: '浅色主题下的同一外观面板：仍是四组、浅色为黑色选中态，**这条同时是 R75 的第二份独立佐证**，M224 核 1 遍全对'
 
   - file: screenshots/01-create-canvas-project-light-canvas.png
     task_id: create-canvas-project
-    step: 切到浅色主题后新建画布，观察浅色下的画布底色、点阵、节点条与 Dock
+    step: 切到浅色主题后打开 TDCanvas 2，观察浅色下的画布底色、点阵、一个图片节点与 Dock
     route: '/canvas/:id'
     viewport: 1280x900
     locale: zh-CN
-    captured_at: '2026-10-01'
-    verified_locator: '顶栏 TDCanvas 1 / 左侧 Dock 加号与搜索、资产、技能、历史、缩放、上传、画布外观 / 中央 双击画布自由创作 与五个创作芯片 / 左下角 缩放滑杆 100% / html 无 dark 类，body 背景 oklch(1 0 0)'
-    visible_text: '双击画布，自由创作'
-    alt: 浅色主题下的空白画布，浅米色点阵背景、白色左侧 Dock 与底栏，五个创作芯片横排在中央，缩放显示百分之百
-    sha256: ced3f73e618da6ce36aad5b609451c1aaec8e00629cbb2ce28ad1afbeef24766
+    captured_at: '2026-10-04'
+    verified_locator: '顶栏 TDCanvas 2 / 左侧 Dock 加号与搜索、资产、技能、历史、缩放、上传、画布外观 / 中央 一个图片节点，标题栏 m194-pixel.png 参考素材 / 左下角 缩放滑杆 100% / html 无 dark 类，根节点 class 含 tdcanvas-light，body 背景 oklch(1 0 0) / 节点文字色 rgb(41, 37, 36)，节点内层描边 rgb(214, 211, 202)'
+    visible_text: '参考素材'
+    alt: 浅色主题下的画布，浅米色点阵背景，中央一个图片节点（白色标题栏上是深色的 m194-pixel.png 与参考素材），左侧 Dock 与左下角缩放条同为浅色
+    sha256: c3dc38444e315e26d43f435a818e126de966ff6148bd236f6ed69ded80f99d40
+    m224_note: 'M224-R74｜★ 本条是 M224 重拍的（R74）：原图是**空白画布**——五个创作芯片、一个节点也没有，而同文件里这张图自己的 alt 与 verified_locator 都写着「双击画布自由创作 与五个创作芯片」，**与正文 `organize-canvas.md:177` 的图注「白色节点与面板」直接矛盾**。按既定原则「证据与主张对不上时优先重拍而不是改措辞」，M224 重拍了这张图。★ **为什么选 TDCanvas 2**：普查 5 张画布的节点布局，**凡 2 个以上节点的全堆叠重叠**（TDCanvas 3/4/5 各重叠 1 对、TDCanvas 1 重叠 3 对），只有 TDCanvas 2 是单节点、零重叠，**不用改动任何节点数据就能拍出干净构图**。★ **实测支撑的节点侧证据**（原文只有面板侧有图）：节点文字色 `rgb(41, 37, 36)`、节点内层描边 `rgb(214, 211, 202)`，确实是浅底深字配浅描边。拍摄后已核验主题与节点坐标逐字还原（见 SOURCE_OBSERVATIONS F28-F31）。'
 
   - file: screenshots/14-manage-assets-light.png
     task_id: manage-assets
@@ -1142,6 +1160,7 @@ screenshots:
     visible_text: '不参与生成'
     alt: 引用已经插进提示词里，呈现为一个带边框的内联小标签，显示被引用文本的内容开头；但上方参考素材条上的「不参与生成」标签和面板顶部的黄色警告都还在，说明插入了引用并没有让这个素材转为参与生成
     sha256: 78f6f1d1c5956c7fa1b9cd895f823e86be10bb56b14ffdc9462827a28673c31c
+    m224_note: '★ 这条图上参数行确为**小写 1k/2k**，**独立印证 R73 的修正方向是对的**，M224 核 1 遍全对'
 
   - file: screenshots/30-concepts-legacy-config-migrated.png
     task_id: organize-canvas
