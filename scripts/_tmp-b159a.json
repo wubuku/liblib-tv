@@ -1,0 +1,180 @@
+{
+ "批次": "159a",
+ "目的": "考古：批次 110 的拦截 pattern 到底是哪一段 URL",
+ "各轮": [
+  {
+   "轮": "a"
+  },
+  {
+   "轮": "b",
+   "key": "ooHx1IfRMfIKm8GlcVBdIOFE9UxdJqfdDnCfEL",
+   "blockPattern": "*ooHx1IfRMfIKm8GlcVBdIOFE9UxdJqfdDnCfEL*"
+  },
+  {
+   "轮": "c",
+   "realKey": "oERcOtFfdQDiV1DIHmFBfRExqfYiGndCM8df8E",
+   "blockPattern": "*oERcOtFfdQDiV1DIHmFBfRExqfYiGndCM8df8E*"
+  },
+  {
+   "轮": "d",
+   "realKey2": "oERcOtFfdQDiV1DIHmFBfRExqfYiGndCM8df8E"
+  },
+  {
+   "轮": "e",
+   "key": "oERcOtFfdQDiV1DIHmFBfRExqfYiGndCM8df8E"
+  }
+ ],
+ "判读": [
+  {
+   "轮": "a",
+   "key": null,
+   "判定": {
+    "段": "无",
+    "依据": "该轮没有落盘 key"
+   }
+  },
+  {
+   "轮": "b",
+   "key": "ooHx1IfRMfIKm8GlcVBdIOFE9UxdJqfdDnCfEL",
+   "判定": {
+    "段": "**上传存储 key**",
+    "依据": "逐字等于 `20-reference.md` 表格里「上传存储 key」那一行（tos-d-ct-lf.snssdk.com/upload/…）"
+   }
+  },
+  {
+   "轮": "c",
+   "key": "oERcOtFfdQDiV1DIHmFBfRExqfYiGndCM8df8E",
+   "判定": {
+    "段": "**播放取流 key**",
+    "依据": "由 b110c 的正则 `/tos-cn-v-148450\\/([A-Za-z0-9]+)\\//` 从 `<audio>.src` 抽出"
+   }
+  },
+  {
+   "轮": "d",
+   "key": "oERcOtFfdQDiV1DIHmFBfRExqfYiGndCM8df8E",
+   "判定": {
+    "段": "**播放取流 key**",
+    "依据": "由 b110c 的正则 `/tos-cn-v-148450\\/([A-Za-z0-9]+)\\//` 从 `<audio>.src` 抽出"
+   }
+  },
+  {
+   "轮": "e",
+   "key": "oERcOtFfdQDiV1DIHmFBfRExqfYiGndCM8df8E",
+   "判定": {
+    "段": "**播放取流 key**",
+    "依据": "由 b110c 的正则 `/tos-cn-v-148450\\/([A-Za-z0-9]+)\\//` 从 `<audio>.src` 抽出"
+   }
+  }
+ ],
+ "批次158": {
+  "KEY": "9b1cc36e5063d367b58d0863f0884010",
+  "pattern": "*9b1cc36e5063d367b58d0863f0884010*",
+  "结果": "12 帧采样显示音频完整播完 4 秒 ⇒ 拦截没打中"
+ },
+ "批次158落在哪一段": "URL 的**第 1 段**（域名后面紧跟的 32 位 hex）—— 批次 110 的成功配方里**从未出现过这一段**",
+ "源码佐证": [
+  {
+   "文件": "scripts/jimeng-b110b.mjs",
+   "行": 96,
+   "须匹配": {},
+   "说明": "b 轮拼出 pattern `*${KEY}*`，而 KEY 取自 `out.key` = **上传存储 key**"
+  },
+  {
+   "文件": "scripts/jimeng-b110b.mjs",
+   "行": 97,
+   "须匹配": {},
+   "说明": "b 轮真正发出拦截（urls: [pattern]）"
+  },
+  {
+   "文件": "scripts/jimeng-b110c.mjs",
+   "行": 75,
+   "须匹配": {},
+   "说明": "c 轮：从 `<audio>.src` 用正则抽出**播放取流 key**"
+  },
+  {
+   "文件": "scripts/jimeng-b110c.mjs",
+   "行": 84,
+   "须匹配": {},
+   "说明": "c 轮拼出 pattern `*${out.realKey}*` —— **这就是成功配方**"
+  },
+  {
+   "文件": "scripts/jimeng-b110c.mjs",
+   "行": 85,
+   "须匹配": {},
+   "说明": "c 轮真正发出拦截（urls: [blockPattern]）"
+  },
+  {
+   "文件": "scripts/jimeng-b110d.mjs",
+   "行": 116,
+   "须匹配": {},
+   "说明": "d 轮：`realKey2`（同一个播放取流 key）"
+  },
+  {
+   "文件": "scripts/jimeng-b110e.mjs",
+   "行": 84,
+   "须匹配": {},
+   "说明": "e 轮：`*${KEY}*`（同一个播放取流 key）"
+  }
+ ],
+ "源码核对": [
+  {
+   "文件": "scripts/jimeng-b110b.mjs",
+   "行": 96,
+   "含拦截调用": true,
+   "实际": "const pattern = `*${KEY}*`;"
+  },
+  {
+   "文件": "scripts/jimeng-b110b.mjs",
+   "行": 97,
+   "含拦截调用": true,
+   "实际": "await cdp.send('Network.setBlockedURLs', { urls: [pattern] });"
+  },
+  {
+   "文件": "scripts/jimeng-b110c.mjs",
+   "行": 75,
+   "含拦截调用": true,
+   "实际": "const m = realUrl ? realUrl.match(/tos-cn-v-148450\\/([A-Za-z0-9]+)\\//) : null;"
+  },
+  {
+   "文件": "scripts/jimeng-b110c.mjs",
+   "行": 84,
+   "含拦截调用": true,
+   "实际": "out.blockPattern = `*${out.realKey}*`;"
+  },
+  {
+   "文件": "scripts/jimeng-b110c.mjs",
+   "行": 85,
+   "含拦截调用": true,
+   "实际": "await cdp.send('Network.setBlockedURLs', { urls: [out.blockPattern] });"
+  },
+  {
+   "文件": "scripts/jimeng-b110d.mjs",
+   "行": 116,
+   "含拦截调用": true,
+   "实际": "await cdp.send('Network.setBlockedURLs', { urls: [`*${out.realKey2}*`] });"
+  },
+  {
+   "文件": "scripts/jimeng-b110e.mjs",
+   "行": 84,
+   "含拦截调用": true,
+   "实际": "await cdp.send('Network.setBlockedURLs', { urls: [`*${KEY}*`] });"
+  }
+ ],
+ "结论": {
+  "批次110成功拦的段": "`tos-cn-v-148450/` 后面那一段 32 位混合大小写 key（即手册早已记的「播放取流 key」）",
+  "批次110用过的取值": [
+   "oERcOtFfdQDiV1DIHmFBfRExqfYiGndCM8df8E"
+  ],
+  "批次110b拦的段": "**上传存储 key** —— 正是 `20-reference.md` 写着「拿上传日志里的 key 去拦播放会得到假注入」的那一个",
+  "批次158拦的段": "URL 的**第 1 段**（域名后面紧跟的 32 位 hex）—— 批次 110 的成功配方里**从未出现过这一段**",
+  "判定": "批次 158 的负结果**根因已定位**：拦错了段。手册的参考页本来就写明了该用哪一段，是本轮自己挑了没被验过的那一段。"
+ },
+ "源码核对全过": true,
+ "断言": {
+  "源码逐行核对全过": true,
+  "批次110存在播放取流key": true,
+  "批次110b拦的是上传存储key": true,
+  "批次158拦的不是那一段": true
+ },
+ "断言全过": true
+}

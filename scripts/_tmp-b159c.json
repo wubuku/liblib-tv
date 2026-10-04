@@ -1,0 +1,293 @@
+{
+ "批次": "159c",
+ "目的": "不重载页面 + a.load() 强制重取流 → 拦到底生不生效（用 blockedReason 量）",
+ "起点": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "组": 0,
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "已选文件": true,
+ "建后": {
+  "数": 77,
+  "差集": [
+   "node_c8jy29j4ta"
+  ],
+  "SELF": "node_c8jy29j4ta",
+  "选中": 1,
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "就绪秒": 1,
+ "播放钮": {
+  "x": 712,
+  "y": 433,
+  "aria": "Play jimeng-b158-test-440hz-4s"
+ },
+ "抓到的URL": "https://v3-dreamina-de.jianying.com/f60d02a920707c75f7293f2d5ccdd07c/6ac296d2/video/tos/cn/tos-cn-v-148450/oYLvEMi3kvCeKKTCAFBSEiw1B5qgiBzHYoikfZ/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=689&",
+ "两段": {
+  "第1段": "f60d02a920707c75f7293f2d5ccdd07c",
+  "末段": "oYLvEMi3kvCeKKTCAFBSEiw1B5qgiBzHYoikfZ"
+ },
+ "拦截": "*oYLvEMi3kvCeKKTCAFBSEiw1B5qgiBzHYoikfZ*",
+ "拦的是哪一段": "**末段**（`tos-cn-v-148450/` 后面那个 32 位 key），与批次 110 b110c/d/e 逐字同一段",
+ "与110的差别": "**没有重载页面**；改为在页面内 `a.load()` 强制重新取流（`jimeng-b110e.mjs:86-91` 的原配方）",
+ "强制load": {
+  "ok": true,
+  "src": "https://v3-dreamina-de.jianying.com/f60d02a920707c75f7293f2d5ccdd07c/6ac296d2/video/tos/cn/tos-cn-v-148450/oYLvEMi3kvCeKKTCAFBSEiw1B5qgiBzHYoikfZ/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=689&",
+  "readyState": 0,
+  "networkState": 3
+ },
+ "采样": [
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:00 00 : 00 : 00 jimeng-b158-test-440hz-4s: Buffering audio 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:00 00 : 00 : 00 jimeng-b158-test-440hz-4s: Buffering audio 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:01 00 : 00 : 01 jimeng-b158-test-440hz-4s: Buffering audio 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:02 00 : 00 : 02 jimeng-b158-test-440hz-4s: Buffering audio 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:03 00 : 00 : 03 jimeng-b158-test-440hz-4s: Buffering audio 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:03 00 : 00 : 03 jimeng-b158-test-440hz-4s: Buffering audio 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:04 00 : 00 : 04 jimeng-b158-test-440hz-4s: Audio paused 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:04 00 : 00 : 04 jimeng-b158-test-440hz-4s: Audio paused 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:04 00 : 00 : 04 jimeng-b158-test-440hz-4s: Audio paused 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:04 00 : 00 : 04 jimeng-b158-test-440hz-4s: Audio paused 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:04 00 : 00 : 04 jimeng-b158-test-440hz-4s: Audio paused 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:04 00 : 00 : 04 jimeng-b158-test-440hz-4s: Audio paused 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:04 00 : 00 : 04 jimeng-b158-test-440hz-4s: Audio paused 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:04 00 : 00 : 04 jimeng-b158-test-440hz-4s: Audio paused 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:04 00 : 00 : 04 jimeng-b158-test-440hz-4s: Audio paused 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  },
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:04 00 : 00 : 04 jimeng-b158-test-440hz-4s: Audio paused 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "错态盒": null,
+   "错态逐字": null,
+   "错态结构": null,
+   "重试钮": null,
+   "重试盒": null,
+   "有audio": true,
+   "时长testid数": 2
+  }
+ ],
+ "命中快照": [
+  {
+   "k": "req",
+   "url": "https://v3-dreamina-de.jianying.com/f60d02a920707c75f7293f2d5ccdd07c/6ac296d2/video/tos/cn/tos-cn-v-148450/oYLvEMi3kvCeKKTCAFBSEiw1B5qgiBzHYoikfZ/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=689&"
+  },
+  {
+   "k": "failed",
+   "reason": "inspector",
+   "err": null
+  },
+  {
+   "k": "req",
+   "url": "https://v3-dreamina-de.jianying.com/13ba3e5dabe4f0bcd82925e0c5c2afc8/6ac296e0/video/tos/cn/tos-cn-v-148450/oo3hEQ7YMSvFRCiUAQ8MkBDCeWNeeVBOlvYDaC/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=250&"
+  }
+ ],
+ "失败态": {
+  "逐字": "jimeng-b...440hz-4s 00:00:04 00 : 00 : 04 jimeng-b158-test-440hz-4s: Audio paused 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "错态": false,
+  "错态盒": null,
+  "错态逐字": null,
+  "错态结构": null,
+  "重试钮": null,
+  "重试盒": null,
+  "有audio": true,
+  "时长testid数": 2
+ },
+ "拦截事件": [
+  {
+   "k": "req",
+   "url": "https://v3-dreamina-de.jianying.com/f60d02a920707c75f7293f2d5ccdd07c/6ac296d2/video/tos/cn/tos-cn-v-148450/oYLvEMi3kvCeKKTCAFBSEiw1B5qgiBzHYoikfZ/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=689&"
+  },
+  {
+   "k": "failed",
+   "reason": "inspector",
+   "err": null
+  },
+  {
+   "k": "req",
+   "url": "https://v3-dreamina-de.jianying.com/13ba3e5dabe4f0bcd82925e0c5c2afc8/6ac296e0/video/tos/cn/tos-cn-v-148450/oo3hEQ7YMSvFRCiUAQ8MkBDCeWNeeVBOlvYDaC/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=250&"
+  }
+ ],
+ "被拦次数": 1,
+ "拦截已清": true,
+ "删除落点": [
+  740,
+  630
+ ],
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "SELF": "node_c8jy29j4ta",
+ "断言全过": false
+}

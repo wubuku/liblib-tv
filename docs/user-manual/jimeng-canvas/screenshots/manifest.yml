@@ -1743,3 +1743,14 @@ screenshots:
     visible_text: 在新窗口打开 / 复制项目
     alt: 项目行尾「更多」菜单（2026-10-04 批次 157 拍）：从项目面板某一行右侧的「更多」按钮弹出的菜单，只有两项——「在新窗口打开」和「复制项目」，没有删除、也没有重命名，橙色高亮框标出菜单范围
     sha256: 1f04cf454dec88a9a59c6c02c4a0de2902920dd972df4d0048bf48fe02c25f35
+  - file: screenshots/119-audio-playback-error-retry.png
+    task_id: media-playback
+    step: 4
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T01:14:00+08:00
+    verified_locator: '[data-testid="audio-playback-error"]（192×192 @544,264）'
+    visible_text: '音频播放失败 / 重试播放音频 / 1 resource: 1 ready, 0 processing, 0 failed.'
+    alt: '音频节点进入「音频播放失败」态（2026-10-05 批次 159 拍）：卡片中央铺满红色的「音频播放失败」，正下方是「重试播放音频」按钮，左上角文件名与资源账「1 resource: 1 ready, 0 processing, 0 failed.」都还在，时间读数整行消失，橙色高亮框标出报错区域的范围'
+    sha256: 10de287247133d137a44c3cc60ea89a640faa1f5ffa0023b42a288823ba007af

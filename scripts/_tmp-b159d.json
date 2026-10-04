@@ -1,0 +1,246 @@
+{
+ "批次": "159d",
+ "目的": "逐条拦整条 fallback 链 → 逼出「音频播放失败」态 + 拍 119",
+ "起点": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "组": 0,
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "已选文件": true,
+ "建后": {
+  "数": 77,
+  "差集": [
+   "node_fh2g01ypmt"
+  ],
+  "SELF": "node_fh2g01ypmt",
+  "选中": 1,
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "就绪秒": 1,
+ "播放钮": {
+  "x": 712,
+  "y": 433,
+  "aria": "Play jimeng-b158-test-440hz-4s"
+ },
+ "首播URL数": 1,
+ "首播URL": [
+  "https://v26-dreamina-de.jianying.com/0c622bca6d405f8aa1b4bff737b425a8/6ac2975e/video/tos/cn/tos-cn-v-148450/oUmF4ZgIEJDSwCPFoeBCmqEluxSABHKJI8pMfE/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=689"
+ ],
+ "轮次": [
+  {
+   "轮": 1,
+   "已拦数": 0,
+   "新请求": 2,
+   "新key": [
+    "oUmF4ZgIEJDSwCPFoeBCmqEluxSABHKJI8pMfE"
+   ],
+   "forced": true,
+   "已见错态": false
+  },
+  {
+   "轮": 2,
+   "已拦数": 1,
+   "新请求": 3,
+   "新key": [
+    "o4SQUIMCADiwZCEC54F3glYEBSuzDHJfHeBqCo"
+   ],
+   "forced": true,
+   "已见错态": false
+  },
+  {
+   "轮": 3,
+   "已拦数": 2,
+   "新请求": 4,
+   "新key": [],
+   "forced": true,
+   "已见错态": true
+  }
+ ],
+ "已拦key": [
+  "oUmF4ZgIEJDSwCPFoeBCmqEluxSABHKJI8pMfE",
+  "o4SQUIMCADiwZCEC54F3glYEBSuzDHJfHeBqCo"
+ ],
+ "共拦条数": 2,
+ "拦截事件": [
+  {
+   "k": "req",
+   "url": "https://v26-dreamina-de.jianying.com/0c622bca6d405f8aa1b4bff737b425a8/6ac2975e/video/tos/cn/tos-cn-v-148450/oUmF4ZgIEJDSwCPFoeBCmqEluxSABHKJI8pMfE/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=689"
+  },
+  {
+   "k": "req",
+   "url": "https://v26-dreamina-de.jianying.com/0c622bca6d405f8aa1b4bff737b425a8/6ac2975e/video/tos/cn/tos-cn-v-148450/oUmF4ZgIEJDSwCPFoeBCmqEluxSABHKJI8pMfE/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=689"
+  },
+  {
+   "k": "failed",
+   "reason": null,
+   "err": "net::ERR_ABORTED"
+  },
+  {
+   "k": "req",
+   "url": "https://v26-dreamina-de.jianying.com/0c622bca6d405f8aa1b4bff737b425a8/6ac2975e/video/tos/cn/tos-cn-v-148450/oUmF4ZgIEJDSwCPFoeBCmqEluxSABHKJI8pMfE/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=689"
+  },
+  {
+   "k": "failed",
+   "reason": "inspector",
+   "err": null
+  },
+  {
+   "k": "req",
+   "url": "https://v26-dreamina-de.jianying.com/21edb9aeb2e24df03325fd99c3d3aa77/6ac29770/video/tos/cn/tos-cn-v-148450/o4SQUIMCADiwZCEC54F3glYEBSuzDHJfHeBqCo/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=250"
+  },
+  {
+   "k": "req",
+   "url": "https://v26-dreamina-de.jianying.com/21edb9aeb2e24df03325fd99c3d3aa77/6ac29770/video/tos/cn/tos-cn-v-148450/o4SQUIMCADiwZCEC54F3glYEBSuzDHJfHeBqCo/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=250"
+  },
+  {
+   "k": "failed",
+   "reason": "inspector",
+   "err": null
+  },
+  {
+   "k": "req",
+   "url": "https://v26-dreamina-de.jianying.com/9f64bc92bf34500c2426b4785a350fbb/6ac29772/video/tos/cn/tos-cn-v-148450/o4SQUIMCADiwZCEC54F3glYEBSuzDHJfHeBqCo/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=250"
+  },
+  {
+   "k": "failed",
+   "reason": "inspector",
+   "err": null
+  }
+ ],
+ "被拦次数": 3,
+ "采样": [
+  {
+   "逐字": "jimeng-b...440hz-4s 音频播放失败 重试播放音频 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": true,
+   "错态盒": [
+    192,
+    192,
+    544,
+    264
+   ],
+   "错态逐字": "音频播放失败 重试播放音频",
+   "错态结构": [
+    {
+     "tag": "DIV",
+     "role": null,
+     "aria": null,
+     "逐字": "音频播放失败"
+    },
+    {
+     "tag": "DIV",
+     "role": "alert",
+     "aria": null,
+     "逐字": "音频播放失败"
+    },
+    {
+     "tag": "BUTTON",
+     "role": null,
+     "aria": "重试播放音频",
+     "逐字": "重试播放音频"
+    }
+   ],
+   "重试钮": "重试播放音频",
+   "重试盒": [
+    66,
+    19,
+    607,
+    359
+   ],
+   "有audio": false,
+   "时长testid数": 0
+  }
+ ],
+ "失败态": {
+  "逐字": "jimeng-b...440hz-4s 音频播放失败 重试播放音频 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "资源账": "1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "错态": true,
+  "错态盒": [
+   192,
+   192,
+   544,
+   264
+  ],
+  "错态逐字": "音频播放失败 重试播放音频",
+  "错态结构": [
+   {
+    "tag": "DIV",
+    "role": null,
+    "aria": null,
+    "逐字": "音频播放失败"
+   },
+   {
+    "tag": "DIV",
+    "role": "alert",
+    "aria": null,
+    "逐字": "音频播放失败"
+   },
+   {
+    "tag": "BUTTON",
+    "role": null,
+    "aria": "重试播放音频",
+    "逐字": "重试播放音频"
+   }
+  ],
+  "重试钮": "重试播放音频",
+  "重试盒": [
+   66,
+   19,
+   607,
+   359
+  ],
+  "有audio": false,
+  "时长testid数": 0
+ },
+ "图": "screenshots/119-audio-playback-error-retry.png",
+ "已解除": true,
+ "恢复采样": [
+  {
+   "逐字": "jimeng-b...440hz-4s 00:00:00 00 : 00 : 00 jimeng-b158-test-440hz-4s: Playing audio 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+   "错态": false,
+   "有audio": true,
+   "readyState": 4,
+   "duration": 4.032,
+   "paused": false,
+   "currentTime": 0.02,
+   "播钮": "Pause jimeng-b158-test-440hz-4s"
+  }
+ ],
+ "恢复态": {
+  "逐字": "jimeng-b...440hz-4s 00:00:00 00 : 00 : 00 jimeng-b158-test-440hz-4s: Playing audio 1 resource: 1 ready, 0 processing, 0 failed. Selected.",
+  "错态": false,
+  "有audio": true,
+  "readyState": 4,
+  "duration": 4.032,
+  "paused": false,
+  "currentTime": 0.02,
+  "播钮": "Pause jimeng-b158-test-440hz-4s"
+ },
+ "恢复期事件": [
+  {
+   "k": "req",
+   "url": "https://v26-dreamina-de.jianying.com/9f64bc92bf34500c2426b4785a350fbb/6ac29772/video/tos/cn/tos-cn-v-148450/o4SQUIMCADiwZCEC54F3glYEBSuzDHJfHeBqCo/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=250"
+  },
+  {
+   "k": "req",
+   "url": "https://v3-dreamina-de.jianying.com/0c98eb39c562f9cb9d7d7ed92f71cacd/6ac29776/video/tos/cn/tos-cn-v-148450/o4SQUIMCADiwZCEC54F3glYEBSuzDHJfHeBqCo/?a=513695&ch=0&cr=0&dr=0&er=2&cd=0%7C0%7C0%7C0&br=250&"
+  }
+ ],
+ "拦截已清": true,
+ "删除落点": [
+  740,
+  630
+ ],
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "SELF": "node_fh2g01ypmt",
+ "断言全过": true
+}
