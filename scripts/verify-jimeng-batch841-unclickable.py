@@ -5682,6 +5682,8 @@ def main() -> int:
     _p958 = p958.read_text(encoding="utf-8") if p958.exists() else ""
     p959 = ROOT / "scripts/jimeng_probe959_domorder_src.py"
     _p959 = p959.read_text(encoding="utf-8") if p959.exists() else ""
+    p960 = ROOT / "scripts/jimeng_probe960_taborder_src.py"
+    _p960 = p960.read_text(encoding="utf-8") if p960.exists() else ""
     c958 = (ROOT / "src/components/jimeng/JimengToolRail.tsx"
             ).read_text(encoding="utf-8")
 
@@ -7184,6 +7186,93 @@ def main() -> int:
           and "c[\"n_lead_cap_hit\"] = True" in _p959
           and '"n_lead_cap_hit": c["n_lead_cap_hit"]' not in _p959
           and "**「一圈」这个说法不成立**" in _ausrc)
+
+    # ══ 批 960：⭐⭐⭐⭐ 959 留下的两个可能性**逐个被否掉** + 矛盾**原样记账** ══
+    print("— VVVV. 批 960 否掉 shadow root 与「keydown 改 ti」两条，矛盾不圆 —")
+
+    check("VVVV.1 ⭐⭐⭐⭐ **「shadow root」被否掉** ⇒ **959 的 `dom_index` 口径成立**、"
+          "**读数不需要重做**",
+          '"shadow_root_refuted_960": (' in _ausrc
+          and "**959 留下的可能性之一「shadow root」被否掉了**（2/2）" in _ausrc
+          and "**在 shadow root 里的 = 0**" in _ausrc
+          and "**root 种类只有 `['#document']`**" in _ausrc
+          and "**若元素在 shadow root 里，那个下标口径就不成立**" in _ausrc
+          and "**959 的 DOM 读数不需要重做**" in _ausrc
+          and "**「959 用对了口径」**" in _ausrc
+          # ⭐ 钉探针：`ROOT_JS` **真的**取 root，且**纯读**
+          and "root_kind: isShadow ? 'ShadowRoot'" in _p960
+          and "const r = a.getRootNode();" in _p960
+          and 'c["all_out_in_document"] = bool(_outs) and all(' in _p960
+          and 'r["cells"][0].get("all_out_in_document") is True' in _p960
+          # ⚠️ 钉探针：守卫常量**自己匹配得上东西**（946 的教训）
+          and 'assert ROOT_JS.count("getRootNode()") == 1 and "ShadowRoot" in ROOT_JS' in _p960
+          and "`ROOT_JS` 自己就匹配不上它要验的东西" in _p960
+          and "这道门恒绿，等于没有门" in _p960)
+
+    check("VVVV.2 ⭐⭐⭐⭐ **「keydown 里改 `tabindex`」也被否掉**，"
+          "且把 959 的否掉**补强成更彻底**的否掉",
+          '"ti_rewrite_refuted_960": (' in _ausrc
+          and "也被否掉了**（2/2）" in _ausrc
+          and "**离开时 `tabindex` 变过的 = 0**" in _ausrc
+          and "按**前**记住那一枚元素的**引用**" in _ausrc
+          and "**同一个引用**（不是当前焦点）的 `tabindex`" in _ausrc
+          and "**离开时 `tabindex` 变过的 = 0**" in _ausrc
+          and "**这把 959 的那个否掉**补强成**更彻底**的否掉" in _ausrc
+          and "与 957 那条**并存不矛盾**" in _ausrc
+          and "**既无常驻 roving、也未被逐次改写**" in _ausrc
+          # ⭐ 钉探针：存的是**引用**（不是 ti 值）—— 这正是第一版栽的地方
+          and "window.__preEl = a || null;" in _p960
+          and "const e = window.__preEl;" in _p960
+          and '"same_el_still_connected": _same.get("still")' in _p960
+          and '"no_ti_changed_by_tab": bool(all(' in _p960
+          and 'r["cells"][0].get("n_ti_changed") == 0' in _p960)
+
+    check("VVVV.3 ⚠️⚠️⚠️⭐⭐ **机制仍未查明，且三条事实凑成矛盾** —— "
+          "**原样记账，不许圆**；「A、C 都对而 B 也对」本身就是线索",
+          '"unresolved_contradiction_960": (' in _ausrc
+          and "**机制仍然未查明，而且三条事实凑成了一组矛盾**" in _ausrc
+          and "**原样记账，不许圆**" in _ausrc
+          and "**A + C 蕴含「浏览器应当按 DOM 序走」，而与 B 矛盾**" in _ausrc
+          and "**C 已经过时**" in _ausrc
+          and "**B 的 `dom_index` 口径还有本批没发现的问题**" in _ausrc
+          and "**不许**编一个机制把它圆上" in _ausrc
+          and "**「A、C 都对而 B 也对」这件事本身就是待查的线索**" in _ausrc
+          and "**下一批的第一件事就是查 C 是否过时**" in _ausrc)
+
+    check("VVVV.4 ⚠️⚠️⚠️⭐⭐ **第一版判据是错的，被自己抓住**：把**两个不同元素**的 "
+          "ti 当成**同一元素**的前后变化；**改法不是放宽判据，是改「盯谁」**",
+          '"first_version_criterion_was_wrong_960": (' in _ausrc
+          and "**第一版的判据是错的，被自己抓住**（在**落交付物之前**）" in _ausrc
+          and "**两个不同元素**的 ti" in _ausrc
+          and "不说明任何元素被改过" in _ausrc
+          and "**是无意义的数字**" in _ausrc
+          and "**改法不是放宽判据，是改「盯谁」**" in _ausrc
+          and "**一个错的判据比没有判据更坏**（942）" in _ausrc
+          and "它没被锚点自查抓到、也没被 `py_compile` 抓到" in _ausrc
+          and "**极容易写出来、极难自己看出来**的错" in _ausrc
+          # ⭐ 钉探针：第一版那段**原文保留**（承 HH.4：撤销留痕）
+          and "⚠️⚠️⚠️⭐⭐ **第一版的判据是错的，被自己抓住**：" in _p960
+          and "那是**两个不同元素**的 ti" in _p960
+          and 'window.__preEl = null; }"""' in _p960)
+
+    check("VVVV.5 ⚠️⚠️⚠️ **操作事故：960 把 `OUT` 照抄成 959 的路径，"
+          "把 959 的读数覆盖了** ⇒ **`cp` 做基底时那三样必须逐个核**",
+          '"out_path_overwrote_959_960": (' in _ausrc
+          and "**操作事故：960 第一版把 `OUT` 照抄成了 959 的路径**" in _ausrc
+          and "**960 跑完把 959 的读数文件覆盖了**" in _ausrc
+          and "**忘了改模块级的 `OUT =" in _ausrc
+          and "**两个各自独立的字段**" in _ausrc
+          and "**改一个不改另一个不会报错**" in _ausrc
+          and "已把 `OUT` 改成 `/tmp/b960-taborder.json` 并**重跑**" in _ausrc
+          and "**结论没有丢**" in _ausrc
+          and "**它们不在任何一道现有门里**" in _ausrc
+          # ⚠️ 钉「锚点自查第三次放水」这条（957/958 各记过一次）
+          and "**第三次**栽在同一个地方" in _ausrc
+          and "**「锚点自查 0 问题」既不等于判据会过、也不等于锚点写对了**" in _ausrc
+          # ⭐ 钉探针：`OUT` 真的改成了**自己的**路径（不是 959 的）
+          and 'OUT = "/tmp/b960-taborder.json"' in _p960
+          and 'out["out"] = "/tmp/b960-taborder.json"' in _p960
+          and '"/tmp/b959-domorder.json"' not in _p960)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
