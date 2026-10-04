@@ -5680,6 +5680,8 @@ def main() -> int:
     _p957 = p957.read_text(encoding="utf-8") if p957.exists() else ""
     p958 = ROOT / "scripts/jimeng_probe958_rail_roving_ck.py"
     _p958 = p958.read_text(encoding="utf-8") if p958.exists() else ""
+    p959 = ROOT / "scripts/jimeng_probe959_domorder_src.py"
+    _p959 = p959.read_text(encoding="utf-8") if p959.exists() else ""
     c958 = (ROOT / "src/components/jimeng/JimengToolRail.tsx"
             ).read_text(encoding="utf-8")
 
@@ -7112,6 +7114,76 @@ def main() -> int:
           and "**这正是 958 前三版的坑**" in _p958
           and 'assert RAIL_JS.count("[tid, nodeSel]") == 1, (' in _p958
           and "**这正是它的用处**" in _p958)
+
+    # ══ 批 959：⭐⭐⭐⭐⭐ 「Tab 序 == DOM 序」**是假的** ⇒ 推翻 958 自己的猜想 ══
+    print("— UUUU. 批 959 源站 Tab 序 vs DOM 序：Tab 序不是 DOM 序 —")
+
+    check("UUUU.1 ⭐⭐⭐⭐⭐ **「`Tab` 顺序 == DOM 顺序」在源站是假的**（2/2）—— "
+          "**本批推翻了自己 958 结尾写下的那个猜想**",
+          '"tab_order_is_not_dom_order_959": (' in _ausrc
+          and "**本批推翻了我自己 958 结尾写下的那个猜想**" in _ausrc
+          and "**dom#2263、2357、2367、2377、2387、2396**" in _ausrc
+          and "**dom#60…177**" in _ausrc
+          and "**Tab 序把 DOM 靠后的 2263–2396 排在前面**" in _ausrc
+          and "**源站 DOM 序本来就是「顶栏在前、画布控件在后」**" in _ausrc
+          and "**真差异不是 DOM 序，" in _ausrc
+          and '`dom_index_monotonic = False`（2/2）' in _ausrc
+          # ⭐ 钉探针：`DOMIDX_JS` **逐字来自 957 的仪器链 + 纯读**
+          and "新件 `DOMIDX_JS`（**纯读、不是仪器**）" in _ausrc
+          and "dom_index: all.indexOf(a)," in _p959
+          and 'assert "DOMIDX_JS" not in _p955src' in _p959
+          and "**绕开 `press_row`**" in _p959)
+
+    check("UUUU.2 ⭐⭐⭐⭐ **out 段被切成两段**：第 2 段**就是** DOM 序（严格单调）"
+          "⇒ **只有第 1 段被提前了**",
+          '"rail_order_split_959": (' in _ausrc
+          and "**out 段被切成两段，源站把「画布控件」整体提前**" in _ausrc
+          and "第 1 段（6 个）" in _ausrc
+          and "第 2 段（12 个）" in _ausrc
+          and "**第 2 段就是 DOM 序**（60→68→85→90→94→118→122→131" in _ausrc
+          and "**严格单调**" in _ausrc
+          and "**只有第 1 段被提前了**" in _ausrc
+          and "**可复现的**结构事实（2/2 逐条相同）" in _ausrc
+          and "**但机制未查明**" in _ausrc
+          # ⭐ 钉探针：单调判据**真的在算**（不是写死的 False）
+          and "c[\"dom_index_monotonic\"] = bool(_di) and all(" in _p959
+          and '_di[i] <= _di[i + 1] for i in range(len(_di) - 1))' in _p959
+          and '"dom_index_monotonic": bool(all(' in _p959)
+
+    check("UUUU.3 ⚠️⚠️⚠️ **机制未验死，而最顺手那个解释已被读数否掉** —— "
+          "**「未查明」与「否掉了」是两件不同的事**",
+          '"mechanism_unknown_959": (' in _ausrc
+          and "**机制未验死，标「未验证」" in _ausrc
+          and "**这个解释被 959 的读数否掉了**" in _ausrc
+          and "**它们不是靠正 `tabindex` 排到前面的**" in _ausrc
+          and "别的什么）本批一条都没测到**" in _ausrc
+          and "那是**已被否掉的猜想**，不是「待查的猜想」" in _ausrc
+          and "「未查明」与「否掉了」是**两件不同的事**" in _ausrc
+          # ⭐ 钉探针：**真的读了** `tabindex`（否掉那个解释靠的就是它）
+          and "tabindex: a.hasAttribute('tabindex')" in _p959
+          and '? a.getAttribute(\'tabindex\') : null,' in _p959
+          # ⭐ 钉**文档**：958 结尾那句猜想**原文保留**、只加改写横幅（承 HH.4）
+          and "**方向就错了**" in _ausrc)
+
+    check("UUUU.4 ⚠️⚠️⭐ **DOM 绝对下标逐轮整体偏移 2** ⇒ **只能比相对大小关系**；"
+          "且**源站环长逐轮在变**（≈57 vs 954 的 102）",
+          '"dom_index_not_stable_959": (' in _ausrc
+          and "**DOM 绝对下标逐轮整体偏移 2**" in _ausrc
+          and "rep1 画布控件首枚 `dom#2263`、rep2 `dom#2265`" in _ausrc
+          and "**`Tab` 序（`seq` + `data-testid` 序列）两轮逐条相同**" in _ausrc
+          and "**DOM 绝对下标只能比「相对大小关系」**" in _ausrc
+          and "**绝不能**写成「`dom_index == 2263`」这种绝对断言" in _ausrc
+          and "这次**在 DOM 层面**、不是节点层面" in _ausrc
+          and '"budget_caveat_959": (' in _ausrc
+          and "**本批只量到「完整的 out 段」，不是完整一圈**" in _ausrc
+          and "**源站这一轮的环长 ≈ 57**" in _ausrc
+          and "**现在在源站侧也证实了**）⇒ 任何「源站环长 = N」的断言都不许写" in _ausrc
+          and "任何「源站环长 = N」的断言都不许写" in _ausrc
+          # ⭐ 钉探针：**触顶如实记**（不许假装走满一圈）
+          and "N_LEAD_CAP = 140" in _p959
+          and "c[\"n_lead_cap_hit\"] = True" in _p959
+          and '"n_lead_cap_hit": c["n_lead_cap_hit"]' not in _p959
+          and "**「一圈」这个说法不成立**" in _ausrc)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
