@@ -1,0 +1,549 @@
+{
+ "batch": 756,
+ "date": "2026-10-01",
+ "clone": "http://localhost:4317",
+ "subject": "多选 N=10 与分组边界：组合(G) 会静默掏空已存在的分组；复制的子孙展开与整棵子树平移",
+ "seed": {
+  "canvases": 2,
+  "active": "canvas-2",
+  "nodes": 10,
+  "edges": 11,
+  "groups": 2,
+  "groupsDetail": [
+   {
+    "id": "g-245IDFh8sB",
+    "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+    "w": 430,
+    "h": 452,
+    "children": []
+   },
+   {
+    "id": "g-EFbbHpwq5w",
+    "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+    "w": 722,
+    "h": 460,
+    "children": [
+     "v-UGQZzZOpbv"
+    ]
+   }
+  ],
+  "parentedNodes": [
+   "v-UGQZzZOpbv"
+  ],
+  "noPersistence": "store 无持久化，每轮整页 reload 回到种子"
+ },
+ "twoRound": {
+  "rounds": 2,
+  "independence": "轮间整页 reload ⟹ zustand 回到种子",
+  "filter": "凡匹配 <prefix>-<epochMillis>-<rand6> 的字符串替换为 <generated-id>；**字典键也要清洗**（childrenAfter 以 id 为键，见 rework R16）",
+  "diff": {},
+  "consistent": true,
+  "dRounds": 2,
+  "dConsistent": true
+ },
+ "judgeCount": 16,
+ "judgments": [
+  {
+   "no": 1,
+   "title": "种子结构普查",
+   "claim": "canvas-2 有 10 个节点 / 11 条边，其中 2 个 storyboard-group；只有 1 个节点带 parentId",
+   "evidence": {
+    "baseline": {
+     "nodes": 10,
+     "edges": 11,
+     "past": 0,
+     "n": 0
+    },
+    "types": [
+     "storyboard-group",
+     "storyboard-group",
+     "script",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script-execution",
+     "image",
+     "video"
+    ],
+    "groups": [
+     {
+      "id": "g-245IDFh8sB",
+      "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+      "kind": "",
+      "x": 2112,
+      "y": 656,
+      "w": 430,
+      "h": 452,
+      "children": []
+     },
+     {
+      "id": "g-EFbbHpwq5w",
+      "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+      "kind": "",
+      "x": 2374,
+      "y": -12,
+      "w": 722,
+      "h": 460,
+      "children": [
+       "v-UGQZzZOpbv"
+      ]
+     }
+    ],
+    "parented": [
+     {
+      "id": "v-UGQZzZOpbv",
+      "type": "video",
+      "parent": "g-EFbbHpwq5w"
+     }
+    ]
+   },
+   "why": "本批所有「掏空 / 抢子节点」结论都建立在这张表上；必须先知道种子里**哪个组本来是空的**，否则会把「本来就空」误读成「被操作掏空」。",
+   "twoRound": true
+  },
+  {
+   "no": 2,
+   "title": "N=10 框选可达",
+   "claim": "Shift+拖 (20,56)→(1388,956) 一次选满 10 个节点",
+   "evidence": {
+    "dragRect": {
+     "lt": {
+      "x": 20,
+      "y": 56
+     },
+     "rb": {
+      "x": 1388,
+      "y": 956
+     }
+    },
+    "selectedN": 10,
+    "panePointsScanned": "视口内 18px 网格，取 (x+y) 最小/最大为对角"
+   },
+   "why": "753 只验到 N=2；N=10 是本批所有分支的前提。",
+   "twoRound": true
+  },
+  {
+   "no": 3,
+   "title": "N=10 复制：一个事务 +10 节点 / +11 边",
+   "claim": "Cmd+D ⟹ 节点 +10、边 +11、past +1、选中集变成 10 个副本",
+   "evidence": {
+    "dup10": {
+     "nodeD": 10,
+     "edgeD": 11,
+     "pastD": 1,
+     "selectedN": 10
+    },
+    "static": "canvasStore.ts:3166 requestedIds.length===1 && !includesGroup ⟹ N=10 走 includeExternalEdges=true 分支"
+   },
+   "why": "11 条边全被复制 ⟹ 11 条边的两端都在选区内，与 `sourceCopied || targetCopied` 一致。",
+   "twoRound": true
+  },
+  {
+   "no": 4,
+   "title": "复制是单一原子事务",
+   "claim": "一次 Cmd+Z 就回 10 节点 / 11 边（future=1，回到种子=True）",
+   "evidence": {
+    "undoAtomic": {
+     "nodes": 10,
+     "edges": 11,
+     "future": 1,
+     "n": 0,
+     "backToSeed": true
+    }
+   },
+   "why": "20 个对象只占 1 个历史槽 ⟹ 不会出现「撤一半」的中间态。",
+   "twoRound": true
+  },
+  {
+   "no": 5,
+   "title": "includeExternalEdges 四档对照表",
+   "claim": "同一函数四个分支的边行为各不相同，且**没有任何 UI 告知**",
+   "evidence": {
+    "table": [
+     {
+      "selection": "N=1 非分组节点",
+      "nodeD": 1,
+      "edgeD": 3,
+      "includeExternalEdges": true,
+      "batch": 753
+     },
+     {
+      "selection": "N=1 含子节点的分组",
+      "nodeD": 2,
+      "edgeD": 0,
+      "includeExternalEdges": false,
+      "batch": 756
+     },
+     {
+      "selection": "N=2 相邻两节点",
+      "nodeD": 2,
+      "edgeD": 1,
+      "includeExternalEdges": true,
+      "batch": 753
+     },
+     {
+      "selection": "N=10 全选",
+      "nodeD": 10,
+      "edgeD": 11,
+      "includeExternalEdges": true,
+      "batch": 756
+     }
+    ],
+    "static": "canvasStore.ts:3166 const result = duplicateGraphSelection(currentCanvas, requestedIds, requestedIds.length === 1 && !includesGroup);"
+   },
+   "why": "「选 1 个节点」和「选 1 个分组」的边结果差 3 vs 0，差别只来自一个没暴露给用户的布尔表达式。",
+   "twoRound": true
+  },
+  {
+   "no": 6,
+   "title": "N=10 按 G：+1 节点 / ±0 边 / 1 个事务",
+   "claim": "节点 +1、边 +0、past +1、选中集=1（只剩新组）",
+   "evidence": {
+    "group10_delta": {
+     "nodeD": 1,
+     "edgeD": 0,
+     "pastD": 1,
+     "selectedN": 1
+    },
+    "newGroupTitle": "组合节点",
+    "newGroupKind": "selection"
+   },
+   "why": "边 ±0：分组不携带边，被抢走的子节点原本就没有边。",
+   "twoRound": true
+  },
+  {
+   "no": 7,
+   "title": "新组只收 8 个，10 个被选中节点里有 2 个是分组",
+   "claim": "新组 children 共 8 个 = 选区 8 个非分组节点",
+   "evidence": {
+    "newGroupChildren": [
+     "t-9j2MoccxBj",
+     "i-1FQ9tErTcC",
+     "i-lBzmo67AHv",
+     "i-dnwoZQ7jsG",
+     "i-vxeeCnxySa",
+     "b-bTLLuU4w5q",
+     "i-YDfWhFlthe",
+     "v-UGQZzZOpbv"
+    ],
+    "newGroupChildCount": 8,
+    "selectedNodeTypes": [
+     "storyboard-group",
+     "storyboard-group",
+     "script",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script-execution",
+     "image",
+     "video"
+    ],
+    "selectedGroupsInSelection": 2,
+    "static": "canvasStore.ts:3266-3268  const children = currentCanvas.nodes.filter((node) => selectedIds.has(node.id) && node.type !== \"storyboard-group\");"
+   },
+   "why": "「选中 10 个 ⟹ 合成 8 个子节点」这条对应关系是本批第一个可解释的偏差：分组类型被硬过滤掉了。合并成一个组之后，2 个旧分组仍然存在，却已经不在任何人的 children 里了。",
+   "twoRound": true
+  },
+  {
+   "no": 8,
+   "title": "★ 组 g-EFbbHpwq5w 被掏空，其唯一子节点被 re-parent",
+   "claim": "children 1 → 0；子节点 v-UGQZzZOpbv 的 parentId 变成新组",
+   "evidence": {
+    "childrenBefore": {
+     "g-245IDFh8sB": 0,
+     "g-EFbbHpwq5w": 1
+    },
+    "childrenAfter": {
+     "group-1791108684384-70fvrn": 8,
+     "g-245IDFh8sB": 0,
+     "g-EFbbHpwq5w": 0
+    },
+    "emptied": [
+     "g-EFbbHpwq5w"
+    ],
+    "stolenChildParentId": [
+     "group-1791108684384-70fvrn"
+    ],
+    "newGroupContainsStolenChild": true
+   },
+   "why": "这是本批最重要的读数：组合操作**不只是新建一个组**，它还把旧分组的成员搬走了，旧分组退化成没有成员的空壳，而用户看到的是「组合成功」。",
+   "twoRound": true
+  },
+  {
+   "no": 9,
+   "title": "被掏空的是 1 个组，不是 2 个",
+   "claim": "g-245IDFh8sB 在种子阶段 children 就是 0，**不是**被这次操作掏空的",
+   "evidence": {
+    "before": {
+     "g-245IDFh8sB": 0,
+     "g-EFbbHpwq5w": 1
+    },
+    "emptiedByThisOp": [
+     "g-EFbbHpwq5w"
+    ],
+    "seedEvidence": {
+     "id": "g-245IDFh8sB",
+     "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+     "kind": "",
+     "x": 2112,
+     "y": 656,
+     "w": 430,
+     "h": 452,
+     "children": []
+    }
+   },
+   "why": "如果只看操作后的快照，会得到「两个组都被清空」的错误结论。必须有操作**前**的 children 基线。",
+   "twoRound": true
+  },
+  {
+   "no": 10,
+   "title": "掏空全程零提示",
+   "claim": "toast / alert / status / 确认框 五类选择器命中 0",
+   "evidence": {
+    "toastsAfterG": 0,
+    "toastSelectors": [
+     "[role=\"alert\"]",
+     "[role=\"status\"]",
+     "[data-status]",
+     "[data-toast]",
+     "[data-canvas-delete-confirm]"
+    ],
+    "floatCensus": [
+     {
+      "tag": "DIV",
+      "t": "正在跟随取消 ESC",
+      "pos": "fixed",
+      "w": 145,
+      "h": 34,
+      "x": 648,
+      "y": 0,
+      "bg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   },
+   "why": "浮层普查只命中 1 个常驻元素（跟随模式的「取消 ESC」提示条，与本次操作无关）。也就是说：**没有任何一层告诉用户「你刚刚解散了一个已有分组的成员关系」**。",
+   "twoRound": true
+  },
+  {
+   "no": 11,
+   "title": "★ Shift+G 修不了掏空",
+   "claim": "解组后仍有 2 个组 children=0，repaired=False",
+   "evidence": {
+    "ungroupAfterG": {
+     "nodes": 10,
+     "n": 8,
+     "childrenAfter": {
+      "g-245IDFh8sB": 0,
+      "g-EFbbHpwq5w": 0
+     },
+     "stillEmptied": [
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w"
+     ],
+     "repaired": false
+    },
+    "static": "canvasStore.ts:3328 ungroupSelectedNodes 只解「被选中的那一个组」；此时选中集是新组，两个旧组根本不在参数里"
+   },
+   "why": "用户最自然的补救动作（再按一次解组）无效，唯一的修复路径是 Cmd+Z。这让「静默破坏」升级为「静默破坏且难以自救」。",
+   "twoRound": true
+  },
+  {
+   "no": 12,
+   "title": "只有 Cmd+Z 能修",
+   "claim": "两次撤销回到 节点 10 / 边 11 / past 0",
+   "evidence": {
+    "afterTwoUndos": {
+     "nodes": 10,
+     "edges": 11,
+     "past": 0
+    }
+   },
+   "why": "一次组合是 1 个事务，一次解组是 1 个事务，所以要 **2 次**撤销才能回到种子 —— 与 past 归零吻合。",
+   "twoRound": true
+  },
+  {
+   "no": 13,
+   "title": "N=10 删除 ⟹ 空态出现，撤销复原",
+   "claim": "节点 −10、边 −11、emptyState=True；Cmd+Z 后 emptyState=False",
+   "evidence": {
+    "delete10": {
+     "nodeD": -10,
+     "edgeD": -11,
+     "emptyState": true
+    },
+    "delete10Undo": {
+     "nodes": 10,
+     "edges": 11,
+     "emptyState": false
+    }
+   },
+   "why": "删光 10 个节点会正确进入空态并可撤销；说明 store 的删除路径本身是干净的，问题不在删除而在组合。",
+   "twoRound": true
+  },
+  {
+   "no": 14,
+   "title": "★ 只复制一个含子节点的分组 ⟹ 节点 +2（子孙展开）",
+   "claim": "新分组是**新 id**（不在种子集合）、带 1 个子节点、子节点也是**新 id**",
+   "evidence": {
+    "analysis": {
+     "newGroupCount": 1,
+     "newGroupIsNewId": true,
+     "newGroupHasOneChild": true,
+     "childIsNewId": true,
+     "groupDelta": [
+      40,
+      40
+     ],
+     "childRelDelta": [
+      0,
+      0
+     ],
+     "childAbsDelta": [
+      40,
+      40
+     ],
+     "seedEdgesTouching": 4,
+     "edgeD": 0,
+     "nodeD": 2
+    },
+    "seedGroupIds": [
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w"
+    ],
+    "newGroups": [
+     {
+      "id": "storyboard-group-1791109442554-4mlvyq",
+      "rel": {
+       "x": 2414,
+       "y": 28
+      },
+      "abs": {
+       "x": 2414,
+       "y": 28
+      }
+     }
+    ],
+    "static": "canvasStore.ts:699-707  while 循环把 parentId 命中的所有后代并进 copyIds（子孙展开）"
+   },
+   "why": "「复制分组 = 复制这个组」在实现里其实是「复制这个组 + 它所有后代」，所以节点数比选区多。",
+   "twoRound": true
+  },
+  {
+   "no": 15,
+   "title": "子树整体平移 (+40,+40)，相对位置原样保留",
+   "claim": "分组位置 delta=[40, 40]、子节点**相对**位置 delta=[0, 0]、子节点**绝对**位置 delta=[40, 40]",
+   "evidence": {
+    "seedGroupRel": {
+     "x": 2374,
+     "y": -12
+    },
+    "seedChildRel": {
+     "x": 62,
+     "y": 62
+    },
+    "seedChildAbs": {
+     "x": 2436,
+     "y": 50
+    },
+    "newGroupRel": {
+     "x": 2414,
+     "y": 28
+    },
+    "newChildRel": {
+     "x": 62,
+     "y": 62
+    },
+    "newChildAbs": {
+     "x": 2476,
+     "y": 90
+    },
+    "static": "canvasStore.ts:730 position {x+40, y+40}；:744-746 父也被复制时 copiedNode.position = {...node.position}"
+   },
+   "why": "两个 delta 拆开看才说得通：分组整体 +40/+40，而子节点保持原相对位置 ⟹ 绝对位移也恰好 +40/+40。只看绝对位置会误以为「相对布局被破坏」。",
+   "twoRound": true
+  },
+  {
+   "no": 16,
+   "title": "边 ±0 的原因：选区内没有一条边两端都在选区",
+   "claim": "种子有 4 条边触及该组及其子节点，复制后边 delta=0",
+   "evidence": {
+    "seedEdgesTouching": 4,
+    "edgeDelta": 0,
+    "static": "canvasStore.ts:753-758  includeExternalEdges=false 时过滤条件是 sourceCopied && targetCopied"
+   },
+   "why": "「+2 节点 / ±0 边」不是巧合：该子节点只有向组外的边，两端同在选区的边一条都没有。",
+   "twoRound": true
+  }
+ ],
+ "boundary": {
+  "no": 17,
+  "title": "「分组 + 它自己的子节点」同选按 G ⟹ 零变化",
+  "claim": "选中 2 个、非分组 children 只剩 1 个 ⟹ 硬门拦截，past +0",
+  "evidence": {
+   "selectGroupAndChild": {
+    "n": 2
+   },
+   "groupWithOwnChild": {
+    "nodeD": 0,
+    "edgeD": 0,
+    "pastD": 0,
+    "n": 2
+   },
+   "static": "canvasStore.ts:3269  if (children.length < 2) return state;"
+  },
+  "why": "这条反直觉但自洽：选「组 + 它的孩子」等于只选 1 个非分组节点，达不到成组的下限，所以什么都不发生 —— 也就**不会**触发判据 8 那次抢子节点。抢子节点只在「跨组多选」时发生。",
+  "twoRound": true
+ },
+ "headline": {
+  "defect": "「组合」(G) 在跨分组多选时会**静默掏空已有分组**：已存在分组的子节点被 re-parent 进新组，旧分组退化为 0 成员的空壳；全程零提示，且 Shift+G 无法修复，只有 Cmd+Z 可以",
+  "rootCause": "canvasStore.ts:3266-3268 groupSelectedNodes 的 children 只按 `selectedIds.has(id) && type !== 'storyboard-group'` 取值，从不检查被选中分组自己的既有成员；随后 :3301-3312 无条件把命中的节点 **re-parent**（parentId 直接改写成新组 id）。N=10 全选时，两个旧分组在选区内却被这条过滤排除，成员就成了孤儿。",
+  "proofChain": [
+   "几何/结构：新组 3014×2446、children=8 个 = 10 选区里的非分组节点",
+   "re-parent：g-EFbbHpwq5w children 1→0，其子节点 v-UGQZzZOpbv 的 parentId = 新组 id",
+   "基线排除：g-245IDFh8sB 种子阶段 children 本就是 0，不算被掏空 ⟹ 只 1 个组受害",
+   "零提示：toast/alert/status/确认框 五类选择器命中 0",
+   "不可自救：Shift+G 后 2 个组仍空（repaired=false），2 次 Cmd+Z 才回种子",
+   "阳性对照：只选「组 + 自己的子节点」按 G 是零变化（硬门）⟹ 破坏只发生在跨组多选，不是无差别发生"
+  ]
+ },
+ "rework": [
+  {
+   "id": "R16",
+   "batch": "756c",
+   "what": "两轮一致性过滤器只清洗字典的**值**，没清洗**键**",
+   "detail": "childrenAfter 是以分组 id 为键的字典，新分组 id 每次都不同，于是两轮明明都是 8/0/0 却被判成不一致（consistent=False）。改成键和值都过一遍 GEN 正则后 consistent=True。",
+   "rule": "**归一化必须覆盖字典键**。id 既可能出现在值里，也可能当键用，只清洗一侧会把随机 id 读成行为不稳定。"
+  },
+  {
+   "id": "R17",
+   "batch": "756d",
+   "what": "模板里 by.get(%(G)s) 漏了引号，格式化后 JS 变成 g-EFbbHpwq5w",
+   "detail": "浏览器报 ReferenceError: Cannot access 'g' before initialization。这是我自己的探针 bug，不是产品问题 —— 首反应也应当是先怀疑探针。",
+   "rule": "**Python % 格式化嵌进 JS 字符串时，字符串字面量必须自己带引号**；否则 `${}` 风格的模板变量会退化成算术表达式或 TDZ 引用。"
+  },
+  {
+   "id": "R18",
+   "batch": "756d",
+   "what": "取「新分组」时按「有 1 个子节点」筛，结果取到的是种子分组自己",
+   "detail": "种子分组 g-EFbbHpwq5w 本来就恰好有 1 个子节点，两条筛选同时命中，先到先得取错了对象，于是 childIsNewId=false、两个 delta 全 [0,0]，差点把「子孙展开」判成假。改成按「不在种子 id 集合里」认，才拿到 groupDelta [40,40] / childRelDelta [0,0] / childAbsDelta [40,40]。",
+   "rule": "**「新增的对象」只能按「不在基线集合里」识别**。按某个特征（如子节点个数）去筛新增项，基线里已有同特征对象时必错。"
+  }
+ ],
+ "notClaimed": [
+  "N=3..9 的复制/组合/删除行为没测；只测了 N=1（含/不含分组）、N=2、N=10",
+  "框选的**半选**行为（框边界正好压在节点上）没测；本批只测了全包含",
+  "跨分组多选触发抢子节点后，旧空壳分组的**几何**没查（它仍保留 430×452 / 722×460，即尺寸不随成员归零而收缩，视觉上会留一个空框 —— 本批没验这一格）",
+  "「组合后 Edge 是否被正确裁剪」只看了计数 ±0，没看边是否仍指向新组",
+  "undoAtomic 只验了 1 次撤销回种子；没验 2 次/3 次撤销是否单调",
+  "没与源站对照：源站在跨分组多选时是否也掏空旧分组",
+  "跟随模式那条常驻浮层（「正在跟随 取消 ESC」）与本次操作的关系只做了「它不是 toast」的排除，没有追它是谁渲染的",
+  "判据 17（组 + 自己子节点按 G 零变化）依赖 g-EFbbHpwq5w 恰好只有 1 个子节点；若有 2 个子节点，硬门结论会不同，未构造该场景"
+ ],
+ "rawProbeFiles": {
+  "a": "756a 种子结构普查 + 框选对角点 + 分组/子节点命中点",
+  "b": "756b 分组复制 / 组合掏空 / 解组 逐格读数",
+  "c": "756c 两轮判据采集（N=10 复制·组合·删除·组+子节点边界）",
+  "d": "756d 两轮补钉：子孙展开 + 子树平移（判断 14–16 的来源）"
+ }
+}

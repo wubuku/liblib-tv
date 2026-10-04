@@ -1,0 +1,289 @@
+{
+ "batch": 756,
+ "checks": [
+  {
+   "label": "静态：groupSelectedNodes 的 children 过滤排除 storyboard-group",
+   "pass": true,
+   "got": {
+    "groupChildrenFilterExcludesGroups": true,
+    "groupChildrenFilterScopedToGroupAction": true,
+    "reparentsChildrenUnconditionally": true,
+    "newGroupPrepended": true,
+    "groupKindSelection": true,
+    "groupPadding32": true,
+    "groupHardGateChildren2": true,
+    "ungroupActsOnlyOnGivenIds": true,
+    "ungroupClearsSelectionToChildIds": true,
+    "nBranchPredicate": true,
+    "includesGroupComputed": true,
+    "descendantExpansionLoop": true,
+    "descendantExpansionIterates": true,
+    "copyOffset40": true,
+    "childKeepsRelativePositionWhenParentCopied": true,
+    "orphanLosesParentId": true,
+    "edgeFilterBothOrEither": true,
+    "dupPushesOneHistory": true
+   }
+  },
+  {
+   "label": "静态：该过滤确实落在 groupSelectedNodes 实现体里（不是 ungroup 的同名行）",
+   "pass": true,
+   "got": "children=...filter 在 3266 与 3341 各出现一次"
+  },
+  {
+   "label": "静态：子节点被无条件 re-parent 到新组（absolutePositions 命中即改 parentId）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：新组前置插入且 groupKind=selection、GROUP_PADDING=32",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：硬门 children.length < 2 存在（判据 17 的零变化根因）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：ungroupSelectedNodes 只作用于传入/选中的 nodeIds（Shift+G 修不了的根因）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：N 分支判定式 = requestedIds.length === 1 && !includesGroup",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：duplicateGraphSelection 有 while 循环做子孙展开",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：复制偏移 +40 且父也被复制时保留相对位置（子树整体平移的根因）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：边过滤是 includeExternalEdges ? (source||target) : (source&&target)",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 17 条（16 judgments + 1 boundary）",
+   "pass": true,
+   "got": 16
+  },
+  {
+   "label": "产物：判据编号连续 1..17 且无重复",
+   "pass": true,
+   "got": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+   ]
+  },
+  {
+   "label": "产物：两轮一致性 diff 为空（c 与 d 各两轮）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "产物：两轮独立性有交代（整页 reload + 种子说明）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：过滤器声明覆盖了字典键（R16 的修正落进产物）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 8 记下了 before/after 两侧的 children 基线",
+   "pass": true,
+   "got": {
+    "g-245IDFh8sB": 0,
+    "g-EFbbHpwq5w": 1
+   }
+  },
+  {
+   "label": "产物：判据 8 记下了子节点 parentId 变成新组",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 9 用种子基线把「本来就空」的组排除在受害名单外",
+   "pass": true,
+   "got": [
+    "g-EFbbHpwq5w"
+   ]
+  },
+  {
+   "label": "产物：判据 10 记下五类提示选择器与命中数 0",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 11 记下 Shift+G 的 repaired=false",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 12 记下需要 2 次撤销回种子",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 5 的四档对照表四行齐、且标了出处批次",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 7 的新组 children 数 = 选区非分组节点数",
+   "pass": true,
+   "got": 2
+  },
+  {
+   "label": "产物：判据 15 三个 delta 自洽（分组/子节点绝对位移相等，相对位移为 0）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：缺陷陈述含「静默掏空」「零提示」「Shift+G 修不了」三要素",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：证据链 6 条且每条都带具体读数",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：返工 3 条 R16/R17/R18 齐全且各自带 rule",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：不声称清单 ≥ 6 条",
+   "pass": true,
+   "got": 8
+  },
+  {
+   "label": "产物：不声称里明确写了「没有与源站对照」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：rawProbeFiles 四个探针都有说明",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数叶子级交叉核对 16 项（/tmp/vb756c.json + vb756d.json）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始读数：c 两轮按生成 id 形态过滤后 diff 为空",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始读数：d 两轮 analysis 完全相同",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：种子里只有 1 个节点带 parentId",
+   "pass": true,
+   "got": [
+    "v-UGQZzZOpbv"
+   ]
+  },
+  {
+   "label": "原始读数：基线两轮相同且 10 节点 / 11 边",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：新组 children=8 且含被抢走的子节点",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：子树平移 delta = 分组(40,40) / 相对(0,0) / 绝对(40,40)",
+   "pass": true,
+   "got": [
+    [
+     40,
+     40
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     40,
+     40
+    ]
+   ]
+  },
+  {
+   "label": "原始读数：复制含子节点分组时边 delta=0 而触及边有 4 条",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：N=10 复制 +10 节点 +11 边 且一次撤销回种子",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：N=10 删除后进入空态且撤销复原",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：阳性对照格 past delta=0（跨组多选才会破坏）",
+   "pass": true,
+   "got": null
+  }
+ ],
+ "passed": 41,
+ "total": 41,
+ "static": {
+  "groupChildrenFilterExcludesGroups": true,
+  "groupChildrenFilterScopedToGroupAction": true,
+  "reparentsChildrenUnconditionally": true,
+  "newGroupPrepended": true,
+  "groupKindSelection": true,
+  "groupPadding32": true,
+  "groupHardGateChildren2": true,
+  "ungroupActsOnlyOnGivenIds": true,
+  "ungroupClearsSelectionToChildIds": true,
+  "nBranchPredicate": true,
+  "includesGroupComputed": true,
+  "descendantExpansionLoop": true,
+  "descendantExpansionIterates": true,
+  "copyOffset40": true,
+  "childKeepsRelativePositionWhenParentCopied": true,
+  "orphanLosesParentId": true,
+  "edgeFilterBothOrEither": true,
+  "dupPushesOneHistory": true
+ }
+}
