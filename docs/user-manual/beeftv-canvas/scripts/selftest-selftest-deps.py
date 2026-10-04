@@ -681,6 +681,107 @@ def m_open_write_with_deps_not_reported():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+def _sh_fixture(tmp, body):
+    """造一份 `.sh` 反验夹具，`body` 是它除 shebang 外的全部内容。
+
+    **Batch 266**：`scripts/` 下有 4 份 `.sh` 反验，而闸 17 那个
+    `selftests` 列表**只收 `.py`**——**所以它们从来没被核过**。
+    **判据新增「方向三」：每份 `.sh` 必须落在 S1/S2/S3 之一**，
+    **而哪一种都不属于就是「注入直接打在真树上」，必须报。**
+    """
+    shutil.copytree(os.path.join(ROOT, "scripts"), os.path.join(tmp, "scripts"))
+    shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-selftest-deps.py"))
+    write(os.path.join(tmp, "scripts", "selftest-probe.sh"),
+          "#!/usr/bin/env bash\n" + body)
+    return tmp
+
+
+def _run_gate(tmp):
+    r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
+                       cwd=tmp, capture_output=True, text=True)
+    return r.returncode, (r.stdout or "") + (r.stderr or "")
+
+
+#: **`$` 在夹具文本里到处都要用**，而它不能直接写进 shell 单引号串的拼接里
+#: ——所以同一个模块级常量，两侧各留一份（Batch 266 实测：这个占位符漏了一处，
+#: **而漏的那一处只在真树之外的副本里才暴露，闸自己察觉不到**）。
+DOLLAR = chr(36)
+
+#: **三份合规夹具各一具**——**形态是实测出来的，不是设计出来的**（纪律 265：
+#: **判据要照着「现场已经有什么」定，照着理想形态定会把它判红**）。
+#: **本批判据的前两版就是这么错的：都只认一种，于是四份全红。**
+SH_FORMS = {
+    "S1 搬闸": 'HERE="' + DOLLAR + '(cd "' + DOLLAR + '(dirname "' + DOLLAR + '{BASH_SOURCE[0]}")" && pwd)\n'
+               'WORK="$(mktemp -d)"\n'
+               'cp "' + DOLLAR + 'HERE/verify-tables.py" "' + DOLLAR + 'WORK/scripts/"\n'
+               'mkdir -p "' + DOLLAR + 'WORK/scripts"\n'
+               'cp "' + DOLLAR + 'HERE/tablerow.py" "' + DOLLAR + 'WORK/scripts/"\n'
+               'python3 "' + DOLLAR + 'WORK/scripts/verify-tables.py" "' + DOLLAR + 'WORK"\n',
+    "S2 搬数据": 'HERE="' + DOLLAR + '(cd "' + DOLLAR + '(dirname "' + DOLLAR + '{BASH_SOURCE[0]}")" && pwd)\n'
+                 'ROOT="$(dirname "' + DOLLAR + 'HERE")"\n'
+                 'WORK="$(mktemp -d)"\n'
+                 'GATE="' + DOLLAR + 'HERE/verify-tables.py"\n'
+                 'cp "' + DOLLAR + 'ROOT/20-reference.md" "' + DOLLAR + 'WORK/"\n'
+                 'python3 "' + DOLLAR + 'GATE" "' + DOLLAR + 'WORK"\n',
+    "S3 快照回滚": 'HERE="' + DOLLAR + '(cd "' + DOLLAR + '(dirname "' + DOLLAR + '{BASH_SOURCE[0]}")" && pwd)\n'
+                   'SNAP="$(mktemp -d)"\n'
+                   'cp "' + DOLLAR + 'HERE/verify-tables.py" "$SNAP/"\n'
+                   'git hash-object -w /dev/null >/dev/null\n'
+                   'python3 "' + DOLLAR + 'SNAP/verify-tables.py"\n',
+}
+
+
+def _sh_form_case(label, expect_in_output):
+    """不误伤那一侧：这份 `.sh` 合规 → 闸必须 rc=0，**且必须说出它属于哪一种形态**。
+
+    **第一版断言写成「`方向三` 不在输出里」——而那条是错的**：
+    **判据成功时正是要把形态打进「视野外」那一段的**，
+    **所以这条断言恒假，三个用例全红**（实测 rc=0、闸根本没报）。
+    **正确的不误伤是三件事同时成立**：rc=0、**没有 `✗ 方向三`**、**且认出了形态**——
+    **第三条最要紧**：一个「什么都没核」的闸同样会 rc=0，
+    **而它 rc=0 的原因与「核过了且合规」在输出上完全一样**（纪律 300 推论一）。
+    """
+    def run():
+        check_anchor()
+        tmp = tempfile.mkdtemp(prefix="beef-deps-sh-")
+        try:
+            _sh_fixture(tmp, SH_FORMS[label])
+            rc, out = _run_gate(tmp)
+            ok = (rc == 0 and "✗ 方向三" not in out
+                  and "selftest-probe.sh" in out and "视野外" in out)
+            record(f"19-21 `.sh` 落在「{label}」→ 不得报，且必须认出这个形态",
+                   ok, f"rc={rc}")
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+    return run
+
+
+def m_sh_no_form_reported():
+    """**必须成对的能抓那一侧**：一种形态都不属于 → 必须报。
+
+    **它复刻的是真缺陷的形状**：一份 `.sh` 反验**既不搬闸、也不搬数据、也不造合成输入**，
+    **那么它的每一次注入都直接改真树上的手册**——
+    **而闸会红、红的是别人的手册，反验自己不留痕。**
+    **这比不写反验更糟**，因为「有个反验在看着这个闸」这句话仍然是成立的。
+    """
+    check_anchor()
+    tmp = tempfile.mkdtemp(prefix="beef-deps-sh-bad.")
+    try:
+        _sh_fixture(tmp,
+                    'HERE="' + DOLLAR + '(cd "' + DOLLAR + '(dirname "' + DOLLAR + '{BASH_SOURCE[0]}")" && pwd)\n'
+                    'ROOT="$(dirname "' + DOLLAR + 'HERE")"\n'
+                    'python3 -c "'
+                    + DOLLAR + 'f=open(\"' + DOLLAR + 'ROOT/PROGRESS.md\",\"a\");'
+                      'f.write(\"x\");f.close()"\n')
+        rc, out = _run_gate(tmp)
+        ok = (rc == 1 and "✗ 方向三" in out and "selftest-probe.sh" in out
+              and "真树" in out)
+        record("22 `.sh` 三种形态都不属于 → 必报（注入直接打在真树上）",
+               ok, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main():
     tests = [m_clean, m_missing_baseline_copy, m_gate_imports_missing_module,
              m_no_false_positive, m_rename_pattern_breaks,
@@ -690,7 +791,9 @@ def main():
              m_transport_count_is_reported,
              m_missing_env_reported, m_text_only_staging_not_reported,
              m_partial_pins_reported, m_all_pinned_not_reported,
-             m_open_write_missing_dep_reported, m_open_write_with_deps_not_reported]
+             m_open_write_missing_dep_reported, m_open_write_with_deps_not_reported,
+             _sh_form_case("S1 搬闸", False), _sh_form_case("S2 搬数据", False),
+             _sh_form_case("S3 快照回滚", False), m_sh_no_form_reported]
     for t in tests:
         try:
             t()

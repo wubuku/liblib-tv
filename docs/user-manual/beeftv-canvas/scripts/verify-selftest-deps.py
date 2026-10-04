@@ -550,6 +550,98 @@ def env_not_pointed_back(selftests):
     return problems, ok_n
 
 
+#: **`$` 不能直接写进正则 raw string 的拼接位**——写进去就不是字符串了，
+#: **而它不在拼接位、只写在字符串里又是合法的**（docstring 里那两处就是）
+#: （Batch 266 实测：三种写法各踩一次，最后走模块级常量）。
+DOLLAR = chr(36)
+
+
+def sh_gate_form(text):
+    """这份 `.sh` 反验属于**哪一种形态**，认不出来返回 `""`（空 = 不合法）。
+
+    **Batch 266 新增，实测前后改了两次。** 第一版只认「搬数据文件」一种，
+    **结果四份 `.sh` 全红**——**而实测它们明明都合规**：
+    **`cp "$ROOT/20-reference.md"` 在 `selftest-tables.sh` 里写得清清楚楚**
+    （纪律：判据报红先问「哪一侧错了」，而这一侧就是我）。
+    **所以先把形态量全，再写判据**——**四份 `.sh` 分三类，不是一类**：
+
+    **S1 搬闸**：把闸本身与依赖 `cp` 进临时 `scripts/`，跑临时树里那份。
+    实测 `selftest-link-labels.sh`：
+    `cp "$HERE/verify-link-labels.py" "$WORK/scripts/"` +
+    `cp "$HERE/headingkey.py" "$WORK/scripts/"`——**它搬的是「被跑的代码」**。
+
+    **S2 搬数据**：闸**不搬**，按**真树绝对路径**跑（`GATE="$HERE/verify-tables.py"`），
+    临时树只提供被改的 `.md`（闸的 `root` 取 `sys.argv[1]`）。
+    实测 `selftest-tables.sh`：`mkdir -p "$WORK/scripts"` 建了目录，
+    **却一个 `scripts/` 里的东西都没搬**，而闸照跑不误——
+    **因为闸的 `sys.path` 指向真树那份 `scripts/`，`from tablerow import …` 找得到。**
+    **它搬的是「被核对的数据」。**
+
+    **S3 造合成输入**：**完全不碰真树**——
+    要么在 `git` 对象层造（`selftest-unreachable.sh` 用 `hash-object` / `commit-tree`
+    造临时 ref，**头里明写「不改工作树、不动任何现有分支」**），
+    要么做快照回滚（`selftest-meta.sh` 的 `cp "$f" "$SNAP/$f"` + 退出时还原）。
+    **它们改的是「输入的来源」，不是工作树**。
+
+    **三种形态互斥吗？不。** 一份反验可以既搬闸又搬数据；
+    **判据只问「它的注入打在哪里」，而那三种落点都是安全的**。
+
+    **返回空串 = 哪种都不属于**：**那它的每一次注入都直接打在真树上**——
+    **闸会红，红的是别人的手册，而反验自己不留痕**。
+    **那比不写反验更糟**，因为「有一个反验在看着这个闸」这句话仍然是成立的。
+    """
+    # **路径一律写成 `$VAR`（shell 里 `$VAR` 后面跟 `/` 不会歧义）——
+    # 判据要认的正是这个写法，而 `[\n]*` 之后接 `$` 在正则里是合法的**。
+    # 第一版写成 `$$?` 而 `?` 量的是前一个 `$`——**于是正则变成「nothing to repeat」**，
+    # **而 `re.error` 是运行时才抛的，AST 解析照样通过**（纪律 224 的又一次）。
+    q = re.escape(DOLLAR)         # 正则里的字面 $
+
+    # S1：把闸本身 cp 进临时树（`cp "$HERE/verify-x.py" "$WORK/scripts/"`）
+    if re.search(r'\bcp\s+"?' + q + r'HERE/verify-[a-z0-9-]+\.py[^\n]*' + q + r'WORK', text):
+        return "S1 搬闸（闸与依赖都 cp 进临时 scripts/，跑临时树里那份）"
+
+    # S2：闸按真树绝对路径跑 + 把被核对的手册文件搬进临时树
+    # **三支不是互斥的 elif**——**第一版写成互斥的，结果
+    # `selftest-meta.sh` 命中了 `GATE="$HERE/…"` 就 `return ""`，**
+    # **而它其实还写着 `cp "$f" "$SNAP/$f"` 的快照回滚**。
+    # **一份反验完全可能同时具备两种落点，而「任一落点安全」就够**（下面 S3 那支）。
+    gate_abs = re.search(r'GATE="?' + q + r'HERE/verify-[a-z0-9-]+\.py', text)
+    if gate_abs and re.search(r'\bcp\s+[^\n]*' + q + r'ROOT/', text):
+        return ("S2 搬数据（闸按真树绝对路径跑、临时树只提供被改的 .md；"
+                "闸的 sys.path 指向真树 scripts/，它的本地依赖照样找得到）")
+
+    # S3：不碰工作树，注入打在 git 对象层或快照回滚上
+    if re.search(r'\b(hash-object|commit-tree|mktree|update-index)\b', text):
+        return "S3 造合成输入（git plumbing 造临时 ref，不改工作树）"
+    if re.search(r'\bcp\s+[^\n]*' + q + r'SNAP', text):
+        return "S3 快照回滚（先备份被注入的文件，退出时还原）"
+    return ""
+
+
+def sh_reports_form(problems, shell_tests):
+    """把 `.sh` 反验的形态逐条核一遍，并把结论带出去。"""
+    forms = {}
+    for fn in shell_tests:
+        try:
+            with open(os.path.join(SCRIPTS, fn), encoding="utf-8") as fh:
+                text = fh.read()
+        except OSError as exc:
+            problems.append(f"方向三：`{fn}` **读不到**（{exc}）——"
+                            f"**本闸已整份跳过它，于是它既没被核、也没被说**")
+            continue
+        form = sh_gate_form(text)
+        if not form:
+            problems.append(
+                f"方向三：`{fn}` **既不搬闸、也不搬被核对的数据、也不造合成输入**——"
+                "**那么它的每一次注入都直接打在真树上**，"
+                "**闸会红、红的是别人的手册，而反验自己不留痕**"
+                "　→ 这比不写反验更糟："
+                "**「有一个反验在看着这个闸」这句话仍然是成立的**")
+            continue
+        forms[fn] = form
+    return forms
+
+
 def main():
     if not os.path.isdir(SCRIPTS):
         print(f"[skip] 找不到 {SCRIPTS}，跳过反验依赖核对")
@@ -557,6 +649,20 @@ def main():
 
     selftests = sorted(f for f in os.listdir(SCRIPTS)
                        if f.startswith("selftest-") and f.endswith(".py"))
+    #: **Batch 266 新增：`scripts/` 下不止 `.py`，还有 `.sh`。**
+    #: **而本闸从头到尾只扫 `.py`**——**所以 `.sh` 反验是本闸的视野外**，
+    #: **而它们一个都不是「不搬闸的反验」**（Batch 262 实测过那种）：
+    #: **`selftest-tables.sh` 明写「只复制被改的三个文件 + 目录骨架，够闸门跑即可」**，
+    #: 它 `mkdir -p "$WORK/scripts"` 建了目录、**却一个 `scripts/` 里的东西都没搬**，
+    #: **而闸仍然能跑**——因为闸是**按绝对路径**跑的（`GATE="$HERE/verify-tables.py"`），
+    #: `sys.path` 指向**真树那份 scripts/**，所以 `from tablerow import …` 找得到。
+    #: **这是第二种形态，与「搬闸进临时树」互斥但同样成立。**
+    #: **为什么必须把它报出来**：**Batch 265 修的正是「判据少认一支」**，
+    #: **而这里连「有几种形态」都没被量过**——**本闸报出的「26 份」听上去像全部，
+    #: 实际 `scripts/` 下有 29 份 `selftest-*`**，
+    #: **而差的那 3 份既没被核、也没被说**（纪律 300 推论一）。
+    shell_tests = sorted(f for f in os.listdir(SCRIPTS)
+                         if f.startswith("selftest-") and f.endswith(".sh"))
     problems = []
     checked = 0
     #: **Batch 254 新增：把「还有几份靠人记搬运清单」变成可数的事。**
@@ -653,9 +759,14 @@ def main():
                     "　→ 临时目录里 import 失败，**该反验的每一例都会失败**，"
                     "**而 build-site.sh 仍然全绿**（Batch 178 实测：34 例跨 3 个批次全坏）")
 
+
+
     if checked == 0:
         print("[skip] 没有反验把闸门复制进临时目录——判据可能已失效，请先确认")
         return 2
+
+    # ── 方向三（Batch 266）：本闸的视野外有什么，必须说出来 ──────────
+    sh_forms = sh_reports_form(problems, shell_tests)
 
     # ── 方向一之二（Batch 260）：真跑了闸，就得告诉它手册根在哪 ──────
     env_problems, env_ok = env_not_pointed_back(selftests)
@@ -678,6 +789,29 @@ def main():
           % (staged_n, checked - staged_n))
     print("  手册根指回：%d 份反验真跑会用 `baseline`/`scope` 的闸，"
           "**都已给子进程设 `%s`**（方向一之二）" % (env_ok, ROOT_ENV))
+    if shell_tests:
+        #: **鉴别力实测出来的**：摘掉 `sh_reports_form` 的调用之后，
+        #: 这个分支**照样会印出「视野外：另有 4 份」这个标题，只是下面一行形态都没有**——
+        #: **而「有标题、没内容」正是纪律 300 推论四那个形状**：
+        #: **一个什么都没核的闸，看起来和核过了的闸一模一样。**
+        #: **所以两个数必须一起印，缺一个就当成没核过**：
+        if len(sh_forms) != len(shell_tests):
+            missing = sorted(set(shell_tests) - set(sh_forms))
+            print("  **视野外：另有 %d 份 `.sh` 反验，其中 %d 份认出了形态、"
+                  "%d 份没认出来**（`selftests` 只收 `.py`）：%s"
+                  % (len(shell_tests), len(sh_forms),
+                     len(shell_tests) - len(sh_forms), "、".join(missing)))
+        else:
+            print("  **视野外：另有 %d 份 `.sh` 反验不被上面两个方向核**"
+                  "（`selftests` 只收 `.py`）——"
+                  "**「没被核」与「核过且合规」在输出上完全一样**，"
+                  "**所以下面必须逐条列出形态，而不能只报一个份数**：" % len(shell_tests))
+        for fn in sorted(sh_forms):
+            print("    · %s → %s" % (fn, sh_forms[fn]))
+        print("    **S1 搬的是「被跑的代码」、S2 搬的是「被核对的数据」、"
+              "S3 造的是「合成的输入」——三者互不替代，"
+              "而共同点是：注入没有一处直接打在真树上**。"
+              "**这一族在方向一之前从未被量过**（方向三）")
     return 0
 
 
