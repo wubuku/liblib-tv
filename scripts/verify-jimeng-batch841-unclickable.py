@@ -5735,6 +5735,10 @@ def main() -> int:
     #   ⇒ 「两侧真的是同一件仪器」由一条 `assert` 钉住，而不是文档保证
     p974 = ROOT / "scripts/jimeng_probe974_source_domrank_src.py"
     _p974 = p974.read_text(encoding="utf-8") if p974.exists() else ""
+    # ⭐ 975：源站探针，读**整条祖先链**的 `tabindex`（H₁ 判据）
+    #   ⚠️ 判据组 `IIIII.1` 要钉的是**否定结果**（H₁ 被否）
+    p975 = ROOT / "scripts/jimeng_probe975_scope_src.py"
+    _p975 = p975.read_text(encoding="utf-8") if p975.exists() else ""
     # ⭐ 970 的 CCCC.2 要**反证 816 那条决策真的在仓库里**（钉源码原文，
     #   不钉我自己写的转述）
     p816 = ROOT / "scripts/verify-jimeng-batch816-anchors.py"
@@ -8589,6 +8593,116 @@ def main() -> int:
           and '"source_ring_follows_dom_order_both_reps"' in _p974
           and '"source_dom_rank_is_live_both_reps"' in _p974
           and '"source_seam_pred_measured_both_reps"' in _p974)
+
+    # ══ 批 975：⭐⭐⭐⭐⭐ 验假设 H₁ ⇒ **它被否了**；而否掉它的读数
+    #   顺带给 967 补了**第二个独立证据** ══
+    print("— IIIII. 批 975 源站祖先链 tabindex：H₁ 被判否；ti_attr 全 None 是 967 的第二证据 —")
+
+    check("IIIII.1 ⭐⭐⭐⭐⭐ **H₁ 被判否**，而这是本批最大的收获：H₁ 原话是"
+          "「`与 AI 对话` 的某个祖先带**正 `tabindex`** ⇒ 形成**独立的顺序焦点导航"
+          "作用域** ⇒ 出作用域时焦点无处可落、暂留 `document.body`」；"
+          "⇒ ⭐⭐⭐⭐⭐ **实测**：`与 AI 对话` 的**整条祖先链 9 层**，每一层的 "
+          "`ti_attr`（`getAttribute('tabindex')`）**全都是 `None`** —— "
+          "**DOM 上根本没有写 `tabindex` 属性**；⇒ ⇒ `ti_prop`（`.tabIndex`）读到的 "
+          "`0` / `-1` **只是浏览器默认行为**、不是任何人写上去的 ⇒ ⇒ **H₁ 被否** ⇒ "
+          "**不存在「独立作用域边界」**；⇒ ⇒ ⭐⭐⭐⭐⭐ **这一否顺带给出了 967 的"
+          "第二个独立证据**（「源站 Tab 序 = 朴素环形 DOM 序、**无正 `tabindex`**」"
+          "当时的证据是**步长观测**，本批是**属性逐层读出来是空的** ⇒ "
+          "**两条证据互相独立、方法完全不同**）；⭐⭐ 整段 out 环**零个**停靠点的"
+          "祖先链带正 `tabindex`，两轮一致",
+          '"h1_falsified_975"' in _ausrc
+          and "**H₁ 被判否** —— 而这是本批最大的收获" in _ausrc
+          and "**`与 AI 对话` 的某个祖先带正 `tabindex`**" in _ausrc
+          and "**整条祖先链 9 层**" in _ausrc
+          and "**全都是 `None`** —— ⭐⭐⭐ " in _ausrc
+          and "**DOM 上根本没有写 `tabindex` 属性**" in _ausrc
+          and "**只是浏览器默认行为**，不是任何人写上去的" in _ausrc
+          and "**H₁ 被否** ⇒ **不存在「独立作用域边界」**" in _ausrc
+          and "**这一否顺带给出了 967 的第二个独立证据**" in _ausrc
+          and "证据是**步长观测**" in _ausrc
+          and "本批的证据是**属性逐层读出来是空的**" in _ausrc
+          and "**两条证据互相独立、方法完全不同**" in _ausrc
+          and "「源站侧没有任何对 Tab 序的显式干预」这条结论**更硬了**" in _ausrc
+          and "整段 out 环**零个**停靠点的祖先链带正 `tabindex`" in _ausrc
+          # ⭐⭐⭐⭐⭐ 钉探针：`ti_attr` 真的读 `getAttribute`（**不是** `.tabIndex`）
+          and "ti_attr: tiAttr," in _p975
+          and "assert 'ti_attr ||' not in SCOPE_JS" in _p975
+          and '"h1_positive_tabindex_ancestor_both_reps"' in _p975
+          and '"ti_reading_is_live_both_reps"' in _p975
+          # ⭐⭐⭐ **否定结果尤其要钉**：它最容易在下一批被悄悄忘掉
+          and "否定结果**尤其**要钉：它最容易在下一批被悄悄忘掉" in _anchs
+          and '"_p975": "scripts/jimeng_probe975_scope_src.py",' in _anchs)
+
+    check("IIIII.2 ⭐⭐⭐⭐⭐ **方法上有一处值得单独记**：`SCOPE_JS` 把每一层"
+          "**同时**读 `ti_attr`（`getAttribute('tabindex')` ⇒ **属性在不在 / 是什么**）"
+          "与 `ti_prop`（`.tabIndex` ⇒ **归一化后的可聚焦性**）⇒ "
+          "**两件事因此分得开**：本批的全部结论来自「`ti_attr` 全是 `None`」，"
+          "**只看 `ti_prop` 是看不出来的**（它会给出 `0` / `-1`）；"
+          "⇒ ⇒ 这也让「不许用 `or` 兜底」**落成了一条可执行的断言** ⇒ "
+          "971 踩过的 `(tab_index_prop or -1) < 0`（**把 `0` 当假值**）"
+          "在这一族里被**物理禁止**；⇒ ⇒ **正向自证门与主门成对**："
+          "`ti_reading_is_live` 先证明**确实逐层拿到了** ⇒ "
+          "**「没有作用域」与「读数是空的」分不开**这件事被挡住了",
+          '"ti_attr_vs_prop_975"' in _ausrc
+          and "**这一批的方法上有一处值得单独记**" in _ausrc
+          and "**属性在不在 / 属性是什么**（没有就是 `None`）" in _ausrc
+          and "**归一化后的可聚焦性**" in _ausrc
+          and "**两件事因此分得开**" in _ausrc
+          and "本批的全部结论来自「`ti_attr` 全是 `None`」—— " in _ausrc
+          and "**只看 `ti_prop` 是看不出来的**（它会给出 `0` / `-1`）" in _ausrc
+          and "**一条可执行的断言**" in _ausrc
+          and "把 `0` 当假值" in _ausrc
+          and "**在这一族里被物理禁止**" in _ausrc
+          and "**正向自证门与主门成对**" in _ausrc
+          and "先证明**确实逐层拿到了**" in _ausrc
+          and "**「没有作用域」与「读数是空的」分不开**这件事被挡住了" in _ausrc
+          and 'ti_prop: (p.tabIndex === undefined) ? null : p.tabIndex' in _p975
+          and "chain_depth" in _p975)
+
+    check("IIIII.3 ⭐⭐⭐⭐⭐ **本批我自己写反了一道门，而处置过程本身就是一条纪律**："
+          "第一版写的是 `body_precedes_sidecar`（`BODY` 在 `与 AI 对话` 之前）⇒ "
+          "**它判红了**；⇒ ⭐⭐⭐ **门红先判「门错还是数据错」**：974 的读数就已经是"
+          "「`与 AI 对话`(seat 5) → **`BODY`**(seat 6)」⇒ 与本批一致、2/2 相同 ⇒ "
+          "⇒ **是门写反了**；⇒ ⇒ 处置是「**改门**（改精确）、不是放宽」；"
+          "⇒ ⇒ ⭐⭐⭐⭐ **而且改门要成对**：只改正向的话，"
+          "「改精确」与「放宽」**分不开** ⇒ 本批**额外钉了一条反向门** ⇒ "
+          "**旧方向必须仍然是红的** ⇒ 这样才证明改的是**方向**、不是**门槛**；"
+          "另记 `_grab` 教的一件事：**974 是 `_grab` 的「消费者」不是「生产者」**"
+          "（它自己没定义字面量）⇒ 975 沿链回到源头 `_p973` ⇒ "
+          "**三支探针、一个源头**而不是三份拷贝 ⇒ 并加 `assert` "
+          "**974 自己一旦开始定义字面量就红**；⚠️⚠️ **诚实记账**：源站那枚 "
+          "`BODY` 的机制**本批仍未查明**，只是候选空间缩小了 ⇒ "
+          "⭐⭐⭐ **否掉一条假设 ≠ 查明机制**，这两件事不要混",
+          '"reversed_gate_975"' in _ausrc
+          and "**本批我自己写反了一道门，" in _ausrc
+          and "第一版写的是 `body_precedes_sidecar`" in _ausrc
+          and "**它判红了**" in _ausrc
+          and "**门红先判「门错还是数据错」**" in _ausrc
+          and "**是门写反了**" in _ausrc
+          and "**处置是「改门」（改精确）、不是放宽**" in _ausrc
+          and "**而且改门要成对**" in _ausrc
+          and "「改精确」与「放宽」**分不开**" in _ausrc
+          and "**额外钉了一条反向门**" in _ausrc
+          and "**旧方向必须仍然是红的**" in _ausrc
+          and "这样才证明改的是**方向**、不是**门槛**" in _ausrc
+          and '"grab_is_consumer_975"' in _ausrc
+          and "974 是 `_grab` 的「消费者」不是「生产者」**" in _ausrc
+          and "**三支探针、一个源头**" in _ausrc
+          and "**从「靠自觉」变成「有断言」**" in _ausrc
+          and '"still_unexplained_975"' in _ausrc
+          and "**本批仍然未查明**，只是候选空间被缩小了" in _ausrc
+          and "**「作用域边界」这条出局**" in _ausrc
+          and "**这是假说，不是结论**" in _ausrc
+          and "**否掉一条假设 ≠ 查明机制**，这两件事不要混" in _ausrc
+          and "**不许把复刻那套「从无法聚焦元素掉下来」搬过来当预期**" in _ausrc
+          # ⭐⭐ 钉探针：成对的那两道门与源头反证都真在
+          and '"sidecar_precedes_body_both_reps"' in _p975
+          and '"reversed_relation_stays_false_both_reps"' in _p975
+          and 'DOMRANK_JS = _grab("DOMRANK_JS", _p973)' in _p975
+          # ⚠️ 974 那条「未查明」必须**已挂改写横幅**（原文保留、不删）
+          and "**批 975 改写横幅" in _ausrc
+          and "**975 验过一个假设 H₁、并把它判否了**" in _ausrc
+          and "**否掉它的读数顺带给 967 补了" in _ausrc)
 
     check("HHHHH.2 ⭐⭐⭐⭐⭐ **`rf__wrapper` 的位置差异 = 实现差异，两侧各测一轮钉住了；"
           "而且差别是「两端对调」**：**源站**它在环的**最后一位**、`dom_rank` = "
