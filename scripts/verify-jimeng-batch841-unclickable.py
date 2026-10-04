@@ -5761,6 +5761,13 @@ def main() -> int:
     #   ⚠️ 判据组 `LLLLL.1` 要钉的是那个**否定结果**（scroll 假设被否）
     p978 = ROOT / "scripts/jimeng_probe978_lab_body_stop.py"
     _p978 = p978.read_text(encoding="utf-8") if p978.exists() else ""
+    p978 = ROOT / "scripts/jimeng_probe978_lab_body_stop.py"
+    _p978 = p978.read_text(encoding="utf-8") if p978.exists() else ""
+    # ⭐⭐⭐⭐⭐ 979：**实验室**探针第二支 —— 按一次 `Tab` 之后**页内纯读轮询**，
+    #   取「**转变时间线**」⇒ 每个状态的**停留时长**直接可算
+    #   ⚠️ 判据组 `MMMMM.1` 要钉的是那个**否定结果**（(a) 被否）
+    p979 = ROOT / "scripts/jimeng_probe979_dwell_src.py"
+    _p979 = p979.read_text(encoding="utf-8") if p979.exists() else ""
     # ⭐ 970 的 CCCC.2 要**反证 816 那条决策真的在仓库里**（钉源码原文，
     #   不钉我自己写的转述）
     p816 = ROOT / "scripts/verify-jimeng-batch816-anchors.py"
@@ -9553,6 +9560,90 @@ def main() -> int:
           and "分叉守卫**失灵**了" in _p978
           and "def _cycle_sig" in _p978
           and "**不是绝对数值**" in _p978)
+
+    # ══ MMMMM. 批 979 实验室页第二支：时间线量停留时长 ⇒
+    #    BODY 不是短暂状态 ⇒ 978 的 (a) 被否、(b) 成唯一解释 ══
+    print("— MMMMM. 批 979：按 Tab 后页内纯读轮询取时间线，"
+          "BODY 停留 249-252ms 与其他格一样 ⇒ (a) 被否 —")
+
+    check("MMMMM.1 ⭐⭐⭐⭐⭐ **`BODY` 不是一个短暂状态** —— "
+          "实测 `body_dwell_ms` = 249/252、250/249、251、250/250、250/250，"
+          "而**其他每一格**是 248–252 ⇒ **两者分布完全一样** ⇒ "
+          "**978 的 (a)「`BODY` 短暂、settle 没赶上」被否** ⇒ "
+          "⭐⭐⭐⭐⭐ **那 978 的计数抖动只能用 (b) 解释** —— "
+          "**引擎有时真的不走那一格** ⇒ **这直接削弱 H₃ 里的「恒」**："
+          "那枚 `BODY` 是**通常在、但不是每次都在**的一格；"
+          "⇒ 而周期签名 **2/2 × 5 臂逐格相同**、"
+          "`n_steps_with_body` = 2/8（L2 是 1/8）**恰好是环长算出来的值**",
+          '"body_is_stable_979"' in _ausrc
+          and "**`BODY` 不是一个短暂状态**" in _ausrc
+          and "**978 的 (a)「`BODY` 短暂、settle 没赶上」被否**" in _ausrc
+          and "**那 978 的计数抖动只能用 (b) 解释**" in _ausrc
+          and "**通常在、但不是每次都在**" in _ausrc
+          and '"cycle_keys_979"' in _ausrc
+          and "**恰好就是环长算出来的值**" in _ausrc
+          # ⭐⭐ 钉探针：新件、停留算法、两条计数都要真在
+          and 'POLL_JS = """' in _p979
+          and "def _dwell(seq, elapsed_ms=None):" in _p979
+          and '"body_dwell_ms"' in _p979
+          and '"n_steps_with_body"' in _p979
+          and '"focus_actually_moves_both_reps"' in _p979
+          and '"_p979": "scripts/jimeng_probe979_dwell_src.py",' in _anchs)
+
+    check("MMMMM.2 ⭐⭐⭐⭐⭐ **本批把设计换掉了，而换的理由必须写清楚**："
+          "978 原计划是「同一批臂跑**两种 settle 时长**做对照」，"
+          "⭐⭐⭐ **而两种 settle 只告诉你「哪一档更准」、"
+          "**不告诉你「它到底待了多久」** ⇒ **时间线直接给出停留时长**、"
+          "**把「短 / 长两档」整个包含**了 ⇒ "
+          "⭐⭐⭐⭐⭐ **换设计的正当理由是「**原设计测不到那个量**」，"
+          "不是「原设计跑不通」** —— **这两件事要分清**；"
+          "另有一条本批**第一次**记下来的："
+          "⚠️⚠️⚠️⭐⭐⭐⭐⭐ **五臂的**定义**是**模块级代码**、不是字符串字面体 ⇒ "
+          "**`_grab` 带不走** ⇒ 只能重写一遍、"
+          "**并用 `assert` 钉住臂表与 978 一致** ⇒ "
+          "⭐⭐⭐ **凡是「靠 `_grab` 带不走的东西，就要显式钉住它没变**",
+          '"design_changed_979"' in _ausrc
+          and "**不告诉你「它到底待了多久」**" in _ausrc
+          and "**原设计测不到那个量" in _ausrc
+          and "不是「原设计跑不通」**" in _ausrc
+          and '"cant_grab_979"' in _ausrc
+          and "**是**模块级代码**、不是字符串字面量" in _ausrc
+          and "就要显式钉住它没变" in _ausrc
+          # ⭐⭐ 钉探针：设计变更的理由、以及「带不走就钉住」都写在源码里
+          and '"why_design_changed"' in _p979
+          and '"what_cannot_be_grabbed"' in _p979
+          and "BUTTON_TPL in _p978 and SPACER in _p978" in _p979
+          and "CSS_PLAIN in _p978" in _p979)
+
+    check("MMMMM.3 ⭐⭐⭐⭐⭐ **本批自纠 4 个，其中三个是**反复出现**的那一族**："
+          "(a) ⭐⭐⭐⭐⭐ **汇总层又漏了「末态」** ⇒ 每一格只有一个状态时 "
+          "`body_dwell_ms` **整个变成 `[]`**，而**原始读数里答案一直在**"
+          "⇒ **「汇总层取值错了」这一族的第五次**（965/969/970/974/本批）；"
+          "(b) ⭐⭐⭐⭐ **门编码了错的预期**（要求「窗口内多次转变」，"
+          "而设计**恰恰相反**：落定就不动）⇒ **门红先判门还是数据：门错**；"
+          "(c) ⭐⭐⭐⭐⭐ **守卫第四次命中注释** ⇒ **改法升级**："
+          "**只扫代码行**（剥掉 `//` 与 `* `）⇒ "
+          "**注释里可以正常提到被禁的 API，而门仍抓得住真代码**；"
+          "(d) ⭐⭐⭐⭐⭐ **又一次「同一个东西要比同一个口径」**"
+          "（978 存的是**模板**，我拿**展开后**的串去找）",
+          '"selfbugs_979"' in _ausrc
+          and "**汇总层又漏了「末态」**" in _ausrc
+          and "这一族的第五次**（965/969/970/974/本批）" in _ausrc
+          and "**门编码了错的预期**" in _ausrc
+          and "**门红先判门还是数据：门错**" in _ausrc
+          and "**守卫第四次命中注释**" in _ausrc
+          and "**只扫代码行**" in _ausrc
+          and "**注释里可以正常提到被禁的 API" in _ausrc
+          and "**又一次「同一个东西要比同一个口径」**" in _ausrc
+          and '"discipline_979"' in _ausrc
+          # ⭐⭐ 钉探针：那几处在源码里都**成对钉住了反向**
+          and "def _code_only(js):" in _p979
+          and "纯读守卫**失灵**了" in _p979
+          and "注释剥离守卫**失灵**了" in _p979
+          and "or-兜底守卫**失灵**了" in _p979
+          and "分叉守卫**失灵**了" in _p979
+          and "**用 `elapsed_ms` 给末态补一段**" in _p979
+          and "BUTTON_TPL = " in _p979)
 
 
     print(f"\n{checks - len(failures)}/{checks}")
