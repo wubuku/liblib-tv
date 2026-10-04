@@ -1,0 +1,397 @@
+{
+ "batch": 759,
+ "checks": [
+  {
+   "label": "静态：/project 页面 21 个 data-* 钩子",
+   "pass": true,
+   "got": 21
+  },
+  {
+   "label": "静态：回收站两处「30 天」文案都在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：「剩余 30 天」周边 160 字符内无任何时间运算（硬编码）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：removedCanvases 只有 map、没有 filter（面板不做 30 天过滤）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：卡片副行复用 {today}；createdAt 在类型里存在但种子未赋值、页面也不读它",
+   "pass": true,
+   "got": [
+    true,
+    false,
+    true
+   ]
+  },
+  {
+   "label": "静态：源码里 9 处「本地原型：X 未接入」",
+   "pass": true,
+   "got": 9
+  },
+  {
+   "label": "静态：回收站按钮的 onClick 只 setRecycleOpen、不碰 status",
+   "pass": true,
+   "got": "setRecycleOpen((value) => !value)"
+  },
+  {
+   "label": "静态：openCanvas 先 setActiveCanvas 再 window.open",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：新建项目也走 window.open；创建卡走 router.push（两者不一致）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：/project 入口只在 TopNavBar 一处，且由画布页渲染",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "静态：755 的根因仍在（行内菜单 top-full + 祖先 overflow-hidden）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：删除项受 canvases.length > 1 门控",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：行内菜单由 menuOpenId 门控、开关是 opacity-0 的「更多操作」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：确认框「此操作不可恢复」与 store 的软删除（removedAt）并存",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 14 条且编号连续 1..14",
+   "pass": true,
+   "got": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+   ]
+  },
+  {
+   "label": "产物：759a 两轮一致且 roundDiff 为空",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "产物：声明 759b 是单轮链路实验、不适用两轮判定",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 3 的两张卡日期段相同，且 createdAt 运行时为 null",
+   "pass": true,
+   "got": {
+    "canvas-1": [
+     "2026-10-04"
+    ],
+    "canvas-2": [
+     "2026-10-04"
+    ]
+   }
+  },
+  {
+   "label": "产物：判据 4 记下老化前后两组条目文案，且「剩余 30 天」两边都在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 4 明确标注这一格是程序化造数",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 5 证明回收站面板本身功能正常（勾选 + 恢复所选）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 6/7 的两档构成阳性/阴性对照（2 张 1/4 且删除项不可点、6 张 4/4）",
+   "pass": true,
+   "got": [
+    1,
+    4
+   ]
+  },
+  {
+   "label": "产物：判据 6 的 deleteItem 自身与 items 列表一致，且 hitSelf=false",
+   "pass": true,
+   "got": {
+    "text": "删除画布",
+    "w": 142,
+    "h": 36,
+    "hitSelf": false,
+    "topTag": "IMG"
+   }
+  },
+  {
+   "label": "产物：判据 7 的 6 张档 deleteItem 同样 hitSelf=true",
+   "pass": true,
+   "got": {
+    "text": "删除画布",
+    "w": 142,
+    "h": 36,
+    "hitSelf": true,
+    "topTag": "BUTTON"
+   }
+  },
+  {
+   "label": "产物：判据 6 指出删除项落点命中 IMG（不是按钮、也不是画布背景）",
+   "pass": true,
+   "got": "IMG"
+  },
+  {
+   "label": "产物：判据 6 明确指出根因在 batch 755",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 7 记下 6 张档的确认框按钮尺寸与 removed=1",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 9 记下两种存续方式（客户端路由保留 / 整页加载丢失）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 9 显式收窄了 755 的说法",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 10 的对照是「点的那张 vs 新标签页里的那张」且两者不同",
+   "pass": true,
+   "got": [
+    "canvas-1",
+    "canvas-2"
+   ]
+  },
+  {
+   "label": "产物：判据 10 记下节点数差异（肉眼可辨不是同一张）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 11 记下 stale=true 且面板确实开了",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 2 的 stub 名单为 9 个且不含 recycleBtn",
+   "pass": true,
+   "got": [
+    "Blender 插件",
+    "LibTV Agent",
+    "LibTV Plugin",
+    "help",
+    "newFolder",
+    "promo",
+    "recycleBtn",
+    "创作者挑战赛",
+    "百万积分大包上线",
+    "项目",
+    "首页"
+   ]
+  },
+  {
+   "label": "产物：判据 14 逐条列出四处诚实边界（入口单一/程序化造数/无源站对照）",
+   "pass": true,
+   "got": "① 画布页通往 /project 的入口**只有** TopNavBar 一处，本批只验了它；② 6 张档是**程序化** addCanva"
+  },
+  {
+   "label": "产物：缺陷陈述含「新标签页不是你点的那张」与根因（内存/种子 store）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：证据链 4 条且都带具体读数",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：secondary 记了 5 条次要发现",
+   "pass": true,
+   "got": 5
+  },
+  {
+   "label": "产物：返工 5 条 R29..R33 齐全且各自带 rule",
+   "pass": true,
+   "got": [
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33"
+   ]
+  },
+  {
+   "label": "产物：R33 记下「负向对照抓到验收器自己的洞」这件事",
+   "pass": true,
+   "got": "R33"
+  },
+  {
+   "label": "产物：R29 点明信号来源是「与已确认结论冲突」",
+   "pass": true,
+   "got": "于是点落在 button 的**子元素**（文本/图标）上就判 hitSelf=false。读数变成 2 张与 6 张都"
+  },
+  {
+   "label": "产物：不声称清单 ≥ 9 条",
+   "pass": true,
+   "got": 9
+  },
+  {
+   "label": "产物：不声称里写了「新建项目未单独验」与「没有与源站对照」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：rawProbeFiles 两个探针都有说明",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数叶子级交叉核对 23 项（a/b 两份）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始读数：759a 两轮 roundDiff 为空",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始读数：9 个 stub 按钮全部 hitSelf=true",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始读数：两张卡的日期段完全相同（span 其余部分本来就不同）",
+   "pass": true,
+   "got": [
+    "0 个节点",
+    "画布 1",
+    "2026-10-04"
+   ]
+  },
+  {
+   "label": "原始读数：老化实验把 removedAt 改成 2025-01-15",
+   "pass": true,
+   "got": {
+    "set": [
+     {
+      "id": "canvas-1",
+      "removedAt": "2025-01-15"
+     },
+     {
+      "id": "canvas-2",
+      "removedAt": "2025-01-15"
+     }
+    ]
+   }
+  },
+  {
+   "label": "原始读数：2 张档删除项落点命中 IMG、removed 仍为 0",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：6 张档删除项落点命中 BUTTON、确认框出现、removed=1",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：6 张档回收站里出现了被删的那张",
+   "pass": true,
+   "got": [
+    {
+     "id": "canvas-6",
+     "text": "画布 62026-10-04 · 剩余 30 天恢复",
+     "hasCheck": true,
+     "hasRestore": true
+    }
+   ]
+  },
+  {
+   "label": "原始读数：客户端路由后 removed 仍在（1），整页加载后为 0",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：新标签页 active 与被点的卡不同、节点数也不同",
+   "pass": true,
+   "got": [
+    "canvas-1",
+    "canvas-1",
+    "canvas-2",
+    false
+   ]
+  },
+  {
+   "label": "原始读数：点回收站后 status 仍是上一条 stub 文案",
+   "pass": true,
+   "got": null
+  }
+ ],
+ "passed": 54,
+ "total": 54,
+ "static": {
+  "dataHookCount": 21,
+  "header30Copy": true,
+  "remain30Copy": true,
+  "remainCtxNoTimeMath": true,
+  "noFilterInRecycle": true,
+  "removedCanvasesMapOnly": true,
+  "todayDeclared": true,
+  "cardUsesToday": true,
+  "createdAtInType": true,
+  "createdAtAssignedInSeed": false,
+  "pageIgnoresCreatedAt": true,
+  "stubCopyCount": 9,
+  "recycleOnClick": "setRecycleOpen((value) => !value)",
+  "recycleOnClickNoStatus": true,
+  "openCanvasOrder": true,
+  "newProjectAlsoWindowOpen": true,
+  "createCardRouterPush": true,
+  "onlyProjectEntry": 1,
+  "topNavMenuItem": true,
+  "topNavRenderedByCanvas": true,
+  "rowMenuTopFull": true,
+  "dropdownOverflowHidden": true,
+  "deleteItemGated": true,
+  "moreBtnOpacity0": true,
+  "moreBtnAria": true,
+  "menuOpenIdGated": true,
+  "unrecoverableCopy": true,
+  "softDeleteRemovedAt": true,
+  "purgeZeroCallers": true
+ }
+}

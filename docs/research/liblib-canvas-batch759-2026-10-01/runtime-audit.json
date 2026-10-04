@@ -1,0 +1,864 @@
+{
+ "batch": 759,
+ "date": "2026-10-01",
+ "clone": "http://localhost:4317",
+ "subject": "/project 页首轮普查：回收站的 30 天声明无实现、默认状态下整站无法被填满、点项目卡的新标签页不是你点的那张",
+ "seed": {
+  "route": "/project",
+  "canvases": 2,
+  "removed": 0,
+  "active": "canvas-2",
+  "dataHooks": [
+   "data-project-back",
+   "data-project-card",
+   "data-project-create-card",
+   "data-project-list-page",
+   "data-project-list-status",
+   "data-project-new-folder",
+   "data-project-recycle",
+   "data-project-sidebar",
+   "data-project-top-banner",
+   "data-recycle-check",
+   "data-recycle-empty",
+   "data-recycle-item",
+   "data-recycle-panel",
+   "data-recycle-restore",
+   "data-recycle-restore-selected",
+   "data-recycle-selection",
+   "data-sidebar-help",
+   "data-sidebar-item",
+   "data-sidebar-nav",
+   "data-sidebar-new-project",
+   "data-sidebar-promo"
+  ],
+  "noPersistence": "store 无持久化；**客户端路由**保留、**整页加载/新标签页**丢失",
+  "dataHookCount": 21
+ },
+ "twoRound": {
+  "rounds": 2,
+  "independence": "759a 跑两轮，轮间整页 reload ⟹ 回到种子",
+  "consistent": true,
+  "diff": {},
+  "bNote": "759b 是**单轮**的链路实验（删除/导航/开新标签页都不可重复执行），不适用两轮一致性判定；改为每条结论都配阳性/阴性对照。"
+ },
+ "judgeCount": 14,
+ "judgments": [
+  {
+   "no": 1,
+   "title": "/project 页结构普查",
+   "claim": "顶部横幅 h-9 满宽；侧栏 240px 宽；标题「全部项目」；卡片网格 + 创建卡 220x164；页尾「没有更多了」",
+   "evidence": {
+    "census": {
+     "viewport": {
+      "w": 1440,
+      "h": 1000
+     },
+     "topBanner": {
+      "w": 900,
+      "h": 36,
+      "x": 0,
+      "y": 0,
+      "visible": true
+     },
+     "sidebar": {
+      "w": 240,
+      "h": 1000,
+      "x": 900,
+      "y": 0,
+      "visible": true
+     },
+     "newProject": {
+      "w": 207,
+      "h": 36,
+      "x": 916,
+      "y": 16,
+      "visible": true
+     },
+     "promo": {
+      "w": 207,
+      "h": 40,
+      "x": 916,
+      "y": 896,
+      "visible": true
+     },
+     "help": {
+      "w": 207,
+      "h": 36,
+      "x": 916,
+      "y": 948,
+      "visible": true
+     },
+     "back": {
+      "w": 49,
+      "h": 32,
+      "x": 1180,
+      "y": 64,
+      "visible": true
+     },
+     "recycleBtn": {
+      "w": 56,
+      "h": 32,
+      "x": 1280,
+      "y": 64,
+      "visible": true
+     },
+     "newFolder": {
+      "w": 56,
+      "h": 32,
+      "x": 1344,
+      "y": 64,
+      "visible": true
+     },
+     "createCard": {
+      "w": 220,
+      "h": 164,
+      "x": 1180,
+      "y": 160,
+      "visible": true
+     },
+     "createCardText": "开始创建创建新的视频项目",
+     "h1": "全部项目",
+     "moreMarker": "没有更多了",
+     "recycleAriaExpanded": "false",
+     "statusNode": {
+      "present": false
+     }
+    },
+    "cardCount": 2,
+    "dataHookCount": 21
+   },
+   "why": "这一页此前只在 755 被「预看一眼」。21 个 data-* 钩子让整页可被系统性量一遍，而不必靠猜选择器。",
+   "twoRound": true
+  },
+  {
+   "no": 2,
+   "title": "9 个按钮只弹「本地原型：X 未接入」",
+   "claim": "侧栏 7 项里 6 项 + 促销 + 帮助 + 新建文件夹 = 9 个 stub，全部可点、全部只改一行提示文字",
+   "evidence": {
+    "stubResults": {
+     "__nav_keys__": [
+      "首页",
+      "项目",
+      "LibTV Agent",
+      "创作者挑战赛",
+      "Blender 插件",
+      "LibTV Plugin",
+      "百万积分大包上线"
+     ],
+     "首页": {
+      "hit": {
+       "x": 1020,
+       "y": 86,
+       "w": 207,
+       "h": 36,
+       "hitSelf": true,
+       "topTag": "BUTTON",
+       "topCls": "flex h-9 w-full items-center gap-2 rounded-lg px-2 text-sm t"
+      },
+      "statusAfter": "本地原型：首页未接入"
+     },
+     "项目": {
+      "hit": {
+       "x": 1020,
+       "y": 126,
+       "w": 207,
+       "h": 36,
+       "hitSelf": true,
+       "topTag": "BUTTON",
+       "topCls": "flex h-9 w-full items-center gap-2 rounded-lg px-2 text-sm t"
+      },
+      "statusAfter": null
+     },
+     "LibTV Agent": {
+      "hit": {
+       "x": 1020,
+       "y": 166,
+       "w": 207,
+       "h": 36,
+       "hitSelf": true,
+       "topTag": "BUTTON",
+       "topCls": "flex h-9 w-full items-center gap-2 rounded-lg px-2 text-sm t"
+      },
+      "statusAfter": "本地原型：LibTV Agent 未接入"
+     },
+     "创作者挑战赛": {
+      "hit": {
+       "x": 1020,
+       "y": 206,
+       "w": 207,
+       "h": 36,
+       "hitSelf": true,
+       "topTag": "BUTTON",
+       "topCls": "flex h-9 w-full items-center gap-2 rounded-lg px-2 text-sm t"
+      },
+      "statusAfter": "本地原型：创作者挑战赛未接入"
+     },
+     "Blender 插件": {
+      "hit": {
+       "x": 1020,
+       "y": 246,
+       "w": 207,
+       "h": 36,
+       "hitSelf": true,
+       "topTag": "BUTTON",
+       "topCls": "flex h-9 w-full items-center gap-2 rounded-lg px-2 text-sm t"
+      },
+      "statusAfter": "本地原型：Blender 插件未接入"
+     },
+     "LibTV Plugin": {
+      "hit": {
+       "x": 1020,
+       "y": 286,
+       "w": 207,
+       "h": 36,
+       "hitSelf": true,
+       "topTag": "BUTTON",
+       "topCls": "flex h-9 w-full items-center gap-2 rounded-lg px-2 text-sm t"
+      },
+      "statusAfter": "本地原型：LibTV Plugin 未接入"
+     },
+     "百万积分大包上线": {
+      "hit": {
+       "x": 1020,
+       "y": 326,
+       "w": 207,
+       "h": 36,
+       "hitSelf": true,
+       "topTag": "BUTTON",
+       "topCls": "flex h-9 w-full items-center gap-2 rounded-lg px-2 text-sm t"
+      },
+      "statusAfter": "本地原型：百万积分大包未接入"
+     },
+     "promo": {
+      "hit": {
+       "x": 1020,
+       "y": 916,
+       "w": 207,
+       "h": 40,
+       "hitSelf": true,
+       "topTag": "SPAN",
+       "topCls": "text-[13px] font-medium leading-5 text-[#ededed]"
+      },
+      "statusAfter": "本地原型：积分超市未接入",
+      "recyclePanelAfter": false,
+      "recycleAriaAfter": "false",
+      "recycleEmptyAfter": null
+     },
+     "help": {
+      "hit": {
+       "x": 1020,
+       "y": 966,
+       "w": 207,
+       "h": 36,
+       "hitSelf": true,
+       "topTag": "BUTTON",
+       "topCls": "flex h-9 w-full items-center gap-2 rounded-lg px-2 text-sm t"
+      },
+      "statusAfter": "本地原型：帮助未接入",
+      "recyclePanelAfter": false,
+      "recycleAriaAfter": "false",
+      "recycleEmptyAfter": null
+     },
+     "newFolder": {
+      "hit": {
+       "x": 1372,
+       "y": 80,
+       "w": 56,
+       "h": 32,
+       "hitSelf": true,
+       "topTag": "BUTTON",
+       "topCls": "flex h-8 items-center gap-1.5 rounded-lg bg-white/[0.08] px-"
+      },
+      "statusAfter": "本地原型：新建文件夹未接入",
+      "recyclePanelAfter": false,
+      "recycleAriaAfter": "false",
+      "recycleEmptyAfter": null
+     },
+     "recycleBtn": {
+      "hit": {
+       "x": 1308,
+       "y": 80,
+       "w": 56,
+       "h": 32,
+       "hitSelf": true,
+       "topTag": "BUTTON",
+       "topCls": "flex h-8 items-center gap-1.5 rounded-lg px-3 text-[13px] te"
+      },
+      "statusAfter": "本地原型：新建文件夹未接入",
+      "recyclePanelAfter": true,
+      "recycleAriaAfter": "true",
+      "recycleEmptyAfter": "回收站为空"
+     }
+    },
+    "staticStubCount": 9,
+    "staticStubLabels": [
+     "首页",
+     "LibTV Agent ",
+     "创作者挑战赛",
+     "Blender 插件",
+     "LibTV Plugin ",
+     "百万积分大包",
+     "积分超市",
+     "帮助",
+     "新建文件夹"
+    ]
+   },
+   "why": "唯一有真行为的是 active 的「项目」项（`setStatus(\"\")`）。每一条都带 hitSelf 阳性对照，不是「我没点到所以没反应」。",
+   "twoRound": true
+  },
+  {
+   "no": 3,
+   "title": "★ 卡片副行日期对所有卡片都是「今天」",
+   "claim": "两张卡的副行都渲染同一个日期；**`createdAt` 字段在类型里存在，但种子画布从未赋值**（运行时两张都是 null）",
+   "evidence": {
+    "cardSpans": {
+     "canvas-1": [
+      "0 个节点",
+      "画布 1",
+      "2026-10-04"
+     ],
+     "canvas-2": [
+      "10 个节点",
+      "画布 2",
+      "2026-10-04"
+     ]
+    },
+    "storeCanvasFields": [
+     {
+      "id": "canvas-1",
+      "name": "画布 1",
+      "nodes": 0,
+      "createdAt": null,
+      "created": null
+     },
+     {
+      "id": "canvas-2",
+      "name": "画布 2",
+      "nodes": 10,
+      "createdAt": null,
+      "created": null
+     }
+    ],
+    "static": "page.tsx:25 const today = new Date().toISOString().slice(0, 10); 副行直接渲染 {today}，**完全没有读 canvas.createdAt** ⟹ 与画布实际创建时间无关",
+    "staticNote": "canvasStore.ts 里 createdAt 只出现在**类型声明**（`createdAt: string;`）与两个动画采集处，种子画布（:780-940）没有一处给它赋值",
+    "dateSpansOnly": {
+     "canvas-1": [
+      "2026-10-04"
+     ],
+     "canvas-2": [
+      "2026-10-04"
+     ]
+    }
+   },
+   "why": "同一个「全部项目」页上，每张卡的创建日期都一样。注意 `createdAt` **不是没定义，而是定义了没人赋值、页面也不读** —— 修法是二选一而不是新增字段。",
+   "twoRound": true
+  },
+  {
+   "no": 4,
+   "title": "★ 回收站的「30 天」是声明，没有任何实现",
+   "claim": "把 removedAt 改成 2025-01-15（约 20 个月前）后，条目文案**一字未变**，仍是「剩余 30 天」；面板也不做任何过滤",
+   "evidence": {
+    "beforeAging": [
+     "画布 12026-10-04 · 剩余 30 天恢复",
+     "画布 22026-10-04 · 剩余 30 天恢复"
+    ],
+    "afterAging": [
+     "画布 12025-01-15 · 剩余 30 天恢复",
+     "画布 22025-01-15 · 剩余 30 天恢复"
+    ],
+    "panelHeader": "仅显示最近 30 天内删除的内容",
+    "static": "「剩余 30 天」是 JSX 里的字面量（page.tsx:185），周边 200 字符内没有任何 Date/dayjs/diff/减法",
+    "staticNoTimeMath": true,
+    "seeding": "⚠ 本格是**程序化造数据**（store.setState 改 removedAt），不是用户路径；用于把「硬编码」与「恰好都是今天」区分开"
+   },
+   "why": "面板顶上写着「仅显示最近 30 天内删除的内容」，而 20 个月前删掉的东西照样列出来、照样写「剩余 30 天」。声明与实现直接矛盾。",
+   "twoRound": false
+  },
+  {
+   "no": 5,
+   "title": "回收站面板本身功能正常（阳性对照）",
+   "claim": "有 1 项被删时，面板渲染出该条目（含勾选框与「恢复」按钮）、「已选择 0 项」；勾选后变「已选择 1 项」并出现「恢复所选 1 项」（93x31，可点）",
+   "evidence": {
+    "sixCanvasRecycle": {
+     "paragraphs": [
+      "仅显示最近 30 天内删除的内容",
+      "已选择 0 项"
+     ],
+     "items": [
+      {
+       "id": "canvas-6",
+       "text": "画布 62026-10-04 · 剩余 30 天恢复",
+       "hasCheck": true,
+       "hasRestore": true
+      }
+     ],
+     "selection": "已选择 0 项",
+     "restoreSelected": null
+    },
+    "twoRemovedRecycle": {
+     "paragraphs": [
+      "仅显示最近 30 天内删除的内容",
+      "已选择 0 项"
+     ],
+     "items": [
+      {
+       "id": "canvas-1",
+       "text": "画布 12026-10-04 · 剩余 30 天恢复",
+       "hasCheck": true,
+       "hasRestore": true
+      },
+      {
+       "id": "canvas-2",
+       "text": "画布 22026-10-04 · 剩余 30 天恢复",
+       "hasCheck": true,
+       "hasRestore": true
+      }
+     ],
+     "selection": "已选择 0 项",
+     "restoreSelected": null
+    },
+    "afterCheck": {
+     "paragraphs": [
+      "仅显示最近 30 天内删除的内容",
+      "已选择 1 项"
+     ],
+     "items": [
+      {
+       "id": "canvas-1",
+       "text": "画布 12025-01-15 · 剩余 30 天恢复",
+       "hasCheck": true,
+       "hasRestore": true
+      },
+      {
+       "id": "canvas-2",
+       "text": "画布 22025-01-15 · 剩余 30 天恢复",
+       "hasCheck": true,
+       "hasRestore": true
+      }
+     ],
+     "selection": "已选择 1 项",
+     "restoreSelected": "恢复所选 1 项"
+    },
+    "checkHit": {
+     "x": 1170,
+     "y": 187,
+     "w": 14,
+     "h": 14,
+     "hitSelf": true
+    },
+    "restoreSelectedHit": {
+     "x": 1197,
+     "y": 282,
+     "w": 93,
+     "h": 31,
+     "hitSelf": true
+    }
+   },
+   "why": "这格很重要：它把「回收站是空 UI」的猜测挡在外面。**面板渲染、勾选、批量恢复都是好的**，问题只在于默认状态填不满。",
+   "twoRound": false
+  },
+  {
+   "no": 6,
+   "title": "★ 默认 2 张画布下「删除画布」不可点 ⟹ 回收站永远为空",
+   "claim": "行内菜单 4 项里只有「在新窗口打开」可点（**1/4**，与 755 一致），「删除画布」的落点命中的是 **IMG**（画布上节点的缩略图），确认框未出现，removed 仍为 0",
+   "evidence": {
+    "twoCanvases": {
+     "targetRow": "canvas-2",
+     "menuHolder": {
+      "w": 144,
+      "h": 146,
+      "top": 205,
+      "bottom": 351
+     },
+     "dropdownBottom": 246,
+     "items": [
+      {
+       "text": "在新窗口打开",
+       "w": 142,
+       "h": 36,
+       "hitSelf": true,
+       "topTag": "BUTTON"
+      },
+      {
+       "text": "重命名画布",
+       "w": 142,
+       "h": 36,
+       "hitSelf": false,
+       "topTag": "DIV"
+      },
+      {
+       "text": "复制画布",
+       "w": 142,
+       "h": 36,
+       "hitSelf": false,
+       "topTag": "IMG"
+      },
+      {
+       "text": "删除画布",
+       "w": 142,
+       "h": 36,
+       "hitSelf": false,
+       "topTag": "IMG"
+      }
+     ],
+     "deleteItem": {
+      "text": "删除画布",
+      "w": 142,
+      "h": 36,
+      "hitSelf": false,
+      "topTag": "IMG"
+     },
+     "confirmDialog": null,
+     "confirmButton": null,
+     "removedAfter": 0,
+     "recycleItems": []
+    }
+   },
+   "why": "**这是 755 的缺陷在另一页的后果**：行内菜单被祖先 `overflow:hidden` 裁掉（菜单底 351 > 容器底 246），删除项落在画布上 ⟹ 用户删不掉画布 ⟹ 回收站没有任何入口能填满。本批是 759，缺陷根在 755，两批合起来才看得见这条链。",
+   "twoRound": false
+  },
+  {
+   "no": 7,
+   "title": "阳性对照：6 张画布的顶行可点，删除走通全链",
+   "claim": "顶行 4 项 hitSelf 全为 true；点「删除画布」后确认框出现（取消 50x30 / 确认 48x30），确认后 removed=1，走到 /project 回收站里真的出现该项",
+   "evidence": {
+    "sixCanvases": {
+     "targetRow": "canvas-6",
+     "items": [
+      {
+       "text": "在新窗口打开",
+       "w": 142,
+       "h": 36,
+       "hitSelf": true,
+       "topTag": "BUTTON"
+      },
+      {
+       "text": "重命名画布",
+       "w": 142,
+       "h": 36,
+       "hitSelf": true,
+       "topTag": "BUTTON"
+      },
+      {
+       "text": "复制画布",
+       "w": 142,
+       "h": 36,
+       "hitSelf": true,
+       "topTag": "BUTTON"
+      },
+      {
+       "text": "删除画布",
+       "w": 142,
+       "h": 36,
+       "hitSelf": true,
+       "topTag": "BUTTON"
+      }
+     ],
+     "deleteItem": {
+      "text": "删除画布",
+      "w": 142,
+      "h": 36,
+      "hitSelf": true,
+      "topTag": "BUTTON"
+     },
+     "dropdownBottom": 405,
+     "confirmDialog": {
+      "present": true,
+      "buttons": [
+       {
+        "text": "取消",
+        "w": 50,
+        "h": 30
+       },
+       {
+        "text": "确认",
+        "w": 48,
+        "h": 30
+       }
+      ],
+      "text": "删除画布确定要删除画布「画布 6」吗？此操作不可恢复。取消确认"
+     },
+     "canvasesAfter": [
+      "canvas-1",
+      "canvas-2",
+      "canvas-3",
+      "canvas-4",
+      "canvas-5"
+     ],
+     "removedAfter": 1,
+     "recycleItems": [
+      {
+       "id": "canvas-6",
+       "text": "画布 62026-10-04 · 剩余 30 天恢复",
+       "hasCheck": true,
+       "hasRestore": true
+      }
+     ]
+    }
+   },
+   "why": "没有这一格，判据 6 就只是「我没点到」。**同一份代码、同一套菜单，在 6 张的顶行 4/4 可点**⟹ 变量是列表长度与行位置，不是功能缺失。",
+   "twoRound": false
+  },
+  {
+   "no": 8,
+   "title": "删除确认框文案与软删除矛盾（755 结论的运行时复述）",
+   "claim": "确认框写「此操作不可恢复。」，而实现是软删除（removedAt + 可恢复）",
+   "evidence": {
+    "confirmDialog": {
+     "present": true,
+     "buttons": [
+      {
+       "text": "取消",
+       "w": 50,
+       "h": 30
+      },
+      {
+       "text": "确认",
+       "w": 48,
+       "h": 30
+      }
+     ],
+     "text": "删除画布确定要删除画布「画布 6」吗？此操作不可恢复。取消确认"
+    },
+    "static": "canvasStore.ts removeCanvas 是软删除（写 removedAt、从 canvases 里滤掉）；本行项目名 canvas-6 确实出现在回收站里 ⟹ 可恢复"
+   },
+   "why": "这不是本批的新发现，是 755「此操作不可恢复 vs 软删除」的运行时确认；本批第一次在**同一次会话**里同时看到「说不可恢复」与「出现在回收站里」。",
+   "twoRound": false
+  },
+  {
+   "no": 9,
+   "title": "store 的存续分两种：客户端路由保留、整页加载丢失",
+   "claim": "TopNavBar → 全部项目（router.push）后 removed=1 仍在；而新标签页 / 直接输 URL 的整页加载后 removed=0",
+   "evidence": {
+    "sixAfterNav": {
+     "canvases": [
+      {
+       "id": "canvas-1",
+       "name": "画布 1",
+       "nodes": 0
+      },
+      {
+       "id": "canvas-2",
+       "name": "画布 2",
+       "nodes": 10
+      },
+      {
+       "id": "canvas-3",
+       "name": "画布 3",
+       "nodes": 0
+      },
+      {
+       "id": "canvas-4",
+       "name": "画布 4",
+       "nodes": 0
+      },
+      {
+       "id": "canvas-5",
+       "name": "画布 5",
+       "nodes": 0
+      }
+     ],
+     "removed": [
+      {
+       "id": "canvas-6",
+       "name": "画布 6",
+       "removedAt": "2026-10-04",
+       "nodes": 0
+      }
+     ],
+     "active": "canvas-5",
+     "removedCount": 1
+    },
+    "freshLoad": {
+     "canvases": 2,
+     "removed": 0,
+     "active": "canvas-2",
+     "canvasNames": [
+      {
+       "id": "canvas-1",
+       "name": "画布 1",
+       "nodes": 0,
+       "createdAt": null,
+       "created": null
+      },
+      {
+       "id": "canvas-2",
+       "name": "画布 2",
+       "nodes": 10,
+       "createdAt": null,
+       "created": null
+      }
+     ],
+     "activeCanvasNodes": 10
+    },
+    "topNavEntry": "TopNavBar.tsx:287 router.push(\"/project\") —— 全仓库唯一一处 /project 引用"
+   },
+   "why": "755 记过「回收站按钮没观察到，导航时已空」。本批把这句话**收窄**：客户端路由下 store 是保留的、回收站能看到刚删的画布；只有整页加载（新标签页 / 手动刷新）才会清空。**纠正记在下一批**（755 那句过宽）。",
+   "twoRound": false
+  },
+  {
+   "no": 10,
+   "title": "★ 点项目卡打开的新标签页不是你点的那张",
+   "claim": "点了 canvas-1 的卡：本标签页 active 变成 canvas-1，而新标签页 active 是 canvas-2，`showsTarget=**false**",
+   "evidence": {
+    "target": {
+     "id": "canvas-1",
+     "x": 1290,
+     "y": 433,
+     "hitSelf": true
+    },
+    "expectedId": "canvas-1",
+    "activeBeforeTargetClick": "canvas-2",
+    "activeInThisTab": "canvas-1",
+    "popupShowsTarget": false,
+    "firstPopupActive": "canvas-2",
+    "popupUrl": "http://localhost:4317/",
+    "popupStore": {
+     "canvases": [
+      {
+       "id": "canvas-1",
+       "name": "画布 1",
+       "nodes": 0
+      },
+      {
+       "id": "canvas-2",
+       "name": "画布 2",
+       "nodes": 10
+      }
+     ],
+     "removed": [],
+     "active": "canvas-2",
+     "removedCount": 0
+    },
+    "popupNodes": 10,
+    "static": "project/page.tsx:28-31 openCanvas 先 setActiveCanvas(id) 再 window.open(\"/\",\"_blank\")；store 无持久化 ⟹ 新标签页拿到的是种子状态"
+   },
+   "why": "被点的画布有 0 个节点，新标签页显示的有 10 个 —— 内容肉眼可辨地不是同一个。用户在新标签页里会以为自己点错了。",
+   "twoRound": false
+  },
+  {
+   "no": 11,
+   "title": "★ 点「回收站」不会清掉上一条提示",
+   "claim": "点「新建文件夹」后提示为「本地原型：新建文件夹未接入」；再点「回收站」（面板确实开了，aria-expanded=false→true），提示**仍是同一句**",
+   "evidence": {
+    "b4": {
+     "statusAfterStub": "本地原型：新建文件夹未接入",
+     "statusAfterRecycle": "本地原型：新建文件夹未接入",
+     "recyclePanelOpen": true,
+     "statusAfterActiveItem": null,
+     "staleAfterRecycle": true
+    },
+    "static": "project/page.tsx:127 的 onClick 只有 setRecycleOpen(v => !v)，**不碰 status**"
+   },
+   "why": "页面底部只有一行 `status` 状态位。点「回收站」不会写它，于是上一条 stub 提示会**一直挂在那里**，和刚刚发生的操作对不上。",
+   "twoRound": false
+  },
+  {
+   "no": 12,
+   "title": "回收站勾选链路正常",
+   "claim": "勾选 1 项后「已选择 0 项」→「已选择 1 项」，并出现「恢复所选 1 项」",
+   "evidence": {
+    "before": "已选择 0 项",
+    "after": "已选择 1 项",
+    "restoreSelected": "恢复所选 1 项"
+   },
+   "why": "「已选择 N 项 / 恢复所选 N 项」这套交互是通的，所以问题**不在**批量恢复的实现。",
+   "twoRound": false
+  },
+  {
+   "no": 13,
+   "title": "三处常驻文案",
+   "claim": "h1「全部项目」；横幅「💥 Seedance 2.5 720P 年会员生成限时5折起，低至0.39 …」；页尾「没有更多了」",
+   "evidence": {
+    "h1": "全部项目",
+    "banner": "💥 Seedance 2.5 720P 年会员生成限时5折起，低至0.39 元/秒年会员最低 4.5 折 限时抢购",
+    "moreMarker": "没有更多了",
+    "createCardText": "开始创建创建新的视频项目"
+   },
+   "why": "「没有更多了」是静态文案：store 里没有分页、没有加载更多逻辑，2 张卡与 6 张卡下都显示这一句。",
+   "twoRound": true
+  },
+  {
+   "no": 14,
+   "title": "本批四处的诚实边界",
+   "claim": "① 画布页通往 /project 的入口**只有** TopNavBar 一处，本批只验了它；② 6 张档是**程序化** addCanvas 造出来的，不是用户点「新建画布」4 次；③ 「剩余 30 天」的老化实验用 store.setState 改数据，是**程序化造数**；④ 没有与源站对照",
+   "evidence": {
+    "onlyProjectEntry": "全仓库 `router.push(\"/project\")` 只出现在 TopNavBar.tsx:287（TopNavBar 由 app/page.tsx:1439 渲染）",
+    "sixCanvasesSeeded": "addCanvas × 4（store 层面）",
+    "agingSeeded": "store.setState 改 removedAt",
+    "noSourceCompare": "源站的 /project 结构未采样"
+   },
+   "why": "①–③ 都是「为了到达某状态而绕开 UI」，绕开本身要标出来，否则读起来像是用户能走通的路径。",
+   "twoRound": false
+  }
+ ],
+ "headline": {
+  "defect": "「点项目卡在新标签页打开画布」打开的**不是你点的那张画布**：本标签页把 active 切了过去，新标签页却因为 store 无持久化回到默认画布",
+  "rootCause": "project/page.tsx:28-31 的 openCanvas 先 setActiveCanvas(id) 再 window.open(\"/\", \"_blank\")；activeCanvasId 只活在内存里，新标签页拿到的是种子 store。",
+  "proofChain": [
+   "被点的卡 = canvas-1（0 个节点），hitSelf=true",
+   "点完后本标签页 active = canvas-1（说明 setActiveCanvas 确实执行了）",
+   "新标签页 active = canvas-2、节点数 = 10",
+   "showsTarget = false"
+  ],
+  "secondary": [
+   "回收站「仅显示最近 30 天内删除的内容」+ 每项「剩余 30 天」**都没有实现**：removedAt 改成 20 个月前，文案一字未变",
+   "**默认 2 张画布下删不掉画布**（删除项落点命中画布上的 IMG），⟹ 回收站在默认状态下永远为空（根因在 755 的行内菜单缺陷）",
+   "卡片副行日期对所有卡片都是「今天」，store 里没有 createdAt",
+   "点「回收站」不清掉上一条 stub 提示，状态位与刚发生的操作对不上",
+   "9 个按钮只弹「本地原型：X 未接入」"
+  ]
+ },
+ "rework": [
+  {
+   "id": "R29",
+   "batch": "759b",
+   "what": "`el.closest === it` —— **无参** closest 只返回元素自己",
+   "detail": "于是点落在 button 的**子元素**（文本/图标）上就判 hitSelf=false。读数变成 2 张与 6 张都是 0/4，与 755 的阳性对照直接矛盾 —— 正是「与已确认结论冲突」这个信号让我回头查探针。改成 `el.closest('button') === it` 后，2 张 0/4、6 张 4/4，与 755 完全一致。",
+   "rule": "**`closest()` 必须带选择器**；无参调用只回答「我是谁」。命中判定要问「这个点上最内层的匹配元素是不是它」。"
+  },
+  {
+   "id": "R30",
+   "batch": "759b",
+   "what": "行内菜单压根不在 DOM 里就开始量",
+   "detail": "菜单是 `menuOpenId === canvas.id` 才渲染的，开关是行尾那个`aria-label=\"更多操作\"` 的按钮（`opacity-0`，靠悬停行显形）。我直接量菜单 ⟹ 元素不存在 ⟹ items 恒为空。补上「悬停整行 → opacity 0→1 → 点击开关」才量到。",
+   "rule": "**量条件渲染的元素前，先把打开它的交互走一遍**；「找不到元素」的第一嫌疑是「没打开」，不是「不存在」。还要记得悬停这类「靠 hover 才显形」的开关。"
+  },
+  {
+   "id": "R31",
+   "batch": "759b",
+   "what": "B3 点了「另一张」却拿「目标」去比，结论无效",
+   "detail": "代码里点的是 other 卡片，却拿 target 去判 `showsTarget`。第一版跑出 `showsTarget=False` 时看着像缺陷，其实「另一张」恰好是默认画布，结论不可用。改成：先点 other 确立前置条件，再点 target，再比 popup。",
+   "rule": "**对照实验里，被测对象和比较基准必须是同一个 id**；点 A 却拿 B 的 id 去断言，等于没做实验。"
+  },
+  {
+   "id": "R32",
+   "batch": "759b",
+   "what": "把 755 的「导航时已空」当成普遍结论",
+   "detail": "759a 看到回收站为空，我一度准备写成「回收站永远为空」。分层归因后发现**客户端路由（TopNavBar → /project）是保留 store 的**，6 张档下回收站真的出现了刚删的条目；只有整页加载/新标签页才清空。755 那句话过宽。",
+   "rule": "**「某状态是空的」要分清是哪一种空**：渲染逻辑坏 / 数据本来没有 / 加载方式丢状态。三者的修法完全不同。并且**收窄上一批的结论要显式写出来**，不要默默改口。"
+  },
+  {
+   "id": "R33",
+   "batch": "759 验收器",
+   "what": "负向对照抓到验收器自己的洞：`deleteItem.hitSelf` **没有任何断言**",
+   "detail": "把它伪造成 `true`（即谎称默认 2 张画布下删除项可点）竟然跑出 51/51 全过。原因是：检查读的是 `items` **列表**里的同名项、以及 `topTag == 'IMG'`，唯独 `deleteItem` 这个**对象本身**的 hitSelf 没人看。补了两条（2 张档 deleteItem 必须 false 且与 items 一致；6 张档 deleteItem 必须 true 且 topTag 是 BUTTON），之后 5 发注入全部被拦。",
+   "rule": "**负向对照要挑「看起来像重复、实际没人看」的字段去伪造**。同一事实在产物里存了两份（列表项 + 单独对象）时，两处都要有断言，否则改掉没被读的那一处就能蒙混过关。"
+  }
+ ],
+ "notClaimed": [
+  "本批**没有与源站对照**（源站的 /project 结构与回收站策略未采样）",
+  "6 张画布那一档是**程序化** `addCanvas` ×4 造出来的，不是用户点「新建画布」4 次；真实路径下的时序/焦点行为未测",
+  "「剩余 30 天」的老化实验用 `store.setState` 改 removedAt，是**程序化造数**；真实用户能否造出一个 20 个月前删除的画布，取决于store 有没有持久化（当前没有）",
+  "画布页通往 /project 的入口只验了 TopNavBar 那一处；键盘可达性、面包屑、浏览器前进后退都没测",
+  "「新建项目」（`addCanvas` + `window.open`）**没有单独验** —— 它与判据 10 同一条链路，但新标签页里同样看不到新建的画布，这一格未单独取数",
+  "项目卡没有右键菜单、没有拖拽排序、没有重命名入口、没有删除入口 —— **这四格只做了「DOM 里没有」的存在性判断，没有逐个找过**",
+  "没有测「已选择 N 项」在取消勾选后的回退、也没有真的点「恢复」与「恢复所选」验证画布回到列表",
+  "没有测回收站面板的宽度/滚动/与列表的相对位置在多项目下的表现",
+  "横幅内容是硬编码的营销文案，没有测它与源站的时效一致性"
+ ],
+ "rawProbeFiles": {
+  "a": "759a /project 两轮结构普查 + 9 个 stub 按钮逐个点击 + 回收站文案",
+  "b": "759b 可达性链：2 张 vs 6 张的删除链路 / 回收站渲染与勾选 / 新标签页 / 状态提示残留"
+ }
+}
