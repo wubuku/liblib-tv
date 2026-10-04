@@ -5700,6 +5700,9 @@ def main() -> int:
     _p965 = p965.read_text(encoding="utf-8") if p965.exists() else ""
     p966 = ROOT / "scripts/jimeng_probe966_clicksel_src.py"
     _p966 = p966.read_text(encoding="utf-8") if p966.exists() else ""
+    # ⭐ 967：读数文件必须**真的在**，否则下面 DDDD.* 的探针钉子全是空串
+    p967 = ROOT / "scripts/jimeng_probe967_armptr_src.py"
+    _p967 = p967.read_text(encoding="utf-8") if p967.exists() else ""
     p892 = ROOT / "scripts/jimeng_probe892_preventdefault_src.py"
     _p892 = p892.read_text(encoding="utf-8") if p892.exists() else ""
     p896 = ROOT / "scripts/jimeng_probe896_roving_tabindex_policy_src.py"
@@ -7870,9 +7873,9 @@ def main() -> int:
           and "**而** `getAttribute('tabindex')` " in _ausrc)
 
     # ══ 批 966：⭐⭐⭐⭐ 最后一块**行为侧** —— 点选那枚 vs 点选两个邻居 ══
-    print("— CCCC. 批 966 行为侧：三枚点完**完全一致** ⇒ 行为侧也查不出 —")
+    print("— YYYYY. 批 966 行为侧：三枚点完**完全一致** ⇒ 行为侧也查不出 —")
 
-    check("CCCC.1 ⭐⭐⭐⭐ **行为侧也查不出**：三枚点完**逐项一致** —— "
+    check("YYYYY.1 ⭐⭐⭐⭐ **行为侧也查不出**：三枚点完**逐项一致** —— "
           "都**被自己选中**（`n_selected 0 → 1`）、都**不把焦点搬进节点**、"
           "都**不开新层** ⇒ 那枚在**可观察行为上与邻居无异**",
           '"what_966_measures": (' in _ausrc
@@ -7895,7 +7898,7 @@ def main() -> int:
           and '"click_all_three_accounted": bool(all(' in _p966
           and "**三枚都要有结论**（点到了 或 如实记「没点」）" in _p966)
 
-    check("CCCC.2 ⭐⭐⭐⭐ **三条路全部走完的总结**（963 `tabindex` / 964 解剖 / "
+    check("YYYYY.2 ⭐⭐⭐⭐ **三条路全部走完的总结**（963 `tabindex` / 964 解剖 / "
           "965 可聚焦性 / 966 行为）⇒ **那枚与邻居在**所有可观察维度**上无异** ⇒ "
           "**跳过是应用自己表里的一个选择**，**没有 DOM 表达式**；"
           "⇒ 对复刻不变：**按纯 DOM 序实现 + 把这一枚记为已知差异**",
@@ -7905,7 +7908,7 @@ def main() -> int:
           and "**三枚行为一致 ⇒ 行为侧也查不出**" in _p966
           and "**三枚行为不同 ⇒ 那枚确实特殊**" in _p966)
 
-    check("CCCC.3 ⚠️⚠️⚠️ 966 在**跑起来之前**又踩三个坑，三个都**当场抓住**："
+    check("YYYYY.3 ⚠️⚠️⚠️ 966 在**跑起来之前**又踩三个坑，三个都**当场抓住**："
           "① `READ_FM_JS` 的**名字**被写成 `READ_FT_JS`（**函数体却是前者的**）"
           "⇒ 同名覆盖 ⇒ `NameError`；② **Python 的 `#` 注释留在 JS 字符串里**"
           "⇒ 运行时才炸、而**静态 JS 门没抓到**；③ 新门**少一个右括号** ⇒ "
@@ -7930,6 +7933,99 @@ def main() -> int:
           and "// ⚠️ **不截断**：数组 `slice` 会被切片守卫" in _p966
           and '"click_plan_recorded": bool(all(' in _p966
           and 'for r0 in out["runs"] if "skipped" not in r0["cells"][0])' in _p966)
+
+    # ══ 批 967：⭐⭐⭐⭐⭐ 把 900 与 963 的两个数**放进同一张表对账** ══
+    print("— ZZZZZ. 批 967 两个可观测量对账：900 与 963 都没错 + 更正 965 —")
+
+    check("ZZZZZ.1 ⭐⭐⭐⭐⭐ **900 与 963 都没错 —— 它们量的不是同一件事**（源站 2/2 "
+          "逐项一致）：「被布上 `'0'`」漏 **2** 枚（`b22-upload`、`音频 61`）、"
+          "「被 `Tab` 落到」漏 **1** 枚（`音频 61`）⇒ **差集恰好 1 枚** = "
+          "`b22-upload` ⇒ **它落上过，但从不是落焦「本体」**（两次都落在内层 "
+          "`替换媒体` 按钮，那两按布的 `'0'` 是 `音频 node: 音频 7`）⇒ "
+          "**它不是「不被选中」，而是「压根没进过指针」**；而 **`音频 61` 才是唯一一枚"
+          "既没被布、也没被落上的节点** ⇒ 963–966 那四条维度的「跳过」"
+          "**只对这一枚成立**",
+          '"armptr_967"' in _ausrc
+          and "**900 与 963 都没错 —— 它们量的不是同一件事**" in _ausrc
+          and "**900 那个数第一次被复核成功**" in _ausrc
+          and "`n_landed_never_armed` = " in _ausrc
+          and "**它落上过，但从不是落焦「本体」**" in _ausrc
+          and "**不是「不被选中」，而是「压根没进过指针」**" in _ausrc
+          and "才是唯一一枚既没被布、也没被落上的" in _ausrc
+          and "**只对这一枚成立**" in _ausrc
+          # ⭐ 钉探针：两个可观测量**在同一轮**里同时量，且落焦**拆成三类**
+          and "OUT = \"/tmp/b967-armptr.json\"" in _p967
+          and "**同一轮**里同时量这两个可观测量" in _p967
+          and 'POINTS = ("pre", "post", "task", "after")' in _p967
+          and "kind: idx < 0 ? 'out' : (t === node ? 'self' : 'inner')" in _p967
+          )
+
+    check("ZZZZZ.2 ⭐⭐⭐⭐ **顺带否掉 965 §二 的越界推论**（965 **主判决不动**）："
+          "那个 `el.tabIndex === -1` 读自**孤立的 `focus()` 测试**（那一瞬间节点身上"
+          "**没有** `tabindex` 属性）⇒ **走查里落焦的节点 106/140 读到的就是 `'0'`**、"
+          "而且 `'0'` 在按后 350ms **仍然布着**（140/140）⇒ "
+          "**`tabindex='0'` 确实把这些 `div` 装进了 `Tab` 序列**、**不撤**正是 ⑦"
+          "「此后不回撤」⇒ ⇒ ⭐⭐⭐ **「A ≠ B」不等于「A 能把 A 从 C 里挑出来」**",
+          '"corrects_965_967"' in _ausrc
+          and "**更正 965 §二 的一句越界推论**（965 **主判决不动**）" in _ausrc
+          and "**那个 `-1` 只说明「那一瞬间它身上没有 `tabindex` 属性」**" in _ausrc
+          and "**走查里的落焦节点 106/140 读到的 `tabindex` 就是 `'0'`**" in _ausrc
+          and "**`'0'` 在按后 350ms 仍然布着**" in _ausrc
+          and "**不撤**正是 ⑦「此后不回撤」" in _ausrc
+          and "**「A ≠ B」不等于「A 能把 A 从 C 里挑出来」**" in _ausrc
+          and "**原样成立、不动**的部分：965 的**主判决**" in _ausrc
+          # ⭐ 钉探针：4 个取样点 + 「不预设布防时刻」的纪律 + after 点真读到布防
+          and "**不预设「布 `'0'` 发生在哪一刻」**" in _p967
+          and 'ARMED_ONLY_JS = """([nodeSel]) => {' in _p967
+          and '"armed_read_is_live"' in _p967
+          and "min(_c0.get(\"armed_distinct_tids\") or 0," in _p967)
+
+    check("ZZZZZ.3 ⭐⭐⭐⭐ **产品改动落地**（不只研究）：`JimengWorkspace.tsx` 的"
+          "「已知差异」块**原文保留 + 加改写横幅**（承 HH.4）⇒ 把「900 的 2 个」"
+          "改成「**只有 1 枚**是已知差异」并说清**四条维度穷尽只对那一枚成立**；"
+          "同时把 965 那句越界推论的更正也写进同一块",
+          "**批 967 改写上面那段（原文保留、不删；下面这段取代它的结论）**" in _wsrc
+          and "上面那段把 `b22-upload` 与 `音频 61` **当成同一类**了，**那是错的**" in _wsrc
+          and "它**不是「不被选中」，而是「压根没进过指针」**" in _wsrc
+          and "唯一一枚既没被布、也没被落上的节点。" in _wsrc
+          and "按**纯 DOM 序**实现，把**这一枚**" in _wsrc
+          and "（不是两枚）记为已知差异" in _wsrc
+          and "**顺带更正 965 的一个越界推论**" in _wsrc
+          and "**走查里落焦的节点 106/140 读到的就是 `tabindex='0'`**" in _wsrc
+          and "**布防 ⇒ 落焦**" in _wsrc
+          # ⚠️ 原文必须**还在**（HH.4：撤销结论时原文保留）
+          and "**2 个整轮从没被布上 `'0'`**" in _wsrc
+          and "⚠️ 已知差异（900 查明后**如实记下**" in _wsrc)
+
+    check("ZZZZZ.4 ⚠️⚠️ 967 的门**有牙**（不是恒真门）：干跑喂**假数据**时 "
+          "`armed_read_is_live` / `landing_channels_both_present` **直接判红**；"
+          "且**干跑当场抓到一处真错** —— `RAW_KEYS` 与 `DERIVED_KEYS` **重了 "
+          "`blank`** ⇒ 键账免疫针**在跑之前就红**（与 966 的三个坑同族）",
+          '"discipline_967"' in _ausrc
+          and "**每道门都挂在独立分母上**" in _ausrc
+          and "**干跑当场抓到一处真错**：`RAW_KEYS` 与 `DERIVED_KEYS` " in _ausrc
+          and "**门有牙的证明**" in _ausrc
+          and "**不是恒真门**" in _ausrc
+          # ⭐ 钉探针：装/摘配平 + 幂等 + finally 无条件复查 + 两轮比较在循环外
+          and "window.__ap_off = () => {" in _p967
+          and "if (window.__ap_off) window.__ap_off();" in _p967
+          and "finally:" in _p967
+          and "`finally` 里**无条件**复查 `__ap_off`" in _p967
+          and '"fired_eq_rows"' in _p967
+          and 'c["fired_eq_rows"] = (c["n_fired_total"] == len(rows))' in _p967
+          and "# ── ⭐⭐ 两轮比较**必须在 `for rep` 循环之外**" in _p967
+          # ⚠️ 键账免疫针**真的**在文件里
+          and 'assert not (RAW_KEYS & DERIVED_KEYS), "派生键与原始读数键重叠了' in _p967)
+
+    check("ZZZZZ.5 ⭐⭐ **判词不许预写**：探针只输出 `recon`（**纯数字**），"
+          "audit 里那几段判词是**读过 `/tmp/b967-armptr.json` 的原始读数之后**才写的 "
+          "⇒ 这是 965「汇总层把判决说反」之后立的规矩",
+          "**判词不许预写**：探针只输出 `recon`（**纯数字**）" in _ausrc
+          and "**只搬数字、不写判词**" in _p967
+          and 'out["recon"] = {' in _p967
+          # ⚠️ 探针里**不许**出现预写的判词字符串
+          and "verdict_armed" not in _p967
+          and "verdict_recon" not in _p967)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "

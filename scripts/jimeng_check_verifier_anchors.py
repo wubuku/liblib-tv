@@ -138,6 +138,9 @@ PROBE_VARS = {
     "_p964": "scripts/jimeng_probe964_skipwhy_src.py",
     "_p965": "scripts/jimeng_probe965_focusable_src.py",
     "_p966": "scripts/jimeng_probe966_clicksel_src.py",
+    # ⚠️ 967：**与写 `DDDD.*` 判据同一步登记** —— 962/963/964/965 各栽过一次，
+    #   症状都是「新增变量没登记 ⇒ 锚点自查把整组**静默跳过** ⇒ 报 0 问题」
+    "_p967": "scripts/jimeng_probe967_armptr_src.py",
     # ⚠️ 961 顺带补上 `asrc`（= audit 源码，M 组判据在用；
     #   它的路径是 `ROOT / "scripts" / "…"` 两段写法，自动提取抓不到）
     "asrc": "scripts/jimeng_unclickable_audit.py",
