@@ -5731,6 +5731,10 @@ def main() -> int:
     #   **不依赖 testid、不依赖「簇」**）
     p973 = ROOT / "scripts/jimeng_probe973_ringorder_ck.py"
     _p973 = p973.read_text(encoding="utf-8") if p973.exists() else ""
+    # ⭐ 974：**源站侧**，把 973 的 `DOMRANK_JS` **逐字 `_grab`** 过来
+    #   ⇒ 「两侧真的是同一件仪器」由一条 `assert` 钉住，而不是文档保证
+    p974 = ROOT / "scripts/jimeng_probe974_source_domrank_src.py"
+    _p974 = p974.read_text(encoding="utf-8") if p974.exists() else ""
     # ⭐ 970 的 CCCC.2 要**反证 816 那条决策真的在仓库里**（钉源码原文，
     #   不钉我自己写的转述）
     p816 = ROOT / "scripts/verify-jimeng-batch816-anchors.py"
@@ -8552,6 +8556,113 @@ def main() -> int:
           and "**上面「复刻只差两处」这句不准确，" in _ausrc
           # ⭐⭐⭐ 第七次预防同一个坑：`_p973` **与判据同一步**登记
           and '"_p973": "scripts/jimeng_probe973_ringorder_ck.py",' in _anchs)
+
+    # ══ 批 974：⭐⭐⭐⭐⭐ 源站侧补上 973 留的对照缺口 ⇒ 两侧各测一轮、同一件仪器 ══
+    print("— HHHHH. 批 974 源站侧测环序：两侧都是 DOM 序；973 那句「机制不同」说重了 —")
+
+    check("HHHHH.1 ⭐⭐⭐⭐⭐ **两侧的环都是 DOM 序** —— 而 973 只证了复刻侧、"
+          "**源站那一侧的 `dom_rank` 它自己写明了没量** ⇒ 本批补上：探针 974，"
+          "**源站**，2 轮 × 1 格 × 140 次 `Tab`，`DOMRANK_JS` 用 `_grab` 从 973 "
+          "**逐字抠**、**不复制源码**；⇒ 源站 `arc_ranks` **单调递增、"
+          "恰好一次回绕**（2396 → 60），两轮**签名相同** ⇒ ⇒ ⭐⭐⭐ "
+          "**「同一件仪器」是可证的**：`_grab` 抠完再 `assert _s in _p973` ⇒ "
+          "**它是一条断言，不是文档里的一句保证**；⇒ ⇒ ⭐⭐⭐ "
+          "**上一批的机制不许直接当成这一批的预期**",
+          '"both_sides_are_dom_order_974"' in _ausrc
+          and "**两侧的环都是 DOM 序** —— 而 973 只证了复刻侧，" in _ausrc
+          and "**源站那一侧的 `dom_rank` 它自己写明了没量**" in _ausrc
+          and "`DOMRANK_JS` 用 `_grab` 从 973 **逐字抠**、**不复制源码**" in _ausrc
+          and "**单调递增、恰好一次回绕**" in _ausrc
+          and "（2396 → 60），两轮**签名相同**" in _ausrc
+          and "**973 的结论现在两侧都钉住了**" in _ausrc
+          and "**「同一件仪器」是可证的**" in _ausrc
+          and "**它是一条断言，不是文档里的一句保证**" in _ausrc
+          and "**上一批的机制不许直接当成这一批的预期**" in _ausrc
+          # ⭐⭐⭐⭐⭐ 钉探针：真的是 `_grab` + `assert`，不是复制
+          and 'DOMRANK_JS = _grab("DOMRANK_JS", _p973)' in _p974
+          and 'assert DOMRANK_JS in _p973, "DOMRANK_JS 不在 973 探针里 ⇒ 不是同一件仪器"' in _p974
+          and '"_p974": "scripts/jimeng_probe974_source_domrank_src.py",' in _anchs
+          and '"js_verbatim_from_973": ["DOMRANK_JS"]' in _p974
+          and "⚠️⭐⭐ **不复制源码**" in _p974
+          and "**不复制源码** —— `_grab` + `assert` " in _ausrc
+          and "**它是一条断言，不是文档里的一句保证**" in _ausrc
+          and '"source_ring_follows_dom_order_both_reps"' in _p974
+          and '"source_dom_rank_is_live_both_reps"' in _p974
+          and '"source_seam_pred_measured_both_reps"' in _p974)
+
+    check("HHHHH.2 ⭐⭐⭐⭐⭐ **`rf__wrapper` 的位置差异 = 实现差异，两侧各测一轮钉住了；"
+          "而且差别是「两端对调」**：**源站**它在环的**最后一位**、`dom_rank` = "
+          "177/179 ⇒ **它是源站 DOM 序里最后一个可聚焦元素**；**复刻**它的 "
+          "`dom_rank` = 42 ⇒ **它是复刻 DOM 序里第一个可聚焦元素** ⇒ "
+          "**不是「少了一个 / 多了一个」，是「同一枚在两端对调」**；"
+          "⇒ 972 记的「源站那枚在 `用户菜单` 与 `文本` 之间」本批复核成立"
+          "（源站环序 `用户菜单`(16) → **`rf__wrapper`**(17) → `文本`(0)）；"
+          "⚠️⚠️ **仍不提出产品改动** —— 「差异是实现差异」测实了，"
+          "但「**该往哪边对齐**」是**产品决策** ⇒ ⭐⭐⭐ "
+          "**「差异成立」与「该怎么改」是两件事，不许拿前者当后者的许可证**",
+          '"wrapper_ends_are_swapped_974"' in _ausrc
+          and "**972 悬的那件事有答案了：" in _ausrc
+          and "两侧各测一轮钉住了；而且差别是「**两端对调**」" in _ausrc
+          and "**它是源站 DOM 序里最后一个可聚焦元素**" in _ausrc
+          and "（环里最大的是 `与 AI 对话`，`dom_rank` = 2396/2398）" in _ausrc
+          and "**它是复刻 DOM 序里第一个可聚焦元素**" in _ausrc
+          and "**所以源站在弧的末端、复刻在弧的起点之前**" in _ausrc
+          and "**不是「少了一个 / 多了一个」，是「同一枚在两端对调**」**" in _ausrc
+          and "本批复核成立" in _ausrc
+          and "→ **`rf__wrapper`**(17) → " in _ausrc
+          and "**仍不提出产品改动**" in _ausrc
+          and "**该往哪边对齐**" in _ausrc
+          and "**「差异成立」与「该怎么改」是两件事，" in _ausrc
+          and "不许拿前者当后者的许可证**" in _ausrc
+          and '"source_flow_stop_is_live_both_reps"' in _p974
+          and '"flow_seats_by_tid"' in _p974)
+
+    check("HHHHH.3 ⭐⭐⭐⭐⭐ **两侧那枚 `BODY` 都是「DOM 序的回绕点」—— "
+          "而 973 说「很可能不是同一个机制」，本批把它改掉**："
+          "**结构角色两侧相同**（前一格 `dom_rank` 是环里最大、后一格是最小）；"
+          "**触发方式两侧不同**（源站前一格 `canvas-sidecar-launcher`、"
+          "`prev_focusable = TRUE`；复刻前一格 `NEXTJS-PORTAL`、"
+          "`prev_focusable = false`）⇒ ⇒ ⭐⭐⭐ **纪律**："
+          "**「实测到一个差异」很容易被写成「机制不同」** —— 本例差异只在**前驱元素**、"
+          "**角色完全一致** ⇒ ⭐⭐ **下结论前先问「差异在哪个字段上」**；"
+          "⚠️ **未测实**：源站那一枚**为什么**也会落在 body 上 ⇒ **记未查明**；"
+          "另记本批自己犯的两处：① 跨轮门**拿绝对下标比相等** ⇒ 必然红 ⇒ "
+          "**跨轮比顺序要比「顺序关系」、不是「绝对数值」**（修法**不是放宽**）；"
+          "② 门 ⑥ 第一版写成 `... if False else True` ⇒ **一道恒真门，比没有门更坏** "
+          "⇒ **凡写了 `if X` 的短路分支，都要问「X 恒定吗」**",
+          '"seam_is_wrap_point_974"' in _ausrc
+          and "**两侧那枚 `BODY` 都是「DOM 序的回绕点」" in _ausrc
+          and "本批把它改掉" in _ausrc
+          and "**结构角色（已测实，两侧相同）**" in _ausrc
+          and "**触发方式（两侧不同，这才是 973 测到的）**" in _ausrc
+          and "`prev_focusable = TRUE`（**可聚焦**）" in _ausrc
+          and "`prev_focusable = false`" in _ausrc
+          and "**改写 973 的说法**" in _ausrc
+          and "**说重了**" in _ausrc
+          and "**落点角色两侧相同**（都是回绕点）" in _ausrc
+          and "**「实测到一个差异」很容易被写成「机制不同」**" in _ausrc
+          and "⭐⭐ **下结论前先问「差异在哪个字段上」**" in _ausrc
+          and "本批**只有观测、没有机制** ⇒ **记未查明**" in _ausrc
+          and '"wrong_kind_gate_974"' in _ausrc
+          and "**它必然红**" in _ausrc
+          and "**在会动的源站上钉绝对值**" in _ausrc
+          and "**纪律：跨轮比顺序，必须比「顺序关系」而不是「绝对数值」**" in _ausrc
+          and "修法**不是放宽**" in _ausrc
+          and "不必重跑源站就能确认改对了" in _ausrc
+          and '"self_inflicted_omission_974"' in _ausrc
+          and "**那是一道恒真门，" in _ausrc
+          and "凡是写了 `if X` 的短路分支，都要问一句「X 恒定吗」**" in _ausrc
+          and "**恒定的条件 + `else` 分支 = 一道永远绿的门**" in _ausrc
+          # ⭐⭐ 钉探针：顺序签名门与被删掉的恒真门都要在
+          and "rank_order_signature" in _p974
+          and "**它必然红，而红的原因不是「环序变了」**" in _p974
+          and "**不是放宽**" in _p974
+          and "一道**恒真门**" in _p974
+          and "⇒ 与 DOM 总大小无关 ⇒ 逐轮多/少一个元素**不该**让它红" in _p974
+          # ⚠️ 973 那句必须**已挂改写横幅**（原文保留、不删）
+          and "**批 974 改写横幅" in _ausrc
+          and "**「很可能不是同一个机制」这句**说重了**，" in _ausrc
+          and "**仍然成立的那半句**" in _ausrc)
 
 
     check("AAAAA.4 ⚠️⚠️ **步长那道门第一版太弱，是干跑当场抓到的**：它只查 "
