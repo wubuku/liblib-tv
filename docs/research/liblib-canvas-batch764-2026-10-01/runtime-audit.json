@@ -1,0 +1,6853 @@
+{
+ "batch": 764,
+ "date": "2026-10-01",
+ "scope": "D1（手势边界吞 Esc）的影响面普查 + 导演台 ⌘C/⌘V 与可编辑控件里的修饰键行为",
+ "env": {
+  "base": "http://localhost:4317",
+  "canvas": "canvas-2",
+  "directorNodeId": "b-bTLLuU4w5q",
+  "viewportA": "800x1000（移动端抽屉，影响面普查）",
+  "viewportB": "1440x1000（桌面，修饰键）",
+  "player": "chromium (playwright sync_api)",
+  "srcModified": false
+ },
+ "probes": [
+  {
+   "id": "764a",
+   "file": "probes/dbg764a.py",
+   "raw": "raw/vb764a.json",
+   "rounds": 2,
+   "selfReportedConsistent": null,
+   "note": "两轮在**可比上下文**上逐字段一致；路径上下文不可比（见 J5）"
+  },
+  {
+   "id": "764b",
+   "file": "probes/dbg764b.py",
+   "raw": "raw/vb764b.json",
+   "rounds": 2,
+   "selfReportedConsistent": null,
+   "note": "破坏性：真粘贴了对象、真删了一个（两轮的种子数因此不同，这正是 763 O1 记的持久化）"
+  },
+  {
+   "id": "764c",
+   "file": "probes/dbg764c.py",
+   "raw": "raw/vb764c.json",
+   "rounds": 2,
+   "selfReportedConsistent": null,
+   "note": "四次 pick 全部失败（探针自身缺陷，已记 R62），但失败恰好让焦点留在数值框里，反而量到了 D2"
+  }
+ ],
+ "rawSha": {
+  "vb764a.json": "936208344e8da0dd",
+  "vb764b.json": "f7d22cc656b0b62c",
+  "vb764c.json": "5f991ba9ad7a1dc4"
+ },
+ "findings": {
+  "contextsRound1": [
+   {
+    "label": "default",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 35,
+    "boundaryCount": 9,
+    "boundaryTypes": [
+     "number"
+    ],
+    "boundaryRows": [
+     {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 9,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 12,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 15,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 18,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 21,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 24,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 27,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 30,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     }
+    ],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": true,
+    "skipped": []
+   },
+   {
+    "label": "character:properties",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 35,
+    "boundaryCount": 9,
+    "boundaryTypes": [
+     "number"
+    ],
+    "boundaryRows": [
+     {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 9,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 12,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 15,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 18,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 21,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 24,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 27,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 30,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     }
+    ],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": true,
+    "skipped": []
+   },
+   {
+    "label": "character:pose",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 47,
+    "boundaryCount": 25,
+    "boundaryTypes": [
+     "range"
+    ],
+    "boundaryRows": [
+     {
+      "i": 22,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "body.pitch"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 23,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "body.yaw"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 24,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "body.roll"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 25,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "torso.pitch"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 26,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "torso.yaw"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 27,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "torso.roll"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 28,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "head.pitch"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 29,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "head.yaw"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 30,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "head.roll"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 31,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftShoulder.pitch"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 32,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftShoulder.spread"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 33,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftShoulder.twist"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 34,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightShoulder.pitch"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 35,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightShoulder.spread"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 36,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightShoulder.twist"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 37,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftElbow.bend"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 38,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightElbow.bend"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 39,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftHip.pitch"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 40,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftHip.spread"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 41,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftHip.twist"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 42,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightHip.pitch"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 43,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightHip.spread"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 44,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightHip.twist"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 45,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftKnee.bend"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 46,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightKnee.bend"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     }
+    ],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35,
+     36,
+     37,
+     38,
+     39,
+     40,
+     41,
+     42,
+     43,
+     44,
+     45,
+     46
+    ],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": true,
+    "skipped": []
+   },
+   {
+    "label": "camera:properties",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 52,
+    "boundaryCount": 12,
+    "boundaryTypes": [
+     "number"
+    ],
+    "boundaryRows": [
+     {
+      "i": 9,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 12,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 15,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 19,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 22,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 25,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 28,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 31,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 34,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 47,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "target",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 49,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "target",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 51,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "target",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     }
+    ],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [
+     9,
+     12,
+     15,
+     19,
+     22,
+     25,
+     28,
+     31,
+     34,
+     47,
+     49,
+     51
+    ],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": true,
+    "skipped": []
+   },
+   {
+    "label": "camera:motion",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 7,
+    "boundaryCount": 0,
+    "boundaryTypes": [],
+    "boundaryRows": [],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": null,
+    "skipped": []
+   },
+   {
+    "label": "camera:captures",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 3,
+    "boundaryCount": 0,
+    "boundaryTypes": [],
+    "boundaryRows": [],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": null,
+    "skipped": []
+   },
+   {
+    "label": "path+camera:properties",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 67,
+    "boundaryCount": 12,
+    "boundaryTypes": [
+     "number"
+    ],
+    "boundaryRows": [
+     {
+      "i": 9,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 12,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 15,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 19,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 22,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 25,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 28,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 31,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 34,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 47,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "target",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 49,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "target",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 51,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "target",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     }
+    ],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [
+     9,
+     12,
+     15,
+     19,
+     22,
+     25,
+     28,
+     31,
+     34,
+     47,
+     49,
+     51
+    ],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": true,
+    "skipped": []
+   },
+   {
+    "label": "path+camera:motion",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 7,
+    "boundaryCount": 0,
+    "boundaryTypes": [],
+    "boundaryRows": [],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": null,
+    "skipped": []
+   },
+   {
+    "label": "path+camera:captures",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 3,
+    "boundaryCount": 0,
+    "boundaryTypes": [],
+    "boundaryRows": [],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": null,
+    "skipped": []
+   }
+  ],
+  "contextsRound2": [
+   {
+    "label": "default",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 35,
+    "boundaryCount": 9,
+    "boundaryTypes": [
+     "number"
+    ],
+    "boundaryRows": [
+     {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 9,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 12,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 15,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 18,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 21,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 24,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 27,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 30,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     }
+    ],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": true,
+    "skipped": []
+   },
+   {
+    "label": "character:properties",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 35,
+    "boundaryCount": 9,
+    "boundaryTypes": [
+     "number"
+    ],
+    "boundaryRows": [
+     {
+      "i": 6,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 9,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 12,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 15,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 18,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 21,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 24,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 27,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 30,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     }
+    ],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [
+     6,
+     9,
+     12,
+     15,
+     18,
+     21,
+     24,
+     27,
+     30
+    ],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": true,
+    "skipped": []
+   },
+   {
+    "label": "character:pose",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 47,
+    "boundaryCount": 25,
+    "boundaryTypes": [
+     "range"
+    ],
+    "boundaryRows": [
+     {
+      "i": 22,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "body.pitch"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 23,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "body.yaw"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 24,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "body.roll"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 25,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "torso.pitch"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 26,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "torso.yaw"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 27,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "torso.roll"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 28,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "head.pitch"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 29,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "head.yaw"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 30,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "head.roll"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 31,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftShoulder.pitch"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 32,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftShoulder.spread"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 33,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftShoulder.twist"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 34,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightShoulder.pitch"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 35,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightShoulder.spread"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 36,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightShoulder.twist"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 37,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftElbow.bend"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 38,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightElbow.bend"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 39,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftHip.pitch"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 40,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftHip.spread"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 41,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftHip.twist"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 42,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightHip.pitch"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 43,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightHip.spread"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 44,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightHip.twist"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 45,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "leftKnee.bend"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 46,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": true,
+      "marks": [
+       "[data-director-pose-control]"
+      ],
+      "ident": {
+       "pose": "rightKnee.bend"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     }
+    ],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35,
+     36,
+     37,
+     38,
+     39,
+     40,
+     41,
+     42,
+     43,
+     44,
+     45,
+     46
+    ],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": true,
+    "skipped": []
+   },
+   {
+    "label": "camera:properties",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 67,
+    "boundaryCount": 12,
+    "boundaryTypes": [
+     "number"
+    ],
+    "boundaryRows": [
+     {
+      "i": 9,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 12,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 15,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "position",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 19,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 22,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 25,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "rotation",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 28,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 31,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 34,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "scale",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 47,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "target",
+       "ta": "x"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 49,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "target",
+       "ta": "y"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     },
+     {
+      "i": 51,
+      "tag": "INPUT",
+      "type": "number",
+      "boundary": true,
+      "marks": [
+       "[data-director-transform-field]"
+      ],
+      "ident": {
+       "tf": "target",
+       "ta": "z"
+      },
+      "focused": true,
+      "reachedWinBubble": false,
+      "reachedWinCapture": true,
+      "drawerClosed": false,
+      "workspaceClosed": false
+     }
+    ],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [
+     9,
+     12,
+     15,
+     19,
+     22,
+     25,
+     28,
+     31,
+     34,
+     47,
+     49,
+     51
+    ],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": true,
+    "skipped": []
+   },
+   {
+    "label": "camera:motion",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 7,
+    "boundaryCount": 0,
+    "boundaryTypes": [],
+    "boundaryRows": [],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": null,
+    "skipped": []
+   },
+   {
+    "label": "camera:captures",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 3,
+    "boundaryCount": 0,
+    "boundaryTypes": [],
+    "boundaryRows": [],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "type": "button",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": null,
+    "skipped": []
+   },
+   {
+    "label": "path+camera:properties",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 35,
+    "boundaryCount": 0,
+    "boundaryTypes": [],
+    "boundaryRows": [],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": null,
+    "skipped": []
+   },
+   {
+    "label": "path+camera:motion",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 35,
+    "boundaryCount": 0,
+    "boundaryTypes": [],
+    "boundaryRows": [],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": null,
+    "skipped": []
+   },
+   {
+    "label": "path+camera:captures",
+    "inspectorKind": null,
+    "focusScope": null,
+    "totalFocusable": 35,
+    "boundaryCount": 0,
+    "boundaryTypes": [],
+    "boundaryRows": [],
+    "nonBoundaryRows": [
+     {
+      "i": 0,
+      "tag": "INPUT",
+      "type": "range",
+      "boundary": false,
+      "marks": [],
+      "ident": {},
+      "focused": true,
+      "reachedWinBubble": true,
+      "reachedWinCapture": true,
+      "drawerClosed": true,
+      "workspaceClosed": false
+     }
+    ],
+    "boundarySwallowed": [],
+    "boundaryNotSwallowed": [],
+    "nonBoundarySwallowed": [],
+    "boundaryAllFocusSucceeded": null,
+    "skipped": []
+   }
+  ],
+  "contextComparability": [
+   {
+    "label": "default",
+    "comparable": true,
+    "round1": {
+     "totalFocusable": 35,
+     "boundaryCount": 9,
+     "boundaryTypes": [
+      "number"
+     ],
+     "boundarySwallowed": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "nonBoundarySwallowed": []
+    },
+    "round2": {
+     "totalFocusable": 35,
+     "boundaryCount": 9,
+     "boundaryTypes": [
+      "number"
+     ],
+     "boundarySwallowed": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "nonBoundarySwallowed": []
+    },
+    "failedR1": null,
+    "failedR2": null
+   },
+   {
+    "label": "character:properties",
+    "comparable": true,
+    "round1": {
+     "totalFocusable": 35,
+     "boundaryCount": 9,
+     "boundaryTypes": [
+      "number"
+     ],
+     "boundarySwallowed": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "nonBoundarySwallowed": []
+    },
+    "round2": {
+     "totalFocusable": 35,
+     "boundaryCount": 9,
+     "boundaryTypes": [
+      "number"
+     ],
+     "boundarySwallowed": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "nonBoundarySwallowed": []
+    },
+    "failedR1": null,
+    "failedR2": null
+   },
+   {
+    "label": "character:pose",
+    "comparable": true,
+    "round1": {
+     "totalFocusable": 47,
+     "boundaryCount": 25,
+     "boundaryTypes": [
+      "range"
+     ],
+     "boundarySwallowed": [
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46
+     ],
+     "nonBoundarySwallowed": []
+    },
+    "round2": {
+     "totalFocusable": 47,
+     "boundaryCount": 25,
+     "boundaryTypes": [
+      "range"
+     ],
+     "boundarySwallowed": [
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46
+     ],
+     "nonBoundarySwallowed": []
+    },
+    "failedR1": null,
+    "failedR2": null
+   },
+   {
+    "label": "camera:properties",
+    "comparable": false,
+    "round1": {
+     "totalFocusable": 52,
+     "boundaryCount": 12,
+     "boundaryTypes": [
+      "number"
+     ],
+     "boundarySwallowed": [
+      9,
+      12,
+      15,
+      19,
+      22,
+      25,
+      28,
+      31,
+      34,
+      47,
+      49,
+      51
+     ],
+     "nonBoundarySwallowed": []
+    },
+    "round2": {
+     "totalFocusable": 67,
+     "boundaryCount": 12,
+     "boundaryTypes": [
+      "number"
+     ],
+     "boundarySwallowed": [
+      9,
+      12,
+      15,
+      19,
+      22,
+      25,
+      28,
+      31,
+      34,
+      47,
+      49,
+      51
+     ],
+     "nonBoundarySwallowed": []
+    },
+    "failedR1": null,
+    "failedR2": null
+   },
+   {
+    "label": "camera:motion",
+    "comparable": true,
+    "round1": {
+     "totalFocusable": 7,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": []
+    },
+    "round2": {
+     "totalFocusable": 7,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": []
+    },
+    "failedR1": null,
+    "failedR2": null
+   },
+   {
+    "label": "camera:captures",
+    "comparable": true,
+    "round1": {
+     "totalFocusable": 3,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": []
+    },
+    "round2": {
+     "totalFocusable": 3,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": []
+    },
+    "failedR1": null,
+    "failedR2": null
+   },
+   {
+    "label": "path+camera:properties",
+    "comparable": false,
+    "round1": {
+     "totalFocusable": 67,
+     "boundaryCount": 12,
+     "boundaryTypes": [
+      "number"
+     ],
+     "boundarySwallowed": [
+      9,
+      12,
+      15,
+      19,
+      22,
+      25,
+      28,
+      31,
+      34,
+      47,
+      49,
+      51
+     ],
+     "nonBoundarySwallowed": []
+    },
+    "round2": {
+     "totalFocusable": 35,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": []
+    },
+    "failedR1": null,
+    "failedR2": null
+   },
+   {
+    "label": "path+camera:motion",
+    "comparable": false,
+    "round1": {
+     "totalFocusable": 7,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": []
+    },
+    "round2": {
+     "totalFocusable": 35,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": []
+    },
+    "failedR1": null,
+    "failedR2": null
+   },
+   {
+    "label": "path+camera:captures",
+    "comparable": false,
+    "round1": {
+     "totalFocusable": 3,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": []
+    },
+    "round2": {
+     "totalFocusable": 35,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": []
+    },
+    "failedR1": null,
+    "failedR2": null
+   }
+  ],
+  "comparableLabels": [
+   "default",
+   "character:properties",
+   "character:pose",
+   "camera:motion",
+   "camera:captures"
+  ],
+  "incomparableLabels": [
+   "camera:properties",
+   "path+camera:properties",
+   "path+camera:motion",
+   "path+camera:captures"
+  ],
+  "comparableCount": 5,
+  "boundaryRowsComparable": [
+   {
+    "i": 6,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "position",
+     "ta": "x"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 9,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "position",
+     "ta": "y"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 12,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "position",
+     "ta": "z"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 15,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "rotation",
+     "ta": "x"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 18,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "rotation",
+     "ta": "y"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 21,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "rotation",
+     "ta": "z"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 24,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "scale",
+     "ta": "x"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 27,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "scale",
+     "ta": "y"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 30,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "scale",
+     "ta": "z"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 6,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "position",
+     "ta": "x"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 9,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "position",
+     "ta": "y"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 12,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "position",
+     "ta": "z"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 15,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "rotation",
+     "ta": "x"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 18,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "rotation",
+     "ta": "y"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 21,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "rotation",
+     "ta": "z"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 24,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "scale",
+     "ta": "x"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 27,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "scale",
+     "ta": "y"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 30,
+    "tag": "INPUT",
+    "type": "number",
+    "boundary": true,
+    "marks": [
+     "[data-director-transform-field]"
+    ],
+    "ident": {
+     "tf": "scale",
+     "ta": "z"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 22,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "body.pitch"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 23,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "body.yaw"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 24,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "body.roll"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 25,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "torso.pitch"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 26,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "torso.yaw"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 27,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "torso.roll"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 28,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "head.pitch"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 29,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "head.yaw"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 30,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "head.roll"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 31,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "leftShoulder.pitch"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 32,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "leftShoulder.spread"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 33,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "leftShoulder.twist"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 34,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "rightShoulder.pitch"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 35,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "rightShoulder.spread"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 36,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "rightShoulder.twist"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 37,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "leftElbow.bend"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 38,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "rightElbow.bend"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 39,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "leftHip.pitch"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 40,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "leftHip.spread"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 41,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "leftHip.twist"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 42,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "rightHip.pitch"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 43,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "rightHip.spread"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 44,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "rightHip.twist"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 45,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "leftKnee.bend"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   },
+   {
+    "i": 46,
+    "tag": "INPUT",
+    "type": "range",
+    "boundary": true,
+    "marks": [
+     "[data-director-pose-control]"
+    ],
+    "ident": {
+     "pose": "rightKnee.bend"
+    },
+    "focused": true,
+    "reachedWinBubble": false,
+    "reachedWinCapture": true,
+    "drawerClosed": false,
+    "workspaceClosed": false
+   }
+  ],
+  "nonBoundaryRowsComparable": [
+   {
+    "i": 0,
+    "tag": "BUTTON",
+    "type": "button",
+    "boundary": false,
+    "marks": [],
+    "ident": {},
+    "focused": true,
+    "reachedWinBubble": true,
+    "reachedWinCapture": true,
+    "drawerClosed": true,
+    "workspaceClosed": false
+   },
+   {
+    "i": 0,
+    "tag": "BUTTON",
+    "type": "button",
+    "boundary": false,
+    "marks": [],
+    "ident": {},
+    "focused": true,
+    "reachedWinBubble": true,
+    "reachedWinCapture": true,
+    "drawerClosed": true,
+    "workspaceClosed": false
+   },
+   {
+    "i": 0,
+    "tag": "BUTTON",
+    "type": "button",
+    "boundary": false,
+    "marks": [],
+    "ident": {},
+    "focused": true,
+    "reachedWinBubble": true,
+    "reachedWinCapture": true,
+    "drawerClosed": true,
+    "workspaceClosed": false
+   },
+   {
+    "i": 0,
+    "tag": "BUTTON",
+    "type": "button",
+    "boundary": false,
+    "marks": [],
+    "ident": {},
+    "focused": true,
+    "reachedWinBubble": true,
+    "reachedWinCapture": true,
+    "drawerClosed": true,
+    "workspaceClosed": false
+   },
+   {
+    "i": 0,
+    "tag": "BUTTON",
+    "type": "button",
+    "boundary": false,
+    "marks": [],
+    "ident": {},
+    "focused": true,
+    "reachedWinBubble": true,
+    "reachedWinCapture": true,
+    "drawerClosed": true,
+    "workspaceClosed": false
+   }
+  ],
+  "boundarySwallowedAll": true,
+  "boundaryNeverReachedWindowBubble": true,
+  "boundaryReachedWindowCapture": true,
+  "nonBoundaryNeverSwallowed": true,
+  "boundaryCountComparable": 43,
+  "nonBoundaryCountComparable": 5,
+  "boundaryTypesComparable": [
+   "number",
+   "range"
+  ],
+  "boundaryFocusAllSucceeded": true,
+  "defaultContext": {
+   "label": "default",
+   "totalFocusable": 35,
+   "boundaryCount": 9,
+   "boundaryTypes": [
+    "number"
+   ],
+   "boundarySwallowed": [
+    6,
+    9,
+    12,
+    15,
+    18,
+    21,
+    24,
+    27,
+    30
+   ]
+  },
+  "poseContext": {
+   "label": "character:pose",
+   "totalFocusable": 47,
+   "boundaryCount": 25,
+   "boundaryTypes": [
+    "range"
+   ],
+   "boundarySwallowedCount": 25,
+   "poseKeys": [
+    "body.pitch",
+    "body.yaw",
+    "body.roll",
+    "torso.pitch",
+    "torso.yaw",
+    "torso.roll"
+   ],
+   "poseKeysTotal": 25
+  },
+  "cameraContext": {
+   "label": "camera:properties",
+   "totalFocusable": 52,
+   "boundaryCount": 12,
+   "boundaryTypes": [
+    "number"
+   ],
+   "boundarySwallowedCount": 12
+  },
+  "emptyContexts": [
+   {
+    "label": "camera:motion",
+    "totalFocusable": 7,
+    "boundaryCount": 0
+   },
+   {
+    "label": "camera:captures",
+    "totalFocusable": 3,
+    "boundaryCount": 0
+   },
+   {
+    "label": "path+camera:motion",
+    "totalFocusable": 7,
+    "boundaryCount": 0
+   },
+   {
+    "label": "path+camera:captures",
+    "totalFocusable": 3,
+    "boundaryCount": 0
+   }
+  ],
+  "summaryRound1": {
+   "contexts": 9,
+   "boundaryControlsSeen": 67,
+   "boundarySwallowed": 67,
+   "boundaryNotSwallowed": 0,
+   "nonBoundaryControlsTested": 9,
+   "nonBoundarySwallowed": 0,
+   "boundaryTypesSeen": [
+    "number",
+    "range"
+   ],
+   "pathReachable": true
+  },
+  "summaryRound2": {
+   "contexts": 9,
+   "boundaryControlsSeen": 55,
+   "boundarySwallowed": 55,
+   "boundaryNotSwallowed": 0,
+   "nonBoundaryControlsTested": 9,
+   "nonBoundarySwallowed": 0,
+   "boundaryTypesSeen": [
+    "number",
+    "range"
+   ],
+   "pathReachable": true
+  },
+  "pathCreated": {
+   "preset": "line",
+   "hit": {
+    "tag": "BUTTON"
+   },
+   "lastCommand": "PROJECT_MUTATION"
+  },
+  "pathTrigger": {
+   "x": 389,
+   "y": 829,
+   "w": 99,
+   "h": 28,
+   "text": "创建运动轨迹"
+  },
+  "tabsCamera": [
+   {
+    "value": "properties",
+    "pressed": "true",
+    "text": "属性"
+   },
+   {
+    "value": "motion",
+    "pressed": "false",
+    "text": "运动轨迹NEW"
+   },
+   {
+    "value": "captures",
+    "pressed": "false",
+    "text": "截图"
+   }
+  ],
+  "tabsCharacter": [
+   {
+    "value": "properties",
+    "pressed": "true",
+    "text": "属性"
+   },
+   {
+    "value": "pose",
+    "pressed": "false",
+    "text": "姿势"
+   }
+  ],
+  "selectCamera": {
+   "picked": {
+    "id": "director-camera-main",
+    "kind": "camera",
+    "selected": "false",
+    "x": 8,
+    "y": 444,
+    "w": 203,
+    "h": 32
+   },
+   "hitTag": {
+    "tag": "DIV"
+   },
+   "openTree": {
+    "clicked": true,
+    "desk": {
+     "open": true,
+     "tree": {
+      "state": "open",
+      "focusScope": "tree",
+      "inert": false,
+      "x": 0
+     },
+     "inspector": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": true,
+      "x": 800
+     },
+     "historyPast": "0",
+     "historyFuture": "0",
+     "lastCommand": "GESTURE_CANCEL",
+     "activeGesture": "",
+     "kind": null
+    }
+   },
+   "selectedAfter": [
+    "director-camera-main"
+   ]
+  },
+  "keyboard764b": [
+   {
+    "C1_pasteWithEmptyClipboard": {
+     "key": "Cmd+V（先不复制）",
+     "note": "空剪贴板粘贴",
+     "count": [
+      5,
+      5
+     ],
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "selectedAfter": [
+      "director-character-lead"
+     ],
+     "past": [
+      "0",
+      "0"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "lastCommand": [
+      "",
+      "PASTE_CLIPBOARD"
+     ],
+     "activeGestureBefore": "",
+     "activeGestureAfter": "",
+     "countDelta": 0,
+     "historyDelta": 0
+    },
+    "C2_copy": {
+     "key": "Cmd+C",
+     "note": "有选中时复制",
+     "count": [
+      5,
+      5
+     ],
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "selectedAfter": [
+      "director-character-lead"
+     ],
+     "past": [
+      "0",
+      "0"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "lastCommand": [
+      "PASTE_CLIPBOARD",
+      "COPY_SELECTION"
+     ],
+     "activeGestureBefore": "",
+     "activeGestureAfter": "",
+     "countDelta": 0,
+     "historyDelta": 0
+    },
+    "C3_paste": {
+     "key": "Cmd+V",
+     "note": "复制后换行粘贴",
+     "count": [
+      5,
+      6
+     ],
+     "selectedBefore": [
+      "director-prop-table"
+     ],
+     "selectedAfter": [
+      "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+     ],
+     "past": [
+      "0",
+      "1"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "lastCommand": [
+      "COPY_SELECTION",
+      "PASTE_CLIPBOARD"
+     ],
+     "activeGestureBefore": "",
+     "activeGestureAfter": "",
+     "countDelta": 1,
+     "historyDelta": 1
+    },
+    "C4_pasteAgain": {
+     "key": "Cmd+V（第二次）",
+     "note": "连续粘贴",
+     "count": [
+      6,
+      7
+     ],
+     "selectedBefore": [
+      "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+     ],
+     "selectedAfter": [
+      "director-object-copy-director-character-lead-1791139763145-2-0-0-6"
+     ],
+     "past": [
+      "1",
+      "2"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "lastCommand": [
+      "PASTE_CLIPBOARD",
+      "PASTE_CLIPBOARD"
+     ],
+     "activeGestureBefore": "",
+     "activeGestureAfter": "",
+     "countDelta": 1,
+     "historyDelta": 1
+    },
+    "C5_copyFromField": {
+     "key": "Cmd+C（焦点在数值框里）",
+     "note": "边界只拦 Escape，预期 ⌘C 仍生效",
+     "count": [
+      7,
+      7
+     ],
+     "selectedBefore": [
+      "director-object-copy-director-character-lead-1791139763145-2-0-0-6"
+     ],
+     "selectedAfter": [
+      "director-object-copy-director-character-lead-1791139763145-2-0-0-6"
+     ],
+     "past": [
+      "2",
+      "2"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "lastCommand": [
+      "GESTURE_BEGIN",
+      "GESTURE_BEGIN"
+     ],
+     "activeGestureBefore": "director-gesture-1791139764045-7",
+     "activeGestureAfter": "director-gesture-1791139764045-7",
+     "countDelta": 0,
+     "historyDelta": 0
+    }
+   },
+   {
+    "C1_pasteWithEmptyClipboard": {
+     "key": "Cmd+V（先不复制）",
+     "note": "空剪贴板粘贴",
+     "count": [
+      6,
+      6
+     ],
+     "selectedBefore": [
+      "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+     ],
+     "selectedAfter": [
+      "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+     ],
+     "past": [
+      "0",
+      "0"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "lastCommand": [
+      "",
+      "PASTE_CLIPBOARD"
+     ],
+     "activeGestureBefore": "",
+     "activeGestureAfter": "",
+     "countDelta": 0,
+     "historyDelta": 0
+    },
+    "C2_copy": {
+     "key": "Cmd+C",
+     "note": "有选中时复制",
+     "count": [
+      6,
+      6
+     ],
+     "selectedBefore": [
+      "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+     ],
+     "selectedAfter": [
+      "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+     ],
+     "past": [
+      "0",
+      "0"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "lastCommand": [
+      "PASTE_CLIPBOARD",
+      "COPY_SELECTION"
+     ],
+     "activeGestureBefore": "",
+     "activeGestureAfter": "",
+     "countDelta": 0,
+     "historyDelta": 0
+    },
+    "C3_paste": {
+     "key": "Cmd+V",
+     "note": "复制后换行粘贴",
+     "count": [
+      6,
+      7
+     ],
+     "selectedBefore": [
+      "director-object-copy-director-character-lead-1791139763145-2-0-0-6"
+     ],
+     "selectedAfter": [
+      "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139781150-1-0-0-1"
+     ],
+     "past": [
+      "0",
+      "1"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "lastCommand": [
+      "COPY_SELECTION",
+      "PASTE_CLIPBOARD"
+     ],
+     "activeGestureBefore": "",
+     "activeGestureAfter": "",
+     "countDelta": 1,
+     "historyDelta": 1
+    },
+    "C4_pasteAgain": {
+     "key": "Cmd+V（第二次）",
+     "note": "连续粘贴",
+     "count": [
+      7,
+      8
+     ],
+     "selectedBefore": [
+      "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139781150-1-0-0-1"
+     ],
+     "selectedAfter": [
+      "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139782044-2-0-0-6"
+     ],
+     "past": [
+      "1",
+      "2"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "lastCommand": [
+      "PASTE_CLIPBOARD",
+      "PASTE_CLIPBOARD"
+     ],
+     "activeGestureBefore": "",
+     "activeGestureAfter": "",
+     "countDelta": 1,
+     "historyDelta": 1
+    },
+    "C5_copyFromField": {
+     "key": "Cmd+C（焦点在数值框里）",
+     "note": "边界只拦 Escape，预期 ⌘C 仍生效",
+     "count": [
+      8,
+      8
+     ],
+     "selectedBefore": [
+      "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139782044-2-0-0-6"
+     ],
+     "selectedAfter": [
+      "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139782044-2-0-0-6"
+     ],
+     "past": [
+      "2",
+      "2"
+     ],
+     "future": [
+      "0",
+      "0"
+     ],
+     "lastCommand": [
+      "GESTURE_BEGIN",
+      "GESTURE_BEGIN"
+     ],
+     "activeGestureBefore": "director-gesture-1791139782942-7",
+     "activeGestureAfter": "director-gesture-1791139782942-7",
+     "countDelta": 0,
+     "historyDelta": 0
+    }
+   }
+  ],
+  "mouse764b": [
+   {
+    "C6_copyButton": {
+     "action": "copy",
+     "click": {
+      "pt": [
+       182,
+       142
+      ],
+      "rect": {
+       "x": 180,
+       "y": 140,
+       "w": 28,
+       "h": 28
+      }
+     },
+     "count": [
+      7,
+      7
+     ],
+     "past": [
+      "2",
+      "2"
+     ],
+     "lastCommand": [
+      "GESTURE_COMMIT",
+      "COPY_SELECTION"
+     ],
+     "selectedAfter": [
+      "director-character-lead"
+     ],
+     "countDelta": 0,
+     "toolbarAfter": {
+      "kind": "objects",
+      "actions": [
+       "copy",
+       "delete",
+       "clear"
+      ],
+      "visible": true
+     }
+    },
+    "C6_clearButton": {
+     "action": "clear",
+     "click": {
+      "pt": [
+       246,
+       142
+      ],
+      "rect": {
+       "x": 244,
+       "y": 140,
+       "w": 28,
+       "h": 28
+      }
+     },
+     "count": [
+      7,
+      7
+     ],
+     "past": [
+      "2",
+      "2"
+     ],
+     "lastCommand": [
+      "COPY_SELECTION",
+      "COPY_SELECTION"
+     ],
+     "selectedAfter": [],
+     "countDelta": 0,
+     "toolbarAfter": null
+    },
+    "C6_deleteButton": {
+     "action": "delete",
+     "click": {
+      "pt": [
+       214,
+       142
+      ],
+      "rect": {
+       "x": 212,
+       "y": 140,
+       "w": 28,
+       "h": 28
+      }
+     },
+     "count": [
+      7,
+      6
+     ],
+     "past": [
+      "2",
+      "3"
+     ],
+     "lastCommand": [
+      "COPY_SELECTION",
+      "DELETE_OBJECTS"
+     ],
+     "selectedAfter": [],
+     "countDelta": -1,
+     "toolbarAfter": null
+    }
+   },
+   {
+    "C6_copyButton": {
+     "action": "copy",
+     "click": {
+      "pt": [
+       182,
+       142
+      ],
+      "rect": {
+       "x": 180,
+       "y": 140,
+       "w": 28,
+       "h": 28
+      }
+     },
+     "count": [
+      8,
+      8
+     ],
+     "past": [
+      "2",
+      "2"
+     ],
+     "lastCommand": [
+      "GESTURE_COMMIT",
+      "COPY_SELECTION"
+     ],
+     "selectedAfter": [
+      "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+     ],
+     "countDelta": 0,
+     "toolbarAfter": {
+      "kind": "objects",
+      "actions": [
+       "copy",
+       "delete",
+       "clear"
+      ],
+      "visible": true
+     }
+    },
+    "C6_clearButton": {
+     "action": "clear",
+     "click": {
+      "pt": [
+       246,
+       142
+      ],
+      "rect": {
+       "x": 244,
+       "y": 140,
+       "w": 28,
+       "h": 28
+      }
+     },
+     "count": [
+      8,
+      8
+     ],
+     "past": [
+      "2",
+      "2"
+     ],
+     "lastCommand": [
+      "COPY_SELECTION",
+      "COPY_SELECTION"
+     ],
+     "selectedAfter": [],
+     "countDelta": 0,
+     "toolbarAfter": null
+    },
+    "C6_deleteButton": {
+     "action": "delete",
+     "click": {
+      "pt": [
+       214,
+       142
+      ],
+      "rect": {
+       "x": 212,
+       "y": 140,
+       "w": 28,
+       "h": 28
+      }
+     },
+     "count": [
+      8,
+      7
+     ],
+     "past": [
+      "2",
+      "3"
+     ],
+     "lastCommand": [
+      "COPY_SELECTION",
+      "DELETE_OBJECTS"
+     ],
+     "selectedAfter": [],
+     "countDelta": -1,
+     "toolbarAfter": null
+    }
+   }
+  ],
+  "copyFromTreeCommand": [
+   "COPY_SELECTION",
+   "COPY_SELECTION"
+  ],
+  "pasteDeltas": [
+   1,
+   1
+  ],
+  "pasteAgainDeltas": [
+   1,
+   1
+  ],
+  "emptyPaste764b": [
+   {
+    "lastCommand": "PASTE_CLIPBOARD",
+    "countDelta": 0,
+    "historyDelta": 0
+   },
+   {
+    "lastCommand": "PASTE_CLIPBOARD",
+    "countDelta": 0,
+    "historyDelta": 0
+   }
+  ],
+  "mouseActions": [
+   {
+    "action": "copy",
+    "countDelta": 0,
+    "lastCommand": "COPY_SELECTION",
+    "toolbarAfter": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   {
+    "action": "clear",
+    "countDelta": 0,
+    "lastCommand": "COPY_SELECTION",
+    "toolbarAfter": null
+   },
+   {
+    "action": "delete",
+    "countDelta": -1,
+    "lastCommand": "DELETE_OBJECTS",
+    "toolbarAfter": null
+   },
+   {
+    "action": "copy",
+    "countDelta": 0,
+    "lastCommand": "COPY_SELECTION",
+    "toolbarAfter": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   {
+    "action": "clear",
+    "countDelta": 0,
+    "lastCommand": "COPY_SELECTION",
+    "toolbarAfter": null
+   },
+   {
+    "action": "delete",
+    "countDelta": -1,
+    "lastCommand": "DELETE_OBJECTS",
+    "toolbarAfter": null
+   }
+  ],
+  "editableGuard764c": [
+   {
+    "focusField": {
+     "focused": true,
+     "tf": "position",
+     "ta": "x"
+    },
+    "copyFromTree": {
+     "lastCommand": [
+      "PASTE_CLIPBOARD",
+      "COPY_SELECTION"
+     ],
+     "lastDisposition": [
+      "NOOP",
+      "COMMITTED"
+     ],
+     "count": [
+      5,
+      5
+     ],
+     "past": [
+      "0",
+      "0"
+     ]
+    },
+    "copyFromField": {
+     "lastCommand": [
+      "GESTURE_BEGIN",
+      "GESTURE_BEGIN"
+     ],
+     "lastDisposition": [
+      "COMMITTED",
+      "COMMITTED"
+     ],
+     "count": [
+      5,
+      5
+     ],
+     "past": [
+      "0",
+      "0"
+     ],
+     "gestureBefore": "director-gesture-<gen>",
+     "gestureAfter": "director-gesture-<gen>",
+     "gestureUnchanged": true,
+     "lastCommandUnchanged": true
+    },
+    "pasteFromField": {
+     "lastCommand": [
+      "GESTURE_BEGIN",
+      "GESTURE_BEGIN"
+     ],
+     "lastDisposition": [
+      "COMMITTED",
+      "COMMITTED"
+     ],
+     "count": [
+      5,
+      5
+     ],
+     "past": [
+      "0",
+      "0"
+     ],
+     "countDelta": 0,
+     "historyDelta": 0
+    },
+    "emptyPaste": {
+     "lastCommand": [
+      "",
+      "PASTE_CLIPBOARD"
+     ],
+     "lastDisposition": [
+      "",
+      "NOOP"
+     ],
+     "count": [
+      5,
+      5
+     ],
+     "past": [
+      "0",
+      "0"
+     ]
+    },
+    "picksFailed": [
+     "B_pickA",
+     "B_pickA2",
+     "C_pickB",
+     "C_pickB2",
+     "D_pickC"
+    ],
+    "newRowsAfterPaste": 0
+   },
+   {
+    "focusField": {
+     "focused": true,
+     "tf": "position",
+     "ta": "x"
+    },
+    "copyFromTree": {
+     "lastCommand": [
+      "PASTE_CLIPBOARD",
+      "COPY_SELECTION"
+     ],
+     "lastDisposition": [
+      "NOOP",
+      "COMMITTED"
+     ],
+     "count": [
+      5,
+      5
+     ],
+     "past": [
+      "0",
+      "0"
+     ]
+    },
+    "copyFromField": {
+     "lastCommand": [
+      "GESTURE_BEGIN",
+      "GESTURE_BEGIN"
+     ],
+     "lastDisposition": [
+      "COMMITTED",
+      "COMMITTED"
+     ],
+     "count": [
+      5,
+      5
+     ],
+     "past": [
+      "0",
+      "0"
+     ],
+     "gestureBefore": "director-gesture-<gen>",
+     "gestureAfter": "director-gesture-<gen>",
+     "gestureUnchanged": true,
+     "lastCommandUnchanged": true
+    },
+    "pasteFromField": {
+     "lastCommand": [
+      "GESTURE_BEGIN",
+      "GESTURE_BEGIN"
+     ],
+     "lastDisposition": [
+      "COMMITTED",
+      "COMMITTED"
+     ],
+     "count": [
+      5,
+      5
+     ],
+     "past": [
+      "0",
+      "0"
+     ],
+     "countDelta": 0,
+     "historyDelta": 0
+    },
+    "emptyPaste": {
+     "lastCommand": [
+      "",
+      "PASTE_CLIPBOARD"
+     ],
+     "lastDisposition": [
+      "",
+      "NOOP"
+     ],
+     "count": [
+      5,
+      5
+     ],
+     "past": [
+      "0",
+      "0"
+     ]
+    },
+    "picksFailed": [
+     "B_pickA",
+     "B_pickA2",
+     "C_pickB",
+     "C_pickB2",
+     "D_pickC"
+    ],
+    "newRowsAfterPaste": 0
+   }
+  ],
+  "editableAllRoundsSame": true,
+  "copyFromTreeWorks": true,
+  "copyFromFieldDead": true,
+  "pasteFromFieldDead": true,
+  "boundaryDidNotBlockModifierKeys": true,
+  "emptyPasteDispositionNoop": true,
+  "picksFailedIn764c": [
+   "B_pickA",
+   "B_pickA2",
+   "C_pickB",
+   "C_pickB2",
+   "D_pickC"
+  ]
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "verdict": "PASS",
+   "statement": "D1 的影响面比 763 记的**宽**：**逐字段可比**的那些上下文里，**每一个**带边界标记的控件按 Esc 都没关掉抽屉，而非边界控件**一个都没有**被吞。两轮逐字段一致。",
+   "evidenceKey": "contextComparability",
+   "evidence": [
+    {
+     "label": "default",
+     "comparable": true,
+     "round1": {
+      "totalFocusable": 35,
+      "boundaryCount": 9,
+      "boundaryTypes": [
+       "number"
+      ],
+      "boundarySwallowed": [
+       6,
+       9,
+       12,
+       15,
+       18,
+       21,
+       24,
+       27,
+       30
+      ],
+      "nonBoundarySwallowed": []
+     },
+     "round2": {
+      "totalFocusable": 35,
+      "boundaryCount": 9,
+      "boundaryTypes": [
+       "number"
+      ],
+      "boundarySwallowed": [
+       6,
+       9,
+       12,
+       15,
+       18,
+       21,
+       24,
+       27,
+       30
+      ],
+      "nonBoundarySwallowed": []
+     },
+     "failedR1": null,
+     "failedR2": null
+    },
+    {
+     "label": "character:properties",
+     "comparable": true,
+     "round1": {
+      "totalFocusable": 35,
+      "boundaryCount": 9,
+      "boundaryTypes": [
+       "number"
+      ],
+      "boundarySwallowed": [
+       6,
+       9,
+       12,
+       15,
+       18,
+       21,
+       24,
+       27,
+       30
+      ],
+      "nonBoundarySwallowed": []
+     },
+     "round2": {
+      "totalFocusable": 35,
+      "boundaryCount": 9,
+      "boundaryTypes": [
+       "number"
+      ],
+      "boundarySwallowed": [
+       6,
+       9,
+       12,
+       15,
+       18,
+       21,
+       24,
+       27,
+       30
+      ],
+      "nonBoundarySwallowed": []
+     },
+     "failedR1": null,
+     "failedR2": null
+    },
+    {
+     "label": "character:pose",
+     "comparable": true,
+     "round1": {
+      "totalFocusable": 47,
+      "boundaryCount": 25,
+      "boundaryTypes": [
+       "range"
+      ],
+      "boundarySwallowed": [
+       22,
+       23,
+       24,
+       25,
+       26,
+       27,
+       28,
+       29,
+       30,
+       31,
+       32,
+       33,
+       34,
+       35,
+       36,
+       37,
+       38,
+       39,
+       40,
+       41,
+       42,
+       43,
+       44,
+       45,
+       46
+      ],
+      "nonBoundarySwallowed": []
+     },
+     "round2": {
+      "totalFocusable": 47,
+      "boundaryCount": 25,
+      "boundaryTypes": [
+       "range"
+      ],
+      "boundarySwallowed": [
+       22,
+       23,
+       24,
+       25,
+       26,
+       27,
+       28,
+       29,
+       30,
+       31,
+       32,
+       33,
+       34,
+       35,
+       36,
+       37,
+       38,
+       39,
+       40,
+       41,
+       42,
+       43,
+       44,
+       45,
+       46
+      ],
+      "nonBoundarySwallowed": []
+     },
+     "failedR1": null,
+     "failedR2": null
+    },
+    {
+     "label": "camera:properties",
+     "comparable": false,
+     "round1": {
+      "totalFocusable": 52,
+      "boundaryCount": 12,
+      "boundaryTypes": [
+       "number"
+      ],
+      "boundarySwallowed": [
+       9,
+       12,
+       15,
+       19,
+       22,
+       25,
+       28,
+       31,
+       34,
+       47,
+       49,
+       51
+      ],
+      "nonBoundarySwallowed": []
+     },
+     "round2": {
+      "totalFocusable": 67,
+      "boundaryCount": 12,
+      "boundaryTypes": [
+       "number"
+      ],
+      "boundarySwallowed": [
+       9,
+       12,
+       15,
+       19,
+       22,
+       25,
+       28,
+       31,
+       34,
+       47,
+       49,
+       51
+      ],
+      "nonBoundarySwallowed": []
+     },
+     "failedR1": null,
+     "failedR2": null
+    },
+    {
+     "label": "camera:motion",
+     "comparable": true,
+     "round1": {
+      "totalFocusable": 7,
+      "boundaryCount": 0,
+      "boundaryTypes": [],
+      "boundarySwallowed": [],
+      "nonBoundarySwallowed": []
+     },
+     "round2": {
+      "totalFocusable": 7,
+      "boundaryCount": 0,
+      "boundaryTypes": [],
+      "boundarySwallowed": [],
+      "nonBoundarySwallowed": []
+     },
+     "failedR1": null,
+     "failedR2": null
+    },
+    {
+     "label": "camera:captures",
+     "comparable": true,
+     "round1": {
+      "totalFocusable": 3,
+      "boundaryCount": 0,
+      "boundaryTypes": [],
+      "boundarySwallowed": [],
+      "nonBoundarySwallowed": []
+     },
+     "round2": {
+      "totalFocusable": 3,
+      "boundaryCount": 0,
+      "boundaryTypes": [],
+      "boundarySwallowed": [],
+      "nonBoundarySwallowed": []
+     },
+     "failedR1": null,
+     "failedR2": null
+    },
+    {
+     "label": "path+camera:properties",
+     "comparable": false,
+     "round1": {
+      "totalFocusable": 67,
+      "boundaryCount": 12,
+      "boundaryTypes": [
+       "number"
+      ],
+      "boundarySwallowed": [
+       9,
+       12,
+       15,
+       19,
+       22,
+       25,
+       28,
+       31,
+       34,
+       47,
+       49,
+       51
+      ],
+      "nonBoundarySwallowed": []
+     },
+     "round2": {
+      "totalFocusable": 35,
+      "boundaryCount": 0,
+      "boundaryTypes": [],
+      "boundarySwallowed": [],
+      "nonBoundarySwallowed": []
+     },
+     "failedR1": null,
+     "failedR2": null
+    },
+    {
+     "label": "path+camera:motion",
+     "comparable": false,
+     "round1": {
+      "totalFocusable": 7,
+      "boundaryCount": 0,
+      "boundaryTypes": [],
+      "boundarySwallowed": [],
+      "nonBoundarySwallowed": []
+     },
+     "round2": {
+      "totalFocusable": 35,
+      "boundaryCount": 0,
+      "boundaryTypes": [],
+      "boundarySwallowed": [],
+      "nonBoundarySwallowed": []
+     },
+     "failedR1": null,
+     "failedR2": null
+    },
+    {
+     "label": "path+camera:captures",
+     "comparable": false,
+     "round1": {
+      "totalFocusable": 3,
+      "boundaryCount": 0,
+      "boundaryTypes": [],
+      "boundarySwallowed": [],
+      "nonBoundarySwallowed": []
+     },
+     "round2": {
+      "totalFocusable": 35,
+      "boundaryCount": 0,
+      "boundaryTypes": [],
+      "boundarySwallowed": [],
+      "nonBoundarySwallowed": []
+     },
+     "failedR1": null,
+     "failedR2": null
+    }
+   ]
+  },
+  {
+   "id": "J2",
+   "verdict": "PASS",
+   "statement": "**更正 763 的「全是 type=number」**：角色「姿势」上下文里 25 个 `type=range` 滑杆同样吞 Esc。所以中招的是**数值框与滑杆两类**，不是只有数值框。",
+   "evidenceKey": "poseContext",
+   "evidence": {
+    "label": "character:pose",
+    "totalFocusable": 47,
+    "boundaryCount": 25,
+    "boundaryTypes": [
+     "range"
+    ],
+    "boundarySwallowedCount": 25,
+    "poseKeys": [
+     "body.pitch",
+     "body.yaw",
+     "body.roll",
+     "torso.pitch",
+     "torso.yaw",
+     "torso.roll"
+    ],
+    "poseKeysTotal": 25
+   }
+  },
+  {
+   "id": "J3",
+   "verdict": "PASS",
+   "statement": "传播判决在更广的面上同样成立：逐字段可比的那些上下文里，所有边界控件的 Esc `reachedWinBubble=false`、`reachedWinCapture=true`；焦点也确实落在目标控件上（不是「没聚焦到所以没反应」）。",
+   "evidenceKey": "boundaryRowsComparable",
+   "evidence": [
+    {
+     "i": 6,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "position",
+      "ta": "x"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 9,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "position",
+      "ta": "y"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 12,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "position",
+      "ta": "z"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 15,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "rotation",
+      "ta": "x"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 18,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "rotation",
+      "ta": "y"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 21,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "rotation",
+      "ta": "z"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 24,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "scale",
+      "ta": "x"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 27,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "scale",
+      "ta": "y"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 30,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "scale",
+      "ta": "z"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 6,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "position",
+      "ta": "x"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 9,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "position",
+      "ta": "y"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 12,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "position",
+      "ta": "z"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 15,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "rotation",
+      "ta": "x"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 18,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "rotation",
+      "ta": "y"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 21,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "rotation",
+      "ta": "z"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 24,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "scale",
+      "ta": "x"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 27,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "scale",
+      "ta": "y"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 30,
+     "tag": "INPUT",
+     "type": "number",
+     "boundary": true,
+     "marks": [
+      "[data-director-transform-field]"
+     ],
+     "ident": {
+      "tf": "scale",
+      "ta": "z"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 22,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "body.pitch"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 23,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "body.yaw"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 24,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "body.roll"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 25,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "torso.pitch"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 26,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "torso.yaw"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 27,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "torso.roll"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 28,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "head.pitch"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 29,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "head.yaw"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 30,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "head.roll"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 31,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "leftShoulder.pitch"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 32,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "leftShoulder.spread"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 33,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "leftShoulder.twist"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 34,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "rightShoulder.pitch"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 35,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "rightShoulder.spread"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 36,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "rightShoulder.twist"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 37,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "leftElbow.bend"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 38,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "rightElbow.bend"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 39,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "leftHip.pitch"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 40,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "leftHip.spread"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 41,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "leftHip.twist"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 42,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "rightHip.pitch"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 43,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "rightHip.spread"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 44,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "rightHip.twist"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 45,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "leftKnee.bend"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    },
+    {
+     "i": 46,
+     "tag": "INPUT",
+     "type": "range",
+     "boundary": true,
+     "marks": [
+      "[data-director-pose-control]"
+     ],
+     "ident": {
+      "pose": "rightKnee.bend"
+     },
+     "focused": true,
+     "reachedWinBubble": false,
+     "reachedWinCapture": true,
+     "drawerClosed": false,
+     "workspaceClosed": false
+    }
+   ]
+  },
+  {
+   "id": "J4",
+   "verdict": "PASS",
+   "statement": "机位「运动轨迹」「截图」两档在本种子里几乎是空的（可聚焦控件 7 / 3 个、边界控件 0 个），⟹ 这两档**没有**可测的边界控件，如实记为空而不是「通过」。",
+   "evidenceKey": "emptyContexts",
+   "evidence": [
+    {
+     "label": "camera:motion",
+     "totalFocusable": 7,
+     "boundaryCount": 0
+    },
+    {
+     "label": "camera:captures",
+     "totalFocusable": 3,
+     "boundaryCount": 0
+    },
+    {
+     "label": "path+camera:motion",
+     "totalFocusable": 7,
+     "boundaryCount": 0
+    },
+    {
+     "label": "path+camera:captures",
+     "totalFocusable": 3,
+     "boundaryCount": 0
+    }
+   ]
+  },
+  {
+   "id": "J5",
+   "verdict": "FAIL",
+   "statement": "★ 建出运动路径之后的那三个上下文**两轮不可比**（round 1 与 round 2 的可聚焦控件数与边界控件数不同）——建路径会改选中态，而改完之后的选中态两轮不同。因此**不对路径上下文下的结论下任何判断**。",
+   "evidenceKey": "incomparableLabels",
+   "evidence": [
+    "camera:properties",
+    "path+camera:properties",
+    "path+camera:motion",
+    "path+camera:captures"
+   ]
+  },
+  {
+   "id": "J6",
+   "verdict": "PASS",
+   "statement": "路径锚点（`:825`）、路径变换（`:866`）、FOV（`:1579`）这三类控件在两轮里**一次都没渲染出来** ⟹ 763 那句「推测同样受影响」对这三类**仍然未验证**，本批不并进结论。",
+   "evidenceKey": "pathCreated",
+   "evidence": {
+    "preset": "line",
+    "hit": {
+     "tag": "BUTTON"
+    },
+    "lastCommand": "PROJECT_MUTATION"
+   }
+  },
+  {
+   "id": "J7",
+   "verdict": "PASS",
+   "statement": "⌘C / ⌘V 在**树**里完全正常：⌘C 落 COPY_SELECTION、⌘V 每次都 +1 个对象且历史 +1，连按两次就是两次。",
+   "evidenceKey": "keyboard764b",
+   "evidence": [
+    {
+     "C1_pasteWithEmptyClipboard": {
+      "key": "Cmd+V（先不复制）",
+      "note": "空剪贴板粘贴",
+      "count": [
+       5,
+       5
+      ],
+      "selectedBefore": [
+       "director-character-lead"
+      ],
+      "selectedAfter": [
+       "director-character-lead"
+      ],
+      "past": [
+       "0",
+       "0"
+      ],
+      "future": [
+       "0",
+       "0"
+      ],
+      "lastCommand": [
+       "",
+       "PASTE_CLIPBOARD"
+      ],
+      "activeGestureBefore": "",
+      "activeGestureAfter": "",
+      "countDelta": 0,
+      "historyDelta": 0
+     },
+     "C2_copy": {
+      "key": "Cmd+C",
+      "note": "有选中时复制",
+      "count": [
+       5,
+       5
+      ],
+      "selectedBefore": [
+       "director-character-lead"
+      ],
+      "selectedAfter": [
+       "director-character-lead"
+      ],
+      "past": [
+       "0",
+       "0"
+      ],
+      "future": [
+       "0",
+       "0"
+      ],
+      "lastCommand": [
+       "PASTE_CLIPBOARD",
+       "COPY_SELECTION"
+      ],
+      "activeGestureBefore": "",
+      "activeGestureAfter": "",
+      "countDelta": 0,
+      "historyDelta": 0
+     },
+     "C3_paste": {
+      "key": "Cmd+V",
+      "note": "复制后换行粘贴",
+      "count": [
+       5,
+       6
+      ],
+      "selectedBefore": [
+       "director-prop-table"
+      ],
+      "selectedAfter": [
+       "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+      ],
+      "past": [
+       "0",
+       "1"
+      ],
+      "future": [
+       "0",
+       "0"
+      ],
+      "lastCommand": [
+       "COPY_SELECTION",
+       "PASTE_CLIPBOARD"
+      ],
+      "activeGestureBefore": "",
+      "activeGestureAfter": "",
+      "countDelta": 1,
+      "historyDelta": 1
+     },
+     "C4_pasteAgain": {
+      "key": "Cmd+V（第二次）",
+      "note": "连续粘贴",
+      "count": [
+       6,
+       7
+      ],
+      "selectedBefore": [
+       "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+      ],
+      "selectedAfter": [
+       "director-object-copy-director-character-lead-1791139763145-2-0-0-6"
+      ],
+      "past": [
+       "1",
+       "2"
+      ],
+      "future": [
+       "0",
+       "0"
+      ],
+      "lastCommand": [
+       "PASTE_CLIPBOARD",
+       "PASTE_CLIPBOARD"
+      ],
+      "activeGestureBefore": "",
+      "activeGestureAfter": "",
+      "countDelta": 1,
+      "historyDelta": 1
+     },
+     "C5_copyFromField": {
+      "key": "Cmd+C（焦点在数值框里）",
+      "note": "边界只拦 Escape，预期 ⌘C 仍生效",
+      "count": [
+       7,
+       7
+      ],
+      "selectedBefore": [
+       "director-object-copy-director-character-lead-1791139763145-2-0-0-6"
+      ],
+      "selectedAfter": [
+       "director-object-copy-director-character-lead-1791139763145-2-0-0-6"
+      ],
+      "past": [
+       "2",
+       "2"
+      ],
+      "future": [
+       "0",
+       "0"
+      ],
+      "lastCommand": [
+       "GESTURE_BEGIN",
+       "GESTURE_BEGIN"
+      ],
+      "activeGestureBefore": "director-gesture-1791139764045-7",
+      "activeGestureAfter": "director-gesture-1791139764045-7",
+      "countDelta": 0,
+      "historyDelta": 0
+     }
+    },
+    {
+     "C1_pasteWithEmptyClipboard": {
+      "key": "Cmd+V（先不复制）",
+      "note": "空剪贴板粘贴",
+      "count": [
+       6,
+       6
+      ],
+      "selectedBefore": [
+       "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+      ],
+      "selectedAfter": [
+       "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+      ],
+      "past": [
+       "0",
+       "0"
+      ],
+      "future": [
+       "0",
+       "0"
+      ],
+      "lastCommand": [
+       "",
+       "PASTE_CLIPBOARD"
+      ],
+      "activeGestureBefore": "",
+      "activeGestureAfter": "",
+      "countDelta": 0,
+      "historyDelta": 0
+     },
+     "C2_copy": {
+      "key": "Cmd+C",
+      "note": "有选中时复制",
+      "count": [
+       6,
+       6
+      ],
+      "selectedBefore": [
+       "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+      ],
+      "selectedAfter": [
+       "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+      ],
+      "past": [
+       "0",
+       "0"
+      ],
+      "future": [
+       "0",
+       "0"
+      ],
+      "lastCommand": [
+       "PASTE_CLIPBOARD",
+       "COPY_SELECTION"
+      ],
+      "activeGestureBefore": "",
+      "activeGestureAfter": "",
+      "countDelta": 0,
+      "historyDelta": 0
+     },
+     "C3_paste": {
+      "key": "Cmd+V",
+      "note": "复制后换行粘贴",
+      "count": [
+       6,
+       7
+      ],
+      "selectedBefore": [
+       "director-object-copy-director-character-lead-1791139763145-2-0-0-6"
+      ],
+      "selectedAfter": [
+       "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139781150-1-0-0-1"
+      ],
+      "past": [
+       "0",
+       "1"
+      ],
+      "future": [
+       "0",
+       "0"
+      ],
+      "lastCommand": [
+       "COPY_SELECTION",
+       "PASTE_CLIPBOARD"
+      ],
+      "activeGestureBefore": "",
+      "activeGestureAfter": "",
+      "countDelta": 1,
+      "historyDelta": 1
+     },
+     "C4_pasteAgain": {
+      "key": "Cmd+V（第二次）",
+      "note": "连续粘贴",
+      "count": [
+       7,
+       8
+      ],
+      "selectedBefore": [
+       "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139781150-1-0-0-1"
+      ],
+      "selectedAfter": [
+       "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139782044-2-0-0-6"
+      ],
+      "past": [
+       "1",
+       "2"
+      ],
+      "future": [
+       "0",
+       "0"
+      ],
+      "lastCommand": [
+       "PASTE_CLIPBOARD",
+       "PASTE_CLIPBOARD"
+      ],
+      "activeGestureBefore": "",
+      "activeGestureAfter": "",
+      "countDelta": 1,
+      "historyDelta": 1
+     },
+     "C5_copyFromField": {
+      "key": "Cmd+C（焦点在数值框里）",
+      "note": "边界只拦 Escape，预期 ⌘C 仍生效",
+      "count": [
+       8,
+       8
+      ],
+      "selectedBefore": [
+       "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139782044-2-0-0-6"
+      ],
+      "selectedAfter": [
+       "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139782044-2-0-0-6"
+      ],
+      "past": [
+       "2",
+       "2"
+      ],
+      "future": [
+       "0",
+       "0"
+      ],
+      "lastCommand": [
+       "GESTURE_BEGIN",
+       "GESTURE_BEGIN"
+      ],
+      "activeGestureBefore": "director-gesture-1791139782942-7",
+      "activeGestureAfter": "director-gesture-1791139782942-7",
+      "countDelta": 0,
+      "historyDelta": 0
+     }
+    }
+   ]
+  },
+  {
+   "id": "J8",
+   "verdict": "PASS",
+   "statement": "空剪贴板按 ⌘V：**对象数与历史都不动**，而 `data-director-last-disposition` 如实写 **NOOP** ⟹ 「命令标签照写、disposition 说实话」，**不是缺陷**。",
+   "evidenceKey": "editableGuard764c",
+   "evidence": [
+    {
+     "focusField": {
+      "focused": true,
+      "tf": "position",
+      "ta": "x"
+     },
+     "copyFromTree": {
+      "lastCommand": [
+       "PASTE_CLIPBOARD",
+       "COPY_SELECTION"
+      ],
+      "lastDisposition": [
+       "NOOP",
+       "COMMITTED"
+      ],
+      "count": [
+       5,
+       5
+      ],
+      "past": [
+       "0",
+       "0"
+      ]
+     },
+     "copyFromField": {
+      "lastCommand": [
+       "GESTURE_BEGIN",
+       "GESTURE_BEGIN"
+      ],
+      "lastDisposition": [
+       "COMMITTED",
+       "COMMITTED"
+      ],
+      "count": [
+       5,
+       5
+      ],
+      "past": [
+       "0",
+       "0"
+      ],
+      "gestureBefore": "director-gesture-<gen>",
+      "gestureAfter": "director-gesture-<gen>",
+      "gestureUnchanged": true,
+      "lastCommandUnchanged": true
+     },
+     "pasteFromField": {
+      "lastCommand": [
+       "GESTURE_BEGIN",
+       "GESTURE_BEGIN"
+      ],
+      "lastDisposition": [
+       "COMMITTED",
+       "COMMITTED"
+      ],
+      "count": [
+       5,
+       5
+      ],
+      "past": [
+       "0",
+       "0"
+      ],
+      "countDelta": 0,
+      "historyDelta": 0
+     },
+     "emptyPaste": {
+      "lastCommand": [
+       "",
+       "PASTE_CLIPBOARD"
+      ],
+      "lastDisposition": [
+       "",
+       "NOOP"
+      ],
+      "count": [
+       5,
+       5
+      ],
+      "past": [
+       "0",
+       "0"
+      ]
+     },
+     "picksFailed": [
+      "B_pickA",
+      "B_pickA2",
+      "C_pickB",
+      "C_pickB2",
+      "D_pickC"
+     ],
+     "newRowsAfterPaste": 0
+    },
+    {
+     "focusField": {
+      "focused": true,
+      "tf": "position",
+      "ta": "x"
+     },
+     "copyFromTree": {
+      "lastCommand": [
+       "PASTE_CLIPBOARD",
+       "COPY_SELECTION"
+      ],
+      "lastDisposition": [
+       "NOOP",
+       "COMMITTED"
+      ],
+      "count": [
+       5,
+       5
+      ],
+      "past": [
+       "0",
+       "0"
+      ]
+     },
+     "copyFromField": {
+      "lastCommand": [
+       "GESTURE_BEGIN",
+       "GESTURE_BEGIN"
+      ],
+      "lastDisposition": [
+       "COMMITTED",
+       "COMMITTED"
+      ],
+      "count": [
+       5,
+       5
+      ],
+      "past": [
+       "0",
+       "0"
+      ],
+      "gestureBefore": "director-gesture-<gen>",
+      "gestureAfter": "director-gesture-<gen>",
+      "gestureUnchanged": true,
+      "lastCommandUnchanged": true
+     },
+     "pasteFromField": {
+      "lastCommand": [
+       "GESTURE_BEGIN",
+       "GESTURE_BEGIN"
+      ],
+      "lastDisposition": [
+       "COMMITTED",
+       "COMMITTED"
+      ],
+      "count": [
+       5,
+       5
+      ],
+      "past": [
+       "0",
+       "0"
+      ],
+      "countDelta": 0,
+      "historyDelta": 0
+     },
+     "emptyPaste": {
+      "lastCommand": [
+       "",
+       "PASTE_CLIPBOARD"
+      ],
+      "lastDisposition": [
+       "",
+       "NOOP"
+      ],
+      "count": [
+       5,
+       5
+      ],
+      "past": [
+       "0",
+       "0"
+      ]
+     },
+     "picksFailed": [
+      "B_pickA",
+      "B_pickA2",
+      "C_pickB",
+      "C_pickB2",
+      "D_pickC"
+     ],
+     "newRowsAfterPaste": 0
+    }
+   ]
+  },
+  {
+   "id": "J9",
+   "verdict": "FAIL",
+   "statement": "★ **缺陷 D2（低）**：焦点停在**任何可编辑控件**里时，⌘C 与 ⌘V **两个键完全没反应** —— 对象数、历史、`lastCommand` 全都不动（连标签都没换成 COPY_SELECTION）。",
+   "evidenceKey": "editableAllRoundsSame",
+   "evidence": true
+  },
+  {
+   "id": "J10",
+   "verdict": "PASS",
+   "statement": "D2 的机制**不是** D1 那个 stopPropagation：按 ⌘C 前后 `data-director-active-gesture` 逐字符不变（边界因 activeRef 已为 true 而空转），真正拦住两个键的是 `DirectorDesk.tsx:481` 的 `if (isEditable) return;`（它排在 ⌘C 分支之前）。",
+   "evidenceKey": "boundaryDidNotBlockModifierKeys",
+   "evidence": true
+  },
+  {
+   "id": "J11",
+   "verdict": "PASS",
+   "statement": "D2 有可用的替代路径：树里那三枚按钮（`data-director-selection-action=copy/delete/clear`）逐个实测都生效（copy 不改对象数、delete −1、clear 只清选择）。",
+   "evidenceKey": "mouseActions",
+   "evidence": [
+    {
+     "action": "copy",
+     "countDelta": 0,
+     "lastCommand": "COPY_SELECTION",
+     "toolbarAfter": {
+      "kind": "objects",
+      "actions": [
+       "copy",
+       "delete",
+       "clear"
+      ],
+      "visible": true
+     }
+    },
+    {
+     "action": "clear",
+     "countDelta": 0,
+     "lastCommand": "COPY_SELECTION",
+     "toolbarAfter": null
+    },
+    {
+     "action": "delete",
+     "countDelta": -1,
+     "lastCommand": "DELETE_OBJECTS",
+     "toolbarAfter": null
+    },
+    {
+     "action": "copy",
+     "countDelta": 0,
+     "lastCommand": "COPY_SELECTION",
+     "toolbarAfter": {
+      "kind": "objects",
+      "actions": [
+       "copy",
+       "delete",
+       "clear"
+      ],
+      "visible": true
+     }
+    },
+    {
+     "action": "clear",
+     "countDelta": 0,
+     "lastCommand": "COPY_SELECTION",
+     "toolbarAfter": null
+    },
+    {
+     "action": "delete",
+     "countDelta": -1,
+     "lastCommand": "DELETE_OBJECTS",
+     "toolbarAfter": null
+    }
+   ]
+  }
+ ],
+ "defects": [
+  {
+   "id": "D1",
+   "severity": "中",
+   "carriedOverFrom": 763,
+   "title": "`useDirectorGestureBoundary` 无条件吞掉 Escape（本批把影响面量宽了，并更正 763 的「全是 type=number」）",
+   "where": [
+    "src/components/director/useDirectorGestureBoundary.ts:92-98",
+    "src/components/director/DirectorInspector.tsx:182",
+    "src/components/director/DirectorDesk.tsx:475",
+    "src/components/director/DirectorDesk.tsx:481-485"
+   ],
+   "widenedBy764": "**更正 763 的「全是 type=number」**：本批在逐字段可比的那些上下文里量到 43 个边界控件**全部**吞 Esc，其中既有 type=number 也有 **type=range**（角色姿势上下文 25 个滑杆）；非边界控件 5 个全部不吞。763 只记了当时渲染态里的 9 个数值框。",
+   "stillUnverified": "路径锚点（:825）、路径变换（:866）、FOV（:1579）三类控件两轮都没渲染出来，仍是未验证项。",
+   "needsSrcChange": true
+  },
+  {
+   "id": "D2",
+   "severity": "低",
+   "title": "焦点在可编辑控件里时 ⌘C / ⌘V 完全没反应",
+   "where": [
+    "src/components/director/DirectorDesk.tsx:481",
+    "src/components/director/useDirectorGestureBoundary.ts:99-107"
+   ],
+   "mechanism": "`if (isEditable) return;` 排在 ⌘C/⌘V 分支之前，所以焦点在 `<input>` 里时导演台自己的复制/粘贴命令根本不会执行。**不是** D1 那个 stopPropagation：按 ⌘C 前后 `activeGesture` 逐字符不变，边界 hook 因 activeRef 已为 true 而空转。",
+   "measured": "数值框里 ⌘C：对象数/历史/lastCommand 全不变；⌘V：countDelta=0、historyDelta=0。两轮一致。",
+   "judgement": "对 `type=text` 框这个守卫是刻意且正确的（用户要的是原生复制）。对**变换数值框**没有意义 —— 框里没有可选中的文本，原生复制也无从发生，于是这两个键在该位置**彻底失效**。",
+   "workaroundMeasured": "树里的 copy/delete/clear 三枚按钮全部生效（见 J11），所以有可用路径。",
+   "needsSrcChange": true
+  }
+ ],
+ "observations": [
+  {
+   "id": "O1",
+   "text": "764b 的两轮**种子数不同**（5 vs 6）—— 这正是 763 O1 记的「导演台项目持久化在 localStorage」的直接后果：round 1 粘贴/删除的对象带进了 round 2。本批所有跨轮比较都按「派生量逐字段相等」而不是「绝对值相等」来判。",
+   "verdict": "方法论约束"
+  },
+  {
+   "id": "O2",
+   "text": "移动端两个抽屉**互斥，而且开着的那一个会盖住另一个的触发按钮**（树 aside 占 x=0..220/y=88..，属性抽屉触发按钮 rect 在 (48,100,32,32)，`elementFromPoint` 命中的是 aside）⟹ 任何「开另一个抽屉」的自动化都必须先把当前抽屉关掉。",
+   "verdict": "探针约束（也可能是真实的可用性问题，待查）"
+  },
+  {
+   "id": "O3",
+   "text": "建出运动路径（`createMotionPath` → `lastCommand=PROJECT_MUTATION`）之后，属性面板的可聚焦控件数 52→67（+15），但**边界控件数没变**（仍是 12）⟹ 新增的 15 个控件不带手势边界。路径锚点数值框仍然没渲染出来。",
+   "verdict": "事实记录"
+  }
+ ],
+ "notClaimed": [
+  "无源站对照：本批全部结论只针对 clone 自身的行为自洽性。",
+  "路径上下文（`path+camera:*`）**两轮不可比**，本批不对其下任何判断。",
+  "路径锚点（`:825`）、路径变换（`:866`）、FOV（`:1579`）三类控件两轮都没渲染出来，**没有测过**；763 的「推测同样受影响」对这三类仍然只是推测。",
+  "764a 的边界检测是**按 data-* 标记**做的。若某个带手势边界的控件标记挂在外层容器上（如 FOV 那样标记在 `…-fov-field`/`…-fov-slider` 而可聚焦的是里面的 input），就会漏检 —— 本批**没有**做「全控件无标记扫」来兜这个底。",
+  "D2 只在 1440 桌面 + 变换数值框上测过；没测 text 框、textarea、select，也没测移动端抽屉形态下的表现。",
+  "没测原生剪贴板内容（没有读 `navigator.clipboard`），「框里没有可选文本所以原生复制也无从发生」是浏览器常规行为，不是读数。",
+  "⌘C/⌘V 只测了单个选中；多选、跨类型（角色↔道具）粘贴未测。",
+  "764b 的两轮因持久化而起点不同（5 vs 6 个对象），绝对计数不可跨轮比较；只比较了同一格内的 Δ。",
+  "没碰付费与真实生成；创建运动轨迹用的是本地预设（line），不是 AI 生成。"
+ ],
+ "probeLessons": [
+  {
+   "id": "R58",
+   "text": "**读标志必须在清标志之前**。764a 初版里 `TAKE` 会把 `reachedWinBubble/reachedWinCapture` 清成 false，而我先调 `TAKE` 再读这两个标志 ⟹ 27 个边界控件 + 3 个阴性对照**全被算成「吞了 Esc」**。修法是加一个 `PEEK` 在 `TAKE` 之前读。同一个探针两轮「一致」并不能说明它对 —— 确定性的读法错误两轮必然一致。"
+  },
+  {
+   "id": "R59",
+   "text": "**开一个抽屉之前先关另一个**。移动端两个抽屉互斥，开着的那个 aside 会盖住另一个的触发按钮，`elementFromPoint` 命中的是 aside ⟹ 扫网格 0 命中。初版把属性面板的 tab 按钮点空了（它们在抽屉关着时 x=817，视口宽只有 800）也栽在同一类问题上：**先量可点性，再点**。"
+  },
+  {
+   "id": "R60",
+   "text": "**别把同一个症状当成同一个机制**。数值框里 ⌘C 没反应，乍看像 D1 的 stopPropagation 复制粘贴一起吞。真正的判别点是 `activeGesture` 在按键前后**逐字符不变**—— 边界 hook 因 `activeRef` 已为 true 而空转，说明它没拦；拦住的是 `isEditable` 早退。D1 与 D2 是两个独立缺陷，修法也不同。"
+  },
+  {
+   "id": "R61",
+   "text": "**派生量要判方向、判效应**（沿用 R53）。764b 的 `countDelta` 必须相对**同一格内**的前后读数，不能拿整轮种子数去减 —— 763 就栽过这个（objectCount[0] 是整轮种子数，两个键共用）。"
+  },
+  {
+   "id": "R62",
+   "text": "**探针自己的失败有时会变成有用的读数，但要如实记账**。764c 的四次 `pick` 全部失败（我把返回字典的 `OBJECTS` 当成了列表），导致焦点一直留在数值框里 —— 这才量到了 D2。但这个「意外」不能拿来当设计：我把它单列成 `picksFailed` 写进产物，并在不声称里写明「四次选中都失败了」。"
+  }
+ ]
+}

@@ -1,0 +1,1304 @@
+{
+ "batch": 764,
+ "checks": [
+  {
+   "label": "静态：边界在 Escape 上 preventDefault",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：边界在 Escape 上 stopPropagation（D1 的机制）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：边界的 onKeyDown 至今**没有**「没有手势就放行」的守卫",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：边界 onFocus 仍是 begin()（所以守卫必须两处一起改）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：边界对 Tab/Shift/Alt/Ctrl/Meta 不 begin（所以 ⌘C 不会被它拦）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 静态：isEditable 早退排在 ⌘C 分支之前（D2 的机制）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 静态：isEditable 早退排在 ⌘V 分支之前",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：移动端关抽屉那一档排在 isEditable 早退之前",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：Esc 阶梯挂在 window 上",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：变换数值框 spread 了 gesture",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：边界 hook 至少 5 处调用",
+   "pass": true,
+   "got": 5
+  },
+  {
+   "label": "静态：姿势滑杆确实有 data-director-pose-control 标记",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：路径锚点与路径变换的标记在 src/ 里存在（渲染不出来 ≠ 不存在）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：copyDirectorSelection 每条分支都写 lastCommandResult",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：copyDirectorSelection 明写 historyEntries: 0（复制不改历史）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：树里 copy/delete/clear 三枚 action 都在",
+   "pass": true,
+   "got": [
+    true,
+    true,
+    true
+   ]
+  },
+  {
+   "label": "静态：时间轴的路径预设钩子存在（764a 建路径用的就是它）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 11 条",
+   "pass": true,
+   "got": 11
+  },
+  {
+   "label": "产物：判据 id 连号 J1..J11",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 产物：9 PASS + 2 FAIL，且 FAIL 正好是 J5/J9（不许偷偷改判）",
+   "pass": true,
+   "got": [
+    "J1:PASS",
+    "J2:PASS",
+    "J3:PASS",
+    "J4:PASS",
+    "J5:FAIL",
+    "J6:PASS",
+    "J7:PASS",
+    "J8:PASS",
+    "J9:FAIL",
+    "J10:PASS",
+    "J11:PASS"
+   ]
+  },
+  {
+   "label": "产物：每条判据都有 statement",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：findings 与 judgments[].evidence 逐条同源",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "产物：每条判据引用的键都存在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 id 在 README 里都被引用",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：缺陷恰好 D1 与 D2 两条",
+   "pass": true,
+   "got": [
+    "D1",
+    "D2"
+   ]
+  },
+  {
+   "label": "产物：D1 标了承自 763",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 产物：D1 明确写了「更正 763 的全是 type=number」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 产物：D1 明确记了「仍然未验证」的三类控件",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 产物：D2 标了低严重度且有实测过的替代路径",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 产物：D2 明确写了「不是 D1 那个 stopPropagation」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：两个缺陷都标了需要改 src/",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：观察 3 条",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：探针教训 5 条 R58..R62",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：R58（读标志顺序）确实写了 TAKE 会清标志",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：不声称清单非空",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：明说路径上下文不可比",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 产物：明说路径锚点/FOV 那三类**没有测过**",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 产物：明说边界检测是按标记做的、可能漏检",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：明说没读原生剪贴板",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：探针清单 3 个",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：每个探针指向的文件都存在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：raw/ 下正好 3 份原始读数",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：probes/ 下 3 个探针 + 1 个汇编器",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：3 份原始读数都记了 sha",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：本批 src 未改动",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：存在且非空",
+   "pass": true,
+   "got": 5424
+  },
+  {
+   "label": "README：含章节 ## 判据",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：含章节 ## 缺陷",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：含章节 ## 观察",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：含章节 ## 探针教训",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：含章节 ## 不声称",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：含章节 ## 复现",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：表格首格没有裸数字（pre-commit 钩子的正则）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "★ README：写了「更正 763 的全是 type=number」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README：写了 J5 是 FAIL 且是范围声明",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README：写了 D2 有可用替代路径",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：写了 D1 两处必须一起改",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README：写了 764c 五次 pick 全部失败（探针自伤如实记账）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "台账：恰好一行 Batch 764",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "台账：Batch 764 行没有 U+FFFD",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "台账：行数 627",
+   "pass": true,
+   "got": 627
+  },
+  {
+   "label": "台账：历史 U+FFFD 仍只在 522/583/587",
+   "pass": true,
+   "got": [
+    522,
+    583,
+    587
+   ]
+  },
+  {
+   "label": "原始：3 份读数全部可读",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：三个探针都是两轮",
+   "pass": true,
+   "got": {
+    "764a": 2,
+    "764b": 2,
+    "764c": 2
+   }
+  },
+  {
+   "label": "J1 交叉：可比上下文至少 3 个",
+   "pass": true,
+   "got": 5
+  },
+  {
+   "label": "★ J1 交叉：可比上下文里每一个边界控件都被吞",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J1 交叉：非边界控件一个都没被吞",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J1 交叉：阴性对照至少 3 个（不能一个都没有）",
+   "pass": true,
+   "got": 5
+  },
+  {
+   "label": "J1 交叉：边界控件至少 30 个",
+   "pass": true,
+   "got": 43
+  },
+  {
+   "label": "J1：产物 boundaryCountComparable 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J1：产物 nonBoundaryCountComparable 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J1：产物 boundarySwallowedAll 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J1：产物 nonBoundaryNeverSwallowed 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J3 交叉：全部边界控件 reachedWinBubble=false",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J3 交叉：全部边界控件 window 捕获照样触发",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J3 交叉：全部边界控件焦点确实落上（排除「没聚焦到」）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J3：产物 boundaryNeverReachedWindowBubble / reachedWindowCapture 一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J3：产物 boundaryFocusAllSucceeded 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J2 交叉：姿势上下文里出现 type=range 的边界控件",
+   "pass": true,
+   "got": [
+    "range"
+   ]
+  },
+  {
+   "label": "★ J2 交叉：默认上下文里是 type=number",
+   "pass": true,
+   "got": [
+    "number"
+   ]
+  },
+  {
+   "label": "★ J2 交叉：两类合起来覆盖 number 与 range",
+   "pass": true,
+   "got": [
+    "number",
+    "range"
+   ]
+  },
+  {
+   "label": "★ J2：产物 boundaryTypesComparable 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J2：产物 poseContext 与重算一致（边界数与被吞数）",
+   "pass": true,
+   "got": [
+    {
+     "label": "character:pose",
+     "totalFocusable": 47,
+     "boundaryCount": 25,
+     "boundaryTypes": [
+      "range"
+     ],
+     "boundarySwallowedCount": 25,
+     "poseKeys": [
+      "body.pitch",
+      "body.yaw",
+      "body.roll",
+      "torso.pitch",
+      "torso.yaw",
+      "torso.roll"
+     ],
+     "poseKeysTotal": 25
+    },
+    {
+     "label": "character:pose",
+     "totalFocusable": 47,
+     "boundaryCount": 25,
+     "boundaryTypes": [
+      "range"
+     ],
+     "swallowedCount": 25,
+     "types": [
+      "range"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "★ J2：README 与台账都写了「更正 763 的全是 type=number」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J4 交叉：确实有上下文一个边界控件都没有（如实记空）",
+   "pass": true,
+   "got": [
+    {
+     "label": "camera:motion",
+     "totalFocusable": 7,
+     "boundaryCount": 0
+    },
+    {
+     "label": "camera:captures",
+     "totalFocusable": 3,
+     "boundaryCount": 0
+    },
+    {
+     "label": "path+camera:motion",
+     "totalFocusable": 7,
+     "boundaryCount": 0
+    },
+    {
+     "label": "path+camera:captures",
+     "totalFocusable": 3,
+     "boundaryCount": 0
+    }
+   ]
+  },
+  {
+   "label": "J4：产物 emptyContexts 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J4：产物如实写了那两个上下文可聚焦控件很少",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J5 交叉：确实存在不可比上下文（FAIL 的前提）",
+   "pass": true,
+   "got": [
+    "camera:properties",
+    "path+camera:properties",
+    "path+camera:motion",
+    "path+camera:captures"
+   ]
+  },
+  {
+   "label": "★ J5 交叉：不可比的正是 path+camera 那一组 + camera:properties",
+   "pass": true,
+   "got": [
+    "camera:properties",
+    "path+camera:properties",
+    "path+camera:motion",
+    "path+camera:captures"
+   ]
+  },
+  {
+   "label": "★ J5：产物 incomparableLabels 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J5：判据 5 的 verdict 是 FAIL",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J5：不可比上下文没有混进可比统计里",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J6 交叉：路径确实建出来了（lastCommand=PROJECT_MUTATION）",
+   "pass": true,
+   "got": {
+    "preset": "line",
+    "hit": {
+     "tag": "BUTTON"
+    },
+    "lastCommand": "PROJECT_MUTATION"
+   }
+  },
+  {
+   "label": "★ J6 交叉：路径锚点/路径变换/FOV 三个标记两轮都没出现在任何行上",
+   "pass": true,
+   "got": {
+    "data-director-transform-field": true,
+    "data-director-path-anchor-position": true,
+    "data-director-path-anchor-handle": true,
+    "data-director-path-transform-field": true,
+    "data-director-pose-control": true,
+    "data-director-camera-fov-slider": true
+   }
+  },
+  {
+   "label": "★ J6：产物 pathCreated 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J6：README 明说这三类「仍然未验证」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J7 交叉：两轮里树上的 ⌘C 都落 COPY_SELECTION",
+   "pass": true,
+   "got": [
+    "COPY_SELECTION",
+    "COPY_SELECTION"
+   ]
+  },
+  {
+   "label": "J7 交叉：两次粘贴都是 +1 个对象",
+   "pass": true,
+   "got": [
+    1,
+    1
+   ]
+  },
+  {
+   "label": "J7 交叉：连按第二次 ⌘V 也是 +1",
+   "pass": true,
+   "got": [
+    1,
+    1
+   ]
+  },
+  {
+   "label": "J7 交叉：粘贴确实写历史（historyDelta=1）",
+   "pass": true,
+   "got": [
+    1,
+    1
+   ]
+  },
+  {
+   "label": "J7：产物 pasteDeltas / pasteAgainDeltas 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 前置：探针自报的 Δ 与我从 count/past 重算的 Δ 一致",
+   "pass": true,
+   "got": [
+    true,
+    true
+   ]
+  },
+  {
+   "label": "J7：产物 keyboard764b 就是原始读数（两轮逐格相等）",
+   "pass": true,
+   "got": "list"
+  },
+  {
+   "label": "★ J8 交叉：空剪贴板粘贴的 disposition 是 NOOP",
+   "pass": true,
+   "got": [
+    {
+     "lastCommand": "PASTE_CLIPBOARD",
+     "countDelta": 0,
+     "historyDelta": 0
+    },
+    {
+     "lastCommand": "PASTE_CLIPBOARD",
+     "countDelta": 0,
+     "historyDelta": 0
+    }
+   ]
+  },
+  {
+   "label": "J8 交叉：空剪贴板粘贴对象数与历史都不动",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J8：产物 emptyPasteDispositionNoop 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J8：README 明确写了这**不是缺陷**",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J9 交叉：数值框里 ⌘C 完全没反应（标签都没换）",
+   "pass": true,
+   "got": [
+    {
+     "lastCommand": [
+      "GESTURE_BEGIN",
+      "GESTURE_BEGIN"
+     ],
+     "lastDisposition": [
+      "COMMITTED",
+      "COMMITTED"
+     ],
+     "count": [
+      5,
+      5
+     ],
+     "past": [
+      "0",
+      "0"
+     ],
+     "gestureBefore": "director-gesture-<gen>",
+     "gestureAfter": "director-gesture-<gen>",
+     "gestureUnchanged": true,
+     "lastCommandUnchanged": true
+    },
+    {
+     "lastCommand": [
+      "GESTURE_BEGIN",
+      "GESTURE_BEGIN"
+     ],
+     "lastDisposition": [
+      "COMMITTED",
+      "COMMITTED"
+     ],
+     "count": [
+      5,
+      5
+     ],
+     "past": [
+      "0",
+      "0"
+     ],
+     "gestureBefore": "director-gesture-<gen>",
+     "gestureAfter": "director-gesture-<gen>",
+     "gestureUnchanged": true,
+     "lastCommandUnchanged": true
+    }
+   ]
+  },
+  {
+   "label": "★ J9 交叉：数值框里 ⌘V 完全没反应（Δ 全 0）",
+   "pass": true,
+   "got": [
+    {
+     "lastCommand": [
+      "GESTURE_BEGIN",
+      "GESTURE_BEGIN"
+     ],
+     "count": [
+      5,
+      5
+     ],
+     "past": [
+      "0",
+      "0"
+     ],
+     "countDelta": 0,
+     "historyDelta": 0
+    },
+    {
+     "lastCommand": [
+      "GESTURE_BEGIN",
+      "GESTURE_BEGIN"
+     ],
+     "count": [
+      5,
+      5
+     ],
+     "past": [
+      "0",
+      "0"
+     ],
+     "countDelta": 0,
+     "historyDelta": 0
+    }
+   ]
+  },
+  {
+   "label": "★ J9 交叉：两轮逐字段一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J9：产物 copyFromFieldDead / pasteFromFieldDead 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J9：产物 editableAllRoundsSame 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J9：判据 9 的 verdict 是 FAIL",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J10 交叉：按 ⌘C 前后 activeGesture 逐字符不变（D1 没拦）",
+   "pass": true,
+   "got": [
+    [
+     "director-gesture-<gen>",
+     "director-gesture-<gen>"
+    ],
+    [
+     "director-gesture-<gen>",
+     "director-gesture-<gen>"
+    ]
+   ]
+  },
+  {
+   "label": "★ J10 交叉：对照组「树里 ⌘C」是成功的（所以不是环境问题）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J10：产物 boundaryDidNotBlockModifierKeys 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ J10：README 写明 D2 与 D1 是两个独立机制",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "J11 交叉：鼠标三枚按钮都点到过（copy/delete/clear 各 2 次）",
+   "pass": true,
+   "got": [
+    {
+     "action": "copy",
+     "countDelta": 0,
+     "count": [
+      7,
+      7
+     ],
+     "selfReported": 0,
+     "lastCommand": "COPY_SELECTION"
+    },
+    {
+     "action": "clear",
+     "countDelta": 0,
+     "count": [
+      7,
+      7
+     ],
+     "selfReported": 0,
+     "lastCommand": "COPY_SELECTION"
+    },
+    {
+     "action": "delete",
+     "countDelta": -1,
+     "count": [
+      7,
+      6
+     ],
+     "selfReported": -1,
+     "lastCommand": "DELETE_OBJECTS"
+    },
+    {
+     "action": "copy",
+     "countDelta": 0,
+     "count": [
+      8,
+      8
+     ],
+     "selfReported": 0,
+     "lastCommand": "COPY_SELECTION"
+    },
+    {
+     "action": "clear",
+     "countDelta": 0,
+     "count": [
+      8,
+      8
+     ],
+     "selfReported": 0,
+     "lastCommand": "COPY_SELECTION"
+    },
+    {
+     "action": "delete",
+     "countDelta": -1,
+     "count": [
+      8,
+      7
+     ],
+     "selfReported": -1,
+     "lastCommand": "DELETE_OBJECTS"
+    }
+   ]
+  },
+  {
+   "label": "J11 交叉：copy 不改对象数、delete 减 1、clear 也不改对象数",
+   "pass": true,
+   "got": [
+    [
+     "copy",
+     0
+    ],
+    [
+     "clear",
+     0
+    ],
+    [
+     "delete",
+     -1
+    ],
+    [
+     "copy",
+     0
+    ],
+    [
+     "clear",
+     0
+    ],
+    [
+     "delete",
+     -1
+    ]
+   ]
+  },
+  {
+   "label": "J11 交叉：delete 落 DELETE_OBJECTS、copy 落 COPY_SELECTION",
+   "pass": true,
+   "got": [
+    "COPY_SELECTION",
+    "COPY_SELECTION",
+    "DELETE_OBJECTS",
+    "COPY_SELECTION",
+    "COPY_SELECTION",
+    "DELETE_OBJECTS"
+   ]
+  },
+  {
+   "label": "J11：产物 mouseActions 与重算一致（比对共有字段）",
+   "pass": true,
+   "got": [
+    [
+     {
+      "action": "copy",
+      "countDelta": 0,
+      "lastCommand": "COPY_SELECTION"
+     },
+     {
+      "action": "clear",
+      "countDelta": 0,
+      "lastCommand": "COPY_SELECTION"
+     },
+     {
+      "action": "delete",
+      "countDelta": -1,
+      "lastCommand": "DELETE_OBJECTS"
+     },
+     {
+      "action": "copy",
+      "countDelta": 0,
+      "lastCommand": "COPY_SELECTION"
+     },
+     {
+      "action": "clear",
+      "countDelta": 0,
+      "lastCommand": "COPY_SELECTION"
+     },
+     {
+      "action": "delete",
+      "countDelta": -1,
+      "lastCommand": "DELETE_OBJECTS"
+     }
+    ],
+    [
+     {
+      "action": "copy",
+      "countDelta": 0,
+      "lastCommand": "COPY_SELECTION"
+     },
+     {
+      "action": "clear",
+      "countDelta": 0,
+      "lastCommand": "COPY_SELECTION"
+     },
+     {
+      "action": "delete",
+      "countDelta": -1,
+      "lastCommand": "DELETE_OBJECTS"
+     },
+     {
+      "action": "copy",
+      "countDelta": 0,
+      "lastCommand": "COPY_SELECTION"
+     },
+     {
+      "action": "clear",
+      "countDelta": 0,
+      "lastCommand": "COPY_SELECTION"
+     },
+     {
+      "action": "delete",
+      "countDelta": -1,
+      "lastCommand": "DELETE_OBJECTS"
+     }
+    ]
+   ]
+  },
+  {
+   "label": "★ 前置：764c 的五次 pick 失败被如实记账",
+   "pass": true,
+   "got": [
+    "B_pickA",
+    "B_pickA2",
+    "C_pickB",
+    "C_pickB2",
+    "D_pickC"
+   ]
+  },
+  {
+   "label": "★ 前置：产物 picksFailedIn764c 与重算一致",
+   "pass": true,
+   "got": null
+  }
+ ],
+ "pass": 123,
+ "total": 123,
+ "negativeControls": [
+  {
+   "name": "★ 删掉 D1",
+   "caught": true,
+   "firstFail": "产物：缺陷恰好 D1 与 D2 两条"
+  },
+  {
+   "name": "★ 删掉 D2",
+   "caught": true,
+   "firstFail": "产物：缺陷恰好 D1 与 D2 两条"
+  },
+  {
+   "name": "★ 把 D2 降级成观察",
+   "caught": true,
+   "firstFail": "产物：观察 3 条"
+  },
+  {
+   "name": "★ 把 D2 的替代路径抹掉（那会让 D2 变严重）",
+   "caught": true,
+   "firstFail": "★ 产物：D2 标了低严重度且有实测过的替代路径"
+  },
+  {
+   "name": "★ 把 D2 的机制改回「就是 D1 那个 stopPropagation」",
+   "caught": true,
+   "firstFail": "★ 产物：D2 明确写了「不是 D1 那个 stopPropagation」"
+  },
+  {
+   "name": "★ 把 D1 的「更正 763」那段删掉",
+   "caught": true,
+   "firstFail": "★ 产物：D1 明确写了「更正 763 的全是 type=number」"
+  },
+  {
+   "name": "★ 把 D1 的「仍然未验证」三类控件删掉",
+   "caught": true,
+   "firstFail": "★ 产物：D1 明确记了「仍然未验证」的三类控件"
+  },
+  {
+   "name": "★ 把 D1 说成「本批新发现」",
+   "caught": true,
+   "firstFail": "产物：D1 标了承自 763"
+  },
+  {
+   "name": "★ 把 J5 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "★ 产物：9 PASS + 2 FAIL，且 FAIL 正好是 J5/J9（不许偷偷改判）"
+  },
+  {
+   "name": "★ 把 J9 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "★ 产物：9 PASS + 2 FAIL，且 FAIL 正好是 J5/J9（不许偷偷改判）"
+  },
+  {
+   "name": "★ 把不可比上下文从统计里悄悄删掉（让 J5 失去前提）",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence 逐条同源"
+  },
+  {
+   "name": "★ 把 camera:properties 从不可比挪进可比",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence 逐条同源"
+  },
+  {
+   "name": "★ 谎报 pick 失败次数（5 次说成 1 次）",
+   "caught": true,
+   "firstFail": "★ 前置：产物 picksFailedIn764c 与重算一致"
+  },
+  {
+   "name": "★ 把 J5 的证据换成可比上下文（FAIL 失去支撑）",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence 逐条同源"
+  },
+  {
+   "name": "只改 findings.boundaryCountComparable",
+   "caught": true,
+   "firstFail": "J1：产物 boundaryCountComparable 与重算一致"
+  },
+  {
+   "name": "只改 findings.boundarySwallowedAll",
+   "caught": true,
+   "firstFail": "J1：产物 boundarySwallowedAll 与重算一致"
+  },
+  {
+   "name": "只改 findings.nonBoundaryNeverSwallowed",
+   "caught": true,
+   "firstFail": "J1：产物 nonBoundaryNeverSwallowed 与重算一致"
+  },
+  {
+   "name": "只改 findings.copyFromFieldDead",
+   "caught": true,
+   "firstFail": "★ J9：产物 copyFromFieldDead / pasteFromFieldDead 与重算一致"
+  },
+  {
+   "name": "只改 findings.pasteFromFieldDead",
+   "caught": true,
+   "firstFail": "★ J9：产物 copyFromFieldDead / pasteFromFieldDead 与重算一致"
+  },
+  {
+   "name": "只改 findings.boundaryDidNotBlockModifierKeys",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence 逐条同源"
+  },
+  {
+   "name": "只改 findings.emptyPasteDispositionNoop",
+   "caught": true,
+   "firstFail": "★ J8：产物 emptyPasteDispositionNoop 与重算一致"
+  },
+  {
+   "name": "只改 findings.editableAllRoundsSame",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence 逐条同源"
+  },
+  {
+   "name": "只改 findings.poseContext.boundaryCount（25 说成 9）",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence 逐条同源"
+  },
+  {
+   "name": "只改 findings.boundaryTypesComparable（去掉 range）",
+   "caught": true,
+   "firstFail": "★ J2：产物 boundaryTypesComparable 与重算一致"
+  },
+  {
+   "name": "只改 findings.mouseActions 里的 delete 那一格",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence 逐条同源"
+  },
+  {
+   "name": "只改 findings.pasteDeltas",
+   "caught": true,
+   "firstFail": "J7：产物 pasteDeltas / pasteAgainDeltas 与重算一致"
+  },
+  {
+   "name": "只改 findings.emptyContexts（把空上下文抹掉）",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence 逐条同源"
+  },
+  {
+   "name": "只改 findings.pathCreated（假装路径没建出来）",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence 逐条同源"
+  },
+  {
+   "name": "把判据 2 的证据换成默认上下文（丢掉 25 个滑杆）",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence 逐条同源"
+  },
+  {
+   "name": "删掉判据 6（未验证那三类）",
+   "caught": true,
+   "firstFail": "产物：判据 11 条"
+  },
+  {
+   "name": "把判据 id 从 J7 改成 J8（制造重号）",
+   "caught": true,
+   "firstFail": "产物：判据 id 连号 J1..J11"
+  },
+  {
+   "name": "把判据 10 的 evidenceKey 指向不存在的键",
+   "caught": true,
+   "firstFail": "产物：findings 与 judgments[].evidence 逐条同源"
+  },
+  {
+   "name": "把 srcModified 改成 true 之外的谎话",
+   "caught": true,
+   "firstFail": "产物：本批 src 未改动"
+  },
+  {
+   "name": "把 rawSha 删掉一份",
+   "caught": true,
+   "firstFail": "产物：3 份原始读数都记了 sha"
+  },
+  {
+   "name": "清空不声称清单",
+   "caught": true,
+   "firstFail": "产物：不声称清单非空"
+  },
+  {
+   "name": "把不声称里的「没有测过」那条删掉",
+   "caught": true,
+   "firstFail": "★ 产物：明说路径锚点/FOV 那三类**没有测过**"
+  },
+  {
+   "name": "删掉探针教训 R58（读标志顺序）",
+   "caught": true,
+   "firstFail": "产物：探针教训 5 条 R58..R62"
+  },
+  {
+   "name": "删掉观察 O2（抽屉互相遮挡）",
+   "caught": true,
+   "firstFail": "产物：观察 3 条"
+  },
+  {
+   "name": "伪造：所有边界控件都到达了 window 冒泡",
+   "caught": true,
+   "firstFail": "★ J1 交叉：可比上下文里每一个边界控件都被吞"
+  },
+  {
+   "name": "伪造：只有 number 中招、range 不中招",
+   "caught": true,
+   "firstFail": "★ J1 交叉：可比上下文里每一个边界控件都被吞"
+  },
+  {
+   "name": "伪造：把不可比的上下文说成可比",
+   "caught": true,
+   "firstFail": "J1：产物 boundaryCountComparable 与重算一致"
+  },
+  {
+   "name": "伪造：每个上下文只扫了 3 个控件",
+   "caught": true,
+   "firstFail": "★ J1 交叉：阴性对照至少 3 个（不能一个都没有）"
+  },
+  {
+   "name": "伪造：数值框里 ⌘C 其实生效了",
+   "caught": true,
+   "firstFail": "★ J9 交叉：数值框里 ⌘C 完全没反应（标签都没换）"
+  },
+  {
+   "name": "伪造：数值框里 ⌘V 其实生效了",
+   "caught": true,
+   "firstFail": "★ J9 交叉：数值框里 ⌘V 完全没反应（Δ 全 0）"
+  },
+  {
+   "name": "伪造：按 ⌘C 时 gesture 变了（D1 确实拦了）",
+   "caught": true,
+   "firstFail": "★ J10 交叉：按 ⌘C 前后 activeGesture 逐字符不变（D1 没拦）"
+  },
+  {
+   "name": "伪造：空剪贴板粘贴的 disposition 是 COMMITTED",
+   "caught": true,
+   "firstFail": "J7：产物 keyboard764b 就是原始读数（两轮逐格相等）"
+  },
+  {
+   "name": "伪造：delete 按钮其实没删",
+   "caught": true,
+   "firstFail": "★ 前置：探针自报的 Δ 与我从 count/past 重算的 Δ 一致"
+  },
+  {
+   "name": "伪造：粘贴其实没造对象",
+   "caught": true,
+   "firstFail": "J7 交叉：两次粘贴都是 +1 个对象"
+  },
+  {
+   "name": "伪造：路径根本没建出来",
+   "caught": true,
+   "firstFail": "J6 交叉：路径确实建出来了（lastCommand=PROJECT_MUTATION）"
+  },
+  {
+   "name": "伪造：边界里已经有「没有手势就放行」的守卫",
+   "caught": true,
+   "firstFail": "静态：边界的 onKeyDown 至今**没有**「没有手势就放行」的守卫"
+  },
+  {
+   "name": "伪造：边界不再 stopPropagation",
+   "caught": true,
+   "firstFail": "静态：边界在 Escape 上 stopPropagation（D1 的机制）"
+  },
+  {
+   "name": "伪造：onFocus 不再 begin()",
+   "caught": true,
+   "firstFail": "静态：边界 onFocus 仍是 begin()（所以守卫必须两处一起改）"
+  },
+  {
+   "name": "伪造：边界对 Meta 键也 begin（D2 也会变成 D1 的锅）",
+   "caught": true,
+   "firstFail": "静态：边界对 Tab/Shift/Alt/Ctrl/Meta 不 begin（所以 ⌘C 不会被它拦）"
+  },
+  {
+   "name": "伪造：isEditable 早退挪到了 ⌘C 分支之后（D2 已修）",
+   "caught": true,
+   "firstFail": "★ 静态：isEditable 早退排在 ⌘C 分支之前（D2 的机制）"
+  },
+  {
+   "name": "伪造：copy 不再每条分支都写 lastCommandResult",
+   "caught": true,
+   "firstFail": "静态：copyDirectorSelection 每条分支都写 lastCommandResult"
+  },
+  {
+   "name": "伪造：copy 开始写历史了",
+   "caught": true,
+   "firstFail": "静态：copyDirectorSelection 明写 historyEntries: 0（复制不改历史）"
+  },
+  {
+   "name": "伪造：树里少了一枚 action 按钮",
+   "caught": true,
+   "firstFail": "静态：树里 copy/delete/clear 三枚 action 都在"
+  },
+  {
+   "name": "伪造：时间轴没有路径预设钩子了",
+   "caught": true,
+   "firstFail": "静态：时间轴的路径预设钩子存在（764a 建路径用的就是它）"
+  }
+ ],
+ "negativeCaught": 58,
+ "negativeTotal": 58,
+ "rawError": null,
+ "ok": true
+}

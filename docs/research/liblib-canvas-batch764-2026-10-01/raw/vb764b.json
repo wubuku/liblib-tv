@@ -1,0 +1,1179 @@
+{
+ "batch": 764,
+ "probe": "b",
+ "question": "导演台的 ⌘C / ⌘V 到底做什么？鼠标等价物一致吗？",
+ "rounds": [
+  {
+   "open": {
+    "opened": true
+   },
+   "deskStart": {
+    "open": true,
+    "count": 5,
+    "rows": [
+     {
+      "id": "director-character-lead",
+      "kind": "character",
+      "selected": "true",
+      "text": "角色01 · 陈默"
+     },
+     {
+      "id": "director-prop-table",
+      "kind": "prop",
+      "selected": "false",
+      "text": "咖啡桌"
+     },
+     {
+      "id": "director-prop-mug",
+      "kind": "prop",
+      "selected": "false",
+      "text": "冷掉的咖啡"
+     },
+     {
+      "id": "director-prop-wall",
+      "kind": "prop",
+      "selected": "false",
+      "text": "咖啡馆背景"
+     },
+     {
+      "id": "director-camera-main",
+      "kind": "camera",
+      "selected": "false",
+      "text": "机位01 · 对峙中景"
+     }
+    ],
+    "selectedIds": [
+     "director-character-lead"
+    ],
+    "toolbar": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    },
+    "historyPast": "0",
+    "historyFuture": "0",
+    "lastCommand": "",
+    "activeGesture": "",
+    "active": {
+     "tag": "DIV",
+     "type": null,
+     "tf": null,
+     "ta": null
+    }
+   },
+   "pick0": {
+    "picked": 0,
+    "target": {
+     "id": "director-character-lead",
+     "kind": "character",
+     "selected": "true",
+     "x": 56,
+     "y": 200,
+     "w": 216,
+     "h": 32
+    },
+    "hit": {
+     "tag": "SPAN",
+     "ok": true,
+     "aria": null
+    },
+    "selectedAfter": [
+     "director-character-lead"
+    ],
+    "toolbar": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   "C1_pasteWithEmptyClipboard": {
+    "key": "Cmd+V（先不复制）",
+    "note": "空剪贴板粘贴",
+    "count": [
+     5,
+     5
+    ],
+    "selectedBefore": [
+     "director-character-lead"
+    ],
+    "selectedAfter": [
+     "director-character-lead"
+    ],
+    "past": [
+     "0",
+     "0"
+    ],
+    "future": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "",
+     "PASTE_CLIPBOARD"
+    ],
+    "activeGestureBefore": "",
+    "activeGestureAfter": "",
+    "countDelta": 0,
+    "historyDelta": 0
+   },
+   "C2_pick": {
+    "picked": 0,
+    "target": {
+     "id": "director-character-lead",
+     "kind": "character",
+     "selected": "true",
+     "x": 56,
+     "y": 200,
+     "w": 216,
+     "h": 32
+    },
+    "hit": {
+     "tag": "SPAN",
+     "ok": true,
+     "aria": null
+    },
+    "selectedAfter": [
+     "director-character-lead"
+    ],
+    "toolbar": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   "C2_copy": {
+    "key": "Cmd+C",
+    "note": "有选中时复制",
+    "count": [
+     5,
+     5
+    ],
+    "selectedBefore": [
+     "director-character-lead"
+    ],
+    "selectedAfter": [
+     "director-character-lead"
+    ],
+    "past": [
+     "0",
+     "0"
+    ],
+    "future": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "PASTE_CLIPBOARD",
+     "COPY_SELECTION"
+    ],
+    "activeGestureBefore": "",
+    "activeGestureAfter": "",
+    "countDelta": 0,
+    "historyDelta": 0
+   },
+   "C3_pickOther": {
+    "picked": 1,
+    "target": {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "selected": "false",
+     "x": 56,
+     "y": 272,
+     "w": 216,
+     "h": 32
+    },
+    "hit": {
+     "tag": "SPAN",
+     "ok": true,
+     "aria": null
+    },
+    "selectedAfter": [
+     "director-prop-table"
+    ],
+    "toolbar": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   "C3_paste": {
+    "key": "Cmd+V",
+    "note": "复制后换行粘贴",
+    "count": [
+     5,
+     6
+    ],
+    "selectedBefore": [
+     "director-prop-table"
+    ],
+    "selectedAfter": [
+     "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+    ],
+    "past": [
+     "0",
+     "1"
+    ],
+    "future": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "COPY_SELECTION",
+     "PASTE_CLIPBOARD"
+    ],
+    "activeGestureBefore": "",
+    "activeGestureAfter": "",
+    "countDelta": 1,
+    "historyDelta": 1
+   },
+   "C4_pasteAgain": {
+    "key": "Cmd+V（第二次）",
+    "note": "连续粘贴",
+    "count": [
+     6,
+     7
+    ],
+    "selectedBefore": [
+     "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+    ],
+    "selectedAfter": [
+     "director-object-copy-director-character-lead-1791139763145-2-0-0-6"
+    ],
+    "past": [
+     "1",
+     "2"
+    ],
+    "future": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "PASTE_CLIPBOARD",
+     "PASTE_CLIPBOARD"
+    ],
+    "activeGestureBefore": "",
+    "activeGestureAfter": "",
+    "countDelta": 1,
+    "historyDelta": 1
+   },
+   "C5_focusBoundaryField": {
+    "focused": true,
+    "tf": "position",
+    "ta": "x"
+   },
+   "C5_copyFromField": {
+    "key": "Cmd+C（焦点在数值框里）",
+    "note": "边界只拦 Escape，预期 ⌘C 仍生效",
+    "count": [
+     7,
+     7
+    ],
+    "selectedBefore": [
+     "director-object-copy-director-character-lead-1791139763145-2-0-0-6"
+    ],
+    "selectedAfter": [
+     "director-object-copy-director-character-lead-1791139763145-2-0-0-6"
+    ],
+    "past": [
+     "2",
+     "2"
+    ],
+    "future": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "GESTURE_BEGIN",
+     "GESTURE_BEGIN"
+    ],
+    "activeGestureBefore": "director-gesture-1791139764045-7",
+    "activeGestureAfter": "director-gesture-1791139764045-7",
+    "countDelta": 0,
+    "historyDelta": 0
+   },
+   "C6_pick": {
+    "picked": 0,
+    "target": {
+     "id": "director-character-lead",
+     "kind": "character",
+     "selected": "false",
+     "x": 56,
+     "y": 200,
+     "w": 216,
+     "h": 32
+    },
+    "hit": {
+     "tag": "SPAN",
+     "ok": true,
+     "aria": null
+    },
+    "selectedAfter": [
+     "director-character-lead"
+    ],
+    "toolbar": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   "C6_copyButton": {
+    "action": "copy",
+    "click": {
+     "pt": [
+      182,
+      142
+     ],
+     "rect": {
+      "x": 180,
+      "y": 140,
+      "w": 28,
+      "h": 28
+     }
+    },
+    "count": [
+     7,
+     7
+    ],
+    "past": [
+     "2",
+     "2"
+    ],
+    "lastCommand": [
+     "GESTURE_COMMIT",
+     "COPY_SELECTION"
+    ],
+    "selectedAfter": [
+     "director-character-lead"
+    ],
+    "countDelta": 0,
+    "toolbarAfter": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   "C6_pickOther": {
+    "picked": 1,
+    "target": {
+     "id": "director-object-copy-director-character-lead-1791139762255-1-0-0-1",
+     "kind": "character",
+     "selected": "false",
+     "x": 56,
+     "y": 232,
+     "w": 216,
+     "h": 32
+    },
+    "hit": {
+     "tag": "SPAN",
+     "ok": true,
+     "aria": null
+    },
+    "selectedAfter": [
+     "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+    ],
+    "toolbar": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   "C6_clearButton": {
+    "action": "clear",
+    "click": {
+     "pt": [
+      246,
+      142
+     ],
+     "rect": {
+      "x": 244,
+      "y": 140,
+      "w": 28,
+      "h": 28
+     }
+    },
+    "count": [
+     7,
+     7
+    ],
+    "past": [
+     "2",
+     "2"
+    ],
+    "lastCommand": [
+     "COPY_SELECTION",
+     "COPY_SELECTION"
+    ],
+    "selectedAfter": [],
+    "countDelta": 0,
+    "toolbarAfter": null
+   },
+   "C6_pickAgain": {
+    "picked": 0,
+    "target": {
+     "id": "director-character-lead",
+     "kind": "character",
+     "selected": "false",
+     "x": 56,
+     "y": 164,
+     "w": 216,
+     "h": 32
+    },
+    "hit": {
+     "tag": "SPAN",
+     "ok": true,
+     "aria": null
+    },
+    "selectedAfter": [
+     "director-character-lead"
+    ],
+    "toolbar": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   "C6_deleteButton": {
+    "action": "delete",
+    "click": {
+     "pt": [
+      214,
+      142
+     ],
+     "rect": {
+      "x": 212,
+      "y": 140,
+      "w": 28,
+      "h": 28
+     }
+    },
+    "count": [
+     7,
+     6
+    ],
+    "past": [
+     "2",
+     "3"
+    ],
+    "lastCommand": [
+     "COPY_SELECTION",
+     "DELETE_OBJECTS"
+    ],
+    "selectedAfter": [],
+    "countDelta": -1,
+    "toolbarAfter": null
+   },
+   "deskEnd": {
+    "open": true,
+    "count": 6,
+    "rows": [
+     {
+      "id": "director-object-copy-director-character-lead-1791139762255-1-0-0-1",
+      "kind": "character",
+      "selected": "false",
+      "text": "角色01 · 陈默"
+     },
+     {
+      "id": "director-object-copy-director-character-lead-1791139763145-2-0-0-6",
+      "kind": "character",
+      "selected": "false",
+      "text": "角色01 · 陈默"
+     },
+     {
+      "id": "director-prop-table",
+      "kind": "prop",
+      "selected": "false",
+      "text": "咖啡桌"
+     },
+     {
+      "id": "director-prop-mug",
+      "kind": "prop",
+      "selected": "false",
+      "text": "冷掉的咖啡"
+     },
+     {
+      "id": "director-prop-wall",
+      "kind": "prop",
+      "selected": "false",
+      "text": "咖啡馆背景"
+     },
+     {
+      "id": "director-camera-main",
+      "kind": "camera",
+      "selected": "false",
+      "text": "机位01 · 对峙中景"
+     }
+    ],
+    "selectedIds": [],
+    "toolbar": null,
+    "historyPast": "3",
+    "historyFuture": "0",
+    "lastCommand": "DELETE_OBJECTS",
+    "activeGesture": "",
+    "active": {
+     "tag": "BODY",
+     "type": null,
+     "tf": null,
+     "ta": null
+    }
+   },
+   "keyboardSummary": {
+    "steps": [
+     {
+      "key": "Cmd+V（先不复制）",
+      "countDelta": 0,
+      "historyDelta": 0,
+      "lastAfter": "PASTE_CLIPBOARD"
+     },
+     {
+      "key": "Cmd+C",
+      "countDelta": 0,
+      "historyDelta": 0,
+      "lastAfter": "COPY_SELECTION"
+     },
+     {
+      "key": "Cmd+V",
+      "countDelta": 1,
+      "historyDelta": 1,
+      "lastAfter": "PASTE_CLIPBOARD"
+     },
+     {
+      "key": "Cmd+V（第二次）",
+      "countDelta": 1,
+      "historyDelta": 1,
+      "lastAfter": "PASTE_CLIPBOARD"
+     },
+     {
+      "key": "Cmd+C（焦点在数值框里）",
+      "countDelta": 0,
+      "historyDelta": 0,
+      "lastAfter": "GESTURE_BEGIN"
+     }
+    ]
+   }
+  },
+  {
+   "open": {
+    "opened": true
+   },
+   "deskStart": {
+    "open": true,
+    "count": 6,
+    "rows": [
+     {
+      "id": "director-object-copy-director-character-lead-1791139762255-1-0-0-1",
+      "kind": "character",
+      "selected": "true",
+      "text": "角色01 · 陈默"
+     },
+     {
+      "id": "director-object-copy-director-character-lead-1791139763145-2-0-0-6",
+      "kind": "character",
+      "selected": "false",
+      "text": "角色01 · 陈默"
+     },
+     {
+      "id": "director-prop-table",
+      "kind": "prop",
+      "selected": "false",
+      "text": "咖啡桌"
+     },
+     {
+      "id": "director-prop-mug",
+      "kind": "prop",
+      "selected": "false",
+      "text": "冷掉的咖啡"
+     },
+     {
+      "id": "director-prop-wall",
+      "kind": "prop",
+      "selected": "false",
+      "text": "咖啡馆背景"
+     },
+     {
+      "id": "director-camera-main",
+      "kind": "camera",
+      "selected": "false",
+      "text": "机位01 · 对峙中景"
+     }
+    ],
+    "selectedIds": [
+     "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+    ],
+    "toolbar": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    },
+    "historyPast": "0",
+    "historyFuture": "0",
+    "lastCommand": "",
+    "activeGesture": "",
+    "active": {
+     "tag": "DIV",
+     "type": null,
+     "tf": null,
+     "ta": null
+    }
+   },
+   "pick0": {
+    "picked": 0,
+    "target": {
+     "id": "director-object-copy-director-character-lead-1791139762255-1-0-0-1",
+     "kind": "character",
+     "selected": "true",
+     "x": 56,
+     "y": 200,
+     "w": 216,
+     "h": 32
+    },
+    "hit": {
+     "tag": "SPAN",
+     "ok": true,
+     "aria": null
+    },
+    "selectedAfter": [
+     "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+    ],
+    "toolbar": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   "C1_pasteWithEmptyClipboard": {
+    "key": "Cmd+V（先不复制）",
+    "note": "空剪贴板粘贴",
+    "count": [
+     6,
+     6
+    ],
+    "selectedBefore": [
+     "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+    ],
+    "selectedAfter": [
+     "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+    ],
+    "past": [
+     "0",
+     "0"
+    ],
+    "future": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "",
+     "PASTE_CLIPBOARD"
+    ],
+    "activeGestureBefore": "",
+    "activeGestureAfter": "",
+    "countDelta": 0,
+    "historyDelta": 0
+   },
+   "C2_pick": {
+    "picked": 0,
+    "target": {
+     "id": "director-object-copy-director-character-lead-1791139762255-1-0-0-1",
+     "kind": "character",
+     "selected": "true",
+     "x": 56,
+     "y": 200,
+     "w": 216,
+     "h": 32
+    },
+    "hit": {
+     "tag": "SPAN",
+     "ok": true,
+     "aria": null
+    },
+    "selectedAfter": [
+     "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+    ],
+    "toolbar": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   "C2_copy": {
+    "key": "Cmd+C",
+    "note": "有选中时复制",
+    "count": [
+     6,
+     6
+    ],
+    "selectedBefore": [
+     "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+    ],
+    "selectedAfter": [
+     "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+    ],
+    "past": [
+     "0",
+     "0"
+    ],
+    "future": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "PASTE_CLIPBOARD",
+     "COPY_SELECTION"
+    ],
+    "activeGestureBefore": "",
+    "activeGestureAfter": "",
+    "countDelta": 0,
+    "historyDelta": 0
+   },
+   "C3_pickOther": {
+    "picked": 1,
+    "target": {
+     "id": "director-object-copy-director-character-lead-1791139763145-2-0-0-6",
+     "kind": "character",
+     "selected": "false",
+     "x": 56,
+     "y": 232,
+     "w": 216,
+     "h": 32
+    },
+    "hit": {
+     "tag": "SPAN",
+     "ok": true,
+     "aria": null
+    },
+    "selectedAfter": [
+     "director-object-copy-director-character-lead-1791139763145-2-0-0-6"
+    ],
+    "toolbar": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   "C3_paste": {
+    "key": "Cmd+V",
+    "note": "复制后换行粘贴",
+    "count": [
+     6,
+     7
+    ],
+    "selectedBefore": [
+     "director-object-copy-director-character-lead-1791139763145-2-0-0-6"
+    ],
+    "selectedAfter": [
+     "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139781150-1-0-0-1"
+    ],
+    "past": [
+     "0",
+     "1"
+    ],
+    "future": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "COPY_SELECTION",
+     "PASTE_CLIPBOARD"
+    ],
+    "activeGestureBefore": "",
+    "activeGestureAfter": "",
+    "countDelta": 1,
+    "historyDelta": 1
+   },
+   "C4_pasteAgain": {
+    "key": "Cmd+V（第二次）",
+    "note": "连续粘贴",
+    "count": [
+     7,
+     8
+    ],
+    "selectedBefore": [
+     "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139781150-1-0-0-1"
+    ],
+    "selectedAfter": [
+     "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139782044-2-0-0-6"
+    ],
+    "past": [
+     "1",
+     "2"
+    ],
+    "future": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "PASTE_CLIPBOARD",
+     "PASTE_CLIPBOARD"
+    ],
+    "activeGestureBefore": "",
+    "activeGestureAfter": "",
+    "countDelta": 1,
+    "historyDelta": 1
+   },
+   "C5_focusBoundaryField": {
+    "focused": true,
+    "tf": "position",
+    "ta": "x"
+   },
+   "C5_copyFromField": {
+    "key": "Cmd+C（焦点在数值框里）",
+    "note": "边界只拦 Escape，预期 ⌘C 仍生效",
+    "count": [
+     8,
+     8
+    ],
+    "selectedBefore": [
+     "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139782044-2-0-0-6"
+    ],
+    "selectedAfter": [
+     "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139782044-2-0-0-6"
+    ],
+    "past": [
+     "2",
+     "2"
+    ],
+    "future": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "GESTURE_BEGIN",
+     "GESTURE_BEGIN"
+    ],
+    "activeGestureBefore": "director-gesture-1791139782942-7",
+    "activeGestureAfter": "director-gesture-1791139782942-7",
+    "countDelta": 0,
+    "historyDelta": 0
+   },
+   "C6_pick": {
+    "picked": 0,
+    "target": {
+     "id": "director-object-copy-director-character-lead-1791139762255-1-0-0-1",
+     "kind": "character",
+     "selected": "false",
+     "x": 56,
+     "y": 200,
+     "w": 216,
+     "h": 32
+    },
+    "hit": {
+     "tag": "SPAN",
+     "ok": true,
+     "aria": null
+    },
+    "selectedAfter": [
+     "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+    ],
+    "toolbar": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   "C6_copyButton": {
+    "action": "copy",
+    "click": {
+     "pt": [
+      182,
+      142
+     ],
+     "rect": {
+      "x": 180,
+      "y": 140,
+      "w": 28,
+      "h": 28
+     }
+    },
+    "count": [
+     8,
+     8
+    ],
+    "past": [
+     "2",
+     "2"
+    ],
+    "lastCommand": [
+     "GESTURE_COMMIT",
+     "COPY_SELECTION"
+    ],
+    "selectedAfter": [
+     "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+    ],
+    "countDelta": 0,
+    "toolbarAfter": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   "C6_pickOther": {
+    "picked": 1,
+    "target": {
+     "id": "director-object-copy-director-character-lead-1791139763145-2-0-0-6",
+     "kind": "character",
+     "selected": "false",
+     "x": 56,
+     "y": 232,
+     "w": 216,
+     "h": 32
+    },
+    "hit": {
+     "tag": "SPAN",
+     "ok": true,
+     "aria": null
+    },
+    "selectedAfter": [
+     "director-object-copy-director-character-lead-1791139763145-2-0-0-6"
+    ],
+    "toolbar": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   "C6_clearButton": {
+    "action": "clear",
+    "click": {
+     "pt": [
+      246,
+      142
+     ],
+     "rect": {
+      "x": 244,
+      "y": 140,
+      "w": 28,
+      "h": 28
+     }
+    },
+    "count": [
+     8,
+     8
+    ],
+    "past": [
+     "2",
+     "2"
+    ],
+    "lastCommand": [
+     "COPY_SELECTION",
+     "COPY_SELECTION"
+    ],
+    "selectedAfter": [],
+    "countDelta": 0,
+    "toolbarAfter": null
+   },
+   "C6_pickAgain": {
+    "picked": 0,
+    "target": {
+     "id": "director-object-copy-director-character-lead-1791139762255-1-0-0-1",
+     "kind": "character",
+     "selected": "false",
+     "x": 56,
+     "y": 164,
+     "w": 216,
+     "h": 32
+    },
+    "hit": {
+     "tag": "SPAN",
+     "ok": true,
+     "aria": null
+    },
+    "selectedAfter": [
+     "director-object-copy-director-character-lead-1791139762255-1-0-0-1"
+    ],
+    "toolbar": {
+     "kind": "objects",
+     "actions": [
+      "copy",
+      "delete",
+      "clear"
+     ],
+     "visible": true
+    }
+   },
+   "C6_deleteButton": {
+    "action": "delete",
+    "click": {
+     "pt": [
+      214,
+      142
+     ],
+     "rect": {
+      "x": 212,
+      "y": 140,
+      "w": 28,
+      "h": 28
+     }
+    },
+    "count": [
+     8,
+     7
+    ],
+    "past": [
+     "2",
+     "3"
+    ],
+    "lastCommand": [
+     "COPY_SELECTION",
+     "DELETE_OBJECTS"
+    ],
+    "selectedAfter": [],
+    "countDelta": -1,
+    "toolbarAfter": null
+   },
+   "deskEnd": {
+    "open": true,
+    "count": 7,
+    "rows": [
+     {
+      "id": "director-object-copy-director-character-lead-1791139763145-2-0-0-6",
+      "kind": "character",
+      "selected": "false",
+      "text": "角色01 · 陈默"
+     },
+     {
+      "id": "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139781150-1-0-0-1",
+      "kind": "character",
+      "selected": "false",
+      "text": "角色01 · 陈默"
+     },
+     {
+      "id": "director-object-copy-acter-lead-1791139762255-1-0-0-1-1791139782044-2-0-0-6",
+      "kind": "character",
+      "selected": "false",
+      "text": "角色01 · 陈默"
+     },
+     {
+      "id": "director-prop-table",
+      "kind": "prop",
+      "selected": "false",
+      "text": "咖啡桌"
+     },
+     {
+      "id": "director-prop-mug",
+      "kind": "prop",
+      "selected": "false",
+      "text": "冷掉的咖啡"
+     },
+     {
+      "id": "director-prop-wall",
+      "kind": "prop",
+      "selected": "false",
+      "text": "咖啡馆背景"
+     },
+     {
+      "id": "director-camera-main",
+      "kind": "camera",
+      "selected": "false",
+      "text": "机位01 · 对峙中景"
+     }
+    ],
+    "selectedIds": [],
+    "toolbar": null,
+    "historyPast": "3",
+    "historyFuture": "0",
+    "lastCommand": "DELETE_OBJECTS",
+    "activeGesture": "",
+    "active": {
+     "tag": "BODY",
+     "type": null,
+     "tf": null,
+     "ta": null
+    }
+   },
+   "keyboardSummary": {
+    "steps": [
+     {
+      "key": "Cmd+V（先不复制）",
+      "countDelta": 0,
+      "historyDelta": 0,
+      "lastAfter": "PASTE_CLIPBOARD"
+     },
+     {
+      "key": "Cmd+C",
+      "countDelta": 0,
+      "historyDelta": 0,
+      "lastAfter": "COPY_SELECTION"
+     },
+     {
+      "key": "Cmd+V",
+      "countDelta": 1,
+      "historyDelta": 1,
+      "lastAfter": "PASTE_CLIPBOARD"
+     },
+     {
+      "key": "Cmd+V（第二次）",
+      "countDelta": 1,
+      "historyDelta": 1,
+      "lastAfter": "PASTE_CLIPBOARD"
+     },
+     {
+      "key": "Cmd+C（焦点在数值框里）",
+      "countDelta": 0,
+      "historyDelta": 0,
+      "lastAfter": "GESTURE_BEGIN"
+     }
+    ]
+   }
+  }
+ ]
+}

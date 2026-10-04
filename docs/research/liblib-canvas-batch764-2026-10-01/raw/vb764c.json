@@ -1,0 +1,1271 @@
+{
+ "batch": 764,
+ "probe": "c",
+ "question": "焦点在边界数值框里按 ⌘C，剪贴板有没有被换掉？",
+ "rounds": [
+  {
+   "open": {
+    "opened": true
+   },
+   "deskStart": {
+    "open": true,
+    "count": 5,
+    "rows": [
+     {
+      "id": "director-character-lead",
+      "kind": "character",
+      "selected": "true",
+      "text": "角色01 · 陈默",
+      "x": 56,
+      "y": 200,
+      "w": 216,
+      "h": 32
+     },
+     {
+      "id": "director-prop-table",
+      "kind": "prop",
+      "selected": "false",
+      "text": "咖啡桌",
+      "x": 56,
+      "y": 272,
+      "w": 216,
+      "h": 32
+     },
+     {
+      "id": "director-prop-mug",
+      "kind": "prop",
+      "selected": "false",
+      "text": "冷掉的咖啡",
+      "x": 56,
+      "y": 304,
+      "w": 216,
+      "h": 32
+     },
+     {
+      "id": "director-prop-wall",
+      "kind": "prop",
+      "selected": "false",
+      "text": "咖啡馆背景",
+      "x": 56,
+      "y": 336,
+      "w": 216,
+      "h": 32
+     },
+     {
+      "id": "director-camera-main",
+      "kind": "camera",
+      "selected": "false",
+      "text": "机位01 · 对峙中景",
+      "x": 56,
+      "y": 408,
+      "w": 216,
+      "h": 32
+     }
+    ],
+    "selectedIds": [
+     "director-character-lead"
+    ],
+    "historyPast": "0",
+    "lastCommand": "",
+    "lastDisposition": "",
+    "activeGesture": "",
+    "active": {
+     "tag": "DIV",
+     "tf": null,
+     "ta": null
+    }
+   },
+   "seedNames": [
+    {
+     "i": 0,
+     "kind": "character",
+     "text": "角色01 · 陈默"
+    },
+    {
+     "i": 1,
+     "kind": "prop",
+     "text": "咖啡桌"
+    },
+    {
+     "i": 2,
+     "kind": "prop",
+     "text": "冷掉的咖啡"
+    },
+    {
+     "i": 3,
+     "kind": "prop",
+     "text": "咖啡馆背景"
+    },
+    {
+     "i": 4,
+     "kind": "camera",
+     "text": "机位01 · 对峙中景"
+    }
+   ],
+   "A_emptyPaste": {
+    "key": "Cmd+V（空剪贴板）",
+    "count": [
+     5,
+     5
+    ],
+    "past": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "",
+     "PASTE_CLIPBOARD"
+    ],
+    "lastDisposition": [
+     "",
+     "NOOP"
+    ],
+    "activeGestureBefore": "",
+    "activeGestureAfter": "",
+    "active": {
+     "tag": "DIV",
+     "tf": null,
+     "ta": null
+    }
+   },
+   "B_pickA": {
+    "err": "行不够",
+    "n": {
+     "open": true,
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默",
+       "x": 56,
+       "y": 200,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌",
+       "x": 56,
+       "y": 272,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 304,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 336,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 408,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "selectedIds": [
+      "director-character-lead"
+     ],
+     "historyPast": "0",
+     "lastCommand": "PASTE_CLIPBOARD",
+     "lastDisposition": "NOOP",
+     "activeGesture": "",
+     "active": {
+      "tag": "DIV",
+      "tf": null,
+      "ta": null
+     }
+    }
+   },
+   "B_copyFromTree": {
+    "key": "Cmd+C（焦点在树）",
+    "count": [
+     5,
+     5
+    ],
+    "past": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "PASTE_CLIPBOARD",
+     "COPY_SELECTION"
+    ],
+    "lastDisposition": [
+     "NOOP",
+     "COMMITTED"
+    ],
+    "activeGestureBefore": "",
+    "activeGestureAfter": "",
+    "active": {
+     "tag": "DIV",
+     "tf": null,
+     "ta": null
+    }
+   },
+   "B_pickA2": {
+    "err": "行不够",
+    "n": {
+     "open": true,
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默",
+       "x": 56,
+       "y": 200,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌",
+       "x": 56,
+       "y": 272,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 304,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 336,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 408,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "selectedIds": [
+      "director-character-lead"
+     ],
+     "historyPast": "0",
+     "lastCommand": "COPY_SELECTION",
+     "lastDisposition": "COMMITTED",
+     "activeGesture": "",
+     "active": {
+      "tag": "DIV",
+      "tf": null,
+      "ta": null
+     }
+    }
+   },
+   "C_pickB": {
+    "err": "行不够",
+    "n": {
+     "open": true,
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默",
+       "x": 56,
+       "y": 200,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌",
+       "x": 56,
+       "y": 272,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 304,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 336,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 408,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "selectedIds": [
+      "director-character-lead"
+     ],
+     "historyPast": "0",
+     "lastCommand": "COPY_SELECTION",
+     "lastDisposition": "COMMITTED",
+     "activeGesture": "",
+     "active": {
+      "tag": "DIV",
+      "tf": null,
+      "ta": null
+     }
+    }
+   },
+   "C_focusField": {
+    "focused": true,
+    "tf": "position",
+    "ta": "x",
+    "value": "-1.25"
+   },
+   "C_copyFromField": {
+    "key": "Cmd+C（焦点在数值框）",
+    "count": [
+     5,
+     5
+    ],
+    "past": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "GESTURE_BEGIN",
+     "GESTURE_BEGIN"
+    ],
+    "lastDisposition": [
+     "COMMITTED",
+     "COMMITTED"
+    ],
+    "activeGestureBefore": "director-gesture-1791139950897-3",
+    "activeGestureAfter": "director-gesture-1791139950897-3",
+    "active": {
+     "tag": "INPUT",
+     "tf": "position",
+     "ta": "x"
+    }
+   },
+   "C_pickB2": {
+    "err": "行不够",
+    "n": {
+     "open": true,
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默",
+       "x": 56,
+       "y": 200,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌",
+       "x": 56,
+       "y": 272,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 304,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 336,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 408,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "selectedIds": [
+      "director-character-lead"
+     ],
+     "historyPast": "0",
+     "lastCommand": "GESTURE_BEGIN",
+     "lastDisposition": "COMMITTED",
+     "activeGesture": "director-gesture-1791139950897-3",
+     "active": {
+      "tag": "INPUT",
+      "tf": "position",
+      "ta": "x"
+     }
+    }
+   },
+   "D_pickC": {
+    "err": "行不够",
+    "n": {
+     "open": true,
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默",
+       "x": 56,
+       "y": 200,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌",
+       "x": 56,
+       "y": 272,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 304,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 336,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 408,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "selectedIds": [
+      "director-character-lead"
+     ],
+     "historyPast": "0",
+     "lastCommand": "GESTURE_BEGIN",
+     "lastDisposition": "COMMITTED",
+     "activeGesture": "director-gesture-1791139950897-3",
+     "active": {
+      "tag": "INPUT",
+      "tf": "position",
+      "ta": "x"
+     }
+    }
+   },
+   "D_paste": {
+    "key": "Cmd+V",
+    "count": [
+     5,
+     5
+    ],
+    "past": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "GESTURE_BEGIN",
+     "GESTURE_BEGIN"
+    ],
+    "lastDisposition": [
+     "COMMITTED",
+     "COMMITTED"
+    ],
+    "activeGestureBefore": "director-gesture-1791139950897-3",
+    "activeGestureAfter": "director-gesture-1791139950897-3",
+    "active": {
+     "tag": "INPUT",
+     "tf": "position",
+     "ta": "x"
+    }
+   },
+   "D_rowsAfterPaste": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "selected": "true",
+     "text": "角色01 · 陈默",
+     "x": 56,
+     "y": 200,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "selected": "false",
+     "text": "咖啡桌",
+     "x": 56,
+     "y": 272,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "selected": "false",
+     "text": "冷掉的咖啡",
+     "x": 56,
+     "y": 304,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "selected": "false",
+     "text": "咖啡馆背景",
+     "x": 56,
+     "y": 336,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "selected": "false",
+     "text": "机位01 · 对峙中景",
+     "x": 56,
+     "y": 408,
+     "w": 216,
+     "h": 32
+    }
+   ],
+   "D_newRows": [],
+   "D_verdict": {
+    "pastedSig": null,
+    "seedA": [
+     "character",
+     "角色01 · 陈默"
+    ],
+    "seedB": [
+     "prop",
+     "咖啡桌"
+    ],
+    "pastedIsA": false,
+    "pastedIsB": false,
+    "newRowCount": 0
+   }
+  },
+  {
+   "open": {
+    "opened": true
+   },
+   "deskStart": {
+    "open": true,
+    "count": 5,
+    "rows": [
+     {
+      "id": "director-character-lead",
+      "kind": "character",
+      "selected": "true",
+      "text": "角色01 · 陈默",
+      "x": 56,
+      "y": 200,
+      "w": 216,
+      "h": 32
+     },
+     {
+      "id": "director-prop-table",
+      "kind": "prop",
+      "selected": "false",
+      "text": "咖啡桌",
+      "x": 56,
+      "y": 272,
+      "w": 216,
+      "h": 32
+     },
+     {
+      "id": "director-prop-mug",
+      "kind": "prop",
+      "selected": "false",
+      "text": "冷掉的咖啡",
+      "x": 56,
+      "y": 304,
+      "w": 216,
+      "h": 32
+     },
+     {
+      "id": "director-prop-wall",
+      "kind": "prop",
+      "selected": "false",
+      "text": "咖啡馆背景",
+      "x": 56,
+      "y": 336,
+      "w": 216,
+      "h": 32
+     },
+     {
+      "id": "director-camera-main",
+      "kind": "camera",
+      "selected": "false",
+      "text": "机位01 · 对峙中景",
+      "x": 56,
+      "y": 408,
+      "w": 216,
+      "h": 32
+     }
+    ],
+    "selectedIds": [
+     "director-character-lead"
+    ],
+    "historyPast": "0",
+    "lastCommand": "",
+    "lastDisposition": "",
+    "activeGesture": "",
+    "active": {
+     "tag": "DIV",
+     "tf": null,
+     "ta": null
+    }
+   },
+   "seedNames": [
+    {
+     "i": 0,
+     "kind": "character",
+     "text": "角色01 · 陈默"
+    },
+    {
+     "i": 1,
+     "kind": "prop",
+     "text": "咖啡桌"
+    },
+    {
+     "i": 2,
+     "kind": "prop",
+     "text": "冷掉的咖啡"
+    },
+    {
+     "i": 3,
+     "kind": "prop",
+     "text": "咖啡馆背景"
+    },
+    {
+     "i": 4,
+     "kind": "camera",
+     "text": "机位01 · 对峙中景"
+    }
+   ],
+   "A_emptyPaste": {
+    "key": "Cmd+V（空剪贴板）",
+    "count": [
+     5,
+     5
+    ],
+    "past": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "",
+     "PASTE_CLIPBOARD"
+    ],
+    "lastDisposition": [
+     "",
+     "NOOP"
+    ],
+    "activeGestureBefore": "",
+    "activeGestureAfter": "",
+    "active": {
+     "tag": "DIV",
+     "tf": null,
+     "ta": null
+    }
+   },
+   "B_pickA": {
+    "err": "行不够",
+    "n": {
+     "open": true,
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默",
+       "x": 56,
+       "y": 200,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌",
+       "x": 56,
+       "y": 272,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 304,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 336,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 408,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "selectedIds": [
+      "director-character-lead"
+     ],
+     "historyPast": "0",
+     "lastCommand": "PASTE_CLIPBOARD",
+     "lastDisposition": "NOOP",
+     "activeGesture": "",
+     "active": {
+      "tag": "DIV",
+      "tf": null,
+      "ta": null
+     }
+    }
+   },
+   "B_copyFromTree": {
+    "key": "Cmd+C（焦点在树）",
+    "count": [
+     5,
+     5
+    ],
+    "past": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "PASTE_CLIPBOARD",
+     "COPY_SELECTION"
+    ],
+    "lastDisposition": [
+     "NOOP",
+     "COMMITTED"
+    ],
+    "activeGestureBefore": "",
+    "activeGestureAfter": "",
+    "active": {
+     "tag": "DIV",
+     "tf": null,
+     "ta": null
+    }
+   },
+   "B_pickA2": {
+    "err": "行不够",
+    "n": {
+     "open": true,
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默",
+       "x": 56,
+       "y": 200,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌",
+       "x": 56,
+       "y": 272,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 304,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 336,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 408,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "selectedIds": [
+      "director-character-lead"
+     ],
+     "historyPast": "0",
+     "lastCommand": "COPY_SELECTION",
+     "lastDisposition": "COMMITTED",
+     "activeGesture": "",
+     "active": {
+      "tag": "DIV",
+      "tf": null,
+      "ta": null
+     }
+    }
+   },
+   "C_pickB": {
+    "err": "行不够",
+    "n": {
+     "open": true,
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默",
+       "x": 56,
+       "y": 200,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌",
+       "x": 56,
+       "y": 272,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 304,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 336,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 408,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "selectedIds": [
+      "director-character-lead"
+     ],
+     "historyPast": "0",
+     "lastCommand": "COPY_SELECTION",
+     "lastDisposition": "COMMITTED",
+     "activeGesture": "",
+     "active": {
+      "tag": "DIV",
+      "tf": null,
+      "ta": null
+     }
+    }
+   },
+   "C_focusField": {
+    "focused": true,
+    "tf": "position",
+    "ta": "x",
+    "value": "-1.25"
+   },
+   "C_copyFromField": {
+    "key": "Cmd+C（焦点在数值框）",
+    "count": [
+     5,
+     5
+    ],
+    "past": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "GESTURE_BEGIN",
+     "GESTURE_BEGIN"
+    ],
+    "lastDisposition": [
+     "COMMITTED",
+     "COMMITTED"
+    ],
+    "activeGestureBefore": "director-gesture-1791139961467-3",
+    "activeGestureAfter": "director-gesture-1791139961467-3",
+    "active": {
+     "tag": "INPUT",
+     "tf": "position",
+     "ta": "x"
+    }
+   },
+   "C_pickB2": {
+    "err": "行不够",
+    "n": {
+     "open": true,
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默",
+       "x": 56,
+       "y": 200,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌",
+       "x": 56,
+       "y": 272,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 304,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 336,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 408,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "selectedIds": [
+      "director-character-lead"
+     ],
+     "historyPast": "0",
+     "lastCommand": "GESTURE_BEGIN",
+     "lastDisposition": "COMMITTED",
+     "activeGesture": "director-gesture-1791139961467-3",
+     "active": {
+      "tag": "INPUT",
+      "tf": "position",
+      "ta": "x"
+     }
+    }
+   },
+   "D_pickC": {
+    "err": "行不够",
+    "n": {
+     "open": true,
+     "count": 5,
+     "rows": [
+      {
+       "id": "director-character-lead",
+       "kind": "character",
+       "selected": "true",
+       "text": "角色01 · 陈默",
+       "x": 56,
+       "y": 200,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-table",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡桌",
+       "x": 56,
+       "y": 272,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-mug",
+       "kind": "prop",
+       "selected": "false",
+       "text": "冷掉的咖啡",
+       "x": 56,
+       "y": 304,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-prop-wall",
+       "kind": "prop",
+       "selected": "false",
+       "text": "咖啡馆背景",
+       "x": 56,
+       "y": 336,
+       "w": 216,
+       "h": 32
+      },
+      {
+       "id": "director-camera-main",
+       "kind": "camera",
+       "selected": "false",
+       "text": "机位01 · 对峙中景",
+       "x": 56,
+       "y": 408,
+       "w": 216,
+       "h": 32
+      }
+     ],
+     "selectedIds": [
+      "director-character-lead"
+     ],
+     "historyPast": "0",
+     "lastCommand": "GESTURE_BEGIN",
+     "lastDisposition": "COMMITTED",
+     "activeGesture": "director-gesture-1791139961467-3",
+     "active": {
+      "tag": "INPUT",
+      "tf": "position",
+      "ta": "x"
+     }
+    }
+   },
+   "D_paste": {
+    "key": "Cmd+V",
+    "count": [
+     5,
+     5
+    ],
+    "past": [
+     "0",
+     "0"
+    ],
+    "lastCommand": [
+     "GESTURE_BEGIN",
+     "GESTURE_BEGIN"
+    ],
+    "lastDisposition": [
+     "COMMITTED",
+     "COMMITTED"
+    ],
+    "activeGestureBefore": "director-gesture-1791139961467-3",
+    "activeGestureAfter": "director-gesture-1791139961467-3",
+    "active": {
+     "tag": "INPUT",
+     "tf": "position",
+     "ta": "x"
+    }
+   },
+   "D_rowsAfterPaste": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "selected": "true",
+     "text": "角色01 · 陈默",
+     "x": 56,
+     "y": 200,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "selected": "false",
+     "text": "咖啡桌",
+     "x": 56,
+     "y": 272,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "selected": "false",
+     "text": "冷掉的咖啡",
+     "x": 56,
+     "y": 304,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "selected": "false",
+     "text": "咖啡馆背景",
+     "x": 56,
+     "y": 336,
+     "w": 216,
+     "h": 32
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "selected": "false",
+     "text": "机位01 · 对峙中景",
+     "x": 56,
+     "y": 408,
+     "w": 216,
+     "h": 32
+    }
+   ],
+   "D_newRows": [],
+   "D_verdict": {
+    "pastedSig": null,
+    "seedA": [
+     "character",
+     "角色01 · 陈默"
+    ],
+    "seedB": [
+     "prop",
+     "咖啡桌"
+    ],
+    "pastedIsA": false,
+    "pastedIsB": false,
+    "newRowCount": 0
+   }
+  }
+ ]
+}

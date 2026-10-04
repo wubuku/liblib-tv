@@ -1,0 +1,8415 @@
+{
+ "batch": 764,
+ "probe": "a",
+ "question": "D1（手势边界吞 Esc）的真实影响面有多大？",
+ "boundarySelector": "[data-director-transform-field],[data-director-path-anchor-position],[data-director-path-anchor-handle],[data-director-path-transform-field],[data-director-pose-control],[data-director-camera-fov-slider]",
+ "rounds": [
+  {
+   "open": {
+    "opened": true
+   },
+   "deskStart": {
+    "open": true,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": -220
+    },
+    "inspector": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": 800
+    },
+    "historyPast": "0",
+    "historyFuture": "0",
+    "lastCommand": "",
+    "activeGesture": "",
+    "kind": null
+   },
+   "objectsSeed": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "selected": "true",
+     "x": -212,
+     "y": 236,
+     "w": 203,
+     "h": 32
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "selected": "false",
+     "x": -212,
+     "y": 308,
+     "w": 203,
+     "h": 32
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "selected": "false",
+     "x": -212,
+     "y": 340,
+     "w": 203,
+     "h": 32
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "selected": "false",
+     "x": -212,
+     "y": 372,
+     "w": 203,
+     "h": 32
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "selected": "false",
+     "x": -212,
+     "y": 444,
+     "w": 203,
+     "h": 32
+    }
+   ],
+   "tabs_character": [
+    {
+     "value": "properties",
+     "pressed": "true",
+     "text": "属性"
+    },
+    {
+     "value": "pose",
+     "pressed": "false",
+     "text": "姿势"
+    }
+   ],
+   "selectCamera": {
+    "picked": {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "selected": "false",
+     "x": 8,
+     "y": 444,
+     "w": 203,
+     "h": 32
+    },
+    "hitTag": {
+     "tag": "DIV"
+    },
+    "openTree": {
+     "clicked": true,
+     "desk": {
+      "open": true,
+      "tree": {
+       "state": "open",
+       "focusScope": "tree",
+       "inert": false,
+       "x": 0
+      },
+      "inspector": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": 800
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_CANCEL",
+      "activeGesture": "",
+      "kind": null
+     }
+    },
+    "selectedAfter": [
+     "director-camera-main"
+    ]
+   },
+   "tabs_camera": [
+    {
+     "value": "properties",
+     "pressed": "true",
+     "text": "属性"
+    },
+    {
+     "value": "motion",
+     "pressed": "false",
+     "text": "运动轨迹NEW"
+    },
+    {
+     "value": "captures",
+     "pressed": "false",
+     "text": "截图"
+    }
+   ],
+   "pathTrigger": {
+    "x": 389,
+    "y": 829,
+    "w": 99,
+    "h": 28,
+    "text": "创建运动轨迹"
+   },
+   "pathCreated": {
+    "preset": "line",
+    "hit": {
+     "tag": "BUTTON"
+    },
+    "lastCommand": "PROJECT_MUTATION"
+   },
+   "contexts": [
+    {
+     "label": "default",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 35,
+     "boundaryCount": 9,
+     "boundaryTypes": [
+      "number"
+     ],
+     "sweptBoundary": 9,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "boundarySwallowed": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 6,
+       "item": {
+        "i": 6,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 378,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 9,
+       "item": {
+        "i": 9,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 378,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 12,
+       "item": {
+        "i": 12,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 378,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 15,
+       "item": {
+        "i": 15,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 450,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 18,
+       "item": {
+        "i": 18,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 450,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 21,
+       "item": {
+        "i": 21,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 450,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 24,
+       "item": {
+        "i": 24,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 522,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 27,
+       "item": {
+        "i": 27,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 522,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 30,
+       "item": {
+        "i": 30,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 522,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "clicked": true,
+      "pre": {
+       "nothingToClose": "tree"
+      }
+     }
+    },
+    {
+     "label": "character:properties",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 35,
+     "boundaryCount": 9,
+     "boundaryTypes": [
+      "number"
+     ],
+     "sweptBoundary": 9,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "boundarySwallowed": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 6,
+       "item": {
+        "i": 6,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 378,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 9,
+       "item": {
+        "i": 9,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 378,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 12,
+       "item": {
+        "i": 12,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 378,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 15,
+       "item": {
+        "i": 15,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 450,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 18,
+       "item": {
+        "i": 18,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 450,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 21,
+       "item": {
+        "i": 21,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 450,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 24,
+       "item": {
+        "i": 24,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 522,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 27,
+       "item": {
+        "i": 27,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 522,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 30,
+       "item": {
+        "i": 30,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 522,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "tabVisit": {
+      "clicked": {
+       "pt": [
+        540,
+        154
+       ]
+      },
+      "pressed": true,
+      "pressedAttr": "true"
+     }
+    },
+    {
+     "label": "character:pose",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 47,
+     "boundaryCount": 25,
+     "boundaryTypes": [
+      "range"
+     ],
+     "sweptBoundary": 25,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46
+     ],
+     "boundarySwallowed": [
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46
+     ],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 22,
+       "item": {
+        "i": 22,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "body.pitch",
+        "fov": null,
+        "aria": "身体 前倾",
+        "text": "",
+        "x": 536,
+        "y": 518,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 23,
+       "item": {
+        "i": 23,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "body.yaw",
+        "fov": null,
+        "aria": "身体 转身",
+        "text": "",
+        "x": 536,
+        "y": 569,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 24,
+       "item": {
+        "i": 24,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "body.roll",
+        "fov": null,
+        "aria": "身体 侧倾",
+        "text": "",
+        "x": 536,
+        "y": 620,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 25,
+       "item": {
+        "i": 25,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "torso.pitch",
+        "fov": null,
+        "aria": "躯干 前倾",
+        "text": "",
+        "x": 536,
+        "y": 694,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 26,
+       "item": {
+        "i": 26,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "torso.yaw",
+        "fov": null,
+        "aria": "躯干 扭转",
+        "text": "",
+        "x": 536,
+        "y": 745,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 27,
+       "item": {
+        "i": 27,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "torso.roll",
+        "fov": null,
+        "aria": "躯干 侧倾",
+        "text": "",
+        "x": 536,
+        "y": 796,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 28,
+       "item": {
+        "i": 28,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "head.pitch",
+        "fov": null,
+        "aria": "头部 点头",
+        "text": "",
+        "x": 536,
+        "y": 871,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 29,
+       "item": {
+        "i": 29,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "head.yaw",
+        "fov": null,
+        "aria": "头部 转头",
+        "text": "",
+        "x": 536,
+        "y": 922,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 30,
+       "item": {
+        "i": 30,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "head.roll",
+        "fov": null,
+        "aria": "头部 歪头",
+        "text": "",
+        "x": 536,
+        "y": 973,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 31,
+       "item": {
+        "i": 31,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftShoulder.pitch",
+        "fov": null,
+        "aria": "手臂 — 肩 前举",
+        "text": "",
+        "x": 536,
+        "y": 1070,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 32,
+       "item": {
+        "i": 32,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftShoulder.spread",
+        "fov": null,
+        "aria": "手臂 — 肩 外展",
+        "text": "",
+        "x": 536,
+        "y": 1121,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 33,
+       "item": {
+        "i": 33,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftShoulder.twist",
+        "fov": null,
+        "aria": "手臂 — 肩 扭转",
+        "text": "",
+        "x": 536,
+        "y": 1172,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 34,
+       "item": {
+        "i": 34,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightShoulder.pitch",
+        "fov": null,
+        "aria": "手臂 — 肩 前举",
+        "text": "",
+        "x": 536,
+        "y": 1246,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 35,
+       "item": {
+        "i": 35,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightShoulder.spread",
+        "fov": null,
+        "aria": "手臂 — 肩 外展",
+        "text": "",
+        "x": 536,
+        "y": 1297,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 36,
+       "item": {
+        "i": 36,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightShoulder.twist",
+        "fov": null,
+        "aria": "手臂 — 肩 扭转",
+        "text": "",
+        "x": 536,
+        "y": 1348,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 37,
+       "item": {
+        "i": 37,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftElbow.bend",
+        "fov": null,
+        "aria": "肘部 弯曲",
+        "text": "",
+        "x": 536,
+        "y": 1446,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 38,
+       "item": {
+        "i": 38,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightElbow.bend",
+        "fov": null,
+        "aria": "肘部 弯曲",
+        "text": "",
+        "x": 536,
+        "y": 1520,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 39,
+       "item": {
+        "i": 39,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftHip.pitch",
+        "fov": null,
+        "aria": "腿部 — 髋 前抬",
+        "text": "",
+        "x": 536,
+        "y": 1617,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 40,
+       "item": {
+        "i": 40,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftHip.spread",
+        "fov": null,
+        "aria": "腿部 — 髋 外展",
+        "text": "",
+        "x": 536,
+        "y": 1668,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 41,
+       "item": {
+        "i": 41,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftHip.twist",
+        "fov": null,
+        "aria": "腿部 — 髋 扭转",
+        "text": "",
+        "x": 536,
+        "y": 1719,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 42,
+       "item": {
+        "i": 42,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightHip.pitch",
+        "fov": null,
+        "aria": "腿部 — 髋 前抬",
+        "text": "",
+        "x": 536,
+        "y": 1793,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 43,
+       "item": {
+        "i": 43,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightHip.spread",
+        "fov": null,
+        "aria": "腿部 — 髋 外展",
+        "text": "",
+        "x": 536,
+        "y": 1844,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 44,
+       "item": {
+        "i": 44,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightHip.twist",
+        "fov": null,
+        "aria": "腿部 — 髋 扭转",
+        "text": "",
+        "x": 536,
+        "y": 1895,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 45,
+       "item": {
+        "i": 45,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftKnee.bend",
+        "fov": null,
+        "aria": "膝部 弯曲",
+        "text": "",
+        "x": 536,
+        "y": 1993,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 46,
+       "item": {
+        "i": 46,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightKnee.bend",
+        "fov": null,
+        "aria": "膝部 弯曲",
+        "text": "",
+        "x": 536,
+        "y": 2067,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "tabVisit": {
+      "clicked": {
+       "pt": [
+        598,
+        154
+       ]
+      },
+      "pressed": true,
+      "pressedAttr": "true"
+     }
+    },
+    {
+     "label": "camera:properties",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 52,
+     "boundaryCount": 12,
+     "boundaryTypes": [
+      "number"
+     ],
+     "sweptBoundary": 12,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [
+      9,
+      12,
+      15,
+      19,
+      22,
+      25,
+      28,
+      31,
+      34,
+      47,
+      49,
+      51
+     ],
+     "boundarySwallowed": [
+      9,
+      12,
+      15,
+      19,
+      22,
+      25,
+      28,
+      31,
+      34,
+      47,
+      49,
+      51
+     ],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 9,
+       "item": {
+        "i": 9,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 72,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "DIV",
+          "targetType": null,
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         },
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 12,
+       "item": {
+        "i": 12,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 72,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 15,
+       "item": {
+        "i": 15,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 72,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 19,
+       "item": {
+        "i": 19,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 216,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 22,
+       "item": {
+        "i": 22,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 216,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 25,
+       "item": {
+        "i": 25,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 216,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 28,
+       "item": {
+        "i": 28,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 288,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 31,
+       "item": {
+        "i": 31,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 288,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 34,
+       "item": {
+        "i": 34,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 288,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 47,
+       "item": {
+        "i": 47,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "target",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 772,
+        "w": 80,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 49,
+       "item": {
+        "i": 49,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "target",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 772,
+        "w": 80,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 51,
+       "item": {
+        "i": 51,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "target",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 772,
+        "w": 80,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "tabVisit": {
+      "clicked": {
+       "pt": [
+        540,
+        154
+       ]
+      },
+      "pressed": true,
+      "pressedAttr": "true"
+     }
+    },
+    {
+     "label": "camera:motion",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 7,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "sweptBoundary": 0,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "tabVisit": {
+      "clicked": {
+       "pt": [
+        600,
+        154
+       ]
+      },
+      "pressed": true,
+      "pressedAttr": "true"
+     }
+    },
+    {
+     "label": "camera:captures",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 3,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "sweptBoundary": 0,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "tabVisit": {
+      "clicked": {
+       "pt": [
+        682,
+        154
+       ]
+      },
+      "pressed": true,
+      "pressedAttr": "true"
+     }
+    },
+    {
+     "label": "path+camera:properties",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 67,
+     "boundaryCount": 12,
+     "boundaryTypes": [
+      "number"
+     ],
+     "sweptBoundary": 12,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [
+      9,
+      12,
+      15,
+      19,
+      22,
+      25,
+      28,
+      31,
+      34,
+      47,
+      49,
+      51
+     ],
+     "boundarySwallowed": [
+      9,
+      12,
+      15,
+      19,
+      22,
+      25,
+      28,
+      31,
+      34,
+      47,
+      49,
+      51
+     ],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 9,
+       "item": {
+        "i": 9,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 626,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 12,
+       "item": {
+        "i": 12,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 626,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 15,
+       "item": {
+        "i": 15,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 626,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 19,
+       "item": {
+        "i": 19,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 770,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 22,
+       "item": {
+        "i": 22,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 770,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 25,
+       "item": {
+        "i": 25,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 770,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 28,
+       "item": {
+        "i": 28,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 842,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 31,
+       "item": {
+        "i": 31,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 842,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 34,
+       "item": {
+        "i": 34,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 842,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 47,
+       "item": {
+        "i": 47,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "target",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 1326,
+        "w": 80,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 49,
+       "item": {
+        "i": 49,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "target",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 1326,
+        "w": 80,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 51,
+       "item": {
+        "i": 51,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "target",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 1326,
+        "w": 80,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "afterPathCreated": true
+    },
+    {
+     "label": "path+camera:motion",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 7,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "sweptBoundary": 0,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "afterPathCreated": true
+    },
+    {
+     "label": "path+camera:captures",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 3,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "sweptBoundary": 0,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "afterPathCreated": true
+    }
+   ],
+   "summary": {
+    "contexts": 9,
+    "boundaryControlsSeen": 67,
+    "boundarySwallowed": 67,
+    "boundaryNotSwallowed": 0,
+    "nonBoundaryControlsTested": 9,
+    "nonBoundarySwallowed": 0,
+    "boundaryTypesSeen": [
+     "number",
+     "range"
+    ],
+    "pathReachable": true
+   }
+  },
+  {
+   "open": {
+    "opened": true
+   },
+   "deskStart": {
+    "open": true,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": -220
+    },
+    "inspector": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": 800
+    },
+    "historyPast": "0",
+    "historyFuture": "0",
+    "lastCommand": "",
+    "activeGesture": "",
+    "kind": null
+   },
+   "objectsSeed": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "selected": "true",
+     "x": -212,
+     "y": 236,
+     "w": 203,
+     "h": 32
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "selected": "false",
+     "x": -212,
+     "y": 308,
+     "w": 203,
+     "h": 32
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "selected": "false",
+     "x": -212,
+     "y": 340,
+     "w": 203,
+     "h": 32
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "selected": "false",
+     "x": -212,
+     "y": 372,
+     "w": 203,
+     "h": 32
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "selected": "false",
+     "x": -212,
+     "y": 444,
+     "w": 203,
+     "h": 32
+    }
+   ],
+   "tabs_character": [
+    {
+     "value": "properties",
+     "pressed": "true",
+     "text": "属性"
+    },
+    {
+     "value": "pose",
+     "pressed": "false",
+     "text": "姿势"
+    }
+   ],
+   "selectCamera": {
+    "picked": {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "selected": "false",
+     "x": 8,
+     "y": 444,
+     "w": 203,
+     "h": 32
+    },
+    "hitTag": {
+     "tag": "DIV"
+    },
+    "openTree": {
+     "clicked": true,
+     "desk": {
+      "open": true,
+      "tree": {
+       "state": "open",
+       "focusScope": "tree",
+       "inert": false,
+       "x": 0
+      },
+      "inspector": {
+       "state": "closed",
+       "focusScope": null,
+       "inert": true,
+       "x": 800
+      },
+      "historyPast": "0",
+      "historyFuture": "0",
+      "lastCommand": "GESTURE_CANCEL",
+      "activeGesture": "",
+      "kind": null
+     }
+    },
+    "selectedAfter": [
+     "director-camera-main"
+    ]
+   },
+   "tabs_camera": [
+    {
+     "value": "properties",
+     "pressed": "true",
+     "text": "属性"
+    },
+    {
+     "value": "motion",
+     "pressed": "false",
+     "text": "运动轨迹NEW"
+    },
+    {
+     "value": "captures",
+     "pressed": "false",
+     "text": "截图"
+    }
+   ],
+   "pathCreated": {
+    "preset": "line",
+    "hit": {
+     "tag": "DIV"
+    },
+    "lastCommand": "GESTURE_CANCEL"
+   },
+   "contexts": [
+    {
+     "label": "default",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 35,
+     "boundaryCount": 9,
+     "boundaryTypes": [
+      "number"
+     ],
+     "sweptBoundary": 9,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "boundarySwallowed": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 6,
+       "item": {
+        "i": 6,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 378,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 9,
+       "item": {
+        "i": 9,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 378,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 12,
+       "item": {
+        "i": 12,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 378,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 15,
+       "item": {
+        "i": 15,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 450,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 18,
+       "item": {
+        "i": 18,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 450,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 21,
+       "item": {
+        "i": 21,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 450,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 24,
+       "item": {
+        "i": 24,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 522,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 27,
+       "item": {
+        "i": 27,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 522,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 30,
+       "item": {
+        "i": 30,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 522,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "clicked": true,
+      "pre": {
+       "nothingToClose": "tree"
+      }
+     }
+    },
+    {
+     "label": "character:properties",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 35,
+     "boundaryCount": 9,
+     "boundaryTypes": [
+      "number"
+     ],
+     "sweptBoundary": 9,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "boundarySwallowed": [
+      6,
+      9,
+      12,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30
+     ],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 6,
+       "item": {
+        "i": 6,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 378,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 9,
+       "item": {
+        "i": 9,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 378,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 12,
+       "item": {
+        "i": 12,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 378,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 15,
+       "item": {
+        "i": 15,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 450,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 18,
+       "item": {
+        "i": 18,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 450,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 21,
+       "item": {
+        "i": 21,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 450,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 24,
+       "item": {
+        "i": 24,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 522,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 27,
+       "item": {
+        "i": 27,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 522,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 30,
+       "item": {
+        "i": 30,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 522,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "tabVisit": {
+      "clicked": {
+       "pt": [
+        540,
+        154
+       ]
+      },
+      "pressed": true,
+      "pressedAttr": "true"
+     }
+    },
+    {
+     "label": "character:pose",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 47,
+     "boundaryCount": 25,
+     "boundaryTypes": [
+      "range"
+     ],
+     "sweptBoundary": 25,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46
+     ],
+     "boundarySwallowed": [
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46
+     ],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 22,
+       "item": {
+        "i": 22,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "body.pitch",
+        "fov": null,
+        "aria": "身体 前倾",
+        "text": "",
+        "x": 536,
+        "y": 518,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 23,
+       "item": {
+        "i": 23,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "body.yaw",
+        "fov": null,
+        "aria": "身体 转身",
+        "text": "",
+        "x": 536,
+        "y": 569,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 24,
+       "item": {
+        "i": 24,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "body.roll",
+        "fov": null,
+        "aria": "身体 侧倾",
+        "text": "",
+        "x": 536,
+        "y": 620,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 25,
+       "item": {
+        "i": 25,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "torso.pitch",
+        "fov": null,
+        "aria": "躯干 前倾",
+        "text": "",
+        "x": 536,
+        "y": 694,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 26,
+       "item": {
+        "i": 26,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "torso.yaw",
+        "fov": null,
+        "aria": "躯干 扭转",
+        "text": "",
+        "x": 536,
+        "y": 745,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 27,
+       "item": {
+        "i": 27,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "torso.roll",
+        "fov": null,
+        "aria": "躯干 侧倾",
+        "text": "",
+        "x": 536,
+        "y": 796,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 28,
+       "item": {
+        "i": 28,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "head.pitch",
+        "fov": null,
+        "aria": "头部 点头",
+        "text": "",
+        "x": 536,
+        "y": 871,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 29,
+       "item": {
+        "i": 29,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "head.yaw",
+        "fov": null,
+        "aria": "头部 转头",
+        "text": "",
+        "x": 536,
+        "y": 922,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 30,
+       "item": {
+        "i": 30,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "head.roll",
+        "fov": null,
+        "aria": "头部 歪头",
+        "text": "",
+        "x": 536,
+        "y": 973,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 31,
+       "item": {
+        "i": 31,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftShoulder.pitch",
+        "fov": null,
+        "aria": "手臂 — 肩 前举",
+        "text": "",
+        "x": 536,
+        "y": 1070,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 32,
+       "item": {
+        "i": 32,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftShoulder.spread",
+        "fov": null,
+        "aria": "手臂 — 肩 外展",
+        "text": "",
+        "x": 536,
+        "y": 1121,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 33,
+       "item": {
+        "i": 33,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftShoulder.twist",
+        "fov": null,
+        "aria": "手臂 — 肩 扭转",
+        "text": "",
+        "x": 536,
+        "y": 1172,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 34,
+       "item": {
+        "i": 34,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightShoulder.pitch",
+        "fov": null,
+        "aria": "手臂 — 肩 前举",
+        "text": "",
+        "x": 536,
+        "y": 1246,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 35,
+       "item": {
+        "i": 35,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightShoulder.spread",
+        "fov": null,
+        "aria": "手臂 — 肩 外展",
+        "text": "",
+        "x": 536,
+        "y": 1297,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 36,
+       "item": {
+        "i": 36,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightShoulder.twist",
+        "fov": null,
+        "aria": "手臂 — 肩 扭转",
+        "text": "",
+        "x": 536,
+        "y": 1348,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 37,
+       "item": {
+        "i": 37,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftElbow.bend",
+        "fov": null,
+        "aria": "肘部 弯曲",
+        "text": "",
+        "x": 536,
+        "y": 1446,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 38,
+       "item": {
+        "i": 38,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightElbow.bend",
+        "fov": null,
+        "aria": "肘部 弯曲",
+        "text": "",
+        "x": 536,
+        "y": 1520,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 39,
+       "item": {
+        "i": 39,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftHip.pitch",
+        "fov": null,
+        "aria": "腿部 — 髋 前抬",
+        "text": "",
+        "x": 536,
+        "y": 1617,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 40,
+       "item": {
+        "i": 40,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftHip.spread",
+        "fov": null,
+        "aria": "腿部 — 髋 外展",
+        "text": "",
+        "x": 536,
+        "y": 1668,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 41,
+       "item": {
+        "i": 41,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftHip.twist",
+        "fov": null,
+        "aria": "腿部 — 髋 扭转",
+        "text": "",
+        "x": 536,
+        "y": 1719,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 42,
+       "item": {
+        "i": 42,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightHip.pitch",
+        "fov": null,
+        "aria": "腿部 — 髋 前抬",
+        "text": "",
+        "x": 536,
+        "y": 1793,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 43,
+       "item": {
+        "i": 43,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightHip.spread",
+        "fov": null,
+        "aria": "腿部 — 髋 外展",
+        "text": "",
+        "x": 536,
+        "y": 1844,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 44,
+       "item": {
+        "i": 44,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightHip.twist",
+        "fov": null,
+        "aria": "腿部 — 髋 扭转",
+        "text": "",
+        "x": 536,
+        "y": 1895,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 45,
+       "item": {
+        "i": 45,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "leftKnee.bend",
+        "fov": null,
+        "aria": "膝部 弯曲",
+        "text": "",
+        "x": 536,
+        "y": 1993,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 46,
+       "item": {
+        "i": 46,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": true,
+        "marks": [
+         "[data-director-pose-control]"
+        ],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": "rightKnee.bend",
+        "fov": null,
+        "aria": "膝部 弯曲",
+        "text": "",
+        "x": 536,
+        "y": 2067,
+        "w": 248,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "tabVisit": {
+      "clicked": {
+       "pt": [
+        598,
+        154
+       ]
+      },
+      "pressed": true,
+      "pressedAttr": "true"
+     }
+    },
+    {
+     "label": "camera:properties",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 67,
+     "boundaryCount": 12,
+     "boundaryTypes": [
+      "number"
+     ],
+     "sweptBoundary": 12,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [
+      9,
+      12,
+      15,
+      19,
+      22,
+      25,
+      28,
+      31,
+      34,
+      47,
+      49,
+      51
+     ],
+     "boundarySwallowed": [
+      9,
+      12,
+      15,
+      19,
+      22,
+      25,
+      28,
+      31,
+      34,
+      47,
+      49,
+      51
+     ],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 9,
+       "item": {
+        "i": 9,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": -395,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "DIV",
+          "targetType": null,
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         },
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 12,
+       "item": {
+        "i": 12,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": -395,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 15,
+       "item": {
+        "i": 15,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "position",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": -395,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 19,
+       "item": {
+        "i": 19,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": -251,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 22,
+       "item": {
+        "i": 22,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": -251,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 25,
+       "item": {
+        "i": 25,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "rotation",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": -251,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 28,
+       "item": {
+        "i": 28,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": -179,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 31,
+       "item": {
+        "i": 31,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": -179,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 34,
+       "item": {
+        "i": 34,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "scale",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": -179,
+        "w": 59,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 47,
+       "item": {
+        "i": 47,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "target",
+        "ta": "x",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 536,
+        "y": 305,
+        "w": 80,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 49,
+       "item": {
+        "i": 49,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "target",
+        "ta": "y",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 620,
+        "y": 305,
+        "w": 80,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 51,
+       "item": {
+        "i": 51,
+        "tag": "INPUT",
+        "type": "number",
+        "boundary": true,
+        "marks": [
+         "[data-director-transform-field]"
+        ],
+        "tf": "target",
+        "ta": "z",
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "",
+        "x": 704,
+        "y": 305,
+        "w": 80,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "number"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "number",
+          "dpFinal": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": false,
+        "listenersArmed": true,
+        "inspectorState": "open",
+        "deskOpen": true,
+        "drawerClosed": false,
+        "workspaceClosed": false
+       },
+       "swallowed": true,
+       "drawerClosed": false
+      },
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "tabVisit": {
+      "clicked": {
+       "pt": [
+        540,
+        154
+       ]
+      },
+      "pressed": true,
+      "pressedAttr": "true"
+     }
+    },
+    {
+     "label": "camera:motion",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 7,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "sweptBoundary": 0,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "tabVisit": {
+      "clicked": {
+       "pt": [
+        600,
+        154
+       ]
+      },
+      "pressed": true,
+      "pressedAttr": "true"
+     }
+    },
+    {
+     "label": "camera:captures",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 3,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "sweptBoundary": 0,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "BUTTON",
+        "type": "button",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": null,
+        "text": "属性",
+        "x": 536,
+        "y": 152,
+        "w": 50,
+        "h": 28
+       },
+       "focus": {
+        "focused": true,
+        "tag": "BUTTON",
+        "type": "button"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "BUTTON",
+          "targetType": "button",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "tabVisit": {
+      "clicked": {
+       "pt": [
+        682,
+        154
+       ]
+      },
+      "pressed": true,
+      "pressedAttr": "true"
+     }
+    },
+    {
+     "label": "path+camera:properties",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 35,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "sweptBoundary": 0,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": "场景缩放",
+        "text": "",
+        "x": 610,
+        "y": 158,
+        "w": 96,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "afterPathCreated": true
+    },
+    {
+     "label": "path+camera:motion",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 35,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "sweptBoundary": 0,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": "场景缩放",
+        "text": "",
+        "x": 610,
+        "y": 158,
+        "w": 96,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "afterPathCreated": true
+    },
+    {
+     "label": "path+camera:captures",
+     "inspectorKind": null,
+     "focusScope": null,
+     "totalFocusable": 35,
+     "boundaryCount": 0,
+     "boundaryTypes": [],
+     "sweptBoundary": 0,
+     "sweptNonBoundary": 1,
+     "swallowedIdx": [],
+     "boundarySwallowed": [],
+     "nonBoundarySwallowed": [],
+     "rows": [
+      {
+       "i": 0,
+       "item": {
+        "i": 0,
+        "tag": "INPUT",
+        "type": "range",
+        "boundary": false,
+        "marks": [],
+        "tf": null,
+        "ta": null,
+        "pap": null,
+        "pah": null,
+        "pax": null,
+        "ptf": null,
+        "pta": null,
+        "pose": null,
+        "fov": null,
+        "aria": "场景缩放",
+        "text": "",
+        "x": 610,
+        "y": 158,
+        "w": 96,
+        "h": 16
+       },
+       "focus": {
+        "focused": true,
+        "tag": "INPUT",
+        "type": "range"
+       },
+       "esc": {
+        "events": [
+         {
+          "stage": "winCapture",
+          "dp": false,
+          "targetTag": "INPUT",
+          "targetType": "range",
+          "dpFinal": true
+         },
+         {
+          "stage": "winBubble",
+          "dp": false,
+          "dpFinalWin": true
+         }
+        ],
+        "reachedWinCapture": true,
+        "reachedWinBubble": true,
+        "listenersArmed": true,
+        "inspectorState": "closed",
+        "deskOpen": true,
+        "drawerClosed": true,
+        "workspaceClosed": false
+       },
+       "swallowed": false,
+       "drawerClosed": true
+      }
+     ],
+     "drawerOpen": {
+      "alreadyOpen": true
+     },
+     "afterPathCreated": true
+    }
+   ],
+   "summary": {
+    "contexts": 9,
+    "boundaryControlsSeen": 55,
+    "boundarySwallowed": 55,
+    "boundaryNotSwallowed": 0,
+    "nonBoundaryControlsTested": 9,
+    "nonBoundarySwallowed": 0,
+    "boundaryTypesSeen": [
+     "number",
+     "range"
+    ],
+    "pathReachable": true
+   }
+  }
+ ]
+}
