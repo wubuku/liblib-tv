@@ -2502,3 +2502,25 @@ screenshots:
     visible_text: 宫格排列 水平排列 垂直排列 保存到资产 创建副本 打组
     alt: 一块和工具条同款毛玻璃的菜单向上展开，贴在工具条左端的上沿，三项依次是「宫格排列」「水平排列」「垂直排列」，每项左边一枚线框图标。菜单正下方就是工具条本身，最左侧那枚无名按钮呈按下态（背景比旁边的按钮亮一档）。⭐ 读数：菜单容器 [359,185,120,134]，三项各 110×36、全部 opacity 1 / cursor pointer。⭐⭐ 菜单项在 DOM 里是 DIV 不是 button，按 role 找找不到
     sha256: 4ea66e6ed514f6097101836c91df51c89ee29d6fcfef72866d9b8de5f6506204
+  - file: screenshots/M-361-图片节点-模型下拉二十款.png
+    task_id: create-nodes
+    step: 16
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 图片节点卡片（i-sODTbgLUm1）→ 点底栏最左那枚 `Lib Image 2.5 Pro ⌄` 触发器，只读列表不点任何一行
+    visible_text: Lib Image 2.5 Pro 精准生成与编辑，复杂指令稳定还原
+    alt: 图片节点参数条上的模型下拉：当前模型那一行底色更亮（rgba(255,255,255,0.15)）且多出一行描述，下方触发按钮上写着的正是这个模型名。全列表 20 款，每款带一个耗时角标。⭐ 没有对勾、没有「当前使用」字样
+    sha256: 285f43f6d70151b0fe577d52f5eb045ca3c5b2c459a1db1e4a1207c954842bbf
+  - file: screenshots/M-362-图片节点-参数面板五组.png
+    task_id: create-nodes
+    step: 16
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 图片节点卡片（i-sODTbgLUm1）→ 点底栏第二枚 `16:9 · 标准画质 · 2K · 1张 ⌄` 触发器，只读面板不点任何一项
+    visible_text: 画质 清晰度 背景 比例 生成数量 标准画质 2K 自动 16:9 1张
+    alt: 图片节点参数条上第二个下拉点开后是一整块参数面板，共五组：画质 5 项、清晰度 3 项、背景 3 项、比例 13 项（每项带一个矩形轮廓预览）、生成数量 3 项。每组里**白色描边**的那一项就是当前值，五组连起来正好是触发按钮上那串摘要
+    sha256: e081acd975c36a8cae04bd318f57e695c36aef37a40b8be8e8154c2b0828562f

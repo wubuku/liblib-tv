@@ -1,0 +1,1550 @@
+{
+  "读数": {
+    "模型行": [
+      {
+        "文本": "Lib Image 2.5 Pro 30s 精准生成与编辑，复杂指令稳定还原",
+        "高度": 52,
+        "背景": "rgba(255, 255, 255, 0.15)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          233,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Lib Image 2.5 Pro 30s 精准生成与编辑，复杂指令稳定还原",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          241,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Lib Image 2.5 Pro 30s 精准生成与编辑，复杂指令稳定还原",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          241,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Lib Image 2.5 Fast 20s 极速高质量图像生成，兼顾效果与效率",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          289,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Lib Image 2.5 Fast 20s 极速高质量图像生成，兼顾效果与效率",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          297,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Lib Image 2.5 Fast 20s 极速高质量图像生成，兼顾效果与效率",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          305,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Lib Image 60s 最新图片模型、长文本能力突出",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          345,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Lib Image 60s 最新图片模型、长文本能力突出",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          353,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Lib Image 60s 最新图片模型、长文本能力突出",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          361,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "General image Pro 50s 最强图片编辑模型，一致性好",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          401,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "General image Pro 50s 最强图片编辑模型，一致性好",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          409,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "General image Pro 50s 最强图片编辑模型，一致性好",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          417,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "General image V2 25s 支持联网搜索、文字准确、速度更快",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          457,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "General image V2 25s 支持联网搜索、文字准确、速度更快",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          465,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "General image V2 25s 支持联网搜索、文字准确、速度更快",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          473,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Seedream 5.0 Pro 20s 精准交互式编辑，支持原生多语言排版",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          513,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Seedream 5.0 Pro 20s 精准交互式编辑，支持原生多语言排版",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          521,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Seedream 5.0 Pro 20s 精准交互式编辑，支持原生多语言排版",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          529,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Genesis F.3 30s 角色稳定一致，支持局部与图内文字编辑",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          569,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Genesis F.3 30s 角色稳定一致，支持局部与图内文字编辑",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          577,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Genesis F.3 30s 角色稳定一致，支持局部与图内文字编辑",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          585,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Qwen image 3.0 上新 60s 擅长复杂版面与精准文字的高质量生图模型",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          625,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Qwen image 3.0 上新 60s 擅长复杂版面与精准文字的高质量生图模型",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          633,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Qwen image 3.0 上新 60s 擅长复杂版面与精准文字的高质量生图模型",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          641,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Style Image V8.2 50s 电影感全面升级，精准还原光影、人物与真实材质",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          681,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Style Image V8.2 50s 电影感全面升级，精准还原光影、人物与真实材质",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          689,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Style Image V8.2 50s 电影感全面升级，精准还原光影、人物与真实材质",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          697,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Style Image V8.1 50s 生图更连贯、细节更丰富、美学水准大幅提升",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          737,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Style Image V8.1 50s 生图更连贯、细节更丰富、美学水准大幅提升",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          745,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Style Image V8.1 50s 生图更连贯、细节更丰富、美学水准大幅提升",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          753,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Style Image V7 50s 最佳美学，电影质感，创意能力强",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          793,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Style Image V7 50s 最佳美学，电影质感，创意能力强",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          801,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Style Image V7 50s 最佳美学，电影质感，创意能力强",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          809,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Style Image Niji 7 50s 动漫高审美模型，风格多样",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          849,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Style Image Niji 7 50s 动漫高审美模型，风格多样",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          857,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Style Image Niji 7 50s 动漫高审美模型，风格多样",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          865,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Seedream 4.6 20s 提升人像一致性、平面设计效果",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          905,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Seedream 4.6 20s 提升人像一致性、平面设计效果",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          913,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Seedream 4.6 20s 提升人像一致性、平面设计效果",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          921,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Seedream 5.0 Lite 20s 支持联网搜索，擅长中式风格、审美提升",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          961,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Seedream 5.0 Lite 20s 支持联网搜索，擅长中式风格、审美提升",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          969,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Seedream 5.0 Lite 20s 支持联网搜索，擅长中式风格、审美提升",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          977,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Seedream 4.5 限时5折 15s 多角色一致性、擅长中式风格",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          1017,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Seedream 4.5 限时5折 15s 多角色一致性、擅长中式风格",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          1025,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Seedream 4.5 限时5折 15s 多角色一致性、擅长中式风格",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          1033,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Z-image Turbo 10s 极速生成，适合真实感图片",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          1073,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Z-image Turbo 10s 极速生成，适合真实感图片",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          1081,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Z-image Turbo 10s 极速生成，适合真实感图片",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          1089,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Qwen Image 60s Qwen 生图模型，文字排版能力强",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          1129,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Qwen Image 60s Qwen 生图模型，文字排版能力强",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          1137,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Qwen Image 60s Qwen 生图模型，文字排版能力强",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          1145,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Qwen Edit 60s Qwen系编辑模型，精细可控",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          1185,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Qwen Edit 60s Qwen系编辑模型，精细可控",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          1193,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Qwen Edit 60s Qwen系编辑模型，精细可控",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          1201,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      },
+      {
+        "文本": "Seedream 4.0 15s 极速高质出图，支持中文文字与海报设计",
+        "高度": 52,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "12px",
+        "box": [
+          634,
+          1241,
+          360,
+          52
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 1,
+        "含勾": false,
+        "cls": "group flex h-[52px] w-full items-center gap-1 rounded-xl p-2 text-left transitio"
+      },
+      {
+        "文本": "Seedream 4.0 15s 极速高质出图，支持中文文字与海报设计",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          1249,
+          306,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "h-full flex-1 overflow-hidden pr-1"
+      },
+      {
+        "文本": "Seedream 4.0 15s 极速高质出图，支持中文文字与海报设计",
+        "高度": 36,
+        "背景": "rgba(0, 0, 0, 0)",
+        "边框": "rgb(82, 82, 82) / 0px",
+        "圆角": "0px",
+        "box": [
+          680,
+          1257,
+          302,
+          36
+        ],
+        "ariaSelected": null,
+        "role": null,
+        "图标块": 0,
+        "含勾": false,
+        "cls": "flex h-full flex-col justify-start transition-transform duration-200 translate-y"
+      }
+    ],
+    "面板": {
+      "面板框": [
+        798,
+        67,
+        342,
+        571
+      ],
+      "分组": [
+        {
+          "标题": "画质",
+          "项": [
+            {
+              "文本": "低画质",
+              "分组": "画质",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                811,
+                108,
+                100,
+                32
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "标准画质",
+              "分组": "画质",
+              "背景": "rgba(255, 255, 255, 0.1)",
+              "边框色": "rgb(255, 255, 255)",
+              "边框宽": "1px",
+              "box": [
+                919,
+                108,
+                100,
+                32
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "高画质",
+              "分组": "画质",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                1027,
+                108,
+                100,
+                32
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "超高画质",
+              "分组": "画质",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                811,
+                148,
+                100,
+                32
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "极致画质",
+              "分组": "画质",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                919,
+                148,
+                100,
+                32
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            }
+          ]
+        },
+        {
+          "标题": "清晰度",
+          "项": [
+            {
+              "文本": "1K",
+              "分组": "清晰度",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                811,
+                216,
+                100,
+                32
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "2K",
+              "分组": "清晰度",
+              "背景": "rgba(255, 255, 255, 0.1)",
+              "边框色": "rgb(255, 255, 255)",
+              "边框宽": "1px",
+              "box": [
+                919,
+                216,
+                100,
+                32
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "4K",
+              "分组": "清晰度",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                1027,
+                216,
+                100,
+                32
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            }
+          ]
+        },
+        {
+          "标题": "背景",
+          "项": [
+            {
+              "文本": "自动",
+              "分组": "背景",
+              "背景": "rgba(255, 255, 255, 0.1)",
+              "边框色": "rgb(255, 255, 255)",
+              "边框宽": "1px",
+              "box": [
+                811,
+                284,
+                100,
+                32
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "保留背景",
+              "分组": "背景",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                919,
+                284,
+                100,
+                32
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "透明背景",
+              "分组": "背景",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                1027,
+                284,
+                100,
+                32
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            }
+          ]
+        },
+        {
+          "标题": "比例",
+          "项": [
+            {
+              "文本": "1:1",
+              "分组": "比例",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                811,
+                352,
+                57,
+                63
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "1:2",
+              "分组": "比例",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                875,
+                352,
+                57,
+                63
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "2:1",
+              "分组": "比例",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                940,
+                352,
+                57,
+                63
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "9:16",
+              "分组": "比例",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                1005,
+                352,
+                57,
+                63
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "16:9",
+              "分组": "比例",
+              "背景": "rgba(255, 255, 255, 0.1)",
+              "边框色": "rgb(255, 255, 255)",
+              "边框宽": "1px",
+              "box": [
+                1070,
+                352,
+                57,
+                63
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "3:4",
+              "分组": "比例",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                811,
+                423,
+                57,
+                63
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "4:3",
+              "分组": "比例",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                875,
+                423,
+                57,
+                63
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "3:2",
+              "分组": "比例",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                940,
+                423,
+                57,
+                63
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "2:3",
+              "分组": "比例",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                1005,
+                423,
+                57,
+                63
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "5:4",
+              "分组": "比例",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                1070,
+                423,
+                57,
+                63
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "4:5",
+              "分组": "比例",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                811,
+                494,
+                57,
+                63
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "21:9",
+              "分组": "比例",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                875,
+                494,
+                57,
+                63
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "9:21",
+              "分组": "比例",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                940,
+                494,
+                57,
+                63
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            }
+          ]
+        },
+        {
+          "标题": "生成数量",
+          "项": [
+            {
+              "文本": "1张",
+              "分组": "生成数量",
+              "背景": "rgba(255, 255, 255, 0.1)",
+              "边框色": "rgb(255, 255, 255)",
+              "边框宽": "1px",
+              "box": [
+                811,
+                593,
+                100,
+                32
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "data-practice-anchor=gen.params.count"
+            },
+            {
+              "文本": "2张",
+              "分组": "生成数量",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                919,
+                593,
+                100,
+                32
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            },
+            {
+              "文本": "4张",
+              "分组": "生成数量",
+              "背景": "rgba(0, 0, 0, 0)",
+              "边框色": "rgb(82, 82, 82)",
+              "边框宽": "1px",
+              "box": [
+                1027,
+                593,
+                100,
+                32
+              ],
+              "ariaPressed": null,
+              "ariaChecked": null,
+              "dataAttrs": "（无）"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "步骤": [
+    "两枚下拉触发器：[\"Lib Image 2.5 Pro\",\"16:9 · 标准画质 · 2K · 1张\"]",
+    "\n———— 模型下拉：每行的样式读数 ————",
+    "读到 57 行",
+    "⭐ 按 background-color 分组：",
+    "　rgba(255, 255, 255, 0.15) → 1 行：[\"Lib Image 2.5 Pro 30s 精准生成\"]",
+    "　rgba(0, 0, 0, 0) → 56 行：[\"Lib Image 2.5 Pro 30s 精准生成\",\"Lib Image 2.5 Pro 30s 精准生成\",\"Lib Image 2.5 Fast 20s 极速高\",\"Lib Image 2.5 Fast 20s 极速高\",\"Lib Image 2.5 Fast 20s 极速高\",\"Lib Image 60s 最新图片模型、长文本能力\",\"Lib Image 60s 最新图片模型、长文本能力\",\"Lib Image 60s 最新图片模型、长文本能力\",\"General image Pro 50s 最强图片\",\"General image Pro 50s 最强图片\",\"General image Pro 50s 最强图片\",\"General image V2 25s 支持联网搜\",\"General image V2 25s 支持联网搜\",\"General image V2 25s 支持联网搜\",\"Seedream 5.0 Pro 20s 精准交互式\",\"Seedream 5.0 Pro 20s 精准交互式\",\"Seedream 5.0 Pro 20s 精准交互式\",\"Genesis F.3 30s 角色稳定一致，支持局\",\"Genesis F.3 30s 角色稳定一致，支持局\",\"Genesis F.3 30s 角色稳定一致，支持局\",\"Qwen image 3.0 上新 60s 擅长复杂\",\"Qwen image 3.0 上新 60s 擅长复杂\",\"Qwen image 3.0 上新 60s 擅长复杂\",\"Style Image V8.2 50s 电影感全面\",\"Style Image V8.2 50s 电影感全面\",\"Style Image V8.2 50s 电影感全面\",\"Style Image V8.1 50s 生图更连贯\",\"Style Image V8.1 50s 生图更连贯\",\"Style Image V8.1 50s 生图更连贯\",\"Style Image V7 50s 最佳美学，电影\",\"Style Image V7 50s 最佳美学，电影\",\"Style Image V7 50s 最佳美学，电影\",\"Style Image Niji 7 50s 动漫高\",\"Style Image Niji 7 50s 动漫高\",\"Style Image Niji 7 50s 动漫高\",\"Seedream 4.6 20s 提升人像一致性、平\",\"Seedream 4.6 20s 提升人像一致性、平\",\"Seedream 4.6 20s 提升人像一致性、平\",\"Seedream 5.0 Lite 20s 支持联网\",\"Seedream 5.0 Lite 20s 支持联网\",\"Seedream 5.0 Lite 20s 支持联网\",\"Seedream 4.5 限时5折 15s 多角色一\",\"Seedream 4.5 限时5折 15s 多角色一\",\"Seedream 4.5 限时5折 15s 多角色一\",\"Z-image Turbo 10s 极速生成，适合真\",\"Z-image Turbo 10s 极速生成，适合真\",\"Z-image Turbo 10s 极速生成，适合真\",\"Qwen Image 60s Qwen 生图模型，文\",\"Qwen Image 60s Qwen 生图模型，文\",\"Qwen Image 60s Qwen 生图模型，文\",\"Qwen Edit 60s Qwen系编辑模型，精细\",\"Qwen Edit 60s Qwen系编辑模型，精细\",\"Qwen Edit 60s Qwen系编辑模型，精细\",\"Seedream 4.0 15s 极速高质出图，支持\",\"Seedream 4.0 15s 极速高质出图，支持\",\"Seedream 4.0 15s 极速高质出图，支持\"]",
+    "⭐ 唯一的「异类」组：[[\"rgba(255, 255, 255, 0.15)\",[\"Lib Image 2.5 Pro 30s 精准生成\"]]]",
+    "⭐ 触发按钮上的文字是「Lib Image 2.5 Pro」⇒ ✅ 对得上",
+    "⭐ 含勾的行：[]",
+    "⭐ 有 aria-selected / role=option 的行：[]",
+    "⭐ 行高分组：{\"36\":38,\"52\":19}",
+    "⭐ 图标块数量分组：{\"0\":38,\"1\":19}",
+    "\n———— 参数面板：逐组逐项的样式读数 ————",
+    "面板框 undefined，读到 5 组",
+    "　【画质】5 项｜样式种类 2：[\"rgb(82, 82, 82)|1px|rgba(0, 0, 0, 0)\",\"rgb(255, 255, 255)|1px|rgba(255, 255, 255, 0.1)\"]",
+    "　　「低画质」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「标准画质」 边框=rgb(255, 255, 255) 1px 背景=rgba(255, 255, 255, 0.1) 样式组#1 ⭐ aria-pressed=— data=（无）",
+    "　　「高画质」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「超高画质」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「极致画质」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　【清晰度】3 项｜样式种类 2：[\"rgb(82, 82, 82)|1px|rgba(0, 0, 0, 0)\",\"rgb(255, 255, 255)|1px|rgba(255, 255, 255, 0.1)\"]",
+    "　　「1K」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「2K」 边框=rgb(255, 255, 255) 1px 背景=rgba(255, 255, 255, 0.1) 样式组#1 ⭐ aria-pressed=— data=（无）",
+    "　　「4K」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　【背景】3 项｜样式种类 2：[\"rgb(255, 255, 255)|1px|rgba(255, 255, 255, 0.1)\",\"rgb(82, 82, 82)|1px|rgba(0, 0, 0, 0)\"]",
+    "　　「自动」 边框=rgb(255, 255, 255) 1px 背景=rgba(255, 255, 255, 0.1) 样式组#0  aria-pressed=— data=（无）",
+    "　　「保留背景」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#1 ⭐ aria-pressed=— data=（无）",
+    "　　「透明背景」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#1 ⭐ aria-pressed=— data=（无）",
+    "　【比例】13 项｜样式种类 2：[\"rgb(82, 82, 82)|1px|rgba(0, 0, 0, 0)\",\"rgb(255, 255, 255)|1px|rgba(255, 255, 255, 0.1)\"]",
+    "　　「1:1」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「1:2」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「2:1」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「9:16」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「16:9」 边框=rgb(255, 255, 255) 1px 背景=rgba(255, 255, 255, 0.1) 样式组#1 ⭐ aria-pressed=— data=（无）",
+    "　　「3:4」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「4:3」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「3:2」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「2:3」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「5:4」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「4:5」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「21:9」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　　「9:21」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）",
+    "　【生成数量】3 项｜样式种类 2：[\"rgb(255, 255, 255)|1px|rgba(255, 255, 255, 0.1)\",\"rgb(82, 82, 82)|1px|rgba(0, 0, 0, 0)\"]",
+    "　　「1张」 边框=rgb(255, 255, 255) 1px 背景=rgba(255, 255, 255, 0.1) 样式组#0  aria-pressed=— data=data-practice-anchor=gen.params.count",
+    "　　「2张」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#1 ⭐ aria-pressed=— data=（无）",
+    "　　「4张」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#1 ⭐ aria-pressed=— data=（无）",
+    "\n✅ 完成（未点任何一项，没有换过模型/参数）",
+    "⏳ ⌘0 复位 + 静置 15s（三铁律③）…",
+    "⭐ 真的被移动：0 个 []"
+  ]
+}
