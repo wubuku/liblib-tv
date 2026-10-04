@@ -5722,6 +5722,10 @@ def main() -> int:
     #   **带 innerText 回退**、复刻侧**不带**）⇒ BODY 一枚被算成「多出一个」
     p971 = ROOT / "scripts/jimeng_probe971_savestate_src.py"
     _p971 = p971.read_text(encoding="utf-8") if p971.exists() else ""
+    # ⭐ 972：源站探针，`BODY` 接缝的**座位** + 把 **969 那套 `landed` 口径**
+    #   **并排**算一遍（判据要反证「它吃掉的那枚就是 `BODY`」）
+    p972 = ROOT / "scripts/jimeng_probe972_seam_src.py"
+    _p972 = p972.read_text(encoding="utf-8") if p972.exists() else ""
     # ⭐ 970 的 CCCC.2 要**反证 816 那条决策真的在仓库里**（钉源码原文，
     #   不钉我自己写的转述）
     p816 = ROOT / "scripts/verify-jimeng-batch816-anchors.py"
@@ -8323,6 +8327,116 @@ def main() -> int:
           and '"listener_balanced_both_reps"' in _p971
           and "**从不调 `focus()`** ⇒ 不污染焦点读数" in _p971
           and "**本批零计费动作。**" in _p971)
+
+    # ══ 批 972：⭐⭐⭐⭐⭐ `BODY` 接缝的座位；969 那套 `landed` 口径吃掉了它 ══
+    print("— FFFFF. 批 972 接缝座位 + 两套口径并排：代理条件滤掉了 BODY —")
+
+    check("FFFFF.1 ⭐⭐⭐⭐⭐ **接缝的座位查实了，而且它不是末尾兜底**：环长 **18** 枚，"
+          "`el === document.body` 的那一格落在**下标 6**（**第 7 枚**）、两轮相同 ⇒ "
+          "**既不在环首也不在环尾**；**它前面那一枚是 `与 AI 对话`**"
+          "（`canvas-sidecar-launcher`）⇒ 接缝落在右簇最后一个控件之后、左簇第一个控件之前；"
+          "**它后面还有 11 枚真 UI 停靠点** ⇒ ⭐⭐⭐ **971 猜的「走过了最后一个"
+          "可聚焦元素之后的落点」（**规模量**）被否掉了**；⭐⭐ 门 "
+          "`is_body_eq_tag_body` 要求 `el === document.body`（**比引用**）与 "
+          "`tag == 'BODY'`（**比标签**）**同时**成立 ⇒ 「标签相同但**不是** body」"
+          "的元素分得开",
+          '"body_seat_972"' in _ausrc
+          and "**接缝的座位查实了，而且它**不是**末尾兜底**" in _ausrc
+          and "**969 / 971 / 972 三批共 6 轮**读数**完全一致**" in _ausrc
+          and "环长 **18** 枚" in _ausrc
+          and "**下标 6**（**第 7 枚**），两轮相同" in _ausrc
+          and "**它既不在环首也不在环尾**" in _ausrc
+          and "**它前面那一枚是 `与 AI 对话`**" in _ausrc
+          and "**它后面还有 11 枚真 UI 停靠点**" in _ausrc
+          and "（**规模量**）被否掉了**" in _ausrc
+          and "门 `is_body_eq_tag_body` 要求**两者同时**成立" in _ausrc
+          # ⭐⭐ 钉探针：`SEAT_JS` 真的比引用，且**只读、不调 `focus()`**
+          and 'is_body: el === document.body,' in _p972
+          and 'assert "el === document.body" in SEAT_JS' in _p972
+          and 'assert "focus(" not in SEAT_JS' in _p972
+          and '"is_body_eq_tag_body_both_reps"' in _p972
+          and '"body_seat_is_interior_both_reps"' in _p972
+          and '"body_seat_identical_across_reps"' in _p972
+          and '"seam_predecessor_is_sidecar_both_reps"' in _p972
+          and '"body_is_not_end_fallback_both_reps"' in _p972
+          # ⭐⭐⭐ **钉关系不钉绝对值**：座位用「两轮相同」与「既不在环首也不在环尾」
+          and "座位用「两轮相同」" in _ausrc
+          and "**不钉下标 6**" in _ausrc)
+
+    check("FFFFF.2 ⭐⭐⭐⭐⭐ **同一族错的第六次，而且这次把机制说死了 —— 969 不是"
+          "「没量到」，是「量到了但被一个代理条件滤掉了」**：969 的 out 段是"
+          "用 `for L in (r.get(\"landed\") or [])` + `L[\"kind\"]==\"out\"` 圈的，"
+          "而 **`BODY` 那一行的 `landed` 是空数组** ⇒ "
+          "**它在进 `out_stops` 之前就被整行过滤掉了**；本批把两套口径**并排**算出来"
+          "（两轮同一个数）：`own.kind=='out'` ⇒ **18**、"
+          "`landed[].kind=='out'`（**969 口径**）⇒ **17**、**差额 = 1**，"
+          "被丢掉那行 `tag` = **`BODY`**、`landed` 长度 = **0** ⇒ "
+          "⇒ ⭐⭐⭐⭐ **969 那个 `null_tid_rows = 0` 由此得解**："
+          "它不是「页面上没有」，而是「**统计口径没数到**」⇒ ⇒ ⭐⭐⭐ **纪律**："
+          "**凡是用「某个代理条件」圈出来的集合，都要单独记「被代理条件吃掉了多少」**",
+          '"landed_caliber_drops_body_972"' in _ausrc
+          and "是「量到了但被一个代理条件滤掉了」**" in _ausrc
+          and "**`BODY` 那一行的 `landed` 是空数组**" in _ausrc
+          and "**它在进 `out_stops` 之前就被整行过滤掉了**" in _ausrc
+          and "**18**" in _ausrc and "**17**" in _ausrc
+          and "**差额 = 1**，被丢掉的那一行 `tag` = **`BODY`**、" in _ausrc
+          and "`landed` 的长度 = **0**" in _ausrc
+          and "**969 那个 `null_tid_rows = 0` 由此得解**" in _ausrc
+          and "**统计口径没数到**" in _ausrc
+          and "**凡是用「某个代理条件」圈出来的集合，" in _ausrc
+          and "都要单独记「被代理条件吃掉了多少」**" in _ausrc
+          # ⭐⭐⭐⭐⭐ 全链每一环都要在（954→969→970→971→972）
+          and "① **954**：源站用 `WHOAMI_JS`" in _ausrc
+          and "② **969**：改用纯 `aria-label`" in _ausrc
+          and "③ **970**：换字段口径" in _ausrc
+          and "④ **971**：三套口径并读" in _ausrc
+          and "⑤ **972**：把两套口径**并排**" in _ausrc
+          # ⭐⭐ **反证**：969 那段圈 out 段的代码**真的**在仓库里（钉源码原文）
+          and 'for L in (r.get("landed") or []):' in _p969
+          and 'if L.get("kind") == "out":' in _p969
+          and "第 305–310 行" in _ausrc
+          # ⭐⭐ 钉探针：两套口径真的**并排**算，且门**成对**（防恒 0 + 防漏网）
+          and 'out_own = [(r["k"], r) for r in rows if r["own"].get("kind") == "out"]' in _p972
+          and 'out_stops = []' not in _p972
+          and '"landed_caliber_drops_something_both_reps"' in _p972
+          and '"caliber_gap_eq_dropped_both_reps"' in _p972
+          and '"dropped_rows_are_all_body_both_reps"' in _p972
+          and "一个防恒 0、一个防漏网" in _p972)
+
+    check("FFFFF.3 ⭐⭐⭐⭐⭐ **把两侧的环旋到同一起点逐格对齐之后：是同一条环**，"
+          "复刻只差两处 —— ① 多一枚 **0×0 的 `NEXTJS-PORTAL`**（968b 已证是 "
+          "**Next.js 开发态产物**）；② ⭐⭐⭐ **`rf__wrapper`（Canvas）那枚的位置"
+          "不一样**（**源站**在 `用户菜单` 与 `文本` **之间**、**复刻**在"
+          "**接缝之后、`返回首页` 之前**）⇒ **其余 16 枚逐格顺序两侧完全相同**；"
+          "⚠️⚠️⚠️ **本批不提出产品改动**（复刻侧 `rf__wrapper` 的**成因还没量过**，"
+          "它是 xyflow 的容器、挂外层 ref 取的）⇒ ⭐⭐ **「发现差异先怀疑对照」"
+          "这条不许被跳过**；另记一条纪律：**「`(k, row)` 当成 `row` 用」这一族"
+          "栽到第四次**，而 **`py_compile` 抓不到** ⇒ 修法是解包写对 "
+          "**＋ 加一条形状自证**（`assert` 每个元素**都**是 `(k, row)`）",
+          '"ring_is_same_cyclic_order_972"' in _ausrc
+          and "**把两侧的环旋到同一起点逐格对齐之后：" in _ausrc
+          and "是同一条环**，复刻只差两处" in _ausrc
+          and "多一枚 **0×0 的 `NEXTJS-PORTAL`**" in _ausrc
+          and "**`rf__wrapper`（Canvas）那枚的位置不一样**" in _ausrc
+          and "**源站**：在 `用户菜单` 与 `文本` **之间**" in _ausrc
+          and "**复刻**：在**接缝之后、`返回首页` 之前**" in _ausrc
+          and "**其余 16 枚逐格顺序两侧完全相同**" in _ausrc
+          and "**本批不提出产品改动**" in _ausrc
+          and "**成因还没量过**" in _ausrc
+          and "**「发现差异先怀疑对照」这条不许被跳过**" in _ausrc
+          and '"tuple_shape_bug_972"' in _ausrc
+          and "这一族栽到第四次**" in _ausrc
+          and "**`py_compile` 抓不到**（它只抓语法、不抓运行期形状）" in _ausrc
+          and "**加一条形状自证**" in _ausrc
+          and "**类型错误发生在解包那一刻**" in _ausrc
+          # ⭐⭐ 钉探针：形状自证**真的**写进探针了
+          and "out_own 里有不是 (k, row) 的元素" in _p972
+          and "out_landed 里有不是 (k, row) 的元素" in _p972
+          # ⚠️ 971 那条「未查明」必须**已挂改写横幅**（原文保留、不删）
+          and "**批 972 改写横幅" in _ausrc
+          and "**上面这条「未查明」是个假问题，" in _ausrc
+          # ⭐⭐⭐ 第七次预防同一个坑：`_p972` **与判据同一步**登记
+          and '"_p972": "scripts/jimeng_probe972_seam_src.py",' in _anchs)
 
 
     check("AAAAA.4 ⚠️⚠️ **步长那道门第一版太弱，是干跑当场抓到的**：它只查 "
