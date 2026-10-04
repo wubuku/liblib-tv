@@ -1,0 +1,361 @@
+{
+  "读数": {
+    "建前": {
+      "缩放": "matrix(0.468869, 0, 0, 0.468869, 909.423, -104.661)",
+      "节点": [
+        {
+          "id": "a-THmbuJXQj4",
+          "cls": "react-flow__node-audio",
+          "rect": [
+            274,
+            177,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "b-mfkcQNULC3",
+          "cls": "react-flow__node-shot-breakdown",
+          "rect": [
+            1208,
+            36,
+            150,
+            182
+          ]
+        },
+        {
+          "id": "i-9nlG6HdjK2",
+          "cls": "react-flow__node-image",
+          "rect": [
+            82,
+            317,
+            292,
+            164
+          ]
+        },
+        {
+          "id": "i-sODTbgLUm1",
+          "cls": "react-flow__node-image",
+          "rect": [
+            831,
+            317,
+            292,
+            164
+          ]
+        },
+        {
+          "id": "n-56F19pXVB4",
+          "cls": "react-flow__node-director-console-3d",
+          "rect": [
+            335,
+            69,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "t-2AK3Ukyxj3",
+          "cls": "react-flow__node-text",
+          "rect": [
+            217,
+            610,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "t-UtVx3lZmrV",
+          "cls": "react-flow__node-text",
+          "rect": [
+            1191,
+            317,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "v-eMpqKtiLlx",
+          "cls": "react-flow__node-video",
+          "rect": [
+            471,
+            317,
+            292,
+            164
+          ]
+        },
+        {
+          "id": "v-oZNpH99MtM",
+          "cls": "react-flow__node-video-clip",
+          "rect": [
+            971,
+            36,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "v-v2hlWY4Br3",
+          "cls": "react-flow__node-video",
+          "rect": [
+            583,
+            36,
+            292,
+            164
+          ]
+        }
+      ]
+    },
+    "加号": {
+      "box": [
+        580,
+        757,
+        32,
+        32
+      ],
+      "cls": "relative flex items-center justify-center rounded-lg transit"
+    },
+    "建了": true,
+    "建后": {
+      "缩放": "matrix(0.468869, 0, 0, 0.468869, 909.423, -104.661)",
+      "节点": [
+        {
+          "id": "a-GgqvrVz0pw",
+          "cls": "react-flow__node-audio",
+          "rect": [
+            718,
+            407,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "a-THmbuJXQj4",
+          "cls": "react-flow__node-audio",
+          "rect": [
+            274,
+            177,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "b-mfkcQNULC3",
+          "cls": "react-flow__node-shot-breakdown",
+          "rect": [
+            1208,
+            36,
+            150,
+            182
+          ]
+        },
+        {
+          "id": "i-9nlG6HdjK2",
+          "cls": "react-flow__node-image",
+          "rect": [
+            82,
+            317,
+            292,
+            164
+          ]
+        },
+        {
+          "id": "i-sODTbgLUm1",
+          "cls": "react-flow__node-image",
+          "rect": [
+            831,
+            317,
+            292,
+            164
+          ]
+        },
+        {
+          "id": "n-56F19pXVB4",
+          "cls": "react-flow__node-director-console-3d",
+          "rect": [
+            335,
+            69,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "t-2AK3Ukyxj3",
+          "cls": "react-flow__node-text",
+          "rect": [
+            217,
+            610,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "t-UtVx3lZmrV",
+          "cls": "react-flow__node-text",
+          "rect": [
+            1191,
+            317,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "v-eMpqKtiLlx",
+          "cls": "react-flow__node-video",
+          "rect": [
+            471,
+            317,
+            292,
+            164
+          ]
+        },
+        {
+          "id": "v-oZNpH99MtM",
+          "cls": "react-flow__node-video-clip",
+          "rect": [
+            971,
+            36,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "v-v2hlWY4Br3",
+          "cls": "react-flow__node-video",
+          "rect": [
+            583,
+            36,
+            292,
+            164
+          ]
+        }
+      ]
+    },
+    "新增": [
+      {
+        "id": "a-GgqvrVz0pw",
+        "cls": "react-flow__node-audio",
+        "rect": [
+          718,
+          407,
+          164,
+          164
+        ]
+      }
+    ],
+    "刷新后": {
+      "缩放": "matrix(0.468869, 0, 0, 0.468869, 909.423, -104.661)",
+      "节点": [
+        {
+          "id": "a-GgqvrVz0pw",
+          "cls": "react-flow__node-audio",
+          "rect": [
+            718,
+            407,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "a-THmbuJXQj4",
+          "cls": "react-flow__node-audio",
+          "rect": [
+            274,
+            177,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "b-mfkcQNULC3",
+          "cls": "react-flow__node-shot-breakdown",
+          "rect": [
+            1208,
+            36,
+            150,
+            182
+          ]
+        },
+        {
+          "id": "i-9nlG6HdjK2",
+          "cls": "react-flow__node-image",
+          "rect": [
+            82,
+            317,
+            292,
+            164
+          ]
+        },
+        {
+          "id": "i-sODTbgLUm1",
+          "cls": "react-flow__node-image",
+          "rect": [
+            831,
+            317,
+            292,
+            164
+          ]
+        },
+        {
+          "id": "n-56F19pXVB4",
+          "cls": "react-flow__node-director-console-3d",
+          "rect": [
+            335,
+            69,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "t-2AK3Ukyxj3",
+          "cls": "react-flow__node-text",
+          "rect": [
+            217,
+            610,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "t-UtVx3lZmrV",
+          "cls": "react-flow__node-text",
+          "rect": [
+            1191,
+            317,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "v-eMpqKtiLlx",
+          "cls": "react-flow__node-video",
+          "rect": [
+            471,
+            317,
+            292,
+            164
+          ]
+        },
+        {
+          "id": "v-oZNpH99MtM",
+          "cls": "react-flow__node-video-clip",
+          "rect": [
+            971,
+            36,
+            164,
+            164
+          ]
+        },
+        {
+          "id": "v-v2hlWY4Br3",
+          "cls": "react-flow__node-video",
+          "rect": [
+            583,
+            36,
+            292,
+            164
+          ]
+        }
+      ]
+    }
+  }
+}

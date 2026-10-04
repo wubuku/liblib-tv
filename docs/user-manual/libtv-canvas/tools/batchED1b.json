@@ -1,0 +1,27 @@
+{
+  "是否被锁": false,
+  "诊断": {
+    "视口": [
+      1440,
+      810
+    ],
+    "节点总数": 1,
+    "在视口内节点数": 1,
+    "连线数": 1,
+    "viewportTransform": "matrix(8, 0, 0, 8, 3952, -8291)",
+    "正文片段": "画布 2\n开通会员\n限时 45 折\n20\nTV Director\n\nAgent 已升级为 TV Director\n\n全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Director。\n\n下次再说\n去体验\n视频节点 3\n资产管理\n800%\n正在跟随\n取消ESC\n按 ESC 退出",
+    "节点": [
+      {
+        "id": "v-eMpqKtiLlx",
+        "cls": "react-flow__node-video",
+        "rect": [
+          -3536,
+          -1091,
+          4976,
+          2800
+        ],
+        "在视口内": true
+      }
+    ]
+  }
+}

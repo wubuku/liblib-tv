@@ -1,0 +1,34 @@
+{
+  "撤销前": {
+    "缩放": "matrix(0.468869, 0, 0, 0.468869, 909.423, -104.661)",
+    "ids": [
+      "a-THmbuJXQj4",
+      "b-mfkcQNULC3",
+      "i-9nlG6HdjK2",
+      "i-sODTbgLUm1",
+      "n-56F19pXVB4",
+      "t-2AK3Ukyxj3",
+      "t-UtVx3lZmrV",
+      "v-eMpqKtiLlx",
+      "v-oZNpH99MtM",
+      "v-v2hlWY4Br3"
+    ],
+    "连线数": 2
+  },
+  "撤销后": {
+    "缩放": "matrix(0.468869, 0, 0, 0.468869, 909.423, -104.661)",
+    "ids": [
+      "a-THmbuJXQj4",
+      "b-mfkcQNULC3",
+      "i-9nlG6HdjK2",
+      "i-sODTbgLUm1",
+      "n-56F19pXVB4",
+      "t-2AK3Ukyxj3",
+      "t-UtVx3lZmrV",
+      "v-eMpqKtiLlx",
+      "v-oZNpH99MtM",
+      "v-v2hlWY4Br3"
+    ],
+    "连线数": 2
+  }
+}
