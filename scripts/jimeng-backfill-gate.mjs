@@ -7,8 +7,11 @@
 //            唯独原始记录（§3.78.3 与 AUDIT 那一行）没留内联标记**。
 // 手法上每次都是「改了结论 ≠ 引用它的地方也被改了」，而**没有任何机械检查会抓到它**。
 //
-// 判据（三条，缺一不可）：
+// 判据（四条，缺一不可）：
 //   ① 每条 entry 的 pattern 在全册必须**至少命中一处** —— 否则是幽灵条目 ⇒ 红（防橡皮图章）；
+//   ①' 🔴 **逐个 pattern** 也必须至少命中一处 —— 否则「一条 entry 写 3 个 pattern、只有 1 个对得上」
+//      会被判为通过，而另外 2 个 pattern 正在**假装**覆盖着别处的旧结论（批次 146 实测踩到：
+//      `拖完~~\*\*源节点变成选中态\*\*` 命中 0，因为删除线其实开在更前面的「副作用（…）」上）；
 //   ② 每一处命中的**上下文 ±N 行内必须有订正标记**（~~删除线~~ / 已被推翻 / 订正 / 已关闭…）
 //      —— 没有就是「改了结论没回填」⇒ 红；
 //   ③ 命中所在行**本身**含标记也算通过（订正与原文写在一行里是允许的）。
@@ -69,7 +72,7 @@ function scan(claims) {
           const heads = headingChain(lines, i);
           const head = heads[0] || '';
           hits.push({
-            id: c.id, label: c.label, file: path.relative(DIR, f), line: i + 1,
+            id: c.id, pat: pat, label: c.label, file: path.relative(DIR, f), line: i + 1,
             text: L.trim(), section: heads.map((h) => h.trim().slice(0, 48)).join(' ⟵ '),
             marked: ctx.some((x) => MARKER.test(x)) || heads.some((h) => SECTION_OK.test(h)),
           });
@@ -83,7 +86,16 @@ function scan(claims) {
 function check({ hits }, claims) {
   const unmarked = hits.filter((h) => !h.marked);
   const ghost = claims.entries.filter((c) => !hits.some((h) => h.id === c.id));
-  return { ok: !unmarked.length && !ghost.length, unmarked, ghost, total: hits.length };
+  // 🔴 逐 pattern 幽灵：entry 在场，但**它自己列的某个 pattern 一个字都没匹配到**。
+  //    与 `ghost` 的区别：`ghost` 是整条 entry 没命中，`ghostPatterns` 是 entry 命中了、
+  //    但多出来的 pattern 在**假装**覆盖着别处 —— 那处旧结论很可能因此没人回填。
+  const ghostPatterns = [];
+  for (const c of claims.entries) {
+    for (const pat of c.patterns) {
+      if (!hits.some((h) => h.id === c.id && h.pat === pat)) ghostPatterns.push({ id: c.id, pat });
+    }
+  }
+  return { ok: !unmarked.length && !ghost.length && !ghostPatterns.length, unmarked, ghost, ghostPatterns, total: hits.length };
 }
 
 // ---------- 阳性对照：证明这道门真的会红 ----------
@@ -128,6 +140,21 @@ function selftest() {
   const r3 = check(scan(ghosted), ghosted);
   results.push(['③ 某条 entry 匹配不到任何命中（幽灵条目）→ 门必须红', !r3.ok && r3.ghost.length === 1]);
 
+  // 用例 3'：entry 命中了，但**它自己多列的那个 pattern 匹配不到任何东西**
+  //   ⇒ 那个 pattern 正在假装覆盖别处的旧结论，而旧结论没人回填 —— 必须红。
+  //   （批次 146 实测踩到：一条 entry 写 3 个 pattern，只有 1 个对得上，另 2 个命中 0，
+  //     而旧的门只判「entry 是否至少命中一处」，于是**全部照过**。）
+  const 多列 = claims.entries.find((c) => c.patterns.length >= 2);
+  if (多列) {
+    const 拼 = { ...claims, entries: claims.entries.map((c) => c.id === 多列.id
+      ? { ...c, patterns: [c.patterns[0], '这句话在全册根本不存在-zzz2'] } : c) };
+    const r35 = check(scan(拼), 拼);
+    results.push([`③' entry「${多列.id}」多列的那个 pattern 命中 0 → 门必须红`,
+      !r35.ok && r35.ghost.length === 0 && r35.ghostPatterns.length === 1]);
+  } else {
+    results.push(['③' + "' 没有任何 entry 列出多个 pattern ⇒ 用例无法构造（**台账该补多 pattern 条目**）", false]);
+  }
+
   // 用例 4：原样 ⇒ 必须绿
   const r4 = check(scan(claims), claims);
   results.push(['④ 未改动 ⇒ 门必须绿', r4.ok === base.ok]);
@@ -157,8 +184,12 @@ if (r.ghost.length) {
   console.log(`\n⛔ ${r.ghost.length} 条 entry 匹配不到任何命中（幽灵条目，防橡皮图章）：`);
   for (const c of r.ghost) console.log(`  [${c.id}] ${c.label}`);
 }
+if (r.ghostPatterns.length) {
+  console.log(`\n⛔ ${r.ghostPatterns.length} 个 pattern 匹配不到任何命中（它在假装覆盖别处的旧结论）：`);
+  for (const g of r.ghostPatterns) console.log(`  [${g.id}] pattern: ${g.pat}`);
+}
 if (r.ok) {
-  console.log(`\n✅ 订正回填门通过：${s.hits.length} 处命中全部带内联订正标记，${claims.entries.length} 条 entry 均对得上真实命中`);
+  console.log(`\n✅ 订正回填门通过：${s.hits.length} 处命中全部带内联订正标记，${claims.entries.length} 条 entry 均对得上真实命中（且每个 pattern 都至少命中一处）`);
 } else {
   console.log('\n🔴 订正回填门不通过 —— 退出码 1');
   process.exit(1);

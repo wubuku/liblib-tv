@@ -381,6 +381,21 @@ aria 逐字 `Create connected node before <节点名>`）—— **批次 71 新�
 | 🔑 **判「× 被没被挡住」要走祖先链** | 按钮中心 `elementFromPoint` 返回 `path`，但链是 `path → svg.relative → SPAN.contents → **BUTTON.inline-flex** → …` ⇒ 那是 **× 图标本身**（按钮子元素 `SPAN` 带 `display:contents`），**不是遮挡者** | 实测（同上，f 轮；**本批订正了自己写反的断言**） |
 | **边自带两端描述** | 边 `<g>` 的 aria 逐字 **`Reference connection from 图片 node: b22-upload to 音频 node: 音频 54`**；边被悬停/聚焦时它就是 `document.activeElement` | 实测（同上，b/c/d/e/h 轮逐次一致） |
 
+### 🔑 拖拽途中那条蓝色预览线（2026-10-04 批次 146 首次建档，**此前全册只记了肉眼形态**）
+
+⚠️ **它不是 `.react-flow__edge`。** 「边数 +1」只在**松手于节点、真的建出线**时成立。
+
+| 事实 | 逐字 / 实测值 | 验证 |
+|---|---|---|
+| **容器** | `svg`，class 链逐字 `react-flow__connectionline react-flow__container`；**拖前不存在，起拖后出现，松手后消失** | 实测（同一节点连续 3 个时点采样） |
+| **线本体** | `<path class="react-flow__connection-path">`，**描边 `rgb(0, 142, 229)`、宽 `1px`、`pointer-events: none`** | 实测（同上） |
+| 🔴 **不在 edge 里** | 三个采样点的 `closest('.react-flow__edge')` **恒为 `null`**；而 `.react-flow__edge` 在**整个拖拽过程中恒为 0** | 实测（同上）⇒ 拖拽途中数 `.react-flow__edge` 会误判成「没起拖」 |
+| 🔑 **`d` 的起点恒定** | 三个采样点逐字都是 `M4075.888604181071,2687.695945273357`（源手柄的 canvas 坐标）；变的只有控制点 `C4215.95…` → `C4248.89…` → `C4276.67…` 与终点 | 实测（同上） |
+| **屏上盒随鼠标单调变大** | `304.5×18.1@481,327` → `456.1×26.1@330,319` → `608.3×35.1@179,310`（对应拖到 1/2、3/4、终点） | 实测（同上）—— 这就是「一个随鼠标变大小的 `<g>`」的机械成因 |
+| ⚠️ **松手后留一枚 `0.6×0.6` 空 `svg`** | class 链含 `react-flow__connection-path pointer-events-none absolute left-…`；**+150ms 在、+2500ms 还在，关掉菜单后才消失** | 实测（同上，三个时点）⇒ 拖完数 `connection-path` 会读到 **1**，那是**残留不是连线** |
+| ⚠️ **别 grep "connection" 就下结论** | class 含 `connection` 的元素有 **230 个上下**（同一轮 7 个时点实测 `231/235/235/234/232/232/231` —— **会随预览线出现与消失而变，不是固定值**），绝大多数是节点的 `react-flow__handle`；另有**常驻**的 `div.z-canvas-connection-flow-surface`（`1280×720@0,0`、`pointer-events: none`），**拖前/拖中/松手后都在** | 实测（同上） |
+| **拖到空白松手的后果** | **只有菜单会弹**（`200×316`、aria `添加节点`、弹在**松手点**）；状态行**恒 `0 selected`**、`.react-flow__edge` 恒 0、源节点 canvas 位移**恒 `[0,0]`** | 实测（2026-10-04 批次 146，**5 次独立复现 5/5**） |
+
 - **空白右键**：新建节点＞（子菜单含 从资产库添加/本地上传）、粘贴 ⌘V、
   重做 ⌘⇧Z、撤销 ⌘Z。
 - **节点右键**：复制 ⌘C、复制副本 ⌘D、粘贴 ⌘V、下载、（媒体节点含

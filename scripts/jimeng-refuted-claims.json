@@ -1,6 +1,6 @@
 {
  "_doc": "已被推翻的结论清单（批次 75 建）。jimeng-backfill-gate.mjs 据此检查：每条 pattern 的每一处命中，其上下文 ±3 行内必须有「订正标记」（删除线 / 已被推翻 / 订正 / 已关闭 / 不成立 / 口径…）。改一个字就要重新判读 —— 这是刻意的。",
- "_invariant": "① 每条 entry 至少命中一处（否则是幽灵条目 ⇒ 红）；② 每处命中都必须带内联订正标记（否则是「改了结论没回填」⇒ 红）。",
+ "_invariant": "① 每条 entry 至少命中一处（否则是幽灵条目 ⇒ 红）；② **每个 pattern 也至少命中一处**（批次 146 补：否则一条 entry 多列的 pattern 正在假装覆盖别处的旧结论，而旧的门只判 ① ⇒ 静默通过）；③ 每处命中都必须带内联订正标记（否则是「改了结论没回填」⇒ 红）。",
  "_why": "同一形状的错误已犯三次：批次 64 过期括注、批次 70 同文件数字打架、批次 74 订正没回填到原始记录。没有任何机械检查会抓到它，所以把它变成门。",
  "entries": [
   {
@@ -319,30 +319,31 @@
    "patterns": [
     "在\\*\\*空\\*\\*文本节点上不成立",
     "空文本节点双击不产生 contenteditable",
-    "始终为 0，工具条也\\*\\*一直是选中态那三项\\*\\*"
+    "双击后 `contenteditable` 与 `\\.ProseMirror` 始终为 0"
    ],
    "refuted_in": "批次 95（SOURCE_OBSERVATIONS.md §4.15.4）",
-   "reason": "把序列拆开逐格受控复测（锁 node_3bfb9r79qe，每格回读）：未选中 + **纯双击**读到 contenteditable=1 / .ProseMirror=1 ⇒ 双击**确实**进编辑态。要注意「测法有嫌疑」与「结论错误」是两件事：批次 93 的三击序列这次也读到 1，说明当时的 0 另有原因（落点很可能不在文本节点上），改对测法也救不回原结论"
+   "reason": "把序列拆开逐格受控复测（锁 node_3bfb9r79qe，每格回读）：未选中 + **纯双击**读到 contenteditable=1 / .ProseMirror=1 ⇒ 双击**确实**进编辑态。要注意「测法有嫌疑」与「结论错误」是两件事：批次 93 的三击序列这次也读到 1，说明当时的 0 另有原因（落点很可能不在文本节点上），改对测法也救不回原结论",
+   "pattern_note": "\n\n🔴 **批次 146 清理**：本条原有若干个 pattern **在全册一个字都匹配不到**（幽灵锚），而旧的门只判「entry 是否至少命中一处」，因此它们**一直静默通过、实际没有覆盖任何一处**。已逐条 grep 定案：写法变了的**重锚到现形**，目标文本已全册不存在的**删除**，并把「逐 pattern 幽灵检测」加进 `jimeng-backfill-gate.mjs`（配阳性对照用例 ③'）。"
   },
   {
    "id": "zoom-button-itself-is-input",
    "label": "「缩放按钮本身是一个输入框（aria 逐字 Set zoom percentage，48×28）」（navigate-canvas.md 缩放第 4 步，2026-09-23 批次 24 起沿用）",
    "patterns": [
-    "缩放按钮本身是一个输入框",
-    "点它\\*\\*自动全选并聚焦\\*\\*"
+    "缩放按钮本身是一个输入框"
    ],
    "refuted_in": "批次 96（SOURCE_OBSERVATIONS.md §4.16.4）",
-   "reason": "按钮始终是 <button data-testid=\"canvas-zoom-percent\">，内部 0 个 input、0 个子元素、不是 contenteditable。那个 aria=\"Set zoom percentage\" 的 input[data-testid=\"canvas-zoom-percent-input\"] 是**菜单打开时另外渲染的元素**，只是叠在同一坐标(48×28@124,672)上。三个后果：菜单打开期间按钮 innerText 从 \"60%\" 变空串（读按钮文字当判据会失效）；菜单关闭时全页没有这个输入框；min/max/step 全空 ⇒ 8%–800% 钳制是程序做的"
+   "reason": "按钮始终是 <button data-testid=\"canvas-zoom-percent\">，内部 0 个 input、0 个子元素、不是 contenteditable。那个 aria=\"Set zoom percentage\" 的 input[data-testid=\"canvas-zoom-percent-input\"] 是**菜单打开时另外渲染的元素**，只是叠在同一坐标(48×28@124,672)上。三个后果：菜单打开期间按钮 innerText 从 \"60%\" 变空串（读按钮文字当判据会失效）；菜单关闭时全页没有这个输入框；min/max/step 全空 ⇒ 8%–800% 钳制是程序做的",
+   "pattern_note": "\n\n🔴 **批次 146 清理**：本条原有若干个 pattern **在全册一个字都匹配不到**（幽灵锚），而旧的门只判「entry 是否至少命中一处」，因此它们**一直静默通过、实际没有覆盖任何一处**。已逐条 grep 定案：写法变了的**重锚到现形**，目标文本已全册不存在的**删除**，并把「逐 pattern 幽灵检测」加进 `jimeng-backfill-gate.mjs`（配阳性对照用例 ③'）。"
   },
   {
    "id": "voice-play-aria-flips-to-pause",
    "label": "「试听按钮 aria 由 Play X 就地翻成 Pause X，可再次点击停止」（批次 32，audio-node-voice.md 试听一节）",
    "patterns": [
-    "播放中 aria 变成 `Pause 生动解说`",
-    "点下后 \\*\\*0.9s 仍是 `Play`\\*\\*"
+    "播放中 aria 变成 `Pause 生动解说`"
    ],
    "refuted_in": "批次 97（SOURCE_OBSERVATIONS.md §4.17.7，**判 VOID 而非推翻**）",
-   "reason": "本轮用 MutationObserver 逐条记 aria-label 变化（不漏快速翻转）再连采样 30 秒：observer 记到 0 条、轮询也只读到起手一次 Play，Pause 一次都没出现。与批次 32 矛盾。判不了是功能变了、这次没触发、还是环境不允许播放 ⇒ 记 VOID 不下结论。但这条已不能当可靠判据，正文已加「本轮未能复现」标注。留下的强判据：判断这类快速状态翻转要用 MutationObserver 而非轮询"
+   "reason": "本轮用 MutationObserver 逐条记 aria-label 变化（不漏快速翻转）再连采样 30 秒：observer 记到 0 条、轮询也只读到起手一次 Play，Pause 一次都没出现。与批次 32 矛盾。判不了是功能变了、这次没触发、还是环境不允许播放 ⇒ 记 VOID 不下结论。但这条已不能当可靠判据，正文已加「本轮未能复现」标注。留下的强判据：判断这类快速状态翻转要用 MutationObserver 而非轮询",
+   "pattern_note": "\n\n🔴 **批次 146 清理**：本条原有若干个 pattern **在全册一个字都匹配不到**（幽灵锚），而旧的门只判「entry 是否至少命中一处」，因此它们**一直静默通过、实际没有覆盖任何一处**。已逐条 grep 定案：写法变了的**重锚到现形**，目标文本已全册不存在的**删除**，并把「逐 pattern 幽灵检测」加进 `jimeng-backfill-gate.mjs`（配阳性对照用例 ③'）。"
   },
   {
    "id": "context-menu-one-shared-template",
@@ -357,11 +358,11 @@
    "id": "bottom-dock-has-5-controls",
    "label": "「底部 dock 一共 5 个控件」（批次 96 写在 navigate-canvas.md「入口」一节的 dock 表格，末行把「与 AI 对话」也列了进去）",
    "patterns": [
-    "底部 dock 一共 5 个控件",
-    "canvas-sidecar-launcher` \\| `118×34@1149,673` \\| 打开 AI 侧栏"
+    "底部 dock 一共 5 个控件"
    ],
    "refuted_in": "批次 99（SOURCE_OBSERVATIONS.md §4.19.2）",
-   "reason": "dock 是 **4 个**。容器 canvas-navigation-dock 与 workspace-bottom-dock-frame 是同一矩形 164×36@12,668，按钮后代恰好 4 个且全部落在该矩形内（宽 164 装不下 x=1149 的那颗）。canvas-sidecar-launcher（与 AI 对话）118×34@1149,673 的父链是 DIV#canvas-sidecar-launchers，dock/frame/topBar 三个 contains 判定全为 false ⇒ 独立的一颗。批次 96 的取数是 r.y>640 粗筛，同一轮因此还捞进 15 个 Add tags。立规：判断某面板有几个控件要查容器后代，别按坐标筛"
+   "reason": "dock 是 **4 个**。容器 canvas-navigation-dock 与 workspace-bottom-dock-frame 是同一矩形 164×36@12,668，按钮后代恰好 4 个且全部落在该矩形内（宽 164 装不下 x=1149 的那颗）。canvas-sidecar-launcher（与 AI 对话）118×34@1149,673 的父链是 DIV#canvas-sidecar-launchers，dock/frame/topBar 三个 contains 判定全为 false ⇒ 独立的一颗。批次 96 的取数是 r.y>640 粗筛，同一轮因此还捞进 15 个 Add tags。立规：判断某面板有几个控件要查容器后代，别按坐标筛",
+   "pattern_note": "\n\n🔴 **批次 146 清理**：本条原有若干个 pattern **在全册一个字都匹配不到**（幽灵锚），而旧的门只判「entry 是否至少命中一处」，因此它们**一直静默通过、实际没有覆盖任何一处**。已逐条 grep 定案：写法变了的**重锚到现形**，目标文本已全册不存在的**删除**，并把「逐 pattern 幽灵检测」加进 `jimeng-backfill-gate.mjs`（配阳性对照用例 ③'）。"
   },
   {
    "id": "play-pause-aria-does-not-flip",
@@ -414,13 +415,14 @@
    "id": "save-to-subject-library-is-node-type-exclusive",
    "label": "「『保存到主体库』是该节点类型独有的，空视频与图片节点都没有」—— 原写在 duplicate-delete-history.md 的菜单归属规则与 86-subject-context-menu 截图 alt 上（2026-10-01 记录），并被 20-reference.md 复述为「空视频节点确实没有该项，图片节点有」",
    "patterns": [
-    "该节点类型独有的",
+    "原写「该节点类型独有」已订正",
     "主体节点独有且可用",
     "空视频节点确实没有该项，图片节点有",
     "空视频节点（无论有无资源）都没有这一项"
    ],
    "refuted_in": "批次 105（SOURCE_OBSERVATIONS.md §4.25.7）",
-   "reason": "**不是节点类型的专利。** 实测**有资源的视频节点**也有这一项：右键菜单 200×332、8 项，逐字「复制 ⌘ C ｜ 复制副本 ⌘ D ｜ 粘贴 ⌘ V ｜ 保存到主体库 ｜ 下载 ｜ 重做 ⌘ ⇧ Z 无需重做操作 ｜ 撤销 ⌘ Z ｜ 删除 ⌫」（与批次 101 在视频侧独立测得的 200×332 8 项逐字吻合）。归一后的规则是：**该项属于「有可用资源」这个条件，不属于「节点类型」** —— 空视频/空图片/空音频一律没有；主体节点是空态就有的例外。原结论是从一张**缺了「有资源的视频」这一行**的枚举表里读出来的。"
+   "reason": "**不是节点类型的专利。** 实测**有资源的视频节点**也有这一项：右键菜单 200×332、8 项，逐字「复制 ⌘ C ｜ 复制副本 ⌘ D ｜ 粘贴 ⌘ V ｜ 保存到主体库 ｜ 下载 ｜ 重做 ⌘ ⇧ Z 无需重做操作 ｜ 撤销 ⌘ Z ｜ 删除 ⌫」（与批次 101 在视频侧独立测得的 200×332 8 项逐字吻合）。归一后的规则是：**该项属于「有可用资源」这个条件，不属于「节点类型」** —— 空视频/空图片/空音频一律没有；主体节点是空态就有的例外。原结论是从一张**缺了「有资源的视频」这一行**的枚举表里读出来的。",
+   "pattern_note": "\n\n🔴 **批次 146 清理**：本条原有若干个 pattern **在全册一个字都匹配不到**（幽灵锚），而旧的门只判「entry 是否至少命中一处」，因此它们**一直静默通过、实际没有覆盖任何一处**。已逐条 grep 定案：写法变了的**重锚到现形**，目标文本已全册不存在的**删除**，并把「逐 pattern 幽灵检测」加进 `jimeng-backfill-gate.mjs`（配阳性对照用例 ③'）。"
   },
   {
    "id": "safe-landing-point-requires-no-overlap-rect",
@@ -469,12 +471,11 @@
    "patterns": [
     "画布状态行",
     "底部状态行",
-    "以及底部状态行",
-    "状态行末尾多出",
-    "状态行的判据"
+    "状态行末尾多出"
    ],
    "refuted_in": "批次 120（SOURCE_OBSERVATIONS.md §4.40）",
-   "reason": "**屏幕上根本没有这条横线。** 2026-10-03 批次 120 在 1280×720 @dpr2 上实测：那句逐字文本的**全文档唯一宿主**是 `SPAN#:modern-js-r1:`，class `sr-only`、矩形 `1×1@(-1,-1)`（视口左上角之外）、`position:absolute` + `clip: rect(0px,0px,0px,0px)`，**自己没有 `aria-live`、5 层祖先也都没有、`role` 也不是 `status`** ⇒ 它不是播报区，就是一段屏外隐藏文本。判「全文档唯一」的依据：按「命中且没有更内层命中」筛出的最内层宿主**恰好 1 个**。全文档 171 种 `data-testid` 里**没有任何底部状态行**；底部只有 `workspace-bottom-dock-frame`/`canvas-navigation-dock` `164×36@12,668`、`canvas-bottom-dock` `156×28@16,672`、`canvas-sidecar-launchers` `120×36@1148,672`。**两条不共享假设的旁证**都看不到它：① 本轮实时截图 y 660–720 条带；② 早期批次真实截图 `09-connect-nodes-edge-created.png` 底部 150px（100% 缩放、另一个视口）。⚠️ 它**确实随状态实时更新**（同轮：选中后 `0 selected`→`1 selected`；建节点后 `76 nodes`→`77 nodes`）⇒ **规则本身继续有效，要改的只是「用户能在屏幕上找到它」这个说法**：屏上唯一可见的数量读数是顶栏 `canvas-node-summary-trigger` `34×28@156,16` 逐字「节点 76」，**只有节点数，没有连线数与选中数**。📌 顺带订正：`00-quickstart.md` 原写「已保存」出现在底部状态行里 —— **归属写错**，它在**顶栏** `OUTPUT[data-testid=\"canvas-title-save-status\"]` `30×18@206,21`；屏外那句的末尾**也**有「已保存」，是**另一个东西**。📌 再订正机制：`navigate-canvas.md` 那句「状态行末尾多出两行」是**读容器 innerText 的拼接产物** —— 提示条 `back-to-content-overlay`（平时 `display:none` + `0×0`）与状态行是**兄弟**（共同祖先为无 testid 的 DIV，同挂 `MAIN[aria-label=\"Canvas workspace\"]`），**互不包含**，状态行自身 `textContent` 永远只有那一句。📌 立规：**「屏上有没有」这个问题，截图与 DOM 读数要各给一条不共享假设的旁证**；只读 `innerText`/DOM 会把屏外隐藏文本当成可见内容。"
+   "reason": "**屏幕上根本没有这条横线。** 2026-10-03 批次 120 在 1280×720 @dpr2 上实测：那句逐字文本的**全文档唯一宿主**是 `SPAN#:modern-js-r1:`，class `sr-only`、矩形 `1×1@(-1,-1)`（视口左上角之外）、`position:absolute` + `clip: rect(0px,0px,0px,0px)`，**自己没有 `aria-live`、5 层祖先也都没有、`role` 也不是 `status`** ⇒ 它不是播报区，就是一段屏外隐藏文本。判「全文档唯一」的依据：按「命中且没有更内层命中」筛出的最内层宿主**恰好 1 个**。全文档 171 种 `data-testid` 里**没有任何底部状态行**；底部只有 `workspace-bottom-dock-frame`/`canvas-navigation-dock` `164×36@12,668`、`canvas-bottom-dock` `156×28@16,672`、`canvas-sidecar-launchers` `120×36@1148,672`。**两条不共享假设的旁证**都看不到它：① 本轮实时截图 y 660–720 条带；② 早期批次真实截图 `09-connect-nodes-edge-created.png` 底部 150px（100% 缩放、另一个视口）。⚠️ 它**确实随状态实时更新**（同轮：选中后 `0 selected`→`1 selected`；建节点后 `76 nodes`→`77 nodes`）⇒ **规则本身继续有效，要改的只是「用户能在屏幕上找到它」这个说法**：屏上唯一可见的数量读数是顶栏 `canvas-node-summary-trigger` `34×28@156,16` 逐字「节点 76」，**只有节点数，没有连线数与选中数**。📌 顺带订正：`00-quickstart.md` 原写「已保存」出现在底部状态行里 —— **归属写错**，它在**顶栏** `OUTPUT[data-testid=\"canvas-title-save-status\"]` `30×18@206,21`；屏外那句的末尾**也**有「已保存」，是**另一个东西**。📌 再订正机制：`navigate-canvas.md` 那句「状态行末尾多出两行」是**读容器 innerText 的拼接产物** —— 提示条 `back-to-content-overlay`（平时 `display:none` + `0×0`）与状态行是**兄弟**（共同祖先为无 testid 的 DIV，同挂 `MAIN[aria-label=\"Canvas workspace\"]`），**互不包含**，状态行自身 `textContent` 永远只有那一句。📌 立规：**「屏上有没有」这个问题，截图与 DOM 读数要各给一条不共享假设的旁证**；只读 `innerText`/DOM 会把屏外隐藏文本当成可见内容。",
+   "pattern_note": "\n\n🔴 **批次 146 清理**：本条原有若干个 pattern **在全册一个字都匹配不到**（幽灵锚），而旧的门只判「entry 是否至少命中一处」，因此它们**一直静默通过、实际没有覆盖任何一处**。已逐条 grep 定案：写法变了的**重锚到现形**，目标文本已全册不存在的**删除**，并把「逐 pattern 幽灵检测」加进 `jimeng-backfill-gate.mjs`（配阳性对照用例 ③'）。"
   },
   {
    "id": "generation-history-panel-has-no-primary-tabs",
@@ -483,12 +484,11 @@
     "一级页签两个",
     "一级页签两项",
     "生成历史两级页签",
-    "面板分两层",
-    "面板分两级"
+    "面板分两层"
    ],
    "refuted_in": "批次 126（SOURCE_OBSERVATIONS.md §4.46）",
    "reason": "**面板里根本没有「一级页签」，只有一层 `role=\"tablist\"` 和 5 个 `role=\"tab\"`。** 2026-10-03 批次 126 把 `canvas-feature-panel` 整棵 DOM 拆开：面板本体是 `<ASIDE role=\"dialog\" aria=\"生成历史\">` `320×211@797,56`，标题行 `320×56@797,56` 里只有两样东西 —— `H2`「生成历史」`56×36@813,72`（是**标题**）和一个 `BUTTON`「积分明细」`68×36@1033,72`（**没有 `role`、没有 `href`、没有 `aria-label`**，只带一个 `12×12` 的右向箭头 svg）。**全面板 `role=\"tab\"` 恰好 5 个、`role=\"tablist\"` 恰好 1 个**，`role=\"tabpanel\"` 恰好 1 个 ⇒ 计数判据直接否掉「两层」。📌 立规：**「一层 / 两级 / 嵌套」这类措辞必须能被一个计数判据支持**（本例即「`role=\"tablist\"` 的个数」）；批次 31 写下那句话时没有这个判据，所以它错了三个月也没人发现。📌 顺带四条：① 面板有 **4 个元素与它同矩形**（本体 + `canvas-feature-panel-surface` + `canvas-feature-panel-content` + `generation-history-panel`）⇒ 按矩形数会多数三次；② 直接父级是 `canvas-workbench-shell`，**没有 portal 到 body**；③ 5 个页签的 **`aria-controls` 全指向同一个** `generation-history-items`，逐个点过后**面板逐字与矩形一个字都没变** ⇒ 空态是共用的「暂无生成历史」，不是按类型各说一句；④ 那个「积分明细」按钮**开的是「项目信息」对话框**（`workspace-project-info-dialog` `800×546@240,87`，与批次 125 同一个组件、内部同样是 `project-consumption-summary`）并**直接落在「积分消耗」页签** —— 与「更多 → 项目信息」是同一个框，差别只在初始页签。",
-   "pattern_note": "（批次 126 建条时留的坑：patterns 一开始写了裸的「一级页签」与「分两层」，结果命中**资产库面板的真·一级页签**（`资产` / `主体`）和别的句式 —— 那不是被推翻的结论，是另一个面板的正确记录。⇒ 立规：**refuted-claims 的 pattern 必须唯一指代那条被推翻的主张**，宁可写长一点、带上下文，也不要写「这类话里常出现的那个词」。）"
+   "pattern_note": "（批次 126 建条时留的坑：patterns 一开始写了裸的「一级页签」与「分两层」，结果命中**资产库面板的真·一级页签**（`资产` / `主体`）和别的句式 —— 那不是被推翻的结论，是另一个面板的正确记录。⇒ 立规：**refuted-claims 的 pattern 必须唯一指代那条被推翻的主张**，宁可写长一点、带上下文，也不要写「这类话里常出现的那个词」。）\n\n🔴 **批次 146 清理**：本条原有若干个 pattern **在全册一个字都匹配不到**（幽灵锚），而旧的门只判「entry 是否至少命中一处」，因此它们**一直静默通过、实际没有覆盖任何一处**。已逐条 grep 定案：写法变了的**重锚到现形**，目标文本已全册不存在的**删除**，并把「逐 pattern 幽灵检测」加进 `jimeng-backfill-gate.mjs`（配阳性对照用例 ③'）。"
   },
   {
    "id": "search-panel-size-is-not-320x211",
@@ -506,9 +506,9 @@
    "label": "「多选工具条里没有 Add tags，逐字核对工具条内容只有四项」—— 原写在 10-tasks/organize-group-layout.md「多选后出现多选工具条」小节",
    "patterns": [
     "多选工具条里没有[^|\\n]{0,20}Add",
-    "Add\\s*tags[^|\\n]{0,30}不属于顶部工具条"
+    "早前版本写这里有「Add tags」"
    ],
-   "pattern_note": "（不可用裸的 `Add tags`：它本身是**真实存在**的 testid（`flow-node-selected-tag`）与 aria，本册多处正确记录它。pattern 必须绑上「多选工具条里没有」这个**错误断言**，否则会把正确记录判成「改了结论没回填」。⇒ 与 `search-panel-size-is-not-320x211` 同源：**pattern 要能区分「同一串字的不同归属」。**）",
+   "pattern_note": "（不可用裸的 `Add tags`：它本身是**真实存在**的 testid（`flow-node-selected-tag`）与 aria，本册多处正确记录它。pattern 必须绑上「多选工具条里没有」这个**错误断言**，否则会把正确记录判成「改了结论没回填」。⇒ 与 `search-panel-size-is-not-320x211` 同源：**pattern 要能区分「同一串字的不同归属」。**）\n\n🔴 **批次 146 清理**：本条原有若干个 pattern **在全册一个字都匹配不到**（幽灵锚），而旧的门只判「entry 是否至少命中一处」，因此它们**一直静默通过、实际没有覆盖任何一处**。已逐条 grep 定案：写法变了的**重锚到现形**，目标文本已全册不存在的**删除**，并把「逐 pattern 幽灵检测」加进 `jimeng-backfill-gate.mjs`（配阳性对照用例 ③'）。",
    "refuted_in": "批次 131（SOURCE_OBSERVATIONS.md §4.52）",
    "reason": "**它就在多选工具条里 —— 当年没数到，是因为用了「逐字核对」这个方法，而 `Add tags` 是图标按钮、`innerText` 逐字为空（只有 `aria-label`）。** 2026-10-03 批次 131 改数 `flow-node-selected-tag` 的**实例数**：0 选中 **76** 个（全在节点内）→ 单选 1 个 **76** 个（工具条内 **0**）→ **框选 8 个：总数掉到 69，其中节点内 68、工具条内 1**（`aria=\"Add tags\"`、`24×24`、紧贴工具条右端）→ 取消后回到 **76**、工具条内 **0**。🔑 **`76 − 68 = 8` 正好等于选中数** ⇒ **多选时选中节点的标记按钮被搬进工具条**，8 个搬上来只留 **1 个**统一入口（即「给这 N 个一起打标签」），完全可逆。精确说法：**基座 `selection-context-toolbar` 里确实没有它**（3 个直接子按钮：编组 / 布局 / 下载），**但外层 `selection-context-toolbar-surface` / `node-toolbar` 里有**（4 个后代按钮）。📌 立规：**核对工具条有几项不能只读 `innerText`**，要并读 `aria-label` / `title` / 子元素 `data-testid`。"
   },
@@ -538,11 +538,11 @@
    "id": "all-ui-clamped-elements-share-one-max-template",
    "label": "「所有 UI 元件都是同一个模板 `屏上值 = max(canvas常量 × 缩放, 屏上常量)`；低缩放随画布缩、高缩放给一个人类可点的下限」—— 原写在 SOURCE_OBSERVATIONS.md §4.62.2 与 §4.62 的「立规（可复用）」、PROGRESS.md 批次 141「🔑 公式」小节、AUDIT.md 批次 141 行",
    "patterns": [
-    "所有族都是.*`max",
+    "所有族都是 `屏上值 = max",
     "所有 UI 元件都是",
-    "同一个 `max\\(`模板"
+    "同一个 `max\\(\\)` 模板"
    ],
-   "pattern_note": "（不可用裸的 `max\\(` 或 `钳位`：批次 139 的**组工具条**公式 `max(卡片宽×scale, 296)` 是**正确**且**至今成立**的，拿它当 pattern 会把正确记录判成「改了结论没回填」。⇒ 与 `multi-select-toolbar-does-not-follow-zoom`、`group-toolbar-width-blame-card-width` 同源：**pattern 必须绑上「所有族 / 所有 UI 元件 / 同一个模板」这个具体断言**，即只抓那条**过度归纳的立规**本身。）",
+   "pattern_note": "（不可用裸的 `max\\(` 或 `钳位`：批次 139 的**组工具条**公式 `max(卡片宽×scale, 296)` 是**正确**且**至今成立**的，拿它当 pattern 会把正确记录判成「改了结论没回填」。⇒ 与 `multi-select-toolbar-does-not-follow-zoom`、`group-toolbar-width-blame-card-width` 同源：**pattern 必须绑上「所有族 / 所有 UI 元件 / 同一个模板」这个具体断言**，即只抓那条**过度归纳的立规**本身。）\n\n🔴 **批次 146 清理**：本条原有若干个 pattern **在全册一个字都匹配不到**（幽灵锚），而旧的门只判「entry 是否至少命中一处」，因此它们**一直静默通过、实际没有覆盖任何一处**。已逐条 grep 定案：写法变了的**重锚到现形**，目标文本已全册不存在的**删除**，并把「逐 pattern 幽灵检测」加进 `jimeng-backfill-gate.mjs`（配阳性对照用例 ③'）。",
    "refuted_in": "批次 142（SOURCE_OBSERVATIONS.md §4.63）",
    "reason": "**那条立规是从 4 个读数过度归纳出来的，方向是反的。** 批次 141 的八档数据本身就没被算对：`max(48×0.36, 24) = 24`，而 36% 档**实测是 `17.28`**；`max(48×0.6, 24) = 28.8`，而 60% 档**实测是 `24`** ⇒ `max` 在两端都算错，节点角把手是 **`min(48×scale, 24)`（封顶）**、边把手厚度是 **`min(20×scale, 10)`（封顶）**，交叉点 50%。批次 142 补测**组卡片**（canvas 恒 560，九档 20/25/30/40/50/60/100/150/200%）得到方向**相反**的结论：组角把手 = **`max(24×scale, 24)`（保底，交叉点 100%）**，组边把手厚度 = **`10×scale`（完全不钳位）**，组边把手长度 = 卡片 canvas 宽 × scale（**不钳位**）。🔑 直接证据：≥120% 时组角读 `36 / 48` **大于**节点角的 `24`。⇒ 合起来是「**三个量不钳、两个封顶、两个保底**」，连钳不钳都逐量不同。「高缩放给一个可点的下限」这个**直觉解释**也失效：把手在高缩放下是**不再变大**（封顶），不是托底。📌 **立规（替换批次 141 那条）**：**公式只在它被实测的那一族里成立**；跨族推广必须先测那一族，哪怕「看起来显然是同一套」。读任何 UI 元件在缩放下多大时，唯一可靠动作是把它自己的低段与高段各量几档，分别反推 `屏上/scale`（看 canvas 常量）与绝对值（看屏上常量）——**钳不钳、往哪钳、交叉点在哪，三者都要从数据里读出来**。"
   },
@@ -563,9 +563,9 @@
    "label": "「单击节点**底部空白**（避开正文区）才是「选中」；点到正文会直接进入编辑态、工具条被替换成 316×40 那套」—— 原写在 SOURCE_OBSERVATIONS.md §3.14「触发要点」条",
    "patterns": [
     "单击节点\\*{2}底部空白\\*{2}",
-    "点到正文会直接进入编辑态"
+    "点到正文会直接进入"
    ],
-   "pattern_note": "（第二条 pattern 绑死在「点到正文会直接进入编辑态」这个**具体二分**上，不能用裸的 `编辑态` 或 `正文` —— 手册里大量正确记述都提到正文与编辑态（`edit-text-node.md` 整页、§3.13/§3.15 等），拿它们当 pattern 会把正确记录判成「改了结论没回填」。⇒ 与 `group-toolbar-width-blame-card-width`、`all-ui-clamped-elements-share-one-max-template` 同源：**pattern 必须绑上这条被推翻断言的原话，不能只抓主题词**。）",
+   "pattern_note": "（第二条 pattern 绑死在「点到正文会直接进入编辑态」这个**具体二分**上，不能用裸的 `编辑态` 或 `正文` —— 手册里大量正确记述都提到正文与编辑态（`edit-text-node.md` 整页、§3.13/§3.15 等），拿它们当 pattern 会把正确记录判成「改了结论没回填」。⇒ 与 `group-toolbar-width-blame-card-width`、`all-ui-clamped-elements-share-one-max-template` 同源：**pattern 必须绑上这条被推翻断言的原话，不能只抓主题词**。）\n\n🔴 **批次 146 清理**：本条原有若干个 pattern **在全册一个字都匹配不到**（幽灵锚），而旧的门只判「entry 是否至少命中一处」，因此它们**一直静默通过、实际没有覆盖任何一处**。已逐条 grep 定案：写法变了的**重锚到现形**，目标文本已全册不存在的**删除**，并把「逐 pattern 幽灵检测」加进 `jimeng-backfill-gate.mjs`（配阳性对照用例 ③'）。",
    "refuted_in": "批次 143（SOURCE_OBSERVATIONS.md §3.14 就地订正 + §4.65.2）",
    "reason": "**那个二分不成立：单击文本节点的任何位置都会展开编辑覆盖层。** 2026-10-04 批次 143 做像素普查（2px 网格，一个 canvas 恒 320×320、屏上 192×192 的文本节点盒内 2256 个采样点，按「命中元素的 tag + 类名 + 所属节点」归类）：**2106 个点（93%）命中同一个非正文 `DIV`**（类名字面量 `data-[connection-receiving=true]:border-transparent …`，父链 `group/canvas-panel-scrollbar` → `.react-flow__node`），只有 123 个点落在正文 `P.text-octo-ui-copy` 上。⇒ 点那个占 93% 的「非正文 DIV」**同样**展开编辑态，「避开正文才是选中」不成立。🔑 更要紧的机制是：单击展开的是 `[data-testid=\"text-editor-node-overlay\"]`，内含真的 `contenteditable`（tiptap `ProseMirror`），而**这个 overlay 挂在 `.react-flow__renderer` 下、不在 `.react-flow__node` 里** ⇒ 展开之后节点上**每一个像素**的 `closest('.react-flow__node')` 都返回 `null`（实测：同一个落点，单击前命中 `DIV[data-testid=\"text-flow-node-full\"]`（祖先链里有 `.react-flow__node`），单击后命中 `DIV.nodrag.min-h-full[…caret-dreamina-brand-default]`（祖先链里只有 `text-editor-node-overlay` → `.react-flow__renderer`））。且 overlay 是 **`nodrag`** ⇒ 展开状态下拖不动节点（14 步渐进拖动，每一步 canvas 读数纹丝不动，实测位移逐字 `0`）。📌 **立规**：① 「点 A 才是 X、点 B 才是 Y」这种二分必须先做**像素普查**（把盒内每个像素按命中元素归类并计数），不能凭「看起来哪块是正文」推断；② **落点归属判据要问「单击之后」** —— `closest('.react-flow__node')` 这类判据**对会展开覆盖层的组件不封闭**，点完必须重新读一次归属再决定下一步。"
   },
@@ -590,6 +590,18 @@
    "pattern_note": "（**原文替换型**订正：那一格已改成「canvas 恒 `320×320`；屏上 = `320 × 当前缩放`」并把 `182×182` 划掉。⇒ pattern 只匹配**订正标记**（删除线 / 「批次 145 订正」），不去匹配 `182×182` 本身 —— 后者在 SOURCE_OBSERVATIONS §4.68 是**正确记录**（那里明确说它「是某一次自动适配后的读数」），拿它当 pattern 会把正确记录判成「改了结论没回填」。已验证两个 pattern 均**全册唯一命中**。）",
    "refuted_in": "批次 145（20-reference.md 就地订正 + SOURCE_OBSERVATIONS §4.68）",
    "reason": "**`182×182` 不是错读数，但它被当成了契约 —— 而且没把当时的缩放一并记下来。** 2026-10-03 批次 134 测到 `182×182` 是真的：`320 × 0.568 = 181.8`。问题在于**新建节点会让画布自动适配缩放**（批次 134 自己也记过「60% → 57%」），而**适配落点每次都不同**：2026-10-04 批次 145 连续三次建图片节点，适配后分别是 **57% / 36% / 53%**，对应空态屏上 **`181.8` / `115.5` / `170.9`**，而 **canvas 三次都恒 `320×320`**。⇒ 同一张 canvas 恒 320 的节点在手册里会同时出现 `182`（图片，某次适配后）与 `192`（音频 @60%），读者无法分辨是不是同一件事。📌 **立规：记节点矩形要区分「canvas 口径」与「屏上口径」**；canvas 恒定值才是契约，屏上必须**连当时的实测 scale 一起记**。⚠️ 配套两条本批实测：① **缩放按钮的 aria 百分比是四舍五入值**（实测 `scale()=0.534` ↔ aria `53%`，差 `0.0041`），按 aria 反算屏上会算错；② **判据不要预设具体数值** —— 本批第二轮把上一轮读到的 `0.568` 写成区间断言，第三轮适配到 `0.534` 就报红，与批次 142「判据写死数量 = 把机制提前写进判据」是同一条，正确写法是只判**双通道自洽**（`屏上 ÷ canvas == transform 里的 scale`）。"
+  },
+  {
+   "id": "blank-drop-does-not-select-source-node",
+   "label": "把「从节点手柄**拖到画布空白处松手 ⇒ 源节点变成选中态**（状态行出现 `1 selected`）」当作这条路径的固定副作用写进正文",
+   "patterns": [
+    "~~但这次拖拽会让\\*\\*源节点变成选中态\\*\\*",
+    "~~副作用（与既有记录一致）：拖完\\*\\*源节点变成选中态\\*\\*",
+    "~~拖完节点会变成选中态、但\\*\\*位置不变\\*\\*"
+   ],
+   "pattern_note": "（**原文替换型**订正：三处都改成「位置不变 / 不会建出线两条仍成立，但『会变选中』被推翻」。⇒ pattern 只匹配**订正后的删除线片段**，不去匹配 `源节点变成选中态` 这串字 —— 它在 SOURCE_OBSERVATIONS §4.57/§4.58 与 PROGRESS 里是**正确的历史记录**（那里如实记着当年读到过、后来没复现），拿它当 pattern 会把正确记录判成「改了结论没回填」。三个 pattern 分别锚定三处不同措辞，已验证均**全册唯一命中**。⚠️ 第二条**第一版写错过**：写成 `拖完~~\\*\\*源节点变成选中态\\*\\*` 命中 0 —— 因为删除线实际开在更前面的「副作用（与既有记录一致）：」上。🔴 这暴露了门的一个漏洞并已修补：**旧的门只判「entry 是否至少命中一处」，不判「每个 pattern 是否都命中」** —— 一条 entry 写 3 个 pattern、只有 1 个对得上时会**全部照过**，另外 2 个正在假装覆盖别处的旧结论。已给 `jimeng-backfill-gate.mjs` 加「逐 pattern 幽灵检测」并配阳性对照用例 ③'。）",
+   "refuted_in": "批次 146（connect-nodes.md 两处 + 90-troubleshooting.md 一处就地订正 + connect-nodes.md 新增「🔴 批次 146 定案」小节 + SOURCE_OBSERVATIONS §4.69）",
+   "reason": "**这个副作用从来不存在 —— 手册记的是一次「拖拽没起拖」的假象。** 历史三次未复现（AUDIT 有记），其中**唯一一次**出现 `1 selected` 的那一轮，**预览线压根没出现**，说明那不是一次成功的拖拽；而且**被选中的是另一个节点**。2026-10-04 批次 146 做同条件重测：前置每次现算并断言（拖前 0 选中、落点命中 `DIV.react-flow__pane`、不在任何节点内、不是按钮），**5 次独立拖拽（a/b/c 三轮）状态行恒 `0 selected`、`.react-flow__node.selected` 恒空集**，5/5。同时逐字复现的另外两条 —— 菜单在松手瞬间弹在松手点（`200×316`、aria `添加节点`）、`.react-flow__edge` 恒 0、源节点 canvas 位移恒 `[0,0]`。📌 配套立规两条：① **「同落点重测」在共享画布上不总可行** —— 当年落点 `(140,150)` 如今已被别人的节点占用，改为按**机制条件**（「落点是空白 `.react-flow__pane`」）做同条件重测，并**把实际落点坐标逐字写进证据**，不假装是同一个点；② **判「某元件在不在」要选对容器** —— 同批还首次建档了**预览线的 DOM 真身**（`svg.react-flow__connectionline` 内的 `path.react-flow__connection-path`，描边 `rgb(0,142,229)`），它**不在 `.react-flow__edge` 里**、拖拽全程该计数恒为 0 ⇒ 用 `.react-flow__edge` 判「有没有起拖」必然误判。"
   }
  ]
 }
