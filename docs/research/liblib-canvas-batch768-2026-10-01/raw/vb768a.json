@@ -1,0 +1,1171 @@
+{
+ "batch": 768,
+ "probe": "a",
+ "question": "6 个 disclosure 的焦点归还契约（两个变体：不点外点，焦点分别在浮层内 / 触发器上）",
+ "rounds": [
+  {
+   "cleared": {
+    "removed": []
+   },
+   "load": {
+    "opened": true
+   },
+   "rows": [
+    {
+     "mode": "inside",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "tag": "INPUT",
+      "type": "number",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "INPUT",
+      "activeAria": null,
+      "activeText": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "id": "export",
+     "name": "导出面板"
+    },
+    {
+     "mode": "trigger",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "tag": "BUTTON",
+      "text": "导出视频到画布",
+      "aria": null
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "导出视频到画布",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "导出视频到画布",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BUTTON",
+      "activeAria": null,
+      "activeText": "导出视频到画布",
+      "isBody": false,
+      "inDialog": true
+     },
+     "id": "export",
+     "name": "导出面板"
+    },
+    {
+     "mode": "inside",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 10,
+      "tag": "BUTTON",
+      "type": "button",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "关闭预设运镜",
+       "text": "",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "preset",
+     "name": "预设运镜面板"
+    },
+    {
+     "mode": "trigger",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "tag": "BUTTON",
+      "text": "预设运镜",
+      "aria": null
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "预设运镜",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "preset",
+     "name": "预设运镜面板"
+    },
+    {
+     "mode": "inside",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": null,
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "铅笔路径",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "pathmenu",
+     "name": "创建运动轨迹菜单"
+    },
+    {
+     "mode": "trigger",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "tag": "BUTTON",
+      "text": "绘制轨迹",
+      "aria": "绘制轨迹"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": null,
+      "active": {
+       "tag": "BUTTON",
+       "aria": "绘制轨迹",
+       "text": "绘制轨迹",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "pathmenu",
+     "name": "创建运动轨迹菜单"
+    },
+    {
+     "mode": "inside",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 2,
+      "tag": "BUTTON",
+      "type": "button",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "关闭虚拟相机",
+       "text": "",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BODY",
+       "aria": null,
+       "text": "画布 2开通会员限时",
+       "type": null,
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": false,
+       "isBody": true
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BODY",
+      "activeAria": null,
+      "activeText": "画布 2开通会员限时",
+      "isBody": true,
+      "inDialog": false
+     },
+     "id": "phonevcam",
+     "name": "虚拟相机面板"
+    },
+    {
+     "mode": "trigger",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "tag": "BUTTON",
+      "text": "",
+      "aria": "虚拟相机"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "虚拟相机",
+       "text": "",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "虚拟相机",
+       "text": "",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BUTTON",
+      "activeAria": "虚拟相机",
+      "activeText": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "id": "phonevcam",
+     "name": "虚拟相机面板"
+    },
+    {
+     "mode": "inside",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "tag": "INPUT",
+      "type": "number",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "INPUT",
+      "activeAria": null,
+      "activeText": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "id": "crowd",
+     "name": "添加群众阵列面板"
+    },
+    {
+     "mode": "trigger",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "tag": "BUTTON",
+      "text": "",
+      "aria": "添加群众阵列"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "添加群众阵列",
+       "text": "",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "crowd",
+     "name": "添加群众阵列面板"
+    },
+    {
+     "mode": "inside",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 15,
+      "tag": "INPUT",
+      "type": "file",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "file",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BODY",
+       "aria": null,
+       "text": "画布 2开通会员限时",
+       "type": null,
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": false,
+       "isBody": true
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BODY",
+      "activeAria": null,
+      "activeText": "画布 2开通会员限时",
+      "isBody": true,
+      "inDialog": false
+     },
+     "id": "modellib",
+     "name": "模型库面板"
+    },
+    {
+     "mode": "trigger",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "tag": "BUTTON",
+      "text": "",
+      "aria": "模型库"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "模型库",
+       "text": "",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "模型库",
+       "text": "",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BUTTON",
+      "activeAria": "模型库",
+      "activeText": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "id": "modellib",
+     "name": "模型库面板"
+    }
+   ],
+   "deskGoneAfter": [
+    "preset/inside",
+    "preset/trigger",
+    "pathmenu/inside",
+    "pathmenu/trigger",
+    "crowd/trigger"
+   ]
+  },
+  {
+   "cleared": {
+    "removed": [
+     "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+    ]
+   },
+   "load": {
+    "opened": true
+   },
+   "rows": [
+    {
+     "mode": "inside",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "tag": "INPUT",
+      "type": "number",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "INPUT",
+      "activeAria": null,
+      "activeText": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "id": "export",
+     "name": "导出面板"
+    },
+    {
+     "mode": "trigger",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "tag": "BUTTON",
+      "text": "导出视频到画布",
+      "aria": null
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "导出视频到画布",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "导出视频到画布",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BUTTON",
+      "activeAria": null,
+      "activeText": "导出视频到画布",
+      "isBody": false,
+      "inDialog": true
+     },
+     "id": "export",
+     "name": "导出面板"
+    },
+    {
+     "mode": "inside",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 10,
+      "tag": "BUTTON",
+      "type": "button",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "关闭预设运镜",
+       "text": "",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "preset",
+     "name": "预设运镜面板"
+    },
+    {
+     "mode": "trigger",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "tag": "BUTTON",
+      "text": "预设运镜",
+      "aria": null
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "预设运镜",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "preset",
+     "name": "预设运镜面板"
+    },
+    {
+     "mode": "inside",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": null,
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "铅笔路径",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "pathmenu",
+     "name": "创建运动轨迹菜单"
+    },
+    {
+     "mode": "trigger",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "tag": "BUTTON",
+      "text": "绘制轨迹",
+      "aria": "绘制轨迹"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": null,
+      "active": {
+       "tag": "BUTTON",
+       "aria": "绘制轨迹",
+       "text": "绘制轨迹",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "pathmenu",
+     "name": "创建运动轨迹菜单"
+    },
+    {
+     "mode": "inside",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 2,
+      "tag": "BUTTON",
+      "type": "button",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "关闭虚拟相机",
+       "text": "",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BODY",
+       "aria": null,
+       "text": "画布 2开通会员限时",
+       "type": null,
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": false,
+       "isBody": true
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BODY",
+      "activeAria": null,
+      "activeText": "画布 2开通会员限时",
+      "isBody": true,
+      "inDialog": false
+     },
+     "id": "phonevcam",
+     "name": "虚拟相机面板"
+    },
+    {
+     "mode": "trigger",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "tag": "BUTTON",
+      "text": "",
+      "aria": "虚拟相机"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "虚拟相机",
+       "text": "",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "虚拟相机",
+       "text": "",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BUTTON",
+      "activeAria": "虚拟相机",
+      "activeText": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "id": "phonevcam",
+     "name": "虚拟相机面板"
+    },
+    {
+     "mode": "inside",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "tag": "INPUT",
+      "type": "number",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "INPUT",
+      "activeAria": null,
+      "activeText": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "id": "crowd",
+     "name": "添加群众阵列面板"
+    },
+    {
+     "mode": "trigger",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "tag": "BUTTON",
+      "text": "",
+      "aria": "添加群众阵列"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "添加群众阵列",
+       "text": "",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "crowd",
+     "name": "添加群众阵列面板"
+    },
+    {
+     "mode": "inside",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 15,
+      "tag": "INPUT",
+      "type": "file",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "file",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BODY",
+       "aria": null,
+       "text": "画布 2开通会员限时",
+       "type": null,
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": false,
+       "isBody": true
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BODY",
+      "activeAria": null,
+      "activeText": "画布 2开通会员限时",
+      "isBody": true,
+      "inDialog": false
+     },
+     "id": "modellib",
+     "name": "模型库面板"
+    },
+    {
+     "mode": "trigger",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "tag": "BUTTON",
+      "text": "",
+      "aria": "模型库"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "模型库",
+       "text": "",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "模型库",
+       "text": "",
+       "type": "button",
+       "isTrigger": true,
+       "inPanel": false,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BUTTON",
+      "activeAria": "模型库",
+      "activeText": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "id": "modellib",
+     "name": "模型库面板"
+    }
+   ],
+   "deskGoneAfter": [
+    "preset/inside",
+    "preset/trigger",
+    "pathmenu/inside",
+    "pathmenu/trigger",
+    "crowd/trigger"
+   ]
+  }
+ ]
+}

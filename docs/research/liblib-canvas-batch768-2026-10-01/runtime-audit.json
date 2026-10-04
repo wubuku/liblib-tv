@@ -1,0 +1,6721 @@
+{
+ "batch": 768,
+ "date": "2026-10-01",
+ "scope": "补 767 的 J9：6 个导演台 disclosure 浮层的**焦点归还契约**（焦点在浮层内时按 Esc，关闭之后焦点去哪），附一条**注入对照**用来把「掉到 body」与「本来就在触发器上所以没动」分开",
+ "env": {
+  "base": "http://localhost:4317",
+  "canvas": "canvas-2",
+  "directorNodeId": "b-bTLLuU4w5q",
+  "viewport": "1440x1000（桌面）",
+  "player": "chromium (playwright sync_api)",
+  "srcModified": false
+ },
+ "probes": [
+  {
+   "id": "768a",
+   "file": "probes/dbg768a.py",
+   "raw": "raw/vb768a.json",
+   "rounds": 2,
+   "injected": false,
+   "note": "基线：两个变体各从**重载页面**开始，全程不点外点"
+  },
+  {
+   "id": "768b",
+   "file": "probes/dbg768b.py",
+   "raw": "raw/vb768b.json",
+   "rounds": 2,
+   "injected": true,
+   "note": "与 a 同协议，额外注入「浮层关闭后 trigger.focus()」；注入挂在 window 捕获阶段（冒泡阶段收不到手机相机那个 stopImmediatePropagation）"
+  }
+ ],
+ "rawSha": {
+  "vb768a.json": "cf53ac25259836a3",
+  "vb768b.json": "20815a48e392f269"
+ },
+ "findings": {
+  "comparability": {
+   "a": {
+    "keys": [
+     "rows"
+    ],
+    "allConsistent": true,
+    "firstDiff": {},
+    "rounds": 2,
+    "clearedLocalStorage": [
+     [],
+     [
+      "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+     ]
+    ],
+    "deskGoneAfter": [
+     [
+      "preset/inside",
+      "preset/trigger",
+      "pathmenu/inside",
+      "pathmenu/trigger",
+      "crowd/trigger"
+     ],
+     [
+      "preset/inside",
+      "preset/trigger",
+      "pathmenu/inside",
+      "pathmenu/trigger",
+      "crowd/trigger"
+     ]
+    ]
+   },
+   "b": {
+    "keys": [
+     "rows"
+    ],
+    "allConsistent": true,
+    "firstDiff": {},
+    "rounds": 2,
+    "clearedLocalStorage": [
+     [],
+     [
+      "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+     ]
+    ]
+   },
+   "crossArm": "两个探针的 rows 逐格比对（a 无注入 / b 有注入）",
+   "protocol": "★ **每个变体都从重新加载的页面开始**，全程**不点外点** —— 767 的 R73：把两件事串在同一条时间线上会互相污染，而「先试着关掉再继续」也不行，因为「怎么关」本身是被测对象。全程只点 6 个 disclosure 触发器，其余是 `.focus()` 读操作与 Esc。",
+   "note": "★ 注入探针 b 挂在 **window 捕获**阶段 —— 必须是捕获：DirectorPhoneVcamPanel.tsx:294 的 Esc 监听就在捕获里 stopImmediatePropagation，冒泡阶段根本收不到 keydown。"
+  },
+  "focusRestore": {
+   "perDisclosure": {
+    "export": {
+     "insideClass": "panel-stuck",
+     "insideVerdict": "unmeasured-d3-masks-it",
+     "insideWhy": "焦点落在浮层里第一个可聚焦控件上，而那个控件是输入框 ⟹ DirectorDesk.tsx:487 的 isEditable 早退把 Esc 吞掉，浮层根本没关 ⟹ 焦点还在原地，**焦点去向无从观察**",
+     "focusedControl": {
+      "tag": "INPUT",
+      "type": "number",
+      "text": ""
+     },
+     "focusablesInPanel": 5,
+     "triggerVariantClass": "closed-focus-on-trigger",
+     "triggerVariantIsVacuous": true
+    },
+    "preset": {
+     "insideClass": "desk-lost",
+     "insideVerdict": "impossible-trigger-unmounted",
+     "insideWhy": "Esc 把整个导演台关掉了，触发器随之从 DOM 卸载 ⟹ 「归还焦点到触发器」**物理上不可能**（注入实测 trigThere=false）",
+     "focusedControl": {
+      "tag": "BUTTON",
+      "type": "button",
+      "text": ""
+     },
+     "focusablesInPanel": 10,
+     "triggerVariantClass": "desk-lost",
+     "triggerVariantIsVacuous": false
+    },
+    "pathmenu": {
+     "insideClass": "desk-lost",
+     "insideVerdict": "impossible-trigger-unmounted",
+     "insideWhy": "Esc 把整个导演台关掉了，触发器随之从 DOM 卸载 ⟹ 「归还焦点到触发器」**物理上不可能**（注入实测 trigThere=false）",
+     "focusedControl": {
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径"
+     },
+     "focusablesInPanel": 5,
+     "triggerVariantClass": "desk-lost",
+     "triggerVariantIsVacuous": false
+    },
+    "phonevcam": {
+     "insideClass": "closed-focus-on-body",
+     "insideVerdict": "measured-fails",
+     "insideWhy": "浮层确实关了，但焦点掉到 body，逃出对话框",
+     "focusedControl": {
+      "tag": "BUTTON",
+      "type": "button",
+      "text": ""
+     },
+     "focusablesInPanel": 2,
+     "triggerVariantClass": "closed-focus-on-trigger",
+     "triggerVariantIsVacuous": true
+    },
+    "crowd": {
+     "insideClass": "panel-stuck",
+     "insideVerdict": "unmeasured-d3-masks-it",
+     "insideWhy": "焦点落在浮层里第一个可聚焦控件上，而那个控件是输入框 ⟹ DirectorDesk.tsx:487 的 isEditable 早退把 Esc 吞掉，浮层根本没关 ⟹ 焦点还在原地，**焦点去向无从观察**",
+     "focusedControl": {
+      "tag": "INPUT",
+      "type": "number",
+      "text": ""
+     },
+     "focusablesInPanel": 5,
+     "triggerVariantClass": "desk-lost",
+     "triggerVariantIsVacuous": false
+    },
+    "modellib": {
+     "insideClass": "closed-focus-on-body",
+     "insideVerdict": "measured-fails",
+     "insideWhy": "浮层确实关了，但焦点掉到 body，逃出对话框",
+     "focusedControl": {
+      "tag": "INPUT",
+      "type": "file",
+      "text": ""
+     },
+     "focusablesInPanel": 15,
+     "triggerVariantClass": "closed-focus-on-trigger",
+     "triggerVariantIsVacuous": true
+    }
+   },
+   "implementedRestore": [],
+   "measuredAndFails": [
+    "phonevcam",
+    "modellib"
+   ],
+   "unmeasuredBecauseD3": [
+    "export",
+    "crowd"
+   ],
+   "impossibleBecauseTriggerUnmounted": [
+    "preset",
+    "pathmenu"
+   ],
+   "cells": {
+    "export/inside": [
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "number",
+       "text": ""
+      },
+      "panelFocusables": 5,
+      "focusWasInPanel": true,
+      "focusWasOnTrigger": false,
+      "triggerAriaExpanded": "true",
+      "class": "panel-stuck",
+      "focusAfter": {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      }
+     },
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "number",
+       "text": ""
+      },
+      "panelFocusables": 5,
+      "focusWasInPanel": true,
+      "focusWasOnTrigger": false,
+      "triggerAriaExpanded": "true",
+      "class": "panel-stuck",
+      "focusAfter": {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      }
+     }
+    ],
+    "export/trigger": [
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": null,
+       "text": "导出视频到画布"
+      },
+      "panelFocusables": null,
+      "focusWasInPanel": false,
+      "focusWasOnTrigger": true,
+      "triggerAriaExpanded": "true",
+      "class": "closed-focus-on-trigger",
+      "focusAfter": {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      }
+     },
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": null,
+       "text": "导出视频到画布"
+      },
+      "panelFocusables": null,
+      "focusWasInPanel": false,
+      "focusWasOnTrigger": true,
+      "triggerAriaExpanded": "true",
+      "class": "closed-focus-on-trigger",
+      "focusAfter": {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      }
+     }
+    ],
+    "preset/inside": [
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": ""
+      },
+      "panelFocusables": 10,
+      "focusWasInPanel": true,
+      "focusWasOnTrigger": false,
+      "triggerAriaExpanded": "true",
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     },
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": ""
+      },
+      "panelFocusables": 10,
+      "focusWasInPanel": true,
+      "focusWasOnTrigger": false,
+      "triggerAriaExpanded": "true",
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     }
+    ],
+    "preset/trigger": [
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": null,
+       "text": "预设运镜"
+      },
+      "panelFocusables": null,
+      "focusWasInPanel": false,
+      "focusWasOnTrigger": true,
+      "triggerAriaExpanded": "true",
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     },
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": null,
+       "text": "预设运镜"
+      },
+      "panelFocusables": null,
+      "focusWasInPanel": false,
+      "focusWasOnTrigger": true,
+      "triggerAriaExpanded": "true",
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     }
+    ],
+    "pathmenu/inside": [
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": "铅笔路径"
+      },
+      "panelFocusables": 5,
+      "focusWasInPanel": true,
+      "focusWasOnTrigger": false,
+      "triggerAriaExpanded": null,
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     },
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": "铅笔路径"
+      },
+      "panelFocusables": 5,
+      "focusWasInPanel": true,
+      "focusWasOnTrigger": false,
+      "triggerAriaExpanded": null,
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     }
+    ],
+    "pathmenu/trigger": [
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": null,
+       "text": "绘制轨迹"
+      },
+      "panelFocusables": null,
+      "focusWasInPanel": false,
+      "focusWasOnTrigger": true,
+      "triggerAriaExpanded": null,
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     },
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": null,
+       "text": "绘制轨迹"
+      },
+      "panelFocusables": null,
+      "focusWasInPanel": false,
+      "focusWasOnTrigger": true,
+      "triggerAriaExpanded": null,
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     }
+    ],
+    "phonevcam/inside": [
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": ""
+      },
+      "panelFocusables": 2,
+      "focusWasInPanel": true,
+      "focusWasOnTrigger": false,
+      "triggerAriaExpanded": "true",
+      "class": "closed-focus-on-body",
+      "focusAfter": {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      }
+     },
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": ""
+      },
+      "panelFocusables": 2,
+      "focusWasInPanel": true,
+      "focusWasOnTrigger": false,
+      "triggerAriaExpanded": "true",
+      "class": "closed-focus-on-body",
+      "focusAfter": {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      }
+     }
+    ],
+    "phonevcam/trigger": [
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": null,
+       "text": ""
+      },
+      "panelFocusables": null,
+      "focusWasInPanel": false,
+      "focusWasOnTrigger": true,
+      "triggerAriaExpanded": "true",
+      "class": "closed-focus-on-trigger",
+      "focusAfter": {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      }
+     },
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": null,
+       "text": ""
+      },
+      "panelFocusables": null,
+      "focusWasInPanel": false,
+      "focusWasOnTrigger": true,
+      "triggerAriaExpanded": "true",
+      "class": "closed-focus-on-trigger",
+      "focusAfter": {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      }
+     }
+    ],
+    "crowd/inside": [
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "number",
+       "text": ""
+      },
+      "panelFocusables": 5,
+      "focusWasInPanel": true,
+      "focusWasOnTrigger": false,
+      "triggerAriaExpanded": "true",
+      "class": "panel-stuck",
+      "focusAfter": {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      }
+     },
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "number",
+       "text": ""
+      },
+      "panelFocusables": 5,
+      "focusWasInPanel": true,
+      "focusWasOnTrigger": false,
+      "triggerAriaExpanded": "true",
+      "class": "panel-stuck",
+      "focusAfter": {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      }
+     }
+    ],
+    "crowd/trigger": [
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": null,
+       "text": ""
+      },
+      "panelFocusables": null,
+      "focusWasInPanel": false,
+      "focusWasOnTrigger": true,
+      "triggerAriaExpanded": "true",
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     },
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": null,
+       "text": ""
+      },
+      "panelFocusables": null,
+      "focusWasInPanel": false,
+      "focusWasOnTrigger": true,
+      "triggerAriaExpanded": "true",
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     }
+    ],
+    "modellib/inside": [
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "file",
+       "text": ""
+      },
+      "panelFocusables": 15,
+      "focusWasInPanel": true,
+      "focusWasOnTrigger": false,
+      "triggerAriaExpanded": "true",
+      "class": "closed-focus-on-body",
+      "focusAfter": {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      }
+     },
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "file",
+       "text": ""
+      },
+      "panelFocusables": 15,
+      "focusWasInPanel": true,
+      "focusWasOnTrigger": false,
+      "triggerAriaExpanded": "true",
+      "class": "closed-focus-on-body",
+      "focusAfter": {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      }
+     }
+    ],
+    "modellib/trigger": [
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": null,
+       "text": ""
+      },
+      "panelFocusables": null,
+      "focusWasInPanel": false,
+      "focusWasOnTrigger": true,
+      "triggerAriaExpanded": "true",
+      "class": "closed-focus-on-trigger",
+      "focusAfter": {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      }
+     },
+     {
+      "opened": true,
+      "focusPlaced": true,
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": null,
+       "text": ""
+      },
+      "panelFocusables": null,
+      "focusWasInPanel": false,
+      "focusWasOnTrigger": true,
+      "triggerAriaExpanded": "true",
+      "class": "closed-focus-on-trigger",
+      "focusAfter": {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      }
+     }
+    ]
+   },
+   "denominatorNote": "分母是 6 个 disclosure。**4 个没被真正测到焦点问题**：2 个被 D3 遮住、2 个触发器已被卸载。"
+  },
+  "injectionContrast": {
+   "what": "在 window 捕获阶段监听 Escape，150ms 后若**该浮层已从 DOM 消失且触发器仍在 DOM 里**，就 trigger.focus()。",
+   "whyCapture": "DirectorPhoneVcamPanel.tsx:294 在 window 捕获里 stopImmediatePropagation()，冒泡阶段收不到 keydown。",
+   "perCell": {
+    "export/inside": {
+     "baseClass": [
+      "panel-stuck",
+      "panel-stuck"
+     ],
+     "injClass": [
+      "panel-stuck",
+      "panel-stuck"
+     ],
+     "changed": [
+      false,
+      false
+     ],
+     "baseFocus": [
+      {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      },
+      {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      }
+     ],
+     "injFocus": [
+      {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      },
+      {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      }
+     ],
+     "injLog": [
+      [
+       {
+        "panelGone": false,
+        "trigThere": true
+       }
+      ],
+      [
+       {
+        "panelGone": false,
+        "trigThere": true
+       }
+      ]
+     ]
+    },
+    "export/trigger": {
+     "baseClass": [
+      "closed-focus-on-trigger",
+      "closed-focus-on-trigger"
+     ],
+     "injClass": [
+      "closed-focus-on-trigger",
+      "closed-focus-on-trigger"
+     ],
+     "changed": [
+      false,
+      false
+     ],
+     "baseFocus": [
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      },
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      }
+     ],
+     "injFocus": [
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      },
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      }
+     ],
+     "injLog": [
+      [
+       {
+        "panelGone": true,
+        "trigThere": true,
+        "focused": true
+       }
+      ],
+      [
+       {
+        "panelGone": true,
+        "trigThere": true,
+        "focused": true
+       }
+      ]
+     ]
+    },
+    "preset/inside": {
+     "baseClass": [
+      "desk-lost",
+      "desk-lost"
+     ],
+     "injClass": [
+      "desk-lost",
+      "desk-lost"
+     ],
+     "changed": [
+      false,
+      false
+     ],
+     "baseFocus": [
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      },
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     ],
+     "injFocus": [
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      },
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     ],
+     "injLog": [
+      [
+       {
+        "panelGone": true,
+        "trigThere": false
+       }
+      ],
+      [
+       {
+        "panelGone": true,
+        "trigThere": false
+       }
+      ]
+     ]
+    },
+    "preset/trigger": {
+     "baseClass": [
+      "desk-lost",
+      "desk-lost"
+     ],
+     "injClass": [
+      "desk-lost",
+      "desk-lost"
+     ],
+     "changed": [
+      false,
+      false
+     ],
+     "baseFocus": [
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      },
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     ],
+     "injFocus": [
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      },
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     ],
+     "injLog": [
+      [
+       {
+        "panelGone": true,
+        "trigThere": false
+       }
+      ],
+      [
+       {
+        "panelGone": true,
+        "trigThere": false
+       }
+      ]
+     ]
+    },
+    "pathmenu/inside": {
+     "baseClass": [
+      "desk-lost",
+      "desk-lost"
+     ],
+     "injClass": [
+      "desk-lost",
+      "desk-lost"
+     ],
+     "changed": [
+      false,
+      false
+     ],
+     "baseFocus": [
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      },
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     ],
+     "injFocus": [
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      },
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     ],
+     "injLog": [
+      [
+       {
+        "panelGone": true,
+        "trigThere": false
+       }
+      ],
+      [
+       {
+        "panelGone": true,
+        "trigThere": false
+       }
+      ]
+     ]
+    },
+    "pathmenu/trigger": {
+     "baseClass": [
+      "desk-lost",
+      "desk-lost"
+     ],
+     "injClass": [
+      "desk-lost",
+      "desk-lost"
+     ],
+     "changed": [
+      false,
+      false
+     ],
+     "baseFocus": [
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      },
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     ],
+     "injFocus": [
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      },
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     ],
+     "injLog": [
+      [
+       {
+        "panelGone": true,
+        "trigThere": false
+       }
+      ],
+      [
+       {
+        "panelGone": true,
+        "trigThere": false
+       }
+      ]
+     ]
+    },
+    "phonevcam/inside": {
+     "baseClass": [
+      "closed-focus-on-body",
+      "closed-focus-on-body"
+     ],
+     "injClass": [
+      "closed-focus-on-trigger",
+      "closed-focus-on-trigger"
+     ],
+     "changed": [
+      true,
+      true
+     ],
+     "baseFocus": [
+      {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      },
+      {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      }
+     ],
+     "injFocus": [
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      },
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      }
+     ],
+     "injLog": [
+      [
+       {
+        "panelGone": true,
+        "trigThere": true,
+        "focused": true
+       }
+      ],
+      [
+       {
+        "panelGone": true,
+        "trigThere": true,
+        "focused": true
+       }
+      ]
+     ]
+    },
+    "phonevcam/trigger": {
+     "baseClass": [
+      "closed-focus-on-trigger",
+      "closed-focus-on-trigger"
+     ],
+     "injClass": [
+      "closed-focus-on-trigger",
+      "closed-focus-on-trigger"
+     ],
+     "changed": [
+      false,
+      false
+     ],
+     "baseFocus": [
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      },
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      }
+     ],
+     "injFocus": [
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      },
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      }
+     ],
+     "injLog": [
+      [
+       {
+        "panelGone": true,
+        "trigThere": true,
+        "focused": true
+       }
+      ],
+      [
+       {
+        "panelGone": true,
+        "trigThere": true,
+        "focused": true
+       }
+      ]
+     ]
+    },
+    "crowd/inside": {
+     "baseClass": [
+      "panel-stuck",
+      "panel-stuck"
+     ],
+     "injClass": [
+      "panel-stuck",
+      "panel-stuck"
+     ],
+     "changed": [
+      false,
+      false
+     ],
+     "baseFocus": [
+      {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      },
+      {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      }
+     ],
+     "injFocus": [
+      {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      },
+      {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      }
+     ],
+     "injLog": [
+      [
+       {
+        "panelGone": false,
+        "trigThere": true
+       }
+      ],
+      [
+       {
+        "panelGone": false,
+        "trigThere": true
+       }
+      ]
+     ]
+    },
+    "crowd/trigger": {
+     "baseClass": [
+      "desk-lost",
+      "desk-lost"
+     ],
+     "injClass": [
+      "desk-lost",
+      "desk-lost"
+     ],
+     "changed": [
+      false,
+      false
+     ],
+     "baseFocus": [
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      },
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     ],
+     "injFocus": [
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      },
+      {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     ],
+     "injLog": [
+      [
+       {
+        "panelGone": true,
+        "trigThere": false
+       }
+      ],
+      [
+       {
+        "panelGone": true,
+        "trigThere": false
+       }
+      ]
+     ]
+    },
+    "modellib/inside": {
+     "baseClass": [
+      "closed-focus-on-body",
+      "closed-focus-on-body"
+     ],
+     "injClass": [
+      "closed-focus-on-trigger",
+      "closed-focus-on-trigger"
+     ],
+     "changed": [
+      true,
+      true
+     ],
+     "baseFocus": [
+      {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      },
+      {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      }
+     ],
+     "injFocus": [
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      },
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      }
+     ],
+     "injLog": [
+      [
+       {
+        "panelGone": true,
+        "trigThere": true,
+        "focused": true
+       }
+      ],
+      [
+       {
+        "panelGone": true,
+        "trigThere": true,
+        "focused": true
+       }
+      ]
+     ]
+    },
+    "modellib/trigger": {
+     "baseClass": [
+      "closed-focus-on-trigger",
+      "closed-focus-on-trigger"
+     ],
+     "injClass": [
+      "closed-focus-on-trigger",
+      "closed-focus-on-trigger"
+     ],
+     "changed": [
+      false,
+      false
+     ],
+     "baseFocus": [
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      },
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      }
+     ],
+     "injFocus": [
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      },
+      {
+       "tag": "BUTTON",
+       "isTrigger": true,
+       "isBody": false,
+       "inDialog": true
+      }
+     ],
+     "injLog": [
+      [
+       {
+        "panelGone": true,
+        "trigThere": true,
+        "focused": true
+       }
+      ],
+      [
+       {
+        "panelGone": true,
+        "trigThere": true,
+        "focused": true
+       }
+      ]
+     ]
+    }
+   },
+   "cellsChangedByInjection": [
+    "phonevcam/inside",
+    "modellib/inside"
+   ],
+   "cellsInsensitiveToInjection": [
+    "export/inside",
+    "export/trigger",
+    "preset/inside",
+    "preset/trigger",
+    "pathmenu/inside",
+    "pathmenu/trigger",
+    "phonevcam/trigger",
+    "crowd/inside",
+    "crowd/trigger",
+    "modellib/trigger"
+   ]
+  },
+  "escTaxonomy": {
+   "keydownListeners": [
+    {
+     "file": "DirectorDesk.tsx",
+     "line": 570,
+     "target": "window",
+     "fn": "handleKeyDown",
+     "capture": false,
+     "stopsPropagation": false,
+     "preventsDefault": true,
+     "bodyLine": 474
+    },
+    {
+     "file": "DirectorTimeline.tsx",
+     "line": 570,
+     "target": "window",
+     "fn": "closeOnEscape",
+     "capture": false,
+     "stopsPropagation": false,
+     "preventsDefault": false,
+     "bodyLine": 568
+    },
+    {
+     "file": "DirectorTimeline.tsx",
+     "line": 594,
+     "target": "window",
+     "fn": "closeOnEscape",
+     "capture": false,
+     "stopsPropagation": false,
+     "preventsDefault": false,
+     "bodyLine": 592
+    },
+    {
+     "file": "DirectorPhoneVcamPanel.tsx",
+     "line": 294,
+     "target": "window",
+     "fn": "closeOnEscape",
+     "capture": true,
+     "stopsPropagation": true,
+     "preventsDefault": true,
+     "bodyLine": 289
+    },
+    {
+     "file": "DirectorViewport.tsx",
+     "line": 2711,
+     "target": "window",
+     "fn": "handleKeyDown",
+     "capture": true,
+     "stopsPropagation": true,
+     "preventsDefault": true,
+     "bodyLine": 2700
+    },
+    {
+     "file": "DirectorViewport.tsx",
+     "line": 2748,
+     "target": "window",
+     "fn": "closeOnEscape",
+     "capture": true,
+     "stopsPropagation": true,
+     "preventsDefault": true,
+     "bodyLine": 2743
+    }
+   ],
+   "captureCount": 3,
+   "bubbleCount": 3,
+   "totalCount": 6,
+   "combinations": [
+    "bubble/leaks",
+    "capture/stops"
+   ],
+   "preventsDefaultCount": 4,
+   "captureStopsAll": [
+    "DirectorPhoneVcamPanel.tsx:294",
+    "DirectorViewport.tsx:2711",
+    "DirectorViewport.tsx:2748"
+   ],
+   "bubbleStopsAny": [],
+   "deskLadderReferencesOtherPanels": 0,
+   "deskLadderHasExportTier": 1,
+   "deskLadderHasCaptureFlag": false,
+   "useLayerFocusReturnsToOpener": true,
+   "useLayerFocusIsConnectedGuard": true,
+   "useLayerFocusConsumers": [
+    "JimengAiDrawer.tsx",
+    "JimengNodeSummaryPopover.tsx"
+   ],
+   "directorUsesUseLayerFocus": false
+  },
+  "crossBatch": {
+   "source": "batch767 raw/vb767a.json 的 panelFocusables vs batch768 raw/vb768a.json 的 focus.total",
+   "perId": {
+    "export": {
+     "batch767": [
+      5
+     ],
+     "batch768": [
+      5
+     ],
+     "agree": true
+    },
+    "preset": {
+     "batch767": [
+      10
+     ],
+     "batch768": [
+      10
+     ],
+     "agree": true
+    },
+    "pathmenu": {
+     "batch767": [
+      5
+     ],
+     "batch768": [
+      5
+     ],
+     "agree": true
+    },
+    "phonevcam": {
+     "batch767": [
+      2
+     ],
+     "batch768": [
+      2
+     ],
+     "agree": true
+    },
+    "crowd": {
+     "batch767": [
+      5
+     ],
+     "batch768": [
+      5
+     ],
+     "agree": true
+    },
+    "modellib": {
+     "batch767": [
+      15
+     ],
+     "batch768": [
+      15
+     ],
+     "agree": true
+    }
+   },
+   "ariaExpandedIn767": {
+    "export": "true",
+    "preset": "true",
+    "pathmenu": null,
+    "phonevcam": "true",
+    "crowd": "true",
+    "modellib": "true"
+   },
+   "ariaExpandedIn768": {
+    "export": "true",
+    "preset": "true",
+    "pathmenu": null,
+    "phonevcam": "true",
+    "crowd": "true",
+    "modellib": "true"
+   },
+   "withAriaExpanded": 5,
+   "withAriaPressedOnly": [
+    "pathmenu"
+   ]
+  }
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "verdict": "PASS",
+   "statement": "**两轮逐字段一致**（a、b 各自的 `rows` 整棵树归一化 diff 为空），且先证明可比：本批**不点外点**，每个变体都从**重新加载页面**开始 ⟹ 12 格的起点互不干扰（767 的 R73：把两件事串在同一条时间线上会互相污染）。另外 b 的两轮 localStorage 各清掉一份上一轮遗留的导演台项目，a 的第一轮清掉 0 份 —— 读数仍然一致，说明清理确实在起作用。",
+   "evidenceKey": "comparability",
+   "evidence": {
+    "a": {
+     "keys": [
+      "rows"
+     ],
+     "allConsistent": true,
+     "firstDiff": {},
+     "rounds": 2,
+     "clearedLocalStorage": [
+      [],
+      [
+       "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+      ]
+     ],
+     "deskGoneAfter": [
+      [
+       "preset/inside",
+       "preset/trigger",
+       "pathmenu/inside",
+       "pathmenu/trigger",
+       "crowd/trigger"
+      ],
+      [
+       "preset/inside",
+       "preset/trigger",
+       "pathmenu/inside",
+       "pathmenu/trigger",
+       "crowd/trigger"
+      ]
+     ]
+    },
+    "b": {
+     "keys": [
+      "rows"
+     ],
+     "allConsistent": true,
+     "firstDiff": {},
+     "rounds": 2,
+     "clearedLocalStorage": [
+      [],
+      [
+       "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+      ]
+     ]
+    },
+    "crossArm": "两个探针的 rows 逐格比对（a 无注入 / b 有注入）",
+    "protocol": "★ **每个变体都从重新加载的页面开始**，全程**不点外点** —— 767 的 R73：把两件事串在同一条时间线上会互相污染，而「先试着关掉再继续」也不行，因为「怎么关」本身是被测对象。全程只点 6 个 disclosure 触发器，其余是 `.focus()` 读操作与 Esc。",
+    "note": "★ 注入探针 b 挂在 **window 捕获**阶段 —— 必须是捕获：DirectorPhoneVcamPanel.tsx:294 的 Esc 监听就在捕获里 stopImmediatePropagation，冒泡阶段根本收不到 keydown。"
+   }
+  },
+  {
+   "id": "J2",
+   "verdict": "PASS",
+   "statement": "**12 格全部拿到读数**，没有一格 FAILED：6 个 disclosure × 2 个变体，起点都验过（浮层确实开着、焦点确实放到了该放的地方），并按「导演台还在吗 / 面板还在吗 / 焦点在哪」三件事现算分类，12 格**恰好铺满**四个分类。",
+   "evidenceKey": "focusRestore",
+   "evidence": {
+    "perDisclosure": {
+     "export": {
+      "insideClass": "panel-stuck",
+      "insideVerdict": "unmeasured-d3-masks-it",
+      "insideWhy": "焦点落在浮层里第一个可聚焦控件上，而那个控件是输入框 ⟹ DirectorDesk.tsx:487 的 isEditable 早退把 Esc 吞掉，浮层根本没关 ⟹ 焦点还在原地，**焦点去向无从观察**",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "number",
+       "text": ""
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     },
+     "preset": {
+      "insideClass": "desk-lost",
+      "insideVerdict": "impossible-trigger-unmounted",
+      "insideWhy": "Esc 把整个导演台关掉了，触发器随之从 DOM 卸载 ⟹ 「归还焦点到触发器」**物理上不可能**（注入实测 trigThere=false）",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": ""
+      },
+      "focusablesInPanel": 10,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "pathmenu": {
+      "insideClass": "desk-lost",
+      "insideVerdict": "impossible-trigger-unmounted",
+      "insideWhy": "Esc 把整个导演台关掉了，触发器随之从 DOM 卸载 ⟹ 「归还焦点到触发器」**物理上不可能**（注入实测 trigThere=false）",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": "铅笔路径"
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "phonevcam": {
+      "insideClass": "closed-focus-on-body",
+      "insideVerdict": "measured-fails",
+      "insideWhy": "浮层确实关了，但焦点掉到 body，逃出对话框",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": ""
+      },
+      "focusablesInPanel": 2,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     },
+     "crowd": {
+      "insideClass": "panel-stuck",
+      "insideVerdict": "unmeasured-d3-masks-it",
+      "insideWhy": "焦点落在浮层里第一个可聚焦控件上，而那个控件是输入框 ⟹ DirectorDesk.tsx:487 的 isEditable 早退把 Esc 吞掉，浮层根本没关 ⟹ 焦点还在原地，**焦点去向无从观察**",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "number",
+       "text": ""
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "modellib": {
+      "insideClass": "closed-focus-on-body",
+      "insideVerdict": "measured-fails",
+      "insideWhy": "浮层确实关了，但焦点掉到 body，逃出对话框",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "file",
+       "text": ""
+      },
+      "focusablesInPanel": 15,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     }
+    },
+    "implementedRestore": [],
+    "measuredAndFails": [
+     "phonevcam",
+     "modellib"
+    ],
+    "unmeasuredBecauseD3": [
+     "export",
+     "crowd"
+    ],
+    "impossibleBecauseTriggerUnmounted": [
+     "preset",
+     "pathmenu"
+    ],
+    "cells": {
+     "export/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "export/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "导出视频到画布"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "导出视频到画布"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "preset/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 10,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 10,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "preset/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "预设运镜"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "预设运镜"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": "铅笔路径"
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": "铅笔路径"
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "绘制轨迹"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "绘制轨迹"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 2,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 2,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "phonevcam/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "modellib/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "file",
+        "text": ""
+       },
+       "panelFocusables": 15,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "file",
+        "text": ""
+       },
+       "panelFocusables": 15,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "modellib/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ]
+    },
+    "denominatorNote": "分母是 6 个 disclosure。**4 个没被真正测到焦点问题**：2 个被 D3 遮住、2 个触发器已被卸载。"
+   }
+  },
+  {
+   "id": "J3",
+   "verdict": "FAIL",
+   "statement": "★ **缺陷 D11（低）：6 个 disclosure 里没有任何一个在关闭后把焦点归还触发器。** 真正测到的 2 个（虚拟相机、模型库）**都是把焦点丢到 `body`** —— 逃出对话框，键盘用户下一次 Tab 会从文档开头重新开始。另 4 个不是「做对了」：2 个被 D3 遮住根本没测到，2 个的触发器随整个导演台一起被卸载、**物理上不可能**归还。",
+   "evidenceKey": "focusRestore",
+   "evidence": {
+    "perDisclosure": {
+     "export": {
+      "insideClass": "panel-stuck",
+      "insideVerdict": "unmeasured-d3-masks-it",
+      "insideWhy": "焦点落在浮层里第一个可聚焦控件上，而那个控件是输入框 ⟹ DirectorDesk.tsx:487 的 isEditable 早退把 Esc 吞掉，浮层根本没关 ⟹ 焦点还在原地，**焦点去向无从观察**",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "number",
+       "text": ""
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     },
+     "preset": {
+      "insideClass": "desk-lost",
+      "insideVerdict": "impossible-trigger-unmounted",
+      "insideWhy": "Esc 把整个导演台关掉了，触发器随之从 DOM 卸载 ⟹ 「归还焦点到触发器」**物理上不可能**（注入实测 trigThere=false）",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": ""
+      },
+      "focusablesInPanel": 10,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "pathmenu": {
+      "insideClass": "desk-lost",
+      "insideVerdict": "impossible-trigger-unmounted",
+      "insideWhy": "Esc 把整个导演台关掉了，触发器随之从 DOM 卸载 ⟹ 「归还焦点到触发器」**物理上不可能**（注入实测 trigThere=false）",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": "铅笔路径"
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "phonevcam": {
+      "insideClass": "closed-focus-on-body",
+      "insideVerdict": "measured-fails",
+      "insideWhy": "浮层确实关了，但焦点掉到 body，逃出对话框",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": ""
+      },
+      "focusablesInPanel": 2,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     },
+     "crowd": {
+      "insideClass": "panel-stuck",
+      "insideVerdict": "unmeasured-d3-masks-it",
+      "insideWhy": "焦点落在浮层里第一个可聚焦控件上，而那个控件是输入框 ⟹ DirectorDesk.tsx:487 的 isEditable 早退把 Esc 吞掉，浮层根本没关 ⟹ 焦点还在原地，**焦点去向无从观察**",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "number",
+       "text": ""
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "modellib": {
+      "insideClass": "closed-focus-on-body",
+      "insideVerdict": "measured-fails",
+      "insideWhy": "浮层确实关了，但焦点掉到 body，逃出对话框",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "file",
+       "text": ""
+      },
+      "focusablesInPanel": 15,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     }
+    },
+    "implementedRestore": [],
+    "measuredAndFails": [
+     "phonevcam",
+     "modellib"
+    ],
+    "unmeasuredBecauseD3": [
+     "export",
+     "crowd"
+    ],
+    "impossibleBecauseTriggerUnmounted": [
+     "preset",
+     "pathmenu"
+    ],
+    "cells": {
+     "export/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "export/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "导出视频到画布"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "导出视频到画布"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "preset/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 10,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 10,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "preset/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "预设运镜"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "预设运镜"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": "铅笔路径"
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": "铅笔路径"
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "绘制轨迹"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "绘制轨迹"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 2,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 2,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "phonevcam/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "modellib/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "file",
+        "text": ""
+       },
+       "panelFocusables": 15,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "file",
+        "text": ""
+       },
+       "panelFocusables": 15,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "modellib/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ]
+    },
+    "denominatorNote": "分母是 6 个 disclosure。**4 个没被真正测到焦点问题**：2 个被 D3 遮住、2 个触发器已被卸载。"
+   }
+  },
+  {
+   "id": "J4",
+   "verdict": "PASS",
+   "statement": "★ **「掉到 `body`」是可避免的，不是必然**：注入对照（在浮层确实关闭后 `trigger.focus()`）把虚拟相机/模型库这两格从 `body` 变成**触发器**，2/2 轮。也就是说缺陷只差「关掉之后挪一下焦点」这一步 —— **注入改动的恰好且仅有这两格**，其余 10 格读数不变。",
+   "evidenceKey": "injectionContrast",
+   "evidence": {
+    "what": "在 window 捕获阶段监听 Escape，150ms 后若**该浮层已从 DOM 消失且触发器仍在 DOM 里**，就 trigger.focus()。",
+    "whyCapture": "DirectorPhoneVcamPanel.tsx:294 在 window 捕获里 stopImmediatePropagation()，冒泡阶段收不到 keydown。",
+    "perCell": {
+     "export/inside": {
+      "baseClass": [
+       "panel-stuck",
+       "panel-stuck"
+      ],
+      "injClass": [
+       "panel-stuck",
+       "panel-stuck"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": false,
+         "trigThere": true
+        }
+       ],
+       [
+        {
+         "panelGone": false,
+         "trigThere": true
+        }
+       ]
+      ]
+     },
+     "export/trigger": {
+      "baseClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "injClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ]
+      ]
+     },
+     "preset/inside": {
+      "baseClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "injClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ]
+      ]
+     },
+     "preset/trigger": {
+      "baseClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "injClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ]
+      ]
+     },
+     "pathmenu/inside": {
+      "baseClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "injClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ]
+      ]
+     },
+     "pathmenu/trigger": {
+      "baseClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "injClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ]
+      ]
+     },
+     "phonevcam/inside": {
+      "baseClass": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ],
+      "injClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "changed": [
+       true,
+       true
+      ],
+      "baseFocus": [
+       {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       },
+       {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ]
+      ]
+     },
+     "phonevcam/trigger": {
+      "baseClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "injClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ]
+      ]
+     },
+     "crowd/inside": {
+      "baseClass": [
+       "panel-stuck",
+       "panel-stuck"
+      ],
+      "injClass": [
+       "panel-stuck",
+       "panel-stuck"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": false,
+         "trigThere": true
+        }
+       ],
+       [
+        {
+         "panelGone": false,
+         "trigThere": true
+        }
+       ]
+      ]
+     },
+     "crowd/trigger": {
+      "baseClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "injClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ]
+      ]
+     },
+     "modellib/inside": {
+      "baseClass": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ],
+      "injClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "changed": [
+       true,
+       true
+      ],
+      "baseFocus": [
+       {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       },
+       {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ]
+      ]
+     },
+     "modellib/trigger": {
+      "baseClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "injClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ]
+      ]
+     }
+    },
+    "cellsChangedByInjection": [
+     "phonevcam/inside",
+     "modellib/inside"
+    ],
+    "cellsInsensitiveToInjection": [
+     "export/inside",
+     "export/trigger",
+     "preset/inside",
+     "preset/trigger",
+     "pathmenu/inside",
+     "pathmenu/trigger",
+     "phonevcam/trigger",
+     "crowd/inside",
+     "crowd/trigger",
+     "modellib/trigger"
+    ]
+   }
+  },
+  {
+   "id": "J5",
+   "verdict": "PASS",
+   "statement": "★ **探针自己摘要里的「焦点回触发器 ✓」是 no-op，已撤回**：触发器变体那 3 格（导出/虚拟相机/模型库）在按 Esc 之前焦点**本来就在触发器上**，而触发器**没有被卸载** ⟹ 「焦点还在触发器上」是浏览器默认行为，**不需要任何实现**。注入对照证实了这一点：真的去调 `focus()` 也不改变这三格读数 ⟹ 该读数对「有没有归还焦点」**完全不敏感**，不能拿来当通过。",
+   "evidenceKey": "injectionContrast",
+   "evidence": {
+    "what": "在 window 捕获阶段监听 Escape，150ms 后若**该浮层已从 DOM 消失且触发器仍在 DOM 里**，就 trigger.focus()。",
+    "whyCapture": "DirectorPhoneVcamPanel.tsx:294 在 window 捕获里 stopImmediatePropagation()，冒泡阶段收不到 keydown。",
+    "perCell": {
+     "export/inside": {
+      "baseClass": [
+       "panel-stuck",
+       "panel-stuck"
+      ],
+      "injClass": [
+       "panel-stuck",
+       "panel-stuck"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": false,
+         "trigThere": true
+        }
+       ],
+       [
+        {
+         "panelGone": false,
+         "trigThere": true
+        }
+       ]
+      ]
+     },
+     "export/trigger": {
+      "baseClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "injClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ]
+      ]
+     },
+     "preset/inside": {
+      "baseClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "injClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ]
+      ]
+     },
+     "preset/trigger": {
+      "baseClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "injClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ]
+      ]
+     },
+     "pathmenu/inside": {
+      "baseClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "injClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ]
+      ]
+     },
+     "pathmenu/trigger": {
+      "baseClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "injClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ]
+      ]
+     },
+     "phonevcam/inside": {
+      "baseClass": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ],
+      "injClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "changed": [
+       true,
+       true
+      ],
+      "baseFocus": [
+       {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       },
+       {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ]
+      ]
+     },
+     "phonevcam/trigger": {
+      "baseClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "injClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ]
+      ]
+     },
+     "crowd/inside": {
+      "baseClass": [
+       "panel-stuck",
+       "panel-stuck"
+      ],
+      "injClass": [
+       "panel-stuck",
+       "panel-stuck"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": false,
+         "trigThere": true
+        }
+       ],
+       [
+        {
+         "panelGone": false,
+         "trigThere": true
+        }
+       ]
+      ]
+     },
+     "crowd/trigger": {
+      "baseClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "injClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       },
+       {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": false
+        }
+       ]
+      ]
+     },
+     "modellib/inside": {
+      "baseClass": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ],
+      "injClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "changed": [
+       true,
+       true
+      ],
+      "baseFocus": [
+       {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       },
+       {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ]
+      ]
+     },
+     "modellib/trigger": {
+      "baseClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "injClass": [
+       "closed-focus-on-trigger",
+       "closed-focus-on-trigger"
+      ],
+      "changed": [
+       false,
+       false
+      ],
+      "baseFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injFocus": [
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       },
+       {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      ],
+      "injLog": [
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ],
+       [
+        {
+         "panelGone": true,
+         "trigThere": true,
+         "focused": true
+        }
+       ]
+      ]
+     }
+    },
+    "cellsChangedByInjection": [
+     "phonevcam/inside",
+     "modellib/inside"
+    ],
+    "cellsInsensitiveToInjection": [
+     "export/inside",
+     "export/trigger",
+     "preset/inside",
+     "preset/trigger",
+     "pathmenu/inside",
+     "pathmenu/trigger",
+     "phonevcam/trigger",
+     "crowd/inside",
+     "crowd/trigger",
+     "modellib/trigger"
+    ]
+   }
+  },
+  {
+   "id": "J6",
+   "verdict": "FAIL",
+   "statement": "★ **缺陷 D8 从 1/6 扩到 3/6（中）**：767 判「添加群众阵列按 Esc 关掉整个导演台」，并把另外两个的 Esc 行为明确列进「不声称」（因为它们已被外点那一下关掉了）。本批补上那两个读数：**预设运镜与创建运动轨迹同样会关掉整个导演台**。5/12 格按 Esc 后导演台消失 ⟹ 半族浮层都有「按 Esc 丢整个工作区」的路径。",
+   "evidenceKey": "focusRestore",
+   "evidence": {
+    "perDisclosure": {
+     "export": {
+      "insideClass": "panel-stuck",
+      "insideVerdict": "unmeasured-d3-masks-it",
+      "insideWhy": "焦点落在浮层里第一个可聚焦控件上，而那个控件是输入框 ⟹ DirectorDesk.tsx:487 的 isEditable 早退把 Esc 吞掉，浮层根本没关 ⟹ 焦点还在原地，**焦点去向无从观察**",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "number",
+       "text": ""
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     },
+     "preset": {
+      "insideClass": "desk-lost",
+      "insideVerdict": "impossible-trigger-unmounted",
+      "insideWhy": "Esc 把整个导演台关掉了，触发器随之从 DOM 卸载 ⟹ 「归还焦点到触发器」**物理上不可能**（注入实测 trigThere=false）",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": ""
+      },
+      "focusablesInPanel": 10,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "pathmenu": {
+      "insideClass": "desk-lost",
+      "insideVerdict": "impossible-trigger-unmounted",
+      "insideWhy": "Esc 把整个导演台关掉了，触发器随之从 DOM 卸载 ⟹ 「归还焦点到触发器」**物理上不可能**（注入实测 trigThere=false）",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": "铅笔路径"
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "phonevcam": {
+      "insideClass": "closed-focus-on-body",
+      "insideVerdict": "measured-fails",
+      "insideWhy": "浮层确实关了，但焦点掉到 body，逃出对话框",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": ""
+      },
+      "focusablesInPanel": 2,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     },
+     "crowd": {
+      "insideClass": "panel-stuck",
+      "insideVerdict": "unmeasured-d3-masks-it",
+      "insideWhy": "焦点落在浮层里第一个可聚焦控件上，而那个控件是输入框 ⟹ DirectorDesk.tsx:487 的 isEditable 早退把 Esc 吞掉，浮层根本没关 ⟹ 焦点还在原地，**焦点去向无从观察**",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "number",
+       "text": ""
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "modellib": {
+      "insideClass": "closed-focus-on-body",
+      "insideVerdict": "measured-fails",
+      "insideWhy": "浮层确实关了，但焦点掉到 body，逃出对话框",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "file",
+       "text": ""
+      },
+      "focusablesInPanel": 15,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     }
+    },
+    "implementedRestore": [],
+    "measuredAndFails": [
+     "phonevcam",
+     "modellib"
+    ],
+    "unmeasuredBecauseD3": [
+     "export",
+     "crowd"
+    ],
+    "impossibleBecauseTriggerUnmounted": [
+     "preset",
+     "pathmenu"
+    ],
+    "cells": {
+     "export/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "export/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "导出视频到画布"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "导出视频到画布"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "preset/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 10,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 10,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "preset/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "预设运镜"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "预设运镜"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": "铅笔路径"
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": "铅笔路径"
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "绘制轨迹"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "绘制轨迹"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 2,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 2,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "phonevcam/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "modellib/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "file",
+        "text": ""
+       },
+       "panelFocusables": 15,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "file",
+        "text": ""
+       },
+       "panelFocusables": 15,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "modellib/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ]
+    },
+    "denominatorNote": "分母是 6 个 disclosure。**4 个没被真正测到焦点问题**：2 个被 D3 遮住、2 个触发器已被卸载。"
+   }
+  },
+  {
+   "id": "J7",
+   "verdict": "FAIL",
+   "statement": "★ **D8 的机制不是一个，是两个，修法也不同** —— 这一条**更正 767 的 O3**。①群众阵列**根本没有自己的 Esc 处理**，也不在导演台阶梯里 ⟹ Esc 一路落到 `closeWorkspace()`；②预设运镜与路径菜单**有** Esc 处理（`DirectorTimeline.tsx:570/594`），但它挂在 window **冒泡**阶段且**既不 `preventDefault()` 也不停止传播** ⟹ 导演台自己那个同样挂在 window 冒泡阶段的处理器（`DirectorDesk.tsx:570`）**照样会跑** ⟹ 无论两个处理器谁先注册，`closeWorkspace()` 都必然执行。767 以为「有 Esc 处理」就够 —— 读数证明不够。",
+   "evidenceKey": "escTaxonomy",
+   "evidence": {
+    "keydownListeners": [
+     {
+      "file": "DirectorDesk.tsx",
+      "line": 570,
+      "target": "window",
+      "fn": "handleKeyDown",
+      "capture": false,
+      "stopsPropagation": false,
+      "preventsDefault": true,
+      "bodyLine": 474
+     },
+     {
+      "file": "DirectorTimeline.tsx",
+      "line": 570,
+      "target": "window",
+      "fn": "closeOnEscape",
+      "capture": false,
+      "stopsPropagation": false,
+      "preventsDefault": false,
+      "bodyLine": 568
+     },
+     {
+      "file": "DirectorTimeline.tsx",
+      "line": 594,
+      "target": "window",
+      "fn": "closeOnEscape",
+      "capture": false,
+      "stopsPropagation": false,
+      "preventsDefault": false,
+      "bodyLine": 592
+     },
+     {
+      "file": "DirectorPhoneVcamPanel.tsx",
+      "line": 294,
+      "target": "window",
+      "fn": "closeOnEscape",
+      "capture": true,
+      "stopsPropagation": true,
+      "preventsDefault": true,
+      "bodyLine": 289
+     },
+     {
+      "file": "DirectorViewport.tsx",
+      "line": 2711,
+      "target": "window",
+      "fn": "handleKeyDown",
+      "capture": true,
+      "stopsPropagation": true,
+      "preventsDefault": true,
+      "bodyLine": 2700
+     },
+     {
+      "file": "DirectorViewport.tsx",
+      "line": 2748,
+      "target": "window",
+      "fn": "closeOnEscape",
+      "capture": true,
+      "stopsPropagation": true,
+      "preventsDefault": true,
+      "bodyLine": 2743
+     }
+    ],
+    "captureCount": 3,
+    "bubbleCount": 3,
+    "totalCount": 6,
+    "combinations": [
+     "bubble/leaks",
+     "capture/stops"
+    ],
+    "preventsDefaultCount": 4,
+    "captureStopsAll": [
+     "DirectorPhoneVcamPanel.tsx:294",
+     "DirectorViewport.tsx:2711",
+     "DirectorViewport.tsx:2748"
+    ],
+    "bubbleStopsAny": [],
+    "deskLadderReferencesOtherPanels": 0,
+    "deskLadderHasExportTier": 1,
+    "deskLadderHasCaptureFlag": false,
+    "useLayerFocusReturnsToOpener": true,
+    "useLayerFocusIsConnectedGuard": true,
+    "useLayerFocusConsumers": [
+     "JimengAiDrawer.tsx",
+     "JimengNodeSummaryPopover.tsx"
+    ],
+    "directorUsesUseLayerFocus": false
+   }
+  },
+  {
+   "id": "J8",
+   "verdict": "PASS",
+   "statement": "**同仓已有做对了的样本，而且它的注释里逐字写着本批的症状**：模型库面板（`DirectorViewport.tsx:2748`）的 Esc 监听是 window **捕获** + `preventDefault()` + `stopImmediatePropagation()` ⟹ 事件到不了导演台阶梯，所以它只关自己（实测面板关、导演台还在）。虚拟相机面板（`DirectorPhoneVcamPanel.tsx:294`）同一招。全仓共 6 处 keydown 监听，其中 3 处是捕获阶段、**冒泡阶段里一处停止传播的都没有**。",
+   "evidenceKey": "escTaxonomy",
+   "evidence": {
+    "keydownListeners": [
+     {
+      "file": "DirectorDesk.tsx",
+      "line": 570,
+      "target": "window",
+      "fn": "handleKeyDown",
+      "capture": false,
+      "stopsPropagation": false,
+      "preventsDefault": true,
+      "bodyLine": 474
+     },
+     {
+      "file": "DirectorTimeline.tsx",
+      "line": 570,
+      "target": "window",
+      "fn": "closeOnEscape",
+      "capture": false,
+      "stopsPropagation": false,
+      "preventsDefault": false,
+      "bodyLine": 568
+     },
+     {
+      "file": "DirectorTimeline.tsx",
+      "line": 594,
+      "target": "window",
+      "fn": "closeOnEscape",
+      "capture": false,
+      "stopsPropagation": false,
+      "preventsDefault": false,
+      "bodyLine": 592
+     },
+     {
+      "file": "DirectorPhoneVcamPanel.tsx",
+      "line": 294,
+      "target": "window",
+      "fn": "closeOnEscape",
+      "capture": true,
+      "stopsPropagation": true,
+      "preventsDefault": true,
+      "bodyLine": 289
+     },
+     {
+      "file": "DirectorViewport.tsx",
+      "line": 2711,
+      "target": "window",
+      "fn": "handleKeyDown",
+      "capture": true,
+      "stopsPropagation": true,
+      "preventsDefault": true,
+      "bodyLine": 2700
+     },
+     {
+      "file": "DirectorViewport.tsx",
+      "line": 2748,
+      "target": "window",
+      "fn": "closeOnEscape",
+      "capture": true,
+      "stopsPropagation": true,
+      "preventsDefault": true,
+      "bodyLine": 2743
+     }
+    ],
+    "captureCount": 3,
+    "bubbleCount": 3,
+    "totalCount": 6,
+    "combinations": [
+     "bubble/leaks",
+     "capture/stops"
+    ],
+    "preventsDefaultCount": 4,
+    "captureStopsAll": [
+     "DirectorPhoneVcamPanel.tsx:294",
+     "DirectorViewport.tsx:2711",
+     "DirectorViewport.tsx:2748"
+    ],
+    "bubbleStopsAny": [],
+    "deskLadderReferencesOtherPanels": 0,
+    "deskLadderHasExportTier": 1,
+    "deskLadderHasCaptureFlag": false,
+    "useLayerFocusReturnsToOpener": true,
+    "useLayerFocusIsConnectedGuard": true,
+    "useLayerFocusConsumers": [
+     "JimengAiDrawer.tsx",
+     "JimengNodeSummaryPopover.tsx"
+    ],
+    "directorUsesUseLayerFocus": false
+   }
+  },
+  {
+   "id": "J9",
+   "verdict": "FAIL",
+   "statement": "★ **缺陷 D3 从 1/6 扩到 2/6（低）**：按 Esc 时焦点落在浮层里**第一个可聚焦控件**上，若那是输入框，`DirectorDesk.tsx:487` 的 `isEditable` 早退就把 Esc 吞掉、**浮层根本不关** —— 导出面板（时长数值框）与添加群众阵列面板各命中一次。这也**反过来遮住了本批的焦点问题**：这两个浮层恰恰因为「没关」而观察不到焦点去向。",
+   "evidenceKey": "focusRestore",
+   "evidence": {
+    "perDisclosure": {
+     "export": {
+      "insideClass": "panel-stuck",
+      "insideVerdict": "unmeasured-d3-masks-it",
+      "insideWhy": "焦点落在浮层里第一个可聚焦控件上，而那个控件是输入框 ⟹ DirectorDesk.tsx:487 的 isEditable 早退把 Esc 吞掉，浮层根本没关 ⟹ 焦点还在原地，**焦点去向无从观察**",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "number",
+       "text": ""
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     },
+     "preset": {
+      "insideClass": "desk-lost",
+      "insideVerdict": "impossible-trigger-unmounted",
+      "insideWhy": "Esc 把整个导演台关掉了，触发器随之从 DOM 卸载 ⟹ 「归还焦点到触发器」**物理上不可能**（注入实测 trigThere=false）",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": ""
+      },
+      "focusablesInPanel": 10,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "pathmenu": {
+      "insideClass": "desk-lost",
+      "insideVerdict": "impossible-trigger-unmounted",
+      "insideWhy": "Esc 把整个导演台关掉了，触发器随之从 DOM 卸载 ⟹ 「归还焦点到触发器」**物理上不可能**（注入实测 trigThere=false）",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": "铅笔路径"
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "phonevcam": {
+      "insideClass": "closed-focus-on-body",
+      "insideVerdict": "measured-fails",
+      "insideWhy": "浮层确实关了，但焦点掉到 body，逃出对话框",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": ""
+      },
+      "focusablesInPanel": 2,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     },
+     "crowd": {
+      "insideClass": "panel-stuck",
+      "insideVerdict": "unmeasured-d3-masks-it",
+      "insideWhy": "焦点落在浮层里第一个可聚焦控件上，而那个控件是输入框 ⟹ DirectorDesk.tsx:487 的 isEditable 早退把 Esc 吞掉，浮层根本没关 ⟹ 焦点还在原地，**焦点去向无从观察**",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "number",
+       "text": ""
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "modellib": {
+      "insideClass": "closed-focus-on-body",
+      "insideVerdict": "measured-fails",
+      "insideWhy": "浮层确实关了，但焦点掉到 body，逃出对话框",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "file",
+       "text": ""
+      },
+      "focusablesInPanel": 15,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     }
+    },
+    "implementedRestore": [],
+    "measuredAndFails": [
+     "phonevcam",
+     "modellib"
+    ],
+    "unmeasuredBecauseD3": [
+     "export",
+     "crowd"
+    ],
+    "impossibleBecauseTriggerUnmounted": [
+     "preset",
+     "pathmenu"
+    ],
+    "cells": {
+     "export/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "export/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "导出视频到画布"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "导出视频到画布"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "preset/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 10,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 10,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "preset/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "预设运镜"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "预设运镜"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": "铅笔路径"
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": "铅笔路径"
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "绘制轨迹"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "绘制轨迹"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 2,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 2,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "phonevcam/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "modellib/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "file",
+        "text": ""
+       },
+       "panelFocusables": 15,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "file",
+        "text": ""
+       },
+       "panelFocusables": 15,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "modellib/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ]
+    },
+    "denominatorNote": "分母是 6 个 disclosure。**4 个没被真正测到焦点问题**：2 个被 D3 遮住、2 个触发器已被卸载。"
+   }
+  },
+  {
+   "id": "J10",
+   "verdict": "FAIL",
+   "statement": "★ **方法论限制单列（不声称）**：「把焦点放进浮层的第一个可聚焦控件」**不是通用的焦点探针** —— 6 个浮层里有 2 个的第一个可聚焦控件是输入框，于是 D3 先发作、把焦点去向整个遮住。注入也救不了：注入只在「面板确实关了」时才动手。要测到这两个浮层的焦点契约，必须**指定一个非输入框的控件**（例如导出面板的画幅按钮）。",
+   "evidenceKey": "focusRestore",
+   "evidence": {
+    "perDisclosure": {
+     "export": {
+      "insideClass": "panel-stuck",
+      "insideVerdict": "unmeasured-d3-masks-it",
+      "insideWhy": "焦点落在浮层里第一个可聚焦控件上，而那个控件是输入框 ⟹ DirectorDesk.tsx:487 的 isEditable 早退把 Esc 吞掉，浮层根本没关 ⟹ 焦点还在原地，**焦点去向无从观察**",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "number",
+       "text": ""
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     },
+     "preset": {
+      "insideClass": "desk-lost",
+      "insideVerdict": "impossible-trigger-unmounted",
+      "insideWhy": "Esc 把整个导演台关掉了，触发器随之从 DOM 卸载 ⟹ 「归还焦点到触发器」**物理上不可能**（注入实测 trigThere=false）",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": ""
+      },
+      "focusablesInPanel": 10,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "pathmenu": {
+      "insideClass": "desk-lost",
+      "insideVerdict": "impossible-trigger-unmounted",
+      "insideWhy": "Esc 把整个导演台关掉了，触发器随之从 DOM 卸载 ⟹ 「归还焦点到触发器」**物理上不可能**（注入实测 trigThere=false）",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": "铅笔路径"
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "phonevcam": {
+      "insideClass": "closed-focus-on-body",
+      "insideVerdict": "measured-fails",
+      "insideWhy": "浮层确实关了，但焦点掉到 body，逃出对话框",
+      "focusedControl": {
+       "tag": "BUTTON",
+       "type": "button",
+       "text": ""
+      },
+      "focusablesInPanel": 2,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     },
+     "crowd": {
+      "insideClass": "panel-stuck",
+      "insideVerdict": "unmeasured-d3-masks-it",
+      "insideWhy": "焦点落在浮层里第一个可聚焦控件上，而那个控件是输入框 ⟹ DirectorDesk.tsx:487 的 isEditable 早退把 Esc 吞掉，浮层根本没关 ⟹ 焦点还在原地，**焦点去向无从观察**",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "number",
+       "text": ""
+      },
+      "focusablesInPanel": 5,
+      "triggerVariantClass": "desk-lost",
+      "triggerVariantIsVacuous": false
+     },
+     "modellib": {
+      "insideClass": "closed-focus-on-body",
+      "insideVerdict": "measured-fails",
+      "insideWhy": "浮层确实关了，但焦点掉到 body，逃出对话框",
+      "focusedControl": {
+       "tag": "INPUT",
+       "type": "file",
+       "text": ""
+      },
+      "focusablesInPanel": 15,
+      "triggerVariantClass": "closed-focus-on-trigger",
+      "triggerVariantIsVacuous": true
+     }
+    },
+    "implementedRestore": [],
+    "measuredAndFails": [
+     "phonevcam",
+     "modellib"
+    ],
+    "unmeasuredBecauseD3": [
+     "export",
+     "crowd"
+    ],
+    "impossibleBecauseTriggerUnmounted": [
+     "preset",
+     "pathmenu"
+    ],
+    "cells": {
+     "export/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "export/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "导出视频到画布"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "导出视频到画布"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "preset/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 10,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 10,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "preset/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "预设运镜"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "预设运镜"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": "铅笔路径"
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": "铅笔路径"
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "绘制轨迹"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": "绘制轨迹"
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": null,
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 2,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": "button",
+        "text": ""
+       },
+       "panelFocusables": 2,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "phonevcam/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "number",
+        "text": ""
+       },
+       "panelFocusables": 5,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "modellib/inside": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "file",
+        "text": ""
+       },
+       "panelFocusables": 15,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "INPUT",
+        "type": "file",
+        "text": ""
+       },
+       "panelFocusables": 15,
+       "focusWasInPanel": true,
+       "focusWasOnTrigger": false,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "modellib/trigger": [
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "opened": true,
+       "focusPlaced": true,
+       "focusedControl": {
+        "tag": "BUTTON",
+        "type": null,
+        "text": ""
+       },
+       "panelFocusables": null,
+       "focusWasInPanel": false,
+       "focusWasOnTrigger": true,
+       "triggerAriaExpanded": "true",
+       "class": "closed-focus-on-trigger",
+       "focusAfter": {
+        "tag": "BUTTON",
+        "isTrigger": true,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ]
+    },
+    "denominatorNote": "分母是 6 个 disclosure。**4 个没被真正测到焦点问题**：2 个被 D3 遮住、2 个触发器已被卸载。"
+   }
+  },
+  {
+   "id": "J11",
+   "verdict": "PASS",
+   "statement": "★ **跨批交叉核对通过**：6 个浮层的**可聚焦控件数**在768 与 767 两批独立读数里**逐个相同**（导出 5 / 预设 10 / 路径菜单 5 / 虚拟相机 2 / 群众 5 / 模型库 15）—— 两批用的是不同探针、不同轮次、不同代码路径，这是真的一致而不是抄的。",
+   "evidenceKey": "crossBatch",
+   "evidence": {
+    "source": "batch767 raw/vb767a.json 的 panelFocusables vs batch768 raw/vb768a.json 的 focus.total",
+    "perId": {
+     "export": {
+      "batch767": [
+       5
+      ],
+      "batch768": [
+       5
+      ],
+      "agree": true
+     },
+     "preset": {
+      "batch767": [
+       10
+      ],
+      "batch768": [
+       10
+      ],
+      "agree": true
+     },
+     "pathmenu": {
+      "batch767": [
+       5
+      ],
+      "batch768": [
+       5
+      ],
+      "agree": true
+     },
+     "phonevcam": {
+      "batch767": [
+       2
+      ],
+      "batch768": [
+       2
+      ],
+      "agree": true
+     },
+     "crowd": {
+      "batch767": [
+       5
+      ],
+      "batch768": [
+       5
+      ],
+      "agree": true
+     },
+     "modellib": {
+      "batch767": [
+       15
+      ],
+      "batch768": [
+       15
+      ],
+      "agree": true
+     }
+    },
+    "ariaExpandedIn767": {
+     "export": "true",
+     "preset": "true",
+     "pathmenu": null,
+     "phonevcam": "true",
+     "crowd": "true",
+     "modellib": "true"
+    },
+    "ariaExpandedIn768": {
+     "export": "true",
+     "preset": "true",
+     "pathmenu": null,
+     "phonevcam": "true",
+     "crowd": "true",
+     "modellib": "true"
+    },
+    "withAriaExpanded": 5,
+    "withAriaPressedOnly": [
+     "pathmenu"
+    ]
+   }
+  },
+  {
+   "id": "J12",
+   "verdict": "FAIL",
+   "statement": "★ **更正 767 的范围表述**：767 的标题与台账都写「导演台 **6 个带 `aria-expanded` 的** disclosure」，但本批两个变体都读到 `pathmenu` 触发器的 `aria-expanded` 是 `null`（只有 `aria-pressed`）⟹ **实际是 5 个带 `aria-expanded` + 1 个只有 `aria-pressed`**。767 自己的 J10 已经发现这一点却没回头改范围表述。缺陷计数不受影响（路径菜单确实是个浮层），但「6 个带 aria-expanded」这句话不成立。",
+   "evidenceKey": "crossBatch",
+   "evidence": {
+    "source": "batch767 raw/vb767a.json 的 panelFocusables vs batch768 raw/vb768a.json 的 focus.total",
+    "perId": {
+     "export": {
+      "batch767": [
+       5
+      ],
+      "batch768": [
+       5
+      ],
+      "agree": true
+     },
+     "preset": {
+      "batch767": [
+       10
+      ],
+      "batch768": [
+       10
+      ],
+      "agree": true
+     },
+     "pathmenu": {
+      "batch767": [
+       5
+      ],
+      "batch768": [
+       5
+      ],
+      "agree": true
+     },
+     "phonevcam": {
+      "batch767": [
+       2
+      ],
+      "batch768": [
+       2
+      ],
+      "agree": true
+     },
+     "crowd": {
+      "batch767": [
+       5
+      ],
+      "batch768": [
+       5
+      ],
+      "agree": true
+     },
+     "modellib": {
+      "batch767": [
+       15
+      ],
+      "batch768": [
+       15
+      ],
+      "agree": true
+     }
+    },
+    "ariaExpandedIn767": {
+     "export": "true",
+     "preset": "true",
+     "pathmenu": null,
+     "phonevcam": "true",
+     "crowd": "true",
+     "modellib": "true"
+    },
+    "ariaExpandedIn768": {
+     "export": "true",
+     "preset": "true",
+     "pathmenu": null,
+     "phonevcam": "true",
+     "crowd": "true",
+     "modellib": "true"
+    },
+    "withAriaExpanded": 5,
+    "withAriaPressedOnly": [
+     "pathmenu"
+    ]
+   }
+  },
+  {
+   "id": "J13",
+   "verdict": "PASS",
+   "statement": "**没点任何有副作用的控件**：只点了 6 个 disclosure 触发器（导出面板的提交、虚拟相机的「连接」、模型库的添加都没点），其余全是 `.focus()` 读操作与 `Escape` —— `focus()` 不触发任何业务动作。",
+   "evidenceKey": "comparability",
+   "evidence": {
+    "a": {
+     "keys": [
+      "rows"
+     ],
+     "allConsistent": true,
+     "firstDiff": {},
+     "rounds": 2,
+     "clearedLocalStorage": [
+      [],
+      [
+       "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+      ]
+     ],
+     "deskGoneAfter": [
+      [
+       "preset/inside",
+       "preset/trigger",
+       "pathmenu/inside",
+       "pathmenu/trigger",
+       "crowd/trigger"
+      ],
+      [
+       "preset/inside",
+       "preset/trigger",
+       "pathmenu/inside",
+       "pathmenu/trigger",
+       "crowd/trigger"
+      ]
+     ]
+    },
+    "b": {
+     "keys": [
+      "rows"
+     ],
+     "allConsistent": true,
+     "firstDiff": {},
+     "rounds": 2,
+     "clearedLocalStorage": [
+      [],
+      [
+       "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+      ]
+     ]
+    },
+    "crossArm": "两个探针的 rows 逐格比对（a 无注入 / b 有注入）",
+    "protocol": "★ **每个变体都从重新加载的页面开始**，全程**不点外点** —— 767 的 R73：把两件事串在同一条时间线上会互相污染，而「先试着关掉再继续」也不行，因为「怎么关」本身是被测对象。全程只点 6 个 disclosure 触发器，其余是 `.focus()` 读操作与 Esc。",
+    "note": "★ 注入探针 b 挂在 **window 捕获**阶段 —— 必须是捕获：DirectorPhoneVcamPanel.tsx:294 的 Esc 监听就在捕获里 stopImmediatePropagation，冒泡阶段根本收不到 keydown。"
+   }
+  },
+  {
+   "id": "J14",
+   "verdict": "PASS",
+   "statement": "★ **D11 的修法有现成的、且踩过坑的实现** —— `src/hooks/useLayerFocus.ts` 的 cleanup 段（记住 opener、卸载时用 `requestAnimationFrame` 归还焦点，并用 `root.isConnected` 守卫区分「真关闭」与「假卸载」），**注释里逐字写着「实测表现就是『点外面关掉浮层，焦点掉到 body』」**。消费者只有即梦的 JimengAiDrawer.tsx、JimengNodeSummaryPopover.tsx 两个组件，**导演台一个都没用**。",
+   "evidenceKey": "escTaxonomy",
+   "evidence": {
+    "keydownListeners": [
+     {
+      "file": "DirectorDesk.tsx",
+      "line": 570,
+      "target": "window",
+      "fn": "handleKeyDown",
+      "capture": false,
+      "stopsPropagation": false,
+      "preventsDefault": true,
+      "bodyLine": 474
+     },
+     {
+      "file": "DirectorTimeline.tsx",
+      "line": 570,
+      "target": "window",
+      "fn": "closeOnEscape",
+      "capture": false,
+      "stopsPropagation": false,
+      "preventsDefault": false,
+      "bodyLine": 568
+     },
+     {
+      "file": "DirectorTimeline.tsx",
+      "line": 594,
+      "target": "window",
+      "fn": "closeOnEscape",
+      "capture": false,
+      "stopsPropagation": false,
+      "preventsDefault": false,
+      "bodyLine": 592
+     },
+     {
+      "file": "DirectorPhoneVcamPanel.tsx",
+      "line": 294,
+      "target": "window",
+      "fn": "closeOnEscape",
+      "capture": true,
+      "stopsPropagation": true,
+      "preventsDefault": true,
+      "bodyLine": 289
+     },
+     {
+      "file": "DirectorViewport.tsx",
+      "line": 2711,
+      "target": "window",
+      "fn": "handleKeyDown",
+      "capture": true,
+      "stopsPropagation": true,
+      "preventsDefault": true,
+      "bodyLine": 2700
+     },
+     {
+      "file": "DirectorViewport.tsx",
+      "line": 2748,
+      "target": "window",
+      "fn": "closeOnEscape",
+      "capture": true,
+      "stopsPropagation": true,
+      "preventsDefault": true,
+      "bodyLine": 2743
+     }
+    ],
+    "captureCount": 3,
+    "bubbleCount": 3,
+    "totalCount": 6,
+    "combinations": [
+     "bubble/leaks",
+     "capture/stops"
+    ],
+    "preventsDefaultCount": 4,
+    "captureStopsAll": [
+     "DirectorPhoneVcamPanel.tsx:294",
+     "DirectorViewport.tsx:2711",
+     "DirectorViewport.tsx:2748"
+    ],
+    "bubbleStopsAny": [],
+    "deskLadderReferencesOtherPanels": 0,
+    "deskLadderHasExportTier": 1,
+    "deskLadderHasCaptureFlag": false,
+    "useLayerFocusReturnsToOpener": true,
+    "useLayerFocusIsConnectedGuard": true,
+    "useLayerFocusConsumers": [
+     "JimengAiDrawer.tsx",
+     "JimengNodeSummaryPopover.tsx"
+    ],
+    "directorUsesUseLayerFocus": false
+   }
+  }
+ ],
+ "defects": [
+  {
+   "id": "D11",
+   "severity": "低",
+   "newInThisBatch": true,
+   "widensD4From765": true,
+   "title": "6 个 disclosure 浮层没有一个在关闭后把焦点归还触发器",
+   "where": [
+    "src/components/director/DirectorExportPanel.tsx:38",
+    "src/components/director/DirectorPhoneVcamPanel.tsx:286-296",
+    "src/components/director/DirectorViewport.tsx:2734-2753",
+    "src/components/director/DirectorDesk.tsx:557-560"
+   ],
+   "mechanism": "6 个浮层的关闭路径里没有一处把焦点交还给触发器。765 的 D4 已在导出面板上量到「关闭后焦点掉到 body」（`DirectorExportPanel.tsx:38` 的 `if (!open) return null` 把正在聚焦的元素整个卸载，而 `DirectorDesk.tsx:557-560` 那一档不碰焦点）。本批把同一机制在**虚拟相机面板**与**模型库面板**上也量到 ⟹ 不是导出面板的个案。",
+   "measured": "真正测到焦点去向的 2 个浮层（虚拟相机、模型库）**都掉到 `body`**，2/2 轮；4/6 的 disclosure 根本没测到（2 个被 D3 遮住、2 个触发器已被卸载）。注入对照：加上「关闭后 focus 回触发器」后这 2 格变成正确读数 ⟹ 可避免。",
+   "severityRationale": "**低**（与 765 的 D4 同级）：焦点丢到 body 不会丢数据，但键盘用户关掉浮层后要从文档开头重新 Tab 一遍。之所以仍单列一条，是因为「0/6 做对」是**全族**结论，而 765 只在 1 个浮层上看到过。",
+   "inRepoExemplar": "`src/hooks/useLayerFocus.ts` 的 cleanup 段（`opener.focus()` + `requestAnimationFrame` + `root.isConnected` 守卫）就是标准答案，而且那段注释**逐字写着本批的症状**：「实测表现就是『点外面关掉浮层，焦点掉到 body』」。它的消费者只有即梦的 JimengNodeSummaryPopover 与 JimengAiDrawer，**导演台一个都没接**。",
+   "needsSrcChange": true
+  }
+ ],
+ "widened": [
+  {
+   "id": "D8",
+   "from": "1/6",
+   "to": "3/6",
+   "severity": "中",
+   "title": "6 个浮层里 3 个的 Esc 会关掉整个导演台（767 只判了群众阵列）",
+   "newMembers": [
+    "preset",
+    "pathmenu"
+   ],
+   "mechanismSplit": {
+    "crowd": "**没有**自己的 Esc 处理，也不在导演台阶梯里 ⟹ Esc 一路落到 `closeWorkspace()`",
+    "preset/pathmenu": "**有** Esc 处理（`DirectorTimeline.tsx:570/594`），但挂在 window **冒泡**阶段且既不 `preventDefault()` 也不停止传播 ⟹ 导演台自己那个同样在 window 冒泡阶段的处理器（`DirectorDesk.tsx:570`）照样执行 ⟹ **与注册顺序无关**，`closeWorkspace()` 必然跑"
+   },
+   "measured": "5/12 格按 Esc 后导演台 `open=false`：preset/inside、preset/trigger、pathmenu/inside、pathmenu/trigger、crowd/trigger（2/2 轮）。",
+   "correctsBatch767": "O3「Esc 的两种正确实现方式在同仓并存」暗示「有 Esc 处理」就够了；读数证明**不够**，必须同时是捕获阶段 + 停止传播。",
+   "fixDirection": "两条路，按机制分别选：①给阶梯加档（`exportPanelOpen` `:557` 那样）—— 但这治不了 ②类；②把 `DirectorTimeline.tsx:570/594` 改成模型库面板那样：window 捕获 + `preventDefault()` + `stopImmediatePropagation()`。**两类都要用 ②**。",
+   "needsSrcChange": true
+  },
+  {
+   "id": "D3",
+   "from": "1/6",
+   "to": "2/6",
+   "severity": "低",
+   "title": "焦点在浮层内的输入框时，Esc 关不掉浮层（`DirectorDesk.tsx:487` 的 isEditable 早退）",
+   "newMembers": [
+    "crowd"
+   ],
+   "measured": "export/inside 与 crowd/inside：焦点落在浮层里第一个可聚焦控件（都是 `INPUT[type=number]`）时按 Esc，**浮层仍然开着**（`panelPresent=true`、`aria-expanded` 仍为 `true`），2/2 轮。",
+   "compositionNote": "★ **两个缺陷会叠在一起**：群众阵列面板此刻之所以没丢工作区，**恰恰是因为 isEditable 早退把 Esc 吞了**；一旦按 J7 给它补上 Esc 处理或按 765 拍板给 isEditable 开特例，这条防线就没了 —— 修 D3 的同时必须先修 D8。",
+   "needsSrcChange": true
+  },
+  {
+   "id": "D4",
+   "from": "1/6",
+   "to": "3/6",
+   "severity": "低",
+   "title": "关闭浮层后焦点掉到 body（与 D11 同一机制）",
+   "newMembers": [
+    "phonevcam",
+    "modellib"
+   ],
+   "note": "本批新增的两例都是「浮层确实关了、导演台还在、但焦点掉到 body」。导出面板那一例（765）在本批被 D3 遮住没重测到 —— 不影响结论，两批的机制已对齐（见 D11）。",
+   "needsSrcChange": true
+  }
+ ],
+ "observations": [
+  {
+   "id": "O1",
+   "text": "★ **触发器变体那 3 个「焦点在触发器上」是平凡读数**。按 Esc 之前焦点就在触发器上，触发器在按 Esc 之后**仍在 DOM 里**（实测 `triggerPresent=true`）⟹ 浏览器默认就保住焦点，**不需要任何代码**。本批探针自己的摘要一度把它打印成「焦点回触发器 ✓」，那是**错的措辞**，已撤回（见 J5）。这一条是本批的方法论核心：**读数说「焦点在哪」不足以说明「有人把它放到了那儿」。**",
+   "verdict": "方法论记录"
+  },
+  {
+   "id": "O2",
+   "text": "★ **注入对照的读法**：注入只在「浮层确实从 DOM 消失、且触发器还在」时才动手。这让注入在三类格上给出三种读数 —— 改写（面板关、焦点掉 body 的 2 格）、不动（面板还开着的 2 格，注入日志 `panelGone=false`）、**动手失败**（导演台都没了的 5 格，日志 `trigThere=false`）⟹ 「归还焦点」在这些格上**物理上不可能**。这三种读数互不重叠，合计 12 格。",
+   "verdict": "方法论记录"
+  },
+  {
+   "id": "O3",
+   "text": "**全仓 keydown 监听的阶段分布**：共 6 处（导演台组件内），捕获阶段 3 处、冒泡阶段 3 处；**冒泡阶段里一处停止传播的都没有**。这解释了为什么「关面板而不关导演台」在同仓有两种能work的写法（导演台阶梯加档 / 捕获+停止传播），而第三种写法（冒泡+不停止）**必然漏到导演台**。",
+   "verdict": "事实记录"
+  },
+  {
+   "id": "O4",
+   "text": "**「一个症状不一定是同一个机制」在本批再次成立**（R60 的第二次）：D8 的两种机制（没有 Esc 处理 / 有 Esc 处理但不停止传播）修法不同 —— 前者补一档阶梯，后者必须改成捕获+停止传播。只按症状去修，会把 2/3 的成员修错。",
+   "verdict": "方法论记录"
+  },
+  {
+   "id": "O5",
+   "text": "★ **上一轮留下的一份持久化痕迹被本轮抓到了**：b 探针第 1 轮开头清 localStorage 清掉 **0** 份，第 2 轮清掉 **1** 份 （`liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%5D`）⟹ 第 1 轮 12 格的准备动作（开导演台、点相机对象）在 localStorage 里留下了一份项目。两轮读数仍然一致，说明**每轮开头的清理确实在起作用**（763 的 O1）。",
+   "verdict": "事实记录（也是每轮清理的正当性证据）"
+  }
+ ],
+ "notClaimed": [
+  "无源站对照：本批全部结论只针对 clone 自身的行为自洽性。",
+  "★ **导出面板与添加群众阵列面板的焦点归还契约本批没有测到**（J10）：协议是「把焦点放进浮层的第一个可聚焦控件」，而这两个浮层的第一个可聚焦控件是输入框 ⟹ D3 先发作、浮层没关 ⟹ 焦点还在原地。**注入也救不了**（注入只在面板真关时才动手）。要测到得指定一个非输入框的控件（例如导出面板的画幅按钮）。",
+  "★ **预设运镜与创建运动轨迹的焦点归还契约无法在本协议下测**：Esc 会把整个导演台关掉、触发器随之卸载 ⟹ 没有可归还的对象。这条必须**先修 D8** 再测，否则没有测的对象。",
+  "**「触发器变体」不能用来回答归还问题**（O1）：它量的是「焦点本来就不在浮层内」时的行为。",
+  "**没有测 6 个浮层里的 Tab 围栏**（765 只量过导出面板与对话框级）。",
+  "**没有测打开状态下再点一次触发器**（toggle 关闭 vs 报错）。",
+  "**没有测多个浮层同时开着会怎样** —— 每格都从重载页面开始，永远只有一个浮层开着。",
+  "**没有测虚拟相机在录制中的 Esc**（`DirectorPhoneVcamPanel.tsx:292` 有 `if (!recording) onClose()`）。",
+  "**只测了 1440 桌面一档视口**。",
+  "**没有改 `src/`**：本批所有结论都是读数 + 源码计数，修法一律列在缺陷条目里等拍板。"
+ ],
+ "probeLessons": [
+  {
+   "id": "R75",
+   "text": "★ **「读数说焦点在某元素上」≠「有人把它放到了那儿」。** 本批探针的摘要一度把 3 格打印成「焦点回触发器 ✓」，看着像通过；实际那 3 格按 Esc 之前焦点**就在触发器上**，而触发器没被卸载 ⟹ 焦点不变是浏览器默认行为。**判别式只有一条：注入一条「真的会挪焦点」的对照，看那一格的读数变不变。** 变了 ⟹ 那格原来量的是行为；不变 ⟹ 那一格对被测行为**不敏感**，不能当证据。",
+   "whyItMatters": "这条会让「0 个做对」被误报成「5 个做对」—— 而且是**朝着通过的方向**误报，比漏报更危险。"
+  },
+  {
+   "id": "R76",
+   "text": "★ **注入的落点要与「面板真的关了」绑定，否则会造假象。** 若注入无条件 `trigger.focus()`，则在「面板还开着」的 2 格上会把焦点从浮层里拽到浮层外 ⟹ 凭空造出「焦点逃出打开的浮层」这个新症状。本批把动作条件写成「`panelGone && trigThere`」，于是 12 格分成改写 / 不动 / 动手失败三类，合计正好 12，互不重叠。",
+   "whyItMatters": "注入是为了**补一个对照**，不是为了造一个现象。"
+  },
+  {
+   "id": "R77",
+   "text": "★ **改探针的批量生成脚本时，别在原文里再放一组三引号。** 我用脚本给探针换 docstring，把新说明插在原文的 `docstring` **之前**，结果新插入的文本里那个 `docstring` 把原文的开头提前闭合 ⟹ 剩下的正文全部被当成 Python 代码，生成出来就是语法错的探针。教训：批量改脚本之后必须对产物跑 `ast.parse` —— R77 与 jscheck 是同一类问题的两个层次。",
+   "whyItMatters": "生成器出错的症状出现在产物里，离错误现场很远。"
+  },
+  {
+   "id": "R78",
+   "text": "★ **jscheck 兑现了它的承诺，省下一次 10 分钟白跑**：我写的注入 JS 里 `sel.forEach(s)=>{` 少了个 `>`（两处）—— 一眼可见、但要起浏览器、跑十几秒才在日志末尾看到 `SyntaxError`。jscheck 在 0.1 秒内把它连同覆盖率自检一起报了出来。与 R71 那个「`in` 用在字符串上」对照着看：**语法错 jscheck 能抓，语义错只能靠真跑，判读错只能靠对照** —— 三个层次，各管一段。",
+   "whyItMatters": "R71 曾让我以为 jscheck 是万能的；这次正好划清了它的边界。"
+  },
+  {
+   "id": "R79",
+   "text": "★ **泛化探针要先问「我要点的那个控件会不会触发别的缺陷」。** 「把焦点放进浮层的第一个可聚焦控件」在 6 个浮层里对 4 个是有效的、对 2 个无效 —— 因为那 2 个的第一个控件是输入框，会先撞上 D3（`isEditable` 早退）把被测行为整个遮住。选探针目标元素时，**要先确认它对被测行为是惰性的**（R59/R74 的同族：先量可点性，再点）。",
+   "whyItMatters": "它造成的不是「读错」，是「**读不到**」—— 而读不到很容易被当成「没问题」。"
+  },
+  {
+   "id": "R80",
+   "text": "★ **注入臂里那个叫 `after` 的读数，其实已经是注入后的状态。** 注入在 keydown 之后 150ms 触发，而 `after` 在 750ms 才读 ⟹ 基线**只能取自未注入的那一臂**（a）。汇编器因此把 b 臂里来自 `after` 的分类改名成 `classInInjectedArm`，免得有人拿它当「注入前」。这条是我在做**阴性对照**时撞出来的：我写了一条对照「把 `after2` 覆盖成 b 自己的 `after`，模拟注入没生效」，结果它**永远漏放**——因为两者本来就相等。",
+   "whyItMatters": "★ **无效的阴性对照不会报错，它只会永远「漏放」。** 所以「某条对照漏放」要当成**待查的事实**去查，第一反应不该是「这条对照不重要」或「补个检查就行」—— 得先问「这条对照本身是不是根本没改动任何东西」。"
+  }
+ ]
+}
