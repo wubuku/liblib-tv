@@ -49,11 +49,39 @@
        **今天触发不了**（真树还有 4 个基线之后的版本）——
        **而「今天触发不了」正是潜伏的假阴性最常见的形态**（纪律 307 推论一）。
 
+  **订阅契约 3 条（Batch 273 新增；这三条是闸在自己文档里立下、此前 0 例覆盖的断言）**：
+    9) **合成上游多发一版 v1.7.4、落点小节没提** → 必须 rc=1 且点名 v1.7.4。
+       **这一条量的是「上游一发新版本，这一小节立刻变红」**——
+       **而那句话是 Batch 272 写进 `20-reference.md` 给读者看的**，
+       读者会照它行事（照着补一行），**而它此前一次都没被跑过**（纪律 307）。
+    10) **合成上游没有 `origin/main` 这个 ref（只有 `HEAD`）** → 必须 rc=2，
+       且输出里必须出现「**不是「上游没有新版本」**」。
+       **这一条量的是「绝不退回 `HEAD`」**——
+       **而退回 `HEAD` 是本闸最坏的失败形态**：拿一份停在几个月前的检出
+       算出「上游没有新版本」并报绿，**那会让落点声明显得比实际更完整**（纪律 101）。
+    11) **基线改成 v1.7.4（追平合成上游）** → 必须 rc=0，
+       且输出里必须出现「**读到且结论为空，不是「读空了也算通过」**」。
+       **这一条钉的是两种「空」必须分开**：「读不到 CHANGELOG」是 rc=2，
+       「读到 CHANGELOG 且基线之后为空」是 rc=0（纪律 101）。
+       **而它是手册追上上游之后才会出现的那个局面**——
+       **今天触发不了，而「今天触发不了」的用例最容易被当成多余的删掉**（纪律 307）。
+
   基线 1 条：真树原样 → rc=0。
+
+**这三条为什么需要「合成上游仓」而不能靠改手册那一侧**：
+闸 40 的判据输入是**上游 `origin/main` 上的 `CHANGELOG.md`**，
+而「上游多发了一版」这件事**只在上游那侧**。
+**手册侧能造出来的只有「漏写一行」，造不出「上游多了一版」。**
+**而且绝不能拿真检出造**——`origin/main` 上有同事在用的状态，
+**Batch 272 刚被它坑过一轮**（那次 fetch 落在两批之间，把三条用例的前提打没了）。
+**所以本文件造一个最小合成仓**（`git init` + 一份 CHANGELOG + 一个 `refs/remotes/origin/main`），
+**用 `BEEFTV_SRC` 指过去**。实测合成仓完全够用：
+**闸 40 只需要 SRC 是个能解出 `origin/main` 的 git 检出**，
+不需要那 34 个提交、不需要 1263 个文件、不需要真 tag（Batch 273 实测）。
 
 **每条注入都用 `assert` 钉死锚点，并在跑之前 `cksum` 比对前后**
 （Batch 229：`str.replace` 锚点不中时静默无操作，
-而「用例通过」与「用例根本没跑起来」在输出上完全一样）。
+而「用例通过」与「用例根本没跑起来」输出上完全一样）。
 
 **本文件订正（Batch 272，写完判据后当场量的）**：
 初版里有一条用例 7，理由写的是「基线声明改成 `v1.6.2`（`v1.6.22` 的前缀），
@@ -86,12 +114,89 @@ NEXT_HEADING = "## 画布快捷键全表"
 
 PASS = VOID = FAIL = 0
 
+#: **合成上游用的 CHANGELOG**（Batch 273）。
+#: **刻意只放最小的形态**：6 个发布段落 + 1 个 Unreleased 段。
+#: **为什么不需要真上游那 34 个提交 / 1263 个文件 / 3 个 tag**：
+#: 闸 40 的判据输入只有**「`origin/main` 上 `CHANGELOG.md` 的段落集合」**这一样东西，
+#: **实测一个 `git init` 出来的空仓加一份 CHANGELOG 就够它跑完四种结局**。
+#: **而夹具越贴近真上游，它就越多一份「真上游变了它也得跟着改」的维护债**
+#: ——**那正是 Batch 272 被上游坑的那一刀**（纪律 265：夹具要够用，不要够真）。
+SYNTH_CHANGELOG = """# Changelog
+
+All notable public changes to BeefTV are documented in this file.
+
+## Unreleased
+
+- 还没发布的一条。
+
+## v1.7.3
+
+- 引导式模型服务接入。
+
+## v1.7.2
+
+- Windows MCP。
+
+## v1.7.1
+
+- 消息框旁选模型。
+
+## v1.6.23
+
+- 画布助手。
+
+## v1.6.22
+
+- 导演台工作台。
+"""
+
+#: 合成上游「多发了一版」的形态。**插在最前面**——CHANGELOG 是新版本在上，
+#: 而闸 40 的 `changelog_sections()` **不依赖顺序**（它按版本元组比大小）。
+#: **而这一条也顺带量了一次「解析器与顺序无关」**：
+#: 第一版把它追加到最末尾，输出一样，**所以那不是闸宽容，是两种顺序都被覆盖了**。
+SYNTH_CHANGELOG_PLUS_174 = """## v1.7.4
+
+- 上游刚发的一版，落点小节还没提它。
+
+"""
+
+
+def _git(args, cwd, check=True):
+    r = subprocess.run(["git"] + args, cwd=cwd, capture_output=True, text=True)
+    if check and r.returncode != 0:
+        raise RuntimeError("git %s → rc=%d：%s" % (" ".join(args), r.returncode,
+                                                   r.stderr.strip()[:200]))
+    return r
+
+
+def make_upstream(path, changelog, origin_main=True):
+    """造一个合成上游 git 仓，返回它的路径。
+
+    `origin_main=False` 用来量「拿不到 `origin/main`」那一支——
+    **而那正是「绝不退回 `HEAD`」这句话唯一能被验的地方**：
+    只有「`HEAD` 在、而 `origin/main` 不在」这个形态，
+    才真的逼判据在两个 ref 之间选一个（纪律 101）。
+    """
+    os.makedirs(path)
+    _git(["init", "-q", path], cwd=path)
+    _git(["config", "user.email", "selftest@example.com"], cwd=path)
+    _git(["config", "user.name", "selftest"], cwd=path)
+    with open(os.path.join(path, "CHANGELOG.md"), "w", encoding="utf-8") as fh:
+        fh.write(changelog)
+    _git(["add", "CHANGELOG.md"], cwd=path)
+    _git(["commit", "-q", "-m", "synthetic upstream"], cwd=path)
+    if origin_main:
+        head = _git(["rev-parse", "HEAD"], cwd=path).stdout.strip()
+        _git(["update-ref", "refs/remotes/origin/main", head], cwd=path)
+    return path
+
 
 def _cksum(text):
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
-def run(desc, want, expect_fail=True, want_rc=1, edits=None, unwanted=None):
+def run(desc, want, expect_fail=True, want_rc=1, edits=None, unwanted=None,
+        upstream=None):
     global PASS, VOID, FAIL
     ref_path = os.path.join(ROOT, REFERENCE)
     base = {ref_path: open(ref_path, encoding="utf-8").read()}
@@ -135,9 +240,22 @@ def run(desc, want, expect_fail=True, want_rc=1, edits=None, unwanted=None):
                 fh.write(t)
 
         #: 沙箱自己就是这一轮的手册根（Batch 260 / 纪律 289）。
-        r = subprocess.run([sys.executable,
-                            os.path.join("scripts", GATE + ".py")],
-                           cwd=tmp, capture_output=True, text=True, env=child_env(tmp))
+        #: **`upstream` 给了就改指合成仓**——那是「上游那一侧变了」的用例专用。
+        #: **不设 `BEEFTV_SRC` 时走 `beefsrc` 的候选表**，那才是真检出。
+        env = child_env(tmp)
+        up_dir = None
+        try:
+            if upstream is not None:
+                up_dir = make_upstream(os.path.join(tmp, "upstream"),
+                                       upstream.get("changelog", SYNTH_CHANGELOG),
+                                       origin_main=upstream.get("origin_main", True))
+                env["BEEFTV_SRC"] = up_dir
+            r = subprocess.run([sys.executable,
+                                os.path.join("scripts", GATE + ".py")],
+                               cwd=tmp, capture_output=True, text=True, env=env)
+        finally:
+            if up_dir:
+                shutil.rmtree(up_dir, ignore_errors=True)
         out = r.stdout + r.stderr
 
         if expect_fail and r.returncode != want_rc:
@@ -273,6 +391,35 @@ def main():
         "本闸本无漏报可查）**且**小节里留着一条上游没有的 v9.9.9 → 仍必须 rc=1。"
         "**初版在这里会报绿**——「无事可判」那一支写在了反向检查之前",
         "上游 CHANGELOG 里没有这个版本", want_rc=1, edits={ref: t_caught_up_plus_phantom})
+
+    # ══════ Batch 273：订阅契约三条 ══════
+    # **这三条量的是闸在**自己文档里**立下的三句话，而它们此前 0 例覆盖。**
+    # **其中第一句是写进 `20-reference.md` 给读者看的**——读者会照它行事。
+    run("9) **订阅契约**：合成上游多发一版 v1.7.4、落点小节没提 → 必须 rc=1 且点名它"
+        "（**量的是「上游一发新版本，这一小节立刻变红」那句话**——"
+        "**而它此前一次都没被跑过**）",
+        "v1.7.4 在上游 CHANGELOG 里", want_rc=1,
+        upstream={"changelog": SYNTH_CHANGELOG_PLUS_174 + SYNTH_CHANGELOG})
+
+    run("10) **绝不退回 `HEAD`**：合成上游**只有 `HEAD`、没有 `origin/main`** → 必须 rc=2，"
+        "且必须明说「不是「上游没有新版本」」"
+        "（**退回 `HEAD` 是本闸最坏的失败形态**：拿一份停在几个月前的检出算出"
+        "「上游没有新版本」并报绿，**会让落点声明显得比实际更完整**）",
+        "不是「上游没有新版本」", want_rc=2,
+        upstream={"changelog": SYNTH_CHANGELOG, "origin_main": False})
+
+    def t_catch_up(text):
+        out = text.replace("- **版本**：v1.6.22", "- **版本**：v1.7.4", 1)
+        assert out != text, "注入空转：基线版本锚点没换成 v1.7.4"
+        return out
+
+    run("11) **两种「空」必须分开**：基线追平合成上游（v1.7.4）→ rc=0，"
+        "且必须明说「这是『读到且结论为空』，不是『读空了也算通过』」"
+        "（**读不到 CHANGELOG 是 rc=2；读到且基线之后为空是 rc=0**——"
+        "**而这个局面今天触发不了，是手册追上上游之后才会出现的**）",
+        "这是「读到且结论为空」，不是「读空了也算通过」", want_rc=0, expect_fail=False,
+        edits={ref: t_catch_up},
+        upstream={"changelog": SYNTH_CHANGELOG_PLUS_174 + SYNTH_CHANGELOG})
 
     print("=== 结果：通过 %d / 失败 %d / 作废 %d ===" % (PASS, FAIL, VOID))
     return 1 if (FAIL or VOID) else 0
