@@ -44,6 +44,7 @@ screenshots:
     captured_at: '2026-10-02'
     verified_locator: '本图是「画布上有选中」时拍的，主列自上而下共 9 个按钮，aria-label 依次为 添加节点 / 搜索节点 / 资产 / 提示词库 / 历史 / 上传资产 / 画布外观 / 删除选中（垃圾桶，任何有选中都出现：单选、多选、全选都在）/ 清空画布（剪刀）；没有选中时是 8 个（无垃圾桶），逐个读按钮内 span 文本全部为空串、title 属性全为 null；左下角那组为 打开小地图 / 隐藏连线 / 网格吸附 / 重置视图，外加缩放滑杆与读数 91%，末位是 快捷键。整列唯一可见的文字是「＋」按钮上方的「新建」徽标与滑杆旁的 91%'
     visible_text: '新建 91%'
+    m225_note: 'M225 用 OCR 普查时**报过警**（OCR 整张只认出「91%」），**放大 5 倍后看清「新建」确实在图上**——它是加号按钮上方那个渐变徽标，**只有约 30x8 像素**，OCR 才漏了。**这是 M225 的第 152 次否证**，与 F28/F29 同一个形状：**判据报警时先怀疑判据**。'
     alt: 画布左侧的悬浮按钮条，从上到下只有一排没有任何文字标注的图标——加号、放大镜、文件夹、星形、时钟、上传箭头、调色板、垃圾桶和一把剪刀，画面下方是四个视图控制按钮（打开小地图 / 隐藏连线 / 网格吸附 / 重置视图）、一条显示 91% 的缩放滑杆和快捷键按钮
     sha256: f5d98b05fca1cbfc244ead8764b25c695773af12869f822422d0478b3078f5ab
 
@@ -141,8 +142,9 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-27'
-    verified_locator: '节点位移 / 视口内容变化'
-    visible_text: '节点位移'
+    verified_locator: '顶栏 TDCanvas 1 / 中部图片节点右上角 豆包AI生成 徽标 / 左下角 缩放读数 85%'
+    visible_text: 'TDCanvas 1 豆包AI生成 85%'
+    m225_note: 'M225-R76｜★ 本条是 M225 用 OCR 全量普查 visible_text 抓到的**第三档错**（改前 111 条里的两条之一）。改前 `visible_text` 写的是「节点位移」——**这四个字图上一个都没有**，它是「拖动之后节点整体移了」这个**现象的描述**，不是界面文字。同一条的 `verified_locator` 原写「节点位移 / 视口内容变化」也犯同一个毛病。★ 改后登记的是 OCR 实读到的三条：TDCanvas 1、豆包AI生成、85%。⚠ **needle 必须取长**：正文 `organize-canvas.md:32` 有「组框外的第三个节点位移 [0, 0]」，**那是正当用法**，取短 needle 会在正确的地方报红。'
     alt: 空白处拖拽后画布视野平移，节点整体位移
     sha256: 6f9c03e4dea96e5d329d90424cb1d62fb11fed785cd8c87eafd2b03feba31c42
 
@@ -241,8 +243,9 @@ screenshots:
     viewport: 1280x720
     locale: zh-CN
     captured_at: '2026-09-27'
-    verified_locator: 'phone.png 节点移动到组虚线框范围内'
-    visible_text: '生成蓝色手机'
+    verified_locator: '组虚线框内的 phone.png 图片节点 / 顶部悬浮工具条 编辑 复制提示词 反推提示词 替换图片 裁剪 切图 放大'
+    visible_text: '复制提示词 反推提示词 替换图片 裁剪 切图 放大'
+    m225_note: 'M225-R77｜★ 本条是 M225 抓到的**另一条第三档错**。改前 `visible_text` 写的是「生成蓝色手机」——**那不是界面文字，是这张图演示的内容**（节点里放的是一张蓝色手机的照片），**图上没有任何一处写着这几个字**。`verified_locator` 原写「phone.png 节点移动到组虚线框范围内」同样是描述而不是定位。改后登记的是顶部悬浮工具条上 OCR 实读到的六个标签。'
     alt: 图片节点被拖入组的虚线框范围内
     sha256: d2fbb5e367ae2be4b1292028a7ee2ecab7c86348e6c8134f6ab2d0a8218712b2
 
@@ -998,6 +1001,7 @@ screenshots:
     captured_at: '2026-10-01'
     verified_locator: '顶栏 TDCanvas logo / 其右侧 汉堡按钮 aria-label=打开导航菜单 / 右侧 Agent 配置 语言 主题 版本 图标 / scrollWidth 640 等于 clientWidth 640'
     visible_text: '打开导航菜单'
+    m225_note: 'M225 用 OCR 普查时**报过警**，同样按三档判据判为**合规，不改**。OCR 读不到它（640px 布局里那个汉堡按钮确实没有可见文字），但 `20-reference.md:61` 与 `00-quickstart.md:66` **都把它写成按钮的「提示」**，属第二档。'
     alt: 窗口宽 640 像素时顶栏只剩 TDCanvas 标志与其右侧的汉堡按钮，导航项已折叠为抽屉，右侧的 Agent、配置、语言、主题图标仍在
     sha256: be397b25b0632fdc6df8c91b6c42356825c0e94080e0100ba0ab630f5765a9db
 
@@ -1098,6 +1102,7 @@ screenshots:
     captured_at: '2026-10-01'
     verified_locator: '画布标题 TDCanvas 1 / 其右侧 button aria-label="打开本地 Codex 面板: Codex 未连接" title="Codex 未连接" 尺寸 28x28 / 内部唯一子元素 span.size-1.5.rounded-full 背景 rgb(183,187,192)'
     visible_text: 'Codex 未连接'
+    m225_note: 'M225 用 OCR 普查时**报过警**，但按本手册已定的**三档判据**判为**合规，不改**。OCR 读不到它（那张图是 4 倍局部放大件，整张只认出 TDCanvas 1 一行），但**这正是第二档**：`use-agent.md` 把「Codex 未连接」明确放在「悬停提示」语境里（表格列名就是「悬停提示」），**而悬停才出现的文字本来就拍不到**。★ 记在这里是因为：**光看 OCR 报警就改，会把一条合规登记改坏**。'
     alt: 四倍放大的画布顶栏，项目名 TDCanvas 1 右侧有一颗灰色小圆点，那是 Codex 连接状态灯，未连接时为灰色
     sha256: 59bad9debbb0982464fffc65ee13d2d5e8df76853b30f7ff2d381e0b87d24cb9
 
