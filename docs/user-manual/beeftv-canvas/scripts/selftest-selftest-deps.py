@@ -389,13 +389,107 @@ def m_transport_count_is_reported():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── 13/14 方向一之二：真跑了闸，就必须告诉它手册根在哪（Batch 260）──
+def _env_fixture(tmp, run_it):
+    """造一份反验：它把一个**闭包会用到 `baseline`** 的闸搬进临时树。
+
+    `run_it=True`  → 真的用 `subprocess` 跑它，**且不设 `BEEFTV_MANUAL_ROOT`**
+    `run_it=False` → **只把它当文本读**，从不执行
+
+    **这两份只差「有没有那一次 subprocess」**——
+    **而判据必须只因为这一件事给出相反的结论**，
+    **否则它分不清「搬了闸」与「跑了闸」，而这两件事的后果完全不同**：
+    `selftest-duplication.py` 把三个闸搬进临时树**只当文本扫**，什么事也没有。
+    """
+    shutil.copytree(os.path.join(ROOT, "scripts"), os.path.join(tmp, "scripts"))
+    shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-selftest-deps.py"))
+    newgate = os.path.join(tmp, "scripts", "verify-newfangled.py")
+    write(newgate, "import os, sys\nfrom baseline import resolve_ref\n"
+                   "def main():\n    return resolve_ref() and 0\n"
+                   "if __name__ == '__main__':\n    sys.exit(main())\n")
+    #: **方向一（依赖搬运）必须先满足**——否则 rc=1 是它报的，
+    #: **这一对就分不出「是新判据报的」还是「是老判据报的」**。
+    #: **一对用例只差一件事的前提是：除那一件事外，其余全部合规。**
+    body = ("    tmp = tempfile.mkdtemp()\n"
+            "    os.makedirs(os.path.join(tmp, 'scripts'))\n"
+            "    shutil.copy(GATE, os.path.join(tmp, 'scripts', 'verify-newfangled.py'))\n"
+            "    shutil.copy(BASE, os.path.join(tmp, 'scripts', 'baseline.py'))\n"
+            "    shutil.copy(BEEFSRC, os.path.join(tmp, 'scripts', 'beefsrc.py'))\n")
+    if run_it:
+        # **真跑**，而**没有** `env=`、**没有**那个变量
+        body += ("    r = subprocess.run([sys.executable, os.path.join('scripts', "
+                 "'verify-newfangled.py')],\n"
+                 "                       cwd=tmp, capture_output=True, text=True)\n"
+                 "    sys.exit(0 if r.returncode == 0 else 1)\n")
+    else:
+        # **只当文本读**——搬运一模一样，唯一的差别是不执行
+        body += ("    with open(os.path.join(tmp, 'scripts', 'verify-newfangled.py'),\n"
+                 "              encoding='utf-8') as fh:\n"
+                 "        assert 'baseline' in fh.read()\n"
+                 "    sys.exit(0)\n")
+    write(os.path.join(tmp, "scripts", "selftest-newfangled.py"),
+          "import os, sys, shutil, tempfile, subprocess\n"
+          "HERE = os.path.dirname(os.path.abspath(__file__))\n"
+          "GATE = os.path.join(HERE, 'verify-newfangled.py')\n"
+          "BASE = os.path.join(HERE, 'baseline.py')\n"
+          "BEEFSRC = os.path.join(HERE, 'beefsrc.py')\n"
+          "def main():\n" + body +
+          "if __name__ == '__main__':\n    sys.exit(main())\n")
+
+
+def m_missing_env_reported():
+    """**能抓那一侧**：真跑了一个会用 `baseline` 的闸，却没告诉它手册根在哪。"""
+    check_anchor()
+    tmp = tempfile.mkdtemp(prefix="beef-deps-env-miss.")
+    try:
+        _env_fixture(tmp, run_it=True)
+        r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
+                           cwd=tmp, capture_output=True, text=True)
+        out = (r.stdout or "") + (r.stderr or "")
+        ok = (r.returncode == 1 and "✗ 方向一之二" in out
+              and "BEEFTV_MANUAL_ROOT" in out and "selftest-newfangled.py" in out)
+        record("13 真跑会用 baseline 的闸却没设 BEEFTV_MANUAL_ROOT → 必报", ok, f"rc={r.returncode}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_text_only_staging_not_reported():
+    """**不误伤那一侧**：搬运一模一样，**只是从不执行那个闸** → 不得报。
+
+    **这一条钉住的是判据的边界，不是它的强度**：
+    **第一版口径按「搬了闸」算，于是把 `selftest-duplication.py` 误报成缺陷**
+    ——**而那份实测 6/6 通过、什么事也没有**。
+    **一个会误报的判据，下一个人会去把正确的写法改错**（纪律 260）。
+    """
+    check_anchor()
+    tmp = tempfile.mkdtemp(prefix="beef-deps-env-text.")
+    try:
+        _env_fixture(tmp, run_it=False)
+        r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
+                           cwd=tmp, capture_output=True, text=True)
+        out = (r.stdout or "") + (r.stderr or "")
+        #: **盯 `✗ 方向一之二` 这一行，而不是在全文里找「方向一之二」**——
+        #: **闸的通过语里就印着「（方向一之二）」**
+        #: （「N 份反验真跑会用 baseline/scope 的闸，都已给子进程设 …」），
+        #: **第一版断言 `"方向一之二" not in out` 于是恒假**，
+        #: **而闸其实一点问题都没报**（rc=0）。
+        #: **这与 Batch 255 那次「断言 C0 不在输出里、而通过语写着「无 C0 控制字符」」
+        #: 是同一个坑：拿一句散文当判别式，散文会自己走进那个子串里。**
+        ok = r.returncode == 0 and "✗ 方向一之二" not in out
+        record("14 只把闸当文本扫、从不执行 → 不得报（「搬了」≠「跑了」）",
+               ok, f"rc={r.returncode}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main():
     tests = [m_clean, m_missing_baseline_copy, m_gate_imports_missing_module,
              m_no_false_positive, m_rename_pattern_breaks,
              m_loop_copy_without_the_module, m_loop_copy_with_the_module,
              m_copytree_other_dir_still_reports, m_copytree_scripts_dir_passes,
              m_stage_gate_wrong_gate_still_reports, m_stage_gate_right_gate_passes,
-             m_transport_count_is_reported]
+             m_transport_count_is_reported,
+             m_missing_env_reported, m_text_only_staging_not_reported]
     for t in tests:
         try:
             t()

@@ -94,8 +94,14 @@ def run(desc, want, expect_fail=True, want_rc=1, edits=None):
             os.makedirs(os.path.dirname(dst), exist_ok=True)
             with open(dst, "w", encoding="utf-8") as fh:
                 fh.write(t)
+
+        #: **Batch 260**：`baseline.py` / `scope.py` 让 `BEEFTV_MANUAL_ROOT`
+        #: **优先于 `__file__` 推断**，而本闸的 `ROOT` 是 `dirname(HERE)`——
+        #: **不设它就凑巧对，设错了就整棵读错**（实测见纪律 289 / 闸 17 方向一之二）。
+        #: **沙箱自己就是这一轮的手册根**。
         r = subprocess.run([sys.executable, os.path.join("scripts", "verify-version-coverage.py")],
-                           cwd=tmp, capture_output=True, text=True)
+                           cwd=tmp, capture_output=True, text=True,
+                                   env={**os.environ, "BEEFTV_MANUAL_ROOT": tmp})
         out = r.stdout + r.stderr
         if expect_fail and r.returncode == 0:
             print("  ✗ %s：闸门本应报错，却通过了" % desc)
@@ -215,7 +221,12 @@ def t_fullwidth_pseudo_heading(s):
 
 
 def main():
-    r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
+
+    #: **Batch 260 同族第二处**（纪律 289 推论二）：这一条跑的是**真树**，
+    #: **而它同样要显式指回真树**——调用者若把那个变量指向别处，
+    #: **这一条就会拿一个错误的根去核真树**。**只修沙箱那一处，它仍然红。**
+    r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True,
+                                                       env={**os.environ, "BEEFTV_MANUAL_ROOT": ROOT})
     if r.returncode == 0:
         print("  ✓ 基线：真实手册通过（%s）" % r.stdout.strip().split("\n")[-1][:70])
         globals()["PASS"] = globals()["PASS"] + 1

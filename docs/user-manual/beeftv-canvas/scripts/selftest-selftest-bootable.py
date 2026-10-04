@@ -64,8 +64,14 @@ def write(p, t):
 
 
 def run_in(tmp):
+    #: **Batch 260**：`verify-selftest-bootable.py` 的依赖闭包里有 `baseline`，
+    #: **而 `baseline` 让 `BEEFTV_MANUAL_ROOT` 优先于 `__file__` 推断**——
+    #: 不设它时凑巧对（都指向真树），**而它被别人设了就整棵读错**
+    #: （闸 17 方向一之二；纪律 289）。**沙箱自己就是这一轮的手册根。**
+    e = dict(os.environ)
+    e["BEEFTV_MANUAL_ROOT"] = tmp
     r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-bootable.py")],
-                       cwd=tmp, capture_output=True, text=True)
+                       cwd=tmp, capture_output=True, text=True, env=e)
     return r.returncode, (r.stdout or "") + (r.stderr or "")
 
 
@@ -160,7 +166,12 @@ def check_gap_anchor():
 # ── 1 现状 ──────────────────────────────────────────────────────────
 def m_clean():
     check_anchor()
-    r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
+    #: **Batch 260 同族第三处**：这一条跑的是**真树**，**它同样要显式指回真树**——
+    #: 调用者若把那个变量指向别处，**这一条就会拿一个错误的根去核真树**，
+    #: **而症状与改之前一模一样**（纪律 289 推论二）。
+    e = dict(os.environ)
+    e["BEEFTV_MANUAL_ROOT"] = ROOT
+    r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True, env=e)
     record("1 真实现状→不报", r.returncode == 0, f"rc={r.returncode}")
 
 
@@ -669,6 +680,10 @@ def run_in_env(tmp):
     **而那条用例会以「闸报了」的形态通过，而它其实什么都没验**（纪律 178）。"""
     e = dict(os.environ)
     e["BEEFTV_SRC"] = ""
+    #: **Batch 260 同一条**（`run_in` 那处的同族）：`baseline` 认那个变量，
+    #: **而这里已经在建 env 了，顺手把它指回这棵树**——
+    #: **两处只改一处，那一处仍然会读错树**（纪律 289 推论二）。
+    e["BEEFTV_MANUAL_ROOT"] = tmp
     r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-bootable.py")],
                        cwd=tmp, capture_output=True, text=True, env=e)
     return r.returncode, (r.stdout or "") + (r.stderr or "")

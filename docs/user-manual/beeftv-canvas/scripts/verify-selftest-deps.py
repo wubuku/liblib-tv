@@ -306,6 +306,91 @@ def stages_whole_scripts(text):
     return False
 
 
+#: **Batch 260 新增。** 哪两个本地模块**会认那个环境变量**：
+#: `baseline.py` 与 `scope.py` 都写成
+#: `os.environ.get("BEEFTV_MANUAL_ROOT") or <按 __file__ 推断>`——
+#: **变量优先于文件位置**（Batch 178 加它的理由就是为了让搬过树的闸能指回原处）。
+#: 而绝大多数闸自己的 `ROOT` 是 `dirname(HERE)`，**它只认自己所在的位置**。
+#: **两种约定并存，就出现一个没人管的组合**：反验把闸搬进临时树再真跑它，
+#: **却没告诉它「手册根是你自己那棵树」**——
+#: 变量没设时凑巧对（都指向真树），**变量被别人设了就整棵读错**。
+ROOT_ENV = "BEEFTV_MANUAL_ROOT"
+#: **认这个变量的本地模块**：闭包里出现它们，闸就可能被指到别的树上去。
+ENV_AWARE_MODULES = ("baseline", "scope")
+
+
+def runs_staged_gate(text, gate_names):
+    """这份反验**真跑**了它搬进去的哪些闸。
+
+    **为什么要单独问「真跑」而不是只问「搬了」**：
+    `selftest-duplication.py` 把三个闸搬进临时树，
+    **但只把它们当文本扫**（闸 37 普查的是正则字面量），**从不执行它们**。
+    **「搬了闸」不等于「跑那个闸」，而只有真跑才会读到那个环境变量**——
+    **第一版口径按「搬了」算，于是把这一份误报成缺陷**（实测它 6/6 通过、什么事没有）。
+
+    判法：看 `subprocess.*` 调用的实参里**字面写着**哪个闸名。
+    **闸名是变量拼出来的（`run(g)`）就认不出**——
+    **而「认不出」在这里恰好是对的**：那份反验没有真跑那个闸。
+    """
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return set()
+    hit = set()
+    for node in ast.walk(tree):
+        if not (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
+                and node.func.attr in ("run", "Popen", "call",
+                                       "check_call", "check_output")):
+            continue
+        args = list(node.args) + [k.value for k in node.keywords]
+        for a in args:
+            for sub in ast.walk(a):
+                if not (isinstance(sub, ast.Constant) and isinstance(sub.value, str)):
+                    continue
+                for g in gate_names:
+                    if g in sub.value or os.path.basename(sub.value) == g:
+                        hit.add(g)
+    return hit
+
+
+def env_not_pointed_back(selftests):
+    """返回 (缺陷列表, 已合规份数)。
+
+    **判据只问一件能机械判定的事**：这份反验**真跑**的闸，
+    **其本地依赖闭包里有没有模块会认 `BEEFTV_MANUAL_ROOT`**，
+    而这份反验的源码里**有没有**给子进程设那个变量。
+    """
+    problems, ok_n = [], 0
+    for fn in selftests:
+        p = os.path.join(SCRIPTS, fn)
+        try:
+            with open(p, encoding="utf-8") as fh:
+                text = fh.read()
+        except OSError:
+            continue
+        if not copies_gate_into_tmp(text):
+            continue
+        ran = runs_staged_gate(text, independent_gate_names(text, SCRIPTS))
+        risky = sorted(g for g in ran
+                       if os.path.isfile(os.path.join(SCRIPTS, g))
+                       and set(ENV_AWARE_MODULES) & set(local_closure(g[:-3])))
+        if not risky:
+            continue
+        if ROOT_ENV in text:
+            ok_n += 1
+            continue
+        problems.append(
+            f"方向一之二：{fn} 真跑 {'、'.join(risky)}，"
+            f"而那个闸的依赖闭包里 {'/'.join(ENV_AWARE_MODULES)} "
+            f"**认 `{ROOT_ENV}`**——**反验没有给它设这个变量**"
+            "　→ 那个变量没设时凑巧对（都指向真树），"
+            "**而它被别人设了（例如这份反验本身被另一份反验调用）就整棵读错**。"
+            f"**实测 Batch 259：`{fn}` 这一族在变量指向别处时整份反验转红**，"
+            f"而指向真树时**全绿**——**正好是最容易骗过人的那一种**。"
+            f"　→ 修法：起子进程时 `env={{**os.environ, \"{ROOT_ENV}\": <它自己那棵树>}}`")
+    return problems, ok_n
+
+
 def main():
     if not os.path.isdir(SCRIPTS):
         print(f"[skip] 找不到 {SCRIPTS}，跳过反验依赖核对")
@@ -413,6 +498,10 @@ def main():
         print("[skip] 没有反验把闸门复制进临时目录——判据可能已失效，请先确认")
         return 2
 
+    # ── 方向一之二（Batch 260）：真跑了闸，就得告诉它手册根在哪 ──────
+    env_problems, env_ok = env_not_pointed_back(selftests)
+    problems.extend(env_problems)
+
     if problems:
         print("反验依赖核对：%d 处不自洽" % len(problems))
         for p in problems:
@@ -428,6 +517,8 @@ def main():
           "**本闸不要求它们必须迁移**（一次改 20 多份的出错面更大），"
           "**但这个数从此写在构建日志里，而不是记在某个人的脑子里**"
           % (staged_n, checked - staged_n))
+    print("  手册根指回：%d 份反验真跑会用 `baseline`/`scope` 的闸，"
+          "**都已给子进程设 `%s`**（方向一之二）" % (env_ok, ROOT_ENV))
     return 0
 
 
