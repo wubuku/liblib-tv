@@ -1,0 +1,693 @@
+{
+ "batch": 760,
+ "date": "2026-10-01",
+ "clone": "http://localhost:4317 (master, src/ 自 batch 740 起 0 提交)",
+ "subject": "storyboard-group 的拖动方向性 + canvasTool 两态手势矩阵 + 底栏工具按钮的状态指示",
+ "seed": {
+  "withChildGroup": {
+   "id": "g-EFbbHpwq5w",
+   "size": "722x460",
+   "child": "v-UGQZzZOpbv"
+  },
+  "emptyGroup": {
+   "id": "g-245IDFh8sB",
+   "size": "430x452",
+   "children": 0
+  },
+  "activeCanvas": "canvas-2",
+  "note": "种子画布 canvas-2，10 个节点；分组框坐标为 store 绝对坐标"
+ },
+ "twoRound": {
+  "probeA": {
+   "file": "/tmp/vb760a.json",
+   "rounds": 2,
+   "consistent": true
+  },
+  "probeB": {
+   "file": "/tmp/vb760b.json",
+   "rounds": 2,
+   "consistent": true
+  },
+  "probeC": {
+   "file": "/tmp/vb760c.json",
+   "rounds": 2,
+   "consistent": true
+  },
+  "allConsistent": true,
+  "caveat": "760c 的派生层曾读错键名导致常量布尔；确定性错误两轮必然一致，所以「两轮一致」不能单独当作派生层正确的证据 —— 本批已按正确键名重算并让验收器叶子级核对原始读数。"
+ },
+ "findings": {
+  "groupBoxDraggable": {
+   "withChild": {
+    "groupId": "g-EFbbHpwq5w",
+    "blankPoint": {
+     "x": 1021,
+     "y": 168,
+     "w": 271,
+     "h": 173
+    },
+    "groupMoved": true,
+    "groupDelta": [
+     210,
+     141
+    ],
+    "groupDomDelta": [
+     79,
+     53
+    ],
+    "pastDelta": 1,
+    "childrenKept": [
+     "v-UGQZzZOpbv"
+    ]
+   },
+   "empty": {
+    "groupId": "g-245IDFh8sB",
+    "blankPoint": {
+     "x": 918,
+     "y": 419,
+     "w": 161,
+     "h": 170
+    },
+    "groupMoved": true,
+    "groupDelta": [
+     210,
+     141
+    ],
+    "pastDelta": 1,
+    "childrenKept": []
+   },
+   "bothMovable": true
+  },
+  "probe760aNodeHitFalse": {
+   "probeA_pan_nodeHit": false,
+   "probeB_select_nodePoint": {
+    "x": 1068,
+    "y": 204
+   },
+   "probeB_pan_nodePoint": {
+    "x": 1068,
+    "y": 204
+   },
+   "verdict": "探针缺陷：760a 前两格各平移 200px 累计 400px 把节点推出视口；760b 每格前 Meta+0 复位后两态都命中同一坐标。"
+  },
+  "gestureMatrix": {
+   "select": {
+    "dataAttr": "select",
+    "attrCount": 1,
+    "className": "react-flow bg-[#141414] light",
+    "paneLeftDrag": false,
+    "paneLeftDeltaX": 0,
+    "paneMiddleDrag": true,
+    "paneMiddleDeltaX": 200,
+    "nodePoint": {
+     "x": 1068,
+     "y": 204
+    },
+    "nodeDragMoved": true,
+    "nodeDragDelta": [
+     258,
+     0
+    ],
+    "nodeDragPastDelta": 1,
+    "groupMovedWhileNodeDragged": false
+   },
+   "pan": {
+    "dataAttr": "pan",
+    "attrCount": 1,
+    "className": "react-flow cursor-grab bg-[#141414] light",
+    "paneLeftDrag": true,
+    "paneLeftDeltaX": 200,
+    "paneMiddleDrag": true,
+    "paneMiddleDeltaX": 200,
+    "nodePoint": {
+     "x": 1068,
+     "y": 204
+    },
+    "nodeDragMoved": false,
+    "nodeDragDelta": [
+     0,
+     0
+    ],
+    "nodeDragPastDelta": 0,
+    "groupMovedWhileNodeDragged": false
+   }
+  },
+  "panGroupDrag": {
+   "blankPoint": {
+    "x": 1021,
+    "y": 168
+   },
+   "groupMoved": false,
+   "pastDelta": 0,
+   "childMovedAbs": false
+  },
+  "childFollowsParent": {
+   "groupDelta": [
+    258,
+    165
+   ],
+   "childAbsDelta": [
+    258,
+    165
+   ],
+   "childRelDelta": [
+    0,
+    0
+   ],
+   "absDeltaIdenticalToGroup": true,
+   "relDeltaIsZero": true,
+   "parentIdKept": true,
+   "childStillInsideBox": true,
+   "childRelBefore": {
+    "x": 62,
+    "y": 62
+   },
+   "childRelAfter": {
+    "x": 62,
+    "y": 62
+   }
+  },
+  "undoRestores": {
+   "groupRelRestored": true,
+   "groupDomRestored": true,
+   "childRelRestored": true,
+   "childAbsRestored": true,
+   "pastBackTo": 0,
+   "pastBefore": 0
+  },
+  "deadAttrDataCanvasTool": {
+   "attrCountRuntime": 1,
+   "readersInSrc": 0,
+   "classDelta": true,
+   "classDeltaValue": "pan 态多一个 cursor-grab"
+  },
+  "toolButtonState": {
+   "steps": [
+    {
+     "step": "C0-基线-select面板关",
+     "canvasTool": "select",
+     "activePrimaryPanel": null,
+     "panelOpen": false,
+     "label": "移动",
+     "title": "移动",
+     "icon": "lucide lucide-mouse-pointer2 lucide-mouse-pointer-2",
+     "ariaPressed": "false",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(212, 212, 212)",
+     "labelMatchesTool": true,
+     "pressedIsTrue": false,
+     "highlightMatchesTool": true
+    },
+    {
+     "step": "C1-面板已开未选工具",
+     "canvasTool": "select",
+     "activePrimaryPanel": "move",
+     "panelOpen": true,
+     "label": "移动",
+     "title": "移动",
+     "icon": "lucide lucide-mouse-pointer2 lucide-mouse-pointer-2",
+     "ariaPressed": "true",
+     "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "color": "rgb(255, 255, 255)",
+     "labelMatchesTool": true,
+     "pressedIsTrue": true,
+     "highlightMatchesTool": false
+    },
+    {
+     "step": "C2-已选抓手工具",
+     "canvasTool": "pan",
+     "activePrimaryPanel": null,
+     "panelOpen": false,
+     "label": "抓手工具",
+     "title": "抓手工具",
+     "icon": "lucide lucide-hand",
+     "ariaPressed": "false",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(212, 212, 212)",
+     "labelMatchesTool": true,
+     "pressedIsTrue": false,
+     "highlightMatchesTool": false
+    },
+    {
+     "step": "C3-按H快捷键",
+     "canvasTool": "pan",
+     "activePrimaryPanel": null,
+     "panelOpen": false,
+     "label": "抓手工具",
+     "title": "抓手工具",
+     "icon": "lucide lucide-hand",
+     "ariaPressed": "false",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(212, 212, 212)",
+     "labelMatchesTool": true,
+     "pressedIsTrue": false,
+     "highlightMatchesTool": false
+    },
+    {
+     "step": "C4-已选回移动",
+     "canvasTool": "select",
+     "activePrimaryPanel": null,
+     "panelOpen": false,
+     "label": "移动",
+     "title": "移动",
+     "icon": "lucide lucide-mouse-pointer2 lucide-mouse-pointer-2",
+     "ariaPressed": "false",
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "rgb(212, 212, 212)",
+     "labelMatchesTool": true,
+     "pressedIsTrue": false,
+     "highlightMatchesTool": true
+    }
+   ],
+   "labelMatchesToolCount": 5,
+   "labelMatchesToolTotal": 5,
+   "highlightAgrees": [
+    "C0-基线-select面板关",
+    "C4-已选回移动"
+   ],
+   "highlightDisagrees": [
+    "C1-面板已开未选工具",
+    "C2-已选抓手工具",
+    "C3-按H快捷键"
+   ],
+   "positiveControlPanelDots": {
+    "step": "C1-面板已开未选工具",
+    "tool": "select",
+    "dots": [
+     true,
+     false
+    ]
+   },
+   "iconFlipsOnToolChange": true
+  }
+ },
+ "judgeCount": 14,
+ "judgments": [
+  {
+   "no": 1,
+   "text": "分组框 g-EFbbHpwq5w（722×460，带子节点）自身可拖：groupMoved=true、pastDelta=1",
+   "evidence": {
+    "groupId": "g-EFbbHpwq5w",
+    "blankPoint": {
+     "x": 1021,
+     "y": 168,
+     "w": 271,
+     "h": 173
+    },
+    "groupMoved": true,
+    "groupDelta": [
+     210,
+     141
+    ],
+    "groupDomDelta": [
+     79,
+     53
+    ],
+    "pastDelta": 1,
+    "childrenKept": [
+     "v-UGQZzZOpbv"
+    ]
+   }
+  },
+  {
+   "no": 2,
+   "text": "空组 g-245IDFh8sB（430×452，children 为 0）自身同样可拖",
+   "evidence": {
+    "groupId": "g-245IDFh8sB",
+    "blankPoint": {
+     "x": 918,
+     "y": 419,
+     "w": 161,
+     "h": 170
+    },
+    "groupMoved": true,
+    "groupDelta": [
+     210,
+     141
+    ],
+    "pastDelta": 1,
+    "childrenKept": []
+   }
+  },
+  {
+   "no": 3,
+   "text": "拖框时子节点跟着走：childAbsDelta 与 groupDelta 逐位相同",
+   "evidence": {
+    "groupDelta": [
+     258,
+     165
+    ],
+    "childAbsDelta": [
+     258,
+     165
+    ],
+    "childRelDelta": [
+     0,
+     0
+    ],
+    "absDeltaIdenticalToGroup": true,
+    "relDeltaIsZero": true,
+    "parentIdKept": true,
+    "childStillInsideBox": true,
+    "childRelBefore": {
+     "x": 62,
+     "y": 62
+    },
+    "childRelAfter": {
+     "x": 62,
+     "y": 62
+    }
+   }
+  },
+  {
+   "no": 4,
+   "text": "子节点相对父的位移恒为 [0,0]，相对布局未变",
+   "evidence": {
+    "childRelBefore": {
+     "x": 62,
+     "y": 62
+    },
+    "childRelAfter": {
+     "x": 62,
+     "y": 62
+    },
+    "childRelDelta": [
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "no": 5,
+   "text": "拖框后 parentId 未变、子节点仍在框内",
+   "evidence": {
+    "parentIdBefore": "g-EFbbHpwq5w",
+    "parentIdAfter": "g-EFbbHpwq5w",
+    "parentIdKept": true,
+    "childStillInsideBox": true
+   }
+  },
+  {
+   "no": 6,
+   "text": "Cmd+Z 后四组坐标全部复原，past 1→0（分组拖动可撤销）",
+   "evidence": {
+    "groupRelRestored": true,
+    "groupDomRestored": true,
+    "childRelRestored": true,
+    "childAbsRestored": true,
+    "pastBackTo": 0,
+    "pastBefore": 0
+   }
+  },
+  {
+   "no": 7,
+   "text": "★ 更正 757：跟随关系是单向的（父动子跟 / 子动父不跟），不是「无任何跟随关系」",
+   "evidence": {
+    "parentToChild_deltaIdentical": true,
+    "childToParent_groupMovedWhileNodeDragged": false,
+    "narrowedClaim": "757 的结论范围由「无任何跟随关系」收窄为「子→父方向完全没有」"
+   }
+  },
+  {
+   "no": 8,
+   "text": "select 态：pane 左键不动、中键可拖、节点可拖；拖子节点时分组框不动",
+   "evidence": {
+    "dataAttr": "select",
+    "attrCount": 1,
+    "className": "react-flow bg-[#141414] light",
+    "paneLeftDrag": false,
+    "paneLeftDeltaX": 0,
+    "paneMiddleDrag": true,
+    "paneMiddleDeltaX": 200,
+    "nodePoint": {
+     "x": 1068,
+     "y": 204
+    },
+    "nodeDragMoved": true,
+    "nodeDragDelta": [
+     258,
+     0
+    ],
+    "nodeDragPastDelta": 1,
+    "groupMovedWhileNodeDragged": false
+   }
+  },
+  {
+   "no": 9,
+   "text": "pan 态：pane 左键与中键都可拖、节点不可拖",
+   "evidence": {
+    "dataAttr": "pan",
+    "attrCount": 1,
+    "className": "react-flow cursor-grab bg-[#141414] light",
+    "paneLeftDrag": true,
+    "paneLeftDeltaX": 200,
+    "paneMiddleDrag": true,
+    "paneMiddleDeltaX": 200,
+    "nodePoint": {
+     "x": 1068,
+     "y": 204
+    },
+    "nodeDragMoved": false,
+    "nodeDragDelta": [
+     0,
+     0
+    ],
+    "nodeDragPastDelta": 0,
+    "groupMovedWhileNodeDragged": false
+   }
+  },
+  {
+   "no": 10,
+   "text": "pan 态分组框也不可拖：groupMoved=false、pastDelta=0",
+   "evidence": {
+    "blankPoint": {
+     "x": 1021,
+     "y": 168
+    },
+    "groupMoved": false,
+    "pastDelta": 0,
+    "childMovedAbs": false
+   }
+  },
+  {
+   "no": 11,
+   "text": "该矩阵与 page.tsx 的 panOnDrag / nodesDraggable / effectivePan 静态读法逐项吻合 ⟹ canvasTool 两态行为无缺陷",
+   "evidence": {
+    "matrix": {
+     "select": {
+      "dataAttr": "select",
+      "attrCount": 1,
+      "className": "react-flow bg-[#141414] light",
+      "paneLeftDrag": false,
+      "paneLeftDeltaX": 0,
+      "paneMiddleDrag": true,
+      "paneMiddleDeltaX": 200,
+      "nodePoint": {
+       "x": 1068,
+       "y": 204
+      },
+      "nodeDragMoved": true,
+      "nodeDragDelta": [
+       258,
+       0
+      ],
+      "nodeDragPastDelta": 1,
+      "groupMovedWhileNodeDragged": false
+     },
+     "pan": {
+      "dataAttr": "pan",
+      "attrCount": 1,
+      "className": "react-flow cursor-grab bg-[#141414] light",
+      "paneLeftDrag": true,
+      "paneLeftDeltaX": 200,
+      "paneMiddleDrag": true,
+      "paneMiddleDeltaX": 200,
+      "nodePoint": {
+       "x": 1068,
+       "y": 204
+      },
+      "nodeDragMoved": false,
+      "nodeDragDelta": [
+       0,
+       0
+      ],
+      "nodeDragPastDelta": 0,
+      "groupMovedWhileNodeDragged": false
+     }
+    },
+    "static": "page.tsx:477 effectivePan / :1550 panOnDrag / :1554 nodesDraggable",
+    "defectFound": false
+   }
+  },
+  {
+   "no": 12,
+   "text": "★ 缺陷（中）：底栏工具按钮的 aria-pressed 与同一枚按钮的 aria-label 指向不同状态源 —— label 跟 canvasTool（5/5 全对），active 跟 activePrimaryPanel；高亮与真实工具相反 3 格",
+   "evidence": {
+    "steps": [
+     {
+      "step": "C0-基线-select面板关",
+      "canvasTool": "select",
+      "activePrimaryPanel": null,
+      "panelOpen": false,
+      "label": "移动",
+      "title": "移动",
+      "icon": "lucide lucide-mouse-pointer2 lucide-mouse-pointer-2",
+      "ariaPressed": "false",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(212, 212, 212)",
+      "labelMatchesTool": true,
+      "pressedIsTrue": false,
+      "highlightMatchesTool": true
+     },
+     {
+      "step": "C1-面板已开未选工具",
+      "canvasTool": "select",
+      "activePrimaryPanel": "move",
+      "panelOpen": true,
+      "label": "移动",
+      "title": "移动",
+      "icon": "lucide lucide-mouse-pointer2 lucide-mouse-pointer-2",
+      "ariaPressed": "true",
+      "bg": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "color": "rgb(255, 255, 255)",
+      "labelMatchesTool": true,
+      "pressedIsTrue": true,
+      "highlightMatchesTool": false
+     },
+     {
+      "step": "C2-已选抓手工具",
+      "canvasTool": "pan",
+      "activePrimaryPanel": null,
+      "panelOpen": false,
+      "label": "抓手工具",
+      "title": "抓手工具",
+      "icon": "lucide lucide-hand",
+      "ariaPressed": "false",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(212, 212, 212)",
+      "labelMatchesTool": true,
+      "pressedIsTrue": false,
+      "highlightMatchesTool": false
+     },
+     {
+      "step": "C3-按H快捷键",
+      "canvasTool": "pan",
+      "activePrimaryPanel": null,
+      "panelOpen": false,
+      "label": "抓手工具",
+      "title": "抓手工具",
+      "icon": "lucide lucide-hand",
+      "ariaPressed": "false",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(212, 212, 212)",
+      "labelMatchesTool": true,
+      "pressedIsTrue": false,
+      "highlightMatchesTool": false
+     },
+     {
+      "step": "C4-已选回移动",
+      "canvasTool": "select",
+      "activePrimaryPanel": null,
+      "panelOpen": false,
+      "label": "移动",
+      "title": "移动",
+      "icon": "lucide lucide-mouse-pointer2 lucide-mouse-pointer-2",
+      "ariaPressed": "false",
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(212, 212, 212)",
+      "labelMatchesTool": true,
+      "pressedIsTrue": false,
+      "highlightMatchesTool": true
+     }
+    ],
+    "labelMatchesToolCount": 5,
+    "labelMatchesToolTotal": 5,
+    "highlightAgrees": [
+     "C0-基线-select面板关",
+     "C4-已选回移动"
+    ],
+    "highlightDisagrees": [
+     "C1-面板已开未选工具",
+     "C2-已选抓手工具",
+     "C3-按H快捷键"
+    ]
+   }
+  },
+  {
+   "no": 13,
+   "text": "阳性对照：面板内青色圆点跟着 canvasTool 走 ⟹ 指示机制存在，坏的是底栏那枚常驻按钮",
+   "evidence": {
+    "positiveControl": {
+     "step": "C1-面板已开未选工具",
+     "tool": "select",
+     "dots": [
+      true,
+      false
+     ]
+    }
+   }
+  },
+  {
+   "no": 14,
+   "text": "data-canvas-tool 是死属性：运行时元素数恒 1、src 内零读取方",
+   "evidence": {
+    "attrCountRuntime": 1,
+    "readersInSrc": 0,
+    "classDelta": true,
+    "classDeltaValue": "pan 态多一个 cursor-grab"
+   }
+  }
+ ],
+ "headline": "分组框的跟随关系是**单向**的（父拖子跟、子拖父不跟）⟹ 收窄 757 的「无任何跟随关系」；canvasTool 两态 × 三路手势与静态读法逐项吻合、**行为侧无缺陷**；缺陷出在 UI 指示上 —— 底栏那枚工具按钮的 label 跟 canvasTool 走而 aria-pressed 跟面板开关走，两者 5 格里有 3 格互相矛盾。",
+ "rework": [
+  {
+   "id": "R34",
+   "where": "探针 c 派生层",
+   "what": "把 dict 的 `label` 写成 `\"aria-label\"`、`ariaPressed` 写成 `\"aria-pressed\"`，三个派生布尔全成恒定常数（labelMatchesTool 恒 false、pressedIsTrue 恒 false、highlightMatchesTool 恒 true），与原始读数直接矛盾。",
+   "lesson": "**两轮一致不能单独当作派生层正确的证据** —— 确定性错误执行两遍必然一致，恒定布尔在两轮之间必然「吻合」。已让验收器按正确键名从原始 JSON 重算并逐格对账。"
+  },
+  {
+   "id": "R35",
+   "where": "探针 a 视口管理",
+   "what": "四格共用一个视口，累计平移 400px 把节点推出视口，pan 态 nodeHit=false。",
+   "lesson": "「每格前 Meta+0 复位」是硬规矩；违反的代价是一格结论作废。hit=false 当场记失败、重测后才下结论。"
+  },
+  {
+   "id": "R36",
+   "where": "探针 a 取读数不全",
+   "what": "拖分组框时只记了 children 列表（parentId 还在），没记子节点位置，当时只能说「parentId 没变」，不能推断「子节点没跟着动」。",
+   "lesson": "补上 childAbsDelta/childRelDelta 后，直接把 757 的结论推翻了一半。"
+  },
+  {
+   "id": "R37",
+   "where": "结论纪律",
+   "what": "760a 的 pan 态读数「看起来」完全支持「pan 态节点不可拖」，差点直接落进判据。",
+   "lesson": "结论和自己的直觉一致时，要多查一遍它是怎么来的。"
+  },
+  {
+   "id": "R38",
+   "where": "验收器（negative control 抓出来的洞）",
+   "what": "首版 45/45 全过，但 **13 发阴性对照里有 3 发漏放**，全是同一类：(a) 「单向跟随」「pan 态拖框」这类事实各存两份（findings 与判据证据），只改其中一份 ⟹ 检查器仍从另一份读到真值；(b) 只守住了**派生布尔**，没守住**被派生的原始字段**——伪造 steps[2].ariaPressed 时派生量没跟着改，「产物 vs 重算」仍然相等。",
+   "lesson": "这是 batch 759 的 R33 原地复发。补 7 条结构检查：两份读数必须同源、5 格的 canvasTool/panelOpen/label/ariaPressed 逐格与 /tmp 原始读数对账、三条「派生量必须能由该格原始字段现算得出」的自洽检查。补完 52/52、阴性对照 16/16 全拦。"
+  }
+ ],
+ "notClaimed": [
+  "没有与源站对照：全部读数来自 clone（4317）。",
+  "pan 态在分组框上左键拖时画布是否跟着平移，没测（只记了 groupMoved/pastDelta，没同时记 viewport 位移）。",
+  "Space 临时平移态未重测，只引 757 的三路实测；760b 矩阵只覆盖 canvasTool 两静态态。",
+  "只测了画布空白区与节点主体：分组框两个 handle、节点各类 handle 在两态下能不能拖/能不能连没测。",
+  "一次 zoom 档位：760b 的 store 位移与屏幕位移之比约 2.35（当轮 zoom≈0.43），换 zoom 后相对位移是否仍为 [0,0] 未复验。",
+  "只测了一个带子分组与一个空分组；757 那个 501px 拖出场景没有重做。",
+  "底栏按钮只测了 5 个状态格，未遍历「面板开着 + 按 V/H」等组合。",
+  "没有测键盘可达性（Tab 到该按钮、Enter/Space 触发）。",
+  "H/V 与 758 查到的 Tab 开面板等快捷键的冲突面没查。"
+ ],
+ "rawProbeFiles": [
+  "/tmp/dbg760a.py",
+  "/tmp/dbg760b.py",
+  "/tmp/dbg760c.py",
+  "/tmp/vb760a.json",
+  "/tmp/vb760b.json",
+  "/tmp/vb760c.json"
+ ]
+}

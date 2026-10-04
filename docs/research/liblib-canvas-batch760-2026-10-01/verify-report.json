@@ -1,0 +1,388 @@
+{
+ "batch": 760,
+ "checks": [
+  {
+   "label": "静态：page.tsx 的 effectivePan / panOnDrag / nodesDraggable 三件套都在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：cursor-grab 由 className 表达式直接算，与 data-canvas-tool 无关",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：uiStore 里 canvasTool 初值 select、setter 存在、挂在 window 上",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：V/H 快捷键直接 setCanvasTool，界面上没有任何提示文案",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：data-canvas-tool 全 src/ 只有 1 处写入、0 处读取（死属性）",
+   "pass": true,
+   "got": [
+    1,
+    0
+   ]
+  },
+  {
+   "label": "静态：ToolButton 把 active 同时接到 aria-pressed 与高亮底色",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：★ 缺陷根因 —— 同一枚按钮 label 跟 canvasTool、active 跟面板开关",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：selectTool 里 setPrimaryPanel(null) 会在选中工具后立刻关掉面板",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：阳性对照成立 —— 面板内两枚青色圆点各自跟 canvasTool",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：面板里标着 V / H 两枚快捷键角标（与「界面上没提示」形成反差）",
+   "pass": true,
+   "got": 2
+  },
+  {
+   "label": "静态：ToolButton 函数体自身无 data-* 钩子（钩子只在两个面板容器上）",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "产物：判据 14 条且编号连续 1..14",
+   "pass": true,
+   "got": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+   ]
+  },
+  {
+   "label": "产物：三段探针两轮一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：写明「两轮一致不能单独证明派生层正确」这条告诫",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 1/2 —— 带子分组与空分组各自可拖",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 3/4 —— 子节点绝对位移与父逐位相同、相对位移恒 [0,0]",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 5/6 —— parentId 未变且撤销后四组坐标全复原、past 回到 0",
+   "pass": true,
+   "got": {
+    "groupRelRestored": true,
+    "groupDomRestored": true,
+    "childRelRestored": true,
+    "childAbsRestored": true,
+    "pastBackTo": 0,
+    "pastBefore": 0
+   }
+  },
+  {
+   "label": "产物：判据 7 显式写出「收窄 757 的结论」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 11 明确记下 canvasTool 行为侧**无缺陷**",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 13 是阳性对照而非否定结论",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：返工 5 条，含 R34（派生层读错键名）与 R38（阴性对照漏放）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：不声称 ≥ 8 条且含「没有与源站对照」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：探针 a 的 pan 态 nodeHit 确实是 false（760a 的错读要被留痕）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：探针 a 两格分组框都移动",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：760b 重算的 childAbsDelta 与 groupDelta 逐位相同",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：760b 重算的相对位移确为 [0,0]",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物判据 3/4 的证据与 760b 重算结果一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物判据 6 的撤销结论与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：pan 态 nodeDragMoved 确为 false（不是探针没送到）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：pan 态 nodeDragPastDelta 为 0（连历史都没进）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：select 态 nodeDragMoved 为 true 且 groupMovedWhileNodeDragged 为 false",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物手势矩阵与重算一致（两态 × 五项）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：pan 态分组框不可拖（groupMoved=false、pastDelta=0）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：两态的命中点回到同一坐标（760b 复位生效）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：760c 派生量按正确键名重算 —— 步数与步骤名一致",
+   "pass": true,
+   "got": [
+    "C0-基线-select面板关",
+    "C1-面板已开未选工具",
+    "C2-已选抓手工具",
+    "C3-按H快捷键",
+    "C4-已选回移动"
+   ]
+  },
+  {
+   "label": "原始：产物 labelMatchesTool 与重算逐格一致（应 5/5 全 true）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物 pressedIsTrue 与重算逐格一致（C1 为 true、其余 false）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：★ 产物 highlightMatchesTool 与重算逐格一致（若派生层读错键名，这里必然不等）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：高亮不一致的步骤集合与重算一致（3 格：C1/C2/C3）",
+   "pass": true,
+   "got": [
+    "C1-面板已开未选工具",
+    "C2-已选抓手工具",
+    "C3-按H快捷键"
+   ]
+  },
+  {
+   "label": "原始：高亮一致的步骤集合与重算一致（2 格，且恰好都是 select）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：重算确认唯一 pressed 的那一格工具是 select（即高亮亮着时画布并不在抓手模式）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：重算确认工具已是 pan 的两格高亮都灭着",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：阳性对照读数在（面板开时圆点 [true,false] 对应 select）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：data-canvas-tool 运行时元素数两态都为 1",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物 deadAttr 的运行时计数与读数一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "结构：findings.childFollowsParent 与判据 3 的证据是同一份读数",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "结构：判据 4/5 的 childRel 与 parentId 也与 findings 同源",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "结构：findings.panGroupDrag 与判据 10 的证据是同一份读数",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：★ 产物 5 格的原始字段（canvasTool/panelOpen/label/ariaPressed）逐格与 /tmp 读数相等",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始：产物每格 pressedIsTrue 与该格 ariaPressed 字段自洽",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物每格 labelMatchesTool 与该格 canvasTool/label 字段自洽",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物每格 highlightMatchesTool 由该格 label+ariaPressed 现算得出",
+   "pass": true,
+   "got": null
+  }
+ ],
+ "pass": 52,
+ "total": 52,
+ "negativeControls": [
+  {
+   "name": "伪造 childAbsDelta 与 groupDelta 不等（推翻判据 3/4）",
+   "caught": true,
+   "firstFail": "结构：findings.childFollowsParent 与判据 3 的证据是同一份读数"
+  },
+  {
+   "name": "R34 复现：highlightMatchesTool 全刷 true（不改任何原始读数）",
+   "caught": true,
+   "firstFail": "原始：★ 产物 highlightMatchesTool 与重算逐格一致（若派生层读错键名，这里必然不等）"
+  },
+  {
+   "name": "伪造 labelMatchesTool 第 0 格为 false（与重算矛盾）",
+   "caught": true,
+   "firstFail": "原始：产物 labelMatchesTool 与重算逐格一致（应 5/5 全 true）"
+  },
+  {
+   "name": "伪造 pan 态 nodeDragMoved=true",
+   "caught": true,
+   "firstFail": "原始：产物手势矩阵与重算一致（两态 × 五项）"
+  },
+  {
+   "name": "伪造 groupRelRestored=true 但 past 没回去",
+   "caught": true,
+   "firstFail": "产物：判据 5/6 —— parentId 未变且撤销后四组坐标全复原、past 回到 0"
+  },
+  {
+   "name": "伪造 data-canvas-tool 有 1 个读取方",
+   "caught": true,
+   "firstFail": "原始：产物 deadAttr 的运行时计数与读数一致"
+  },
+  {
+   "name": "抹掉判据 7 的「更正 757」措辞",
+   "caught": true,
+   "firstFail": "产物：判据 7 显式写出「收窄 757 的结论」"
+  },
+  {
+   "name": "伪造三段探针两轮不一致",
+   "caught": true,
+   "firstFail": "产物：三段探针两轮一致"
+  },
+  {
+   "name": "伪造阳性对照圆点为 [false,true]",
+   "caught": true,
+   "firstFail": "原始：阳性对照读数在（面板开时圆点 [true,false] 对应 select）"
+  },
+  {
+   "name": "清空不声称清单",
+   "caught": true,
+   "firstFail": "产物：不声称 ≥ 8 条且含「没有与源站对照」"
+  },
+  {
+   "name": "删掉判据 12",
+   "caught": true,
+   "firstFail": "产物：判据 14 条且编号连续 1..14"
+  },
+  {
+   "name": "伪造 pan 态分组框可拖",
+   "caught": true,
+   "firstFail": "结构：findings.panGroupDrag 与判据 10 的证据是同一份读数"
+  },
+  {
+   "name": "伪造 C2 的 ariaPressed=true",
+   "caught": true,
+   "firstFail": "原始：★ 产物 5 格的原始字段（canvasTool/panelOpen/label/ariaPressed）逐格与 /tmp 读数相等"
+  },
+  {
+   "name": "伪造 findings 与判据 3 的证据不同源",
+   "caught": true,
+   "firstFail": "原始：产物判据 3/4 的证据与 760b 重算结果一致"
+  },
+  {
+   "name": "伪造 C1 的 canvasTool=pan（原始字段层）",
+   "caught": true,
+   "firstFail": "原始：★ 产物 5 格的原始字段（canvasTool/panelOpen/label/ariaPressed）逐格与 /tmp 读数相等"
+  },
+  {
+   "name": "伪造某格 pressedIsTrue 与 ariaPressed 不同步",
+   "caught": true,
+   "firstFail": "原始：产物 pressedIsTrue 与重算逐格一致（C1 为 true、其余 false）"
+  }
+ ],
+ "negativeCaught": 16,
+ "negativeTotal": 16,
+ "rawError": null,
+ "ok": true
+}
