@@ -90,8 +90,21 @@ INJECTED_MAIN = '''def main():
 '''
 
 
-def replace_main_body(src, gate):
+def replace_main_body(src, gate, strip_decorators=False):
     """只替换 `main` 的函数体，保留文件其余部分。
+
+    **`strip_decorators=True`（Batch 271 新增）时连装饰器一起去掉。**
+
+    **为什么必须去掉（Batch 271 实测，不是设想的）**：
+    **实测 13 道闸的 `main` 上有 `@baseline_guard`，而装饰器不在函数体里**——
+    **所以第一版的注入对它们无效**，8 道在沙箱里仍会说话。
+    **去掉装饰器之后，13 道全部彻底安静**——
+    **也就是说装饰器就是唯一那道保护，不存在第二道**
+    （第一版取证脚本以为「还有第二道」，**而那是切片错误**，见 `INJECTED_MAIN`）。
+
+    **切片的坑：`fn.lineno` 指的是 `def main():` 那一行，装饰器在它之前**，
+    **所以 `lines[:fn.lineno-1]` 会把 `@baseline_guard` 原样留在文件里**
+    ——**而输出看起来是「去掉装饰器后仍有保护」，完全不像「装饰器根本没被去掉」**。
 
     **用 AST 定位函数边界，不用手工算缩进**——
     **这一版之前连错两次**：①从 `def main():` 截到文件末尾（**把 `if __name__`
@@ -122,17 +135,26 @@ def replace_main_body(src, gate):
     lines = src.split("\n")
     start = fn.lineno - 1            # `def main():` 那一行
     end = fn.end_lineno              # 1-based 末行 = 0-based 的下一行
-    # **保留 `def main():` 及其缩进，只换函数体**：
-    # **整个函数替换更简单，而 `def main():` 本来就要被 INJECTED_MAIN 自己带上**
+    #: **装饰器在 `def main():` 之前**——**而 `fn.lineno` 指的就是 `def` 那一行**，
+    #: **所以 `lines[:fn.lineno-1]` 会把装饰器原样留在文件里**。
+    #: **实测正是这样**：`verify-line-counts.py` 的 `@baseline_guard` 在第 94 行、
+    #: `fn.lineno` 是 95 —— **`lines[:94]` 把它包进去了**，
+    #: **而输出看起来是「去掉装饰器后仍有保护」，完全不像「装饰器根本没被去掉」**。
+    if strip_decorators and fn.decorator_list:
+        start = fn.decorator_list[0].lineno - 1
+    #: **整个函数（含 def 行与装饰器）替换掉**——
+    #: **`INJECTED_MAIN` 自带 `def main():` 那一行**，所以切掉整段是安全的。
     head = lines[:start]
     tail = lines[end:]
     return "\n".join(head + INJECTED_MAIN.rstrip("\n").split("\n") + tail), None
 
 
-def run_injection(gate, sandbox_root):
+def run_injection(gate, sandbox_root, strip_decorators=False):
     """在沙箱里把一道闸换成注入版，跑它，看它还会不会说出本该说的话。
 
-    返回 `(注入版rc, 注入版输出字节数, 原版rc, 原版输出字节数)`。
+    **`strip_decorators=True`（Batch 271 新增）时连 `main` 上的装饰器一起去掉。**
+
+    返回 `(注入版rc, 注入版输出字节数, None, None)`。
     """
     tmp = tempfile.mkdtemp(prefix="b270-gate.", dir=sandbox_root)
     try:
@@ -140,7 +162,7 @@ def run_injection(gate, sandbox_root):
         shutil.copytree(HERE, sdir)
         p = os.path.join(sdir, gate)
         src = io.open(p, encoding="utf-8").read()
-        new, err = replace_main_body(src, gate)
+        new, err = replace_main_body(src, gate, strip_decorators=strip_decorators)
         if new is None:
             return None, err, None, None
         #: **守卫：注入必须真的生效**（**纪律 297 的变体**——
@@ -152,6 +174,25 @@ def run_injection(gate, sandbox_root):
         #: **而没标记就当注入失败、不许拿那个数出去说**。
         if "（Batch 270 注入）" not in new:
             return None, "注入未生效：改写后的文件里找不到注入标记", None, None
+        #: **守卫 2（Batch 271 新增）：说要去掉装饰器，就必须真去掉。**
+        #: **Batch 271 取证第一版就栽在这里**：用 `lines[:fn.lineno-1]` 切片，
+        #: **而装饰器行就在 `fn.lineno-1` 之前**——于是 `@baseline_guard` 原样留着，
+        #: **7 道闸报出「去掉装饰器后仍 rc=2」，而那个输出看起来像
+        #: 「装饰器之外还有第二道保护」，完全不像「装饰器根本没被去掉」**。
+        #:
+        #: **守卫的第一版把整份文件扫一遍找装饰器名，于是误伤了自己**：
+        #: **`from baseline import …, baseline_guard` 那一行的 import 里也有这个名字**
+        #: （实测 `verify-line-counts.py` 第 32 行），
+        #: **而那不是装饰器**——**结果 13 道全部被判成「注入未生效」，
+        #: 而分布显示「靠装饰器才说话 0 道」**。
+        #:
+        #: **所以守卫只认顶行以 `@` 开头的行**：
+        #: **装饰器的语法形态就是「行首 @」，而 import 不是**。
+        if strip_decorators and any(
+                ln.lstrip().startswith("@") and "guard" in ln
+                for ln in new.split("\n")):
+            return None, ("注入未生效：要求去掉装饰器，"
+                          "而改写后的文件里还有 `@…guard` 装饰器行"), None, None
         try:
             ast.parse(new)
         except SyntaxError as exc:
@@ -200,6 +241,10 @@ def main():
 
     silent = []
     spoken = []
+    #: **Batch 271 新增第三类**：带 guard 装饰器、**去掉装饰器之后**才彻底安静的那些。
+    #: **它们是本批最要紧的一组**——**第一档它们「还能说话」，
+    #: 而那 8 道话是装饰器打的、不是它们自己在检查**。
+    guarded_stripped = []
     #: **分三类而不是两类**——**第一版只分「安静 / 还在说话」，
     #: 而那 8 道「还在说话」的原因被我想成了「它们性质不同」**。
     #: **实测出来不是**：**8 道全都用 `@baseline_guard` 装饰 `main`**，
@@ -225,7 +270,24 @@ def main():
         if rc == 0 and nbytes == 0:
             silent.append(g)
         elif is_baseline_guarded(g):
-            guarded.append(g)
+            # ── Batch 271：对这一族再跑一档——**连装饰器一起去掉** ──────
+            # **为什么必须再跑一档**：装饰器不在 `main` 的函数体里，
+            # **所以第一档对它们无效**，8 道在沙箱里仍会说话——
+            # **而那 8 道「还能说话」不是「它还在检查」**。
+            # **第二档测的是「装饰器这道保护本身」**：
+            # **实测 13 道全部彻底安静**——**装饰器就是唯一那道，不存在第二道**
+            # （Batch 271 取证第一版以为「还有第二道」，**而那是切片错误**）。
+            try:
+                got2 = run_injection(g, None, strip_decorators=True)
+            except (subprocess.TimeoutExpired, OSError):
+                got2 = ("err", 0, None, None)
+            rc2, b2, _, _ = got2
+            if rc2 == 0 and b2 == 0:
+                guarded_stripped.append(g)
+            elif rc2 is None:
+                print("  — %s（去掉装饰器那档）：%s" % (g, b2))
+            else:
+                guarded.append(g)
         else:
             spoken.append(g)
 
@@ -251,29 +313,34 @@ def main():
         print("  %d 道注入后都还能说话、且 `main` 上没有 guard 装饰器——"
               "**它们不会静悄悄地变成空壳**" % len(spoken))
 
+    if guarded_stripped:
+        print("  **%d 道第一档「还在说话」、**连装饰器一起去掉**之后彻底安静**：" % len(guarded_stripped))
+        for g in guarded_stripped:
+            print("    · %s" % g)
+        print("    **这一类是本批最要紧的一组**——"
+              "**第一档它们有输出，而那输出是 `@baseline_guard` 打的、不是它们自己在检查**；"
+              "**去掉装饰器之后它们与那 %d 道一样彻底安静**"
+              % len(silent))
+        print("    **所以 `baseline_guard` 就是唯一那道保护，不存在第二道**"
+              "（**Batch 271 取证第一版以为「还有第二道」，而那是切片错误**——"
+              "**装饰器行就在 `fn.lineno-1` 之前，用 `lines[:fn.lineno-1]` 切片会把它原样留着**；"
+              "**那个错误输出看起来像「去掉装饰器后仍有保护」，完全不像「装饰器根本没被去掉」**）。"
+              "**判据现在有一条守卫：要求去装饰器时，改写后的文件里不许再有 `@…guard` 装饰器行**"
+              "**（守卫第一版扫全文找名字，于是把 `from baseline import …, baseline_guard` 那一行误伤了——而那不是装饰器，"
+              "**结果 13 道全被判成「注入未生效」、分布显示「靠装饰器才说话 0 道」**）**")
     if guarded:
-        print("  **%d 道注入后仍有输出，但那不是「它还在检查」**：" % len(guarded))
-        for g in guarded:
-            print("    · %s（`main` 上有 `@baseline_guard`）" % g)
-        print("    **装饰器不在 `main` 的函数体里**——**所以「把函数体换空」对它们无效**。"
-              "**这一类必须单列**："
-              "**在「有没有说话」这个尺度上它与前两类无法区分，"
-              "而在「有没有在检查」这个尺度上它与「安静」那一类一样**——"
-              "**把它算进「还在说话」，这个分布就会被读成「8 道更可靠」**"
-              "（纪律 300：一个数只有和它的分母一起报出来才是数）")
-        print("    **而这 %d 道能说话，靠的不是「装饰器一直在打印」，"
-              "而是「装饰器在沙箱里恰好抛了 `BaselineError`」**——"
-              "实测 `baseline.py` 的 `baseline_guard` **只在抛错那一条分支上打印**，"
-              "**而 `main` 上有它的闸一共 %d 道**、**只有这 %d 道在沙箱里真的抛了**"
-              "（**其余 %d 道注入后彻底安静**）。"
-              "**所以「装饰器救了它」是一句不准确的话**："
-              "**真正起作用的是「沙箱环境恰好让上游解析失败」**，"
-              "**换一个环境这 %d 道就会归到安静那一类**（纪律 302："
-              "**副本树/沙箱上的观测结果不能直接当成性质**）"
-              % (len(guarded), n_guarded_total, len(guarded),
-                 n_guarded_total - len(guarded), len(guarded)))
-        print("    **要验这一族，注入必须连装饰器一起去掉**——"
-              "**而那需要另一个判据，本批只把它如实标出来**")
+        print("  **%d 道注入后仍有输出、**去掉装饰器之后仍不是安静**："
+              "**这才是真的「装饰器之外还有东西」**：%s" % (len(guarded), "、".join(guarded)))
+
+    #: **Batch 271 把上面那条「只测一档」补齐之后，三个数的含义固定下来**：
+    #: **`silent` = 第一档就安静；`guarded_stripped` = 第一档在说话、
+    #: **去掉装饰器后安静；`spoken` = 第一档在说话、且 `main` 上没有 guard 装饰器。**
+    print("  **合计：安静 %d 道 / 靠装饰器才说话 %d 道 / 无装饰器却在说话 %d 道**"
+          "（`main` 上有 `@baseline_guard` 的共 %d 道）"
+          % (len(silent), len(guarded_stripped), len(spoken), n_guarded_total))
+    print("    **「无装饰器却在说话」那一类要单独留意**："
+          "**它意味着那道闸坏掉之后仍会留下输出，"
+          "而那输出的来源不是任何保护机制——**那就要问「它是谁」**")
 
     print("  跳过的 %d 道：%s"
           % (len(SKIP), "、".join(sorted(SKIP))))

@@ -44,6 +44,13 @@ def write_gate(d, name, body, decorator=False):
     **而那个输出看起来像「判据坏了」**。
     **它也是「夹具不该向现实借素材」的又一次应验**：
     **借来的那个模块带了真实实现与真实依赖，而夹具要的只是「有一个会打印的东西」。
+
+    **Batch 271：装饰器必须从 `baseline` 模块 import，不能在夹具闸里自己定义。**
+    **第一版把 `def baseline_guard(...)` 直接写在夹具闸里**，
+    **于是它与真树形状不同（真树 13 道全部是 `from baseline import … baseline_guard`）**，
+    **而判据把它归到了别处**——
+    **实测「靠装饰器才说话」那一句就断言不到**。
+    **夹具必须复刻真实形状**（纪律 265）。
     """
     s = "scripts"
     d = os.path.join(d, s)
@@ -51,20 +58,20 @@ def write_gate(d, name, body, decorator=False):
     bp = os.path.join(d, "baseline.py")
     if not os.path.isfile(bp):
         with open(bp, "w", encoding="utf-8") as fh:
-            fh.write("def announce_fallback(*a, **k):\n"
-                     "    print('[兜底] 用例夹具自造的 announce_fallback')\n")
+            fh.write(
+                "def announce_fallback(*a, **k):\n"
+                "    print('[兜底] 用例夹具自造的 announce_fallback')\n"
+                "\n"
+                "def baseline_guard(fn):\n"
+                "    def w(*a, **k):\n"
+                "        announce_fallback()\n"
+                "        return fn(*a, **k)\n"
+                "    return w\n")
     deco = "@baseline_guard\n" if decorator else ""
     src = (
         "import sys\n"
         "\n"
-        "from baseline import announce_fallback\n"
-        "\n"
-        "\n"
-        "def baseline_guard(fn):\n"
-        "    def w(*a, **k):\n"
-        "        announce_fallback()\n"
-        "        return fn(*a, **k)\n"
-        "    return w\n"
+        "from baseline import announce_fallback, baseline_guard\n"
         "\n"
         "%s"
         "def main():\n"
@@ -115,17 +122,25 @@ def m_plain_gates_go_silent():
 def m_guarded_must_not_be_counted_as_speaking():
     """**不误伤那一侧，也是最容易写坏的一半**。
 
-    **带 `@baseline_guard` 的闸注入后仍有输出**——
+    **带 `@baseline_guard` 的闸第一档仍有输出**——
     **而那输出是装饰器打的，不是「它还在检查」**。
-    **第一版把它算进「还在说话」，那个分布会被读成「8 道更可靠」——
+    **Batch 270 第一版把它算进「还在说话」，那个分布会被读成「8 道更可靠」——
     而事实是「没有一道真闸靠自身逻辑在坏掉后还能被发现」**。
+
+    **Batch 271 把口径改了三档**（安静 / 靠装饰器才说话 / 无装饰器却在说话），
+    **所以这一例的断言也随口径改**——
+    **而它钉的那件事没变：这类闸必须被单列，且**要能说出「去掉装饰器之后它也安静」**。
     """
     d = fixture([("verify-guarded.py", "    print('检查了')\n    return 0\n", True)])
     try:
         rc, out = run_gate(d)
-        ok = (rc == 0 and "但那不是「它还在检查」" in out
-              and "verify-guarded.py" in out and "baseline_guard" in out)
-        record("2 带 guard 装饰器的闸必须单列，不许算进「还在说话」", ok, f"rc={rc}")
+        ok = (rc == 0
+              and "第一档「还在说话」" in out
+              and "去掉装饰器" in out
+              and "verify-guarded.py" in out
+              and "靠装饰器才说话 1 道" in out)
+        record("2 带 guard 装饰器的闸必须单列，且要说清去掉装饰器后也安静",
+               ok, f"rc={rc}")
     finally:
         shutil.rmtree(d, ignore_errors=True)
 
@@ -207,10 +222,53 @@ def m_injection_must_be_syntactic():
         shutil.rmtree(d, ignore_errors=True)
 
 
+def m_guard_check_must_not_misfire_on_import():
+    """**Batch 271 实测撞到并当场修掉的一个假阴性来源**。
+
+    **守卫的第一版是「改写后的文件里不许再出现 `baseline_guard` 这个名字」**——
+    **而 `from baseline import resolve_ref, BaselineError, module_ref, baseline_guard`
+    那一行的 import 里也有这个名字**（实测 `verify-line-counts.py` 第 32 行），
+    **而那不是装饰器**。
+    **后果**：**13 道全被判成「注入未生效」**，
+    **而分布显示「靠装饰器才说话 0 道」**——
+    **这个输出看起来像「那 8 道不需要装饰器」，完全不像「守卫把全树判成了失败」**。
+
+    **这一例造的正是那个形状**：一道 `main` 上有装饰器、**而 import 行里也带装饰器名**的闸，
+    **它必须被归进「靠装饰器才说话」，不能被判成「注入未生效」**。
+    """
+    d = tempfile.mkdtemp(prefix="b271-import.")
+    try:
+        sdir = os.path.join(d, "scripts")
+        os.makedirs(sdir, exist_ok=True)
+        # **夹具的 baseline.py 必须真的有 baseline_guard**（造闸函数会写）
+        write_gate(d, "verify-guard.py", "    print('检查了')\n    return 0\n", True)
+        # 在 import 行里也带上装饰器名（真树 13 道全是这个形状）
+        p = os.path.join(sdir, "verify-guard.py")
+        t = io.open(p, encoding="utf-8").read()
+        t = t.replace(
+            "from baseline import announce_fallback",
+            "from baseline import announce_fallback, baseline_guard")
+        io.open(p, "w", encoding="utf-8").write(t)
+        write_gate(d, "verify-dummy.py", "    print('真闸在说话')\n    return 0\n")
+        shutil.copy(GATE, os.path.join(sdir, "verify-gate-alive.py"))
+        rc, out = run_gate(d)
+        #: **不能断言「输出里没有『注入未生效』四个字」**——
+        #: **判据的解释文案里就写着那四个字**（讲守卫第一版误伤的那段），
+        #: **第一版断言就是这么写的，于是恒假**。
+        #: **要钉的是事实：没有任何一行以「— 文件名：注入未生效」的形态报出**。
+        import re as _re
+        reported = _re.search(r"^ *— \S+：注入未生效", out, _re.M)
+        ok = (rc == 0 and reported is None
+              and "靠装饰器才说话 1 道" in out)
+        record("6 守卫不许把 import 行里的装饰器名误判成装饰器还在", ok, f"rc={rc}")
+    finally:
+        shutil.rmtree(d, ignore_errors=True)
+
+
 def main():
     for t in (m_plain_gates_go_silent, m_guarded_must_not_be_counted_as_speaking,
               m_injection_only_touches_body, m_missing_anchor_is_not_zero,
-              m_injection_must_be_syntactic):
+              m_injection_must_be_syntactic, m_guard_check_must_not_misfire_on_import):
         try:
             t()
         except AssertionError as exc:
