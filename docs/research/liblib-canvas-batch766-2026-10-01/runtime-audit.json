@@ -1,0 +1,1974 @@
+{
+ "batch": 766,
+ "date": "2026-10-01",
+ "scope": "用行为反推取代 data-* 标记扫来识别手势边界控件；把 764 明确未验证的路径锚点/路径变换/FOV 三类控件逼出来量 Esc",
+ "env": {
+  "base": "http://localhost:4317",
+  "canvas": "canvas-2",
+  "directorNodeId": "b-bTLLuU4w5q",
+  "viewport": "1440x1000（桌面，属性面板为可滚动 aside）",
+  "player": "chromium (playwright sync_api)",
+  "srcModified": false
+ },
+ "probes": [
+  {
+   "id": "766a",
+   "file": "probes/dbg766a.py",
+   "raw": "raw/vb766a.json",
+   "rounds": 2,
+   "selfReportedConsistent": null,
+   "note": "三个上下文的全控件无标记扫（机位属性 → +路径变换 → +锚点位置）。初版有两处探针缺陷：路径预设按钮在折叠菜单里（DOM 里不存在）、以及 JS 片段的括号错误，见 R67/R68"
+  },
+  {
+   "id": "766b",
+   "file": "probes/dbg766b.py",
+   "raw": "raw/vb766b.json",
+   "rounds": 2,
+   "selfReportedConsistent": null,
+   "note": "把锚点类型从 vertex 改成 symmetric，逼出控制柄那 6 个框。初版漏了滚动：锚点选项在 y≈1769，超出 1000px 视口 ⟹ 扫网格全跳过"
+  }
+ ],
+ "rawSha": {
+  "vb766a.json": "9b44229f37b418cc",
+  "vb766b.json": "8721bf3738347706"
+ },
+ "findings": {
+  "comparability": {
+   "766a": {
+    "keys": [
+     "ctxA_probe",
+     "ctxA_sweep",
+     "ctxB_sweep",
+     "ctxC_sweep",
+     "trackRows",
+     "drawTrailButtons",
+     "presetsVisible",
+     "createPath"
+    ],
+    "allConsistent": true,
+    "inconsistent": [],
+    "firstDiff": {}
+   },
+   "766b": {
+    "keys": [
+     "typeBefore",
+     "typeAfter",
+     "handleCountBeforeType",
+     "handleCountAfterType",
+     "legendTexts",
+     "sweep",
+     "xtab"
+    ],
+    "allConsistent": true,
+    "inconsistent": [],
+    "firstDiff": {}
+   },
+   "comparable": true
+  },
+  "sweepContexts": {
+   "ctxA_sweep": {
+    "label": "机位属性（含 FOV）",
+    "perRound": [
+     {
+      "cells": 52,
+      "scanCount": 52,
+      "failedRows": [],
+      "focusFailures": 0,
+      "behavior": {
+       "reached-plain": 28,
+       "reached-then-editable-guard": 11,
+       "swallowed-below-window": 13
+      },
+      "marker": {
+       "no-marker": 37,
+       "boundary-own": 13,
+       "boundary-anc": 2
+      },
+      "xtab": {
+       "no-marker | reached-plain": 27,
+       "no-marker | reached-then-editable-guard": 10,
+       "boundary-own | swallowed-below-window": 13,
+       "boundary-anc | reached-then-editable-guard": 1,
+       "boundary-anc | reached-plain": 1
+      },
+      "ownSwallowed": 13,
+      "ownNotSwallowed": 0,
+      "ancNotSwallowed": 2,
+      "noMarkerSwallowed": 0,
+      "neverReached": 0
+     },
+     {
+      "cells": 52,
+      "scanCount": 52,
+      "failedRows": [],
+      "focusFailures": 0,
+      "behavior": {
+       "reached-plain": 28,
+       "reached-then-editable-guard": 11,
+       "swallowed-below-window": 13
+      },
+      "marker": {
+       "no-marker": 37,
+       "boundary-own": 13,
+       "boundary-anc": 2
+      },
+      "xtab": {
+       "no-marker | reached-plain": 27,
+       "no-marker | reached-then-editable-guard": 10,
+       "boundary-own | swallowed-below-window": 13,
+       "boundary-anc | reached-then-editable-guard": 1,
+       "boundary-anc | reached-plain": 1
+      },
+      "ownSwallowed": 13,
+      "ownNotSwallowed": 0,
+      "ancNotSwallowed": 2,
+      "noMarkerSwallowed": 0,
+      "neverReached": 0
+     }
+    ],
+    "cellsBothRounds": [
+     52,
+     52
+    ],
+    "ownSwallowed": [
+     13,
+     13
+    ],
+    "ownNotSwallowed": [
+     0,
+     0
+    ],
+    "ancNotSwallowed": [
+     2,
+     2
+    ],
+    "noMarkerSwallowed": [
+     0,
+     0
+    ],
+    "focusFailures": [
+     0,
+     0
+    ],
+    "failedRows": [
+     [],
+     []
+    ],
+    "xtab": {
+     "no-marker | reached-plain": 27,
+     "no-marker | reached-then-editable-guard": 10,
+     "boundary-own | swallowed-below-window": 13,
+     "boundary-anc | reached-then-editable-guard": 1,
+     "boundary-anc | reached-plain": 1
+    },
+    "xtabSameBothRounds": true
+   },
+   "ctxB_sweep": {
+    "label": "+ 路径变换",
+    "perRound": [
+     {
+      "cells": 67,
+      "scanCount": 67,
+      "failedRows": [],
+      "focusFailures": 0,
+      "behavior": {
+       "reached-plain": 32,
+       "reached-then-editable-guard": 13,
+       "swallowed-below-window": 22
+      },
+      "marker": {
+       "no-marker": 43,
+       "boundary-own": 22,
+       "boundary-anc": 2
+      },
+      "xtab": {
+       "no-marker | reached-plain": 31,
+       "no-marker | reached-then-editable-guard": 12,
+       "boundary-own | swallowed-below-window": 22,
+       "boundary-anc | reached-then-editable-guard": 1,
+       "boundary-anc | reached-plain": 1
+      },
+      "ownSwallowed": 22,
+      "ownNotSwallowed": 0,
+      "ancNotSwallowed": 2,
+      "noMarkerSwallowed": 0,
+      "neverReached": 0
+     },
+     {
+      "cells": 67,
+      "scanCount": 67,
+      "failedRows": [],
+      "focusFailures": 0,
+      "behavior": {
+       "reached-plain": 32,
+       "reached-then-editable-guard": 13,
+       "swallowed-below-window": 22
+      },
+      "marker": {
+       "no-marker": 43,
+       "boundary-own": 22,
+       "boundary-anc": 2
+      },
+      "xtab": {
+       "no-marker | reached-plain": 31,
+       "no-marker | reached-then-editable-guard": 12,
+       "boundary-own | swallowed-below-window": 22,
+       "boundary-anc | reached-then-editable-guard": 1,
+       "boundary-anc | reached-plain": 1
+      },
+      "ownSwallowed": 22,
+      "ownNotSwallowed": 0,
+      "ancNotSwallowed": 2,
+      "noMarkerSwallowed": 0,
+      "neverReached": 0
+     }
+    ],
+    "cellsBothRounds": [
+     67,
+     67
+    ],
+    "ownSwallowed": [
+     22,
+     22
+    ],
+    "ownNotSwallowed": [
+     0,
+     0
+    ],
+    "ancNotSwallowed": [
+     2,
+     2
+    ],
+    "noMarkerSwallowed": [
+     0,
+     0
+    ],
+    "focusFailures": [
+     0,
+     0
+    ],
+    "failedRows": [
+     [],
+     []
+    ],
+    "xtab": {
+     "no-marker | reached-plain": 31,
+     "no-marker | reached-then-editable-guard": 12,
+     "boundary-own | swallowed-below-window": 22,
+     "boundary-anc | reached-then-editable-guard": 1,
+     "boundary-anc | reached-plain": 1
+    },
+    "xtabSameBothRounds": true
+   },
+   "ctxC_sweep": {
+    "label": "+ 路径锚点位置",
+    "perRound": [
+     {
+      "cells": 74,
+      "scanCount": 74,
+      "failedRows": [],
+      "focusFailures": 0,
+      "behavior": {
+       "reached-plain": 36,
+       "reached-then-editable-guard": 13,
+       "swallowed-below-window": 25
+      },
+      "marker": {
+       "no-marker": 47,
+       "boundary-own": 25,
+       "boundary-anc": 2
+      },
+      "xtab": {
+       "no-marker | reached-plain": 35,
+       "no-marker | reached-then-editable-guard": 12,
+       "boundary-own | swallowed-below-window": 25,
+       "boundary-anc | reached-then-editable-guard": 1,
+       "boundary-anc | reached-plain": 1
+      },
+      "ownSwallowed": 25,
+      "ownNotSwallowed": 0,
+      "ancNotSwallowed": 2,
+      "noMarkerSwallowed": 0,
+      "neverReached": 0
+     },
+     {
+      "cells": 74,
+      "scanCount": 74,
+      "failedRows": [],
+      "focusFailures": 0,
+      "behavior": {
+       "reached-plain": 36,
+       "reached-then-editable-guard": 13,
+       "swallowed-below-window": 25
+      },
+      "marker": {
+       "no-marker": 47,
+       "boundary-own": 25,
+       "boundary-anc": 2
+      },
+      "xtab": {
+       "no-marker | reached-plain": 35,
+       "no-marker | reached-then-editable-guard": 12,
+       "boundary-own | swallowed-below-window": 25,
+       "boundary-anc | reached-then-editable-guard": 1,
+       "boundary-anc | reached-plain": 1
+      },
+      "ownSwallowed": 25,
+      "ownNotSwallowed": 0,
+      "ancNotSwallowed": 2,
+      "noMarkerSwallowed": 0,
+      "neverReached": 0
+     }
+    ],
+    "cellsBothRounds": [
+     74,
+     74
+    ],
+    "ownSwallowed": [
+     25,
+     25
+    ],
+    "ownNotSwallowed": [
+     0,
+     0
+    ],
+    "ancNotSwallowed": [
+     2,
+     2
+    ],
+    "noMarkerSwallowed": [
+     0,
+     0
+    ],
+    "focusFailures": [
+     0,
+     0
+    ],
+    "failedRows": [
+     [],
+     []
+    ],
+    "xtab": {
+     "no-marker | reached-plain": 35,
+     "no-marker | reached-then-editable-guard": 12,
+     "boundary-own | swallowed-below-window": 25,
+     "boundary-anc | reached-then-editable-guard": 1,
+     "boundary-anc | reached-plain": 1
+    },
+    "xtabSameBothRounds": true
+   }
+  },
+  "pathTransform": {
+   "perRound": [
+    {
+     "cells": 9,
+     "swallowed": 9,
+     "allBoundaryOwn": true
+    },
+    {
+     "cells": 9,
+     "swallowed": 9,
+     "allBoundaryOwn": true
+    }
+   ]
+  },
+  "pathAnchorPosition": {
+   "perRound": [
+    {
+     "cells": 3,
+     "swallowed": 3,
+     "allBoundaryOwn": true
+    },
+    {
+     "cells": 3,
+     "swallowed": 3,
+     "allBoundaryOwn": true
+    }
+   ]
+  },
+  "fovSlider": {
+   "perRound": [
+    {
+     "cells": 1,
+     "swallowed": 1,
+     "allBoundaryOwn": true
+    },
+    {
+     "cells": 1,
+     "swallowed": 1,
+     "allBoundaryOwn": true
+    }
+   ]
+  },
+  "deltas": {
+   "cameraToPathTransform": {
+    "cells": [
+     15,
+     15
+    ],
+    "ownSwallowed": [
+     9,
+     9
+    ]
+   },
+   "pathTransformToAnchor": {
+    "cells": [
+     7,
+     7
+    ],
+    "ownSwallowed": [
+     3,
+     3
+    ]
+   }
+  },
+  "anchorHandles": {
+   "perRound": [
+    {
+     "typeBefore": [
+      {
+       "type": "vertex",
+       "pressed": "true"
+      },
+      {
+       "type": "symmetric",
+       "pressed": "false"
+      },
+      {
+       "type": "asymmetric",
+       "pressed": "false"
+      }
+     ],
+     "typeAfter": [
+      {
+       "type": "vertex",
+       "pressed": "false"
+      },
+      {
+       "type": "symmetric",
+       "pressed": "true"
+      },
+      {
+       "type": "asymmetric",
+       "pressed": "false"
+      }
+     ],
+     "handleBefore": 0,
+     "handleAfter": 6,
+     "posBefore": 3,
+     "posAfter": 3,
+     "legends": [
+      "位置",
+      "旋转",
+      "缩放",
+      "锚点类型",
+      "位置",
+      "入控制柄",
+      "出控制柄"
+     ],
+     "handleCells": 6,
+     "handleSwallowed": 6,
+     "handleAllBoundaryOwn": true,
+     "posCells": 3,
+     "posSwallowed": 3,
+     "transCells": 9,
+     "transSwallowed": 9,
+     "xtab": {
+      "no-marker | reached-then-editable-guard": 2,
+      "boundary-own | swallowed-below-window": 18,
+      "no-marker | reached-plain": 8
+     },
+     "failedRows": [],
+     "focusFailures": 0
+    },
+    {
+     "typeBefore": [
+      {
+       "type": "vertex",
+       "pressed": "true"
+      },
+      {
+       "type": "symmetric",
+       "pressed": "false"
+      },
+      {
+       "type": "asymmetric",
+       "pressed": "false"
+      }
+     ],
+     "typeAfter": [
+      {
+       "type": "vertex",
+       "pressed": "false"
+      },
+      {
+       "type": "symmetric",
+       "pressed": "true"
+      },
+      {
+       "type": "asymmetric",
+       "pressed": "false"
+      }
+     ],
+     "handleBefore": 0,
+     "handleAfter": 6,
+     "posBefore": 3,
+     "posAfter": 3,
+     "legends": [
+      "位置",
+      "旋转",
+      "缩放",
+      "锚点类型",
+      "位置",
+      "入控制柄",
+      "出控制柄"
+     ],
+     "handleCells": 6,
+     "handleSwallowed": 6,
+     "handleAllBoundaryOwn": true,
+     "posCells": 3,
+     "posSwallowed": 3,
+     "transCells": 9,
+     "transSwallowed": 9,
+     "xtab": {
+      "no-marker | reached-then-editable-guard": 2,
+      "boundary-own | swallowed-below-window": 18,
+      "no-marker | reached-plain": 8
+     },
+     "failedRows": [],
+     "focusFailures": 0
+    }
+   ],
+   "handleCells": [
+    6,
+    6
+   ],
+   "handleSwallowed": [
+    6,
+    6
+   ],
+   "handleAllBoundaryOwn": [
+    true,
+    true
+   ],
+   "handleBefore": [
+    0,
+    0
+   ],
+   "handleAfter": [
+    6,
+    6
+   ],
+   "typeSwitched": [
+    true,
+    true
+   ],
+   "xtab": {
+    "no-marker | reached-then-editable-guard": 2,
+    "boundary-own | swallowed-below-window": 18,
+    "no-marker | reached-plain": 8
+   },
+   "xtabSameBothRounds": true,
+   "ownSwallowed": [
+    18,
+    18
+   ]
+  },
+  "containerMarkerFalsePositive": {
+   "cells": [
+    2,
+    2
+   ],
+   "allReachedNotSwallowed": true,
+   "detail": [
+    {
+     "i": 43,
+     "tag": "INPUT",
+     "type": "number",
+     "aria": "视野角度 (FOV) 数值",
+     "ownMarks": [
+      "data-director-camera-fov-number",
+      "data-director-camera-fov-readout"
+     ],
+     "ancMarks": [
+      "data-director-camera-fov-field"
+     ],
+     "behavior": "reached-then-editable-guard",
+     "targetIsEditable": true
+    },
+    {
+     "i": 44,
+     "tag": "BUTTON",
+     "type": "button",
+     "aria": "当前帧有关键帧",
+     "ownMarks": [
+      "data-director-keyframe-toggle",
+      "data-director-keyframe-toggle-state",
+      "data-director-keyframed-axis",
+      "data-director-keyframed-axis-index"
+     ],
+     "ancMarks": [
+      "data-director-camera-fov-field"
+     ],
+     "behavior": "reached-plain",
+     "targetIsEditable": false
+    }
+   ],
+   "sameBothRounds": true
+  },
+  "missedByMarkerScan": {
+   "noMarkerSwallowed": [
+    0,
+    0,
+    0
+   ],
+   "noMarkerSwallowedBothRounds": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "totalNoMarkerSwallowed": 0,
+   "interpretation": "0 = 行为反推没有找到任何「没有标记却吞 Esc」的控件 ⟹ 在这三个上下文里标记扫的失效方向是**误判**（多报）而不是漏检。方向与 764 记的相反。"
+  }
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "verdict": "PASS",
+   "statement": "两轮**逐字段一致**，且先证明可比（766a 比 %d 个 key、766b 比 %d 个 key 的归一化 diff 全为空）。本批**每轮开头都清了 `liblib-tv-director-project-v1:*`**（建轨迹是破坏性的，763 O1 记过它会持久化），所以两轮起点相同。",
+   "evidenceKey": "comparability",
+   "evidence": {
+    "766a": {
+     "keys": [
+      "ctxA_probe",
+      "ctxA_sweep",
+      "ctxB_sweep",
+      "ctxC_sweep",
+      "trackRows",
+      "drawTrailButtons",
+      "presetsVisible",
+      "createPath"
+     ],
+     "allConsistent": true,
+     "inconsistent": [],
+     "firstDiff": {}
+    },
+    "766b": {
+     "keys": [
+      "typeBefore",
+      "typeAfter",
+      "handleCountBeforeType",
+      "handleCountAfterType",
+      "legendTexts",
+      "sweep",
+      "xtab"
+     ],
+     "allConsistent": true,
+     "inconsistent": [],
+     "firstDiff": {}
+    },
+    "comparable": true
+   }
+  },
+  {
+   "id": "J2",
+   "verdict": "PASS",
+   "statement": "★ **用行为反推取代标记扫来识别边界控件，判据成立**：三个上下文里凡是**自身**带边界标记的控件，`reachedCapture=true` 且 `reachedBubble=false`（swallowed）**无一例外**；而 `reachedBubble=true` 的控件 `reachedCapture` 也必然为 true。焦点 193/193 全部成功，0 格没聚焦上。",
+   "evidenceKey": "sweepContexts",
+   "evidence": {
+    "ctxA_sweep": {
+     "label": "机位属性（含 FOV）",
+     "perRound": [
+      {
+       "cells": 52,
+       "scanCount": 52,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 28,
+        "reached-then-editable-guard": 11,
+        "swallowed-below-window": 13
+       },
+       "marker": {
+        "no-marker": 37,
+        "boundary-own": 13,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 27,
+        "no-marker | reached-then-editable-guard": 10,
+        "boundary-own | swallowed-below-window": 13,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 13,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      },
+      {
+       "cells": 52,
+       "scanCount": 52,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 28,
+        "reached-then-editable-guard": 11,
+        "swallowed-below-window": 13
+       },
+       "marker": {
+        "no-marker": 37,
+        "boundary-own": 13,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 27,
+        "no-marker | reached-then-editable-guard": 10,
+        "boundary-own | swallowed-below-window": 13,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 13,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      }
+     ],
+     "cellsBothRounds": [
+      52,
+      52
+     ],
+     "ownSwallowed": [
+      13,
+      13
+     ],
+     "ownNotSwallowed": [
+      0,
+      0
+     ],
+     "ancNotSwallowed": [
+      2,
+      2
+     ],
+     "noMarkerSwallowed": [
+      0,
+      0
+     ],
+     "focusFailures": [
+      0,
+      0
+     ],
+     "failedRows": [
+      [],
+      []
+     ],
+     "xtab": {
+      "no-marker | reached-plain": 27,
+      "no-marker | reached-then-editable-guard": 10,
+      "boundary-own | swallowed-below-window": 13,
+      "boundary-anc | reached-then-editable-guard": 1,
+      "boundary-anc | reached-plain": 1
+     },
+     "xtabSameBothRounds": true
+    },
+    "ctxB_sweep": {
+     "label": "+ 路径变换",
+     "perRound": [
+      {
+       "cells": 67,
+       "scanCount": 67,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 32,
+        "reached-then-editable-guard": 13,
+        "swallowed-below-window": 22
+       },
+       "marker": {
+        "no-marker": 43,
+        "boundary-own": 22,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 31,
+        "no-marker | reached-then-editable-guard": 12,
+        "boundary-own | swallowed-below-window": 22,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 22,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      },
+      {
+       "cells": 67,
+       "scanCount": 67,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 32,
+        "reached-then-editable-guard": 13,
+        "swallowed-below-window": 22
+       },
+       "marker": {
+        "no-marker": 43,
+        "boundary-own": 22,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 31,
+        "no-marker | reached-then-editable-guard": 12,
+        "boundary-own | swallowed-below-window": 22,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 22,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      }
+     ],
+     "cellsBothRounds": [
+      67,
+      67
+     ],
+     "ownSwallowed": [
+      22,
+      22
+     ],
+     "ownNotSwallowed": [
+      0,
+      0
+     ],
+     "ancNotSwallowed": [
+      2,
+      2
+     ],
+     "noMarkerSwallowed": [
+      0,
+      0
+     ],
+     "focusFailures": [
+      0,
+      0
+     ],
+     "failedRows": [
+      [],
+      []
+     ],
+     "xtab": {
+      "no-marker | reached-plain": 31,
+      "no-marker | reached-then-editable-guard": 12,
+      "boundary-own | swallowed-below-window": 22,
+      "boundary-anc | reached-then-editable-guard": 1,
+      "boundary-anc | reached-plain": 1
+     },
+     "xtabSameBothRounds": true
+    },
+    "ctxC_sweep": {
+     "label": "+ 路径锚点位置",
+     "perRound": [
+      {
+       "cells": 74,
+       "scanCount": 74,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 36,
+        "reached-then-editable-guard": 13,
+        "swallowed-below-window": 25
+       },
+       "marker": {
+        "no-marker": 47,
+        "boundary-own": 25,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 35,
+        "no-marker | reached-then-editable-guard": 12,
+        "boundary-own | swallowed-below-window": 25,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 25,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      },
+      {
+       "cells": 74,
+       "scanCount": 74,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 36,
+        "reached-then-editable-guard": 13,
+        "swallowed-below-window": 25
+       },
+       "marker": {
+        "no-marker": 47,
+        "boundary-own": 25,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 35,
+        "no-marker | reached-then-editable-guard": 12,
+        "boundary-own | swallowed-below-window": 25,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 25,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      }
+     ],
+     "cellsBothRounds": [
+      74,
+      74
+     ],
+     "ownSwallowed": [
+      25,
+      25
+     ],
+     "ownNotSwallowed": [
+      0,
+      0
+     ],
+     "ancNotSwallowed": [
+      2,
+      2
+     ],
+     "noMarkerSwallowed": [
+      0,
+      0
+     ],
+     "focusFailures": [
+      0,
+      0
+     ],
+     "failedRows": [
+      [],
+      []
+     ],
+     "xtab": {
+      "no-marker | reached-plain": 35,
+      "no-marker | reached-then-editable-guard": 12,
+      "boundary-own | swallowed-below-window": 25,
+      "boundary-anc | reached-then-editable-guard": 1,
+      "boundary-anc | reached-plain": 1
+     },
+     "xtabSameBothRounds": true
+    }
+   }
+  },
+  {
+   "id": "J3",
+   "verdict": "PASS",
+   "statement": "★ **更正 764 承认的漏检风险方向**：在这三个上下文里，行为反推**一个「没标记却吞 Esc」的控件都没找到**（`no-marker | swallowed` 恒为 0）。标记扫的失效方向是**多报（误判）**而不是漏检 —— 见 J4。",
+   "evidenceKey": "missedByMarkerScan",
+   "evidence": {
+    "noMarkerSwallowed": [
+     0,
+     0,
+     0
+    ],
+    "noMarkerSwallowedBothRounds": [
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    "totalNoMarkerSwallowed": 0,
+    "interpretation": "0 = 行为反推没有找到任何「没有标记却吞 Esc」的控件 ⟹ 在这三个上下文里标记扫的失效方向是**误判**（多报）而不是漏检。方向与 764 记的相反。"
+   }
+  },
+  {
+   "id": "J4",
+   "verdict": "FAIL",
+   "statement": "★ **缺陷 D7（低）**：**容器级标记会误判**。FOV 那一段的外层容器带 `data-director-camera-fov-field`，于是**容器里的非边界控件也被算成边界控件** —— FOV 数值框（`data-director-camera-fov-number`）与它的关键帧按钮各占 1 格，两者 `reachedBubble=true`、**并没有吞 Esc**。每个上下文固定 2 格误判。",
+   "evidenceKey": "containerMarkerFalsePositive",
+   "evidence": {
+    "cells": [
+     2,
+     2
+    ],
+    "allReachedNotSwallowed": true,
+    "detail": [
+     {
+      "i": 43,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": "视野角度 (FOV) 数值",
+      "ownMarks": [
+       "data-director-camera-fov-number",
+       "data-director-camera-fov-readout"
+      ],
+      "ancMarks": [
+       "data-director-camera-fov-field"
+      ],
+      "behavior": "reached-then-editable-guard",
+      "targetIsEditable": true
+     },
+     {
+      "i": 44,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "当前帧有关键帧",
+      "ownMarks": [
+       "data-director-keyframe-toggle",
+       "data-director-keyframe-toggle-state",
+       "data-director-keyframed-axis",
+       "data-director-keyframed-axis-index"
+      ],
+      "ancMarks": [
+       "data-director-camera-fov-field"
+      ],
+      "behavior": "reached-plain",
+      "targetIsEditable": false
+     }
+    ],
+    "sameBothRounds": true
+   }
+  },
+  {
+   "id": "J5",
+   "verdict": "PASS",
+   "statement": "★ **764 的「推测同样受影响」对路径变换已验证成立**：路径变换 %s 个数值框（`data-director-path-transform-axis`）**全部**吞 Esc，且自身全部带边界标记。它们是从「机位属性」上下文增量进来的（+可控控件 %s、+边界控件 %s，两轮一致）。",
+   "evidenceKey": "pathTransform",
+   "evidence": {
+    "perRound": [
+     {
+      "cells": 9,
+      "swallowed": 9,
+      "allBoundaryOwn": true
+     },
+     {
+      "cells": 9,
+      "swallowed": 9,
+      "allBoundaryOwn": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "J6",
+   "verdict": "PASS",
+   "statement": "★ **对路径锚点位置也已验证成立**：%s 个数值框（`data-director-path-anchor-position`）**全部**吞 Esc，自身全部带边界标记。渲染条件是三步：建轨迹 → 选中带 `motionPathId` 的轨道 → **再点一个锚点**（764 就停在前两步）。",
+   "evidenceKey": "pathAnchorPosition",
+   "evidence": {
+    "perRound": [
+     {
+      "cells": 3,
+      "swallowed": 3,
+      "allBoundaryOwn": true
+     },
+     {
+      "cells": 3,
+      "swallowed": 3,
+      "allBoundaryOwn": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "J7",
+   "verdict": "PASS",
+   "statement": "★ **对 FOV 已验证成立，且要分开说**：FOV **滑杆**（`data-director-camera-fov`，`input[type=range]`，自身 spread 了 gesture）**吞 Esc**；同屏的 FOV **数值框**（`-fov-number`，**没有** gesture spread）**不吞**。764 说的「FOV 的标记挂在外层容器上」不准确 —— 滑杆的标记在它自己身上，数值框是另一个控件。",
+   "evidenceKey": "fovSlider",
+   "evidence": {
+    "perRound": [
+     {
+      "cells": 1,
+      "swallowed": 1,
+      "allBoundaryOwn": true
+     },
+     {
+      "cells": 1,
+      "swallowed": 1,
+      "allBoundaryOwn": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "J8",
+   "verdict": "PASS",
+   "statement": "★ **764 未验证清单的最后一项也关掉了**：路径锚点的**控制柄** %s 个数值框（入/出 × 3 轴，`data-director-path-anchor-handle`）**全部**吞 Esc，自身全部带边界标记。关键一步是把锚点类型从 `vertex` 改成 `symmetric` —— `DirectorInspector.tsx:1189` 只在**非 vertex** 时才渲染控制柄框。",
+   "evidenceKey": "anchorHandles",
+   "evidence": {
+    "perRound": [
+     {
+      "typeBefore": [
+       {
+        "type": "vertex",
+        "pressed": "true"
+       },
+       {
+        "type": "symmetric",
+        "pressed": "false"
+       },
+       {
+        "type": "asymmetric",
+        "pressed": "false"
+       }
+      ],
+      "typeAfter": [
+       {
+        "type": "vertex",
+        "pressed": "false"
+       },
+       {
+        "type": "symmetric",
+        "pressed": "true"
+       },
+       {
+        "type": "asymmetric",
+        "pressed": "false"
+       }
+      ],
+      "handleBefore": 0,
+      "handleAfter": 6,
+      "posBefore": 3,
+      "posAfter": 3,
+      "legends": [
+       "位置",
+       "旋转",
+       "缩放",
+       "锚点类型",
+       "位置",
+       "入控制柄",
+       "出控制柄"
+      ],
+      "handleCells": 6,
+      "handleSwallowed": 6,
+      "handleAllBoundaryOwn": true,
+      "posCells": 3,
+      "posSwallowed": 3,
+      "transCells": 9,
+      "transSwallowed": 9,
+      "xtab": {
+       "no-marker | reached-then-editable-guard": 2,
+       "boundary-own | swallowed-below-window": 18,
+       "no-marker | reached-plain": 8
+      },
+      "failedRows": [],
+      "focusFailures": 0
+     },
+     {
+      "typeBefore": [
+       {
+        "type": "vertex",
+        "pressed": "true"
+       },
+       {
+        "type": "symmetric",
+        "pressed": "false"
+       },
+       {
+        "type": "asymmetric",
+        "pressed": "false"
+       }
+      ],
+      "typeAfter": [
+       {
+        "type": "vertex",
+        "pressed": "false"
+       },
+       {
+        "type": "symmetric",
+        "pressed": "true"
+       },
+       {
+        "type": "asymmetric",
+        "pressed": "false"
+       }
+      ],
+      "handleBefore": 0,
+      "handleAfter": 6,
+      "posBefore": 3,
+      "posAfter": 3,
+      "legends": [
+       "位置",
+       "旋转",
+       "缩放",
+       "锚点类型",
+       "位置",
+       "入控制柄",
+       "出控制柄"
+      ],
+      "handleCells": 6,
+      "handleSwallowed": 6,
+      "handleAllBoundaryOwn": true,
+      "posCells": 3,
+      "posSwallowed": 3,
+      "transCells": 9,
+      "transSwallowed": 9,
+      "xtab": {
+       "no-marker | reached-then-editable-guard": 2,
+       "boundary-own | swallowed-below-window": 18,
+       "no-marker | reached-plain": 8
+      },
+      "failedRows": [],
+      "focusFailures": 0
+     }
+    ],
+    "handleCells": [
+     6,
+     6
+    ],
+    "handleSwallowed": [
+     6,
+     6
+    ],
+    "handleAllBoundaryOwn": [
+     true,
+     true
+    ],
+    "handleBefore": [
+     0,
+     0
+    ],
+    "handleAfter": [
+     6,
+     6
+    ],
+    "typeSwitched": [
+     true,
+     true
+    ],
+    "xtab": {
+     "no-marker | reached-then-editable-guard": 2,
+     "boundary-own | swallowed-below-window": 18,
+     "no-marker | reached-plain": 8
+    },
+    "xtabSameBothRounds": true,
+    "ownSwallowed": [
+     18,
+     18
+    ]
+   }
+  },
+  {
+   "id": "J9",
+   "verdict": "PASS",
+   "statement": "三个上下文的控件数与边界控件数逐档递增且两轮一致：机位属性 %s → +路径变换 %s → +锚点位置 %s，自身带边界标记的控件 %s → %s → %s。0 格扫到一半导演台消失（冻结生效）、0 格没获得焦点。",
+   "evidenceKey": "deltas",
+   "evidence": {
+    "cameraToPathTransform": {
+     "cells": [
+      15,
+      15
+     ],
+     "ownSwallowed": [
+      9,
+      9
+     ]
+    },
+    "pathTransformToAnchor": {
+     "cells": [
+      7,
+      7
+     ],
+     "ownSwallowed": [
+      3,
+      3
+     ]
+    }
+   }
+  },
+  {
+   "id": "J10",
+   "verdict": "PASS",
+   "statement": "**冻结机制本身有效**：逐控件按 Esc 时导演台自己的处理器被 `stopImmediatePropagation()` 挡住，所以「事件到没到 window」照常可测、而导演台不会有任何反应 —— 这正是三段扫查能各扫几十格而不把导演台关掉的原因（765 R63 的同族问题）。",
+   "evidenceKey": "sweepContexts",
+   "evidence": {
+    "ctxA_sweep": {
+     "label": "机位属性（含 FOV）",
+     "perRound": [
+      {
+       "cells": 52,
+       "scanCount": 52,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 28,
+        "reached-then-editable-guard": 11,
+        "swallowed-below-window": 13
+       },
+       "marker": {
+        "no-marker": 37,
+        "boundary-own": 13,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 27,
+        "no-marker | reached-then-editable-guard": 10,
+        "boundary-own | swallowed-below-window": 13,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 13,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      },
+      {
+       "cells": 52,
+       "scanCount": 52,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 28,
+        "reached-then-editable-guard": 11,
+        "swallowed-below-window": 13
+       },
+       "marker": {
+        "no-marker": 37,
+        "boundary-own": 13,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 27,
+        "no-marker | reached-then-editable-guard": 10,
+        "boundary-own | swallowed-below-window": 13,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 13,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      }
+     ],
+     "cellsBothRounds": [
+      52,
+      52
+     ],
+     "ownSwallowed": [
+      13,
+      13
+     ],
+     "ownNotSwallowed": [
+      0,
+      0
+     ],
+     "ancNotSwallowed": [
+      2,
+      2
+     ],
+     "noMarkerSwallowed": [
+      0,
+      0
+     ],
+     "focusFailures": [
+      0,
+      0
+     ],
+     "failedRows": [
+      [],
+      []
+     ],
+     "xtab": {
+      "no-marker | reached-plain": 27,
+      "no-marker | reached-then-editable-guard": 10,
+      "boundary-own | swallowed-below-window": 13,
+      "boundary-anc | reached-then-editable-guard": 1,
+      "boundary-anc | reached-plain": 1
+     },
+     "xtabSameBothRounds": true
+    },
+    "ctxB_sweep": {
+     "label": "+ 路径变换",
+     "perRound": [
+      {
+       "cells": 67,
+       "scanCount": 67,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 32,
+        "reached-then-editable-guard": 13,
+        "swallowed-below-window": 22
+       },
+       "marker": {
+        "no-marker": 43,
+        "boundary-own": 22,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 31,
+        "no-marker | reached-then-editable-guard": 12,
+        "boundary-own | swallowed-below-window": 22,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 22,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      },
+      {
+       "cells": 67,
+       "scanCount": 67,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 32,
+        "reached-then-editable-guard": 13,
+        "swallowed-below-window": 22
+       },
+       "marker": {
+        "no-marker": 43,
+        "boundary-own": 22,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 31,
+        "no-marker | reached-then-editable-guard": 12,
+        "boundary-own | swallowed-below-window": 22,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 22,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      }
+     ],
+     "cellsBothRounds": [
+      67,
+      67
+     ],
+     "ownSwallowed": [
+      22,
+      22
+     ],
+     "ownNotSwallowed": [
+      0,
+      0
+     ],
+     "ancNotSwallowed": [
+      2,
+      2
+     ],
+     "noMarkerSwallowed": [
+      0,
+      0
+     ],
+     "focusFailures": [
+      0,
+      0
+     ],
+     "failedRows": [
+      [],
+      []
+     ],
+     "xtab": {
+      "no-marker | reached-plain": 31,
+      "no-marker | reached-then-editable-guard": 12,
+      "boundary-own | swallowed-below-window": 22,
+      "boundary-anc | reached-then-editable-guard": 1,
+      "boundary-anc | reached-plain": 1
+     },
+     "xtabSameBothRounds": true
+    },
+    "ctxC_sweep": {
+     "label": "+ 路径锚点位置",
+     "perRound": [
+      {
+       "cells": 74,
+       "scanCount": 74,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 36,
+        "reached-then-editable-guard": 13,
+        "swallowed-below-window": 25
+       },
+       "marker": {
+        "no-marker": 47,
+        "boundary-own": 25,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 35,
+        "no-marker | reached-then-editable-guard": 12,
+        "boundary-own | swallowed-below-window": 25,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 25,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      },
+      {
+       "cells": 74,
+       "scanCount": 74,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 36,
+        "reached-then-editable-guard": 13,
+        "swallowed-below-window": 25
+       },
+       "marker": {
+        "no-marker": 47,
+        "boundary-own": 25,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 35,
+        "no-marker | reached-then-editable-guard": 12,
+        "boundary-own | swallowed-below-window": 25,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 25,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      }
+     ],
+     "cellsBothRounds": [
+      74,
+      74
+     ],
+     "ownSwallowed": [
+      25,
+      25
+     ],
+     "ownNotSwallowed": [
+      0,
+      0
+     ],
+     "ancNotSwallowed": [
+      2,
+      2
+     ],
+     "noMarkerSwallowed": [
+      0,
+      0
+     ],
+     "focusFailures": [
+      0,
+      0
+     ],
+     "failedRows": [
+      [],
+      []
+     ],
+     "xtab": {
+      "no-marker | reached-plain": 35,
+      "no-marker | reached-then-editable-guard": 12,
+      "boundary-own | swallowed-below-window": 25,
+      "boundary-anc | reached-then-editable-guard": 1,
+      "boundary-anc | reached-plain": 1
+     },
+     "xtabSameBothRounds": true
+    }
+   }
+  },
+  {
+   "id": "J11",
+   "verdict": "FAIL",
+   "statement": "★ **本批判不了「冻结期间导演台自己的处理器会不会有反应」** —— 冻结就是把它挡掉的。所以本批只测传播、不测效果；「吞 Esc 对界面意味着什么」沿用 763/764 在别的上下文里量过的结论，不在本批重复声明。",
+   "evidenceKey": "sweepContexts",
+   "evidence": {
+    "ctxA_sweep": {
+     "label": "机位属性（含 FOV）",
+     "perRound": [
+      {
+       "cells": 52,
+       "scanCount": 52,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 28,
+        "reached-then-editable-guard": 11,
+        "swallowed-below-window": 13
+       },
+       "marker": {
+        "no-marker": 37,
+        "boundary-own": 13,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 27,
+        "no-marker | reached-then-editable-guard": 10,
+        "boundary-own | swallowed-below-window": 13,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 13,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      },
+      {
+       "cells": 52,
+       "scanCount": 52,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 28,
+        "reached-then-editable-guard": 11,
+        "swallowed-below-window": 13
+       },
+       "marker": {
+        "no-marker": 37,
+        "boundary-own": 13,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 27,
+        "no-marker | reached-then-editable-guard": 10,
+        "boundary-own | swallowed-below-window": 13,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 13,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      }
+     ],
+     "cellsBothRounds": [
+      52,
+      52
+     ],
+     "ownSwallowed": [
+      13,
+      13
+     ],
+     "ownNotSwallowed": [
+      0,
+      0
+     ],
+     "ancNotSwallowed": [
+      2,
+      2
+     ],
+     "noMarkerSwallowed": [
+      0,
+      0
+     ],
+     "focusFailures": [
+      0,
+      0
+     ],
+     "failedRows": [
+      [],
+      []
+     ],
+     "xtab": {
+      "no-marker | reached-plain": 27,
+      "no-marker | reached-then-editable-guard": 10,
+      "boundary-own | swallowed-below-window": 13,
+      "boundary-anc | reached-then-editable-guard": 1,
+      "boundary-anc | reached-plain": 1
+     },
+     "xtabSameBothRounds": true
+    },
+    "ctxB_sweep": {
+     "label": "+ 路径变换",
+     "perRound": [
+      {
+       "cells": 67,
+       "scanCount": 67,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 32,
+        "reached-then-editable-guard": 13,
+        "swallowed-below-window": 22
+       },
+       "marker": {
+        "no-marker": 43,
+        "boundary-own": 22,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 31,
+        "no-marker | reached-then-editable-guard": 12,
+        "boundary-own | swallowed-below-window": 22,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 22,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      },
+      {
+       "cells": 67,
+       "scanCount": 67,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 32,
+        "reached-then-editable-guard": 13,
+        "swallowed-below-window": 22
+       },
+       "marker": {
+        "no-marker": 43,
+        "boundary-own": 22,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 31,
+        "no-marker | reached-then-editable-guard": 12,
+        "boundary-own | swallowed-below-window": 22,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 22,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      }
+     ],
+     "cellsBothRounds": [
+      67,
+      67
+     ],
+     "ownSwallowed": [
+      22,
+      22
+     ],
+     "ownNotSwallowed": [
+      0,
+      0
+     ],
+     "ancNotSwallowed": [
+      2,
+      2
+     ],
+     "noMarkerSwallowed": [
+      0,
+      0
+     ],
+     "focusFailures": [
+      0,
+      0
+     ],
+     "failedRows": [
+      [],
+      []
+     ],
+     "xtab": {
+      "no-marker | reached-plain": 31,
+      "no-marker | reached-then-editable-guard": 12,
+      "boundary-own | swallowed-below-window": 22,
+      "boundary-anc | reached-then-editable-guard": 1,
+      "boundary-anc | reached-plain": 1
+     },
+     "xtabSameBothRounds": true
+    },
+    "ctxC_sweep": {
+     "label": "+ 路径锚点位置",
+     "perRound": [
+      {
+       "cells": 74,
+       "scanCount": 74,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 36,
+        "reached-then-editable-guard": 13,
+        "swallowed-below-window": 25
+       },
+       "marker": {
+        "no-marker": 47,
+        "boundary-own": 25,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 35,
+        "no-marker | reached-then-editable-guard": 12,
+        "boundary-own | swallowed-below-window": 25,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 25,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      },
+      {
+       "cells": 74,
+       "scanCount": 74,
+       "failedRows": [],
+       "focusFailures": 0,
+       "behavior": {
+        "reached-plain": 36,
+        "reached-then-editable-guard": 13,
+        "swallowed-below-window": 25
+       },
+       "marker": {
+        "no-marker": 47,
+        "boundary-own": 25,
+        "boundary-anc": 2
+       },
+       "xtab": {
+        "no-marker | reached-plain": 35,
+        "no-marker | reached-then-editable-guard": 12,
+        "boundary-own | swallowed-below-window": 25,
+        "boundary-anc | reached-then-editable-guard": 1,
+        "boundary-anc | reached-plain": 1
+       },
+       "ownSwallowed": 25,
+       "ownNotSwallowed": 0,
+       "ancNotSwallowed": 2,
+       "noMarkerSwallowed": 0,
+       "neverReached": 0
+      }
+     ],
+     "cellsBothRounds": [
+      74,
+      74
+     ],
+     "ownSwallowed": [
+      25,
+      25
+     ],
+     "ownNotSwallowed": [
+      0,
+      0
+     ],
+     "ancNotSwallowed": [
+      2,
+      2
+     ],
+     "noMarkerSwallowed": [
+      0,
+      0
+     ],
+     "focusFailures": [
+      0,
+      0
+     ],
+     "failedRows": [
+      [],
+      []
+     ],
+     "xtab": {
+      "no-marker | reached-plain": 35,
+      "no-marker | reached-then-editable-guard": 12,
+      "boundary-own | swallowed-below-window": 25,
+      "boundary-anc | reached-then-editable-guard": 1,
+      "boundary-anc | reached-plain": 1
+     },
+     "xtabSameBothRounds": true
+    }
+   }
+  }
+ ],
+ "defects": [
+  {
+   "id": "D7",
+   "severity": "低",
+   "newInThisBatch": true,
+   "title": "容器级 data-* 标记会把非边界控件误判成边界控件",
+   "where": [
+    "src/components/director/DirectorInspector.tsx:1604",
+    "src/components/director/DirectorInspector.tsx:1652",
+    "src/components/director/DirectorInspector.tsx:1667"
+   ],
+   "mechanism": "FOV 那一段的外层容器 `data-director-camera-fov-field`（`:1604`）同时包着**滑杆**与**数值框**。滑杆的 `input[type=range]` 自己带 `data-director-camera-fov` 并 spread 了 gesture（`:1652-1655`），**是**真边界控件；而数值框（`:1667`）**没有** gesture spread —— 它那一段源码里 `gesture` 出现 0 次。",
+   "measured": "用 `closest('[data-director-camera-fov-field]')` 判边界，会把数值框与它的关键帧按钮各算 1 个边界控件；行为反推显示这两个 `reachedBubble=true`、**没有吞 Esc** ⟹ 每个上下文固定 2 格误判，两轮一致。",
+   "severityRationale": "这是**测量工具**的缺陷，不是产品的缺陷 —— 产品里那两个控件本来就不该吞 Esc，行为是对的。所以严重度低。",
+   "impactOnEarlierBatches": "764 用的是标记扫。**方向上**它会**多报**，所以 764 记的「43 个边界控件全部吞 Esc」里，**至少含这 2 个误判**（在 FOV 那一段）⟹ 43 这个数是**上界**。本批没有重算 764 那个 43（那是另一批的读数）。",
+   "needsSrcChange": false,
+   "needsProbeChange": true
+  }
+ ],
+ "observations": [
+  {
+   "id": "O1",
+   "text": "**边界控件的判别式在本批是 1:1 的**：`boundary-own ⟺ reachedCapture=true 且 reachedBubble=false`，三个上下文共 193 格无一例外。反过来 `reachedBubble=true` 的格子 `reachedCapture` 也全为 true ⟹ 「事件完全没上来」这种情况一格都没有。",
+   "verdict": "方法论结论"
+  },
+  {
+   "id": "O2",
+   "text": "**标记扫的失效方向取决于标记集本身**：766b 首版只把`path-anchor-handle`/`path-anchor-position` 算作边界标记，于是那 9 个路径变换框（带 `path-transform-axis` 标记）被标成 `no-marker` 而行为是 swallowed —— 这是**假阴性**。把属性补进标记集后交叉表归零。所以「标记扫不可靠」不等于「标记扫总是漏检」，而是**它和标记集一样脆**。",
+   "verdict": "方法论约束"
+  },
+  {
+   "id": "O3",
+   "text": "**属性面板是可滚动容器**：锚点选项按钮实测在 `y≈1769`，而视口高只有 1000 ⟹ 扫网格全部跳过、`elementFromPoint` 永远打不中，表现为 `noHit`。任何「扫网格找元素」的探针在这个面板上都必须**先滚进视口**。",
+   "verdict": "探针约束"
+  },
+  {
+   "id": "O4",
+   "text": "**相机轨道在选中相机对象时就自动选中了**（`data-director-track-row` 的 `director-track-camera-main` 读数 `selected=true`）⟹ `selectedTrack` 自动解析成功，不需要额外点轨道行。`data-director-track-draw-trail` 那一次点击同时做了「选中相机轨道」+「打开路径菜单」。",
+   "verdict": "事实记录"
+  }
+ ],
+ "notClaimed": [
+  "无源站对照：本批全部结论只针对 clone 自身的行为自洽性。",
+  "**冻结期间导演台自己的处理器会不会有反应，本批判不了**（J11）—— 冻结就是把它挡掉的。本批只测传播，不测效果。",
+  "**只测了 1440 桌面一档视口**；移动端抽屉形态下的同一批控件没测。",
+  "**只测了机位这一个对象**：角色/道具上下文里的同类控件没重扫（764 扫过，本批不重复）。",
+  "**只建了 `line` 一种轨迹预设**；`ring`/`rectangle` 没建，锚点数量因此固定为 2（锚点位置 3 框 + 控制柄 6 框）。",
+  "**没有测锚点类型为 `asymmetric` 的情形**（只测了 `symmetric`）。",
+  "**没有重算 764 那个「43 个边界控件」**。本批证明标记扫会**多报**，所以 43 是上界，但具体少几个没量。",
+  "**没有测拖动手势本身**（ArrowUp 之类）—— 本批只测 Esc 的传播。",
+  "建运动轨迹是**破坏性**操作，会改项目并持久化到 localStorage；本批每轮开头清了 `liblib-tv-director-project-v1:*`，但**探针结束时没有把项目恢复原状**（Playwright 每次新开 context，不会影响他人）。",
+  "D7 是**测量工具**的缺陷，不是产品缺陷 —— 那两个被误判的控件行为本来就是对的。本批不据此改任何产品结论。"
+ ],
+ "probeLessons": [
+  {
+   "id": "R67",
+   "text": "★ **JS 片段的语法要单独过一遍 `node --check`，别靠跑浏览器发现**。766a 连续三轮白跑，每轮都是「少一个 `}` / 多一个 `)` / 少一个 `pg.evaluate` 的收尾括号」这种一眼可见的错误 —— 而每次都要起浏览器、跑十几秒，才在日志末尾看到 `SyntaxError`，前面十几秒的工作全废。抽出所有 `()=>…` 片段逐个 `node --check` 只要 0.1 秒。写完这个检查器之后，它当场又抓出了我新加的 3 段同类错误。"
+  },
+  {
+   "id": "R68",
+   "text": "★ **「元素不在 DOM 里」和「元素在视口外」是两回事，报错长得却一样**。766a 找不到路径预设按钮时只记了 `missing:true`，我据此以为「这个种子数据建不出轨迹」；实际上按钮在**折叠菜单**里（`pathMenuLeft` 为 null 时根本不渲染），入口是 `data-director-track-draw-trail`。教训：把「不在 DOM」「在 DOM 但没渲染出盒子」「在 DOM 且有盒子但在视口外」三种情况**分开记**，否则一个探针缺陷会被读成产品结论。"
+  },
+  {
+   "id": "R69",
+   "text": "**扫网格之前先滚进视口**（O3）。锚点选项在 y≈1769、视口高 1000 ⟹ 扫网格的每一格都因 `y > innerHeight-2` 被跳过，返回 `noHit`。看起来像「点不到」，其实是「在屏幕外」。属性面板是可滚动容器，探针必须先 `scrollIntoView` 再扫。"
+  },
+  {
+   "id": "R70",
+   "text": "**要冻住别人的处理器，就必须在它之前注册**。导演台在挂载时才往 window 上装 Esc 监听器，所以页面一加载就装的探针**注册在前**；在冒泡阶段调 `stopImmediatePropagation()` 就能挡住它。这样「事件到没到 window」照常可测，而导演台不会有任何反应 —— 逐控件按 Esc 才不会把导演台关掉（765 R63 的同族问题）。"
+  }
+ ]
+}

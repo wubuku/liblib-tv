@@ -1,0 +1,1867 @@
+{
+ "batch": 766,
+ "probe": "b",
+ "question": "把路径锚点的控制柄 6 个框逼出来并量 Esc 影响面",
+ "rounds": [
+  {
+   "load": {
+    "opened": true,
+    "cleared": {
+     "removed": []
+    },
+    "installed": {
+     "installed": true
+    }
+   },
+   "selCamera": {
+    "clicked": true,
+    "sel": "[data-director-object-id=\"director-camera-main\"]",
+    "pt": [
+     73,
+     411
+    ],
+    "scrolled": null
+   },
+   "openMenu": {
+    "clicked": true,
+    "sel": "[data-director-track-draw-trail=\"director-track-camera-main\"]",
+    "pt": [
+     233,
+     961
+    ],
+    "scrolled": null
+   },
+   "createPath": {
+    "clicked": true,
+    "sel": "[data-director-motion-path-preset=\"line\"]",
+    "pt": [
+     407,
+     894
+    ],
+    "scrolled": null
+   },
+   "hasInspector": true,
+   "anchorOptions": [
+    {
+     "id": "director-motion-path-director-camera-main-1791144248984-anchor-0",
+     "text": "1"
+    },
+    {
+     "id": "director-motion-path-director-camera-main-1791144248984-anchor-1",
+     "text": "2"
+    }
+   ],
+   "selectAnchor": {
+    "option": {
+     "id": "director-motion-path-director-camera-main-1791144248984-anchor-0",
+     "text": "1"
+    },
+    "click": {
+     "clicked": true,
+     "sel": "[data-director-path-anchor-option=\"director-motion-path-director-camera-main-1791144248984-anchor-0\"]",
+     "pt": [
+      1179,
+      423
+     ],
+     "scrolled": {
+      "x": 1176,
+      "y": 421,
+      "w": 38,
+      "h": 28,
+      "inViewport": true
+     }
+    }
+   },
+   "typeBefore": [
+    {
+     "type": "vertex",
+     "pressed": "true"
+    },
+    {
+     "type": "symmetric",
+     "pressed": "false"
+    },
+    {
+     "type": "asymmetric",
+     "pressed": "false"
+    }
+   ],
+   "handleCountBeforeType": 0,
+   "positionCountBeforeType": 3,
+   "setTypeSymmetric": {
+    "clicked": true,
+    "sel": "[data-director-path-anchor-type-option=\"symmetric\"]",
+    "pt": [
+     1266,
+     423
+    ],
+    "scrolled": {
+     "x": 1259,
+     "y": 421,
+     "w": 81,
+     "h": 28,
+     "inViewport": true
+    }
+   },
+   "typeAfter": [
+    {
+     "type": "vertex",
+     "pressed": "false"
+    },
+    {
+     "type": "symmetric",
+     "pressed": "true"
+    },
+    {
+     "type": "asymmetric",
+     "pressed": "false"
+    }
+   ],
+   "handleCountAfterType": 6,
+   "positionCountAfterType": 3,
+   "legendTexts": [
+    "位置",
+    "旋转",
+    "缩放",
+    "锚点类型",
+    "位置",
+    "入控制柄",
+    "出控制柄"
+   ],
+   "sweep": {
+    "label": "path-anchor-handles",
+    "scanCount": 28,
+    "rows": [
+     {
+      "i": 0,
+      "ctrl": {
+       "i": 0,
+       "tag": "INPUT",
+       "type": null,
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-name"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": null
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "INPUT/",
+      "targetIsEditable": true,
+      "behavior": "reached-then-editable-guard",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 1,
+      "ctrl": {
+       "i": 1,
+       "tag": "INPUT",
+       "type": "checkbox",
+       "aria": null,
+       "text": "",
+       "ownMarks": [],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "checkbox"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "INPUT/checkbox",
+      "targetIsEditable": true,
+      "behavior": "reached-then-editable-guard",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 2,
+      "ctrl": {
+       "i": 2,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 3,
+      "ctrl": {
+       "i": 3,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 4,
+      "ctrl": {
+       "i": 4,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 5,
+      "ctrl": {
+       "i": 5,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 6,
+      "ctrl": {
+       "i": 6,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 7,
+      "ctrl": {
+       "i": 7,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 8,
+      "ctrl": {
+       "i": 8,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 9,
+      "ctrl": {
+       "i": 9,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 10,
+      "ctrl": {
+       "i": 10,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 11,
+      "ctrl": {
+       "i": 11,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "重置偏移",
+       "ownMarks": [
+        "data-director-path-reset-offset"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 12,
+      "ctrl": {
+       "i": 12,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "重置",
+       "ownMarks": [
+        "data-director-path-reset"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 13,
+      "ctrl": {
+       "i": 13,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "1",
+       "ownMarks": [
+        "data-director-path-anchor-option"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 14,
+      "ctrl": {
+       "i": 14,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "2",
+       "ownMarks": [
+        "data-director-path-anchor-option"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 15,
+      "ctrl": {
+       "i": 15,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "顶点",
+       "ownMarks": [
+        "data-director-path-anchor-type-option"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 16,
+      "ctrl": {
+       "i": 16,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "对称",
+       "ownMarks": [
+        "data-director-path-anchor-type-option"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 17,
+      "ctrl": {
+       "i": 17,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "非对称",
+       "ownMarks": [
+        "data-director-path-anchor-type-option"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 18,
+      "ctrl": {
+       "i": 18,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-position"
+       ],
+       "isAnchorPosition": true,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 19,
+      "ctrl": {
+       "i": 19,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-position"
+       ],
+       "isAnchorPosition": true,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 20,
+      "ctrl": {
+       "i": 20,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-position"
+       ],
+       "isAnchorPosition": true,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 21,
+      "ctrl": {
+       "i": 21,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-handle",
+        "data-director-path-anchor-handle-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": true,
+       "handleAxis": "in",
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 22,
+      "ctrl": {
+       "i": 22,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-handle",
+        "data-director-path-anchor-handle-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": true,
+       "handleAxis": "in",
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 23,
+      "ctrl": {
+       "i": 23,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-handle",
+        "data-director-path-anchor-handle-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": true,
+       "handleAxis": "in",
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 24,
+      "ctrl": {
+       "i": 24,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-handle",
+        "data-director-path-anchor-handle-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": true,
+       "handleAxis": "out",
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 25,
+      "ctrl": {
+       "i": 25,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-handle",
+        "data-director-path-anchor-handle-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": true,
+       "handleAxis": "out",
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 26,
+      "ctrl": {
+       "i": 26,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-handle",
+        "data-director-path-anchor-handle-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": true,
+       "handleAxis": "out",
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 27,
+      "ctrl": {
+       "i": 27,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "新增锚点",
+       "ownMarks": [
+        "data-director-insert-path-anchor"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     }
+    ]
+   },
+   "handleRows": 6,
+   "handleSwallowed": 6,
+   "handleAllBoundaryOwn": true,
+   "xtab": {
+    "no-marker | reached-then-editable-guard": 2,
+    "boundary-own | swallowed-below-window": 18,
+    "no-marker | reached-plain": 8
+   },
+   "failedRows": []
+  },
+  {
+   "load": {
+    "opened": true,
+    "cleared": {
+     "removed": [
+      "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+     ]
+    },
+    "installed": {
+     "installed": true
+    }
+   },
+   "selCamera": {
+    "clicked": true,
+    "sel": "[data-director-object-id=\"director-camera-main\"]",
+    "pt": [
+     73,
+     411
+    ],
+    "scrolled": null
+   },
+   "openMenu": {
+    "clicked": true,
+    "sel": "[data-director-track-draw-trail=\"director-track-camera-main\"]",
+    "pt": [
+     233,
+     961
+    ],
+    "scrolled": null
+   },
+   "createPath": {
+    "clicked": true,
+    "sel": "[data-director-motion-path-preset=\"line\"]",
+    "pt": [
+     407,
+     894
+    ],
+    "scrolled": null
+   },
+   "hasInspector": true,
+   "anchorOptions": [
+    {
+     "id": "director-motion-path-director-camera-main-1791144267121-anchor-0",
+     "text": "1"
+    },
+    {
+     "id": "director-motion-path-director-camera-main-1791144267121-anchor-1",
+     "text": "2"
+    }
+   ],
+   "selectAnchor": {
+    "option": {
+     "id": "director-motion-path-director-camera-main-1791144267121-anchor-0",
+     "text": "1"
+    },
+    "click": {
+     "clicked": true,
+     "sel": "[data-director-path-anchor-option=\"director-motion-path-director-camera-main-1791144267121-anchor-0\"]",
+     "pt": [
+      1179,
+      423
+     ],
+     "scrolled": {
+      "x": 1176,
+      "y": 421,
+      "w": 38,
+      "h": 28,
+      "inViewport": true
+     }
+    }
+   },
+   "typeBefore": [
+    {
+     "type": "vertex",
+     "pressed": "true"
+    },
+    {
+     "type": "symmetric",
+     "pressed": "false"
+    },
+    {
+     "type": "asymmetric",
+     "pressed": "false"
+    }
+   ],
+   "handleCountBeforeType": 0,
+   "positionCountBeforeType": 3,
+   "setTypeSymmetric": {
+    "clicked": true,
+    "sel": "[data-director-path-anchor-type-option=\"symmetric\"]",
+    "pt": [
+     1266,
+     423
+    ],
+    "scrolled": {
+     "x": 1259,
+     "y": 421,
+     "w": 81,
+     "h": 28,
+     "inViewport": true
+    }
+   },
+   "typeAfter": [
+    {
+     "type": "vertex",
+     "pressed": "false"
+    },
+    {
+     "type": "symmetric",
+     "pressed": "true"
+    },
+    {
+     "type": "asymmetric",
+     "pressed": "false"
+    }
+   ],
+   "handleCountAfterType": 6,
+   "positionCountAfterType": 3,
+   "legendTexts": [
+    "位置",
+    "旋转",
+    "缩放",
+    "锚点类型",
+    "位置",
+    "入控制柄",
+    "出控制柄"
+   ],
+   "sweep": {
+    "label": "path-anchor-handles",
+    "scanCount": 28,
+    "rows": [
+     {
+      "i": 0,
+      "ctrl": {
+       "i": 0,
+       "tag": "INPUT",
+       "type": null,
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-name"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": null
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "INPUT/",
+      "targetIsEditable": true,
+      "behavior": "reached-then-editable-guard",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 1,
+      "ctrl": {
+       "i": 1,
+       "tag": "INPUT",
+       "type": "checkbox",
+       "aria": null,
+       "text": "",
+       "ownMarks": [],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "checkbox"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "INPUT/checkbox",
+      "targetIsEditable": true,
+      "behavior": "reached-then-editable-guard",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 2,
+      "ctrl": {
+       "i": 2,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 3,
+      "ctrl": {
+       "i": 3,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 4,
+      "ctrl": {
+       "i": 4,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 5,
+      "ctrl": {
+       "i": 5,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 6,
+      "ctrl": {
+       "i": 6,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 7,
+      "ctrl": {
+       "i": 7,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 8,
+      "ctrl": {
+       "i": 8,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 9,
+      "ctrl": {
+       "i": 9,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 10,
+      "ctrl": {
+       "i": 10,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-transform-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 11,
+      "ctrl": {
+       "i": 11,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "重置偏移",
+       "ownMarks": [
+        "data-director-path-reset-offset"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 12,
+      "ctrl": {
+       "i": 12,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "重置",
+       "ownMarks": [
+        "data-director-path-reset"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 13,
+      "ctrl": {
+       "i": 13,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "1",
+       "ownMarks": [
+        "data-director-path-anchor-option"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 14,
+      "ctrl": {
+       "i": 14,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "2",
+       "ownMarks": [
+        "data-director-path-anchor-option"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 15,
+      "ctrl": {
+       "i": 15,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "顶点",
+       "ownMarks": [
+        "data-director-path-anchor-type-option"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 16,
+      "ctrl": {
+       "i": 16,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "对称",
+       "ownMarks": [
+        "data-director-path-anchor-type-option"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 17,
+      "ctrl": {
+       "i": 17,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "非对称",
+       "ownMarks": [
+        "data-director-path-anchor-type-option"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     },
+     {
+      "i": 18,
+      "ctrl": {
+       "i": 18,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-position"
+       ],
+       "isAnchorPosition": true,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 19,
+      "ctrl": {
+       "i": 19,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-position"
+       ],
+       "isAnchorPosition": true,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 20,
+      "ctrl": {
+       "i": 20,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-position"
+       ],
+       "isAnchorPosition": true,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 21,
+      "ctrl": {
+       "i": 21,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-handle",
+        "data-director-path-anchor-handle-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": true,
+       "handleAxis": "in",
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 22,
+      "ctrl": {
+       "i": 22,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-handle",
+        "data-director-path-anchor-handle-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": true,
+       "handleAxis": "in",
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 23,
+      "ctrl": {
+       "i": 23,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-handle",
+        "data-director-path-anchor-handle-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": true,
+       "handleAxis": "in",
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 24,
+      "ctrl": {
+       "i": 24,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-handle",
+        "data-director-path-anchor-handle-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": true,
+       "handleAxis": "out",
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 25,
+      "ctrl": {
+       "i": 25,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-handle",
+        "data-director-path-anchor-handle-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": true,
+       "handleAxis": "out",
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 26,
+      "ctrl": {
+       "i": 26,
+       "tag": "INPUT",
+       "type": "number",
+       "aria": null,
+       "text": "",
+       "ownMarks": [
+        "data-director-path-anchor-handle",
+        "data-director-path-anchor-handle-axis"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": true,
+       "handleAxis": "out",
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number"
+      },
+      "reachedCapture": true,
+      "reachedBubble": false,
+      "targetAtWindow": null,
+      "targetIsEditable": null,
+      "behavior": "swallowed-below-window",
+      "markerClass": "boundary-own"
+     },
+     {
+      "i": 27,
+      "ctrl": {
+       "i": 27,
+       "tag": "BUTTON",
+       "type": "button",
+       "aria": null,
+       "text": "新增锚点",
+       "ownMarks": [
+        "data-director-insert-path-anchor"
+       ],
+       "isAnchorPosition": false,
+       "isAnchorHandle": false,
+       "handleAxis": null,
+       "inLegend": false
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button"
+      },
+      "reachedCapture": true,
+      "reachedBubble": true,
+      "targetAtWindow": "BUTTON/button",
+      "targetIsEditable": false,
+      "behavior": "reached-plain",
+      "markerClass": "no-marker"
+     }
+    ]
+   },
+   "handleRows": 6,
+   "handleSwallowed": 6,
+   "handleAllBoundaryOwn": true,
+   "xtab": {
+    "no-marker | reached-then-editable-guard": 2,
+    "boundary-own | swallowed-below-window": 18,
+    "no-marker | reached-plain": 8
+   },
+   "failedRows": []
+  }
+ ]
+}

@@ -1,0 +1,1223 @@
+{
+ "batch": 766,
+ "checks": [
+  {
+   "label": "★★ 静态：FOV 数值框那一段**没有** gesture spread（D7 的机制）",
+   "pass": true,
+   "got": [
+    true,
+    true
+   ]
+  },
+  {
+   "label": "★ 静态：FOV 滑杆是 range 且**有** gesture spread（它才是真边界控件）",
+   "pass": true,
+   "got": [
+    true,
+    true
+   ]
+  },
+  {
+   "label": "★ 静态：滑杆与数值框**同名不同属性**（-fov vs -fov-number）",
+   "pass": true,
+   "got": [
+    1652,
+    1667
+   ]
+  },
+  {
+   "label": "静态：控制柄框在「锚点类型 ≠ vertex」的门里",
+   "pass": true,
+   "got": 1188
+  },
+  {
+   "label": "★ 静态：MotionPathInspector 组件体内依次是 锚点门 → 控制柄门，而渲染它的是后面的 selectedPath 门",
+   "pass": true,
+   "got": [
+    949,
+    1133,
+    1188,
+    2748
+   ]
+  },
+  {
+   "label": "静态：selectedPath 由 selectedTrack?.motionPathId 决定",
+   "pass": true,
+   "got": [
+    2158,
+    2164,
+    2748
+   ]
+  },
+  {
+   "label": "静态：selectedAnchor 定义在 selectedPath 之前（渲染门逐层叠加）",
+   "pass": true,
+   "got": [
+    949,
+    2164
+   ]
+  },
+  {
+   "label": "★ 静态：PathTransformFields 恰好 3 处调用且都在 MotionPathInspector 内",
+   "pass": true,
+   "got": [
+    3,
+    true
+   ]
+  },
+  {
+   "label": "★ 静态：PathTupleFields 三处调用都在 selectedAnchor 门之后",
+   "pass": true,
+   "got": [
+    1173,
+    1191,
+    1207
+   ]
+  },
+  {
+   "label": "静态：FOV 的门在调用点之前",
+   "pass": true,
+   "got": [
+    2352,
+    2580
+   ]
+  },
+  {
+   "label": "★ 静态：draw-trail 入口同时做「选中轨道」+「打开菜单」",
+   "pass": true,
+   "got": [
+    true,
+    true
+   ]
+  },
+  {
+   "label": "静态：路径预设按钮与 draw-trail 入口都在时间轴里",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据 11 条",
+   "pass": true,
+   "got": 11
+  },
+  {
+   "label": "verdict 分布 9 PASS / 2 FAIL",
+   "pass": true,
+   "got": [
+    9,
+    2
+   ]
+  },
+  {
+   "label": "★ 2 条 FAIL 恰好是 J4/J11（不许偷改）",
+   "pass": true,
+   "got": [
+    "J4",
+    "J11"
+   ]
+  },
+  {
+   "label": "判据 id 唯一且连续 J1..J11",
+   "pass": true,
+   "got": [
+    "J1",
+    "J2",
+    "J3",
+    "J4",
+    "J5",
+    "J6",
+    "J7",
+    "J8",
+    "J9",
+    "J10",
+    "J11"
+   ]
+  },
+  {
+   "label": "★ 每条判据都有非空 evidenceKey",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "★ 每条判据的 evidenceKey 都真实存在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ evidence 不得为空（防 all([]) 式空过）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "判据引用 findings 里至少 6 个不同键",
+   "pass": true,
+   "got": 9
+  },
+  {
+   "label": "缺陷 1 条 D7",
+   "pass": true,
+   "got": [
+    "D7"
+   ]
+  },
+  {
+   "label": "★ D7 明确声明 needsSrcChange=false（是工具缺陷不是产品缺陷）",
+   "pass": true,
+   "got": false
+  },
+  {
+   "label": "★ D7 明确声明 needsProbeChange=true",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ D7 写了它对 764 的影响（43 是上界）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ D7 承认严重度低的理由",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 本批不重复声明 763/764/765 的 D1–D6",
+   "pass": true,
+   "got": [
+    "D7"
+   ]
+  },
+  {
+   "label": "★ D7 的 where 指针都指向真实文件与行号",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "缺陷严重度在 低/中/高 之内",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "观察 4 条",
+   "pass": true,
+   "got": 4
+  },
+  {
+   "label": "探针教训 R67–R70 四条",
+   "pass": true,
+   "got": [
+    "R67",
+    "R68",
+    "R69",
+    "R70"
+   ]
+  },
+  {
+   "label": "★ R67 记的是「JS 片段先过 node --check」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ R68 记的是「不在 DOM 与在视口外是两回事」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 不声称里写明无源站对照",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 不声称里写明冻结期判不了（J11）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 不声称里写明没有重算 764 那个 43",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 不声称里写明 D7 是工具缺陷不是产品缺陷",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "不声称 ≥ 9 条",
+   "pass": true,
+   "got": 10
+  },
+  {
+   "label": "两轮可比且逐字段一致（766a）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "两轮可比且逐字段一致（766b）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "可比性判据比的是非空 key 列表",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数轮数各为 2",
+   "pass": true,
+   "got": [
+    2,
+    2
+   ]
+  },
+  {
+   "label": "★ 机位属性（含 FOV）：格子非空（不许 all([]) 空过）",
+   "pass": true,
+   "got": [
+    52,
+    52
+   ]
+  },
+  {
+   "label": "★ 机位属性（含 FOV）：自身带边界标记的控件**全部**吞 Esc（逐轮）",
+   "pass": true,
+   "got": [
+    13,
+    13
+   ]
+  },
+  {
+   "label": "★ 机位属性（含 FOV）：没有「没标记却吞 Esc」的控件（逐轮）",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "机位属性（含 FOV）：焦点全部成功",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "机位属性（含 FOV）：没有「事件完全没上来」的格子",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "机位属性（含 FOV）：产物 cells 与重算一致",
+   "pass": true,
+   "got": [
+    [
+     52,
+     52
+    ],
+    [
+     52,
+     52
+    ]
+   ]
+  },
+  {
+   "label": "机位属性（含 FOV）：产物 xtab 与重算一致（逐轮）",
+   "pass": true,
+   "got": [
+    {
+     "no-marker | reached-plain": 27,
+     "no-marker | reached-then-editable-guard": 10,
+     "boundary-own | swallowed-below-window": 13,
+     "boundary-anc | reached-then-editable-guard": 1,
+     "boundary-anc | reached-plain": 1
+    },
+    {
+     "no-marker | reached-plain": 27,
+     "no-marker | reached-then-editable-guard": 10,
+     "boundary-own | swallowed-below-window": 13,
+     "boundary-anc | reached-then-editable-guard": 1,
+     "boundary-anc | reached-plain": 1
+    }
+   ]
+  },
+  {
+   "label": "★ + 路径变换：格子非空（不许 all([]) 空过）",
+   "pass": true,
+   "got": [
+    67,
+    67
+   ]
+  },
+  {
+   "label": "★ + 路径变换：自身带边界标记的控件**全部**吞 Esc（逐轮）",
+   "pass": true,
+   "got": [
+    22,
+    22
+   ]
+  },
+  {
+   "label": "★ + 路径变换：没有「没标记却吞 Esc」的控件（逐轮）",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "+ 路径变换：焦点全部成功",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "+ 路径变换：没有「事件完全没上来」的格子",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "+ 路径变换：产物 cells 与重算一致",
+   "pass": true,
+   "got": [
+    [
+     67,
+     67
+    ],
+    [
+     67,
+     67
+    ]
+   ]
+  },
+  {
+   "label": "+ 路径变换：产物 xtab 与重算一致（逐轮）",
+   "pass": true,
+   "got": [
+    {
+     "no-marker | reached-plain": 31,
+     "no-marker | reached-then-editable-guard": 12,
+     "boundary-own | swallowed-below-window": 22,
+     "boundary-anc | reached-then-editable-guard": 1,
+     "boundary-anc | reached-plain": 1
+    },
+    {
+     "no-marker | reached-plain": 31,
+     "no-marker | reached-then-editable-guard": 12,
+     "boundary-own | swallowed-below-window": 22,
+     "boundary-anc | reached-then-editable-guard": 1,
+     "boundary-anc | reached-plain": 1
+    }
+   ]
+  },
+  {
+   "label": "★ + 路径锚点位置：格子非空（不许 all([]) 空过）",
+   "pass": true,
+   "got": [
+    74,
+    74
+   ]
+  },
+  {
+   "label": "★ + 路径锚点位置：自身带边界标记的控件**全部**吞 Esc（逐轮）",
+   "pass": true,
+   "got": [
+    25,
+    25
+   ]
+  },
+  {
+   "label": "★ + 路径锚点位置：没有「没标记却吞 Esc」的控件（逐轮）",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "+ 路径锚点位置：焦点全部成功",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "+ 路径锚点位置：没有「事件完全没上来」的格子",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "+ 路径锚点位置：产物 cells 与重算一致",
+   "pass": true,
+   "got": [
+    [
+     74,
+     74
+    ],
+    [
+     74,
+     74
+    ]
+   ]
+  },
+  {
+   "label": "+ 路径锚点位置：产物 xtab 与重算一致（逐轮）",
+   "pass": true,
+   "got": [
+    {
+     "no-marker | reached-plain": 35,
+     "no-marker | reached-then-editable-guard": 12,
+     "boundary-own | swallowed-below-window": 25,
+     "boundary-anc | reached-then-editable-guard": 1,
+     "boundary-anc | reached-plain": 1
+    },
+    {
+     "no-marker | reached-plain": 35,
+     "no-marker | reached-then-editable-guard": 12,
+     "boundary-own | swallowed-below-window": 25,
+     "boundary-anc | reached-then-editable-guard": 1,
+     "boundary-anc | reached-plain": 1
+    }
+   ]
+  },
+  {
+   "label": "★ 三段扫查格子数逐档递增且两轮一致（52→67→74）",
+   "pass": true,
+   "got": [
+    [
+     52,
+     52
+    ],
+    [
+     67,
+     67
+    ],
+    [
+     74,
+     74
+    ]
+   ]
+  },
+  {
+   "label": "★ 自身边界控件数逐档递增且两轮一致（13→22→25）",
+   "pass": true,
+   "got": [
+    [
+     13,
+     13
+    ],
+    [
+     22,
+     22
+    ],
+    [
+     25,
+     25
+    ]
+   ]
+  },
+  {
+   "label": "★★ 路径变换 9 个数值框**全部**吞 Esc且全部自身带标记（逐轮）",
+   "pass": true,
+   "got": [
+    {
+     "cells": 9,
+     "swallowed": 9,
+     "allOwn": true
+    },
+    {
+     "cells": 9,
+     "swallowed": 9,
+     "allOwn": true
+    }
+   ]
+  },
+  {
+   "label": "★★ 路径锚点位置 3 个框**全部**吞 Esc且全部自身带标记（逐轮）",
+   "pass": true,
+   "got": [
+    {
+     "cells": 3,
+     "swallowed": 3,
+     "allOwn": true
+    },
+    {
+     "cells": 3,
+     "swallowed": 3,
+     "allOwn": true
+    }
+   ]
+  },
+  {
+   "label": "★★ FOV 滑杆吞 Esc（自身带 -fov 标记，逐轮）",
+   "pass": true,
+   "got": [
+    {
+     "cells": 1,
+     "swallowed": 1,
+     "allOwn": true
+    },
+    {
+     "cells": 1,
+     "swallowed": 1,
+     "allOwn": true
+    }
+   ]
+  },
+  {
+   "label": "变换数值框基线：机位属性里已带标记的 12 个（9 变换 + 3 注视坐标）全吞",
+   "pass": true,
+   "got": [
+    {
+     "cells": 12,
+     "swallowed": 12,
+     "allOwn": true
+    },
+    {
+     "cells": 12,
+     "swallowed": 12,
+     "allOwn": true
+    }
+   ]
+  },
+  {
+   "label": "★★ 容器级标记每轮固定误判 2 格",
+   "pass": true,
+   "got": [
+    2,
+    2
+   ]
+  },
+  {
+   "label": "★ 那 2 格**都没有**吞 Esc（所以是误判不是漏检）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 那 2 格的祖先标记确实是 camera-fov-field",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 误判格点名了 FOV 数值框与关键帧按钮",
+   "pass": true,
+   "got": [
+    "当前帧有关键帧",
+    "视野角度 (FOV) 数值"
+   ]
+  },
+  {
+   "label": "★ 产物 containerMarkerFalsePositive 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 产物 missedByMarkerScan 的总数是 0",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "★ 产物 missedByMarkerScan 与重算一致",
+   "pass": true,
+   "got": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      0
+     ]
+    ]
+   ]
+  },
+  {
+   "label": "★ 766b 扫出的格子非空",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 改类型之前控制柄框是 0、之后是 6（两轮）",
+   "pass": true,
+   "got": [
+    [
+     0,
+     0
+    ],
+    [
+     6,
+     6
+    ]
+   ]
+  },
+  {
+   "label": "★ 两轮都真的把锚点类型切到了「对称」",
+   "pass": true,
+   "got": [
+    true,
+    true
+   ]
+  },
+  {
+   "label": "★ 改类型之前锚点默认是「顶点」",
+   "pass": true,
+   "got": [
+    true,
+    true
+   ]
+  },
+  {
+   "label": "★ legend 里出现了「入控制柄」「出控制柄」",
+   "pass": true,
+   "got": [
+    "位置",
+    "旋转",
+    "缩放",
+    "锚点类型",
+    "位置",
+    "入控制柄",
+    "出控制柄"
+   ]
+  },
+  {
+   "label": "★★ 控制柄 6 个框**全部**吞 Esc（两轮）",
+   "pass": true,
+   "got": [
+    6,
+    6
+   ]
+  },
+  {
+   "label": "★ 控制柄 6 个框全部自身带边界标记",
+   "pass": true,
+   "got": [
+    true,
+    true
+   ]
+  },
+  {
+   "label": "★ 766b 焦点全部成功",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "★ 产物 anchorHandles 与重算一致",
+   "pass": true,
+   "got": [
+    [
+     6,
+     6
+    ],
+    [
+     6,
+     6
+    ]
+   ]
+  },
+  {
+   "label": "★ 产物 anchorHandles 的 before/after 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物 batch=766",
+   "pass": true,
+   "got": 766
+  },
+  {
+   "label": "产物声明未改 src/",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "probes 列了 2 个探针",
+   "pass": true,
+   "got": 2
+  },
+  {
+   "label": "★ 每份 raw 都有 sha 记录",
+   "pass": true,
+   "got": [
+    "vb766a.json",
+    "vb766b.json"
+   ]
+  },
+  {
+   "label": "原始读数存在 vb766a.json",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数存在 vb766b.json",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "探针脚本存在 dbg766a.py",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "探针脚本存在 dbg766b.py",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "探针脚本存在 mk766audit.py",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 存在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 含章节 ## 选题",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 含章节 ## 判据",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 含章节 ## 缺陷",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 含章节 ## 观察",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 含章节 ## 探针教训",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 含章节 ## 不声称",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 含章节 ## 复现",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有 D7 的独立章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 没有把 D1–D6 写成新章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 表格首格没有裸数字（pre-commit 正则会误判）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "★ README 写明判据 11 条",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 提到 node --check（R67）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 提到「43 是上界」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 提到 J11 判不了",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 台账恰好一行 Batch 766",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "★ 台账行首格是「Batch 766」",
+   "pass": true,
+   "got": " Batch 766 "
+  },
+  {
+   "label": "★ 台账新行里 0 个 U+FFFD",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "★ 台账新行够长（不许占位）",
+   "pass": true,
+   "got": 1111
+  },
+  {
+   "label": "台账行提到 D7",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "台账行提到 行为反推",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "台账行提到 误判",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "台账行提到 控制柄",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "台账行提到 上界",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 台账历史 U+FFFD 仍是 9 个",
+   "pass": true,
+   "got": 9
+  },
+  {
+   "label": "★ U+FFFD 仍只落在 522/583/587 三行",
+   "pass": true,
+   "got": [
+    522,
+    583,
+    587
+   ]
+  },
+  {
+   "label": "★ 台账行数 = 629（追加一行）",
+   "pass": true,
+   "got": 629
+  },
+  {
+   "label": "★ Batch 765 行仍在且唯一",
+   "pass": true,
+   "got": null
+  }
+ ],
+ "pass": 123,
+ "total": 123,
+ "negativeControls": [
+  {
+   "name": "★ 删掉 D7",
+   "caught": true,
+   "firstFail": "缺陷 1 条 D7"
+  },
+  {
+   "name": "★ 把 D7 说成产品缺陷（needsSrcChange=true）",
+   "caught": true,
+   "firstFail": "★ D7 明确声明 needsSrcChange=false（是工具缺陷不是产品缺陷）"
+  },
+  {
+   "name": "★ 把 D7 的 needsProbeChange 去掉",
+   "caught": true,
+   "firstFail": "★ D7 明确声明 needsProbeChange=true"
+  },
+  {
+   "name": "★ 把 D7 对 764 的影响（43 是上界）抹掉",
+   "caught": true,
+   "firstFail": "★ D7 写了它对 764 的影响（43 是上界）"
+  },
+  {
+   "name": "★ 把 D7 的 where 指向不存在的行号",
+   "caught": true,
+   "firstFail": "★ D7 的 where 指针都指向真实文件与行号"
+  },
+  {
+   "name": "★ 本批重复声明 763 的 D1",
+   "caught": true,
+   "firstFail": "缺陷 1 条 D7"
+  },
+  {
+   "name": "★ 把 J4 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "verdict 分布 9 PASS / 2 FAIL"
+  },
+  {
+   "name": "★ 把 J11 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "verdict 分布 9 PASS / 2 FAIL"
+  },
+  {
+   "name": "★ 判据全改成 PASS",
+   "caught": true,
+   "firstFail": "verdict 分布 9 PASS / 2 FAIL"
+  },
+  {
+   "name": "★ 把判据条数从 11 改成 9",
+   "caught": true,
+   "firstFail": "判据 11 条"
+  },
+  {
+   "name": "★ 把 J4 的 evidence 换成可比性（误判失去支撑）",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "★ 把 J11（不声称）也改成 PASS",
+   "caught": true,
+   "firstFail": "verdict 分布 9 PASS / 2 FAIL"
+  },
+  {
+   "name": "只改 findings.missedByMarkerScan.totalNoMarkerSwallowed",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "只改 findings.containerMarkerFalsePositive.cells",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "只改 findings.anchorHandles.handleSwallowed",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "只改 findings.anchorHandles.handleBefore",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "只改 findings.sweepContexts.ctxC_sweep.xtab",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "★ 把可比性说成一致（766b 不一致 key 非空）",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "★ 删掉 R67（node --check 那条教训）",
+   "caught": true,
+   "firstFail": "探针教训 R67–R70 四条"
+  },
+  {
+   "name": "★ 不声称里删掉「冻结期判不了」",
+   "caught": true,
+   "firstFail": "★ 不声称里写明冻结期判不了（J11）"
+  },
+  {
+   "name": "★ 不声称里删掉「没有重算 43」",
+   "caught": true,
+   "firstFail": "★ 不声称里写明没有重算 764 那个 43"
+  },
+  {
+   "name": "伪造：FOV 数值框那段也有 gesture（那就不是 D7 的机制）",
+   "caught": true,
+   "firstFail": "★★ 静态：FOV 数值框那一段**没有** gesture spread（D7 的机制）"
+  },
+  {
+   "name": "伪造：FOV 滑杆没有 gesture",
+   "caught": true,
+   "firstFail": "★ 静态：FOV 滑杆是 range 且**有** gesture spread（它才是真边界控件）"
+  },
+  {
+   "name": "伪造：控制柄框不在「非 vertex」门里",
+   "caught": true,
+   "firstFail": "静态：控制柄框在「锚点类型 ≠ vertex」的门里"
+  },
+  {
+   "name": "伪造：锚点门不在 MotionPathInspector 之后",
+   "caught": true,
+   "firstFail": "★ 静态：MotionPathInspector 组件体内依次是 锚点门 → 控制柄门，而渲染它的是后面的 selectedPath 门"
+  },
+  {
+   "name": "伪造：控制柄门不在锚点门之后",
+   "caught": true,
+   "firstFail": "★ 静态：MotionPathInspector 组件体内依次是 锚点门 → 控制柄门，而渲染它的是后面的 selectedPath 门"
+  },
+  {
+   "name": "伪造：控制柄门在渲染 selectedPath 的门之前",
+   "caught": true,
+   "firstFail": "★ 静态：MotionPathInspector 组件体内依次是 锚点门 → 控制柄门，而渲染它的是后面的 selectedPath 门"
+  },
+  {
+   "name": "伪造：PathTransformFields 只有 2 处调用",
+   "caught": true,
+   "firstFail": "★ 静态：PathTransformFields 恰好 3 处调用且都在 MotionPathInspector 内"
+  },
+  {
+   "name": "伪造：PathTupleFields 调用在门之前",
+   "caught": true,
+   "firstFail": "★ 静态：PathTupleFields 三处调用都在 selectedAnchor 门之后"
+  },
+  {
+   "name": "伪造：draw-trail 入口不打开菜单",
+   "caught": true,
+   "firstFail": "★ 静态：draw-trail 入口同时做「选中轨道」+「打开菜单」"
+  },
+  {
+   "name": "伪造：selectedPath 不依赖 motionPathId",
+   "caught": true,
+   "firstFail": "静态：selectedPath 由 selectedTrack?.motionPathId 决定"
+  },
+  {
+   "name": "★ 原始：把一个自身边界控件的 reachedBubble 改成 true（吞变不吞）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把 FOV 滑杆的 reachedBubble 改成 true（FOV 不再吞 Esc）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把路径变换框的 reachedBubble 改成 true",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把锚点控制柄的 reachedBubble 改成 true",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把误判格说成吞了 Esc（方向反了）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：给一个无标记控件加上边界标记（制造假阳性吞 Esc）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把 FOV 数值框的祖先标记去掉（误判消失）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把某个控件的 focus.focused 改成 false",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ all([]) 陷阱：把 ctxA_sweep.rows 清空",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ all([]) 陷阱：把 766b 的 sweep.rows 清空",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 伪造：改类型前控制柄就已经是 6（渲染条件说不成立）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 伪造：锚点类型根本没切到对称",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 伪造：legend 里没有「入控制柄」",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 伪造：targetIsEditable 全设 false（守卫那档消失）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 台账删掉 Batch 766 行",
+   "caught": true,
+   "firstFail": "★ 台账恰好一行 Batch 766"
+  },
+  {
+   "name": "★ 台账行首格改成裸数字 766",
+   "caught": true,
+   "firstFail": "★ 台账恰好一行 Batch 766"
+  },
+  {
+   "name": "★ 台账行首格写成 Batch 0766",
+   "caught": true,
+   "firstFail": "★ 台账恰好一行 Batch 766"
+  },
+  {
+   "name": "★ 台账新行塞一个 U+FFFD",
+   "caught": true,
+   "firstFail": "★ 台账新行里 0 个 U+FFFD"
+  },
+  {
+   "name": "★ 台账被追加了 Batch 767（行数断言）",
+   "caught": true,
+   "firstFail": "★ 台账新行够长（不许占位）"
+  },
+  {
+   "name": "★ README 表格首格改成裸数字",
+   "caught": true,
+   "firstFail": "★ README 表格首格没有裸数字（pre-commit 正则会误判）"
+  },
+  {
+   "name": "★ README 删掉「不声称」章节",
+   "caught": true,
+   "firstFail": "README 含章节 ## 不声称"
+  },
+  {
+   "name": "★ README 删掉 D7 章节",
+   "caught": true,
+   "firstFail": "★ README 有 D7 的独立章节"
+  },
+  {
+   "name": "★ README 删掉 R67 的 node --check",
+   "caught": true,
+   "firstFail": "★ README 提到 node --check（R67）"
+  }
+ ],
+ "negativeCaught": 54,
+ "negativeTotal": 54,
+ "rawError": null,
+ "ok": true
+}
