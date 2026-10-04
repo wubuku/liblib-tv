@@ -5694,6 +5694,8 @@ def main() -> int:
     _p962 = p962.read_text(encoding="utf-8") if p962.exists() else ""
     p963 = ROOT / "scripts/jimeng_probe963_nodecensus_src.py"
     _p963 = p963.read_text(encoding="utf-8") if p963.exists() else ""
+    p964 = ROOT / "scripts/jimeng_probe964_skipwhy_src.py"
+    _p964 = p964.read_text(encoding="utf-8") if p964.exists() else ""
     p892 = ROOT / "scripts/jimeng_probe892_preventdefault_src.py"
     _p892 = p892.read_text(encoding="utf-8") if p892.exists() else ""
     p896 = ROOT / "scripts/jimeng_probe896_roving_tabindex_policy_src.py"
@@ -7702,6 +7704,81 @@ def main() -> int:
           and "改挂**独立分母**" in _p963
           and 'r["cells"][0].get("n_step_gt2") or 0) == 0' in _p963
           and 'r["cells"][0].get("n_step_wrap") or 0) >= 1' in _p963)
+
+    # ══ 批 964：⭐⭐⭐⭐ 那枚被跳过的节点**到底特殊在哪** —— 穷尽非 `tabindex`
+    #    维度后：**DOM 上依然查不到** ⇒ **原因不在 DOM**，**如实写仍未查明** ══
+    print("— ZZZZ. 批 964 解剖那枚被跳过的节点：可区分项全是位置噪声 ⇒ DOM 查不到 —")
+
+    check("ZZZZ.1 ⭐⭐⭐⭐ **`tabindex` 维度已穷尽后换非 `tabindex` 维度**（几何 / "
+          "可见性 / 计算样式 / 属性集 / 类名 / 子节点 / 文本 / 内部可聚焦数 / "
+          "是否被选中 / 父链 / 视口内）⇒ 拿它与**左右两个邻居**逐字段比；"
+          "⚠️ **判据可证伪**：差异为空**也是正当结论** ⇒ **不许**因为空就编一个机制圆上",
+          '"what_964_measures": (' in _ausrc
+          and "963 已把「跳过」**精确成恰好一枚**" in _ausrc
+          and "**`tabindex` 这条维度已经穷尽**" in _ausrc
+          and "换**非 `tabindex`** " in _ausrc
+          and "拿它与**左右两个邻居**逐字段比" in _ausrc
+          and "**判据可证伪**" in _ausrc
+          and "**不许**因为空就编一个机制圆上" in _ausrc
+          # ⭐ 钉探针：解剖维度真的在文件里
+          and 'SKIPANATOMY_JS = """([nodeSel, tid]) => {' in _p964
+          and "getBoundingClientRect" in _p964
+          and "n_inner_focusable: inner.length" in _p964
+          and "in_viewport:" in _p964
+          and "aria_selected: el.getAttribute('aria-selected')," in _p964
+          and "offset_parent_null: el.offsetParent === null," in _p964
+          # ⭐ 钉探针：门挂在「**三枚都解到了**」上（否则无从比起 ⇒ 假绿）
+          and '"skip_node_found_with_neighbors": bool(all(' in _p964
+          and 'len(r["cells"][0].get("skip_neighbor_tids") or []) == 2' in _p964
+          and 'len(r["cells"][0].get("skip_anatomy") or {}) == 3' in _p964)
+
+    check("ZZZZ.2 ⚠️⚠️⚠️ **「A ≠ B」不等于「A 能把 A 从 C 里挑出来」** —— "
+          "第一版把「字典整体不等」当成了「有差异」，**位置噪声被当成了原因**；"
+          "⇒ 加**第二层判据「可区分」**（与左右邻居都不相等才算数）",
+          '"diff_is_not_discriminative_964": (' in _ausrc
+          and "**第一版把「字典整体不等」当成了「有差异」**" in _ausrc
+          and "**位置噪声被当成了原因**" in _ausrc
+          and "**`z_index`（68 / 67 / 69）与 " in _ausrc
+          and "**每枚节点按位置必然不同**" in _ausrc
+          and "**320 / 328 / 320**" in _ausrc
+          and "**另一个邻居完全相同** ⇒ **不可区分**" in _ausrc
+          and "加**第二层判据**「**可区分**」" in _ausrc
+          and "**「A ≠ B」不等于「A 能把 A 从 C 里挑出来」**" in _ausrc
+          and "**凡是比较，必须问「这个差异能不能把目标从对照里挑出来」**"
+              in _ausrc
+          # ⭐ 钉探针：第二层判据在文件里，且门要求**两项都被显式分类**
+          and "964 的**第二层判据**：差异 ≠ 可区分" in _p964
+          and "第一版把「字典整体不等」当成了「有差异」" in _p964
+          and "_disc, _nondisc = [], []" in _p964
+          and "if _nv and all(_sv != v for v in _nv):" in _p964
+          and '"diff_fields_classified": bool(all(' in _p964
+          and "只报「有差异」是不够的 —— 位置噪声会被当成原因" in _p964)
+
+    check("ZZZZ.3 ⭐⭐⭐⭐ **本批的诚实结论：可区分项全是「按位置必然不同」的量** ⇒ "
+          "**没有一个是内在属性** ⇒ **DOM 上依然查不到** ⇒ **原因不在 DOM**；"
+          "⚠️ **记「仍未查明」，不编机制**（承 960 那条：矛盾原样记账）",
+          "**可区分项全是「按位置必然不同」的量**" in _ausrc
+          and "**没有一个是内在属性**" in _ausrc
+          and "**DOM 上依然查不到 ⇒ 原因不在 DOM**" in _ausrc
+          and "**全部可区分项都是「按位置必然不同」的量**" in _p964
+          and "`z_index` / `transform`" in _p964
+          and "**DOM 上依然查不到 ⇒ 原因不在 DOM**" in _p964)
+
+    check("ZZZZ.4 ⚠️⚠️ **探针在跑之前就被自己的切片守卫拦下** —— "
+          "`(p.className || '').toString().slice(...)` 中间插了个 `.toString()` "
+          "就与守卫要的**紧挨着**的字面量对不上；⇒ ⭐ **这证明守卫是活的**"
+          "（与 946「守卫自己匹配不上它要验的东西」正好成对）",
+          '"slice_guard_fired_964": (' in _ausrc
+          and "**探针在跑之前就被自己的切片守卫拦下**" in _ausrc
+          and "**中间插了个 `.toString()` 就对不上**" in _ausrc
+          and "**这类「字面量守卫」只认逐字相邻**" in _ausrc
+          and "**任何在两者之间插的调用都会让它假红**" in _ausrc
+          and "它证明了**守卫是活的**（不是恒绿）" in _ausrc
+          and "与 946 那次「守卫自己匹配不上它要验的东西」正好成对" in _ausrc
+          # ⭐ 钉探针：改后的写法**逐字相邻**
+          and "cls: (p.className || '').slice(0, 40)," in _p964
+          and "cls: (p.className || '').toString().slice(0, 40)," not in _p964
+          and '"SKIPANATOMY_JS 里有**非字符串**切片（§131）"' in _p964)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
