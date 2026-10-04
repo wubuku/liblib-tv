@@ -65,8 +65,11 @@
 // 是整个应用里后果最重的一个按钮——它此前不在名单里。
 const DESTRUCTIVE = new Set(['移除节点', '清空画布', '删除当前画布', '删除选中', '删除', '删除全部']);
 
-const PW = process.env.TD_PW ||
-  '/Users/yangjiefeng/.nvm/versions/node/v24.6.0/lib/node_modules/@playwright/test/node_modules/playwright/index.js';
+// ★ M238：环境变量名从 TD_PW 统一成全库通用的 PLAYWRIGHT_PATH，
+//   默认值从 index.js 改成包目录（require 包目录与 require index.js 等价，
+//   但包目录在换版本时不必猜文件名）。**原先全库有三套写法，这里是其中一套。**
+const PW = process.env.PLAYWRIGHT_PATH ||
+  '/Users/yangjiefeng/.nvm/versions/node/v24.6.0/lib/node_modules/@playwright/test/node_modules/playwright';
 const PROFILE = process.env.TD_PROBE_PROFILE || '/tmp/m124-profile';
 const APP = process.env.TD_APP || 'http://localhost:3000';
 

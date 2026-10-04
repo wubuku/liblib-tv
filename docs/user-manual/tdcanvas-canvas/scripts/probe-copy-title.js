@@ -45,7 +45,12 @@
  */
 
 const path = require('path');
-const PW = '/Users/yangjiefeng/.nvm/versions/node/v24.6.0/lib/node_modules/@playwright/test/node_modules/playwright/index.js';
+// ★ M238：统一到全库 10 支探针共用的写法——环境变量 PLAYWRIGHT_PATH 可覆盖，
+//   默认值是**包目录**（不是 index.js）：换 node 版本时只需要改这一处，
+//   或者直接 PLAYWRIGHT_PATH=/新/路径 node 这支探针 就行，不用动源码。
+//   （原先是裸硬编码，10 支里只有它和 probe-copy-title 如此。）
+const PW = process.env.PLAYWRIGHT_PATH ||
+  '/Users/yangjiefeng/.nvm/versions/node/v24.6.0/lib/node_modules/@playwright/test/node_modules/playwright';
 const { chromium } = require(PW);
 
 function arg(name, fallback) {
