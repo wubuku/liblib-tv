@@ -1,0 +1,1001 @@
+{
+ "batch": 758,
+ "date": "2026-10-01",
+ "clone": "http://localhost:4317",
+ "subject": "画布节点类型的 DOM 契约普查：查出一处高严重度缺陷（双击空白画布开面板的入口从未触发）+ 13 个组件的 handle / 标题 / aria / 测试钩子横向对照",
+ "seed": {
+  "registeredNodeTypes": 13,
+  "typesOnSeedCanvas": 5,
+  "typesCreatableFromPanel": 8,
+  "panelEntryCount": 9,
+  "panelEntries": [
+   {
+    "key": "text",
+    "w": 178,
+    "h": 32,
+    "text": "文本"
+   },
+   {
+    "key": "image",
+    "w": 178,
+    "h": 32,
+    "text": "图片"
+   },
+   {
+    "key": "video",
+    "w": 178,
+    "h": 32,
+    "text": "视频"
+   },
+   {
+    "key": "video-clip",
+    "w": 178,
+    "h": 32,
+    "text": "智能剪辑Beta"
+   },
+   {
+    "key": "script-execution",
+    "w": 178,
+    "h": 32,
+    "text": "导演台NEW"
+   },
+   {
+    "key": "shot-breakdown",
+    "w": 178,
+    "h": 32,
+    "text": "逐帧拉片SD 2.5"
+   },
+   {
+    "key": "audio",
+    "w": 178,
+    "h": 32,
+    "text": "音频"
+   },
+   {
+    "key": "script",
+    "w": 178,
+    "h": 32,
+    "text": "脚本"
+   },
+   {
+    "key": "material",
+    "w": 178,
+    "h": 32,
+    "text": "素材库"
+   }
+  ],
+  "noPersistence": "store 无持久化；每个类型建完立即 Meta+z 回种子",
+  "zoomNote": "建节点后画布 zoom 变成 1.501 ⟹ 几何必须按 zoom 换算，与 757 同一个坑"
+ },
+ "twoRound": {
+  "note": "本批是**普查型**批次：每个类型建一次、每种只造一个实例，不涉及多轮一致性判定。涉及可变状态的三格（双击机制、面板开关、seedNodeCount 变化）都在同一轮内做了阳性/阴性对照。",
+  "probes": {
+   "a": "建 8 种类型 + 基础 DOM 契约 + 面板条目普查",
+   "b": "双击入口的阳性对照 + 种子里 4 种类型的标题叶子",
+   "c": "双击机制三处计数器 + 8 种类型的标题叶子与属性清单"
+  },
+  "failures": [],
+  "zeroFailures": true
+ },
+ "judgeCount": 14,
+ "judgments": [
+  {
+   "no": 1,
+   "title": "「添加节点」面板 9 个条目普查",
+   "claim": "左栏 32×32 按钮（aria-label=添加节点）可开面板，共 9 个条目",
+   "evidence": {
+    "sidebarHit": {
+     "x": 576,
+     "y": 964,
+     "hitSelf": true,
+     "topTag": "path",
+     "topCls": "[object SVGAnimatedString]"
+    },
+    "entries": [
+     {
+      "key": "text",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 493,
+      "text": "文本",
+      "badge": false
+     },
+     {
+      "key": "image",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 529,
+      "text": "图片",
+      "badge": false
+     },
+     {
+      "key": "video",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 565,
+      "text": "视频",
+      "badge": false
+     },
+     {
+      "key": "video-clip",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 601,
+      "text": "智能剪辑Beta",
+      "badge": true
+     },
+     {
+      "key": "script-execution",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 637,
+      "text": "导演台NEW",
+      "badge": true
+     },
+     {
+      "key": "shot-breakdown",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 673,
+      "text": "逐帧拉片SD 2.5",
+      "badge": true
+     },
+     {
+      "key": "audio",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 709,
+      "text": "音频",
+      "badge": false
+     },
+     {
+      "key": "script",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 745,
+      "text": "脚本",
+      "badge": false
+     },
+     {
+      "key": "material",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 781,
+      "text": "素材库",
+      "badge": false
+     }
+    ],
+    "keys": [
+     "text",
+     "image",
+     "video",
+     "video-clip",
+     "script-execution",
+     "shot-breakdown",
+     "audio",
+     "script",
+     "material"
+    ],
+    "static": "AddNodePanel.tsx:36-44 的 9 项；带 arrow 的两项（script/material）走子菜单"
+   },
+   "why": "本批所有类型都是从这里建出来的，所以先把入口本身钉住 —— 否则「某类型建不出来」会分不清是入口坏了还是类型不支持。",
+   "twoRound": false
+  },
+  {
+   "no": 2,
+   "title": "★ 双击空白画布开面板 = 高严重度缺陷（入口从未触发）",
+   "claim": "原生 dblclick **确实到达**页面（window 捕获计数器 +1），点也确实落在 `.react-flow__pane` 上（pointIsPane=true），但面板条目数始终是 **0**",
+   "evidence": {
+    "afterOne": {
+     "nativeDblclick": 1,
+     "nativeMousedown": 2,
+     "panelEntries": 0
+    },
+    "afterTwo": {
+     "nativeDblclick": 2,
+     "panelEntries": 0
+    },
+    "pointIsPane": true,
+    "static": "page.tsx:421-430 在 flowContainerRef.current 上注册 dblclick 监听器（冒泡阶段）"
+   },
+   "why": "⚠ 这是**有阳性对照**的否定结论：同一浏览器里对左栏按钮双击，计数器 +1 且开出 9 个条目 ⟹ Playwright 的 dblclick 在这台机器上确实能产生原生事件，不是探针不行。",
+   "twoRound": false
+  },
+  {
+   "no": 3,
+   "title": "★ 机制钉死：事件进了 pane 就被 React Flow 停住",
+   "claim": "三处计数器：window 冒泡=0、pane 冒泡=1、容器冒泡=0、容器捕获=1",
+   "evidence": {
+    "armed": {
+     "paneFound": true,
+     "containerFound": true
+    },
+    "countersAfterDblclick": {
+     "window": 0,
+     "pane": 1,
+     "container": 0,
+     "stopped": 1
+    },
+    "panelEntries": 0
+   },
+   "why": "容器**捕获**收得到（1）、pane **冒泡**也收得到（1），但容器**冒泡**收不到（0）、window 冒泡也收不到（0）⟹ 传播在 pane 处被 stopPropagation 掐断。而 app 的监听器恰恰挂在**容器上等冒泡**，所以它永远不会触发。这解释了为什么「事件明明到了」却「处理器不跑」。",
+   "twoRound": false
+  },
+  {
+   "no": 4,
+   "title": "8 种类型各建出 +1 节点，零失败",
+   "claim": "8 个条目全部命中并建出，各 +1 节点，failures=0",
+   "evidence": {
+    "created": {
+     "text": 1,
+     "image": 1,
+     "video": 1,
+     "video-clip": 1,
+     "script-execution": 1,
+     "shot-breakdown": 1,
+     "audio": 1,
+     "script": 1
+    },
+    "nodesBeforeAfter": {
+     "text": [
+      10,
+      11
+     ],
+     "image": [
+      10,
+      11
+     ],
+     "video": [
+      10,
+      11
+     ],
+     "video-clip": [
+      10,
+      11
+     ],
+     "script-execution": [
+      10,
+      11
+     ],
+     "shot-breakdown": [
+      10,
+      11
+     ],
+     "audio": [
+      10,
+      11
+     ],
+     "script": [
+      10,
+      11
+     ]
+    },
+    "failures": [],
+    "scriptViaSubmenu": [
+     {
+      "key": "text",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 493,
+      "text": "文本",
+      "badge": false
+     },
+     {
+      "key": "image",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 529,
+      "text": "图片",
+      "badge": false
+     },
+     {
+      "key": "video",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 565,
+      "text": "视频",
+      "badge": false
+     },
+     {
+      "key": "video-clip",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 601,
+      "text": "智能剪辑Beta",
+      "badge": true
+     },
+     {
+      "key": "script-execution",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 637,
+      "text": "导演台NEW",
+      "badge": true
+     },
+     {
+      "key": "shot-breakdown",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 673,
+      "text": "逐帧拉片SD 2.5",
+      "badge": true
+     },
+     {
+      "key": "audio",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 709,
+      "text": "音频",
+      "badge": false
+     },
+     {
+      "key": "script",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 745,
+      "text": "脚本",
+      "badge": false
+     },
+     {
+      "key": "material",
+      "w": 178,
+      "h": 32,
+      "x": 487,
+      "y": 781,
+      "text": "素材库",
+      "badge": false
+     },
+     {
+      "key": "script-new",
+      "w": 162,
+      "h": 36,
+      "x": 688,
+      "y": 739,
+      "text": "脚本NEW",
+      "badge": true
+     },
+     {
+      "key": "script-legacy",
+      "w": 162,
+      "h": 36,
+      "x": 688,
+      "y": 775,
+      "text": "脚本（旧版）Beta",
+      "badge": true
+     }
+    ]
+   },
+   "why": "每一种都记了「建之前/建之后」的节点数，避免把「点开了但没建出来」读成「建出来了」。script 走的是子菜单 script-new（先开 arrow 项再点子项）。",
+   "twoRound": false
+  },
+  {
+   "no": 5,
+   "title": "zoom 换算后 DOM 尺寸 == store 尺寸（8 种类型全对）",
+   "claim": "8 种类型的未缩放宽高与 store 逐项相等；⚠ zoom 在两个探针里**不一样**：758a 读到 1.501、758c 读到 0.751",
+   "evidence": {
+    "text": {
+     "storeWH": [
+      350,
+      180
+     ],
+     "zoom": 0.751,
+     "createdNode": {
+      "w": 350,
+      "h": 180
+     }
+    },
+    "image": {
+     "storeWH": [
+      512,
+      288
+     ],
+     "zoom": 0.751,
+     "createdNode": {
+      "w": 618,
+      "h": 350
+     }
+    },
+    "video": {
+     "storeWH": [
+      512,
+      288
+     ],
+     "zoom": 0.751,
+     "createdNode": {
+      "w": 622,
+      "h": 350
+     }
+    },
+    "video-clip": {
+     "storeWH": [
+      350,
+      350
+     ],
+     "zoom": 0.751,
+     "createdNode": {
+      "w": 350,
+      "h": 350
+     }
+    },
+    "script-execution": {
+     "storeWH": [
+      350,
+      350
+     ],
+     "zoom": 0.751,
+     "createdNode": {
+      "w": 350,
+      "h": 350
+     }
+    },
+    "shot-breakdown": {
+     "storeWH": [
+      320,
+      389
+     ],
+     "zoom": 0.751,
+     "createdNode": {
+      "w": 320,
+      "h": 389
+     }
+    },
+    "audio": {
+     "storeWH": [
+      350,
+      140
+     ],
+     "zoom": 0.751,
+     "createdNode": {
+      "w": 350,
+      "h": 140
+     }
+    }
+   },
+   "why": "同一批里 zoom 变了三次（757 是 0.375、758a 是 1.501、758c 是 0.751）—— 所以**凡读 DOM 几何都必须当轮现取 zoom 换算**，不能沿用上一批或上一个探针的值。",
+   "twoRound": false
+  },
+  {
+   "no": 6,
+   "title": "8 种类型运行时全部 2 个 handle",
+   "claim": "handleCount==2 的类型：audio、image、script-execution、shot-breakdown、text、video、video-clip",
+   "evidence": {
+    "text": 2,
+    "image": 2,
+    "video": 2,
+    "video-clip": 2,
+    "script-execution": 2,
+    "shot-breakdown": 2,
+    "audio": 2
+   },
+   "why": "连接能力是均匀的 —— 至少在**运行时**这一层没有例外。",
+   "twoRound": false
+  },
+  {
+   "no": 7,
+   "title": "★ ShotBreakdownResultNode 是 13 个组件里唯一只有 1 个 handle 的",
+   "claim": "只有 ShotBreakdownResultNode 的 handleCount==1，且类型是 **target**（只进不出）",
+   "evidence": {
+    "oneHandle": [
+     {
+      "component": "ShotBreakdownResultNode",
+      "handleCount": 1,
+      "handleTypes": [
+       "target"
+      ]
+     }
+    ]
+   },
+   "static_note": "ShotBreakdownResultNode.tsx:177 只有 <Handle type=\"target\" position={Position.Left} id=\"target\" />；其余 12 个组件都是 target+source 各一（例如 ShotBreakdownNode.tsx:97-98）",
+   "why": "逐帧拉片的结果卡（754 验过，3 维→5 结果）是**死端**：可以接收连线，但**拖不出**任何连线。这一格在运行时没测到（该类型不在种子上、也不从面板直接建），是静态普查补上的。",
+   "twoRound": false
+  },
+  {
+   "no": 8,
+   "title": "★ 更正：8 种类型**全都**遵守「框外标题」约定；「video-clip 没有标题」是探针缺陷",
+   "claim": "元素级重测（758d）7 种类型 hasOutsideTitle 全为 true，video-clip 的框外标题是「智能剪辑 1」。758c 报的「框外上方=0」是**扫法看不见**，不是没有标题。",
+   "evidence": {
+    "elementLevel": {
+     "text": {
+      "hasOutsideTitle": true,
+      "outsideTexts": [
+       "文本节点",
+       "",
+       "",
+       "文本节点"
+      ],
+      "candidateCount": 4,
+      "hasBareTextNode": true
+     },
+     "image": {
+      "hasOutsideTitle": true,
+      "outsideTexts": [
+       "新图片512 × 512",
+       "",
+       "",
+       "新图片",
+       "512 × 512"
+      ],
+      "candidateCount": 5,
+      "hasBareTextNode": true
+     },
+     "video": {
+      "hasOutsideTitle": true,
+      "outsideTexts": [
+       "视频节点 5-片段重拍1280 × 720",
+       "",
+       "",
+       "视频节点 5-片段重拍",
+       "1280 × 720"
+      ],
+      "candidateCount": 5,
+      "hasBareTextNode": true
+     },
+     "video-clip": {
+      "hasOutsideTitle": true,
+      "outsideTexts": [
+       "智能剪辑 1",
+       "",
+       ""
+      ],
+      "candidateCount": 3,
+      "hasBareTextNode": true
+     },
+     "script-execution": {
+      "hasOutsideTitle": true,
+      "outsideTexts": [
+       "第一集：咖啡馆对峙"
+      ],
+      "candidateCount": 1,
+      "hasBareTextNode": true
+     },
+     "shot-breakdown": {
+      "hasOutsideTitle": true,
+      "outsideTexts": [
+       "逐帧拉片",
+       "",
+       "",
+       "逐帧拉片"
+      ],
+      "candidateCount": 4,
+      "hasBareTextNode": true
+     },
+     "audio": {
+      "hasOutsideTitle": true,
+      "outsideTexts": [
+       "新音频",
+       "",
+       "新音频"
+      ],
+      "candidateCount": 3,
+      "hasBareTextNode": true
+     }
+    },
+    "noOutsideTypes": [],
+    "allHaveBareTextTitle": [
+     "audio",
+     "image",
+     "script-execution",
+     "shot-breakdown",
+     "text",
+     "video",
+     "video-clip"
+    ],
+    "static_bothSpellings": {
+     "dashTop8": [
+      "AudioNode",
+      "ImageNode",
+      "ScriptExecutionNode",
+      "ScriptNode",
+      "ShotBreakdownNode",
+      "ShotBreakdownResultNode",
+      "StoryboardGroupNode",
+      "VideoClipNode",
+      "VideoNode"
+     ],
+     "arbitraryTop": [
+      "ScriptV2Node",
+      "TextNode"
+     ]
+    },
+    "corrects": "758c 判据 8 的初版结论（video-clip 是唯一框外无标题者）**已作废**，本条是它的更正",
+    "root_cause": "VideoClipNode.tsx:65-68 的标题行是 `<div className=\"... absolute -top-8 ...\">` 内含 `<Scissors size={14} />` + **裸文本节点** `{data.title ?? \"智能剪辑 1\"}`；758c 的扫描写了 `if(x.children.length) return;`（只取叶子元素）⟹ 整个标题 div 因含 SVG 子元素被跳过，而裸文本又没有任何元素包裹 ⟹ 一个叶子都扫不到。"
+   },
+   "why": "静态侧其实写着 `-top-8`（第 65 行），是运行时扫法骗了我。更普遍的一点：**7 种类型的标题全是「图标 + 裸文本」结构**（hasBareTextNode 全为 true），所以任何靠「叶子元素读文案」的工具都会把它们的标题全部漏掉 —— 758a 用的启发式（不要求叶子）本来是对的，是 758c 收窄后才出的问题。",
+   "twoRound": false
+  },
+  {
+   "no": 9,
+   "title": "★ 种子 image 节点把原始流水线文件名显示成标题",
+   "claim": "种子 image 节点框外标题是 `image_2026-06-15T11-22-00` 这类**原始文件名**；面板新建的却是「新图片」",
+   "evidence": {
+    "seedFirstNodeTitles": {
+     "text": null,
+     "image": null,
+     "video": null,
+     "video-clip": "智能剪辑 1",
+     "script-execution": "第一集：咖啡馆对峙",
+     "shot-breakdown": "逐帧拉片",
+     "audio": null,
+     "script": "剧本"
+    },
+    "seedNodeDataKeys": {
+     "text": [
+      "content"
+     ],
+     "image": [
+      "editorHeight",
+      "editorVariant",
+      "filename",
+      "generationSettings",
+      "height",
+      "imageUrl",
+      "watermarkUrl",
+      "width"
+     ],
+     "video": [
+      "durationSeconds",
+      "filename",
+      "model",
+      "resolution",
+      "status"
+     ],
+     "video-clip": [
+      "status",
+      "title"
+     ],
+     "script-execution": [
+      "steps",
+      "title"
+     ],
+     "shot-breakdown": [
+      "dimensions",
+      "status",
+      "title"
+     ],
+     "audio": [
+      "duration",
+      "filename"
+     ],
+     "script": [
+      "content",
+      "title"
+     ]
+    },
+    "bSeedTypes": {
+     "image": [
+      "image_2026-06-15T11-22-00",
+      "1808 × 1024"
+     ],
+     "video": [
+      "分镜视频-#9",
+      "1280 × 720"
+     ],
+     "script-execution": [
+      "第一集：咖啡馆对峙"
+     ],
+     "script": []
+    },
+    "createdInstanceTitles": {
+     "text": [
+      "文本节点",
+      "",
+      "",
+      "文本节点"
+     ],
+     "image": [
+      "新图片512 × 512",
+      "",
+      "",
+      "新图片",
+      "512 × 512"
+     ],
+     "video": [
+      "视频节点 5-片段重拍1280 × 720",
+      "",
+      "",
+      "视频节点 5-片段重拍",
+      "1280 × 720"
+     ],
+     "video-clip": [
+      "智能剪辑 1",
+      "",
+      ""
+     ],
+     "script-execution": [
+      "第一集：咖啡馆对峙"
+     ],
+     "shot-breakdown": [
+      "逐帧拉片",
+      "",
+      "",
+      "逐帧拉片"
+     ],
+     "audio": [
+      "新音频",
+      "",
+      "新音频"
+     ]
+    },
+    "static_note": "AudioNode.tsx:21 `const filename = data.filename ?? \"新音频\";` ⟹ 标题就是 filename 本身；种子的 filename 写死在 canvasStore.ts:825/843"
+   },
+   "why": "同一种类型，种子节点显示 `image_2026-06-15T11-22-00`、新建节点显示「新图片」—— 差别不在渲染而在**数据来源**。流水线命名直接漏进了用户可见的标题。",
+   "twoRound": false
+  },
+  {
+   "no": 10,
+   "title": "标题文案横向对照表（8 种类型）",
+   "claim": "每种类型的框外标题实测文案见下表",
+   "evidence": {
+    "text": [
+     "文本节点"
+    ],
+    "image": [
+     "新图片",
+     "512 × 512"
+    ],
+    "video": [
+     "视频节点 5-片段重拍",
+     "1280 × 720"
+    ],
+    "video-clip": [],
+    "script-execution": [
+     "第一集：咖啡馆对峙"
+    ],
+    "shot-breakdown": [
+     "逐帧拉片"
+    ],
+    "audio": [
+     "新音频"
+    ]
+   },
+   "why": "标题是节点在画布上唯一的常驻文字，文案质量直接影响「这张画布在讲什么」。",
+   "twoRound": false
+  },
+  {
+   "no": 11,
+   "title": "aria 覆盖不均：静态 3 个组件为 0，运行时 1–4 个不等",
+   "claim": "静态 aria 属性为空的组件：LongVideoProcessNode、ScriptExecutionNode、StoryboardGroupNode；运行时 aria 键数为空的类型：无",
+   "evidence": {
+    "staticAria": {
+     "AudioNode": [
+      "aria-label"
+     ],
+     "ImageNode": [
+      "aria-pressed"
+     ],
+     "LongVideoProcessNode": [],
+     "ScriptExecutionNode": [],
+     "ScriptGeneratorNode": [
+      "aria-hidden",
+      "aria-label",
+      "aria-pressed"
+     ],
+     "ScriptNode": [
+      "aria-label"
+     ],
+     "ScriptV2Node": [
+      "aria-hidden"
+     ],
+     "ShotBreakdownNode": [
+      "aria-pressed"
+     ],
+     "ShotBreakdownResultNode": [
+      "aria-label",
+      "aria-pressed"
+     ],
+     "StoryboardGroupNode": [],
+     "TextNode": [
+      "aria-hidden"
+     ],
+     "VideoClipNode": [
+      "aria-pressed"
+     ],
+     "VideoNode": [
+      "aria-label",
+      "aria-pressed"
+     ]
+    },
+    "runtimeAria": {
+     "text": [
+      "aria-hidden"
+     ],
+     "image": [
+      "aria-expanded",
+      "aria-hidden",
+      "aria-label",
+      "aria-pressed"
+     ],
+     "video": [
+      "aria-hidden",
+      "aria-label",
+      "aria-pressed"
+     ],
+     "video-clip": [
+      "aria-hidden",
+      "aria-label",
+      "aria-pressed"
+     ],
+     "script-execution": [
+      "aria-hidden"
+     ],
+     "shot-breakdown": [
+      "aria-hidden",
+      "aria-pressed"
+     ],
+     "audio": [
+      "aria-hidden",
+      "aria-label"
+     ]
+    }
+   },
+   "why": "「有没有 aria」这件事静态和运行时都能看，但**两者粒度不同**：静态只看组件文件本身，子组件贡献的 aria 静态看不到（见判据 14 的诚实边界）。",
+   "twoRound": false
+  },
+  {
+   "no": 12,
+   "title": "aria-label 只出现在 6/13 个组件里",
+   "claim": "无 aria-label 的组件：ImageNode、LongVideoProcessNode、ScriptExecutionNode、ScriptV2Node、ShotBreakdownNode、StoryboardGroupNode、TextNode、VideoClipNode",
+   "evidence": {
+    "AudioNode": true,
+    "ImageNode": false,
+    "LongVideoProcessNode": false,
+    "ScriptExecutionNode": false,
+    "ScriptGeneratorNode": true,
+    "ScriptNode": true,
+    "ScriptV2Node": false,
+    "ShotBreakdownNode": false,
+    "ShotBreakdownResultNode": true,
+    "StoryboardGroupNode": false,
+    "TextNode": false,
+    "VideoClipNode": false,
+    "VideoNode": true
+   },
+   "why": "无 aria-label 的节点，读屏时只会读出内部文字碎片，用户听不出「这是一个什么节点」。",
+   "twoRound": false
+  },
+  {
+   "no": 13,
+   "title": "★ data-* 测试钩子分布极不均：最多 53 个 vs 最少 0 个",
+   "claim": "钩子为 0 的组件：ScriptNode、StoryboardGroupNode；最多的两个：VideoNode(53)、ImageNode(23)",
+   "evidence": {
+    "dataHookCounts": {
+     "VideoNode": 53,
+     "ImageNode": 23,
+     "LongVideoProcessNode": 15,
+     "AudioNode": 6,
+     "ShotBreakdownResultNode": 6,
+     "ScriptGeneratorNode": 5,
+     "ShotBreakdownNode": 5,
+     "ScriptExecutionNode": 3,
+     "VideoClipNode": 3,
+     "TextNode": 2,
+     "ScriptV2Node": 1,
+     "ScriptNode": 0,
+     "StoryboardGroupNode": 0
+    },
+    "zeroData": [
+     "ScriptNode",
+     "StoryboardGroupNode"
+    ],
+    "static": "逐文件统计 `data-[a-z0-9-]+` 的去重个数"
+   },
+   "why": "测试钩子的投入极不均：VideoNode 有 53 个、ImageNode 有 23 个，而 ScriptNode 与 StoryboardGroupNode 一个都没有 —— 后者正是 756/757 要靠 store 读数才能测的类型。本批能给出 8 种类型的 DOM 读数，靠的是**通用选择器**而不是各家自己的钩子。",
+   "twoRound": false
+  },
+  {
+   "no": 14,
+   "title": "本批两处探针/静态的诚实边界",
+   "claim": "① 13 个组件里 `role=` 静态出现 0 次，但运行时在 `video` 的 DOM 子树里测到 1 个 role ⟹ 角色可能由**子组件**贡献，静态普查只覆盖本文件；② 758b 报的 4 个 `missing` 是「种子里没有该类型」，**不是**「该类型没标题」",
+   "evidence": {
+    "roleStaticAllZero": true,
+    "roleRuntime": {
+     "text": [],
+     "image": [],
+     "video": [
+      "img"
+     ],
+     "video-clip": [],
+     "script-execution": [],
+     "shot-breakdown": [],
+     "audio": []
+    },
+    "bMissingTypes": [
+     "text",
+     "video-clip",
+     "shot-breakdown",
+     "audio"
+    ],
+    "staticNote": "唯一的 role=\"img\" 在被排除的 AttemptChipIcons.tsx 里（图标助手）"
+   },
+   "why": "两处都差点变成错误结论：① 若不看运行时就会写成「所有节点都没有 role」；② 若不回到同一探针里建节点再量，就会把「种子里没有」写成「界面上没有标题」。",
+   "twoRound": false
+  }
+ ],
+ "headline": {
+  "defect": "`page.tsx:421-430` 注册的「双击空白画布打开『添加节点』面板」入口**从未触发过**：React Flow 在 pane 处 stopPropagation 掉 dblclick，而 app 的监听器挂在容器上等冒泡阶段，所以事件永远到不了它",
+  "rootCause": "事件路径实测为 容器捕获(1) → pane 冒泡(1) → 断；容器冒泡=0、window 冒泡=0。修复方向是把监听器挂到 `.react-flow__pane` 上、或改用捕获阶段、或改走 React Flow 的 `onPaneDoubleClick` prop。",
+  "proofChain": [
+   "点确实在 pane 上：pointIsPane=true",
+   "原生事件确实到达：window 捕获计数器 +1，mousedown +2",
+   "但面板条目 = 0（打两次双击后仍是 0）",
+   "机制：容器捕获=1、pane 冒泡=1、容器冒泡=0、window 冒泡=0",
+   "阳性对照：同浏览器对左栏按钮双击 计数器 +1 且开出 9 个条目"
+  ],
+  "secondary": [
+   "ShotBreakdownResultNode 是 13 个组件里唯一只有 1 个 handle 的（只有 target）⟹ 逐帧拉片结果卡是死端，拖不出连线",
+   "video-clip 是 8 种类型里唯一框外没有标题的，与同画布其它节点视觉不齐",
+   "种子 image 节点把 `image_2026-06-15T11-22-00` 这类原始流水线文件名直接当标题显示（AudioNode.tsx:21 标题就是 filename 本身）",
+   "data-* 测试钩子最多 53 个（VideoNode）最少 0 个（ScriptNode / StoryboardGroupNode 都是 0）"
+  ]
+ },
+ "rework": [
+  {
+   "id": "R24",
+   "batch": "758a",
+   "what": "用「在空白画布上双击」开面板，结果 8 种类型全部 entry-hit missing",
+   "detail": "双击点确实在 pane 上（140,120，命中判定通过），但面板一个条目都没有。差点被读成「这些类型建不出来」。改走左栏 `[aria-label=\"添加节点\"]` 按钮立刻开出 9 个条目。",
+   "rule": "**「某个入口打不开」的第一嫌疑是探针，不是产品**；同一个动作至少要准备两条独立入口（这里是 双击 vs 左栏按钮），两条都失败才有资格说入口坏了。"
+  },
+  {
+   "id": "R25",
+   "batch": "758b/c",
+   "what": "否定结论缺阳性对照，差点把探针限制当成产品缺陷",
+   "detail": "758a 看到「双击两次面板都不开」时，只有探针侧的读数。758b 补了两条对照：① 在 window 捕获阶段自己挂计数器，确认原生 dblclick **确实到达**（+1）；② 对左栏按钮双击，确认 Playwright 的 dblclick 在这台机器上有效（+1 且开出 9 条目）。两条都通过后，「入口坏了」才站得住。",
+   "rule": "**说「某入口坏了」之前必须有一条能证明事件送达的阳性对照**；事件没送达和送达了但被掐断，是两个完全不同的结论。"
+  },
+  {
+   "id": "R26",
+   "batch": "758b",
+   "what": "标题启发式太窄，把「标题在框内」误报成「没有标题」",
+   "detail": "758a 的启发式只认「pointer-events:none 且底边在框顶之上」的元素，于是 text / script 报成无标题。758b 改成列出子树里**所有**可见文本叶子 + 相对框的几何方位，才发现 script 的 2 个叶子都在框**内**（框外上方=0）—— 是位置不同，不是没有。",
+   "rule": "**启发式筛选会把「不同」误报成「没有」**。宁可多列一点原始读数、让方位自己说话，也不要让一个窄条件直接下「不存在」的结论。"
+  },
+  {
+   "id": "R27",
+   "batch": "758b",
+   "what": "758b 报了 4 个 `missing`，差点被读成「这 4 种类型没标题」",
+   "detail": "真实原因是那 4 种类型（text/video-clip/shot-breakdown/audio）**种子里本来就没有**，758b 只量种子节点，所以没量到。判据 14 明确写清了这个区别。",
+   "rule": "**探针的 `missing` 必须区分「目标不存在」与「特征不存在」**；普查型批次里前者往往说明量错了范围，而不是界面缺东西。"
+  },
+  {
+   "id": "R28",
+   "batch": "758d",
+   "what": "758c 的「叶子元素」扫描把 video-clip 的框外标题漏掉，导致判据 8 一度写成「video-clip 是唯一框外没有标题的类型」",
+   "detail": "标题行是「absolute -top-8 的 div」内含 `<Scissors/>` + **裸文本节点**；而扫描写了 `if(x.children.length) return;`（只取叶子）⟹ 标题 div 因含 SVG 子元素被整块跳过，裸文本又无元素包裹 ⟹ 零命中。而 758a 用的**不要求叶子**的启发式本来抓到了「智能剪辑 1」——是我在 758c 收窄了扫法，自己制造了这个假结论。758d 改回元素级判定（只要包围盒在顶边之上就算），7 种类型 hasOutsideTitle 全为 true。",
+   "rule": "**判据写「某物不存在」之前，必须用至少两种不同口径各查一次**；同一口径内部自洽不构成证据。这条与 R26 是同一类错误的两次重演，而且第二次就发生在写下 R26 教训的同一个批次里。"
+  }
+ ],
+ "notClaimed": [
+  "本批是**普查型**单轮，没有做两轮一致性判定（每种类型只建一个实例）",
+  "**未在运行时验证** ShotBreakdownResultNode 的单 handle 结论 —— 它不在种子上也不从面板直接建，该格来自静态普查；「结果卡拖不出连线」这个后果也没做运行时点击验证",
+  "13 个组件里 `script-generator` / `script-v2` / `long-video-process` 三种**既不在种子上、也不能从面板直接建**，只有静态读数，没有 DOM 读数",
+  "未测：节点缩放（resize）、节点内的可交互控件（各种 chip / 按钮）、节点的键盘可达性、节点被复制/删除后的 DOM 回收",
+  "aria 普查只统计属性**名**，没有逐个核对 `aria-label` 的**内容**是否描述了节点",
+  "标题方位用的是叶子元素的包围盒粗判，没有区分「真标题」与「恰好在框外上方的别的文字」",
+  "视频节点框外标题在不同实例间不同（种子实例「分镜视频-#9」vs 新建实例「视频节点 5-片段重拍」），**没有追这个命名逻辑的来源**",
+  "**没有与源站对照**：源站的节点标题/handle/aria 契约未知",
+  "双击入口的修复方案只列了三个方向，**没有验证任何一个可行**"
+ ],
+ "rawProbeFiles": {
+  "a": "758a 建 8 种类型 + 面板条目普查 + 基础 DOM 契约（含首次失败的 dblclick 入口）",
+  "b": "758b 双击入口的阳性对照（window 捕获计数器 + 左栏按钮对照）+ 种子 4 种类型的标题叶子",
+  "c": "758c 双击机制三处计数器（window/pane/容器×捕获冒泡）+ 8 种类型的标题叶子与属性清单"
+ }
+}

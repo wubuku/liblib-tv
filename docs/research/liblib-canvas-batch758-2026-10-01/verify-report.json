@@ -1,0 +1,895 @@
+{
+ "batch": 758,
+ "checks": [
+  {
+   "label": "静态：面板 9 个条目 + data-add-node-entry / 子菜单钩子都在",
+   "pass": true,
+   "got": [
+    "text",
+    "image",
+    "video",
+    "video-clip",
+    "script-execution",
+    "shot-breakdown",
+    "audio",
+    "script",
+    "material"
+   ]
+  },
+  {
+   "label": "静态：dblclick 监听器确实挂在 flowContainerRef 上（冒泡阶段）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：dblclick 有 .react-flow__pane 守卫，且**只开不关**（if !isAddNodePanelOpen）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：page.tsx 里没有 onPaneDoubleClick prop（替代入口不存在）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：ShotBreakdownResultNode 恰好 1 个 Handle 且只有 target",
+   "pass": true,
+   "got": [
+    true,
+    true
+   ]
+  },
+  {
+   "label": "静态：ShotBreakdownNode 有 2 个 Handle（对照组）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：13 个组件里单 handle 的只有 ShotBreakdownResultNode",
+   "pass": true,
+   "got": [
+    "ShotBreakdownResultNode"
+   ]
+  },
+  {
+   "label": "静态：AudioNode 的标题就是 filename 本身（?? 兜底「新音频」）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：种子里确有 image_ 开头的原始流水线 filename",
+   "pass": true,
+   "got": [
+    "image_2026-06-15T11-22-00",
+    "image_2026-06-15T11-22-15"
+   ]
+  },
+  {
+   "label": "产物：判据 14 条且编号连续 1..14",
+   "pass": true,
+   "got": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+   ]
+  },
+  {
+   "label": "产物：普查表覆盖 13 个组件",
+   "pass": true,
+   "got": [
+    13,
+    13
+   ]
+  },
+  {
+   "label": "产物：产物层与独立重算的单 handle 名单一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：aria 为空的组件名单与独立重算一致",
+   "pass": true,
+   "got": [
+    "LongVideoProcessNode",
+    "ScriptExecutionNode",
+    "StoryboardGroupNode"
+   ]
+  },
+  {
+   "label": "产物：无 aria-label 的组件名单与独立重算一致",
+   "pass": true,
+   "got": [
+    "ImageNode",
+    "LongVideoProcessNode",
+    "ScriptExecutionNode",
+    "ScriptV2Node",
+    "ShotBreakdownNode",
+    "StoryboardGroupNode",
+    "TextNode",
+    "VideoClipNode"
+   ]
+  },
+  {
+   "label": "产物：data 钩子计数与独立重算一致（最多/最少的具体值）",
+   "pass": true,
+   "got": [
+    53,
+    53
+   ]
+  },
+  {
+   "label": "产物：data 钩子为 0 的组件名单与独立重算一致",
+   "pass": true,
+   "got": [
+    "ScriptNode",
+    "StoryboardGroupNode"
+   ]
+  },
+  {
+   "label": "静态：框外标题有两种写法（-top-8 与 top-[-Npx]），只匹配一种会误判",
+   "pass": true,
+   "got": {
+    "dashTop8": [
+     "AudioNode",
+     "ImageNode",
+     "ScriptExecutionNode",
+     "ScriptNode",
+     "ShotBreakdownNode",
+     "ShotBreakdownResultNode",
+     "StoryboardGroupNode",
+     "VideoClipNode",
+     "VideoNode"
+    ],
+    "arbitraryTop": [
+     "ScriptV2Node",
+     "TextNode"
+    ]
+   }
+  },
+  {
+   "label": "产物：更正后「框外无标题的类型」为空集（758c 的旧结论已作废）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "产物：判据 6 的 handleCount 运行时表覆盖 7 种类型且全为 2",
+   "pass": true,
+   "got": {
+    "text": 2,
+    "image": 2,
+    "video": 2,
+    "video-clip": 2,
+    "script-execution": 2,
+    "shot-breakdown": 2,
+    "audio": 2
+   }
+  },
+  {
+   "label": "产物：判据 2 记下 pointIsPane=true / 原生 dblclick=+1 / 条目=0",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 2 的 why 明写阳性对照（左栏按钮双击 +1 且开出 9 条目）",
+   "pass": true,
+   "got": "⚠ 这是**有阳性对照**的否定结论：同一浏览器里对左栏按钮双击，计数器 +1 且开出 9 个条目 ⟹ Playwright 的 dblcl"
+  },
+  {
+   "label": "产物：判据 3 四处计数器 = 容器捕获 1 / pane 冒泡 1 / 容器冒泡 0 / window 冒泡 0",
+   "pass": true,
+   "got": {
+    "window": 0,
+    "pane": 1,
+    "container": 0,
+    "stopped": 1
+   }
+  },
+  {
+   "label": "产物：判据 3 的 why 解释了事件路径（捕获→pane冒泡→断）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 4 记下 8 种类型各 +1 且 failures=0（7 种直建 + script 走子菜单）",
+   "pass": true,
+   "got": [
+    "audio",
+    "image",
+    "script",
+    "script-execution",
+    "shot-breakdown",
+    "text",
+    "video",
+    "video-clip"
+   ]
+  },
+  {
+   "label": "产物：判据 4 记下 script 走子菜单 script-new",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 5 同时记下两个探针各自的 zoom（1.501 / 0.751）",
+   "pass": true,
+   "got": "8 种类型的未缩放宽高与 store 逐项相等；⚠ zoom 在两个探针里**不一样**：758a 读到 1.501、758c 读到 0.751"
+  },
+  {
+   "label": "产物：判据 8 标为「更正」并给出作废的旧结论",
+   "pass": true,
+   "got": "★ 更正：8 种类型**全都**遵守「框外标题」约定；「video-clip 没有标题」是探针缺陷"
+  },
+  {
+   "label": "产物：判据 8 记下 7 种类型 hasOutsideTitle 全为 true",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 8 点明根因是「图标 + 裸文本」被叶子扫描跳过",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 8 记下 7 种类型标题全是裸文本结构",
+   "pass": true,
+   "got": [
+    "audio",
+    "image",
+    "script-execution",
+    "shot-breakdown",
+    "text",
+    "video",
+    "video-clip"
+   ]
+  },
+  {
+   "label": "产物：判据 9 给出种子原始 filename 与新建节点的对照（两侧都在 evidence）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：判据 14 明确 role 静态全 0 的**适用范围**是组件文件自身",
+   "pass": true,
+   "got": "① 13 个组件里 `role=` 静态出现 0 次，但运行时在 `video` 的 DOM 子树里测到 1 个 role ⟹ 角色可能由*"
+  },
+  {
+   "label": "产物：判据 14 点明 758b 的 missing 是「种子里没有」不是「没标题」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：twoRound 声明了这是普查型单轮并记了 zeroFailures",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：缺陷陈述含「从未触发」与 stopPropagation 两个要素",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：rootCause 指明事件路径与三个修复方向",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：证据链 5 条，每条都带具体读数",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：secondary 记了 4 条次要发现",
+   "pass": true,
+   "got": 4
+  },
+  {
+   "label": "产物：返工 5 条 R24..R28 齐全且各自带 rule",
+   "pass": true,
+   "got": [
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28"
+   ]
+  },
+  {
+   "label": "产物：R28 写明这是 R26 的同类错误重演且发生在同一批次",
+   "pass": true,
+   "got": [
+    "R24",
+    "R25",
+    "R26",
+    "R27",
+    "R28"
+   ]
+  },
+  {
+   "label": "产物：不声称清单 ≥ 9 条",
+   "pass": true,
+   "got": 9
+  },
+  {
+   "label": "产物：不声称里明确写了「单 handle 结论未做运行时验证」与「没有与源站对照」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：rawProbeFiles 三个探针都有说明",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数叶子级交叉核对 15 项（a/b/c 三份）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始读数：双击后窗口捕获 +1、mousedown +2、但条目 0",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：阳性对照 —— 左栏按钮双击 +1 且开出 9 条目",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：双击点确实在 .react-flow__pane 上",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：容器冒泡=0 而容器捕获=1（传播在 pane 处断）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：8 种类型各 +1，failures 为空",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：运行时 7 种类型 handleCount 全为 2",
+   "pass": true,
+   "got": {
+    "text": 2,
+    "image": 2,
+    "video": 2,
+    "video-clip": 2,
+    "script-execution": 2,
+    "shot-breakdown": 2,
+    "audio": 2
+   }
+  },
+  {
+   "label": "原始读数（758d 元素级）：7 种类型 hasOutsideTitle 全为 true，video-clip 的框外标题是「智能剪辑 1」",
+   "pass": true,
+   "got": {
+    "text": [
+     "文本节点"
+    ],
+    "image": [
+     "新图片512 × 512"
+    ],
+    "video": [
+     "视频节点 5-片段重拍1280 × 720"
+    ],
+    "video-clip": [
+     "智能剪辑 1"
+    ],
+    "script-execution": [
+     "第一集：咖啡馆对峙"
+    ],
+    "shot-breakdown": [
+     "逐帧拉片"
+    ],
+    "audio": [
+     "新音频"
+    ]
+   }
+  },
+  {
+   "label": "原始读数（758d）：7 种类型标题全是「图标 + 裸文本」结构",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：758c 的 video-clip aboveTexts 确为空（与 758d 构成对照）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始读数：758b 的 missing 名单正好是种子里没有的 4 种",
+   "pass": true,
+   "got": [
+    "audio",
+    "shot-breakdown",
+    "text",
+    "video-clip"
+   ]
+  },
+  {
+   "label": "原始读数：运行时量到的 7 种类型都在 page.tsx 注册表里",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "静态：page.tsx 注册的类型总数 >= 13（普查表不漏）",
+   "pass": true,
+   "got": 13
+  }
+ ],
+ "passed": 56,
+ "total": 56,
+ "static": {
+  "panelEntries": [
+   "text",
+   "image",
+   "video",
+   "video-clip",
+   "script-execution",
+   "shot-breakdown",
+   "audio",
+   "script",
+   "material"
+  ],
+  "panelDataHook": true,
+  "submenuHook": true,
+  "scriptNewHook": true,
+  "dblclickHandlerExists": true,
+  "dblclickAttachedToRef": true,
+  "dblclickGuardIsPane": true,
+  "dblclickGuardOnlyOpens": true,
+  "onPaneDoubleClickPropAbsent": true,
+  "dblclickStopPropagationElsewhere": false,
+  "resultNodeOneHandle": true,
+  "resultNodeHandleIsTargetOnly": true,
+  "shotBreakdownTwoHandles": true,
+  "audioFilenameFallback": true,
+  "seedRawFilenames": [
+   "image_2026-06-15T11-22-00",
+   "image_2026-06-15T11-22-15"
+  ],
+  "components": {
+   "AudioNode": {
+    "handleCount": 2,
+    "handleTypes": [
+     "target",
+     "source"
+    ],
+    "dataHooks": [
+     "data-audio-split-edge-id",
+     "data-audio-split-mode",
+     "data-audio-split-output",
+     "data-audio-split-output-kind",
+     "data-audio-split-source-id",
+     "data-inert"
+    ],
+    "ariaKeys": [
+     "aria-label"
+    ],
+    "ariaLabel": true,
+    "roleAttr": 0,
+    "outsideTitle": true
+   },
+   "ImageNode": {
+    "handleCount": 2,
+    "handleTypes": [
+     "target",
+     "source"
+    ],
+    "dataHooks": [
+     "data-director-capture-aspect",
+     "data-director-capture-camera-id",
+     "data-director-capture-edge-id",
+     "data-director-capture-id",
+     "data-director-capture-node",
+     "data-director-capture-source-id",
+     "data-image-ai-generated",
+     "data-image-attempt",
+     "data-image-attempts",
+     "data-image-node-media",
+     "data-image-placeholder",
+     "data-rotate-mirror",
+     "data-rotate-mirror-operation",
+     "data-rotate-mirror-prototype",
+     "data-rotate-mirror-source-filename",
+     "data-rotate-mirror-source-id",
+     "data-video-frame-alt",
+     "data-video-frame-capture",
+     "data-video-frame-capture-kind",
+     "data-video-frame-capture-seconds",
+     "data-video-frame-edge-id",
+     "data-video-frame-name",
+     "data-video-frame-source-id"
+    ],
+    "ariaKeys": [
+     "aria-pressed"
+    ],
+    "ariaLabel": false,
+    "roleAttr": 0,
+    "outsideTitle": true
+   },
+   "LongVideoProcessNode": {
+    "handleCount": 2,
+    "handleTypes": [
+     "target",
+     "source"
+    ],
+    "dataHooks": [
+     "data-long-video-process-audio",
+     "data-long-video-process-batch-index",
+     "data-long-video-process-credits",
+     "data-long-video-process-duration",
+     "data-long-video-process-id",
+     "data-long-video-process-model",
+     "data-long-video-process-node",
+     "data-long-video-process-prompt-length",
+     "data-long-video-process-ratio",
+     "data-long-video-process-reference-count",
+     "data-long-video-process-resolution",
+     "data-long-video-process-source-id",
+     "data-long-video-process-stage",
+     "data-long-video-process-stage-index",
+     "data-long-video-process-status"
+    ],
+    "ariaKeys": [],
+    "ariaLabel": false,
+    "roleAttr": 0,
+    "outsideTitle": false
+   },
+   "ScriptExecutionNode": {
+    "handleCount": 2,
+    "handleTypes": [
+     "target",
+     "source"
+    ],
+    "dataHooks": [
+     "data-director-node",
+     "data-director-node-id",
+     "data-open-director"
+    ],
+    "ariaKeys": [],
+    "ariaLabel": false,
+    "roleAttr": 0,
+    "outsideTitle": true
+   },
+   "ScriptGeneratorNode": {
+    "handleCount": 2,
+    "handleTypes": [
+     "target",
+     "source"
+    ],
+    "dataHooks": [
+     "data-inert",
+     "data-script-generator-attempt",
+     "data-script-generator-node",
+     "data-script-generator-open-storyboard",
+     "data-script-generator-reference"
+    ],
+    "ariaKeys": [
+     "aria-hidden",
+     "aria-label",
+     "aria-pressed"
+    ],
+    "ariaLabel": true,
+    "roleAttr": 0,
+    "outsideTitle": false
+   },
+   "ScriptNode": {
+    "handleCount": 2,
+    "handleTypes": [
+     "target",
+     "source"
+    ],
+    "dataHooks": [],
+    "ariaKeys": [
+     "aria-label"
+    ],
+    "ariaLabel": true,
+    "roleAttr": 0,
+    "outsideTitle": true
+   },
+   "ScriptV2Node": {
+    "handleCount": 2,
+    "handleTypes": [
+     "target",
+     "source"
+    ],
+    "dataHooks": [
+     "data-script-v2-open"
+    ],
+    "ariaKeys": [
+     "aria-hidden"
+    ],
+    "ariaLabel": false,
+    "roleAttr": 0,
+    "outsideTitle": false
+   },
+   "ShotBreakdownNode": {
+    "handleCount": 2,
+    "handleTypes": [
+     "target",
+     "source"
+    ],
+    "dataHooks": [
+     "data-shot-breakdown-dimension",
+     "data-shot-breakdown-media",
+     "data-shot-breakdown-node",
+     "data-shot-breakdown-source-meta",
+     "data-shot-breakdown-start"
+    ],
+    "ariaKeys": [
+     "aria-pressed"
+    ],
+    "ariaLabel": false,
+    "roleAttr": 0,
+    "outsideTitle": true
+   },
+   "ShotBreakdownResultNode": {
+    "handleCount": 1,
+    "handleTypes": [
+     "target"
+    ],
+    "dataHooks": [
+     "data-inert",
+     "data-shot-breakdown-category",
+     "data-shot-breakdown-item",
+     "data-shot-breakdown-item-action",
+     "data-shot-breakdown-result",
+     "data-shot-breakdown-waveform"
+    ],
+    "ariaKeys": [
+     "aria-label",
+     "aria-pressed"
+    ],
+    "ariaLabel": true,
+    "roleAttr": 0,
+    "outsideTitle": true
+   },
+   "StoryboardGroupNode": {
+    "handleCount": 2,
+    "handleTypes": [
+     "target",
+     "source"
+    ],
+    "dataHooks": [],
+    "ariaKeys": [],
+    "ariaLabel": false,
+    "roleAttr": 0,
+    "outsideTitle": true
+   },
+   "TextNode": {
+    "handleCount": 2,
+    "handleTypes": [
+     "target",
+     "source"
+    ],
+    "dataHooks": [
+     "data-handleid",
+     "data-text-action"
+    ],
+    "ariaKeys": [
+     "aria-hidden"
+    ],
+    "ariaLabel": false,
+    "roleAttr": 0,
+    "outsideTitle": false
+   },
+   "VideoClipNode": {
+    "handleCount": 2,
+    "handleTypes": [
+     "target",
+     "source"
+    ],
+    "dataHooks": [
+     "data-video-clip-empty",
+     "data-video-clip-mode",
+     "data-video-clip-node"
+    ],
+    "ariaKeys": [
+     "aria-pressed"
+    ],
+    "ariaLabel": false,
+    "roleAttr": 0,
+    "outsideTitle": true
+   },
+   "VideoNode": {
+    "handleCount": 2,
+    "handleTypes": [
+     "target",
+     "source"
+    ],
+    "dataHooks": [
+     "data-audio-split-edge-id",
+     "data-audio-split-mode",
+     "data-audio-split-output",
+     "data-audio-split-output-kind",
+     "data-audio-split-source-id",
+     "data-depth-motion-duration",
+     "data-depth-motion-edge-id",
+     "data-depth-motion-model",
+     "data-depth-motion-output",
+     "data-depth-motion-request-mode",
+     "data-depth-motion-resolution-value",
+     "data-depth-motion-source-id",
+     "data-director-animation-export",
+     "data-director-animation-export-bytes",
+     "data-director-animation-export-duration",
+     "data-director-animation-export-edge-id",
+     "data-director-animation-export-id",
+     "data-director-animation-export-mime",
+     "data-director-animation-export-node",
+     "data-director-animation-export-source-id",
+     "data-inert",
+     "data-picture-edit-edge-id",
+     "data-picture-edit-mark-count",
+     "data-picture-edit-mode",
+     "data-picture-edit-model",
+     "data-picture-edit-output",
+     "data-picture-edit-request-mode",
+     "data-picture-edit-source-id",
+     "data-smart-matting-duration",
+     "data-smart-matting-edge-id",
+     "data-smart-matting-format",
+     "data-smart-matting-height",
+     "data-smart-matting-model",
+     "data-smart-matting-output",
+     "data-smart-matting-provider",
+     "data-smart-matting-source-id",
+     "data-smart-matting-width",
+     "data-state",
+     "data-subtitle-erase-model",
+     "data-subtitle-erase-pending-copy",
+     "data-subtitle-erase-request-mode",
+     "data-subtitle-erase-target",
+     "data-subtitle-erase-target-mode",
+     "data-video-attempt",
+     "data-video-attempts",
+     "data-video-continuation-empty",
+     "data-video-depth-motion-feedback",
+     "data-video-frame-feedback",
+     "data-video-picture-edit-feedback",
+     "data-video-player-camera",
+     "data-video-player-frame-kind",
+     "data-video-player-frame-menu",
+     "data-video-playhead"
+    ],
+    "ariaKeys": [
+     "aria-label",
+     "aria-pressed"
+    ],
+    "ariaLabel": true,
+    "roleAttr": 0,
+    "outsideTitle": true
+   }
+  },
+  "componentCount": 13,
+  "oneHandleComponents": [
+   "ShotBreakdownResultNode"
+  ],
+  "zeroAriaComponents": [
+   "LongVideoProcessNode",
+   "ScriptExecutionNode",
+   "StoryboardGroupNode"
+  ],
+  "zeroDataComponents": [
+   "ScriptNode",
+   "StoryboardGroupNode"
+  ],
+  "noAriaLabelComponents": [
+   "ImageNode",
+   "LongVideoProcessNode",
+   "ScriptExecutionNode",
+   "ScriptV2Node",
+   "ShotBreakdownNode",
+   "StoryboardGroupNode",
+   "TextNode",
+   "VideoClipNode"
+  ],
+  "noOutsideTitleComponents": [
+   "LongVideoProcessNode",
+   "ScriptGeneratorNode",
+   "ScriptV2Node",
+   "TextNode"
+  ],
+  "outsideTitleSpellings": {
+   "dashTop8": [
+    "AudioNode",
+    "ImageNode",
+    "ScriptExecutionNode",
+    "ScriptNode",
+    "ShotBreakdownNode",
+    "ShotBreakdownResultNode",
+    "StoryboardGroupNode",
+    "VideoClipNode",
+    "VideoNode"
+   ],
+   "arbitraryTop": [
+    "ScriptV2Node",
+    "TextNode"
+   ]
+  },
+  "dataHookCounts": {
+   "AudioNode": 6,
+   "ImageNode": 23,
+   "LongVideoProcessNode": 15,
+   "ScriptExecutionNode": 3,
+   "ScriptGeneratorNode": 5,
+   "ScriptNode": 0,
+   "ScriptV2Node": 1,
+   "ShotBreakdownNode": 5,
+   "ShotBreakdownResultNode": 6,
+   "StoryboardGroupNode": 0,
+   "TextNode": 2,
+   "VideoClipNode": 3,
+   "VideoNode": 53
+  },
+  "allRoleAttrZero": true,
+  "registeredTypesInPage": [
+   [
+    "",
+    "script"
+   ],
+   [
+    "",
+    "image"
+   ],
+   [
+    "",
+    "text"
+   ],
+   [
+    "",
+    "video"
+   ],
+   [
+    "script-execution",
+    ""
+   ],
+   [
+    "script-generator",
+    ""
+   ],
+   [
+    "script-v2",
+    ""
+   ],
+   [
+    "storyboard-group",
+    ""
+   ],
+   [
+    "shot-breakdown",
+    ""
+   ],
+   [
+    "shot-breakdown-result",
+    ""
+   ],
+   [
+    "video-clip",
+    ""
+   ],
+   [
+    "",
+    "audio"
+   ],
+   [
+    "long-video-process",
+    ""
+   ]
+  ]
+ }
+}
