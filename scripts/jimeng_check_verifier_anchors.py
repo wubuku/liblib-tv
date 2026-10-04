@@ -146,6 +146,12 @@ PROBE_VARS = {
     "_p968b": "scripts/jimeng_probe968b_nextjsportal_ck.py",
     # ⚠️ 969：**同一步**登记（第四次预防同一个坑）
     "_p969": "scripts/jimeng_probe969_projectpanel_src.py",
+    # ⚠️ 970：**同一步**登记（第五次预防同一个坑）
+    "_p970": "scripts/jimeng_probe970_owntid_ck.py",
+    # ⚠️⚠️⚠️⚠️⚠️ **`_p816` 漏登记 ⇒ 它的锚点被**静默跳过** ⇒ 锚点自查报「0 问题」**
+    #   而 verifier 那条判据**真的红了**（`CCCCC.2`）⇒ **同一个坑的第五次**。
+    # ⇒ 结论：**锚点自查报 0 ≠ 全部被查过** —— **它只查「已登记」的那些**。
+    "_p816": "scripts/verify-jimeng-batch816-anchors.py",
     # ⚠️ 961 顺带补上 `asrc`（= audit 源码，M 组判据在用；
     #   它的路径是 `ROOT / "scripts" / "…"` 两段写法，自动提取抓不到）
     "asrc": "scripts/jimeng_unclickable_audit.py",

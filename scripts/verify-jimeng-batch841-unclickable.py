@@ -5713,6 +5713,13 @@ def main() -> int:
     # 969：源站探针，**同轮重新量 out 段**（推翻 968b 的收尾结论）
     p969 = ROOT / "scripts/jimeng_probe969_projectpanel_src.py"
     _p969 = p969.read_text(encoding="utf-8") if p969.exists() else ""
+    # 970：**复刻侧**同口径重测（自身 tid + 最近祖先 tid 都读）
+    p970 = ROOT / "scripts/jimeng_probe970_owntid_ck.py"
+    _p970 = p970.read_text(encoding="utf-8") if p970.exists() else ""
+    # ⭐ 970 的 CCCC.2 要**反证 816 那条决策真的在仓库里**（钉源码原文，
+    #   不钉我自己写的转述）
+    p816 = ROOT / "scripts/verify-jimeng-batch816-anchors.py"
+    _p816 = p816.read_text(encoding="utf-8") if p816.exists() else ""
     # ⭐ 968b 的结论「`NEXTJS-PORTAL` 不是复刻自己写的」**必须**由源码反证：
     #   复刻组件里**一处都不许**出现 `nextjs-portal` / `NEXTJS-PORTAL`
     _replica_srcs = []
@@ -8119,6 +8126,87 @@ def main() -> int:
           # ⚠️ 仓里**不许**出现自写的 nextjs-portal（否则这条结论就假了）
           and not any("nextjs-portal" in t or "NEXTJS-PORTAL" in t
                       for t in _replica_srcs))
+
+    # ══ 批 970：⭐⭐⭐⭐⭐ 同口径重测 ⇒ 推翻 969 的「唯一差异」结论 ══
+    print("— CCCCC. 批 970 同口径重测：两次同一种错（对照没对齐） —")
+
+    check("CCCCC.1 ⭐⭐⭐⭐⭐ **同口径重做那张表之后，结论完全变了**：复刻的 "
+          "`文本` 那枚**两侧完全一致**（源站**自身 `None`** / 祖先 "
+          "`canvas-fixed-toolbar`；复刻**自身 `None`** / 祖先**也是 "
+          "`canvas-fixed-toolbar`」）⇒ ⭐⭐⭐ **复刻连「testid 放在祖先容器上」"
+          "这个做法都对上了**；逐个对齐后**其余 15 枚的「自身 tid」与「祖先 tid」"
+          "两侧都相同**；`n_self_eq_closest` = **28/30**（只有 2 圈里的 2 个 `文本`"
+          "「自身 ≠ 祖先」）",
+          '"owntid_970"' in _ausrc
+          and "**同口径重做那张表之后，结论完全变了**" in _ausrc
+          and "那枚两侧**完全一致**" in _ausrc
+          and "**复刻连「testid 放在祖先容器上」这个做法都对上了**" in _ausrc
+          and "两侧都相同**" in _ausrc
+          and "`n_self_eq_closest` = **28/30**" in _ausrc
+          # ⭐⭐ 钉探针：**两个字段都读**，且各有**自证门**（少一个就红）
+          and 'self_tid: a.getAttribute(\'data-testid\'),' in _p970
+          and "closest_tid: c ? c.getAttribute('data-testid') : null," in _p970
+          and "**两个字段必须都在**，少一个这道门就恒红/恒绿" in _p970
+          and '"both_tid_fields_present_both_reps"' in _p970
+          # ⭐ 钉探针：两张表**并排**摆出来（口径不同就一眼看得见）
+          and 'c["out_ids_self"] = sorted({' in _p970
+          and "两个字段各出一张清单，**并排**摆出来" in _p970)
+
+    check("CCCCC.2 ⭐⭐⭐⭐⭐ **真正剩下的差异只有两处，而且 816 都明确记录过、"
+          "都有理由 ⇒ 都不该改**：`更多`（源站自身无 tid、祖先 "
+          "`canvas-editor-menu`；复刻自造 `canvas-more-trigger`，816 的理由是"
+          "「删掉 = 削弱自己的验收锚点」）与 `生成历史`（源站与「搜索」**共用** "
+          "`canvas-panel-launcher`、照抄会**同时命中 2 个元素**、打破 801 的断言；"
+          "复刻用独立的 `canvas-history-launcher`）⇒ ⭐⭐ **原计划的产品改动"
+          "（把「更多」改成 `canvas-editor-menu`）取消** —— 那会把有理由的"
+          "有意偏离改回去、**削弱复刻自己的验收锚点**",
+          '"two_deliberate_deviations_970"' in _ausrc
+          and "**真正剩下的差异只有两处" in _ausrc
+          and "两处 816 都明确记录过、" in _ausrc
+          and "都有理由 ⇒ 都不该改**" in _ausrc
+          and "**主动削弱自己的验收锚点**" in _ausrc
+          and "**同时命中 2 个元素**" in _ausrc
+          and "**969 漏掉了第二处**" in _ausrc
+          and "**原计划的产品改动（把复刻「更多」改成 " in _ausrc
+          and "**削弱复刻自己的验收锚点**" in _ausrc
+          # ⭐⭐ **反证**：816 那条决策**真的**在仓库里（钉的是源码原文）
+          and "verify-jimeng-batch816-anchors.py" in _p970
+          and "「更多」源站**没有** testid，复刻保留自造的 " in _p816
+          and 'KNOWN_CLONE_ONLY = {"canvas-more-trigger", "canvas-history-launcher"}'
+          in _p816)
+
+    check("CCCCC.3 ⭐⭐⭐⭐⭐ **两次同一种错，归成一条纪律**：968b 拿 **954 的历史"
+          "基线**当本轮源站一侧的对照 ⇒ 把「**基线过期**」误读成「**实现有缺陷**」；"
+          "969 拿复刻的**自身 tid** 比源站读到的**祖先 tid** ⇒ 把「**口径不同**」"
+          "误读成「**实现有缺陷**」⇒ ⇒ ⭐ **先核「我比的是不是同一个东西」**"
+          "（同一轮？同一字段？同一口径？）⇒ ⭐⭐ **发现差异先怀疑对照、"
+          "别先怀疑实现**；⭐⭐⭐ 而**两次都是靠「原始读数里两个字段都有」翻回来的** "
+          "⇒ 965「判词必须回查原始读数」这族**已复发三次**",
+          '"same_kind_of_error_twice_970"' in _ausrc
+          and "**两次同一种错，必须归成一条纪律**" in _ausrc
+          and "把「**基线过期**」误读成「**实现有缺陷**」" in _ausrc
+          and "把「**口径不同**」误读成「**实现有缺陷**」" in _ausrc
+          and "**先核「我比的是不是同一个东西」**" in _ausrc
+          and "**发现差异时，先怀疑对照、别先怀疑实现**" in _ausrc
+          and "**两次都是「对照侧没对齐」**" in _ausrc
+          and "**两次都是自己先写结论、下一批才发现**" in _ausrc
+          and "原始读数里其实两个字段都有」翻回来的**" in _ausrc
+          and "到现在已复发" in _ausrc
+          and "这两批是它的**第二次与第三次**兑现" in _ausrc
+          # ⭐ 钉探针：970 自己就把「同口径」写进了问题与门
+          and "**同一个字段要对比，就得用同一个口径**" in _p970
+          and '"same_ruler_note"' in _p970
+          and "969 也同时记了 `tid`（自身）与 `host_tid`（祖先）" in _p970
+          # ⚠️⚠️⚠️⚠️⚠️ **第五次「静默跳过」**：`_p816` 一开始**没登记**进
+          #   `PROBE_VARS` ⇒ 锚点自查**静默跳过**它、报「0 问题」，
+          #   而 **verifier 那条判据真的红了**（609/610）⇒ 已补登记
+          and '"fifth_skip_trap_970"' in _ausrc
+          and "**同一个「静默跳过」坑的第五次**" in _ausrc
+          and "**两个门给了相反的信号**" in _ausrc
+          and "**锚点自查报「0 问题」≠ 全部被查过**" in _ausrc
+          and "**它只查「已登记」的那些变量**" in _ausrc
+          and '"_p816": "scripts/verify-jimeng-batch816-anchors.py",' in _anchs)
+
 
     check("AAAAA.4 ⚠️⚠️ **步长那道门第一版太弱，是干跑当场抓到的**：它只查 "
           "`n_step_gt2 == 0` ⇒ 在「**全部是 `wrap`、`+1` 一次都没有**」的"
