@@ -1,0 +1,253 @@
+{
+  "batch": 743,
+  "title": "45 处记账入口的门控：两态逐项差集 —— 按钮文案完全一致，status 不是门控",
+  "verdict": "6/6",
+  "summary": {
+    "static": {
+      "commands": 33,
+      "sites": 45,
+      "byFile": {
+        "src/app/page.tsx": 12,
+        "src/components/nodes/VideoNode.tsx": 16,
+        "src/components/AddNodePanel.tsx": 2,
+        "src/components/nodes/ShotBreakdownNode.tsx": 4,
+        "src/components/director/DirectorDesk.tsx": 3,
+        "src/components/nodes/ImageNode.tsx": 5,
+        "src/components/StoryboardBoard.tsx": 1,
+        "src/components/director/DirectorAiImportModal.tsx": 1,
+        "src/components/CanvasEmptyState.tsx": 1
+      },
+      "videoNodeSites": 16,
+      "attemptCommentLine": 1326,
+      "playInertLine": 498
+    },
+    "seed_failed": {
+      "total": 18,
+      "buttons": 15,
+      "inertCount": 3,
+      "inputs": 3,
+      "narrowInputs": 3,
+      "buttonTexts": [
+        "16:9 · 720P · 5s",
+        "2.5",
+        "5分钟超长视频",
+        "参考",
+        "文生视频",
+        "标记",
+        "特效",
+        "角色库",
+        "运镜",
+        "首尾帧生成视频",
+        "首帧生成视频"
+      ],
+      "inertKeys": [
+        "翻译视频提示词",
+        "该功能在克隆侧尚未接入",
+        "该设置在克隆侧尚未接入"
+      ]
+    },
+    "new_ready": {
+      "total": 21,
+      "buttons": 17,
+      "inertCount": 4,
+      "inputs": 4,
+      "narrowInputs": 3,
+      "buttonTexts": [
+        "16:9 · 720P · 5s",
+        "2.5",
+        "5分钟超长视频",
+        "参考",
+        "文生视频",
+        "标记",
+        "特效",
+        "角色库",
+        "运镜",
+        "首尾帧生成视频",
+        "首帧生成视频"
+      ],
+      "inertKeys": [
+        "播放视频",
+        "翻译视频提示词",
+        "该功能在克隆侧尚未接入",
+        "该设置在克隆侧尚未接入"
+      ]
+    },
+    "diff": {
+      "buttonTextsNewOnly": [],
+      "buttonTextsSeedOnly": [],
+      "inertNewOnly": [
+        "播放视频"
+      ],
+      "inertSeedOnly": [],
+      "outsideNewOnly": [
+        "撤销视频处理",
+        "重做视频处理"
+      ],
+      "outsideSeedOnly": [],
+      "inertTotalDelta": 3
+    },
+    "outsideInert": {
+      "seed": [
+        {
+          "key": "开通会员 限时 45 折",
+          "inNodeArea": true
+        },
+        {
+          "key": "积分余额",
+          "inNodeArea": true
+        }
+      ],
+      "new": [
+        {
+          "key": "开通会员 限时 45 折",
+          "inNodeArea": true
+        },
+        {
+          "key": "积分余额",
+          "inNodeArea": true
+        },
+        {
+          "key": "撤销视频处理",
+          "inNodeArea": true
+        },
+        {
+          "key": "重做视频处理",
+          "inNodeArea": true
+        }
+      ]
+    },
+    "clickFailed": {
+      "clicked": true,
+      "before": {
+        "nodeCount": 10,
+        "edgeCount": 11,
+        "past": 0,
+        "future": 0,
+        "videos": [
+          {
+            "id": "v-UGQZzZOpbv",
+            "status": "failed",
+            "attempt": null,
+            "hasImageEdge": true
+          }
+        ]
+      },
+      "after": {
+        "nodeCount": 10,
+        "edgeCount": 11,
+        "past": 1,
+        "future": 0,
+        "videos": [
+          {
+            "id": "v-UGQZzZOpbv",
+            "status": "failed",
+            "attempt": "首帧生成视频",
+            "hasImageEdge": true
+          }
+        ]
+      },
+      "attemptBefore": null,
+      "attemptAfter": "首帧生成视频",
+      "hasImageEdge": true
+    },
+    "clickReady": {
+      "clicked": true,
+      "before": {
+        "nodeCount": 11,
+        "edgeCount": 11,
+        "past": 2,
+        "future": 0,
+        "videos": [
+          {
+            "id": "v-UGQZzZOpbv",
+            "status": "failed",
+            "attempt": "首帧生成视频",
+            "hasImageEdge": true
+          },
+          {
+            "id": "video-1791072641322-2mn122",
+            "status": "ready",
+            "attempt": null,
+            "hasImageEdge": false
+          }
+        ]
+      },
+      "after": {
+        "nodeCount": 12,
+        "edgeCount": 12,
+        "past": 3,
+        "future": 0,
+        "videos": [
+          {
+            "id": "v-UGQZzZOpbv",
+            "status": "failed",
+            "attempt": "首帧生成视频",
+            "hasImageEdge": true
+          },
+          {
+            "id": "video-1791072641322-2mn122",
+            "status": "ready",
+            "attempt": "首帧生成视频",
+            "hasImageEdge": true
+          }
+        ]
+      },
+      "status": "ready",
+      "hasImageEdge": true
+    }
+  },
+  "checks": [
+    {
+      "label": "C1 45 处记账入口 / 29 个非空命令（33 键中 4 个空表）；VideoNode 独占 16 处",
+      "pass": true,
+      "detail": "{\"commands\": 33, \"sites\": 45, \"byFile\": {\"src/app/page.tsx\": 12, \"src/components/nodes/VideoNode.tsx\": 16, \"src/components/AddNodePanel.tsx\": 2, \"src/components/nodes/ShotBreakdownNode.tsx\": 4, \"src/components/director/DirectorDesk.tsx\": 3, \"src/components/nodes/ImageNode.tsx\": 5, \"src/components/StoryboardBoard.tsx\": 1, \"src/components/director/DirectorAiImportModal.tsx\": 1, \"src/components/CanvasEmptyState.tsx\": 1}, \"videoNodeSites\": 16, \"attemptCommentLine\": 1326, \"playInertLine\": 498}"
+    },
+    {
+      "label": "C2 两态逐项：11 个按钮文案差集为空（status 不是门控）",
+      "pass": true,
+      "detail": "{\"seed\": [\"16:9 · 720P · 5s\", \"2.5\", \"5分钟超长视频\", \"参考\", \"文生视频\", \"标记\", \"特效\", \"角色库\", \"运镜\", \"首尾帧生成视频\", \"首帧生成视频\"], \"new\": [\"16:9 · 720P · 5s\", \"2.5\", \"5分钟超长视频\", \"参考\", \"文生视频\", \"标记\", \"特效\", \"角色库\", \"运镜\", \"首尾帧生成视频\", \"首帧生成视频\"], \"newOnly\": [], \"seedOnly\": []}"
+    },
+    {
+      "label": "C3 data-inert 差集：节点内 1 枚「播放视频」+ 工具栏 2 枚 = 合计 3 枚",
+      "pass": true,
+      "detail": "{\"inNode\": {\"seed\": [\"翻译视频提示词\", \"该功能在克隆侧尚未接入\", \"该设置在克隆侧尚未接入\"], \"new\": [\"播放视频\", \"翻译视频提示词\", \"该功能在克隆侧尚未接入\", \"该设置在克隆侧尚未接入\"], \"newOnly\": [\"播放视频\"], \"seedOnly\": []}, \"outside\": {\"seed\": [{\"key\": \"开通会员 限时 45 折\", \"inNodeArea\": true}, {\"key\": \"积分余额\", \"inNodeArea\": true}], \"new\": [{\"key\": \"开通会员 限时 45 折\", \"inNodeArea\": true}, {\"key\": \"积分余额\", \"inNodeArea\": true}, {\"key\": \"撤销视频处理\", \"inNodeArea\": true}, {\"key\": \"重做视频处理\", \"inNodeArea\": true}], \"newOnly\": [\"撤销视频处理\", \"重做视频处理\"], \"seedOnly\": []}}"
+    },
+    {
+      "label": "C4 failed 卡上点「首帧生成视频」：past +1、节点边不变、data.attempt 被写入",
+      "pass": true,
+      "detail": "{\"clicked\": true, \"before\": {\"nodeCount\": 10, \"edgeCount\": 11, \"past\": 0, \"future\": 0, \"videos\": [{\"id\": \"v-UGQZzZOpbv\", \"status\": \"failed\", \"attempt\": null, \"hasImageEdge\": true}]}, \"after\": {\"nodeCount\": 10, \"edgeCount\": 11, \"past\": 1, \"future\": 0, \"videos\": [{\"id\": \"v-UGQZzZOpbv\", \"status\": \"failed\", \"attempt\": \"首帧生成视频\", \"hasImageEdge\": true}]}, \"attemptBefore\": null, \"attemptAfter\": \"首帧生成视频\", \"hasImageEdge\": true}"
+    },
+    {
+      "label": "C5 ready 卡上同一芯片：节点 +1、边 +1、past +1 ⟹ 两态都可达",
+      "pass": true,
+      "detail": "{\"clicked\": true, \"before\": {\"nodeCount\": 11, \"edgeCount\": 11, \"past\": 2, \"future\": 0, \"videos\": [{\"id\": \"v-UGQZzZOpbv\", \"status\": \"failed\", \"attempt\": \"首帧生成视频\", \"hasImageEdge\": true}, {\"id\": \"video-1791072641322-2mn122\", \"status\": \"ready\", \"attempt\": null, \"hasImageEdge\": false}]}, \"after\": {\"nodeCount\": 12, \"edgeCount\": 12, \"past\": 3, \"future\": 0, \"videos\": [{\"id\": \"v-UGQZzZOpbv\", \"status\": \"failed\", \"attempt\": \"首帧生成视频\", \"hasImageEdge\": true}, {\"id\": \"video-1791072641322-2mn122\", \"status\": \"ready\", \"attempt\": \"首帧生成视频\", \"hasImageEdge\": true}]}, \"status\": \"ready\", \"hasImageEdge\": true}"
+    },
+    {
+      "label": "C6 对账 734「新卡自身 6 枚」：新卡 节点内 4 + 工具栏 2 = 6；种子 3 + 0 = 3",
+      "pass": true,
+      "detail": "{\"ready\": {\"inNode\": 4, \"outside\": [{\"key\": \"开通会员 限时 45 折\", \"inNodeArea\": true}, {\"key\": \"积分余额\", \"inNodeArea\": true}, {\"key\": \"撤销视频处理\", \"inNodeArea\": true}, {\"key\": \"重做视频处理\", \"inNodeArea\": true}]}, \"failed\": {\"inNode\": 3, \"outside\": [{\"key\": \"开通会员 限时 45 折\", \"inNodeArea\": true}, {\"key\": \"积分余额\", \"inNodeArea\": true}]}, \"outsideNewOnly\": [\"撤销视频处理\", \"重做视频处理\"], \"outsideSeedOnly\": []}"
+    }
+  ],
+  "conclusions": [
+    "45 处记账入口分布：VideoNode 16 / app/page.tsx 7 / ImageNode 5 / ShotBreakdownNode 4 / DirectorDesk 3 / AddNodePanel 2 / 三处各 1。",
+    "两态逐项差集：11 个按钮文案**完全一致** ⟹ status:\"failed\" 不是记账命令的门控。",
+    "data-inert 差集恰好 1 枚「播放视频」（failed 3 / ready 4）—— 种子上少的就是这一枚，不是「少一整套」。",
+    "failed 卡上点「首帧生成视频」真记账（past 0→1）但节点边不变，且 data.attempt 被写入 —— 与 canvasStore.ts 里 batch 255 的注释一致（既有 image→video 边时只记 attempt、跳过建图）；该卡已有 image 入边=true。",
+    "ready 卡上同一芯片节点 +1、边 +1、past +1 ⟹ 两态芯片都可达、都记账。"
+  ],
+  "relationTo734": [
+    "734 记的「新卡自身 6 枚 data-inert（播放视频 + 该功能/翻译视频提示词/该设置 + 撤销视频处理/重做视频处理）」与本批读数方向一致：新卡 4 枚在节点内。",
+    "**需要收窄的一处**：734 那句「同一套 UI 在默认画布上看不到那几处」—— 实测种子 failed 卡上**仍有 3 枚**（该功能 / 翻译视频提示词 / 该设置）在 `<footer>` 里正常渲染，只少「播放视频」1 枚。属「读数对、理由需收窄」，纠正记在本批，不改历史批次。",
+    "734 的「7 个写点」量的是 data-inert 写点普查（730 的 46），本批量的是记账命令入口（742 的 29）—— **两个口径不可混**。"
+  ],
+  "retracted": [
+    "**撤回「failed 卡比 ready 卡少 3 个命令入口」**（第一版只比总数）：failed 18 个可交互元素 vs ready 21 个，差 3；但逐项比完 11 个按钮文案**差集为空**，真正只差 data-inert 里的 1 枚「播放视频」。「元素总数差」与「命令入口差」是两件事。"
+  ],
+  "notClaimed": [
+    "不声称 3 枚共有的 data-inert 写点是否真的该在 failed 态出现 —— 未取证。",
+    "不声称种子 fixture 的 failed 是不是有意 —— 未取证（承 734 待拍板）。",
+    "只测了「首帧生成视频」一个芯片在两态下的行为；其余 15 个 VideoNode 命令未逐个做两态对照。",
+    "「窄 input」（3 枚 1px 宽）只记了读数，未查成因（与挂起项「姿态圆点 1px」相关，未取证）。",
+    "不声称源站视频卡 failed/ready 两态的控件集合 —— 未取证。"
+  ]
+}
