@@ -1,0 +1,156 @@
+{
+  "读数": {
+    "节点": [
+      {
+        "id": "a-GgqvrVz0pw",
+        "cls": "react-flow__node-audio"
+      },
+      {
+        "id": "a-THmbuJXQj4",
+        "cls": "react-flow__node-audio"
+      },
+      {
+        "id": "b-mfkcQNULC3",
+        "cls": "react-flow__node-shot-breakdown"
+      },
+      {
+        "id": "i-9nlG6HdjK2",
+        "cls": "react-flow__node-image"
+      },
+      {
+        "id": "i-sODTbgLUm1",
+        "cls": "react-flow__node-image"
+      },
+      {
+        "id": "n-56F19pXVB4",
+        "cls": "react-flow__node-director-console-3d"
+      },
+      {
+        "id": "t-2AK3Ukyxj3",
+        "cls": "react-flow__node-text"
+      },
+      {
+        "id": "t-UtVx3lZmrV",
+        "cls": "react-flow__node-text"
+      },
+      {
+        "id": "v-eMpqKtiLlx",
+        "cls": "react-flow__node-video"
+      },
+      {
+        "id": "v-oZNpH99MtM",
+        "cls": "react-flow__node-video-clip"
+      },
+      {
+        "id": "v-v2hlWY4Br3",
+        "cls": "react-flow__node-video"
+      }
+    ],
+    "两个图片": {
+      "找到": false
+    },
+    "两个非图片": {
+      "找到": false
+    },
+    "一个图片": {
+      "找到": false
+    },
+    "同排按钮": [
+      {
+        "文字": "画布 2",
+        "disabled": false,
+        "opacity": "1",
+        "cursor": "pointer"
+      },
+      {
+        "文字": "开通会员",
+        "disabled": false,
+        "opacity": "1",
+        "cursor": "pointer"
+      },
+      {
+        "文字": "20",
+        "disabled": false,
+        "opacity": "1",
+        "cursor": "pointer"
+      },
+      {
+        "文字": "20",
+        "disabled": false,
+        "opacity": "1",
+        "cursor": "pointer"
+      },
+      {
+        "文字": "音频生视频",
+        "disabled": false,
+        "opacity": "1",
+        "cursor": "pointer"
+      },
+      {
+        "文字": "音频生视频",
+        "disabled": false,
+        "opacity": "1",
+        "cursor": "pointer"
+      },
+      {
+        "文字": "上传视频后开始",
+        "disabled": false,
+        "opacity": "1",
+        "cursor": "pointer"
+      },
+      {
+        "文字": "分镜",
+        "disabled": false,
+        "opacity": "1",
+        "cursor": "pointer"
+      },
+      {
+        "文字": "动态",
+        "disabled": false,
+        "opacity": "1",
+        "cursor": "pointer"
+      },
+      {
+        "文字": "音乐",
+        "disabled": false,
+        "opacity": "1",
+        "cursor": "pointer"
+      },
+      {
+        "文字": "开始拉片",
+        "disabled": true,
+        "opacity": "1",
+        "cursor": "not-allowed"
+      },
+      {
+        "文字": "图生图",
+        "disabled": false,
+        "opacity": "1",
+        "cursor": "pointer"
+      },
+      {
+        "文字": "图片高清",
+        "disabled": false,
+        "opacity": "1",
+        "cursor": "pointer"
+      },
+      {
+        "文字": "打开导演台",
+        "disabled": false,
+        "opacity": "1",
+        "cursor": "pointer"
+      }
+    ]
+  },
+  "步骤": [
+    "图片节点 2 个：[\"i-9nlG6HdjK2\",\"i-sODTbgLUm1\"]",
+    "非图片节点 9 个：[\"a-GgqvrVz0pw\",\"a-THmbuJXQj4\",\"b-mfkcQNULC3\",\"n-56F19pXVB4\",\"t-2AK3Ukyxj3\",\"t-UtVx3lZmrV\",\"v-eMpqKtiLlx\",\"v-oZNpH99MtM\",\"v-v2hlWY4Br3\"]",
+    "① 选中 2 个图片节点 → 实际选中 [\"i-9nlG6HdjK2\",\"i-sODTbgLUm1\"]",
+    "   「转分镜组」：{\"找到\":false}",
+    "② 选中 2 个非图片节点 → 实际选中 [\"a-GgqvrVz0pw\",\"n-56F19pXVB4\"]",
+    "   「转分镜组」：{\"找到\":false}",
+    "③ 选中 1 个图片节点 → 实际选中 [\"i-9nlG6HdjK2\"]",
+    "   「转分镜组」：{\"找到\":false}",
+    "⭐ 阳性对照：选中 2 个图片节点时，操作条上所有按钮的可用状态："
+  ]
+}

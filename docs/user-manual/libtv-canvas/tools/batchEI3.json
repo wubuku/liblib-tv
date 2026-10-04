@@ -1,0 +1,548 @@
+{
+  "读数": {
+    "框选后": [
+      "a-GgqvrVz0pw",
+      "a-THmbuJXQj4",
+      "i-9nlG6HdjK2",
+      "i-sODTbgLUm1",
+      "v-eMpqKtiLlx"
+    ],
+    "操作条文字": [],
+    "画布层按钮": [
+      {
+        "文字": "画布 2",
+        "disabled": false,
+        "box": [
+          165,
+          8,
+          69,
+          32
+        ],
+        "cls": "group/canvas-chip hover:bg-canvas-controls-hover d"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          244,
+          8,
+          32,
+          32
+        ],
+        "cls": "flex size-8 items-center justify-center rounded-lg"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          276,
+          8,
+          32,
+          32
+        ],
+        "cls": "flex size-8 items-center justify-center rounded-lg"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          1087,
+          8,
+          32,
+          32
+        ],
+        "cls": "border-(--topnav-btn-border) relative flex items-c"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          1127,
+          8,
+          32,
+          32
+        ],
+        "cls": "border-border-neutral-l1 text-nt-text-default flex"
+      },
+      {
+        "文字": "20",
+        "disabled": false,
+        "box": [
+          1334,
+          8,
+          58,
+          32
+        ],
+        "cls": "border-border-neutral-l1 text-nt-text-default flex"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          580,
+          757,
+          32,
+          32
+        ],
+        "cls": "relative flex items-center justify-center rounded-"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          620,
+          757,
+          32,
+          32
+        ],
+        "cls": "relative flex items-center justify-center rounded-"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          660,
+          757,
+          32,
+          32
+        ],
+        "cls": "relative flex items-center justify-center rounded-"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          700,
+          757,
+          32,
+          32
+        ],
+        "cls": "relative flex items-center justify-center rounded-"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          740,
+          757,
+          32,
+          32
+        ],
+        "cls": "relative flex items-center justify-center rounded-"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          789,
+          757,
+          32,
+          32
+        ],
+        "cls": "relative flex items-center justify-center rounded-"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          829,
+          757,
+          32,
+          32
+        ],
+        "cls": "relative flex items-center justify-center rounded-"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          290,
+          91,
+          30,
+          32
+        ],
+        "cls": "text-canvas-controls-text hover:bg-canvas-controls"
+      },
+      {
+        "文字": "保存到资产",
+        "disabled": false,
+        "box": [
+          341,
+          91,
+          103,
+          32
+        ],
+        "cls": "text-canvas-controls-text hover:bg-canvas-controls"
+      },
+      {
+        "文字": "创建副本",
+        "disabled": false,
+        "box": [
+          452,
+          91,
+          88,
+          32
+        ],
+        "cls": "text-canvas-controls-text hover:bg-canvas-controls"
+      },
+      {
+        "文字": "打组",
+        "disabled": false,
+        "box": [
+          561,
+          91,
+          82,
+          32
+        ],
+        "cls": "text-canvas-controls-text hover:bg-canvas-controls"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          651,
+          91,
+          32,
+          32
+        ],
+        "cls": "text-canvas-controls-text flex h-8 w-8 shrink-0 it"
+      },
+      {
+        "文字": "添加到Chat",
+        "disabled": false,
+        "box": [
+          704,
+          91,
+          104,
+          32
+        ],
+        "cls": "text-canvas-controls-text hover:bg-canvas-controls"
+      },
+      {
+        "文字": "创建为Skill",
+        "disabled": false,
+        "box": [
+          815,
+          91,
+          100,
+          32
+        ],
+        "cls": "text-canvas-controls-text hover:bg-canvas-controls"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          1148,
+          326,
+          80,
+          80
+        ],
+        "cls": "nodrag nopan flex items-center justify-center"
+      },
+      {
+        "文字": "资产管理",
+        "disabled": false,
+        "box": [
+          14,
+          764,
+          94,
+          28
+        ],
+        "cls": "hover:bg-canvas-controls-hover relative flex items"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          112,
+          764,
+          28,
+          28
+        ],
+        "cls": "flex items-center justify-center rounded-lg transi"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          144,
+          764,
+          28,
+          28
+        ],
+        "cls": "flex items-center justify-center rounded-lg transi"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          176,
+          764,
+          28,
+          28
+        ],
+        "cls": "hover:bg-canvas-controls-hover flex items-center j"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          208,
+          764,
+          28,
+          28
+        ],
+        "cls": "hover:bg-canvas-controls-hover flex items-center j"
+      },
+      {
+        "文字": "47%",
+        "disabled": false,
+        "box": [
+          240,
+          764,
+          36,
+          28
+        ],
+        "cls": "hover:bg-canvas-controls-hover flex items-center j"
+      },
+      {
+        "文字": "",
+        "disabled": true,
+        "box": [
+          1199,
+          165,
+          28,
+          28
+        ],
+        "cls": "flex size-7 shrink-0 items-center justify-center r"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          1229,
+          165,
+          28,
+          28
+        ],
+        "cls": "flex size-7 shrink-0 items-center justify-center r"
+      },
+      {
+        "文字": "",
+        "disabled": true,
+        "box": [
+          1259,
+          165,
+          28,
+          28
+        ],
+        "cls": "flex size-7 shrink-0 items-center justify-center r"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          1289,
+          165,
+          28,
+          28
+        ],
+        "cls": "hover:bg-canvas-controls-hover flex size-7 shrink-"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          1319,
+          165,
+          28,
+          28
+        ],
+        "cls": "installed-app-hidden flex size-7 shrink-0 cursor-p"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          1349,
+          165,
+          28,
+          28
+        ],
+        "cls": "flex size-7 shrink-0 cursor-pointer items-center j"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          1379,
+          165,
+          28,
+          28
+        ],
+        "cls": "flex size-7 shrink-0 cursor-pointer items-center j"
+      },
+      {
+        "文字": "感知画布开始创作",
+        "disabled": false,
+        "box": [
+          1041,
+          443,
+          366,
+          39
+        ],
+        "cls": "flex h-[39px] w-full items-center gap-2.5 rounded-"
+      },
+      {
+        "文字": "从爆款预设开始剧本原创",
+        "disabled": false,
+        "box": [
+          1041,
+          482,
+          366,
+          39
+        ],
+        "cls": "flex h-[39px] w-full items-center gap-2.5 rounded-"
+      },
+      {
+        "文字": "上传故事来改编",
+        "disabled": false,
+        "box": [
+          1041,
+          521,
+          366,
+          39
+        ],
+        "cls": "flex h-[39px] w-full items-center gap-2.5 rounded-"
+      },
+      {
+        "文字": "批量优化提示词",
+        "disabled": false,
+        "box": [
+          1041,
+          560,
+          366,
+          39
+        ],
+        "cls": "flex h-[39px] w-full items-center gap-2.5 rounded-"
+      },
+      {
+        "文字": "开启",
+        "disabled": false,
+        "box": [
+          1269,
+          622,
+          26,
+          18
+        ],
+        "cls": "h-[18px] shrink-0 whitespace-nowrap border-0 bg-tr"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          1383,
+          619,
+          24,
+          24
+        ],
+        "cls": "box-border flex size-6 shrink-0 items-center justi"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          1042,
+          740,
+          32,
+          32
+        ],
+        "cls": "text-fg-muted hover:bg-bg-surface-secondary hover:"
+      },
+      {
+        "文字": "全能创作",
+        "disabled": false,
+        "box": [
+          1077,
+          740,
+          81,
+          32
+        ],
+        "cls": "relative flex h-8 min-w-0 items-center gap-px pl-2"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          1161,
+          740,
+          32,
+          32
+        ],
+        "cls": "text-fg-muted hover:bg-bg-surface-secondary hover:"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          1196,
+          740,
+          32,
+          32
+        ],
+        "cls": "text-fg-muted hover:bg-bg-surface-secondary hover:"
+      },
+      {
+        "文字": "",
+        "disabled": false,
+        "box": [
+          1231,
+          740,
+          32,
+          32
+        ],
+        "cls": "text-fg-muted hover:bg-bg-surface-secondary hover:"
+      },
+      {
+        "文字": "",
+        "disabled": true,
+        "box": [
+          1374,
+          740,
+          32,
+          32
+        ],
+        "cls": "copilotKitInputControlButton copilotKitInputSendBu"
+      },
+      {
+        "文字": "取消ESC",
+        "disabled": false,
+        "box": [
+          730,
+          9,
+          64,
+          16
+        ],
+        "cls": "peer rounded-full bg-white px-2 py-0.5 text-xs fon"
+      },
+      {
+        "文字": "知道了",
+        "disabled": false,
+        "box": [
+          928,
+          709,
+          67,
+          32
+        ],
+        "cls": "bg-(--canvas-primary-btn-bg) hover:bg-(--canvas-pr"
+      }
+    ]
+  },
+  "步骤": [
+    "两个图片节点位置：{\"i-9nlG6HdjK2\":[82,317,292,164],\"i-sODTbgLUm1\":[831,317,292,164]}",
+    "框选后选中的节点：[\"a-GgqvrVz0pw\",\"a-THmbuJXQj4\",\"i-9nlG6HdjK2\",\"i-sODTbgLUm1\",\"v-eMpqKtiLlx\"]",
+    "命中组操作条文字 0 个：[]",
+    "画布层（非节点内）按钮 48 个"
+  ]
+}

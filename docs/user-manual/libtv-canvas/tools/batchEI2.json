@@ -1,0 +1,39 @@
+{
+  "读数": {
+    "选中": [
+      "i-9nlG6HdjK2",
+      "i-sODTbgLUm1"
+    ],
+    "找字": [
+      {
+        "文本": "self.__next_f.push([",
+        "tag": "SCRIPT",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "可见": false
+      }
+    ],
+    "已加载script": {
+      "script数": 160,
+      "名单": [
+        "sdk-body-3d72af0d.js",
+        "bat.js",
+        "bat.js",
+        "sdk.js",
+        "fcagl.js?production=_f7L2XwGXjyszb4d1e2o",
+        "gtm.js?id=GTM-WJDS6WDB",
+        "3w-d5w3egn0ba.js",
+        "3atp0fc7l4xdr.js",
+        "3udfknxvu37t2.js",
+        "turbopack-2n-e9cpmm2j4v.js",
+        "0pol0gejzfpxi.js",
+        "3tjsbeivm3r_s.js"
+      ]
+    },
+    "工具条容器": []
+  }
+}

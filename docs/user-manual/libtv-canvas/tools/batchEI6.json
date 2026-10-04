@@ -1,0 +1,166 @@
+{
+  "读数": {
+    "遮挡残留": {
+      "升级卡": false,
+      "通知条": false,
+      "抽屉": false
+    },
+    "选中": [
+      "a-GgqvrVz0pw",
+      "a-THmbuJXQj4",
+      "i-9nlG6HdjK2",
+      "i-sODTbgLUm1",
+      "v-eMpqKtiLlx"
+    ],
+    "工具条按钮": [
+      {
+        "文字": "",
+        "aria": "",
+        "title": "",
+        "box": [
+          290,
+          91,
+          30,
+          32
+        ],
+        "子元素数": 1,
+        "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer"
+      },
+      {
+        "文字": "保存到资产",
+        "aria": "",
+        "title": "",
+        "box": [
+          341,
+          91,
+          103,
+          32
+        ],
+        "子元素数": 2,
+        "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer"
+      },
+      {
+        "文字": "创建副本",
+        "aria": "",
+        "title": "",
+        "box": [
+          452,
+          91,
+          88,
+          32
+        ],
+        "子元素数": 2,
+        "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer"
+      },
+      {
+        "文字": "打组",
+        "aria": "打组菜单",
+        "title": "",
+        "box": [
+          561,
+          91,
+          82,
+          32
+        ],
+        "子元素数": 4,
+        "html": "<span class=\"pointer-events-none absolute right-1 top-1 block size-1 shrink-0 rounded-full\" aria-hidden=\"true\" style=\"background-color: rgb(93, 220, 2"
+      },
+      {
+        "文字": "",
+        "aria": "批量下载",
+        "title": "",
+        "box": [
+          651,
+          91,
+          32,
+          32
+        ],
+        "子元素数": 1,
+        "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer"
+      },
+      {
+        "文字": "添加到Chat",
+        "aria": "",
+        "title": "",
+        "box": [
+          704,
+          91,
+          104,
+          32
+        ],
+        "子元素数": 2,
+        "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer"
+      },
+      {
+        "文字": "创建为Skill",
+        "aria": "",
+        "title": "",
+        "box": [
+          815,
+          91,
+          100,
+          32
+        ],
+        "子元素数": 2,
+        "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer"
+      }
+    ],
+    "打组菜单": {
+      "浮层class": "z-(--z-sticky) absolute left-0 top-full mt-2 flex min-w-[148px] flex-col gap-1",
+      "项": [
+        {
+          "文本": "打组",
+          "box": [
+            566,
+            136,
+            138,
+            32
+          ],
+          "disabled属性": false,
+          "ariaDisabled": null,
+          "dataDisabled": null,
+          "cursor": "pointer",
+          "按钮opacity": "1",
+          "文字色": "rgb(255, 255, 255)",
+          "文字opacity": "1",
+          "class": "text-canvas-controls-text hover:bg-canvas-controls-hover flex h-8 items-center gap-2 rounded-md px-2 text-[13px]",
+          "子元素数": 2
+        },
+        {
+          "文本": "合并分镜组",
+          "box": [
+            566,
+            176,
+            138,
+            32
+          ],
+          "disabled属性": false,
+          "ariaDisabled": null,
+          "dataDisabled": null,
+          "cursor": "not-allowed",
+          "按钮opacity": "0.45",
+          "文字色": "rgb(255, 255, 255)",
+          "文字opacity": "1",
+          "class": "text-canvas-controls-text flex h-8 w-full min-w-0 items-center gap-2 rounded-md px-2 text-[13px] cursor-not-allowed opac",
+          "子元素数": 3
+        }
+      ]
+    }
+  },
+  "步骤": [
+    "① 升级卡：已点「知道了」",
+    "② 升级卡二次：没找到「知道了」",
+    "③ 通知条：已点通知条 × box=[1383,619,24,24]",
+    "④ 右抽屉：已点最右小钮（aria=关闭）box=[1379,165,28,28]",
+    "残留复查：{\"升级卡\":false,\"通知条\":false,\"抽屉\":false}",
+    "框选后：[\"a-GgqvrVz0pw\",\"a-THmbuJXQj4\",\"i-9nlG6HdjK2\",\"i-sODTbgLUm1\",\"v-eMpqKtiLlx\"]",
+    "工具条 7 个：[[\"(无名)\",290,91,30,32,\"子1\"],[\"保存到资产\",341,91,103,32,\"子2\"],[\"创建副本\",452,91,88,32,\"子2\"],[\"打组\",561,91,82,32,\"子4\"],[\"批量下载\",651,91,32,32,\"子1\"],[\"添加到Chat\",704,91,104,32,\"子2\"],[\"创建为Skill\",815,91,100,32,\"子2\"]]",
+    "✅ 已拍干净全图",
+    "✅ 已拍工具条裁图 clip=[250,60,700,300]",
+    "⭐ 浮层 class：z-(--z-sticky) absolute left-0 top-full mt-2 flex min-w-[148px] flex-col gap-1",
+    "　项「打组」 disabled=false aria-dis=null data-dis=null cursor=pointer 按钮opacity=1 文字色=rgb(255, 255, 255) 文字opacity=1 子2",
+    "　项「合并分镜组」 disabled=false aria-dis=null data-dis=null cursor=not-allowed 按钮opacity=0.45 文字色=rgb(255, 255, 255) 文字opacity=1 子3",
+    "✅ 已拍打组下拉（干净 + 裁图）"
+  ],
+  "错误": "page.evaluate: ReferenceError: cx is not defined\n    at eval (eval at evaluate (:302:30), <anonymous>:4:56)\n    at Array.filter (<anonymous>)\n    at eval (eval at evaluate (:302:30), <anonymous>:4:8)\n    at UtilityScript.evaluate (<anonymous>:304:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at 快照 (/Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/user-manual/libtv-canvas/tools/batchEI6.mjs:188:27)\n    at /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/user-manual/libtv-canvas/tools/batchEI6.mjs:194:21"
+}

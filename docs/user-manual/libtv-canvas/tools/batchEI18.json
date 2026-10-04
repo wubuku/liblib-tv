@@ -1,0 +1,364 @@
+{
+  "读数": {
+    "第一次": {
+      "全部": [
+        {
+          "id": "a-GgqvrVz0pw",
+          "类型": "audio",
+          "class": "react-flow__node react-flow__node-audio nopan  draggable",
+          "canvas": [
+            719.388,
+            1509.13
+          ],
+          "box": [
+            1214,
+            599,
+            161,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "a-THmbuJXQj4",
+          "类型": "audio",
+          "class": "react-flow__node react-flow__node-audio nopan  draggable",
+          "canvas": [
+            963.997,
+            1012.1
+          ],
+          "box": [
+            1327,
+            371,
+            161,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "b-mfkcQNULC3",
+          "类型": "shot",
+          "class": "react-flow__node react-flow__node-shot-breakdown nopan  draggable",
+          "canvas": [
+            636,
+            300
+          ],
+          "box": [
+            1176,
+            44,
+            147,
+            178
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "i-9nlG6HdjK2",
+          "类型": "image",
+          "class": "react-flow__node react-flow__node-image nopan  draggable",
+          "canvas": [
+            555.997,
+            1312.1
+          ],
+          "box": [
+            1140,
+            508,
+            285,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "n-56F19pXVB4",
+          "类型": "director",
+          "class": "react-flow__node react-flow__node-director-console-3d nopan  draggable",
+          "canvas": [
+            -1225.03,
+            370.975
+          ],
+          "box": [
+            323,
+            77,
+            161,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "t-2AK3Ukyxj3",
+          "类型": "text",
+          "class": "react-flow__node react-flow__node-text nopan  draggable",
+          "canvas": [
+            -1476,
+            1524
+          ],
+          "box": [
+            208,
+            605,
+            161,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "t-UtVx3lZmrV",
+          "类型": "text",
+          "class": "react-flow__node react-flow__node-text nopan  draggable",
+          "canvas": [
+            600,
+            900
+          ],
+          "box": [
+            1160,
+            319,
+            161,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "v-eMpqKtiLlx",
+          "类型": "video",
+          "class": "react-flow__node react-flow__node-video nopan  draggable",
+          "canvas": [
+            532.997,
+            1312.1
+          ],
+          "box": [
+            1129,
+            508,
+            285,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "v-oZNpH99MtM",
+          "类型": "video",
+          "class": "react-flow__node react-flow__node-video-clip nopan  draggable",
+          "canvas": [
+            132,
+            300
+          ],
+          "box": [
+            945,
+            44,
+            161,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "v-v2hlWY4Br3",
+          "类型": "video",
+          "class": "react-flow__node react-flow__node-video nopan  draggable",
+          "canvas": [
+            -696,
+            300
+          ],
+          "box": [
+            565,
+            44,
+            285,
+            161
+          ],
+          "父": "react-flow__nodes"
+        }
+      ],
+      "缺": [
+        "i-sODTbgLUm1"
+      ]
+    },
+    "第二次": {
+      "全部": [
+        {
+          "id": "a-GgqvrVz0pw",
+          "类型": "audio",
+          "class": "react-flow__node react-flow__node-audio nopan  draggable",
+          "canvas": [
+            719.388,
+            1509.13
+          ],
+          "box": [
+            1214,
+            599,
+            161,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "a-THmbuJXQj4",
+          "类型": "audio",
+          "class": "react-flow__node react-flow__node-audio nopan  draggable",
+          "canvas": [
+            963.997,
+            1012.1
+          ],
+          "box": [
+            1327,
+            371,
+            161,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "b-mfkcQNULC3",
+          "类型": "shot",
+          "class": "react-flow__node react-flow__node-shot-breakdown nopan  draggable",
+          "canvas": [
+            636,
+            300
+          ],
+          "box": [
+            1176,
+            44,
+            147,
+            178
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "i-9nlG6HdjK2",
+          "类型": "image",
+          "class": "react-flow__node react-flow__node-image nopan  draggable",
+          "canvas": [
+            555.997,
+            1312.1
+          ],
+          "box": [
+            1140,
+            508,
+            285,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "n-56F19pXVB4",
+          "类型": "director",
+          "class": "react-flow__node react-flow__node-director-console-3d nopan  draggable",
+          "canvas": [
+            -1225.03,
+            370.975
+          ],
+          "box": [
+            323,
+            77,
+            161,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "t-2AK3Ukyxj3",
+          "类型": "text",
+          "class": "react-flow__node react-flow__node-text nopan  draggable",
+          "canvas": [
+            -1476,
+            1524
+          ],
+          "box": [
+            208,
+            605,
+            161,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "t-UtVx3lZmrV",
+          "类型": "text",
+          "class": "react-flow__node react-flow__node-text nopan  draggable",
+          "canvas": [
+            600,
+            900
+          ],
+          "box": [
+            1160,
+            319,
+            161,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "v-eMpqKtiLlx",
+          "类型": "video",
+          "class": "react-flow__node react-flow__node-video nopan  draggable",
+          "canvas": [
+            532.997,
+            1312.1
+          ],
+          "box": [
+            1129,
+            508,
+            285,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "v-oZNpH99MtM",
+          "类型": "video",
+          "class": "react-flow__node react-flow__node-video-clip nopan  draggable",
+          "canvas": [
+            132,
+            300
+          ],
+          "box": [
+            945,
+            44,
+            161,
+            161
+          ],
+          "父": "react-flow__nodes"
+        },
+        {
+          "id": "v-v2hlWY4Br3",
+          "类型": "video",
+          "class": "react-flow__node react-flow__node-video nopan  draggable",
+          "canvas": [
+            -696,
+            300
+          ],
+          "box": [
+            565,
+            44,
+            285,
+            161
+          ],
+          "父": "react-flow__nodes"
+        }
+      ],
+      "缺": [
+        "i-sODTbgLUm1"
+      ]
+    }
+  },
+  "步骤": [
+    "第一次读数：共 10 个节点",
+    "　a-GgqvrVz0pw     audio     canvas=[719.388,1509.13] box=[1214,599,161,161] 与标准差=[0,0] 父=react-flow__nodes",
+    "　a-THmbuJXQj4     audio     canvas=[963.997,1012.1] box=[1327,371,161,161] 与标准差=[2320,412.1] 父=react-flow__nodes",
+    "　b-mfkcQNULC3     shot      canvas=[636,300] box=[1176,44,147,178] 与标准差=[0,0] 父=react-flow__nodes",
+    "　i-9nlG6HdjK2     image     canvas=[555.997,1312.1] box=[1140,508,285,161] 与标准差=[2320,412.1] 父=react-flow__nodes",
+    "　n-56F19pXVB4     director  canvas=[-1225.03,370.975] box=[323,77,161,161] 与标准差=[0,0] 父=react-flow__nodes",
+    "　t-2AK3Ukyxj3     text      canvas=[-1476,1524] box=[208,605,161,161] 与标准差=[0,0] 父=react-flow__nodes",
+    "　t-UtVx3lZmrV     text      canvas=[600,900] box=[1160,319,161,161] 与标准差=[0,0] 父=react-flow__nodes",
+    "　v-eMpqKtiLlx     video     canvas=[532.997,1312.1] box=[1129,508,285,161] 与标准差=[2320,412.1] 父=react-flow__nodes",
+    "　v-oZNpH99MtM     video     canvas=[132,300] box=[945,44,161,161] 与标准差=[0,0] 父=react-flow__nodes",
+    "　v-v2hlWY4Br3     video     canvas=[-696,300] box=[565,44,285,161] 与标准差=[0,0] 父=react-flow__nodes",
+    "　缺失的基线节点：[\"i-sODTbgLUm1\"]",
+    "6 秒后复读：共 10 个节点",
+    "　a-GgqvrVz0pw     audio     canvas=[719.388,1509.13] box=[1214,599,161,161] 与标准差=[0,0] 父=react-flow__nodes",
+    "　a-THmbuJXQj4     audio     canvas=[963.997,1012.1] box=[1327,371,161,161] 与标准差=[2320,412.1] 父=react-flow__nodes",
+    "　b-mfkcQNULC3     shot      canvas=[636,300] box=[1176,44,147,178] 与标准差=[0,0] 父=react-flow__nodes",
+    "　i-9nlG6HdjK2     image     canvas=[555.997,1312.1] box=[1140,508,285,161] 与标准差=[2320,412.1] 父=react-flow__nodes",
+    "　n-56F19pXVB4     director  canvas=[-1225.03,370.975] box=[323,77,161,161] 与标准差=[0,0] 父=react-flow__nodes",
+    "　t-2AK3Ukyxj3     text      canvas=[-1476,1524] box=[208,605,161,161] 与标准差=[0,0] 父=react-flow__nodes",
+    "　t-UtVx3lZmrV     text      canvas=[600,900] box=[1160,319,161,161] 与标准差=[0,0] 父=react-flow__nodes",
+    "　v-eMpqKtiLlx     video     canvas=[532.997,1312.1] box=[1129,508,285,161] 与标准差=[2320,412.1] 父=react-flow__nodes",
+    "　v-oZNpH99MtM     video     canvas=[132,300] box=[945,44,161,161] 与标准差=[0,0] 父=react-flow__nodes",
+    "　v-v2hlWY4Br3     video     canvas=[-696,300] box=[565,44,285,161] 与标准差=[0,0] 父=react-flow__nodes",
+    "　缺失的基线节点：[\"i-sODTbgLUm1\"]"
+  ]
+}

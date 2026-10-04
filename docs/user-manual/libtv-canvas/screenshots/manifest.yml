@@ -2458,3 +2458,36 @@ screenshots:
     visible_text: 资产管理 47%
     alt: 左下角工具条同一位置的两态并排：左边（关）是磁铁图标，右边（开）在磁铁上叠了一条斜杠。⭐ DOM 读数自证：关态按钮里有 1 个 svg（class iconify--lucide），开态有 2 个（多的那个 class 是 absolute inset-0），点回又恢复 1 个。⭐⭐ 这推翻了旧结论「点了没有任何可观察变化」—— 旧判据只量了 aria-label / backgroundColor 这类外部属性，没量按钮内部结构
     sha256: b39ca016b7d484cd7d71e3bb86af5cf31e9b766b7e3db0673054c3e52bc430e9
+  - file: screenshots/M-357-多选工具条.png
+    task_id: create-nodes
+    step: 12
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 在空白处拖出框选矩形圈住 5 个节点（不用点选！点选出来的多选不挂载这条工具条）
+    visible_text: 保存到资产 创建副本 打组 添加到Chat 创建为Skill
+    alt: 一条毛玻璃工具条横在选区正上方，从左到右七项：① 一枚只有图标、没有文字也没有 aria-label 的排列按钮 ②「保存到资产」③「创建副本」④「打组」（带下拉箭头，右上角有一枚 4×4 的天蓝小圆点 rgb(93,220,255)）⑤ 一枚只有图标的下载按钮 ⑥「添加到Chat」⑦「创建为Skill」。⭐ 读数：工具条容器 [281,82,643,50]，水平居中于选区（偏差 0.5px）、底边比选区顶边高 45px —— 它跟着选区包围盒走，不是钉在固定高度
+    sha256: 22c8444dfd96aacca2ae210043cb564abdeb8087ec849e360f78d7ec73ce571f
+  - file: screenshots/M-358-打组下拉.png
+    task_id: create-nodes
+    step: 13
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点开「打组」按钮（只读菜单，不点任何一项，读完按 ESC）
+    visible_text: 打组 合并分镜组
+    alt: 「打组」下拉展开成两项：上面「打组」是白字、光标 pointer；下面「合并分镜组」明显发灰、光标 not-allowed，右端各带一枚小圆点。⭐⭐ 灰的那项 disabled=false、aria-disabled=null、data-disabled=null、文字色与可用的那项完全相同，只有 opacity 0.45 和 cursor not-allowed 两个非标准信号 —— 只查 disabled 属性会把它误读成可用
+    sha256: 3cf6e4a489ea96ee4ea7ea768bc74ad7318c507892078f8de70859f1f2518729
+  - file: screenshots/M-359-批量下载的气泡.png
+    task_id: create-nodes
+    step: 14
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 把鼠标悬停在多选工具条上那枚只有图标的下载按钮上（移动前先移开再悬停，用差分确认新出现的浮层）
+    visible_text: 当前选区无可下载的资源 创建副本 打组 添加到Chat
+    alt: 鼠标悬停在工具条上那枚无文字的下载按钮上，按钮正上方浮出一枚黑色圆角气泡，白字写着「当前选区无可下载的资源」。⭐ 读数 [592,59,150,27]，class 含 mantine-Tooltip-tooltip。⭐ 这句话直接说明它为什么点不动：判据是「选区里有没有已生成的产物」，本手册基线上的节点都还没跑生成，所以它是灰的
+    sha256: 140be9bebd005677be60739569423146ee8d706beb73ed14e0adba99b914caa6

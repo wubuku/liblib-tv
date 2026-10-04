@@ -1,0 +1,307 @@
+{
+  "读数": {
+    "节点": {
+      "a-GgqvrVz0pw": {
+        "类型": "audio",
+        "box": [
+          718,
+          407,
+          164,
+          164
+        ]
+      },
+      "a-THmbuJXQj4": {
+        "类型": "audio",
+        "box": [
+          274,
+          177,
+          164,
+          164
+        ]
+      },
+      "b-mfkcQNULC3": {
+        "类型": "shot",
+        "box": [
+          1208,
+          36,
+          150,
+          182
+        ]
+      },
+      "i-9nlG6HdjK2": {
+        "类型": "image",
+        "box": [
+          82,
+          317,
+          292,
+          164
+        ]
+      },
+      "i-sODTbgLUm1": {
+        "类型": "image",
+        "box": [
+          831,
+          317,
+          292,
+          164
+        ]
+      },
+      "n-56F19pXVB4": {
+        "类型": "director",
+        "box": [
+          335,
+          69,
+          164,
+          164
+        ]
+      },
+      "t-2AK3Ukyxj3": {
+        "类型": "text",
+        "box": [
+          217,
+          610,
+          164,
+          164
+        ]
+      },
+      "t-UtVx3lZmrV": {
+        "类型": "text",
+        "box": [
+          1191,
+          317,
+          164,
+          164
+        ]
+      },
+      "v-eMpqKtiLlx": {
+        "类型": "video",
+        "box": [
+          471,
+          317,
+          292,
+          164
+        ]
+      },
+      "v-oZNpH99MtM": {
+        "类型": "video",
+        "box": [
+          971,
+          36,
+          164,
+          164
+        ]
+      },
+      "v-v2hlWY4Br3": {
+        "类型": "video",
+        "box": [
+          583,
+          36,
+          292,
+          164
+        ]
+      }
+    },
+    "A": {
+      "名": "【A 点选 + Shift 加选两个图片】",
+      "工具条": {
+        "找到": false
+      },
+      "选区": {
+        "选中": [
+          "i-9nlG6HdjK2",
+          "i-sODTbgLUm1"
+        ],
+        "包围盒": [
+          82,
+          317,
+          1040,
+          164
+        ],
+        "中心x": 602,
+        "顶边y": 317
+      }
+    },
+    "B": {
+      "名": "【B 框选（尽量只框两个图片）】",
+      "工具条": {
+        "找到": true,
+        "box": [
+          281,
+          82,
+          643,
+          50
+        ],
+        "class": "nodrag z-(--z-sticky) absolute flex w-max max-w-none flex-nowrap items-center whitespace-nowrap",
+        "style": "padding: 8px; gap: 8px; border-radius: 12px; border: 0.5px solid var(--canvas-controls-border); background: var(--canvas-controls-bg); box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 10px 0px; backdrop-filter: blur(16px); left: 602.314px; top: 146.087px; transform: translate(-50%, -100%) translateY(-14px);",
+        "按钮": [
+          {
+            "文字": "(无名)",
+            "aria": "",
+            "box": [
+              290,
+              91,
+              30,
+              32
+            ]
+          },
+          {
+            "文字": "保存到资产",
+            "aria": "",
+            "box": [
+              341,
+              91,
+              103,
+              32
+            ]
+          },
+          {
+            "文字": "创建副本",
+            "aria": "",
+            "box": [
+              452,
+              91,
+              88,
+              32
+            ]
+          },
+          {
+            "文字": "打组",
+            "aria": "打组菜单",
+            "box": [
+              561,
+              91,
+              82,
+              32
+            ]
+          },
+          {
+            "文字": "批量下载",
+            "aria": "批量下载",
+            "box": [
+              651,
+              91,
+              32,
+              32
+            ]
+          },
+          {
+            "文字": "添加到Chat",
+            "aria": "",
+            "box": [
+              704,
+              91,
+              104,
+              32
+            ]
+          },
+          {
+            "文字": "创建为Skill",
+            "aria": "",
+            "box": [
+              815,
+              91,
+              100,
+              32
+            ]
+          }
+        ]
+      },
+      "选区": {
+        "选中": [
+          "a-GgqvrVz0pw",
+          "a-THmbuJXQj4",
+          "i-9nlG6HdjK2",
+          "i-sODTbgLUm1",
+          "v-eMpqKtiLlx"
+        ],
+        "包围盒": [
+          82,
+          177,
+          1040,
+          395
+        ],
+        "中心x": 602,
+        "顶边y": 177
+      }
+    },
+    "真值表_全图片": {
+      "选区": {
+        "选中": [
+          "a-GgqvrVz0pw",
+          "a-THmbuJXQj4",
+          "i-9nlG6HdjK2",
+          "i-sODTbgLUm1",
+          "v-eMpqKtiLlx"
+        ],
+        "包围盒": [
+          82,
+          177,
+          1040,
+          395
+        ],
+        "中心x": 602,
+        "顶边y": 177
+      },
+      "下拉": [
+        {
+          "文本": "打组",
+          "opacity": "1",
+          "cursor": "pointer",
+          "disabled": false
+        },
+        {
+          "文本": "合并分镜组",
+          "opacity": "0.45",
+          "cursor": "not-allowed",
+          "disabled": false
+        }
+      ]
+    },
+    "蓝点_开前": {
+      "aria": "打组菜单",
+      "蓝点": [
+        {
+          "尺寸": [
+            4,
+            4
+          ],
+          "背景": "rgb(93, 220, 255)"
+        }
+      ],
+      "localStorage键": [
+        "libtv_login_guide_popup",
+        "guide_pop_viewed_key"
+      ]
+    },
+    "蓝点_开后": {
+      "蓝点": [
+        {
+          "尺寸": [
+            4,
+            4
+          ],
+          "背景": "rgb(93, 220, 255)"
+        }
+      ],
+      "localStorage键": [
+        "libtv_login_guide_popup",
+        "guide_pop_viewed_key"
+      ],
+      "值": {
+        "libtv_login_guide_popup": "{\"lastDate\":\"2026-09-24\"}",
+        "guide_pop_viewed_key": "{\"319\":1}"
+      }
+    }
+  },
+  "步骤": [
+    "【A 点选 + Shift 加选两个图片】：工具条 没有，选区 2 个",
+    "【B 框选（尽量只框两个图片）】：选区包围盒 [82,177,1040,395]（顶边 y=177，中心 x=602，5 个）",
+    "　　工具条 box=[281,82,643,50]；横向差=0.5px，纵向差（选区顶边 − 工具条底边）=45px",
+    "　　style=padding: 8px; gap: 8px; border-radius: 12px; border: 0.5px solid var(--canvas-controls-border); background: var(--canvas-controls-bg); box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 10px 0px; backdrop-filter: blur(16px); left: 602.314px; top: 146.087px; transform: translate(-50%, -100%) translateY(-14px);",
+    "　　按钮：[\"(无名)\",\"保存到资产\",\"创建副本\",\"打组\",\"批量下载\",\"添加到Chat\",\"创建为Skill\"]",
+    "　　aria：[\"无\",\"无\",\"无\",\"打组菜单\",\"批量下载\",\"无\",\"无\"]",
+    "\n【真值表·全是图片】选区 [\"a-GgqvrVz0pw\",\"a-THmbuJXQj4\",\"i-9nlG6HdjK2\",\"i-sODTbgLUm1\",\"v-eMpqKtiLlx\"] → 下拉：[{\"文本\":\"打组\",\"opacity\":\"1\",\"cursor\":\"pointer\",\"disabled\":false},{\"文本\":\"合并分镜组\",\"opacity\":\"0.45\",\"cursor\":\"not-allowed\",\"disabled\":false}]",
+    "\n⭐ 开菜单前：「打组菜单」按钮蓝点=[{\"尺寸\":[4,4],\"背景\":\"rgb(93, 220, 255)\"}]；相关 localStorage 键=[\"libtv_login_guide_popup\",\"guide_pop_viewed_key\"]",
+    "⭐ 开过一次菜单并关掉后：蓝点=[{\"尺寸\":[4,4],\"背景\":\"rgb(93, 220, 255)\"}]；localStorage={\"libtv_login_guide_popup\":\"{\\\"lastDate\\\":\\\"2026-09-24\\\"}\",\"guide_pop_viewed_key\":\"{\\\"319\\\":1}\"}"
+  ]
+}
