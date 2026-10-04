@@ -6871,7 +6871,12 @@ def main() -> int:
           and "差的不是**环长**（53 vs 102 只差 ~2 倍），" in _ausrc
           and "是**节点数**（复刻 7 个 vs 源站 ~77 个）" in _ausrc
           and "**那条直觉该改写成「节点规模差一个量级」**" in _ausrc
-          and "复刻出画布段 27 个停靠点比源站的 18 个多" in _ausrc
+          and "**复刻出画布段 27 个停靠点 vs 源站 18 个 —— 净多 9 个**" in _ausrc
+          # ⚠️⚠️ 钉住「第一版把差异归错了」这条**自我更正**（并排 diff 才发现）
+          and "**第一版我把差异归错了**" in _ausrc
+          and "源站那 18 个里全都有**" in _ausrc
+          and "**它们根本不是差异**" in _ausrc
+          and "左栏的差是 **8 个不是 9 个**" in _ausrc
           # ⭐ 钉探针：分段读数（节点段 / 出画布段）是**关系式**的
           and 'c["leg_node_inner"] = (_legs[0]["from_seq"] - 1) if _legs else None' in _p956
           and 'c["leg_out"] = ([_lg["len"] for _lg in _legs]' in _p956
