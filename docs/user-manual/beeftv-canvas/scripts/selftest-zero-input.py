@@ -53,13 +53,17 @@ import sys
 import tempfile
 import time
 
-from stagedeps import child_env, stage_all
+import emptytree                                             # noqa: E402
+from stagedeps import child_env                              # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REAL_ROOT = os.path.dirname(HERE)
 
-#: 「0 个 X」形态。**只认 0**，因为「N 个文件全部合格」是正常输出。
-ZERO_COUNT_RE = re.compile(r"(\d+)\s*个(?:文件|页面|张|项|条|篇|断言|任务|反验|目录)")
+#: **Batch 279 收敛**：这个正则收进 `emptytree.py` 了——
+#: 闸 37「判据重复」实测抓到它**逐字出现在闸 41 与本文件里**，
+#: 而**两处都工作正常，所以没有任何行为会报它**（纪律 274：
+#: **共享概念只能有一份实现**）。**只认 0**，因为「N 个文件全部合格」是正常输出。
+ZERO_COUNT_RE = emptytree.ZERO_COUNT_RE
 
 #: **闸必须只读**（Batch 196 方向三的前提，见 `check_readonly()`）。
 #: 方向一在临时树上跑，怎么写都无所谓；**方向三在真实手册树上跑**，
@@ -174,6 +178,22 @@ READONLY_EXEMPT = {
         'shutil.rmtree(tmp, ignore_errors=True)':
             "删掉那个临时目录（`finally` 里）",
     },
+    #: **Batch 279 补登的闸 41 一行**。**先核实再登记**（纪律 244）：
+    #: `verify-empty-tree.py:122` 是 `tmp = tempfile.mkdtemp(prefix="empty-tree-gate.")`，
+    #: `:129` 是 `finally: shutil.rmtree(tmp, ignore_errors=True)`——
+    #: **`tmp` 落在系统临时目录，不在手册树里**，而**本闸对整棵手册树只读**
+    #: （所有写入都发生在那个 `mkdtemp` 出来的目录里）。
+    #: **为什么它需要写权限**（与闸 39 同款，纪律 305）：
+    #: **这道闸的全部功能就是「建一棵空树、往里搬闸、逐道跑、删掉」**，
+    #: **不写文件做不到**。
+    #: **而它比闸 39 更便宜的原因之一正在这里**：闸 39 要在**真 scripts/ 旁边**建沙箱，
+    #: 于是 `selftest-zero-input.py` 的方向三需要一道「闸必须只读」的前提自检；
+    #: **本闸只碰临时树，那道前提对它不适用**。
+    "verify-empty-tree.py": {
+        'shutil.rmtree(tmp, ignore_errors=True)':
+            "删掉 `tempfile.mkdtemp(prefix=\"empty-tree-gate.\")` 出来的临时目录"
+            "（`finally` 里）——**不在手册树内**，本闸对真树只读",
+    },
 }
 
 
@@ -223,12 +243,11 @@ def check_readonly(gates):
     return dirty
 
 #: 这些闸的输入全部在手册树之外（读上游仓库或扫 scripts/），空树对它们没有意义，
-#: **不算「空转」**。列在这里是因为它们报的数不是「核了几项手册文件」。
-EXEMPT = {
-    "verify-selftest-deps.py",      # 核的是 scripts/ 里的反验，与手册文件无关
-    "verify-selftest-bootable.py",  # 同上
-    "verify-encoding.py",           # 白名单里的 .py 仍在树内，它确实核了东西
-}
+#: **Batch 279 删掉本文件里的 `EXEMPT` 别名**——它原本只被方向一/二用
+#: （`run_gates(..., skip=EXEMPT)`），而那一半搬成了闸 41。
+#: **留着它就是一份没人读的常量**，而**这个文件通篇在治的病之一
+#: 就是「账本上有一项、实际没人用」**。
+#: **判据本体在 `emptytree.py`**（闸 41 从那里读）。
 
 
 #: 兜底声明里的落点。**只认共用措辞的那一种形态**——Batch 202 之后
@@ -245,24 +264,6 @@ def read(p):
         return fh.read()
 
 
-def empty_tree(tmp):
-    """一棵空手册树：只有闸脚本与共用模块，**没有任何 .md / 截图 / 清单**。"""
-    os.makedirs(os.path.join(tmp, "scripts"), exist_ok=True)
-    os.makedirs(os.path.join(tmp, ".vitepress"), exist_ok=True)
-    # **Batch 253：这一段搬运用 `stagedeps.stage_all()` 取代。**
-    # 原来是一个 `for name in sorted(os.listdir(HERE))` 的循环搬运，
-    # **而闸 17 判不出循环搬了些什么**（Batch 190 在同一处修过三次
-    # 「判据认写法不认事实」），所以那下面还压着两条**显式**搬运当证据——
-    # **`stage_all()` 把「搬整目录」这件事变成一次可判定的调用，
-    # 那两条证据就自然不需要了，而搬运范围也从「三个写死的模块」变成「全部」。**
-    #
-    # `verify=False` 的理由写在这里而不是留在代码里：
-    # **本反验的常规操作就是故意把闸改坏**（塞 SyntaxError、改坏正则），
-    # **而那不是搬运失败**——真 import 一次会当场抛错，
-    # **于是「用例 3 注入语法错误」会在搬运阶段就崩，用例根本跑不到自己要验的那一步**
-    # （本模块第一版就踩了这一个：它把被测闸也放进 import 列表）。
-    stage_all(tmp, verify=False)
-    return tmp
 
 
 def run_gates(gates, script_dir, env, skip=()):
@@ -401,15 +402,6 @@ def report(label, crashed, found, scene):
         print()
 
 
-def direction_one(gates):
-    """**手册树为空**：一个 .md / 截图 / 清单都没有。"""
-    tmp = tempfile.mkdtemp(prefix="zero-input-")
-    try:
-        empty_tree(tmp)
-        env = child_env(tmp, PYTHONDONTWRITEBYTECODE='1', BEEFTV_SRC=os.environ.get('BEEFTV_SRC', ''))
-        return run_gates(gates, os.path.join(tmp, "scripts"), env, skip=EXEMPT)[:3]
-    finally:
-        shutil.rmtree(tmp, ignore_errors=True)
 
 
 def direction_three(gates):
@@ -506,12 +498,10 @@ def main():
         return 2
 
     t0 = time.time()
-    c1, f1, _ = direction_one(gates)
     c3, f3, silent, announced = direction_three(gates)
     wrong = check_announced(announced)
     cost = time.time() - t0
 
-    report("零输入体检（方向一/二）", c1, f1, "手册树为空")
     report("零输入体检（方向三）", c3, f3, "手册树正常、`BEEFTV_SRC` 指向非仓")
 
     if silent:
@@ -538,14 +528,20 @@ def main():
               "去核，**不向 `beefsrc` 要答案**（那等于让被核对象给自己打分）")
         print()
 
-    if f1 or c1 or f3 or c3 or silent or wrong:
+    if f3 or c3 or silent or wrong:
         return 1
-    print("零输入体检：%d 道闸在两个极端下各跑一遍 —— " % len(gates))
-    print("  · 方向一/二（手册树为空）：没有一道在零输入下报绿，"
-          "也没有一道把异常当成「核出不一致」；%d 道豁免，其输入不在手册树内"
-          % len(EXEMPT))
-    print("  · 方向三（手册树正常、`BEEFTV_SRC` 指向非仓）：没有一道报绿，"
-          "也没有一道把异常当成「核出不一致」")
+    #: **Batch 279 修掉一条「报出一件没做的事」**：方向一/二搬成闸 41 之后，
+    #: 汇总行原来还写着「%d 道闸在两个极端下各跑一遍」并报告方向一/二——
+    #: **而本文件已经不跑它了**。
+    #: **这是纪律 300 推论四那个形状的另一种写法**：
+    #: 「一句话都没说」会被判未能核对，**而「说了一件没做的事」连判据都没有**——
+    #: **它读起来像好消息，而它是假的**。
+    #: **所以下面必须只报本文件真跑过的那一个极端。**
+    print("零输入体检：%d 道闸在「手册树正常、`BEEFTV_SRC` 指向非仓」这一个极端下各跑一遍 —— "
+          % len(gates))
+    print("  · 方向三：没有一道报绿，也没有一道把异常当成「核出不一致」；"
+          "**方向一/二（空手册树）已搬成闸 41 `verify-empty-tree.py`，每次构建都跑**"
+          "（实测 5.4 秒）——**它不在本文件里，所以也不在本文件的耗时里**")
     print("  · 方向三之三：**碰过上游解析的闸，走了兜底都明说了**（纪律 172）")
     print("  · 方向三之四：**说了的落点跨 %d 道闸完全一致，且它自己就是一个可用的 git 检出**"
           % len(announced))

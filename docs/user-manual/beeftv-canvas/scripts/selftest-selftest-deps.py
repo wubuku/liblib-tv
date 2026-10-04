@@ -681,6 +681,63 @@ def m_open_write_with_deps_not_reported():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+def _comment_only_copy_fixture(tmp):
+    """造一份反验夹具：**它的注释与字符串键里写着 `shutil.copytree(...)`，
+    但源码里从来没有真的调用过 `shutil.copy*`。**
+
+    **这不是随手编的形态**——它是 `selftest-zero-input.py` 在 Batch 274 之后
+    真实长成的样子：`READONLY_EXEMPT` 里有一个字符串键
+    `'shutil.copytree(HERE, sdir)'`（**给闸 39 登记豁免时写的**），
+    外加一整段提到它的注释。**旧判据的全文正则把它们当成了搬闸。**
+    """
+    shutil.copytree(os.path.join(ROOT, "scripts"), os.path.join(tmp, "scripts"))
+    shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-selftest-deps.py"))
+    write(os.path.join(tmp, "scripts", "selftest-commentonly.py"),
+          '''#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""夹具：只在注释与字符串键里提到 shutil.copytree()，**从不真的调用**。
+
+`READONLY_EXEMPT = {`
+    \'shutil.copytree(HERE, sdir)\': "把真 scripts/ 复制到临时目录",
+`}`
+"""
+import sys
+
+# 旧判据会命中上面那个字符串键，也会命中下面这行注释：
+#   shutil.copytree(HERE, sdir)
+def main():
+    print("这个反验不搬闸")
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
+''')
+
+
+def m_comment_only_copy_not_a_mover():
+    """**不误伤**：只有注释与字符串键提到 `shutil.copytree(` 的反验
+    **不得**被算作搬闸——于是闸 17 不会去核它的依赖搬运。
+
+    **这一例是本批那个 5 条假红的直接对应物**：
+    旧判据下它被划进搬闸群体，而它没有搬任何依赖 → 闸报「没把本地模块复制进临时
+    scripts/」——**而那份反验压根不需要复制任何东西**（它在真树上跑闸）。
+    **旧判据下这一例是红的，新判据下是绿的**，而 17 必须照旧红。
+    """
+    check_anchor()
+    tmp = tempfile.mkdtemp(prefix="beef-deps-commentonly.")
+    try:
+        _comment_only_copy_fixture(tmp)
+        r = subprocess.run(
+            [sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
+            cwd=tmp, capture_output=True, text=True)
+        out = (r.stdout or "") + (r.stderr or "")
+        ok = (r.returncode == 0 and "selftest-commentonly.py" not in out)
+        record("23 只在注释/字符串里提到 shutil.copy → 不得算搬闸", ok,
+               f"rc={r.returncode}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def _sh_fixture(tmp, body):
     """造一份 `.sh` 反验夹具，`body` 是它除 shebang 外的全部内容。
 
@@ -792,6 +849,7 @@ def main():
              m_missing_env_reported, m_text_only_staging_not_reported,
              m_partial_pins_reported, m_all_pinned_not_reported,
              m_open_write_missing_dep_reported, m_open_write_with_deps_not_reported,
+             m_comment_only_copy_not_a_mover,
              _sh_form_case("S1 搬闸", False), _sh_form_case("S2 搬数据", False),
              _sh_form_case("S3 快照回滚", False), m_sh_no_form_reported]
     for t in tests:

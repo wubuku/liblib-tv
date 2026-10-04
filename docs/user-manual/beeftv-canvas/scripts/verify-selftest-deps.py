@@ -117,6 +117,46 @@ def writes_gate_into_tmp(text):
     return False
 
 
+def _called_names(text):
+    """这份源码里**真的被调用**的点分名（AST；语法坏掉时返回空集）。
+
+    **Batch 279 新增。** 它替代 `copies_gate_into_tmp()` 里那三条全文正则——
+    **而那三条会把注释与字符串字面量当成代码**。
+
+    **实测的缺陷**：`selftest-zero-input.py` 的 `READONLY_EXEMPT` 里有一个
+    **字符串键** `'shutil.copytree(HERE, sdir)'`（Batch 274 给闸 39 登记豁免时写的），
+    `re.search(r"shutil\.copy\w*\(", text)` **命中了它**——
+    于是一份**根本不搬闸**的反验被划进搬闸群体，
+    闸 17 转而去核它的依赖搬运，**报出 5 条假红**。
+    **而这个缺陷是先前就有的**，一直被 `stagedeps.stage_all()` 掩盖着；
+    **把那份反验的 `empty_tree()` 删掉才把它露出来**。
+
+    **为什么这一处值得单独写一个函数**：同一份文件里
+    `writes_gate_into_tmp()` 早就是 AST 的（Batch 265 写的），
+    `staged_gates()` / `independent_gate_names()` 也是——
+    **两种口径并存，差的就是这一处**，而**混着用的后果不是「慢一点」，
+    是「一份反验被划进错误的群体，而它自己完全不知道」**。
+
+    **语法坏掉时返回空集**（不回退到全文正则）：
+    理由与 `writes_gate_into_tmp()` 一致——**解析不了是「核不到」不是「核过了」**，
+    而那份文件的语法另有闸 18 方向一负责。
+    """
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return set()
+    names = set()
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        f = node.func
+        if isinstance(f, ast.Name):
+            names.add(f.id)
+        elif isinstance(f, ast.Attribute):
+            names.add(ast.unparse(f))
+    return names
+
+
 def copies_gate_into_tmp(text):
     """这份反验是否会把闸门脚本复制进临时目录。
 
@@ -139,15 +179,17 @@ def copies_gate_into_tmp(text):
     # 本闸的份数从 24 掉到 23，**没有任何一行报错**。
     # **这正是纪律 156 说的那种失效**：「一个都没检查」与「全部都检查了」长得一样。
     # **所以判据里凡是「这份反验做了 X」的前提条件，都必须跟着搬运手段一起更新。**
-    has_copy = bool(re.search(r"shutil\.copy\w*\(", text))
-    has_staged = bool(re.search(r"\bstage_(?:all|gate)\s*\(", text))
+    called = _called_names(text)
+    has_copy = any(n.rsplit(".", 1)[-1].startswith("copy") for n in called)
+    has_staged = any(n.rsplit(".", 1)[-1] in ("stage_all", "stage_gate")
+                     for n in called)
     #: **Batch 265 补的这一支**：`open(…"scripts"…, "w")` 也是搬闸。
     #: **它不要求同时出现 `tempfile.mkdtemp`**——
     #: **而 `selftest-shot-version-source.py` 用的是 `tempfile.mkdtemp(prefix=…)`，认得**；
     #: **但一旦哪天换成别的建目录方式，那一支又会落空**——
     #: **所以这一支只看「往临时 scripts/ 写了闸」这个事实本身**。
-    return ((has_copy or has_staged or writes_gate_into_tmp(text))
-            and bool(re.search(r"tempfile\.mkdtemp|mkdtemp\w*\(", text)))
+    has_mkdtemp = any("mkdtemp" in n for n in called)
+    return ((has_copy or has_staged or writes_gate_into_tmp(text)) and has_mkdtemp)
 
 
 def independent_gate_names(text, scripts_dir):
