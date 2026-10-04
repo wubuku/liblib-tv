@@ -9,7 +9,7 @@ const p = b.contexts()[0].pages().find((x) => x.url().includes('ai-canvas'));
 const rows = await p.evaluate(() => Array.from(document.querySelectorAll('.react-flow__node')).map((e) => {
   const m = /translate\(([-\d.]+)px,\s*([-\d.]+)px\)/.exec(e.style.transform || '');
   const r = e.getBoundingClientRect();
-  return { id: e.getAttribute('data-id'), title: (e.querySelector('.flow-node-title') || {}).innerText || e.innerText.split('\n')[0] || '',
+  return { id: e.getAttribute('data-id'), title: (e.querySelector('[data-testid="flow-node-title"]') || {}).innerText || e.innerText.split('\n')[0] || '',
     canvas: m ? [Math.round(parseFloat(m[1]) * 100) / 100, Math.round(parseFloat(m[2]) * 100) / 100] : null,
     screen: `${Math.round(r.width)}x${Math.round(r.height)}@${Math.round(r.x)},${Math.round(r.y)}` };
 }));

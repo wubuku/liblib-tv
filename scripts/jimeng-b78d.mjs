@@ -1,5 +1,5 @@
-// 只读：把基线「视频 1」的 DOM 元素清单整份倒出来，核 `.video-node-empty` 到底在不在。
-// 背景：b78c 新建的视频节点里 `querySelector('.video-node-empty')` 返回 null，
+// 只读：把基线「视频 1」的 DOM 元素清单整份倒出来，核 `[data-testid="video-node-empty"]` 到底在不在。
+// 背景：b78c 新建的视频节点里 `querySelector('[data-testid="video-node-empty"]')` 返回 null，
 // 而 b78 那一轮同样的建法却读到了 322x181 + 文字「暂无视频」。必须分清
 // 「这轮页面状态变了」还是「我这个选择器/时机不对」。
 import { chromium } from 'playwright';
@@ -25,7 +25,7 @@ const dump = await p.evaluate((v) => {
   return {
     box: `${Math.round(r.width)}x${Math.round(r.height)}@${Math.round(r.x)},${Math.round(r.y)}`,
     cls: n.className, innerTextHead: (n.innerText || '').split('\n').slice(0, 4),
-    hasEmpty: !!n.querySelector('.video-node-empty'),
+    hasEmpty: !!n.querySelector('[data-testid="video-node-empty"]'),
     hasImg: n.querySelectorAll('img').length,
     rows: rows.filter((x) => x.vis),
   };

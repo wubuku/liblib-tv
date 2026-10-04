@@ -73,7 +73,7 @@ try {
   // —— 只读探针：video-node-empty 的文字到底画没画
   const probe = await p.evaluate((v) => {
     const n = document.querySelector(`.react-flow__node[data-id="${v}"]`);
-    const e = n.querySelector('.video-node-empty');
+    const e = n.querySelector('[data-testid="video-node-empty"]');
     if (!e) return { found: false };
     const r = e.getBoundingClientRect();
     const cs = getComputedStyle(e);
@@ -105,7 +105,7 @@ try {
   // —— 重拍：padding 自适应，断言「我要写进 alt 的元素」都落在 clip 内
   const clipInfo = await p.evaluate((v) => {
     const n = document.querySelector(`.react-flow__node[data-id="${v}"]`); const r = n.getBoundingClientRect();
-    const want = ['.flow-node-title', '.flow-node-target-connection-menu-button', '.flow-node-source-connection-menu-button', '.video-node-empty']
+    const want = ['.flow-node-title', '.flow-node-target-connection-menu-button', '.flow-node-source-connection-menu-button', '[data-testid="video-node-empty"]']
       .map((s) => ({ s, el: n.querySelector(s) })).filter((o) => o.el).map((o) => ({ s: o.s, r: o.el.getBoundingClientRect() }));
     let pad = 16;
     for (const { r: w } of want) {
