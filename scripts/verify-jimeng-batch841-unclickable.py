@@ -5768,6 +5768,14 @@ def main() -> int:
     #   ⚠️ 判据组 `MMMMM.1` 要钉的是那个**否定结果**（(a) 被否）
     p979 = ROOT / "scripts/jimeng_probe979_dwell_src.py"
     _p979 = p979.read_text(encoding="utf-8") if p979.exists() else ""
+    p979 = ROOT / "scripts/jimeng_probe979_dwell_src.py"
+    _p979 = p979.read_text(encoding="utf-8") if p979.exists() else ""
+    # ⭐⭐⭐⭐⭐ 980：**实验室**探针第三支 —— 跑**够多的圈**、数
+    #   「有几圈**没走** `BODY`」⇒ 把「通常在、但不是每次都在」
+    #   从 2 vs 3 的**印象**变成**比率**
+    #   ⚠️ 判据组 `NNNNN.1` 要钉的是**关键前提**（门②：停留都 ≥ 可见下限）
+    p980 = ROOT / "scripts/jimeng_probe980_rate_src.py"
+    _p980 = p980.read_text(encoding="utf-8") if p980.exists() else ""
     # ⭐ 970 的 CCCC.2 要**反证 816 那条决策真的在仓库里**（钉源码原文，
     #   不钉我自己写的转述）
     p816 = ROOT / "scripts/verify-jimeng-batch816-anchors.py"
@@ -9644,6 +9652,92 @@ def main() -> int:
           and "分叉守卫**失灵**了" in _p979
           and "**用 `elapsed_ms` 给末态补一段**" in _p979
           and "BUTTON_TPL = " in _p979)
+
+    # ══ NNNNN. 批 980 实验室页第三支：跑够多的圈，把 (b) 变成**比率**
+    #    ⇒ 64 圈里 5 圈没走 BODY ≈ 7.8%；门② 绿 ⇒ 排除「没看够」 ══
+    print("— NNNNN. 批 980：64 圈里 5 圈没走 BODY（≈7.8%），"
+          "且每段 BODY 停留都 ≥120ms ⇒ 排除「没看够」 —")
+
+    check("NNNNN.1 ⭐⭐⭐⭐⭐ **「那枚 `BODY` 不是每次都在」这句话终于有了数字** —— "
+          "一个 2 vs 3 撑不起它：L0 **18 圈里 17 / 16 圈有**，"
+          "L2 **两轮各 14 圈里 13 圈有** ⇒ "
+          "⭐⭐⭐⭐⭐ **合计 64 圈：59 圈含 `BODY`、5 圈不含 ⇒ 缺失率 ≈ 7.8%** ⇒ "
+          "**H₃ 里的「恒」被量化地削弱**：它**不是恒定停靠点，"
+          "而是约 92% 出现的停靠点**；"
+          "⚠️⭐⭐ 而这一切的前提是 ⭐⭐⭐⭐⭐ "
+          "**「没看见」必须先排除「没看够」**：门② 实测 "
+          "`n_body_dwell_below_floor = 0`（四格全 0）⇒ "
+          "**每一段 `BODY` 的停留都 ≥ 120ms** ⇒ "
+          "**「那一圈没看见」就不能用「窗口太短」解释** ⇒ "
+          "**否则这就是 978 那个错**：把「没看够」读成「没有」",
+          '"rate_980"' in _ausrc
+          and "**一个 2 vs 3 撑不起「不是每次都在」这句话**" in _ausrc
+          and "**合计 64 圈：59 圈含 `BODY`、5 圈不含 " in _ausrc
+          and "缺失率 ≈ 7.8%**" in _ausrc
+          and "**不是恒定停靠点，而是约 92% 出现的停靠点**" in _ausrc
+          and '"key_precondition_980"' in _ausrc
+          and "**「没看见」必须先排除「没看够」**" in _ausrc
+          and "把「没看够」读成「没有」" in _ausrc
+          # ⭐⭐ 钉探针：门②、切片、比率三样都要真在
+          and '"body_dwell_all_above_floor_both_reps"' in _p980
+          and '"n_body_dwell_below_floor"' in _p980
+          and "MIN_VISIBLE_MS = 120" in _p980
+          and '"laps_missing_a_ring_member"' in _p980
+          and '"cycles_without_body"' in _p980
+          and 'POLL_JS = _grab("POLL_JS", _p979)' in _p980
+          and '"_p980": "scripts/jimeng_probe980_rate_src.py",' in _anchs)
+
+    check("NNNNN.2 ⭐⭐⭐⭐⭐ **一条门只能管一件事** —— 而这一条是本批"
+          "**最值钱的方法结论**：第一版的完整性门是「每一圈都覆盖环里每一格」"
+          "⇒ **它判红了** ⇒ ⭐⭐ **门红先判门还是数据**："
+          "⭐⭐⭐⭐ **红的不是门、是数据** —— 少了 `BODY` 的那一圈"
+          "**真的只覆盖 3/4 格**（**那正是本批要找的东西**）⇒ "
+          "处置是**改精确、不放宽**：「切得对不对」换成**与 `BODY` 无关**的"
+          "**连续 ＋ 可重建**不变量，「有没有少一格」**另立一条读数** ⇒ "
+          "⭐⭐⭐⭐⭐ 而那条新不变量**天生看不见「少一格」**"
+          "（`[['a','b','c']] + ['B']` **照样能重建**）⇒ "
+          "**不变量管不了的事，要另立一条读数**",
+          '"one_gate_one_thing_980"' in _ausrc
+          and "**一条门只能管一件事**" in _ausrc
+          and "**红的不是门、是数据**" in _ausrc
+          and "**那正是本批要找的东西**" in _ausrc
+          and "**改精确、不放宽**" in _ausrc
+          and "**连续 ＋ 可重建**" in _ausrc
+          and "**另立一条读数**" in _ausrc
+          and "**不变量管不了的事，要另立一条读数**" in _ausrc
+          # ⭐⭐ 钉探针：判据必须挑**在旋转下不变**的东西
+          and "def _cycles_len_ok(full, ring_len):" in _p980
+          and "我在这里错了两次，两次都是判据选错" in _p980
+          and "**判据必须挑一个在旋转下不变的东西**" in _p980
+          and "def _slicer_ok(keys, full, tail):" in _p980
+          and "**这才是「切得对不对」该问的问题**" in _p980
+          and "**少一格仍算合法重建**" in _p980)
+
+    check("NNNNN.3 ⭐⭐⭐⭐⭐ **切圈这种「自己给自己当分母」的逻辑必须有自测** —— "
+          "而我**把期望值写错了四次**（把残段当完整圈、圈数多算一圈、"
+          "把下标数错、拿 `set('abcBab')` 想凑 3 格而它其实有 **4** 个 —— "
+          "**`set` 大小写敏感**）⇒ ⭐⭐⭐ "
+          "**期望值错了，自测就是假绿** ⇒ 期望值必须**按定义一句一句推**，"
+          "**不能「跑出来是什么就写什么」—— 那样自测就恒真了**；"
+          "另两条本批的设计理由：⭐⭐⭐⭐⭐ **窗口为什么可以短**"
+          "（979 证了「落定就不动」⇒ **窗口越短能跑的圈数越多**，"
+          "而**统计量需要样本量**）与 ⭐⭐⭐⭐ **切圈的残段不许算进分母**",
+          '"slicer_980"' in _ausrc
+          and "**把期望值写错了四次**" in _ausrc
+          and "**期望值错了，自测就是假绿**" in _ausrc
+          and "那样自测就恒真了**" in _ausrc
+          and "**`set` 大小写敏感**" in _ausrc
+          and '"window_choice_980"' in _ausrc
+          and "**统计量需要样本量**" in _ausrc
+          and "**切圈的残段不许算进分母**" in _ausrc
+          and '"discipline_980"' in _ausrc
+          # ⭐⭐ 钉探针：自测与成对钉反向都写在源码里
+          and "切圈器自测" in _p980
+          and "顺序错必须判红" in _p980
+          and "多出一枚必须判红" in _p980
+          and "assert WINDOW_MS >= MIN_VISIBLE_MS" in _p980
+          and "窗口门失灵（窗口短于可见下限时仍绿）" in _p980
+          and "不许算进 `n_cycles`" in _p980)
 
 
     print(f"\n{checks - len(failures)}/{checks}")
