@@ -1,0 +1,870 @@
+{
+ "batch": 761,
+ "probe": "d",
+ "rounds": [
+  {
+   "t0": {
+    "store": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "dom": {
+     "zoom": 0.526,
+     "x": -584,
+     "y": 261
+    },
+    "gap": {
+     "x": 0.2,
+     "y": -0.2,
+     "zoom": 0.0
+    },
+    "tail": [
+     {
+      "status": "committed",
+      "reason": "bootstrap-applied",
+      "ownership": "bootstrap"
+     },
+     {
+      "status": "committed",
+      "reason": "projection-echo",
+      "ownership": "bootstrap"
+     }
+    ],
+    "logLen": 2
+   },
+   "timeline": {
+    "t+0ms": {
+     "store": {
+      "x": -583.8,
+      "y": 20.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": -99
+     },
+     "gap": {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     "tail": [
+      {
+       "status": "committed",
+       "reason": "bootstrap-applied",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "projection-echo",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      }
+     ],
+     "logLen": 6
+    },
+    "t+500ms": {
+     "store": {
+      "x": -583.8,
+      "y": 20.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": -99
+     },
+     "gap": {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     "tail": [
+      {
+       "status": "committed",
+       "reason": "bootstrap-applied",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "projection-echo",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      }
+     ],
+     "logLen": 6
+    },
+    "t+1500ms": {
+     "store": {
+      "x": -583.8,
+      "y": 20.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": -99
+     },
+     "gap": {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     "tail": [
+      {
+       "status": "committed",
+       "reason": "bootstrap-applied",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "projection-echo",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      }
+     ],
+     "logLen": 6
+    },
+    "t+3000ms": {
+     "store": {
+      "x": -583.8,
+      "y": 20.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": -99
+     },
+     "gap": {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     "tail": [
+      {
+       "status": "committed",
+       "reason": "bootstrap-applied",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "projection-echo",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      }
+     ],
+     "logLen": 6
+    },
+    "t+5000ms": {
+     "store": {
+      "x": -583.8,
+      "y": 20.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": -99
+     },
+     "gap": {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     "tail": [
+      {
+       "status": "committed",
+       "reason": "bootstrap-applied",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "projection-echo",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      }
+     ],
+     "logLen": 6
+    }
+   },
+   "converged": false,
+   "gapSeries": [
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    },
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    },
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    },
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    },
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    }
+   ],
+   "secondBurst": {
+    "before": {
+     "store": {
+      "x": -583.8,
+      "y": 20.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": -99
+     },
+     "gap": {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     "tail": [
+      {
+       "status": "committed",
+       "reason": "bootstrap-applied",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "projection-echo",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      }
+     ],
+     "logLen": 6
+    },
+    "after": {
+     "store": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": 261
+     },
+     "gap": {
+      "x": 0.2,
+      "y": -0.2,
+      "zoom": 0.0
+     },
+     "tail": [
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      }
+     ],
+     "logLen": 11
+    },
+    "gap": {
+     "x": 0.2,
+     "y": -0.2,
+     "zoom": 0.0
+    },
+    "storeDy": 240.0,
+    "domDy": 360
+   }
+  },
+  {
+   "t0": {
+    "store": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "dom": {
+     "zoom": 0.526,
+     "x": -584,
+     "y": 261
+    },
+    "gap": {
+     "x": 0.2,
+     "y": -0.2,
+     "zoom": 0.0
+    },
+    "tail": [
+     {
+      "status": "committed",
+      "reason": "bootstrap-applied",
+      "ownership": "bootstrap"
+     },
+     {
+      "status": "committed",
+      "reason": "projection-echo",
+      "ownership": "bootstrap"
+     }
+    ],
+    "logLen": 2
+   },
+   "timeline": {
+    "t+0ms": {
+     "store": {
+      "x": -583.8,
+      "y": 20.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": -99
+     },
+     "gap": {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     "tail": [
+      {
+       "status": "committed",
+       "reason": "bootstrap-applied",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "projection-echo",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      }
+     ],
+     "logLen": 6
+    },
+    "t+500ms": {
+     "store": {
+      "x": -583.8,
+      "y": 20.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": -99
+     },
+     "gap": {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     "tail": [
+      {
+       "status": "committed",
+       "reason": "bootstrap-applied",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "projection-echo",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      }
+     ],
+     "logLen": 6
+    },
+    "t+1500ms": {
+     "store": {
+      "x": -583.8,
+      "y": 20.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": -99
+     },
+     "gap": {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     "tail": [
+      {
+       "status": "committed",
+       "reason": "bootstrap-applied",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "projection-echo",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      }
+     ],
+     "logLen": 6
+    },
+    "t+3000ms": {
+     "store": {
+      "x": -583.8,
+      "y": 20.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": -99
+     },
+     "gap": {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     "tail": [
+      {
+       "status": "committed",
+       "reason": "bootstrap-applied",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "projection-echo",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      }
+     ],
+     "logLen": 6
+    },
+    "t+5000ms": {
+     "store": {
+      "x": -583.8,
+      "y": 20.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": -99
+     },
+     "gap": {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     "tail": [
+      {
+       "status": "committed",
+       "reason": "bootstrap-applied",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "projection-echo",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      }
+     ],
+     "logLen": 6
+    }
+   },
+   "converged": false,
+   "gapSeries": [
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    },
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    },
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    },
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    },
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    }
+   ],
+   "secondBurst": {
+    "before": {
+     "store": {
+      "x": -583.8,
+      "y": 20.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": -99
+     },
+     "gap": {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     "tail": [
+      {
+       "status": "committed",
+       "reason": "bootstrap-applied",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "projection-echo",
+       "ownership": "bootstrap"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      }
+     ],
+     "logLen": 6
+    },
+    "after": {
+     "store": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": 261
+     },
+     "gap": {
+      "x": 0.2,
+      "y": -0.2,
+      "zoom": 0.0
+     },
+     "tail": [
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      }
+     ],
+     "logLen": 11
+    },
+    "gap": {
+     "x": 0.2,
+     "y": -0.2,
+     "zoom": 0.0
+    },
+    "storeDy": 240.0,
+    "domDy": 360
+   }
+  }
+ ],
+ "roundDiff": {},
+ "consistent": true
+}

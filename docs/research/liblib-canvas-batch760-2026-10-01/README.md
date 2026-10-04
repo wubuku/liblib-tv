@@ -272,3 +272,20 @@ button，`aria-pressed` 按契约必须反映被 toggle 的状态，而它和同
 - 探针：`/tmp/dbg760a.py`、`/tmp/dbg760b.py`、`/tmp/dbg760c.py`
 - 原始读数：`/tmp/vb760a.json`、`/tmp/vb760b.json`、`/tmp/vb760c.json`
 - 汇编器：`/tmp/mk760audit.py`（产物全部数字现算，不手抄）
+
+### ⚠ 补记（batch 761）：本批三份原始读数已丢失
+
+2026-10-04 23:44 有人清空了 `/tmp`（同一时刻 4317 的 dev server 也被杀掉了，
+batch 761 才重新拉起）。本批的 `vb760{a,b,c}.json` 与三个探针脚本随之消失，
+上面这几行路径**已不再存在**。
+
+后果与处理：
+
+- 直接重跑 `scripts/verify-liblib-batch760.py` 会输出
+  `FAIL 原始读数可用` 并判**不通过**。这是验收器**设计里的行为**
+  （缺原始读数判失败而不是通过），不是新 bug。
+- 读数**不靠回忆补写**——那等于伪造原始证据。判据正文、`runtime-audit.json`
+  与 `verify-report.json` 都是当时跑出来的，保留原样。
+- 验收器已改成**优先从 `docs/research/liblib-canvas-batch760-2026-10-01/raw/` 读**、
+  回退 `/tmp`；**从 batch 761 起原始读数随产物一起提交**，验收器不再依赖 `/tmp`。
+  这是本批真正暴露的流程缺陷：**只放 `/tmp` 的验收器不可复现。**

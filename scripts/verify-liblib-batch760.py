@@ -29,6 +29,23 @@ RAWA = pathlib.Path("/tmp/vb760a.json")
 RAWB = pathlib.Path("/tmp/vb760b.json")
 RAWC = pathlib.Path("/tmp/vb760c.json")
 
+# 2026-10-04 23:44 有人把 /tmp 清空了，本批三份原始读数随之消失。
+# 验收器「缺原始读数判失败」是**设计行为**（不是 bug），但「读数只放 /tmp」
+# 本身让提交出去的验收器不可复现 —— 从 batch 761 起原始读数改为随产物提交。
+# 这里两处都找：优先产物目录 raw/，回退 /tmp（老批次兼容）。
+_RAW_DIR = OUTDIR / "raw"
+
+
+def _raw(name):
+    local = _RAW_DIR / name
+    if local.exists():
+        return local
+    return pathlib.Path("/tmp") / name
+
+
+RAWA, RAWB, RAWC = (_raw("vb760a.json"), _raw("vb760b.json"),
+                    _raw("vb760c.json"))
+
 
 def src(p):
     return (ROOT / p).read_text(encoding="utf-8")

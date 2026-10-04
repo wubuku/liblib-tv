@@ -1,0 +1,811 @@
+{
+ "batch": 761,
+ "checks": [
+  {
+   "label": "静态：panOnScroll 与 zoomOnScroll 同时开，且 panActivationKeyCode 被置 null",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：panOnScrollSpeed={1}，minZoom=0.1 / maxZoom=8",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：zoomBy 自己把 zoom 夹在 [0.1, 8]",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：fitView 用 padding 0.12；⌘+/⌘-/⌘0 三键都接上了",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：两档视口常量原文都在，且各被引用多次（不是死常量）",
+   "pass": true,
+   "got": [
+    4,
+    4
+   ]
+  },
+  {
+   "label": "静态：断点判据就是 (max-width: 768px)，且 viewport 里也有一份 innerWidth<=768",
+   "pass": true,
+   "got": 3
+  },
+  {
+   "label": "静态：owner_log 钩子与 breakpoint-flip-delegated 都在源码里",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：data-viewport-menu-trigger 全 src/ 只出现一次（缩放菜单唯一入口）",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "静态：缩放按钮容器 class 就是 relative sm:max-[850px]:hidden",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：缩放菜单动作钩子齐全 —— 三个字面量（in/out/fit）+ 三档动态预设（option.value = 50/100/800，zoom 0.5/1/8）+ data-zoom-current",
+   "pass": true,
+   "got": [
+    [
+     "in",
+     "out",
+     "fit"
+    ],
+    [
+     "value: \"50\"",
+     "value: \"100\"",
+     "value: \"800\""
+    ],
+    [
+     "{ zoom: 0.5,",
+     "{ zoom: 1,",
+     "{ zoom: 8,"
+    ]
+   ]
+  },
+  {
+   "label": "静态：uiStore 里那个硬编码的 zoomLevel: 54 确实存在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态：LibTV 侧无 NodeResizer / nodesResizable，resizeNode 只在 FrameOS",
+   "pass": true,
+   "got": [
+    false,
+    false,
+    true
+   ]
+  },
+  {
+   "label": "产物：判据 16 条且编号连续 1..16",
+   "pass": true,
+   "got": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+   ]
+  },
+  {
+   "label": "产物：写明四段探针，并如实记录 a 的 clamp 格两轮有差",
+   "pass": true,
+   "got": {
+    "a": [
+     "clamp"
+    ]
+   }
+  },
+  {
+   "label": "产物：排除 clamp 的 x/y 之后其余判定为一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：返工 9 条，含 R42（读数滞后）、R43（/tmp 被清空）、R46（阴性对照复发）与 R47（撞上别人的 pre-commit 正则）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：不声称 ≥ 9 条且含「没有与源站对照」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "产物：原始读数登记为随产物提交的 raw/ 路径（不再只写 /tmp）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：三档视口逐位相等由重算确认（不信产物的 matchesConstant）",
+   "pass": true,
+   "got": {
+    "desktop": {
+     "measuredWidth": 1440,
+     "mq768": false,
+     "store": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "expected": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "allFieldsEqual": true,
+     "triggerVisible": true
+    },
+    "compact": {
+     "measuredWidth": 700,
+     "mq768": true,
+     "store": {
+      "x": 17,
+      "y": 128,
+      "zoom": 0.28
+     },
+     "expected": {
+      "x": 17,
+      "y": 128,
+      "zoom": 0.28
+     },
+     "allFieldsEqual": true,
+     "triggerVisible": false
+    },
+    "midband": {
+     "measuredWidth": 800,
+     "mq768": false,
+     "store": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "expected": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "allFieldsEqual": true,
+     "triggerVisible": false
+    }
+   }
+  },
+  {
+   "label": "原始：700 档 mq768 为 true、1440/800 为 false（断点按 768 生效）",
+   "pass": true,
+   "got": {
+    "desktop": false,
+    "compact": true,
+    "midband": false
+   }
+  },
+  {
+   "label": "原始：两档常量与源码字面量一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物判据 1/2/3 的证据与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：clamp 的 zoom 与指示器两轮完全相同（排除 x/y 的依据成立）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：菜单六格的 afterZoom 与重算一致且指示器全对",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：菜单六格的 key 集合与源码钩子完全对应",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：⌘+ 是 +0.1、⌘- 是 −0.1、⌘0 改变 zoom，三格指示器都对",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：clamp 下限恰好 0.1、上限恰好 8（= minZoom/maxZoom）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：首屏 zoomLevel 不是硬编码的 54，且三处一致",
+   "pass": true,
+   "got": {
+    "zoomLevel": 53,
+    "storeZoom": 0.526,
+    "triggerText": "53%",
+    "indOk": true,
+    "trigOk": true
+   }
+  },
+  {
+   "label": "原始：产物判据 4 的「硬编码未露脸」与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：滚轮事件数与 Δzoom 取值（应为 13 次、全 0）",
+   "pass": true,
+   "got": {
+    "bursts": [
+     {
+      "key": "burstSlow",
+      "n": 4,
+      "storeDz": 0.0,
+      "domDz": 0.0,
+      "storeDy": 480.0,
+      "domDy": 480,
+      "acceptedDelta": 2
+     },
+     {
+      "key": "burstFast",
+      "n": 6,
+      "storeDz": 0.0,
+      "domDz": 0.0,
+      "storeDy": 720.0,
+      "domDy": 720,
+      "acceptedDelta": 1
+     },
+     {
+      "key": "burstDown",
+      "n": 3,
+      "storeDz": 0.0,
+      "domDz": 0.0,
+      "storeDy": -240.0,
+      "domDy": -360,
+      "acceptedDelta": 1
+     }
+    ],
+    "eventsTotal": 13,
+    "allDzZero": true,
+    "dzSet": [
+     0.0
+    ],
+    "perEventDy": {
+     "burstSlow": 120.0,
+     "burstFast": 120.0,
+     "burstDown": -120.0
+    }
+   }
+  },
+  {
+   "label": "原始：产物判据 8 的 dzValues 与重算一致（按取值集合口径）",
+   "pass": true,
+   "got": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0
+    ]
+   ]
+  },
+  {
+   "label": "原始：每格位移恒为 ±120（panOnScrollSpeed=1）",
+   "pass": true,
+   "got": {
+    "burstSlow": 120.0,
+    "burstFast": 120.0,
+    "burstDown": -120.0
+   }
+  },
+  {
+   "label": "原始：★ 761a/761b 的假形状是 [0,240,0,-240]，761c 真值 4 次共 480",
+   "pass": true,
+   "got": {
+    "a": [
+     0.0,
+     240.0,
+     0.0,
+     -240.0
+    ],
+    "b": [
+     0.0,
+     240.0,
+     0.0,
+     -240.0
+    ],
+    "cTotal": 480,
+    "cEvents": 4
+   }
+  },
+  {
+   "label": "原始：产物把这段假形状原样留在产物里（没有偷偷抹掉）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：滚轮落在节点上命中 nopan，且 viewport 前后完全相同",
+   "pass": true,
+   "got": {
+    "nopan": true,
+    "unchanged": true
+   }
+  },
+  {
+   "label": "原始：产物判据 9 的证据与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：store 与 DOM 的视口差在五个时点上恒定（不收敛）",
+   "pass": true,
+   "got": {
+    "marks": [
+     "t+0ms",
+     "t+1500ms",
+     "t+3000ms",
+     "t+5000ms",
+     "t+500ms"
+    ],
+    "gaps": [
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     }
+    ],
+    "gapStable": true,
+    "logLenFrozen": true,
+    "converged": false,
+    "yGap": 119.8,
+    "secondGapY": -0.2,
+    "secondStoreDy": 240.0,
+    "secondDomDy": 360
+   }
+  },
+  {
+   "label": "原始：五个时点的 owner_log 条数冻结（不会再有提交）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：下一次视口变化后差距被抹平（第二轮 3 次上滚后 |gap| < 1）",
+   "pass": true,
+   "got": {
+    "marks": [
+     "t+0ms",
+     "t+1500ms",
+     "t+3000ms",
+     "t+5000ms",
+     "t+500ms"
+    ],
+    "gaps": [
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     }
+    ],
+    "gapStable": true,
+    "logLenFrozen": true,
+    "converged": false,
+    "yGap": 119.8,
+    "secondGapY": -0.2,
+    "secondStoreDy": 240.0,
+    "secondDomDy": 360
+   }
+  },
+  {
+   "label": "原始：产物判据 10/11 的差距与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：缩放按钮只在 700/800 隐藏，560/900/1440 可见",
+   "pass": true,
+   "got": {
+    "560": true,
+    "700": false,
+    "800": false,
+    "900": true,
+    "1440": true
+   }
+  },
+  {
+   "label": "原始：产物判据 12 的隐藏宽度集合与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：DOM 里没有任何 resize 控件或含 resize 的 class",
+   "pass": true,
+   "got": {
+    "controls": 0,
+    "likeElements": 0,
+    "cells": {
+     "rightEdge": {
+      "cls": "react-flow__handle react-flow__handle-right nodrag nopan source connectable connectablesta",
+      "domWChanged": false,
+      "domHChanged": false,
+      "storeWChanged": false,
+      "storeHChanged": false,
+      "positionChanged": false
+     },
+     "bottomEdge": {
+      "cls": "whitespace-pre-wrap text-xs font-normal leading-[1.55] text-[#d5d5d5]",
+      "domWChanged": false,
+      "domHChanged": false,
+      "storeWChanged": false,
+      "storeHChanged": false,
+      "positionChanged": true
+     },
+     "corner": {
+      "cls": "min-h-0 flex-1 overflow-hidden p-3",
+      "domWChanged": false,
+      "domHChanged": false,
+      "storeWChanged": false,
+      "storeHChanged": false,
+      "positionChanged": true
+     }
+    }
+   }
+  },
+  {
+   "label": "原始：三处起点分别是 rightEdge / bottomEdge / corner",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：★ 右边缘命中的是带 nodrag 的 source handle",
+   "pass": true,
+   "got": "react-flow__handle react-flow__handle-right nodrag nopan source connectable connectablesta"
+  },
+  {
+   "label": "原始：右边缘拖拽四项全为 false（完全无反应）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：★ 下边缘与右下角是「移动了节点」而不是缩放",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：改宽 1440→700 视口 Δ 全 0",
+   "pass": true,
+   "got": {
+    "dx": 0.0,
+    "dy": 0.0,
+    "dz": 0.0
+   }
+  },
+  {
+   "label": "原始：★ owner_log 里确实有 breakpoint-flip-delegated 且 status=skipped",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物判据 16 把它判为「设计而非缺陷」且与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物 viewportAB 三档的 store/mq768/宽度/按钮可见/命中标志逐项与重算一致",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始：产物判据 1/2/3 的 store 与 mq768 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物首屏的 zoomLevel / triggerText / 一致标志与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物每格位移 domDyPerEvent 与重算一致（不能改成 240 之类）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始：产物 wheel.eventsTotal / dzValues 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物判据 9 的 nopan / viewportUnchanged 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物判据 10 的差距/收敛/logLenFrozen 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物 triggerByWidth 每一行的 visible 与重算一致",
+   "pass": true,
+   "got": {
+    "560": true,
+    "700": false,
+    "800": false,
+    "900": true,
+    "1440": true
+   }
+  },
+  {
+   "label": "原始：产物三格 resize 的五项布尔与重算逐格一致",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始：★ 判据 14/15 的证据与 findings 里的同一批格子逐项同源",
+   "pass": true,
+   "got": "rightEdge"
+  },
+  {
+   "label": "原始：产物 resize 计数与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物 reproject 的 delta / delegated / status 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始：产物 clamp 的 finalZoom / indicator 与重算一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "结构：派生布尔必须能由原始字段现算得出（滚轮 allDzZero）",
+   "pass": true,
+   "got": null
+  }
+ ],
+ "pass": 64,
+ "total": 64,
+ "negativeControls": [
+  {
+   "name": "伪造 desktop 档「未命中常量」",
+   "caught": true,
+   "firstFail": "原始：产物 viewportAB 三档的 store/mq768/宽度/按钮可见/命中标志逐项与重算一致"
+  },
+  {
+   "name": "伪造 compact 档 mq768 为 false",
+   "caught": true,
+   "firstFail": "原始：产物判据 1/2/3 的 store 与 mq768 与重算一致"
+  },
+  {
+   "name": "伪造 midband 档 store 被换掉",
+   "caught": true,
+   "firstFail": "原始：产物判据 1/2/3 的 store 与 mq768 与重算一致"
+  },
+  {
+   "name": "伪造 desktop 档按钮可见性",
+   "caught": true,
+   "firstFail": "原始：产物 viewportAB 三档的 store/mq768/宽度/按钮可见/命中标志逐项与重算一致"
+  },
+  {
+   "name": "伪造首屏 zoomLevel 就是硬编码的 54",
+   "caught": true,
+   "firstFail": "原始：产物判据 4 的「硬编码未露脸」与重算一致"
+  },
+  {
+   "name": "伪造首屏 zoomLevel 与 store 不一致",
+   "caught": true,
+   "firstFail": "原始：产物首屏的 zoomLevel / triggerText / 一致标志与重算一致"
+  },
+  {
+   "name": "伪造首屏 triggerText",
+   "caught": true,
+   "firstFail": "原始：产物首屏的 zoomLevel / triggerText / 一致标志与重算一致"
+  },
+  {
+   "name": "伪造菜单某一格指示器不一致",
+   "caught": true,
+   "firstFail": "原始：菜单六格的 afterZoom 与重算一致且指示器全对"
+  },
+  {
+   "name": "伪造 clamp 下限不是 0.1",
+   "caught": true,
+   "firstFail": "原始：clamp 下限恰好 0.1、上限恰好 8（= minZoom/maxZoom）"
+  },
+  {
+   "name": "伪造每格位移不是 120",
+   "caught": true,
+   "firstFail": "原始：产物每格位移 domDyPerEvent 与重算一致（不能改成 240 之类）"
+  },
+  {
+   "name": "伪造滚轮事件数",
+   "caught": true,
+   "firstFail": "原始：产物 wheel.eventsTotal / dzValues 与重算一致"
+  },
+  {
+   "name": "★ 抹掉 761a/761b 的假形状（只留好看的真值）",
+   "caught": true,
+   "firstFail": "原始：产物把这段假形状原样留在产物里（没有偷偷抹掉）"
+  },
+  {
+   "name": "伪造滚轮在节点上有响应",
+   "caught": true,
+   "firstFail": "原始：产物判据 9 的证据与重算一致"
+  },
+  {
+   "name": "伪造节点处 nopan 为 false",
+   "caught": true,
+   "firstFail": "原始：产物判据 9 的证据与重算一致"
+  },
+  {
+   "name": "伪造 store 与 DOM 差距已收敛",
+   "caught": true,
+   "firstFail": "原始：产物判据 10/11 的差距与重算一致"
+  },
+  {
+   "name": "伪造差距只有 1px",
+   "caught": true,
+   "firstFail": "原始：产物判据 10/11 的差距与重算一致"
+  },
+  {
+   "name": "伪造 logLen 没有冻结",
+   "caught": true,
+   "firstFail": "原始：产物判据 10 的差距/收敛/logLenFrozen 与重算一致"
+  },
+  {
+   "name": "伪造差距时间线被抹平",
+   "caught": true,
+   "firstFail": "原始：产物判据 10 的差距/收敛/logLenFrozen 与重算一致"
+  },
+  {
+   "name": "伪造下一轮没被抹平",
+   "caught": true,
+   "firstFail": "原始：产物判据 10/11 的差距与重算一致"
+  },
+  {
+   "name": "伪造 560 宽度下缩放按钮也隐藏",
+   "caught": true,
+   "firstFail": "原始：产物 triggerByWidth 每一行的 visible 与重算一致"
+  },
+  {
+   "name": "伪造隐藏宽度集合",
+   "caught": true,
+   "firstFail": "原始：产物判据 12 的隐藏宽度集合与重算一致"
+  },
+  {
+   "name": "伪造 resize 控件存在",
+   "caught": true,
+   "firstFail": "原始：产物 resize 计数与重算一致"
+  },
+  {
+   "name": "伪造 resize 控件数为 1（findings 那份）",
+   "caught": true,
+   "firstFail": "原始：产物 resize 计数与重算一致"
+  },
+  {
+   "name": "★ 伪造判据 14（右边缘无反应）改成宽度变了",
+   "caught": true,
+   "firstFail": "原始：★ 判据 14/15 的证据与 findings 里的同一批格子逐项同源"
+  },
+  {
+   "name": "伪造右下角拖拽是缩放（宽变了）",
+   "caught": true,
+   "firstFail": "原始：产物三格 resize 的五项布尔与重算逐格一致"
+  },
+  {
+   "name": "伪造下边缘拖拽没有移动节点",
+   "caught": true,
+   "firstFail": "原始：产物三格 resize 的五项布尔与重算逐格一致"
+  },
+  {
+   "name": "★ 把「改宽不重投影」从设计改判成缺陷",
+   "caught": true,
+   "firstFail": "原始：产物判据 16 把它判为「设计而非缺陷」且与重算一致"
+  },
+  {
+   "name": "伪造 breakpoint-flip-delegated 是 committed",
+   "caught": true,
+   "firstFail": "原始：产物 reproject 的 delta / delegated / status 与重算一致"
+  },
+  {
+   "name": "伪造 reproject 的 delta 不为 0",
+   "caught": true,
+   "firstFail": "原始：产物 reproject 的 delta / delegated / status 与重算一致"
+  },
+  {
+   "name": "清空不声称清单",
+   "caught": true,
+   "firstFail": "产物：不声称 ≥ 9 条且含「没有与源站对照」"
+  },
+  {
+   "name": "删掉判据 8",
+   "caught": true,
+   "firstFail": "产物：判据 16 条且编号连续 1..16"
+  },
+  {
+   "name": "伪造两轮判定为全一致（抹掉 clamp 的例外）",
+   "caught": true,
+   "firstFail": "产物：写明四段探针，并如实记录 a 的 clamp 格两轮有差"
+  },
+  {
+   "name": "伪造 clamp 排除依据被写掉",
+   "caught": true,
+   "firstFail": "产物：写明四段探针，并如实记录 a 的 clamp 格两轮有差"
+  },
+  {
+   "name": "篡改返工条目：删掉 R42",
+   "caught": true,
+   "firstFail": "产物：返工 9 条，含 R42（读数滞后）、R43（/tmp 被清空）、R46（阴性对照复发）与 R47（撞上别人的 pre-commit 正则）"
+  },
+  {
+   "name": "篡改 rawProbeFiles 退回只放 /tmp",
+   "caught": true,
+   "firstFail": "产物：原始读数登记为随产物提交的 raw/ 路径（不再只写 /tmp）"
+  }
+ ],
+ "negativeCaught": 35,
+ "negativeTotal": 35,
+ "rawError": null,
+ "ok": true
+}

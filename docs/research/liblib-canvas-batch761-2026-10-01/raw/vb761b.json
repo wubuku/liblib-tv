@@ -1,0 +1,1010 @@
+{
+ "batch": 761,
+ "probe": "b",
+ "constants": {
+  "desktopViewport": {
+   "x": -583.8,
+   "y": 260.8,
+   "zoom": 0.526
+  },
+  "compactViewport": {
+   "x": 17,
+   "y": 128,
+   "zoom": 0.28
+  }
+ },
+ "rounds": [
+  {
+   "viewports": [
+    {
+     "label": "desktop",
+     "requested": {
+      "w": 1440,
+      "h": 1000
+     },
+     "measured": {
+      "innerWidth": 1440,
+      "innerHeight": 1000,
+      "mq768": false
+     },
+     "store": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": 261
+     },
+     "indicator": 53,
+     "triggerText": "53%",
+     "triggerVisible": {
+      "inDom": true,
+      "w": 36,
+      "h": 28,
+      "display": "flex",
+      "visibility": "visible",
+      "parentDisplay": "block",
+      "parentClass": "relative sm:max-[850px]:hidden",
+      "text": "53%"
+     },
+     "matchesConstant": {
+      "x": true,
+      "y": true,
+      "zoom": true
+     },
+     "expectedConstant": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "ownerLog": {
+      "length": 2,
+      "entries": [
+       {
+        "canvasId": "canvas-2",
+        "status": "committed",
+        "reason": "bootstrap-applied",
+        "ownership": "bootstrap"
+       },
+       {
+        "canvasId": "canvas-2",
+        "status": "committed",
+        "reason": "projection-echo",
+        "ownership": "bootstrap"
+       }
+      ]
+     }
+    },
+    {
+     "label": "compact",
+     "requested": {
+      "w": 700,
+      "h": 900
+     },
+     "measured": {
+      "innerWidth": 700,
+      "innerHeight": 900,
+      "mq768": true
+     },
+     "store": {
+      "x": 17,
+      "y": 128,
+      "zoom": 0.28
+     },
+     "dom": {
+      "zoom": 0.28,
+      "x": 17,
+      "y": 128
+     },
+     "indicator": 28,
+     "triggerText": "28%",
+     "triggerVisible": {
+      "inDom": true,
+      "w": 0,
+      "h": 0,
+      "display": "flex",
+      "visibility": "visible",
+      "parentDisplay": "none",
+      "parentClass": "relative sm:max-[850px]:hidden",
+      "text": "28%"
+     },
+     "matchesConstant": {
+      "x": true,
+      "y": true,
+      "zoom": true
+     },
+     "expectedConstant": {
+      "x": 17,
+      "y": 128,
+      "zoom": 0.28
+     },
+     "ownerLog": {
+      "length": 2,
+      "entries": [
+       {
+        "canvasId": "canvas-2",
+        "status": "committed",
+        "reason": "bootstrap-applied",
+        "ownership": "bootstrap"
+       },
+       {
+        "canvasId": "canvas-2",
+        "status": "committed",
+        "reason": "projection-echo",
+        "ownership": "bootstrap"
+       }
+      ]
+     }
+    },
+    {
+     "label": "midband",
+     "requested": {
+      "w": 800,
+      "h": 900
+     },
+     "measured": {
+      "innerWidth": 800,
+      "innerHeight": 900,
+      "mq768": false
+     },
+     "store": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": 261
+     },
+     "indicator": 53,
+     "triggerText": "53%",
+     "triggerVisible": {
+      "inDom": true,
+      "w": 0,
+      "h": 0,
+      "display": "flex",
+      "visibility": "visible",
+      "parentDisplay": "none",
+      "parentClass": "relative sm:max-[850px]:hidden",
+      "text": "53%"
+     },
+     "matchesConstant": {
+      "x": true,
+      "y": true,
+      "zoom": true
+     },
+     "expectedConstant": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "ownerLog": {
+      "length": 2,
+      "entries": [
+       {
+        "canvasId": "canvas-2",
+        "status": "committed",
+        "reason": "bootstrap-applied",
+        "ownership": "bootstrap"
+       },
+       {
+        "canvasId": "canvas-2",
+        "status": "committed",
+        "reason": "projection-echo",
+        "ownership": "bootstrap"
+       }
+      ]
+     }
+    }
+   ],
+   "wheelPane": {
+    "point": {
+     "x": 180,
+     "y": 140
+    },
+    "steps": [
+     {
+      "step": "up1",
+      "deltaY": -120,
+      "store": {
+       "x": -583.8,
+       "y": 260.8,
+       "zoom": 0.526
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": 0.0,
+       "dz": 0.0
+      },
+      "indicator": 53
+     },
+     {
+      "step": "up2",
+      "deltaY": -120,
+      "store": {
+       "x": -583.8,
+       "y": 500.8,
+       "zoom": 0.526
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": 240.0,
+       "dz": 0.0
+      },
+      "indicator": 53
+     },
+     {
+      "step": "down1",
+      "deltaY": 120,
+      "store": {
+       "x": -583.8,
+       "y": 500.8,
+       "zoom": 0.526
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": 0.0,
+       "dz": 0.0
+      },
+      "indicator": 53
+     },
+     {
+      "step": "down2",
+      "deltaY": 120,
+      "store": {
+       "x": -583.8,
+       "y": 260.8,
+       "zoom": 0.526
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": -240.0,
+       "dz": 0.0
+      },
+      "indicator": 53
+     }
+    ],
+    "allDzZero": true,
+    "anyDyMoved": true,
+    "anyDxMoved": false,
+    "dyValues": [
+     0.0,
+     240.0,
+     0.0,
+     -240.0
+    ]
+   },
+   "wheelNode": {
+    "point": {
+     "x": 411,
+     "y": 195,
+     "node": "i-YDfWhFlthe",
+     "tag": "IMG",
+     "cls": "object-cover transition-[filter] duration-300",
+     "nodrag": false,
+     "nopan": true
+    },
+    "before": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "after": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "delta": {
+     "dx": 0.0,
+     "dy": 0.0,
+     "dz": 0.0
+    },
+    "nodePositionChanged": false
+   },
+   "ownerLogAfterWheel": {
+    "length": 9,
+    "entries": [
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "bootstrap-applied",
+      "ownership": "bootstrap"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "projection-echo",
+      "ownership": "bootstrap"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "live-frame",
+      "ownership": "stable"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "live-frame",
+      "ownership": "stable"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "viewport-accepted",
+      "ownership": "stable"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "live-frame",
+      "ownership": "stable"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "live-frame",
+      "ownership": "stable"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "viewport-accepted",
+      "ownership": "stable"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "live-frame",
+      "ownership": "stable"
+     }
+    ]
+   },
+   "reproject": {
+    "before": {
+     "zoomLevel": 53,
+     "store": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": 381
+     },
+     "triggerText": "53%",
+     "triggerVisible": {
+      "inDom": true,
+      "w": 36,
+      "h": 28,
+      "display": "flex",
+      "visibility": "visible",
+      "parentDisplay": "block",
+      "parentClass": "relative sm:max-[850px]:hidden",
+      "text": "53%"
+     },
+     "innerWidth": 1440,
+     "innerHeight": 1000,
+     "mq768": false,
+     "activeCanvasId": "canvas-2"
+    },
+    "after": {
+     "zoomLevel": 53,
+     "store": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": 261
+     },
+     "triggerText": "53%",
+     "triggerVisible": {
+      "inDom": true,
+      "w": 0,
+      "h": 0,
+      "display": "flex",
+      "visibility": "visible",
+      "parentDisplay": "none",
+      "parentClass": "relative sm:max-[850px]:hidden",
+      "text": "53%"
+     },
+     "innerWidth": 700,
+     "innerHeight": 900,
+     "mq768": true,
+     "activeCanvasId": "canvas-2"
+    },
+    "delta": {
+     "dx": 0.0,
+     "dy": 0.0,
+     "dz": 0.0
+    },
+    "afterMatchesCompact": {
+     "x": false,
+     "y": false,
+     "zoom": false
+    },
+    "ownerLog": {
+     "length": 12,
+     "entries": [
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "bootstrap-applied",
+       "ownership": "bootstrap"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "projection-echo",
+       "ownership": "bootstrap"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "stable-restored",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "skipped",
+       "reason": "breakpoint-flip-delegated",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "viewports": [
+    {
+     "label": "desktop",
+     "requested": {
+      "w": 1440,
+      "h": 1000
+     },
+     "measured": {
+      "innerWidth": 1440,
+      "innerHeight": 1000,
+      "mq768": false
+     },
+     "store": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": 261
+     },
+     "indicator": 53,
+     "triggerText": "53%",
+     "triggerVisible": {
+      "inDom": true,
+      "w": 36,
+      "h": 28,
+      "display": "flex",
+      "visibility": "visible",
+      "parentDisplay": "block",
+      "parentClass": "relative sm:max-[850px]:hidden",
+      "text": "53%"
+     },
+     "matchesConstant": {
+      "x": true,
+      "y": true,
+      "zoom": true
+     },
+     "expectedConstant": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "ownerLog": {
+      "length": 2,
+      "entries": [
+       {
+        "canvasId": "canvas-2",
+        "status": "committed",
+        "reason": "bootstrap-applied",
+        "ownership": "bootstrap"
+       },
+       {
+        "canvasId": "canvas-2",
+        "status": "committed",
+        "reason": "projection-echo",
+        "ownership": "bootstrap"
+       }
+      ]
+     }
+    },
+    {
+     "label": "compact",
+     "requested": {
+      "w": 700,
+      "h": 900
+     },
+     "measured": {
+      "innerWidth": 700,
+      "innerHeight": 900,
+      "mq768": true
+     },
+     "store": {
+      "x": 17,
+      "y": 128,
+      "zoom": 0.28
+     },
+     "dom": {
+      "zoom": 0.28,
+      "x": 17,
+      "y": 128
+     },
+     "indicator": 28,
+     "triggerText": "28%",
+     "triggerVisible": {
+      "inDom": true,
+      "w": 0,
+      "h": 0,
+      "display": "flex",
+      "visibility": "visible",
+      "parentDisplay": "none",
+      "parentClass": "relative sm:max-[850px]:hidden",
+      "text": "28%"
+     },
+     "matchesConstant": {
+      "x": true,
+      "y": true,
+      "zoom": true
+     },
+     "expectedConstant": {
+      "x": 17,
+      "y": 128,
+      "zoom": 0.28
+     },
+     "ownerLog": {
+      "length": 2,
+      "entries": [
+       {
+        "canvasId": "canvas-2",
+        "status": "committed",
+        "reason": "bootstrap-applied",
+        "ownership": "bootstrap"
+       },
+       {
+        "canvasId": "canvas-2",
+        "status": "committed",
+        "reason": "projection-echo",
+        "ownership": "bootstrap"
+       }
+      ]
+     }
+    },
+    {
+     "label": "midband",
+     "requested": {
+      "w": 800,
+      "h": 900
+     },
+     "measured": {
+      "innerWidth": 800,
+      "innerHeight": 900,
+      "mq768": false
+     },
+     "store": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": 261
+     },
+     "indicator": 53,
+     "triggerText": "53%",
+     "triggerVisible": {
+      "inDom": true,
+      "w": 0,
+      "h": 0,
+      "display": "flex",
+      "visibility": "visible",
+      "parentDisplay": "none",
+      "parentClass": "relative sm:max-[850px]:hidden",
+      "text": "53%"
+     },
+     "matchesConstant": {
+      "x": true,
+      "y": true,
+      "zoom": true
+     },
+     "expectedConstant": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "ownerLog": {
+      "length": 2,
+      "entries": [
+       {
+        "canvasId": "canvas-2",
+        "status": "committed",
+        "reason": "bootstrap-applied",
+        "ownership": "bootstrap"
+       },
+       {
+        "canvasId": "canvas-2",
+        "status": "committed",
+        "reason": "projection-echo",
+        "ownership": "bootstrap"
+       }
+      ]
+     }
+    }
+   ],
+   "wheelPane": {
+    "point": {
+     "x": 180,
+     "y": 140
+    },
+    "steps": [
+     {
+      "step": "up1",
+      "deltaY": -120,
+      "store": {
+       "x": -583.8,
+       "y": 260.8,
+       "zoom": 0.526
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": 0.0,
+       "dz": 0.0
+      },
+      "indicator": 53
+     },
+     {
+      "step": "up2",
+      "deltaY": -120,
+      "store": {
+       "x": -583.8,
+       "y": 500.8,
+       "zoom": 0.526
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": 240.0,
+       "dz": 0.0
+      },
+      "indicator": 53
+     },
+     {
+      "step": "down1",
+      "deltaY": 120,
+      "store": {
+       "x": -583.8,
+       "y": 500.8,
+       "zoom": 0.526
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": 0.0,
+       "dz": 0.0
+      },
+      "indicator": 53
+     },
+     {
+      "step": "down2",
+      "deltaY": 120,
+      "store": {
+       "x": -583.8,
+       "y": 260.8,
+       "zoom": 0.526
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": -240.0,
+       "dz": 0.0
+      },
+      "indicator": 53
+     }
+    ],
+    "allDzZero": true,
+    "anyDyMoved": true,
+    "anyDxMoved": false,
+    "dyValues": [
+     0.0,
+     240.0,
+     0.0,
+     -240.0
+    ]
+   },
+   "wheelNode": {
+    "point": {
+     "x": 411,
+     "y": 195,
+     "node": "i-YDfWhFlthe",
+     "tag": "IMG",
+     "cls": "object-cover transition-[filter] duration-300",
+     "nodrag": false,
+     "nopan": true
+    },
+    "before": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "after": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "delta": {
+     "dx": 0.0,
+     "dy": 0.0,
+     "dz": 0.0
+    },
+    "nodePositionChanged": false
+   },
+   "ownerLogAfterWheel": {
+    "length": 9,
+    "entries": [
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "bootstrap-applied",
+      "ownership": "bootstrap"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "projection-echo",
+      "ownership": "bootstrap"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "live-frame",
+      "ownership": "stable"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "live-frame",
+      "ownership": "stable"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "viewport-accepted",
+      "ownership": "stable"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "live-frame",
+      "ownership": "stable"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "live-frame",
+      "ownership": "stable"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "viewport-accepted",
+      "ownership": "stable"
+     },
+     {
+      "canvasId": "canvas-2",
+      "status": "committed",
+      "reason": "live-frame",
+      "ownership": "stable"
+     }
+    ]
+   },
+   "reproject": {
+    "before": {
+     "zoomLevel": 53,
+     "store": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": 381
+     },
+     "triggerText": "53%",
+     "triggerVisible": {
+      "inDom": true,
+      "w": 36,
+      "h": 28,
+      "display": "flex",
+      "visibility": "visible",
+      "parentDisplay": "block",
+      "parentClass": "relative sm:max-[850px]:hidden",
+      "text": "53%"
+     },
+     "innerWidth": 1440,
+     "innerHeight": 1000,
+     "mq768": false,
+     "activeCanvasId": "canvas-2"
+    },
+    "after": {
+     "zoomLevel": 53,
+     "store": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": 261
+     },
+     "triggerText": "53%",
+     "triggerVisible": {
+      "inDom": true,
+      "w": 0,
+      "h": 0,
+      "display": "flex",
+      "visibility": "visible",
+      "parentDisplay": "none",
+      "parentClass": "relative sm:max-[850px]:hidden",
+      "text": "53%"
+     },
+     "innerWidth": 700,
+     "innerHeight": 900,
+     "mq768": true,
+     "activeCanvasId": "canvas-2"
+    },
+    "delta": {
+     "dx": 0.0,
+     "dy": 0.0,
+     "dz": 0.0
+    },
+    "afterMatchesCompact": {
+     "x": false,
+     "y": false,
+     "zoom": false
+    },
+    "ownerLog": {
+     "length": 12,
+     "entries": [
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "bootstrap-applied",
+       "ownership": "bootstrap"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "projection-echo",
+       "ownership": "bootstrap"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "live-frame",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "stable-restored",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "skipped",
+       "reason": "breakpoint-flip-delegated",
+       "ownership": "stable"
+      },
+      {
+       "canvasId": "canvas-2",
+       "status": "committed",
+       "reason": "viewport-accepted",
+       "ownership": "stable"
+      }
+     ]
+    }
+   }
+  }
+ ],
+ "roundDiff": {},
+ "consistent": true
+}

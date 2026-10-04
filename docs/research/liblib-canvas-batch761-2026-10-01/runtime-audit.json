@@ -1,0 +1,1318 @@
+{
+ "batch": 761,
+ "date": "2026-10-01",
+ "clone": "http://localhost:4317 (master)",
+ "subject": "画布缩放与视口：两档视口常量、缩放菜单与快捷键、滚轮、节点尺寸、响应式断点",
+ "seed": {
+  "activeCanvas": "canvas-2",
+  "constants": {
+   "desktopViewport": {
+    "x": -583.8,
+    "y": 260.8,
+    "zoom": 0.526
+   },
+   "compactViewport": {
+    "x": 17,
+    "y": 128,
+    "zoom": 0.28
+   }
+  }
+ },
+ "twoRound": {
+  "probeA": {
+   "file": "raw/vb761a.json",
+   "rounds": 2,
+   "consistent": false
+  },
+  "probeB": {
+   "file": "raw/vb761b.json",
+   "rounds": 2,
+   "consistent": true
+  },
+  "probeC": {
+   "file": "raw/vb761c.json",
+   "rounds": 2,
+   "consistent": true
+  },
+  "probeD": {
+   "file": "raw/vb761d.json",
+   "rounds": 2,
+   "consistent": true
+  },
+  "allConsistent": false,
+  "inconsistentCells": {
+   "a": [
+    "clamp"
+   ]
+  },
+  "clampZoomIndicatorIdentical": true,
+  "consistentAfterExcludingClampXY": true,
+  "excludedReason": "clamp 连点 26/90 次时 zoomTo 以画布中心为锚，每次落点随 180ms 动画的竞态漂移；zoom 与指示器两轮完全相同，故 x/y 不参与一致性判定。",
+  "caveat": "761a 的 clamp 格两轮在 store.x/y 上有差（zoom 与指示器完全相同）：zoomTo 以画布中心为锚，连点 26/90 次时每次落点随动画竞态漂移。故 clamp 只按 zoom/指示器判两轮一致，x/y 不参与一致性判定。"
+ },
+ "findings": {
+  "viewportAB": [
+   {
+    "label": "desktop",
+    "requestedWidth": 1440,
+    "measuredWidth": 1440,
+    "mq768": false,
+    "store": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "dom": {
+     "zoom": 0.526,
+     "x": -584,
+     "y": 261
+    },
+    "indicator": 53,
+    "triggerText": "53%",
+    "triggerVisible": true,
+    "matchesExpectedConstant": {
+     "x": true,
+     "y": true,
+     "zoom": true
+    },
+    "expectedConstant": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "ownerLogReasons": [
+     "bootstrap-applied",
+     "projection-echo"
+    ]
+   },
+   {
+    "label": "compact",
+    "requestedWidth": 700,
+    "measuredWidth": 700,
+    "mq768": true,
+    "store": {
+     "x": 17,
+     "y": 128,
+     "zoom": 0.28
+    },
+    "dom": {
+     "zoom": 0.28,
+     "x": 17,
+     "y": 128
+    },
+    "indicator": 28,
+    "triggerText": "28%",
+    "triggerVisible": false,
+    "matchesExpectedConstant": {
+     "x": true,
+     "y": true,
+     "zoom": true
+    },
+    "expectedConstant": {
+     "x": 17,
+     "y": 128,
+     "zoom": 0.28
+    },
+    "ownerLogReasons": [
+     "bootstrap-applied",
+     "projection-echo"
+    ]
+   },
+   {
+    "label": "midband",
+    "requestedWidth": 800,
+    "measuredWidth": 800,
+    "mq768": false,
+    "store": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "dom": {
+     "zoom": 0.526,
+     "x": -584,
+     "y": 261
+    },
+    "indicator": 53,
+    "triggerText": "53%",
+    "triggerVisible": false,
+    "matchesExpectedConstant": {
+     "x": true,
+     "y": true,
+     "zoom": true
+    },
+    "expectedConstant": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "ownerLogReasons": [
+     "bootstrap-applied",
+     "projection-echo"
+    ]
+   }
+  ],
+  "zoomMenu": {
+   "menu": [
+    {
+     "key": "100",
+     "beforeZoom": 0.375,
+     "afterZoom": 1,
+     "indicator": 100,
+     "indicatorMatchesReal": true,
+     "triggerMatchesReal": true
+    },
+    {
+     "key": "in",
+     "beforeZoom": 1,
+     "afterZoom": 1.1,
+     "indicator": 110,
+     "indicatorMatchesReal": true,
+     "triggerMatchesReal": true
+    },
+    {
+     "key": "out",
+     "beforeZoom": 1.1,
+     "afterZoom": 1,
+     "indicator": 100,
+     "indicatorMatchesReal": true,
+     "triggerMatchesReal": true
+    },
+    {
+     "key": "fit",
+     "beforeZoom": 1,
+     "afterZoom": 0.375,
+     "indicator": 38,
+     "indicatorMatchesReal": true,
+     "triggerMatchesReal": true
+    },
+    {
+     "key": "800",
+     "beforeZoom": 0.375,
+     "afterZoom": 8,
+     "indicator": 800,
+     "indicatorMatchesReal": true,
+     "triggerMatchesReal": true
+    },
+    {
+     "key": "50",
+     "beforeZoom": 8,
+     "afterZoom": 0.5,
+     "indicator": 50,
+     "indicatorMatchesReal": true,
+     "triggerMatchesReal": true
+    }
+   ],
+   "keyboard": [
+    {
+     "key": "Meta+",
+     "dz": 0.1,
+     "dx": 0,
+     "dy": 0.0,
+     "indicatorMatchesReal": true
+    },
+    {
+     "key": "Meta-",
+     "dz": -0.1,
+     "dx": 0,
+     "dy": 0.0,
+     "indicatorMatchesReal": true
+    },
+    {
+     "key": "Meta0",
+     "dz": -0.125,
+     "dx": 199.75,
+     "dy": 111.09,
+     "indicatorMatchesReal": true
+    }
+   ],
+   "clamp": {
+    "min": {
+     "times": 26,
+     "startZoom": 0.375,
+     "finalZoom": 0.1,
+     "indicator": 10,
+     "indicatorMatchesReal": true
+    },
+    "max": {
+     "times": 90,
+     "startZoom": 0.375,
+     "finalZoom": 8,
+     "indicator": 800,
+     "indicatorMatchesReal": true
+    }
+   },
+   "allIndicatorsMatch": true
+  },
+  "initialReadout": {
+   "store": {
+    "x": -583.8,
+    "y": 260.8,
+    "zoom": 0.526
+   },
+   "dom": {
+    "zoom": 0.526,
+    "x": -584,
+    "y": 261
+   },
+   "zoomLevel": 53,
+   "triggerText": "53%",
+   "indicatorMatchesReal": true,
+   "triggerMatchesReal": true,
+   "realPercent": 53,
+   "hardcodedInitial": 54,
+   "hardcodedShown": false,
+   "resizeControls": 0,
+   "resizeLikeElements": 0
+  },
+  "wheel": {
+   "bursts": [
+    {
+     "key": "burstSlow",
+     "n": 4,
+     "deltaY": -120,
+     "storeDy": 480.0,
+     "domDy": 480,
+     "storeDz": 0.0,
+     "domDz": 0.0,
+     "domDyPerEvent": 120.0,
+     "acceptedDelta": 2
+    },
+    {
+     "key": "burstFast",
+     "n": 6,
+     "deltaY": -120,
+     "storeDy": 720.0,
+     "domDy": 720,
+     "storeDz": 0.0,
+     "domDz": 0.0,
+     "domDyPerEvent": 120.0,
+     "acceptedDelta": 1
+    },
+    {
+     "key": "burstDown",
+     "n": 3,
+     "deltaY": 120,
+     "storeDy": -240.0,
+     "domDy": -360,
+     "storeDz": 0.0,
+     "domDz": 0.0,
+     "domDyPerEvent": -120.0,
+     "acceptedDelta": 1
+    }
+   ],
+   "eventsTotal": 13,
+   "allDzZero": true,
+   "dzValues": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "stalePattern": {
+    "probeA_dySeries": [
+     0.0,
+     240.0,
+     0.0,
+     -240.0
+    ],
+    "probeB_dySeries": [
+     0.0,
+     240.0,
+     0.0,
+     -240.0
+    ],
+    "probeB_allDzZero": true,
+    "verdict": "761a/761b 每步都读 ⟹ 读数落在平移落地之前，Δ 被错记到隔一格。761c 中途不读，4 次滚轮总位移 480 = 4×120，每次都生效。",
+    "probeC_burstSlow_totalDy": 480,
+    "probeC_burstSlow_events": 4
+   }
+  },
+  "wheelOnNode": {
+   "hitTag": "IMG",
+   "hitClass": "object-cover transition-[filter] duration-300",
+   "nodeNodrag": false,
+   "nodeNopan": true,
+   "storeBefore": {
+    "x": -583.8,
+    "y": 260.8,
+    "zoom": 0.526
+   },
+   "storeAfter": {
+    "x": -583.8,
+    "y": 260.8,
+    "zoom": 0.526
+   },
+   "viewportUnchanged": true,
+   "delta": {
+    "dx": 0.0,
+    "dy": 0.0,
+    "dz": 0.0
+   }
+  },
+  "storeDomDivergence": {
+   "markCount": 5,
+   "marksMs": [
+    0,
+    500,
+    1500,
+    3000,
+    5000
+   ],
+   "gaps": [
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    },
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    },
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    },
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    },
+    {
+     "x": 0.2,
+     "y": 119.8,
+     "zoom": 0.0
+    }
+   ],
+   "converged": false,
+   "gapStable": true,
+   "logLenByMark": {
+    "t+0ms": 6,
+    "t+500ms": 6,
+    "t+1500ms": 6,
+    "t+3000ms": 6,
+    "t+5000ms": 6
+   },
+   "logLenFrozen": true,
+   "yGap": 119.8,
+   "oneWheelStep": 120,
+   "secondBurst": {
+    "storeDy": 240.0,
+    "domDy": 360,
+    "gapAfter": {
+     "x": 0.2,
+     "y": -0.2,
+     "zoom": 0.0
+    },
+    "reconciled": true
+   }
+  },
+  "zoomTriggerByWidth": {
+   "rows": [
+    {
+     "width": 560,
+     "visible": true,
+     "boxWidth": 36,
+     "parentDisplay": "block",
+     "text": "53%"
+    },
+    {
+     "width": 700,
+     "visible": false,
+     "boxWidth": 0,
+     "parentDisplay": "none",
+     "text": "53%"
+    },
+    {
+     "width": 800,
+     "visible": false,
+     "boxWidth": 0,
+     "parentDisplay": "none",
+     "text": "53%"
+    },
+    {
+     "width": 900,
+     "visible": true,
+     "boxWidth": 36,
+     "parentDisplay": "block",
+     "text": "53%"
+    },
+    {
+     "width": 1440,
+     "visible": true,
+     "boxWidth": 36,
+     "parentDisplay": "block",
+     "text": "53%"
+    }
+   ],
+   "hiddenWidths": [
+    700,
+    800
+   ],
+   "hiddenBand": [
+    700,
+    800
+   ]
+  },
+  "nodeResize": {
+   "resizeControls": 0,
+   "resizeLikeElements": 0,
+   "cells": [
+    {
+     "where": "rightEdge",
+     "hitClass": "react-flow__handle react-flow__handle-right nodrag nopan source connectable connectablesta",
+     "hitTag": "DIV",
+     "hitOwnNode": true,
+     "start": [
+      288,
+      154
+     ],
+     "domSizeBefore": [
+      131,
+      75
+     ],
+     "domSizeAfter": [
+      131,
+      75
+     ],
+     "storeSizeBefore": [
+      350,
+      200
+     ],
+     "storeSizeAfter": [
+      350,
+      200
+     ],
+     "measuredBefore": {
+      "width": 350,
+      "height": 200
+     },
+     "measuredAfter": {
+      "width": 350,
+      "height": 200
+     },
+     "domWidthChanged": false,
+     "domHeightChanged": false,
+     "storeWidthChanged": false,
+     "storeHeightChanged": false,
+     "positionChanged": false,
+     "effect": "无反应"
+    },
+    {
+     "where": "bottomEdge",
+     "hitClass": "whitespace-pre-wrap text-xs font-normal leading-[1.55] text-[#d5d5d5]",
+     "hitTag": "P",
+     "hitOwnNode": true,
+     "start": [
+      222,
+      192
+     ],
+     "domSizeBefore": [
+      131,
+      75
+     ],
+     "domSizeAfter": [
+      131,
+      75
+     ],
+     "storeSizeBefore": [
+      350,
+      200
+     ],
+     "storeSizeAfter": [
+      350,
+      200
+     ],
+     "measuredBefore": {
+      "width": 350,
+      "height": 200
+     },
+     "measuredAfter": {
+      "width": 350,
+      "height": 200
+     },
+     "domWidthChanged": false,
+     "domHeightChanged": false,
+     "storeWidthChanged": false,
+     "storeHeightChanged": false,
+     "positionChanged": true,
+     "effect": "移动了节点"
+    },
+    {
+     "where": "corner",
+     "hitClass": "min-h-0 flex-1 overflow-hidden p-3",
+     "hitTag": "DIV",
+     "hitOwnNode": true,
+     "start": [
+      288,
+      192
+     ],
+     "domSizeBefore": [
+      131,
+      75
+     ],
+     "domSizeAfter": [
+      131,
+      75
+     ],
+     "storeSizeBefore": [
+      350,
+      200
+     ],
+     "storeSizeAfter": [
+      350,
+      200
+     ],
+     "measuredBefore": {
+      "width": 350,
+      "height": 200
+     },
+     "measuredAfter": {
+      "width": 350,
+      "height": 200
+     },
+     "domWidthChanged": false,
+     "domHeightChanged": false,
+     "storeWidthChanged": false,
+     "storeHeightChanged": false,
+     "positionChanged": true,
+     "effect": "移动了节点"
+    }
+   ],
+   "anyResizeHappened": false,
+   "cellsThatMovedNode": [
+    "bottomEdge",
+    "corner"
+   ],
+   "cellsThatDidNothing": [
+    "rightEdge"
+   ]
+  },
+  "reprojectOnResize": {
+   "delta": {
+    "dx": 0.0,
+    "dy": 0.0,
+    "dz": 0.0
+   },
+   "afterMatchesCompact": {
+    "x": false,
+    "y": false,
+    "zoom": false
+   },
+   "logReasons": [
+    "bootstrap-applied",
+    "projection-echo",
+    "live-frame",
+    "live-frame",
+    "viewport-accepted",
+    "live-frame",
+    "live-frame",
+    "viewport-accepted",
+    "live-frame",
+    "stable-restored",
+    "breakpoint-flip-delegated",
+    "viewport-accepted"
+   ],
+   "breakpointFlipDelegated": true,
+   "breakpointFlipStatus": "skipped"
+  }
+ },
+ "judgeCount": 16,
+ "judgments": [
+  {
+   "no": 1,
+   "text": "desktopViewport 逐位生效：1440 档 store 的 x/y/zoom 与 page.tsx:163 的常量三字段全等",
+   "evidence": {
+    "label": "desktop",
+    "requestedWidth": 1440,
+    "measuredWidth": 1440,
+    "mq768": false,
+    "store": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "dom": {
+     "zoom": 0.526,
+     "x": -584,
+     "y": 261
+    },
+    "indicator": 53,
+    "triggerText": "53%",
+    "triggerVisible": true,
+    "matchesExpectedConstant": {
+     "x": true,
+     "y": true,
+     "zoom": true
+    },
+    "expectedConstant": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "ownerLogReasons": [
+     "bootstrap-applied",
+     "projection-echo"
+    ]
+   }
+  },
+  {
+   "no": 2,
+   "text": "compactViewport 逐位生效：700 档 mq768=true，store 与 page.tsx:164 的常量三字段全等",
+   "evidence": {
+    "label": "compact",
+    "requestedWidth": 700,
+    "measuredWidth": 700,
+    "mq768": true,
+    "store": {
+     "x": 17,
+     "y": 128,
+     "zoom": 0.28
+    },
+    "dom": {
+     "zoom": 0.28,
+     "x": 17,
+     "y": 128
+    },
+    "indicator": 28,
+    "triggerText": "28%",
+    "triggerVisible": false,
+    "matchesExpectedConstant": {
+     "x": true,
+     "y": true,
+     "zoom": true
+    },
+    "expectedConstant": {
+     "x": 17,
+     "y": 128,
+     "zoom": 0.28
+    },
+    "ownerLogReasons": [
+     "bootstrap-applied",
+     "projection-echo"
+    ]
+   }
+  },
+  {
+   "no": 3,
+   "text": "断点按写的 768 生效：800 档 mq768=false ⟹ 仍走 desktop",
+   "evidence": {
+    "label": "midband",
+    "requestedWidth": 800,
+    "measuredWidth": 800,
+    "mq768": false,
+    "store": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "dom": {
+     "zoom": 0.526,
+     "x": -584,
+     "y": 261
+    },
+    "indicator": 53,
+    "triggerText": "53%",
+    "triggerVisible": false,
+    "matchesExpectedConstant": {
+     "x": true,
+     "y": true,
+     "zoom": true
+    },
+    "expectedConstant": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "ownerLogReasons": [
+     "bootstrap-applied",
+     "projection-echo"
+    ]
+   }
+  },
+  {
+   "no": 4,
+   "text": "首屏 zoomLevel 不是 uiStore 硬编码的 54，而是 53 =round(0.526×100)；uiStore / trigger / store 三处一致 ⟹ onViewportChange 在挂载时就已纠正，**不是缺陷**",
+   "evidence": {
+    "store": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "dom": {
+     "zoom": 0.526,
+     "x": -584,
+     "y": 261
+    },
+    "zoomLevel": 53,
+    "triggerText": "53%",
+    "indicatorMatchesReal": true,
+    "triggerMatchesReal": true,
+    "realPercent": 53,
+    "hardcodedInitial": 54,
+    "hardcodedShown": false,
+    "resizeControls": 0,
+    "resizeLikeElements": 0
+   }
+  },
+  {
+   "no": 5,
+   "text": "缩放菜单 6 格全部符合合同，且每一格指示器都与真实 zoom 相符",
+   "evidence": {
+    "menu": [
+     {
+      "key": "100",
+      "beforeZoom": 0.375,
+      "afterZoom": 1,
+      "indicator": 100,
+      "indicatorMatchesReal": true,
+      "triggerMatchesReal": true
+     },
+     {
+      "key": "in",
+      "beforeZoom": 1,
+      "afterZoom": 1.1,
+      "indicator": 110,
+      "indicatorMatchesReal": true,
+      "triggerMatchesReal": true
+     },
+     {
+      "key": "out",
+      "beforeZoom": 1.1,
+      "afterZoom": 1,
+      "indicator": 100,
+      "indicatorMatchesReal": true,
+      "triggerMatchesReal": true
+     },
+     {
+      "key": "fit",
+      "beforeZoom": 1,
+      "afterZoom": 0.375,
+      "indicator": 38,
+      "indicatorMatchesReal": true,
+      "triggerMatchesReal": true
+     },
+     {
+      "key": "800",
+      "beforeZoom": 0.375,
+      "afterZoom": 8,
+      "indicator": 800,
+      "indicatorMatchesReal": true,
+      "triggerMatchesReal": true
+     },
+     {
+      "key": "50",
+      "beforeZoom": 8,
+      "afterZoom": 0.5,
+      "indicator": 50,
+      "indicatorMatchesReal": true,
+      "triggerMatchesReal": true
+     }
+    ],
+    "allIndicatorsMatch": true
+   }
+  },
+  {
+   "no": 6,
+   "text": "⌘+ / ⌘- / ⌘0 与菜单按钮是同两个回调，Δzoom 分别为 +0.1 / −0.1 / fitView",
+   "evidence": [
+    {
+     "key": "Meta+",
+     "dz": 0.1,
+     "dx": 0,
+     "dy": 0.0,
+     "indicatorMatchesReal": true
+    },
+    {
+     "key": "Meta-",
+     "dz": -0.1,
+     "dx": 0,
+     "dy": 0.0,
+     "indicatorMatchesReal": true
+    },
+    {
+     "key": "Meta0",
+     "dz": -0.125,
+     "dx": 199.75,
+     "dy": 111.09,
+     "indicatorMatchesReal": true
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "text": "上下限生效：连点 26 次缩小恰好停在 0.1、连点 90 次放大恰好停在 8（= minZoom/maxZoom），指示器同步",
+   "evidence": {
+    "min": {
+     "times": 26,
+     "startZoom": 0.375,
+     "finalZoom": 0.1,
+     "indicator": 10,
+     "indicatorMatchesReal": true
+    },
+    "max": {
+     "times": 90,
+     "startZoom": 0.375,
+     "finalZoom": 8,
+     "indicator": 800,
+     "indicatorMatchesReal": true
+    }
+   }
+  },
+  {
+   "no": 8,
+   "text": "★ 缺陷一（中）：`zoomOnScroll` 是死代码 —— 13 次滚轮Δzoom 全为 0，而 Δy 恒为 ±120/次，滚轮只平移不缩放",
+   "evidence": {
+    "bursts": [
+     {
+      "key": "burstSlow",
+      "n": 4,
+      "deltaY": -120,
+      "storeDy": 480.0,
+      "domDy": 480,
+      "storeDz": 0.0,
+      "domDz": 0.0,
+      "domDyPerEvent": 120.0,
+      "acceptedDelta": 2
+     },
+     {
+      "key": "burstFast",
+      "n": 6,
+      "deltaY": -120,
+      "storeDy": 720.0,
+      "domDy": 720,
+      "storeDz": 0.0,
+      "domDz": 0.0,
+      "domDyPerEvent": 120.0,
+      "acceptedDelta": 1
+     },
+     {
+      "key": "burstDown",
+      "n": 3,
+      "deltaY": 120,
+      "storeDy": -240.0,
+      "domDy": -360,
+      "storeDz": 0.0,
+      "domDz": 0.0,
+      "domDyPerEvent": -120.0,
+      "acceptedDelta": 1
+     }
+    ],
+    "eventsTotal": 13,
+    "dzValues": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "allDzZero": true
+   }
+  },
+  {
+   "no": 9,
+   "text": "★ 缺陷二（中）：滚轮落在节点上完全不响应 —— 命中 nopan 容器，viewport 前后完全相同",
+   "evidence": {
+    "hitTag": "IMG",
+    "hitClass": "object-cover transition-[filter] duration-300",
+    "nodeNodrag": false,
+    "nodeNopan": true,
+    "storeBefore": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "storeAfter": {
+     "x": -583.8,
+     "y": 260.8,
+     "zoom": 0.526
+    },
+    "viewportUnchanged": true,
+    "delta": {
+     "dx": 0.0,
+     "dy": 0.0,
+     "dz": 0.0
+    }
+   }
+  },
+  {
+   "no": 10,
+   "text": "★ 缺陷三（中）：滚轮平移收尾时 store 的 canvas.viewport 落后画面约 120px（一个滚轮格），5 秒内不收敛、owner_log 条数冻结",
+   "evidence": {
+    "markCount": 5,
+    "marksMs": [
+     0,
+     500,
+     1500,
+     3000,
+     5000
+    ],
+    "gaps": [
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     },
+     {
+      "x": 0.2,
+      "y": 119.8,
+      "zoom": 0.0
+     }
+    ],
+    "converged": false,
+    "gapStable": true,
+    "logLenByMark": {
+     "t+0ms": 6,
+     "t+500ms": 6,
+     "t+1500ms": 6,
+     "t+3000ms": 6,
+     "t+5000ms": 6
+    },
+    "logLenFrozen": true,
+    "yGap": 119.8,
+    "oneWheelStep": 120,
+    "secondBurst": {
+     "storeDy": 240.0,
+     "domDy": 360,
+     "gapAfter": {
+      "x": 0.2,
+      "y": -0.2,
+      "zoom": 0.0
+     },
+     "reconciled": true
+    }
+   }
+  },
+  {
+   "no": 11,
+   "text": "该落后会在下一次视口变化时被一次性抹平（第二轮 3 次上滚后差距回到 −0.2）⟹ 是丢了一帧提交，不是持续漂移",
+   "evidence": {
+    "storeDy": 240.0,
+    "domDy": 360,
+    "gapAfter": {
+     "x": 0.2,
+     "y": -0.2,
+     "zoom": 0.0
+    },
+    "reconciled": true
+   }
+  },
+  {
+   "no": 12,
+   "text": "★ 缺陷四（中）：640–850px 整段缩放菜单的**唯一**入口被隐藏（`sm:max-[850px]:hidden`）；实测 700/800 隐藏，560/900/1440 可见，该段只剩三个快捷键",
+   "evidence": {
+    "rows": [
+     {
+      "width": 560,
+      "visible": true,
+      "boxWidth": 36,
+      "parentDisplay": "block",
+      "text": "53%"
+     },
+     {
+      "width": 700,
+      "visible": false,
+      "boxWidth": 0,
+      "parentDisplay": "none",
+      "text": "53%"
+     },
+     {
+      "width": 800,
+      "visible": false,
+      "boxWidth": 0,
+      "parentDisplay": "none",
+      "text": "53%"
+     },
+     {
+      "width": 900,
+      "visible": true,
+      "boxWidth": 36,
+      "parentDisplay": "block",
+      "text": "53%"
+     },
+     {
+      "width": 1440,
+      "visible": true,
+      "boxWidth": 36,
+      "parentDisplay": "block",
+      "text": "53%"
+     }
+    ],
+    "hiddenWidths": [
+     700,
+     800
+    ],
+    "hiddenBand": [
+     700,
+     800
+    ]
+   }
+  },
+  {
+   "no": 13,
+   "text": "节点不可缩放：`.react-flow__resize-control` = 0、含 `resize` 的 class 元素 = 0，`NodeResizer` 只存在于 FrameOS 侧",
+   "evidence": {
+    "resizeControls": 0,
+    "resizeLikeElements": 0,
+    "static": "全 src/ 无 NodeResizer / nodeResize / nodesResizable（resizeNode 只在 frameosStore）"
+   }
+  },
+  {
+   "no": 14,
+   "text": "拖右边缘**完全无反应**：起点命中的是 `react-flow__handle-right nodrag nopan`，拖动被 nodrag 吞掉",
+   "evidence": {
+    "where": "rightEdge",
+    "hitClass": "react-flow__handle react-flow__handle-right nodrag nopan source connectable connectablesta",
+    "hitTag": "DIV",
+    "hitOwnNode": true,
+    "start": [
+     288,
+     154
+    ],
+    "domSizeBefore": [
+     131,
+     75
+    ],
+    "domSizeAfter": [
+     131,
+     75
+    ],
+    "storeSizeBefore": [
+     350,
+     200
+    ],
+    "storeSizeAfter": [
+     350,
+     200
+    ],
+    "measuredBefore": {
+     "width": 350,
+     "height": 200
+    },
+    "measuredAfter": {
+     "width": 350,
+     "height": 200
+    },
+    "domWidthChanged": false,
+    "domHeightChanged": false,
+    "storeWidthChanged": false,
+    "storeHeightChanged": false,
+    "positionChanged": false,
+    "effect": "无反应"
+   }
+  },
+  {
+   "no": 15,
+   "text": "拖下边缘与右下角得到的是「移动节点」而不是缩放；store width/height（350×200）、measured、style 全程不变",
+   "evidence": {
+    "cells": [
+     {
+      "where": "bottomEdge",
+      "hitClass": "whitespace-pre-wrap text-xs font-normal leading-[1.55] text-[#d5d5d5]",
+      "hitTag": "P",
+      "hitOwnNode": true,
+      "start": [
+       222,
+       192
+      ],
+      "domSizeBefore": [
+       131,
+       75
+      ],
+      "domSizeAfter": [
+       131,
+       75
+      ],
+      "storeSizeBefore": [
+       350,
+       200
+      ],
+      "storeSizeAfter": [
+       350,
+       200
+      ],
+      "measuredBefore": {
+       "width": 350,
+       "height": 200
+      },
+      "measuredAfter": {
+       "width": 350,
+       "height": 200
+      },
+      "domWidthChanged": false,
+      "domHeightChanged": false,
+      "storeWidthChanged": false,
+      "storeHeightChanged": false,
+      "positionChanged": true,
+      "effect": "移动了节点"
+     },
+     {
+      "where": "corner",
+      "hitClass": "min-h-0 flex-1 overflow-hidden p-3",
+      "hitTag": "DIV",
+      "hitOwnNode": true,
+      "start": [
+       288,
+       192
+      ],
+      "domSizeBefore": [
+       131,
+       75
+      ],
+      "domSizeAfter": [
+       131,
+       75
+      ],
+      "storeSizeBefore": [
+       350,
+       200
+      ],
+      "storeSizeAfter": [
+       350,
+       200
+      ],
+      "measuredBefore": {
+       "width": 350,
+       "height": 200
+      },
+      "measuredAfter": {
+       "width": 350,
+       "height": 200
+      },
+      "domWidthChanged": false,
+      "domHeightChanged": false,
+      "storeWidthChanged": false,
+      "storeHeightChanged": false,
+      "positionChanged": true,
+      "effect": "移动了节点"
+     }
+    ],
+    "anyResizeHappened": false
+   }
+  },
+  {
+   "no": 16,
+   "text": "改宽 1440→700 视口纹丝不动，但 owner_log 里有一条 `breakpoint-flip-delegated / skipped` ⟹ **是显式设计，不是缺陷**",
+   "evidence": {
+    "delta": {
+     "dx": 0.0,
+     "dy": 0.0,
+     "dz": 0.0
+    },
+    "afterMatchesCompact": {
+     "x": false,
+     "y": false,
+     "zoom": false
+    },
+    "logReasons": [
+     "bootstrap-applied",
+     "projection-echo",
+     "live-frame",
+     "live-frame",
+     "viewport-accepted",
+     "live-frame",
+     "live-frame",
+     "viewport-accepted",
+     "live-frame",
+     "stable-restored",
+     "breakpoint-flip-delegated",
+     "viewport-accepted"
+    ],
+    "breakpointFlipDelegated": true,
+    "breakpointFlipStatus": "skipped"
+   }
+  }
+ ],
+ "headline": "缩放这条线查出一个**高价值**结论和三个中缺陷：`desktopViewport` / `compactViewport` 两档常量都逐位生效（不是死常量），缩放菜单 6 格 + 三个快捷键 + 上下限全部符合合同、首屏那个硬编码的 `zoomLevel: 54` 也早在挂载时就被纠正成 53 —— **这一整块没有缺陷**；缺陷都在「滚轮」上：① `zoomOnScroll` 是死代码，13 次滚轮 Δzoom 全 0、只平移；② 滚轮落在节点上因 `nopan` 完全无响应；③ 平移收尾 store 视口落后画面一个滚轮格（≈120px）且不会自行收敛。另外节点根本不可缩放，拖下边缘/右下角得到的是「移动」，拖右边缘被 handle 的 `nodrag` 吞掉变成完全无反应。",
+ "rework": [
+  {
+   "id": "R39",
+   "where": "探针 a（C0 取读数的位置）",
+   "what": "C0 原本排在 `Meta+0`（fitView）**之后**，量到的 zoom 是 0.375 而不是首屏的 0.526。",
+   "lesson": "「任何交互之前」是一格独立的前置条件，不是顺手就能拿到的读数。差点把 `zoomLevel` 的硬编码 54 直接写成缺陷。"
+  },
+  {
+   "id": "R40",
+   "where": "探针 a（滚轮只记布尔）",
+   "what": "只记了 `变zoom` / `变XY`，没记 Δx/Δy/Δzoom 的**数值**，于是「向上滚完全没反应、向下滚才平移」这个假不对称无从解释。",
+   "lesson": "布尔读数能回答「有没有」，回答不了「多少」和「哪个方向」。"
+  },
+  {
+   "id": "R41",
+   "where": "探针 a（C10 忘了复位视口）",
+   "what": "上一格 clamp 把 zoom 停在 8，节点全在视口外，`NODE()` 返回 null，整格记成 FAILED。",
+   "lesson": "batch 760 的 R35 在同一个坑上栽过一次（「每格前复位」），761 又栽一次。**这条规矩要写成默认动作，不能靠记性。**"
+  },
+  {
+   "id": "R42",
+   "where": "探针 a/b（★ 我自己的读数滞后，把 4 次滚轮看成 2 次）",
+   "what": "每步都读 ⟹ 读数落在平移落地之前，Δ 被错记到隔一格，于是 761a/761b 都看到 `Δy = [0, 240, 0, −240]` 这个整齐的假形状。",
+   "lesson": "**中途不读、只在末尾读一次**才量得到真值：761c 4 次滚轮总位移 480 = 4×120，每次都生效。整齐的重复形状（0/240/0/240）本身就该当成探针嫌疑，而不是当成发现。"
+  },
+  {
+   "id": "R43",
+   "where": "流程（★ 原始读数只放 /tmp）",
+   "what": "2026-10-04 23:44 有人清空了 /tmp，batch 760 的三份原始读数与探针脚本一并消失（同一时刻 4317 的 dev server 也被杀掉了）。",
+   "lesson": "验收器依赖 /tmp ⟹ **提交出去的验收器不可复现**。本批起原始读数随产物提交到 `docs/research/.../raw/`；760 的验收器也已改成优先读产物目录。读数**不靠回忆补写** —— 那等于伪造原始证据。"
+  },
+  {
+   "id": "R44",
+   "where": "结论纪律（差点误报）",
+   "what": "看到 `uiStore.ts:223` 硬编码 `zoomLevel: 54` 与真实 52.6% 不符，差点直接判成「首屏显示错的百分比」。",
+   "lesson": "实测首屏三处（uiStore / trigger 文本 / store）**完全一致**。**看到硬编码不等于它会露脸** —— 中间隔着一个 `onViewportChange` 的首次提交。"
+  },
+  {
+   "id": "R45",
+   "where": "汇编器（取错了探针）",
+   "what": "`wheelNode` 在探针 b 里，汇编器却从探针 c 取，于是 `nopan` 一度读成 `null`。",
+   "lesson": "多探针批次里，「这条读数在哪个文件」必须显式确认，不能凭印象写文件名。"
+  },
+  {
+   "id": "R46",
+   "where": "验收器（★ 阴性对照第三次逮到同一个洞）",
+   "what": "首版验收器 45/45 全过，但 **13 发阴性对照里有 11 发漏放**。根因：我写的检查验的是「**原始读数自洽**」，却没验「**产物是否忠实抄了原始读数**」—— 把 runtime-audit.json 里的 store / mq768 / visible / yGap / logLenFrozen / 每格位移 / resize 五项布尔改成假的，`raw/` 里的读数没动，于是全部蒙混过关。两发改错编号的注入（把判据 14 的证据改在判据 13 上）则是往不存在的键上写值，等于什么也没伪造。",
+   "lesson": "这是 759 的 R33、760 的 R38 之后**第三次**复发，所以这次不是补两个洞，而是加了一整段「产物 == 重算」的逐项对账（视口三档、菜单六格、快捷键、clamp、首屏、滚轮每格、差距时间线、按钮可见性、resize 五项布尔、reproject 四项）。补完 **64/64 通过、阴性对照 35/35 全拦**。另外：删检查块时要连带看它后面的代码 —— 我为了让新块能用 `rp`，把 `rp = rw[\"reproject\"]` 和三条 reproject 检查一起切掉了，是阴性对照里「判据 16 改判成缺陷」那发把它抓回来的。"
+  },
+  {
+   "id": "R47",
+   "where": "产物/README（撞上别人的 pre-commit 钩子）",
+   "what": "第一次提交被钩子拦下：「本次提交新增了批次行 [560, 700, 800, 900, 1440]」。查下去是 `docs/user-manual/beeftv-canvas/scripts/buildrecord.py` 里的 `added_batch_numbers()` 用 `^\\+\\|\\s*(\\d+)[a-z]?\\s*\\|` 从 diff 的新增行里取批次号 —— 于是我 README 里那张「视口宽度 → 缩放按钮」的表格，**首格是裸数字的行被当成了批次行**。",
+   "lesson": "钩子在**别人（user-manual 那条线）的目录**里，不改它，也不用 `--no-verify`（那条规矩至今没破过）。改成把我自己表格的首格写成 `560px` —— 正则要求首格紧跟数字，带反引号或单位就不匹配，而且表更好读。顺带说明：台账行首格写 `| Batch 761 |` 而不是 `| 761 |` 本来就是承重设计，不是洁癖。"
+  }
+ ],
+ "notClaimed": [
+  "没有与源站对照：全部读数来自 clone（4317）。",
+  "缩放按钮只测了 560/700/800/900/1440 五个宽度点，不连续，640 与 850 两个边界值本身没测。",
+  "触控板捏合（zoomOnPinch 未显式设置，默认为开）与双击缩放（zoomOnDoubleClick 默认开）都没测。",
+  "store 视口落后一格会不会让「切换画布再切回来」发生跳变，未测。",
+  "节点尺寸只测了一个 350×200 的文本节点的三处边缘/角，没测其它节点类型，也没测选中态下是否出现任何缩放提示。",
+  "「每格 120px」只在本轮 panOnScrollSpeed=1、鼠标滚轮 120 单位下成立，换设备或改速度未复验。",
+  "clamp 落点 x/y 的抖动只记录了现象，未定位机制。",
+  "首屏是否存在早于「load 后 1.1s」的瞬时 54，未测。",
+  "轨道板手势、键盘导航缩放、屏幕阅读器下的缩放读数，均未测。"
+ ],
+ "rawProbeFiles": [
+  "raw/vb761a.json",
+  "raw/vb761b.json",
+  "raw/vb761c.json",
+  "raw/vb761d.json",
+  "/tmp/dbg761a.py",
+  "/tmp/dbg761b.py",
+  "/tmp/dbg761c.py",
+  "/tmp/dbg761d.py"
+ ]
+}

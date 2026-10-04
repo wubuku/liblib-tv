@@ -1,0 +1,1385 @@
+{
+ "batch": 761,
+ "probe": "a",
+ "rounds": [
+  {
+   "C0_initial": {
+    "vp": {
+     "zoomLevel": 53,
+     "store": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": 261
+     },
+     "triggerText": "53%",
+     "activeCanvasId": "canvas-2"
+    },
+    "derived": {
+     "realPercent": 53,
+     "indicator": 53,
+     "triggerText": "53%",
+     "indicatorMatchesReal": true,
+     "triggerMatchesIndicator": true,
+     "triggerMatchesReal": true
+    },
+    "resizeControls": 0,
+    "resizeLikeElements": 0
+   },
+   "afterFit": {
+    "vp": {
+     "zoomLevel": 38,
+     "store": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "dom": {
+      "zoom": 0.375,
+      "x": 119,
+      "y": 166
+     },
+     "triggerText": "38%",
+     "activeCanvasId": "canvas-2"
+    },
+    "derived": {
+     "realPercent": 38,
+     "indicator": 38,
+     "triggerText": "38%",
+     "indicatorMatchesReal": true,
+     "triggerMatchesIndicator": true,
+     "triggerMatchesReal": true
+    }
+   },
+   "panePoint": {
+    "x": 300,
+    "y": 140
+   },
+   "wheel": {
+    "steps": [
+     {
+      "step": "start",
+      "store": {
+       "x": 118.75,
+       "y": 165.59,
+       "zoom": 0.375
+      }
+     },
+     {
+      "step": "up1",
+      "deltaY": -120,
+      "store": {
+       "x": 118.75,
+       "y": 165.59,
+       "zoom": 0.375
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": 0.0,
+       "dz": 0.0
+      },
+      "indicator": 38
+     },
+     {
+      "step": "up2",
+      "deltaY": -120,
+      "store": {
+       "x": 118.75,
+       "y": 405.59,
+       "zoom": 0.375
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": 240.0,
+       "dz": 0.0
+      },
+      "indicator": 38
+     },
+     {
+      "step": "down1",
+      "deltaY": 120,
+      "store": {
+       "x": 118.75,
+       "y": 405.59,
+       "zoom": 0.375
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": 0.0,
+       "dz": 0.0
+      },
+      "indicator": 38
+     },
+     {
+      "step": "down2",
+      "deltaY": 120,
+      "store": {
+       "x": 118.75,
+       "y": 165.59,
+       "zoom": 0.375
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": -240.0,
+       "dz": 0.0
+      },
+      "indicator": 38
+     }
+    ],
+    "zoomEverChanged": false,
+    "xyEverChanged": true
+   },
+   "wheelDerived": {
+    "realPercent": 38,
+    "indicator": 38,
+    "triggerText": "38%",
+    "indicatorMatchesReal": true,
+    "triggerMatchesIndicator": true,
+    "triggerMatchesReal": true
+   },
+   "C1_menu": {
+    "current": "38%",
+    "actions": [
+     "in",
+     "out",
+     "fit",
+     "50",
+     "100",
+     "800"
+    ]
+   },
+   "C1_derived": {
+    "realPercent": 38,
+    "indicator": 38,
+    "triggerText": "38%",
+    "indicatorMatchesReal": true,
+    "triggerMatchesIndicator": true,
+    "triggerMatchesReal": true
+   },
+   "actions": [
+    {
+     "key": "100",
+     "before": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "hit": {
+      "selector": "[data-zoom-action=\"100\"]",
+      "at": [
+       182,
+       885
+      ],
+      "hit": {
+       "tag": "BUTTON",
+       "cls": "h-9 w-full rounded-lg px-3 text-left text-xs text-[#e7e7e7] hover:bg-white/[0.07]",
+       "node": null
+      }
+     },
+     "after": {
+      "x": -882,
+      "y": -391,
+      "zoom": 1
+     },
+     "derived": {
+      "realPercent": 100,
+      "indicator": 100,
+      "triggerText": "100%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    {
+     "key": "in",
+     "before": {
+      "x": -882,
+      "y": -391,
+      "zoom": 1
+     },
+     "hit": {
+      "selector": "[data-zoom-action=\"in\"]",
+      "at": [
+       188,
+       732
+      ],
+      "hit": {
+       "tag": "BUTTON",
+       "cls": "flex h-9 w-full items-center justify-between rounded-lg px-3 text-xs text-[#e7e7e7] hover:",
+       "node": null
+      }
+     },
+     "after": {
+      "x": -882,
+      "y": -391,
+      "zoom": 1.1
+     },
+     "derived": {
+      "realPercent": 110,
+      "indicator": 110,
+      "triggerText": "110%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    {
+     "key": "out",
+     "before": {
+      "x": -882,
+      "y": -391,
+      "zoom": 1.1
+     },
+     "hit": {
+      "selector": "[data-zoom-action=\"out\"]",
+      "at": [
+       185,
+       768
+      ],
+      "hit": {
+       "tag": "BUTTON",
+       "cls": "flex h-9 w-full items-center justify-between rounded-lg px-3 text-xs text-[#e7e7e7] hover:",
+       "node": null
+      }
+     },
+     "after": {
+      "x": -882,
+      "y": -391,
+      "zoom": 1
+     },
+     "derived": {
+      "realPercent": 100,
+      "indicator": 100,
+      "triggerText": "100%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    {
+     "key": "fit",
+     "before": {
+      "x": -882,
+      "y": -391,
+      "zoom": 1
+     },
+     "hit": {
+      "selector": "[data-zoom-action=\"fit\"]",
+      "at": [
+       188,
+       804
+      ],
+      "hit": {
+       "tag": "BUTTON",
+       "cls": "flex h-9 w-full items-center justify-between rounded-lg px-3 text-xs text-[#e7e7e7] hover:",
+       "node": null
+      }
+     },
+     "after": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "derived": {
+      "realPercent": 38,
+      "indicator": 38,
+      "triggerText": "38%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    {
+     "key": "800",
+     "before": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "hit": {
+      "selector": "[data-zoom-action=\"800\"]",
+      "at": [
+       182,
+       921
+      ],
+      "hit": {
+       "tag": "BUTTON",
+       "cls": "h-9 w-full rounded-lg px-3 text-left text-xs text-[#e7e7e7] hover:bg-white/[0.07]",
+       "node": null
+      }
+     },
+     "after": {
+      "x": -12096,
+      "y": -6628,
+      "zoom": 8
+     },
+     "derived": {
+      "realPercent": 800,
+      "indicator": 800,
+      "triggerText": "800%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    {
+     "key": "50",
+     "before": {
+      "x": -12096,
+      "y": -6628,
+      "zoom": 8
+     },
+     "hit": {
+      "selector": "[data-zoom-action=\"50\"]",
+      "at": [
+       190,
+       849
+      ],
+      "hit": {
+       "tag": "BUTTON",
+       "cls": "h-9 w-full rounded-lg px-3 text-left text-xs text-[#e7e7e7] hover:bg-white/[0.07]",
+       "node": null
+      }
+     },
+     "after": {
+      "x": -81,
+      "y": 54.5,
+      "zoom": 0.5
+     },
+     "derived": {
+      "realPercent": 50,
+      "indicator": 50,
+      "triggerText": "50%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    }
+   ],
+   "keyboard": [
+    {
+     "key": "Meta+",
+     "before": {
+      "x": -81,
+      "y": 54.5,
+      "zoom": 0.5
+     },
+     "after": {
+      "x": -81,
+      "y": 54.5,
+      "zoom": 0.6
+     },
+     "delta": {
+      "dx": 0,
+      "dy": 0.0,
+      "dz": 0.1
+     },
+     "derived": {
+      "realPercent": 60,
+      "indicator": 60,
+      "triggerText": "60%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    {
+     "key": "Meta-",
+     "before": {
+      "x": -81,
+      "y": 54.5,
+      "zoom": 0.6
+     },
+     "after": {
+      "x": -81,
+      "y": 54.5,
+      "zoom": 0.5
+     },
+     "delta": {
+      "dx": 0,
+      "dy": 0.0,
+      "dz": -0.1
+     },
+     "derived": {
+      "realPercent": 50,
+      "indicator": 50,
+      "triggerText": "50%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    {
+     "key": "Meta0",
+     "before": {
+      "x": -81,
+      "y": 54.5,
+      "zoom": 0.5
+     },
+     "after": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "delta": {
+      "dx": 199.75,
+      "dy": 111.09,
+      "dz": -0.125
+     },
+     "derived": {
+      "realPercent": 38,
+      "indicator": 38,
+      "triggerText": "38%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    }
+   ],
+   "clamp": {
+    "min": {
+     "times": 26,
+     "start": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "store": {
+      "x": 118.86,
+      "y": 165.66,
+      "zoom": 0.1
+     },
+     "derived": {
+      "realPercent": 10,
+      "indicator": 10,
+      "triggerText": "10%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    "max": {
+     "times": 90,
+     "start": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "store": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 8
+     },
+     "derived": {
+      "realPercent": 800,
+      "indicator": 800,
+      "triggerText": "800%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    }
+   },
+   "node": {
+    "id": "t-9j2MoccxBj",
+    "rect": {
+     "x": 159,
+     "y": 119,
+     "w": 131,
+     "h": 75
+    },
+    "storeW": 350,
+    "storeH": 200,
+    "styleW": 350,
+    "styleH": 200
+   },
+   "resize": {
+    "cells": [
+     {
+      "where": "rightEdge",
+      "nodeId": "t-9j2MoccxBj",
+      "start": [
+       288,
+       154
+      ],
+      "hit": {
+       "tag": "DIV",
+       "cls": "react-flow__handle react-flow__handle-right nodrag nopan source connectable connectablesta",
+       "node": "t-9j2MoccxBj"
+      },
+      "hitOwnNode": true,
+      "before": {
+       "w": 131,
+       "h": 75,
+       "x": 159,
+       "y": 119,
+       "storeW": 350,
+       "storeH": 200,
+       "styleW": 350,
+       "styleH": 200,
+       "measured": {
+        "width": 350,
+        "height": 200
+       }
+      },
+      "after": {
+       "w": 131,
+       "h": 75,
+       "x": 159,
+       "y": 119,
+       "storeW": 350,
+       "storeH": 200,
+       "styleW": 350,
+       "styleH": 200,
+       "measured": {
+        "width": 350,
+        "height": 200
+       }
+      },
+      "domWidthChanged": false,
+      "domHeightChanged": false,
+      "storeWidthChanged": false,
+      "storeHeightChanged": false,
+      "positionChanged": false
+     },
+     {
+      "where": "bottomEdge",
+      "nodeId": "t-9j2MoccxBj",
+      "start": [
+       222,
+       192
+      ],
+      "hit": {
+       "tag": "P",
+       "cls": "whitespace-pre-wrap text-xs font-normal leading-[1.55] text-[#d5d5d5]",
+       "node": "t-9j2MoccxBj"
+      },
+      "hitOwnNode": true,
+      "before": {
+       "w": 131,
+       "h": 75,
+       "x": 159,
+       "y": 119,
+       "storeW": 350,
+       "storeH": 200,
+       "styleW": 350,
+       "styleH": 200,
+       "measured": {
+        "width": 350,
+        "height": 200
+       }
+      },
+      "after": {
+       "w": 131,
+       "h": 75,
+       "x": 159,
+       "y": 169,
+       "storeW": 350,
+       "storeH": 200,
+       "styleW": 350,
+       "styleH": 200,
+       "measured": {
+        "width": 350,
+        "height": 200
+       }
+      },
+      "domWidthChanged": false,
+      "domHeightChanged": false,
+      "storeWidthChanged": false,
+      "storeHeightChanged": false,
+      "positionChanged": true
+     },
+     {
+      "where": "corner",
+      "nodeId": "t-9j2MoccxBj",
+      "start": [
+       288,
+       192
+      ],
+      "hit": {
+       "tag": "DIV",
+       "cls": "min-h-0 flex-1 overflow-hidden p-3",
+       "node": "t-9j2MoccxBj"
+      },
+      "hitOwnNode": true,
+      "before": {
+       "w": 131,
+       "h": 75,
+       "x": 159,
+       "y": 119,
+       "storeW": 350,
+       "storeH": 200,
+       "styleW": 350,
+       "styleH": 200,
+       "measured": {
+        "width": 350,
+        "height": 200
+       }
+      },
+      "after": {
+       "w": 131,
+       "h": 75,
+       "x": 226,
+       "y": 169,
+       "storeW": 350,
+       "storeH": 200,
+       "styleW": 350,
+       "styleH": 200,
+       "measured": {
+        "width": 350,
+        "height": 200
+       }
+      },
+      "domWidthChanged": false,
+      "domHeightChanged": false,
+      "storeWidthChanged": false,
+      "storeHeightChanged": false,
+      "positionChanged": true
+     }
+    ],
+    "resizeControls": 0,
+    "resizeLikeElements": 0
+   }
+  },
+  {
+   "C0_initial": {
+    "vp": {
+     "zoomLevel": 53,
+     "store": {
+      "x": -583.8,
+      "y": 260.8,
+      "zoom": 0.526
+     },
+     "dom": {
+      "zoom": 0.526,
+      "x": -584,
+      "y": 261
+     },
+     "triggerText": "53%",
+     "activeCanvasId": "canvas-2"
+    },
+    "derived": {
+     "realPercent": 53,
+     "indicator": 53,
+     "triggerText": "53%",
+     "indicatorMatchesReal": true,
+     "triggerMatchesIndicator": true,
+     "triggerMatchesReal": true
+    },
+    "resizeControls": 0,
+    "resizeLikeElements": 0
+   },
+   "afterFit": {
+    "vp": {
+     "zoomLevel": 38,
+     "store": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "dom": {
+      "zoom": 0.375,
+      "x": 119,
+      "y": 166
+     },
+     "triggerText": "38%",
+     "activeCanvasId": "canvas-2"
+    },
+    "derived": {
+     "realPercent": 38,
+     "indicator": 38,
+     "triggerText": "38%",
+     "indicatorMatchesReal": true,
+     "triggerMatchesIndicator": true,
+     "triggerMatchesReal": true
+    }
+   },
+   "panePoint": {
+    "x": 300,
+    "y": 140
+   },
+   "wheel": {
+    "steps": [
+     {
+      "step": "start",
+      "store": {
+       "x": 118.75,
+       "y": 165.59,
+       "zoom": 0.375
+      }
+     },
+     {
+      "step": "up1",
+      "deltaY": -120,
+      "store": {
+       "x": 118.75,
+       "y": 165.59,
+       "zoom": 0.375
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": 0.0,
+       "dz": 0.0
+      },
+      "indicator": 38
+     },
+     {
+      "step": "up2",
+      "deltaY": -120,
+      "store": {
+       "x": 118.75,
+       "y": 405.59,
+       "zoom": 0.375
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": 240.0,
+       "dz": 0.0
+      },
+      "indicator": 38
+     },
+     {
+      "step": "down1",
+      "deltaY": 120,
+      "store": {
+       "x": 118.75,
+       "y": 405.59,
+       "zoom": 0.375
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": 0.0,
+       "dz": 0.0
+      },
+      "indicator": 38
+     },
+     {
+      "step": "down2",
+      "deltaY": 120,
+      "store": {
+       "x": 118.75,
+       "y": 165.59,
+       "zoom": 0.375
+      },
+      "delta": {
+       "dx": 0.0,
+       "dy": -240.0,
+       "dz": 0.0
+      },
+      "indicator": 38
+     }
+    ],
+    "zoomEverChanged": false,
+    "xyEverChanged": true
+   },
+   "wheelDerived": {
+    "realPercent": 38,
+    "indicator": 38,
+    "triggerText": "38%",
+    "indicatorMatchesReal": true,
+    "triggerMatchesIndicator": true,
+    "triggerMatchesReal": true
+   },
+   "C1_menu": {
+    "current": "38%",
+    "actions": [
+     "in",
+     "out",
+     "fit",
+     "50",
+     "100",
+     "800"
+    ]
+   },
+   "C1_derived": {
+    "realPercent": 38,
+    "indicator": 38,
+    "triggerText": "38%",
+    "indicatorMatchesReal": true,
+    "triggerMatchesIndicator": true,
+    "triggerMatchesReal": true
+   },
+   "actions": [
+    {
+     "key": "100",
+     "before": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "hit": {
+      "selector": "[data-zoom-action=\"100\"]",
+      "at": [
+       182,
+       885
+      ],
+      "hit": {
+       "tag": "BUTTON",
+       "cls": "h-9 w-full rounded-lg px-3 text-left text-xs text-[#e7e7e7] hover:bg-white/[0.07]",
+       "node": null
+      }
+     },
+     "after": {
+      "x": -882,
+      "y": -391,
+      "zoom": 1
+     },
+     "derived": {
+      "realPercent": 100,
+      "indicator": 100,
+      "triggerText": "100%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    {
+     "key": "in",
+     "before": {
+      "x": -882,
+      "y": -391,
+      "zoom": 1
+     },
+     "hit": {
+      "selector": "[data-zoom-action=\"in\"]",
+      "at": [
+       188,
+       732
+      ],
+      "hit": {
+       "tag": "BUTTON",
+       "cls": "flex h-9 w-full items-center justify-between rounded-lg px-3 text-xs text-[#e7e7e7] hover:",
+       "node": null
+      }
+     },
+     "after": {
+      "x": -882,
+      "y": -391,
+      "zoom": 1.1
+     },
+     "derived": {
+      "realPercent": 110,
+      "indicator": 110,
+      "triggerText": "110%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    {
+     "key": "out",
+     "before": {
+      "x": -882,
+      "y": -391,
+      "zoom": 1.1
+     },
+     "hit": {
+      "selector": "[data-zoom-action=\"out\"]",
+      "at": [
+       185,
+       768
+      ],
+      "hit": {
+       "tag": "BUTTON",
+       "cls": "flex h-9 w-full items-center justify-between rounded-lg px-3 text-xs text-[#e7e7e7] hover:",
+       "node": null
+      }
+     },
+     "after": {
+      "x": -882,
+      "y": -391,
+      "zoom": 1
+     },
+     "derived": {
+      "realPercent": 100,
+      "indicator": 100,
+      "triggerText": "100%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    {
+     "key": "fit",
+     "before": {
+      "x": -882,
+      "y": -391,
+      "zoom": 1
+     },
+     "hit": {
+      "selector": "[data-zoom-action=\"fit\"]",
+      "at": [
+       188,
+       804
+      ],
+      "hit": {
+       "tag": "BUTTON",
+       "cls": "flex h-9 w-full items-center justify-between rounded-lg px-3 text-xs text-[#e7e7e7] hover:",
+       "node": null
+      }
+     },
+     "after": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "derived": {
+      "realPercent": 38,
+      "indicator": 38,
+      "triggerText": "38%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    {
+     "key": "800",
+     "before": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "hit": {
+      "selector": "[data-zoom-action=\"800\"]",
+      "at": [
+       182,
+       921
+      ],
+      "hit": {
+       "tag": "BUTTON",
+       "cls": "h-9 w-full rounded-lg px-3 text-left text-xs text-[#e7e7e7] hover:bg-white/[0.07]",
+       "node": null
+      }
+     },
+     "after": {
+      "x": -12096,
+      "y": -6628,
+      "zoom": 8
+     },
+     "derived": {
+      "realPercent": 800,
+      "indicator": 800,
+      "triggerText": "800%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    {
+     "key": "50",
+     "before": {
+      "x": -12096,
+      "y": -6628,
+      "zoom": 8
+     },
+     "hit": {
+      "selector": "[data-zoom-action=\"50\"]",
+      "at": [
+       190,
+       849
+      ],
+      "hit": {
+       "tag": "BUTTON",
+       "cls": "h-9 w-full rounded-lg px-3 text-left text-xs text-[#e7e7e7] hover:bg-white/[0.07]",
+       "node": null
+      }
+     },
+     "after": {
+      "x": -81,
+      "y": 54.5,
+      "zoom": 0.5
+     },
+     "derived": {
+      "realPercent": 50,
+      "indicator": 50,
+      "triggerText": "50%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    }
+   ],
+   "keyboard": [
+    {
+     "key": "Meta+",
+     "before": {
+      "x": -81,
+      "y": 54.5,
+      "zoom": 0.5
+     },
+     "after": {
+      "x": -81,
+      "y": 54.5,
+      "zoom": 0.6
+     },
+     "delta": {
+      "dx": 0,
+      "dy": 0.0,
+      "dz": 0.1
+     },
+     "derived": {
+      "realPercent": 60,
+      "indicator": 60,
+      "triggerText": "60%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    {
+     "key": "Meta-",
+     "before": {
+      "x": -81,
+      "y": 54.5,
+      "zoom": 0.6
+     },
+     "after": {
+      "x": -81,
+      "y": 54.5,
+      "zoom": 0.5
+     },
+     "delta": {
+      "dx": 0,
+      "dy": 0.0,
+      "dz": -0.1
+     },
+     "derived": {
+      "realPercent": 50,
+      "indicator": 50,
+      "triggerText": "50%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    {
+     "key": "Meta0",
+     "before": {
+      "x": -81,
+      "y": 54.5,
+      "zoom": 0.5
+     },
+     "after": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "delta": {
+      "dx": 199.75,
+      "dy": 111.09,
+      "dz": -0.125
+     },
+     "derived": {
+      "realPercent": 38,
+      "indicator": 38,
+      "triggerText": "38%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    }
+   ],
+   "clamp": {
+    "min": {
+     "times": 26,
+     "start": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "store": {
+      "x": 131.7,
+      "y": 172.8,
+      "zoom": 0.1
+     },
+     "derived": {
+      "realPercent": 10,
+      "indicator": 10,
+      "triggerText": "10%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    "max": {
+     "times": 90,
+     "start": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "store": {
+      "x": 118.76,
+      "y": 165.6,
+      "zoom": 8
+     },
+     "derived": {
+      "realPercent": 800,
+      "indicator": 800,
+      "triggerText": "800%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    }
+   },
+   "node": {
+    "id": "t-9j2MoccxBj",
+    "rect": {
+     "x": 159,
+     "y": 119,
+     "w": 131,
+     "h": 75
+    },
+    "storeW": 350,
+    "storeH": 200,
+    "styleW": 350,
+    "styleH": 200
+   },
+   "resize": {
+    "cells": [
+     {
+      "where": "rightEdge",
+      "nodeId": "t-9j2MoccxBj",
+      "start": [
+       288,
+       154
+      ],
+      "hit": {
+       "tag": "DIV",
+       "cls": "react-flow__handle react-flow__handle-right nodrag nopan source connectable connectablesta",
+       "node": "t-9j2MoccxBj"
+      },
+      "hitOwnNode": true,
+      "before": {
+       "w": 131,
+       "h": 75,
+       "x": 159,
+       "y": 119,
+       "storeW": 350,
+       "storeH": 200,
+       "styleW": 350,
+       "styleH": 200,
+       "measured": {
+        "width": 350,
+        "height": 200
+       }
+      },
+      "after": {
+       "w": 131,
+       "h": 75,
+       "x": 159,
+       "y": 119,
+       "storeW": 350,
+       "storeH": 200,
+       "styleW": 350,
+       "styleH": 200,
+       "measured": {
+        "width": 350,
+        "height": 200
+       }
+      },
+      "domWidthChanged": false,
+      "domHeightChanged": false,
+      "storeWidthChanged": false,
+      "storeHeightChanged": false,
+      "positionChanged": false
+     },
+     {
+      "where": "bottomEdge",
+      "nodeId": "t-9j2MoccxBj",
+      "start": [
+       222,
+       192
+      ],
+      "hit": {
+       "tag": "P",
+       "cls": "whitespace-pre-wrap text-xs font-normal leading-[1.55] text-[#d5d5d5]",
+       "node": "t-9j2MoccxBj"
+      },
+      "hitOwnNode": true,
+      "before": {
+       "w": 131,
+       "h": 75,
+       "x": 159,
+       "y": 119,
+       "storeW": 350,
+       "storeH": 200,
+       "styleW": 350,
+       "styleH": 200,
+       "measured": {
+        "width": 350,
+        "height": 200
+       }
+      },
+      "after": {
+       "w": 131,
+       "h": 75,
+       "x": 159,
+       "y": 169,
+       "storeW": 350,
+       "storeH": 200,
+       "styleW": 350,
+       "styleH": 200,
+       "measured": {
+        "width": 350,
+        "height": 200
+       }
+      },
+      "domWidthChanged": false,
+      "domHeightChanged": false,
+      "storeWidthChanged": false,
+      "storeHeightChanged": false,
+      "positionChanged": true
+     },
+     {
+      "where": "corner",
+      "nodeId": "t-9j2MoccxBj",
+      "start": [
+       288,
+       192
+      ],
+      "hit": {
+       "tag": "DIV",
+       "cls": "min-h-0 flex-1 overflow-hidden p-3",
+       "node": "t-9j2MoccxBj"
+      },
+      "hitOwnNode": true,
+      "before": {
+       "w": 131,
+       "h": 75,
+       "x": 159,
+       "y": 119,
+       "storeW": 350,
+       "storeH": 200,
+       "styleW": 350,
+       "styleH": 200,
+       "measured": {
+        "width": 350,
+        "height": 200
+       }
+      },
+      "after": {
+       "w": 131,
+       "h": 75,
+       "x": 226,
+       "y": 169,
+       "storeW": 350,
+       "storeH": 200,
+       "styleW": 350,
+       "styleH": 200,
+       "measured": {
+        "width": 350,
+        "height": 200
+       }
+      },
+      "domWidthChanged": false,
+      "domHeightChanged": false,
+      "storeWidthChanged": false,
+      "storeHeightChanged": false,
+      "positionChanged": true
+     }
+    ],
+    "resizeControls": 0,
+    "resizeLikeElements": 0
+   }
+  }
+ ],
+ "roundDiff": {
+  "clamp": {
+   "round1": {
+    "min": {
+     "times": 26,
+     "start": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "store": {
+      "x": 118.86,
+      "y": 165.66,
+      "zoom": 0.1
+     },
+     "derived": {
+      "realPercent": 10,
+      "indicator": 10,
+      "triggerText": "10%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    "max": {
+     "times": 90,
+     "start": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "store": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 8
+     },
+     "derived": {
+      "realPercent": 800,
+      "indicator": 800,
+      "triggerText": "800%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    }
+   },
+   "round2": {
+    "min": {
+     "times": 26,
+     "start": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "store": {
+      "x": 131.7,
+      "y": 172.8,
+      "zoom": 0.1
+     },
+     "derived": {
+      "realPercent": 10,
+      "indicator": 10,
+      "triggerText": "10%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    },
+    "max": {
+     "times": 90,
+     "start": {
+      "x": 118.75,
+      "y": 165.59,
+      "zoom": 0.375
+     },
+     "store": {
+      "x": 118.76,
+      "y": 165.6,
+      "zoom": 8
+     },
+     "derived": {
+      "realPercent": 800,
+      "indicator": 800,
+      "triggerText": "800%",
+      "indicatorMatchesReal": true,
+      "triggerMatchesIndicator": true,
+      "triggerMatchesReal": true
+     }
+    }
+   }
+  }
+ },
+ "consistent": false
+}
