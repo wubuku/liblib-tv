@@ -5670,6 +5670,8 @@ def main() -> int:
     _p952 = p952.read_text(encoding="utf-8") if p952.exists() else ""
     p953 = ROOT / "scripts/jimeng_probe953_roving_ring_ck.py"
     _p953 = p953.read_text(encoding="utf-8") if p953.exists() else ""
+    p954 = ROOT / "scripts/jimeng_probe954_source_ring_src.py"
+    _p954 = p954.read_text(encoding="utf-8") if p954.exists() else ""
 
     check("HHHH.1 ⚠️⚠️⚠️ **本批的设计有一处真缺陷，如实记账**：`warm ∈ {0,1,2,6}` "
           "**全都 ≤ boot 之后的自然值 76** ⇒ 预热循环**一次都没进**"
@@ -6552,6 +6554,143 @@ def main() -> int:
           and '"frozen_presses_all_moved_focus": sum(' in _p953
           and '"cycle_10_supported": bool(' in _p953
           and "def _sstrong(row):" in _p953)
+
+    # ══ 批 954：⭐⭐⭐⭐ 走到**源站**的环尽头 = 102 下（2/2）════════════════
+    print("— PPPP. 批 954 源站的环 = 102：952 的「10」被彻底推翻，且 954 自己犯了 952 的错 —")
+
+    check("PPPP.1 ⭐⭐⭐⭐ **源站的 `Tab` 环 = 102 下**（2/2 逐条相同、"
+          "`curve_reproducible` 绿、`ruler_actually_moved` 绿）：120 按里"
+          "**节点停靠 88 + 内层停靠 14 + 出画布 18**，**回卷点 = 第 102 按**。"
+          "⇒ ⭐⭐ **与 §930 记的 101 / 104 吻合**（954 实测 102、两轮相同）"
+          "⇒ **§930 那条独立成立**。"
+          "⚠️ 探针逐字复用 953 的**十六个助手 + 七段 JS**、`boot_fn` 逐字来自 952 ⇒ "
+          "**唯一的新件是格子驱动器、不是仪器**；预算 120 是按 §139「必须 > 一个完整周期」"
+          "补的（901/953 同一类补预算，不是放宽判据）。",
+          '"source_ring_is_102_and_open_954": (' in _ausrc
+          and "**源站的 `Tab` 环 = 102 下**" in _ausrc
+          and "**节点停靠 88 个 + 内层停靠 14 个 + 出画布 18 个**" in _ausrc
+          and "**回卷点 = 第 102 按**" in _ausrc
+          and "**与 §930 记的 101 / 104 吻合**" in _ausrc
+          and "**§930 那条独立成立**" in _ausrc
+          # ⭐ 钉探针：逐字复用面（十六 + 七 + boot）**真的在文件里**
+          and "for _fn in (ev, dump, guard, guard_point, delta, press_row, curve_key,\n"
+              "            armed_of, no_ti_of, pointer_of, row_pointer, in_toolbar,\n"
+              "            strong_moved, identity, stop_name, walk_stuck):" in _p954
+          and "assert _s in _p953src" in _p954
+          and 'assert boot_fn.__doc__' not in _p954      # ⭐ 禁 `or True` 那条已删
+          and "_bs in _p952src" in _p954
+          and '"boot_verbatim_from_952": ["boot_fn"]' in _p954
+          and '"new_pieces": ["classify"]' in _p954
+          and "N_PRESS_CAP = 120" in _p954
+          and "**不是**放宽判据，是把预算补到能闭合" in _p954
+          # ⭐ 钉探针：「操纵到底动了没有」自己答
+          and 'out["ruler_actually_moved"] = bool(' in _p954
+          and '"ruler_actually_moved": out["ruler_actually_moved"],' in _p954
+          and '"curve_reproducible": out["curve_reproducible"],' in _p954)
+
+    check("PPPP.2 ⚠️⚠️⚠️ **952 的「`Tab` 周期 = 10」被同一把尺子彻底推翻**："
+          "954 用的就是 952/953 那把尺子（**逐字复用**），只把 URL 换回源站、"
+          "预算补到 §139 要求的量级 ⇒ 实测 **102**。⇒ **10 是「节点停靠点数」"
+          "那一小段、不是周期**（真实周期里还有 14 个内层停靠 + 18 个出画布停靠）。"
+          "⇒ ⭐⭐ **而 952 当时写下的「差 10 倍」这个直觉反而是对的** —— "
+          "它只是把因果归错了。⇒ 连同 953 的撤回，这条现在有**两条独立的证伪**："
+          "① 14 按里从未回卷；② 同一把尺子走到底 = **102**。",
+          '"cycle_10_thoroughly_refuted_954": (' in _ausrc
+          and "被同一把尺子彻底推翻**" in _ausrc
+          and "**10 是「节点停靠点数」那一小段**" in _ausrc
+          and "「差 10 倍」这个直觉反而是对的**" in _ausrc
+          and "它只是把因果归错了" in _ausrc
+          and "这条现在有两条独立的证伪**" in _ausrc
+          # ⭐ 钉探针：格 0 **真的**走到了环尽头（回卷点由**同一节点下标第二次出现**判）
+          and 'c["repeat_node_at"] = {"seq": r["seq"], "node_index": ni}' in _p954
+          and 'c["cycle_len"] = c["wrap_k"]' in _p954
+          and 'c["left_the_canvas"] = bool(c["n_out_stops"] > 0)' in _p954)
+
+    check("PPPP.3 ⚠️⭐⭐⭐ **要更正 953 的一条措辞**：953 写「复刻的环是开环」时，"
+          "把「源站是不是也开环」列成了**待查**。**现在查到了：源站也开环** —— "
+          "走完节点段后焦点**进入顶栏**（`搜索`/`生成历史`/`分享`/`更多`/"
+          "`Credits`/`用户菜单`/`Canvas`）⇒ **然后又回到 `node#0`**。"
+          "⇒ ⭐ **真正的差异是「回不回得来」，不是「开不开环」** —— "
+          "而这一条**两边都还没测到**（953 的 28 下 < 954 源站用的 102，"
+          "**不许**拿它断言复刻回不来）⇒ **待查**。"
+          "⇒ ⚠️ 顺带更正 953 的「**复刻与源站的结构差异**」："
+          "**「开环」不是差异**（两边都开环）⇒ 该说的是"
+          "**「环长差一个量级」（复刻 24 vs 源站 101）**。",
+          '"replica_open_ring_is_not_a_deviation_954": (' in _ausrc
+          and "**要更正 953 的一条措辞**" in _ausrc
+          and "**现在查到了：源站也开环。**" in _ausrc
+          and "**然后又回到 `node#0`**" in _ausrc
+          and "**真正的差异是「回不回得来」，不是「开不开环」**" in _ausrc
+          and "**不许**拿 953 的 28 下断言复刻回不来" in _ausrc
+          and "**「开环」不是差异**（两边都开环）" in _ausrc
+          and "**「环长差一个量级」（复刻 24 vs 源站 101）**" in _ausrc
+          # ⭐ 钉探针：出画布/入画布的分类**真的在算**
+          and 'return f"out:{(w.get(\'aria\') or \'\')[:18]}"' in _p954
+          and 'if stop.startswith("inner:"):' in _p954
+          and 'c["out_stops"] = [s for s, kd in zip(c["stop_seq"], kinds)' in _p954)
+
+    check("PPPP.4 ⚠️⚠️⚠️⚠️ **本批自己犯了和 952 一模一样的错，如实记账** —— "
+          "而它正是本批要修的那个 bug：格 1 的按键顺序是 `Shift+Tab` → `Escape` → `Tab`，"
+          "**`Shift+Tab` 已经把焦点带出工具条**（实测落到 `out:Canvas`）⇒ "
+          "**轮到 `Escape` 时按前已经在画布根上** ⇒ "
+          "**954 仍然没有测到「焦点在工具条里按 `Escape`」**。"
+          "⚠️⚠️ **这与 952 的原罪逐字同形** ⇒ 953 撤回 952 的理由"
+          "（「压根没在那个位置测过」）**完全适用于我这一批**。"
+          "⚠️ **第二个缺陷**：6 次内层探测**全部落在同一个停靠点**"
+          "（`inner:导出时间线` = 工具条**第一个**按钮）—— 每次探测最后一步 `Tab` "
+          "落到 `node#0`，游标**被打回环的开头** ⇒ **第 2/3/4 个按钮至今没测到**。"
+          "⇒ ⭐ **正确修法**：**每个内层停靠点单独成格、每格独立 `boot()`、"
+          "每格只发那一个键**（`L_i` 由格 0 的 `stop_seq` **关系式**给出）"
+          "⇒ **结构上不可能**再犯「按键顺序把键落在错误位置」这个错。"
+          "⇒ ⭐⭐ **纪律**：判别组里每个键都必须在它**声称要测的那个位置**上按，"
+          "而**唯一能保证的办法是「一次只按一个键」**，不是「记得核对」。",
+          '"inner_probe_design_flaw_954": (' in _ausrc
+          and "**本批自己犯了和 952 一模一样的错，如实记账**" in _ausrc
+          and "**954 仍然没有测到「焦点在工具条里按 `Escape`」**" in _ausrc
+          and "**这与 952 的原罪逐字同形**" in _ausrc
+          and "**完全适用于我这一批**" in _ausrc
+          and "6 次内层探测**全部落在同一个停靠点**" in _ausrc
+          and "**第 2/3/4 个按钮上的行为至今没测到**" in _ausrc
+          and "每格只发那一个键**" in _ausrc
+          and "**结构上不可能**再犯" in _ausrc
+          and "**唯一能保证的办法是「一次只按一个键」**" in _ausrc
+          # ⭐ 钉探针：上限与触顶标记**真的在算**（不许悄悄截断）
+          and "MAX_INNER_PROBES = 6" in _p954
+          and "capped = True" in _p954
+          and 'c["inner_probe_capped"] = capped' in _p954
+          and "**如实记** capped=True" in _p954
+          # ⭐⭐ 钉探针：**每一步的按前位置**必须进读数（否则同一个错还会再犯）
+          and '"from": stop_name(prow, "before"),' in _p954
+          and '"to": stop_name(prow, "after"),' in _p954
+          and '"at_seq": seq, "stop": stop, "steps": []' in _p954)
+
+    check("PPPP.5 ⭐⭐ **两条被独立复现的读数**（2/2 逐条相同）：\n"
+          "① **`Shift+Tab` 从工具条**第一个**按钮按 ⇒ 立刻离开工具条**、"
+          "落到 `out:Canvas`（弱判据与强判据**都说动了**）⇒ 与 953 在复刻侧测到的"
+          "「从**第二个**按钮按是退到第一个」合起来，**「位置相关」在源站这一侧"
+          "也成立**；\n"
+          "② **`Escape` 在 `out:Canvas`（画布根）上不动焦点**（弱=False 强=False）"
+          "⇒ **独立复现** 952 那条「`Escape` 在节点本体 `DIV` 上不动焦点」的**同族结论**。"
+          "⚠️ **这两条都只是部分支持**：它们**不能**替代「焦点在工具条里按 `Escape`」"
+          "那一格 —— **那一格至今空着**。",
+          '"shift_tab_first_button_and_escape_on_canvas_954": (' in _ausrc
+          and "**`Shift+Tab` 从工具条**第一个**按钮按 ⇒ 立刻离开工具条**" in _ausrc
+          and "**「位置相关」这个判断在源站这一侧也成立**" in _ausrc
+          and "**`Escape` 在 `out:Canvas`（画布根）上不动焦点**" in _ausrc
+          and "**独立复现**" in _ausrc
+          and "**这两条都只是部分支持**" in _ausrc
+          and "那一格**至今空着**" in _ausrc
+          # ⭐ 钉探针：三条计数**各判各的**，都不许预设方向
+          and 'c["escape_moved_count"] = sum(' in _p954
+          and 'c["shift_tab_moved_count"] = sum(' in _p954
+          and 'c["shift_tab_left_toolbar_count"] = sum(' in _p954
+          and 'c["inner_probe_stops"] = [p["stop"] for p in c["inner_probes"]]' in _p954
+          # ⭐ 钉探针：强判据在本批**真的在用**（逐字复用 953 的那一条）
+          and "c[\"swallowed_presses_strong\"] = sum(" in _p954
+          and "and not strong_moved(r))" in _p954
+          # ⭐ 钉探针：基线里的 101/104 明确标成「**不是本批的读数**」
+          and "**都不是本批的读数**" in _p954
+          and "**别人**记的，不许当结论用" in _p954)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
