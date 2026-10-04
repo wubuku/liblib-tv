@@ -5499,7 +5499,7 @@ def main() -> int:
     _p944a = p944a.read_text(encoding="utf-8") if p944a.exists() else ""
     _p944b = p944b.read_text(encoding="utf-8") if p944b.exists() else ""
 
-    check("FFFF.1 ⭐⭐⭐ **944 先花了��个纯读探针**（零点击）才敢点节点"
+    check("FFFF.1 ⭐⭐⭐ **944 先花了两个纯读探针**（零点击）才敢点节点"
           " —— 探针 944a 实测：节点内部有 **85 个 `BUTTON`**，"
           "而**可点的内部落点 94 个里 BUTTON 只有 3 个**"
           "（85 个大多在**选中后才出现**的节点工具条上）、"
@@ -5690,6 +5690,8 @@ def main() -> int:
     _p960 = p960.read_text(encoding="utf-8") if p960.exists() else ""
     p961 = ROOT / "scripts/jimeng_probe961_ticensus_src.py"
     _p961 = p961.read_text(encoding="utf-8") if p961.exists() else ""
+    p962 = ROOT / "scripts/jimeng_probe962_focusmove_src.py"
+    _p962 = p962.read_text(encoding="utf-8") if p962.exists() else ""
     p892 = ROOT / "scripts/jimeng_probe892_preventdefault_src.py"
     _p892 = p892.read_text(encoding="utf-8") if p892.exists() else ""
     p896 = ROOT / "scripts/jimeng_probe896_roving_tabindex_policy_src.py"
@@ -7457,6 +7459,184 @@ def main() -> int:
           #   那条 `not in _vsrc` 是**自指**的：断言文本自己就写在 verifier 文件里
           #   ⇒ 恒红（一个恒红的判据比没有判据更坏）⇒ 只留正向锚点。
           and '"只有 1 项" in asrc)' in _vsrc)
+
+    # ══ 批 962：⭐⭐⭐⭐⭐ 959 的 B（`Tab` 序 ≠ DOM 序）**被否掉** ——
+    #    959–962 四批的谜团**整个解开**：源站就是朴素的环形 DOM 序 ══
+    print("— XXXX. 批 962 用「派发结束那一刻焦点在哪」验「应用主动搬焦点」，"
+          "并把 959 的 B 判成折返假象 —")
+
+    check("XXXX.1 ⭐⭐⭐⭐ **判据本身**：`Tab` 的原生移焦是 keydown 的**默认动作**、"
+          "在**派发彻底结束之后**才做 ⇒ 在派发末尾读 `activeElement` 就能分辨"
+          "「脚本搬的」与「浏览器搬的」；只比**身份四字段**、不比 DOM 绝对下标",
+          '"what_962_measures": (' in _ausrc
+          and "**判据 = 「派发结束那一刻焦点在哪」**" in _ausrc
+          and "**默认动作**（`Tab` 的原生移焦）是在**派发彻底结束" in _ausrc
+          and "焦点**已经变了** ⇒ 必然是**派发过程中**被脚本 `focus()` 搬的"
+              in _ausrc
+          and "焦点**还没变** ⇒ 默认动作之后才搬 ⇒ **浏览器搬的**" in _ausrc
+          and "只比**身份四字段**（tag/tid/aria/is_body）" in _ausrc
+          # ⭐ 钉探针：监听装在**派发首**与**派发末**两个点上
+          and "window.addEventListener('keydown', onKeyCap, true);" in _p962
+          and "document.addEventListener('keydown', onKeyBub, false);" in _p962
+          and "window.addEventListener('keydown', onKeyBubW, false);" in _p962
+          and "document.addEventListener('focusin', onFocusIn, true);" in _p962
+          and "rec.post_dispatch = WHO(document.activeElement);" in _p962
+          # ⭐ 钉探针：诊断动作**必须还原**（承 943）
+          and "window.__fm_off = () => {" in _p962
+          and 'FOCUSMOVE_JS.count("addEventListener")' in _p962
+          and '== FOCUSMOVE_JS.count("removeEventListener") == 4' in _p962
+          and "诊断动作必须还原（承 943 的纪律）" in _p962)
+
+    check("XXXX.2 ⭐⭐⭐⭐⭐ **959 的 B 被否掉，而且否它的是「关系」不是绝对值**："
+          "整条走查 `dom_index` **下降恰好 1 次**、且是**高索引跳回低索引**"
+          "（文档尾部折返回头部）⇒ 画布控件排在顶栏之前**不是乱序、是绕了一圈**；"
+          "⇒ **959 用「单调不降」下的判决本来就推不出「乱序」**",
+          '"verdict_962": (' in _ausrc
+          and "**959 的 B（`Tab` 序 ≠ DOM 序）被否掉 —— 而否它的" in _ausrc
+          and "**下降恰好 1 次**" in _ausrc
+          and "**「高索引跳回低索引」**（文档**尾部折返到头部**）" in _ausrc
+          and "**959 的判决是用「单调不降」下的**" in _ausrc
+          and "**「非单调」推不出「乱序」**" in _ausrc
+          and "**不是乱序，是绕了一圈**" in _ausrc
+          # ⭐ 钉探针：下降次数是**一等读数**、且门挂在它上面
+          and 'c["n_dom_index_descents"] = sum(' in _p962
+          and 'c["dom_index_descents"] = [{"at_seq": _seq_di[i][0],' in _p962
+          and '"dom_index_descents_are_wraps_only": bool(all(' in _p962
+          and 'all(d.get("from") > d.get("to")' in _p962
+          and "**959 的判决（「`Tab` 序 ≠ DOM 序」）是用「单调不降」下的**"
+              in _p962
+          # ⚠️ 钉探针：**绝对下标逐轮会漂** ⇒ 两轮比的是**方向**不是数值
+          and "**绝对下标逐轮会漂、只钉方向**" in _p962
+          and '("high_to_low" if (d.get("from") or 0) > (d.get("to") or 0)'
+              in _p962)
+
+    check("XXXX.3 ⭐⭐⭐⭐ **两条独立证据互相印证**：out 段那 18 个 chrome 停靠点"
+          "**派发内被搬的 = 0**（**全部**是浏览器原生移焦）＋ 时序与形状吻合；"
+          "⇒ **961 那个「只剩一个方向」被否掉** ⇒ 源站就是**朴素的环形 DOM 序**、"
+          "**没有**「应用自己维护的焦点顺序表」",
+          "out 段那 18 个 chrome 停靠点**全部**是" in _ausrc
+          and "**浏览器原生移焦**，应用**没插手**" in _ausrc
+          and "`dom_index` **只有折返那一次**下降" in _ausrc
+          and "**959–962 四批的谜团整个解开了**" in _ausrc
+          and "**朴素的、原生的、环形 DOM 序**" in _ausrc
+          and "不由应用搬焦点（962）" in _ausrc
+          and "**不需要**去对齐什么" in _ausrc
+          and "961 那个猜想**被否掉了**" in _ausrc
+          # ⭐ 钉探针：门挂在 **out 段**（不是 `leg`）上
+          and '"out_stops_moved_by_browser": bool(all(' in _p962
+          and '(r["cells"][0].get("n_moved_in_dispatch_leg") or 0) == 0' in _p962
+          and "_legseq = {x[\"seq\"] for x in _outs}" in _p962
+          and "**第一版这里错拿 `leg` 当「out 段」**" in _p962
+          and "**连我自己的结论文案都和这个数字自相矛盾**" in _p962
+          and "**文案必须跟着数字走**" in _p962
+          # ⚠️ 钉探针：`isTrusted` 的语义**第一版写错了**
+          and "**第一版这里把 `isTrusted` 的语义写错了，被自己抓住**" in _p962
+          and "**脚本调 `element.focus()` 产生的 focus 事件同样是 trusted**"
+              in _p962
+          and "**不能**用来否掉「应用主动 `focus()`」" in _p962
+          and "**真正判决性的是「派发末尾 `activeElement` 变没变」**" in _p962
+          # ⭐ 钉 audit：961 的猜想**不算错**
+          and "**961 的猜想不算「错」**" in _ausrc
+          and "**被否 ≠ 当时不该猜**" in _ausrc)
+
+    check("XXXX.4 ⚠️⚠️⚠️⭐⭐ **第一版的仪器有致命 bug，而门却是绿的**："
+          "`__fm` 闩锁是**粘的** ⇒ 140 按里**只测到第 1 按**；"
+          "而那道门写的是 `n_fm_armed == n_fm_rows` ⇒ **恒真** ⇒ "
+          "**改法是换成和「按压总数」比**，不是加条件",
+          '"fm_latch_bug_962": (' in _ausrc
+          and "**第一版的仪器有致命 bug，而门却是绿的**" in _ausrc
+          and "那个闩锁是**粘的**" in _ausrc
+          and "**只有第 1 按**真的装了监听" in _ausrc
+          and "**更该记的是那道门**" in _ausrc
+          and "**恒真**" in _ausrc
+          and "**改法不是加条件，是换成和「按压总数」比**" in _ausrc
+          and "**门必须挂在独立的分母上**" in _ausrc
+          # ⭐ 钉探针：闩锁真的改了、门真的换了分母
+          and "if (window.__fm_rec) { return {already: true}; }" in _p962
+          and "那个闩锁是**粘的**" in _p962
+          and "只有**第 1 按**" in _p962
+          and "**第一版这条门是恒真的**" in _p962
+          and 'r["cells"][0].get("n_fm_armed") == r["cells"][0].get("n_lead")'
+              in _p962
+          and 'r["cells"][0].get("n_fm_rows") == r["cells"][0].get("n_lead")'
+              in _p962)
+
+    check("XXXX.5 ⚠️⚠️ **第一版的「摘干净」守卫写错了，被自己抓住**："
+          "数的是 `__fm_off` 这个**名字**出现几次 ⇒ 量不到「监听摘没摘干净」"
+          "⇒ 改成量 `add`/`removeEventListener` **配平**；"
+          "另删一个**死字段**（比的是从未赋值的 `_el0`）",
+          '"guard_was_wrong_962": (' in _ausrc
+          and "**第一版的「摘干净」守卫写错了，被自己抓住**" in _ausrc
+          and "数「名字」**量不到「监听有没有摘干净」**" in _ausrc
+          and "**必须配平**（4 : 4）" in _ausrc
+          and "**守卫要量「后果」，不要量「名字」**" in _ausrc
+          and "**死字段** `same_target`" in _ausrc
+          and "**从未被赋值** ⇒ 恒为无意义 ⇒ **删掉**" in _ausrc
+          and "**交付物里每个字段都得是真读数**" in _ausrc
+          and "第一版这里还有个 `same_target` 字段" in _p962
+          and "而 `_el0` **从来没有被赋值过**" in _p962)
+
+    check("XXXX.7 ⚠️ **两根红着的门，原因已查明、如实记**（"
+          "`focusin_heard_every_press` 红在「1 按没听到 `focusin`」、"
+          "`app_moves_focus_before_dispatch_end` 红在「102/140 压确实被应用"
+          "在派发中搬」）⇒ **决定不为了变绿去放宽门**；"
+          "⭐ 并把限定写死：**「961 的猜想被否掉」只对 out 段成立**",
+          '"focusin_miss_962": (' in _ausrc
+          and "**有一根红着的门，原因已查明，**如实记" in _ausrc
+          and "**140 按里有 1 按**" in _ausrc
+          and "**落在画布根**" in _ausrc
+          and "焦点落到了 **`document.body`**" in _ausrc
+          and "移焦到它**只发 `blur`/`focusout`、" in _ausrc
+          and "**不发 `focusin`** ⇒ 这是**真实读数**" in _ausrc
+          and "**决定：不为了变绿去放宽这道门**" in _ausrc
+          and "**这个理由一旦变了它就会提醒**" in _ausrc
+          and "确有 102 压是**应用在派发中搬的**" in _ausrc
+          and "集中在**画布节点段**" in _ausrc
+          and "**「961 的猜想被否掉」只对" in _ausrc
+          and "**out 段（chrome 停靠点）**成立**，这个限定**必须一起记**" in _ausrc)
+
+    check("XXXX.6 ⚠️⚠️⚠️⭐⭐ **同一个坑，隔一层又踩了一次**："
+          "962 写完判据后锚点自查报 **0 问题**（**假绿**），真正暴露它的是"
+          "**verifier 跑出一条 FAIL** ⇒ 根因：**`_p962` 忘了登记进 "
+          "`PROBE_VARS`** ⇒ **整组 `XXXX.*` 的锚文全被静默跳过** ⇒ "
+          "登记后自查**立刻报出那条真 MISSING** ⇒ "
+          "**「新增变量时，登记必须和写判据同一步完成」**",
+          '"forgot_register_p962": (' in _ausrc
+          and "**同一个坑，隔一层又踩了一次**" in _ausrc
+          and "**0 问题** ⇒ 我差点直接收工" in _ausrc
+          and "真正暴露它的是**verifier 跑出一条 FAIL**" in _ausrc
+          and "**`_p962` 我忘了登记进 `PROBE_VARS`**" in _ausrc
+          and "**整组 `XXXX.*` 的锚文" in _ausrc
+          and "全被静默跳过** ⇒ 「0 问题」**又一次是假绿**" in _ausrc
+          and "**立刻报出那条真 MISSING**" in _ausrc
+          and "**门与自查互相补位、缺一不可**" in _ausrc
+          and "登记必须和写判据**同一步**完成** ——" in _ausrc
+          and "「自查 0 问题」在" in _ausrc
+          and "**不构成任何证据**" in _ausrc
+          and "**编号冲突**" in _ausrc
+          # ⭐ 钉自查器：`_p962` **真的**登记了
+          and '"_p962": "scripts/jimeng_probe962_focusmove_src.py",' in _anchs
+          and "**我第一遍忘了登记 `_p962`**" in _anchs)
+
+    check("XXXX.8 ⚠️⚠️ **照抄基底留下的两样「产物级」残留，962 一并清了**："
+          "① docstring 头**连错三批**（959/960/961 都还写着「batch 957」）"
+          "② 4 处**真坏字节**（U+FFFD，3 字节汉字变 2–3 个 U+FFFD）"
+          "⇒ 照抄基底的核对清单**要加一条：文件头也算产物**",
+          '"residue_chain_962": (' in _ausrc
+          and "**docstring 头连错了三批**" in _ausrc
+          and "**都还写着「batch 957」**" in _ausrc
+          and "**要加一条：文件头也算产物**" in _ausrc
+          and "**4 处真坏字节**（U+FFFD）" in _ausrc
+          and "**从上下文无歧义恢复**" in _ausrc
+          and "**不猜、不留坏字节**" in _ausrc
+          and "**属别的项目**（liblib / frameos）" in _ausrc
+          and "**不碰**" in _ausrc
+          # ⭐ 钉探针：962 的头是**自己的**，且带着留痕
+          and 'r"""batch 962 源站探针' in _p962
+          and "**docstring 头连错了三批**" in _p962
+          and 'OUT = "/tmp/b962-focusmove.json"' in _p962
+          and 'out["out"] = "/tmp/b962-focusmove.json"' in _p962
+          and '"/tmp/b961-ticensus.json"' not in _p962)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "

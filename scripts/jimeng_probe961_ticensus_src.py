@@ -661,7 +661,7 @@ ROOT_JS = """([nodeSel]) => {
                   ti_before: null, ti_attr_now: null, in_shadow: null};
   const r = a.getRootNode();
   const isShadow = !!(r && r.host);
-  // ⭐ 同���个元素在「按前」记的 tabindex（由调用方塞在 window 上）与「现在」
+  // ⭐ 同一个元素在「按前」记的 tabindex（由调用方塞在 window 上）与「现在」
   const before = (window.__preTi === undefined) ? null : window.__preTi;
   return {who: 1,
           root_kind: isShadow ? 'ShadowRoot'
@@ -902,7 +902,7 @@ for rep in range(1, REPS + 1):
     c["leg"] = [{"seq": r["seq"], "stop": stop_name({"who_after": r["who_after"]}),
                  "dom_index": r["dom_index"], "tabindex": r["tabindex"],
                  "dom_tid": r["dom_tid"], "dom_aria": r["dom_aria"],
-                 # ⭐ 960 新���的三个读数，逐字带过来
+                 # ⭐ 960 新增的三个读数，逐字带过来
                  "root_kind": r.get("root_kind"),
                  "in_shadow": r.get("in_shadow"),
                  "root_host_tid": r.get("root_host_tid"),
@@ -919,7 +919,7 @@ for rep in range(1, REPS + 1):
              if (x["stop"] or "").startswith("out:")]
     c["leg_out"] = _outs
     # ── ⭐ 960 的两个判决，各自带**可证伪**的判据 ─────────────────────
-    # ① **shadow root？**（959 留下��可能性之一）
+    # ① **shadow root？**（959 留下的可能性之一）
     c["n_in_shadow"] = sum(1 for x in _outs if x.get("in_shadow"))
     c["all_out_in_document"] = bool(_outs) and all(
         (x.get("root_kind") or "") == "#document" for x in _outs)

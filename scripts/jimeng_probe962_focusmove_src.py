@@ -1,5 +1,7 @@
-#!/usr/bin/env python3
-r"""batch 957 源站探针（**纯诊断 / 零节点点击**）：⭐⭐⭐⭐ 查「左栏那 9 个按钮，源站到底给几个 `Tab` 停靠点」。
+r"""batch 962 源站探针（**纯诊断 / 零节点点击**）：⭐⭐⭐⭐ 验 961 结尾那个**「只剩一个方向」** —— 源站到底**是不是**在 `keydown` **之后**主动 `focus()`。
+
+⚠️⚠️⚠️ **docstring 头连错了三批**：959/960/961 的文件头**都还写着 「batch 957」**（`cp` 做基底时只改了 `OUT`、没改头）⇒ 962 一并修好，并把「**照抄基底要核的清单**」再加一条：**文件头也算产物**。
+
 
 ## 本批只答一件事：**源站左栏是「9 个 Tab 停靠点」还是「1 个 + 方向键在栏内移动」**
 
@@ -77,15 +79,14 @@ r"""batch 957 源站探针（**纯诊断 / 零节点点击**）：⭐⭐⭐⭐ �
 
 跑法：
   ~/.venvs/liblib-harness/bin/python -u scripts/jimeng_headless.py run \
-      scripts/jimeng_probe957_rail_roving_src.py
+      scripts/jimeng_probe962_focusmove_src.py
 """
 
 import json
 import pathlib
 import textwrap
 
-OUT = "/tmp/b960-taborder.json"   # ⚠️⚠️ 第一版照抄 959 时**忘了改 OUT** ⇒ 
-                             #    960 跑完把 959 的读数**覆盖**了（已记进基线）
+OUT = "/tmp/b962-focusmove.json"
 REPS = 2
 SETTLE = 350        # ms（照 952/953/954/955/956）
 BLANK_WAIT = 900    # ms（照 952/953/954/955/956）
@@ -124,6 +125,11 @@ RAW_KEYS = frozenset({
     # ⭐ 960 新增的**原始**读数
     "root_kind", "in_shadow", "root_host_tid", "ti_before", "ti_after",
     "ti_now", "ti_attr_now", "same_el_still_connected",
+    # ⭐ 961 新增的**原始**读数（全文档普查）
+    "ti_hist", "n_native", "n_focusable", "n_positive", "positive",
+    "n_all_elements",
+    # ⭐ 962 新增的**原始**读数（`FOCUSMOVE_JS` 的整段返回 + arm 的返回）
+    "fm", "fm_armed",
 })
 # ── 派生键 ─────────────────────────────────────────────────────────────
 DERIVED_KEYS = frozenset({
@@ -149,6 +155,19 @@ DERIVED_KEYS = frozenset({
     "census_ti_hist", "n_rail_focusable", "reps_identical",
     "ruler_actually_moved", "n_lead", "n_lead_cap_hit", "n_rail_stops",
     "n_ready", "census",
+    # ⭐ 960 的派生量（`ti_pairs` 那一族）
+    "ti_pairs", "root_kinds", "n_in_shadow", "n_ti_changed", "all_out_in_document",
+    # ⭐ 961 的派生量（`positive`/`ti_hist` 是**原始**读数，上面 RAW 里有；
+    #   下面这几个是**在 Python 侧加工出来的**，不许混进 RAW）
+    "n_positive_max", "n_out_with_positive", "positive_tids", "positive_sample",
+    "ti_hist_stable",
+    # ⭐ 962 的派生量
+    "n_fm_rows", "n_fm_armed", "n_moved_before_dispatch_end",
+    "n_moved_only_after_dispatch", "first_focusin_rel_hist",
+    "first_focusin_trusted_hist", "which_bubble_hist", "prevented_at_end_hist",
+    "n_no_focusin", "fm_sample", "verdict_fm",
+    "n_dom_index_descents", "dom_index_descents", "verdict_domi",
+    "n_moved_in_dispatch_leg", "n_leg_rows",
 })
 # ⚠️ 959 第一版**又**把 `blank` 登记进 DERIVED ⇒ **真红**（935 的 KeyError 免疫针）
 #   ⇒ `blank` 是 **957 起就在 `RAW_KEYS` 里的原始读数**（`ev(BLANK_JS)` 的返回值）
@@ -668,11 +687,182 @@ ROOT_JS = """([nodeSel]) => {
                     ? a.getAttribute('tabindex') : null,
           ti_attr_now: a.hasAttribute('tabindex')};
 }"""
-assert "ROOT_JS" not in _p955src, "960 的新件别混进「逐字相同」那组"
+assert "TICENSUS_JS" not in _p955src, "961 的新件别混进「逐字相同」那组"
 assert ROOT_JS.count("slice(") == 0, "ROOT_JS 不该有切片"
 # ⭐ 守卫常量自己必须能匹配上东西（946 的教训：漏一个逗号 ⇒ 门恒绿）
 assert ROOT_JS.count("getRootNode()") == 1 and "ShadowRoot" in ROOT_JS, (
     "`ROOT_JS` 自己就匹配不上它要验的东西 —— 这道门恒绿，等于没有门")
+
+# ── 新件：`TICENSUS_JS`（**纯读、不是仪器**）────────────────────────────
+# ⭐⭐⭐⭐ **本批的整个来由 = 960/959 的一个盲区**：
+#   它们读 `tabindex` **只读「焦点所在的那一枚」** ⇒ 读到的是
+#   `'0'`（左栏 roving 那一枚）或 `None`。
+#   ⚠️⚠️ 而浏览器排 `Tab` 顺序时看的是**所有候选**的 `tabindex`
+#   ⇒ **那 6 个画布控件若带着正 `tabindex`（`1`/`2`/…），959/960 一个都没看到**
+#   ⇒ 本批普查**全文档所有原生可聚焦元素**的 `tabindex`，并**逐个列出带正值的**。
+# ⚠️ 口径与 957 的 `RAIL_JS` 一致：「原生可聚焦」= BUTTON/A/INPUT/SELECT/TEXTAREA
+#   且**未** `disabled`。⚠️ 纯读：不调 `focus()`、不改任何属性。
+TICENSUS_JS = """([nodeSel]) => {
+  const NATIVE = ['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'];
+  const all = Array.from(document.querySelectorAll('*'));
+  const hist = {};
+  const positive = [];
+  let n_native = 0, n_focusable = 0;
+  for (const el of all) {
+    const tag = (el.tagName || '').toUpperCase();
+    if (NATIVE.indexOf(tag) < 0) continue;
+    n_native += 1;
+    if (el.disabled === true) continue;
+    const raw = el.getAttribute('tabindex');
+    const key = raw === null ? 'None' : raw;
+    hist[key] = (hist[key] || 0) + 1;
+    if (raw === null || raw === '-1') continue;
+    n_focusable += 1;
+    // ⭐ 只列**正** `tabindex`（`'0'` 是 roving 的那枚，单独统计）
+    if (raw !== '0') {
+      const host = el.closest('[data-testid]');
+      positive.push({tag: tag, tabindex: raw,
+                     tid: host ? host.getAttribute('data-testid') : null,
+                     aria: el.getAttribute('aria-label')
+                           || (el.innerText || '').slice(0, 20) || null,
+                     in_node: !!el.closest(nodeSel)});
+    }
+  }
+  return {n_all_elements: all.length, n_native: n_native,
+          n_focusable: n_focusable, ti_hist: hist, positive: positive,
+          n_positive: positive.length};
+}"""
+assert TICENSUS_JS.count("slice(") == TICENSUS_JS.count(SLICE_STR), (
+    "TICENSUS_JS 里有**非字符串**切片（§131）")
+# ⭐ 守卫常量自己必须能匹配上东西（946 的教训）
+assert TICENSUS_JS.count("NATIVE.indexOf(tag)") == 1, (
+    "`TICENSUS_JS` 自己就匹配不上它要验的东西 —— 这道门恒绿，等于没有门")
+
+# ── 新件：`FOCUSMOVE_JS`（**962 的主角**：判定「焦点是**谁**、在**什么时候**被搬的）
+# ⭐⭐⭐⭐ **本批要回答的正是 961 结尾那个「只剩一个方向」**：
+#   源站到底**是不是**在 `keydown` **之后**（`focusin` / 宏任务 / rAF）
+#   **主动 `focus()` 到下一枚**。
+# ⭐⭐⭐⭐ **判决性读数 = 「派发结束那一刻焦点在哪」**：
+#   浏览器的**默认动作**（`Tab` 的原生移焦）是在**派发彻底结束之后**才做的
+#   ⇒ 所以只要在**派发结束点**（`document` 与 `window` 冒泡里**较晚**的那个）
+#   读 `document.activeElement`：
+#     · 焦点**已经变了** ⇒ 它**必然**是在**派发过程中**被某段脚本 `focus()` 搬的
+#       （默认动作还没轮到跑）⇒ **应用主动搬焦点**（961 的猜想成立）
+#     · 焦点**还没变** ⇒ 默认动作之后才搬 ⇒ **浏览器搬的**（那 B 的口径就有问题）
+# ⭐ `focusin` 的 `isTrusted` 是**第二道**旁证：
+# ⚠️⚠️⚠️ **第一版这里把 `isTrusted` 的语义写错了，被自己抓住**：
+#   我写的是「`false` = 脚本调的 `focus()`；`true` = 浏览器/用户动作产生的」
+#   ⇒ **错**。**脚本调 `element.focus()` 产生的 focus 事件同样是 trusted**
+#   （`isTrusted` 只区分「由用户代理产生」vs「由 `dispatchEvent` 合成」）
+#   ⇒ 所以 `isTrusted=True` **不能**用来否掉「应用主动 `focus()`」。
+#   ⇒ ⭐ **真正判决性的是「派发末尾 `activeElement` 变没变」**，不是 `isTrusted`。
+# ⚠️ **诊断动作必须还原**（承 943 的纪律）：`READ_FM_JS` 会**摘掉全部监听**。
+# ⚠️ 纯读：只**加监听 + 读属性**，不调 `focus()`、不改任何属性、不劫持 prototype。
+FOCUSMOVE_JS = """() => {
+  const WHO = (el) => {
+    if (!el || el === document.body) return {tag: el ? el.tagName : null,
+                                             tid: null, aria: null,
+                                             is_body: true, dom_index: null};
+    const host = el.closest ? el.closest('[data-testid]') : null;
+    return {tag: el.tagName,
+            tid: host ? host.getAttribute('data-testid') : null,
+            aria: el.getAttribute('aria-label')
+                  || (el.innerText || '').slice(0, 20) || null,
+            is_body: false,
+            dom_index: null};
+  };
+  // ⚠️⚠️⚠️ **第一版这里写的是 `if (window.__fm)`，而 `READ_FM_JS` 读完把
+  //   `__fm` 置成 `true` 且**再也不清** ⇒ 那个闩锁是**粘的** ⇒ 只有**第 1 按**
+  //   真的装了监听，之后每按都直接 `{already:true}` 返回、一个监听都不装
+  //   ⇒ 读数只剩 1 按，**而门是绿的**（见 ②）。
+  //   ⇒ 改成以 `__fm_rec`（读完会被置 `null`）为判据。
+  if (window.__fm_rec) { return {already: true}; }
+  // ⚠️⚠️ 第一版这里还有个 `same_target` 字段，比的是 `rec._el0` ——
+  //   而 `_el0` **从来没有被赋值过** ⇒ 那个读数**恒为无意义**
+  //   ⇒ 已删（**不留恒假的读数**：交付物里每个字段都得是真读数）。
+  //   「是不是同一枚」由 Python 侧 `_who_id` 比四个字段来做。
+  const rec = {pre: null, post_dispatch: null, prevented_at_end: null,
+               t_capture: null, t_bubble: null, t_micro: null, t_task: null,
+               t_frame: null, after_micro: null, after_task: null,
+               after_frame: null, focusins: [], which_bubble: null,
+               n_keys: 0};
+  const onKeyCap = (e) => {
+    if (rec.n_keys > 0) return;
+    rec.n_keys += 1;
+    rec.t_capture = performance.now();
+    rec.pre = WHO(document.activeElement);
+    // ⭐ 只**存引用**，`defaultPrevented` 一律在**派发末尾**才读
+    //   （承 892：只在捕获阶段读会**恒真为假**）
+    rec._ev = e;
+  };
+  const onKeyBub = (e) => {
+    if (rec.n_keys !== 1) return;
+    if (rec.which_bubble === null) rec.which_bubble = 'document';
+    rec.t_bubble = performance.now();
+    rec.post_dispatch = WHO(document.activeElement);
+    rec.prevented_at_end = e.defaultPrevented;
+    queueMicrotask(() => {
+      rec.t_micro = performance.now();
+      rec.after_micro = WHO(document.activeElement);
+    });
+    setTimeout(() => {
+      rec.t_task = performance.now();
+      rec.after_task = WHO(document.activeElement);
+    }, 0);
+    requestAnimationFrame(() => {
+      rec.t_frame = performance.now();
+      rec.after_frame = WHO(document.activeElement);
+    });
+  };
+  const onKeyBubW = (e) => {
+    if (rec.n_keys !== 1) return;
+    rec.which_bubble = 'window';
+    rec.t_bubble = performance.now();
+    rec.post_dispatch = WHO(document.activeElement);
+    rec.prevented_at_end = e.defaultPrevented;
+  };
+  const onFocusIn = (e) => {
+    if (rec.n_keys < 1) return;
+    const t = performance.now();
+    const rel = (rec.t_bubble === null) ? 'during_dispatch'
+                : (t <= rec.t_bubble ? 'during_dispatch' : 'after_dispatch');
+    rec.focusins.push({t: t, rel: rel, is_trusted: e.isTrusted,
+                       who: WHO(e.target)});
+  };
+  window.addEventListener('keydown', onKeyCap, true);
+  document.addEventListener('keydown', onKeyBub, false);
+  window.addEventListener('keydown', onKeyBubW, false);
+  document.addEventListener('focusin', onFocusIn, true);
+  window.__fm_rec = rec;
+  window.__fm_off = () => {
+    window.removeEventListener('keydown', onKeyCap, true);
+    document.removeEventListener('keydown', onKeyBub, false);
+    window.removeEventListener('keydown', onKeyBubW, false);
+    document.removeEventListener('focusin', onFocusIn, true);
+  };
+  return {armed: true};
+}"""
+assert FOCUSMOVE_JS.count("slice(") == FOCUSMOVE_JS.count(SLICE_STR), (
+    "FOCUSMOVE_JS 里有**非字符串**切片（§131）")
+# ⚠️ 守卫常量自己必须能匹配上东西（946 的教训）
+assert FOCUSMOVE_JS.count("onKeyCap") == 3, (
+    "`FOCUSMOVE_JS` 里 `onKeyCap` 出现次数不对 —— 这道门恒绿，等于没有门")
+# ⚠️⚠️ **第一版的这条守卫写错了，被自己抓住**（还没跑就红了）：
+#   我数的是 `__fm_off` 这个**名字**出现几次（= 1 次定义）⇒ 数「名字」根本
+#   量不到「监听有没有摘干净」。⇒ 改成量**真正要保的东西**：
+#   **`addEventListener` 与 `removeEventListener` 必须配平**（4 : 4），
+#   否则就是「装了监听、没还原」⇒ 违反 943 的纯诊断纪律。
+assert (FOCUSMOVE_JS.count("addEventListener")
+        == FOCUSMOVE_JS.count("removeEventListener") == 4), (
+    "`FOCUSMOVE_JS` 的 `add`/`removeEventListener` **没配平** —— "
+    "诊断动作必须还原（承 943 的纪律）")
+
+READ_FM_JS = """() => {
+  const rec = window.__fm_rec || null;
+  if (rec && window.__fm_off) window.__fm_off();
+  window.__fm_rec = null; window.__fm_off = null;
+  return rec;
+}"""
 
 # ── 驱动：走**一圈**，逐按记 DOM 下标 ───────────────────────────────────
 # ⚠️⚠️ **绕开 `press_row`**（957 查红、958 复刻侧也证实：它内部的
@@ -681,16 +871,59 @@ assert ROOT_JS.count("getRootNode()") == 1 and "ShadowRoot" in ROOT_JS, (
 # ⚠️ 引导是**关系式**的：走到**第 2 次**命中 `canvas-fixed-toolbar` 为止（= 一圈）。
 N_LEAD_CAP = 140
 
+# ⚠️⚠️⚠️ **操作事故（961 自己抓到）**：这一段**原文是 960 照抄来的**、
+#   还在讲 960 的两个可能性（shadow root / keydown 改 ti）⇒ 交付的读数文件里
+#   **「本批问什么」这项被标错了**（`question` 才是对的）⇒ 已改正并**重跑**。
+#   ⇒ 与 960 那个 `OUT` 照抄事故**同类、不同面**：那回毁的是**读数文件**，
+#     这回毁的是**读数文件里的一个说明字段** ⇒ 承 960 那条纪律：
+#     **`cp` 探针当新基底时，输出路径 / 读数字段 / 说明文字都要逐个核。**
 out["domidx_note"] = (
-    "⭐ 960 **不问**「顺序长什么样」（954/958/959 都已记过）—— "
-    "960 问的是 959 留下的**两个可能性**："
-    "① 那 6 个画布控件**在不在 shadow root 里**（若在，959 的 `dom_index` "
-    "**口径就不成立**、读数要重做）；"
-    "② 源站**是不是在 keydown 里改了它们的 `tabindex`**"
-    "（959 **只读到「按后」**，960 成对读「按前/按后」）。")
-out["out"] = "/tmp/b960-taborder.json"
-out["question"] = ("959 测到「Tab 序 ≠ DOM 序」、且**否掉了**「正 `tabindex`」"
-                   "那个解释 ⇒ 这两个剩下的可能性是**什么**？")
+    "⭐ 962 **不问**「顺序长什么样」（954/958/959 都已记过）、"
+    "**也不问**「有没有正 `tabindex`」（**961 已查完全文档 = 0 个**）、"
+    "**也不问** 960 问过的那两条（**960 已逐条否掉**）—— "
+    "962 问的是**时序**：「焦点是**谁**、在**什么时候**被搬的」。"
+    "（下面这段原文是 961 照抄来的、留档不改）"
+    "⚠️ 961 **不问**「顺序长什么样」（954/958/959 都已记过），"
+    "**也不问** 960 问过的那两条（shadow root / keydown 改 ti，"
+    "**960 已经逐条否掉**）—— 961 问的是 959/960 读法上的**盲区**："
+    "「**全文档**到底有没有**带正 `tabindex`** 的元素」"
+    "（959/960 只读**焦点所在的那一枚**，别的候选**根本没读过**）。")
+out["out"] = "/tmp/b962-focusmove.json"
+out["question"] = (
+    "⭐⭐⭐⭐ **961 结尾只剩一个方向**：源站在 `keydown` **之后**"
+    "（`focusin` / 宏任务 / rAF）**主动 `focus()` 到下一枚** ⇒ "
+    "**这一批就验它**：在**派发结束那一刻**焦点**已经变了**吗？"
+    "（浏览器的默认动作是在派发**之后**才做的 ⇒ 派发内就变了 = 必然是脚本搬的）"
+    "—— ⭐⚠️ 961 那句「959/960 有个盲区」是**上一批**的问题，留档不改"
+    "⇒ 而浏览器排顺序时看的是**所有候选** ⇒ **全文档到底有没有正 "
+    "`tabindex` 的元素？**（若那 6 个画布控件带着 `1`/`2`/…，"
+    "959/960 一个都没看到 ⇒ 矛盾解开）")
+out["blind_spot_960"] = (
+    "⚠️⚠️⚠️⭐⭐ **959/960 的读法盲区**（本批的整个来由）："
+    "`ti_before`/`ti_after` 读的都是**焦点所在的那一枚**的 `tabindex`；"
+    "而 `tabindex='0'` 恰好就是**左栏 roving 那一枚**、其余读出 `None` ⇒ "
+    "**「它们没有正 `tabindex`」这个结论只覆盖了「它们各自获得焦点的那一刻」**"
+    "⇒ **其它候选**当时的 `tabindex` **959/960 根本没读过**")
+out["recheck_892"] = (
+    "⚠️⭐⭐ **更正一处出处，但第一版更正本身就错了**（961 自己抓到的）："
+    "960 §二 的表把 C 的出处写成 **896**（「早已记过」）—— "
+    "**896 确实复读过**：它第 55 行明写「`defaultPrevented` 用 **892 的取法**」、"
+    "汇总里有 `keydown_defaultPrevented_seen`、结论是**全 `False`** ⇒ "
+    "**960 那处引用不算错**。"
+    "**真正该说的是**：「**892 首测**（那一批的主角就是这一项，2/2 `False`）"
+    "**＋ 896 复核**（同取法，全 `False`）」⇒ **C 有两个出处、都站得住**。"
+    "⚠️⚠️ 我 961 第一版的 audit 写的是「**不是 896**」⇒ **那一句是错的**，"
+    "错因是：**只查了 960 指向的那一处，没查「真正测过的还有哪些」**")
+# ⚠️⚠️ **口径必须写死，否则下一批会拿两个数互比**（本批差点踩）：
+#   `census_ti_hist`（≈50 几）= `RAIL_JS` 扫**左栏那一个容器内部全部 `*`**
+#     （含 SVG 之外的一切标签，**不是**「原生可聚焦」口径）；
+#   `ti_hist`（≈110 几）= `TICENSUS_JS` 扫**整个 `document` 的原生可聚焦元素**。
+#   ⭐ 二者**不可比、不可相加**、**不是同一件事的两个数**。
+out["census_scope"] = (
+    "⚠️⚠️ **两个普查不是同一件事，数字不可比**："
+    "`census_ti_hist` = `RAIL_JS`，范围**只有左栏那一个容器**内部全部 `*`；"
+    "`ti_hist` = `TICENSUS_JS`，范围是**整个 `document`** 的原生可聚焦元素。"
+    "⇒ 961 的判决**只认 `ti_hist` + `n_positive`**（全文档那一支）")
 out["ruler"] = dict(out["ruler"])
 out["ruler"]["new_pieces"] = ["RAIL_JS", "DOMIDX_JS", "ROOT_JS"]
 out["ruler"]["read_isolation"] = (
@@ -714,7 +947,8 @@ for rep in range(1, REPS + 1):
     cen = ev(RAIL_JS, [RAIL_TID, NODE_SEL])
     c["census_ti_hist"] = cen.get("ti_hist")
     c["n_rail_focusable"] = cen.get("n_focusable")
-    print(f"      普查：ti 分布 {cen.get('ti_hist')}", flush=True)
+    print(f"      左栏普查（`RAIL_JS`，范围=左栏容器）：ti 分布 "
+          f"{cen.get('ti_hist')}", flush=True)
 
     sp = ev(BLANK_JS)
     c["blank"] = sp
@@ -741,6 +975,10 @@ for rep in range(1, REPS + 1):
     ev("""() => { window.__preTi = undefined; window.__preEl = null; }""")
     while c["n_lead"] < N_LEAD_CAP:
         c["n_lead"] += 1
+        # ── ⭐⭐⭐⭐ 962 的**本行重点**：在**按之前**把时序监听装上 ────────────
+        #   装在 `window` 捕获（最前）+ `document`/`window` 冒泡（派发末尾）
+        #   + `focusin` 捕获 ⇒ 能读出「派发结束那一刻焦点在哪」。
+        _armed = ev(FOCUSMOVE_JS)
         # ── 按**前**：记住「此刻焦点元素」的**引用**与它的 tabindex ─────────
         _pre = ev("""([nodeSel]) => {
           const a = document.activeElement;
@@ -754,8 +992,13 @@ for rep in range(1, REPS + 1):
         }""", [NODE_SEL])
         page.keyboard.press("Tab")
         page.wait_for_timeout(SETTLE)
+        # ⚠️⚠️ `setTimeout(0)` 与 `requestAnimationFrame` 的取样**在按后**才跑完
+        #   ⇒ `SETTLE` 必须**大于**它们（350ms 足够，承 952–961 的同一常量）
+        _fm = ev(READ_FM_JS)          # ⭐ 读走**并摘监听**（诊断动作必须还原）
         d = ev(DOMIDX_JS, [NODE_SEL])
         r = ev(ROOT_JS, [NODE_SEL])
+        # ⭐⭐⭐⭐ 961 的**本行重点**：普查**全文档**所有原生可聚焦元素的 `tabindex`
+        _tc = ev(TICENSUS_JS, [NODE_SEL])
         # ⭐⭐ **同一个元素**（= 按前那枚）**离开之后**的 tabindex
         _same = ev("""() => {
           const e = window.__preEl;
@@ -785,6 +1028,15 @@ for rep in range(1, REPS + 1):
                "ti_before": r.get("ti_before"),
                "ti_after": _same.get("ti_now"),
                "same_el_still_connected": _same.get("still"),
+               # ⭐ 961：**全文档** tabindex 普查（逐按一次）
+               "ti_hist": _tc.get("ti_hist"),
+               "n_native": _tc.get("n_native"),
+               "n_focusable": _tc.get("n_focusable"),
+               "n_positive": _tc.get("n_positive"),
+               "positive": _tc.get("positive"),
+               # ⭐⭐⭐⭐ 962：这一按的**焦点时序原始读数**（整段 `FOCUSMOVE_JS`）
+               "fm": _fm,
+               "fm_armed": _armed,
                "who_after": d}
         c["rows"].append(row)
         if d.get("tid") == RAIL_TID:
@@ -811,7 +1063,13 @@ for rep in range(1, REPS + 1):
                  "in_shadow": r.get("in_shadow"),
                  "root_host_tid": r.get("root_host_tid"),
                  "ti_before": r.get("ti_before"),
-                 "ti_after": r.get("ti_after")}
+                 "ti_after": r.get("ti_after"),
+                 # ⭐ 961 的**全文档**普查（逐按一次）
+                 "ti_hist": r.get("ti_hist"),
+                 "n_native": r.get("n_native"),
+                 "n_focusable": r.get("n_focusable"),
+                 "n_positive": r.get("n_positive"),
+                 "positive": r.get("positive")}
                 for r in leg]
     _outs = [x for x in c["leg"]
              if (x["stop"] or "").startswith("out:")]
@@ -837,32 +1095,165 @@ for rep in range(1, REPS + 1):
     c["n_leg_out"] = len(_outs)
     c["n_leg_rail"] = sum(1 for x in _outs
                           if x["dom_tid"] == RAIL_TID)
+    # ── ⭐ 961 的判决：**全文档有没有「正 `tabindex`」** ─────────────────
+    _hists = {json.dumps(x["ti_hist"], sort_keys=True) for x in _outs
+              if x.get("ti_hist")}
+    c["ti_hist_stable"] = bool(len(_hists) == 1)
+    c["ti_hist"] = _outs[0]["ti_hist"] if _outs else None
+    c["n_positive_max"] = max([x.get("n_positive") or 0 for x in _outs] or [0])
+    _pos = [x for x in _outs if (x.get("n_positive") or 0) > 0]
+    c["n_out_with_positive"] = len(_pos)
+    c["positive_sample"] = (_outs[0].get("positive") or []) if _outs else []
+    c["positive_tids"] = sorted({p.get("tid")
+                                 for x in _outs
+                                 for p in (x.get("positive") or [])})
+    # ── ⭐⭐⭐⭐ 962 的判决：**焦点是「谁」、在「什么时候」被搬的** ───────────
+    # ⚠️ **身份只比四个字段**（tag/tid/aria/is_body）—— DOM 绝对下标逐轮会漂，
+    #   那是 959 记过的坑（959/960 只能比**相对关系**）
+    def _who_id(w):
+        if not isinstance(w, dict):
+            return None
+        return (w.get("tag"), w.get("tid"), w.get("aria"), w.get("is_body"))
+
+    c["n_fm_rows"] = sum(1 for r in c["rows"] if r.get("fm"))
+    _fm_rows = [r["fm"] for r in c["rows"] if r.get("fm")]
+    c["n_fm_armed"] = sum(1 for r in c["rows"]
+                          if (r.get("fm_armed") or {}).get("armed"))
+    # ⭐ 判决 A：**派发结束那一刻**焦点**已经变了**的有几按
+    #   ⇒ 那些是**在派发过程中**被脚本 `focus()` 搬的（默认动作还没轮到跑）
+    c["n_moved_before_dispatch_end"] = sum(
+        1 for f in _fm_rows
+        if _who_id(f.get("post_dispatch")) is not None
+        and _who_id(f.get("post_dispatch")) != _who_id(f.get("pre")))
+    # ⭐ 判决 B：**第一个 `focusin`** 落在派发内还是派发后、是不是 `isTrusted`
+    _rel, _trust, _bubble, _prev = {}, {}, {}, {}
+    for f in _fm_rows:
+        _fis = f.get("focusins") or []
+        if not _fis:
+            continue
+        _rel[_fis[0].get("rel")] = _rel.get(_fis[0].get("rel"), 0) + 1
+        _trust[str(_fis[0].get("is_trusted"))] = (
+            _trust.get(str(_fis[0].get("is_trusted")), 0) + 1)
+        _bubble[f.get("which_bubble")] = _bubble.get(f.get("which_bubble"), 0) + 1
+        _prev[str(f.get("prevented_at_end"))] = (
+            _prev.get(str(f.get("prevented_at_end")), 0) + 1)
+    c["first_focusin_rel_hist"] = _rel
+    c["first_focusin_trusted_hist"] = _trust
+    c["which_bubble_hist"] = _bubble
+    c["prevented_at_end_hist"] = _prev
+    c["n_no_focusin"] = sum(1 for f in _fm_rows if not (f.get("focusins") or []))
+    # ⭐ 判决 C：**派发结束后**（宏任务里）才变的 ⇒ 那才是浏览器默认动作
+    c["n_moved_only_after_dispatch"] = sum(
+        1 for f in _fm_rows
+        if _who_id(f.get("post_dispatch")) == _who_id(f.get("pre"))
+        and _who_id(f.get("after_task")) is not None
+        and _who_id(f.get("after_task")) != _who_id(f.get("pre")))
+    # ── ⭐⭐⭐⭐⭐ 962 的**头号判决**：`dom_index` 的**下降次数** ────────────
+    # ⚠️⚠️⚠️ **959 的判决（「`Tab` 序 ≠ DOM 序」）是用「单调不降」下的**，
+    #   而**环形**走查本来就**必然**有下降（走完文档尾部要折返回头部）⇒
+    #   「非单调」**推不出「乱序」**。⇒ 这里量的是**关系式**的东西：
+    #   **下降了几次、每次是不是「从高索引跳回低索引」**。
+    _seq_di = [(r["seq"], r["dom_index"]) for r in c["rows"]
+               if r.get("dom_index") is not None]
+    c["n_dom_index_descents"] = sum(
+        1 for i in range(len(_seq_di) - 1)
+        if _seq_di[i + 1][1] < _seq_di[i][1])
+    c["dom_index_descents"] = [{"at_seq": _seq_di[i][0],
+                                "from": _seq_di[i][1], "to": _seq_di[i + 1][1]}
+                               for i in range(len(_seq_di) - 1)
+                               if _seq_di[i + 1][1] < _seq_di[i][1]]
+    # ⭐ 分段：**只看 out 段**（那 18 个 `out:` chrome 停靠点）——
+    #   ⚠️⚠️⚠️ **第一版这里错拿 `leg` 当「out 段」** ⇒ `leg` 是
+    #   `leg_lo..leg_hi`（这轮 = 第 84–140 按），而**这一轮没走满一圈**
+    #   （140 上限前没到第 2 个左栏停靠点）⇒ `leg` 里**混着 39 个画布节点按**
+    #   ⇒ 读出 `29 / 57` ⇒ ⭐ **连我自己的结论文案都和这个数字自相矛盾**
+    #   （文案写「几乎全是浏览器搬的」、数字却近一半）⇒ **文案必须跟着数字走**。
+    #   ⇒ 改口径：分母 = `_outs`（`leg_out`）的按数，不是 `leg` 的。
+    _legseq = {x["seq"] for x in _outs}
+    c["n_moved_in_dispatch_leg"] = sum(
+        1 for r in c["rows"] if r["seq"] in _legseq and r.get("fm")
+        and _who_id((r["fm"] or {}).get("post_dispatch")) is not None
+        and _who_id((r["fm"] or {}).get("post_dispatch"))
+        != _who_id((r["fm"] or {}).get("pre")))
+    c["n_leg_rows"] = len(_legseq)
+    c["fm_sample"] = [{
+        "k": r["k"], "pre": (r.get("fm") or {}).get("pre"),
+        "post_dispatch": (r.get("fm") or {}).get("post_dispatch"),
+        "after_task": (r.get("fm") or {}).get("after_task"),
+        "n_focusins": len((r.get("fm") or {}).get("focusins") or []),
+        "first_rel": (((r.get("fm") or {}).get("focusins") or [{}])[0]).get("rel"),
+        "first_trusted": (((r.get("fm") or {}).get("focusins") or [{}])[0]
+                           ).get("is_trusted"),
+        "prevented_at_end": (r.get("fm") or {}).get("prevented_at_end"),
+    } for r in c["rows"] if r.get("fm")][:24]
     c["verdict"] = (
         f"一圈（第 {c['leg_lo']}–{c['leg_hi']} 按）：out 段 {c['n_leg_out']} 个、"
         f"其中左栏 {c['n_leg_rail']} 个；**DOM 下标单调不降 = "
-        f"{c['dom_index_monotonic']}**；"
-        f"**在 shadow root 里的 = {c['n_in_shadow']}**"
-        f"（root 种类 {c['root_kinds']}）；"
-        f"**按前/按后 `tabindex` 变过的 = {c['n_ti_changed']}**")
+        f"{c['dom_index_monotonic']}**；在 shadow root 里的 = "
+        f"{c['n_in_shadow']}；按前/按后 ti 变过的 = {c['n_ti_changed']}；"
+        f"⭐ **全文档带正 `tabindex` 的最多 {c['n_positive_max']} 个**、"
+        f"out 段里 **{c['n_out_with_positive']}** 个按**看到了**正 `tabindex`")
+    c["verdict_fm"] = (
+        f"⭐ **派发结束前焦点就变的 = {c['n_moved_before_dispatch_end']} / "
+        f"{c['n_fm_rows']} 按**；**只在派发后才变的 = "
+        f"{c['n_moved_only_after_dispatch']}**；"
+        f"第一个 `focusin` 落在 {c['first_focusin_rel_hist']}、"
+        f"`isTrusted` {c['first_focusin_trusted_hist']}；"
+        f"派发末尾的 `defaultPrevented` {c['prevented_at_end_hist']}")
+    # ⚠️ **文案跟着数字走**：先算出比例，再决定这句话怎么说
+    _legm = c["n_moved_in_dispatch_leg"]
+    _legn = c["n_leg_rows"]
+    c["verdict_domi"] = (
+        f"⭐⭐⭐ `dom_index` 下降 **{c['n_dom_index_descents']} 次** "
+        f"（方向：{['high_to_low' if (d.get('from') or 0) > (d.get('to') or 0) else 'low_to_high' for d in c['dom_index_descents']]}；"
+        f"**绝对下标逐轮会漂、只钉方向**）；"
+        f"⭐ **out 段（{_legn} 个 chrome 停靠点）里派发内搬焦点的 = "
+        f"{_legm}** ⇒ "
+        + ("**全部是浏览器搬的**" if _legm == 0 else
+           f"**{_legm} 个是应用在派发中搬的**"))
     print(f"      ⇒ {c['verdict']}", flush=True)
-    for x in c["leg_out"]:
-        print(f"        · {x['seq']:3d} dom#{x['dom_index']} "
-              f"ti {x.get('ti_before')!r}→{x.get('ti_after')!r:6s} "
-              f"root={x.get('root_kind')!s:12s} "
-              f"{(x['dom_aria'] or '')[:20]!s:22s} tid={x['dom_tid']}", flush=True)
+    if _outs:
+        print(f"      全文档原生可聚焦 {c['leg'][0].get('n_native')}、"
+              f"顺序里 {c['leg'][0].get('n_focusable')}、"
+              f"ti 分布 {c['ti_hist']}", flush=True)
+    for p in c["positive_sample"][:20]:
+        print(f"        · 正ti={p.get('tabindex')!r:5s} {p.get('tag'):8s} "
+              f"{(p.get('aria') or '')[:20]!s:22s} tid={p.get('tid')}",
+              flush=True)
     dump(out)
 
 # ⭐ 两轮比较**必须在循环之外**
 n_cells = 1
 out["n_cells_total"] = n_cells
 _got = [{"verdict": r["cells"][0].get("verdict"),
+         "verdict_fm": r["cells"][0].get("verdict_fm"),
+         "verdict_domi": r["cells"][0].get("verdict_domi"),
+         # ⚠️⚠️⚠️ **第一版这里比的是 `dom_index_descents` 的**绝对值**
+         #   ⇒ `reps_identical` **假红**（959 早就记过：DOM 绝对下标**逐轮会漂**，
+         #   本轮两轮正好差 2）⇒ **绝对下标不是可比的量**。
+         #   ⇒ 改成比**关系式**：下降**几次** + 每次**是不是「高索引跳回低索引」**。
+         "n_descents": r["cells"][0].get("n_dom_index_descents"),
+         "descent_directions": [
+             ("high_to_low" if (d.get("from") or 0) > (d.get("to") or 0)
+              else "low_to_high")
+             for d in (r["cells"][0].get("dom_index_descents") or [])],
+         "n_moved_in_dispatch_leg": r["cells"][0].get("n_moved_in_dispatch_leg"),
          "ti_pairs": r["cells"][0].get("ti_pairs"),
          "root_kinds": r["cells"][0].get("root_kinds"),
          "n_in_shadow": r["cells"][0].get("n_in_shadow"),
          "n_ti_changed": r["cells"][0].get("n_ti_changed"),
          "monotonic": r["cells"][0].get("dom_index_monotonic"),
          "n_leg_out": r["cells"][0].get("n_leg_out"),
-         "n_leg_rail": r["cells"][0].get("n_leg_rail")}
+         "n_leg_rail": r["cells"][0].get("n_leg_rail"),
+         "n_moved_before_dispatch_end":
+             r["cells"][0].get("n_moved_before_dispatch_end"),
+         "n_moved_only_after_dispatch":
+             r["cells"][0].get("n_moved_only_after_dispatch"),
+         "first_focusin_rel_hist":
+             r["cells"][0].get("first_focusin_rel_hist"),
+         "first_focusin_trusted_hist":
+             r["cells"][0].get("first_focusin_trusted_hist"),
+         "prevented_at_end_hist": r["cells"][0].get("prevented_at_end_hist")}
         for r in out["runs"]]
 out["reps_identical"] = bool(len(_got) == REPS and _got[0] == _got[1])
 out["ruler_actually_moved"] = bool(
@@ -889,6 +1280,52 @@ out["design_gates"] = {
         r["cells"][0].get("n_ti_changed") == 0
         for r in out["runs"] if "skipped" not in r["cells"][0])),
     "keys_disjoint": bool(not (RAW_KEYS & DERIVED_KEYS)),
+    # ⭐ 961 自己的**判决门**（**可红**，红的就是「正 `tabindex`」没被否掉）
+    "no_positive_tabindex": bool(all(
+        (r["cells"][0].get("n_positive_max") == 0
+         and r["cells"][0].get("positive_tids") == []
+         and r["cells"][0].get("n_out_with_positive") == 0)
+        for r in out["runs"] if "skipped" not in r["cells"][0])),
+    # ⚠️ 这一道保证「两轮看到的是**同一份**分布」——否则「0 个正 ti」只是某一轮的快照
+    "ti_hist_stable_across_stops": bool(all(
+        r["cells"][0].get("ti_hist_stable") is True
+        for r in out["runs"] if "skipped" not in r["cells"][0])),
+    # ── ⭐⭐⭐⭐ 962 自己的**判决门**（**可红**）──────────────────────────
+    # ⚠️ **不是**「焦点有没有被搬」那种恒真门（每按必然被搬）⇒
+    #   这里量的是**三条可证伪的事实**，红的就说明 961 的猜想被否：
+    #   ① 每按都**真的装上了监听**（否则整批读数是空的）
+    # ⚠️⚠️⚠️ **第一版这条门是恒真的**：`n_fm_armed == n_fm_rows` 在「装 1 按、
+    #   测 1 按」时也成立 ⇒ 闩锁 bug 下面它是**绿的**。
+    #   ⇒ 改成**和按压总数**比：漏一按就红。
+    "fm_armed_every_press": bool(all(
+        (r["cells"][0].get("n_fm_rows") or 0) > 0
+        and r["cells"][0].get("n_fm_armed") == r["cells"][0].get("n_lead")
+        and r["cells"][0].get("n_fm_rows") == r["cells"][0].get("n_lead")
+        for r in out["runs"] if "skipped" not in r["cells"][0])),
+    #   ② **每一按都听到了 `focusin`**（漏听 ⇒ 读数不可信，不是判决）
+    "focusin_heard_every_press": bool(all(
+        r["cells"][0].get("n_no_focusin") == 0
+        for r in out["runs"] if "skipped" not in r["cells"][0])),
+    #   ③ 961 的猜想：**派发结束前**焦点就已改变 ⇒ 应用**在派发中**主动 `focus()`
+    #      ⇒ 这一道**红**就说明「应用主动搬焦点」被否掉
+    "app_moves_focus_before_dispatch_end": bool(all(
+        (r["cells"][0].get("n_moved_before_dispatch_end") or 0)
+        == (r["cells"][0].get("n_fm_rows") or -1)
+        for r in out["runs"] if "skipped" not in r["cells"][0])),
+    # ── ⭐⭐⭐⭐⭐ 962 的**头号判决**（**可红**）──────────────────────────
+    # ④ **`dom_index` 的下降次数**：环形走查里「文档尾部 → 头部」那**一次**折返
+    #    是**应有**的 ⇒ 「非单调」**不等于**「乱序」。
+    #    这一道量的是**关系**：下降几次、且每次是不是「高索引跳回低索引」。
+    "dom_index_descents_are_wraps_only": bool(all(
+        r["cells"][0].get("n_dom_index_descents") is not None
+        and all(d.get("from") > d.get("to")
+                for d in (r["cells"][0].get("dom_index_descents") or []))
+        for r in out["runs"] if "skipped" not in r["cells"][0])),
+    # ⑤ ⭐ **out 段（chrome 停靠点）里几乎没有被应用在派发中搬走** ⇒
+    #    961 的猜想对**它关心的那一段**不成立
+    "out_stops_moved_by_browser": bool(all(
+        (r["cells"][0].get("n_moved_in_dispatch_leg") or 0) == 0
+        for r in out["runs"] if "skipped" not in r["cells"][0])),
 }
 print("\n设计门：", out["design_gates"], flush=True)
 for r in out["runs"]:
@@ -897,5 +1334,7 @@ for r in out["runs"]:
             print(f"rep{r['rep']}：⚠️ {c['skipped']}", flush=True)
         else:
             print(f"rep{r['rep']}：{c['verdict']}", flush=True)
+            print(f"rep{r['rep']}：{c['verdict_fm']}", flush=True)
+            print(f"rep{r['rep']}：{c['verdict_domi']}", flush=True)
 dump(out)
 print("\n读数已写入", OUT, flush=True)
