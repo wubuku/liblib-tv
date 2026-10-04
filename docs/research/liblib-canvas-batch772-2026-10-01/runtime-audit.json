@@ -1,0 +1,1587 @@
+{
+ "batch": 772,
+ "date": "2026-10-01",
+ "scope": "浮层开着、焦点落在浮层内某个控件上时，导演台的全局快捷键（Delete / Backspace / Meta+Z）会不会照样生效 —— D8 的**破坏性同族**",
+ "env": {
+  "base": "http://localhost:4317",
+  "canvas": "canvas-2",
+  "viewport": "1440x1000（桌面）",
+  "player": "chromium (playwright sync_api)",
+  "srcModified": false
+ },
+ "probes": [
+  {
+   "id": "772a",
+   "file": "probes/dbg772a.py",
+   "raw": "raw/vb772a.json",
+   "rounds": 2,
+   "cells": 24,
+   "note": "主网格：6 浮层 × 4 臂（其中 del-editable 在 3 个浮层上是结构性 SKIP）。**有 3 格因排序 bug FAILED，见 superseded。**"
+  },
+  {
+   "id": "772b",
+   "file": "probes/dbg772b.py",
+   "raw": "raw/vb772b.json",
+   "rounds": 2,
+   "cells": 7,
+   "note": "补 preset 的 3 格 + pathmenu 的归因 + **一个相机可删性对照格**"
+  }
+ ],
+ "rawSha": {
+  "vb772a.json": "71309c93de29b9be",
+  "vb772b.json": "f33d69ae536e7a1f"
+ },
+ "comparability": {
+  "allConsistent772a": true,
+  "allConsistent772b": true,
+  "firstDiff772a": {},
+  "firstDiff772b": {},
+  "rounds": 2,
+  "cellsPerRound772a": 24,
+  "cellsPerRound772b": 7,
+  "mergedCells": 22,
+  "provenance": {
+   "export/del-noneditable": "772a",
+   "export/bs-noneditable": "772a",
+   "export/del-editable": "772a",
+   "export/undo-noneditable": "772a",
+   "pathmenu/del-noneditable": "772b",
+   "pathmenu/bs-noneditable": "772b",
+   "pathmenu/undo-noneditable": "772b",
+   "phonevcam/del-noneditable": "772a",
+   "phonevcam/bs-noneditable": "772a",
+   "phonevcam/undo-noneditable": "772a",
+   "crowd/del-noneditable": "772a",
+   "crowd/bs-noneditable": "772a",
+   "crowd/del-editable": "772a",
+   "crowd/undo-noneditable": "772a",
+   "modellib/del-noneditable": "772a",
+   "modellib/bs-noneditable": "772a",
+   "modellib/del-editable": "772a",
+   "modellib/undo-noneditable": "772a",
+   "cam/deletable-control": "772b",
+   "preset/del-noneditable": "772b",
+   "preset/bs-noneditable": "772b",
+   "preset/undo-noneditable": "772b"
+  },
+  "cellsFrom772a": 15,
+  "cellsFrom772b": 7,
+  "protocol": "★ 每格都从**重新加载的页面**开始（768 的 R73）并清空localStorage 的导演台项目键；每格开头都**点选**一个对象并回读 `selectedIds` —— Delete/Undo 分支只在有选中时才动手，**选中没成立就不是读数**（规矩 6）。",
+  "superseded": {
+   "cells": [
+    "preset/bs-noneditable",
+    "preset/del-noneditable",
+    "preset/undo-noneditable"
+   ],
+   "why": "772a 的排序 bug：`ensure_camera()` 之后又去点了第一个对象，把刚选中的相机顶掉 ⟹ preset 触发器重新 disabled。",
+   "fixedBy": "772b：对 needs==cameraTrack 的浮层，**被删目标就用相机本身**，点一次同时满足「触发器可用」与「有选中」。",
+   "keptFrom772a": "772a 的其余 15 格**全部保留**，不作废。★ 注意 pathmenu 的 3 格也来自 **772b**（772b 覆盖了772a 的同名格）—— provenance 是现算的，不是手算的。"
+  },
+  "boundary": "只点对象树的行、6 个 disclosure 触发器、选中相机；**不点提交/连接/添加，更不做付费或真实生图生视频**。Delete 是被测行为，破坏只存在于探针这一页内。",
+  "deskGoneAfter772a": [
+   null,
+   null
+  ],
+  "deskGoneAfter772b": [
+   null,
+   null
+  ]
+ },
+ "static": {
+  "deskListenerOnWindow": true,
+  "deskListenerIsCapture": false,
+  "deskKeydownListenerCount": 1,
+  "deskListenerCountInHandler": 0,
+  "guardIsEditableReturn": true,
+  "guardBeforeDelete": true,
+  "isEditableCovers": [
+   "INPUT",
+   "SELECT",
+   "TEXTAREA"
+  ],
+  "isEditableHasContentEditable": true,
+  "deleteBranchPresent": true,
+  "deleteCallsEntity": true,
+  "deleteHasWorkspaceBusyGuard": true,
+  "deleteHasViewerGuard": true,
+  "deleteGuardedBySelection": true,
+  "modifierKeys": [
+   "c",
+   "v",
+   "y",
+   "z"
+  ],
+  "pageHandlerReturnsWhenDeskOpen": true,
+  "pageDeletePresent": true,
+  "pageGuardBeforeDelete": true,
+  "pageGuardSelector": true,
+  "pageGuardExcludesFileInput": true,
+  "pageGuardCoversRoleTextbox": true,
+  "deskGuardIsTagNameOnly": true
+ },
+ "leakage": {
+  "perCell": {
+   "export/del-noneditable": {
+    "probe": "772a",
+    "deltaObjects": [
+     -1
+    ],
+    "targetAtKeyTime": [
+     "['director-character-lead']"
+    ],
+    "objectsDropped": true,
+    "selectionCleared": true,
+    "classifiable": true
+   },
+   "preset/del-noneditable": {
+    "probe": "772b",
+    "deltaObjects": [
+     0
+    ],
+    "targetAtKeyTime": [
+     "['director-camera-main']"
+    ],
+    "objectsDropped": false,
+    "selectionCleared": false,
+    "classifiable": false
+   },
+   "pathmenu/del-noneditable": {
+    "probe": "772b",
+    "deltaObjects": [
+     0
+    ],
+    "targetAtKeyTime": [
+     "['director-camera-main']"
+    ],
+    "objectsDropped": false,
+    "selectionCleared": false,
+    "classifiable": false
+   },
+   "phonevcam/del-noneditable": {
+    "probe": "772a",
+    "deltaObjects": [
+     -1
+    ],
+    "targetAtKeyTime": [
+     "['director-character-lead']"
+    ],
+    "objectsDropped": true,
+    "selectionCleared": true,
+    "classifiable": true
+   },
+   "crowd/del-noneditable": {
+    "probe": "772a",
+    "deltaObjects": [
+     -1
+    ],
+    "targetAtKeyTime": [
+     "['director-character-lead']"
+    ],
+    "objectsDropped": true,
+    "selectionCleared": true,
+    "classifiable": true
+   },
+   "modellib/del-noneditable": {
+    "probe": "772a",
+    "deltaObjects": [
+     -1
+    ],
+    "targetAtKeyTime": [
+     "['director-character-lead']"
+    ],
+    "objectsDropped": true,
+    "selectionCleared": true,
+    "classifiable": true
+   },
+   "export/bs-noneditable": {
+    "probe": "772a",
+    "deltaObjects": [
+     -1
+    ],
+    "targetAtKeyTime": [
+     "['director-character-lead']"
+    ],
+    "objectsDropped": true,
+    "selectionCleared": true,
+    "classifiable": true
+   },
+   "preset/bs-noneditable": {
+    "probe": "772b",
+    "deltaObjects": [
+     0
+    ],
+    "targetAtKeyTime": [
+     "['director-camera-main']"
+    ],
+    "objectsDropped": false,
+    "selectionCleared": false,
+    "classifiable": false
+   },
+   "pathmenu/bs-noneditable": {
+    "probe": "772b",
+    "deltaObjects": [
+     0
+    ],
+    "targetAtKeyTime": [
+     "['director-camera-main']"
+    ],
+    "objectsDropped": false,
+    "selectionCleared": false,
+    "classifiable": false
+   },
+   "phonevcam/bs-noneditable": {
+    "probe": "772a",
+    "deltaObjects": [
+     -1
+    ],
+    "targetAtKeyTime": [
+     "['director-character-lead']"
+    ],
+    "objectsDropped": true,
+    "selectionCleared": true,
+    "classifiable": true
+   },
+   "crowd/bs-noneditable": {
+    "probe": "772a",
+    "deltaObjects": [
+     -1
+    ],
+    "targetAtKeyTime": [
+     "['director-character-lead']"
+    ],
+    "objectsDropped": true,
+    "selectionCleared": true,
+    "classifiable": true
+   },
+   "modellib/bs-noneditable": {
+    "probe": "772a",
+    "deltaObjects": [
+     -1
+    ],
+    "targetAtKeyTime": [
+     "['director-character-lead']"
+    ],
+    "objectsDropped": true,
+    "selectionCleared": true,
+    "classifiable": true
+   }
+  },
+  "guard": {
+   "crowd/del-editable": {
+    "probe": "772a",
+    "deltaObjects": [
+     0
+    ],
+    "focusEditable": true,
+    "blocked": true
+   },
+   "export/del-editable": {
+    "probe": "772a",
+    "deltaObjects": [
+     0
+    ],
+    "focusEditable": true,
+    "blocked": true
+   },
+   "modellib/del-editable": {
+    "probe": "772a",
+    "deltaObjects": [
+     0
+    ],
+    "focusEditable": true,
+    "blocked": true
+   }
+  },
+  "undo": {
+   "export/undo-noneditable": {
+    "probe": "772a",
+    "setup": [
+     {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     }
+    ],
+    "deltaObjects": [
+     1
+    ],
+    "restored": true
+   },
+   "preset/undo-noneditable": {
+    "probe": "772b",
+    "setup": [
+     {
+      "objectsBefore": 5,
+      "objectsAfter": 4
+     },
+     {
+      "objectsBefore": 5,
+      "objectsAfter": 4
+     }
+    ],
+    "deltaObjects": [
+     1
+    ],
+    "restored": true
+   },
+   "pathmenu/undo-noneditable": {
+    "probe": "772b",
+    "setup": [
+     {
+      "objectsBefore": 5,
+      "objectsAfter": 4
+     },
+     {
+      "objectsBefore": 5,
+      "objectsAfter": 4
+     }
+    ],
+    "deltaObjects": [
+     1
+    ],
+    "restored": true
+   },
+   "phonevcam/undo-noneditable": {
+    "probe": "772a",
+    "setup": [
+     {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     }
+    ],
+    "deltaObjects": [
+     1
+    ],
+    "restored": true
+   },
+   "crowd/undo-noneditable": {
+    "probe": "772a",
+    "setup": [
+     {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     }
+    ],
+    "deltaObjects": [
+     1
+    ],
+    "restored": true
+   },
+   "modellib/undo-noneditable": {
+    "probe": "772a",
+    "setup": [
+     {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     }
+    ],
+    "deltaObjects": [
+     1
+    ],
+    "restored": true
+   }
+  },
+  "control": {
+   "focus": {
+    "ok": true,
+    "count": 141,
+    "tag": "BUTTON",
+    "type": "button",
+    "text": "",
+    "aria": "关闭"
+   },
+   "targetAtKeyTime": [
+    "director-camera-main"
+   ],
+   "deltaObjects": [
+    0
+   ],
+   "selectionUnchanged": true,
+   "objectsDropped": false,
+   "note": "★ 这一格是 772a 留下的悬案的钥匙：pathmenu 两格「没删对象」到底是快捷键没进去，还是相机不可删？本格把焦点放在**任何浮层之外**的对话框控件（`aria-label=关闭`）上、只按 `Delete` —— 相机**删不掉** ⟹ 那两格是**结构上不可判**，不是「这条路是好的」。"
+  },
+  "leakedDisclosures": [
+   "crowd",
+   "export",
+   "modellib",
+   "phonevcam"
+  ],
+  "leakedCells": [
+   "crowd/bs-noneditable",
+   "crowd/del-noneditable",
+   "export/bs-noneditable",
+   "export/del-noneditable",
+   "modellib/bs-noneditable",
+   "modellib/del-noneditable",
+   "phonevcam/bs-noneditable",
+   "phonevcam/del-noneditable"
+  ],
+  "classifiableCells": [
+   "crowd/bs-noneditable",
+   "crowd/del-noneditable",
+   "export/bs-noneditable",
+   "export/del-noneditable",
+   "modellib/bs-noneditable",
+   "modellib/del-noneditable",
+   "phonevcam/bs-noneditable",
+   "phonevcam/del-noneditable"
+  ],
+  "confoundedCells": [
+   "pathmenu/bs-noneditable",
+   "pathmenu/del-noneditable",
+   "preset/bs-noneditable",
+   "preset/del-noneditable"
+  ],
+  "undoLeakedCells": [
+   "crowd/undo-noneditable",
+   "export/undo-noneditable",
+   "modellib/undo-noneditable",
+   "pathmenu/undo-noneditable",
+   "phonevcam/undo-noneditable",
+   "preset/undo-noneditable"
+  ],
+  "guardBlockedCells": [
+   "crowd/del-editable",
+   "export/del-editable",
+   "modellib/del-editable"
+  ],
+  "deskGoneAfter": [],
+  "theseKeysDoNotCloseDesk": true,
+  "perDisclosure": {
+   "export": {
+    "delDropped": true,
+    "bsDropped": true,
+    "classifiable": true,
+    "undoRestored": true,
+    "guardBlocked": true
+   },
+   "preset": {
+    "delDropped": false,
+    "bsDropped": false,
+    "classifiable": false,
+    "undoRestored": true,
+    "guardBlocked": false
+   },
+   "pathmenu": {
+    "delDropped": false,
+    "bsDropped": false,
+    "classifiable": false,
+    "undoRestored": true,
+    "guardBlocked": false
+   },
+   "phonevcam": {
+    "delDropped": true,
+    "bsDropped": true,
+    "classifiable": true,
+    "undoRestored": true,
+    "guardBlocked": false
+   },
+   "crowd": {
+    "delDropped": true,
+    "bsDropped": true,
+    "classifiable": true,
+    "undoRestored": true,
+    "guardBlocked": true
+   },
+   "modellib": {
+    "delDropped": true,
+    "bsDropped": true,
+    "classifiable": true,
+    "undoRestored": true,
+    "guardBlocked": true
+   }
+  }
+ },
+ "findings": {
+  "F0_comparable": {
+   "allConsistent772a": true,
+   "allConsistent772b": true,
+   "rounds": 2,
+   "cellsPerRound772a": 24,
+   "cellsPerRound772b": 7,
+   "mergedCells": 22,
+   "provenance": {
+    "export/del-noneditable": "772a",
+    "export/bs-noneditable": "772a",
+    "export/del-editable": "772a",
+    "export/undo-noneditable": "772a",
+    "pathmenu/del-noneditable": "772b",
+    "pathmenu/bs-noneditable": "772b",
+    "pathmenu/undo-noneditable": "772b",
+    "phonevcam/del-noneditable": "772a",
+    "phonevcam/bs-noneditable": "772a",
+    "phonevcam/undo-noneditable": "772a",
+    "crowd/del-noneditable": "772a",
+    "crowd/bs-noneditable": "772a",
+    "crowd/del-editable": "772a",
+    "crowd/undo-noneditable": "772a",
+    "modellib/del-noneditable": "772a",
+    "modellib/bs-noneditable": "772a",
+    "modellib/del-editable": "772a",
+    "modellib/undo-noneditable": "772a",
+    "cam/deletable-control": "772b",
+    "preset/del-noneditable": "772b",
+    "preset/bs-noneditable": "772b",
+    "preset/undo-noneditable": "772b"
+   },
+   "superseded": {
+    "cells": [
+     "preset/bs-noneditable",
+     "preset/del-noneditable",
+     "preset/undo-noneditable"
+    ],
+    "why": "772a 的排序 bug：`ensure_camera()` 之后又去点了第一个对象，把刚选中的相机顶掉 ⟹ preset 触发器重新 disabled。",
+    "fixedBy": "772b：对 needs==cameraTrack 的浮层，**被删目标就用相机本身**，点一次同时满足「触发器可用」与「有选中」。",
+    "keptFrom772a": "772a 的其余 15 格**全部保留**，不作废。★ 注意 pathmenu 的 3 格也来自 **772b**（772b 覆盖了772a 的同名格）—— provenance 是现算的，不是手算的。"
+   },
+   "note": "两个探针各 2 轮，逐格归一化后 diff 均为空（R55）。"
+  },
+  "F1_selfProven": {
+   "claim": "★ 每格按键那一刻**真的有选中**（Delete/Undo 分支的前提）",
+   "cellsChecked": 42,
+   "allHadSelection": true,
+   "why": "没有选中时 Delete 分支在 `objectIds.length > 0` 处就返回，「按了没反应」会是**退化情况**而不是「没穿透」（规矩 6）。"
+  },
+  "F2_deleteLeaks": {
+   "claim": "★ 浮层开着、焦点落在**非编辑框**控件上时，`Delete` 会**真的删掉**导演台里选中的对象",
+   "leakedCells": [
+    "crowd/bs-noneditable",
+    "crowd/del-noneditable",
+    "export/bs-noneditable",
+    "export/del-noneditable",
+    "modellib/bs-noneditable",
+    "modellib/del-noneditable",
+    "phonevcam/bs-noneditable",
+    "phonevcam/del-noneditable"
+   ],
+   "leakedDisclosures": [
+    "crowd",
+    "export",
+    "modellib",
+    "phonevcam"
+   ],
+   "classifiableCells": [
+    "crowd/bs-noneditable",
+    "crowd/del-noneditable",
+    "export/bs-noneditable",
+    "export/del-noneditable",
+    "modellib/bs-noneditable",
+    "modellib/del-noneditable",
+    "phonevcam/bs-noneditable",
+    "phonevcam/del-noneditable"
+   ],
+   "perCell": {
+    "crowd/bs-noneditable": {
+     "probe": "772a",
+     "deltaObjects": [
+      -1
+     ],
+     "targetAtKeyTime": [
+      "['director-character-lead']"
+     ],
+     "objectsDropped": true,
+     "selectionCleared": true,
+     "classifiable": true
+    },
+    "crowd/del-noneditable": {
+     "probe": "772a",
+     "deltaObjects": [
+      -1
+     ],
+     "targetAtKeyTime": [
+      "['director-character-lead']"
+     ],
+     "objectsDropped": true,
+     "selectionCleared": true,
+     "classifiable": true
+    },
+    "export/bs-noneditable": {
+     "probe": "772a",
+     "deltaObjects": [
+      -1
+     ],
+     "targetAtKeyTime": [
+      "['director-character-lead']"
+     ],
+     "objectsDropped": true,
+     "selectionCleared": true,
+     "classifiable": true
+    },
+    "export/del-noneditable": {
+     "probe": "772a",
+     "deltaObjects": [
+      -1
+     ],
+     "targetAtKeyTime": [
+      "['director-character-lead']"
+     ],
+     "objectsDropped": true,
+     "selectionCleared": true,
+     "classifiable": true
+    },
+    "modellib/bs-noneditable": {
+     "probe": "772a",
+     "deltaObjects": [
+      -1
+     ],
+     "targetAtKeyTime": [
+      "['director-character-lead']"
+     ],
+     "objectsDropped": true,
+     "selectionCleared": true,
+     "classifiable": true
+    },
+    "modellib/del-noneditable": {
+     "probe": "772a",
+     "deltaObjects": [
+      -1
+     ],
+     "targetAtKeyTime": [
+      "['director-character-lead']"
+     ],
+     "objectsDropped": true,
+     "selectionCleared": true,
+     "classifiable": true
+    },
+    "phonevcam/bs-noneditable": {
+     "probe": "772a",
+     "deltaObjects": [
+      -1
+     ],
+     "targetAtKeyTime": [
+      "['director-character-lead']"
+     ],
+     "objectsDropped": true,
+     "selectionCleared": true,
+     "classifiable": true
+    },
+    "phonevcam/del-noneditable": {
+     "probe": "772a",
+     "deltaObjects": [
+      -1
+     ],
+     "targetAtKeyTime": [
+      "['director-character-lead']"
+     ],
+     "objectsDropped": true,
+     "selectionCleared": true,
+     "classifiable": true
+    }
+   },
+   "deltaObjects": [
+    [
+     -1
+    ]
+   ],
+   "targetDeleted": [
+    "director-character-lead"
+   ]
+  },
+  "F3_backspaceLeaks": {
+   "claim": "`Backspace` 走的是**同一条**分支（`:517` 的 `||`），结论相同",
+   "cells": [
+    "crowd/bs-noneditable",
+    "export/bs-noneditable",
+    "modellib/bs-noneditable",
+    "phonevcam/bs-noneditable"
+   ],
+   "sameDeltaAsDelete": true,
+   "note": "★ 这不是「顺手也测了」——两条臂的 `deltaObjects` 逐格相同，**同一个症状、同一条代码路径**，符合 R60 的判别式。"
+  },
+  "F4_isEditableGuardHolds": {
+   "claim": "★ 对照：焦点落在浮层内的**可编辑**控件上时，Delete **被挡住**",
+   "cells": [
+    "crowd/del-editable",
+    "export/del-editable",
+    "modellib/del-editable"
+   ],
+   "perCell": {
+    "crowd/del-editable": {
+     "probe": "772a",
+     "deltaObjects": [
+      0
+     ],
+     "focusEditable": true,
+     "blocked": true
+    },
+    "export/del-editable": {
+     "probe": "772a",
+     "deltaObjects": [
+      0
+     ],
+     "focusEditable": true,
+     "blocked": true
+    },
+    "modellib/del-editable": {
+     "probe": "772a",
+     "deltaObjects": [
+      0
+     ],
+     "focusEditable": true,
+     "blocked": true
+    }
+   },
+   "focusWasEditable": true,
+   "deltaObjects": [
+    [
+     0
+    ]
+   ],
+   "note": "这一格是 769 量的那道 `isEditable` 早退（`DirectorDesk.tsx:487`）。**它只挡住输入框，挡不住按钮。**"
+  },
+  "F5_undoLeaks": {
+   "claim": "★ 浮层开着时 `Meta+Z` 会**撤销掉工作区里已经发生过的删除**",
+   "cells": [
+    "crowd/undo-noneditable",
+    "export/undo-noneditable",
+    "modellib/undo-noneditable",
+    "pathmenu/undo-noneditable",
+    "phonevcam/undo-noneditable",
+    "preset/undo-noneditable"
+   ],
+   "perCell": {
+    "export/undo-noneditable": {
+     "probe": "772a",
+     "setup": [
+      {
+       "objectsBefore": 5,
+       "objectsAfter": 4,
+       "nodesAfter": 10
+      },
+      {
+       "objectsBefore": 5,
+       "objectsAfter": 4,
+       "nodesAfter": 10
+      }
+     ],
+     "deltaObjects": [
+      1
+     ],
+     "restored": true
+    },
+    "preset/undo-noneditable": {
+     "probe": "772b",
+     "setup": [
+      {
+       "objectsBefore": 5,
+       "objectsAfter": 4
+      },
+      {
+       "objectsBefore": 5,
+       "objectsAfter": 4
+      }
+     ],
+     "deltaObjects": [
+      1
+     ],
+     "restored": true
+    },
+    "pathmenu/undo-noneditable": {
+     "probe": "772b",
+     "setup": [
+      {
+       "objectsBefore": 5,
+       "objectsAfter": 4
+      },
+      {
+       "objectsBefore": 5,
+       "objectsAfter": 4
+      }
+     ],
+     "deltaObjects": [
+      1
+     ],
+     "restored": true
+    },
+    "phonevcam/undo-noneditable": {
+     "probe": "772a",
+     "setup": [
+      {
+       "objectsBefore": 5,
+       "objectsAfter": 4,
+       "nodesAfter": 10
+      },
+      {
+       "objectsBefore": 5,
+       "objectsAfter": 4,
+       "nodesAfter": 10
+      }
+     ],
+     "deltaObjects": [
+      1
+     ],
+     "restored": true
+    },
+    "crowd/undo-noneditable": {
+     "probe": "772a",
+     "setup": [
+      {
+       "objectsBefore": 5,
+       "objectsAfter": 4,
+       "nodesAfter": 10
+      },
+      {
+       "objectsBefore": 5,
+       "objectsAfter": 4,
+       "nodesAfter": 10
+      }
+     ],
+     "deltaObjects": [
+      1
+     ],
+     "restored": true
+    },
+    "modellib/undo-noneditable": {
+     "probe": "772a",
+     "setup": [
+      {
+       "objectsBefore": 5,
+       "objectsAfter": 4,
+       "nodesAfter": 10
+      },
+      {
+       "objectsBefore": 5,
+       "objectsAfter": 4,
+       "nodesAfter": 10
+      }
+     ],
+     "deltaObjects": [
+      1
+     ],
+     "restored": true
+    }
+   },
+   "setupAlwaysVerified": true,
+   "setupShape": [
+    "{'objectsBefore': 5, 'objectsAfter': 4, 'nodesAfter': 10}",
+    "{'objectsBefore': 5, 'objectsAfter': 4}"
+   ],
+   "note": "每格都先在**树上**删掉一个对象并**自证**对象数真的掉了（5→4），才去浮层里按 `Meta+Z`（R86）。6/6 全部恢复到 5。"
+  },
+  "F6_confounded": {
+   "claim": "★ preset / pathmenu 的 4 个 Delete 格**结构上不可判**（不是「没穿透」）",
+   "confoundedCells": [
+    "pathmenu/bs-noneditable",
+    "pathmenu/del-noneditable",
+    "preset/bs-noneditable",
+    "preset/del-noneditable"
+   ],
+   "why": "这两个浮层的触发器**必须选中主机位**才能开（否则 `disabled`），而打开它们还会把选中**换成主机位**（772a 读数：`selectedIds` 从角色变成 `['director-camera-main']`）。⟹ 按键时的目标**只能是相机**，而相机**不可删**（见 F7）。",
+   "whatWouldMakeItDecidable": "项目里有**第二台相机**、或开这两个浮层时仍能保持一个**可删对象**的选中。"
+  },
+  "F7_cameraUndeletable": {
+   "claim": "★ 对照格：相机**根本删不掉**（这才是 F6 的原因）",
+   "focus": {
+    "ok": true,
+    "count": 141,
+    "tag": "BUTTON",
+    "type": "button",
+    "text": "",
+    "aria": "关闭"
+   },
+   "focusWasOutsideAnyLayer": true,
+   "targetAtKeyTime": [
+    "director-camera-main"
+   ],
+   "deltaObjects": [
+    0
+   ],
+   "selectionUnchanged": true,
+   "objectsDropped": false,
+   "note": "焦点放在 `aria-label=关闭` 的按钮上（**任何浮层之外**），只按 `Delete` ⟹ 对象没少、选中没变。**没有这一格，F6 就会被误读成「这条路是好的」。**"
+  },
+  "F8_deskNotClosed": {
+   "claim": "★ 这三个键**不会**关掉导演台 —— 与 D8 的 Esc 路径不是一回事",
+   "deskGoneAfter": [],
+   "noneClosedTheDesk": true,
+   "note": "D8 是「按 Esc 丢整个工作区」；本批量到的三个键都是**改内容但不关工作区**。两条路径的**后果类型不同**，修法也不同，别混为一谈。"
+  },
+  "F9_singleLivePath": {
+   "claim": "★ 机制：导演台开着时，`Delete` 的活路径**只有一条**",
+   "deskKeydownListeners": 1,
+   "deskListenerOnWindow": true,
+   "deskListenerIsCapture": false,
+   "pageDeleteExists": true,
+   "pageReturnsWhenDeskOpen": true,
+   "pageGuardBeforeDelete": true,
+   "why": "`src/app/page.tsx` 的 `handleKeyDown` 第一句业务判断就是 `if (uiState.activeDirectorNodeId) return;` ⟹ 导演台开着时主画布页自己那条 Delete 是**死的**。所以没有「第二条路径」这种解释空间。"
+  },
+  "F10_guardPosition": {
+   "claim": "机制：唯一的挡板是 `if (isEditable) return;`，且它在 Delete 分支**之前**",
+   "guardIsEditableReturn": true,
+   "guardBeforeDelete": true,
+   "isEditableCovers": [
+    "INPUT",
+    "SELECT",
+    "TEXTAREA"
+   ],
+   "isEditableHasContentEditable": true,
+   "deleteGuardedBySelection": true,
+   "deleteCallsEntity": true,
+   "modifierKeys": [
+    "c",
+    "v",
+    "y",
+    "z"
+   ]
+  },
+  "F11_twoGuardsDiffer": {
+   "claim": "★ 观察：桌内那道 `isEditable` 与主画布页那道**不等价**",
+   "deskGuardIsTagNameOnly": true,
+   "pageGuardExcludesFileInput": true,
+   "pageGuardCoversRoleTextbox": true,
+   "consequenceToday": "**没有可观测后果** —— 主画布页那条 Delete 在桌开时是死的（F9）。本批的 `del-editable` 对照格落在模型库那个 `sr-only` 的 `type=file` 上（769 的 D12 同一个控件），桌内那道守卫认它 ⟹ 被挡住。",
+   "latentRisk": "哪天主画布页那条 Delete 复活，`input[type=file]` 就会从「被当编辑框」变成「不是编辑框」⟹ 在模型库里按 Delete 会删对象。"
+  }
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "statement": "两个探针的读数各自两轮逐格一致（可比性）",
+   "verdict": "PASS",
+   "evidenceKey": "F0_comparable",
+   "evidence": {
+    "allConsistent772a": true,
+    "allConsistent772b": true,
+    "rounds": 2,
+    "cellsPerRound772a": 24,
+    "cellsPerRound772b": 7,
+    "mergedCells": 22,
+    "provenance": {
+     "export/del-noneditable": "772a",
+     "export/bs-noneditable": "772a",
+     "export/del-editable": "772a",
+     "export/undo-noneditable": "772a",
+     "pathmenu/del-noneditable": "772b",
+     "pathmenu/bs-noneditable": "772b",
+     "pathmenu/undo-noneditable": "772b",
+     "phonevcam/del-noneditable": "772a",
+     "phonevcam/bs-noneditable": "772a",
+     "phonevcam/undo-noneditable": "772a",
+     "crowd/del-noneditable": "772a",
+     "crowd/bs-noneditable": "772a",
+     "crowd/del-editable": "772a",
+     "crowd/undo-noneditable": "772a",
+     "modellib/del-noneditable": "772a",
+     "modellib/bs-noneditable": "772a",
+     "modellib/del-editable": "772a",
+     "modellib/undo-noneditable": "772a",
+     "cam/deletable-control": "772b",
+     "preset/del-noneditable": "772b",
+     "preset/bs-noneditable": "772b",
+     "preset/undo-noneditable": "772b"
+    },
+    "superseded": {
+     "cells": [
+      "preset/bs-noneditable",
+      "preset/del-noneditable",
+      "preset/undo-noneditable"
+     ],
+     "why": "772a 的排序 bug：`ensure_camera()` 之后又去点了第一个对象，把刚选中的相机顶掉 ⟹ preset 触发器重新 disabled。",
+     "fixedBy": "772b：对 needs==cameraTrack 的浮层，**被删目标就用相机本身**，点一次同时满足「触发器可用」与「有选中」。",
+     "keptFrom772a": "772a 的其余 15 格**全部保留**，不作废。★ 注意 pathmenu 的 3 格也来自 **772b**（772b 覆盖了772a 的同名格）—— provenance 是现算的，不是手算的。"
+    },
+    "note": "两个探针各 2 轮，逐格归一化后 diff 均为空（R55）。"
+   }
+  },
+  {
+   "id": "J2",
+   "statement": "★ 合并后 22 格无缺格无失败格；772a 的 3 个失败格**逐个**被 772b 取代，且 772a 的其余读数**全部保留**",
+   "verdict": "PASS",
+   "evidenceKey": "F0_comparable",
+   "evidence": {
+    "allConsistent772a": true,
+    "allConsistent772b": true,
+    "rounds": 2,
+    "cellsPerRound772a": 24,
+    "cellsPerRound772b": 7,
+    "mergedCells": 22,
+    "provenance": {
+     "export/del-noneditable": "772a",
+     "export/bs-noneditable": "772a",
+     "export/del-editable": "772a",
+     "export/undo-noneditable": "772a",
+     "pathmenu/del-noneditable": "772b",
+     "pathmenu/bs-noneditable": "772b",
+     "pathmenu/undo-noneditable": "772b",
+     "phonevcam/del-noneditable": "772a",
+     "phonevcam/bs-noneditable": "772a",
+     "phonevcam/undo-noneditable": "772a",
+     "crowd/del-noneditable": "772a",
+     "crowd/bs-noneditable": "772a",
+     "crowd/del-editable": "772a",
+     "crowd/undo-noneditable": "772a",
+     "modellib/del-noneditable": "772a",
+     "modellib/bs-noneditable": "772a",
+     "modellib/del-editable": "772a",
+     "modellib/undo-noneditable": "772a",
+     "cam/deletable-control": "772b",
+     "preset/del-noneditable": "772b",
+     "preset/bs-noneditable": "772b",
+     "preset/undo-noneditable": "772b"
+    },
+    "superseded": {
+     "cells": [
+      "preset/bs-noneditable",
+      "preset/del-noneditable",
+      "preset/undo-noneditable"
+     ],
+     "why": "772a 的排序 bug：`ensure_camera()` 之后又去点了第一个对象，把刚选中的相机顶掉 ⟹ preset 触发器重新 disabled。",
+     "fixedBy": "772b：对 needs==cameraTrack 的浮层，**被删目标就用相机本身**，点一次同时满足「触发器可用」与「有选中」。",
+     "keptFrom772a": "772a 的其余 15 格**全部保留**，不作废。★ 注意 pathmenu 的 3 格也来自 **772b**（772b 覆盖了772a 的同名格）—— provenance 是现算的，不是手算的。"
+    },
+    "note": "两个探针各 2 轮，逐格归一化后 diff 均为空（R55）。"
+   }
+  },
+  {
+   "id": "J3",
+   "statement": "★ 每格按键那一刻**真的有选中**（否则「没反应」是退化情况）",
+   "verdict": "PASS",
+   "evidenceKey": "F1_selfProven",
+   "evidence": {
+    "claim": "★ 每格按键那一刻**真的有选中**（Delete/Undo 分支的前提）",
+    "cellsChecked": 42,
+    "allHadSelection": true,
+    "why": "没有选中时 Delete 分支在 `objectIds.length > 0` 处就返回，「按了没反应」会是**退化情况**而不是「没穿透」（规矩 6）。"
+   }
+  },
+  {
+   "id": "J4",
+   "statement": "★ 问：`Delete` 穿透 —— 落非编辑框时 **4/4 个可判浮层真的删掉了选中对象**（Δ对象 = −1，选中被清空）",
+   "verdict": "PASS",
+   "evidenceKey": "F2_deleteLeaks",
+   "evidence": {
+    "claim": "★ 浮层开着、焦点落在**非编辑框**控件上时，`Delete` 会**真的删掉**导演台里选中的对象",
+    "leakedCells": [
+     "crowd/bs-noneditable",
+     "crowd/del-noneditable",
+     "export/bs-noneditable",
+     "export/del-noneditable",
+     "modellib/bs-noneditable",
+     "modellib/del-noneditable",
+     "phonevcam/bs-noneditable",
+     "phonevcam/del-noneditable"
+    ],
+    "leakedDisclosures": [
+     "crowd",
+     "export",
+     "modellib",
+     "phonevcam"
+    ],
+    "classifiableCells": [
+     "crowd/bs-noneditable",
+     "crowd/del-noneditable",
+     "export/bs-noneditable",
+     "export/del-noneditable",
+     "modellib/bs-noneditable",
+     "modellib/del-noneditable",
+     "phonevcam/bs-noneditable",
+     "phonevcam/del-noneditable"
+    ],
+    "perCell": {
+     "crowd/bs-noneditable": {
+      "probe": "772a",
+      "deltaObjects": [
+       -1
+      ],
+      "targetAtKeyTime": [
+       "['director-character-lead']"
+      ],
+      "objectsDropped": true,
+      "selectionCleared": true,
+      "classifiable": true
+     },
+     "crowd/del-noneditable": {
+      "probe": "772a",
+      "deltaObjects": [
+       -1
+      ],
+      "targetAtKeyTime": [
+       "['director-character-lead']"
+      ],
+      "objectsDropped": true,
+      "selectionCleared": true,
+      "classifiable": true
+     },
+     "export/bs-noneditable": {
+      "probe": "772a",
+      "deltaObjects": [
+       -1
+      ],
+      "targetAtKeyTime": [
+       "['director-character-lead']"
+      ],
+      "objectsDropped": true,
+      "selectionCleared": true,
+      "classifiable": true
+     },
+     "export/del-noneditable": {
+      "probe": "772a",
+      "deltaObjects": [
+       -1
+      ],
+      "targetAtKeyTime": [
+       "['director-character-lead']"
+      ],
+      "objectsDropped": true,
+      "selectionCleared": true,
+      "classifiable": true
+     },
+     "modellib/bs-noneditable": {
+      "probe": "772a",
+      "deltaObjects": [
+       -1
+      ],
+      "targetAtKeyTime": [
+       "['director-character-lead']"
+      ],
+      "objectsDropped": true,
+      "selectionCleared": true,
+      "classifiable": true
+     },
+     "modellib/del-noneditable": {
+      "probe": "772a",
+      "deltaObjects": [
+       -1
+      ],
+      "targetAtKeyTime": [
+       "['director-character-lead']"
+      ],
+      "objectsDropped": true,
+      "selectionCleared": true,
+      "classifiable": true
+     },
+     "phonevcam/bs-noneditable": {
+      "probe": "772a",
+      "deltaObjects": [
+       -1
+      ],
+      "targetAtKeyTime": [
+       "['director-character-lead']"
+      ],
+      "objectsDropped": true,
+      "selectionCleared": true,
+      "classifiable": true
+     },
+     "phonevcam/del-noneditable": {
+      "probe": "772a",
+      "deltaObjects": [
+       -1
+      ],
+      "targetAtKeyTime": [
+       "['director-character-lead']"
+      ],
+      "objectsDropped": true,
+      "selectionCleared": true,
+      "classifiable": true
+     }
+    },
+    "deltaObjects": [
+     [
+      -1
+     ]
+    ],
+    "targetDeleted": [
+     "director-character-lead"
+    ]
+   }
+  },
+  {
+   "id": "J5",
+   "statement": "`Backspace` 与 `Delete` 逐格 Δ 相同 ⟹ 同一条代码路径（R60 的判别式：不是「顺手测了」）",
+   "verdict": "PASS",
+   "evidenceKey": "F3_backspaceLeaks",
+   "evidence": {
+    "claim": "`Backspace` 走的是**同一条**分支（`:517` 的 `||`），结论相同",
+    "cells": [
+     "crowd/bs-noneditable",
+     "export/bs-noneditable",
+     "modellib/bs-noneditable",
+     "phonevcam/bs-noneditable"
+    ],
+    "sameDeltaAsDelete": true,
+    "note": "★ 这不是「顺手也测了」——两条臂的 `deltaObjects` 逐格相同，**同一个症状、同一条代码路径**，符合 R60 的判别式。"
+   }
+  },
+  {
+   "id": "J6",
+   "statement": "★ 对照组：落**可编辑**控件时 3/3 被 `isEditable` 早退挡住",
+   "verdict": "PASS",
+   "evidenceKey": "F4_isEditableGuardHolds",
+   "evidence": {
+    "claim": "★ 对照：焦点落在浮层内的**可编辑**控件上时，Delete **被挡住**",
+    "cells": [
+     "crowd/del-editable",
+     "export/del-editable",
+     "modellib/del-editable"
+    ],
+    "perCell": {
+     "crowd/del-editable": {
+      "probe": "772a",
+      "deltaObjects": [
+       0
+      ],
+      "focusEditable": true,
+      "blocked": true
+     },
+     "export/del-editable": {
+      "probe": "772a",
+      "deltaObjects": [
+       0
+      ],
+      "focusEditable": true,
+      "blocked": true
+     },
+     "modellib/del-editable": {
+      "probe": "772a",
+      "deltaObjects": [
+       0
+      ],
+      "focusEditable": true,
+      "blocked": true
+     }
+    },
+    "focusWasEditable": true,
+    "deltaObjects": [
+     [
+      0
+     ]
+    ],
+    "note": "这一格是 769 量的那道 `isEditable` 早退（`DirectorDesk.tsx:487`）。**它只挡住输入框，挡不住按钮。**"
+   }
+  },
+  {
+   "id": "J7",
+   "statement": "★ preset / pathmenu 的 4 个 Delete 格判为**结构上不可判**，不是「没穿透」",
+   "verdict": "PASS",
+   "evidenceKey": "F6_confounded",
+   "evidence": {
+    "claim": "★ preset / pathmenu 的 4 个 Delete 格**结构上不可判**（不是「没穿透」）",
+    "confoundedCells": [
+     "pathmenu/bs-noneditable",
+     "pathmenu/del-noneditable",
+     "preset/bs-noneditable",
+     "preset/del-noneditable"
+    ],
+    "why": "这两个浮层的触发器**必须选中主机位**才能开（否则 `disabled`），而打开它们还会把选中**换成主机位**（772a 读数：`selectedIds` 从角色变成 `['director-camera-main']`）。⟹ 按键时的目标**只能是相机**，而相机**不可删**（见 F7）。",
+    "whatWouldMakeItDecidable": "项目里有**第二台相机**、或开这两个浮层时仍能保持一个**可删对象**的选中。"
+   }
+  },
+  {
+   "id": "J8",
+   "statement": "★ 对照格：相机**删不掉**（焦点在浮层之外、只按 Delete）⟹ J7 的归因成立",
+   "verdict": "PASS",
+   "evidenceKey": "F7_cameraUndeletable",
+   "evidence": {
+    "claim": "★ 对照格：相机**根本删不掉**（这才是 F6 的原因）",
+    "focus": {
+     "ok": true,
+     "count": 141,
+     "tag": "BUTTON",
+     "type": "button",
+     "text": "",
+     "aria": "关闭"
+    },
+    "focusWasOutsideAnyLayer": true,
+    "targetAtKeyTime": [
+     "director-camera-main"
+    ],
+    "deltaObjects": [
+     0
+    ],
+    "selectionUnchanged": true,
+    "objectsDropped": false,
+    "note": "焦点放在 `aria-label=关闭` 的按钮上（**任何浮层之外**），只按 `Delete` ⟹ 对象没少、选中没变。**没有这一格，F6 就会被误读成「这条路是好的」。**"
+   }
+  },
+  {
+   "id": "J9",
+   "statement": "★ `Meta+Z` 穿透 —— **6/6 个浮层**都撤销掉了工作区里已经发生的删除（每格 setup 自证 5→4）",
+   "verdict": "PASS",
+   "evidenceKey": "F5_undoLeaks",
+   "evidence": {
+    "claim": "★ 浮层开着时 `Meta+Z` 会**撤销掉工作区里已经发生过的删除**",
+    "cells": [
+     "crowd/undo-noneditable",
+     "export/undo-noneditable",
+     "modellib/undo-noneditable",
+     "pathmenu/undo-noneditable",
+     "phonevcam/undo-noneditable",
+     "preset/undo-noneditable"
+    ],
+    "perCell": {
+     "export/undo-noneditable": {
+      "probe": "772a",
+      "setup": [
+       {
+        "objectsBefore": 5,
+        "objectsAfter": 4,
+        "nodesAfter": 10
+       },
+       {
+        "objectsBefore": 5,
+        "objectsAfter": 4,
+        "nodesAfter": 10
+       }
+      ],
+      "deltaObjects": [
+       1
+      ],
+      "restored": true
+     },
+     "preset/undo-noneditable": {
+      "probe": "772b",
+      "setup": [
+       {
+        "objectsBefore": 5,
+        "objectsAfter": 4
+       },
+       {
+        "objectsBefore": 5,
+        "objectsAfter": 4
+       }
+      ],
+      "deltaObjects": [
+       1
+      ],
+      "restored": true
+     },
+     "pathmenu/undo-noneditable": {
+      "probe": "772b",
+      "setup": [
+       {
+        "objectsBefore": 5,
+        "objectsAfter": 4
+       },
+       {
+        "objectsBefore": 5,
+        "objectsAfter": 4
+       }
+      ],
+      "deltaObjects": [
+       1
+      ],
+      "restored": true
+     },
+     "phonevcam/undo-noneditable": {
+      "probe": "772a",
+      "setup": [
+       {
+        "objectsBefore": 5,
+        "objectsAfter": 4,
+        "nodesAfter": 10
+       },
+       {
+        "objectsBefore": 5,
+        "objectsAfter": 4,
+        "nodesAfter": 10
+       }
+      ],
+      "deltaObjects": [
+       1
+      ],
+      "restored": true
+     },
+     "crowd/undo-noneditable": {
+      "probe": "772a",
+      "setup": [
+       {
+        "objectsBefore": 5,
+        "objectsAfter": 4,
+        "nodesAfter": 10
+       },
+       {
+        "objectsBefore": 5,
+        "objectsAfter": 4,
+        "nodesAfter": 10
+       }
+      ],
+      "deltaObjects": [
+       1
+      ],
+      "restored": true
+     },
+     "modellib/undo-noneditable": {
+      "probe": "772a",
+      "setup": [
+       {
+        "objectsBefore": 5,
+        "objectsAfter": 4,
+        "nodesAfter": 10
+       },
+       {
+        "objectsBefore": 5,
+        "objectsAfter": 4,
+        "nodesAfter": 10
+       }
+      ],
+      "deltaObjects": [
+       1
+      ],
+      "restored": true
+     }
+    },
+    "setupAlwaysVerified": true,
+    "setupShape": [
+     "{'objectsBefore': 5, 'objectsAfter': 4, 'nodesAfter': 10}",
+     "{'objectsBefore': 5, 'objectsAfter': 4}"
+    ],
+    "note": "每格都先在**树上**删掉一个对象并**自证**对象数真的掉了（5→4），才去浮层里按 `Meta+Z`（R86）。6/6 全部恢复到 5。"
+   }
+  },
+  {
+   "id": "J10",
+   "statement": "★ 这三个键**一个都没**关掉导演台 ⟹ 与 D8 的 Esc 路径是两类后果",
+   "verdict": "PASS",
+   "evidenceKey": "F8_deskNotClosed",
+   "evidence": {
+    "claim": "★ 这三个键**不会**关掉导演台 —— 与 D8 的 Esc 路径不是一回事",
+    "deskGoneAfter": [],
+    "noneClosedTheDesk": true,
+    "note": "D8 是「按 Esc 丢整个工作区」；本批量到的三个键都是**改内容但不关工作区**。两条路径的**后果类型不同**，修法也不同，别混为一谈。"
+   }
+  },
+  {
+   "id": "J11",
+   "statement": "★ 机制：导演台开着时 `Delete` 的活路径**只有一条**（主画布页那条已被 `activeDirectorNodeId` 早退掉）",
+   "verdict": "PASS",
+   "evidenceKey": "F9_singleLivePath",
+   "evidence": {
+    "claim": "★ 机制：导演台开着时，`Delete` 的活路径**只有一条**",
+    "deskKeydownListeners": 1,
+    "deskListenerOnWindow": true,
+    "deskListenerIsCapture": false,
+    "pageDeleteExists": true,
+    "pageReturnsWhenDeskOpen": true,
+    "pageGuardBeforeDelete": true,
+    "why": "`src/app/page.tsx` 的 `handleKeyDown` 第一句业务判断就是 `if (uiState.activeDirectorNodeId) return;` ⟹ 导演台开着时主画布页自己那条 Delete 是**死的**。所以没有「第二条路径」这种解释空间。"
+   }
+  },
+  {
+   "id": "J12",
+   "statement": "机制：唯一的挡板是 `if (isEditable) return;`，且它在 Delete 分支**之前**",
+   "verdict": "PASS",
+   "evidenceKey": "F10_guardPosition",
+   "evidence": {
+    "claim": "机制：唯一的挡板是 `if (isEditable) return;`，且它在 Delete 分支**之前**",
+    "guardIsEditableReturn": true,
+    "guardBeforeDelete": true,
+    "isEditableCovers": [
+     "INPUT",
+     "SELECT",
+     "TEXTAREA"
+    ],
+    "isEditableHasContentEditable": true,
+    "deleteGuardedBySelection": true,
+    "deleteCallsEntity": true,
+    "modifierKeys": [
+     "c",
+     "v",
+     "y",
+     "z"
+    ]
+   }
+  },
+  {
+   "id": "J13",
+   "statement": "★ 观察：桌内那道 `isEditable` 与主画布页那道**不等价**（本批无后果，属潜在风险）",
+   "verdict": "PASS",
+   "evidenceKey": "F11_twoGuardsDiffer",
+   "evidence": {
+    "claim": "★ 观察：桌内那道 `isEditable` 与主画布页那道**不等价**",
+    "deskGuardIsTagNameOnly": true,
+    "pageGuardExcludesFileInput": true,
+    "pageGuardCoversRoleTextbox": true,
+    "consequenceToday": "**没有可观测后果** —— 主画布页那条 Delete 在桌开时是死的（F9）。本批的 `del-editable` 对照格落在模型库那个 `sr-only` 的 `type=file` 上（769 的 D12 同一个控件），桌内那道守卫认它 ⟹ 被挡住。",
+    "latentRisk": "哪天主画布页那条 Delete 复活，`input[type=file]` 就会从「被当编辑框」变成「不是编辑框」⟹ 在模型库里按 Delete 会删对象。"
+   }
+  }
+ ],
+ "defects": [
+  {
+   "id": "D14",
+   "severity": "中",
+   "newInThisBatch": true,
+   "relatedToD8From767": true,
+   "relatedToD3From765": true,
+   "title": "浮层开着时 `Delete` / `Backspace` / `Meta+Z` 会穿透进导演台：焦点落在浮层里的**按钮**上时，Delete 真的删掉工作区里选中的对象",
+   "where": [
+    "src/components/director/DirectorDesk.tsx:473-571",
+    "src/components/director/DirectorDesk.tsx:487",
+    "src/components/director/DirectorDesk.tsx:517-548"
+   ],
+   "mechanism": "`DirectorDesk.tsx:570` 在 **window、冒泡**阶段注册**一个** keydown 处理器。唯一的挡板是 `:487` 的 `if (isEditable) return;`，而 `isEditable` 只认 `isContentEditable` 与 `INPUT/TEXTAREA/SELECT`（`:475-480`）⟹ **按钮一律不在保护范围内**。于是 `:517` 的 `Delete || Backspace` 分支会走到 `deleteDirectorEntity()`。`workspaceBusy` 与拍摄预览两个守卫都**不会**在正常编辑态成立，所以这条路径在**正常使用中就是活的**。",
+   "measured": "6 个浮层里 **4 个**（导出 / 本机预演 / 群众阵列 / 模型库）实测在落非编辑框时按 `Delete` 与 `Backspace` **对象数各 −1、选中被清空**（8/8 可判格）；落**可编辑**控件时 3/3 被挡住；`Meta+Z` **6/6 个浮层**都撤销掉了工作区里已发生的删除。",
+   "confounded": "preset 与路径菜单的 4 个 Delete 格**结构上不可判**：它们必须选中主机位才能开，打开时还会把选中换成主机位，而**相机删不掉**（对照格实测）。⟹ 本批**不声称**这两个浮层安全。",
+   "consequence": "破坏性且**无确认框**（与主画布页 Batch 177 对齐源站的「Delete 立即删除」一致）。不过可被 `Meta+Z` 撤回 —— 而 `Meta+Z` 本身也从浮层里穿透了，用户在浮层里根本按不到正确的撤销入口。",
+   "notTheSameAsD8": "★ D8 是「按 Esc **丢整个工作区**」；本批这三个键是「**改内容但不关工作区**」。两者的后果类型不同，修法也不同。",
+   "fixDirection": [
+    "① 把 `Delete`/`Backspace`/`Cmd+C/V/Z/Y` 整段移进「焦点在某个浮层内就早退」的守卫（等价于 767/769 已实测的`isEditable` 早退思路，但要按**浮层**判而不是按标签判）；",
+    "② 或给 6 个浮层统一接一层**捕获阶段**的 keydown 拦截 + `stopImmediatePropagation()`（同仓已有两处现成配方：`DirectorViewport.tsx:2734-2753`、`DirectorPhoneVcamPanel.tsx:286-296`）。",
+    "两条都必须做；只做 ① 的话，将来新增的浮层仍会漏。"
+   ]
+  }
+ ],
+ "observations": [
+  {
+   "id": "O772-1",
+   "text": "★ **同一个 `isEditable` 早退，在 Esc 上是「救命的」，在 Delete 上是「漏的」。** 769 已实测：群众阵列在输入框上按 Esc 什么都没发生（早退生效 ⟹ 导演台没被关掉）；本批实测：同一个早退在 Delete 上放行了按钮。**同一行代码，在一个键上是修复、在另一个键上是漏洞。**",
+   "whyItMatters": "「已经有一个守卫了」是最容易让人停手的理由；本批说明**守卫的作用域必须按键分别量**（R82 的又一次成立）。"
+  },
+  {
+   "id": "O772-2",
+   "text": "★ 三个浮层（预设运镜 / 创建运动轨迹 / 本机预演）**一个可编辑控件都没有** ⟹ `isEditable` 在这三个里**永远不可能成立** ⟹ 那道守卫对它们等于不存在。",
+   "whyItMatters": "守卫的强度取决于**浮层里有没有输入框**。只挑「有输入框的浮层」验收，会得到「守卫是好的」的错误安心。"
+  },
+  {
+   "id": "O772-3",
+   "text": "★ 这三个键**一个都没**关掉导演台（4 轮全空）。所以本批的 D14 与 D8 是**两类后果**：D8 丢工作区、D14 丢内容但工作区还在。",
+   "whyItMatters": "把两条路径合并成一个「Esc/快捷键会搞坏导演台」会让修法选错 —— D8 要改 Esc 阶梯，D14 要改的是按键的作用域。"
+  },
+  {
+   "id": "O772-4",
+   "text": "★ 桌内那道 `isEditable`（认**任何** INPUT，含 `type=file`）与主画布页那道 `isLibTVEditableCommandTarget`（**排除** `input[type=file]`、且额外认 `[role=textbox]/[role=searchbox]/[role=combobox]`/`[data-libtv-editor-root]`）**不等价**。今天没有可观测后果（主画布页那条 Delete 在桌开时是死的）。",
+   "whyItMatters": "本批的 `del-editable` 对照格正好落在模型库那个 `sr-only` 的 `type=file` 上（769 的 D12 同一个控件）——**桌内那道认它，所以挡住了。** 哪天主画布页那条复活，同一个控件就会从「被当编辑框」翻成「不是编辑框」。"
+  }
+ ],
+ "probeLessons": [
+  {
+   "id": "R94",
+   "text": "★ **「没变化」有两种读法，必须用对照格分开。** 772a 的 pathmenu 两格「按 Delete 没删对象」——可能是①快捷键没进去，也可能是②目标根本删不掉。**只写「未观察到穿透」就是把 ① 和 ② 混成一句。** 修法：加一个**只隔离一个变量**的对照格（焦点放在浮层之外、只按同一个键）——本批测出「相机删不掉」，于是那两格被正名为**结构上不可判**。",
+   "whyItMatters": "「没有证据表明有洞」与「这里测不了」长得一模一样，而它们导向完全相反的下一步（收工 vs 换实验设计）。"
+  },
+  {
+   "id": "R95",
+   "text": "★ **探针的设置步骤会污染后面的设置。** 772a 先 `ensure_camera()` 再去点第一个对象 —— 那一��**把刚选中的相机顶掉了**，preset 的触发器重新变 `disabled`，3 格全 FAILED。**凡是「先布置 A、再布置 B」的设置，B 可能悄悄清掉 A。**",
+   "whyItMatters": "它不会报错，只会安静地让一批格子失效。判别式：**每一个设置动作之后都回读它自己的前提**（本批的 `selectedIds` 就是那个回读点）。"
+  },
+  {
+   "id": "R96",
+   "text": "★ **一批读数失效时，不要整套重跑。** 772a 的 preset 3 格失效，但它的另外 18 格**完全有效**。做法是**补一个探针只重取失效的那几格**，在汇编器里**合并**并如实记下「哪几格来自哪个探针、为什么被取代」。",
+   "whyItMatters": "整套重跑会丢掉已经有效的读数、并把「为什么失效」这段推理从产物里抹掉；而**失效的原因本身往往比读数更有价值**（R95 就是这么沉淀下来的）。"
+  }
+ ]
+}

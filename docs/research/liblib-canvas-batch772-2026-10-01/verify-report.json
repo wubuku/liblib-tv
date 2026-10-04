@@ -1,0 +1,629 @@
+{
+ "batch": 772,
+ "checks": [
+  {
+   "label": "产物：判据 13 条且 id 齐全",
+   "pass": true,
+   "got": {
+    "got": [
+     "J1",
+     "J10",
+     "J11",
+     "J12",
+     "J13",
+     "J2",
+     "J3",
+     "J4",
+     "J5",
+     "J6",
+     "J7",
+     "J8",
+     "J9"
+    ]
+   }
+  },
+  {
+   "label": "产物：verdict 与预期一致",
+   "pass": true,
+   "got": {
+    "got": {
+     "J1": "PASS",
+     "J2": "PASS",
+     "J3": "PASS",
+     "J4": "PASS",
+     "J5": "PASS",
+     "J6": "PASS",
+     "J7": "PASS",
+     "J8": "PASS",
+     "J9": "PASS",
+     "J10": "PASS",
+     "J11": "PASS",
+     "J12": "PASS",
+     "J13": "PASS"
+    }
+   }
+  },
+  {
+   "label": "产物：每条判据的 evidence 等于 findings[evidenceKey]",
+   "pass": true,
+   "got": {
+    "mismatch": []
+   }
+  },
+  {
+   "label": "产物：教训 ['R94', 'R95', 'R96'] 齐全",
+   "pass": true,
+   "got": {
+    "got": [
+     "R94",
+     "R95",
+     "R96"
+    ]
+   }
+  },
+  {
+   "label": "产物：观察 ≥4 条",
+   "pass": true,
+   "got": {
+    "got": 4
+   }
+  },
+  {
+   "label": "产物：新缺陷 D14（中）恰好一条",
+   "pass": true,
+   "got": {
+    "got": [
+     [
+      "D14",
+      "中"
+     ]
+    ]
+   }
+  },
+  {
+   "label": "产物：D14 的 where 全部带行号",
+   "pass": true,
+   "got": {
+    "got": [
+     "src/components/director/DirectorDesk.tsx:473-571",
+     "src/components/director/DirectorDesk.tsx:487",
+     "src/components/director/DirectorDesk.tsx:517-548"
+    ]
+   }
+  },
+  {
+   "label": "产物：两份 raw 的 sha 都记进产物",
+   "pass": true,
+   "got": {
+    "got": {
+     "vb772a.json": "71309c93de29b9be",
+     "vb772b.json": "f33d69ae536e7a1f"
+    }
+   }
+  },
+  {
+   "label": "产物：探针 raw/ 与 probes/ 都在场（R43）",
+   "pass": true,
+   "got": {
+    "raw": [
+     "vb772a.json",
+     "vb772b.json"
+    ],
+    "probes": [
+     "dbg772a.py",
+     "dbg772b.py",
+     "mk772audit.py"
+    ]
+   }
+  },
+  {
+   "label": "静态：桌内只有 1 个 keydown 监听且在 window 冒泡",
+   "pass": true,
+   "got": {
+    "n": 1,
+    "window": true,
+    "capture": false
+   }
+  },
+  {
+   "label": "静态：唯一挡板是 isEditable 早退，且排在 Delete 分支之前",
+   "pass": true,
+   "got": {
+    "guard": true,
+    "before": true,
+    "entity": true
+   }
+  },
+  {
+   "label": "静态：★ 主画布页那条 Delete 在桌开时已死 ⟹ 活路径只有一条",
+   "pass": true,
+   "got": {
+    "exists": true,
+    "returns": true,
+    "before": true
+   }
+  },
+  {
+   "label": "产物：静态层与验收器重读的源码一致",
+   "pass": true,
+   "got": {
+    "got": {
+     "deskKeydownListenerCount": 1,
+     "pageHandlerReturnsWhenDeskOpen": true
+    }
+   }
+  },
+  {
+   "label": "静态：两道守卫不等价（观察项）",
+   "pass": true,
+   "got": {
+    "deskTagNameOnly": true,
+    "pageExclFile": true,
+    "pageRoleTextbox": true
+   }
+  },
+  {
+   "label": "原始：两个探针各自两轮逐格一致",
+   "pass": true,
+   "got": {
+    "got": true
+   }
+  },
+  {
+   "label": "原始：没有预期外的失败格，且 772a 的 3 个失效格都被 772b 补上",
+   "pass": true,
+   "got": {
+    "unexpected": [],
+    "badSuperseded": [],
+    "aFailed": [
+     "preset/bs-noneditable",
+     "preset/del-noneditable",
+     "preset/undo-noneditable"
+    ]
+   }
+  },
+  {
+   "label": "原始：合并后 22 格（21 实验 + 1 对照），覆盖完整",
+   "pass": true,
+   "got": {
+    "got": 22,
+    "want": 22
+   }
+  },
+  {
+   "label": "原始：★ 合并铺满 —— 没有「哪份 raw 都没有」的格",
+   "pass": true,
+   "got": {
+    "got": []
+   }
+  },
+  {
+   "label": "原始：★ 每格按键那一刻**真的有选中**",
+   "pass": true,
+   "got": {
+    "got": true
+   }
+  },
+  {
+   "label": "原始：★ Delete/Backspace 穿透 —— 8/8 可判格 Δ对象<0 且选中被清空",
+   "pass": true,
+   "got": {
+    "leaked": [
+     "crowd/bs-noneditable",
+     "crowd/del-noneditable",
+     "export/bs-noneditable",
+     "export/del-noneditable",
+     "modellib/bs-noneditable",
+     "modellib/del-noneditable",
+     "phonevcam/bs-noneditable",
+     "phonevcam/del-noneditable"
+    ]
+   }
+  },
+  {
+   "label": "原始：Backspace 与 Delete 逐格 Δ 相同（同一条代码路径）",
+   "pass": true,
+   "got": {
+    "got": {
+     "export": [
+      [
+       -1
+      ],
+      [
+       -1
+      ]
+     ],
+     "preset": [
+      [
+       0
+      ],
+      [
+       0
+      ]
+     ],
+     "pathmenu": [
+      [
+       0
+      ],
+      [
+       0
+      ]
+     ],
+     "phonevcam": [
+      [
+       -1
+      ],
+      [
+       -1
+      ]
+     ],
+     "crowd": [
+      [
+       -1
+      ],
+      [
+       -1
+      ]
+     ],
+     "modellib": [
+      [
+       -1
+      ],
+      [
+       -1
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "label": "原始：★ 守卫对照 —— 落可编辑控件时 3/3 被挡住",
+   "pass": true,
+   "got": {
+    "blocked": [
+     "crowd/del-editable",
+     "export/del-editable",
+     "modellib/del-editable"
+    ],
+    "focusEditable": {
+     "crowd/del-editable": true,
+     "export/del-editable": true,
+     "modellib/del-editable": true
+    }
+   }
+  },
+  {
+   "label": "原始：★ 相机可删性对照 —— 浮层之外按 Delete 相机**没被删**",
+   "pass": true,
+   "got": {
+    "got": {
+     "objectsDropped": false,
+     "selectionUnchanged": true,
+     "deltaObjects": [
+      0
+     ],
+     "focus": {
+      "ok": true,
+      "count": 141,
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "aria": "关闭"
+     }
+    }
+   }
+  },
+  {
+   "label": "原始：★ preset/pathmenu 的 4 格归为**结构上不可判**（不是「没穿透」）",
+   "pass": true,
+   "got": {
+    "got": [
+     "pathmenu/bs-noneditable",
+     "pathmenu/del-noneditable",
+     "preset/bs-noneditable",
+     "preset/del-noneditable"
+    ]
+   }
+  },
+  {
+   "label": "原始：★ Meta+Z 穿透 6/6，且每格 setup 都自证过",
+   "pass": true,
+   "got": {
+    "undoLeaked": [
+     "crowd/undo-noneditable",
+     "export/undo-noneditable",
+     "modellib/undo-noneditable",
+     "pathmenu/undo-noneditable",
+     "phonevcam/undo-noneditable",
+     "preset/undo-noneditable"
+    ],
+    "setup": {
+     "export/undo-noneditable": true,
+     "preset/undo-noneditable": true,
+     "pathmenu/undo-noneditable": true,
+     "phonevcam/undo-noneditable": true,
+     "crowd/undo-noneditable": true,
+     "modellib/undo-noneditable": true
+    }
+   }
+  },
+  {
+   "label": "原始：★ 这三个键一个都没关掉导演台（与 D8 是两类后果）",
+   "pass": true,
+   "got": {
+    "got": []
+   }
+  },
+  {
+   "label": "产物：与验收器独立重算的结果一致",
+   "pass": true,
+   "got": {
+    "leaked": [
+     "crowd/bs-noneditable",
+     "crowd/del-noneditable",
+     "export/bs-noneditable",
+     "export/del-noneditable",
+     "modellib/bs-noneditable",
+     "modellib/del-noneditable",
+     "phonevcam/bs-noneditable",
+     "phonevcam/del-noneditable"
+    ],
+    "confounded": [
+     "pathmenu/bs-noneditable",
+     "pathmenu/del-noneditable",
+     "preset/bs-noneditable",
+     "preset/del-noneditable"
+    ],
+    "undo": [
+     "crowd/undo-noneditable",
+     "export/undo-noneditable",
+     "modellib/undo-noneditable",
+     "pathmenu/undo-noneditable",
+     "phonevcam/undo-noneditable",
+     "preset/undo-noneditable"
+    ],
+    "guard": [
+     "crowd/del-editable",
+     "export/del-editable",
+     "modellib/del-editable"
+    ]
+   }
+  },
+  {
+   "label": "产物：分类铺满 —— 不可判的桶非空且没混进「已判安全」",
+   "pass": true,
+   "got": {
+    "leaked": 8,
+    "confounded": 4,
+    "totalLeak": 12
+   }
+  },
+  {
+   "label": "README：不含替换字符 U+FFFD",
+   "pass": true,
+   "got": {
+    "count": 0
+   }
+  },
+  {
+   "label": "README 提到「D14」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「结构上不可判」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「相机」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「R94」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「穿透」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：表格首格没有裸数字（pre-commit 正则会拦）",
+   "pass": true,
+   "got": {
+    "bare": []
+   }
+  },
+  {
+   "label": "台账：Batch 772 恰好一行",
+   "pass": true,
+   "got": {
+    "count": 1
+   }
+  },
+  {
+   "label": "台账：该行不含 U+FFFD",
+   "pass": true,
+   "got": {
+    "count": 0
+   }
+  },
+  {
+   "label": "台账：首格是 `| Batch 772 |`",
+   "pass": true,
+   "got": {
+    "head": "| Batch 772 | **浮层开着时导演台的全局快捷键会不会穿透进来** —— D8 的**破坏性同族**（D8 "
+   }
+  },
+  {
+   "label": "台账：恰好 3 列",
+   "pass": true,
+   "got": {
+    "pipes": 4
+   }
+  },
+  {
+   "label": "台账：历史 U+FFFD 仍在 9 处",
+   "pass": true,
+   "got": {
+    "count": 9
+   }
+  }
+ ],
+ "pass": 40,
+ "total": 40,
+ "negativeControls": [
+  {
+   "name": "把 export/del 的选中抹掉（破坏性读数没有阳性对照）",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "每格按键那一刻**真的有选中**",
+   "matchedLabels": [
+    "原始：★ 每格按键那一刻**真的有选中**"
+   ],
+   "stillPassing": []
+  },
+  {
+   "name": "把 export 的 Delete/Backspace 改成「没穿透」",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "Delete/Backspace 穿透",
+   "matchedLabels": [
+    "原始：★ Delete/Backspace 穿透 —— 8/8 可判格 Δ对象<0 且选中被清空"
+   ],
+   "stillPassing": []
+  },
+  {
+   "name": "把相机对照格改成「相机删得掉」",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "相机可删性对照",
+   "matchedLabels": [
+    "原始：★ 相机可删性对照 —— 浮层之外按 Delete 相机**没被删**"
+   ],
+   "stillPassing": []
+  },
+  {
+   "name": "把 preset/pathmenu 谎报成「已判安全」",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "4 格归为",
+   "matchedLabels": [
+    "原始：★ preset/pathmenu 的 4 格归为**结构上不可判**（不是「没穿透」）"
+   ],
+   "stillPassing": []
+  },
+  {
+   "name": "让守卫失效（落输入框也删）",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "落可编辑控件时 3/3 被挡住",
+   "matchedLabels": [
+    "原始：★ 守卫对照 —— 落可编辑控件时 3/3 被挡住"
+   ],
+   "stillPassing": []
+  },
+  {
+   "name": "把撤销臂的设置改成「没自证」",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "Meta+Z 穿透",
+   "matchedLabels": [
+    "原始：★ Meta+Z 穿透 6/6，且每格 setup 都自证过"
+   ],
+   "stillPassing": []
+  },
+  {
+   "name": "让 772b 不再补 preset（覆盖不完整）",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "失效格都被 772b 补上",
+   "matchedLabels": [
+    "原始：没有预期外的失败格，且 772a 的 3 个失效格都被 772b 补上"
+   ],
+   "stillPassing": []
+  },
+  {
+   "name": "把第二轮的读数改掉（两轮不一致）",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "两轮逐格一致",
+   "matchedLabels": [
+    "原始：两个探针各自两轮逐格一致"
+   ],
+   "stillPassing": []
+  },
+  {
+   "name": "篡改一条判据的 evidence",
+   "kwMatchedAnyLabel": true,
+   "kwMatchedCount": 1,
+   "caught": true,
+   "expectFailOn": "evidence 等于 findings",
+   "stillPassing": []
+  },
+  {
+   "name": "删掉一个 findings 键",
+   "kwMatchedAnyLabel": true,
+   "kwMatchedCount": 1,
+   "caught": true,
+   "expectFailOn": "evidence 等于 findings",
+   "stillPassing": []
+  },
+  {
+   "name": "把新缺陷 D14 删掉",
+   "kwMatchedAnyLabel": true,
+   "kwMatchedCount": 1,
+   "caught": true,
+   "expectFailOn": "新缺陷 D14",
+   "stillPassing": []
+  },
+  {
+   "name": "删掉一条探针教训",
+   "kwMatchedAnyLabel": true,
+   "kwMatchedCount": 1,
+   "caught": true,
+   "expectFailOn": "教训 [",
+   "stillPassing": []
+  },
+  {
+   "name": "把 D14 的严重度改掉",
+   "kwMatchedAnyLabel": true,
+   "kwMatchedCount": 1,
+   "caught": true,
+   "expectFailOn": "新缺陷 D14",
+   "stillPassing": []
+  },
+  {
+   "name": "把台账 Batch 772 行改名",
+   "kwMatchedAnyLabel": true,
+   "kwMatchedCount": 1,
+   "caught": true,
+   "expectFailOn": "台账：Batch 772 恰好一行",
+   "stillPassing": []
+  },
+  {
+   "name": "把 README 表格首格改成裸数字",
+   "kwMatchedAnyLabel": true,
+   "kwMatchedCount": 1,
+   "caught": true,
+   "expectFailOn": "首格没有裸数字",
+   "stillPassing": []
+  }
+ ],
+ "negativeCaught": 15,
+ "negativeTotal": 15,
+ "negativeKwBroken": [],
+ "rawError": null,
+ "ok": true
+}

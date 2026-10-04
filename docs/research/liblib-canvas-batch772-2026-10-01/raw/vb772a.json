@@ -1,0 +1,3953 @@
+{
+ "batch": 772,
+ "probe": "a",
+ "question": "浮层开着、焦点在浮层内某个控件上时，导演台的全局快捷键（Delete / Backspace / Meta+Z）会不会照样生效",
+ "rounds": [
+  {
+   "rows": [
+    {
+     "id": "export",
+     "name": null,
+     "mode": "del-noneditable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 1,
+      "counts": {
+       "editable": 1,
+       "noneditable": 4
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "16:9",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "16:9",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "16:9",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "export",
+     "name": null,
+     "mode": "bs-noneditable",
+     "key": "Backspace",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 1,
+      "counts": {
+       "editable": 1,
+       "noneditable": 4
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "16:9",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "16:9",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "16:9",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "export",
+     "name": null,
+     "mode": "del-editable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 0,
+      "counts": {
+       "editable": 1,
+       "noneditable": 4
+      },
+      "tag": "INPUT",
+      "type": "number",
+      "text": "",
+      "editable": true
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 0,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": false
+    },
+    {
+     "id": "export",
+     "name": null,
+     "mode": "undo-noneditable",
+     "key": "Meta+z",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "setup": {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     "objectsBeforeKey": 4,
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 1,
+      "counts": {
+       "editable": 1,
+       "noneditable": 4
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "16:9",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "16:9",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "16:9",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": true
+    },
+    {
+     "id": "preset",
+     "name": null,
+     "mode": "del-noneditable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "FAILED": "触发器点不动"
+    },
+    {
+     "id": "preset",
+     "name": null,
+     "mode": "bs-noneditable",
+     "key": "Backspace",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "FAILED": "触发器点不动"
+    },
+    {
+     "id": "preset",
+     "mode": "del-editable",
+     "SKIPPED": "该浮层没有可编辑控件（0 个，isEditable 不可能成立）"
+    },
+    {
+     "id": "preset",
+     "name": null,
+     "mode": "undo-noneditable",
+     "key": "Meta+z",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "setup": {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     "objectsBeforeKey": 4,
+     "FAILED": "触发器点不动"
+    },
+    {
+     "id": "pathmenu",
+     "name": null,
+     "mode": "del-noneditable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 5
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "铅笔路径",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "铅笔路径",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 0,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": false
+    },
+    {
+     "id": "pathmenu",
+     "name": null,
+     "mode": "bs-noneditable",
+     "key": "Backspace",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 5
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "铅笔路径",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "铅笔路径",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 0,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": false
+    },
+    {
+     "id": "pathmenu",
+     "mode": "del-editable",
+     "SKIPPED": "该浮层没有可编辑控件（0 个，isEditable 不可能成立）"
+    },
+    {
+     "id": "pathmenu",
+     "name": null,
+     "mode": "undo-noneditable",
+     "key": "Meta+z",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "setup": {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     "objectsBeforeKey": 4,
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 5
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "铅笔路径",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "铅笔路径",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": true
+    },
+    {
+     "id": "phonevcam",
+     "name": null,
+     "mode": "del-noneditable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 2,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "phonevcam",
+     "name": null,
+     "mode": "bs-noneditable",
+     "key": "Backspace",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 2,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "phonevcam",
+     "mode": "del-editable",
+     "SKIPPED": "该浮层没有可编辑控件（0 个，isEditable 不可能成立）"
+    },
+    {
+     "id": "phonevcam",
+     "name": null,
+     "mode": "undo-noneditable",
+     "key": "Meta+z",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "setup": {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     "objectsBeforeKey": 4,
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 2,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": true
+    },
+    {
+     "id": "crowd",
+     "name": null,
+     "mode": "del-noneditable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 3,
+      "counts": {
+       "editable": 3,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "取消",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "取消",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "取消",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "crowd",
+     "name": null,
+     "mode": "bs-noneditable",
+     "key": "Backspace",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 3,
+      "counts": {
+       "editable": 3,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "取消",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "取消",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "取消",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "crowd",
+     "name": null,
+     "mode": "del-editable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 0,
+      "counts": {
+       "editable": 3,
+       "noneditable": 2
+      },
+      "tag": "INPUT",
+      "type": "number",
+      "text": "",
+      "editable": true
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 0,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": false
+    },
+    {
+     "id": "crowd",
+     "name": null,
+     "mode": "undo-noneditable",
+     "key": "Meta+z",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "setup": {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     "objectsBeforeKey": 4,
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 3,
+      "counts": {
+       "editable": 3,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "取消",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "取消",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "取消",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": true
+    },
+    {
+     "id": "modellib",
+     "name": null,
+     "mode": "del-noneditable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 15,
+      "localIdx": 1,
+      "counts": {
+       "editable": 2,
+       "noneditable": 13
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭模型库",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭模型库",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "modellib",
+     "name": null,
+     "mode": "bs-noneditable",
+     "key": "Backspace",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 15,
+      "localIdx": 1,
+      "counts": {
+       "editable": 2,
+       "noneditable": 13
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭模型库",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭模型库",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "modellib",
+     "name": null,
+     "mode": "del-editable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 15,
+      "localIdx": 0,
+      "counts": {
+       "editable": 2,
+       "noneditable": 13
+      },
+      "tag": "INPUT",
+      "type": "file",
+      "text": "",
+      "editable": true
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "INPUT",
+      "type": "file",
+      "aria": null,
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "INPUT",
+      "type": "file",
+      "aria": null,
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 0,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": false
+    },
+    {
+     "id": "modellib",
+     "name": null,
+     "mode": "undo-noneditable",
+     "key": "Meta+z",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "setup": {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     "objectsBeforeKey": 4,
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 15,
+      "localIdx": 1,
+      "counts": {
+       "editable": 2,
+       "noneditable": 13
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭模型库",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭模型库",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": true
+    }
+   ]
+  },
+  {
+   "rows": [
+    {
+     "id": "export",
+     "name": null,
+     "mode": "del-noneditable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 1,
+      "counts": {
+       "editable": 1,
+       "noneditable": 4
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "16:9",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "16:9",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "16:9",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "export",
+     "name": null,
+     "mode": "bs-noneditable",
+     "key": "Backspace",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 1,
+      "counts": {
+       "editable": 1,
+       "noneditable": 4
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "16:9",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "16:9",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "16:9",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "export",
+     "name": null,
+     "mode": "del-editable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 0,
+      "counts": {
+       "editable": 1,
+       "noneditable": 4
+      },
+      "tag": "INPUT",
+      "type": "number",
+      "text": "",
+      "editable": true
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 0,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": false
+    },
+    {
+     "id": "export",
+     "name": null,
+     "mode": "undo-noneditable",
+     "key": "Meta+z",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "setup": {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     "objectsBeforeKey": 4,
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 1,
+      "counts": {
+       "editable": 1,
+       "noneditable": 4
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "16:9",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "16:9",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "16:9",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": true
+    },
+    {
+     "id": "preset",
+     "name": null,
+     "mode": "del-noneditable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "FAILED": "触发器点不动"
+    },
+    {
+     "id": "preset",
+     "name": null,
+     "mode": "bs-noneditable",
+     "key": "Backspace",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "FAILED": "触发器点不动"
+    },
+    {
+     "id": "preset",
+     "mode": "del-editable",
+     "SKIPPED": "该浮层没有可编辑控件（0 个，isEditable 不可能成立）"
+    },
+    {
+     "id": "preset",
+     "name": null,
+     "mode": "undo-noneditable",
+     "key": "Meta+z",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "setup": {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     "objectsBeforeKey": 4,
+     "FAILED": "触发器点不动"
+    },
+    {
+     "id": "pathmenu",
+     "name": null,
+     "mode": "del-noneditable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 5
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "铅笔路径",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "铅笔路径",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 0,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": false
+    },
+    {
+     "id": "pathmenu",
+     "name": null,
+     "mode": "bs-noneditable",
+     "key": "Backspace",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 5
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "铅笔路径",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "铅笔路径",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 0,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": false
+    },
+    {
+     "id": "pathmenu",
+     "mode": "del-editable",
+     "SKIPPED": "该浮层没有可编辑控件（0 个，isEditable 不可能成立）"
+    },
+    {
+     "id": "pathmenu",
+     "name": null,
+     "mode": "undo-noneditable",
+     "key": "Meta+z",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "setup": {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     "objectsBeforeKey": 4,
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 5
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "铅笔路径",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "铅笔路径",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": true
+    },
+    {
+     "id": "phonevcam",
+     "name": null,
+     "mode": "del-noneditable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 2,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "phonevcam",
+     "name": null,
+     "mode": "bs-noneditable",
+     "key": "Backspace",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 2,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "phonevcam",
+     "mode": "del-editable",
+     "SKIPPED": "该浮层没有可编辑控件（0 个，isEditable 不可能成立）"
+    },
+    {
+     "id": "phonevcam",
+     "name": null,
+     "mode": "undo-noneditable",
+     "key": "Meta+z",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "setup": {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     "objectsBeforeKey": 4,
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 2,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": true
+    },
+    {
+     "id": "crowd",
+     "name": null,
+     "mode": "del-noneditable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 3,
+      "counts": {
+       "editable": 3,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "取消",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "取消",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "取消",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "crowd",
+     "name": null,
+     "mode": "bs-noneditable",
+     "key": "Backspace",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 3,
+      "counts": {
+       "editable": 3,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "取消",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "取消",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "取消",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "crowd",
+     "name": null,
+     "mode": "del-editable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 0,
+      "counts": {
+       "editable": 3,
+       "noneditable": 2
+      },
+      "tag": "INPUT",
+      "type": "number",
+      "text": "",
+      "editable": true
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 0,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": false
+    },
+    {
+     "id": "crowd",
+     "name": null,
+     "mode": "undo-noneditable",
+     "key": "Meta+z",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "setup": {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     "objectsBeforeKey": 4,
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 3,
+      "counts": {
+       "editable": 3,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "取消",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "取消",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "取消",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": true
+    },
+    {
+     "id": "modellib",
+     "name": null,
+     "mode": "del-noneditable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 15,
+      "localIdx": 1,
+      "counts": {
+       "editable": 2,
+       "noneditable": 13
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭模型库",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭模型库",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "modellib",
+     "name": null,
+     "mode": "bs-noneditable",
+     "key": "Backspace",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 15,
+      "localIdx": 1,
+      "counts": {
+       "editable": 2,
+       "noneditable": 13
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭模型库",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭模型库",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": -1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": true,
+     "restored": false
+    },
+    {
+     "id": "modellib",
+     "name": null,
+     "mode": "del-editable",
+     "key": "Delete",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 15,
+      "localIdx": 0,
+      "counts": {
+       "editable": 2,
+       "noneditable": 13
+      },
+      "tag": "INPUT",
+      "type": "file",
+      "text": "",
+      "editable": true
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "INPUT",
+      "type": "file",
+      "aria": null,
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "INPUT",
+      "type": "file",
+      "aria": null,
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 0,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": false
+    },
+    {
+     "id": "modellib",
+     "name": null,
+     "mode": "undo-noneditable",
+     "key": "Meta+z",
+     "target": "director-character-lead",
+     "select": {
+      "ok": true,
+      "id": "director-character-lead"
+     },
+     "selectedBefore": [
+      "director-character-lead"
+     ],
+     "countsBeforeSelect": {
+      "objects": 5,
+      "nodes": 10
+     },
+     "setup": {
+      "objectsBefore": 5,
+      "objectsAfter": 4,
+      "nodesAfter": 10
+     },
+     "objectsBeforeKey": 4,
+     "open": {
+      "opened": true
+     },
+     "focus": {
+      "ok": true,
+      "panelCount": 15,
+      "localIdx": 1,
+      "counts": {
+       "editable": 2,
+       "noneditable": 13
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 4,
+      "objectIds": [
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateBefore": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusBefore": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭模型库",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "after": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-prop-table"
+      ],
+      "groupCount": 0,
+      "selectedGroups": 0,
+      "nodeCount": 10
+     },
+     "stateAfter": {
+      "deskOpen": true,
+      "panelPresent": true,
+      "activeInPanel": true
+     },
+     "focusAfter": {
+      "open": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭模型库",
+      "text": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "delta": {
+      "objects": 1,
+      "nodes": 0,
+      "groups": 0
+     },
+     "layerStillOpen": true,
+     "deskStillOpen": true,
+     "leaked": false,
+     "restored": true
+    }
+   ]
+  }
+ ]
+}
