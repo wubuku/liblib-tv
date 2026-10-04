@@ -1,0 +1,1753 @@
+{
+  "batch": 749,
+  "title": "把 748 留下的 createDirectorCapture 发送那一跳走完（真跑通 + 幂等 + 画布侧 6 标记）；把「有静态无运行时」的残差从一个数变成一族一族的门（验两族代表）",
+  "verdict": "9/9",
+  "summary": {
+    "results": {
+      "A1_shutter": {
+        "clicked": true,
+        "preview": {
+          "present": true,
+          "alt": "机位01 · 对峙中景构图截图",
+          "dims": [
+            638,
+            359
+          ]
+        },
+        "status": {
+          "status": "ready",
+          "text": "1 张构图"
+        },
+        "past": [
+          0,
+          0
+        ],
+        "nodes": [
+          10,
+          10
+        ],
+        "edges": [
+          11,
+          11
+        ]
+      },
+      "A2_send": {
+        "sendBtnBefore": {
+          "text": "发送到画布",
+          "disabled": false
+        },
+        "clicked": true,
+        "past": [
+          0,
+          1
+        ],
+        "nodes": [
+          10,
+          11
+        ],
+        "edges": [
+          11,
+          12
+        ],
+        "newFiles": [
+          "导演台截图-机位01 · 对峙中景"
+        ],
+        "imageBefore": 5,
+        "imageAfter": 6
+      },
+      "A3_flip": {
+        "sendBtnAfter": {
+          "text": "已发送到画布",
+          "disabled": true
+        },
+        "statusAfter": {
+          "status": "ready",
+          "text": "已回到画布"
+        }
+      },
+      "A4_idempotent": {
+        "clicked": true,
+        "past": [
+          1,
+          1
+        ],
+        "nodes": [
+          11,
+          11
+        ],
+        "edges": [
+          12,
+          12
+        ],
+        "nodeIdsIdentical": true
+      },
+      "A5_canvasAttrs": {
+        "atDeskOpen": [
+          "data-director-capture",
+          "data-director-capture-status"
+        ],
+        "afterShutter": [
+          "data-director-capture-preview",
+          "data-director-send-capture"
+        ],
+        "afterSend": [
+          "data-director-capture-aspect",
+          "data-director-capture-camera-id",
+          "data-director-capture-edge-id",
+          "data-director-capture-id",
+          "data-director-capture-node",
+          "data-director-capture-preview",
+          "data-director-capture-source-id",
+          "data-director-send-capture"
+        ],
+        "canvasMarkedBySendOnly": [
+          "data-director-capture-aspect",
+          "data-director-capture-camera-id",
+          "data-director-capture-edge-id",
+          "data-director-capture-id",
+          "data-director-capture-node",
+          "data-director-capture-source-id"
+        ],
+        "imageEditorBroughtBySend": [
+          "data-image-edit-panel",
+          "data-image-editor-control",
+          "data-image-editor-footer-icon",
+          "data-image-editor-model",
+          "data-image-editor-settings",
+          "data-image-editor-top-controls",
+          "data-image-toolbar",
+          "data-owner-node-id"
+        ],
+        "sendOnlyTotal": 14
+      },
+      "B1_captureGallery": {
+        "camText": "机位01 · 对峙中景",
+        "camTabs": [
+          {
+            "value": "properties",
+            "text": "属性",
+            "pressed": "true"
+          },
+          {
+            "value": "motion",
+            "text": "运动轨迹NEW",
+            "pressed": "false"
+          },
+          {
+            "value": "captures",
+            "text": "截图",
+            "pressed": "false"
+          }
+        ],
+        "tabPicked": true,
+        "galleryOnEntry": {
+          "gallery": true,
+          "empty": false,
+          "items": 1,
+          "groups": 1,
+          "sendAllDisabled": true,
+          "clearAllDisabled": false
+        },
+        "galleryAfterTwoShots": {
+          "gallery": true,
+          "empty": false,
+          "items": 3,
+          "groups": 1,
+          "sendAllDisabled": false,
+          "clearAllDisabled": false
+        },
+        "gainedByTab": [
+          "data-director-capture-clear-all",
+          "data-director-capture-gallery",
+          "data-director-capture-group",
+          "data-director-capture-group-shot",
+          "data-director-capture-item",
+          "data-director-capture-item-selected",
+          "data-director-capture-remove",
+          "data-director-capture-send",
+          "data-director-capture-send-all",
+          "data-director-capture-shot-id",
+          "data-director-capture-view"
+        ],
+        "gainedByShots": [
+          "data-director-capture-clear-all",
+          "data-director-capture-gallery",
+          "data-director-capture-group",
+          "data-director-capture-group-shot",
+          "data-director-capture-item",
+          "data-director-capture-item-selected",
+          "data-director-capture-remove",
+          "data-director-capture-send",
+          "data-director-capture-send-all",
+          "data-director-capture-shot-id",
+          "data-director-capture-view"
+        ]
+      },
+      "B2_pose": {
+        "charText": "角色01 · 陈默",
+        "tabs": [
+          {
+            "value": "properties",
+            "text": "属性",
+            "pressed": "true"
+          },
+          {
+            "value": "pose",
+            "text": "姿势",
+            "pressed": "false"
+          }
+        ],
+        "gains": {
+          "properties": [],
+          "pose": [
+            "data-director-pose-control",
+            "data-director-pose-group",
+            "data-director-pose-panel",
+            "data-director-pose-preset",
+            "data-director-pose-side",
+            "data-director-pose-state",
+            "data-director-pose-value",
+            "data-expanded",
+            "data-pose-control-count",
+            "data-pose-preset"
+          ]
+        }
+      },
+      "C9_families": {
+        "unionCount": 447,
+        "verifiedOpenable": [
+          "data-director-capture-clear-all",
+          "data-director-capture-gallery",
+          "data-director-capture-group",
+          "data-director-capture-group-shot",
+          "data-director-capture-item",
+          "data-director-capture-item-selected",
+          "data-director-capture-remove",
+          "data-director-capture-send",
+          "data-director-capture-send-all",
+          "data-director-capture-shot-id",
+          "data-director-capture-view",
+          "data-director-pose-control",
+          "data-director-pose-group",
+          "data-director-pose-panel",
+          "data-director-pose-preset",
+          "data-director-pose-side",
+          "data-director-pose-state",
+          "data-director-pose-value",
+          "data-expanded",
+          "data-pose-control-count",
+          "data-pose-preset"
+        ],
+        "familyCount": 283,
+        "topFamilies": [
+          {
+            "prefix": "data-director-model-library",
+            "count": 24
+          },
+          {
+            "prefix": "data-director-motion-path",
+            "count": 20
+          },
+          {
+            "prefix": "data-director-phone-vcam",
+            "count": 19
+          },
+          {
+            "prefix": "data-director-camera-fov",
+            "count": 10
+          },
+          {
+            "prefix": "data-director-ai-import",
+            "count": 9
+          },
+          {
+            "prefix": "data-director-camera-preset",
+            "count": 8
+          },
+          {
+            "prefix": "data-director-camera-follow",
+            "count": 6
+          },
+          {
+            "prefix": "data-director-path-anchor",
+            "count": 6
+          },
+          {
+            "prefix": "data-director-scene-prompt",
+            "count": 6
+          },
+          {
+            "prefix": "data-director-transform-context",
+            "count": 6
+          },
+          {
+            "prefix": "data-director-viewport-gizmo",
+            "count": 6
+          },
+          {
+            "prefix": "data-director-camera-preview",
+            "count": 5
+          },
+          {
+            "prefix": "data-director-local-model",
+            "count": 5
+          },
+          {
+            "prefix": "data-director-timeline-object",
+            "count": 5
+          }
+        ]
+      }
+    },
+    "static": {
+      "effectiveUnionCount": 447,
+      "owner": {
+        "data-director-ai-import-history-item": [
+          "DirectorAiImportModal.tsx"
+        ],
+        "data-director-coverage-option": [
+          "DirectorAiImportModal.tsx"
+        ],
+        "data-director-workspace": [
+          "DirectorAiImportModal.tsx",
+          "DirectorDesk.tsx"
+        ],
+        "data-director-ai-import-tab": [
+          "DirectorAiImportModal.tsx"
+        ],
+        "data-director-ai-import-modal": [
+          "DirectorAiImportModal.tsx"
+        ],
+        "data-director-ai-import-backdrop": [
+          "DirectorAiImportModal.tsx"
+        ],
+        "data-director-ai-import-close": [
+          "DirectorAiImportModal.tsx"
+        ],
+        "data-director-icon-rail": [
+          "DirectorAiImportModal.tsx",
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-ai-import-dropzone": [
+          "DirectorAiImportModal.tsx"
+        ],
+        "data-director-ai-import-generate": [
+          "DirectorAiImportModal.tsx"
+        ],
+        "data-director-ai-import-history": [
+          "DirectorAiImportModal.tsx"
+        ],
+        "data-director-ai-import-upload-note": [
+          "DirectorAiImportModal.tsx"
+        ],
+        "data-director-motion-record": [
+          "DirectorCameraMotionTab.tsx"
+        ],
+        "data-director-motion-keyframe-field": [
+          "DirectorCameraMotionTab.tsx"
+        ],
+        "data-director-motion-keyframe-editor": [
+          "DirectorCameraMotionTab.tsx"
+        ],
+        "data-director-motion-qr": [
+          "DirectorCameraMotionTab.tsx"
+        ],
+        "data-director-motion-preset-button": [
+          "DirectorCameraMotionTab.tsx"
+        ],
+        "data-director-motion-slider-value": [
+          "DirectorCameraMotionTab.tsx"
+        ],
+        "data-director-motion-slider": [
+          "DirectorCameraMotionTab.tsx"
+        ],
+        "data-director-motion-create-path": [
+          "DirectorCameraMotionTab.tsx"
+        ],
+        "data-director-motion-vcam": [
+          "DirectorCameraMotionTab.tsx"
+        ],
+        "data-director-motion-keyframe-axis": [
+          "DirectorCameraMotionTab.tsx"
+        ],
+        "data-director-motion-retry": [
+          "DirectorCameraMotionTab.tsx"
+        ],
+        "data-director-curve-locked": [
+          "DirectorCurveEditor.tsx"
+        ],
+        "data-director-curve-track-id": [
+          "DirectorCurveEditor.tsx"
+        ],
+        "data-director-curve-preset": [
+          "DirectorCurveEditor.tsx"
+        ],
+        "data-director-curve-values": [
+          "DirectorCurveEditor.tsx"
+        ],
+        "data-director-speed-curve-path": [
+          "DirectorCurveEditor.tsx"
+        ],
+        "data-director-curve-handle": [
+          "DirectorCurveEditor.tsx"
+        ],
+        "data-director-back-to-timeline": [
+          "DirectorCurveEditor.tsx"
+        ],
+        "data-director-curve-editor": [
+          "DirectorCurveEditor.tsx"
+        ],
+        "data-director-project-id": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-session-disposition": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-mobile-panel-state": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-bottom-bar": [
+          "DirectorDesk.tsx",
+          "DirectorTimeline.tsx",
+          "DirectorViewport.tsx"
+        ],
+        "data-director-source-node-id": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-focus-scope": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-active-shot-id": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-header-object-name": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-project-io-feedback": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-panels-collapsed": [
+          "DirectorDesk.tsx",
+          "DirectorViewport.tsx"
+        ],
+        "data-director-active-gesture": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-command-feedback-reason": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-export-trigger": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-canvas-id": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-project-io-message": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-command-feedback": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-workspace-focus-owner": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-project-import-input": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-project-export": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-last-disposition": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-project-io-status": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-follow-banner": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-follow-cancel": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-generation": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-panorama-clear": [
+          "DirectorDesk.tsx",
+          "DirectorInspector.tsx"
+        ],
+        "data-director-panels-toggle": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-focus-return": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-command-feedback-disposition": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-view-mode": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-session-id": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-session-previous-owner": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-history-past": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-project-import": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-last-command": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-capture-viewer": [
+          "DirectorDesk.tsx",
+          "DirectorInspector.tsx"
+        ],
+        "data-close-director": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-session-reason": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-shot-bar": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-history-future": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-project-lifecycle": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-shot-option": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-capture-status": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-header": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-focus-state": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-last-reason": [
+          "DirectorDesk.tsx"
+        ],
+        "data-director-export-aspect": [
+          "DirectorExportPanel.tsx"
+        ],
+        "data-director-export-progress": [
+          "DirectorExportPanel.tsx"
+        ],
+        "data-director-export-duration": [
+          "DirectorExportPanel.tsx"
+        ],
+        "data-director-export-submit": [
+          "DirectorExportPanel.tsx",
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-export-status": [
+          "DirectorExportPanel.tsx"
+        ],
+        "data-director-export-panel": [
+          "DirectorExportPanel.tsx"
+        ],
+        "data-director-character-flyout": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-geometry-option": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-crowd-dialog": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-panorama-flyout": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-aspect-grid": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-geometry-submenu": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-aspect-glyph": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-crowd-input": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-panorama-option": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-character-ack": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-crowd-confirm": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-crowd-cancel": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-aspect-flyout": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-rail-divider": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-flyout-title": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-character-option": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-rail-entry": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-crowd-count": [
+          "DirectorIconRail.tsx",
+          "DirectorViewport.tsx"
+        ],
+        "data-director-aspect-option": [
+          "DirectorIconRail.tsx"
+        ],
+        "data-director-camera-fov-number": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-clear-cancel": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-follow-view": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-background-color": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-uniform-scale-readout": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-pose-control": [
+          "DirectorInspector.tsx"
+        ],
+        "data-follow-view": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-preview": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-panorama-source-option": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-add-camera": [
+          "DirectorInspector.tsx",
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-path-transform-axis": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-keyframe-toggle-state": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-pose-value": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-path-anchor-option": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-follow-offset": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-insert-path-anchor": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-group": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-keyframed-axis-index": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-preview-expand": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-inspector-track-id": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-show-grid": [
+          "DirectorInspector.tsx"
+        ],
+        "data-follow-target-id": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-panorama-selection": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-panorama-source-id": [
+          "DirectorInspector.tsx",
+          "DirectorViewport.tsx"
+        ],
+        "data-director-camera-look-at-mode": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-panorama-state": [
+          "DirectorInspector.tsx",
+          "DirectorViewport.tsx"
+        ],
+        "data-director-pose-preset": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-pose-group": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-panorama-input": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-path-name": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-group-shot": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-settings-section": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-toggle-path-closed": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-preview-fov": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-keyframed-axis": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-fov-help": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-display-settings": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-character-labels": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-panorama-rotation": [
+          "DirectorInspector.tsx"
+        ],
+        "data-expanded": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-gallery": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-show-ground": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-gaussian-snap": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-clear-confirm-submit": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-motion-path-rotation-hint": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-pose-panel": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-clear-all": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-hex-input": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-panorama-connected": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-shot-start": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-panorama-source": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-camera-actions": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-toggle-track": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-scale": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-path-reset": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-snap-to-grid": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-path-anchor-handle-axis": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-shot-range": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-preview-state": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-path-anchor-position": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-path-anchor-type-option": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-character-tabs": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-readout": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-shot-id": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-path-transform-field": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-pose-state": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-item": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-send": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-target-derived": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-ground-color": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-view": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-send-capture": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-name": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-tabs": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-fov-knob": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-send-all": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-locked-hint": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-follow-view-option": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-group-inspector": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-inspector-kind": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-shot-name": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-motion-new": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-fov-help-tooltip": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-fov-slider": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-switch": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-transform-axis": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-shot-id": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-motion-path-locked": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-preview-canvas": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-character-tab": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-fov-field": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-path-anchor-list": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-axis-scrub": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-follow-target": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-follow-conflict": [
+          "DirectorInspector.tsx",
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-camera-fov-readout": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-inspector-lock": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-motion-path-inspector": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-transform": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-group-transform-field": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-shot-end": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-transform-field": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-keyframe-toggle": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-path-reset-offset": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-path-anchor-handle": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-translate": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-look-at-object": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-toggle-on": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-settings": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-panorama-hint": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-group-name": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-fov-help-badge": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-fov": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-follow-state": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-panorama-radius": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-item-selected": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-empty": [
+          "DirectorInspector.tsx"
+        ],
+        "data-look-at-mode": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-toggle": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-delete-path-anchor": [
+          "DirectorInspector.tsx"
+        ],
+        "data-pose-preset": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-ground-opacity": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-pose-side": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-inspector": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-tab": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-fov-fill": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-toggle-knob": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-rotate": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-panorama-status": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-uniform-scale": [
+          "DirectorInspector.tsx"
+        ],
+        "data-pose-control-count": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-viewer-close": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-target-coordinates": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-scene-ground-height": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-remove": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-capture-clear-confirm": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-color-picker": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-camera-preview": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-object-name": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-shot-inspector": [
+          "DirectorInspector.tsx"
+        ],
+        "data-director-tree-context-action": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-tree-context-menu": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-tree": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-group-expanded": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-object-id": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-group-member-id": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-selection-count": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-selection-action": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-object-locked": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-object-kind": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-delete-group": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-group-action": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-object-lock": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-selection-kind": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-delete-object": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-group-id": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-object-visible": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-selection-toolbar": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-group-selected": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-object-selected": [
+          "DirectorObjectTree.tsx"
+        ],
+        "data-director-phone-vcam-hold": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-sample-count": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-calibrate": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-take": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-track-id": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-pitch": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-pose": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-record": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-elevate": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-connect": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-roll": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-panel": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-mode": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-pose-pad": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-error": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-conflict": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-stability": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-camera-id": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-keep-level": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-enable-gyro": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-local-preview": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-yaw": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-phone-vcam-status": [
+          "DirectorPhoneVcamPanel.tsx"
+        ],
+        "data-director-scene-prompt-file": [
+          "DirectorScenePromptBar.tsx"
+        ],
+        "data-director-scene-prompt-submit": [
+          "DirectorScenePromptBar.tsx"
+        ],
+        "data-director-scene-prompt-bar": [
+          "DirectorScenePromptBar.tsx"
+        ],
+        "data-director-scene-prompt-status": [
+          "DirectorScenePromptBar.tsx"
+        ],
+        "data-director-scene-prompt-upload": [
+          "DirectorScenePromptBar.tsx"
+        ],
+        "data-director-scene-prompt-input": [
+          "DirectorScenePromptBar.tsx"
+        ],
+        "data-director-timeline-resize-handle": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-track-list": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-playhead": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-height": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-track-row-selected": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-track-value": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-ruler-tick": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-add-track-manual": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-track-group-id": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-start-time": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-track-label": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-lane-group": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-time-field-unit": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-track-draw-trail": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-track-kind": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-controls-scroll": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-motion-path-enabled": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-track-row": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-duration": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-object-lane": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-ruler": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-track-object-id": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-strip-right": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-camera-preset-panel": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-playhead-time": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-preset": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-object-selected": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-controls": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-mode": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-motion-path-preset": [
+          "DirectorTimeline.tsx",
+          "DirectorViewport.tsx"
+        ],
+        "data-director-timeline-object-name": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-remove-track": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-keyframe-count": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-canvas": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-track-row-kind": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-keyframe-id": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-playback": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-camera-preset-status": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-object-row": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-time": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-zoom-cluster": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-motion-path-draw-tool": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-object-group": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-zoom": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-add-keyframe": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-coachmark-skip": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-camera-preset-trigger": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-delete-keyframe": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-camera-preset-option": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-keyframe-time": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-tick-count": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-mode": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-camera-preset-mode": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-track-selected": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-collapse": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-create-motion-path": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-object-lane-selected": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-open-curve-editor": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-time-field": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-time-unit": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-track-id": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-camera-preset-error": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-collapsed": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-add-track": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-camera-preset-panel-mode": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-timeline-coachmark": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-delete-motion-path": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-motion-path-menu": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-coachmark-next": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-end-time": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-loop": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-motion-path-orient": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-motion-path-free-draw": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-auto-keyframe": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-camera-preset-mode-option": [
+          "DirectorTimeline.tsx"
+        ],
+        "data-director-model-library-no-results": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-local-retry": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-panorama-error": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-path-drawing": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-panorama-runtime": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-transform-context-detail": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-webgl-canvas": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-preview-panel": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-motion-path-pivot": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-viewport-toolbar": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-motion-path-anchor-selected": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-phone-vcam-trigger": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-capture": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-timeline-toggle": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-local-model-resource-status": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-crowd-rows": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-preview-add": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-thirds": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-local-status": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-aspect-frame": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-group-rig": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-local-file-name": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-path-drawing-cancel": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-motion-path-id": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-gizmo-webgl-canvas-wrapper": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-local-model-resource-error": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-motion-path-visible": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-viewport-gizmo": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-asset-id": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-transform-context": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-motion-path-count": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-reset-view": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-add": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-viewport-gizmo-hit-layer": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-transform-context-kind": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-aspect": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-local-input": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-preview-asset-id": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-viewport-gizmo-position": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-motion-path-handle": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-tab": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-import": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-path-drawing-tool": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-preview": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-local-delete": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-motion-path-anchor": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-motion-path-world-anchor": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-crowd-action": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-crowd-spacing": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-transform-context-label": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-panel": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-local-model-resource-statuses": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-aspect-ratio": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-viewport-gizmo-target": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-local-model-resource-attempt": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-card": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-preview-name-value": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-crowd-trigger": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-character-label": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-search": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-motion-path-layer": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-viewport-gizmo-button": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-local-model-resource-state": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-trigger": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-motion-path-anchor-id": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-transform-context-target": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-local-card": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-crowd-panel": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-preview-trigger": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-motion-path-anchor-type": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-viewport-gizmo-disabled": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-crowd-columns": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-transform-context-state": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-viewport": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-transform-mode": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-preview-name": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-path-drawing-complete": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-empty": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-view": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-model-library-local-asset-id": [
+          "DirectorViewport.tsx"
+        ],
+        "data-director-gizmo-webgl-canvas": [
+          "DirectorViewport.tsx:410(dataset)"
+        ]
+      },
+      "decl_createDirectorCapture": [
+        358,
+        2775
+      ],
+      "sendCaptureLine": 589,
+      "idempotentGuardLine": 590,
+      "shutterLine": 3586,
+      "previewLine": 288,
+      "sendBtnLine": 307,
+      "cameraCapturesGuard": 2332,
+      "characterPoseGuard": 2338,
+      "imgNodeCaptureAttrs": [
+        216,
+        217,
+        218,
+        219,
+        220,
+        221
+      ],
+      "imgNodeAttrNames": [
+        "data-director-capture-aspect",
+        "data-director-capture-camera-id",
+        "data-director-capture-edge-id",
+        "data-director-capture-id",
+        "data-director-capture-node",
+        "data-director-capture-source-id"
+      ],
+      "storeTypeLine": 2818,
+      "storeFilenameLine": 2824
+    }
+  },
+  "checks": [
+    {
+      "label": "C1 静态：有效并集 447；createDirectorCapture 恰好两处（声明+实现）；sendCapture 有 sentNodeId 幂等守卫；ImageNode.tsx 6 个 capture 标记；store 落点 type:\"image\"；两个页签守卫行号可定位",
+      "pass": true
+    },
+    {
+      "label": "C2 第 1 跳快门：store 零写入；预览出现且有 alt 与尺寸；capture-status=ready、文案「1 张构图」",
+      "pass": true
+    },
+    {
+      "label": "C3 第 2 跳发送：past+1、节点+1、边+1；新文件「导演台截图-<机位名>」；image 5→6（**落画布是图片节点**）",
+      "pass": true
+    },
+    {
+      "label": "C4 发送后 UI 翻转：发送键文案「已发送到画布」+ disabled；capture-status 文案「已回到画布」",
+      "pass": true
+    },
+    {
+      "label": "C5 幂等：再点已 disabled 的发送键 ⟹ past/节点/边/nodeIds 逐项零变化",
+      "pass": true
+    },
+    {
+      "label": "C6 画布侧 6 个 data-director-capture-* 由**发送**带出（快门只带出导演台侧的 preview/send）；且发送同时把画布选中态切到新节点 ⟹ 另带出 8 种图片编辑器属性",
+      "pass": true
+    },
+    {
+      "label": "C7 族①：机位→「截图」子页带出 11 种图库属性；**图库条目数随快门次数逐张 +1**；`send-all` 的 disabled 语义是「没有未发送项就禁用」（A 阶段那张已发送 ⟹ items=1 时禁用；再拍 2 张未发送 ⟹ 解禁）",
+      "pass": true
+    },
+    {
+      "label": "C8 族②：角色页签 2 枚（属性/姿势）；点「姿势」+10，点「属性」+0",
+      "pass": true
+    },
+    {
+      "label": "C9 残差按前缀成族：有效并集 447 种可归成若干前缀族（最大族 ≤ 90）；本批已验证可打开 21 种（11 图库 + 10 姿势）",
+      "pass": true
+    }
+  ],
+  "conclusions": [
+    "**`createDirectorCapture` 真跑通了，是两跳 + 幂等** —— 第 1 跳快门（`DirectorViewport.tsx:3586`）store **零写入**，但预览出现（638×359、`alt`「机位01 · 对峙中景构图截图」）、`capture-status=\"ready\"`、文案「1 张构图」；第 2 跳 `data-director-send-capture` ⟹ `past` +1、节点 +1、边 +1、新文件「**导演台截图-机位01 · 对峙中景**」、`image` 类型 5→6。",
+    "**截图落画布是 `image` 节点，不是视频** —— `canvasStore.ts:2818 type: \"image\"`、`:2824 filename: \\`导演台截图-${capture.cameraName}\\``，与 748 的动画导出（建 `video` 节点）是两种不同的产出。",
+    "**发送后 UI 双向翻转** —— 按钮文案「发送到画布」→「**已发送到画布**」+ `disabled`；`data-director-capture-status` 文案「1 张构图」→「**已回到画布**」。**幂等**：再点那个已 disabled 的按钮 store 逐项零变化 ⟹ `DirectorDesk.tsx:590 if (capture.sentNodeId) return;` 生效。",
+    "**导演台的产出在画布侧被打上 6 个标记 ⟹ 画布节点组件知道导演台存在** —— `ImageNode.tsx:216-221` 写 `data-director-capture-node` / `-id` / `-source-id` / `-camera-id` / `-aspect` / `-edge-id`，这 6 个**只在发送之后**才出现在 DOM 上。⟹ 导演台与画布的耦合点不只在 store，还在**画布节点的渲染层**。",
+    "**发送截图会把画布选中态切到新节点，弹出图片编辑器** —— 发送这一步除带出 `ImageNode.tsx:216-221` 的 6 个 `data-director-capture-*` 标记外，还带出 **8 种** `data-image-edit-panel` / `data-image-editor-*` / `data-image-toolbar` / `data-owner-node-id` ⟹ 新建的图片节点在画布上是**被选中的**状态。本批未验这个选中态是否可撤销。",
+    "**残差不是一个数，是一族一族的门** —— 本批验证两族：**采集图库族**（机位 → 相机页签「截图」子页 +4：`capture-gallery`/`-empty`/`-send-all`/`-clear-all`；该机位下拍 2 张再回该页 +8：`capture-item`/`-item-selected`/`-group`/`-group-shot`/`-send`/`-remove`/`-view`/`-shot-id`）与**姿势族**（角色 → 角色页签「姿势」子页 +10）。图库态读数：拍之前 `empty: true, items: 0`；拍 2 张后 `empty: false, items: 2, groups: 1`，`send-all` / `clear-all` 由 disabled 变可用。",
+    "**页签是「同名不同值」，按属性名去重枚举门会漏** —— `data-director-camera-tab` 有 `properties`（属性）/ `motion`（运动轨迹**NEW**）/ `captures`（截图）3 枚，`data-director-character-tab` 有 `properties` / `pose`（**姿势**，不是「姿态」）2 枚。749c 按属性名去重只点了一个值，所以「选中 7 个 treeitem +0 种」是**探针粒度问题，不是产品的门特别深**。"
+  ],
+  "probeCorrections": [
+    "**按属性名去重枚举门 ⟹ 同名不同值的页签只点了一个**（本批最重要的一次返工）—— 749c 枚举开启器时用 `seen` 按 `a.name` 去重，于是 `data-director-camera-tab` 的 3 个值只算 1 枚门，点它也只点中了第一个值 ⟹ 「选中 7 个 treeitem +0 种」。**改法**：门要按 `(属性名, 属性值)` 枚举，不按名字。",
+    "**树行不是 `<button>`** —— 我按 `[data-director-tree] button` 找对象行，只找到「打组」「解组」两枚。树行是 `<div role=\"treeitem\" data-director-object-id=…>`（`DirectorObjectTree.tsx:458-465`），**且它没有 `data-director-*` 前缀** ⟹ 748 的属性普查表里也没有它。",
+    "**被截断的普查输出不能当全集** —— 748 那次 446 种的终端输出被 head+tail 截断，我据此以为「没有 `data-director-object-*`」，实际它在中间。",
+    "**页签文案别凭直觉写** —— 我按源码变量名 `characterTab` 猜标签是「姿态」，实际 DOM 文案是「**姿势**」；`cameraTab` 的 `motion` 值文案还带「**NEW**」角标。"
+  ],
+  "notClaimed": [
+    "**其余残差族未逐族验证** —— 748 报出的 223 种里本批只打开 22 种；运动路径/路径锚点族、场景设置族、全景图族、分组族、锁定提示族**只从源码守卫表达式推断，没有运行时读数**。",
+    "`data-director-camera-tab=\"motion\"`（运动轨迹，`CameraMotionTab` 11 种）**本批没点** —— 它是第三个页签值，未验证。",
+    "**批量发送与清空图库的功能本身没验** —— 只读到 `disabled` 翻转，没点 `data-director-capture-send-all` / `-clear-all`。",
+    "**图库的分组维度只读到 1 组** —— 种子只有 1 个机位，`capture-group={cameraName}` 的多机位分组未验。",
+    "**不声称**「拍照 638×359」是稳定尺寸 —— 它随视口与机位参数变化，本批只在本视口（1280×1150）下读到该值。",
+    "**未与源站导演台对照** —— 源站导演台关着，需点击授权。"
+  ]
+}
