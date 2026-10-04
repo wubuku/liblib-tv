@@ -1,0 +1,53 @@
+{
+ "批次": "157e",
+ "目的": "放宽探针：把项目下拉的真实结构与删除入口 dump 出来",
+ "起点": {
+  "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/f43b795d-db00-4faa-9d9b-c899db06fb07",
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "点前": {
+  "阶段": "点前",
+  "层": [],
+  "危险": [],
+  "链接": [
+   {
+    "href": "/ai-tool/home",
+    "逐字": "",
+    "盒": [
+     40,
+     40,
+     12,
+     10
+    ]
+   }
+  ]
+ },
+ "触发点": [
+  138,
+  30
+ ],
+ "点后": {
+  "阶段": "点后",
+  "层": [],
+  "危险": [],
+  "链接": [
+   {
+    "href": "/ai-tool/home",
+    "逐字": "",
+    "盒": [
+     40,
+     40,
+     12,
+     10
+    ]
+   }
+  ]
+ },
+ "收尾": {
+  "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/f43b795d-db00-4faa-9d9b-c899db06fb07",
+  "浮层": 0,
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "断言全过": false
+}

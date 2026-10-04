@@ -1710,3 +1710,36 @@ screenshots:
     visible_text: 设置主体 / Review the Subject before saving it to Dreamina Subjects. / 参考主体* / Main / 添加音色 / 名称* 0 / 20 / 描述 / 保存 / 保存前请输入名称。
     alt: 「设置主体」对话框（2026-10-04 批次 156 拍）：点「保存到主体库」后弹出的确认框，标题「设置主体」旁带一个 ⓘ 说明钮；「参考主体*」区已预填那张图，右侧是添加辅助媒体的 ⊞；往下是「添加音色」按钮、「名称*」输入框（占位「请输入名称」，右侧计数 0 / 20）、「描述」输入框；右下角「保存」按钮呈灰色禁用态，橙色高亮框标出整个对话框范围
     sha256: 7f31a8c7d835771e33805daab4c4a5b37be0cdbc8d63804dc9e9df89b13f7bbf
+  - file: screenshots/116-create-team-is-a-purchase-page.png
+    task_id: canvas-context
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-04T22:20:00+08:00
+    verified_locator: '分享面板内的「创建团队」按钮（80×36@1172,253）点开后新出现的 1280×720 整屏层'
+    visible_text: 限时惊喜 积分加赠 超级年卡 / 单年购买 4.2折 / 单月购买 / 高级团队会员-12个月 ¥263 席位/月 ¥549 / 席位 / 合计 ¥6312 / 7700 积分/席位/每月 / 购买团队会员 / 团队权益仅限即梦AI Web端团队空间内使用
+    alt: 点「创建团队」后打开的并不是建团队对话框，而是整屏的团队会员付费页（2026-10-04 批次 157 拍）：页面顶部是「限时惊喜 积分加赠 超级年卡」与倒计时，下面并排两栏「单年购买 4.2折」和「单月购买」，中间是「高级团队会员-12个月 ¥263 席位/月 ¥549」的套餐卡，卡片下方有席位数量调节（减号与加号）并显示「合计：¥6312」「7700 积分/席位/每月」，再往下是蓝底白字的「购买团队会员」按钮和一段「团队权益仅限即梦AI Web端团队空间内使用」的说明
+    sha256: 43a5623f4feaf854a02a1eea2ee99e1e285f694348fb7708a4ae6654f8aab27f
+  - file: screenshots/117-project-panel-8-projects.png
+    task_id: canvas-context
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-04T22:20:10+08:00
+    verified_locator: '[data-testid="canvas-project-panel-popover"]'
+    visible_text: 项目 / 测试项目5 / 测试项目 / 测试项目4 / 测试项目3 / 测试项目2 / 测试项目1 / 未命名项目 / 视频创作 / 新建画布项目
+    alt: 项目切换器面板（2026-10-04 批次 157 拍）：顶栏标题右侧的「项目」按钮展开出的面板，标题「项目」，下面逐行列出该账号下的画布项目——测试项目5、测试项目、测试项目4、测试项目3、测试项目2、测试项目1、未命名项目、视频创作，每一行右侧都有一个方形的「更多」按钮，底部是「新建画布项目」一行，橙色高亮框标出面板范围
+    sha256: bb5f965805cf4ef22b0912b888d95f7cc92875d185110cb866dd1c20dc0aab16
+  - file: screenshots/118-project-more-menu-2-items.png
+    task_id: canvas-context
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-04T22:20:20+08:00
+    verified_locator: '[role=menu]"（由 [data-testid^="project-more-ordinary-"] 点开）'
+    visible_text: 在新窗口打开 / 复制项目
+    alt: 项目行尾「更多」菜单（2026-10-04 批次 157 拍）：从项目面板某一行右侧的「更多」按钮弹出的菜单，只有两项——「在新窗口打开」和「复制项目」，没有删除、也没有重命名，橙色高亮框标出菜单范围
+    sha256: 1f04cf454dec88a9a59c6c02c4a0de2902920dd972df4d0048bf48fe02c25f35

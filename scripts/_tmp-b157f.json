@@ -1,0 +1,155 @@
+{
+ "批次": "157f",
+ "目的": "找出真正能打开项目切换器的那个 testid",
+ "起点": {
+  "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/f43b795d-db00-4faa-9d9b-c899db06fb07",
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "基线层数": 0,
+ "尝试": [
+  {
+   "testid": "canvas-project-title-trigger",
+   "读数": {
+    "盒": [
+     76,
+     28,
+     52,
+     16
+    ],
+    "x": 90,
+    "y": 30,
+    "中心tag": "BUTTON",
+    "中心testid": "canvas-project-title-trigger",
+    "中心是它自己": true
+   },
+   "点后层数": 0,
+   "点后": {
+    "层数": 0,
+    "层": [],
+    "链接": [
+     {
+      "href": "/ai-tool/home",
+      "逐字": "",
+      "盒": [
+       40,
+       40,
+       12,
+       10
+      ]
+     }
+    ]
+   },
+   "开开了": false,
+   "前层数": 0
+  },
+  {
+   "testid": "canvas-project-trigger",
+   "读数": {
+    "盒": [
+     20,
+     28,
+     128,
+     16
+    ],
+    "x": 138,
+    "y": 30,
+    "中心tag": "BUTTON",
+    "中心testid": "canvas-project-trigger",
+    "中心是它自己": true
+   },
+   "点后层数": 0,
+   "点后": {
+    "层数": 0,
+    "层": [],
+    "链接": [
+     {
+      "href": "/ai-tool/home",
+      "逐字": "",
+      "盒": [
+       40,
+       40,
+       12,
+       10
+      ]
+     }
+    ]
+   },
+   "开开了": false,
+   "前层数": 0
+  },
+  {
+   "testid": "canvas-project-launcher-shell",
+   "读数": {
+    "盒": [
+     20,
+     28,
+     128,
+     16
+    ],
+    "x": 138,
+    "y": 30,
+    "中心tag": "BUTTON",
+    "中心testid": "canvas-project-trigger",
+    "中心是它自己": true
+   },
+   "点后层数": 0,
+   "点后": {
+    "层数": 0,
+    "层": [],
+    "链接": [
+     {
+      "href": "/ai-tool/home",
+      "逐字": "",
+      "盒": [
+       40,
+       40,
+       12,
+       10
+      ]
+     }
+    ]
+   },
+   "开开了": false,
+   "前层数": 0
+  },
+  {
+   "testid": "canvas-project-logo",
+   "读数": {
+    "盒": [
+     40,
+     40,
+     12,
+     10
+    ],
+    "x": 32,
+    "y": 30,
+    "中心tag": "path",
+    "中心testid": null,
+    "中心是它自己": true
+   },
+   "点后层数": 0,
+   "点后": {
+    "层数": 0,
+    "层": [],
+    "链接": []
+   },
+   "开开了": false,
+   "前层数": 0
+  },
+  {
+   "testid": "canvas-workspace-title",
+   "读数": null
+  },
+  {
+   "testid": "canvas-project-logo-gradient-path",
+   "读数": null
+  }
+ ],
+ "收尾": {
+  "URL": "https://jimeng.jianying.com/ai-tool/home",
+  "浮层": 0,
+  "积分": null
+ },
+ "断言全过": false
+}

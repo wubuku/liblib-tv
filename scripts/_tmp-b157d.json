@@ -1,0 +1,34 @@
+{
+ "批次": "157d",
+ "目的": "删除 157-c 复制出的项目副本「测试项目5」并断言回到基线",
+ "起点": {
+  "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/f43b795d-db00-4faa-9d9b-c899db06fb07",
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "触发": {
+  "tag": "BUTTON",
+  "role": null,
+  "testid": "canvas-project-trigger",
+  "aria": "项目",
+  "逐字": "",
+  "盒": [
+   20,
+   28,
+   128,
+   16
+  ]
+ },
+ "下拉": {
+  "命中": false
+ },
+ "含副本": [],
+ "异常": null,
+ "收尾": {
+  "URL": "https://jimeng.jianying.com/ai-tool/ai-canvas/f43b795d-db00-4faa-9d9b-c899db06fb07",
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "浮层": 0,
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "断言全过": true
+}
