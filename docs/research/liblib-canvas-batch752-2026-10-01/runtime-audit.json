@@ -1,0 +1,1549 @@
+{
+ "batch": 752,
+ "title": "源站导演台对照：把积压的「需先有源站 A/B」逐条解掉",
+ "verdict": "10/10",
+ "twoRoundsIdentical": null,
+ "twoRoundsNote": "源站是共享浏览器上的现场快照，无法重放两次取一致；本批改判为「源站读数文件字段齐全 + clone 静态逐项对平」",
+ "noGenerationPerformed": true,
+ "sourceReadings": {
+  "capturedFrom": "CDP http://127.0.0.1:9222 — Chrome 151.0.7922.34，测试帐号已登录",
+  "canvasUrl": "https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429",
+  "noGenerationPerformed": true,
+  "probes": [
+   "752b",
+   "752c",
+   "752d",
+   "752e",
+   "752f",
+   "752g",
+   "752h"
+  ],
+  "q1_undoRedo": {
+   "totalControls": 87,
+   "searched": [
+    "撤销",
+    "重做",
+    "undo",
+    "redo"
+   ],
+   "searchedIn": [
+    "textContent",
+    "title",
+    "aria-label"
+   ],
+   "hits": [],
+   "sections": [
+    {
+     "tag": "SECTION",
+     "role": "dialog",
+     "w": 400,
+     "h": 640,
+     "x": 1184,
+     "text": ""
+    },
+    {
+     "tag": "HEADER",
+     "role": null,
+     "w": 399,
+     "h": 52,
+     "x": 1185,
+     "text": ""
+    },
+    {
+     "tag": "ASIDE",
+     "role": null,
+     "w": 281,
+     "h": 1000,
+     "x": 0,
+     "text": ""
+    },
+    {
+     "tag": "HEADER",
+     "role": null,
+     "w": 280,
+     "h": 52,
+     "x": 0,
+     "text": ""
+    },
+    {
+     "tag": "SECTION",
+     "role": null,
+     "w": 280,
+     "h": 237,
+     "x": 1320,
+     "text": ""
+    },
+    {
+     "tag": "SECTION",
+     "role": null,
+     "w": 280,
+     "h": 212,
+     "x": 1320,
+     "text": ""
+    },
+    {
+     "tag": "SECTION",
+     "role": null,
+     "w": 280,
+     "h": 200,
+     "x": 1320,
+     "text": ""
+    },
+    {
+     "tag": "SECTION",
+     "role": null,
+     "w": 280,
+     "h": 168,
+     "x": 1320,
+     "text": ""
+    },
+    {
+     "tag": "SECTION",
+     "role": null,
+     "w": 280,
+     "h": 207,
+     "x": 1320,
+     "text": ""
+    },
+    {
+     "tag": "NAV",
+     "role": null,
+     "w": 128,
+     "h": 48,
+     "x": 620,
+     "text": ""
+    }
+   ]
+  },
+  "rail": {
+   "leftRail": [
+    {
+     "a": "场景",
+     "pressed": "true",
+     "title": ""
+    },
+    {
+     "a": "添加角色",
+     "pressed": "false",
+     "title": ""
+    },
+    {
+     "a": "添加机位",
+     "pressed": "false",
+     "title": ""
+    },
+    {
+     "a": "全景图",
+     "pressed": "false",
+     "title": ""
+    },
+    {
+     "a": "选择画幅比例",
+     "pressed": "false",
+     "title": ""
+    },
+    {
+     "a": "AI 识图导入",
+     "pressed": null,
+     "title": ""
+    },
+    {
+     "a": "帮助",
+     "pressed": null,
+     "title": ""
+    }
+   ],
+   "bottomRail": [
+    {
+     "a": "移动",
+     "pressed": null
+    },
+    {
+     "a": "截图",
+     "pressed": null
+    },
+    {
+     "a": "动画时间轴",
+     "pressed": "false"
+    }
+   ],
+   "leftRailSize": {
+    "w": 48,
+    "h": 948,
+    "x": 0
+   },
+   "bottomRailSize": {
+    "w": 128,
+    "h": 48,
+    "x": 620
+   },
+   "leftTree": [
+    {
+     "tag": "DIV",
+     "t": "3D导演台",
+     "role": null,
+     "x": 40,
+     "y": 15
+    },
+    {
+     "tag": "DIV",
+     "t": "场景",
+     "role": null,
+     "x": 60,
+     "y": 66
+    },
+    {
+     "tag": "SPAN",
+     "t": "机位1",
+     "role": null,
+     "x": 96,
+     "y": 154
+    },
+    {
+     "tag": "SPAN",
+     "t": "角色A",
+     "role": null,
+     "x": 96,
+     "y": 186
+    }
+   ]
+  },
+  "timeline": {
+   "openedBy": "底部 rail 的「动画时间轴」（点前 aria-pressed=false）",
+   "laneIsCanvas": true,
+   "laneAria": "动画时间轴播放头",
+   "laneSize": {
+    "w": 2212,
+    "h": 115
+   },
+   "height": 182,
+   "domControls": [
+    {
+     "a": "",
+     "t": "s新建轨道导出视频到画布主机位绘",
+     "w": 1600,
+     "h": 182,
+     "x": 0,
+     "y": 818,
+     "tag": "DIV",
+     "pressed": null
+    },
+    {
+     "a": "动画时间轴",
+     "t": "",
+     "w": 32,
+     "h": 32,
+     "x": 709,
+     "y": 826,
+     "tag": "BUTTON",
+     "pressed": "true"
+    },
+    {
+     "a": "",
+     "t": "s新建轨道导出视频到画布主机位绘",
+     "w": 1600,
+     "h": 130,
+     "x": 0,
+     "y": 870,
+     "tag": "DIV",
+     "pressed": null
+    },
+    {
+     "a": "",
+     "t": "s新建轨道导出视频到画布",
+     "w": 1600,
+     "h": 36,
+     "x": 0,
+     "y": 871,
+     "tag": "DIV",
+     "pressed": null
+    },
+    {
+     "a": "",
+     "t": "s新建轨道",
+     "w": 320,
+     "h": 36,
+     "x": 0,
+     "y": 871,
+     "tag": "DIV",
+     "pressed": null
+    },
+    {
+     "a": "播放",
+     "t": "",
+     "w": 26,
+     "h": 24,
+     "x": 8,
+     "y": 877,
+     "tag": "BUTTON",
+     "pressed": null
+    },
+    {
+     "a": "自动帧",
+     "t": "",
+     "w": 24,
+     "h": 24,
+     "x": 34,
+     "y": 877,
+     "tag": "BUTTON",
+     "pressed": "false"
+    },
+    {
+     "a": "循环播放",
+     "t": "",
+     "w": 26,
+     "h": 24,
+     "x": 58,
+     "y": 877,
+     "tag": "BUTTON",
+     "pressed": null
+    },
+    {
+     "a": "播放头位置",
+     "t": "",
+     "w": 46,
+     "h": 24,
+     "x": 88,
+     "y": 877,
+     "tag": "INPUT",
+     "pressed": null
+    },
+    {
+     "a": "",
+     "t": "新建轨道",
+     "w": 82,
+     "h": 24,
+     "x": 230,
+     "y": 877,
+     "tag": "DIV",
+     "pressed": null
+    },
+    {
+     "a": "选中角色、道具或分组后建立轨道",
+     "t": "新建轨道",
+     "w": 82,
+     "h": 24,
+     "x": 230,
+     "y": 877,
+     "tag": "BUTTON",
+     "pressed": null
+    },
+    {
+     "a": "",
+     "t": "导出视频到画布",
+     "w": 1278,
+     "h": 36,
+     "x": 322,
+     "y": 871,
+     "tag": "DIV",
+     "pressed": null
+    },
+    {
+     "a": "",
+     "t": "导出视频到画布",
+     "w": 244,
+     "h": 36,
+     "x": 1356,
+     "y": 871,
+     "tag": "DIV",
+     "pressed": null
+    },
+    {
+     "a": "时间轴缩放",
+     "t": "",
+     "w": 71,
+     "h": 24,
+     "x": 1365,
+     "y": 877,
+     "tag": "INPUT",
+     "pressed": null
+    },
+    {
+     "a": "时间线最小化",
+     "t": "",
+     "w": 24,
+     "h": 24,
+     "x": 1444,
+     "y": 877,
+     "tag": "BUTTON",
+     "pressed": null
+    },
+    {
+     "a": "",
+     "t": "导出视频到画布",
+     "w": 108,
+     "h": 28,
+     "x": 1484,
+     "y": 875,
+     "tag": "BUTTON",
+     "pressed": null
+    },
+    {
+     "a": "",
+     "t": "导出视频到画布",
+     "w": 84,
+     "h": 12,
+     "x": 1496,
+     "y": 883,
+     "tag": "SPAN",
+     "pressed": null
+    },
+    {
+     "a": "",
+     "t": "主机位绘制轨迹",
+     "w": 1600,
+     "h": 129,
+     "x": 0,
+     "y": 871,
+     "tag": "DIV",
+     "pressed": null
+    },
+    {
+     "a": "",
+     "t": "主机位绘制轨迹",
+     "w": 320,
+     "h": 32,
+     "x": 0,
+     "y": 907,
+     "tag": "DIV",
+     "pressed": null
+    },
+    {
+     "a": "",
+     "t": "主机位",
+     "w": 60,
+     "h": 19,
+     "x": 28,
+     "y": 914,
+     "tag": "DIV",
+     "pressed": null
+    },
+    {
+     "a": "",
+     "t": "主机位",
+     "w": 36,
+     "h": 14,
+     "x": 28,
+     "y": 916,
+     "tag": "SPAN",
+     "pressed": null
+    },
+    {
+     "a": "",
+     "t": "绘制轨迹",
+     "w": 220,
+     "h": 24,
+     "x": 92,
+     "y": 911,
+     "tag": "DIV",
+     "pressed": null
+    },
+    {
+     "a": "绘制轨迹",
+     "t": "绘制轨迹",
+     "w": 86,
+     "h": 24,
+     "x": 226,
+     "y": 911,
+     "tag": "BUTTON",
+     "pressed": "false"
+    },
+    {
+     "a": "",
+     "t": "绘制轨迹",
+     "w": 52,
+     "h": 13,
+     "x": 252,
+     "y": 917,
+     "tag": "SPAN",
+     "pressed": null
+    },
+    {
+     "a": "动画时间轴播放头",
+     "t": "",
+     "w": 2212,
+     "h": 115,
+     "x": 322,
+     "y": 871,
+     "tag": "CANVAS",
+     "pressed": null
+    }
+   ],
+   "regionText": [
+    "脚本 V2 11确认镜头2准备资产3合成提示词打开脚本节点 →逐帧拉片逐帧拉片SD 2.5视频素材上传视频后开始拆解维度分镜动态音乐开始拉片陈默_01KT17FN1808 × 1024图片节点 1尝试：图生图图片高清素材-特效-瞳孔异变导演台 2在3D空间中搭建场景并进行多视角截图打开导演台S83·",
+    "s新建轨道导出视频到画布主机位绘制轨迹",
+    "s新建轨道导出视频到画布主机位绘制轨迹",
+    "主机位绘制轨迹"
+   ]
+  },
+  "cameraTabs": [
+   {
+    "t": "属性",
+    "w": 50,
+    "h": 28,
+    "x": 1336
+   },
+   {
+    "t": "NEW运动轨迹",
+    "w": 76,
+    "h": 28,
+    "x": 1394
+   },
+   {
+    "t": "截图",
+    "w": 50,
+    "h": 28,
+    "x": 1478
+   }
+  ],
+  "cameraPanelSections": [
+   "开通会员限时 45 折20",
+   "摄像机属性NEW运动轨迹截图FOV 50°名称切换机位机位1位置xyz跟随目标不跟随角色A旋转xyz注视目标手动坐标手动旋转角色A注视坐标xyz视野角度 (FOV)?控制镜头视野范围。数值越小，画面越近、越聚焦；数值越大，画面越广、能看到更多环境。相机截图",
+   "摄像机",
+   "属性NEW运动轨迹截图FOV 50°名称切换机位机位1位置xyz跟随目标不跟随角色A旋转xyz注视目标手动坐标手动旋转角色A注视坐标xyz视野角度 (FOV)?控制镜头视野范围。数值越小，画面越近、越聚焦；数值越大，画面越广、能看到更多环境。相机截图",
+   "属性NEW运动轨迹截图",
+   "属性NEW运动轨迹截图",
+   "FOV 50°",
+   "FOV 50°",
+   "名称切换机位机位1位置xyz跟随目标不跟随角色A旋转xyz注视目标手动坐标手动旋转角色A注视坐标xyz",
+   "名称切换机位机位1位置xyz跟随目标不跟随角色A旋转xyz注视目标手动坐标手动旋转角色A注视坐标xyz"
+  ],
+  "propertyPage": {
+   "axisRow": [
+    {
+     "tag": "BUTTON",
+     "t": "x",
+     "a": "左右拖动调整 X 轴",
+     "title": "左右拖动调整 X 轴",
+     "type": "button",
+     "min": "",
+     "max": "",
+     "step": "",
+     "value": "",
+     "w": 20,
+     "h": 28,
+     "x": 1336,
+     "y": 465
+    },
+    {
+     "tag": "INPUT",
+     "t": "",
+     "a": "",
+     "title": "",
+     "type": "number",
+     "min": "",
+     "max": "",
+     "step": "0.1",
+     "value": "3.3",
+     "w": 59,
+     "h": 28,
+     "x": 1336,
+     "y": 465
+    },
+    {
+     "tag": "BUTTON",
+     "t": "",
+     "a": "当前帧有关键帧",
+     "title": "当前帧有关键帧",
+     "type": "button",
+     "min": "",
+     "max": "",
+     "step": "",
+     "value": "",
+     "w": 20,
+     "h": 28,
+     "x": 1396,
+     "y": 465
+    },
+    {
+     "tag": "BUTTON",
+     "t": "y",
+     "a": "左右拖动调整 Y 轴",
+     "title": "左右拖动调整 Y 轴",
+     "type": "button",
+     "min": "",
+     "max": "",
+     "step": "",
+     "value": "",
+     "w": 20,
+     "h": 28,
+     "x": 1420,
+     "y": 465
+    },
+    {
+     "tag": "INPUT",
+     "t": "",
+     "a": "",
+     "title": "",
+     "type": "number",
+     "min": "",
+     "max": "",
+     "step": "0.1",
+     "value": "2.2",
+     "w": 59,
+     "h": 28,
+     "x": 1420,
+     "y": 465
+    },
+    {
+     "tag": "BUTTON",
+     "t": "",
+     "a": "当前帧有关键帧",
+     "title": "当前帧有关键帧",
+     "type": "button",
+     "min": "",
+     "max": "",
+     "step": "",
+     "value": "",
+     "w": 20,
+     "h": 28,
+     "x": 1480,
+     "y": 465
+    },
+    {
+     "tag": "BUTTON",
+     "t": "z",
+     "a": "左右拖动调整 Z 轴",
+     "title": "左右拖动调整 Z 轴",
+     "type": "button",
+     "min": "",
+     "max": "",
+     "step": "",
+     "value": "",
+     "w": 20,
+     "h": 28,
+     "x": 1504,
+     "y": 465
+    },
+    {
+     "tag": "INPUT",
+     "t": "",
+     "a": "",
+     "title": "",
+     "type": "number",
+     "min": "",
+     "max": "",
+     "step": "0.1",
+     "value": "10",
+     "w": 59,
+     "h": 28,
+     "x": 1504,
+     "y": 465
+    },
+    {
+     "tag": "BUTTON",
+     "t": "",
+     "a": "当前帧有关键帧",
+     "title": "当前帧有关键帧",
+     "type": "button",
+     "min": "",
+     "max": "",
+     "step": "",
+     "value": "",
+     "w": 20,
+     "h": 28,
+     "x": 1564,
+     "y": 465
+    },
+    {
+     "tag": "BUTTON",
+     "t": "x",
+     "a": "左右拖动调整 X 轴",
+     "title": "左右拖动调整 X 轴",
+     "type": "button",
+     "min": "",
+     "max": "",
+     "step": "",
+     "value": "",
+     "w": 20,
+     "h": 28,
+     "x": 1336,
+     "y": 609
+    },
+    {
+     "tag": "INPUT",
+     "t": "",
+     "a": "",
+     "title": "",
+     "type": "number",
+     "min": "",
+     "max": "",
+     "step": "1",
+     "value": "5.42",
+     "w": 59,
+     "h": 28,
+     "x": 1336,
+     "y": 609
+    },
+    {
+     "tag": "BUTTON",
+     "t": "",
+     "a": "当前帧无关键帧",
+     "title": "当前帧无关键帧",
+     "type": "button",
+     "min": "",
+     "max": "",
+     "step": "",
+     "value": "",
+     "w": 20,
+     "h": 28,
+     "x": 1396,
+     "y": 609
+    }
+   ],
+   "fovSlider": {
+    "min": "15",
+    "max": "90",
+    "value": "50",
+    "w": 170,
+    "h": 20
+   },
+   "fovHelpText": "视野角度 (FOV)?控制镜头视野范围。数值越小，画面越近、越聚焦；数值越大，画",
+   "timelineZoom": {
+    "a": "时间轴缩放",
+    "min": "0",
+    "max": "100",
+    "value": "44",
+    "w": 71,
+    "h": 24
+   },
+   "timelineMinimize": {
+    "a": "时间线最小化",
+    "w": 24,
+    "h": 24
+   }
+  },
+  "motionTab": {
+   "clickedTab": {
+    "ok": true,
+    "w": 76,
+    "h": 28,
+    "text": "NEW运动轨迹"
+   },
+   "panelText": "摄像机属性NEW运动轨迹截图虚拟相机请保持手机和电脑在同一 wifi 下，用手机扫码连接录制重试预设运镜时长位置xyz旋",
+   "hasCreatePathButton": false,
+   "preset": {
+    "w": 248,
+    "h": 36,
+    "a": "预设运镜",
+    "t": "预设运镜"
+   },
+   "durationSlider": {
+    "min": "0.1",
+    "max": "10",
+    "value": "0.1",
+    "w": 170,
+    "h": 20
+   },
+   "uniformScaleRange": {
+    "min": "0.1",
+    "max": "10",
+    "value": "0.1"
+   },
+   "numberSteps": [
+    {
+     "t": "",
+     "step": "0.1",
+     "value": "3.3",
+     "y": 707
+    },
+    {
+     "t": "",
+     "step": "0.1",
+     "value": "2.2",
+     "y": 707
+    },
+    {
+     "t": "",
+     "step": "0.1",
+     "value": "10",
+     "y": 707
+    },
+    {
+     "t": "",
+     "step": "1",
+     "value": "0",
+     "y": 779
+    },
+    {
+     "t": "",
+     "step": "1",
+     "value": "0",
+     "y": 779
+    },
+    {
+     "t": "",
+     "step": "1",
+     "value": "0",
+     "y": 779
+    },
+    {
+     "t": "",
+     "step": "0.05",
+     "value": "1",
+     "y": 851
+    },
+    {
+     "t": "",
+     "step": "0.05",
+     "value": "1",
+     "y": 851
+    },
+    {
+     "t": "",
+     "step": "0.05",
+     "value": "1",
+     "y": 851
+    }
+   ],
+   "buttons": [
+    {
+     "t": "20",
+     "w": 58,
+     "h": 32,
+     "a": ""
+    },
+    {
+     "t": "",
+     "w": 28,
+     "h": 28,
+     "a": "当前已是新对话"
+    },
+    {
+     "t": "",
+     "w": 28,
+     "h": 28,
+     "a": "历史对话"
+    },
+    {
+     "t": "",
+     "w": 28,
+     "h": 28,
+     "a": "新对话无法分享"
+    },
+    {
+     "t": "",
+     "w": 28,
+     "h": 28,
+     "a": "TV Director 全局设置"
+    },
+    {
+     "t": "",
+     "w": 28,
+     "h": 28,
+     "a": "LibTV Plugin"
+    },
+    {
+     "t": "",
+     "w": 28,
+     "h": 28,
+     "a": "停靠到右侧"
+    },
+    {
+     "t": "",
+     "w": 28,
+     "h": 28,
+     "a": "关闭"
+    },
+    {
+     "t": "开启",
+     "w": 26,
+     "h": 18,
+     "a": ""
+    },
+    {
+     "t": "",
+     "w": 24,
+     "h": 24,
+     "a": "关闭浏览器通知提示"
+    },
+    {
+     "t": "属性",
+     "w": 50,
+     "h": 28,
+     "a": ""
+    },
+    {
+     "t": "NEW运动轨迹",
+     "w": 76,
+     "h": 28,
+     "a": ""
+    },
+    {
+     "t": "截图",
+     "w": 50,
+     "h": 28,
+     "a": ""
+    },
+    {
+     "t": "录制",
+     "w": 190,
+     "h": 36,
+     "a": ""
+    }
+   ]
+  }
+ },
+ "cloneStatic": {
+  "motionSlider": {
+   "max": 10.0,
+   "min": 0.0,
+   "uniformMin": 0.1,
+   "uniformStep": 0.05,
+   "line": "MOTION_SLIDER_MAX = 10;"
+  },
+  "deadButtons": {
+   "presetHasOnClick": false,
+   "createPathHasOnClick": false,
+   "presetLabel": "⟳ 预设运镜"
+  },
+  "axisDrag": {
+   "cloneHasDragAria": true,
+   "cloneHasKeyframeToggle": true
+  },
+  "fov": {
+   "cloneComment": "源站 range 实测 min=15 / max=90 / step=1",
+   "cloneUsesConsts": true,
+   "fovMinInStore": 15.0,
+   "fovMaxInStore": 90.0
+  },
+  "timeline": {
+   "height182": true,
+   "minimizeComment": "「时间线最小化」把它收成 88px",
+   "hasCurveEditorEntry": true,
+   "hasZoomSlider": true,
+   "zoomSnippet": "<input\n              type=\"range\"\n              aria-label=\"时间轴缩放\"\n              title=\"时间轴缩放\"\n              data-director-timeline-zoom\n              min=\"0\"\n              max=\"100\"\n              value={timeline.zoom}\n              onChange={(event) =>\n            ",
+   "drawTrail86": true
+  },
+  "undo": {
+   "undoDirector": true,
+   "deskHotkey": true
+  }
+ },
+ "checks": [
+  {
+   "label": "C1 源站左侧 rail 7 枚：`场景` 的 `aria-pressed` **默认就是 'true'** ⟹ clone 点它 0 新增是「点已激活 toggle」，不是缺陷；`帮助` 是 null（非 toggle）",
+   "pass": true,
+   "detail": {
+    "leftRail": [
+     {
+      "a": "场景",
+      "pressed": "true",
+      "title": ""
+     },
+     {
+      "a": "添加角色",
+      "pressed": "false",
+      "title": ""
+     },
+     {
+      "a": "添加机位",
+      "pressed": "false",
+      "title": ""
+     },
+     {
+      "a": "全景图",
+      "pressed": "false",
+      "title": ""
+     },
+     {
+      "a": "选择画幅比例",
+      "pressed": "false",
+      "title": ""
+     },
+     {
+      "a": "AI 识图导入",
+      "pressed": null,
+      "title": ""
+     },
+     {
+      "a": "帮助",
+      "pressed": null,
+      "title": ""
+     }
+    ],
+    "bottomRail": [
+     {
+      "a": "移动",
+      "pressed": null
+     },
+     {
+      "a": "截图",
+      "pressed": null
+     },
+     {
+      "a": "动画时间轴",
+      "pressed": "false"
+     }
+    ]
+   }
+  },
+  {
+   "label": "C2 源站底部 rail 3 枚，`动画时间轴` 默认 `aria-pressed='false'` ⟹ 源站时间线默认关着（clone 是常驻）",
+   "pass": true,
+   "detail": [
+    {
+     "a": "移动",
+     "pressed": null
+    },
+    {
+     "a": "截图",
+     "pressed": null
+    },
+    {
+     "a": "动画时间轴",
+     "pressed": "false"
+    }
+   ]
+  },
+  {
+   "label": "C3 **源站没有撤销/重做按钮**：全页 87 个可交互控件，文本/title/aria-label 三条路查「撤销/重做/undo/redo」命中 **0** ⟹ clone「功能完整但只有键盘」是**源站同款**，不是缺陷",
+   "pass": true,
+   "detail": {
+    "source": {
+     "totalControls": 87,
+     "searched": [
+      "撤销",
+      "重做",
+      "undo",
+      "redo"
+     ],
+     "searchedIn": [
+      "textContent",
+      "title",
+      "aria-label"
+     ],
+     "hits": [],
+     "sections": [
+      {
+       "tag": "SECTION",
+       "role": "dialog",
+       "w": 400,
+       "h": 640,
+       "x": 1184,
+       "text": ""
+      },
+      {
+       "tag": "HEADER",
+       "role": null,
+       "w": 399,
+       "h": 52,
+       "x": 1185,
+       "text": ""
+      },
+      {
+       "tag": "ASIDE",
+       "role": null,
+       "w": 281,
+       "h": 1000,
+       "x": 0,
+       "text": ""
+      },
+      {
+       "tag": "HEADER",
+       "role": null,
+       "w": 280,
+       "h": 52,
+       "x": 0,
+       "text": ""
+      },
+      {
+       "tag": "SECTION",
+       "role": null,
+       "w": 280,
+       "h": 237,
+       "x": 1320,
+       "text": ""
+      },
+      {
+       "tag": "SECTION",
+       "role": null,
+       "w": 280,
+       "h": 212,
+       "x": 1320,
+       "text": ""
+      },
+      {
+       "tag": "SECTION",
+       "role": null,
+       "w": 280,
+       "h": 200,
+       "x": 1320,
+       "text": ""
+      },
+      {
+       "tag": "SECTION",
+       "role": null,
+       "w": 280,
+       "h": 168,
+       "x": 1320,
+       "text": ""
+      },
+      {
+       "tag": "SECTION",
+       "role": null,
+       "w": 280,
+       "h": 207,
+       "x": 1320,
+       "text": ""
+      },
+      {
+       "tag": "NAV",
+       "role": null,
+       "w": 128,
+       "h": 48,
+       "x": 620,
+       "text": ""
+      }
+     ]
+    },
+    "cloneStatic": {
+     "undoDirector": true,
+     "deskHotkey": true
+    }
+   }
+  },
+  {
+   "label": "C4 **源站时间线泳道是一个 `<canvas aria-label='动画时间轴播放头'>`** ⟹ 关键帧不是 DOM 按钮；「左侧行=增删 / 泳道区=选中」是 clone 独有的实现选择。对平项：`绘制轨迹` 86×24、`自动帧` 默认 false、时间线高 182px、旋转 step=1、缩放 step=0.05",
+   "pass": true,
+   "detail": {
+    "sourceTimeline": {
+     "openedBy": "底部 rail 的「动画时间轴」（点前 aria-pressed=false）",
+     "laneIsCanvas": true,
+     "laneAria": "动画时间轴播放头",
+     "laneSize": {
+      "w": 2212,
+      "h": 115
+     },
+     "height": 182,
+     "regionText": [
+      "脚本 V2 11确认镜头2准备资产3合成提示词打开脚本节点 →逐帧拉片逐帧拉片SD 2.5视频素材上传视频后开始拆解维度分镜动态音乐开始拉片陈默_01KT17FN1808 × 1024图片节点 1尝试：图生图图片高清素材-特效-瞳孔异变导演台 2在3D空间中搭建场景并进行多视角截图打开导演台S83·",
+      "s新建轨道导出视频到画布主机位绘制轨迹",
+      "s新建轨道导出视频到画布主机位绘制轨迹",
+      "主机位绘制轨迹"
+     ]
+    },
+    "cloneStatic": {
+     "height182": true,
+     "minimizeComment": "「时间线最小化」把它收成 88px",
+     "hasCurveEditorEntry": true,
+     "hasZoomSlider": true,
+     "zoomSnippet": "<input\n              type=\"range\"\n              aria-label=\"时间轴缩放\"\n              title=\"时间轴缩放\"\n              data-director-timeline-zoom\n              min=\"0\"\n              max=\"100\"\n              value={timeline.zoom}\n              onChange={(event) =>\n            ",
+     "drawTrail86": true
+    }
+   }
+  },
+  {
+   "label": "C5 源站 DOM 层面**没有曲线编辑器入口**（时间线工具条只有 `新建轨道` + `导出视频到画布`）⟹ clone 的 `data-director-open-curve-editor` 是 clone 独有的功能",
+   "pass": true,
+   "detail": {
+    "cloneHasCurveEditor": true,
+    "sourceDomControls": [
+     "s新建轨道导出视频到画布主机位绘",
+     "动画时间轴",
+     "s新建轨道导出视频到画布主机位绘",
+     "s新建轨道导出视频到画布",
+     "s新建轨道",
+     "播放",
+     "自动帧",
+     "循环播放",
+     "播放头位置",
+     "新建轨道",
+     "选中角色、道具或分组后建立轨道",
+     "导出视频到画布",
+     "导出视频到画布",
+     "时间轴缩放",
+     "时间线最小化",
+     "导出视频到画布",
+     "导出视频到画布",
+     "主机位绘制轨迹",
+     "主机位绘制轨迹",
+     "主机位",
+     "主机位",
+     "绘制轨迹",
+     "绘制轨迹",
+     "绘制轨迹",
+     "动画时间轴播放头"
+    ]
+   }
+  },
+  {
+   "label": "C6 源站机位三页签与 clone 一一对应：属性 50×28 / **运动轨迹 76×28 带 NEW 角标 38×20** / 截图 50×28",
+   "pass": true,
+   "detail": [
+    {
+     "t": "属性",
+     "w": 50,
+     "h": 28,
+     "x": 1336
+    },
+    {
+     "t": "NEW运动轨迹",
+     "w": 76,
+     "h": 28,
+     "x": 1394
+    },
+    {
+     "t": "截图",
+     "w": 50,
+     "h": 28,
+     "x": 1478
+    }
+   ]
+  },
+  {
+   "label": "C7 **Batch 583 的存疑项有源站证据了**：源站 `时长` range `min=0.1 max=10 value=0.1`，clone `MOTION_SLIDER_MIN = 0` ⟹ **clone 下界错**（上界 10 对）",
+   "pass": true,
+   "detail": {
+    "source": {
+     "min": "0.1",
+     "max": "10",
+     "value": "0.1",
+     "w": 170,
+     "h": 20
+    },
+    "clone": {
+     "max": 10.0,
+     "min": 0.0,
+     "uniformMin": 0.1,
+     "uniformStep": 0.05,
+     "line": "MOTION_SLIDER_MAX = 10;"
+    }
+   }
+  },
+  {
+   "label": "C8 源站运动轨迹页签**没有「创建运动轨迹」按钮** ⟹ clone 的 `data-director-motion-create-path` 是 clone 自造、且恰好又是那个无 `onClick` 的按钮；源站有的是 `预设运镜`（248×36、aria-label、无 ⟳ 前缀）",
+   "pass": true,
+   "detail": {
+    "sourceMotionTab": {
+     "clickedTab": {
+      "ok": true,
+      "w": 76,
+      "h": 28,
+      "text": "NEW运动轨迹"
+     },
+     "panelText": "摄像机属性NEW运动轨迹截图虚拟相机请保持手机和电脑在同一 wifi 下，用手机扫码连接录制重试预设运镜时长位置xyz旋",
+     "hasCreatePathButton": false,
+     "preset": {
+      "w": 248,
+      "h": 36,
+      "a": "预设运镜",
+      "t": "预设运镜"
+     },
+     "durationSlider": {
+      "min": "0.1",
+      "max": "10",
+      "value": "0.1",
+      "w": 170,
+      "h": 20
+     },
+     "uniformScaleRange": {
+      "min": "0.1",
+      "max": "10",
+      "value": "0.1"
+     },
+     "numberSteps": [
+      {
+       "t": "",
+       "step": "0.1",
+       "value": "3.3",
+       "y": 707
+      },
+      {
+       "t": "",
+       "step": "0.1",
+       "value": "2.2",
+       "y": 707
+      },
+      {
+       "t": "",
+       "step": "0.1",
+       "value": "10",
+       "y": 707
+      },
+      {
+       "t": "",
+       "step": "1",
+       "value": "0",
+       "y": 779
+      },
+      {
+       "t": "",
+       "step": "1",
+       "value": "0",
+       "y": 779
+      },
+      {
+       "t": "",
+       "step": "1",
+       "value": "0",
+       "y": 779
+      },
+      {
+       "t": "",
+       "step": "0.05",
+       "value": "1",
+       "y": 851
+      },
+      {
+       "t": "",
+       "step": "0.05",
+       "value": "1",
+       "y": 851
+      },
+      {
+       "t": "",
+       "step": "0.05",
+       "value": "1",
+       "y": 851
+      }
+     ],
+     "buttons": [
+      {
+       "t": "20",
+       "w": 58,
+       "h": 32,
+       "a": ""
+      },
+      {
+       "t": "",
+       "w": 28,
+       "h": 28,
+       "a": "当前已是新对话"
+      },
+      {
+       "t": "",
+       "w": 28,
+       "h": 28,
+       "a": "历史对话"
+      },
+      {
+       "t": "",
+       "w": 28,
+       "h": 28,
+       "a": "新对话无法分享"
+      },
+      {
+       "t": "",
+       "w": 28,
+       "h": 28,
+       "a": "TV Director 全局设置"
+      },
+      {
+       "t": "",
+       "w": 28,
+       "h": 28,
+       "a": "LibTV Plugin"
+      },
+      {
+       "t": "",
+       "w": 28,
+       "h": 28,
+       "a": "停靠到右侧"
+      },
+      {
+       "t": "",
+       "w": 28,
+       "h": 28,
+       "a": "关闭"
+      },
+      {
+       "t": "开启",
+       "w": 26,
+       "h": 18,
+       "a": ""
+      },
+      {
+       "t": "",
+       "w": 24,
+       "h": 24,
+       "a": "关闭浏览器通知提示"
+      },
+      {
+       "t": "属性",
+       "w": 50,
+       "h": 28,
+       "a": ""
+      },
+      {
+       "t": "NEW运动轨迹",
+       "w": 76,
+       "h": 28,
+       "a": ""
+      },
+      {
+       "t": "截图",
+       "w": 50,
+       "h": 28,
+       "a": ""
+      },
+      {
+       "t": "录制",
+       "w": 190,
+       "h": 36,
+       "a": ""
+      }
+     ]
+    },
+    "cloneStatic": {
+     "presetHasOnClick": false,
+     "createPathHasOnClick": false,
+     "presetLabel": "⟳ 预设运镜"
+    }
+   }
+  },
+  {
+   "label": "C9 属性页每轴是三件套：`左右拖动调整 X 轴` 拖动钮 + number 输入 + `当前帧有关键帧`/`当前帧无关键帧` 开关；**clone 三样都已经有** ⟹ 不是缺口；源站 FOV range `min=15 max=90 value=50`，与 clone store 常量 + Batch 610 注释三方一致",
+   "pass": true,
+   "detail": {
+    "sourceDragBtns": 4,
+    "sourceNumberInputs": 4,
+    "sourceKeyframeBtns": 4,
+    "sample": [
+     {
+      "tag": "BUTTON",
+      "t": "x",
+      "a": "左右拖动调整 X 轴",
+      "title": "左右拖动调整 X 轴",
+      "type": "button",
+      "min": "",
+      "max": "",
+      "step": "",
+      "value": "",
+      "w": 20,
+      "h": 28,
+      "x": 1336,
+      "y": 465
+     },
+     {
+      "tag": "INPUT",
+      "t": "",
+      "a": "",
+      "title": "",
+      "type": "number",
+      "min": "",
+      "max": "",
+      "step": "0.1",
+      "value": "3.3",
+      "w": 59,
+      "h": 28,
+      "x": 1336,
+      "y": 465
+     },
+     {
+      "tag": "BUTTON",
+      "t": "",
+      "a": "当前帧有关键帧",
+      "title": "当前帧有关键帧",
+      "type": "button",
+      "min": "",
+      "max": "",
+      "step": "",
+      "value": "",
+      "w": 20,
+      "h": 28,
+      "x": 1396,
+      "y": 465
+     },
+     {
+      "tag": "BUTTON",
+      "t": "y",
+      "a": "左右拖动调整 Y 轴",
+      "title": "左右拖动调整 Y 轴",
+      "type": "button",
+      "min": "",
+      "max": "",
+      "step": "",
+      "value": "",
+      "w": 20,
+      "h": 28,
+      "x": 1420,
+      "y": 465
+     },
+     {
+      "tag": "INPUT",
+      "t": "",
+      "a": "",
+      "title": "",
+      "type": "number",
+      "min": "",
+      "max": "",
+      "step": "0.1",
+      "value": "2.2",
+      "w": 59,
+      "h": 28,
+      "x": 1420,
+      "y": 465
+     },
+     {
+      "tag": "BUTTON",
+      "t": "",
+      "a": "当前帧有关键帧",
+      "title": "当前帧有关键帧",
+      "type": "button",
+      "min": "",
+      "max": "",
+      "step": "",
+      "value": "",
+      "w": 20,
+      "h": 28,
+      "x": 1480,
+      "y": 465
+     }
+    ],
+    "sourceFov": {
+     "min": "15",
+     "max": "90",
+     "value": "50",
+     "w": 170,
+     "h": 20
+    },
+    "cloneStatic": {
+     "cloneHasDragAria": true,
+     "cloneHasKeyframeToggle": true,
+     "cloneComment": "源站 range 实测 min=15 / max=90 / step=1",
+     "cloneUsesConsts": true,
+     "fovMinInStore": 15.0,
+     "fovMaxInStore": 90.0
+    }
+   }
+  },
+  {
+   "label": "C10 时间线缩放滑杆**已经对平**：源站 `aria-label='时间轴缩放'` min=0 max=100 value=44，clone `data-director-timeline-zoom` 同 aria / 同 min / 同 max（DirectorTimeline.tsx:1337-1346）⟹ **不是差值**。我第一版 grep `时间轴缩放|时间线最小化` 时用 `head -3` 截断，只看见「时间线最小化」就断言 clone 没有缩放滑杆 —— **一次 grep 的 head 不能当全集**",
+   "pass": true,
+   "detail": {
+    "source": {
+     "zoom": {
+      "a": "时间轴缩放",
+      "min": "0",
+      "max": "100",
+      "value": "44",
+      "w": 71,
+      "h": 24
+     },
+     "minimize": {
+      "a": "时间线最小化",
+      "w": 24,
+      "h": 24
+     }
+    },
+    "cloneHasZoomSlider": true,
+    "cloneSnippet": "<input\n              type=\"range\"\n              aria-label=\"时间轴缩放\"\n              title=\"时间轴缩放\"\n              data-director-timeline-zoom\n              min=\"0\"\n              max=\"100\"\n              value={timeline.zoom}\n              onChange={(event) =>\n            "
+   }
+  }
+ ],
+ "probeCorrections": [
+  "752g 点源站「运动轨迹」页签失败：那个按钮的 `textContent` 是 **`NEW运动轨迹`**（把角标也带进去了），我做的是 `=== '运动轨迹'` 精确比 ⟹ 没点中。**含角标的按钮不能用精确文本匹配**（752h 改 `indexOf(...) >= 0`）",
+  "我一度把「源站没有 clone 的 `左右拖动调整 X 轴`」和「clone 的 FOV 量程没对上」写成差值，**核 `src/` 之后自己撤回**：clone 两样都已经有（DirectorInspector.tsx:125/162/1696；FOV_MIN/MAX 在 store 里，Batch 610 注释写着「源站 range 实测 min=15 / max=90 / step=1」）。**先查 clone 有没有，再谈差值** —— 同 741「分清声明与实现」的家族",
+  "752d 我按 `y>810` 过滤「时间线区域」，结果捞进来的是画布底栏和聊天面板 —— **筛一个区域要按它自己的容器，不是我以为的坐标范围**",
+  "752e 用 `document.querySelector('svg')` 式的取首个节点思路去找泳道，最后靠读 JSON 才看清泳道其实是 canvas ⟹ 746/747「读错节点」第三次"
+ ],
+ "notClaimed": [
+  "源站只测了这一张测试画布、一个机位（机位1）、一个角色（角色A）、一条轨道（主机位），与 clone 的种子（3 机位 / 1 角色 / 2 轨道）不同 ⟹ 不做数量对照",
+  "源站「预设运镜」「绘制轨迹」「帮助」点下去会开什么**没有验**（本轮只读结构）",
+  "源站 `统一缩放` 的 range 属性没取到（滑杆在折叠线以下）",
+  "源站时间线泳道是 canvas，关键帧无法用 DOM 断言 ⟹ clone 的关键帧行为只能与源站的截图/像素对照，本批没做",
+  "没有验证源站的任何生成链路（全程未触发生图/生视频）",
+  "源站读数是一次性现场快照，**不构成两轮一致性证据**；clone 侧未重跑，只复核了静态"
+ ]
+}
