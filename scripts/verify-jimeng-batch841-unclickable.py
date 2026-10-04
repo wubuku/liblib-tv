@@ -5716,6 +5716,12 @@ def main() -> int:
     # 970：**复刻侧**同口径重测（自身 tid + 最近祖先 tid 都读）
     p970 = ROOT / "scripts/jimeng_probe970_owntid_ck.py"
     _p970 = p970.read_text(encoding="utf-8") if p970.exists() else ""
+    # ⭐ 971：源站探针，取样 954 那个「未复现条目」——
+    #   ⭐⭐⭐ **三套口径并读**（`aria_label` / `aria_whoami` / `inner_text_head`）
+    #   ⇒ 这就是本批的**来由**：954 那次两侧口径不同（源站 `WHOAMI_JS`
+    #   **带 innerText 回退**、复刻侧**不带**）⇒ BODY 一枚被算成「多出一个」
+    p971 = ROOT / "scripts/jimeng_probe971_savestate_src.py"
+    _p971 = p971.read_text(encoding="utf-8") if p971.exists() else ""
     # ⭐ 970 的 CCCC.2 要**反证 816 那条决策真的在仓库里**（钉源码原文，
     #   不钉我自己写的转述）
     p816 = ROOT / "scripts/verify-jimeng-batch816-anchors.py"
@@ -8206,6 +8212,117 @@ def main() -> int:
           and "**锚点自查报「0 问题」≠ 全部被查过**" in _ausrc
           and "**它只查「已登记」的那些变量**" in _ausrc
           and '"_p816": "scripts/verify-jimeng-batch816-anchors.py",' in _anchs)
+
+    # ══ 批 971：⭐⭐⭐⭐⭐ 954 那个「未复现条目」= **`document.body` 本身** ══
+    print("— EEEEE. 批 971 取样 954 未复现项：它是 document.body，不是 UI 元素 —")
+
+    check("EEEEE.1 ⭐⭐⭐⭐⭐ **954 记的 `out:测试项目…已保存…分享` 不是 UI 元素 "
+          "—— 它就是 `document.body` 本身**：三条独立读数同指一枚（k=90，两轮逐字相同）"
+          "—— ① 落焦元素 `tag = ` **`BODY`**；② `self_tid = None` **且** "
+          "`closest_tid = None`（自己与所有祖先都没有 `data-testid`）；"
+          "③ `tabindex = None`、`el.tabIndex = -1`、`is_focusable = false`、"
+          "`rect = [0, 0, 1512, 1200]`（**整块视口**）、`inner_text_head` = "
+          "**页面顶部那一大片文本**、`n_children` = **12–13**；"
+          "⇒ ⭐⭐⭐ **成名的机制**：`WHOAMI_JS` 的 `tid = a.closest("
+          "'[data-testid]')` 对 `body` **必然是 `null`** ⇒ `aria` 就**回退到 "
+          "`innerText.slice(0, 30)`** ⇒ **整页文本被当成这个元素的「名字」** "
+          "⇒ 它是**焦点掉出文档时的兜底落点** ⇒ ⇒ ⭐⭐⭐⭐ "
+          "**挂了几十批的待办「复刻缺的项目面板停靠点」可以彻底结案**，"
+          "而结案依据是「**找到了那枚元素本身**」、**不是**「重测没找到」",
+          '"body_is_document_body_971"' in _ausrc
+          and "**954 记的 `out:测试项目…已保存…分享` 不是 UI 元素 —— " in _ausrc
+          and "**三条独立读数同指一枚**" in _ausrc
+          and "`tag = ` **`BODY`**" in _ausrc
+          and "`self_tid = None` **且** `closest_tid = None` " in _ausrc
+          and "`is_focusable = false`" in _ausrc
+          and "`rect = [0, 0, 1512, 1200]`" in _ausrc
+          and "`n_children` = **12–13**" in _ausrc
+          and "**回退到 `innerText.slice(0, 30)`**" in _ausrc
+          and "**它是焦点掉出文档时的兜底落点，" in _ausrc
+          and "不是「项目面板」**" in _ausrc
+          and "结案依据是「**找到了那枚元素本身**」" in _ausrc
+          # ⭐⭐ 钉探针：三套口径**并读**，且每套各有**自证断言**（少一套就红）
+          and 'aria_label: al,' in _p971
+          and "aria_whoami: al || ti || (txt || '').slice(0, 30) || null," in _p971
+          and 'inner_text_head: (txt || \'\').slice(0, 40),' in _p971
+          and 'contains_saved:' in _p971
+          and 'n_children: a.childElementCount,' in _p971
+          and 'assert TEXTHO_JS.count("aria_label: al,") == 1' in _p971
+          and 'assert TEXTHO_JS.count("aria_whoami: al || ti ||") == 1' in _p971
+          and '"three_calibers_present_both_reps"' in _p971)
+
+    check("EEEEE.2 ⭐⭐⭐⭐⭐ **954 那句「源站多出 1」的成因终于说得出机制了 —— "
+          "两侧的「名字」用了不同口径（这是这一族错的**最早一次**，954 就是源头）**："
+          "**源站侧**用 `WHOAMI_JS`（`aria-label || title || innerText.slice(0,30)`）"
+          "⇒ **`BODY` 拿到了一个假名字**；**复刻侧**读**纯 `aria-label`**（不带回退）"
+          "⇒ `BODY` 读到 `null`、**根本不出现在名字表里** "
+          "⇒ ⇒ ⭐⭐⭐ **同一枚元素、同一件事，两侧只差一个回退规则、就差恰好 1**，"
+          "与「复刻少了一个 UI 元素」毫无关系；⇒ ⭐⭐⭐⭐ **同口径之后**："
+          "源站真 UI 停靠点 **17 枚**、复刻真 UI 停靠点 **17 枚** ⇒ **相等**；"
+          "⇒ ⭐⭐ 换成 `(tag, 自身 tid, 祖先 tid)` 作键：源站 **16** / 复刻 **17**，"
+          "差的 3 个键**恰好**是那两处 816 有意偏离（源站 `更多` 自身无 tid；"
+          "复刻 `更多` = `canvas-more-trigger`、`生成历史` = `canvas-history-launcher`；"
+          "而源站 `搜索` 与 `生成历史` **共用**一个 tid ⇒ **折叠成 1 个键**，"
+          "这才是 16 与 17 的真正来由）⇒ ⇒ **两侧 UI 停靠点实质等价**",
+          '"why_954_saw_one_extra_971"' in _ausrc
+          and "两侧的「名字」用了不同口径**" in _ausrc
+          and "（这是这一族错的**最早一次**" in _ausrc
+          and "954 就是它的源头" in _ausrc
+          and "**`BODY` 拿到了一个假名字**" in _ausrc
+          and "**不带回退**" in _ausrc
+          and "**根本不出现在名字表里**" in _ausrc
+          and "⇒ 差恰好 1**" in _ausrc
+          and "源站真 UI 停靠点 **17 枚**、" in _ausrc
+          and "复刻真 UI 停靠点 **17 枚** ⇒ **相等**" in _ausrc
+          and "源站 **16** / 复刻 **17**" in _ausrc
+          and "差的 3 个键**恰好**是那两处" in _ausrc
+          and "816 有意偏离（源站 `更多` 自身无 tid" in _ausrc
+          and "**折叠成 1 个键**" in _ausrc
+          and "**两侧 UI 停靠点实质等价**" in _ausrc
+          # ⭐⭐ **反证**：「`BODY` 那枚两侧 `rect` 完全相同」必须有两侧读数支撑
+          and '"both_sides_have_fallback_971"' in _ausrc
+          and "而是两侧各带一枚非 UI 兜底落点**" in _ausrc
+          and "**`BODY` 那枚两侧 `rect` **完全相同** " in _ausrc
+          and "**只有复刻多一枚 0×0 的 `NEXTJS-PORTAL`**" in _ausrc
+          # ⭐ 钉探针：门必须证明「`closest_tid is None` 的落点」**真的会命中东西**
+          #   （恒 0 时「不存在」与「判据写错」分不开，必须如实判红）
+          and '"closest_none_read_is_live_both_reps"' in _p971
+          and '"out_segment_walked_both_reps"' in _p971)
+
+    check("EEEEE.3 ⭐⭐⭐⭐⭐ **本批最系统的一条：任何用 `WHOAMI_JS` 的 `aria` 做 "
+          "out 段停靠点统计的批次，都必须先排除 `tag == 'BODY'`** "
+          "—— 954 / 959 / 961 / 966 都用过这个口径 ⇒ **判据层面的修法**："
+          "凡是以「停靠点集合」为分母的门，**分母里必须显式剔掉 "
+          "`BODY`/`NEXTJS-PORTAL`**，否则**分母上挂着一枚不是 UI 的东西**、"
+          "**「集合相等」这门判据就永远差 1 或差 2** ⇒ "
+          "**这不是「再测一遍」能解决的 —— 口径写在脚本里**；"
+          "⚠️ 另两条纪律：**未查明就写未查明**（`BODY` 为何有时在线有时不在线："
+          "969 那轮没有、971 这轮有，而两批各自 2/2 轮内一致 ⇒ **不是随机噪声**、"
+          "属**规模量**，本批无对照 ⇒ **猜测已标明是猜测、未混进结论**）；"
+          "**读数里的 `0` 绝不能被 `or` 兜底**（`(tab_index_prop or -1) < 0` "
+          "会把**所有可聚焦元素**判成不可聚焦 —— 本批对账脚本就踩了这个坑）",
+          '"systemic_reading_rule_971"' in _ausrc
+          and "**954 / 959 / 961 / 966 都用过这个口径**" in _ausrc
+          and "分母里必须显式剔掉 `BODY`/`NEXTJS-PORTAL`**" in _ausrc
+          and "**「集合相等」这门判据就永远差 1 或差 2**" in _ausrc
+          and "**口径写在脚本里**" in _ausrc
+          and '"why_body_sometimes_971"' in _ausrc
+          and "**未查明（本批只记，不下结论）**" in _ausrc
+          and "**它不是随机噪声**" in _ausrc
+          and "**但本批没有对照，不许把它当结论**" in _ausrc
+          and '"falsy_zero_bug_971"' in _ausrc
+          and "**纪律：处理读数时不要用 `or` 兜底" in _ausrc
+          and "必须写显式的 `is None` 判断" in _ausrc
+          and "门**必须挂在独立分母上**" in _ausrc
+          # ⭐⭐⭐ **第六次「静默跳过」的预防**：`_p971` **与判据同一步**读进来
+          and '"_p971": "scripts/jimeng_probe971_savestate_src.py",' in _anchs
+          # ⭐ 钉探针：只读、不调 `focus()`；两轮一致 + 监听器配平 + 键不重叠
+          and '"reps_agree"' in _p971
+          and '"keys_disjoint"' in _p971
+          and '"fired_eq_rows_both_reps"' in _p971
+          and '"listener_balanced_both_reps"' in _p971
+          and "**从不调 `focus()`** ⇒ 不污染焦点读数" in _p971
+          and "**本批零计费动作。**" in _p971)
 
 
     check("AAAAA.4 ⚠️⚠️ **步长那道门第一版太弱，是干跑当场抓到的**：它只查 "
