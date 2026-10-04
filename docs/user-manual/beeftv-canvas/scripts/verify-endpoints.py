@@ -81,7 +81,6 @@ NON_BACKEND = {
                             "那会让抽取逻辑复杂到不值得（本条已由 Batch 96 的证据链单独覆盖）",
 }
 
-ROUTE_RE = re.compile(r'(?:GET|POST|PUT|DELETE|PATCH)\("([^"]+)"')
 
 # 反引号内的端点令牌。**方法与路径分开捕获**——
 # Batch 165 的探针曾用 `"/api/x".partition(" ")`，而它在**没有空格**时
@@ -133,10 +132,7 @@ def collect_routes(src, ref=None):
     # 改成 batchread.read_many：**两次进程调用取代 347 次**，
     # 实测 0.19 秒且与逐个 `git show` **逐字节一致**。
     # **只改读取方式，不改判据逻辑**——`norm()` / `strip_api()` 之后一步没动。
-    routes = set()
-    for _f, body in read_many(src, ref, go_files).items():
-        for m in ROUTE_RE.finditer(body.decode("utf-8", "replace")):
-            routes.add(m.group(1))
+    routes = beefsrc.routes_in(read_many(src, ref, go_files))
     return routes
 
 

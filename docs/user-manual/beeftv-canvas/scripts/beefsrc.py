@@ -41,6 +41,7 @@
 """
 
 import os
+import re
 import subprocess
 
 #: 兜底用的**机器专属**绝对路径。**它是候选之一而不是唯一来源**——
@@ -99,3 +100,34 @@ def explain():
     for c in candidates():
         lines.append("  %s  %s" % ("✓" if is_repo(c) else "✗", c))
     return "\n".join(lines)
+
+
+# ── 「从前端 Go 源码里抽路由」的单一来源（Batch 263 收敛）─────────────────
+#: **闸 37 登记的跨文件重复之一**（`25eecbe17b93`）：
+#: `verify-endpoints.py` 与 `verify-exclusions.py` 各写了一份**逐字相同**的
+#: `ROUTE_RE`，**而两处连抽取循环都逐字相同**
+#: （`read_many` → `decode` → `finditer` → `group(1)`）——
+#: **两份在问同一件事，不是在问两件事**（闸 37 只核「字面量是否一模一样」，
+#: **「是不是在问同一件事」得自己判断**——那一半它不管）。
+#: **而它们「怎么读」是不同的**（一个自己 `git ls-tree`、一个走本地的 `git_ls`），
+#: **所以收敛的切面是「怎么抽」，不是「怎么读」**——
+#: **把读法也一起收进来会强迫两个闸共用同一种读法，那是一次语义变更，不是收敛。**
+ROUTE_RE = re.compile(r'(?:GET|POST|PUT|DELETE|PATCH)\("([^"]+)"')
+
+
+def routes_in(blobs):
+    """从一批**已读回**的 Go 源码 blob（`{路径: bytes}`）里抽出路由路径的集合。
+
+    **入参刻意是「已经读好的 blob」而不是「仓与 ref」**：
+    **读法两个闸不一样，而抽法一模一样**——
+    **收敛一个共同的东西，不顺手统一它们不一样的地方**（纪律 250）。
+
+    **逐字保持原样**：`decode("utf-8", "replace")` 而不抛解码错误，
+    **因为「切出来的正好是 size 字节」这件事只在 bytes 上成立**，
+    所以显式解码、不走 `text=True`（走 text 就得编解码往返，而往返可能改变内容）。
+    """
+    routes = set()
+    for body in blobs.values():
+        for m in ROUTE_RE.finditer(body.decode("utf-8", "replace")):
+            routes.add(m.group(1))
+    return routes

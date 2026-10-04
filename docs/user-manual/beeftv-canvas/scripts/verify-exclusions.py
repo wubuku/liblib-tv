@@ -110,7 +110,6 @@ def condition_blocks():
 
 AGENT_BRANCH = "origin/codex/agent-product-v1610-20260928"
 
-ROUTE_RE = re.compile(r'(?:GET|POST|PUT|DELETE|PATCH)\("([^"]+)"')
 
 
 def find_source():
@@ -764,13 +763,7 @@ def main():
     go_files = [f for f in git_ls(src, ref)
                 if f.startswith("backend/") and f.endswith(".go")
                 and not f.endswith("_test.go")]
-    routes = set()
-    for f, body in read_many(src, ref, go_files).items():
-        # 批量读回的是 **bytes**（按 size 精确切分的前提），而 ROUTE_RE 是字符串正则。
-        # **必须显式解码**——顺带说明为什么不能用 `text=True`：
-        # 走 text 就得编解码往返，而「切出来的正好是 size 字节」这件事只在 bytes 上成立。
-        for m in ROUTE_RE.finditer(body.decode("utf-8", "replace")):
-            routes.add(m.group(1))
+    routes = beefsrc.routes_in(read_many(src, ref, go_files))
     agent_routes = sorted(r for r in routes if "agent" in r)
     if agent_routes:
         problems.append(

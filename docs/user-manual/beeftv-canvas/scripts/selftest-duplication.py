@@ -17,7 +17,9 @@
      而做完正确动作之后它必须闭嘴）
 """
 
+import ast
 import hashlib
+import importlib.util
 import io
 import os
 import shutil
@@ -113,6 +115,77 @@ def extract_re_line(path):
     raise AssertionError("前提失配：%s 里找不到一行 re.compile(" % path)
 
 
+def first_accepted():
+    """从真闸里读出 `ACCEPTED` 的**第一条**（按源码顺序），返回 `(key, 文件列表)`。
+
+    **为什么要动态取，而不是写死某一条 key**：
+    第一版把 key（`25eecbe17b93`）与素材文件（`verify-endpoints.py`）**写死在用例里**——
+    **于是 Batch 263 收敛掉那一条时，用例 6 与 7 双双「作废：前提失配」**，
+    **而作废在退出码上与失败难以分辨**（方向十六在构建日志里报出来的就是它）。
+    **反验拿「现实里迟早会被收敛掉的东西」当夹具锚点，
+    等于把自己绑在一个必然会消失的字符串上**——
+    **而「必然会消失」这件事正是收敛本身要做的事**。
+
+    **推论**：**夹具该问「表里有哪一条」，不该问「表里那一条是哪个」。**
+    前者收敛多少次都成立，后者每收敛一次就得跟着换一次。
+
+    **用 AST 读而不是正则扫**：`ACCEPTED` 的值是一个嵌套的元组字面量，
+    **而它的理由字段里本来就带 `\"verify-…\"` 这类字样**——
+    **正则扫全文会把理由里提到的文件当成登记表里的文件**（与 Batch 190 那次同一个病）。
+    """
+    with io.open(GATE_SRC, encoding="utf-8") as fh:
+        tree = ast.parse(fh.read())
+    for node in ast.walk(tree):
+        if not (isinstance(node, ast.Assign)
+                and isinstance(node.targets[0], ast.Name)
+                and node.targets[0].id == "ACCEPTED"):
+            continue
+        assert node.value.keys, "登记表是空的——**没有任何一条可当夹具**，本用例无法成立"
+        #: **`keys` 与 `values` 是两个平行的 list**，**拿 `Constant` 当下标会抛**
+        #: `TypeError: list indices must be integers or slices, not Constant`——
+        #: **而它的报错与「键是不是字面量」毫无关系**，看着像数据坏了。
+        k = node.value.keys[0]
+        assert isinstance(k, ast.Constant), "登记表的键不是字面量"
+        tup = node.value.values[0]                      # (描述, 文件列表, 理由)
+        files = ast.literal_eval(tup.elts[1])
+        assert len(files) >= 2, "登记表第 1 条只列了 %d 个文件，造不出「跨文件」" % len(files)
+        return k.value, list(files)
+    raise AssertionError("前提失配：真闸里读不到 ACCEPTED")
+
+
+def accepted_body_line():
+    """返回登记表第一条的 **(字面量, 它在登记所列第一个文件里的原文行)**。
+
+    **为什么要连字面量一起取**：用例 3 要造的是
+    「**字面量出现在比登记更多的文件里**」，
+    **而那必须先知道那个字面量是什么**。
+    第一版靠「抽文件里第一行 `re.compile(`」蒙对——
+    **而那只是因为登记那条正好排在第一行**；
+    **收敛掉它之后，抽到的变成别的正则，造出来的就成了「未登记的重复」**，
+    **用例红在它没打算核的那件事上**（纪律 281 推论四）。
+
+    **怎么拿字面量**：**加载真闸并调它自己的 `scan()`**，
+    再按登记表那个 key（`md5(body)[:12]`）反查——
+    **不重新实现一遍普查**（纪律 274 推论一：判据已经算出来的数，不要再猜一遍）。
+    """
+    with io.open(GATE_SRC, encoding="utf-8") as fh:
+        gate_src_text = fh.read()
+    spec = importlib.util.spec_from_file_location("vdup_ro", GATE_SRC)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    key, files = first_accepted()
+    for body, fs in mod.scan().items():
+        if hashlib.md5(body.encode("utf-8")).hexdigest()[:12] != key:
+            continue
+        assert fs, "登记表那条在现实里一个文件都没有——闸 37 早该报孤儿了"
+        with io.open(os.path.join(ROOT, "scripts", files[0]), encoding="utf-8") as fh:
+            for line in fh:
+                if body in line and "re.compile(" in line:
+                    return body, line.rstrip("\n")
+        raise AssertionError("前提失配：登记表那条的字面量不在 %s 里" % files[0])
+    raise AssertionError("前提失配：闸的 scan() 里找不到登记表那条（%s）" % key)
+
+
 def record(name, ok, detail=""):
     """`ok` 既可以是布尔，**也可以直接是状态词**（`"通过"` / `"失败"` / `"作废"`）。
 
@@ -155,7 +228,8 @@ def m_unregistered_duplicate_reported():
 def m_stale_acceptance_reported():
     """**把已登记的那条在另一个文件里也用上**——
     于是「涉及文件」与登记时不同，**而理由是照着旧的那份写的**。"""
-    line = extract_re_line(os.path.join(ROOT, "scripts", "verify-endpoints.py"))
+    #: **素材从登记表取**（字面量 + 它在原文件里的原文行），**不写死是哪一条**。
+    _body, line = accepted_body_line()
     _, g = probe_root({"verify-probe-extra.py": "import re\n" + line + "\n"})
     rc, out = run(g)
     ok = rc == 1 and "涉及的文件变了" in out
@@ -207,17 +281,19 @@ def m_orphan_acceptance_reported():
     **它把矛盾打出来了却仍然报绿**——
     **「本闸管不了」与「本闸已经有那个数却没用」是两回事**（纪律 287）。
     """
-    src = io.open(os.path.join(ROOT, "scripts", "verify-endpoints.py"), encoding="utf-8").read()
-    lines = [l for l in src.split("\n")
-             if "(?:GET|POST|PUT|DELETE|PATCH)" not in l]
-    stripped = "\n".join(lines)
-    assert stripped != src, "前提失配：verify-endpoints.py 里找不到那条正则"
-    _, g = probe_root({"verify-endpoints.py": stripped})
+    #: **素材从登记表里动态取**（`first_accepted()`），**不写死是哪一条**——
+    #: **收敛掉任何一条都不会让这个用例作废**（第一版写死 `25eecbe17b93`，
+    #: **本批收敛掉它时用例 6/7 双双作废**，而作废与失败在退出码上分不开）。
+    key, files = first_accepted()
+    #: **孤儿怎么造**：把登记表列的第二个文件换成**一个正则都没有的最小文件**——
+    #: **那个字面量于是只剩一处**，跨文件重复消失，**而登记还在** → 孤儿。
+    #: **不需要知道那个字面量是什么**，**所以收敛哪一条都能用**。
+    empty = "# 本文件刻意不含任何正则——用来造孤儿\n"
+    _, g = probe_root({files[1]: empty})
     rc, out = run(g)
     #: **必须点名那一条**，不能只看 rc——
     #: **「报了红但没说是哪一条」对人没有任何用处**，
     #: **而一条判据若只会说「有问题」，下一个人只能自己去数**。
-    key = "25eecbe17b93"
     ok = rc == 1 and key in out and "对不上现实" in out
     record("6 收敛掉一条却没从登记表删 → 必报（且要点名是哪一条）", ok, "rc=%d" % rc)
 
@@ -232,15 +308,11 @@ def m_converged_and_deregistered_ok():
     **那样的判据会把人逼回去重新登记一条**（纪律 260 的同一形状：
     **逼它归零的压力会催生「为了让闸闭嘴而做错事」**）。
     """
-    src = io.open(os.path.join(ROOT, "scripts", "verify-endpoints.py"), encoding="utf-8").read()
-    lines = [l for l in src.split("\n")
-             if "(?:GET|POST|PUT|DELETE|PATCH)" not in l]
-    stripped = "\n".join(lines)
-    assert stripped != src, "前提失配：verify-endpoints.py 里找不到那条正则"
-    key = "25eecbe17b93"
+    key, files = first_accepted()
+    empty = "# 本文件刻意不含任何正则——用来造孤儿\n"
     gate_src = io.open(GATE_SRC, encoding="utf-8").read()
     assert ('    "%s": (' % key) in gate_src, "前提失配：登记表里没有 %s 这一条" % key
-    _, g = probe_root({"verify-endpoints.py": stripped,
+    _, g = probe_root({files[1]: empty,
                        "verify-duplication.py": drop_accepted_key(gate_src, key)})
     rc, out = run(g)
     record("7 收敛掉一条并同步删了登记 → 不得报（做完正确动作闸必须绿）",

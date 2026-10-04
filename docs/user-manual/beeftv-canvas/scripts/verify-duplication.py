@@ -63,13 +63,6 @@ ACCEPTED = {
     #: **而那正是 Batch 257 刚补上的方向**，**一天之内就拿到了第一次现场验证**。
     #: **原先那份登记的理由是「闸之间互相 import 会让任一方坏掉时另一方起不来」，
     #: 而那个理由已被 `stagedeps` 与 `tablerow.py` 作废**（见 `selftestnames.py` 文件头）。
-    "25eecbe17b93": (
-        "找前端 API 调用点",
-        ["verify-endpoints.py", "verify-exclusions.py"],
-        "**同一个概念的第三份拷贝**（端点清单 vs 排除条件表各要一份）。"
-        "**本批没收敛是因为收敛它要跨两个闸的数据结构一起动**——"
-        "**而那是一次独立工作，不该混在「收敛表格正则」这一批里**。"
-        "**这一条登记的是「欠着」，不是「合格」。**"),
     "0ffab7a538d5": (
         "解析闸输出里的一个块",
         ["verify-shot-integrity.py", "verify-shot-version-source.py"],
