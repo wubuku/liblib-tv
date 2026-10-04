@@ -24,6 +24,12 @@ from beefsrc import resolve_src, explain
 import sys
 import tempfile
 from stagedeps import child_env
+#: **Batch 272 新增的这条 import 是上面那段修复的一部分**：
+#: 夹具的底从 `origin/main` 换成**手册声明的基线提交**，
+#: 而那个提交只能从 `declared_baseline()` 拿——**它是「手册照哪版写的」的唯一一份实现**
+#: （纪律 274）。**这里不自己写死 `bcc3b05`**：
+#: 写死一份，基线升版时它就会静悄悄过期，而夹具仍然绿。
+from baseline import declared_baseline, BaselineError
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -34,22 +40,48 @@ SRC, _FB = resolve_src()
 if SRC is None:
     raise SystemExit("找不到可用的 BeefTV 源码仓：设 BEEFTV_SRC。候选：\n" + explain())
 TMPREF = "refs/manual-selftest-label-drift"
+#: **基线例输出里那句话的措辞**。**它原先写「真实 origin/main」——而底在 Batch 272 换成基线提交之后，那句话就成了假的**。
+#: **测试输出里的标签也是断言的一部分**：一个说错的标签会让人以为
+#: 「这条用例验的是 origin/main」，而它验的不是（纪律 307 推论二）。
+TAG_BASELINE = "手册声明的基线提交那一棵树（**Batch 272 改的底**——原先是 `origin/main`，**而闸 6 本体读的是基线提交**，两个调用方看的是两个世界）"
 
 PASS = VOID = FAIL = 0
 
 
 def build_ref(files):
-    """以 origin/main 的树为底，叠加 files（{路径: 内容}），造一个合成 ref。
+    """以**手册声明的取证基线提交**那棵树为底，叠加 files（{路径: 内容}），造一个合成 ref。
 
     ⚠️ **必须以真实树为底**：闸 6 有**反向**检查——登记表的每一条都必须仍在上游存在，
     否则报「登记已失效，请清理登记」。若只放两三个文件，27 条登记会全部「消失」，
     闸门判 rc=1 ——**那是闸门判对了，是我第一版测试设计错了**
     （第一版因此让三条「不误伤」用例全部误判为失败）。
+
+    **Batch 272 改了一处底：原先这里写死 `origin/main^{tree}`。**
+    **而闸 6 本体走 `baseline.resolve_ref()`，默认读的是手册声明的基线提交**
+    （本树是 v1.6.22 / `bcc3b05`）。**于是两个调用方看的是两个不同的世界**：
+
+      · 闸 6 读基线 → v1.7.3 才有的标签在那里不存在 → 27 条登记全部有效 → 闸绿；
+      · 本反验读 `origin/main`（v1.7.3）→ 多出两处分歧 → **未登记** → rc=1。
+
+    **而登记表是全局的一份，两个方向都查**，所以**没有任何登记状态能让两边同时绿**：
+    实测把 `openai` / `gemini` 两条登记进去，闸 6 立刻改报「登记已失效 2」——
+    **这不是「二选一」，是这份夹具与这道闸的前提本来就没对齐**。
+
+    **修法是让夹具的底回到闸默认读的那个 ref**，而不是去改登记表：
+    **登记表记的是「在这个 ref 上有哪些分歧」，换个 ref 去问它，答的就不是同一件事**
+    （纪律 107，与闸 14 那条 `FLOATING_REF_EXEMPT` 同一族理由）。
+    **为什么用声明的提交而不是 `resolve_ref()`**：闸 18 方向五之二会设 `BEEFTV_REF`
+    去重放本反验，**若底也跟着环境变量走，重放时底就变成了被改过的那棵树**——
+    **夹具必须对环境免疫**，否则「反向验证」验的是另一件事。
     """
     idx = tempfile.mktemp(prefix="beef-label-selftest.")
     try:
         env = {**os.environ, "GIT_INDEX_FILE": idx}
-        base = subprocess.run(["git", "rev-parse", "origin/main^{tree}"], cwd=SRC,
+        try:
+            base_commit = declared_baseline()[1]
+        except BaselineError as exc:
+            raise SystemExit("读不到手册声明的取证基线：%s——**夹具的底就是它**，读不到就造不出合成 ref" % exc)
+        base = subprocess.run(["git", "rev-parse", base_commit + "^{tree}"], cwd=SRC,
                               capture_output=True, text=True, check=True).stdout.strip()
         subprocess.run(["git", "read-tree", base], cwd=SRC, env=env,
                        capture_output=True, text=True, check=True)
@@ -60,9 +92,7 @@ def build_ref(files):
                            cwd=SRC, env=env, capture_output=True, text=True, check=True)
         tree = subprocess.run(["git", "write-tree"], cwd=SRC, env=env,
                               capture_output=True, text=True, check=True).stdout.strip()
-        commit = subprocess.run(["git", "commit-tree", tree, "-p",
-                                 subprocess.run(["git", "rev-parse", "origin/main"], cwd=SRC,
-                                                capture_output=True, text=True, check=True).stdout.strip()],
+        commit = subprocess.run(["git", "commit-tree", tree, "-p", base_commit],
                                 cwd=SRC, input="label drift selftest",
                                 capture_output=True, text=True, check=True).stdout.strip()
         subprocess.run(["git", "update-ref", TMPREF, commit], cwd=SRC, capture_output=True, text=True, check=True)
@@ -101,10 +131,11 @@ def run(desc, files, expect_fail=True, want=None):
 def main():
     base = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True, env=child_env(ROOT))
     if base.returncode == 0:
-        print("  ✓ 基线：真实 origin/main 通过（%s）" % base.stdout.strip().split("\n")[-1][:70])
+        print("  ✓ 基线：%s 通过（%s）"
+              % (TAG_BASELINE, base.stdout.strip().split("\n")[-1][:70]))
         globals()["PASS"] = globals()["PASS"] + 1
     else:
-        print("  ✗ 基线：真实 origin/main 应当通过，rc=%d" % base.returncode)
+        print("  ✗ 基线：%s 应当通过，rc=%d" % (TAG_BASELINE, base.returncode))
         globals()["FAIL"] = globals()["FAIL"] + 1
 
     # 能抓：跨文件分歧且未登记
